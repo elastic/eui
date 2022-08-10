@@ -7,22 +7,24 @@
  */
 
 import {
-  useEffect,
-  useState,
-  useMemo,
-  useCallback,
-  useContext,
   CSSProperties,
   MutableRefObject,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
 } from 'react';
-import { isObject, isNumber } from '../../../services/predicate';
+import { GridOnItemsRenderedProps } from 'react-window';
 import { useForceRender, useLatest } from '../../../services';
+import { isNumber, isObject } from '../../../services/predicate';
 import {
-  EuiDataGridStyleCellPaddings,
-  EuiDataGridStyle,
+  EuiDataGridColumn,
   EuiDataGridRowHeightOption,
   EuiDataGridRowHeightsOptions,
-  EuiDataGridColumn,
+  EuiDataGridScrollAnchorRow,
+  EuiDataGridStyle,
+  EuiDataGridStyleCellPaddings,
   ImperativeGridApi,
 } from '../data_grid_types';
 import { DataGridSortingContext } from './sorting';
@@ -40,6 +42,8 @@ export const DEFAULT_ROW_HEIGHT = 34;
 export class RowHeightUtils {
   constructor(
     private gridRef: MutableRefObject<ImperativeGridApi | null>,
+    private outerGridElementRef: MutableRefObject<HTMLDivElement | null>,
+    private gridItemsRenderedRef: MutableRefObject<GridOnItemsRenderedProps | null>,
     private rerenderGridBodyRef: MutableRefObject<(() => void) | null>
   ) {}
 
@@ -243,6 +247,50 @@ export class RowHeightUtils {
     this.gridRef.current?.resetAfterRowIndex(this.lastUpdatedRow);
     this.lastUpdatedRow = Infinity;
   }
+
+  compensateForLayoutShift(
+    rowIndex: number,
+    verticalLayoutShift: number,
+    anchorRow: EuiDataGridScrollAnchorRow
+  ) {
+    const grid = this.gridRef.current;
+    const outerGridElement = this.outerGridElementRef.current;
+    const renderedItems = this.gridItemsRenderedRef.current;
+
+    if (
+      grid == null ||
+      outerGridElement == null ||
+      renderedItems == null ||
+      anchorRow == null ||
+      !Number.isFinite(verticalLayoutShift)
+    ) {
+      return;
+    }
+
+    // skip if the start row is the anchor row but it hasn't shifted
+    if (
+      anchorRow === 'start' &&
+      renderedItems.visibleRowStartIndex !== rowIndex
+    ) {
+      return;
+    }
+
+    // skip if the center row is the anchor row but it hasn't shifted
+    if (
+      anchorRow === 'center' &&
+      Math.floor(
+        (renderedItems.visibleRowStopIndex -
+          renderedItems.visibleRowStartIndex) /
+          2
+      ) !== rowIndex
+    ) {
+      return;
+    }
+
+    grid.scrollTo({
+      scrollTop: outerGridElement.scrollTop + verticalLayoutShift,
+    });
+  }
 }
 
 /**
@@ -251,18 +299,28 @@ export class RowHeightUtils {
  */
 export const useRowHeightUtils = ({
   gridRef,
+  outerGridElementRef,
+  gridItemsRenderedRef,
   gridStyles,
   columns,
   rowHeightsOptions,
 }: {
   gridRef: MutableRefObject<ImperativeGridApi | null>;
+  outerGridElementRef: MutableRefObject<HTMLDivElement | null>;
+  gridItemsRenderedRef: MutableRefObject<GridOnItemsRenderedProps | null>;
   gridStyles: EuiDataGridStyle;
   columns: EuiDataGridColumn[];
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
 }) => {
   const forceRenderRef = useLatest(useForceRender());
   const [rowHeightUtils] = useState(
-    () => new RowHeightUtils(gridRef, forceRenderRef)
+    () =>
+      new RowHeightUtils(
+        gridRef,
+        outerGridElementRef,
+        gridItemsRenderedRef,
+        forceRenderRef
+      )
   );
 
   // Forces a rerender whenever the row heights change, as this can cause the

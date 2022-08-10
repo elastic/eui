@@ -14,7 +14,11 @@ export interface EuiPageContentHeaderSectionProps
   extends CommonProps,
     HTMLAttributes<HTMLDivElement> {}
 
-export const EuiPageContentHeaderSection: FunctionComponent<EuiPageContentHeaderSectionProps> = ({
+/**
+ * **DEPRECATED**
+ * Use EuiPageHeader instead
+ */
+export const EuiPageContentHeaderSection_Deprecated: FunctionComponent<EuiPageContentHeaderSectionProps> = ({
   children,
   className,
   ...rest

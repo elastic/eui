@@ -3,15 +3,14 @@ import { css } from '@emotion/react';
 import {
   EuiIcon,
   EuiCode,
-  EuiThemeBreakpoints,
   useEuiBreakpoint,
   useCurrentEuiBreakpoint,
   useIsWithinBreakpoints,
   useEuiTheme,
 } from '../../../../../src';
+import { sortMapBySmallToLargeValues } from '../../../../../src/services/breakpoint/_sorting';
 
-import { EuiThemeBreakpoints as _EuiThemeBreakpoints } from '../_props';
-import { getPropsFromComponent } from '../../../services/props/get_props';
+import { euiThemeBreakpointType } from '../_props';
 import { ThemeExample } from '../_components/_theme_example';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
 
@@ -135,42 +134,96 @@ export default () => {
   );
 };
 
+export const CUSTOM_BREAKPOINTS = {
+  xxs: 0,
+  xs: 250,
+  s: 500,
+  m: 1000,
+  l: 1500,
+  xl: 2000,
+  xxl: 2500,
+};
+export const CustomBreakpointsJS = () => {
+  const currentBreakpoint = useCurrentEuiBreakpoint();
+
+  return (
+    <ThemeExample
+      title={<code>EuiProvider</code>}
+      type="theme"
+      description={
+        <>
+          <p>
+            Theme breakpoints can be overriden or added via{' '}
+            <EuiCode>EuiProvider</EuiCode>&apos;s <EuiCode>modify</EuiCode>{' '}
+            prop.
+          </p>
+          <p>
+            Excluding a default breakpoint key in your{' '}
+            <EuiCode>breakpoint</EuiCode> override will use the EUI default
+            value for that size as a fallback.
+          </p>
+        </>
+      }
+      example={
+        <p>
+          Current custom breakpoint: <strong>{currentBreakpoint}</strong>
+        </p>
+      }
+      snippet={`<EuiProvider
+  modify={{
+    breakpoint: {
+      xxs: 0,
+      xs: 250,
+      s: 500,
+      m: 1000,
+      l: 1500,
+      xl: 2000,
+      xxl: 2500,
+    },
+  }}
+>
+  <App />
+</EuiProvider>
+`}
+      snippetLanguage="js"
+    />
+  );
+};
+
 export const BreakpointValuesJS = () => {
   const {
     euiTheme: { breakpoint },
   } = useEuiTheme();
-  const breakpointTypes = getPropsFromComponent(_EuiThemeBreakpoints);
+  const breakpoints = Object.keys(sortMapBySmallToLargeValues(breakpoint));
   const currentBreakpoint = useCurrentEuiBreakpoint();
 
   return (
-    <>
-      <ThemeValuesTable
-        items={EuiThemeBreakpoints.map((size) => {
-          return {
-            id: size,
-            token: `breakpoint.${size}`,
-            type: breakpointTypes[size],
-            value: breakpoint[size],
-          };
-        })}
-        valueColumnProps={{
-          title: 'Min width',
-        }}
-        sampleColumnProps={{
-          title: 'Current',
-          width: '80px',
-        }}
-        render={(item) => {
-          if (item.id === currentBreakpoint)
-            return (
-              <EuiIcon
-                title="Current window size is within this breakpoint"
-                type="checkInCircleFilled"
-                color="success"
-              />
-            );
-        }}
-      />
-    </>
+    <ThemeValuesTable
+      items={breakpoints.map((size) => {
+        return {
+          id: size,
+          token: `breakpoint.${size}`,
+          type: euiThemeBreakpointType,
+          value: breakpoint[size],
+        };
+      })}
+      valueColumnProps={{
+        title: 'Min width',
+      }}
+      sampleColumnProps={{
+        title: 'Current',
+        width: '80px',
+      }}
+      render={(item) => {
+        if (item.id === currentBreakpoint)
+          return (
+            <EuiIcon
+              title="Current window size is within this breakpoint"
+              type="checkInCircleFilled"
+              color="success"
+            />
+          );
+      }}
+    />
   );
 };

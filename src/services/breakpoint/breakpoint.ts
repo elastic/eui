@@ -19,6 +19,8 @@ export type EuiBreakpoints = _EuiThemeBreakpoints;
 export const BREAKPOINTS = breakpoint;
 export const BREAKPOINT_KEYS = keysOf(BREAKPOINTS);
 
+import { sortMapByLargeToSmallValues } from './_sorting';
+
 /**
  * Given the current `width` and an object of `EuiBreakpoints`,
  * this function returns the string that is the name of the breakpoint key
@@ -32,8 +34,13 @@ export function getBreakpoint(
   width: number,
   breakpoints: EuiBreakpoints = BREAKPOINTS
 ): EuiBreakpointSize | undefined {
+  // Ensure the breakpoints map is sorted from largest value to smallest
+  const sortedBreakpoints: EuiBreakpoints = sortMapByLargeToSmallValues(
+    breakpoints
+  );
+
   // Find the breakpoint (key) whose value is <= windowWidth starting with largest first
-  return BREAKPOINT_KEYS.find((key) => breakpoints[key] <= width);
+  return keysOf(sortedBreakpoints).find((key) => breakpoints[key] <= width);
 }
 
 /**

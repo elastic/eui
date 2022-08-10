@@ -3,17 +3,17 @@
 exports[`EuiBreadcrumbs is rendered 1`] = `
 <nav
   aria-label="aria-label"
-  class="euiBreadcrumbs testClass1 testClass2 euiBreadcrumbs--truncate"
+  class="euiBreadcrumbs testClass1 testClass2"
   data-test-subj="test subject string"
 >
   <ol
-    class="euiBreadcrumbs__list"
+    class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
   >
     <li
-      class="euiBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -22,16 +22,16 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
       </a>
     </li>
     <li
-      class="euiBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <span
-        class="euiBreadcrumb__content"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
       >
         Metazoans
       </span>
     </li>
     <li
-      class="euiBreadcrumb euiBreadcrumb--collapsed"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isCollapsed"
     >
       <div
         class="euiPopover emotion-euiPopover"
@@ -41,7 +41,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
         >
           <button
             aria-label="See collapsed breadcrumbs"
-            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
+            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page"
             title="See collapsed breadcrumbs"
             type="button"
           >
@@ -54,20 +54,20 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
       </div>
     </li>
     <li
-      class="euiBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <button
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated"
         type="button"
       >
         Reptiles
       </button>
     </li>
     <li
-      class="euiBreadcrumb euiBreadcrumb--truncate"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <a
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated"
         href="#"
         rel="noreferrer"
         title="Boa constrictor has an error"
@@ -76,11 +76,11 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
       </a>
     </li>
     <li
-      class="euiBreadcrumb euiBreadcrumb--last"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <span
         aria-current="page"
-        class="euiBreadcrumb__content"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
       >
         Edit
       </span>
@@ -92,17 +92,17 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
 exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
 <nav
   aria-label="aria-label"
-  class="euiBreadcrumbs testClass1 testClass2 euiBreadcrumbs--truncate"
+  class="euiBreadcrumbs testClass1 testClass2"
   data-test-subj="test subject string"
 >
   <ol
-    class="euiBreadcrumbs__list"
+    class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
   >
     <li
-      class="euiBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -111,16 +111,16 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
       </a>
     </li>
     <li
-      class="euiBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <span
-        class="euiBreadcrumb__content"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
       >
         Metazoans
       </span>
     </li>
     <li
-      class="euiBreadcrumb euiBreadcrumb--collapsed"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isCollapsed"
     >
       <div
         class="euiPopover emotion-euiPopover"
@@ -130,7 +130,7 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
         >
           <button
             aria-label="See collapsed breadcrumbs"
-            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
+            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page"
             title="See collapsed breadcrumbs"
             type="button"
           >
@@ -143,10 +143,10 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
       </div>
     </li>
     <li
-      class="euiBreadcrumb euiBreadcrumb--truncate"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <a
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated"
         href="#"
         rel="noreferrer"
         title="Boa constrictor has an error"
@@ -155,20 +155,20 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
       </a>
     </li>
     <li
-      class="euiBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <span
-        class="euiBreadcrumb__content"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
       >
         Edit
       </span>
     </li>
     <li
-      class="euiBreadcrumb euiBreadcrumb--last"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <a
         aria-current="page"
-        class="euiLink euiBreadcrumb__content emotion-euiLink-text"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-text-euiBreadcrumb__content-page-isTruncatedLast"
         href="#"
         rel="noreferrer"
       >
@@ -182,16 +182,16 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
 exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of breadcrumbs 1`] = `
 <nav
   aria-label="Breadcrumbs"
-  class="euiBreadcrumbs euiBreadcrumbs--truncate"
+  class="euiBreadcrumbs"
 >
   <ol
-    class="euiBreadcrumbs__list"
+    class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
   >
     <li
-      class="euiBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -200,59 +200,56 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
       </a>
     </li>
     <li
-      class="euiBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <span
-        class="euiBreadcrumb__content"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
       >
         Metazoans
       </span>
     </li>
     <li
-      class="euiBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <span
-        class="euiBreadcrumb__content"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
       >
         Chordates
       </span>
     </li>
     <li
-      class="euiBreadcrumb euiBreadcrumb--truncate"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <span
-        class="euiBreadcrumb__content"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
       >
         Nebulosa subspecies is also a real mouthful, especially for creatures without mouths
       </span>
     </li>
     <li
-      class="euiBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <span
-        aria-current="false"
-        class="euiBreadcrumb__content"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
       >
         Tetrapods
       </span>
     </li>
     <li
-      class="euiBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <button
-        aria-current="false"
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated"
         type="button"
       >
         Reptiles
       </button>
     </li>
     <li
-      class="euiBreadcrumb euiBreadcrumb--truncate"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <a
-        aria-current="false"
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated"
         href="#"
         rel="noreferrer"
         title="Boa constrictor has an error"
@@ -261,11 +258,11 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
       </a>
     </li>
     <li
-      class="euiBreadcrumb euiBreadcrumb--last"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <span
         aria-current="page"
-        class="euiBreadcrumb__content"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
       >
         Edit
       </span>
@@ -277,13 +274,13 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
 exports[`EuiBreadcrumbs props max renders 1 item 1`] = `
 <nav
   aria-label="Breadcrumbs"
-  class="euiBreadcrumbs euiBreadcrumbs--truncate"
+  class="euiBreadcrumbs"
 >
   <ol
-    class="euiBreadcrumbs__list"
+    class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
   >
     <li
-      class="euiBreadcrumb euiBreadcrumb--collapsed"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isCollapsed"
     >
       <div
         class="euiPopover emotion-euiPopover"
@@ -293,7 +290,7 @@ exports[`EuiBreadcrumbs props max renders 1 item 1`] = `
         >
           <button
             aria-label="See collapsed breadcrumbs"
-            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
+            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page"
             title="See collapsed breadcrumbs"
             type="button"
           >
@@ -306,11 +303,11 @@ exports[`EuiBreadcrumbs props max renders 1 item 1`] = `
       </div>
     </li>
     <li
-      class="euiBreadcrumb euiBreadcrumb--last"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <span
         aria-current="page"
-        class="euiBreadcrumb__content"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
       >
         Edit
       </span>
@@ -322,16 +319,16 @@ exports[`EuiBreadcrumbs props max renders 1 item 1`] = `
 exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
 <nav
   aria-label="Breadcrumbs"
-  class="euiBreadcrumbs euiBreadcrumbs--truncate"
+  class="euiBreadcrumbs"
 >
   <ol
-    class="euiBreadcrumbs__list"
+    class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
   >
     <li
-      class="euiBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -340,59 +337,56 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
       </a>
     </li>
     <li
-      class="euiBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <span
-        class="euiBreadcrumb__content"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
       >
         Metazoans
       </span>
     </li>
     <li
-      class="euiBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <span
-        class="euiBreadcrumb__content"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
       >
         Chordates
       </span>
     </li>
     <li
-      class="euiBreadcrumb euiBreadcrumb--truncate"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <span
-        class="euiBreadcrumb__content"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
       >
         Nebulosa subspecies is also a real mouthful, especially for creatures without mouths
       </span>
     </li>
     <li
-      class="euiBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <span
-        aria-current="false"
-        class="euiBreadcrumb__content"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
       >
         Tetrapods
       </span>
     </li>
     <li
-      class="euiBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <button
-        aria-current="false"
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated"
         type="button"
       >
         Reptiles
       </button>
     </li>
     <li
-      class="euiBreadcrumb euiBreadcrumb--truncate"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <a
-        aria-current="false"
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated"
         href="#"
         rel="noreferrer"
         title="Boa constrictor has an error"
@@ -401,11 +395,11 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
       </a>
     </li>
     <li
-      class="euiBreadcrumb euiBreadcrumb--last"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <span
         aria-current="page"
-        class="euiBreadcrumb__content"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
       >
         Edit
       </span>
@@ -417,16 +411,16 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
 exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
 <nav
   aria-label="Breadcrumbs"
-  class="euiBreadcrumbs euiBreadcrumbs--truncate"
+  class="euiBreadcrumbs"
 >
   <ol
-    class="euiBreadcrumbs__list"
+    class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
   >
     <li
-      class="euiBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -435,16 +429,16 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
       </a>
     </li>
     <li
-      class="euiBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <span
-        class="euiBreadcrumb__content"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
       >
         Metazoans
       </span>
     </li>
     <li
-      class="euiBreadcrumb euiBreadcrumb--collapsed"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isCollapsed"
     >
       <div
         class="euiPopover emotion-euiPopover"
@@ -454,7 +448,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
         >
           <button
             aria-label="See collapsed breadcrumbs"
-            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
+            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page"
             title="See collapsed breadcrumbs"
             type="button"
           >
@@ -467,21 +461,20 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
       </div>
     </li>
     <li
-      class="euiBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <button
-        aria-current="false"
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated"
         type="button"
       >
         Reptiles
       </button>
     </li>
     <li
-      class="euiBreadcrumb euiBreadcrumb--truncate"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <a
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated"
         href="#"
         rel="noreferrer"
         title="Boa constrictor has an error"
@@ -490,11 +483,11 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
       </a>
     </li>
     <li
-      class="euiBreadcrumb euiBreadcrumb--last"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <span
         aria-current="page"
-        class="euiBreadcrumb__content"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
       >
         Edit
       </span>
@@ -506,16 +499,16 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
 exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
 <nav
   aria-label="Breadcrumbs"
-  class="euiBreadcrumbs euiBreadcrumbs--truncate"
+  class="euiBreadcrumbs"
 >
   <ol
-    class="euiBreadcrumbs__list"
+    class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
   >
     <li
-      class="euiBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -524,16 +517,16 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
       </a>
     </li>
     <li
-      class="euiBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <span
-        class="euiBreadcrumb__content"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
       >
         Metazoans
       </span>
     </li>
     <li
-      class="euiBreadcrumb euiBreadcrumb--collapsed"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isCollapsed"
     >
       <div
         class="euiPopover emotion-euiPopover"
@@ -543,7 +536,7 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
         >
           <button
             aria-label="See collapsed breadcrumbs"
-            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
+            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page"
             title="See collapsed breadcrumbs"
             type="button"
           >
@@ -556,21 +549,20 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
       </div>
     </li>
     <li
-      class="euiBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <button
-        aria-current="false"
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated"
         type="button"
       >
         Reptiles
       </button>
     </li>
     <li
-      class="euiBreadcrumb euiBreadcrumb--truncate"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <a
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated"
         href="#"
         rel="noreferrer"
         title="Boa constrictor has an error"
@@ -579,11 +571,11 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
       </a>
     </li>
     <li
-      class="euiBreadcrumb euiBreadcrumb--last"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <span
         aria-current="page"
-        class="euiBreadcrumb__content"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
       >
         Edit
       </span>
@@ -595,13 +587,13 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
 exports[`EuiBreadcrumbs props responsive is rendered with custom breakpoints 1`] = `
 <nav
   aria-label="Breadcrumbs"
-  class="euiBreadcrumbs euiBreadcrumbs--truncate"
+  class="euiBreadcrumbs"
 >
   <ol
-    class="euiBreadcrumbs__list"
+    class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
   >
     <li
-      class="euiBreadcrumb euiBreadcrumb--collapsed"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isCollapsed"
     >
       <div
         class="euiPopover emotion-euiPopover"
@@ -611,7 +603,7 @@ exports[`EuiBreadcrumbs props responsive is rendered with custom breakpoints 1`]
         >
           <button
             aria-label="See collapsed breadcrumbs"
-            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
+            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page"
             title="See collapsed breadcrumbs"
             type="button"
           >
@@ -624,11 +616,11 @@ exports[`EuiBreadcrumbs props responsive is rendered with custom breakpoints 1`]
       </div>
     </li>
     <li
-      class="euiBreadcrumb euiBreadcrumb--last"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
     >
       <span
         aria-current="page"
-        class="euiBreadcrumb__content"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
       >
         Edit
       </span>
@@ -643,13 +635,13 @@ exports[`EuiBreadcrumbs props truncate as false is rendered 1`] = `
   class="euiBreadcrumbs"
 >
   <ol
-    class="euiBreadcrumbs__list"
+    class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list"
   >
     <li
-      class="euiBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -658,16 +650,16 @@ exports[`EuiBreadcrumbs props truncate as false is rendered 1`] = `
       </a>
     </li>
     <li
-      class="euiBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page"
     >
       <span
-        class="euiBreadcrumb__content"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-euiTextColor-subdued"
       >
         Metazoans
       </span>
     </li>
     <li
-      class="euiBreadcrumb euiBreadcrumb--collapsed"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page-isCollapsed"
     >
       <div
         class="euiPopover emotion-euiPopover"
@@ -677,7 +669,7 @@ exports[`EuiBreadcrumbs props truncate as false is rendered 1`] = `
         >
           <button
             aria-label="See collapsed breadcrumbs"
-            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
+            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page"
             title="See collapsed breadcrumbs"
             type="button"
           >
@@ -690,22 +682,20 @@ exports[`EuiBreadcrumbs props truncate as false is rendered 1`] = `
       </div>
     </li>
     <li
-      class="euiBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page"
     >
       <button
-        aria-current="false"
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page"
         type="button"
       >
         Reptiles
       </button>
     </li>
     <li
-      class="euiBreadcrumb euiBreadcrumb--truncate"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page"
     >
       <a
-        aria-current="false"
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated"
         href="#"
         rel="noreferrer"
         title="Boa constrictor has an error"
@@ -714,11 +704,11 @@ exports[`EuiBreadcrumbs props truncate as false is rendered 1`] = `
       </a>
     </li>
     <li
-      class="euiBreadcrumb euiBreadcrumb--last"
+      class="euiBreadcrumb emotion-euiBreadcrumb-page"
     >
       <span
         aria-current="page"
-        class="euiBreadcrumb__content"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-euiTextColor-default"
       >
         Edit
       </span>

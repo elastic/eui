@@ -23,7 +23,7 @@ export interface EuiPageSideBarProps
   extends CommonProps,
     HTMLAttributes<HTMLDivElement> {
   /**
-   * Adds `position: sticky` and affords for any fixed position headers
+   * Adds `position: sticky`
    */
   sticky?: boolean;
   /**
@@ -32,7 +32,11 @@ export interface EuiPageSideBarProps
   paddingSize?: typeof PADDING_SIZES[number];
 }
 
-export const EuiPageSideBar: FunctionComponent<EuiPageSideBarProps> = ({
+/**
+ * **DEPRECATED**
+ * Use the new EuiPageSidebar instead
+ */
+export const EuiPageSideBar_Deprecated: FunctionComponent<EuiPageSideBarProps> = ({
   children,
   className,
   sticky,

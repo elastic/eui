@@ -9,14 +9,28 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { shouldRenderCustomStyles } from '../../../test/internal';
+import { PADDING_SIZES } from '../../../global_styling';
 
 import { EuiPageBody } from './page_body';
 
 describe('EuiPageBody', () => {
+  shouldRenderCustomStyles(<EuiPageBody />);
+
   test('is rendered', () => {
     const component = render(<EuiPageBody {...requiredProps} />);
 
     expect(component).toMatchSnapshot();
+  });
+
+  describe('paddingSize', () => {
+    PADDING_SIZES.forEach((size) => {
+      it(`${size} is rendered`, () => {
+        const component = render(<EuiPageBody paddingSize={size} />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 
   describe('panelled', () => {

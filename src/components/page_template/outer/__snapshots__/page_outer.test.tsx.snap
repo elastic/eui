@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`_EuiPageOuter direction can be row 1`] = `
+<div
+  class="emotion-euiPageOuter-row-grow"
+/>
+`;
+
+exports[`_EuiPageOuter grow can be false 1`] = `
+<div
+  class="emotion-euiPageOuter-row"
+/>
+`;
+
+exports[`_EuiPageOuter is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="testClass1 testClass2 emotion-euiPageOuter-row-grow"
+  data-test-subj="test subject string"
+/>
+`;

@@ -77,7 +77,9 @@ describe('EuiPortal', () => {
       });
     });
 
-    it('insert value can be changed', () => {
+    // This is not currently true of the EuiPortal class component, but may be true
+    // if we convert to a function component with useEffect dependencies in the future
+    it.skip('insert value can be changed', () => {
       const Wrapper = () => {
         const [siblingRef, setSiblingRef] = useState<HTMLElement | null>(null);
         const [insert, setInsert] = useState<EuiPortalProps['insert']>(
