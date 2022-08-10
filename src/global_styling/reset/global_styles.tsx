@@ -85,7 +85,7 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
     }
 
     *:focus {
-      ${euiFocusRing(euiTheme)}
+      ${euiFocusRing(euiThemeContext)}
     }
 
     // Dark mode's highlighted doesn't work well so lets just set it the same as our focus background

@@ -12,6 +12,7 @@ import { Global, css } from '@emotion/react';
 import { useEuiTheme, UseEuiTheme } from '../../services/theme/hooks';
 import { euiScreenReaderOnly } from '../../components/accessibility/screen_reader_only/screen_reader_only.styles';
 import {
+  euiFocusRing,
   euiFullHeight,
   euiTextBreakWord,
   euiTextTruncate,
@@ -29,6 +30,10 @@ const globalStyles = (euiThemeContext: UseEuiTheme) => {
     // Accessibility
     .euiScreenReaderOnly {
       ${euiScreenReaderOnly()}
+    }
+    .eui-isFocusable:focus {
+      // Forcing focus ring on non-EUI elements
+      ${euiFocusRing(euiThemeContext)}
     }
 
     // Vertical alignment

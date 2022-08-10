@@ -45,10 +45,3 @@
     flex-basis: 0%;
   }
 }
-
-/**
-  * Forcing focus ring on non-EUI elements
-  */
-.eui-isFocusable:focus {
-  @include euiFocusRing('large');
-}
