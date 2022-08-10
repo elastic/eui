@@ -8,7 +8,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
     class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
   >
     <button
-      aria-controls="18"
+      aria-controls="20"
       aria-expanded="false"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiAccordion__iconButton emotion-euiAccordion__iconButton"
@@ -23,9 +23,65 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
       />
     </button>
     <button
-      aria-controls="18"
+      aria-controls="20"
       aria-expanded="false"
       class="euiAccordion__button emotion-euiAccordion__button"
+      id="generated-id"
+      type="button"
+    >
+      <span
+        class="euiAccordion__buttonContent"
+      />
+    </button>
+  </div>
+  <div
+    aria-labelledby="generated-id"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    id="20"
+    role="region"
+    tabindex="-1"
+  >
+    <div>
+      <div
+        class=" emotion-euiAccordion__children"
+      >
+        <p>
+          You can not see me.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiAccordion behavior does not open when isDisabled 1`] = `
+<div
+  class="euiAccordion"
+>
+  <div
+    class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
+  >
+    <button
+      aria-controls="18"
+      aria-expanded="false"
+      aria-labelledby="generated-id"
+      class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiAccordion__iconButton emotion-euiAccordion__iconButton"
+      disabled=""
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="arrowRight"
+      />
+    </button>
+    <button
+      aria-controls="18"
+      aria-expanded="false"
+      class="euiAccordion__button emotion-euiAccordion__button-disabled"
+      disabled=""
       id="generated-id"
       type="button"
     >
@@ -46,7 +102,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
         class=" emotion-euiAccordion__children"
       >
         <p>
-          You can not see me.
+          You cannot see me.
         </p>
       </div>
     </div>
@@ -55,60 +111,6 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
 `;
 
 exports[`EuiAccordion behavior opens when clicked once 1`] = `
-<div
-  class="euiAccordion euiAccordion-isOpen"
->
-  <div
-    class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
-  >
-    <button
-      aria-controls="16"
-      aria-expanded="true"
-      aria-labelledby="generated-id"
-      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiAccordion__iconButton euiAccordion__iconButton-isOpen emotion-euiAccordion__iconButton-isOpen"
-      tabindex="-1"
-      type="button"
-    >
-      <span
-        aria-hidden="true"
-        class="euiButtonIcon__icon"
-        color="inherit"
-        data-euiicon-type="arrowRight"
-      />
-    </button>
-    <button
-      aria-controls="16"
-      aria-expanded="true"
-      class="euiAccordion__button emotion-euiAccordion__button"
-      id="generated-id"
-      type="button"
-    >
-      <span
-        class="euiAccordion__buttonContent"
-      />
-    </button>
-  </div>
-  <div
-    aria-labelledby="generated-id"
-    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isOpen"
-    id="16"
-    role="region"
-    tabindex="-1"
-  >
-    <div>
-      <div
-        class=" emotion-euiAccordion__children"
-      >
-        <p>
-          You can see me.
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`EuiAccordion behavior opens when div is clicked if element is a div 1`] = `
 <div
   class="euiAccordion euiAccordion-isOpen"
 >
@@ -146,6 +148,60 @@ exports[`EuiAccordion behavior opens when div is clicked if element is a div 1`]
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isOpen"
     id="17"
+    role="region"
+    tabindex="-1"
+  >
+    <div>
+      <div
+        class=" emotion-euiAccordion__children"
+      >
+        <p>
+          You can see me.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiAccordion behavior opens when div is clicked if element is a div 1`] = `
+<div
+  class="euiAccordion euiAccordion-isOpen"
+>
+  <div
+    class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
+  >
+    <button
+      aria-controls="19"
+      aria-expanded="true"
+      aria-labelledby="generated-id"
+      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiAccordion__iconButton euiAccordion__iconButton-isOpen emotion-euiAccordion__iconButton-isOpen"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="arrowRight"
+      />
+    </button>
+    <button
+      aria-controls="19"
+      aria-expanded="true"
+      class="euiAccordion__button emotion-euiAccordion__button"
+      id="generated-id"
+      type="button"
+    >
+      <span
+        class="euiAccordion__buttonContent"
+      />
+    </button>
+  </div>
+  <div
+    aria-labelledby="generated-id"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isOpen"
+    id="19"
     role="region"
     tabindex="-1"
   >
@@ -202,6 +258,58 @@ exports[`EuiAccordion is rendered 1`] = `
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="0"
+    role="region"
+    tabindex="-1"
+  >
+    <div>
+      <div
+        class=" emotion-euiAccordion__children"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiAccordion isDisabled is rendered 1`] = `
+<div
+  class="euiAccordion"
+>
+  <div
+    class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
+  >
+    <button
+      aria-controls="16"
+      aria-expanded="false"
+      aria-labelledby="generated-id"
+      class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiAccordion__iconButton emotion-euiAccordion__iconButton"
+      disabled=""
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="arrowRight"
+      />
+    </button>
+    <button
+      aria-controls="16"
+      aria-expanded="false"
+      class="euiAccordion__button emotion-euiAccordion__button-disabled"
+      disabled=""
+      id="generated-id"
+      type="button"
+    >
+      <span
+        class="euiAccordion__buttonContent"
+      />
+    </button>
+  </div>
+  <div
+    aria-labelledby="generated-id"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    id="16"
     role="region"
     tabindex="-1"
   >

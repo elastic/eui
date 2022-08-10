@@ -110,6 +110,10 @@ export type EuiAccordionProps = CommonProps &
      * Choose whether the loading message replaces the content. Customize the message by passing a node
      */
     isLoadingMessage?: boolean | ReactNode;
+    /**
+     * Disable the open/close interaction and visually subdues the trigger
+     */
+    isDisabled?: boolean;
   };
 
 export class EuiAccordionClass extends Component<
@@ -121,6 +125,7 @@ export class EuiAccordionClass extends Component<
     paddingSize: 'none' as const,
     arrowDisplay: 'left' as const,
     isLoading: false,
+    isDisabled: false,
     isLoadingMessage: false,
     element: 'div' as const,
     buttonElement: 'button' as const,
@@ -206,6 +211,7 @@ export class EuiAccordionClass extends Component<
       forceState,
       isLoading,
       isLoadingMessage,
+      isDisabled,
       buttonProps,
       buttonElement: _ButtonElement = 'button',
       arrowProps,
@@ -263,7 +269,10 @@ export class EuiAccordionClass extends Component<
 
     // Emotion styles
     const buttonStyles = euiAccordionButtonStyles(theme);
-    const cssButtonStyles = [buttonStyles.euiAccordion__button];
+    const cssButtonStyles = [
+      buttonStyles.euiAccordion__button,
+      isDisabled && buttonStyles.disabled,
+    ];
 
     const childrenStyles = euiAccordionChildrenStyles(theme);
     const cssChildrenStyles = [
@@ -313,6 +322,7 @@ export class EuiAccordionClass extends Component<
           aria-expanded={isOpen}
           aria-labelledby={buttonId}
           tabIndex={buttonElementIsFocusable ? -1 : 0}
+          isDisabled={isDisabled}
         />
       );
     }
@@ -361,8 +371,9 @@ export class EuiAccordionClass extends Component<
         css={cssButtonStyles}
         aria-controls={id}
         aria-expanded={isOpen}
-        onClick={this.onToggle}
+        onClick={isDisabled ? undefined : this.onToggle}
         type={ButtonElement === 'button' ? 'button' : undefined}
+        disabled={ButtonElement === 'button' ? isDisabled : undefined}
       >
         <span className={buttonContentClasses}>{buttonContent}</span>
       </ButtonElement>
