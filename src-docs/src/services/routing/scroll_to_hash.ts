@@ -15,6 +15,11 @@ export const useScrollToHash = () => {
       document.removeEventListener('readystatechange', readyStateListener);
   }, []);
 
+  // Scroll back to top of page when going to a completely separate page
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   useEffect(() => {
     if (documentReadyState !== 'complete') return; // Wait for page to finish loading before scrolling
 
@@ -22,20 +27,23 @@ export const useScrollToHash = () => {
     const element = hash ? document.getElementById(hash) : null;
 
     if (element) {
-      // Focus element for keyboard and screen reader users
-      if (!isTabbable(element)) {
-        element.tabIndex = -1;
-        element.addEventListener(
-          'blur',
-          () => element.removeAttribute('tabindex'),
-          { once: true }
-        );
-      }
-      element.focus({ preventScroll: true }); // Scrolling already handled below
-      // Scroll to element
-      window.scrollTo({
-        top: element.offsetTop - HEADER_OFFSET,
-        behavior: 'smooth',
+      // Wait a beat for layout to settle (especially when navigating to a hash of a new page)
+      requestAnimationFrame(() => {
+        // Focus element for keyboard and screen reader users
+        if (!isTabbable(element)) {
+          element.tabIndex = -1;
+          element.addEventListener(
+            'blur',
+            () => element.removeAttribute('tabindex'),
+            { once: true }
+          );
+        }
+        element.focus({ preventScroll: true }); // Scrolling already handled below
+        // Scroll to element
+        window.scrollTo({
+          top: element.offsetTop - HEADER_OFFSET,
+          behavior: 'smooth',
+        });
       });
     } else {
       // Scroll back to top of page
@@ -44,5 +52,5 @@ export const useScrollToHash = () => {
         top: 0,
       });
     }
-  }, [location, documentReadyState]);
+  }, [location.hash, documentReadyState]);
 };
