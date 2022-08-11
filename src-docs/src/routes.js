@@ -28,7 +28,6 @@ import {
 
 // Templates
 
-// import { PageTemplateExample } from './views/page_template/page_template_example';
 import {
   PageTemplateGuidelines,
   pageTemplateGuidelinesSections,

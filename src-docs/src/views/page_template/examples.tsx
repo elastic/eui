@@ -58,14 +58,74 @@ export const pageTemplateExamplesSections = [
   {
     id: 'providing-a-sidebar',
     title: 'Providing a sidebar',
+    fullScreen: {
+      showButton: false,
+      slug: 'sidebar',
+      demo: (
+        <PageDemo
+          slug="sidebar"
+          fullscreen
+          template={Sidebar}
+          toggle={{
+            panelled: true,
+            sidebar: true,
+            sidebarSticky: true,
+            border: true,
+          }}
+          show={{
+            sidebar: true,
+          }}
+        />
+      ),
+    },
   },
   {
     id: 'showing-a-bottom-bar',
     title: 'Showing a bottom bar',
+    fullScreen: {
+      showButton: false,
+      slug: 'bottom-bar',
+      demo: (
+        <PageDemo
+          slug="bottom-bar"
+          fullscreen
+          template={BottomBar}
+          toggle={{
+            restrictedWidth: true,
+            sidebar: true,
+            sidebarSticky: true,
+          }}
+          show={{
+            bottomBar: true,
+            sidebar: true,
+          }}
+        />
+      ),
+    },
   },
   {
     id: 'empty-pages-or-content',
     title: 'Empty pages or content',
+    fullScreen: {
+      showButton: false,
+      slug: 'centered-body',
+      demo: (
+        <PageDemo
+          slug="centered-body"
+          fullscreen
+          template={Empty}
+          toggle={{
+            pageHeader: true,
+            panelled: true,
+            sidebar: true,
+          }}
+          show={{
+            emptyPrompt: true,
+            sidebar: true,
+          }}
+        />
+      ),
+    },
   },
   {
     id: 'deprecated',
@@ -192,23 +252,6 @@ export const PageTemplateExample = () => (
           />
         </>
       }
-      fullScreen={{
-        showButton: false,
-        slug: 'full-page',
-        demo: (
-          <PageDemo
-            slug="full-page"
-            fullscreen
-            toggle={{
-              panelled: true,
-              restrictedWidth: true,
-            }}
-            show={{
-              tabs: true,
-            }}
-          />
-        ),
-      }}
     />
 
     <GuideSection
@@ -274,26 +317,6 @@ export const PageTemplateExample = () => (
           />
         </>
       }
-      fullScreen={{
-        showButton: false,
-        slug: 'sidebar',
-        demo: (
-          <PageDemo
-            slug="sidebar"
-            fullscreen
-            template={Sidebar}
-            toggle={{
-              panelled: true,
-              sidebar: true,
-              sidebarSticky: true,
-              border: true,
-            }}
-            show={{
-              sidebar: true,
-            }}
-          />
-        ),
-      }}
     />
 
     <GuideSection
@@ -358,26 +381,6 @@ export const PageTemplateExample = () => (
           />
         </>
       }
-      fullScreen={{
-        showButton: false,
-        slug: 'bottom-bar',
-        demo: (
-          <PageDemo
-            slug="bottom-bar"
-            fullscreen
-            template={BottomBar}
-            toggle={{
-              restrictedWidth: true,
-              sidebar: true,
-              sidebarSticky: true,
-            }}
-            show={{
-              bottomBar: true,
-              sidebar: true,
-            }}
-          />
-        ),
-      }}
     />
 
     <GuideSection
@@ -422,26 +425,6 @@ export const PageTemplateExample = () => (
           />
         </>
       }
-      fullScreen={{
-        showButton: false,
-        slug: 'centered-body',
-        demo: (
-          <PageDemo
-            slug="centered-body"
-            fullscreen
-            template={Empty}
-            toggle={{
-              pageHeader: true,
-              panelled: true,
-              sidebar: true,
-            }}
-            show={{
-              emptyPrompt: true,
-              sidebar: true,
-            }}
-          />
-        ),
-      }}
     />
 
     <GuideSection
