@@ -28,7 +28,16 @@ import {
 
 // Templates
 
-import { PageTemplateExample } from './views/page_template/page_template_example';
+// import { PageTemplateExample } from './views/page_template/page_template_example';
+import {
+  PageTemplateGuidelines,
+  pageTemplateGuidelinesSections,
+} from './views/page_template/guidelines';
+import {
+  PageTemplateInfo,
+  PageTemplateExample,
+  pageTemplateExamplesSections,
+} from './views/page_template/examples';
 
 import { SitewideSearchExample } from './views/selectable/selectable_templates/sitewide_example';
 
@@ -479,10 +488,24 @@ const navigation = [
   {
     name: 'Templates',
     items: [
-      PageTemplateExample,
-      SitewideSearchExample,
-      SuperDatePickerExample,
-    ].map((example) => createExample(example)),
+      createTabbedPage({
+        ...PageTemplateInfo,
+        pages: [
+          {
+            title: 'Examples',
+            page: PageTemplateExample,
+            sections: pageTemplateExamplesSections,
+          },
+          {
+            title: 'Guidelines',
+            page: PageTemplateGuidelines,
+            sections: pageTemplateGuidelinesSections,
+          },
+        ],
+      }),
+      createExample(SitewideSearchExample),
+      createExample(SuperDatePickerExample),
+    ],
   },
   {
     name: 'Layout',
