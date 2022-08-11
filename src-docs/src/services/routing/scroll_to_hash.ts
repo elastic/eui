@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { isTabbable } from 'tabbable';
 
-const HEADER_OFFSET = 48;
+const HEADER_OFFSET = 60;
 
 export const useScrollToHash = () => {
   const location = useLocation();

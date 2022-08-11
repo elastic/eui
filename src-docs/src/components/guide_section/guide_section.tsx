@@ -197,14 +197,14 @@ export const GuideSection: FunctionComponent<GuideSectionProps> = ({
 
   return (
     <EuiPageSection
-      id={id}
       className={classNames('guideSection', className)}
       color={!isLargeBreakpoint ? 'transparent' : color || 'transparent'}
       paddingSize={nested ? 'none' : 'l'}
       restrictWidth
+      id={title ? undefined : id} // Prefer setting the ID on titles, if present
     >
       <EuiSpacer size={(color || title) && isLargeBreakpoint ? 'xxl' : 'xs'} />
-      <GuideSectionExampleText title={title} wrapText={wrapText}>
+      <GuideSectionExampleText title={title} id={id} wrapText={wrapText}>
         {text}
       </GuideSectionExampleText>
 
