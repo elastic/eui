@@ -1,8 +1,10 @@
-import { useEffect, useState, FunctionComponent } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { isTabbable } from 'tabbable';
 
-const ScrollToHash: FunctionComponent = () => {
+const HEADER_OFFSET = 48;
+
+export const useScrollToHash = () => {
   const location = useLocation();
 
   const [documentReadyState, setReadyState] = useState(document.readyState);
@@ -15,9 +17,10 @@ const ScrollToHash: FunctionComponent = () => {
 
   useEffect(() => {
     if (documentReadyState !== 'complete') return; // Wait for page to finish loading before scrolling
+
     const hash = location.hash.split('?')[0].replace('#', ''); // Remove any query params and the leading hash
     const element = document.getElementById(hash);
-    const headerOffset = 48;
+
     if (element) {
       // Focus element for keyboard and screen reader users
       if (!isTabbable(element)) {
@@ -31,7 +34,7 @@ const ScrollToHash: FunctionComponent = () => {
       }
       // Scroll to element
       window.scrollTo({
-        top: element.offsetTop - headerOffset,
+        top: element.offsetTop - HEADER_OFFSET,
         behavior: 'smooth',
       });
     } else {
@@ -42,7 +45,4 @@ const ScrollToHash: FunctionComponent = () => {
       });
     }
   }, [location, documentReadyState]);
-  return null;
 };
-
-export default ScrollToHash;

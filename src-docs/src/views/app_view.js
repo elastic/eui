@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleLocale as _toggleLocale } from '../actions';
 import { GuidePageChrome, ThemeContext, GuidePageHeader } from '../components';
 import { getLocale, getRoutes } from '../store';
+import { useScrollToHash } from '../services';
 
 import {
   EuiPageTemplate,
@@ -21,8 +22,6 @@ export const AppView = ({ children, currentRoute }) => {
   const locale = useSelector((state) => getLocale(state));
   const routes = useSelector((state) => getRoutes(state));
   const { theme } = useContext(ThemeContext);
-
-  const prevPath = useRef(currentRoute.path);
 
   useEffect(() => {
     const onKeydown = (event) => {
@@ -59,12 +58,7 @@ export const AppView = ({ children, currentRoute }) => {
     };
   }, []); // eslint-disable-line
 
-  useEffect(() => {
-    if (prevPath.current !== currentRoute.path) {
-      window.scrollTo(0, 0);
-      prevPath.current = currentRoute.path;
-    }
-  }, [currentRoute.path]);
+  useScrollToHash();
 
   return (
     <LinkWrapper>
