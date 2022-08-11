@@ -11,10 +11,10 @@ This document was created based on analytics compiled in July 2022. The analytic
 
 | | JAWS<br/>(Win) | NVDA<br/>(Win) | VoiceOver<br/>(MacOS) | Orca<br/>(Linux) | iOS VoiceOver<br/>(Apple devices) | TalkBack<br/>(Android devices) |
 | --- | --- | --- | --- | --- | --- | --- |
-| Chrome | T1 | T1 | n.a. | T3 | n.a. | T3 |
-| Firefox | T2 | T1 | T2 | T3 | n.a. | n.a. |
-| Edge | T2 | T2 | n.a. | n.a. | n.a. | n.a. |
-| Safari | n.a. | n.a. | T1 | n.a. | T3 | n.a. |
+| Chrome | T1 | T1 | ❌ | T3 | ❌ | T3 |
+| Firefox | T2 | T1 | T2 | T3 | ❌ | ❌ |
+| Edge | T2 | T2 | ❌ | ❌ | ❌ | ❌ |
+| Safari | ❌ | ❌ | T1 | ❌ | T3 | ❌ |
 
 ## Resources
 
