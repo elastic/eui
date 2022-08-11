@@ -19,7 +19,7 @@ export const useScrollToHash = () => {
     if (documentReadyState !== 'complete') return; // Wait for page to finish loading before scrolling
 
     const hash = location.hash.split('?')[0].replace('#', ''); // Remove any query params and the leading hash
-    const element = document.getElementById(hash);
+    const element = hash ? document.getElementById(hash) : null;
 
     if (element) {
       // Focus element for keyboard and screen reader users
@@ -30,8 +30,8 @@ export const useScrollToHash = () => {
           () => element.removeAttribute('tabindex'),
           { once: true }
         );
-        element.focus();
       }
+      element.focus({ preventScroll: true }); // Scrolling already handled below
       // Scroll to element
       window.scrollTo({
         top: element.offsetTop - HEADER_OFFSET,
