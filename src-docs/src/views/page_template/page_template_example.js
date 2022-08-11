@@ -30,11 +30,13 @@ import Deprecated from './deprecated';
 const DeprecatedSource = require('!!raw-loader!./deprecated');
 
 import { pageTemplateConfig } from './playground';
+import Guidelines from './guidelines';
 
 export const PageTemplateExample = {
   title: 'Page template',
   isBeta: true,
   isNew: true,
+  guidelines: <Guidelines />,
   intro: (
     <>
       <EuiCallOut
