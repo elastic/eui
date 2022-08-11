@@ -26,7 +26,7 @@ import {
 } from '../mixins';
 import { logicalCSS } from '../functions';
 
-const globalStyles = (euiThemeContext: UseEuiTheme) => {
+export const globalStyles = (euiThemeContext: UseEuiTheme) => {
   return css`
     // Accessibility
     .euiScreenReaderOnly {
