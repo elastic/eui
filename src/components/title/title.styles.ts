@@ -14,6 +14,7 @@ import {
   euiFontSize,
   _EuiThemeFontScale,
   _FontScaleOptions,
+  logicalCSS,
 } from '../../global_styling';
 import { EuiTitleSize } from './title';
 
@@ -72,7 +73,7 @@ export const euiTitleStyles = (euiThemeContext: UseEuiTheme) => ({
     ${euiTextBreakWord()}
 
     & + & {
-      margin-top: ${euiThemeContext.euiTheme.size.l};
+      ${logicalCSS('margin-top', euiThemeContext.euiTheme.size.l)};
     }
   `,
   uppercase: css`
