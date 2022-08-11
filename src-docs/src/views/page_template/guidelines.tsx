@@ -252,7 +252,6 @@ export const PageTemplateGuidelines = () => (
             alt="Good example of read-only Dashboards showing empty state with insufficient permissions explanations and action"
             url={do6}
             allowFullScreen
-            hasShadow
           />
         </GuideRuleExample>
 
@@ -264,7 +263,6 @@ export const PageTemplateGuidelines = () => (
             alt="Bad example of read-only Dashboards showing basic empty state sentence"
             url={dont6}
             allowFullScreen
-            hasShadow
           />
         </GuideRuleExample>
       </GuideRule>
