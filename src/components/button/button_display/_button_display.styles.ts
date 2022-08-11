@@ -53,7 +53,7 @@ export const euiButtonDisplayStyles = (
     `,
     fullWidth: css`
       display: block;
-      width: 100%;
+      ${logicalCSS('width', '100%')}
     `,
     // Sizes
     xs: css(_buttonSize(euiTheme.size.l), euiFontSize(euiThemeContext, 'xs')),
