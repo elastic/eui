@@ -511,6 +511,39 @@ export default {
       ),
     },
     {
+      title: 'Disabled elements',
+      wrapText: false,
+      text: (
+        <>
+          <EuiText grow={false}>
+            <p>
+              If you disable elements using the <EuiCode language="html" size="s">disabled</EuiCode> attribute or pass the <EuiCode language="js">isDisabled</EuiCode> prop to the <EuiLink href="http://localhost:8030/#/layout/accordion#disabled-state">EuiAccordion</EuiLink> component, you must ensure there are no nested hover/focus interactions like tooltips.
+            </p>
+            <p>
+              Browsers remove disabled buttons from the normal tab order. This means keyboard users cannot tab to those buttons and activate the nested focus behavior.
+            </p>
+          </EuiText>
+          <EuiSpacer />
+          <EuiText size="s" grow={false}>
+            <h3>Further reading</h3>
+            <ul aria-labelledby="disabled-elements further-reading">
+              <li>
+                <EuiLink href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex">
+                  MDN: Tabindex
+                </EuiLink>
+              </li>
+              <li>
+                <EuiLink href="https://www.w3.org/TR/2014/REC-html5-20141028/disabled-elements.html#disabled-elements">
+                  W3C: Disabled elements
+                </EuiLink>
+              </li>
+            </ul>
+          </EuiText>
+          <EuiHorizontalRule />
+        </>
+      ),
+    },
+    {
       title: 'Naming',
       wrapText: false,
       text: (
