@@ -23,7 +23,7 @@ export default () => {
       {/* Display a page header anywhere in the stack of contents */}
       <EuiPageTemplate.Header pageTitle="Page title" />
       {/* This template section overrides some default template props */}
-      <EuiPageTemplate.Section grow={false} bottomBorder={true}>
+      <EuiPageTemplate.Section grow={false} bottomBorder="extended">
         Some content after the page header
       </EuiPageTemplate.Section>
       {/* Empty prompts can be placed anywhere in the stack and not replace the entire page contents */}
