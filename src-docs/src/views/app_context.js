@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
 import { Helmet } from 'react-helmet';
 import { useSelector } from 'react-redux';
-// import createCache from '@emotion/cache';
+import createCache from '@emotion/cache';
 import { ThemeContext } from '../components';
 import { translateUsingPseudoLocale } from '../services';
 import { getLocale } from '../store';
@@ -17,15 +17,15 @@ import favicon16Dev from '../images/favicon/dev/favicon-16x16.png';
 import favicon32Dev from '../images/favicon/dev/favicon-32x32.png';
 import favicon96Dev from '../images/favicon/dev/favicon-96x96.png';
 
-// const generalEmotionCache = createCache({
-//   key: 'css',
-//   container: document.querySelector('meta[name="emotion-styles"]'),
-// });
-// generalEmotionCache.compat = true;
-// const utilityCache = createCache({
-//   key: 'util',
-//   container: document.querySelector('meta[name="emotion-styles-utility"]'),
-// });
+const generalEmotionCache = createCache({
+  key: 'css',
+  container: document.querySelector('meta[name="emotion-styles"]'),
+});
+generalEmotionCache.compat = true;
+const utilityCache = createCache({
+  key: 'util',
+  container: document.querySelector('meta[name="emotion-styles-utility"]'),
+});
 
 export const AppContext = ({ children }) => {
   const { theme } = useContext(ThemeContext);
@@ -45,10 +45,10 @@ export const AppContext = ({ children }) => {
 
   return (
     <EuiProvider
-      // cache={{
-      //   default: generalEmotionCache,
-      //   utility: utilityCache,
-      // }}
+      cache={{
+        default: generalEmotionCache,
+        utility: utilityCache,
+      }}
       theme={EUI_THEMES.find((t) => t.value === theme)?.provider}
       colorMode={theme.includes('light') ? 'light' : 'dark'}
     >
