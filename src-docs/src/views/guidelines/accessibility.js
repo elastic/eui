@@ -517,10 +517,27 @@ export default {
         <>
           <EuiText grow={false}>
             <p>
-              If you disable elements using the <EuiCode language="html" size="s">disabled</EuiCode> attribute or pass the <EuiCode language="js">isDisabled</EuiCode> prop to the <EuiLink href="http://localhost:8030/#/layout/accordion#disabled-state">EuiAccordion</EuiLink> component, you must ensure there are no nested hover/focus interactions like tooltips.
+              If you disable elements by adding the HTML{' '}
+              <EuiCode language="html" size="s">
+                disabled
+              </EuiCode>{' '}
+              attribute or passing the{' '}
+              <EuiCode language="js">isDisabled</EuiCode> prop to the{' '}
+              <EuiLink href="http://localhost:8030/#/layout/accordion#disabled-state">
+                EuiAccordion
+              </EuiLink>{' '}
+              component, you must ensure there are no nested hover/focus
+              interactions like tooltips.
             </p>
             <p>
-              Browsers remove disabled buttons from the normal tab order. This means keyboard users cannot tab to those buttons and activate the nested focus behavior.
+              Browsers remove disabled elements from the tab order. This means
+              keyboard users cannot tab to those elements or activate nested
+              focus behaviors.
+            </p>
+            <p>
+              If you disable a button or form element, you need to provide clear
+              instructions to users how to correct errors or remove the disabled
+              state.
             </p>
           </EuiText>
           <EuiSpacer />
