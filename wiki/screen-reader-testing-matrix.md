@@ -1,5 +1,5 @@
 # Screen reader testing matrix
-This document was created based on analytics compiled in July 2022. The analytics reflect the most common browsers, screen resolutions, and operating systems among Elastic Cloud users. The data was compiled anonymously and will only be used to inform testing priorties.
+This document was created based on analytics compiled in July 2022. The analytics reflect the most common browsers, screen resolutions, and operating systems among Elastic Cloud users. The data was compiled anonymously and will only be used to inform testing priorities.
 
 ## Testing tiers
 
