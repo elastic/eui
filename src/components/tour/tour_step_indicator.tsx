@@ -8,21 +8,14 @@
 
 import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
+import { css } from '@emotion/react';
 
-import { CommonProps, keysOf } from '../common';
+import { CommonProps } from '../common';
 
 import { EuiIcon } from '../icon';
 import { EuiI18n } from '../i18n';
 
-const statusToClassNameMap = {
-  complete: 'euiTourStepIndicator--complete',
-  incomplete: 'euiTourStepIndicator--incomplete',
-  active: 'euiTourStepIndicator--active',
-};
-
-export const STATUS = keysOf(statusToClassNameMap);
-
-export type EuiTourStepStatus = keyof typeof statusToClassNameMap;
+export type EuiTourStepStatus = 'complete' | 'incomplete' | 'active';
 
 export interface EuiTourStepIndicatorProps
   extends CommonProps,
@@ -37,11 +30,7 @@ export const EuiTourStepIndicator: FunctionComponent<EuiTourStepIndicatorProps> 
   status,
   ...rest
 }) => {
-  const classes = classNames(
-    'euiTourStepIndicator',
-    status ? statusToClassNameMap[status] : undefined,
-    className
-  );
+  const classes = classNames('euiTourStepIndicator', className);
 
   let indicatorIcon: ReactNode;
   if (status === 'active') {
@@ -93,7 +82,14 @@ export const EuiTourStepIndicator: FunctionComponent<EuiTourStepIndicatorProps> 
       values={{ status, number }}
     >
       {(ariaLabel: string) => (
-        <li className={classes} aria-label={ariaLabel} {...rest}>
+        <li
+          css={css`
+            display: inline-block;
+          `}
+          className={classes}
+          aria-label={ariaLabel}
+          {...rest}
+        >
           {indicatorIcon}
         </li>
       )}
