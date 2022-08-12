@@ -11,3 +11,5 @@ export { getPropsFromComponent } from './props/get_props';
 export { registerTheme, applyTheme } from './theme/theme';
 
 export { ExampleContext, useExitPath } from './routing/routing';
+
+export { useScrollToHash } from './routing/scroll_to_hash';
