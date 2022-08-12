@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-export * from './breakpoint';
+export type { _EuiThemeBreakpoint as EuiBreakpointSize } from '../../global_styling/variables/breakpoint';
 export * from './current_breakpoint';
 export * from './current_breakpoint_hook';
-export * from './useIsWithinBreakpoints';
+export * from './is_within_hooks';

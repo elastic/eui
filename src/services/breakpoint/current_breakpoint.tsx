@@ -10,14 +10,19 @@ import React, {
   createContext,
   useState,
   useEffect,
+  useMemo,
+  useCallback,
   FunctionComponent,
 } from 'react';
 
-import { _EuiThemeBreakpoint } from '../../global_styling/variables/breakpoint';
+import { keysOf } from '../../components/common';
+import {
+  _EuiThemeBreakpoint,
+  _EuiThemeBreakpoints,
+} from '../../global_styling/variables/breakpoint';
 import { useEuiTheme } from '../theme';
 import { throttle } from '../throttle';
-
-import { getBreakpoint } from './breakpoint';
+import { sortMapByLargeToSmallValues } from './_sorting';
 
 type CurrentEuiBreakpoint = _EuiThemeBreakpoint | undefined;
 
@@ -32,27 +37,39 @@ export const CurrentEuiBreakpointContext = createContext<CurrentEuiBreakpoint>(
 export const CurrentEuiBreakpointProvider: FunctionComponent = ({
   children,
 }) => {
+  // Obtain the breakpoints map from the EUI theme
   const {
-    euiTheme: { breakpoint: breakpoints }, // Obtain the breakpoints map from the EUI theme
+    euiTheme: { breakpoint: breakpoints },
   } = useEuiTheme();
+
+  // Ensure the breakpoints map is sorted from largest value to smallest
+  const sortedBreakpoints: _EuiThemeBreakpoints = useMemo(
+    () => sortMapByLargeToSmallValues(breakpoints),
+    [breakpoints]
+  );
+
+  // Find the breakpoint (key) whose value is <= windowWidth starting with largest first
+  const getBreakpoint = useCallback(
+    (width: number) =>
+      keysOf(sortedBreakpoints).find((key) => sortedBreakpoints[key] <= width),
+    [sortedBreakpoints]
+  );
 
   const [currentBreakpoint, setCurrentBreakpoint] = useState<
     CurrentEuiBreakpoint
   >(
-    typeof window !== 'undefined'
-      ? getBreakpoint(window.innerWidth, breakpoints)
-      : undefined
+    typeof window !== 'undefined' ? getBreakpoint(window.innerWidth) : undefined
   );
 
   useEffect(() => {
     const onWindowResize = throttle(() => {
-      setCurrentBreakpoint(getBreakpoint(window.innerWidth, breakpoints));
+      setCurrentBreakpoint(getBreakpoint(window.innerWidth));
     }, 50);
 
     window.addEventListener('resize', onWindowResize);
 
     return () => window.removeEventListener('resize', onWindowResize);
-  }, [breakpoints]);
+  }, [getBreakpoint]);
 
   return (
     <CurrentEuiBreakpointContext.Provider value={currentBreakpoint}>
