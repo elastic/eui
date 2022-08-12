@@ -43,15 +43,7 @@ export const EuiRangeDraggable: FunctionComponent<EuiRangeDraggableProps> = ({
     right: `calc(100% - ${upperPosition} - 16px)`,
   };
 
-  const classes = classNames(
-    'euiRangeDraggable',
-    {
-      'euiRangeDraggable--hasTicks': showTicks,
-      'euiRangeDraggable--compressed': compressed,
-      'euiRangeDraggable--disabled': disabled,
-    },
-    className
-  );
+  const classes = classNames('euiRangeDraggable', className);
 
   const handleChange = (
     { x }: { x: number; y: number },
@@ -68,7 +60,6 @@ export const EuiRangeDraggable: FunctionComponent<EuiRangeDraggableProps> = ({
   const cssStyles = [
     styles.euiRangeDraggable,
     showTicks && styles.hasTicks,
-    compressed && styles.compressed,
     disabled && styles.disabled,
   ];
 

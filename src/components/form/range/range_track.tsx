@@ -143,12 +143,7 @@ export class EuiRangeTrackClass extends Component<
       showTicks === true &&
       this.calculateTicks(min, max, step, tickInterval, ticks);
 
-    const trackClasses = classNames('euiRangeTrack', {
-      'euiRangeTrack--disabled': disabled,
-      'euiRangeTrack--hasLevels': levels && !!levels.length,
-      'euiRangeTrack--hasTicks': tickSequence || ticks,
-      'euiRangeTrack--compressed': compressed,
-    });
+    const trackClasses = classNames('euiRangeTrack');
 
     const styles = euiRangeTrackStyles(theme);
     const cssStyles = [
@@ -156,8 +151,6 @@ export class EuiRangeTrackClass extends Component<
       disabled && styles.disabled,
       levels && !!levels.length && styles.hasLevels,
       (tickSequence || ticks) && styles.hasTicks,
-      compressed && styles.compressed,
-      !compressed && styles.regular,
     ];
 
     return (

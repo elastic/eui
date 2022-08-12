@@ -37,7 +37,7 @@ export type EuiRangeTicksProps = Omit<
   value?: number | string | Array<string | number>;
   min: number;
   max: number;
-  compressed: boolean;
+  compressed?: boolean;
   interval?: number;
   disabled?: boolean;
   onChange?: MouseEventHandler<HTMLButtonElement>;
@@ -48,7 +48,7 @@ const EuiTickValue: FunctionComponent<
     ticksRef: MutableRefObject<HTMLDivElement | null>;
     tickValue: any;
     percentageWidth: number;
-    compressed: boolean;
+    compressed?: boolean;
   }
 > = ({
   disabled,
