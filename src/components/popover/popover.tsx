@@ -49,7 +49,6 @@ import { euiPopoverStyles } from './popover.styles';
 import { EuiPopoverPanel } from './popover_panel';
 import { EuiPopoverPanelProps } from './popover_panel/_popover_panel';
 import { EuiPaddingSize } from '../../global_styling';
-import { SerializedStyles } from '@emotion/react';
 
 export const popoverAnchorPosition = [
   'upCenter',
@@ -152,7 +151,7 @@ export interface EuiPopoverProps extends CommonProps {
   /**
    * Object of props passed to EuiPanel. See #EuiPopoverPanelProps
    */
-  panelProps?: Omit<EuiPopoverPanelProps, 'style'> & { css?: SerializedStyles }; // EuiPanel accepts the `css` prop but `ExclusiveUnion` obscures this from TS. Added to prevent type errors.
+  panelProps?: Omit<EuiPopoverPanelProps, 'style'>;
   panelRef?: RefCallback<HTMLElement | null>;
   /**
    * Optional screen reader instructions to announce upon popover open,
