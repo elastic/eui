@@ -83,11 +83,9 @@ export const EuiTourStepIndicator: FunctionComponent<EuiTourStepIndicatorProps> 
     >
       {(ariaLabel: string) => (
         <li
-          css={[
-            css`
-              display: inline-block;
-            `,
-          ]}
+          css={css`
+            display: inline-block;
+          `}
           className={classes}
           aria-label={ariaLabel}
           {...rest}
