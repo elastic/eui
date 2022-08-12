@@ -18,6 +18,7 @@ import classNames from 'classnames';
 import { IconType, EuiIcon } from '../icon';
 import { CommonProps } from '../common';
 import { EuiDatePickerProps } from './date_picker';
+import over from 'lodash/over';
 
 export type EuiDatePickerRangeProps = CommonProps & {
   /**
@@ -60,7 +61,20 @@ export type EuiDatePickerRangeProps = CommonProps & {
    */
   readOnly?: boolean;
 
+  /**
+   * Passes through to each control
+   */
   fullWidth?: boolean;
+
+  /**
+   * Triggered whenever the start or end controls are blurred
+   */
+  onBlur?: (...args: any[]) => void;
+
+  /**
+   * Triggered whenever the start or end controls are focused
+   */
+  onFocus?: (...args: any[]) => void;
 };
 
 export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
@@ -74,6 +88,8 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
   readOnly,
   isInvalid,
   disabled,
+  onFocus,
+  onBlur,
   ...rest
 }) => {
   const classes = classNames(
@@ -104,6 +120,8 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
           'euiDatePickerRange__start',
           startDateControl.props.className
         ),
+        onBlur: over([startDateControl.props.onBlur, onBlur]),
+        onFocus: over([startDateControl.props.onFocus, onFocus]),
       }
     );
 
@@ -120,6 +138,8 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
           'euiDatePickerRange__end',
           endDateControl.props.className
         ),
+        onBlur: over([endDateControl.props.onBlur, onBlur]),
+        onFocus: over([endDateControl.props.onFocus, onFocus]),
       }
     );
   }
