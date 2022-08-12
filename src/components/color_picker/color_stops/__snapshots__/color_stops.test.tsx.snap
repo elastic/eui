@@ -124,7 +124,7 @@ exports[`renders compressed EuiColorStops 1`] = `
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    class="euiRangeTrack euiRangeTrack--compressed emotion-euiRangeTrack"
+    class="euiRangeTrack emotion-euiRangeTrack"
   >
     <div
       class="euiRangeHighlight euiRangeHighlight--compressed euiColorStops__highlight emotion-euiRangeHighlight"
@@ -235,7 +235,7 @@ exports[`renders disabled EuiColorStops 1`] = `
     Test:  Disabled. Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    class="euiRangeTrack euiRangeTrack--disabled emotion-euiRangeTrack-disabled"
+    class="euiRangeTrack emotion-euiRangeTrack-disabled"
   >
     <div
       class="euiRangeHighlight euiColorStops__highlight emotion-euiRangeHighlight"

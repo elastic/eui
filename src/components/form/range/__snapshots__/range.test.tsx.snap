@@ -85,7 +85,7 @@ exports[`EuiRange props compressed should render 1`] = `
 >
   <div
     aria-hidden="false"
-    class="euiRangeTrack euiRangeTrack--compressed emotion-euiRangeTrack"
+    class="euiRangeTrack emotion-euiRangeTrack"
   >
     <input
       aria-hidden="false"
@@ -107,7 +107,7 @@ exports[`EuiRange props custom ticks should render 1`] = `
 >
   <div
     aria-hidden="false"
-    class="euiRangeTrack euiRangeTrack--hasTicks emotion-euiRangeTrack-hasTicks"
+    class="euiRangeTrack emotion-euiRangeTrack-hasTicks"
   >
     <div
       class="euiRangeTicks euiRangeTicks--isCustom emotion-euiRangeTicks-regular-isCustom"
@@ -158,7 +158,7 @@ exports[`EuiRange props disabled should render 1`] = `
 >
   <div
     aria-hidden="false"
-    class="euiRangeTrack euiRangeTrack--disabled emotion-euiRangeTrack-disabled"
+    class="euiRangeTrack emotion-euiRangeTrack-disabled"
   >
     <input
       aria-hidden="false"
@@ -284,7 +284,7 @@ exports[`EuiRange props levels should render 1`] = `
 >
   <div
     aria-hidden="false"
-    class="euiRangeTrack euiRangeTrack--hasLevels emotion-euiRangeTrack-hasLevels"
+    class="euiRangeTrack emotion-euiRangeTrack-hasLevels"
   >
     <div
       class="euiRangeLevels emotion-euiRangeLevels"
@@ -423,7 +423,7 @@ exports[`EuiRange props ticks should render 1`] = `
 >
   <div
     aria-hidden="false"
-    class="euiRangeTrack euiRangeTrack--hasTicks emotion-euiRangeTrack-hasTicks"
+    class="euiRangeTrack emotion-euiRangeTrack-hasTicks"
   >
     <div
       class="euiRangeTicks emotion-euiRangeTicks-regular"
