@@ -82,7 +82,9 @@ export const EuiPageSidebar: FunctionComponent<EuiPageSidebarProps> = ({
 
   useEffect(() => {
     if (sticky) {
-      const euiHeaderFixedCounter = Number(document.body.dataset.fixedHeaders);
+      const euiHeaderFixedCounter = Number(
+        document.body.dataset.fixedHeaders ?? 0
+      );
 
       const offset =
         typeof sticky === 'object'
