@@ -7,6 +7,8 @@
  */
 
 import React, {
+  FocusEvent,
+  FocusEventHandler,
   Fragment,
   FunctionComponent,
   ReactNode,
@@ -18,7 +20,6 @@ import classNames from 'classnames';
 import { IconType, EuiIcon } from '../icon';
 import { CommonProps } from '../common';
 import { EuiDatePickerProps } from './date_picker';
-import over from 'lodash/over';
 
 export type EuiDatePickerRangeProps = CommonProps & {
   /**
@@ -69,12 +70,12 @@ export type EuiDatePickerRangeProps = CommonProps & {
   /**
    * Triggered whenever the start or end controls are blurred
    */
-  onBlur?: (...args: any[]) => void;
+  onBlur?: FocusEventHandler<HTMLInputElement>;
 
   /**
    * Triggered whenever the start or end controls are focused
    */
-  onFocus?: (...args: any[]) => void;
+  onFocus?: FocusEventHandler<HTMLInputElement>;
 };
 
 export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
@@ -120,8 +121,14 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
           'euiDatePickerRange__start',
           startDateControl.props.className
         ),
-        onBlur: over([startDateControl.props.onBlur, onBlur]),
-        onFocus: over([startDateControl.props.onFocus, onFocus]),
+        onBlur: (event: FocusEvent<HTMLInputElement>) => {
+          startDateControl.props?.onBlur?.(event);
+          onBlur?.(event);
+        },
+        onFocus: (event: FocusEvent<HTMLInputElement>) => {
+          startDateControl.props?.onFocus?.(event);
+          onFocus?.(event);
+        },
       }
     );
 
@@ -138,8 +145,14 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
           'euiDatePickerRange__end',
           endDateControl.props.className
         ),
-        onBlur: over([endDateControl.props.onBlur, onBlur]),
-        onFocus: over([endDateControl.props.onFocus, onFocus]),
+        onBlur: (event: FocusEvent<HTMLInputElement>) => {
+          endDateControl.props?.onBlur?.(event);
+          onBlur?.(event);
+        },
+        onFocus: (event: FocusEvent<HTMLInputElement>) => {
+          endDateControl.props?.onFocus?.(event);
+          onFocus?.(event);
+        },
       }
     );
   }
