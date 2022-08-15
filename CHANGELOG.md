@@ -1,3 +1,9 @@
+## [`62.2.1`](https://github.com/elastic/eui/tree/v62.2.1)
+
+**Bug fixes**
+
+- Fixed server-side rendering and test-env errors caused by `useCurrentEuiBreakpoint` ([#6117](https://github.com/elastic/eui/pull/6117))
+
 ## [`62.2.0`](https://github.com/elastic/eui/tree/v62.2.0)
 
 - The `EuiDataGrid`'s `rowHeightOptions` now contain an optional `scrollAnchorRow` property, which enables vertical layout shift compensation when rendering `auto`-sized rows. ([#6070](https://github.com/elastic/eui/pull/6070))
