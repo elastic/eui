@@ -44,7 +44,7 @@ export const EuiAspectRatio: FunctionComponent<EuiAspectRatioProps> = ({
 
   const euiAspectRatioStyle = {
     aspectRatio: `${width} / ${height}`,
-    height: '100%',
+    height: 'auto',
     width: '100%',
   };
 
