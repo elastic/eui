@@ -46,6 +46,7 @@ export const EuiAspectRatio: FunctionComponent<EuiAspectRatioProps> = ({
     aspectRatio: `${width} / ${height}`,
     height: 'auto',
     width: '100%',
+    maxWidth,
   };
 
   const props = {
@@ -54,13 +55,5 @@ export const EuiAspectRatio: FunctionComponent<EuiAspectRatioProps> = ({
     ...rest,
   };
 
-  const content = React.cloneElement(children, props);
-  let contentwithoptionalwrap = content;
-  if (maxWidth) {
-    contentwithoptionalwrap = (
-      <div style={{ maxWidth: maxWidth }}>{content}</div>
-    );
-  }
-
-  return contentwithoptionalwrap;
+  return React.cloneElement(children, props);
 };
