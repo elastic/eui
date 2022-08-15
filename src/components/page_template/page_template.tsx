@@ -108,7 +108,9 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
 
   useEffect(() => {
     if (_offset === undefined) {
-      const euiHeaderFixedCounter = Number(document.body.dataset.fixedHeaders);
+      const euiHeaderFixedCounter = Number(
+        document.body.dataset.fixedHeaders ?? 0
+      );
       setOffset(euiTheme.base * 3 * euiHeaderFixedCounter);
     }
   }, [_offset, euiTheme.base]);
@@ -177,6 +179,7 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   const _minHeight = grow ? `max(${minHeight}, 100vh)` : minHeight;
 
   const classes = classNames('euiPageTemplate', className);
+  console.log(offset);
   const pageStyle = {
     ...logicalStyle('min-height', _minHeight),
     ...logicalStyle('padding-top', offset),
