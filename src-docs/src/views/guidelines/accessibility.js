@@ -515,20 +515,7 @@ export default {
       wrapText: false,
       text: (
         <>
-          <EuiText grow={false}>
-            <p>
-              If you disable elements by adding the HTML{' '}
-              <EuiCode language="html" size="s">
-                disabled
-              </EuiCode>{' '}
-              attribute or passing the{' '}
-              <EuiCode language="js">isDisabled</EuiCode> prop to the{' '}
-              <EuiLink href="http://localhost:8030/#/layout/accordion#disabled-state">
-                EuiAccordion
-              </EuiLink>{' '}
-              component, you must ensure there are no nested hover/focus
-              interactions like tooltips.
-            </p>
+          <EuiText>
             <p>
               Browsers remove disabled elements from the tab order. This means
               keyboard users cannot tab to those elements or activate nested
@@ -539,9 +526,17 @@ export default {
               instructions to users how to correct errors or remove the disabled
               state.
             </p>
+            <p>
+              When you add the HTML <EuiCode language="html">disabled</EuiCode>{' '}
+              attribute to an element, you must remove tooltips or other focus
+              interactions. You must also remove focus interactions if you pass
+              the <EuiCode language="js">isDisabled</EuiCode> prop to components
+              like{' '}
+              <Link to="/layout/accordion#disabled-state">EuiAccordion</Link>.
+            </p>
           </EuiText>
           <EuiSpacer />
-          <EuiText size="s" grow={false}>
+          <EuiText size="s">
             <h3>Further reading</h3>
             <ul aria-labelledby="disabled-elements further-reading">
               <li>
