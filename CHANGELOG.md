@@ -44,6 +44,14 @@
 - Converted `EuiPageHeader` and `EuiPageHeaderContent` to Emotion ([#5768](https://github.com/elastic/eui/pull/5768))
 - Removed `euiPageRestrictWidth()` Sass mixin ([#5768](https://github.com/elastic/eui/pull/5768))
 
+## [`62.2.1`](https://github.com/elastic/eui/tree/v62.2.1)
+
+**Note: this release is a backport containing changes originally made in `63.0.1`**
+
+**Bug fixes**
+
+- Fixed server-side rendering and test-env errors caused by `useCurrentEuiBreakpoint` ([#6117](https://github.com/elastic/eui/pull/6117))
+
 ## [`62.2.0`](https://github.com/elastic/eui/tree/v62.2.0)
 
 - The `EuiDataGrid`'s `rowHeightOptions` now contain an optional `scrollAnchorRow` property, which enables vertical layout shift compensation when rendering `auto`-sized rows. ([#6070](https://github.com/elastic/eui/pull/6070))
