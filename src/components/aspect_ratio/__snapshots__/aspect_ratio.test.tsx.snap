@@ -16,6 +16,21 @@ exports[`EuiAspectRatio is rendered 1`] = `
 />
 `;
 
+
+exports[`EuiAspectRatio allows overriding with custom styles 1`] = `
+<iframe
+  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen=""
+  class="euiAspectRatio"
+  frameborder="0"
+  height="315"
+  src="https://www.youtube.com/embed/yJarWSLRM24"
+  style="aspect-ratio:9 / 4;height:300px;width:100%;margin:2em"
+  title="Elastic is a search company"
+  width="560"
+/>
+`;
+
 exports[`EuiAspectRatio props maxWidth is rendered 1`] = `
 <iframe
   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"

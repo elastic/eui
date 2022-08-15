@@ -38,6 +38,7 @@ export const EuiAspectRatio: FunctionComponent<EuiAspectRatioProps> = ({
   height,
   width,
   maxWidth,
+  style,
   ...rest
 }) => {
   const classes = classNames('euiAspectRatio', className);
@@ -47,6 +48,7 @@ export const EuiAspectRatio: FunctionComponent<EuiAspectRatioProps> = ({
     height: 'auto',
     width: '100%',
     maxWidth,
+    ...style,
   };
 
   const props = {
