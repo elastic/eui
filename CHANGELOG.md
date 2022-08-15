@@ -1,3 +1,9 @@
+## [`63.0.1`](https://github.com/elastic/eui/tree/v63.0.1)
+
+**Bug fixes**
+
+- Fixed server-side rendering and test-env errors caused by `useCurrentEuiBreakpoint` ([#6117](https://github.com/elastic/eui/pull/6117))
+
 ## [`63.0.0`](https://github.com/elastic/eui/tree/v63.0.0)
 
 - Added new `EuiPageTemplate` namespaced component that uses context to pass through props ([#5768](https://github.com/elastic/eui/pull/5768))
