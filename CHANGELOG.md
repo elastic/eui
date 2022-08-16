@@ -1,3 +1,37 @@
+## [`64.0.0`](https://github.com/elastic/eui/tree/v64.0.0)
+
+- Added `onPositionChange` callback prop to `EuiPopover` for when the popover positon changes ([#6087](https://github.com/elastic/eui/pull/6087))
+- Added `isDisabled` prop to `EuiAccordion` ([#6095](https://github.com/elastic/eui/pull/6095))
+- Added `css` prop to `CommonProps` interface ([#6118](https://github.com/elastic/eui/pull/6118))
+- Added new `useIsWithinMaxBreakpoint` and `useIsWithinMinBreakpoint` service hooks ([#6119](https://github.com/elastic/eui/pull/6119))
+
+**Bug fixes**
+
+- Fixed the `steps` prop type for `useEuiTour` to not require `onFinish` ([#6087](https://github.com/elastic/eui/pull/6087))
+- Fixed JS breakpoint hooks (`useCurrentEuiBreakpoint`, `useIsWithinBreakpoints`, and `euiBreakpoint`) to correctly handle custom theme breakpoint keys ([#6111](https://github.com/elastic/eui/pull/6111))
+- Fixed `:first-child/:nth-child` console warnings for consumers not passing in a `cache` to `EuiProvider` ([#6126](https://github.com/elastic/eui/pull/6126))
+- Fixed `EuiScreenReaderLive` double announcements on VO when `focusRegionOnTextChange` is not set ([#6133](https://github.com/elastic/eui/pull/6133))
+- Fixed `onBlur` and `onFocus` handlers from `EuiDatePickerRange` being incorrectly applied to wrapping element rather than the start/end control datepickers. ([#6136](https://github.com/elastic/eui/pull/6136))
+- Fixed missing `data-fixed-headers` property in some layout configurations using `EuiPageTemplate`. ([#6140](https://github.com/elastic/eui/pull/6140))
+- Fixed `EuiAspectRatio` sometimes incorrectly inheriting its height from parent containers as opposed to from its aspect ratio ([#6141](https://github.com/elastic/eui/pull/6141))
+- Fixed `EuiAspectRatio` to allow custom `style`s to be passed by consumers ([#6141](https://github.com/elastic/eui/pull/6141))
+- Fixed `eui.d.ts` containing `@testing-library` type definitions ([#6142](https://github.com/elastic/eui/pull/6142))
+
+**Breaking changes**
+
+- Removed `getBreakpoint`. Use `useCurrentEuiBreakpoint` instead ([#6119](https://github.com/elastic/eui/pull/6119))
+- Removed `BREAKPOINTS` and `BREAKPOINT_KEYS`. Use `euiTheme.breakpoint` instead ([#6119](https://github.com/elastic/eui/pull/6119))
+- Removed `isWithinBreakpoints`. Use `useIsWithinBreakpoints` instead ([#6119](https://github.com/elastic/eui/pull/6119))
+- Removed `isWithinMaxBreakpoint`. Use `useIsWithinMaxBreakpoint` instead ([#6119](https://github.com/elastic/eui/pull/6119))
+- Removed `isWithinMinBreakpoint`. Use `useIsWithinMinBreakpoint` instead ([#6119](https://github.com/elastic/eui/pull/6119))
+- `EuiFlyout` now only accepts a named breakpoint size for its `pushMinBreakpoint` prop ([#6119](https://github.com/elastic/eui/pull/6119))
+- `EuiCollapsibleNav` now only accepts a named breakpoint size for its `dockedBreakpoint` prop ([#6119](https://github.com/elastic/eui/pull/6119))
+- `@emotion/cache` is now a required peer dependency, alongside `@emotion/react` ([#6126](https://github.com/elastic/eui/pull/6126))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiTour` to Emotion ([#6087](https://github.com/elastic/eui/pull/6087))
+
 ## [`63.0.1`](https://github.com/elastic/eui/tree/v63.0.1)
 
 **Bug fixes**
