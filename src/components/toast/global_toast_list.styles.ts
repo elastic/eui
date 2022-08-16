@@ -11,6 +11,7 @@ import {
   euiBreakpoint,
   euiScrollBarStyles,
   logicalCSS,
+  logicalCSSWithFallback,
   logicalSizeCSS,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
@@ -34,8 +35,7 @@ export const euiGlobalToastListStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('bottom', 0)};
       ${logicalCSS('width', `${euiToastWidth + euiTheme.base * 5}px`)}; /* 2 */
       ${logicalCSS('max-height', '100vh')}; /* 1 */
-      overflow-y: auto; // Fallback for the 'overflow-inline' logical property, which is not yet supported
-      ${logicalCSS('overflow-y', 'auto')};
+      ${logicalCSSWithFallback('overflow-y', 'auto')};
 
       // Hide the scrollbar entirely
       scrollbar-width: none;

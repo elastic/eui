@@ -9,6 +9,7 @@
 import { CSSProperties } from 'react';
 import { useEuiTheme, UseEuiTheme } from '../../services/theme';
 import { transparentize } from '../../services/color';
+import { logicalCSS, logicalCSSWithFallback } from '../functions';
 
 /**
  * Set scroll bar appearance on Chrome (and firefox).
@@ -54,8 +55,8 @@ export const euiScrollBarStyles = (
   return `scrollbar-width: ${width};
 
     &::-webkit-scrollbar {
-      width: ${scrollBarSize};
-      height: ${scrollBarSize};
+      ${logicalCSS('width', scrollBarSize)}
+      ${logicalCSS('height', scrollBarSize)}
     }
 
     &::-webkit-scrollbar-thumb {
@@ -127,15 +128,14 @@ const euiOverflowShadowStyles = (
 interface _EuiYScroll {
   height?: CSSProperties['height'];
 }
-// TODO: How do we use Emotion to output the CSS class utilities instead?
 export const euiYScroll = (
   euiTheme: UseEuiTheme,
   { height }: _EuiYScroll = {}
 ) => `
   ${euiScrollBarStyles(euiTheme)}
-  height: ${height || '100%'};
-  overflow-y: auto;
-  overflow-x: hidden;
+  ${logicalCSS('height', height || '100%')}
+  ${logicalCSSWithFallback('overflow-y', 'auto')}
+  ${logicalCSSWithFallback('overflow-x', 'hidden')}
   &:focus {
     outline: none; /* 1 */
   }
@@ -159,7 +159,7 @@ export const useEuiYScrollWithShadows = ({ height }: _EuiYScroll = {}) => {
 
 export const euiXScroll = (euiTheme: UseEuiTheme) => `
   ${euiScrollBarStyles(euiTheme)}
-  overflow-x: auto;
+  ${logicalCSSWithFallback('overflow-x', 'auto')}
   &:focus {
     outline: none; /* 1 */
   }
@@ -206,3 +206,12 @@ export const useEuiOverflowScroll = (
   const euiTheme = useEuiTheme();
   return euiOverflowScroll(euiTheme, { direction, mask });
 };
+
+/**
+ * For quickly applying a full-height element whether using flex or not
+ */
+export const euiFullHeight = () => `
+  ${logicalCSS('height', '100%')}
+  flex: 1 1 auto;
+  overflow: hidden;
+`;
