@@ -84,7 +84,7 @@ export default () => {
               <p>
                 To mask the top and bottom of the scrolled content, indicating
                 visually that there is more content below, pass in true to the
-                second paremeter <EuiCode>mask</EuiCode>.
+                second parameter <EuiCode>mask</EuiCode>.
               </p>
               <p>
                 <EuiCode>{"useEuiOverflowScroll('x', true);"}</EuiCode>

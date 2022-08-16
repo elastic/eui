@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import {
   EuiText,
@@ -7,13 +7,18 @@ import {
   EuiFlexItem,
   EuiFlexGroup,
 } from '../../../../src';
-import { UtilityClassesSection } from '../utility_classes/utility_classes_section';
+import { ThemeContext } from '../../components/with_theme';
+import { ThemeExample } from '../theme/_components/_theme_example';
 
 export default () => {
+  const themeContext = useContext(ThemeContext);
+  const currentLanguage = themeContext.themeLanguage;
+  const showSass = currentLanguage.includes('sass');
+
   return (
     <>
-      <UtilityClassesSection
-        code=".eui-fullHeight"
+      <ThemeExample
+        title=".eui-fullHeight"
         type="className"
         description={
           <>
@@ -22,19 +27,7 @@ export default () => {
               parents dimensions. Use it to stretch each nested element until
               the one that applies scroll.
             </p>
-            <p>
-              It applies{' '}
-              <EuiCode language="sass">height: 100%; overflow: hidden;</EuiCode>{' '}
-              but also adds <EuiCode language="sass">flex: 1 1 auto;</EuiCode>{' '}
-              for uses within <EuiCode language="sass">flex</EuiCode>{' '}
-              containers.
-            </p>
-            <dl>
-              <dt>Sass mixins</dt>
-              <dd>
-                <EuiCode language="scss">@include euiFullHeight;</EuiCode>
-              </dd>
-            </dl>
+            <p>Works on both flex and non-flex elements.</p>
           </>
         }
         example={
@@ -48,7 +41,7 @@ export default () => {
                 <EuiPanel
                   className="eui-yScroll"
                   color="warning"
-                  tabIndex="0"
+                  tabIndex={0}
                   role="region"
                   aria-label="Example 1 for full height region"
                 >
@@ -67,7 +60,7 @@ export default () => {
                 <EuiPanel
                   className="eui-yScroll"
                   color="warning"
-                  tabIndex="0"
+                  tabIndex={0}
                   role="region"
                   aria-label="Example 2 for full height region"
                 >
@@ -90,15 +83,66 @@ export default () => {
     className="eui-fullHeight" responsive={false}>
     <EuiFlexItem>
       <BodyScroll
-        className="eui-yScroll" tabIndex="0" role="region" aria-label=""/>
+        className="eui-yScroll" tabIndex={0} role="region" aria-label=""/>
     </EuiFlexItem>
     <EuiFlexItem>
       <BodyScroll
-        className="eui-yScroll" tabIndex="0" role="region" aria-label=""/>
+        className="eui-yScroll" tabIndex={0} role="region" aria-label=""/>
     </EuiFlexItem>
   </EuiFlexGroup>
 </BodyContent>`}
       />
+
+      {!showSass && (
+        <ThemeExample
+          title={<code>{'euiFullHeight()'}</code>}
+          type="function"
+          description={
+            <>
+              <p>
+                Emotion mixin for adding full height scrolling to a container or
+                flex child.
+              </p>
+              <p>
+                It applies{' '}
+                <EuiCode language="css">
+                  height: 100%; overflow: hidden;
+                </EuiCode>{' '}
+                but also adds <EuiCode language="css">flex: 1 1 auto;</EuiCode>{' '}
+                for use within <EuiCode>flex</EuiCode> containers.
+              </p>
+            </>
+          }
+          snippet="${euiFullHeight()}"
+          snippetLanguage="emotion"
+        />
+      )}
+
+      {showSass && (
+        <ThemeExample
+          title={<code>{'@include euiFullHeight'}</code>}
+          type="mixin"
+          description={
+            <>
+              <p>
+                Sass mixin for adding full height scrolling to a container or
+                flex child.
+              </p>
+              <p>
+                It applies{' '}
+                <EuiCode language="sass">
+                  height: 100%; overflow: hidden;
+                </EuiCode>{' '}
+                but also adds <EuiCode language="sass">flex: 1 1 auto;</EuiCode>{' '}
+                for uses within <EuiCode language="sass">flex</EuiCode>{' '}
+                containers.
+              </p>
+            </>
+          }
+          snippet="@include euiFullHeight;"
+          snippetLanguage="sass"
+        />
+      )}
     </>
   );
 };
