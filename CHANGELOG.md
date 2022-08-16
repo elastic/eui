@@ -1,3 +1,9 @@
+## [`62.2.2`](https://github.com/elastic/eui/tree/v62.2.2)
+
+**Bug fixes**
+
+- Fixed `eui.d.ts` containing `@testing-library` type definitions ([#6142](https://github.com/elastic/eui/pull/6142))
+
 ## [`62.2.1`](https://github.com/elastic/eui/tree/v62.2.1)
 
 **Bug fixes**
