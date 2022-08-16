@@ -10,7 +10,7 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
-import { EuiPageContentHeaderSection } from './page_content_header_section';
+import { EuiPageContentHeaderSection_Deprecated as EuiPageContentHeaderSection } from './page_content_header_section';
 
 describe('EuiPageContentHeaderSection', () => {
   test('is rendered', () => {

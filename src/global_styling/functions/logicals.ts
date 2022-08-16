@@ -65,8 +65,8 @@ const logicalSize = {
 };
 
 const logicalOverflow = {
-  'overflow-x': 'overflow-block',
-  'overflow-y': 'overflow-inline',
+  'overflow-x': 'overflow-inline',
+  'overflow-y': 'overflow-block',
 };
 
 const logicalBorders = {
@@ -123,6 +123,24 @@ export const logicalCSS = (property: LogicalProperties, value?: any) => {
 };
 
 /**
+ * Some logical properties are not yet fully supported by all browsers.
+ * For those cases, we should use the old property as a fallback for
+ * browsers missing support, while allowing supporting browsers to use
+ * the logical properties.
+ *
+ * Examples:
+ * https://caniuse.com/?search=overflow-block
+ * https://caniuse.com/mdn-css_properties_float_flow_relative_values
+ */
+export const logicalCSSWithFallback = (
+  property: LogicalProperties,
+  value?: any
+) => `
+  ${property}: ${value};
+  ${logicalCSS(property, value)}
+`;
+
+/**
  *
  * @param property A string that is a valid CSS logical property
  * @param value String to output as the property value
@@ -133,7 +151,7 @@ export const logicalStyle = (property: LogicalProperties, value?: any) => {
   const camelCasedProperty = logicals[property].replace(/-\w/g, (str) =>
     str.charAt(1).toUpperCase()
   );
-  return { [camelCasedProperty]: `${value}` };
+  return { [camelCasedProperty]: value };
 };
 
 /**

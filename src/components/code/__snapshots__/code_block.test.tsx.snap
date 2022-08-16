@@ -85,152 +85,139 @@ exports[`EuiCodeBlock fullscreen displays content in fullscreen mode 1`] = `
   <div
     className="euiCodeBlock__controls"
   >
-    <FullScreenButton>
-      <EuiI18n
-        defaults={
-          Array [
-            "Collapse",
-            "Expand",
-          ]
-        }
-        tokens={
-          Array [
-            "euiCodeBlock.fullscreenCollapse",
-            "euiCodeBlock.fullscreenExpand",
-          ]
-        }
+    <FullScreenButton
+      isFullScreen={true}
+      toggleFullScreen={[Function]}
+    >
+      <EuiButtonIcon
+        aria-label="Collapse"
+        className="euiCodeBlock__fullScreenButton"
+        color="text"
+        iconType="fullScreenExit"
+        onClick={[Function]}
       >
-        <EuiButtonIcon
+        <button
           aria-label="Collapse"
-          className="euiCodeBlock__fullScreenButton"
-          color="text"
-          iconType="fullScreenExit"
+          css="unknown styles"
+          disabled={false}
           onClick={[Function]}
+          type="button"
         >
-          <button
-            aria-label="Collapse"
-            css="unknown styles"
-            disabled={false}
-            onClick={[Function]}
-            type="button"
-          >
-            <Insertion
-              cache={
-                Object {
-                  "insert": [Function],
-                  "inserted": Object {
-                    "dsw53p-empty-text-hoverStyles-EuiButtonIcon": true,
-                  },
-                  "key": "css",
-                  "nonce": undefined,
-                  "registered": Object {},
-                  "sheet": StyleSheet {
-                    "_alreadyInsertedOrderInsensitiveRule": true,
-                    "_insertTag": [Function],
-                    "before": null,
-                    "container": <head>
-                      <style
-                        data-emotion="css"
-                        data-s=""
-                      >
-                        
-                        .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon{color:#343741;}
-                      </style>
-                      <style
-                        data-emotion="css"
-                        data-s=""
-                      >
-                        
-                        .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:focus,.css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:active{background-color:rgba(211,218,230,0.2);}
-                      </style>
-                      <style
-                        data-emotion="css"
-                        data-s=""
-                      >
-                        
-                        .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:hover{background-color:rgba(211,218,230,0.2);}
-                      </style>
-                      <style
-                        type="text/css"
-                      >
-                        
+          <Insertion
+            cache={
+              Object {
+                "insert": [Function],
+                "inserted": Object {
+                  "dsw53p-empty-text-hoverStyles-EuiButtonIcon": true,
+                },
+                "key": "css",
+                "nonce": undefined,
+                "registered": Object {},
+                "sheet": StyleSheet {
+                  "_alreadyInsertedOrderInsensitiveRule": true,
+                  "_insertTag": [Function],
+                  "before": null,
+                  "container": <head>
+                    <style
+                      data-emotion="css"
+                      data-s=""
+                    >
+                      
+                      .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon{color:#343741;}
+                    </style>
+                    <style
+                      data-emotion="css"
+                      data-s=""
+                    >
+                      
+                      .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:focus,.css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:active{background-color:rgba(211,218,230,0.2);}
+                    </style>
+                    <style
+                      data-emotion="css"
+                      data-s=""
+                    >
+                      
+                      .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:hover{background-color:rgba(211,218,230,0.2);}
+                    </style>
+                    <style
+                      type="text/css"
+                    >
+                      
  [data-focus-on-hidden] {
    pointer-events: none !important;
  }
 
-                      </style>
-                    </head>,
-                    "ctr": 3,
-                    "insertionPoint": undefined,
-                    "isSpeedy": false,
-                    "key": "css",
-                    "nonce": undefined,
-                    "prepend": undefined,
-                    "tags": Array [
-                      <style
-                        data-emotion="css"
-                        data-s=""
-                      >
-                        
-                        .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon{color:#343741;}
-                      </style>,
-                      <style
-                        data-emotion="css"
-                        data-s=""
-                      >
-                        
-                        .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:focus,.css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:active{background-color:rgba(211,218,230,0.2);}
-                      </style>,
-                      <style
-                        data-emotion="css"
-                        data-s=""
-                      >
-                        
-                        .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:hover{background-color:rgba(211,218,230,0.2);}
-                      </style>,
-                    ],
-                  },
-                }
+                    </style>
+                  </head>,
+                  "ctr": 3,
+                  "insertionPoint": undefined,
+                  "isSpeedy": false,
+                  "key": "css",
+                  "nonce": undefined,
+                  "prepend": undefined,
+                  "tags": Array [
+                    <style
+                      data-emotion="css"
+                      data-s=""
+                    >
+                      
+                      .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon{color:#343741;}
+                    </style>,
+                    <style
+                      data-emotion="css"
+                      data-s=""
+                    >
+                      
+                      .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:focus,.css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:active{background-color:rgba(211,218,230,0.2);}
+                    </style>,
+                    <style
+                      data-emotion="css"
+                      data-s=""
+                    >
+                      
+                      .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:hover{background-color:rgba(211,218,230,0.2);}
+                    </style>,
+                  ],
+                },
               }
-              isStringTag={true}
-              serialized={
-                Object {
-                  "map": undefined,
-                  "name": "dsw53p-empty-text-hoverStyles-EuiButtonIcon",
-                  "next": undefined,
-                  "styles": "color:#343741;&:focus,&:active{background-color:rgba(211,218,230,0.2);};label:empty;;;label:text;;;&:hover{background-color:rgba(211,218,230,0.2);};label:hoverStyles;;;;label:EuiButtonIcon;;",
-                  "toString": [Function],
-                }
+            }
+            isStringTag={true}
+            serialized={
+              Object {
+                "map": undefined,
+                "name": "dsw53p-empty-text-hoverStyles-EuiButtonIcon",
+                "next": undefined,
+                "styles": "color:#343741;&:focus,&:active{background-color:rgba(211,218,230,0.2);};label:empty;;;label:text;;;&:hover{background-color:rgba(211,218,230,0.2);};label:hoverStyles;;;;label:EuiButtonIcon;;",
+                "toString": [Function],
               }
-            />
-            <button
-              aria-label="Collapse"
-              className="euiButtonIcon euiButtonIcon--xSmall euiCodeBlock__fullScreenButton css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
-              disabled={false}
-              onClick={[Function]}
-              type="button"
+            }
+          />
+          <button
+            aria-label="Collapse"
+            className="euiButtonIcon euiButtonIcon--xSmall euiCodeBlock__fullScreenButton css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            <EuiIcon
+              aria-hidden="true"
+              className="euiButtonIcon__icon"
+              color="inherit"
+              size="m"
+              type="fullScreenExit"
             >
-              <EuiIcon
+              <span
                 aria-hidden="true"
                 className="euiButtonIcon__icon"
                 color="inherit"
+                data-euiicon-type="fullScreenExit"
                 size="m"
-                type="fullScreenExit"
-              >
-                <span
-                  aria-hidden="true"
-                  className="euiButtonIcon__icon"
-                  color="inherit"
-                  data-euiicon-type="fullScreenExit"
-                  size="m"
-                />
-              </EuiIcon>
-            </button>
+              />
+            </EuiIcon>
           </button>
-        </EuiButtonIcon>
-      </EuiI18n>
+        </button>
+      </EuiButtonIcon>
     </FullScreenButton>
-    <CopyButton />
   </div>
 </div>
 `;
@@ -510,165 +497,159 @@ exports[`EuiCodeBlock props isCopyable is rendered 1`] = `
     <div
       className="euiCodeBlock__controls"
     >
-      <FullScreenButton />
-      <CopyButton>
+      <CopyButton
+        textToCopy="var some = 'code';
+console.log(some);"
+      >
         <div
           className="euiCodeBlock__copyButton"
         >
-          <EuiI18n
-            default="Copy"
-            token="euiCodeBlock.copyButton"
-          >
-            <EuiCopy
-              afterMessage="Copied"
-              textToCopy="var some = 'code';
+          <EuiCopy
+            afterMessage="Copied"
+            textToCopy="var some = 'code';
 console.log(some);"
+          >
+            <EuiToolTip
+              delay="regular"
+              display="inlineBlock"
+              onMouseOut={[Function]}
+              position="top"
             >
-              <EuiToolTip
-                delay="regular"
-                display="inlineBlock"
+              <span
+                className="euiToolTipAnchor"
                 onMouseOut={[Function]}
-                position="top"
+                onMouseOver={[Function]}
               >
-                <span
-                  className="euiToolTipAnchor"
-                  onMouseOut={[Function]}
-                  onMouseOver={[Function]}
+                <EuiButtonIcon
+                  aria-label="Copy"
+                  color="text"
+                  iconType="copyClipboard"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
                 >
-                  <EuiButtonIcon
+                  <button
                     aria-label="Copy"
-                    color="text"
-                    iconType="copyClipboard"
+                    css="unknown styles"
+                    disabled={false}
                     onBlur={[Function]}
                     onClick={[Function]}
                     onFocus={[Function]}
+                    type="button"
                   >
+                    <Insertion
+                      cache={
+                        Object {
+                          "insert": [Function],
+                          "inserted": Object {
+                            "dsw53p-empty-text-hoverStyles-EuiButtonIcon": true,
+                          },
+                          "key": "css",
+                          "nonce": undefined,
+                          "registered": Object {},
+                          "sheet": StyleSheet {
+                            "_alreadyInsertedOrderInsensitiveRule": true,
+                            "_insertTag": [Function],
+                            "before": null,
+                            "container": <head>
+                              <style
+                                data-emotion="css"
+                                data-s=""
+                              >
+                                
+                                .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon{color:#343741;}
+                              </style>
+                              <style
+                                data-emotion="css"
+                                data-s=""
+                              >
+                                
+                                .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:focus,.css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:active{background-color:rgba(211,218,230,0.2);}
+                              </style>
+                              <style
+                                data-emotion="css"
+                                data-s=""
+                              >
+                                
+                                .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:hover{background-color:rgba(211,218,230,0.2);}
+                              </style>
+                            </head>,
+                            "ctr": 3,
+                            "insertionPoint": undefined,
+                            "isSpeedy": false,
+                            "key": "css",
+                            "nonce": undefined,
+                            "prepend": undefined,
+                            "tags": Array [
+                              <style
+                                data-emotion="css"
+                                data-s=""
+                              >
+                                
+                                .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon{color:#343741;}
+                              </style>,
+                              <style
+                                data-emotion="css"
+                                data-s=""
+                              >
+                                
+                                .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:focus,.css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:active{background-color:rgba(211,218,230,0.2);}
+                              </style>,
+                              <style
+                                data-emotion="css"
+                                data-s=""
+                              >
+                                
+                                .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:hover{background-color:rgba(211,218,230,0.2);}
+                              </style>,
+                            ],
+                          },
+                        }
+                      }
+                      isStringTag={true}
+                      serialized={
+                        Object {
+                          "map": undefined,
+                          "name": "dsw53p-empty-text-hoverStyles-EuiButtonIcon",
+                          "next": undefined,
+                          "styles": "color:#343741;&:focus,&:active{background-color:rgba(211,218,230,0.2);};label:empty;;;label:text;;;&:hover{background-color:rgba(211,218,230,0.2);};label:hoverStyles;;;;label:EuiButtonIcon;;",
+                          "toString": [Function],
+                        }
+                      }
+                    />
                     <button
                       aria-label="Copy"
-                      css="unknown styles"
+                      className="euiButtonIcon euiButtonIcon--xSmall css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
                       disabled={false}
                       onBlur={[Function]}
                       onClick={[Function]}
                       onFocus={[Function]}
                       type="button"
                     >
-                      <Insertion
-                        cache={
-                          Object {
-                            "insert": [Function],
-                            "inserted": Object {
-                              "dsw53p-empty-text-hoverStyles-EuiButtonIcon": true,
-                            },
-                            "key": "css",
-                            "nonce": undefined,
-                            "registered": Object {},
-                            "sheet": StyleSheet {
-                              "_alreadyInsertedOrderInsensitiveRule": true,
-                              "_insertTag": [Function],
-                              "before": null,
-                              "container": <head>
-                                <style
-                                  data-emotion="css"
-                                  data-s=""
-                                >
-                                  
-                                  .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon{color:#343741;}
-                                </style>
-                                <style
-                                  data-emotion="css"
-                                  data-s=""
-                                >
-                                  
-                                  .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:focus,.css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:active{background-color:rgba(211,218,230,0.2);}
-                                </style>
-                                <style
-                                  data-emotion="css"
-                                  data-s=""
-                                >
-                                  
-                                  .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:hover{background-color:rgba(211,218,230,0.2);}
-                                </style>
-                              </head>,
-                              "ctr": 3,
-                              "insertionPoint": undefined,
-                              "isSpeedy": false,
-                              "key": "css",
-                              "nonce": undefined,
-                              "prepend": undefined,
-                              "tags": Array [
-                                <style
-                                  data-emotion="css"
-                                  data-s=""
-                                >
-                                  
-                                  .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon{color:#343741;}
-                                </style>,
-                                <style
-                                  data-emotion="css"
-                                  data-s=""
-                                >
-                                  
-                                  .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:focus,.css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:active{background-color:rgba(211,218,230,0.2);}
-                                </style>,
-                                <style
-                                  data-emotion="css"
-                                  data-s=""
-                                >
-                                  
-                                  .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:hover{background-color:rgba(211,218,230,0.2);}
-                                </style>,
-                              ],
-                            },
-                          }
-                        }
-                        isStringTag={true}
-                        serialized={
-                          Object {
-                            "map": undefined,
-                            "name": "dsw53p-empty-text-hoverStyles-EuiButtonIcon",
-                            "next": undefined,
-                            "styles": "color:#343741;&:focus,&:active{background-color:rgba(211,218,230,0.2);};label:empty;;;label:text;;;&:hover{background-color:rgba(211,218,230,0.2);};label:hoverStyles;;;;label:EuiButtonIcon;;",
-                            "toString": [Function],
-                          }
-                        }
-                      />
-                      <button
-                        aria-label="Copy"
-                        className="euiButtonIcon euiButtonIcon--xSmall css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
-                        disabled={false}
-                        onBlur={[Function]}
-                        onClick={[Function]}
-                        onFocus={[Function]}
-                        type="button"
+                      <EuiIcon
+                        aria-hidden="true"
+                        className="euiButtonIcon__icon"
+                        color="inherit"
+                        size="m"
+                        type="copyClipboard"
                       >
-                        <EuiIcon
+                        <span
                           aria-hidden="true"
                           className="euiButtonIcon__icon"
                           color="inherit"
+                          data-euiicon-type="copyClipboard"
                           size="m"
-                          type="copyClipboard"
-                        >
-                          <span
-                            aria-hidden="true"
-                            className="euiButtonIcon__icon"
-                            color="inherit"
-                            data-euiicon-type="copyClipboard"
-                            size="m"
-                          />
-                        </EuiIcon>
-                      </button>
+                        />
+                      </EuiIcon>
                     </button>
-                  </EuiButtonIcon>
-                </span>
-              </EuiToolTip>
-            </EuiCopy>
-          </EuiI18n>
+                  </button>
+                </EuiButtonIcon>
+              </span>
+            </EuiToolTip>
+          </EuiCopy>
         </div>
       </CopyButton>
     </div>
-    <FullScreenDisplay
-      className="euiCodeBlock euiCodeBlock--hasControl"
-    />
   </div>
 </EuiCodeBlock>
 `;

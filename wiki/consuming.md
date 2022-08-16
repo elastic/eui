@@ -11,7 +11,7 @@ yarn add @elastic/eui
 Note that EUI has [several `peerDependencies` requirements](package.json) that will also need to be installed if starting with a blank project.
 
 ```bash
-yarn add @elastic/eui @elastic/datemath @emotion/react moment prop-types
+yarn add @elastic/eui @elastic/datemath @emotion/react @emotion/cache moment prop-types
 ```
 
 ## Requirements and dependencies
@@ -45,14 +45,52 @@ import {
 Test utilities are published from the `lib/test` directory.
 
 ```js
-import { findTestSubject } from '@elastic/eui/lib/test';
+import { findTestSubject } from '@elastic/eui/lib/test'; // Enzyme
+import { findByTestSubject, render, screen } from '@elastic/eui/lib/test/rtl'; // React Testing Library
 ```
 
 ### Theming
 
-As of April 2022 EUI is in the process of [migrating to Emotion JS for the CSS and theming layer](https://github.com/elastic/eui/issues/3912). Using EUI's theme layer with Emotion is [documented in our docs](https://elastic.github.io/eui/#/theming/theme-provider) and should cover the majority of your theming needs. Until the conversion is complete the components you consume may still contain soon-to-be-removed Sass styling. EUI's distribution also provides both a light and dark JSON token file that exposes these Sass variables (through an automatic process derived from the Sass) to make tokens from the individual Sass components available to consume if you need them. As components continue to convert to Emotion, these Sass-to-JS tokens in these files will degrade, eventually disappearing altogether. We therefor recommend not relying on the JSON dist of these tokens, and convert your applications to utilize EUI's Emotion powered [Theme Provider](https://elastic.github.io/eui/#/theming/theme-provider) and its related tokens instead. The following are provided as basic examples to show what that conversion might look like if you were using the older, legacy systems.
+As of April 2022 EUI is in the process of [migrating to Emotion JS for the CSS and theming layer](https://github.com/elastic/eui/issues/3912). While EUI is in the process of this conversion, we require that both the EuiProvider and the compiled CSS (or raw Sass) files be imported during this transition.
 
+```jsx
+import React from 'react';
+import '@elastic/eui/dist/eui_theme_light.css';
+
+import { EuiProvider } from '@elastic/eui';
+
+const MyApp = ({ Page }) => (
+  <EuiProvider colorMode="light">
+    <Page />
+  </EuiProvider>
+);
+```
+
+#### The recommended method to consume theming variables using Emotion
+
+Using EUI's theme layer with Emotion is [documented in our docs](https://elastic.github.io/eui/#/theming/theme-provider) and should cover the majority of your theming needs.
+
+```jsx
+import { useEuiTheme } from '@elastic/eui';
+import { css } from '@emotion/react';
+
+export default () => {
+  const { euiTheme } = useEuiTheme();
+  const styles = css`
+    color: ${euiTheme.colors.primary};
+    border: ${euiTheme.border.thin};
+    padding: ${euiTheme.size.s};
+  `;
+  return (
+    <div css={styles} />
+  );
+};
+```
 #### A not-recommended, legacy method to consume theming variables from Sass
+
+Until the conversion is complete, the components you consume may still contain soon-to-be-removed Sass styling. EUI's distribution also provides both a light and dark JSON token file that exposes these Sass variables (through an automatic process derived from the Sass) to make tokens from the individual Sass components available to consume if you need them. As components continue to convert to Emotion, these Sass-to-JS tokens in these files will degrade, eventually disappearing altogether. We therefore recommend not relying on the JSON dist of these tokens, and instead using the above recommended Emotion approach.
+
+The following is provided as an example of the soon-to-be-deprecated Sass theme variables, to aid consumers in converting legacy usage.
 
 ```jsx
 import * as euiVars from '@elastic/eui/dist/eui_theme_light.json';
@@ -66,26 +104,6 @@ const styles = {
 export default () => (
   <div style={styles} />
 )
-```
-
-#### A recommended method to consume theming variables using Emotion
-
-```jsx
-import { useEuiTheme } from '@elastic/eui';
-import { css } from '@emotion/react';
-
-
-export default () => {
-  const { euiTheme } = useEuiTheme();
-  const styles = css`
-    color: ${euiTheme.colors.primary};
-    border: ${euiTheme.border.thin};
-    padding: ${euiTheme.size.s};
-  `;
-  return (
-  <div css={styles} />
-  );
-};
 ```
 
 ### "Module build failed" or "Module parse failed: Unexpected token" error

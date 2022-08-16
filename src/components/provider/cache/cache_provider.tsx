@@ -7,20 +7,19 @@
  */
 
 import React, { PropsWithChildren } from 'react';
-import { EmotionCache } from '@emotion/cache';
+import createCache, { EmotionCache } from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 
+const defaultCache = createCache({ key: 'css' });
+defaultCache.compat = true;
+
 export interface EuiCacheProviderProps {
-  cache?: false | EmotionCache;
+  cache?: EmotionCache;
 }
 
 export const EuiCacheProvider = ({
-  cache,
+  cache = defaultCache,
   children,
-}: PropsWithChildren<EuiCacheProviderProps>) => {
-  return children && cache ? (
-    <CacheProvider value={cache}>{children}</CacheProvider>
-  ) : (
-    <>{children}</>
-  );
-};
+}: PropsWithChildren<EuiCacheProviderProps>) => (
+  <CacheProvider value={cache}>{children}</CacheProvider>
+);

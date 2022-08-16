@@ -6,10 +6,10 @@
  * Side Public License, v 1.
  */
 
-export type { EuiTokenProps } from './token';
+export type { EuiTokenProps } from './token_types';
 export {
-  EuiToken,
   SIZES as TOKEN_SIZES,
   SHAPES as TOKEN_SHAPES,
   COLORS as TOKEN_COLORS,
-} from './token';
+} from './token_types';
+export { EuiToken } from './token';

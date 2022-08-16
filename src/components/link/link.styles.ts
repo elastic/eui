@@ -39,7 +39,8 @@ export const euiLinkFocusCSS = (euiTheme: UseEuiTheme['euiTheme']) => {
   `;
 };
 
-export const euiLinkCSS = (euiTheme: UseEuiTheme['euiTheme']) => {
+export const euiLinkCSS = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
   return `
     font-weight: ${euiTheme.font.weight.medium};
     text-align: left;
@@ -49,16 +50,17 @@ export const euiLinkCSS = (euiTheme: UseEuiTheme['euiTheme']) => {
     }
 
     &:focus {
-      ${euiFocusRing(euiTheme, 'outset')}
+      ${euiFocusRing(euiThemeContext, 'outset')}
       ${euiLinkFocusCSS(euiTheme)}
     }
   `;
 };
 
-export const euiLinkStyles = ({ euiTheme }: UseEuiTheme) => {
+export const euiLinkStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
   return {
     euiLink: css`
-      ${euiLinkCSS(euiTheme)}
+      ${euiLinkCSS(euiThemeContext)}
       user-select: text;
 
       &[target='_blank'] {

@@ -2,7 +2,7 @@
 
 exports[`EuiGlobalToastListItem is rendered 1`] = `
 <div
-  class="euiGlobalToastListItem"
+  class="euiGlobalToastListItem emotion-euiGlobalToastListItem"
 >
   Hi
 </div>

@@ -127,6 +127,17 @@ function compileBundle() {
         return null;
       }
     });
+
+    // dtsGenerator is unfortunately having massive issues with RTL type defs, so we're
+    // temporarily defining manual `.d.ts` files and copying them to each compiled dir
+    shell.mkdir('-p', `${dir}/rtl`);
+    glob('./src/test/rtl/**/*.d.ts', undefined, (error, files) => {
+      files.forEach(file => {
+        const splitPath = file.split('/');
+        const fileName = splitPath[splitPath.length - 1];
+        shell.cp('-f', `${file}`, `${dir}/rtl/${fileName}`);
+      });
+    });
   })
   console.log(chalk.green('✔ Finished test utils files'));
 

@@ -39,6 +39,7 @@ export const RowHeightUtils = jest
       isRowHeightOverride: jest.fn(rowHeightUtils.isRowHeightOverride),
       resetRow: jest.fn(),
       resetGrid: jest.fn(),
+      compensateForLayoutShift: jest.fn(),
     };
 
     return (rowHeightUtilsMock as any) as ActualRowHeightUtils;

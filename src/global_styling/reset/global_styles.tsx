@@ -85,7 +85,7 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
     }
 
     *:focus {
-      ${euiFocusRing(euiTheme)}
+      ${euiFocusRing(euiThemeContext)}
     }
 
     // Dark mode's highlighted doesn't work well so lets just set it the same as our focus background
@@ -104,6 +104,12 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
       &:focus {
         text-decoration: none;
       }
+    }
+
+    // A few EUI components (e.g. tooltip, combobox) use a portal to render content outside of the DOM hierarchy.
+    // The portal content is absolutely positioned relative to the body.
+    .euiBody-hasPortalContent {
+      position: relative;
     }
   `;
 

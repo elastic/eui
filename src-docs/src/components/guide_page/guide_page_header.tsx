@@ -9,7 +9,7 @@ import { EuiBadge } from '../../../../src/components/badge';
 import { EuiIcon } from '../../../../src/components/icon';
 import { EuiToolTip } from '../../../../src/components/tool_tip';
 import { EuiPopover } from '../../../../src/components/popover';
-import { useIsWithinBreakpoints } from '../../../../src/services/hooks';
+import { useIsWithinBreakpoints } from '../../../../src/services';
 import { EuiButtonEmpty } from '../../../../src/components/button';
 
 // @ts-ignore Not TS
@@ -132,21 +132,21 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
       ];
 
   return (
-    <EuiHeader
-      role="region"
-      aria-label="EUI Docs app bar"
-      position="fixed"
-      theme="dark"
-      sections={[
-        {
-          items: [renderLogo(), renderVersion()],
-          borders: 'none',
-        },
-        {
-          items: rightSideItems,
-          borders: 'none',
-        },
-      ]}
-    />
+    <header aria-label="EUI Docs app bar">
+      <EuiHeader
+        position="fixed"
+        theme="dark"
+        sections={[
+          {
+            items: [renderLogo(), renderVersion()],
+            borders: 'none',
+          },
+          {
+            items: rightSideItems,
+            borders: 'none',
+          },
+        ]}
+      />
+    </header>
   );
 };

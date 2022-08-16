@@ -81,7 +81,7 @@ interface FindPopoverPositionArgs {
 interface FindPopoverPositionResult {
   top: number;
   left: number;
-  position: 'top' | 'right' | 'bottom' | 'left';
+  position: EuiPopoverPosition;
   fit: number;
   arrow?: { left: number; top: number };
   anchorBoundingBox?: EuiClientRect;

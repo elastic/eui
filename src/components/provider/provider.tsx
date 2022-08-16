@@ -18,6 +18,7 @@ import {
   EuiThemeProvider,
   EuiThemeProviderProps,
   EuiThemeSystem,
+  CurrentEuiBreakpointProvider,
 } from '../../services';
 import { EuiThemeAmsterdam } from '../../themes';
 import { EuiCacheProvider } from './cache';
@@ -102,7 +103,7 @@ export const EuiProvider = <T extends {} = {}>({
             />
           </>
         )}
-        {children}
+        <CurrentEuiBreakpointProvider>{children}</CurrentEuiBreakpointProvider>
       </EuiThemeProvider>
     </EuiCacheProvider>
   );

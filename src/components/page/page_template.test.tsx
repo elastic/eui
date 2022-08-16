@@ -10,9 +10,12 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiPageTemplate, TEMPLATES } from './page_template';
+import {
+  EuiPageTemplate_Deprecated as EuiPageTemplate,
+  TEMPLATES,
+} from './page_template';
 
-describe('EuiPageTemplate', () => {
+describe('EuiPageTemplate_Deprecated', () => {
   test('is rendered', () => {
     const component = render(<EuiPageTemplate {...requiredProps} />);
 
