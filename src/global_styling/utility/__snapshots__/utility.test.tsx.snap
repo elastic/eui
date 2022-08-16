@@ -19,20 +19,6 @@ exports[`global utility styles generates static global styles 1`] = `
   // Chrome requires the negative margin to not cause overflows of parent containers
   margin: -1px;
 ;}
-.eui-isFocusable:focus{
-    outline: 2px solid currentColor;
-    outline-offset: calc(2px / -2);;
-
-    // 👀 Chrome respects :focus-visible and allows coloring the \`auto\` style
-    &:focus-visible {
-      outline-style: auto;
-    }
-
-    // 🙅‍♀️ But Chrome also needs to have the outline forcefully removed from regular \`:focus\` state
-    &:not(:focus-visible) {
-      outline: none;
-    }
-  ;}
 .eui-alignBaseline{vertical-align:baseline!important;}
 .eui-alignBottom{vertical-align:bottom!important;}
 .eui-alignMiddle{vertical-align:middle!important;}
