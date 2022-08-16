@@ -13,7 +13,8 @@ import { useEuiTheme } from '../../services';
 import { euiDescriptionListDescriptionStyles } from './description_list_description.styles';
 import { EuiDescriptionListContext } from './description_list_context';
 
-interface EuiDescriptionListDescriptionProps
+// Export required for correct inference by HOCs
+export interface EuiDescriptionListDescriptionProps
   extends CommonProps,
     HTMLAttributes<HTMLElement> {}
 
