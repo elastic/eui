@@ -1,3 +1,6 @@
+const logicals = require('../../src/global_styling/functions/logicals.json');
+const logicalProperties = Object.keys(logicals);
+
 module.exports = {
   meta: {
     type: 'problem',
