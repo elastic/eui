@@ -9,7 +9,11 @@
 import { css } from '@emotion/react';
 import { euiShadow } from '../../themes/amsterdam/global_styling/mixins';
 import { UseEuiTheme } from '../../services';
-import { euiCanAnimate, logicalTextAlignCSS } from '../../global_styling';
+import {
+  euiCanAnimate,
+  logicalCSS,
+  logicalTextAlignCSS,
+} from '../../global_styling';
 
 export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -51,7 +55,7 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
         // This is a good selector for buttons since it doesn't exist on divs
         // in case of button wrapper which inherently is inline-block and no width
         display: block;
-        width: 100%;
+        ${logicalCSS('width', '100%')}
         ${logicalTextAlignCSS('left')}
       }
 
