@@ -3,7 +3,6 @@ import { formatDate } from '../../../../../src/services/format';
 import { createDataStore } from '../data_store';
 
 import {
-  EuiAccordion,
   EuiBasicTable,
   EuiLink,
   EuiHealth,
@@ -318,19 +317,17 @@ export const Table = () => {
 
       <EuiSpacer size="l" />
 
-      <EuiAccordion id={'accordionId1'} buttonContent="Clickable title">
-        <EuiBasicTable
-          tableCaption="Demo of EuiBasicTable with actions"
-          items={pageOfItems}
-          itemId="id"
-          columns={columns}
-          pagination={pagination}
-          sorting={sorting}
-          selection={selection}
-          hasActions={customAction ? false : true}
-          onChange={onTableChange}
-        />
-      </EuiAccordion>
+      <EuiBasicTable
+        tableCaption="Demo of EuiBasicTable with actions"
+        items={pageOfItems}
+        itemId="id"
+        columns={columns}
+        pagination={pagination}
+        sorting={sorting}
+        selection={selection}
+        hasActions={customAction ? false : true}
+        onChange={onTableChange}
+      />
     </Fragment>
   );
 };
