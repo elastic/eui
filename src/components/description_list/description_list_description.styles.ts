@@ -33,7 +33,9 @@ export const euiDescriptionListDescriptionStyles = (
     euiDescriptionList__description: css``,
 
     // Types
-    row: css``,
+    row: css`
+      flex: 1 1 100%;
+    `,
     column: css`
       ${columnDisplay}
     `,

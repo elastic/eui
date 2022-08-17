@@ -13,16 +13,29 @@ import { UseEuiTheme } from '../../services';
 export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
   // Flex display for column and responsive column
   const columnDisplay = `
-    display: flex;
+    //display: flex;
     align-items: baseline;
-    flex-wrap: wrap;  
+    flex-wrap: wrap;
   `;
 
   return {
-    euiDescriptionList: css``,
+    euiDescriptionList: css`
+      display: flex;
+
+      // [class*='euiDescriptionList__description']
+      [class*='euiDescriptionList__description']:nth-child(2) {
+        row-gap: 100px;
+        border: 1px solid red;
+        // background-color: yellow !important;
+      }
+    `,
 
     // Types
-    row: css``,
+    row: css`
+      flex-direction: row;
+      flex-wrap: wrap;
+      //row-gap: 100px;
+    `,
     inline: css``,
     column: css`
       ${columnDisplay}
@@ -41,5 +54,9 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
     left: css`
       ${logicalTextAlignCSS('left')}
     `,
+
+    // Gutter
+    s: css``,
+    m: css``,
   };
 };

@@ -33,12 +33,18 @@ export const EuiDescriptionList: FunctionComponent<
   textStyle = 'normal',
   titleProps,
   type = 'row',
+  gap = 'm',
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
   const styles = euiDescriptionListStyles(euiTheme);
 
-  const cssStyles = [styles.euiDescriptionList, styles[type], styles[align]];
+  const cssStyles = [
+    styles.euiDescriptionList,
+    styles[type],
+    styles[align],
+    styles[gap],
+  ];
 
   const classes = classNames('euiDescriptionList', className);
 
