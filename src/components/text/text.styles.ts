@@ -22,7 +22,7 @@ import { euiTitle } from '../title/title.styles';
 /**
  * TODO: Make this a global value so it can be set by theme?
  */
-export const euiTextConstrainedMaxWidth = 'max(64ch, 75%)';
+export const euiTextConstrainedMaxWidth = '36em';
 
 /**
  * Mixins
@@ -340,7 +340,7 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     constrainedWidth: css`
-      ${logicalCSS('max-width', euiTextConstrainedMaxWidth)}
+      max-width: ${euiTextConstrainedMaxWidth};
     `,
     // Sizes
     m: css`
