@@ -17,6 +17,8 @@ const regex = new RegExp(
   'gm'
 );
 
+const logicalsFixMap = { ...logicals, ...logicalValues };
+
 module.exports = {
   meta: {
     type: 'problem',
@@ -44,6 +46,7 @@ module.exports = {
           let match;
           while ((match = regex.exec(stringLiteral)) !== null) {
             const property = match.groups.property || match.groups.value;
+            const whitespace = match.groups.whitespace?.length || 0;
 
             context.report({
               node,
@@ -51,6 +54,15 @@ module.exports = {
                 ? 'preferLogicalValue'
                 : 'preferLogicalProperty',
               data: { property },
+              fix: function (fixer) {
+                const cssNodeStart = cssNode.range[0] + 1; // Account for "css`"
+                const indexStart = cssNodeStart + match.index + whitespace;
+
+                return fixer.replaceTextRange(
+                  [indexStart, indexStart + property.length],
+                  logicalsFixMap[property]
+                );
+              },
             });
           }
         });
