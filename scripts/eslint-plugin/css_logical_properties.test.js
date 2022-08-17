@@ -59,7 +59,7 @@ const invalid = [
   },
   {
     code: 'css`text-align: left;`',
-    errors: [{ messageId: 'preferLogicalProperty' }],
+    errors: [{ messageId: 'preferLogicalValue' }],
   },
   {
     code: 'css`overflow-y: hidden;`',
@@ -73,7 +73,7 @@ const invalid = [
       bottom: 50px;
     \``,
     errors: [
-      { messageId: 'preferLogicalProperty' },
+      { messageId: 'preferLogicalValue' },
       { messageId: 'preferLogicalProperty' },
     ],
   },
