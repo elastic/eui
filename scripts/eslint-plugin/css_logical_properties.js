@@ -8,6 +8,15 @@ const logicalValues = {
   // @see https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Logical_Properties
 };
 
+const logicalPropertiesRegex = logicalProperties.join('|');
+const logicalValuesRegex = Object.keys(logicalValues).join('|');
+// @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec
+// @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Groups_and_Backreferences
+const regex = new RegExp(
+  `^(?<whitespace>[\\s]*)((?<property>${logicalPropertiesRegex}):)|(?<value>${logicalValuesRegex})`,
+  'gm'
+);
+
 module.exports = {
   meta: {
     type: 'problem',
@@ -32,26 +41,18 @@ module.exports = {
           const stringLiteral = cssNode?.value?.raw;
           if (!stringLiteral) return;
 
-          Object.keys(logicalValues).forEach((value) => {
-            const regex = new RegExp(`^[\\s]*${value}`, 'gm');
-            if (stringLiteral.match(regex)) {
-              context.report({
-                node,
-                messageId: 'preferLogicalValue',
-                data: { property: logicalValues[value] },
-              });
-            }
-          });
-          logicalProperties.forEach((property) => {
-            const regex = new RegExp(`^[\\s]*${property}:`, 'gm');
-            if (stringLiteral.match(regex)) {
-              context.report({
-                node,
-                messageId: 'preferLogicalProperty',
-                data: { property: logicals[property] },
-              });
-            }
-          });
+          let match;
+          while ((match = regex.exec(stringLiteral)) !== null) {
+            const property = match.groups.property || match.groups.value;
+
+            context.report({
+              node,
+              messageId: match.groups.value
+                ? 'preferLogicalValue'
+                : 'preferLogicalProperty',
+              data: { property },
+            });
+          }
         });
       },
     };
