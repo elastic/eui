@@ -11,7 +11,6 @@
   "left": "inset-inline-start",
   "horizontal": "inset-block",
   "vertical": "inset-inline",
-  "inset": "inset",
   "margin-left": "margin-inline-start",
   "margin-right": "margin-inline-end",
   "margin-top": "margin-block-start",
