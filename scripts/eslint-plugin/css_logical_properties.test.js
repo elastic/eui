@@ -15,6 +15,8 @@ const valid = [
   // Make sure we don't incorrectly catch similar properties that do not have logical equivalents
   `css\`
     line-height: 20px;
+    border-width: 1px;
+    scrollbar-width: 30px
   \``,
 ];
 
