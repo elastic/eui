@@ -43,30 +43,77 @@ module.exports = {
           const stringLiteral = cssNode?.value?.raw;
           if (!stringLiteral) return;
 
-          let match;
-          while ((match = regex.exec(stringLiteral)) !== null) {
-            const property = match.groups.property || match.groups.value;
-            const whitespace = match.groups.whitespace?.length || 0;
+          findOccurrences(regex, stringLiteral).forEach(
+            ({ match, lineNumber, column }) => {
+              const property = match.groups.property || match.groups.value;
+              const whitespace = match.groups.whitespace?.length || 0;
 
-            context.report({
-              node,
-              messageId: match.groups.value
-                ? 'preferLogicalValue'
-                : 'preferLogicalProperty',
-              data: { property },
-              fix: function (fixer) {
-                const cssNodeStart = cssNode.range[0] + 1; // Account for "css`"
-                const indexStart = cssNodeStart + match.index + whitespace;
+              const lineStart = cssNode.loc.start.line + lineNumber;
+              const columnStart = column + whitespace;
 
-                return fixer.replaceTextRange(
-                  [indexStart, indexStart + property.length],
-                  logicalsFixMap[property]
-                );
-              },
-            });
-          }
+              context.report({
+                loc: {
+                  start: {
+                    line: lineStart,
+                    column: columnStart,
+                  },
+                  end: {
+                    line: lineStart,
+                    column: columnStart + property.length,
+                  },
+                },
+                messageId: match.groups.value
+                  ? 'preferLogicalValue'
+                  : 'preferLogicalProperty',
+                data: { property },
+                fix: function (fixer) {
+                  const cssNodeStart = cssNode.range[0] + 1; // Account for "css`"
+                  const indexStart = cssNodeStart + match.index + whitespace;
+
+                  return fixer.replaceTextRange(
+                    [indexStart, indexStart + property.length],
+                    logicalsFixMap[property]
+                  );
+                },
+              });
+            }
+          );
         });
       },
     };
   },
+};
+
+/**
+ * Regex helpers for finding the location of a property
+ * (vs highlighting the entire css`` node)
+ *
+ * credit to https://stackoverflow.com/a/61725880/4294462
+ */
+
+const lineNumberByIndex = (index, string) => {
+  const re = /^[\S\s]/gm;
+  let line = 0,
+    match;
+  let lastRowIndex = 0;
+  while ((match = re.exec(string))) {
+    if (match.index > index) break;
+    lastRowIndex = match.index;
+    line++;
+  }
+  return [Math.max(line - 1, 0), lastRowIndex];
+};
+
+const findOccurrences = (needle, haystack) => {
+  let match;
+  const result = [];
+  while ((match = needle.exec(haystack))) {
+    const pos = lineNumberByIndex(needle.lastIndex, haystack);
+    result.push({
+      match,
+      lineNumber: pos[0],
+      column: needle.lastIndex - pos[1] - match[0].length,
+    });
+  }
+  return result;
 };
