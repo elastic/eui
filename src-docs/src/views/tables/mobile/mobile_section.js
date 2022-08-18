@@ -7,6 +7,7 @@ import { EuiCode, EuiCodeBlock } from '../../../../../src/components/code';
 const source = require('!!raw-loader!./mobile');
 import { EuiTableRowCellMobileOptionsShape } from '../props/props';
 
+/* eslint-disable local/css-logical-properties */
 const exampleItem = `{
   field: 'firstName',
   name: 'First Name',
