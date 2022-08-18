@@ -1,3 +1,15 @@
+## [`64.0.1`](https://github.com/elastic/eui/tree/v64.0.1)
+
+**Bug fixes**
+
+- Fixed `CollapsedItemActions` ref callback not accounting for `null` value ([#6145](https://github.com/elastic/eui/pull/6145))
+
+**CSS-in-JS conversions**
+
+- Added `logicalCSSWithFallback()` utility for logical properties without full browser support ([#6124](https://github.com/elastic/eui/pull/6124))
+- Converted `euiFullHeight()` Sass mixin to Emotion  ([#6124](https://github.com/elastic/eui/pull/6124))
+- Converted all global CSS utility classes to Emotion ([#6124](https://github.com/elastic/eui/pull/6124))
+
 ## [`64.0.0`](https://github.com/elastic/eui/tree/v64.0.0)
 
 - Added `onPositionChange` callback prop to `EuiPopover` for when the popover positon changes ([#6087](https://github.com/elastic/eui/pull/6087))
