@@ -106,6 +106,14 @@
 - Converted `EuiPageHeader` and `EuiPageHeaderContent` to Emotion ([#5768](https://github.com/elastic/eui/pull/5768))
 - Removed `euiPageRestrictWidth()` Sass mixin ([#5768](https://github.com/elastic/eui/pull/5768))
 
+## [`62.2.3`](https://github.com/elastic/eui/tree/v62.2.3)
+
+**Note: this release is a backport containing changes originally made in `64.0.1`**
+
+**Bug fixes**
+
+- Fixed `CollapsedItemActions` ref callback not accounting for `null` value ([#6145](https://github.com/elastic/eui/pull/6145))
+
 ## [`62.2.2`](https://github.com/elastic/eui/tree/v62.2.2)
 
 **Note: this release is a backport containing changes originally made in `64.0.0`**
