@@ -8,7 +8,11 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
-import { euiFocusRing, logicalCSS } from '../../global_styling';
+import {
+  euiFocusRing,
+  logicalCSS,
+  logicalTextAlignCSS,
+} from '../../global_styling';
 
 const _colorCSS = (color: string) => {
   return `
@@ -43,7 +47,7 @@ export const euiLinkCSS = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   return `
     font-weight: ${euiTheme.font.weight.medium};
-    text-align: left;
+    ${logicalTextAlignCSS('left')}
 
     &:hover {
       ${euiLinkHoverCSS()}
