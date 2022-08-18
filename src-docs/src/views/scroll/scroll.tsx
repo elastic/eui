@@ -137,8 +137,9 @@ export default () => {
           snippetLanguage="scss"
           snippet={`.scrollBarRegion {
   @include euiScrollBar;
-  overflow-y: auto;
-  height: $euiSize * 10;
+  overflow-y: auto; ${/* eslint-disable-line local/css-logical-properties */ ''}
+  overflow-block: auto;
+  block-size: $euiSize * 10;
 }`}
         />
       )}

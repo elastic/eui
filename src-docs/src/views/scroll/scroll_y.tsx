@@ -126,7 +126,7 @@ export default () => {
           snippetLanguage="scss"
           snippet={`.overflowShadowsY {
   @include euiYScrollWithShadows;
-  height: 180px;
+  block-size: 180px;
 }`}
         />
       )}
