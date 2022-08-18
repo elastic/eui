@@ -1,3 +1,9 @@
+## [`63.0.3`](https://github.com/elastic/eui/tree/v63.0.3)
+
+**Bug fixes**
+
+- Fixed `CollapsedItemActions` ref callback not accounting for `null` value ([#6145](https://github.com/elastic/eui/pull/6145))
+
 ## [`63.0.2`](https://github.com/elastic/eui/tree/v63.0.2)
 
 **Bug fixes**
