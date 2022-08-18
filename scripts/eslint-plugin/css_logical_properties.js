@@ -35,12 +35,10 @@ module.exports = {
   },
   create: function (context) {
     return {
-      TaggedTemplateExpression(node) {
-        if (node.tag?.name !== 'css') return; // We only want to check Emotion css`` template literals
-
-        const templateContents = node.quasi?.quasis || [];
-        templateContents.forEach((cssNode) => {
-          const stringLiteral = cssNode?.value?.raw;
+      TemplateLiteral(node) {
+        const templateContents = node.quasis || [];
+        templateContents.forEach((quasi) => {
+          const stringLiteral = quasi?.value?.raw;
           if (!stringLiteral) return;
 
           findOccurrences(regex, stringLiteral).forEach(
@@ -48,7 +46,7 @@ module.exports = {
               const property = match.groups.property || match.groups.value;
               const whitespace = match.groups.whitespace?.length || 0;
 
-              const lineStart = cssNode.loc.start.line + lineNumber;
+              const lineStart = quasi.loc.start.line + lineNumber;
               const columnStart = column + whitespace;
 
               context.report({
@@ -67,8 +65,8 @@ module.exports = {
                   : 'preferLogicalProperty',
                 data: { property },
                 fix: function (fixer) {
-                  const cssNodeStart = cssNode.range[0] + 1; // Account for "css`"
-                  const indexStart = cssNodeStart + match.index + whitespace;
+                  const literalStart = quasi.range[0] + 1; // Account for backtick
+                  const indexStart = literalStart + match.index + whitespace;
 
                   return fixer.replaceTextRange(
                     [indexStart, indexStart + property.length],

@@ -10,10 +10,8 @@ const valid = [
     inline-size: 50px;
     inline-start-end: 10px;
   \``,
-  // This is not in css``, so it's fine
-  '`width: 50px; left: 10px;`',
   // Make sure we don't incorrectly catch similar properties that do not have logical equivalents
-  `css\`
+  `\`
     line-height: 20px;
     border-width: 1px;
     scrollbar-width: 30px
@@ -27,8 +25,8 @@ const invalid = [
     errors: [{ messageId: 'preferLogicalProperty' }],
   },
   {
-    code: 'css`max-height: 50px;`',
-    output: 'css`max-block-size: 50px;`',
+    code: '`max-height: 50px;`',
+    output: '`max-block-size: 50px;`',
     errors: [{ messageId: 'preferLogicalProperty' }],
   },
   {
@@ -37,8 +35,8 @@ const invalid = [
     errors: [{ messageId: 'preferLogicalProperty' }],
   },
   {
-    code: 'css`min-width: 50px;`',
-    output: 'css`min-inline-size: 50px;`',
+    code: '`min-width: 50px;`',
+    output: '`min-inline-size: 50px;`',
     errors: [{ messageId: 'preferLogicalProperty' }],
   },
   {
