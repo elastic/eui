@@ -32,6 +32,12 @@ module.exports = {
         'Prefer the CSS logical value for {{ property }} - @see src/global_styling/functions/logicals.ts',
     },
     fixable: 'code',
+    // NOTE: To disable this lint rule for a single line/property within a css`` block
+    // your code must use a comment inside a template literal, e.g.:
+    // css`
+    //   color: red;
+    //   height: 40px; ${/* eslint-disable-line local/css-logical-properties */ ''}
+    // `
   },
   create: function (context) {
     return {
