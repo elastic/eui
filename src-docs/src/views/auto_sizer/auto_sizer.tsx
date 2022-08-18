@@ -25,7 +25,9 @@ export default () => {
       <EuiAutoSizer>
         {({ height, width }) => (
           <EuiPanel css={[panelStyles, { height, width }]}>
-            <EuiCode>{`height: ${height}, width: ${width}`}</EuiCode>
+            <EuiCode>
+              height: {height}, width: {width}
+            </EuiCode>
           </EuiPanel>
         )}
       </EuiAutoSizer>
