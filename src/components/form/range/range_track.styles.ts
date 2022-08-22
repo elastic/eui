@@ -37,12 +37,9 @@ export const euiRangeTrackStyles = (euiThemeContext: UseEuiTheme) => {
         background: ${range.trackColor};
         border-radius: ${range.trackBorderRadius};
         position: absolute;
+        top: ${range.trackTopPositionWithoutTicks};
         left: 0;
         ${euiRangeTrackSize(euiThemeContext)};
-      }
-
-      &:not(.euiRangeTrack--hasTicks)::after {
-        top: ${range.trackTopPositionWithoutTicks};
       }
     `,
     hasTicks: css`
