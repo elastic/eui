@@ -1,6 +1,5 @@
 /**
  * 1. Not always needed, but fixes an IE11 issue when flex-groups are nested under display: flex elements.
- * 2. IE requires a unit to grow.
  */
 
 .euiFlexGroup {
@@ -14,7 +13,7 @@
     }
 
     flex-grow: 1;
-    flex-basis: 0%; /* 2 */
+    flex-basis: 0;
   }
 }
 
