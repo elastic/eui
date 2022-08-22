@@ -9,6 +9,7 @@ import {
   useEuiTheme,
   EuiLink,
   useEuiOverflowScroll,
+  logicalCSS,
 } from '../../../../src';
 import { ThemeExample } from '../theme/_components/_theme_example';
 import { ScrollContent } from './_scroll_content';
@@ -23,7 +24,7 @@ export default () => {
   const scrollingContent = (
     <EuiFlexGroup
       css={css`
-        width: 150%;
+        ${logicalCSS('width', '150%')}
       `}
       responsive={false}
     >
@@ -53,25 +54,21 @@ export default () => {
             role="region"
             aria-label="Example of eui-xScroll region"
             className="eui-xScrollWithShadows"
-            style={{ padding: `${euiTheme.size.base}` }}
+            style={{ padding: euiTheme.size.base }}
           >
             {scrollingContent}
           </div>
         }
-        snippet={
-          `<div
+        snippet={`<div
   tabIndex={0}
   role="region"
   aria-label=""
   className="eui-xScrollWithShadows"
-  style={{ padding: ` +
-          '`${euiTheme.size.base}`' +
-          ` }}>
+>
   <EuiPanel />
   <EuiPanel />
   <EuiPanel />
-</div>`
-        }
+</div>`}
       />
 
       {!showSass && (
@@ -107,20 +104,8 @@ export default () => {
               {scrollingContent}
             </div>
           }
-          snippet={
-            `<div
-  tabIndex={0}
-  role="region"
-  aria-label=""
-  css={css` +
-            "`${useEuiOverflowScroll('x', true)}; " +
-            'padding: ${euiTheme.size.base};`' +
-            ` }}>
-  <EuiPanel />
-  <EuiPanel />
-  <EuiPanel />
-</div>`
-          }
+          snippet="${useEuiOverflowScroll('x', true)}"
+          snippetLanguage="emotion"
         />
       )}
 

@@ -9,6 +9,7 @@
 import React from 'react';
 import { Global, css } from '@emotion/react';
 import { euiFocusRing, euiScrollBarStyles } from '../mixins';
+import { logicalCSS } from '../functions';
 import { shade, tint, transparentize } from '../../services/color';
 import { useEuiTheme } from '../../services/theme';
 import { resetStyles as reset } from './reset';
@@ -54,7 +55,7 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
       ${fontReset}
       text-size-adjust: 100%;
       font-kerning: normal;
-      height: 100%;
+      ${logicalCSS('height', '100%')}
       background-color: ${colors.body};
       color: ${colors.text};
     }

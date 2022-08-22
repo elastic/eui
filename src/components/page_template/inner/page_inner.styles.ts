@@ -35,13 +35,17 @@ export const euiPageInnerStyles = (euiThemeContext: UseEuiTheme) => {
 
     border: {
       top: css`
-        border-top: ${euiThemeContext.euiTheme.border.width.thin} solid
-          ${borderColor};
+        ${logicalCSS(
+          'border-top',
+          `${euiThemeContext.euiTheme.border.width.thin} solid ${borderColor}`
+        )}
       `,
 
       left: css`
-        border-left: ${euiThemeContext.euiTheme.border.width.thin} solid
-          ${borderColor};
+        ${logicalCSS(
+          'border-left',
+          `${euiThemeContext.euiTheme.border.width.thin} solid ${borderColor}`
+        )}
       `,
     },
   };

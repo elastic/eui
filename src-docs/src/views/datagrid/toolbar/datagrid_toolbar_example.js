@@ -19,6 +19,7 @@ import {
   EuiDataGridToolBarAdditionalControlsLeftOptions,
 } from '!!prop-loader!../../../../../src/components/datagrid/data_grid_types';
 
+/* eslint-disable local/css-logical-properties */
 const controlsSnippet = `<EuiDataGrid
   aria-label="Data grid with additional toolbar controls"
   columns={columns}

@@ -42,16 +42,16 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // Variants
     primary: css`
-      border-top: 2px solid ${euiTheme.colors.primary};
+      ${logicalCSS('border-top', `2px solid ${euiTheme.colors.primary}`)}
     `,
     success: css`
-      border-top: 2px solid ${euiTheme.colors.success};
+      ${logicalCSS('border-top', `2px solid ${euiTheme.colors.success}`)}
     `,
     warning: css`
-      border-top: 2px solid ${euiTheme.colors.warning};
+      ${logicalCSS('border-top', `2px solid ${euiTheme.colors.warning}`)}
     `,
     danger: css`
-      border-top: 2px solid ${euiTheme.colors.danger};
+      ${logicalCSS('border-top', `2px solid ${euiTheme.colors.danger}`)}
     `,
   };
 };

@@ -4,6 +4,7 @@ import { EuiDataGridToolBarVisibilityOptions } from '!!prop-loader!../../../../.
 
 import { DataGridPropsTable } from '../_props_table';
 
+/* eslint-disable local/css-logical-properties */
 const gridSnippets = {
   showColumnSelector: `showColumnSelector: {
   allowHide: false;

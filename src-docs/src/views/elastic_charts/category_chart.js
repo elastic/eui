@@ -105,6 +105,8 @@ export const CategoryChart = () => {
     },
   };
 
+  /* eslint-disable local/css-logical-properties */
+
   const defaultAlignmentToCopy = `alignment: {
         vertical: 'middle',
         horizontal: 'center',
