@@ -190,7 +190,6 @@
   overflow: visible;
   white-space: normal;
   //* 4 */ overflow-wrap is not supported on flex parents
-  word-break: break-all; // Fallback for FF and IE
   word-break: break-word;
 }
 
