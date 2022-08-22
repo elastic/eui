@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../../components';
 
@@ -36,6 +37,27 @@ export const ColorModeExample = {
             <EuiCode>{'"light"'}</EuiCode>, <EuiCode>{'"dark"'}</EuiCode>, or{' '}
             <EuiCode>{'"inverse"'}</EuiCode> which sets it to the opposite of
             the current color mode.
+          </p>
+          <p>
+            When having a nested <strong>EuiThemeProvider</strong> bear in mind
+            that the{' '}
+            <Link to="/display/text">
+              <strong>EuiText</strong>
+            </Link>{' '}
+            inherits the color that is set in the global styles or a parent
+            component. This is why you should change the color of{' '}
+            <strong>EuiText</strong> to <EuiCode>{'"default"'}</EuiCode> when
+            you want it to correctly adapt to the <EuiCode>colorMode</EuiCode>{' '}
+            of its directly parent <strong>EuiThemeProvider</strong>.
+          </p>
+          <p>
+            <Link to="/display/icons">
+              <strong>EuiIcon</strong>
+            </Link>{' '}
+            behaves similarly. By default, it gets the color of its parent
+            component. Thus, you can override the color to{' '}
+            <EuiCode>{'"text"'}</EuiCode> or wrap it in a{' '}
+            <strong>EuiText</strong> to inherit its color.
           </p>
         </>
       ),
