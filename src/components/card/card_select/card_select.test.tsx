@@ -8,7 +8,8 @@
 
 import React from 'react';
 import { render } from 'enzyme';
-import { requiredProps } from '../../test';
+import { requiredProps } from '../../../test';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiCardSelect } from './card_select';
 
@@ -20,6 +21,8 @@ describe('EuiCardSelect', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  shouldRenderCustomStyles(<EuiCardSelect />);
 
   describe('props', () => {
     test('isSelected', () => {

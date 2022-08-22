@@ -1,11 +1,6 @@
 import React from 'react';
 
-import {
-  EuiCard,
-  EuiIcon,
-  EuiFlexGroup,
-  EuiFlexItem,
-} from '../../../../src/components';
+import { EuiCard, EuiIcon, EuiFlexGroup, EuiFlexItem } from '../../../../src';
 
 export default () => (
   <EuiFlexGroup gutterSize="l">

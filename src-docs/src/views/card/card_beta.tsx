@@ -15,6 +15,11 @@ export default () => (
         title="Dashboards"
         description="Example of a card's description. Stick to one or two sentences."
         onClick={() => {}}
+        betaBadgeProps={{
+          label: 'Beta',
+          tooltipContent:
+            'This module is not GA. Please help us by reporting any bugs.',
+        }}
       />
     </EuiFlexItem>
     <EuiFlexItem>
@@ -23,9 +28,10 @@ export default () => (
         title="Monitoring"
         description="Example of a card's description. Stick to one or two sentences."
         betaBadgeProps={{
-          label: 'Beta',
+          label: 'Accent',
+          color: 'accent',
           tooltipContent:
-            'This module is not GA. Please help us by reporting any bugs.',
+            'You can change the badge color using betaBadgeProps.color.',
         }}
         onClick={() => {}}
       />
@@ -40,7 +46,8 @@ export default () => (
           href: 'http://www.elastic.co/subscriptions',
           target: '_blank',
           label: 'Basic',
-          tooltipContent: 'This feature requires a Basic License',
+          tooltipContent:
+            'Disabled cards with still clickable badges will stay hollow.',
         }}
         onClick={() => {}}
       />

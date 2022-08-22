@@ -48,6 +48,25 @@ describe('EuiToolTip', () => {
     await waitForEuiToolTipVisible();
   });
 
+  test('anchor props are rendered', () => {
+    const component = mount(
+      <EuiToolTip
+        title="title"
+        id="id"
+        content="content"
+        anchorProps={{
+          className: 'customAnchorClass1',
+          'data-test-subj': 'DTS',
+        }}
+        className="customAnchorClass2"
+      >
+        <button>Trigger</button>
+      </EuiToolTip>
+    );
+
+    expect(component.render()).toMatchSnapshot();
+  });
+
   // This is a legacy unit test to ensure tooltips/portal updates still play well with Enzyme
   it('[enzyme] shows tooltip on focus', () => {
     jest.useFakeTimers();
