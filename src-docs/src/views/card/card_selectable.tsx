@@ -6,7 +6,7 @@ import {
   EuiIcon,
   EuiFlexGroup,
   EuiFlexItem,
-} from '../../../../src/components';
+} from '../../../../src';
 
 export default () => {
   const [card1Selected, setCard1] = useState(true);
@@ -20,7 +20,7 @@ export default () => {
     setCard2(!card2Selected);
   };
 
-  const detailsClicked = (e) => {
+  const detailsClicked = (e: { stopPropagation: () => void }) => {
     e.stopPropagation();
   };
 
