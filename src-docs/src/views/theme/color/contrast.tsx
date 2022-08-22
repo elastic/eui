@@ -338,10 +338,10 @@ export default () => {
                           <ColorSectionJS
                             key={color}
                             color={color as keyof _EuiThemeColorsMode}
-                            colorValue={euiButtonColor(
-                              color as _EuiButtonColor,
-                              euiTheme
-                            )}
+                            colorValue={
+                              euiButtonColor(euiTheme, color as _EuiButtonColor)
+                                .backgroundColor
+                            }
                             hookName="useEuiButtonColorCSS"
                             minimumContrast={contrastValue}
                             showTextVariants={showTextVariants}
