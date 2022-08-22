@@ -19,7 +19,7 @@ import { EuiScreenReaderOnly } from '../accessibility';
 import { CommonProps, ExclusiveUnion } from '../common';
 import { EuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
-import { EuiPortal } from '../portal';
+import { EuiPortal, EuiPortalProps } from '../portal';
 import { euiBottomBarStyles } from './bottom_bar.styles';
 import { EuiThemeProvider } from '../../services/theme/provider';
 
@@ -45,7 +45,7 @@ type _BottomBarExclusivePositions = ExclusiveUnion<
      * Whether to wrap in an EuiPortal which appends the component to the body element.
      * Only works if `position` is `fixed`.
      */
-    usePortal?: boolean;
+    usePortal?: boolean | EuiPortalProps;
     /**
      * Whether the component should apply padding on the document body element to afford for its own displacement height.
      * Only works if `usePortal` is true and `position` is `fixed`.
@@ -224,7 +224,13 @@ const _EuiBottomBar = forwardRef<
       </>
     );
 
-    return usePortal ? <EuiPortal>{bar}</EuiPortal> : bar;
+    return usePortal ? (
+      <EuiPortal {...(typeof usePortal !== 'boolean' ? usePortal : undefined)}>
+        {bar}
+      </EuiPortal>
+    ) : (
+      bar
+    );
   }
 );
 

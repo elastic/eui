@@ -8,39 +8,32 @@
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf } from '../../common';
+import { CommonProps } from '../../common';
+import { useEuiTheme } from '../../../services';
+import { useEuiPaddingCSS, EuiPaddingSize } from '../../../global_styling';
+
 import {
   EuiPageHeaderContent,
   _EuiPageHeaderContentProps,
 } from './page_header_content';
-import {
-  _EuiPageRestrictWidth,
-  setPropsForRestrictedPageWidth,
-} from '../_restrict_width';
 
-const paddingSizeToClassNameMap = {
-  none: null,
-  s: 'euiPageHeader--paddingSmall',
-  m: 'euiPageHeader--paddingMedium',
-  l: 'euiPageHeader--paddingLarge',
-};
+import { _EuiPageRestrictWidth } from '../_restrict_width';
+import { _EuiPageBottomBorder } from '../_bottom_border';
 
-export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
+import { euiPageHeaderStyles } from './page_header.styles';
 
 export interface EuiPageHeaderProps
   extends CommonProps,
     HTMLAttributes<HTMLElement>,
-    _EuiPageHeaderContentProps,
-    _EuiPageRestrictWidth {
+    Omit<_EuiPageHeaderContentProps, 'bottomBorder'>,
+    // The following are also inherited by page header content,
+    // but we should explicitely set here too because we do things with the values
+    _EuiPageRestrictWidth,
+    _EuiPageBottomBorder {
   /**
-   * Adjust the padding.
-   * When using this setting it's best to be consistent throughout all similar usages
+   * Adjust the overall padding.
    */
-  paddingSize?: typeof PADDING_SIZES[number];
-  /**
-   * Adds a bottom border to separate it from the content after
-   */
-  bottomBorder?: boolean;
+  paddingSize?: EuiPaddingSize;
 }
 
 export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
@@ -48,7 +41,6 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
   restrictWidth = false,
   paddingSize = 'none',
   bottomBorder,
-  style,
 
   // Page header content shared props:
   alignItems,
@@ -69,54 +61,41 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
   rightSideGroupProps,
   ...rest
 }) => {
-  const { widthClassName, newStyle } = setPropsForRestrictedPageWidth(
+  const useTheme = useEuiTheme();
+  const styles = euiPageHeaderStyles(useTheme);
+  const inlinePadding = useEuiPaddingCSS('horizontal');
+  const cssStyles = [
+    styles.euiPageHeader,
+    inlinePadding[paddingSize],
+    bottomBorder === 'extended' && styles.border,
+  ];
+
+  const classes = classNames('euiPageHeader', className);
+
+  const contentProps = {
     restrictWidth,
-    style
-  );
-
-  const classes = classNames(
-    'euiPageHeader',
-    paddingSizeToClassNameMap[paddingSize],
-    {
-      [`euiPageHeader--${widthClassName}`]: widthClassName,
-      'euiPageHeader--bottomBorder': bottomBorder,
-      'euiPageHeader--responsive': responsive === true,
-      'euiPageHeader--responsiveReverse': responsive === 'reverse',
-      'euiPageHeader--tabsAtBottom': pageTitle && tabs,
-      'euiPageHeader--onlyTabs':
-        tabs && !pageTitle && !rightSideItems && !description && !children,
-    },
-    `euiPageHeader--${alignItems ?? 'center'}`,
-    className
-  );
-
-  if (!pageTitle && !tabs && !description && !rightSideItems) {
-    return (
-      <header className={classes} style={newStyle || style} {...rest}>
-        {children}
-      </header>
-    );
-  }
+    paddingSize,
+    // Set the bottom to false to ensure the forced one doesn't render
+    // when we'll be rendering it at this parent
+    bottomBorder: bottomBorder === 'extended' ? false : bottomBorder,
+    alignItems,
+    responsive,
+    pageTitle,
+    pageTitleProps,
+    iconType,
+    iconProps,
+    tabs,
+    tabsProps,
+    description,
+    rightSideItems,
+    rightSideGroupProps,
+    breadcrumbs,
+    breadcrumbProps,
+  };
 
   return (
-    <header className={classes} style={newStyle || style} {...rest}>
-      <EuiPageHeaderContent
-        alignItems={alignItems}
-        responsive={responsive}
-        pageTitle={pageTitle}
-        pageTitleProps={pageTitleProps}
-        iconType={iconType}
-        iconProps={iconProps}
-        tabs={tabs}
-        tabsProps={tabsProps}
-        description={description}
-        rightSideItems={rightSideItems}
-        rightSideGroupProps={rightSideGroupProps}
-        breadcrumbs={breadcrumbs}
-        breadcrumbProps={breadcrumbProps}
-      >
-        {children}
-      </EuiPageHeaderContent>
+    <header className={classes} css={cssStyles} {...rest}>
+      <EuiPageHeaderContent {...contentProps}>{children}</EuiPageHeaderContent>
     </header>
   );
 };

@@ -28,6 +28,17 @@ export const euiAccordionButtonStyles = (euiThemeContext: UseEuiTheme) => {
         text-decoration: underline;
       }
     `,
+
+    // Triggering button needs separate `disabled` key because the element that renders may not support `:disabled`;
+    // Hover pseudo selector for specificity
+    disabled: css`
+      &,
+      &:hover {
+        cursor: not-allowed;
+        color: ${euiTheme.colors.disabledText};
+        text-decoration: none;
+      }
+    `,
   };
 };
 

@@ -85,7 +85,7 @@ export const EuiScreenReaderLive: FunctionComponent<EuiScreenReaderLiveProps> = 
           // Setting `aria-hidden` and setting `aria-live` to "off" prevents
           // double announcements from VO when `focusRegionOnTextChange` is true
           aria-hidden={toggle ? undefined : 'true'}
-          aria-live={focusRegionOnTextChange ? 'off' : ariaLive}
+          aria-live={!toggle || focusRegionOnTextChange ? 'off' : ariaLive}
         >
           {isActive && toggle ? children : ''}
         </div>
@@ -93,7 +93,7 @@ export const EuiScreenReaderLive: FunctionComponent<EuiScreenReaderLiveProps> = 
           role={role}
           aria-atomic="true"
           aria-hidden={!toggle ? undefined : 'true'}
-          aria-live={focusRegionOnTextChange ? 'off' : ariaLive}
+          aria-live={toggle || focusRegionOnTextChange ? 'off' : ariaLive}
         >
           {isActive && !toggle ? children : ''}
         </div>

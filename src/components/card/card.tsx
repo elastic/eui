@@ -94,7 +94,7 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> &
     /**
      * Determines the title's heading element
      */
-    titleElement?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
+    titleElement?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span' | 'p';
 
     /**
      * Determines the title's size, matching that of EuiTitle.
@@ -131,7 +131,7 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> &
      * Adds a badge to top of the card to label it as "Beta" or other non-GA state.
      * Accepts all the props of [EuiBetaBadge](#/display/badge#beta-badge-type), where `label` is required.
      */
-    betaBadgeProps?: Partial<EuiBetaBadgeProps>;
+    betaBadgeProps?: EuiBetaBadgeProps;
     /**
      * Matches to the color property of EuiPanel. If defined, removes any border & shadow.
      * Leave as `undefined` to display as a default panel.
@@ -309,6 +309,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
     optionalBetaCSS = betaStyles.hasBetaBadge;
     const anchorCSS = [betaStyles.euiCard__betaBadgeAnchor];
     const badgeCSS = [betaStyles.euiCard__betaBadge];
+    const { anchorProps, ...cleanedBetaBadgeProps } = betaBadgeProps;
 
     optionalBetaBadgeID = `${ariaId}BetaBadge`;
     optionalBetaBadge = (
@@ -319,9 +320,8 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
             ? 'subdued'
             : 'hollow'
         }
-        {...betaBadgeProps}
-        // @ts-expect-error Help?
-        anchorProps={{ css: anchorCSS, ...betaBadgeProps.anchorProps }}
+        {...cleanedBetaBadgeProps}
+        anchorProps={{ css: anchorCSS, ...anchorProps }}
         id={optionalBetaBadgeID}
       />
     );
@@ -446,7 +446,6 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
           className="euiCard__title"
           size={titleSize}
         >
-          {/* @ts-expect-error Why is `p` not allowed? */}
           <TitleElement>{theTitle}</TitleElement>
         </EuiTitle>
 

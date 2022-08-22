@@ -511,6 +511,51 @@ export default {
       ),
     },
     {
+      title: 'Disabled elements',
+      wrapText: false,
+      text: (
+        <>
+          <EuiText>
+            <p>
+              Browsers remove disabled elements from the tab order. This means
+              keyboard users cannot tab to those elements or activate nested
+              focus behaviors.
+            </p>
+            <p>
+              If you disable a button or form element, you need to provide clear
+              instructions to users how to correct errors or remove the disabled
+              state.
+            </p>
+            <p>
+              When you add the HTML <EuiCode language="html">disabled</EuiCode>{' '}
+              attribute to an element, you must remove tooltips or other focus
+              interactions. You must also remove focus interactions if you pass
+              the <EuiCode language="js">isDisabled</EuiCode> prop to components
+              like{' '}
+              <Link to="/layout/accordion#disabled-state">EuiAccordion</Link>.
+            </p>
+          </EuiText>
+          <EuiSpacer />
+          <EuiText size="s">
+            <h3>Further reading</h3>
+            <ul aria-labelledby="disabled-elements further-reading">
+              <li>
+                <EuiLink href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex">
+                  MDN: Tabindex
+                </EuiLink>
+              </li>
+              <li>
+                <EuiLink href="https://www.w3.org/TR/2014/REC-html5-20141028/disabled-elements.html#disabled-elements">
+                  W3C: Disabled elements
+                </EuiLink>
+              </li>
+            </ul>
+          </EuiText>
+          <EuiHorizontalRule />
+        </>
+      ),
+    },
+    {
       title: 'Naming',
       wrapText: false,
       text: (

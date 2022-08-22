@@ -14,8 +14,6 @@ import Guidelines from './guidelines';
 
 import emptyPromptConfig from './playground';
 
-import PageTemplateTable from './_page_template_table';
-
 import EmptyPrompt from './empty_prompt';
 const emptyPromptSource = require('!!raw-loader!./empty_prompt');
 const emptyPromptSnippet = `<EuiEmptyPrompt
@@ -317,19 +315,19 @@ export const EmptyPromptExample = {
         <>
           <p>
             When using a <strong>EuiEmptyPrompt</strong> in a{' '}
-            <Link to="/templates/page-template">EuiPageTemplate</Link>, pay
-            attention to the template you’re passing. The template will
-            determine which <EuiCode>color</EuiCode> and{' '}
-            <EuiCode>hasBorder</EuiCode> prop you should use to ensure
-            consistency across our Elastic products.
+            <Link to="/templates/page-template">
+              <strong>EuiPageTemplate</strong>
+            </Link>
+            , we recommend using the namespaced component so the template can
+            determine which how to display the empty prompt based on the rest of
+            the template configuration.
           </p>
-          <PageTemplateTable />
-
-          <EuiSpacer size="xl" />
           <p>
-            The following example shows the usage of a{' '}
-            <strong>EuiEmptyPrompt</strong> in a page template where the
-            template is set to <EuiCode>{'"empty"'}</EuiCode>.
+            The following example shows the usage of the{' '}
+            <Link to="/templates/page-template#empty-pages-or-content">
+              <strong>EuiPageTemplate.EmptyPrompt</strong>
+            </Link>{' '}
+            namespaced component.
           </p>
         </>
       ),
@@ -349,10 +347,10 @@ export const EmptyPromptExample = {
             You can then tie multiple types of empty states together to create a
             seamless loading to empty or loading to error experience. The
             following example shows how to encorprate these states with{' '}
-            <Link to="/templates/page-template#simple-layout-with-centered-content">
-              <strong>EuiPageTemplate</strong>
-            </Link>{' '}
-            using <EuiCode>{'template="centeredContent"'}</EuiCode>.
+            <Link to="/templates/page-template#empty-pages-or-content">
+              <strong>EuiPageTemplate.EmptyPrompt</strong>
+            </Link>
+            .
           </p>
         </>
       ),

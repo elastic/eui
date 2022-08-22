@@ -51,7 +51,7 @@ export const euiImageButtonStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       &:focus {
-        ${euiFocusRing(euiTheme, 'outset')}
+        ${euiFocusRing(euiThemeContext, 'outset')}
       }
     `,
     fullWidth: css`

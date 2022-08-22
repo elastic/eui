@@ -86,9 +86,9 @@ exports[`logicalCSS mixin returns a string property for each directional propert
 
 exports[`logicalCSS mixin returns a string property for each directional property: min-width 1`] = `"min-inline-size: 8px;"`;
 
-exports[`logicalCSS mixin returns a string property for each directional property: overflow-x 1`] = `"overflow-block: 8px;"`;
+exports[`logicalCSS mixin returns a string property for each directional property: overflow-x 1`] = `"overflow-inline: 8px;"`;
 
-exports[`logicalCSS mixin returns a string property for each directional property: overflow-y 1`] = `"overflow-inline: 8px;"`;
+exports[`logicalCSS mixin returns a string property for each directional property: overflow-y 1`] = `"overflow-block: 8px;"`;
 
 exports[`logicalCSS mixin returns a string property for each directional property: padding-bottom 1`] = `"padding-block-end: 8px;"`;
 
@@ -109,6 +109,13 @@ exports[`logicalCSS mixin returns a string property for each directional propert
 exports[`logicalCSS mixin returns a string property for each directional property: vertical 1`] = `"inset-inline: 8px;"`;
 
 exports[`logicalCSS mixin returns a string property for each directional property: width 1`] = `"inline-size: 8px;"`;
+
+exports[`logicalCSSWithFallback  returns both the original property and the logical property 1`] = `
+"
+  overflow-x: auto;
+  overflow-inline: auto;
+"
+`;
 
 exports[`logicalStyle mixin returns an object property for each directional property: border-bottom 1`] = `
 Object {
@@ -370,13 +377,13 @@ Object {
 
 exports[`logicalStyle mixin returns an object property for each directional property: overflow-x 1`] = `
 Object {
-  "overflowBlock": "8px",
+  "overflowInline": "8px",
 }
 `;
 
 exports[`logicalStyle mixin returns an object property for each directional property: overflow-y 1`] = `
 Object {
-  "overflowInline": "8px",
+  "overflowBlock": "8px",
 }
 `;
 

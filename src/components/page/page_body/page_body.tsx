@@ -8,21 +8,14 @@
 
 import React, { PropsWithChildren, ComponentType, ComponentProps } from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf } from '../../common';
+import { CommonProps } from '../../common';
 import {
+  setStyleForRestrictedPageWidth,
   _EuiPageRestrictWidth,
-  setPropsForRestrictedPageWidth,
 } from '../_restrict_width';
 import { EuiPanel, EuiPanelProps } from '../../panel';
-
-const paddingSizeToClassNameMap = {
-  none: null,
-  s: 'euiPageBody--paddingSmall',
-  m: 'euiPageBody--paddingMedium',
-  l: 'euiPageBody--paddingLarge',
-};
-
-export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
+import { useEuiPaddingCSS, EuiPaddingSize } from '../../../global_styling';
+import { euiPageBodyStyles } from './page_body.styles';
 
 type ComponentTypes = keyof JSX.IntrinsicElements | ComponentType<any>;
 
@@ -44,47 +37,38 @@ export type EuiPageBodyProps<T extends ComponentTypes = 'main'> = CommonProps &
     /**
      * Adjusts the padding
      */
-    paddingSize?: typeof PADDING_SIZES[number];
+    paddingSize?: EuiPaddingSize;
   };
 
 export const EuiPageBody = <T extends ComponentTypes>({
   children,
   restrictWidth = false,
-  style,
   className,
   component: Component = 'div' as T,
   panelled,
   panelProps,
-  paddingSize,
+  paddingSize = 'none',
   borderRadius = 'none',
   ...rest
 }: PropsWithChildren<EuiPageBodyProps<T>>) => {
-  const { widthClassName, newStyle } = setPropsForRestrictedPageWidth(
+  // Set max-width as a style prop
+  const widthStyles = setStyleForRestrictedPageWidth(
     restrictWidth,
-    style
+    rest?.style
   );
 
-  const nonBreakingDefaultPadding = panelled ? 'l' : 'none';
-  paddingSize = paddingSize || nonBreakingDefaultPadding;
+  const styles = euiPageBodyStyles();
+  const padding = useEuiPaddingCSS()[paddingSize as EuiPaddingSize];
 
-  const borderRadiusClass =
-    borderRadius === 'none' ? 'euiPageBody--borderRadiusNone' : '';
+  const classes = classNames('euiPageBody', className);
 
-  const classes = classNames(
-    'euiPageBody',
-    borderRadiusClass,
-    // This may duplicate the padding styles from EuiPanel, but allows for some nested configurations in the CSS
-    paddingSizeToClassNameMap[paddingSize as typeof PADDING_SIZES[number]],
-    {
-      [`euiPageBody--${widthClassName}`]: widthClassName,
-    },
-    className
-  );
+  const panelCSS = [styles.euiPageBody, restrictWidth && styles.restrictWidth];
+  const componentCSS = [...panelCSS, padding];
 
   return panelled ? (
     <EuiPanel
       className={classes}
-      style={newStyle || style}
+      css={panelCSS}
       borderRadius={borderRadius}
       paddingSize={paddingSize}
       {...panelProps}
@@ -93,7 +77,12 @@ export const EuiPageBody = <T extends ComponentTypes>({
       {children}
     </EuiPanel>
   ) : (
-    <Component className={classes} style={newStyle || style} {...rest}>
+    <Component
+      className={classes}
+      css={componentCSS}
+      {...rest}
+      style={widthStyles}
+    >
       {children}
     </Component>
   );
