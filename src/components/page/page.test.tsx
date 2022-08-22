@@ -9,10 +9,14 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
+import { PADDING_SIZES } from '../../global_styling';
 
-import { EuiPage, SIZES } from './page';
+import { EuiPage } from './page';
 
 describe('EuiPage', () => {
+  shouldRenderCustomStyles(<EuiPage />);
+
   test('is rendered', () => {
     const component = render(<EuiPage {...requiredProps} />);
 
@@ -20,7 +24,7 @@ describe('EuiPage', () => {
   });
 
   describe('paddingSize', () => {
-    SIZES.forEach((size) => {
+    PADDING_SIZES.forEach((size) => {
       it(`${size} is rendered`, () => {
         const component = render(<EuiPage paddingSize={size} />);
 

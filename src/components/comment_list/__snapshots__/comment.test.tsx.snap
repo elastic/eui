@@ -30,6 +30,7 @@ exports[`EuiComment is rendered 1`] = `
   >
     <div
       class="euiCommentEvent emotion-euiCommentEvent-custom"
+      data-type="custom"
     />
   </div>
 </li>
@@ -63,26 +64,27 @@ exports[`EuiComment props event is rendered 1`] = `
   >
     <div
       class="euiCommentEvent emotion-euiCommentEvent-update"
+      data-type="update"
     >
       <div
-        class="emotion-euiCommentEvent__header"
+        class="euiCommentEvent__header emotion-euiCommentEvent__header"
       >
         <div
-          class="euiPanel euiPanel--transparent emotion-euiPanel-grow-m-transparent-euiCommentEvent__headerPanel"
+          class="euiPanel euiPanel--transparent emotion-euiPanel-grow-m-transparent"
         >
           <div
-            class="emotion-euiCommentEvent__headerMain"
+            class="euiCommentEvent__headerMain emotion-euiCommentEvent__headerMain"
           >
             <div
-              class="emotion-euiCommentEvent__headerData"
+              class="euiCommentEvent__headerData emotion-euiCommentEvent__headerData"
             >
               <div
-                class="emotion-euiCommentEvent__headerUsername"
+                class="euiCommentEvent__headerUsername emotion-euiCommentEvent__headerUsername"
               >
                 someuser
               </div>
               <div
-                class="emotion-euiCommentEvent__headerEvent"
+                class="euiCommentEvent__headerEvent emotion-euiCommentEvent__headerEvent"
               >
                 commented
               </div>
@@ -123,26 +125,27 @@ exports[`EuiComment props timestamp is rendered 1`] = `
   >
     <div
       class="euiCommentEvent emotion-euiCommentEvent-update"
+      data-type="update"
     >
       <div
-        class="emotion-euiCommentEvent__header"
+        class="euiCommentEvent__header emotion-euiCommentEvent__header"
       >
         <div
-          class="euiPanel euiPanel--transparent emotion-euiPanel-grow-m-transparent-euiCommentEvent__headerPanel"
+          class="euiPanel euiPanel--transparent emotion-euiPanel-grow-m-transparent"
         >
           <div
-            class="emotion-euiCommentEvent__headerMain"
+            class="euiCommentEvent__headerMain emotion-euiCommentEvent__headerMain"
           >
             <div
-              class="emotion-euiCommentEvent__headerData"
+              class="euiCommentEvent__headerData emotion-euiCommentEvent__headerData"
             >
               <div
-                class="emotion-euiCommentEvent__headerUsername"
+                class="euiCommentEvent__headerUsername emotion-euiCommentEvent__headerUsername"
               >
                 someuser
               </div>
               <div
-                class="emotion-euiCommentEvent__headerTimestamp"
+                class="euiCommentEvent__headerTimestamp"
               >
                 <time>
                   21 days ago
@@ -185,9 +188,10 @@ exports[`EuiComment renders a body 1`] = `
   >
     <div
       class="euiCommentEvent emotion-euiCommentEvent-custom"
+      data-type="custom"
     >
       <div
-        class="emotion-euiCommentEvent__body-custom"
+        class="euiCommentEvent__body emotion-euiCommentEvent__body-custom"
       >
         <p>
           This is the body.
@@ -226,9 +230,10 @@ exports[`EuiComment renders a timeline icon 1`] = `
   >
     <div
       class="euiCommentEvent emotion-euiCommentEvent-custom"
+      data-type="custom"
     >
       <div
-        class="emotion-euiCommentEvent__body-custom"
+        class="euiCommentEvent__body emotion-euiCommentEvent__body-custom"
       >
         <p>
           This is the body.

@@ -43,21 +43,20 @@ export default () => {
   ];
 
   return (
-    <>
-      <EuiPageTemplate
-        pageSideBar={<EuiSideNav items={sideNav} isOpenOnMobile />}
-        pageHeader={{
-          iconType: 'logoElastic',
-          pageTitle: pageTitle,
-        }}
-      >
+    <EuiPageTemplate grow={false} offset={0}>
+      <EuiPageTemplate.Sidebar>
+        <EuiSideNav items={sideNav} isOpenOnMobile />
+      </EuiPageTemplate.Sidebar>
+      <EuiPageTemplate.Header iconType="logoElastic" pageTitle={pageTitle} />
+
+      <EuiPageTemplate.Section>
         <EuiScreenReaderLive focusRegionOnTextChange>
           {pageTitle}
         </EuiScreenReaderLive>
         <EuiButton>
           Clicking a nav link and then pressing tab should focus this button
         </EuiButton>
-      </EuiPageTemplate>
-    </>
+      </EuiPageTemplate.Section>
+    </EuiPageTemplate>
   );
 };

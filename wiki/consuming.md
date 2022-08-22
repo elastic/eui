@@ -11,7 +11,7 @@ yarn add @elastic/eui
 Note that EUI has [several `peerDependencies` requirements](package.json) that will also need to be installed if starting with a blank project.
 
 ```bash
-yarn add @elastic/eui @elastic/datemath @emotion/react moment prop-types
+yarn add @elastic/eui @elastic/datemath @emotion/react @emotion/cache moment prop-types
 ```
 
 ## Requirements and dependencies
@@ -45,7 +45,8 @@ import {
 Test utilities are published from the `lib/test` directory.
 
 ```js
-import { findTestSubject } from '@elastic/eui/lib/test';
+import { findTestSubject } from '@elastic/eui/lib/test'; // Enzyme
+import { findByTestSubject, render, screen } from '@elastic/eui/lib/test/rtl'; // React Testing Library
 ```
 
 ### Theming

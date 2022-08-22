@@ -8,26 +8,14 @@
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf } from '../common';
+import { CommonProps } from '../common';
 import {
+  setStyleForRestrictedPageWidth,
   _EuiPageRestrictWidth,
-  setPropsForRestrictedPageWidth,
 } from './_restrict_width';
-
-const paddingSizeToClassNameMap = {
-  none: null,
-  s: 'euiPage--paddingSmall',
-  m: 'euiPage--paddingMedium',
-  l: 'euiPage--paddingLarge',
-};
-
-const directionToClassNameMap = {
-  row: null,
-  column: 'euiPage--column',
-};
-
-export const SIZES = keysOf(paddingSizeToClassNameMap);
-export const DIRECTIONS = keysOf(directionToClassNameMap);
+import { useEuiPaddingCSS, EuiPaddingSize } from '../../global_styling';
+import { euiPageStyles } from './page.styles';
+import { useEuiTheme } from '../../services';
 
 export interface EuiPageProps
   extends CommonProps,
@@ -37,7 +25,7 @@ export interface EuiPageProps
    * Adjust the padding.
    * When using this setting it's best to be consistent throughout all similar usages
    */
-  paddingSize?: typeof SIZES[number];
+  paddingSize?: EuiPaddingSize;
   /**
    * Adds `flex-grow: 1` to the whole page for stretching to fit vertically.
    * Must be wrapped inside a flexbox, preferrably with `min-height: 100vh`
@@ -53,31 +41,34 @@ export interface EuiPageProps
 export const EuiPage: FunctionComponent<EuiPageProps> = ({
   children,
   restrictWidth = false,
-  style,
   className,
-  paddingSize = 'm',
+  paddingSize = 'none',
   grow = true,
   direction = 'row',
   ...rest
 }) => {
-  const { widthClassName, newStyle } = setPropsForRestrictedPageWidth(
+  // Set max-width as a style prop
+  const widthStyles = setStyleForRestrictedPageWidth(
     restrictWidth,
-    style
+    rest?.style
   );
 
-  const classes = classNames(
-    'euiPage',
-    paddingSizeToClassNameMap[paddingSize],
-    directionToClassNameMap[direction],
-    {
-      'euiPage--grow': grow,
-      [`euiPage--${widthClassName}`]: widthClassName,
-    },
-    className
-  );
+  const euiTheme = useEuiTheme();
+  const styles = euiPageStyles(euiTheme);
+  const padding = useEuiPaddingCSS()[paddingSize as EuiPaddingSize];
+
+  const stylesCSS = [
+    styles.euiPage,
+    styles[direction],
+    grow && styles.grow,
+    padding,
+    restrictWidth && styles.restrictWidth,
+  ];
+
+  const classes = classNames('euiPage', className);
 
   return (
-    <div className={classes} style={newStyle || style} {...rest}>
+    <div css={stylesCSS} className={classes} {...rest} style={widthStyles}>
       {children}
     </div>
   );

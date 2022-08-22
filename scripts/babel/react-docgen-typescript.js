@@ -22,7 +22,7 @@ const programOptions = {
 let program;
 function buildProgram() {
   const files = [
-    ...glob.sync('src/**/!(*.test).{ts,tsx}', { absolute: true }),
+    ...glob.sync('src/!(test)/**/!(*.test).{ts,tsx}', { absolute: true }),
     ...glob.sync('src-docs/**/!(*.test).{ts,tsx}', { absolute: true }),
   ];
   program = null;
@@ -121,75 +121,6 @@ module.exports = function ({ types }) {
               );
             });
           }
-
-          // get all the exported types and interfaces of all the files to the state remove their exported
-          // declarations in the exit stage
-          if (!state.get('exportedTypes')) {
-            let allExportedTypes = [];
-            program.getSourceFiles().forEach((source) => {
-              const exportedTypes = source
-                .getChildAt(0)
-                .getChildren()
-                .filter((child) => {
-                  if (
-                    child.kind !== SyntaxKind.InterfaceDeclaration &&
-                    child.kind !== SyntaxKind.TypeAliasDeclaration
-                  )
-                    return false;
-                  // verify this interface is exported
-                  const isExported =
-                    child.modifiers &&
-                    child.modifiers.reduce((isExported, modifier) => {
-                      if (isExported) return isExported;
-                      if (modifier.kind === SyntaxKind.ExportKeyword)
-                        return true;
-                      return false;
-                    }, false);
-                  return isExported;
-                })
-                .map((type) => type.name.escapedText);
-              allExportedTypes = [...allExportedTypes, ...exportedTypes];
-            });
-            state.set('exportedTypes', allExportedTypes);
-          }
-        },
-        exit: function exitProgram(path, state) {
-          // remove any exported identifiers that are TS types or interfaces
-          // this prevents TS-only identifiers from leaking into ES code
-          path.traverse({
-            ExportNamedDeclaration: (nodePath) => {
-              const specifiers = nodePath.get('specifiers');
-              const typeDefinitions = state.get('exportedTypes');
-              const source = nodePath.get('source');
-              specifiers.forEach((specifierPath) => {
-                if (types.isExportSpecifier(specifierPath)) {
-                  const {
-                    node: { local },
-                  } = specifierPath;
-                  if (types.isIdentifier(local)) {
-                    const { name } = local;
-                    if (typeDefinitions.includes(name)) {
-                      // this is a locally-known value
-                      specifierPath.remove();
-                    } else if (types.isStringLiteral(source)) {
-                      const libraryName = source.get('value').node;
-                      const isRelativeSource = libraryName.startsWith('.');
-                      if (isRelativeSource === false) {
-                        // comes from a 3rd-party library
-                        // best way to reliably check if this is
-                        // a type or value is to require the
-                        // library and check its exports
-                        const library = require(libraryName);
-                        if (library.hasOwnProperty(name) === false) {
-                          specifierPath.remove();
-                        }
-                      }
-                    }
-                  }
-                }
-              });
-            },
-          });
         },
       },
     },

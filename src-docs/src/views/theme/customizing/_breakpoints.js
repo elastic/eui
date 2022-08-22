@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useMemo } from 'react';
+import { Link } from 'react-router-dom';
 
 import {
   EuiText,
@@ -7,24 +8,25 @@ import {
   EuiPanel,
   EuiTitle,
 } from '../../../../../src';
+import { sortMapBySmallToLargeValues } from '../../../../../src/services/breakpoint/_sorting';
 
-import { getPropsFromComponent } from '../../../services/props/get_props';
 import { useDebouncedUpdate } from '../hooks';
-
+import { euiThemeBreakpointType } from '../_props';
 import { ThemeValue } from './_values';
 
-import { EuiThemeBreakpoints } from '../_props';
-
 export default ({ onThemeUpdate }) => {
-  const { euiTheme } = useEuiTheme();
-  const breakpoint = euiTheme.breakpoint;
+  const {
+    euiTheme: { breakpoint },
+  } = useEuiTheme();
+  const breakpoints = useMemo(() => {
+    return sortMapBySmallToLargeValues(breakpoint);
+  }, [breakpoint]);
+
   const [breakpointClone, updateBreakpoint] = useDebouncedUpdate({
     property: 'breakpoint',
     value: breakpoint,
     onUpdate: onThemeUpdate,
   });
-
-  const breakpointTypes = getPropsFromComponent(EuiThemeBreakpoints);
 
   return (
     <div>
@@ -43,18 +45,22 @@ export default ({ onThemeUpdate }) => {
           <p>
             This default set of breakpoint tokens specify the{' '}
             <strong>minimum</strong> window size and are used throughout EUI.
-            You can always customize or add more keys as needed.
+            You can{' '}
+            <Link to="/theming/breakpoints/values#custom-values">
+              customize sizes or add more keys
+            </Link>{' '}
+            as needed, but you cannot remove the default keys.
           </p>
         </EuiText>
 
         <EuiSpacer />
 
-        {Object.keys(breakpointTypes).map((prop) => {
+        {Object.keys(breakpoints).map((prop) => {
           return (
             <ThemeValue
               key={prop}
               property="breakpoint"
-              type={breakpointTypes[prop]}
+              type={euiThemeBreakpointType}
               name={prop}
               value={breakpointClone[prop]}
               onUpdate={(value) => updateBreakpoint(prop, value)}

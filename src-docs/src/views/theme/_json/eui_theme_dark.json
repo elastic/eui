@@ -242,14 +242,6 @@
   "euiTableActionsBorderColor": "rgba(83, 89, 102, 0.09999999999999998)",
   "euiTableHoverClickableColor": "rgba(54, 162, 239, 0.050000000000000044)",
   "euiTableFocusClickableColor": "rgba(54, 162, 239, 0.09999999999999998)",
-  "euiToastWidth": "320px",
-  "euiToastTypes": {
-    "primary": "#36a2ef",
-    "success": "#7dded8",
-    "warning": "#f3d371",
-    "danger": "#f86b63"
-  },
-  "euiPopoverArrowSize": "12px",
   "euiContrastRatioText": 4.5,
   "euiContrastRatioGraphic": 3,
   "euiContrastRatioDisabled": 2,

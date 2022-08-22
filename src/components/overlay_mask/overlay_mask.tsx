@@ -57,6 +57,7 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
   children,
   headerZindexLocation = 'above',
   maskRef,
+  css, // TODO: apply custom CSS-in-JS as a className
   ...rest
 }) => {
   const [overlayMaskNode, setOverlayMaskNode] = useState<HTMLDivElement | null>(
