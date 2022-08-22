@@ -19,7 +19,7 @@ export default () => {
 
   return (
     <EuiThemeProvider colorMode="dark">
-      <EuiPanel borderRadius="none" hasShadow={false}>
+      <EuiPanel borderRadius="none" hasShadow={false} color="subdued">
         <EuiFlexGroup wrap gutterSize="s" alignItems="center">
           <EuiFlexItem grow={false}>
             <EuiButton color="text" onClick={() => {}}>
