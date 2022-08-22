@@ -15,6 +15,7 @@ import {
 import { UseEuiTheme } from '../../../services';
 import { euiCanAnimate, logicalCSS } from '../../../global_styling';
 
+export const openAnimationTiming = 'slow';
 const translateDistance = 's';
 
 /**
@@ -50,9 +51,9 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiCanAnimate} {
         /* 2 */
         transition: opacity ${euiTheme.animation.bounce}
-            ${euiTheme.animation.slow},
+            ${euiTheme.animation[openAnimationTiming]},
           transform ${euiTheme.animation.bounce}
-            calc(${euiTheme.animation.slow} + 100ms);
+            calc(${euiTheme.animation[openAnimationTiming]} + 100ms);
       }
     `,
 
@@ -77,7 +78,7 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
         ${euiCanAnimate} {
           /* 2 */
           transition: opacity ${euiTheme.animation.bounce}
-            ${euiTheme.animation.slow};
+            ${euiTheme.animation[openAnimationTiming]};
         }
       `,
       top: css`

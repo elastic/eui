@@ -8,8 +8,9 @@
 
 import { useContext } from 'react';
 
-import { getBreakpoint } from './breakpoint';
-import { CurrentEuiBreakpointContext } from './currentEuiBreakpoint';
+import { keysOf } from '../../components/common';
+import { breakpoint as breakpoints } from '../../themes/amsterdam/global_styling/variables/_breakpoint';
+import { CurrentEuiBreakpointContext } from './current_breakpoint';
 
 /**
  * Jest tests *likely* will not have a wrapping EuiProvider. If they don't,
@@ -19,7 +20,10 @@ export const useCurrentEuiBreakpoint = () => {
   const context = useContext(CurrentEuiBreakpointContext);
   if (context !== undefined) return context; // Component has been wrapped, everything is fine.
 
-  return typeof window !== undefined
-    ? getBreakpoint(window.innerWidth)
-    : undefined;
+  if (typeof window === 'undefined') return undefined; // SSR catch
+
+  // Use the default Amsterdam breakpoints (which are already ordered by largest first)
+  return keysOf(breakpoints).find(
+    (key) => breakpoints[key] <= window.innerWidth
+  );
 };

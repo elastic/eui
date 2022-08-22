@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "63.0.0",
+  "version": "64.0.0",
   "license": "SEE LICENSE IN LICENSE.txt",
   "main": "lib",
   "module": "es",
@@ -252,6 +252,7 @@
   "peerDependencies": {
     "@elastic/datemath": "^5.0.2",
     "@emotion/react": "11.x",
+    "@emotion/cache": "11.x",
     "@types/react": "^16.9 || ^17.0",
     "@types/react-dom": "^16.9 || ^17.0",
     "moment": "^2.13.0",

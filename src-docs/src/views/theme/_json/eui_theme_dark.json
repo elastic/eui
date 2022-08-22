@@ -242,7 +242,6 @@
   "euiTableActionsBorderColor": "rgba(83, 89, 102, 0.09999999999999998)",
   "euiTableHoverClickableColor": "rgba(54, 162, 239, 0.050000000000000044)",
   "euiTableFocusClickableColor": "rgba(54, 162, 239, 0.09999999999999998)",
-  "euiPopoverArrowSize": "12px",
   "euiContrastRatioText": 4.5,
   "euiContrastRatioGraphic": 3,
   "euiContrastRatioDisabled": 2,

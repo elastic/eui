@@ -3,9 +3,12 @@ import { css } from '@emotion/react';
 import {
   EuiIcon,
   EuiCode,
+  EuiText,
   useEuiBreakpoint,
   useCurrentEuiBreakpoint,
   useIsWithinBreakpoints,
+  useIsWithinMaxBreakpoint,
+  useIsWithinMinBreakpoint,
   useEuiTheme,
 } from '../../../../../src';
 import { sortMapBySmallToLargeValues } from '../../../../../src/services/breakpoint/_sorting';
@@ -57,22 +60,49 @@ export default () => {
               be turned on/off from within your component.
             </p>
             <p>
-              The hook automatically inherits breakpoint sizes from the current
-              EUI theme and any theme overrides.
+              You can also use <EuiCode>useIsWithinMaxBreakpoint(size)</EuiCode>{' '}
+              and <EuiCode>useIsWithinMinBreakpoint(size)</EuiCode>. The min/max
+              hooks return true or false if the current browser window width is
+              above or below the passed breakpoint <EuiCode>size</EuiCode>{' '}
+              respectively.
+            </p>
+            <p>
+              These hooks automatically inherits breakpoint sizes from the
+              current EUI theme and any theme overrides.
             </p>
           </>
         }
         example={
-          <p>
-            Targeting large devices only:{' '}
-            {useIsWithinBreakpoints(['l', 'xl']) ? (
-              <EuiIcon type="checkInCircleFilled" color="success" />
-            ) : (
-              <EuiIcon type="cross" color="danger" />
-            )}
-          </p>
+          <EuiText size="s">
+            <p>
+              Targeting large devices only:{' '}
+              {useIsWithinBreakpoints(['l', 'xl']) ? (
+                <EuiIcon type="checkInCircleFilled" color="success" />
+              ) : (
+                <EuiIcon type="cross" color="danger" />
+              )}
+            </p>
+            <p>
+              Targeting medium devices and below:{' '}
+              {useIsWithinMaxBreakpoint('m') ? (
+                <EuiIcon type="checkInCircleFilled" color="success" />
+              ) : (
+                <EuiIcon type="cross" color="danger" />
+              )}
+            </p>
+            <p>
+              Targeting small devices and above:{' '}
+              {useIsWithinMinBreakpoint('s') ? (
+                <EuiIcon type="checkInCircleFilled" color="success" />
+              ) : (
+                <EuiIcon type="cross" color="danger" />
+              )}
+            </p>
+          </EuiText>
         }
-        snippet="useIsWithinBreakpoints(['l', 'xl'])"
+        snippet={`useIsWithinBreakpoints(['l', 'xl'])
+useIsWithinMaxBreakpoint('m')
+useIsWithinMinBreakpoint('s')`}
         snippetLanguage="js"
       />
 
