@@ -9,10 +9,6 @@
   flex-grow: 1; /* 1 */
 
   .euiFlexItem {
-    @include internetExplorerOnly {
-      min-width: 1px;
-    }
-
     flex-grow: 1;
     flex-basis: 0%; /* 2 */
   }
