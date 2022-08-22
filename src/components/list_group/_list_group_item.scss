@@ -7,21 +7,13 @@
   position: relative;
 
   &.euiListGroupItem-isActive,
-  &.euiListGroupItem-isClickable:hover {
-    background-color: $euiListGroupItemHoverBackground;
-  }
-
-  // Can't be grouped with above or else IE will ignore the whole group
+  &.euiListGroupItem-isClickable:hover,
   &.euiListGroupItem-isClickable:focus-within {
     background-color: $euiListGroupItemHoverBackground;
   }
 
   &.euiListGroupItem--ghost {
-    &.euiListGroupItem-isClickable:hover {
-      background-color: $euiListGroupItemHoverBackgroundGhost;
-    }
-
-    // Can't be grouped with above or else IE will ignore the whole group
+    &.euiListGroupItem-isClickable:hover,
     &.euiListGroupItem-isClickable:focus-within {
       background-color: $euiListGroupItemHoverBackgroundGhost;
     }
