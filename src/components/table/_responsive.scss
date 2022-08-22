@@ -152,7 +152,6 @@
     }
 
     .euiTableRowCell {
-      display: block; /* IE requires block to grow and wrap. */
       min-width: 50%;
       border: none;
     }
