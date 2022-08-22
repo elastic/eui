@@ -8,6 +8,7 @@ import {
   EuiButtonGroup,
   EuiPanel,
   EuiThemeColorMode,
+  EuiHorizontalRule,
 } from '../../../../../src';
 
 const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
@@ -85,25 +86,23 @@ export default () => {
         </EuiPanel>
       </EuiThemeProvider>
 
+      <EuiHorizontalRule />
+
+      <EuiButtonGroup
+        legend="Change color mode"
+        options={boxColorButtons}
+        idSelected={boxColorModeSelected}
+        onChange={(id) => onChange(id as EuiThemeColorMode)}
+      />
+
       <EuiSpacer />
 
-      <EuiPanel hasShadow={false} color="subdued">
-        <EuiButtonGroup
-          legend="Change color mode"
-          options={boxColorButtons}
-          idSelected={boxColorModeSelected}
-          onChange={(id) => onChange(id as EuiThemeColorMode)}
-        />
-
-        <EuiSpacer />
-
-        <EuiThemeProvider colorMode={boxColorModeSelected}>
-          <Box>
-            <EuiIcon type="faceHappy" /> The colors of this box is in{' '}
-            <strong>{boxColorModeSelected}</strong> color mode
-          </Box>
-        </EuiThemeProvider>
-      </EuiPanel>
+      <EuiThemeProvider colorMode={boxColorModeSelected}>
+        <Box>
+          <EuiIcon type="faceHappy" /> The colors of this box is in{' '}
+          <strong>{boxColorModeSelected}</strong> color mode
+        </Box>
+      </EuiThemeProvider>
     </div>
   );
 };
