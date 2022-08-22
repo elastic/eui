@@ -99,7 +99,7 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
               />
             )}
           </EuiI18n>
-          <div className="euiModal__flex">{children}</div>
+          {children}
         </div>
       </EuiFocusTrap>
     </EuiOverlayMask>
