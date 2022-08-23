@@ -7,10 +7,10 @@
  */
 
 export type { EuiPageContentProps } from './page_content';
-export { EuiPageContent } from './page_content';
+export { EuiPageContent_Deprecated } from './page_content';
 export type { EuiPageContentBodyProps } from './page_content_body';
-export { EuiPageContentBody } from './page_content_body';
+export { EuiPageContentBody_Deprecated } from './page_content_body';
 export type { EuiPageContentHeaderProps } from './page_content_header';
-export { EuiPageContentHeader } from './page_content_header';
+export { EuiPageContentHeader_Deprecated } from './page_content_header';
 export type { EuiPageContentHeaderSectionProps } from './page_content_header_section';
-export { EuiPageContentHeaderSection } from './page_content_header_section';
+export { EuiPageContentHeaderSection_Deprecated } from './page_content_header_section';

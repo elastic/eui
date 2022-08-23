@@ -1129,10 +1129,10 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@elastic/charts@^47.2.0":
-  version "47.2.0"
-  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-47.2.0.tgz#829235fa133210faf680480ab73ac6a9aa3affa4"
-  integrity sha512-oZM9hH5eMYg8jkQi/Gwr4v7x9qjmUN919dLhflbq9rae49xi5GANXv0zpw8V75xQFt+W0TkuyUisf/OYL2ycCQ==
+"@elastic/charts@^47.2.1":
+  version "47.2.1"
+  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-47.2.1.tgz#a3fcd0d4dbccd7528d62a55dbbe8d11050d2b191"
+  integrity sha512-OeEfr0eO758BzS/IjSxW/O0cu9AvmpQ/dmy15E1Wz5hRTi+0hgHkW/vSOKju5/UHB6ulX36uRmHAJ1x5zuQ3MQ==
   dependencies:
     "@popperjs/core" "^2.4.0"
     bezier-easing "^2.1.0"
@@ -4287,9 +4287,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000792, caniuse-lite@^1.0.30000805, caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001280:
-  version "1.0.30001312"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001312.tgz#e11eba4b87e24d22697dae05455d5aea28550d5f"
-  integrity sha512-Wiz1Psk2MEK0pX3rUzWaunLTZzqS2JYZFzNKqAiJGiuxIjRPLgV6+VDPOg6lQOUxmDwhTlh198JsTTi8Hzw6aQ==
+  version "1.0.30001374"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001374.tgz#3dab138e3f5485ba2e74bd13eca7fe1037ce6f57"
+  integrity sha512-mWvzatRx3w+j5wx/mpFN5v5twlPrabG8NqX2c6e45LCpymdoGqNvRkRutFUqpRTXKFQFNQJasvK0YT7suW6/Hw==
 
 capture-exit@^2.0.0:
   version "2.0.0"

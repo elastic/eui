@@ -10,7 +10,10 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
-import { EuiPageContentBody, PADDING_SIZES } from './page_content_body';
+import {
+  EuiPageContentBody_Deprecated as EuiPageContentBody,
+  PADDING_SIZES,
+} from './page_content_body';
 
 describe('EuiPageContentBody', () => {
   test('is rendered', () => {

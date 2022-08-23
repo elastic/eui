@@ -1,3 +1,171 @@
+## [`65.0.0`](https://github.com/elastic/eui/tree/v65.0.0)
+
+- Added `anchorProps` to allow passing more props to the anchoring wrapper in `EuiToolTip` and `EuiBetaBadge` ([#6110](https://github.com/elastic/eui/pull/6110))
+- Added an empty shade background color to `hollow` style `EuiBetaBadge` ([#6110](https://github.com/elastic/eui/pull/6110))
+- Changed design of select button in `selectable` `EuiCard`s ([#6110](https://github.com/elastic/eui/pull/6110))
+- Updated button `ghost` colors to be `colorMode = 'dark'` themed `text` buttons ([#6150](https://github.com/elastic/eui/pull/6150))
+- Renamed `ButtonColor` and `ButtonSize` types to prefixed versions `EuiButtonColor` and `EuiButtonSize` ([#6150](https://github.com/elastic/eui/pull/6150))
+
+**Deprecations**
+
+- Deprecated `ghost` color for `EuiButton`, `EuiButtonIcon`, `EuiButtonEmpty` ([#6150](https://github.com/elastic/eui/pull/6150))
+
+**Breaking changes**
+
+- Removed `EuiButtonIconColor` and `EuiButtonEmptyColor` types, use `EuiButtonIconProps['color']` and `EuiButtonEmptyProps['color']` instead ([#6150](https://github.com/elastic/eui/pull/6150))
+- Removed support for `ghost` color from `EuiButtonGroup` ([#6150](https://github.com/elastic/eui/pull/6150))
+
+**CSS-in-JS conversions**
+
+- Removed `euiHasBetaBadge()` Sass mixin ([#6110](https://github.com/elastic/eui/pull/6110))
+- Converted `EuiCard`, `EuiCheckableCard` to Emotion, removed `$euiCheckableCardPadding`, `$euiCardSpacing`, `$euiCardBottomNodeHeight`, `$euiCardSelectButtonBorders`, `$euiCardSelectButtonBackgrounds`, and `$euiCardPaddingModifiers` ([#6110](https://github.com/elastic/eui/pull/6110))
+
+**CSS-in-JS**
+
+- Converted `EuiButton` to Emotion ([#6150](https://github.com/elastic/eui/pull/6150))
+- Converted color styles of `EuiButtonIcon`, `EuiButtonEmpty`, `EuiButtonGroup` ([#6150](https://github.com/elastic/eui/pull/6150))
+
+## [`64.0.1`](https://github.com/elastic/eui/tree/v64.0.1)
+
+**Bug fixes**
+
+- Fixed `CollapsedItemActions` ref callback not accounting for `null` value ([#6145](https://github.com/elastic/eui/pull/6145))
+
+**CSS-in-JS conversions**
+
+- Added `logicalCSSWithFallback()` utility for logical properties without full browser support ([#6124](https://github.com/elastic/eui/pull/6124))
+- Converted `euiFullHeight()` Sass mixin to Emotion  ([#6124](https://github.com/elastic/eui/pull/6124))
+- Converted all global CSS utility classes to Emotion ([#6124](https://github.com/elastic/eui/pull/6124))
+
+## [`64.0.0`](https://github.com/elastic/eui/tree/v64.0.0)
+
+- Added `onPositionChange` callback prop to `EuiPopover` for when the popover positon changes ([#6087](https://github.com/elastic/eui/pull/6087))
+- Added `isDisabled` prop to `EuiAccordion` ([#6095](https://github.com/elastic/eui/pull/6095))
+- Added `css` prop to `CommonProps` interface ([#6118](https://github.com/elastic/eui/pull/6118))
+- Added new `useIsWithinMaxBreakpoint` and `useIsWithinMinBreakpoint` service hooks ([#6119](https://github.com/elastic/eui/pull/6119))
+
+**Bug fixes**
+
+- Fixed the `steps` prop type for `useEuiTour` to not require `onFinish` ([#6087](https://github.com/elastic/eui/pull/6087))
+- Fixed JS breakpoint hooks (`useCurrentEuiBreakpoint`, `useIsWithinBreakpoints`, and `euiBreakpoint`) to correctly handle custom theme breakpoint keys ([#6111](https://github.com/elastic/eui/pull/6111))
+- Fixed `:first-child/:nth-child` console warnings for consumers not passing in a `cache` to `EuiProvider` ([#6126](https://github.com/elastic/eui/pull/6126))
+- Fixed `EuiScreenReaderLive` double announcements on VO when `focusRegionOnTextChange` is not set ([#6133](https://github.com/elastic/eui/pull/6133))
+- Fixed `onBlur` and `onFocus` handlers from `EuiDatePickerRange` being incorrectly applied to wrapping element rather than the start/end control datepickers. ([#6136](https://github.com/elastic/eui/pull/6136))
+- Fixed missing `data-fixed-headers` property in some layout configurations using `EuiPageTemplate`. ([#6140](https://github.com/elastic/eui/pull/6140))
+- Fixed `EuiAspectRatio` sometimes incorrectly inheriting its height from parent containers as opposed to from its aspect ratio ([#6141](https://github.com/elastic/eui/pull/6141))
+- Fixed `EuiAspectRatio` to allow custom `style`s to be passed by consumers ([#6141](https://github.com/elastic/eui/pull/6141))
+- Fixed `eui.d.ts` containing `@testing-library` type definitions ([#6142](https://github.com/elastic/eui/pull/6142))
+
+**Breaking changes**
+
+- Removed `getBreakpoint`. Use `useCurrentEuiBreakpoint` instead ([#6119](https://github.com/elastic/eui/pull/6119))
+- Removed `BREAKPOINTS` and `BREAKPOINT_KEYS`. Use `euiTheme.breakpoint` instead ([#6119](https://github.com/elastic/eui/pull/6119))
+- Removed `isWithinBreakpoints`. Use `useIsWithinBreakpoints` instead ([#6119](https://github.com/elastic/eui/pull/6119))
+- Removed `isWithinMaxBreakpoint`. Use `useIsWithinMaxBreakpoint` instead ([#6119](https://github.com/elastic/eui/pull/6119))
+- Removed `isWithinMinBreakpoint`. Use `useIsWithinMinBreakpoint` instead ([#6119](https://github.com/elastic/eui/pull/6119))
+- `EuiFlyout` now only accepts a named breakpoint size for its `pushMinBreakpoint` prop ([#6119](https://github.com/elastic/eui/pull/6119))
+- `EuiCollapsibleNav` now only accepts a named breakpoint size for its `dockedBreakpoint` prop ([#6119](https://github.com/elastic/eui/pull/6119))
+- `@emotion/cache` is now a required peer dependency, alongside `@emotion/react` ([#6126](https://github.com/elastic/eui/pull/6126))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiTour` to Emotion ([#6087](https://github.com/elastic/eui/pull/6087))
+
+## [`63.0.3`](https://github.com/elastic/eui/tree/v63.0.3)
+
+**Note: this release is a backport containing changes originally made in `64.0.1`**
+
+**Bug fixes**
+
+- Fixed `CollapsedItemActions` ref callback not accounting for `null` value ([#6145](https://github.com/elastic/eui/pull/6145))
+
+## [`63.0.2`](https://github.com/elastic/eui/tree/v63.0.2)
+
+**Note: this release is a backport containing changes originally made in `64.0.0`**
+
+**Bug fixes**
+
+- Fixed `eui.d.ts` containing `@testing-library` type definitions ([#6142](https://github.com/elastic/eui/pull/6142))
+
+## [`63.0.1`](https://github.com/elastic/eui/tree/v63.0.1)
+
+**Bug fixes**
+
+- Fixed server-side rendering and test-env errors caused by `useCurrentEuiBreakpoint` ([#6117](https://github.com/elastic/eui/pull/6117))
+
+## [`63.0.0`](https://github.com/elastic/eui/tree/v63.0.0)
+
+- Added new `EuiPageTemplate` namespaced component that uses context to pass through props ([#5768](https://github.com/elastic/eui/pull/5768))
+- Added `EuiPageSection` component for easier section stacking ([#5768](https://github.com/elastic/eui/pull/5768))
+- Added `EuiPageSidebar` component that is an upgrade to `EuiPageSideBar` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Extended `bottomBorder` prop to add `'extended'` on `EuiPageHeader` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Added `paddingSize` and `restrictWidth` directly on `EuiPageHeaderContent` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Added `data-fixed-headers` attribute to `<body>` with the count of fixed `EuiHeader` components ([#5768](https://github.com/elastic/eui/pull/5768))
+- Extended `usePortal` prop on `EuiBottomBar` to accept `EuiPortalProps` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Increased `paddingSize` support by `EuiPage` for `xl` and `xs` sizes ([#5768](https://github.com/elastic/eui/pull/5768))
+- Moved `restrictWidth` default `true` style to `style` attribute on `EuiPage` and `EuiPageBody` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Added optional `height` parameter to `euiYScroll()`, `useEuiYScroll`, `euiYScrollWithShadows()`, and `useEuiYScrollWithShadows` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Added `repositionOnScroll` directly to `EuiPopover` rendered by mobile version of `EuiHeaderLinks` ([#5768](https://github.com/elastic/eui/pull/5768))
+
+**Bug fixes**
+
+- Fixed missing render of `breadcrumbs` on `EuiPageHeader` when `alignItems = 'top'` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Fixed `logicalStyle()` to return the same value type as was passed in (instead of converting to string) ([#5768](https://github.com/elastic/eui/pull/5768))
+
+**Deprecations**
+
+- Deprecated the old `EuiPageTemplate` component and renamed to `EuiPageTemplate_Deprecated` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Deprecated `EuiPageContent` and `EuiPageContentBody` in favor of new `EuiPageSection` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Deprecated `EuiPageContent` and renamed to `EuiPageContent_Deprecated` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Deprecated `EuiPageContentBody` and renamed to `EuiPageContentBody_Deprecated` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Deprecated `EuiPageContentHeader` and renamed to `EuiPageContentHeader_Deprecated` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Deprecated `EuiPageContentHeaderSection` and renamed to `EuiPageContentHeaderSection_Deprecated` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Deprecated `EuiPageSideBar` and renamed to `EuiPageSideBar_Deprecated` ([#5768](https://github.com/elastic/eui/pull/5768))
+
+**Breaking changes**
+
+- Removed nested `EuiPageHeader` styles when a child of `EuiPageBody` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Changed default `paddingSize` of `EuiPage` from `m` to `none` ([#5768](https://github.com/elastic/eui/pull/5768))
+
+**CSS-in-JS conversion**
+
+- Converted `EuiPage` and `EuiPageBody` to Emotion ([#5768](https://github.com/elastic/eui/pull/5768))
+- Converted `EuiPageHeader` and `EuiPageHeaderContent` to Emotion ([#5768](https://github.com/elastic/eui/pull/5768))
+- Removed `euiPageRestrictWidth()` Sass mixin ([#5768](https://github.com/elastic/eui/pull/5768))
+
+## [`62.2.3`](https://github.com/elastic/eui/tree/v62.2.3)
+
+**Note: this release is a backport containing changes originally made in `64.0.1`**
+
+**Bug fixes**
+
+- Fixed `CollapsedItemActions` ref callback not accounting for `null` value ([#6145](https://github.com/elastic/eui/pull/6145))
+
+## [`62.2.2`](https://github.com/elastic/eui/tree/v62.2.2)
+
+**Note: this release is a backport containing changes originally made in `64.0.0`**
+
+**Bug fixes**
+
+- Fixed `eui.d.ts` containing `@testing-library` type definitions ([#6142](https://github.com/elastic/eui/pull/6142))
+
+## [`62.2.1`](https://github.com/elastic/eui/tree/v62.2.1)
+
+**Note: this release is a backport containing changes originally made in `63.0.1`**
+
+**Bug fixes**
+
+- Fixed server-side rendering and test-env errors caused by `useCurrentEuiBreakpoint` ([#6117](https://github.com/elastic/eui/pull/6117))
+
+## [`62.2.0`](https://github.com/elastic/eui/tree/v62.2.0)
+
+- The `EuiDataGrid`'s `rowHeightOptions` now contain an optional `scrollAnchorRow` property, which enables vertical layout shift compensation when rendering `auto`-sized rows. ([#6070](https://github.com/elastic/eui/pull/6070))
+- Added new React Testing Library EuiToolTip helpers, `waitForEuiToolTipVisible` and `waitForEuiToolTipClose` ([#6106](https://github.com/elastic/eui/pull/6106))
+
+**Bug fixes**
+
+- Fixed EuiPortal changes causing rerender issues in test environments ([#6105](https://github.com/elastic/eui/pull/6105))
+
 ## [`62.1.0`](https://github.com/elastic/eui/tree/v62.1.0)
 
 - Updated `tokenFile`, `tokenSymbol` and `tokenRepo` default shapes to `square` instead of `rectangle` ([#6067](https://github.com/elastic/eui/pull/6067))
@@ -26,7 +194,6 @@
 ## [`62.0.2`](https://github.com/elastic/eui/tree/v62.0.2)
 
 - Added new React Testing Library `ByDataTestSubj` utilities for targeting EUI's `data-test-subj` attributes. These can be accessed by importing custom RTL `render` and `screen` utils from `@elastic/eui/lib/test/rtl`. ([#6091](https://github.com/elastic/eui/pull/6091))
- ([#6091](https://github.com/elastic/eui/pull/6091))
 - Added new React Testing Library EuiPopover helpers, `waitForEuiPopoverOpen` and `waitForEuiPopoverClose` ([#6091](https://github.com/elastic/eui/pull/6091))
 
 **Bug fixes**

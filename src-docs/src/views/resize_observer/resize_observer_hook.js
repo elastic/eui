@@ -42,7 +42,9 @@ export const ResizeObserverHookExample = () => {
           </p>
         )}
         <p>
-          <EuiCode>{`height: ${dimensions.height}; width: ${dimensions.width}`}</EuiCode>
+          <EuiCode>
+            height: {dimensions.height}; width: {dimensions.width}
+          </EuiCode>
         </p>
       </EuiText>
 

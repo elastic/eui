@@ -7,7 +7,7 @@ exports[`EuiScreenReaderLive with a static configuration accepts \`aria-live\` 1
   <div
     aria-atomic="true"
     aria-hidden="true"
-    aria-live="assertive"
+    aria-live="off"
     role="status"
   />
   <div
@@ -52,7 +52,7 @@ exports[`EuiScreenReaderLive with a static configuration accepts \`role\` 1`] = 
   <div
     aria-atomic="true"
     aria-hidden="true"
-    aria-live="polite"
+    aria-live="off"
     role="log"
   />
   <div
@@ -74,7 +74,7 @@ exports[`EuiScreenReaderLive with a static configuration does not render screen 
   <div
     aria-atomic="true"
     aria-hidden="true"
-    aria-live="polite"
+    aria-live="off"
     role="status"
   />
   <div
@@ -92,7 +92,7 @@ exports[`EuiScreenReaderLive with a static configuration renders screen reader c
   <div
     aria-atomic="true"
     aria-hidden="true"
-    aria-live="polite"
+    aria-live="off"
     role="status"
   />
   <div
@@ -120,7 +120,7 @@ exports[`EuiScreenReaderLive with dynamic properties alternates rendering screen
     <div
       aria-atomic="true"
       aria-hidden="true"
-      aria-live="polite"
+      aria-live="off"
       role="status"
     />
     <div
@@ -149,7 +149,7 @@ exports[`EuiScreenReaderLive with dynamic properties initially renders screen re
     <div
       aria-atomic="true"
       aria-hidden="true"
-      aria-live="polite"
+      aria-live="off"
       role="status"
     />
     <div

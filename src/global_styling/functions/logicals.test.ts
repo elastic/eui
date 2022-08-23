@@ -11,6 +11,7 @@ import {
   LOGICAL_PROPERTIES,
   LOGICAL_TEXT_ALIGNMENT,
   logicalCSS,
+  logicalCSSWithFallback,
   logicalStyle,
   logicalTextAlignCSS,
   logicalTextAlignStyle,
@@ -25,6 +26,14 @@ describe('logicalCSS mixin returns a string property', () => {
         ).toMatchSnapshot();
       });
     });
+  });
+});
+
+describe('logicalCSSWithFallback ', () => {
+  it('returns both the original property and the logical property', () => {
+    expect(
+      testCustomHook(() => logicalCSSWithFallback('overflow-x', 'auto')).return
+    ).toMatchSnapshot();
   });
 });
 

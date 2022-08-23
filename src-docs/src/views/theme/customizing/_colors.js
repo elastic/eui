@@ -12,6 +12,7 @@ import {
   EuiColorPickerSwatch,
   EuiCodeBlock,
   EuiTitle,
+  logicalCSS,
 } from '../../../../../src';
 
 import {
@@ -142,8 +143,8 @@ export default ({ onThemeUpdate }) => {
               <button
                 css={css`
                   color: ${colors[color]};
-                  min-width: ${euiTheme.size.l};
-                  min-height: ${euiTheme.size.l};
+                  ${logicalCSS('min-width', euiTheme.size.l)}
+                  ${logicalCSS('min-height', euiTheme.size.l)}
                 `}
               >
                 <strong>Aa</strong>
@@ -200,8 +201,8 @@ export default ({ onThemeUpdate }) => {
               <button
                 css={css`
                   color: ${colors[color]};
-                  min-width: ${euiTheme.size.l};
-                  min-height: ${euiTheme.size.l};
+                  ${logicalCSS('min-width', euiTheme.size.l)}
+                  ${logicalCSS('min-height', euiTheme.size.l)}
                 `}
               >
                 <strong>Aa</strong>
@@ -236,8 +237,8 @@ export default ({ onThemeUpdate }) => {
                   <button
                     css={css`
                       color: ${colors[color]};
-                      min-width: ${euiTheme.size.l};
-                      min-height: ${euiTheme.size.l};
+                      ${logicalCSS('min-width', euiTheme.size.l)}
+                      ${logicalCSS('min-height', euiTheme.size.l)}
                     `}
                   >
                     <strong>Aa</strong>
