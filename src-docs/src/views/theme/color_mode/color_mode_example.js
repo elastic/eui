@@ -51,7 +51,7 @@ export const ColorModeExample = {
             component. This is why you should change the color of{' '}
             <strong>EuiText</strong> to <EuiCode>{'"default"'}</EuiCode> when
             you want it to correctly adapt to the <EuiCode>colorMode</EuiCode>{' '}
-            of its directly parent <strong>EuiThemeProvider</strong>.
+            of the nested <strong>EuiThemeProvider</strong>.
           </p>
           <p>
             <Link to="/display/icons">
