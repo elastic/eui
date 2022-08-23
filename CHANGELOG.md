@@ -144,6 +144,14 @@
 - Converted `EuiPageHeader` and `EuiPageHeaderContent` to Emotion ([#5768](https://github.com/elastic/eui/pull/5768))
 - Removed `euiPageRestrictWidth()` Sass mixin ([#5768](https://github.com/elastic/eui/pull/5768))
 
+## [`62.2.4`](https://github.com/elastic/eui/tree/v62.2.4)
+
+**Note: this release is a backport containing changes originally made in `65.0.1`**
+
+**Bug fixes**
+
+- Fixed the text size of `EuiDescriptionListTitle` when `EuiDescriptionList` is compressed ([#6160](https://github.com/elastic/eui/pull/6160))
+
 ## [`62.2.3`](https://github.com/elastic/eui/tree/v62.2.3)
 
 **Note: this release is a backport containing changes originally made in `64.0.1`**
