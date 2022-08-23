@@ -63,7 +63,7 @@ export const EuiPaginationButtonArrow: FunctionComponent<Props> = ({
 
   return (
     <EuiButtonIcon
-      css={[styles.euiPaginationArrowButton]}
+      css={styles.euiPaginationArrowButton}
       className={classNames('euiPaginationArrowButton', className)}
       color="text"
       aria-label={labels[type]}

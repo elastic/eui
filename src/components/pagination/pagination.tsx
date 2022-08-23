@@ -154,7 +154,7 @@ export const EuiPagination: FunctionComponent<Props> = ({
       centerPageCount = (
         <EuiText
           size="s"
-          css={[paginationStyles.euiPagination__compressedText]}
+          css={paginationStyles.euiPagination__compressedText}
           data-test-subj="euiPagination__compressedText"
         >
           <EuiI18n
@@ -293,7 +293,7 @@ export const EuiPagination: FunctionComponent<Props> = ({
       centerPageCount = (
         <ul
           {...accessibleName}
-          css={[paginationStyles.euiPagination__list]}
+          css={paginationStyles.euiPagination__list}
           data-test-subj="euiPagination__list"
         >
           {firstPageButtons}

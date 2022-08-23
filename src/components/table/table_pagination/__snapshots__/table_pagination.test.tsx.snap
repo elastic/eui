@@ -54,7 +54,7 @@ exports[`EuiTablePagination is rendered 1`] = `
       </span>
       <button
         aria-label="Previous page"
-        class="euiButtonIcon euiButtonIcon--xSmall euiPaginationArrowButton css-1cebmfr-empty-text-hoverStyles-EuiButtonIcon-euiPaginationArrowButton-EuiPaginationButtonArrow"
+        class="euiButtonIcon euiButtonIcon--xSmall euiPaginationArrowButton css-oedqdf-empty-text-hoverStyles-EuiButtonIcon-euiPaginationArrowButton"
         data-test-subj="pagination-button-previous"
         title="Previous page"
         type="button"
@@ -68,7 +68,7 @@ exports[`EuiTablePagination is rendered 1`] = `
       </button>
       <ul
         aria-label="aria-label"
-        class="emotion-euiPagination__list-centerPageCount"
+        class="emotion-euiPagination__list"
         data-test-subj="euiPagination__list"
       >
         <li
@@ -176,7 +176,7 @@ exports[`EuiTablePagination is rendered 1`] = `
       </ul>
       <button
         aria-label="Next page"
-        class="euiButtonIcon euiButtonIcon--xSmall euiPaginationArrowButton css-1cebmfr-empty-text-hoverStyles-EuiButtonIcon-euiPaginationArrowButton-EuiPaginationButtonArrow"
+        class="euiButtonIcon euiButtonIcon--xSmall euiPaginationArrowButton css-oedqdf-empty-text-hoverStyles-EuiButtonIcon-euiPaginationArrowButton"
         data-test-subj="pagination-button-next"
         title="Next page"
         type="button"
@@ -218,7 +218,7 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
       </span>
       <button
         aria-label="Previous page"
-        class="euiButtonIcon euiButtonIcon--xSmall euiPaginationArrowButton css-1cebmfr-empty-text-hoverStyles-EuiButtonIcon-euiPaginationArrowButton-EuiPaginationButtonArrow"
+        class="euiButtonIcon euiButtonIcon--xSmall euiPaginationArrowButton css-oedqdf-empty-text-hoverStyles-EuiButtonIcon-euiPaginationArrowButton"
         data-test-subj="pagination-button-previous"
         title="Previous page"
         type="button"
@@ -232,7 +232,7 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
       </button>
       <ul
         aria-label="aria-label"
-        class="emotion-euiPagination__list-centerPageCount"
+        class="emotion-euiPagination__list"
         data-test-subj="euiPagination__list"
       >
         <li
@@ -340,7 +340,7 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
       </ul>
       <button
         aria-label="Next page"
-        class="euiButtonIcon euiButtonIcon--xSmall euiPaginationArrowButton css-1cebmfr-empty-text-hoverStyles-EuiButtonIcon-euiPaginationArrowButton-EuiPaginationButtonArrow"
+        class="euiButtonIcon euiButtonIcon--xSmall euiPaginationArrowButton css-oedqdf-empty-text-hoverStyles-EuiButtonIcon-euiPaginationArrowButton"
         data-test-subj="pagination-button-next"
         title="Next page"
         type="button"

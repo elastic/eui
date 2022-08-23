@@ -54,7 +54,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
       <a
         aria-controls="generated-id"
         aria-label="Previous page"
-        class="euiButtonIcon euiButtonIcon--xSmall euiPaginationArrowButton css-1cebmfr-empty-text-hoverStyles-EuiButtonIcon-euiPaginationArrowButton-EuiPaginationButtonArrow"
+        class="euiButtonIcon euiButtonIcon--xSmall euiPaginationArrowButton css-oedqdf-empty-text-hoverStyles-EuiButtonIcon-euiPaginationArrowButton"
         data-test-subj="pagination-button-previous"
         href="#generated-id"
         rel="noreferrer"
@@ -69,7 +69,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
       </a>
       <ul
         aria-label="Pagination for preceding grid: test grid"
-        class="emotion-euiPagination__list-centerPageCount"
+        class="emotion-euiPagination__list"
         data-test-subj="euiPagination__list"
       >
         <li
@@ -120,7 +120,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
       </ul>
       <button
         aria-label="Next page"
-        class="euiButtonIcon euiButtonIcon--xSmall euiPaginationArrowButton css-q569uw-empty-disabled-hoverStyles-EuiButtonIcon-euiPaginationArrowButton-EuiPaginationButtonArrow"
+        class="euiButtonIcon euiButtonIcon--xSmall euiPaginationArrowButton css-1qa11t0-empty-disabled-hoverStyles-EuiButtonIcon-euiPaginationArrowButton"
         data-test-subj="pagination-button-next"
         disabled=""
         type="button"
