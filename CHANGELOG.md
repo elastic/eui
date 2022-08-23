@@ -1,3 +1,9 @@
+## [`62.2.4`](https://github.com/elastic/eui/tree/v62.2.4)
+
+**Bug fixes**
+
+- Fixed the text size of `EuiDescriptionListTitle` when `EuiDescriptionList` is compressed ([#6160](https://github.com/elastic/eui/pull/6160))
+
 ## [`62.2.3`](https://github.com/elastic/eui/tree/v62.2.3)
 
 **Bug fixes**
