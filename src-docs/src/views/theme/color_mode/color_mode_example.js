@@ -42,8 +42,8 @@ export const ColorModeExample = {
             the current color mode.
           </p>
           <p>
-            When nesting or overriding <strong>EuiThemeProvider</strong> bear in mind
-            that the{' '}
+            When nesting or overriding <strong>EuiThemeProvider</strong> bear in
+            mind that the{' '}
             <Link to="/display/text">
               <strong>EuiText</strong>
             </Link>{' '}
