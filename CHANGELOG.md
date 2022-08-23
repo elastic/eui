@@ -74,6 +74,14 @@
 
 - Converted `EuiTour` to Emotion ([#6087](https://github.com/elastic/eui/pull/6087))
 
+## [`63.0.4`](https://github.com/elastic/eui/tree/v63.0.4)
+
+**Note: this release is a backport containing changes originally made in `65.0.1`**
+
+**Bug fixes**
+
+- Fixed the text size of `EuiDescriptionListTitle` when `EuiDescriptionList` is compressed ([#6160](https://github.com/elastic/eui/pull/6160))
+
 ## [`63.0.3`](https://github.com/elastic/eui/tree/v63.0.3)
 
 **Note: this release is a backport containing changes originally made in `64.0.1`**
