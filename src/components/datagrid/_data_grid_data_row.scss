@@ -109,6 +109,7 @@
   // Disables the default EuiPopover filter drop-shadow and uses box-shadow instead,
   // since we don't use the popover arrow in any case for cell popovers
   filter: none;
+  // sass-lint:disable-block mixins-before-declarations
   @include euiBottomShadow; // TODO: Convert to euiShadowMedium() in Emotion
 }
 
