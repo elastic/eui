@@ -52,7 +52,8 @@ export const ThemeValuesTable = ({
   valueColumnProps,
 }: ThemeValuesTableProps) => {
   const { euiTheme } = useEuiTheme();
-  const [isFunction, setIsFunction] = useState(true);
+  const [isFunction, setIsFunction] = useState(false);
+  const hasToggle = items[0].function != null && items[0].hook != null;
 
   const toggleFunction = () => {
     setIsFunction(!isFunction);
@@ -117,7 +118,10 @@ export const ThemeValuesTable = ({
     });
   }
 
-  if (isFunction && items[0].function != null) {
+  if (
+    (hasToggle && isFunction && items[0].function != null) ||
+    (!hasToggle && items[0].function != null)
+  ) {
     columns.push({
       field: 'function',
       name: 'Function',
@@ -140,7 +144,10 @@ export const ThemeValuesTable = ({
     });
   }
 
-  if (!isFunction && items[0].hook != null) {
+  if (
+    (hasToggle && !isFunction && items[0].hook != null) ||
+    (!hasToggle && items[0].hook != null)
+  ) {
     columns.push({
       field: 'hook',
       name: 'Hook',
