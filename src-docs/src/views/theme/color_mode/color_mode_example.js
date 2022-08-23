@@ -11,6 +11,9 @@ import Intro from './_color_mode_intro';
 import Inverse from './inverse';
 const InverseSource = require('!!raw-loader!./inverse');
 
+import InverseComplex from './inverse_complex';
+const InverseComplexSource = require('!!raw-loader!./inverse_complex');
+
 export const ColorModeExample = {
   title: 'Color mode',
   notice: <ThemeNotice />,
@@ -62,6 +65,23 @@ export const ColorModeExample = {
         </>
       ),
       demo: <Inverse />,
+    },
+    {
+      title: 'Using color tokens in a specific color mode',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: InverseComplexSource,
+        },
+      ],
+      text: (
+        <p>
+          The following example demonstrates how you can use color tokens in any
+          of the color modes: <EuiCode>{'"light"'}</EuiCode>,{' '}
+          <EuiCode>{'"dark"'}</EuiCode>, or <EuiCode>{'"inverse"'}</EuiCode>.
+        </p>
+      ),
+      demo: <InverseComplex />,
     },
   ],
 };
