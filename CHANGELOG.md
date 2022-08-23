@@ -1,3 +1,9 @@
+## [`65.0.1`](https://github.com/elastic/eui/tree/v65.0.1)
+
+**Bug fixes**
+
+- Fixed the text size of `EuiDescriptionListTitle` when `EuiDescriptionList` is compressed ([#6160](https://github.com/elastic/eui/pull/6160))
+
 ## [`65.0.0`](https://github.com/elastic/eui/tree/v65.0.0)
 
 - Added `anchorProps` to allow passing more props to the anchoring wrapper in `EuiToolTip` and `EuiBetaBadge` ([#6110](https://github.com/elastic/eui/pull/6110))
