@@ -12,12 +12,14 @@ import {
   logicalTextAlignCSS,
   euiFontSize,
 } from '../../global_styling';
+import { euiButtonEmptyColor } from '../../themes/amsterdam/global_styling/mixins';
 import { UseEuiTheme } from '../../services';
 
 export const euiPaginationButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const fontSizeS = euiFontSize(euiThemeContext, 's');
   const halfSizeM = parseInt(euiTheme.size.m.replace('px', '')) / 2;
+  const disabled = euiButtonEmptyColor(euiThemeContext, 'disabled');
 
   return {
     // Base
@@ -33,7 +35,6 @@ export const euiPaginationButtonStyles = (euiThemeContext: UseEuiTheme) => {
       font-weight: ${euiTheme.font.weight.bold};
       color: ${euiTheme.colors.primary};
 
-      // TODO: update with new selector
       .euiButtonEmpty__content {
         cursor: default;
       }
@@ -45,8 +46,7 @@ export const euiPaginationButtonStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     isPlaceholder: css`
       align-items: baseline;
-      // TODO: update with var from button.styles.ts
-      color: $euiButtonColorDisabledText;
+      color: ${disabled.color};
       ${fontSizeS};
       ${logicalCSS('padding-top', `${halfSizeM}px`)};
       ${logicalCSS('padding-bottom', 0)};

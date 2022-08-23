@@ -21,6 +21,7 @@ import {
 } from '../../services';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { euiPaginationStyles } from './pagination.styles';
+import { euiPaginationButtonStyles } from './pagination_button.styles';
 
 const MAX_VISIBLE_PAGES = 5;
 const NUMBER_SURROUNDING_PAGES = Math.floor(MAX_VISIBLE_PAGES * 0.5);
@@ -82,6 +83,7 @@ export const EuiPagination: FunctionComponent<Props> = ({
 
   const euiTheme = useEuiTheme();
   const paginationStyles = euiPaginationStyles(euiTheme);
+  const { isPlaceholder } = euiPaginationButtonStyles(euiTheme);
 
   // Force to `compressed` version if specified or within the responsive breakpoints
   const compressed = _compressed || isResponsive;
@@ -216,7 +218,8 @@ export const EuiPagination: FunctionComponent<Props> = ({
               {(firstRangeAriaLabel: string) => (
                 <li
                   aria-label={firstRangeAriaLabel}
-                  className="euiPaginationButton-isPlaceholder euiPagination__item"
+                  className="euiPagination__item"
+                  css={isPlaceholder}
                 >
                   &hellip;
                 </li>
@@ -259,7 +262,8 @@ export const EuiPagination: FunctionComponent<Props> = ({
               {(lastRangeAriaLabel: string) => (
                 <li
                   aria-label={lastRangeAriaLabel}
-                  className="euiPaginationButton-isPlaceholder euiPagination__item"
+                  className="euiPagination__item"
+                  css={isPlaceholder}
                 >
                   &hellip;
                 </li>
