@@ -9,11 +9,14 @@
 }
 
 .euiFlyout__closeButton {
-  background-color: transparentize($euiColorEmptyShade, .1);
   position: absolute;
   right: $euiSizeS;
   top: $euiSizeS;
   z-index: 3;
+
+  &:not(.euiFlyout__closeButton--outside) {
+    background-color: transparentize($euiColorEmptyShade, .1);
+  }
 
   &--outside {
     // match dropshadow

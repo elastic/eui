@@ -70,18 +70,14 @@ exports[`EuiCard horizontal selectable 1`] = `
   <button
     aria-checked="false"
     aria-describedby="generated-idTitle generated-idDescription"
-    class="euiButton euiButton--text euiButton--fullWidth emotion-euiCardSelect"
+    class="emotion-euiButtonDisplay-m-fullWidth-m-base-text-euiCardSelect"
     role="switch"
     type="button"
   >
     <span
-      class="euiButtonContent euiButton__content"
+      class="emotion-euiButtonDisplayContent"
     >
-      <span
-        class="euiButton__text"
-      >
-        Select
-      </span>
+      Select
     </span>
   </button>
 </div>
@@ -912,18 +908,14 @@ exports[`EuiCard props selectable 1`] = `
   <button
     aria-checked="false"
     aria-describedby="generated-idTitle generated-idDescription"
-    class="euiButton euiButton--text euiButton--fullWidth emotion-euiCardSelect"
+    class="emotion-euiButtonDisplay-m-fullWidth-m-base-text-euiCardSelect"
     role="switch"
     type="button"
   >
     <span
-      class="euiButtonContent euiButton__content"
+      class="emotion-euiButtonDisplayContent"
     >
-      <span
-        class="euiButton__text"
-      >
-        Select
-      </span>
+      Select
     </span>
   </button>
 </div>

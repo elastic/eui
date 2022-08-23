@@ -3,16 +3,16 @@
 exports[`EuiSkipLink is rendered 1`] = `
 <a
   aria-label="aria-label"
-  class="euiButton euiButton--primary euiButton--small euiButton--fill euiSkipLink testClass1 testClass2 emotion-euiSkipLink-euiScreenReaderOnly"
+  class="euiSkipLink testClass1 testClass2 emotion-euiButtonDisplay-s-s-fill-primary-euiSkipLink-euiScreenReaderOnly"
   data-test-subj="test subject string"
   href="#somewhere"
   rel="noreferrer"
 >
   <span
-    class="euiButtonContent euiButton__content"
+    class="emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiButton__text"
+      class="eui-textTruncate"
     >
       Skip
     </span>
@@ -22,82 +22,62 @@ exports[`EuiSkipLink is rendered 1`] = `
 
 exports[`EuiSkipLink props onClick is rendered 1`] = `
 <a
-  class="euiButton euiButton--primary euiButton--small euiButton--fill euiSkipLink emotion-euiSkipLink-euiScreenReaderOnly"
+  class="euiSkipLink emotion-euiButtonDisplay-s-s-fill-primary-euiSkipLink-euiScreenReaderOnly"
   href="#somewhere"
   rel="noreferrer"
 >
   <span
-    class="euiButtonContent euiButton__content"
-  >
-    <span
-      class="euiButton__text"
-    />
-  </span>
+    class="emotion-euiButtonDisplayContent"
+  />
 </a>
 `;
 
 exports[`EuiSkipLink props position absolute is rendered 1`] = `
 <a
-  class="euiButton euiButton--primary euiButton--small euiButton--fill euiSkipLink emotion-euiSkipLink-absolute-euiScreenReaderOnly"
+  class="euiSkipLink emotion-euiButtonDisplay-s-s-fill-primary-euiSkipLink-absolute-euiScreenReaderOnly"
   href="#somewhere"
   rel="noreferrer"
 >
   <span
-    class="euiButtonContent euiButton__content"
-  >
-    <span
-      class="euiButton__text"
-    />
-  </span>
+    class="emotion-euiButtonDisplayContent"
+  />
 </a>
 `;
 
 exports[`EuiSkipLink props position fixed is rendered 1`] = `
 <a
-  class="euiButton euiButton--primary euiButton--small euiButton--fill euiSkipLink emotion-euiSkipLink-fixed-euiScreenReaderOnly"
+  class="euiSkipLink emotion-euiButtonDisplay-s-s-fill-primary-euiSkipLink-fixed-euiScreenReaderOnly"
   href="#somewhere"
   rel="noreferrer"
   tabindex="0"
 >
   <span
-    class="euiButtonContent euiButton__content"
-  >
-    <span
-      class="euiButton__text"
-    />
-  </span>
+    class="emotion-euiButtonDisplayContent"
+  />
 </a>
 `;
 
 exports[`EuiSkipLink props position static is rendered 1`] = `
 <a
-  class="euiButton euiButton--primary euiButton--small euiButton--fill euiSkipLink emotion-euiSkipLink-euiScreenReaderOnly"
+  class="euiSkipLink emotion-euiButtonDisplay-s-s-fill-primary-euiSkipLink-euiScreenReaderOnly"
   href="#somewhere"
   rel="noreferrer"
 >
   <span
-    class="euiButtonContent euiButton__content"
-  >
-    <span
-      class="euiButton__text"
-    />
-  </span>
+    class="emotion-euiButtonDisplayContent"
+  />
 </a>
 `;
 
 exports[`EuiSkipLink props tabIndex is rendered 1`] = `
 <a
-  class="euiButton euiButton--primary euiButton--small euiButton--fill euiSkipLink emotion-euiSkipLink-euiScreenReaderOnly"
+  class="euiSkipLink emotion-euiButtonDisplay-s-s-fill-primary-euiSkipLink-euiScreenReaderOnly"
   href="#somewhere"
   rel="noreferrer"
   tabindex="-1"
 >
   <span
-    class="euiButtonContent euiButton__content"
-  >
-    <span
-      class="euiButton__text"
-    />
-  </span>
+    class="emotion-euiButtonDisplayContent"
+  />
 </a>
 `;

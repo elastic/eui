@@ -76,7 +76,7 @@ export const euiCardStyles = (
 
       disabled: css`
         cursor: not-allowed; // duplicate property due to Chrome bug
-        background-color: ${euiButtonColor('disabled', euiThemeContext)};
+        background-color: ${euiButtonColor(euiThemeContext, 'disabled')};
         color: ${euiTheme.colors.disabledText};
       `,
     },

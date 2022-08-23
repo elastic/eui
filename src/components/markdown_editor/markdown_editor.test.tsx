@@ -119,7 +119,9 @@ describe('EuiMarkdownEditor', () => {
         {...requiredProps}
       />
     );
-    component.find('EuiButtonEmpty').simulate('click');
+    component
+      .find('button[data-test-subj="markdown_editor_preview_button"]')
+      .simulate('click');
     const rendered = component.render();
     expect(
       rendered.find('.euiText.euiMarkdownFormat').find('h2').text()
@@ -138,7 +140,7 @@ describe('EuiMarkdownEditor', () => {
     expect(component.find('EuiModal').length).toBe(0);
 
     component
-      .find('EuiButtonIcon.euiMarkdownEditorFooter__helpButton')
+      .find('button.euiMarkdownEditorFooter__helpButton')
       .simulate('click');
 
     expect(component.find('EuiModal').length).toBe(1);
@@ -163,7 +165,7 @@ describe('EuiMarkdownEditor', () => {
       />
     );
     component
-      .find('EuiButtonIcon.euiMarkdownEditorFooter__helpButton')
+      .find('button.euiMarkdownEditorFooter__helpButton')
       .simulate('click');
 
     expect(component.render()).toMatchSnapshot();
