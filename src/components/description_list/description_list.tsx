@@ -33,7 +33,7 @@ export const EuiDescriptionList: FunctionComponent<
   textStyle = 'normal',
   titleProps,
   type = 'row',
-  gap = 'm',
+  gutterSize = 'm',
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
@@ -43,7 +43,7 @@ export const EuiDescriptionList: FunctionComponent<
     styles.euiDescriptionList,
     styles[type],
     styles[align],
-    styles[gap],
+    styles[gutterSize],
   ];
 
   const classes = classNames('euiDescriptionList', className);
@@ -71,7 +71,7 @@ export const EuiDescriptionList: FunctionComponent<
 
   return (
     <EuiDescriptionListContext.Provider
-      value={{ type, compressed, textStyle, align }}
+      value={{ type, compressed, textStyle, align, gutterSize }}
     >
       <dl className={classes} css={cssStyles} {...rest} data-type={type}>
         {childrenOrListItems}

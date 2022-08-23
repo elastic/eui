@@ -24,18 +24,13 @@ export const euiDescriptionListDescriptionStyles = (
   const columnDisplay = `
     ${logicalCSS('width', '50%')} // Flex-basis doesn't work in IE with padding
     ${logicalCSS('padding-left', euiTheme.size.s)}
-    &:not(:first-of-type) {
-      ${logicalCSS('margin-top', euiTheme.size.base)}
-    }
   `;
 
   return {
     euiDescriptionList__description: css``,
 
     // Types
-    row: css`
-      flex: 1 1 100%;
-    `,
+    row: css``,
     column: css`
       ${columnDisplay}
     `,
@@ -78,6 +73,18 @@ export const euiDescriptionListDescriptionStyles = (
     // Column types should align description text to the left when EuiDecriptionList is centered
     left: css`
       ${logicalTextAlignCSS('left')};
+    `,
+
+    // Gutter
+    s: css`
+      &:not(:first-of-type) {
+        ${logicalCSS('margin-top', euiTheme.size.s)}
+      }
+    `,
+    m: css`
+      &:not(:first-of-type) {
+        ${logicalCSS('margin-top', euiTheme.size.base)}
+      }
     `,
   };
 };

@@ -42,7 +42,7 @@ export interface EuiDescriptionListProps {
   /**
    * Spacing added to the bottom of the Description List
    */
-  gap?: EuiDescriptionListGapSizes;
+  gutterSize?: EuiDescriptionListGutterSizes;
 }
 
 export const TYPES = ['row', 'inline', 'column', 'responsiveColumn'] as const;
@@ -55,4 +55,4 @@ export const TEXT_STYLES = ['normal', 'reverse'] as const;
 export type EuiDescriptionListTextStyle = typeof TEXT_STYLES[number];
 
 export const GUTTER_SIZES = ['s', 'm'] as const;
-export type EuiDescriptionListGapSizes = typeof GUTTER_SIZES[number];
+export type EuiDescriptionListGutterSizes = typeof GUTTER_SIZES[number];
