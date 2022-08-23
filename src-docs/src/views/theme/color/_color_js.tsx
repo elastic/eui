@@ -265,6 +265,8 @@ export const SpecialValuesJS = () => {
 };
 
 export const UtilsJS = () => {
+  const euiThemeContext = useEuiTheme();
+
   return (
     <>
       <EuiText grow={false}>
@@ -312,8 +314,17 @@ const cssStyles = [colorStyles['accent']];
 
       <ThemeExample
         title={<code>useEuiBackgroundColor(color, method?)</code>}
+        toggleTitle={
+          <code>euiBackgroundColor(euiThemeContext, color, method?)</code>
+        }
         type="hook"
+        toggleType="function"
         props={`color: '${BACKGROUND_COLORS.join("' | '")}';
+
+method? 'opaque' | 'transparent';`}
+        toggleProps={`euiThemeContext: UseEuiTheme;
+
+color: '${BACKGROUND_COLORS.join("' | '")}';
 
 method? 'opaque' | 'transparent';`}
         description={
@@ -332,8 +343,21 @@ method? 'opaque' | 'transparent';`}
             <code>{useEuiBackgroundColor('subdued')}</code>
           </p>
         }
+        toggleExample={
+          <p
+            css={css`
+              background: ${euiBackgroundColor(euiThemeContext, 'subdued')};
+              padding: ${useEuiPaddingSize('l')};
+            `}
+          >
+            <code>{euiBackgroundColor(euiThemeContext, 'subdued')}</code>
+          </p>
+        }
         snippetLanguage="emotion"
         snippet={"background: ${useEuiBackgroundColor('subdued')};"}
+        toggleSnippet={
+          "background: ${euiBackgroundColor(euiThemeContext, 'subdued'};"
+        }
       />
     </>
   );
@@ -383,10 +407,14 @@ export const UtilsValuesJS = () => {
         items={BACKGROUND_COLORS.map((color) => {
           return {
             id: color,
-            token:
+            hook:
               backgroundSelected === 'transparent'
                 ? `useEuiBackgroundColor('${color}', 'transparent')`
                 : `useEuiBackgroundColor('${color}')`,
+            function:
+              backgroundSelected === 'transparent'
+                ? `euiBackgroundColor(euiThemeContext, '${color}', 'transparent')`
+                : `euiBackgroundColor(euiThemeContext, '${color}')`,
             value: euiBackgroundColor(euiTheme, color, {
               method: backgroundSelected as _EuiBackgroundColorOptions['method'],
             }),

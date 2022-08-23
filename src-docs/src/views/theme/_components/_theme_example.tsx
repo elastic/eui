@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import React, { FunctionComponent, ReactNode } from 'react';
+import React, { FunctionComponent, ReactNode, useState } from 'react';
 import {
   EuiCodeBlock,
   EuiCodeBlockProps,
@@ -12,6 +12,7 @@ import {
   logicalCSS,
   useIsWithinBreakpoints,
   useEuiPaddingCSS,
+  EuiButtonGroup,
 } from '../../../../../src';
 import {
   _EuiSplitPanelInnerProps,
@@ -23,14 +24,19 @@ import { GuideSectionExample } from '../../../components/guide_section/guide_sec
 export type ThemeExample = {
   color?: _EuiSplitPanelOuterProps['color'];
   title?: ReactNode;
+  toggleTitle?: ReactNode;
   description?: ReactNode;
   type?: string | null;
+  toggleType?: string | null;
   property?: string;
   example?: GuideSectionExample['example'];
+  toggleExample?: GuideSectionExample['example'];
   examplePanel?: _EuiSplitPanelInnerProps;
   snippet?: GuideSectionExample['tabContent'];
+  toggleSnippet?: GuideSectionExample['tabContent'];
   snippetLanguage?: EuiCodeBlockProps['language'];
   props?: ReactNode;
+  toggleProps?: ReactNode;
   provider?: {
     property?: string;
     type?: string;
@@ -40,23 +46,40 @@ export type ThemeExample = {
 export const ThemeExample: FunctionComponent<ThemeExample> = ({
   color,
   type = 'token',
+  toggleType,
   title,
+  toggleTitle,
   description,
   example,
   examplePanel,
   snippet,
+  toggleSnippet,
   snippetLanguage = 'jsx',
   props,
+  toggleProps,
 }) => {
   const { euiTheme } = useEuiTheme();
   const isLargeBreakpoint = useIsWithinBreakpoints(['m', 'l', 'xl']);
 
+  const [toggleIdSelected, setToggleIdSelected] = useState(type);
+
+  const onChange = (optionId: string) => {
+    setToggleIdSelected(optionId);
+  };
+
+  const isToggleOptionSelected = toggleIdSelected === toggleType;
+
+  const currentSnippet = isToggleOptionSelected ? toggleSnippet : snippet;
+
   const finalSnippet =
     snippetLanguage === 'emotion'
       ? `css\`
-  ${snippet}
+  ${currentSnippet}
 \``
-      : snippet;
+      : currentSnippet;
+
+  const finalProps = isToggleOptionSelected ? toggleProps : props;
+  const finalTitle = isToggleOptionSelected ? toggleTitle : title;
 
   return (
     <>
@@ -80,12 +103,12 @@ export const ThemeExample: FunctionComponent<ThemeExample> = ({
             flexShrink: 0,
           }}
         >
-          {title && (
+          {finalTitle && (
             <>
               <EuiTitle size="xxs">
                 <h3>
-                  {title}{' '}
-                  {type && (
+                  {finalTitle}{' '}
+                  {type && !toggleType && (
                     <EuiBadge
                       css={css`
                         ${logicalCSS('margin-left', euiTheme.size.xs)}
@@ -94,6 +117,24 @@ export const ThemeExample: FunctionComponent<ThemeExample> = ({
                     >
                       {type}
                     </EuiBadge>
+                  )}
+                  {type && toggleType && (
+                    <EuiButtonGroup
+                      legend="This is a basic group"
+                      options={[
+                        {
+                          id: type,
+                          label: type,
+                        },
+                        {
+                          id: toggleType,
+                          label: toggleType,
+                        },
+                      ]}
+                      idSelected={toggleIdSelected as string}
+                      onChange={(id) => onChange(id)}
+                      buttonSize="compressed"
+                    />
                   )}
                 </h3>
               </EuiTitle>
@@ -105,7 +146,7 @@ export const ThemeExample: FunctionComponent<ThemeExample> = ({
           <EuiText size="s" grow={false}>
             {description}
           </EuiText>
-          {props && (
+          {finalProps && (
             <>
               <EuiSpacer />
               <EuiCodeBlock
@@ -113,13 +154,13 @@ export const ThemeExample: FunctionComponent<ThemeExample> = ({
                 paddingSize="none"
                 language="ts"
               >
-                {props}
+                {finalProps}
               </EuiCodeBlock>
             </>
           )}
         </EuiSplitPanel.Inner>
 
-        {(example || snippet) && (
+        {(example || finalSnippet) && (
           <EuiSplitPanel.Inner
             paddingSize="none"
             style={{
