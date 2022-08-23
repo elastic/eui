@@ -229,22 +229,9 @@ export class EuiComboBox<T> extends Component<
   // Refs
   comboBoxRefInstance: RefInstance<HTMLDivElement> = null;
   comboBoxRefCallback: RefCallback<HTMLDivElement> = (ref) => {
-    // IE11 doesn't support the `relatedTarget` event property for blur events
-    // but does add it for focusout. React doesn't support `onFocusOut` so here we are.
-    if (this.comboBoxRefInstance) {
-      this.comboBoxRefInstance.removeEventListener(
-        'focusout',
-        this.onContainerBlur
-      );
-    }
-
     this.comboBoxRefInstance = ref;
 
     if (this.comboBoxRefInstance) {
-      this.comboBoxRefInstance.addEventListener(
-        'focusout',
-        this.onContainerBlur
-      );
       const comboBoxBounds = this.comboBoxRefInstance.getBoundingClientRect();
       this.setState({
         width: comboBoxBounds.width,
@@ -549,7 +536,7 @@ export class EuiComboBox<T> extends Component<
     }
   };
 
-  onContainerBlur: EventListener = (event) => {
+  onContainerBlur: FocusEventHandler<HTMLDivElement> = (event) => {
     // close the options list, unless the user clicked on an option
 
     /**
@@ -575,9 +562,7 @@ export class EuiComboBox<T> extends Component<
       this.closeList();
 
       if (this.props.onBlur) {
-        this.props.onBlur(
-          (event as unknown) as React.FocusEvent<HTMLDivElement>
-        );
+        this.props.onBlur(event);
       }
       this.setState({ hasFocus: false });
 
@@ -1046,6 +1031,7 @@ export class EuiComboBox<T> extends Component<
         className={classes}
         data-test-subj={dataTestSubj}
         onKeyDown={this.onKeyDown}
+        onBlur={this.onContainerBlur}
         ref={this.comboBoxRefCallback}
       >
         <EuiComboBoxInput
