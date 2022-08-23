@@ -11,7 +11,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
       aria-controls="20"
       aria-expanded="false"
       aria-labelledby="generated-id"
-      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton css-1r6f2je-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton"
+      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton css-b10u0p-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton"
       tabindex="-1"
       type="button"
     >
@@ -65,7 +65,7 @@ exports[`EuiAccordion behavior does not open when isDisabled 1`] = `
       aria-controls="18"
       aria-expanded="false"
       aria-labelledby="generated-id"
-      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton css-lc7o8f-empty-disabled-hoverStyles-EuiButtonIcon-euiAccordion__iconButton"
+      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton css-abgxts-empty-disabled-hoverStyles-EuiButtonIcon-euiAccordion__iconButton"
       disabled=""
       tabindex="-1"
       type="button"
@@ -121,7 +121,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
       aria-controls="17"
       aria-expanded="true"
       aria-labelledby="generated-id"
-      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton euiAccordion__iconButton-isOpen css-1o4u7sp-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton-isOpen"
+      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton euiAccordion__iconButton-isOpen css-mi8usc-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton-isOpen"
       tabindex="-1"
       type="button"
     >
@@ -175,7 +175,7 @@ exports[`EuiAccordion behavior opens when div is clicked if element is a div 1`]
       aria-controls="19"
       aria-expanded="true"
       aria-labelledby="generated-id"
-      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton euiAccordion__iconButton-isOpen css-1o4u7sp-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton-isOpen"
+      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton euiAccordion__iconButton-isOpen css-mi8usc-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton-isOpen"
       tabindex="-1"
       type="button"
     >
@@ -231,7 +231,7 @@ exports[`EuiAccordion is rendered 1`] = `
       aria-controls="0"
       aria-expanded="false"
       aria-labelledby="generated-id"
-      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton css-1r6f2je-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton"
+      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton css-b10u0p-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton"
       tabindex="-1"
       type="button"
     >
@@ -281,7 +281,7 @@ exports[`EuiAccordion isDisabled is rendered 1`] = `
       aria-controls="16"
       aria-expanded="false"
       aria-labelledby="generated-id"
-      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton css-lc7o8f-empty-disabled-hoverStyles-EuiButtonIcon-euiAccordion__iconButton"
+      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton css-abgxts-empty-disabled-hoverStyles-EuiButtonIcon-euiAccordion__iconButton"
       disabled=""
       tabindex="-1"
       type="button"
@@ -379,7 +379,7 @@ exports[`EuiAccordion props arrowDisplay right is rendered 1`] = `
       aria-controls="8"
       aria-expanded="false"
       aria-labelledby="generated-id"
-      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton euiAccordion__iconButton--right css-1f2dcop-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton-arrowRight"
+      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton euiAccordion__iconButton--right css-1t9tlpw-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton-arrowRight"
       tabindex="-1"
       type="button"
     >
@@ -419,7 +419,7 @@ exports[`EuiAccordion props arrowProps is rendered 1`] = `
       aria-expanded="false"
       aria-label="aria-label"
       aria-labelledby="generated-id"
-      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton testClass1 testClass2 css-1r6f2je-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton"
+      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton testClass1 testClass2 css-b10u0p-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton"
       data-test-subj="test subject string"
       tabindex="-1"
       type="button"
@@ -470,7 +470,7 @@ exports[`EuiAccordion props buttonContent is rendered 1`] = `
       aria-controls="3"
       aria-expanded="false"
       aria-labelledby="generated-id"
-      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton css-1r6f2je-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton"
+      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton css-b10u0p-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton"
       tabindex="-1"
       type="button"
     >
@@ -524,7 +524,7 @@ exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
       aria-controls="2"
       aria-expanded="false"
       aria-labelledby="generated-id"
-      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton css-1r6f2je-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton"
+      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton css-b10u0p-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton"
       tabindex="-1"
       type="button"
     >
@@ -574,7 +574,7 @@ exports[`EuiAccordion props buttonElement is rendered 1`] = `
       aria-controls="5"
       aria-expanded="false"
       aria-labelledby="generated-id"
-      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton css-1r6f2je-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton"
+      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton css-b10u0p-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton"
       tabindex="0"
       type="button"
     >
@@ -623,7 +623,7 @@ exports[`EuiAccordion props buttonProps is rendered 1`] = `
       aria-controls="4"
       aria-expanded="false"
       aria-labelledby="generated-id"
-      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton css-1r6f2je-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton"
+      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton css-b10u0p-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton"
       tabindex="-1"
       type="button"
     >
@@ -675,7 +675,7 @@ exports[`EuiAccordion props element is rendered 1`] = `
       aria-controls="1"
       aria-expanded="false"
       aria-labelledby="generated-id"
-      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton css-1r6f2je-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton"
+      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton css-b10u0p-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton"
       tabindex="0"
       type="button"
     >
@@ -724,7 +724,7 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
       aria-controls="6"
       aria-expanded="false"
       aria-labelledby="generated-id"
-      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton css-1r6f2je-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton"
+      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton css-b10u0p-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton"
       tabindex="-1"
       type="button"
     >
@@ -781,7 +781,7 @@ exports[`EuiAccordion props forceState closed is rendered 1`] = `
       aria-controls="11"
       aria-expanded="false"
       aria-labelledby="generated-id"
-      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton css-1r6f2je-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton"
+      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton css-b10u0p-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton"
       tabindex="-1"
       type="button"
     >
@@ -835,7 +835,7 @@ exports[`EuiAccordion props forceState open is rendered 1`] = `
       aria-controls="12"
       aria-expanded="true"
       aria-labelledby="generated-id"
-      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton euiAccordion__iconButton-isOpen css-1o4u7sp-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton-isOpen"
+      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton euiAccordion__iconButton-isOpen css-mi8usc-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton-isOpen"
       tabindex="-1"
       type="button"
     >
@@ -889,7 +889,7 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
       aria-controls="7"
       aria-expanded="true"
       aria-labelledby="generated-id"
-      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton euiAccordion__iconButton-isOpen css-1o4u7sp-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton-isOpen"
+      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton euiAccordion__iconButton-isOpen css-mi8usc-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton-isOpen"
       tabindex="-1"
       type="button"
     >
@@ -943,7 +943,7 @@ exports[`EuiAccordion props isLoading is rendered 1`] = `
       aria-controls="14"
       aria-expanded="false"
       aria-labelledby="generated-id"
-      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton css-1r6f2je-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton"
+      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton css-b10u0p-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton"
       tabindex="-1"
       type="button"
     >
@@ -1002,7 +1002,7 @@ exports[`EuiAccordion props isLoadingMessage is rendered 1`] = `
       aria-controls="15"
       aria-expanded="false"
       aria-labelledby="generated-id"
-      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton css-1r6f2je-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton"
+      class="euiButtonIcon euiButtonIcon--xSmall euiAccordion__iconButton css-b10u0p-empty-text-hoverStyles-EuiButtonIcon-euiAccordion__iconButton"
       tabindex="-1"
       type="button"
     >

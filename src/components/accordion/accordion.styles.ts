@@ -8,7 +8,12 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
-import { euiFontSize } from '../../global_styling/mixins';
+import {
+  euiFontSize,
+  logicals,
+  logicalCSS,
+  logicalTextAlignCSS,
+} from '../../global_styling';
 
 export const euiAccordionButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -19,8 +24,8 @@ export const euiAccordionButtonStyles = (euiThemeContext: UseEuiTheme) => {
       display: flex;
       flex-grow: 1;
       line-height: ${euiTheme.size.l};
-      text-align: left;
-      width: 100%;
+      ${logicalTextAlignCSS('left')}
+      ${logicalCSS('width', '100%')}
 
       &:hover,
       &:focus {
@@ -67,21 +72,21 @@ export const euiAccordionChildrenStyles = ({ euiTheme }: UseEuiTheme) => ({
 
 export const euiAccordionChildWrapperStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiAccordion__childWrapper: css`
-    height: 0;
+    ${logicalCSS('height', 0)}
     opacity: 0;
     overflow: hidden;
-    transition: height ${euiTheme.animation.normal}
+    transition: ${logicals.height} ${euiTheme.animation.normal}
         ${euiTheme.animation.resistance},
       opacity ${euiTheme.animation.normal} ${euiTheme.animation.resistance};
     visibility: hidden;
-    will-change: opacity, visibility, height;
+    will-change: opacity, visibility, ${logicals.height};
 
     &:focus {
       outline: none; // Hide focus ring because of tabindex=-1 on Safari
     }
   `,
   isOpen: css`
-    height: auto;
+    ${logicalCSS('height', 'auto')}
     opacity: 1;
     visibility: visible;
   `,
@@ -90,16 +95,15 @@ export const euiAccordionChildWrapperStyles = ({ euiTheme }: UseEuiTheme) => ({
 export const euiAccordionIconButtonStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiAccordion__iconButton: css`
     flex-shrink: 0;
-    margin-inline-end: ${euiTheme.size.xs};
-    transform: rotate(0deg) !important;
+    ${logicalCSS('margin-right', euiTheme.size.xs)}
     transform: rotate(0deg) !important;
   `,
   isOpen: css`
     transform: rotate(90deg) !important;
   `,
   arrowRight: css`
-    margin-left: ${euiTheme.size.xs};
-    margin-right: 0;
+    ${logicalCSS('margin-left', euiTheme.size.xs)}
+    ${logicalCSS('margin-right', 0)}
   `,
 });
 
@@ -111,7 +115,7 @@ export const euiAccordionOptionalActionStyles = () => ({
 
 export const euiAccordionSpinnerStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiAccordion__spinner: css`
-    margin-right: ${euiTheme.size.xs};
+    ${logicalCSS('margin-right', euiTheme.size.xs)}
   `,
 });
 

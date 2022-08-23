@@ -60,15 +60,13 @@ export const euiButtonDisplayStyles = (
       pointer-events: none;
       cursor: not-allowed;
     `,
-
+    fullWidth: css`
+      display: block;
+      ${logicalCSS('width', '100%')}
+    `,
     // Sizes
     xs: css(_buttonSize(euiTheme.size.l), euiFontSize(euiThemeContext, 'xs')),
     s: css(_buttonSize(euiTheme.size.xl), euiFontSize(euiThemeContext, 's')),
     m: css(_buttonSize(euiTheme.size.xxl), euiFontSize(euiThemeContext, 's')),
-
-    fullWidth: css`
-      display: block;
-      width: 100%;
-    `,
   };
 };

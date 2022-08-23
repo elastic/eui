@@ -5,12 +5,14 @@ exports[`global utility styles generates static global styles 1`] = `
   // Take the element out of the layout
   position: absolute;
   // Keep it vertically inline
-  top: auto;
+  inset-block-start: auto;
   // Chrome requires a left value, and Selenium (used by Kibana's FTR) requires an off-screen position for its .getVisibleText() to not register SR-only text
-  left: -10000px;
+  inset-inline-start: -10000px;
   // The element must have a size (for some screen readers)
-  width: 1px;
-  height: 1px;
+  
+    inline-size: 1px;
+    block-size: 1px;
+  
   // But reduce the visible size to nothing
   clip: rect(0 0 0 0);
   clip-path: inset(50%);

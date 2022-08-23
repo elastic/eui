@@ -7,49 +7,44 @@
  */
 
 import React, { FunctionComponent, ReactNode } from 'react';
-import classNames from 'classnames';
 
-import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button/button_empty';
+import { EuiI18n } from '../../i18n';
+import { EuiButton, Props } from '../../button/button';
+import { euiCardSelectStyles } from './card_select.styles';
 
-import { EuiI18n } from '../i18n';
-
-export type EuiCardSelectProps = EuiButtonEmptyProps & {
-  /**
-   * Is in the selected state
-   */
-  isSelected?: boolean;
-  isDisabled?: boolean;
-};
+export type EuiCardSelectProps = Props;
 
 export const EuiCardSelect: FunctionComponent<EuiCardSelectProps> = ({
-  className,
   isSelected = false,
   isDisabled,
+  disabled,
   color,
   children,
   ...rest
 }) => {
-  const child = euiCardSelectableText(isSelected, isDisabled, children);
+  const styles = euiCardSelectStyles();
+  const baseCSS = [styles.euiCardSelect];
 
-  const selectClasses = classNames(
-    'euiCardSelect',
-    `euiCardSelect--${euiCardSelectableColor(color, isSelected)}`,
-    className
+  const child = euiCardSelectableText(
+    isSelected,
+    isDisabled || disabled,
+    children
   );
 
   return (
-    <EuiButtonEmpty
-      className={selectClasses}
-      color={color || 'text'}
-      size="xs"
-      isDisabled={isDisabled}
+    <EuiButton
+      css={baseCSS}
+      color={euiCardSelectableColor(color, isSelected)}
+      size="m"
+      isDisabled={isDisabled || disabled}
       iconType={isSelected ? 'check' : undefined}
       role="switch"
       aria-checked={isSelected}
+      fullWidth
       {...rest}
     >
       {child}
-    </EuiButtonEmpty>
+    </EuiButton>
   );
 };
 
@@ -76,9 +71,9 @@ function euiCardSelectableText(
 }
 
 export function euiCardSelectableColor(
-  color: EuiButtonEmptyProps['color'] | undefined,
+  color: Props['color'],
   isSelected: boolean | undefined
-): string {
+): Props['color'] {
   let calculatedColor;
   if (color) {
     calculatedColor = color;
@@ -88,5 +83,5 @@ export function euiCardSelectableColor(
     calculatedColor = 'text';
   }
 
-  return calculatedColor;
+  return calculatedColor as Props['color'];
 }

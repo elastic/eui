@@ -9,7 +9,7 @@ import {
   EuiText,
   EuiButton,
   EuiCode,
-} from '../../../../src/components';
+} from '../../../../src';
 
 const radios = [
   {

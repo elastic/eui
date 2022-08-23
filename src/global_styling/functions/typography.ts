@@ -12,6 +12,7 @@ import {
   _EuiThemeFontWeights,
 } from '../variables/typography';
 import { UseEuiTheme } from '../../services/theme/hooks';
+import { logicalCSS } from './logicals';
 
 export interface _FontScaleOptions {
   /**
@@ -108,7 +109,7 @@ export const euiTextShift = (
     display: block;
     content: attr(${attribute});
     font-weight: ${euiTheme.font.weight[fontWeight]};
-    height: 0;
+    ${logicalCSS('height', 0)}
     overflow: hidden;
     visibility: hidden;
   }`;

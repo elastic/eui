@@ -8,6 +8,7 @@ import {
   EuiCode,
   EuiTitle,
   EuiPanel,
+  logicalSizeCSS,
 } from '../../../../../src';
 
 import { getPropsFromComponent } from '../../../services/props/get_props';
@@ -60,8 +61,7 @@ export default ({ onThemeUpdate }) => {
           value={baseClone}
           groupProps={{ alignItems: 'center' }}
           buttonStyle={css`
-            width: ${euiTheme.base}px;
-            height: ${euiTheme.base}px;
+            ${logicalSizeCSS(`${euiTheme.base}px`, `${euiTheme.base}px`)}
             border-radius: min(25%, ${euiTheme.border.radius.small});
             background: ${euiTheme.colors.mediumShade};
           `}
@@ -96,8 +96,7 @@ export default ({ onThemeUpdate }) => {
           value={sizes[size]}
           groupProps={{ alignItems: 'center' }}
           buttonStyle={css`
-            width: ${sizes[size]};
-            height: ${sizes[size]};
+            ${logicalSizeCSS(sizes[size], sizes[size])}
             border-radius: min(25%, ${euiTheme.border.radius.small});
             background: ${euiTheme.colors.mediumShade};
           `}
