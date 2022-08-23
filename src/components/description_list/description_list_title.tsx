@@ -31,7 +31,7 @@ export const EuiDescriptionListTitle: FunctionComponent<EuiDescriptionListTitleP
   const styles = euiDescriptionListTitleStyles(theme);
 
   let conditionalStyles =
-    compressed && textStyle === 'reverse'
+    compressed && textStyle !== 'reverse'
       ? [styles.fontStyles.compressed]
       : [styles.fontStyles[textStyle]];
 
