@@ -4,10 +4,6 @@
   flex-grow: 1; // Grow nested flex-groups by default
 
   .euiFlexItem {
-    @include internetExplorerOnly {
-      min-width: 1px;
-    }
-
     flex-grow: 1;
     flex-basis: 0;
   }

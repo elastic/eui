@@ -8,7 +8,7 @@ exports[`EuiDescriptionListTitle EuiDescriptionListTitle prop variations align c
 
 exports[`EuiDescriptionListTitle EuiDescriptionListTitle prop variations compressed is rendered 1`] = `
 <dt
-  class="euiDescriptionList__title emotion-euiDescriptionList__title-row-normal"
+  class="euiDescriptionList__title emotion-euiDescriptionList__title-row-compressed"
 />
 `;
 

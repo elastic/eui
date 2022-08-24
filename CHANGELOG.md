@@ -1,3 +1,33 @@
+## [`65.0.1`](https://github.com/elastic/eui/tree/v65.0.1)
+
+**Bug fixes**
+
+- Fixed the text size of `EuiDescriptionListTitle` when `EuiDescriptionList` is compressed ([#6160](https://github.com/elastic/eui/pull/6160))
+
+## [`65.0.0`](https://github.com/elastic/eui/tree/v65.0.0)
+
+- Added `anchorProps` to allow passing more props to the anchoring wrapper in `EuiToolTip` and `EuiBetaBadge` ([#6110](https://github.com/elastic/eui/pull/6110))
+- Added an empty shade background color to `hollow` style `EuiBetaBadge` ([#6110](https://github.com/elastic/eui/pull/6110))
+- Changed design of select button in `selectable` `EuiCard`s ([#6110](https://github.com/elastic/eui/pull/6110))
+- Updated button `ghost` colors to be `colorMode = 'dark'` themed `text` buttons ([#6150](https://github.com/elastic/eui/pull/6150))
+- Renamed `ButtonColor` and `ButtonSize` types to prefixed versions `EuiButtonColor` and `EuiButtonSize` ([#6150](https://github.com/elastic/eui/pull/6150))
+
+**Deprecations**
+
+- Deprecated `ghost` color for `EuiButton`, `EuiButtonIcon`, `EuiButtonEmpty` ([#6150](https://github.com/elastic/eui/pull/6150))
+
+**Breaking changes**
+
+- Removed `EuiButtonIconColor` and `EuiButtonEmptyColor` types, use `EuiButtonIconProps['color']` and `EuiButtonEmptyProps['color']` instead ([#6150](https://github.com/elastic/eui/pull/6150))
+- Removed support for `ghost` color from `EuiButtonGroup` ([#6150](https://github.com/elastic/eui/pull/6150))
+
+**CSS-in-JS conversions**
+
+- Removed `euiHasBetaBadge()` Sass mixin ([#6110](https://github.com/elastic/eui/pull/6110))
+- Converted `EuiCard`, `EuiCheckableCard` to Emotion, removed `$euiCheckableCardPadding`, `$euiCardSpacing`, `$euiCardBottomNodeHeight`, `$euiCardSelectButtonBorders`, `$euiCardSelectButtonBackgrounds`, and `$euiCardPaddingModifiers` ([#6110](https://github.com/elastic/eui/pull/6110))
+- Converted `EuiButton` to Emotion ([#6150](https://github.com/elastic/eui/pull/6150))
+- Converted color styles of `EuiButtonIcon`, `EuiButtonEmpty`, `EuiButtonGroup` ([#6150](https://github.com/elastic/eui/pull/6150))
+
 ## [`64.0.1`](https://github.com/elastic/eui/tree/v64.0.1)
 
 **Bug fixes**
@@ -43,6 +73,14 @@
 **CSS-in-JS conversions**
 
 - Converted `EuiTour` to Emotion ([#6087](https://github.com/elastic/eui/pull/6087))
+
+## [`63.0.4`](https://github.com/elastic/eui/tree/v63.0.4)
+
+**Note: this release is a backport containing changes originally made in `65.0.1`**
+
+**Bug fixes**
+
+- Fixed the text size of `EuiDescriptionListTitle` when `EuiDescriptionList` is compressed ([#6160](https://github.com/elastic/eui/pull/6160))
 
 ## [`63.0.3`](https://github.com/elastic/eui/tree/v63.0.3)
 
@@ -105,6 +143,14 @@
 - Converted `EuiPage` and `EuiPageBody` to Emotion ([#5768](https://github.com/elastic/eui/pull/5768))
 - Converted `EuiPageHeader` and `EuiPageHeaderContent` to Emotion ([#5768](https://github.com/elastic/eui/pull/5768))
 - Removed `euiPageRestrictWidth()` Sass mixin ([#5768](https://github.com/elastic/eui/pull/5768))
+
+## [`62.2.4`](https://github.com/elastic/eui/tree/v62.2.4)
+
+**Note: this release is a backport containing changes originally made in `65.0.1`**
+
+**Bug fixes**
+
+- Fixed the text size of `EuiDescriptionListTitle` when `EuiDescriptionList` is compressed ([#6160](https://github.com/elastic/eui/pull/6160))
 
 ## [`62.2.3`](https://github.com/elastic/eui/tree/v62.2.3)
 

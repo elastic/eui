@@ -5,11 +5,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 356,
+        "line": 360,
         "column": 16
       },
       "end": {
-        "line": 356,
+        "line": 360,
         "column": 76
       }
     },
@@ -261,15 +261,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 72,
+        "line": 63,
         "column": 11
       },
       "end": {
-        "line": 72,
+        "line": 63,
         "column": 72
       }
     },
-    "filepath": "src/components/card/card_select.tsx"
+    "filepath": "src/components/card/card_select/card_select.tsx"
   },
   {
     "token": "euiCardSelect.unavailable",
@@ -277,15 +277,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 74,
+        "line": 65,
         "column": 11
       },
       "end": {
-        "line": 74,
+        "line": 65,
         "column": 78
       }
     },
-    "filepath": "src/components/card/card_select.tsx"
+    "filepath": "src/components/card/card_select/card_select.tsx"
   },
   {
     "token": "euiCardSelect.select",
@@ -293,15 +293,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 76,
+        "line": 67,
         "column": 11
       },
       "end": {
-        "line": 76,
+        "line": 67,
         "column": 68
       }
     },
-    "filepath": "src/components/card/card_select.tsx"
+    "filepath": "src/components/card/card_select/card_select.tsx"
   },
   {
     "token": "euiCodeBlock.copyButton",
@@ -4197,11 +4197,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 228,
+        "line": 229,
         "column": 12
       },
       "end": {
-        "line": 228,
+        "line": 229,
         "column": 80
       }
     },
@@ -4213,11 +4213,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 238,
+        "line": 240,
         "column": 12
       },
       "end": {
-        "line": 241,
+        "line": 243,
         "column": 14
       }
     },

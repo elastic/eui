@@ -3,44 +3,12 @@
     "gutterExtraSmall": "4px",
     "gutterSmall": "8px"
   },
-  "euiButtonEmptyTypes": {
-    "primary": "#36a2ef",
-    "danger": "#f86b63",
-    "disabled": "#515761",
-    "ghost": "#ffffff",
-    "text": "#dfe5ef",
-    "success": "#7dded8",
-    "warning": "#f3d371"
-  },
   "euiCallOutTypes": {
     "primary": "#36a2ef",
     "success": "#7dded8",
     "warning": "#f3d371",
     "danger": "#f86b63"
   },
-  "euiCardSpacing": "16px",
-  "euiCardBottomNodeHeight": "40px",
-  "euiCardSelectButtonBorders": {
-    "text": "#7dded8",
-    "primary": "#36a2ef",
-    "success": "#7dded8",
-    "danger": "#f86b63",
-    "ghost": "#98a2b3"
-  },
-  "euiCardSelectButtonBackgrounds": {
-    "text": "#25262e",
-    "primary": "#103148",
-    "success": "#264341",
-    "danger": "#4a201e",
-    "ghost": "#98a2b3"
-  },
-  "euiCardPaddingModifiers": {
-    "paddingNone": 0,
-    "paddingSmall": "8px",
-    "paddingMedium": "16px",
-    "paddingLarge": "24px"
-  },
-  "euiCheckableCardPadding": "16px",
   "euiCodeBlockPaddingModifiers": {
     "paddingSmall": "8px",
     "paddingMedium": "16px",

@@ -42,8 +42,7 @@ export const euiCardStyles = (
       euiCard: css`
         display: flex;
 
-        // Progressive enhancement where we apply the outline to the whole card
-        // when the internal text button has focus
+        // Apply the outline to the whole card when the internal text button has focus
         &:has([class*='euiCard__text'][class*='-interactive']:focus:focus-visible) {
           outline: ${euiTheme.focus.width} solid currentColor;
         }
