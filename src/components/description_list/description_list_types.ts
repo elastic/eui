@@ -40,7 +40,7 @@ export interface EuiDescriptionListProps {
    */
   descriptionProps?: HTMLAttributes<HTMLElement> & CommonProps;
   /**
-   * Spacing added to the bottom of the Description List
+   * Vertical spacing added between `EuiDescriptionList` elements
    */
   gutterSize?: EuiDescriptionListGutterSizes;
 }
