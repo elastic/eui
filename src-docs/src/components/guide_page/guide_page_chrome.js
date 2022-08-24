@@ -215,11 +215,11 @@ export class GuidePageChrome extends Component {
     if (sideNav.length) {
       sideNavContent = (
         <EuiSideNav
-          mobileTitle="Navigate components"
+          mobileTitle="Navigation"
           toggleOpenOnMobile={this.toggleOpenOnMobile}
           isOpenOnMobile={this.state.isSideNavOpenOnMobile}
           items={sideNav}
-          aria-label="EUI"
+          aria-label="EUI navigation"
         />
       );
     } else {
