@@ -7,21 +7,13 @@
   position: relative;
 
   &.euiListGroupItem-isActive,
-  &.euiListGroupItem-isClickable:hover {
-    background-color: $euiListGroupItemHoverBackground;
-  }
-
-  // Can't be grouped with above or else IE will ignore the whole group
+  &.euiListGroupItem-isClickable:hover,
   &.euiListGroupItem-isClickable:focus-within {
     background-color: $euiListGroupItemHoverBackground;
   }
 
   &.euiListGroupItem--ghost {
-    &.euiListGroupItem-isClickable:hover {
-      background-color: $euiListGroupItemHoverBackgroundGhost;
-    }
-
-    // Can't be grouped with above or else IE will ignore the whole group
+    &.euiListGroupItem-isClickable:hover,
     &.euiListGroupItem-isClickable:focus-within {
       background-color: $euiListGroupItemHoverBackgroundGhost;
     }
@@ -43,20 +35,6 @@
     cursor: not-allowed;
     background-color: transparent;
     text-decoration: none;
-  }
-}
-
-// IE doesn't support :focus-within
-@include internetExplorerOnly {
-  .euiListGroupItem__button:hover,
-  .euiListGroupItem__button:focus {
-    background-color: $euiListGroupItemHoverBackground;
-    border-radius: $euiBorderRadius;
-
-    .euiListGroupItem--ghost .euiListGroupItem__button:hover,
-    .euiListGroupItem--ghost .euiListGroupItem__button:focus {
-      background-color: $euiListGroupItemHoverBackgroundGhost;
-    }
   }
 }
 
