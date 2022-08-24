@@ -16,34 +16,34 @@ export const euiLoadingChartStyles = ({ euiTheme }: UseEuiTheme) => ({
     display: inline-flex;
   `,
   m: css`
-    height: ${euiTheme.size.base};
+    ${logicalCSS('height', euiTheme.size.base)}
     gap: ${euiTheme.size.xxs};
   `,
   l: css`
-    height: ${euiTheme.size.l};
+    ${logicalCSS('height', euiTheme.size.l)}
     gap: ${euiTheme.size.xxs};
   `,
   xl: css`
-    height: ${euiTheme.size.xl};
+    ${logicalCSS('height', euiTheme.size.xl)}
     gap: ${euiTheme.size.xs};
   `,
 });
 
 export const euiLoadingChartBarStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiLoadingChart__bar: css`
-    height: 100%;
+    ${logicalCSS('height', '100%')}
     display: inline-block;
   `,
   m: css`
-    width: ${euiTheme.size.xxs};
+    ${logicalCSS('width', euiTheme.size.xxs)}
     ${logicalCSS('margin-bottom', euiTheme.size.s)};
   `,
   l: css`
-    width: ${euiTheme.size.xs};
+    ${logicalCSS('width', euiTheme.size.xs)}
     ${logicalCSS('margin-bottom', euiTheme.size.m)};
   `,
   xl: css`
-    width: ${euiTheme.size.s};
+    ${logicalCSS('width', euiTheme.size.s)}
     ${logicalCSS('margin-bottom', euiTheme.size.base)};
   `,
 });

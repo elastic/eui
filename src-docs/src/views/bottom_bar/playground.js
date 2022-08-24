@@ -10,7 +10,7 @@ export const bottomBarConfig = () => {
 
   propsToUse.children = {
     type: PropTypes.ReactNode,
-    value: '<EuiButton color="ghost">Save</EuiButton>',
+    value: '<EuiButton color="text">Save</EuiButton>',
   };
 
   propsToUse.position = {

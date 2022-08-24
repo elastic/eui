@@ -142,8 +142,7 @@ export const ScaleValuesJS = () => {
       render={(size) => (
         <div
           css={css`
-            width: ${size.value};
-            height: ${size.value};
+            ${logicalSizeCSS(size.value, size.value)}
             border-radius: min(25%, ${euiTheme.border.radius.small});
             background: ${euiTheme.colors.mediumShade};
           `}

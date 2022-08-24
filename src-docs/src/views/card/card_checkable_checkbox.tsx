@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 
-import { EuiCheckableCard } from '../../../../src/components';
-
-import { useGeneratedHtmlId } from '../../../../src/services';
+import { EuiCheckableCard, useGeneratedHtmlId } from '../../../../src';
 
 export default () => {
   const [checkbox, setCheckbox] = useState(false);

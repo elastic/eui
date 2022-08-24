@@ -7,7 +7,7 @@
  */
 
 import { css, keyframes } from '@emotion/react';
-import { euiCanAnimate } from '../../global_styling';
+import { euiCanAnimate, logicalCSS } from '../../global_styling';
 import { COLOR_MODES_STANDARD, shade, tint, UseEuiTheme } from '../../services';
 
 const loadingContentGradient = keyframes`
@@ -36,25 +36,25 @@ export const euiLoadingContentStyles = ({
   return {
     euiLoadingContent__singleLine: css`
       display: block;
-      width: 100%;
-      height: ${euiTheme.size.base};
+      ${logicalCSS('width', '100%')}
+      ${logicalCSS('height', euiTheme.size.base)}
       border-radius: ${euiTheme.border.radius.medium};
       background: ${gradientStartStop};
       overflow: hidden;
 
       &:not(:last-child) {
-        margin-block-end: ${euiTheme.size.s};
+        ${logicalCSS('margin-bottom', euiTheme.size.s)}
       }
 
       &:last-child:not(:only-child) {
-        width: 75%;
+        ${logicalCSS('width', '75%')}
       }
 
       &::after {
         content: '';
         display: block;
-        width: 220%;
-        height: 100%;
+        ${logicalCSS('width', '220%')}
+        ${logicalCSS('height', '100%')}
         background: linear-gradient(
           137deg,
           ${gradientStartStop} 45%,

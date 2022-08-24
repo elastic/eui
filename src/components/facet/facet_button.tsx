@@ -9,7 +9,6 @@
 import React, {
   FunctionComponent,
   HTMLAttributes,
-  MouseEventHandler,
   ReactNode,
   RefCallback,
   ReactElement,
@@ -31,11 +30,14 @@ import {
   euiFacetButtonQuantityStyles,
   euiFacetButtonLoadingSpinnerStyles,
 } from './facet_button.styles';
-import { EuiButtonDisplay } from '../button/button_display/_button_display';
+import {
+  EuiButtonDisplay,
+  isButtonDisabled,
+} from '../button/button_display/_button_display';
 
 export interface EuiFacetButtonProps
   extends CommonProps,
-    Omit<HTMLAttributes<HTMLButtonElement>, 'onClick'> {
+    HTMLAttributes<HTMLButtonElement> {
   buttonRef?: RefCallback<HTMLButtonElement>;
   /**
    * ReactNode to render as this component's content
@@ -54,7 +56,6 @@ export interface EuiFacetButtonProps
    * Changes visual of button to indicate it's currently selected
    */
   isSelected?: boolean;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
   /**
    * Adds a notification indicator for displaying the quantity provided
    */
@@ -73,7 +74,7 @@ export const EuiFacetButton: FunctionComponent<EuiFacetButtonProps> = ({
   ...rest
 }) => {
   // If in the loading state, force disabled to true
-  isDisabled = isLoading ? true : isDisabled;
+  isDisabled = isButtonDisabled({ isDisabled, isLoading });
 
   const selection = isSelected ? 'isSelected' : 'unSelected';
 
@@ -143,7 +144,6 @@ export const EuiFacetButton: FunctionComponent<EuiFacetButtonProps> = ({
         <EuiButtonDisplay
           className={classes}
           css={cssStyles}
-          element="button"
           isDisabled={isDisabled}
           ref={buttonRef}
           title={rest['aria-label'] || innerText}

@@ -1,3 +1,15 @@
+## [`64.0.1`](https://github.com/elastic/eui/tree/v64.0.1)
+
+**Bug fixes**
+
+- Fixed `CollapsedItemActions` ref callback not accounting for `null` value ([#6145](https://github.com/elastic/eui/pull/6145))
+
+**CSS-in-JS conversions**
+
+- Added `logicalCSSWithFallback()` utility for logical properties without full browser support ([#6124](https://github.com/elastic/eui/pull/6124))
+- Converted `euiFullHeight()` Sass mixin to Emotion  ([#6124](https://github.com/elastic/eui/pull/6124))
+- Converted all global CSS utility classes to Emotion ([#6124](https://github.com/elastic/eui/pull/6124))
+
 ## [`64.0.0`](https://github.com/elastic/eui/tree/v64.0.0)
 
 - Added `onPositionChange` callback prop to `EuiPopover` for when the popover positon changes ([#6087](https://github.com/elastic/eui/pull/6087))
@@ -31,6 +43,14 @@
 **CSS-in-JS conversions**
 
 - Converted `EuiTour` to Emotion ([#6087](https://github.com/elastic/eui/pull/6087))
+
+## [`63.0.3`](https://github.com/elastic/eui/tree/v63.0.3)
+
+**Note: this release is a backport containing changes originally made in `64.0.1`**
+
+**Bug fixes**
+
+- Fixed `CollapsedItemActions` ref callback not accounting for `null` value ([#6145](https://github.com/elastic/eui/pull/6145))
 
 ## [`63.0.2`](https://github.com/elastic/eui/tree/v63.0.2)
 
@@ -85,6 +105,14 @@
 - Converted `EuiPage` and `EuiPageBody` to Emotion ([#5768](https://github.com/elastic/eui/pull/5768))
 - Converted `EuiPageHeader` and `EuiPageHeaderContent` to Emotion ([#5768](https://github.com/elastic/eui/pull/5768))
 - Removed `euiPageRestrictWidth()` Sass mixin ([#5768](https://github.com/elastic/eui/pull/5768))
+
+## [`62.2.3`](https://github.com/elastic/eui/tree/v62.2.3)
+
+**Note: this release is a backport containing changes originally made in `64.0.1`**
+
+**Bug fixes**
+
+- Fixed `CollapsedItemActions` ref callback not accounting for `null` value ([#6145](https://github.com/elastic/eui/pull/6145))
 
 ## [`62.2.2`](https://github.com/elastic/eui/tree/v62.2.2)
 
