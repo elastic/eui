@@ -43,7 +43,7 @@ const makeMutationObserver = (
   _observerOptions: MutationObserverInit | undefined,
   callback: MutationCallback
 ) => {
-  // IE11 and the MutationObserver polyfill used in Kibana (for Jest) implement
+  // The MutationObserver polyfill used in Kibana (for Jest) implements
   // an older spec in which specifying `attributeOldValue` or `attributeFilter`
   // without specifying `attributes` results in a `SyntaxError`.
   // The following logic patches the newer spec in which `attributes: true` can be

@@ -38,70 +38,66 @@ Array [
         />
       </button>
       <div
-        class="euiModal__flex"
+        class="euiModalHeader"
       >
         <div
-          class="euiModalHeader"
+          class="euiModalHeader__title"
+          data-test-subj="confirmModalTitleText"
+        >
+          <h1>
+            A confirmation modal
+          </h1>
+        </div>
+      </div>
+      <div
+        class="euiModalBody"
+      >
+        <div
+          class="euiModalBody__overflow"
         >
           <div
-            class="euiModalHeader__title"
-            data-test-subj="confirmModalTitleText"
+            class="euiText emotion-euiText-m"
+            data-test-subj="confirmModalBodyText"
           >
-            <h1>
-              A confirmation modal
-            </h1>
+            <p>
+              This is a confirmation modal example
+            </p>
           </div>
         </div>
-        <div
-          class="euiModalBody"
+      </div>
+      <div
+        class="euiModalFooter"
+      >
+        <button
+          class="euiButtonEmpty css-9t7nyf-empty-primary"
+          data-test-subj="confirmModalCancelButton"
+          type="button"
         >
-          <div
-            class="euiModalBody__overflow"
-          >
-            <div
-              class="euiText emotion-euiText-m"
-              data-test-subj="confirmModalBodyText"
-            >
-              <p>
-                This is a confirmation modal example
-              </p>
-            </div>
-          </div>
-        </div>
-        <div
-          class="euiModalFooter"
-        >
-          <button
-            class="euiButtonEmpty css-9t7nyf-empty-primary"
-            data-test-subj="confirmModalCancelButton"
-            type="button"
+          <span
+            class="euiButtonContent euiButtonEmpty__content"
           >
             <span
-              class="euiButtonContent euiButtonEmpty__content"
+              class="euiButtonEmpty__text"
             >
-              <span
-                class="euiButtonEmpty__text"
-              >
-                Cancel Button Text
-              </span>
+              Cancel Button Text
             </span>
-          </button>
-          <button
-            class="euiButton emotion-euiButtonDisplay-m-m-fill-primary"
-            data-test-subj="confirmModalConfirmButton"
-            type="button"
+          </span>
+        </button>
+        <button
+          class="euiButton emotion-euiButtonDisplay-m-m-fill-primary"
+          data-test-subj="confirmModalConfirmButton"
+          type="button"
+        >
+          <span
+            class="emotion-euiButtonDisplayContent"
           >
             <span
-              class="emotion-euiButtonDisplayContent"
+              class="eui-textTruncate"
             >
-              <span
-                class="eui-textTruncate"
-              >
-                Confirm Button Text
-              </span>
+              Confirm Button Text
             </span>
-          </button>
-        </div>
+          </span>
+        </button>
       </div>
     </div>
   </div>,
@@ -153,54 +149,50 @@ Array [
         />
       </button>
       <div
-        class="euiModal__flex"
+        class="euiModalHeader"
       >
         <div
-          class="euiModalHeader"
+          class="euiModalHeader__title"
+          data-test-subj="confirmModalTitleText"
         >
-          <div
-            class="euiModalHeader__title"
-            data-test-subj="confirmModalTitleText"
-          >
-            <h1>
-              A confirmation modal
-            </h1>
-          </div>
+          <h1>
+            A confirmation modal
+          </h1>
         </div>
-        <div
-          class="euiModalFooter"
+      </div>
+      <div
+        class="euiModalFooter"
+      >
+        <button
+          class="euiButtonEmpty css-9t7nyf-empty-primary"
+          data-test-subj="confirmModalCancelButton"
+          type="button"
         >
-          <button
-            class="euiButtonEmpty css-9t7nyf-empty-primary"
-            data-test-subj="confirmModalCancelButton"
-            type="button"
+          <span
+            class="euiButtonContent euiButtonEmpty__content"
           >
             <span
-              class="euiButtonContent euiButtonEmpty__content"
+              class="euiButtonEmpty__text"
             >
-              <span
-                class="euiButtonEmpty__text"
-              >
-                Cancel Button Text
-              </span>
+              Cancel Button Text
             </span>
-          </button>
-          <button
-            class="euiButton emotion-euiButtonDisplay-m-m-fill-primary"
-            data-test-subj="confirmModalConfirmButton"
-            type="button"
+          </span>
+        </button>
+        <button
+          class="euiButton emotion-euiButtonDisplay-m-m-fill-primary"
+          data-test-subj="confirmModalConfirmButton"
+          type="button"
+        >
+          <span
+            class="emotion-euiButtonDisplayContent"
           >
             <span
-              class="emotion-euiButtonDisplayContent"
+              class="eui-textTruncate"
             >
-              <span
-                class="eui-textTruncate"
-              >
-                Confirm Button Text
-              </span>
+              Confirm Button Text
             </span>
-          </button>
-        </div>
+          </span>
+        </button>
       </div>
     </div>
   </div>,
