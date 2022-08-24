@@ -14,8 +14,6 @@ import { EuiBadge } from '../../../../src/components/badge';
 import { slugify } from '../../../../src/services';
 
 export class GuidePageChrome extends Component {
-  _isMounted = false;
-
   constructor(props) {
     super(props);
 
@@ -27,13 +25,7 @@ export class GuidePageChrome extends Component {
   }
 
   componentDidMount = () => {
-    this._isMounted = true;
-
     this.scrollNavSectionIntoView();
-  };
-
-  componentWillUnmount = () => {
-    this._isMounted = false;
   };
 
   toggleOpenOnMobile = () => {
