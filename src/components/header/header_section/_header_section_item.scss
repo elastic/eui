@@ -31,7 +31,7 @@
 }
 
 @include euiBreakpoint('xs') {
-  .euiHeaderSectionItem:not(:empty) {
+  .euiHeaderSectionItem {
     min-width: $euiHeaderChildSize * .75;
   }
 
