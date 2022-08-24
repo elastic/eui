@@ -1,3 +1,11 @@
+## [`65.0.2`](https://github.com/elastic/eui/tree/v65.0.2)
+
+**Bug fixes**
+
+- Fixed missing `EuiDataGrid` cell popover shadows in Safari ([#6163](https://github.com/elastic/eui/pull/6163))
+- Fixed a bug in some development environments which prevented `EuiIcon` from loading icons asynchronously ([#6166](https://github.com/elastic/eui/pull/6166))
+- Updated the build process to include json files, fixing imports from the @elastic/eui package ([#6172](https://github.com/elastic/eui/pull/6172))
+
 ## [`65.0.1`](https://github.com/elastic/eui/tree/v65.0.1)
 
 **Bug fixes**
