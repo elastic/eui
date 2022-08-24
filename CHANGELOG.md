@@ -1,10 +1,22 @@
+## [`65.0.2`](https://github.com/elastic/eui/tree/v65.0.2)
+
+**Bug fixes**
+
+- Fixed missing `EuiDataGrid` cell popover shadows in Safari ([#6163](https://github.com/elastic/eui/pull/6163))
+- Fixed a bug in some development environments which prevented `EuiIcon` from loading icons asynchronously ([#6166](https://github.com/elastic/eui/pull/6166))
+- Updated the build process to include json files, fixing imports from the @elastic/eui package ([#6172](https://github.com/elastic/eui/pull/6172))
+
 ## [`65.0.1`](https://github.com/elastic/eui/tree/v65.0.1)
+
+**Note: this version contains a bug preventing its usage, fixed in `65.0.2`**
 
 **Bug fixes**
 
 - Fixed the text size of `EuiDescriptionListTitle` when `EuiDescriptionList` is compressed ([#6160](https://github.com/elastic/eui/pull/6160))
 
 ## [`65.0.0`](https://github.com/elastic/eui/tree/v65.0.0)
+
+**Note: this version contains a bug preventing its usage, fixed in `65.0.2`**
 
 - Added `anchorProps` to allow passing more props to the anchoring wrapper in `EuiToolTip` and `EuiBetaBadge` ([#6110](https://github.com/elastic/eui/pull/6110))
 - Added an empty shade background color to `hollow` style `EuiBetaBadge` ([#6110](https://github.com/elastic/eui/pull/6110))

@@ -58,6 +58,10 @@ export interface EuiTableFieldDataColumnType<T>
    */
   sortable?: boolean | ((item: T) => Primitive);
   isExpander?: boolean;
+  /**
+   * Creates a text wrapper around cell content that helps word break or truncate
+   * long text correctly.
+   */
   textOnly?: boolean;
   /**
    * Defines the horizontal alignment of the column
