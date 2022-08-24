@@ -147,18 +147,5 @@ describe('EuiAccordion', () => {
       cy.get('button.euiAccordion__button').click();
       cy.checkAxe();
     });
-
-    it('reports errors without throwing', () => {
-      cy.mount(
-        <EuiAccordion {...noArrowProps} role="nonsensical-garbage">
-          <EuiPanel color="subdued">
-            Any content inside of <strong>EuiAccordion</strong> will appear
-            here. We will include <a href="#">a link</a> to confirm focus.
-          </EuiPanel>
-        </EuiAccordion>
-      );
-      cy.get('button.euiAccordion__button').click();
-      cy.checkAxe(true);
-    });
   });
 });

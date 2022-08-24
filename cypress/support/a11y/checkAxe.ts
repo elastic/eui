@@ -25,7 +25,10 @@ function _handleViolations(violations: Result[], skipTestFailure?: boolean) {
   if (skipTestFailure) {
     cy.task(
       'log',
-      `\n========================================\n* A11Y REPORT MODE ONLY\n========================================`
+      `
+========================================
+* A11Y REPORT MODE ONLY
+========================================`
     );
   }
 
@@ -50,11 +53,19 @@ function logViolationsToConsoleOnly(violations: Result[]) {
   _handleViolations(violations, true);
 }
 
-Cypress.Commands.add('checkAxe', (skipFailures, context, axeConfig, callback) => {
+Cypress.Commands.add('checkAxe', ({
+  skipFailures,
+  context,
+  axeConfig,
+  callback
+} = {}) => {
   cy.injectAxe();
-  if (skipFailures) {
-    cy.checkA11y(context ?? defaultContext, axeConfig ?? defaultAxeConfig, callback ?? logViolationsToConsoleOnly, skipFailures);
-  } else {
-    cy.checkA11y(context ?? defaultContext, axeConfig ?? defaultAxeConfig, callback ?? logViolationsAndThrow);
-  }
+  cy.checkA11y(
+    context ?? defaultContext,
+    axeConfig ?? defaultAxeConfig,
+    callback ?? skipFailures
+      ? logViolationsToConsoleOnly
+      : logViolationsAndThrow,
+    skipFailures
+  );
 });
