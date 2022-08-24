@@ -244,7 +244,6 @@ export class EuiIconClass extends PureComponent<
       style,
       ...rest
     } = this.props;
-    console.log('::render');
 
     const { isLoading, neededLoading, iconTitle } = this.state;
     const isLoaded = !isLoading && neededLoading;
