@@ -57,15 +57,7 @@ export class GuidePageChrome extends Component {
         '.euiSideNavItemButton-isSelected'
       );
       if (selectedButton) {
-        let root = selectedButton.parentNode;
-
-        while (
-          !root.classList.contains('euiSideNavItem--root') &&
-          !root.classList.contains('guideSideNav')
-        ) {
-          root = root.parentNode;
-        }
-        root.scrollIntoView();
+        selectedButton.parentElement.scrollIntoView({ block: 'center' });
       }
     });
   };
