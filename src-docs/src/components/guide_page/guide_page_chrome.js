@@ -29,7 +29,7 @@ export class GuidePageChrome extends Component {
   componentDidMount = () => {
     this._isMounted = true;
 
-    this.scrollNavSectionIntoViewSync();
+    this.scrollNavSectionIntoView();
   };
 
   componentWillUnmount = () => {
@@ -49,29 +49,25 @@ export class GuidePageChrome extends Component {
     });
   };
 
-  scrollNavSectionIntoViewSync = () => {
+  scrollNavSectionIntoView = () => {
     // wait a bit for react to blow away and re-create the DOM
     // then scroll the selected nav section into view
-    const selectedButton = document.querySelector(
-      '.euiSideNavItemButton-isSelected'
-    );
-    if (selectedButton) {
-      let root = selectedButton.parentNode;
+    requestAnimationFrame(() => {
+      const selectedButton = document.querySelector(
+        '.euiSideNavItemButton-isSelected'
+      );
+      if (selectedButton) {
+        let root = selectedButton.parentNode;
 
-      while (
-        !root.classList.contains('euiSideNavItem--root') &&
-        !root.classList.contains('guideSideNav')
-      ) {
-        root = root.parentNode;
+        while (
+          !root.classList.contains('euiSideNavItem--root') &&
+          !root.classList.contains('guideSideNav')
+        ) {
+          root = root.parentNode;
+        }
+        root.scrollIntoView();
       }
-      root.scrollIntoView();
-    }
-  };
-
-  scrollNavSectionIntoView = () => {
-    setTimeout(() => {
-      this.scrollNavSectionIntoViewSync();
-    }, 250);
+    });
   };
 
   renderSubSections = (href, subSections = [], searchTerm = '') => {
