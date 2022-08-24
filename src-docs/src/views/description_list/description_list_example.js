@@ -97,6 +97,15 @@ const descriptionListClassesSnippet = [
 />`,
 ];
 
+import DescriptionListGutterSize from './description_list_gutter_size';
+const descriptionListGutterSizeSource = require('!!raw-loader!./description_list_gutter_size');
+const descriptionListGutterSizeSnippet = [
+  `<EuiDescriptionList
+  gutterSize="m"
+  listItems={favoriteVideoGames}
+/>`,
+];
+
 export const DescriptionListExample = {
   title: 'Description list',
   sections: [
@@ -267,6 +276,24 @@ export const DescriptionListExample = {
       ),
       snippet: descriptionListClassesSnippet,
       demo: <DescriptionListClasses />,
+    },
+    {
+      title: 'Row gutter',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: descriptionListGutterSizeSource,
+        },
+      ],
+      text: (
+        <p>
+          Adjust the <EuiCode>gutterSize</EuiCode> prop to increase and decrease
+          vertical spacing between <EuiCode>EuiDescriptionList</EuiCode>{' '}
+          elements.
+        </p>
+      ),
+      snippet: descriptionListGutterSizeSnippet,
+      demo: <DescriptionListGutterSize />,
     },
   ],
 };
