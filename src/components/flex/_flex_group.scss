@@ -1,6 +1,7 @@
 .euiFlexGroup {
   display: flex;
   align-items: stretch;
+  flex-grow: 1; // Grow nested flex-groups by default
 
   .euiFlexItem {
     @include internetExplorerOnly {
