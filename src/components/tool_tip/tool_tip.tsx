@@ -13,6 +13,7 @@ import React, {
   useImperativeHandle,
   useRef,
   useState,
+  cloneElement,
   ReactElement,
   ReactNode,
   MouseEvent as ReactMouseEvent,
@@ -29,7 +30,6 @@ import {
   htmlIdGenerator,
   useEuiTheme,
 } from '../../services';
-import { cloneElementWithCss } from '../../services/theme/clone_element';
 
 import { EuiResizeObserver } from '../observer/resize_observer';
 
@@ -86,7 +86,7 @@ const DEFAULT_TOOLTIP_STYLES: ToolTipStyles = {
 
 export interface EuiToolTipProps {
   /**
-   * Passes onto the span wrapping the trigger.
+   * Passes onto the span wrapping span wrapping the trigger.
    */
   anchorClassName?: string;
   /**
@@ -333,6 +333,7 @@ export const EuiToolTip = forwardRef<ToolTipHandle, EuiToolTipProps>(
           ref={anchor}
           {...anchorProps}
           css={[anchorCss.euiToolTipAnchor, anchorCss[display]]}
+          {...anchorProps}
           className={anchorClasses}
           onMouseOver={showToolTip}
           onMouseOut={onMouseOut}
@@ -345,7 +346,7 @@ export const EuiToolTip = forwardRef<ToolTipHandle, EuiToolTipProps>(
            * the enter key to trigger the button. That won't work if the enclosing anchor
            * element has focus.
            */}
-          {cloneElementWithCss(children, {
+          {cloneElement(children, {
             onFocus: (e: React.FocusEvent) => {
               onFocus();
               children.props.onFocus && children.props.onFocus(e);
