@@ -45,12 +45,15 @@ export class GuidePageChrome extends Component {
     // wait a bit for react to blow away and re-create the DOM
     // then scroll the selected nav section into view
     requestAnimationFrame(() => {
-      const selectedButton = document.querySelector(
+      const sideNav = document.querySelector('.guideSideNav__content');
+      const isMobile = sideNav?.querySelector('.euiSideNav__mobileToggle');
+
+      const selectedButton = sideNav?.querySelector(
         '.euiSideNavItemButton-isSelected'
       );
-      if (selectedButton) {
-        selectedButton.parentElement.scrollIntoView({ block: 'center' });
-      }
+      selectedButton?.parentElement.scrollIntoView({
+        block: isMobile ? 'start' : 'center',
+      });
     });
   };
 
