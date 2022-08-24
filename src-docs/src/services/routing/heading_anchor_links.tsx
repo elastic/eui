@@ -21,7 +21,12 @@ export const useHeadingAnchorLinks = () => {
     );
     if (!headingsWithIds.length) return;
 
-    setHeadingNodes(Array.from(headingsWithIds));
+    // Filter out headings inside component examples (e.g. EuiSideNav, EuiCollapsibleNav)
+    const documentationHeadings = Array.from(headingsWithIds).filter(
+      (item) => !item.parentElement?.closest('[data-eui-docs-example]')
+    );
+
+    setHeadingNodes(documentationHeadings);
   }, [pathname]);
 
   // Portal a link icon to each heading node that allows users
