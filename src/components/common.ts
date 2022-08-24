@@ -16,11 +16,13 @@ import {
   MouseEventHandler,
   SFC,
 } from 'react';
+import { Interpolation, Theme } from '@emotion/react';
 
 export interface CommonProps {
   className?: string;
   'aria-label'?: string;
   'data-test-subj'?: string;
+  css?: Interpolation<Theme>;
 }
 
 export type NoArgCallback<T> = () => T;

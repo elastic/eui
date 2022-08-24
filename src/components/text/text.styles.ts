@@ -226,7 +226,7 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
       // Style anchors that don't have a class. This prevents overwriting "buttons"
       // and other stylized elements passed in.
       a:not([class]) {
-        ${euiLinkCSS(euiTheme)}
+        ${euiLinkCSS(euiThemeContext)}
       }
 
       img {

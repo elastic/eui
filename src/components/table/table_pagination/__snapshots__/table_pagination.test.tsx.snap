@@ -14,7 +14,7 @@ exports[`EuiTablePagination is rendered 1`] = `
         class="euiPopover__anchor css-16vtueo-render"
       >
         <button
-          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall"
+          class="euiButtonEmpty euiButtonEmpty--xSmall css-wvaqcf-empty-text"
           data-test-subj="tablePaginationPopoverButton"
           type="button"
         >
@@ -54,7 +54,7 @@ exports[`EuiTablePagination is rendered 1`] = `
       </span>
       <button
         aria-label="Previous page"
-        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiPaginationArrowButton"
+        class="euiButtonIcon euiButtonIcon--xSmall euiPaginationArrowButton css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
         data-test-subj="pagination-button-previous"
         title="Previous page"
         type="button"
@@ -75,7 +75,7 @@ exports[`EuiTablePagination is rendered 1`] = `
         >
           <button
             aria-label="Page 1 of 5"
-            class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiPaginationButton"
+            class="euiButtonEmpty euiButtonEmpty--small euiPaginationButton css-wvaqcf-empty-text"
             data-test-subj="pagination-button-0"
             type="button"
           >
@@ -96,7 +96,7 @@ exports[`EuiTablePagination is rendered 1`] = `
           <button
             aria-current="true"
             aria-label="Page 2 of 5"
-            class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiButtonEmpty-isDisabled euiPaginationButton euiPaginationButton-isActive"
+            class="euiButtonEmpty euiButtonEmpty--small euiPaginationButton euiPaginationButton-isActive css-1at5a38-empty-disabled"
             data-test-subj="pagination-button-1"
             disabled=""
             type="button"
@@ -117,7 +117,7 @@ exports[`EuiTablePagination is rendered 1`] = `
         >
           <button
             aria-label="Page 3 of 5"
-            class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiPaginationButton"
+            class="euiButtonEmpty euiButtonEmpty--small euiPaginationButton css-wvaqcf-empty-text"
             data-test-subj="pagination-button-2"
             type="button"
           >
@@ -137,7 +137,7 @@ exports[`EuiTablePagination is rendered 1`] = `
         >
           <button
             aria-label="Page 4 of 5"
-            class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiPaginationButton"
+            class="euiButtonEmpty euiButtonEmpty--small euiPaginationButton css-wvaqcf-empty-text"
             data-test-subj="pagination-button-3"
             type="button"
           >
@@ -157,7 +157,7 @@ exports[`EuiTablePagination is rendered 1`] = `
         >
           <button
             aria-label="Page 5 of 5"
-            class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiPaginationButton"
+            class="euiButtonEmpty euiButtonEmpty--small euiPaginationButton css-wvaqcf-empty-text"
             data-test-subj="pagination-button-4"
             type="button"
           >
@@ -175,7 +175,7 @@ exports[`EuiTablePagination is rendered 1`] = `
       </ul>
       <button
         aria-label="Next page"
-        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiPaginationArrowButton"
+        class="euiButtonIcon euiButtonIcon--xSmall euiPaginationArrowButton css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
         data-test-subj="pagination-button-next"
         title="Next page"
         type="button"
@@ -217,7 +217,7 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
       </span>
       <button
         aria-label="Previous page"
-        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiPaginationArrowButton"
+        class="euiButtonIcon euiButtonIcon--xSmall euiPaginationArrowButton css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
         data-test-subj="pagination-button-previous"
         title="Previous page"
         type="button"
@@ -238,7 +238,7 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
         >
           <button
             aria-label="Page 1 of 5"
-            class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiPaginationButton"
+            class="euiButtonEmpty euiButtonEmpty--small euiPaginationButton css-wvaqcf-empty-text"
             data-test-subj="pagination-button-0"
             type="button"
           >
@@ -259,7 +259,7 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
           <button
             aria-current="true"
             aria-label="Page 2 of 5"
-            class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiButtonEmpty-isDisabled euiPaginationButton euiPaginationButton-isActive"
+            class="euiButtonEmpty euiButtonEmpty--small euiPaginationButton euiPaginationButton-isActive css-1at5a38-empty-disabled"
             data-test-subj="pagination-button-1"
             disabled=""
             type="button"
@@ -280,7 +280,7 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
         >
           <button
             aria-label="Page 3 of 5"
-            class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiPaginationButton"
+            class="euiButtonEmpty euiButtonEmpty--small euiPaginationButton css-wvaqcf-empty-text"
             data-test-subj="pagination-button-2"
             type="button"
           >
@@ -300,7 +300,7 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
         >
           <button
             aria-label="Page 4 of 5"
-            class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiPaginationButton"
+            class="euiButtonEmpty euiButtonEmpty--small euiPaginationButton css-wvaqcf-empty-text"
             data-test-subj="pagination-button-3"
             type="button"
           >
@@ -320,7 +320,7 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
         >
           <button
             aria-label="Page 5 of 5"
-            class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiPaginationButton"
+            class="euiButtonEmpty euiButtonEmpty--small euiPaginationButton css-wvaqcf-empty-text"
             data-test-subj="pagination-button-4"
             type="button"
           >
@@ -338,7 +338,7 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
       </ul>
       <button
         aria-label="Next page"
-        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiPaginationArrowButton"
+        class="euiButtonIcon euiButtonIcon--xSmall euiPaginationArrowButton css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
         data-test-subj="pagination-button-next"
         title="Next page"
         type="button"
@@ -369,7 +369,7 @@ exports[`EuiTablePagination renders a "show all" itemsPerPage option 1`] = `
         class="euiPopover__anchor css-16vtueo-render"
       >
         <button
-          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall"
+          class="euiButtonEmpty euiButtonEmpty--xSmall css-wvaqcf-empty-text"
           data-test-subj="tablePaginationPopoverButton"
           type="button"
         >

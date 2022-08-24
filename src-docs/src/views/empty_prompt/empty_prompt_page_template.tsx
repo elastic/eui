@@ -2,7 +2,6 @@ import React from 'react';
 
 import {
   EuiPageTemplate,
-  EuiEmptyPrompt,
   EuiButton,
   EuiTitle,
   EuiLink,
@@ -11,14 +10,8 @@ import {
 import illustration from '../../images/empty-prompt/illustration.svg';
 
 export default () => (
-  <EuiPageTemplate
-    template="empty"
-    pageContentProps={{
-      paddingSize: 'none',
-      role: null, // For passing a11y tests in EUI docs only
-    }}
-  >
-    <EuiEmptyPrompt
+  <EuiPageTemplate minHeight="0">
+    <EuiPageTemplate.EmptyPrompt
       title={<h2>Create your first visualization</h2>}
       icon={<EuiImage size="fullWidth" src={illustration} alt="" />}
       color="plain"

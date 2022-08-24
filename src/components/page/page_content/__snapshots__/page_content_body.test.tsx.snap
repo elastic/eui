@@ -10,13 +10,13 @@ exports[`EuiPageContentBody is rendered 1`] = `
 
 exports[`EuiPageContentBody paddingSize l is rendered 1`] = `
 <div
-  class="euiPageContentBody euiPage--paddingLarge"
+  class="euiPageContentBody euiPageContentBody--paddingLarge"
 />
 `;
 
 exports[`EuiPageContentBody paddingSize m is rendered 1`] = `
 <div
-  class="euiPageContentBody euiPage--paddingMedium"
+  class="euiPageContentBody euiPageContentBody--paddingMedium"
 />
 `;
 
@@ -28,26 +28,26 @@ exports[`EuiPageContentBody paddingSize none is rendered 1`] = `
 
 exports[`EuiPageContentBody paddingSize s is rendered 1`] = `
 <div
-  class="euiPageContentBody euiPage--paddingSmall"
+  class="euiPageContentBody euiPageContentBody--paddingSmall"
 />
 `;
 
 exports[`EuiPageContentBody restrict width can be set to a custom number 1`] = `
 <div
-  class="euiPageContentBody euiPage--restrictWidth-custom"
+  class="euiPageContentBody euiPageContentBody--restrictWidth-custom"
   style="max-width:1024px"
 />
 `;
 
 exports[`EuiPageContentBody restrict width can be set to a custom value and does not override custom style 1`] = `
 <div
-  class="euiPageContentBody euiPage--restrictWidth-custom"
+  class="euiPageContentBody euiPageContentBody--restrictWidth-custom"
   style="color:red;max-width:24rem"
 />
 `;
 
 exports[`EuiPageContentBody restrict width can be set to a default 1`] = `
 <div
-  class="euiPageContentBody euiPage--restrictWidth-default"
+  class="euiPageContentBody euiPageContentBody--restrictWidth-default"
 />
 `;

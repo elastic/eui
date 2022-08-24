@@ -8,7 +8,11 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
-import { euiFocusRing, logicalCSS } from '../../global_styling';
+import {
+  euiFocusRing,
+  logicalCSS,
+  logicalTextAlignCSS,
+} from '../../global_styling';
 
 const _colorCSS = (color: string) => {
   return `
@@ -39,26 +43,28 @@ export const euiLinkFocusCSS = (euiTheme: UseEuiTheme['euiTheme']) => {
   `;
 };
 
-export const euiLinkCSS = (euiTheme: UseEuiTheme['euiTheme']) => {
+export const euiLinkCSS = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
   return `
     font-weight: ${euiTheme.font.weight.medium};
-    text-align: left;
+    ${logicalTextAlignCSS('left')}
 
     &:hover {
       ${euiLinkHoverCSS()}
     }
 
     &:focus {
-      ${euiFocusRing(euiTheme, 'outset')}
+      ${euiFocusRing(euiThemeContext, 'outset')}
       ${euiLinkFocusCSS(euiTheme)}
     }
   `;
 };
 
-export const euiLinkStyles = ({ euiTheme }: UseEuiTheme) => {
+export const euiLinkStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
   return {
     euiLink: css`
-      ${euiLinkCSS(euiTheme)}
+      ${euiLinkCSS(euiThemeContext)}
       user-select: text;
 
       &[target='_blank'] {

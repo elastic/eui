@@ -85,7 +85,6 @@ export class EuiSuperUpdateButton extends Component<
   }
 
   setTootipRef = (node: ToolTipRef) => {
-    console.log(node);
     this.tooltip = node;
   };
 

@@ -13,14 +13,14 @@ import React, {
   useImperativeHandle,
   useRef,
   useState,
-  cloneElement,
   ReactElement,
   ReactNode,
   MouseEvent as ReactMouseEvent,
+  HTMLAttributes,
 } from 'react';
 import classNames from 'classnames';
 
-import { keysOf } from '../common';
+import { CommonProps, keysOf } from '../common';
 import { EuiPortal } from '../portal';
 import { EuiToolTipPopover } from './tool_tip_popover';
 import { enqueueStateChange } from '../../services/react';
@@ -29,6 +29,7 @@ import {
   htmlIdGenerator,
   useEuiTheme,
 } from '../../services';
+import { cloneElementWithCss } from '../../services/theme/clone_element';
 
 import { EuiResizeObserver } from '../observer/resize_observer';
 
@@ -85,9 +86,13 @@ const DEFAULT_TOOLTIP_STYLES: ToolTipStyles = {
 
 export interface EuiToolTipProps {
   /**
-   * Passes onto the the trigger.
+   * Passes onto the span wrapping the trigger.
    */
   anchorClassName?: string;
+  /**
+   * Passes onto the span wrapping the trigger.
+   */
+  anchorProps?: CommonProps & HTMLAttributes<HTMLSpanElement>;
   /**
    * The in-view trigger for your tooltip.
    */
@@ -143,6 +148,7 @@ export const EuiToolTip = forwardRef<ToolTipHandle, EuiToolTipProps>(
       children,
       className,
       anchorClassName,
+      anchorProps,
       content,
       title,
       ...rest
@@ -315,12 +321,17 @@ export const EuiToolTip = forwardRef<ToolTipHandle, EuiToolTipProps>(
 
     const classes = classNames('euiToolTip', className);
 
-    const anchorClasses = classNames('euiToolTipAnchor', anchorClassName);
+    const anchorClasses = classNames(
+      'euiToolTipAnchor',
+      anchorClassName,
+      anchorProps?.className
+    );
 
     return (
       <>
         <span // eslint-disable-line jsx-a11y/mouse-events-have-key-events
           ref={anchor}
+          {...anchorProps}
           css={[anchorCss.euiToolTipAnchor, anchorCss[display]]}
           className={anchorClasses}
           onMouseOver={showToolTip}
@@ -334,7 +345,7 @@ export const EuiToolTip = forwardRef<ToolTipHandle, EuiToolTipProps>(
            * the enter key to trigger the button. That won't work if the enclosing anchor
            * element has focus.
            */}
-          {cloneElement(children, {
+          {cloneElementWithCss(children, {
             onFocus: (e: React.FocusEvent) => {
               onFocus();
               children.props.onFocus && children.props.onFocus(e);

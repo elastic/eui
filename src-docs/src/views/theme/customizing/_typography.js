@@ -8,6 +8,8 @@ import {
   EuiCode,
   EuiPanel,
   EuiTitle,
+  logicalCSS,
+  logicalTextAlignCSS,
 } from '../../../../../src';
 
 import {
@@ -236,8 +238,11 @@ export default ({ onThemeUpdate }) => {
             value={scaleClone.scale[key]}
             buttonStyle={css`
               font-size: ${scaleClone.scale[key] * euiTheme.base}px;
-              min-width: calc(${euiTheme.size.xxl} * 3);
-              text-align: left;
+              ${logicalCSS(
+                'min-width',
+                `${parseFloat(euiTheme.size.xxl) * 3}px`
+              )}
+              ${logicalTextAlignCSS('left')}
             `}
             example={`${scaleClone.scale[key] * euiTheme.base}px`}
             onUpdate={(value) => updateScale(key, value)}
@@ -273,14 +278,12 @@ export default ({ onThemeUpdate }) => {
           buttonStyle={css`
             font-size: ${scaleClone.scale[fontClone.body.scale] *
             euiTheme.base}px;
-            min-width: calc(${euiTheme.size.xxl} * 3);
-            text-align: left;
+            ${logicalCSS('min-width', `${parseFloat(euiTheme.size.xxl) * 3}px`)}
+            ${logicalTextAlignCSS('left')}
           `}
           example={`${
             scaleClone.scale[fontClone.body.scale] * euiTheme.base
           }px`}
-          // onUpdate={(value) => updateScale(key, value)}
-          // numberProps={{ step: 0.1, style: { width: '6em' } }}
           groupProps={{ alignItems: 'center' }}
         />
         <EuiSpacer />
@@ -292,12 +295,10 @@ export default ({ onThemeUpdate }) => {
           value={fontClone.body.weight}
           buttonStyle={css`
             font-weight: ${weightClone.weight[fontClone.body.weight]};
-            min-width: calc(${euiTheme.size.xxl} * 3);
-            text-align: left;
+            ${logicalCSS('min-width', `${parseFloat(euiTheme.size.xxl) * 3}px`)}
+            ${logicalTextAlignCSS('left')}
           `}
           example={weightClone.weight[fontClone.body.weight]}
-          // onUpdate={(value) => updateScale(key, value)}
-          // numberProps={{ step: 0.1, style: { width: '6em' } }}
           groupProps={{ alignItems: 'center' }}
         />
       </EuiPanel>

@@ -66,7 +66,7 @@ export const euiLoadingLogoStyles = ({ euiTheme }: UseEuiTheme) => {
         &:after {
           position: absolute;
           content: '';
-          width: 90%;
+          inline-size: 90%;
           inset-inline-start: 5%;
           border-radius: 50%;
           opacity: 0.2;
@@ -99,7 +99,7 @@ export const euiLoadingLogoStyles = ({ euiTheme }: UseEuiTheme) => {
 
       &:before,
       &:after {
-        height: ${euiTheme.base * 0.25}px; /* 1 */
+        block-size: ${euiTheme.base * 0.25}px; /* 1 */
         inset-block-end: -${euiTheme.size.xs};
       }
     `,
@@ -112,7 +112,7 @@ export const euiLoadingLogoStyles = ({ euiTheme }: UseEuiTheme) => {
 
       &:before,
       &:after {
-        height: ${euiTheme.base * 0.375}px; /* 1 */
+        block-size: ${euiTheme.base * 0.375}px; /* 1 */
         inset-block-end: -${euiTheme.size.s};
       }
     `,
@@ -125,7 +125,7 @@ export const euiLoadingLogoStyles = ({ euiTheme }: UseEuiTheme) => {
 
       &:before,
       &:after {
-        height: ${euiTheme.base * 0.5}px; /* 1 */
+        block-size: ${euiTheme.base * 0.5}px; /* 1 */
         inset-block-end: -${euiTheme.size.m};
       }
     `,

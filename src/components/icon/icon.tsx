@@ -133,7 +133,7 @@ export class EuiIconClass extends PureComponent<
   EuiIconProps & WithEuiThemeProps,
   State
 > {
-  isMounted = true;
+  isMounted = false;
   constructor(props: EuiIconProps & WithEuiThemeProps) {
     super(props);
 
@@ -149,6 +149,7 @@ export class EuiIconClass extends PureComponent<
   }
 
   componentDidMount() {
+    this.isMounted = true;
     const { type } = this.props;
 
     if (isEuiIconType(type) && this.state.icon == null) {

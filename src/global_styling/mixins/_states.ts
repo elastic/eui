@@ -24,7 +24,7 @@ export type _EuiFocusRingOffset =
  * @param color Accepts any CSS color, **Note: only works in -webkit-**
  */
 export const euiFocusRing = (
-  euiTheme: UseEuiTheme['euiTheme'],
+  { euiTheme }: UseEuiTheme,
   offset: _EuiFocusRingOffset = 'center',
   options?: { color?: CSSProperties['outlineColor'] }
 ) => {
@@ -66,6 +66,6 @@ export const useEuiFocusRing = (
   offset?: _EuiFocusRingOffset,
   color?: CSSProperties['outlineColor']
 ) => {
-  const { euiTheme } = useEuiTheme();
+  const euiTheme = useEuiTheme();
   return euiFocusRing(euiTheme, offset, { color });
 };

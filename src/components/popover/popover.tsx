@@ -66,6 +66,7 @@ export const popoverAnchorPosition = [
 ] as const;
 
 export type PopoverAnchorPosition = typeof popoverAnchorPosition[number];
+type AnchorPosition = 'up' | 'right' | 'down' | 'left';
 
 export interface EuiPopoverProps extends CommonProps {
   /**
@@ -199,9 +200,11 @@ export interface EuiPopoverProps extends CommonProps {
    * Usually takes the `id` of the popover title
    */
   'aria-labelledby'?: string;
+  /**
+   * Function callback for when the popover positon changes
+   */
+  onPositionChange?: (position: EuiPopoverPosition) => void;
 }
-
-type AnchorPosition = 'up' | 'right' | 'down' | 'left';
 
 const anchorPositionToPopoverPositionMap: {
   [position in AnchorPosition]: EuiPopoverPosition;
@@ -542,7 +545,9 @@ export class EuiPopover extends Component<Props, State> {
 
     const willRenderArrow = !this.props.attachToAnchor && this.props.hasArrow;
     const arrowStyles = willRenderArrow ? arrow : undefined;
-    const arrowPosition = foundPosition;
+    const arrowPosition: EuiPopoverPosition = foundPosition;
+
+    this.props.onPositionChange && this.props.onPositionChange(arrowPosition);
 
     this.setState({
       popoverStyles,
@@ -612,6 +617,7 @@ export class EuiPopover extends Component<Props, State> {
       attachToAnchor,
       display,
       offset,
+      onPositionChange,
       onTrapDeactivation,
       buffer,
       'aria-label': ariaLabel,

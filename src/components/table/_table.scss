@@ -1,7 +1,3 @@
-/**
- * NOTE: table-layout: fixed causes a bug in IE11 and Edge (see #9929). It also prevents us from
- * specifying a column width, e.g. the checkbox column.
- */
 .euiTable {
   @include euiFontSizeS;
   @include euiNumberFormat;
@@ -194,7 +190,6 @@
   overflow: visible;
   white-space: normal;
   //* 4 */ overflow-wrap is not supported on flex parents
-  word-break: break-all; // Fallback for FF and IE
   word-break: break-word;
 }
 

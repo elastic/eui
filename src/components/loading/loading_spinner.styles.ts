@@ -6,7 +6,11 @@
  * Side Public License, v 1.
  */
 import { css, keyframes } from '@emotion/react';
-import { _EuiThemeSize, euiCanAnimate } from '../../global_styling';
+import {
+  _EuiThemeSize,
+  euiCanAnimate,
+  logicalSizeCSS,
+} from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import {
   EuiLoadingSpinnerSize,
@@ -61,26 +65,36 @@ export const euiLoadingSpinnerStyles = (
 
     // Sizes
     s: css`
-      width: ${euiTheme.size[spinnerSizes.s]};
-      height: ${euiTheme.size[spinnerSizes.s]};
+      ${logicalSizeCSS(
+        euiTheme.size[spinnerSizes.s],
+        euiTheme.size[spinnerSizes.s]
+      )}
       border-width: calc(${euiTheme.border.width.thin} * 1.5);
     `,
     m: css`
-      width: ${euiTheme.size[spinnerSizes.m]};
-      height: ${euiTheme.size[spinnerSizes.m]};
+      ${logicalSizeCSS(
+        euiTheme.size[spinnerSizes.m],
+        euiTheme.size[spinnerSizes.m]
+      )}
       border-width: calc(${euiTheme.border.width.thin} * 1.5);
     `,
     l: css`
-      width: ${euiTheme.size[spinnerSizes.l]};
-      height: ${euiTheme.size[spinnerSizes.l]};
+      ${logicalSizeCSS(
+        euiTheme.size[spinnerSizes.l],
+        euiTheme.size[spinnerSizes.l]
+      )}
     `,
     xl: css`
-      width: ${euiTheme.size[spinnerSizes.xl]};
-      height: ${euiTheme.size[spinnerSizes.xl]};
+      ${logicalSizeCSS(
+        euiTheme.size[spinnerSizes.xl],
+        euiTheme.size[spinnerSizes.xl]
+      )}
     `,
     xxl: css`
-      width: ${euiTheme.size[spinnerSizes.xxl]};
-      height: ${euiTheme.size[spinnerSizes.xxl]};
+      ${logicalSizeCSS(
+        euiTheme.size[spinnerSizes.xxl],
+        euiTheme.size[spinnerSizes.xxl]
+      )}
     `,
   };
 };

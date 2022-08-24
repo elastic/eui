@@ -28,7 +28,7 @@ import {
 
 // Templates
 
-import { PageTemplateExample } from './views/page/page_template_example';
+import { PageTemplateExample } from './views/page_template/page_template_example';
 
 import { SitewideSearchExample } from './views/selectable/selectable_templates/sitewide_example';
 
@@ -166,6 +166,8 @@ import { NotificationEventExample } from './views/notification_event/notificatio
 import { OutsideClickDetectorExample } from './views/outside_click_detector/outside_click_detector_example';
 
 import { OverlayMaskExample } from './views/overlay_mask/overlay_mask_example';
+
+import { PageExample } from './views/page_components/page_example';
 
 import { PageHeaderExample } from './views/page_header/page_header_example';
 
@@ -492,6 +494,7 @@ const navigation = [
       HeaderExample,
       HorizontalRuleExample,
       ModalExample,
+      PageExample,
       PageHeaderExample,
       PanelExample,
       PopoverExample,

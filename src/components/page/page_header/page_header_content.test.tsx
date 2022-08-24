@@ -162,7 +162,11 @@ describe('EuiPageHeaderContent', () => {
         const component = render(
           <EuiPageHeaderContent
             rightSideItems={rightSideItems}
-            rightSideGroupProps={{ responsive: true, ...requiredProps }}
+            rightSideGroupProps={{
+              responsive: true,
+              direction: 'column',
+              ...requiredProps,
+            }}
           />
         );
 
