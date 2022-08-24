@@ -33,18 +33,13 @@ export const useHeadingAnchorLinks = () => {
           <>
             {headingNodes.map((heading) => {
               const headingCss = css`
-                position: relative;
-
                 &:hover [data-anchor-link] {
                   opacity: 1;
                 }
               `;
               const linkCss = css`
                 opacity: 0;
-                position: absolute;
-                ${logicalCSS('left', `-${euiTheme.size.l}`)}
-                ${logicalCSS('top', '50%')}
-                ${logicalCSS('margin-top', `-${euiTheme.base / 1.5}px`)}
+                ${logicalCSS('margin-left', euiTheme.size.s)}
 
                 &:hover,
                 &:focus {
