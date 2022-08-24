@@ -22,7 +22,7 @@ export const euiDescriptionListDescriptionStyles = (
   const { euiTheme } = euiThemeContext;
 
   const columnDisplay = `
-    ${logicalCSS('width', '50%')} // Flex-basis doesn't work in IE with padding
+    ${logicalCSS('width', '50%')}
     ${logicalCSS('padding-left', euiTheme.size.s)}
   `;
 

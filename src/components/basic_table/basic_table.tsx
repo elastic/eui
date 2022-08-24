@@ -262,7 +262,10 @@ interface BasicTableProps<T> extends Omit<EuiTableProps, 'onChange'> {
    */
   tableLayout?: 'fixed' | 'auto';
   /**
-   * Applied to table cells => Any cell using render function will set this to be false, leading to unnecessary word breaks. Apply textOnly: true in order to ensure it breaks properly
+   * Applied to table cells. Any cell using a render function will set this to be false.
+   *
+   * Creates a text wrapper around cell content that helps word break or truncate
+   * long text correctly.
    */
   textOnly?: boolean;
 }
