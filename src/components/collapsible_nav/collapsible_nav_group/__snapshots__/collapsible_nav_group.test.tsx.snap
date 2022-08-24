@@ -54,7 +54,6 @@ exports[`EuiCollapsibleNavGroup props iconProps renders data-test-subj 1`] = `
       >
         <h3
           class="euiTitle euiCollapsibleNavGroup__title emotion-euiTitle-xxs"
-          id="id__title"
         >
           Title
         </h3>
@@ -87,7 +86,6 @@ exports[`EuiCollapsibleNavGroup props iconSize is rendered 1`] = `
       >
         <h3
           class="euiTitle euiCollapsibleNavGroup__title emotion-euiTitle-xxs"
-          id="id__title"
         >
           Title
         </h3>
@@ -120,7 +118,6 @@ exports[`EuiCollapsibleNavGroup props iconType is rendered 1`] = `
       >
         <h3
           class="euiTitle euiCollapsibleNavGroup__title emotion-euiTitle-xxs"
-          id="id__title"
         >
           Title
         </h3>
@@ -146,7 +143,6 @@ exports[`EuiCollapsibleNavGroup props title is rendered 1`] = `
       >
         <h3
           class="euiTitle euiCollapsibleNavGroup__title emotion-euiTitle-xxs"
-          id="id__title"
         >
           Title
         </h3>
@@ -172,7 +168,6 @@ exports[`EuiCollapsibleNavGroup props titleElement can change the rendered eleme
       >
         <h2
           class="euiTitle euiCollapsibleNavGroup__title emotion-euiTitle-xxs"
-          id="id__title"
         >
           Title
         </h2>
@@ -225,7 +220,6 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true accepts accordion pro
           >
             <h3
               class="euiTitle euiCollapsibleNavGroup__title emotion-euiTitle-xxs"
-              id="id__title"
             >
               Title
             </h3>
@@ -290,7 +284,6 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accord
           >
             <h3
               class="euiTitle euiCollapsibleNavGroup__title emotion-euiTitle-xxs"
-              id="id__title"
             >
               Title
             </h3>

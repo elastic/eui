@@ -112,7 +112,6 @@ export const EuiCollapsibleNavGroup: FunctionComponent<EuiCollapsibleNavGroupPro
   ...rest
 }) => {
   const groupID = useGeneratedHtmlId({ conditionalId: id });
-  const titleID = `${groupID}__title`;
 
   const classes = classNames(
     'euiCollapsibleNavGroup',
@@ -147,7 +146,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<EuiCollapsibleNavGroupPro
 
       <EuiFlexItem>
         <EuiTitle size={titleSize as EuiTitleSize}>
-          <TitleElement id={titleID} className="euiCollapsibleNavGroup__title">
+          <TitleElement className="euiCollapsibleNavGroup__title">
             {title}
           </TitleElement>
         </EuiTitle>
