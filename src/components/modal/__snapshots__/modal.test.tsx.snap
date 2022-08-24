@@ -37,11 +37,7 @@ Array [
           data-euiicon-type="cross"
         />
       </button>
-      <div
-        class="euiModal__flex"
-      >
-        children
-      </div>
+      children
     </div>
   </div>,
   <div
