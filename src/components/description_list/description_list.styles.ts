@@ -41,9 +41,5 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
     left: css`
       ${logicalTextAlignCSS('left')}
     `,
-
-    // Gap
-    s: css``,
-    m: css``,
   };
 };

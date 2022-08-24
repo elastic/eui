@@ -30,9 +30,7 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
     `,
 
     // Types
-    row: css`
-      flex: 1 1 100%;
-    `,
+    row: css``,
     column: css`
       ${columnDisplay}
     `,

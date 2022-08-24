@@ -39,12 +39,7 @@ export const EuiDescriptionList: FunctionComponent<
   const euiTheme = useEuiTheme();
   const styles = euiDescriptionListStyles(euiTheme);
 
-  const cssStyles = [
-    styles.euiDescriptionList,
-    styles[type],
-    styles[align],
-    styles[gutterSize],
-  ];
+  const cssStyles = [styles.euiDescriptionList, styles[type], styles[align]];
 
   const classes = classNames('euiDescriptionList', className);
 
