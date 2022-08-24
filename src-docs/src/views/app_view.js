@@ -5,7 +5,11 @@ import { useLocation } from 'react-router-dom';
 import { toggleLocale as _toggleLocale } from '../actions';
 import { GuidePageChrome, ThemeContext, GuidePageHeader } from '../components';
 import { getLocale, getRoutes } from '../store';
-import { useScrollToHash, useHeadingAnchorLinks } from '../services';
+import {
+  useScrollToHash,
+  useHeadingAnchorLinks,
+  LinkWrapper,
+} from '../services';
 
 import {
   EuiPageTemplate,
@@ -14,8 +18,6 @@ import {
 } from '../../../src/components';
 
 import { keys } from '../../../src/services';
-
-import { LinkWrapper } from './link_wrapper';
 
 export const AppView = ({ children, currentRoute }) => {
   const dispatch = useDispatch();
