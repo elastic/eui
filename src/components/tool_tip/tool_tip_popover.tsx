@@ -64,7 +64,7 @@ export const EuiToolTipPopover: FunctionComponent<Props> = ({
       document.body.classList.remove('euiBody-hasPortalContent');
       window.removeEventListener('resize', updateDimensions);
     };
-  }, [updateDimensions]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [updateDimensions]);
 
   const classes = classNames('euiToolTipPopover', className);
 
