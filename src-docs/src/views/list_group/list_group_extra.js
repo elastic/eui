@@ -4,7 +4,11 @@ import { EuiListGroup, EuiListGroupItem } from '../../../../src/components';
 
 export default () => (
   <EuiListGroup showToolTips>
-    <EuiListGroupItem onClick={() => {}} label="First item" />
+    <EuiListGroupItem
+      onClick={() => {}}
+      label="First item"
+      toolTipText="This is first item"
+    />
 
     <EuiListGroupItem onClick={() => {}} label="Second item" />
 

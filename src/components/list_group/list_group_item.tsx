@@ -137,6 +137,12 @@ export type EuiListGroupItemProps = CommonProps &
      * instances where the item content is rendered as a `button`
      */
     buttonRef?: React.Ref<HTMLButtonElement>;
+
+    /**
+     * Text to be displayed in the tooltip when `showToolTip` is true.
+     * By default the text will be same as the label text.
+     */
+    toolTipText?: string;
   };
 
 export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
@@ -157,6 +163,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   showToolTip = false,
   wrapText,
   buttonRef,
+  toolTipText,
   ...rest
 }) => {
   const isHrefValid = !href || validateHref(href);
@@ -291,7 +298,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
       <li className={classes}>
         <EuiToolTip
           anchorClassName="euiListGroupItem__tooltip"
-          content={label}
+          content={toolTipText ?? label}
           position="right"
           delay="long"
         >
