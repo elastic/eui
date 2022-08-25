@@ -14,8 +14,6 @@ import { EuiBadge } from '../../../../src/components/badge';
 import { slugify } from '../../../../src/services';
 
 export class GuidePageChrome extends Component {
-  _isMounted = false;
-
   constructor(props) {
     super(props);
 
@@ -27,13 +25,7 @@ export class GuidePageChrome extends Component {
   }
 
   componentDidMount = () => {
-    this._isMounted = true;
-
-    this.scrollNavSectionIntoViewSync();
-  };
-
-  componentWillUnmount = () => {
-    this._isMounted = false;
+    this.scrollNavSectionIntoView();
   };
 
   toggleOpenOnMobile = () => {
@@ -49,29 +41,20 @@ export class GuidePageChrome extends Component {
     });
   };
 
-  scrollNavSectionIntoViewSync = () => {
+  scrollNavSectionIntoView = () => {
     // wait a bit for react to blow away and re-create the DOM
     // then scroll the selected nav section into view
-    const selectedButton = document.querySelector(
-      '.euiSideNavItemButton-isSelected'
-    );
-    if (selectedButton) {
-      let root = selectedButton.parentNode;
+    requestAnimationFrame(() => {
+      const sideNav = document.querySelector('.guideSideNav__content');
+      const isMobile = sideNav?.querySelector('.euiSideNav__mobileToggle');
 
-      while (
-        !root.classList.contains('euiSideNavItem--root') &&
-        !root.classList.contains('guideSideNav')
-      ) {
-        root = root.parentNode;
-      }
-      root.scrollIntoView();
-    }
-  };
-
-  scrollNavSectionIntoView = () => {
-    setTimeout(() => {
-      this.scrollNavSectionIntoViewSync();
-    }, 250);
+      const selectedButton = sideNav?.querySelector(
+        '.euiSideNavItemButton-isSelected'
+      );
+      selectedButton?.parentElement.scrollIntoView({
+        block: isMobile ? 'start' : 'center',
+      });
+    });
   };
 
   renderSubSections = (href, subSections = [], searchTerm = '') => {
@@ -235,11 +218,11 @@ export class GuidePageChrome extends Component {
     if (sideNav.length) {
       sideNavContent = (
         <EuiSideNav
-          mobileTitle="Navigate components"
+          mobileTitle="Navigation"
           toggleOpenOnMobile={this.toggleOpenOnMobile}
           isOpenOnMobile={this.state.isSideNavOpenOnMobile}
           items={sideNav}
-          aria-label="EUI"
+          aria-label="EUI navigation"
         />
       );
     } else {
