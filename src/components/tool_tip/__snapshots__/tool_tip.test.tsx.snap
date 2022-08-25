@@ -1,97 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiToolTip anchor props are rendered 1`] = `
-Object {
-  "asFragment": [Function],
-  "baseElement": <body
-    class=""
+<body
+  class=""
+>
+  <div
+    data-euiportal="true"
   >
     <div
-      data-euiportal="true"
+      aria-label="aria-label"
+      class="euiToolTipPopover euiToolTip testClass1 testClass2 emotion-euiToolTip-top-EuiToolTip"
+      data-test-subj="test subject string"
+      id="id"
+      role="tooltip"
+      style="top: -16px; left: -10px;"
     >
       <div
-        aria-label="aria-label"
-        class="euiToolTipPopover euiToolTip testClass1 testClass2 emotion-euiToolTip-top-EuiToolTip"
-        data-test-subj="test subject string"
-        id="id"
-        role="tooltip"
-        style="top: -16px; left: -10px;"
+        class="euiToolTip__title emotion-euiToolTip__title"
       >
-        <div
-          class="euiToolTip__title emotion-euiToolTip__title"
-        >
-          title
-        </div>
-        <div
-          class="euiToolTip__arrow emotion-euiToolTip__arrow-EuiToolTip"
-          style="left: 4px; top: 0px;"
-        />
-        <div>
-          content
-        </div>
+        title
+      </div>
+      <div
+        class="euiToolTip__arrow emotion-euiToolTip__arrow-EuiToolTip"
+        style="left: 4px; top: 0px;"
+      />
+      <div>
+        content
       </div>
     </div>
-    <div />
-  </body>,
-  "container": <div />,
-  "debug": [Function],
-  "findAllByAltText": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByTestSubject": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByAltText": [Function],
-  "findByDisplayValue": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByTestSubject": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByAltText": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByTestSubject": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByAltText": [Function],
-  "getByDisplayValue": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByTestSubject": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByAltText": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByTestSubject": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByAltText": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByTestSubject": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
+  </div>
+  <div />
+</body>
 `;
 
 exports[`EuiToolTip display prop renders block 1`] = `<div />`;

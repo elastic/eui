@@ -49,7 +49,7 @@ describe('EuiToolTip', () => {
   });
 
   test('anchor props are rendered', () => {
-    const component = mount(
+    const { baseElement } = render(
       <EuiToolTip
         title="title"
         id="id"
@@ -64,7 +64,7 @@ describe('EuiToolTip', () => {
       </EuiToolTip>
     );
 
-    expect(component.render()).toMatchSnapshot();
+    expect(baseElement).toMatchSnapshot();
   });
 
   // This is a legacy unit test to ensure tooltips/portal updates still play well with Enzyme
