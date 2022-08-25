@@ -90,10 +90,12 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
 >
   <div>
     <EuiTabs
+      onBlur={[Function]}
       onFocus={[Function]}
     >
       <div
         className="euiTabs euiTabs--bottomBorder"
+        onBlur={[Function]}
         onFocus={[Function]}
         role="tablist"
       >
