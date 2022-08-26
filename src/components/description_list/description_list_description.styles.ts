@@ -24,9 +24,6 @@ export const euiDescriptionListDescriptionStyles = (
   const columnDisplay = `
     ${logicalCSS('width', '50%')}
     ${logicalCSS('padding-left', euiTheme.size.s)}
-    &:not(:first-of-type) {
-      ${logicalCSS('margin-top', euiTheme.size.base)}
-    }
   `;
 
   return {
@@ -76,6 +73,18 @@ export const euiDescriptionListDescriptionStyles = (
     // Column types should align description text to the left when EuiDecriptionList is centered
     left: css`
       ${logicalTextAlignCSS('left')};
+    `,
+
+    // Gutter
+    s: css`
+      &:not(:first-of-type) {
+        ${logicalCSS('margin-top', euiTheme.size.s)}
+      }
+    `,
+    m: css`
+      &:not(:first-of-type) {
+        ${logicalCSS('margin-top', euiTheme.size.base)}
+      }
     `,
   };
 };

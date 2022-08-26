@@ -39,6 +39,10 @@ export interface EuiDescriptionListProps {
    * Props object to be passed to `EuiDescriptionListDescription`
    */
   descriptionProps?: HTMLAttributes<HTMLElement> & CommonProps;
+  /**
+   * Vertical spacing added between `EuiDescriptionList` elements
+   */
+  gutterSize?: EuiDescriptionListGutterSizes;
 }
 
 export const TYPES = ['row', 'inline', 'column', 'responsiveColumn'] as const;
@@ -49,3 +53,6 @@ export type EuiDescriptionListAlignment = typeof ALIGNMENTS[number];
 
 export const TEXT_STYLES = ['normal', 'reverse'] as const;
 export type EuiDescriptionListTextStyle = typeof TEXT_STYLES[number];
+
+export const GUTTER_SIZES = ['s', 'm'] as const;
+export type EuiDescriptionListGutterSizes = typeof GUTTER_SIZES[number];
