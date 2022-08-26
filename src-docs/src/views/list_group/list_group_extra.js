@@ -7,7 +7,7 @@ export default () => (
     <EuiListGroupItem
       onClick={() => {}}
       label="First item"
-      toolTipText="This is first item"
+      toolTipText="This is tooltip text"
     />
 
     <EuiListGroupItem onClick={() => {}} label="Second item" />
