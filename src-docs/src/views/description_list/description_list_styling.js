@@ -132,7 +132,6 @@ export default () => {
         type="inline"
         align={alignSelected}
         compressed={compressed}
-        gutterSize={gutterSelected}
       />
     </div>
   );
