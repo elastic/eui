@@ -47,9 +47,7 @@ export const EuiDescriptionListDescription: FunctionComponent<EuiDescriptionList
       if (align === 'center') {
         conditionalStyles.push(styles.left);
       }
-      gutterSize === 's'
-        ? conditionalStyles.push(styles.s)
-        : conditionalStyles.push(styles.m);
+      conditionalStyles.push(styles[gutterSize]);
       break;
   }
 
