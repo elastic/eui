@@ -7,7 +7,11 @@
  */
 
 import { css } from '@emotion/react';
-import { logicalCSS, euiScrollBarStyles } from '../../global_styling';
+import {
+  logicalCSS,
+  logicalCSSWithFallback,
+  euiScrollBarStyles,
+} from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 export const euiPaginationStyles = (euiThemeContext: UseEuiTheme) => {
@@ -19,8 +23,8 @@ export const euiPaginationStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiScrollBarStyles(euiThemeContext)};
       display: flex;
       align-items: center;
-      ${logicalCSS('overflow-y', 'hidden')};
-      ${logicalCSS('overflow-x', 'auto')};
+      ${logicalCSSWithFallback('overflow-y', 'hidden')};
+      ${logicalCSSWithFallback('overflow-x', 'auto')};
     `,
     // Elements
     euiPagination__compressedText: css`

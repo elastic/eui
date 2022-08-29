@@ -175,8 +175,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
           </a>
           <ul
             aria-label="Pagination for table: "
-            class="emotion-euiPagination__list"
-            data-test-subj="euiPagination__list"
+            class="euiPagination__list emotion-euiPagination__list"
           >
             <li
               class="euiPagination__item"

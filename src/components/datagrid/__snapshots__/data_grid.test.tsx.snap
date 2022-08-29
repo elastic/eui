@@ -69,8 +69,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
       </a>
       <ul
         aria-label="Pagination for preceding grid: test grid"
-        class="emotion-euiPagination__list"
-        data-test-subj="euiPagination__list"
+        class="euiPagination__list emotion-euiPagination__list"
       >
         <li
           class="euiPagination__item"

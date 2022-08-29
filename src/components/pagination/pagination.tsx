@@ -155,7 +155,7 @@ export const EuiPagination: FunctionComponent<Props> = ({
         <EuiText
           size="s"
           css={paginationStyles.euiPagination__compressedText}
-          data-test-subj="euiPagination__compressedText"
+          className="euiPagination__compressedText"
         >
           <EuiI18n
             token="euiPagination.pageOfTotalCompressed"
@@ -294,7 +294,7 @@ export const EuiPagination: FunctionComponent<Props> = ({
         <ul
           {...accessibleName}
           css={paginationStyles.euiPagination__list}
-          data-test-subj="euiPagination__list"
+          className="euiPagination__list"
         >
           {firstPageButtons}
           {selectablePages}
