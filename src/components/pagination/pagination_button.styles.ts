@@ -21,37 +21,45 @@ export const euiPaginationButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const halfSizeM = parseInt(euiTheme.size.m.replace('px', '')) / 2;
   const disabled = euiButtonEmptyColor(euiThemeContext, 'disabled');
 
+  // && to increase specificity. Can likely be removed once EuiButtonEmpty has been converted.
+
   return {
     // Base
     euiPaginationButton: css`
-      ${fontSizeS};
-      padding: 0;
-      ${logicalTextAlignCSS('center')}
-      border-radius: ${euiTheme.border.radius.medium};
-      outline-offset: -${euiTheme.focus.width};
+      && {
+        ${fontSizeS};
+        padding: 0;
+        ${logicalTextAlignCSS('center')}
+        border-radius: ${euiTheme.border.radius.medium};
+        outline-offset: -${euiTheme.focus.width};
+      }
     `,
     // States
     isActive: css`
-      font-weight: ${euiTheme.font.weight.bold};
-      color: ${euiTheme.colors.primary};
+      && {
+        font-weight: ${euiTheme.font.weight.bold};
+        color: ${euiTheme.colors.primary};
 
-      .euiButtonEmpty__content {
-        cursor: default;
-      }
+        .euiButtonEmpty__content {
+          cursor: default;
+        }
 
-      &,
-      &:hover {
-        text-decoration: underline;
+        &&,
+        &&:hover {
+          text-decoration: underline;
+        }
       }
     `,
     isPlaceholder: css`
-      align-items: baseline;
-      color: ${disabled.color};
-      ${fontSizeS};
-      ${logicalCSS('padding-top', `${halfSizeM}px`)};
-      ${logicalCSS('padding-bottom', 0)};
-      ${logicalCSS('padding-horizontal', euiTheme.size.s)};
-      ${logicalCSS('height', euiTheme.size.l)};
+      && {
+        align-items: baseline;
+        color: ${disabled.color};
+        ${fontSizeS};
+        ${logicalCSS('padding-top', `${halfSizeM}px`)};
+        ${logicalCSS('padding-bottom', 0)};
+        ${logicalCSS('padding-horizontal', euiTheme.size.s)};
+        ${logicalCSS('height', euiTheme.size.l)};
+      }
     `,
   };
 };
