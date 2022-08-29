@@ -27,10 +27,14 @@ export const euiOverlayMaskStyles = ({ euiTheme }: UseEuiTheme) => ({
     }
   `,
   aboveHeader: css`
-    z-index: ${euiTheme.levels.mask};
+    .euiOverlayMask {
+      z-index: ${euiTheme.levels.mask};
+    }
   `,
   belowHeader: css`
-    z-index: ${euiTheme.levels.maskBelowHeader};
+    .euiOverlayMask {
+      z-index: ${euiTheme.levels.maskBelowHeader};
+    }
   `,
 });
 
