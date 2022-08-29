@@ -141,7 +141,7 @@ export const ListGroupExample = {
       text: (
         <>
           <p>
-              Similarly, <EuiCode>toolTipText</EuiCode> can be used to provide
+            Similarly, <EuiCode>toolTipText</EuiCode> can be used to provide
             tooltip text. By default, the tooltip will have the text same as{' '}
             <EuiCode>label</EuiCode> text.
           </p>
