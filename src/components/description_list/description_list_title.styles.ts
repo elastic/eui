@@ -27,10 +27,6 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     euiDescriptionList__title: css`
       ${euiTextBreakWord()}
-      // Add margin only to the non-first <dt>.
-      &:not(:first-of-type) {
-        ${logicalCSS('margin-top', euiTheme.size.base)}
-      }
     `,
 
     // Types
@@ -93,6 +89,19 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
     // Alignment
     right: css`
       ${logicalTextAlignCSS('right')};
+    `,
+
+    // Gutter
+    // Add margin only to the non-first <dt>.
+    s: css`
+      &:not(:first-of-type) {
+        ${logicalCSS('margin-top', euiTheme.size.s)}
+      }
+    `,
+    m: css`
+      &:not(:first-of-type) {
+        ${logicalCSS('margin-top', euiTheme.size.base)}
+      }
     `,
   };
 };

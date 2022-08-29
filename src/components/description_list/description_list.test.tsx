@@ -11,7 +11,7 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
 import { EuiDescriptionList } from './description_list';
-import { TYPES, ALIGNMENTS } from './description_list_types';
+import { TYPES, ALIGNMENTS, GUTTER_SIZES } from './description_list_types';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
 describe('EuiDescriptionList', () => {
@@ -98,6 +98,16 @@ describe('EuiDescriptionList', () => {
       ALIGNMENTS.forEach((alignment) => {
         test(`${alignment} is rendered`, () => {
           const component = render(<EuiDescriptionList align={alignment} />);
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('gutter', () => {
+      GUTTER_SIZES.forEach((gutter) => {
+        test(`${gutter} is rendered`, () => {
+          const component = render(<EuiDescriptionList gutterSize={gutter} />);
 
           expect(component).toMatchSnapshot();
         });

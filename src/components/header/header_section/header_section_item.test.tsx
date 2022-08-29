@@ -31,13 +31,21 @@ describe('EuiHeaderSectionItem', () => {
 
   describe('border', () => {
     test('defaults to left', () => {
-      const component = render(<EuiHeaderSectionItem />);
+      const component = render(
+        <EuiHeaderSectionItem>
+          <span>Left is default</span>
+        </EuiHeaderSectionItem>
+      );
 
       expect(component).toMatchSnapshot();
     });
 
     test('renders right', () => {
-      const component = render(<EuiHeaderSectionItem border="right" />);
+      const component = render(
+        <EuiHeaderSectionItem border="right">
+          <span>Right section</span>
+        </EuiHeaderSectionItem>
+      );
 
       expect(component).toMatchSnapshot();
     });
