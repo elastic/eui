@@ -25,7 +25,7 @@ import {
 import { EuiBottomBarProps, EuiBottomBar } from '../bottom_bar';
 import { useIsWithinBreakpoints } from '../../services';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
-import { useEuiPaddingSize } from '../../global_styling';
+import { useEuiPaddingSize, logicalCSS } from '../../global_styling';
 
 export const TEMPLATES = [
   'default',
@@ -123,7 +123,9 @@ export const EuiPageTemplate_Deprecated: FunctionComponent<EuiPageTemplateProps_
   ...rest
 }) => {
   // BWC page header margin to match padding
-  const headerMargin = css(`margin-bottom: ${useEuiPaddingSize(paddingSize)}`);
+  const headerMargin = css(
+    logicalCSS('margin-bottom', useEuiPaddingSize(paddingSize))
+  );
 
   /**
    * Full height ~madness~ logic

@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 
 import {
-  EuiHeaderLogo,
+  EuiBadge,
+  EuiButtonEmpty,
+  EuiFlexGroup,
+  EuiFlexItem,
   EuiHeader,
+  EuiHeaderLogo,
   EuiHeaderSectionItemButton,
-} from '../../../../src/components/header';
-import { EuiBadge } from '../../../../src/components/badge';
-import { EuiIcon } from '../../../../src/components/icon';
-import { EuiToolTip } from '../../../../src/components/tool_tip';
-import { EuiPopover } from '../../../../src/components/popover';
+  EuiIcon,
+  EuiPopover,
+  EuiToolTip,
+} from '../../../../src/components';
 import { useIsWithinBreakpoints } from '../../../../src/services';
-import { EuiButtonEmpty } from '../../../../src/components/button';
 
 // @ts-ignore Not TS
 import { CodeSandboxLink } from '../../components/codesandbox/link';
@@ -101,14 +103,22 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
 
     return (
       <EuiPopover
-        id="guidePageChromeThemePopover"
         button={button}
         isOpen={mobilePopoverIsOpen}
         closePopover={() => setMobilePopoverIsOpen(false)}
       >
-        {renderGithub()}
-        <GuideFigmaLink />
-        {renderCodeSandbox()}
+        <EuiFlexGroup
+          direction="column"
+          alignItems="flexStart"
+          gutterSize="none"
+          responsive={false}
+        >
+          <EuiFlexItem>{renderGithub()}</EuiFlexItem>
+          <EuiFlexItem>
+            <GuideFigmaLink />
+          </EuiFlexItem>
+          <EuiFlexItem>{renderCodeSandbox()}</EuiFlexItem>
+        </EuiFlexGroup>
       </EuiPopover>
     );
   }

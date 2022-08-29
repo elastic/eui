@@ -135,7 +135,7 @@ export default () => {
                 <>
                   <EuiFlexItem grow={false}>
                     <EuiButtonEmpty
-                      color="ghost"
+                      color="text"
                       iconType="cross"
                       onClick={clearOverrides}
                     >
@@ -157,7 +157,7 @@ export default () => {
                 <span>
                   <EuiButton
                     onClick={() => setJsonFlyoutIsOpen(true)}
-                    color="ghost"
+                    color="text"
                   >
                     View theme JSON
                   </EuiButton>

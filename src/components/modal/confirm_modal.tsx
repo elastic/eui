@@ -20,7 +20,7 @@ import { EuiModalHeader } from './modal_header';
 import { EuiModalHeaderTitle } from './modal_header_title';
 import { EuiModalBody } from './modal_body';
 
-import { ButtonColor, EuiButton, EuiButtonEmpty } from '../button';
+import { EuiButtonColor, EuiButton, EuiButtonEmpty } from '../button';
 
 import { EuiText } from '../text';
 
@@ -45,7 +45,7 @@ export interface EuiConfirmModalProps
   confirmButtonDisabled?: boolean;
   className?: string;
   defaultFocusedButton?: typeof CONFIRM_BUTTON | typeof CANCEL_BUTTON;
-  buttonColor?: ButtonColor;
+  buttonColor?: EuiButtonColor;
   // For docs only, will get passed with ...rest
   /**
    * Sets the max-width of the modal.

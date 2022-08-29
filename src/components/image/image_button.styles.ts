@@ -27,11 +27,8 @@ export const euiImageButtonStyles = (euiThemeContext: UseEuiTheme) => {
         opacity: 0;
         content: '';
         pointer-events: none; // Prevent interacting with this element, it's for visual effect only
-        position: absolute; // Skip logical properties here - should all be the same
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
+        position: absolute;
+        inset: 0;
 
         ${euiCanAnimate} {
           transition: opacity ${euiTheme.animation.fast}

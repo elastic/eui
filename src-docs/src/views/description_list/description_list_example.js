@@ -231,7 +231,7 @@ export const DescriptionListExample = {
       demo: <DescriptionListInline />,
     },
     {
-      title: 'Centered and compressed',
+      title: 'Customizing appearance',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -242,7 +242,9 @@ export const DescriptionListExample = {
         <p>
           Using the <EuiCode>align</EuiCode> and <EuiCode>compressed</EuiCode>{' '}
           props you can further tailor the look of a description list. This
-          works with column and inline types.
+          works with column and inline types. You can also adjust the{' '}
+          <EuiCode>gutterSize</EuiCode> prop to increase and decrease vertical
+          spacing between <EuiCode>EuiDescriptionList</EuiCode> elements.
         </p>
       ),
       snippet: descriptionListStylingSnippet,

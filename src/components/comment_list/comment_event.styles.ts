@@ -28,7 +28,7 @@ export const euiCommentEventHeaderStyles = ({ euiTheme }: UseEuiTheme) => ({
   // types
   regular: css`
     background: ${euiTheme.colors.lightestShade};
-    border-bottom: ${euiTheme.border.thin};
+    ${logicalCSS('border-bottom', euiTheme.border.thin)}
     padding: ${euiTheme.size.s};
   `,
   // variants

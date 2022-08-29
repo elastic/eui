@@ -20,7 +20,7 @@ exports[`EuiDescriptionListDescription EuiDescriptionListDescription prop variat
 
 exports[`EuiDescriptionListDescription EuiDescriptionListDescription prop variations type column is rendered 1`] = `
 <dd
-  class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal"
+  class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-m"
 />
 `;
 
@@ -32,7 +32,7 @@ exports[`EuiDescriptionListDescription EuiDescriptionListDescription prop variat
 
 exports[`EuiDescriptionListDescription EuiDescriptionListDescription prop variations type responsiveColumn is rendered 1`] = `
 <dd
-  class="euiDescriptionList__description emotion-euiDescriptionList__description-responsiveColumn-normal"
+  class="euiDescriptionList__description emotion-euiDescriptionList__description-responsiveColumn-normal-m"
 />
 `;
 

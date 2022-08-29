@@ -12,6 +12,7 @@ import { CommonProps } from '../../common';
 import { EuiLoadingSpinner, EuiLoadingSpinnerProps } from '../../loading';
 import { EuiIcon, IconType } from '../../icon';
 import { euiButtonDisplayContentStyles } from './_button_display_content.styles';
+import classNames from 'classnames';
 
 export type ButtonContentIconSide = 'left' | 'right' | undefined;
 
@@ -40,7 +41,7 @@ export interface EuiButtonDisplayContentProps extends CommonProps {
       'data-text'?: string;
     };
   iconSize?: 's' | 'm';
-  isDisabled: boolean;
+  isDisabled?: boolean;
 }
 
 export const EuiButtonDisplayContent: FunctionComponent<
@@ -61,7 +62,6 @@ export const EuiButtonDisplayContent: FunctionComponent<
   const cssStyles = [
     styles.euiButtonDisplayContent,
     iconSide && styles[iconSide],
-    isDisabled && styles.isDisabled,
   ];
   const cssSpinnerStyles = [styles.euiButtonDisplayContent__spinner];
   const cssIconStyles = [styles.euiButtonDisplayContent__icon];
@@ -104,7 +104,16 @@ export const EuiButtonDisplayContent: FunctionComponent<
   return (
     <span {...contentProps} css={cssStyles}>
       {icon}
-      {isText ? <span {...textProps}>{children}</span> : children}
+      {isText ? (
+        <span
+          {...textProps}
+          className={classNames('eui-textTruncate', textProps?.className)}
+        >
+          {children}
+        </span>
+      ) : (
+        children
+      )}
     </span>
   );
 };

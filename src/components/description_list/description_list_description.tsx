@@ -23,7 +23,7 @@ export const EuiDescriptionListDescription: FunctionComponent<EuiDescriptionList
   className,
   ...rest
 }) => {
-  const { type, textStyle, compressed, align } = useContext(
+  const { type, textStyle, compressed, align, gutterSize } = useContext(
     EuiDescriptionListContext
   );
 
@@ -47,6 +47,7 @@ export const EuiDescriptionListDescription: FunctionComponent<EuiDescriptionList
       if (align === 'center') {
         conditionalStyles.push(styles.left);
       }
+      conditionalStyles.push(styles[gutterSize]);
       break;
   }
 

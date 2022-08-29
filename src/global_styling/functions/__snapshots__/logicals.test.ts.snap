@@ -62,8 +62,6 @@ exports[`logicalCSS mixin returns a string property for each directional propert
 
 exports[`logicalCSS mixin returns a string property for each directional property: horizontal 1`] = `"inset-block: 8px;"`;
 
-exports[`logicalCSS mixin returns a string property for each directional property: inset 1`] = `"inset: 8px;"`;
-
 exports[`logicalCSS mixin returns a string property for each directional property: left 1`] = `"inset-inline-start: 8px;"`;
 
 exports[`logicalCSS mixin returns a string property for each directional property: margin-bottom 1`] = `"margin-block-end: 8px;"`;
@@ -300,12 +298,6 @@ Object {
 exports[`logicalStyle mixin returns an object property for each directional property: horizontal 1`] = `
 Object {
   "insetBlock": "8px",
-}
-`;
-
-exports[`logicalStyle mixin returns an object property for each directional property: inset 1`] = `
-Object {
-  "inset": "8px",
 }
 `;
 

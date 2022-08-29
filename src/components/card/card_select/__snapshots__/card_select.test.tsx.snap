@@ -4,19 +4,15 @@ exports[`EuiCardSelect is rendered 1`] = `
 <button
   aria-checked="false"
   aria-label="aria-label"
-  class="euiButton euiButton--text euiButton--fullWidth testClass1 testClass2 emotion-euiCardSelect"
+  class="testClass1 testClass2 emotion-euiButtonDisplay-m-fullWidth-m-base-text-euiCardSelect"
   data-test-subj="test subject string"
   role="switch"
   type="button"
 >
   <span
-    class="euiButtonContent euiButton__content"
+    class="emotion-euiButtonDisplayContent"
   >
-    <span
-      class="euiButton__text"
-    >
-      Select
-    </span>
+    Select
   </span>
 </button>
 `;
@@ -24,18 +20,14 @@ exports[`EuiCardSelect is rendered 1`] = `
 exports[`EuiCardSelect props can override color 1`] = `
 <button
   aria-checked="false"
-  class="euiButton euiButton--danger euiButton--fullWidth emotion-euiCardSelect"
+  class="emotion-euiButtonDisplay-m-fullWidth-m-base-danger-euiCardSelect"
   role="switch"
   type="button"
 >
   <span
-    class="euiButtonContent euiButton__content"
+    class="emotion-euiButtonDisplayContent"
   >
-    <span
-      class="euiButton__text"
-    >
-      Select
-    </span>
+    Select
   </span>
 </button>
 `;
@@ -43,15 +35,15 @@ exports[`EuiCardSelect props can override color 1`] = `
 exports[`EuiCardSelect props can override text 1`] = `
 <button
   aria-checked="false"
-  class="euiButton euiButton--text euiButton--fullWidth emotion-euiCardSelect"
+  class="emotion-euiButtonDisplay-m-fullWidth-m-base-text-euiCardSelect"
   role="switch"
   type="button"
 >
   <span
-    class="euiButtonContent euiButton__content"
+    class="emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiButton__text"
+      class="eui-textTruncate"
     >
       Custom text
     </span>
@@ -62,19 +54,15 @@ exports[`EuiCardSelect props can override text 1`] = `
 exports[`EuiCardSelect props isDisabled 1`] = `
 <button
   aria-checked="false"
-  class="euiButton euiButton--text euiButton--fullWidth euiButton-isDisabled emotion-euiCardSelect"
+  class="emotion-euiButtonDisplay-m-fullWidth-isDisabled-m-base-disabled-euiCardSelect"
   disabled=""
   role="switch"
   type="button"
 >
   <span
-    class="euiButtonContent euiButton__content"
+    class="emotion-euiButtonDisplayContent"
   >
-    <span
-      class="euiButton__text"
-    >
-      Unavailable
-    </span>
+    Unavailable
   </span>
 </button>
 `;
@@ -82,23 +70,19 @@ exports[`EuiCardSelect props isDisabled 1`] = `
 exports[`EuiCardSelect props isSelected 1`] = `
 <button
   aria-checked="true"
-  class="euiButton euiButton--success euiButton--fullWidth emotion-euiCardSelect"
+  class="emotion-euiButtonDisplay-m-fullWidth-m-base-success-euiCardSelect"
   role="switch"
   type="button"
 >
   <span
-    class="euiButtonContent euiButton__content"
+    class="emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiButtonContent__icon"
+      class="emotion-euiButtonDisplayContent__icon"
       color="inherit"
       data-euiicon-type="check"
     />
-    <span
-      class="euiButton__text"
-    >
-      Selected
-    </span>
+    Selected
   </span>
 </button>
 `;

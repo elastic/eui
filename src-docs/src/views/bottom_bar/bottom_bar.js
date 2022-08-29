@@ -25,12 +25,12 @@ export default () => {
           <EuiFlexItem grow={false}>
             <EuiFlexGroup gutterSize="s">
               <EuiFlexItem grow={false}>
-                <EuiButton color="ghost" size="s" iconType="help">
+                <EuiButton color="text" size="s" iconType="help">
                   Help
                 </EuiButton>
               </EuiFlexItem>
               <EuiFlexItem grow={false}>
-                <EuiButton color="ghost" size="s" iconType="user">
+                <EuiButton color="text" size="s" iconType="user">
                   Add user
                 </EuiButton>
               </EuiFlexItem>
@@ -39,7 +39,7 @@ export default () => {
           <EuiFlexItem grow={false}>
             <EuiFlexGroup gutterSize="s">
               <EuiFlexItem grow={false}>
-                <EuiButtonEmpty color="ghost" size="s" iconType="cross">
+                <EuiButtonEmpty color="text" size="s" iconType="cross">
                   Discard
                 </EuiButtonEmpty>
               </EuiFlexItem>

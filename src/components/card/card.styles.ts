@@ -42,8 +42,7 @@ export const euiCardStyles = (
       euiCard: css`
         display: flex;
 
-        // Progressive enhancement where we apply the outline to the whole card
-        // when the internal text button has focus
+        // Apply the outline to the whole card when the internal text button has focus
         &:has([class*='euiCard__text'][class*='-interactive']:focus:focus-visible) {
           outline: ${euiTheme.focus.width} solid currentColor;
         }
@@ -76,7 +75,7 @@ export const euiCardStyles = (
 
       disabled: css`
         cursor: not-allowed; // duplicate property due to Chrome bug
-        background-color: ${euiButtonColor('disabled', euiThemeContext)};
+        background-color: ${euiButtonColor(euiThemeContext, 'disabled')};
         color: ${euiTheme.colors.disabledText};
       `,
     },
@@ -118,7 +117,6 @@ export const euiCardStyles = (
         flex-grow: 0; /* 1 */
         font-size: 0;
         position: relative;
-        ${logicalCSS('min-height', '1px')}; /* 2 */
         ${logicalCSS('margin-bottom', spacing)};
       `,
 
@@ -150,11 +148,13 @@ export const euiCardStyles = (
       // ensure the parent is only as tall as the image
       ${logicalCSS('margin-bottom', `-${paddingAmount}`)};
 
-      // match border radius, minus 1px because it's inside a border
-      ${logicals['border-top-left-radius']}: calc(${euiTheme.border.radius
-        .medium} - 1px);
+      // match border radius, minus border width
+      ${logicalCSS(
+        'border-top-left-radius',
+        `calc(${euiTheme.border.radius.medium} - ${euiTheme.border.width.thin})`
+      )}
       ${logicals['border-top-right-radius']}: calc(${euiTheme.border.radius
-        .medium} - 1px);
+        .medium} - ${euiTheme.border.width.thin});
 
       ${color === 'transparent'
         ? `border-radius: ${euiTheme.border.radius.medium};`

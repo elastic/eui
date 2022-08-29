@@ -23,8 +23,8 @@ export default ({ snippet }: { snippet: ReactNode }) => {
       <span
         css={css`
           display: inline-block;
-          width: ${euiTheme.size.base};
-          height: ${euiTheme.size.base};
+          ${logicalCSS('width', euiTheme.size.base)}
+          ${logicalCSS('height', euiTheme.size.base)}
           background: ${euiTheme.colors.primary};
           color: ${euiTheme.colors.emptyShade};
           ${useEuiFontSize('xs')};
@@ -69,7 +69,7 @@ export default ({ snippet }: { snippet: ReactNode }) => {
                   ${euiTheme.border.radius.small} 0 0;
                 padding: ${euiTheme.size.s};
                 background: ${euiTheme.colors.lightestShade};
-                border-bottom: ${euiTheme.border.thin};
+                ${logicalCSS('border-bottom', euiTheme.border.thin)}
                 display: flex;
               `}
             >

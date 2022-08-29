@@ -8,13 +8,17 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
+import { logicalCSS } from '../../../global_styling';
 
 export const euiPageOuterStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiPageOuter: css`
     display: flex;
     background-color: ${euiTheme.colors.body};
     flex-shrink: 0; // Ensures Safari doesn't shrink height beyond contents
-    max-width: 100%; // Ensures Firefox doesn't expand width beyond bounds
+    ${logicalCSS(
+      'max-width',
+      '100%' // Ensures Firefox doesn't expand width beyond bounds
+    )}
   `,
 
   // Grow

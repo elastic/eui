@@ -71,6 +71,11 @@
     border-top: $euiBorderThin;
   }
 
+  .euiSideNav-isOpenMobile .euiSideNav__content {
+    max-height: 50vh;
+    overflow: auto;
+  }
+
   .guideSideNav__search {
     padding: $euiSizeS;
   }
