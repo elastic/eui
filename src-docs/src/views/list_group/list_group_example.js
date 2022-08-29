@@ -141,10 +141,9 @@ export const ListGroupExample = {
       text: (
         <>
           <p>
-            Optional props <EuiCode>showToolTip</EuiCode> and{' '}
-            <EuiCode>wrapLines</EuiCode> can be used to augment the display of
-            list items. Use these when lists are inside small containers where
-            it is likely that the content will be truncated.
+              Similarly, <EuiCode>toolTipText</EuiCode> can be used to provide
+            tooltip text. By default, the tooltip will have the text same as{' '}
+            <EuiCode>label</EuiCode> text.
           </p>
           <p>
             In addtion to that, optional prop <EuiCode>toolTipText</EuiCode> can
