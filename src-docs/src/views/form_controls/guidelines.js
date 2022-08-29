@@ -68,7 +68,8 @@ export default () => {
         description={
           <p>
             Place hints and instructions outside a text field so it is always
-            visible to the user. Use hint text to:
+            visible to the user. Keep the hint text short, maximum two 
+            sentences long. Use hint text to:
             <EuiSpacer />
             <ul>
               <li>
