@@ -16,34 +16,34 @@ module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
 
-  require('@cypress/code-coverage/task')(on, config);
-  on('file:preprocessor', require('@cypress/code-coverage/use-babelrc'));
+  // require('@cypress/code-coverage/task')(on, config);
+  // on('file:preprocessor', require('@cypress/code-coverage/use-babelrc'));
   
   // `cy.task()` executes code in Node via the task plugin event
   // These are being added to print messages and errors to console and CI logs
   // https://docs.cypress.io/api/commands/task
   // https://github.com/component-driven/cypress-axe#using-the-violationcallback-argument
-  on('task', {
-    log(message) {
-      console.log(message);
-      return null;
-    },
-    table(message) {
-      console.table(message);
-      return null;
-    }
-  });
+  // on('task', {
+  //   log(message) {
+  //     console.log(message);
+  //     return null;
+  //   },
+  //   table(message) {
+  //     console.table(message);
+  //     return null;
+  //   }
+  // });
 
-  if (config.testingType === 'component') {
-    const { startDevServer } = require('@cypress/webpack-dev-server');
+  // if (config.testingType === 'component') {
+  //   const { startDevServer } = require('@cypress/webpack-dev-server');
 
-    // Your project's Webpack configuration
-    const webpackConfig = require('./webpack.config.js');
+  //   // Your project's Webpack configuration
+  //   const webpackConfig = require('./webpack.config.js');
 
-    on('dev-server:start', (options) =>
-      startDevServer({ options, webpackConfig })
-    );
-  }
+  //   on('dev-server:start', (options) =>
+  //     startDevServer({ options, webpackConfig })
+  //   );
+  // }
 
-  return config;
+  // return config;
 };

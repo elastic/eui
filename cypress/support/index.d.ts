@@ -1,4 +1,4 @@
-import { ElementContext, Result, RunOptions } from 'axe-core';
+import { ContextObject, Result, RunOptions } from 'axe-core';
 import { MountReturn } from '@cypress/react';
 import { realPress } from 'cypress-real-events/commands/realPress';
 
@@ -10,10 +10,6 @@ declare global {
     interface Chainable<Subject> {
       // We are adding `/// <reference types="../../../cypress/support"/>` to
       // Cypress specs so VSCode will recognize custom command types.
-  
-      // Cypress-axe methods that are used to create `checkAxe` custom command 
-      checkA11y(context?: ElementContext, config?: RunOptions, callback?: (violations: Result[]) => void, skipFailures?: boolean): void;
-      injectAxe(): void;
   
       /**
        * Convenience method to run the axe-core accessibility scanner without having to establish 
@@ -29,7 +25,7 @@ declare global {
        */
       checkAxe(options?: {
         skipFailures?: boolean,
-        context?: ElementContext,
+        context?: string | Node | ContextObject | undefined,
         axeConfig?: RunOptions,
         callback?: (violations: Result[]) => void
       }): void;

@@ -9,8 +9,10 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const THEME_IMPORT = `'../../dist/eui_theme_${process.env.THEME}.css'`;
+console.log(THEME_IMPORT);
 
 module.exports = {
   mode: 'development',
