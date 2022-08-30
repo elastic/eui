@@ -21,8 +21,7 @@ export interface EuiPageContentHeaderProps
 }
 
 /**
- * **DEPRECATED**
- * Use EuiPageHeader instead
+ * @deprecated Use EuiPageHeader instead
  */
 export const EuiPageContentHeader_Deprecated: FunctionComponent<EuiPageContentHeaderProps> = ({
   children,
