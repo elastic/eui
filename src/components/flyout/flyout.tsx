@@ -40,8 +40,6 @@ import {
   isEuiFlyoutSizeNamed,
 } from './flyout_types';
 
-import { EuiFlyoutContext } from './flyout_context';
-
 import { EuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
@@ -270,27 +268,25 @@ export const EuiFlyout = forwardRef(
      * (both mousedown and mouseup) the overlay mask.
      */
     let flyout = (
-      <EuiFlyoutContext.Provider value={{ paddingSize }}>
-        <EuiFocusTrap
-          disabled={isPushed}
-          clickOutsideDisables={!ownFocus}
-          onClickOutside={onClickOutside}
-          {...focusTrapProps}
+      <EuiFocusTrap
+        disabled={isPushed}
+        clickOutsideDisables={!ownFocus}
+        onClickOutside={onClickOutside}
+        {...focusTrapProps}
+      >
+        <Element
+          {...(rest as ComponentPropsWithRef<T>)}
+          role={role}
+          className={classes}
+          tabIndex={-1}
+          style={newStyle || style}
+          ref={setRef}
+          css={cssStyles}
         >
-          <Element
-            {...(rest as ComponentPropsWithRef<T>)}
-            role={role}
-            className={classes}
-            tabIndex={-1}
-            style={newStyle || style}
-            ref={setRef}
-            css={cssStyles}
-          >
-            {closeButton}
-            {children}
-          </Element>
-        </EuiFocusTrap>
-      </EuiFlyoutContext.Provider>
+          {closeButton}
+          {children}
+        </Element>
+      </EuiFocusTrap>
     );
 
     // If ownFocus is set, wrap with an overlay and allow the user to click it to close it.
