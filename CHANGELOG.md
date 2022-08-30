@@ -86,6 +86,15 @@
 
 - Converted `EuiTour` to Emotion ([#6087](https://github.com/elastic/eui/pull/6087))
 
+## [`63.0.5`](https://github.com/elastic/eui/tree/v63.0.5)
+
+**Note: this release is a backport containing changes originally made in `64.0.0`**
+
+**Bug fixes**
+
+- Fixed missing `data-fixed-headers` property in some layout configurations using `EuiPageTemplate`. ([#6140](https://github.com/elastic/eui/pull/6140))
+- Fixed an `EuiPageSidebar` bug where inline styles were not correctly updating ([#6191](https://github.com/elastic/eui/pull/6191))
+
 ## [`63.0.4`](https://github.com/elastic/eui/tree/v63.0.4)
 
 **Note: this release is a backport containing changes originally made in `65.0.1`**
