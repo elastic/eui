@@ -1,3 +1,10 @@
+## [`63.0.5`](https://github.com/elastic/eui/tree/v63.0.5)
+
+**Bug fixes**
+
+- Fixed missing `data-fixed-headers` property in some layout configurations using `EuiPageTemplate`. ([#6140](https://github.com/elastic/eui/pull/6140))
+- Fixed an `EuiPageSidebar` bug where inline styles were not correctly updating ([#6191](https://github.com/elastic/eui/pull/6191))
+
 ## [`63.0.4`](https://github.com/elastic/eui/tree/v63.0.4)
 
 **Bug fixes**
