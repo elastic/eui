@@ -13,13 +13,13 @@ Array [
     >
       Page level controls
     </h2>
-    <div
+    <section
       class="emotion-euiPageSection-l-top-transparent"
     >
       <div
         class="emotion-euiPageSection__content-l"
       />
-    </div>
+    </section>
   </section>,
   <p
     aria-live="assertive"
@@ -42,13 +42,13 @@ Array [
     >
       Page level controls
     </h2>
-    <div
+    <section
       class="emotion-euiPageSection-l-top-transparent"
     >
       <div
         class="emotion-euiPageSection__content-l"
       />
-    </div>
+    </section>
   </section>,
   <p
     aria-live="assertive"
@@ -71,13 +71,13 @@ Array [
     >
       Page level controls
     </h2>
-    <div
+    <section
       class="emotion-euiPageSection-m-top-transparent"
     >
       <div
         class="emotion-euiPageSection__content-m"
       />
-    </div>
+    </section>
   </section>,
   <p
     aria-live="assertive"
@@ -100,13 +100,13 @@ Array [
     >
       Page level controls
     </h2>
-    <div
+    <section
       class="emotion-euiPageSection-top-transparent"
     >
       <div
         class="emotion-euiPageSection__content"
       />
-    </div>
+    </section>
   </section>,
   <p
     aria-live="assertive"
@@ -129,13 +129,13 @@ Array [
     >
       Page level controls
     </h2>
-    <div
+    <section
       class="emotion-euiPageSection-s-top-transparent"
     >
       <div
         class="emotion-euiPageSection__content-s"
       />
-    </div>
+    </section>
   </section>,
   <p
     aria-live="assertive"
@@ -158,13 +158,13 @@ Array [
     >
       Page level controls
     </h2>
-    <div
+    <section
       class="emotion-euiPageSection-xl-top-transparent"
     >
       <div
         class="emotion-euiPageSection__content-xl"
       />
-    </div>
+    </section>
   </section>,
   <p
     aria-live="assertive"
@@ -187,13 +187,13 @@ Array [
     >
       Page level controls
     </h2>
-    <div
+    <section
       class="emotion-euiPageSection-xs-top-transparent"
     >
       <div
         class="emotion-euiPageSection__content-xs"
       />
-    </div>
+    </section>
   </section>,
   <p
     aria-live="assertive"
@@ -216,14 +216,14 @@ Array [
     >
       Page level controls
     </h2>
-    <div
+    <section
       class="emotion-euiPageSection-l-top-transparent"
     >
       <div
         class="emotion-euiPageSection__content-l-restrictWidth"
         style="max-width:1024px"
       />
-    </div>
+    </section>
   </section>,
   <p
     aria-live="assertive"
@@ -246,14 +246,14 @@ Array [
     >
       Page level controls
     </h2>
-    <div
+    <section
       class="emotion-euiPageSection-l-top-transparent"
     >
       <div
         class="emotion-euiPageSection__content-l-restrictWidth"
         style="max-width:24rem"
       />
-    </div>
+    </section>
   </section>,
   <p
     aria-live="assertive"
@@ -276,14 +276,14 @@ Array [
     >
       Page level controls
     </h2>
-    <div
+    <section
       class="emotion-euiPageSection-l-top-transparent"
     >
       <div
         class="emotion-euiPageSection__content-l-restrictWidth"
         style="max-width:1200px"
       />
-    </div>
+    </section>
   </section>,
   <p
     aria-live="assertive"
