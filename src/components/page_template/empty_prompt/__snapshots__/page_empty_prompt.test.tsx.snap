@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`_EuiPageEmptyPrompt EuiEmptyPromptProps is rendered 1`] = `
-<div
+<section
   class="emotion-euiPageSection-grow-l-center-transparent"
 >
   <div
@@ -36,11 +36,11 @@ exports[`_EuiPageEmptyPrompt EuiEmptyPromptProps is rendered 1`] = `
       </div>
     </div>
   </div>
-</div>
+</section>
 `;
 
 exports[`_EuiPageEmptyPrompt EuiPageSectionProps is rendered 1`] = `
-<div
+<section
   class="emotion-euiPageSection-l-horizontalCenter-transparent"
 >
   <div
@@ -62,11 +62,11 @@ exports[`_EuiPageEmptyPrompt EuiPageSectionProps is rendered 1`] = `
       </div>
     </div>
   </div>
-</div>
+</section>
 `;
 
 exports[`_EuiPageEmptyPrompt is rendered 1`] = `
-<div
+<section
   class="emotion-euiPageSection-grow-l-center-transparent"
 >
   <div
@@ -90,11 +90,11 @@ exports[`_EuiPageEmptyPrompt is rendered 1`] = `
       </div>
     </div>
   </div>
-</div>
+</section>
 `;
 
 exports[`_EuiPageEmptyPrompt paddingSize l is rendered 1`] = `
-<div
+<section
   class="emotion-euiPageSection-grow-l-center-transparent"
 >
   <div
@@ -116,11 +116,11 @@ exports[`_EuiPageEmptyPrompt paddingSize l is rendered 1`] = `
       </div>
     </div>
   </div>
-</div>
+</section>
 `;
 
 exports[`_EuiPageEmptyPrompt paddingSize m is rendered 1`] = `
-<div
+<section
   class="emotion-euiPageSection-grow-m-center-transparent"
 >
   <div
@@ -142,11 +142,11 @@ exports[`_EuiPageEmptyPrompt paddingSize m is rendered 1`] = `
       </div>
     </div>
   </div>
-</div>
+</section>
 `;
 
 exports[`_EuiPageEmptyPrompt paddingSize none is rendered 1`] = `
-<div
+<section
   class="emotion-euiPageSection-grow-center-transparent"
 >
   <div
@@ -168,11 +168,11 @@ exports[`_EuiPageEmptyPrompt paddingSize none is rendered 1`] = `
       </div>
     </div>
   </div>
-</div>
+</section>
 `;
 
 exports[`_EuiPageEmptyPrompt paddingSize s is rendered 1`] = `
-<div
+<section
   class="emotion-euiPageSection-grow-s-center-transparent"
 >
   <div
@@ -194,11 +194,11 @@ exports[`_EuiPageEmptyPrompt paddingSize s is rendered 1`] = `
       </div>
     </div>
   </div>
-</div>
+</section>
 `;
 
 exports[`_EuiPageEmptyPrompt paddingSize xl is rendered 1`] = `
-<div
+<section
   class="emotion-euiPageSection-grow-xl-center-transparent"
 >
   <div
@@ -220,11 +220,11 @@ exports[`_EuiPageEmptyPrompt paddingSize xl is rendered 1`] = `
       </div>
     </div>
   </div>
-</div>
+</section>
 `;
 
 exports[`_EuiPageEmptyPrompt paddingSize xs is rendered 1`] = `
-<div
+<section
   class="emotion-euiPageSection-grow-xs-center-transparent"
 >
   <div
@@ -246,11 +246,11 @@ exports[`_EuiPageEmptyPrompt paddingSize xs is rendered 1`] = `
       </div>
     </div>
   </div>
-</div>
+</section>
 `;
 
 exports[`_EuiPageEmptyPrompt panelled is false and color is defined, then the prompt inherits the color 1`] = `
-<div
+<section
   class="emotion-euiPageSection-grow-l-center-transparent"
 >
   <div
@@ -272,11 +272,11 @@ exports[`_EuiPageEmptyPrompt panelled is false and color is defined, then the pr
       </div>
     </div>
   </div>
-</div>
+</section>
 `;
 
 exports[`_EuiPageEmptyPrompt panelled is false and color is not defined, then the prompt is plain 1`] = `
-<div
+<section
   class="emotion-euiPageSection-grow-l-center-transparent"
 >
   <div
@@ -298,11 +298,11 @@ exports[`_EuiPageEmptyPrompt panelled is false and color is not defined, then th
       </div>
     </div>
   </div>
-</div>
+</section>
 `;
 
 exports[`_EuiPageEmptyPrompt panelled is true and color is defined, then the prompt inherits the color 1`] = `
-<div
+<section
   class="emotion-euiPageSection-grow-l-center-plain"
 >
   <div
@@ -324,11 +324,11 @@ exports[`_EuiPageEmptyPrompt panelled is true and color is defined, then the pro
       </div>
     </div>
   </div>
-</div>
+</section>
 `;
 
 exports[`_EuiPageEmptyPrompt panelled is true and color is not defined, then the prompt is subdued 1`] = `
-<div
+<section
   class="emotion-euiPageSection-grow-l-center-plain"
 >
   <div
@@ -350,11 +350,11 @@ exports[`_EuiPageEmptyPrompt panelled is true and color is not defined, then the
       </div>
     </div>
   </div>
-</div>
+</section>
 `;
 
 exports[`_EuiPageEmptyPrompt restrict width can be set to a custom number 1`] = `
-<div
+<section
   class="emotion-euiPageSection-grow-l-center-transparent"
 >
   <div
@@ -377,11 +377,11 @@ exports[`_EuiPageEmptyPrompt restrict width can be set to a custom number 1`] = 
       </div>
     </div>
   </div>
-</div>
+</section>
 `;
 
 exports[`_EuiPageEmptyPrompt restrict width can be set to a custom value and measurement 1`] = `
-<div
+<section
   class="emotion-euiPageSection-grow-l-center-transparent"
 >
   <div
@@ -404,11 +404,11 @@ exports[`_EuiPageEmptyPrompt restrict width can be set to a custom value and mea
       </div>
     </div>
   </div>
-</div>
+</section>
 `;
 
 exports[`_EuiPageEmptyPrompt restrict width can be set to a default 1`] = `
-<div
+<section
   class="emotion-euiPageSection-grow-l-center-transparent"
 >
   <div
@@ -431,5 +431,5 @@ exports[`_EuiPageEmptyPrompt restrict width can be set to a default 1`] = `
       </div>
     </div>
   </div>
-</div>
+</section>
 `;
