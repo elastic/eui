@@ -1,3 +1,20 @@
+## [`66.0.0`](https://github.com/elastic/eui/tree/v66.0.0)
+
+- Added the `gutterSize` prop to `EuiDescriptionList` ([#6175](https://github.com/elastic/eui/pull/6175))
+- Added `tooltipText` as an optional prop on `EuiListGroupItem` ([#6186](https://github.com/elastic/eui/pull/6186))
+
+**Bug fixes**
+
+- Updated the `EuiHeaderSectionItem` to not render if empty ([#6158](https://github.com/elastic/eui/pull/6158))
+- Added memoization to `useEuiTheme`'s return value, supporting React's shallow prop comparison optimizations ([#6165](https://github.com/elastic/eui/pull/6165))
+- Fixed an `EuiPageSidebar` bug where inline styles were not correctly updating ([#6191](https://github.com/elastic/eui/pull/6191))
+
+**Breaking changes**
+
+- Removed `.euiIEFlexWrapFix` global className and `internetExplorerOnly()` Sass mixin, as IE is no longer a supported browser ([#6154](https://github.com/elastic/eui/pull/6154))
+- Removed all IE fixes/fallbacks in EUI CSS ([#6161](https://github.com/elastic/eui/pull/6161))
+- Removed all IE fixes/fallbacks in EUI JS ([#6162](https://github.com/elastic/eui/pull/6162))
+
 ## [`65.0.2`](https://github.com/elastic/eui/tree/v65.0.2)
 
 **Bug fixes**
@@ -85,6 +102,15 @@
 **CSS-in-JS conversions**
 
 - Converted `EuiTour` to Emotion ([#6087](https://github.com/elastic/eui/pull/6087))
+
+## [`63.0.5`](https://github.com/elastic/eui/tree/v63.0.5)
+
+**Note: this release is a backport containing changes originally made in `64.0.0`**
+
+**Bug fixes**
+
+- Fixed missing `data-fixed-headers` property in some layout configurations using `EuiPageTemplate`. ([#6140](https://github.com/elastic/eui/pull/6140))
+- Fixed an `EuiPageSidebar` bug where inline styles were not correctly updating ([#6191](https://github.com/elastic/eui/pull/6191))
 
 ## [`63.0.4`](https://github.com/elastic/eui/tree/v63.0.4)
 

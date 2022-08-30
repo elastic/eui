@@ -15,6 +15,8 @@ import {
 } from '../button/button_icon';
 import { keysOf } from '../common';
 import { useEuiI18n } from '../i18n';
+import { useEuiTheme } from '../../services';
+import { euiPaginationButtonArrowStyles } from './pagination_button.styles';
 
 const typeToIconTypeMap = {
   first: 'arrowStart',
@@ -39,6 +41,9 @@ export const EuiPaginationButtonArrow: FunctionComponent<Props> = ({
   ariaControls,
   onClick,
 }) => {
+  const euiTheme = useEuiTheme();
+  const styles = euiPaginationButtonArrowStyles(euiTheme);
+
   const labels = {
     first: useEuiI18n('euiPaginationButtonArrow.firstPage', 'First page'),
     previous: useEuiI18n(
@@ -58,6 +63,7 @@ export const EuiPaginationButtonArrow: FunctionComponent<Props> = ({
 
   return (
     <EuiButtonIcon
+      css={styles.euiPaginationArrowButton}
       className={classNames('euiPaginationArrowButton', className)}
       color="text"
       aria-label={labels[type]}
