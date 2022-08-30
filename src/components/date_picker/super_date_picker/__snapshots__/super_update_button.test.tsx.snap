@@ -2,6 +2,8 @@
 
 exports[`EuiSuperUpdateButton iconOnly 1`] = `
 <EuiToolTip
+  delay="regular"
+  display="inlineBlock"
   position="bottom"
 >
   <EuiShowFor
@@ -54,6 +56,8 @@ exports[`EuiSuperUpdateButton iconOnly 1`] = `
 
 exports[`EuiSuperUpdateButton is rendered 1`] = `
 <EuiToolTip
+  delay="regular"
+  display="inlineBlock"
   position="bottom"
 >
   <EuiShowFor
@@ -122,6 +126,8 @@ exports[`EuiSuperUpdateButton isDisabled 1`] = `
       token="euiSuperUpdateButton.cannotUpdateTooltip"
     />
   }
+  delay="regular"
+  display="inlineBlock"
   position="bottom"
 >
   <EuiShowFor
@@ -184,6 +190,8 @@ exports[`EuiSuperUpdateButton isDisabled 1`] = `
 
 exports[`EuiSuperUpdateButton isLoading 1`] = `
 <EuiToolTip
+  delay="regular"
+  display="inlineBlock"
   position="bottom"
 >
   <EuiShowFor
@@ -252,6 +260,8 @@ exports[`EuiSuperUpdateButton needsUpdate 1`] = `
       token="euiSuperUpdateButton.clickToApplyTooltip"
     />
   }
+  delay="regular"
+  display="inlineBlock"
   position="bottom"
 >
   <EuiShowFor
@@ -314,6 +324,8 @@ exports[`EuiSuperUpdateButton needsUpdate 1`] = `
 
 exports[`EuiSuperUpdateButton responsive can be all 1`] = `
 <EuiToolTip
+  delay="regular"
+  display="inlineBlock"
   position="bottom"
 >
   <EuiShowFor
@@ -382,6 +394,8 @@ exports[`EuiSuperUpdateButton responsive can be all 1`] = `
 
 exports[`EuiSuperUpdateButton responsive can be false 1`] = `
 <EuiToolTip
+  delay="regular"
+  display="inlineBlock"
   position="bottom"
 >
   <EuiShowFor
@@ -434,6 +448,8 @@ exports[`EuiSuperUpdateButton responsive can be false 1`] = `
 
 exports[`EuiSuperUpdateButton showTooltip 1`] = `
 <EuiToolTip
+  delay="regular"
+  display="inlineBlock"
   position="bottom"
 >
   <EuiShowFor

@@ -536,7 +536,7 @@ Array [
               </div>
             </div>
             <span
-              class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock-EuiToolTip"
+              class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
             >
               <span
                 class="euiSuggestInput__statusIcon"
@@ -659,7 +659,7 @@ Array [
               </div>
             </div>
             <span
-              class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock-EuiToolTip"
+              class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
             >
               <span
                 class="euiSuggestInput__statusIcon"
@@ -791,7 +791,7 @@ Array [
               </div>
             </div>
             <span
-              class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock-EuiToolTip"
+              class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
             >
               <span
                 class="euiSuggestInput__statusIcon"
@@ -914,7 +914,7 @@ Array [
               </div>
             </div>
             <span
-              class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock-EuiToolTip"
+              class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
             >
               <span
                 class="euiSuggestInput__statusIcon"

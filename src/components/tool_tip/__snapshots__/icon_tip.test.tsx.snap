@@ -2,7 +2,7 @@
 
 exports[`EuiIconTip is rendered 1`] = `
 <span
-  class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock-EuiToolTip"
+  class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
 >
   <span
     data-euiicon-type="questionInCircle"
@@ -15,7 +15,7 @@ exports[`EuiIconTip is rendered 1`] = `
 
 exports[`EuiIconTip props color is rendered as the icon color 1`] = `
 <span
-  class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock-EuiToolTip"
+  class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
 >
   <span
     color="warning"
@@ -29,7 +29,7 @@ exports[`EuiIconTip props color is rendered as the icon color 1`] = `
 
 exports[`EuiIconTip props size is rendered as the icon size 1`] = `
 <span
-  class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock-EuiToolTip"
+  class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
 >
   <span
     data-euiicon-type="questionInCircle"
@@ -42,7 +42,7 @@ exports[`EuiIconTip props size is rendered as the icon size 1`] = `
 
 exports[`EuiIconTip props type is rendered as the icon 1`] = `
 <span
-  class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock-EuiToolTip"
+  class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
 >
   <span
     data-euiicon-type="alert"

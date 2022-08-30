@@ -4,6 +4,8 @@ exports[`DefaultItemAction render - button 1`] = `
 <EuiToolTip
   content="action 1"
   delay="long"
+  display="inlineBlock"
+  position="top"
 >
   <EuiButtonEmpty
     color="primary"
@@ -21,6 +23,8 @@ exports[`DefaultItemAction render - default button 1`] = `
 <EuiToolTip
   content="action 1"
   delay="long"
+  display="inlineBlock"
+  position="top"
 >
   <EuiButtonEmpty
     color="primary"
@@ -38,6 +42,8 @@ exports[`DefaultItemAction render - icon 1`] = `
 <EuiToolTip
   content="action 1"
   delay="long"
+  display="inlineBlock"
+  position="top"
 >
   <EuiButtonIcon
     aria-labelledby="generated-id"
@@ -62,6 +68,8 @@ exports[`DefaultItemAction render - name 1`] = `
 <EuiToolTip
   content="action 1"
   delay="long"
+  display="inlineBlock"
+  position="top"
 >
   <EuiButtonEmpty
     color="primary"

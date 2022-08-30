@@ -4,14 +4,70 @@ exports[`EuiToolTip anchor props are rendered 1`] = `
 <body
   class=""
 >
+  <div>
+    <span
+      class="euiToolTipAnchor customAnchorClass1 emotion-euiToolTipAnchor-inlineBlock"
+      data-test-subj="DTS"
+    >
+      <button>
+        Trigger
+      </button>
+    </span>
+  </div>
+</body>
+`;
+
+exports[`EuiToolTip display prop renders block 1`] = `
+<div>
+  <span
+    class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+  >
+    <button>
+      Trigger
+    </button>
+  </span>
+</div>
+`;
+
+exports[`EuiToolTip is rendered 1`] = `
+<body>
+  <div>
+    <span
+      class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+    >
+      <button>
+        Trigger
+      </button>
+    </span>
+  </div>
+</body>
+`;
+
+exports[`EuiToolTip shows tooltip on mouseover and focus 1`] = `
+<body
+  class="euiBody-hasPortalContent"
+>
+  <div>
+    <span
+      class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+    >
+      <button
+        aria-describedby="id"
+        data-test-subj="trigger"
+      >
+        Trigger
+      </button>
+    </span>
+  </div>
   <div
     data-euiportal="true"
   >
     <div
       aria-label="aria-label"
-      class="euiToolTipPopover euiToolTip testClass1 testClass2 emotion-euiToolTip-top-EuiToolTip"
+      class="euiToolTipPopover euiToolTip euiToolTip--top testClass1 testClass2 emotion-euiToolTip-top-EuiToolTipPopover"
       data-test-subj="test subject string"
       id="id"
+      position="top"
       role="tooltip"
       style="top: -16px; left: -10px;"
     >
@@ -21,30 +77,13 @@ exports[`EuiToolTip anchor props are rendered 1`] = `
         title
       </div>
       <div
-        class="euiToolTip__arrow emotion-euiToolTip__arrow-EuiToolTip"
+        class="euiToolTip__arrow emotion-euiToolTip__arrow-EuiToolTipArrow"
         style="left: 4px; top: 0px;"
       />
       <div>
         content
       </div>
     </div>
-  </div>
-  <div />
-</body>
-`;
-
-exports[`EuiToolTip display prop renders block 1`] = `<div />`;
-
-exports[`EuiToolTip is rendered 1`] = `
-<body>
-  <div>
-    <span
-      class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock-EuiToolTip"
-    >
-      <button>
-        Trigger
-      </button>
-    </span>
   </div>
 </body>
 `;

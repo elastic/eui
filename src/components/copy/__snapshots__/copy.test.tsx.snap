@@ -5,7 +5,10 @@ exports[`EuiCopy is rendered 1`] = `
   aria-label="aria-label"
   className="testClass1 testClass2"
   data-test-subj="test subject string"
+  delay="regular"
+  display="inlineBlock"
   onMouseOut={[Function]}
+  position="top"
 >
   <button
     onClick={[Function]}

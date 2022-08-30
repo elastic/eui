@@ -58,22 +58,7 @@ exports[`EuiBetaBadge props size s is rendered 1`] = `
 
 exports[`EuiBetaBadge props tooltip and anchorProps are rendered 1`] = `
 <span
-  class="euiToolTipAnchor customAnchorClass"
-  data-test-subj="DTS"
->
-  <span
-    class="euiBetaBadge euiBetaBadge--hollow"
-    role="button"
-    tabindex="0"
-  >
-    Beta
-  </span>
-</span>
-`;
-
-exports[`EuiBetaBadge props tooltip and anchorProps are rendered 1`] = `
-<span
-  class="euiToolTipAnchor customAnchorClass emotion-euiToolTipAnchor-inlineBlock-EuiToolTip"
+  class="euiToolTipAnchor customAnchorClass emotion-euiToolTipAnchor-inlineBlock"
   data-test-subj="DTS"
 >
   <span
