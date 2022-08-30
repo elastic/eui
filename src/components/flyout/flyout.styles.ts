@@ -12,6 +12,7 @@ import {
   euiCanAnimate,
   euiBreakpoint,
   logicalCSS,
+  logicalCSSWithFallback,
   euiYScrollWithShadows,
   euiOverflowShadowStyles,
 } from '../../global_styling';
@@ -107,13 +108,13 @@ export const euiFlyoutStyles = (
 
   return {
     euiFlyout: css`
-      border-left: ${euiTheme.border.thin};
+      ${logicalCSS('border-left', euiTheme.border.thin)}
       ${euiShadowXLarge(euiThemeContext)};
       position: fixed;
-      top: 0;
-      bottom: 0;
-      right: 0;
-      height: 100%;
+      ${logicalCSS('top', 0)}
+      ${logicalCSS('right', 0)}
+      ${logicalCSS('bottom', 0)}
+      ${logicalCSS('height', '100%')}
       z-index: ${euiTheme.levels.header};
       background: ${euiTheme.colors.emptyShade};
       display: flex;
@@ -129,7 +130,7 @@ export const euiFlyoutStyles = (
       }
 
       ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
-        max-width: 90vw;
+        ${logicalCSS('max-width', '90vw')}
       }
     `,
 
@@ -137,15 +138,16 @@ export const euiFlyoutStyles = (
     closeButton: css`
       background-color: ${transparentize(euiTheme.colors.emptyShade, 0.1)};
       position: absolute;
-      right: ${euiTheme.size.s};
-      top: ${euiTheme.size.s};
+      ${logicalCSS('right', euiTheme.size.s)}
+      ${logicalCSS('top', euiTheme.size.s)}
+
       z-index: 3;
     `,
     'closeButton--outside': css`
       // match dropshadow
       ${euiShadowXLarge(euiThemeContext)};
-      right: auto;
-      left: 0;
+      ${logicalCSS('right', 'auto')}
+      ${logicalCSS('left', 0)}
       // Override the hover and focus transitions of buttons
       animation: none !important;
 
@@ -158,9 +160,9 @@ export const euiFlyoutStyles = (
     `,
     'closeButton--inside': css``,
     'closeButton--outside-left': css`
-      left: auto;
-      right: 0;
-
+      ${logicalCSS('right', 0)}
+      ${logicalCSS('left', 'auto')}
+      
       ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
         transform: translateX(calc(100% + ${euiTheme.size.l}));
       }
@@ -173,51 +175,51 @@ export const euiFlyoutStyles = (
     // Note: Dashes are used because s, m, l are size values for multiple props
     'flyoutSize--s': css`
       &.euiFlyout--maxWidth-default {
-        max-width: ${flyoutSizes.s.max}px;
+        ${logicalCSS('max-width', `${flyoutSizes.s.max}px`)}
       }
       ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
-        min-width: ${flyoutSizes.s.min}px;
-        width: ${flyoutSizes.s.width};
+        ${logicalCSS('min-width', `${flyoutSizes.s.min}px`)}
+        ${logicalCSS('width', flyoutSizes.s.width)}
       }
       ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
-        min-width: 0;
-        width: ${flyoutSizes.s.min}px;
+        ${logicalCSS('min-width', 0)}
+        ${logicalCSS('width', `${flyoutSizes.s.min}px`)}
       }
     `,
     'flyoutSize--m': css`
       &.euiFlyout--maxWidth-default {
-        max-width: ${flyoutSizes.m.max}px;
+        ${logicalCSS('max-width', `${flyoutSizes.m.max}px`)}
       }
       ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
-        min-width: ${flyoutSizes.m.min}px;
-        width: ${flyoutSizes.m.width};
+        ${logicalCSS('min-width', `${flyoutSizes.m.min}px`)}
+        ${logicalCSS('width', flyoutSizes.m.width)}
       }
       ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
-        min-width: 0;
-        width: ${flyoutSizes.m.min}px;
+        ${logicalCSS('min-width', 0)}
+        ${logicalCSS('width', `${flyoutSizes.m.min}px`)}
       }
     `,
     'flyoutSize--l': css`
       &.euiFlyout--maxWidth-default {
-        max-width: ${flyoutSizes.l.max}px;
+        ${logicalCSS('max-width', `${flyoutSizes.l.max}px`)}
       }
       ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
-        min-width: ${flyoutSizes.l.min}px;
-        width: ${flyoutSizes.l.width};
+        ${logicalCSS('min-width', `${flyoutSizes.l.min}px`)}
+        ${logicalCSS('width', `${flyoutSizes.l.min}px`)}
       }
       ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
-        min-width: 0;
-        width: ${flyoutSizes.l.min}px;
+        ${logicalCSS('min-width', 0)}
+        ${logicalCSS('width', `${flyoutSizes.l.min}px`)}
       }
     `,
 
     // Side
     right: css``,
     left: css`
-      border-right: ${euiTheme.border.thin};
-      border-left: none;
-      right: auto;
-      left: 0;
+      ${logicalCSS('border-right', euiTheme.border.thin)}
+      ${logicalCSS('border-left', 'none')}
+      ${logicalCSS('left', 0)}
+      ${logicalCSS('right', 'auto')}
       clip-path: polygon(0 0, 150% 0, 150% 100%, 0 100%);
       ${euiCanAnimate} {
         animation: ${euiFlyoutLeft};
@@ -230,13 +232,13 @@ export const euiFlyoutStyles = (
       box-shadow: none;
       clip-path: none;
       animation-duration: 0s !important; // Don't animate on loading a docked nav
-      border-left: ${euiTheme.border.thick};
+      ${logicalCSS('border-left', euiTheme.border.thick)}
       // Make sure the header shadows are above
       z-index: ${Number(euiTheme.levels.header) - 1};
     `,
     'push--left': css`
-      border-left: none;
-      border-right: ${euiTheme.border.thick};
+      ${logicalCSS('border-left', 'none')}
+      ${logicalCSS('border-right', euiTheme.border.thick)}
     `,
 
     // Header
@@ -266,9 +268,9 @@ export const euiFlyoutStyles = (
     euiFlyoutBody: css`
       .euiFlyoutBody {
         flex-grow: 1;
-        overflow-y: hidden;
-        height: 100%;
 
+        ${logicalCSSWithFallback('overflow-y', 'hidden')}
+        ${logicalCSS('height', '100%')}
         .euiFlyoutBody__overflow {
           ${euiYScrollWithShadows(euiThemeContext)};
 
@@ -285,7 +287,7 @@ export const euiFlyoutStyles = (
         }
 
         .euiFlyoutBody__banner .euiCallOut {
-          overflow-x: hidden;
+          ${logicalCSSWithFallback('overflow-x', 'hidden')}
           border: none; // Remove border from callout when it is a flyout banner
           border-radius: 0; // Ensures no border-radius in all themes
           ${logicalCSS(
