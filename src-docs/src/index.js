@@ -84,26 +84,55 @@ ReactDOM.render(
                   />
                 );
 
-                const standaloneSections = (sections || [])
-                  .map(({ id, fullScreen }) => {
-                    if (!fullScreen) return undefined;
-                    const { slug, demo } = fullScreen;
-                    return (
-                      <Route
-                        key={`/${path}/${slug}`}
-                        path={`/${path}/${slug}`}
-                        render={() => (
-                          <ExampleContext.Provider
-                            value={{ parentPath: `/${path}#${id}` }}
-                          >
-                            {meta}
-                            {demo}
-                          </ExampleContext.Provider>
-                        )}
-                      />
-                    );
-                  })
-                  .filter((x) => !!x);
+                const standaloneSections = [];
+                (sections || []).forEach(
+                  ({ id, fullScreen, sections: subSections }) => {
+                    if (path === 'templates/page-template') {
+                      console.log(path, id, sections);
+                    }
+                    if (fullScreen) {
+                      const { slug, demo } = fullScreen;
+                      standaloneSections.push(
+                        <Route
+                          key={`/${path}/${slug}`}
+                          path={`/${path}/${slug}`}
+                          render={() => (
+                            <ExampleContext.Provider
+                              value={{ parentPath: `/${path}#${id}` }}
+                            >
+                              {meta}
+                              {demo}
+                            </ExampleContext.Provider>
+                          )}
+                        />
+                      );
+                    }
+                    if (subSections) {
+                      subSections.forEach(({ fullScreen, id: sectionId }) => {
+                        if (fullScreen) {
+                          const { slug, demo } = fullScreen;
+                          standaloneSections.push(
+                            <Route
+                              key={`/${path}/${id}/${slug}`}
+                              path={`/${path}/${id}/${slug}`}
+                              render={() => (
+                                <ExampleContext.Provider
+                                  value={{
+                                    parentPath: `/${path}/${id}#${sectionId}`,
+                                  }}
+                                >
+                                  {meta}
+                                  {demo}
+                                </ExampleContext.Provider>
+                              )}
+                            />
+                          );
+                        }
+                      });
+                    }
+                  }
+                );
+                standaloneSections.filter((x) => !!x);
 
                 // place standaloneSections before mainComponent so their routes take precedent
                 const routes = [...standaloneSections, mainComponent];
