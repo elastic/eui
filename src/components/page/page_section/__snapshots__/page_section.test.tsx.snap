@@ -132,6 +132,32 @@ exports[`EuiPageSection props color warning is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiPageSection props component 1`] = `
+<main>
+  <section
+    class="emotion-euiPageSection-l-top-transparent"
+  >
+    <div
+      class="emotion-euiPageSection__content-l"
+    />
+  </section>
+  <div
+    class="emotion-euiPageSection-l-top-transparent"
+  >
+    <div
+      class="emotion-euiPageSection__content-l"
+    />
+  </div>
+  <aside
+    class="emotion-euiPageSection-l-top-transparent"
+  >
+    <div
+      class="emotion-euiPageSection__content-l"
+    />
+  </aside>
+</main>
+`;
+
 exports[`EuiPageSection props contentProps are passed down 1`] = `
 <div
   class="emotion-euiPageSection-l-top-transparent"
