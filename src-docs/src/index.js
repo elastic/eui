@@ -16,7 +16,6 @@ import Routes from './routes';
 import themeLight from './theme_light.scss';
 import themeDark from './theme_dark.scss';
 import { ThemeProvider } from './components/with_theme/theme_context';
-import ScrollToHash from './components/scroll_to_hash';
 
 registerTheme('light', [themeLight]);
 registerTheme('dark', [themeDark]);
@@ -46,7 +45,6 @@ ReactDOM.render(
     <ThemeProvider>
       <AppContext>
         <Router history={history}>
-          <ScrollToHash />
           <Switch>
             {routes.map(
               ({ name, path, sections, isNew, component, from, to }) => {

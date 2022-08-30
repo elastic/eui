@@ -81,21 +81,29 @@ export const EuiPageSidebar: FunctionComponent<EuiPageSidebarProps> = ({
   });
 
   useEffect(() => {
+    let updatedStyles = {
+      ...style,
+      ...logicalStyle('min-width', isResponding ? '100%' : minWidth),
+    };
+
     if (sticky) {
-      const euiHeaderFixedCounter = Number(document.body.dataset.fixedHeaders);
+      const euiHeaderFixedCounter = Number(
+        document.body.dataset.fixedHeaders ?? 0
+      );
 
       const offset =
         typeof sticky === 'object'
           ? sticky?.offset
           : themeContext.euiTheme.base * 3 * euiHeaderFixedCounter;
 
-      setInlineStyles({
-        ...style,
-        ...logicalStyle('min-width', isResponding ? '100%' : minWidth),
+      updatedStyles = {
+        ...updatedStyles,
         ...logicalStyle('top', offset),
         ...logicalStyle('max-height', `calc(100vh - ${offset}px)`),
-      });
+      };
     }
+
+    setInlineStyles(updatedStyles);
   }, [style, sticky, themeContext.euiTheme.base, isResponding, minWidth]);
 
   return (

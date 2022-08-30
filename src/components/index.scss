@@ -5,7 +5,6 @@
 @import 'basic_table/index';
 @import 'button/index';
 @import 'call_out/index';
-@import 'card/index';
 @import 'code/index';
 @import 'collapsible_nav/index';
 @import 'color_picker/index';
@@ -27,7 +26,6 @@
 @import 'modal/index';
 @import 'notification/index';
 @import 'overlay_mask/index';
-@import 'pagination/index';
 @import 'panel/index';
 @import 'page/index'; // Page needs to come after Panel for cascade specificity
 @import 'tree_view/index';
@@ -40,4 +38,3 @@
 @import 'table/index';
 @import 'tabs/index';
 @import 'tool_tip/index';
-@import 'tour/index';

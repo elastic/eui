@@ -130,9 +130,9 @@ exports[`euiProgressStyles indeterminate div CSS colors warning 1`] = `
 
 exports[`euiProgressStyles indeterminate div CSS positions absolute 1`] = `
 "position:absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
   background-color: transparent;
   
 ;;label:absolute;"
@@ -140,9 +140,9 @@ exports[`euiProgressStyles indeterminate div CSS positions absolute 1`] = `
 
 exports[`euiProgressStyles indeterminate div CSS positions fixed 1`] = `
 "position:fixed;z-index:1001;
-  top: 0;
-  left: 0;
-  right: 0;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
   background-color: transparent;
   
 ;;label:fixed;"
@@ -328,9 +328,9 @@ exports[`euiProgressStyles native progress CSS colors warning 1`] = `
 
 exports[`euiProgressStyles native progress CSS positions absolute 1`] = `
 "position:absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
   background-color: transparent;
   
       &::-webkit-progress-bar {
@@ -341,9 +341,9 @@ exports[`euiProgressStyles native progress CSS positions absolute 1`] = `
 
 exports[`euiProgressStyles native progress CSS positions fixed 1`] = `
 "position:fixed;z-index:1001;
-  top: 0;
-  left: 0;
-  right: 0;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
   background-color: transparent;
   
       &::-webkit-progress-bar {

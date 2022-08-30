@@ -341,7 +341,7 @@ exports[`EuiSelectable search value supports inheriting initialSearchValue from 
     <div
       aria-atomic="true"
       aria-hidden="true"
-      aria-live="polite"
+      aria-live="off"
       role="status"
     />
     <div

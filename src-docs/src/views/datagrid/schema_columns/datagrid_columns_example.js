@@ -29,6 +29,7 @@ import {
   EuiDataGridCellValueElementProps,
 } from '!!prop-loader!../../../../../src/components/datagrid/data_grid_types';
 
+/* eslint-disable local/css-logical-properties */
 const gridLeadingColumnsSnippet = `<EuiDataGrid
   aria-label="Data grid with trailing columns set"
   columns={columns}

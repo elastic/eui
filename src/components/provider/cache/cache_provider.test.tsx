@@ -16,7 +16,8 @@ describe('EuiProvider', () => {
   const cache = createCache({
     key: 'testing',
   });
-  it('adds CacheProvider from Emotion when configured with a cache', () => {
+
+  it('customizes CacheProvider when configured with a cache', () => {
     const component = shallow(
       <EuiCacheProvider cache={cache}>
         <div />
@@ -24,9 +25,10 @@ describe('EuiProvider', () => {
     );
 
     expect(component).toMatchSnapshot();
+    expect(component.prop('value').key).toEqual('testing');
   });
 
-  it('does not add CacheProvider from Emotion when configured without a cache', () => {
+  it('provides a default cache from Emotion when configured without a cache', () => {
     const component = shallow(
       <EuiCacheProvider>
         <div />
@@ -34,11 +36,7 @@ describe('EuiProvider', () => {
     );
 
     expect(component).toMatchSnapshot();
-  });
-
-  it('renders a Fragment when no children are provided', () => {
-    const component = shallow(<EuiCacheProvider cache={cache} />);
-
-    expect(component).toMatchSnapshot();
+    expect(component.prop('value').key).toEqual('css');
+    expect(component.prop('value').compat).toEqual(true);
   });
 });

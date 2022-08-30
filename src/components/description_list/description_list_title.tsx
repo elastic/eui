@@ -13,7 +13,8 @@ import { useEuiTheme } from '../../services';
 import { euiDescriptionListTitleStyles } from './description_list_title.styles';
 import { EuiDescriptionListContext } from './description_list_context';
 
-interface EuiDescriptionListTitleProps
+// Export required for correct inference by HOCs
+export interface EuiDescriptionListTitleProps
   extends CommonProps,
     HTMLAttributes<HTMLElement> {}
 
@@ -22,7 +23,7 @@ export const EuiDescriptionListTitle: FunctionComponent<EuiDescriptionListTitleP
   className,
   ...rest
 }) => {
-  const { type, textStyle, compressed, align } = useContext(
+  const { type, textStyle, compressed, align, gutterSize } = useContext(
     EuiDescriptionListContext
   );
 
@@ -30,7 +31,7 @@ export const EuiDescriptionListTitle: FunctionComponent<EuiDescriptionListTitleP
   const styles = euiDescriptionListTitleStyles(theme);
 
   let conditionalStyles =
-    compressed && textStyle === 'reverse'
+    compressed && textStyle !== 'reverse'
       ? [styles.fontStyles.compressed]
       : [styles.fontStyles[textStyle]];
 
@@ -52,6 +53,7 @@ export const EuiDescriptionListTitle: FunctionComponent<EuiDescriptionListTitleP
   const cssStyles = [
     styles.euiDescriptionList__title,
     styles[type],
+    styles[gutterSize],
     ...conditionalStyles,
   ];
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+/* eslint-disable local/css-logical-properties */
 export const gridSnippets = {
   inMemory: `// Will try to autodectect schemas and do sorting and pagination in memory.
 inMemory={{ level: 'sorting' }}`,

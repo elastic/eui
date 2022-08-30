@@ -30,6 +30,7 @@ import {
   euiAccordionSpinnerStyles,
   euiAccordionTriggerWrapperStyles,
 } from './accordion.styles';
+import { logicalCSS } from '../../global_styling';
 
 const paddingSizeToClassNameMap = {
   none: '',
@@ -149,7 +150,10 @@ export class EuiAccordionClass extends Component<
           ? this.childContent.clientHeight
           : 0;
       this.childWrapper &&
-        this.childWrapper.setAttribute('style', `height: ${height}px`);
+        this.childWrapper.setAttribute(
+          'style',
+          logicalCSS('height', `${height}px`)
+        );
     });
   };
 

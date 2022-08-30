@@ -13,7 +13,8 @@ import { useEuiTheme } from '../../services';
 import { euiDescriptionListDescriptionStyles } from './description_list_description.styles';
 import { EuiDescriptionListContext } from './description_list_context';
 
-interface EuiDescriptionListDescriptionProps
+// Export required for correct inference by HOCs
+export interface EuiDescriptionListDescriptionProps
   extends CommonProps,
     HTMLAttributes<HTMLElement> {}
 
@@ -22,7 +23,7 @@ export const EuiDescriptionListDescription: FunctionComponent<EuiDescriptionList
   className,
   ...rest
 }) => {
-  const { type, textStyle, compressed, align } = useContext(
+  const { type, textStyle, compressed, align, gutterSize } = useContext(
     EuiDescriptionListContext
   );
 
@@ -46,6 +47,7 @@ export const EuiDescriptionListDescription: FunctionComponent<EuiDescriptionList
       if (align === 'center') {
         conditionalStyles.push(styles.left);
       }
+      conditionalStyles.push(styles[gutterSize]);
       break;
   }
 

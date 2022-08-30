@@ -9,6 +9,7 @@
 import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps } from '../../test';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiCard } from './card';
 
@@ -28,6 +29,8 @@ describe('EuiCard', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  shouldRenderCustomStyles(<EuiCard title="Card title" />);
 
   describe('props', () => {
     test('icon', () => {

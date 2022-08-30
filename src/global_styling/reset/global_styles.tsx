@@ -9,6 +9,7 @@
 import React from 'react';
 import { Global, css } from '@emotion/react';
 import { euiFocusRing, euiScrollBarStyles } from '../mixins';
+import { logicalCSS } from '../functions';
 import { shade, tint, transparentize } from '../../services/color';
 import { useEuiTheme } from '../../services/theme';
 import { resetStyles as reset } from './reset';
@@ -54,7 +55,7 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
       ${fontReset}
       text-size-adjust: 100%;
       font-kerning: normal;
-      height: 100%;
+      ${logicalCSS('height', '100%')}
       background-color: ${colors.body};
       color: ${colors.text};
     }
@@ -85,7 +86,7 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
     }
 
     *:focus {
-      ${euiFocusRing(euiTheme)}
+      ${euiFocusRing(euiThemeContext)}
     }
 
     // Dark mode's highlighted doesn't work well so lets just set it the same as our focus background

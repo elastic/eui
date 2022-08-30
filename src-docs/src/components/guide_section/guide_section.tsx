@@ -204,11 +204,11 @@ export const GuideSection: FunctionComponent<GuideSectionProps> = ({
       paddingSize={nested ? 'none' : 'l'}
       restrictWidth
       {...sectionProps}
-      id={id}
+      id={title ? undefined : id} // Prefer setting the ID on titles, if present
       className={classNames('guideSection', className)}
     >
       <EuiSpacer size={(color || title) && isLargeBreakpoint ? 'xxl' : 'xs'} />
-      <GuideSectionExampleText title={title} wrapText={wrapText}>
+      <GuideSectionExampleText title={title} id={id} wrapText={wrapText}>
         {text}
       </GuideSectionExampleText>
 
