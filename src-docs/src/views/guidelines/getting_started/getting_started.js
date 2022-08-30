@@ -43,7 +43,7 @@ export const GettingStarted = {
           <EuiSpacer />
           <EuiCodeBlock language="bash" isCopyable fontSize="m">
             {
-              'yarn add @elastic/eui @elastic/datemath @emotion/react moment prop-types'
+              'yarn add @elastic/eui @elastic/datemath @emotion/react @emotion/cache moment prop-types'
             }
           </EuiCodeBlock>
           <EuiSpacer />
@@ -234,7 +234,12 @@ import { Timer } from '@elastic/eui/lib/services/time';`}
           </EuiText>
           <EuiSpacer />
           <EuiCodeBlock language="jsx" isCopyable fontSize="m">
-            {"import { findTestSubject } from '@elastic/eui/lib/test';"}
+            {
+              "import { findTestSubject } from '@elastic/eui/lib/test'; // Enzyme"
+            }
+            {
+              "import { findByTestSubject, render, screen } from '@elastic/eui/lib/test/rtl'; // React Testing Library"
+            }
           </EuiCodeBlock>
         </>
       ),

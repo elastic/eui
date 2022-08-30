@@ -123,9 +123,9 @@ export interface _EuiFlyoutProps {
    */
   role?: null | string;
   /**
-   * Named breakpoint or pixel value for customizing the minimum window width to enable the `push` type
+   * Named breakpoint (`xs` through `xl`) for customizing the minimum window width to enable the `push` type
    */
-  pushMinBreakpoint?: EuiBreakpointSize | number;
+  pushMinBreakpoint?: EuiBreakpointSize;
   style?: CSSProperties;
   /**
    * Object of props passed to EuiFocusTrap.

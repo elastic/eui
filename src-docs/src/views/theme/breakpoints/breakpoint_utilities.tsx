@@ -1,7 +1,5 @@
 import React, { useContext } from 'react';
 import {
-  BREAKPOINT_KEYS,
-  BREAKPOINTS,
   EuiBreakpointSize,
   EuiCode,
   EuiCodeBlock,
@@ -9,7 +7,11 @@ import {
   EuiShowFor,
   EuiSpacer,
   EuiText,
+  keysOf,
 } from '../../../../../src';
+
+import { breakpoint as breakpoints } from '../../../../../src/themes/amsterdam/global_styling/variables/_breakpoint';
+const breakpointKeys = keysOf(breakpoints);
 
 import { GuideSection } from '../../../components/guide_section/guide_section';
 import { ThemeContext } from '../../../components/with_theme';
@@ -29,10 +31,10 @@ const hideForSource = require('!!raw-loader!./hide_for');
 import UtilityClassesResponsive from './utility_classes_responsive';
 
 function renderJsSizes(size: EuiBreakpointSize, index: number) {
-  let code = `'${size}': ${BREAKPOINTS[size]}`;
+  let code = `'${size}': ${breakpoints[size]}`;
 
   if (size !== 'xl') {
-    code += `, // to ${BREAKPOINTS[BREAKPOINT_KEYS[index - 1]] - 1}`;
+    code += `, // to ${breakpoints[breakpointKeys[index - 1]] - 1}`;
   } else {
     code += ', // and up';
   }
@@ -77,8 +79,8 @@ export default () => {
           <h2>Screen sizes</h2>
 
           <p>
-            The sizing options correlate with the keys in the{' '}
-            <EuiCode language="ts">EuiBreakpoints</EuiCode> type. The named
+            The sizing options correlate with the keys in{' '}
+            <EuiCode language="ts">euiTheme.breakpoint</EuiCode>. The named
             breakpoint starts at the pixel value provided and ends before the
             next one.
           </p>
@@ -97,12 +99,11 @@ export default () => {
                   return renderSassSizes(size, index);
                 })
                 .join('\n')
-            : BREAKPOINT_KEYS.map(function (
-                size: EuiBreakpointSize,
-                index: number
-              ) {
-                return renderJsSizes(size, index);
-              }).join('\n')}
+            : breakpointKeys
+                .map(function (size: EuiBreakpointSize, index: number) {
+                  return renderJsSizes(size, index);
+                })
+                .join('\n')}
         </EuiCodeBlock>
       </GuideSection>
 

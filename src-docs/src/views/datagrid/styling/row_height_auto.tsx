@@ -6,7 +6,6 @@ import React, {
   useMemo,
   ReactNode,
 } from 'react';
-// @ts-ignore not configured to import json
 import githubData from '../_row_auto_height_data.json';
 
 import {
@@ -34,12 +33,7 @@ interface DataShape {
   }>;
   comments: number;
   created_at: string;
-  body?: string;
-}
-
-// convert strings to Date objects
-for (let i = 0; i < githubData.length; i++) {
-  githubData[i].created_at = new Date(githubData[i].created_at);
+  body: null | string;
 }
 
 type DataContextShape =
@@ -110,7 +104,8 @@ const RenderCellValue: EuiDataGridProps['renderCellValue'] = ({
               imageUrl={item.user.avatar_url}
               size="s"
             />{' '}
-            {item.user.login} on {formatDate(item.created_at, 'dobLong')}
+            {item.user.login} on{' '}
+            {formatDate(new Date(item.created_at), 'dobLong')}
           </span>
         </EuiText>
 

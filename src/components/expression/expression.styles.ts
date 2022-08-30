@@ -10,6 +10,7 @@ import { css } from '@emotion/react';
 import {
   euiFontSize,
   logicalCSS,
+  logicalTextAlignCSS,
   euiTextBreakWord,
   euiTextTruncate,
 } from '../../global_styling';
@@ -29,16 +30,19 @@ export const euiExpressionStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     euiExpression: css`
       ${euiTextBreakWord()};
-      font-family: ${euiTheme.font.familyCode};
-      border-bottom: ${euiTheme.border.width.thick} solid transparent;
-      ${euiFontSize(euiThemeContext, 's')};
       display: inline-block;
-      text-align: left;
-      padding: calc(${euiTheme.size.s} / 2) 0;
+      font-family: ${euiTheme.font.familyCode};
+      ${logicalCSS(
+        'border-bottom',
+        `${euiTheme.border.width.thick} solid transparent`
+      )}
+      ${euiFontSize(euiThemeContext, 's')};
+      ${logicalTextAlignCSS('left')}
+      padding: ${parseFloat(euiTheme.size.s) / 2}px 0;
       color: ${euiTheme.colors.text};
 
       &:focus {
-        border-bottom-style: solid;
+        ${logicalCSS('border-bottom-style', 'solid')}
       }
 
       & + .euiExpression {
@@ -50,23 +54,24 @@ export const euiExpressionStyles = (euiThemeContext: UseEuiTheme) => {
     columns: css`
       border-color: transparent;
       // Ensures there's no flash of the dashed style before turning solid for the active state
-      border-bottom-style: solid;
+      ${logicalCSS('border-bottom-style', 'solid')}
       ${logicalCSS('margin-bottom', euiTheme.size.xs)}
 
-      width: 100%;
+      ${logicalCSS('width', '100%')}
       display: flex;
       padding: ${euiTheme.size.xs};
       border-radius: ${euiTheme.size.xs};
     `,
 
     truncate: css`
-      max-width: 100%;
+      ${logicalCSS('max-width', '100%')}
     `,
 
     // States
     isClickable: css`
       cursor: pointer;
-      border-bottom: ${euiTheme.border.editable};
+      ${logicalCSS('border-bottom', euiTheme.border.editable)}
+
       &[class*='-columns'] {
         background-color: ${euiTheme.colors.lightestShade};
 
@@ -83,7 +88,7 @@ export const euiExpressionStyles = (euiThemeContext: UseEuiTheme) => {
 
     isActive: {
       base: css`
-        border-bottom-style: solid;
+        ${logicalCSS('border-bottom-style', 'solid')}
       `,
       subdued: css`
         border-color: ${euiTheme.colors.subduedText};
@@ -144,7 +149,7 @@ export const euiExpressionDescriptionStyles = ({ euiTheme }: UseEuiTheme) => {
       text-transform: uppercase;
     `,
     columns: css`
-      text-align: end;
+      ${logicalTextAlignCSS('right')}
       ${logicalCSS('margin-right', euiTheme.size.s)};
       flex-shrink: 0; // Ensures it doesn't get smaller in case the value is really long
     `,

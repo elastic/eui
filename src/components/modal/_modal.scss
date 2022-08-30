@@ -1,15 +1,11 @@
-/**
- * 1. Fix IE overflow issue (min-height) by adding a separate wrapper for the
- *    flex display. https://github.com/philipwalton/flexbugs#flexbug-3
- * 2. IE has trouble with min-widths on flex elements. Use the pixel value
- *    from our forms since that's usually the smallest we want them.
- */
-
 .euiModal {
   border: $euiBorderThin;
   // This mixin overwrites some of the border above
   @include euiBottomShadowLarge; // sass-lint:disable-line mixins-before-declarations
-  display: flex; /* 1 */
+  display: flex;
+  flex-direction: column;
+  max-height: 75vh; // We overflow the modal body based off this
+  overflow: hidden; // Ensure long, non-breaking text doesn't expand beyond the modal bounds
 
   position: relative;
   background-color: $euiColorEmptyShade;
@@ -22,14 +18,6 @@
   // Remove the outline from the focusable container
   &:focus {
     outline: none;
-  }
-
-  .euiModal__flex { /* 1 */
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: column;
-    max-height: 75vh; // We overflow the modal body based off this
-    overflow: hidden; // Ensure long, non-breaking text doesn't expand beyond the modal bounds
   }
 }
 
@@ -123,6 +111,7 @@
     width: 100vw !important;
     max-width: none !important;
     min-width: 0 !important;
+    max-height: 100vh;
     left: 0;
     right: 0;
     bottom: 0;
@@ -133,10 +122,6 @@
     &.euiModal--confirmation {
       @include euiBottomShadowLarge($reverse: true);
       top: auto;
-    }
-
-    .euiModal__flex { /* 1 */
-      max-height: 100vh;
     }
   }
 

@@ -11,15 +11,12 @@ import React, {
   FunctionComponent,
   ReactElement,
   ReactNode,
-  useEffect,
   useRef,
-  useState,
 } from 'react';
 import classNames from 'classnames';
 import {
   useGeneratedHtmlId,
-  isWithinMinBreakpoint,
-  throttle,
+  useIsWithinMinBreakpoint,
   useCombinedRefs,
 } from '../../services';
 import { EuiFlyout, EuiFlyoutProps } from '../flyout';
@@ -42,7 +39,7 @@ export type EuiCollapsibleNavProps = Omit<
    */
   isDocked?: boolean;
   /**
-   * Named breakpoint or pixel value for customizing the minimum window width to enable docking
+   * Named breakpoint (`xs` through `xl`) for customizing the minimum window width to enable docking
    */
   dockedBreakpoint?: EuiFlyoutProps['pushMinBreakpoint'];
   /**
@@ -87,44 +84,8 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
     shards: [buttonRef, ...(_focusTrapProps.shards || [])],
   };
 
-  /**
-   * Setting the initial state of pushed based on the `type` prop
-   * and if the current window size is large enough (larger than `pushBreakpoint`)
-   */
-  const [windowIsLargeEnoughToPush, setWindowIsLargeEnoughToPush] = useState(
-    isWithinMinBreakpoint(
-      typeof window === 'undefined' ? 0 : window.innerWidth,
-      dockedBreakpoint
-    )
-  );
-
+  const windowIsLargeEnoughToPush = useIsWithinMinBreakpoint(dockedBreakpoint);
   const navIsDocked = isDocked && windowIsLargeEnoughToPush;
-
-  /**
-   * Watcher added to the window to maintain `isPushed` state depending on
-   * the window size compared to the `pushBreakpoint`
-   */
-  const functionToCallOnWindowResize = throttle(() => {
-    if (isWithinMinBreakpoint(window.innerWidth, dockedBreakpoint)) {
-      setWindowIsLargeEnoughToPush(true);
-    } else {
-      setWindowIsLargeEnoughToPush(false);
-    }
-    // reacts every 50ms to resize changes and always gets the final update
-  }, 50);
-
-  useEffect(() => {
-    if (isDocked) {
-      // Only add the event listener if we'll need to accommodate with padding
-      window.addEventListener('resize', functionToCallOnWindowResize);
-    }
-
-    return () => {
-      if (isDocked) {
-        window.removeEventListener('resize', functionToCallOnWindowResize);
-      }
-    };
-  }, [isDocked, functionToCallOnWindowResize]);
 
   const classes = classNames('euiCollapsibleNav', className);
 

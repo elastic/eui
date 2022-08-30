@@ -12,9 +12,12 @@ import { EuiTourStepProps } from './tour_step';
 import { EuiTourAction, EuiTourActions, EuiTourState } from './types';
 
 export type EuiStatelessTourStep = EuiTourStepProps & Partial<EuiTourState>;
+export type EuiStatelessTourSteps = Array<
+  Exclude<EuiStatelessTourStep, 'onFinish'>
+>;
 
 export const useEuiTour = (
-  stepsArray: EuiStatelessTourStep[],
+  stepsArray: EuiStatelessTourSteps,
   initialState: EuiTourState
 ): [EuiTourStepProps[], EuiTourActions, EuiTourState] => {
   function reducer(state: EuiTourState, action: EuiTourAction): EuiTourState {

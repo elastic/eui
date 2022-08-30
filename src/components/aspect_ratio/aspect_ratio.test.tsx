@@ -31,6 +31,28 @@ describe('EuiAspectRatio', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('allows overriding with custom styles', () => {
+    const component = render(
+      <EuiAspectRatio
+        height={4}
+        width={9}
+        style={{ margin: '2em', height: '300px' }}
+      >
+        <iframe
+          title="Elastic is a search company"
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/yJarWSLRM24"
+          frameBorder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </EuiAspectRatio>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
   describe('props', () => {
     describe('maxWidth', () => {
       test('is rendered', () => {

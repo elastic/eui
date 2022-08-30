@@ -46,7 +46,9 @@ export const euiBackgroundColor = (
     if (color === 'plain') {
       return transparentize(euiTheme.colors.ghost, 0.2);
     } else if (color === 'subdued') {
-      return transparentize(euiTheme.colors.lightShade, 0.2);
+      return colorMode === 'DARK'
+        ? transparentize(euiTheme.colors.lightShade, 0.4)
+        : transparentize(euiTheme.colors.lightShade, 0.2);
     } else {
       return transparentize(euiTheme.colors[color], 0.1);
     }

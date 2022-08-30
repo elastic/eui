@@ -39,5 +39,20 @@ describe('EuiBetaBadge', () => {
         });
       });
     });
+
+    test('tooltip and anchorProps are rendered', () => {
+      const component = render(
+        <EuiBetaBadge
+          label="Beta"
+          tooltipContent="Tooltip"
+          anchorProps={{
+            className: 'customAnchorClass',
+            'data-test-subj': 'DTS',
+          }}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 });

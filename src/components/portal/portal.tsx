@@ -11,10 +11,9 @@
  * into portals.
  */
 
-import { useState, useEffect, ReactNode } from 'react';
+import { Component, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { keysOf } from '../common';
-import { useUpdateEffect } from '../../services';
 
 interface InsertPositionsMap {
   after: InsertPosition;
@@ -41,42 +40,48 @@ export interface EuiPortalProps {
   portalRef?: (ref: HTMLDivElement | null) => void;
 }
 
-export const EuiPortal: React.FC<EuiPortalProps> = ({
-  insert,
-  portalRef,
-  children,
-}) => {
-  const [portalNode, setPortalNode] = useState<HTMLDivElement | null>(null);
+export class EuiPortal extends Component<EuiPortalProps> {
+  portalNode: HTMLDivElement | null = null;
 
-  // pull `sibling` and `position` out of insert in case their wrapping object is recreated every render
-  const { sibling, position } = insert || {};
-  useEffect(() => {
-    const portalNode = document.createElement('div');
-    portalNode.dataset.euiportal = 'true';
-    setPortalNode(portalNode);
+  constructor(props: EuiPortalProps) {
+    super(props);
+    if (typeof window === 'undefined') return; // Prevent SSR errors
 
-    if (sibling == null || position == null) {
+    const { insert } = this.props;
+
+    this.portalNode = document.createElement('div');
+    this.portalNode.dataset.euiportal = 'true';
+
+    if (insert == null) {
       // no insertion defined, append to body
-      document.body.appendChild(portalNode);
+      document.body.appendChild(this.portalNode);
     } else {
       // inserting before or after an element
-      sibling.insertAdjacentElement(insertPositions[position], portalNode);
+      const { sibling, position } = insert;
+      sibling.insertAdjacentElement(insertPositions[position], this.portalNode);
     }
+  }
 
-    return () => {
-      if (portalNode && portalNode.parentNode) {
-        portalNode.parentNode.removeChild(portalNode);
-      }
-    };
-  }, [sibling, position]);
+  componentDidMount() {
+    this.updatePortalRef(this.portalNode);
+  }
 
-  useUpdateEffect(() => {
-    portalRef?.(portalNode);
+  componentWillUnmount() {
+    if (this.portalNode?.parentNode) {
+      this.portalNode.parentNode.removeChild(this.portalNode);
+    }
+    this.updatePortalRef(null);
+  }
 
-    return () => {
-      portalRef?.(null);
-    };
-  }, [portalNode, portalRef]);
+  updatePortalRef(ref: HTMLDivElement | null) {
+    if (this.props.portalRef) {
+      this.props.portalRef(ref);
+    }
+  }
 
-  return portalNode == null ? null : createPortal(children, portalNode);
-};
+  render() {
+    return this.portalNode
+      ? createPortal(this.props.children, this.portalNode)
+      : null;
+  }
+}

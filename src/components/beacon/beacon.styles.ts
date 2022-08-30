@@ -8,7 +8,11 @@
 
 import { keyframes, css } from '@emotion/react';
 import { euiPaletteColorBlind } from '../../services';
-import { euiCanAnimate } from '../../global_styling';
+import {
+  euiCanAnimate,
+  logicalCSS,
+  logicalSizeCSS,
+} from '../../global_styling';
 
 const visColors = euiPaletteColorBlind();
 
@@ -55,10 +59,9 @@ export const euiBeaconStyles = () => ({
     &:after {
       position: absolute;
       content: '';
-      height: 100%;
-      width: 100%;
-      inset-inline-start: 0;
-      inset-block-start: 0;
+      ${logicalSizeCSS('100%', '100%')}
+      ${logicalCSS('left', 0)}
+      ${logicalCSS('top', 0)}
       background-color: transparent;
       border-radius: 50%;
       box-shadow: 0 0 1px 1px ${visColors[0]};

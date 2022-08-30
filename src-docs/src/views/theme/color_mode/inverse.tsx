@@ -1,51 +1,47 @@
-import React, { FunctionComponent, ReactNode } from 'react';
+import React from 'react';
 import {
   EuiIcon,
   EuiSpacer,
   EuiText,
   EuiThemeProvider,
-  useEuiTheme,
+  EuiPanel,
 } from '../../../../../src';
-
-const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
-  const { euiTheme } = useEuiTheme();
-
-  return (
-    <EuiText
-      css={{
-        background: euiTheme.colors.lightShade,
-        padding: euiTheme.size.xl,
-        color: euiTheme.colors.text,
-      }}
-    >
-      <p>{children}</p>
-    </EuiText>
-  );
-};
 
 export default () => {
   return (
-    <div>
+    <>
       <EuiThemeProvider colorMode="light">
-        <Box>
-          <EuiIcon type="faceHappy" /> The colors of this box are will always be
-          in <strong>light</strong> mode
-        </Box>
+        <EuiPanel>
+          <EuiText color="default">
+            <p>
+              <EuiIcon type="faceHappy" /> The colors of this panel will always
+              be in <strong>light</strong> mode
+            </p>
+          </EuiText>
+        </EuiPanel>
       </EuiThemeProvider>
       <EuiSpacer />
       <EuiThemeProvider colorMode="dark">
-        <Box>
-          <EuiIcon type="faceHappy" /> The colors of this box are will always be
-          in <strong>dark</strong> mode
-        </Box>
+        <EuiPanel>
+          <EuiText color="default">
+            <p>
+              <EuiIcon type="faceHappy" /> The colors of this panel will always
+              be in <strong>dark</strong> mode
+            </p>
+          </EuiText>
+        </EuiPanel>
       </EuiThemeProvider>
       <EuiSpacer />
       <EuiThemeProvider colorMode="inverse">
-        <Box>
-          <EuiIcon type="faceHappy" /> The colors of this box are the opposite (
-          <strong>inverse</strong>) of the current color mode
-        </Box>
+        <EuiPanel>
+          <EuiText color="default">
+            <p>
+              <EuiIcon type="faceHappy" /> The colors of this panel are the
+              opposite (<strong>inverse</strong>) of the current color mode
+            </p>
+          </EuiText>
+        </EuiPanel>
       </EuiThemeProvider>
-    </div>
+    </>
   );
 };

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+/* eslint-disable local/css-logical-properties */
 export const gridSnippets = {
   inMemory: `// Will try to autodectect schemas and do sorting and pagination in memory.
 inMemory={{ level: 'sorting' }}`,
@@ -97,6 +98,7 @@ inMemory={{ level: 'sorting' }}`,
     4: 200, // row at index 4 will adjust the height to 200px
     6: 'auto', // row at index 6 will automatically adjust the height
   },
+  scrollAnchorRow: 'start', // compensate for layout shift when auto-sized rows are scrolled into view
 }}`,
   ref: `// Optional. For advanced control of internal data grid state, passes back an object of imperative API methods
 ref={dataGridRef}`,

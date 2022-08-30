@@ -81,10 +81,10 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
     // Types
     page: css`
       &:is(a):focus {
-        ${euiFocusRing(euiTheme, 'inset')};
+        ${euiFocusRing(euiThemeContext, 'inset')};
       }
       &:is(button):focus {
-        ${euiFocusRing(euiTheme, 'center')};
+        ${euiFocusRing(euiThemeContext, 'center')};
       }
     `,
     application: css`
@@ -109,7 +109,7 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
         color: ${euiTheme.colors.link};
 
         :focus {
-          ${euiFocusRing(euiTheme, 'inset')};
+          ${euiFocusRing(euiThemeContext, 'inset')};
 
           :focus-visible {
             border-radius: ${euiTheme.border.radius.medium};

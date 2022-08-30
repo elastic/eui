@@ -82,11 +82,9 @@ export const EuiThemeAnimationEasing: FunctionComponent<_EuiThemeAnimationEasing
   <div />
 );
 
-import { _EuiThemeBreakpoints } from '../../../../src/global_styling/variables/breakpoint';
-
-export const EuiThemeBreakpoints: FunctionComponent<_EuiThemeBreakpoints> = () => (
-  <div />
-);
+export const euiThemeBreakpointType = {
+  custom: { origin: { type: { name: 'number' } } },
+};
 
 import { _EuiThemeLevels } from '../../../../src/global_styling/variables/levels';
 

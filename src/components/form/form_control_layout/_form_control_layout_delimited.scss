@@ -22,8 +22,6 @@
 
     .euiFormControlLayoutDelimited__input {
       height: 100%;
-      padding-top: 0; // Fixes IE
-      padding-bottom: 0; // Fixes IE
       padding-left: $euiFormControlCompressedPadding;
       padding-right: $euiFormControlCompressedPadding;
     }
@@ -66,7 +64,6 @@
     position: static; // Overrider absolute
     padding-left: $euiFormControlPadding;
     padding-right: $euiFormControlPadding;
-    flex-shrink: 0; // Fixes IE
 
     &:not(.euiFormControlLayoutIcons--right) {
       order: -1;

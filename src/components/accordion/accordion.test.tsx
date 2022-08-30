@@ -188,11 +188,31 @@ describe('EuiAccordion', () => {
     });
   });
 
+  describe('isDisabled', () => {
+    it('is rendered', () => {
+      const component = render(<EuiAccordion id={getId()} isDisabled />);
+
+      expect(component).toMatchSnapshot();
+    });
+  });
+
   describe('behavior', () => {
     it('opens when clicked once', () => {
       const component = mount(
         <EuiAccordion id={getId()}>
           <p>You can see me.</p>
+        </EuiAccordion>
+      );
+
+      component.find('button').at(0).simulate('click');
+
+      expect(component.render()).toMatchSnapshot();
+    });
+
+    it('does not open when isDisabled', () => {
+      const component = mount(
+        <EuiAccordion id={getId()} isDisabled>
+          <p>You cannot see me.</p>
         </EuiAccordion>
       );
 

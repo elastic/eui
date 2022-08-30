@@ -28,8 +28,7 @@ import {
   keys,
   EuiWindowEvent,
   useCombinedRefs,
-  isWithinMinBreakpoint,
-  throttle,
+  useIsWithinMinBreakpoint,
   useEuiTheme,
 } from '../../services';
 
@@ -77,31 +76,12 @@ export const EuiFlyout = forwardRef(
   ) => {
     const Element = as || defaultElement;
     const maskRef = useRef<HTMLDivElement>(null);
-    /**
-     * Setting the initial state of pushed based on the `type` prop
-     * and if the current window size is large enough (larger than `pushMinBreakpoint`)
-     */
-    const [windowIsLargeEnoughToPush, setWindowIsLargeEnoughToPush] = useState(
-      isWithinMinBreakpoint(
-        typeof window === 'undefined' ? 0 : window.innerWidth,
-        pushMinBreakpoint
-      )
+
+    const windowIsLargeEnoughToPush = useIsWithinMinBreakpoint(
+      pushMinBreakpoint
     );
 
     const isPushed = type === 'push' && windowIsLargeEnoughToPush;
-
-    /**
-     * Watcher added to the window to maintain `isPushed` state depending on
-     * the window size compared to the `pushBreakpoint`
-     */
-    const functionToCallOnWindowResize = throttle(() => {
-      if (isWithinMinBreakpoint(window.innerWidth, pushMinBreakpoint)) {
-        setWindowIsLargeEnoughToPush(true);
-      } else {
-        setWindowIsLargeEnoughToPush(false);
-      }
-      // reacts every 50ms to resize changes and always gets the final update
-    }, 50);
 
     /**
      * Setting up the refs on the actual flyout element in order to
@@ -122,9 +102,6 @@ export const EuiFlyout = forwardRef(
        * Accomodate for the `isPushed` state by adding padding to the body equal to the width of the element
        */
       if (type === 'push') {
-        // Only add the event listener if we'll need to accommodate with padding
-        window.addEventListener('resize', functionToCallOnWindowResize);
-
         if (isPushed) {
           if (side === 'right') {
             document.body.style.paddingRight = `${dimensions.width}px`;
@@ -138,8 +115,6 @@ export const EuiFlyout = forwardRef(
         document.body.classList.remove('euiBody--hasFlyout');
 
         if (type === 'push') {
-          window.removeEventListener('resize', functionToCallOnWindowResize);
-
           if (side === 'right') {
             document.body.style.paddingRight = '';
           } else if (side === 'left') {
@@ -147,7 +122,7 @@ export const EuiFlyout = forwardRef(
           }
         }
       };
-    }, [type, side, dimensions, isPushed, functionToCallOnWindowResize]);
+    }, [type, side, dimensions, isPushed]);
 
     /**
      * ESC key closes flyout (always?)
@@ -185,9 +160,6 @@ export const EuiFlyout = forwardRef(
 
     const cssStyles = [
       styles.euiFlyout,
-      styles.euiFlyoutHeader,
-      styles.euiFlyoutBody,
-      styles.euiFlyoutFooter,
       side === 'left' && type === 'push' && styles['push--left'],
       isEuiFlyoutSizeNamed(size) && styles[`flyoutSize--${size}`],
       styles[type],
