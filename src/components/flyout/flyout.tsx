@@ -189,6 +189,7 @@ export const EuiFlyout = forwardRef(
       styles.euiFlyout,
       styles.euiFlyoutHeader,
       styles.euiFlyoutBody,
+      styles.euiFlyoutFooter,
       side === 'left' && type === 'push' && styles['push--left'],
       isEuiFlyoutSizeNamed(size) && styles[`flyoutSize--${size}`],
       styles[type],

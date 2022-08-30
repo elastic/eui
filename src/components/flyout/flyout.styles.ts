@@ -44,6 +44,31 @@ const euiFlyoutLeft = keyframes`
 }
 `;
 
+const calculateFooterPadding = (
+  paddingSize: EuiFlyoutPaddingSize,
+  euiThemeContext: UseEuiTheme
+) => {
+  const footerPaddingWithPixels = getFlyoutPadding(
+    paddingSize,
+    euiThemeContext
+  );
+
+  // Removing the 'px' from the end of euiTheme.size.m to perform calculation
+  const footerPaddingAmount =
+    typeof footerPaddingWithPixels === 'string'
+      ? parseInt(footerPaddingWithPixels.replace('px', ''))
+      : footerPaddingWithPixels;
+
+  const footerPaddingSizes = {
+    none: `padding: ${footerPaddingWithPixels};`,
+    s: `padding: ${footerPaddingWithPixels};`,
+    m: `padding: ${footerPaddingAmount * 0.75}px ${footerPaddingWithPixels};`,
+    l: `padding: ${footerPaddingAmount / 1.5}px ${footerPaddingWithPixels};`,
+  };
+
+  return footerPaddingSizes[paddingSize];
+};
+
 export const euiFlyoutStyles = (
   euiThemeContext: UseEuiTheme,
   paddingSize: EuiFlyoutPaddingSize
@@ -268,6 +293,15 @@ export const euiFlyoutStyles = (
             getFlyoutPadding(paddingSize, euiThemeContext)
           )}
         }
+      }
+    `,
+
+    // Footer
+    euiFlyoutFooter: css`
+      .euiFlyoutFooter {
+        background: ${euiTheme.colors.lightestShade};
+        flex-grow: 0;
+        ${calculateFooterPadding(paddingSize, euiThemeContext)}
       }
     `,
   };
