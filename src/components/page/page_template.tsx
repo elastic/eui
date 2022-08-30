@@ -101,7 +101,9 @@ export type EuiPageTemplateProps_Deprecated = Omit<
 /**
  * This component has been deprecated in favor of the new
  * namespaced version. You can still import this component
- * for a period of time by importing `as EuiPageTemplate`.
+ * until August 2023 by importing `as EuiPageTemplate`.
+ *
+ * @deprecated use EuiPageTemplate from page_template/page_template instead
  */
 export const EuiPageTemplate_Deprecated: FunctionComponent<EuiPageTemplateProps_Deprecated> = ({
   template = 'default',
