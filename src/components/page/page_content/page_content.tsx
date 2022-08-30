@@ -42,8 +42,7 @@ export type EuiPageContentProps = CommonProps &
   };
 
 /**
- * **DEPRECATED**
- * Use EuiPageSection instead
+ * @deprecated Use EuiPageSection instead
  */
 export const EuiPageContent_Deprecated: FunctionComponent<EuiPageContentProps> = ({
   verticalPosition,

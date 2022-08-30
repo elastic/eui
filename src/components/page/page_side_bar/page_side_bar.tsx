@@ -33,8 +33,7 @@ export interface EuiPageSideBarProps
 }
 
 /**
- * **DEPRECATED**
- * Use the new EuiPageSidebar instead
+ * @deprecated Use the new EuiPageSidebar in page/page_sidebar instead
  */
 export const EuiPageSideBar_Deprecated: FunctionComponent<EuiPageSideBarProps> = ({
   children,

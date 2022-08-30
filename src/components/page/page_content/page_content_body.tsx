@@ -35,8 +35,7 @@ export interface EuiPageContentBodyProps
 }
 
 /**
- * **DEPRECATED**
- * Use EuiPageSection instead
+ * @deprecated Use EuiPageSection instead
  */
 export const EuiPageContentBody_Deprecated: FunctionComponent<EuiPageContentBodyProps> = ({
   children,
