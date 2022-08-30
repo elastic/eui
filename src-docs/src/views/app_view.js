@@ -5,7 +5,11 @@ import { useLocation } from 'react-router-dom';
 import { toggleLocale as _toggleLocale } from '../actions';
 import { GuidePageChrome, ThemeContext, GuidePageHeader } from '../components';
 import { getLocale, getRoutes } from '../store';
-import { useScrollToHash } from '../services';
+import {
+  useScrollToHash,
+  useHeadingAnchorLinks,
+  LinkWrapper,
+} from '../services';
 
 import {
   EuiPageTemplate,
@@ -14,8 +18,6 @@ import {
 } from '../../../src/components';
 
 import { keys } from '../../../src/services';
-
-import { LinkWrapper } from './link_wrapper';
 
 export const AppView = ({ children, currentRoute }) => {
   const dispatch = useDispatch();
@@ -59,6 +61,8 @@ export const AppView = ({ children, currentRoute }) => {
     };
   }, []); // eslint-disable-line
 
+  const portalledHeadingAnchorLinks = useHeadingAnchorLinks();
+
   useScrollToHash();
   const { hash } = useLocation();
 
@@ -78,6 +82,7 @@ export const AppView = ({ children, currentRoute }) => {
       >
         Skip to content
       </EuiSkipLink>
+      {portalledHeadingAnchorLinks}
       <GuidePageHeader onToggleLocale={toggleLocale} selectedLocale={locale} />
       <EuiPageTemplate
         paddingSize="none"

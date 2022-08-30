@@ -12,6 +12,8 @@ import classNames from 'classnames';
 import { ExclusiveUnion, PropsForAnchor, PropsForButton } from '../common';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
 import { EuiI18n } from '../i18n';
+import { useEuiTheme } from '../../services';
+import { euiPaginationButtonStyles } from './pagination_button.styles';
 
 export type EuiPaginationButtonProps = EuiButtonEmptyProps & {
   isActive?: boolean;
@@ -44,12 +46,18 @@ export const EuiPaginationButton: FunctionComponent<Props> = ({
   totalPages,
   ...rest
 }) => {
-  const classes = classNames('euiPaginationButton', className, {
-    'euiPaginationButton-isActive': isActive,
-    'euiPaginationButton-isPlaceholder': isPlaceholder,
-  });
+  const euiTheme = useEuiTheme();
+  const styles = euiPaginationButtonStyles(euiTheme);
+  const paginationButtonCss = [
+    styles.euiPaginationButton,
+    isActive && styles.isActive,
+    isPlaceholder && styles.isPlaceholder,
+  ];
+
+  const classes = classNames('euiPaginationButton', className);
 
   const props = {
+    css: paginationButtonCss,
     className: classes,
     size: 's',
     color: 'text',

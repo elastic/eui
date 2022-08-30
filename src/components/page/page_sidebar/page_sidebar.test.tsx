@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { render, mount } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 import { PADDING_SIZES } from '../../../global_styling';
@@ -41,6 +41,49 @@ describe('EuiPageSidebar', () => {
         const component = render(<EuiPageSidebar paddingSize={size} />);
 
         expect(component).toMatchSnapshot();
+      });
+    });
+  });
+
+  describe('inline styles', () => {
+    it('updates correctly when `sticky` is not set', () => {
+      const component = mount(<EuiPageSidebar data-test-subj="sidebar" />);
+
+      expect(
+        component.find('[data-test-subj="sidebar"]').last().prop('style')
+      ).toEqual({ minInlineSize: 248 });
+
+      component.setProps({ minWidth: 100 });
+      component.update();
+
+      expect(
+        component.find('[data-test-subj="sidebar"]').last().prop('style')
+      ).toEqual({ minInlineSize: 100 });
+    });
+
+    it('updates correctly when `sticky` is set', () => {
+      const component = mount(
+        <EuiPageSidebar sticky data-test-subj="sidebar" />
+      );
+
+      expect(
+        component.find('[data-test-subj="sidebar"]').last().prop('style')
+      ).toEqual({
+        insetBlockStart: 0,
+        maxBlockSize: 'calc(100vh - 0px)',
+        minInlineSize: 248,
+      });
+
+      component.setProps({ style: { color: 'red' } });
+      component.update();
+
+      expect(
+        component.find('[data-test-subj="sidebar"]').last().prop('style')
+      ).toEqual({
+        color: 'red',
+        insetBlockStart: 0,
+        maxBlockSize: 'calc(100vh - 0px)',
+        minInlineSize: 248,
       });
     });
   });
