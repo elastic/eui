@@ -22,6 +22,18 @@ describe('EuiPageSection', () => {
   });
 
   describe('props', () => {
+    test('component', () => {
+      const component = render(
+        <main>
+          <EuiPageSection />
+          <EuiPageSection component="div" />
+          <EuiPageSection component="aside" />
+        </main>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     describe('restrictWidth', () => {
       test('can be true', () => {
         const component = render(<EuiPageSection restrictWidth />);
