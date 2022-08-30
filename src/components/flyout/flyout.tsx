@@ -183,10 +183,11 @@ export const EuiFlyout = forwardRef(
     }
 
     const euiTheme = useEuiTheme();
-    const styles = euiFlyoutStyles(euiTheme);
+    const styles = euiFlyoutStyles(euiTheme, paddingSize);
 
     const cssStyles = [
       styles.euiFlyout,
+      styles.euiFlyoutHeader,
       side === 'left' && type === 'push' && styles['push--left'],
       isEuiFlyoutSizeNamed(size) && styles[`flyoutSize--${size}`],
       styles[type],

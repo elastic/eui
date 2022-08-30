@@ -7,10 +7,12 @@
  */
 
 import { css, keyframes } from '@emotion/react';
-import { euiCanAnimate, euiBreakpoint } from '../../global_styling';
+import { EuiFlyoutPaddingSize } from './flyout_types';
+import { euiCanAnimate, euiBreakpoint, logicalCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiShadowXLarge } from '../../themes/amsterdam/global_styling/mixins';
 import { transparentize } from '../../services/color';
+import { getFlyoutPadding } from './flyout_helpers';
 
 const euiFlyout = keyframes`
   0% {
@@ -36,7 +38,10 @@ const euiFlyoutLeft = keyframes`
 }
 `;
 
-export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
+export const euiFlyoutStyles = (
+  euiThemeContext: UseEuiTheme,
+  paddingSize: EuiFlyoutPaddingSize
+) => {
   const euiTheme = euiThemeContext.euiTheme;
 
   // Removing the 'px' from the end of euiTheme.size.m to perform calculation
@@ -201,6 +206,29 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
     'push--left': css`
       border-left: none;
       border-right: ${euiTheme.border.thick};
+    `,
+
+    // Header
+    euiFlyoutHeader: css`
+      .euiFlyoutHeader {
+        flex-grow: 0;
+        ${logicalCSS(
+          'padding-horizontal',
+          getFlyoutPadding(paddingSize, euiThemeContext)
+        )}
+        ${logicalCSS(
+          'padding-top',
+          getFlyoutPadding(paddingSize, euiThemeContext)
+        )}
+      }
+
+      .euiFlyoutHeader--hasBorder {
+        ${logicalCSS('border-bottom', euiTheme.border.thin)}
+        ${logicalCSS(
+          'padding-bottom',
+          getFlyoutPadding(paddingSize, euiThemeContext)
+        )}
+      }
     `,
   };
 };

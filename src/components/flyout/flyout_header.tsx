@@ -6,14 +6,9 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes, useContext } from 'react';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
-
-import { useEuiTheme } from '../../services';
-import { euiFlyoutHeaderStyles } from './flyout_header.styles';
-
-import { EuiFlyoutContext } from './flyout_context';
 
 export type EuiFlyoutHeaderProps = FunctionComponent<
   HTMLAttributes<HTMLDivElement> &
@@ -28,13 +23,6 @@ export const EuiFlyoutHeader: EuiFlyoutHeaderProps = ({
   hasBorder = false,
   ...rest
 }) => {
-  const { paddingSize } = useContext(EuiFlyoutContext);
-
-  const euiTheme = useEuiTheme();
-  const styles = euiFlyoutHeaderStyles(paddingSize, euiTheme);
-
-  const cssStyles = [styles.euiFlyoutHeader, hasBorder && styles.border];
-
   const classes = classNames(
     'euiFlyoutHeader',
     {
@@ -44,7 +32,7 @@ export const EuiFlyoutHeader: EuiFlyoutHeaderProps = ({
   );
 
   return (
-    <div className={classes} {...rest} css={cssStyles}>
+    <div className={classes} {...rest}>
       {children}
     </div>
   );
