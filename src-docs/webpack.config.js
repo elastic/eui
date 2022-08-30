@@ -13,7 +13,8 @@ const isDevelopment = WEBPACK_SERVE === 'true' && CI == null;
 const isProduction = NODE_ENV === 'production';
 const isPuppeteer = NODE_ENV === 'puppeteer';
 
-const useReactRefresh = isDevelopment && !isPuppeteer;
+// const useReactRefresh = isDevelopment && !isPuppeteer;
+const useReactRefresh = false;
 
 function employCache(loaders) {
   if (isDevelopment && !isPuppeteer) {
