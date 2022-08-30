@@ -1,15 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-import { GuideSectionTypes } from '../../components';
-import { PageDemo } from './_page_demo';
+import { GuideSection } from '../../components/guide_section/guide_section';
+import { GuideSectionTypes } from '../../components/guide_section/guide_section_types';
 
 import {
-  EuiCode,
-  EuiPageHeader,
   EuiText,
-  EuiCallOut,
   EuiSpacer,
+  EuiCode,
+  EuiCallOut,
+  EuiPageHeader,
   EuiPageSection,
   EuiPageSidebar,
   EuiPageTemplate_Deprecated,
@@ -19,6 +18,7 @@ import { _EuiPageTemplate } from '../../../../src/components/page_template/page_
 import { _EuiPageBottomBar } from '../../../../src/components/page_template/bottom_bar/page_bottom_bar';
 import { _EuiPageEmptyPrompt } from '../../../../src/components/page_template/empty_prompt/page_empty_prompt';
 
+import { PageDemo } from './_page_demo';
 import Sidebar from './page_template_sidebar';
 const SidebarSource = require('!!raw-loader!./page_template_sidebar');
 import BottomBar from './page_template_bottom_bar';
@@ -29,9 +29,111 @@ const EmptySource = require('!!raw-loader!./page_template_empty');
 import Deprecated from './deprecated';
 const DeprecatedSource = require('!!raw-loader!./deprecated');
 
+// @ts-ignore Importing JS file
 import { pageTemplateConfig } from './playground';
 
-export const PageTemplateExample = {
+// This array is used inside routes.js to create the sidenav sub-sections
+export const pageTemplateExamplesSections = [
+  {
+    id: 'simple-page-with-header-and-sections',
+    title: 'Simple page with header and sections',
+    fullScreen: {
+      showButton: false,
+      slug: 'full-page',
+      demo: (
+        <PageDemo
+          slug="full-page"
+          fullscreen
+          toggle={{
+            panelled: true,
+            restrictedWidth: true,
+          }}
+          show={{
+            tabs: true,
+          }}
+        />
+      ),
+    },
+  },
+  {
+    id: 'providing-a-sidebar',
+    title: 'Providing a sidebar',
+    fullScreen: {
+      showButton: false,
+      slug: 'sidebar',
+      demo: (
+        <PageDemo
+          slug="sidebar"
+          fullscreen
+          template={Sidebar}
+          toggle={{
+            panelled: true,
+            sidebar: true,
+            sidebarSticky: true,
+            border: true,
+          }}
+          show={{
+            sidebar: true,
+          }}
+        />
+      ),
+    },
+  },
+  {
+    id: 'showing-a-bottom-bar',
+    title: 'Showing a bottom bar',
+    fullScreen: {
+      showButton: false,
+      slug: 'bottom-bar',
+      demo: (
+        <PageDemo
+          slug="bottom-bar"
+          fullscreen
+          template={BottomBar}
+          toggle={{
+            restrictedWidth: true,
+            sidebar: true,
+            sidebarSticky: true,
+          }}
+          show={{
+            bottomBar: true,
+            sidebar: true,
+          }}
+        />
+      ),
+    },
+  },
+  {
+    id: 'empty-pages-or-content',
+    title: 'Empty pages or content',
+    fullScreen: {
+      showButton: false,
+      slug: 'centered-body',
+      demo: (
+        <PageDemo
+          slug="centered-body"
+          fullscreen
+          template={Empty}
+          toggle={{
+            pageHeader: true,
+            panelled: true,
+            sidebar: true,
+          }}
+          show={{
+            emptyPrompt: true,
+            sidebar: true,
+          }}
+        />
+      ),
+    },
+  },
+  {
+    id: 'deprecated',
+    title: 'Deprecated',
+  },
+];
+
+export const PageTemplateInfo = {
   title: 'Page template',
   isBeta: true,
   isNew: true,
@@ -59,11 +161,15 @@ export const PageTemplateExample = {
       </EuiText>
     </>
   ),
-  sections: [
-    {
-      title: 'Simple page with header and sections',
-      wrapText: false,
-      text: (
+};
+
+export const PageTemplateExample = () => (
+  <>
+    <GuideSection
+      title={pageTemplateExamplesSections[0].title}
+      id={pageTemplateExamplesSections[0].id}
+      wrapText={false}
+      text={
         <>
           <EuiText>
             <p>
@@ -145,29 +251,14 @@ export const PageTemplateExample = {
             }}
           />
         </>
-      ),
-      fullScreen: {
-        showButton: false,
-        slug: 'full-page',
-        demo: (
-          <PageDemo
-            slug="full-page"
-            fullscreen
-            toggle={{
-              panelled: true,
-              restrictedWidth: true,
-            }}
-            show={{
-              tabs: true,
-            }}
-          />
-        ),
-      },
-    },
-    {
-      title: 'Providing a sidebar',
-      wrapText: false,
-      text: (
+      }
+    />
+
+    <GuideSection
+      title={pageTemplateExamplesSections[1].title}
+      id={pageTemplateExamplesSections[1].id}
+      wrapText={false}
+      text={
         <>
           <EuiText>
             <p>
@@ -225,32 +316,14 @@ export const PageTemplateExample = {
             }}
           />
         </>
-      ),
-      fullScreen: {
-        slug: 'sidebar',
-        demo: (
-          <PageDemo
-            slug="sidebar"
-            fullscreen
-            template={Sidebar}
-            toggle={{
-              panelled: true,
-              sidebar: true,
-              sidebarSticky: true,
-              border: true,
-            }}
-            show={{
-              sidebar: true,
-            }}
-          />
-        ),
-        showButton: false,
-      },
-    },
-    {
-      title: 'Showing a bottom bar',
-      wrapText: false,
-      text: (
+      }
+    />
+
+    <GuideSection
+      title={pageTemplateExamplesSections[2].title}
+      id={pageTemplateExamplesSections[2].id}
+      wrapText={false}
+      text={
         <>
           <EuiText>
             <p>
@@ -294,11 +367,6 @@ export const PageTemplateExample = {
             slug="bottom-bar"
             template={BottomBar}
             source={BottomBarSource}
-            bottomBar
-            toggleSidebar
-            toggleRestrictedWidth
-            togglePageHeader={false}
-            togglePanelled={false}
             toggle={{
               restrictedWidth: true,
               sidebar: true,
@@ -312,32 +380,14 @@ export const PageTemplateExample = {
             }}
           />
         </>
-      ),
-      fullScreen: {
-        showButton: false,
-        slug: 'bottom-bar',
-        demo: (
-          <PageDemo
-            slug="bottom-bar"
-            fullscreen
-            template={BottomBar}
-            toggle={{
-              restrictedWidth: true,
-              sidebar: true,
-              sidebarSticky: true,
-            }}
-            show={{
-              bottomBar: true,
-              sidebar: true,
-            }}
-          />
-        ),
-      },
-    },
-    {
-      title: 'Empty pages or content',
-      wrapText: false,
-      text: (
+      }
+    />
+
+    <GuideSection
+      title={pageTemplateExamplesSections[3].title}
+      id={pageTemplateExamplesSections[3].id}
+      wrapText={false}
+      text={
         <>
           <EuiText>
             <p>
@@ -374,32 +424,13 @@ export const PageTemplateExample = {
             }}
           />
         </>
-      ),
-      fullScreen: {
-        showButton: false,
-        slug: 'centered-body',
-        emptyPrompt: true,
-        demo: (
-          <PageDemo
-            slug="centered-body"
-            fullscreen
-            template={Empty}
-            toggle={{
-              pageHeader: true,
-              panelled: true,
-              sidebar: true,
-            }}
-            show={{
-              emptyPrompt: true,
-              sidebar: true,
-            }}
-          />
-        ),
-      },
-    },
-    {
-      title: 'Deprecated',
-      text: (
+      }
+    />
+
+    <GuideSection
+      title={pageTemplateExamplesSections[4].title}
+      id={pageTemplateExamplesSections[4].id}
+      text={
         <>
           <p>
             The previous version of <strong>EuiPageTemplate</strong> has been
@@ -417,21 +448,21 @@ export const PageTemplateExample = {
             .
           </p>
         </>
-      ),
-      demo: (
+      }
+      demo={
         <div className="guideDemo__highlightLayout guideDemo__highlightLayout--border">
           <Deprecated />
         </div>
-      ),
-      source: [
+      }
+      source={[
         {
           type: GuideSectionTypes.JS,
           code: DeprecatedSource,
         },
-      ],
-      demoPanelProps: { paddingSize: 'none' },
-      props: { EuiPageTemplate_Deprecated },
-      playground: pageTemplateConfig,
-    },
-  ],
-};
+      ]}
+      demoPanelProps={{ paddingSize: 'none' }}
+      props={{ EuiPageTemplate_Deprecated }}
+      playground={pageTemplateConfig}
+    />
+  </>
+);
