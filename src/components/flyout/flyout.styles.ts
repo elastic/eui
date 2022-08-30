@@ -8,7 +8,13 @@
 
 import { css, keyframes } from '@emotion/react';
 import { EuiFlyoutPaddingSize } from './flyout_types';
-import { euiCanAnimate, euiBreakpoint, logicalCSS } from '../../global_styling';
+import {
+  euiCanAnimate,
+  euiBreakpoint,
+  logicalCSS,
+  euiYScrollWithShadows,
+  euiOverflowShadowStyles,
+} from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiShadowXLarge } from '../../themes/amsterdam/global_styling/mixins';
 import { transparentize } from '../../services/color';
@@ -228,6 +234,40 @@ export const euiFlyoutStyles = (
           'padding-bottom',
           getFlyoutPadding(paddingSize, euiThemeContext)
         )}
+      }
+    `,
+
+    // Body
+    euiFlyoutBody: css`
+      .euiFlyoutBody {
+        flex-grow: 1;
+        overflow-y: hidden;
+        height: 100%;
+
+        .euiFlyoutBody__overflow {
+          ${euiYScrollWithShadows(euiThemeContext)};
+
+          &.euiFlyoutBody__overflow--hasBanner {
+            ${euiOverflowShadowStyles(euiThemeContext, {
+              direction: 'y',
+              side: 'end',
+            })};
+          }
+        }
+
+        .euiFlyoutBody__overflowContent {
+          padding: ${getFlyoutPadding(paddingSize, euiThemeContext)};
+        }
+
+        .euiFlyoutBody__banner .euiCallOut {
+          overflow-x: hidden;
+          border: none; // Remove border from callout when it is a flyout banner
+          border-radius: 0; // Ensures no border-radius in all themes
+          ${logicalCSS(
+            'padding-horizontal',
+            getFlyoutPadding(paddingSize, euiThemeContext)
+          )}
+        }
       }
     `,
   };
