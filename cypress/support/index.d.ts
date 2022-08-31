@@ -1,5 +1,4 @@
 import { ContextObject, Result, RunOptions } from 'axe-core';
-import { MountReturn } from '@cypress/react';
 import { realPress } from 'cypress-real-events/commands/realPress';
 
 type KeyOrShortcut = Parameters<typeof realPress>[0];
@@ -30,12 +29,7 @@ declare global {
         callback?: (violations: Result[]) => void
       }): void;
   
-      /**
-       * Provide global cy.mount() shortcut that includes required providers
-       * @see https://github.com/cypress-io/cypress/blob/develop/npm/react/docs/providers-and-composition.md
-       */
-      mount(children: React.ReactNode): Cypress.Chainable<MountReturn>;
-  
+
       /**
        * This ensures the correct testing window has focus when using Cypress Real Events.
        * @see https://github.com/dmtrKovalenko/cypress-real-events/issues/196

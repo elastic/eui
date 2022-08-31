@@ -4,7 +4,7 @@ import webpackConfig from './cypress/plugins/webpack.config';
 export default defineConfig({
   retries: {
     runMode: 2,
-    openMode: 0,
+    openMode: 2,
   },
 
   component: {

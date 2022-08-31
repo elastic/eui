@@ -44,7 +44,7 @@ const cypressCommandParts = [
   `THEME=${theme}`, // pass the theme
   'BABEL_MODULES=false', // let webpack receive ES Module code
   'NODE_ENV=cypress_test', // enable code coverage checks
-  `cypress ${isDev ? 'open --component' : 'run --component'}`,
+  `cypress ${isDev ? 'open --component' : 'run --component --browser chrome'}`,
   ...argv._, // pass any extra options given to this script
 ];
 const cypressCommand = cypressCommandParts.join(' ');
