@@ -108,6 +108,7 @@ exports[`EuiCodeBlock fullscreen displays content in fullscreen mode 1`] = `
               Object {
                 "insert": [Function],
                 "inserted": Object {
+                  "animation-ox4vyo": true,
                   "dsw53p-empty-text-hoverStyles-EuiButtonIcon": true,
                   "jcaat8-euiToolTipAnchor-inlineBlock": true,
                 },
@@ -119,6 +120,27 @@ exports[`EuiCodeBlock fullscreen displays content in fullscreen mode 1`] = `
                   "_insertTag": [Function],
                   "before": null,
                   "container": <head>
+                    <style
+                      data-emotion="css-global"
+                      data-s=""
+                    >
+                      
+                      body{overflow:hidden;}
+                    </style>
+                    <style
+                      data-emotion="css-global"
+                      data-s=""
+                    >
+                      
+                      .euiOverlayMask{position:fixed;inset-block-start:0;inset-inline-start:0;inset-inline-end:0;inset-block-end:0;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;padding-block-end:10vh;-webkit-animation:animation-ox4vyo 150ms ease-in;animation:animation-ox4vyo 150ms ease-in;background:rgba(0,0,0,0.5);}
+                    </style>
+                    <style
+                      data-emotion="css-global"
+                      data-s=""
+                    >
+                      
+                      .euiOverlayMask{z-index:6000;}
+                    </style>
                     <style
                       data-emotion="css"
                       data-s=""
@@ -155,6 +177,27 @@ exports[`EuiCodeBlock fullscreen displays content in fullscreen mode 1`] = `
                       .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:hover{background-color:rgba(211,218,230,0.2);}
                     </style>
                     <style
+                      data-emotion="css"
+                      data-s=""
+                    >
+                      
+                      .css-animation-ox4vyo{}
+                    </style>
+                    <style
+                      data-emotion="css"
+                      data-s=""
+                    >
+                      
+                      @-webkit-keyframes animation-ox4vyo{0%{opacity:0;}100%{opacity:1;}}
+                    </style>
+                    <style
+                      data-emotion="css"
+                      data-s=""
+                    >
+                      
+                      @keyframes animation-ox4vyo{0%{opacity:0;}100%{opacity:1;}}
+                    </style>
+                    <style
                       type="text/css"
                     >
                       
@@ -164,7 +207,7 @@ exports[`EuiCodeBlock fullscreen displays content in fullscreen mode 1`] = `
 
                     </style>
                   </head>,
-                  "ctr": 5,
+                  "ctr": 8,
                   "insertionPoint": undefined,
                   "isSpeedy": false,
                   "key": "css",
@@ -205,6 +248,27 @@ exports[`EuiCodeBlock fullscreen displays content in fullscreen mode 1`] = `
                     >
                       
                       .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:hover{background-color:rgba(211,218,230,0.2);}
+                    </style>,
+                    <style
+                      data-emotion="css"
+                      data-s=""
+                    >
+                      
+                      .css-animation-ox4vyo{}
+                    </style>,
+                    <style
+                      data-emotion="css"
+                      data-s=""
+                    >
+                      
+                      @-webkit-keyframes animation-ox4vyo{0%{opacity:0;}100%{opacity:1;}}
+                    </style>,
+                    <style
+                      data-emotion="css"
+                      data-s=""
+                    >
+                      
+                      @keyframes animation-ox4vyo{0%{opacity:0;}100%{opacity:1;}}
                     </style>,
                   ],
                 },
