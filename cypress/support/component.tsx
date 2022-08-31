@@ -38,5 +38,3 @@ Cypress.Commands.add('mount', (children) => {
   return mount(<EuiProvider>{children}</EuiProvider>);
 });
 
-// Example use:
-// cy.mount(<MyComponent />)

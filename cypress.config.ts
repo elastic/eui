@@ -1,5 +1,5 @@
 import { defineConfig } from 'cypress';
-import webpackConfig from './cypress/plugins/webpack.config';
+import webpackConfig from './cypress/webpack.config';
 
 export default defineConfig({
   retries: {
