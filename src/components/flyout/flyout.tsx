@@ -37,6 +37,8 @@ import { EuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
 
+import { euiFormMaxWidth } from '../form/form.styles';
+
 const typeToClassNameMap = {
   push: 'euiFlyout--push',
   overlay: null,
@@ -78,7 +80,7 @@ const paddingSizeToClassNameMap = {
 };
 
 export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
-type _EuiFlyoutPaddingSize = typeof PADDING_SIZES[number];
+export type EuiFlyoutPaddingSize = typeof PADDING_SIZES[number];
 
 interface _EuiFlyoutProps {
   onClose: (event: MouseEvent | TouchEvent | KeyboardEvent) => void;
@@ -98,7 +100,7 @@ interface _EuiFlyoutProps {
   /**
    * Customize the padding around the content of the flyout header, body and footer
    */
-  paddingSize?: _EuiFlyoutPaddingSize;
+  paddingSize?: EuiFlyoutPaddingSize;
   /**
    * Adds an EuiOverlayMask and wraps in an EuiPortal
    */
@@ -203,6 +205,8 @@ export const EuiFlyout = forwardRef(
       | MutableRefObject<ComponentPropsWithRef<T> | null>
       | null
   ) => {
+    console.log(typeof euiFormMaxWidth);
+
     const Element = as || defaultElement;
     const maskRef = useRef<HTMLDivElement>(null);
 
@@ -288,7 +292,7 @@ export const EuiFlyout = forwardRef(
       typeToClassNameMap[type as _EuiFlyoutType],
       sideToClassNameMap[side as _EuiFlyoutSide],
       sizeClassName,
-      paddingSizeToClassNameMap[paddingSize as _EuiFlyoutPaddingSize],
+      paddingSizeToClassNameMap[paddingSize as EuiFlyoutPaddingSize],
       widthClassName,
       className
     );
