@@ -6,8 +6,14 @@
  * Side Public License, v 1.
  */
 
-export * from './reset/global_styles';
-export * from './functions';
-export * from './variables';
-export * from './mixins';
-export * from './utility/animations';
+import { keyframes } from '@emotion/react';
+
+export const euiAnimFadeIn = keyframes`
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+`;

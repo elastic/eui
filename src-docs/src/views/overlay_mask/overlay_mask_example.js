@@ -39,8 +39,11 @@ export const OverlayMaskExample = {
             </a>{' '}
             to make before choosing to use an overlay. At the very least, you
             must provide a visible button to close the overlay. You can also
-            pass an <EuiCode>onClick</EuiCode> handler to handle closing the
-            overlay.
+            nest an{' '}
+            <Link to="/utilities/focus-trap">
+              <EuiCode>EuiFocusTrap</EuiCode>
+            </Link>{' '}
+            to handle closing the overlay.
           </p>
         </>
       ),
