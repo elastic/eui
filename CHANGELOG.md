@@ -103,6 +103,16 @@
 
 - Converted `EuiTour` to Emotion ([#6087](https://github.com/elastic/eui/pull/6087))
 
+## [`63.0.6`](https://github.com/elastic/eui/tree/v63.0.6)
+
+**Note: this release is a backport containing changes originally made in `66.1.0`**
+
+- Added a new `component` prop to `EuiPageSection`, allowing overriding of the default `section` tag ([#6192](https://github.com/elastic/eui/pull/6192))
+
+**Deprecations**
+
+- Added `@deprecated` flags to `EuiPageContent_Deprecated`, `EuiPageContentBody_Deprecated`, `EuiPageContentHeader_Deprecated`, `EuiPageContentHeaderSection_Deprecated`, `EuiPageSideBar_Deprecated` and `EuiPageTemplate_Deprecated`, which will provide helpful hints to IDEs that support jsdoc flags. Consumers will have until August 2023 to migrate from these deprecated components. ([#6194](https://github.com/elastic/eui/pull/6194))
+
 ## [`63.0.5`](https://github.com/elastic/eui/tree/v63.0.5)
 
 **Note: this release is a backport containing changes originally made in `64.0.0`**
