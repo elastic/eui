@@ -1,5 +1,5 @@
 // ***********************************************************
-// This example support/component.ts is processed and
+// This example support/component.tsx is processed and
 // loaded automatically before your test files.
 //
 // This is a great place to put global configuration and
@@ -16,12 +16,11 @@
 // Import commands.js using ES2015 syntax:
 import './commands'
 
-// Alternatively you can use CommonJS syntax:
-// require('./commands')
-
+import React from 'react';
 import { mount } from 'cypress/react'
-// require(THEME_IMPORT); // defined by DefinePlugin in the cypress webpack config
-import '../../dist/eui_theme_light.css';
+import { EuiProvider } from '../../src';
+
+require(THEME_IMPORT); // defined by DefinePlugin in the cypress webpack config
 
 // Augment the Cypress namespace to include type definitions for
 // your custom command.
@@ -35,7 +34,9 @@ declare global {
   }
 }
 
-Cypress.Commands.add('mount', mount)
+Cypress.Commands.add('mount', (children) => {
+  return mount(<EuiProvider>{children}</EuiProvider>);
+});
 
 // Example use:
 // cy.mount(<MyComponent />)
