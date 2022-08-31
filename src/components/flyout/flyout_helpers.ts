@@ -7,7 +7,7 @@
  */
 
 import { UseEuiTheme } from '../../services';
-import { EuiFlyoutPaddingSize } from './flyout_types';
+import { EuiFlyoutPaddingSize } from './flyout';
 
 export const getFlyoutPadding = (
   paddingSize: EuiFlyoutPaddingSize,

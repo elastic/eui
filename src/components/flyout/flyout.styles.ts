@@ -7,7 +7,7 @@
  */
 
 import { css, keyframes } from '@emotion/react';
-import { EuiFlyoutPaddingSize } from './flyout_types';
+import { EuiFlyoutPaddingSize } from './flyout';
 import {
   euiCanAnimate,
   euiBreakpoint,
