@@ -28,8 +28,8 @@ const isEmotionCacheObject = (
   obj: EmotionCache | Object
 ): obj is EmotionCache => obj.hasOwnProperty('key');
 
-const defaultCache = createCache({ key: 'css' });
-defaultCache.compat = true;
+const fallbackCache = createCache({ key: 'css' });
+fallbackCache.compat = true;
 
 export interface EuiProviderProps<T>
   extends Omit<EuiThemeProviderProps<T>, 'children' | 'theme'>,
@@ -68,7 +68,7 @@ export interface EuiProviderProps<T>
 }
 
 export const EuiProvider = <T extends {} = {}>({
-  cache = defaultCache,
+  cache = fallbackCache,
   theme = EuiThemeAmsterdam,
   globalStyles: Globals = EuiGlobalStyles,
   utilityClasses: Utilities = EuiUtilityClasses,
@@ -81,15 +81,19 @@ export const EuiProvider = <T extends {} = {}>({
   let utilityCache;
   if (cache) {
     if (isEmotionCacheObject(cache)) {
+      cache.compat = true;
       defaultCache = cache;
     } else {
+      if (cache.default) {
+        cache.default.compat = true;
+      }
       defaultCache = cache.default;
       globalCache = cache.global;
       utilityCache = cache.utility;
     }
   }
   return (
-    <EuiCacheProvider cache={defaultCache}>
+    <EuiCacheProvider cache={defaultCache ?? fallbackCache}>
       <EuiThemeProvider
         theme={theme ?? undefined}
         colorMode={colorMode}

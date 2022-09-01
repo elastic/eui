@@ -1058,6 +1058,7 @@ exports[`EuiProvider providing an @emotion cache config applies the cache to all
 <EuiCacheProvider
   cache={
     Object {
+      "compat": true,
       "insert": [Function],
       "inserted": Object {},
       "key": "default",
@@ -1404,6 +1405,7 @@ exports[`EuiProvider providing an @emotion cache config applies the cache to eac
 <EuiCacheProvider
   cache={
     Object {
+      "compat": true,
       "insert": [Function],
       "inserted": Object {},
       "key": "default",
@@ -1791,7 +1793,30 @@ exports[`EuiProvider providing an @emotion cache config applies the cache to eac
 `;
 
 exports[`EuiProvider providing an @emotion cache config applies the cache to global styles 1`] = `
-<EuiCacheProvider>
+<EuiCacheProvider
+  cache={
+    Object {
+      "compat": true,
+      "insert": [Function],
+      "inserted": Object {},
+      "key": "css",
+      "nonce": undefined,
+      "registered": Object {},
+      "sheet": StyleSheet {
+        "_insertTag": [Function],
+        "before": null,
+        "container": <head />,
+        "ctr": 0,
+        "insertionPoint": undefined,
+        "isSpeedy": false,
+        "key": "css",
+        "nonce": undefined,
+        "prepend": undefined,
+        "tags": Array [],
+      },
+    }
+  }
+>
   <EuiThemeProvider
     theme={
       Object {
@@ -2137,7 +2162,30 @@ exports[`EuiProvider providing an @emotion cache config applies the cache to glo
 `;
 
 exports[`EuiProvider providing an @emotion cache config applies the cache to utility styles 1`] = `
-<EuiCacheProvider>
+<EuiCacheProvider
+  cache={
+    Object {
+      "compat": true,
+      "insert": [Function],
+      "inserted": Object {},
+      "key": "css",
+      "nonce": undefined,
+      "registered": Object {},
+      "sheet": StyleSheet {
+        "_insertTag": [Function],
+        "before": null,
+        "container": <head />,
+        "ctr": 0,
+        "insertionPoint": undefined,
+        "isSpeedy": false,
+        "key": "css",
+        "nonce": undefined,
+        "prepend": undefined,
+        "tags": Array [],
+      },
+    }
+  }
+>
   <EuiThemeProvider
     theme={
       Object {
