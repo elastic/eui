@@ -174,7 +174,13 @@ export const EuiPageTemplate_Deprecated: FunctionComponent<EuiPageTemplateProps_
   }
 
   const classes = classNames('euiPageTemplate', fullHeightClass, className);
-  const pageStyle = { minHeight, ...rest.style };
+  const pageStyle = {
+    minHeight,
+    ...rest.style,
+    backgroundImage:
+      "url('https://pbs.twimg.com/media/FZfZrPBXkAIOQPi?format=jpg&name=4096x4096')",
+    backgroundSize: 'cover',
+  };
 
   /**
    * This seems very repetitious but it's the most readable, scalable, and maintainable
@@ -202,7 +208,15 @@ export const EuiPageTemplate_Deprecated: FunctionComponent<EuiPageTemplateProps_
             {pageSideBar}
           </EuiPageSideBar>
 
-          <EuiPageBody paddingSize={paddingSize} {...pageBodyProps}>
+          <EuiPageBody
+            paddingSize={paddingSize}
+            {...pageBodyProps}
+            style={{
+              backgroundImage:
+                "url('https://pbs.twimg.com/media/FZfZrPBXkAIOQPi?format=jpg&name=4096x4096')",
+              backgroundSize: 'cover',
+            }}
+          >
             {pageHeader && (
               <EuiPageHeader
                 restrictWidth={restrictWidth}
@@ -215,6 +229,11 @@ export const EuiPageTemplate_Deprecated: FunctionComponent<EuiPageTemplateProps_
               horizontalPosition="center"
               paddingSize={paddingSize}
               {...pageContentProps}
+              style={{
+                backgroundImage:
+                  "url('https://pbs.twimg.com/media/FZfZrPBXkAIOQPi?format=jpg&name=4096x4096')",
+                backgroundSize: 'cover',
+              }}
             >
               <EuiPageContentBody
                 restrictWidth={restrictWidth}
@@ -233,7 +252,15 @@ export const EuiPageTemplate_Deprecated: FunctionComponent<EuiPageTemplateProps_
           {...rest}
           style={pageStyle}
         >
-          <EuiPageBody restrictWidth={restrictWidth} {...pageBodyProps}>
+          <EuiPageBody
+            restrictWidth={restrictWidth}
+            {...pageBodyProps}
+            style={{
+              backgroundImage:
+                "url('https://pbs.twimg.com/media/FZfZrPBXkAIOQPi?format=jpg&name=4096x4096')",
+              backgroundSize: 'cover',
+            }}
+          >
             {pageHeader && (
               <EuiPageHeader
                 paddingSize="none"
@@ -255,6 +282,11 @@ export const EuiPageTemplate_Deprecated: FunctionComponent<EuiPageTemplateProps_
                   paddingSize="none"
                   restrictWidth={restrictWidth}
                   {...pageContentBodyProps}
+                  style={{
+                    backgroundImage:
+                      "url('https://pbs.twimg.com/media/FZfZrPBXkAIOQPi?format=jpg&name=4096x4096')",
+                    backgroundSize: 'cover',
+                  }}
                 >
                   {children}
                 </EuiPageContentBody>
@@ -304,6 +336,11 @@ export const EuiPageTemplate_Deprecated: FunctionComponent<EuiPageTemplateProps_
               <EuiPageContentBody
                 restrictWidth={restrictWidth}
                 {...pageContentBodyProps}
+                style={{
+                  backgroundImage:
+                    "url('https://pbs.twimg.com/media/FZfZrPBXkAIOQPi?format=jpg&name=4096x4096')",
+                  backgroundSize: 'cover',
+                }}
               >
                 {children}
               </EuiPageContentBody>
@@ -346,6 +383,11 @@ export const EuiPageTemplate_Deprecated: FunctionComponent<EuiPageTemplateProps_
                 <EuiPageContentBody
                   restrictWidth={restrictWidth}
                   {...pageContentBodyProps}
+                  style={{
+                    backgroundImage:
+                      "url('https://pbs.twimg.com/media/FZfZrPBXkAIOQPi?format=jpg&name=4096x4096')",
+                    backgroundSize: 'cover',
+                  }}
                 >
                   {children}
                 </EuiPageContentBody>
@@ -376,13 +418,26 @@ export const EuiPageTemplate_Deprecated: FunctionComponent<EuiPageTemplateProps_
             {pageSideBar}
           </EuiPageSideBar>
 
-          <EuiPageBody paddingSize={paddingSize} {...pageBodyProps}>
+          <EuiPageBody
+            paddingSize={paddingSize}
+            {...pageBodyProps}
+            style={{
+              backgroundImage:
+                "url('https://pbs.twimg.com/media/FZfZrPBXkAIOQPi?format=jpg&name=4096x4096')",
+              backgroundSize: 'cover',
+            }}
+          >
             {pageHeader && (
               <EuiPageHeader
                 restrictWidth={restrictWidth}
                 bottomBorder
                 css={headerMargin}
                 {...pageHeader}
+                style={{
+                  backgroundImage:
+                    "url('https://pbs.twimg.com/media/FZfZrPBXkAIOQPi?format=jpg&name=4096x4096')",
+                  backgroundSize: 'cover',
+                }}
               />
             )}
             <EuiPageContent
@@ -410,7 +465,15 @@ export const EuiPageTemplate_Deprecated: FunctionComponent<EuiPageTemplateProps_
           {...rest}
           style={pageStyle}
         >
-          <EuiPageBody restrictWidth={restrictWidth} {...pageBodyProps}>
+          <EuiPageBody
+            restrictWidth={restrictWidth}
+            {...pageBodyProps}
+            style={{
+              backgroundImage:
+                "url('https://pbs.twimg.com/media/FZfZrPBXkAIOQPi?format=jpg&name=4096x4096')",
+              backgroundSize: 'cover',
+            }}
+          >
             {pageHeader && (
               <EuiPageHeader
                 paddingSize="none"
@@ -453,6 +516,11 @@ export const EuiPageTemplate_Deprecated: FunctionComponent<EuiPageTemplateProps_
           <EuiPageContentBody
             paddingSize={'none'}
             restrictWidth={restrictWidth}
+            style={{
+              backgroundImage:
+                "url('https://pbs.twimg.com/media/FZfZrPBXkAIOQPi?format=jpg&name=4096x4096')",
+              backgroundSize: 'cover',
+            }}
           >
             {bottomBar}
           </EuiPageContentBody>
@@ -476,7 +544,16 @@ export const EuiPageTemplate_Deprecated: FunctionComponent<EuiPageTemplateProps_
           </EuiPageSideBar>
 
           {/* The extra PageBody is to accommodate the bottom bar stretching to both sides */}
-          <EuiPageBody panelled paddingSize="none" {...pageBodyProps}>
+          <EuiPageBody
+            panelled
+            paddingSize="none"
+            {...pageBodyProps}
+            style={{
+              backgroundImage:
+                "url('https://pbs.twimg.com/media/FZfZrPBXkAIOQPi?format=jpg&name=4096x4096')",
+              backgroundSize: 'cover',
+            }}
+          >
             <EuiPageBody
               component="div"
               paddingSize={paddingSize}
@@ -488,6 +565,11 @@ export const EuiPageTemplate_Deprecated: FunctionComponent<EuiPageTemplateProps_
                   restrictWidth={restrictWidth}
                   css={headerMargin}
                   {...pageHeader}
+                  style={{
+                    backgroundImage:
+                      "url('https://pbs.twimg.com/media/FZfZrPBXkAIOQPi?format=jpg&name=4096x4096')",
+                    backgroundSize: 'cover',
+                  }}
                 />
               )}
               <EuiPageContent
@@ -501,6 +583,11 @@ export const EuiPageTemplate_Deprecated: FunctionComponent<EuiPageTemplateProps_
                 <EuiPageContentBody
                   restrictWidth={restrictWidth}
                   {...pageContentBodyProps}
+                  style={{
+                    backgroundImage:
+                      "url('https://pbs.twimg.com/media/FZfZrPBXkAIOQPi?format=jpg&name=4096x4096')",
+                    backgroundSize: 'cover',
+                  }}
                 >
                   {children}
                 </EuiPageContentBody>
@@ -517,13 +604,25 @@ export const EuiPageTemplate_Deprecated: FunctionComponent<EuiPageTemplateProps_
           {...rest}
           style={pageStyle}
         >
-          <EuiPageBody {...pageBodyProps}>
+          <EuiPageBody
+            {...pageBodyProps}
+            style={{
+              backgroundImage:
+                "url('https://pbs.twimg.com/media/FZfZrPBXkAIOQPi?format=jpg&name=4096x4096')",
+              backgroundSize: 'cover',
+            }}
+          >
             {pageHeader && (
               <EuiPageHeader
                 restrictWidth={restrictWidth}
                 paddingSize={paddingSize}
                 bottomBorder="extended"
                 {...pageHeader}
+                style={{
+                  backgroundImage:
+                    "url('https://pbs.twimg.com/media/FZfZrPBXkAIOQPi?format=jpg&name=4096x4096')",
+                  backgroundSize: 'cover',
+                }}
               />
             )}
             <EuiPageContent
@@ -538,6 +637,11 @@ export const EuiPageTemplate_Deprecated: FunctionComponent<EuiPageTemplateProps_
                 restrictWidth={restrictWidth}
                 paddingSize={paddingSize}
                 {...pageContentBodyProps}
+                style={{
+                  backgroundImage:
+                    "url('https://pbs.twimg.com/media/FZfZrPBXkAIOQPi?format=jpg&name=4096x4096')",
+                  backgroundSize: 'cover',
+                }}
               >
                 {children}
               </EuiPageContentBody>
