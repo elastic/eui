@@ -5,11 +5,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 356,
+        "line": 360,
         "column": 16
       },
       "end": {
-        "line": 356,
+        "line": 360,
         "column": 76
       }
     },
@@ -21,11 +21,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 309,
+        "line": 312,
         "column": 6
       },
       "end": {
-        "line": 309,
+        "line": 312,
         "column": 79
       }
     },
@@ -37,11 +37,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 671,
+        "line": 674,
         "column": 10
       },
       "end": {
-        "line": 675,
+        "line": 678,
         "column": 12
       }
     },
@@ -53,11 +53,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 684,
+        "line": 687,
         "column": 12
       },
       "end": {
-        "line": 688,
+        "line": 691,
         "column": 14
       }
     },
@@ -69,11 +69,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 692,
+        "line": 695,
         "column": 12
       },
       "end": {
-        "line": 696,
+        "line": 699,
         "column": 14
       }
     },
@@ -85,11 +85,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 701,
+        "line": 704,
         "column": 10
       },
       "end": {
-        "line": 705,
+        "line": 708,
         "column": 12
       }
     },
@@ -101,11 +101,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 747,
+        "line": 750,
         "column": 6
       },
       "end": {
-        "line": 747,
+        "line": 750,
         "column": 77
       }
     },
@@ -117,11 +117,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1140,
+        "line": 1143,
         "column": 8
       },
       "end": {
-        "line": 1140,
+        "line": 1143,
         "column": 79
       }
     },
@@ -133,11 +133,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1360,
+        "line": 1363,
         "column": 8
       },
       "end": {
-        "line": 1364,
+        "line": 1367,
         "column": 9
       }
     },
@@ -261,15 +261,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 72,
+        "line": 63,
         "column": 11
       },
       "end": {
-        "line": 72,
+        "line": 63,
         "column": 72
       }
     },
-    "filepath": "src/components/card/card_select.tsx"
+    "filepath": "src/components/card/card_select/card_select.tsx"
   },
   {
     "token": "euiCardSelect.unavailable",
@@ -277,15 +277,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 74,
+        "line": 65,
         "column": 11
       },
       "end": {
-        "line": 74,
+        "line": 65,
         "column": 78
       }
     },
-    "filepath": "src/components/card/card_select.tsx"
+    "filepath": "src/components/card/card_select/card_select.tsx"
   },
   {
     "token": "euiCardSelect.select",
@@ -293,15 +293,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 76,
+        "line": 67,
         "column": 11
       },
       "end": {
-        "line": 76,
+        "line": 67,
         "column": 68
       }
     },
-    "filepath": "src/components/card/card_select.tsx"
+    "filepath": "src/components/card/card_select/card_select.tsx"
   },
   {
     "token": "euiCodeBlock.copyButton",
@@ -773,11 +773,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 992,
+        "line": 968,
         "column": 10
       },
       "end": {
-        "line": 995,
+        "line": 971,
         "column": 11
       }
     },
@@ -4197,11 +4197,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 228,
+        "line": 229,
         "column": 12
       },
       "end": {
-        "line": 228,
+        "line": 229,
         "column": 80
       }
     },
@@ -4213,11 +4213,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 238,
+        "line": 240,
         "column": 12
       },
       "end": {
-        "line": 241,
+        "line": 243,
         "column": 14
       }
     },

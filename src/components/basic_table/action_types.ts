@@ -8,12 +8,12 @@
 
 import { ReactElement, ReactNode } from 'react';
 import { EuiIconType } from '../icon/icon';
-import { EuiButtonIconColor } from '../button/button_icon/button_icon';
-import { EuiButtonEmptyColor } from '../button/button_empty';
+import { EuiButtonIconProps } from '../button/button_icon/button_icon';
+import { EuiButtonEmptyProps } from '../button/button_empty';
 import { ExclusiveUnion } from '../common';
 
 type IconFunction<T> = (item: T) => EuiIconType;
-type ButtonColor = EuiButtonIconColor | EuiButtonEmptyColor;
+type ButtonColor = EuiButtonIconProps['color'] | EuiButtonEmptyProps['color'];
 type EuiButtonIconColorFunction<T> = (item: T) => ButtonColor;
 
 export interface DefaultItemActionBase<T> {
@@ -49,7 +49,7 @@ export interface DefaultItemEmptyButtonAction<T>
    * The type of action
    */
   type?: 'button';
-  color?: EuiButtonEmptyColor | EuiButtonIconColorFunction<T>;
+  color?: EuiButtonEmptyProps['color'] | EuiButtonIconColorFunction<T>;
 }
 
 export interface DefaultItemIconButtonAction<T>
@@ -62,7 +62,7 @@ export interface DefaultItemIconButtonAction<T>
   /**
    * Defines the color of the button
    */
-  color?: EuiButtonIconColor | EuiButtonIconColorFunction<T>;
+  color?: EuiButtonIconProps['color'] | EuiButtonIconColorFunction<T>;
 }
 
 export type DefaultItemAction<T> = ExclusiveUnion<

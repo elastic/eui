@@ -79,6 +79,19 @@ function compileLib() {
     });
   });
 
+  // copy all JSON files to build outputs
+  glob('./src/**/*.json', undefined, (error, files) => {
+    files.forEach(file => {
+      const splitPath = file.split('/');
+      const basePath = splitPath.slice(2, splitPath.length).join('/');
+      shell.cp('-f', `${file}`, `es/${basePath}`);
+      shell.cp('-f', `${file}`, `optimize/es/${basePath}`);
+      shell.cp('-f', `${file}`, `lib/${basePath}`);
+      shell.cp('-f', `${file}`, `optimize/lib/${basePath}`);
+      shell.cp('-f', `${file}`, `test-env/${basePath}`);
+    });
+  });
+
   console.log(chalk.green('✔ Finished compiling src/'));
 
   // Use `tsc` to emit typescript declaration files for .ts files

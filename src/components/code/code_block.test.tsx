@@ -158,7 +158,7 @@ describe('EuiCodeBlock', () => {
         </EuiCodeBlock>
       );
 
-      component.find('EuiButtonIcon[iconType="fullScreen"]').simulate('click');
+      component.find('button[aria-label="Expand"]').simulate('click');
       component.update();
 
       expect(component.find('.euiCodeBlock-isFullScreen')).toMatchSnapshot();
@@ -175,7 +175,7 @@ describe('EuiCodeBlock', () => {
         </EuiCodeBlock>
       );
 
-      component.find('EuiButtonIcon[iconType="fullScreen"]').simulate('click');
+      component.find('button[aria-label="Expand"]').simulate('click');
       component.update();
       component
         .find('.euiCodeBlock-isFullScreen')

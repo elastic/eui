@@ -90,7 +90,7 @@ exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
                 class="euiFlexItem euiFlexItem--flexGrowZero"
               >
                 <button
-                  class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiButtonEmpty--flushRight"
+                  class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushRight css-wvaqcf-empty-text"
                   type="button"
                 >
                   <span
@@ -198,7 +198,7 @@ exports[`EuiTourStep can have subtitle 1`] = `
                 class="euiFlexItem euiFlexItem--flexGrowZero"
               >
                 <button
-                  class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiButtonEmpty--flushRight"
+                  class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushRight css-wvaqcf-empty-text"
                   type="button"
                 >
                   <span
@@ -388,7 +388,7 @@ exports[`EuiTourStep can turn off the beacon 1`] = `
                 class="euiFlexItem euiFlexItem--flexGrowZero"
               >
                 <button
-                  class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiButtonEmpty--flushRight"
+                  class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushRight css-wvaqcf-empty-text"
                   type="button"
                 >
                   <span
@@ -491,7 +491,7 @@ exports[`EuiTourStep is rendered 1`] = `
                 class="euiFlexItem euiFlexItem--flexGrowZero"
               >
                 <button
-                  class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiButtonEmpty--flushRight"
+                  class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushRight css-wvaqcf-empty-text"
                   type="button"
                 >
                   <span

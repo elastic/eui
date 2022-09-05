@@ -9,8 +9,10 @@
 import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
-import { EuiButtonIcon, COLORS, DISPLAYS, SIZES } from './button_icon';
+import { EuiButtonIcon, DISPLAYS, SIZES } from './button_icon';
+import { BUTTON_COLORS } from '../../../themes/amsterdam/global_styling/mixins';
 
 describe('EuiButtonIcon', () => {
   test('is rendered', () => {
@@ -20,6 +22,10 @@ describe('EuiButtonIcon', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  shouldRenderCustomStyles(
+    <EuiButtonIcon iconType="user" {...requiredProps} />
+  );
 
   describe('props', () => {
     describe('isDisabled', () => {
@@ -64,7 +70,7 @@ describe('EuiButtonIcon', () => {
     });
 
     describe('color', () => {
-      COLORS.forEach((color) => {
+      BUTTON_COLORS.forEach((color) => {
         test(`${color} is rendered`, () => {
           const component = render(
             <EuiButtonIcon iconType="user" aria-label="button" color={color} />
@@ -72,6 +78,14 @@ describe('EuiButtonIcon', () => {
 
           expect(component).toMatchSnapshot();
         });
+      });
+
+      test('ghost is rendered', () => {
+        const component = render(
+          <EuiButtonIcon iconType="user" aria-label="button" color={'ghost'} />
+        );
+
+        expect(component).toMatchSnapshot();
       });
     });
 

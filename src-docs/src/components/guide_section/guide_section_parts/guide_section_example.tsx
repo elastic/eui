@@ -28,7 +28,7 @@ export const GuideSectionExample: FunctionComponent<GuideSectionExample> = ({
   });
 
   return (
-    <EuiSplitPanel.Outer hasBorder hasShadow={false}>
+    <EuiSplitPanel.Outer hasBorder hasShadow={false} data-eui-docs-example>
       <EuiSplitPanel.Inner
         color="plain"
         {...demoPanelProps}

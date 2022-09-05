@@ -1,3 +1,62 @@
+## [`66.0.0`](https://github.com/elastic/eui/tree/v66.0.0)
+
+- Added the `gutterSize` prop to `EuiDescriptionList` ([#6175](https://github.com/elastic/eui/pull/6175))
+- Added `tooltipText` as an optional prop on `EuiListGroupItem` ([#6186](https://github.com/elastic/eui/pull/6186))
+
+**Bug fixes**
+
+- Updated the `EuiHeaderSectionItem` to not render if empty ([#6158](https://github.com/elastic/eui/pull/6158))
+- Added memoization to `useEuiTheme`'s return value, supporting React's shallow prop comparison optimizations ([#6165](https://github.com/elastic/eui/pull/6165))
+- Fixed an `EuiPageSidebar` bug where inline styles were not correctly updating ([#6191](https://github.com/elastic/eui/pull/6191))
+
+**Breaking changes**
+
+- Removed `.euiIEFlexWrapFix` global className and `internetExplorerOnly()` Sass mixin, as IE is no longer a supported browser ([#6154](https://github.com/elastic/eui/pull/6154))
+- Removed all IE fixes/fallbacks in EUI CSS ([#6161](https://github.com/elastic/eui/pull/6161))
+- Removed all IE fixes/fallbacks in EUI JS ([#6162](https://github.com/elastic/eui/pull/6162))
+
+## [`65.0.2`](https://github.com/elastic/eui/tree/v65.0.2)
+
+**Bug fixes**
+
+- Fixed missing `EuiDataGrid` cell popover shadows in Safari ([#6163](https://github.com/elastic/eui/pull/6163))
+- Fixed a bug in some development environments which prevented `EuiIcon` from loading icons asynchronously ([#6166](https://github.com/elastic/eui/pull/6166))
+- Updated the build process to include json files, fixing imports from the @elastic/eui package ([#6172](https://github.com/elastic/eui/pull/6172))
+
+## [`65.0.1`](https://github.com/elastic/eui/tree/v65.0.1)
+
+**Note: this version contains a bug preventing its usage, fixed in `65.0.2`**
+
+**Bug fixes**
+
+- Fixed the text size of `EuiDescriptionListTitle` when `EuiDescriptionList` is compressed ([#6160](https://github.com/elastic/eui/pull/6160))
+
+## [`65.0.0`](https://github.com/elastic/eui/tree/v65.0.0)
+
+**Note: this version contains a bug preventing its usage, fixed in `65.0.2`**
+
+- Added `anchorProps` to allow passing more props to the anchoring wrapper in `EuiToolTip` and `EuiBetaBadge` ([#6110](https://github.com/elastic/eui/pull/6110))
+- Added an empty shade background color to `hollow` style `EuiBetaBadge` ([#6110](https://github.com/elastic/eui/pull/6110))
+- Changed design of select button in `selectable` `EuiCard`s ([#6110](https://github.com/elastic/eui/pull/6110))
+- Updated button `ghost` colors to be `colorMode = 'dark'` themed `text` buttons ([#6150](https://github.com/elastic/eui/pull/6150))
+- Renamed `ButtonColor` and `ButtonSize` types to prefixed versions `EuiButtonColor` and `EuiButtonSize` ([#6150](https://github.com/elastic/eui/pull/6150))
+
+**Deprecations**
+
+- Deprecated `ghost` color for `EuiButton`, `EuiButtonIcon`, `EuiButtonEmpty` ([#6150](https://github.com/elastic/eui/pull/6150))
+
+**Breaking changes**
+
+- Removed `EuiButtonIconColor` and `EuiButtonEmptyColor` types, use `EuiButtonIconProps['color']` and `EuiButtonEmptyProps['color']` instead ([#6150](https://github.com/elastic/eui/pull/6150))
+- Removed support for `ghost` color from `EuiButtonGroup` ([#6150](https://github.com/elastic/eui/pull/6150))
+
+**CSS-in-JS conversions**
+
+- Removed `euiHasBetaBadge()` Sass mixin ([#6110](https://github.com/elastic/eui/pull/6110))
+- Converted `EuiCard`, `EuiCheckableCard` to Emotion, removed `$euiCheckableCardPadding`, `$euiCardSpacing`, `$euiCardBottomNodeHeight`, `$euiCardSelectButtonBorders`, `$euiCardSelectButtonBackgrounds`, and `$euiCardPaddingModifiers` ([#6110](https://github.com/elastic/eui/pull/6110))
+- Converted `EuiButton` to Emotion ([#6150](https://github.com/elastic/eui/pull/6150))
+- Converted color styles of `EuiButtonIcon`, `EuiButtonEmpty`, `EuiButtonGroup` ([#6150](https://github.com/elastic/eui/pull/6150))
+
 ## [`64.0.1`](https://github.com/elastic/eui/tree/v64.0.1)
 
 **Bug fixes**
@@ -43,6 +102,33 @@
 **CSS-in-JS conversions**
 
 - Converted `EuiTour` to Emotion ([#6087](https://github.com/elastic/eui/pull/6087))
+
+## [`63.0.6`](https://github.com/elastic/eui/tree/v63.0.6)
+
+**Note: this release is a backport containing changes originally made in `66.1.0`**
+
+- Added a new `component` prop to `EuiPageSection`, allowing overriding of the default `section` tag ([#6192](https://github.com/elastic/eui/pull/6192))
+
+**Deprecations**
+
+- Added `@deprecated` flags to `EuiPageContent_Deprecated`, `EuiPageContentBody_Deprecated`, `EuiPageContentHeader_Deprecated`, `EuiPageContentHeaderSection_Deprecated`, `EuiPageSideBar_Deprecated` and `EuiPageTemplate_Deprecated`, which will provide helpful hints to IDEs that support jsdoc flags. Consumers will have until August 2023 to migrate from these deprecated components. ([#6194](https://github.com/elastic/eui/pull/6194))
+
+## [`63.0.5`](https://github.com/elastic/eui/tree/v63.0.5)
+
+**Note: this release is a backport containing changes originally made in `64.0.0`**
+
+**Bug fixes**
+
+- Fixed missing `data-fixed-headers` property in some layout configurations using `EuiPageTemplate`. ([#6140](https://github.com/elastic/eui/pull/6140))
+- Fixed an `EuiPageSidebar` bug where inline styles were not correctly updating ([#6191](https://github.com/elastic/eui/pull/6191))
+
+## [`63.0.4`](https://github.com/elastic/eui/tree/v63.0.4)
+
+**Note: this release is a backport containing changes originally made in `65.0.1`**
+
+**Bug fixes**
+
+- Fixed the text size of `EuiDescriptionListTitle` when `EuiDescriptionList` is compressed ([#6160](https://github.com/elastic/eui/pull/6160))
 
 ## [`63.0.3`](https://github.com/elastic/eui/tree/v63.0.3)
 
@@ -105,6 +191,14 @@
 - Converted `EuiPage` and `EuiPageBody` to Emotion ([#5768](https://github.com/elastic/eui/pull/5768))
 - Converted `EuiPageHeader` and `EuiPageHeaderContent` to Emotion ([#5768](https://github.com/elastic/eui/pull/5768))
 - Removed `euiPageRestrictWidth()` Sass mixin ([#5768](https://github.com/elastic/eui/pull/5768))
+
+## [`62.2.4`](https://github.com/elastic/eui/tree/v62.2.4)
+
+**Note: this release is a backport containing changes originally made in `65.0.1`**
+
+**Bug fixes**
+
+- Fixed the text size of `EuiDescriptionListTitle` when `EuiDescriptionList` is compressed ([#6160](https://github.com/elastic/eui/pull/6160))
 
 ## [`62.2.3`](https://github.com/elastic/eui/tree/v62.2.3)
 

@@ -15,8 +15,7 @@ export interface EuiPageContentHeaderSectionProps
     HTMLAttributes<HTMLDivElement> {}
 
 /**
- * **DEPRECATED**
- * Use EuiPageHeader instead
+ * @deprecated Use EuiPageHeader instead
  */
 export const EuiPageContentHeaderSection_Deprecated: FunctionComponent<EuiPageContentHeaderSectionProps> = ({
   children,

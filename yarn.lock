@@ -1129,10 +1129,10 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@elastic/charts@^47.2.0":
-  version "47.2.0"
-  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-47.2.0.tgz#829235fa133210faf680480ab73ac6a9aa3affa4"
-  integrity sha512-oZM9hH5eMYg8jkQi/Gwr4v7x9qjmUN919dLhflbq9rae49xi5GANXv0zpw8V75xQFt+W0TkuyUisf/OYL2ycCQ==
+"@elastic/charts@^48.0.0":
+  version "48.0.0"
+  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-48.0.0.tgz#ccbbe7507102f078b80285e045a421105c0fc780"
+  integrity sha512-sj0L0JKU3KLJw0Ci1RzSj5WkhGc7ptAft/ulunF+w0i5vG7qgDdbnemCvRIPkgGiu2AnAnIj/bkK3IcxpAbmGA==
   dependencies:
     "@popperjs/core" "^2.4.0"
     bezier-easing "^2.1.0"
@@ -1153,7 +1153,7 @@
     resize-observer-polyfill "^1.5.1"
     ts-debounce "^4.0.0"
     utility-types "^3.10.0"
-    uuid "^3.3.2"
+    uuid "^8.3.2"
 
 "@elastic/datemath@^5.0.3":
   version "5.0.3"
