@@ -138,7 +138,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
 
 exports[`EuiDataGrid render column actions renders various column actions configurations 1`] = `
 <ul
-  className="euiListGroup euiListGroup-maxWidthDefault"
+  className="euiListGroup emotion-euiListGroup-none-maxWidthDefault"
   data-test-subj="dataGridHeaderCellActionGroup-B"
 >
   <EuiListGroupItem
@@ -459,7 +459,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
 
 exports[`EuiDataGrid render column actions renders various column actions configurations 2`] = `
 <ul
-  className="euiListGroup euiListGroup-maxWidthDefault"
+  className="euiListGroup emotion-euiListGroup-none-maxWidthDefault"
   data-test-subj="dataGridHeaderCellActionGroup-C"
 >
   <EuiListGroupItem
@@ -492,7 +492,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
 
 exports[`EuiDataGrid render column actions renders various column actions configurations 3`] = `
 <ul
-  className="euiListGroup euiListGroup-maxWidthDefault"
+  className="euiListGroup emotion-euiListGroup-none-maxWidthDefault"
   data-test-subj="dataGridHeaderCellActionGroup-D"
 >
   <EuiListGroupItem
@@ -689,7 +689,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
 
 exports[`EuiDataGrid render column actions renders various column actions configurations 4`] = `
 <ul
-  className="euiListGroup euiListGroup-maxWidthDefault"
+  className="euiListGroup emotion-euiListGroup-none-maxWidthDefault"
   data-test-subj="dataGridHeaderCellActionGroup-E"
 >
   <EuiListGroupItem

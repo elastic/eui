@@ -11,16 +11,11 @@ import classNames from 'classnames';
 
 import { EuiListGroupItem, EuiListGroupItemProps } from './list_group_item';
 import { CommonProps } from '../common';
+import { useEuiTheme } from '../../services';
+import { euiListGroupStyles } from './list_group.styles';
 
-type GutterSize = 'none' | 's' | 'm';
-const gutterSizeToClassNameMap: { [size in GutterSize]: string } = {
-  none: '',
-  s: 'euiListGroup--gutterSmall',
-  m: 'euiListGroup--gutterMedium',
-};
-export const GUTTER_SIZES = Object.keys(
-  gutterSizeToClassNameMap
-) as GutterSize[];
+export const GUTTER_SIZES = ['none', 's', 'm'] as const;
+export type EuiGutterSize = typeof GUTTER_SIZES[number];
 
 export type EuiListGroupProps = CommonProps &
   Omit<HTMLAttributes<HTMLUListElement>, 'color'> & {
@@ -37,7 +32,7 @@ export type EuiListGroupProps = CommonProps &
     /**
      * Spacing between list items
      */
-    gutterSize?: GutterSize;
+    gutterSize?: EuiGutterSize;
 
     /**
      * Items to display in this group. See #EuiListGroupItem
@@ -92,7 +87,7 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
   ...rest
 }) => {
   let newStyle: CSSProperties | undefined;
-  let widthClassName;
+
   if (maxWidth !== true) {
     let value: CSSProperties['maxWidth'];
     if (typeof maxWidth === 'number') {
@@ -102,20 +97,20 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
     }
 
     newStyle = { ...style, maxWidth: value };
-  } else if (maxWidth === true) {
-    widthClassName = 'euiListGroup-maxWidthDefault';
   }
 
-  const classes = classNames(
-    'euiListGroup',
-    {
-      'euiListGroup-flush': flush,
-      'euiListGroup-bordered': bordered,
-    },
-    gutterSizeToClassNameMap[gutterSize],
-    widthClassName,
-    className
-  );
+  const euiTheme = useEuiTheme();
+  const styles = euiListGroupStyles(euiTheme);
+
+  const classes = classNames('euiListGroup', className);
+
+  const cssStyles = [
+    styles.euiListGroup,
+    styles[gutterSize],
+    flush && styles.flush,
+    bordered && styles.bordered,
+    maxWidth && styles.maxWidthDefault,
+  ];
 
   let childrenOrListItems = null;
   if (listItems) {
@@ -148,6 +143,7 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
   return (
     <ul
       className={classes}
+      css={cssStyles}
       style={newStyle || style}
       aria-labelledby={ariaLabelledby}
       {...rest}
