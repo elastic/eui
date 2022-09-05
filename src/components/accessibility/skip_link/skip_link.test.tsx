@@ -37,7 +37,7 @@ describe('EuiSkipLink', () => {
         );
 
         const preventDefault = jest.fn();
-        component.find('EuiButton').simulate('click', { preventDefault });
+        component.find('a').simulate('click', { preventDefault });
 
         expect(preventDefault).toHaveBeenCalled();
         expect(focusSpy).toHaveBeenCalled();
@@ -50,11 +50,11 @@ describe('EuiSkipLink', () => {
         const component = mount(
           <EuiSkipLink destinationId="somewhere" overrideLinkBehavior />
         );
-        component.find('EuiButton').simulate('click');
+        component.find('a').simulate('click');
         expect(scrollSpy).not.toHaveBeenCalled();
 
         mockElement.getBoundingClientRect = () => ({ top: 1000 } as any);
-        component.find('EuiButton').simulate('click');
+        component.find('a').simulate('click');
         expect(scrollSpy).toHaveBeenCalled();
       });
     });

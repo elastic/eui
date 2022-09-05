@@ -21,16 +21,12 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
 
   const columnDisplay = `
-    ${logicalCSS('width', '50%')} // Flex-basis doesn't work in IE with padding
+  ${logicalCSS('width', '50%')}
     ${logicalCSS('padding-right', euiTheme.size.s)}
   `;
   return {
     euiDescriptionList__title: css`
       ${euiTextBreakWord()}
-      // Add margin only to the non-first <dt>.
-      &:not(:first-of-type) {
-        ${logicalCSS('margin-top', euiTheme.size.base)}
-      }
     `,
 
     // Types
@@ -93,6 +89,19 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
     // Alignment
     right: css`
       ${logicalTextAlignCSS('right')};
+    `,
+
+    // Gutter
+    // Add margin only to the non-first <dt>.
+    s: css`
+      &:not(:first-of-type) {
+        ${logicalCSS('margin-top', euiTheme.size.s)}
+      }
+    `,
+    m: css`
+      &:not(:first-of-type) {
+        ${logicalCSS('margin-top', euiTheme.size.base)}
+      }
     `,
   };
 };

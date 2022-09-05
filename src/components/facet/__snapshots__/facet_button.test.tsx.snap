@@ -3,9 +3,10 @@
 exports[`EuiFacetButton is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiFacetButton testClass1 testClass2 emotion-euiButtonDisplay-s-euiFacetButton"
+  class="euiFacetButton testClass1 testClass2 emotion-euiButtonDisplay-s-s-euiFacetButton"
   data-test-subj="test subject string"
   title="aria-label"
+  type="button"
 >
   <span
     class="emotion-euiButtonDisplayContent"
@@ -21,7 +22,8 @@ exports[`EuiFacetButton is rendered 1`] = `
 
 exports[`EuiFacetButton props icon is rendered 1`] = `
 <button
-  class="euiFacetButton emotion-euiButtonDisplay-s-euiFacetButton"
+  class="euiFacetButton emotion-euiButtonDisplay-s-s-euiFacetButton"
+  type="button"
 >
   <span
     class="emotion-euiButtonDisplayContent"
@@ -41,11 +43,12 @@ exports[`EuiFacetButton props icon is rendered 1`] = `
 
 exports[`EuiFacetButton props isDisabled is rendered 1`] = `
 <button
-  class="euiFacetButton emotion-euiButtonDisplay-s-isDisabled-euiFacetButton"
+  class="euiFacetButton emotion-euiButtonDisplay-s-isDisabled-s-euiFacetButton"
   disabled=""
+  type="button"
 >
   <span
-    class="emotion-euiButtonDisplayContent-isDisabled"
+    class="emotion-euiButtonDisplayContent"
   >
     <span
       class="euiFacetButton__icon emotion-euiFacetButton__icon-isDisabled"
@@ -68,11 +71,12 @@ exports[`EuiFacetButton props isDisabled is rendered 1`] = `
 
 exports[`EuiFacetButton props isLoading is rendered 1`] = `
 <button
-  class="euiFacetButton emotion-euiButtonDisplay-s-isDisabled-euiFacetButton"
+  class="euiFacetButton emotion-euiButtonDisplay-s-isDisabled-s-euiFacetButton"
   disabled=""
+  type="button"
 >
   <span
-    class="emotion-euiButtonDisplayContent-isDisabled"
+    class="emotion-euiButtonDisplayContent"
   >
     <span
       class="euiFacetButton__text emotion-euiFacetButton__text-unSelected"
@@ -90,7 +94,8 @@ exports[`EuiFacetButton props isLoading is rendered 1`] = `
 
 exports[`EuiFacetButton props isSelected is rendered 1`] = `
 <button
-  class="euiFacetButton emotion-euiButtonDisplay-s-euiFacetButton"
+  class="euiFacetButton emotion-euiButtonDisplay-s-s-euiFacetButton"
+  type="button"
 >
   <span
     class="emotion-euiButtonDisplayContent"
@@ -106,7 +111,8 @@ exports[`EuiFacetButton props isSelected is rendered 1`] = `
 
 exports[`EuiFacetButton props quantity is rendered 1`] = `
 <button
-  class="euiFacetButton emotion-euiButtonDisplay-s-euiFacetButton"
+  class="euiFacetButton emotion-euiButtonDisplay-s-s-euiFacetButton"
+  type="button"
 >
   <span
     class="emotion-euiButtonDisplayContent"

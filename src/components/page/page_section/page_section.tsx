@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import React, { FunctionComponent, ComponentType, HTMLAttributes } from 'react';
 import { CommonProps } from '../../common';
 
 import {
@@ -53,7 +53,11 @@ export type EuiPageSectionProps = CommonProps &
      * Passed down to the div wrapper of the section contents
      */
     contentProps?: HTMLAttributes<HTMLDivElement>;
-  } & Omit<HTMLAttributes<HTMLDivElement>, 'color'>;
+    /**
+     * Sets which HTML element to render.
+     */
+    component?: keyof JSX.IntrinsicElements | ComponentType;
+  } & Omit<HTMLAttributes<Element>, 'color'>;
 
 export const EuiPageSection: FunctionComponent<EuiPageSectionProps> = ({
   children,
@@ -64,6 +68,7 @@ export const EuiPageSection: FunctionComponent<EuiPageSectionProps> = ({
   color = 'transparent',
   grow = false,
   contentProps,
+  component: Component = 'section',
   ...rest
 }) => {
   // Set max-width as a style prop
@@ -98,10 +103,10 @@ export const EuiPageSection: FunctionComponent<EuiPageSectionProps> = ({
   ];
 
   return (
-    <div css={cssStyles} {...rest}>
+    <Component css={cssStyles} {...rest}>
       <div css={cssContentStyles} {...contentProps} style={widthStyles}>
         {children}
       </div>
-    </div>
+    </Component>
   );
 };

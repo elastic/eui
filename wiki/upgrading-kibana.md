@@ -38,20 +38,37 @@ It's likely that Jest test failures will be snapshot failures due to changing pr
 
 Other unit test failures will require narrowing the root cause to a commit in the changelog and triaging various DOM, style, or React possibilities.
 
-### Functional test errors
+### E2E test errors
 
 The vast majority of functional tests use the Mocha-based functional test runner, but some plugins have opted for Cypress-based integration tests.
 
-#### Standard Mocha (`test/`)
+#### Kibana FTR (`test/`)
 
 Godspeed: [Running functional tests in Kibana](https://www.elastic.co/guide/en/kibana/current/development-tests.html#development-functional-tests)
 
 The best approach, again, involves narrowing the root cause to a commit in the changelog and triaging various DOM, style, or React possibilities.
 
+Tips:
 
-#### Cypress (`x-pack/plugins/security_solution/cypress/`)
+- To only run a specific suite of tests you want, you can add `describe.only` or `it.only` to the failing test file, or use the `--grep` flag in the CLI command.
+- If a test passes for you locally but is flaky on CI, consider using the [async retry service](https://github.com/elastic/kibana/blob/main/test/common/services/retry/retry.ts).
+
+#### Security Cypress (`x-pack/plugins/security_solution/cypress/`)
 
 Follow the local [README instructions](https://github.com/elastic/kibana/blob/main/x-pack/plugins/security_solution/cypress/README.md#ftr--interactive) to run individual tests in a nice UI.
+
+#### @elastic/synthetics Tests (`x-pack/plugins/{synthetics|observability/ux}/e2e`)
+
+See the [synthetics/e2e README](https://github.com/elastic/kibana/blob/main/x-pack/plugins/synthetics/e2e/README.md).
+
+For debugging purposes, you will almost certainly want to use the `--bail --no-headless` flags. Like the FTR tests above, you will also want to use `--grep` to only run a certain test block or test (there is no `.only` API for synthetics).
+
+There are a couple other plugins (including observability and ux) also using the synthetics runner. To run those tests, you can follow the same basic instructions linked above, but replace the plugin name, e.g.:
+
+```sh
+node x-pack/plugins/observability/scripts/e2e.js --server
+node scripts/functional_test_runner/ --config x-pack/plugins/observability/e2e/synthetics_run.ts --bail --no-headless
+```
 
 ### Other
 
