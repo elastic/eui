@@ -18,14 +18,14 @@ Array [
     >
       <div
         aria-label="aria-label"
-        class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge testClass1 testClass2"
+        class="euiFlyout testClass1 testClass2 emotion-euiFlyout-flyoutPadding-l-flyoutSize--m-overlay-right"
         data-test-subj="test subject string"
         role="dialog"
         tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
+          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-1ntz1sn-empty-text-hoverStyles-EuiButtonIcon-euiFlyout__closeButton-closeButton--inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -64,14 +64,14 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge"
+        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSize--m-overlay-right"
         id="imaflyout"
         role="dialog"
         tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
+          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-1ntz1sn-empty-text-hoverStyles-EuiButtonIcon-euiFlyout__closeButton-closeButton--inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -110,13 +110,13 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge"
+        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSize--m-overlay-right"
         role="dialog"
         tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--outside css-iod722-fill-text-hoverStyles-EuiButtonIcon"
+          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--outside css-1focbfd-fill-text-hoverStyles-EuiButtonIcon-euiFlyout__closeButton-closeButton--outside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -155,13 +155,13 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge"
+        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSize--m-overlay-right"
         role="dialog"
         tabindex="-1"
       >
         <button
           aria-label="aria-label"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside testClass1 testClass2 css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
+          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside testClass1 testClass2 css-1ntz1sn-empty-text-hoverStyles-EuiButtonIcon-euiFlyout__closeButton-closeButton--inside"
           data-test-subj="test subject string"
           type="button"
         >
@@ -200,7 +200,7 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge"
+        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSize--m-overlay-right"
         role="dialog"
         tabindex="-1"
       />
@@ -231,13 +231,13 @@ Array [
       data-focus-lock-disabled="false"
     >
       <nav
-        class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge"
+        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSize--m-overlay-right"
         role="dialog"
         tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
+          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-1ntz1sn-empty-text-hoverStyles-EuiButtonIcon-euiFlyout__closeButton-closeButton--inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -276,14 +276,14 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge"
+        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSize--m-overlay-right"
         role="dialog"
         style="max-width: 1024px;"
         tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
+          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-1ntz1sn-empty-text-hoverStyles-EuiButtonIcon-euiFlyout__closeButton-closeButton--inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -322,14 +322,14 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge"
+        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSize--m-overlay-right"
         role="dialog"
         style="max-width: 24rem;"
         tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
+          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-1ntz1sn-empty-text-hoverStyles-EuiButtonIcon-euiFlyout__closeButton-closeButton--inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -368,13 +368,13 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge euiFlyout--maxWidth-default"
+        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSize--m-overlay-right"
         role="dialog"
         tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
+          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-1ntz1sn-empty-text-hoverStyles-EuiButtonIcon-euiFlyout__closeButton-closeButton--inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -413,13 +413,13 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge"
+        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSize--m-overlay-right"
         role="dialog"
         tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
+          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-1ntz1sn-empty-text-hoverStyles-EuiButtonIcon-euiFlyout__closeButton-closeButton--inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -458,13 +458,13 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge"
+        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSize--m-overlay-right"
         role="dialog"
         tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
+          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-1ntz1sn-empty-text-hoverStyles-EuiButtonIcon-euiFlyout__closeButton-closeButton--inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -502,13 +502,13 @@ Array [
     data-focus-lock-disabled="false"
   >
     <div
-      class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge"
+      class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSize--m-overlay-right"
       role="dialog"
       tabindex="-1"
     >
       <button
         aria-label="Close this dialog"
-        class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
+        class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-1ntz1sn-empty-text-hoverStyles-EuiButtonIcon-euiFlyout__closeButton-closeButton--inside"
         data-test-subj="euiFlyoutCloseButton"
         type="button"
       >
@@ -546,13 +546,13 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge"
+        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSize--m-overlay-right"
         role="dialog"
         tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
+          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-1ntz1sn-empty-text-hoverStyles-EuiButtonIcon-euiFlyout__closeButton-closeButton--inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -591,13 +591,13 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout euiFlyout--medium euiFlyout--paddingMedium"
+        class="euiFlyout emotion-euiFlyout-flyoutPadding-m-flyoutSize--m-overlay-right"
         role="dialog"
         tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
+          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-1ntz1sn-empty-text-hoverStyles-EuiButtonIcon-euiFlyout__closeButton-closeButton--inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -636,13 +636,13 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout euiFlyout--medium euiFlyout--paddingNone"
+        class="euiFlyout emotion-euiFlyout-flyoutPadding-none-flyoutSize--m-overlay-right"
         role="dialog"
         tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
+          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-1ntz1sn-empty-text-hoverStyles-EuiButtonIcon-euiFlyout__closeButton-closeButton--inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -681,13 +681,13 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout euiFlyout--medium euiFlyout--paddingSmall"
+        class="euiFlyout emotion-euiFlyout-flyoutPadding-s-flyoutSize--m-overlay-right"
         role="dialog"
         tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
+          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-1ntz1sn-empty-text-hoverStyles-EuiButtonIcon-euiFlyout__closeButton-closeButton--inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -726,12 +726,12 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge"
+        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSize--m-overlay-right"
         tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
+          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-1ntz1sn-empty-text-hoverStyles-EuiButtonIcon-euiFlyout__closeButton-closeButton--inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -770,13 +770,13 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout euiFlyout--left euiFlyout--medium euiFlyout--paddingLarge"
+        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSize--m-overlay-left"
         role="dialog"
         tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
+          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-fdp5m4-empty-text-hoverStyles-EuiButtonIcon-euiFlyout__closeButton-closeButton--inside-closeButton--outside-left"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -815,13 +815,13 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge"
+        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSize--m-overlay-right"
         role="dialog"
         tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
+          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-1ntz1sn-empty-text-hoverStyles-EuiButtonIcon-euiFlyout__closeButton-closeButton--inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -860,14 +860,14 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout euiFlyout--paddingLarge"
+        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-overlay-right"
         role="dialog"
         style="width: 500px;"
         tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
+          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-1ntz1sn-empty-text-hoverStyles-EuiButtonIcon-euiFlyout__closeButton-closeButton--inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -906,13 +906,13 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout euiFlyout--large euiFlyout--paddingLarge"
+        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSize--l-overlay-right"
         role="dialog"
         tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
+          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-1ntz1sn-empty-text-hoverStyles-EuiButtonIcon-euiFlyout__closeButton-closeButton--inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -951,13 +951,13 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge"
+        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSize--m-overlay-right"
         role="dialog"
         tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
+          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-1ntz1sn-empty-text-hoverStyles-EuiButtonIcon-euiFlyout__closeButton-closeButton--inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -996,13 +996,13 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout euiFlyout--small euiFlyout--paddingLarge"
+        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSize--s-overlay-right"
         role="dialog"
         tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
+          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-1ntz1sn-empty-text-hoverStyles-EuiButtonIcon-euiFlyout__closeButton-closeButton--inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -1041,13 +1041,13 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout euiFlyout--push euiFlyout--medium euiFlyout--paddingLarge"
+        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSize--m-push-right"
         role="dialog"
         tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
+          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-1ntz1sn-empty-text-hoverStyles-EuiButtonIcon-euiFlyout__closeButton-closeButton--inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
