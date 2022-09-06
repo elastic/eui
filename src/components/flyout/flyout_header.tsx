@@ -9,6 +9,8 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
+import { useEuiTheme } from '../../services';
+import { euiFlyoutHeaderStyles } from './flyout_header.styles';
 
 export type EuiFlyoutHeaderProps = FunctionComponent<
   HTMLAttributes<HTMLDivElement> &
@@ -31,8 +33,16 @@ export const EuiFlyoutHeader: EuiFlyoutHeaderProps = ({
     className
   );
 
+  const euiTheme = useEuiTheme();
+  const styles = euiFlyoutHeaderStyles(euiTheme);
+
+  const cssStyles = [
+    styles.euiFlyoutHeader,
+    hasBorder && styles['flyoutHeader--hasBorder'],
+  ];
+
   return (
-    <div className={classes} {...rest}>
+    <div className={classes} {...rest} css={cssStyles}>
       {children}
     </div>
   );

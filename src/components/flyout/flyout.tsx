@@ -291,7 +291,7 @@ export const EuiFlyout = forwardRef(
 
     const cssStyles = [
       styles.euiFlyout,
-      styles.euiFlyoutHeader,
+      //styles.euiFlyoutHeader,
       styles.euiFlyoutBody,
       //styles.euiFlyoutFooter,
       styles.paddingSizes[paddingSize],

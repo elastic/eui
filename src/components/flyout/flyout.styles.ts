@@ -43,6 +43,11 @@ const euiFlyoutLeft = keyframes`
 }
 `;
 
+const convertPxSizeToNumber = (size: String) => {
+  //console
+  return parseInt(size.replace('px', ''));
+};
+
 export const euiFlyoutStyles = (
   euiThemeContext: UseEuiTheme,
   paddingSize: EuiFlyoutPaddingSize
@@ -84,30 +89,6 @@ export const euiFlyoutStyles = (
       width: '75vw',
       max: Math.round(euiTheme.breakpoint.l),
     },
-  };
-
-  const convertPxSizeToNumber = (size: String) => {
-    //console
-    return parseInt(size.replace('px', ''));
-  };
-
-  const calculateFooterPadding = (paddingSize: EuiFlyoutPaddingSize) => {
-    const footerPaddingWithPixels = paddingModifierMap[paddingSize];
-
-    // Removing the 'px' from the end of euiTheme.size.m to perform calculation
-    const footerPaddingAmount =
-      typeof footerPaddingWithPixels === 'string'
-        ? convertPxSizeToNumber(footerPaddingWithPixels)
-        : footerPaddingWithPixels;
-
-    const footerPaddingSizes = {
-      none: `padding: ${footerPaddingWithPixels};`,
-      s: `padding: ${footerPaddingWithPixels};`,
-      m: `padding: ${footerPaddingAmount * 0.75}px ${footerPaddingWithPixels};`,
-      l: `padding: ${footerPaddingAmount / 1.5}px ${footerPaddingWithPixels};`,
-    };
-
-    return footerPaddingSizes[paddingSize];
   };
 
   return {
@@ -242,19 +223,6 @@ export const euiFlyoutStyles = (
       ${logicalCSS('border-right', euiTheme.border.thick)}
     `,
 
-    // Header
-    euiFlyoutHeader: css`
-      .euiFlyoutHeader {
-        flex-grow: 0;
-        ${logicalCSS('padding-horizontal', paddingModifierMap[paddingSize])}
-        ${logicalCSS('padding-top', paddingModifierMap[paddingSize])}
-      }
-      .euiFlyoutHeader--hasBorder {
-        ${logicalCSS('border-bottom', euiTheme.border.thin)}
-        ${logicalCSS('padding-bottom', paddingModifierMap[paddingSize])}
-      }
-    `,
-
     // Body
     euiFlyoutBody: css`
       .euiFlyoutBody {
@@ -282,37 +250,65 @@ export const euiFlyoutStyles = (
       }
     `,
 
-    // Footer
-    euiFlyoutFooter: css`
-      .euiFlyoutFooter {
-        background: ${euiTheme.colors.lightestShade};
-        flex-grow: 0;
-        ${calculateFooterPadding(paddingSize)}
-      }
-    `,
-
     // Padding
     paddingSizes: {
-      none: css`
-        .euiFlyoutFooter {
-          ${calculateFooterPadding(paddingSize)}
-        }
-      `,
+      none: css``,
       s: css`
-        .euiFlyoutFooter {
-          ${calculateFooterPadding(paddingSize)}
-        }
+        ${composeFlyoutPadding(euiThemeContext, paddingSize)}
       `,
       m: css`
-        .euiFlyoutFooter {
-          ${calculateFooterPadding(paddingSize)}
-        }
+        ${composeFlyoutPadding(euiThemeContext, paddingSize)}
       `,
       l: css`
-        .euiFlyoutFooter {
-          ${calculateFooterPadding(paddingSize)}
-        }
+        ${composeFlyoutPadding(euiThemeContext, paddingSize)}
       `,
     },
   };
+};
+
+const composeFlyoutPadding = (
+  euiThemeContext: UseEuiTheme,
+  paddingSize: EuiFlyoutPaddingSize
+) => {
+  const euiTheme = euiThemeContext.euiTheme;
+
+  const paddingModifierMap = {
+    none: 0,
+    s: euiTheme.size.s,
+    m: euiTheme.size.base,
+    l: euiTheme.size.l,
+  };
+
+  // Footer padding
+  const footerPaddingWithPixels = paddingModifierMap[paddingSize];
+
+  // Removing the 'px' from the end of euiTheme.size.m to perform calculation
+  const footerPaddingAmount =
+    typeof footerPaddingWithPixels === 'string'
+      ? convertPxSizeToNumber(footerPaddingWithPixels)
+      : footerPaddingWithPixels;
+
+  const footerPaddingSizes = {
+    none: footerPaddingWithPixels,
+    s: footerPaddingWithPixels,
+    m: `${footerPaddingAmount * 0.75}px ${footerPaddingWithPixels};`,
+    l: `${footerPaddingAmount / 1.5}px ${footerPaddingWithPixels};`,
+  };
+
+  const flyoutPadding = css`
+    .euiFlyoutHeader {
+      ${logicalCSS('padding-horizontal', paddingModifierMap[paddingSize])}
+      ${logicalCSS('padding-top', paddingModifierMap[paddingSize])}
+    }
+
+    .euiFlyoutHeader--hasBorder {
+      ${logicalCSS('padding-bottom', paddingModifierMap[paddingSize])}
+    }
+
+    .euiFlyoutFooter {
+      padding: ${footerPaddingSizes[paddingSize]};
+    }
+  `;
+
+  return flyoutPadding;
 };
