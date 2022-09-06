@@ -1,7 +1,6 @@
 import React from 'react';
 import { GuideSectionTypes } from '../../components';
 import { Link } from 'react-router-dom';
-import { EuiNotificationEventMeta } from '../../../../src/components/notification/notification_event_meta';
 import {
   EuiNotificationEvent,
   EuiText,
@@ -91,7 +90,6 @@ export const NotificationEventExample = {
       ],
       props: {
         EuiNotificationEvent,
-        EuiNotificationEventMeta,
         EuiContextMenuItem,
         EuiPrimaryActionProps,
       },
