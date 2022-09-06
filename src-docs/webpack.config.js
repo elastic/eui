@@ -114,10 +114,6 @@ const webpackConfig = new Promise(async (resolve, reject) => {
             exclude: /node_modules/,
           },
           {
-            test: /\.(woff|woff2|ttf|eot|ico)(\?|$)/,
-            use: 'file-loader',
-          },
-          {
             test: /\.(png|jp(e*)g|svg|gif)$/,
             use: {
               loader: 'url-loader',
