@@ -27,6 +27,7 @@ import {
   useCombinedRefs,
   EuiBreakpointSize,
   useIsWithinMinBreakpoint,
+  useEuiTheme,
 } from '../../services';
 
 import { CommonProps, keysOf, PropsOfElement } from '../common';
@@ -37,7 +38,7 @@ import { EuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
 
-import { euiFormMaxWidth } from '../form/form.styles';
+import { euiFlyoutStyles } from './flyout.styles';
 
 const typeToClassNameMap = {
   push: 'euiFlyout--push',
@@ -205,8 +206,6 @@ export const EuiFlyout = forwardRef(
       | MutableRefObject<ComponentPropsWithRef<T> | null>
       | null
   ) => {
-    console.log(typeof euiFormMaxWidth);
-
     const Element = as || defaultElement;
     const maskRef = useRef<HTMLDivElement>(null);
 
@@ -280,19 +279,36 @@ export const EuiFlyout = forwardRef(
 
     // Setting size
     if (isEuiFlyoutSizeNamed(size)) {
-      sizeClassName = sizeToClassNameMap[size];
+      sizeClassName = `euiFlyout--${sizeToClassNameMap[size]}`;
     } else if (newStyle) {
       newStyle.width = size;
     } else {
       newStyle = { ...style, width: size };
     }
 
+    const euiTheme = useEuiTheme();
+    const styles = euiFlyoutStyles(euiTheme, paddingSize);
+
+    const cssStyles = [
+      styles.euiFlyout,
+      styles.euiFlyoutHeader,
+      styles.euiFlyoutBody,
+      //styles.euiFlyoutFooter,
+      styles.paddingSizes[paddingSize],
+      side === 'left' && type === 'push' && styles['push--left'],
+      isEuiFlyoutSizeNamed(size) && styles[`flyoutSize--${size}`],
+      styles[type],
+      styles[side],
+    ];
+
     const classes = classnames(
       'euiFlyout',
-      typeToClassNameMap[type as _EuiFlyoutType],
-      sideToClassNameMap[side as _EuiFlyoutSide],
+      {
+        [`euiFlyout--${type}`]: type,
+        [`euiFlyout--${side}`]: side,
+        [`euiFlyout--padding-${paddingSize}`]: paddingSize,
+      },
       sizeClassName,
-      paddingSizeToClassNameMap[paddingSize as EuiFlyoutPaddingSize],
       widthClassName,
       className
     );
@@ -366,6 +382,7 @@ export const EuiFlyout = forwardRef(
           tabIndex={-1}
           style={newStyle || style}
           ref={setRef}
+          css={cssStyles}
         >
           {closeButton}
           {children}

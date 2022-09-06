@@ -51,9 +51,9 @@ export const euiFlyoutStyles = (
 
   const paddingModifierMap = {
     none: 0,
-    s: `${euiTheme.size.s}px`,
-    m: `${euiTheme.size.base}px`,
-    l: `${euiTheme.size.l}px`,
+    s: euiTheme.size.s,
+    m: euiTheme.size.base,
+    l: euiTheme.size.l,
   };
 
   const euiFormMaxWidthNumber: number = parseInt(
@@ -86,13 +86,18 @@ export const euiFlyoutStyles = (
     },
   };
 
+  const convertPxSizeToNumber = (size: String) => {
+    //console
+    return parseInt(size.replace('px', ''));
+  };
+
   const calculateFooterPadding = (paddingSize: EuiFlyoutPaddingSize) => {
     const footerPaddingWithPixels = paddingModifierMap[paddingSize];
 
     // Removing the 'px' from the end of euiTheme.size.m to perform calculation
     const footerPaddingAmount =
       typeof footerPaddingWithPixels === 'string'
-        ? parseInt(footerPaddingWithPixels.replace('px', ''))
+        ? convertPxSizeToNumber(footerPaddingWithPixels)
         : footerPaddingWithPixels;
 
     const footerPaddingSizes = {
@@ -285,5 +290,29 @@ export const euiFlyoutStyles = (
         ${calculateFooterPadding(paddingSize)}
       }
     `,
+
+    // Padding
+    paddingSizes: {
+      none: css`
+        .euiFlyoutFooter {
+          ${calculateFooterPadding(paddingSize)}
+        }
+      `,
+      s: css`
+        .euiFlyoutFooter {
+          ${calculateFooterPadding(paddingSize)}
+        }
+      `,
+      m: css`
+        .euiFlyoutFooter {
+          ${calculateFooterPadding(paddingSize)}
+        }
+      `,
+      l: css`
+        .euiFlyoutFooter {
+          ${calculateFooterPadding(paddingSize)}
+        }
+      `,
+    },
   };
 };
