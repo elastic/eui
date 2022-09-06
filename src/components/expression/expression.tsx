@@ -41,12 +41,12 @@ export type EuiExpressionProps = CommonProps & {
    * First part of the expression
    */
   description: ReactNode;
-  descriptionProps?: HTMLAttributes<HTMLSpanElement>;
+  descriptionProps?: CommonProps & HTMLAttributes<HTMLSpanElement>;
   /**
    * Second part of the expression
    */
   value?: ReactNode;
-  valueProps?: HTMLAttributes<HTMLSpanElement>;
+  valueProps?: CommonProps & HTMLAttributes<HTMLSpanElement>;
   /**
    * Color of the `description`
    */
