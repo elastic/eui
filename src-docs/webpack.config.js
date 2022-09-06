@@ -150,13 +150,10 @@ const webpackConfig = new Promise(async (resolve, reject) => {
 
       devServer: isDevelopment
         ? {
-          // contentBase: 'src-docs/build',
           host: '0.0.0.0',
           allowedHosts: ['*'],
           port,
-          // disableHostCheck: true,
           historyApiFallback: true,
-          // hot: true,
         }
         : undefined,
 
