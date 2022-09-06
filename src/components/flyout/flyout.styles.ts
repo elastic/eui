@@ -8,14 +8,7 @@
 
 import { css, keyframes } from '@emotion/react';
 import { EuiFlyoutPaddingSize } from './flyout';
-import {
-  euiCanAnimate,
-  euiBreakpoint,
-  logicalCSS,
-  logicalCSSWithFallback,
-  euiYScrollWithShadows,
-  euiOverflowShadowStyles,
-} from '../../global_styling';
+import { euiCanAnimate, euiBreakpoint, logicalCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiShadowXLarge } from '../../themes/amsterdam/global_styling/mixins';
 import { transparentize } from '../../services/color';
@@ -53,13 +46,6 @@ export const euiFlyoutStyles = (
   paddingSize: EuiFlyoutPaddingSize
 ) => {
   const euiTheme = euiThemeContext.euiTheme;
-
-  const paddingModifierMap = {
-    none: 0,
-    s: euiTheme.size.s,
-    m: euiTheme.size.base,
-    l: euiTheme.size.l,
-  };
 
   const euiFormMaxWidthNumber: number = parseInt(
     euiFormMaxWidth(euiThemeContext).replace('px', ''),
@@ -187,7 +173,7 @@ export const euiFlyoutStyles = (
       }
       ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
         ${logicalCSS('min-width', `${flyoutSizes.l.min}px`)}
-        ${logicalCSS('width', `${flyoutSizes.l.min}px`)}
+        ${logicalCSS('width', flyoutSizes.l.width)}
       }
       ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
         ${logicalCSS('min-width', 0)}
@@ -223,36 +209,11 @@ export const euiFlyoutStyles = (
       ${logicalCSS('border-right', euiTheme.border.thick)}
     `,
 
-    // Body
-    euiFlyoutBody: css`
-      .euiFlyoutBody {
-        flex-grow: 1;
-        ${logicalCSSWithFallback('overflow-y', 'hidden')}
-        ${logicalCSS('height', '100%')}
-        .euiFlyoutBody__overflow {
-          ${euiYScrollWithShadows(euiThemeContext)};
-          &.euiFlyoutBody__overflow--hasBanner {
-            ${euiOverflowShadowStyles(euiThemeContext, {
-              direction: 'y',
-              side: 'end',
-            })};
-          }
-        }
-        .euiFlyoutBody__overflowContent {
-          padding: ${paddingModifierMap[paddingSize]};
-        }
-        .euiFlyoutBody__banner .euiCallOut {
-          ${logicalCSSWithFallback('overflow-x', 'hidden')}
-          border: none; // Remove border from callout when it is a flyout banner
-          border-radius: 0; // Ensures no border-radius in all themes
-          ${logicalCSS('padding-horizontal', paddingModifierMap[paddingSize])}
-        }
-      }
-    `,
-
     // Padding
     paddingSizes: {
-      none: css``,
+      none: css`
+        ${composeFlyoutPadding(euiThemeContext, paddingSize)}
+      `,
       s: css`
         ${composeFlyoutPadding(euiThemeContext, paddingSize)}
       `,
@@ -303,6 +264,14 @@ const composeFlyoutPadding = (
 
     .euiFlyoutHeader--hasBorder {
       ${logicalCSS('padding-bottom', paddingModifierMap[paddingSize])}
+    }
+
+    .euiFlyoutBody__overflowContent {
+      padding: ${paddingModifierMap[paddingSize]};
+    }
+
+    .euiFlyoutBody__banner .euiCallOut {
+      ${logicalCSS('padding-horizontal', paddingModifierMap[paddingSize])}
     }
 
     .euiFlyoutFooter {

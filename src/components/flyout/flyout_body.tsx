@@ -9,6 +9,8 @@
 import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
+import { useEuiTheme } from '../../services';
+import { euiFlyoutBodyStyles } from './flyout_body.styles';
 
 export type EuiFlyoutBodyProps = FunctionComponent<
   HTMLAttributes<HTMLDivElement> &
@@ -31,8 +33,13 @@ export const EuiFlyoutBody: EuiFlyoutBodyProps = ({
     'euiFlyoutBody__overflow--hasBanner': banner,
   });
 
+  const euiTheme = useEuiTheme();
+  const styles = euiFlyoutBodyStyles(euiTheme);
+
+  const cssStyles = [styles.euiFlyoutBody];
+
   return (
-    <div className={classes} {...rest}>
+    <div className={classes} {...rest} css={cssStyles}>
       <div tabIndex={0} className={overflowClasses}>
         {banner && <div className="euiFlyoutBody__banner">{banner}</div>}
         <div className="euiFlyoutBody__overflowContent">{children}</div>

@@ -292,7 +292,7 @@ export const EuiFlyout = forwardRef(
     const cssStyles = [
       styles.euiFlyout,
       //styles.euiFlyoutHeader,
-      styles.euiFlyoutBody,
+      //styles.euiFlyoutBody,
       //styles.euiFlyoutFooter,
       styles.paddingSizes[paddingSize],
       side === 'left' && type === 'push' && styles['push--left'],
