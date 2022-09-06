@@ -45,7 +45,7 @@ export type EuiNotificationEventProps = Omit<
     'onClick' | 'color' | 'eventName' | 'isRead' | 'id'
   > &
   CommonProps &
-  HTMLAttributes<HTMLDivElement> & {
+  Omit<HTMLAttributes<HTMLDivElement>, 'title'> & {
     /**
      * A unique identifier
      */
