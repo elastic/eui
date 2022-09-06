@@ -1,0 +1,528 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`euiTextStyles sizes m 1`] = `
+"
+    font-size: 1.1429rem;
+    line-height: 1.7143rem;
+
+    h1 {
+      font-size: 2.4286rem;
+      line-height: 2.8571rem;
+    }
+    h1:not(:last-child) {
+      margin-block-end: 12px;
+    }
+
+    h2 {
+      font-size: 1.9286rem;
+      line-height: 2.2857rem;
+
+      &:not(:first-child) {
+        margin-block-start: 24px;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 12px;
+      }
+    }
+
+    h3 {
+      font-size: 1.5714rem;
+      line-height: 1.7143rem;
+
+      &:not(:first-child) {
+        margin-block-start: 24px;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 12px;
+      }
+    }
+
+    h4 {
+      font-size: 1.1429rem;
+      line-height: 1.7143rem;
+
+      &:not(:first-child) {
+        margin-block-start: 24px;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 12px;
+      }
+    }
+
+    h5 {
+      font-size: 1.0000rem;
+      line-height: 1.4286rem;
+
+      &:not(:first-child) {
+        margin-block-start: 24px;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 12px;
+      }
+    }
+
+    h6 {
+      font-size: 0.8571rem;
+      line-height: 1.1429rem;
+
+      &:not(:first-child) {
+        margin-block-start: 24px;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 12px;
+      }
+    }
+
+    p,
+    ul,
+    ol,
+    dl,
+    blockquote,
+    img,
+    pre {
+      margin-block-end: 1.7143rem;
+    }
+
+    ul,
+    ol {
+      margin-inline-start: 1.7143rem;
+    }
+  
+    blockquote {
+      font-size: 1.1429rem;
+      padding: 1.7143rem;
+    }
+
+    dd + dt {
+      margin-block-start: 1.1429rem;
+    }
+
+    dt,
+    .eui-definitionListReverse dd {
+      font-size: 1.1429rem;
+      line-height: 1.7143rem;
+    }
+
+    .eui-definitionListReverse dt {
+      font-size: 0.8571rem;
+      color: #343741;
+    }
+
+    small {
+      font-size: 1.0000rem;
+    }
+
+    pre:not(.euiCodeBlock__pre) {
+      padding: 1.7143rem;
+    }
+
+    code:not(.euiCode):not(.euiCodeBlock__code)  {
+      font-size: .9em; // 90% of parent font size
+    }
+    
+    kbd {
+      padding-block-end: 4px;
+      // ensures when only one character the shape looks like a square
+      min-inline-size: 24px;
+      text-align: center;
+    }
+    
+    kbd::after {
+      content: '';
+      border-block-end: 1px solid #343741;
+      position: absolute;
+      inset-block-end: 2px;
+      inset-inline-start: 0;
+      inline-size: 100%;
+    }
+  ;;label:m;"
+`;
+
+exports[`euiTextStyles sizes relative 1`] = `
+"
+    font-size: 1em;
+    line-height: 1.5000;
+
+    h1 {
+      font-size: 2.125em;
+      line-height: 1.2495;
+    }
+    h1:not(:last-child) {
+      margin-block-end: 12px;
+    }
+
+    h2 {
+      font-size: 1.6875em;
+      line-height: 1.2495;
+
+      &:not(:first-child) {
+        margin-block-start: 24px;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 12px;
+      }
+    }
+
+    h3 {
+      font-size: 1.375em;
+      line-height: 1.2495;
+
+      &:not(:first-child) {
+        margin-block-start: 24px;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 12px;
+      }
+    }
+
+    h4 {
+      font-size: 1em;
+      line-height: 1.5000;
+
+      &:not(:first-child) {
+        margin-block-start: 24px;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 12px;
+      }
+    }
+
+    h5 {
+      font-size: 0.875em;
+      line-height: 1.5000;
+
+      &:not(:first-child) {
+        margin-block-start: 24px;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 12px;
+      }
+    }
+
+    h6 {
+      font-size: 0.75em;
+      line-height: 1.5000;
+
+      &:not(:first-child) {
+        margin-block-start: 24px;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 12px;
+      }
+    }
+
+    p,
+    ul,
+    ol,
+    dl,
+    blockquote,
+    img,
+    pre {
+      margin-block-end: 1.5000em;
+    }
+
+    ul,
+    ol {
+      margin-inline-start: 1.5000em;
+    }
+  
+    blockquote {
+      font-size: 1em;
+      padding: 1.5000em;
+    }
+
+    dd + dt {
+      margin-block-start: 1em;
+    }
+
+    dt,
+    .eui-definitionListReverse dd {
+      font-size: 1em;
+      line-height: 1.5000;
+    }
+
+    .eui-definitionListReverse dt {
+      font-size: 0.75em;
+      color: #343741;
+    }
+
+    small {
+      font-size: 0.875em;
+    }
+
+    pre:not(.euiCodeBlock__pre) {
+      padding: 1.5000em;
+    }
+
+    code:not(.euiCode):not(.euiCodeBlock__code)  {
+      font-size: .9em; // 90% of parent font size
+    }
+    
+  ;;label:relative;"
+`;
+
+exports[`euiTextStyles sizes s 1`] = `
+"
+    font-size: 1.0000rem;
+    line-height: 1.4286rem;
+
+    h1 {
+      font-size: 2.1250rem;
+      line-height: 2.5714rem;
+    }
+    h1:not(:last-child) {
+      margin-block-end: 8px;
+    }
+
+    h2 {
+      font-size: 1.6875rem;
+      line-height: 2.0000rem;
+
+      &:not(:first-child) {
+        margin-block-start: 16px;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 8px;
+      }
+    }
+
+    h3 {
+      font-size: 1.3750rem;
+      line-height: 1.7143rem;
+
+      &:not(:first-child) {
+        margin-block-start: 16px;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 8px;
+      }
+    }
+
+    h4 {
+      font-size: 1.0000rem;
+      line-height: 1.4286rem;
+
+      &:not(:first-child) {
+        margin-block-start: 16px;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 8px;
+      }
+    }
+
+    h5 {
+      font-size: 0.8750rem;
+      line-height: 1.1429rem;
+
+      &:not(:first-child) {
+        margin-block-start: 16px;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 8px;
+      }
+    }
+
+    h6 {
+      font-size: 0.7500rem;
+      line-height: 1.1429rem;
+
+      &:not(:first-child) {
+        margin-block-start: 16px;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 8px;
+      }
+    }
+
+    p,
+    ul,
+    ol,
+    dl,
+    blockquote,
+    img,
+    pre {
+      margin-block-end: 1.4286rem;
+    }
+
+    ul,
+    ol {
+      margin-inline-start: 1.4286rem;
+    }
+  
+    blockquote {
+      font-size: 1.0000rem;
+      padding: 1.4286rem;
+    }
+
+    dd + dt {
+      margin-block-start: 1.0000rem;
+    }
+
+    dt,
+    .eui-definitionListReverse dd {
+      font-size: 1.0000rem;
+      line-height: 1.4286rem;
+    }
+
+    .eui-definitionListReverse dt {
+      font-size: 0.7500rem;
+      color: #343741;
+    }
+
+    small {
+      font-size: 0.8750rem;
+    }
+
+    pre:not(.euiCodeBlock__pre) {
+      padding: 1.4286rem;
+    }
+
+    code:not(.euiCode):not(.euiCodeBlock__code)  {
+      font-size: .9em; // 90% of parent font size
+    }
+    
+  ;;label:s;"
+`;
+
+exports[`euiTextStyles sizes xs 1`] = `
+"
+    font-size: 0.8571rem;
+    line-height: 1.1429rem;
+
+    h1 {
+      font-size: 1.8214rem;
+      line-height: 2.2857rem;
+    }
+    h1:not(:last-child) {
+      margin-block-end: 4px;
+    }
+
+    h2 {
+      font-size: 1.4464rem;
+      line-height: 1.7143rem;
+
+      &:not(:first-child) {
+        margin-block-start: 8px;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 4px;
+      }
+    }
+
+    h3 {
+      font-size: 1.1786rem;
+      line-height: 1.4286rem;
+
+      &:not(:first-child) {
+        margin-block-start: 8px;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 4px;
+      }
+    }
+
+    h4 {
+      font-size: 0.8571rem;
+      line-height: 1.1429rem;
+
+      &:not(:first-child) {
+        margin-block-start: 8px;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 4px;
+      }
+    }
+
+    h5 {
+      font-size: 0.7500rem;
+      line-height: 1.1429rem;
+
+      &:not(:first-child) {
+        margin-block-start: 8px;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 4px;
+      }
+    }
+
+    h6 {
+      font-size: 0.6429rem;
+      line-height: 0.8571rem;
+
+      &:not(:first-child) {
+        margin-block-start: 8px;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 4px;
+      }
+    }
+
+    p,
+    ul,
+    ol,
+    dl,
+    blockquote,
+    img,
+    pre {
+      margin-block-end: 1.1429rem;
+    }
+
+    ul,
+    ol {
+      margin-inline-start: 1.1429rem;
+    }
+  
+    blockquote {
+      font-size: 0.8571rem;
+      padding: 1.1429rem;
+    }
+
+    dd + dt {
+      margin-block-start: 0.8571rem;
+    }
+
+    dt,
+    .eui-definitionListReverse dd {
+      font-size: 0.8571rem;
+      line-height: 1.1429rem;
+    }
+
+    .eui-definitionListReverse dt {
+      font-size: 0.6429rem;
+      color: #343741;
+    }
+
+    small {
+      font-size: 0.7500rem;
+    }
+
+    pre:not(.euiCodeBlock__pre) {
+      padding: 1.1429rem;
+    }
+
+    code:not(.euiCode):not(.euiCodeBlock__code)  {
+      font-size: .9em; // 90% of parent font size
+    }
+    
+  ;;label:xs;"
+`;

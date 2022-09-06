@@ -84,7 +84,7 @@ export type EuiBadgeProps = {
   /**
    * Props passed to the close button.
    */
-  closeButtonProps?: Partial<PropsOf<EuiIcon>>;
+  closeButtonProps?: Partial<PropsOf<typeof EuiIcon>>;
 } & CommonProps &
   ExclusiveUnion<WithIconOnClick, {}> &
   ExclusiveUnion<

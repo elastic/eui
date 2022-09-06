@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiCardSelect is rendered 1`] = `
+<button
+  aria-checked="false"
+  aria-label="aria-label"
+  class="testClass1 testClass2 emotion-euiButtonDisplay-m-fullWidth-m-base-text-euiCardSelect"
+  data-test-subj="test subject string"
+  role="switch"
+  type="button"
+>
+  <span
+    class="emotion-euiButtonDisplayContent"
+  >
+    Select
+  </span>
+</button>
+`;
+
+exports[`EuiCardSelect props can override color 1`] = `
+<button
+  aria-checked="false"
+  class="emotion-euiButtonDisplay-m-fullWidth-m-base-danger-euiCardSelect"
+  role="switch"
+  type="button"
+>
+  <span
+    class="emotion-euiButtonDisplayContent"
+  >
+    Select
+  </span>
+</button>
+`;
+
+exports[`EuiCardSelect props can override text 1`] = `
+<button
+  aria-checked="false"
+  class="emotion-euiButtonDisplay-m-fullWidth-m-base-text-euiCardSelect"
+  role="switch"
+  type="button"
+>
+  <span
+    class="emotion-euiButtonDisplayContent"
+  >
+    <span
+      class="eui-textTruncate"
+    >
+      Custom text
+    </span>
+  </span>
+</button>
+`;
+
+exports[`EuiCardSelect props isDisabled 1`] = `
+<button
+  aria-checked="false"
+  class="emotion-euiButtonDisplay-m-fullWidth-isDisabled-m-base-disabled-euiCardSelect"
+  disabled=""
+  role="switch"
+  type="button"
+>
+  <span
+    class="emotion-euiButtonDisplayContent"
+  >
+    Unavailable
+  </span>
+</button>
+`;
+
+exports[`EuiCardSelect props isSelected 1`] = `
+<button
+  aria-checked="true"
+  class="emotion-euiButtonDisplay-m-fullWidth-m-base-success-euiCardSelect"
+  role="switch"
+  type="button"
+>
+  <span
+    class="emotion-euiButtonDisplayContent"
+  >
+    <span
+      class="emotion-euiButtonDisplayContent__icon"
+      color="inherit"
+      data-euiicon-type="check"
+    />
+    Selected
+  </span>
+</button>
+`;

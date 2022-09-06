@@ -287,10 +287,6 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
     [onItemClick, suggestions]
   );
 
-  const classes = classNames('euiInputPopover', {
-    'euiInputPopover--fullWidth': fullWidth,
-  });
-
   return (
     <>
       <EuiSelectable<EuiSuggestionProps>
@@ -327,7 +323,6 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
         {(list, search) => (
           <EuiInputPopover
             disableFocusTrap
-            className={classes}
             input={<>{search}</>}
             isOpen={isPopoverOpen}
             panelPaddingSize="none"

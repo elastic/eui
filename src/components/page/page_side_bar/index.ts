@@ -7,4 +7,4 @@
  */
 
 export type { EuiPageSideBarProps } from './page_side_bar';
-export { EuiPageSideBar } from './page_side_bar';
+export { EuiPageSideBar_Deprecated } from './page_side_bar';

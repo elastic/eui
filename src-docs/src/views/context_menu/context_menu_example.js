@@ -9,6 +9,7 @@ import {
   EuiContextMenuItem,
   EuiContextMenuPanel,
 } from '../../../../src/components';
+import { EuiContextMenuPanelDescriptor } from '!!prop-loader!../../../../src/components/context_menu/context_menu';
 
 import ContextMenu from './context_menu';
 const contextMenuSource = require('!!raw-loader!./context_menu');
@@ -81,7 +82,12 @@ export const ContextMenuExample = {
           this example).
         </p>
       ),
-      props: { EuiContextMenu, EuiContextMenuPanel, EuiContextMenuItem },
+      props: {
+        EuiContextMenu,
+        EuiContextMenuPanelDescriptor,
+        EuiContextMenuPanel,
+        EuiContextMenuItem,
+      },
       snippet: contextMenuSnippet,
       demo: <ContextMenu />,
     },
@@ -152,7 +158,7 @@ export const ContextMenuExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             Context menu panels can be passed React elements through the{' '}
             <EuiCode>content</EuiCode> prop instead of <EuiCode>items</EuiCode>.
@@ -174,7 +180,7 @@ export const ContextMenuExample = {
             </Link>{' '}
             component.
           </p>
-        </div>
+        </>
       ),
       demo: <ContextMenuWithContent />,
     },

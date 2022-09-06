@@ -56,7 +56,7 @@ type EuiSelectableOptionsListPropsWithDefaults = RequiredEuiSelectableOptionsLis
 // modifications remain in alignment.
 //
 // `searchProps` can only be specified when `searchable` is true
-type EuiSelectableSearchableProps<T> = ExclusiveUnion<
+export type EuiSelectableSearchableProps<T> = ExclusiveUnion<
   {
     searchable: false;
   },
@@ -102,6 +102,11 @@ export type EuiSelectableProps<T = {}> = CommonProps &
       options: Array<EuiSelectableOption<T>>,
       event: EuiSelectableOnChangeEvent
     ) => void;
+    /**
+     * Passes back the current active option whenever the user changes the currently
+     * highlighted option via keyboard navigation or searching.
+     */
+    onActiveOptionChange?: (option: EuiSelectableOption | null) => void;
     /**
      * Sets the single selection policy of
      * `false`: allows multiple selection
@@ -209,6 +214,7 @@ export class EuiSelectable<T = {}> extends Component<
       initialSearchValue,
       isPreFiltered
     );
+    searchProps?.onChange?.(initialSearchValue, visibleOptions);
 
     // ensure that the currently selected single option is active if it is in the visibleOptions
     const selectedOptions = options.filter((option) => option.checked);
@@ -259,9 +265,18 @@ export class EuiSelectable<T = {}> extends Component<
     return stateUpdate;
   }
 
-  hasActiveOption = () => {
-    return this.state.activeOptionIndex != null;
-  };
+  componentDidUpdate<T>(
+    prevProps: EuiSelectableProps<T>,
+    prevState: EuiSelectableState<T>
+  ) {
+    if (prevState.activeOptionIndex !== this.state.activeOptionIndex) {
+      const activeOption =
+        this.state.activeOptionIndex != null
+          ? this.state.visibleOptions[this.state.activeOptionIndex]
+          : null;
+      this.props.onActiveOptionChange?.(activeOption);
+    }
+  }
 
   onMouseDown = () => {
     // Bypass onFocus when a click event originates from this.containerRef.
@@ -276,7 +291,10 @@ export class EuiSelectable<T = {}> extends Component<
       return;
     }
 
-    if (!this.state.visibleOptions.length || this.state.activeOptionIndex) {
+    if (
+      !this.state.visibleOptions.length ||
+      this.state.activeOptionIndex != null
+    ) {
       return;
     }
 
@@ -340,6 +358,7 @@ export class EuiSelectable<T = {}> extends Component<
         event.preventDefault();
         event.stopPropagation();
         if (this.state.activeOptionIndex != null && optionsList) {
+          event.persist(); // NOTE: This is needed for React v16 backwards compatibility
           optionsList.onAddOrRemoveOption(
             this.state.visibleOptions[this.state.activeOptionIndex],
             event
@@ -417,9 +436,7 @@ export class EuiSelectable<T = {}> extends Component<
         }
       }
     );
-    if (this.props.searchProps && this.props.searchProps.onChange) {
-      this.props.searchProps.onChange(searchValue, visibleOptions);
-    }
+    this.props.searchProps?.onChange?.(searchValue, visibleOptions);
   };
 
   onContainerBlur = (e: React.FocusEvent) => {
@@ -468,6 +485,7 @@ export class EuiSelectable<T = {}> extends Component<
       className,
       options,
       onChange,
+      onActiveOptionChange,
       searchable,
       searchProps,
       singleSelection,

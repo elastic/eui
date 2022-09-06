@@ -13,7 +13,8 @@ import {
   euiTextBreakWord,
   euiFontSize,
   _EuiThemeFontScale,
-  _EuiThemeFontSizeMeasurement,
+  _FontScaleOptions,
+  logicalCSS,
 } from '../../global_styling';
 import { EuiTitleSize } from './title';
 
@@ -28,10 +29,11 @@ type EuiThemeTitle = {
 };
 
 export const euiTitle = (
+  euiThemeContext: UseEuiTheme,
   scale: EuiTitleSize = 'm',
-  euiTheme: UseEuiTheme['euiTheme'],
-  measurement: _EuiThemeFontSizeMeasurement = 'rem'
+  options?: _FontScaleOptions
 ): EuiThemeTitle => {
+  const { euiTheme } = euiThemeContext;
   const titleScaleToFontSizeScaleMap: {
     [size in EuiTitleSize]: _EuiThemeFontScale;
   } = {
@@ -44,7 +46,11 @@ export const euiTitle = (
   };
 
   return {
-    ...euiFontSize(titleScaleToFontSizeScaleMap[scale], euiTheme, measurement),
+    ...euiFontSize(
+      euiThemeContext,
+      titleScaleToFontSizeScaleMap[scale],
+      options
+    ),
     fontWeight: euiTheme.font.weight[euiTheme.font.title.weight],
     color: euiTheme.colors.title,
   };
@@ -52,22 +58,22 @@ export const euiTitle = (
 
 // Hook version
 export const useEuiTitle = (
-  scale: EuiTitleSize = 'm',
-  measurement: _EuiThemeFontSizeMeasurement = 'rem'
+  scale: EuiTitleSize,
+  options?: _FontScaleOptions
 ): EuiThemeTitle => {
-  const { euiTheme } = useEuiTheme();
-  return euiTitle(scale, euiTheme, measurement);
+  const euiTheme = useEuiTheme();
+  return euiTitle(euiTheme, scale, options);
 };
 
 /**
  * Styles
  */
-export const euiTitleStyles = ({ euiTheme }: UseEuiTheme) => ({
+export const euiTitleStyles = (euiThemeContext: UseEuiTheme) => ({
   euiTitle: css`
     ${euiTextBreakWord()}
 
     & + & {
-      margin-top: ${euiTheme.size.l};
+      ${logicalCSS('margin-top', euiThemeContext.euiTheme.size.l)};
     }
   `,
   uppercase: css`
@@ -75,21 +81,21 @@ export const euiTitleStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
   // Sizes
   xxxs: css`
-    ${euiTitle('xxxs', euiTheme)}
+    ${euiTitle(euiThemeContext, 'xxxs')}
   `,
   xxs: css`
-    ${euiTitle('xxs', euiTheme)}
+    ${euiTitle(euiThemeContext, 'xxs')}
   `,
   xs: css`
-    ${euiTitle('xs', euiTheme)}
+    ${euiTitle(euiThemeContext, 'xs')}
   `,
   s: css`
-    ${euiTitle('s', euiTheme)}
+    ${euiTitle(euiThemeContext, 's')}
   `,
   m: css`
-    ${euiTitle('m', euiTheme)}
+    ${euiTitle(euiThemeContext, 'm')}
   `,
   l: css`
-    ${euiTitle('l', euiTheme)}
+    ${euiTitle(euiThemeContext, 'l')}
   `,
 });

@@ -8,22 +8,17 @@
 
 import React, { FunctionComponent, HTMLAttributes, CSSProperties } from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf } from '../common';
+import { CommonProps } from '../common';
+
+import { useEuiTheme } from '../../services';
+import { euiTextStyles } from './text.styles';
 
 import { TextColor, EuiTextColor } from './text_color';
 
 import { EuiTextAlign, TextAlignment } from './text_align';
 
-const textSizeToClassNameMap = {
-  xs: 'euiText--extraSmall',
-  s: 'euiText--small',
-  m: 'euiText--medium',
-  relative: 'euiText--relative',
-};
-
-export type TextSize = keyof typeof textSizeToClassNameMap;
-
-export const TEXT_SIZES = keysOf(textSizeToClassNameMap);
+export const TEXT_SIZES = ['xs', 's', 'm', 'relative'] as const;
+export type TextSize = typeof TEXT_SIZES[number];
 
 export type EuiTextProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'color'> & {
@@ -48,35 +43,37 @@ export const EuiText: FunctionComponent<EuiTextProps> = ({
   className,
   ...rest
 }) => {
-  const classes = classNames(
-    'euiText',
-    textSizeToClassNameMap[size],
-    className,
-    {
-      'euiText--constrainedWidth': !grow,
-    }
+  const euiTheme = useEuiTheme();
+  const styles = euiTextStyles(euiTheme);
+  const cssStyles = [
+    styles.euiText,
+    !grow ? styles.constrainedWidth : undefined,
+    styles[size],
+  ];
+
+  const classes = classNames('euiText', className);
+
+  let text = (
+    <div css={cssStyles} className={classes} {...rest}>
+      {children}
+    </div>
   );
 
-  let optionallyAlteredText;
   if (color) {
-    optionallyAlteredText = (
-      <EuiTextColor color={color} component="div">
-        {children}
+    text = (
+      <EuiTextColor color={color} className={classes} cloneElement>
+        {text}
       </EuiTextColor>
     );
   }
 
   if (textAlign) {
-    optionallyAlteredText = (
-      <EuiTextAlign textAlign={textAlign}>
-        {optionallyAlteredText || children}
+    text = (
+      <EuiTextAlign textAlign={textAlign} className={classes} cloneElement>
+        {text}
       </EuiTextAlign>
     );
   }
 
-  return (
-    <div className={classes} {...rest}>
-      {optionallyAlteredText || children}
-    </div>
-  );
+  return text;
 };

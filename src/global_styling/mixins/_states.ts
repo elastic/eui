@@ -24,13 +24,13 @@ export type _EuiFocusRingOffset =
  * @param color Accepts any CSS color, **Note: only works in -webkit-**
  */
 export const euiFocusRing = (
-  euiTheme: UseEuiTheme['euiTheme'],
+  { euiTheme }: UseEuiTheme,
   offset: _EuiFocusRingOffset = 'center',
-  color?: CSSProperties['outlineColor']
+  options?: { color?: CSSProperties['outlineColor'] }
 ) => {
   // Width is enforced as a constant at the global theme layer
   const outlineWidth = euiTheme.focus.width;
-  const outlineColor = color || euiTheme.focus.color;
+  const outlineColor = options?.color || euiTheme.focus.color;
 
   let outlineOffset = offset;
   if (offset === 'inset') {
@@ -62,12 +62,10 @@ export const euiFocusRing = (
     }
   `;
 };
-
-// Hook version
 export const useEuiFocusRing = (
   offset?: _EuiFocusRingOffset,
   color?: CSSProperties['outlineColor']
 ) => {
-  const { euiTheme } = useEuiTheme();
-  return euiFocusRing(euiTheme, offset, color);
+  const euiTheme = useEuiTheme();
+  return euiFocusRing(euiTheme, offset, { color });
 };

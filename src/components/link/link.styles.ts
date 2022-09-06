@@ -8,7 +8,11 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
-import { euiFocusRing, logicalCSS } from '../../global_styling';
+import {
+  euiFocusRing,
+  logicalCSS,
+  logicalTextAlignCSS,
+} from '../../global_styling';
 
 const _colorCSS = (color: string) => {
   return `
@@ -32,37 +36,35 @@ export const euiLinkHoverCSS = () => {
   `;
 };
 
-export const euiLinkFocusCSS = ({ euiTheme }: UseEuiTheme) => {
+export const euiLinkFocusCSS = (euiTheme: UseEuiTheme['euiTheme']) => {
   return `
     text-decoration: underline;
     text-decoration-thickness: ${euiTheme.border.width.thick} !important;
   `;
 };
 
-export const euiLinkCSS = (_theme: UseEuiTheme) => {
-  const { euiTheme } = _theme;
-
+export const euiLinkCSS = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
   return `
     font-weight: ${euiTheme.font.weight.medium};
-    text-align: left;
+    ${logicalTextAlignCSS('left')}
 
     &:hover {
       ${euiLinkHoverCSS()}
     }
 
     &:focus {
-      ${euiFocusRing(euiTheme, 'outset')}
-      ${euiLinkFocusCSS(_theme)}
+      ${euiFocusRing(euiThemeContext, 'outset')}
+      ${euiLinkFocusCSS(euiTheme)}
     }
   `;
 };
 
-export const euiLinkStyles = (_theme: UseEuiTheme) => {
-  const { euiTheme } = _theme;
-
+export const euiLinkStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
   return {
     euiLink: css`
-      ${euiLinkCSS(_theme)}
+      ${euiLinkCSS(euiThemeContext)}
       user-select: text;
 
       &[target='_blank'] {
@@ -84,7 +86,7 @@ export const euiLinkStyles = (_theme: UseEuiTheme) => {
     `,
     // Color styles
     primary: css(_colorCSS(euiTheme.colors.primaryText)),
-    subdued: css(_colorCSS(euiTheme.colors.subdued)),
+    subdued: css(_colorCSS(euiTheme.colors.subduedText)),
     success: css(_colorCSS(euiTheme.colors.successText)),
     accent: css(_colorCSS(euiTheme.colors.accentText)),
     danger: css(_colorCSS(euiTheme.colors.dangerText)),

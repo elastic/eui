@@ -24,7 +24,7 @@ Array [
       >
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--fill euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--outside"
+          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--outside css-iod722-fill-text-hoverStyles-EuiButtonIcon"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -74,7 +74,7 @@ Array [
       >
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--fill euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--outside"
+          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--outside css-iod722-fill-text-hoverStyles-EuiButtonIcon"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -119,7 +119,7 @@ Array [
     >
       <button
         aria-label="Close this dialog"
-        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--fill euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--outside"
+        class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--outside css-iod722-fill-text-hoverStyles-EuiButtonIcon"
         data-test-subj="euiFlyoutCloseButton"
         type="button"
       >
@@ -169,7 +169,7 @@ Array [
       >
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--fill euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--outside"
+          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--outside css-iod722-fill-text-hoverStyles-EuiButtonIcon"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -215,7 +215,7 @@ Array [
       >
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--fill euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--outside"
+          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--outside css-iod722-fill-text-hoverStyles-EuiButtonIcon"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -238,33 +238,47 @@ Array [
 `;
 
 exports[`EuiCollapsibleNav props isDocked 1`] = `
-Array [
+<div>
   <div
     data-focus-guard="true"
     style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
     tabindex="-1"
-  />,
+  />
   <div
     data-focus-guard="true"
     style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
     tabindex="-1"
-  />,
+  />
   <div
     data-focus-lock-disabled="disabled"
   >
     <nav
-      class="euiFlyout euiFlyout--push euiFlyout--left euiFlyout--paddingNone euiCollapsibleNav"
+      class="euiFlyout euiFlyout--left euiFlyout--paddingNone euiCollapsibleNav"
       id="id"
       style="width:320px"
       tabindex="-1"
-    />
-  </div>,
+    >
+      <button
+        aria-label="Close this dialog"
+        class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--outside css-iod722-fill-text-hoverStyles-EuiButtonIcon"
+        data-test-subj="euiFlyoutCloseButton"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          color="inherit"
+          data-euiicon-type="cross"
+        />
+      </button>
+    </nav>
+  </div>
   <div
     data-focus-guard="true"
     style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
     tabindex="-1"
-  />,
-]
+  />
+</div>
 `;
 
 exports[`EuiCollapsibleNav props onClose 1`] = `
@@ -291,7 +305,7 @@ Array [
       >
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--fill euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--outside"
+          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--outside css-iod722-fill-text-hoverStyles-EuiButtonIcon"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -320,31 +334,47 @@ Array [
     aria-expanded="true"
     aria-pressed="true"
   />,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
-  />,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
-  />,
-  <div
-    data-focus-lock-disabled="disabled"
-  >
-    <nav
-      class="euiFlyout euiFlyout--push euiFlyout--left euiFlyout--paddingNone euiCollapsibleNav"
-      id="id"
-      style="width: 320px;"
-      tabindex="-1"
+  <div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="1"
+    />
+    <div
+      data-focus-lock-disabled="false"
+    >
+      <nav
+        class="euiFlyout euiFlyout--left euiFlyout--paddingNone euiCollapsibleNav"
+        id="id"
+        style="width: 320px;"
+        tabindex="-1"
+      >
+        <button
+          aria-label="Close this dialog"
+          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--outside css-iod722-fill-text-hoverStyles-EuiButtonIcon"
+          data-test-subj="euiFlyoutCloseButton"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="cross"
+          />
+        </button>
+      </nav>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
     />
   </div>,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
-  />,
 ]
 `;
 
@@ -372,7 +402,7 @@ Array [
       >
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--fill euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--outside"
+          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--outside css-iod722-fill-text-hoverStyles-EuiButtonIcon"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >

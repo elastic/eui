@@ -1,5 +1,8 @@
 import React from 'react';
-import { EuiComment } from '../../../../src/components/comment_list';
+import {
+  EuiCommentList,
+  EuiComment,
+} from '../../../../src/components/comment_list';
 import { EuiButtonIcon } from '../../../../src/components/button';
 import { EuiText } from '../../../../src/components/text';
 
@@ -22,14 +25,15 @@ const copyAction = (
 );
 
 export default () => (
-  <div>
+  <EuiCommentList>
     <EuiComment
       username="janed"
+      timelineAvatarAriaLabel="Jane Doe"
       event="added a comment"
       actions={copyAction}
       timestamp="on Jan 1, 2020"
     >
       {body}
     </EuiComment>
-  </div>
+  </EuiCommentList>
 );

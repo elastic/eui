@@ -2,17 +2,17 @@
 
 exports[`EuiAutoRefresh is rendered 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiAutoRefresh testClass1 testClass2"
+  class="euiPopover euiInputPopover euiAutoRefresh testClass1 testClass2 emotion-euiPopover-EuiInputPopover"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <div>
       <div
         class="euiFormControlLayout euiFormControlLayout--readOnly euiFormControlLayout--group"
       >
         <button
-          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiFormControlLayout__prepend euiFormControlLayout__prepend"
+          class="euiButtonEmpty euiButtonEmpty--small euiFormControlLayout__prepend euiFormControlLayout__prepend css-wvaqcf-empty-text"
           type="button"
         >
           <span
@@ -54,17 +54,17 @@ exports[`EuiAutoRefresh is rendered 1`] = `
 
 exports[`EuiAutoRefresh isPaused is false 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiAutoRefresh"
+  class="euiPopover euiInputPopover euiAutoRefresh emotion-euiPopover-EuiInputPopover"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <div>
       <div
         class="euiFormControlLayout euiFormControlLayout--readOnly euiFormControlLayout--group"
       >
         <button
-          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiFormControlLayout__prepend euiFormControlLayout__prepend"
+          class="euiButtonEmpty euiButtonEmpty--small euiFormControlLayout__prepend euiFormControlLayout__prepend css-wvaqcf-empty-text"
           type="button"
         >
           <span
@@ -105,17 +105,17 @@ exports[`EuiAutoRefresh isPaused is false 1`] = `
 
 exports[`EuiAutoRefresh refreshInterval is rendered 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiAutoRefresh"
+  class="euiPopover euiInputPopover euiAutoRefresh emotion-euiPopover-EuiInputPopover"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <div>
       <div
         class="euiFormControlLayout euiFormControlLayout--readOnly euiFormControlLayout--group"
       >
         <button
-          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiFormControlLayout__prepend euiFormControlLayout__prepend"
+          class="euiButtonEmpty euiButtonEmpty--small euiFormControlLayout__prepend euiFormControlLayout__prepend css-wvaqcf-empty-text"
           type="button"
         >
           <span
@@ -156,14 +156,14 @@ exports[`EuiAutoRefresh refreshInterval is rendered 1`] = `
 
 exports[`EuiAutoRefreshButton is rendered 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownCenter"
+  class="euiPopover emotion-euiPopover"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-16vtueo-render"
   >
     <button
       aria-label="aria-label"
-      class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiAutoRefreshButton testClass1 testClass2"
+      class="euiButtonEmpty euiButtonEmpty--small euiAutoRefreshButton testClass1 testClass2 css-wvaqcf-empty-text"
       data-test-subj="test subject string"
       title="Auto refresh is off"
       type="button"
@@ -189,13 +189,13 @@ exports[`EuiAutoRefreshButton is rendered 1`] = `
 
 exports[`EuiAutoRefreshButton isPaused is false 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownCenter"
+  class="euiPopover emotion-euiPopover"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-16vtueo-render"
   >
     <button
-      class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiAutoRefreshButton"
+      class="euiButtonEmpty euiButtonEmpty--small euiAutoRefreshButton css-wvaqcf-empty-text"
       title="Auto refresh is on and set to 1 second"
       type="button"
     >
@@ -220,13 +220,13 @@ exports[`EuiAutoRefreshButton isPaused is false 1`] = `
 
 exports[`EuiAutoRefreshButton refreshInterval is rendered 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownCenter"
+  class="euiPopover emotion-euiPopover"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-16vtueo-render"
   >
     <button
-      class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiAutoRefreshButton"
+      class="euiButtonEmpty euiButtonEmpty--small euiAutoRefreshButton css-wvaqcf-empty-text"
       title="Auto refresh is on and set to 2 seconds"
       type="button"
     >

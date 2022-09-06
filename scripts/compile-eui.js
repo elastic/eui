@@ -79,6 +79,19 @@ function compileLib() {
     });
   });
 
+  // copy all JSON files to build outputs
+  glob('./src/**/*.json', undefined, (error, files) => {
+    files.forEach(file => {
+      const splitPath = file.split('/');
+      const basePath = splitPath.slice(2, splitPath.length).join('/');
+      shell.cp('-f', `${file}`, `es/${basePath}`);
+      shell.cp('-f', `${file}`, `optimize/es/${basePath}`);
+      shell.cp('-f', `${file}`, `lib/${basePath}`);
+      shell.cp('-f', `${file}`, `optimize/lib/${basePath}`);
+      shell.cp('-f', `${file}`, `test-env/${basePath}`);
+    });
+  });
+
   console.log(chalk.green('✔ Finished compiling src/'));
 
   // Use `tsc` to emit typescript declaration files for .ts files
@@ -126,6 +139,17 @@ function compileBundle() {
         }
         return null;
       }
+    });
+
+    // dtsGenerator is unfortunately having massive issues with RTL type defs, so we're
+    // temporarily defining manual `.d.ts` files and copying them to each compiled dir
+    shell.mkdir('-p', `${dir}/rtl`);
+    glob('./src/test/rtl/**/*.d.ts', undefined, (error, files) => {
+      files.forEach(file => {
+        const splitPath = file.split('/');
+        const fileName = splitPath[splitPath.length - 1];
+        shell.cp('-f', `${file}`, `${dir}/rtl/${fileName}`);
+      });
     });
   })
   console.log(chalk.green('✔ Finished test utils files'));

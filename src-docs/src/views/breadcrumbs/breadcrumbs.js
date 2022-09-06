@@ -3,7 +3,7 @@ import React from 'react';
 import {
   EuiBreadcrumbs,
   EuiButton,
-  EuiPageContent,
+  EuiPanel,
   EuiPageHeader,
   EuiSpacer,
 } from '../../../../src/components';
@@ -38,7 +38,7 @@ export default () => {
   ];
 
   return (
-    <EuiPageContent role={null}>
+    <EuiPanel>
       <EuiBreadcrumbs
         breadcrumbs={breadcrumbs}
         truncate={false}
@@ -50,6 +50,6 @@ export default () => {
         pageTitle="Boa constrictor"
         rightSideItems={[<EuiButton>Cancel</EuiButton>]}
       />
-    </EuiPageContent>
+    </EuiPanel>
   );
 };

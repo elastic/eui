@@ -123,5 +123,19 @@ describe('EuiPageHeader', () => {
         expect(component).toMatchSnapshot();
       });
     });
+
+    describe('bottomBorder', () => {
+      test('is rendered as true', () => {
+        const component = render(<EuiPageHeader bottomBorder={true} />);
+
+        expect(component).toMatchSnapshot();
+      });
+
+      test('is rendered as extended', () => {
+        const component = render(<EuiPageHeader bottomBorder={'extended'} />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 });

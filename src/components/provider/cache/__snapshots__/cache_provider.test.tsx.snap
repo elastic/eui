@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiProvider customizes CacheProvider when configured with a cache 1`] = `
+<ContextProvider
+  value={
+    Object {
+      "insert": [Function],
+      "inserted": Object {},
+      "key": "testing",
+      "nonce": undefined,
+      "registered": Object {},
+      "sheet": StyleSheet {
+        "_insertTag": [Function],
+        "before": null,
+        "container": <head />,
+        "ctr": 0,
+        "insertionPoint": undefined,
+        "isSpeedy": false,
+        "key": "testing",
+        "nonce": undefined,
+        "prepend": undefined,
+        "tags": Array [],
+      },
+    }
+  }
+>
+  <div />
+</ContextProvider>
+`;
+
+exports[`EuiProvider provides a default cache from Emotion when configured without a cache 1`] = `
+<ContextProvider
+  value={
+    Object {
+      "compat": true,
+      "insert": [Function],
+      "inserted": Object {},
+      "key": "css",
+      "nonce": undefined,
+      "registered": Object {},
+      "sheet": StyleSheet {
+        "_insertTag": [Function],
+        "before": null,
+        "container": <head />,
+        "ctr": 0,
+        "insertionPoint": undefined,
+        "isSpeedy": false,
+        "key": "css",
+        "nonce": undefined,
+        "prepend": undefined,
+        "tags": Array [],
+      },
+    }
+  }
+>
+  <div />
+</ContextProvider>
+`;

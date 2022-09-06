@@ -27,4 +27,5 @@ export const _EuiShadowSizesDescriptions: Record<
 
 export interface _EuiThemeShadowCustomColor {
   color?: string;
+  property?: 'box-shadow' | 'filter';
 }

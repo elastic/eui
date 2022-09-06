@@ -2,7 +2,7 @@
 import React from 'react';
 
 import { EuiButtonEmpty } from '../../../../src/components/button';
-import { useIsWithinBreakpoints } from '../../../../src/services/hooks/useIsWithinBreakpoints';
+import { useIsWithinBreakpoints } from '../../../../src/services';
 
 import { ThemeContext } from '../with_theme';
 import { EuiHeaderSectionItemButton } from '../../../../src/components/header';

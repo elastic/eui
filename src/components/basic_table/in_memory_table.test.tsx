@@ -510,7 +510,7 @@ describe('EuiInMemoryTable', () => {
         initialSelected: [{ id: '1', name: 'name1' }],
       },
     };
-    const component = mount(<EuiInMemoryTable {...props} />);
+    const component = shallow(<EuiInMemoryTable {...props} />);
 
     expect(component).toMatchSnapshot();
   });
@@ -978,7 +978,7 @@ describe('EuiInMemoryTable', () => {
       const component = mount(<EuiInMemoryTable {...props} />);
 
       component
-        .find('EuiButtonEmpty[data-test-subj="pagination-button-1"]')
+        .find('a[data-test-subj="pagination-button-1"]')
         .simulate('click');
 
       // forces EuiInMemoryTable's getDerivedStateFromProps to re-execute
@@ -1011,7 +1011,7 @@ describe('EuiInMemoryTable', () => {
       const component = mount(<EuiInMemoryTable {...props} />);
 
       component
-        .find('EuiButtonEmpty[data-test-subj="pagination-button-1"]')
+        .find('a[data-test-subj="pagination-button-1"]')
         .simulate('click');
     });
 
@@ -1044,7 +1044,7 @@ describe('EuiInMemoryTable', () => {
 
       // Pagination change
       component
-        .find('EuiButtonEmpty[data-test-subj="pagination-button-1"]')
+        .find('a[data-test-subj="pagination-button-1"]')
         .simulate('click');
       expect(props.onTableChange).toHaveBeenCalledTimes(1);
       expect(props.onTableChange).toHaveBeenLastCalledWith({
@@ -1075,7 +1075,7 @@ describe('EuiInMemoryTable', () => {
 
       // Sorted pagination change
       component
-        .find('EuiButtonEmpty[data-test-subj="pagination-button-1"]')
+        .find('a[data-test-subj="pagination-button-1"]')
         .simulate('click');
       expect(props.onTableChange).toHaveBeenCalledTimes(3);
       expect(props.onTableChange).toHaveBeenLastCalledWith({
@@ -1132,7 +1132,7 @@ describe('EuiInMemoryTable', () => {
 
       // click the first pagination button
       component
-        .find('EuiButtonEmpty[data-test-subj="pagination-button-0"]')
+        .find('a[data-test-subj="pagination-button-0"]')
         .simulate('click');
       expect(onTableChange).toHaveBeenCalledTimes(1);
       expect(onTableChange).toHaveBeenCalledWith({

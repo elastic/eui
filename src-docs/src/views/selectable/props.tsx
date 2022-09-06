@@ -3,12 +3,9 @@ import {
   EuiSelectableOption,
   EuiSelectableOptionsListProps,
   EuiSelectableSearchableSearchProps,
-} from '../../../../src/components/selectable';
-
-import {
   EuiSelectableTemplateSitewideOption,
   EuiSelectableTemplateSitewideMetaData,
-} from '../../../../src/components/selectable/selectable_templates/selectable_template_sitewide_option';
+} from '../../../../src';
 
 export const EuiSelectableOptionProps: FunctionComponent<EuiSelectableOption> = () => (
   <div />

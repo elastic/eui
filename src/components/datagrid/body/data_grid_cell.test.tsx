@@ -9,13 +9,20 @@
 import React, { useEffect } from 'react';
 import { mount, render, ReactWrapper } from 'enzyme';
 import { keys } from '../../../services';
-import { mockRowHeightUtils } from '../utils/__mocks__/row_heights';
+import { RowHeightUtils } from '../utils/__mocks__/row_heights';
 import { mockFocusContext } from '../utils/__mocks__/focus_context';
 import { DataGridFocusContext } from '../utils/focus';
 
 import { EuiDataGridCell } from './data_grid_cell';
 
 describe('EuiDataGridCell', () => {
+  const mockRowHeightUtils = new RowHeightUtils(
+    { current: null },
+    { current: null },
+    { current: null },
+    { current: null }
+  );
+
   const mockPopoverContext = {
     popoverIsOpen: false,
     cellLocation: { rowIndex: 0, colIndex: 0 },
@@ -44,8 +51,25 @@ describe('EuiDataGridCell', () => {
   beforeEach(() => jest.clearAllMocks());
 
   it('renders', () => {
-    const component = mount(<EuiDataGridCell {...requiredProps} />);
+    const component = render(<EuiDataGridCell {...requiredProps} />);
     expect(component).toMatchSnapshot();
+  });
+
+  it("renders the cell's `aria-rowindex` correctly when paginated on a different page", () => {
+    const component = mount(
+      <EuiDataGridCell
+        {...requiredProps}
+        pagination={{
+          pageIndex: 3,
+          pageSize: 20,
+          onChangePage: () => {},
+          onChangeItemsPerPage: () => {},
+        }}
+      />
+    );
+    expect(
+      component.find('[data-test-subj="dataGridRowCell"]').prop('aria-rowindex')
+    ).toEqual(61);
   });
 
   it('renders cell actions', () => {
@@ -212,6 +236,58 @@ describe('EuiDataGridCell', () => {
         <>{mockPopoverContext.setPopoverContent.mock.calls[0][0]}</>
       );
       expect(popoverContent).toMatchSnapshot();
+    });
+
+    describe('rowHeightsOptions.scrollAnchorRow', () => {
+      let component: ReactWrapper;
+
+      beforeEach(() => {
+        component = mount(
+          <EuiDataGridCell
+            {...requiredProps}
+            rowHeightsOptions={{
+              defaultHeight: 'auto',
+              scrollAnchorRow: 'start',
+            }}
+            style={{ top: '30px' }}
+          />
+        );
+      });
+
+      it('compensates for layout shifts', () => {
+        component.setProps({ style: { top: '60px' } });
+        expect(
+          mockRowHeightUtils.compensateForLayoutShift
+        ).toHaveBeenCalledWith(0, 30, 'start');
+      });
+
+      describe('does not compensate for layout shifts when', () => {
+        afterEach(() => {
+          expect(
+            mockRowHeightUtils.compensateForLayoutShift
+          ).not.toHaveBeenCalled();
+        });
+
+        test('the rowIndex is changing', () => {
+          component.setProps({ style: '60px', rowIndex: 3 });
+        });
+
+        test('the columnId is changing', () => {
+          component.setProps({ style: '60px', columnId: 'someOtherColumn' });
+        });
+
+        test('scrollAnchorRow is undefined', () => {
+          component.setProps({ rowHeightsOptions: { defaultHeight: 20 } });
+        });
+
+        test('the cell is not the first cell in the row', () => {
+          component.setProps({ colIndex: 1 });
+        });
+
+        test('the cell top position is not changing', () => {
+          component.setProps({ style: { top: '30px' } });
+        });
+      });
     });
   });
 

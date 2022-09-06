@@ -5,11 +5,17 @@
  * in compliance with, at your election, the Elastic License 2.0 or the Server
  * Side Public License, v 1.
  */
-
 import { css, keyframes } from '@emotion/react';
-import { _EuiThemeSize, euiCanAnimate } from '../../global_styling';
+import {
+  _EuiThemeSize,
+  euiCanAnimate,
+  logicalSizeCSS,
+} from '../../global_styling';
 import { UseEuiTheme } from '../../services';
-import { EuiLoadingSpinnerSize } from './loading_spinner';
+import {
+  EuiLoadingSpinnerSize,
+  EuiLoadingSpinnerProps,
+} from './loading_spinner';
 
 const _loadingSpinner = keyframes`
   from {
@@ -31,20 +37,25 @@ const spinnerSizes: {
   xxl: 'xxl',
 };
 
-const spinnerColors = (main: string, highlight: string) => {
-  return `${highlight} ${main} ${main} ${main}`;
+const spinnerColorsCSS = (border?: string, highlight?: string) => {
+  return `
+    border-color: ${highlight} ${border} ${border} ${border};
+  `;
 };
 
-export const euiLoadingSpinnerStyles = ({ euiTheme }: UseEuiTheme) => {
+export const euiLoadingSpinnerStyles = (
+  { euiTheme }: UseEuiTheme,
+  color?: EuiLoadingSpinnerProps['color']
+) => {
   return {
     euiLoadingSpinner: css`
       flex-shrink: 0; // Ensures it never scales down below its intended size
       display: inline-block;
       border-radius: 50%;
       border: ${euiTheme.border.thick};
-      border-color: ${spinnerColors(
-        euiTheme.border.color,
-        euiTheme.colors.primary
+      ${spinnerColorsCSS(
+        color?.border || euiTheme.colors.lightShade,
+        color?.highlight || euiTheme.colors.primary
       )};
 
       ${euiCanAnimate} {
@@ -54,26 +65,36 @@ export const euiLoadingSpinnerStyles = ({ euiTheme }: UseEuiTheme) => {
 
     // Sizes
     s: css`
-      width: ${euiTheme.size[spinnerSizes.s]};
-      height: ${euiTheme.size[spinnerSizes.s]};
+      ${logicalSizeCSS(
+        euiTheme.size[spinnerSizes.s],
+        euiTheme.size[spinnerSizes.s]
+      )}
       border-width: calc(${euiTheme.border.width.thin} * 1.5);
     `,
     m: css`
-      width: ${euiTheme.size[spinnerSizes.m]};
-      height: ${euiTheme.size[spinnerSizes.m]};
+      ${logicalSizeCSS(
+        euiTheme.size[spinnerSizes.m],
+        euiTheme.size[spinnerSizes.m]
+      )}
       border-width: calc(${euiTheme.border.width.thin} * 1.5);
     `,
     l: css`
-      width: ${euiTheme.size[spinnerSizes.l]};
-      height: ${euiTheme.size[spinnerSizes.l]};
+      ${logicalSizeCSS(
+        euiTheme.size[spinnerSizes.l],
+        euiTheme.size[spinnerSizes.l]
+      )}
     `,
     xl: css`
-      width: ${euiTheme.size[spinnerSizes.xl]};
-      height: ${euiTheme.size[spinnerSizes.xl]};
+      ${logicalSizeCSS(
+        euiTheme.size[spinnerSizes.xl],
+        euiTheme.size[spinnerSizes.xl]
+      )}
     `,
     xxl: css`
-      width: ${euiTheme.size[spinnerSizes.xxl]};
-      height: ${euiTheme.size[spinnerSizes.xxl]};
+      ${logicalSizeCSS(
+        euiTheme.size[spinnerSizes.xxl],
+        euiTheme.size[spinnerSizes.xxl]
+      )}
     `,
   };
 };

@@ -12,26 +12,40 @@ import {
   _EuiThemeFontWeights,
 } from '../variables/typography';
 import { UseEuiTheme } from '../../services/theme/hooks';
+import { logicalCSS } from './logicals';
+
+export interface _FontScaleOptions {
+  /**
+   * The returned string measurement
+   */
+  measurement?: _EuiThemeFontSizeMeasurement;
+  /**
+   * An additional custom scale multiplier to use against the current scale
+   * This parameter can be used (e.g. by EuiText sizes) to get sizes of text smaller than the default
+   */
+  customScale?: _EuiThemeFontScale;
+}
 
 /**
  * Calculates the font-size value based on the provided scale key
  * @param scale - The font scale key
  * @param theme - Requires the `base` and `font` keys
- * @param measurement - The returned string measurement
- * *
+ * @param options - Optional parameters - see _FontScaleOptions
+ *
  * @returns string - Calculated font-size value
  */
 
 export function euiFontSizeFromScale(
   scale: _EuiThemeFontScale,
   { base, font }: UseEuiTheme['euiTheme'],
-  measurement: _EuiThemeFontSizeMeasurement = 'rem'
+  { measurement = 'rem', customScale }: _FontScaleOptions = {}
 ) {
   if (measurement === 'em') {
     return `${font.scale[scale]}em`;
   }
 
-  const numerator = base * font.scale[scale];
+  let numerator = base * font.scale[scale];
+  if (customScale) numerator *= font.scale[customScale];
   const denominator = base * font.scale[font.body.scale];
 
   return measurement === 'px'
@@ -46,19 +60,20 @@ export function euiFontSizeFromScale(
  *     text stays on the baseline, we pass a multiplier to calculate a line-height.
  * @param scale - The font scale key
  * @param theme - Requires the `base` and `font` keys
- * @param measurement - The returned string measurement
- * *
+ * @param options - Optional parameters - see _FontScaleOptions
+ *
  * @returns string - Calculated line-height value aligned to baseline
  */
 
 export function euiLineHeightFromBaseline(
   scale: _EuiThemeFontScale,
   { base, font }: UseEuiTheme['euiTheme'],
-  measurement: _EuiThemeFontSizeMeasurement = 'rem'
+  { measurement = 'rem', customScale }: _FontScaleOptions = {}
 ) {
-  const { baseline, body, lineHeightMultiplier } = font;
-  const numerator = base * font.scale[scale];
-  const denominator = base * font.scale[body.scale];
+  const { baseline, lineHeightMultiplier } = font;
+  let numerator = base * font.scale[scale];
+  if (customScale) numerator *= font.scale[customScale];
+  const denominator = base * font.scale[font.body.scale];
 
   const _lineHeightMultiplier =
     numerator <= base ? lineHeightMultiplier : lineHeightMultiplier * 0.833;
@@ -94,7 +109,7 @@ export const euiTextShift = (
     display: block;
     content: attr(${attribute});
     font-weight: ${euiTheme.font.weight[fontWeight]};
-    height: 0;
+    ${logicalCSS('height', 0)}
     overflow: hidden;
     visibility: hidden;
   }`;

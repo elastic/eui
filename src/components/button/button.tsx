@@ -10,7 +10,6 @@ import React, {
   forwardRef,
   FunctionComponent,
   Ref,
-  ButtonHTMLAttributes,
   CSSProperties,
   HTMLAttributes,
   ReactNode,
@@ -22,93 +21,53 @@ import {
   ExclusiveUnion,
   PropsForAnchor,
   PropsForButton,
-  keysOf,
 } from '../common';
 
-import { getSecureRelForTarget } from '../../services';
-
+import { EuiButtonContentDeprecated as EuiButtonContent } from './_button_content_deprecated';
 import {
-  EuiButtonContentProps,
-  EuiButtonContentType,
-  EuiButtonContent,
-} from './button_content';
-import { validateHref } from '../../services/security/href_validator';
+  BUTTON_COLORS,
+  useEuiButtonColorCSS,
+  useEuiButtonFocusCSS,
+  _EuiButtonColor,
+} from '../../themes/amsterdam/global_styling/mixins/button';
+import {
+  EuiButtonDisplay,
+  EuiButtonDisplayCommonProps,
+  isButtonDisabled,
+} from './button_display/_button_display';
+import { EuiThemeProvider } from '../../services';
 
-export type ButtonColor =
-  | 'primary'
-  | 'accent'
-  | 'success'
-  | 'warning'
-  | 'danger'
-  | 'ghost'
-  | 'text';
+export const COLORS = [...BUTTON_COLORS, 'ghost'] as const;
+export type EuiButtonColor = _EuiButtonColor | 'ghost';
 
-export type ButtonSize = 's' | 'm';
+export const SIZES = ['s', 'm'] as const;
+export type EuiButtonSize = typeof SIZES[number];
 
-export const colorToClassNameMap: { [color in ButtonColor]: string } = {
-  primary: '--primary',
-  accent: '--accent',
-  success: '--success',
-  warning: '--warning',
-  danger: '--danger',
-  ghost: '--ghost',
-  text: '--text',
-};
-
-export const COLORS = keysOf(colorToClassNameMap);
-
-export const sizeToClassNameMap: { [size in ButtonSize]: string | null } = {
-  s: '--small',
-  m: null,
-};
-
-export const SIZES = keysOf(sizeToClassNameMap);
-
-/**
- * Extends EuiButtonContentProps which provides
- * `iconType`, `iconSide`, and `textProps`
- */
-export interface EuiButtonProps extends EuiButtonContentProps, CommonProps {
+interface BaseProps {
   children?: ReactNode;
   /**
    * Make button a solid color for prominence
    */
   fill?: boolean;
   /**
-   * Any of our named colors.
+   * Any of the named color palette options.
+   * **`'ghost'` is set for deprecation. Use EuiThemeProvide.colorMode = 'dark' instead.**
    */
-  color?: ButtonColor;
+  color?: EuiButtonColor;
   /**
    * Use size `s` in confined spaces
    */
-  size?: ButtonSize;
+  size?: EuiButtonSize;
   /**
    * `disabled` is also allowed
    */
   isDisabled?: boolean;
-  /**
-   * Applies the boolean state as the `aria-pressed` property to create a toggle button.
-   * *Only use when the readable text does not change between states.*
-   */
-  isSelected?: boolean;
-  /**
-   * Extends the button to 100% width
-   */
-  fullWidth?: boolean;
-  /**
-   * Override the default minimum width
-   */
-  minWidth?: CSSProperties['minWidth'];
-  /**
-   * Force disables the button and changes the icon to a loading spinner
-   */
-  isLoading?: boolean;
-  /**
-   * Object of props passed to the <span/> wrapping the button's content
-   */
-  contentProps?: EuiButtonContentType;
-  style?: CSSProperties;
 }
+
+export interface EuiButtonProps
+  extends BaseProps,
+    Omit<EuiButtonDisplayCommonProps, 'size'>,
+    CommonProps {}
 
 export type EuiButtonPropsForAnchor = PropsForAnchor<
   EuiButtonProps,
@@ -133,58 +92,53 @@ export type Props = ExclusiveUnion<
  * EuiButton is largely responsible for providing relevant props
  * and the logic for element-specific attributes
  */
-export const EuiButton: FunctionComponent<Props> = ({
-  isDisabled: _isDisabled,
-  disabled: _disabled,
-  href,
-  target,
-  rel,
-  type = 'button',
-  buttonRef,
-  ...rest
-}) => {
-  const isHrefValid = !href || validateHref(href);
-  const disabled = _disabled || !isHrefValid;
-  const isDisabled = _isDisabled || !isHrefValid;
+export const EuiButton: FunctionComponent<Props> = (props) => {
+  const { buttonRef, color: _color = 'primary', fill, ...rest } = props;
 
-  const buttonIsDisabled = rest.isLoading || isDisabled || disabled;
-  const element = href && !isDisabled ? 'a' : 'button';
+  const buttonIsDisabled = isButtonDisabled({
+    href: rest.href,
+    isDisabled: rest.isDisabled || rest.disabled,
+    isLoading: rest.isLoading,
+  });
 
-  let elementProps = {};
-  // Props for all elements
-  elementProps = { ...elementProps, isDisabled: buttonIsDisabled };
-  // Element-specific attributes
-  if (element === 'button') {
-    elementProps = { ...elementProps, disabled: buttonIsDisabled };
-  }
+  // eslint-disable-next-line no-nested-ternary
+  const color = buttonIsDisabled ? 'disabled' : _color;
 
-  const relObj: {
-    rel?: string;
-    href?: string;
-    type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
-    target?: string;
-  } = {};
+  const buttonColorStyles = useEuiButtonColorCSS({
+    display: fill ? 'fill' : 'base',
+  })[color === 'ghost' ? 'text' : color];
 
-  if (href && !buttonIsDisabled) {
-    relObj.href = href;
-    relObj.rel = getSecureRelForTarget({ href, target, rel });
-    relObj.target = target;
-  } else {
-    relObj.type = type as ButtonHTMLAttributes<HTMLButtonElement>['type'];
+  const buttonFocusStyle = useEuiButtonFocusCSS();
+
+  const cssStyles = [buttonColorStyles, buttonFocusStyle];
+
+  if (_color === 'ghost') {
+    // INCEPTION: If `ghost`, re-implement with a wrapping dark mode theme provider
+    return (
+      <EuiThemeProvider colorMode="dark">
+        <EuiButton {...props} color="text" />
+      </EuiThemeProvider>
+    );
   }
 
   return (
     <EuiButtonDisplay
-      element={element}
-      baseClassName="euiButton"
+      className="euiButton"
       ref={buttonRef}
-      {...elementProps}
-      {...relObj}
+      css={cssStyles}
       {...rest}
     />
   );
 };
+
 EuiButton.displayName = 'EuiButton';
+
+// Use defaultProps for simple pass-through props
+EuiButton.defaultProps = {
+  minWidth: 112,
+  size: 'm',
+  color: 'primary',
+};
 
 export type EuiButtonDisplayProps = EuiButtonProps &
   HTMLAttributes<HTMLElement> & {
@@ -198,14 +152,37 @@ export type EuiButtonDisplayProps = EuiButtonProps &
     baseClassName: string;
   };
 
+export const sizeToClassNameMap: { [size in EuiButtonSize]: string | null } = {
+  s: '--small',
+  m: null,
+};
+
+export const colorToClassNameMap: {
+  [color in EuiButtonColor]: string | null;
+} = {
+  primary: '--primary',
+  accent: '--accent',
+  success: '--success',
+  warning: '--warning',
+  danger: '--danger',
+  ghost: '--ghost',
+  text: '--text',
+};
+
 /**
+ * *DEPRECATED*
  * EuiButtonDisplay is an internal-only component used for displaying
  * any element as a button.
  * NOTE: This component *must* be below EuiButton in the file and
  * EuiButton must also set a displayName for react-docgen-typescript
  * to correctly set EuiButton's docgenInfo and display a props table.
+ * This component has been deprecated in favor of the new EuiButtonDisplay
+ * that can be found in `src/components/button/button_display/_button_display.tsx`
  */
-export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
+export const EuiButtonDisplayDeprecated = forwardRef<
+  HTMLElement,
+  EuiButtonDisplayProps
+>(
   (
     {
       element = 'button',
@@ -214,9 +191,8 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
       className,
       iconType,
       iconSide = 'left',
-      color = 'primary',
+      color,
       size = 'm',
-      fill = false,
       isDisabled,
       isLoading,
       isSelected,
@@ -229,19 +205,17 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
     },
     ref
   ) => {
-    const buttonIsDisabled = isLoading || isDisabled;
+    const buttonIsDisabled = isButtonDisabled({ isLoading, isDisabled });
 
     const classes = classNames(
       baseClassName,
       color && colorToClassNameMap[color]
         ? `${baseClassName}${colorToClassNameMap[color]}`
-        : `${baseClassName}${colorToClassNameMap.primary}`,
+        : undefined,
       size && sizeToClassNameMap[size]
         ? `${baseClassName}${sizeToClassNameMap[size]}`
         : null,
-      fill && `${baseClassName}--fill`,
       fullWidth && `${baseClassName}--fullWidth`,
-      buttonIsDisabled && `${baseClassName}-isDisabled`,
       className
     );
 
@@ -295,4 +269,4 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
     );
   }
 );
-EuiButtonDisplay.displayName = 'EuiButtonDisplay';
+EuiButtonDisplayDeprecated.displayName = 'EuiButtonDisplay';

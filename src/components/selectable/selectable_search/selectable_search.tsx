@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { useEffect, useCallback, ChangeEvent } from 'react';
+import React, { useCallback, ChangeEvent } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 import { EuiFieldSearch, EuiFieldSearchProps } from '../../form';
@@ -52,16 +52,6 @@ export const EuiSelectableSearch = <T,>({
   className,
   ...rest
 }: _EuiSelectableSearchProps<T>) => {
-  useEffect(() => {
-    const matchingOptions = getMatchingOptions<T>(
-      options,
-      value,
-      isPreFiltered
-    );
-    onChangeCallback(value, matchingOptions);
-    // Call on mount only
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
   const onChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const searchValue = e.target.value;

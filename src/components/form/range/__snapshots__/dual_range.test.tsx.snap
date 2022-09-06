@@ -501,10 +501,10 @@ exports[`EuiDualRange props levels should render 1`] = `
 
 exports[`EuiDualRange props loading should display when showInput="inputWithPopover" 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiRange__popover"
+  class="euiPopover euiInputPopover euiRange__popover emotion-euiPopover-EuiInputPopover"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <div>
       <div
@@ -524,13 +524,9 @@ exports[`EuiDualRange props loading should display when showInput="inputWithPopo
             value="1"
           />
           <div
-            class="euiText euiText--small euiFormControlLayoutDelimited__delimeter"
+            class="euiText euiFormControlLayoutDelimited__delimeter emotion-euiText-s-euiTextColor-subdued"
           >
-            <div
-              class="euiTextColor euiTextColor--subdued"
-            >
-              →
-            </div>
+            →
           </div>
           <input
             aria-label="aria-label"
@@ -547,7 +543,7 @@ exports[`EuiDualRange props loading should display when showInput="inputWithPopo
           >
             <span
               aria-label="Loading"
-              class="euiLoadingSpinner css-155ohbx-euiLoadingSpinner-m"
+              class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
               role="progressbar"
             />
           </div>
@@ -590,10 +586,10 @@ exports[`EuiDualRange props range should render 1`] = `
 
 exports[`EuiDualRange props slider should display in popover 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiRange__popover"
+  class="euiPopover euiInputPopover euiRange__popover emotion-euiPopover-EuiInputPopover"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <div>
       <div
@@ -613,13 +609,9 @@ exports[`EuiDualRange props slider should display in popover 1`] = `
             value="1"
           />
           <div
-            class="euiText euiText--small euiFormControlLayoutDelimited__delimeter"
+            class="euiText euiFormControlLayoutDelimited__delimeter emotion-euiText-s-euiTextColor-subdued"
           >
-            <div
-              class="euiTextColor euiTextColor--subdued"
-            >
-              →
-            </div>
+            →
           </div>
           <input
             aria-label="aria-label"

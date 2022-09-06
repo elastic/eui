@@ -3,11 +3,11 @@
 exports[`EuiStat is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiStat euiStat--leftAligned testClass1 testClass2"
+  class="euiStat testClass1 testClass2 emotion-euiStat-left"
   data-test-subj="test subject string"
 >
   <div
-    class="euiText euiText--small euiStat__description"
+    class="euiText euiStat__description emotion-euiText-s"
   >
     <p
       aria-hidden="true"
@@ -17,12 +17,12 @@ exports[`EuiStat is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiStat__title css-1bexacr-euiTitle-l"
+    class="euiTitle euiStat__title emotion-euiTitle-l-euiStat__title-default"
   >
     title
   </p>
   <p
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     description title
   </p>
@@ -31,10 +31,10 @@ exports[`EuiStat is rendered 1`] = `
 
 exports[`EuiStat props accent is rendered 1`] = `
 <div
-  class="euiStat euiStat--leftAligned"
+  class="euiStat emotion-euiStat-left"
 >
   <div
-    class="euiText euiText--small euiStat__description"
+    class="euiText euiStat__description emotion-euiText-s"
   >
     <p
       aria-hidden="true"
@@ -44,12 +44,12 @@ exports[`EuiStat props accent is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiStat__title euiStat__title--accent css-1bexacr-euiTitle-l"
+    class="euiTitle euiStat__title emotion-euiTitle-l-euiStat__title-accent"
   >
     title
   </p>
   <p
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     description title
   </p>
@@ -58,10 +58,10 @@ exports[`EuiStat props accent is rendered 1`] = `
 
 exports[`EuiStat props center is rendered 1`] = `
 <div
-  class="euiStat euiStat--centerAligned"
+  class="euiStat emotion-euiStat-center"
 >
   <div
-    class="euiText euiText--small euiStat__description"
+    class="euiText euiStat__description emotion-euiText-s"
   >
     <p
       aria-hidden="true"
@@ -71,12 +71,12 @@ exports[`EuiStat props center is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiStat__title css-1bexacr-euiTitle-l"
+    class="euiTitle euiStat__title emotion-euiTitle-l-euiStat__title-default"
   >
     title
   </p>
   <p
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     description title
   </p>
@@ -85,10 +85,10 @@ exports[`EuiStat props center is rendered 1`] = `
 
 exports[`EuiStat props danger is rendered 1`] = `
 <div
-  class="euiStat euiStat--leftAligned"
+  class="euiStat emotion-euiStat-left"
 >
   <div
-    class="euiText euiText--small euiStat__description"
+    class="euiText euiStat__description emotion-euiText-s"
   >
     <p
       aria-hidden="true"
@@ -98,12 +98,12 @@ exports[`EuiStat props danger is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiStat__title euiStat__title--danger css-1bexacr-euiTitle-l"
+    class="euiTitle euiStat__title emotion-euiTitle-l-euiStat__title-danger"
   >
     title
   </p>
   <p
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     description title
   </p>
@@ -112,10 +112,10 @@ exports[`EuiStat props danger is rendered 1`] = `
 
 exports[`EuiStat props default is rendered 1`] = `
 <div
-  class="euiStat euiStat--leftAligned"
+  class="euiStat emotion-euiStat-left"
 >
   <div
-    class="euiText euiText--small euiStat__description"
+    class="euiText euiStat__description emotion-euiText-s"
   >
     <p
       aria-hidden="true"
@@ -125,12 +125,12 @@ exports[`EuiStat props default is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiStat__title css-1bexacr-euiTitle-l"
+    class="euiTitle euiStat__title emotion-euiTitle-l-euiStat__title-default"
   >
     title
   </p>
   <p
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     description title
   </p>
@@ -139,10 +139,10 @@ exports[`EuiStat props default is rendered 1`] = `
 
 exports[`EuiStat props hexcode colors are rendered 1`] = `
 <div
-  class="euiStat euiStat--leftAligned"
+  class="euiStat emotion-euiStat-left"
 >
   <div
-    class="euiText euiText--small euiStat__description"
+    class="euiText euiStat__description emotion-euiText-s"
   >
     <p
       aria-hidden="true"
@@ -152,13 +152,13 @@ exports[`EuiStat props hexcode colors are rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiStat__title css-1bexacr-euiTitle-l"
+    class="euiTitle euiStat__title emotion-euiTitle-l-euiStat__title"
     style="color:#EB1919"
   >
     title
   </p>
   <p
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     description title
   </p>
@@ -167,10 +167,10 @@ exports[`EuiStat props hexcode colors are rendered 1`] = `
 
 exports[`EuiStat props l is rendered 1`] = `
 <div
-  class="euiStat euiStat--leftAligned"
+  class="euiStat emotion-euiStat-left"
 >
   <div
-    class="euiText euiText--small euiStat__description"
+    class="euiText euiStat__description emotion-euiText-s"
   >
     <p
       aria-hidden="true"
@@ -180,12 +180,12 @@ exports[`EuiStat props l is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiStat__title css-1bexacr-euiTitle-l"
+    class="euiTitle euiStat__title emotion-euiTitle-l-euiStat__title-default"
   >
     title
   </p>
   <p
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     description title
   </p>
@@ -194,10 +194,10 @@ exports[`EuiStat props l is rendered 1`] = `
 
 exports[`EuiStat props left is rendered 1`] = `
 <div
-  class="euiStat euiStat--leftAligned"
+  class="euiStat emotion-euiStat-left"
 >
   <div
-    class="euiText euiText--small euiStat__description"
+    class="euiText euiStat__description emotion-euiText-s"
   >
     <p
       aria-hidden="true"
@@ -207,12 +207,12 @@ exports[`EuiStat props left is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiStat__title css-1bexacr-euiTitle-l"
+    class="euiTitle euiStat__title emotion-euiTitle-l-euiStat__title-default"
   >
     title
   </p>
   <p
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     description title
   </p>
@@ -222,11 +222,11 @@ exports[`EuiStat props left is rendered 1`] = `
 exports[`EuiStat props loading is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiStat euiStat--leftAligned testClass1 testClass2"
+  class="euiStat testClass1 testClass2 emotion-euiStat-left"
   data-test-subj="test subject string"
 >
   <div
-    class="euiText euiText--small euiStat__description"
+    class="euiText euiStat__description emotion-euiText-s"
   >
     <p
       aria-hidden="true"
@@ -236,12 +236,12 @@ exports[`EuiStat props loading is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiStat__title euiStat__title-isLoading css-1bexacr-euiTitle-l"
+    class="euiTitle euiStat__title emotion-euiTitle-l-euiStat__title-default-isLoading"
   >
     --
   </p>
   <p
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     Statistic is loading
   </p>
@@ -250,10 +250,10 @@ exports[`EuiStat props loading is rendered 1`] = `
 
 exports[`EuiStat props m is rendered 1`] = `
 <div
-  class="euiStat euiStat--leftAligned"
+  class="euiStat emotion-euiStat-left"
 >
   <div
-    class="euiText euiText--small euiStat__description"
+    class="euiText euiStat__description emotion-euiText-s"
   >
     <p
       aria-hidden="true"
@@ -263,12 +263,12 @@ exports[`EuiStat props m is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiStat__title css-1w464ad-euiTitle-m"
+    class="euiTitle euiStat__title emotion-euiTitle-m-euiStat__title-default"
   >
     title
   </p>
   <p
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     description title
   </p>
@@ -277,10 +277,10 @@ exports[`EuiStat props m is rendered 1`] = `
 
 exports[`EuiStat props primary is rendered 1`] = `
 <div
-  class="euiStat euiStat--leftAligned"
+  class="euiStat emotion-euiStat-left"
 >
   <div
-    class="euiText euiText--small euiStat__description"
+    class="euiText euiStat__description emotion-euiText-s"
   >
     <p
       aria-hidden="true"
@@ -290,12 +290,12 @@ exports[`EuiStat props primary is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiStat__title euiStat__title--primary css-1bexacr-euiTitle-l"
+    class="euiTitle euiStat__title emotion-euiTitle-l-euiStat__title-primary"
   >
     title
   </p>
   <p
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     description title
   </p>
@@ -304,10 +304,10 @@ exports[`EuiStat props primary is rendered 1`] = `
 
 exports[`EuiStat props render with custom description element 1`] = `
 <div
-  class="euiStat euiStat--leftAligned"
+  class="euiStat emotion-euiStat-left"
 >
   <div
-    class="euiText euiText--small euiStat__description"
+    class="euiText euiStat__description emotion-euiText-s"
   >
     <div
       aria-hidden="true"
@@ -319,7 +319,7 @@ exports[`EuiStat props render with custom description element 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiStat__title css-1bexacr-euiTitle-l"
+    class="euiTitle euiStat__title emotion-euiTitle-l-euiStat__title"
     style="color:#EB1919"
   >
     title
@@ -329,10 +329,10 @@ exports[`EuiStat props render with custom description element 1`] = `
 
 exports[`EuiStat props render with custom title element 1`] = `
 <div
-  class="euiStat euiStat--leftAligned"
+  class="euiStat emotion-euiStat-left"
 >
   <div
-    class="euiText euiText--small euiStat__description"
+    class="euiText euiStat__description emotion-euiText-s"
   >
     <p
       aria-hidden="true"
@@ -342,7 +342,7 @@ exports[`EuiStat props render with custom title element 1`] = `
   </div>
   <div
     aria-hidden="true"
-    class="euiTitle euiStat__title css-1bexacr-euiTitle-l"
+    class="euiTitle euiStat__title emotion-euiTitle-l-euiStat__title-default"
   >
     <div>
       title
@@ -353,10 +353,10 @@ exports[`EuiStat props render with custom title element 1`] = `
 
 exports[`EuiStat props right is rendered 1`] = `
 <div
-  class="euiStat euiStat--rightAligned"
+  class="euiStat emotion-euiStat-right"
 >
   <div
-    class="euiText euiText--small euiStat__description"
+    class="euiText euiStat__description emotion-euiText-s"
   >
     <p
       aria-hidden="true"
@@ -366,12 +366,12 @@ exports[`EuiStat props right is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiStat__title css-1bexacr-euiTitle-l"
+    class="euiTitle euiStat__title emotion-euiTitle-l-euiStat__title-default"
   >
     title
   </p>
   <p
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     description title
   </p>
@@ -380,10 +380,10 @@ exports[`EuiStat props right is rendered 1`] = `
 
 exports[`EuiStat props s is rendered 1`] = `
 <div
-  class="euiStat euiStat--leftAligned"
+  class="euiStat emotion-euiStat-left"
 >
   <div
-    class="euiText euiText--small euiStat__description"
+    class="euiText euiStat__description emotion-euiText-s"
   >
     <p
       aria-hidden="true"
@@ -393,12 +393,12 @@ exports[`EuiStat props s is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiStat__title css-1mr6cet-euiTitle-s"
+    class="euiTitle euiStat__title emotion-euiTitle-s-euiStat__title-default"
   >
     title
   </p>
   <p
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     description title
   </p>
@@ -407,10 +407,10 @@ exports[`EuiStat props s is rendered 1`] = `
 
 exports[`EuiStat props subdued is rendered 1`] = `
 <div
-  class="euiStat euiStat--leftAligned"
+  class="euiStat emotion-euiStat-left"
 >
   <div
-    class="euiText euiText--small euiStat__description"
+    class="euiText euiStat__description emotion-euiText-s"
   >
     <p
       aria-hidden="true"
@@ -420,12 +420,12 @@ exports[`EuiStat props subdued is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiStat__title euiStat__title--subdued css-1bexacr-euiTitle-l"
+    class="euiTitle euiStat__title emotion-euiTitle-l-euiStat__title-subdued"
   >
     title
   </p>
   <p
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     description title
   </p>
@@ -434,10 +434,10 @@ exports[`EuiStat props subdued is rendered 1`] = `
 
 exports[`EuiStat props success is rendered 1`] = `
 <div
-  class="euiStat euiStat--leftAligned"
+  class="euiStat emotion-euiStat-left"
 >
   <div
-    class="euiText euiText--small euiStat__description"
+    class="euiText euiStat__description emotion-euiText-s"
   >
     <p
       aria-hidden="true"
@@ -447,12 +447,12 @@ exports[`EuiStat props success is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiStat__title euiStat__title--success css-1bexacr-euiTitle-l"
+    class="euiTitle euiStat__title emotion-euiTitle-l-euiStat__title-success"
   >
     title
   </p>
   <p
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     description title
   </p>
@@ -461,16 +461,16 @@ exports[`EuiStat props success is rendered 1`] = `
 
 exports[`EuiStat props title and description are reversed 1`] = `
 <div
-  class="euiStat euiStat--leftAligned"
+  class="euiStat emotion-euiStat-left"
 >
   <p
     aria-hidden="true"
-    class="euiTitle euiStat__title css-1bexacr-euiTitle-l"
+    class="euiTitle euiStat__title emotion-euiTitle-l-euiStat__title-default"
   >
     title
   </p>
   <div
-    class="euiText euiText--small euiStat__description"
+    class="euiText euiStat__description emotion-euiText-s"
   >
     <p
       aria-hidden="true"
@@ -479,7 +479,7 @@ exports[`EuiStat props title and description are reversed 1`] = `
     </p>
   </div>
   <p
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     title description
   </p>
@@ -488,10 +488,10 @@ exports[`EuiStat props title and description are reversed 1`] = `
 
 exports[`EuiStat props xs is rendered 1`] = `
 <div
-  class="euiStat euiStat--leftAligned"
+  class="euiStat emotion-euiStat-left"
 >
   <div
-    class="euiText euiText--small euiStat__description"
+    class="euiText euiStat__description emotion-euiText-s"
   >
     <p
       aria-hidden="true"
@@ -501,12 +501,12 @@ exports[`EuiStat props xs is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiStat__title css-1c9cwui-euiTitle-xs"
+    class="euiTitle euiStat__title emotion-euiTitle-xs-euiStat__title-default"
   >
     title
   </p>
   <p
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     description title
   </p>
@@ -515,10 +515,10 @@ exports[`EuiStat props xs is rendered 1`] = `
 
 exports[`EuiStat props xxs is rendered 1`] = `
 <div
-  class="euiStat euiStat--leftAligned"
+  class="euiStat emotion-euiStat-left"
 >
   <div
-    class="euiText euiText--small euiStat__description"
+    class="euiText euiStat__description emotion-euiText-s"
   >
     <p
       aria-hidden="true"
@@ -528,12 +528,12 @@ exports[`EuiStat props xxs is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiStat__title css-1po7voc-euiTitle-xxs"
+    class="euiTitle euiStat__title emotion-euiTitle-xxs-euiStat__title-default"
   >
     title
   </p>
   <p
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     description title
   </p>
@@ -542,10 +542,10 @@ exports[`EuiStat props xxs is rendered 1`] = `
 
 exports[`EuiStat props xxxs is rendered 1`] = `
 <div
-  class="euiStat euiStat--leftAligned"
+  class="euiStat emotion-euiStat-left"
 >
   <div
-    class="euiText euiText--small euiStat__description"
+    class="euiText euiStat__description emotion-euiText-s"
   >
     <p
       aria-hidden="true"
@@ -555,12 +555,12 @@ exports[`EuiStat props xxxs is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiStat__title css-7xv8go-euiTitle-xxxs"
+    class="euiTitle euiStat__title emotion-euiTitle-xxxs-euiStat__title-default"
   >
     title
   </p>
   <p
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     description title
   </p>

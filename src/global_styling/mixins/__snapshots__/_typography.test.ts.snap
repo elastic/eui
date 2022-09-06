@@ -1,5 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`euiFontSize handles the optional customScale property by multiplying it against the passed scale: l scale with xxs customScale 1`] = `
+Object {
+  "fontSize": "1.0804rem",
+  "lineHeight": "1.4286rem",
+}
+`;
+
+exports[`euiFontSize handles the optional customScale property by multiplying it against the passed scale: m scale with xs customScale 1`] = `
+Object {
+  "fontSize": "0.8571rem",
+  "lineHeight": "1.1429rem",
+}
+`;
+
+exports[`euiFontSize handles the optional customScale property by multiplying it against the passed scale: s scale with xl customScale 1`] = `
+Object {
+  "fontSize": "1.6875rem",
+  "lineHeight": "2.0000rem",
+}
+`;
+
 exports[`euiFontSize returns an object of font-size and line-height for each scale em l 1`] = `
 Object {
   "fontSize": "1.375em",
@@ -177,14 +198,13 @@ exports[`euiNumberFormat returns a string of CSS text 1`] = `
 exports[`euiTextBreakWord returns a string of CSS text 1`] = `
 "
   overflow-wrap: break-word !important; // makes sure the long string will wrap and not bust out of the container
-  word-wrap: break-word !important; // spec says, they are literally just alternate names for each other but some browsers support one and not the other
-  word-break: break-word; // IE doesn't understand but that's ok
+  word-break: break-word;
 "
 `;
 
 exports[`euiTextTruncate allows customizing max-width 1`] = `
 "
-  max-width: 150px; // Ensure that the node has a maximum width after which truncation can occur
+  max-inline-size: 150px;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   white-space: nowrap !important;
@@ -193,7 +213,7 @@ exports[`euiTextTruncate allows customizing max-width 1`] = `
 
 exports[`euiTextTruncate returns a string of CSS text 1`] = `
 "
-  max-width: 100%; // Ensure that the node has a maximum width after which truncation can occur
+  max-inline-size: 100%;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   white-space: nowrap !important;

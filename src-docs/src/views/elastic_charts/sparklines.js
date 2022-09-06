@@ -5,6 +5,7 @@ import {
   Chart,
   BarSeries,
   Settings,
+  Tooltip,
   LineSeries,
   AreaSeries,
 } from '@elastic/charts';
@@ -54,7 +55,8 @@ export const Sparklines = () => {
             <EuiStat title="" description="Number of things" textAlign="right">
               <EuiSpacer size="s" />
               <Chart size={{ height: 64 }}>
-                <Settings theme={theme} showLegend={false} tooltip="none" />
+                <Settings theme={theme} showLegend={false} />
+                <Tooltip type="none" />
                 <BarSeries
                   id="numbers"
                   data={TIME_DATA_SMALL}

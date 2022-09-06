@@ -3,7 +3,7 @@
 exports[`EuiHeaderSectionItemButton is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiButtonEmpty euiButtonEmpty--text euiHeaderSectionItemButton testClass1 testClass2"
+  class="euiButtonEmpty euiHeaderSectionItemButton testClass1 testClass2 css-wvaqcf-empty-text"
   data-test-subj="test subject string"
   type="button"
 >
@@ -23,7 +23,7 @@ exports[`EuiHeaderSectionItemButton is rendered 1`] = `
 
 exports[`EuiHeaderSectionItemButton renders a link 1`] = `
 <a
-  class="euiButtonEmpty euiButtonEmpty--text euiHeaderSectionItemButton"
+  class="euiButtonEmpty euiHeaderSectionItemButton css-wvaqcf-empty-text"
   href="#"
   rel="noreferrer"
 >
@@ -43,7 +43,7 @@ exports[`EuiHeaderSectionItemButton renders a link 1`] = `
 
 exports[`EuiHeaderSectionItemButton renders children 1`] = `
 <button
-  class="euiButtonEmpty euiButtonEmpty--text euiHeaderSectionItemButton"
+  class="euiButtonEmpty euiHeaderSectionItemButton css-wvaqcf-empty-text"
   type="button"
 >
   <span
@@ -66,7 +66,7 @@ exports[`EuiHeaderSectionItemButton renders children 1`] = `
 
 exports[`EuiHeaderSectionItemButton renders notification as a badge 1`] = `
 <button
-  class="euiButtonEmpty euiButtonEmpty--text euiHeaderSectionItemButton"
+  class="euiButtonEmpty euiHeaderSectionItemButton css-wvaqcf-empty-text"
   type="button"
 >
   <span
@@ -90,7 +90,7 @@ exports[`EuiHeaderSectionItemButton renders notification as a badge 1`] = `
 
 exports[`EuiHeaderSectionItemButton renders notification as a dot 1`] = `
 <button
-  class="euiButtonEmpty euiButtonEmpty--text euiHeaderSectionItemButton"
+  class="euiButtonEmpty euiHeaderSectionItemButton css-wvaqcf-empty-text"
   type="button"
 >
   <span
@@ -114,7 +114,7 @@ exports[`EuiHeaderSectionItemButton renders notification as a dot 1`] = `
 
 exports[`EuiHeaderSectionItemButton renders notification color 1`] = `
 <button
-  class="euiButtonEmpty euiButtonEmpty--text euiHeaderSectionItemButton"
+  class="euiButtonEmpty euiHeaderSectionItemButton css-wvaqcf-empty-text"
   type="button"
 >
   <span

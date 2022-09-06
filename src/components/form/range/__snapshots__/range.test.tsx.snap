@@ -314,10 +314,10 @@ exports[`EuiRange props levels should render 1`] = `
 
 exports[`EuiRange props loading should display when showInput="inputWithPopover" 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiRange__popover"
+  class="euiPopover euiInputPopover euiRange__popover emotion-euiPopover-EuiInputPopover"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <div>
       <div
@@ -343,7 +343,7 @@ exports[`EuiRange props loading should display when showInput="inputWithPopover"
           >
             <span
               aria-label="Loading"
-              class="euiLoadingSpinner css-155ohbx-euiLoadingSpinner-m"
+              class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
               role="progressbar"
             />
           </div>
@@ -386,10 +386,10 @@ exports[`EuiRange props range should render 1`] = `
 
 exports[`EuiRange props slider should display in popover 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiRange__popover"
+  class="euiPopover euiInputPopover euiRange__popover emotion-euiPopover-EuiInputPopover"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <div>
       <div

@@ -6,11 +6,15 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
-import { mount } from 'enzyme';
-import { requiredProps, takeMountedSnapshot } from '../../test';
+import React, { ReactNode } from 'react';
+import { mount, render } from 'enzyme';
+import { requiredProps } from '../../test';
 
 import { EuiControlBar, Control } from './control_bar';
+
+jest.mock('../portal', () => ({
+  EuiPortal: ({ children }: { children: ReactNode }) => children,
+}));
 
 const handleClick = () => {
   console.log('You clicked');
@@ -65,10 +69,9 @@ const controls: Control[] = [
 
 describe('EuiControlBar', () => {
   test('is rendered', () => {
-    const component = takeMountedSnapshot(
-      mount(<EuiControlBar controls={controls} {...requiredProps} />)
+    const component = render(
+      <EuiControlBar controls={controls} {...requiredProps} />
     );
-
     expect(component).toMatchSnapshot();
   });
 
@@ -78,7 +81,7 @@ describe('EuiControlBar', () => {
         <EuiControlBar controls={controls} showOnMobile />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
 
     test('showContent is rendered', () => {
@@ -88,7 +91,7 @@ describe('EuiControlBar', () => {
         </EuiControlBar>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
 
     test('size is rendered', () => {
@@ -98,7 +101,7 @@ describe('EuiControlBar', () => {
         </EuiControlBar>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
 
     test('maxHeight is rendered', () => {
@@ -108,7 +111,7 @@ describe('EuiControlBar', () => {
         </EuiControlBar>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
 
     test('leftOffset is rendered', () => {
@@ -118,7 +121,7 @@ describe('EuiControlBar', () => {
         </EuiControlBar>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
 
     test('rightOffset is rendered', () => {
@@ -128,7 +131,7 @@ describe('EuiControlBar', () => {
         </EuiControlBar>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
 
     test('position is rendered', () => {
@@ -138,7 +141,7 @@ describe('EuiControlBar', () => {
         </EuiControlBar>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
   });
 });

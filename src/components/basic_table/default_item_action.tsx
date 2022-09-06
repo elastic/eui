@@ -11,8 +11,8 @@ import { isString } from '../../services/predicate';
 import {
   EuiButtonEmpty,
   EuiButtonIcon,
-  EuiButtonEmptyColor,
-  EuiButtonIconColor,
+  EuiButtonEmptyProps,
+  EuiButtonIconProps,
 } from '../button';
 import { EuiToolTip } from '../tool_tip';
 import { DefaultItemAction as Action } from './action_types';
@@ -43,7 +43,7 @@ export const DefaultItemAction = <T extends {}>({
   const onClick = action.onClick ? () => action.onClick!(item) : undefined;
 
   const buttonColor = action.color;
-  let color: EuiButtonIconColor = 'primary';
+  let color: EuiButtonIconProps['color'] = 'primary';
   if (buttonColor) {
     color = isString(buttonColor) ? buttonColor : buttonColor(item);
   }
@@ -88,7 +88,7 @@ export const DefaultItemAction = <T extends {}>({
         className={className}
         size="s"
         isDisabled={!enabled}
-        color={color as EuiButtonEmptyColor}
+        color={color as EuiButtonEmptyProps['color']}
         iconType={icon}
         onClick={onClick}
         href={action.href}

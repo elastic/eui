@@ -7,7 +7,7 @@ exports[`EuiStepNumber is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <span
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     Step 
   </span>
@@ -23,7 +23,7 @@ exports[`EuiStepNumber props has titleSize is rendered 1`] = `
   class="euiStepNumber"
 >
   <span
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     Step 1
   </span>
@@ -54,7 +54,7 @@ exports[`EuiStepNumber props status current is rendered 1`] = `
   class="euiStepNumber"
 >
   <span
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     Current step is 1
   </span>
@@ -85,7 +85,7 @@ exports[`EuiStepNumber props status disabled is rendered 1`] = `
   class="euiStepNumber euiStepNumber--disabled"
 >
   <span
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     Step 1 is disabled
   </span>
@@ -103,7 +103,7 @@ exports[`EuiStepNumber props status incomplete is rendered 1`] = `
   class="euiStepNumber euiStepNumber--incomplete"
 >
   <span
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     Step 1 is incomplete
   </span>
@@ -121,13 +121,13 @@ exports[`EuiStepNumber props status loading is rendered 1`] = `
   class="euiStepNumber euiStepNumber--loading"
 >
   <span
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     Step 1 is loading
   </span>
   <span
     aria-label="Loading"
-    class="euiLoadingSpinner euiStepNumber__loader css-1ow0yso-euiLoadingSpinner-xl"
+    class="euiLoadingSpinner euiStepNumber__loader emotion-euiLoadingSpinner-xl"
     role="progressbar"
   />
 </span>

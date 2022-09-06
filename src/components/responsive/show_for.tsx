@@ -6,14 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  ReactNode,
-  FunctionComponent,
-  useState,
-  useEffect,
-} from 'react';
-import { throttle } from '../../services';
-import { EuiBreakpointSize, getBreakpoint } from '../../services/breakpoint';
+import React, { ReactNode, FunctionComponent } from 'react';
+import { useCurrentEuiBreakpoint, EuiBreakpointSize } from '../../services';
 
 export type EuiShowForBreakpoints = EuiBreakpointSize;
 
@@ -33,31 +27,11 @@ export const EuiShowFor: FunctionComponent<EuiShowForProps> = ({
   children,
   sizes,
 }) => {
-  const [currentBreakpoint, setCurrentBreakpoint] = useState(
-    getBreakpoint(typeof window === 'undefined' ? -Infinity : window.innerWidth)
-  );
+  const currentBreakpoint = useCurrentEuiBreakpoint();
+  const isWithinBreakpointSizes =
+    currentBreakpoint && sizes.includes(currentBreakpoint);
 
-  const functionToCallOnWindowResize = throttle(() => {
-    const newBreakpoint = getBreakpoint(window.innerWidth);
-    if (newBreakpoint !== currentBreakpoint) {
-      setCurrentBreakpoint(newBreakpoint);
-    }
-    // reacts every 50ms to resize changes and always gets the final update
-  }, 50);
-
-  // Add window resize handlers
-  useEffect(() => {
-    window.addEventListener('resize', functionToCallOnWindowResize);
-
-    return () => {
-      window.removeEventListener('resize', functionToCallOnWindowResize);
-    };
-  }, [sizes, functionToCallOnWindowResize]);
-
-  if (
-    sizes === 'all' ||
-    sizes.includes(currentBreakpoint as EuiBreakpointSize)
-  ) {
+  if (sizes === 'all' || isWithinBreakpointSizes) {
     return <>{children}</>;
   }
 

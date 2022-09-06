@@ -30,6 +30,7 @@ export const fontScale: _EuiThemeFontScales = {
 export const fontBase: _EuiThemeFontBase = {
   family: "'Inter', BlinkMacSystemFont, Helvetica, Arial, sans-serif",
   familyCode: "'Roboto Mono', Menlo, Courier, monospace",
+  familySerif: 'Georgia, Times, Times New Roman, serif',
 
   // Careful using ligatures. Code editors like ACE will often error because of width calculations
   featureSettings: "'calt' 1, 'kern' 1, 'liga' 1",

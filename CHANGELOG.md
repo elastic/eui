@@ -1,3 +1,472 @@
+## [`66.0.0`](https://github.com/elastic/eui/tree/v66.0.0)
+
+- Added the `gutterSize` prop to `EuiDescriptionList` ([#6175](https://github.com/elastic/eui/pull/6175))
+- Added `tooltipText` as an optional prop on `EuiListGroupItem` ([#6186](https://github.com/elastic/eui/pull/6186))
+
+**Bug fixes**
+
+- Updated the `EuiHeaderSectionItem` to not render if empty ([#6158](https://github.com/elastic/eui/pull/6158))
+- Added memoization to `useEuiTheme`'s return value, supporting React's shallow prop comparison optimizations ([#6165](https://github.com/elastic/eui/pull/6165))
+- Fixed an `EuiPageSidebar` bug where inline styles were not correctly updating ([#6191](https://github.com/elastic/eui/pull/6191))
+
+**Breaking changes**
+
+- Removed `.euiIEFlexWrapFix` global className and `internetExplorerOnly()` Sass mixin, as IE is no longer a supported browser ([#6154](https://github.com/elastic/eui/pull/6154))
+- Removed all IE fixes/fallbacks in EUI CSS ([#6161](https://github.com/elastic/eui/pull/6161))
+- Removed all IE fixes/fallbacks in EUI JS ([#6162](https://github.com/elastic/eui/pull/6162))
+
+## [`65.0.2`](https://github.com/elastic/eui/tree/v65.0.2)
+
+**Bug fixes**
+
+- Fixed missing `EuiDataGrid` cell popover shadows in Safari ([#6163](https://github.com/elastic/eui/pull/6163))
+- Fixed a bug in some development environments which prevented `EuiIcon` from loading icons asynchronously ([#6166](https://github.com/elastic/eui/pull/6166))
+- Updated the build process to include json files, fixing imports from the @elastic/eui package ([#6172](https://github.com/elastic/eui/pull/6172))
+
+## [`65.0.1`](https://github.com/elastic/eui/tree/v65.0.1)
+
+**Note: this version contains a bug preventing its usage, fixed in `65.0.2`**
+
+**Bug fixes**
+
+- Fixed the text size of `EuiDescriptionListTitle` when `EuiDescriptionList` is compressed ([#6160](https://github.com/elastic/eui/pull/6160))
+
+## [`65.0.0`](https://github.com/elastic/eui/tree/v65.0.0)
+
+**Note: this version contains a bug preventing its usage, fixed in `65.0.2`**
+
+- Added `anchorProps` to allow passing more props to the anchoring wrapper in `EuiToolTip` and `EuiBetaBadge` ([#6110](https://github.com/elastic/eui/pull/6110))
+- Added an empty shade background color to `hollow` style `EuiBetaBadge` ([#6110](https://github.com/elastic/eui/pull/6110))
+- Changed design of select button in `selectable` `EuiCard`s ([#6110](https://github.com/elastic/eui/pull/6110))
+- Updated button `ghost` colors to be `colorMode = 'dark'` themed `text` buttons ([#6150](https://github.com/elastic/eui/pull/6150))
+- Renamed `ButtonColor` and `ButtonSize` types to prefixed versions `EuiButtonColor` and `EuiButtonSize` ([#6150](https://github.com/elastic/eui/pull/6150))
+
+**Deprecations**
+
+- Deprecated `ghost` color for `EuiButton`, `EuiButtonIcon`, `EuiButtonEmpty` ([#6150](https://github.com/elastic/eui/pull/6150))
+
+**Breaking changes**
+
+- Removed `EuiButtonIconColor` and `EuiButtonEmptyColor` types, use `EuiButtonIconProps['color']` and `EuiButtonEmptyProps['color']` instead ([#6150](https://github.com/elastic/eui/pull/6150))
+- Removed support for `ghost` color from `EuiButtonGroup` ([#6150](https://github.com/elastic/eui/pull/6150))
+
+**CSS-in-JS conversions**
+
+- Removed `euiHasBetaBadge()` Sass mixin ([#6110](https://github.com/elastic/eui/pull/6110))
+- Converted `EuiCard`, `EuiCheckableCard` to Emotion, removed `$euiCheckableCardPadding`, `$euiCardSpacing`, `$euiCardBottomNodeHeight`, `$euiCardSelectButtonBorders`, `$euiCardSelectButtonBackgrounds`, and `$euiCardPaddingModifiers` ([#6110](https://github.com/elastic/eui/pull/6110))
+- Converted `EuiButton` to Emotion ([#6150](https://github.com/elastic/eui/pull/6150))
+- Converted color styles of `EuiButtonIcon`, `EuiButtonEmpty`, `EuiButtonGroup` ([#6150](https://github.com/elastic/eui/pull/6150))
+
+## [`64.0.1`](https://github.com/elastic/eui/tree/v64.0.1)
+
+**Bug fixes**
+
+- Fixed `CollapsedItemActions` ref callback not accounting for `null` value ([#6145](https://github.com/elastic/eui/pull/6145))
+
+**CSS-in-JS conversions**
+
+- Added `logicalCSSWithFallback()` utility for logical properties without full browser support ([#6124](https://github.com/elastic/eui/pull/6124))
+- Converted `euiFullHeight()` Sass mixin to Emotion  ([#6124](https://github.com/elastic/eui/pull/6124))
+- Converted all global CSS utility classes to Emotion ([#6124](https://github.com/elastic/eui/pull/6124))
+
+## [`64.0.0`](https://github.com/elastic/eui/tree/v64.0.0)
+
+- Added `onPositionChange` callback prop to `EuiPopover` for when the popover positon changes ([#6087](https://github.com/elastic/eui/pull/6087))
+- Added `isDisabled` prop to `EuiAccordion` ([#6095](https://github.com/elastic/eui/pull/6095))
+- Added `css` prop to `CommonProps` interface ([#6118](https://github.com/elastic/eui/pull/6118))
+- Added new `useIsWithinMaxBreakpoint` and `useIsWithinMinBreakpoint` service hooks ([#6119](https://github.com/elastic/eui/pull/6119))
+
+**Bug fixes**
+
+- Fixed the `steps` prop type for `useEuiTour` to not require `onFinish` ([#6087](https://github.com/elastic/eui/pull/6087))
+- Fixed JS breakpoint hooks (`useCurrentEuiBreakpoint`, `useIsWithinBreakpoints`, and `euiBreakpoint`) to correctly handle custom theme breakpoint keys ([#6111](https://github.com/elastic/eui/pull/6111))
+- Fixed `:first-child/:nth-child` console warnings for consumers not passing in a `cache` to `EuiProvider` ([#6126](https://github.com/elastic/eui/pull/6126))
+- Fixed `EuiScreenReaderLive` double announcements on VO when `focusRegionOnTextChange` is not set ([#6133](https://github.com/elastic/eui/pull/6133))
+- Fixed `onBlur` and `onFocus` handlers from `EuiDatePickerRange` being incorrectly applied to wrapping element rather than the start/end control datepickers. ([#6136](https://github.com/elastic/eui/pull/6136))
+- Fixed missing `data-fixed-headers` property in some layout configurations using `EuiPageTemplate`. ([#6140](https://github.com/elastic/eui/pull/6140))
+- Fixed `EuiAspectRatio` sometimes incorrectly inheriting its height from parent containers as opposed to from its aspect ratio ([#6141](https://github.com/elastic/eui/pull/6141))
+- Fixed `EuiAspectRatio` to allow custom `style`s to be passed by consumers ([#6141](https://github.com/elastic/eui/pull/6141))
+- Fixed `eui.d.ts` containing `@testing-library` type definitions ([#6142](https://github.com/elastic/eui/pull/6142))
+
+**Breaking changes**
+
+- Removed `getBreakpoint`. Use `useCurrentEuiBreakpoint` instead ([#6119](https://github.com/elastic/eui/pull/6119))
+- Removed `BREAKPOINTS` and `BREAKPOINT_KEYS`. Use `euiTheme.breakpoint` instead ([#6119](https://github.com/elastic/eui/pull/6119))
+- Removed `isWithinBreakpoints`. Use `useIsWithinBreakpoints` instead ([#6119](https://github.com/elastic/eui/pull/6119))
+- Removed `isWithinMaxBreakpoint`. Use `useIsWithinMaxBreakpoint` instead ([#6119](https://github.com/elastic/eui/pull/6119))
+- Removed `isWithinMinBreakpoint`. Use `useIsWithinMinBreakpoint` instead ([#6119](https://github.com/elastic/eui/pull/6119))
+- `EuiFlyout` now only accepts a named breakpoint size for its `pushMinBreakpoint` prop ([#6119](https://github.com/elastic/eui/pull/6119))
+- `EuiCollapsibleNav` now only accepts a named breakpoint size for its `dockedBreakpoint` prop ([#6119](https://github.com/elastic/eui/pull/6119))
+- `@emotion/cache` is now a required peer dependency, alongside `@emotion/react` ([#6126](https://github.com/elastic/eui/pull/6126))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiTour` to Emotion ([#6087](https://github.com/elastic/eui/pull/6087))
+
+## [`63.0.6`](https://github.com/elastic/eui/tree/v63.0.6)
+
+**Note: this release is a backport containing changes originally made in `66.1.0`**
+
+- Added a new `component` prop to `EuiPageSection`, allowing overriding of the default `section` tag ([#6192](https://github.com/elastic/eui/pull/6192))
+
+**Deprecations**
+
+- Added `@deprecated` flags to `EuiPageContent_Deprecated`, `EuiPageContentBody_Deprecated`, `EuiPageContentHeader_Deprecated`, `EuiPageContentHeaderSection_Deprecated`, `EuiPageSideBar_Deprecated` and `EuiPageTemplate_Deprecated`, which will provide helpful hints to IDEs that support jsdoc flags. Consumers will have until August 2023 to migrate from these deprecated components. ([#6194](https://github.com/elastic/eui/pull/6194))
+
+## [`63.0.5`](https://github.com/elastic/eui/tree/v63.0.5)
+
+**Note: this release is a backport containing changes originally made in `64.0.0`**
+
+**Bug fixes**
+
+- Fixed missing `data-fixed-headers` property in some layout configurations using `EuiPageTemplate`. ([#6140](https://github.com/elastic/eui/pull/6140))
+- Fixed an `EuiPageSidebar` bug where inline styles were not correctly updating ([#6191](https://github.com/elastic/eui/pull/6191))
+
+## [`63.0.4`](https://github.com/elastic/eui/tree/v63.0.4)
+
+**Note: this release is a backport containing changes originally made in `65.0.1`**
+
+**Bug fixes**
+
+- Fixed the text size of `EuiDescriptionListTitle` when `EuiDescriptionList` is compressed ([#6160](https://github.com/elastic/eui/pull/6160))
+
+## [`63.0.3`](https://github.com/elastic/eui/tree/v63.0.3)
+
+**Note: this release is a backport containing changes originally made in `64.0.1`**
+
+**Bug fixes**
+
+- Fixed `CollapsedItemActions` ref callback not accounting for `null` value ([#6145](https://github.com/elastic/eui/pull/6145))
+
+## [`63.0.2`](https://github.com/elastic/eui/tree/v63.0.2)
+
+**Note: this release is a backport containing changes originally made in `64.0.0`**
+
+**Bug fixes**
+
+- Fixed `eui.d.ts` containing `@testing-library` type definitions ([#6142](https://github.com/elastic/eui/pull/6142))
+
+## [`63.0.1`](https://github.com/elastic/eui/tree/v63.0.1)
+
+**Bug fixes**
+
+- Fixed server-side rendering and test-env errors caused by `useCurrentEuiBreakpoint` ([#6117](https://github.com/elastic/eui/pull/6117))
+
+## [`63.0.0`](https://github.com/elastic/eui/tree/v63.0.0)
+
+- Added new `EuiPageTemplate` namespaced component that uses context to pass through props ([#5768](https://github.com/elastic/eui/pull/5768))
+- Added `EuiPageSection` component for easier section stacking ([#5768](https://github.com/elastic/eui/pull/5768))
+- Added `EuiPageSidebar` component that is an upgrade to `EuiPageSideBar` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Extended `bottomBorder` prop to add `'extended'` on `EuiPageHeader` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Added `paddingSize` and `restrictWidth` directly on `EuiPageHeaderContent` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Added `data-fixed-headers` attribute to `<body>` with the count of fixed `EuiHeader` components ([#5768](https://github.com/elastic/eui/pull/5768))
+- Extended `usePortal` prop on `EuiBottomBar` to accept `EuiPortalProps` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Increased `paddingSize` support by `EuiPage` for `xl` and `xs` sizes ([#5768](https://github.com/elastic/eui/pull/5768))
+- Moved `restrictWidth` default `true` style to `style` attribute on `EuiPage` and `EuiPageBody` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Added optional `height` parameter to `euiYScroll()`, `useEuiYScroll`, `euiYScrollWithShadows()`, and `useEuiYScrollWithShadows` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Added `repositionOnScroll` directly to `EuiPopover` rendered by mobile version of `EuiHeaderLinks` ([#5768](https://github.com/elastic/eui/pull/5768))
+
+**Bug fixes**
+
+- Fixed missing render of `breadcrumbs` on `EuiPageHeader` when `alignItems = 'top'` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Fixed `logicalStyle()` to return the same value type as was passed in (instead of converting to string) ([#5768](https://github.com/elastic/eui/pull/5768))
+
+**Deprecations**
+
+- Deprecated the old `EuiPageTemplate` component and renamed to `EuiPageTemplate_Deprecated` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Deprecated `EuiPageContent` and `EuiPageContentBody` in favor of new `EuiPageSection` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Deprecated `EuiPageContent` and renamed to `EuiPageContent_Deprecated` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Deprecated `EuiPageContentBody` and renamed to `EuiPageContentBody_Deprecated` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Deprecated `EuiPageContentHeader` and renamed to `EuiPageContentHeader_Deprecated` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Deprecated `EuiPageContentHeaderSection` and renamed to `EuiPageContentHeaderSection_Deprecated` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Deprecated `EuiPageSideBar` and renamed to `EuiPageSideBar_Deprecated` ([#5768](https://github.com/elastic/eui/pull/5768))
+
+**Breaking changes**
+
+- Removed nested `EuiPageHeader` styles when a child of `EuiPageBody` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Changed default `paddingSize` of `EuiPage` from `m` to `none` ([#5768](https://github.com/elastic/eui/pull/5768))
+
+**CSS-in-JS conversion**
+
+- Converted `EuiPage` and `EuiPageBody` to Emotion ([#5768](https://github.com/elastic/eui/pull/5768))
+- Converted `EuiPageHeader` and `EuiPageHeaderContent` to Emotion ([#5768](https://github.com/elastic/eui/pull/5768))
+- Removed `euiPageRestrictWidth()` Sass mixin ([#5768](https://github.com/elastic/eui/pull/5768))
+
+## [`62.2.4`](https://github.com/elastic/eui/tree/v62.2.4)
+
+**Note: this release is a backport containing changes originally made in `65.0.1`**
+
+**Bug fixes**
+
+- Fixed the text size of `EuiDescriptionListTitle` when `EuiDescriptionList` is compressed ([#6160](https://github.com/elastic/eui/pull/6160))
+
+## [`62.2.3`](https://github.com/elastic/eui/tree/v62.2.3)
+
+**Note: this release is a backport containing changes originally made in `64.0.1`**
+
+**Bug fixes**
+
+- Fixed `CollapsedItemActions` ref callback not accounting for `null` value ([#6145](https://github.com/elastic/eui/pull/6145))
+
+## [`62.2.2`](https://github.com/elastic/eui/tree/v62.2.2)
+
+**Note: this release is a backport containing changes originally made in `64.0.0`**
+
+**Bug fixes**
+
+- Fixed `eui.d.ts` containing `@testing-library` type definitions ([#6142](https://github.com/elastic/eui/pull/6142))
+
+## [`62.2.1`](https://github.com/elastic/eui/tree/v62.2.1)
+
+**Note: this release is a backport containing changes originally made in `63.0.1`**
+
+**Bug fixes**
+
+- Fixed server-side rendering and test-env errors caused by `useCurrentEuiBreakpoint` ([#6117](https://github.com/elastic/eui/pull/6117))
+
+## [`62.2.0`](https://github.com/elastic/eui/tree/v62.2.0)
+
+- The `EuiDataGrid`'s `rowHeightOptions` now contain an optional `scrollAnchorRow` property, which enables vertical layout shift compensation when rendering `auto`-sized rows. ([#6070](https://github.com/elastic/eui/pull/6070))
+- Added new React Testing Library EuiToolTip helpers, `waitForEuiToolTipVisible` and `waitForEuiToolTipClose` ([#6106](https://github.com/elastic/eui/pull/6106))
+
+**Bug fixes**
+
+- Fixed EuiPortal changes causing rerender issues in test environments ([#6105](https://github.com/elastic/eui/pull/6105))
+
+## [`62.1.0`](https://github.com/elastic/eui/tree/v62.1.0)
+
+- Updated `tokenFile`, `tokenSymbol` and `tokenRepo` default shapes to `square` instead of `rectangle` ([#6067](https://github.com/elastic/eui/pull/6067))
+- Updated `EuiGlobalToastList` to be a function component ([#6068](https://github.com/elastic/eui/pull/6068))
+- Added new `useCurrentEuiBreakpoint` hook, which returns the current browser window width as a named EUI breakpoint size (e.g. `xl`) ([#6079](https://github.com/elastic/eui/pull/6079))
+
+**Bug fixes**
+
+- Fixed unintentional subcomponent remounting in `EuiCodeBlock` during rerenders ([#6077](https://github.com/elastic/eui/pull/6077))
+- Fixed `useIsWithinBreakpoints` hook not correctly respecting consumer theme breakpoint overrides ([#6079](https://github.com/elastic/eui/pull/6079))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiBreadcrumbs` and `EuiHeaderBreadcrumbs` to Emotion; removed `$euiBreadcrumbSpacing` and `$euiBreadcrumbTruncateWidth` ([#5934](https://github.com/elastic/eui/pull/5934))
+- Converted `EuiDescriptionList` to Emotion ([#5971](https://github.com/elastic/eui/pull/5971))
+- Converted `EuiToken` to Emotion ([#6067](https://github.com/elastic/eui/pull/6067))
+- Converted `EuiToast`, `EuiGlobalToastList`, and `EuiGlobalToastListItem` to Emotion ([#6068](https://github.com/elastic/eui/pull/6068))
+- Moved `.euiBody-hasPortalContent` styles that used to live in `_portal.scss` to Emotion `EuiGlobalStyles` ([#6075](https://github.com/elastic/eui/pull/6075))
+
+## [`62.0.3`](https://github.com/elastic/eui/tree/v62.0.3)
+
+**Bug fixes**
+
+- Fixed EuiPortal changes causing rerender issues in test environments ([#6105](https://github.com/elastic/eui/pull/6105))
+
+## [`62.0.2`](https://github.com/elastic/eui/tree/v62.0.2)
+
+- Added new React Testing Library `ByDataTestSubj` utilities for targeting EUI's `data-test-subj` attributes. These can be accessed by importing custom RTL `render` and `screen` utils from `@elastic/eui/lib/test/rtl`. ([#6091](https://github.com/elastic/eui/pull/6091))
+- Added new React Testing Library EuiPopover helpers, `waitForEuiPopoverOpen` and `waitForEuiPopoverClose` ([#6091](https://github.com/elastic/eui/pull/6091))
+
+**Bug fixes**
+
+- Restored non-Emotion classNames to `EuiCommentEvent`'s children ([#6089](https://github.com/elastic/eui/pull/6089))
+
+## [`62.0.1`](https://github.com/elastic/eui/tree/v62.0.1)
+
+**Bug fixes**
+
+- Fixed a bug preventing `EuiPortal` from working in server-side rendering ([#6055](https://github.com/elastic/eui/pull/6055))
+- Fixed an `EuiFilterButton` accessibility error ([#6076](https://github.com/elastic/eui/pull/6076))
+- Fixed `EuiImage` rendering empty captions  ([#6081](https://github.com/elastic/eui/pull/6081))
+- Fixed `EuiImage` not respecting `text-align` on parents ([#6081](https://github.com/elastic/eui/pull/6081))
+
+## [`62.0.0`](https://github.com/elastic/eui/tree/v62.0.0)
+
+- Updated `EuiText.img` styles to prevent images from growing full width ([#5969](https://github.com/elastic/eui/pull/5969))
+- Improved `EuiImage`'s `allowFullScreen` screen reader experience ([#5969](https://github.com/elastic/eui/pull/5969))
+- Updated `EuiImage`'s full screen mode to use the `fullScreenExit` icon ([#5969](https://github.com/elastic/eui/pull/5969))
+- Updated `EuiPopover`'s `display` prop to accept any CSS `display` value ([#5977](https://github.com/elastic/eui/pull/5977))
+- Added `data-popover-open` attribute to `EuiPopover`'s panel ([#5977](https://github.com/elastic/eui/pull/5977))
+- Changed `EuiPopover`'s `box-shadow` to `filter` ([#5977](https://github.com/elastic/eui/pull/5977))
+- Added `logicalSizeCSS` and `logicalSizeStyle` for quickly producing `width` and `height` styles ([#5977](https://github.com/elastic/eui/pull/5977))
+- Increased the opacity of the shadow color in dark mode ([#5977](https://github.com/elastic/eui/pull/5977))
+- Improved screen reader accessibility for `EuiDataGrid` column headers ([#6034](https://github.com/elastic/eui/pull/6034))
+- Added `tokenMetricCounter` and `tokenMetricGauge` to `EuiToken` ([#6064](https://github.com/elastic/eui/pull/6064))
+- Removed the nested `aria-label` on the `EuiAvatar` icon to simplify a11y ([#6071](https://github.com/elastic/eui/pull/6071))
+- Added `timelineAvatarAriaLabel` to `EuiComment` ([#6071](https://github.com/elastic/eui/pull/6071))
+
+**Bug fixes**
+
+- Reverted the change `EuiCommentEvent.username` type from `ReactNode` to `string` ([#6071](https://github.com/elastic/eui/pull/6071))
+- Fixed searchable single selection `EuiSelectable`s not correctly highlighting the checked option on initial render ([#6072](https://github.com/elastic/eui/pull/6072))
+
+**Breaking changes**
+
+- Updated `EuiImage.className` to be applied to the `img` instead of the parent wrapper `figure` and added `wrapperProps` prop so that consumers can apply props to the `figure` element ([#5969](https://github.com/elastic/eui/pull/5969))
+- Renamed `EuiPopover`'s `display` prop value `inlineBlock` to `inline-block` ([#5977](https://github.com/elastic/eui/pull/5977))
+- `EuiPopover`: Removed `false` as an option from `initialFocus` ([#6044](https://github.com/elastic/eui/pull/6044))
+- Renamed `timelineIcon` on `EuiComment` to `timelineAvatar` ([#6071](https://github.com/elastic/eui/pull/6071))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiErrorBoundary` to Emotion ([#6053](https://github.com/elastic/eui/pull/6053))
+- Converted `EuiTextDiff` to Emotion ([#6056](https://github.com/elastic/eui/pull/6056))
+- Converted `euiBreakpoint` mixin to Emotion. ([#6057](https://github.com/elastic/eui/pull/6057))
+- Converted `EuiImage` to Emotion ([#5969](https://github.com/elastic/eui/pull/5969))
+- Converted `EuiPopover`, `EuiPopoverTitle`, `EuiPopoverFooter`, `EuiInputPopover` ([#5977](https://github.com/elastic/eui/pull/5977))
+
+## [`61.0.0`](https://github.com/elastic/eui/tree/v61.0.0)
+
+- Added `eventIcon`, `eventIconAriaLabel`, and `eventColor` props to `EuiComment` ([#6030](https://github.com/elastic/eui/pull/6030))
+- Updated `EuiComment.actions` type to accept `ReactNode[]` ([#6030](https://github.com/elastic/eui/pull/6030))
+- Updated `.euiMarkdownEditor` display to `flex` to prevent display issues when the markdown editor is inside a `EuiComment` ([#6030](https://github.com/elastic/eui/pull/6030))
+- Added styles for `kbd`'s within `EuiText` ([#6049](https://github.com/elastic/eui/pull/6049))
+- Added `keyboard` glyph to `EuiIcon` ([#6058](https://github.com/elastic/eui/pull/6058))
+
+**Bug fixes**
+
+- Fixed bug in `EuiTimelineItem` where `className`s were not being applied ([#6030](https://github.com/elastic/eui/pull/6030))
+- Fixed multiple missing CSS logical properties within `EuiText` children ([#6059](https://github.com/elastic/eui/pull/6059))
+
+**Deprecations**
+
+- Deprecated `EuiIcon`'s `keyboardShortcut` in favor of `keyboard` ([#6058](https://github.com/elastic/eui/pull/6058))
+
+**Breaking changes**
+
+- Changed `EuiCommentEvent.username` type from `ReactNode` to `string` ([#6030](https://github.com/elastic/eui/pull/6030))
+- Updated `EuiCommentList` and `EuiComment` to use `EuiTimeline` and `EuiTimelineItem` respectively. This change makes the `EuiCommentList` to be always required ([#6030](https://github.com/elastic/eui/pull/6030))
+- Removed `EuiComment.type` ([#6030](https://github.com/elastic/eui/pull/6030))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiComment` to Emotion ([#6030](https://github.com/elastic/eui/pull/6030))
+
+## [`60.3.0`](https://github.com/elastic/eui/tree/v60.3.0)
+
+- `EuiDataGrid`'s imperative API now exposes the `scrollTo` and `scrollToItem` APIs of `react-window`. ([#6042](https://github.com/elastic/eui/pull/6042))
+
+**Bug fixes**
+
+- Fixed drag and drop interactions on EuiAccordion elements ([#6031](https://github.com/elastic/eui/pull/6031))
+- Fixed `EuiDataGrid`'s row count/indices announced to screen readers when virtualized ([#6033](https://github.com/elastic/eui/pull/6033))
+- Fixed `EuiDataGrid`'s current cell row/column position announced to screen readers when sorted and paginated, and also improved column identification and announcement cadence ([#6033](https://github.com/elastic/eui/pull/6033))
+- Fixed `EuiContextMenuPanelDescriptor`'s `width` prop type to correctly reflect that it allows all CSS width values, not just numbers ([#6043](https://github.com/elastic/eui/pull/6043))
+- Fixed `EuiSelectable` onChange keyboard events not being correctly passed back on React v16 ([#6045](https://github.com/elastic/eui/pull/6045))
+
+## [`60.2.0`](https://github.com/elastic/eui/tree/v60.2.0)
+
+- Added `cluster`,  `container`, `kubernetesNode`, `kubernetesPod` and `namespace` glyphs to `EuiIcon` ([#6001](https://github.com/elastic/eui/pull/6001))
+- Added a default `title` to `EuiDataGrid`'s column headers, allowing header text to remain visible if truncated due to column widths ([#6013](https://github.com/elastic/eui/pull/6013))
+- Added a `popoverScreenReaderText` prop to `EuiPopover` that allows customizing screen reader instructions when a popover first opens ([#6017](https://github.com/elastic/eui/pull/6017))
+- Enhanced `EuiDataGrid`'s column header actions popover to be keyboard navigable via up/down arrow keys ([#6017](https://github.com/elastic/eui/pull/6017))
+- `EuiDataGrid` now accepts a `virtualizationOptions.onItemsRendered` callback, as well as `virtualizationOptions.className` ([#6019](https://github.com/elastic/eui/pull/6019))
+
+**Bug fixes**
+
+- Fixed the focus context of `EuiDataGrid` to ensure that focusedCell maintains it's referential integrity. This ensures that React hooks can use this safely as a dependency. ([#6007](https://github.com/elastic/eui/pull/6007))
+- Fixed buggy `EuiDataGrid` column header display on sorted columns with no actions ([#6014](https://github.com/elastic/eui/pull/6014))
+- Fixed `EuiPopover` unintentionally passing the `offset` prop as an HTML attribute to its div wrapper ([#6017](https://github.com/elastic/eui/pull/6017))
+- Fixed `EuiDataGrid` focus/scroll jumping occurring when the first interaction the user had with the grid was the scrollbar(s) ([#6018](https://github.com/elastic/eui/pull/6018))
+
+## [`60.1.2`](https://github.com/elastic/eui/tree/v60.1.2)
+
+**Bug fixes**
+
+- Fixed EuiSelectable's `onChange` callback not passing back a persisted event on React 16 ([#6026](https://github.com/elastic/eui/pull/6026))
+- Fixed `EuiText` not correctly inheriting `className`s when both the `color` and `textAlign` props were passed ([#6027](https://github.com/elastic/eui/pull/6027))
+
+## [`60.1.1`](https://github.com/elastic/eui/tree/v60.1.1)
+
+**Bug fixes**
+
+Fixed issue with `EuiPanel` where the `Emotion` styles were not being passed when it was rendered as a button ([#6010](https://github.com/elastic/eui/pull/6010))
+
+## [`60.1.0`](https://github.com/elastic/eui/tree/v60.1.0)
+
+- Added `focusRegionOnTextChange` prop to `EuiScreenReaderLive` ([#5995](https://github.com/elastic/eui/pull/5995))
+- Enhanced `EuiSkipLink`'s `overrideLinkBehavior` scroll and focus UX ([#5996](https://github.com/elastic/eui/pull/5996))
+
+**Bug fixes**
+
+- Fixed `EuiAccordion` props type not being correctly inferred ([#5974](https://github.com/elastic/eui/pull/5974))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiScreenReaderOnly` to Emotion ([#5846](https://github.com/elastic/eui/pull/5846))
+- Converted `EuiIcon` to Emotion; removed `$euiIconLoadingOpacity`, `$euiIconColors`, and `$euiIconSizes` ([#5967](https://github.com/elastic/eui/pull/5967))
+- Converted `EuiProgress` to Emotion and removed `$euiProgressColors` and `$euiProgressSizes` ([#5986](https://github.com/elastic/eui/pull/5986))
+
+## [`60.0.0`](https://github.com/elastic/eui/tree/v60.0.0)
+
+- Added configuration options to `EuiProvider.cache` to enable more granular style insertion ([#5853](https://github.com/elastic/eui/pull/5853))
+- Added a utility classes component ([#5853](https://github.com/elastic/eui/pull/5853))
+- Added utility classes configuration options to `EuiProvider` ([#5853](https://github.com/elastic/eui/pull/5853))
+- Added `gutterSize` prop to `EuiTimeline` ([#5955](https://github.com/elastic/eui/pull/5955))
+- Added optional `onActiveOptionChange` callback to `EuiSelectable` ([#5978](https://github.com/elastic/eui/pull/5978))
+
+**Bug fixes**
+
+- Fixed bug in `EuiTimelineItem` where the vertical line was not showing on the last item when `verticalAlign` was set to `center` ([#5955](https://github.com/elastic/eui/pull/5955))
+- Fixed bug in `logicalCSS()` where the left and right `logicalPosition`s were wrong ([#5955](https://github.com/elastic/eui/pull/5955))
+- Fixed a maximum call stack error in `EuiComboBox` when an option group contains hundreds of thousands of options ([#5976](https://github.com/elastic/eui/pull/5976))
+
+**Breaking changes**
+
+- Removed `component` prop from `EuiTimelineItem`, which now defaults to `li`. Consequently, a `EuiTimeline` (`ol`) is required to wrap the timeline items ([#5955](https://github.com/elastic/eui/pull/5955))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiStat` to Emotion ([#5968](https://github.com/elastic/eui/pull/5968))
+
+## [`59.1.0`](https://github.com/elastic/eui/tree/v59.1.0)
+
+- Added new `color` prop to `EuiLoadingSpinner` ([#5878](https://github.com/elastic/eui/pull/5878))
+- Added the `overrideLinkBehavior` prop to `EuiSkipLink` for applications that use hash routers ([#5957](https://github.com/elastic/eui/pull/5957))
+
+**Bug fixes**
+
+- Fixed `EuiSelectableMessage` flex layout when containing multiple children nodes ([#5966](https://github.com/elastic/eui/pull/5966))
+- Fixed export location of JS based shadow mixins ([#5970](https://github.com/elastic/eui/pull/5970))
+
+**CSS-in-JS**
+
+- Converted `EuiFacetGroup` and `EuiFacetButton` to Emotion and removed `$euiFacetGutterSizes` ([#5878](https://github.com/elastic/eui/pull/5878))
+
+## [`59.0.1`](https://github.com/elastic/eui/tree/v59.0.1)
+
+**Bug fixes**
+
+- Fixed custom styles from being overridden in `EuiText` and `EuiTextColor` ([#5960](https://github.com/elastic/eui/pull/5960))
+- Fixed `EuiCallOut` from consuming all available vertical height with `flex-grow` ([#5963](https://github.com/elastic/eui/pull/5963))
+
+## [`59.0.0`](https://github.com/elastic/eui/tree/v59.0.0)
+
+- Added a new optional `cloneElement` prop to `EuiTextAlign` and `EuiTextColor` ([#5895](https://github.com/elastic/eui/pull/5895))
+- Added all `border` logical properties to the `logicalCSS` utility ([#5895](https://github.com/elastic/eui/pull/5895))
+- Added `euiTheme.font.familySerif` ([#5895](https://github.com/elastic/eui/pull/5895))
+- Updated API pattern for style mixin functions ([#5904](https://github.com/elastic/eui/pull/5904))
+- Added `isInvalid` and `disabled` as top level props on `EuiDatePickerRange` ([#5918](https://github.com/elastic/eui/pull/5918))
+- Updated `EuiDatePickerRange` delimiter to a `sortRight` icon which is swapped for `alert` when `isInvalid` ([#5918](https://github.com/elastic/eui/pull/5918))
+- Updated `isInvalid` and `disabled` visual states `EuiSuperDatePicker` ([#5918](https://github.com/elastic/eui/pull/5918))
+- Added the click/keydown event as an argument to `EuiSelectable`/`EuiSelectableTemplateSitewide`'s `onChange` prop ([#5926](https://github.com/elastic/eui/pull/5926))
+- Updated `euiTheme.colors.lightestShade` to be slightly less blue and `euiTheme.colors.body` to be slightly darker ([#5939](https://github.com/elastic/eui/pull/5939))
+- Updated `euiBackgroundColor()` to accept an optional `method` property ([#5939](https://github.com/elastic/eui/pull/5939))
+- Removed duplicated yarn.lock dependencies ([#5947](https://github.com/elastic/eui/pull/5947))
+
+**Bug fixes**
+
+- Fixed visual indicator of invalid `EuiDatePickerRange` and `EuiSuperDatePicker` ([#5918](https://github.com/elastic/eui/pull/5918))
+Fixed `EuiCollapsibleNavGroup` TypeScript error where `title` definition was being overridden by an extended `div` element ([#5935](https://github.com/elastic/eui/pull/5935))
+- Fixed `EuiGlobalToastList`/`EuiToast`s disappearing immediately when given an Infinity timeout ([#5954](https://github.com/elastic/eui/pull/5954))
+
+**Breaking changes**
+
+- Renamed `euiTheme.colors.subdued` to `euiTheme.colors.subduedText` ([#5895](https://github.com/elastic/eui/pull/5895))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiText`, `EuiTextAlign`, and `EuiTextColor`, and removed their corresponding CSS modifier classes ([#5895](https://github.com/elastic/eui/pull/5895))
+- Partially converted `EuiMarkdownFormat`'s text size scaling styles ([#5895](https://github.com/elastic/eui/pull/5895))
+- Removed `$euiTextColors`, `euiScaleText()`, and `$euiTextConstrainedMaxWidth` Sass utilities ([#5895](https://github.com/elastic/eui/pull/5895))
+- Converted `EuiExpression` to Emotion ([#5941](https://github.com/elastic/eui/pull/5941))
+
 ## [`58.1.1`](https://github.com/elastic/eui/tree/v58.1.1)
 
 **Bug fixes**

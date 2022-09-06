@@ -1,9 +1,51 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiDescriptionListDescription EuiDescriptionListDescription prop variations align center alignment is rendered 1`] = `
+<dd
+  class="euiDescriptionList__description emotion-euiDescriptionList__description-row-normal"
+/>
+`;
+
+exports[`EuiDescriptionListDescription EuiDescriptionListDescription prop variations compressed is rendered 1`] = `
+<dd
+  class="euiDescriptionList__description emotion-euiDescriptionList__description-row-normal"
+/>
+`;
+
+exports[`EuiDescriptionListDescription EuiDescriptionListDescription prop variations text styles reversed text is rendered 1`] = `
+<dd
+  class="euiDescriptionList__description emotion-euiDescriptionList__description-row-reverse"
+/>
+`;
+
+exports[`EuiDescriptionListDescription EuiDescriptionListDescription prop variations type column is rendered 1`] = `
+<dd
+  class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-m"
+/>
+`;
+
+exports[`EuiDescriptionListDescription EuiDescriptionListDescription prop variations type inline is rendered 1`] = `
+<dd
+  class="euiDescriptionList__description emotion-euiDescriptionList__description-inline-normal"
+/>
+`;
+
+exports[`EuiDescriptionListDescription EuiDescriptionListDescription prop variations type responsiveColumn is rendered 1`] = `
+<dd
+  class="euiDescriptionList__description emotion-euiDescriptionList__description-responsiveColumn-normal-m"
+/>
+`;
+
+exports[`EuiDescriptionListDescription EuiDescriptionListDescription prop variations type row is rendered 1`] = `
+<dd
+  class="euiDescriptionList__description emotion-euiDescriptionList__description-row-normal"
+/>
+`;
+
 exports[`EuiDescriptionListDescription is rendered 1`] = `
 <dd
   aria-label="aria-label"
-  class="euiDescriptionList__description testClass1 testClass2"
+  class="euiDescriptionList__description testClass1 testClass2 emotion-euiDescriptionList__description-row-normal"
   data-test-subj="test subject string"
 >
   Content

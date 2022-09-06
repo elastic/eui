@@ -17,13 +17,13 @@ import { useEuiTheme } from '../../services';
 import {
   useEuiBackgroundColorCSS,
   useEuiPaddingCSS,
-  EuiBackgroundColor,
+  _EuiBackgroundColor,
   EuiPaddingSize,
   BACKGROUND_COLORS,
   PADDING_SIZES,
 } from '../../global_styling';
 import { CommonProps, ExclusiveUnion, keysOf } from '../common';
-import { euiPanelStyles } from './panel.style';
+import { euiPanelStyles } from './panel.styles';
 
 export const SIZES = PADDING_SIZES;
 
@@ -44,7 +44,7 @@ export const BORDER_RADII = ['none', 'm'] as const;
 export type PanelBorderRadius = typeof BORDER_RADII[number];
 
 export const COLORS = BACKGROUND_COLORS;
-export type PanelColor = EuiBackgroundColor;
+export type PanelColor = _EuiBackgroundColor;
 
 export interface _EuiPanelProps extends CommonProps {
   /**
@@ -140,6 +140,7 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
       <button
         ref={panelRef as Ref<HTMLButtonElement>}
         className={classes}
+        css={cssStyles}
         {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}
       >
         {children}

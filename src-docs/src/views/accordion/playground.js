@@ -21,6 +21,11 @@ export const accordionConfig = () => {
     type: PropTypes.String,
   };
 
+  propsToUse.buttonElement = {
+    ...propsToUse.buttonElement,
+    defaultValue: 'button',
+  };
+
   propsToUse.id = {
     ...propsToUse.id,
     value: htmlIdGenerator('generated')(),

@@ -105,7 +105,7 @@
 
 .euiControlBar__breadcrumbs {
   .euiBreadcrumb {
-    &:not(.euiBreadcrumb--last) .euiBreadcrumb__content {
+    &:not(:last-of-type) .euiBreadcrumb__content {
       color: makeHighContrastColor($euiTextSubduedColor, $euiControlBarBackground);
     }
 
@@ -173,16 +173,12 @@
       color: $euiColorGhost;
     }
 
-    .euiControlBar__button.euiButton--#{$colorName}:enabled {
-      box-shadow: none;
-    }
-
-    .euiControlBar__button.euiButton--#{$colorName}:enabled:not(.euiButton--fill) {
+    .euiControlBar__button.euiButton[class*='#{$colorName}']:enabled:not(.euiButton--fill) {
       color: makeHighContrastColor($colorValue, $euiControlBarBackground);
       border-color: makeHighContrastColor($colorValue, $euiControlBarBackground);
     }
 
-    .euiButtonIcon--#{$colorName} {
+    .euiButtonIcon[class*='#{$colorName}'] {
       color: makeHighContrastColor($colorValue, $euiControlBarBackground);
     }
   }

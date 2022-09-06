@@ -3,17 +3,17 @@
 exports[`EuiExpression props color accent is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiExpression testClass1 testClass2 euiExpression-isUppercase euiExpression--accent"
+  class="euiExpression testClass1 testClass2 emotion-euiExpression-accent"
   data-test-subj="test subject string"
 >
   <span
-    class="euiExpression__description"
+    class="euiExpression__description emotion-euiExpression__description-accent-isUppercase"
   >
     the answer is
   </span>
    
   <span
-    class="euiExpression__value"
+    class="euiExpression__value emotion-euiExpression__value"
   >
     42
   </span>
@@ -23,17 +23,17 @@ exports[`EuiExpression props color accent is rendered 1`] = `
 exports[`EuiExpression props color danger is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiExpression testClass1 testClass2 euiExpression-isUppercase euiExpression--danger"
+  class="euiExpression testClass1 testClass2 emotion-euiExpression-danger"
   data-test-subj="test subject string"
 >
   <span
-    class="euiExpression__description"
+    class="euiExpression__description emotion-euiExpression__description-danger-isUppercase"
   >
     the answer is
   </span>
    
   <span
-    class="euiExpression__value"
+    class="euiExpression__value emotion-euiExpression__value"
   >
     42
   </span>
@@ -43,17 +43,17 @@ exports[`EuiExpression props color danger is rendered 1`] = `
 exports[`EuiExpression props color primary is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiExpression testClass1 testClass2 euiExpression-isUppercase euiExpression--primary"
+  class="euiExpression testClass1 testClass2 emotion-euiExpression-primary"
   data-test-subj="test subject string"
 >
   <span
-    class="euiExpression__description"
+    class="euiExpression__description emotion-euiExpression__description-primary-isUppercase"
   >
     the answer is
   </span>
    
   <span
-    class="euiExpression__value"
+    class="euiExpression__value emotion-euiExpression__value"
   >
     42
   </span>
@@ -63,17 +63,17 @@ exports[`EuiExpression props color primary is rendered 1`] = `
 exports[`EuiExpression props color subdued is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiExpression testClass1 testClass2 euiExpression-isUppercase euiExpression--subdued"
+  class="euiExpression testClass1 testClass2 emotion-euiExpression-subdued"
   data-test-subj="test subject string"
 >
   <span
-    class="euiExpression__description"
+    class="euiExpression__description emotion-euiExpression__description-subdued-isUppercase"
   >
     the answer is
   </span>
    
   <span
-    class="euiExpression__value"
+    class="euiExpression__value emotion-euiExpression__value"
   >
     42
   </span>
@@ -83,17 +83,17 @@ exports[`EuiExpression props color subdued is rendered 1`] = `
 exports[`EuiExpression props color success is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiExpression testClass1 testClass2 euiExpression-isUppercase euiExpression--success"
+  class="euiExpression testClass1 testClass2 emotion-euiExpression-success"
   data-test-subj="test subject string"
 >
   <span
-    class="euiExpression__description"
+    class="euiExpression__description emotion-euiExpression__description-success-isUppercase"
   >
     the answer is
   </span>
    
   <span
-    class="euiExpression__value"
+    class="euiExpression__value emotion-euiExpression__value"
   >
     42
   </span>
@@ -103,17 +103,17 @@ exports[`EuiExpression props color success is rendered 1`] = `
 exports[`EuiExpression props color warning is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiExpression testClass1 testClass2 euiExpression-isUppercase euiExpression--warning"
+  class="euiExpression testClass1 testClass2 emotion-euiExpression-warning"
   data-test-subj="test subject string"
 >
   <span
-    class="euiExpression__description"
+    class="euiExpression__description emotion-euiExpression__description-warning-isUppercase"
   >
     the answer is
   </span>
    
   <span
-    class="euiExpression__value"
+    class="euiExpression__value emotion-euiExpression__value"
   >
     42
   </span>
@@ -122,22 +122,22 @@ exports[`EuiExpression props color warning is rendered 1`] = `
 
 exports[`EuiExpression props descriptionWidth changes the description&apos;s width when using columns 1`] = `
 <span
-  class="euiExpression euiExpression-isUppercase euiExpression--columns euiExpression--danger"
+  class="euiExpression emotion-euiExpression-success-columns"
 >
   <span
-    class="euiExpression__description"
+    class="euiExpression__description emotion-euiExpression__description-danger-isUppercase-columns"
     style="flex-basis:50px"
   >
     the answer is
   </span>
    
   <span
-    class="euiExpression__value"
+    class="euiExpression__value emotion-euiExpression__value-columns"
   >
     42
   </span>
   <span
-    class="euiExpression__icon"
+    class="euiExpression__icon emotion-euiExpression__icon-columns"
     color="danger"
     data-euiicon-type="alert"
   />
@@ -146,17 +146,17 @@ exports[`EuiExpression props descriptionWidth changes the description&apos;s wid
 
 exports[`EuiExpression props display can be columns 1`] = `
 <span
-  class="euiExpression euiExpression-isUppercase euiExpression--columns euiExpression--success"
+  class="euiExpression emotion-euiExpression-success-columns"
 >
   <span
-    class="euiExpression__description"
+    class="euiExpression__description emotion-euiExpression__description-success-isUppercase-columns"
     style="flex-basis:20%"
   >
     the answer is
   </span>
    
   <span
-    class="euiExpression__value"
+    class="euiExpression__value emotion-euiExpression__value-columns"
   >
     42
   </span>
@@ -165,16 +165,16 @@ exports[`EuiExpression props display can be columns 1`] = `
 
 exports[`EuiExpression props isActive false renders inactive 1`] = `
 <span
-  class="euiExpression euiExpression-isUppercase euiExpression--success"
+  class="euiExpression emotion-euiExpression-success"
 >
   <span
-    class="euiExpression__description"
+    class="euiExpression__description emotion-euiExpression__description-success-isUppercase"
   >
     the answer is
   </span>
    
   <span
-    class="euiExpression__value"
+    class="euiExpression__value emotion-euiExpression__value"
   >
     42
   </span>
@@ -183,16 +183,16 @@ exports[`EuiExpression props isActive false renders inactive 1`] = `
 
 exports[`EuiExpression props isActive true renders active 1`] = `
 <span
-  class="euiExpression euiExpression-isActive euiExpression-isUppercase euiExpression--success"
+  class="euiExpression emotion-euiExpression-success-base-success"
 >
   <span
-    class="euiExpression__description"
+    class="euiExpression__description emotion-euiExpression__description-success-isUppercase"
   >
     the answer is
   </span>
    
   <span
-    class="euiExpression__value"
+    class="euiExpression__value emotion-euiExpression__value"
   >
     42
   </span>
@@ -201,21 +201,21 @@ exports[`EuiExpression props isActive true renders active 1`] = `
 
 exports[`EuiExpression props isInvalid renders error state 1`] = `
 <span
-  class="euiExpression euiExpression-isUppercase euiExpression--danger"
+  class="euiExpression emotion-euiExpression-success"
 >
   <span
-    class="euiExpression__description"
+    class="euiExpression__description emotion-euiExpression__description-danger-isUppercase"
   >
     the answer is
   </span>
    
   <span
-    class="euiExpression__value"
+    class="euiExpression__value emotion-euiExpression__value"
   >
     42
   </span>
   <span
-    class="euiExpression__icon"
+    class="euiExpression__icon emotion-euiExpression__icon"
     color="danger"
     data-euiicon-type="alert"
   />
@@ -224,16 +224,16 @@ exports[`EuiExpression props isInvalid renders error state 1`] = `
 
 exports[`EuiExpression props textWrap can truncate text 1`] = `
 <span
-  class="euiExpression euiExpression-isUppercase euiExpression--success euiExpression--truncate"
+  class="euiExpression emotion-euiExpression-success-truncate"
 >
   <span
-    class="euiExpression__description"
+    class="euiExpression__description emotion-euiExpression__description-success-isUppercase-truncate"
   >
     the answer is
   </span>
    
   <span
-    class="euiExpression__value"
+    class="euiExpression__value emotion-euiExpression__value-truncate"
   >
     42
   </span>
@@ -242,16 +242,16 @@ exports[`EuiExpression props textWrap can truncate text 1`] = `
 
 exports[`EuiExpression props uppercase false renders inherited case 1`] = `
 <span
-  class="euiExpression euiExpression--success"
+  class="euiExpression emotion-euiExpression-success"
 >
   <span
-    class="euiExpression__description"
+    class="euiExpression__description emotion-euiExpression__description-success"
   >
     the answer is
   </span>
    
   <span
-    class="euiExpression__value"
+    class="euiExpression__value emotion-euiExpression__value"
   >
     42
   </span>
@@ -260,16 +260,16 @@ exports[`EuiExpression props uppercase false renders inherited case 1`] = `
 
 exports[`EuiExpression props uppercase true renders uppercase 1`] = `
 <span
-  class="euiExpression euiExpression-isUppercase euiExpression--success"
+  class="euiExpression emotion-euiExpression-success"
 >
   <span
-    class="euiExpression__description"
+    class="euiExpression__description emotion-euiExpression__description-success-isUppercase"
   >
     the answer is
   </span>
    
   <span
-    class="euiExpression__value"
+    class="euiExpression__value emotion-euiExpression__value"
   >
     42
   </span>
@@ -279,11 +279,11 @@ exports[`EuiExpression props uppercase true renders uppercase 1`] = `
 exports[`EuiExpression render with only description 1`] = `
 <button
   aria-label="aria-label"
-  class="euiExpression testClass1 testClass2 euiExpression-isClickable euiExpression-isUppercase euiExpression--success"
+  class="euiExpression testClass1 testClass2 emotion-euiExpression-isClickable-success"
   data-test-subj="test subject string"
 >
   <span
-    class="euiExpression__description"
+    class="euiExpression__description emotion-euiExpression__description-success-isUppercase"
   >
     the answer is
   </span>
@@ -294,17 +294,17 @@ exports[`EuiExpression render with only description 1`] = `
 exports[`EuiExpression renders 1`] = `
 <button
   aria-label="aria-label"
-  class="euiExpression testClass1 testClass2 euiExpression-isClickable euiExpression-isUppercase euiExpression--success"
+  class="euiExpression testClass1 testClass2 emotion-euiExpression-isClickable-success"
   data-test-subj="test subject string"
 >
   <span
-    class="euiExpression__description"
+    class="euiExpression__description emotion-euiExpression__description-success-isUppercase"
   >
     the answer is
   </span>
    
   <span
-    class="euiExpression__value"
+    class="euiExpression__value emotion-euiExpression__value"
   >
     42
   </span>

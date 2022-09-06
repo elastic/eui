@@ -75,6 +75,7 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
 
   // Programmatically sets focus on a nested DOM node; optional
   setInitialFocus = (initialFocus?: FocusTarget) => {
+    if (!initialFocus) return;
     const node = findElementBySelectorOrRef(initialFocus);
     if (!node) return;
     // `data-autofocus` is part of the 'react-focus-on' API

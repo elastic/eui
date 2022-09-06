@@ -118,6 +118,14 @@ export default () => (
         <dt>Release date</dt>
         <dd>2002</dd>
       </dl>
+
+      <p>
+        Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to copy text (Windows).
+      </p>
+
+      <p>
+        Press <kbd>Cmd</kbd> + <kbd>C</kbd> to copy text (Mac OS).
+      </p>
     </EuiText>
   </div>
 );

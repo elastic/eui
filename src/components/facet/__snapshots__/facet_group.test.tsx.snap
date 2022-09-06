@@ -3,43 +3,43 @@
 exports[`EuiFacetGroup is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiFlexGroup euiFlexGroup--directionColumn euiFlexGroup--responsive euiFacetGroup euiFacetGroup--vertical euiFacetGroup--gutterMedium testClass1 testClass2"
+  class="euiFacetGroup testClass1 testClass2 emotion-euiFacetGroup-m-vertical"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`EuiFacetGroup props gutterSize l is rendered 1`] = `
 <div
-  class="euiFlexGroup euiFlexGroup--directionColumn euiFlexGroup--responsive euiFacetGroup euiFacetGroup--vertical euiFacetGroup--gutterLarge"
+  class="euiFacetGroup emotion-euiFacetGroup-l-vertical"
 />
 `;
 
 exports[`EuiFacetGroup props gutterSize m is rendered 1`] = `
 <div
-  class="euiFlexGroup euiFlexGroup--directionColumn euiFlexGroup--responsive euiFacetGroup euiFacetGroup--vertical euiFacetGroup--gutterMedium"
+  class="euiFacetGroup emotion-euiFacetGroup-m-vertical"
 />
 `;
 
 exports[`EuiFacetGroup props gutterSize none is rendered 1`] = `
 <div
-  class="euiFlexGroup euiFlexGroup--directionColumn euiFlexGroup--responsive euiFacetGroup euiFacetGroup--vertical euiFacetGroup--gutterNone"
+  class="euiFacetGroup emotion-euiFacetGroup-none-vertical"
 />
 `;
 
 exports[`EuiFacetGroup props gutterSize s is rendered 1`] = `
 <div
-  class="euiFlexGroup euiFlexGroup--directionColumn euiFlexGroup--responsive euiFacetGroup euiFacetGroup--vertical euiFacetGroup--gutterSmall"
+  class="euiFacetGroup emotion-euiFacetGroup-s-vertical"
 />
 `;
 
 exports[`EuiFacetGroup props layout horizontal is rendered 1`] = `
 <div
-  class="euiFlexGroup euiFlexGroup--directionRow euiFlexGroup--responsive euiFlexGroup--wrap euiFacetGroup euiFacetGroup--horizontal euiFacetGroup--gutterMedium"
+  class="euiFacetGroup emotion-euiFacetGroup-m-horizontal"
 />
 `;
 
 exports[`EuiFacetGroup props layout vertical is rendered 1`] = `
 <div
-  class="euiFlexGroup euiFlexGroup--directionColumn euiFlexGroup--responsive euiFacetGroup euiFacetGroup--vertical euiFacetGroup--gutterMedium"
+  class="euiFacetGroup emotion-euiFacetGroup-m-vertical"
 />
 `;

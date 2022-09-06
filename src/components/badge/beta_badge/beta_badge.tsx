@@ -19,7 +19,7 @@ import { CommonProps, ExclusiveUnion, keysOf } from '../../common';
 
 import { getSecureRelForTarget } from '../../../services';
 
-import { EuiToolTip, ToolTipPositions } from '../../tool_tip';
+import { EuiToolTip, EuiToolTipProps, ToolTipPositions } from '../../tool_tip';
 
 import { EuiIcon, IconType } from '../../icon';
 
@@ -78,12 +78,14 @@ type LabelAsNode = ExclusiveUnion<
   label: ReactNode;
 };
 
-interface LabelAsString {
+// Must be `type` instead of `interface`
+// https://github.com/elastic/eui/issues/6085
+type LabelAsString = {
   /**
    * One word label like "Beta" or "Lab"
    */
   label: string;
-}
+};
 
 type BadgeProps = {
   /**
@@ -105,6 +107,11 @@ type BadgeProps = {
    * Custom position of the tooltip
    */
   tooltipPosition?: ToolTipPositions;
+
+  /**
+   * Passes onto the span wrapping the badge
+   */
+  anchorProps?: EuiToolTipProps['anchorProps'];
 
   /**
    * Optional title will be supplied as tooltip title or title attribute
@@ -131,6 +138,7 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
   color = 'hollow',
   tooltipContent,
   tooltipPosition = 'top',
+  anchorProps,
   title,
   iconType,
   onClick,
@@ -209,6 +217,7 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
           position={tooltipPosition}
           content={tooltipContent}
           title={title || label}
+          anchorProps={anchorProps}
         >
           {content}
         </EuiToolTip>
@@ -223,6 +232,7 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
           position={tooltipPosition}
           content={tooltipContent}
           title={title || label}
+          anchorProps={anchorProps}
         >
           <span tabIndex={0} className={classes} role="button" {...rest}>
             {icon || label}

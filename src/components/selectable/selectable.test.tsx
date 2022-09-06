@@ -191,6 +191,20 @@ describe('EuiSelectable', () => {
       ).toEqual('second value');
     });
 
+    it('calls the searchProps.onChange callback on mount', () => {
+      const onChange = jest.fn();
+      mount(
+        <EuiSelectable
+          options={options}
+          searchable
+          searchProps={{ value: 'pandora', onChange }}
+        >
+          {(_, search) => <>{search}</>}
+        </EuiSelectable>
+      );
+      expect(onChange).toHaveBeenCalledWith('pandora', [options[2]]);
+    });
+
     it('defaults to an empty string if no value or defaultValue is passed from searchProps', () => {
       const component = render(
         <EuiSelectable
@@ -331,6 +345,45 @@ describe('EuiSelectable', () => {
       expect(onChange).toHaveBeenCalledTimes(2);
       expect(onChange.mock.calls[1][0][0].checked).toEqual('on');
       expect(onChange.mock.calls[1][1].type).toEqual('keydown');
+    });
+  });
+
+  describe('onActiveOptionChange', () => {
+    it('calls the optional callback whenever the internal activeOptionIndex state changes', () => {
+      const callback = jest.fn();
+      const component = mount(
+        <EuiSelectable options={options} onActiveOptionChange={callback}>
+          {(list) => list}
+        </EuiSelectable>
+      );
+
+      component.simulate('keydown', { key: 'ArrowDown' });
+      expect(callback).toHaveBeenCalledWith(options[0]);
+
+      component.simulate('keydown', { key: 'ArrowUp' });
+      expect(callback).toHaveBeenCalledWith(options[2]);
+    });
+
+    it('handles the active option changing due to searching', () => {
+      const callback = jest.fn();
+      const component = mount(
+        <EuiSelectable
+          options={options}
+          searchable
+          searchProps={{ value: 'pandora' }}
+          onActiveOptionChange={callback}
+        >
+          {(list, search) => (
+            <>
+              {search}
+              {list}
+            </>
+          )}
+        </EuiSelectable>
+      );
+
+      component.simulate('keydown', { key: 'ArrowDown' });
+      expect(callback).toHaveBeenCalledWith(options[2]); // Pandora
     });
   });
 
