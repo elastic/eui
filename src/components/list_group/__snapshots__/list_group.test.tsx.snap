@@ -13,7 +13,7 @@ exports[`EuiListGroup listItems is rendered 1`] = `
   class="euiListGroup emotion-euiListGroup-s-maxWidthDefault"
 >
   <li
-    class="euiListGroupItem euiListGroupItem--medium"
+    class="euiListGroupItem emotion-euiListGroupItem-m-inherit"
   >
     <span
       class="euiListGroupItem__text"
@@ -32,7 +32,7 @@ exports[`EuiListGroup listItems is rendered 1`] = `
     </span>
   </li>
   <li
-    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-hasExtraAction"
+    class="euiListGroupItem emotion-euiListGroupItem-m-inherit"
   >
     <span
       class="euiListGroupItem__text"
@@ -58,10 +58,10 @@ exports[`EuiListGroup listItems is rendered 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isClickable"
+    class="euiListGroupItem emotion-euiListGroupItem-m-inherit-isClickable"
   >
     <button
-      class="euiListGroupItem__button"
+      class="emotion-euiListGroupItem__button-inherit"
       type="button"
     >
       <span
@@ -73,10 +73,10 @@ exports[`EuiListGroup listItems is rendered 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isActive euiListGroupItem-isClickable"
+    class="euiListGroupItem emotion-euiListGroupItem-m-inherit-isActive-isClickable"
   >
     <a
-      class="euiListGroupItem__button"
+      class="euiListGroupItem__button emotion-euiListGroupItem__button-inherit"
       href="#"
       rel="noreferrer"
     >
@@ -89,10 +89,10 @@ exports[`EuiListGroup listItems is rendered 1`] = `
     </a>
   </li>
   <li
-    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isClickable"
+    class="euiListGroupItem emotion-euiListGroupItem-m-inherit-isClickable"
   >
     <a
-      class="euiListGroupItem__button"
+      class="euiListGroupItem__button emotion-euiListGroupItem__button-inherit"
       href="#"
       rel="noreferrer"
     >
@@ -112,7 +112,7 @@ exports[`EuiListGroup listItems is rendered with color 1`] = `
   class="euiListGroup emotion-euiListGroup-s-maxWidthDefault"
 >
   <li
-    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem--primary"
+    class="euiListGroupItem emotion-euiListGroupItem-m-primary"
   >
     <span
       class="euiListGroupItem__text"
@@ -131,7 +131,7 @@ exports[`EuiListGroup listItems is rendered with color 1`] = `
     </span>
   </li>
   <li
-    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem--primary euiListGroupItem-hasExtraAction"
+    class="euiListGroupItem emotion-euiListGroupItem-m-primary"
   >
     <span
       class="euiListGroupItem__text"
@@ -157,10 +157,10 @@ exports[`EuiListGroup listItems is rendered with color 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem--primary euiListGroupItem-isClickable"
+    class="euiListGroupItem emotion-euiListGroupItem-m-primary-isClickable"
   >
     <button
-      class="euiListGroupItem__button"
+      class="emotion-euiListGroupItem__button-primary"
       type="button"
     >
       <span
@@ -172,10 +172,10 @@ exports[`EuiListGroup listItems is rendered with color 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem--primary euiListGroupItem-isActive euiListGroupItem-isClickable"
+    class="euiListGroupItem emotion-euiListGroupItem-m-primary-isActive-isClickable"
   >
     <a
-      class="euiListGroupItem__button"
+      class="euiListGroupItem__button emotion-euiListGroupItem__button-primary"
       href="#"
       rel="noreferrer"
     >
@@ -188,10 +188,10 @@ exports[`EuiListGroup listItems is rendered with color 1`] = `
     </a>
   </li>
   <li
-    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem--primary euiListGroupItem-isClickable"
+    class="euiListGroupItem emotion-euiListGroupItem-m-primary-isClickable"
   >
     <a
-      class="euiListGroupItem__button"
+      class="euiListGroupItem__button emotion-euiListGroupItem__button-primary"
       href="#"
       rel="noreferrer"
     >

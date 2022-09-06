@@ -7,80 +7,155 @@
  */
 
 import { css } from '@emotion/react';
-import { logicalCSS, logicalTextAlignCSS } from '../../global_styling';
-import { UseEuiTheme } from '../../services';
+import { euiCanAnimate, euiFontSize } from '../../global_styling';
+import { UseEuiTheme, transparentize } from '../../services';
+import { euiButtonColor } from '../../themes/amsterdam/global_styling/mixins/button';
 
-const _avatarSize = ({
-  size,
-  fontSize,
-}: {
-  size: string;
-  fontSize: string;
-}) => {
-  return `
-    ${logicalCSS('width', size)};
-    ${logicalCSS('height', size)};
-    line-height: ${size};
-    font-size: ${fontSize};
-  `;
+export const euiListGroupItemStyles = (
+  euiThemeContext: UseEuiTheme,
+  isActive: boolean
+) => {
+  const euiTheme = euiThemeContext.euiTheme;
+
+  return {
+    // Base
+    euiListGroupItem: css`
+      padding: 0;
+      border-radius: ${euiTheme.border.radius.medium};
+      display: flex;
+      align-items: center;
+      position: relative;
+
+      ${euiCanAnimate} {
+        transition: background-color ${euiTheme.animation.fast};
+      }
+    `,
+    // Sizes
+    xs: css`
+      ${euiFontSize(euiThemeContext, 'xs')};
+      font-weight: ${euiTheme.font.weight.medium};
+      letter-spacing: 0;
+    `,
+    s: css`
+      ${euiFontSize(euiThemeContext, 's')};
+      font-weight: ${euiTheme.font.weight.medium};
+      letter-spacing: 0;
+    `,
+    m: css`
+      ${euiFontSize(euiThemeContext, 'm')};
+    `,
+    l: css`
+      ${euiFontSize(euiThemeContext, 'l')};
+    `,
+    // Colors
+    inherit: css`
+      ${isActive &&
+      `
+        background-color: ${
+          euiButtonColor(euiThemeContext, 'text').backgroundColor
+        };
+      `};
+    `,
+    primary: css`
+      ${isActive &&
+      `
+        background-color: ${
+          euiButtonColor(euiThemeContext, 'primary').backgroundColor
+        };
+      `};
+    `,
+    text: css`
+      ${isActive &&
+      `
+        background-color: ${
+          euiButtonColor(euiThemeContext, 'text').backgroundColor
+        };
+      `};
+    `,
+    subdued: css`
+      ${isActive &&
+      `
+        background-color: ${
+          euiButtonColor(euiThemeContext, 'text').backgroundColor
+        };
+      `};
+    `,
+    ghost: css`
+      ${isActive &&
+      `
+        background-color: ${transparentize(euiTheme.colors.ghost, 0.1)};
+      `};
+    `,
+    // Variants
+    isActive: css``,
+    isDisabled: css`
+      color: red;
+      cursor: not-allowed;
+      background-color: transparent;
+      text-decoration: none;
+    `,
+    isClickable: css``,
+    wrapText: css`
+      .euiListGroupItem__button,
+      .euiListGroupItem__text {
+        inline-size: 100%;
+        word-break: break-word;
+      }
+
+      .euiListGroupItem__label {
+        white-space: inherit;
+      }
+    `,
+  };
 };
 
-export const euiListGroupItemStyles = ({ euiTheme }: UseEuiTheme) => ({
-  // Base
-  euiListGroupItem: css`
-    // Ensures it never scales down below its intended size
-    flex-shrink: 0;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    vertical-align: middle;
-    background-size: cover;
-    ${logicalTextAlignCSS('center')};
-    ${logicalCSS('overflow-x', 'hidden')}
-    // Explicitly state weight so it doesn't get overridden by inheritance
-    font-weight: ${euiTheme.font.weight.medium};
-  `,
-  // Variants
-  plain: css`
-    background-color: ${euiTheme.colors.emptyShade};
-  `,
-  subdued: css`
-    background-color: ${euiTheme.colors.lightestShade};
-  `,
-  user: css`
-    border-radius: 50%;
-  `,
-  space: css`
-    border-radius: ${euiTheme.border.radius.medium};
-  `,
-  // States
-  isDisabled: css`
-    cursor: not-allowed;
-    filter: grayscale(100%);
-  `,
-  // Sizes
-  s: css(
-    _avatarSize({
-      size: euiTheme.size.l,
-      fontSize: euiTheme.size.m,
-    })
-  ),
-  m: css(
-    _avatarSize({
-      size: euiTheme.size.xl,
-      fontSize: `calc(${euiTheme.size.base} * 0.9)`,
-    })
-  ),
-  l: css(
-    _avatarSize({
-      size: euiTheme.size.xxl,
-      fontSize: `calc(${euiTheme.size.l} * 0.8)`,
-    })
-  ),
-  xl: css(
-    _avatarSize({
-      size: `calc(${euiTheme.size.base} * 4)`,
-      fontSize: `calc(${euiTheme.size.xl} * 0.8)`,
-    })
-  ),
-});
+export const euiListGroupItemButtonStyles = (
+  euiThemeContext: UseEuiTheme,
+  isActive: boolean,
+  isDisabled: boolean
+) => {
+  const euiTheme = euiThemeContext.euiTheme;
+
+  return {
+    // Base
+    euiListGroupItem__button: css`
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+      text-align: start;
+      max-inline-size: 100%;
+      font-weight: inherit;
+    `,
+    // Colors
+    inherit: css`
+      ${!isDisabled &&
+      `
+        color: inherit;
+      `}
+    `,
+    primary: css`
+      ${!isDisabled &&
+      `
+        color: ${euiButtonColor(euiThemeContext, 'primary').color};
+      `}
+    `,
+    text: css`
+      ${!isDisabled &&
+      `
+      color: ${euiButtonColor(euiThemeContext, 'text').color};
+      `}
+    `,
+    subdued: css`
+      ${!isDisabled &&
+      `
+        color: ${euiTheme.colors.subduedText};
+      `}
+    `,
+    ghost: css`
+      ${!isDisabled &&
+      `
+        color: ${euiTheme.colors.ghost};
+      `}
+    `,
+  };
+};

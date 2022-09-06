@@ -12,10 +12,11 @@ import classNames from 'classnames';
 import { EuiListGroupItem, EuiListGroupItemProps } from './list_group_item';
 import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
+
 import { euiListGroupStyles } from './list_group.styles';
 
 export const GUTTER_SIZES = ['none', 's', 'm'] as const;
-export type EuiGutterSize = typeof GUTTER_SIZES[number];
+export type EuiListGroupGutterSize = typeof GUTTER_SIZES[number];
 
 export type EuiListGroupProps = CommonProps &
   Omit<HTMLAttributes<HTMLUListElement>, 'color'> & {
@@ -32,7 +33,7 @@ export type EuiListGroupProps = CommonProps &
     /**
      * Spacing between list items
      */
-    gutterSize?: EuiGutterSize;
+    gutterSize?: EuiListGroupGutterSize;
 
     /**
      * Items to display in this group. See #EuiListGroupItem
@@ -99,10 +100,10 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
     newStyle = { ...style, maxWidth: value };
   }
 
+  const classes = classNames('euiListGroup', className);
+
   const euiTheme = useEuiTheme();
   const styles = euiListGroupStyles(euiTheme);
-
-  const classes = classNames('euiListGroup', className);
 
   const cssStyles = [
     styles.euiListGroup,

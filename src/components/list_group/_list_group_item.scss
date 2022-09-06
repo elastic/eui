@@ -89,18 +89,18 @@
   flex-shrink: 0;
 }
 
-// Font sizes
-@each $sizeName, $fontSize in $euiListGroupItemSizeTypes {
-  .euiListGroupItem--#{$sizeName} {
-    font-size: $fontSize;
-  }
-}
+// // Font sizes
+// @each $sizeName, $fontSize in $euiListGroupItemSizeTypes {
+//   .euiListGroupItem--#{$sizeName} {
+//     font-size: $fontSize;
+//   }
+// }
 
-.euiListGroupItem--xSmall,
-.euiListGroupItem--small {
-  font-weight: $euiFontWeightMedium;
-  letter-spacing: 0;
-}
+// .euiListGroupItem--xSmall,
+// .euiListGroupItem--small {
+//   font-weight: $euiFontWeightMedium;
+//   letter-spacing: 0;
+// }
 
 .euiListGroupItem--xSmall {
   .euiListGroupItem__button,
@@ -116,17 +116,17 @@
   }
 }
 
-.euiListGroupItem--wrapText {
-  .euiListGroupItem__button,
-  .euiListGroupItem__text {
-    width: 100%;
-    word-break: break-word;
-  }
+// .euiListGroupItem--wrapText {
+//   .euiListGroupItem__button,
+//   .euiListGroupItem__text {
+//     width: 100%;
+//     word-break: break-word;
+//   }
 
-  .euiListGroupItem__label {
-    white-space: inherit;
-  }
-}
+//   .euiListGroupItem__label {
+//     white-space: inherit;
+//   }
+// }
 
 // Layout alts from euiListGroup
 

@@ -24,7 +24,7 @@ export const euiListGroupStyles = (euiThemeContext: UseEuiTheme) => {
       border: none;
     `,
     bordered: css`
-      border-radius: ${euiTheme.border.radius.small};
+      border-radius: ${euiTheme.border.radius.medium};
       border: ${euiTheme.border.thin};
     `,
     maxWidthDefault: css`

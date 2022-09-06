@@ -7,7 +7,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
   data-test-subj="test subject string"
 >
   <li
-    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-hasExtraAction euiPinnableListGroup__item"
+    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-m-inherit"
   >
     <span
       class="euiListGroupItem__text"
@@ -39,7 +39,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-hasExtraAction euiPinnableListGroup__item"
+    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-m-inherit"
   >
     <span
       class="euiListGroupItem__text"
@@ -65,10 +65,10 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isActive euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiPinnableListGroup__item"
+    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-m-inherit-isActive-isClickable"
   >
     <a
-      class="euiListGroupItem__button"
+      class="euiListGroupItem__button emotion-euiListGroupItem__button-inherit"
       href="#"
       rel="noreferrer"
     >
@@ -94,10 +94,10 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiPinnableListGroup__item"
+    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-m-inherit-isClickable"
   >
     <button
-      class="euiListGroupItem__button"
+      class="emotion-euiListGroupItem__button-inherit"
       type="button"
     >
       <span
@@ -122,10 +122,10 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiPinnableListGroup__item"
+    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-m-inherit-isClickable"
   >
     <a
-      class="euiListGroupItem__button"
+      class="euiListGroupItem__button emotion-euiListGroupItem__button-inherit"
       href="#"
       rel="noreferrer"
     >
@@ -151,10 +151,10 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isClickable euiPinnableListGroup__item"
+    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-m-inherit-isClickable"
   >
     <a
-      class="euiListGroupItem__button"
+      class="euiListGroupItem__button emotion-euiListGroupItem__button-inherit"
       href="#"
       rel="noreferrer"
     >
@@ -176,7 +176,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <li
-    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-hasExtraAction euiPinnableListGroup__item"
+    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-m-inherit"
   >
     <span
       class="euiListGroupItem__text"
@@ -208,7 +208,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-hasExtraAction euiPinnableListGroup__item"
+    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-m-inherit"
   >
     <span
       class="euiListGroupItem__text"
@@ -234,10 +234,10 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isActive euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiPinnableListGroup__item"
+    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-m-inherit-isActive-isClickable"
   >
     <a
-      class="euiListGroupItem__button"
+      class="euiListGroupItem__button emotion-euiListGroupItem__button-inherit"
       href="#"
       rel="noreferrer"
     >
@@ -263,10 +263,10 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiPinnableListGroup__item"
+    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-m-inherit-isClickable"
   >
     <button
-      class="euiListGroupItem__button"
+      class="emotion-euiListGroupItem__button-inherit"
       type="button"
     >
       <span
@@ -291,10 +291,10 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isClickable euiListGroupItem-hasExtraAction euiPinnableListGroup__item"
+    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-m-inherit-isClickable"
   >
     <a
-      class="euiListGroupItem__button"
+      class="euiListGroupItem__button emotion-euiListGroupItem__button-inherit"
       href="#"
       rel="noreferrer"
     >
@@ -320,10 +320,10 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isClickable euiPinnableListGroup__item"
+    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-m-inherit-isClickable"
   >
     <a
-      class="euiListGroupItem__button"
+      class="euiListGroupItem__button emotion-euiListGroupItem__button-inherit"
       href="#"
       rel="noreferrer"
     >

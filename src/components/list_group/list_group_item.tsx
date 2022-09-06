@@ -24,27 +24,25 @@ import { EuiToolTip } from '../tool_tip';
 import { useInnerText } from '../inner_text';
 import { ExclusiveUnion, CommonProps } from '../common';
 
-import { getSecureRelForTarget } from '../../services';
+import { getSecureRelForTarget, useEuiTheme } from '../../services';
 import { validateHref } from '../../services/security/href_validator';
 
-type ItemSize = 'xs' | 's' | 'm' | 'l';
-const sizeToClassNameMap: { [size in ItemSize]: string } = {
-  xs: 'euiListGroupItem--xSmall',
-  s: 'euiListGroupItem--small',
-  m: 'euiListGroupItem--medium',
-  l: 'euiListGroupItem--large',
-};
-export const SIZES = Object.keys(sizeToClassNameMap) as ItemSize[];
+import {
+  euiListGroupItemStyles,
+  euiListGroupItemButtonStyles,
+} from './list_group_item.styles';
 
-type Color = 'inherit' | 'primary' | 'text' | 'subdued' | 'ghost';
-const colorToClassNameMap: { [color in Color]: string } = {
-  inherit: '',
-  primary: 'euiListGroupItem--primary',
-  text: 'euiListGroupItem--text',
-  subdued: 'euiListGroupItem--subdued',
-  ghost: 'euiListGroupItem--ghost',
-};
-export const COLORS = Object.keys(colorToClassNameMap) as Color[];
+export const SIZES = ['xs', 's', 'm', 'l'] as const;
+export type EuiListGroupItemSize = typeof SIZES[number];
+
+export const COLORS = [
+  'inherit',
+  'primary',
+  'text',
+  'subdued',
+  'ghost',
+] as const;
+export type EuiListGroupItemColor = typeof COLORS[number];
 
 export type EuiListGroupItemProps = CommonProps &
   Omit<
@@ -60,12 +58,12 @@ export type EuiListGroupItemProps = CommonProps &
     /**
      * Size of the label text
      */
-    size?: ItemSize;
+    size?: EuiListGroupItemSize;
     /**
      * By default the item will inherit the color of its wrapper (button/link/span),
      * otherwise pass one of the acceptable options
      */
-    color?: Color;
+    color?: EuiListGroupItemColor;
 
     /**
      * Content to be displayed in the list item
@@ -169,20 +167,6 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   const isHrefValid = !href || validateHref(href);
   const isDisabled = _isDisabled || !isHrefValid;
 
-  const classes = classNames(
-    'euiListGroupItem',
-    sizeToClassNameMap[size],
-    colorToClassNameMap[color],
-    {
-      'euiListGroupItem-isActive': isActive,
-      'euiListGroupItem-isDisabled': isDisabled,
-      'euiListGroupItem-isClickable': href || onClick,
-      'euiListGroupItem-hasExtraAction': extraAction,
-      'euiListGroupItem--wrapText': wrapText,
-    },
-    className
-  );
-
   let iconNode;
 
   if (iconType) {
@@ -256,10 +240,24 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
 
   const secureRel = getSecureRelForTarget({ href, rel, target });
 
+  const euiTheme = useEuiTheme();
+
+  const buttonStyles = euiListGroupItemButtonStyles(
+    euiTheme,
+    isActive,
+    isDisabled
+  );
+
+  const cssButtonStyles = [
+    buttonStyles.euiListGroupItem__button,
+    buttonStyles[color],
+  ];
+
   if (href && !isDisabled) {
     itemContent = (
       <a
         className="euiListGroupItem__button"
+        css={cssButtonStyles}
         href={href}
         target={target}
         rel={secureRel}
@@ -274,7 +272,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     itemContent = (
       <button
         type="button"
-        className="euiListGroupItem__button"
+        css={cssButtonStyles}
         disabled={isDisabled}
         onClick={onClick}
         ref={buttonRef}
@@ -293,9 +291,23 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     );
   }
 
+  const styles = euiListGroupItemStyles(euiTheme, isActive);
+
+  const cssStyles = [
+    styles.euiListGroupItem,
+    styles[size],
+    styles[color],
+    isActive && styles.isActive,
+    isDisabled && styles.isDisabled,
+    (href || onClick) && styles.isClickable,
+    wrapText && styles.wrapText,
+  ];
+
+  const classes = classNames('euiListGroupItem', className);
+
   if (showToolTip) {
     itemContent = (
-      <li className={classes}>
+      <li className={classes} css={cssStyles}>
         <EuiToolTip
           anchorClassName="euiListGroupItem__tooltip"
           content={toolTipText ?? label}
@@ -308,7 +320,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     );
   } else {
     itemContent = (
-      <li className={classes}>
+      <li className={classes} css={cssStyles}>
         {itemContent}
         {extraActionNode}
       </li>
