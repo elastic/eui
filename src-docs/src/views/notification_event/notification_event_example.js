@@ -192,7 +192,6 @@ export const NotificationEventExample = {
       ),
       props: {
         EuiNotificationEvent,
-        EuiNotificationEventMeta,
         EuiContextMenuItem,
         EuiPrimaryActionProps,
       },
@@ -219,7 +218,6 @@ export const NotificationEventExample = {
       ),
       props: {
         EuiNotificationEvent,
-        EuiNotificationEventMeta,
         EuiContextMenuItem,
         EuiPrimaryActionProps,
       },
