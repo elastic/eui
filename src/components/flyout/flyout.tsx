@@ -48,12 +48,7 @@ const typeToClassNameMap = {
 export const TYPES = keysOf(typeToClassNameMap);
 type _EuiFlyoutType = typeof TYPES[number];
 
-const sideToClassNameMap = {
-  left: 'euiFlyout--left',
-  right: null,
-};
-
-export const SIDES = keysOf(sideToClassNameMap);
+export const SIDES = ['left', 'right'] as const;
 type _EuiFlyoutSide = typeof SIDES[number];
 
 const sizeToClassNameMap = {
@@ -73,14 +68,7 @@ function isEuiFlyoutSizeNamed(value: any): value is EuiFlyoutSize {
   return SIZES.includes(value as any);
 }
 
-const paddingSizeToClassNameMap = {
-  none: 'euiFlyout--paddingNone',
-  s: 'euiFlyout--paddingSmall',
-  m: 'euiFlyout--paddingMedium',
-  l: 'euiFlyout--paddingLarge',
-};
-
-export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
+export const PADDING_SIZES = ['none', 's', 'm', 'l'] as const;
 export type EuiFlyoutPaddingSize = typeof PADDING_SIZES[number];
 
 interface _EuiFlyoutProps {
@@ -266,21 +254,15 @@ export const EuiFlyout = forwardRef(
     };
 
     let newStyle;
-    let widthClassName;
-    let sizeClassName;
 
     // Setting max-width
-    if (maxWidth === true) {
-      widthClassName = 'euiFlyout--maxWidth-default';
-    } else if (maxWidth !== false) {
+    if (maxWidth !== false) {
       const value = typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth;
       newStyle = { ...style, maxWidth: value };
     }
 
     // Setting size
-    if (isEuiFlyoutSizeNamed(size)) {
-      sizeClassName = `euiFlyout--${sizeToClassNameMap[size]}`;
-    } else if (newStyle) {
+    if (newStyle) {
       newStyle.width = size;
     } else {
       newStyle = { ...style, width: size };
@@ -298,17 +280,7 @@ export const EuiFlyout = forwardRef(
       styles[side],
     ];
 
-    const classes = classnames(
-      'euiFlyout',
-      {
-        [`euiFlyout--${type}`]: type,
-        [`euiFlyout--${side}`]: side,
-        [`euiFlyout--padding-${paddingSize}`]: paddingSize,
-      },
-      sizeClassName,
-      widthClassName,
-      className
-    );
+    const classes = classnames('euiFlyout', className);
 
     let closeButton;
     if (onClose && !hideCloseButton) {
