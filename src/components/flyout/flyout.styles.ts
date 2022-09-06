@@ -36,9 +36,44 @@ const euiFlyoutLeft = keyframes`
 }
 `;
 
-const convertPxSizeToNumber = (size: String) => {
-  //console
-  return parseInt(size.replace('px', ''));
+export const euiFlyoutCloseButtonStyles = (euiThemeContext: UseEuiTheme) => {
+  const euiTheme = euiThemeContext.euiTheme;
+
+  return {
+    euiFlyout__closeButton: css`
+      background-color: ${transparentize(euiTheme.colors.emptyShade, 0.1)};
+      position: absolute;
+      ${logicalCSS('right', euiTheme.size.s)}
+      ${logicalCSS('top', euiTheme.size.s)}
+      z-index: 3;
+    `,
+    'closeButton--outside': css`
+      // match dropshadow
+      ${euiShadowXLarge(euiThemeContext)};
+      ${logicalCSS('right', 'auto')}
+      ${logicalCSS('left', 0)}
+      // Override the hover and focus transitions of buttons
+      animation: none !important;
+      ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
+        transform: translateX(calc(-100% - ${euiTheme.size.l}));
+      }
+      ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
+        transform: translateX(calc(-100% - ${euiTheme.size.xs}));
+      }
+    `,
+    'closeButton--inside': css``,
+    'closeButton--outside-left': css`
+      ${logicalCSS('right', 0)}
+      ${logicalCSS('left', 'auto')}
+      
+      ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
+        transform: translateX(calc(100% + ${euiTheme.size.l}));
+      }
+      ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
+        transform: translateX(calc(100% + ${euiTheme.size.xs}));
+      }
+    `,
+  };
 };
 
 export const euiFlyoutStyles = (
@@ -101,41 +136,6 @@ export const euiFlyoutStyles = (
       }
       ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
         ${logicalCSS('max-width', '90vw')}
-      }
-    `,
-
-    // Close Button
-    closeButton: css`
-      background-color: ${transparentize(euiTheme.colors.emptyShade, 0.1)};
-      position: absolute;
-      ${logicalCSS('right', euiTheme.size.s)}
-      ${logicalCSS('top', euiTheme.size.s)}
-      z-index: 3;
-    `,
-    'closeButton--outside': css`
-      // match dropshadow
-      ${euiShadowXLarge(euiThemeContext)};
-      ${logicalCSS('right', 'auto')}
-      ${logicalCSS('left', 0)}
-      // Override the hover and focus transitions of buttons
-      animation: none !important;
-      ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
-        transform: translateX(calc(-100% - ${euiTheme.size.l}));
-      }
-      ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
-        transform: translateX(calc(-100% - ${euiTheme.size.xs}));
-      }
-    `,
-    'closeButton--inside': css``,
-    'closeButton--outside-left': css`
-      ${logicalCSS('right', 0)}
-      ${logicalCSS('left', 'auto')}
-      
-      ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
-        transform: translateX(calc(100% + ${euiTheme.size.l}));
-      }
-      ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
-        transform: translateX(calc(100% + ${euiTheme.size.xs}));
       }
     `,
 
@@ -246,7 +246,7 @@ const composeFlyoutPadding = (
   // Removing the 'px' from the end of euiTheme.size.m to perform calculation
   const footerPaddingAmount =
     typeof footerPaddingWithPixels === 'string'
-      ? convertPxSizeToNumber(footerPaddingWithPixels)
+      ? parseInt(footerPaddingWithPixels.replace('px', ''))
       : footerPaddingWithPixels;
 
   const footerPaddingSizes = {

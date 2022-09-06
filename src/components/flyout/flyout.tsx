@@ -38,7 +38,7 @@ import { EuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
 
-import { euiFlyoutStyles } from './flyout.styles';
+import { euiFlyoutStyles, euiFlyoutCloseButtonStyles } from './flyout.styles';
 
 const typeToClassNameMap = {
   push: 'euiFlyout--push',
@@ -291,9 +291,6 @@ export const EuiFlyout = forwardRef(
 
     const cssStyles = [
       styles.euiFlyout,
-      //styles.euiFlyoutHeader,
-      //styles.euiFlyoutBody,
-      //styles.euiFlyoutFooter,
       styles.paddingSizes[paddingSize],
       side === 'left' && type === 'push' && styles['push--left'],
       isEuiFlyoutSizeNamed(size) && styles[`flyoutSize--${size}`],
@@ -321,10 +318,19 @@ export const EuiFlyout = forwardRef(
         closeButtonProps?.className
       );
 
+      const closeButtonStyles = euiFlyoutCloseButtonStyles(euiTheme);
+
+      const closeButtonCSSStyles = [
+        closeButtonStyles.euiFlyout__closeButton,
+        closeButtonStyles[`closeButton--${closeButtonPosition}`],
+        side === 'left' && closeButtonStyles['closeButton--outside-left'],
+      ];
+
       closeButton = (
         <EuiI18n token="euiFlyout.closeAriaLabel" default="Close this dialog">
           {(closeAriaLabel: string) => (
             <EuiButtonIcon
+              css={closeButtonCSSStyles}
               display={closeButtonPosition === 'outside' ? 'fill' : 'empty'}
               iconType="cross"
               color="text"
