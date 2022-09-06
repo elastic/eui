@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { css } from '@emotion/react';
 
 import {
   EuiFlexGroup,
@@ -9,6 +10,7 @@ import {
   EuiButton,
   EuiSelectableTemplateSitewide,
   EuiSelectableTemplateSitewideOption,
+  useEuiTheme,
 } from '../../../../../src';
 
 export default () => {
@@ -85,6 +87,8 @@ export default () => {
     if (!clickedItem) return;
   };
 
+  const { euiTheme } = useEuiTheme();
+
   return (
     <EuiSelectableTemplateSitewide
       isLoading={isLoading}
@@ -98,6 +102,12 @@ export default () => {
       }}
       listProps={{
         className: 'customListClass',
+        css: css`
+          .euiSelectableTemplateSitewide__optionMeta--PINK {
+            font-weight: ${euiTheme.font.weight.medium};
+            color: ${euiTheme.colors.accentText};
+          }
+        `,
       }}
       popoverProps={{
         className: 'customPopoverClass',
