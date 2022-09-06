@@ -88,7 +88,13 @@ export const EuiProvider = <T extends {} = {}>({
         cache.default.compat = true;
       }
       defaultCache = cache.default;
+      if (cache.global) {
+        cache.global.compat = true;
+      }
       globalCache = cache.global;
+      if (cache.utility) {
+        cache.utility.compat = true;
+      }
       utilityCache = cache.utility;
     }
   }
