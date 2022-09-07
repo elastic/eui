@@ -10,7 +10,11 @@ import React from 'react';
 import { mount, render } from 'enzyme';
 import { EuiNotificationEvent } from './notification_event';
 import { EuiContextMenuPanel, EuiContextMenuItem } from '../context_menu';
-import { findTestSubject, takeMountedSnapshot } from '../../test';
+import {
+  findTestSubject,
+  takeMountedSnapshot,
+  requiredProps,
+} from '../../test';
 
 describe('EuiNotificationEvent', () => {
   test('is rendered', () => {
@@ -21,6 +25,7 @@ describe('EuiNotificationEvent', () => {
         time="1 min ago"
         title="title"
         messages={['message']}
+        {...requiredProps}
       />
     );
 

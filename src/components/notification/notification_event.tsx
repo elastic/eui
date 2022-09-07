@@ -6,8 +6,16 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ReactElement, createElement } from 'react';
+import React, {
+  FunctionComponent,
+  ReactElement,
+  createElement,
+  HTMLAttributes,
+} from 'react';
 import classNames from 'classnames';
+
+import { CommonProps } from '../common';
+
 import {
   EuiNotificationEventMeta,
   EuiNotificationEventMetaProps,
@@ -35,7 +43,9 @@ export type EuiNotificationEventProps = Omit<
   Omit<
     EuiNotificationEventReadButtonProps,
     'onClick' | 'color' | 'eventName' | 'isRead' | 'id'
-  > & {
+  > &
+  CommonProps &
+  Omit<HTMLAttributes<HTMLDivElement>, 'title'> & {
     /**
      * A unique identifier
      */
@@ -104,9 +114,12 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
   onClickTitle,
   onClickPrimaryAction,
   headingLevel = 'h2',
+  className,
+  ...rest
 }) => {
   const classes = classNames('euiNotificationEvent', {
     'euiNotificationEvent--withReadState': typeof isRead === 'boolean',
+    className,
   });
 
   const classesTitle = classNames('euiNotificationEvent__title', {
@@ -122,7 +135,12 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
   };
 
   return (
-    <article aria-labelledby={randomHeadingId} className={classes} key={id}>
+    <article
+      aria-labelledby={randomHeadingId}
+      className={classes}
+      key={id}
+      {...rest}
+    >
       {typeof isRead === 'boolean' && (
         <div className="euiNotificationEvent__readButton">
           {!!onRead ? (

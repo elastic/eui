@@ -52,7 +52,7 @@ export type EuiPageSectionProps = CommonProps &
     /**
      * Passed down to the div wrapper of the section contents
      */
-    contentProps?: HTMLAttributes<HTMLDivElement>;
+    contentProps?: CommonProps & HTMLAttributes<HTMLDivElement>;
     /**
      * Sets which HTML element to render.
      */

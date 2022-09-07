@@ -48,7 +48,7 @@ export type EuiSideNavProps<T = {}> = T &
     /**
      * Adds a couple extra #EuiSideNavHeading props and extends the props of EuiTitle that wraps the `heading`
      */
-    headingProps?: EuiSideNavHeadingProps;
+    headingProps?: CommonProps & EuiSideNavHeadingProps;
     /**
      * When called, toggles visibility of the navigation menu at mobile responsive widths. The callback should set the `isOpenOnMobile` prop to actually toggle navigation visibility.
      */
