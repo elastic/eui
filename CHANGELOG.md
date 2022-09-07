@@ -1,3 +1,32 @@
+## [`67.0.0`](https://github.com/elastic/eui/tree/v67.0.0)
+
+- Updated `EuiSuggest` to accept the `isPreFiltered` prop ([#5930](https://github.com/elastic/eui/pull/5930))
+- Updated `EuiOverlayMask` to use `EuiPortal` ([#6090](https://github.com/elastic/eui/pull/6090))
+- Updated `EuiToolTipPopover` to be a function component ([#6104](https://github.com/elastic/eui/pull/6104))
+- Added `EuiToolTipAnchor` and `EuiToolTipArrow` components ([#6104](https://github.com/elastic/eui/pull/6104))
+- Added a new `component` prop to `EuiPageSection`, allowing overriding of the default `section` tag ([#6192](https://github.com/elastic/eui/pull/6192))
+
+**Bug fixes**
+
+- Fixed global styles being inserted into the wrong location when a `EuiProvider` cache is not configured. ([#6202](https://github.com/elastic/eui/pull/6202))
+- Fixed bug where `className` and `rest` props were not being passed to the `EuiNotificationEvent` ([#6208](https://github.com/elastic/eui/pull/6208))
+- Fixed various nested `componentProps` throwing type errors on the `css` prop ([#6211](https://github.com/elastic/eui/pull/6211))
+
+**Deprecations**
+
+- Added `@deprecated` flags to `EuiPageContent_Deprecated`, `EuiPageContentBody_Deprecated`, `EuiPageContentHeader_Deprecated`, `EuiPageContentHeaderSection_Deprecated`, `EuiPageSideBar_Deprecated` and `EuiPageTemplate_Deprecated`, which will provide helpful hints to IDEs that support jsdoc flags. Consumers will have until August 2023 to migrate from these deprecated components. ([#6194](https://github.com/elastic/eui/pull/6194))
+
+**Breaking changes**
+
+- Removed `onClick` prop from `EuiOverlayMask`. Use a nested `EuiFocusTrap` instead. ([#6090](https://github.com/elastic/eui/pull/6090))
+- Removed `euiCallOutColor` Sass mixin ([#6201](https://github.com/elastic/eui/pull/6201))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiOverlayMask` to Emotion ([#6090](https://github.com/elastic/eui/pull/6090))
+- Converted `EuiToolTip` to Emotion styling ([#6104](https://github.com/elastic/eui/pull/6104))
+- Converted `EuiPagination`, `EuiPaginationButton`, and `EuiPaginationButtonArrow` to Emotion ([#6109](https://github.com/elastic/eui/pull/6109))
+
 ## [`66.0.0`](https://github.com/elastic/eui/tree/v66.0.0)
 
 - Added the `gutterSize` prop to `EuiDescriptionList` ([#6175](https://github.com/elastic/eui/pull/6175))
