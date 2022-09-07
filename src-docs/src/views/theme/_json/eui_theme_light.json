@@ -3,12 +3,6 @@
     "gutterExtraSmall": "4px",
     "gutterSmall": "8px"
   },
-  "euiCallOutTypes": {
-    "primary": "#0077cc",
-    "success": "#00bfb3",
-    "warning": "#fec514",
-    "danger": "#bd271e"
-  },
   "euiCodeBlockPaddingModifiers": {
     "paddingSmall": "8px",
     "paddingMedium": "16px",
