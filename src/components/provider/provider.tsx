@@ -7,6 +7,7 @@
  */
 
 import React, { PropsWithChildren } from 'react';
+import createCache from '@emotion/cache';
 import { EmotionCache } from '@emotion/react';
 
 import {
@@ -26,6 +27,9 @@ import { EuiCacheProvider } from './cache';
 const isEmotionCacheObject = (
   obj: EmotionCache | Object
 ): obj is EmotionCache => obj.hasOwnProperty('key');
+
+const fallbackCache = createCache({ key: 'css' });
+fallbackCache.compat = true;
 
 export interface EuiProviderProps<T>
   extends Omit<EuiThemeProviderProps<T>, 'children' | 'theme'>,
@@ -64,7 +68,7 @@ export interface EuiProviderProps<T>
 }
 
 export const EuiProvider = <T extends {} = {}>({
-  cache,
+  cache = fallbackCache,
   theme = EuiThemeAmsterdam,
   globalStyles: Globals = EuiGlobalStyles,
   utilityClasses: Utilities = EuiUtilityClasses,
@@ -77,15 +81,25 @@ export const EuiProvider = <T extends {} = {}>({
   let utilityCache;
   if (cache) {
     if (isEmotionCacheObject(cache)) {
+      cache.compat = true;
       defaultCache = cache;
     } else {
+      if (cache.default) {
+        cache.default.compat = true;
+      }
       defaultCache = cache.default;
+      if (cache.global) {
+        cache.global.compat = true;
+      }
       globalCache = cache.global;
+      if (cache.utility) {
+        cache.utility.compat = true;
+      }
       utilityCache = cache.utility;
     }
   }
   return (
-    <EuiCacheProvider cache={defaultCache}>
+    <EuiCacheProvider cache={defaultCache ?? fallbackCache}>
       <EuiThemeProvider
         theme={theme ?? undefined}
         colorMode={colorMode}

@@ -37,6 +37,14 @@ describe('EuiProvider', () => {
     const utilityCache = createCache({
       key: 'utility',
     });
+
+    it('provides a default cache from Emotion when configured without a cache', () => {
+      const component = shallow(<EuiProvider />);
+
+      expect(component).toMatchSnapshot();
+      expect(component.prop('cache').key).toEqual('css');
+      expect(component.prop('cache').compat).toEqual(true);
+    });
     it('applies the cache to all styles', () => {
       const component = shallow(<EuiProvider cache={defaultCache} />);
 

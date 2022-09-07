@@ -76,6 +76,8 @@ Most other issues reported by CI (e.g., Check Doc API Changes) will contain reso
 
 For opaque or seemingly build-related problems, it's time to elevate the error to the Kibana Ops team on Slack (#kibana-operations).
 
+For flaky Cypress tests, first contact the team to ask them for advice and whether they think the failures are caused by the PR and whether they would be okay merging into main with them. If they respond in the affirmative, you can then loop in KibanaOps by linking them the failure and asking them to either skip the flaky test or admin merge the PR even with red CI.
+
 If no mitigation strategies are presented, other options still exist (see [Snafu](#snafu))
 
 ## Procedures
@@ -113,4 +115,4 @@ The typical EUI upgrade PR in Kibana looks something like [#109157](https://gith
 
 Upgrades that result in significant changes to tests and/or snapshots can often require require codeowner approval from several teams. When possible, head-off questions and small change requests by leaving review comments explaining changes and adhering code styles typical of the plugin.
 
-Team sizes and priorities vary, so allow each team 1-2 days before escalating the review notification. After the waiting period, ping all teams with outstanding reviews containing non-snapshot code changes on Slack, letting them know that the review is for an EUI upgrade PR. If review(s) remain outstanding, either re-post the Slack message or merge the PR without review provided that the review(s) are only for snapshot updates with an expected diff.
+Team sizes and priorities vary, so allow each team 1-2 days before escalating the review notification. After the waiting period, ping all teams with outstanding reviews containing non-snapshot code changes on Slack, letting them know that the review is for an EUI upgrade PR. If review(s) remain outstanding, either re-post the Slack message or ask KibanaOps to admin merge the PR without review provided that the review(s) are only for snapshot updates with an expected diff.

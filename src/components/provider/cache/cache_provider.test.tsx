@@ -27,16 +27,4 @@ describe('EuiProvider', () => {
     expect(component).toMatchSnapshot();
     expect(component.prop('value').key).toEqual('testing');
   });
-
-  it('provides a default cache from Emotion when configured without a cache', () => {
-    const component = shallow(
-      <EuiCacheProvider>
-        <div />
-      </EuiCacheProvider>
-    );
-
-    expect(component).toMatchSnapshot();
-    expect(component.prop('value').key).toEqual('css');
-    expect(component.prop('value').compat).toEqual(true);
-  });
 });
