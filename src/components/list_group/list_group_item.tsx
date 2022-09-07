@@ -18,11 +18,12 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../button';
+import { EuiButtonIconPropsForButton } from '../button';
 import { EuiIcon, IconType, EuiIconProps } from '../icon';
 import { EuiToolTip } from '../tool_tip';
 import { useInnerText } from '../inner_text';
 import { ExclusiveUnion, CommonProps } from '../common';
+import { EuiListGroupItemExtraAction } from './list_group_item_extra_action';
 
 import { getSecureRelForTarget, useEuiTheme } from '../../services';
 import { validateHref } from '../../services/security/href_validator';
@@ -34,7 +35,6 @@ import {
   euiListGroupItemTextStyles,
   euiListGroupItemTooltipStyles,
   euiListGroupItemLabelStyles,
-  euiListGroupItemExtraActionStyles,
 } from './list_group_item.styles';
 
 export const SIZES = ['xs', 's', 'm', 'l'] as const;
@@ -212,24 +212,8 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
       ...rest
     } = extraAction;
 
-    const extraActionClasses = classNames(
-      'euiListGroupItem__extraAction',
-      {
-        'euiListGroupItem__extraAction-alwaysShow': alwaysShow,
-      },
-      className
-    );
-
-    const extraActionStyles = euiListGroupItemExtraActionStyles(euiTheme);
-    const cssExtraActionStyles = [
-      extraActionStyles.euiListGroupItem__extraAction,
-      alwaysShow && extraActionStyles.alwaysShow,
-    ];
-
     extraActionNode = (
-      <EuiButtonIcon
-        className={extraActionClasses}
-        css={cssExtraActionStyles}
+      <EuiListGroupItemExtraAction
         iconType={iconType}
         {...rest}
         disabled={isDisabled || actionIsDisabled}

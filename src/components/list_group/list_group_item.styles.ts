@@ -268,32 +268,6 @@ export const euiListGroupItemLabelStyles = () => {
   };
 };
 
-export const euiListGroupItemExtraActionStyles = ({
-  euiTheme,
-}: UseEuiTheme) => {
-  return {
-    // Base
-    euiListGroupItem__extraAction: css`
-      opacity: 0;
-      ${logicalCSS('margin-right', euiTheme.size.m)};
-
-      ${euiCanAnimate} {
-        transition: opacity ${euiTheme.animation.fast};
-      }
-
-      .euiListGroupItem:not(.euiListGroupItem-isDisabled):focus &,
-      .euiListGroupItem:not(.euiListGroupItem-isDisabled):hover &,
-      &.euiListGroupItem__extraAction-alwaysShow,
-      &:focus {
-        opacity: 1;
-      }
-    `,
-    alwaysShow: css`
-      opacity: 1;
-    `,
-  };
-};
-
 export const euiListGroupItemIconStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     // Base
