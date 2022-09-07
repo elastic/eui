@@ -11,21 +11,37 @@ Object {
   "bool": Object {
     "must": Array [
       Object {
-        "match": Object {
-          "group": Object {
-            "operator": "and",
-            "query": "kibana logstash",
-          },
+        "bool": Object {
+          "must": Array [
+            Object {
+              "match": Object {
+                "group": "kibana",
+              },
+            },
+            Object {
+              "match": Object {
+                "group": "logstash",
+              },
+            },
+          ],
         },
       },
     ],
     "must_not": Array [
       Object {
-        "match": Object {
-          "group": Object {
-            "operator": "and",
-            "query": "es beats",
-          },
+        "bool": Object {
+          "must": Array [
+            Object {
+              "match": Object {
+                "group": "es",
+              },
+            },
+            Object {
+              "match": Object {
+                "group": "beats",
+              },
+            },
+          ],
         },
       },
     ],
@@ -43,11 +59,14 @@ Object {
         },
       },
       Object {
-        "match": Object {
-          "group": Object {
-            "operator": "and",
-            "query": "kibana",
-          },
+        "bool": Object {
+          "must": Array [
+            Object {
+              "match": Object {
+                "group": "kibana",
+              },
+            },
+          ],
         },
       },
       Object {
@@ -70,11 +89,19 @@ Object {
         },
       },
       Object {
-        "match": Object {
-          "group": Object {
-            "operator": "and",
-            "query": "eng es",
-          },
+        "bool": Object {
+          "must": Array [
+            Object {
+              "match": Object {
+                "group": "eng",
+              },
+            },
+            Object {
+              "match": Object {
+                "group": "es",
+              },
+            },
+          ],
         },
       },
       Object {
@@ -95,11 +122,14 @@ Object {
         },
       },
       Object {
-        "match": Object {
-          "group": Object {
-            "operator": "and",
-            "query": "kibana",
-          },
+        "bool": Object {
+          "must": Array [
+            Object {
+              "match": Object {
+                "group": "kibana",
+              },
+            },
+          ],
         },
       },
     ],
@@ -141,11 +171,14 @@ Object {
         "bool": Object {
           "should": Array [
             Object {
-              "match": Object {
-                "group": Object {
-                  "operator": "or",
-                  "query": "eng",
-                },
+              "bool": Object {
+                "should": Array [
+                  Object {
+                    "match": Object {
+                      "group": "eng",
+                    },
+                  },
+                ],
               },
             },
             Object {
@@ -178,21 +211,32 @@ Object {
         },
       },
       Object {
-        "match": Object {
-          "group": Object {
-            "operator": "or",
-            "query": "eng es",
-          },
+        "bool": Object {
+          "should": Array [
+            Object {
+              "match": Object {
+                "group": "eng",
+              },
+            },
+            Object {
+              "match": Object {
+                "group": "es",
+              },
+            },
+          ],
         },
       },
     ],
     "must_not": Array [
       Object {
-        "match": Object {
-          "group": Object {
-            "operator": "and",
-            "query": "kibana",
-          },
+        "bool": Object {
+          "must": Array [
+            Object {
+              "match": Object {
+                "group": "kibana",
+              },
+            },
+          ],
         },
       },
     ],
@@ -211,11 +255,14 @@ Object {
               "bool": Object {
                 "must": Array [
                   Object {
-                    "match": Object {
-                      "name": Object {
-                        "operator": "and",
-                        "query": "john",
-                      },
+                    "bool": Object {
+                      "must": Array [
+                        Object {
+                          "match": Object {
+                            "name": "john",
+                          },
+                        },
+                      ],
                     },
                   },
                 ],
@@ -225,11 +272,14 @@ Object {
               "bool": Object {
                 "must": Array [
                   Object {
-                    "match": Object {
-                      "name": Object {
-                        "operator": "and",
-                        "query": "fred",
-                      },
+                    "bool": Object {
+                      "must": Array [
+                        Object {
+                          "match": Object {
+                            "name": "fred",
+                          },
+                        },
+                      ],
                     },
                   },
                 ],
@@ -254,11 +304,14 @@ Object {
               "bool": Object {
                 "must": Array [
                   Object {
-                    "match": Object {
-                      "name": Object {
-                        "operator": "and",
-                        "query": "john",
-                      },
+                    "bool": Object {
+                      "must": Array [
+                        Object {
+                          "match": Object {
+                            "name": "john",
+                          },
+                        },
+                      ],
                     },
                   },
                 ],
@@ -413,11 +466,14 @@ Object {
         "bool": Object {
           "must": Array [
             Object {
-              "match": Object {
-                "name": Object {
-                  "operator": "and",
-                  "query": "john",
-                },
+              "bool": Object {
+                "must": Array [
+                  Object {
+                    "match": Object {
+                      "name": "john",
+                    },
+                  },
+                ],
               },
             },
           ],
