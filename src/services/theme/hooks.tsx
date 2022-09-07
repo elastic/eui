@@ -30,6 +30,29 @@ export const useEuiTheme = <T extends {} = {}>(): UseEuiTheme<T> => {
   const colorMode = useContext(EuiColorModeContext);
   const modifications = useContext(EuiModificationsContext);
 
+  if (process.env.NODE_ENV !== 'production') {
+    const isFallback = theme.isContextDefault === true;
+    if (
+      isFallback &&
+      typeof window.__EUI_DEV_PROVIDER_WARNING__ !== 'undefined'
+    ) {
+      const message = `\`EuiProvider\` is missing which can result in negative effects.
+Wrap your component in \`EuiProvider\`: https://ela.st/euiprovider.`;
+      switch (window.__EUI_DEV_PROVIDER_WARNING__) {
+        case 'log':
+          console.log(message);
+          break;
+        case 'warn':
+          console.warn(message);
+          break;
+        case 'error':
+          throw new Error(message);
+        default:
+          break;
+      }
+    }
+  }
+
   const assembledTheme = useMemo(
     () => ({
       euiTheme: theme as EuiThemeComputed<T>,
@@ -42,7 +65,7 @@ export const useEuiTheme = <T extends {} = {}>(): UseEuiTheme<T> => {
   return assembledTheme;
 };
 
-export interface WithEuiThemeProps<P = {}> {
+export interface WithEuiThemeProps<P extends {} = {}> {
   theme: UseEuiTheme<P>;
 }
 // Provide the component props interface as the generic to allow the docs props table to populate.

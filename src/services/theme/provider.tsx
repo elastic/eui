@@ -68,7 +68,7 @@ export const EuiThemeProvider = <T extends {} = {}>({
 
   const [theme, setTheme] = useState(
     isParentTheme.current && Object.keys(parentTheme).length
-      ? parentTheme
+      ? { ...parentTheme, isContextDefault: false }
       : getComputed(
           system,
           buildTheme(modifications, `_${system.key}`) as typeof system,
