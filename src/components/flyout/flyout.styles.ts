@@ -278,6 +278,5 @@ const composeFlyoutPadding = (
       padding: ${footerPaddingSizes[paddingSize]};
     }
   `;
-
   return flyoutPadding;
 };
