@@ -33,10 +33,11 @@ export const EuiPopoverTitle: EuiPopoverTitleProps = ({
 }) => {
   const { paddingSize: panelPadding } = useContext(EuiPopoverPanelContext);
   const euiTheme = useEuiTheme();
-  const styles = euiPopoverTitleStyles(euiTheme, panelPadding);
+  const styles = euiPopoverTitleStyles(euiTheme);
   const paddingStyles = useEuiPaddingCSS();
   const cssStyles = [
     styles.euiPopoverTitle,
+    styles.panelPaddingSizes[panelPadding],
     // If a paddingSize is not directly provided, inherit from the EuiPopoverPanel
     paddingStyles[paddingSize || panelPadding],
   ];
