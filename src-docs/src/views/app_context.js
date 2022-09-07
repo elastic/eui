@@ -42,16 +42,10 @@ export const AppContext = ({ children }) => {
   };
 
   const isLocalDev = window.location.host.includes('803');
+  window.__EUI_DEV_PROVIDER_WARNING__ = 'warn';
 
   return (
-    <EuiProvider
-      cache={{
-        default: generalEmotionCache,
-        utility: utilityCache,
-      }}
-      theme={EUI_THEMES.find((t) => t.value === theme)?.provider}
-      colorMode={theme.includes('light') ? 'light' : 'dark'}
-    >
+    <>
       <Helmet>
         <link
           rel="icon"
@@ -79,7 +73,7 @@ export const AppContext = ({ children }) => {
         />
       </Helmet>
       <EuiContext i18n={i18n}>{children}</EuiContext>
-    </EuiProvider>
+    </>
   );
 };
 
