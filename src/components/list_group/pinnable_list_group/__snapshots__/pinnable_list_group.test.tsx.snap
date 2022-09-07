@@ -10,15 +10,15 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-m-inherit"
   >
     <span
-      class="euiListGroupItem__text"
+      class="euiListGroupItem__text emotion-euiListGroupItem__text"
     >
       <span
-        class="euiListGroupItem__icon"
+        class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
         color="inherit"
         data-euiicon-type="stop"
       />
       <span
-        class="euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label"
         title="Label with iconType"
       >
         Label with iconType
@@ -26,7 +26,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     </span>
     <button
       aria-label="Pin Label with iconType to the top"
-      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItem__extraAction euiPinnableListGroup__itemExtraAction css-l12df3-empty-primary-hoverStyles-EuiButtonIcon"
+      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItem__extraAction euiPinnableListGroup__itemExtraAction css-1hhie0u-empty-primary-hoverStyles-EuiButtonIcon-euiPinnableListGroup__itemExtraAction"
       title="Pin Label with iconType to the top"
       type="button"
     >
@@ -42,10 +42,10 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-m-inherit"
   >
     <span
-      class="euiListGroupItem__text"
+      class="euiListGroupItem__text emotion-euiListGroupItem__text"
     >
       <span
-        class="euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label"
         title="Custom extra action"
       >
         Custom extra action
@@ -53,7 +53,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     </span>
     <button
       aria-label="bell"
-      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow css-l12df3-empty-primary-hoverStyles-EuiButtonIcon"
+      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow css-t2vcip-empty-primary-hoverStyles-EuiButtonIcon-euiListGroupItem__extraAction-alwaysShow"
       type="button"
     >
       <span
@@ -73,7 +73,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
       rel="noreferrer"
     >
       <span
-        class="euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label"
         title="Active link"
       >
         Active link
@@ -81,7 +81,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     </a>
     <button
       aria-label="Pin Active link to the top"
-      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItem__extraAction euiPinnableListGroup__itemExtraAction css-l12df3-empty-primary-hoverStyles-EuiButtonIcon"
+      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItem__extraAction euiPinnableListGroup__itemExtraAction css-1hhie0u-empty-primary-hoverStyles-EuiButtonIcon-euiPinnableListGroup__itemExtraAction"
       title="Pin Active link to the top"
       type="button"
     >
@@ -101,7 +101,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
       type="button"
     >
       <span
-        class="euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label"
         title="Button with onClick"
       >
         Button with onClick
@@ -109,7 +109,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     </button>
     <button
       aria-label="Unpin Button with onClick to the top"
-      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow euiPinnableListGroup__itemExtraAction euiPinnableListGroup__itemExtraAction-pinned css-l12df3-empty-primary-hoverStyles-EuiButtonIcon"
+      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow euiPinnableListGroup__itemExtraAction euiPinnableListGroup__itemExtraAction-pinned css-1x3pf51-empty-primary-hoverStyles-EuiButtonIcon-euiPinnableListGroup__itemExtraAction-pinned"
       title="Unpin Button with onClick to the top"
       type="button"
     >
@@ -130,7 +130,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
       rel="noreferrer"
     >
       <span
-        class="euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label"
         title="Link with href"
       >
         Link with href
@@ -138,7 +138,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     </a>
     <button
       aria-label="Pin Link with href to the top"
-      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItem__extraAction euiPinnableListGroup__itemExtraAction css-l12df3-empty-primary-hoverStyles-EuiButtonIcon"
+      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItem__extraAction euiPinnableListGroup__itemExtraAction css-1hhie0u-empty-primary-hoverStyles-EuiButtonIcon-euiPinnableListGroup__itemExtraAction"
       title="Pin Link with href to the top"
       type="button"
     >
@@ -159,7 +159,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
       rel="noreferrer"
     >
       <span
-        class="euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label"
         title="Not pinnable"
       >
         Not pinnable
@@ -179,15 +179,15 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-m-inherit"
   >
     <span
-      class="euiListGroupItem__text"
+      class="euiListGroupItem__text emotion-euiListGroupItem__text"
     >
       <span
-        class="euiListGroupItem__icon"
+        class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
         color="inherit"
         data-euiicon-type="stop"
       />
       <span
-        class="euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label"
         title="Label with iconType"
       >
         Label with iconType
@@ -195,7 +195,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     </span>
     <button
       aria-label="Pin item"
-      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItem__extraAction euiPinnableListGroup__itemExtraAction css-l12df3-empty-primary-hoverStyles-EuiButtonIcon"
+      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItem__extraAction euiPinnableListGroup__itemExtraAction css-1hhie0u-empty-primary-hoverStyles-EuiButtonIcon-euiPinnableListGroup__itemExtraAction"
       title="Pin item"
       type="button"
     >
@@ -211,10 +211,10 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-m-inherit"
   >
     <span
-      class="euiListGroupItem__text"
+      class="euiListGroupItem__text emotion-euiListGroupItem__text"
     >
       <span
-        class="euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label"
         title="Custom extra action"
       >
         Custom extra action
@@ -222,7 +222,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     </span>
     <button
       aria-label="bell"
-      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow css-l12df3-empty-primary-hoverStyles-EuiButtonIcon"
+      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow css-t2vcip-empty-primary-hoverStyles-EuiButtonIcon-euiListGroupItem__extraAction-alwaysShow"
       type="button"
     >
       <span
@@ -242,7 +242,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
       rel="noreferrer"
     >
       <span
-        class="euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label"
         title="Active link"
       >
         Active link
@@ -250,7 +250,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     </a>
     <button
       aria-label="Pin item"
-      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItem__extraAction euiPinnableListGroup__itemExtraAction css-l12df3-empty-primary-hoverStyles-EuiButtonIcon"
+      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItem__extraAction euiPinnableListGroup__itemExtraAction css-1hhie0u-empty-primary-hoverStyles-EuiButtonIcon-euiPinnableListGroup__itemExtraAction"
       title="Pin item"
       type="button"
     >
@@ -270,7 +270,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
       type="button"
     >
       <span
-        class="euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label"
         title="Button with onClick"
       >
         Button with onClick
@@ -278,7 +278,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     </button>
     <button
       aria-label="Unpin item"
-      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow euiPinnableListGroup__itemExtraAction euiPinnableListGroup__itemExtraAction-pinned css-l12df3-empty-primary-hoverStyles-EuiButtonIcon"
+      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow euiPinnableListGroup__itemExtraAction euiPinnableListGroup__itemExtraAction-pinned css-1x3pf51-empty-primary-hoverStyles-EuiButtonIcon-euiPinnableListGroup__itemExtraAction-pinned"
       title="Unpin item"
       type="button"
     >
@@ -299,7 +299,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
       rel="noreferrer"
     >
       <span
-        class="euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label"
         title="Link with href"
       >
         Link with href
@@ -307,7 +307,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     </a>
     <button
       aria-label="Pin item"
-      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItem__extraAction euiPinnableListGroup__itemExtraAction css-l12df3-empty-primary-hoverStyles-EuiButtonIcon"
+      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItem__extraAction euiPinnableListGroup__itemExtraAction css-1hhie0u-empty-primary-hoverStyles-EuiButtonIcon-euiPinnableListGroup__itemExtraAction"
       title="Pin item"
       type="button"
     >
@@ -328,7 +328,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
       rel="noreferrer"
     >
       <span
-        class="euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label"
         title="Not pinnable"
       >
         Not pinnable

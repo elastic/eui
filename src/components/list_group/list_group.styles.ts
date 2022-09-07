@@ -17,11 +17,19 @@ export const euiListGroupStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     // Base
-    euiListGroup: css``,
+    euiListGroup: css`
+      display: flex;
+      flex-direction: column;
+    `,
     // Variants
     flush: css`
       padding: 0;
       border: none;
+
+      // override the default border radius
+      .euiListGroupItem {
+        border-radius: 0;
+      }
     `,
     bordered: css`
       border-radius: ${euiTheme.border.radius.medium};
@@ -34,9 +42,11 @@ export const euiListGroupStyles = (euiThemeContext: UseEuiTheme) => {
     none: css``,
     s: css`
       padding: ${euiTheme.size.s};
+      gap: ${euiTheme.size.s};
     `,
     m: css`
       padding: ${euiTheme.size.base};
+      gap: ${euiTheme.size.base};
     `,
   };
 };

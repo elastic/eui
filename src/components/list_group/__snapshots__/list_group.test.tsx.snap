@@ -16,15 +16,15 @@ exports[`EuiListGroup listItems is rendered 1`] = `
     class="euiListGroupItem emotion-euiListGroupItem-m-inherit"
   >
     <span
-      class="euiListGroupItem__text"
+      class="euiListGroupItem__text emotion-euiListGroupItem__text"
     >
       <span
-        class="euiListGroupItem__icon"
+        class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
         color="inherit"
         data-euiicon-type="stop"
       />
       <span
-        class="euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label"
         title="Label with iconType"
       >
         Label with iconType
@@ -35,10 +35,10 @@ exports[`EuiListGroup listItems is rendered 1`] = `
     class="euiListGroupItem emotion-euiListGroupItem-m-inherit"
   >
     <span
-      class="euiListGroupItem__text"
+      class="euiListGroupItem__text emotion-euiListGroupItem__text"
     >
       <span
-        class="euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label"
         title="Custom extra action"
       >
         Custom extra action
@@ -46,7 +46,7 @@ exports[`EuiListGroup listItems is rendered 1`] = `
     </span>
     <button
       aria-label="bell"
-      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow css-l12df3-empty-primary-hoverStyles-EuiButtonIcon"
+      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow css-t2vcip-empty-primary-hoverStyles-EuiButtonIcon-euiListGroupItem__extraAction-alwaysShow"
       type="button"
     >
       <span
@@ -65,7 +65,7 @@ exports[`EuiListGroup listItems is rendered 1`] = `
       type="button"
     >
       <span
-        class="euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label"
         title="Button with onClick"
       >
         Button with onClick
@@ -81,7 +81,7 @@ exports[`EuiListGroup listItems is rendered 1`] = `
       rel="noreferrer"
     >
       <span
-        class="euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label"
         title="Active link"
       >
         Active link
@@ -97,7 +97,7 @@ exports[`EuiListGroup listItems is rendered 1`] = `
       rel="noreferrer"
     >
       <span
-        class="euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label"
         title="Link with href"
       >
         Link with href
@@ -115,15 +115,15 @@ exports[`EuiListGroup listItems is rendered with color 1`] = `
     class="euiListGroupItem emotion-euiListGroupItem-m-primary"
   >
     <span
-      class="euiListGroupItem__text"
+      class="euiListGroupItem__text emotion-euiListGroupItem__text"
     >
       <span
-        class="euiListGroupItem__icon"
+        class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
         color="inherit"
         data-euiicon-type="stop"
       />
       <span
-        class="euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label"
         title="Label with iconType"
       >
         Label with iconType
@@ -134,10 +134,10 @@ exports[`EuiListGroup listItems is rendered with color 1`] = `
     class="euiListGroupItem emotion-euiListGroupItem-m-primary"
   >
     <span
-      class="euiListGroupItem__text"
+      class="euiListGroupItem__text emotion-euiListGroupItem__text"
     >
       <span
-        class="euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label"
         title="Custom extra action"
       >
         Custom extra action
@@ -145,7 +145,7 @@ exports[`EuiListGroup listItems is rendered with color 1`] = `
     </span>
     <button
       aria-label="bell"
-      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow css-l12df3-empty-primary-hoverStyles-EuiButtonIcon"
+      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow css-t2vcip-empty-primary-hoverStyles-EuiButtonIcon-euiListGroupItem__extraAction-alwaysShow"
       type="button"
     >
       <span
@@ -164,7 +164,7 @@ exports[`EuiListGroup listItems is rendered with color 1`] = `
       type="button"
     >
       <span
-        class="euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label"
         title="Button with onClick"
       >
         Button with onClick
@@ -180,7 +180,7 @@ exports[`EuiListGroup listItems is rendered with color 1`] = `
       rel="noreferrer"
     >
       <span
-        class="euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label"
         title="Active link"
       >
         Active link
@@ -196,7 +196,7 @@ exports[`EuiListGroup listItems is rendered with color 1`] = `
       rel="noreferrer"
     >
       <span
-        class="euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label"
         title="Link with href"
       >
         Link with href

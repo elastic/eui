@@ -8,10 +8,17 @@
 
 import React from 'react';
 import { render } from 'enzyme';
+// import { requiredProps } from '../../test/required_props';
+// import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiListGroupItem, SIZES, COLORS } from './list_group_item';
 
 describe('EuiListGroupItem', () => {
+  // TODO - This test fails
+  // shouldRenderCustomStyles(
+  //   <EuiListGroupItem label="Label" {...requiredProps} />
+  // );
+
   test('is rendered', () => {
     const component = render(<EuiListGroupItem label="Label" />);
 
