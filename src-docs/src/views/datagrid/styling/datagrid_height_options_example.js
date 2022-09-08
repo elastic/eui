@@ -169,6 +169,42 @@ export const dataGridRowHeightOptionsExample = {
                   </li>
                 </ul>
               </li>
+              <li>
+                <EuiCode>scrollAnchorRow</EuiCode>
+                <ul>
+                  <li>
+                    Optional indicator of the row that should be used as an
+                    anchor for vertical layout shift compensation.
+                  </li>
+                  <li>
+                    Can be set to the default <EuiCode>undefined</EuiCode>,
+                    <EuiCode>&quot;start&quot;</EuiCode>, or
+                    <EuiCode>&quot;center&quot;</EuiCode>.
+                  </li>
+                  <li>
+                    If set to <EuiCode>&quot;start&quot;</EuiCode>, the topmost
+                    visible row will monitor for unexpected changes to its
+                    vertical position and try to compensate for these by
+                    scrolling the grid scroll container such that the topmost
+                    row position remains stable.
+                  </li>
+                  <li>
+                    If set to <EuiCode>&quot;center&quot;</EuiCode>, the middle
+                    visible row will monitor for unexpected changes to its
+                    vertical position and try to compensate for these by
+                    scrolling the grid scroll container such that the middle row
+                    position remains stable.
+                  </li>
+                  <li>
+                    This is particularly useful when the grid contains
+                    <EuiCode>auto</EuiCode> sized rows. Since these rows are
+                    measured as they appear in the overscan, they can cause
+                    surprising shifts of the vertical position of all following
+                    rows when their measured height is different from the
+                    estimated height.
+                  </li>
+                </ul>
+              </li>
             </ul>
           </EuiText>
           <EuiSpacer />

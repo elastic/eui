@@ -1,0 +1,295 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`_EuiPageBottomBar is rendered 1`] = `
+Array [
+  <section
+    aria-label="aria-label"
+    class="euiBottomBar euiBottomBar--sticky testClass1 testClass2 emotion-euiBottomBar-sticky-bar"
+    data-test-subj="test subject string"
+    style="left:0;right:0;bottom:0"
+  >
+    <h2
+      class="emotion-euiScreenReaderOnly"
+    >
+      Page level controls
+    </h2>
+    <section
+      class="emotion-euiPageSection-l-top-transparent"
+    >
+      <div
+        class="emotion-euiPageSection__content-l"
+      />
+    </section>
+  </section>,
+  <p
+    aria-live="assertive"
+    class="emotion-euiScreenReaderOnly"
+  >
+    There is a new region landmark with page level controls at the end of the document.
+  </p>,
+]
+`;
+
+exports[`_EuiPageBottomBar paddingSize l is rendered 1`] = `
+Array [
+  <section
+    aria-label="Page level controls"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar"
+    style="left:0;right:0;bottom:0"
+  >
+    <h2
+      class="emotion-euiScreenReaderOnly"
+    >
+      Page level controls
+    </h2>
+    <section
+      class="emotion-euiPageSection-l-top-transparent"
+    >
+      <div
+        class="emotion-euiPageSection__content-l"
+      />
+    </section>
+  </section>,
+  <p
+    aria-live="assertive"
+    class="emotion-euiScreenReaderOnly"
+  >
+    There is a new region landmark with page level controls at the end of the document.
+  </p>,
+]
+`;
+
+exports[`_EuiPageBottomBar paddingSize m is rendered 1`] = `
+Array [
+  <section
+    aria-label="Page level controls"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar"
+    style="left:0;right:0;bottom:0"
+  >
+    <h2
+      class="emotion-euiScreenReaderOnly"
+    >
+      Page level controls
+    </h2>
+    <section
+      class="emotion-euiPageSection-m-top-transparent"
+    >
+      <div
+        class="emotion-euiPageSection__content-m"
+      />
+    </section>
+  </section>,
+  <p
+    aria-live="assertive"
+    class="emotion-euiScreenReaderOnly"
+  >
+    There is a new region landmark with page level controls at the end of the document.
+  </p>,
+]
+`;
+
+exports[`_EuiPageBottomBar paddingSize none is rendered 1`] = `
+Array [
+  <section
+    aria-label="Page level controls"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar"
+    style="left:0;right:0;bottom:0"
+  >
+    <h2
+      class="emotion-euiScreenReaderOnly"
+    >
+      Page level controls
+    </h2>
+    <section
+      class="emotion-euiPageSection-top-transparent"
+    >
+      <div
+        class="emotion-euiPageSection__content"
+      />
+    </section>
+  </section>,
+  <p
+    aria-live="assertive"
+    class="emotion-euiScreenReaderOnly"
+  >
+    There is a new region landmark with page level controls at the end of the document.
+  </p>,
+]
+`;
+
+exports[`_EuiPageBottomBar paddingSize s is rendered 1`] = `
+Array [
+  <section
+    aria-label="Page level controls"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar"
+    style="left:0;right:0;bottom:0"
+  >
+    <h2
+      class="emotion-euiScreenReaderOnly"
+    >
+      Page level controls
+    </h2>
+    <section
+      class="emotion-euiPageSection-s-top-transparent"
+    >
+      <div
+        class="emotion-euiPageSection__content-s"
+      />
+    </section>
+  </section>,
+  <p
+    aria-live="assertive"
+    class="emotion-euiScreenReaderOnly"
+  >
+    There is a new region landmark with page level controls at the end of the document.
+  </p>,
+]
+`;
+
+exports[`_EuiPageBottomBar paddingSize xl is rendered 1`] = `
+Array [
+  <section
+    aria-label="Page level controls"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar"
+    style="left:0;right:0;bottom:0"
+  >
+    <h2
+      class="emotion-euiScreenReaderOnly"
+    >
+      Page level controls
+    </h2>
+    <section
+      class="emotion-euiPageSection-xl-top-transparent"
+    >
+      <div
+        class="emotion-euiPageSection__content-xl"
+      />
+    </section>
+  </section>,
+  <p
+    aria-live="assertive"
+    class="emotion-euiScreenReaderOnly"
+  >
+    There is a new region landmark with page level controls at the end of the document.
+  </p>,
+]
+`;
+
+exports[`_EuiPageBottomBar paddingSize xs is rendered 1`] = `
+Array [
+  <section
+    aria-label="Page level controls"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar"
+    style="left:0;right:0;bottom:0"
+  >
+    <h2
+      class="emotion-euiScreenReaderOnly"
+    >
+      Page level controls
+    </h2>
+    <section
+      class="emotion-euiPageSection-xs-top-transparent"
+    >
+      <div
+        class="emotion-euiPageSection__content-xs"
+      />
+    </section>
+  </section>,
+  <p
+    aria-live="assertive"
+    class="emotion-euiScreenReaderOnly"
+  >
+    There is a new region landmark with page level controls at the end of the document.
+  </p>,
+]
+`;
+
+exports[`_EuiPageBottomBar restrict width can be set to a custom number 1`] = `
+Array [
+  <section
+    aria-label="Page level controls"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar"
+    style="left:0;right:0;bottom:0"
+  >
+    <h2
+      class="emotion-euiScreenReaderOnly"
+    >
+      Page level controls
+    </h2>
+    <section
+      class="emotion-euiPageSection-l-top-transparent"
+    >
+      <div
+        class="emotion-euiPageSection__content-l-restrictWidth"
+        style="max-width:1024px"
+      />
+    </section>
+  </section>,
+  <p
+    aria-live="assertive"
+    class="emotion-euiScreenReaderOnly"
+  >
+    There is a new region landmark with page level controls at the end of the document.
+  </p>,
+]
+`;
+
+exports[`_EuiPageBottomBar restrict width can be set to a custom value and measurement 1`] = `
+Array [
+  <section
+    aria-label="Page level controls"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar"
+    style="left:0;right:0;bottom:0"
+  >
+    <h2
+      class="emotion-euiScreenReaderOnly"
+    >
+      Page level controls
+    </h2>
+    <section
+      class="emotion-euiPageSection-l-top-transparent"
+    >
+      <div
+        class="emotion-euiPageSection__content-l-restrictWidth"
+        style="max-width:24rem"
+      />
+    </section>
+  </section>,
+  <p
+    aria-live="assertive"
+    class="emotion-euiScreenReaderOnly"
+  >
+    There is a new region landmark with page level controls at the end of the document.
+  </p>,
+]
+`;
+
+exports[`_EuiPageBottomBar restrict width can be set to a default 1`] = `
+Array [
+  <section
+    aria-label="Page level controls"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar"
+    style="left:0;right:0;bottom:0"
+  >
+    <h2
+      class="emotion-euiScreenReaderOnly"
+    >
+      Page level controls
+    </h2>
+    <section
+      class="emotion-euiPageSection-l-top-transparent"
+    >
+      <div
+        class="emotion-euiPageSection__content-l-restrictWidth"
+        style="max-width:1200px"
+      />
+    </section>
+  </section>,
+  <p
+    aria-live="assertive"
+    class="emotion-euiScreenReaderOnly"
+  >
+    There is a new region landmark with page level controls at the end of the document.
+  </p>,
+]
+`;

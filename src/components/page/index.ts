@@ -19,10 +19,10 @@ export type {
   EuiPageContentHeaderSectionProps,
 } from './page_content';
 export {
-  EuiPageContent,
-  EuiPageContentBody,
-  EuiPageContentHeader,
-  EuiPageContentHeaderSection,
+  EuiPageContent_Deprecated,
+  EuiPageContentBody_Deprecated,
+  EuiPageContentHeader_Deprecated,
+  EuiPageContentHeaderSection_Deprecated,
 } from './page_content';
 
 export type {
@@ -36,8 +36,14 @@ export {
   EuiPageHeaderSection,
 } from './page_header';
 
-export type { EuiPageSideBarProps } from './page_side_bar';
-export { EuiPageSideBar } from './page_side_bar';
+export type { EuiPageSectionProps } from './page_section';
+export { EuiPageSection } from './page_section';
 
-export type { EuiPageTemplateProps } from './page_template';
-export { EuiPageTemplate } from './page_template';
+export type { EuiPageSideBarProps } from './page_side_bar';
+export { EuiPageSideBar_Deprecated } from './page_side_bar';
+
+export type { EuiPageSidebarProps } from './page_sidebar';
+export { EuiPageSidebar } from './page_sidebar';
+
+export type { EuiPageTemplateProps_Deprecated } from './page_template';
+export { EuiPageTemplate_Deprecated } from './page_template';

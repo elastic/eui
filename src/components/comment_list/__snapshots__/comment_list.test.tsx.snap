@@ -34,6 +34,7 @@ exports[`EuiCommentList is rendered 1`] = `
     >
       <div
         class="euiCommentEvent emotion-euiCommentEvent-custom"
+        data-type="custom"
       />
     </div>
   </li>
@@ -72,6 +73,7 @@ exports[`EuiCommentList props gutterSize l is rendered 1`] = `
     >
       <div
         class="euiCommentEvent emotion-euiCommentEvent-custom"
+        data-type="custom"
       />
     </div>
   </li>
@@ -110,6 +112,7 @@ exports[`EuiCommentList props gutterSize m is rendered 1`] = `
     >
       <div
         class="euiCommentEvent emotion-euiCommentEvent-custom"
+        data-type="custom"
       />
     </div>
   </li>
@@ -148,6 +151,7 @@ exports[`EuiCommentList props gutterSize xl is rendered 1`] = `
     >
       <div
         class="euiCommentEvent emotion-euiCommentEvent-custom"
+        data-type="custom"
       />
     </div>
   </li>

@@ -7,7 +7,6 @@
  */
 
 export type {
-  EuiButtonIconColor,
   EuiButtonIconProps,
   EuiButtonIconPropsForButton,
   EuiButtonIconPropsForAnchor,

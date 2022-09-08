@@ -76,7 +76,7 @@ type Determinate = EuiProgressProps &
     /**
      * Object of props passed to the <span/> wrapping the determinate progress's label
      */
-    labelProps?: HTMLAttributes<HTMLSpanElement>;
+    labelProps?: CommonProps & HTMLAttributes<HTMLSpanElement>;
   };
 
 export const EuiProgress: FunctionComponent<ExclusiveUnion<

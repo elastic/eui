@@ -14,6 +14,7 @@ import {
 } from '../functions/typography';
 import { useEuiTheme, UseEuiTheme } from '../../services/theme/hooks';
 import { _EuiThemeFontScale } from '../variables/typography';
+import { logicalCSS } from '../functions';
 
 export type EuiThemeFontSize = {
   fontSize: CSSProperties['fontSize'];
@@ -47,8 +48,7 @@ export const useEuiFontSize = (
  */
 export const euiTextBreakWord = () => `
   overflow-wrap: break-word !important; // makes sure the long string will wrap and not bust out of the container
-  word-wrap: break-word !important; // spec says, they are literally just alternate names for each other but some browsers support one and not the other
-  word-break: break-word; // IE doesn't understand but that's ok
+  word-break: break-word;
 `;
 
 /**
@@ -57,7 +57,9 @@ export const euiTextBreakWord = () => `
 export const euiTextTruncate = (
   maxWidth: CSSProperties['maxWidth'] = '100%'
 ) => `
-  max-width: ${maxWidth}; // Ensure that the node has a maximum width after which truncation can occur
+  ${
+    logicalCSS('max-width', maxWidth) // Ensure that the node has a maximum width after which truncation can occur
+  }
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   white-space: nowrap !important;

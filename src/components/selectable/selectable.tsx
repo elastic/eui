@@ -56,7 +56,7 @@ type EuiSelectableOptionsListPropsWithDefaults = RequiredEuiSelectableOptionsLis
 // modifications remain in alignment.
 //
 // `searchProps` can only be specified when `searchable` is true
-type EuiSelectableSearchableProps<T> = ExclusiveUnion<
+export type EuiSelectableSearchableProps<T> = ExclusiveUnion<
   {
     searchable: false;
   },

@@ -19,7 +19,7 @@ export default () => {
   if (flyOut) {
     flyout = (
       <React.Fragment>
-        <EuiOverlayMask onClick={toggleFlyOut} headerZindexLocation="below" />
+        <EuiOverlayMask headerZindexLocation="below" />
         <EuiFlyout size="s" onClose={toggleFlyOut}>
           <EuiFlyoutHeader>
             <EuiTitle>

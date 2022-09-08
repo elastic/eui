@@ -1,0 +1,263 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiPageSection is rendered 1`] = `
+<section
+  aria-label="aria-label"
+  class="testClass1 testClass2 emotion-euiPageSection-l-top-transparent"
+  data-test-subj="test subject string"
+>
+  <div
+    class="emotion-euiPageSection__content-l"
+  />
+</section>
+`;
+
+exports[`EuiPageSection props alignment center is rendered 1`] = `
+<section
+  class="emotion-euiPageSection-l-center-transparent"
+>
+  <div
+    class="emotion-euiPageSection__content-l-center"
+  />
+</section>
+`;
+
+exports[`EuiPageSection props alignment horizontalCenter is rendered 1`] = `
+<section
+  class="emotion-euiPageSection-l-horizontalCenter-transparent"
+>
+  <div
+    class="emotion-euiPageSection__content-l-center"
+  />
+</section>
+`;
+
+exports[`EuiPageSection props alignment top is rendered 1`] = `
+<section
+  class="emotion-euiPageSection-l-top-transparent"
+>
+  <div
+    class="emotion-euiPageSection__content-l"
+  />
+</section>
+`;
+
+exports[`EuiPageSection props bottomBorder can be true 1`] = `
+<section
+  class="emotion-euiPageSection-l-top-transparent"
+>
+  <div
+    class="emotion-euiPageSection__content-l-border"
+  />
+</section>
+`;
+
+exports[`EuiPageSection props color accent is rendered 1`] = `
+<section
+  class="emotion-euiPageSection-l-top-accent"
+>
+  <div
+    class="emotion-euiPageSection__content-l"
+  />
+</section>
+`;
+
+exports[`EuiPageSection props color danger is rendered 1`] = `
+<section
+  class="emotion-euiPageSection-l-top-danger"
+>
+  <div
+    class="emotion-euiPageSection__content-l"
+  />
+</section>
+`;
+
+exports[`EuiPageSection props color plain is rendered 1`] = `
+<section
+  class="emotion-euiPageSection-l-top-plain"
+>
+  <div
+    class="emotion-euiPageSection__content-l"
+  />
+</section>
+`;
+
+exports[`EuiPageSection props color primary is rendered 1`] = `
+<section
+  class="emotion-euiPageSection-l-top-primary"
+>
+  <div
+    class="emotion-euiPageSection__content-l"
+  />
+</section>
+`;
+
+exports[`EuiPageSection props color subdued is rendered 1`] = `
+<section
+  class="emotion-euiPageSection-l-top-subdued"
+>
+  <div
+    class="emotion-euiPageSection__content-l"
+  />
+</section>
+`;
+
+exports[`EuiPageSection props color success is rendered 1`] = `
+<section
+  class="emotion-euiPageSection-l-top-success"
+>
+  <div
+    class="emotion-euiPageSection__content-l"
+  />
+</section>
+`;
+
+exports[`EuiPageSection props color transparent is rendered 1`] = `
+<section
+  class="emotion-euiPageSection-l-top-transparent"
+>
+  <div
+    class="emotion-euiPageSection__content-l"
+  />
+</section>
+`;
+
+exports[`EuiPageSection props color warning is rendered 1`] = `
+<section
+  class="emotion-euiPageSection-l-top-warning"
+>
+  <div
+    class="emotion-euiPageSection__content-l"
+  />
+</section>
+`;
+
+exports[`EuiPageSection props component 1`] = `
+<main>
+  <section
+    class="emotion-euiPageSection-l-top-transparent"
+  >
+    <div
+      class="emotion-euiPageSection__content-l"
+    />
+  </section>
+  <div
+    class="emotion-euiPageSection-l-top-transparent"
+  >
+    <div
+      class="emotion-euiPageSection__content-l"
+    />
+  </div>
+  <aside
+    class="emotion-euiPageSection-l-top-transparent"
+  >
+    <div
+      class="emotion-euiPageSection__content-l"
+    />
+  </aside>
+</main>
+`;
+
+exports[`EuiPageSection props contentProps are passed down 1`] = `
+<section
+  class="emotion-euiPageSection-l-top-transparent"
+>
+  <div
+    aria-label="aria-label"
+    class="testClass1 testClass2 emotion-euiPageSection__content-l"
+    data-test-subj="test subject string"
+  />
+</section>
+`;
+
+exports[`EuiPageSection props grow can be true 1`] = `
+<section
+  class="emotion-euiPageSection-grow-l-top-transparent"
+>
+  <div
+    class="emotion-euiPageSection__content-l"
+  />
+</section>
+`;
+
+exports[`EuiPageSection props paddingSize l is rendered 1`] = `
+<section
+  class="emotion-euiPageSection-l-top-transparent"
+>
+  <div
+    class="emotion-euiPageSection__content-l"
+  />
+</section>
+`;
+
+exports[`EuiPageSection props paddingSize m is rendered 1`] = `
+<section
+  class="emotion-euiPageSection-m-top-transparent"
+>
+  <div
+    class="emotion-euiPageSection__content-m"
+  />
+</section>
+`;
+
+exports[`EuiPageSection props paddingSize none is rendered 1`] = `
+<section
+  class="emotion-euiPageSection-top-transparent"
+>
+  <div
+    class="emotion-euiPageSection__content"
+  />
+</section>
+`;
+
+exports[`EuiPageSection props paddingSize s is rendered 1`] = `
+<section
+  class="emotion-euiPageSection-s-top-transparent"
+>
+  <div
+    class="emotion-euiPageSection__content-s"
+  />
+</section>
+`;
+
+exports[`EuiPageSection props paddingSize xl is rendered 1`] = `
+<section
+  class="emotion-euiPageSection-xl-top-transparent"
+>
+  <div
+    class="emotion-euiPageSection__content-xl"
+  />
+</section>
+`;
+
+exports[`EuiPageSection props paddingSize xs is rendered 1`] = `
+<section
+  class="emotion-euiPageSection-xs-top-transparent"
+>
+  <div
+    class="emotion-euiPageSection__content-xs"
+  />
+</section>
+`;
+
+exports[`EuiPageSection props restrictWidth can be custom 1`] = `
+<section
+  class="emotion-euiPageSection-l-top-transparent"
+>
+  <div
+    class="emotion-euiPageSection__content-l-restrictWidth"
+    style="max-width:1000px"
+  />
+</section>
+`;
+
+exports[`EuiPageSection props restrictWidth can be true 1`] = `
+<section
+  class="emotion-euiPageSection-l-top-transparent"
+>
+  <div
+    class="emotion-euiPageSection__content-l-restrictWidth"
+    style="max-width:1200px"
+  />
+</section>
+`;

@@ -82,6 +82,15 @@
   @include euiOverflowShadow('x');
 }
 
+/**
+ * For quickly applying a full-height element whether using flex or not
+ */
+@mixin euiFullHeight {
+  height: 100%;
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
 // Hiding elements offscreen to only be read by screen reader
 // See https://github.com/elastic/eui/pull/5130 and https://github.com/elastic/eui/pull/5152 for more info
 @mixin euiScreenReaderOnly {
@@ -101,14 +110,6 @@
   overflow: hidden;
   // Chrome requires the negative margin to not cause overflows of parent containers
   margin: -1px;
-}
-
-// Specifically target IE11, but not Edge.
-@mixin internetExplorerOnly {
-  // sass-lint:disable-block no-vendor-prefixes
-  @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
-    @content;
-  }
 }
 
 // Doesn't have reduced motion turned on

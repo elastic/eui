@@ -3,6 +3,7 @@ const chalk = require('chalk');
 const path = require('path');
 const prompt = require('prompt');
 let { execSync } = require('child_process');
+const git = require('nodegit');
 
 const cwd = path.resolve(__dirname, '..');
 const stdio = 'inherit';
@@ -50,17 +51,22 @@ if (args.dry_run) {
     execSync('npm run build', execOptions);
   }
 
+  let versionTarget;
 
   if (args.steps.indexOf('version') > -1) {
     const { changelogMap, changelog } = collateChangelogFiles();
 
     // prompt user for what type of version bump to make (major|minor|patch)
-    const versionTarget = await getVersionTypeFromChangelog(changelogMap);
+    versionTarget = await getVersionTypeFromChangelog(changelogMap);
 
     // build may have generated a new i18ntokens.json file, dirtying the git workspace
     // it's important to track those changes with this release, so determine the changes and write them
-    // to i18ntokens_changelog.json, comitting both to the workspace before running `npm version`
+    // to i18ntokens_changelog.json, committing both to the workspace before running `npm version`
     execSync(`npm run update-token-changelog -- ${versionTarget}`, execOptions);
+
+    // similarly, the build may have generated new theme json tokens
+    // TODO: this can be removed when the Emotion conversion is complete and the theme JSON files no longer exist
+    await commitThemeTokens();
 
     // Update CHANGELOG.md
     updateChangelog(changelog, versionTarget);
@@ -79,7 +85,7 @@ if (args.dry_run) {
 
   if (args.steps.indexOf('publish') > -1) {
     // prompt user for npm 2FA
-    const otp = await getOneTimePassword();
+    const otp = await getOneTimePassword(versionTarget);
 
     // publish new version to npm
     execSync(`npm publish --otp=${otp}`, execOptions);
@@ -221,9 +227,8 @@ async function promptUserForVersionType() {
   });
 }
 
-async function getOneTimePassword() {
-  const version = require('../package.json').version
-  console.log(chalk.magenta(`Preparing to publish @elastic/eui@${version} to npm registry`));
+async function getOneTimePassword(versionTarget) {
+  console.log(chalk.magenta(`Preparing to publish @elastic/eui@${versionTarget} to npm registry`));
   console.log('');
   console.log(chalk.magenta('The @elastic organization requires membership and 2FA to publish'));
 
@@ -261,4 +266,38 @@ async function promptUserForOneTimePassword() {
       }
     );
   });
+}
+
+async function commitThemeTokens() {
+  const repoDir = path.resolve(__dirname, '..');
+  const repo = await git.Repository.open(repoDir);
+
+  // find dirty files
+  const diff = await git.Diff.indexToWorkdir(repo, null, { FLAGS: git.Diff.OPTION.INCLUDE_UNTRACKED });
+  const patches = await diff.patches();
+  const dirtyFiles = new Set(patches.map(patch => patch.oldFile().path()));
+
+  let createCommit = false;
+
+  const index = await repo.refreshIndex();
+
+  if (dirtyFiles.has('src-docs/src/views/theme/_json/eui_theme_light.json')) {
+    createCommit = true;
+    await index.addByPath('src-docs/src/views/theme/_json/eui_theme_light.json');
+  }
+  if (dirtyFiles.has('src-docs/src/views/theme/_json/eui_theme_dark.json')) {
+    createCommit = true;
+    await index.addByPath('src-docs/src/views/theme/_json/eui_theme_dark.json');
+  }
+
+  if (createCommit) {
+    await index.write();
+    const oid = await index.writeTree();
+    const head = await git.Reference.nameToId(repo, 'HEAD');
+    const parent = await repo.getCommit(head);
+
+    const userSignature = await repo.defaultSignature();
+
+    return repo.createCommit('HEAD', userSignature, userSignature, 'update theme json tokens', oid, [parent]);
+  }
 }

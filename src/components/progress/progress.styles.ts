@@ -54,9 +54,9 @@ const nativeVsIndeterminateColor = (color: string, isNative: boolean) => {
  * DRY utils for non-static positions
  */
 const nonStaticPositioning = (isNative: boolean) => `
-  top: 0;
-  left: 0;
-  right: 0;
+  ${logicalCSS('top', 0)}
+  ${logicalCSS('left', 0)}
+  ${logicalCSS('right', 0)}
   background-color: transparent;
   ${
     isNative
@@ -117,9 +117,9 @@ export const euiProgressStyles = (
       position: absolute;
       content: '';
       ${logicalCSS('width', '100%')}
-      top: 0;
-      bottom: 0;
-      left: 0;
+      ${logicalCSS('top', 0)}
+      ${logicalCSS('bottom', 0)}
+      ${logicalCSS('left', 0)}
       transform: scaleX(0) translateX(0%);
       animation: ${euiIndeterminateAnimation} 1s
         ${euiTheme.animation.resistance} infinite;

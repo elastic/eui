@@ -79,7 +79,7 @@ describe('EuiCollapsibleNav', () => {
 
     test('dockedBreakpoint', () => {
       const component = mount(
-        <EuiCollapsibleNav {...propsNeededToRender} dockedBreakpoint={500} />
+        <EuiCollapsibleNav {...propsNeededToRender} dockedBreakpoint="s" />
       );
 
       expect(

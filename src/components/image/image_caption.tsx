@@ -22,11 +22,11 @@ export const EuiImageCaption = forwardRef<HTMLDivElement, EuiImageCaptionProps>(
       isOnOverlayMask && styles.isOnOverlayMask,
     ];
 
-    return (
+    return caption ? (
       <figcaption ref={ref} css={cssStyles}>
         {caption}
       </figcaption>
-    );
+    ) : null;
   }
 );
 

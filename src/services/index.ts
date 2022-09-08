@@ -23,12 +23,12 @@ export { LEFT_ALIGNMENT, RIGHT_ALIGNMENT, CENTER_ALIGNMENT } from './alignment';
 
 export type { EuiBreakpointSize } from './breakpoint';
 export {
-  BREAKPOINTS,
-  BREAKPOINT_KEYS,
-  getBreakpoint,
-  isWithinBreakpoints,
-  isWithinMaxBreakpoint,
-  isWithinMinBreakpoint,
+  useIsWithinBreakpoints,
+  useIsWithinMaxBreakpoint,
+  useIsWithinMinBreakpoint,
+  CurrentEuiBreakpointContext,
+  CurrentEuiBreakpointProvider,
+  useCurrentEuiBreakpoint,
 } from './breakpoint';
 
 export type { HSV } from './color';

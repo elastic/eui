@@ -7,6 +7,7 @@
  */
 
 import { css } from '@emotion/react';
+import { logicalCSS, logicalSizeCSS } from '../../../global_styling';
 
 /*
  * Mixin that hides elements offscreen to only be read by screen reader
@@ -16,12 +17,11 @@ export const euiScreenReaderOnly = () => `
   // Take the element out of the layout
   position: absolute;
   // Keep it vertically inline
-  top: auto;
+  ${logicalCSS('top', 'auto')}
   // Chrome requires a left value, and Selenium (used by Kibana's FTR) requires an off-screen position for its .getVisibleText() to not register SR-only text
-  left: -10000px;
+  ${logicalCSS('left', '-10000px')}
   // The element must have a size (for some screen readers)
-  width: 1px;
-  height: 1px;
+  ${logicalSizeCSS('1px', '1px')}
   // But reduce the visible size to nothing
   clip: rect(0 0 0 0);
   clip-path: inset(50%);

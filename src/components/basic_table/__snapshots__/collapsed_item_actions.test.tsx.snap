@@ -9,11 +9,11 @@ exports[`CollapsedItemActions render 1`] = `
     class="euiPopover__anchor css-16vtueo-render"
   >
     <span
-      class="euiToolTipAnchor"
+      class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
     >
       <button
         aria-label="All actions"
-        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+        class="euiButtonIcon euiButtonIcon--xSmall css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
         data-test-subj="euiCollapsedItemActionsButton"
         type="button"
       >

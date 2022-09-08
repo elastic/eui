@@ -24,7 +24,9 @@ If the upgrade includes a large number of commits or has known breaking changes,
 
 It is likely that resulting errors are truly caused by a change in EUI and not coincidence. Therefore, before reaching out to plugin owners for help, timebox an investigation period to resolve the issues.
 
-### Type errors during `kbn bootstrap`
+### Type errors
+
+Type errors can be checked by running `node scripts/type_check.js` from the kibana root folder.
 
 Type errors, luckily, are easy to track to specific commit and usually result from updated prop configurations. Manually update components in Kibana to match the new prop shape. Reach out to a plugin codeowner if questions arise.
 
@@ -36,26 +38,45 @@ It's likely that Jest test failures will be snapshot failures due to changing pr
 
 Other unit test failures will require narrowing the root cause to a commit in the changelog and triaging various DOM, style, or React possibilities.
 
-### Functional test errors
+### E2E test errors
 
 The vast majority of functional tests use the Mocha-based functional test runner, but some plugins have opted for Cypress-based integration tests.
 
-#### Standard Mocha (`test/`)
+#### Kibana FTR (`test/`)
 
 Godspeed: [Running functional tests in Kibana](https://www.elastic.co/guide/en/kibana/current/development-tests.html#development-functional-tests)
 
 The best approach, again, involves narrowing the root cause to a commit in the changelog and triaging various DOM, style, or React possibilities.
 
+Tips:
 
-#### Cypress (`x-pack/plugins/security_solution/cypress/`)
+- To only run a specific suite of tests you want, you can add `describe.only` or `it.only` to the failing test file, or use the `--grep` flag in the CLI command.
+- If a test passes for you locally but is flaky on CI, consider using the [async retry service](https://github.com/elastic/kibana/blob/main/test/common/services/retry/retry.ts).
+
+#### Security Cypress (`x-pack/plugins/security_solution/cypress/`)
 
 Follow the local [README instructions](https://github.com/elastic/kibana/blob/main/x-pack/plugins/security_solution/cypress/README.md#ftr--interactive) to run individual tests in a nice UI.
+
+#### @elastic/synthetics Tests (`x-pack/plugins/{synthetics|observability/ux}/e2e`)
+
+See the [synthetics/e2e README](https://github.com/elastic/kibana/blob/main/x-pack/plugins/synthetics/e2e/README.md).
+
+For debugging purposes, you will almost certainly want to use the `--bail --no-headless` flags. Like the FTR tests above, you will also want to use `--grep` to only run a certain test block or test (there is no `.only` API for synthetics).
+
+There are a couple other plugins (including observability and ux) also using the synthetics runner. To run those tests, you can follow the same basic instructions linked above, but replace the plugin name, e.g.:
+
+```sh
+node x-pack/plugins/observability/scripts/e2e.js --server
+node scripts/functional_test_runner/ --config x-pack/plugins/observability/e2e/synthetics_run.ts --bail --no-headless
+```
 
 ### Other
 
 Most other issues reported by CI (e.g., Check Doc API Changes) will contain resolution instructions.
 
 For opaque or seemingly build-related problems, it's time to elevate the error to the Kibana Ops team on Slack (#kibana-operations).
+
+For flaky Cypress tests, first contact the team to ask them for advice and whether they think the failures are caused by the PR and whether they would be okay merging into main with them. If they respond in the affirmative, you can then loop in KibanaOps by linking them the failure and asking them to either skip the flaky test or admin merge the PR even with red CI.
 
 If no mitigation strategies are presented, other options still exist (see [Snafu](#snafu))
 
@@ -94,4 +115,4 @@ The typical EUI upgrade PR in Kibana looks something like [#109157](https://gith
 
 Upgrades that result in significant changes to tests and/or snapshots can often require require codeowner approval from several teams. When possible, head-off questions and small change requests by leaving review comments explaining changes and adhering code styles typical of the plugin.
 
-Team sizes and priorities vary, so allow each team 1-2 days before escalating the review notification. After the waiting period, ping all teams with outstanding reviews containing non-snapshot code changes on Slack, letting them know that the review is for an EUI upgrade PR. If review(s) remain outstanding, either re-post the Slack message or merge the PR without review provided that the review(s) are only for snapshot updates with an expected diff.
+Team sizes and priorities vary, so allow each team 1-2 days before escalating the review notification. After the waiting period, ping all teams with outstanding reviews containing non-snapshot code changes on Slack, letting them know that the review is for an EUI upgrade PR. If review(s) remain outstanding, either re-post the Slack message or ask KibanaOps to admin merge the PR without review provided that the review(s) are only for snapshot updates with an expected diff.

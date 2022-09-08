@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiPageSidebar is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="testClass1 testClass2 emotion-euiPageSidebar"
+  data-test-subj="test subject string"
+  style="min-inline-size:248px"
+/>
+`;
+
+exports[`EuiPageSidebar minWidth is rendered 1`] = `
+<div
+  class="emotion-euiPageSidebar"
+  style="min-inline-size:400px"
+/>
+`;
+
+exports[`EuiPageSidebar paddingSize l is rendered 1`] = `
+<div
+  class="emotion-euiPageSidebar-l"
+  style="min-inline-size:248px"
+/>
+`;
+
+exports[`EuiPageSidebar paddingSize m is rendered 1`] = `
+<div
+  class="emotion-euiPageSidebar-m"
+  style="min-inline-size:248px"
+/>
+`;
+
+exports[`EuiPageSidebar paddingSize none is rendered 1`] = `
+<div
+  class="emotion-euiPageSidebar"
+  style="min-inline-size:248px"
+/>
+`;
+
+exports[`EuiPageSidebar paddingSize s is rendered 1`] = `
+<div
+  class="emotion-euiPageSidebar-s"
+  style="min-inline-size:248px"
+/>
+`;
+
+exports[`EuiPageSidebar paddingSize xl is rendered 1`] = `
+<div
+  class="emotion-euiPageSidebar-xl"
+  style="min-inline-size:248px"
+/>
+`;
+
+exports[`EuiPageSidebar paddingSize xs is rendered 1`] = `
+<div
+  class="emotion-euiPageSidebar-xs"
+  style="min-inline-size:248px"
+/>
+`;
+
+exports[`EuiPageSidebar sticky is rendered 1`] = `
+<div
+  class="emotion-euiPageSidebar-sticky"
+  style="min-inline-size:248px"
+/>
+`;

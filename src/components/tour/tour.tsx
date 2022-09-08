@@ -7,7 +7,7 @@
  */
 
 import { FunctionComponent, ReactElement } from 'react';
-import { useEuiTour, EuiStatelessTourStep } from './useEuiTour';
+import { useEuiTour, EuiStatelessTourSteps } from './useEuiTour';
 import { EuiTourStepProps } from './tour_step';
 import { EuiTourActions, EuiTourState } from './types';
 
@@ -17,7 +17,7 @@ export interface EuiTourProps {
     actions: EuiTourActions,
     state: EuiTourState
   ) => ReactElement;
-  steps: EuiStatelessTourStep[];
+  steps: EuiStatelessTourSteps;
   initialState: EuiTourState;
 }
 
