@@ -24,7 +24,7 @@ declare global {
        */
       checkAxe(options?: {
         skipFailures?: boolean,
-        context?: string | Node | ContextObject | undefined,
+        context?: ContextObject,
         axeConfig?: RunOptions,
         callback?: (violations: Result[]) => void
       }): void;
