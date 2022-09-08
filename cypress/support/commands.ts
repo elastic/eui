@@ -1,3 +1,4 @@
+import '@cypress/code-coverage/support';
 import 'cypress-axe';
 import 'cypress-plugin-tab';
 import 'cypress-real-events';

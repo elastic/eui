@@ -9,8 +9,8 @@ export default defineConfig({
 
   component: {
     devServer: {
-      framework: "react",
-      bundler: "webpack",
+      framework: 'react',
+      bundler: 'webpack',
       webpackConfig,
     },
     setupNodeEvents(on, config) {
@@ -25,10 +25,12 @@ export default defineConfig({
         table(message) {
           console.table(message);
           return null;
-        }
+        },
       });
+
+      return config;
     },
-    specPattern: "./src/**/*.spec.tsx",
+    specPattern: './src/**/*.spec.tsx',
     video: false,
   },
 });

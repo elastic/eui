@@ -13,11 +13,10 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 
-// Import commands.js using ES2015 syntax:
-import './commands'
+import './commands';
 
 import React from 'react';
-import { mount } from 'cypress/react'
+import { mount } from 'cypress/react';
 import { EuiProvider } from '../../src';
 
 require(THEME_IMPORT); // defined by DefinePlugin in the cypress webpack config
@@ -29,7 +28,7 @@ require(THEME_IMPORT); // defined by DefinePlugin in the cypress webpack config
 declare global {
   namespace Cypress {
     interface Chainable {
-      mount: typeof mount
+      mount: typeof mount;
     }
   }
 }
@@ -37,4 +36,3 @@ declare global {
 Cypress.Commands.add('mount', (children) => {
   return mount(<EuiProvider>{children}</EuiProvider>);
 });
-
