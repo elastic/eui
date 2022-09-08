@@ -38,11 +38,6 @@
     }
   }
 
-  .euiBadge__text {
-    @include euiTextTruncate;
-    cursor: default;
-  }
-
   .euiBadge__icon {
     &:not(:only-child) {
       margin-left: $euiSizeXS;

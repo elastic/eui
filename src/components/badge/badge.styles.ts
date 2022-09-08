@@ -10,6 +10,7 @@ import { css } from '@emotion/react';
 import {
   euiFontSize,
   euiFocusRing,
+  euiTextTruncate,
   logicalCSS,
   logicalTextAlignCSS,
 } from '../../global_styling';
@@ -60,10 +61,6 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       &:disabled {
         cursor: not-allowed;
       }
-
-      .euiBadge__text {
-        cursor: inherit;
-      }
     `,
     disabled: css`
       // Using !important to override inline styles
@@ -94,5 +91,16 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       align-items: center;
       overflow: hidden;
     `,
+
+    // Text
+    text: {
+      euiBadge__text: css`
+        ${euiTextTruncate()}
+        cursor: inherit;
+      `,
+      clickable: css`
+        cursor: pointer;
+      `,
+    },
   };
 };
