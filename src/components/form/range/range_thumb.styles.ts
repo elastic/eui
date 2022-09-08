@@ -25,9 +25,9 @@ export const euiRangeThumbStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiRangeThumbStyle(euiThemeContext)};
       content: '';
       position: absolute;
-      left: 0;
-      top: 50%;
-      margin-top: calc((${range.thumbHeight} / 2) * -1);
+      inset-inline-start: 0;
+      inset-block-start: 50%;
+      margin-block-start: calc((${range.thumbHeight} / 2) * -1);
       pointer-events: none;
       z-index: 2; // higher than .euiRangeHighlight that is 1
 
@@ -41,8 +41,8 @@ export const euiRangeThumbStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     hasTicks: css`
-      top: 0;
-      margin-top: 0;
+      inset-block-start: 0;
+      margin-block-start: 0;
     `,
   };
 };

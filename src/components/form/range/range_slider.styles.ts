@@ -27,10 +27,10 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     // Base
     euiRangeSlider: css`
-      height: ${range.height};
+      block-size: ${range.height};
       appearance: none;
       background: transparent; // Otherwise white in Chrome
-      width: 100%; // ensures the slider expands to fill flex display
+      inline-size: 100%; // ensures the slider expands to fill flex display
       position: relative;
       cursor: pointer; // Keep cursor to full range bounds
       // z-index higher than .euiRangeHighlight that is 1
@@ -106,14 +106,14 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
       // sass-lint:disable-block no-vendor-prefixes
       &::-webkit-slider-thumb {
         -webkit-appearance: none;
-        margin-top: ${(-parseInt(range.trackBorderWidth) * 2 +
+        margin-block-start: ${(-parseInt(range.trackBorderWidth) * 2 +
           parseInt(range.trackHeight)) /
           2 -
         parseInt(range.thumbHeight) / 2}px;
       }
 
       &::-ms-thumb {
-        margin-top: 0;
+        margin-block-start: 0;
       }
 
       &::-moz-focus-outer {
@@ -155,7 +155,7 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     hasTicks: css`
-      height: ${range.thumbHeight}; // the track has the same height as the thumb
+      block-size: ${range.thumbHeight}; // the track has the same height as the thumb
     `,
     hasFocus: css``,
     hasRange: css`

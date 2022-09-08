@@ -25,11 +25,11 @@ export const euiRangeTooltipStyles = (euiThemeContext: UseEuiTheme) => {
       // Keeps tooltip (value) aligned to percentage of actual slider
       display: block;
       position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: calc(100% - ${range.thumbWidth});
-      margin-left: calc(${range.thumbWidth} / 2);
+      inset-inline-start: 0;
+      inset-block-start: 0;
+      inset-block-end: 0;
+      inline-size: calc(100% - ${range.thumbWidth});
+      margin-inline-start: calc(${range.thumbWidth} / 2);
       pointer-events: none;
       z-index: 3; // higher than thumbs that are 2
     `,
@@ -64,9 +64,9 @@ export const euiRangeTooltipValueStyles = (euiThemeContext: UseEuiTheme) => {
       padding: ${euiTheme.size.xxs} ${euiTheme.size.s};
       background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};
       color: ${euiTheme.colors.ghost};
-      max-width: 256px;
+      max-inline-size: 256px;
       border-radius: ${euiTheme.border.radius.small};
-      top: 50%;
+      inset-block-start: 50%;
       transition: box-shadow ${euiTheme.animation.normal}
           ${euiTheme.animation.resistance},
         transform ${euiTheme.animation.normal} ${euiTheme.animation.resistance};
@@ -75,12 +75,12 @@ export const euiRangeTooltipValueStyles = (euiThemeContext: UseEuiTheme) => {
       &::before {
         content: '';
         position: absolute;
-        bottom: calc(${arrowSize} / 2);
-        left: 50%;
+        inset-block-end: calc(${arrowSize} / 2);
+        inset-inline-start: 50%;
         transform-origin: center;
         background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};
-        width: ${arrowSize};
-        height: ${arrowSize};
+        inline-size: ${arrowSize};
+        block-size: ${arrowSize};
         border-radius: 2px;
       }
 
@@ -89,38 +89,38 @@ export const euiRangeTooltipValueStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     left: css`
-      margin-right: ${euiTheme.size.l};
+      margin-inline-end: ${euiTheme.size.l};
       transform: translateX(0) translateY(-50%);
 
       &:before,
       &:after {
-        left: auto;
-        right: ${arrowMinusSize};
-        bottom: 50%;
+        inset-inline-start: auto;
+        inset-inline-end: ${arrowMinusSize};
+        inset-block-end: 50%;
         transform: translateY(50%) rotateZ(45deg);
       }
 
       &::before {
-        margin-right: -1px;
+        margin-inline-end: -1px;
       }
     `,
     right: css`
-      margin-left: ${euiTheme.size.l};
+      margin-inline-start: ${euiTheme.size.l};
       transform: translateX(0) translateY(-50%);
 
       &:before,
       &:after {
-        left: ${arrowMinusSize};
-        bottom: 50%;
+        inset-inline-start: ${arrowMinusSize};
+        inset-block-end: 50%;
         transform: translateY(50%) rotateZ(45deg);
       }
 
       &::before {
-        margin-left: -1px;
+        margin-inline-start: -1px;
       }
     `,
     hasTicks: css`
-      top: ${range.trackHeight};
+      inset-block-start: ${range.trackHeight};
     `,
   };
 };

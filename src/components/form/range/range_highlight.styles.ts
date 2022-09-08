@@ -17,16 +17,16 @@ export const euiRangeHighlightStyles = (euiThemeContext: UseEuiTheme) => {
     // Base
     euiRangeHighlight: css`
       position: absolute;
-      height: ${range.highlightHeight};
-      left: 0;
-      width: 100%;
+      block-size: ${range.highlightHeight};
+      inset-inline-start: 0;
+      inline-size: 100%;
       overflow: hidden;
       z-index: 1;
       pointer-events: none;
-      top: ${range.trackTopPositionWithoutTicks};
+      inset-block-start: ${range.trackTopPositionWithoutTicks};
     `,
     hasTicks: css`
-      top: ${range.trackTopPositionWithTicks};
+      inset-block-start: ${range.trackTopPositionWithTicks};
     `,
   };
 };
@@ -39,7 +39,7 @@ export const euiRangeHighlightProgressStyles = (
 
   return {
     euiRangeHighlight__progress: css`
-      height: ${range.highlightHeight};
+      block-size: ${range.highlightHeight};
       border-radius: ${range.trackBorderRadius};
       background-color: ${range.highlightColor};
       border-color: ${range.highlightColor};

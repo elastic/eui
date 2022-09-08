@@ -19,7 +19,7 @@ export const euiRangeWrapperStyles = (euiThemeContext: UseEuiTheme) => {
 
       > .euiFormControlLayout {
         /* 1 */
-        width: auto;
+        inline-size: auto;
 
         &.euiFormControlLayout--group {
           flex-shrink: 0; /* 2 */

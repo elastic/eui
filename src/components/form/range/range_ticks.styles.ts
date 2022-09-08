@@ -17,12 +17,12 @@ import { euiRangeVariables } from './range.styles';
 
 const tickStyles = ({ euiTheme }: UseEuiTheme, range: any) => {
   return `
-     position: absolute;
+    position: absolute;
     ${logicalCSS('top', 0)};
     ${logicalSizeCSS(euiTheme.size.xs, euiTheme.size.xs)};
     background-color: ${euiTheme.colors.lightShade};
-    width: ${range.tickWidth};
-    height: ${range.tickHeight};
+    inline-size: ${range.tickWidth};
+    block-size: ${range.tickHeight};
     border-radius: 100%;
     border-radius: ${euiTheme.border.radius.small};
   `;
@@ -35,24 +35,24 @@ export const euiRangeTicksStyles = (euiThemeContext: UseEuiTheme) => {
     // Base
     euiRangeTicks: css`
       position: absolute;
-      left: 0;
-      right: 0;
+      inset-inline-start: 0;
+      inset-inline-end: 0;
       display: flex;
     `,
     isCustom: css`
-      left: (${range.thumbWidth} / 8);
-      right: (${range.thumbWidth} / 8);
+      inset-inline-start: (${range.thumbWidth} / 8);
+      inset-inline-end: (${range.thumbWidth} / 8);
     `,
     // compressed and non-compressed styles
     regular: css`
-      height: calc(${range.height} - ${range.thumbHeight});
-      top: ${range.thumbHeight};
+      block-size: calc(${range.height} - ${range.thumbHeight});
+      inset-block-start: ${range.thumbHeight};
     `,
     compressed: css`
-      height: calc(
+      block-size: calc(
         ${range.compressedHeight} - ${range.trackBottomPositionWithTicks}
       );
-      top: calc(
+      inset-block-start: calc(
         ${range.thumbHeight} -
           ((${range.thumbHeight} - ${range.trackHeight}) / 2)
       );
@@ -67,8 +67,8 @@ export const euiRangeTickStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     // Base
     euiRangeTick: css`
-      overflow-x: hidden; // Overridden if labels overflow horizontally
-      overflow-y: hidden; // Should never scroll vertically
+      overflow-inline: hidden; // Overridden if labels overflow horizontally
+      overflow-block: hidden; // Should never scroll vertically
       text-overflow: ellipsis;
       font-size: ${euiFontSize(euiThemeContext, 'xs').fontSize};
       position: absolute;
@@ -91,7 +91,7 @@ export const euiRangeTickStyles = (euiThemeContext: UseEuiTheme) => {
       &:not(.euiRangeTick--hasTickMark)::before {
         ${tickStyles(euiThemeContext, range)}
         content: '';
-        left: calc(50% - ${euiTheme.size.xs});
+        inset-inline-start: calc(50% - ${euiTheme.size.xs});
       }
 
       .euiRangeTick__pseudo {
@@ -117,20 +117,20 @@ export const euiRangeTickStyles = (euiThemeContext: UseEuiTheme) => {
       color: ${euiTheme.colors.primary};
     `,
     isCustom: css`
-      overflow-x: visible;
+      overflow-inline: visible;
     `,
     isMin: css`
       transform: translateX(0);
 
       .euiRangeTick__pseudo {
-        left: 0;
+        inset-inline-start: 0;
       }
     `,
     isMax: css`
       transform: translateX(0);
 
       .euiRangeTick__pseudo {
-        right: 0;
+        inset-inline-end: 0;
       }
     `,
     hasTickMark: css``,

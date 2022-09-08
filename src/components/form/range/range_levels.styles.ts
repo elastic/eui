@@ -19,12 +19,12 @@ export const euiRangeLevelsStyles = (euiThemeContext: UseEuiTheme) => {
       display: flex;
       justify-content: stretch;
       position: absolute;
-      left: 0;
-      right: 0;
+      inset-inline-start: 0;
+      inset-inline-end: 0;
       z-index: 2;
     `,
     hasTicks: css`
-      top: ${range.trackTopPositionWithTicks};
+      inset-block-start: ${range.trackTopPositionWithTicks};
     `,
   };
 };
@@ -34,18 +34,18 @@ export const euiRangeLevelStyles = ({ euiTheme }: UseEuiTheme) => {
     euiRangeLevel: css`
       display: block;
       position: absolute;
-      height: 6px;
+      block-size: 6px;
       border-radius: 6px;
       margin: 2px;
-      margin-top: 0;
-      margin-bottom: 0;
+      margin-block-start: 0;
+      margin-block-end: 0;
 
       &:first-child {
-        margin-left: 0;
+        margin-inline-start: 0;
       }
 
       &:last-child {
-        margin-right: 0;
+        margin-inline-end: 0;
       }
     `,
     primary: css`

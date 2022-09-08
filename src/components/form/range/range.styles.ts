@@ -51,8 +51,8 @@ export const euiRangeVariables = (euiThemeContext: UseEuiTheme) => {
 
 export const euiRangeTrackSize = (euiThemeContext: UseEuiTheme) => {
   return `
-    width: ${euiRangeVariables(euiThemeContext).trackWidth};
-    height: ${euiRangeVariables(euiThemeContext).trackHeight};
+    inline-size: ${euiRangeVariables(euiThemeContext).trackWidth};
+    block-size: ${euiRangeVariables(euiThemeContext).trackHeight};
     `;
 };
 
@@ -100,8 +100,8 @@ export const euiRangeThumbStyle = (euiThemeContext: UseEuiTheme) => {
       euiRangeVariables(euiThemeContext).thumbBackgroundColor
     };
     padding: 0;
-    height: ${euiRangeVariables(euiThemeContext).thumbHeight};
-    width: ${euiRangeVariables(euiThemeContext).thumbWidth};
+    block-size: ${euiRangeVariables(euiThemeContext).thumbHeight};
+    inline-size: ${euiRangeVariables(euiThemeContext).thumbWidth};
     box-sizing: border-box;  // required for firefox or the border makes the width and height to increase
   `;
 };
@@ -128,9 +128,9 @@ export const euiRangeStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Base
   euiRange: css``,
   euiRange__horizontalSpacer: css`
-    width: ${euiTheme.size.base};
+    inline-size: ${euiTheme.size.base};
   `,
   euiRange__slimHorizontalSpacer: css`
-    width: ${euiTheme.size.s};
+    inline-size: ${euiTheme.size.s};
   `,
 });

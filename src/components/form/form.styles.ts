@@ -50,25 +50,25 @@ export const euiFormControlSize = ({
   switch (includeAlternates) {
     case 'fullWidth':
       alternateStyles = `
-        max-width: 100%;
+        max-inline-size: 100%;
       `;
       break;
     case 'compressed':
       alternateStyles = `
-        height: ${form.controlCompressedHeight};
+        block-size: ${form.controlCompressedHeight};
       `;
       break;
     case 'inGroup':
       alternateStyles = `
-        height: 100%;
+        block-size: 100%;
       `;
       break;
   }
 
   return `
-    max-width: ${form.maxWidth};
-    width: 100%;
-    height: ${form.controlHeight || height};
+    max-inline-size: ${form.maxWidth};
+    inline-size: 100%;
+    block-size: ${form.controlHeight || height};
 
     ${alternateStyles}
   `;

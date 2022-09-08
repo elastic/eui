@@ -20,9 +20,9 @@ export const euiRangeDraggableStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     // Base
     euiRangeDraggable: css`
-      height: calc(${range.height} / 2);
+      block-size: calc(${range.height} / 2);
       position: absolute;
-      top: calc(${range.height} / 4);
+      inset-block-start: calc(${range.height} / 4);
       pointer-events: none;
       z-index: 2;
 
@@ -62,15 +62,15 @@ export const euiRangeDraggableStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     hasTicks: css`
-      top: 0;
+      inset-block-start: 0;
     `,
     disabled: css``,
     euiRangeDraggle__inner: css`
       position: absolute;
-      left: ${range.thumbWidth};
-      right: ${range.thumbWidth};
-      top: 0;
-      bottom: 0;
+      inset-inline-start: ${range.thumbWidth};
+      inset-inline-end: ${range.thumbWidth};
+      inset-block-start: 0;
+      inset-block-end: 0;
     `,
   };
 };

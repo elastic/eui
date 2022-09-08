@@ -12,12 +12,12 @@ import { UseEuiTheme } from '../../../services';
 export const euiRangeInputStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Base
   euiRangeInput: css`
-    width: auto;
-    min-width: ${euiTheme.base * 4}px;
+    inline-size: auto;
+    min-inline-size: ${euiTheme.base * 4}px;
 
     .euiRange__popover & {
       margin: 0 !important;
-      width: 100%;
+      inline-size: 100%;
     }
   `,
 });
