@@ -30,7 +30,8 @@ import { validateHref } from '../../services/security/href_validator';
 
 import { euiBadgeStyles } from './badge.styles';
 
-type IconSide = 'left' | 'right';
+export const ICON_SIDES = ['left', 'right'] as const;
+type IconSide = typeof ICON_SIDES[number];
 
 type WithButtonProps = {
   /**
@@ -115,13 +116,6 @@ const colorToHexMap: { [color in IconColor]: string } = {
 };
 
 export const COLORS = keysOf(colorToHexMap);
-
-const iconSideToClassNameMap: { [side in IconSide]: string } = {
-  left: 'euiBadge--iconLeft',
-  right: 'euiBadge--iconRight',
-};
-
-export const ICON_SIDES = keysOf(iconSideToClassNameMap);
 
 export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   children,
@@ -216,11 +210,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     styles.iconButton[iconSide],
   ];
 
-  const classes = classNames(
-    'euiBadge',
-    iconSideToClassNameMap[iconSide],
-    className
-  );
+  const classes = classNames('euiBadge', className);
 
   const closeClassNames = classNames(
     'euiBadge__icon',
