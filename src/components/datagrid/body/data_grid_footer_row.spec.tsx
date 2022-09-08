@@ -64,6 +64,10 @@ describe('EuiDataGridFooterRow', () => {
   });
 
   // Regression test for #5720
+  // Unfortunately, this test flakes with both false negatives and positives. Because the buggy effect is that
+  // focus bounces rapidly between the moved column and its new position, it's extremely difficult to assert
+  // on correctly with Cypress's default wait/retry behavior, hence the skip. However, it's also relatively easy
+  // to see this bug in action in production/reality, and should be regression-tested that way if necessary.
   it.skip('does not bug focus when moving a column and then clicking its footer cell', () => {
     cy.realMount(<GridTest />);
 
