@@ -13,7 +13,7 @@ exports[`EuiListGroup listItems is rendered 1`] = `
   class="euiListGroup emotion-euiListGroup-s-maxWidthDefault"
 >
   <li
-    class="euiListGroupItem emotion-euiListGroupItem-m-inherit"
+    class="euiListGroupItem emotion-euiListGroupItem-m-text"
   >
     <span
       class="euiListGroupItem__text emotion-euiListGroupItem__text"
@@ -32,7 +32,7 @@ exports[`EuiListGroup listItems is rendered 1`] = `
     </span>
   </li>
   <li
-    class="euiListGroupItem emotion-euiListGroupItem-m-inherit"
+    class="euiListGroupItem emotion-euiListGroupItem-m-text"
   >
     <span
       class="euiListGroupItem__text emotion-euiListGroupItem__text"
@@ -58,10 +58,10 @@ exports[`EuiListGroup listItems is rendered 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem emotion-euiListGroupItem-m-inherit-isClickable"
+    class="euiListGroupItem emotion-euiListGroupItem-m-text-isClickable"
   >
     <button
-      class="emotion-euiListGroupItem__button-inherit"
+      class="emotion-euiListGroupItem__button-text"
       type="button"
     >
       <span
@@ -73,10 +73,10 @@ exports[`EuiListGroup listItems is rendered 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem emotion-euiListGroupItem-m-inherit-isActive-isClickable"
+    class="euiListGroupItem emotion-euiListGroupItem-m-text-isActive-isClickable"
   >
     <a
-      class="euiListGroupItem__button emotion-euiListGroupItem__button-inherit"
+      class="euiListGroupItem__button emotion-euiListGroupItem__button-text"
       href="#"
       rel="noreferrer"
     >
@@ -89,10 +89,10 @@ exports[`EuiListGroup listItems is rendered 1`] = `
     </a>
   </li>
   <li
-    class="euiListGroupItem emotion-euiListGroupItem-m-inherit-isClickable"
+    class="euiListGroupItem emotion-euiListGroupItem-m-text-isClickable"
   >
     <a
-      class="euiListGroupItem__button emotion-euiListGroupItem__button-inherit"
+      class="euiListGroupItem__button emotion-euiListGroupItem__button-text"
       href="#"
       rel="noreferrer"
     >

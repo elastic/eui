@@ -36,47 +36,28 @@ export const euiListGroupItemStyles = (
       ${euiFontSize(euiThemeContext, 'xs')};
       font-weight: ${euiTheme.font.weight.medium};
       letter-spacing: 0;
-      ${logicalCSS('height', euiTheme.size.l)}
+      ${logicalCSS('min-height', euiTheme.size.l)}
       border-radius: ${euiTheme.border.radius.small};
     `,
     s: css`
       ${euiFontSize(euiThemeContext, 's')};
       font-weight: ${euiTheme.font.weight.medium};
       letter-spacing: 0;
-      ${logicalCSS('height', euiTheme.size.xl)}
+      ${logicalCSS('min-height', euiTheme.size.xl)}
       border-radius: ${euiTheme.border.radius.small};
     `,
     m: css`
       ${euiFontSize(euiThemeContext, 'm')};
-      ${logicalCSS('height', euiTheme.size.xl)}
+      ${logicalCSS('min-height', euiTheme.size.xl)}
       border-radius: ${euiTheme.border.radius.medium};
     `,
     l: css`
       ${euiFontSize(euiThemeContext, 'l')};
-      ${logicalCSS('height', euiTheme.size.xxl)}
+      ${logicalCSS('min-height', euiTheme.size.xxl)}
       border-radius: ${euiTheme.border.radius.medium};
     `,
     // Colors
-    inherit: css`
-      ${isActive &&
-      !isDisabled &&
-      `
-        background-color: ${
-          euiButtonColor(euiThemeContext, 'text').backgroundColor
-        };
-      `};
-
-      ${isClickable &&
-      !isDisabled &&
-      `
-        &:hover,
-        &:focus {
-          background-color: ${
-            euiButtonColor(euiThemeContext, 'text').backgroundColor
-          };
-        }
-      `};
-    `,
+    inherit: css``,
     primary: css`
       ${isActive &&
       !isDisabled &&
@@ -171,10 +152,6 @@ export const euiListGroupItemStyles = (
         inline-size: 100%;
         word-break: break-word;
       }
-
-      .euiListGroupItem__label {
-        white-space: inherit;
-      }
     `,
   };
 };
@@ -206,12 +183,6 @@ export const euiListGroupItemButtonStyles = (
       `}
     `,
     // Colors
-    inherit: css`
-      ${!isDisabled &&
-      `
-        color: inherit;
-      `}
-    `,
     primary: css`
       ${!isDisabled &&
       `
@@ -264,6 +235,9 @@ export const euiListGroupItemLabelStyles = () => {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+    `,
+    wrapText: css`
+      white-space: inherit;
     `,
   };
 };

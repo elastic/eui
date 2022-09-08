@@ -2,7 +2,7 @@
 
 exports[`EuiListGroupItem is rendered 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-m-inherit"
+  class="euiListGroupItem emotion-euiListGroupItem-m-text"
 >
   <span
     class="euiListGroupItem__text emotion-euiListGroupItem__text"
@@ -20,23 +20,6 @@ exports[`EuiListGroupItem is rendered 1`] = `
 exports[`EuiListGroupItem props color ghost is rendered 1`] = `
 <li
   class="euiListGroupItem emotion-euiListGroupItem-m-ghost"
->
-  <span
-    class="euiListGroupItem__text emotion-euiListGroupItem__text"
-  >
-    <span
-      class="euiListGroupItem__label emotion-euiListGroupItem__label"
-      title="Label"
-    >
-      Label
-    </span>
-  </span>
-</li>
-`;
-
-exports[`EuiListGroupItem props color inherit is rendered 1`] = `
-<li
-  class="euiListGroupItem emotion-euiListGroupItem-m-inherit"
 >
   <span
     class="euiListGroupItem__text emotion-euiListGroupItem__text"
@@ -104,7 +87,7 @@ exports[`EuiListGroupItem props color text is rendered 1`] = `
 
 exports[`EuiListGroupItem props extraAction can be disabled 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-m-inherit"
+  class="euiListGroupItem emotion-euiListGroupItem-m-text"
 >
   <span
     class="euiListGroupItem__text emotion-euiListGroupItem__text"
@@ -133,7 +116,7 @@ exports[`EuiListGroupItem props extraAction can be disabled 1`] = `
 
 exports[`EuiListGroupItem props extraAction is rendered 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-m-inherit"
+  class="euiListGroupItem emotion-euiListGroupItem-m-text"
 >
   <span
     class="euiListGroupItem__text emotion-euiListGroupItem__text"
@@ -162,10 +145,10 @@ exports[`EuiListGroupItem props extraAction is rendered 1`] = `
 
 exports[`EuiListGroupItem props href and onClick is rendered 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-m-inherit-isClickable"
+  class="euiListGroupItem emotion-euiListGroupItem-m-text-isClickable"
 >
   <a
-    class="euiListGroupItem__button emotion-euiListGroupItem__button-inherit"
+    class="euiListGroupItem__button emotion-euiListGroupItem__button-text"
     href="#"
     rel="noreferrer"
   >
@@ -179,10 +162,10 @@ exports[`EuiListGroupItem props href and onClick is rendered 1`] = `
 
 exports[`EuiListGroupItem props href is rendered 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-m-inherit-isClickable"
+  class="euiListGroupItem emotion-euiListGroupItem-m-text-isClickable"
 >
   <a
-    class="euiListGroupItem__button emotion-euiListGroupItem__button-inherit"
+    class="euiListGroupItem__button emotion-euiListGroupItem__button-text"
     href="#"
     rel="noreferrer"
   >
@@ -198,10 +181,10 @@ exports[`EuiListGroupItem props href is rendered 1`] = `
 
 exports[`EuiListGroupItem props href is rendered with rel 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-m-inherit-isClickable"
+  class="euiListGroupItem emotion-euiListGroupItem-m-text-isClickable"
 >
   <a
-    class="euiListGroupItem__button emotion-euiListGroupItem__button-inherit"
+    class="euiListGroupItem__button emotion-euiListGroupItem__button-text"
     href="#"
     rel="noreferrer"
   >
@@ -217,7 +200,7 @@ exports[`EuiListGroupItem props href is rendered with rel 1`] = `
 
 exports[`EuiListGroupItem props icon is rendered 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-m-inherit"
+  class="euiListGroupItem emotion-euiListGroupItem-m-text"
 >
   <span
     class="euiListGroupItem__text emotion-euiListGroupItem__text"
@@ -237,7 +220,7 @@ exports[`EuiListGroupItem props icon is rendered 1`] = `
 
 exports[`EuiListGroupItem props iconType is rendered 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-m-inherit"
+  class="euiListGroupItem emotion-euiListGroupItem-m-text"
 >
   <span
     class="euiListGroupItem__text emotion-euiListGroupItem__text"
@@ -259,7 +242,7 @@ exports[`EuiListGroupItem props iconType is rendered 1`] = `
 
 exports[`EuiListGroupItem props isActive is rendered 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-m-inherit-isActive"
+  class="euiListGroupItem emotion-euiListGroupItem-m-text-isActive"
 >
   <span
     class="euiListGroupItem__text emotion-euiListGroupItem__text"
@@ -276,7 +259,7 @@ exports[`EuiListGroupItem props isActive is rendered 1`] = `
 
 exports[`EuiListGroupItem props isDisabled is rendered 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-m-inherit-isDisabled"
+  class="euiListGroupItem emotion-euiListGroupItem-m-text-isDisabled"
 >
   <span
     class="euiListGroupItem__text emotion-euiListGroupItem__text"
@@ -293,10 +276,10 @@ exports[`EuiListGroupItem props isDisabled is rendered 1`] = `
 
 exports[`EuiListGroupItem props onClick is rendered 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-m-inherit-isClickable"
+  class="euiListGroupItem emotion-euiListGroupItem-m-text-isClickable"
 >
   <button
-    class="emotion-euiListGroupItem__button-inherit"
+    class="emotion-euiListGroupItem__button-text"
     type="button"
   >
     <span
@@ -311,7 +294,7 @@ exports[`EuiListGroupItem props onClick is rendered 1`] = `
 
 exports[`EuiListGroupItem props size l is rendered 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-l-inherit"
+  class="euiListGroupItem emotion-euiListGroupItem-l-text"
 >
   <span
     class="euiListGroupItem__text emotion-euiListGroupItem__text"
@@ -328,7 +311,7 @@ exports[`EuiListGroupItem props size l is rendered 1`] = `
 
 exports[`EuiListGroupItem props size m is rendered 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-m-inherit"
+  class="euiListGroupItem emotion-euiListGroupItem-m-text"
 >
   <span
     class="euiListGroupItem__text emotion-euiListGroupItem__text"
@@ -345,7 +328,7 @@ exports[`EuiListGroupItem props size m is rendered 1`] = `
 
 exports[`EuiListGroupItem props size s is rendered 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-s-inherit"
+  class="euiListGroupItem emotion-euiListGroupItem-s-text"
 >
   <span
     class="euiListGroupItem__text emotion-euiListGroupItem__text"
@@ -362,7 +345,7 @@ exports[`EuiListGroupItem props size s is rendered 1`] = `
 
 exports[`EuiListGroupItem props size xs is rendered 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-xs-inherit"
+  class="euiListGroupItem emotion-euiListGroupItem-xs-text"
 >
   <span
     class="euiListGroupItem__text emotion-euiListGroupItem__text"
@@ -379,13 +362,13 @@ exports[`EuiListGroupItem props size xs is rendered 1`] = `
 
 exports[`EuiListGroupItem props wrapText is rendered 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-m-inherit-wrapText"
+  class="euiListGroupItem emotion-euiListGroupItem-m-text-wrapText"
 >
   <span
     class="euiListGroupItem__text emotion-euiListGroupItem__text"
   >
     <span
-      class="euiListGroupItem__label emotion-euiListGroupItem__label"
+      class="euiListGroupItem__label emotion-euiListGroupItem__label-wrapText"
     >
       Label
     </span>
@@ -395,10 +378,10 @@ exports[`EuiListGroupItem props wrapText is rendered 1`] = `
 
 exports[`EuiListGroupItem renders a disabled button even if provided an href 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-m-inherit-isDisabled-isClickable"
+  class="euiListGroupItem emotion-euiListGroupItem-m-text-isDisabled-isClickable"
 >
   <button
-    class="emotion-euiListGroupItem__button-inherit-isDisabled"
+    class="emotion-euiListGroupItem__button-text-isDisabled"
     disabled=""
     type="button"
   >
@@ -414,10 +397,10 @@ exports[`EuiListGroupItem renders a disabled button even if provided an href 1`]
 
 exports[`EuiListGroupItem renders a disabled button even if provided an href 2`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-m-inherit-isDisabled-isClickable"
+  class="euiListGroupItem emotion-euiListGroupItem-m-text-isDisabled-isClickable"
 >
   <button
-    class="emotion-euiListGroupItem__button-inherit-isDisabled"
+    class="emotion-euiListGroupItem__button-text-isDisabled"
     disabled=""
     type="button"
   >
@@ -433,7 +416,7 @@ exports[`EuiListGroupItem renders a disabled button even if provided an href 2`]
 
 exports[`EuiListGroupItem throws a warning if both iconType and icon are provided but still renders 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-m-inherit"
+  class="euiListGroupItem emotion-euiListGroupItem-m-text"
 >
   <span
     class="euiListGroupItem__text emotion-euiListGroupItem__text"

@@ -40,13 +40,7 @@ import {
 export const SIZES = ['xs', 's', 'm', 'l'] as const;
 export type EuiListGroupItemSize = typeof SIZES[number];
 
-export const COLORS = [
-  'inherit',
-  'primary',
-  'text',
-  'subdued',
-  'ghost',
-] as const;
+export const COLORS = ['primary', 'text', 'subdued', 'ghost'] as const;
 export type EuiListGroupItemColor = typeof COLORS[number];
 
 export type EuiListGroupItemProps = CommonProps &
@@ -162,7 +156,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   extraAction,
   onClick,
   size = 'm',
-  color = 'inherit',
+  color = 'text',
   showToolTip = false,
   wrapText,
   buttonRef,
@@ -222,7 +216,10 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   }
 
   const labelStyles = euiListGroupItemLabelStyles();
-  const cssLabelStyles = [labelStyles.euiListGroupItem__label];
+  const cssLabelStyles = [
+    labelStyles.euiListGroupItem__label,
+    wrapText && labelStyles.wrapText,
+  ];
 
   // Only add the label as the title attribute if it's possibly truncated
   // Also ensure the value of the title attribute is a string
@@ -253,6 +250,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     isActive,
     isDisabled
   );
+
   const cssButtonStyles = [
     buttonStyles.euiListGroupItem__button,
     buttonStyles[color],
@@ -328,7 +326,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
       <li className={classes} css={cssStyles}>
         <EuiToolTip
           anchorClassName="euiListGroupItem__tooltip"
-          css={cssTooltipStyles}
+          anchorProps={{ css: cssTooltipStyles }}
           content={toolTipText ?? label}
           position="right"
           delay="long"
