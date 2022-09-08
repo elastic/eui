@@ -71,7 +71,6 @@ export const EuiPinnableListGroup: FunctionComponent<EuiPinnableListGroupProps> 
   );
 
   const pinExtraAction: EuiListGroupItemProps['extraAction'] = {
-    color: 'primary',
     iconType: 'pinFilled',
     iconSize: 's',
     className: 'euiPinnableListGroup__itemExtraAction',
@@ -79,7 +78,6 @@ export const EuiPinnableListGroup: FunctionComponent<EuiPinnableListGroupProps> 
   };
 
   const pinnedExtraAction: EuiListGroupItemProps['extraAction'] = {
-    color: 'primary',
     iconType: 'pinFilled',
     iconSize: 's',
     className:

@@ -17,23 +17,6 @@ exports[`EuiListGroupItem is rendered 1`] = `
 </li>
 `;
 
-exports[`EuiListGroupItem props color ghost is rendered 1`] = `
-<li
-  class="euiListGroupItem emotion-euiListGroupItem-m-ghost"
->
-  <span
-    class="euiListGroupItem__text emotion-euiListGroupItem__text"
-  >
-    <span
-      class="euiListGroupItem__label emotion-euiListGroupItem__label"
-      title="Label"
-    >
-      Label
-    </span>
-  </span>
-</li>
-`;
-
 exports[`EuiListGroupItem props color primary is rendered 1`] = `
 <li
   class="euiListGroupItem emotion-euiListGroupItem-m-primary"
@@ -130,7 +113,7 @@ exports[`EuiListGroupItem props extraAction is rendered 1`] = `
   </span>
   <button
     aria-label="label"
-    class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction css-7gi2it-empty-primary-hoverStyles-EuiButtonIcon-euiListGroupItemExtraAction"
+    class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction css-1jqwfm0-empty-text-hoverStyles-EuiButtonIcon-euiListGroupItemExtraAction"
     type="button"
   >
     <span

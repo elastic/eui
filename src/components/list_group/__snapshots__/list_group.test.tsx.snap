@@ -46,7 +46,7 @@ exports[`EuiListGroup listItems is rendered 1`] = `
     </span>
     <button
       aria-label="bell"
-      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction css-7gi2it-empty-primary-hoverStyles-EuiButtonIcon-euiListGroupItemExtraAction"
+      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction css-1jqwfm0-empty-text-hoverStyles-EuiButtonIcon-euiListGroupItemExtraAction"
       type="button"
     >
       <span

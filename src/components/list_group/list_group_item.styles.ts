@@ -7,8 +7,13 @@
  */
 
 import { css } from '@emotion/react';
-import { euiCanAnimate, euiFontSize, logicalCSS } from '../../global_styling';
-import { UseEuiTheme, transparentize } from '../../services';
+import {
+  euiCanAnimate,
+  euiFontSize,
+  logicalCSS,
+  euiBackgroundColor,
+} from '../../global_styling';
+import { UseEuiTheme } from '../../services';
 import { euiButtonColor } from '../../themes/amsterdam/global_styling/mixins/button';
 
 export const euiListGroupItemStyles = (
@@ -62,9 +67,9 @@ export const euiListGroupItemStyles = (
       ${isActive &&
       !isDisabled &&
       `
-        background-color: ${
-          euiButtonColor(euiThemeContext, 'primary').backgroundColor
-        };
+        background-color: ${euiBackgroundColor(euiThemeContext, 'primary', {
+          method: 'transparent',
+        })};
       `};
 
       ${isClickable &&
@@ -72,9 +77,9 @@ export const euiListGroupItemStyles = (
       `
         &:hover,
         &:focus {
-          background-color: ${
-            euiButtonColor(euiThemeContext, 'primary').backgroundColor
-          };
+          background-color: ${euiBackgroundColor(euiThemeContext, 'primary', {
+            method: 'transparent',
+          })};
         }
       `};
     `,
@@ -82,9 +87,9 @@ export const euiListGroupItemStyles = (
       ${isActive &&
       !isDisabled &&
       `
-        background-color: ${
-          euiButtonColor(euiThemeContext, 'text').backgroundColor
-        };
+        background-color: ${euiBackgroundColor(euiThemeContext, 'subdued', {
+          method: 'transparent',
+        })};
       `};
 
       ${isClickable &&
@@ -92,18 +97,18 @@ export const euiListGroupItemStyles = (
       `
         &:hover,
         &:focus {
-          background-color: ${
-            euiButtonColor(euiThemeContext, 'text').backgroundColor
-          };
+          background-color: ${euiBackgroundColor(euiThemeContext, 'subdued', {
+            method: 'transparent',
+          })};
       `};
     `,
     subdued: css`
       ${isActive &&
       !isDisabled &&
       `
-        background-color: ${
-          euiButtonColor(euiThemeContext, 'text').backgroundColor
-        };
+        background-color: ${euiBackgroundColor(euiThemeContext, 'subdued', {
+          method: 'transparent',
+        })};
       `};
 
       ${isClickable &&
@@ -111,25 +116,9 @@ export const euiListGroupItemStyles = (
       `
         &:hover,
         &:focus {
-          background-color: ${
-            euiButtonColor(euiThemeContext, 'text').backgroundColor
-          };
-        }
-      `};
-    `,
-    ghost: css`
-      ${isActive &&
-      !isDisabled &&
-      `
-        background-color: ${transparentize(euiTheme.colors.ghost, 0.1)};
-      `};
-
-      ${isClickable &&
-      !isDisabled &&
-      `
-        &:hover,
-        &:focus {
-          background-color: ${transparentize(euiTheme.colors.ghost, 0.1)};
+          background-color: ${euiBackgroundColor(euiThemeContext, 'subdued', {
+            method: 'transparent',
+          })};
         }
       `};
     `,

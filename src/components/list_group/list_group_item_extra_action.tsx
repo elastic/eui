@@ -23,6 +23,7 @@ export const EuiListGroupItemExtraAction: FunctionComponent<EuiListGroupItemExtr
   alwaysShow,
   className,
   isDisabled,
+  color,
   ...rest
 }) => {
   const extraActionClasses = classNames(
@@ -43,6 +44,7 @@ export const EuiListGroupItemExtraAction: FunctionComponent<EuiListGroupItemExtr
 
   return (
     <EuiButtonIcon
+      color={color}
       className={extraActionClasses}
       css={cssExtraActionStyles}
       iconType={iconType}

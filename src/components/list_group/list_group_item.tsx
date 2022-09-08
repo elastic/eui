@@ -23,7 +23,10 @@ import { EuiIcon, IconType, EuiIconProps } from '../icon';
 import { EuiToolTip } from '../tool_tip';
 import { useInnerText } from '../inner_text';
 import { ExclusiveUnion, CommonProps } from '../common';
-import { EuiListGroupItemExtraAction } from './list_group_item_extra_action';
+import {
+  EuiListGroupItemExtraAction,
+  EuiListGroupItemExtraActionProps,
+} from './list_group_item_extra_action';
 
 import { getSecureRelForTarget, useEuiTheme } from '../../services';
 import { validateHref } from '../../services/security/href_validator';
@@ -40,7 +43,7 @@ import {
 export const SIZES = ['xs', 's', 'm', 'l'] as const;
 export type EuiListGroupItemSize = typeof SIZES[number];
 
-export const COLORS = ['primary', 'text', 'subdued', 'ghost'] as const;
+export const COLORS = ['primary', 'text', 'subdued'] as const;
 export type EuiListGroupItemColor = typeof COLORS[number];
 
 export type EuiListGroupItemProps = CommonProps &
@@ -208,6 +211,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
 
     extraActionNode = (
       <EuiListGroupItemExtraAction
+        color={color as EuiListGroupItemExtraActionProps['color']}
         iconType={iconType}
         {...rest}
         disabled={isDisabled || actionIsDisabled}

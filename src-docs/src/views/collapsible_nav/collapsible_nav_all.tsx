@@ -152,7 +152,6 @@ const CollapsibleNavAll = () => {
       <EuiFlexItem grow={false} style={{ flexShrink: 0 }}>
         <EuiCollapsibleNavGroup isCollapsible={false} background="dark">
           <EuiListGroup
-            color="ghost"
             maxWidth="none"
             gutterSize="none"
             size="s"

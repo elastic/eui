@@ -9,7 +9,7 @@ const someListItems: EuiPinnableListGroupItemProps[] = [
   {
     id: '1',
     label: 'Label with iconType',
-    iconType: 'stop',
+    iconType: 'home',
     pinned: false,
   },
   {

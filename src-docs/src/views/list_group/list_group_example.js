@@ -172,13 +172,11 @@ export const ListGroupExample = {
       text: (
         <>
           <p>
-            <strong>EuiListGroupItems</strong> will inherit the color from their
-            element type whether it is a <EuiCode>button</EuiCode>,{' '}
-            <EuiCode>anchor</EuiCode>, or <EuiCode>span</EuiCode>. You can
-            enforce a different color of <EuiCode>primary</EuiCode>,{' '}
-            <EuiCode>text</EuiCode>, or <EuiCode>subdued</EuiCode> with the{' '}
-            <EuiCode>color</EuiCode> prop. Or provide the prop directly to{' '}
-            <strong>EuiListGroup</strong>.
+            <strong>EuiListGroupItems</strong> will get by default the color{' '}
+            <EuiCode>text</EuiCode>. You can enforce a different color of{' '}
+            <EuiCode>primary</EuiCode>, <EuiCode>text</EuiCode>, or{' '}
+            <EuiCode>subdued</EuiCode> with the <EuiCode>color</EuiCode> prop.
+            Or provide the prop directly to <strong>EuiListGroup</strong>.
           </p>
           <p>
             They also accept options for text size;{' '}
