@@ -13,18 +13,20 @@ import React, {
   MouseEventHandler,
   ReactNode,
   Ref,
+  useMemo,
 } from 'react';
 import classNames from 'classnames';
 import chroma from 'chroma-js';
-import { CommonProps, ExclusiveUnion, keysOf, PropsOf } from '../common';
+import { CommonProps, ExclusiveUnion, PropsOf } from '../common';
 import {
   useEuiTheme,
+  UseEuiTheme,
   euiPaletteColorBlindBehindText,
   getSecureRelForTarget,
   isColorDark,
 } from '../../services';
 import { EuiInnerText } from '../inner_text';
-import { EuiIcon, IconColor, IconType } from '../icon';
+import { EuiIcon, IconType } from '../icon';
 import { chromaValid, parseColor } from '../color_picker/utils';
 import { validateHref } from '../../services/security/href_validator';
 
@@ -32,6 +34,22 @@ import { euiBadgeStyles } from './badge.styles';
 
 export const ICON_SIDES = ['left', 'right'] as const;
 type IconSide = typeof ICON_SIDES[number];
+
+export const COLORS = [
+  'default',
+  'hollow',
+  'primary',
+  'success',
+  'accent',
+  'warning',
+  'danger',
+] as const;
+type BadgeColor = typeof COLORS[number];
+
+// The color blind palette has some stricter accessibility needs with regards to
+// charts and contrast. We use the euiPaletteColorBlindBehindText variant here since our
+// accessibility concerns pertain to foreground (text) and background contrast
+const visColors = euiPaletteColorBlindBehindText();
 
 type WithButtonProps = {
   /**
@@ -79,7 +97,7 @@ export type EuiBadgeProps = {
   /**
    * Accepts either our palette colors (primary, success ..etc) or a hex value `#FFFFFF`, `#000`.
    */
-  color?: IconColor;
+  color?: BadgeColor | string;
   /**
    * Will override any color passed through the `color` prop.
    */
@@ -95,27 +113,6 @@ export type EuiBadgeProps = {
     ExclusiveUnion<WithButtonProps, WithAnchorProps>,
     WithSpanProps
   >;
-
-// TODO - replace with variables once https://github.com/elastic/eui/issues/2731 is closed
-const colorInk = '#000';
-const colorGhost = '#fff';
-
-// The color blind palette has some stricter accessibility needs with regards to
-// charts and contrast. We use the euiPaletteColorBlindBehindText variant here since our
-// accessibility concerns pertain to foreground (text) and background contrast
-const visColors = euiPaletteColorBlindBehindText();
-
-const colorToHexMap: { [color in IconColor]: string } = {
-  // TODO - replace with variable once https://github.com/elastic/eui/issues/2731 is closed
-  default: '#d3dae6',
-  primary: visColors[1],
-  success: visColors[0],
-  accent: visColors[2],
-  warning: visColors[5],
-  danger: visColors[9],
-};
-
-export const COLORS = keysOf(colorToHexMap);
 
 export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   children,
@@ -135,64 +132,76 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   style,
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
+
   const isHrefValid = !href || validateHref(href);
   const isDisabled = _isDisabled || !isHrefValid;
 
-  let optionalCustomStyles: object | undefined = style;
-  let textColor = null;
-  // TODO - replace with variable once https://github.com/elastic/eui/issues/2731 is closed
-  const wcagContrastBase = 4.5; // WCAG AA contrast level
-  let wcagContrast = null;
-  let colorHex = null;
+  const optionalCustomStyles = useMemo(() => {
+    const colorToHexMap: { [color in BadgeColor]: string } = {
+      default: euiTheme.euiTheme.colors.lightShade,
+      hollow: '',
+      primary: visColors[1],
+      success: visColors[0],
+      accent: visColors[2],
+      warning: visColors[5],
+      danger: visColors[9],
+    };
 
-  // Check if a valid color name was provided
-  try {
-    if (COLORS.indexOf(color) > -1) {
-      // Get the hex equivalent for the provided color name
-      colorHex = colorToHexMap[color];
+    let textColor = null;
+    const wcagContrastBase = 4.5; // WCAG AA contrast level
+    let wcagContrast = null;
+    let colorHex = null;
 
-      // Set dark or light text color based upon best contrast
-      textColor = setTextColor(colorHex);
+    try {
+      // Check if a valid color name was provided
+      if (COLORS.includes(color as BadgeColor)) {
+        if (color === 'hollow') return style; // hollow uses its own CSS class
 
-      optionalCustomStyles = {
-        backgroundColor: colorHex,
-        color: textColor,
-        ...optionalCustomStyles,
-      };
-    } else if (color !== 'hollow') {
-      // This is a custom color that is neither from the base palette nor hollow
-      // Let's do our best to ensure that it provides sufficient contrast
+        // Get the hex equivalent for the provided color name
+        colorHex = colorToHexMap[color as BadgeColor];
 
-      // Set dark or light text color based upon best contrast
-      textColor = setTextColor(color);
+        // Set dark or light text color based upon best contrast
+        textColor = setTextColor(euiTheme, colorHex);
 
-      // Check the contrast
-      wcagContrast = getColorContrast(textColor, color);
+        return {
+          backgroundColor: colorHex,
+          color: textColor,
+          ...style,
+        };
+      } else {
+        // This is a custom color- let's do our best to ensure that it provides sufficient contrast
 
-      if (wcagContrast < wcagContrastBase) {
-        // It's low contrast, so lets show a warning in the console
-        console.warn(
-          'Warning: ',
-          color,
-          ' badge has low contrast of ',
-          wcagContrast.toFixed(2),
-          '. Should be above ',
-          wcagContrastBase,
-          '.'
-        );
+        // Set dark or light text color based upon best contrast
+        textColor = setTextColor(euiTheme, color);
+
+        // Check the contrast
+        wcagContrast = getColorContrast(textColor, color);
+
+        if (wcagContrast < wcagContrastBase) {
+          // It's low contrast, so lets show a warning in the console
+          console.warn(
+            'Warning: ',
+            color,
+            ' badge has low contrast of ',
+            wcagContrast.toFixed(2),
+            '. Should be above ',
+            wcagContrastBase,
+            '.'
+          );
+        }
+
+        return {
+          backgroundColor: color,
+          color: textColor,
+          ...style,
+        };
       }
-
-      optionalCustomStyles = {
-        backgroundColor: color,
-        color: textColor,
-        ...optionalCustomStyles,
-      };
+    } catch (err) {
+      handleInvalidColor(color);
     }
-  } catch (err) {
-    handleInvalidColor(color);
-  }
+  }, [color, style, euiTheme]);
 
-  const euiTheme = useEuiTheme();
   const styles = euiBadgeStyles(euiTheme);
   const cssStyles = [
     styles.euiBadge,
@@ -380,16 +389,16 @@ function getColorContrast(textColor: string, color: string) {
   return contrastValue;
 }
 
-function setTextColor(bgColor: string) {
+function setTextColor({ euiTheme }: UseEuiTheme, bgColor: string) {
   const textColor = isColorDark(...chroma(bgColor).rgb())
-    ? colorGhost
-    : colorInk;
+    ? euiTheme.colors.ghost
+    : euiTheme.colors.ink;
 
   return textColor;
 }
 
-function handleInvalidColor(color: null | IconColor | string) {
-  const isNamedColor = (color && COLORS.includes(color)) || color === 'hollow';
+function handleInvalidColor(color: null | BadgeColor | string) {
+  const isNamedColor = COLORS.includes(color as BadgeColor);
   const isValidColorString = color && chromaValid(parseColor(color) || '');
   if (!isNamedColor && !isValidColorString) {
     console.warn(
