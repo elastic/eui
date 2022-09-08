@@ -73,18 +73,9 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
   
       &:focus-visible,
       &.euiRangeSlider--hasFocus {
-        /* ${euiRangeThumbPerBrowser(`
-          box-shadow: 0 0 0 $euiFocusRingSize $euiFocusRingColor;
-        `)} */
-
         ~ .euiRangeThumb {
           border-color: ${range.thumbBorderColor};
         }
-
-        ${euiRangeTrackPerBrowser(`
-          background-color: ${euiTheme.colors.primary};
-          border-color: ${euiTheme.colors.primary};
-        `)}
 
         ~ .euiRangeHighlight .euiRangeHighlight__progress {
           background-color: ${euiTheme.colors.primary};
