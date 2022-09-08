@@ -80,5 +80,19 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
         : euiTheme.border.color};
       color: ${euiTheme.colors.text};
     `,
+
+    // Content wrapper
+    euiBadge__content: css`
+      ${logicalCSS(
+        // Ensure proper height in case of just displaying an icon
+        'min-height',
+        `${
+          euiTheme.base + parseFloat(String(euiTheme.border.width.thin)) * 2
+        }px`
+      )}
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    `,
   };
 };

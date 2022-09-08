@@ -282,16 +282,18 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   }
 
   const content = (
-    <span className="euiBadge__content">
+    <span className="euiBadge__content" css={styles.euiBadge__content}>
+      {iconSide === 'left' && optionalIcon}
       {children && <span className="euiBadge__text">{children}</span>}
-      {optionalIcon}
+      {iconSide === 'right' && optionalIcon}
     </span>
   );
 
   if (iconOnClick) {
     return onClick || href ? (
       <span className={classes} css={cssStyles} style={optionalCustomStyles}>
-        <span className="euiBadge__content">
+        <span className="euiBadge__content" css={styles.euiBadge__content}>
+          {iconSide === 'left' && optionalIcon}
           <EuiInnerText>
             {(ref, innerText) => (
               <Element
@@ -307,7 +309,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
               </Element>
             )}
           </EuiInnerText>
-          {optionalIcon}
+          {iconSide === 'right' && optionalIcon}
         </span>
       </span>
     ) : (

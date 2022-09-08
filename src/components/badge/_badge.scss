@@ -1,11 +1,4 @@
 .euiBadge {
-  .euiBadge__content {
-    min-height: $euiSize + ($euiBorderWidthThin * 2); // Ensure proper height in case of just displaying an icon
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-  }
-
   .euiBadge__childButton {
     @include euiTextTruncate;
     text-align: inherit;
@@ -57,10 +50,6 @@
   }
 
   &.euiBadge--iconLeft {
-    .euiBadge__content {
-      flex-direction: row-reverse;
-    }
-
     .euiBadge__iconButton,
     .euiBadge__icon:not(:only-child) {
       margin-right: $euiSizeXS;
