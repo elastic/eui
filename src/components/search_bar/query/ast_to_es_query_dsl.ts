@@ -140,7 +140,7 @@ export const _fieldValuesToQuery = (
           }
         });
 
-        if (terms.length > 0) {
+        if (terms.length > 1) {
           queries.push({
             bool: {
               [andOr === 'and' ? 'must' : 'should']: [
@@ -148,6 +148,8 @@ export const _fieldValuesToQuery = (
               ],
             },
           });
+        } else if (terms.length === 1) {
+          queries.push({ match: { [field]: terms[0] } });
         }
 
         if (phrases.length > 0) {

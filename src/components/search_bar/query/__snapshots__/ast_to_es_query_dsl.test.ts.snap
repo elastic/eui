@@ -59,14 +59,8 @@ Object {
         },
       },
       Object {
-        "bool": Object {
-          "must": Array [
-            Object {
-              "match": Object {
-                "group": "kibana",
-              },
-            },
-          ],
+        "match": Object {
+          "group": "kibana",
         },
       },
       Object {
@@ -122,14 +116,8 @@ Object {
         },
       },
       Object {
-        "bool": Object {
-          "must": Array [
-            Object {
-              "match": Object {
-                "group": "kibana",
-              },
-            },
-          ],
+        "match": Object {
+          "group": "kibana",
         },
       },
     ],
@@ -171,14 +159,8 @@ Object {
         "bool": Object {
           "should": Array [
             Object {
-              "bool": Object {
-                "should": Array [
-                  Object {
-                    "match": Object {
-                      "group": "eng",
-                    },
-                  },
-                ],
+              "match": Object {
+                "group": "eng",
               },
             },
             Object {
@@ -229,14 +211,8 @@ Object {
     ],
     "must_not": Array [
       Object {
-        "bool": Object {
-          "must": Array [
-            Object {
-              "match": Object {
-                "group": "kibana",
-              },
-            },
-          ],
+        "match": Object {
+          "group": "kibana",
         },
       },
     ],
@@ -255,14 +231,8 @@ Object {
               "bool": Object {
                 "must": Array [
                   Object {
-                    "bool": Object {
-                      "must": Array [
-                        Object {
-                          "match": Object {
-                            "name": "john",
-                          },
-                        },
-                      ],
+                    "match": Object {
+                      "name": "john",
                     },
                   },
                 ],
@@ -272,14 +242,8 @@ Object {
               "bool": Object {
                 "must": Array [
                   Object {
-                    "bool": Object {
-                      "must": Array [
-                        Object {
-                          "match": Object {
-                            "name": "fred",
-                          },
-                        },
-                      ],
+                    "match": Object {
+                      "name": "fred",
                     },
                   },
                 ],
@@ -304,14 +268,8 @@ Object {
               "bool": Object {
                 "must": Array [
                   Object {
-                    "bool": Object {
-                      "must": Array [
-                        Object {
-                          "match": Object {
-                            "name": "john",
-                          },
-                        },
-                      ],
+                    "match": Object {
+                      "name": "john",
                     },
                   },
                 ],
@@ -466,14 +424,8 @@ Object {
         "bool": Object {
           "must": Array [
             Object {
-              "bool": Object {
-                "must": Array [
-                  Object {
-                    "match": Object {
-                      "name": "john",
-                    },
-                  },
-                ],
+              "match": Object {
+                "name": "john",
               },
             },
           ],
