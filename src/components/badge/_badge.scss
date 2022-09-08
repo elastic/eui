@@ -1,39 +1,4 @@
-/**
- * 1. Accounts for the border
- */
 .euiBadge {
-  font-size: $euiFontSizeXS;
-  font-weight: $euiFontWeightMedium;
-  line-height: $euiSize + 2px; /* 1 */
-  padding: 0 $euiSizeS;
-  display: inline-block;
-  text-decoration: none;
-  border-radius: $euiBorderRadius / 2;
-  border: solid 1px transparent;
-  background-color: transparent;
-  white-space: nowrap;
-  vertical-align: middle;
-  cursor: default;
-  max-width: 100%;
-  // The badge will only ever be as wide as its content
-  // So, make the text left aligned to ensure all badges line up the same
-  text-align: left;
-
-  &.euiBadge-isDisabled {
-    // sass-lint:disable-block no-important
-    // Using !important to override inline styles
-    color: makeHighContrastColor($euiButtonColorDisabled, $euiButtonColorDisabled, 2) !important;
-    background-color: $euiButtonColorDisabled !important;
-  }
-
-  &:focus-within {
-    @include euiFocusRing('small');
-  }
-
-  + .euiBadge {
-    margin-left: $euiSizeXS;
-  }
-
   .euiBadge__content {
     min-height: $euiSize + ($euiBorderWidthThin * 2); // Ensure proper height in case of just displaying an icon
     display: flex;
@@ -102,32 +67,4 @@
       margin-left: 0;
     }
   }
-}
-
-.euiBadge-isClickable {
-  &:not(:disabled) {
-    &:hover,
-    &:focus {
-      text-decoration: underline;
-    }
-  }
-
-  &.euiBadge-isDisabled {
-    cursor: not-allowed;
-  }
-
-  &:focus {
-    @include euiFocusRing('small');
-  }
-
-  .euiBadge__text {
-    cursor: inherit;
-  }
-}
-
-// Hollow has a border and is mostly used for autocompleters.
-.euiBadge--hollow {
-  background-color: $euiColorEmptyShade;
-  border-color: lightOrDarkTheme($euiBorderColor, tint($euiBorderColor, 15%));
-  color: $euiTextColor;
 }

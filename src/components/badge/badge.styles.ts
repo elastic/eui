@@ -1,0 +1,84 @@
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
+
+import { css } from '@emotion/react';
+import {
+  euiFontSize,
+  euiFocusRing,
+  logicalCSS,
+  logicalTextAlignCSS,
+} from '../../global_styling';
+import { UseEuiTheme, makeDisabledContrastColor, tint } from '../../services';
+
+export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme, colorMode } = euiThemeContext;
+
+  return {
+    euiBadge: css`
+      display: inline-block;
+      vertical-align: middle;
+      padding: 0 ${euiTheme.size.s};
+      ${logicalCSS('max-width', '100%')}
+      font-size: ${euiFontSize(euiThemeContext, 'xs').fontSize};
+      line-height: ${euiTheme.base + 2}px; // Accounts for the border
+      font-weight: ${euiTheme.font.weight.medium};
+      white-space: nowrap;
+      text-decoration: none;
+      cursor: default;
+      background-color: transparent;
+      border: ${euiTheme.border.width.thin} solid transparent;
+      border-radius: ${parseFloat(String(euiTheme.border.radius.medium)) / 2}px;
+      // The badge will only ever be as wide as its content
+      // So, make the text left aligned to ensure all badges line up the same
+      ${logicalTextAlignCSS('left')}
+
+      &:focus-within {
+        ${euiFocusRing(euiThemeContext)}
+      }
+
+      & + .euiBadge {
+        ${logicalCSS('margin-left', euiTheme.size.xs)}
+      }
+    `,
+    clickable: css`
+      &:not(:disabled) {
+        &:hover,
+        &:focus {
+          text-decoration: underline;
+        }
+      }
+
+      &:focus {
+        ${euiFocusRing(euiThemeContext)}
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+      }
+
+      .euiBadge__text {
+        cursor: inherit;
+      }
+    `,
+    disabled: css`
+      // Using !important to override inline styles
+      color: ${makeDisabledContrastColor(euiTheme.colors.disabledText)(
+        euiTheme.colors.disabled
+      )} !important;
+      background-color: ${euiTheme.colors.disabled} !important;
+    `,
+    // Hollow has a border and is mostly used for autocompleters.
+    hollow: css`
+      background-color: ${euiTheme.colors.emptyShade};
+      border-color: ${colorMode === 'DARK'
+        ? tint(euiTheme.border.color, 0.15)
+        : euiTheme.border.color};
+      color: ${euiTheme.colors.text};
+    `,
+  };
+};

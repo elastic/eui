@@ -18,6 +18,7 @@ import classNames from 'classnames';
 import chroma from 'chroma-js';
 import { CommonProps, ExclusiveUnion, keysOf, PropsOf } from '../common';
 import {
+  useEuiTheme,
   euiPaletteColorBlindBehindText,
   getSecureRelForTarget,
   isColorDark,
@@ -26,6 +27,8 @@ import { EuiInnerText } from '../inner_text';
 import { EuiIcon, IconColor, IconType } from '../icon';
 import { chromaValid, parseColor } from '../color_picker/utils';
 import { validateHref } from '../../services/security/href_validator';
+
+import { euiBadgeStyles } from './badge.styles';
 
 type IconSide = 'left' | 'right';
 
@@ -194,13 +197,18 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   } catch (err) {
     handleInvalidColor(color);
   }
+
+  const euiTheme = useEuiTheme();
+  const styles = euiBadgeStyles(euiTheme);
+  const cssStyles = [
+    styles.euiBadge,
+    (onClick || href) && !iconOnClick && styles.clickable,
+    isDisabled && styles.disabled,
+    color === 'hollow' && styles.hollow,
+  ];
+
   const classes = classNames(
     'euiBadge',
-    {
-      'euiBadge-isClickable': (onClick || href) && !iconOnClick,
-      'euiBadge-isDisabled': isDisabled,
-      'euiBadge--hollow': color === 'hollow',
-    },
     iconSideToClassNameMap[iconSide],
     className
   );
@@ -282,7 +290,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
 
   if (iconOnClick) {
     return onClick || href ? (
-      <span className={classes} style={optionalCustomStyles}>
+      <span className={classes} css={cssStyles} style={optionalCustomStyles}>
         <span className="euiBadge__content">
           <EuiInnerText>
             {(ref, innerText) => (
@@ -307,6 +315,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
         {(ref, innerText) => (
           <span
             className={classes}
+            css={cssStyles}
             style={optionalCustomStyles}
             ref={ref}
             title={innerText}
@@ -325,6 +334,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
             disabled={isDisabled}
             aria-label={onClickAriaLabel}
             className={classes}
+            css={cssStyles}
             style={optionalCustomStyles}
             ref={ref as Ref<HTMLButtonElement & HTMLAnchorElement>}
             title={innerText}
@@ -342,6 +352,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
         {(ref, innerText) => (
           <span
             className={classes}
+            css={cssStyles}
             style={optionalCustomStyles}
             ref={ref}
             title={innerText}
