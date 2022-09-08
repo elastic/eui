@@ -14,7 +14,12 @@ import {
   logicalCSS,
   logicalTextAlignCSS,
 } from '../../global_styling';
-import { UseEuiTheme, makeDisabledContrastColor, tint } from '../../services';
+import {
+  UseEuiTheme,
+  makeDisabledContrastColor,
+  tint,
+  transparentize,
+} from '../../services';
 
 export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
@@ -100,6 +105,51 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       `,
       clickable: css`
         cursor: pointer;
+      `,
+    },
+
+    // Icon
+    icon: {
+      euiBadge__icon: css``,
+      right: css`
+        &:not(:only-child) {
+          ${logicalCSS('margin-left', euiTheme.size.xs)}
+        }
+      `,
+      left: css`
+        &:not(:only-child) {
+          ${logicalCSS('margin-right', euiTheme.size.xs)}
+        }
+      `,
+    },
+
+    // Clickable icons (iconOnClick)
+    iconButton: {
+      euiBadge__iconButton: css`
+        font-size: 0; // Makes the button only as large as the icon so it aligns vertically better
+
+        &:focus {
+          background-color: ${transparentize(euiTheme.colors.ghost, 0.8)};
+          color: ${euiTheme.colors.ink};
+          border-radius: ${
+            parseFloat(String(euiTheme.border.radius.small)) / 2
+          }px;
+        }
+
+        &:disabled {
+          cursor: not-allowed;
+        }
+
+        .euiBadge__icon {
+          // Remove margins from icon itself so that focus state doesn't include that space
+          margin: 0 !important;
+        }
+      }`,
+      right: css`
+        ${logicalCSS('margin-left', euiTheme.size.xs)}
+      `,
+      left: css`
+        ${logicalCSS('margin-right', euiTheme.size.xs)}
       `,
     },
   };

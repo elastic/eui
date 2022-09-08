@@ -17,38 +17,4 @@
       }
     }
   }
-
-  .euiBadge__iconButton {
-    font-size: 0; // Makes the button only as large as the icon so it aligns vertically better
-    margin-left: $euiSizeXS;
-
-    &:focus {
-      background-color: transparentize($euiColorGhost, .2);
-      color: $euiColorInk;
-      border-radius: 2px;
-    }
-
-    &:disabled {
-      cursor: not-allowed;
-    }
-
-    .euiBadge__icon {
-      // Remove margins from icon itself so that focus state doesn't include that space
-      margin: 0 !important; // sass-lint:disable-line no-important
-    }
-  }
-
-  .euiBadge__icon {
-    &:not(:only-child) {
-      margin-left: $euiSizeXS;
-    }
-  }
-
-  &.euiBadge--iconLeft {
-    .euiBadge__iconButton,
-    .euiBadge__icon:not(:only-child) {
-      margin-right: $euiSizeXS;
-      margin-left: 0;
-    }
-  }
 }

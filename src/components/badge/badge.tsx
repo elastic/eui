@@ -210,6 +210,11 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     styles.text.euiBadge__text,
     (onClick || href) && !isDisabled && styles.text.clickable,
   ];
+  const iconCssStyles = [styles.icon.euiBadge__icon, styles.icon[iconSide]];
+  const iconButtonCssStyles = [
+    styles.iconButton.euiBadge__iconButton,
+    styles.iconButton[iconSide],
+  ];
 
   const classes = classNames(
     'euiBadge',
@@ -253,6 +258,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
         <button
           type="button"
           className="euiBadge__iconButton"
+          css={iconButtonCssStyles}
           aria-label={iconOnClickAriaLabel}
           disabled={isDisabled}
           title={iconOnClickAriaLabel}
@@ -262,6 +268,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
             type={iconType}
             size="s"
             color="inherit" // forces the icon to inherit its parent color
+            css={iconCssStyles}
             {...closeButtonProps}
             className={closeClassNames}
           />
@@ -273,6 +280,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
           type={iconType}
           size={children ? 's' : 'm'}
           className="euiBadge__icon"
+          css={iconCssStyles}
           color="inherit" // forces the icon to inherit its parent color
         />
       );
