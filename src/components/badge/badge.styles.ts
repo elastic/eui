@@ -152,5 +152,25 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('margin-right', euiTheme.size.xs)}
       `,
     },
+
+    // Used in badges with both onClick & iconOnClick
+    euiBadge__childButton: css`
+      ${euiTextTruncate()}
+      text-align: inherit;
+      font-weight: inherit;
+      line-height: inherit;
+      color: inherit;
+
+      &:disabled {
+        cursor: not-allowed;
+      }
+
+      &:not(:disabled) {
+        &:hover,
+        &:focus {
+          text-decoration: underline;
+        }
+      }
+    `,
   };
 };

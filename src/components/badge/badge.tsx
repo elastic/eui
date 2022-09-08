@@ -314,6 +314,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
             {(ref, innerText) => (
               <Element
                 className="euiBadge__childButton"
+                css={styles.euiBadge__childButton}
                 disabled={isDisabled}
                 aria-label={onClickAriaLabel}
                 ref={ref}
