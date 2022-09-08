@@ -11,6 +11,7 @@ import React, {
   FunctionComponent,
   useState,
   useEffect,
+  useCallback,
   MouseEventHandler,
 } from 'react';
 import classNames from 'classnames';
@@ -80,14 +81,17 @@ export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
 
   const onMenuButtonClick: MouseEventHandler<
     HTMLButtonElement & HTMLAnchorElement
-  > = (e) => {
-    onClick?.(e);
-    setMobileMenuIsOpen(!mobileMenuIsOpen);
-  };
+  > = useCallback(
+    (e) => {
+      onClick?.(e);
+      setMobileMenuIsOpen((mobileMenuIsOpen) => !mobileMenuIsOpen);
+    },
+    [onClick]
+  );
 
-  const closeMenu = () => {
+  const closeMenu = useCallback(() => {
     setMobileMenuIsOpen(false);
-  };
+  }, []);
 
   useEffect(() => {
     window.addEventListener('resize', closeMenu);
@@ -133,6 +137,7 @@ export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
               anchorPosition="downRight"
               closePopover={closeMenu}
               panelPaddingSize="none"
+              repositionOnScroll
               {...popoverProps}
             >
               <div

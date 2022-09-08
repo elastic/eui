@@ -78,7 +78,7 @@ export type EuiImageProps = CommonProps &
     /**
      * Props to add to the wrapping figure element
      */
-    wrapperProps?: HTMLAttributes<HTMLDivElement>;
+    wrapperProps?: CommonProps & HTMLAttributes<HTMLDivElement>;
   };
 
 export type EuiImageWrapperProps = Pick<

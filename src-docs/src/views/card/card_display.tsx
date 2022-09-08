@@ -6,12 +6,12 @@ import {
   EuiFlexItem,
   EuiIcon,
   EuiSpacer,
-} from '../../../../src/components';
+} from '../../../../src';
 
 export default () => (
   <div>
     <EuiSpacer size="s" />
-    <EuiFlexGroup gutterSize="l">
+    <EuiFlexGroup gutterSize="l" wrap>
       <EuiFlexItem>
         <EuiCard
           layout="horizontal"
@@ -43,6 +43,16 @@ export default () => (
             tooltipContent:
               'This module is not GA. Please help us by reporting any bugs.',
           }}
+          onClick={() => {}}
+        />
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiCard
+          icon={<EuiIcon size="xl" type="logoLogging" />}
+          title="Bordered"
+          display="plain"
+          hasBorder
+          description="This one has a plain background color and border."
           onClick={() => {}}
         />
       </EuiFlexItem>

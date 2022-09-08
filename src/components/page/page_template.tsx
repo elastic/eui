@@ -8,19 +8,24 @@
 
 import React, { CSSProperties, FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
-import { EuiPage, EuiPageProps, SIZES } from './page';
-import { EuiPageSideBar, EuiPageSideBarProps } from './page_side_bar';
+import { css } from '@emotion/react';
+import { EuiPage, EuiPageProps } from './page';
+import {
+  EuiPageSideBar_Deprecated as EuiPageSideBar,
+  EuiPageSideBarProps,
+} from './page_side_bar';
 import { EuiPageBody, EuiPageBodyProps } from './page_body';
 import { EuiPageHeader, EuiPageHeaderProps } from './page_header';
 import {
-  EuiPageContent,
-  EuiPageContentBody,
+  EuiPageContent_Deprecated as EuiPageContent,
+  EuiPageContentBody_Deprecated as EuiPageContentBody,
   EuiPageContentProps,
   EuiPageContentBodyProps,
 } from './page_content';
 import { EuiBottomBarProps, EuiBottomBar } from '../bottom_bar';
 import { useIsWithinBreakpoints } from '../../services';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
+import { useEuiPaddingSize, logicalCSS } from '../../global_styling';
 
 export const TEMPLATES = [
   'default',
@@ -29,7 +34,10 @@ export const TEMPLATES = [
   'empty',
 ] as const;
 
-export type EuiPageTemplateProps = Omit<EuiPageProps, 'paddingSize'> & {
+export type EuiPageTemplateProps_Deprecated = Omit<
+  EuiPageProps,
+  'paddingSize'
+> & {
   /**
    * Choose between 3 types of templates.
    * `default`: Typical layout with nothing centered
@@ -42,7 +50,7 @@ export type EuiPageTemplateProps = Omit<EuiPageProps, 'paddingSize'> & {
    * Padding size will not get applied to the over-arching #EuiPage,
    * but will propogate through all the components to keep them in sync
    */
-  paddingSize?: typeof SIZES[number];
+  paddingSize?: 'none' | 's' | 'm' | 'l';
   /**
    * Optionally include #EuiPageSideBar content.
    * The inclusion of this will affect the whole layout
@@ -90,7 +98,14 @@ export type EuiPageTemplateProps = Omit<EuiPageProps, 'paddingSize'> & {
   minHeight?: CSSProperties['minHeight'];
 };
 
-export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
+/**
+ * This component has been deprecated in favor of the new
+ * namespaced version. You can still import this component
+ * until August 2023 by importing `as EuiPageTemplate`.
+ *
+ * @deprecated use EuiPageTemplate from page_template/page_template instead
+ */
+export const EuiPageTemplate_Deprecated: FunctionComponent<EuiPageTemplateProps_Deprecated> = ({
   template = 'default',
   restrictWidth = true,
   grow = true,
@@ -109,6 +124,11 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   minHeight = 460,
   ...rest
 }) => {
+  // BWC page header margin to match padding
+  const headerMargin = css(
+    logicalCSS('margin-bottom', useEuiPaddingSize(paddingSize))
+  );
+
   /**
    * Full height ~madness~ logic
    */
@@ -184,7 +204,11 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
 
           <EuiPageBody paddingSize={paddingSize} {...pageBodyProps}>
             {pageHeader && (
-              <EuiPageHeader restrictWidth={restrictWidth} {...pageHeader} />
+              <EuiPageHeader
+                restrictWidth={restrictWidth}
+                css={headerMargin}
+                {...pageHeader}
+              />
             )}
             <EuiPageContent
               verticalPosition="center"
@@ -214,6 +238,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
               <EuiPageHeader
                 paddingSize="none"
                 restrictWidth={false}
+                css={headerMargin}
                 bottomBorder
                 {...pageHeader}
               />
@@ -262,7 +287,11 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
 
           <EuiPageBody panelled paddingSize={paddingSize} {...pageBodyProps}>
             {pageHeader && (
-              <EuiPageHeader restrictWidth={restrictWidth} {...pageHeader} />
+              <EuiPageHeader
+                restrictWidth={restrictWidth}
+                css={headerMargin}
+                {...pageHeader}
+              />
             )}
             <EuiPageContent
               verticalPosition="center"
@@ -294,6 +323,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
               <EuiPageHeader
                 paddingSize={paddingSize}
                 restrictWidth={restrictWidth}
+                bottomBorder="extended"
                 {...pageHeader}
               />
             )}
@@ -348,7 +378,12 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
 
           <EuiPageBody paddingSize={paddingSize} {...pageBodyProps}>
             {pageHeader && (
-              <EuiPageHeader restrictWidth={restrictWidth} {...pageHeader} />
+              <EuiPageHeader
+                restrictWidth={restrictWidth}
+                bottomBorder
+                css={headerMargin}
+                {...pageHeader}
+              />
             )}
             <EuiPageContent
               hasBorder={false}
@@ -380,6 +415,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
               <EuiPageHeader
                 paddingSize="none"
                 restrictWidth={false}
+                css={headerMargin}
                 bottomBorder
                 {...pageHeader}
               />
@@ -450,6 +486,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
                 <EuiPageHeader
                   bottomBorder
                   restrictWidth={restrictWidth}
+                  css={headerMargin}
                   {...pageHeader}
                 />
               )}
@@ -485,6 +522,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
               <EuiPageHeader
                 restrictWidth={restrictWidth}
                 paddingSize={paddingSize}
+                bottomBorder="extended"
                 {...pageHeader}
               />
             )}

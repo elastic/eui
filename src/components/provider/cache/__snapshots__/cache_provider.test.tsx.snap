@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiProvider adds CacheProvider from Emotion when configured with a cache 1`] = `
+exports[`EuiProvider customizes CacheProvider when configured with a cache 1`] = `
 <ContextProvider
   value={
     Object {
@@ -27,11 +27,3 @@ exports[`EuiProvider adds CacheProvider from Emotion when configured with a cach
   <div />
 </ContextProvider>
 `;
-
-exports[`EuiProvider does not add CacheProvider from Emotion when configured without a cache 1`] = `
-<Fragment>
-  <div />
-</Fragment>
-`;
-
-exports[`EuiProvider renders a Fragment when no children are provided 1`] = `<Fragment />`;

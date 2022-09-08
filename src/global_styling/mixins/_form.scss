@@ -78,10 +78,6 @@
   font-size: $euiFontSizeS;
   color: $euiTextColor;
 
-  @include internetExplorerOnly {
-    line-height: 1em; // fixes text alignment in IE
-  }
-
   // sass-lint:disable-block mixins-before-declarations
   @include euiPlaceholderPerBrowser {
     color: $euiFormControlPlaceholderText;

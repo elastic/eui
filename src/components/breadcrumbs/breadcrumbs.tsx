@@ -6,27 +6,25 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  AriaAttributes,
-  FunctionComponent,
-  HTMLAttributes,
-  MouseEventHandler,
-  ReactNode,
-  useEffect,
-  useState,
-} from 'react';
+import React, { FunctionComponent, useMemo } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps } from '../common';
+import { CommonProps, ExclusiveUnion } from '../common';
 import { useEuiI18n } from '../i18n';
-import { EuiInnerText } from '../inner_text';
-import { EuiLink, EuiLinkColor } from '../link';
-import { EuiPopover } from '../popover';
-import { EuiIcon } from '../icon';
-import { throttle } from '../../services';
-import { EuiBreakpointSize, getBreakpoint } from '../../services/breakpoint';
+import {
+  useEuiTheme,
+  EuiBreakpointSize,
+  useCurrentEuiBreakpoint,
+} from '../../services';
 
-const CONTENT_CLASSNAME = 'euiBreadcrumb__content';
+import {
+  EuiBreadcrumb,
+  EuiBreadcrumbContent,
+  EuiBreadcrumbCollapsed,
+  EuiBreadcrumbProps,
+} from './breadcrumb';
+
+import { euiBreadcrumbsListStyles } from './breadcrumbs.styles';
 
 export type EuiBreadcrumbResponsiveMaxCount = {
   /**
@@ -35,28 +33,6 @@ export type EuiBreadcrumbResponsiveMaxCount = {
    */
   [key in EuiBreakpointSize]?: number;
 };
-
-export type EuiBreadcrumb = HTMLAttributes<HTMLElement> &
-  CommonProps & {
-    href?: string;
-    onClick?: MouseEventHandler<HTMLAnchorElement>;
-    /**
-     * Visible label of the breadcrumb
-     */
-    text: ReactNode;
-    /**
-     * Force a max-width on the breadcrumb text
-     */
-    truncate?: boolean;
-    /**
-     * Accepts any EuiLink `color` when rendered as one (has `href` or `onClick`)
-     */
-    color?: EuiLinkColor;
-    /**
-     * Override the existing `aria-current` which defaults to `page` for the last breadcrumb
-     */
-    'aria-current'?: AriaAttributes['aria-current'];
-  };
 
 export type EuiBreadcrumbsProps = CommonProps & {
   /**
@@ -86,7 +62,19 @@ export type EuiBreadcrumbsProps = CommonProps & {
   /**
    * The array of individual #EuiBreadcrumb items
    */
-  breadcrumbs: EuiBreadcrumb[];
+  breadcrumbs: EuiBreadcrumbProps[];
+
+  /**
+   * Determines breadcrumbs appearance, with `page` being the default styling.
+   * Application breadcrumbs should only be once per page, in (e.g.) EuiHeader
+   */
+  type?: 'page' | 'application';
+
+  /**
+   * Whether the last breadcrumb should visually (and accessibly, to screen readers)
+   * be highlighted as the current page. Defaults to true.
+   */
+  lastBreadcrumbIsCurrentPage?: boolean;
 };
 
 const responsiveDefault: EuiBreadcrumbResponsiveMaxCount = {
@@ -95,24 +83,137 @@ const responsiveDefault: EuiBreadcrumbResponsiveMaxCount = {
   m: 4,
 };
 
-const limitBreadcrumbs = (
-  breadcrumbs: ReactNode[],
-  max: number,
-  allBreadcrumbs: EuiBreadcrumb[]
+export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
+  breadcrumbs,
+  className,
+  responsive = responsiveDefault,
+  truncate = true,
+  max = 5,
+  type = 'page',
+  lastBreadcrumbIsCurrentPage = true,
+  ...rest
+}) => {
+  const ariaLabel = useEuiI18n('euiBreadcrumbs.nav.ariaLabel', 'Breadcrumbs');
+
+  const euiTheme = useEuiTheme();
+  const breadcrumbsListStyles = euiBreadcrumbsListStyles(euiTheme);
+  const cssBreadcrumbsListStyles = [
+    breadcrumbsListStyles.euiBreadcrumbs__list,
+    truncate && breadcrumbsListStyles.isTruncated,
+  ];
+
+  const responsiveMax = useResponsiveMax(responsive, max);
+
+  const visibleBreadcrumbs: _EuiBreadcrumbsObjs = useMemo(() => {
+    const shouldCollapseBreadcrumbs =
+      responsiveMax && breadcrumbs.length > responsiveMax;
+
+    return shouldCollapseBreadcrumbs
+      ? limitBreadcrumbs(breadcrumbs, responsiveMax)
+      : breadcrumbs;
+  }, [breadcrumbs, responsiveMax]);
+
+  const breadcrumbChildren = useMemo(
+    () =>
+      visibleBreadcrumbs.map((breadcrumb, index) => {
+        const isFirstBreadcrumb = index === 0;
+        const isLastBreadcrumb = index === visibleBreadcrumbs.length - 1;
+        const isOnlyBreadcrumb = visibleBreadcrumbs.length === 1;
+
+        const sharedProps = { type, truncate };
+
+        return breadcrumb.isCollapsedButton ? (
+          <EuiBreadcrumbCollapsed
+            key="collapsed"
+            {...sharedProps}
+            isFirstBreadcrumb={isFirstBreadcrumb}
+          >
+            <EuiBreadcrumbs
+              breadcrumbs={breadcrumb.overflowBreadcrumbs}
+              lastBreadcrumbIsCurrentPage={false}
+              responsive={false}
+              truncate={false}
+              max={0}
+            />
+          </EuiBreadcrumbCollapsed>
+        ) : (
+          <EuiBreadcrumb key={index} {...sharedProps}>
+            <EuiBreadcrumbContent
+              isFirstBreadcrumb={isFirstBreadcrumb}
+              isLastBreadcrumb={isLastBreadcrumb}
+              isOnlyBreadcrumb={isOnlyBreadcrumb}
+              highlightLastBreadcrumb={
+                isLastBreadcrumb && lastBreadcrumbIsCurrentPage
+              }
+              {...sharedProps}
+              {...breadcrumb}
+            />
+          </EuiBreadcrumb>
+        );
+      }),
+    [visibleBreadcrumbs, truncate, type, lastBreadcrumbIsCurrentPage]
+  );
+
+  return (
+    <nav
+      aria-label={ariaLabel}
+      className={classNames('euiBreadcrumbs', className)}
+      {...rest}
+    >
+      <ol className="euiBreadcrumbs__list" css={cssBreadcrumbsListStyles}>
+        {breadcrumbChildren}
+      </ol>
+    </nav>
+  );
+};
+
+export const useResponsiveMax = (
+  responsive: EuiBreadcrumbsProps['responsive'],
+  max: EuiBreadcrumbsProps['max']
 ) => {
+  // Use the default object if they simply passed `true` for responsive
+  const responsiveObject =
+    typeof responsive === 'object' ? responsive : responsiveDefault;
+
+  // The max property collapses any breadcrumbs past the max quantity.
+  // This is the same behavior we want for responsiveness.
+  // So calculate the max value based on the combination of `max` and `responsive`
+  let responsiveMax: EuiBreadcrumbsProps['max'] = max;
+
+  // Set the calculated max to the number associated with the currentBreakpoint key if it exists
+  const currentBreakpoint = useCurrentEuiBreakpoint();
+  if (responsive && currentBreakpoint && responsiveObject[currentBreakpoint]) {
+    responsiveMax = responsiveObject[currentBreakpoint];
+  }
+
+  // Final check is to make sure max is used over a larger breakpoint value
+  if (max && responsiveMax) {
+    responsiveMax = max < responsiveMax ? max : responsiveMax;
+  }
+
+  return responsiveMax;
+};
+
+type _EuiBreadcrumbCollapsedObj = {
+  isCollapsedButton: true;
+  overflowBreadcrumbs: EuiBreadcrumbProps[];
+};
+type _EuiBreadcrumbsObjs = Array<
+  ExclusiveUnion<EuiBreadcrumbProps, _EuiBreadcrumbCollapsedObj>
+>;
+
+export const limitBreadcrumbs = (
+  breadcrumbs: EuiBreadcrumbsProps['breadcrumbs'],
+  max: number
+): _EuiBreadcrumbsObjs => {
   const breadcrumbsAtStart = [];
   const breadcrumbsAtEnd = [];
   const limit = Math.min(max, breadcrumbs.length);
   const start = Math.floor(limit / 2);
-  const overflowBreadcrumbs = allBreadcrumbs.slice(
+  const overflowBreadcrumbs = breadcrumbs.slice(
     start,
     start + breadcrumbs.length - limit
   );
-
-  if (overflowBreadcrumbs.length) {
-    overflowBreadcrumbs[overflowBreadcrumbs.length - 1]['aria-current'] =
-      'false';
-  }
 
   for (let i = 0; i < limit; i++) {
     // We'll alternate with displaying breadcrumbs at the end and at the start, but be biased
@@ -135,165 +236,9 @@ const limitBreadcrumbs = (
     }
   }
 
-  const EuiBreadcrumbCollapsed = () => {
-    const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-    const ariaLabel = useEuiI18n(
-      'euiBreadcrumbs.collapsedBadge.ariaLabel',
-      'See collapsed breadcrumbs'
-    );
-
-    const ellipsisButton = (
-      <EuiLink
-        className={CONTENT_CLASSNAME}
-        color="subdued"
-        aria-label={ariaLabel}
-        title={ariaLabel}
-        onClick={() => setIsPopoverOpen(!isPopoverOpen)}
-      >
-        &hellip; <EuiIcon type="arrowDown" size="s" />
-      </EuiLink>
-    );
-
-    return (
-      <li className="euiBreadcrumb euiBreadcrumb--collapsed">
-        <EuiPopover
-          button={ellipsisButton}
-          isOpen={isPopoverOpen}
-          closePopover={() => setIsPopoverOpen(false)}
-        >
-          <EuiBreadcrumbs
-            className="euiBreadcrumbs__inPopover"
-            breadcrumbs={overflowBreadcrumbs}
-            responsive={false}
-            truncate={false}
-            max={0}
-          />
-        </EuiPopover>
-      </li>
-    );
-  };
-
-  if (max < breadcrumbs.length) {
-    breadcrumbsAtStart.push(<EuiBreadcrumbCollapsed key="collapsed" />);
-  }
-
-  return [...breadcrumbsAtStart, ...breadcrumbsAtEnd];
-};
-
-export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
-  breadcrumbs,
-  className,
-  responsive = responsiveDefault,
-  truncate = true,
-  max = 5,
-  ...rest
-}) => {
-  const ariaLabel = useEuiI18n('euiBreadcrumbs.nav.ariaLabel', 'Breadcrumbs');
-  const [currentBreakpoint, setCurrentBreakpoint] = useState(
-    getBreakpoint(typeof window === 'undefined' ? -Infinity : window.innerWidth)
-  );
-
-  const functionToCallOnWindowResize = throttle(() => {
-    const newBreakpoint = getBreakpoint(window.innerWidth);
-    if (newBreakpoint !== currentBreakpoint) {
-      setCurrentBreakpoint(newBreakpoint);
-    }
-    // reacts every 50ms to resize changes and always gets the final update
-  }, 50);
-
-  // Add window resize handlers
-  useEffect(() => {
-    window.addEventListener('resize', functionToCallOnWindowResize);
-
-    return () => {
-      window.removeEventListener('resize', functionToCallOnWindowResize);
-    };
-  }, [responsive, functionToCallOnWindowResize]);
-
-  const breadcrumbElements = breadcrumbs.map((breadcrumb, index) => {
-    const {
-      text,
-      href,
-      onClick,
-      truncate,
-      className: breadcrumbClassName,
-      ...breadcrumbRest
-    } = breadcrumb;
-    const isLastBreadcrumb = index === breadcrumbs.length - 1;
-    const className = classNames('euiBreadcrumb', {
-      'euiBreadcrumb--last': isLastBreadcrumb,
-      'euiBreadcrumb--truncate': truncate,
-    });
-    const linkProps = {
-      className: classNames(CONTENT_CLASSNAME, breadcrumbClassName),
-      'aria-current': isLastBreadcrumb ? 'page' : undefined,
-    } as { className: string; 'aria-current': AriaAttributes['aria-current'] };
-
-    const link = (
-      <EuiInnerText>
-        {(ref, innerText) => {
-          const title = innerText === '' ? undefined : innerText;
-
-          if (!href && !onClick) {
-            return (
-              <span ref={ref} title={title} {...linkProps} {...breadcrumbRest}>
-                {text}
-              </span>
-            );
-          }
-
-          return (
-            <EuiLink
-              ref={ref}
-              color={isLastBreadcrumb ? 'text' : 'subdued'}
-              onClick={onClick}
-              href={href}
-              title={title}
-              {...linkProps}
-              {...breadcrumbRest}
-            >
-              {text}
-            </EuiLink>
-          );
-        }}
-      </EuiInnerText>
-    );
-
-    return (
-      <li className={className} key={index}>
-        {link}
-      </li>
-    );
-  });
-
-  // Use the default object if they simply passed `true` for responsive
-  const responsiveObject =
-    typeof responsive === 'object' ? responsive : responsiveDefault;
-
-  // The max property collapses any breadcrumbs past the max quantity.
-  // This is the same behavior we want for responsiveness.
-  // So calculate the max value based on the combination of `max` and `responsive`
-  let calculatedMax: EuiBreadcrumbsProps['max'] = max;
-  // Set the calculated max to the number associated with the currentBreakpoint key if it exists
-  if (responsive && responsiveObject[currentBreakpoint as EuiBreakpointSize]) {
-    calculatedMax = responsiveObject[currentBreakpoint as EuiBreakpointSize];
-  }
-  // Final check is to make sure max is used over a larger breakpoint value
-  if (max && calculatedMax) {
-    calculatedMax = max < calculatedMax ? max : calculatedMax;
-  }
-
-  const limitedBreadcrumbs = calculatedMax
-    ? limitBreadcrumbs(breadcrumbElements, calculatedMax, breadcrumbs)
-    : breadcrumbElements;
-
-  const classes = classNames('euiBreadcrumbs', className, {
-    'euiBreadcrumbs--truncate': truncate,
-  });
-
-  return (
-    <nav aria-label={ariaLabel} className={classes} {...rest}>
-      <ol className="euiBreadcrumbs__list">{limitedBreadcrumbs}</ol>
-    </nav>
-  );
+  return [
+    ...breadcrumbsAtStart,
+    { isCollapsedButton: true, overflowBreadcrumbs },
+    ...breadcrumbsAtEnd,
+  ];
 };

@@ -133,7 +133,7 @@ export class EuiIconClass extends PureComponent<
   EuiIconProps & WithEuiThemeProps,
   State
 > {
-  isMounted = true;
+  isMounted = false;
   constructor(props: EuiIconProps & WithEuiThemeProps) {
     super(props);
 
@@ -149,6 +149,7 @@ export class EuiIconClass extends PureComponent<
   }
 
   componentDidMount() {
+    this.isMounted = true;
     const { type } = this.props;
 
     if (isEuiIconType(type) && this.state.icon == null) {
@@ -283,14 +284,6 @@ export class EuiIconClass extends PureComponent<
 
     const icon = this.state.icon || empty;
 
-    // This is a fix for IE and Edge, which ignores tabindex="-1" on an SVG, but respects
-    // focusable="false".
-    //   - If there's no tabindex specified, we'll default the icon to not be focusable,
-    //     which is how SVGs behave in Chrome, Safari, and FF.
-    //   - If tabindex is -1, then the consumer wants the icon to be focusable by JavaScript only.
-    //   - If the tabindex is 0, the consumer wants the icon to be keyboard focusable.
-    const focusable = tabIndex == null || tabIndex === -1 ? 'false' : 'true';
-
     if (typeof icon === 'string') {
       return (
         <img
@@ -334,7 +327,6 @@ export class EuiIconClass extends PureComponent<
           style={optionalCustomStyles}
           css={cssStyles}
           tabIndex={tabIndex}
-          focusable={focusable}
           role="img"
           title={title}
           data-icon-type={iconTitle}

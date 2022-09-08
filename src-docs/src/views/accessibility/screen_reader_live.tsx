@@ -1,34 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import {
   EuiCode,
-  EuiFieldNumber,
-  EuiFormRow,
+  EuiButton,
   EuiScreenReaderLive,
   EuiSpacer,
   EuiText,
 } from '../../../../src/components';
 
 export default () => {
-  const [value, setValue] = useState(1);
+  const [screenReaderText, setScreenReaderText] = useState(
+    'You have no notifications.'
+  );
+  const startAnnouncements = useCallback(() => {
+    const randomNumber = Math.floor(Math.random() * 10) + 1;
+    setScreenReaderText(
+      `You have ${randomNumber} new notification${randomNumber > 1 ? 's' : ''}.`
+    );
+  }, []);
+
   return (
     <>
-      <EuiFormRow label="Current value">
-        <EuiFieldNumber
-          placeholder="Current value"
-          value={value}
-          onChange={(e) => setValue(Number(e.target.value))}
-          min={0}
-        />
-      </EuiFormRow>
+      <EuiButton onClick={startAnnouncements}>
+        Create screen reader announcement
+      </EuiButton>
       <EuiSpacer />
       <EuiText>
         <p>
           <em>Content announced by screen reader: </em>
-          <EuiCode>Current value: {value}</EuiCode>
+          <EuiCode>{screenReaderText}</EuiCode>
         </p>
         <EuiScreenReaderLive>
-          <p>Current value: {value}</p>
+          <p>{screenReaderText}</p>
         </EuiScreenReaderLive>
       </EuiText>
     </>

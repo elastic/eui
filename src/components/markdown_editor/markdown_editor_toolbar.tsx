@@ -219,6 +219,7 @@ export const EuiMarkdownEditorToolbar = forwardRef<
 
         {isPreviewing ? (
           <EuiButtonEmpty
+            data-test-subj="markdown_editor_edit_button"
             iconType="editorCodeBlock"
             color="text"
             size="s"
@@ -229,6 +230,7 @@ export const EuiMarkdownEditorToolbar = forwardRef<
           </EuiButtonEmpty>
         ) : (
           <EuiButtonEmpty
+            data-test-subj="markdown_editor_preview_button"
             iconType="eye"
             color="text"
             size="s"

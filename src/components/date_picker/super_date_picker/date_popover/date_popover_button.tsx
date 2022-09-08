@@ -14,6 +14,7 @@ import React, {
 import classNames from 'classnames';
 import { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 
+import { CommonProps } from '../../../common';
 import { useEuiI18n } from '../../../i18n';
 import { EuiPopover, EuiPopoverProps } from '../../../popover';
 
@@ -26,7 +27,7 @@ import {
 
 export interface EuiDatePopoverButtonProps {
   className?: string;
-  buttonProps?: ButtonHTMLAttributes<HTMLButtonElement>;
+  buttonProps?: CommonProps & ButtonHTMLAttributes<HTMLButtonElement>;
   dateFormat: string;
   isDisabled?: boolean;
   isInvalid?: boolean;

@@ -15,9 +15,9 @@
 // Adds the focus (and hover) animation for translating up 1px
 @mixin euiButtonFocus {
   @include euiCanAnimate {
-    transition: transform $euiAnimSpeedNormal ease-in-out, background $euiAnimSpeedNormal ease-in-out;
+    transition: transform $euiAnimSpeedNormal ease-in-out, background-color $euiAnimSpeedNormal ease-in-out;
 
-    &:hover:not([class*='isDisabled']) {
+    &:hover:not(:disabled) {
       transform: translateY(-1px);
     }
 
@@ -25,7 +25,7 @@
       animation: euiButtonActive $euiAnimSpeedNormal $euiAnimSlightBounce;
     }
 
-    &:active:not([class*='isDisabled']) {
+    &:active:not(:disabled) {
       transform: translateY(1px);
     }
   }
@@ -37,15 +37,13 @@
   @include euiButtonBase;
   @include euiFont;
   @include euiFontSize;
-
-  text-decoration: none;
-  border: solid 1px transparent;
-
-  // sass-lint:disable mixins-before-declarations
-  // focus states should come after all default styles
   @include euiButtonFocus;
 
-  &:hover:not([class*='isDisabled']),
+  font-weight: $euiButtonFontWeight;
+  text-decoration: none;
+  outline-offset: -1px;
+
+  &:hover:not(:disabled),
   &:focus {
     text-decoration: underline;
   }
@@ -92,13 +90,59 @@
   pointer-events: auto;
   cursor: not-allowed;
 
-  .euiButtonContent__icon {
-    fill: currentColor;
+  &:hover,
+  &:focus,
+  &:focus-within {
+    text-decoration: none;
   }
 
   .euiButtonContent__spinner {
     border-color: euiLoadingSpinnerBorderColors(currentColor);
   }
+}
+
+/*
+ * Creates the Amsterdam style of button with a transparent background
+ */
+@mixin euiButtonDefaultStyle($color: 'primary', $includeStates: true, $transparency: $euiButtonDefaultTransparency) {
+  $backgroundColor: $color;
+
+  @if (map-has-key($euiButtonTypes, $color)) {
+    $backgroundColor: map-get($euiButtonTypes, $color);
+  }
+
+  $percentConversion: $transparency * 100%;
+  // This variable simulates the possibly darkest background the button could be on
+  // Simulates the 20% opaque color on top of the page background color
+  $backgroundColorSimulated: mix($euiPageBackgroundColor, $backgroundColor, $percentConversion);
+  // Then we can calculate the darkest text color needed
+  color: makeHighContrastColor($backgroundColor, $backgroundColorSimulated);
+  // But still use transparency
+  background-color: transparentize($backgroundColor, $transparency);
+
+  @if ($includeStates) {
+    &:not([class*='isDisabled']) {
+      &:hover,
+      &:focus {
+        // Duplicated from inert state simply to override default theme
+        background-color: transparentize($backgroundColor, $transparency);
+      }
+    }
+  }
+}
+
+/*
+ * Creates the Amsterdam style of fill button
+ */
+@mixin euiButtonFillStyle($color: 'primary') {
+  $backgroundColor: $color;
+
+  @if (map-has-key($euiButtonTypes, $color)) {
+    $backgroundColor: map-get($euiButtonTypes, $color);
+  }
+
+  background-color: $backgroundColor;
+  color: chooseLightOrDarkText($backgroundColor);
 }
 
 // Keyframe animation declarations can be found in

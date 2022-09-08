@@ -21,9 +21,15 @@ describe('EuiDataGridBody', () => {
       resetAfterRowIndex: jest.fn(),
     } as any,
   };
+  const outerGridElementRef = { current: null };
   const gridItemsRendered = { current: null };
   const rerenderGridBodyRef = { current: null };
-  const rowHeightUtils = new RowHeightUtils(gridRef, rerenderGridBodyRef);
+  const rowHeightUtils = new RowHeightUtils(
+    gridRef,
+    outerGridElementRef,
+    gridItemsRendered,
+    rerenderGridBodyRef
+  );
 
   const requiredProps = {
     headerIsInteractive: true,

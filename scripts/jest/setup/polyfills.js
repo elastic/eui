@@ -12,6 +12,8 @@ afterAll(() => {
 });
 
 beforeAll(() => {
+  if (typeof window === 'undefined') return; // SSR tests
+
   Object.defineProperty(window, 'MutationObserver', { value: MutationObserver });
   patchNotifyChange(window);
 

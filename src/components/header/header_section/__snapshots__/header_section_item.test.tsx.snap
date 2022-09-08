@@ -3,22 +3,24 @@
 exports[`EuiHeaderSectionItem border defaults to left 1`] = `
 <div
   class="euiHeaderSectionItem euiHeaderSectionItem--borderLeft"
-/>
+>
+  <span>
+    Left is default
+  </span>
+</div>
 `;
 
 exports[`EuiHeaderSectionItem border renders right 1`] = `
 <div
   class="euiHeaderSectionItem euiHeaderSectionItem--borderRight"
-/>
+>
+  <span>
+    Right section
+  </span>
+</div>
 `;
 
-exports[`EuiHeaderSectionItem is rendered 1`] = `
-<div
-  aria-label="aria-label"
-  class="euiHeaderSectionItem euiHeaderSectionItem--borderLeft testClass1 testClass2"
-  data-test-subj="test subject string"
-/>
-`;
+exports[`EuiHeaderSectionItem is rendered 1`] = `null`;
 
 exports[`EuiHeaderSectionItem renders children 1`] = `
 <div

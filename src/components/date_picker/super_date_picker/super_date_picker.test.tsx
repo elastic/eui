@@ -143,7 +143,7 @@ describe('EuiSuperDatePicker', () => {
     test('updateButtonProps', () => {
       const updateButtonProps: EuiSuperDatePickerProps['updateButtonProps'] = {
         fill: false,
-        color: 'ghost',
+        color: 'danger',
       };
 
       const component = mount(
@@ -152,7 +152,7 @@ describe('EuiSuperDatePicker', () => {
           updateButtonProps={updateButtonProps}
         />
       );
-      expect(component.find(EuiButton).props()).toMatchObject(
+      expect(component.find(EuiButton).last().props()).toMatchObject(
         updateButtonProps
       );
     });

@@ -12,7 +12,7 @@ declare global {
       // Cypress specs so VSCode will recognize custom command types.
   
       // Cypress-axe methods that are used to create `checkAxe` custom command 
-      checkA11y(context?: ElementContext, config?: RunOptions, callback?: (violations: Result[]) => void): void;
+      checkA11y(context?: ElementContext, config?: RunOptions, callback?: (violations: Result[]) => void, skipFailures?: boolean): void;
       injectAxe(): void;
   
       /**
@@ -20,11 +20,19 @@ declare global {
        * `cy.injectAxe()` in a `beforeEach` block. This method also reports axe violations in the 
        * console output for debugging.
        * 
+       * @param skipFailures Set to true to report failures to the console without Cypress failing the test.
        * @param context Any valid node or CSS selector. Defaults to the Cypress containing `<div>`.
-       * @param axeRunConfig Add or change rules in the `axe.run` config object
+       * @param axeConfig Add or change rules in the `axe.run` config object
        * @see https://www.deque.com/axe/core-documentation/api-documentation/#api-name-axerun
+       * @param callback Provide a custom callback function to handle the violations array from the Results object
+       * @see https://www.deque.com/axe/core-documentation/api-documentation/#results-object
        */
-      checkAxe(context?: ElementContext, axeConfig?: RunOptions, callback?: (violations: Result[]) => void): void;
+      checkAxe(options?: {
+        skipFailures?: boolean,
+        context?: ElementContext,
+        axeConfig?: RunOptions,
+        callback?: (violations: Result[]) => void
+      }): void;
   
       /**
        * Provide global cy.mount() shortcut that includes required providers
@@ -37,7 +45,7 @@ declare global {
        * @see https://github.com/dmtrKovalenko/cypress-real-events/issues/196
        */
       realMount(children: React.ReactNode): void;
-  
+
       /**
        * Repeat the Real Events `realPress()` method 2 or more times
        * @param keyToPress Any valid key or array of keys https://docs.cypress.io/api/commands/type#Arguments

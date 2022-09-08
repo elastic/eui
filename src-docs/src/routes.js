@@ -28,9 +28,17 @@ import {
 
 // Templates
 
-import { PageTemplateExample } from './views/page/page_template_example';
+import {
+  PageTemplateGuidelines,
+  pageTemplateGuidelinesSections,
+} from './views/page_template/guidelines';
+import {
+  PageTemplateInfo,
+  PageTemplateExample,
+  pageTemplateExamplesSections,
+} from './views/page_template/examples';
 
-import { SitewideSearchExample } from './views/selectable/selectable_sitewide_template_example';
+import { SitewideSearchExample } from './views/selectable/selectable_templates/sitewide_example';
 
 // Services
 
@@ -166,6 +174,8 @@ import { NotificationEventExample } from './views/notification_event/notificatio
 import { OutsideClickDetectorExample } from './views/outside_click_detector/outside_click_detector_example';
 
 import { OverlayMaskExample } from './views/overlay_mask/overlay_mask_example';
+
+import { PageExample } from './views/page_components/page_example';
 
 import { PageHeaderExample } from './views/page_header/page_header_example';
 
@@ -477,10 +487,24 @@ const navigation = [
   {
     name: 'Templates',
     items: [
-      PageTemplateExample,
-      SitewideSearchExample,
-      SuperDatePickerExample,
-    ].map((example) => createExample(example)),
+      createTabbedPage({
+        ...PageTemplateInfo,
+        pages: [
+          {
+            title: 'Examples',
+            page: PageTemplateExample,
+            sections: pageTemplateExamplesSections,
+          },
+          {
+            title: 'Guidelines',
+            page: PageTemplateGuidelines,
+            sections: pageTemplateGuidelinesSections,
+          },
+        ],
+      }),
+      createExample(SitewideSearchExample),
+      createExample(SuperDatePickerExample),
+    ],
   },
   {
     name: 'Layout',
@@ -492,6 +516,7 @@ const navigation = [
       HeaderExample,
       HorizontalRuleExample,
       ModalExample,
+      PageExample,
       PageHeaderExample,
       PanelExample,
       PopoverExample,

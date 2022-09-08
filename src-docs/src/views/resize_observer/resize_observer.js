@@ -33,7 +33,9 @@ export const ResizeObserverExample = () => {
     <div>
       <EuiText>
         <p>
-          <EuiCode>{`height: ${height}; width: ${width}`}</EuiCode>
+          <EuiCode>
+            height: {height}; width: ${width}
+          </EuiCode>
         </p>
       </EuiText>
 

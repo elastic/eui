@@ -41,9 +41,16 @@ export const renderJsSourceCode = (code) => {
     // [\r\n]                  - match end of line, so the extra new line is removed via the replace operation
     /import {([^}]+)} from '@elastic\/eui';[\r\n]/g,
     (match, imports) => {
-      // remove all characters that aren't letters, numbers, or underscores from the imports
-      const namedImports = imports.match(/[a-zA-Z0-9_]+/g);
-      elasticImports.push(...namedImports);
+      // \w+\sas\s\w+          - find any group of words that conform to the alias import pattern (`Thing as OtherThing`)
+      const remainingImports = imports.replace(/\w+\sas\s\w+/g, (match) => {
+        elasticImports.push(match);
+        return '';
+      });
+      // \b\w+\b               - find any other word remaining after aliases have been removed
+      const namedImports = remainingImports.match(/\b\w+\b/g);
+      if (namedImports) {
+        elasticImports.push(...namedImports);
+      }
       return '';
     }
   );

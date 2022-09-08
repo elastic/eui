@@ -5,6 +5,7 @@ import {
   EuiButton,
   EuiSpacer,
   EuiTitle,
+  EuiFocusTrap,
 } from '../../../../src/components';
 
 export default () => {
@@ -13,20 +14,22 @@ export default () => {
 
   const modal = (
     <React.Fragment>
-      <EuiOverlayMask
-        onClick={() => {
-          changeMask(false);
-        }}
-      >
-        <EuiTitle>
-          <h2> Click anywhere to close overlay. </h2>
-        </EuiTitle>
+      <EuiOverlayMask>
+        <EuiFocusTrap
+          onClickOutside={() => {
+            changeMask(false);
+          }}
+        >
+          <EuiTitle>
+            <h2> Click anywhere to close overlay. </h2>
+          </EuiTitle>
+        </EuiFocusTrap>
       </EuiOverlayMask>
     </React.Fragment>
   );
 
   const maskWithClick = (
-    <EuiOverlayMask>
+    <EuiOverlayMask data-test-subj="yolo">
       <EuiButton
         onClick={() => {
           changeMaskWithClick(false);
@@ -39,16 +42,16 @@ export default () => {
 
   return (
     <React.Fragment>
+      <EuiButton onClick={() => changeMaskWithClick(true)}>
+        Overlay with button
+      </EuiButton>
+      <EuiSpacer size="xxl" />
       <EuiButton
         onClick={() => {
           changeMask(true);
         }}
       >
-        Overlay with onClick
-      </EuiButton>
-      <EuiSpacer size="xxl" />
-      <EuiButton onClick={() => changeMaskWithClick(true)}>
-        Overlay with button
+        Overlay with EuiFocusTrap click-to-close
       </EuiButton>
       {maskOpen ? modal : undefined}
       {maskWithClickOpen ? maskWithClick : undefined}

@@ -19,6 +19,7 @@ import {
   EuiPanel,
   EuiSpacer,
   _EuiBackgroundColorOptions,
+  logicalCSS,
 } from '../../../../../src';
 
 import { EuiThemeColors, ThemeRowType } from '../_props';
@@ -144,8 +145,8 @@ export const TextValuesJS = () => {
           <div
             css={css`
               color: ${item.value};
-              min-width: ${euiTheme.size.l};
-              min-height: ${euiTheme.size.l};
+              ${logicalCSS('min-width', euiTheme.size.l)}
+              ${logicalCSS('min-height', euiTheme.size.l)}
             `}
           >
             <strong>Aa</strong>

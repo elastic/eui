@@ -25,7 +25,17 @@ export const euiCommentEventStyles = ({ euiTheme }: UseEuiTheme) => ({
 
 export const euiCommentEventHeaderStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiCommentEvent__header: css``,
-  euiCommentEvent__headerPanel: css``,
+  // types
+  regular: css`
+    background: ${euiTheme.colors.lightestShade};
+    ${logicalCSS('border-bottom', euiTheme.border.thin)}
+    padding: ${euiTheme.size.s};
+  `,
+  // variants
+  hasEventColor: css`
+    padding: 0;
+  `,
+  // Children
   euiCommentEvent__headerMain: css`
     display: flex;
     flex: 1;
@@ -51,21 +61,10 @@ export const euiCommentEventHeaderStyles = ({ euiTheme }: UseEuiTheme) => ({
     white-space: pre-wrap;
     flex-wrap: wrap;
   `,
-  euiCommentEvent__headerTimestamp: css``,
   euiCommentEvent__headerActions: css`
     display: flex;
     flex-wrap: wrap;
     gap: ${euiTheme.size.xs};
-  `,
-  // types
-  regular: css`
-    background: ${euiTheme.colors.lightestShade};
-    border-bottom: ${euiTheme.border.thin};
-    padding: ${euiTheme.size.s};
-  `,
-  // variants
-  hasEventColor: css`
-    padding: 0;
   `,
 });
 

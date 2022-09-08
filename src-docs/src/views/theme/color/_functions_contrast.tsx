@@ -7,7 +7,7 @@ import {
   useEuiTheme,
   makeHighContrastColor,
 } from '../../../../../src';
-import { GuideSection } from '../../../components/guide_section/guide_section';
+import { GuideSectionProps } from '../../../components/guide_section/guide_section';
 import { ThemeContext } from '../../../components/with_theme';
 
 import { ThemeExample } from '../_components/_theme_example';
@@ -55,7 +55,7 @@ ratio?: number = 4.5`
 ratio?: number = 4.5;
 background?: string = euiTheme.colors.body;`;
 
-  const demo: GuideSection['demo'] = showSass ? (
+  const demo: GuideSectionProps['demo'] = showSass ? (
     <div className="guideSass__contrastExample">
       <EuiIcon type="stopFilled" className="square" />
       This orange text now passes a contrast check!
@@ -78,7 +78,7 @@ background?: string = euiTheme.colors.body;`;
     </div>
   );
 
-  const snippet: GuideSection['snippet'] = showSass
+  const snippet: GuideSectionProps['snippet'] = showSass
     ? contrastExample
     : 'color: ${makeHighContrastColor(foreground)(background)};';
 
