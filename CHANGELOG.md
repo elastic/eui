@@ -86,6 +86,14 @@
 - Converted `EuiButton` to Emotion ([#6150](https://github.com/elastic/eui/pull/6150))
 - Converted color styles of `EuiButtonIcon`, `EuiButtonEmpty`, `EuiButtonGroup` ([#6150](https://github.com/elastic/eui/pull/6150))
 
+## [`64.0.3`](https://github.com/elastic/eui/tree/v64.0.3)
+
+**Note: this release is a backport containing changes originally made in `66.0.0`**
+
+**Bug fixes**
+
+- Updated the `EuiHeaderSectionItem` to not render if empty ([#6158](https://github.com/elastic/eui/pull/6158))
+
 ## [`64.0.2`](https://github.com/elastic/eui/tree/v64.0.2)
 
 **Note: this release is a backport containing changes originally made in `65.0.0` to `67.0.0`**
