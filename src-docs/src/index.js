@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { Router, Switch, Route, Redirect } from 'react-router';
 import { Helmet } from 'react-helmet';
 
+import { setEuiDevProviderWarning } from '../../src/services/theme';
 import { EuiGlobalToastList } from '../../src/components/toast';
 
 import configureStore, { history } from './store/configure_store';
@@ -43,7 +44,7 @@ const routes = [
 ];
 
 // TODO: Remove
-window.__EUI_DEV_PROVIDER_WARNING__ = 'warn';
+setEuiDevProviderWarning('warn');
 
 ReactDOM.render(
   <Provider store={store}>
