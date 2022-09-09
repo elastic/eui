@@ -4,17 +4,19 @@ const CircularDependencyPlugin = require('circular-dependency-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const babelConfig = require('./.babelrc.js');
+const { ProvidePlugin } = require('webpack');
 
 const getPort = require('get-port');
 const deasync = require('deasync');
 
-const { NODE_ENV, CI, WEBPACK_DEV_SERVER } = process.env;
+const { NODE_ENV, CI, WEBPACK_SERVE } = process.env;
 
-const isDevelopment = WEBPACK_DEV_SERVER === 'true' && CI == null;
+const isDevelopment = WEBPACK_SERVE === 'true' && CI == null;
 const isProduction = NODE_ENV === 'production';
 const isPuppeteer = NODE_ENV === 'puppeteer';
 
-const useReactRefresh = isDevelopment && !isPuppeteer;
+// const useReactRefresh = isDevelopment && !isPuppeteer;
+const useReactRefresh = false;
 
 function employCache(loaders) {
   if (isDevelopment && !isPuppeteer) {
@@ -54,6 +56,15 @@ const webpackConfig = {
 
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],
+    fallback: {
+      fs: false,
+      os: false,
+      process: require.resolve('process/browser'),
+
+      // provide requirements for playground
+      path: require.resolve('path'),
+      buffer: require.resolve('buffer/'),
+    },
   },
 
   resolveLoader: {
@@ -69,7 +80,7 @@ const webpackConfig = {
     rules: [
       {
         test: /\.(js|tsx?)$/,
-        loaders: employCache([
+        use: employCache([
           {
             loader: 'babel-loader',
             options: { babelrc: false, ...babelConfig },
@@ -79,7 +90,7 @@ const webpackConfig = {
       },
       {
         test: /\.scss$/,
-        loaders: employCache([
+        use: employCache([
           {
             loader: 'style-loader',
             options: {
@@ -95,25 +106,33 @@ const webpackConfig = {
       },
       {
         test: /\.css$/,
-        loaders: employCache(['style-loader', 'css-loader']),
+        use: employCache(['style-loader', 'css-loader']),
         exclude: /node_modules/,
       },
       {
         test: /\.(woff|woff2|ttf|eot|ico)(\?|$)/,
-        loader: 'file-loader',
+        use: 'file-loader',
       },
       {
         test: /\.(png|jp(e*)g|svg|gif)$/,
-        loader: 'url-loader',
-        options: {
-          limit: 8000, // Convert images < 8kb to base64 strings
-          name: 'images/[hash]-[name].[ext]',
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 8000, // Convert images < 8kb to base64 strings
+            name: 'images/[hash]-[name].[ext]',
+          },
         },
       },
     ],
   },
 
   plugins: [
+    // provide requirements for playground
+    new ProvidePlugin({
+      Buffer: ['buffer', 'Buffer'],
+      process: 'process/browser',
+    }),
+
     new HtmlWebpackPlugin({
       template: 'index.html',
       inject: 'body',
@@ -131,28 +150,27 @@ const webpackConfig = {
 
   devServer: isDevelopment
     ? {
-        contentBase: 'src-docs/build',
+        // contentBase: 'src-docs/build',
         host: '0.0.0.0',
         allowedHosts: ['*'],
-        port: getPortSync({
-          port: getPort.makeRange(8030, 8130),
-          host: '0.0.0.0',
-        }),
-        disableHostCheck: true,
+        port: 8030,
+        // port: getPortSync({
+        //   port: getPort.makeRange(8030, 8130),
+        //   host: '0.0.0.0',
+        // }),
+        // disableHostCheck: true,
         historyApiFallback: true,
-        // prevent file watching while running on CI
-        // /app/ represents the entire docker environment
-        watchOptions: isPuppeteer
-          ? {
-              ignored: '**/*',
-            }
-          : undefined,
-        hot: true,
+        // hot: true,
       }
     : undefined,
-  node: {
-    fs: 'empty',
-  },
+
+  // prevent file watching while running on CI
+  // /app/ represents the entire docker environment
+  watchOptions: isPuppeteer
+    ? {
+        ignored: '**/*',
+      }
+    : undefined,
 
   optimization: {
     minimize: isProduction,
@@ -171,18 +189,20 @@ const webpackConfig = {
   stats: 'minimal',
 };
 
-// Inspired by `get-port-sync`, but propogates options
+// Inspired by `get-port-sync`, but propagates options
 function getPortSync(options) {
   let isDone = false;
   let freeport = null;
   let error = null;
-
+  console.log('::getPort');
   getPort(options)
     .then((port) => {
+      console.log('got port', port);
       isDone = true;
       freeport = port;
     })
     .catch((err) => {
+      console.error(err);
       isDone = true;
       error = err;
     });
@@ -193,6 +213,7 @@ function getPortSync(options) {
   if (error) {
     throw error;
   } else {
+    console.log('port is', freeport);
     return freeport;
   }
 }
