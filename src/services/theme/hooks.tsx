@@ -12,6 +12,7 @@ import {
   EuiThemeContext,
   EuiModificationsContext,
   EuiColorModeContext,
+  defaultComputedTheme,
 } from './context';
 import {
   EuiThemeColorModeStandard,
@@ -34,7 +35,7 @@ export const useEuiTheme = <T extends {} = {}>(): UseEuiTheme<T> => {
   const modifications = useContext(EuiModificationsContext);
 
   if (process.env.NODE_ENV !== 'production') {
-    const isFallback = theme.isContextDefault === true;
+    const isFallback = theme === defaultComputedTheme;
     if (isFallback && typeof __EUI_DEV_PROVIDER_WARNING__ !== 'undefined') {
       switch (__EUI_DEV_PROVIDER_WARNING__) {
         case 'log':

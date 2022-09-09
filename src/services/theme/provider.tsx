@@ -29,6 +29,12 @@ import {
   EuiThemeModifications,
 } from './types';
 
+export const setEuiDevProviderWarning = (
+  level: typeof __EUI_DEV_PROVIDER_WARNING__
+) => {
+  window.__EUI_DEV_PROVIDER_WARNING__ = level;
+};
+
 export interface EuiThemeProviderProps<T> {
   theme?: EuiThemeSystem<T>;
   colorMode?: EuiThemeColorMode;
@@ -68,7 +74,7 @@ export const EuiThemeProvider = <T extends {} = {}>({
 
   const [theme, setTheme] = useState(
     isParentTheme.current && Object.keys(parentTheme).length
-      ? { ...parentTheme, isContextDefault: false }
+      ? { ...parentTheme } // Intentionally create a new object to break referential equality
       : getComputed(
           system,
           buildTheme(modifications, `_${system.key}`) as typeof system,
