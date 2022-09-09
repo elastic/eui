@@ -11,6 +11,10 @@ import {
   EuiTitle,
   EuiBasicTable,
   EuiSearchBar,
+  EuiFilterButton,
+  EuiPopover,
+  EuiButton,
+  EuiPanel,
 } from '../../../../src/components';
 
 const random = new Random();
@@ -62,6 +66,69 @@ const items = times(10, (id) => {
 
 const initialQuery = EuiSearchBar.Query.MATCH_ALL;
 
+const CustomComponent = ({ query, onChange }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOnlySales, setIsOnlySales] = useState(false);
+
+  const closePopover = () => {
+    setIsOpen(false);
+  };
+
+  const button = (
+    <EuiFilterButton
+      iconType="arrowDown"
+      iconSide="right"
+      onClick={() => setIsOpen((prev) => !prev)}
+      hasActiveFilters={isOnlySales}
+      numActiveFilters={isOnlySales ? 1 : undefined}
+      grow
+    >
+      Custom
+    </EuiFilterButton>
+  );
+
+  return (
+    <EuiPopover
+      button={button}
+      isOpen={isOpen}
+      closePopover={closePopover}
+      panelPaddingSize="none"
+      anchorPosition="downCenter"
+    >
+      <EuiPanel paddingSize="m">
+        <EuiFlexGroup>
+          <EuiFlexItem>
+            <EuiButton
+              onClick={() => {
+                const q = query.addOrFieldValue('tag', 'sales', true, 'eq');
+                onChange(q);
+                setIsOnlySales(true);
+                closePopover();
+              }}
+              disabled={isOnlySales}
+            >
+              Only sales
+            </EuiButton>
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiButton
+              onClick={() => {
+                const q = query.removeOrFieldValue('tag', 'sales');
+                onChange(q);
+                setIsOnlySales(false);
+                closePopover();
+              }}
+              disabled={isOnlySales === false}
+            >
+              All
+            </EuiButton>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </EuiPanel>
+    </EuiPopover>
+  );
+};
+
 export const SearchBarFilters = () => {
   const [query, setQuery] = useState(initialQuery);
   const [error, setError] = useState(null);
@@ -108,6 +175,10 @@ export const SearchBarFilters = () => {
           value: tag.name,
           view: <EuiHealth color={tag.color}>{tag.name}</EuiHealth>,
         })),
+      },
+      {
+        type: 'custom_component',
+        component: CustomComponent,
       },
     ];
 
