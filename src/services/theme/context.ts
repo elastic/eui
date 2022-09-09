@@ -28,6 +28,6 @@ export const defaultComputedTheme = getComputed(
   {},
   DEFAULT_COLOR_MODE
 );
-export const EuiThemeContext = createContext<
-  EuiThemeComputed & { isContextDefault?: boolean }
->(defaultComputedTheme);
+export const EuiThemeContext = createContext<EuiThemeComputed>(
+  defaultComputedTheme
+);
