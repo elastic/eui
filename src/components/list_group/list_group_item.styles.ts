@@ -62,7 +62,6 @@ export const euiListGroupItemStyles = (
       border-radius: ${euiTheme.border.radius.medium};
     `,
     // Colors
-    inherit: css``,
     primary: css`
       ${isActive &&
       !isDisabled &&

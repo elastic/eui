@@ -12,6 +12,7 @@ import classNames from 'classnames';
 import { EuiListGroupItem, EuiListGroupItemProps } from './list_group_item';
 import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
+import { cloneElementWithCss } from '../../services/theme/clone_element';
 
 import { euiListGroupStyles } from './list_group.styles';
 
@@ -114,6 +115,7 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
   ];
 
   let childrenOrListItems = null;
+
   if (listItems) {
     childrenOrListItems = listItems.map((item, index) => {
       return [
@@ -121,6 +123,8 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
           key={`title-${index}`}
           showToolTip={showToolTips}
           wrapText={wrapText}
+          // we're passing the parent `color` and `size` down to the children
+          // so that they can inherit it if they don't have one
           color={color}
           size={size}
           {...item}
@@ -128,17 +132,20 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
       ];
     });
   } else {
-    if (showToolTips) {
-      childrenOrListItems = React.Children.map(children, (child) => {
-        if (React.isValidElement(child)) {
-          return React.cloneElement<Partial<EuiListGroupItemProps>>(child, {
-            showToolTip: true,
-          });
-        }
-      });
-    } else {
-      childrenOrListItems = children;
-    }
+    const showToolTipObj = { showToolTip: true };
+
+    childrenOrListItems = React.Children.map(children, (child) => {
+      if (React.isValidElement(child)) {
+        return cloneElementWithCss(child, {
+          // we're passing the parent `color` and `size` down to the children
+          // so that they can inherit it if they don't have one
+          color: color,
+          size: size,
+          ...showToolTipObj,
+          ...child.props,
+        });
+      }
+    });
   }
 
   return (
