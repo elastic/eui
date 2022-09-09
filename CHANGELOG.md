@@ -86,6 +86,30 @@
 - Converted `EuiButton` to Emotion ([#6150](https://github.com/elastic/eui/pull/6150))
 - Converted color styles of `EuiButtonIcon`, `EuiButtonEmpty`, `EuiButtonGroup` ([#6150](https://github.com/elastic/eui/pull/6150))
 
+## [`64.0.2`](https://github.com/elastic/eui/tree/v64.0.2)
+
+**Note: this release is a backport containing changes originally made in `65.0.0` to `67.0.0`**
+
+**Bug fixes**
+
+- Fixed missing `EuiDataGrid` cell popover shadows in Safari ([#6163](https://github.com/elastic/eui/pull/6163))
+- Added memoization to `useEuiTheme`'s return value, supporting React's shallow prop comparison optimizations ([#6165](https://github.com/elastic/eui/pull/6165))
+- Fixed global styles being inserted into the wrong location when a `EuiProvider` cache is not configured. ([#6202](https://github.com/elastic/eui/pull/6202))
+- Fixed various nested `componentProps` throwing type errors on the `css` prop ([#6211](https://github.com/elastic/eui/pull/6211))
+
+**Note: The below are backport changes already present in `63.x`**
+
+- Added a new `component` prop to `EuiPageSection`, allowing overriding of the default `section` tag ([#6192](https://github.com/elastic/eui/pull/6192))
+
+**Bug fixes**
+
+- Fixed the text size of `EuiDescriptionListTitle` when `EuiDescriptionList` is compressed ([#6160](https://github.com/elastic/eui/pull/6160))
+- Fixed an `EuiPageSidebar` bug where inline styles were not correctly updating ([#6191](https://github.com/elastic/eui/pull/6191))
+
+**Deprecations**
+
+- Added `@deprecated` flags to `EuiPageContent_Deprecated`, `EuiPageContentBody_Deprecated`, `EuiPageContentHeader_Deprecated`, `EuiPageContentHeaderSection_Deprecated`, `EuiPageSideBar_Deprecated` and `EuiPageTemplate_Deprecated`, which will provide helpful hints to IDEs that support jsdoc flags. Consumers will have until August 2023 to migrate from these deprecated components. ([#6194](https://github.com/elastic/eui/pull/6194))
+
 ## [`64.0.1`](https://github.com/elastic/eui/tree/v64.0.1)
 
 **Bug fixes**
