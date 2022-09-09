@@ -4,6 +4,8 @@ import { Provider } from 'react-redux';
 import { Router, Switch, Route, Redirect } from 'react-router';
 import { Helmet } from 'react-helmet';
 
+import { EuiGlobalToastList } from '../../src/components/toast';
+
 import configureStore, { history } from './store/configure_store';
 
 import { AppContext } from './views/app_context';
@@ -40,9 +42,23 @@ const routes = [
   ...childRoutes,
 ];
 
+// TODO: Remove
+window.__EUI_DEV_PROVIDER_WARNING__ = 'warn';
+
 ReactDOM.render(
   <Provider store={store}>
     <ThemeProvider>
+      <EuiGlobalToastList
+        toasts={[
+          {
+            id: '1',
+            color: 'danger',
+            title: 'I am outside the provider!',
+          },
+        ]}
+        dismissToast={() => {}}
+        toastLifeTimeMs={null}
+      />
       <AppContext>
         <Router history={history}>
           <Switch>
