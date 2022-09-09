@@ -66,7 +66,7 @@ export interface EuiButtonDisplayCommonProps
   /**
    * Object of props passed to the <span/> wrapping the button's content
    */
-  contentProps?: EuiButtonDisplayContentType;
+  contentProps?: CommonProps & EuiButtonDisplayContentType;
   style?: CSSProperties;
 }
 

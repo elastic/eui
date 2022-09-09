@@ -6,9 +6,20 @@
  * Side Public License, v 1.
  */
 
-import React, { HTMLAttributes, Component, ReactNode } from 'react';
+import React, {
+  HTMLAttributes,
+  FunctionComponent,
+  ReactNode,
+  useEffect,
+  useRef,
+  useCallback,
+} from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
+import { useEuiTheme } from '../../services';
+import { euiToolTipStyles, euiToolTipPopoverStyles } from './tool_tip.styles';
+
+export type ToolTipPositions = 'top' | 'right' | 'bottom' | 'left';
 
 type Props = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'title'> & {
@@ -16,59 +27,68 @@ type Props = CommonProps &
     children?: ReactNode;
     title?: ReactNode;
     popoverRef?: (ref: HTMLDivElement) => void;
+    calculatedPosition?: ToolTipPositions;
   };
 
-export class EuiToolTipPopover extends Component<Props> {
-  private popover: HTMLDivElement | undefined;
+export const EuiToolTipPopover: FunctionComponent<Props> = ({
+  children,
+  title,
+  className,
+  positionToolTip,
+  popoverRef,
+  calculatedPosition,
+  ...rest
+}) => {
+  const popover = useRef<HTMLDivElement>();
 
-  updateDimensions = () => {
+  const euiTheme = useEuiTheme();
+  const toolTipCss = euiToolTipStyles(euiTheme);
+  const popoverStyles = euiToolTipPopoverStyles(euiTheme);
+  const titleCss = [popoverStyles.euiToolTip__title];
+
+  const updateDimensions = useCallback(() => {
     requestAnimationFrame(() => {
       // Because of this delay, sometimes `positionToolTip` becomes unavailable.
-      if (this.popover) {
-        this.props.positionToolTip();
+      if (popover.current) {
+        positionToolTip();
       }
     });
-  };
+  }, [positionToolTip]);
 
-  setPopoverRef = (ref: HTMLDivElement) => {
-    this.popover = ref;
-    if (this.props.popoverRef) {
-      this.props.popoverRef(ref);
+  const setPopoverRef = (ref: HTMLDivElement) => {
+    if (popoverRef) {
+      popoverRef(ref);
     }
   };
 
-  componentDidMount() {
+  useEffect(() => {
     document.body.classList.add('euiBody-hasPortalContent');
-    window.addEventListener('resize', this.updateDimensions);
-  }
+    window.addEventListener('resize', updateDimensions);
 
-  componentWillUnmount() {
-    document.body.classList.remove('euiBody-hasPortalContent');
-    window.removeEventListener('resize', this.updateDimensions);
-  }
+    return () => {
+      document.body.classList.remove('euiBody-hasPortalContent');
+      window.removeEventListener('resize', updateDimensions);
+    };
+  }, [updateDimensions]);
 
-  render() {
-    const {
-      children,
-      title,
-      className,
-      positionToolTip,
-      popoverRef,
-      ...rest
-    } = this.props;
+  const classes = classNames('euiToolTipPopover', className);
 
-    const classes = classNames('euiToolTipPopover', className);
-
-    let optionalTitle;
-    if (title) {
-      optionalTitle = <div className="euiToolTip__title">{title}</div>;
-    }
-
-    return (
-      <div className={classes} ref={this.setPopoverRef} {...rest}>
-        {optionalTitle}
-        {children}
-      </div>
-    );
-  }
-}
+  return (
+    <div
+      css={[
+        toolTipCss.euiToolTip,
+        calculatedPosition && toolTipCss[calculatedPosition],
+      ]}
+      className={classes}
+      ref={setPopoverRef}
+      {...rest}
+    >
+      {title && (
+        <div css={titleCss} className="euiToolTip__title">
+          {title}
+        </div>
+      )}
+      {children}
+    </div>
+  );
+};

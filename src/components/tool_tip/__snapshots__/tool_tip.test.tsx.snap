@@ -1,20 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiToolTip anchor props are rendered 1`] = `
-<span
-  class="euiToolTipAnchor customAnchorClass1"
-  data-test-subj="DTS"
+<body
+  class=""
 >
-  <button>
-    Trigger
-  </button>
-</span>
+  <div>
+    <span
+      class="euiToolTipAnchor customAnchorClass1 emotion-euiToolTipAnchor-inlineBlock"
+      data-test-subj="DTS"
+    >
+      <button>
+        Trigger
+      </button>
+    </span>
+  </div>
+</body>
 `;
 
 exports[`EuiToolTip display prop renders block 1`] = `
 <div>
   <span
-    class="euiToolTipAnchor euiToolTipAnchor--displayBlock"
+    class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
   >
     <button>
       Trigger
@@ -27,7 +33,7 @@ exports[`EuiToolTip is rendered 1`] = `
 <body>
   <div>
     <span
-      class="euiToolTipAnchor"
+      class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
     >
       <button>
         Trigger
@@ -43,7 +49,7 @@ exports[`EuiToolTip shows tooltip on mouseover and focus 1`] = `
 >
   <div>
     <span
-      class="euiToolTipAnchor"
+      class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
     >
       <button
         aria-describedby="id"
@@ -58,7 +64,7 @@ exports[`EuiToolTip shows tooltip on mouseover and focus 1`] = `
   >
     <div
       aria-label="aria-label"
-      class="euiToolTipPopover euiToolTip euiToolTip--top testClass1 testClass2"
+      class="euiToolTipPopover euiToolTip euiToolTip--top testClass1 testClass2 emotion-euiToolTip-top-EuiToolTipPopover"
       data-test-subj="test subject string"
       id="id"
       position="top"
@@ -66,12 +72,12 @@ exports[`EuiToolTip shows tooltip on mouseover and focus 1`] = `
       style="top: -16px; left: -10px;"
     >
       <div
-        class="euiToolTip__title"
+        class="euiToolTip__title emotion-euiToolTip__title"
       >
         title
       </div>
       <div
-        class="euiToolTip__arrow"
+        class="euiToolTip__arrow emotion-euiToolTip__arrow-EuiToolTipArrow"
         style="left: 4px; top: 0px;"
       />
       <div>

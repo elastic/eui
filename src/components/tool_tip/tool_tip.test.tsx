@@ -49,7 +49,7 @@ describe('EuiToolTip', () => {
   });
 
   test('anchor props are rendered', () => {
-    const component = mount(
+    const { baseElement } = render(
       <EuiToolTip
         title="title"
         id="id"
@@ -64,7 +64,7 @@ describe('EuiToolTip', () => {
       </EuiToolTip>
     );
 
-    expect(component.render()).toMatchSnapshot();
+    expect(baseElement).toMatchSnapshot();
   });
 
   // This is a legacy unit test to ensure tooltips/portal updates still play well with Enzyme
@@ -86,7 +86,9 @@ describe('EuiToolTip', () => {
     trigger.simulate('focus');
     jest.runAllTimers(); // wait for showToolTip setTimeout
 
-    expect(document.querySelector('[data-test-subj="tooltip"]')).not.toBeNull();
+    expect(
+      document.querySelectorAll('[data-test-subj="tooltip"]')[1]
+    ).not.toBeNull();
 
     jest.useRealTimers();
   });
