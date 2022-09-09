@@ -1,0 +1,1 @@
+declare var __EUI_DEV_PROVIDER_WARNING__: 'log' | 'warn' | 'error';

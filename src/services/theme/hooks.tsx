@@ -19,6 +19,9 @@ import {
   EuiThemeComputed,
 } from './types';
 
+const providerMessage = `\`EuiProvider\` is missing which can result in negative effects.
+Wrap your component in \`EuiProvider\`: https://ela.st/euiprovider.`;
+
 export interface UseEuiTheme<T extends {} = {}> {
   euiTheme: EuiThemeComputed<T>;
   colorMode: EuiThemeColorModeStandard;
@@ -32,21 +35,16 @@ export const useEuiTheme = <T extends {} = {}>(): UseEuiTheme<T> => {
 
   if (process.env.NODE_ENV !== 'production') {
     const isFallback = theme.isContextDefault === true;
-    if (
-      isFallback &&
-      typeof window.__EUI_DEV_PROVIDER_WARNING__ !== 'undefined'
-    ) {
-      const message = `\`EuiProvider\` is missing which can result in negative effects.
-Wrap your component in \`EuiProvider\`: https://ela.st/euiprovider.`;
-      switch (window.__EUI_DEV_PROVIDER_WARNING__) {
+    if (isFallback && typeof __EUI_DEV_PROVIDER_WARNING__ !== 'undefined') {
+      switch (__EUI_DEV_PROVIDER_WARNING__) {
         case 'log':
-          console.log(message);
+          console.log(providerMessage);
           break;
         case 'warn':
-          console.warn(message);
+          console.warn(providerMessage);
           break;
         case 'error':
-          throw new Error(message);
+          throw new Error(providerMessage);
         default:
           break;
       }
