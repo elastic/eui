@@ -14,6 +14,7 @@ import {
   EuiColorModeContext,
   defaultComputedTheme,
 } from './context';
+import { getEuiDevProviderWarning } from './provider';
 import {
   EuiThemeColorModeStandard,
   EuiThemeModifications,
@@ -36,8 +37,9 @@ export const useEuiTheme = <T extends {} = {}>(): UseEuiTheme<T> => {
 
   if (process.env.NODE_ENV !== 'production') {
     const isFallback = theme === defaultComputedTheme;
-    if (isFallback && typeof __EUI_DEV_PROVIDER_WARNING__ !== 'undefined') {
-      switch (__EUI_DEV_PROVIDER_WARNING__) {
+    const warningLevel = getEuiDevProviderWarning();
+    if (isFallback && typeof warningLevel !== 'undefined') {
+      switch (warningLevel) {
         case 'log':
           console.log(providerMessage);
           break;

@@ -29,11 +29,11 @@ import {
   EuiThemeModifications,
 } from './types';
 
-export const setEuiDevProviderWarning = (
-  level: typeof __EUI_DEV_PROVIDER_WARNING__
-) => {
-  window.__EUI_DEV_PROVIDER_WARNING__ = level;
-};
+type LEVELS = 'log' | 'warn' | 'error';
+let providerWarning: LEVELS | undefined = undefined;
+export const setEuiDevProviderWarning = (level: LEVELS) =>
+  (providerWarning = level);
+export const getEuiDevProviderWarning = () => providerWarning;
 
 export interface EuiThemeProviderProps<T> {
   theme?: EuiThemeSystem<T>;

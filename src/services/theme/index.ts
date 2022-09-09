@@ -15,7 +15,11 @@ export {
 export type { UseEuiTheme, WithEuiThemeProps } from './hooks';
 export { useEuiTheme, withEuiTheme } from './hooks';
 export type { EuiThemeProviderProps } from './provider';
-export { EuiThemeProvider, setEuiDevProviderWarning } from './provider';
+export {
+  EuiThemeProvider,
+  getEuiDevProviderWarning,
+  setEuiDevProviderWarning,
+} from './provider';
 export {
   buildTheme,
   computed,
