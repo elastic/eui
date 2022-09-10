@@ -103,7 +103,7 @@ export const FormLayoutsExample = {
 </EuiFormRow>`,
     },
     {
-      title: 'Full-width (manual)',
+      title: 'Full-width',
       text: (
         <>
           <p>
