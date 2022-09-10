@@ -18,6 +18,7 @@ import { EuiIcon } from '../../icon';
 import { EuiI18n } from '../../i18n';
 import { EuiLoadingSpinner } from '../../loading';
 import { htmlIdGenerator } from '../../../services/accessibility';
+import { FormContext, FormContextValue } from '../eui_form_context';
 
 const displayToClassNameMap = {
   default: null,
@@ -59,6 +60,8 @@ export interface EuiFilePickerProps
 }
 
 export class EuiFilePicker extends Component<EuiFilePickerProps> {
+  static contextType = FormContext;
+
   static defaultProps = {
     initialPromptText: (
       <EuiI18n
@@ -128,6 +131,8 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
   };
 
   render() {
+    const { defaultFullWidth } = this.context as FormContextValue;
+
     return (
       <EuiI18n
         token="euiFilePicker.clearSelectedFiles"
@@ -143,7 +148,7 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
             compressed,
             onChange,
             isInvalid,
-            fullWidth,
+            fullWidth = defaultFullWidth,
             isLoading,
             display,
             ...rest

@@ -21,6 +21,7 @@ import {
 } from './form_control_layout_icons';
 import { CommonProps } from '../../common';
 import { EuiFormLabel } from '../form_label';
+import { FormContext, FormContextValue } from '../eui_form_context';
 
 export { ICON_SIDES } from './form_control_layout_icons';
 
@@ -60,12 +61,15 @@ export type EuiFormControlLayoutProps = CommonProps &
   };
 
 export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
+  static contextType = FormContext;
+
   render() {
+    const { defaultFullWidth } = this.context as FormContextValue;
     const {
       children,
       icon,
       clear,
-      fullWidth,
+      fullWidth = defaultFullWidth,
       isLoading,
       isDisabled,
       compressed,

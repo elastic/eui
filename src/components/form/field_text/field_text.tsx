@@ -17,6 +17,7 @@ import {
 
 import { EuiValidatableControl } from '../validatable_control';
 import { getFormControlClassNameForIconCount } from '../form_control_layout/_num_icons';
+import { useFormContext } from '../eui_form_context';
 
 export type EuiFieldTextProps = InputHTMLAttributes<HTMLInputElement> &
   CommonProps & {
@@ -51,24 +52,27 @@ export type EuiFieldTextProps = InputHTMLAttributes<HTMLInputElement> &
     compressed?: boolean;
   };
 
-export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = ({
-  id,
-  name,
-  placeholder,
-  value,
-  className,
-  icon,
-  isInvalid,
-  inputRef,
-  fullWidth = false,
-  isLoading,
-  compressed,
-  prepend,
-  append,
-  readOnly,
-  controlOnly,
-  ...rest
-}) => {
+export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = (props) => {
+  const { defaultFullWidth } = useFormContext();
+  const {
+    id,
+    name,
+    placeholder,
+    value,
+    className,
+    icon,
+    isInvalid,
+    inputRef,
+    fullWidth = defaultFullWidth,
+    isLoading,
+    compressed,
+    prepend,
+    append,
+    readOnly,
+    controlOnly,
+    ...rest
+  } = props;
+
   const numIconsClass = getFormControlClassNameForIconCount({
     isInvalid,
     isLoading,

@@ -18,6 +18,7 @@ import {
 import { EuiValidatableControl } from '../validatable_control';
 
 import { IconType } from '../../icon';
+import { useFormContext } from '../eui_form_context';
 import { getFormControlClassNameForIconCount } from '../form_control_layout/_num_icons';
 
 export type EuiFieldNumberProps = Omit<
@@ -64,26 +65,31 @@ export type EuiFieldNumberProps = Omit<
     compressed?: boolean;
   };
 
-export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = ({
-  className,
-  icon,
-  id,
-  placeholder,
-  name,
-  min,
-  max,
-  value,
-  isInvalid,
-  fullWidth = false,
-  isLoading = false,
-  compressed = false,
-  prepend,
-  append,
-  inputRef,
-  readOnly,
-  controlOnly,
-  ...rest
-}) => {
+export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
+  props
+) => {
+  const { defaultFullWidth } = useFormContext();
+  const {
+    className,
+    icon,
+    id,
+    placeholder,
+    name,
+    min,
+    max,
+    value,
+    isInvalid,
+    fullWidth = defaultFullWidth,
+    isLoading = false,
+    compressed = false,
+    prepend,
+    append,
+    inputRef,
+    readOnly,
+    controlOnly,
+    ...rest
+  } = props;
+
   const numIconsClass = getFormControlClassNameForIconCount({
     isInvalid,
     isLoading,

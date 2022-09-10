@@ -19,6 +19,7 @@ import {
   EuiFormControlLayoutProps,
 } from '../form_control_layout';
 import { EuiValidatableControl } from '../validatable_control';
+import { useFormContext } from '../eui_form_context';
 import { getFormControlClassNameForIconCount } from '../form_control_layout/_num_icons';
 
 export interface EuiSelectOption
@@ -60,25 +61,27 @@ export type EuiSelectProps = Omit<
     append?: EuiFormControlLayoutProps['append'];
   };
 
-export const EuiSelect: FunctionComponent<EuiSelectProps> = ({
-  className,
-  options = [],
-  id,
-  name,
-  inputRef,
-  isInvalid,
-  fullWidth = false,
-  isLoading = false,
-  hasNoInitialSelection = false,
-  defaultValue,
-  compressed = false,
-  value: _value,
-  prepend,
-  append,
-  onMouseUp,
-  disabled,
-  ...rest
-}) => {
+export const EuiSelect: FunctionComponent<EuiSelectProps> = (props) => {
+  const { defaultFullWidth } = useFormContext();
+  const {
+    className,
+    options = [],
+    id,
+    name,
+    inputRef,
+    isInvalid,
+    fullWidth = defaultFullWidth,
+    isLoading = false,
+    hasNoInitialSelection = false,
+    defaultValue,
+    compressed = false,
+    value: _value,
+    prepend,
+    append,
+    onMouseUp,
+    disabled,
+    ...rest
+  } = props;
   // if this is injecting an empty option for `hasNoInitialSelection` then
   // value needs to fallback to an empty string to interact properly with `defaultValue`
   const value = hasNoInitialSelection ? _value ?? '' : _value;

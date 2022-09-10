@@ -10,6 +10,7 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
+import { EuiForm } from '../form';
 import { EuiFieldText } from './field_text';
 
 jest.mock('../form_control_layout', () => {
@@ -70,6 +71,24 @@ describe('EuiFieldText', () => {
       const component = render(<EuiFieldText controlOnly />);
 
       expect(component).toMatchSnapshot();
+    });
+  });
+
+  describe('inherits', () => {
+    test('fullWidth from <EuiForm />', () => {
+      const component = render(
+        <EuiForm fullWidth>
+          <EuiFieldText />
+        </EuiForm>
+      );
+
+      if (
+        !component.find('.euiFieldText').hasClass('euiFieldText--fullWidth')
+      ) {
+        throw new Error(
+          'expected EuiFieldText to inherit fullWidth from EuiForm'
+        );
+      }
     });
   });
 });

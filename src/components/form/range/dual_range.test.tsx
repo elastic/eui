@@ -10,6 +10,7 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
+import { EuiForm } from '../form';
 import { EuiDualRange } from './dual_range';
 
 const props = {
@@ -205,6 +206,18 @@ describe('EuiDualRange', () => {
           minInputProps={{ 'aria-label': 'Min value' }}
           maxInputProps={{ 'aria-label': 'Max value' }}
         />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+  });
+
+  describe('inherits', () => {
+    test('fullWidth from <EuiForm />', () => {
+      const component = render(
+        <EuiForm fullWidth>
+          <EuiDualRange value={['1', '8']} onChange={() => {}} />
+        </EuiForm>
       );
 
       expect(component).toMatchSnapshot();

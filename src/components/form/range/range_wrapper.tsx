@@ -9,6 +9,7 @@
 import React, { HTMLAttributes, forwardRef } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
+import { useFormContext } from '../eui_form_context';
 
 export interface EuiRangeWrapperProps
   extends CommonProps,
@@ -18,7 +19,16 @@ export interface EuiRangeWrapperProps
 }
 
 export const EuiRangeWrapper = forwardRef<HTMLDivElement, EuiRangeWrapperProps>(
-  ({ children, className, fullWidth, compressed, ...rest }, ref) => {
+  (props, ref) => {
+    const { defaultFullWidth } = useFormContext();
+    const {
+      children,
+      className,
+      fullWidth = defaultFullWidth,
+      compressed,
+      ...rest
+    } = props;
+
     const classes = classNames(
       'euiRangeWrapper',
       {

@@ -52,6 +52,40 @@ exports[`EuiDualRange allows value prop to accept numbers 1`] = `
 </div>
 `;
 
+exports[`EuiDualRange inherits fullWidth from <EuiForm /> 1`] = `
+<div
+  class="euiForm"
+>
+  <div
+    class="euiRangeWrapper euiRangeWrapper--fullWidth euiDualRange"
+  >
+    <div
+      aria-hidden="false"
+      class="euiRangeTrack"
+    >
+      <input
+        aria-hidden="true"
+        class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider"
+        id="generated-id"
+        max="100"
+        min="0"
+        step="1"
+        tabindex="-1"
+        type="range"
+      />
+      <div
+        class="euiRangeHighlight"
+      >
+        <div
+          class="euiRangeHighlight__progress"
+          style="margin-left:1%;width:7.000000000000001%"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiDualRange input props can be applied to min and max inputs 1`] = `
 <div
   class="euiRangeWrapper euiDualRange"

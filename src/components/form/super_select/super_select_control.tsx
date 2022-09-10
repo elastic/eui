@@ -23,6 +23,7 @@ import {
 } from '../form_control_layout';
 import { EuiI18n } from '../../i18n';
 import { getFormControlClassNameForIconCount } from '../form_control_layout/_num_icons';
+import { useFormContext } from '../eui_form_context';
 
 export interface EuiSuperSelectOption<T> {
   value: T;
@@ -66,24 +67,26 @@ export interface EuiSuperSelectControlProps<T>
 
 export const EuiSuperSelectControl: <T extends string>(
   props: EuiSuperSelectControlProps<T>
-) => ReturnType<FunctionComponent<EuiSuperSelectControlProps<T>>> = ({
-  className,
-  options = [],
-  id,
-  name,
-  fullWidth = false,
-  isLoading = false,
-  isInvalid = false,
-  readOnly,
-  defaultValue,
-  compressed = false,
-  value,
-  prepend,
-  append,
-  screenReaderId,
-  disabled,
-  ...rest
-}) => {
+) => ReturnType<FunctionComponent<EuiSuperSelectControlProps<T>>> = (props) => {
+  const { defaultFullWidth } = useFormContext();
+  const {
+    className,
+    options = [],
+    id,
+    name,
+    fullWidth = defaultFullWidth,
+    isLoading = false,
+    isInvalid = false,
+    readOnly,
+    defaultValue,
+    compressed = false,
+    value,
+    prepend,
+    append,
+    screenReaderId,
+    disabled,
+    ...rest
+  } = props;
   const numIconsClass = getFormControlClassNameForIconCount({
     isInvalid,
     isLoading,

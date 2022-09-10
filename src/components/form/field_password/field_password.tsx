@@ -25,6 +25,7 @@ import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../../button';
 import { useEuiI18n } from '../../i18n';
 import { useCombinedRefs } from '../../../services';
 import { getFormControlClassNameForIconCount } from '../form_control_layout/_num_icons';
+import { useFormContext } from '../eui_form_context';
 
 export type EuiFieldPasswordProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -63,23 +64,28 @@ export type EuiFieldPasswordProps = Omit<
     dualToggleProps?: Partial<EuiButtonIconPropsForButton>;
   };
 
-export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
-  className,
-  id,
-  name,
-  placeholder,
-  value,
-  isInvalid,
-  fullWidth,
-  isLoading,
-  compressed,
-  inputRef: _inputRef,
-  prepend,
-  append,
-  type = 'password',
-  dualToggleProps,
-  ...rest
-}) => {
+export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = (
+  props
+) => {
+  const { defaultFullWidth } = useFormContext();
+  const {
+    className,
+    id,
+    name,
+    placeholder,
+    value,
+    isInvalid,
+    fullWidth = defaultFullWidth,
+    isLoading,
+    compressed,
+    inputRef: _inputRef,
+    prepend,
+    append,
+    type = 'password',
+    dualToggleProps,
+    ...rest
+  } = props;
+
   // Set the initial input type to `password` if they want dual
   const [inputType, setInputType] = useState(
     type === 'dual' ? 'password' : type
@@ -182,7 +188,6 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
 
 EuiFieldPassword.defaultProps = {
   value: undefined,
-  fullWidth: false,
   isLoading: false,
   compressed: false,
 };
