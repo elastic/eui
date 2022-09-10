@@ -15,11 +15,17 @@ import { useFormContext } from '../eui_form_context';
 export type EuiTextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
   CommonProps & {
     isInvalid?: boolean;
+    /**
+     * Expand to fill 100% of the parent.
+     * Defaults to `fullWidth` prop of `<EuiForm>`.
+     * @default false
+     */
     fullWidth?: boolean;
     compressed?: boolean;
 
     /**
      * Which direction, if at all, should the textarea resize
+     * @default vertical
      */
     resize?: keyof typeof resizeToClassNameMap;
 

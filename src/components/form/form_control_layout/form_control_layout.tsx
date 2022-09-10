@@ -43,6 +43,11 @@ export type EuiFormControlLayoutProps = CommonProps &
     children?: ReactNode;
     icon?: EuiFormControlLayoutIconsProps['icon'];
     clear?: EuiFormControlLayoutIconsProps['clear'];
+    /**
+     * Expand to fill 100% of the parent.
+     * Defaults to `fullWidth` prop of `<EuiForm>`.
+     * @default false
+     */
     fullWidth?: boolean;
     isLoading?: boolean;
     isDisabled?: boolean;

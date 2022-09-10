@@ -56,6 +56,11 @@ export interface EuiDualRangeProps
       | React.KeyboardEvent<HTMLInputElement>
       | React.KeyboardEvent<HTMLDivElement>
   ) => void;
+  /**
+   * Expand to fill 100% of the parent.
+   * Defaults to `fullWidth` prop of `<EuiForm>`.
+   * @default false
+   */
   fullWidth?: boolean;
   isInvalid?: boolean;
   /**

@@ -40,6 +40,7 @@ export type EuiFormProps = CommonProps &
      * default to taking up 100% of the width of their continer. You
      * can specify `fullWidth={false}` on individual rows/controls to
      * disable this behavior for specific components.
+     * @default false
      */
     fullWidth?: boolean;
   };

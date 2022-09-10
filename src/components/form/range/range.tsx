@@ -30,6 +30,11 @@ export interface EuiRangeProps
     Omit<EuiRangeInputProps, 'onChange' | 'digitTolerance' | 'isLoading'> {
   compressed?: boolean;
   readOnly?: boolean;
+  /**
+   * Expand to fill 100% of the parent.
+   * Defaults to `fullWidth` prop of `<EuiForm>`.
+   * @default false
+   */
   fullWidth?: boolean;
   id?: string;
   /**

@@ -53,6 +53,11 @@ export interface EuiFilePickerProps
    * `large` for taller size
    */
   display?: EuiFilePickerDisplay;
+  /**
+   * Expand to fill 100% of the parent.
+   * Defaults to `fullWidth` prop of `<EuiForm>`.
+   * @default false
+   */
   fullWidth?: boolean;
   isInvalid?: boolean;
   isLoading?: boolean;

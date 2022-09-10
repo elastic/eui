@@ -14,6 +14,11 @@ import { useFormContext } from '../eui_form_context';
 export interface EuiRangeWrapperProps
   extends CommonProps,
     HTMLAttributes<HTMLDivElement> {
+  /**
+   * Expand to fill 100% of the parent.
+   * Defaults to `fullWidth` prop of `<EuiForm>`.
+   * @default false
+   */
   fullWidth?: boolean;
   compressed?: boolean;
 }

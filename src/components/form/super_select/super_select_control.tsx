@@ -36,9 +36,23 @@ export interface EuiSuperSelectOption<T> {
 export interface EuiSuperSelectControlProps<T>
   extends CommonProps,
     Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'value'> {
+  /**
+   * @default false
+   */
   compressed?: boolean;
+  /**
+   * Expand to fill 100% of the parent.
+   * Defaults to `fullWidth` prop of `<EuiForm>`.
+   * @default false
+   */
   fullWidth?: boolean;
+  /**
+   * @default false
+   */
   isInvalid?: boolean;
+  /**
+   * @default false
+   */
   isLoading?: boolean;
   readOnly?: boolean;
 

@@ -33,6 +33,11 @@ export type EuiFieldPasswordProps = Omit<
 > &
   CommonProps & {
     isInvalid?: boolean;
+    /**
+     * Expand to fill 100% of the parent.
+     * Defaults to `fullWidth` prop of `<EuiForm>`.
+     * @default false
+     */
     fullWidth?: boolean;
     isLoading?: boolean;
     compressed?: boolean;
@@ -55,6 +60,7 @@ export type EuiFieldPasswordProps = Omit<
      * Change the `type` of input for manually handling obfuscation.
      * The `dual` option adds the ability to toggle the obfuscation of the input by
      * adding an icon button as the first `append` element
+     * @default password
      */
     type?: 'password' | 'text' | 'dual';
 

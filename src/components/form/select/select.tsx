@@ -32,13 +32,22 @@ export type EuiSelectProps = Omit<
   'value'
 > &
   CommonProps & {
+    /**
+     * @default []
+     */
     options?: EuiSelectOption[];
     isInvalid?: boolean;
+    /**
+     * Expand to fill 100% of the parent.
+     * Defaults to `fullWidth` prop of `<EuiForm>`.
+     * @default false
+     */
     fullWidth?: boolean;
     isLoading?: boolean;
 
     /**
      * Simulates no selection by creating an empty, selected, hidden first option
+     * @default false
      */
     hasNoInitialSelection?: boolean;
     inputRef?: Ref<HTMLSelectElement>;
@@ -46,6 +55,7 @@ export type EuiSelectProps = Omit<
 
     /**
      * when `true` creates a shorter height input
+     * @default false
      */
     compressed?: boolean;
 

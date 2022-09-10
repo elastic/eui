@@ -57,6 +57,11 @@ type EuiFormRowCommonProps = CommonProps & {
    */
   display?: EuiFormRowDisplayKeys;
   hasEmptyLabelSpace?: boolean;
+  /**
+   * Expand to fill 100% of the parent.
+   * Defaults to `fullWidth` prop of `<EuiForm>`.
+   * @default false
+   */
   fullWidth?: boolean;
   /**
    * IDs of additional elements that should be part of children's `aria-describedby`

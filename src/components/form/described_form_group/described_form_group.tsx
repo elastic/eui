@@ -30,18 +30,21 @@ export type EuiDescribedFormGroupProps = CommonProps &
     children?: ReactNode;
     /**
      * Passed to `EuiFlexGroup`.
+     * @default l
      */
     gutterSize?: EuiFlexGroupGutterSize;
     /**
      * Expand to fill 100% of the parent.
      * Defaults to `fullWidth` prop of `<EuiForm>`.
      * Default max-width is 800px.
+     * @default false
      */
     fullWidth?: boolean;
     /**
      * Width ratio of description column compared to field column.
      * Can be used in conjunction with `fullWidth` and
      * may require `fullWidth` to be applied to child elements.
+     * @default half
      */
     ratio?: 'half' | 'third' | 'quarter';
     /**
@@ -50,6 +53,7 @@ export type EuiDescribedFormGroupProps = CommonProps &
     title: EuiTitleProps['children'];
     /**
      * Adjust the visual `size` of the EuiTitle that wraps `title`.
+     * @default xs
      */
     titleSize?: EuiTitleSize;
     /**

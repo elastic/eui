@@ -28,7 +28,15 @@ export type EuiFieldNumberProps = Omit<
   CommonProps & {
     icon?: IconType;
     isInvalid?: boolean;
+    /**
+     * Expand to fill 100% of the parent.
+     * Defaults to `fullWidth` prop of `<EuiForm>`.
+     * @default false
+     */
     fullWidth?: boolean;
+    /**
+     * @default false
+     */
     isLoading?: boolean;
     readOnly?: boolean;
     min?: number;
@@ -61,6 +69,7 @@ export type EuiFieldNumberProps = Omit<
 
     /**
      * when `true` creates a shorter height input
+     * @default false
      */
     compressed?: boolean;
   };

@@ -29,6 +29,11 @@ export interface EuiFieldSearchProps
   placeholder?: string;
   value?: string;
   isInvalid?: boolean;
+  /**
+   * Expand to fill 100% of the parent.
+   * Defaults to `fullWidth` prop of `<EuiForm>`.
+   * @default false
+   */
   fullWidth?: boolean;
   isLoading?: boolean;
   /**
