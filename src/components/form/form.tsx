@@ -35,7 +35,12 @@ export type EuiFormProps = CommonProps &
      * Where to display the callout with the list of errors
      */
     invalidCallout?: 'above' | 'none';
-    /** default `fullWidth` prop for children of this form */
+    /**
+     * When set to `true`, all the rows/controls in this form will
+     * default to taking up 100% of the width of their continer. You
+     * can specify `fullWidth={false}` on individual rows/controls to
+     * disable this behavior for specific components.
+     */
     fullWidth?: boolean;
   };
 

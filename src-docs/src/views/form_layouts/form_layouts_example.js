@@ -103,15 +103,23 @@ export const FormLayoutsExample = {
 </EuiFormRow>`,
     },
     {
-      title: 'Full-width',
+      title: 'Full-width (manual)',
       text: (
-        <p>
-          Form elements will automatically flex to a max-width of{' '}
-          <EuiCode>400px</EuiCode>. You can optionally pass the{' '}
-          <EuiCode>fullWidth</EuiCode> prop to the row and form control to
-          expand to their container. This should be done rarely and usually you
-          will only need it for isolated controls like search bars and sliders.
-        </p>
+        <>
+          <p>
+            Form elements will automatically flex to a max-width of{' '}
+            <EuiCode>400px</EuiCode>. You can optionally pass the{' '}
+            <EuiCode>fullWidth</EuiCode> prop to the row and form control to
+            expand to their container. This should be done rarely and usually
+            you will only need it for isolated controls like search bars and
+            sliders.
+          </p>
+          <p>
+            To set all the row and controls in a form to{' '}
+            <EuiCode>fullWidth</EuiCode>, specify the prop on the root{' '}
+            <EuiCode>EuiForm</EuiCode> component.
+          </p>
+        </>
       ),
       props: {
         EuiFormRow,
