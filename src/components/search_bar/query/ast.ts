@@ -503,6 +503,14 @@ export class _AST {
     );
   }
 
+  removeIsClauses() {
+    return new _AST(this._clauses.filter((clause) => !Is.isInstance(clause)));
+  }
+
+  removeAllClauses() {
+    return new _AST();
+  }
+
   getGroupClauses() {
     return Object.values(this._indexedClauses.group);
   }

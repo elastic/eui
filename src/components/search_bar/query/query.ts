@@ -56,6 +56,10 @@ export class Query {
     this.syntax = syntax;
   }
 
+  hasClauses() {
+    return this.ast.clauses.length > 0;
+  }
+
   hasSimpleFieldClause(field: string, value?: string) {
     return this.ast.hasSimpleFieldClause(field, value);
   }
@@ -112,6 +116,11 @@ export class Query {
     return new Query(ast, this.syntax);
   }
 
+  removeAllClauses() {
+    const ast = this.ast.removeAllClauses();
+    return new Query(ast, this.syntax);
+  }
+
   hasIsClause(flag: string) {
     return !isNil(this.ast.getIsClause(flag));
   }
@@ -132,6 +141,11 @@ export class Query {
 
   removeIsClause(flag: string) {
     const ast = this.ast.removeIsClause(flag);
+    return new Query(ast, this.syntax);
+  }
+
+  removeIsClauses() {
+    const ast = this.ast.removeIsClauses();
     return new Query(ast, this.syntax);
   }
 
