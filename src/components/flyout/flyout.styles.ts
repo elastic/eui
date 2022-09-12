@@ -251,10 +251,3 @@ const composeFlyoutPadding = (
   `;
   return flyoutPadding;
 };
-
-/*
-[class*='euiFlyout--maxWidth-default'] {
-      ${logicalCSS('max-width', flyoutSizes[size].max)}
-    }
-
-*/
