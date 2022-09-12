@@ -86,7 +86,7 @@ export interface CommonEuiButtonEmptyProps
   /**
    * Object of props passed to the <span/> wrapping the button's content
    */
-  contentProps?: EuiButtonContentType;
+  contentProps?: CommonProps & EuiButtonContentType;
 }
 
 type EuiButtonEmptyPropsForAnchor = PropsForAnchor<CommonEuiButtonEmptyProps>;

@@ -8,10 +8,10 @@
 // in EUI and the potential for false positives in Cypress.
 // See https://github.com/component-driven/cypress-axe/issues/98
 
-import { ElementContext, RunOptions } from 'axe-core';
+import { RunOptions } from 'axe-core';
 
-export const defaultContext: ElementContext = 'div#__cy_root';
-export const defaultAxeConfig: RunOptions = {
+const defaultContext: string = 'div[data-cy-root]';
+const defaultAxeConfig: RunOptions = {
   runOnly: {
     type: 'tag',
     values: ['section508', 'wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'],
@@ -22,3 +22,5 @@ export const defaultAxeConfig: RunOptions = {
     },
   },
 };
+
+export { defaultContext, defaultAxeConfig };

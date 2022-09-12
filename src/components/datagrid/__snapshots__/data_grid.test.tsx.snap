@@ -990,7 +990,7 @@ Array [
               class="euiPopover__anchor css-16vtueo-render"
             >
               <span
-                class="euiToolTipAnchor"
+                class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
               >
                 <button
                   aria-label="Display options"
@@ -1009,7 +1009,7 @@ Array [
             </div>
           </div>
           <span
-            class="euiToolTipAnchor"
+            class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
           >
             <button
               aria-label="Enter fullscreen"
@@ -1435,7 +1435,7 @@ Array [
               class="euiPopover__anchor css-16vtueo-render"
             >
               <span
-                class="euiToolTipAnchor"
+                class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
               >
                 <button
                   aria-label="Display options"
@@ -1454,7 +1454,7 @@ Array [
             </div>
           </div>
           <span
-            class="euiToolTipAnchor"
+            class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
           >
             <button
               aria-label="Enter fullscreen"
@@ -2221,7 +2221,7 @@ Array [
               class="euiPopover__anchor css-16vtueo-render"
             >
               <span
-                class="euiToolTipAnchor"
+                class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
               >
                 <button
                   aria-label="Display options"
@@ -2240,7 +2240,7 @@ Array [
             </div>
           </div>
           <span
-            class="euiToolTipAnchor"
+            class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
           >
             <button
               aria-label="Enter fullscreen"
@@ -2665,7 +2665,7 @@ Array [
               class="euiPopover__anchor css-16vtueo-render"
             >
               <span
-                class="euiToolTipAnchor"
+                class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
               >
                 <button
                   aria-label="Display options"
@@ -2684,7 +2684,7 @@ Array [
             </div>
           </div>
           <span
-            class="euiToolTipAnchor"
+            class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
           >
             <button
               aria-label="Enter fullscreen"

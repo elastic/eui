@@ -140,7 +140,7 @@ export interface EuiResizablePanelProps
   /**
    * Props to add to the wrapping `.euiResizablePanel` div
    */
-  wrapperProps?: HTMLAttributes<HTMLDivElement>;
+  wrapperProps?: CommonProps & HTMLAttributes<HTMLDivElement>;
   /**
    * Padding to add directly to the wrapping `.euiResizablePanel` div
    * Gives space around the actual panel.

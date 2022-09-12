@@ -6,13 +6,10 @@
   z-index: $euiZLevel9;
   max-width: 256px;
   overflow-wrap: break-word;
+  padding: $euiSizeS;
 
-  @if ($size == 's') {
-    @include euiFontSizeXS;
-    padding: $euiSizeS;
-  } @else {
-    @include euiFontSizeS;
-    padding: $euiSizeM;
+  .euiHorizontalRule {
+    background-color: $euiTooltipBorderColor;
   }
 }
 
