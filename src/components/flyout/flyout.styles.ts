@@ -7,7 +7,7 @@
  */
 
 import { css, keyframes } from '@emotion/react';
-import { EuiFlyoutPaddingSize } from './flyout';
+import { _EuiFlyoutPaddingSize } from './flyout';
 import { euiCanAnimate, euiBreakpoint, logicalCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiShadowXLarge } from '../../themes/amsterdam/global_styling/mixins';
@@ -47,7 +47,7 @@ export const euiFlyoutCloseButtonStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('top', euiTheme.size.s)}
       z-index: 3;
     `,
-    'closeButton--outside': css`
+    outside: css`
       // match dropshadow
       ${euiShadowXLarge(euiThemeContext)};
       ${logicalCSS('right', 'auto')}
@@ -61,8 +61,8 @@ export const euiFlyoutCloseButtonStyles = (euiThemeContext: UseEuiTheme) => {
         transform: translateX(calc(-100% - ${euiTheme.size.xs}));
       }
     `,
-    'closeButton--inside': css``,
-    'closeButton--outside-left': css`
+    inside: css``,
+    outsideLeft: css`
       ${logicalCSS('right', 0)}
       ${logicalCSS('left', 'auto')}
       
@@ -78,7 +78,7 @@ export const euiFlyoutCloseButtonStyles = (euiThemeContext: UseEuiTheme) => {
 
 export const euiFlyoutStyles = (
   euiThemeContext: UseEuiTheme,
-  paddingSize: EuiFlyoutPaddingSize
+  paddingSize: _EuiFlyoutPaddingSize
 ) => {
   const euiTheme = euiThemeContext.euiTheme;
 
@@ -140,8 +140,7 @@ export const euiFlyoutStyles = (
     `,
 
     // Flyout Sizes
-    // Note: Dashes are used because s, m, l are size values for multiple props
-    'flyoutSize--s': css`
+    s: css`
       &.euiFlyout--maxWidth-default {
         ${logicalCSS('max-width', `${flyoutSizes.s.max}px`)}
       }
@@ -154,7 +153,7 @@ export const euiFlyoutStyles = (
         ${logicalCSS('width', `${flyoutSizes.s.min}px`)}
       }
     `,
-    'flyoutSize--m': css`
+    m: css`
       &.euiFlyout--maxWidth-default {
         ${logicalCSS('max-width', `${flyoutSizes.m.max}px`)}
       }
@@ -167,7 +166,7 @@ export const euiFlyoutStyles = (
         ${logicalCSS('width', `${flyoutSizes.m.min}px`)}
       }
     `,
-    'flyoutSize--l': css`
+    l: css`
       &.euiFlyout--maxWidth-default {
         ${logicalCSS('max-width', `${flyoutSizes.l.max}px`)}
       }
@@ -204,7 +203,7 @@ export const euiFlyoutStyles = (
       // Make sure the header shadows are above
       z-index: ${Number(euiTheme.levels.header) - 1};
     `,
-    'push--left': css`
+    pushLeft: css`
       ${logicalCSS('border-left', 'none')}
       ${logicalCSS('border-right', euiTheme.border.thick)}
     `,
@@ -229,7 +228,7 @@ export const euiFlyoutStyles = (
 
 const composeFlyoutPadding = (
   euiThemeContext: UseEuiTheme,
-  paddingSize: EuiFlyoutPaddingSize
+  paddingSize: _EuiFlyoutPaddingSize
 ) => {
   const euiTheme = euiThemeContext.euiTheme;
 

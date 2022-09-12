@@ -17,7 +17,7 @@ export const euiFlyoutHeaderStyles = (euiThemeContext: UseEuiTheme) => {
     euiFlyoutHeader: css`
       flex-grow: 0;
     `,
-    'flyoutHeader--hasBorder': css`
+    hasBorder: css`
       ${logicalCSS('border-bottom', euiTheme.border.thin)}
     `,
   };

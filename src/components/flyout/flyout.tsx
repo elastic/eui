@@ -69,7 +69,7 @@ function isEuiFlyoutSizeNamed(value: any): value is EuiFlyoutSize {
 }
 
 export const PADDING_SIZES = ['none', 's', 'm', 'l'] as const;
-export type EuiFlyoutPaddingSize = typeof PADDING_SIZES[number];
+export type _EuiFlyoutPaddingSize = typeof PADDING_SIZES[number];
 
 interface _EuiFlyoutProps {
   onClose: (event: MouseEvent | TouchEvent | KeyboardEvent) => void;
@@ -89,7 +89,7 @@ interface _EuiFlyoutProps {
   /**
    * Customize the padding around the content of the flyout header, body and footer
    */
-  paddingSize?: EuiFlyoutPaddingSize;
+  paddingSize?: _EuiFlyoutPaddingSize;
   /**
    * Adds an EuiOverlayMask and wraps in an EuiPortal
    */
@@ -274,8 +274,8 @@ export const EuiFlyout = forwardRef(
     const cssStyles = [
       styles.euiFlyout,
       styles.paddingSizes[paddingSize],
-      side === 'left' && type === 'push' && styles['push--left'],
-      isEuiFlyoutSizeNamed(size) && styles[`flyoutSize--${size}`],
+      side === 'left' && type === 'push' && styles.pushLeft,
+      isEuiFlyoutSizeNamed(size) && styles[size],
       styles[type],
       styles[side],
     ];
@@ -294,8 +294,8 @@ export const EuiFlyout = forwardRef(
 
       const closeButtonCSSStyles = [
         closeButtonStyles.euiFlyout__closeButton,
-        closeButtonStyles[`closeButton--${closeButtonPosition}`],
-        side === 'left' && closeButtonStyles['closeButton--outside-left'],
+        closeButtonStyles[closeButtonPosition],
+        side === 'left' && closeButtonStyles.outsideLeft,
       ];
 
       closeButton = (
