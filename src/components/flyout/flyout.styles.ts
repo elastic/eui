@@ -76,10 +76,7 @@ export const euiFlyoutCloseButtonStyles = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
-export const euiFlyoutStyles = (
-  euiThemeContext: UseEuiTheme,
-  paddingSize: _EuiFlyoutPaddingSize
-) => {
+export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
   const euiTheme = euiThemeContext.euiTheme;
 
   const euiFormMaxWidthNumber = parseInt(euiFormMaxWidth(euiThemeContext), 10);
@@ -205,16 +202,16 @@ export const euiFlyoutStyles = (
     // Padding
     paddingSizes: {
       none: css`
-        ${composeFlyoutPadding(euiThemeContext, paddingSize)}
+        ${composeFlyoutPadding(euiThemeContext, 'none')}
       `,
       s: css`
-        ${composeFlyoutPadding(euiThemeContext, paddingSize)}
+        ${composeFlyoutPadding(euiThemeContext, 's')}
       `,
       m: css`
-        ${composeFlyoutPadding(euiThemeContext, paddingSize)}
+        ${composeFlyoutPadding(euiThemeContext, 'm')}
       `,
       l: css`
-        ${composeFlyoutPadding(euiThemeContext, paddingSize)}
+        ${composeFlyoutPadding(euiThemeContext, 'l')}
       `,
     },
   };

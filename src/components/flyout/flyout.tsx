@@ -269,7 +269,7 @@ export const EuiFlyout = forwardRef(
     }
 
     const euiTheme = useEuiTheme();
-    const styles = euiFlyoutStyles(euiTheme, paddingSize);
+    const styles = euiFlyoutStyles(euiTheme);
 
     const cssStyles = [
       styles.euiFlyout,
