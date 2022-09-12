@@ -10,6 +10,6 @@ exports[`EuiFlyoutHeader is rendered 1`] = `
 
 exports[`EuiFlyoutHeader props border is rendered 1`] = `
 <div
-  class="euiFlyoutHeader euiFlyoutHeader--hasBorder emotion-euiFlyoutHeader-flyoutHeader--hasBorder"
+  class="euiFlyoutHeader emotion-euiFlyoutHeader-hasBorder"
 />
 `;
