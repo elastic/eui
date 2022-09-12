@@ -159,7 +159,7 @@ exports[`EuiButton props iconSide left is rendered 1`] = `
     class="emotion-euiButtonDisplayContent-left"
   >
     <span
-      class="emotion-euiButtonDisplayContent__icon"
+      class="emotion-euiButtonDisplayContent__icon-m"
       color="inherit"
       data-euiicon-type="user"
     />
@@ -181,7 +181,51 @@ exports[`EuiButton props iconSide right is rendered 1`] = `
     class="emotion-euiButtonDisplayContent-right"
   >
     <span
-      class="emotion-euiButtonDisplayContent__icon"
+      class="emotion-euiButtonDisplayContent__icon-m"
+      color="inherit"
+      data-euiicon-type="user"
+    />
+    <span
+      class="eui-textTruncate"
+    >
+      Content
+    </span>
+  </span>
+</button>
+`;
+
+exports[`EuiButton props iconSize m is rendered 1`] = `
+<button
+  class="euiButton emotion-euiButtonDisplay-m-m-base-primary"
+  type="button"
+>
+  <span
+    class="emotion-euiButtonDisplayContent"
+  >
+    <span
+      class="emotion-euiButtonDisplayContent__icon-m"
+      color="inherit"
+      data-euiicon-type="user"
+    />
+    <span
+      class="eui-textTruncate"
+    >
+      Content
+    </span>
+  </span>
+</button>
+`;
+
+exports[`EuiButton props iconSize s is rendered 1`] = `
+<button
+  class="euiButton emotion-euiButtonDisplay-m-m-base-primary"
+  type="button"
+>
+  <span
+    class="emotion-euiButtonDisplayContent"
+  >
+    <span
+      class="emotion-euiButtonDisplayContent__icon-s"
       color="inherit"
       data-euiicon-type="user"
     />
@@ -203,7 +247,7 @@ exports[`EuiButton props iconType is rendered 1`] = `
     class="emotion-euiButtonDisplayContent"
   >
     <span
-      class="emotion-euiButtonDisplayContent__icon"
+      class="emotion-euiButtonDisplayContent__icon-m"
       color="inherit"
       data-euiicon-type="user"
     />
