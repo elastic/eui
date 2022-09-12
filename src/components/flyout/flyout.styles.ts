@@ -7,7 +7,7 @@
  */
 
 import { css, keyframes } from '@emotion/react';
-import { _EuiFlyoutPaddingSize } from './flyout';
+import { _EuiFlyoutPaddingSize, EuiFlyoutSize } from './flyout';
 import { euiCanAnimate, euiBreakpoint, logicalCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiShadowXLarge } from '../../themes/amsterdam/global_styling/mixins';
@@ -79,30 +79,6 @@ export const euiFlyoutCloseButtonStyles = (euiThemeContext: UseEuiTheme) => {
 export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
   const euiTheme = euiThemeContext.euiTheme;
 
-  const euiFormMaxWidthNumber = parseInt(euiFormMaxWidth(euiThemeContext), 10);
-
-  const euiSizeMediumNumber = parseInt(euiTheme.size.m, 10);
-
-  const flyoutSizes = {
-    s: {
-      min: Math.round(euiTheme.breakpoint.m * 0.5),
-      width: '25vw',
-      max: Math.round(euiTheme.breakpoint.s * 0.7),
-    },
-
-    m: {
-      min: euiFormMaxWidthNumber + euiSizeMediumNumber * 2,
-      width: '50vw',
-      max: euiTheme.breakpoint.m,
-    },
-
-    l: {
-      min: Math.round(euiTheme.breakpoint.m * 0.9),
-      width: '75vw',
-      max: Math.round(euiTheme.breakpoint.l),
-    },
-  };
-
   return {
     euiFlyout: css`
       ${logicalCSS('border-left', euiTheme.border.thin)}
@@ -132,43 +108,13 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
 
     // Flyout Sizes
     s: css`
-      &.euiFlyout--maxWidth-default {
-        ${logicalCSS('max-width', `${flyoutSizes.s.max}px`)}
-      }
-      ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
-        ${logicalCSS('min-width', `${flyoutSizes.s.min}px`)}
-        ${logicalCSS('width', flyoutSizes.s.width)}
-      }
-      ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
-        ${logicalCSS('min-width', 0)}
-        ${logicalCSS('width', `${flyoutSizes.s.min}px`)}
-      }
+      ${composeFlyoutSizing(euiThemeContext, 's')}
     `,
     m: css`
-      &.euiFlyout--maxWidth-default {
-        ${logicalCSS('max-width', `${flyoutSizes.m.max}px`)}
-      }
-      ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
-        ${logicalCSS('min-width', `${flyoutSizes.m.min}px`)}
-        ${logicalCSS('width', flyoutSizes.m.width)}
-      }
-      ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
-        ${logicalCSS('min-width', 0)}
-        ${logicalCSS('width', `${flyoutSizes.m.min}px`)}
-      }
+      ${composeFlyoutSizing(euiThemeContext, 'm')}
     `,
     l: css`
-      &.euiFlyout--maxWidth-default {
-        ${logicalCSS('max-width', `${flyoutSizes.l.max}px`)}
-      }
-      ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
-        ${logicalCSS('min-width', `${flyoutSizes.l.min}px`)}
-        ${logicalCSS('width', flyoutSizes.l.width)}
-      }
-      ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
-        ${logicalCSS('min-width', 0)}
-        ${logicalCSS('width', `${flyoutSizes.l.min}px`)}
-      }
+      ${composeFlyoutSizing(euiThemeContext, 'l')}
     `,
 
     // Side
@@ -215,6 +161,48 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       `,
     },
   };
+};
+
+const composeFlyoutSizing = (
+  euiThemeContext: UseEuiTheme,
+  size: EuiFlyoutSize
+) => {
+  const euiTheme = euiThemeContext.euiTheme;
+  const euiFormMaxWidthNumber = parseInt(euiFormMaxWidth(euiThemeContext), 10);
+  const euiSizeMediumNumber = parseInt(euiTheme.size.m, 10);
+
+  const flyoutSizes = {
+    s: {
+      min: `${Math.round(euiTheme.breakpoint.m * 0.5)}px`,
+      width: '25vw',
+      max: `${Math.round(euiTheme.breakpoint.s * 0.7)}px`,
+    },
+
+    m: {
+      min: `${euiFormMaxWidthNumber + euiSizeMediumNumber * 2}px`,
+      width: '50vw',
+      max: euiTheme.breakpoint.m,
+    },
+
+    l: {
+      min: `${Math.round(euiTheme.breakpoint.m * 0.9)}px`,
+      width: '75vw',
+      max: `${Math.round(euiTheme.breakpoint.l)}px`,
+    },
+  };
+
+  const flyoutSizing = css`
+    ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
+      ${logicalCSS('min-width', flyoutSizes[size].min)}
+      ${logicalCSS('width', flyoutSizes[size].width)}
+    }
+    ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
+      ${logicalCSS('min-width', 0)}
+      ${logicalCSS('width', flyoutSizes[size].min)}
+    }
+  `;
+
+  return flyoutSizing;
 };
 
 const composeFlyoutPadding = (
