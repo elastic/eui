@@ -151,7 +151,7 @@ export const euiYScrollWithShadows = (
   side?: 'both' | 'start' | 'end'
 ) => `
   ${euiYScroll(euiTheme, { height })}
-  ${euiOverflowShadowStyles(euiTheme, { direction: 'y', side })}
+  ${euiOverflowShadowStyles(euiTheme, { direction: 'y', side: side || 'both' })}
 `;
 export const useEuiYScrollWithShadows = ({ height }: _EuiYScroll = {}) => {
   const euiTheme = useEuiTheme();

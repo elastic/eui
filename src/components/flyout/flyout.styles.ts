@@ -55,10 +55,10 @@ export const euiFlyoutCloseButtonStyles = (euiThemeContext: UseEuiTheme) => {
       // Override the hover and focus transitions of buttons
       animation: none !important;
       ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
-        transform: translateX(calc(-100% - ${euiTheme.size.l}));
+        transform: translateX(calc(-100% - ${euiTheme.size.l})) !important;
       }
       ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
-        transform: translateX(calc(-100% - ${euiTheme.size.xs}));
+        transform: translateX(calc(-100% - ${euiTheme.size.xs})) !important;
       }
     `,
     inside: css``,
@@ -67,10 +67,10 @@ export const euiFlyoutCloseButtonStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('left', 'auto')}
       
       ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
-        transform: translateX(calc(100% + ${euiTheme.size.l}));
+        transform: translateX(calc(100% + ${euiTheme.size.l})) !important;
       }
       ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
-        transform: translateX(calc(100% + ${euiTheme.size.xs}));
+        transform: translateX(calc(100% + ${euiTheme.size.xs})) !important;
       }
     `,
   };
