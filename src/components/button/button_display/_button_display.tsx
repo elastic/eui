@@ -112,7 +112,7 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
       children,
       iconType,
       iconSide,
-      iconSize = 'm',
+      iconSize,
       size = 'm',
       isDisabled,
       disabled,
