@@ -254,18 +254,19 @@ export const EuiFlyout = forwardRef(
     };
 
     let newStyle;
+    let widthClassName;
 
     // Setting max-width
-    if (maxWidth !== false) {
+    if (maxWidth === true) {
+      widthClassName = 'euiFlyout--maxWidth-default';
+    } else if (maxWidth !== false) {
       const value = typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth;
       newStyle = { ...style, maxWidth: value };
     }
 
     // Setting size
-    if (newStyle) {
-      newStyle.width = size;
-    } else {
-      newStyle = { ...style, width: size };
+    if (!isEuiFlyoutSizeNamed) {
+      newStyle = { ...(newStyle || style), width: size };
     }
 
     const euiTheme = useEuiTheme();
@@ -280,7 +281,7 @@ export const EuiFlyout = forwardRef(
       styles[side],
     ];
 
-    const classes = classnames('euiFlyout', className);
+    const classes = classnames('euiFlyout', widthClassName, className);
 
     let closeButton;
     if (onClose && !hideCloseButton) {

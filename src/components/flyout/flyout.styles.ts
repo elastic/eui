@@ -88,7 +88,7 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('right', 0)}
       ${logicalCSS('bottom', 0)}
       ${logicalCSS('height', '100%')}
-      z-index: ${euiTheme.levels.header};
+      z-index: ${euiTheme.levels.flyout};
       background: ${euiTheme.colors.emptyShade};
       display: flex;
       flex-direction: column;
@@ -138,7 +138,7 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       animation-duration: 0s !important; // Don't animate on loading a docked nav
       ${logicalCSS('border-left', euiTheme.border.thick)}
       // Make sure the header shadows are above
-      z-index: ${Number(euiTheme.levels.header) - 1};
+      z-index: ${Number(euiTheme.levels.flyout) - 1};
     `,
     pushLeft: css`
       ${logicalCSS('border-left', 'none')}
@@ -192,6 +192,10 @@ const composeFlyoutSizing = (
   };
 
   const flyoutSizing = css`
+    [class*='euiFlyout--maxWidth-default'] {
+      ${logicalCSS('max-width', flyoutSizes[size].max)}
+    }
+
     ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
       ${logicalCSS('min-width', flyoutSizes[size].min)}
       ${logicalCSS('width', flyoutSizes[size].width)}
