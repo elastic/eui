@@ -15,22 +15,43 @@ import {
 import { UseEuiTheme } from '../../services';
 import { euiTitle } from '../title/title.styles';
 
-export const euiPopoverTitleStyles = (
-  euiThemeContext: UseEuiTheme,
-  panelPadding: EuiPaddingSize
-) => {
+export const euiPopoverTitleStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-  // If the popover's containing panel has padding applied,
-  // ensure the title expands to cover that padding and
-  const panelPaddingSize = euiPaddingSize(euiThemeContext, panelPadding);
 
   return {
     // Base
     euiPopoverTitle: css`
       ${euiTitle(euiThemeContext, 'xxs')};
       ${logicalCSS('border-bottom', euiTheme.border.thin)};
-      // Negative margins for panel padding
-      margin: -${panelPaddingSize} -${panelPaddingSize} ${panelPaddingSize};
     `,
+    // If the popover's containing panel has padding applied,
+    // ensure the title expands to cover that padding via negative margins
+    panelPaddingSizes: {
+      none: css``,
+      xs: css`
+        ${getPaddingOffset(euiThemeContext, 'xs')}
+      `,
+      s: css`
+        ${getPaddingOffset(euiThemeContext, 's')}
+      `,
+      m: css`
+        ${getPaddingOffset(euiThemeContext, 'm')}
+      `,
+      l: css`
+        ${getPaddingOffset(euiThemeContext, 'l')}
+      `,
+      xl: css`
+        ${getPaddingOffset(euiThemeContext, 'xl')}
+      `,
+    },
   };
+};
+
+const getPaddingOffset = (
+  euiThemeContext: UseEuiTheme,
+  size: EuiPaddingSize
+) => {
+  const panelPaddingSize = euiPaddingSize(euiThemeContext, size);
+
+  return `margin: -${panelPaddingSize} -${panelPaddingSize} ${panelPaddingSize};`;
 };
