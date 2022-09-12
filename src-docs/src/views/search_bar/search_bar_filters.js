@@ -68,8 +68,21 @@ const initialQuery = EuiSearchBar.Query.MATCH_ALL;
 
 const CustomComponent = ({ query, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const tagSalesClause = query.getOrFieldClause('tag', 'sales');
-  const isOnlySales = !!(tagSalesClause && tagClause.value.length === 1);
+
+  const orTagsClause = query.getOrFieldClause('tag');
+  const selectedTags = orTagsClause?.value ?? [];
+  const isOnlySales =
+    !!(selectedTags.length === 1 && selectedTags[0] === 'sales') &&
+    !hasCloudExcluded;
+
+  const simpleTagClause = query.getSimpleFieldClause('tag');
+  const hasCloudExcluded = !!(
+    simpleTagClause &&
+    simpleTagClause.match === 'must_not' &&
+    simpleTagClause.operator === 'eq'
+  );
+
+  const hasFiltersApplied = query.hasClauses();
 
   const closePopover = () => {
     setIsOpen(false);
@@ -101,9 +114,11 @@ const CustomComponent = ({ query, onChange }) => {
           <EuiFlexItem>
             <EuiButton
               onClick={() => {
-                const q = query.addOrFieldValue('tag', 'sales', true, 'eq');
+                const q = query
+                  .removeSimpleFieldValue('tag', 'cloud')
+                  .removeOrFieldClauses('tag')
+                  .addOrFieldValue('tag', 'sales', true, 'eq');
                 onChange(q);
-                setIsOnlySales(true);
                 closePopover();
               }}
               disabled={isOnlySales}
@@ -114,12 +129,28 @@ const CustomComponent = ({ query, onChange }) => {
           <EuiFlexItem>
             <EuiButton
               onClick={() => {
-                const q = query.removeOrFieldValue('tag', 'sales');
+                const q = query.addSimpleFieldValue(
+                  'tag',
+                  'cloud',
+                  false,
+                  'eq'
+                );
                 onChange(q);
-                setIsOnlySales(false);
                 closePopover();
               }}
-              disabled={isOnlySales === false}
+              disabled={hasCloudExcluded}
+            >
+              Exclude cloud
+            </EuiButton>
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiButton
+              onClick={() => {
+                const q = query.removeAllClauses();
+                onChange(q);
+                closePopover();
+              }}
+              disabled={!hasFiltersApplied}
             >
               All
             </EuiButton>
