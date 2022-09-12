@@ -12,7 +12,10 @@ import { requiredProps } from '../../test/required_props';
 
 import { EuiButton, COLORS, SIZES } from './button';
 
-import { ICON_SIDES } from './_button_content_deprecated';
+import {
+  ICON_SIDES,
+  ICON_SIZES,
+} from './button_display/_button_display_content';
 
 describe('EuiButton', () => {
   test('is rendered', () => {
@@ -121,6 +124,20 @@ describe('EuiButton', () => {
         test(`${iconSide} is rendered`, () => {
           const component = render(
             <EuiButton iconType="user" iconSide={iconSide}>
+              Content
+            </EuiButton>
+          );
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('iconSize', () => {
+      ICON_SIZES.forEach((iconSize) => {
+        test(`${iconSize} is rendered`, () => {
+          const component = render(
+            <EuiButton iconType="user" iconSize={iconSize}>
               Content
             </EuiButton>
           );
