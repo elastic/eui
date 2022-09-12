@@ -135,7 +135,6 @@ EuiButton.displayName = 'EuiButton';
 
 // Use defaultProps for simple pass-through props
 EuiButton.defaultProps = {
-  minWidth: 112,
   size: 'm',
   color: 'primary',
 };

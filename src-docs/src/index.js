@@ -87,9 +87,6 @@ ReactDOM.render(
                 const standaloneSections = [];
                 (sections || []).forEach(
                   ({ id, fullScreen, sections: subSections }) => {
-                    if (path === 'templates/page-template') {
-                      console.log(path, id, sections);
-                    }
                     if (fullScreen) {
                       const { slug, demo } = fullScreen;
                       standaloneSections.push(
