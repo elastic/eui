@@ -68,7 +68,8 @@ const initialQuery = EuiSearchBar.Query.MATCH_ALL;
 
 const CustomComponent = ({ query, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isOnlySales, setIsOnlySales] = useState(false);
+  const tagSalesClause = query.getOrFieldClause('tag', 'sales');
+  const isOnlySales = !!(tagSalesClause && tagClause.value.length === 1);
 
   const closePopover = () => {
     setIsOpen(false);
