@@ -13,6 +13,7 @@ import {
   logicalTextAlignCSS,
   euiTextBreakWord,
   euiTextTruncate,
+  mathWithUnits,
 } from '../../global_styling';
 import { transparentize } from '../../services/color';
 import { UseEuiTheme } from '../../services';
@@ -38,7 +39,7 @@ export const euiExpressionStyles = (euiThemeContext: UseEuiTheme) => {
       )}
       ${euiFontSize(euiThemeContext, 's')};
       ${logicalTextAlignCSS('left')}
-      padding: ${parseFloat(euiTheme.size.s) / 2}px 0;
+      padding: ${mathWithUnits(euiTheme.size.s, (x) => x / 2)} 0;
       color: ${euiTheme.colors.text};
 
       &:focus {

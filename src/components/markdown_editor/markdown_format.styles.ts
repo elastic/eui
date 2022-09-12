@@ -12,6 +12,7 @@ import {
   logicalCSS,
   euiFontSize,
   _FontScaleOptions,
+  mathWithUnits,
 } from '../../global_styling';
 
 /**
@@ -27,18 +28,14 @@ const euiScaleMarkdownFormatText = (
   const lineHeightSize = measurement === 'em' ? `${lineHeight}em` : lineHeight;
 
   // Custom scales
-  const fontSizeNumeric = parseFloat(String(fontSize));
-  const blockQuoteBorderWidth = fontSizeNumeric / 4;
-  const tablePaddingVertical = fontSizeNumeric / 4;
-  const tablePaddingHorizontal = fontSizeNumeric / 2;
+  const blockQuoteBorderWidth = mathWithUnits(fontSize, (x) => x / 4);
+  const tablePaddingVertical = mathWithUnits(fontSize, (x) => x / 4);
+  const tablePaddingHorizontal = mathWithUnits(fontSize, (x) => x / 2);
 
   return `
     .euiMarkdownFormat__blockquote {
       padding: 0 ${fontSize};
-      ${logicalCSS(
-        'border-left-width',
-        `${blockQuoteBorderWidth}${measurement}`
-      )}
+      ${logicalCSS('border-left-width', blockQuoteBorderWidth)}
       ${logicalCSS('margin-bottom', fontSize)}
     }
 
@@ -62,11 +59,8 @@ const euiScaleMarkdownFormatText = (
 
     .euiMarkdownFormat__table th,
     .euiMarkdownFormat__table td {
-      ${logicalCSS('padding-vertical', `${tablePaddingVertical}${measurement}`)}
-      ${logicalCSS(
-        'padding-horizontal',
-        `${tablePaddingHorizontal}${measurement}`
-      )}
+      ${logicalCSS('padding-vertical', tablePaddingVertical)}
+      ${logicalCSS('padding-horizontal', tablePaddingHorizontal)}
     }
   `;
 };
