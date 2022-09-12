@@ -319,6 +319,11 @@ export class EuiInMemoryTable<T> extends Component<
     ) {
       updatedPrevState = {
         ...updatedPrevState,
+        prevProps: {
+          ...updatedPrevState.prevProps,
+          sortName,
+          sortDirection,
+        },
         sortName,
         sortDirection,
       };

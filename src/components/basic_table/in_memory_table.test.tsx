@@ -453,6 +453,85 @@ describe('EuiInMemoryTable', () => {
         mount(<EuiInMemoryTable {...props} />);
       }).not.toThrow();
     });
+
+    test('changing the sort field and direction via sorting prop', () => {
+      // regression for https://github.com/elastic/eui/issues/6032
+      const props: EuiInMemoryTableProps<BasicItem> = {
+        ...requiredProps,
+        items: [
+          { id: '3', name: 'name3' },
+          { id: '1', name: 'name1' },
+          { id: '2', name: 'name2' },
+        ],
+        columns: [
+          {
+            field: 'id',
+            name: 'Id',
+            sortable: true,
+          },
+          {
+            field: 'name',
+            name: 'Name',
+            sortable: true,
+          },
+        ],
+        sorting: {
+          sort: {
+            field: 'id',
+            direction: SortDirection.ASC,
+          },
+        },
+      };
+
+      const component = mount(<EuiInMemoryTable {...props} />);
+
+      // initial sorting: id asc
+      expect(
+        component
+          .find('tbody .euiTableCellContent__text')
+          .map((cell) => cell.text())
+      ).toEqual(['1', 'name1', '2', 'name2', '3', 'name3']);
+
+      // sorting: id desc
+      component.setProps({
+        sorting: { sort: { field: 'id', direction: SortDirection.DESC } },
+      });
+      expect(
+        component
+          .find('tbody .euiTableCellContent__text')
+          .map((cell) => cell.text())
+      ).toEqual(['3', 'name3', '2', 'name2', '1', 'name1']);
+
+      // sorting: name asc
+      component.setProps({
+        sorting: { sort: { field: 'name', direction: SortDirection.ASC } },
+      });
+      expect(
+        component
+          .find('tbody .euiTableCellContent__text')
+          .map((cell) => cell.text())
+      ).toEqual(['1', 'name1', '2', 'name2', '3', 'name3']);
+
+      // sorting: name desc
+      component.setProps({
+        sorting: { sort: { field: 'name', direction: SortDirection.DESC } },
+      });
+      expect(
+        component
+          .find('tbody .euiTableCellContent__text')
+          .map((cell) => cell.text())
+      ).toEqual(['3', 'name3', '2', 'name2', '1', 'name1']);
+
+      // can return to initial sorting: id asc
+      component.setProps({
+        sorting: { sort: { field: 'id', direction: SortDirection.ASC } },
+      });
+      expect(
+        component
+          .find('tbody .euiTableCellContent__text')
+          .map((cell) => cell.text())
+      ).toEqual(['1', 'name1', '2', 'name2', '3', 'name3']);
+    });
   });
 
   test('with initial sorting', () => {
