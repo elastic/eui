@@ -14,7 +14,7 @@ describe('mathWithUnits', () => {
       expect(mathWithUnits('10px', (x) => x * 10)).toEqual('100px');
     });
     test('em and division', () => {
-      expect(mathWithUnits('40em', (x) => x / 2)).toEqual('20em');
+      expect(mathWithUnits('40%', (x) => x / 2)).toEqual('20%');
     });
     test('rem and addition', () => {
       expect(mathWithUnits('1rem', (x) => x + 2)).toEqual('3rem');
@@ -48,6 +48,9 @@ describe('mathWithUnits', () => {
     });
     it('ignores multiple values/units, only using the first match', () => {
       expect(mathWithUnits('10px 20px', (x) => x)).toEqual('10px');
+    });
+    it('ignores multiple percentage signs', () => {
+      expect(mathWithUnits('100%%%', (x) => x)).toEqual('100%');
     });
   });
 });
