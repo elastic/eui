@@ -150,19 +150,19 @@ const webpackConfig = new Promise(async (resolve, reject) => {
 
       devServer: isDevelopment
         ? {
-          host: '0.0.0.0',
-          allowedHosts: ['*'],
-          port,
-          historyApiFallback: true,
-        }
+            host: '0.0.0.0',
+            allowedHosts: ['*'],
+            port,
+            historyApiFallback: true,
+          }
         : undefined,
 
       // prevent file watching while running on CI
       // /app/ represents the entire docker environment
       watchOptions: isPuppeteer
         ? {
-          ignored: '**/*',
-        }
+            ignored: '**/*',
+          }
         : undefined,
 
       optimization: {
@@ -181,7 +181,7 @@ const webpackConfig = new Promise(async (resolve, reject) => {
 
       stats: 'minimal',
     });
-  } catch(e) {
+  } catch (e) {
     reject(e);
   }
 });

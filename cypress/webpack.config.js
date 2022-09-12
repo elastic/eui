@@ -8,8 +8,7 @@
 
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { ProvidePlugin, DefinePlugin } = require('webpack');
 
 const THEME_IMPORT = `'../../dist/eui_theme_${process.env.THEME}.css'`;
 
@@ -22,6 +21,11 @@ module.exports = {
 
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],
+    fallback: {
+      fs: false,
+      os: false,
+      process: require.resolve('process/browser'),
+    },
   },
 
   module: {
@@ -30,13 +34,14 @@ module.exports = {
         test: /\.(js|tsx?)$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
+        sideEffects: true, // tells webpack not to tree shake `import './'` lines
         options: {
           plugins: ['istanbul'],
         },
       },
       {
         test: /\.css$/,
-        loaders: [
+        use: [
           {
             loader: 'style-loader',
             options: {
@@ -56,7 +61,11 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.DefinePlugin({
+    new ProvidePlugin({
+      process: 'process/browser',
+    }),
+
+    new DefinePlugin({
       THEME_IMPORT, // allow cypress/suport/index.js to require the correct css file
     }),
   ],
