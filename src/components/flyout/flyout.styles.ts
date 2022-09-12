@@ -82,15 +82,9 @@ export const euiFlyoutStyles = (
 ) => {
   const euiTheme = euiThemeContext.euiTheme;
 
-  const euiFormMaxWidthNumber: number = parseInt(
-    euiFormMaxWidth(euiThemeContext).replace('px', ''),
-    10
-  );
+  const euiFormMaxWidthNumber = parseInt(euiFormMaxWidth(euiThemeContext), 10);
 
-  const euiSizeMediumNumber: number = parseInt(
-    euiTheme.size.m.replace('px', ''),
-    10
-  );
+  const euiSizeMediumNumber = parseInt(euiTheme.size.m, 10);
 
   const flyoutSizes = {
     s: {
@@ -240,19 +234,11 @@ const composeFlyoutPadding = (
   };
 
   // Footer padding
-  const footerPaddingWithPixels = paddingModifierMap[paddingSize];
-
-  // Removing the 'px' from the end of euiTheme.size.m to perform calculation
-  const footerPaddingAmount =
-    typeof footerPaddingWithPixels === 'string'
-      ? parseInt(footerPaddingWithPixels.replace('px', ''))
-      : footerPaddingWithPixels;
-
   const footerPaddingSizes = {
-    none: footerPaddingWithPixels,
-    s: footerPaddingWithPixels,
-    m: `${footerPaddingAmount * 0.75}px ${footerPaddingWithPixels};`,
-    l: `${footerPaddingAmount / 1.5}px ${footerPaddingWithPixels};`,
+    none: 0,
+    s: euiTheme.size.s,
+    m: `${parseInt(euiTheme.size.base, 10) * 0.75}px ${euiTheme.size.base};`,
+    l: `${parseInt(euiTheme.size.l, 10) / 1.5}px ${euiTheme.size.l};`,
   };
 
   const flyoutPadding = css`
