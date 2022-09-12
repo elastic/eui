@@ -7,6 +7,7 @@
  */
 
 module.exports = {
+  include: ['src/**/*'],
   'report-dir': 'reports/cypress-coverage',
   reporter: ['json', 'html'],
 };
