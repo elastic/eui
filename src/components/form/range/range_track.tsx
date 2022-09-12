@@ -13,7 +13,7 @@ import {
   withEuiTheme,
   WithEuiThemeProps,
   isEvenlyDivisibleBy,
-} from '../../../services/';
+} from '../../../services';
 
 import range from 'lodash/range';
 

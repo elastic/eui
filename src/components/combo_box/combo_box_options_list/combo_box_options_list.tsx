@@ -39,7 +39,7 @@ import {
   UpdatePositionHandler,
 } from '../types';
 import { CommonProps } from '../../common';
-import { EuiBadge } from '../../badge/';
+import { EuiBadge } from '../../badge';
 import { EuiPopoverPanel } from '../../popover/popover_panel';
 
 const OPTION_CONTENT_CLASSNAME = 'euiComboBoxOption__content';
