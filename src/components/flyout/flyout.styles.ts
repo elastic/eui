@@ -81,11 +81,9 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiFlyout: css`
-      ${logicalCSS('border-left', euiTheme.border.thin)}
       ${euiShadowXLarge(euiThemeContext)};
       position: fixed;
       ${logicalCSS('top', 0)}
-      ${logicalCSS('right', 0)}
       ${logicalCSS('bottom', 0)}
       ${logicalCSS('height', '100%')}
       z-index: ${euiTheme.levels.flyout};
@@ -93,11 +91,6 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       display: flex;
       flex-direction: column;
       align-items: stretch;
-      clip-path: polygon(-50% 0, 100% 0, 100% 100%, -50% 100%);
-      ${euiCanAnimate} {
-        animation: ${euiFlyout} ${euiTheme.animation.normal}
-          ${euiTheme.animation.resistance};
-      }
       &:focus {
         outline: none;
       }
@@ -118,12 +111,18 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
     `,
 
     // Side
-    right: css``,
+    right: css`
+      clip-path: polygon(-50% 0, 100% 0, 100% 100%, -50% 100%);
+      ${logicalCSS('border-left', euiTheme.border.thin)}
+      ${logicalCSS('right', 0)}
+      ${euiCanAnimate} {
+        animation: ${euiFlyout} ${euiTheme.animation.normal}
+          ${euiTheme.animation.resistance};
+      }
+    `,
     left: css`
       ${logicalCSS('border-right', euiTheme.border.thin)}
-      ${logicalCSS('border-left', 'none')}
       ${logicalCSS('left', 0)}
-      ${logicalCSS('right', 'auto')}
       clip-path: polygon(0 0, 150% 0, 150% 100%, 0 100%);
       ${euiCanAnimate} {
         animation: ${euiFlyoutLeft};
@@ -192,9 +191,7 @@ const composeFlyoutSizing = (
   };
 
   const flyoutSizing = css`
-    [class*='euiFlyout--maxWidth-default'] {
-      ${logicalCSS('max-width', flyoutSizes[size].max)}
-    }
+    ${logicalCSS('max-width', flyoutSizes[size].max)}
 
     ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
       ${logicalCSS('min-width', flyoutSizes[size].min)}
@@ -236,7 +233,7 @@ const composeFlyoutPadding = (
       ${logicalCSS('padding-top', paddingModifierMap[paddingSize])}
     }
 
-    .euiFlyoutHeader--hasBorder {
+    [class*='euiFlyoutHeader-hasBorder'] {
       ${logicalCSS('padding-bottom', paddingModifierMap[paddingSize])}
     }
 
@@ -254,3 +251,10 @@ const composeFlyoutPadding = (
   `;
   return flyoutPadding;
 };
+
+/*
+[class*='euiFlyout--maxWidth-default'] {
+      ${logicalCSS('max-width', flyoutSizes[size].max)}
+    }
+
+*/

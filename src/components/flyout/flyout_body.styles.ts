@@ -19,25 +19,21 @@ export const euiFlyoutBodyStyles = (euiThemeContext: UseEuiTheme) => {
     euiFlyoutBody: css`
       ${logicalCSSWithFallback('overflow-y', 'hidden')}
       ${logicalCSS('height', '100%')}
-
-      .euiFlyoutBody__overflow {
+    `,
+    overflow: {
+      euiFlyoutBody__overflow: css`
         ${euiYScrollWithShadows(euiThemeContext)};
-        &.euiFlyoutBody__overflow--hasBanner {
-          ${euiYScrollWithShadows(
-            euiThemeContext,
-            {},
-            {
-              direction: 'y',
-              side: 'end',
-            }
-          )};
-        }
-
-        .euiFlyoutBody__banner .euiCallOut {
-            ${logicalCSSWithFallback('overflow-x', 'hidden')}
-            border: none; // Remove border from callout when it is a flyout banner
-            border-radius: 0; // Ensures no border-radius in all themes
-          }
+      `,
+      hasBanner: css`
+        ${euiYScrollWithShadows(euiThemeContext, {}, 'end')};
+      `,
+    },
+    euiFlyoutBody__banner: css`
+      .euiCallout {
+        ${logicalCSSWithFallback('overflow-x', 'hidden')}
+        border: none; // Remove border from callout when it is a flyout banner
+        border-radius: 0; // Ensures no border-radius in all themes
+      }
     `,
   };
 };

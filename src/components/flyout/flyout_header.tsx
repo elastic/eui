@@ -25,13 +25,7 @@ export const EuiFlyoutHeader: EuiFlyoutHeaderProps = ({
   hasBorder = false,
   ...rest
 }) => {
-  const classes = classNames(
-    'euiFlyoutHeader',
-    {
-      'euiFlyoutHeader--hasBorder': hasBorder,
-    },
-    className
-  );
+  const classes = classNames('euiFlyoutHeader', className);
 
   const euiTheme = useEuiTheme();
   const styles = euiFlyoutHeaderStyles(euiTheme);
