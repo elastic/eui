@@ -12,7 +12,6 @@ import {
   logicalCSS,
   logicalCSSWithFallback,
   euiYScrollWithShadows,
-  euiOverflowShadowStyles,
 } from '../../global_styling';
 
 export const euiFlyoutBodyStyles = (euiThemeContext: UseEuiTheme) => {
@@ -24,10 +23,14 @@ export const euiFlyoutBodyStyles = (euiThemeContext: UseEuiTheme) => {
       .euiFlyoutBody__overflow {
         ${euiYScrollWithShadows(euiThemeContext)};
         &.euiFlyoutBody__overflow--hasBanner {
-          ${euiOverflowShadowStyles(euiThemeContext, {
-            direction: 'y',
-            side: 'end',
-          })};
+          ${euiYScrollWithShadows(
+            euiThemeContext,
+            {},
+            {
+              direction: 'y',
+              side: 'end',
+            }
+          )};
         }
 
         .euiFlyoutBody__banner .euiCallOut {

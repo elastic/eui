@@ -87,7 +87,7 @@ interface EuiOverflowShadowStyles {
   direction?: 'y' | 'x';
   side?: 'both' | 'start' | 'end';
 }
-export const euiOverflowShadowStyles = (
+const euiOverflowShadowStyles = (
   { euiTheme: { size } }: UseEuiTheme,
   { direction: _direction, side: _side }: EuiOverflowShadowStyles = {}
 ) => {
@@ -147,10 +147,11 @@ export const useEuiYScroll = ({ height }: _EuiYScroll = {}) => {
 
 export const euiYScrollWithShadows = (
   euiTheme: UseEuiTheme,
-  { height }: _EuiYScroll = {}
+  { height }: _EuiYScroll = {},
+  side?: 'both' | 'start' | 'end'
 ) => `
   ${euiYScroll(euiTheme, { height })}
-  ${euiOverflowShadowStyles(euiTheme, { direction: 'y' })}
+  ${euiOverflowShadowStyles(euiTheme, { direction: 'y', side })}
 `;
 export const useEuiYScrollWithShadows = ({ height }: _EuiYScroll = {}) => {
   const euiTheme = useEuiTheme();
