@@ -28,9 +28,6 @@ export const EuiListGroupItemExtraAction: FunctionComponent<EuiListGroupItemExtr
 }) => {
   const extraActionClasses = classNames(
     'euiListGroupItemExtraAction',
-    {
-      'euiListGroupItemExtraAction-alwaysShow': alwaysShow,
-    },
     className
   );
 

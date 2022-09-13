@@ -25,7 +25,6 @@ export const euiListGroupItemExtraActionStyles = ({
 
       .euiListGroupItem:not(.euiListGroupItem-isDisabled):focus &,
       .euiListGroupItem:not(.euiListGroupItem-isDisabled):hover &,
-      &.euiListGroupItemExtraAction-alwaysShow,
       &:focus {
         opacity: 1;
       }

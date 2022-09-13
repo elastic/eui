@@ -83,7 +83,7 @@ exports[`EuiListGroupItem props extraAction can be disabled 1`] = `
     </span>
   </span>
   <button
-    class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction css-4y6mcr-empty-disabled-hoverStyles-EuiButtonIcon-euiListGroupItemExtraAction"
+    class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction css-1hli0en-empty-disabled-hoverStyles-EuiButtonIcon-euiListGroupItemExtraAction"
     disabled=""
     type="button"
   >
@@ -113,7 +113,7 @@ exports[`EuiListGroupItem props extraAction is rendered 1`] = `
   </span>
   <button
     aria-label="label"
-    class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction css-1jqwfm0-empty-text-hoverStyles-EuiButtonIcon-euiListGroupItemExtraAction"
+    class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction css-1amqlrt-empty-text-hoverStyles-EuiButtonIcon-euiListGroupItemExtraAction-alwaysShow"
     type="button"
   >
     <span

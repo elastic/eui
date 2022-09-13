@@ -212,6 +212,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
       <EuiListGroupItemExtraAction
         color={color as EuiListGroupItemExtraActionProps['color']}
         iconType={iconType}
+        alwaysShow={alwaysShow}
         {...rest}
         disabled={isDisabled || actionIsDisabled}
       />
