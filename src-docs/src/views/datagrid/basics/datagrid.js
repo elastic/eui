@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 import { fake } from 'faker';
 
 import {
+  EuiAccordion,
   EuiButton,
   EuiButtonEmpty,
   EuiButtonIcon,
@@ -411,25 +412,27 @@ export default () => {
   });
 
   return (
-    <DataContext.Provider value={raw_data}>
-      <EuiDataGrid
-        aria-label="Data grid demo"
-        columns={columns}
-        columnVisibility={{ visibleColumns, setVisibleColumns }}
-        trailingControlColumns={trailingControlColumns}
-        rowCount={raw_data.length}
-        renderCellValue={RenderCellValue}
-        inMemory={{ level: 'sorting' }}
-        sorting={{ columns: sortingColumns, onSort }}
-        pagination={{
-          ...pagination,
-          pageSizeOptions: [10, 50, 100],
-          onChangeItemsPerPage: onChangeItemsPerPage,
-          onChangePage: onChangePage,
-        }}
-        onColumnResize={onColumnResize.current}
-        ref={gridRef}
-      />
-    </DataContext.Provider>
+    <EuiAccordion id="fdsfasdf" buttonContent="fullscreen testing">
+      <DataContext.Provider value={raw_data}>
+        <EuiDataGrid
+          aria-label="Data grid demo"
+          columns={columns}
+          columnVisibility={{ visibleColumns, setVisibleColumns }}
+          trailingControlColumns={trailingControlColumns}
+          rowCount={raw_data.length}
+          renderCellValue={RenderCellValue}
+          inMemory={{ level: 'sorting' }}
+          sorting={{ columns: sortingColumns, onSort }}
+          pagination={{
+            ...pagination,
+            pageSizeOptions: [10, 50, 100],
+            onChangeItemsPerPage: onChangeItemsPerPage,
+            onChangePage: onChangePage,
+          }}
+          onColumnResize={onColumnResize.current}
+          ref={gridRef}
+        />
+      </DataContext.Provider>
+    </EuiAccordion>
   );
 };
