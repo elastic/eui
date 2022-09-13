@@ -132,7 +132,7 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
       ];
     });
   } else {
-    const showToolTipObj = { showToolTip: true };
+    const showToolTipObj = showToolTips && { showToolTip: true };
 
     childrenOrListItems = React.Children.map(children, (child) => {
       if (React.isValidElement(child)) {

@@ -12,16 +12,12 @@ import {
   euiFontSize,
   logicalCSS,
   euiBackgroundColor,
+  euiFocusRing,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiButtonColor } from '../../themes/amsterdam/global_styling/mixins/button';
 
-export const euiListGroupItemStyles = (
-  euiThemeContext: UseEuiTheme,
-  isActive: boolean,
-  isClickable: boolean,
-  isDisabled: boolean
-) => {
+export const euiListGroupItemStyles = (euiThemeContext: UseEuiTheme) => {
   const euiTheme = euiThemeContext.euiTheme;
 
   return {
@@ -35,6 +31,37 @@ export const euiListGroupItemStyles = (
       ${euiCanAnimate} {
         transition: background-color ${euiTheme.animation.fast};
       }
+    `,
+  };
+};
+
+export const euiListGroupItemInnerStyles = (
+  euiThemeContext: UseEuiTheme,
+  isActive: boolean,
+  isClickable: boolean,
+  isDisabled: boolean
+) => {
+  const euiTheme = euiThemeContext.euiTheme;
+
+  return {
+    // Base
+    euiListGroupItem__inner: css`
+      padding: ${euiTheme.size.xs} ${euiTheme.size.s};
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+      text-align: start;
+      max-inline-size: 100%;
+      font-weight: inherit;
+
+      ${isClickable &&
+      !isDisabled &&
+      `
+        &:hover,
+        &:focus {
+          text-decoration: underline;
+        }
+      `}
     `,
     // Sizes
     xs: css`
@@ -63,6 +90,11 @@ export const euiListGroupItemStyles = (
     `,
     // Colors
     primary: css`
+      ${!isDisabled &&
+      `
+        color: ${euiButtonColor(euiThemeContext, 'primary').color};
+      `}
+
       ${isActive &&
       !isDisabled &&
       `
@@ -80,28 +112,18 @@ export const euiListGroupItemStyles = (
             method: 'transparent',
           })};
         }
+
+        &:focus {
+          ${euiFocusRing(euiThemeContext, 'center')};
+        }
       `};
     `,
     text: css`
-      ${isActive &&
-      !isDisabled &&
+      ${!isDisabled &&
       `
-        background-color: ${euiBackgroundColor(euiThemeContext, 'subdued', {
-          method: 'transparent',
-        })};
-      `};
+      color: ${euiButtonColor(euiThemeContext, 'text').color};
+      `}
 
-      ${isClickable &&
-      !isDisabled &&
-      `
-        &:hover,
-        &:focus {
-          background-color: ${euiBackgroundColor(euiThemeContext, 'subdued', {
-            method: 'transparent',
-          })};
-      `};
-    `,
-    subdued: css`
       ${isActive &&
       !isDisabled &&
       `
@@ -119,10 +141,51 @@ export const euiListGroupItemStyles = (
             method: 'transparent',
           })};
         }
+
+        &:focus {
+          ${euiFocusRing(euiThemeContext, 'center')};
+        }
       `};
+    `,
+    subdued: css`
+      ${!isDisabled &&
+      `
+        color: ${euiTheme.colors.subduedText};
+      `}
+
+      ${isActive &&
+      !isDisabled &&
+      `
+        background-color: ${euiBackgroundColor(euiThemeContext, 'subdued', {
+          method: 'transparent',
+        })};
+      `};
+
+      ${isClickable &&
+      !isDisabled &&
+      `
+        &:hover,
+        &:focus {
+          background-color: ${euiBackgroundColor(euiThemeContext, 'subdued', {
+            method: 'transparent',
+          })};
+        }
+
+        &:focus {
+          ${euiFocusRing(euiThemeContext, 'center')};
+        }
+      `};
+    `,
+    ghost: css`
+      ${!isDisabled &&
+      `
+      color: ${euiTheme.colors.ghost};
+    `}
     `,
     // Variants
     isDisabled: css`
+      cursor: not-allowed;
+
       &,
       &:hover,
       &:focus {
@@ -135,83 +198,8 @@ export const euiListGroupItemStyles = (
     isActive: css``,
     isClickable: css``,
     wrapText: css`
-      .euiListGroupItem__button,
-      .euiListGroupItem__text {
-        inline-size: 100%;
-        word-break: break-word;
-      }
-    `,
-  };
-};
-
-export const euiListGroupItemButtonStyles = (
-  euiThemeContext: UseEuiTheme,
-  isActive: boolean,
-  isDisabled: boolean
-) => {
-  const euiTheme = euiThemeContext.euiTheme;
-
-  return {
-    // Base
-    euiListGroupItem__button: css`
-      padding: ${euiTheme.size.xs} ${euiTheme.size.s};
-      display: flex;
-      align-items: center;
-      flex-grow: 1;
-      text-align: start;
-      max-inline-size: 100%;
-      font-weight: inherit;
-
-      ${!isDisabled &&
-      `
-        &:hover,
-        &:focus {
-          text-decoration: underline;
-        }
-      `}
-    `,
-    // Colors
-    primary: css`
-      ${!isDisabled &&
-      `
-        color: ${euiButtonColor(euiThemeContext, 'primary').color};
-      `}
-    `,
-    text: css`
-      ${!isDisabled &&
-      `
-      color: ${euiButtonColor(euiThemeContext, 'text').color};
-      `}
-    `,
-    subdued: css`
-      ${!isDisabled &&
-      `
-        color: ${euiTheme.colors.subduedText};
-      `}
-    `,
-    ghost: css`
-      ${!isDisabled &&
-      `
-        color: ${euiTheme.colors.ghost};
-      `}
-    `,
-    isDisabled: css`
-      cursor: not-allowed;
-    `,
-  };
-};
-
-export const euiListGroupItemTextStyles = ({ euiTheme }: UseEuiTheme) => {
-  return {
-    // Base
-    euiListGroupItem__text: css`
-      padding: ${euiTheme.size.xs} ${euiTheme.size.s};
-      display: flex;
-      align-items: center;
-      flex-grow: 1;
-      text-align: start;
-      max-inline-size: 100%;
-      font-weight: inherit;
+      inline-size: 100%;
+      word-break: break-word;
     `,
   };
 };

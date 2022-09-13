@@ -27,7 +27,7 @@ export const euiListGroupStyles = (euiThemeContext: UseEuiTheme) => {
       border: none;
 
       // override the default border radius
-      .euiListGroupItem {
+      .euiListGroupItem__inner {
         border-radius: 0;
       }
     `,

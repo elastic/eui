@@ -34,8 +34,7 @@ import { validateHref } from '../../services/security/href_validator';
 import {
   euiListGroupItemStyles,
   euiListGroupItemIconStyles,
-  euiListGroupItemButtonStyles,
-  euiListGroupItemTextStyles,
+  euiListGroupItemInnerStyles,
   euiListGroupItemTooltipStyles,
   euiListGroupItemLabelStyles,
 } from './list_group_item.styles';
@@ -249,26 +248,31 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
 
   const secureRel = getSecureRelForTarget({ href, rel, target });
 
-  const buttonStyles = euiListGroupItemButtonStyles(
+  const isClickable = href || onClick ? true : false;
+
+  const innerStyles = euiListGroupItemInnerStyles(
     euiTheme,
     isActive,
+    isClickable,
     isDisabled
   );
 
-  const cssButtonStyles = [
-    buttonStyles.euiListGroupItem__button,
-    buttonStyles[color],
-    isDisabled && buttonStyles.isDisabled,
+  const cssInnerStyles = [
+    innerStyles.euiListGroupItem__inner,
+    innerStyles[size],
+    innerStyles[color],
+    isDisabled && innerStyles.isDisabled,
+    isActive && innerStyles.isActive,
+    isDisabled && innerStyles.isDisabled,
+    isClickable && innerStyles.isClickable,
+    wrapText && innerStyles.wrapText,
   ];
-
-  const textStyles = euiListGroupItemTextStyles(euiTheme);
-  const cssTextStyles = [textStyles.euiListGroupItem__text];
 
   if (href && !isDisabled) {
     itemContent = (
       <a
-        className="euiListGroupItem__button"
-        css={cssButtonStyles}
+        className="euiListGroupItem__inner"
+        css={cssInnerStyles}
         href={href}
         target={target}
         rel={secureRel}
@@ -283,7 +287,8 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     itemContent = (
       <button
         type="button"
-        css={cssButtonStyles}
+        className="euiListGroupItem__inner"
+        css={cssInnerStyles}
         disabled={isDisabled}
         onClick={onClick}
         ref={buttonRef}
@@ -295,30 +300,16 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     );
   } else {
     itemContent = (
-      <span className="euiListGroupItem__text" css={cssTextStyles} {...rest}>
+      <span className="euiListGroupItem__inner" css={cssInnerStyles} {...rest}>
         {iconNode}
         {labelContent}
       </span>
     );
   }
 
-  const isClickable = href || onClick ? true : false;
-  const styles = euiListGroupItemStyles(
-    euiTheme,
-    isActive,
-    isClickable,
-    isDisabled
-  );
+  const styles = euiListGroupItemStyles(euiTheme);
 
-  const cssStyles = [
-    styles.euiListGroupItem,
-    styles[size],
-    styles[color],
-    isActive && styles.isActive,
-    isDisabled && styles.isDisabled,
-    isClickable && styles.isClickable,
-    wrapText && styles.wrapText,
-  ];
+  const cssStyles = [styles.euiListGroupItem];
 
   const classes = classNames('euiListGroupItem', className);
 
