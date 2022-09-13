@@ -36,11 +36,9 @@ export const EuiFlyoutBody: EuiFlyoutBodyProps = ({
   const euiTheme = useEuiTheme();
   const styles = euiFlyoutBodyStyles(euiTheme);
 
-  const cssStyles = [
-    styles.euiFlyoutBody,
-    banner && styles.euiFlyoutBody__banner,
-  ];
-  const overflowCSSStyles = [
+    const cssStyles = [styles.euiFlyoutBody];
+    const bannerCssStyles = [banner && styles.euiFlyoutBody__banner];
+  const overflowCssStyles = [
     styles.overflow.euiFlyoutBody__overflow,
     banner && styles.overflow.hasBanner,
   ];
@@ -48,7 +46,11 @@ export const EuiFlyoutBody: EuiFlyoutBodyProps = ({
   return (
     <div className={classes} {...rest} css={cssStyles}>
       <div tabIndex={0} className={overflowClasses} css={overflowCSSStyles}>
-        {banner && <div className="euiFlyoutBody__banner">{banner}</div>}
+        {banner && (
+          <div className="euiFlyoutBody__banner" css={bannerCssStyles}>
+            {banner}
+          </div>
+        )}
         <div className="euiFlyoutBody__overflowContent">{children}</div>
       </div>
     </div>
