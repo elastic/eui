@@ -12,7 +12,6 @@ import { euiCanAnimate, euiBreakpoint, logicalCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiShadowXLarge } from '../../themes/amsterdam/global_styling/mixins';
 import { transparentize } from '../../services/color';
-import { euiFormMaxWidth } from '../form/form.styles';
 
 const euiFlyout = keyframes`
   0% {
@@ -167,8 +166,6 @@ const composeFlyoutSizing = (
   size: EuiFlyoutSize
 ) => {
   const euiTheme = euiThemeContext.euiTheme;
-  const euiFormMaxWidthNumber = parseInt(euiFormMaxWidth(euiThemeContext), 10);
-  const euiSizeMediumNumber = parseInt(euiTheme.size.m, 10);
 
   const flyoutSizes = {
     s: {
@@ -178,7 +175,7 @@ const composeFlyoutSizing = (
     },
 
     m: {
-      min: `${euiFormMaxWidthNumber + euiSizeMediumNumber * 2}px`,
+      min: `${euiTheme.breakpoint.m * 0.8}px`,
       width: '50vw',
       max: euiTheme.breakpoint.m,
     },
