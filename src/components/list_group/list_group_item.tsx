@@ -252,7 +252,6 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
 
   const innerStyles = euiListGroupItemInnerStyles(
     euiTheme,
-    isActive,
     isClickable,
     isDisabled
   );
@@ -261,7 +260,6 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     innerStyles.euiListGroupItem__inner,
     innerStyles[size],
     innerStyles[color],
-    isDisabled && innerStyles.isDisabled,
     isActive && innerStyles.isActive,
     isDisabled && innerStyles.isDisabled,
     isClickable && innerStyles.isClickable,
@@ -307,9 +305,14 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     );
   }
 
-  const styles = euiListGroupItemStyles(euiTheme);
+  const styles = euiListGroupItemStyles(
+    euiTheme,
+    isActive,
+    isClickable,
+    isDisabled
+  );
 
-  const cssStyles = [styles.euiListGroupItem];
+  const cssStyles = [styles.euiListGroupItem, styles[color], styles[size]];
 
   const classes = classNames('euiListGroupItem', className);
 

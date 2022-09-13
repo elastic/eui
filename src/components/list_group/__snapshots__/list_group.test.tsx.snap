@@ -13,7 +13,7 @@ exports[`EuiListGroup listItems is rendered 1`] = `
   class="euiListGroup emotion-euiListGroup-s-maxWidthDefault"
 >
   <li
-    class="euiListGroupItem emotion-euiListGroupItem"
+    class="euiListGroupItem emotion-euiListGroupItem-text-m"
   >
     <span
       class="euiListGroupItem__inner emotion-euiListGroupItem__inner-m-text"
@@ -32,7 +32,7 @@ exports[`EuiListGroup listItems is rendered 1`] = `
     </span>
   </li>
   <li
-    class="euiListGroupItem emotion-euiListGroupItem"
+    class="euiListGroupItem emotion-euiListGroupItem-text-m"
   >
     <span
       class="euiListGroupItem__inner emotion-euiListGroupItem__inner-m-text"
@@ -58,7 +58,7 @@ exports[`EuiListGroup listItems is rendered 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem emotion-euiListGroupItem"
+    class="euiListGroupItem emotion-euiListGroupItem-text-m"
   >
     <button
       class="euiListGroupItem__inner emotion-euiListGroupItem__inner-m-text-isClickable"
@@ -73,7 +73,7 @@ exports[`EuiListGroup listItems is rendered 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem emotion-euiListGroupItem"
+    class="euiListGroupItem emotion-euiListGroupItem-text-m"
   >
     <a
       class="euiListGroupItem__inner emotion-euiListGroupItem__inner-m-text-isActive-isClickable"
@@ -89,7 +89,7 @@ exports[`EuiListGroup listItems is rendered 1`] = `
     </a>
   </li>
   <li
-    class="euiListGroupItem emotion-euiListGroupItem"
+    class="euiListGroupItem emotion-euiListGroupItem-text-m"
   >
     <a
       class="euiListGroupItem__inner emotion-euiListGroupItem__inner-m-text-isClickable"
@@ -112,7 +112,7 @@ exports[`EuiListGroup listItems is rendered with color 1`] = `
   class="euiListGroup emotion-euiListGroup-s-maxWidthDefault"
 >
   <li
-    class="euiListGroupItem emotion-euiListGroupItem"
+    class="euiListGroupItem emotion-euiListGroupItem-primary-m"
   >
     <span
       class="euiListGroupItem__inner emotion-euiListGroupItem__inner-m-primary"
@@ -131,7 +131,7 @@ exports[`EuiListGroup listItems is rendered with color 1`] = `
     </span>
   </li>
   <li
-    class="euiListGroupItem emotion-euiListGroupItem"
+    class="euiListGroupItem emotion-euiListGroupItem-primary-m"
   >
     <span
       class="euiListGroupItem__inner emotion-euiListGroupItem__inner-m-primary"
@@ -157,7 +157,7 @@ exports[`EuiListGroup listItems is rendered with color 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem emotion-euiListGroupItem"
+    class="euiListGroupItem emotion-euiListGroupItem-primary-m"
   >
     <button
       class="euiListGroupItem__inner emotion-euiListGroupItem__inner-m-primary-isClickable"
@@ -172,7 +172,7 @@ exports[`EuiListGroup listItems is rendered with color 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem emotion-euiListGroupItem"
+    class="euiListGroupItem emotion-euiListGroupItem-primary-m"
   >
     <a
       class="euiListGroupItem__inner emotion-euiListGroupItem__inner-m-primary-isActive-isClickable"
@@ -188,7 +188,7 @@ exports[`EuiListGroup listItems is rendered with color 1`] = `
     </a>
   </li>
   <li
-    class="euiListGroupItem emotion-euiListGroupItem"
+    class="euiListGroupItem emotion-euiListGroupItem-primary-m"
   >
     <a
       class="euiListGroupItem__inner emotion-euiListGroupItem__inner-m-primary-isClickable"

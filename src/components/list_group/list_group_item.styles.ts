@@ -12,12 +12,16 @@ import {
   euiFontSize,
   logicalCSS,
   euiBackgroundColor,
-  euiFocusRing,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiButtonColor } from '../../themes/amsterdam/global_styling/mixins/button';
 
-export const euiListGroupItemStyles = (euiThemeContext: UseEuiTheme) => {
+export const euiListGroupItemStyles = (
+  euiThemeContext: UseEuiTheme,
+  isActive: boolean,
+  isClickable: boolean,
+  isDisabled: boolean
+) => {
   const euiTheme = euiThemeContext.euiTheme;
 
   return {
@@ -32,12 +36,85 @@ export const euiListGroupItemStyles = (euiThemeContext: UseEuiTheme) => {
         transition: background-color ${euiTheme.animation.fast};
       }
     `,
+    // Sizes
+    xs: css`
+      border-radius: ${euiTheme.border.radius.small};
+    `,
+    s: css`
+      border-radius: ${euiTheme.border.radius.small};
+    `,
+    m: css`
+      border-radius: ${euiTheme.border.radius.medium};
+    `,
+    l: css`
+      border-radius: ${euiTheme.border.radius.medium};
+    `,
+    // Colors
+    primary: css`
+      ${isActive &&
+      !isDisabled &&
+      `
+        background-color: ${euiBackgroundColor(euiThemeContext, 'primary', {
+          method: 'transparent',
+        })};
+      `};
+
+      ${isClickable &&
+      !isDisabled &&
+      `
+        &:hover,
+        &:focus-within {
+          background-color: ${euiBackgroundColor(euiThemeContext, 'primary', {
+            method: 'transparent',
+          })};
+        }
+      `};
+    `,
+    text: css`
+      ${isActive &&
+      !isDisabled &&
+      `
+        background-color: ${euiBackgroundColor(euiThemeContext, 'subdued', {
+          method: 'transparent',
+        })};
+      `};
+
+      ${isClickable &&
+      !isDisabled &&
+      `
+        &:hover,
+        &:focus-within {
+          background-color: ${euiBackgroundColor(euiThemeContext, 'subdued', {
+            method: 'transparent',
+          })};
+        }
+      `};
+    `,
+    subdued: css`
+      ${isActive &&
+      !isDisabled &&
+      `
+        background-color: ${euiBackgroundColor(euiThemeContext, 'subdued', {
+          method: 'transparent',
+        })};
+      `};
+
+      ${isClickable &&
+      !isDisabled &&
+      `
+        &:hover,
+        &:focus-within {
+          background-color: ${euiBackgroundColor(euiThemeContext, 'subdued', {
+            method: 'transparent',
+          })};
+        }
+      `};
+    `,
   };
 };
 
 export const euiListGroupItemInnerStyles = (
   euiThemeContext: UseEuiTheme,
-  isActive: boolean,
   isClickable: boolean,
   isDisabled: boolean
 ) => {
@@ -69,24 +146,20 @@ export const euiListGroupItemInnerStyles = (
       font-weight: ${euiTheme.font.weight.medium};
       letter-spacing: 0;
       ${logicalCSS('min-height', euiTheme.size.l)}
-      border-radius: ${euiTheme.border.radius.small};
     `,
     s: css`
       ${euiFontSize(euiThemeContext, 's')};
       font-weight: ${euiTheme.font.weight.medium};
       letter-spacing: 0;
       ${logicalCSS('min-height', euiTheme.size.xl)}
-      border-radius: ${euiTheme.border.radius.small};
     `,
     m: css`
       ${euiFontSize(euiThemeContext, 'm')};
       ${logicalCSS('min-height', euiTheme.size.xl)}
-      border-radius: ${euiTheme.border.radius.medium};
     `,
     l: css`
       ${euiFontSize(euiThemeContext, 'l')};
       ${logicalCSS('min-height', euiTheme.size.xxl)}
-      border-radius: ${euiTheme.border.radius.medium};
     `,
     // Colors
     primary: css`
@@ -94,87 +167,18 @@ export const euiListGroupItemInnerStyles = (
       `
         color: ${euiButtonColor(euiThemeContext, 'primary').color};
       `}
-
-      ${isActive &&
-      !isDisabled &&
-      `
-        background-color: ${euiBackgroundColor(euiThemeContext, 'primary', {
-          method: 'transparent',
-        })};
-      `};
-
-      ${isClickable &&
-      !isDisabled &&
-      `
-        &:hover,
-        &:focus {
-          background-color: ${euiBackgroundColor(euiThemeContext, 'primary', {
-            method: 'transparent',
-          })};
-        }
-
-        &:focus {
-          ${euiFocusRing(euiThemeContext, 'center')};
-        }
-      `};
     `,
     text: css`
       ${!isDisabled &&
       `
       color: ${euiButtonColor(euiThemeContext, 'text').color};
       `}
-
-      ${isActive &&
-      !isDisabled &&
-      `
-        background-color: ${euiBackgroundColor(euiThemeContext, 'subdued', {
-          method: 'transparent',
-        })};
-      `};
-
-      ${isClickable &&
-      !isDisabled &&
-      `
-        &:hover,
-        &:focus {
-          background-color: ${euiBackgroundColor(euiThemeContext, 'subdued', {
-            method: 'transparent',
-          })};
-        }
-
-        &:focus {
-          ${euiFocusRing(euiThemeContext, 'center')};
-        }
-      `};
     `,
     subdued: css`
       ${!isDisabled &&
       `
         color: ${euiTheme.colors.subduedText};
       `}
-
-      ${isActive &&
-      !isDisabled &&
-      `
-        background-color: ${euiBackgroundColor(euiThemeContext, 'subdued', {
-          method: 'transparent',
-        })};
-      `};
-
-      ${isClickable &&
-      !isDisabled &&
-      `
-        &:hover,
-        &:focus {
-          background-color: ${euiBackgroundColor(euiThemeContext, 'subdued', {
-            method: 'transparent',
-          })};
-        }
-
-        &:focus {
-          ${euiFocusRing(euiThemeContext, 'center')};
-        }
-      `};
     `,
     ghost: css`
       ${!isDisabled &&
