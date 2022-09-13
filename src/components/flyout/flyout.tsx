@@ -259,9 +259,9 @@ export const EuiFlyout = forwardRef(
     const cssStyles = [
       styles.euiFlyout,
       styles.paddingSizes[paddingSize],
-      side === 'left' && type === 'push' && styles.pushLeft,
       isEuiFlyoutSizeNamed(size) && styles[size],
       styles[type],
+      type === 'push' && styles.pushSide[side],
       styles[side],
     ];
 

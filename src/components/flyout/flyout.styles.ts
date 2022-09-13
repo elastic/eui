@@ -139,14 +139,17 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       box-shadow: none;
       clip-path: none;
       animation-duration: 0s !important; // Don't animate on loading a docked nav
-      ${logicalCSS('border-left', euiTheme.border.thick)}
       // Make sure the header shadows are above
       z-index: ${Number(euiTheme.levels.flyout) - 1};
     `,
-    pushLeft: css`
-      ${logicalCSS('border-left', 'none')}
-      ${logicalCSS('border-right', euiTheme.border.thick)}
-    `,
+    pushSide: {
+      right: css`
+        ${logicalCSS('border-left', euiTheme.border.thick)}
+      `,
+      left: css`
+        ${logicalCSS('border-right', euiTheme.border.thick)}
+      `,
+    },
 
     // Padding
     paddingSizes: {
