@@ -23,7 +23,6 @@ const euiFlyout = keyframes`
     transform: translateX(0%);
   }
 `;
-
 const euiFlyoutLeft = keyframes`
   0% {
     opacity: 0;
