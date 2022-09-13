@@ -18,7 +18,7 @@ Array [
     >
       <div
         aria-label="aria-label"
-        class="euiFlyout testClass1 testClass2 emotion-euiFlyout-flyoutPadding-l-flyoutSizing-m-overlay-right"
+        class="euiFlyout testClass1 testClass2 emotion-euiFlyout-l-m-overlay-right"
         data-test-subj="test subject string"
         role="dialog"
         style="max-width: none;"
@@ -65,7 +65,7 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSizing-m-overlay-right"
+        class="euiFlyout emotion-euiFlyout-l-m-overlay-right"
         id="imaflyout"
         role="dialog"
         style="max-width: none;"
@@ -112,7 +112,7 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSizing-m-overlay-right"
+        class="euiFlyout emotion-euiFlyout-l-m-overlay-right"
         role="dialog"
         style="max-width: none;"
         tabindex="-1"
@@ -158,7 +158,7 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSizing-m-overlay-right"
+        class="euiFlyout emotion-euiFlyout-l-m-overlay-right"
         role="dialog"
         style="max-width: none;"
         tabindex="-1"
@@ -204,7 +204,7 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSizing-m-overlay-right"
+        class="euiFlyout emotion-euiFlyout-l-m-overlay-right"
         role="dialog"
         style="max-width: none;"
         tabindex="-1"
@@ -236,7 +236,7 @@ Array [
       data-focus-lock-disabled="false"
     >
       <nav
-        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSizing-m-overlay-right"
+        class="euiFlyout emotion-euiFlyout-l-m-overlay-right"
         role="dialog"
         style="max-width: none;"
         tabindex="-1"
@@ -282,7 +282,7 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSizing-m-overlay-right"
+        class="euiFlyout emotion-euiFlyout-l-m-overlay-right"
         role="dialog"
         style="max-width: 1024px;"
         tabindex="-1"
@@ -328,7 +328,7 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSizing-m-overlay-right"
+        class="euiFlyout emotion-euiFlyout-l-m-overlay-right"
         role="dialog"
         style="max-width: 24rem;"
         tabindex="-1"
@@ -374,7 +374,7 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSizing-m-overlay-right"
+        class="euiFlyout emotion-euiFlyout-l-m-overlay-right"
         role="dialog"
         tabindex="-1"
       >
@@ -419,7 +419,7 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSizing-m-overlay-right"
+        class="euiFlyout emotion-euiFlyout-l-m-overlay-right"
         role="dialog"
         style="max-width: none;"
         tabindex="-1"
@@ -465,7 +465,7 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSizing-m-overlay-right"
+        class="euiFlyout emotion-euiFlyout-l-m-overlay-right"
         role="dialog"
         style="max-width: none;"
         tabindex="-1"
@@ -510,7 +510,7 @@ Array [
     data-focus-lock-disabled="false"
   >
     <div
-      class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSizing-m-overlay-right"
+      class="euiFlyout emotion-euiFlyout-l-m-overlay-right"
       role="dialog"
       style="max-width: none;"
       tabindex="-1"
@@ -555,7 +555,7 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSizing-m-overlay-right"
+        class="euiFlyout emotion-euiFlyout-l-m-overlay-right"
         role="dialog"
         style="max-width: none;"
         tabindex="-1"
@@ -601,7 +601,7 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout emotion-euiFlyout-flyoutPadding-m-flyoutSizing-m-overlay-right"
+        class="euiFlyout emotion-euiFlyout-m-m-overlay-right"
         role="dialog"
         style="max-width: none;"
         tabindex="-1"
@@ -647,7 +647,7 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout emotion-euiFlyout-flyoutPadding-none-flyoutSizing-m-overlay-right"
+        class="euiFlyout emotion-euiFlyout-none-m-overlay-right"
         role="dialog"
         style="max-width: none;"
         tabindex="-1"
@@ -693,7 +693,7 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout emotion-euiFlyout-flyoutPadding-s-flyoutSizing-m-overlay-right"
+        class="euiFlyout emotion-euiFlyout-s-m-overlay-right"
         role="dialog"
         style="max-width: none;"
         tabindex="-1"
@@ -739,7 +739,7 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSizing-m-overlay-right"
+        class="euiFlyout emotion-euiFlyout-l-m-overlay-right"
         style="max-width: none;"
         tabindex="-1"
       >
@@ -784,7 +784,7 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSizing-m-overlay-left"
+        class="euiFlyout emotion-euiFlyout-l-m-overlay-left"
         role="dialog"
         style="max-width: none;"
         tabindex="-1"
@@ -830,7 +830,7 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSizing-m-overlay-right"
+        class="euiFlyout emotion-euiFlyout-l-m-overlay-right"
         role="dialog"
         style="max-width: none;"
         tabindex="-1"
@@ -876,7 +876,7 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-overlay-right"
+        class="euiFlyout emotion-euiFlyout-l-overlay-right"
         role="dialog"
         style="max-width: none; width: 500px;"
         tabindex="-1"
@@ -922,7 +922,7 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSizing-l-overlay-right"
+        class="euiFlyout emotion-euiFlyout-l-l-overlay-right"
         role="dialog"
         style="max-width: none;"
         tabindex="-1"
@@ -968,7 +968,7 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSizing-m-overlay-right"
+        class="euiFlyout emotion-euiFlyout-l-m-overlay-right"
         role="dialog"
         style="max-width: none;"
         tabindex="-1"
@@ -1014,7 +1014,7 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSizing-s-overlay-right"
+        class="euiFlyout emotion-euiFlyout-l-s-overlay-right"
         role="dialog"
         style="max-width: none;"
         tabindex="-1"
@@ -1060,7 +1060,7 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
-        class="euiFlyout emotion-euiFlyout-flyoutPadding-l-flyoutSizing-m-push-right-right"
+        class="euiFlyout emotion-euiFlyout-l-m-push-right-right"
         role="dialog"
         style="max-width: none;"
         tabindex="-1"
