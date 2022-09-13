@@ -14,12 +14,8 @@ import {
   logicalCSS,
   logicalTextAlignCSS,
 } from '../../global_styling';
-import {
-  UseEuiTheme,
-  makeDisabledContrastColor,
-  tint,
-  transparentize,
-} from '../../services';
+import { euiButtonColor } from '../../themes/amsterdam/global_styling/mixins';
+import { UseEuiTheme, tint, transparentize } from '../../services';
 
 export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
@@ -69,10 +65,9 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     disabled: css`
       // Using !important to override inline styles
-      color: ${makeDisabledContrastColor(euiTheme.colors.disabledText)(
-        euiTheme.colors.disabled
-      )} !important;
-      background-color: ${euiTheme.colors.disabled} !important;
+      color: ${euiButtonColor(euiThemeContext, 'disabled').color} !important;
+      background-color: ${euiButtonColor(euiThemeContext, 'disabled')
+        .backgroundColor} !important;
     `,
     // Hollow has a border and is mostly used for autocompleters.
     hollow: css`
