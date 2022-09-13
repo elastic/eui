@@ -194,7 +194,7 @@ const composeFlyoutSizing = (
     },
   };
 
-  const flyoutSizing = css`
+  return `
     ${logicalCSS('max-width', flyoutSizes[size].max)}
 
     ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
@@ -206,8 +206,6 @@ const composeFlyoutSizing = (
       ${logicalCSS('width', flyoutSizes[size].min)}
     }
   `;
-
-  return flyoutSizing;
 };
 
 const composeFlyoutPadding = (
