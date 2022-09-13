@@ -38,7 +38,7 @@ export const EuiFlyoutBody: EuiFlyoutBodyProps = ({
 
     const cssStyles = [styles.euiFlyoutBody];
     const bannerCssStyles = [banner && styles.euiFlyoutBody__banner];
-  const overflowCSSStyles = [
+  const overflowCssStyles = [
     styles.overflow.euiFlyoutBody__overflow,
     banner && styles.overflow.hasBanner,
   ];
