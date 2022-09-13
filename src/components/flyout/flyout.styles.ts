@@ -229,7 +229,7 @@ const composeFlyoutPadding = (
     l: `${parseInt(euiTheme.size.l, 10) / 1.5}px ${euiTheme.size.l};`,
   };
 
-  const flyoutPadding = css`
+  return `
     .euiFlyoutHeader {
       ${logicalCSS('padding-horizontal', paddingModifierMap[paddingSize])}
       ${logicalCSS('padding-top', paddingModifierMap[paddingSize])}
@@ -251,5 +251,4 @@ const composeFlyoutPadding = (
       padding: ${footerPaddingSizes[paddingSize]};
     }
   `;
-  return flyoutPadding;
 };
