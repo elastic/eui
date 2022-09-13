@@ -30,7 +30,7 @@ import {
   useEuiTheme,
 } from '../../services';
 
-import { CommonProps, keysOf, PropsOfElement } from '../common';
+import { CommonProps, PropsOfElement } from '../common';
 import { EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
 import { EuiOverlayMask, EuiOverlayMaskProps } from '../overlay_mask';
 import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../button';
@@ -40,24 +40,13 @@ import { EuiPortal } from '../portal';
 
 import { euiFlyoutStyles, euiFlyoutCloseButtonStyles } from './flyout.styles';
 
-const typeToClassNameMap = {
-  push: 'euiFlyout--push',
-  overlay: null,
-};
-
-export const TYPES = keysOf(typeToClassNameMap);
+export const TYPES = ['push', 'overlay'] as const;
 type _EuiFlyoutType = typeof TYPES[number];
 
 export const SIDES = ['left', 'right'] as const;
 type _EuiFlyoutSide = typeof SIDES[number];
 
-const sizeToClassNameMap = {
-  s: 'euiFlyout--small',
-  m: 'euiFlyout--medium',
-  l: 'euiFlyout--large',
-};
-
-export const SIZES = keysOf(sizeToClassNameMap);
+export const SIZES = ['s', 'm', 'l'] as const;
 export type EuiFlyoutSize = typeof SIZES[number];
 
 /**
