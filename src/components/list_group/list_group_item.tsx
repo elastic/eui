@@ -61,8 +61,8 @@ export type EuiListGroupItemProps = CommonProps &
      */
     size?: EuiListGroupItemSize;
     /**
-     * By default the item will inherit the color of its wrapper (button/link/span),
-     * otherwise pass one of the acceptable options
+     * By default the item will get the color `text`,
+     * You can customize the color of the item by passing a color name.
      */
     color?: EuiListGroupItemColor;
 
@@ -208,9 +208,15 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
       ...rest
     } = extraAction;
 
+    // EuiListGroupItemExtraActionProps extends EuiButtonIconPropsForButton
+    // which doesn't have the color `subdued` so we need to assign a valid color
+    // the most similar is `text` so we'll use that
+    const extraActionColor: EuiListGroupItemExtraActionProps['color'] =
+      color === 'subdued' ? 'text' : color;
+
     extraActionNode = (
       <EuiListGroupItemExtraAction
-        color={color as EuiListGroupItemExtraActionProps['color']}
+        color={extraActionColor}
         iconType={iconType}
         alwaysShow={alwaysShow}
         {...rest}

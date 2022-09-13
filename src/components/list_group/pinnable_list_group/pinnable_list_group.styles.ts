@@ -22,7 +22,7 @@ export const euiPinnableListGroupItemExtraActionStyles = ({
     // Variants
     pinned: css`
       &:not(:hover):not(:focus) {
-        ${makeHighContrastColor(euiTheme.colors.lightShade)(euiTheme)}
+        color: ${makeHighContrastColor(euiTheme.colors.lightShade)(euiTheme)};
       }
     `,
   };
