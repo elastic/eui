@@ -25,7 +25,7 @@ export const euiFlyoutBodyStyles = (euiThemeContext: UseEuiTheme) => {
         ${euiYScrollWithShadows(euiThemeContext)};
       `,
       hasBanner: css`
-        ${euiYScrollWithShadows(euiThemeContext, {}, 'end')};
+        ${euiYScrollWithShadows(euiThemeContext, { side: 'end' })};
       `,
     },
     euiFlyoutBody__banner: css`
