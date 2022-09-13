@@ -268,8 +268,8 @@ export const DatePickerExample = {
           </p>
           <EuiCallOut color="warning">
             Moment will try to load the locale on demand when it is used.
-            Bundlers that do not support dynamic imports will need to explicitly
-            import the locale, e.g.{' '}
+            Bundlers that do not support dynamic require statements will need to
+            explicitly import the locale, e.g.{' '}
             <EuiCode>{"import 'moment/locale/zh-cn'"}</EuiCode>. See the below
             demo JS for examples.
           </EuiCallOut>
