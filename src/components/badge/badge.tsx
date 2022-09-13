@@ -24,6 +24,7 @@ import {
   euiPaletteColorBlindBehindText,
   getSecureRelForTarget,
   isColorDark,
+  wcagContrastMin,
 } from '../../services';
 import { EuiInnerText } from '../inner_text';
 import { EuiIcon, IconType } from '../icon';
@@ -149,8 +150,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     };
 
     let textColor = null;
-    const wcagContrastBase = 4.5; // WCAG AA contrast level
-    let wcagContrast = null;
+    let contrastRatio = null;
     let colorHex = null;
 
     try {
@@ -176,17 +176,17 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
         textColor = setTextColor(euiTheme, color);
 
         // Check the contrast
-        wcagContrast = getColorContrast(textColor, color);
+        contrastRatio = getColorContrast(textColor, color);
 
-        if (wcagContrast < wcagContrastBase) {
+        if (contrastRatio < wcagContrastMin) {
           // It's low contrast, so lets show a warning in the console
           console.warn(
             'Warning: ',
             color,
             ' badge has low contrast of ',
-            wcagContrast.toFixed(2),
+            contrastRatio.toFixed(2),
             '. Should be above ',
-            wcagContrastBase,
+            wcagContrastMin,
             '.'
           );
         }
