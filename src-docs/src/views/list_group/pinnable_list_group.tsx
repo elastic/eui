@@ -22,6 +22,7 @@ const someListItems: EuiPinnableListGroupItemProps[] = [
     label: 'Link with href and custom pin titles',
     href: '/#',
     pinned: false,
+    color: 'primary',
   },
   {
     id: '3',
