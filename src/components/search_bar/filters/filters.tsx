@@ -20,6 +20,10 @@ import {
   FieldValueToggleGroupFilter,
   FieldValueToggleGroupFilterConfigType,
 } from './field_value_toggle_group_filter';
+import {
+  CustomComponentFilter,
+  CustomComponentFilterConfigType,
+} from './custom_component_filter';
 import { Query } from '../query';
 
 export const createFilter = (
@@ -48,6 +52,9 @@ export const createFilter = (
     case 'field_value_toggle_group':
       return <FieldValueToggleGroupFilter {...props} config={config} />;
 
+    case 'custom_component':
+      return <CustomComponentFilter {...props} config={config} />;
+
     default:
       // @ts-ignore TS knows that we've checked `config.type` exhaustively
       throw new Error(`Unknown search filter type [${config.type}]`);
@@ -58,4 +65,5 @@ export type SearchFilterConfig =
   | IsFilterConfigType
   | FieldValueSelectionFilterConfigType
   | FieldValueToggleFilterConfigType
-  | FieldValueToggleGroupFilterConfigType;
+  | FieldValueToggleGroupFilterConfigType
+  | CustomComponentFilterConfigType;

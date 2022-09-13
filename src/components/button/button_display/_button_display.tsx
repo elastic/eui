@@ -112,6 +112,7 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
       children,
       iconType,
       iconSide,
+      iconSize,
       size = 'm',
       isDisabled,
       disabled,
@@ -125,6 +126,7 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
       target,
       rel,
       type = 'button',
+      style,
       ...rest
     },
     ref
@@ -135,12 +137,9 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
       isLoading,
     });
 
-    const minWidthPx: string =
-      typeof minWidth === 'number' ? `${minWidth}px` : (minWidth as string);
-
     const theme = useEuiTheme();
 
-    const styles = euiButtonDisplayStyles(theme, minWidthPx);
+    const styles = euiButtonDisplayStyles(theme);
     const buttonRadiusStyle = useEuiButtonRadiusCSS()[size];
     const cssStyles = [
       styles.euiButtonDisplay,
@@ -156,6 +155,7 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
         isDisabled={buttonIsDisabled}
         iconType={iconType}
         iconSide={iconSide}
+        iconSize={iconSize}
         textProps={{ ...textProps }}
         {...contentProps}
       >
@@ -193,6 +193,7 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
       element,
       {
         css: cssStyles,
+        style: minWidth ? { ...style, minWidth } : style,
         ref,
         ...elementProps,
         ...relObj,
