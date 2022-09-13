@@ -276,7 +276,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   if (href && !isDisabled) {
     itemContent = (
       <a
-        className="euiListGroupItem__inner"
+        className="euiListGroupItem__button"
         css={cssInnerStyles}
         href={href}
         target={target}
@@ -292,7 +292,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     itemContent = (
       <button
         type="button"
-        className="euiListGroupItem__inner"
+        className="euiListGroupItem__button"
         css={cssInnerStyles}
         disabled={isDisabled}
         onClick={onClick}
@@ -305,7 +305,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     );
   } else {
     itemContent = (
-      <span className="euiListGroupItem__inner" css={cssInnerStyles} {...rest}>
+      <span className="euiListGroupItem__text" css={cssInnerStyles} {...rest}>
         {iconNode}
         {labelContent}
       </span>

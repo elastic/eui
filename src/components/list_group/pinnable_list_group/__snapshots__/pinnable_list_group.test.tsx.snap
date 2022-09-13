@@ -10,7 +10,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-text-m"
   >
     <span
-      class="euiListGroupItem__inner emotion-euiListGroupItem__inner-m-text"
+      class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text"
     >
       <span
         class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
@@ -42,7 +42,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-text-m"
   >
     <span
-      class="euiListGroupItem__inner emotion-euiListGroupItem__inner-m-text"
+      class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text"
     >
       <span
         class="euiListGroupItem__label emotion-euiListGroupItem__label"
@@ -68,7 +68,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-text-m"
   >
     <a
-      class="euiListGroupItem__inner emotion-euiListGroupItem__inner-m-text-isActive-isClickable"
+      class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-text-isActive-isClickable"
       href="#"
       rel="noreferrer"
     >
@@ -97,7 +97,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-text-m"
   >
     <button
-      class="euiListGroupItem__inner emotion-euiListGroupItem__inner-m-text-isClickable"
+      class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-text-isClickable"
       type="button"
     >
       <span
@@ -125,7 +125,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-text-m"
   >
     <a
-      class="euiListGroupItem__inner emotion-euiListGroupItem__inner-m-text-isClickable"
+      class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-text-isClickable"
       href="#"
       rel="noreferrer"
     >
@@ -154,7 +154,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-text-m"
   >
     <a
-      class="euiListGroupItem__inner emotion-euiListGroupItem__inner-m-text-isClickable"
+      class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-text-isClickable"
       href="#"
       rel="noreferrer"
     >
@@ -179,7 +179,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-text-m"
   >
     <span
-      class="euiListGroupItem__inner emotion-euiListGroupItem__inner-m-text"
+      class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text"
     >
       <span
         class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
@@ -211,7 +211,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-text-m"
   >
     <span
-      class="euiListGroupItem__inner emotion-euiListGroupItem__inner-m-text"
+      class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text"
     >
       <span
         class="euiListGroupItem__label emotion-euiListGroupItem__label"
@@ -237,7 +237,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-text-m"
   >
     <a
-      class="euiListGroupItem__inner emotion-euiListGroupItem__inner-m-text-isActive-isClickable"
+      class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-text-isActive-isClickable"
       href="#"
       rel="noreferrer"
     >
@@ -266,7 +266,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-text-m"
   >
     <button
-      class="euiListGroupItem__inner emotion-euiListGroupItem__inner-m-text-isClickable"
+      class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-text-isClickable"
       type="button"
     >
       <span
@@ -294,7 +294,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-text-m"
   >
     <a
-      class="euiListGroupItem__inner emotion-euiListGroupItem__inner-m-text-isClickable"
+      class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-text-isClickable"
       href="#"
       rel="noreferrer"
     >
@@ -323,7 +323,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-text-m"
   >
     <a
-      class="euiListGroupItem__inner emotion-euiListGroupItem__inner-m-text-isClickable"
+      class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-text-isClickable"
       href="#"
       rel="noreferrer"
     >

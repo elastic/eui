@@ -16,7 +16,7 @@ exports[`EuiListGroup listItems is rendered 1`] = `
     class="euiListGroupItem emotion-euiListGroupItem-text-m"
   >
     <span
-      class="euiListGroupItem__inner emotion-euiListGroupItem__inner-m-text"
+      class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text"
     >
       <span
         class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
@@ -35,7 +35,7 @@ exports[`EuiListGroup listItems is rendered 1`] = `
     class="euiListGroupItem emotion-euiListGroupItem-text-m"
   >
     <span
-      class="euiListGroupItem__inner emotion-euiListGroupItem__inner-m-text"
+      class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text"
     >
       <span
         class="euiListGroupItem__label emotion-euiListGroupItem__label"
@@ -61,7 +61,7 @@ exports[`EuiListGroup listItems is rendered 1`] = `
     class="euiListGroupItem emotion-euiListGroupItem-text-m"
   >
     <button
-      class="euiListGroupItem__inner emotion-euiListGroupItem__inner-m-text-isClickable"
+      class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-text-isClickable"
       type="button"
     >
       <span
@@ -76,7 +76,7 @@ exports[`EuiListGroup listItems is rendered 1`] = `
     class="euiListGroupItem emotion-euiListGroupItem-text-m"
   >
     <a
-      class="euiListGroupItem__inner emotion-euiListGroupItem__inner-m-text-isActive-isClickable"
+      class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-text-isActive-isClickable"
       href="#"
       rel="noreferrer"
     >
@@ -92,7 +92,7 @@ exports[`EuiListGroup listItems is rendered 1`] = `
     class="euiListGroupItem emotion-euiListGroupItem-text-m"
   >
     <a
-      class="euiListGroupItem__inner emotion-euiListGroupItem__inner-m-text-isClickable"
+      class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-text-isClickable"
       href="#"
       rel="noreferrer"
     >
@@ -115,7 +115,7 @@ exports[`EuiListGroup listItems is rendered with color 1`] = `
     class="euiListGroupItem emotion-euiListGroupItem-primary-m"
   >
     <span
-      class="euiListGroupItem__inner emotion-euiListGroupItem__inner-m-primary"
+      class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-primary"
     >
       <span
         class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
@@ -134,7 +134,7 @@ exports[`EuiListGroup listItems is rendered with color 1`] = `
     class="euiListGroupItem emotion-euiListGroupItem-primary-m"
   >
     <span
-      class="euiListGroupItem__inner emotion-euiListGroupItem__inner-m-primary"
+      class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-primary"
     >
       <span
         class="euiListGroupItem__label emotion-euiListGroupItem__label"
@@ -160,7 +160,7 @@ exports[`EuiListGroup listItems is rendered with color 1`] = `
     class="euiListGroupItem emotion-euiListGroupItem-primary-m"
   >
     <button
-      class="euiListGroupItem__inner emotion-euiListGroupItem__inner-m-primary-isClickable"
+      class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-primary-isClickable"
       type="button"
     >
       <span
@@ -175,7 +175,7 @@ exports[`EuiListGroup listItems is rendered with color 1`] = `
     class="euiListGroupItem emotion-euiListGroupItem-primary-m"
   >
     <a
-      class="euiListGroupItem__inner emotion-euiListGroupItem__inner-m-primary-isActive-isClickable"
+      class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-primary-isActive-isClickable"
       href="#"
       rel="noreferrer"
     >
@@ -191,7 +191,7 @@ exports[`EuiListGroup listItems is rendered with color 1`] = `
     class="euiListGroupItem emotion-euiListGroupItem-primary-m"
   >
     <a
-      class="euiListGroupItem__inner emotion-euiListGroupItem__inner-m-primary-isClickable"
+      class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-primary-isClickable"
       href="#"
       rel="noreferrer"
     >
