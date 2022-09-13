@@ -288,7 +288,7 @@ export const EuiFlyout = forwardRef(
 
       const closeButtonStyles = euiFlyoutCloseButtonStyles(euiTheme);
 
-      const closeButtonCSSStyles = [
+      const closeButtonCssStyles = [
         closeButtonStyles.euiFlyout__closeButton,
         closeButtonStyles[closeButtonPosition],
         side === 'left' && closeButtonStyles.outsideLeft,
