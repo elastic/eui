@@ -17,6 +17,7 @@ import {
 import { UseEuiTheme } from '../../services';
 import { euiShadowXLarge } from '../../themes/amsterdam/global_styling/mixins';
 import { transparentize } from '../../services/color';
+import { euiFormMaxWidth } from '../form/form.styles';
 
 const euiFlyoutSlideInRight = keyframes`
   0% {
@@ -117,6 +118,9 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
     l: css`
       ${composeFlyoutSizing(euiThemeContext, 'l')}
     `,
+    noMaxWidth: css`
+      ${logicalCSS('max-width', 'none')}
+    `,
 
     // Side
     right: css`
@@ -185,15 +189,16 @@ const composeFlyoutSizing = (
     },
 
     m: {
-      min: `${euiTheme.breakpoint.m * 0.8}px`,
+      // Calculated for forms plus padding
+      min: `${mathWithUnits(euiFormMaxWidth(euiThemeContext), (x) => x + 24)}`,
       width: '50vw',
-      max: euiTheme.breakpoint.m,
+      max: `${euiTheme.breakpoint.m}px`,
     },
 
     l: {
       min: `${Math.round(euiTheme.breakpoint.m * 0.9)}px`,
       width: '75vw',
-      max: `${Math.round(euiTheme.breakpoint.l)}px`,
+      max: `${euiTheme.breakpoint.l}px`,
     },
   };
 

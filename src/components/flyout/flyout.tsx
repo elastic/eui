@@ -29,6 +29,7 @@ import {
   useIsWithinMinBreakpoint,
   useEuiTheme,
 } from '../../services';
+import { logicalStyle } from '../../global_styling';
 
 import { CommonProps, PropsOfElement } from '../common';
 import { EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
@@ -244,13 +245,13 @@ export const EuiFlyout = forwardRef(
 
     let newStyle;
 
-    if (maxWidth !== true) {
-      newStyle = { ...style, maxWidth: maxWidth === false ? 'none' : maxWidth };
+    if (typeof maxWidth !== 'boolean') {
+      newStyle = { ...style, ...logicalStyle('max-width', maxWidth) };
     }
 
     // Setting size
     if (!isEuiFlyoutSizeNamed(size)) {
-      newStyle = { ...(newStyle || style), width: size };
+      newStyle = { ...(newStyle || style), ...logicalStyle('width', size) };
     }
 
     const euiTheme = useEuiTheme();
@@ -260,6 +261,7 @@ export const EuiFlyout = forwardRef(
       styles.euiFlyout,
       styles.paddingSizes[paddingSize],
       isEuiFlyoutSizeNamed(size) && styles[size],
+      maxWidth === false && styles.noMaxWidth,
       styles[type],
       type === 'push' && styles.pushSide[side],
       styles[side],
