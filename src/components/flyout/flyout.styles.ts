@@ -8,7 +8,12 @@
 
 import { css, keyframes } from '@emotion/react';
 import { _EuiFlyoutPaddingSize, EuiFlyoutSize } from './flyout';
-import { euiCanAnimate, euiBreakpoint, logicalCSS } from '../../global_styling';
+import {
+  euiCanAnimate,
+  euiBreakpoint,
+  logicalCSS,
+  mathWithUnits,
+} from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiShadowXLarge } from '../../themes/amsterdam/global_styling/mixins';
 import { transparentize } from '../../services/color';
@@ -223,8 +228,10 @@ const composeFlyoutPadding = (
   const footerPaddingSizes = {
     none: 0,
     s: euiTheme.size.s,
-    m: `${parseInt(euiTheme.size.base, 10) * 0.75}px ${euiTheme.size.base};`,
-    l: `${parseInt(euiTheme.size.l, 10) / 1.5}px ${euiTheme.size.l};`,
+    m: `${mathWithUnits(euiTheme.size.base, (x) => x * 0.75)} ${
+      euiTheme.size.base
+    };`,
+    l: `${mathWithUnits(euiTheme.size.l, (x) => x / 1.5)} ${euiTheme.size.l};`,
   };
 
   return `
