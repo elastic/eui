@@ -36,7 +36,7 @@ import {
 import { useContainerCallbacks, getPosition } from './helpers';
 import {
   EuiResizableButtonMouseEvent,
-  EuiResizableButtonKeyDownEvent,
+  EuiResizableButtonKeyEvent,
   EuiResizableContainerState,
   EuiResizableContainerActions,
 } from './types';
@@ -45,6 +45,8 @@ const containerDirections = {
   vertical: 'vertical',
   horizontal: 'horizontal',
 };
+
+type ResizeTrigger = 'pointer' | 'key';
 
 export interface EuiResizableContainerProps
   extends HTMLAttributes<HTMLDivElement>,
@@ -68,6 +70,14 @@ export interface EuiResizableContainerProps
    */
   onPanelWidthChange?: ({}: { [key: string]: number }) => any;
   onToggleCollapsed?: ToggleCollapseCallback;
+  /**
+   * Called when resizing starts
+   */
+  onResizeStart?: (trigger: ResizeTrigger) => any;
+  /**
+   * Called when resizing ends
+   */
+  onResizeEnd?: (trigger: ResizeTrigger) => any;
   style?: CSSProperties;
 }
 
@@ -87,6 +97,8 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
   className,
   onPanelWidthChange,
   onToggleCollapsed,
+  onResizeStart,
+  onResizeEnd,
   ...rest
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -122,6 +134,22 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
     }
   }, [initialize, containerSize]);
 
+  const resizeTrigger = useRef<ResizeTrigger>();
+  const resizeStart = useCallback(
+    (trigger: ResizeTrigger) => {
+      onResizeStart?.(trigger);
+      resizeTrigger.current = trigger;
+    },
+    [onResizeStart]
+  );
+  const resizeEnd = useCallback(
+    (trigger: ResizeTrigger) => {
+      onResizeEnd?.(trigger);
+      resizeTrigger.current = undefined;
+    },
+    [onResizeEnd]
+  );
+
   const onMouseDown = useCallback(
     (event: EuiResizableButtonMouseEvent) => {
       const currentTarget = event.currentTarget;
@@ -131,9 +159,10 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
       const prevPanelId = prevPanel!.id;
       const nextPanelId = nextPanel!.id;
       const position = getPosition(event, isHorizontal);
+      resizeStart('pointer');
       actions.dragStart({ position, prevPanelId, nextPanelId });
     },
-    [actions, isHorizontal]
+    [actions, isHorizontal, resizeStart]
   );
 
   const onMouseMove = useCallback(
@@ -160,45 +189,61 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
     ]
   );
 
-  const onKeyDown = useCallback(
-    (event: EuiResizableButtonKeyDownEvent) => {
-      const { key, currentTarget } = event;
-      const shouldResizeHorizontalPanel =
-        isHorizontal && (key === keys.ARROW_LEFT || key === keys.ARROW_RIGHT);
-      const shouldResizeVerticalPanel =
-        !isHorizontal && (key === keys.ARROW_UP || key === keys.ARROW_DOWN);
-      const prevPanelId = currentTarget.previousElementSibling!.id;
-      const nextPanelId = currentTarget.nextElementSibling!.id;
-      let direction;
-      if (key === keys.ARROW_DOWN || key === keys.ARROW_RIGHT) {
+  const getDirection = useCallback(
+    (key: string) => {
+      let direction: 'forward' | 'backward' | null = null;
+      if (
+        (isHorizontal && key === keys.ARROW_LEFT) ||
+        (!isHorizontal && key === keys.ARROW_UP)
+      ) {
+        direction = 'backward';
+      } else if (
+        (isHorizontal && key === keys.ARROW_RIGHT) ||
+        (!isHorizontal && key === keys.ARROW_DOWN)
+      ) {
         direction = 'forward';
       }
-      if (key === keys.ARROW_UP || key === keys.ARROW_LEFT) {
-        direction = 'backward';
-      }
+      return direction;
+    },
+    [isHorizontal]
+  );
 
-      if (
-        direction === 'forward' ||
-        (direction === 'backward' &&
-          (shouldResizeHorizontalPanel || shouldResizeVerticalPanel) &&
-          prevPanelId &&
-          nextPanelId)
-      ) {
+  const onKeyDown = useCallback(
+    (event: EuiResizableButtonKeyEvent) => {
+      const { key, currentTarget } = event;
+      const direction = getDirection(key);
+      const prevPanelId = currentTarget.previousElementSibling!.id;
+      const nextPanelId = currentTarget.nextElementSibling!.id;
+
+      if (direction && prevPanelId && nextPanelId) {
+        if (!event.repeat) {
+          resizeStart('key');
+        }
         event.preventDefault();
         actions.keyMove({ direction, prevPanelId, nextPanelId });
       }
     },
-    [actions, isHorizontal]
+    [actions, getDirection, resizeStart]
   );
 
+  const onKeyUp = useCallback(() => {
+    if (resizeTrigger.current === 'key') {
+      resizeEnd('key');
+    }
+  }, [resizeEnd]);
+
   const onMouseUp = useCallback(() => {
+    if (resizeTrigger.current === 'pointer') {
+      resizeEnd('pointer');
+    }
     actions.reset();
-  }, [actions]);
+  }, [actions, resizeEnd]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const EuiResizableButton = useCallback(
     euiResizableButtonWithControls({
       onKeyDown,
+      onKeyUp,
       onMouseDown,
       onTouchStart: onMouseDown,
       onFocus: actions.resizerFocus,

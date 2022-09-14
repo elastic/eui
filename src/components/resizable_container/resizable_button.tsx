@@ -23,11 +23,12 @@ import { useEuiResizableContainerContext } from './context';
 import {
   EuiResizableButtonController,
   EuiResizableButtonMouseEvent,
-  EuiResizableButtonKeyDownEvent,
+  EuiResizableButtonKeyEvent,
 } from './types';
 
 interface EuiResizableButtonControls {
-  onKeyDown: (eve: EuiResizableButtonKeyDownEvent) => void;
+  onKeyDown: (eve: EuiResizableButtonKeyEvent) => void;
+  onKeyUp: (eve: EuiResizableButtonKeyEvent) => void;
   onMouseDown: (eve: EuiResizableButtonMouseEvent) => void;
   onTouchStart: (eve: EuiResizableButtonMouseEvent) => void;
   onFocus: (id: string) => void;

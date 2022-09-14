@@ -41,7 +41,7 @@ export type EuiResizableButtonMouseEvent =
   | MouseEvent<HTMLButtonElement>
   | TouchEvent<HTMLButtonElement>;
 
-export type EuiResizableButtonKeyDownEvent = KeyboardEvent<HTMLButtonElement>;
+export type EuiResizableButtonKeyEvent = KeyboardEvent<HTMLButtonElement>;
 
 export interface EuiResizableContainerState {
   isDragging: boolean;

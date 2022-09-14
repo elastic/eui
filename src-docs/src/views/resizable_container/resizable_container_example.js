@@ -23,6 +23,7 @@ import { PanelModeType } from '!!prop-loader!../../../../src/components/resizabl
 import ResizableContainerBasic from './resizable_container_basic';
 import ResizableContainerVertical from './resizable_container_vertical';
 import ResizableContainerResetValues from './resizable_container_reset_values';
+import ResizableContainerCallbacks from './resizable_container_callbacks';
 import ResizablePanels from './resizable_panels';
 import ResizablePanelCollapsible from './resizable_panel_collapsible';
 import ResizablePanelCollapsibleResponsive from './resizable_panel_collapsible_responsive';
@@ -32,6 +33,7 @@ import ResizablePanelCollapsibleExt from './resizable_panel_collapsible_external
 const ResizableContainerSource = require('!!raw-loader!./resizable_container_basic');
 const ResizableContainerVerticalSource = require('!!raw-loader!./resizable_container_vertical');
 const ResizableContainerResetValuesSource = require('!!raw-loader!./resizable_container_reset_values');
+const ResizableContainerCallbacksSource = require('!!raw-loader!./resizable_container_callbacks');
 const ResizablePanelsSource = require('!!raw-loader!./resizable_panels');
 const ResizablePanelCollapsibleSource = require('!!raw-loader!./resizable_panel_collapsible');
 const ResizablePanelCollapsibleResponsiveSource = require('!!raw-loader!./resizable_panel_collapsible_responsive');
@@ -312,6 +314,27 @@ export const ResizableContainerExample = {
       props: { EuiResizableContainer, EuiResizablePanel, EuiResizableButton },
       demo: <ResizableContainerVertical />,
       snippet: verticalSnippet,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: ResizableContainerCallbacksSource,
+        },
+      ],
+      title: 'Resizable container callbacks',
+      text: (
+        <>
+          <p>
+            <strong>EuiResizableContainer</strong> also provides action hooks
+            for parent components to access internal methods, such as{' '}
+            <strong>EuiResizablePanel</strong> collapse toggling. The actions
+            are accessible via the third parameter of the render prop function.
+          </p>
+        </>
+      ),
+      demo: <ResizableContainerCallbacks />,
+      snippet: collapsibleExtSnippet,
     },
     {
       source: [
