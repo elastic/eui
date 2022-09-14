@@ -135,19 +135,26 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
   }, [initialize, containerSize]);
 
   const resizeTrigger = useRef<ResizeTrigger>();
-  const resizeStart = useCallback(
-    (trigger: ResizeTrigger) => {
-      onResizeStart?.(trigger);
-      resizeTrigger.current = trigger;
-    },
-    [onResizeStart]
-  );
   const resizeEnd = useCallback(
     (trigger: ResizeTrigger) => {
       onResizeEnd?.(trigger);
       resizeTrigger.current = undefined;
     },
     [onResizeEnd]
+  );
+  const resizeStart = useCallback(
+    (trigger: ResizeTrigger) => {
+      // If another resize starts while the previous one is still in progress
+      // (e.g. user presses opposite arrow to change direction while the first
+      // is still held down, or user presses an arrow while dragging with the
+      // mouse), we want to signal the end of the previous resize first.
+      if (resizeTrigger.current) {
+        resizeEnd(resizeTrigger.current);
+      }
+      onResizeStart?.(trigger);
+      resizeTrigger.current = trigger;
+    },
+    [onResizeStart, resizeEnd]
   );
 
   const onMouseDown = useCallback(
