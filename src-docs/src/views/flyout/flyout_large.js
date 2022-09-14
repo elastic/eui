@@ -56,7 +56,7 @@ export default () => {
           </EuiTitle>
         </EuiFlyoutHeader>
         <EuiFlyoutBody>
-          <EuiFormRow label="Change the paddingSize">
+          <EuiFormRow label="Change the flyout size">
             <EuiButtonGroup
               legend="Flyout size"
               color="primary"
