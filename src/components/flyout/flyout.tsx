@@ -66,6 +66,7 @@ interface _EuiFlyoutProps {
   /**
    * Defines the width of the panel.
    * Pass a predefined size of `s | m | l`, or pass any number/string compatible with the CSS `width` attribute
+   * @default m
    */
   size?: EuiFlyoutSize | CSSProperties['width'];
   /**
@@ -74,23 +75,27 @@ interface _EuiFlyoutProps {
    * set to `false` to not restrict the width,
    * set to a number for a custom width in px,
    * set to a string for a custom width in custom measurement.
+   * @default false
    */
   maxWidth?: boolean | number | string;
   /**
    * Customize the padding around the content of the flyout header, body and footer
+   * @default l
    */
   paddingSize?: _EuiFlyoutPaddingSize;
   /**
    * Adds an EuiOverlayMask and wraps in an EuiPortal
+   * @default true
    */
   ownFocus?: boolean;
   /**
    * Hides the default close button. You must provide another close button somewhere within the flyout.
+   * @default false
    */
   hideCloseButton?: boolean;
   /**
-   * Specify an aria-label for the close button of the flyout.
-   * Default is `'Close this dialog'`.
+   * Specify a custom aria-label for the close button of the flyout.
+   * @default "Close this dialog"
    */
   closeButtonAriaLabel?: string;
   /**
@@ -101,6 +106,7 @@ interface _EuiFlyoutProps {
    * Position of close button.
    * `inside`: Floating to just inside the flyout, always top right;
    * `outside`: Floating just outside the flyout near the top (side dependent on `side`). Helpful when the close button may cover other interactable content.
+   * @default inside
    */
   closeButtonPosition?: 'inside' | 'outside';
   /**
@@ -110,6 +116,7 @@ interface _EuiFlyoutProps {
   /**
    * How to display the the flyout in relation to the body content;
    * `push` keeps it visible, pushing the `<body>` content via padding
+   * @default overlay
    */
   type?: _EuiFlyoutType;
   /**
@@ -120,15 +127,18 @@ interface _EuiFlyoutProps {
   /**
    * Which side of the window to attach to.
    * The `left` option should only be used for navigation.
+   * @default right
    */
   side?: _EuiFlyoutSide;
   /**
    * Defaults to `dialog` which is best for most cases of the flyout.
    * Otherwise pass in your own, aria-role, or `null` to remove it and use the semantic `as` element instead
+   * @default dialog
    */
   role?: null | string;
   /**
    * Named breakpoint (`xs` through `xl`) for customizing the minimum window width to enable the `push` type
+   * @default l
    */
   pushMinBreakpoint?: EuiBreakpointSize;
   style?: CSSProperties;
