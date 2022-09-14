@@ -1,3 +1,19 @@
+## [`67.1.0`](https://github.com/elastic/eui/tree/v67.1.0)
+
+- Added an optional dev-mode check to log, warn, or error if a component is rendered outside of `EuiProvider` ([#6216](https://github.com/elastic/eui/pull/6216))
+- Updated `EuiBadge`'s disabled styling to match `EuiButton` ([#6224](https://github.com/elastic/eui/pull/6224))
+- Added the `custom_component` search filter type for the EuiSearchBar. This new type gives the consumer control to render the search filter dropdown. ([#6226](https://github.com/elastic/eui/pull/6226))
+
+**Bug fixes**
+
+- Fixed `Query.toESQuery()` to generate bool queries instead of relying on match query logic, to work with non-text fields ([#6220](https://github.com/elastic/eui/pull/6220))
+- Fixed `EuiInMemoryTable`'s internal state tracking to include changes of `sorting.sort` values ([#6228](https://github.com/elastic/eui/pull/6228))
+- Fixed bug in `EuiButton` where `iconSize` was not being applied ([#6230](https://github.com/elastic/eui/pull/6230))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiBadge` to Emotion ([#6224](https://github.com/elastic/eui/pull/6224))
+
 ## [`67.0.0`](https://github.com/elastic/eui/tree/v67.0.0)
 
 - Updated `EuiSuggest` to accept the `isPreFiltered` prop ([#5930](https://github.com/elastic/eui/pull/5930))
