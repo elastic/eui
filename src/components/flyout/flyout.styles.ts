@@ -105,7 +105,9 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
-        ${logicalCSS('max-width', '90vw')}
+        // 1. Leave only a small sliver exposed on small screens so users understand that this is not a new page
+        // 2. If a custom maxWidth is set, we need to override it.
+        ${logicalCSS('max-width', '90vw !important')}
       }
     `,
 
