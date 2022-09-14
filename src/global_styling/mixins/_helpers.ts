@@ -145,12 +145,15 @@ export const useEuiYScroll = ({ height }: _EuiYScroll = {}) => {
   return euiYScroll(euiTheme, { height });
 };
 
+interface _EuiYScrollWithShadows extends _EuiYScroll {
+  side?: 'both' | 'start' | 'end';
+}
 export const euiYScrollWithShadows = (
   euiTheme: UseEuiTheme,
-  { height }: _EuiYScroll = {}
+  { height, side = 'both' }: _EuiYScrollWithShadows = {}
 ) => `
   ${euiYScroll(euiTheme, { height })}
-  ${euiOverflowShadowStyles(euiTheme, { direction: 'y' })}
+  ${euiOverflowShadowStyles(euiTheme, { direction: 'y', side })}
 `;
 export const useEuiYScrollWithShadows = ({ height }: _EuiYScroll = {}) => {
   const euiTheme = useEuiTheme();
