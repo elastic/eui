@@ -29,11 +29,7 @@ export const euiFlyoutBodyStyles = (euiThemeContext: UseEuiTheme) => {
       `,
     },
     euiFlyoutBody__banner: css`
-      .euiCallout {
-        ${logicalCSSWithFallback('overflow-x', 'hidden')}
-        border: none; // Remove border from callout when it is a flyout banner
-        border-radius: 0; // Ensures no border-radius in all themes
-      }
+      ${logicalCSSWithFallback('overflow-x', 'hidden')}
     `,
   };
 };
