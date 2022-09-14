@@ -12,12 +12,17 @@ import {
   EuiThemeContext,
   EuiModificationsContext,
   EuiColorModeContext,
+  defaultComputedTheme,
 } from './context';
+import { getEuiDevProviderWarning } from './provider';
 import {
   EuiThemeColorModeStandard,
   EuiThemeModifications,
   EuiThemeComputed,
 } from './types';
+
+const providerMessage = `\`EuiProvider\` is missing which can result in negative effects.
+Wrap your component in \`EuiProvider\`: https://ela.st/euiprovider.`;
 
 export interface UseEuiTheme<T extends {} = {}> {
   euiTheme: EuiThemeComputed<T>;
@@ -29,6 +34,25 @@ export const useEuiTheme = <T extends {} = {}>(): UseEuiTheme<T> => {
   const theme = useContext(EuiThemeContext);
   const colorMode = useContext(EuiColorModeContext);
   const modifications = useContext(EuiModificationsContext);
+
+  if (process.env.NODE_ENV !== 'production') {
+    const isFallback = theme === defaultComputedTheme;
+    const warningLevel = getEuiDevProviderWarning();
+    if (isFallback && typeof warningLevel !== 'undefined') {
+      switch (warningLevel) {
+        case 'log':
+          console.log(providerMessage);
+          break;
+        case 'warn':
+          console.warn(providerMessage);
+          break;
+        case 'error':
+          throw new Error(providerMessage);
+        default:
+          break;
+      }
+    }
+  }
 
   const assembledTheme = useMemo(
     () => ({
@@ -42,7 +66,7 @@ export const useEuiTheme = <T extends {} = {}>(): UseEuiTheme<T> => {
   return assembledTheme;
 };
 
-export interface WithEuiThemeProps<P = {}> {
+export interface WithEuiThemeProps<P extends {} = {}> {
   theme: UseEuiTheme<P>;
 }
 // Provide the component props interface as the generic to allow the docs props table to populate.

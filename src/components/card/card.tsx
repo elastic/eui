@@ -181,7 +181,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
     !isDisabled && (onClick || href || (selectable && !selectable.isDisabled));
 
   const euiThemeContext = useEuiTheme();
-  const styles = euiCardStyles(euiThemeContext, paddingSize, display);
+  const styles = euiCardStyles(euiThemeContext, paddingSize);
   const cardStyles = [
     styles.card.euiCard,
     // Text alignment should always be left when horizontal
@@ -257,7 +257,10 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   let imageNode;
   if (image && layout === 'vertical') {
     if (isValidElement(image) || typeof image === 'string') {
-      const imageStyles = [styles.euiCard__image];
+      const imageStyles = [
+        styles.image.euiCard__image,
+        display === 'transparent' && styles.image.transparent,
+      ];
       imageNode = (
         <div className="euiCard__image" css={imageStyles}>
           {isValidElement(image) ? image : <img src={image} alt="" />}
