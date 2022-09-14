@@ -134,6 +134,37 @@ export const ProviderExample = {
       ),
     },
     {
+      title: 'Enforce usage',
+      text: (
+        <EuiText>
+          <p>
+            For complex applications with multiple mount points or template
+            wrappers, it may be beneficial to enable logging when components do
+            not have access to a parent <EuiCode>EuiProvider</EuiCode>.
+          </p>
+          <p>
+            <EuiCode>setEuiDevProviderWarning</EuiCode> is a function that will
+            enable adding logging or erroring in development mode only. It
+            accepts three levels:
+          </p>
+          <ul>
+            <li>
+              <EuiCode>&apos;log&apos;</EuiCode>: uses{' '}
+              <EuiCode>console.log</EuiCode>
+            </li>
+            <li>
+              <EuiCode>&apos;warn&apos;</EuiCode>: uses{' '}
+              <EuiCode>console.warn</EuiCode>
+            </li>
+            <li>
+              <EuiCode>&apos;error&apos;</EuiCode>: <EuiCode>Throw</EuiCode> an
+              exception
+            </li>
+          </ul>
+        </EuiText>
+      ),
+    },
+    {
       title: 'EuiProvider props',
       wrapText: false,
       text: <GuideSectionPropsTable component={EuiProvider} />,
