@@ -56,7 +56,6 @@ export const euiFlyoutCloseButtonStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     outsideSide: {
       right: css`
-        ${logicalCSS('right', 'auto')}
         ${logicalCSS('left', 0)}
 
         ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
@@ -68,7 +67,6 @@ export const euiFlyoutCloseButtonStyles = (euiThemeContext: UseEuiTheme) => {
       `,
       left: css`
         ${logicalCSS('right', 0)}
-        ${logicalCSS('left', 'auto')}
 
         ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
           transform: translateX(calc(100% + ${euiTheme.size.l})) !important;
