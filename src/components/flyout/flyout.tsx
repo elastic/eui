@@ -273,7 +273,6 @@ export const EuiFlyout = forwardRef(
     if (onClose && !hideCloseButton) {
       const closeButtonClasses = classnames(
         'euiFlyout__closeButton',
-        `euiFlyout__closeButton--${closeButtonPosition}`,
         closeButtonProps?.className
       );
 
