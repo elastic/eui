@@ -55,12 +55,14 @@ export const euiFlyoutCloseButtonStyles = (euiThemeContext: UseEuiTheme) => {
       background-color: ${transparentize(euiTheme.colors.emptyShade, 0.9)};
     `,
     outside: css`
-      // match dropshadow
+      // Match dropshadow
       ${euiShadowXLarge(euiThemeContext)};
       // Override the hover and focus transitions of buttons
       animation: none !important;
     `,
     outsideSide: {
+      // `transforms` pull in close buttons a little
+      // `!important` is necessary here to override the hover/focus transitions of buttons
       right: css`
         ${logicalCSS('left', 0)}
 
@@ -101,6 +103,7 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       align-items: stretch;
 
       &:focus {
+        // Remove focus ring because of tabindex=0
         outline: none;
       }
 
@@ -111,7 +114,7 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
 
-    // Flyout Sizes
+    // Flyout sizes
     s: css`
       ${composeFlyoutSizing(euiThemeContext, 's')}
     `,
@@ -135,6 +138,7 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
           ${euiTheme.animation.resistance};
       }
     `,
+    // Left-side flyouts should only be used for navigation
     left: css`
       ${logicalCSS('left', 0)}
       clip-path: polygon(0 0, 150% 0, 150% 100%, 0 100%);
@@ -150,7 +154,8 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     push: css`
       clip-path: none;
-      animation-duration: 0s !important; // Don't animate on loading a docked nav
+      // Don't animate on loading a docked nav
+      animation-duration: 0s !important;
       // Make sure the header shadows are above
       z-index: ${Number(euiTheme.levels.flyout) - 1};
     `,
@@ -187,9 +192,10 @@ const composeFlyoutSizing = (
 ) => {
   const euiTheme = euiThemeContext.euiTheme;
 
+  // 1. Calculating the minimum width based on the screen takeover breakpoint
   const flyoutSizes = {
     s: {
-      min: `${Math.round(euiTheme.breakpoint.m * 0.5)}px`,
+      min: `${Math.round(euiTheme.breakpoint.m * 0.5)}px`, // 1.
       width: '25vw',
       max: `${Math.round(euiTheme.breakpoint.s * 0.7)}px`,
     },
@@ -202,7 +208,7 @@ const composeFlyoutSizing = (
     },
 
     l: {
-      min: `${Math.round(euiTheme.breakpoint.m * 0.9)}px`,
+      min: `${Math.round(euiTheme.breakpoint.m * 0.9)}px`, // 1.
       width: '75vw',
       max: `${euiTheme.breakpoint.l}px`,
     },
