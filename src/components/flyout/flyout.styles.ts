@@ -100,9 +100,11 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       display: flex;
       flex-direction: column;
       align-items: stretch;
+
       &:focus {
         outline: none;
       }
+
       ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
         ${logicalCSS('max-width', '90vw')}
       }
@@ -126,6 +128,7 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
     right: css`
       clip-path: polygon(-50% 0, 100% 0, 100% 100%, -50% 100%);
       ${logicalCSS('right', 0)}
+
       ${euiCanAnimate} {
         animation: ${euiFlyoutSlideInRight} ${euiTheme.animation.normal}
           ${euiTheme.animation.resistance};
@@ -134,6 +137,7 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
     left: css`
       ${logicalCSS('left', 0)}
       clip-path: polygon(0 0, 150% 0, 150% 100%, 0 100%);
+
       ${euiCanAnimate} {
         animation: ${euiFlyoutSlideInLeft};
       }
