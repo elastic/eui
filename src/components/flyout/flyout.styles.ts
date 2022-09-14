@@ -116,7 +116,6 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
     // Side
     right: css`
       clip-path: polygon(-50% 0, 100% 0, 100% 100%, -50% 100%);
-      ${logicalCSS('border-left', euiTheme.border.thin)}
       ${logicalCSS('right', 0)}
       ${euiCanAnimate} {
         animation: ${euiFlyoutSlideInRight} ${euiTheme.animation.normal}
@@ -124,7 +123,6 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     left: css`
-      ${logicalCSS('border-right', euiTheme.border.thin)}
       ${logicalCSS('left', 0)}
       clip-path: polygon(0 0, 150% 0, 150% 100%, 0 100%);
       ${euiCanAnimate} {
