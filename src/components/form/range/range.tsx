@@ -23,10 +23,12 @@ import { EuiRangeInput, EuiRangeInputProps } from './range_input';
 import { EuiRangeLabel } from './range_label';
 import { EuiRangeLevel } from './range_levels';
 import { EuiRangeSlider } from './range_slider';
+import { EuiRangeThumb } from './range_thumb';
 import { EuiRangeTick } from './range_ticks';
 import { EuiRangeTooltip } from './range_tooltip';
 import { EuiRangeTrack } from './range_track';
 import { EuiRangeWrapper } from './range_wrapper';
+import { calculateThumbPosition } from './utils';
 
 import { euiRangeStyles } from './range.styles';
 
@@ -115,6 +117,10 @@ export class EuiRangeClass extends Component<
   state = {
     id: this.props.id || htmlIdGenerator()(),
     isPopoverOpen: false,
+    hasFocus: false,
+    rangeSliderRefAvailable: false,
+    rangeWidth: undefined,
+    isVisible: true, // used to trigger a rerender if initial element width is 0
   };
 
   handleOnChange = (
@@ -128,6 +134,16 @@ export class EuiRangeClass extends Component<
     if (this.props.onChange) {
       this.props.onChange(e, isValid);
     }
+  };
+
+  rangeSliderRef: HTMLInputElement | null = null;
+
+  handleRangeSliderRefUpdate = (ref: HTMLInputElement | null) => {
+    this.rangeSliderRef = ref;
+    this.setState({
+      rangeSliderRefAvailable: !!ref,
+      rangeWidth: !!ref ? ref.clientWidth : null,
+    });
   };
 
   get isValid() {
@@ -146,6 +162,24 @@ export class EuiRangeClass extends Component<
       isPopoverOpen: true,
     });
   };
+
+  componentDidMount() {
+    if (this.rangeSliderRef && this.rangeSliderRef.clientWidth === 0) {
+      // Safe to call `setState` inside conditional
+      // https://reactjs.org/docs/react-component.html#componentdidmount
+      // eslint-disable-next-line react/no-did-mount-set-state
+      this.setState({ isVisible: false });
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.rangeSliderRef?.clientWidth && !this.state.isVisible) {
+      // Safe to call `setState` inside conditional
+      // https://reactjs.org/docs/react-component.html#componentdidupdate
+      // eslint-disable-next-line  react/no-did-update-set-state
+      this.setState({ isVisible: true });
+    }
+  }
 
   onInputBlur = (e: React.FocusEvent<HTMLInputElement>) =>
     setTimeout(() => {
@@ -168,6 +202,21 @@ export class EuiRangeClass extends Component<
     this.setState({
       isPopoverOpen: false,
     });
+  };
+
+  calculateThumbPositionStyle = (value: number, width?: number) => {
+    const trackWidth =
+      this.props.showInput === 'inputWithPopover' && !!width
+        ? width
+        : this.rangeSliderRef!.clientWidth;
+
+    const position = calculateThumbPosition(
+      value,
+      this.props.min!,
+      this.props.max!,
+      trackWidth
+    );
+    return { left: `${position}%` };
   };
 
   render() {
@@ -209,6 +258,14 @@ export class EuiRangeClass extends Component<
     const digitTolerance = Math.max(String(min).length, String(max).length);
     const showInputOnly = showInput === 'inputWithPopover';
     const canShowDropdown = showInputOnly && !readOnly && !disabled;
+    const rangeSliderRefAvailable = this.state.rangeSliderRefAvailable;
+
+    const thumbPosition = rangeSliderRefAvailable
+      ? this.calculateThumbPositionStyle(
+          Number(value) || max,
+          this.state.rangeWidth
+        )
+      : { left: '0' };
 
     const theInput: ReactNode = !!showInput ? (
       <EuiRangeInput
@@ -270,6 +327,7 @@ export class EuiRangeClass extends Component<
           aria-hidden={showInput === true}
         >
           <EuiRangeSlider
+            ref={this.handleRangeSliderRefUpdate}
             id={showInput ? undefined : id} // Attach id only to the input if there is one
             name={name}
             min={min}
@@ -301,6 +359,20 @@ export class EuiRangeClass extends Component<
               max={Number(max)}
               lowerValue={Number(min)}
               upperValue={Number(value)}
+            />
+          )}
+
+          {rangeSliderRefAvailable && (
+            <EuiRangeThumb
+              min={Number(min)}
+              max={max}
+              value={value}
+              disabled={disabled}
+              showTicks={showTicks}
+              showInput={!!showInput}
+              style={thumbPosition}
+              aria-describedby={this.props['aria-describedby']}
+              aria-label={this.props['aria-label']}
             />
           )}
 

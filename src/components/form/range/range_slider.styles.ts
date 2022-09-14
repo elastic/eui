@@ -55,7 +55,11 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
 
+      // we're not showing the thumb because we're using a custom thumb
+      // but we still want the thumb to be there but hidden
       ${euiRangeThumbPerBrowser(`
+        visibility: hidden;
+
         ${euiCustomControl({
           euiThemeContext: euiThemeContext,
           type: 'round',
@@ -64,13 +68,9 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
       `)}
 
       ${euiRangeTrackPerBrowser(`
-        ${euiRangeTrackSize(euiThemeContext)};
-        background: ${range.trackColor};
-        border: ${range.trackBorderWidth} solid ${range.trackBorderColor};
-        border-radius: ${range.trackBorderRadius};
+        visibility: hidden;
       `)}
 
-  
       &:focus-visible,
       &.euiRangeSlider--hasFocus {
         ~ .euiRangeThumb {

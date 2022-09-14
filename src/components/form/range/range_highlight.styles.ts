@@ -21,7 +21,7 @@ export const euiRangeHighlightStyles = (euiThemeContext: UseEuiTheme) => {
       inset-inline-start: 0;
       inline-size: 100%;
       overflow: hidden;
-      z-index: 1;
+      z-index: 2; // Higher than levels and track. Lower than thumb.
       pointer-events: none;
       inset-block-start: ${range.trackTopPositionWithoutTicks};
     `,
