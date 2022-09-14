@@ -90,7 +90,6 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiFlyout: css`
-      ${euiShadowXLarge(euiThemeContext)};
       position: fixed;
       ${logicalCSS('top', 0)}
       ${logicalCSS('bottom', 0)}
@@ -144,9 +143,10 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
     `,
 
     // Type
-    overlay: css``,
+    overlay: css`
+      ${euiShadowXLarge(euiThemeContext)};
+    `,
     push: css`
-      box-shadow: none;
       clip-path: none;
       animation-duration: 0s !important; // Don't animate on loading a docked nav
       // Make sure the header shadows are above
