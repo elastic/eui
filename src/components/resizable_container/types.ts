@@ -14,6 +14,8 @@ export type PanelPosition = 'first' | 'middle' | 'last';
 
 export type PanelDirection = 'left' | 'right';
 
+export type KeyMoveDirection = 'forward' | 'backward';
+
 export interface EuiResizablePanelController {
   id: string;
   size: number;
@@ -82,7 +84,7 @@ export interface ActionKeyMove {
   payload: {
     prevPanelId: string;
     nextPanelId: string;
-    direction: 'forward' | 'backward';
+    direction: KeyMoveDirection;
   };
 }
 

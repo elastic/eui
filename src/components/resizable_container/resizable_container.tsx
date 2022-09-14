@@ -39,6 +39,7 @@ import {
   EuiResizableButtonKeyEvent,
   EuiResizableContainerState,
   EuiResizableContainerActions,
+  KeyMoveDirection,
 } from './types';
 
 const containerDirections = {
@@ -134,25 +135,30 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
     }
   }, [initialize, containerSize]);
 
-  const resizeTrigger = useRef<ResizeTrigger>();
+  const resizeContext = useRef<{
+    trigger?: ResizeTrigger;
+    keyMoveDirection?: KeyMoveDirection;
+  }>({});
+
   const resizeEnd = useCallback(
     (trigger: ResizeTrigger) => {
       onResizeEnd?.(trigger);
-      resizeTrigger.current = undefined;
+      resizeContext.current = {};
     },
     [onResizeEnd]
   );
+
   const resizeStart = useCallback(
-    (trigger: ResizeTrigger) => {
+    (trigger: ResizeTrigger, keyMoveDirection?: KeyMoveDirection) => {
       // If another resize starts while the previous one is still in progress
       // (e.g. user presses opposite arrow to change direction while the first
       // is still held down, or user presses an arrow while dragging with the
       // mouse), we want to signal the end of the previous resize first.
-      if (resizeTrigger.current) {
-        resizeEnd(resizeTrigger.current);
+      if (resizeContext.current.trigger) {
+        resizeEnd(resizeContext.current.trigger);
       }
       onResizeStart?.(trigger);
-      resizeTrigger.current = trigger;
+      resizeContext.current = { trigger, keyMoveDirection };
     },
     [onResizeStart, resizeEnd]
   );
@@ -196,9 +202,9 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
     ]
   );
 
-  const getDirection = useCallback(
+  const getKeyMoveDirection = useCallback(
     (key: string) => {
-      let direction: 'forward' | 'backward' | null = null;
+      let direction: KeyMoveDirection | null = null;
       if (
         (isHorizontal && key === keys.ARROW_LEFT) ||
         (!isHorizontal && key === keys.ARROW_UP)
@@ -218,29 +224,39 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
   const onKeyDown = useCallback(
     (event: EuiResizableButtonKeyEvent) => {
       const { key, currentTarget } = event;
-      const direction = getDirection(key);
+      const direction = getKeyMoveDirection(key);
       const prevPanelId = currentTarget.previousElementSibling!.id;
       const nextPanelId = currentTarget.nextElementSibling!.id;
 
       if (direction && prevPanelId && nextPanelId) {
         if (!event.repeat) {
-          resizeStart('key');
+          resizeStart('key', direction);
         }
         event.preventDefault();
         actions.keyMove({ direction, prevPanelId, nextPanelId });
       }
     },
-    [actions, getDirection, resizeStart]
+    [actions, getKeyMoveDirection, resizeStart]
   );
 
-  const onKeyUp = useCallback(() => {
-    if (resizeTrigger.current === 'key') {
-      resizeEnd('key');
-    }
-  }, [resizeEnd]);
+  const onKeyUp = useCallback(
+    ({ key }: EuiResizableButtonKeyEvent) => {
+      // We only want to signal the end of a resize if the key that was released
+      // is the same as the one that started the resize. This prevents the end
+      // of a resize if the user presses one arrow key, then presses the opposite
+      // arrow key to change direction, then releases the first arrow key.
+      if (
+        resizeContext.current.trigger === 'key' &&
+        resizeContext.current.keyMoveDirection === getKeyMoveDirection(key)
+      ) {
+        resizeEnd('key');
+      }
+    },
+    [getKeyMoveDirection, resizeEnd]
+  );
 
   const onMouseUp = useCallback(() => {
-    if (resizeTrigger.current === 'pointer') {
+    if (resizeContext.current.trigger === 'pointer') {
       resizeEnd('pointer');
     }
     actions.reset();
