@@ -19,8 +19,8 @@ describe('mathWithUnits', () => {
     test('rem and addition', () => {
       expect(mathWithUnits('1rem', (x) => x + 2)).toEqual('3rem');
     });
-    test('unitless and subtraction', () => {
-      expect(mathWithUnits('5.5', (x) => x - 1.2)).toEqual('4.3');
+    test('unitless and negative values', () => {
+      expect(mathWithUnits('-5.5', (x) => x - 1.2)).toEqual('-6.7');
     });
     test('allows passing an optional unit if none is passed', () => {
       expect(mathWithUnits('0', (x) => x, 'vh')).toEqual('0vh');

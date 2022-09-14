@@ -20,7 +20,7 @@ export const mathWithUnits = (
   unit: string = '' // Optional: if a unitless number was passed in, allow specifying a unit to return
 ) => {
   if (typeof value === 'string') {
-    const regex = /(?<value>[\d.]+)(?<unit>%|[a-zA-Z]*)/;
+    const regex = /(?<value>-?[\d.]+)(?<unit>%|[a-zA-Z]*)/;
     const matches = regex.exec(value);
     if (!matches?.groups?.value) return value;
 
