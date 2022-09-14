@@ -13,6 +13,7 @@ import {
   euiTextTruncate,
   logicalCSS,
   logicalTextAlignCSS,
+  mathWithUnits,
 } from '../../global_styling';
 import { euiButtonColor } from '../../themes/amsterdam/global_styling/mixins';
 import { UseEuiTheme, tint, transparentize } from '../../services';
@@ -34,7 +35,10 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       cursor: default;
       background-color: transparent;
       border: ${euiTheme.border.width.thin} solid transparent;
-      border-radius: ${parseFloat(String(euiTheme.border.radius.medium)) / 2}px;
+      border-radius: ${mathWithUnits(
+        euiTheme.border.radius.medium,
+        (x) => x / 2
+      )};
       // The badge will only ever be as wide as its content
       // So, make the text left aligned to ensure all badges line up the same
       ${logicalTextAlignCSS('left')}
@@ -83,9 +87,10 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS(
         // Ensure proper height in case of just displaying an icon
         'min-height',
-        `${
-          euiTheme.base + parseFloat(String(euiTheme.border.width.thin)) * 2
-        }px`
+        `${mathWithUnits(
+          euiTheme.border.width.thin,
+          (x) => euiTheme.base + x * 2
+        )}`
       )}
       display: flex;
       align-items: center;
@@ -126,9 +131,10 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
         &:focus {
           background-color: ${transparentize(euiTheme.colors.ghost, 0.8)};
           color: ${euiTheme.colors.ink};
-          border-radius: ${
-            parseFloat(String(euiTheme.border.radius.small)) / 2
-          }px;
+          border-radius: ${mathWithUnits(
+            euiTheme.border.radius.small,
+            (x) => x / 2
+          )};
         }
 
         &:disabled {
