@@ -20,8 +20,8 @@ export const euiFlyoutBodyStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSSWithFallback('overflow-y', 'hidden')}
       ${logicalCSS('height', '100%')}
     `,
-    overflow: {
-      euiFlyoutBody__overflow: css`
+    euiFlyoutBody__overflow: {
+      noBanner: css`
         ${euiYScrollWithShadows(euiThemeContext)};
       `,
       hasBanner: css`
