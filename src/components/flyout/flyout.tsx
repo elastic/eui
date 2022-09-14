@@ -253,15 +253,15 @@ export const EuiFlyout = forwardRef(
       }
     };
 
-    let newStyle;
-
+    /**
+     * Set inline styles
+     */
+    let newStyle = style;
     if (typeof maxWidth !== 'boolean') {
-      newStyle = { ...style, ...logicalStyle('max-width', maxWidth) };
+      newStyle = { ...newStyle, ...logicalStyle('max-width', maxWidth) };
     }
-
-    // Setting size
     if (!isEuiFlyoutSizeNamed(size)) {
-      newStyle = { ...(newStyle || style), ...logicalStyle('width', size) };
+      newStyle = { ...newStyle, ...logicalStyle('width', size) };
     }
 
     const euiTheme = useEuiTheme();
@@ -355,7 +355,7 @@ export const EuiFlyout = forwardRef(
           role={role}
           className={classes}
           tabIndex={-1}
-          style={newStyle || style}
+          style={newStyle}
           ref={setRef}
           css={cssStyles}
         >
