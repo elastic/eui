@@ -7,10 +7,11 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../test';
+import { mount, render } from 'enzyme';
+import { findTestSubject, requiredProps } from '../../test';
 
 import { EuiResizableContainer } from './resizable_container';
+import { keys } from '../../services';
 
 describe('EuiResizableContainer', () => {
   test('is rendered', () => {
@@ -169,5 +170,118 @@ describe('EuiResizableContainer', () => {
     );
 
     expect(component).toMatchSnapshot();
+  });
+
+  const mountWithCallbacks = ({
+    direction,
+  }: {
+    direction?: 'vertical' | 'horizontal';
+  } = {}) => {
+    const onResizeStart = jest.fn();
+    const onResizeEnd = jest.fn();
+    const component = mount(
+      <EuiResizableContainer
+        {...requiredProps}
+        onResizeStart={onResizeStart}
+        onResizeEnd={onResizeEnd}
+        direction={direction}
+        data-test-subj="euiResizableContainer"
+      >
+        {(EuiResizablePanel, EuiResizableButton) => (
+          <>
+            <EuiResizablePanel initialSize={50}>Testing</EuiResizablePanel>
+            <EuiResizableButton data-test-subj="euiResizableButton" />
+            <EuiResizablePanel initialSize={50}>123</EuiResizablePanel>
+          </>
+        )}
+      </EuiResizableContainer>
+    );
+    const container = findTestSubject(component, 'euiResizableContainer');
+    const button = findTestSubject(component, 'euiResizableButton');
+    return { container, button, onResizeStart, onResizeEnd };
+  };
+
+  test('onResizeStart and onResizeEnd are called for pointer events', () => {
+    const {
+      container,
+      button,
+      onResizeStart,
+      onResizeEnd,
+    } = mountWithCallbacks();
+    button.simulate('mousedown', {
+      pageX: 0,
+      pageY: 0,
+      clientX: 0,
+      clientY: 0,
+    });
+    expect(onResizeStart).toHaveBeenCalledTimes(1);
+    expect(onResizeStart).toHaveBeenLastCalledWith('pointer');
+    container.simulate('mouseup');
+    expect(onResizeEnd).toHaveBeenCalledTimes(1);
+    button.simulate('mousedown', {
+      pageX: 0,
+      pageY: 0,
+      clientX: 0,
+      clientY: 0,
+    });
+    expect(onResizeStart).toHaveBeenCalledTimes(2);
+    expect(onResizeStart).toHaveBeenLastCalledWith('pointer');
+    container.simulate('mouseleave');
+    expect(onResizeEnd).toHaveBeenCalledTimes(2);
+    button.simulate('touchstart', {
+      touches: [
+        {
+          clientX: 0,
+          clientY: 0,
+        },
+      ],
+    });
+    expect(onResizeStart).toHaveBeenCalledTimes(3);
+    expect(onResizeStart).toHaveBeenLastCalledWith('pointer');
+    container.simulate('touchend');
+    expect(onResizeEnd).toHaveBeenCalledTimes(3);
+  });
+
+  test('onResizeStart and onResizeEnd are called for left/right keyboard events', () => {
+    const { button, onResizeStart, onResizeEnd } = mountWithCallbacks();
+    button.simulate('keydown', { key: keys.ARROW_RIGHT });
+    expect(onResizeStart).toHaveBeenCalledTimes(1);
+    expect(onResizeStart).toHaveBeenLastCalledWith('key');
+    button.simulate('keyup', { key: keys.ARROW_RIGHT });
+    expect(onResizeEnd).toHaveBeenCalledTimes(1);
+    button.simulate('keydown', { key: keys.ARROW_LEFT });
+    expect(onResizeStart).toHaveBeenCalledTimes(2);
+    expect(onResizeStart).toHaveBeenLastCalledWith('key');
+    button.simulate('keyup', { key: keys.ARROW_LEFT });
+    expect(onResizeEnd).toHaveBeenCalledTimes(2);
+  });
+
+  test('onResizeStart and onResizeEnd are called for up/down keyboard events', () => {
+    const { button, onResizeStart, onResizeEnd } = mountWithCallbacks({
+      direction: 'vertical',
+    });
+    button.simulate('keydown', { key: keys.ARROW_UP });
+    expect(onResizeStart).toHaveBeenCalledTimes(1);
+    expect(onResizeStart).toHaveBeenLastCalledWith('key');
+    button.simulate('keyup', { key: keys.ARROW_UP });
+    expect(onResizeEnd).toHaveBeenCalledTimes(1);
+    button.simulate('keydown', { key: keys.ARROW_DOWN });
+    expect(onResizeStart).toHaveBeenCalledTimes(2);
+    expect(onResizeStart).toHaveBeenLastCalledWith('key');
+    button.simulate('keyup', { key: keys.ARROW_DOWN });
+    expect(onResizeEnd).toHaveBeenCalledTimes(2);
+  });
+
+  test('onResizeStart and onResizeEnd are only called for the correct keyboard events', () => {
+    const { button, onResizeStart, onResizeEnd } = mountWithCallbacks();
+    button.simulate('keydown', { key: keys.ARROW_DOWN });
+    expect(onResizeStart).toHaveBeenCalledTimes(0);
+    button.simulate('keydown', { key: keys.ARROW_RIGHT });
+    expect(onResizeStart).toHaveBeenCalledTimes(1);
+    expect(onResizeStart).toHaveBeenLastCalledWith('key');
+    button.simulate('keyup', { key: keys.ARROW_DOWN });
+    expect(onResizeEnd).toHaveBeenCalledTimes(0);
+    button.simulate('keyup', { key: keys.ARROW_RIGHT });
+    expect(onResizeEnd).toHaveBeenCalledTimes(1);
   });
 });
