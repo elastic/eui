@@ -78,7 +78,7 @@ export interface EuiResizableContainerProps
   /**
    * Called when resizing ends
    */
-  onResizeEnd?: (trigger: ResizeTrigger) => any;
+  onResizeEnd?: () => any;
   style?: CSSProperties;
 }
 
@@ -140,13 +140,10 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
     keyMoveDirection?: KeyMoveDirection;
   }>({});
 
-  const resizeEnd = useCallback(
-    (trigger: ResizeTrigger) => {
-      onResizeEnd?.(trigger);
-      resizeContext.current = {};
-    },
-    [onResizeEnd]
-  );
+  const resizeEnd = useCallback(() => {
+    onResizeEnd?.();
+    resizeContext.current = {};
+  }, [onResizeEnd]);
 
   const resizeStart = useCallback(
     (trigger: ResizeTrigger, keyMoveDirection?: KeyMoveDirection) => {
@@ -155,7 +152,7 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
       // is still held down, or user presses an arrow while dragging with the
       // mouse), we want to signal the end of the previous resize first.
       if (resizeContext.current.trigger) {
-        resizeEnd(resizeContext.current.trigger);
+        resizeEnd();
       }
       onResizeStart?.(trigger);
       resizeContext.current = { trigger, keyMoveDirection };
@@ -249,7 +246,7 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
         resizeContext.current.trigger === 'key' &&
         resizeContext.current.keyMoveDirection === getKeyMoveDirection(key)
       ) {
-        resizeEnd('key');
+        resizeEnd();
       }
     },
     [getKeyMoveDirection, resizeEnd]
@@ -257,7 +254,7 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
 
   const onMouseUp = useCallback(() => {
     if (resizeContext.current.trigger === 'pointer') {
-      resizeEnd('pointer');
+      resizeEnd();
     }
     actions.reset();
   }, [actions, resizeEnd]);
