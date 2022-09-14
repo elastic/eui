@@ -7,7 +7,7 @@ exports[`EuiFlyoutBody is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiFlyoutBody__overflow emotion-euiFlyoutBody__overflow"
+    class="euiFlyoutBody__overflow css-1fk8opf-noBanner"
     tabindex="0"
   >
     <div
