@@ -6,6 +6,7 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiFlyout,
+  EuiFlyoutProps,
   EuiFlyoutHeader,
   EuiFlyoutBody,
   EuiFlyoutFooter,
@@ -63,7 +64,7 @@ export default () => {
       <EuiFlyout
         ownFocus
         onClose={closeFlyout}
-        paddingSize={paddingSize}
+        paddingSize={paddingSize as EuiFlyoutProps['paddingSize']}
         id={mediumPaddingFlyoutId}
         aria-labelledby={mediumPaddingFlyoutTitleId}
       >
@@ -76,15 +77,16 @@ export default () => {
         </EuiFlyoutHeader>
         <EuiFlyoutBody banner={callOut}>
           <EuiFormRow label="Change the paddingSize">
+            {/* @ts-ignore - EuiButtonGroup is not correctly detecting type="single" */}
             <EuiButtonGroup
               legend="Flyout paddingSize"
               color="primary"
-              size="s"
+              buttonSize="s"
               options={sizes}
               idSelected={paddingSize}
-              onChange={(id) => {
+              onChange={(id: string) => {
                 const newName = sizes
-                  .find((size) => size.id === id)
+                  .find((size) => size.id === id)!
                   .label.toLowerCase();
                 setPaddingSize(id);
                 setPaddingSizeName(newName);

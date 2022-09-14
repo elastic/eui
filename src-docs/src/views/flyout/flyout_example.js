@@ -214,7 +214,7 @@ export const FlyoutExample = {
       title: 'Sizing',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: flyoutSizesSource,
         },
       ],
@@ -235,7 +235,7 @@ export const FlyoutExample = {
       title: 'Adjusting padding',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: FlyoutPaddingSizesSource,
         },
       ],
@@ -339,7 +339,7 @@ export const FlyoutExample = {
       title: 'Understanding max-width',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: flyoutMaxWidthSource,
         },
       ],

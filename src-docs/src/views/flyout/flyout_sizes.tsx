@@ -60,12 +60,12 @@ export default () => {
             <EuiButtonGroup
               legend="Flyout size"
               color="primary"
-              size="s"
+              buttonSize="s"
               options={sizes}
               idSelected={size}
               onChange={(id) => {
                 const newName = sizes
-                  .find((size) => size.id === id)
+                  .find((size) => size.id === id)!
                   .label.toLowerCase();
                 setSize(id);
                 setSizeName(newName);
