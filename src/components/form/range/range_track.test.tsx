@@ -9,10 +9,23 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiRangeTrack } from './range_track';
 
 describe('EuiRangeTrack', () => {
+  shouldRenderCustomStyles(
+    <EuiRangeTrack
+      min={0}
+      max={100}
+      step={10}
+      showTicks
+      value="10"
+      onChange={() => {}}
+      {...requiredProps}
+    />
+  );
+
   test('is rendered', () => {
     const component = render(
       <EuiRangeTrack

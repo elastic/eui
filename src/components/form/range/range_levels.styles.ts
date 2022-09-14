@@ -29,14 +29,17 @@ export const euiRangeLevelsStyles = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
-export const euiRangeLevelStyles = ({ euiTheme }: UseEuiTheme) => {
+export const euiRangeLevelStyles = (euiThemeContext: UseEuiTheme) => {
+  const euiTheme = euiThemeContext.euiTheme;
+  const range = euiRangeVariables(euiThemeContext);
+
   return {
     euiRangeLevel: css`
       display: block;
       position: absolute;
-      block-size: 6px;
-      border-radius: 6px;
-      margin: 2px;
+      block-size: ${range.trackHeight};
+      border-radius: ${range.trackBorderRadius};
+      margin: ${euiTheme.size.xxs};
       margin-block-start: 0;
       margin-block-end: 0;
 

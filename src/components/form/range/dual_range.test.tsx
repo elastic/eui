@@ -9,6 +9,7 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+// import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiDualRange } from './dual_range';
 
@@ -17,6 +18,17 @@ const props = {
 };
 
 describe('EuiDualRange', () => {
+  // TODO - Test fails with: expect(componentNode.attr('style')).toContain("content:'world'");
+  // shouldRenderCustomStyles(
+  //   <EuiDualRange
+  //     name="name"
+  //     id="id"
+  //     value={['1', '8']}
+  //     {...props}
+  //     {...requiredProps}
+  //   />
+  // );
+
   test('is rendered', () => {
     const component = render(
       <EuiDualRange

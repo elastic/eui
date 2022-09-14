@@ -9,6 +9,7 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+// import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiRange } from './range';
 
@@ -19,6 +20,17 @@ const props = {
 };
 
 describe('EuiRange', () => {
+  // TODO - Test fails with: expect(componentNode.attr('style')).toContain("content:'world'");
+  // shouldRenderCustomStyles(
+  //   <EuiRange
+  //     name="name"
+  //     id="id"
+  //     onChange={() => {}}
+  //     {...props}
+  //     {...requiredProps}
+  //   />
+  // );
+
   test('is rendered', () => {
     const component = render(
       <EuiRange
