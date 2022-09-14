@@ -82,6 +82,29 @@ const verticalSnippet = `<EuiResizableContainer direction="vertical">
   )}
 </EuiResizableContainer>`;
 
+const callbacksSnippet = `<EuiResizableContainer
+  onResizeStart={(trigger) => console.log('onResizeStart', trigger)}
+  onResizeEnd={() => console.log('onResizeEnd')}
+>
+  {(EuiResizablePanel, EuiResizableButton) => (
+    <>
+      <EuiResizablePanel initialSize={50} minSize="20%">
+        <EuiText>
+          <p>{text}</p>
+        </EuiText>
+      </EuiResizablePanel>
+
+      <EuiResizableButton />
+
+      <EuiResizablePanel initialSize={50} minSize="20%">
+        <EuiText>
+          <p>{text}</p>
+        </EuiText>
+      </EuiResizablePanel>
+    </>
+  )}
+</EuiResizableContainer>`;
+
 const collapsibleSnippet = `<EuiResizableContainer>
   {(EuiResizablePanel, EuiResizableButton) => (
     <>
@@ -326,15 +349,18 @@ export const ResizableContainerExample = {
       text: (
         <>
           <p>
-            <strong>EuiResizableContainer</strong> also provides action hooks
-            for parent components to access internal methods, such as{' '}
-            <strong>EuiResizablePanel</strong> collapse toggling. The actions
-            are accessible via the third parameter of the render prop function.
+            <strong>EuiResizableContainer</strong> supports{' '}
+            <EuiCode>onResizeStart</EuiCode> and <EuiCode>onResizeEnd</EuiCode>{' '}
+            callback props to listen for when resizing starts and ends. The{' '}
+            <EuiCode>onResizeStart</EuiCode> callback is passed a{' '}
+            <EuiCode>{"trigger: 'pointer' | 'key'"}</EuiCode> parameter to
+            determine which user action triggered the resize.
           </p>
         </>
       ),
+      props: { EuiResizableContainer, EuiResizablePanel, EuiResizableButton },
       demo: <ResizableContainerCallbacks />,
-      snippet: collapsibleExtSnippet,
+      snippet: callbacksSnippet,
     },
     {
       source: [

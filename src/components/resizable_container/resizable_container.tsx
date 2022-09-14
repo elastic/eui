@@ -47,8 +47,6 @@ const containerDirections = {
   horizontal: 'horizontal',
 };
 
-type ResizeTrigger = 'pointer' | 'key';
-
 export interface EuiResizableContainerProps
   extends HTMLAttributes<HTMLDivElement>,
     CommonProps {
@@ -74,13 +72,17 @@ export interface EuiResizableContainerProps
   /**
    * Called when resizing starts
    */
-  onResizeStart?: (trigger: ResizeTrigger) => any;
+  onResizeStart?: (trigger: 'pointer' | 'key') => any;
   /**
    * Called when resizing ends
    */
   onResizeEnd?: () => any;
   style?: CSSProperties;
 }
+
+type ResizeTrigger = Parameters<
+  NonNullable<EuiResizableContainerProps['onResizeStart']>
+>[0];
 
 const initialState: EuiResizableContainerState = {
   isDragging: false,
