@@ -40,13 +40,14 @@ export const euiFlyoutCloseButtonStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiFlyout__closeButton: css`
-      background-color: ${transparentize(euiTheme.colors.emptyShade, 0.1)};
       position: absolute;
       ${logicalCSS('right', euiTheme.size.s)}
       ${logicalCSS('top', euiTheme.size.s)}
       z-index: 3;
     `,
-    inside: css``,
+    inside: css`
+      background-color: ${transparentize(euiTheme.colors.emptyShade, 0.9)};
+    `,
     outside: css`
       // match dropshadow
       ${euiShadowXLarge(euiThemeContext)};
