@@ -13,7 +13,7 @@ import { UseEuiTheme } from '../../services';
 import { euiShadowXLarge } from '../../themes/amsterdam/global_styling/mixins';
 import { transparentize } from '../../services/color';
 
-const euiFlyout = keyframes`
+const euiFlyoutSlideInRight = keyframes`
   0% {
     opacity: 0;
     transform: translateX(100%);
@@ -23,7 +23,8 @@ const euiFlyout = keyframes`
     transform: translateX(0%);
   }
 `;
-const euiFlyoutLeft = keyframes`
+
+const euiFlyoutSlideInLeft = keyframes`
   0% {
     opacity: 0;
     transform: translateX(-100%);
@@ -119,7 +120,7 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('border-left', euiTheme.border.thin)}
       ${logicalCSS('right', 0)}
       ${euiCanAnimate} {
-        animation: ${euiFlyout} ${euiTheme.animation.normal}
+        animation: ${euiFlyoutSlideInRight} ${euiTheme.animation.normal}
           ${euiTheme.animation.resistance};
       }
     `,
@@ -128,7 +129,7 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('left', 0)}
       clip-path: polygon(0 0, 150% 0, 150% 100%, 0 100%);
       ${euiCanAnimate} {
-        animation: ${euiFlyoutLeft};
+        animation: ${euiFlyoutSlideInLeft};
       }
     `,
 
