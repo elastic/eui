@@ -28,14 +28,14 @@ exports[`EuiBadgeGroup is rendered 1`] = `
     class="euiBadgeGroup__item"
   >
     <span
-      class="euiBadge euiBadge--iconLeft"
-      style="background-color:#d3dae6;color:#000"
+      class="euiBadge emotion-euiBadge"
+      style="background-color:#D3DAE6;color:#000"
     >
       <span
-        class="euiBadge__content"
+        class="euiBadge__content emotion-euiBadge__content"
       >
         <span
-          class="euiBadge__text"
+          class="euiBadge__text emotion-euiBadge__text"
         >
           Content
         </span>

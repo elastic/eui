@@ -1,0 +1,125 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CustomComponentFilter render 1`] = `
+<CustomComponentFilter
+  aria-label="aria-label"
+  className="testClass1 testClass2"
+  config={
+    Object {
+      "component": [Function],
+      "type": "custom_component",
+    }
+  }
+  data-test-subj="test subject string"
+  index={0}
+  onChange={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          Query {
+            "ast": _AST {
+              "_clauses": Array [],
+              "_indexedClauses": Object {
+                "field": Object {},
+                "group": Array [],
+                "is": Object {},
+                "term": Array [],
+              },
+            },
+            "syntax": Object {
+              "parse": [Function],
+              "print": [Function],
+              "printClause": [Function],
+            },
+            "text": "",
+          },
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  query={
+    Query {
+      "ast": _AST {
+        "_clauses": Array [],
+        "_indexedClauses": Object {
+          "field": Object {},
+          "group": Array [],
+          "is": Object {},
+          "term": Array [],
+        },
+      },
+      "syntax": Object {
+        "parse": [Function],
+        "print": [Function],
+        "printClause": [Function],
+      },
+      "text": "",
+    }
+  }
+>
+  <CustomComponent
+    onChange={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            Query {
+              "ast": _AST {
+                "_clauses": Array [],
+                "_indexedClauses": Object {
+                  "field": Object {},
+                  "group": Array [],
+                  "is": Object {},
+                  "term": Array [],
+                },
+              },
+              "syntax": Object {
+                "parse": [Function],
+                "print": [Function],
+                "printClause": [Function],
+              },
+              "text": "",
+            },
+          ],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": undefined,
+          },
+        ],
+      }
+    }
+    query={
+      Query {
+        "ast": _AST {
+          "_clauses": Array [],
+          "_indexedClauses": Object {
+            "field": Object {},
+            "group": Array [],
+            "is": Object {},
+            "term": Array [],
+          },
+        },
+        "syntax": Object {
+          "parse": [Function],
+          "print": [Function],
+          "printClause": [Function],
+        },
+        "text": "",
+      }
+    }
+  >
+    <div
+      data-test-subj="customComponent"
+    >
+      Custom component
+    </div>
+  </CustomComponent>
+</CustomComponentFilter>
+`;

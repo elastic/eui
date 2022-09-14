@@ -29,6 +29,12 @@ import {
   EuiThemeModifications,
 } from './types';
 
+type LEVELS = 'log' | 'warn' | 'error';
+let providerWarning: LEVELS | undefined = undefined;
+export const setEuiDevProviderWarning = (level: LEVELS) =>
+  (providerWarning = level);
+export const getEuiDevProviderWarning = () => providerWarning;
+
 export interface EuiThemeProviderProps<T> {
   theme?: EuiThemeSystem<T>;
   colorMode?: EuiThemeColorMode;
@@ -68,7 +74,7 @@ export const EuiThemeProvider = <T extends {} = {}>({
 
   const [theme, setTheme] = useState(
     isParentTheme.current && Object.keys(parentTheme).length
-      ? parentTheme
+      ? { ...parentTheme } // Intentionally create a new object to break referential equality
       : getComputed(
           system,
           buildTheme(modifications, `_${system.key}`) as typeof system,

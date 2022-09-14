@@ -14,6 +14,7 @@ import {
   euiFontSize,
   euiBackgroundColor,
   _FontScaleOptions,
+  mathWithUnits,
 } from '../../global_styling';
 
 import { euiLinkCSS } from '../link/link.styles';
@@ -57,8 +58,9 @@ const euiScaleText = (
   };
   // Generate margins for headings based on customScale (not on heading level)
   const customScale = _customScale === 'xxxs' ? 'xxs' : _customScale || 'm';
-  const headingMarginTop = `${parseFloat(euiTheme.size[customScale]) * 2}px`;
-  const headingMarginBottom = euiTheme.size[customScale];
+  const marginSize = euiTheme.size[customScale];
+  const headingMarginTop = mathWithUnits(marginSize, (x) => x * 2);
+  const headingMarginBottom = marginSize;
 
   return `
     font-size: ${fontSize};

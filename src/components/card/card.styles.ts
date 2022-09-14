@@ -29,8 +29,7 @@ const halfPaddingKey = 's';
 
 export const euiCardStyles = (
   euiThemeContext: UseEuiTheme,
-  paddingSize: EuiCardProps['paddingSize'],
-  color: EuiCardProps['display']
+  paddingSize: EuiCardProps['paddingSize']
 ) => {
   const { euiTheme } = euiThemeContext;
   const paddingAmount = euiPaddingSize(euiThemeContext, paddingSize!);
@@ -137,33 +136,34 @@ export const euiCardStyles = (
       `,
     },
 
-    euiCard__image: css`
-      position: relative;
-      overflow: hidden;
+    image: {
+      euiCard__image: css`
+        position: relative;
+        overflow: hidden;
 
-      // Padding based sizing & negative margins
-      ${logicalCSS('width', `calc(100% + (${paddingAmount} * 2))`)};
-      ${logicalCSS('left', `-${paddingAmount}`)};
-      ${logicalCSS('top', `-${paddingAmount}`)};
-      // ensure the parent is only as tall as the image
-      ${logicalCSS('margin-bottom', `-${paddingAmount}`)};
+        // Padding based sizing & negative margins
+        ${logicalCSS('width', `calc(100% + (${paddingAmount} * 2))`)};
+        ${logicalCSS('left', `-${paddingAmount}`)};
+        ${logicalCSS('top', `-${paddingAmount}`)};
+        // ensure the parent is only as tall as the image
+        ${logicalCSS('margin-bottom', `-${paddingAmount}`)};
 
-      // match border radius, minus border width
-      ${logicalCSS(
-        'border-top-left-radius',
-        `calc(${euiTheme.border.radius.medium} - ${euiTheme.border.width.thin})`
-      )}
-      ${logicals['border-top-right-radius']}: calc(${euiTheme.border.radius
-        .medium} - ${euiTheme.border.width.thin});
+        // match border radius, minus border width
+        ${logicalCSS(
+          'border-top-left-radius',
+          `calc(${euiTheme.border.radius.medium} - ${euiTheme.border.width.thin})`
+        )}
+        ${logicals['border-top-right-radius']}: calc(${euiTheme.border.radius
+          .medium} - ${euiTheme.border.width.thin});
 
-      ${color === 'transparent'
-        ? `border-radius: ${euiTheme.border.radius.medium};`
-        : undefined}
-
-      img {
-        ${logicalCSS('width', '100%')}; /* 4 */
-      }
-    `,
+        img {
+          ${logicalCSS('width', '100%')}; /* 4 */
+        }
+      `,
+      transparent: css`
+        border-radius: ${euiTheme.border.radius.medium};
+      `,
+    },
 
     icon: {
       euiCard__icon: css``,

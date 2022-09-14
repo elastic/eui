@@ -1,5 +1,4 @@
-import { ElementContext, Result, RunOptions } from 'axe-core';
-import { MountReturn } from '@cypress/react';
+import { ContextObject, Result, RunOptions } from 'axe-core';
 import { realPress } from 'cypress-real-events/commands/realPress';
 
 type KeyOrShortcut = Parameters<typeof realPress>[0];
@@ -10,10 +9,6 @@ declare global {
     interface Chainable<Subject> {
       // We are adding `/// <reference types="../../../cypress/support"/>` to
       // Cypress specs so VSCode will recognize custom command types.
-  
-      // Cypress-axe methods that are used to create `checkAxe` custom command 
-      checkA11y(context?: ElementContext, config?: RunOptions, callback?: (violations: Result[]) => void, skipFailures?: boolean): void;
-      injectAxe(): void;
   
       /**
        * Convenience method to run the axe-core accessibility scanner without having to establish 
@@ -29,17 +24,12 @@ declare global {
        */
       checkAxe(options?: {
         skipFailures?: boolean,
-        context?: ElementContext,
+        context?: ContextObject,
         axeConfig?: RunOptions,
         callback?: (violations: Result[]) => void
       }): void;
   
-      /**
-       * Provide global cy.mount() shortcut that includes required providers
-       * @see https://github.com/cypress-io/cypress/blob/develop/npm/react/docs/providers-and-composition.md
-       */
-      mount(children: React.ReactNode): Cypress.Chainable<MountReturn>;
-  
+
       /**
        * This ensures the correct testing window has focus when using Cypress Real Events.
        * @see https://github.com/dmtrKovalenko/cypress-real-events/issues/196

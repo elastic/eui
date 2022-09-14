@@ -9,6 +9,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const THEME_IMPORT = `'../../dist/eui_theme_${process.env.THEME}.css'`;
 
@@ -35,7 +36,15 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loaders: ['style-loader', 'css-loader'],
+        loaders: [
+          {
+            loader: 'style-loader',
+            options: {
+              insert: 'meta[name="css-styles"]',
+            }
+          },
+          'css-loader'
+        ],
         exclude: /node_modules/,
       },
       {

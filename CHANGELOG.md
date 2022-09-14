@@ -1,3 +1,48 @@
+## [`67.1.0`](https://github.com/elastic/eui/tree/v67.1.0)
+
+- Added an optional dev-mode check to log, warn, or error if a component is rendered outside of `EuiProvider` ([#6216](https://github.com/elastic/eui/pull/6216))
+- Updated `EuiBadge`'s disabled styling to match `EuiButton` ([#6224](https://github.com/elastic/eui/pull/6224))
+- Added the `custom_component` search filter type for the EuiSearchBar. This new type gives the consumer control to render the search filter dropdown. ([#6226](https://github.com/elastic/eui/pull/6226))
+
+**Bug fixes**
+
+- Fixed `Query.toESQuery()` to generate bool queries instead of relying on match query logic, to work with non-text fields ([#6220](https://github.com/elastic/eui/pull/6220))
+- Fixed `EuiInMemoryTable`'s internal state tracking to include changes of `sorting.sort` values ([#6228](https://github.com/elastic/eui/pull/6228))
+- Fixed bug in `EuiButton` where `iconSize` was not being applied ([#6230](https://github.com/elastic/eui/pull/6230))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiBadge` to Emotion ([#6224](https://github.com/elastic/eui/pull/6224))
+
+## [`67.0.0`](https://github.com/elastic/eui/tree/v67.0.0)
+
+- Updated `EuiSuggest` to accept the `isPreFiltered` prop ([#5930](https://github.com/elastic/eui/pull/5930))
+- Updated `EuiOverlayMask` to use `EuiPortal` ([#6090](https://github.com/elastic/eui/pull/6090))
+- Updated `EuiToolTipPopover` to be a function component ([#6104](https://github.com/elastic/eui/pull/6104))
+- Added `EuiToolTipAnchor` and `EuiToolTipArrow` components ([#6104](https://github.com/elastic/eui/pull/6104))
+- Added a new `component` prop to `EuiPageSection`, allowing overriding of the default `section` tag ([#6192](https://github.com/elastic/eui/pull/6192))
+
+**Bug fixes**
+
+- Fixed global styles being inserted into the wrong location when a `EuiProvider` cache is not configured. ([#6202](https://github.com/elastic/eui/pull/6202))
+- Fixed bug where `className` and `rest` props were not being passed to the `EuiNotificationEvent` ([#6208](https://github.com/elastic/eui/pull/6208))
+- Fixed various nested `componentProps` throwing type errors on the `css` prop ([#6211](https://github.com/elastic/eui/pull/6211))
+
+**Deprecations**
+
+- Added `@deprecated` flags to `EuiPageContent_Deprecated`, `EuiPageContentBody_Deprecated`, `EuiPageContentHeader_Deprecated`, `EuiPageContentHeaderSection_Deprecated`, `EuiPageSideBar_Deprecated` and `EuiPageTemplate_Deprecated`, which will provide helpful hints to IDEs that support jsdoc flags. Consumers will have until August 2023 to migrate from these deprecated components. ([#6194](https://github.com/elastic/eui/pull/6194))
+
+**Breaking changes**
+
+- Removed `onClick` prop from `EuiOverlayMask`. Use a nested `EuiFocusTrap` instead. ([#6090](https://github.com/elastic/eui/pull/6090))
+- Removed `euiCallOutColor` Sass mixin ([#6201](https://github.com/elastic/eui/pull/6201))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiOverlayMask` to Emotion ([#6090](https://github.com/elastic/eui/pull/6090))
+- Converted `EuiToolTip` to Emotion styling ([#6104](https://github.com/elastic/eui/pull/6104))
+- Converted `EuiPagination`, `EuiPaginationButton`, and `EuiPaginationButtonArrow` to Emotion ([#6109](https://github.com/elastic/eui/pull/6109))
+
 ## [`66.0.0`](https://github.com/elastic/eui/tree/v66.0.0)
 
 - Added the `gutterSize` prop to `EuiDescriptionList` ([#6175](https://github.com/elastic/eui/pull/6175))
@@ -56,6 +101,38 @@
 - Converted `EuiCard`, `EuiCheckableCard` to Emotion, removed `$euiCheckableCardPadding`, `$euiCardSpacing`, `$euiCardBottomNodeHeight`, `$euiCardSelectButtonBorders`, `$euiCardSelectButtonBackgrounds`, and `$euiCardPaddingModifiers` ([#6110](https://github.com/elastic/eui/pull/6110))
 - Converted `EuiButton` to Emotion ([#6150](https://github.com/elastic/eui/pull/6150))
 - Converted color styles of `EuiButtonIcon`, `EuiButtonEmpty`, `EuiButtonGroup` ([#6150](https://github.com/elastic/eui/pull/6150))
+
+## [`64.0.3`](https://github.com/elastic/eui/tree/v64.0.3)
+
+**Note: this release is a backport containing changes originally made in `66.0.0`**
+
+**Bug fixes**
+
+- Updated the `EuiHeaderSectionItem` to not render if empty ([#6158](https://github.com/elastic/eui/pull/6158))
+
+## [`64.0.2`](https://github.com/elastic/eui/tree/v64.0.2)
+
+**Note: this release is a backport containing changes originally made in `65.0.0` to `67.0.0`**
+
+**Bug fixes**
+
+- Fixed missing `EuiDataGrid` cell popover shadows in Safari ([#6163](https://github.com/elastic/eui/pull/6163))
+- Added memoization to `useEuiTheme`'s return value, supporting React's shallow prop comparison optimizations ([#6165](https://github.com/elastic/eui/pull/6165))
+- Fixed global styles being inserted into the wrong location when a `EuiProvider` cache is not configured. ([#6202](https://github.com/elastic/eui/pull/6202))
+- Fixed various nested `componentProps` throwing type errors on the `css` prop ([#6211](https://github.com/elastic/eui/pull/6211))
+
+**Note: The below are backport changes already present in `63.x`**
+
+- Added a new `component` prop to `EuiPageSection`, allowing overriding of the default `section` tag ([#6192](https://github.com/elastic/eui/pull/6192))
+
+**Bug fixes**
+
+- Fixed the text size of `EuiDescriptionListTitle` when `EuiDescriptionList` is compressed ([#6160](https://github.com/elastic/eui/pull/6160))
+- Fixed an `EuiPageSidebar` bug where inline styles were not correctly updating ([#6191](https://github.com/elastic/eui/pull/6191))
+
+**Deprecations**
+
+- Added `@deprecated` flags to `EuiPageContent_Deprecated`, `EuiPageContentBody_Deprecated`, `EuiPageContentHeader_Deprecated`, `EuiPageContentHeaderSection_Deprecated`, `EuiPageSideBar_Deprecated` and `EuiPageTemplate_Deprecated`, which will provide helpful hints to IDEs that support jsdoc flags. Consumers will have until August 2023 to migrate from these deprecated components. ([#6194](https://github.com/elastic/eui/pull/6194))
 
 ## [`64.0.1`](https://github.com/elastic/eui/tree/v64.0.1)
 

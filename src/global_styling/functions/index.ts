@@ -7,5 +7,6 @@
  */
 
 export * from './logicals';
+export * from './math';
 export * from './size';
 export * from './typography';
