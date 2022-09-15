@@ -27,7 +27,7 @@ Array [
     >
       <button
         aria-label="Closes this modal window"
-        class="euiButtonIcon euiButtonIcon--xSmall euiModal__closeIcon css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
+        class="euiButtonIcon euiButtonIcon--xSmall euiModal__closeIcon emotion-euiButtonIcon-empty-text-hoverStyles"
         type="button"
       >
         <span
