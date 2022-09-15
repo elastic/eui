@@ -169,7 +169,7 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
   );
 
   const useTheme = useEuiTheme();
-  const classes = classNames('euiPageHeaderContent');
+  const classes = classNames('euiPageHeaderContent', className);
   const pageHeaderStyles = euiPageHeaderStyles(useTheme);
   const contentStyles = euiPageHeaderContentStyles(useTheme);
   const styles = setStyleForRestrictedPageWidth(restrictWidth, style);

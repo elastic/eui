@@ -15,7 +15,7 @@ import { PADDING_SIZES } from '../../../global_styling';
 import { EuiPageBody } from './page_body';
 
 describe('EuiPageBody', () => {
-  shouldRenderCustomStyles(<EuiPageBody />);
+  shouldRenderCustomStyles(<EuiPageBody panelled />, ['panelProps']);
 
   test('is rendered', () => {
     const component = render(<EuiPageBody {...requiredProps} />);
