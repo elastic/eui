@@ -7,7 +7,7 @@
  */
 
 import React, { ReactElement } from 'react';
-import { render } from 'enzyme';
+import { render } from '@testing-library/react';
 import { css } from '@emotion/react';
 
 /**
@@ -20,26 +20,18 @@ import { css } from '@emotion/react';
  */
 export const shouldRenderCustomStyles = (component: ReactElement) => {
   it('should render custom classNames, css, and styles', () => {
-    const rendered = render(
-      <div>
-        {React.cloneElement(component, {
-          className: 'hello',
-          css: css`
-            color: red;
-          `,
-          style: { content: "'world'" },
-        })}
-      </div>
+    const { baseElement } = render(
+      <div>{React.cloneElement(component, customStyles)}</div>
     );
 
     // className
-    const componentNode = rendered.find('.hello');
-    expect(componentNode).toHaveLength(1);
+    const componentNode = baseElement.querySelector('.hello');
+    expect(componentNode).not.toBeNull();
     // css
-    expect(componentNode.attr('class')).toEqual(
+    expect(componentNode!.getAttribute('class')).toEqual(
       expect.stringMatching(/css-[\d\w-]{6,}-css/) // should have generated an emotion class ending with -css
     );
     // style
-    expect(componentNode.attr('style')).toContain("content:'world'");
+    expect(componentNode!.getAttribute('style')).toContain("content: 'world';");
   });
 };
