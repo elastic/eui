@@ -102,6 +102,20 @@
 - Converted `EuiButton` to Emotion ([#6150](https://github.com/elastic/eui/pull/6150))
 - Converted color styles of `EuiButtonIcon`, `EuiButtonEmpty`, `EuiButtonGroup` ([#6150](https://github.com/elastic/eui/pull/6150))
 
+## [`64.0.4`](https://github.com/elastic/eui/tree/v64.0.4)
+
+**Note: this release is a backport containing changes originally made in `67.2.0`**
+
+- Added the `custom_component` search filter type for the EuiSearchBar. This new type gives the consumer control to render the search filter dropdown. ([#6226](https://github.com/elastic/eui/pull/6226))
+
+**Bug fixes**
+
+- Fixed `EuiPageSection` not correctly merging `contentProps.css` ([#6239](https://github.com/elastic/eui/pull/6239))
+- Fixed `EuiPageHeaderContent` not correctly merging passed `className`s ([#6239](https://github.com/elastic/eui/pull/6239))
+- Fixed `EuiAccordion` not correctly merging `buttonProps.css` and `arrowProps.css` ([#6239](https://github.com/elastic/eui/pull/6239))
+- Fixed `EuiProgress` not correctly merging `labelProps.css` ([#6239](https://github.com/elastic/eui/pull/6239))
+- Fixed `EuiImage` not correctly merging `wrapperProps.css` ([#6239](https://github.com/elastic/eui/pull/6239))
+
 ## [`64.0.3`](https://github.com/elastic/eui/tree/v64.0.3)
 
 **Note: this release is a backport containing changes originally made in `66.0.0`**
