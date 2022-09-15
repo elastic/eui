@@ -109,8 +109,8 @@ exports[`EuiCodeBlock fullscreen displays content in fullscreen mode 1`] = `
                 "insert": [Function],
                 "inserted": Object {
                   "animation-ox4vyo": true,
-                  "dsw53p-empty-text-hoverStyles-EuiButtonIcon": true,
                   "jcaat8-euiToolTipAnchor-inlineBlock": true,
+                  "o2mzw-euiButtonIcon-empty-text-hoverStyles": true,
                 },
                 "key": "css",
                 "nonce": undefined,
@@ -160,21 +160,21 @@ exports[`EuiCodeBlock fullscreen displays content in fullscreen mode 1`] = `
                       data-s=""
                     >
                       
-                      .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon{color:#343741;}
+                      .emotion-euiButtonIcon-empty-text-hoverStyles{color:#343741;}
                     </style>
                     <style
                       data-emotion="css"
                       data-s=""
                     >
                       
-                      .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:focus,.css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:active{background-color:rgba(211,218,230,0.2);}
+                      .emotion-euiButtonIcon-empty-text-hoverStyles:focus,.emotion-euiButtonIcon-empty-text-hoverStyles:active{background-color:rgba(211,218,230,0.2);}
                     </style>
                     <style
                       data-emotion="css"
                       data-s=""
                     >
                       
-                      .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:hover{background-color:rgba(211,218,230,0.2);}
+                      .emotion-euiButtonIcon-empty-text-hoverStyles:hover{background-color:rgba(211,218,230,0.2);}
                     </style>
                     <style
                       data-emotion="css"
@@ -233,21 +233,21 @@ exports[`EuiCodeBlock fullscreen displays content in fullscreen mode 1`] = `
                       data-s=""
                     >
                       
-                      .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon{color:#343741;}
+                      .emotion-euiButtonIcon-empty-text-hoverStyles{color:#343741;}
                     </style>,
                     <style
                       data-emotion="css"
                       data-s=""
                     >
                       
-                      .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:focus,.css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:active{background-color:rgba(211,218,230,0.2);}
+                      .emotion-euiButtonIcon-empty-text-hoverStyles:focus,.emotion-euiButtonIcon-empty-text-hoverStyles:active{background-color:rgba(211,218,230,0.2);}
                     </style>,
                     <style
                       data-emotion="css"
                       data-s=""
                     >
                       
-                      .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:hover{background-color:rgba(211,218,230,0.2);}
+                      .emotion-euiButtonIcon-empty-text-hoverStyles:hover{background-color:rgba(211,218,230,0.2);}
                     </style>,
                     <style
                       data-emotion="css"
@@ -278,16 +278,16 @@ exports[`EuiCodeBlock fullscreen displays content in fullscreen mode 1`] = `
             serialized={
               Object {
                 "map": undefined,
-                "name": "dsw53p-empty-text-hoverStyles-EuiButtonIcon",
+                "name": "o2mzw-euiButtonIcon-empty-text-hoverStyles",
                 "next": undefined,
-                "styles": "color:#343741;&:focus,&:active{background-color:rgba(211,218,230,0.2);};label:empty;;;label:text;;;&:hover{background-color:rgba(211,218,230,0.2);};label:hoverStyles;;;;label:EuiButtonIcon;;",
+                "styles": ";label:euiButtonIcon;;;color:#343741;&:focus,&:active{background-color:rgba(211,218,230,0.2);};label:empty;;;label:text;;;&:hover{background-color:rgba(211,218,230,0.2);};label:hoverStyles;;;",
                 "toString": [Function],
               }
             }
           />
           <button
             aria-label="Collapse"
-            className="euiButtonIcon euiButtonIcon--xSmall euiCodeBlock__fullScreenButton css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
+            className="euiButtonIcon euiButtonIcon--xSmall euiCodeBlock__fullScreenButton emotion-euiButtonIcon-empty-text-hoverStyles"
             disabled={false}
             onClick={[Function]}
             type="button"
@@ -627,8 +627,8 @@ console.log(some);"
                       Object {
                         "insert": [Function],
                         "inserted": Object {
-                          "dsw53p-empty-text-hoverStyles-EuiButtonIcon": true,
                           "jcaat8-euiToolTipAnchor-inlineBlock": true,
+                          "o2mzw-euiButtonIcon-empty-text-hoverStyles": true,
                         },
                         "key": "css",
                         "nonce": undefined,
@@ -657,21 +657,21 @@ console.log(some);"
                               data-s=""
                             >
                               
-                              .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon{color:#343741;}
+                              .emotion-euiButtonIcon-empty-text-hoverStyles{color:#343741;}
                             </style>
                             <style
                               data-emotion="css"
                               data-s=""
                             >
                               
-                              .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:focus,.css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:active{background-color:rgba(211,218,230,0.2);}
+                              .emotion-euiButtonIcon-empty-text-hoverStyles:focus,.emotion-euiButtonIcon-empty-text-hoverStyles:active{background-color:rgba(211,218,230,0.2);}
                             </style>
                             <style
                               data-emotion="css"
                               data-s=""
                             >
                               
-                              .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:hover{background-color:rgba(211,218,230,0.2);}
+                              .emotion-euiButtonIcon-empty-text-hoverStyles:hover{background-color:rgba(211,218,230,0.2);}
                             </style>
                           </head>,
                           "ctr": 5,
@@ -700,21 +700,21 @@ console.log(some);"
                               data-s=""
                             >
                               
-                              .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon{color:#343741;}
+                              .emotion-euiButtonIcon-empty-text-hoverStyles{color:#343741;}
                             </style>,
                             <style
                               data-emotion="css"
                               data-s=""
                             >
                               
-                              .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:focus,.css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:active{background-color:rgba(211,218,230,0.2);}
+                              .emotion-euiButtonIcon-empty-text-hoverStyles:focus,.emotion-euiButtonIcon-empty-text-hoverStyles:active{background-color:rgba(211,218,230,0.2);}
                             </style>,
                             <style
                               data-emotion="css"
                               data-s=""
                             >
                               
-                              .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:hover{background-color:rgba(211,218,230,0.2);}
+                              .emotion-euiButtonIcon-empty-text-hoverStyles:hover{background-color:rgba(211,218,230,0.2);}
                             </style>,
                           ],
                         },
@@ -758,8 +758,8 @@ console.log(some);"
                             Object {
                               "insert": [Function],
                               "inserted": Object {
-                                "dsw53p-empty-text-hoverStyles-EuiButtonIcon": true,
                                 "jcaat8-euiToolTipAnchor-inlineBlock": true,
+                                "o2mzw-euiButtonIcon-empty-text-hoverStyles": true,
                               },
                               "key": "css",
                               "nonce": undefined,
@@ -788,21 +788,21 @@ console.log(some);"
                                     data-s=""
                                   >
                                     
-                                    .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon{color:#343741;}
+                                    .emotion-euiButtonIcon-empty-text-hoverStyles{color:#343741;}
                                   </style>
                                   <style
                                     data-emotion="css"
                                     data-s=""
                                   >
                                     
-                                    .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:focus,.css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:active{background-color:rgba(211,218,230,0.2);}
+                                    .emotion-euiButtonIcon-empty-text-hoverStyles:focus,.emotion-euiButtonIcon-empty-text-hoverStyles:active{background-color:rgba(211,218,230,0.2);}
                                   </style>
                                   <style
                                     data-emotion="css"
                                     data-s=""
                                   >
                                     
-                                    .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:hover{background-color:rgba(211,218,230,0.2);}
+                                    .emotion-euiButtonIcon-empty-text-hoverStyles:hover{background-color:rgba(211,218,230,0.2);}
                                   </style>
                                 </head>,
                                 "ctr": 5,
@@ -831,21 +831,21 @@ console.log(some);"
                                     data-s=""
                                   >
                                     
-                                    .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon{color:#343741;}
+                                    .emotion-euiButtonIcon-empty-text-hoverStyles{color:#343741;}
                                   </style>,
                                   <style
                                     data-emotion="css"
                                     data-s=""
                                   >
                                     
-                                    .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:focus,.css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:active{background-color:rgba(211,218,230,0.2);}
+                                    .emotion-euiButtonIcon-empty-text-hoverStyles:focus,.emotion-euiButtonIcon-empty-text-hoverStyles:active{background-color:rgba(211,218,230,0.2);}
                                   </style>,
                                   <style
                                     data-emotion="css"
                                     data-s=""
                                   >
                                     
-                                    .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:hover{background-color:rgba(211,218,230,0.2);}
+                                    .emotion-euiButtonIcon-empty-text-hoverStyles:hover{background-color:rgba(211,218,230,0.2);}
                                   </style>,
                                 ],
                               },
@@ -855,16 +855,16 @@ console.log(some);"
                           serialized={
                             Object {
                               "map": undefined,
-                              "name": "dsw53p-empty-text-hoverStyles-EuiButtonIcon",
+                              "name": "o2mzw-euiButtonIcon-empty-text-hoverStyles",
                               "next": undefined,
-                              "styles": "color:#343741;&:focus,&:active{background-color:rgba(211,218,230,0.2);};label:empty;;;label:text;;;&:hover{background-color:rgba(211,218,230,0.2);};label:hoverStyles;;;;label:EuiButtonIcon;;",
+                              "styles": ";label:euiButtonIcon;;;color:#343741;&:focus,&:active{background-color:rgba(211,218,230,0.2);};label:empty;;;label:text;;;&:hover{background-color:rgba(211,218,230,0.2);};label:hoverStyles;;;",
                               "toString": [Function],
                             }
                           }
                         />
                         <button
                           aria-label="Copy"
-                          className="euiButtonIcon euiButtonIcon--xSmall css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
+                          className="euiButtonIcon euiButtonIcon--xSmall emotion-euiButtonIcon-empty-text-hoverStyles"
                           disabled={false}
                           onBlur={[Function]}
                           onClick={[Function]}
@@ -961,7 +961,7 @@ exports[`EuiCodeBlock props overflowHeight is rendered 1`] = `
   >
     <button
       aria-label="Expand"
-      class="euiButtonIcon euiButtonIcon--xSmall euiCodeBlock__fullScreenButton css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
+      class="euiButtonIcon euiButtonIcon--xSmall euiCodeBlock__fullScreenButton emotion-euiButtonIcon-empty-text-hoverStyles"
       type="button"
     >
       <span
@@ -1216,7 +1216,7 @@ exports[`EuiCodeBlock virtualization renders a virtualized code block 1`] = `
   >
     <button
       aria-label="Expand"
-      class="euiButtonIcon euiButtonIcon--xSmall euiCodeBlock__fullScreenButton css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
+      class="euiButtonIcon euiButtonIcon--xSmall euiCodeBlock__fullScreenButton emotion-euiButtonIcon-empty-text-hoverStyles"
       type="button"
     >
       <span
