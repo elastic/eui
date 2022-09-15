@@ -22,7 +22,7 @@ describe('EuiImage', () => {
     src: '/cat.jpg',
   };
 
-  shouldRenderCustomStyles(<EuiImage {...requiredProps} />);
+  shouldRenderCustomStyles(<EuiImage {...requiredProps} />, ['wrapperProps']);
 
   test('is rendered', () => {
     const component = render(<EuiImage {...requiredProps} />);

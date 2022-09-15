@@ -9,12 +9,15 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiPageSection } from './page_section';
 import { ALIGNMENTS } from './page_section.styles';
 import { PADDING_SIZES, BACKGROUND_COLORS } from '../../../global_styling';
 
 describe('EuiPageSection', () => {
+  shouldRenderCustomStyles(<EuiPageSection />, ['contentProps']);
+
   test('is rendered', () => {
     const component = render(<EuiPageSection {...requiredProps} />);
 

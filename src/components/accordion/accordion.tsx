@@ -313,9 +313,9 @@ export class EuiAccordionClass extends Component<
       iconButton = (
         <EuiButtonIcon
           color="text"
+          css={cssIconButtonStyles}
           {...arrowProps}
           className={iconButtonClasses}
-          css={cssIconButtonStyles}
           iconType="arrowRight"
           onClick={this.onToggle}
           aria-controls={id}
@@ -365,10 +365,10 @@ export class EuiAccordionClass extends Component<
 
     const button = (
       <ButtonElement
+        css={cssButtonStyles}
         {...buttonProps}
         id={buttonId}
         className={buttonClasses}
-        css={cssButtonStyles}
         aria-controls={id}
         aria-expanded={isOpen}
         onClick={isDisabled ? undefined : this.onToggle}

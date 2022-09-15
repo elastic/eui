@@ -9,6 +9,7 @@
 import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiAccordion } from './accordion';
 
@@ -16,6 +17,11 @@ let id = 0;
 const getId = () => `${id++}`;
 
 describe('EuiAccordion', () => {
+  shouldRenderCustomStyles(<EuiAccordion id="styles" />, [
+    'buttonProps',
+    'arrowProps',
+  ]);
+
   test('is rendered', () => {
     const component = render(<EuiAccordion id={getId()} {...requiredProps} />);
 

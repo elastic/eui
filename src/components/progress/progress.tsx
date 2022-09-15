@@ -161,8 +161,8 @@ export const EuiProgress: FunctionComponent<ExclusiveUnion<
                   <span
                     title={innerText}
                     ref={ref}
-                    {...labelProps}
                     css={labelCssStyles}
+                    {...labelProps}
                     className={labelClasses}
                   >
                     {label}
