@@ -261,6 +261,13 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
     actions.reset();
   }, [actions, resizeEnd]);
 
+  const onBlur = useCallback(() => {
+    if (resizeContext.current.trigger === 'key') {
+      resizeEnd();
+    }
+    actions.resizerBlur();
+  }, [actions, resizeEnd]);
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const EuiResizableButton = useCallback(
     euiResizableButtonWithControls({
@@ -269,7 +276,7 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
       onMouseDown,
       onTouchStart: onMouseDown,
       onFocus: actions.resizerFocus,
-      onBlur: actions.resizerBlur,
+      onBlur,
       isHorizontal,
       registration: {
         register: actions.registerResizer,

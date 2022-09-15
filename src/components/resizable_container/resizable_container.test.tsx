@@ -324,4 +324,13 @@ describe('EuiResizableContainer', () => {
     button.simulate('keyup', { key: keys.ARROW_RIGHT });
     expect(onResizeEnd).toHaveBeenCalledTimes(2);
   });
+
+  test('onResizeEnd is called for keyboard resizes when the button is blurred', () => {
+    const { button, onResizeStart, onResizeEnd } = mountWithCallbacks();
+    button.simulate('keydown', { key: keys.ARROW_RIGHT });
+    expect(onResizeStart).toHaveBeenCalledTimes(1);
+    expect(onResizeStart).toHaveBeenLastCalledWith('key');
+    button.simulate('blur');
+    expect(onResizeEnd).toHaveBeenCalledTimes(1);
+  });
 });
