@@ -371,8 +371,8 @@ export class EuiRangeClass extends Component<
               showTicks={showTicks}
               showInput={!!showInput}
               style={thumbPosition}
-              aria-describedby={this.props['aria-describedby']}
-              aria-label={this.props['aria-label']}
+              // TODO - Fix this aria-label
+              aria-label="Range value"
             />
           )}
 
