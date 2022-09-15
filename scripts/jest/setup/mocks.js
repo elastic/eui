@@ -24,12 +24,9 @@ jest.mock('./../../../src/services/accessibility', () => {
   return { ...a11y, htmlIdGenerator, useGeneratedHtmlId };
 });
 
-jest.mock('./../../../src/services/breakpoint', () => {
-  const breakpointServices = jest.requireActual(
-    './../../../src/services/breakpoint'
-  );
+jest.mock('./../../../src/services/breakpoint/current_breakpoint_hook', () => {
   const {
     useCurrentEuiBreakpoint,
   } = require('./../../../src/services/breakpoint/current_breakpoint_hook.testenv');
-  return { ...breakpointServices, useCurrentEuiBreakpoint };
+  return { useCurrentEuiBreakpoint };
 });
