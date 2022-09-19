@@ -351,13 +351,13 @@ export const EuiFlyout = forwardRef(
         {...focusTrapProps}
       >
         <Element
+          css={cssStyles}
           {...(rest as ComponentPropsWithRef<T>)}
           role={role}
           className={classes}
           tabIndex={-1}
           style={newStyle}
           ref={setRef}
-          css={cssStyles}
         >
           {closeButton}
           {children}
