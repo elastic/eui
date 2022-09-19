@@ -21,9 +21,10 @@ describe('EuiProgress', () => {
   });
 
   shouldRenderCustomStyles(<EuiProgress />);
-  shouldRenderCustomStyles(<EuiProgress max={100} label="Test" />, [
-    'labelProps',
-  ]);
+  shouldRenderCustomStyles(<EuiProgress max={100} label="Test" />, {
+    childProps: ['labelProps'],
+    skipParentTest: true,
+  });
 
   test('has max', () => {
     const component = render(<EuiProgress max={100} {...requiredProps} />);
