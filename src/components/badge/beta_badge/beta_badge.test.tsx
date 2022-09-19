@@ -9,10 +9,16 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiBetaBadge, COLORS, SIZES } from './beta_badge';
 
 describe('EuiBetaBadge', () => {
+  shouldRenderCustomStyles(
+    <EuiBetaBadge label="Hello" tooltipContent="World" />,
+    { childProps: ['anchorProps'] }
+  );
+
   test('is rendered', () => {
     const component = render(<EuiBetaBadge label="Beta" {...requiredProps} />);
 
