@@ -56,11 +56,9 @@ export default () => {
   const togglePopover = () =>
     setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
 
-  const onSelectedTabChanged = (id) => setSelectedTabId(id);
-
   const renderTabs = tabs.map((tab, index) => (
     <EuiTab
-      onClick={() => onSelectedTabChanged(tab.id)}
+      onClick={() => setSelectedTabId(tab.id)}
       isSelected={tab.id === selectedTabId}
       key={index}
     >
@@ -106,10 +104,6 @@ export default () => {
       ),
     },
   ];
-
-  const onSuperSelectChange = (value) => {
-    setSuperSelectValue(value);
-  };
 
   const flyoutContent = (
     <EuiText>
@@ -224,7 +218,7 @@ export default () => {
               <EuiSuperSelect
                 options={superSelectOptions}
                 valueOfSelected={superSelectvalue}
-                onChange={(value) => onSuperSelectChange(value)}
+                onChange={(value) => setSuperSelectValue(value)}
                 itemLayoutAlign="top"
                 popoverProps={{ repositionOnScroll: true }}
                 hasDividers

@@ -67,7 +67,7 @@ describe('EuiCollapsibleNav', () => {
         cy.mount(<Nav />);
         cy.wait(400);
         cy.get('[data-test-subj="navSpecButton"]').realClick();
-        cy.get('.euiOverlayMask').realClick();
+        cy.get('.euiOverlayMask').realClick({ position: 'bottomRight' });
         expect(cy.get('#navSpec').should('not.exist'));
       });
 

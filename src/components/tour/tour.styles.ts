@@ -14,7 +14,7 @@ import {
   COLOR_MODES_STANDARD,
   EuiThemeColorModeStandard,
 } from '../../services';
-import { logicalCSS } from '../../global_styling';
+import { logicalCSS, mathWithUnits } from '../../global_styling';
 import { openAnimationTiming } from '../popover/popover_panel/_popover_panel.styles';
 import { popoverArrowSize } from '../popover/popover_arrow/_popover_arrow.styles';
 
@@ -45,7 +45,8 @@ export const euiTourStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
 
 export const euiTourBeaconStyles = ({ euiTheme }: UseEuiTheme) => {
   const arrowSize = euiTheme.size[popoverArrowSize];
-  const arrowSizeInt = parseInt(arrowSize, 10);
+  const arrowHalfSize = mathWithUnits(arrowSize, (x) => x / 2);
+  const arrowOffset = mathWithUnits(arrowSize, (x) => x * -2);
 
   return {
     // Base
@@ -58,20 +59,20 @@ export const euiTourBeaconStyles = ({ euiTheme }: UseEuiTheme) => {
 
     // Positions
     right: css`
-      ${logicalCSS('top', `${arrowSizeInt / 2}px`)};
-      ${logicalCSS('left', `${arrowSizeInt * -2}px`)};
+      ${logicalCSS('top', arrowHalfSize)};
+      ${logicalCSS('left', arrowOffset)};
     `,
     left: css`
-      ${logicalCSS('top', `${arrowSizeInt / 2}px`)};
+      ${logicalCSS('top', arrowHalfSize)};
       ${logicalCSS('left', arrowSize)};
     `,
     top: css`
       ${logicalCSS('top', arrowSize)};
-      ${logicalCSS('left', `${arrowSizeInt / 2}px`)};
+      ${logicalCSS('left', arrowHalfSize)};
     `,
     bottom: css`
-      ${logicalCSS('top', `${arrowSizeInt * -2}px`)};
-      ${logicalCSS('left', `${arrowSizeInt / 2}px`)};
+      ${logicalCSS('top', arrowOffset)};
+      ${logicalCSS('left', arrowHalfSize)};
     `,
   };
 };

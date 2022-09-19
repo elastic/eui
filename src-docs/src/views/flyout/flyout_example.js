@@ -18,14 +18,14 @@ const flyoutSource = require('!!raw-loader!./flyout');
 import FlyoutComplicated from './flyout_complicated';
 const flyoutComplicatedSource = require('!!raw-loader!./flyout_complicated');
 
-import FlyoutSmall from './flyout_small';
-const flyoutSmallSource = require('!!raw-loader!./flyout_small');
+import FlyoutOwnFocus from './flyout_own_focus';
+const flyoutOwnFocusSource = require('!!raw-loader!./flyout_own_focus');
 
-import FlyoutLarge from './flyout_large';
-const flyoutLargeSource = require('!!raw-loader!./flyout_large');
+import FlyoutSizes from './flyout_sizes';
+const flyoutSizesSource = require('!!raw-loader!./flyout_sizes');
 
-import FlyoutPaddingMedium from './flyout_padding_medium';
-const FlyoutPaddingMediumSource = require('!!raw-loader!./flyout_padding_medium');
+import FlyoutPaddingSizes from './flyout_padding_sizes';
+const FlyoutPaddingSizesSource = require('!!raw-loader!./flyout_padding_sizes');
 
 import FlyoutMaxWidth from './flyout_max_width';
 const flyoutMaxWidthSource = require('!!raw-loader!./flyout_max_width');
@@ -66,7 +66,7 @@ const flyoutComplicatedSnippet = `<EuiFlyout onClose={closeFlyout}>
 </EuiFlyout>
 `;
 
-const flyoutSmallSnippet = `<EuiFlyout ownFocus={false} size="s" onClose={closeFlyout}>
+const flyoutOwnFocusSnippet = `<EuiFlyout ownFocus={false} size="s" onClose={closeFlyout}>
   <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
     <EuiTitle>
       <h2 id={flyoutHeadingId}><!-- Defaults to medium size. Change the heading level based on your context. --></h2>
@@ -78,7 +78,7 @@ const flyoutSmallSnippet = `<EuiFlyout ownFocus={false} size="s" onClose={closeF
 </EuiFlyout>
 `;
 
-const flyoutMediumPaddingSnippet = `<EuiFlyout paddingSize="m" onClose={closeFlyout}>
+const flyoutSizesPaddingSnippet = `<EuiFlyout paddingSize="m" onClose={closeFlyout}>
   <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
     <EuiTitle>
       <h2 id={flyoutHeadingId}>
@@ -104,7 +104,7 @@ const flyoutMaxWidthSnippet = `<EuiFlyout maxWidth={448} onClose={closeFlyout}>
 </EuiFlyout>
 `;
 
-const flyoutLargeSnippet = `<EuiFlyout size="l" onClose={closeFlyout}>
+const flyoutSizesSnippet = `<EuiFlyout size="l" onClose={closeFlyout}>
   <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
     <EuiTitle>
       <h2 id={flyoutHeadingId}><!-- Defaults to medium size. Change the heading level based on your context. --></h2>
@@ -214,8 +214,8 @@ export const FlyoutExample = {
       title: 'Sizing',
       source: [
         {
-          type: GuideSectionTypes.JS,
-          code: flyoutLargeSource,
+          type: GuideSectionTypes.TSX,
+          code: flyoutSizesSource,
         },
       ],
       text: (
@@ -227,16 +227,16 @@ export const FlyoutExample = {
           number or string format.
         </p>
       ),
-      snippet: flyoutLargeSnippet,
-      demo: <FlyoutLarge />,
+      snippet: flyoutSizesSnippet,
+      demo: <FlyoutSizes />,
       props: { EuiFlyout },
     },
     {
       title: 'Adjusting padding',
       source: [
         {
-          type: GuideSectionTypes.JS,
-          code: FlyoutPaddingMediumSource,
+          type: GuideSectionTypes.TSX,
+          code: FlyoutPaddingSizesSource,
         },
       ],
       text: (
@@ -250,8 +250,8 @@ export const FlyoutExample = {
           flyout.
         </p>
       ),
-      snippet: flyoutMediumPaddingSnippet,
-      demo: <FlyoutPaddingMedium />,
+      snippet: flyoutSizesPaddingSnippet,
+      demo: <FlyoutPaddingSizes />,
       props: { EuiFlyout },
     },
     {
@@ -282,7 +282,7 @@ export const FlyoutExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: flyoutSmallSource,
+          code: flyoutOwnFocusSource,
         },
       ],
       text: (
@@ -302,8 +302,8 @@ export const FlyoutExample = {
           </p>
         </>
       ),
-      snippet: flyoutSmallSnippet,
-      demo: <FlyoutSmall />,
+      snippet: flyoutOwnFocusSnippet,
+      demo: <FlyoutOwnFocus />,
       props: { EuiFlyout },
     },
     {
@@ -339,7 +339,7 @@ export const FlyoutExample = {
       title: 'Understanding max-width',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: flyoutMaxWidthSource,
         },
       ],

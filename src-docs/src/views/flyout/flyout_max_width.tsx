@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import {
   EuiFlyout,
+  EuiFlyoutProps,
   EuiFlyoutBody,
   EuiFlyoutHeader,
   EuiLink,
@@ -19,8 +20,10 @@ import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
-  const [flyoutSize, setFlyoutSize] = useState('m');
-  const [flyoutMaxWidth, setFlyoutMaxWidth] = useState(false);
+  const [flyoutSize, setFlyoutSize] = useState<EuiFlyoutProps['size']>('m');
+  const [flyoutMaxWidth, setFlyoutMaxWidth] = useState<
+    EuiFlyoutProps['maxWidth']
+  >(false);
   const maxWidthFlyoutTitleId = useGeneratedHtmlId({
     prefix: 'maxWidthFlyoutTitle',
   });
@@ -30,7 +33,10 @@ export default () => {
 
   const closeFlyout = () => setIsFlyoutVisible(false);
 
-  const showFlyout = (size = 'm', maxWidth = false) => {
+  const showFlyout = (
+    size: EuiFlyoutProps['size'] = 'm',
+    maxWidth: EuiFlyoutProps['maxWidth'] = false
+  ) => {
     setFlyoutSize(size);
     setFlyoutMaxWidth(maxWidth);
     setIsFlyoutVisible(true);
@@ -105,6 +111,7 @@ export default () => {
                 max={100}
                 name="range"
                 id={maxWidthFlyoutRangeId}
+                value={50}
               />
             </EuiFormRow>
           </EuiForm>

@@ -7,7 +7,12 @@
  */
 
 import { css, keyframes } from '@emotion/react';
-import { logicalCSS, logicalSizeCSS, euiFontSize } from '../../global_styling';
+import {
+  logicalCSS,
+  logicalSizeCSS,
+  euiFontSize,
+  mathWithUnits,
+} from '../../global_styling';
 import { COLOR_MODES_STANDARD, UseEuiTheme, tint, shade } from '../../services';
 import { euiShadow } from '../../themes/amsterdam';
 
@@ -58,9 +63,8 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
    * 1. Shift arrow 1px more than half its size to account for border radius
    */
   const arrowSize = euiTheme.size.m;
-  const arrowSizeInt = parseInt(arrowSize, 10);
-  const arrowPlusSize = `${(arrowSizeInt / 2 + 1) * -1}px`; /* 1 */
-  const arrowMinusSize = `${(arrowSizeInt / 2 - 1) * -1}px`; /* 1 */
+  const arrowPlusSize = mathWithUnits(arrowSize, (x) => (x / 2 + 1) * -1); // 1.
+  const arrowMinusSize = mathWithUnits(arrowSize, (x) => (x / 2 - 1) * -1); // 1.
   return {
     // Base
     euiToolTip: css`

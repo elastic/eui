@@ -70,8 +70,6 @@ const github = [
   'silne30',
 ];
 
-const dob = new Date(1980, 1, 1);
-
 const createUsers = (countries) => {
   return times(20, (index) => {
     return {
@@ -79,7 +77,11 @@ const createUsers = (countries) => {
       firstName: index < 10 ? firstNames[index] : firstNames[index - 10],
       lastName: index < 10 ? lastNames[index] : lastNames[index - 10],
       github: index < 10 ? github[index] : github[index - 10],
-      dateOfBirth: dob,
+      dateOfBirth: new Date(
+        1980,
+        Math.floor(Math.random() * 12),
+        Math.floor(Math.random() * 27) + 1
+      ),
       nationality: random.oneToOne(
         countries.map((country) => country.code),
         index
