@@ -7,9 +7,9 @@
  */
 
 import React, { ReactElement } from 'react';
-import { render } from '@testing-library/react';
 import { css } from '@emotion/react';
 import { get, set } from 'lodash';
+import { render } from '../rtl';
 
 const customStyles = {
   className: 'hello',
@@ -59,6 +59,7 @@ export const shouldRenderCustomStyles = (
     childProps?: string[];
     skipStyles?: boolean;
     skipParentTest?: boolean;
+    renderCallback?: (result: ReturnType<typeof render>) => void;
   } = {}
 ) => {
   const testCases = options.skipStyles
@@ -71,25 +72,27 @@ export const shouldRenderCustomStyles = (
   // Some tests run separate child props tests with different settings & don't need
   // to run the base parent test multiple times. If so, allow skipping this test
   if (!(options.skipParentTest === true && options.childProps)) {
-    it(`should render custom ${testCases}`, () => {
-      const { baseElement } = render(
+    it(`should render custom ${testCases}`, async () => {
+      const result = render(
         <div>{React.cloneElement(component, testProps)}</div>
       );
-      assertOutputStyles(baseElement, options);
+      await options.renderCallback?.(result);
+      assertOutputStyles(result.baseElement, options);
     });
   }
 
   if (options.childProps) {
     options.childProps.forEach((childProps) => {
-      it(`should render custom ${testCases} on ${childProps}`, () => {
+      it(`should render custom ${testCases} on ${childProps}`, async () => {
         const mergedChildProps = set({ ...component.props }, childProps, {
           ...get(component.props, childProps),
           ...testProps,
         });
-        const { baseElement } = render(
+        const result = render(
           <div>{React.cloneElement(component, mergedChildProps)}</div>
         );
-        assertOutputStyles(baseElement, options);
+        await options.renderCallback?.(result);
+        assertOutputStyles(result.baseElement, options);
       });
     });
   }
