@@ -98,8 +98,9 @@ export const euiListGroupItemInnerStyles = (euiThemeContext: UseEuiTheme) => {
       display: flex;
       align-items: center;
       flex-grow: 1;
-      text-align: start;
       max-inline-size: 100%;
+      overflow: hidden;
+      text-align: start;
       font-weight: inherit;
     `,
     // Sizes

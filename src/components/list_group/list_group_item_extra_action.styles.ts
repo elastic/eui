@@ -15,6 +15,7 @@ export const euiListGroupItemExtraActionStyles = ({
 }: UseEuiTheme) => {
   return {
     euiListGroupItemExtraAction: css`
+      flex-shrink: 0;
       opacity: 0;
       ${logicalCSS('margin-right', euiTheme.size.m)};
 
