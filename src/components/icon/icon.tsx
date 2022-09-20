@@ -53,6 +53,7 @@ const typeToPathMap = {
   beaker: 'beaker',
   bell: 'bell',
   bellSlash: 'bellSlash',
+  beta: 'beta',
   bolt: 'bolt',
   boxesHorizontal: 'boxes_horizontal',
   boxesVertical: 'boxes_vertical',

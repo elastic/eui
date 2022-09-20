@@ -28,6 +28,7 @@ export const iconTypes = [
   'beaker',
   'bell',
   'bellSlash',
+  'beta',
   'bolt',
   'boxesHorizontal',
   'boxesVertical',

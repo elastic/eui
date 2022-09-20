@@ -78,7 +78,9 @@ export const IconExample = {
           <p>
             Glyphs are small, monochromatic icons that typically should always
             use the default size of{' '}
-            <EuiCode language="js">size=&quot;m&quot;</EuiCode>.
+            <EuiCode language="js">size=&quot;m&quot;</EuiCode>. They are names
+            according to the icon's appereance or the action they represent. For
+            example, <EuiCode>star</EuiCode>, <EuiCode>play</EuiCode> etc.
           </p>
           <p>
             If you would like to contribute to our growing list of glyphs, you
@@ -126,6 +128,9 @@ export const IconExample = {
       title: 'Apps',
       text: (
         <p>
+          App logos are logos for Elastic Apps, and can contain multiple colors.
+          Normally the Elastic Design team creates those icons. They are not
+          meant to be used outside of Elastic, because they represent our apps.
           App logos are usually displayed at <EuiCode>32x32</EuiCode> or above
           and can contain multiple colors.
         </p>

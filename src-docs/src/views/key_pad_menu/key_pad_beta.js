@@ -13,9 +13,10 @@ export default () => (
     </EuiKeyPadMenuItem>
 
     <EuiKeyPadMenuItem
-      label="Single letter"
+      label="Icon"
       betaBadgeLabel="Beta"
       betaBadgeTooltipContent="This module is not GA. Please help us by reporting any bugs."
+      betaBadgeIconType="beta"
     >
       <EuiIcon type="editorBold" size="l" />
     </EuiKeyPadMenuItem>
