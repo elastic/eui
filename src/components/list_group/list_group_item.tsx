@@ -61,7 +61,7 @@ export type EuiListGroupItemProps = CommonProps &
      */
     size?: EuiListGroupItemSize;
     /**
-     * By default the item will get the color `text`,
+     * By default the item will get the color `text`.
      * You can customize the color of the item by passing a color name.
      */
     color?: EuiListGroupItemColor;

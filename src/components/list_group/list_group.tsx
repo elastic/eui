@@ -44,11 +44,13 @@ export type EuiListGroupProps = CommonProps &
 
     /**
      * Change the colors of all `listItems` at once
+     * @default text
      */
     color?: EuiListGroupItemProps['color'];
 
     /**
      * Change the size of all `listItems` at once
+     * @default m
      */
     size?: EuiListGroupItemProps['size'];
 
