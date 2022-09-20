@@ -12,6 +12,8 @@ import {
   euiFontSize,
   logicalCSS,
   euiBackgroundColor,
+  euiTextTruncate,
+  euiTextBreakWord,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiButtonColor } from '../../themes/amsterdam/global_styling/mixins/button';
@@ -157,23 +159,18 @@ export const euiListGroupItemInnerStyles = (euiThemeContext: UseEuiTheme) => {
         text-decoration: underline;
       }
     `,
-    wrapText: css`
-      inline-size: 100%;
-      word-break: break-word;
-    `,
   };
 };
 
 export const euiListGroupItemLabelStyles = () => {
   return {
     // Base
-    euiListGroupItem__label: css`
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    euiListGroupItem__label: css``,
+    truncate: css`
+      ${euiTextTruncate()}
     `,
     wrapText: css`
-      white-space: inherit;
+      ${euiTextBreakWord()}
     `,
   };
 };

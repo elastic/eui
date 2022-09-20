@@ -154,7 +154,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
         data-euiicon-type="eyeClosed"
       />
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
         title="Hide column"
       >
         Hide column
@@ -174,7 +174,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
         data-euiicon-type="sortUp"
       />
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
         title="Sort A-Z"
       >
         Sort A-Z
@@ -194,7 +194,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
         data-euiicon-type="sortDown"
       />
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
         title="Sort Z-A"
       >
         Sort Z-A
@@ -214,7 +214,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
         data-euiicon-type="sortLeft"
       />
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
         title="Move left"
       >
         Move left
@@ -234,7 +234,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
         data-euiicon-type="sortRight"
       />
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
         title="Move right"
       >
         Move right
@@ -257,7 +257,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
       type="button"
     >
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
         title="test"
       >
         test
@@ -285,7 +285,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
         data-euiicon-type="sortUp"
       />
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
         title="Sort A-Z"
       >
         Sort A-Z
@@ -305,7 +305,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
         data-euiicon-type="sortDown"
       />
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
         title="Sort Z-A"
       >
         Sort Z-A
@@ -320,7 +320,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
       type="button"
     >
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
         title="test"
       >
         test
@@ -348,7 +348,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
         data-euiicon-type="eyeClosed"
       />
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
         title="1"
       >
         1
@@ -368,7 +368,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
         data-euiicon-type="sortUp"
       />
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
         title="2"
       >
         2
@@ -388,7 +388,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
         data-euiicon-type="sortDown"
       />
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
         title="3"
       >
         3
@@ -408,7 +408,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
         data-euiicon-type="sortLeft"
       />
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
         title="4"
       >
         4
@@ -429,7 +429,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
         data-euiicon-type="sortRight"
       />
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
         title="5"
       >
         5
@@ -444,7 +444,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
       type="button"
     >
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
         title="test"
       >
         test

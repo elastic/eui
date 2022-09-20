@@ -18,7 +18,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
         data-euiicon-type="stop"
       />
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
         title="Label with iconType"
       >
         Label with iconType
@@ -45,7 +45,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
       class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text"
     >
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
         title="Custom extra action"
       >
         Custom extra action
@@ -73,7 +73,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
       rel="noreferrer"
     >
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
         title="Active link"
       >
         Active link
@@ -101,7 +101,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
       type="button"
     >
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
         title="Button with onClick"
       >
         Button with onClick
@@ -130,7 +130,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
       rel="noreferrer"
     >
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
         title="Link with href"
       >
         Link with href
@@ -159,7 +159,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
       rel="noreferrer"
     >
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
         title="Not pinnable"
       >
         Not pinnable
@@ -187,7 +187,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
         data-euiicon-type="stop"
       />
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
         title="Label with iconType"
       >
         Label with iconType
@@ -214,7 +214,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
       class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text"
     >
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
         title="Custom extra action"
       >
         Custom extra action
@@ -242,7 +242,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
       rel="noreferrer"
     >
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
         title="Active link"
       >
         Active link
@@ -270,7 +270,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
       type="button"
     >
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
         title="Button with onClick"
       >
         Button with onClick
@@ -299,7 +299,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
       rel="noreferrer"
     >
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
         title="Link with href"
       >
         Link with href
@@ -328,7 +328,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
       rel="noreferrer"
     >
       <span
-        class="euiListGroupItem__label emotion-euiListGroupItem__label"
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
         title="Not pinnable"
       >
         Not pinnable

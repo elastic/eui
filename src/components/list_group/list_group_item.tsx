@@ -228,7 +228,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   const labelStyles = euiListGroupItemLabelStyles();
   const cssLabelStyles = [
     labelStyles.euiListGroupItem__label,
-    wrapText && labelStyles.wrapText,
+    wrapText ? labelStyles.wrapText : labelStyles.truncate,
   ];
 
   // Only add the label as the title attribute if it's possibly truncated
@@ -265,7 +265,6 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     isActive && innerStyles.isActive,
     isDisabled && innerStyles.isDisabled,
     isClickable && !isDisabled && innerStyles.isClickable,
-    wrapText && innerStyles.wrapText,
   ];
 
   if (href && !isDisabled) {
