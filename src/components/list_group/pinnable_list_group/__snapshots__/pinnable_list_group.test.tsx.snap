@@ -53,7 +53,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     </span>
     <button
       aria-label="bell"
-      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction emotion-euiButtonIcon-empty-text-hoverStyles-euiListGroupItemExtraAction-hoverStyles-alwaysShow"
+      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction emotion-euiButtonIcon-empty-text-hoverStyles-euiListGroupItemExtraAction-alwaysShow"
       type="button"
     >
       <span
@@ -109,7 +109,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     </button>
     <button
       aria-label="Unpin Button with onClick to the top"
-      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction emotion-euiButtonIcon-empty-text-hoverStyles-euiListGroupItemExtraAction-hoverStyles-alwaysShow-euiPinnableListGroup__itemExtraAction-pinned"
+      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction emotion-euiButtonIcon-empty-text-hoverStyles-euiListGroupItemExtraAction-alwaysShow-euiPinnableListGroup__itemExtraAction-pinned"
       title="Unpin Button with onClick to the top"
       type="button"
     >
@@ -222,7 +222,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     </span>
     <button
       aria-label="bell"
-      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction emotion-euiButtonIcon-empty-text-hoverStyles-euiListGroupItemExtraAction-hoverStyles-alwaysShow"
+      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction emotion-euiButtonIcon-empty-text-hoverStyles-euiListGroupItemExtraAction-alwaysShow"
       type="button"
     >
       <span
@@ -278,7 +278,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     </button>
     <button
       aria-label="Unpin item"
-      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction emotion-euiButtonIcon-empty-text-hoverStyles-euiListGroupItemExtraAction-hoverStyles-alwaysShow-euiPinnableListGroup__itemExtraAction-pinned"
+      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction emotion-euiButtonIcon-empty-text-hoverStyles-euiListGroupItemExtraAction-alwaysShow-euiPinnableListGroup__itemExtraAction-pinned"
       title="Unpin item"
       type="button"
     >

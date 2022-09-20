@@ -41,8 +41,8 @@ export const EuiListGroupItemExtraAction: FunctionComponent<
   const extraActionStyles = euiListGroupItemExtraActionStyles(euiTheme);
   const cssExtraActionStyles = [
     extraActionStyles.euiListGroupItemExtraAction,
-    !parentIsDisabled && extraActionStyles.hoverStyles,
     alwaysShow && extraActionStyles.alwaysShow,
+    !alwaysShow && !parentIsDisabled && extraActionStyles.hoverStyles,
   ];
 
   return (

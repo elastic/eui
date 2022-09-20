@@ -115,7 +115,7 @@ exports[`EuiListGroupItem props extraAction is rendered 1`] = `
   </span>
   <button
     aria-label="label"
-    class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction emotion-euiButtonIcon-empty-text-hoverStyles-euiListGroupItemExtraAction-hoverStyles-alwaysShow"
+    class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction emotion-euiButtonIcon-empty-text-hoverStyles-euiListGroupItemExtraAction-alwaysShow"
     type="button"
   >
     <span

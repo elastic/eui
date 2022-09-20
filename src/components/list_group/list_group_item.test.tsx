@@ -16,7 +16,7 @@ import { EuiListGroupItem, SIZES, COLORS } from './list_group_item';
 describe('EuiListGroupItem', () => {
   // TODO - This test fails because `style` goes into ...rest
   // shouldRenderCustomStyles(<EuiListGroupItem label="Label" iconType="user" />, [
-  //   'iconProps',
+  //   'iconProps', 'extraAction',
   // ]);
 
   test('is rendered', () => {
