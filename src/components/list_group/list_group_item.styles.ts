@@ -193,6 +193,7 @@ export const euiListGroupItemTooltipStyles = () => {
   return {
     // Base
     euiListGroupItem__tooltip: css`
+      display: inline-flex; // Allows the wrapped button/text to grow
       ${logicalCSS('width', '100%')};
     `,
   };
