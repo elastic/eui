@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { HTMLAttributes, FunctionComponent, CSSProperties } from 'react';
+import React, { HTMLAttributes, FunctionComponent } from 'react';
 import { CommonProps, ExclusiveUnion } from '../common';
 import classNames from 'classnames';
 
@@ -141,10 +141,7 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
 
   checkValidInitials(initials);
 
-  // copying style into a new object for `avatarStyle` has two purposes:
-  // 1. `avatarStyle` is mutated later and this prevents that mutation from affecting the incoming prop
-  // 2. if `style` is undefined, this "defaults" an empty object
-  const avatarStyle: CSSProperties = { ...style };
+  const avatarStyle = { ...style };
 
   let iconCustomColor = iconColor;
 
