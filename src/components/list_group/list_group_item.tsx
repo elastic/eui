@@ -165,6 +165,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   toolTipText,
   ...rest
 }) => {
+  const isClickable = !!(href || onClick);
   const isHrefValid = !href || validateHref(href);
   const isDisabled = _isDisabled || !isHrefValid;
 
@@ -255,10 +256,6 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   // Handle the variety of interaction behavior
   let itemContent;
 
-  const secureRel = getSecureRelForTarget({ href, rel, target });
-
-  const isClickable = href || onClick ? true : false;
-
   const innerStyles = euiListGroupItemInnerStyles(euiTheme);
   const cssInnerStyles = [
     innerStyles.euiListGroupItem__inner,
@@ -276,7 +273,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
         css={cssInnerStyles}
         href={href}
         target={target}
-        rel={secureRel}
+        rel={getSecureRelForTarget({ href, rel, target })}
         onClick={onClick as AnchorHTMLAttributes<HTMLAnchorElement>['onClick']}
         {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}
       >
@@ -319,10 +316,10 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
 
   const classes = classNames('euiListGroupItem', className);
 
-  const tooltipStyles = euiListGroupItemTooltipStyles();
-  const cssTooltipStyles = [tooltipStyles.euiListGroupItem__tooltip];
-
   if (showToolTip) {
+    const tooltipStyles = euiListGroupItemTooltipStyles();
+    const cssTooltipStyles = [tooltipStyles.euiListGroupItem__tooltip];
+
     itemContent = (
       <li className={classes} css={cssStyles}>
         <EuiToolTip
