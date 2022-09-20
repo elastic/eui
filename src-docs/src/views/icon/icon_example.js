@@ -85,7 +85,7 @@ export const IconExample = {
           <p>
             If you would like to contribute to our growing list of glyphs, you
             can follow{' '}
-            <EuiLink to="https://github.com/elastic/eui/blob/main/wiki/creating-icons.md">
+            <EuiLink href="https://github.com/elastic/eui/blob/main/wiki/creating-icons.md">
               these guidelines
             </EuiLink>
             .
