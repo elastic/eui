@@ -1,3 +1,11 @@
+## [`67.1.2`](https://github.com/elastic/eui/tree/v67.1.2)
+
+**Bug fixes**
+
+- Fixed `EuiFlyout` not correctly merging passed `css` ([#6248](https://github.com/elastic/eui/pull/6248))
+- Fixed `EuiNotificationEvent` not correctly merging passed `className`s ([#6248](https://github.com/elastic/eui/pull/6248))
+- Fixed `EuiAvatar` to no longer mutate the object passed to its `style` prop ([#6251](https://github.com/elastic/eui/pull/6251))
+
 ## [`67.1.1`](https://github.com/elastic/eui/tree/v67.1.1)
 
 **Bug fixes**
