@@ -8,7 +8,8 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
 >
   <EuiFlexItem>
     <EuiFormControlLayout
-      className="euiSuperDatePicker"
+      className="euiSuperDatePicker testClass1 testClass2"
+      data-test-subj="test subject string"
       isDisabled={false}
       prepend={
         <EuiQuickSelectPopover

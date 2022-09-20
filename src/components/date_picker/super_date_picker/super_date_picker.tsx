@@ -541,6 +541,7 @@ export class EuiSuperDatePickerInternal extends Component<
       width: _width,
       isQuickSelectOnly,
       compressed,
+      className,
     } = this.props;
 
     // Force reduction in width if showing quick select only
@@ -600,13 +601,14 @@ export class EuiSuperDatePickerInternal extends Component<
               compressed={compressed}
               isDisabled={isDisabled}
               data-test-subj={dataTestSubj}
+              className={className}
             />
           </EuiFlexItem>
         ) : (
           <>
             <EuiFlexItem>
               <EuiFormControlLayout
-                className="euiSuperDatePicker"
+                className={classNames('euiSuperDatePicker', className)}
                 compressed={compressed}
                 isDisabled={isDisabled}
                 prepend={quickSelect}
