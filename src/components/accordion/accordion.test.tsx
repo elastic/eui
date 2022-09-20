@@ -17,10 +17,9 @@ let id = 0;
 const getId = () => `${id++}`;
 
 describe('EuiAccordion', () => {
-  shouldRenderCustomStyles(<EuiAccordion id="styles" />, [
-    'buttonProps',
-    'arrowProps',
-  ]);
+  shouldRenderCustomStyles(<EuiAccordion id="styles" />, {
+    childProps: ['buttonProps', 'arrowProps'],
+  });
 
   test('is rendered', () => {
     const component = render(<EuiAccordion id={getId()} {...requiredProps} />);

@@ -9,6 +9,7 @@
 import React from 'react';
 import { mount, render } from 'enzyme';
 import { requiredProps, takeMountedSnapshot } from '../../../test';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiSuperSelect } from './super_select';
 
@@ -22,6 +23,11 @@ const options = [
 ];
 
 describe('EuiSuperSelect', () => {
+  shouldRenderCustomStyles(
+    <EuiSuperSelect options={options} onChange={() => {}} />,
+    { childProps: ['popoverProps'] }
+  );
+
   test('is rendered', () => {
     const component = render(
       <EuiSuperSelect

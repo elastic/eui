@@ -8,25 +8,38 @@
 
 import React from 'react';
 import { mount, render } from 'enzyme';
-import { EuiNotificationEvent } from './notification_event';
-import { EuiContextMenuPanel, EuiContextMenuItem } from '../context_menu';
+
 import {
   findTestSubject,
   takeMountedSnapshot,
   requiredProps,
 } from '../../test';
+import { shouldRenderCustomStyles } from '../../test/internal';
+
+import { EuiNotificationEvent } from './notification_event';
+import { EuiContextMenuPanel, EuiContextMenuItem } from '../context_menu';
 
 describe('EuiNotificationEvent', () => {
+  const props = {
+    id: 'id',
+    type: 'Alert',
+    time: '1 min ago',
+    title: 'title',
+    messages: ['message'],
+  };
+
+  shouldRenderCustomStyles(
+    <EuiNotificationEvent
+      {...props}
+      primaryAction="Test"
+      onClickPrimaryAction={() => {}}
+    />,
+    { childProps: ['primaryActionProps'] }
+  );
+
   test('is rendered', () => {
     const component = render(
-      <EuiNotificationEvent
-        id="id"
-        type="Alert"
-        time="1 min ago"
-        title="title"
-        messages={['message']}
-        {...requiredProps}
-      />
+      <EuiNotificationEvent {...props} {...requiredProps} />
     );
 
     expect(component).toMatchSnapshot();
@@ -36,10 +49,7 @@ describe('EuiNotificationEvent', () => {
     test('multiple messages are rendered', () => {
       const component = render(
         <EuiNotificationEvent
-          id="id"
-          type="Alert"
-          time="1 min ago"
-          title="title"
+          {...props}
           messages={['message 1', 'message 2', 'message 3']}
         />
       );
@@ -49,15 +59,7 @@ describe('EuiNotificationEvent', () => {
 
     test('isRead  is rendered', () => {
       const component = render(
-        <EuiNotificationEvent
-          id="id"
-          type="Alert"
-          time="1 min ago"
-          isRead={true}
-          onRead={() => {}}
-          title="title"
-          messages={['message']}
-        />
+        <EuiNotificationEvent {...props} isRead={true} onRead={() => {}} />
       );
 
       expect(component).toMatchSnapshot();
@@ -65,14 +67,7 @@ describe('EuiNotificationEvent', () => {
 
     test('severity  is rendered', () => {
       const component = render(
-        <EuiNotificationEvent
-          id="id"
-          type="Alert"
-          time="1 min ago"
-          severity="severity"
-          title="title"
-          messages={['message']}
-        />
+        <EuiNotificationEvent {...props} severity="severity" />
       );
 
       expect(component).toMatchSnapshot();
@@ -80,14 +75,7 @@ describe('EuiNotificationEvent', () => {
 
     test('badgeColor is rendered', () => {
       const component = render(
-        <EuiNotificationEvent
-          id="id"
-          type="Alert"
-          time="1 min ago"
-          badgeColor="warning"
-          title="title"
-          messages={['message']}
-        />
+        <EuiNotificationEvent {...props} badgeColor="warning" />
       );
 
       expect(component).toMatchSnapshot();
@@ -95,14 +83,7 @@ describe('EuiNotificationEvent', () => {
 
     test('iconType is rendered', () => {
       const component = render(
-        <EuiNotificationEvent
-          id="id"
-          type="Alert"
-          time="1 min ago"
-          iconType="logoCloud"
-          title="title"
-          messages={['message']}
-        />
+        <EuiNotificationEvent {...props} iconType="logoCloud" />
       );
 
       expect(component).toMatchSnapshot();
@@ -110,14 +91,7 @@ describe('EuiNotificationEvent', () => {
 
     test('headingLevel is rendered', () => {
       const component = render(
-        <EuiNotificationEvent
-          id="id"
-          type="Alert"
-          time="1 min ago"
-          title="title"
-          headingLevel="h4"
-          messages={['message']}
-        />
+        <EuiNotificationEvent {...props} headingLevel="h4" />
       );
 
       expect(component).toMatchSnapshot();
@@ -126,13 +100,9 @@ describe('EuiNotificationEvent', () => {
     test('iconAriaLabel is rendered', () => {
       const component = render(
         <EuiNotificationEvent
-          id="id"
-          type="Alert"
-          time="1 min ago"
-          title="title"
+          {...props}
           iconType="logoCloud"
           iconAriaLabel="my icon aria label"
-          messages={['message']}
         />
       );
 
@@ -142,13 +112,9 @@ describe('EuiNotificationEvent', () => {
     test('primaryAction is rendered', () => {
       const component = render(
         <EuiNotificationEvent
-          id="id"
-          type="Alert"
-          time="1 min ago"
-          title="title"
+          {...props}
           primaryAction="primaryAction label"
           onClickPrimaryAction={() => {}}
-          messages={['message']}
         />
       );
 
@@ -158,14 +124,10 @@ describe('EuiNotificationEvent', () => {
     test('primaryActionProps is rendered', () => {
       const component = render(
         <EuiNotificationEvent
-          id="id"
-          type="Alert"
-          time="1 min ago"
-          title="title"
+          {...props}
           primaryAction="primaryAction"
           primaryActionProps={{ iconType: 'download' }}
           onClickPrimaryAction={() => {}}
-          messages={['message']}
         />
       );
 
@@ -189,11 +151,7 @@ describe('EuiNotificationEvent', () => {
 
       const component = mount(
         <EuiNotificationEvent
-          id="id"
-          type="Alert"
-          time="1 min ago"
-          title="title"
-          messages={['message']}
+          {...props}
           onOpenContextMenu={onOpenContextMenu}
         />
       );
@@ -215,15 +173,7 @@ describe('EuiNotificationEvent', () => {
       const onRead = jest.fn();
 
       const component = mount(
-        <EuiNotificationEvent
-          id="id"
-          type="Alert"
-          time="1 min ago"
-          isRead={true}
-          onRead={onRead}
-          title="title"
-          messages={['message']}
-        />
+        <EuiNotificationEvent {...props} isRead={true} onRead={onRead} />
       );
 
       findTestSubject(component, 'id-notificationEventReadButton').simulate(
@@ -238,15 +188,11 @@ describe('EuiNotificationEvent', () => {
 
       const component = mount(
         <EuiNotificationEvent
-          id="id"
-          type="Alert"
-          time="1 min ago"
+          {...props}
           isRead={true}
           onRead={() => {}}
           onClickPrimaryAction={onClickPrimaryAction}
           primaryAction="primary action label"
-          title="title"
-          messages={['message']}
         />
       );
 
@@ -261,14 +207,7 @@ describe('EuiNotificationEvent', () => {
       const onClickTitle = jest.fn();
 
       const component = mount(
-        <EuiNotificationEvent
-          id="id"
-          type="Alert"
-          time="1 min ago"
-          onClickTitle={onClickTitle}
-          title="title"
-          messages={['message']}
-        />
+        <EuiNotificationEvent {...props} onClickTitle={onClickTitle} />
       );
 
       findTestSubject(component, 'id-notificationEventTitle').simulate('click');

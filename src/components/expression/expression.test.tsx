@@ -16,7 +16,7 @@ import { EuiExpression, COLORS } from './expression';
 describe('EuiExpression', () => {
   shouldRenderCustomStyles(
     <EuiExpression description="the answer is" value="42" />,
-    ['descriptionProps', 'valueProps']
+    { childProps: ['descriptionProps', 'valueProps'] }
   );
 
   test('renders', () => {
