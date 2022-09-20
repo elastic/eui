@@ -38,7 +38,7 @@ describe('EuiSelectable', () => {
         </>
       )}
     </EuiSelectable>,
-    { childProps: ['searchProps', 'listProps'] }
+    { childProps: ['searchProps', 'listProps', 'listProps.windowProps'] }
   );
 
   test('is rendered', () => {

@@ -9,6 +9,7 @@
 import React, { ReactElement } from 'react';
 import { render } from '@testing-library/react';
 import { css } from '@emotion/react';
+import { get, set } from 'lodash';
 
 const customStyles = {
   className: 'hello',
@@ -81,15 +82,12 @@ export const shouldRenderCustomStyles = (
   if (options.childProps) {
     options.childProps.forEach((childProps) => {
       it(`should render custom ${testCases} on ${childProps}`, () => {
+        const mergedChildProps = set({ ...component.props }, childProps, {
+          ...get(component.props, childProps),
+          ...testProps,
+        });
         const { baseElement } = render(
-          <div>
-            {React.cloneElement(component, {
-              [childProps]: {
-                ...(component.props[childProps] || {}),
-                ...testProps,
-              },
-            })}
-          </div>
+          <div>{React.cloneElement(component, mergedChildProps)}</div>
         );
         assertOutputStyles(baseElement, options);
       });
