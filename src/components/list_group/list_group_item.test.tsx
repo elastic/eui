@@ -8,19 +8,21 @@
 
 import React from 'react';
 import { render } from 'enzyme';
-// import { requiredProps } from '../../test/required_props';
+import { requiredProps } from '../../test/required_props';
 // import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiListGroupItem, SIZES, COLORS } from './list_group_item';
 
 describe('EuiListGroupItem', () => {
-  // TODO - This test fails
-  // shouldRenderCustomStyles(
-  //   <EuiListGroupItem label="Label" {...requiredProps} />
-  // );
+  // TODO - This test fails because `style` goes into ...rest
+  // shouldRenderCustomStyles(<EuiListGroupItem label="Label" iconType="user" />, [
+  //   'iconProps',
+  // ]);
 
   test('is rendered', () => {
-    const component = render(<EuiListGroupItem label="Label" />);
+    const component = render(
+      <EuiListGroupItem label="Label" {...requiredProps} />
+    );
 
     expect(component).toMatchSnapshot();
   });

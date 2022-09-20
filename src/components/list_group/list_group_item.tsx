@@ -152,6 +152,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   target,
   rel,
   className,
+  css: customCss,
   iconType,
   icon,
   iconProps,
@@ -179,10 +180,10 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     iconNode = (
       <EuiIcon
         color="inherit" // forces the icon to inherit its parent color
+        css={cssIconStyles}
         {...iconProps}
         type={iconType}
         className={classNames('euiListGroupItem__icon', iconProps?.className)}
-        css={cssIconStyles}
       />
     );
 
@@ -319,7 +320,12 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     isDisabled
   );
 
-  const cssStyles = [styles.euiListGroupItem, styles[color], styles[size]];
+  const cssStyles = [
+    styles.euiListGroupItem,
+    styles[color],
+    styles[size],
+    customCss,
+  ];
 
   const classes = classNames('euiListGroupItem', className);
 

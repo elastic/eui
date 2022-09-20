@@ -2,10 +2,12 @@
 
 exports[`EuiListGroupItem is rendered 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-text-m"
+  class="euiListGroupItem testClass1 testClass2 emotion-euiListGroupItem-text-m"
 >
   <span
+    aria-label="aria-label"
     class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text"
+    data-test-subj="test subject string"
   >
     <span
       class="euiListGroupItem__label emotion-euiListGroupItem__label"
