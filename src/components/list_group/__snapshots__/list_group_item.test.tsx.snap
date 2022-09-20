@@ -191,7 +191,7 @@ exports[`EuiListGroupItem props icon is rendered 1`] = `
     class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text"
   >
     <span
-      class="euiListGroupItem__icon"
+      class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
     />
     <span
       class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"

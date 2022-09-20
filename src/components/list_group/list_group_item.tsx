@@ -28,6 +28,7 @@ import {
 } from './list_group_item_extra_action';
 
 import { getSecureRelForTarget, useEuiTheme } from '../../services';
+import { cloneElementWithCss } from '../../services/theme/clone_element';
 import { validateHref } from '../../services/security/href_validator';
 
 import {
@@ -191,7 +192,8 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
       );
     }
   } else if (icon) {
-    iconNode = React.cloneElement(icon, {
+    iconNode = cloneElementWithCss(icon, {
+      css: cssIconStyles,
       className: classNames('euiListGroupItem__icon', icon.props.className),
     });
   }
