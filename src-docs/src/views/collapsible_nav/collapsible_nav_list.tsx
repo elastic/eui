@@ -63,9 +63,9 @@ export const DeploymentsGroup = (
     background="dark"
   >
     <div role="group" className="kibanaNavDeployment__content">
-      <EuiListGroup listItems={deploymentsList} flush />
-      <EuiSpacer size="s" />
       <EuiThemeProvider colorMode="dark">
+        <EuiListGroup listItems={deploymentsList} flush />
+        <EuiSpacer size="s" />
         <EuiButton fullWidth>Manage deployments</EuiButton>
       </EuiThemeProvider>
     </div>
