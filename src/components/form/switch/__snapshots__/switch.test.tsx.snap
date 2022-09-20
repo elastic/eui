@@ -2,7 +2,7 @@
 
 exports[`EuiSwitch assigns automatically generated ID to label 1`] = `
 <div
-  class="euiSwitch"
+  class="euiSwitch emotion-euiSwitch"
 >
   <button
     aria-checked="false"
@@ -43,7 +43,7 @@ exports[`EuiSwitch assigns automatically generated ID to label 1`] = `
 
 exports[`EuiSwitch is rendered 1`] = `
 <div
-  class="euiSwitch testClass1 testClass2"
+  class="euiSwitch testClass1 testClass2 emotion-euiSwitch"
 >
   <button
     aria-checked="false"
@@ -86,7 +86,7 @@ exports[`EuiSwitch is rendered 1`] = `
 
 exports[`EuiSwitch labelProps is rendered 1`] = `
 <div
-  class="euiSwitch"
+  class="euiSwitch emotion-euiSwitch"
 >
   <button
     aria-checked="false"
