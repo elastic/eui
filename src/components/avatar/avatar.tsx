@@ -141,7 +141,11 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
 
   checkValidInitials(initials);
 
-  const avatarStyle: CSSProperties = style || {};
+  // copying style into a new object for `avatarStyle` has two purposes:
+  // 1. `avatarStyle` is mutated later and this prevents that mutation from affecting the incoming prop
+  // 2. if `style` is undefined, this "defaults" an empty object
+  const avatarStyle: CSSProperties = { ...style };
+
   let iconCustomColor = iconColor;
 
   const isNamedColor =
