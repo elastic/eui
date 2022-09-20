@@ -10,8 +10,6 @@ import {
   EuiButtonIcon,
   EuiText,
   EuiTextColor,
-  EuiFlexGroup,
-  EuiFlexItem,
   EuiEmptyPrompt,
   EuiFocusTrap,
   EuiHorizontalRule,
@@ -27,11 +25,17 @@ import {
   useEuiTheme,
 } from '../../../../../src/services';
 
-import { euiCanAnimate } from '../../../../../src/global_styling';
+import {
+  euiCanAnimate,
+  logicalCSS,
+  logicalCSSWithFallback,
+  euiYScrollWithShadows,
+} from '../../../../../src/global_styling';
 
 export default () => {
   const [isCustomFlyoutVisible, setIsCustomFlyoutVisible] = useState(false);
-  const { euiTheme } = useEuiTheme();
+  const euiThemeContext = useEuiTheme();
+  const euiTheme = euiThemeContext.euiTheme;
 
   const toggleCustomFlyout = () => {
     setIsCustomFlyoutVisible(!isCustomFlyoutVisible);
@@ -68,11 +72,12 @@ export default () => {
               role="dialog"
               paddingSize="l"
               css={css`
-                position: absolute;
+                position: fixed;
                 max-inline-size: 480px;
                 max-block-size: auto;
                 inset-inline-end: ${euiTheme.size.l};
                 inset-block-start: ${euiTheme.size.l};
+                block-size: calc(100% - (${euiTheme.size.l} * 2));
 
                 ${euiCanAnimate} {
                   animation: ${euiFlyoutSlideInRight}
@@ -81,71 +86,110 @@ export default () => {
                 }
               `}
             >
-              <EuiFlexGroup justifyContent="spaceBetween" direction="column">
-                <EuiFlexItem>
+              <div
+                css={css`
+                  display: flex;
+                  block-size: 100%;
+                  justify-content: space-between;
+                  flex-direction: column;
+                `}
+              >
+                {/* Flyout Header */}
+                <div
+                  css={css`
+                    flex-grow: 0;
+                  `}
+                >
                   <EuiSpacer size="s" />
                   <EuiTitle size="m">
                     <h2>Let’s get started!</h2>
                   </EuiTitle>
 
                   <EuiHorizontalRule />
+                </div>
 
-                  <EuiText size="s">
-                    <p>
-                      Elastic Observability provides a unified view into the
-                      health and performance of your entire digital ecosystem.
-                      With easy ingest of multiple kinds of data via pre-built
-                      collectors for hundreds of data sources.
-                    </p>
+                {/* Flyout Body */}
+                <div
+                  css={css`
+                    ${logicalCSS('height', '100%')}
+                    ${logicalCSSWithFallback('overflow-y', 'hidden')}
+                    flex-grow: 1;
+                  `}
+                >
+                  <div
+                    css={css`
+                      ${logicalCSS('height', '100%')}
+                      ${euiYScrollWithShadows(euiThemeContext, {
+                        side: 'end',
+                      })}
+                    `}
+                  >
+                    <EuiText size="s">
+                      <p>
+                        Elastic Observability provides a unified view into the
+                        health and performance of your entire digital ecosystem.
+                        With easy ingest of multiple kinds of data via pre-built
+                        collectors for hundreds of data sources.
+                      </p>
 
-                    <EuiHorizontalRule />
+                      <EuiHorizontalRule />
 
-                    <ol
-                      css={css`
-                        > li {
-                          list-style-type: none;
-                        }
+                      <ol
+                        css={css`
+                          > li {
+                            list-style-type: none;
+                          }
 
-                        margin-inline-start: 0 !important;
-                      `}
-                    >
-                      <li>
-                        <h3>Step 1</h3>
-                        <p>Select an ingestion method</p>
-
-                        <EuiHorizontalRule />
-                      </li>
-                      <li>
-                        <EuiTextColor color="subdued">
-                          <h3>Step 2</h3>
+                          margin-inline-start: 0 !important;
+                        `}
+                      >
+                        <li>
+                          <h3>Step 1</h3>
                           <p>Select an ingestion method</p>
-                        </EuiTextColor>
 
-                        <EuiHorizontalRule />
-                      </li>
-                      <li>
-                        <EuiTextColor color="subdued">
-                          <h3>Step 3</h3>
-                          <p>Select an ingestion method</p>
-                        </EuiTextColor>
+                          <EuiHorizontalRule />
+                        </li>
+                        <li>
+                          <EuiTextColor color="subdued">
+                            <h3>Step 2</h3>
+                            <p>Select an ingestion method</p>
+                          </EuiTextColor>
 
-                        <EuiHorizontalRule />
-                      </li>
-                    </ol>
-                  </EuiText>
-                </EuiFlexItem>
-                <EuiFlexItem>
+                          <EuiHorizontalRule />
+                        </li>
+                        <li>
+                          <EuiTextColor color="subdued">
+                            <h3>Step 3</h3>
+                            <p>Select an ingestion method</p>
+                          </EuiTextColor>
+
+                          <EuiHorizontalRule />
+                        </li>
+                      </ol>
+                    </EuiText>
+                  </div>
+                </div>
+
+                {/* Flyout Footer */}
+                <div
+                  css={css`
+                    flex-grow: 0;
+                  `}
+                >
                   <EuiText textAlign="center" color="subdued" size="s">
-                    <EuiButtonEmpty onClick={closeCustomFlyout}>
+                    <EuiButtonEmpty onClick={closeCustomFlyout} size="s">
                       Exit setup guide
                     </EuiButtonEmpty>
+
+                    <EuiSpacer size="s" />
+
                     <p>
                       How’s onboarding? We’d love your{' '}
                       <EuiLink href="#">feedback</EuiLink>.
                     </p>
                   </EuiText>
-                </EuiFlexItem>
-              </EuiFlexGroup>
+                </div>
+              </div>
 
               <EuiButtonIcon
                 iconType="cross"
