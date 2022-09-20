@@ -9,11 +9,16 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiSideNav } from './side_nav';
 import { RenderItem } from './side_nav_item';
 
 describe('EuiSideNav', () => {
+  shouldRenderCustomStyles(<EuiSideNav heading="Test" />, {
+    childProps: ['headingProps'],
+  });
+
   test('is rendered', () => {
     const component = render(<EuiSideNav {...requiredProps} />);
 

@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiButtonDisplay renders 1`] = `
+<button
+  aria-label="aria-label"
+  class="testClass1 testClass2 emotion-euiButtonDisplay-m-m"
+  data-test-subj="test subject string"
+  type="button"
+>
+  <span
+    class="emotion-euiButtonDisplayContent"
+  >
+    <span
+      class="eui-textTruncate"
+    >
+      Content
+    </span>
+  </span>
+</button>
+`;

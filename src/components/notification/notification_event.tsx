@@ -117,10 +117,11 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
   className,
   ...rest
 }) => {
-  const classes = classNames('euiNotificationEvent', {
-    'euiNotificationEvent--withReadState': typeof isRead === 'boolean',
-    className,
-  });
+  const classes = classNames(
+    'euiNotificationEvent',
+    { 'euiNotificationEvent--withReadState': typeof isRead === 'boolean' },
+    className
+  );
 
   const classesTitle = classNames('euiNotificationEvent__title', {
     'euiNotificationEvent__title--isRead': isRead,

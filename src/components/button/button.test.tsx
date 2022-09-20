@@ -9,6 +9,7 @@
 import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiButton, COLORS, SIZES } from './button';
 
@@ -18,6 +19,10 @@ import {
 } from './button_display/_button_display_content';
 
 describe('EuiButton', () => {
+  shouldRenderCustomStyles(<EuiButton>Content</EuiButton>, {
+    childProps: ['contentProps'],
+  });
+
   test('is rendered', () => {
     const component = render(<EuiButton {...requiredProps}>Content</EuiButton>);
 

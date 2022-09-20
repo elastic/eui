@@ -77,30 +77,6 @@
       "count": 1
     }
   },
-  "flyoutSizes": {
-    "small": {
-      "min": "384px",
-      "width": "25vw",
-      "max": "403px"
-    },
-    "medium": {
-      "min": "424px",
-      "width": "50vw",
-      "max": "768px"
-    },
-    "large": {
-      "min": "691px",
-      "width": "75vw",
-      "max": "992px"
-    }
-  },
-  "euiFlyoutBorder": "none",
-  "euiFlyoutPaddingModifiers": {
-    "paddingNone": 0,
-    "paddingSmall": "8px",
-    "paddingMedium": "16px",
-    "paddingLarge": "24px"
-  },
   "euiFilePickerTallHeight": "128px",
   "euiRangeLevelColors": {
     "primary": "#36a2ef",
