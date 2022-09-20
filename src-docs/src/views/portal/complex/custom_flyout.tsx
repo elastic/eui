@@ -19,15 +19,15 @@ import {
   EuiSpacer,
   EuiButtonEmpty,
   euiFlyoutSlideInRight,
-} from '../../../../src/components';
+} from '../../../../../src/components';
 import {
   keys,
   EuiWindowEvent,
   useGeneratedHtmlId,
   useEuiTheme,
-} from '../../../../src/services';
+} from '../../../../../src/services';
 
-import { euiCanAnimate } from '../../../../src/global_styling';
+import { euiCanAnimate } from '../../../../../src/global_styling';
 
 export default () => {
   const [isCustomFlyoutVisible, setIsCustomFlyoutVisible] = useState(false);
@@ -165,6 +165,7 @@ export default () => {
       </EuiPortal>
     );
   }
+
   return (
     <div>
       <EuiWindowEvent event="keydown" handler={onKeyDown} />
