@@ -18,11 +18,16 @@ export type EuiListGroupItemExtraActionProps = {
   alwaysShow?: boolean;
 } & EuiButtonIconPropsForButton;
 
-export const EuiListGroupItemExtraAction: FunctionComponent<EuiListGroupItemExtraActionProps> = ({
+type _FromEuiListGroupItem = { parentIsDisabled?: boolean };
+
+export const EuiListGroupItemExtraAction: FunctionComponent<
+  EuiListGroupItemExtraActionProps & _FromEuiListGroupItem
+> = ({
   iconType,
   alwaysShow,
   className,
   isDisabled,
+  parentIsDisabled,
   color,
   ...rest
 }) => {
@@ -36,6 +41,7 @@ export const EuiListGroupItemExtraAction: FunctionComponent<EuiListGroupItemExtr
   const extraActionStyles = euiListGroupItemExtraActionStyles(euiTheme);
   const cssExtraActionStyles = [
     extraActionStyles.euiListGroupItemExtraAction,
+    !parentIsDisabled && extraActionStyles.hoverStyles,
     alwaysShow && extraActionStyles.alwaysShow,
   ];
 
@@ -45,6 +51,7 @@ export const EuiListGroupItemExtraAction: FunctionComponent<EuiListGroupItemExtr
       className={extraActionClasses}
       css={cssExtraActionStyles}
       iconType={iconType}
+      disabled={isDisabled || parentIsDisabled}
       {...rest}
     />
   );

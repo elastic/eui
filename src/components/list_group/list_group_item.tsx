@@ -219,7 +219,8 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
         iconType={iconType}
         alwaysShow={alwaysShow}
         {...rest}
-        disabled={isDisabled || actionIsDisabled}
+        isDisabled={actionIsDisabled}
+        parentIsDisabled={isDisabled}
       />
     );
   }

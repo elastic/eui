@@ -14,7 +14,6 @@ export const euiListGroupItemExtraActionStyles = ({
   euiTheme,
 }: UseEuiTheme) => {
   return {
-    // Base
     euiListGroupItemExtraAction: css`
       opacity: 0;
       ${logicalCSS('margin-right', euiTheme.size.m)};
@@ -22,9 +21,10 @@ export const euiListGroupItemExtraActionStyles = ({
       ${euiCanAnimate} {
         transition: opacity ${euiTheme.animation.fast};
       }
-
-      .euiListGroupItem:not(.euiListGroupItem-isDisabled):focus &,
-      .euiListGroupItem:not(.euiListGroupItem-isDisabled):hover &,
+    `,
+    hoverStyles: css`
+      .euiListGroupItem:hover &,
+      .euiListGroupItem__button:focus + &,
       &:focus {
         opacity: 1;
       }
