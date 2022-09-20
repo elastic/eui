@@ -13,6 +13,7 @@ import { EuiListGroupItem, EuiListGroupItemProps } from './list_group_item';
 import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
 import { cloneElementWithCss } from '../../services/theme/clone_element';
+import { logicalStyle } from '../../global_styling';
 
 import { euiListGroupStyles } from './list_group.styles';
 
@@ -52,13 +53,12 @@ export type EuiListGroupProps = CommonProps &
     size?: EuiListGroupItemProps['size'];
 
     /**
-     * Sets the max-width of the page,
-     * set to `true` to use the default size,
+     * Sets the max-width of the page.
+     * Set to `true` to use the default size,
      * set to `false` to not restrict the width,
-     * set to a number for a custom width in px,
-     * set to a string for a custom width in custom measurement.
+     * or set to a number/string for a custom CSS width/measurement.
      */
-    maxWidth?: boolean | number | string;
+    maxWidth?: boolean | CSSProperties['maxWidth'];
 
     /**
      * Display tooltips on all list items
@@ -88,17 +88,10 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
   ariaLabelledby,
   ...rest
 }) => {
-  let newStyle: CSSProperties | undefined;
+  let newStyle = style;
 
-  if (maxWidth !== true) {
-    let value: CSSProperties['maxWidth'];
-    if (typeof maxWidth === 'number') {
-      value = `${maxWidth}px`;
-    } else {
-      value = typeof maxWidth === 'string' ? maxWidth : undefined;
-    }
-
-    newStyle = { ...style, maxWidth: value };
+  if (maxWidth && maxWidth !== true) {
+    newStyle = { ...newStyle, ...logicalStyle('max-width', maxWidth) };
   }
 
   const classes = classNames('euiListGroup', className);
@@ -111,7 +104,7 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
     styles[gutterSize],
     flush && styles.flush,
     bordered && styles.bordered,
-    maxWidth && styles.maxWidthDefault,
+    maxWidth === true && styles.maxWidthDefault,
   ];
 
   let childrenOrListItems = null;
@@ -152,7 +145,7 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
     <ul
       className={classes}
       css={cssStyles}
-      style={newStyle || style}
+      style={newStyle}
       aria-labelledby={ariaLabelledby}
       {...rest}
     >
