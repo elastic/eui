@@ -2,7 +2,7 @@
 
 exports[`EuiListGroupItem is rendered 1`] = `
 <li
-  class="euiListGroupItem testClass1 testClass2 emotion-euiListGroupItem-text-m"
+  class="euiListGroupItem testClass1 testClass2 emotion-euiListGroupItem-m"
 >
   <span
     aria-label="aria-label"
@@ -21,7 +21,7 @@ exports[`EuiListGroupItem is rendered 1`] = `
 
 exports[`EuiListGroupItem props color primary is rendered 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-primary-m"
+  class="euiListGroupItem emotion-euiListGroupItem-m"
 >
   <span
     class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-primary"
@@ -38,7 +38,7 @@ exports[`EuiListGroupItem props color primary is rendered 1`] = `
 
 exports[`EuiListGroupItem props color subdued is rendered 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-subdued-m"
+  class="euiListGroupItem emotion-euiListGroupItem-m"
 >
   <span
     class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-subdued"
@@ -55,7 +55,7 @@ exports[`EuiListGroupItem props color subdued is rendered 1`] = `
 
 exports[`EuiListGroupItem props color text is rendered 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-text-m"
+  class="euiListGroupItem emotion-euiListGroupItem-m"
 >
   <span
     class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text"
@@ -72,7 +72,7 @@ exports[`EuiListGroupItem props color text is rendered 1`] = `
 
 exports[`EuiListGroupItem props extraAction can be disabled 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-text-m"
+  class="euiListGroupItem emotion-euiListGroupItem-m"
 >
   <span
     class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text"
@@ -101,7 +101,7 @@ exports[`EuiListGroupItem props extraAction can be disabled 1`] = `
 
 exports[`EuiListGroupItem props extraAction is rendered 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-text-m"
+  class="euiListGroupItem emotion-euiListGroupItem-m"
 >
   <span
     class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text"
@@ -185,7 +185,7 @@ exports[`EuiListGroupItem props href is rendered with rel 1`] = `
 
 exports[`EuiListGroupItem props icon is rendered 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-text-m"
+  class="euiListGroupItem emotion-euiListGroupItem-m"
 >
   <span
     class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text"
@@ -205,7 +205,7 @@ exports[`EuiListGroupItem props icon is rendered 1`] = `
 
 exports[`EuiListGroupItem props iconType is rendered 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-text-m"
+  class="euiListGroupItem emotion-euiListGroupItem-m"
 >
   <span
     class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text"
@@ -244,7 +244,7 @@ exports[`EuiListGroupItem props isActive is rendered 1`] = `
 
 exports[`EuiListGroupItem props isDisabled is rendered 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-text-m"
+  class="euiListGroupItem emotion-euiListGroupItem-m"
 >
   <span
     class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-isDisabled"
@@ -279,7 +279,7 @@ exports[`EuiListGroupItem props onClick is rendered 1`] = `
 
 exports[`EuiListGroupItem props size l is rendered 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-text-l"
+  class="euiListGroupItem emotion-euiListGroupItem-l"
 >
   <span
     class="euiListGroupItem__text emotion-euiListGroupItem__inner-l-text"
@@ -296,7 +296,7 @@ exports[`EuiListGroupItem props size l is rendered 1`] = `
 
 exports[`EuiListGroupItem props size m is rendered 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-text-m"
+  class="euiListGroupItem emotion-euiListGroupItem-m"
 >
   <span
     class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text"
@@ -313,7 +313,7 @@ exports[`EuiListGroupItem props size m is rendered 1`] = `
 
 exports[`EuiListGroupItem props size s is rendered 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-text-s"
+  class="euiListGroupItem emotion-euiListGroupItem-s"
 >
   <span
     class="euiListGroupItem__text emotion-euiListGroupItem__inner-s-text"
@@ -330,7 +330,7 @@ exports[`EuiListGroupItem props size s is rendered 1`] = `
 
 exports[`EuiListGroupItem props size xs is rendered 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-text-xs"
+  class="euiListGroupItem emotion-euiListGroupItem-xs"
 >
   <span
     class="euiListGroupItem__text emotion-euiListGroupItem__inner-xs-text"
@@ -347,7 +347,7 @@ exports[`EuiListGroupItem props size xs is rendered 1`] = `
 
 exports[`EuiListGroupItem props wrapText is rendered 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-text-m"
+  class="euiListGroupItem emotion-euiListGroupItem-m"
 >
   <span
     class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text-wrapText"
@@ -363,7 +363,7 @@ exports[`EuiListGroupItem props wrapText is rendered 1`] = `
 
 exports[`EuiListGroupItem renders a disabled button even if provided an href 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-text-m"
+  class="euiListGroupItem emotion-euiListGroupItem-m"
 >
   <button
     class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-isDisabled"
@@ -382,7 +382,7 @@ exports[`EuiListGroupItem renders a disabled button even if provided an href 1`]
 
 exports[`EuiListGroupItem renders a disabled button even if provided an href 2`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-text-m"
+  class="euiListGroupItem emotion-euiListGroupItem-m"
 >
   <button
     class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-isDisabled"
@@ -401,7 +401,7 @@ exports[`EuiListGroupItem renders a disabled button even if provided an href 2`]
 
 exports[`EuiListGroupItem throws a warning if both iconType and icon are provided but still renders 1`] = `
 <li
-  class="euiListGroupItem emotion-euiListGroupItem-text-m"
+  class="euiListGroupItem emotion-euiListGroupItem-m"
 >
   <span
     class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text"

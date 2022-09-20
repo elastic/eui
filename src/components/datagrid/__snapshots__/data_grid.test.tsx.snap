@@ -416,7 +416,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
     </button>
   </li>
   <li
-    class="euiListGroupItem emotion-euiListGroupItem-text-xs"
+    class="euiListGroupItem emotion-euiListGroupItem-xs"
   >
     <button
       class="euiListGroupItem__button emotion-euiListGroupItem__inner-xs-isDisabled"

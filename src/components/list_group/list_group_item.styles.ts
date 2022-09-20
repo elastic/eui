@@ -16,13 +16,15 @@ import {
 import { UseEuiTheme } from '../../services';
 import { euiButtonColor } from '../../themes/amsterdam/global_styling/mixins/button';
 
-export const euiListGroupItemStyles = (
-  euiThemeContext: UseEuiTheme,
-  isActive: boolean,
-  isClickable: boolean,
-  isDisabled: boolean
-) => {
+export const euiListGroupItemStyles = (euiThemeContext: UseEuiTheme) => {
   const euiTheme = euiThemeContext.euiTheme;
+
+  const primaryBgColor = euiBackgroundColor(euiThemeContext, 'primary', {
+    method: 'transparent',
+  });
+  const subduedBgColor = euiBackgroundColor(euiThemeContext, 'subdued', {
+    method: 'transparent',
+  });
 
   return {
     // Base
@@ -50,66 +52,39 @@ export const euiListGroupItemStyles = (
       border-radius: ${euiTheme.border.radius.medium};
     `,
     // Colors
-    primary: css`
-      ${isActive &&
-      !isDisabled &&
-      `
-        background-color: ${euiBackgroundColor(euiThemeContext, 'primary', {
-          method: 'transparent',
-        })};
-      `};
-
-      ${isClickable &&
-      !isDisabled &&
-      `
-        &:hover,
-        &:focus-within {
-          background-color: ${euiBackgroundColor(euiThemeContext, 'primary', {
-            method: 'transparent',
-          })};
-        }
-      `};
-    `,
-    text: css`
-      ${isActive &&
-      !isDisabled &&
-      `
-        background-color: ${euiBackgroundColor(euiThemeContext, 'subdued', {
-          method: 'transparent',
-        })};
-      `};
-
-      ${isClickable &&
-      !isDisabled &&
-      `
-        &:hover,
-        &:focus-within {
-          background-color: ${euiBackgroundColor(euiThemeContext, 'subdued', {
-            method: 'transparent',
-          })};
-        }
-      `};
-    `,
-    subdued: css`
-      ${isActive &&
-      !isDisabled &&
-      `
-        background-color: ${euiBackgroundColor(euiThemeContext, 'subdued', {
-          method: 'transparent',
-        })};
-      `};
-
-      ${isClickable &&
-      !isDisabled &&
-      `
-        &:hover,
-        &:focus-within {
-          background-color: ${euiBackgroundColor(euiThemeContext, 'subdued', {
-            method: 'transparent',
-          })};
-        }
-      `};
-    `,
+    colors: {
+      isActive: {
+        primary: css`
+          background-color: ${primaryBgColor};
+        `,
+        text: css`
+          background-color: ${subduedBgColor};
+        `,
+        subdued: css`
+          background-color: ${subduedBgColor};
+        `,
+      },
+      isClickable: {
+        primary: css`
+          &:hover,
+          &:focus-within {
+            background-color: ${primaryBgColor};
+          }
+        `,
+        text: css`
+          &:hover,
+          &:focus-within {
+            background-color: ${subduedBgColor};
+          }
+        `,
+        subdued: css`
+          &:hover,
+          &:focus-within {
+            background-color: ${subduedBgColor};
+          }
+        `,
+      },
+    },
   };
 };
 

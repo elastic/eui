@@ -13,7 +13,7 @@ exports[`EuiListGroup listItems is rendered 1`] = `
   class="euiListGroup emotion-euiListGroup-s-maxWidthDefault"
 >
   <li
-    class="euiListGroupItem emotion-euiListGroupItem-text-m"
+    class="euiListGroupItem emotion-euiListGroupItem-m"
   >
     <span
       class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text"
@@ -32,7 +32,7 @@ exports[`EuiListGroup listItems is rendered 1`] = `
     </span>
   </li>
   <li
-    class="euiListGroupItem emotion-euiListGroupItem-text-m"
+    class="euiListGroupItem emotion-euiListGroupItem-m"
   >
     <span
       class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text"
@@ -73,7 +73,7 @@ exports[`EuiListGroup listItems is rendered 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem emotion-euiListGroupItem-text-m"
+    class="euiListGroupItem emotion-euiListGroupItem-text-text-m"
   >
     <a
       class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-text-isActive-isClickable"
@@ -112,7 +112,7 @@ exports[`EuiListGroup listItems is rendered with color 1`] = `
   class="euiListGroup emotion-euiListGroup-s-maxWidthDefault"
 >
   <li
-    class="euiListGroupItem emotion-euiListGroupItem-primary-m"
+    class="euiListGroupItem emotion-euiListGroupItem-m"
   >
     <span
       class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-primary"
@@ -131,7 +131,7 @@ exports[`EuiListGroup listItems is rendered with color 1`] = `
     </span>
   </li>
   <li
-    class="euiListGroupItem emotion-euiListGroupItem-primary-m"
+    class="euiListGroupItem emotion-euiListGroupItem-m"
   >
     <span
       class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-primary"
@@ -172,7 +172,7 @@ exports[`EuiListGroup listItems is rendered with color 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem emotion-euiListGroupItem-primary-m"
+    class="euiListGroupItem emotion-euiListGroupItem-primary-primary-m"
   >
     <a
       class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-primary-isActive-isClickable"

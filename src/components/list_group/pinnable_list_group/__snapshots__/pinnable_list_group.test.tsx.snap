@@ -7,7 +7,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
   data-test-subj="test subject string"
 >
   <li
-    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-text-m"
+    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-m"
   >
     <span
       class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text"
@@ -39,7 +39,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-text-m"
+    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-m"
   >
     <span
       class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text"
@@ -65,7 +65,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-text-m"
+    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-text-text-m"
   >
     <a
       class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-text-isActive-isClickable"
@@ -176,7 +176,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <li
-    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-text-m"
+    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-m"
   >
     <span
       class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text"
@@ -208,7 +208,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-text-m"
+    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-m"
   >
     <span
       class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text"
@@ -234,7 +234,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     </button>
   </li>
   <li
-    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-text-m"
+    class="euiListGroupItem euiPinnableListGroup__item emotion-euiListGroupItem-text-text-m"
   >
     <a
       class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-text-isActive-isClickable"

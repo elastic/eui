@@ -308,16 +308,11 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     );
   }
 
-  const styles = euiListGroupItemStyles(
-    euiTheme,
-    isActive,
-    isClickable,
-    isDisabled
-  );
-
+  const styles = euiListGroupItemStyles(euiTheme);
   const cssStyles = [
     styles.euiListGroupItem,
-    styles[color],
+    !isDisabled && isActive && styles.colors.isActive[color],
+    !isDisabled && isClickable && styles.colors.isClickable[color],
     styles[size],
     customCss,
   ];
