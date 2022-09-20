@@ -103,7 +103,7 @@ export const ListGroupExample = {
       title: 'Secondary link actions',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: listGroupLinkActionsSource,
         },
       ],
