@@ -9,15 +9,25 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
-// import { shouldRenderCustomStyles } from '../../test/internal';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiListGroupItem, SIZES, COLORS } from './list_group_item';
 
 describe('EuiListGroupItem', () => {
-  // TODO - This test fails because `style` goes into ...rest
-  // shouldRenderCustomStyles(<EuiListGroupItem label="Label" iconType="user" />, [
-  //   'iconProps', 'extraAction',
-  // ]);
+  shouldRenderCustomStyles(<EuiListGroupItem label="Label" />, {
+    skipStyles: true, // the styles end up on the inner child
+  });
+  shouldRenderCustomStyles(
+    <EuiListGroupItem
+      label="Label"
+      iconType="user"
+      extraAction={{ iconType: 'star', 'aria-label': 'label' }}
+    />,
+    {
+      childProps: ['iconProps', 'extraAction'],
+      skipParentTest: true,
+    }
+  );
 
   test('is rendered', () => {
     const component = render(
@@ -130,6 +140,7 @@ describe('EuiListGroupItem', () => {
             extraAction={{
               iconType: 'empty',
               isDisabled: true,
+              'aria-label': 'label',
             }}
           />
         );
@@ -168,6 +179,16 @@ describe('EuiListGroupItem', () => {
       test('is rendered', () => {
         const component = render(
           <EuiListGroupItem label="" onClick={() => {}} href="#" />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('style', () => {
+      test('is rendered', () => {
+        const component = render(
+          <EuiListGroupItem label="" style={{ color: 'red' }} />
         );
 
         expect(component).toMatchSnapshot();

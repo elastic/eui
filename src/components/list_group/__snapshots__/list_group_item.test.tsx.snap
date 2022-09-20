@@ -85,6 +85,7 @@ exports[`EuiListGroupItem props extraAction can be disabled 1`] = `
     </span>
   </span>
   <button
+    aria-label="label"
     class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction emotion-euiButtonIcon-empty-disabled-hoverStyles-euiListGroupItemExtraAction-hoverStyles"
     disabled=""
     type="button"
@@ -341,6 +342,22 @@ exports[`EuiListGroupItem props size xs is rendered 1`] = `
     >
       Label
     </span>
+  </span>
+</li>
+`;
+
+exports[`EuiListGroupItem props style is rendered 1`] = `
+<li
+  class="euiListGroupItem emotion-euiListGroupItem-m"
+>
+  <span
+    class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text"
+    style="color:red"
+  >
+    <span
+      class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+      title=""
+    />
   </span>
 </li>
 `;

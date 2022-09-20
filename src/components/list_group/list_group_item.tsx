@@ -205,7 +205,6 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     const {
       iconType,
       alwaysShow,
-      className,
       isDisabled: actionIsDisabled,
       ...rest
     } = extraAction;
