@@ -79,8 +79,8 @@ export const IconExample = {
             Glyphs are small, monochromatic icons that typically should always
             use the default size of{' '}
             <EuiCode language="js">size=&quot;m&quot;</EuiCode>. They are named
-            according to the their appereance or the action they represent. For
-            example, <EuiCode>star</EuiCode>, <EuiCode>play</EuiCode> etc.
+            according to their appearance or the action they represent. For
+            example, <EuiCode>star</EuiCode>, <EuiCode>play</EuiCode>, etc.
           </p>
           <p>
             If you would like to contribute to our growing list of glyphs, you
