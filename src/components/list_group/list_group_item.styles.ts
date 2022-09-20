@@ -113,11 +113,7 @@ export const euiListGroupItemStyles = (
   };
 };
 
-export const euiListGroupItemInnerStyles = (
-  euiThemeContext: UseEuiTheme,
-  isClickable: boolean,
-  isDisabled: boolean
-) => {
+export const euiListGroupItemInnerStyles = (euiThemeContext: UseEuiTheme) => {
   const euiTheme = euiThemeContext.euiTheme;
 
   return {
@@ -130,15 +126,6 @@ export const euiListGroupItemInnerStyles = (
       text-align: start;
       max-inline-size: 100%;
       font-weight: inherit;
-
-      ${isClickable &&
-      !isDisabled &&
-      `
-        &:hover,
-        &:focus {
-          text-decoration: underline;
-        }
-      `}
     `,
     // Sizes
     xs: css`
@@ -163,28 +150,16 @@ export const euiListGroupItemInnerStyles = (
     `,
     // Colors
     primary: css`
-      ${!isDisabled &&
-      `
-        color: ${euiButtonColor(euiThemeContext, 'primary').color};
-      `}
+      color: ${euiButtonColor(euiThemeContext, 'primary').color};
     `,
     text: css`
-      ${!isDisabled &&
-      `
       color: ${euiButtonColor(euiThemeContext, 'text').color};
-      `}
     `,
     subdued: css`
-      ${!isDisabled &&
-      `
-        color: ${euiTheme.colors.subduedText};
-      `}
+      color: ${euiTheme.colors.subduedText};
     `,
     ghost: css`
-      ${!isDisabled &&
-      `
       color: ${euiTheme.colors.ghost};
-    `}
     `,
     // Variants
     isDisabled: css`
@@ -200,7 +175,12 @@ export const euiListGroupItemInnerStyles = (
       }
     `,
     isActive: css``,
-    isClickable: css``,
+    isClickable: css`
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+      }
+    `,
     wrapText: css`
       inline-size: 100%;
       word-break: break-word;

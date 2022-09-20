@@ -247,7 +247,7 @@ exports[`EuiListGroupItem props isDisabled is rendered 1`] = `
   class="euiListGroupItem emotion-euiListGroupItem-text-m"
 >
   <span
-    class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text-isDisabled"
+    class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-isDisabled"
   >
     <span
       class="euiListGroupItem__label emotion-euiListGroupItem__label"
@@ -366,7 +366,7 @@ exports[`EuiListGroupItem renders a disabled button even if provided an href 1`]
   class="euiListGroupItem emotion-euiListGroupItem-text-m"
 >
   <button
-    class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-text-isDisabled-isClickable"
+    class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-isDisabled"
     disabled=""
     type="button"
   >
@@ -385,7 +385,7 @@ exports[`EuiListGroupItem renders a disabled button even if provided an href 2`]
   class="euiListGroupItem emotion-euiListGroupItem-text-m"
 >
   <button
-    class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-text-isDisabled-isClickable"
+    class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-isDisabled"
     disabled=""
     type="button"
   >

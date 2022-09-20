@@ -258,19 +258,14 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
 
   const isClickable = href || onClick ? true : false;
 
-  const innerStyles = euiListGroupItemInnerStyles(
-    euiTheme,
-    isClickable,
-    isDisabled
-  );
-
+  const innerStyles = euiListGroupItemInnerStyles(euiTheme);
   const cssInnerStyles = [
     innerStyles.euiListGroupItem__inner,
     innerStyles[size],
-    innerStyles[color],
+    !isDisabled && innerStyles[color],
     isActive && innerStyles.isActive,
     isDisabled && innerStyles.isDisabled,
-    isClickable && innerStyles.isClickable,
+    isClickable && !isDisabled && innerStyles.isClickable,
     wrapText && innerStyles.wrapText,
   ];
 
