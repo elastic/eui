@@ -9,7 +9,7 @@ import {
   EuiPinnableListGroup,
   EuiCode,
 } from '../../../../src/components';
-import { EuiPinnableListGroupItem } from './props';
+import { EuiPinnableListGroupItem, EuiListGroupItemExtraAction } from './props';
 
 import ListGroup from './list_group';
 const listGroupSource = require('!!raw-loader!./list_group');
@@ -53,7 +53,11 @@ export const ListGroupExample = {
           </p>
         </>
       ),
-      props: { EuiListGroup, EuiListGroupItem },
+      props: {
+        EuiListGroup,
+        EuiListGroupItem,
+        EuiListGroupItemExtraAction,
+      },
       demo: <ListGroup />,
       snippet: `<EuiListGroup flush={true} bordered={true}>
   <EuiListGroupItem onClick={handleOnClick} label="Item" />
@@ -129,6 +133,9 @@ export const ListGroupExample = {
     alwaysShow: pinned,
   }}
 />`,
+      props: {
+        EuiListGroupItemExtraAction,
+      },
     },
     {
       title: 'Text wrapping and tooltips',

@@ -14,9 +14,9 @@ import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../button';
 import { useEuiTheme } from '../../services';
 import { euiListGroupItemExtraActionStyles } from './list_group_item_extra_action.styles';
 
-export type EuiListGroupItemExtraActionProps = EuiButtonIconPropsForButton & {
+export type EuiListGroupItemExtraActionProps = {
   alwaysShow?: boolean;
-};
+} & EuiButtonIconPropsForButton;
 
 export const EuiListGroupItemExtraAction: FunctionComponent<EuiListGroupItemExtraActionProps> = ({
   iconType,

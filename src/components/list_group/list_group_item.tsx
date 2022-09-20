@@ -18,7 +18,6 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { EuiButtonIconPropsForButton } from '../button';
 import { EuiIcon, IconType, EuiIconProps } from '../icon';
 import { EuiToolTip } from '../tool_tip';
 import { useInnerText } from '../inner_text';
@@ -113,12 +112,11 @@ export type EuiListGroupItemProps = CommonProps &
     showToolTip?: boolean;
 
     /**
+     * An object of #EuiListGroupItemExtraAction props.
      * Adds an `EuiButtonIcon` to the right side of the item; `iconType` is required;
      * pass `alwaysShow` if you don't want the default behavior of only showing on hover
      */
-    extraAction?: EuiButtonIconPropsForButton & {
-      alwaysShow?: boolean;
-    };
+    extraAction?: EuiListGroupItemExtraActionProps;
 
     /**
      * Make the list item label a button.
