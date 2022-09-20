@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { HTMLAttributes, FunctionComponent, CSSProperties } from 'react';
+import React, { HTMLAttributes, FunctionComponent } from 'react';
 import { CommonProps, ExclusiveUnion } from '../common';
 import classNames from 'classnames';
 
@@ -141,7 +141,8 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
 
   checkValidInitials(initials);
 
-  const avatarStyle: CSSProperties = style || {};
+  const avatarStyle = { ...style };
+
   let iconCustomColor = iconColor;
 
   const isNamedColor =
