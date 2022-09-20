@@ -8,7 +8,7 @@ exports[`renders EuiColorStops 1`] = `
 >
   <p
     aria-live="polite"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
@@ -33,11 +33,11 @@ exports[`renders EuiColorStops 1`] = `
       />
     </div>
     <div
-      class="euiPopover euiPopover--anchorDownCenter euiColorStopPopover"
+      class="euiPopover euiColorStopPopover emotion-euiPopover"
       style="left:0%"
     >
       <div
-        class="euiPopover__anchor euiColorStopPopover__anchor"
+        class="euiPopover__anchor euiColorStopPopover__anchor css-16vtueo-render"
       >
         <button
           aria-disabled="false"
@@ -58,11 +58,11 @@ exports[`renders EuiColorStops 1`] = `
       </div>
     </div>
     <div
-      class="euiPopover euiPopover--anchorDownCenter euiColorStopPopover"
+      class="euiPopover euiColorStopPopover emotion-euiPopover"
       style="left:21%"
     >
       <div
-        class="euiPopover__anchor euiColorStopPopover__anchor"
+        class="euiPopover__anchor euiColorStopPopover__anchor css-16vtueo-render"
       >
         <button
           aria-disabled="false"
@@ -83,11 +83,11 @@ exports[`renders EuiColorStops 1`] = `
       </div>
     </div>
     <div
-      class="euiPopover euiPopover--anchorDownCenter euiColorStopPopover"
+      class="euiPopover euiColorStopPopover emotion-euiPopover"
       style="left:29.4%"
     >
       <div
-        class="euiPopover__anchor euiColorStopPopover__anchor"
+        class="euiPopover__anchor euiColorStopPopover__anchor css-16vtueo-render"
       >
         <button
           aria-disabled="false"
@@ -119,7 +119,7 @@ exports[`renders compressed EuiColorStops 1`] = `
 >
   <p
     aria-live="polite"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
@@ -144,11 +144,11 @@ exports[`renders compressed EuiColorStops 1`] = `
       />
     </div>
     <div
-      class="euiPopover euiPopover--anchorDownCenter euiColorStopPopover"
+      class="euiPopover euiColorStopPopover emotion-euiPopover"
       style="left:0%"
     >
       <div
-        class="euiPopover__anchor euiColorStopPopover__anchor"
+        class="euiPopover__anchor euiColorStopPopover__anchor css-16vtueo-render"
       >
         <button
           aria-disabled="false"
@@ -169,11 +169,11 @@ exports[`renders compressed EuiColorStops 1`] = `
       </div>
     </div>
     <div
-      class="euiPopover euiPopover--anchorDownCenter euiColorStopPopover"
+      class="euiPopover euiColorStopPopover emotion-euiPopover"
       style="left:21%"
     >
       <div
-        class="euiPopover__anchor euiColorStopPopover__anchor"
+        class="euiPopover__anchor euiColorStopPopover__anchor css-16vtueo-render"
       >
         <button
           aria-disabled="false"
@@ -194,11 +194,11 @@ exports[`renders compressed EuiColorStops 1`] = `
       </div>
     </div>
     <div
-      class="euiPopover euiPopover--anchorDownCenter euiColorStopPopover"
+      class="euiPopover euiColorStopPopover emotion-euiPopover"
       style="left:29.4%"
     >
       <div
-        class="euiPopover__anchor euiColorStopPopover__anchor"
+        class="euiPopover__anchor euiColorStopPopover__anchor css-16vtueo-render"
       >
         <button
           aria-disabled="false"
@@ -230,7 +230,7 @@ exports[`renders disabled EuiColorStops 1`] = `
 >
   <p
     aria-live="polite"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     Test:  Disabled. Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
@@ -255,11 +255,11 @@ exports[`renders disabled EuiColorStops 1`] = `
       />
     </div>
     <div
-      class="euiPopover euiPopover--anchorDownCenter euiColorStopPopover"
+      class="euiPopover euiColorStopPopover emotion-euiPopover"
       style="left:0%"
     >
       <div
-        class="euiPopover__anchor euiColorStopPopover__anchor"
+        class="euiPopover__anchor euiColorStopPopover__anchor css-16vtueo-render"
       >
         <button
           aria-disabled="true"
@@ -281,11 +281,11 @@ exports[`renders disabled EuiColorStops 1`] = `
       </div>
     </div>
     <div
-      class="euiPopover euiPopover--anchorDownCenter euiColorStopPopover"
+      class="euiPopover euiColorStopPopover emotion-euiPopover"
       style="left:21%"
     >
       <div
-        class="euiPopover__anchor euiColorStopPopover__anchor"
+        class="euiPopover__anchor euiColorStopPopover__anchor css-16vtueo-render"
       >
         <button
           aria-disabled="true"
@@ -307,11 +307,11 @@ exports[`renders disabled EuiColorStops 1`] = `
       </div>
     </div>
     <div
-      class="euiPopover euiPopover--anchorDownCenter euiColorStopPopover"
+      class="euiPopover euiColorStopPopover emotion-euiPopover"
       style="left:29.4%"
     >
       <div
-        class="euiPopover__anchor euiColorStopPopover__anchor"
+        class="euiPopover__anchor euiColorStopPopover__anchor css-16vtueo-render"
       >
         <button
           aria-disabled="true"
@@ -344,7 +344,7 @@ exports[`renders empty EuiColorStops 1`] = `
 >
   <p
     aria-live="polite"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
@@ -380,7 +380,7 @@ exports[`renders fixed stop EuiColorStops 1`] = `
 >
   <p
     aria-live="polite"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
@@ -405,11 +405,11 @@ exports[`renders fixed stop EuiColorStops 1`] = `
       />
     </div>
     <div
-      class="euiPopover euiPopover--anchorDownCenter euiColorStopPopover"
+      class="euiPopover euiColorStopPopover emotion-euiPopover"
       style="left:0%"
     >
       <div
-        class="euiPopover__anchor euiColorStopPopover__anchor"
+        class="euiPopover__anchor euiColorStopPopover__anchor css-16vtueo-render"
       >
         <button
           aria-disabled="false"
@@ -430,11 +430,11 @@ exports[`renders fixed stop EuiColorStops 1`] = `
       </div>
     </div>
     <div
-      class="euiPopover euiPopover--anchorDownCenter euiColorStopPopover"
+      class="euiPopover euiColorStopPopover emotion-euiPopover"
       style="left:21%"
     >
       <div
-        class="euiPopover__anchor euiColorStopPopover__anchor"
+        class="euiPopover__anchor euiColorStopPopover__anchor css-16vtueo-render"
       >
         <button
           aria-disabled="false"
@@ -455,11 +455,11 @@ exports[`renders fixed stop EuiColorStops 1`] = `
       </div>
     </div>
     <div
-      class="euiPopover euiPopover--anchorDownCenter euiColorStopPopover"
+      class="euiPopover euiColorStopPopover emotion-euiPopover"
       style="left:29.4%"
     >
       <div
-        class="euiPopover__anchor euiColorStopPopover__anchor"
+        class="euiPopover__anchor euiColorStopPopover__anchor css-16vtueo-render"
       >
         <button
           aria-disabled="false"
@@ -491,7 +491,7 @@ exports[`renders free-range EuiColorStops 1`] = `
 >
   <p
     aria-live="polite"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
@@ -527,7 +527,7 @@ exports[`renders fullWidth EuiColorStops 1`] = `
 >
   <p
     aria-live="polite"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
@@ -552,11 +552,11 @@ exports[`renders fullWidth EuiColorStops 1`] = `
       />
     </div>
     <div
-      class="euiPopover euiPopover--anchorDownCenter euiColorStopPopover"
+      class="euiPopover euiColorStopPopover emotion-euiPopover"
       style="left:0%"
     >
       <div
-        class="euiPopover__anchor euiColorStopPopover__anchor"
+        class="euiPopover__anchor euiColorStopPopover__anchor css-16vtueo-render"
       >
         <button
           aria-disabled="false"
@@ -577,11 +577,11 @@ exports[`renders fullWidth EuiColorStops 1`] = `
       </div>
     </div>
     <div
-      class="euiPopover euiPopover--anchorDownCenter euiColorStopPopover"
+      class="euiPopover euiColorStopPopover emotion-euiPopover"
       style="left:21%"
     >
       <div
-        class="euiPopover__anchor euiColorStopPopover__anchor"
+        class="euiPopover__anchor euiColorStopPopover__anchor css-16vtueo-render"
       >
         <button
           aria-disabled="false"
@@ -602,11 +602,11 @@ exports[`renders fullWidth EuiColorStops 1`] = `
       </div>
     </div>
     <div
-      class="euiPopover euiPopover--anchorDownCenter euiColorStopPopover"
+      class="euiPopover euiColorStopPopover emotion-euiPopover"
       style="left:29.4%"
     >
       <div
-        class="euiPopover__anchor euiColorStopPopover__anchor"
+        class="euiPopover__anchor euiColorStopPopover__anchor css-16vtueo-render"
       >
         <button
           aria-disabled="false"
@@ -638,7 +638,7 @@ exports[`renders max-only EuiColorStops 1`] = `
 >
   <p
     aria-live="polite"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
@@ -674,7 +674,7 @@ exports[`renders min-only EuiColorStops 1`] = `
 >
   <p
     aria-live="polite"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
@@ -710,7 +710,7 @@ exports[`renders readOnly EuiColorStops 1`] = `
 >
   <p
     aria-live="polite"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     Test: Read-only.  Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
@@ -735,11 +735,11 @@ exports[`renders readOnly EuiColorStops 1`] = `
       />
     </div>
     <div
-      class="euiPopover euiPopover--anchorDownCenter euiColorStopPopover"
+      class="euiPopover euiColorStopPopover emotion-euiPopover"
       style="left:0%"
     >
       <div
-        class="euiPopover__anchor euiColorStopPopover__anchor"
+        class="euiPopover__anchor euiColorStopPopover__anchor css-16vtueo-render"
       >
         <button
           aria-disabled="false"
@@ -760,11 +760,11 @@ exports[`renders readOnly EuiColorStops 1`] = `
       </div>
     </div>
     <div
-      class="euiPopover euiPopover--anchorDownCenter euiColorStopPopover"
+      class="euiPopover euiColorStopPopover emotion-euiPopover"
       style="left:21%"
     >
       <div
-        class="euiPopover__anchor euiColorStopPopover__anchor"
+        class="euiPopover__anchor euiColorStopPopover__anchor css-16vtueo-render"
       >
         <button
           aria-disabled="false"
@@ -785,11 +785,11 @@ exports[`renders readOnly EuiColorStops 1`] = `
       </div>
     </div>
     <div
-      class="euiPopover euiPopover--anchorDownCenter euiColorStopPopover"
+      class="euiPopover euiColorStopPopover emotion-euiPopover"
       style="left:29.4%"
     >
       <div
-        class="euiPopover__anchor euiColorStopPopover__anchor"
+        class="euiPopover__anchor euiColorStopPopover__anchor css-16vtueo-render"
       >
         <button
           aria-disabled="false"

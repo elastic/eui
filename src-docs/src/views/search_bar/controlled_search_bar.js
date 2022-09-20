@@ -189,7 +189,7 @@ export const ControlledSearchBar = () => {
       <EuiSearchBar
         query={query}
         box={{
-          placeholder: 'e.g. type:visualization -is:active joe',
+          placeholder: 'type:visualization -is:active joe',
           incremental,
           schema,
         }}

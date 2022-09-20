@@ -9,6 +9,7 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import {
   ALIGN_ITEMS,
@@ -50,6 +51,23 @@ const breadcrumbs: EuiBreadcrumb[] = [
 ];
 
 describe('EuiPageHeaderContent', () => {
+  shouldRenderCustomStyles(
+    <EuiPageHeaderContent
+      pageTitle="Hello world"
+      iconType="logoElastic"
+      rightSideItems={[<button />]}
+      breadcrumbs={[{ text: 'breadcrumb' }]}
+      tabs={[{ label: 'tab' }]}
+    />,
+    [
+      'pageTitleProps',
+      'iconProps',
+      'rightSideGroupProps',
+      'breadcrumbProps',
+      'tabsProps',
+    ]
+  );
+
   test('is rendered', () => {
     const component = render(<EuiPageHeaderContent {...requiredProps} />);
 
@@ -162,7 +180,11 @@ describe('EuiPageHeaderContent', () => {
         const component = render(
           <EuiPageHeaderContent
             rightSideItems={rightSideItems}
-            rightSideGroupProps={{ responsive: true, ...requiredProps }}
+            rightSideGroupProps={{
+              responsive: true,
+              direction: 'column',
+              ...requiredProps,
+            }}
           />
         );
 

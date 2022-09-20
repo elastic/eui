@@ -194,6 +194,10 @@ export default () => {
             onChangeItemsPerPage: onChangeItemsPerPage,
             onChangePage: onChangePage,
           }}
+          rowHeightsOptions={{
+            defaultHeight: 'auto',
+            scrollAnchorRow: 'start',
+          }}
         />
       </DataContext.Provider>
     </>

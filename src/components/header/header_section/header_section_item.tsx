@@ -43,9 +43,10 @@ export const EuiHeaderSectionItem: FunctionComponent<EuiHeaderSectionItemProps> 
     className
   );
 
-  return (
+  // we check if there is any children and if not, we don't render anything
+  return children ? (
     <div className={classes} {...rest}>
       {children}
     </div>
-  );
+  ) : null;
 };

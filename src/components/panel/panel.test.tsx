@@ -9,10 +9,13 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiPanel, SIZES, COLORS, BORDER_RADII } from './panel';
 
 describe('EuiPanel', () => {
+  shouldRenderCustomStyles(<EuiPanel />);
+
   test('is rendered', () => {
     const component = render(<EuiPanel {...requiredProps} />);
 
@@ -77,6 +80,14 @@ describe('EuiPanel', () => {
           expect(component).toMatchSnapshot();
         });
       });
+    });
+
+    describe('onClick', () => {
+      const component = render(
+        <EuiPanel {...requiredProps} onClick={jest.fn()} />
+      );
+
+      expect(component).toMatchSnapshot();
     });
   });
 });

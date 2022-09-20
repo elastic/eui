@@ -22,11 +22,10 @@ import {
   LEFT_ALIGNMENT,
   RIGHT_ALIGNMENT,
   CENTER_ALIGNMENT,
+  useIsWithinBreakpoints,
 } from '../../services';
 
 import { resolveWidthAsStyle } from './utils';
-
-import { useIsWithinBreakpoints } from '../../services/hooks/useIsWithinBreakpoints';
 
 interface EuiTableRowCellSharedPropsShape {
   /**
@@ -38,9 +37,8 @@ interface EuiTableRowCellSharedPropsShape {
    */
   showOnHover?: boolean;
   /**
-   * Setting `textOnly` to `false` will break words unnecessarily on FF and
-   * IE.  To combat this problem on FF, wrap contents with the css utility
-   * `.eui-textBreakWord`.
+   * Creates a text wrapper around cell content that helps word break or truncate
+   * long text correctly.
    */
   textOnly?: boolean;
   /**

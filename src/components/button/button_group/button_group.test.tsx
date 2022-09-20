@@ -15,8 +15,7 @@ import {
   EuiButtonGroupOptionProps,
   EuiButtonGroupProps,
 } from './button_group';
-
-import { COLORS } from '../button';
+import { BUTTON_COLORS } from '../../../themes/amsterdam/global_styling/mixins';
 
 const SIZES: Array<EuiButtonGroupProps['buttonSize']> = [
   's',
@@ -151,7 +150,7 @@ describe('EuiButtonGroup', () => {
     });
 
     describe('color', () => {
-      COLORS.forEach((color) => {
+      BUTTON_COLORS.forEach((color) => {
         test(`${color} is rendered for single`, () => {
           const component = render(
             <EuiButtonGroup {...requiredSingleProps} color={color} />

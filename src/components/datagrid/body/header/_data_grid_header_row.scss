@@ -2,7 +2,7 @@
   display: flex;
   z-index: 3; // Needs to sit above the content and focused cells
   background: $euiColorEmptyShade;
-  position: sticky; // In IE11 this does not work, but doesn't cause a break.
+  position: sticky;
   top: 0;
 }
 
@@ -15,11 +15,6 @@
   position: relative;
   align-items: center;
   display: flex;
-
-  > * {
-    max-width: 100%;
-    width: 100%;
-  }
 
   &.euiDataGridHeaderCell--numeric {
     text-align: right;
@@ -43,10 +38,6 @@
 
     .euiDataGridHeaderCell__sortingArrow {
       margin-right: $euiSizeXS;
-    }
-
-    .euiDataGridHeaderCell__anchor {
-      width: 100%;
     }
 
     .euiDataGridHeaderCell__button {

@@ -8,10 +8,11 @@
 
 import classNames from 'classnames';
 import React, { FunctionComponent } from 'react';
-import { EuiButtonDisplay } from '../button';
+import { EuiButtonDisplayDeprecated as EuiButtonDisplay } from '../button';
 import { EuiButtonGroupOptionProps, EuiButtonGroupProps } from './button_group';
 import { useInnerText } from '../../inner_text';
 import { useGeneratedHtmlId } from '../../../services';
+import { useEuiButtonColorCSS } from '../../../themes/amsterdam/global_styling/mixins/button';
 
 type Props = EuiButtonGroupOptionProps & {
   /**
@@ -59,6 +60,7 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
   onChange,
   size,
   value,
+  color: _color = 'primary',
   element = 'button',
   type = 'button',
   ...rest
@@ -98,6 +100,16 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
     };
   }
 
+  // eslint-disable-next-line no-nested-ternary
+  const color = isDisabled ? 'disabled' : _color;
+  // eslint-disable-next-line no-nested-ternary
+  const display = isSelected
+    ? 'fill'
+    : size === 'compressed'
+    ? 'empty'
+    : 'base';
+  const buttonColorStyles = useEuiButtonColorCSS({ display })[color];
+
   const buttonClasses = classNames(
     {
       'euiButtonGroupButton-isSelected': isSelected,
@@ -115,10 +127,10 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
 
   return (
     <EuiButtonDisplay
+      css={[buttonColorStyles]}
       baseClassName="euiButtonGroupButton"
       className={buttonClasses}
       element={el}
-      fill={size !== 'compressed' && isSelected}
       isDisabled={isDisabled}
       size={size === 'compressed' ? 's' : size}
       textProps={{

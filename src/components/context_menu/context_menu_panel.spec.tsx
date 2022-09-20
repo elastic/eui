@@ -187,7 +187,7 @@ describe('EuiContextMenuPanel', () => {
       const mountAndOpenPopover = (component = <ContextMenuInPopover />) => {
         cy.realMount(component);
         cy.get('[data-test-subj="popoverToggle"]').click();
-        cy.wait(350); // EuiPopover's updateFocus() takes ~350ms to run
+        cy.wait(350); // EuiPopover's initial/autoFocus takes ~350ms to run
       };
 
       it('reclaims focus from the parent popover panel', () => {
@@ -330,13 +330,17 @@ describe('EuiContextMenuPanel', () => {
           },
         ];
 
+        const FLAKY_WAIT = 100; // For some reason CI is flaking on these two tests in way that is hard to repro locally
+
         it('does not lose focus while using left/right arrow navigation between panels', () => {
           cy.mount(<EuiContextMenu panels={panels} initialPanelId={0} />);
           cy.realPress('{downarrow}');
           cy.focused().should('have.attr', 'data-test-subj', 'itemA');
           cy.realPress('{rightarrow}');
+          cy.wait(FLAKY_WAIT);
           cy.focused().should('have.attr', 'data-test-subj', 'itemB');
           cy.realPress('{rightarrow}');
+          cy.wait(FLAKY_WAIT);
           cy.focused().should('have.attr', 'data-test-subj', 'itemC');
         });
 
@@ -350,8 +354,10 @@ describe('EuiContextMenuPanel', () => {
           cy.realPress('{downarrow}');
           cy.focused().should('have.attr', 'data-test-subj', 'itemA');
           cy.repeatRealPress('{rightarrow}');
+          cy.wait(FLAKY_WAIT);
           cy.focused().should('have.attr', 'data-test-subj', 'itemC');
           cy.repeatRealPress('{leftarrow}');
+          cy.wait(FLAKY_WAIT);
           cy.focused().should('have.attr', 'data-test-subj', 'itemA');
         });
       });

@@ -3,6 +3,7 @@ import React from 'react';
 import { GuideSectionTypes } from '../../components';
 
 import {
+  EuiCallOut,
   EuiCode,
   EuiLink,
   EuiDatePicker,
@@ -254,16 +255,25 @@ export const DatePickerExample = {
         },
       ],
       text: (
-        <p>
-          Locale formatting is achieved by using the <EuiCode>locale</EuiCode>,
-          <EuiCode>timeFormat</EuiCode>, and <EuiCode>dateFormat</EuiCode>{' '}
-          props. The latter will take any <EuiCode>moment()</EuiCode> notation.
-          Check{' '}
-          <a href="https://en.wikipedia.org/wiki/Date_format_by_country">
-            Date format by country
-          </a>{' '}
-          for formatting examples.
-        </p>
+        <>
+          <p>
+            Locale formatting is achieved by using the <EuiCode>locale</EuiCode>
+            ,<EuiCode>timeFormat</EuiCode>, and <EuiCode>dateFormat</EuiCode>{' '}
+            props. The latter will take any <EuiCode>moment()</EuiCode>{' '}
+            notation. Check{' '}
+            <a href="https://en.wikipedia.org/wiki/Date_format_by_country">
+              Date format by country
+            </a>{' '}
+            for formatting examples.
+          </p>
+          <EuiCallOut color="warning">
+            Moment will try to load the locale on demand when it is used.
+            Bundlers that do not support dynamic require statements will need to
+            explicitly import the locale, e.g.{' '}
+            <EuiCode>{"import 'moment/locale/zh-cn'"}</EuiCode>. See the below
+            demo JS for examples.
+          </EuiCallOut>
+        </>
       ),
       snippet: localeSnippet,
       demo: <Locale />,
@@ -278,12 +288,14 @@ export const DatePickerExample = {
       ],
       text: (
         <p>
-          By passing <EuiCode>startDate</EuiCode> and <EuiCode>endDate</EuiCode>{' '}
-          props you can provide styling the range in between two dates. To
-          further style the group as a single control, use{' '}
-          <strong>EuiDatePickerRange</strong> and pass the date picker controls
-          into the <EuiCode>startDateControl</EuiCode> and{' '}
-          <EuiCode>endDateControl</EuiCode> props.
+          To create a single date range control, use{' '}
+          <strong>EuiDatePickerRange</strong> and pass individual{' '}
+          <strong>EuiDatePicker</strong> components into the{' '}
+          <EuiCode>startDateControl</EuiCode> and{' '}
+          <EuiCode>endDateControl</EuiCode> props. You can control the state of
+          both inputs as direct props on <strong>EuiDatePickerRange</strong> as
+          well as control each individually. Date specific props need to applied
+          to the individual components.
         </p>
       ),
       demo: <Range />,
@@ -414,7 +426,7 @@ export const DatePickerExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             Custom classes can be passed to various bits of the calendar and
             input.
@@ -434,7 +446,7 @@ export const DatePickerExample = {
               <EuiCode>popperClassName</EuiCode> will pass onto the popover.
             </li>
           </ul>
-        </div>
+        </>
       ),
       snippet: classesSnippet,
       demo: <Classes />,

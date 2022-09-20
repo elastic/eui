@@ -2,10 +2,10 @@
 
 exports[`EuiCheckableCard is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--hasBorder euiPanel--flexGrowZero euiSplitPanel euiSplitPanel--row euiCheckableCard testClass1 testClass2"
+  class="euiPanel euiPanel--plain euiSplitPanel euiSplitPanel--row euiCheckableCard testClass1 testClass2 emotion-euiPanel-m-plain-hasBorder-euiCheckableCard"
 >
   <div
-    class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPanel--flexGrowZero euiPanel--isClickable euiSplitPanel__inner"
+    class="euiPanel euiPanel--subdued euiPanel--paddingMedium euiSplitPanel__inner emotion-euiPanel-none-m-subdued-isClickable"
   >
     <div
       aria-label="aria-label"
@@ -23,10 +23,10 @@ exports[`EuiCheckableCard is rendered 1`] = `
     </div>
   </div>
   <div
-    class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiSplitPanel__inner"
+    class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiSplitPanel__inner emotion-euiPanel-grow-none-m-transparent"
   >
     <label
-      class="euiCheckableCard__label"
+      class="euiCheckableCard__label emotion-euiCheckableCard__label"
       for="id"
     >
       Label
@@ -37,10 +37,10 @@ exports[`EuiCheckableCard is rendered 1`] = `
 
 exports[`EuiCheckableCard renders a checkbox when specified 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--hasBorder euiPanel--flexGrowZero euiSplitPanel euiSplitPanel--row euiCheckableCard testClass1 testClass2"
+  class="euiPanel euiPanel--plain euiSplitPanel euiSplitPanel--row euiCheckableCard testClass1 testClass2 emotion-euiPanel-m-plain-hasBorder-euiCheckableCard"
 >
   <div
-    class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPanel--flexGrowZero euiPanel--isClickable euiSplitPanel__inner"
+    class="euiPanel euiPanel--subdued euiPanel--paddingMedium euiSplitPanel__inner emotion-euiPanel-none-m-subdued-isClickable"
   >
     <div
       class="euiCheckbox euiCheckbox--noLabel"
@@ -58,10 +58,10 @@ exports[`EuiCheckableCard renders a checkbox when specified 1`] = `
     </div>
   </div>
   <div
-    class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiSplitPanel__inner"
+    class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiSplitPanel__inner emotion-euiPanel-grow-none-m-transparent"
   >
     <label
-      class="euiCheckableCard__label"
+      class="euiCheckableCard__label emotion-euiCheckableCard__label"
       for="id"
     >
       Label
@@ -72,10 +72,10 @@ exports[`EuiCheckableCard renders a checkbox when specified 1`] = `
 
 exports[`EuiCheckableCard renders children 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--hasBorder euiPanel--flexGrowZero euiSplitPanel euiSplitPanel--row euiCheckableCard"
+  class="euiPanel euiPanel--plain euiSplitPanel euiSplitPanel--row euiCheckableCard emotion-euiPanel-m-plain-hasBorder-euiCheckableCard"
 >
   <div
-    class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPanel--flexGrowZero euiPanel--isClickable euiSplitPanel__inner"
+    class="euiPanel euiPanel--subdued euiPanel--paddingMedium euiSplitPanel__inner emotion-euiPanel-none-m-subdued-isClickable"
   >
     <div
       class="euiRadio euiRadio--noLabel"
@@ -91,17 +91,17 @@ exports[`EuiCheckableCard renders children 1`] = `
     </div>
   </div>
   <div
-    class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiSplitPanel__inner"
+    class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiSplitPanel__inner emotion-euiPanel-grow-none-m-transparent"
   >
     <label
       aria-describedby="id-details"
-      class="euiCheckableCard__label"
+      class="euiCheckableCard__label emotion-euiCheckableCard__label"
       for="id"
     >
       Label
     </label>
     <div
-      class="euiCheckableCard__children"
+      class="euiCheckableCard__children emotion-euiCheckableCard__children"
       id="id-details"
     >
       Child
@@ -112,10 +112,10 @@ exports[`EuiCheckableCard renders children 1`] = `
 
 exports[`EuiCheckableCard renders disabled 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--hasBorder euiPanel--flexGrowZero euiSplitPanel euiSplitPanel--row euiCheckableCard euiCheckableCard-isDisabled"
+  class="euiPanel euiPanel--plain euiSplitPanel euiSplitPanel--row euiCheckableCard emotion-euiPanel-m-plain-hasBorder-euiCheckableCard"
 >
   <div
-    class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPanel--flexGrowZero euiSplitPanel__inner"
+    class="euiPanel euiPanel--subdued euiPanel--paddingMedium euiSplitPanel__inner emotion-euiPanel-none-m-subdued"
   >
     <div
       class="euiRadio euiRadio--noLabel"
@@ -132,10 +132,10 @@ exports[`EuiCheckableCard renders disabled 1`] = `
     </div>
   </div>
   <div
-    class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiSplitPanel__inner"
+    class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiSplitPanel__inner emotion-euiPanel-grow-none-m-transparent"
   >
     <label
-      class="euiCheckableCard__label euiCheckableCard__label-isDisabled"
+      class="euiCheckableCard__label emotion-euiCheckableCard__label-isDisabled"
       for="id"
     >
       Label
@@ -146,10 +146,10 @@ exports[`EuiCheckableCard renders disabled 1`] = `
 
 exports[`EuiCheckableCard renders panel props 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--noBorder euiPanel--flexGrowZero euiSplitPanel euiSplitPanel--row euiCheckableCard"
+  class="euiPanel euiPanel--plain euiSplitPanel euiSplitPanel--row euiCheckableCard emotion-euiPanel-m-plain-hasShadow-euiCheckableCard"
 >
   <div
-    class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPanel--flexGrowZero euiPanel--isClickable euiSplitPanel__inner"
+    class="euiPanel euiPanel--subdued euiPanel--paddingMedium euiSplitPanel__inner emotion-euiPanel-none-m-subdued-isClickable"
   >
     <div
       class="euiRadio euiRadio--noLabel"
@@ -165,10 +165,10 @@ exports[`EuiCheckableCard renders panel props 1`] = `
     </div>
   </div>
   <div
-    class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiSplitPanel__inner"
+    class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiSplitPanel__inner emotion-euiPanel-grow-none-m-transparent"
   >
     <label
-      class="euiCheckableCard__label"
+      class="euiCheckableCard__label emotion-euiCheckableCard__label"
       for="id"
     >
       Label

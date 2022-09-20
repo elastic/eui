@@ -11,15 +11,11 @@ import {
   transparentize,
   EuiDescribedFormGroup,
   EuiFormRow,
+  useEuiShadow,
+  useEuiShadowFlat,
 } from '../../../../../src';
 import { getPropsFromComponent } from '../../../services/props/get_props';
 import { getDescription } from '../../../services/props/get_description';
-
-// TODO: Update imports
-import {
-  useEuiShadow,
-  useEuiShadowFlat,
-} from '../../../../../src/themes/amsterdam/global_styling/mixins/shadow';
 
 import { ThemeExample } from '../_components/_theme_example';
 import { ThemeValuesTable } from '../_components/_theme_values_table';

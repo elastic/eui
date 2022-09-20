@@ -111,6 +111,12 @@ type _EuiSuggestProps = CommonProps &
      * Default is `60vh`
      */
     maxHeight?: CSSProperties['maxHeight'];
+
+    /**
+     * Control whether or not options get filtered internally or if consumer will filter.
+     * Default `false`
+     */
+    isPreFiltered?: boolean;
   };
 
 export type EuiSuggestProps = _EuiSuggestProps &
@@ -138,6 +144,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
   id,
   'aria-label': ariaLabel,
   'aria-labelledby': labelId,
+  isPreFiltered = false,
   isVirtualized = false,
   fullWidth = true,
   maxHeight = '60vh',
@@ -280,10 +287,6 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
     [onItemClick, suggestions]
   );
 
-  const classes = classNames('euiInputPopover', {
-    'euiInputPopover--fullWidth': fullWidth,
-  });
-
   return (
     <>
       <EuiSelectable<EuiSuggestionProps>
@@ -301,6 +304,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
           isVirtualized,
         }}
         searchable
+        isPreFiltered={isPreFiltered}
         searchProps={{
           id,
           append: appendArray.length ? appendArray : undefined,
@@ -319,7 +323,6 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
         {(list, search) => (
           <EuiInputPopover
             disableFocusTrap
-            className={classes}
             input={<>{search}</>}
             isOpen={isPopoverOpen}
             panelPaddingSize="none"

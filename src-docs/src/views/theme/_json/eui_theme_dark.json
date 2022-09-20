@@ -1,55 +1,8 @@
 {
-  "paddingSizes": {
-    "xs": "4px",
-    "s": "8px",
-    "m": "16px",
-    "l": "24px",
-    "xl": "32px"
-  },
   "euiBadgeGroupGutterTypes": {
     "gutterExtraSmall": "4px",
     "gutterSmall": "8px"
   },
-  "euiBreadcrumbSpacing": "8px",
-  "euiBreadcrumbTruncateWidth": "160px",
-  "euiButtonEmptyTypes": {
-    "primary": "#36a2ef",
-    "danger": "#f86b63",
-    "disabled": "#515761",
-    "ghost": "#ffffff",
-    "text": "#dfe5ef",
-    "success": "#7dded8",
-    "warning": "#f3d371"
-  },
-  "euiCallOutTypes": {
-    "primary": "#36a2ef",
-    "success": "#7dded8",
-    "warning": "#f3d371",
-    "danger": "#f86b63"
-  },
-  "euiCardSpacing": "16px",
-  "euiCardBottomNodeHeight": "40px",
-  "euiCardSelectButtonBorders": {
-    "text": "#7dded8",
-    "primary": "#36a2ef",
-    "success": "#7dded8",
-    "danger": "#f86b63",
-    "ghost": "#98a2b3"
-  },
-  "euiCardSelectButtonBackgrounds": {
-    "text": "#25262e",
-    "primary": "#103148",
-    "success": "#264341",
-    "danger": "#4a201e",
-    "ghost": "#98a2b3"
-  },
-  "euiCardPaddingModifiers": {
-    "paddingNone": 0,
-    "paddingSmall": "8px",
-    "paddingMedium": "16px",
-    "paddingLarge": "24px"
-  },
-  "euiCheckableCardPadding": "16px",
   "euiCodeBlockPaddingModifiers": {
     "paddingSmall": "8px",
     "paddingMedium": "16px",
@@ -98,20 +51,7 @@
     "m": "4px",
     "l": "8px"
   },
-  "euiExpressionColors": {
-    "subdued": "#7a7f89",
-    "primary": "#36a2ef",
-    "success": "#7dded8",
-    "warning": "#f3d371",
-    "danger": "#f86b63",
-    "accent": "#f68fbe"
-  },
-  "euiFacetGutterSizes": {
-    "gutterNone": 0,
-    "gutterSmall": "4px",
-    "gutterMedium": "8px",
-    "gutterLarge": "12px"
-  },
+  "euiEmptyPromptContentMaxWidth": "36em",
   "gutterTypes": {
     "gutterExtraSmall": "4px",
     "gutterSmall": "8px",
@@ -180,25 +120,6 @@
     "gutterM": "12px",
     "gutterL": "24px"
   },
-  "euiIconLoadingOpacity": 0.05,
-  "euiIconColors": {
-    "accent": "#f68fbe",
-    "danger": "#f86b63",
-    "ghost": "#ffffff",
-    "primary": "#36a2ef",
-    "success": "#7dded8",
-    "subdued": "#7a7f89",
-    "text": "#dfe5ef",
-    "warning": "#f3d371",
-    "inherit": "inherit"
-  },
-  "euiIconSizes": {
-    "small": "12px",
-    "medium": "16px",
-    "large": "24px",
-    "xLarge": "32px",
-    "xxLarge": "40px"
-  },
   "euiKeyPadMenuSize": "96px",
   "euiKeyPadMenuMarginSize": "4px",
   "euiListGroupItemHoverBackground": "rgba(52, 55, 65, 0.25)",
@@ -220,33 +141,6 @@
     "large": "22px"
   },
   "euiMarkdownEditorMinHeight": "150px",
-  "euiPopoverArrowSize": "12px",
-  "euiPopoverTranslateDistance": "8px",
-  "euiProgressSizes": {
-    "xs": "2px",
-    "s": "4px",
-    "m": "8px",
-    "l": "16px"
-  },
-  "euiProgressColors": {
-    "primary": "#36a2ef",
-    "success": "#7dded8",
-    "warning": "#f3d371",
-    "danger": "#f86b63",
-    "accent": "#f68fbe",
-    "subdued": "#7a7f89",
-    "vis0": "#54b399",
-    "vis1": "#6092c0",
-    "vis2": "#d36086",
-    "vis3": "#9170b8",
-    "vis4": "#ca8eae",
-    "vis5": "#d6bf57",
-    "vis6": "#b9a888",
-    "vis7": "#da8b45",
-    "vis8": "#aa6556",
-    "vis9": "#e7664c",
-    "customColor": "currentColor"
-  },
   "euiResizableButtonTransitionSpeed": "150ms",
   "euiResizableButtonSize": "16px",
   "euiSelectableListItemBorder": "1px solid #202128",
@@ -310,72 +204,6 @@
   "euiTableActionsBorderColor": "rgba(83, 89, 102, 0.09999999999999998)",
   "euiTableHoverClickableColor": "rgba(54, 162, 239, 0.050000000000000044)",
   "euiTableFocusClickableColor": "rgba(54, 162, 239, 0.09999999999999998)",
-  "euiTextColors": {
-    "default": "#dfe5ef",
-    "subdued": "#7a7f89",
-    "success": "#7dded8",
-    "accent": "#f68fbe",
-    "warning": "#f3d371",
-    "danger": "#f86b63",
-    "ghost": "#ffffff",
-    "inherit": "inherit"
-  },
-  "euiTextConstrainedMaxWidth": "36em",
-  "euiToastWidth": "320px",
-  "euiToastTypes": {
-    "primary": "#36a2ef",
-    "success": "#7dded8",
-    "warning": "#f3d371",
-    "danger": "#f86b63"
-  },
-  "euiTokenGrayColor": "#535966",
-  "euiTokenTypes": {
-    "euiColorVis0": {
-      "graphic": "#54b399",
-      "behindText": "#6dccb1"
-    },
-    "euiColorVis1": {
-      "graphic": "#6092c0",
-      "behindText": "#79aad9"
-    },
-    "euiColorVis2": {
-      "graphic": "#d36086",
-      "behindText": "#ee789d"
-    },
-    "euiColorVis3": {
-      "graphic": "#9170b8",
-      "behindText": "#a987d1"
-    },
-    "euiColorVis4": {
-      "graphic": "#ca8eae",
-      "behindText": "#e4a6c7"
-    },
-    "euiColorVis5": {
-      "graphic": "#d6bf57",
-      "behindText": "#f1d86f"
-    },
-    "euiColorVis6": {
-      "graphic": "#b9a888",
-      "behindText": "#d2c0a0"
-    },
-    "euiColorVis7": {
-      "graphic": "#da8b45",
-      "behindText": "#f5a35c"
-    },
-    "euiColorVis8": {
-      "graphic": "#aa6556",
-      "behindText": "#c47c6c"
-    },
-    "euiColorVis9": {
-      "graphic": "#e7664c",
-      "behindText": "#ff7e62"
-    },
-    "gray": {
-      "graphic": "#535966",
-      "behindText": "#535966"
-    }
-  },
-  "euiTokenTypeKeys": "'euiColorVis0', 'euiColorVis1', 'euiColorVis2', 'euiColorVis3', 'euiColorVis4', 'euiColorVis5', 'euiColorVis6', 'euiColorVis7', 'euiColorVis8', 'euiColorVis9', 'gray'",
   "euiContrastRatioText": 4.5,
   "euiContrastRatioGraphic": 3,
   "euiContrastRatioDisabled": 2,
@@ -535,6 +363,13 @@
   "euiFormInputGroupLabelBackground": "#2c2f37",
   "euiFormInputGroupBorder": "none",
   "euiSwitchOffColor": "rgba(83, 89, 102, 0.7)",
+  "euiFormControlIconSizes": {
+    "small": "12px",
+    "medium": "16px",
+    "large": "24px",
+    "xLarge": "32px",
+    "xxLarge": "40px"
+  },
   "euiFormControlLayoutGroupInputHeight": "38px",
   "euiFormControlLayoutGroupInputCompressedHeight": "30px",
   "euiFormControlLayoutGroupInputCompressedBorderRadius": "1px",
@@ -566,7 +401,7 @@
   },
   "euiPanelBorderRadiusModifiers": {
     "borderRadiusNone": 0,
-    "borderRadiusMedium": "6px"
+    "borderRadiusMedium": "4px"
   },
   "euiPanelBackgroundColorModifiers": {
     "transparent": "rgba(0, 0, 0, 0)",

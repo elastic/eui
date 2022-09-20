@@ -43,7 +43,7 @@ export const GettingStarted = {
           <EuiSpacer />
           <EuiCodeBlock language="bash" isCopyable fontSize="m">
             {
-              'yarn add @elastic/eui @elastic/datemath @emotion/react moment prop-types'
+              'yarn add @elastic/eui @elastic/datemath @emotion/react @emotion/cache moment prop-types'
             }
           </EuiCodeBlock>
           <EuiSpacer />
@@ -144,9 +144,10 @@ export const GettingStarted = {
           <EuiSpacer />
 
           <EuiCodeBlock language="scss" isCopyable fontSize="m">
-            {
-              "@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@300;400;500;600;700&family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');"
-            }
+            {`<link
+  href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@300;400;500;600;700&family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+  rel="stylesheet"
+/>`}
           </EuiCodeBlock>
           <EuiSpacer />
           <EuiText grow={false}>
@@ -157,9 +158,10 @@ export const GettingStarted = {
           </EuiText>
           <EuiSpacer />
           <EuiCodeBlock language="scss" isCopyable fontSize="m">
-            {
-              "@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@-10,300..700;0,300..700&family=Roboto+Mono:ital,wght@0,400..700;1,400..700&display=swap');"
-            }
+            {`<link
+  href="https://fonts.googleapis.com/css2?family=Inter:slnt,wght@-10,300..700;0,300..700&family=Roboto+Mono:ital,wght@0,400..700;1,400..700&display=swap"
+  rel="stylesheet"
+/>`}
           </EuiCodeBlock>
 
           <EuiSpacer />
@@ -232,7 +234,12 @@ import { Timer } from '@elastic/eui/lib/services/time';`}
           </EuiText>
           <EuiSpacer />
           <EuiCodeBlock language="jsx" isCopyable fontSize="m">
-            {"import { findTestSubject } from '@elastic/eui/lib/test';"}
+            {
+              "import { findTestSubject } from '@elastic/eui/lib/test'; // Enzyme"
+            }
+            {
+              "import { findByTestSubject, render, screen } from '@elastic/eui/lib/test/rtl'; // React Testing Library"
+            }
           </EuiCodeBlock>
         </>
       ),

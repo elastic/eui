@@ -4,7 +4,7 @@ es
 lib
 test-env
 types
-eui.d.ts
+**/*.d.ts
 package.json
 docs
 packages

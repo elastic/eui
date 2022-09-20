@@ -46,7 +46,7 @@ export default () => {
             <EuiFlexItem grow={false}>
               <EuiButton
                 onClick={() => setToggleIdSelected(null)}
-                color="ghost"
+                color="text"
                 size="s"
                 iconType="cross"
               >

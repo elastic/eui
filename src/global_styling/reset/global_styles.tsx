@@ -9,6 +9,7 @@
 import React from 'react';
 import { Global, css } from '@emotion/react';
 import { euiFocusRing, euiScrollBarStyles } from '../mixins';
+import { logicalCSS } from '../functions';
 import { shade, tint, transparentize } from '../../services/color';
 import { useEuiTheme } from '../../services/theme';
 import { resetStyles as reset } from './reset';
@@ -16,14 +17,15 @@ import { resetStyles as reset } from './reset';
 export interface EuiGlobalStylesProps {}
 
 export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
-  const { euiTheme, colorMode } = useEuiTheme();
+  const euiThemeContext = useEuiTheme();
+  const { euiTheme, colorMode } = euiThemeContext;
   const { base, colors, font } = euiTheme;
 
   /**
    * Declaring the top level scrollbar colors to match the theme also requires setting the sizes on Chrome
    * so that it knows to use custom styles. Therefore, we just reuse the same scrollbar mixin with thick size.
    */
-  const scrollbarStyles = euiScrollBarStyles(euiTheme, {
+  const scrollbarStyles = euiScrollBarStyles(euiThemeContext, {
     trackColor:
       colorMode === 'LIGHT'
         ? shade(colors.body, 0.03)
@@ -53,7 +55,7 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
       ${fontReset}
       text-size-adjust: 100%;
       font-kerning: normal;
-      height: 100%;
+      ${logicalCSS('height', '100%')}
       background-color: ${colors.body};
       color: ${colors.text};
     }
@@ -84,7 +86,7 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
     }
 
     *:focus {
-      ${euiFocusRing(euiTheme)}
+      ${euiFocusRing(euiThemeContext)}
     }
 
     // Dark mode's highlighted doesn't work well so lets just set it the same as our focus background
@@ -103,6 +105,12 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
       &:focus {
         text-decoration: none;
       }
+    }
+
+    // A few EUI components (e.g. tooltip, combobox) use a portal to render content outside of the DOM hierarchy.
+    // The portal content is absolutely positioned relative to the body.
+    .euiBody-hasPortalContent {
+      position: relative;
     }
   `;
 

@@ -10,7 +10,7 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiButtonContent } from './button_content';
+import { EuiButtonContentDeprecated as EuiButtonContent } from './_button_content_deprecated';
 
 describe('EuiButtonContent', () => {
   test('is rendered', () => {

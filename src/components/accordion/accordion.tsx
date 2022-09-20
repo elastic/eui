@@ -13,9 +13,24 @@ import { CommonProps, keysOf } from '../common';
 
 import { EuiLoadingSpinner } from '../loading';
 import { EuiResizeObserver } from '../observer/resize_observer';
+import { EuiText } from '../text';
 import { EuiI18n } from '../i18n';
-import { htmlIdGenerator } from '../../services';
+import {
+  htmlIdGenerator,
+  withEuiTheme,
+  WithEuiThemeProps,
+} from '../../services';
 import { EuiButtonIcon, EuiButtonIconProps } from '../button';
+import {
+  euiAccordionButtonStyles,
+  euiAccordionChildrenStyles,
+  euiAccordionChildWrapperStyles,
+  euiAccordionIconButtonStyles,
+  euiAccordionOptionalActionStyles,
+  euiAccordionSpinnerStyles,
+  euiAccordionTriggerWrapperStyles,
+} from './accordion.styles';
+import { logicalCSS } from '../../global_styling';
 
 const paddingSizeToClassNameMap = {
   none: '',
@@ -71,7 +86,7 @@ export type EuiAccordionProps = CommonProps &
     /**
      * The accordion will start in the open state.
      */
-    initialIsOpen: boolean;
+    initialIsOpen?: boolean;
     /**
      * Optional callback method called on open and close with a single `isOpen` parameter
      */
@@ -96,20 +111,25 @@ export type EuiAccordionProps = CommonProps &
      * Choose whether the loading message replaces the content. Customize the message by passing a node
      */
     isLoadingMessage?: boolean | ReactNode;
+    /**
+     * Disable the open/close interaction and visually subdues the trigger
+     */
+    isDisabled?: boolean;
   };
 
-export class EuiAccordion extends Component<
-  EuiAccordionProps,
+export class EuiAccordionClass extends Component<
+  WithEuiThemeProps & EuiAccordionProps,
   { isOpen: boolean }
 > {
   static defaultProps = {
     initialIsOpen: false,
-    paddingSize: 'none',
-    arrowDisplay: 'left',
+    paddingSize: 'none' as const,
+    arrowDisplay: 'left' as const,
     isLoading: false,
+    isDisabled: false,
     isLoadingMessage: false,
-    element: 'div',
-    buttonElement: 'button',
+    element: 'div' as const,
+    buttonElement: 'button' as const,
   };
 
   childContent: HTMLDivElement | null = null;
@@ -118,7 +138,7 @@ export class EuiAccordion extends Component<
   state = {
     isOpen: this.props.forceState
       ? this.props.forceState === 'open'
-      : this.props.initialIsOpen,
+      : this.props.initialIsOpen!,
   };
 
   setChildContentHeight = () => {
@@ -130,7 +150,10 @@ export class EuiAccordion extends Component<
           ? this.childContent.clientHeight
           : 0;
       this.childWrapper &&
-        this.childWrapper.setAttribute('style', `height: ${height}px`);
+        this.childWrapper.setAttribute(
+          'style',
+          logicalCSS('height', `${height}px`)
+        );
     });
   };
 
@@ -168,6 +191,14 @@ export class EuiAccordion extends Component<
 
   generatedId = htmlIdGenerator()();
 
+  // Storing resize/observer refs as an instance variable is a performance optimization
+  // and also resolves https://github.com/elastic/eui/issues/5903
+  resizeRef: (e: HTMLElement | null) => void = () => {};
+  observerRef = (ref: HTMLDivElement) => {
+    this.setChildContentRef(ref);
+    this.resizeRef(ref);
+  };
+
   render() {
     const {
       children,
@@ -184,9 +215,11 @@ export class EuiAccordion extends Component<
       forceState,
       isLoading,
       isLoadingMessage,
+      isDisabled,
       buttonProps,
       buttonElement: _ButtonElement = 'button',
       arrowProps,
+      theme,
       ...rest
     } = this.props;
 
@@ -238,12 +271,53 @@ export class EuiAccordion extends Component<
       arrowProps?.className
     );
 
+    // Emotion styles
+    const buttonStyles = euiAccordionButtonStyles(theme);
+    const cssButtonStyles = [
+      buttonStyles.euiAccordion__button,
+      isDisabled && buttonStyles.disabled,
+    ];
+
+    const childrenStyles = euiAccordionChildrenStyles(theme);
+    const cssChildrenStyles = [
+      childrenStyles.euiAccordion__children,
+      isLoading && childrenStyles.isLoading,
+      paddingSize === 'none' ? undefined : childrenStyles[paddingSize!],
+    ];
+
+    const childWrapperStyles = euiAccordionChildWrapperStyles(theme);
+    const cssChildWrapperStyles = [
+      childWrapperStyles.euiAccordion__childWrapper,
+      isOpen && childWrapperStyles.isOpen,
+    ];
+
+    const iconButtonStyles = euiAccordionIconButtonStyles(theme);
+    const cssIconButtonStyles = [
+      iconButtonStyles.euiAccordion__iconButton,
+      isOpen && iconButtonStyles.isOpen,
+      _arrowDisplay === 'right' && iconButtonStyles.arrowRight,
+    ];
+
+    const optionalActionStyles = euiAccordionOptionalActionStyles();
+    const cssOptionalActionStyles = [
+      optionalActionStyles.euiAccordion__optionalAction,
+    ];
+
+    const spinnerStyles = euiAccordionSpinnerStyles(theme);
+    const cssSpinnerStyles = [spinnerStyles.euiAccordion__spinner];
+
+    const triggerWrapperStyles = euiAccordionTriggerWrapperStyles();
+    const cssTriggerWrapperStyles = [
+      triggerWrapperStyles.euiAccordion__triggerWrapper,
+    ];
+
     let iconButton;
     const buttonId = buttonProps?.id ?? this.generatedId;
     if (_arrowDisplay !== 'none') {
       iconButton = (
         <EuiButtonIcon
           color="text"
+          css={cssIconButtonStyles}
           {...arrowProps}
           className={iconButtonClasses}
           iconType="arrowRight"
@@ -252,15 +326,19 @@ export class EuiAccordion extends Component<
           aria-expanded={isOpen}
           aria-labelledby={buttonId}
           tabIndex={buttonElementIsFocusable ? -1 : 0}
+          isDisabled={isDisabled}
         />
       );
     }
 
     let optionalAction = null;
 
-    if (extraAction) {
+    if (isLoading || extraAction) {
       optionalAction = (
-        <div className="euiAccordion__optionalAction">
+        <div
+          className="euiAccordion__optionalAction"
+          css={cssOptionalActionStyles}
+        >
           {isLoading ? <EuiLoadingSpinner /> : extraAction}
         </div>
       );
@@ -270,14 +348,19 @@ export class EuiAccordion extends Component<
     if (isLoading && isLoadingMessage) {
       childrenContent = (
         <>
-          <EuiLoadingSpinner className="euiAccordion__spinner" />
-          <span>
-            {isLoadingMessage && isLoadingMessage !== true ? (
-              isLoadingMessage
-            ) : (
-              <EuiI18n token="euiAccordion.isLoading" default="Loading" />
-            )}
-          </span>
+          <EuiLoadingSpinner
+            className="euiAccordion__spinner"
+            css={cssSpinnerStyles}
+          />
+          <EuiText size="s">
+            <p>
+              {isLoadingMessage && isLoadingMessage !== true ? (
+                isLoadingMessage
+              ) : (
+                <EuiI18n token="euiAccordion.isLoading" default="Loading" />
+              )}
+            </p>
+          </EuiText>
         </>
       );
     } else {
@@ -286,13 +369,15 @@ export class EuiAccordion extends Component<
 
     const button = (
       <ButtonElement
+        css={cssButtonStyles}
         {...buttonProps}
         id={buttonId}
         className={buttonClasses}
         aria-controls={id}
         aria-expanded={isOpen}
-        onClick={this.onToggle}
+        onClick={isDisabled ? undefined : this.onToggle}
         type={ButtonElement === 'button' ? 'button' : undefined}
+        disabled={ButtonElement === 'button' ? isDisabled : undefined}
       >
         <span className={buttonContentClasses}>{buttonContent}</span>
       </ButtonElement>
@@ -300,7 +385,10 @@ export class EuiAccordion extends Component<
 
     return (
       <Element className={classes} {...rest}>
-        <div className="euiAccordion__triggerWrapper">
+        <div
+          className="euiAccordion__triggerWrapper"
+          css={cssTriggerWrapperStyles}
+        >
           {_arrowDisplay === 'left' && iconButton}
           {button}
           {optionalAction}
@@ -309,6 +397,7 @@ export class EuiAccordion extends Component<
 
         <div
           className="euiAccordion__childWrapper"
+          css={cssChildWrapperStyles}
           ref={(node) => {
             this.childWrapper = node;
           }}
@@ -318,19 +407,21 @@ export class EuiAccordion extends Component<
           id={id}
         >
           <EuiResizeObserver onResize={this.setChildContentHeight}>
-            {(resizeRef) => (
-              <div
-                ref={(ref) => {
-                  this.setChildContentRef(ref);
-                  resizeRef(ref);
-                }}
-              >
-                <div className={childrenClasses}>{childrenContent}</div>
-              </div>
-            )}
+            {(resizeRef) => {
+              this.resizeRef = resizeRef;
+              return (
+                <div ref={this.observerRef}>
+                  <div className={childrenClasses} css={cssChildrenStyles}>
+                    {childrenContent}
+                  </div>
+                </div>
+              );
+            }}
           </EuiResizeObserver>
         </div>
       </Element>
     );
   }
 }
+
+export const EuiAccordion = withEuiTheme<EuiAccordionProps>(EuiAccordionClass);

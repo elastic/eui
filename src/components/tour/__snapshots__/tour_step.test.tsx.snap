@@ -2,12 +2,11 @@
 
 exports[`EuiTourStep can be closed 1`] = `
 <div
-  class="euiPopover euiPopover--anchorLeftUp"
+  class="euiPopover emotion-euiPopover"
   data-test-subj="test subject string"
-  offset="10"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-16vtueo-render"
   >
     <span>
       Test
@@ -18,12 +17,11 @@ exports[`EuiTourStep can be closed 1`] = `
 
 exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
 <div
-  class="euiPopover euiPopover--anchorLeftUp euiPopover-isOpen"
+  class="euiPopover euiPopover-isOpen emotion-euiPopover"
   data-test-subj="test subject string"
-  offset="10"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-16vtueo-render"
   >
     <span>
       Test
@@ -47,59 +45,65 @@ exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
       aria-labelledby="generated-id"
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--left euiPopover__panel-isOpen euiTour testClass1 testClass2"
+      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-left-euiTour"
+      data-popover-open="true"
       data-popover-panel="true"
       role="dialog"
-      style="top: -22px; left: -26px; will-change: transform, opacity; max-width: 420px; min-width: 240px; z-index: 2000;"
+      style="top: -22px; left: -26px; will-change: transform, opacity; z-index: 2000;"
     >
       <div
-        class="euiPopover__panelArrow euiPopover__panelArrow--left"
+        class="emotion-euiPopoverArrow-left"
+        data-popover-arrow="left"
         style="left: 0px; top: 10px;"
       >
         <div
-          class="euiBeacon euiTour__beacon css-c8h4zr-euiBeacon"
+          class="euiBeacon euiTour__beacon emotion-euiBeacon-euiTourBeacon-left"
           style="height: 12px; width: 12px;"
         />
       </div>
       <div>
         <div
-          class="euiPopoverTitle euiTourHeader"
-          id="generated-id"
-        >
-          <h2
-            class="euiTitle euiTourHeader__title css-1po7voc-euiTitle-xxs"
-          >
-            A demo
-          </h2>
-        </div>
-        <div
-          class="euiTour__content"
-        >
-          You are here
-        </div>
-        <div
-          class="euiPopoverFooter euiTourFooter"
+          style="min-width: 240px; max-width: 420px;"
         >
           <div
-            class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"
+            class="euiPopoverTitle euiTourHeader emotion-euiPopoverTitle-m-m-euiTourHeader"
+            id="generated-id"
+          >
+            <h2
+              class="euiTitle emotion-euiTitle-xxs-euiTourHeader__title"
+            >
+              A demo
+            </h2>
+          </div>
+          <div
+            class="euiTour__content"
+          >
+            You are here
+          </div>
+          <div
+            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-euiTourFooter"
           >
             <div
-              class="euiFlexItem euiFlexItem--flexGrowZero"
+              class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"
             >
-              <button
-                class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiButtonEmpty--flushRight"
-                type="button"
+              <div
+                class="euiFlexItem euiFlexItem--flexGrowZero"
               >
-                <span
-                  class="euiButtonContent euiButtonEmpty__content"
+                <button
+                  class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushRight css-wvaqcf-empty-text"
+                  type="button"
                 >
                   <span
-                    class="euiButtonEmpty__text"
+                    class="euiButtonContent euiButtonEmpty__content"
                   >
-                    Close tour
+                    <span
+                      class="euiButtonEmpty__text"
+                    >
+                      Close tour
+                    </span>
                   </span>
-                </span>
-              </button>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -116,12 +120,11 @@ exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
 
 exports[`EuiTourStep can have subtitle 1`] = `
 <div
-  class="euiPopover euiPopover--anchorLeftUp euiPopover-isOpen"
+  class="euiPopover euiPopover-isOpen emotion-euiPopover"
   data-test-subj="test subject string"
-  offset="10"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-16vtueo-render"
   >
     <span>
       Test
@@ -145,64 +148,70 @@ exports[`EuiTourStep can have subtitle 1`] = `
       aria-labelledby="generated-id"
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--left euiPopover__panel-isOpen euiTour testClass1 testClass2"
+      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-left-euiTour"
+      data-popover-open="true"
       data-popover-panel="true"
       role="dialog"
-      style="top: -22px; left: -26px; will-change: transform, opacity; max-width: 600px; min-width: 300px; z-index: 2000;"
+      style="top: -22px; left: -26px; will-change: transform, opacity; z-index: 2000;"
     >
       <div
-        class="euiPopover__panelArrow euiPopover__panelArrow--left"
+        class="emotion-euiPopoverArrow-left"
+        data-popover-arrow="left"
         style="left: 0px; top: 10px;"
       >
         <div
-          class="euiBeacon euiTour__beacon css-c8h4zr-euiBeacon"
+          class="euiBeacon euiTour__beacon emotion-euiBeacon-euiTourBeacon-left"
           style="height: 12px; width: 12px;"
         />
       </div>
       <div>
         <div
-          class="euiPopoverTitle euiTourHeader"
-          id="generated-id"
-        >
-          <h2
-            class="euiTitle euiTourHeader__subtitle css-7xv8go-euiTitle-xxxs"
-          >
-            Subtitle
-          </h2>
-          <h3
-            class="euiTitle euiTourHeader__title css-1po7voc-euiTitle-xxs"
-          >
-            A demo
-          </h3>
-        </div>
-        <div
-          class="euiTour__content"
-        >
-          You are here
-        </div>
-        <div
-          class="euiPopoverFooter euiTourFooter"
+          style="min-width: 300px; max-width: 600px;"
         >
           <div
-            class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"
+            class="euiPopoverTitle euiTourHeader emotion-euiPopoverTitle-m-m-euiTourHeader"
+            id="generated-id"
+          >
+            <h2
+              class="euiTitle emotion-euiTitle-xxxs-euiTourHeader__subtitle"
+            >
+              Subtitle
+            </h2>
+            <h3
+              class="euiTitle emotion-euiTitle-xxs-euiTourHeader__title"
+            >
+              A demo
+            </h3>
+          </div>
+          <div
+            class="euiTour__content"
+          >
+            You are here
+          </div>
+          <div
+            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-euiTourFooter"
           >
             <div
-              class="euiFlexItem euiFlexItem--flexGrowZero"
+              class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"
             >
-              <button
-                class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiButtonEmpty--flushRight"
-                type="button"
+              <div
+                class="euiFlexItem euiFlexItem--flexGrowZero"
               >
-                <span
-                  class="euiButtonContent euiButtonEmpty__content"
+                <button
+                  class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushRight css-wvaqcf-empty-text"
+                  type="button"
                 >
                   <span
-                    class="euiButtonEmpty__text"
+                    class="euiButtonContent euiButtonEmpty__content"
                   >
-                    Close tour
+                    <span
+                      class="euiButtonEmpty__text"
+                    >
+                      Close tour
+                    </span>
                   </span>
-                </span>
-              </button>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -219,12 +228,11 @@ exports[`EuiTourStep can have subtitle 1`] = `
 
 exports[`EuiTourStep can override the footer action 1`] = `
 <div
-  class="euiPopover euiPopover--anchorLeftUp euiPopover-isOpen"
+  class="euiPopover euiPopover-isOpen emotion-euiPopover"
   data-test-subj="test subject string"
-  offset="10"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-16vtueo-render"
   >
     <span>
       Test
@@ -248,48 +256,54 @@ exports[`EuiTourStep can override the footer action 1`] = `
       aria-labelledby="generated-id"
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--left euiPopover__panel-isOpen euiTour testClass1 testClass2"
+      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-left-euiTour"
+      data-popover-open="true"
       data-popover-panel="true"
       role="dialog"
-      style="top: -22px; left: -26px; will-change: transform, opacity; max-width: 600px; min-width: 300px; z-index: 2000;"
+      style="top: -22px; left: -26px; will-change: transform, opacity; z-index: 2000;"
     >
       <div
-        class="euiPopover__panelArrow euiPopover__panelArrow--left"
+        class="emotion-euiPopoverArrow-left"
+        data-popover-arrow="left"
         style="left: 0px; top: 10px;"
       >
         <div
-          class="euiBeacon euiTour__beacon css-c8h4zr-euiBeacon"
+          class="euiBeacon euiTour__beacon emotion-euiBeacon-euiTourBeacon-left"
           style="height: 12px; width: 12px;"
         />
       </div>
       <div>
         <div
-          class="euiPopoverTitle euiTourHeader"
-          id="generated-id"
-        >
-          <h2
-            class="euiTitle euiTourHeader__title css-1po7voc-euiTitle-xxs"
-          >
-            A demo
-          </h2>
-        </div>
-        <div
-          class="euiTour__content"
-        >
-          You are here
-        </div>
-        <div
-          class="euiPopoverFooter euiTourFooter"
+          style="min-width: 300px; max-width: 600px;"
         >
           <div
-            class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"
+            class="euiPopoverTitle euiTourHeader emotion-euiPopoverTitle-m-m-euiTourHeader"
+            id="generated-id"
+          >
+            <h2
+              class="euiTitle emotion-euiTitle-xxs-euiTourHeader__title"
+            >
+              A demo
+            </h2>
+          </div>
+          <div
+            class="euiTour__content"
+          >
+            You are here
+          </div>
+          <div
+            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-euiTourFooter"
           >
             <div
-              class="euiFlexItem euiFlexItem--flexGrowZero"
+              class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"
             >
-              <button>
-                Test
-              </button>
+              <div
+                class="euiFlexItem euiFlexItem--flexGrowZero"
+              >
+                <button>
+                  Test
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -306,12 +320,11 @@ exports[`EuiTourStep can override the footer action 1`] = `
 
 exports[`EuiTourStep can turn off the beacon 1`] = `
 <div
-  class="euiPopover euiPopover--anchorLeftUp euiPopover-isOpen"
+  class="euiPopover euiPopover-isOpen emotion-euiPopover"
   data-test-subj="test subject string"
-  offset="0"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-16vtueo-render"
   >
     <span>
       Test
@@ -335,54 +348,60 @@ exports[`EuiTourStep can turn off the beacon 1`] = `
       aria-labelledby="generated-id"
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--left euiPopover__panel-isOpen euiTour testClass1 testClass2"
+      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-left-euiTour"
+      data-popover-open="true"
       data-popover-panel="true"
       role="dialog"
-      style="top: -22px; left: -16px; will-change: transform, opacity; max-width: 600px; min-width: 300px; z-index: 2000;"
+      style="top: -22px; left: -16px; will-change: transform, opacity; z-index: 2000;"
     >
       <div
-        class="euiPopover__panelArrow euiPopover__panelArrow--left"
+        class="emotion-euiPopoverArrow-left"
+        data-popover-arrow="left"
         style="left: 0px; top: 10px;"
       />
       <div>
         <div
-          class="euiPopoverTitle euiTourHeader"
-          id="generated-id"
-        >
-          <h2
-            class="euiTitle euiTourHeader__title css-1po7voc-euiTitle-xxs"
-          >
-            A demo
-          </h2>
-        </div>
-        <div
-          class="euiTour__content"
-        >
-          You are here
-        </div>
-        <div
-          class="euiPopoverFooter euiTourFooter"
+          style="min-width: 300px; max-width: 600px;"
         >
           <div
-            class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"
+            class="euiPopoverTitle euiTourHeader emotion-euiPopoverTitle-m-m-euiTourHeader"
+            id="generated-id"
+          >
+            <h2
+              class="euiTitle emotion-euiTitle-xxs-euiTourHeader__title"
+            >
+              A demo
+            </h2>
+          </div>
+          <div
+            class="euiTour__content"
+          >
+            You are here
+          </div>
+          <div
+            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-euiTourFooter"
           >
             <div
-              class="euiFlexItem euiFlexItem--flexGrowZero"
+              class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"
             >
-              <button
-                class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiButtonEmpty--flushRight"
-                type="button"
+              <div
+                class="euiFlexItem euiFlexItem--flexGrowZero"
               >
-                <span
-                  class="euiButtonContent euiButtonEmpty__content"
+                <button
+                  class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushRight css-wvaqcf-empty-text"
+                  type="button"
                 >
                   <span
-                    class="euiButtonEmpty__text"
+                    class="euiButtonContent euiButtonEmpty__content"
                   >
-                    Close tour
+                    <span
+                      class="euiButtonEmpty__text"
+                    >
+                      Close tour
+                    </span>
                   </span>
-                </span>
-              </button>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -399,12 +418,11 @@ exports[`EuiTourStep can turn off the beacon 1`] = `
 
 exports[`EuiTourStep is rendered 1`] = `
 <div
-  class="euiPopover euiPopover--anchorLeftUp euiPopover-isOpen"
+  class="euiPopover euiPopover-isOpen emotion-euiPopover"
   data-test-subj="test subject string"
-  offset="10"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-16vtueo-render"
   >
     <span>
       Test
@@ -428,59 +446,65 @@ exports[`EuiTourStep is rendered 1`] = `
       aria-labelledby="generated-id"
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--left euiPopover__panel-isOpen euiTour testClass1 testClass2"
+      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-left-euiTour"
+      data-popover-open="true"
       data-popover-panel="true"
       role="dialog"
-      style="top: -22px; left: -26px; will-change: transform, opacity; max-width: 600px; min-width: 300px; z-index: 2000;"
+      style="top: -22px; left: -26px; will-change: transform, opacity; z-index: 2000;"
     >
       <div
-        class="euiPopover__panelArrow euiPopover__panelArrow--left"
+        class="emotion-euiPopoverArrow-left"
+        data-popover-arrow="left"
         style="left: 0px; top: 10px;"
       >
         <div
-          class="euiBeacon euiTour__beacon css-c8h4zr-euiBeacon"
+          class="euiBeacon euiTour__beacon emotion-euiBeacon-euiTourBeacon-left"
           style="height: 12px; width: 12px;"
         />
       </div>
       <div>
         <div
-          class="euiPopoverTitle euiTourHeader"
-          id="generated-id"
-        >
-          <h2
-            class="euiTitle euiTourHeader__title css-1po7voc-euiTitle-xxs"
-          >
-            A demo
-          </h2>
-        </div>
-        <div
-          class="euiTour__content"
-        >
-          You are here
-        </div>
-        <div
-          class="euiPopoverFooter euiTourFooter"
+          style="min-width: 300px; max-width: 600px;"
         >
           <div
-            class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"
+            class="euiPopoverTitle euiTourHeader emotion-euiPopoverTitle-m-m-euiTourHeader"
+            id="generated-id"
+          >
+            <h2
+              class="euiTitle emotion-euiTitle-xxs-euiTourHeader__title"
+            >
+              A demo
+            </h2>
+          </div>
+          <div
+            class="euiTour__content"
+          >
+            You are here
+          </div>
+          <div
+            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-euiTourFooter"
           >
             <div
-              class="euiFlexItem euiFlexItem--flexGrowZero"
+              class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"
             >
-              <button
-                class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiButtonEmpty--flushRight"
-                type="button"
+              <div
+                class="euiFlexItem euiFlexItem--flexGrowZero"
               >
-                <span
-                  class="euiButtonContent euiButtonEmpty__content"
+                <button
+                  class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushRight css-wvaqcf-empty-text"
+                  type="button"
                 >
                   <span
-                    class="euiButtonEmpty__text"
+                    class="euiButtonContent euiButtonEmpty__content"
                   >
-                    Close tour
+                    <span
+                      class="euiButtonEmpty__text"
+                    >
+                      Close tour
+                    </span>
                   </span>
-                </span>
-              </button>
+                </button>
+              </div>
             </div>
           </div>
         </div>

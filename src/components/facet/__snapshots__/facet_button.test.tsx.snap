@@ -3,16 +3,16 @@
 exports[`EuiFacetButton is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiFacetButton euiFacetButton--unSelected testClass1 testClass2"
+  class="euiFacetButton testClass1 testClass2 emotion-euiButtonDisplay-s-s-euiFacetButton"
   data-test-subj="test subject string"
   title="aria-label"
   type="button"
 >
   <span
-    class="euiFacetButton__content"
+    class="emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiFacetButton__text"
+      class="euiFacetButton__text emotion-euiFacetButton__text-unSelected"
     >
       Content
     </span>
@@ -22,18 +22,18 @@ exports[`EuiFacetButton is rendered 1`] = `
 
 exports[`EuiFacetButton props icon is rendered 1`] = `
 <button
-  class="euiFacetButton euiFacetButton--unSelected"
+  class="euiFacetButton emotion-euiButtonDisplay-s-s-euiFacetButton"
   type="button"
 >
   <span
-    class="euiFacetButton__content"
+    class="emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiFacetButton__icon"
+      class="euiFacetButton__icon emotion-euiFacetButton__icon"
       data-euiicon-type="dot"
     />
     <span
-      class="euiFacetButton__text"
+      class="euiFacetButton__text emotion-euiFacetButton__text-unSelected"
     >
       Content
     </span>
@@ -43,17 +43,27 @@ exports[`EuiFacetButton props icon is rendered 1`] = `
 
 exports[`EuiFacetButton props isDisabled is rendered 1`] = `
 <button
-  class="euiFacetButton euiFacetButton--unSelected"
+  class="euiFacetButton emotion-euiButtonDisplay-s-isDisabled-s-euiFacetButton"
   disabled=""
   type="button"
 >
   <span
-    class="euiFacetButton__content"
+    class="emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiFacetButton__text"
+      class="euiFacetButton__icon emotion-euiFacetButton__icon-isDisabled"
+      color="success"
+      data-euiicon-type="dot"
+    />
+    <span
+      class="euiFacetButton__text emotion-euiFacetButton__text-unSelected"
     >
       Content
+    </span>
+    <span
+      class="euiNotificationBadge euiNotificationBadge--medium euiNotificationBadge--subdued euiFacetButton__quantity emotion-euiFacetButton__quantity-isDisabled"
+    >
+      6
     </span>
   </span>
 </button>
@@ -61,21 +71,21 @@ exports[`EuiFacetButton props isDisabled is rendered 1`] = `
 
 exports[`EuiFacetButton props isLoading is rendered 1`] = `
 <button
-  class="euiFacetButton euiFacetButton--unSelected"
+  class="euiFacetButton emotion-euiButtonDisplay-s-isDisabled-s-euiFacetButton"
   disabled=""
   type="button"
 >
   <span
-    class="euiFacetButton__content"
+    class="emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiFacetButton__text"
+      class="euiFacetButton__text emotion-euiFacetButton__text-unSelected"
     >
       Content
     </span>
     <span
       aria-label="Loading"
-      class="euiLoadingSpinner euiFacetButton__spinner css-155ohbx-euiLoadingSpinner-m"
+      class="euiLoadingSpinner emotion-euiLoadingSpinner-m-euiFacetButton__loadingSpinner"
       role="progressbar"
     />
   </span>
@@ -84,14 +94,14 @@ exports[`EuiFacetButton props isLoading is rendered 1`] = `
 
 exports[`EuiFacetButton props isSelected is rendered 1`] = `
 <button
-  class="euiFacetButton euiFacetButton--isSelected"
+  class="euiFacetButton emotion-euiButtonDisplay-s-s-euiFacetButton"
   type="button"
 >
   <span
-    class="euiFacetButton__content"
+    class="emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiFacetButton__text"
+      class="euiFacetButton__text emotion-euiFacetButton__text-isSelected"
     >
       Content
     </span>
@@ -101,19 +111,19 @@ exports[`EuiFacetButton props isSelected is rendered 1`] = `
 
 exports[`EuiFacetButton props quantity is rendered 1`] = `
 <button
-  class="euiFacetButton euiFacetButton--unSelected"
+  class="euiFacetButton emotion-euiButtonDisplay-s-s-euiFacetButton"
   type="button"
 >
   <span
-    class="euiFacetButton__content"
+    class="emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiFacetButton__text"
+      class="euiFacetButton__text emotion-euiFacetButton__text-unSelected"
     >
       Content
     </span>
     <span
-      class="euiNotificationBadge euiNotificationBadge--medium euiNotificationBadge--subdued euiFacetButton__quantity"
+      class="euiNotificationBadge euiNotificationBadge--medium euiNotificationBadge--subdued euiFacetButton__quantity emotion-euiFacetButton__quantity"
     >
       60
     </span>

@@ -9,6 +9,7 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiText } from './text';
 
@@ -23,17 +24,45 @@ describe('EuiText', () => {
     expect(component).toMatchSnapshot();
   });
 
+  shouldRenderCustomStyles(<EuiText size="s" color="#fff" />);
+  shouldRenderCustomStyles(<EuiText size="xs" textAlign="left" />);
+  shouldRenderCustomStyles(<EuiText textAlign="center" color="success" />);
+
   describe('props', () => {
     describe('grow', () => {
-      test('is rendered', () => {
+      test('false', () => {
         const component = render(
-          <EuiText {...requiredProps} grow>
+          <EuiText {...requiredProps} grow={false}>
             <p>Content</p>
           </EuiText>
         );
 
         expect(component).toMatchSnapshot();
       });
+    });
+
+    test('color & align', () => {
+      const component = render(
+        <EuiText {...requiredProps} color="danger" textAlign="center">
+          <p>Content</p>
+        </EuiText>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('style', () => {
+      const component = render(
+        <EuiText
+          {...requiredProps}
+          color="#fff"
+          style={{ backgroundColor: '#000' }}
+        >
+          <p>Content</p>
+        </EuiText>
+      );
+
+      expect(component).toMatchSnapshot();
     });
   });
 });

@@ -2,11 +2,12 @@
 
 exports[`EuiScreenReaderLive with a static configuration accepts \`aria-live\` 1`] = `
 <div
-  class="euiScreenReaderOnly"
+  class="emotion-euiScreenReaderOnly"
 >
   <div
     aria-atomic="true"
-    aria-live="assertive"
+    aria-hidden="true"
+    aria-live="off"
     role="status"
   />
   <div
@@ -21,13 +22,37 @@ exports[`EuiScreenReaderLive with a static configuration accepts \`aria-live\` 1
 </div>
 `;
 
-exports[`EuiScreenReaderLive with a static configuration accepts \`role\` 1`] = `
+exports[`EuiScreenReaderLive with a static configuration accepts \`focusRegionOnTextChange\` 1`] = `
 <div
-  class="euiScreenReaderOnly"
+  class="emotion-euiScreenReaderOnly"
+  tabindex="-1"
 >
   <div
     aria-atomic="true"
-    aria-live="polite"
+    aria-hidden="true"
+    aria-live="off"
+    role="status"
+  />
+  <div
+    aria-atomic="true"
+    aria-live="off"
+    role="status"
+  >
+    <p>
+      This paragraph is not visible to sighted users but will be read by screenreaders.
+    </p>
+  </div>
+</div>
+`;
+
+exports[`EuiScreenReaderLive with a static configuration accepts \`role\` 1`] = `
+<div
+  class="emotion-euiScreenReaderOnly"
+>
+  <div
+    aria-atomic="true"
+    aria-hidden="true"
+    aria-live="off"
     role="log"
   />
   <div
@@ -44,11 +69,12 @@ exports[`EuiScreenReaderLive with a static configuration accepts \`role\` 1`] = 
 
 exports[`EuiScreenReaderLive with a static configuration does not render screen reader content when inactive 1`] = `
 <div
-  class="euiScreenReaderOnly"
+  class="emotion-euiScreenReaderOnly"
 >
   <div
     aria-atomic="true"
-    aria-live="polite"
+    aria-hidden="true"
+    aria-live="off"
     role="status"
   />
   <div
@@ -61,11 +87,12 @@ exports[`EuiScreenReaderLive with a static configuration does not render screen 
 
 exports[`EuiScreenReaderLive with a static configuration renders screen reader content when active 1`] = `
 <div
-  class="euiScreenReaderOnly"
+  class="emotion-euiScreenReaderOnly"
 >
   <div
     aria-atomic="true"
-    aria-live="polite"
+    aria-hidden="true"
+    aria-live="off"
     role="status"
   />
   <div
@@ -81,73 +108,59 @@ exports[`EuiScreenReaderLive with a static configuration renders screen reader c
 `;
 
 exports[`EuiScreenReaderLive with dynamic properties alternates rendering screen reader content into the second live region when changed/toggled 1`] = `
-<Component>
-  <div>
-    <button
-      data-test-subj="increment"
-      onClick={[Function]}
+<div>
+  <button
+    data-test-subj="increment"
+  >
+    Increment
+  </button>
+  <div
+    class="emotion-euiScreenReaderOnly"
+  >
+    <div
+      aria-atomic="true"
+      aria-hidden="true"
+      aria-live="off"
+      role="status"
+    />
+    <div
+      aria-atomic="true"
+      aria-live="polite"
+      role="status"
     >
-      Increment
-    </button>
-    <EuiScreenReaderLive>
-      <EuiScreenReaderOnly>
-        <div
-          className="euiScreenReaderOnly"
-        >
-          <div
-            aria-atomic="true"
-            aria-live="polite"
-            role="status"
-          />
-          <div
-            aria-atomic="true"
-            aria-live="polite"
-            role="status"
-          >
-            <p>
-              Number of active options: 
-              1
-            </p>
-          </div>
-        </div>
-      </EuiScreenReaderOnly>
-    </EuiScreenReaderLive>
+      <p>
+        Number of active options: 1
+      </p>
+    </div>
   </div>
-</Component>
+</div>
 `;
 
 exports[`EuiScreenReaderLive with dynamic properties initially renders screen reader content in the first live region 1`] = `
-<Component>
-  <div>
-    <button
-      data-test-subj="increment"
-      onClick={[Function]}
+<div>
+  <button
+    data-test-subj="increment"
+  >
+    Increment
+  </button>
+  <div
+    class="emotion-euiScreenReaderOnly"
+  >
+    <div
+      aria-atomic="true"
+      aria-hidden="true"
+      aria-live="off"
+      role="status"
+    />
+    <div
+      aria-atomic="true"
+      aria-live="polite"
+      role="status"
     >
-      Increment
-    </button>
-    <EuiScreenReaderLive>
-      <EuiScreenReaderOnly>
-        <div
-          className="euiScreenReaderOnly"
-        >
-          <div
-            aria-atomic="true"
-            aria-live="polite"
-            role="status"
-          >
-            <p>
-              Number of active options: 
-              0
-            </p>
-          </div>
-          <div
-            aria-atomic="true"
-            aria-live="polite"
-            role="status"
-          />
-        </div>
-      </EuiScreenReaderOnly>
-    </EuiScreenReaderLive>
+      <p>
+        Number of active options: 0
+      </p>
+    </div>
   </div>
-</Component>
+</div>
 `;

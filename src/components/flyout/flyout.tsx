@@ -26,11 +26,12 @@ import {
   EuiWindowEvent,
   useCombinedRefs,
   EuiBreakpointSize,
-  isWithinMinBreakpoint,
-  throttle,
+  useIsWithinMinBreakpoint,
+  useEuiTheme,
 } from '../../services';
+import { logicalStyle } from '../../global_styling';
 
-import { CommonProps, keysOf, PropsOfElement } from '../common';
+import { CommonProps, PropsOfElement } from '../common';
 import { EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
 import { EuiOverlayMask, EuiOverlayMaskProps } from '../overlay_mask';
 import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../button';
@@ -38,29 +39,15 @@ import { EuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
 
-const typeToClassNameMap = {
-  push: 'euiFlyout--push',
-  overlay: null,
-};
+import { euiFlyoutStyles, euiFlyoutCloseButtonStyles } from './flyout.styles';
 
-export const TYPES = keysOf(typeToClassNameMap);
+export const TYPES = ['push', 'overlay'] as const;
 type _EuiFlyoutType = typeof TYPES[number];
 
-const sideToClassNameMap = {
-  left: 'euiFlyout--left',
-  right: null,
-};
-
-export const SIDES = keysOf(sideToClassNameMap);
+export const SIDES = ['left', 'right'] as const;
 type _EuiFlyoutSide = typeof SIDES[number];
 
-const sizeToClassNameMap = {
-  s: 'euiFlyout--small',
-  m: 'euiFlyout--medium',
-  l: 'euiFlyout--large',
-};
-
-export const SIZES = keysOf(sizeToClassNameMap);
+export const SIZES = ['s', 'm', 'l'] as const;
 export type EuiFlyoutSize = typeof SIZES[number];
 
 /**
@@ -71,21 +58,15 @@ function isEuiFlyoutSizeNamed(value: any): value is EuiFlyoutSize {
   return SIZES.includes(value as any);
 }
 
-const paddingSizeToClassNameMap = {
-  none: 'euiFlyout--paddingNone',
-  s: 'euiFlyout--paddingSmall',
-  m: 'euiFlyout--paddingMedium',
-  l: 'euiFlyout--paddingLarge',
-};
-
-export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
-type _EuiFlyoutPaddingSize = typeof PADDING_SIZES[number];
+export const PADDING_SIZES = ['none', 's', 'm', 'l'] as const;
+export type _EuiFlyoutPaddingSize = typeof PADDING_SIZES[number];
 
 interface _EuiFlyoutProps {
   onClose: (event: MouseEvent | TouchEvent | KeyboardEvent) => void;
   /**
    * Defines the width of the panel.
    * Pass a predefined size of `s | m | l`, or pass any number/string compatible with the CSS `width` attribute
+   * @default m
    */
   size?: EuiFlyoutSize | CSSProperties['width'];
   /**
@@ -94,23 +75,27 @@ interface _EuiFlyoutProps {
    * set to `false` to not restrict the width,
    * set to a number for a custom width in px,
    * set to a string for a custom width in custom measurement.
+   * @default false
    */
   maxWidth?: boolean | number | string;
   /**
    * Customize the padding around the content of the flyout header, body and footer
+   * @default l
    */
   paddingSize?: _EuiFlyoutPaddingSize;
   /**
    * Adds an EuiOverlayMask and wraps in an EuiPortal
+   * @default true
    */
   ownFocus?: boolean;
   /**
    * Hides the default close button. You must provide another close button somewhere within the flyout.
+   * @default false
    */
   hideCloseButton?: boolean;
   /**
-   * Specify an aria-label for the close button of the flyout.
-   * Default is `'Close this dialog'`.
+   * Specify a custom aria-label for the close button of the flyout.
+   * @default "Close this dialog"
    */
   closeButtonAriaLabel?: string;
   /**
@@ -121,6 +106,7 @@ interface _EuiFlyoutProps {
    * Position of close button.
    * `inside`: Floating to just inside the flyout, always top right;
    * `outside`: Floating just outside the flyout near the top (side dependent on `side`). Helpful when the close button may cover other interactable content.
+   * @default inside
    */
   closeButtonPosition?: 'inside' | 'outside';
   /**
@@ -130,6 +116,7 @@ interface _EuiFlyoutProps {
   /**
    * How to display the the flyout in relation to the body content;
    * `push` keeps it visible, pushing the `<body>` content via padding
+   * @default overlay
    */
   type?: _EuiFlyoutType;
   /**
@@ -140,17 +127,20 @@ interface _EuiFlyoutProps {
   /**
    * Which side of the window to attach to.
    * The `left` option should only be used for navigation.
+   * @default right
    */
   side?: _EuiFlyoutSide;
   /**
    * Defaults to `dialog` which is best for most cases of the flyout.
    * Otherwise pass in your own, aria-role, or `null` to remove it and use the semantic `as` element instead
+   * @default dialog
    */
   role?: null | string;
   /**
-   * Named breakpoint or pixel value for customizing the minimum window width to enable the `push` type
+   * Named breakpoint (`xs` through `xl`) for customizing the minimum window width to enable the `push` type
+   * @default l
    */
-  pushMinBreakpoint?: EuiBreakpointSize | number;
+  pushMinBreakpoint?: EuiBreakpointSize;
   style?: CSSProperties;
   /**
    * Object of props passed to EuiFocusTrap.
@@ -206,31 +196,11 @@ export const EuiFlyout = forwardRef(
   ) => {
     const Element = as || defaultElement;
     const maskRef = useRef<HTMLDivElement>(null);
-    /**
-     * Setting the initial state of pushed based on the `type` prop
-     * and if the current window size is large enough (larger than `pushMinBreakpoint`)
-     */
-    const [windowIsLargeEnoughToPush, setWindowIsLargeEnoughToPush] = useState(
-      isWithinMinBreakpoint(
-        typeof window === 'undefined' ? 0 : window.innerWidth,
-        pushMinBreakpoint
-      )
+
+    const windowIsLargeEnoughToPush = useIsWithinMinBreakpoint(
+      pushMinBreakpoint
     );
-
     const isPushed = type === 'push' && windowIsLargeEnoughToPush;
-
-    /**
-     * Watcher added to the window to maintain `isPushed` state depending on
-     * the window size compared to the `pushBreakpoint`
-     */
-    const functionToCallOnWindowResize = throttle(() => {
-      if (isWithinMinBreakpoint(window.innerWidth, pushMinBreakpoint)) {
-        setWindowIsLargeEnoughToPush(true);
-      } else {
-        setWindowIsLargeEnoughToPush(false);
-      }
-      // reacts every 50ms to resize changes and always gets the final update
-    }, 50);
 
     /**
      * Setting up the refs on the actual flyout element in order to
@@ -251,9 +221,6 @@ export const EuiFlyout = forwardRef(
        * Accomodate for the `isPushed` state by adding padding to the body equal to the width of the element
        */
       if (type === 'push') {
-        // Only add the event listener if we'll need to accommodate with padding
-        window.addEventListener('resize', functionToCallOnWindowResize);
-
         if (isPushed) {
           if (side === 'right') {
             document.body.style.paddingRight = `${dimensions.width}px`;
@@ -267,8 +234,6 @@ export const EuiFlyout = forwardRef(
         document.body.classList.remove('euiBody--hasFlyout');
 
         if (type === 'push') {
-          window.removeEventListener('resize', functionToCallOnWindowResize);
-
           if (side === 'right') {
             document.body.style.paddingRight = '';
           } else if (side === 'left') {
@@ -276,7 +241,7 @@ export const EuiFlyout = forwardRef(
           }
         }
       };
-    }, [type, side, dimensions, isPushed, functionToCallOnWindowResize]);
+    }, [type, side, dimensions, isPushed]);
 
     /**
      * ESC key closes flyout (always?)
@@ -288,49 +253,53 @@ export const EuiFlyout = forwardRef(
       }
     };
 
-    let newStyle;
-    let widthClassName;
-    let sizeClassName;
-
-    // Setting max-width
-    if (maxWidth === true) {
-      widthClassName = 'euiFlyout--maxWidth-default';
-    } else if (maxWidth !== false) {
-      const value = typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth;
-      newStyle = { ...style, maxWidth: value };
+    /**
+     * Set inline styles
+     */
+    let newStyle = style;
+    if (typeof maxWidth !== 'boolean') {
+      newStyle = { ...newStyle, ...logicalStyle('max-width', maxWidth) };
+    }
+    if (!isEuiFlyoutSizeNamed(size)) {
+      newStyle = { ...newStyle, ...logicalStyle('width', size) };
     }
 
-    // Setting size
-    if (isEuiFlyoutSizeNamed(size)) {
-      sizeClassName = sizeToClassNameMap[size];
-    } else if (newStyle) {
-      newStyle.width = size;
-    } else {
-      newStyle = { ...style, width: size };
-    }
+    const euiTheme = useEuiTheme();
+    const styles = euiFlyoutStyles(euiTheme);
 
-    const classes = classnames(
-      'euiFlyout',
-      typeToClassNameMap[type as _EuiFlyoutType],
-      sideToClassNameMap[side as _EuiFlyoutSide],
-      sizeClassName,
-      paddingSizeToClassNameMap[paddingSize as _EuiFlyoutPaddingSize],
-      widthClassName,
-      className
-    );
+    const cssStyles = [
+      styles.euiFlyout,
+      styles.paddingSizes[paddingSize],
+      isEuiFlyoutSizeNamed(size) && styles[size],
+      maxWidth === false && styles.noMaxWidth,
+      styles[type],
+      type === 'push' && styles.pushSide[side],
+      styles[side],
+    ];
+
+    const classes = classnames('euiFlyout', className);
 
     let closeButton;
     if (onClose && !hideCloseButton) {
       const closeButtonClasses = classnames(
         'euiFlyout__closeButton',
-        `euiFlyout__closeButton--${closeButtonPosition}`,
         closeButtonProps?.className
       );
+
+      const closeButtonStyles = euiFlyoutCloseButtonStyles(euiTheme);
+
+      const closeButtonCssStyles = [
+        closeButtonStyles.euiFlyout__closeButton,
+        closeButtonStyles[closeButtonPosition],
+        closeButtonPosition === 'outside' &&
+          closeButtonStyles.outsideSide[side],
+      ];
 
       closeButton = (
         <EuiI18n token="euiFlyout.closeAriaLabel" default="Close this dialog">
           {(closeAriaLabel: string) => (
             <EuiButtonIcon
+              css={closeButtonCssStyles}
               display={closeButtonPosition === 'outside' ? 'fill' : 'empty'}
               iconType="cross"
               color="text"
@@ -386,8 +355,9 @@ export const EuiFlyout = forwardRef(
           role={role}
           className={classes}
           tabIndex={-1}
-          style={newStyle || style}
+          style={newStyle}
           ref={setRef}
+          css={cssStyles}
         >
           {closeButton}
           {children}

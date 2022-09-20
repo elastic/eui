@@ -166,38 +166,41 @@ export default () => {
   ];
 
   return (
-    <EuiPageTemplate
-      pageHeader={{
-        pageTitle: 'My app',
-        rightSideItems: [
-          <ExampleContext.Consumer>
-            {({ parentPath }) => (
-              <EuiButton fill href={`#${parentPath}`} iconType="exit">
-                Exit fullscreen demo
-              </EuiButton>
+    <EuiPageTemplate>
+      <EuiPageTemplate.Header
+        {...{
+          pageTitle: 'My app',
+          rightSideItems: [
+            <ExampleContext.Consumer>
+              {({ parentPath }) => (
+                <EuiButton fill href={`#${parentPath}`} iconType="exit">
+                  Exit fullscreen demo
+                </EuiButton>
+              )}
+            </ExampleContext.Consumer>,
+          ],
+          tabs: tabs.map((tab, index) => {
+            return {
+              key: index,
+              label: tab.name,
+              id: tab.id,
+              onClick: () => onTabClick(tab.id),
+              isSelected: tab.id === selectedTabId,
+            };
+          }),
+        }}
+      />
+      <EuiPageTemplate.Section>
+        {tabs.map((tab, index) => (
+          <Fragment key={index}>
+            {tab.id === selectedTabId && (
+              <div role="tabpanel" aria-labelledby={tab.id}>
+                {tab.content}
+              </div>
             )}
-          </ExampleContext.Consumer>,
-        ],
-        tabs: tabs.map((tab, index) => {
-          return {
-            key: index,
-            label: tab.name,
-            id: tab.id,
-            onClick: () => onTabClick(tab.id),
-            isSelected: tab.id === selectedTabId,
-          };
-        }),
-      }}
-    >
-      {tabs.map((tab, index) => (
-        <Fragment key={index}>
-          {tab.id === selectedTabId && (
-            <div role="tabpanel" aria-labelledby={tab.id}>
-              {tab.content}
-            </div>
-          )}
-        </Fragment>
-      ))}
+          </Fragment>
+        ))}
+      </EuiPageTemplate.Section>
     </EuiPageTemplate>
   );
 };

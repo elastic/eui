@@ -2,18 +2,18 @@
 
 exports[`CollapsedItemActions render 1`] = `
 <div
-  class="euiPopover euiPopover--anchorLeftCenter"
+  class="euiPopover emotion-euiPopover"
   id="id-actions"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-16vtueo-render"
   >
     <span
-      class="euiToolTipAnchor"
+      class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
     >
       <button
         aria-label="All actions"
-        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+        class="euiButtonIcon euiButtonIcon--xSmall emotion-euiButtonIcon-empty-text-hoverStyles"
         data-test-subj="euiCollapsedItemActionsButton"
         type="button"
       >
@@ -41,7 +41,7 @@ exports[`CollapsedItemActions render with href and _target provided 1`] = `
     </EuiI18n>
   }
   closePopover={[Function]}
-  display="inlineBlock"
+  display="inline-block"
   hasArrow={true}
   id="id-actions"
   isOpen={true}

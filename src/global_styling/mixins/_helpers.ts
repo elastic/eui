@@ -9,7 +9,7 @@
 import { CSSProperties } from 'react';
 import { useEuiTheme, UseEuiTheme } from '../../services/theme';
 import { transparentize } from '../../services/color';
-import { createStyleHookFromMixin } from '../utils';
+import { logicalCSS, logicalCSSWithFallback } from '../functions';
 
 /**
  * Set scroll bar appearance on Chrome (and firefox).
@@ -33,7 +33,7 @@ export interface EuiScrollBarStyles {
   corner?: CSSProperties['borderWidth'];
 }
 export const euiScrollBarStyles = (
-  { colors, size }: UseEuiTheme['euiTheme'],
+  { euiTheme: { colors, size } }: UseEuiTheme,
   {
     thumbColor: _thumbColor,
     trackColor = 'transparent',
@@ -55,8 +55,8 @@ export const euiScrollBarStyles = (
   return `scrollbar-width: ${width};
 
     &::-webkit-scrollbar {
-      width: ${scrollBarSize};
-      height: ${scrollBarSize};
+      ${logicalCSS('width', scrollBarSize)}
+      ${logicalCSS('height', scrollBarSize)}
     }
 
     &::-webkit-scrollbar-thumb {
@@ -74,7 +74,10 @@ export const euiScrollBarStyles = (
     ${firefoxSupport}
   `;
 };
-export const useEuiScrollBar = createStyleHookFromMixin(euiScrollBarStyles);
+export const useEuiScrollBar = (options?: EuiScrollBarStyles) => {
+  const euiTheme = useEuiTheme();
+  return euiScrollBarStyles(euiTheme, options);
+};
 
 /**
  * *INTERNAL*
@@ -85,7 +88,7 @@ interface EuiOverflowShadowStyles {
   side?: 'both' | 'start' | 'end';
 }
 const euiOverflowShadowStyles = (
-  { size }: UseEuiTheme['euiTheme'],
+  { euiTheme: { size } }: UseEuiTheme,
   { direction: _direction, side: _side }: EuiOverflowShadowStyles = {}
 ) => {
   const direction = _direction || 'y';
@@ -122,50 +125,68 @@ const euiOverflowShadowStyles = (
  *    Browser's supporting `:focus-visible` will still show outline on keyboard focus only.
  *    Others like Safari, won't show anything at all.
  */
-
-// TODO: How do we use Emotion to output the CSS class utilities instead?
-export const euiYScroll = (euiTheme: UseEuiTheme['euiTheme']) => `
+interface _EuiYScroll {
+  height?: CSSProperties['height'];
+}
+export const euiYScroll = (
+  euiTheme: UseEuiTheme,
+  { height }: _EuiYScroll = {}
+) => `
   ${euiScrollBarStyles(euiTheme)}
-  height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
+  ${logicalCSS('height', height || '100%')}
+  ${logicalCSSWithFallback('overflow-y', 'auto')}
+  ${logicalCSSWithFallback('overflow-x', 'hidden')}
   &:focus {
     outline: none; /* 1 */
   }
 `;
-export const useEuiYScroll = createStyleHookFromMixin(euiYScroll);
+export const useEuiYScroll = ({ height }: _EuiYScroll = {}) => {
+  const euiTheme = useEuiTheme();
+  return euiYScroll(euiTheme, { height });
+};
 
-export const euiYScrollWithShadows = (euiTheme: UseEuiTheme['euiTheme']) => `
-  ${euiYScroll(euiTheme)}
-  ${euiOverflowShadowStyles(euiTheme, { direction: 'y' })}
+interface _EuiYScrollWithShadows extends _EuiYScroll {
+  side?: 'both' | 'start' | 'end';
+}
+export const euiYScrollWithShadows = (
+  euiTheme: UseEuiTheme,
+  { height, side = 'both' }: _EuiYScrollWithShadows = {}
+) => `
+  ${euiYScroll(euiTheme, { height })}
+  ${euiOverflowShadowStyles(euiTheme, { direction: 'y', side })}
 `;
-export const useEuiYScrollWithShadows = createStyleHookFromMixin(
-  euiYScrollWithShadows
-);
+export const useEuiYScrollWithShadows = ({ height }: _EuiYScroll = {}) => {
+  const euiTheme = useEuiTheme();
+  return euiYScrollWithShadows(euiTheme, { height });
+};
 
-export const euiXScroll = (euiTheme: UseEuiTheme['euiTheme']) => `
+export const euiXScroll = (euiTheme: UseEuiTheme) => `
   ${euiScrollBarStyles(euiTheme)}
-  overflow-x: auto;
+  ${logicalCSSWithFallback('overflow-x', 'auto')}
   &:focus {
     outline: none; /* 1 */
   }
 `;
-export const useEuiXScroll = createStyleHookFromMixin(euiXScroll);
+export const useEuiXScroll = () => {
+  const euiTheme = useEuiTheme();
+  return euiXScroll(euiTheme);
+};
 
-export const euiXScrollWithShadows = (euiTheme: UseEuiTheme['euiTheme']) => `
+export const euiXScrollWithShadows = (euiTheme: UseEuiTheme) => `
   ${euiXScroll(euiTheme)}
   ${euiOverflowShadowStyles(euiTheme, { direction: 'x' })}
 `;
-export const useEuiXScrollWithShadows = createStyleHookFromMixin(
-  euiXScrollWithShadows
-);
+export const useEuiXScrollWithShadows = () => {
+  const euiTheme = useEuiTheme();
+  return euiXScrollWithShadows(euiTheme);
+};
 
 interface EuiScrollOverflowStyles {
   direction?: 'y' | 'x';
   mask?: boolean;
 }
 export const euiOverflowScroll = (
-  euiTheme: UseEuiTheme['euiTheme'],
+  euiTheme: UseEuiTheme,
   { direction, mask = false }: EuiScrollOverflowStyles = {}
 ) => {
   switch (direction) {
@@ -185,6 +206,21 @@ export const useEuiOverflowScroll = (
   direction: EuiScrollOverflowStyles['direction'],
   mask: EuiScrollOverflowStyles['mask'] = false
 ) => {
-  const { euiTheme } = useEuiTheme();
+  const euiTheme = useEuiTheme();
   return euiOverflowScroll(euiTheme, { direction, mask });
 };
+
+/**
+ * For quickly applying a full-height element whether using flex or not
+ */
+export const euiFullHeight = () => `
+  ${logicalCSS('height', '100%')}
+  flex: 1 1 auto;
+  overflow: hidden;
+`;
+
+/**
+ * A constant storing the support for the `:has()` selector through a
+ * media query that will only apply the content it is supported.
+ */
+export const euiSupportsHas = '@supports(selector(:has(p)))';

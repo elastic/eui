@@ -6,10 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, { HTMLAttributes, FunctionComponent } from 'react';
+import React, { HTMLAttributes, FunctionComponent, useContext } from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf } from '../common';
-import { PanelPaddingSize } from '../panel';
+import { EuiPaddingSize, useEuiPaddingCSS } from '../../global_styling';
+import { useEuiTheme } from '../../services';
+import { CommonProps } from '../common';
+import { euiPopoverFooterStyles } from './popover_footer.styles';
+import { EuiPopoverPanelContext } from './popover_panel/_popover_panel';
 
 export type EuiPopoverFooterProps = FunctionComponent<
   HTMLAttributes<HTMLDivElement> &
@@ -18,18 +21,9 @@ export type EuiPopoverFooterProps = FunctionComponent<
        * Customize the all around padding of the popover footer.
        * Leave `undefined` to inherit from the `panelPaddingSize` of the containing EuiPopover
        */
-      paddingSize?: PanelPaddingSize;
+      paddingSize?: EuiPaddingSize;
     }
 >;
-
-const paddingSizeToClassNameMap = {
-  none: 'euiPopoverFooter--paddingNone',
-  s: 'euiPopoverFooter--paddingSmall',
-  m: 'euiPopoverFooter--paddingMedium',
-  l: 'euiPopoverFooter--paddingLarge',
-};
-
-export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
 
 export const EuiPopoverFooter: EuiPopoverFooterProps = ({
   children,
@@ -37,14 +31,20 @@ export const EuiPopoverFooter: EuiPopoverFooterProps = ({
   paddingSize,
   ...rest
 }) => {
-  const classes = classNames(
-    'euiPopoverFooter',
-    paddingSize ? paddingSizeToClassNameMap[paddingSize] : null,
-    className
-  );
+  const { paddingSize: panelPadding } = useContext(EuiPopoverPanelContext);
+  const euiTheme = useEuiTheme();
+  const styles = euiPopoverFooterStyles(euiTheme, panelPadding);
+  const paddingStyles = useEuiPaddingCSS();
+  const cssStyles = [
+    styles.euiPopoverFooter,
+    // If a paddingSize is not directly provided, inherit from the EuiPopoverPanel
+    paddingStyles[paddingSize || panelPadding],
+  ];
+
+  const classes = classNames('euiPopoverFooter', className);
 
   return (
-    <div className={classes} {...rest}>
+    <div css={cssStyles} className={classes} {...rest}>
       {children}
     </div>
   );

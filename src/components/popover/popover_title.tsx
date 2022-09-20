@@ -6,10 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, { HTMLAttributes, FunctionComponent } from 'react';
+import React, { HTMLAttributes, FunctionComponent, useContext } from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf } from '../common';
-import { PanelPaddingSize } from '../panel';
+import { EuiPaddingSize, useEuiPaddingCSS } from '../../global_styling';
+import { useEuiTheme } from '../../services';
+import { CommonProps } from '../common';
+import { euiPopoverTitleStyles } from './popover_title.styles';
+import { EuiPopoverPanelContext } from './popover_panel/_popover_panel';
 
 export type EuiPopoverTitleProps = FunctionComponent<
   HTMLAttributes<HTMLDivElement> &
@@ -18,18 +21,9 @@ export type EuiPopoverTitleProps = FunctionComponent<
        * Customize the all around padding of the popover title.
        * Leave `undefined` to inherit from the `panelPaddingSize` of the containing EuiPopover
        */
-      paddingSize?: PanelPaddingSize;
+      paddingSize?: EuiPaddingSize;
     }
 >;
-
-const paddingSizeToClassNameMap = {
-  none: 'euiPopoverTitle--paddingNone',
-  s: 'euiPopoverTitle--paddingSmall',
-  m: 'euiPopoverTitle--paddingMedium',
-  l: 'euiPopoverTitle--paddingLarge',
-};
-
-export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
 
 export const EuiPopoverTitle: EuiPopoverTitleProps = ({
   children,
@@ -37,14 +31,21 @@ export const EuiPopoverTitle: EuiPopoverTitleProps = ({
   paddingSize,
   ...rest
 }) => {
-  const classes = classNames(
-    'euiPopoverTitle',
-    paddingSize ? paddingSizeToClassNameMap[paddingSize] : null,
-    className
-  );
+  const { paddingSize: panelPadding } = useContext(EuiPopoverPanelContext);
+  const euiTheme = useEuiTheme();
+  const styles = euiPopoverTitleStyles(euiTheme);
+  const paddingStyles = useEuiPaddingCSS();
+  const cssStyles = [
+    styles.euiPopoverTitle,
+    styles.panelPaddingSizes[panelPadding],
+    // If a paddingSize is not directly provided, inherit from the EuiPopoverPanel
+    paddingStyles[paddingSize || panelPadding],
+  ];
+
+  const classes = classNames('euiPopoverTitle', className);
 
   return (
-    <div className={classes} {...rest}>
+    <div css={cssStyles} className={classes} {...rest}>
       {children}
     </div>
   );

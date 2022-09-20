@@ -50,6 +50,10 @@ export type _EuiThemeFontBase = {
    */
   familyCode?: string;
   /**
+   * The font family used for serif UI elements like blockquotes within EuiText
+   */
+  familySerif?: string;
+  /**
    * Controls advanced features OpenType fonts.
    * https://developer.mozilla.org/en-US/docs/Web/CSS/font-feature-settings
    */

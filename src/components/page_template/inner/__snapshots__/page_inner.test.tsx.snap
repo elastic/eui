@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`_EuiPageInner border is rendered 1`] = `
+<main
+  class="emotion-euiPageInner-left"
+/>
+`;
+
+exports[`_EuiPageInner component is rendered 1`] = `
+<div
+  class="emotion-euiPageInner"
+/>
+`;
+
+exports[`_EuiPageInner is rendered 1`] = `
+<main
+  aria-label="aria-label"
+  class="testClass1 testClass2 emotion-euiPageInner"
+  data-test-subj="test subject string"
+/>
+`;
+
+exports[`_EuiPageInner paddingSize l is rendered 1`] = `
+<main
+  class="emotion-euiPageInner-l"
+/>
+`;
+
+exports[`_EuiPageInner paddingSize m is rendered 1`] = `
+<main
+  class="emotion-euiPageInner-m"
+/>
+`;
+
+exports[`_EuiPageInner paddingSize none is rendered 1`] = `
+<main
+  class="emotion-euiPageInner"
+/>
+`;
+
+exports[`_EuiPageInner paddingSize s is rendered 1`] = `
+<main
+  class="emotion-euiPageInner-s"
+/>
+`;
+
+exports[`_EuiPageInner paddingSize xl is rendered 1`] = `
+<main
+  class="emotion-euiPageInner-xl"
+/>
+`;
+
+exports[`_EuiPageInner paddingSize xs is rendered 1`] = `
+<main
+  class="emotion-euiPageInner-xs"
+/>
+`;
+
+exports[`_EuiPageInner panelled is rendered 1`] = `
+<main
+  class="emotion-euiPageInner-panelled"
+/>
+`;

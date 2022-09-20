@@ -2,6 +2,7 @@ import React, { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
 import { EuiSplitPanel } from '../../../../../src/components/panel';
 import { _EuiSplitPanelInnerProps } from '../../../../../src/components/panel/split_panel/';
+import { EuiHorizontalRule } from '../../../../../src';
 
 export interface GuideSectionExample {
   example: ReactNode;
@@ -10,6 +11,8 @@ export interface GuideSectionExample {
   tabContent?: ReactNode;
   ghostBackground?: boolean;
   demoPanelProps?: _EuiSplitPanelInnerProps;
+  /** Creates another inner split panel containing an array of custom controls */
+  exampleToggles?: any;
 }
 
 export const GuideSectionExample: FunctionComponent<GuideSectionExample> = ({
@@ -18,13 +21,14 @@ export const GuideSectionExample: FunctionComponent<GuideSectionExample> = ({
   ghostBackground = false,
   tabContent,
   demoPanelProps,
+  exampleToggles,
 }) => {
   const classes = classNames(demoPanelProps?.className, {
     guideDemo__ghostBackground: ghostBackground,
   });
 
   return (
-    <EuiSplitPanel.Outer hasBorder hasShadow={false}>
+    <EuiSplitPanel.Outer hasBorder hasShadow={false} data-eui-docs-example>
       <EuiSplitPanel.Inner
         color="plain"
         {...demoPanelProps}
@@ -32,6 +36,15 @@ export const GuideSectionExample: FunctionComponent<GuideSectionExample> = ({
       >
         {example}
       </EuiSplitPanel.Inner>
+      {exampleToggles && (
+        <>
+          <EuiHorizontalRule margin="none" />
+          <EuiSplitPanel.Inner paddingSize="m" color="subdued">
+            {exampleToggles}
+          </EuiSplitPanel.Inner>
+        </>
+      )}
+      {exampleToggles && tabs && <EuiHorizontalRule margin="none" />}
       {(tabs || tabContent) && (
         <EuiSplitPanel.Inner paddingSize="none" color="subdued">
           {tabs}

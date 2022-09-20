@@ -10,10 +10,11 @@ import classNames from 'classnames';
 import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiButtonGroupButton } from './button_group_button';
-import { colorToClassNameMap, ButtonColor } from '../button';
-import { EuiButtonContentProps } from '../button_content';
+import { colorToClassNameMap } from '../button';
+import { EuiButtonContentProps } from '../_button_content_deprecated';
 import { CommonProps } from '../../common';
 import { useGeneratedHtmlId } from '../../../services';
+import { _EuiButtonColor } from '../../../themes/amsterdam/global_styling/mixins';
 
 export interface EuiButtonGroupOptionProps
   extends EuiButtonContentProps,
@@ -58,9 +59,9 @@ export type EuiButtonGroupProps = CommonProps & {
    */
   legend: string;
   /**
-   * Compressed styles don't support `ghost` color (Color will be changed to "text")
+   * Any of the named color palette options.
    */
-  color?: ButtonColor;
+  color?: _EuiButtonColor;
   /**
    * Actual type is `'single' | 'multi'`.
    * Determines how the selection of the group should be handled.
@@ -135,19 +136,10 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
   type = 'single',
   ...rest
 }) => {
-  // Compressed style can't support `ghost` color because it's more like a form field than a button
-  const badColorCombo = buttonSize === 'compressed' && color === 'ghost';
-  const resolvedColor = badColorCombo ? 'text' : color;
-  if (badColorCombo) {
-    console.warn(
-      'EuiButtonGroup of compressed size does not support the ghost color. It will render as text instead.'
-    );
-  }
-
   const classes = classNames(
     'euiButtonGroup',
     `euiButtonGroup${groupSizeToClassNameMap[buttonSize]}`,
-    `euiButtonGroup${colorToClassNameMap[resolvedColor]}`,
+    `euiButtonGroup${colorToClassNameMap[color]}`,
     {
       'euiButtonGroup--fullWidth': isFullWidth,
       'euiButtonGroup--isDisabled': isDisabled,
@@ -178,7 +170,7 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
                   ? option.id === idSelected
                   : idToSelectedMap[option.id]
               }
-              color={resolvedColor}
+              color={color}
               size={buttonSize}
               isIconOnly={isIconOnly}
               onChange={onChange}

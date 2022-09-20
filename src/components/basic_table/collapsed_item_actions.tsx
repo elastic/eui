@@ -67,10 +67,11 @@ export class CollapsedItemActions<T> extends Component<
     });
   };
 
-  registerPopoverDiv = (popoverDiv: HTMLDivElement) => {
+  registerPopoverDiv = (popoverDiv: HTMLDivElement | null) => {
     if (!this.popoverDiv) {
       this.popoverDiv = popoverDiv;
-      this.popoverDiv.addEventListener('focusout', this.onPopoverBlur);
+      this.popoverDiv &&
+        this.popoverDiv.addEventListener('focusout', this.onPopoverBlur);
     }
   };
 

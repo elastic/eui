@@ -1,101 +1,133 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiCommentEvent is rendered 1`] = `
-<figure
-  class="euiCommentEvent euiCommentEvent--regular testClass1 testClass2"
+exports[`EuiCommentEvent is rendered with custom content 1`] = `
+<div
+  class="euiCommentEvent testClass1 testClass2 emotion-euiCommentEvent-custom"
+  data-type="custom"
 >
-  <figcaption
-    class="euiCommentEvent__header"
+  <div
+    class="euiCommentEvent__body emotion-euiCommentEvent__body-custom"
   >
-    <div
-      class="euiCommentEvent__headerData"
-    >
-      <div
-        class="euiCommentEvent__headerUsername"
-      >
-        someuser
-      </div>
-      <div
-        class="euiCommentEvent__headerEvent"
-      />
-    </div>
-  </figcaption>
-</figure>
+    <p>
+      Some custom content
+    </p>
+  </div>
+</div>
 `;
 
 exports[`EuiCommentEvent props event is rendered 1`] = `
-<figure
-  class="euiCommentEvent euiCommentEvent--regular"
+<div
+  class="euiCommentEvent emotion-euiCommentEvent-update"
+  data-type="update"
 >
-  <figcaption
-    class="euiCommentEvent__header"
+  <div
+    class="euiCommentEvent__header emotion-euiCommentEvent__header"
   >
     <div
-      class="euiCommentEvent__headerData"
+      class="euiPanel euiPanel--transparent emotion-euiPanel-grow-m-transparent"
     >
       <div
-        class="euiCommentEvent__headerUsername"
+        class="euiCommentEvent__headerMain emotion-euiCommentEvent__headerMain"
       >
-        someuser
-      </div>
-      <div
-        class="euiCommentEvent__headerEvent"
-      >
-        commented
+        <div
+          class="euiCommentEvent__headerData emotion-euiCommentEvent__headerData"
+        >
+          <div
+            class="euiCommentEvent__headerUsername emotion-euiCommentEvent__headerUsername"
+          >
+            someuser
+          </div>
+          <div
+            class="euiCommentEvent__headerEvent emotion-euiCommentEvent__headerEvent"
+          >
+            commented
+          </div>
+        </div>
       </div>
     </div>
-  </figcaption>
-</figure>
+  </div>
+</div>
+`;
+
+exports[`EuiCommentEvent props eventColor is rendered 1`] = `
+<div
+  class="euiCommentEvent emotion-euiCommentEvent-custom"
+  data-type="custom"
+/>
+`;
+
+exports[`EuiCommentEvent props eventIcon and eventIconAriaLabel are rendered 1`] = `
+<div
+  class="euiCommentEvent emotion-euiCommentEvent-update"
+  data-type="update"
+>
+  <div
+    class="euiCommentEvent__header emotion-euiCommentEvent__header"
+  >
+    <div
+      class="euiPanel euiPanel--transparent emotion-euiPanel-grow-m-transparent"
+    >
+      <div
+        class="euiCommentEvent__headerMain emotion-euiCommentEvent__headerMain"
+      >
+        <div
+          class="euiCommentEvent__headerData emotion-euiCommentEvent__headerData"
+        >
+          <div
+            aria-hidden="false"
+            aria-label="edit"
+            class="euiAvatar euiAvatar--s euiAvatar--user euiCommentEvent__headerEventIcon emotion-euiAvatar-s-user-subdued-euiCommentEvent__headerEventIcon"
+            role="img"
+            title="edit"
+          >
+            <span
+              class="euiAvatar__icon"
+              data-euiicon-type="pencil"
+            />
+          </div>
+          <div
+            class="euiCommentEvent__headerUsername emotion-euiCommentEvent__headerUsername"
+          >
+            someuser
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 `;
 
 exports[`EuiCommentEvent props timestamp is rendered 1`] = `
-<figure
-  class="euiCommentEvent euiCommentEvent--regular"
->
-  <figcaption
-    class="euiCommentEvent__header"
-  >
-    <div
-      class="euiCommentEvent__headerData"
-    >
-      <div
-        class="euiCommentEvent__headerUsername"
-      >
-        someuser
-      </div>
-      <div
-        class="euiCommentEvent__headerEvent"
-      />
-      <div
-        class="euiCommentEvent__headerTimestamp"
-      >
-        <time>
-          21 days ago
-        </time>
-      </div>
-    </div>
-  </figcaption>
-</figure>
-`;
-
-exports[`EuiCommentEvent props type is rendered 1`] = `
 <div
-  class="euiCommentEvent euiCommentEvent--update"
+  class="euiCommentEvent emotion-euiCommentEvent-update"
+  data-type="update"
 >
   <div
-    class="euiCommentEvent__header"
+    class="euiCommentEvent__header emotion-euiCommentEvent__header"
   >
     <div
-      class="euiCommentEvent__headerData"
+      class="euiPanel euiPanel--transparent emotion-euiPanel-grow-m-transparent"
     >
       <div
-        class="euiCommentEvent__headerUsername"
+        class="euiCommentEvent__headerMain emotion-euiCommentEvent__headerMain"
       >
-        someuser
+        <div
+          class="euiCommentEvent__headerData emotion-euiCommentEvent__headerData"
+        >
+          <div
+            class="euiCommentEvent__headerUsername emotion-euiCommentEvent__headerUsername"
+          >
+            someuser
+          </div>
+          <div
+            class="euiCommentEvent__headerTimestamp"
+          >
+            <time>
+              21 days ago
+            </time>
+          </div>
+        </div>
       </div>
-      <div
-        class="euiCommentEvent__headerEvent"
-      />
     </div>
   </div>
 </div>

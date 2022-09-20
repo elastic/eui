@@ -28,11 +28,55 @@ describe('EuiProvider', () => {
   });
 
   describe('providing an @emotion cache config', () => {
-    const emotionCache = createCache({
-      key: 'testing',
+    const defaultCache = createCache({
+      key: 'default',
     });
+    const globalCache = createCache({
+      key: 'global',
+    });
+    const utilityCache = createCache({
+      key: 'utility',
+    });
+
+    it('provides a default cache from Emotion when configured without a cache', () => {
+      const component = shallow(<EuiProvider />);
+
+      expect(component).toMatchSnapshot();
+      expect(component.prop('cache').key).toEqual('css');
+      expect(component.prop('cache').compat).toEqual(true);
+    });
+    it('applies the cache to all styles', () => {
+      const component = shallow(<EuiProvider cache={defaultCache} />);
+
+      expect(component).toMatchSnapshot();
+    });
+
     it('applies the cache to global styles', () => {
-      const component = shallow(<EuiProvider cache={emotionCache} />);
+      const component = shallow(
+        <EuiProvider cache={{ global: globalCache }} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    it('applies the cache to utility styles', () => {
+      const component = shallow(
+        <EuiProvider cache={{ utility: utilityCache }} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    it('applies the cache to each location separately', () => {
+      const component = shallow(
+        <EuiProvider
+          cache={{
+            default: defaultCache,
+            global: globalCache,
+            utility: utilityCache,
+          }}
+        />
+      );
 
       expect(component).toMatchSnapshot();
     });

@@ -1,117 +1,137 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[` 1`] = `
+<button
+  aria-label="aria-label"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-hasShadow-isClickable"
+  data-test-subj="test subject string"
+/>
+`;
+
 exports[`EuiPanel is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow testClass1 testClass2"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-hasShadow"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`EuiPanel props borderRadius m is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium emotion-euiPanel-grow-m-m-plain-hasShadow"
 />
 `;
 
 exports[`EuiPanel props borderRadius none is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--plain euiPanel--hasShadow"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium emotion-euiPanel-grow-none-m-plain-hasShadow"
 />
 `;
 
 exports[`EuiPanel props color accent is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--accent euiPanel--noShadow euiPanel--noBorder"
+  class="euiPanel euiPanel--accent euiPanel--paddingMedium emotion-euiPanel-grow-m-m-accent"
 />
 `;
 
 exports[`EuiPanel props color danger is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--danger euiPanel--noShadow euiPanel--noBorder"
+  class="euiPanel euiPanel--danger euiPanel--paddingMedium emotion-euiPanel-grow-m-m-danger"
 />
 `;
 
 exports[`EuiPanel props color plain is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium emotion-euiPanel-grow-m-m-plain-hasShadow"
 />
 `;
 
 exports[`EuiPanel props color primary is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--primary euiPanel--noShadow euiPanel--noBorder"
+  class="euiPanel euiPanel--primary euiPanel--paddingMedium emotion-euiPanel-grow-m-m-primary"
 />
 `;
 
 exports[`EuiPanel props color subdued is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--subdued euiPanel--noShadow euiPanel--noBorder"
+  class="euiPanel euiPanel--subdued euiPanel--paddingMedium emotion-euiPanel-grow-m-m-subdued"
 />
 `;
 
 exports[`EuiPanel props color success is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--success euiPanel--noShadow euiPanel--noBorder"
+  class="euiPanel euiPanel--success euiPanel--paddingMedium emotion-euiPanel-grow-m-m-success"
 />
 `;
 
 exports[`EuiPanel props color transparent is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow"
+  class="euiPanel euiPanel--transparent euiPanel--paddingMedium emotion-euiPanel-grow-m-m-transparent"
 />
 `;
 
 exports[`EuiPanel props color warning is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--warning euiPanel--noShadow euiPanel--noBorder"
+  class="euiPanel euiPanel--warning euiPanel--paddingMedium emotion-euiPanel-grow-m-m-warning"
 />
 `;
 
 exports[`EuiPanel props grow can be false 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--flexGrowZero"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium emotion-euiPanel-m-m-plain-hasShadow"
 />
 `;
 
 exports[`EuiPanel props hasBorder can be false 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--noBorder"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium emotion-euiPanel-grow-m-m-plain-hasShadow"
 />
 `;
 
 exports[`EuiPanel props hasBorder can be true 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--hasBorder"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium emotion-euiPanel-grow-m-m-plain-hasBorder"
 />
 `;
 
 exports[`EuiPanel props hasShadow can be false 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium emotion-euiPanel-grow-m-m-plain"
 />
 `;
 
 exports[`EuiPanel props paddingSize l is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow"
+  class="euiPanel euiPanel--plain euiPanel--paddingLarge emotion-euiPanel-grow-m-l-plain-hasShadow"
 />
 `;
 
 exports[`EuiPanel props paddingSize m is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium emotion-euiPanel-grow-m-m-plain-hasShadow"
 />
 `;
 
 exports[`EuiPanel props paddingSize none is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow"
+  class="euiPanel euiPanel--plain emotion-euiPanel-grow-m-plain-hasShadow"
 />
 `;
 
 exports[`EuiPanel props paddingSize s is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow"
+  class="euiPanel euiPanel--plain euiPanel--paddingSmall emotion-euiPanel-grow-m-s-plain-hasShadow"
+/>
+`;
+
+exports[`EuiPanel props paddingSize xl is rendered 1`] = `
+<div
+  class="euiPanel euiPanel--plain emotion-euiPanel-grow-m-xl-plain-hasShadow"
+/>
+`;
+
+exports[`EuiPanel props paddingSize xs is rendered 1`] = `
+<div
+  class="euiPanel euiPanel--plain emotion-euiPanel-grow-m-xs-plain-hasShadow"
 />
 `;

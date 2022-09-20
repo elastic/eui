@@ -13,45 +13,38 @@ import React, {
   Ref,
 } from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf, ExclusiveUnion } from '../common';
+import { useEuiTheme } from '../../services';
+import {
+  useEuiBackgroundColorCSS,
+  useEuiPaddingCSS,
+  _EuiBackgroundColor,
+  EuiPaddingSize,
+  BACKGROUND_COLORS,
+  PADDING_SIZES,
+} from '../../global_styling';
+import { CommonProps, ExclusiveUnion, keysOf } from '../common';
+import { euiPanelStyles } from './panel.styles';
 
-export const panelPaddingValues = {
-  none: 0,
-  s: 8,
-  m: 16,
-  l: 24,
-};
+export const SIZES = PADDING_SIZES;
 
-const paddingSizeToClassNameMap = {
+// Exported padding sizes and class names necessary for EuiPopover and EuiCard.
+// Which currently will only maintain support for the original values until conversion.
+const paddingSizeToClassNameMap: {
+  [value in EuiPaddingSize]?: string | null;
+} = {
   none: null,
-  s: 'euiPanel--paddingSmall',
-  m: 'euiPanel--paddingMedium',
-  l: 'euiPanel--paddingLarge',
+  s: 'paddingSmall',
+  m: 'paddingMedium',
+  l: 'paddingLarge',
 };
+const _SIZES = keysOf(paddingSizeToClassNameMap);
+export type PanelPaddingSize = typeof _SIZES[number];
 
-export const SIZES = keysOf(paddingSizeToClassNameMap);
-
-const borderRadiusToClassNameMap = {
-  none: 'euiPanel--borderRadiusNone',
-  m: 'euiPanel--borderRadiusMedium',
-};
-
-export const BORDER_RADII = keysOf(borderRadiusToClassNameMap);
-
-export const COLORS = [
-  'transparent',
-  'plain',
-  'subdued',
-  'accent',
-  'primary',
-  'success',
-  'warning',
-  'danger',
-] as const;
-
-export type PanelColor = typeof COLORS[number];
-export type PanelPaddingSize = typeof SIZES[number];
+export const BORDER_RADII = ['none', 'm'] as const;
 export type PanelBorderRadius = typeof BORDER_RADII[number];
+
+export const COLORS = BACKGROUND_COLORS;
+export type PanelColor = _EuiBackgroundColor;
 
 export interface _EuiPanelProps extends CommonProps {
   /**
@@ -62,13 +55,12 @@ export interface _EuiPanelProps extends CommonProps {
   /**
    * Adds a slight 1px border on all edges.
    * Only works when `color="plain | transparent"`
-   * Default is `undefined` and will default to that theme's panel style
    */
   hasBorder?: boolean;
   /**
    * Padding for all four sides
    */
-  paddingSize?: PanelPaddingSize;
+  paddingSize?: EuiPaddingSize;
   /**
    * Corner border radius
    */
@@ -109,30 +101,36 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
   borderRadius = 'm',
   color = 'plain',
   hasShadow = true,
-  hasBorder,
+  hasBorder = false,
   grow = true,
   panelRef,
   element,
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
   // Shadows are only allowed when there's a white background (plain)
-  const canHaveShadow = color === 'plain';
+  const canHaveShadow = !hasBorder && color === 'plain';
   const canHaveBorder = color === 'plain' || color === 'transparent';
+
+  const styles = euiPanelStyles(euiTheme);
+  const cssStyles = [
+    styles.euiPanel,
+    grow && styles.grow,
+    styles.radius[borderRadius],
+    useEuiPaddingCSS()[paddingSize],
+    useEuiBackgroundColorCSS()[color],
+    canHaveShadow && hasShadow === true && styles.hasShadow,
+    canHaveBorder && hasBorder === true && styles.hasBorder,
+    rest.onClick && styles.isClickable,
+  ];
 
   const classes = classNames(
     'euiPanel',
-    paddingSizeToClassNameMap[paddingSize],
-    borderRadiusToClassNameMap[borderRadius],
     `euiPanel--${color}`,
     {
-      // The `no` classes turn off the option for default theme
-      // While the `has` classes turn it on for Amsterdam
-      'euiPanel--hasShadow': canHaveShadow && hasShadow === true,
-      'euiPanel--noShadow': !canHaveShadow || hasShadow === false,
-      'euiPanel--hasBorder': canHaveBorder && hasBorder === true,
-      'euiPanel--noBorder': !canHaveBorder || hasBorder === false,
-      'euiPanel--flexGrowZero': !grow,
-      'euiPanel--isClickable': rest.onClick,
+      [`euiPanel--${paddingSizeToClassNameMap[paddingSize]}`]: paddingSizeToClassNameMap[
+        paddingSize
+      ],
     },
     className
   );
@@ -142,6 +140,7 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
       <button
         ref={panelRef as Ref<HTMLButtonElement>}
         className={classes}
+        css={cssStyles}
         {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}
       >
         {children}
@@ -153,6 +152,7 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
     <div
       ref={panelRef as Ref<HTMLDivElement>}
       className={classes}
+      css={cssStyles}
       {...(rest as HTMLAttributes<HTMLDivElement>)}
     >
       {children}

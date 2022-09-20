@@ -3,7 +3,12 @@ import { css } from '@emotion/react';
 
 import { ThemeContext } from '../../components/with_theme';
 
-import { EuiCode, EuiLink, useEuiOverflowScroll } from '../../../../src';
+import {
+  EuiCode,
+  EuiLink,
+  useEuiOverflowScroll,
+  logicalCSS,
+} from '../../../../src';
 import { ThemeExample } from '../theme/_components/_theme_example';
 import { ScrollContent } from './_scroll_content';
 
@@ -43,7 +48,7 @@ export default () => {
   role="region"
   aria-label=""
   className="eui-yScrollWithShadows"
-  style={{ height: 180 }}>
+>
   <EuiPanel />
   <EuiPanel />
   <EuiPanel />
@@ -60,7 +65,7 @@ export default () => {
               <p>
                 To mask the top and bottom of the scrolled content, indicating
                 visually that there is more content below, pass in true to the
-                second paremeter <EuiCode>mask</EuiCode>.
+                second parameter <EuiCode>mask</EuiCode>.
               </p>
               <p>
                 <EuiCode>{"useEuiOverflowScroll('y', true);"}</EuiCode>
@@ -76,27 +81,15 @@ export default () => {
               role="region"
               aria-label="Example of useEuiOverflowScroll(y) region"
               css={css`
-                ${useEuiOverflowScroll('y', true)};
-                height: 180px;
+                ${useEuiOverflowScroll('y', true)}
+                ${logicalCSS('height', '180px')}
               `}
             >
               <ScrollContent />
             </div>
           }
-          snippet={
-            `<div
-  tabIndex={0}
-  role="region"
-  aria-label=""
-  css={css` +
-            "`${useEuiOverflowScroll('y', true)}; " +
-            'height: 180px;' +
-            ` }}>
-  <EuiPanel />
-  <EuiPanel />
-  <EuiPanel />
-</div>`
-          }
+          snippet="${useEuiOverflowScroll('y', true)}"
+          snippetLanguage="emotion"
         />
       )}
 
@@ -133,7 +126,7 @@ export default () => {
           snippetLanguage="scss"
           snippet={`.overflowShadowsY {
   @include euiYScrollWithShadows;
-  height: 180px;
+  block-size: 180px;
 }`}
         />
       )}

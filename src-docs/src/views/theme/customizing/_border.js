@@ -8,6 +8,7 @@ import {
   EuiColorPickerSwatch,
   EuiPanel,
   EuiTitle,
+  logicalSizeCSS,
 } from '../../../../../src';
 
 import { getPropsFromComponent } from '../../../services/props/get_props';
@@ -51,8 +52,7 @@ export default ({ onThemeUpdate }) => {
   const typeProps = getPropsFromComponent(EuiThemeBorderTypes);
 
   const style = css`
-    width: ${euiTheme.size.xl};
-    height: ${euiTheme.size.xl};
+    ${logicalSizeCSS(euiTheme.size.xl, euiTheme.size.xl)}
     border-radius: ${euiTheme.border.radius.small};
   `;
 

@@ -3,27 +3,63 @@
 exports[`EuiPageBody is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageBody euiPageBody--borderRadiusNone testClass1 testClass2"
+  class="euiPageBody testClass1 testClass2 emotion-euiPageBody"
   data-test-subj="test subject string"
+/>
+`;
+
+exports[`EuiPageBody paddingSize l is rendered 1`] = `
+<div
+  class="euiPageBody emotion-euiPageBody-l"
+/>
+`;
+
+exports[`EuiPageBody paddingSize m is rendered 1`] = `
+<div
+  class="euiPageBody emotion-euiPageBody-m"
+/>
+`;
+
+exports[`EuiPageBody paddingSize none is rendered 1`] = `
+<div
+  class="euiPageBody emotion-euiPageBody"
+/>
+`;
+
+exports[`EuiPageBody paddingSize s is rendered 1`] = `
+<div
+  class="euiPageBody emotion-euiPageBody-s"
+/>
+`;
+
+exports[`EuiPageBody paddingSize xl is rendered 1`] = `
+<div
+  class="euiPageBody emotion-euiPageBody-xl"
+/>
+`;
+
+exports[`EuiPageBody paddingSize xs is rendered 1`] = `
+<div
+  class="euiPageBody emotion-euiPageBody-xs"
 />
 `;
 
 exports[`EuiPageBody panelled also accepts panelProps 1`] = `
 <div
-  class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"
+  class="euiPanel euiPanel--subdued euiPageBody emotion-euiPanel-grow-none-subdued-euiPageBody"
 />
 `;
 
 exports[`EuiPageBody panelled can be set to true 1`] = `
 <div
-  class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--hasShadow euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"
+  class="euiPanel euiPanel--plain euiPageBody emotion-euiPanel-grow-none-plain-hasShadow-euiPageBody"
 />
 `;
 
 exports[`EuiPageBody restrict width can be set to a custom number 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--restrictWidth-custom testClass1 testClass2"
+  class="euiPageBody testClass1 testClass2 emotion-euiPageBody-restrictWidth"
   data-test-subj="test subject string"
   style="max-width:1024px"
 />
@@ -32,7 +68,7 @@ exports[`EuiPageBody restrict width can be set to a custom number 1`] = `
 exports[`EuiPageBody restrict width can be set to a custom value and measurement 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--restrictWidth-custom testClass1 testClass2"
+  class="euiPageBody testClass1 testClass2 emotion-euiPageBody-restrictWidth"
   data-test-subj="test subject string"
   style="max-width:24rem"
 />
@@ -41,7 +77,8 @@ exports[`EuiPageBody restrict width can be set to a custom value and measurement
 exports[`EuiPageBody restrict width can be set to a default 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--restrictWidth-default testClass1 testClass2"
+  class="euiPageBody testClass1 testClass2 emotion-euiPageBody-restrictWidth"
   data-test-subj="test subject string"
+  style="max-width:1200px"
 />
 `;

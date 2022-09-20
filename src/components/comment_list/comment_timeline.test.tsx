@@ -8,32 +8,45 @@
 
 import React from 'react';
 import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
-
 import { EuiCommentTimeline } from './comment_timeline';
 import { EuiAvatar } from '../avatar';
 
 describe('EuiCommentTimeline', () => {
-  test('is rendered', () => {
-    const component = render(<EuiCommentTimeline {...requiredProps} />);
-
-    expect(component).toMatchSnapshot();
-  });
-
   describe('props', () => {
-    describe('type', () => {
-      it('is rendered', () => {
-        const component = render(<EuiCommentTimeline type="update" />);
+    describe('timelineAvatar', () => {
+      it('defaults to an avatar with a `userAvatar` icon', () => {
+        const component = render(<EuiCommentTimeline />);
 
         expect(component).toMatchSnapshot();
       });
-    });
 
-    describe('timelineIcon', () => {
-      it('is rendered', () => {
+      it('is rendered with a string', () => {
+        const component = render(<EuiCommentTimeline timelineAvatar="dot" />);
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('is rendered with a ReactNode', () => {
         const component = render(
           <EuiCommentTimeline
-            timelineIcon={<EuiAvatar size="l" name="Mario" />}
+            timelineAvatar={
+              <EuiAvatar
+                name="username"
+                iconType="userAvatar"
+                color="subdued"
+              />
+            }
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('is rendered with timelineAvatarAriaLabel', () => {
+        const component = render(
+          <EuiCommentTimeline
+            timelineAvatar="dot"
+            timelineAvatarAriaLabel="timelineAvatarAriaLabel"
           />
         );
 

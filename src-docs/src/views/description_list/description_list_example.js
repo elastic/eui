@@ -9,6 +9,8 @@ import {
   EuiDescriptionListDescription,
 } from '../../../../src/components';
 
+import { descriptionListConfig } from './playground';
+
 import DescriptionList from './description_list';
 const descriptionListSource = require('!!raw-loader!./description_list');
 const descriptionListSnippet = [
@@ -20,26 +22,42 @@ const descriptionListSnippet = [
     },
   ]}
 />`,
+];
+
+import DescriptionListSeparate from './description_list_separate';
+const descriptionListSeparateSource = require('!!raw-loader!./description_list_separate');
+const descriptionListSeparateSnippet = [
   `<EuiDescriptionList>
-  <EuiDescriptionListTitle>Dota 2</EuiDescriptionListTitle>
+  <EuiDescriptionListTitle>
+    The Elder Scrolls: Morrowind
+  </EuiDescriptionListTitle>
   <EuiDescriptionListDescription>
-    A videogame that I have spent way too much time on over the years.
+    The opening music alone evokes such strong memories.
   </EuiDescriptionListDescription>
+  <EuiDescriptionListTitle>TIE Fighter</EuiDescriptionListTitle>
+  <EuiDescriptionListDescription>
+    The sequel to XWING, join the dark side and fly for the Emperor.
+  </EuiDescriptionListDescription>
+  <EuiDescriptionListTitle>Quake 2</EuiDescriptionListTitle>
+    <EuiDescriptionListDescription>
+      The game that made me drop out of college.
+    </EuiDescriptionListDescription>
 </EuiDescriptionList>`,
 ];
 
 import DescriptionListColumn from './description_list_column';
 const descriptionListColumnSource = require('!!raw-loader!./description_list_column');
-const descriptionListColumnSnippet = [
-  `<EuiDescriptionList
+const descriptionListColumnSnippet = `<EuiDescriptionList
   type="column"
   listItems={favoriteVideoGames}
-/>`,
-  `<EuiDescriptionList
+/>`;
+
+import DescriptionListResponsiveColumn from './description_list_column_responsive';
+const descriptionListResponsiveColumnSource = require('!!raw-loader!./description_list_column_responsive');
+const descriptionListResponsiveColumnSnippet = `<EuiDescriptionList
   type="responsiveColumn"
   listItems={favoriteVideoGames}
-/>`,
-];
+/>`;
 
 import DescriptionListStyling from './description_list_styling';
 const descriptionListStylingSource = require('!!raw-loader!./description_list_styling');
@@ -93,10 +111,7 @@ export const DescriptionListExample = {
         <p>
           <strong>EuiDescriptionList</strong> is a component for listing pairs
           of information together. You can use the component on its own, passing
-          in an object for the list, or use the{' '}
-          <strong>EuiDescriptionListTitle</strong> and{' '}
-          <strong>EuiDescriptionListDescription</strong> components separately
-          to build a list manually.
+          in an object for the list.
         </p>
       ),
       props: {
@@ -106,6 +121,30 @@ export const DescriptionListExample = {
       },
       snippet: descriptionListSnippet,
       demo: <DescriptionList />,
+      playground: descriptionListConfig,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: descriptionListSeparateSource,
+        },
+      ],
+      text: (
+        <p>
+          You can also use the <strong>EuiDescriptionListTitle</strong> and{' '}
+          <strong>EuiDescriptionListDescription</strong> components separately
+          to build a list manually.
+        </p>
+      ),
+      props: {
+        EuiDescriptionList,
+        EuiDescriptionListTitle,
+        EuiDescriptionListDescription,
+      },
+      snippet: descriptionListSeparateSnippet,
+      demo: <DescriptionListSeparate />,
+      playground: descriptionListConfig,
     },
     {
       title: 'Reverse style',
@@ -116,7 +155,7 @@ export const DescriptionListExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             Setting the <EuiCode>textStyle</EuiCode> prop to{' '}
             <EuiCode>reverse</EuiCode> will reverse the text styles of the{' '}
@@ -128,7 +167,7 @@ export const DescriptionListExample = {
             Adding this property to the <EuiCode>inline</EuiCode> type will not
             change anything.
           </p>
-        </div>
+        </>
       ),
       snippet: descriptionListReverseSnippet,
       demo: <DescriptionListReverse />,
@@ -148,14 +187,29 @@ export const DescriptionListExample = {
             <EuiCode>column</EuiCode> description lists can be presented in an
             inline, column format.
           </p>
-          <p>
-            To return to the typical row format on smaller screens set{' '}
-            <EuiCode>type</EuiCode> to <EuiCode>responsiveColumn</EuiCode>.
-          </p>
         </Fragment>
       ),
       snippet: descriptionListColumnSnippet,
       demo: <DescriptionListColumn />,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: descriptionListResponsiveColumnSource,
+        },
+      ],
+      text: (
+        <Fragment>
+          <p>
+            To return to the typical row format on smaller screens set{' '}
+            <EuiCode>type</EuiCode> to <EuiCode>responsiveColumn</EuiCode>. The
+            following list will only show the column format on larger screens.
+          </p>
+        </Fragment>
+      ),
+      snippet: descriptionListResponsiveColumnSnippet,
+      demo: <DescriptionListResponsiveColumn />,
     },
     {
       title: 'Inline',
@@ -177,7 +231,7 @@ export const DescriptionListExample = {
       demo: <DescriptionListInline />,
     },
     {
-      title: 'Centered and compressed',
+      title: 'Customizing appearance',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -188,7 +242,9 @@ export const DescriptionListExample = {
         <p>
           Using the <EuiCode>align</EuiCode> and <EuiCode>compressed</EuiCode>{' '}
           props you can further tailor the look of a description list. This
-          works with column and inline types.
+          works with column and inline types. You can also adjust the{' '}
+          <EuiCode>gutterSize</EuiCode> prop to increase and decrease vertical
+          spacing between <EuiCode>EuiDescriptionList</EuiCode> elements.
         </p>
       ),
       snippet: descriptionListStylingSnippet,

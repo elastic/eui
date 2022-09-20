@@ -3,15 +3,15 @@
 exports[`EuiButton is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiButton euiButton--primary testClass1 testClass2"
+  class="testClass1 testClass2 emotion-euiButtonDisplay-m-m-base-primary"
   data-test-subj="test subject string"
   type="button"
 >
   <span
-    class="euiButtonContent euiButton__content"
+    class="emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiButton__text"
+      class="eui-textTruncate"
     >
       Content
     </span>
@@ -21,121 +21,93 @@ exports[`EuiButton is rendered 1`] = `
 
 exports[`EuiButton props color accent is rendered 1`] = `
 <button
-  class="euiButton euiButton--accent"
+  class="euiButton emotion-euiButtonDisplay-m-m-base-accent"
   type="button"
 >
   <span
-    class="euiButtonContent euiButton__content"
-  >
-    <span
-      class="euiButton__text"
-    />
-  </span>
+    class="emotion-euiButtonDisplayContent"
+  />
 </button>
 `;
 
 exports[`EuiButton props color danger is rendered 1`] = `
 <button
-  class="euiButton euiButton--danger"
+  class="euiButton emotion-euiButtonDisplay-m-m-base-danger"
   type="button"
 >
   <span
-    class="euiButtonContent euiButton__content"
-  >
-    <span
-      class="euiButton__text"
-    />
-  </span>
+    class="emotion-euiButtonDisplayContent"
+  />
 </button>
 `;
 
 exports[`EuiButton props color ghost is rendered 1`] = `
 <button
-  class="euiButton euiButton--ghost"
+  class="euiButton emotion-euiButtonDisplay-m-m-base-text"
   type="button"
 >
   <span
-    class="euiButtonContent euiButton__content"
-  >
-    <span
-      class="euiButton__text"
-    />
-  </span>
+    class="emotion-euiButtonDisplayContent"
+  />
 </button>
 `;
 
 exports[`EuiButton props color primary is rendered 1`] = `
 <button
-  class="euiButton euiButton--primary"
+  class="euiButton emotion-euiButtonDisplay-m-m-base-primary"
   type="button"
 >
   <span
-    class="euiButtonContent euiButton__content"
-  >
-    <span
-      class="euiButton__text"
-    />
-  </span>
+    class="emotion-euiButtonDisplayContent"
+  />
 </button>
 `;
 
 exports[`EuiButton props color success is rendered 1`] = `
 <button
-  class="euiButton euiButton--success"
+  class="euiButton emotion-euiButtonDisplay-m-m-base-success"
   type="button"
 >
   <span
-    class="euiButtonContent euiButton__content"
-  >
-    <span
-      class="euiButton__text"
-    />
-  </span>
+    class="emotion-euiButtonDisplayContent"
+  />
 </button>
 `;
 
 exports[`EuiButton props color text is rendered 1`] = `
 <button
-  class="euiButton euiButton--text"
+  class="euiButton emotion-euiButtonDisplay-m-m-base-text"
   type="button"
 >
   <span
-    class="euiButtonContent euiButton__content"
-  >
-    <span
-      class="euiButton__text"
-    />
-  </span>
+    class="emotion-euiButtonDisplayContent"
+  />
 </button>
 `;
 
 exports[`EuiButton props color warning is rendered 1`] = `
 <button
-  class="euiButton euiButton--warning"
+  class="euiButton emotion-euiButtonDisplay-m-m-base-warning"
   type="button"
 >
   <span
-    class="euiButtonContent euiButton__content"
-  >
-    <span
-      class="euiButton__text"
-    />
-  </span>
+    class="emotion-euiButtonDisplayContent"
+  />
 </button>
 `;
 
 exports[`EuiButton props contentProps is rendered 1`] = `
 <button
-  class="euiButton euiButton--primary"
+  class="euiButton emotion-euiButtonDisplay-m-m-base-primary"
   type="button"
 >
   <span
     aria-label="aria-label"
-    class="euiButtonContent euiButton__content testClass1 testClass2"
+    class="testClass1 testClass2 emotion-euiButtonDisplayContent"
     data-test-subj="test subject string"
   >
     <span
-      class="euiButton__text"
+      class="eui-textTruncate"
     >
       Content
     </span>
@@ -145,66 +117,54 @@ exports[`EuiButton props contentProps is rendered 1`] = `
 
 exports[`EuiButton props fill is rendered 1`] = `
 <button
-  class="euiButton euiButton--primary euiButton--fill"
+  class="euiButton emotion-euiButtonDisplay-m-m-fill-primary"
   type="button"
 >
   <span
-    class="euiButtonContent euiButton__content"
-  >
-    <span
-      class="euiButton__text"
-    />
-  </span>
+    class="emotion-euiButtonDisplayContent"
+  />
 </button>
 `;
 
 exports[`EuiButton props fullWidth is rendered 1`] = `
 <button
-  class="euiButton euiButton--primary euiButton--fullWidth"
+  class="euiButton emotion-euiButtonDisplay-m-fullWidth-m-base-primary"
   type="button"
 >
   <span
-    class="euiButtonContent euiButton__content"
-  >
-    <span
-      class="euiButton__text"
-    />
-  </span>
+    class="emotion-euiButtonDisplayContent"
+  />
 </button>
 `;
 
 exports[`EuiButton props href secures the rel attribute when the target is _blank 1`] = `
 <a
-  class="euiButton euiButton--primary"
+  class="euiButton emotion-euiButtonDisplay-m-m-base-primary"
   href="#"
   rel="noopener noreferrer"
   target="_blank"
 >
   <span
-    class="euiButtonContent euiButton__content"
-  >
-    <span
-      class="euiButton__text"
-    />
-  </span>
+    class="emotion-euiButtonDisplayContent"
+  />
 </a>
 `;
 
 exports[`EuiButton props iconSide left is rendered 1`] = `
 <button
-  class="euiButton euiButton--primary"
+  class="euiButton emotion-euiButtonDisplay-m-m-base-primary"
   type="button"
 >
   <span
-    class="euiButtonContent euiButton__content"
+    class="emotion-euiButtonDisplayContent-left"
   >
     <span
-      class="euiButtonContent__icon"
+      class="emotion-euiButtonDisplayContent__icon-m"
       color="inherit"
       data-euiicon-type="user"
     />
     <span
-      class="euiButton__text"
+      class="eui-textTruncate"
     >
       Content
     </span>
@@ -214,19 +174,63 @@ exports[`EuiButton props iconSide left is rendered 1`] = `
 
 exports[`EuiButton props iconSide right is rendered 1`] = `
 <button
-  class="euiButton euiButton--primary"
+  class="euiButton emotion-euiButtonDisplay-m-m-base-primary"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButton__content"
+    class="emotion-euiButtonDisplayContent-right"
   >
     <span
-      class="euiButtonContent__icon"
+      class="emotion-euiButtonDisplayContent__icon-m"
       color="inherit"
       data-euiicon-type="user"
     />
     <span
-      class="euiButton__text"
+      class="eui-textTruncate"
+    >
+      Content
+    </span>
+  </span>
+</button>
+`;
+
+exports[`EuiButton props iconSize m is rendered 1`] = `
+<button
+  class="euiButton emotion-euiButtonDisplay-m-m-base-primary"
+  type="button"
+>
+  <span
+    class="emotion-euiButtonDisplayContent"
+  >
+    <span
+      class="emotion-euiButtonDisplayContent__icon-m"
+      color="inherit"
+      data-euiicon-type="user"
+    />
+    <span
+      class="eui-textTruncate"
+    >
+      Content
+    </span>
+  </span>
+</button>
+`;
+
+exports[`EuiButton props iconSize s is rendered 1`] = `
+<button
+  class="euiButton emotion-euiButtonDisplay-m-m-base-primary"
+  type="button"
+>
+  <span
+    class="emotion-euiButtonDisplayContent"
+  >
+    <span
+      class="emotion-euiButtonDisplayContent__icon-s"
+      color="inherit"
+      data-euiicon-type="user"
+    />
+    <span
+      class="eui-textTruncate"
     >
       Content
     </span>
@@ -236,19 +240,16 @@ exports[`EuiButton props iconSide right is rendered 1`] = `
 
 exports[`EuiButton props iconType is rendered 1`] = `
 <button
-  class="euiButton euiButton--primary"
+  class="euiButton emotion-euiButtonDisplay-m-m-base-primary"
   type="button"
 >
   <span
-    class="euiButtonContent euiButton__content"
+    class="emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiButtonContent__icon"
+      class="emotion-euiButtonDisplayContent__icon-m"
       color="inherit"
       data-euiicon-type="user"
-    />
-    <span
-      class="euiButton__text"
     />
   </span>
 </button>
@@ -256,68 +257,53 @@ exports[`EuiButton props iconType is rendered 1`] = `
 
 exports[`EuiButton props isDisabled is rendered 1`] = `
 <button
-  class="euiButton euiButton--primary euiButton-isDisabled"
+  class="euiButton emotion-euiButtonDisplay-m-isDisabled-m-base-disabled"
   disabled=""
   type="button"
 >
   <span
-    class="euiButtonContent euiButton__content"
-  >
-    <span
-      class="euiButton__text"
-    />
-  </span>
+    class="emotion-euiButtonDisplayContent"
+  />
 </button>
 `;
 
 exports[`EuiButton props isDisabled renders a button even when href is defined 1`] = `
 <button
-  class="euiButton euiButton--primary euiButton-isDisabled"
+  class="euiButton emotion-euiButtonDisplay-m-isDisabled-m-base-disabled"
   disabled=""
   type="button"
 >
   <span
-    class="euiButtonContent euiButton__content"
-  >
-    <span
-      class="euiButton__text"
-    />
-  </span>
+    class="emotion-euiButtonDisplayContent"
+  />
 </button>
 `;
 
 exports[`EuiButton props isDisabled renders if passed as disabled 1`] = `
 <button
-  class="euiButton euiButton--primary euiButton-isDisabled"
+  class="euiButton emotion-euiButtonDisplay-m-isDisabled-m-base-disabled"
   disabled=""
   type="button"
 >
   <span
-    class="euiButtonContent euiButton__content"
-  >
-    <span
-      class="euiButton__text"
-    />
-  </span>
+    class="emotion-euiButtonDisplayContent"
+  />
 </button>
 `;
 
 exports[`EuiButton props isLoading is rendered 1`] = `
 <button
-  class="euiButton euiButton--primary euiButton-isDisabled"
+  class="euiButton emotion-euiButtonDisplay-m-isDisabled-m-base-disabled"
   disabled=""
   type="button"
 >
   <span
-    class="euiButtonContent euiButton__content"
+    class="emotion-euiButtonDisplayContent"
   >
     <span
       aria-label="Loading"
-      class="euiLoadingSpinner euiButtonContent__spinner css-155ohbx-euiLoadingSpinner-m"
+      class="euiLoadingSpinner emotion-euiLoadingSpinner-m-euiButtonDisplayContent__spinner"
       role="progressbar"
-    />
-    <span
-      class="euiButton__text"
     />
   </span>
 </button>
@@ -326,92 +312,71 @@ exports[`EuiButton props isLoading is rendered 1`] = `
 exports[`EuiButton props isSelected is rendered as false 1`] = `
 <button
   aria-pressed="false"
-  class="euiButton euiButton--primary"
+  class="euiButton emotion-euiButtonDisplay-m-m-base-primary"
   type="button"
 >
   <span
-    class="euiButtonContent euiButton__content"
-  >
-    <span
-      class="euiButton__text"
-    />
-  </span>
+    class="emotion-euiButtonDisplayContent"
+  />
 </button>
 `;
 
 exports[`EuiButton props isSelected is rendered as true 1`] = `
 <button
   aria-pressed="true"
-  class="euiButton euiButton--primary"
+  class="euiButton emotion-euiButtonDisplay-m-m-base-primary"
   type="button"
 >
   <span
-    class="euiButtonContent euiButton__content"
-  >
-    <span
-      class="euiButton__text"
-    />
-  </span>
+    class="emotion-euiButtonDisplayContent"
+  />
 </button>
 `;
 
 exports[`EuiButton props minWidth is rendered 1`] = `
 <button
-  class="euiButton euiButton--primary"
-  style="min-width:0"
+  class="euiButton emotion-euiButtonDisplay-m-m-base-primary"
   type="button"
 >
   <span
-    class="euiButtonContent euiButton__content"
-  >
-    <span
-      class="euiButton__text"
-    />
-  </span>
+    class="emotion-euiButtonDisplayContent"
+  />
 </button>
 `;
 
 exports[`EuiButton props size m is rendered 1`] = `
 <button
-  class="euiButton euiButton--primary"
+  class="euiButton emotion-euiButtonDisplay-m-m-base-primary"
   type="button"
 >
   <span
-    class="euiButtonContent euiButton__content"
-  >
-    <span
-      class="euiButton__text"
-    />
-  </span>
+    class="emotion-euiButtonDisplayContent"
+  />
 </button>
 `;
 
 exports[`EuiButton props size s is rendered 1`] = `
 <button
-  class="euiButton euiButton--primary euiButton--small"
+  class="euiButton emotion-euiButtonDisplay-s-s-base-primary"
   type="button"
 >
   <span
-    class="euiButtonContent euiButton__content"
-  >
-    <span
-      class="euiButton__text"
-    />
-  </span>
+    class="emotion-euiButtonDisplayContent"
+  />
 </button>
 `;
 
 exports[`EuiButton props textProps is rendered 1`] = `
 <button
-  class="euiButton euiButton--primary"
+  class="euiButton emotion-euiButtonDisplay-m-m-base-primary"
   type="button"
 >
   <span
-    class="euiButtonContent euiButton__content"
+    class="emotion-euiButtonDisplayContent"
   >
     <span
       aria-label="aria-label"
-      class="euiButton__text testClass1 testClass2"
+      class="eui-textTruncate testClass1 testClass2"
       data-test-subj="test subject string"
     >
       Content

@@ -3,53 +3,81 @@
 exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
 <nav
   aria-label="aria-label"
-  class="euiBreadcrumbs euiHeaderBreadcrumbs testClass1 testClass2 euiBreadcrumbs--truncate"
+  class="euiBreadcrumbs euiHeaderBreadcrumbs testClass1 testClass2 emotion-euiHeaderBreadcrumbs"
   data-test-subj="test subject string"
 >
   <ol
-    class="euiBreadcrumbs__list"
+    class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
   >
     <li
-      class="euiBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-application-isTruncated"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass css-7rgcqt-euiLink-subdued"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-subdued-euiBreadcrumb__content-application-isTruncated-firstChild"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
+        title="Animals"
       >
         Animals
       </a>
     </li>
     <li
-      class="euiBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-application-isTruncated"
     >
       <button
-        class="euiLink euiBreadcrumb__content css-7rgcqt-euiLink-subdued"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-application-isTruncated"
+        title="Reptiles"
         type="button"
       >
         Reptiles
       </button>
     </li>
     <li
-      class="euiBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-application-isTruncated"
     >
       <a
-        class="euiLink euiBreadcrumb__content css-7rgcqt-euiLink-subdued"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-application-isTruncated"
         href="#"
         rel="noreferrer"
+        title="Boa constrictor"
       >
         Boa constrictor
       </a>
     </li>
     <li
-      class="euiBreadcrumb euiBreadcrumb--last"
+      class="euiBreadcrumb emotion-euiBreadcrumb-application-isTruncated"
     >
       <span
         aria-current="page"
-        class="euiBreadcrumb__content"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-application-isTruncatedLast-lastChild-euiTextColor-default"
+        title="Edit"
       >
         Edit
+      </span>
+    </li>
+  </ol>
+</nav>
+`;
+
+exports[`EuiHeaderBreadcrumbs renders only one breadcrumb with all rounded corners 1`] = `
+<nav
+  aria-label="aria-label"
+  class="euiBreadcrumbs euiHeaderBreadcrumbs testClass1 testClass2 emotion-euiHeaderBreadcrumbs"
+  data-test-subj="test subject string"
+>
+  <ol
+    class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
+  >
+    <li
+      class="euiBreadcrumb emotion-euiBreadcrumb-application-isTruncated"
+    >
+      <span
+        aria-current="page"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-application-isTruncatedLast-onlyChild-euiTextColor-default"
+        title="Home"
+      >
+        Home
       </span>
     </li>
   </ol>

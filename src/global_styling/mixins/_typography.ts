@@ -10,12 +10,11 @@ import { CSSProperties } from 'react';
 import {
   euiLineHeightFromBaseline,
   euiFontSizeFromScale,
+  _FontScaleOptions,
 } from '../functions/typography';
 import { useEuiTheme, UseEuiTheme } from '../../services/theme/hooks';
-import {
-  _EuiThemeFontScale,
-  _EuiThemeFontSizeMeasurement,
-} from '../variables/typography';
+import { _EuiThemeFontScale } from '../variables/typography';
+import { logicalCSS } from '../functions';
 
 export type EuiThemeFontSize = {
   fontSize: CSSProperties['fontSize'];
@@ -26,23 +25,21 @@ export type EuiThemeFontSize = {
  * Returns font-size and line-height
  */
 export const euiFontSize = (
+  { euiTheme }: UseEuiTheme,
   scale: _EuiThemeFontScale,
-  euiTheme: UseEuiTheme['euiTheme'],
-  measurement: _EuiThemeFontSizeMeasurement = 'rem'
+  options?: _FontScaleOptions
 ): EuiThemeFontSize => {
   return {
-    fontSize: euiFontSizeFromScale(scale, euiTheme, measurement),
-    lineHeight: euiLineHeightFromBaseline(scale, euiTheme, measurement),
+    fontSize: euiFontSizeFromScale(scale, euiTheme, options),
+    lineHeight: euiLineHeightFromBaseline(scale, euiTheme, options),
   };
 };
-
-// Hook version
 export const useEuiFontSize = (
-  scale: _EuiThemeFontScale = 'm',
-  measurement: _EuiThemeFontSizeMeasurement = 'rem'
+  scale: _EuiThemeFontScale,
+  options?: _FontScaleOptions
 ): EuiThemeFontSize => {
-  const { euiTheme } = useEuiTheme();
-  return euiFontSize(scale, euiTheme, measurement);
+  const euiTheme = useEuiTheme();
+  return euiFontSize(euiTheme, scale, options);
 };
 
 /**
@@ -51,8 +48,7 @@ export const useEuiFontSize = (
  */
 export const euiTextBreakWord = () => `
   overflow-wrap: break-word !important; // makes sure the long string will wrap and not bust out of the container
-  word-wrap: break-word !important; // spec says, they are literally just alternate names for each other but some browsers support one and not the other
-  word-break: break-word; // IE doesn't understand but that's ok
+  word-break: break-word;
 `;
 
 /**
@@ -61,7 +57,9 @@ export const euiTextBreakWord = () => `
 export const euiTextTruncate = (
   maxWidth: CSSProperties['maxWidth'] = '100%'
 ) => `
-  max-width: ${maxWidth}; // Ensure that the node has a maximum width after which truncation can occur
+  ${
+    logicalCSS('max-width', maxWidth) // Ensure that the node has a maximum width after which truncation can occur
+  }
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   white-space: nowrap !important;
@@ -70,11 +68,10 @@ export const euiTextTruncate = (
 /**
  * Fixed-width numbers for tabular data
  */
-export const euiNumberFormat = (euiTheme: UseEuiTheme['euiTheme']) => `
+export const euiNumberFormat = ({ euiTheme }: UseEuiTheme) => `
   font-feature-settings: ${euiTheme.font.featureSettings}, 'tnum' 1;
 `;
-// Hook version
 export const useEuiNumberFormat = (): string => {
-  const { euiTheme } = useEuiTheme();
+  const euiTheme = useEuiTheme();
   return euiNumberFormat(euiTheme);
 };

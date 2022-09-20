@@ -23,7 +23,7 @@ exports[`EuiFormLegend props hidden is rendered 1`] = `
   class="euiFormLegend euiFormLegend-isHidden"
 >
   <span
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     Legend
   </span>

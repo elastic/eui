@@ -7,6 +7,7 @@
  */
 
 import { keysOf } from '../../components/common';
+import LOGICALS from './logicals.json';
 
 /**
  * EUI utilizes logical CSS properties to enable directional writing-modes.
@@ -23,68 +24,10 @@ export const logicalSide = {
   horizontal: 'inline',
   vertical: 'block',
 };
-
 export const LOGICAL_SIDES = keysOf(logicalSide);
 export type LogicalSides = typeof LOGICAL_SIDES[number];
 
-const logicalMargins = {
-  'margin-left': 'margin-inline-start',
-  'margin-right': 'margin-inline-end',
-  'margin-top': 'margin-block-start',
-  'margin-bottom': 'margin-block-end',
-  'margin-horizontal': 'margin-inline',
-  'margin-vertical': 'margin-block',
-};
-
-const logicalPaddings = {
-  'padding-left': 'padding-inline-start',
-  'padding-right': 'padding-inline-end',
-  'padding-top': 'padding-block-start',
-  'padding-bottom': 'padding-block-end',
-  'padding-horizontal': 'padding-inline',
-  'padding-vertical': 'padding-block',
-};
-
-const logicalPosition = {
-  top: 'inset-block-start',
-  right: 'inset-inline-start',
-  bottom: 'inset-block-end',
-  left: 'inset-inline-end',
-  horizontal: 'inset-block',
-  vertical: 'inset-inline',
-  inset: 'inset',
-};
-
-const logicalSize = {
-  height: 'block-size',
-  width: 'inline-size',
-  'max-height': 'max-block-size',
-  'max-width': 'max-inline-size',
-  'min-height': 'min-block-size',
-  'min-width': 'min-inline-size',
-};
-
-const logicalOverflow = {
-  'overflow-x': 'overflow-block',
-  'overflow-y': 'overflow-inline',
-};
-
-const logicalRadius = {
-  'border-top-left-radius': 'border-start-start-radius',
-  'border-top-right-radius': 'border-start-end-radius',
-  'border-bottom-left-radius': 'border-end-start-radius',
-  'border-bottom-right-radius': 'border-end-end-radius',
-};
-
-export const logicals = {
-  ...logicalMargins,
-  ...logicalPaddings,
-  ...logicalPosition,
-  ...logicalSize,
-  ...logicalOverflow,
-  ...logicalRadius,
-};
-
+export const logicals = LOGICALS;
 export const LOGICAL_PROPERTIES = keysOf(logicals);
 export type LogicalProperties = typeof LOGICAL_PROPERTIES[number];
 
@@ -99,6 +42,24 @@ export const logicalCSS = (property: LogicalProperties, value?: any) => {
 };
 
 /**
+ * Some logical properties are not yet fully supported by all browsers.
+ * For those cases, we should use the old property as a fallback for
+ * browsers missing support, while allowing supporting browsers to use
+ * the logical properties.
+ *
+ * Examples:
+ * https://caniuse.com/?search=overflow-block
+ * https://caniuse.com/mdn-css_properties_float_flow_relative_values
+ */
+export const logicalCSSWithFallback = (
+  property: LogicalProperties,
+  value?: any
+) => `
+  ${property}: ${value};
+  ${logicalCSS(property, value)}
+`;
+
+/**
  *
  * @param property A string that is a valid CSS logical property
  * @param value String to output as the property value
@@ -109,7 +70,33 @@ export const logicalStyle = (property: LogicalProperties, value?: any) => {
   const camelCasedProperty = logicals[property].replace(/-\w/g, (str) =>
     str.charAt(1).toUpperCase()
   );
-  return { [camelCasedProperty]: `${value}` };
+  return { [camelCasedProperty]: value };
+};
+
+/**
+ *
+ * @param width A string value for the LTR width
+ * @param height A string value for the LTR height
+ * @returns `string` Returns the logical CSS properties for height and width
+ */
+export const logicalSizeCSS = (width: any, height: any) => {
+  return `
+    ${logicals.width}: ${width};
+    ${logicals.height}: ${height};
+  `;
+};
+
+/**
+ *
+ * @param width A string value for the LTR width
+ * @param height A string value for the LTR height
+ * @returns `object` Returns the logical CSS properties for height and width
+ */
+export const logicalSizeStyle = (width: any, height: any) => {
+  return {
+    [logicals.width]: width,
+    [logicals.height]: height,
+  };
 };
 
 // Text alignment is separate because its the value that changes not the property

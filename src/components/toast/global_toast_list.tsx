@@ -6,13 +6,22 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, ReactChild } from 'react';
+import React, {
+  FunctionComponent,
+  ReactChild,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import classNames from 'classnames';
 
 import { CommonProps, keysOf } from '../common';
+import { useEuiTheme } from '../../services';
 import { Timer } from '../../services/time';
 import { EuiGlobalToastListItem } from './global_toast_list_item';
 import { EuiToast, EuiToastProps } from './toast';
+import { euiGlobalToastListStyles } from './global_toast_list.styles';
 
 type ToastSide = 'right' | 'left';
 
@@ -32,8 +41,8 @@ export interface Toast extends EuiToastProps {
 }
 
 export interface EuiGlobalToastListProps extends CommonProps {
-  toasts: Toast[];
-  dismissToast: (this: EuiGlobalToastList, toast: Toast) => void;
+  toasts?: Toast[];
+  dismissToast: (toast: Toast) => void;
   toastLifeTimeMs: number;
   /**
    * Determines which side of the browser window the toasts should appear
@@ -41,256 +50,253 @@ export interface EuiGlobalToastListProps extends CommonProps {
   side?: ToastSide;
 }
 
-interface State {
-  toastIdToDismissedMap: {
+export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
+  className,
+  toasts = [],
+  dismissToast: dismissToastProp,
+  toastLifeTimeMs,
+  side = 'right',
+  ...rest
+}) => {
+  const [toastIdToDismissedMap, setToastIdToDismissedMap] = useState<{
     [toastId: string]: boolean;
-  };
-}
+  }>({});
+  const [toastToDismiss, setToastToDismiss] = useState<Toast>();
 
-export class EuiGlobalToastList extends Component<
-  EuiGlobalToastListProps,
-  State
-> {
-  state: State = {
-    toastIdToDismissedMap: {},
-  };
+  const prevToasts = useRef<Toast[]>([]);
 
-  dismissTimeoutIds: number[] = [];
-  toastIdToTimerMap: { [toastId: string]: Timer } = {};
+  const dismissTimeoutIds = useRef<number[]>([]);
+  const toastIdToTimerMap = useRef<{ [toastId: string]: Timer }>({});
 
-  isScrollingToBottom = false;
-  isScrolledToBottom = true;
-  isUserInteracting = false;
+  const isScrollingToBottom = useRef(false);
+  const isScrolledToBottom = useRef(true);
+  const isUserInteracting = useRef(false);
 
   // See [Return Value](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame#Return_value)
   // for information on initial value of 0
-  isScrollingAnimationFrame = 0;
-  startScrollingAnimationFrame = 0;
+  const isScrollingAnimationFrame = useRef(0);
+  const startScrollingAnimationFrame = useRef(0);
 
-  listElement: Element | null = null;
+  const listElement = useRef<HTMLDivElement | null>(null);
 
-  static defaultProps = {
-    toasts: [],
-    side: 'right',
-  };
+  const euiTheme = useEuiTheme();
+  const styles = euiGlobalToastListStyles(euiTheme);
+  const cssStyles = [styles.euiGlobalToastList, styles[side]];
 
-  startScrollingToBottom() {
-    this.isScrollingToBottom = true;
+  const startScrollingToBottom = () => {
+    isScrollingToBottom.current = true;
 
     const scrollToBottom = () => {
       // Although we cancel the requestAnimationFrame in componentWillUnmount,
       // it's possible for this.listElement to become null in the meantime
-      if (!this.listElement) {
+      if (!listElement.current) {
         return;
       }
 
-      const position = this.listElement.scrollTop;
+      const position = listElement.current.scrollTop;
       const destination =
-        this.listElement.scrollHeight - this.listElement.clientHeight;
+        listElement.current.scrollHeight - listElement.current.clientHeight;
       const distanceToDestination = destination - position;
 
       if (distanceToDestination < 5) {
-        this.listElement.scrollTop = destination;
-        this.isScrollingToBottom = false;
-        this.isScrolledToBottom = true;
+        listElement.current.scrollTop = destination;
+        isScrollingToBottom.current = false;
+        isScrolledToBottom.current = true;
         return;
       }
 
-      this.listElement.scrollTop = position + distanceToDestination * 0.25;
+      listElement.current.scrollTop = position + distanceToDestination * 0.25;
 
-      if (this.isScrollingToBottom) {
-        this.isScrollingAnimationFrame = window.requestAnimationFrame(
+      if (isScrollingToBottom) {
+        isScrollingAnimationFrame.current = window.requestAnimationFrame(
           scrollToBottom
         );
       }
     };
 
-    this.startScrollingAnimationFrame = window.requestAnimationFrame(
+    startScrollingAnimationFrame.current = window.requestAnimationFrame(
       scrollToBottom
     );
-  }
+  };
 
-  onMouseEnter = () => {
+  const onMouseEnter = () => {
     // Stop scrolling to bottom if we're in mid-scroll, because the user wants to interact with
     // the list.
-    this.isScrollingToBottom = false;
-    this.isUserInteracting = true;
+    isScrollingToBottom.current = false;
+    isUserInteracting.current = true;
 
     // Don't let toasts dismiss themselves while the user is interacting with them.
-    for (const toastId in this.toastIdToTimerMap) {
-      if (this.toastIdToTimerMap.hasOwnProperty(toastId)) {
-        const timer = this.toastIdToTimerMap[toastId];
+    for (const toastId in toastIdToTimerMap.current) {
+      if (toastIdToTimerMap.current.hasOwnProperty(toastId)) {
+        const timer = toastIdToTimerMap.current[toastId];
         timer.pause();
       }
     }
   };
 
-  onMouseLeave = () => {
-    this.isUserInteracting = false;
-    for (const toastId in this.toastIdToTimerMap) {
-      if (this.toastIdToTimerMap.hasOwnProperty(toastId)) {
-        const timer = this.toastIdToTimerMap[toastId];
+  const onMouseLeave = () => {
+    isUserInteracting.current = false;
+    for (const toastId in toastIdToTimerMap.current) {
+      if (toastIdToTimerMap.current.hasOwnProperty(toastId)) {
+        const timer = toastIdToTimerMap.current[toastId];
         timer.resume();
       }
     }
   };
 
-  onScroll = () => {
-    if (this.listElement) {
-      this.isScrolledToBottom =
-        this.listElement.scrollHeight - this.listElement.scrollTop ===
-        this.listElement.clientHeight;
+  const onScroll = () => {
+    if (listElement.current) {
+      isScrolledToBottom.current =
+        listElement.current.scrollHeight - listElement.current.scrollTop ===
+        listElement.current.clientHeight;
     }
   };
 
-  scheduleAllToastsForDismissal = () => {
-    this.props.toasts.forEach((toast) => {
-      if (!this.toastIdToTimerMap[toast.id]) {
-        this.scheduleToastForDismissal(toast);
-      }
-    });
-  };
-
-  scheduleToastForDismissal = (toast: Toast) => {
-    // Start fading the toast out once its lifetime elapses.
-    this.toastIdToTimerMap[toast.id] = new Timer(
-      this.dismissToast.bind(this, toast),
-      toast.toastLifeTimeMs != null
-        ? toast.toastLifeTimeMs
-        : this.props.toastLifeTimeMs
-    );
-  };
-
-  dismissToast = (toast: Toast) => {
+  const dismissToast = useCallback((toast: Toast) => {
     // Remove the toast after it's done fading out.
-    this.dismissTimeoutIds.push(
+    dismissTimeoutIds.current.push(
       window.setTimeout(() => {
-        // Because this is wrapped in a setTimeout, and because React does not guarantee when
-        // state updates happen, it is possible to double-dismiss a toast
-        // including by double-clicking the "x" button on the toast
-        // so, first check to make sure we haven't already dismissed this toast
-        if (this.toastIdToTimerMap.hasOwnProperty(toast.id)) {
-          this.props.dismissToast.apply(this, [toast]);
-          this.toastIdToTimerMap[toast.id].clear();
-          delete this.toastIdToTimerMap[toast.id];
-
-          this.setState((prevState) => {
-            const toastIdToDismissedMap = {
-              ...prevState.toastIdToDismissedMap,
-            };
-            delete toastIdToDismissedMap[toast.id];
-
-            return {
-              toastIdToDismissedMap,
-            };
-          });
-        }
+        setToastToDismiss(toast);
       }, TOAST_FADE_OUT_MS)
     );
 
-    this.setState((prevState) => {
-      const toastIdToDismissedMap = {
-        ...prevState.toastIdToDismissedMap,
-        [toast.id]: true,
-      };
+    setToastIdToDismissedMap((prev) => ({
+      ...prev,
+      [toast.id]: true,
+    }));
+  }, []);
 
-      return {
-        toastIdToDismissedMap,
-      };
+  const scheduleToastForDismissal = useCallback(
+    (toast: Toast) => {
+      // Start fading the toast out once its lifetime elapses.
+      toastIdToTimerMap.current[toast.id] = new Timer(
+        () => dismissToast(toast),
+        toast.toastLifeTimeMs != null ? toast.toastLifeTimeMs : toastLifeTimeMs
+      );
+    },
+    [dismissToast, toastLifeTimeMs]
+  );
+
+  const scheduleAllToastsForDismissal = useCallback(() => {
+    toasts.forEach((toast) => {
+      if (!toastIdToTimerMap.current[toast.id]) {
+        scheduleToastForDismissal(toast);
+      }
     });
+  }, [scheduleToastForDismissal, toasts]);
+
+  const addListeners = () => {
+    if (listElement.current) {
+      listElement.current.addEventListener('scroll', onScroll);
+      listElement.current.addEventListener('mouseenter', onMouseEnter);
+      listElement.current.addEventListener('mouseleave', onMouseLeave);
+    }
   };
 
-  componentDidMount() {
-    if (this.listElement) {
-      this.listElement.addEventListener('scroll', this.onScroll);
-      this.listElement.addEventListener('mouseenter', this.onMouseEnter);
-      this.listElement.addEventListener('mouseleave', this.onMouseLeave);
+  const removeListeners = () => {
+    if (listElement.current) {
+      listElement.current.removeEventListener('scroll', onScroll);
+      listElement.current.removeEventListener('mouseenter', onMouseEnter);
+      listElement.current.removeEventListener('mouseleave', onMouseLeave);
     }
-    this.scheduleAllToastsForDismissal();
-  }
+  };
 
-  componentDidUpdate(prevProps: EuiGlobalToastListProps) {
-    this.scheduleAllToastsForDismissal();
+  // componentDidMount
+  useEffect(() => {
+    addListeners();
 
-    if (!this.isUserInteracting) {
+    // componentWillUnmount
+    return () => {
+      if (isScrollingAnimationFrame.current !== 0) {
+        window.cancelAnimationFrame(isScrollingAnimationFrame.current);
+      }
+      if (startScrollingAnimationFrame.current !== 0) {
+        window.cancelAnimationFrame(startScrollingAnimationFrame.current);
+      }
+      removeListeners();
+      dismissTimeoutIds.current.forEach(clearTimeout); // eslint-disable-line react-hooks/exhaustive-deps
+      for (const toastId in toastIdToTimerMap.current) {
+        if (toastIdToTimerMap.current.hasOwnProperty(toastId)) {
+          const timer = toastIdToTimerMap.current[toastId]; // eslint-disable-line react-hooks/exhaustive-deps
+          timer.clear();
+        }
+      }
+    };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // componentDidUpdate
+  useEffect(() => {
+    scheduleAllToastsForDismissal();
+
+    if (!isUserInteracting.current) {
       // If the user has scrolled up the toast list then we don't want to annoy them by scrolling
       // all the way back to the bottom.
-      if (this.isScrolledToBottom) {
-        if (prevProps.toasts.length < this.props.toasts.length) {
-          this.startScrollingToBottom();
+      if (isScrolledToBottom.current) {
+        if (prevToasts.current.length < toasts.length) {
+          startScrollingToBottom();
         }
       }
     }
-  }
+    prevToasts.current = toasts;
+  }, [toasts, scheduleAllToastsForDismissal]);
 
-  componentWillUnmount() {
-    if (this.isScrollingAnimationFrame !== 0) {
-      window.cancelAnimationFrame(this.isScrollingAnimationFrame);
-    }
-    if (this.startScrollingAnimationFrame !== 0) {
-      window.cancelAnimationFrame(this.startScrollingAnimationFrame);
-    }
-    if (this.listElement) {
-      this.listElement.removeEventListener('scroll', this.onScroll);
-      this.listElement.removeEventListener('mouseenter', this.onMouseEnter);
-      this.listElement.removeEventListener('mouseleave', this.onMouseLeave);
-    }
-    this.dismissTimeoutIds.forEach(clearTimeout);
-    for (const toastId in this.toastIdToTimerMap) {
-      if (this.toastIdToTimerMap.hasOwnProperty(toastId)) {
-        const timer = this.toastIdToTimerMap[toastId];
-        timer.clear();
-      }
-    }
-  }
+  // Toast dismissal side effect
+  // Ensure the callback has correct state by not enclosing it in `setTimeout`
+  useEffect(() => {
+    const toast = toastToDismiss;
+    // Because this is triggered by a setTimeout, and because React does not guarantee when
+    // state updates happen, it is possible to double-dismiss a toast
+    // including by double-clicking the "x" button on the toast
+    // so, first check to make sure we haven't already dismissed this toast
+    if (toast && toastIdToTimerMap.current.hasOwnProperty(toast.id)) {
+      dismissToastProp(toast);
+      toastIdToTimerMap.current[toast.id].clear();
+      delete toastIdToTimerMap.current[toast.id];
 
-  render() {
-    const {
-      className,
-      toasts,
-      dismissToast,
-      toastLifeTimeMs,
-      side,
-      ...rest
-    } = this.props;
+      setToastIdToDismissedMap((prev) => {
+        const toastIdToDismissedMap = {
+          ...prev,
+        };
+        delete toastIdToDismissedMap[toast.id];
 
-    const renderedToasts = toasts.map((toast) => {
-      const { text, toastLifeTimeMs, ...rest } = toast;
+        return toastIdToDismissedMap;
+      });
+    }
+  }, [toastToDismiss, dismissToastProp]);
 
-      return (
-        <EuiGlobalToastListItem
-          key={toast.id}
-          isDismissed={this.state.toastIdToDismissedMap[toast.id]}
-        >
-          <EuiToast
-            onClose={this.dismissToast.bind(this, toast)}
-            onFocus={this.onMouseEnter}
-            onBlur={this.onMouseLeave}
-            {...rest}
-          >
-            {text}
-          </EuiToast>
-        </EuiGlobalToastListItem>
-      );
-    });
-    const classes = classNames(
-      'euiGlobalToastList',
-      side ? sideToClassNameMap[side] : null,
-      className
-    );
+  const renderedToasts = toasts.map((toast) => {
+    const { text, toastLifeTimeMs, ...rest } = toast;
+    const onClose = () => dismissToast(toast);
 
     return (
-      <div
-        aria-live="polite"
-        role="region"
-        ref={(element) => {
-          this.listElement = element;
-        }}
-        className={classes}
-        {...rest}
+      <EuiGlobalToastListItem
+        key={toast.id}
+        isDismissed={toastIdToDismissedMap[toast.id]}
       >
-        {renderedToasts}
-      </div>
+        <EuiToast
+          onClose={onClose}
+          onFocus={onMouseEnter}
+          onBlur={onMouseLeave}
+          {...rest}
+        >
+          {text}
+        </EuiToast>
+      </EuiGlobalToastListItem>
     );
-  }
-}
+  });
+
+  const classes = classNames('euiGlobalToastList', className);
+
+  return (
+    <div
+      aria-live="polite"
+      role="region"
+      ref={listElement}
+      css={cssStyles}
+      className={classes}
+      {...rest}
+    >
+      {renderedToasts}
+    </div>
+  );
+};

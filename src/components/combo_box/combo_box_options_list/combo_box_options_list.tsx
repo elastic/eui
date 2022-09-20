@@ -21,7 +21,6 @@ import {
 
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiHighlight } from '../../highlight';
-import { EuiPanel } from '../../panel';
 import { EuiText } from '../../text';
 import { EuiLoadingSpinner } from '../../loading';
 import { EuiComboBoxTitle } from './combo_box_title';
@@ -41,11 +40,12 @@ import {
 } from '../types';
 import { CommonProps } from '../../common';
 import { EuiBadge } from '../../badge/';
+import { EuiPopoverPanel } from '../../popover/popover_panel';
 
 const OPTION_CONTENT_CLASSNAME = 'euiComboBoxOption__content';
 
 export type EuiComboBoxOptionsListProps<T> = CommonProps &
-  ComponentProps<typeof EuiPanel> & {
+  ComponentProps<typeof EuiPopoverPanel> & {
     'data-test-subj': string;
     activeOptionIndex?: number;
     areAllOptionsSelected?: boolean;
@@ -465,29 +465,25 @@ export class EuiComboBoxOptionsList<T> extends Component<
      * Reusing the EuiPopover__panel classes to help with consistency/maintenance.
      * But this should really be converted to user the popover component.
      */
-    const classes = classNames(
-      'euiComboBoxOptionsList',
-      'euiPopover__panel',
-      'euiPopover__panel-isAttached',
-      'euiPopover__panel-noArrow',
-      'euiPopover__panel-isOpen',
-      `euiPopover__panel--${position}`
-    );
+    const classes = classNames('euiComboBoxOptionsList');
 
     return (
-      <EuiPanel
+      <EuiPopoverPanel
         paddingSize="none"
         hasShadow={false}
         className={classes}
         panelRef={this.listRefCallback}
         data-test-subj={`comboBoxOptionsList ${dataTestSubj}`}
         style={{ ...style, zIndex: zIndex }}
+        isOpen
+        isAttached
+        position={position}
         {...rest}
       >
         <div className="euiComboBoxOptionsList__rowWrap">
           {emptyState || optionsList}
         </div>
-      </EuiPanel>
+      </EuiPopoverPanel>
     );
   }
 }

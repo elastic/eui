@@ -18,19 +18,19 @@ import React, {
   ReactNode,
   Ref,
   useEffect,
-  useRef,
   useState,
 } from 'react';
-import { createPortal } from 'react-dom';
 import classNames from 'classnames';
+import { Global } from '@emotion/react';
 import { CommonProps, keysOf } from '../common';
-import { useCombinedRefs } from '../../services';
+import { useCombinedRefs, useEuiTheme } from '../../services';
+import { EuiPortal } from '../portal';
+import {
+  euiOverlayMaskStyles,
+  euiOverlayMaskBodyStyles,
+} from './overlay_mask.styles';
 
 export interface EuiOverlayMaskInterface {
-  /**
-   * Function that applies to clicking the mask itself and not the children
-   */
-  onClick?: () => void;
   /**
    * ReactNode to render as this component's content
    */
@@ -55,85 +55,49 @@ export type EuiOverlayMaskProps = CommonProps &
 export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
   className,
   children,
-  onClick,
   headerZindexLocation = 'above',
   maskRef,
+  css, // TODO: apply custom CSS-in-JS as a className
   ...rest
 }) => {
-  const overlayMaskNode = useRef<HTMLDivElement>();
-  const combinedMaskRef = useCombinedRefs([overlayMaskNode, maskRef]);
-  const [isPortalTargetReady, setIsPortalTargetReady] = useState(false);
+  const [overlayMaskNode, setOverlayMaskNode] = useState<HTMLDivElement | null>(
+    null
+  );
+  const combinedMaskRef = useCombinedRefs<HTMLDivElement | null>([
+    setOverlayMaskNode,
+    maskRef,
+  ]);
+  const euiTheme = useEuiTheme();
+  const styles = euiOverlayMaskStyles(euiTheme);
+  const cssStyles = [
+    styles.euiOverlayMask,
+    styles[`${headerZindexLocation}Header`],
+  ];
 
   useEffect(() => {
-    document.body.classList.add('euiBody-hasOverlayMask');
-
-    return () => {
-      document.body.classList.remove('euiBody-hasOverlayMask');
-    };
-  }, []);
-
-  useEffect(() => {
-    if (typeof document !== 'undefined') {
-      combinedMaskRef(document.createElement('div'));
-    }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  useEffect(() => {
-    const portalTarget = overlayMaskNode.current;
-
-    if (portalTarget) {
-      document.body.appendChild(portalTarget);
-    }
-
-    setIsPortalTargetReady(true);
-
-    return () => {
-      if (portalTarget) {
-        document.body.removeChild(portalTarget);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!overlayMaskNode.current) return;
+    if (!overlayMaskNode) return;
     keysOf(rest).forEach((key) => {
       if (typeof rest[key] !== 'string') {
         throw new Error(
           `Unhandled property type. EuiOverlayMask property ${key} is not a string.`
         );
       }
-      if (overlayMaskNode.current) {
-        overlayMaskNode.current.setAttribute(key, rest[key]!);
+      if (overlayMaskNode) {
+        overlayMaskNode.setAttribute(key, rest[key]!);
       }
     });
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [overlayMaskNode]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    if (!overlayMaskNode.current) return;
-    overlayMaskNode.current.className = classNames(
-      'euiOverlayMask',
-      `euiOverlayMask--${headerZindexLocation}Header`,
-      className
-    );
-  }, [className, headerZindexLocation]);
+    if (!overlayMaskNode) return;
+    overlayMaskNode.className = classNames('euiOverlayMask', className);
+  }, [overlayMaskNode, className]);
 
-  useEffect(() => {
-    const portalTarget = overlayMaskNode.current;
-    if (!portalTarget || !onClick) return;
-
-    const listener = (e: Event) => {
-      if (e.target === portalTarget) {
-        onClick();
-      }
-    };
-    portalTarget.addEventListener('click', listener);
-
-    return () => {
-      portalTarget.removeEventListener('click', listener);
-    };
-  }, [onClick]);
-
-  return isPortalTargetReady ? (
-    <>{createPortal(children, overlayMaskNode.current!)}</>
-  ) : null;
+  return (
+    <EuiPortal portalRef={combinedMaskRef}>
+      <Global styles={euiOverlayMaskBodyStyles} />
+      <Global styles={cssStyles} />
+      {children}
+    </EuiPortal>
+  );
 };

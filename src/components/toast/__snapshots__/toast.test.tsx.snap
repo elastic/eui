@@ -1,281 +1,180 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiToast Props color danger is rendered 1`] = `
-<EuiToast
-  color="danger"
-  title="test title"
->
-  <div
-    className="euiToast euiToast--danger"
-  >
-    <EuiScreenReaderOnly>
-      <p
-        className="euiScreenReaderOnly"
-      >
-        <EuiI18n
-          default="A new notification appears"
-          token="euiToast.newNotification"
-        >
-          A new notification appears
-        </EuiI18n>
-      </p>
-    </EuiScreenReaderOnly>
-    <EuiI18n
-      default="Notification"
-      token="euiToast.notification"
-    >
-      <div
-        aria-label="Notification"
-        className="euiToastHeader"
-        data-test-subj="euiToastHeader"
-      >
-        <span
-          className="euiToastHeader__title"
-        >
-          test title
-        </span>
-      </div>
-    </EuiI18n>
-  </div>
-</EuiToast>
-`;
-
-exports[`EuiToast Props color primary is rendered 1`] = `
-<EuiToast
-  color="primary"
-  title="test title"
->
-  <div
-    className="euiToast euiToast--primary"
-  >
-    <EuiScreenReaderOnly>
-      <p
-        className="euiScreenReaderOnly"
-      >
-        <EuiI18n
-          default="A new notification appears"
-          token="euiToast.newNotification"
-        >
-          A new notification appears
-        </EuiI18n>
-      </p>
-    </EuiScreenReaderOnly>
-    <EuiI18n
-      default="Notification"
-      token="euiToast.notification"
-    >
-      <div
-        aria-label="Notification"
-        className="euiToastHeader"
-        data-test-subj="euiToastHeader"
-      >
-        <span
-          className="euiToastHeader__title"
-        >
-          test title
-        </span>
-      </div>
-    </EuiI18n>
-  </div>
-</EuiToast>
-`;
-
-exports[`EuiToast Props color success is rendered 1`] = `
-<EuiToast
-  color="success"
-  title="test title"
->
-  <div
-    className="euiToast euiToast--success"
-  >
-    <EuiScreenReaderOnly>
-      <p
-        className="euiScreenReaderOnly"
-      >
-        <EuiI18n
-          default="A new notification appears"
-          token="euiToast.newNotification"
-        >
-          A new notification appears
-        </EuiI18n>
-      </p>
-    </EuiScreenReaderOnly>
-    <EuiI18n
-      default="Notification"
-      token="euiToast.notification"
-    >
-      <div
-        aria-label="Notification"
-        className="euiToastHeader"
-        data-test-subj="euiToastHeader"
-      >
-        <span
-          className="euiToastHeader__title"
-        >
-          test title
-        </span>
-      </div>
-    </EuiI18n>
-  </div>
-</EuiToast>
-`;
-
-exports[`EuiToast Props color warning is rendered 1`] = `
-<EuiToast
-  color="warning"
-  title="test title"
->
-  <div
-    className="euiToast euiToast--warning"
-  >
-    <EuiScreenReaderOnly>
-      <p
-        className="euiScreenReaderOnly"
-      >
-        <EuiI18n
-          default="A new notification appears"
-          token="euiToast.newNotification"
-        >
-          A new notification appears
-        </EuiI18n>
-      </p>
-    </EuiScreenReaderOnly>
-    <EuiI18n
-      default="Notification"
-      token="euiToast.notification"
-    >
-      <div
-        aria-label="Notification"
-        className="euiToastHeader"
-        data-test-subj="euiToastHeader"
-      >
-        <span
-          className="euiToastHeader__title"
-        >
-          test title
-        </span>
-      </div>
-    </EuiI18n>
-  </div>
-</EuiToast>
-`;
-
-exports[`EuiToast Props iconType is rendered 1`] = `
-<EuiToast
-  iconType="user"
-  title="test title"
->
-  <div
-    className="euiToast"
-  >
-    <EuiScreenReaderOnly>
-      <p
-        className="euiScreenReaderOnly"
-      >
-        <EuiI18n
-          default="A new notification appears"
-          token="euiToast.newNotification"
-        >
-          A new notification appears
-        </EuiI18n>
-      </p>
-    </EuiScreenReaderOnly>
-    <EuiI18n
-      default="Notification"
-      token="euiToast.notification"
-    >
-      <div
-        aria-label="Notification"
-        className="euiToastHeader"
-        data-test-subj="euiToastHeader"
-      >
-        <EuiIcon
-          aria-hidden="true"
-          className="euiToastHeader__icon"
-          size="m"
-          type="user"
-        >
-          <span
-            aria-hidden="true"
-            className="euiToastHeader__icon"
-            data-euiicon-type="user"
-            size="m"
-          />
-        </EuiIcon>
-        <span
-          className="euiToastHeader__title"
-        >
-          test title
-        </span>
-      </div>
-    </EuiI18n>
-  </div>
-</EuiToast>
-`;
-
-exports[`EuiToast Props title is rendered 1`] = `
-<EuiToast
-  title="toast title"
->
-  <div
-    className="euiToast"
-  >
-    <EuiScreenReaderOnly>
-      <p
-        className="euiScreenReaderOnly"
-      >
-        <EuiI18n
-          default="A new notification appears"
-          token="euiToast.newNotification"
-        >
-          A new notification appears
-        </EuiI18n>
-      </p>
-    </EuiScreenReaderOnly>
-    <EuiI18n
-      default="Notification"
-      token="euiToast.notification"
-    >
-      <div
-        aria-label="Notification"
-        className="euiToastHeader"
-        data-test-subj="euiToastHeader"
-      >
-        <span
-          className="euiToastHeader__title"
-        >
-          toast title
-        </span>
-      </div>
-    </EuiI18n>
-  </div>
-</EuiToast>
-`;
-
-exports[`EuiToast is rendered 1`] = `
 <div
-  aria-label="aria-label"
-  class="euiToast testClass1 testClass2"
-  data-test-subj="test subject string"
+  class="euiToast emotion-euiToast-danger"
 >
   <p
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     A new notification appears
   </p>
   <div
     aria-label="Notification"
-    class="euiToastHeader euiToastHeader--withBody"
+    class="emotion-euiToastHeader"
     data-test-subj="euiToastHeader"
   >
     <span
-      class="euiToastHeader__title"
+      class="emotion-euiToastHeader__title"
+      data-test-subj="euiToastHeader__title"
+    >
+      test title
+    </span>
+  </div>
+</div>
+`;
+
+exports[`EuiToast Props color primary is rendered 1`] = `
+<div
+  class="euiToast emotion-euiToast-primary"
+>
+  <p
+    class="emotion-euiScreenReaderOnly"
+  >
+    A new notification appears
+  </p>
+  <div
+    aria-label="Notification"
+    class="emotion-euiToastHeader"
+    data-test-subj="euiToastHeader"
+  >
+    <span
+      class="emotion-euiToastHeader__title"
+      data-test-subj="euiToastHeader__title"
+    >
+      test title
+    </span>
+  </div>
+</div>
+`;
+
+exports[`EuiToast Props color success is rendered 1`] = `
+<div
+  class="euiToast emotion-euiToast-success"
+>
+  <p
+    class="emotion-euiScreenReaderOnly"
+  >
+    A new notification appears
+  </p>
+  <div
+    aria-label="Notification"
+    class="emotion-euiToastHeader"
+    data-test-subj="euiToastHeader"
+  >
+    <span
+      class="emotion-euiToastHeader__title"
+      data-test-subj="euiToastHeader__title"
+    >
+      test title
+    </span>
+  </div>
+</div>
+`;
+
+exports[`EuiToast Props color warning is rendered 1`] = `
+<div
+  class="euiToast emotion-euiToast-warning"
+>
+  <p
+    class="emotion-euiScreenReaderOnly"
+  >
+    A new notification appears
+  </p>
+  <div
+    aria-label="Notification"
+    class="emotion-euiToastHeader"
+    data-test-subj="euiToastHeader"
+  >
+    <span
+      class="emotion-euiToastHeader__title"
+      data-test-subj="euiToastHeader__title"
+    >
+      test title
+    </span>
+  </div>
+</div>
+`;
+
+exports[`EuiToast Props iconType is rendered 1`] = `
+<div
+  class="euiToast emotion-euiToast"
+>
+  <p
+    class="emotion-euiScreenReaderOnly"
+  >
+    A new notification appears
+  </p>
+  <div
+    aria-label="Notification"
+    class="emotion-euiToastHeader"
+    data-test-subj="euiToastHeader"
+  >
+    <span
+      aria-hidden="true"
+      class="emotion-euiToastHeader__icon"
+      data-euiicon-type="user"
+    />
+    <span
+      class="emotion-euiToastHeader__title"
+      data-test-subj="euiToastHeader__title"
+    >
+      test title
+    </span>
+  </div>
+</div>
+`;
+
+exports[`EuiToast Props title is rendered 1`] = `
+<div
+  class="euiToast emotion-euiToast"
+>
+  <p
+    class="emotion-euiScreenReaderOnly"
+  >
+    A new notification appears
+  </p>
+  <div
+    aria-label="Notification"
+    class="emotion-euiToastHeader"
+    data-test-subj="euiToastHeader"
+  >
+    <span
+      class="emotion-euiToastHeader__title"
+      data-test-subj="euiToastHeader__title"
+    >
+      toast title
+    </span>
+  </div>
+</div>
+`;
+
+exports[`EuiToast is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiToast testClass1 testClass2 emotion-euiToast"
+  data-test-subj="test subject string"
+>
+  <p
+    class="emotion-euiScreenReaderOnly"
+  >
+    A new notification appears
+  </p>
+  <div
+    aria-label="Notification"
+    class="emotion-euiToastHeader-withBody"
+    data-test-subj="euiToastHeader"
+  >
+    <span
+      class="emotion-euiToastHeader__title"
+      data-test-subj="euiToastHeader__title"
     >
       test title
     </span>
   </div>
   <div
-    class="euiText euiText--small euiToastBody"
+    class="euiText emotion-euiText-s-euiToastBody"
+    data-test-subj="euiToastBody"
   >
     <p>
       Hi

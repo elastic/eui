@@ -19,7 +19,7 @@ const NOTIF_STORAGE_VALUE = 'dismissed';
 
 export const LanguageSelector = ({
   onChange,
-  showTour = true,
+  showTour = false,
 }: {
   onChange?: (id: string) => void;
   showTour?: boolean;

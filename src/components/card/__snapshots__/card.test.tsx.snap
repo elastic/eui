@@ -2,19 +2,23 @@
 
 exports[`EuiCard betaBadgeProps renders href 1`] = `
 <div
-  class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned euiCard--hasBetaBadge"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned euiCard--hasBetaBadge emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center-vertical-hasBetaBadge"
 >
   <div
-    class="euiCard__content"
+    class="euiCard__content emotion-euiCard__content-vertical"
   >
-    <span
-      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+    <p
+      class="euiTitle euiCard__title emotion-euiTitle-s"
       id="generated-idTitle"
     >
-      Card title
-    </span>
+      <span
+        class="emotion-euiCard__text-center"
+      >
+        Card title
+      </span>
+    </p>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText emotion-euiText-s-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -22,37 +26,37 @@ exports[`EuiCard betaBadgeProps renders href 1`] = `
       </p>
     </div>
   </div>
-  <span
-    class="euiCard__betaBadgeWrapper"
+  <a
+    class="euiBetaBadge euiBetaBadge-isClickable euiBetaBadge--hollow emotion-euiCard__betaBadge"
+    href="http://www.elastic.co/"
+    id="generated-idBetaBadge"
+    rel=""
+    title="Link"
   >
-    <a
-      class="euiBetaBadge euiBetaBadge-isClickable euiBetaBadge--hollow euiCard__betaBadge"
-      href="http://www.elastic.co/"
-      id="generated-idBetaBadge"
-      rel=""
-      title="Link"
-    >
-      Link
-    </a>
-  </span>
+    Link
+  </a>
 </div>
 `;
 
 exports[`EuiCard horizontal selectable 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--isClickable euiCard euiCard--centerAligned euiCard--horizontal euiCard--isClickable euiCard--isSelectable euiCard--isSelectable--text"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned euiCard--horizontal euiCard--isClickable euiCard--isSelectable euiCard--isSelectable--text emotion-euiPanel-grow-m-m-plain-hasShadow-isClickable-euiCard-left-horizontal"
 >
   <div
-    class="euiCard__content"
+    class="euiCard__content emotion-euiCard__content-horizontal"
   >
-    <span
-      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+    <p
+      class="euiTitle euiCard__title emotion-euiTitle-s"
       id="generated-idTitle"
     >
-      Card title
-    </span>
+      <span
+        class="emotion-euiCard__text-left-interactive"
+      >
+        Card title
+      </span>
+    </p>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText emotion-euiText-s-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -60,21 +64,20 @@ exports[`EuiCard horizontal selectable 1`] = `
       </p>
     </div>
   </div>
+  <div
+    class="euiSpacer euiSpacer--m emotion-euiSpacer-m"
+  />
   <button
     aria-checked="false"
     aria-describedby="generated-idTitle generated-idDescription"
-    class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiCardSelect euiCardSelect--text"
+    class="emotion-euiButtonDisplay-m-fullWidth-m-base-text-euiCardSelect"
     role="switch"
     type="button"
   >
     <span
-      class="euiButtonContent euiButtonEmpty__content"
+      class="emotion-euiButtonDisplayContent"
     >
-      <span
-        class="euiButtonEmpty__text"
-      >
-        Select
-      </span>
+      Select
     </span>
   </button>
 </div>
@@ -83,20 +86,24 @@ exports[`EuiCard horizontal selectable 1`] = `
 exports[`EuiCard is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned testClass1 testClass2"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center-vertical"
   data-test-subj="test subject string"
 >
   <div
-    class="euiCard__content"
+    class="euiCard__content emotion-euiCard__content-vertical"
   >
-    <span
-      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+    <p
+      class="euiTitle euiCard__title emotion-euiTitle-s"
       id="generated-idTitle"
     >
-      Card title
-    </span>
+      <span
+        class="emotion-euiCard__text-center"
+      >
+        Card title
+      </span>
+    </p>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText emotion-euiText-s-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -109,19 +116,23 @@ exports[`EuiCard is rendered 1`] = `
 
 exports[`EuiCard props a null icon 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center-vertical"
 >
   <div
-    class="euiCard__content"
+    class="euiCard__content emotion-euiCard__content-vertical"
   >
-    <span
-      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+    <p
+      class="euiTitle euiCard__title emotion-euiTitle-s"
       id="generated-idTitle"
     >
-      Card title
-    </span>
+      <span
+        class="emotion-euiCard__text-center"
+      >
+        Card title
+      </span>
+    </p>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText emotion-euiText-s-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -134,20 +145,24 @@ exports[`EuiCard props a null icon 1`] = `
 
 exports[`EuiCard props accepts div props like style 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center-vertical"
   style="min-width:0"
 >
   <div
-    class="euiCard__content"
+    class="euiCard__content emotion-euiCard__content-vertical"
   >
-    <span
-      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+    <p
+      class="euiTitle euiCard__title emotion-euiTitle-s"
       id="generated-idTitle"
     >
-      Card title
-    </span>
+      <span
+        class="emotion-euiCard__text-center"
+      >
+        Card title
+      </span>
+    </p>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText emotion-euiText-s-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -160,19 +175,23 @@ exports[`EuiCard props accepts div props like style 1`] = `
 
 exports[`EuiCard props children 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center-vertical"
 >
   <div
-    class="euiCard__content"
+    class="euiCard__content emotion-euiCard__content-vertical"
   >
-    <span
-      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+    <p
+      class="euiTitle euiCard__title emotion-euiTitle-s"
       id="generated-idTitle"
     >
-      Card title
-    </span>
+      <span
+        class="emotion-euiCard__text-center"
+      >
+        Card title
+      </span>
+    </p>
     <div
-      class="euiCard__children"
+      class="emotion-euiCard__children"
     >
       Child
     </div>
@@ -182,19 +201,23 @@ exports[`EuiCard props children 1`] = `
 
 exports[`EuiCard props children with description 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center-vertical"
 >
   <div
-    class="euiCard__content"
+    class="euiCard__content emotion-euiCard__content-vertical"
   >
-    <span
-      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+    <p
+      class="euiTitle euiCard__title emotion-euiTitle-s"
       id="generated-idTitle"
     >
-      Card title
-    </span>
+      <span
+        class="emotion-euiCard__text-center"
+      >
+        Card title
+      </span>
+    </p>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText emotion-euiText-s-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -202,7 +225,7 @@ exports[`EuiCard props children with description 1`] = `
       </p>
     </div>
     <div
-      class="euiCard__children"
+      class="emotion-euiCard__children"
     >
       Child
     </div>
@@ -212,19 +235,23 @@ exports[`EuiCard props children with description 1`] = `
 
 exports[`EuiCard props display accent is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--accent euiPanel--noShadow euiPanel--noBorder euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--accent euiPanel--paddingMedium euiCard euiCard--centerAligned emotion-euiPanel-grow-m-m-accent-euiCard-center-vertical"
 >
   <div
-    class="euiCard__content"
+    class="euiCard__content emotion-euiCard__content-vertical"
   >
-    <span
-      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+    <p
+      class="euiTitle euiCard__title emotion-euiTitle-s"
       id="generated-idTitle"
     >
-      Card title
-    </span>
+      <span
+        class="emotion-euiCard__text-center"
+      >
+        Card title
+      </span>
+    </p>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText emotion-euiText-s-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -237,19 +264,23 @@ exports[`EuiCard props display accent is rendered 1`] = `
 
 exports[`EuiCard props display danger is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--danger euiPanel--noShadow euiPanel--noBorder euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--danger euiPanel--paddingMedium euiCard euiCard--centerAligned emotion-euiPanel-grow-m-m-danger-euiCard-center-vertical"
 >
   <div
-    class="euiCard__content"
+    class="euiCard__content emotion-euiCard__content-vertical"
   >
-    <span
-      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+    <p
+      class="euiTitle euiCard__title emotion-euiTitle-s"
       id="generated-idTitle"
     >
-      Card title
-    </span>
+      <span
+        class="emotion-euiCard__text-center"
+      >
+        Card title
+      </span>
+    </p>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText emotion-euiText-s-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -262,19 +293,23 @@ exports[`EuiCard props display danger is rendered 1`] = `
 
 exports[`EuiCard props display plain is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned emotion-euiPanel-grow-m-m-plain-euiCard-center-vertical"
 >
   <div
-    class="euiCard__content"
+    class="euiCard__content emotion-euiCard__content-vertical"
   >
-    <span
-      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+    <p
+      class="euiTitle euiCard__title emotion-euiTitle-s"
       id="generated-idTitle"
     >
-      Card title
-    </span>
+      <span
+        class="emotion-euiCard__text-center"
+      >
+        Card title
+      </span>
+    </p>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText emotion-euiText-s-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -287,19 +322,23 @@ exports[`EuiCard props display plain is rendered 1`] = `
 
 exports[`EuiCard props display primary is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--primary euiPanel--noShadow euiPanel--noBorder euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCard euiCard--centerAligned emotion-euiPanel-grow-m-m-primary-euiCard-center-vertical"
 >
   <div
-    class="euiCard__content"
+    class="euiCard__content emotion-euiCard__content-vertical"
   >
-    <span
-      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+    <p
+      class="euiTitle euiCard__title emotion-euiTitle-s"
       id="generated-idTitle"
     >
-      Card title
-    </span>
+      <span
+        class="emotion-euiCard__text-center"
+      >
+        Card title
+      </span>
+    </p>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText emotion-euiText-s-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -312,19 +351,23 @@ exports[`EuiCard props display primary is rendered 1`] = `
 
 exports[`EuiCard props display subdued is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--subdued euiPanel--paddingMedium euiCard euiCard--centerAligned emotion-euiPanel-grow-m-m-subdued-euiCard-center-vertical"
 >
   <div
-    class="euiCard__content"
+    class="euiCard__content emotion-euiCard__content-vertical"
   >
-    <span
-      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+    <p
+      class="euiTitle euiCard__title emotion-euiTitle-s"
       id="generated-idTitle"
     >
-      Card title
-    </span>
+      <span
+        class="emotion-euiCard__text-center"
+      >
+        Card title
+      </span>
+    </p>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText emotion-euiText-s-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -337,19 +380,23 @@ exports[`EuiCard props display subdued is rendered 1`] = `
 
 exports[`EuiCard props display success is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--success euiPanel--noShadow euiPanel--noBorder euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--success euiPanel--paddingMedium euiCard euiCard--centerAligned emotion-euiPanel-grow-m-m-success-euiCard-center-vertical"
 >
   <div
-    class="euiCard__content"
+    class="euiCard__content emotion-euiCard__content-vertical"
   >
-    <span
-      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+    <p
+      class="euiTitle euiCard__title emotion-euiTitle-s"
       id="generated-idTitle"
     >
-      Card title
-    </span>
+      <span
+        class="emotion-euiCard__text-center"
+      >
+        Card title
+      </span>
+    </p>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText emotion-euiText-s-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -362,19 +409,23 @@ exports[`EuiCard props display success is rendered 1`] = `
 
 exports[`EuiCard props display transparent is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiCard euiCard--centerAligned emotion-euiPanel-grow-m-m-transparent-euiCard-center-vertical"
 >
   <div
-    class="euiCard__content"
+    class="euiCard__content emotion-euiCard__content-vertical"
   >
-    <span
-      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+    <p
+      class="euiTitle euiCard__title emotion-euiTitle-s"
       id="generated-idTitle"
     >
-      Card title
-    </span>
+      <span
+        class="emotion-euiCard__text-center"
+      >
+        Card title
+      </span>
+    </p>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText emotion-euiText-s-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -387,19 +438,23 @@ exports[`EuiCard props display transparent is rendered 1`] = `
 
 exports[`EuiCard props display warning is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--warning euiPanel--noShadow euiPanel--noBorder euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--warning euiPanel--paddingMedium euiCard euiCard--centerAligned emotion-euiPanel-grow-m-m-warning-euiCard-center-vertical"
 >
   <div
-    class="euiCard__content"
+    class="euiCard__content emotion-euiCard__content-vertical"
   >
-    <span
-      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+    <p
+      class="euiTitle euiCard__title emotion-euiTitle-s"
       id="generated-idTitle"
     >
-      Card title
-    </span>
+      <span
+        class="emotion-euiCard__text-center"
+      >
+        Card title
+      </span>
+    </p>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText emotion-euiText-s-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -412,19 +467,23 @@ exports[`EuiCard props display warning is rendered 1`] = `
 
 exports[`EuiCard props footer 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center-vertical"
 >
   <div
-    class="euiCard__content"
+    class="euiCard__content emotion-euiCard__content-vertical"
   >
-    <span
-      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+    <p
+      class="euiTitle euiCard__title emotion-euiTitle-s"
       id="generated-idTitle"
     >
-      Card title
-    </span>
+      <span
+        class="emotion-euiCard__text-center"
+      >
+        Card title
+      </span>
+    </p>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText emotion-euiText-s-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -433,7 +492,7 @@ exports[`EuiCard props footer 1`] = `
     </div>
   </div>
   <div
-    class="euiCard__footer"
+    class="emotion-euiCard__footer"
   >
     <span>
       Footer
@@ -444,19 +503,23 @@ exports[`EuiCard props footer 1`] = `
 
 exports[`EuiCard props hasBorder 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--hasBorder euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned emotion-euiPanel-grow-m-m-plain-hasBorder-euiCard-center-vertical"
 >
   <div
-    class="euiCard__content"
+    class="euiCard__content emotion-euiCard__content-vertical"
   >
-    <span
-      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+    <p
+      class="euiTitle euiCard__title emotion-euiTitle-s"
       id="generated-idTitle"
     >
-      Card title
-    </span>
+      <span
+        class="emotion-euiCard__text-center"
+      >
+        Card title
+      </span>
+    </p>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText emotion-euiText-s-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -469,19 +532,23 @@ exports[`EuiCard props hasBorder 1`] = `
 
 exports[`EuiCard props horizontal 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned euiCard--horizontal"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned euiCard--horizontal emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-left-horizontal"
 >
   <div
-    class="euiCard__content"
+    class="euiCard__content emotion-euiCard__content-horizontal"
   >
-    <span
-      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+    <p
+      class="euiTitle euiCard__title emotion-euiTitle-s"
       id="generated-idTitle"
     >
-      Card title
-    </span>
+      <span
+        class="emotion-euiCard__text-left"
+      >
+        Card title
+      </span>
+    </p>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText emotion-euiText-s-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -494,26 +561,26 @@ exports[`EuiCard props horizontal 1`] = `
 
 exports[`EuiCard props href supports href as a link 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--isClickable euiCard euiCard--centerAligned euiCard--isClickable"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned euiCard--isClickable emotion-euiPanel-grow-m-m-plain-hasShadow-isClickable-euiCard-center-vertical"
 >
   <div
-    class="euiCard__content"
+    class="euiCard__content emotion-euiCard__content-vertical"
   >
-    <span
-      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+    <p
+      class="euiTitle euiCard__title emotion-euiTitle-s"
       id="generated-idTitle"
     >
       <a
         aria-describedby="generated-idDescription"
-        class="euiCard__titleAnchor"
+        class="euiCard__titleAnchor emotion-euiCard__text-center-interactive"
         href="#"
         rel="noreferrer"
       >
         Hoi
       </a>
-    </span>
+    </p>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText emotion-euiText-s-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -526,27 +593,31 @@ exports[`EuiCard props href supports href as a link 1`] = `
 
 exports[`EuiCard props icon 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned euiCard--hasIcon"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned euiCard--hasIcon emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center-vertical"
 >
   <div
-    class="euiCard__top"
+    class="euiCard__top emotion-euiCard__top-vertical"
   >
     <span
-      class="myIconClass euiCard__icon"
+      class="myIconClass euiCard__icon emotion-euiCard__icon-vertical"
       data-euiicon-type="apmApp"
     />
   </div>
   <div
-    class="euiCard__content"
+    class="euiCard__content emotion-euiCard__content-vertical"
   >
-    <span
-      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+    <p
+      class="euiTitle euiCard__title emotion-euiTitle-s"
       id="generated-idTitle"
     >
-      Card title
-    </span>
+      <span
+        class="emotion-euiCard__text-center"
+      >
+        Card title
+      </span>
+    </p>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText emotion-euiText-s-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -559,13 +630,13 @@ exports[`EuiCard props icon 1`] = `
 
 exports[`EuiCard props image 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center-vertical"
 >
   <div
-    class="euiCard__top"
+    class="euiCard__top emotion-euiCard__top-vertical"
   >
     <div
-      class="euiCard__image"
+      class="euiCard__image emotion-euiCard__image"
     >
       <div>
         <img
@@ -576,16 +647,20 @@ exports[`EuiCard props image 1`] = `
     </div>
   </div>
   <div
-    class="euiCard__content"
+    class="euiCard__content emotion-euiCard__content-vertical"
   >
-    <span
-      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+    <p
+      class="euiTitle euiCard__title emotion-euiTitle-s"
       id="generated-idTitle"
     >
-      Card title
-    </span>
+      <span
+        class="emotion-euiCard__text-center"
+      >
+        Card title
+      </span>
+    </p>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText emotion-euiText-s-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -598,25 +673,25 @@ exports[`EuiCard props image 1`] = `
 
 exports[`EuiCard props isDisabled 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiCard euiCard--centerAligned euiCard-isDisabled"
+  class="euiPanel euiPanel--subdued euiPanel--paddingMedium euiCard euiCard--centerAligned euiCard-isDisabled emotion-euiPanel-grow-m-m-subdued-euiCard-center-vertical-disabled"
 >
   <div
-    class="euiCard__content"
+    class="euiCard__content emotion-euiCard__content-vertical"
   >
-    <span
-      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+    <p
+      class="euiTitle euiCard__title emotion-euiTitle-s"
       id="generated-idTitle"
     >
       <button
         aria-describedby=" generated-idDescription"
-        class="euiCard__titleButton"
+        class="euiCard__titleButton emotion-euiCard__text-center-disabled"
         disabled=""
       >
         Card title
       </button>
-    </span>
+    </p>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText emotion-euiText-s-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -629,19 +704,23 @@ exports[`EuiCard props isDisabled 1`] = `
 
 exports[`EuiCard props paddingSize l is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--plain euiPanel--paddingLarge euiCard euiCard--centerAligned emotion-euiPanel-grow-m-l-plain-hasShadow-euiCard-center-vertical"
 >
   <div
-    class="euiCard__content"
+    class="euiCard__content emotion-euiCard__content-vertical"
   >
-    <span
-      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+    <p
+      class="euiTitle euiCard__title emotion-euiTitle-s"
       id="generated-idTitle"
     >
-      Card title
-    </span>
+      <span
+        class="emotion-euiCard__text-center"
+      >
+        Card title
+      </span>
+    </p>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText emotion-euiText-s-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -654,19 +733,23 @@ exports[`EuiCard props paddingSize l is rendered 1`] = `
 
 exports[`EuiCard props paddingSize m is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center-vertical"
 >
   <div
-    class="euiCard__content"
+    class="euiCard__content emotion-euiCard__content-vertical"
   >
-    <span
-      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+    <p
+      class="euiTitle euiCard__title emotion-euiTitle-s"
       id="generated-idTitle"
     >
-      Card title
-    </span>
+      <span
+        class="emotion-euiCard__text-center"
+      >
+        Card title
+      </span>
+    </p>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText emotion-euiText-s-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -679,19 +762,23 @@ exports[`EuiCard props paddingSize m is rendered 1`] = `
 
 exports[`EuiCard props paddingSize none is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--plain euiCard euiCard--centerAligned emotion-euiPanel-grow-m-plain-hasShadow-euiCard-center-vertical"
 >
   <div
-    class="euiCard__content"
+    class="euiCard__content emotion-euiCard__content-vertical"
   >
-    <span
-      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+    <p
+      class="euiTitle euiCard__title emotion-euiTitle-s"
       id="generated-idTitle"
     >
-      Card title
-    </span>
+      <span
+        class="emotion-euiCard__text-center"
+      >
+        Card title
+      </span>
+    </p>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText emotion-euiText-s-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -704,19 +791,81 @@ exports[`EuiCard props paddingSize none is rendered 1`] = `
 
 exports[`EuiCard props paddingSize s is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--plain euiPanel--paddingSmall euiCard euiCard--centerAligned emotion-euiPanel-grow-m-s-plain-hasShadow-euiCard-center-vertical"
 >
   <div
-    class="euiCard__content"
+    class="euiCard__content emotion-euiCard__content-vertical"
   >
-    <span
-      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+    <p
+      class="euiTitle euiCard__title emotion-euiTitle-s"
       id="generated-idTitle"
     >
-      Card title
-    </span>
+      <span
+        class="emotion-euiCard__text-center"
+      >
+        Card title
+      </span>
+    </p>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText emotion-euiText-s-euiCard__description"
+      id="generated-idDescription"
+    >
+      <p>
+        Card description
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiCard props paddingSize xl is rendered 1`] = `
+<div
+  class="euiPanel euiPanel--plain euiCard euiCard--centerAligned emotion-euiPanel-grow-m-xl-plain-hasShadow-euiCard-center-vertical"
+>
+  <div
+    class="euiCard__content emotion-euiCard__content-vertical"
+  >
+    <p
+      class="euiTitle euiCard__title emotion-euiTitle-s"
+      id="generated-idTitle"
+    >
+      <span
+        class="emotion-euiCard__text-center"
+      >
+        Card title
+      </span>
+    </p>
+    <div
+      class="euiText emotion-euiText-s-euiCard__description"
+      id="generated-idDescription"
+    >
+      <p>
+        Card description
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiCard props paddingSize xs is rendered 1`] = `
+<div
+  class="euiPanel euiPanel--plain euiCard euiCard--centerAligned emotion-euiPanel-grow-m-xs-plain-hasShadow-euiCard-center-vertical"
+>
+  <div
+    class="euiCard__content emotion-euiCard__content-vertical"
+  >
+    <p
+      class="euiTitle euiCard__title emotion-euiTitle-s"
+      id="generated-idTitle"
+    >
+      <span
+        class="emotion-euiCard__text-center"
+      >
+        Card title
+      </span>
+    </p>
+    <div
+      class="euiText emotion-euiText-s-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -729,19 +878,23 @@ exports[`EuiCard props paddingSize s is rendered 1`] = `
 
 exports[`EuiCard props selectable 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--isClickable euiCard euiCard--centerAligned euiCard--isClickable euiCard--isSelectable euiCard--isSelectable--text"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned euiCard--isClickable euiCard--isSelectable euiCard--isSelectable--text emotion-euiPanel-grow-m-m-plain-hasShadow-isClickable-euiCard-center-vertical"
 >
   <div
-    class="euiCard__content"
+    class="euiCard__content emotion-euiCard__content-vertical"
   >
-    <span
-      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+    <p
+      class="euiTitle euiCard__title emotion-euiTitle-s"
       id="generated-idTitle"
     >
-      Card title
-    </span>
+      <span
+        class="emotion-euiCard__text-center-interactive"
+      >
+        Card title
+      </span>
+    </p>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText emotion-euiText-s-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -749,21 +902,20 @@ exports[`EuiCard props selectable 1`] = `
       </p>
     </div>
   </div>
+  <div
+    class="euiSpacer euiSpacer--m emotion-euiSpacer-m"
+  />
   <button
     aria-checked="false"
     aria-describedby="generated-idTitle generated-idDescription"
-    class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiCardSelect euiCardSelect--text"
+    class="emotion-euiButtonDisplay-m-fullWidth-m-base-text-euiCardSelect"
     role="switch"
     type="button"
   >
     <span
-      class="euiButtonContent euiButtonEmpty__content"
+      class="emotion-euiButtonDisplayContent"
     >
-      <span
-        class="euiButtonEmpty__text"
-      >
-        Select
-      </span>
+      Select
     </span>
   </button>
 </div>
@@ -771,19 +923,23 @@ exports[`EuiCard props selectable 1`] = `
 
 exports[`EuiCard props textAlign 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--rightAligned"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--rightAligned emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-right-vertical"
 >
   <div
-    class="euiCard__content"
+    class="euiCard__content emotion-euiCard__content-vertical"
   >
-    <span
-      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+    <p
+      class="euiTitle euiCard__title emotion-euiTitle-s"
       id="generated-idTitle"
     >
-      Card title
-    </span>
+      <span
+        class="emotion-euiCard__text-right"
+      >
+        Card title
+      </span>
+    </p>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText emotion-euiText-s-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -796,19 +952,23 @@ exports[`EuiCard props textAlign 1`] = `
 
 exports[`EuiCard props titleElement 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center-vertical"
 >
   <div
-    class="euiCard__content"
+    class="euiCard__content emotion-euiCard__content-vertical"
   >
     <h4
-      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+      class="euiTitle euiCard__title emotion-euiTitle-s"
       id="generated-idTitle"
     >
-      Card title
+      <span
+        class="emotion-euiCard__text-center"
+      >
+        Card title
+      </span>
     </h4>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText emotion-euiText-s-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -821,19 +981,23 @@ exports[`EuiCard props titleElement 1`] = `
 
 exports[`EuiCard props titleElement with nodes 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center-vertical"
 >
   <div
-    class="euiCard__content"
+    class="euiCard__content emotion-euiCard__content-vertical"
   >
     <h4
-      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+      class="euiTitle euiCard__title emotion-euiTitle-s"
       id="generated-idTitle"
     >
-      Card title
+      <span
+        class="emotion-euiCard__text-center"
+      >
+        Card title
+      </span>
     </h4>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText emotion-euiText-s-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -846,19 +1010,23 @@ exports[`EuiCard props titleElement with nodes 1`] = `
 
 exports[`EuiCard props titleSize 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center-vertical"
 >
   <div
-    class="euiCard__content"
+    class="euiCard__content emotion-euiCard__content-vertical"
   >
-    <span
-      class="euiTitle euiCard__title css-1c9cwui-euiTitle-xs"
+    <p
+      class="euiTitle euiCard__title emotion-euiTitle-xs"
       id="generated-idTitle"
     >
-      Card title
-    </span>
+      <span
+        class="emotion-euiCard__text-center"
+      >
+        Card title
+      </span>
+    </p>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText emotion-euiText-s-euiCard__description"
       id="generated-idDescription"
     >
       <p>

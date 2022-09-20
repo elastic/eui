@@ -19,7 +19,9 @@ export const euiCallOutStyles = ({ euiTheme }: UseEuiTheme) => {
       ${logicalCSS('margin-right', euiTheme.size.s)};
     `,
     euiCallOut__description: css`
-      ${logicalCSS('margin-top', euiTheme.size.s)};
+      :not(:only-child) {
+        ${logicalCSS('margin-top', euiTheme.size.s)};
+      }
     `,
   };
 };
@@ -28,7 +30,11 @@ export const euiCallOutHeadingStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     euiCallOutHeader: css`
       font-weight: ${euiTheme.font.weight.medium};
-      margin-bottom: 0 !important; // In case it's nested inside EuiText
+      ${logicalCSS(
+        'margin-bottom',
+        '0 !important'
+        // In case it's nested inside EuiText
+      )}
     `,
 
     primary: css`

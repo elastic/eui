@@ -12,6 +12,11 @@ import {
   EuiCallOut,
   EuiLink,
   EuiText,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiCard,
+  EuiPanel,
+  EuiSpacer,
 } from '../../../../src/components';
 
 import { EuiButtonGroupOptionProps } from '!!prop-loader!../../../../src/components/button/button_group/button_group';
@@ -256,6 +261,81 @@ export const ButtonExample = {
   ),
   sections: [
     {
+      text: (
+        <>
+          <EuiSpacer size="xl" />
+          <EuiFlexGroup wrap>
+            <EuiFlexItem>
+              <EuiCard
+                hasBorder
+                href="#/navigation/button#basic-button"
+                image={
+                  <EuiPanel color="subdued" borderRadius="none">
+                    <EuiPanel color="subdued">
+                      <EuiButton fill>Primary action</EuiButton>
+                    </EuiPanel>
+                  </EuiPanel>
+                }
+                title="EuiButton"
+                titleSize="xs"
+              />
+            </EuiFlexItem>
+            <EuiFlexItem>
+              <EuiCard
+                hasBorder
+                href="#/navigation/button#basic-button"
+                image={
+                  <EuiPanel color="subdued" borderRadius="none">
+                    <EuiPanel color="subdued">
+                      <EuiButton>Secondary action</EuiButton>
+                    </EuiPanel>
+                  </EuiPanel>
+                }
+                title="EuiButton"
+                titleSize="xs"
+              />
+            </EuiFlexItem>
+            <EuiFlexItem>
+              <EuiCard
+                hasBorder
+                href="#/navigation/button#empty-button"
+                image={
+                  <EuiPanel color="subdued" borderRadius="none">
+                    <EuiPanel color="subdued">
+                      <EuiButtonEmpty>Tertiary action</EuiButtonEmpty>
+                    </EuiPanel>
+                  </EuiPanel>
+                }
+                title="EuiButtonEmpty"
+                titleSize="xs"
+              />
+            </EuiFlexItem>
+            <EuiFlexItem>
+              <EuiCard
+                hasBorder
+                href="#/navigation/button#icon-buttons"
+                image={
+                  <EuiPanel color="subdued" borderRadius="none">
+                    <EuiPanel color="subdued">
+                      <EuiButtonIcon
+                        display="base"
+                        size="m"
+                        iconType="refresh"
+                        aria-label="Button icon example with refresh icon"
+                      />
+                    </EuiPanel>
+                  </EuiPanel>
+                }
+                title="EuiButtonIcon"
+                titleSize="xs"
+              />
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </>
+      ),
+    },
+    {
+      title: 'Basic button',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -543,7 +623,7 @@ export const ButtonExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             An <strong>EuiButtonGroup</strong> is for indicating{' '}
             <strong>selection</strong> only. They utilize the{' '}
@@ -563,7 +643,7 @@ export const ButtonExample = {
               </span>
             }
           />
-        </div>
+        </>
       ),
       demo: <ButtonGroup />,
       snippet: buttonGroupSnippet,
@@ -624,8 +704,7 @@ export const ButtonExample = {
       demoPanelProps: { color: 'subdued' },
     },
     {
-      title: 'Ghost',
-      ghostBackground: true,
+      title: 'Ghost vs. dark mode',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -634,19 +713,24 @@ export const ButtonExample = {
       ],
       text: (
         <p>
-          For buttons on dark color backgrounds, you can pass{' '}
-          <EuiCode language="js">{'color="ghost"'}</EuiCode> to any of the
-          button components on this page. These should be used extremely rarely,
-          and are only for placing buttons on top of dark or image-based
-          backgrounds. A good example of their use is in the{' '}
+          For buttons on dark color backgrounds, it is recommended to wrap the
+          entire area in{' '}
+          <EuiCode language="js">
+            {'<EuiThemeProvider colorMode="dark">'}
+          </EuiCode>{' '}
+          to invert all colors to dark mode. The legacy{' '}
+          <EuiCode language="js">{'color="ghost"'}</EuiCode> now uses this
+          method and is set for deprecation. An example usage of inverted
+          buttons is in combination with{' '}
           <Link to="/layout/bottom-bar">
             <strong>EuiBottomBar</strong>
           </Link>{' '}
-          component.
+          which already wraps its children in dark mode.
         </p>
       ),
       snippet: buttonGhostSnippet,
       demo: <ButtonGhost />,
+      demoPanelProps: { paddingSize: 'none' },
     },
   ],
   guidelines: <Guidelines />,

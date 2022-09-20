@@ -12,6 +12,7 @@ import React, {
   FunctionComponent,
   ReactNode,
   useEffect,
+  useRef,
   useState,
 } from 'react';
 
@@ -36,6 +37,13 @@ export interface EuiScreenReaderLiveProps {
    * `aria-live` attribute for both live regions
    */
   'aria-live'?: AriaAttributes['aria-live'];
+  /**
+   * On `children`/text change, the region will auto-focus itself, causing screen readers
+   * to automatically read out the text content. This prop should primarily be used for
+   * navigation or page changes, where programmatically resetting focus location back to
+   * a certain part of the page is desired.
+   */
+  focusRegionOnTextChange?: boolean;
 }
 
 export const EuiScreenReaderLive: FunctionComponent<EuiScreenReaderLiveProps> = ({
@@ -43,12 +51,20 @@ export const EuiScreenReaderLive: FunctionComponent<EuiScreenReaderLiveProps> = 
   isActive = true,
   role = 'status',
   'aria-live': ariaLive = 'polite',
+  focusRegionOnTextChange = false,
 }) => {
   const [toggle, setToggle] = useState(false);
+  const focusRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setToggle((toggle) => !toggle);
   }, [children]);
+
+  useEffect(() => {
+    if (focusRef.current !== null && focusRegionOnTextChange) {
+      focusRef.current.focus();
+    }
+  }, [toggle, focusRegionOnTextChange]);
 
   return (
     /**
@@ -62,11 +78,23 @@ export const EuiScreenReaderLive: FunctionComponent<EuiScreenReaderLiveProps> = 
      * for more examples of the double region approach.
      */
     <EuiScreenReaderOnly>
-      <div>
-        <div role={role} aria-atomic="true" aria-live={ariaLive}>
+      <div ref={focusRef} tabIndex={focusRegionOnTextChange ? -1 : undefined}>
+        <div
+          role={role}
+          aria-atomic="true"
+          // Setting `aria-hidden` and setting `aria-live` to "off" prevents
+          // double announcements from VO when `focusRegionOnTextChange` is true
+          aria-hidden={toggle ? undefined : 'true'}
+          aria-live={!toggle || focusRegionOnTextChange ? 'off' : ariaLive}
+        >
           {isActive && toggle ? children : ''}
         </div>
-        <div role={role} aria-atomic="true" aria-live={ariaLive}>
+        <div
+          role={role}
+          aria-atomic="true"
+          aria-hidden={!toggle ? undefined : 'true'}
+          aria-live={toggle || focusRegionOnTextChange ? 'off' : ariaLive}
+        >
           {isActive && !toggle ? children : ''}
         </div>
       </div>

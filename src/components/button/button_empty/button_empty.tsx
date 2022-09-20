@@ -16,32 +16,19 @@ import {
   PropsForButton,
   keysOf,
 } from '../../common';
-import { getSecureRelForTarget } from '../../../services';
+import { EuiThemeProvider, getSecureRelForTarget } from '../../../services';
+
 import {
-  EuiButtonContent,
+  EuiButtonContentDeprecated as EuiButtonContent,
   EuiButtonContentProps,
   EuiButtonContentType,
-} from '../button_content';
-import { validateHref } from '../../../services/security/href_validator';
+} from '../_button_content_deprecated';
 
-export type EuiButtonEmptyColor =
-  | 'primary'
-  | 'danger'
-  | 'text'
-  | 'ghost'
-  | 'success'
-  | 'warning';
-
-const colorToClassNameMap: { [color in EuiButtonEmptyColor]: string } = {
-  primary: 'euiButtonEmpty--primary',
-  danger: 'euiButtonEmpty--danger',
-  text: 'euiButtonEmpty--text',
-  ghost: 'euiButtonEmpty--ghost',
-  success: 'euiButtonEmpty--success',
-  warning: 'euiButtonEmpty--warning',
-};
-
-export const COLORS = keysOf(colorToClassNameMap);
+import {
+  useEuiButtonColorCSS,
+  _EuiButtonColor,
+} from '../../../themes/amsterdam/global_styling/mixins/button';
+import { isButtonDisabled } from '../button_display/_button_display';
 
 const sizeToClassNameMap = {
   xs: 'euiButtonEmpty--xSmall',
@@ -69,9 +56,10 @@ export interface CommonEuiButtonEmptyProps
   extends EuiButtonContentProps,
     CommonProps {
   /**
-   * Any of our named colors
+   * Any of the named color palette options.
+   * **`'ghost'` is set for deprecation. Use EuiThemeProvide.colorMode = 'dark' instead.**
    */
-  color?: EuiButtonEmptyColor;
+  color?: _EuiButtonColor | 'ghost';
   size?: EuiButtonEmptySizes;
   /**
    * Ensure the text of the button sits flush to the left, right, or both sides of its container
@@ -98,7 +86,7 @@ export interface CommonEuiButtonEmptyProps
   /**
    * Object of props passed to the <span/> wrapping the button's content
    */
-  contentProps?: EuiButtonContentType;
+  contentProps?: CommonProps & EuiButtonContentType;
 }
 
 type EuiButtonEmptyPropsForAnchor = PropsForAnchor<CommonEuiButtonEmptyProps>;
@@ -110,43 +98,57 @@ export type EuiButtonEmptyProps = ExclusiveUnion<
   EuiButtonEmptyPropsForButton
 >;
 
-export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
-  children,
-  className,
-  iconType,
-  iconSide = 'left',
-  iconSize = 'm',
-  color = 'primary',
-  size = 'm',
-  flush,
-  isDisabled: _isDisabled,
-  disabled: _disabled,
-  isLoading,
-  href,
-  target,
-  rel,
-  type = 'button',
-  buttonRef,
-  contentProps,
-  textProps,
-  isSelected,
-  ...rest
-}) => {
-  const isHrefValid = !href || validateHref(href);
-  const disabled = _disabled || !isHrefValid;
-  const isDisabled = _isDisabled || !isHrefValid;
+export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = (
+  props
+) => {
+  const {
+    children,
+    className,
+    iconType,
+    iconSide = 'left',
+    iconSize = 'm',
+    color: _color = 'primary',
+    size = 'm',
+    flush,
+    isDisabled: _isDisabled,
+    disabled,
+    isLoading,
+    href,
+    target,
+    rel,
+    type = 'button',
+    buttonRef,
+    contentProps,
+    textProps,
+    isSelected,
+    ...rest
+  } = props;
 
-  // If in the loading state, force disabled to true
-  const buttonIsDisabled = isLoading || isDisabled || disabled;
+  const isDisabled = isButtonDisabled({
+    isDisabled: _isDisabled || disabled,
+    href,
+    isLoading,
+  });
+
+  // eslint-disable-next-line no-nested-ternary
+  const color = isDisabled ? 'disabled' : _color === 'ghost' ? 'text' : _color;
+  const buttonColorStyles = useEuiButtonColorCSS({
+    display: 'empty',
+  })[color];
+
+  if (_color === 'ghost') {
+    // INCEPTION: If `ghost`, re-implement with a wrapping dark mode theme provider
+    return (
+      <EuiThemeProvider colorMode="dark">
+        <EuiButtonEmpty {...props} color="text" />
+      </EuiThemeProvider>
+    );
+  }
 
   const classes = classNames(
     'euiButtonEmpty',
-    colorToClassNameMap[color],
     size ? sizeToClassNameMap[size] : null,
     flush ? flushTypeToClassNameMap[flush] : null,
-    {
-      'euiButtonEmpty-isDisabled': buttonIsDisabled,
-    },
     className
   );
 
@@ -159,6 +161,8 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
     'euiButtonEmpty__text',
     textProps && textProps.className
   );
+
+  const cssStyles = [buttonColorStyles];
 
   const innerNode = (
     <EuiButtonContent
@@ -177,12 +181,13 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
 
   // <a> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend
   // this is a button and piggyback off its disabled styles.
-  if (href && !buttonIsDisabled) {
+  if (href && !isDisabled) {
     const secureRel = getSecureRelForTarget({ href, target, rel });
 
     return (
       <a
         className={classes}
+        css={cssStyles}
         href={href}
         target={target}
         rel={secureRel}
@@ -196,8 +201,9 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
 
   return (
     <button
-      disabled={buttonIsDisabled}
+      disabled={isDisabled}
       className={classes}
+      css={cssStyles}
       type={type}
       ref={buttonRef as Ref<HTMLButtonElement>}
       aria-pressed={isSelected}

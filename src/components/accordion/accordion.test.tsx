@@ -9,6 +9,7 @@
 import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiAccordion } from './accordion';
 
@@ -16,6 +17,11 @@ let id = 0;
 const getId = () => `${id++}`;
 
 describe('EuiAccordion', () => {
+  shouldRenderCustomStyles(<EuiAccordion id="styles" />, [
+    'buttonProps',
+    'arrowProps',
+  ]);
+
   test('is rendered', () => {
     const component = render(<EuiAccordion id={getId()} {...requiredProps} />);
 
@@ -188,6 +194,14 @@ describe('EuiAccordion', () => {
     });
   });
 
+  describe('isDisabled', () => {
+    it('is rendered', () => {
+      const component = render(<EuiAccordion id={getId()} isDisabled />);
+
+      expect(component).toMatchSnapshot();
+    });
+  });
+
   describe('behavior', () => {
     it('opens when clicked once', () => {
       const component = mount(
@@ -198,7 +212,19 @@ describe('EuiAccordion', () => {
 
       component.find('button').at(0).simulate('click');
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
+    });
+
+    it('does not open when isDisabled', () => {
+      const component = mount(
+        <EuiAccordion id={getId()} isDisabled>
+          <p>You cannot see me.</p>
+        </EuiAccordion>
+      );
+
+      component.find('button').at(0).simulate('click');
+
+      expect(component.render()).toMatchSnapshot();
     });
 
     it('opens when div is clicked if element is a div', () => {
@@ -208,9 +234,9 @@ describe('EuiAccordion', () => {
         </EuiAccordion>
       );
 
-      component.find('.euiAccordion__button').simulate('click');
+      component.find('button').at(0).simulate('click');
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
 
     it('closes when clicked twice', () => {
@@ -223,7 +249,7 @@ describe('EuiAccordion', () => {
       component.find('button').at(0).simulate('click');
       component.find('button').at(0).simulate('click');
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
 
     it('accepts and calls an optional callback on open and close', () => {
@@ -242,14 +268,13 @@ describe('EuiAccordion', () => {
     });
 
     it('moves focus to the content when expanded', () => {
-      const component = mount<EuiAccordion>(<EuiAccordion id={getId()} />);
-      const accordionClass = component.instance();
-      const childWrapper = accordionClass.childWrapper;
+      const component = mount(<EuiAccordion id={getId()} />);
+      const childWrapper = component.find('div[role="region"]').getDOMNode();
 
       expect(childWrapper).not.toBeFalsy();
       expect(childWrapper).not.toBe(document.activeElement);
 
-      // click button
+      // click the button
       component.find('button').at(0).simulate('click');
 
       expect(childWrapper).toBe(document.activeElement);

@@ -2,11 +2,11 @@
 
 exports[`EuiSplitPanel accepts panel props 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--primary euiPanel--noShadow euiPanel--noBorder euiPanel--flexGrowZero euiSplitPanel"
+  class="euiPanel euiPanel--primary euiSplitPanel emotion-euiPanel-m-primary"
 >
   <div
     aria-label="aria-label"
-    class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--success euiPanel--noShadow euiPanel--noBorder euiSplitPanel__inner testClass1 testClass2"
+    class="euiPanel euiPanel--success euiPanel--paddingMedium euiSplitPanel__inner testClass1 testClass2 emotion-euiPanel-grow-none-m-success"
     data-test-subj="test subject string"
   />
 </div>
@@ -14,10 +14,10 @@ exports[`EuiSplitPanel accepts panel props 1`] = `
 
 exports[`EuiSplitPanel inner children are rendered 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--flexGrowZero euiSplitPanel"
+  class="euiPanel euiPanel--plain euiSplitPanel emotion-euiPanel-m-plain-hasShadow"
 >
   <div
-    class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiSplitPanel__inner"
+    class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiSplitPanel__inner emotion-euiPanel-grow-none-m-transparent"
   />
 </div>
 `;
@@ -25,31 +25,31 @@ exports[`EuiSplitPanel inner children are rendered 1`] = `
 exports[`EuiSplitPanel is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--flexGrowZero euiSplitPanel testClass1 testClass2"
+  class="euiPanel euiPanel--plain euiSplitPanel testClass1 testClass2 emotion-euiPanel-m-plain-hasShadow"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`EuiSplitPanel renders as row 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--flexGrowZero euiSplitPanel euiSplitPanel--row"
+  class="euiPanel euiPanel--plain euiSplitPanel euiSplitPanel--row emotion-euiPanel-m-plain-hasShadow"
 />
 `;
 
 exports[`EuiSplitPanel responsive can be changed to different breakpoints 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--flexGrowZero euiSplitPanel"
+  class="euiPanel euiPanel--plain euiSplitPanel euiSplitPanel-isResponsive emotion-euiPanel-m-plain-hasShadow"
 />
 `;
 
 exports[`EuiSplitPanel responsive can be false 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--flexGrowZero euiSplitPanel"
+  class="euiPanel euiPanel--plain euiSplitPanel emotion-euiPanel-m-plain-hasShadow"
 />
 `;
 
 exports[`EuiSplitPanel responsive is rendered at small screens 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--flexGrowZero euiSplitPanel"
+  class="euiPanel euiPanel--plain euiSplitPanel euiSplitPanel-isResponsive emotion-euiPanel-m-plain-hasShadow"
 />
 `;

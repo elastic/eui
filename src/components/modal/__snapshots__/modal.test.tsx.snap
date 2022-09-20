@@ -27,7 +27,7 @@ Array [
     >
       <button
         aria-label="Closes this modal window"
-        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiModal__closeIcon"
+        class="euiButtonIcon euiButtonIcon--xSmall euiModal__closeIcon emotion-euiButtonIcon-empty-text-hoverStyles"
         type="button"
       >
         <span
@@ -37,11 +37,7 @@ Array [
           data-euiicon-type="cross"
         />
       </button>
-      <div
-        class="euiModal__flex"
-      >
-        children
-      </div>
+      children
     </div>
   </div>,
   <div

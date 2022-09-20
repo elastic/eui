@@ -6,24 +6,29 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes, CSSProperties } from 'react';
-import classNames from 'classnames';
-import { CommonProps, keysOf } from '../common';
+import React, {
+  FunctionComponent,
+  HTMLAttributes,
+  CSSProperties,
+  isValidElement,
+} from 'react';
+import { CommonProps } from '../common';
+import { cloneElementWithCss } from '../../services/theme/clone_element';
 
-const colorsToClassNameMap = {
-  default: 'euiTextColor--default',
-  subdued: 'euiTextColor--subdued',
-  success: 'euiTextColor--success',
-  accent: 'euiTextColor--accent',
-  danger: 'euiTextColor--danger',
-  warning: 'euiTextColor--warning',
-  ghost: 'euiTextColor--ghost',
-  inherit: 'euiTextColor--inherit',
-};
+import { useEuiTheme } from '../../services';
+import { euiTextColorStyles } from './text_color.styles';
 
-export type TextColor = keyof typeof colorsToClassNameMap;
-
-export const COLORS = keysOf(colorsToClassNameMap);
+export const COLORS = [
+  'default',
+  'subdued',
+  'success',
+  'accent',
+  'danger',
+  'warning',
+  'ghost',
+  'inherit',
+] as const;
+export type TextColor = typeof COLORS[number];
 
 export type EuiTextColorProps = CommonProps &
   Omit<
@@ -38,25 +43,29 @@ export type EuiTextColorProps = CommonProps &
      * Determines the root element
      */
     component?: 'div' | 'span';
+    /**
+     * Applies text styling to the child element instead of rendering a parent wrapper `span`/`div`.
+     * Can only be used when wrapping a *single* child element/tag, and not raw text.
+     */
+    cloneElement?: boolean;
   };
 
 export const EuiTextColor: FunctionComponent<EuiTextColorProps> = ({
   children,
   color = 'default',
-  className,
   component = 'span',
+  cloneElement = false,
   style,
   ...rest
 }) => {
   const isNamedColor = COLORS.includes(color as TextColor);
 
-  const classes = classNames(
-    'euiTextColor',
-    { 'euiTextColor--custom': !isNamedColor },
-    isNamedColor && colorsToClassNameMap[color as TextColor],
-    className
-  );
-  const Component = component;
+  const euiTheme = useEuiTheme();
+  const styles = euiTextColorStyles(euiTheme);
+  const cssStyles = [
+    styles.euiTextColor,
+    isNamedColor ? styles[color as TextColor] : styles.customColor,
+  ];
 
   // We're checking if is a custom color.
   // If it is a custom color we set the `color` of the `.euiTextColor` div to that custom color.
@@ -68,9 +77,13 @@ export const EuiTextColor: FunctionComponent<EuiTextColorProps> = ({
       }
     : { ...style };
 
-  return (
-    <Component className={classes} style={euiTextStyle} {...rest}>
-      {children}
-    </Component>
-  );
+  const props = { css: cssStyles, style: euiTextStyle, ...rest };
+
+  if (isValidElement(children) && cloneElement) {
+    const childrenStyle = { ...children.props.style, ...euiTextStyle };
+    return cloneElementWithCss(children, { ...props, style: childrenStyle });
+  } else {
+    const Component = component;
+    return <Component {...props}>{children}</Component>;
+  }
 };

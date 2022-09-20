@@ -37,7 +37,16 @@ import {
   useGeneratedHtmlId,
   findElementBySelectorOrRef,
   ElementTarget,
+  useEuiTheme,
 } from '../../services';
+import { EuiPopoverPosition } from '../../services/popover';
+
+import {
+  euiTourStyles,
+  euiTourBeaconStyles,
+  euiTourFooterStyles,
+  euiTourHeaderStyles,
+} from './tour.styles';
 
 type PopoverOverrides = 'button' | 'closePopover';
 
@@ -155,6 +164,11 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   const [hasValidAnchor, setHasValidAnchor] = useState<boolean>(false);
   const animationFrameId = useRef<number>();
   const anchorNode = useRef<HTMLElement | null>(null);
+  const [popoverPosition, setPopoverPosition] = useState<EuiPopoverPosition>();
+
+  const onPositionChange = (position: EuiPopoverPosition) => {
+    setPopoverPosition(position);
+  };
 
   useEffect(() => {
     if (anchor) {
@@ -170,9 +184,16 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
     };
   }, [anchor]);
 
-  const newStyle: CSSProperties = { ...style, maxWidth, minWidth };
-
   const classes = classNames('euiTour', className);
+  const euiTheme = useEuiTheme();
+  const tourStyles = euiTourStyles(euiTheme);
+  const headerStyles = euiTourHeaderStyles(euiTheme);
+  const footerStyles = euiTourFooterStyles(euiTheme);
+  const beaconStyles = euiTourBeaconStyles(euiTheme);
+  const beaconCss = [
+    beaconStyles.euiTourBeacon,
+    popoverPosition && beaconStyles[popoverPosition],
+  ];
 
   const finishButtonProps: EuiButtonEmptyProps = {
     color: 'text',
@@ -240,28 +261,41 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
     isOpen: isStepOpen,
     ownFocus: false,
     panelClassName: classes,
-    panelStyle: newStyle,
+    panelStyle: style,
+    panelProps: { css: tourStyles.euiTour },
     offset: hasBeacon ? 10 : 0,
     'aria-labelledby': titleId,
-    arrowChildren: hasBeacon && <EuiBeacon className="euiTour__beacon" />,
+    arrowChildren: hasBeacon && (
+      <EuiBeacon css={beaconCss} className="euiTour__beacon" />
+    ),
+    onPositionChange,
     ...rest,
   };
 
   const layout = (
-    <>
-      <EuiPopoverTitle className="euiTourHeader" id={titleId}>
+    <div style={{ minWidth, maxWidth }}>
+      <EuiPopoverTitle
+        css={headerStyles.euiTourHeader}
+        className="euiTourHeader"
+        id={titleId}
+      >
         {subtitle && (
-          <EuiTitle size="xxxs" className="euiTourHeader__subtitle">
+          <EuiTitle css={headerStyles.euiTourHeader__subtitle} size="xxxs">
             <h2>{subtitle}</h2>
           </EuiTitle>
         )}
-        <EuiTitle size="xxs" className="euiTourHeader__title">
+        <EuiTitle css={headerStyles.euiTourHeader__title} size="xxs">
           {subtitle ? <h3>{title}</h3> : <h2>{title}</h2>}
         </EuiTitle>
       </EuiPopoverTitle>
       <div className="euiTour__content">{content}</div>
-      <EuiPopoverFooter className="euiTourFooter">{footer}</EuiPopoverFooter>
-    </>
+      <EuiPopoverFooter
+        css={footerStyles.euiTourFooter}
+        className="euiTourFooter"
+      >
+        {footer}
+      </EuiPopoverFooter>
+    </div>
   );
 
   if (!anchor && children) {

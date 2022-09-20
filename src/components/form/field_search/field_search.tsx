@@ -141,23 +141,14 @@ export class EuiFieldSearch extends Component<
       nativeInputValueSetter.call(this.inputElement, '');
     }
 
-    // dispatch input event, with IE11 support/fallback
-    let event;
-    if ('Event' in window && typeof Event === 'function') {
-      event = new Event('input', {
-        bubbles: true,
-        cancelable: false,
-      });
-    } else {
-      // IE11
-      event = document.createEvent('Event');
-      event.initEvent('input', true, false);
-    }
+    // dispatch input event
+    const event = new Event('input', {
+      bubbles: true,
+      cancelable: false,
+    });
 
     if (this.inputElement) {
-      if (event) {
-        this.inputElement.dispatchEvent(event);
-      }
+      this.inputElement.dispatchEvent(event);
       // set focus on the search field
       this.inputElement.focus();
       this.inputElement.dispatchEvent(new Event('change'));

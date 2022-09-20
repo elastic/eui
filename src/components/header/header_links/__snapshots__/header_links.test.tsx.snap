@@ -73,14 +73,14 @@ exports[`EuiHeaderLinks popover props is rendered 1`] = `
   class="euiHeaderLinks"
 >
   <div
-    class="euiPopover euiPopover--anchorDownRight"
+    class="euiPopover emotion-euiPopover"
   >
     <div
-      class="euiPopover__anchor customAnchorClass"
+      class="euiPopover__anchor customAnchorClass css-16vtueo-render"
     >
       <button
         aria-label="Open menu"
-        class="euiButtonEmpty euiButtonEmpty--text euiHeaderSectionItemButton customButtonClass"
+        class="euiButtonEmpty euiHeaderSectionItemButton customButtonClass css-wvaqcf-empty-text"
         type="button"
       >
         <span

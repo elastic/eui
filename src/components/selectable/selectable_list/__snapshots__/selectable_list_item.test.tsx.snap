@@ -69,7 +69,7 @@ exports[`EuiSelectableListItem props checked is off 1`] = `
       class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
     >
       <div
-        class="euiScreenReaderOnly"
+        class="emotion-euiScreenReaderOnly"
       >
          - Checked option.
       </div>
@@ -97,7 +97,7 @@ exports[`EuiSelectableListItem props checked is on 1`] = `
       class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
     >
       <div
-        class="euiScreenReaderOnly"
+        class="emotion-euiScreenReaderOnly"
       >
          - Checked option.
       </div>
@@ -153,13 +153,13 @@ exports[`EuiSelectableListItem props isFocused 1`] = `
        
       <span
         aria-hidden="true"
-        class="euiBadge euiBadge--hollow euiBadge--iconLeft euiSelectableListItem__onFocusBadge"
+        class="euiBadge euiSelectableListItem__onFocusBadge emotion-euiBadge-hollow"
       >
         <span
-          class="euiBadge__content"
+          class="euiBadge__content emotion-euiBadge__content"
         >
           <span
-            class="euiBadge__icon"
+            class="euiBadge__icon emotion-euiBadge__icon-left"
             color="inherit"
             data-euiicon-type="returnKey"
           />

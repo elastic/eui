@@ -1,5 +1,6 @@
 import { PropTypes } from 'react-view';
 import { EuiAccordion, EuiPanel } from '../../../../src/components/';
+import { EuiAccordionClass } from '../../../../src/components/accordion/accordion';
 import { htmlIdGenerator } from '../../../../src/services';
 import {
   propUtilityForPlayground,
@@ -9,10 +10,10 @@ import {
 } from '../../services/playground';
 
 export const accordionConfig = () => {
-  const docgenInfo = Array.isArray(EuiAccordion.__docgenInfo)
-    ? EuiAccordion.__docgenInfo[0]
-    : EuiAccordion.__docgenInfo;
-  const propsToUse = propUtilityForPlayground(docgenInfo.props);
+  const docgenInfo = Array.isArray(EuiAccordionClass.__docgenInfo)
+    ? EuiAccordionClass.__docgenInfo[0]
+    : EuiAccordionClass.__docgenInfo;
+  const propsToUse = propUtilityForPlayground(docgenInfo.props, true);
 
   propsToUse.buttonContent = {
     ...propsToUse.buttonContent,
@@ -20,9 +21,15 @@ export const accordionConfig = () => {
     type: PropTypes.String,
   };
 
+  propsToUse.buttonElement = {
+    ...propsToUse.buttonElement,
+    defaultValue: 'button',
+  };
+
   propsToUse.id = {
     ...propsToUse.id,
     value: htmlIdGenerator('generated')(),
+    type: PropTypes.String,
   };
 
   propsToUse.children = {

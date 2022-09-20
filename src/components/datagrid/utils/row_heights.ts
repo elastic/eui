@@ -7,22 +7,25 @@
  */
 
 import {
-  useEffect,
-  useState,
-  useMemo,
+  CSSProperties,
+  MutableRefObject,
   useCallback,
   useContext,
-  CSSProperties,
+  useEffect,
+  useMemo,
+  useState,
 } from 'react';
-import type { VariableSizeGrid as Grid } from 'react-window';
-import { isObject, isNumber } from '../../../services/predicate';
-import { useForceRender } from '../../../services';
+import { GridOnItemsRenderedProps } from 'react-window';
+import { useForceRender, useLatest } from '../../../services';
+import { isNumber, isObject } from '../../../services/predicate';
 import {
-  EuiDataGridStyleCellPaddings,
-  EuiDataGridStyle,
+  EuiDataGridColumn,
   EuiDataGridRowHeightOption,
   EuiDataGridRowHeightsOptions,
-  EuiDataGridColumn,
+  EuiDataGridScrollAnchorRow,
+  EuiDataGridStyle,
+  EuiDataGridStyleCellPaddings,
+  ImperativeGridApi,
 } from '../data_grid_types';
 import { DataGridSortingContext } from './sorting';
 
@@ -37,6 +40,13 @@ export const AUTO_HEIGHT = 'auto';
 export const DEFAULT_ROW_HEIGHT = 34;
 
 export class RowHeightUtils {
+  constructor(
+    private gridRef: MutableRefObject<ImperativeGridApi | null>,
+    private outerGridElementRef: MutableRefObject<HTMLDivElement | null>,
+    private gridItemsRenderedRef: MutableRefObject<GridOnItemsRenderedProps | null>,
+    private rerenderGridBodyRef: MutableRefObject<(() => void) | null>
+  ) {}
+
   getRowHeightOption(
     rowIndex: number,
     rowHeightsOptions?: EuiDataGridRowHeightsOptions
@@ -157,9 +167,7 @@ export class RowHeightUtils {
 
   private heightsCache = new Map<number, Map<string, number>>();
   private timerId?: number;
-  private grid?: Grid;
   private lastUpdatedRow: number = Infinity;
-  private rerenderGridBody: Function = () => {};
 
   isAutoHeight(
     rowIndex: number,
@@ -205,7 +213,7 @@ export class RowHeightUtils {
 
     // When an auto row height is updated, force a re-render
     // of the grid body to update the unconstrained height
-    this.rerenderGridBody();
+    this.rerenderGridBodyRef.current?.();
   }
 
   pruneHiddenColumnHeights(visibleColumns: EuiDataGridColumn[]) {
@@ -236,16 +244,52 @@ export class RowHeightUtils {
   }
 
   resetGrid() {
-    this.grid?.resetAfterRowIndex(this.lastUpdatedRow);
+    this.gridRef.current?.resetAfterRowIndex(this.lastUpdatedRow);
     this.lastUpdatedRow = Infinity;
   }
 
-  setGrid(grid: Grid) {
-    this.grid = grid;
-  }
+  compensateForLayoutShift(
+    rowIndex: number,
+    verticalLayoutShift: number,
+    anchorRow: EuiDataGridScrollAnchorRow
+  ) {
+    const grid = this.gridRef.current;
+    const outerGridElement = this.outerGridElementRef.current;
+    const renderedItems = this.gridItemsRenderedRef.current;
 
-  setRerenderGridBody(rerenderGridBody: Function) {
-    this.rerenderGridBody = rerenderGridBody;
+    if (
+      grid == null ||
+      outerGridElement == null ||
+      renderedItems == null ||
+      anchorRow == null ||
+      !Number.isFinite(verticalLayoutShift)
+    ) {
+      return;
+    }
+
+    // skip if the start row is the anchor row but it hasn't shifted
+    if (
+      anchorRow === 'start' &&
+      renderedItems.visibleRowStartIndex !== rowIndex
+    ) {
+      return;
+    }
+
+    // skip if the center row is the anchor row but it hasn't shifted
+    if (
+      anchorRow === 'center' &&
+      Math.floor(
+        (renderedItems.visibleRowStopIndex -
+          renderedItems.visibleRowStartIndex) /
+          2
+      ) !== rowIndex
+    ) {
+      return;
+    }
+
+    grid.scrollTo({
+      scrollTop: outerGridElement.scrollTop + verticalLayoutShift,
+    });
   }
 }
 
@@ -255,35 +299,45 @@ export class RowHeightUtils {
  */
 export const useRowHeightUtils = ({
   gridRef,
+  outerGridElementRef,
+  gridItemsRenderedRef,
   gridStyles,
   columns,
   rowHeightsOptions,
 }: {
-  gridRef: Grid | null;
+  gridRef: MutableRefObject<ImperativeGridApi | null>;
+  outerGridElementRef: MutableRefObject<HTMLDivElement | null>;
+  gridItemsRenderedRef: MutableRefObject<GridOnItemsRenderedProps | null>;
   gridStyles: EuiDataGridStyle;
   columns: EuiDataGridColumn[];
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
 }) => {
-  const rowHeightUtils = useMemo(() => new RowHeightUtils(), []);
-
-  // Update rowHeightUtils with internal vars from outside dependencies
-  const forceRender = useForceRender();
-  useEffect(() => {
-    if (gridRef) rowHeightUtils.setGrid(gridRef);
-    rowHeightUtils.setRerenderGridBody(forceRender);
-  }, [gridRef, forceRender, rowHeightUtils]);
+  const forceRenderRef = useLatest(useForceRender());
+  const [rowHeightUtils] = useState(
+    () =>
+      new RowHeightUtils(
+        gridRef,
+        outerGridElementRef,
+        gridItemsRenderedRef,
+        forceRenderRef
+      )
+  );
 
   // Forces a rerender whenever the row heights change, as this can cause the
   // grid to change height/have scrollbars. Without this, grid rerendering is stale
   useEffect(() => {
-    requestAnimationFrame(forceRender);
+    if (forceRenderRef.current == null) {
+      return;
+    }
+
+    requestAnimationFrame(forceRenderRef.current);
   }, [
     // Effects that should cause rerendering
     rowHeightsOptions?.defaultHeight,
     rowHeightsOptions?.rowHeights,
     // Dependencies
     rowHeightUtils,
-    forceRender,
+    forceRenderRef,
   ]);
 
   // Re-cache styles whenever grid density changes

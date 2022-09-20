@@ -1,5 +1,107 @@
 [
   {
+    "version": "62.1.0",
+    "changes": [
+      {
+        "token": "euiBreadcrumbs.collapsedBadge.ariaLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiBreadcrumb.collapsedBadge.ariaLabel",
+        "changeType": "added",
+        "value": "See collapsed breadcrumbs"
+      }
+    ]
+  },
+  {
+    "version": "62.0.0",
+    "changes": [
+      {
+        "token": "euiDataGridHeaderCell.headerActions",
+        "changeType": "modified",
+        "value": "Click to view column header actions"
+      },
+      {
+        "token": "euiImage.closeImage",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiImage.openImage",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGridHeaderCell.sortedByAscendingSingle",
+        "changeType": "added",
+        "value": "Sorted ascending"
+      },
+      {
+        "token": "euiDataGridHeaderCell.sortedByDescendingSingle",
+        "changeType": "added",
+        "value": "Sorted descending"
+      },
+      {
+        "token": "euiDataGridHeaderCell.sortedByAscendingFirst",
+        "changeType": "added",
+        "value": "Sorted by {columnId}, ascending"
+      },
+      {
+        "token": "euiDataGridHeaderCell.sortedByDescendingFirst",
+        "changeType": "added",
+        "value": "Sorted by {columnId}, descending"
+      },
+      {
+        "token": "euiDataGridHeaderCell.sortedByAscendingMultiple",
+        "changeType": "added",
+        "value": ", then sorted by {columnId}, ascending"
+      },
+      {
+        "token": "euiDataGridHeaderCell.sortedByDescendingMultiple",
+        "changeType": "added",
+        "value": ", then sorted by {columnId}, descending"
+      },
+      {
+        "token": "euiImageButton.openFullScreen",
+        "changeType": "added",
+        "value": "Click to open this image in fullscreen mode"
+      },
+      {
+        "token": "euiImageButton.closeFullScreen",
+        "changeType": "added",
+        "value": "Press Escape or click to close image fullscreen mode"
+      }
+    ]
+  },
+  {
+    "version": "60.3.0",
+    "changes": [
+      {
+        "token": "euiDataGridCell.position",
+        "changeType": "modified",
+        "value": "{columnId}, column {col}, row {row}"
+      }
+    ]
+  },
+  {
+    "version": "60.2.0",
+    "changes": [
+      {
+        "token": "euiDataGridHeaderCell.actionsPopoverScreenReaderText",
+        "changeType": "added",
+        "value": "To navigate through the list of column actions, press the Tab or Up and Down arrow keys."
+      }
+    ]
+  },
+  {
+    "version": "58.1.0",
+    "changes": [
+      {
+        "token": "euiColumnSortingDraggable.dragHandleAriaLabel",
+        "changeType": "added",
+        "value": "Drag handle"
+      }
+    ]
+  },
+  {
     "version": "56.0.0",
     "changes": [
       {

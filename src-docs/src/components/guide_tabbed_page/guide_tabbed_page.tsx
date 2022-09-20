@@ -3,11 +3,8 @@ import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { slugify } from '../../../../src/services/string/slugify';
 import {
   EuiPageHeader,
-  EuiPageContent,
-  EuiPageContentBody,
   EuiBetaBadge,
   CommonProps,
-  EuiHorizontalRule,
 } from '../../../../src/components';
 
 import { LanguageSelector, ThemeContext } from '../with_theme';
@@ -49,12 +46,13 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
   const currentLanguage = themeContext.themeLanguage;
   const showSass = currentLanguage.includes('sass');
 
-  const betaBadge = isBeta && (
-    <EuiBetaBadge
-      label="Beta"
-      tooltipContent="This component is still under development and may contain breaking changes in the nearby future."
-    />
-  );
+  const betaBadge =
+    isBeta || (showThemeLanguageToggle && !showSass) ? (
+      <EuiBetaBadge
+        label="Beta"
+        tooltipContent="This component is still under development and may contain breaking changes in the nearby future."
+      />
+    ) : undefined;
 
   let tabs:
     | Array<{
@@ -123,11 +121,11 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
     });
   } else {
     pagesRoutes = [
-      guidelines && (
+      guidelines ? (
         <Route key={'guidelines'} path={`${match.path}/guidelines`}>
           <GuideSection>{guidelines}</GuideSection>
         </Route>
-      ),
+      ) : undefined,
       <Route key="default" path="">
         {children}
       </Route>,
@@ -183,37 +181,23 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
   return (
     <>
       {renderNotice()}
-      <EuiPageContentBody
-        style={{ paddingBlockEnd: tabs || _tabs ? 0 : undefined }}
+      <EuiPageHeader
+        restrictWidth
         paddingSize="l"
+        pageTitle={
+          <>
+            {title} {betaBadge}
+          </>
+        }
+        tabs={renderTabs()}
+        description={description}
+        rightSideItems={rightSideItems}
+        bottomBorder="extended"
       >
-        <EuiPageHeader
-          restrictWidth
-          pageTitle={
-            <>
-              {title} {betaBadge}
-            </>
-          }
-          tabs={renderTabs()}
-          description={description}
-          rightSideItems={rightSideItems}
-        >
-          {intro}
-        </EuiPageHeader>
-      </EuiPageContentBody>
+        {intro}
+      </EuiPageHeader>
 
-      <EuiHorizontalRule margin="none" />
-
-      <EuiPageContent
-        role="main"
-        hasShadow={false}
-        paddingSize="none"
-        color="transparent"
-        hasBorder={false}
-        borderRadius="none"
-      >
-        <Switch>{pagesRoutes}</Switch>
-      </EuiPageContent>
+      <Switch>{pagesRoutes}</Switch>
     </>
   );
 };

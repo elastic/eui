@@ -6,9 +6,9 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
-
+import { EuiTimelineItem } from '../timeline';
 import { EuiCommentEvent, EuiCommentEventProps } from './comment_event';
 import {
   EuiCommentTimeline,
@@ -16,14 +16,8 @@ import {
 } from './comment_timeline';
 
 export interface EuiCommentProps
-  extends HTMLAttributes<HTMLDivElement>,
-    EuiCommentEventProps,
+  extends EuiCommentEventProps,
     EuiCommentTimelineProps {}
-
-const typeToClassNameMap = {
-  regular: '',
-  update: 'euiComment--update',
-};
 
 export const EuiComment: FunctionComponent<EuiCommentProps> = ({
   children,
@@ -31,30 +25,44 @@ export const EuiComment: FunctionComponent<EuiCommentProps> = ({
   username,
   event,
   actions,
-  timelineIcon,
-  type = 'regular',
   timestamp,
+  timelineAvatar,
+  timelineAvatarAriaLabel,
+  eventColor,
+  eventIcon,
+  eventIconAriaLabel,
   ...rest
 }) => {
-  const classes = classNames(
-    'euiComment',
-    typeToClassNameMap[type],
-    { 'euiComment--hasBody': children },
-    className
+  const classes = classNames('euiComment', className);
+
+  const isTypeUpdate = !children;
+  const verticalAlign = isTypeUpdate ? 'center' : 'top';
+
+  const mainIcon = (
+    <EuiCommentTimeline
+      timelineAvatar={timelineAvatar}
+      timelineAvatarAriaLabel={timelineAvatarAriaLabel}
+    />
   );
 
   return (
-    <div className={classes} {...rest}>
-      <EuiCommentTimeline type={type} timelineIcon={timelineIcon} />
+    <EuiTimelineItem
+      verticalAlign={verticalAlign}
+      className={classes}
+      icon={mainIcon}
+      {...rest}
+    >
       <EuiCommentEvent
         username={username}
         actions={actions}
         event={event}
         timestamp={timestamp}
-        type={type}
+        eventColor={eventColor}
+        eventIcon={eventIcon}
+        eventIconAriaLabel={eventIconAriaLabel}
       >
         {children}
       </EuiCommentEvent>
-    </div>
+    </EuiTimelineItem>
   );
 };

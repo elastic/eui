@@ -100,7 +100,7 @@ export const ProgressExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             Using the <EuiCode>position</EuiCode> prop we can align our bar to
             be <EuiCode>fixed</EuiCode> or <EuiCode>absolute</EuiCode>. In both
@@ -122,7 +122,7 @@ export const ProgressExample = {
               seen on the Snippet tab.
             </p>
           </EuiCallOut>
-        </div>
+        </>
       ),
       snippet: progressFixedSnippet,
       demo: <ProgressFixed />,
@@ -153,32 +153,20 @@ export const ProgressExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             <strong>EuiProgress</strong> supports a few options for{' '}
             <EuiCode>color</EuiCode>. You can pass any value from our basic
             color set or from our visualization palette (<EuiCode>vis0</EuiCode>{' '}
             through <EuiCode>vis9</EuiCode>). To learn more about color usage,
-            go to the <Link to="/guidelines/colors">Color guidelines</Link>{' '}
-            page.
+            go to the <Link to="/theming/colors/values">Colors</Link> page.
           </p>
           <p>
             Additionally, you can pass any valid color string like a hex value
-            or named color.
+            or named color. Each <EuiCode>valueText</EuiCode> renders with a
+            high contrast version of the color.
           </p>
-          <EuiCallOut
-            title="Note about using custom colors"
-            iconType="accessibility"
-            color="warning"
-          >
-            <p>
-              Usually, we calculate a high contrast color for{' '}
-              <EuiCode>valueText</EuiCode> based on <EuiCode>color</EuiCode>.
-              This is not possible when using a custom color. In such cases,{' '}
-              <EuiCode>valueText</EuiCode> will just use the custom color.
-            </p>
-          </EuiCallOut>
-        </div>
+        </>
       ),
       demo: <ProgressColors />,
       snippet: progressColorsSnippet,
@@ -192,13 +180,11 @@ export const ProgressExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             Determinate progress bar can be used as simple bar charts. Use them
             with the <EuiCode>label</EuiCode> and <EuiCode>valueText</EuiCode>{' '}
-            props to show the data corresponding to each bar. The{' '}
-            <EuiCode>valueText</EuiCode> renders as the same color as the{' '}
-            <strong>EuiProgress</strong>.
+            props to show the data corresponding to each bar.
           </p>
           <p>
             Setting <EuiCode language="ts">{'valueText={true}'}</EuiCode> will
@@ -206,7 +192,7 @@ export const ProgressExample = {
             to display a custom <EuiCode>valueText</EuiCode>, you can pass a
             node instead.
           </p>
-        </div>
+        </>
       ),
       demo: <ProgressChart />,
       snippet: progressChartSnippet,

@@ -27,8 +27,9 @@ export const euiSkipLinkStyles = ({ euiTheme }: UseEuiTheme) => {
       }
     `,
     fixed: css`
+      position: fixed !important; // Needs to override euiScreenReaderOnly - prevents scroll jumping in Firefox
+
       &:focus {
-        position: fixed;
         inset-block-start: ${euiTheme.size.xs};
         inset-inline-start: ${euiTheme.size.xs};
         z-index: ${Number(euiTheme.levels.header) + 1};

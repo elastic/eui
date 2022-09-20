@@ -24,7 +24,7 @@ export const OverlayMaskExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             <strong>EuiOverlayMask</strong> is simply a display component used
             to obscure the main content to bring attention to its children or
@@ -39,10 +39,13 @@ export const OverlayMaskExample = {
             </a>{' '}
             to make before choosing to use an overlay. At the very least, you
             must provide a visible button to close the overlay. You can also
-            pass an <EuiCode>onClick</EuiCode> handler to handle closing the
-            overlay.
+            nest an{' '}
+            <Link to="/utilities/focus-trap">
+              <EuiCode>EuiFocusTrap</EuiCode>
+            </Link>{' '}
+            to handle closing the overlay.
           </p>
-        </div>
+        </>
       ),
       props: { EuiOverlayMask: EuiOverlayMaskProps },
       snippet: `<EuiOverlayMask onClick={() => {}}>
@@ -59,7 +62,7 @@ export const OverlayMaskExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             Managing z-index levels of multiple portal-positioned components and
             their different contexts is complicated from within the library.{' '}
@@ -81,7 +84,7 @@ export const OverlayMaskExample = {
             which utilizes the overlay mask but should keep the header visible
             needs to change this prop to <EuiCode>{'"below"'}</EuiCode>.
           </p>
-        </div>
+        </>
       ),
       props: { EuiOverlayMask: EuiOverlayMaskProps },
       snippet: `<EuiOverlayMask onClick={toggleFlyOut} headerZindexLocation="below" />

@@ -8,11 +8,9 @@
 
 export const EuiThemeBreakpoints = ['xs', 's', 'm', 'l', 'xl'] as const;
 
-export type _EuiThemeBreakpoint = typeof EuiThemeBreakpoints[number];
+// This type cannot be a string enum / must be a generic string
+// in case consumers add custom breakpoint sizes, such as xxl or xxs
+export type _EuiThemeBreakpoint = string;
 
-export type _EuiThemeBreakpoints = {
-  /**
-   * Set the minimum window width at which to start to the breakpoint
-   */
-  [key in _EuiThemeBreakpoint]: number;
-};
+// Set the minimum window width at which to start to the breakpoint
+export type _EuiThemeBreakpoints = Record<_EuiThemeBreakpoint, number>;
