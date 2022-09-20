@@ -30,10 +30,13 @@ export const waitForEuiPopoverClose = async () =>
  * Ensure the EuiToolTip being tested is open and visible before continuing
  */
 export const waitForEuiToolTipVisible = async () =>
-  await waitFor(() => {
-    const tooltip = document.querySelector('.euiToolTipPopover');
-    expect(tooltip).toBeVisible();
-  });
+  await waitFor(
+    () => {
+      const tooltip = document.querySelector('.euiToolTipPopover');
+      expect(tooltip).toBeVisible();
+    },
+    { timeout: 1500 } // Account for long delay on tooltips
+  );
 
 export const waitForEuiToolTipHidden = async () =>
   await waitFor(() => {
