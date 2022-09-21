@@ -9,6 +9,7 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiSwitch } from './switch';
 
@@ -19,6 +20,14 @@ const props = {
 };
 
 describe('EuiSwitch', () => {
+  shouldRenderCustomStyles(<EuiSwitch {...props} />, {
+    skipStyles: true, // styles are applied to the nested button instead of the className wrapper
+  });
+  shouldRenderCustomStyles(<EuiSwitch {...props} />, {
+    childProps: ['labelProps'],
+    skipParentTest: true,
+  });
+
   test('is rendered', () => {
     const component = render(
       <EuiSwitch id="test" {...props} {...requiredProps} />

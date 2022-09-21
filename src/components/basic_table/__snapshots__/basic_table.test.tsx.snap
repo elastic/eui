@@ -1418,7 +1418,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
           class="euiFlexItem euiFlexItem--flexGrowZero"
         >
           <div
-            class="euiCheckbox"
+            class="euiCheckbox emotion-euiCheckbox"
           >
             <input
               aria-label="Select all rows"
@@ -1460,7 +1460,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
               class="euiTableCellContent"
             >
               <div
-                class="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel"
+                class="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel emotion-euiCheckbox"
               >
                 <input
                   aria-label="Select all rows"
@@ -1510,7 +1510,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
               class="euiTableCellContent"
             >
               <div
-                class="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel"
+                class="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel emotion-euiCheckbox"
               >
                 <input
                   aria-label="Select this row"
@@ -1555,7 +1555,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
               class="euiTableCellContent"
             >
               <div
-                class="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel"
+                class="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel emotion-euiCheckbox"
               >
                 <input
                   aria-label="Select this row"
@@ -1600,7 +1600,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
               class="euiTableCellContent"
             >
               <div
-                class="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel"
+                class="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel emotion-euiCheckbox"
               >
                 <input
                   aria-label="Select this row"

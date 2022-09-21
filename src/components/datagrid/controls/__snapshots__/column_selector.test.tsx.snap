@@ -109,7 +109,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                   class="euiFlexItem"
                 >
                   <div
-                    class="euiSwitch euiSwitch--compressed euiSwitch--mini"
+                    class="euiSwitch euiSwitch--compressed euiSwitch--mini emotion-euiSwitch"
                   >
                     <button
                       aria-checked="true"
@@ -174,7 +174,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                   class="euiFlexItem"
                 >
                   <div
-                    class="euiSwitch euiSwitch--compressed euiSwitch--mini"
+                    class="euiSwitch euiSwitch--compressed euiSwitch--mini emotion-euiSwitch"
                   >
                     <button
                       aria-checked="true"

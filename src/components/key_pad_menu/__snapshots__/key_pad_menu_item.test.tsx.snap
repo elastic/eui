@@ -9,7 +9,7 @@ exports[`EuiKeyPadMenuItem checkable renders as checkbox 1`] = `
     class="euiKeyPadMenuItem__inner"
   >
     <div
-      class="euiCheckbox euiCheckbox--noLabel euiKeyPadMenuItem__checkableInput"
+      class="euiCheckbox euiCheckbox--noLabel euiKeyPadMenuItem__checkableInput emotion-euiCheckbox"
     >
       <input
         class="euiCheckbox__input"

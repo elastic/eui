@@ -9,6 +9,7 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiDualRange } from './dual_range';
 
@@ -17,6 +18,15 @@ const props = {
 };
 
 describe('EuiDualRange', () => {
+  shouldRenderCustomStyles(
+    <EuiDualRange {...props} value={['1', '8']} />,
+    { skipStyles: true } // styles get applied to the underlying slider instead of the className wrapper
+  );
+  shouldRenderCustomStyles(
+    <EuiDualRange {...props} value={['1', '8']} showInput />,
+    { childProps: ['minInputProps', 'maxInputProps'], skipParentTest: true }
+  );
+
   test('is rendered', () => {
     const component = render(
       <EuiDualRange
