@@ -35,7 +35,6 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
     controlCompressedPadding: euiTheme.size.s,
     controlBorderRadius: euiTheme.border.radius.medium,
     controlCompressedBorderRadius: euiTheme.border.radius.small,
-    checkboxBorderRadius: euiTheme.border.radius.small,
 
     // Coloring
     backgroundColor: backgroundColor,
@@ -145,13 +144,13 @@ export const euiCustomControl = ({
   let borderRadiusStyle;
 
   if (size) {
-    padddingStyle = `padding: calc((${size} - 2px)) / 2);`; // subtract 2px from size to account for border size
+    padddingStyle = `padding: ${mathWithUnits(size, (x) => (x - 2) / 2)};`; // subtract 2px from size to account for border size
   }
 
   if (type === 'round') {
     borderRadiusStyle = `border-radius: ${size || euiTheme.size.base};`;
   } else if (type === 'square') {
-    borderRadiusStyle = `border-radius: ${form.checkboxBorderRadius};`;
+    borderRadiusStyle = `border-radius: ${form.controlCompressedBorderRadius};`;
   }
 
   return `
