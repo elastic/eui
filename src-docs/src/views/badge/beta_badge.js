@@ -21,9 +21,9 @@ export default () => (
           tooltipContent="This module is not GA. Please help us by reporting any bugs."
         />
         &emsp;
-        <EuiBetaBadge label="B" color={item} />
+        <EuiBetaBadge label="Beta" color={item} iconType="beta" />
         &emsp;
-        <EuiBetaBadge size="s" label="B" color={item} />
+        <EuiBetaBadge size="s" label="Beta" color={item} iconType="beta" />
         &emsp;
         <EuiBetaBadge label="Lab" color={item} iconType="beaker" />
         &emsp;
