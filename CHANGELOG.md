@@ -1,3 +1,11 @@
+## [`64.0.5`](https://github.com/elastic/eui/tree/v64.0.5)
+
+**Bug fixes**
+
+- Fixed `EuiInMemoryTable`'s internal state tracking to include changes of `sorting.sort` values ([#6228](https://github.com/elastic/eui/pull/6228))
+- Fixed `EuiDataGrid`'s broken fullscreen mode when nested within an `EuiAccordion` ([#6235](https://github.com/elastic/eui/pull/6235))
+- Fixed `EuiAvatar` to no longer mutate the object passed to its `style` prop ([#6251](https://github.com/elastic/eui/pull/6251))
+
 ## [`64.0.4`](https://github.com/elastic/eui/tree/v64.0.4)
 
 - Added the `custom_component` search filter type for the EuiSearchBar. This new type gives the consumer control to render the search filter dropdown. ([#6226](https://github.com/elastic/eui/pull/6226))
