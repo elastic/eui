@@ -125,6 +125,16 @@
 - Converted `EuiButton` to Emotion ([#6150](https://github.com/elastic/eui/pull/6150))
 - Converted color styles of `EuiButtonIcon`, `EuiButtonEmpty`, `EuiButtonGroup` ([#6150](https://github.com/elastic/eui/pull/6150))
 
+## [`64.0.5`](https://github.com/elastic/eui/tree/v64.0.5)
+
+**Note: this release is a backport containing changes originally made in `67.1.0`, `67.1.1`, and `67.1.2`**
+
+**Bug fixes**
+
+- Fixed `EuiInMemoryTable`'s internal state tracking to include changes of `sorting.sort` values ([#6228](https://github.com/elastic/eui/pull/6228))
+- Fixed `EuiDataGrid`'s broken fullscreen mode when nested within an `EuiAccordion` ([#6235](https://github.com/elastic/eui/pull/6235))
+- Fixed `EuiAvatar` to no longer mutate the object passed to its `style` prop ([#6251](https://github.com/elastic/eui/pull/6251))
+
 ## [`64.0.4`](https://github.com/elastic/eui/tree/v64.0.4)
 
 **Note: this release is a backport containing changes originally made in `67.2.0`**
