@@ -4,10 +4,10 @@ import { EuiListGroup, EuiListGroupItem } from '../../../../src/components';
 import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
-  const [favorite1, setFavorite1] = useState(undefined);
-  const [favorite2, setFavorite2] = useState('link2');
-  const [favorite3, setFavorite3] = useState(undefined);
-  const [favorite4, setFavorite4] = useState(undefined);
+  const [favorite1, setFavorite1] = useState<string | undefined>(undefined);
+  const [favorite2, setFavorite2] = useState<string | undefined>('link2');
+  const [favorite3, setFavorite3] = useState<string | undefined>(undefined);
+  const [favorite4, setFavorite4] = useState<string | undefined>(undefined);
 
   const listGroupLinkId__1 = useGeneratedHtmlId({
     prefix: 'listGroupLink',
@@ -33,28 +33,28 @@ export default () => {
   const link1Clicked = () => {
     setFavorite1(favorite1 === 'link1' ? undefined : 'link1');
     if (favorite1 === undefined) {
-      document.activeElement.blur();
+      (document.activeElement as HTMLElement).blur();
     }
   };
 
   const link2Clicked = () => {
     setFavorite2(favorite2 === 'link2' ? undefined : 'link2');
     if (favorite2 === undefined) {
-      document.activeElement.blur();
+      (document.activeElement as HTMLElement).blur();
     }
   };
 
   const link3Clicked = () => {
     setFavorite3(favorite3 === 'link3' ? undefined : 'link3');
     if (favorite3 === undefined) {
-      document.activeElement.blur();
+      (document.activeElement as HTMLElement).blur();
     }
   };
 
   const link4Clicked = () => {
     setFavorite4(favorite4 === 'link4' ? undefined : 'link4');
     if (favorite3 === undefined) {
-      document.activeElement.blur();
+      (document.activeElement as HTMLElement).blur();
     }
   };
 

@@ -8,5 +8,17 @@
 
 import { UseEuiTheme } from '../../services';
 
-export const euiFormMaxWidth = ({ euiTheme }: UseEuiTheme) =>
-  `${euiTheme.base * 25}px`;
+export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+
+  return {
+    maxWidth: `${euiTheme.base * 25}px`,
+    controlHeight: euiTheme.size.xxl,
+    controlCompressedHeight: euiTheme.size.xl,
+    controlPadding: euiTheme.size.m,
+    controlCompressedPadding: euiTheme.size.s,
+    controlBorderRadius: euiTheme.border.radius.medium,
+    controlCompressedBorderRadius: euiTheme.border.radius.small,
+    checkboxBorderRadius: euiTheme.border.radius.small,
+  };
+};

@@ -11,16 +11,14 @@ import classNames from 'classnames';
 
 import { EuiListGroupItem, EuiListGroupItemProps } from './list_group_item';
 import { CommonProps } from '../common';
+import { useEuiTheme } from '../../services';
+import { cloneElementWithCss } from '../../services/theme/clone_element';
+import { logicalStyle } from '../../global_styling';
 
-type GutterSize = 'none' | 's' | 'm';
-const gutterSizeToClassNameMap: { [size in GutterSize]: string } = {
-  none: '',
-  s: 'euiListGroup--gutterSmall',
-  m: 'euiListGroup--gutterMedium',
-};
-export const GUTTER_SIZES = Object.keys(
-  gutterSizeToClassNameMap
-) as GutterSize[];
+import { euiListGroupStyles } from './list_group.styles';
+
+export const GUTTER_SIZES = ['none', 's', 'm'] as const;
+export type EuiListGroupGutterSize = typeof GUTTER_SIZES[number];
 
 export type EuiListGroupProps = CommonProps &
   Omit<HTMLAttributes<HTMLUListElement>, 'color'> & {
@@ -37,7 +35,7 @@ export type EuiListGroupProps = CommonProps &
     /**
      * Spacing between list items
      */
-    gutterSize?: GutterSize;
+    gutterSize?: EuiListGroupGutterSize;
 
     /**
      * Items to display in this group. See #EuiListGroupItem
@@ -46,22 +44,23 @@ export type EuiListGroupProps = CommonProps &
 
     /**
      * Change the colors of all `listItems` at once
+     * @default text
      */
     color?: EuiListGroupItemProps['color'];
 
     /**
      * Change the size of all `listItems` at once
+     * @default m
      */
     size?: EuiListGroupItemProps['size'];
 
     /**
-     * Sets the max-width of the page,
-     * set to `true` to use the default size,
+     * Sets the max-width of the page.
+     * Set to `true` to use the default size,
      * set to `false` to not restrict the width,
-     * set to a number for a custom width in px,
-     * set to a string for a custom width in custom measurement.
+     * or set to a number/string for a custom CSS width/measurement.
      */
-    maxWidth?: boolean | number | string;
+    maxWidth?: boolean | CSSProperties['maxWidth'];
 
     /**
      * Display tooltips on all list items
@@ -91,33 +90,27 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
   ariaLabelledby,
   ...rest
 }) => {
-  let newStyle: CSSProperties | undefined;
-  let widthClassName;
-  if (maxWidth !== true) {
-    let value: CSSProperties['maxWidth'];
-    if (typeof maxWidth === 'number') {
-      value = `${maxWidth}px`;
-    } else {
-      value = typeof maxWidth === 'string' ? maxWidth : undefined;
-    }
+  let newStyle = style;
 
-    newStyle = { ...style, maxWidth: value };
-  } else if (maxWidth === true) {
-    widthClassName = 'euiListGroup-maxWidthDefault';
+  if (maxWidth && maxWidth !== true) {
+    newStyle = { ...newStyle, ...logicalStyle('max-width', maxWidth) };
   }
 
-  const classes = classNames(
-    'euiListGroup',
-    {
-      'euiListGroup-flush': flush,
-      'euiListGroup-bordered': bordered,
-    },
-    gutterSizeToClassNameMap[gutterSize],
-    widthClassName,
-    className
-  );
+  const classes = classNames('euiListGroup', className);
+
+  const euiTheme = useEuiTheme();
+  const styles = euiListGroupStyles(euiTheme);
+
+  const cssStyles = [
+    styles.euiListGroup,
+    styles[gutterSize],
+    flush && styles.flush,
+    bordered && styles.bordered,
+    maxWidth === true && styles.maxWidthDefault,
+  ];
 
   let childrenOrListItems = null;
+
   if (listItems) {
     childrenOrListItems = listItems.map((item, index) => {
       return [
@@ -125,6 +118,8 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
           key={`title-${index}`}
           showToolTip={showToolTips}
           wrapText={wrapText}
+          // we're passing the parent `color` and `size` down to the children
+          // so that they can inherit it if they don't have one
           color={color}
           size={size}
           {...item}
@@ -132,23 +127,27 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
       ];
     });
   } else {
-    if (showToolTips) {
-      childrenOrListItems = React.Children.map(children, (child) => {
-        if (React.isValidElement(child)) {
-          return React.cloneElement<Partial<EuiListGroupItemProps>>(child, {
-            showToolTip: true,
-          });
-        }
-      });
-    } else {
-      childrenOrListItems = children;
-    }
+    const showToolTipObj = showToolTips && { showToolTip: true };
+
+    childrenOrListItems = React.Children.map(children, (child) => {
+      if (React.isValidElement(child)) {
+        return cloneElementWithCss(child, {
+          // we're passing the parent `color` and `size` down to the children
+          // so that they can inherit it if they don't have one
+          color: color,
+          size: size,
+          ...showToolTipObj,
+          ...child.props,
+        });
+      }
+    });
   }
 
   return (
     <ul
       className={classes}
-      style={newStyle || style}
+      css={cssStyles}
+      style={newStyle}
       aria-labelledby={ariaLabelledby}
       {...rest}
     >

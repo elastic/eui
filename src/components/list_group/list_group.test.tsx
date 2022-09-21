@@ -9,6 +9,7 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiListGroup, GUTTER_SIZES } from './list_group';
 import { EuiListGroupItemProps } from './list_group_item';
@@ -44,6 +45,8 @@ const someListItems: EuiListGroupItemProps[] = [
 ];
 
 describe('EuiListGroup', () => {
+  shouldRenderCustomStyles(<EuiListGroup {...requiredProps} />);
+
   test('is rendered', () => {
     const component = render(<EuiListGroup {...requiredProps} />);
 
