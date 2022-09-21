@@ -1,11 +1,12 @@
 import React from 'react';
+import { css } from '@emotion/react';
 
 import { EuiBetaBadge, EuiSpacer, EuiTitle } from '../../../../src/components';
 
-const colors = ['hollow', 'accent', 'subdued'];
+const colors = ['hollow', 'accent', 'subdued'] as const;
 
 export default () => (
-  <div>
+  <>
     {colors.map((item, index) => (
       <div key={index}>
         <EuiBetaBadge
@@ -41,20 +42,28 @@ export default () => (
         />
       </h3>
     </EuiTitle>
-    <EuiTitle size="xxs">
-      <h4>Clickable beta badges</h4>
+    <EuiSpacer />
+    <EuiTitle size="xs">
+      <h3>Clickable beta badges</h3>
     </EuiTitle>
     <EuiSpacer size="s" />
-    <EuiBetaBadge
-      label="Lens"
-      iconType="lensApp"
-      onClick={() => alert('Goes to Lens')}
-    />
-    &emsp;
-    <EuiBetaBadge
-      label="Basic"
-      href="http://www.elastic.co/subscriptions"
-      target="_blank"
-    />
-  </div>
+    <div
+      css={css`
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      `}
+    >
+      <EuiBetaBadge
+        label="Lens"
+        iconType="lensApp"
+        onClick={() => alert('Goes to Lens')}
+      />
+      <EuiBetaBadge
+        label="Basic"
+        href="http://www.elastic.co/subscriptions"
+        target="_blank"
+      />
+    </div>
+  </>
 );
