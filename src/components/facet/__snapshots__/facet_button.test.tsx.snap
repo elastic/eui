@@ -61,7 +61,7 @@ exports[`EuiFacetButton props isDisabled is rendered 1`] = `
       Content
     </span>
     <span
-      class="euiNotificationBadge euiNotificationBadge--medium euiNotificationBadge--subdued euiFacetButton__quantity emotion-euiFacetButton__quantity-isDisabled"
+      class="euiNotificationBadge euiFacetButton__quantity emotion-euiNotificationBadge-m-subdued-euiFacetButton__quantity-isDisabled"
     >
       6
     </span>
@@ -123,7 +123,7 @@ exports[`EuiFacetButton props quantity is rendered 1`] = `
       Content
     </span>
     <span
-      class="euiNotificationBadge euiNotificationBadge--medium euiNotificationBadge--subdued euiFacetButton__quantity emotion-euiFacetButton__quantity"
+      class="euiNotificationBadge euiFacetButton__quantity emotion-euiNotificationBadge-m-subdued-euiFacetButton__quantity"
     >
       60
     </span>
