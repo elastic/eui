@@ -3,7 +3,7 @@
 exports[`EuiBetaBadge is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiBetaBadge euiBetaBadge--hollow testClass1 testClass2"
+  class="euiBetaBadge testClass1 testClass2 emotion-euiBetaBadge-hollow-m"
   data-test-subj="test subject string"
   title="Beta"
 >
@@ -13,7 +13,7 @@ exports[`EuiBetaBadge is rendered 1`] = `
 
 exports[`EuiBetaBadge props color accent is rendered 1`] = `
 <span
-  class="euiBetaBadge euiBetaBadge--accent"
+  class="euiBetaBadge emotion-euiBetaBadge-accent-m"
   title="Beta"
 >
   Beta
@@ -22,7 +22,7 @@ exports[`EuiBetaBadge props color accent is rendered 1`] = `
 
 exports[`EuiBetaBadge props color hollow is rendered 1`] = `
 <span
-  class="euiBetaBadge euiBetaBadge--hollow"
+  class="euiBetaBadge emotion-euiBetaBadge-hollow-m"
   title="Beta"
 >
   Beta
@@ -31,16 +31,39 @@ exports[`EuiBetaBadge props color hollow is rendered 1`] = `
 
 exports[`EuiBetaBadge props color subdued is rendered 1`] = `
 <span
-  class="euiBetaBadge euiBetaBadge--subdued"
+  class="euiBetaBadge emotion-euiBetaBadge-subdued-m"
   title="Beta"
 >
   Beta
 </span>
 `;
 
+exports[`EuiBetaBadge props iconType 1`] = `
+<span
+  class="euiBetaBadge emotion-euiBetaBadge-hollow-m"
+  title="Beta"
+>
+  <span
+    aria-hidden="true"
+    class="euiBetaBadge__icon emotion-euiBetaBadge__icon"
+    color="inherit"
+    data-euiicon-type="beta"
+  />
+</span>
+`;
+
+exports[`EuiBetaBadge props single letter 1`] = `
+<span
+  class="euiBetaBadge emotion-euiBetaBadge-hollow-m"
+  title="B"
+>
+  B
+</span>
+`;
+
 exports[`EuiBetaBadge props size m is rendered 1`] = `
 <span
-  class="euiBetaBadge euiBetaBadge--hollow"
+  class="euiBetaBadge emotion-euiBetaBadge-hollow-m"
   title="Beta"
 >
   Beta
@@ -49,7 +72,7 @@ exports[`EuiBetaBadge props size m is rendered 1`] = `
 
 exports[`EuiBetaBadge props size s is rendered 1`] = `
 <span
-  class="euiBetaBadge euiBetaBadge--hollow euiBetaBadge--small"
+  class="euiBetaBadge emotion-euiBetaBadge-hollow-s"
   title="Beta"
 >
   Beta
@@ -62,7 +85,7 @@ exports[`EuiBetaBadge props tooltip and anchorProps are rendered 1`] = `
   data-test-subj="DTS"
 >
   <span
-    class="euiBetaBadge euiBetaBadge--hollow"
+    class="euiBetaBadge emotion-euiBetaBadge-hollow-m"
     role="button"
     tabindex="0"
   >

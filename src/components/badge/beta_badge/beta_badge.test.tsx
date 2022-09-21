@@ -46,6 +46,18 @@ describe('EuiBetaBadge', () => {
       });
     });
 
+    test('iconType', () => {
+      const component = render(<EuiBetaBadge label="Beta" iconType="beta" />);
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('single letter', () => {
+      const component = render(<EuiBetaBadge label="B" />);
+
+      expect(component).toMatchSnapshot();
+    });
+
     test('tooltip and anchorProps are rendered', () => {
       const component = render(
         <EuiBetaBadge
