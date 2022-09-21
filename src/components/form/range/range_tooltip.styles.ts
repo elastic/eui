@@ -31,7 +31,7 @@ export const euiRangeTooltipStyles = (euiThemeContext: UseEuiTheme) => {
       inline-size: calc(100% - ${range.thumbWidth});
       margin-inline-start: calc(${range.thumbWidth} / 2);
       pointer-events: none;
-      z-index: 3; // higher than thumbs that are 2
+      z-index: 3;
     `,
   };
 };
@@ -120,7 +120,7 @@ export const euiRangeTooltipValueStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     hasTicks: css`
-      inset-block-start: ${range.trackHeight};
+      inset-block-start: calc(${range.thumbWidth} / 2);
     `,
   };
 };

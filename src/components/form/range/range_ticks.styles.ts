@@ -93,10 +93,6 @@ export const euiRangeTickStyles = (euiThemeContext: UseEuiTheme) => {
         content: '';
         inset-inline-start: calc(50% - ${euiTheme.size.xs});
       }
-
-      .euiRangeTick__pseudo {
-        ${tickStyles(euiThemeContext, range)};
-      }
     `,
     // compressed and non-compressed styles
     compressed: css`

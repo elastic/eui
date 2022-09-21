@@ -29,7 +29,7 @@ export const euiRangeThumbStyles = (euiThemeContext: UseEuiTheme) => {
       inset-block-start: 50%;
       margin-block-start: calc((${range.thumbHeight} / 2) * -1);
       pointer-events: none;
-      z-index: 3; // higher than .euiRangeHighlight that is 1
+      z-index: 3; // higher than .euiRangeHighlight that is 2
 
       &:focus {
         ${euiRangeThumbFocus(euiThemeContext)};

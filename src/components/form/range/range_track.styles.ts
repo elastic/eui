@@ -21,7 +21,6 @@ export const euiRangeTrackSize = (euiThemeContext: UseEuiTheme) => {
 
 export const euiRangeTrackStyles = (euiThemeContext: UseEuiTheme) => {
   const range = euiRangeVariables(euiThemeContext);
-  const euiTheme = euiThemeContext.euiTheme;
 
   return {
     // Base
@@ -45,10 +44,6 @@ export const euiRangeTrackStyles = (euiThemeContext: UseEuiTheme) => {
     hasTicks: css`
       margin-inline-start: 1em;
       margin-inline-end: 1em;
-
-      .euiRangeTooltip {
-        inset-block-start: ${euiTheme.size.xxs};
-      }
 
       &::after {
         inset-block-start: ${range.trackTopPositionWithTicks};
