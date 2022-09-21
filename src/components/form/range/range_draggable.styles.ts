@@ -24,7 +24,7 @@ export const euiRangeDraggableStyles = (euiThemeContext: UseEuiTheme) => {
       position: absolute;
       inset-block-start: calc(${range.height} / 4);
       pointer-events: none;
-      z-index: 2;
+      z-index: 3;
 
       &:not(.euiRangeDraggable--disabled) {
         .euiRangeDraggle__inner {

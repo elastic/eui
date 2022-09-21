@@ -35,7 +35,7 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
       cursor: pointer; // Keep cursor to full range bounds
       // z-index higher than .euiRangeHighlight that is 1
       // the track is transparent we just want the thumb to be on top of the .euiRangeHighlight
-      z-index: 2;
+      z-index: 3;
 
       &:disabled {
         cursor: not-allowed;
@@ -55,20 +55,12 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
 
-      // we're not showing the thumb because we're using a custom thumb
-      // but we still want the thumb to be there but hidden
       ${euiRangeThumbPerBrowser(`
-        visibility: hidden;
-
         ${euiCustomControl({
           euiThemeContext: euiThemeContext,
           type: 'round',
         })};
         ${euiRangeThumbStyle(euiThemeContext)};
-      `)}
-
-      ${euiRangeTrackPerBrowser(`
-        visibility: hidden;
       `)}
 
       &:focus-visible,
@@ -100,7 +92,7 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
         margin-block-start: ${(-parseInt(range.trackBorderWidth) * 2 +
           parseInt(range.trackHeight)) /
           2 -
-        parseInt(range.thumbHeight) / 2}px;
+        parseInt(range.thumbHeight) / 4}px;
       }
 
       &::-ms-thumb {
