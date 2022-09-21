@@ -8,6 +8,8 @@
 
 import React from 'react';
 import { mount, shallow, ReactWrapper } from 'enzyme';
+import { requiredProps } from '../../../test';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import {
   EuiSuperDatePicker,
@@ -30,9 +32,17 @@ const shallowAndDive = (component: React.ReactElement) =>
   shallow(component).dive().dive();
 
 describe('EuiSuperDatePicker', () => {
+  shouldRenderCustomStyles(<EuiSuperDatePicker onTimeChange={noop} />, {
+    skipStyles: true,
+  });
+  shouldRenderCustomStyles(<EuiSuperDatePicker onTimeChange={noop} />, {
+    childProps: ['updateButtonProps'],
+    skipParentTest: true,
+  });
+
   test('is rendered', () => {
     const component = shallowAndDive(
-      <EuiSuperDatePicker onTimeChange={noop} />
+      <EuiSuperDatePicker onTimeChange={noop} {...requiredProps} />
     );
 
     expect(component).toMatchSnapshot();

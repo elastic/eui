@@ -8,11 +8,25 @@
 
 import React from 'react';
 import { render } from 'enzyme';
+import { fireEvent } from '@testing-library/react';
+import { waitForEuiToolTipVisible } from '../../test/rtl';
 import { requiredProps } from '../../test';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiIconTip } from './icon_tip';
 
 describe('EuiIconTip', () => {
+  shouldRenderCustomStyles(
+    <EuiIconTip content="test" iconProps={{ 'data-test-subj': 'trigger' }} />,
+    {
+      childProps: ['iconProps'],
+      renderCallback: async ({ getByTestSubject }) => {
+        fireEvent.mouseOver(getByTestSubject('trigger'));
+        await waitForEuiToolTipVisible();
+      },
+    }
+  );
+
   test('is rendered', () => {
     const component = render(
       <EuiIconTip title="title" id="id" content="content" {...requiredProps} />
