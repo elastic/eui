@@ -130,6 +130,8 @@ const formControlLayoutSource = require('!!raw-loader!./form_control_layout');
 import FormControlLayoutRange from './form_control_layout_range';
 const formControlLayoutRangeSource = require('!!raw-loader!./form_control_layout_range');
 
+import FormVariables from './form_variables';
+
 export const FormControlsExample = {
   title: 'Form controls',
   guidelines: <Guidelines />,
@@ -192,6 +194,7 @@ export const FormControlsExample = {
     </>
   ),
   sections: [
+    { title: 'Form variables', text: <FormVariables /> },
     {
       title: 'Text field',
       source: [
