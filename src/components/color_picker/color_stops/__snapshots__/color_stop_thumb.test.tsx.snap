@@ -3,6 +3,7 @@
 exports[`renders EuiColorStopThumb 1`] = `
 <div
   class="euiPopover euiColorStopPopover testClass1 testClass2 emotion-euiPopover"
+  data-test-subj="test subject string"
   style="left:0%"
 >
   <div
@@ -29,6 +30,7 @@ exports[`renders EuiColorStopThumb 1`] = `
 exports[`renders disabled EuiColorStopThumb 1`] = `
 <div
   class="euiPopover euiColorStopPopover testClass1 testClass2 emotion-euiPopover"
+  data-test-subj="test subject string"
   style="left:0%"
 >
   <div
@@ -56,6 +58,7 @@ exports[`renders disabled EuiColorStopThumb 1`] = `
 exports[`renders picker-only EuiColorStopThumb 1`] = `
 <div
   class="euiPopover euiColorStopPopover testClass1 testClass2 emotion-euiPopover"
+  data-test-subj="test subject string"
   style="left:0%"
 >
   <div
@@ -82,6 +85,7 @@ exports[`renders picker-only EuiColorStopThumb 1`] = `
 exports[`renders readOnly EuiColorStopThumb 1`] = `
 <div
   class="euiPopover euiColorStopPopover testClass1 testClass2 emotion-euiPopover"
+  data-test-subj="test subject string"
   style="left:0%"
 >
   <div
@@ -108,6 +112,7 @@ exports[`renders readOnly EuiColorStopThumb 1`] = `
 exports[`renders swatch-only EuiColorStopThumb 1`] = `
 <div
   class="euiPopover euiColorStopPopover testClass1 testClass2 emotion-euiPopover"
+  data-test-subj="test subject string"
   style="left:0%"
 >
   <div

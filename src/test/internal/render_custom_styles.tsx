@@ -11,7 +11,7 @@ import { render } from '@testing-library/react';
 import { css } from '@emotion/react';
 import { get, set } from 'lodash';
 
-const customStyles = {
+export const customStyles = {
   className: 'hello',
   css: css`
     color: red;

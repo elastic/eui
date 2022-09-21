@@ -2,8 +2,9 @@
 
 exports[`renders EuiColorStops 1`] = `
 <div
+  aria-label="aria-label"
   class="euiRangeWrapper euiColorStops testClass1 testClass2"
-  data-test-subj="euiColorStops"
+  data-test-subj="euiColorStops test subject string"
   tabindex="0"
 >
   <p
@@ -113,8 +114,9 @@ exports[`renders EuiColorStops 1`] = `
 
 exports[`renders compressed EuiColorStops 1`] = `
 <div
+  aria-label="aria-label"
   class="euiRangeWrapper euiColorStops testClass1 testClass2"
-  data-test-subj="euiColorStops"
+  data-test-subj="euiColorStops test subject string"
   tabindex="0"
 >
   <p
@@ -224,8 +226,9 @@ exports[`renders compressed EuiColorStops 1`] = `
 
 exports[`renders disabled EuiColorStops 1`] = `
 <div
+  aria-label="aria-label"
   class="euiRangeWrapper euiColorStops euiColorStops-isDisabled testClass1 testClass2"
-  data-test-subj="euiColorStops"
+  data-test-subj="euiColorStops test subject string"
   tabindex="-1"
 >
   <p
@@ -338,8 +341,9 @@ exports[`renders disabled EuiColorStops 1`] = `
 
 exports[`renders empty EuiColorStops 1`] = `
 <div
+  aria-label="aria-label"
   class="euiRangeWrapper euiColorStops testClass1 testClass2"
-  data-test-subj="euiColorStops"
+  data-test-subj="euiColorStops test subject string"
   tabindex="0"
 >
   <p
@@ -374,8 +378,9 @@ exports[`renders empty EuiColorStops 1`] = `
 
 exports[`renders fixed stop EuiColorStops 1`] = `
 <div
+  aria-label="aria-label"
   class="euiRangeWrapper euiColorStops testClass1 testClass2"
-  data-test-subj="euiColorStops"
+  data-test-subj="euiColorStops test subject string"
   tabindex="0"
 >
   <p
@@ -485,8 +490,9 @@ exports[`renders fixed stop EuiColorStops 1`] = `
 
 exports[`renders free-range EuiColorStops 1`] = `
 <div
+  aria-label="aria-label"
   class="euiRangeWrapper euiColorStops testClass1 testClass2"
-  data-test-subj="euiColorStops"
+  data-test-subj="euiColorStops test subject string"
   tabindex="0"
 >
   <p
@@ -521,8 +527,9 @@ exports[`renders free-range EuiColorStops 1`] = `
 
 exports[`renders fullWidth EuiColorStops 1`] = `
 <div
+  aria-label="aria-label"
   class="euiRangeWrapper euiRangeWrapper--fullWidth euiColorStops testClass1 testClass2"
-  data-test-subj="euiColorStops"
+  data-test-subj="euiColorStops test subject string"
   tabindex="0"
 >
   <p
@@ -632,8 +639,9 @@ exports[`renders fullWidth EuiColorStops 1`] = `
 
 exports[`renders max-only EuiColorStops 1`] = `
 <div
+  aria-label="aria-label"
   class="euiRangeWrapper euiColorStops testClass1 testClass2"
-  data-test-subj="euiColorStops"
+  data-test-subj="euiColorStops test subject string"
   tabindex="0"
 >
   <p
@@ -668,8 +676,9 @@ exports[`renders max-only EuiColorStops 1`] = `
 
 exports[`renders min-only EuiColorStops 1`] = `
 <div
+  aria-label="aria-label"
   class="euiRangeWrapper euiColorStops testClass1 testClass2"
-  data-test-subj="euiColorStops"
+  data-test-subj="euiColorStops test subject string"
   tabindex="0"
 >
   <p
@@ -704,8 +713,9 @@ exports[`renders min-only EuiColorStops 1`] = `
 
 exports[`renders readOnly EuiColorStops 1`] = `
 <div
+  aria-label="aria-label"
   class="euiRangeWrapper euiColorStops euiColorStops-isReadOnly testClass1 testClass2"
-  data-test-subj="euiColorStops"
+  data-test-subj="euiColorStops test subject string"
   tabindex="0"
 >
   <p

@@ -12,6 +12,7 @@ import { render } from 'enzyme';
 import { EuiColorStopThumb } from './color_stop_thumb';
 
 import { requiredProps } from '../../../test';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 jest.mock('../../portal', () => ({
   EuiPortal: ({ children }: { children: any }) => children,
@@ -20,6 +21,24 @@ jest.mock('../../portal', () => ({
 const onChange = jest.fn();
 
 // Note: Unit/interaction tests can be found in ./color_stops.test
+
+shouldRenderCustomStyles(
+  <EuiColorStopThumb
+    onChange={onChange}
+    stop={0}
+    color="#FF0000"
+    localMin={0}
+    localMax={24}
+    globalMin={0}
+    globalMax={100}
+    colorPickerMode="default"
+    isPopoverOpen={true}
+    openPopover={() => {}}
+    closePopover={() => {}}
+    {...requiredProps}
+  />,
+  { childProps: ['valueInputProps'] }
+);
 
 test('renders EuiColorStopThumb', () => {
   const thumb = render(

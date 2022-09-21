@@ -9,10 +9,20 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiHeader } from './header';
 
 describe('EuiHeader', () => {
+  shouldRenderCustomStyles(<EuiHeader />);
+  shouldRenderCustomStyles(
+    <EuiHeader sections={[{ breadcrumbs: [{ text: 'test' }] }]} />,
+    {
+      childProps: ['sections[0].breadcrumbProps'],
+      skipParentTest: true,
+    }
+  );
+
   test('is rendered', () => {
     const component = render(<EuiHeader {...requiredProps} />);
 
