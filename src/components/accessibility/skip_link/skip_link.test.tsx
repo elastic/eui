@@ -8,6 +8,7 @@
 
 import React from 'react';
 import { mount } from 'enzyme';
+import { fireEvent } from '@testing-library/dom';
 import { render } from '../../../test/rtl';
 import { requiredProps } from '../../../test';
 
@@ -57,6 +58,41 @@ describe('EuiSkipLink', () => {
         mockElement.getBoundingClientRect = () => ({ top: 1000 } as any);
         component.find('a').simulate('click');
         expect(scrollSpy).toHaveBeenCalled();
+      });
+
+      afterAll(() => jest.restoreAllMocks());
+    });
+
+    describe('fallbackDestination', () => {
+      it('falls back to focusing the main tag if destinationId is invalid', () => {
+        const { getByText } = render(
+          <>
+            <EuiSkipLink destinationId="">Skip to content</EuiSkipLink>
+            <main>I am content</main>
+          </>
+        );
+        fireEvent.click(getByText('Skip to content'));
+
+        const expectedFocus = document.querySelector('main');
+        expect(document.activeElement).toEqual(expectedFocus);
+      });
+
+      it('supports multiple query selectors', () => {
+        const { getByText } = render(
+          <>
+            <EuiSkipLink
+              destinationId=""
+              fallbackDestination="main, [role=main]"
+            >
+              Skip to content
+            </EuiSkipLink>
+            <div role="main">I am content</div>
+          </>
+        );
+        fireEvent.click(getByText('Skip to content'));
+
+        const expectedFocus = document.querySelector('[role=main]');
+        expect(document.activeElement).toEqual(expectedFocus);
       });
     });
 
