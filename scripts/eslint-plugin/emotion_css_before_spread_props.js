@@ -24,7 +24,10 @@ module.exports = {
               	line: node.loc.start.line,
                 column: node.loc.start.column
               },
-              message: 'CSS props must be declared before spread child props'
+              message: '{{ identifier }}: CSS props must be declared before spread child props',
+              data: {
+              	identifier: node.argument.name
+              },
             });
           }
         });
