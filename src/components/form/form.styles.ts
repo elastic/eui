@@ -42,12 +42,6 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
     backgroundReadOnlyColor: euiTheme.colors.emptyShade,
     borderColor: transparentize(euiTheme.border.color, 0.9),
     borderDisabledColor: transparentize(euiTheme.border.color, 0.9),
-    customControlDisabledIconColor: isColorDark
-      ? shade(euiTheme.colors.mediumShade, 0.38)
-      : tint(euiTheme.colors.mediumShade, 0.48),
-    customControlBorderColor: isColorDark
-      ? shade(euiTheme.colors.lightestShade, 0.18)
-      : tint(euiTheme.colors.lightestShade, 0.38),
     controlDisabledColor: euiTheme.colors.mediumShade,
     controlBoxShadow: '0 0 transparent',
     controlPlaceholderText: makeHighContrastColor(euiTheme.colors.subduedText)(
@@ -58,6 +52,14 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
       : tint(euiTheme.colors.lightShade, 0.5),
     inputGroupBorder: 'none',
 
+    // Coloring - specific for checkboxes and radios
+    customControlDisabledIconColor: isColorDark
+      ? shade(euiTheme.colors.mediumShade, 0.38)
+      : tint(euiTheme.colors.mediumShade, 0.48),
+    customControlBorderColor: isColorDark
+      ? shade(euiTheme.colors.lightestShade, 0.18)
+      : tint(euiTheme.colors.lightestShade, 0.38),
+
     // Icon sizes
     controlIconSize: {
       s: euiTheme.size.m,
@@ -67,7 +69,7 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
       xxl: euiTheme.size.xxl,
     },
 
-    // Control Layout
+    // Control layout
     controlLayoutGroupInputHeight: mathWithUnits(controlHeight, (x) => x - 2),
     controlLayoutGroupInputCompressedHeight: mathWithUnits(
       controlCompressedHeight,
