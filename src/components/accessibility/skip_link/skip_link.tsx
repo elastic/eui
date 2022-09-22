@@ -30,7 +30,7 @@ interface EuiSkipLinkInterface extends EuiButtonProps {
    */
   destinationId: string;
   /**
-   * If no destination ID element exists or can be found, you may provide a set of
+   * If no destination ID element exists or can be found, you may provide a string of
    * query selectors to fall back to (e.g. a `main` or `role="main"` element)
    * @default main
    */
