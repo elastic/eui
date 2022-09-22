@@ -17,12 +17,12 @@ module.exports = {
         }
       },
       'Program:exit'() {
-        attributesArr.forEach((nodeObj, index) => {
-          if (isCssBeforeSpreadChildProps(nodeObj, index)) {
+        attributesArr.forEach((node, index) => {
+          if (!isCssBeforeSpreadChildProps(node, index)) {
             context.report({
               loc: {
-              	line: nodeObj.loc.start.line,
-                column: nodeObj.loc.start.column
+              	line: node.loc.start.line,
+                column: node.loc.start.column
               },
               message: 'CSS props must be declared before spread child props'
             });
@@ -30,26 +30,19 @@ module.exports = {
         });
       },
     };
-    function isCssBeforeSpreadChildProps(nodeObj, index) {
+    function isCssBeforeSpreadChildProps(_, index) {
       const regex = new RegExp('^(\...)?[a-z]*[A-Z][A-z]*');
-      let spreadChildProps;
+      const cssPropsIndex = attributesArr.findIndex(node => (node.name && node.name.name === 'css'));
+      const spreadChildPropsIndex = attributesArr.findIndex(node => (node.type === 'JSXSpreadAttribute' && node.argument.name.match(regex)));
       
-      const cssPropsIndex = attributesArr.map(attribute => {
-        if (attribute.name && attribute.name.name) {
-            return attribute.name.name
-          }
-      }).indexOf('css');
-      
-      const spreadChildPropsIndex = attributesArr.map(attribute => {
-        if (attribute.type === 'JSXSpreadAttribute' && attribute.argument.name.match(regex)) {
-			    spreadChildProps = attribute.argument.name;
-			    return spreadChildProps;
-        }
-      }).indexOf(spreadChildProps);
-      
-      if (cssPropsIndex && spreadChildPropsIndex && spreadChildPropsIndex === index) {
-        return cssPropsIndex > spreadChildPropsIndex
+      // We're only checking if we have CSS props and spread child props
+      // The third check ensures the rule fires only on the spread child props line
+      if (cssPropsIndex && spreadChildPropsIndex && spreadChildPropsIndex === index) { 
+        return cssPropsIndex < spreadChildPropsIndex
       }
+      
+      // Otherwise we don't have CSS props and/or spread child props
+      return true;
     }
   },
 };
