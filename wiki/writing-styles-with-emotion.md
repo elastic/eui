@@ -19,13 +19,14 @@ export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => {
 };
 ```
 
+---
 <details>
   <summary>🎉 <b>ProTip:</b> VS Code snippet</summary>
-  To make generating component boilerplate just a little bit easier, you can add the following block to a global or local snippet file in VS Code.
+  To make generating component boilerplate just a little bit easier, you can add the following block to a global or local snippet file in VS Code. Once saved, you'll be able to generate the boilerplate by typing `euisc` `tab`. <a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets#_create-your-own-snippets" target="_blank">Learn how to add snippets in VS Code</a>:
 
   ```json
   "euiStyledComponent": {
-    "prefix": "euis",
+    "prefix": "euisc",
     "body": [
       "/*",
       "* Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one",
@@ -54,6 +55,8 @@ export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => {
   }
   ```
 </details>
+
+---
 
 ```tsx
 /* {component name}.tsx */
