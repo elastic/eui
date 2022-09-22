@@ -16,8 +16,10 @@ import {
 } from '../../../global_styling';
 import { UseEuiTheme, tint } from '../../../services';
 
+import { getBadgeColors } from '../beta_badge/beta_badge.styles';
+
 export const euiNotificationBadgeStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, colorMode } = euiThemeContext;
+  const { euiTheme } = euiThemeContext;
 
   return {
     euiNotificationBadge: css`
@@ -53,16 +55,10 @@ export const euiNotificationBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // Colors
     accent: css`
-      background-color: ${euiTheme.colors.accentText};
-      color: ${colorMode === 'DARK'
-        ? euiTheme.colors.ink
-        : euiTheme.colors.ghost};
+      ${getBadgeColors(euiTheme.colors.accentText, euiThemeContext)}
     `,
     subdued: css`
-      background-color: ${tint(euiTheme.colors.lightShade, 0.3)};
-      color: ${colorMode === 'DARK'
-        ? euiTheme.colors.ghost
-        : euiTheme.colors.ink};
+      ${getBadgeColors(tint(euiTheme.colors.lightShade, 0.3), euiThemeContext)}
     `,
   };
 };

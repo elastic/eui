@@ -14,15 +14,10 @@ import {
   euiTextTruncate,
   mathWithUnits,
 } from '../../../global_styling';
-import { UseEuiTheme, tint } from '../../../services';
+import { UseEuiTheme, tint, isColorDark, hexToRgb } from '../../../services';
 
 export const euiBetaBadgeStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
-
-  const textColor =
-    colorMode === 'DARK' ? euiTheme.colors.ghost : euiTheme.colors.ink;
-  const invertedTextColor =
-    colorMode === 'DARK' ? euiTheme.colors.ink : euiTheme.colors.ghost;
 
   return {
     euiBetaBadge: css`
@@ -39,22 +34,20 @@ export const euiBetaBadgeStyles = (euiThemeContext: UseEuiTheme) => {
 
       &:focus {
         ${euiFocusRing(euiThemeContext, 'outset', {
-          color: textColor,
+          color:
+            colorMode === 'DARK' ? euiTheme.colors.ghost : euiTheme.colors.ink,
         })}
       }
     `,
     // Colors
     accent: css`
-      background-color: ${euiTheme.colors.accentText};
-      color: ${invertedTextColor};
+      ${getBadgeColors(euiTheme.colors.accentText, euiThemeContext)}
     `,
     subdued: css`
-      background-color: ${tint(euiTheme.colors.lightShade, 0.3)};
-      color: ${textColor};
+      ${getBadgeColors(tint(euiTheme.colors.lightShade, 0.3), euiThemeContext)}
     `,
     hollow: css`
-      background-color: ${euiTheme.colors.emptyShade};
-      color: ${textColor};
+      ${getBadgeColors(euiTheme.colors.emptyShade, euiThemeContext)}
       box-shadow: inset 0 0 0 ${euiTheme.border.width.thin}
         ${euiTheme.border.color};
     `,
@@ -93,4 +86,19 @@ export const euiBetaBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       transform: translate(0, -1px);
     `,
   };
+};
+
+// Util for detecting text color based on badge bg color
+export const getBadgeColors = (
+  backgroundColor: string,
+  { euiTheme }: UseEuiTheme
+) => {
+  const textColor = isColorDark(...hexToRgb(backgroundColor))
+    ? euiTheme.colors.ghost
+    : euiTheme.colors.ink;
+
+  return `
+    background-color: ${backgroundColor};
+    color: ${textColor};
+  `;
 };
