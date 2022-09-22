@@ -31,7 +31,7 @@ export const euiRangeTooltipStyles = (euiThemeContext: UseEuiTheme) => {
       inline-size: calc(100% - ${range.thumbWidth});
       margin-inline-start: calc(${range.thumbWidth} / 2);
       pointer-events: none;
-      z-index: 3;
+      z-index: ${range.thumbZIndex};
     `,
   };
 };

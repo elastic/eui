@@ -33,9 +33,7 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
       inline-size: 100%; // ensures the slider expands to fill flex display
       position: relative;
       cursor: pointer; // Keep cursor to full range bounds
-      // z-index higher than .euiRangeHighlight that is 2
-      // the track is transparent we just want the thumb to be on top of the .euiRangeHighlight
-      z-index: 3;
+      z-index: ${range.thumbZIndex};
 
       &:disabled {
         cursor: not-allowed;
@@ -93,10 +91,6 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
           parseInt(range.trackHeight)) /
           2 -
         parseInt(range.thumbHeight) / 4}px;
-      }
-
-      &::-ms-thumb {
-        margin-block-start: 0;
       }
 
       &::-moz-focus-outer {

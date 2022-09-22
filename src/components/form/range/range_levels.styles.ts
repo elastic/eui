@@ -21,7 +21,8 @@ export const euiRangeLevelsStyles = (euiThemeContext: UseEuiTheme) => {
       position: absolute;
       inset-inline-start: 0;
       inset-inline-end: 0;
-      z-index: 2;
+      inset-block-start: ${range.trackTopPositionWithoutTicks};
+      z-index: ${range.levelsZIndex};
     `,
     hasTicks: css`
       inset-block-start: ${range.trackTopPositionWithTicks};

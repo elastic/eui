@@ -46,6 +46,11 @@ export const euiRangeVariables = (euiThemeContext: UseEuiTheme) => {
     trackTopPositionWithTicks: `calc((${thumbHeight} - ${trackHeight}) / 2)`,
     trackBottomPositionWithTicks: `calc(${thumbHeight} - ((${thumbHeight} - ${trackHeight}) / 2))`,
     trackTopPositionWithoutTicks: `calc(50% - (${trackHeight} / 2))`,
+
+    // Z-indexes
+    levelsZIndex: 1,
+    highlightZIndex: 2,
+    thumbZIndex: 3,
   };
 };
 
