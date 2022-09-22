@@ -11,6 +11,7 @@ import {
   logicalCSS,
   euiFocusRing,
   euiFontSizeFromScale,
+  euiTextTruncate,
   mathWithUnits,
 } from '../../../global_styling';
 import { UseEuiTheme, tint } from '../../../services';
@@ -34,9 +35,7 @@ export const euiBetaBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       text-transform: uppercase;
       letter-spacing: 0.05em;
       text-align: center;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      ${euiTextTruncate()}
 
       &:focus {
         ${euiFocusRing(euiThemeContext, 'outset', {
