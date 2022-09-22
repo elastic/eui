@@ -62,6 +62,7 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
   position = 'static',
   children,
   className,
+  onClick: _onClick,
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
@@ -95,7 +96,7 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
 
   let onClick = undefined;
   if (overrideLinkBehavior || !hasValidId) {
-    onClick = (e: React.MouseEvent) => {
+    onClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
       if (!destinationEl) return;
       e.preventDefault();
 
@@ -120,6 +121,8 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
       }
 
       destinationEl.focus({ preventScroll: true }); // Scrolling is already handled above, and focus autoscroll behaves oddly on Chrome around fixed headers
+
+      _onClick?.(e);
     };
   }
 

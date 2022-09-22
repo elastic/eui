@@ -104,12 +104,24 @@ describe('EuiSkipLink', () => {
       expect(container.firstChild).toMatchSnapshot();
     });
 
-    test('onClick is rendered', () => {
-      const { container } = render(
-        <EuiSkipLink destinationId="somewhere" onClick={() => {}} />
+    test('onClick is called without overriding overrideLinkBehavior', () => {
+      const onClick = jest.fn();
+      const { getByText } = render(
+        <>
+          <EuiSkipLink
+            destinationId="somewhere"
+            overrideLinkBehavior
+            onClick={onClick}
+          >
+            Test
+          </EuiSkipLink>
+          <div id="somewhere" />
+        </>
       );
+      fireEvent.click(getByText('Test'));
 
-      expect(container.firstChild).toMatchSnapshot();
+      expect(document.activeElement?.id).toEqual('somewhere');
+      expect(onClick).toHaveBeenCalled();
     });
 
     describe('position', () => {
