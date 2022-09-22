@@ -7,20 +7,21 @@
  */
 
 import React from 'react';
-import { render, mount } from 'enzyme';
+import { mount } from 'enzyme';
+import { render } from '../../../test/rtl';
 import { requiredProps } from '../../../test';
 
 import { EuiSkipLink, POSITIONS } from './skip_link';
 
 describe('EuiSkipLink', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiSkipLink destinationId="somewhere" {...requiredProps}>
         Skip
       </EuiSkipLink>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
@@ -60,29 +61,29 @@ describe('EuiSkipLink', () => {
     });
 
     test('tabIndex is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiSkipLink destinationId="somewhere" tabIndex={-1} />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('onClick is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiSkipLink destinationId="somewhere" onClick={() => {}} />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     describe('position', () => {
       POSITIONS.forEach((position) => {
         test(`${position} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiSkipLink destinationId="somewhere" position={position} />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
