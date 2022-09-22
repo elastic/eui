@@ -11,7 +11,7 @@ import classNames from 'classnames';
 import { isTabbable } from 'tabbable';
 import { useEuiTheme } from '../../../services';
 import { EuiButton, EuiButtonProps } from '../../button/button';
-import { PropsForAnchor, PropsForButton, ExclusiveUnion } from '../../common';
+import { PropsForAnchor } from '../../common';
 import { EuiScreenReaderOnly } from '../screen_reader_only';
 import { euiSkipLinkStyles } from './skip_link.styles';
 
@@ -41,21 +41,12 @@ interface EuiSkipLinkInterface extends EuiButtonProps {
   tabIndex?: number;
 }
 
-type propsForAnchor = PropsForAnchor<
+export type EuiSkipLinkProps = PropsForAnchor<
   EuiSkipLinkInterface,
   {
     buttonRef?: Ref<HTMLAnchorElement>;
   }
 >;
-
-type propsForButton = PropsForButton<
-  EuiSkipLinkInterface,
-  {
-    buttonRef?: Ref<HTMLButtonElement>;
-  }
->;
-
-export type EuiSkipLinkProps = ExclusiveUnion<propsForAnchor, propsForButton>;
 
 export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
   destinationId,
@@ -76,44 +67,35 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
     position !== 'static' ? styles[position] : undefined,
   ];
 
-  // Create the `href` from `destinationId`
-  let optionalProps = {};
-  if (destinationId) {
-    optionalProps = {
-      href: `#${destinationId}`,
-    };
-  }
+  let onClick = undefined;
   if (overrideLinkBehavior) {
-    optionalProps = {
-      ...optionalProps,
-      onClick: (e: React.MouseEvent) => {
-        e.preventDefault();
+    onClick = (e: React.MouseEvent) => {
+      e.preventDefault();
 
-        const destinationEl = document.getElementById(destinationId);
-        if (!destinationEl) return;
+      const destinationEl = document.getElementById(destinationId);
+      if (!destinationEl) return;
 
-        // Scroll to the top of the destination content only if it's ~mostly out of view
-        const destinationY = destinationEl.getBoundingClientRect().top;
-        const halfOfViewportHeight = window.innerHeight / 2;
-        if (
-          destinationY >= halfOfViewportHeight ||
-          window.scrollY >= destinationY + halfOfViewportHeight
-        ) {
-          destinationEl.scrollIntoView();
-        }
+      // Scroll to the top of the destination content only if it's ~mostly out of view
+      const destinationY = destinationEl.getBoundingClientRect().top;
+      const halfOfViewportHeight = window.innerHeight / 2;
+      if (
+        destinationY >= halfOfViewportHeight ||
+        window.scrollY >= destinationY + halfOfViewportHeight
+      ) {
+        destinationEl.scrollIntoView();
+      }
 
-        // Ensure the destination content is focusable
-        if (!isTabbable(destinationEl)) {
-          destinationEl.tabIndex = -1;
-          destinationEl.addEventListener(
-            'blur',
-            () => destinationEl.removeAttribute('tabindex'),
-            { once: true }
-          );
-        }
+      // Ensure the destination content is focusable
+      if (!isTabbable(destinationEl)) {
+        destinationEl.tabIndex = -1;
+        destinationEl.addEventListener(
+          'blur',
+          () => destinationEl.removeAttribute('tabindex'),
+          { once: true }
+        );
+      }
 
-        destinationEl.focus({ preventScroll: true }); // Scrolling is already handled above, and focus autoscroll behaves oddly on Chrome around fixed headers
-      },
+      destinationEl.focus({ preventScroll: true }); // Scrolling is already handled above, and focus autoscroll behaves oddly on Chrome around fixed headers
     };
   }
 
@@ -125,7 +107,8 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
         tabIndex={position === 'fixed' ? 0 : tabIndex}
         size="s"
         fill
-        {...optionalProps}
+        href={`#${destinationId}`}
+        onClick={onClick}
         {...rest}
       >
         {children}
