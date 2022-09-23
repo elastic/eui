@@ -14,7 +14,7 @@ import {
   transparentize,
   makeHighContrastColor,
 } from '../../services';
-import { mathWithUnits } from '../../global_styling';
+import { mathWithUnits, euiCanAnimate } from '../../global_styling';
 
 export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
@@ -26,17 +26,17 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
   const controlHeight = euiTheme.size.xxl;
   const controlCompressedHeight = euiTheme.size.xl;
 
-  return {
-    // Sizing
-    maxWidth: `${euiTheme.base * 25}px`,
+  const sizes = {
+    maxWidth: mathWithUnits(euiTheme.size.base, (x) => x * 25),
     controlHeight: controlHeight,
     controlCompressedHeight: controlCompressedHeight,
     controlPadding: euiTheme.size.m,
     controlCompressedPadding: euiTheme.size.s,
     controlBorderRadius: euiTheme.border.radius.medium,
     controlCompressedBorderRadius: euiTheme.border.radius.small,
+  };
 
-    // Coloring
+  const colors = {
     backgroundColor: backgroundColor,
     backgroundDisabledColor: darken(euiTheme.colors.lightestShade, 0.1),
     backgroundReadOnlyColor: euiTheme.colors.emptyShade,
@@ -51,16 +51,28 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
       ? shade(euiTheme.colors.lightShade, 0.15)
       : tint(euiTheme.colors.lightShade, 0.5),
     inputGroupBorder: 'none',
+  };
 
-    // Coloring - specific for checkboxes and radios
+  // Colors - specific for checkboxes and radios
+  const customControlColors = {
     customControlDisabledIconColor: isColorDark
       ? shade(euiTheme.colors.mediumShade, 0.38)
       : tint(euiTheme.colors.mediumShade, 0.48),
     customControlBorderColor: isColorDark
       ? shade(euiTheme.colors.lightestShade, 0.18)
       : tint(euiTheme.colors.lightestShade, 0.38),
+  };
 
-    // Icon sizes
+  const controlLayout = {
+    controlLayoutGroupInputHeight: mathWithUnits(controlHeight, (x) => x - 2),
+    controlLayoutGroupInputCompressedHeight: mathWithUnits(
+      controlCompressedHeight,
+      (x) => x - 2
+    ),
+    controlLayoutGroupInputCompressedBorderRadius: euiTheme.border.radius.small,
+  };
+
+  const iconSizes = {
     controlIconSize: {
       s: euiTheme.size.m,
       m: euiTheme.size.base,
@@ -68,14 +80,14 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
       xl: euiTheme.size.xl,
       xxl: euiTheme.size.xxl,
     },
+  };
 
-    // Control layout
-    controlLayoutGroupInputHeight: mathWithUnits(controlHeight, (x) => x - 2),
-    controlLayoutGroupInputCompressedHeight: mathWithUnits(
-      controlCompressedHeight,
-      (x) => x - 2
-    ),
-    controlLayoutGroupInputCompressedBorderRadius: euiTheme.border.radius.small,
+  return {
+    ...sizes,
+    ...colors,
+    ...customControlColors,
+    ...iconSizes,
+    ...controlLayout,
   };
 };
 
@@ -90,34 +102,27 @@ export const euiFormCustomControlBorderColor = ({
   }
 `;
 
-export const euiFormControlSize = ({
-  euiThemeContext,
-  height,
-  includeAlternates,
-}: {
-  euiThemeContext: UseEuiTheme;
-  height?: string;
-  includeAlternates?: 'fullWidth' | 'compressed' | 'inGroup';
-}) => {
+export const euiFormControlSize = (
+  euiThemeContext: UseEuiTheme,
+  options: {
+    height?: string;
+    includeAlternates?: 'fullWidth' | 'compressed' | 'inGroup';
+  }
+) => {
   let alternateStyles = '';
 
   const form = euiFormVariables(euiThemeContext);
+  const { height, includeAlternates } = options;
 
   switch (includeAlternates) {
     case 'fullWidth':
-      alternateStyles = `
-        max-inline-size: 100%;
-      `;
+      alternateStyles = 'max-inline-size: 100%;';
       break;
     case 'compressed':
-      alternateStyles = `
-        block-size: ${form.controlCompressedHeight};
-      `;
+      alternateStyles = `block-size: ${form.controlCompressedHeight};`;
       break;
     case 'inGroup':
-      alternateStyles = `
-        block-size: 100%;
-      `;
+      alternateStyles = 'block-size: 100%;';
       break;
   }
 
@@ -142,8 +147,8 @@ export const euiCustomControl = ({
   const euiTheme = euiThemeContext.euiTheme;
   const form = euiFormVariables(euiThemeContext);
 
-  let padddingStyle;
-  let borderRadiusStyle;
+  let padddingStyle = '';
+  let borderRadiusStyle = '';
 
   if (size) {
     padddingStyle = `padding: ${mathWithUnits(size, (x) => (x - 2) / 2)};`; // subtract 2px from size to account for border size
@@ -158,9 +163,14 @@ export const euiCustomControl = ({
   return `
     ${padddingStyle}
     ${borderRadiusStyle}
-    border: 1px solid ${euiFormCustomControlBorderColor(euiThemeContext)};
+    border: ${
+      euiTheme.border.width.thin
+    } solid ${euiFormCustomControlBorderColor(euiThemeContext)};
     background: ${euiTheme.colors.emptyShade} no-repeat center;
-    transition: background-color ${euiTheme.animation.fast} ease-in,
+
+    ${euiCanAnimate} {
+      transition: background-color ${euiTheme.animation.fast} ease-in,
               border-color ${euiTheme.animation.fast} ease-in;
+    }
   `;
 };
