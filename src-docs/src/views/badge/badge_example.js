@@ -248,7 +248,7 @@ export const BadgeExample = {
       title: 'Beta badge type',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: betaBadgeSource,
         },
       ],
