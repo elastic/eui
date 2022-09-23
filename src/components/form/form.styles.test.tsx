@@ -15,6 +15,7 @@ import {
   euiFormVariables,
   euiFormCustomControlBorderColor,
   euiFormControlSize,
+  euiCustomControl,
 } from './form.styles';
 
 const darkModeWrapper: React.FC = ({ children }) => (
@@ -188,6 +189,101 @@ describe('euiFormControlSize', () => {
       "max-inline-size: 400px;
           inline-size: 100%;
           block-size: 100%;"
+    `);
+  });
+});
+
+describe('euiCustomControl', () => {
+  it('returns CSS styles for padding, borders, backgrounds', () => {
+    const { result } = renderHook(() => euiCustomControl(useEuiTheme()));
+    expect(result.current).toMatchInlineSnapshot(`
+      "
+          padding: 7px;
+          
+          border: 1px solid #fbfcfe;
+          background: #FFF no-repeat center;
+
+          @media screen and (prefers-reduced-motion: no-preference) {
+            transition: background-color 150ms ease-in,
+                    border-color 150ms ease-in;
+          }
+        "
+    `);
+  });
+
+  it('allows passing custom padding size', () => {
+    const { result } = renderHook(() =>
+      euiCustomControl(useEuiTheme(), { size: '32px' })
+    );
+    expect(result.current).toMatchInlineSnapshot(`
+      "
+          padding: 15px;
+          
+          border: 1px solid #fbfcfe;
+          background: #FFF no-repeat center;
+
+          @media screen and (prefers-reduced-motion: no-preference) {
+            transition: background-color 150ms ease-in,
+                    border-color 150ms ease-in;
+          }
+        "
+    `);
+  });
+
+  test('type.round', () => {
+    const { result } = renderHook(() =>
+      euiCustomControl(useEuiTheme(), { type: 'round' })
+    );
+    expect(result.current).toMatchInlineSnapshot(`
+      "
+          padding: 7px;
+          border-radius: 16px;
+          border: 1px solid #fbfcfe;
+          background: #FFF no-repeat center;
+
+          @media screen and (prefers-reduced-motion: no-preference) {
+            transition: background-color 150ms ease-in,
+                    border-color 150ms ease-in;
+          }
+        "
+    `);
+  });
+
+  test('size and type.round changes both padding and border-radius', () => {
+    const { result } = renderHook(() =>
+      euiCustomControl(useEuiTheme(), { size: '6px', type: 'round' })
+    );
+    expect(result.current).toMatchInlineSnapshot(`
+      "
+          padding: 2px;
+          border-radius: 6px;
+          border: 1px solid #fbfcfe;
+          background: #FFF no-repeat center;
+
+          @media screen and (prefers-reduced-motion: no-preference) {
+            transition: background-color 150ms ease-in,
+                    border-color 150ms ease-in;
+          }
+        "
+    `);
+  });
+
+  test('type.square', () => {
+    const { result } = renderHook(() =>
+      euiCustomControl(useEuiTheme(), { type: 'square' })
+    );
+    expect(result.current).toMatchInlineSnapshot(`
+      "
+          padding: 7px;
+          border-radius: 4px;
+          border: 1px solid #fbfcfe;
+          background: #FFF no-repeat center;
+
+          @media screen and (prefers-reduced-motion: no-preference) {
+            transition: background-color 150ms ease-in,
+                    border-color 150ms ease-in;
+          }
+        "
     `);
   });
 });
