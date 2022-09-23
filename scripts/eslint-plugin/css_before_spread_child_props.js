@@ -24,7 +24,7 @@ module.exports = {
               	line: node.loc.start.line,
                 column: node.loc.start.column
               },
-              message: '{{ identifier }}: CSS props must be declared before spread child props',
+              message: '{{ identifier }}: CSS props must be declared before spread child props.',
               data: {
               	identifier: node.argument.name
               },
@@ -40,7 +40,7 @@ module.exports = {
       
       // We're only checking if we have CSS props and spread child props
       // The third check ensures the rule fires only on the spread child props line
-      if (cssPropsIndex && spreadChildPropsIndex && spreadChildPropsIndex === index) { 
+      if (cssPropsIndex >= 0 && spreadChildPropsIndex >= 0 && spreadChildPropsIndex === index) { 
         return cssPropsIndex < spreadChildPropsIndex
       }
       
