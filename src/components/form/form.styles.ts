@@ -150,7 +150,9 @@ export const euiCustomControl = (
   let borderRadiusStyle = '';
 
   if (size) {
-    padddingStyle = `padding: ${mathWithUnits(size, (x) => (x - 2) / 2)};`; // subtract 2px from size to account for border size
+    const borderSize = parseFloat(String(euiTheme.border.width.thin));
+    const paddingSize = mathWithUnits(size, (x) => (x - borderSize) / 2);
+    padddingStyle = `padding: ${paddingSize};`;
   }
 
   if (type === 'round') {
