@@ -6,12 +6,18 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, Ref } from 'react';
+import React, {
+  FunctionComponent,
+  Ref,
+  useState,
+  useEffect,
+  useCallback,
+} from 'react';
 import classNames from 'classnames';
 import { isTabbable } from 'tabbable';
 import { useEuiTheme } from '../../../services';
 import { EuiButton, EuiButtonProps } from '../../button/button';
-import { PropsForAnchor, PropsForButton, ExclusiveUnion } from '../../common';
+import { PropsForAnchor } from '../../common';
 import { EuiScreenReaderOnly } from '../screen_reader_only';
 import { euiSkipLinkStyles } from './skip_link.styles';
 
@@ -30,6 +36,12 @@ interface EuiSkipLinkInterface extends EuiButtonProps {
    */
   destinationId: string;
   /**
+   * If no destination ID element exists or can be found, you may provide a string of
+   * query selectors to fall back to (e.g. a `main` or `role="main"` element)
+   * @default main
+   */
+  fallbackDestination?: string;
+  /**
    * If default HTML anchor link behavior is not desired (e.g. for SPAs with hash routing),
    * setting this flag to true will manually scroll to and focus the destination element
    * without changing the browser URL's hash
@@ -41,29 +53,22 @@ interface EuiSkipLinkInterface extends EuiButtonProps {
   tabIndex?: number;
 }
 
-type propsForAnchor = PropsForAnchor<
+export type EuiSkipLinkProps = PropsForAnchor<
   EuiSkipLinkInterface,
   {
     buttonRef?: Ref<HTMLAnchorElement>;
   }
 >;
 
-type propsForButton = PropsForButton<
-  EuiSkipLinkInterface,
-  {
-    buttonRef?: Ref<HTMLButtonElement>;
-  }
->;
-
-export type EuiSkipLinkProps = ExclusiveUnion<propsForAnchor, propsForButton>;
-
 export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
   destinationId,
+  fallbackDestination = 'main',
   overrideLinkBehavior,
   tabIndex,
   position = 'static',
   children,
   className,
+  onClick: _onClick,
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
@@ -76,21 +81,30 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
     position !== 'static' ? styles[position] : undefined,
   ];
 
-  // Create the `href` from `destinationId`
-  let optionalProps = {};
-  if (destinationId) {
-    optionalProps = {
-      href: `#${destinationId}`,
-    };
-  }
-  if (overrideLinkBehavior) {
-    optionalProps = {
-      ...optionalProps,
-      onClick: (e: React.MouseEvent) => {
-        e.preventDefault();
+  const [destinationEl, setDestinationEl] = useState<HTMLElement | null>(null);
+  const [hasValidId, setHasValidId] = useState(true);
 
-        const destinationEl = document.getElementById(destinationId);
+  useEffect(() => {
+    const idEl = document.getElementById(destinationId);
+    if (idEl) {
+      setHasValidId(true);
+      setDestinationEl(idEl);
+      return;
+    }
+    setHasValidId(false);
+
+    // If no valid element via ID is available, use the fallback query selectors
+    const fallbackEl = document.querySelector<HTMLElement>(fallbackDestination);
+    if (fallbackEl) {
+      setDestinationEl(fallbackEl);
+    }
+  }, [destinationId, fallbackDestination]);
+
+  const onClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
+      if (overrideLinkBehavior || !hasValidId) {
         if (!destinationEl) return;
+        e.preventDefault();
 
         // Scroll to the top of the destination content only if it's ~mostly out of view
         const destinationY = destinationEl.getBoundingClientRect().top;
@@ -113,9 +127,12 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
         }
 
         destinationEl.focus({ preventScroll: true }); // Scrolling is already handled above, and focus autoscroll behaves oddly on Chrome around fixed headers
-      },
-    };
-  }
+      }
+
+      _onClick?.(e);
+    },
+    [overrideLinkBehavior, hasValidId, destinationEl, _onClick]
+  );
 
   return (
     <EuiScreenReaderOnly showOnFocus>
@@ -125,7 +142,8 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
         tabIndex={position === 'fixed' ? 0 : tabIndex}
         size="s"
         fill
-        {...optionalProps}
+        href={`#${destinationId}`}
+        onClick={onClick}
         {...rest}
       >
         {children}
