@@ -135,15 +135,14 @@ export const euiFormControlSize = (
   `;
 };
 
-export const euiCustomControl = ({
-  euiThemeContext,
-  type,
-  size,
-}: {
-  euiThemeContext: UseEuiTheme;
-  type?: 'round' | 'square';
-  size?: string;
-}) => {
+export const euiCustomControl = (
+  euiThemeContext: UseEuiTheme,
+  options: {
+    type?: 'round' | 'square';
+    size?: string;
+  }
+) => {
+  const { type, size } = options;
   const euiTheme = euiThemeContext.euiTheme;
   const form = euiFormVariables(euiThemeContext);
 
