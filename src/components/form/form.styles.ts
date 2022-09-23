@@ -156,8 +156,8 @@ export const euiCustomControl = ({
   }
 
   return `
-    ${padddingStyle}; 
-    ${borderRadiusStyle};
+    ${padddingStyle}
+    ${borderRadiusStyle}
     border: 1px solid ${euiFormCustomControlBorderColor(euiThemeContext)};
     background: ${euiTheme.colors.emptyShade} no-repeat center;
     transition: background-color ${euiTheme.animation.fast} ease-in,
