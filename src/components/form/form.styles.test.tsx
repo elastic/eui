@@ -11,7 +11,10 @@ import { renderHook } from '@testing-library/react-hooks';
 import { useEuiTheme } from '../../services';
 import { EuiProvider } from '../provider';
 
-import { euiFormVariables } from './form.styles';
+import {
+  euiFormVariables,
+  euiFormCustomControlBorderColor,
+} from './form.styles';
 
 const darkModeWrapper: React.FC = ({ children }) => (
   <EuiProvider colorMode="DARK">{children}</EuiProvider>
@@ -65,5 +68,22 @@ describe('euiFormVariables', () => {
     expect(result.current.inputGroupLabelBackground).toEqual('#2c2f37');
     expect(result.current.customControlDisabledIconColor).toEqual('#33373f');
     expect(result.current.customControlBorderColor).toEqual('#1e1f26');
+  });
+});
+
+describe('euiFormCustomControlBorderColor', () => {
+  it('returns a tinted color based on the current color mode', () => {
+    const { result } = renderHook(() =>
+      euiFormCustomControlBorderColor(useEuiTheme())
+    );
+    expect(result.current).toEqual('#fbfcfe');
+  });
+
+  test('dark mode', () => {
+    const { result } = renderHook(
+      () => euiFormCustomControlBorderColor(useEuiTheme()),
+      { wrapper: darkModeWrapper }
+    );
+    expect(result.current).toEqual('#070708');
   });
 });

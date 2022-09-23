@@ -94,13 +94,10 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
 export const euiFormCustomControlBorderColor = ({
   euiTheme,
   colorMode,
-}: UseEuiTheme) => `
-  ${
-    colorMode === 'DARK'
-      ? shade(euiTheme.colors.lightestShade, 0.82)
-      : tint(euiTheme.colors.lightestShade, 0.7)
-  }
-`;
+}: UseEuiTheme) =>
+  colorMode === 'DARK'
+    ? shade(euiTheme.colors.lightestShade, 0.82)
+    : tint(euiTheme.colors.lightestShade, 0.7);
 
 export const euiFormControlSize = (
   euiThemeContext: UseEuiTheme,
