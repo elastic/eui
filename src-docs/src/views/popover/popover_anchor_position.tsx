@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import {
   EuiPopover,
-  EuiButton,
+  EuiButtonEmpty,
   EuiFlexGroup,
   EuiFlexItem,
   EuiSpacer,
@@ -87,13 +87,13 @@ export default () => {
         <EuiFlexItem grow={false}>
           <EuiPopover
             button={
-              <EuiButton
-                iconType="arrowDown"
+              <EuiButtonEmpty
+                iconType="questionInCircle"
                 iconSide="right"
                 onClick={onButtonClick1}
               >
                 downLeft
-              </EuiButton>
+              </EuiButtonEmpty>
             }
             isOpen={isPopoverOpen1}
             closePopover={closePopover1}
@@ -106,13 +106,13 @@ export default () => {
         <EuiFlexItem grow={false}>
           <EuiPopover
             button={
-              <EuiButton
-                iconType="arrowDown"
+              <EuiButtonEmpty
+                iconType="questionInCircle"
                 iconSide="right"
                 onClick={onButtonClick2}
               >
                 downCenter
-              </EuiButton>
+              </EuiButtonEmpty>
             }
             isOpen={isPopoverOpen2}
             closePopover={closePopover2}
@@ -125,13 +125,13 @@ export default () => {
         <EuiFlexItem grow={false}>
           <EuiPopover
             button={
-              <EuiButton
-                iconType="arrowDown"
+              <EuiButtonEmpty
+                iconType="questionInCircle"
                 iconSide="right"
                 onClick={onButtonClick3}
               >
                 downRight
-              </EuiButton>
+              </EuiButtonEmpty>
             }
             isOpen={isPopoverOpen3}
             closePopover={closePopover3}
@@ -148,13 +148,13 @@ export default () => {
         <EuiFlexItem grow={false}>
           <EuiPopover
             button={
-              <EuiButton
-                iconType="arrowDown"
+              <EuiButtonEmpty
+                iconType="questionInCircle"
                 iconSide="right"
                 onClick={onButtonClick4}
               >
                 upLeft
-              </EuiButton>
+              </EuiButtonEmpty>
             }
             isOpen={isPopoverOpen4}
             closePopover={closePopover4}
@@ -167,13 +167,13 @@ export default () => {
         <EuiFlexItem grow={false}>
           <EuiPopover
             button={
-              <EuiButton
-                iconType="arrowDown"
+              <EuiButtonEmpty
+                iconType="questionInCircle"
                 iconSide="right"
                 onClick={onButtonClick5}
               >
                 upCenter
-              </EuiButton>
+              </EuiButtonEmpty>
             }
             isOpen={isPopoverOpen5}
             closePopover={closePopover5}
@@ -186,13 +186,13 @@ export default () => {
         <EuiFlexItem grow={false}>
           <EuiPopover
             button={
-              <EuiButton
-                iconType="arrowDown"
+              <EuiButtonEmpty
+                iconType="questionInCircle"
                 iconSide="right"
                 onClick={onButtonClick6}
               >
                 upRight
-              </EuiButton>
+              </EuiButtonEmpty>
             }
             isOpen={isPopoverOpen6}
             closePopover={closePopover6}
@@ -209,13 +209,13 @@ export default () => {
         <EuiFlexItem grow={false}>
           <EuiPopover
             button={
-              <EuiButton
-                iconType="arrowDown"
+              <EuiButtonEmpty
+                iconType="questionInCircle"
                 iconSide="right"
                 onClick={onButtonClick7}
               >
                 leftUp
-              </EuiButton>
+              </EuiButtonEmpty>
             }
             isOpen={isPopoverOpen7}
             closePopover={closePopover7}
@@ -228,13 +228,13 @@ export default () => {
         <EuiFlexItem grow={false}>
           <EuiPopover
             button={
-              <EuiButton
-                iconType="arrowDown"
+              <EuiButtonEmpty
+                iconType="questionInCircle"
                 iconSide="right"
                 onClick={onButtonClick8}
               >
                 leftCenter
-              </EuiButton>
+              </EuiButtonEmpty>
             }
             isOpen={isPopoverOpen8}
             closePopover={closePopover8}
@@ -247,13 +247,13 @@ export default () => {
         <EuiFlexItem grow={false}>
           <EuiPopover
             button={
-              <EuiButton
-                iconType="arrowDown"
+              <EuiButtonEmpty
+                iconType="questionInCircle"
                 iconSide="right"
                 onClick={onButtonClick9}
               >
                 leftDown
-              </EuiButton>
+              </EuiButtonEmpty>
             }
             isOpen={isPopoverOpen9}
             closePopover={closePopover9}
@@ -270,13 +270,13 @@ export default () => {
         <EuiFlexItem grow={false}>
           <EuiPopover
             button={
-              <EuiButton
-                iconType="arrowDown"
+              <EuiButtonEmpty
+                iconType="questionInCircle"
                 iconSide="right"
                 onClick={onButtonClick10}
               >
                 rightUp
-              </EuiButton>
+              </EuiButtonEmpty>
             }
             isOpen={isPopoverOpen10}
             closePopover={closePopover10}
@@ -289,13 +289,13 @@ export default () => {
         <EuiFlexItem grow={false}>
           <EuiPopover
             button={
-              <EuiButton
-                iconType="arrowDown"
+              <EuiButtonEmpty
+                iconType="questionInCircle"
                 iconSide="right"
                 onClick={onButtonClick11}
               >
                 rightCenter
-              </EuiButton>
+              </EuiButtonEmpty>
             }
             isOpen={isPopoverOpen11}
             closePopover={closePopover11}
@@ -308,13 +308,13 @@ export default () => {
         <EuiFlexItem grow={false}>
           <EuiPopover
             button={
-              <EuiButton
-                iconType="arrowDown"
+              <EuiButtonEmpty
+                iconType="questionInCircle"
                 iconSide="right"
                 onClick={onButtonClick12}
               >
                 rightDown
-              </EuiButton>
+              </EuiButtonEmpty>
             }
             isOpen={isPopoverOpen12}
             closePopover={closePopover12}
