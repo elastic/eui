@@ -102,8 +102,21 @@ export default () => {
                 >
                   <EuiSpacer size="s" />
                   <EuiTitle size="m">
-                    <h2>Let’s get started!</h2>
+                    <h2 id={customFlyoutTitleId}>Let&apos;s get started!</h2>
                   </EuiTitle>
+
+                  <EuiButtonIcon
+                    iconType="cross"
+                    aria-label="Close modal"
+                    onClick={closeCustomFlyout}
+                    onKeyDown={onKeyDown}
+                    color="text"
+                    css={css`
+                      position: absolute;
+                      inset-block-start: ${euiTheme.size.base};
+                      inset-inline-end: ${euiTheme.size.base};
+                    `}
+                  />
 
                   <EuiHorizontalRule />
                 </div>
@@ -190,19 +203,6 @@ export default () => {
                   </EuiText>
                 </div>
               </div>
-
-              <EuiButtonIcon
-                iconType="cross"
-                aria-label="Close modal"
-                onClick={closeCustomFlyout}
-                onKeyDown={onKeyDown}
-                color="text"
-                css={css`
-                  position: absolute;
-                  inset-block-start: ${euiTheme.size.base};
-                  inset-inline-end: ${euiTheme.size.base};
-                `}
-              />
             </EuiPanel>
           </EuiFocusTrap>
         </EuiOverlayMask>

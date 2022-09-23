@@ -102,8 +102,13 @@ export const PortalExample = {
                 to listen for the key down event.
               </li>
               <li>
-                Use <EuiCode>{'aria-labelledby={headingId}'}</EuiCode> to
-                announce the flyout to screen readers.
+                Pass an ID to the first heading in the flyout{' '}
+                <EuiCode>{'id={headingId}'}</EuiCode>.
+              </li>
+              <li>
+                Pass to your <strong>EuiPanel</strong>{' '}
+                <EuiCode>{'aria-labelledby={headingId}'}</EuiCode> to announce
+                the flyout to screen readers.
               </li>
             </ul>
           </EuiCallOut>
