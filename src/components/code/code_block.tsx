@@ -172,7 +172,10 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
 
   const codeProps = useMemo(() => {
     const codeStyles = euiCodeBlockCodeStyles(euiTheme);
-    const codeCssStyles = codeStyles.euiCodeBlock__code;
+    const codeCssStyles = [
+      codeStyles.euiCodeBlock__code,
+      isVirtualized && codeStyles.isVirtualized,
+    ];
 
     return {
       className: 'euiCodeBlock__code',
@@ -180,10 +183,16 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
       'data-code-language': language,
       ...rest,
     };
-  }, [language, euiTheme, rest]);
+  }, [language, euiTheme, isVirtualized, rest]);
 
   const hasControls = showCopyButton || showFullScreenButton ? true : false;
-  const currentPaddingSize = euiPaddingSize(euiTheme, paddingSize);
+  const hasBothControls = showCopyButton && showFullScreenButton ? true : false;
+  const hasLineNumbers = lineNumbersConfig.show ? true : false;
+
+  // Force fullscreen to use large padding
+  const currentPaddingSize = isFullScreen
+    ? euiPaddingSize(euiTheme, 'l')
+    : euiPaddingSize(euiTheme, paddingSize);
   const paddingAmount = currentPaddingSize ? parseInt(currentPaddingSize) : 0;
 
   const preCssProps = useMemo(() => {
@@ -201,7 +210,6 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
       whiteSpace === 'pre-wrap' &&
         !isVirtualized &&
         preStyles.whiteSpacePreWrap,
-      isVirtualized && preStyles.isVirtualized,
       isFullScreen && preStyles.isFullScreen,
     ];
 
@@ -237,46 +245,61 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
     return {};
   }, [overflowHeight]);
 
-  // Classes used in both fullscreen and non-fullscreen mode
-  const classes = 'euiCodeBlock';
   const styles = euiCodeBlockStyles(euiTheme, paddingAmount);
 
-  const cssStyles = useMemo(() => {
+  // non-fullScreen styles
+  const cssNonFullScreenStyles = useMemo(() => {
     return [
       styles.euiCodeBlock,
       styles[fontSize],
-      !isFullScreen && transparentBackground && styles.transparentBackground,
+      transparentBackground && styles.transparentBackground,
       hasControls && styles.hasControls,
-      showCopyButton && showFullScreenButton && styles.hasBothControls,
-      lineNumbersConfig.show && styles.hasLineNumbers,
+      hasBothControls && styles.hasBothControls,
+      hasLineNumbers && styles.hasLineNumbers,
     ];
   }, [
-    isFullScreen,
     transparentBackground,
-    showCopyButton,
-    showFullScreenButton,
-    lineNumbersConfig.show,
     styles,
     fontSize,
     hasControls,
+    hasBothControls,
+    hasLineNumbers,
   ]);
 
-  const props = useMemo(() => {
+  const nonFullScreenProps = useMemo(() => {
     return {
-      className: classes,
-      css: cssStyles,
+      className: 'euiCodeBlock',
+      css: cssNonFullScreenStyles,
       style: overflowHeightStyles,
     };
-  }, [overflowHeightStyles, cssStyles]);
+  }, [overflowHeightStyles, cssNonFullScreenStyles]);
+
+  // fullScreen styles
+  const cssFullScreenStyles = useMemo(
+    () => [
+      styles.euiCodeBlock,
+      // Force fullscreen to use large font
+      styles.l,
+      styles.isFullScreen,
+      hasControls && styles.hasControls,
+      hasBothControls && styles.hasBothControls,
+      hasLineNumbers && styles.hasLineNumbers,
+    ],
+    [styles, hasControls, hasBothControls, hasLineNumbers]
+  );
+
+  const fullScreenProps = useMemo(() => {
+    return {
+      className: 'euiCodeBlock euiCodeBlock-isFullScreen',
+      css: cssFullScreenStyles,
+    };
+  }, [cssFullScreenStyles]);
 
   const constrolsStyles = euiCodeBlockControlsStyles(euiTheme, paddingAmount);
 
   const controlsCssStyles = useMemo(
-    () => [
-      constrolsStyles.euiCodeBlock__controls,
-      isFullScreen && constrolsStyles.isFullScreen,
-    ],
-    [constrolsStyles, isFullScreen]
+    () => [constrolsStyles.euiCodeBlock__controls],
+    [constrolsStyles]
   );
 
   const codeBlockControls = useMemo(() => {
@@ -303,7 +326,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
   ]);
 
   return (
-    <div {...props}>
+    <div {...nonFullScreenProps}>
       {isVirtualized ? (
         <EuiCodeBlockVirtualized
           data={data}
@@ -326,7 +349,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
 
       {isFullScreen && (
         <EuiCodeBlockFullScreenWrapper>
-          <div {...props}>
+          <div {...fullScreenProps}>
             {isVirtualized ? (
               <EuiCodeBlockVirtualized
                 data={data}

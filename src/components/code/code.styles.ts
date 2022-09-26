@@ -26,7 +26,6 @@ export const euiCodeStyles = (euiThemeContext: UseEuiTheme) => {
       border-radius: ${euiTheme.border.radius.small};
       font-weight: ${euiTheme.font.weight.bold};
       color: ${euiCode.inlineCodeColor};
-
       ${euiCodeSyntaxTokens(euiThemeContext)};
     `,
     transparentBackground: css`

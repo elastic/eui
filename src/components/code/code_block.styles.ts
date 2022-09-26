@@ -17,7 +17,7 @@ import { css } from '@emotion/react';
 import {
   euiFontSize,
   euiBackgroundColor,
-  mathWithUnits,
+  euiScrollBarStyles,
 } from '../../global_styling';
 import {
   UseEuiTheme,
@@ -285,6 +285,13 @@ export const euiCodeBlockStyles = (
         user-select: none;
       }
     `,
+    isFullScreen: css`
+      position: fixed;
+      inset-block-start: 0;
+      inset-inline-start: 0;
+      inset-inline-end: 0;
+      inset-block-end: 0;
+    `,
   };
 };
 
@@ -300,12 +307,12 @@ export const euiCodeBlockPreStyles = (
 
   return {
     euiCodeBlock__pre: css`
-      // @include euiScrollBar;
       block-size: 100%;
       overflow: auto;
       display: block;
       padding-inline: ${paddingAmount}px;
       padding-block: ${paddingAmount}px;
+      ${euiScrollBarStyles(euiThemeContext)}
     `,
     whiteSpacePre: css`
       white-space: pre;
@@ -323,14 +330,8 @@ export const euiCodeBlockPreStyles = (
         padding-inline-end: ${controlsPaddingAdjusted}px;
       `}
     `,
-    isVirtualized: css`
-      // Necessary for virtualized code blocks to have appropriate padding
-      .euiCodeBlock__code {
-        position: relative;
-      }
-    `,
     isFullScreen: css`
-      // padding: $euiSizeXL !important;
+      padding: ${euiTheme.size.xl};
     `,
   };
 };
@@ -341,12 +342,14 @@ export const euiCodeBlockCodeStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiCodeBlock__code: css`
-      /* @include euiCodeFont;
-      line-height: $euiLineHeight;
-      font-weight: $euiCodeFontWeightRegular; */
+      font-family: ${euiTheme.font.familyCode};
       font-size: inherit;
       color: ${euiCodeBlock.color};
       display: block;
+    `,
+    isVirtualized: css`
+      // Necessary for virtualized code blocks to have appropriate padding
+      position: relative;
     `,
   };
 };
@@ -368,10 +371,6 @@ export const euiCodeBlockControlsStyles = (
       flex-direction: column;
       background: ${euiCodeBlock.backgroundColor};
       gap: ${euiTheme.size.xs};
-    `,
-    isFullScreen: css`
-      inset-block-start: ${euiTheme.size.xs};
-      inset-inline-end: ${euiTheme.size.xs};
     `,
   };
 };
