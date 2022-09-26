@@ -14,7 +14,11 @@
  */
 
 import { css } from '@emotion/react';
-import { euiFontSize, logicalCSS } from '../../global_styling';
+import {
+  euiFontSize,
+  euiBackgroundColor,
+  mathWithUnits,
+} from '../../global_styling';
 import {
   UseEuiTheme,
   euiPaletteColorBlind,
@@ -195,9 +199,18 @@ export const euiCodeSyntaxTokens = (euiThemeContext: UseEuiTheme) => {
   `;
 };
 
-export const euiCodeBlockStyles = (euiThemeContext: UseEuiTheme) => {
+export const euiCodeBlockStyles = (
+  euiThemeContext: UseEuiTheme,
+  paddingAmount: number
+) => {
   const { euiTheme } = euiThemeContext;
   const euiCodeBlock = euiCodeBlockColors(euiThemeContext);
+  const controlsPadding =
+    parseInt(euiTheme.size.l) + parseInt(euiTheme.size.xs);
+  const bothControlsHeight =
+    parseInt(euiTheme.size.l) * 2 + parseInt(euiTheme.size.xs);
+  const hasControlsMinHeight = `${controlsPadding + paddingAmount * 2}px`;
+  const bothControlsMinHeight = `${bothControlsHeight + paddingAmount * 2}px`;
 
   return {
     euiCodeBlock: css`
@@ -205,22 +218,85 @@ export const euiCodeBlockStyles = (euiThemeContext: UseEuiTheme) => {
       display: block;
       position: relative;
       background: ${euiCodeBlock.backgroundColor};
+      ${euiCodeSyntaxTokens(euiThemeContext)};
+
+      .euiCodeBlock__line {
+        display: block;
+      }
+
+      .euiCodeBlock__lineText,
+      .euiCodeBlock__lineNumber {
+        display: inline-block;
+      }
+
+      .euiCodeBlock__lineText {
+        padding-inline-start: ${euiTheme.size.s};
+        border-inline-start: ${euiTheme.border.thin};
+        user-select: text;
+      }
+
+      .euiCodeBlock__lineNumber {
+        position: absolute;
+        block-size: 100%;
+        user-select: none;
+        padding-inline-end: ${euiTheme.size.s};
+        // Width is calculated in JS and padding needs to be added on to that value.
+        box-sizing: content-box;
+
+        &:before {
+          content: attr(data-line-number);
+          color: ${euiTheme.colors.subduedText};
+          text-align: end;
+          display: block;
+        }
+      }
+
+      .euiCodeBlock__line--isHighlighted {
+        .euiCodeBlock__lineText {
+          background: ${euiBackgroundColor(euiThemeContext, 'primary')};
+          border-inline-start: ${euiTheme.border.width.thick} solid
+            ${euiTheme.colors.primary};
+        }
+      }
     `,
     // Font size
-    s: css``,
-    m: css``,
-    l: css``,
+    s: css`
+      ${euiFontSize(euiThemeContext, 'xs')};
+    `,
+    m: css`
+      ${euiFontSize(euiThemeContext, 's')};
+    `,
+    l: css`
+      ${euiFontSize(euiThemeContext, 'm')};
+    `,
     // Variants
-    transparentBackground: css``,
-    hasControls: css``,
-    hasBothControls: css``,
-    hasLineNumbers: css``,
+    transparentBackground: css`
+      background: transparent;
+    `,
+    hasControls: css`
+      min-block-size: ${hasControlsMinHeight};
+    `,
+    hasBothControls: css`
+      min-block-size: ${bothControlsMinHeight};
+    `,
+    hasLineNumbers: css`
+      .euiCodeBlock__line {
+        position: relative;
+        user-select: none;
+      }
+    `,
   };
 };
 
-export const euiCodeBlockPreStyles = (euiThemeContext: UseEuiTheme) => {
+export const euiCodeBlockPreStyles = (
+  euiThemeContext: UseEuiTheme,
+  paddingAmount: number,
+  hasControls?: boolean
+) => {
   const { euiTheme } = euiThemeContext;
-  const euiCodeBlock = euiCodeBlockColors(euiThemeContext);
+  const controlsPadding =
+    parseInt(euiTheme.size.l) + parseInt(euiTheme.size.xs);
+  const controlsPaddingAdjusted = controlsPadding + paddingAmount;
 
   return {
     euiCodeBlock__pre: css`
@@ -228,12 +304,24 @@ export const euiCodeBlockPreStyles = (euiThemeContext: UseEuiTheme) => {
       block-size: 100%;
       overflow: auto;
       display: block;
+      padding-inline: ${paddingAmount}px;
+      padding-block: ${paddingAmount}px;
     `,
     whiteSpacePre: css`
       white-space: pre;
+
+      ${hasControls &&
+      `
+        margin-inline-end: ${controlsPaddingAdjusted}px;
+      `};
     `,
     whiteSpacePreWrap: css`
       white-space: pre-wrap;
+
+      ${hasControls &&
+      `
+        padding-inline-end: ${controlsPaddingAdjusted}px;
+      `}
     `,
     isVirtualized: css`
       // Necessary for virtualized code blocks to have appropriate padding
@@ -263,16 +351,23 @@ export const euiCodeBlockCodeStyles = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
-export const euiCodeBlockControlsStyles = (euiThemeContext: UseEuiTheme) => {
+export const euiCodeBlockControlsStyles = (
+  euiThemeContext: UseEuiTheme,
+  paddingAmount: number
+) => {
   const { euiTheme } = euiThemeContext;
   const euiCodeBlock = euiCodeBlockColors(euiThemeContext);
 
   return {
     euiCodeBlock__controls: css`
+      position: absolute;
+      inset-block-start: ${paddingAmount}px;
+      inset-inline-end: ${paddingAmount}px;
       max-inline-size: 100%;
-      display: block;
-      position: relative;
+      display: flex;
+      flex-direction: column;
       background: ${euiCodeBlock.backgroundColor};
+      gap: ${euiTheme.size.xs};
     `,
     isFullScreen: css`
       inset-block-start: ${euiTheme.size.xs};

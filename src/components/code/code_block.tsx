@@ -20,13 +20,13 @@ import {
   useCopy,
   useFullScreen,
 } from './utils';
+import { euiPaddingSize } from '../../global_styling';
 import {
   euiCodeBlockStyles,
   euiCodeBlockPreStyles,
   euiCodeBlockCodeStyles,
   euiCodeBlockControlsStyles,
 } from './code_block.styles';
-import { useEuiPaddingCSS } from '../../global_styling';
 import { EuiCodeBlockFullScreenWrapper } from './code_block_full_screen_wrapper';
 import { EuiCodeBlockCopyButton } from './code_block_copy_button';
 import { EuiCodeFullScreenButton } from './code_block_full_screen_button';
@@ -182,10 +182,18 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
     };
   }, [language, euiTheme, rest]);
 
+  const hasControls = showCopyButton || showFullScreenButton ? true : false;
+  const currentPaddingSize = euiPaddingSize(euiTheme, paddingSize);
+  const paddingAmount = currentPaddingSize ? parseInt(currentPaddingSize) : 0;
+
   const preCssProps = useMemo(() => {
     const preClasses = 'euiCodeBlock__pre';
 
-    const preStyles = euiCodeBlockPreStyles(euiTheme);
+    const preStyles = euiCodeBlockPreStyles(
+      euiTheme,
+      paddingAmount,
+      hasControls
+    );
 
     const preCssStyles = [
       preStyles.euiCodeBlock__pre,
@@ -201,7 +209,14 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
       className: preClasses,
       css: preCssStyles,
     };
-  }, [euiTheme, whiteSpace, isVirtualized, isFullScreen]);
+  }, [
+    euiTheme,
+    whiteSpace,
+    isVirtualized,
+    isFullScreen,
+    hasControls,
+    paddingAmount,
+  ]);
 
   const preFullscreenProps = useMemo(() => {
     return {
@@ -223,17 +238,15 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
   }, [overflowHeight]);
 
   // Classes used in both fullscreen and non-fullscreen mode
-  const wrapperClasses = 'euiCodeBlock';
-  const styles = euiCodeBlockStyles(euiTheme);
-  const cssStylesPaddingSize = useEuiPaddingCSS()[paddingSize];
+  const classes = 'euiCodeBlock';
+  const styles = euiCodeBlockStyles(euiTheme, paddingAmount);
 
-  const wrapperCssStyles = useMemo(() => {
+  const cssStyles = useMemo(() => {
     return [
       styles.euiCodeBlock,
       styles[fontSize],
-      cssStylesPaddingSize,
       !isFullScreen && transparentBackground && styles.transparentBackground,
-      (showCopyButton || showFullScreenButton) && styles.hasControls,
+      hasControls && styles.hasControls,
       showCopyButton && showFullScreenButton && styles.hasBothControls,
       lineNumbersConfig.show && styles.hasLineNumbers,
     ];
@@ -244,26 +257,26 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
     showFullScreenButton,
     lineNumbersConfig.show,
     styles,
-    cssStylesPaddingSize,
     fontSize,
+    hasControls,
   ]);
 
-  const wrapperProps = useMemo(() => {
+  const props = useMemo(() => {
     return {
-      className: wrapperClasses,
-      css: wrapperCssStyles,
+      className: classes,
+      css: cssStyles,
       style: overflowHeightStyles,
     };
-  }, [overflowHeightStyles, wrapperCssStyles]);
+  }, [overflowHeightStyles, cssStyles]);
 
-  const constrolsStyles = euiCodeBlockControlsStyles(euiTheme);
+  const constrolsStyles = euiCodeBlockControlsStyles(euiTheme, paddingAmount);
 
   const controlsCssStyles = useMemo(
     () => [
       constrolsStyles.euiCodeBlock__controls,
       isFullScreen && constrolsStyles.isFullScreen,
     ],
-    []
+    [constrolsStyles, isFullScreen]
   );
 
   const codeBlockControls = useMemo(() => {
@@ -290,7 +303,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
   ]);
 
   return (
-    <div {...wrapperProps}>
+    <div {...props}>
       {isVirtualized ? (
         <EuiCodeBlockVirtualized
           data={data}
@@ -313,7 +326,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
 
       {isFullScreen && (
         <EuiCodeBlockFullScreenWrapper>
-          <div {...wrapperProps}>
+          <div {...props}>
             {isVirtualized ? (
               <EuiCodeBlockVirtualized
                 data={data}
