@@ -9,15 +9,18 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 
-import { keys } from '../../../services';
+import {
+  keys,
+  htmlIdGenerator,
+  withEuiTheme,
+  WithEuiThemeProps,
+} from '../../../services';
 import { isWithinRange } from '../../../services/number';
 import { EuiInputPopover } from '../../popover';
 import {
   EuiFormControlLayoutDelimited,
   EuiFormControlLayoutProps,
 } from '../form_control_layout';
-
-import { htmlIdGenerator } from '../../../services/accessibility';
 
 import { EuiRangeProps } from './range';
 import { EuiRangeDraggable } from './range_draggable';
@@ -32,13 +35,18 @@ import { EuiRangeTrack } from './range_track';
 import { EuiRangeWrapper } from './range_wrapper';
 import { calculateThumbPosition } from './utils';
 
+import { euiRangeStyles } from './range.styles';
+import { euiDualRangeStyles } from './dual_range.styles';
+
 type ValueMember = number | string;
 
 export interface EuiDualRangeProps
   extends Omit<
     EuiRangeSliderProps,
-    'onChange' | 'onBlur' | 'onFocus' | 'value' | 'isLoading'
+    'onChange' | 'onBlur' | 'onFocus' | 'value' | 'isLoading' | 'min' | 'max'
   > {
+  min?: EuiRangeSliderProps['min'];
+  max?: EuiRangeSliderProps['max'];
   value: [ValueMember, ValueMember];
   onBlur?: (
     event: React.FocusEvent<HTMLInputElement> | React.FocusEvent<HTMLDivElement>
@@ -107,7 +115,9 @@ export interface EuiDualRangeProps
   isLoading?: boolean;
 }
 
-export class EuiDualRange extends Component<EuiDualRangeProps> {
+export class EuiDualRangeClass extends Component<
+  EuiDualRangeProps & WithEuiThemeProps
+> {
   static defaultProps = {
     min: 0,
     max: 100,
@@ -144,16 +154,16 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
   private dragAcc = 0;
 
   get lowerValue() {
-    return this.props.value ? this.props.value[0] : this.props.min;
+    return this.props.value ? this.props.value[0] : this.props.min!;
   }
   get upperValue() {
-    return this.props.value ? this.props.value[1] : this.props.max;
+    return this.props.value ? this.props.value[1] : this.props.max!;
   }
   get lowerValueIsValid() {
-    return isWithinRange(this.props.min, this.upperValue, this.lowerValue);
+    return isWithinRange(this.props.min!, this.upperValue, this.lowerValue);
   }
   get upperValueIsValid() {
-    return isWithinRange(this.lowerValue, this.props.max, this.upperValue);
+    return isWithinRange(this.lowerValue, this.props.max!, this.upperValue);
   }
   get isValid() {
     return this.lowerValueIsValid && this.upperValueIsValid;
@@ -189,14 +199,15 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     // If the values are invalid, find whether the new value is in the upper
     // or lower half and move the appropriate handle to the new value,
     // while the other handle gets moved to the opposite bound (if invalid)
-    const lowerHalf =
-      Math.abs(this.props.max - this.props.min) / 2 + this.props.min;
-    const newValIsLow = isWithinRange(this.props.min, lowerHalf, newVal);
+    const min = this.props.min!;
+    const max = this.props.max!;
+    const lowerHalf = Math.abs(max - min) / 2 + min;
+    const newValIsLow = isWithinRange(min, lowerHalf, newVal);
     if (newValIsLow) {
       lower = newVal;
-      upper = !this.upperValueIsValid ? this.props.max : upper;
+      upper = !this.upperValueIsValid ? max : upper;
     } else {
-      lower = !this.lowerValueIsValid ? this.props.min : lower;
+      lower = !this.lowerValueIsValid ? min : lower;
       upper = newVal;
     }
     this._handleOnChange(lower, upper, e);
@@ -256,8 +267,8 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
       | React.KeyboardEvent<HTMLDivElement>
   ) => {
     const isValid =
-      isWithinRange(this.props.min, upper, lower) &&
-      isWithinRange(lower, this.props.max, upper);
+      isWithinRange(this.props.min!, upper, lower) &&
+      isWithinRange(lower, this.props.max!, upper);
     this.props.onChange([lower, upper], isValid, e);
   };
 
@@ -270,7 +281,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
   _resetToRangeEnds = (e: React.KeyboardEvent<HTMLInputElement>) => {
     // Arbitrary decision to pass `min` instead of `max`. Result is the same.
     this._determineInvalidThumbMovement(
-      this.props.min,
+      this.props.min!,
       this.lowerValue,
       this.upperValue,
       e
@@ -313,12 +324,13 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     let newVal = Number(value);
     let stepRemainder = 0;
     const step = this.props.step || 1;
+    const min = this.props.min!;
     switch (event.key) {
       case keys.ARROW_UP:
       case keys.ARROW_RIGHT:
         event.preventDefault();
         newVal += step;
-        stepRemainder = (newVal - this.props.min) % step;
+        stepRemainder = (newVal - min) % step;
         if (step !== 1 && stepRemainder > 0) {
           newVal = newVal - stepRemainder;
         }
@@ -327,7 +339,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
       case keys.ARROW_LEFT:
         event.preventDefault();
         newVal -= step;
-        stepRemainder = (newVal - this.props.min) % step;
+        stepRemainder = (newVal - min) % step;
         if (step !== 1 && stepRemainder > 0) {
           newVal = newVal + (step - stepRemainder);
         }
@@ -350,7 +362,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
         }
         lower = this._handleKeyDown(lower, event);
     }
-    if (lower >= this.upperValue || lower < this.props.min) return;
+    if (lower >= this.upperValue || lower < this.props.min!) return;
     this._handleOnChange(lower, this.upperValue, event);
   };
 
@@ -368,7 +380,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
         }
         upper = this._handleKeyDown(upper, event);
     }
-    if (upper <= this.lowerValue || upper > this.props.max) return;
+    if (upper <= this.lowerValue || upper > this.props.max!) return;
     this._handleOnChange(this.lowerValue, upper, event);
   };
 
@@ -382,8 +394,8 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
         lower = this._handleKeyDown(lower, event);
         upper = this._handleKeyDown(upper, event);
     }
-    if (lower >= this.upperValue || lower < this.props.min) return;
-    if (upper <= this.lowerValue || upper > this.props.max) return;
+    if (lower >= this.upperValue || lower < this.props.min!) return;
+    if (upper <= this.lowerValue || upper > this.props.max!) return;
     this._handleOnChange(lower, upper, event);
   };
 
@@ -395,8 +407,8 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
 
     const position = calculateThumbPosition(
       value,
-      this.props.min,
-      this.props.max,
+      this.props.min!,
+      this.props.max!,
       trackWidth
     );
     return { left: `${position}%` };
@@ -462,13 +474,12 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
   };
 
   getNearestStep = (value: number) => {
-    const steps = (this.props.max - this.props.min) / this.props.step!;
-    const approx =
-      Math.round(
-        ((value - this.props.min) * steps) / (this.props.max - this.props.min)
-      ) / steps;
+    const min = this.props.min!;
+    const max = this.props.max!;
+    const steps = (this.props.max! - this.props.min!) / this.props.step!;
+    const approx = Math.round(((value - min) * steps) / (max - min)) / steps;
     const bound = Math.min(Math.max(approx, 0), 1);
-    const nearest = bound * (this.props.max - this.props.min) + this.props.min;
+    const nearest = bound * (max - min) + min;
     return (Number(nearest.toPrecision(10)) * 100) / 100;
   };
 
@@ -477,7 +488,8 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
       this.leftPosition = x;
       this.dragAcc = 0;
     }
-    const { min, max } = this.props;
+    const min = this.props.min!;
+    const max = this.props.max!;
     const lowerValue = Number(this.lowerValue);
     const upperValue = Number(this.upperValue);
     const delta = this.leftPosition - x;
@@ -507,8 +519,8 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
       isLoading,
       readOnly,
       id: propsId,
-      max,
-      min,
+      max: maxProps,
+      min: minProps,
       name,
       step,
       showLabels,
@@ -529,14 +541,19 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
       minInputProps,
       maxInputProps,
       isDraggable,
+      theme,
       ...rest
     } = this.props;
+    const min = minProps!;
+    const max = maxProps!;
 
     const { id } = this.state;
 
     const digitTolerance = Math.max(String(min).length, String(max).length);
     const showInputOnly = showInput === 'inputWithPopover';
     const canShowDropdown = showInputOnly && !readOnly && !disabled;
+
+    const rangeStyles = euiRangeStyles(theme);
 
     const minInput = !!showInput ? (
       <EuiRangeInput
@@ -601,6 +618,8 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     ) : undefined;
 
     const classes = classNames('euiDualRange', className);
+    const dualRangeStyles = euiDualRangeStyles();
+
     const leftThumbPosition = this.state.rangeSliderRefAvailable
       ? this.calculateThumbPositionStyle(
           Number(this.lowerValue) || min,
@@ -616,6 +635,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     const theRange = (
       <EuiRangeWrapper
         className={classes}
+        css={dualRangeStyles.euiDualRange}
         fullWidth={fullWidth}
         compressed={compressed}
       >
@@ -627,6 +647,11 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
                 showTicks || ticks
                   ? 'euiRange__slimHorizontalSpacer'
                   : 'euiRange__horizontalSpacer'
+              }
+              css={
+                showTicks || ticks
+                  ? rangeStyles.euiRange__slimHorizontalSpacer
+                  : rangeStyles.euiRange__horizontalSpacer
               }
             />
           </>
@@ -652,6 +677,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
         >
           <EuiRangeSlider
             className="euiDualRange__slider"
+            css={dualRangeStyles.euiDualRange__slider}
             ref={this.handleRangeSliderRefUpdate}
             id={id}
             name={name}
@@ -659,7 +685,6 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
             max={max}
             step={step}
             disabled={disabled}
-            compressed={compressed}
             onChange={this.handleSliderChange}
             style={style}
             showTicks={showTicks}
@@ -746,6 +771,11 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
                   ? 'euiRange__slimHorizontalSpacer'
                   : 'euiRange__horizontalSpacer'
               }
+              css={
+                showTicks || ticks
+                  ? rangeStyles.euiRange__slimHorizontalSpacer
+                  : rangeStyles.euiRange__horizontalSpacer
+              }
             />
             {maxInput}
           </>
@@ -782,3 +812,5 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     return thePopover || theRange;
   }
 }
+
+export const EuiDualRange = withEuiTheme<EuiDualRangeProps>(EuiDualRangeClass);

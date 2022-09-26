@@ -20,6 +20,9 @@ import { calculateThumbPosition, EUI_THUMB_SIZE } from './utils';
 
 import { useInnerText } from '../../inner_text';
 
+import { useEuiTheme } from '../../../services';
+import { euiRangeTicksStyles, euiRangeTickStyles } from './range_ticks.styles';
+
 export interface EuiRangeTick {
   value: number;
   label: ReactNode;
@@ -45,6 +48,7 @@ const EuiTickValue: FunctionComponent<
     ticksRef: MutableRefObject<HTMLDivElement | null>;
     tickValue: any;
     percentageWidth: number;
+    compressed?: boolean;
   }
 > = ({
   disabled,
@@ -56,6 +60,7 @@ const EuiTickValue: FunctionComponent<
   percentageWidth,
   tickValue,
   ticksRef,
+  compressed,
 }) => {
   const tickStyle: CSSProperties = {};
   const tickObject = customTicks
@@ -102,12 +107,27 @@ const EuiTickValue: FunctionComponent<
     'euiRangeTick--hasTickMark': pseudoTick,
   });
 
+  const euiTheme = useEuiTheme();
+
+  const styles = euiRangeTickStyles(euiTheme);
+  const cssTickStyles = [
+    styles.euiRangeTick,
+    value === tickValue && styles.selected,
+    customTicks && styles.isCustom,
+    labelShiftVal && isMinTick && styles.isMin,
+    labelShiftVal && isMaxTick && styles.isMax,
+    pseudoTick && styles.hasTickMark,
+    compressed && styles.compressed,
+    !compressed && styles.regular,
+  ];
+
   const [ref, innerText] = useInnerText();
 
   return (
     <button
       type="button"
       className={tickClasses}
+      css={cssTickStyles}
       value={tickValue}
       disabled={disabled}
       onClick={onChange}
@@ -119,6 +139,7 @@ const EuiTickValue: FunctionComponent<
       {pseudoTick && (
         <span
           className="euiRangeTick__pseudo"
+          css={styles.euiRangeTick__pseudo}
           aria-hidden
           style={pseudoShift}
         />
@@ -139,8 +160,17 @@ export const EuiRangeTicks: FunctionComponent<EuiRangeTicksProps> = (props) => {
     'euiRangeTicks--isCustom': ticks,
   });
 
+  const euiTheme = useEuiTheme();
+  const styles = euiRangeTicksStyles(euiTheme);
+  const cssStyles = [
+    styles.euiRangeTicks,
+    compressed && styles.compressed,
+    !compressed && styles.regular,
+    ticks && styles.isCustom,
+  ];
+
   return (
-    <div className={classes} ref={ticksRef}>
+    <div className={classes} css={cssStyles} ref={ticksRef}>
       {tickSequence.map((tickValue) => (
         <EuiTickValue
           key={tickValue}
@@ -148,6 +178,7 @@ export const EuiRangeTicks: FunctionComponent<EuiRangeTicksProps> = (props) => {
           percentageWidth={percentageWidth}
           tickValue={tickValue}
           ticksRef={ticksRef}
+          compressed={compressed}
         />
       ))}
     </div>

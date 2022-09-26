@@ -9,7 +9,8 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
-import { useMouseMove } from '../../../services';
+import { useMouseMove, useEuiTheme } from '../../../services';
+import { euiRangeDraggableStyles } from './range_draggable.styles';
 
 export interface EuiRangeDraggableProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
@@ -42,15 +43,7 @@ export const EuiRangeDraggable: FunctionComponent<EuiRangeDraggableProps> = ({
     right: `calc(100% - ${upperPosition} - 16px)`,
   };
 
-  const classes = classNames(
-    'euiRangeDraggable',
-    {
-      'euiRangeDraggable--hasTicks': showTicks,
-      'euiRangeDraggable--compressed': compressed,
-      'euiRangeDraggable--disabled': disabled,
-    },
-    className
-  );
+  const classes = classNames('euiRangeDraggable', className);
 
   const handleChange = (
     { x }: { x: number; y: number },
@@ -62,8 +55,17 @@ export const EuiRangeDraggable: FunctionComponent<EuiRangeDraggableProps> = ({
 
   const [handleMouseDown, handleInteraction] = useMouseMove(handleChange);
 
+  const euiTheme = useEuiTheme();
+  const styles = euiRangeDraggableStyles(euiTheme);
+  const cssStyles = [
+    styles.euiRangeDraggable,
+    showTicks && styles.hasTicks,
+    disabled && styles.disabled,
+  ];
+
   const commonProps = {
     className: classes,
+    css: cssStyles,
     role: 'slider',
     'aria-valuemin': min,
     'aria-valuemax': max,
@@ -77,6 +79,7 @@ export const EuiRangeDraggable: FunctionComponent<EuiRangeDraggableProps> = ({
     <div style={outerStyle} {...commonProps} {...rest}>
       <div
         className="euiRangeDraggle__inner"
+        css={styles.euiRangeDraggle__inner}
         onMouseDown={handleMouseDown}
         onTouchStart={handleInteraction}
         onTouchMove={handleInteraction}

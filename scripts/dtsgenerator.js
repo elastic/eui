@@ -81,10 +81,12 @@ const generator = dtsGenerator({
         return '@elastic/eui';
       } else {
         // importing from a non-index TS source file, keep the import path but re-scope it to '@elastic/eui' namespace
+        let importedModuleId = params.importedModuleId;
+        if (importedModuleId.endsWith('/')) importedModuleId = importedModuleId.slice(0, importedModuleId.length - 1);
         return path.join(
           '@elastic/eui',
           path.dirname(params.currentModuleId),
-          params.importedModuleId
+          importedModuleId
         );
       }
     } else {

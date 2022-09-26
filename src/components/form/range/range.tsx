@@ -12,7 +12,11 @@ import classNames from 'classnames';
 import { CommonProps } from '../../common';
 import { isWithinRange } from '../../../services/number';
 import { EuiInputPopover } from '../../popover';
-import { htmlIdGenerator } from '../../../services/accessibility';
+import {
+  htmlIdGenerator,
+  withEuiTheme,
+  WithEuiThemeProps,
+} from '../../../services/';
 
 import { EuiRangeHighlight } from './range_highlight';
 import { EuiRangeInput, EuiRangeInputProps } from './range_input';
@@ -23,6 +27,8 @@ import { EuiRangeTick } from './range_ticks';
 import { EuiRangeTooltip } from './range_tooltip';
 import { EuiRangeTrack } from './range_track';
 import { EuiRangeWrapper } from './range_wrapper';
+
+import { euiRangeStyles } from './range.styles';
 
 export interface EuiRangeProps
   extends CommonProps,
@@ -86,7 +92,9 @@ export interface EuiRangeProps
   ) => void;
 }
 
-export class EuiRange extends Component<EuiRangeProps> {
+export class EuiRangeClass extends Component<
+  EuiRangeProps & WithEuiThemeProps
+> {
   static defaultProps = {
     min: 0,
     max: 100,
@@ -192,6 +200,7 @@ export class EuiRange extends Component<EuiRangeProps> {
       style,
       tabIndex,
       isInvalid,
+      theme,
       ...rest
     } = this.props;
 
@@ -232,9 +241,12 @@ export class EuiRange extends Component<EuiRangeProps> {
       className
     );
 
+    const styles = euiRangeStyles(theme);
+
     const theRange = (
       <EuiRangeWrapper
         className={classes}
+        css={styles.euiRange}
         fullWidth={fullWidth}
         compressed={compressed}
       >
@@ -265,7 +277,6 @@ export class EuiRange extends Component<EuiRangeProps> {
             step={step}
             value={value}
             disabled={disabled}
-            compressed={compressed}
             onChange={this.handleOnChange}
             style={style}
             showTicks={showTicks}
@@ -295,7 +306,6 @@ export class EuiRange extends Component<EuiRangeProps> {
 
           {showValue && !!String(value).length && (
             <EuiRangeTooltip
-              compressed={compressed}
               value={value}
               max={max}
               min={min}
@@ -318,6 +328,11 @@ export class EuiRange extends Component<EuiRangeProps> {
                 showTicks || ticks
                   ? 'euiRange__slimHorizontalSpacer'
                   : 'euiRange__horizontalSpacer'
+              }
+              css={
+                showTicks || ticks
+                  ? styles.euiRange__slimHorizontalSpacer
+                  : styles.euiRange__horizontalSpacer
               }
             />
             {theInput}
@@ -342,3 +357,5 @@ export class EuiRange extends Component<EuiRangeProps> {
     return thePopover ? thePopover : theRange;
   }
 }
+
+export const EuiRange = withEuiTheme<EuiRangeProps>(EuiRangeClass);

@@ -9,6 +9,12 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
 
+import { useEuiTheme } from '../../../services';
+import {
+  euiRangeTooltipStyles,
+  euiRangeTooltipValueStyles,
+} from './range_tooltip.styles';
+
 export interface EuiRangeTooltipProps {
   value?: number | string;
   valueAppend?: ReactNode;
@@ -17,7 +23,6 @@ export interface EuiRangeTooltipProps {
   min: number;
   name?: string;
   showTicks?: boolean;
-  compressed?: boolean;
 }
 
 export const EuiRangeTooltip: FunctionComponent<EuiRangeTooltipProps> = ({
@@ -28,11 +33,8 @@ export const EuiRangeTooltip: FunctionComponent<EuiRangeTooltipProps> = ({
   min,
   name,
   showTicks,
-  compressed,
 }) => {
-  const classes = classNames('euiRangeTooltip', {
-    'euiRangeTooltip--compressed': compressed,
-  });
+  const classes = classNames('euiRangeTooltip', {});
 
   // Calculate the left position based on value
   let val = 0;
@@ -46,7 +48,7 @@ export const EuiRangeTooltip: FunctionComponent<EuiRangeTooltipProps> = ({
   let valuePosition = decimal <= 1 ? decimal : 1;
   valuePosition = valuePosition >= 0 ? valuePosition : 0;
 
-  let valuePositionSide;
+  let valuePositionSide: 'left' | 'right';
   let valuePositionStyle;
   if (valuePosition > 0.5) {
     valuePositionSide = 'left';
@@ -65,10 +67,22 @@ export const EuiRangeTooltip: FunctionComponent<EuiRangeTooltipProps> = ({
     }
   );
 
+  const euiTheme = useEuiTheme();
+  const styles = euiRangeTooltipStyles(euiTheme);
+  const cssStyles = [styles.euiRangeTooltip];
+
+  const valueStyles = euiRangeTooltipValueStyles(euiTheme);
+  const cssValueStyles = [
+    valueStyles.euiRangeTooltip__value,
+    valueStyles[valuePositionSide],
+    showTicks && valueStyles.hasTicks,
+  ];
+
   return (
-    <div className={classes}>
+    <div className={classes} css={cssStyles}>
       <output
         className={valueClasses}
+        css={cssValueStyles}
         htmlFor={name}
         style={valuePositionStyle}
       >

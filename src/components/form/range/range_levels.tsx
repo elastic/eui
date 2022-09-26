@@ -9,6 +9,11 @@
 import React, { CSSProperties, FunctionComponent, useState } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
+import {
+  euiRangeLevelsStyles,
+  euiRangeLevelStyles,
+} from './range_levels.styles';
+import { useEuiTheme } from '../../../services';
 
 import { calculateThumbPosition, EUI_THUMB_SIZE } from './utils';
 
@@ -85,8 +90,12 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
     'euiRangeLevels--compressed': compressed,
   });
 
+  const euiTheme = useEuiTheme();
+  const styles = euiRangeLevelsStyles(euiTheme);
+  const cssStyles = [styles.euiRangeLevels, showTicks && styles.hasTicks];
+
   return (
-    <div className={classes} ref={handleRef}>
+    <div className={classes} css={cssStyles} ref={handleRef}>
       {levels.map((level, index) => {
         validateLevelIsInRange(level);
 
@@ -132,8 +141,21 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
           className
         );
 
+        const levelStyles = euiRangeLevelStyles(euiTheme);
+        const cssLevelStyles = [
+          levelStyles.euiRangeLevel,
+          !isNamedColor && levelStyles.customColor,
+          isNamedColor && levelStyles[color as EuiRangeLevelColor],
+        ];
+
         return (
-          <span key={index} style={styles} className={levelClasses} {...rest} />
+          <span
+            key={index}
+            style={styles}
+            className={levelClasses}
+            css={cssLevelStyles}
+            {...rest}
+          />
         );
       })}
     </div>

@@ -11,6 +11,9 @@ import classNames from 'classnames';
 
 import { CommonProps, ExclusiveUnion } from '../../common';
 
+import { useEuiTheme } from '../../../services';
+import { euiRangeThumbStyles } from './range_thumb.styles';
+
 interface BaseProps extends CommonProps {
   min: number;
   max: number;
@@ -47,8 +50,14 @@ export const EuiRangeThumb: FunctionComponent<EuiRangeThumbProps> = ({
     },
     className
   );
+
+  const euiTheme = useEuiTheme();
+  const styles = euiRangeThumbStyles(euiTheme);
+  const cssStyles = [styles.euiRangeThumb, showTicks && styles.hasTicks];
+
   const commonAttrs = {
     className: classes,
+    css: cssStyles,
     role: 'slider',
     'aria-valuemin': min,
     'aria-valuemax': max,
@@ -56,6 +65,7 @@ export const EuiRangeThumb: FunctionComponent<EuiRangeThumbProps> = ({
     'aria-disabled': !!disabled,
     tabIndex: showInput || !!disabled ? -1 : tabIndex || 0,
   };
+
   return onClick || onMouseDown ? (
     <button
       type="button"
