@@ -3,6 +3,7 @@ import React from 'react';
 import { GuideSectionTypes } from '../../components';
 
 import {
+  EuiCallOut,
   EuiCode,
   EuiLink,
   EuiDatePicker,
@@ -254,16 +255,25 @@ export const DatePickerExample = {
         },
       ],
       text: (
-        <p>
-          Locale formatting is achieved by using the <EuiCode>locale</EuiCode>,
-          <EuiCode>timeFormat</EuiCode>, and <EuiCode>dateFormat</EuiCode>{' '}
-          props. The latter will take any <EuiCode>moment()</EuiCode> notation.
-          Check{' '}
-          <a href="https://en.wikipedia.org/wiki/Date_format_by_country">
-            Date format by country
-          </a>{' '}
-          for formatting examples.
-        </p>
+        <>
+          <p>
+            Locale formatting is achieved by using the <EuiCode>locale</EuiCode>
+            ,<EuiCode>timeFormat</EuiCode>, and <EuiCode>dateFormat</EuiCode>{' '}
+            props. The latter will take any <EuiCode>moment()</EuiCode>{' '}
+            notation. Check{' '}
+            <a href="https://en.wikipedia.org/wiki/Date_format_by_country">
+              Date format by country
+            </a>{' '}
+            for formatting examples.
+          </p>
+          <EuiCallOut color="warning">
+            Moment will try to load the locale on demand when it is used.
+            Bundlers that do not support dynamic require statements will need to
+            explicitly import the locale, e.g.{' '}
+            <EuiCode>{"import 'moment/locale/zh-cn'"}</EuiCode>. See the below
+            demo JS for examples.
+          </EuiCallOut>
+        </>
       ),
       snippet: localeSnippet,
       demo: <Locale />,

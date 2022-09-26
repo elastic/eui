@@ -21,7 +21,7 @@ export const euiRangeThumbStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     // Base
     euiRangeThumb: css`
-      ${euiCustomControl({ euiThemeContext: euiThemeContext, type: 'round' })};
+      ${euiCustomControl(euiThemeContext, { type: 'round' })};
       ${euiRangeThumbStyle(euiThemeContext)};
       content: '';
       position: absolute;

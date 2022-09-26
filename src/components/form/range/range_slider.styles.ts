@@ -54,8 +54,7 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       ${euiRangeThumbPerBrowser(`
-        ${euiCustomControl({
-          euiThemeContext: euiThemeContext,
+        ${euiCustomControl(euiThemeContext, {
           type: 'round',
         })};
         ${euiRangeThumbStyle(euiThemeContext)};

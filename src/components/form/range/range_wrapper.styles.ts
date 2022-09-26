@@ -27,14 +27,11 @@ export const euiRangeWrapperStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     regular: css`
-      ${euiFormControlSize({
-        euiThemeContext,
-      })}
+      ${euiFormControlSize(euiThemeContext)}
     `,
     compressed: css`
-      ${euiFormControlSize({
-        euiThemeContext,
-        includeAlternates: 'compressed',
+      ${euiFormControlSize(euiThemeContext, {
+        compressed: true,
       })}
     `,
   };

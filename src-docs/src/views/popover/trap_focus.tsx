@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import {
+  EuiButtonEmpty,
   EuiButton,
   EuiFormRow,
   EuiPopover,
@@ -18,9 +19,9 @@ export default () => {
   const closePopover = () => setIsPopoverOpen(false);
 
   const button = (
-    <EuiButton iconType="arrowDown" iconSide="right" onClick={onButtonClick}>
+    <EuiButtonEmpty iconType="help" iconSide="right" onClick={onButtonClick}>
       Show popover
-    </EuiButton>
+    </EuiButtonEmpty>
   );
 
   // Since `hasFocus={false}` disables popover auto focus, we need to manually set it ourselves

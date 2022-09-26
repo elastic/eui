@@ -16,6 +16,10 @@ import { ICON_SIDES } from '../_button_content_deprecated';
 import { BUTTON_COLORS } from '../../../themes/amsterdam/global_styling/mixins';
 
 describe('EuiButtonEmpty', () => {
+  shouldRenderCustomStyles(<EuiButtonEmpty>Content</EuiButtonEmpty>, {
+    childProps: ['contentProps'],
+  });
+
   test('is rendered', () => {
     const component = render(
       <EuiButtonEmpty {...requiredProps}>Content</EuiButtonEmpty>
@@ -23,10 +27,6 @@ describe('EuiButtonEmpty', () => {
 
     expect(component).toMatchSnapshot();
   });
-
-  shouldRenderCustomStyles(
-    <EuiButtonEmpty {...requiredProps}>Content</EuiButtonEmpty>
-  );
 
   describe('props', () => {
     describe('isDisabled', () => {

@@ -7,6 +7,7 @@
  */
 
 import React, { Component } from 'react';
+import { css } from '@emotion/react';
 import classNames from 'classnames';
 
 import {
@@ -513,6 +514,7 @@ export class EuiDualRangeClass extends Component<
   render() {
     const {
       className,
+      css: customCss,
       compressed,
       disabled,
       fullWidth,
@@ -632,10 +634,14 @@ export class EuiDualRangeClass extends Component<
           this.state.rangeWidth
         )
       : { left: '0' };
+
+    const styles = { euiDualRange: css`` }; // TODO: Emotion conversion
+    const cssStyles = [styles.euiDualRange, customCss];
+
     const theRange = (
       <EuiRangeWrapper
+        css={cssStyles}
         className={classes}
-        css={dualRangeStyles.euiDualRange}
         fullWidth={fullWidth}
         compressed={compressed}
       >

@@ -19,6 +19,45 @@ export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => {
 };
 ```
 
+---
+<details>
+  <summary>🎉 <b>ProTip:</b> VS Code snippet</summary>
+  To make generating component boilerplate just a little bit easier, you can add the following block to a global or local snippet file in VS Code. Once saved, you'll be able to generate the boilerplate by typing `euisc` `tab`. <a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets#_create-your-own-snippets" target="_blank">Learn how to add snippets in VS Code</a>:
+
+  ```json
+  "euiStyledComponent": {
+    "prefix": "euisc",
+    "body": [
+      "/*",
+      "* Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one",
+      "* or more contributor license agreements. Licensed under the Elastic License",
+      "* 2.0 and the Server Side Public License, v 1; you may not use this file except",
+      "* in compliance with, at your election, the Elastic License 2.0 or the Server",
+      "* Side Public License, v 1.",
+      "*/",
+      "",
+      "import { css } from '@emotion/react';",
+      "import {",
+      "  euiFontSize,",
+      "  logicalCSS,",
+      "} from '../../global_styling';",
+      "import { UseEuiTheme } from '../../services';",
+      "",
+      "export const ${1:componentName}Styles = ({ euiTheme }: UseEuiTheme) => {",
+      "  return {",
+      "    ${1:componentName}: css`",
+      "      ${2:property}: tomato;",
+      "    `",
+      "  };",
+      "};"
+    ],
+    "description": "EUI styled component"
+  }
+  ```
+</details>
+
+---
+
 ```tsx
 /* {component name}.tsx */
 import { useEuiTheme } from '../../services';

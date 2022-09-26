@@ -3,13 +3,13 @@
 exports[`EuiFlyoutHeader is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiFlyoutHeader testClass1 testClass2"
+  class="euiFlyoutHeader testClass1 testClass2 emotion-euiFlyoutHeader"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`EuiFlyoutHeader props border is rendered 1`] = `
 <div
-  class="euiFlyoutHeader euiFlyoutHeader--hasBorder"
+  class="euiFlyoutHeader emotion-euiFlyoutHeader-hasBorder"
 />
 `;

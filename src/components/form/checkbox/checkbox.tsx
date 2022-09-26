@@ -13,6 +13,7 @@ import React, {
   InputHTMLAttributes,
   LabelHTMLAttributes,
 } from 'react';
+import { css } from '@emotion/react';
 import classNames from 'classnames';
 
 import { keysOf, CommonProps } from '../../common';
@@ -67,6 +68,7 @@ export class EuiCheckbox extends Component<EuiCheckboxProps> {
   render() {
     const {
       className,
+      css: customCss,
       id,
       checked,
       label,
@@ -103,8 +105,11 @@ export class EuiCheckbox extends Component<EuiCheckboxProps> {
       );
     }
 
+    const styles = { euiCheckbox: css`` }; // TODO: Emotion conversion
+    const cssStyles = [styles.euiCheckbox, customCss];
+
     return (
-      <div className={classes}>
+      <div css={cssStyles} className={classes}>
         <input
           className="euiCheckbox__input"
           type="checkbox"

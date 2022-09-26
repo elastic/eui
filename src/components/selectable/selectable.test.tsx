@@ -9,6 +9,7 @@
 import React from 'react';
 import { mount, render } from 'enzyme';
 import { requiredProps } from '../../test';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiSelectable } from './selectable';
 import { EuiSelectableOption } from './selectable_option';
@@ -28,6 +29,18 @@ const options: EuiSelectableOption[] = [
 ];
 
 describe('EuiSelectable', () => {
+  shouldRenderCustomStyles(
+    <EuiSelectable options={options} searchable>
+      {(list, search) => (
+        <>
+          {search}
+          {list}
+        </>
+      )}
+    </EuiSelectable>,
+    { childProps: ['searchProps', 'listProps', 'listProps.windowProps'] }
+  );
+
   test('is rendered', () => {
     const component = render(
       <EuiSelectable options={options} {...requiredProps} id="testId" />

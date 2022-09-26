@@ -215,8 +215,9 @@ export const AccessibilityExample = {
             navigation, or ornamental elements, and quickly reach the main
             content of the page. It requires a <EuiCode>destinationId</EuiCode>{' '}
             which should match the <EuiCode>id</EuiCode> of your main content.
-            You can also change the <EuiCode>position</EuiCode> to{' '}
-            <EuiCode>fixed</EuiCode>.
+            If your ID does not correspond to a valid element, the skip link
+            will fall back to focusing the <EuiCode>{'<main>'}</EuiCode> tag on
+            your page, if it exists.
           </p>
           <p>
             <em>

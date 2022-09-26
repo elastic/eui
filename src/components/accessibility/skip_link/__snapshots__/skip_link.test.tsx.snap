@@ -20,18 +20,6 @@ exports[`EuiSkipLink is rendered 1`] = `
 </a>
 `;
 
-exports[`EuiSkipLink props onClick is rendered 1`] = `
-<a
-  class="euiSkipLink emotion-euiButtonDisplay-s-s-fill-primary-euiSkipLink-euiScreenReaderOnly"
-  href="#somewhere"
-  rel="noreferrer"
->
-  <span
-    class="emotion-euiButtonDisplayContent"
-  />
-</a>
-`;
-
 exports[`EuiSkipLink props position absolute is rendered 1`] = `
 <a
   class="euiSkipLink emotion-euiButtonDisplay-s-s-fill-primary-euiSkipLink-absolute-euiScreenReaderOnly"

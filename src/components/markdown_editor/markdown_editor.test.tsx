@@ -9,12 +9,24 @@
 import React from 'react';
 import { render, mount, ReactWrapper } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
+
 import { EuiMarkdownEditor } from './markdown_editor';
 import * as MarkdownTooltip from './plugins/markdown_tooltip';
 import MarkdownActions from './markdown_actions';
 import { getDefaultEuiMarkdownPlugins } from './plugins/markdown_default_plugins';
 
 describe('EuiMarkdownEditor', () => {
+  shouldRenderCustomStyles(
+    <EuiMarkdownEditor
+      {...requiredProps}
+      onChange={() => {}}
+      value="Test"
+      initialViewMode="viewing"
+    />,
+    { childProps: ['markdownFormatProps'] }
+  );
+
   test('is rendered', () => {
     const component = render(
       <EuiMarkdownEditor

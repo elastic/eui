@@ -11,6 +11,10 @@ import {
   EuiTitle,
   EuiBasicTable,
   EuiSearchBar,
+  EuiFilterButton,
+  EuiPopover,
+  EuiButton,
+  EuiPanel,
 } from '../../../../src/components';
 
 const random = new Random();
@@ -62,6 +66,101 @@ const items = times(10, (id) => {
 
 const initialQuery = EuiSearchBar.Query.MATCH_ALL;
 
+const CustomComponent = ({ query, onChange }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const orTagsClause = query.getOrFieldClause('tag');
+  const selectedTags = orTagsClause?.value ?? [];
+  const isOnlySales =
+    !!(selectedTags.length === 1 && selectedTags[0] === 'sales') &&
+    !hasCloudExcluded;
+
+  const simpleTagClause = query.getSimpleFieldClause('tag');
+  const hasCloudExcluded = !!(
+    simpleTagClause &&
+    simpleTagClause.match === 'must_not' &&
+    simpleTagClause.operator === 'eq'
+  );
+
+  const hasFiltersApplied = query.hasClauses();
+
+  const closePopover = () => {
+    setIsOpen(false);
+  };
+
+  const button = (
+    <EuiFilterButton
+      iconType="arrowDown"
+      iconSide="right"
+      onClick={() => setIsOpen((prev) => !prev)}
+      hasActiveFilters={isOnlySales}
+      numActiveFilters={isOnlySales ? 1 : undefined}
+      grow
+    >
+      Custom
+    </EuiFilterButton>
+  );
+
+  return (
+    <EuiPopover
+      button={button}
+      isOpen={isOpen}
+      closePopover={closePopover}
+      panelPaddingSize="none"
+      anchorPosition="downCenter"
+    >
+      <EuiPanel paddingSize="m">
+        <EuiFlexGroup>
+          <EuiFlexItem>
+            <EuiButton
+              onClick={() => {
+                const q = query
+                  .removeSimpleFieldValue('tag', 'cloud')
+                  .removeOrFieldClauses('tag')
+                  .addOrFieldValue('tag', 'sales', true, 'eq');
+                onChange(q);
+                closePopover();
+              }}
+              disabled={isOnlySales}
+            >
+              Only sales
+            </EuiButton>
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiButton
+              onClick={() => {
+                const q = query.addSimpleFieldValue(
+                  'tag',
+                  'cloud',
+                  false,
+                  'eq'
+                );
+                onChange(q);
+                closePopover();
+              }}
+              disabled={hasCloudExcluded}
+            >
+              Exclude cloud
+            </EuiButton>
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiButton
+              onClick={() => {
+                const q = query.removeAllClauses();
+                onChange(q);
+                closePopover();
+              }}
+              disabled={!hasFiltersApplied}
+            >
+              All
+            </EuiButton>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </EuiPanel>
+    </EuiPopover>
+  );
+};
+
 export const SearchBarFilters = () => {
   const [query, setQuery] = useState(initialQuery);
   const [error, setError] = useState(null);
@@ -108,6 +207,10 @@ export const SearchBarFilters = () => {
           value: tag.name,
           view: <EuiHealth color={tag.color}>{tag.name}</EuiHealth>,
         })),
+      },
+      {
+        type: 'custom_component',
+        component: CustomComponent,
       },
     ];
 
@@ -157,7 +260,7 @@ export const SearchBarFilters = () => {
       <EuiSearchBar
         defaultQuery={initialQuery}
         box={{
-          placeholder: 'e.g. type:visualization -is:active joe',
+          placeholder: 'type:visualization -is:active joe',
           incremental: true,
           schema,
         }}

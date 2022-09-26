@@ -56,9 +56,9 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
   return (
     <figure
       aria-label={optionalCaptionText}
+      css={cssFigureStyles}
       {...wrapperProps}
       className={classes}
-      css={cssFigureStyles}
     >
       {allowFullScreen ? (
         <>

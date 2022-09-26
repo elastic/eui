@@ -100,11 +100,12 @@ export const EuiPageSection: FunctionComponent<EuiPageSectionProps> = ({
     bottomBorder === true && styles.border,
     alignment.toLowerCase().includes('center') && contentStyles.center,
     restrictWidth && contentStyles.restrictWidth,
+    contentProps?.css && contentProps.css,
   ];
 
   return (
     <Component css={cssStyles} {...rest}>
-      <div css={cssContentStyles} {...contentProps} style={widthStyles}>
+      <div {...contentProps} css={cssContentStyles} style={widthStyles}>
         {children}
       </div>
     </Component>

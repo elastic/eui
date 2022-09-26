@@ -8,6 +8,9 @@
 
 import React from 'react';
 import { shallow, mount } from 'enzyme';
+import { fireEvent } from '@testing-library/react';
+import { waitForEuiToolTipVisible } from '../../../test/rtl';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiSuperUpdateButton } from './super_update_button';
 import { EuiButton, EuiButtonProps } from '../../button';
@@ -15,6 +18,25 @@ import { EuiButton, EuiButtonProps } from '../../button';
 const noop = () => {};
 
 describe('EuiSuperUpdateButton', () => {
+  shouldRenderCustomStyles(<EuiSuperUpdateButton onClick={noop} />);
+  shouldRenderCustomStyles(
+    <EuiSuperUpdateButton
+      onClick={noop}
+      data-test-subj="trigger"
+      showTooltip
+      needsUpdate
+      toolTipProps={{ children: <>Test</>, delay: 'regular', position: 'top' }} // React throws a `Failed prop type` error without this
+    />,
+    {
+      childProps: ['toolTipProps'],
+      skipParentTest: true,
+      renderCallback: async ({ getByTestSubject }) => {
+        fireEvent.mouseOver(getByTestSubject('trigger'));
+        await waitForEuiToolTipVisible();
+      },
+    }
+  );
+
   test('is rendered', () => {
     const component = shallow(<EuiSuperUpdateButton onClick={noop} />);
 

@@ -17,6 +17,7 @@ import {
   keys,
 } from '../../../services';
 import { requiredProps, findTestSubject } from '../../../test';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 import { EuiFieldNumber } from '../../form/field_number';
 
 jest.mock('../../portal', () => ({
@@ -34,6 +35,17 @@ const colorStopsArray = [
 // Note: A couple tests that would be nice, but can't be accomplished at the moment:
 // - Tab to bypass thumbs (tabindex="-1" not respected)
 // - Drag to reposition thumb (we can't get real page position info)
+
+shouldRenderCustomStyles(
+  <EuiColorStops
+    label="Test"
+    onChange={onChange}
+    colorStops={colorStopsArray}
+    min={0}
+    max={100}
+    {...requiredProps}
+  />
+);
 
 test('renders EuiColorStops', () => {
   const colorStops = render(

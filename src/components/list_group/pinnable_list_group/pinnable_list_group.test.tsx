@@ -9,6 +9,7 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import {
   EuiPinnableListGroup,
@@ -52,6 +53,14 @@ const someListItems: EuiPinnableListGroupItemProps[] = [
 ];
 
 describe('EuiPinnableListGroup', () => {
+  shouldRenderCustomStyles(
+    <EuiPinnableListGroup
+      {...requiredProps}
+      listItems={someListItems}
+      onPinClick={() => {}}
+    />
+  );
+
   test('is rendered', () => {
     const component = render(
       <EuiPinnableListGroup

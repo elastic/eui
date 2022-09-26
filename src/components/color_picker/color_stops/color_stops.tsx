@@ -164,6 +164,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   swatches,
   showAlpha = false,
   valueInputProps,
+  ...rest
 }) => {
   const sortedStops = useMemo(() => sortStops(colorStops), [colorStops]);
   const rangeMax: number = useMemo(() => {
@@ -494,7 +495,8 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
 
   return (
     <EuiRangeWrapper
-      data-test-subj="euiColorStops"
+      {...rest}
+      data-test-subj={classNames('euiColorStops', rest['data-test-subj'])}
       ref={setWrapperRef}
       className={classes}
       fullWidth={fullWidth}

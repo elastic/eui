@@ -158,20 +158,23 @@ export const EuiButtonIcon: FunctionComponent<Props> = (props) => {
 
   // eslint-disable-next-line no-nested-ternary
   const color = isDisabled ? 'disabled' : _color === 'ghost' ? 'text' : _color;
-  const buttonColorStyles = useEuiButtonColorCSS({
-    display,
-  })[color];
 
-  // Temporary extra style for empty `:hover` state until we decide how to handle universally
-  const hoverStyles =
-    display === 'empty'
-      ? css`
-          &:hover {
-            background-color: ${euiButtonEmptyColor(euiThemeContext, color)
-              .backgroundColor};
-          }
-        `
-      : css``;
+  const styles = {
+    euiButtonIcon: css``,
+    colors: useEuiButtonColorCSS({ display }),
+    // Temporary extra style for empty `:hover` state until we decide how to handle universally
+    hoverStyles: css`
+      &:hover {
+        background-color: ${euiButtonEmptyColor(euiThemeContext, color)
+          .backgroundColor};
+      }
+    `,
+  };
+  const cssStyles = [
+    styles.euiButtonIcon,
+    styles.colors[color],
+    display === 'empty' && styles.hoverStyles,
+  ];
 
   const classes = classNames(
     'euiButtonIcon',
@@ -219,7 +222,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = (props) => {
 
     return (
       <a
-        css={[buttonColorStyles, hoverStyles]}
+        css={cssStyles}
         tabIndex={isAriaHidden ? -1 : undefined}
         className={classes}
         href={href}
@@ -236,7 +239,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = (props) => {
   let buttonType: ButtonHTMLAttributes<HTMLButtonElement>['type'];
   return (
     <button
-      css={[buttonColorStyles, hoverStyles]}
+      css={cssStyles}
       tabIndex={isAriaHidden ? -1 : undefined}
       disabled={isDisabled}
       className={classes}

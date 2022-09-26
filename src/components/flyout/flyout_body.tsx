@@ -9,6 +9,8 @@
 import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
+import { useEuiTheme } from '../../services';
+import { euiFlyoutBodyStyles } from './flyout_body.styles';
 
 export type EuiFlyoutBodyProps = FunctionComponent<
   HTMLAttributes<HTMLDivElement> &
@@ -27,14 +29,30 @@ export const EuiFlyoutBody: EuiFlyoutBodyProps = ({
   ...rest
 }) => {
   const classes = classNames('euiFlyoutBody', className);
-  const overflowClasses = classNames('euiFlyoutBody__overflow', {
-    'euiFlyoutBody__overflow--hasBanner': banner,
-  });
+
+  const euiTheme = useEuiTheme();
+  const styles = euiFlyoutBodyStyles(euiTheme);
+
+  const cssStyles = [styles.euiFlyoutBody];
+  const bannerCssStyles = [banner && styles.euiFlyoutBody__banner];
+  const overflowCssStyles = [
+    banner
+      ? styles.euiFlyoutBody__overflow.hasBanner
+      : styles.euiFlyoutBody__overflow.noBanner,
+  ];
 
   return (
-    <div className={classes} {...rest}>
-      <div tabIndex={0} className={overflowClasses}>
-        {banner && <div className="euiFlyoutBody__banner">{banner}</div>}
+    <div className={classes} {...rest} css={cssStyles}>
+      <div
+        tabIndex={0}
+        className="euiFlyoutBody__overflow"
+        css={overflowCssStyles}
+      >
+        {banner && (
+          <div className="euiFlyoutBody__banner" css={bannerCssStyles}>
+            {banner}
+          </div>
+        )}
         <div className="euiFlyoutBody__overflowContent">{children}</div>
       </div>
     </div>

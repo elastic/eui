@@ -31,4 +31,7 @@ export const euiButtonDisplayContentStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiButtonDisplayContent__icon: css`
     flex-shrink: 0;
   `,
+  // Icon size
+  s: css``,
+  m: css``,
 });

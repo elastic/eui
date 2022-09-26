@@ -46,8 +46,8 @@ export default () => {
     <div
       dangerouslySetInnerHTML={{
         __html: `
-  <button id="popoverAnchorButton" class="euiButton euiButton--primary">
-    <span class="euiButton__content">This is an HTML button</span>
+  <button id="popoverAnchorButton" class="EuiButtonEmpty EuiButtonEmpty--primary">
+    <span class="EuiButtonEmpty__content">This is an HTML button</span>
   </button>
         `,
       }}

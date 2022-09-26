@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import {
-  EuiButton,
+  EuiButtonEmpty,
   EuiCode,
   EuiPanel,
   EuiPopover,
@@ -17,14 +17,14 @@ export default () => {
   const closePopover = () => setIsPopoverOpen(false);
 
   const button = (
-    <EuiButton
-      iconType="arrowDown"
+    <EuiButtonEmpty
+      iconType="help"
       iconSide="right"
       onClick={onButtonClick}
       style={{ position: 'relative', left: 50 }}
     >
       Show constrained popover
-    </EuiButton>
+    </EuiButtonEmpty>
   );
 
   return (

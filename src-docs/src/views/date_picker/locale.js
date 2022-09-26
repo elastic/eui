@@ -2,6 +2,12 @@ import React, { useState } from 'react';
 
 import moment from 'moment';
 
+// NOTE: These explicit imports are required for CodeSandbox and any
+// bundler that does not support Moment dynamically loading locales
+import 'moment/locale/zh-cn';
+import 'moment/locale/ko';
+import 'moment/locale/de';
+
 import {
   EuiDatePicker,
   EuiFormRow,
@@ -59,7 +65,7 @@ export default () => {
           onChange={handleChange}
           dateFormat="DD-MM-YYYY HH:mm"
           timeFormat="HH:mm"
-          locale="de-de"
+          locale="de"
         />
       </EuiFormRow>
     </div>

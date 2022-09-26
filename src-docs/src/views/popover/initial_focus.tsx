@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import {
+  EuiButtonEmpty,
   EuiButton,
   EuiFormRow,
   EuiPopover,
@@ -16,9 +17,9 @@ export default () => {
   const closePopover = () => setIsPopoverOpen(false);
 
   const button = (
-    <EuiButton iconType="arrowDown" iconSide="right" onClick={onButtonClick}>
+    <EuiButtonEmpty iconType="help" iconSide="right" onClick={onButtonClick}>
       Show popover
-    </EuiButton>
+    </EuiButtonEmpty>
   );
 
   return (

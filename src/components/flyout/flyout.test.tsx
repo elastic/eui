@@ -9,6 +9,7 @@
 import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps, takeMountedSnapshot } from '../../test';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiFlyout, SIZES, PADDING_SIZES, SIDES } from './flyout';
 
@@ -23,6 +24,11 @@ jest.mock('../portal', () => ({
 }));
 
 describe('EuiFlyout', () => {
+  shouldRenderCustomStyles(
+    <EuiFlyout {...requiredProps} onClose={() => {}} />,
+    { childProps: ['closeButtonProps', 'maskProps'] }
+  );
+
   test('is rendered', () => {
     const component = mount(
       <EuiFlyout {...requiredProps} onClose={() => {}} />

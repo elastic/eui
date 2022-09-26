@@ -420,6 +420,49 @@ export const propsInfo = {
     },
   },
 
+  CustomComponentFilter: {
+    __docgenInfo: {
+      _euiObjectType: 'type',
+      props: {
+        type: {
+          description:
+            'Defines the type of the filter. Must be set to `custom_component`',
+          required: true,
+          type: { name: '"custom_component"' },
+        },
+        component: {
+          description: 'The component to render the filter',
+          required: true,
+          type: { name: 'React.ComponentType<#CustomComponentProps>' },
+        },
+        available: {
+          description:
+            'A callback that defines whether this filter is currently available',
+          required: false,
+          type: { name: '() => boolean' },
+        },
+      },
+    },
+  },
+
+  CustomComponentProps: {
+    __docgenInfo: {
+      _euiObjectType: 'type',
+      props: {
+        query: {
+          description: 'The Query instance to interact with the search bar',
+          required: true,
+          type: { name: 'Query' },
+        },
+        onChange: {
+          description: 'Handler to update the search bar query',
+          required: true,
+          type: { name: '(q:Query) => void' },
+        },
+      },
+    },
+  },
+
   ExecuteQueryOptions: {
     __docgenInfo: {
       _euiObjectType: 'type',
