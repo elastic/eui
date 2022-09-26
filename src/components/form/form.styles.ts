@@ -57,10 +57,10 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
   const customControlColors = {
     customControlDisabledIconColor: isColorDark
       ? shade(euiTheme.colors.mediumShade, 0.38)
-      : tint(euiTheme.colors.mediumShade, 0.48),
+      : tint(euiTheme.colors.mediumShade, 0.485),
     customControlBorderColor: isColorDark
       ? shade(euiTheme.colors.lightestShade, 0.18)
-      : tint(euiTheme.colors.lightestShade, 0.38),
+      : tint(euiTheme.colors.lightestShade, 0.3),
   };
 
   const controlLayout = {
@@ -90,14 +90,6 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
     ...controlLayout,
   };
 };
-
-export const euiFormCustomControlBorderColor = ({
-  euiTheme,
-  colorMode,
-}: UseEuiTheme) =>
-  colorMode === 'DARK'
-    ? shade(euiTheme.colors.lightestShade, 0.82)
-    : tint(euiTheme.colors.lightestShade, 0.7);
 
 export const euiFormControlSize = (
   euiThemeContext: UseEuiTheme,
@@ -155,9 +147,7 @@ export const euiCustomControl = (
   return `
     ${padddingStyle}
     ${borderRadiusStyle}
-    border: ${
-      euiTheme.border.width.thin
-    } solid ${euiFormCustomControlBorderColor(euiThemeContext)};
+    border: ${euiTheme.border.width.thin} solid ${form.customControlBorderColor};
     background: ${euiTheme.colors.emptyShade} no-repeat center;
 
     ${euiCanAnimate} {

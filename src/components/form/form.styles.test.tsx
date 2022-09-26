@@ -13,7 +13,6 @@ import { EuiProvider } from '../provider';
 
 import {
   euiFormVariables,
-  euiFormCustomControlBorderColor,
   euiFormControlSize,
   euiCustomControl,
 } from './form.styles';
@@ -51,8 +50,8 @@ describe('euiFormVariables', () => {
         "controlLayoutGroupInputHeight": "38px",
         "controlPadding": "12px",
         "controlPlaceholderText": "#646a77",
-        "customControlBorderColor": "#f6f8fc",
-        "customControlDisabledIconColor": "#c9cfd7",
+        "customControlBorderColor": "#f5f7fc",
+        "customControlDisabledIconColor": "#cacfd8",
         "inputGroupBorder": "none",
         "inputGroupLabelBackground": "#e9edf3",
         "maxWidth": "400px",
@@ -70,23 +69,6 @@ describe('euiFormVariables', () => {
     expect(result.current.inputGroupLabelBackground).toEqual('#2c2f37');
     expect(result.current.customControlDisabledIconColor).toEqual('#33373f');
     expect(result.current.customControlBorderColor).toEqual('#1e1f26');
-  });
-});
-
-describe('euiFormCustomControlBorderColor', () => {
-  it('returns a tinted color based on the current color mode', () => {
-    const { result } = renderHook(() =>
-      euiFormCustomControlBorderColor(useEuiTheme())
-    );
-    expect(result.current).toEqual('#fbfcfe');
-  });
-
-  test('dark mode', () => {
-    const { result } = renderHook(
-      () => euiFormCustomControlBorderColor(useEuiTheme()),
-      { wrapper: darkModeWrapper }
-    );
-    expect(result.current).toEqual('#070708');
   });
 });
 
@@ -200,7 +182,7 @@ describe('euiCustomControl', () => {
       "
           padding: 7px;
           
-          border: 1px solid #fbfcfe;
+          border: 1px solid #f5f7fc;
           background: #FFF no-repeat center;
 
           @media screen and (prefers-reduced-motion: no-preference) {
@@ -219,7 +201,7 @@ describe('euiCustomControl', () => {
       "
           padding: 15px;
           
-          border: 1px solid #fbfcfe;
+          border: 1px solid #f5f7fc;
           background: #FFF no-repeat center;
 
           @media screen and (prefers-reduced-motion: no-preference) {
@@ -238,7 +220,7 @@ describe('euiCustomControl', () => {
       "
           padding: 7px;
           border-radius: 16px;
-          border: 1px solid #fbfcfe;
+          border: 1px solid #f5f7fc;
           background: #FFF no-repeat center;
 
           @media screen and (prefers-reduced-motion: no-preference) {
@@ -257,7 +239,7 @@ describe('euiCustomControl', () => {
       "
           padding: 2px;
           border-radius: 6px;
-          border: 1px solid #fbfcfe;
+          border: 1px solid #f5f7fc;
           background: #FFF no-repeat center;
 
           @media screen and (prefers-reduced-motion: no-preference) {
@@ -276,7 +258,7 @@ describe('euiCustomControl', () => {
       "
           padding: 7px;
           border-radius: 4px;
-          border: 1px solid #fbfcfe;
+          border: 1px solid #f5f7fc;
           background: #FFF no-repeat center;
 
           @media screen and (prefers-reduced-motion: no-preference) {
