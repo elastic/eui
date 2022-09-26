@@ -7,6 +7,7 @@ import {
   EuiStat,
   EuiPanel,
 } from '../../../../src/components';
+// @ts-ignore - faker does not have type declarations
 import { fake } from 'faker';
 import { useGeneratedHtmlId } from '../../../../src/services';
 
@@ -21,7 +22,7 @@ const text = (
 export default () => {
   const firstPanelId = useGeneratedHtmlId({ prefix: 'firstPanel' });
   const secondPanelId = useGeneratedHtmlId({ prefix: 'secondPanel' });
-  const [resizeTrigger, setResizeTrigger] = useState();
+  const [resizeTrigger, setResizeTrigger] = useState<'pointer' | 'key'>();
   const [sizes, setSizes] = useState({
     [firstPanelId]: 50,
     [secondPanelId]: 50,

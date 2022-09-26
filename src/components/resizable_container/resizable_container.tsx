@@ -40,6 +40,7 @@ import {
   EuiResizableContainerState,
   EuiResizableContainerActions,
   KeyMoveDirection,
+  ResizeTrigger,
 } from './types';
 
 const containerDirections = {
@@ -67,22 +68,18 @@ export interface EuiResizableContainerProps
    * Pure function which accepts an object where keys are IDs of panels, which sizes were changed,
    * and values are actual sizes in percents
    */
-  onPanelWidthChange?: ({}: { [key: string]: number }) => any;
+  onPanelWidthChange?: ({}: { [key: string]: number }) => void;
   onToggleCollapsed?: ToggleCollapseCallback;
   /**
    * Called when resizing starts
    */
-  onResizeStart?: (trigger: 'pointer' | 'key') => any;
+  onResizeStart?: (trigger: ResizeTrigger) => void;
   /**
    * Called when resizing ends
    */
-  onResizeEnd?: () => any;
+  onResizeEnd?: () => void;
   style?: CSSProperties;
 }
-
-type ResizeTrigger = Parameters<
-  NonNullable<EuiResizableContainerProps['onResizeStart']>
->[0];
 
 const initialState: EuiResizableContainerState = {
   isDragging: false,

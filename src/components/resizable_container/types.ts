@@ -16,6 +16,9 @@ export type PanelDirection = 'left' | 'right';
 
 export type KeyMoveDirection = 'forward' | 'backward';
 
+type ResizeTriggerTuple = ['pointer', 'key'];
+export type ResizeTrigger = ResizeTriggerTuple[number];
+
 export interface EuiResizablePanelController {
   id: string;
   size: number;
