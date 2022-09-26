@@ -341,7 +341,7 @@ export const ResizableContainerExample = {
     {
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: ResizableContainerCallbacksSource,
         },
       ],
