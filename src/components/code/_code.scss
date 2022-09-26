@@ -7,6 +7,11 @@
   padding: .2em .5em; /* 1 */
   background: $euiCodeBlockBackgroundColor;
 
+  // amsterdam overrides
+  border-radius: $euiBorderRadiusSmall;
+  font-weight: $euiCodeFontWeightBold;
+  color: makeHighContrastColor($euiColorVis3, $euiCodeBlockBackgroundColor);
+
   &.euiCode--transparentBackground {
     background: transparent;
   }

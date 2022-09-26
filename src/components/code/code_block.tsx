@@ -10,36 +10,35 @@ import React, {
   CSSProperties,
   HTMLAttributes,
   FunctionComponent,
-  KeyboardEvent,
   forwardRef,
-  ReactNode,
-  useEffect,
   useMemo,
-  useState,
-  useCallback,
 } from 'react';
-import classNames from 'classnames';
 import { RefractorNode } from 'refractor';
-import { FixedSizeList, ListChildComponentProps } from 'react-window';
-import { keys, useCombinedRefs } from '../../services';
+import { FixedSizeList } from 'react-window';
+import { useCombinedRefs, useEuiTheme } from '../../services';
 import { EuiAutoSizer } from '../auto_sizer';
-import { EuiButtonIcon } from '../button';
-import { keysOf, ExclusiveUnion } from '../common';
-import { EuiCopy } from '../copy';
-import { EuiFocusTrap } from '../focus_trap';
-import { useEuiI18n } from '../i18n';
-import { useInnerText } from '../inner_text';
-import { useMutationObserver } from '../observer/mutation_observer';
-import { useResizeObserver } from '../observer/resize_observer';
-import { EuiOverlayMask } from '../overlay_mask';
+import { ExclusiveUnion } from '../common';
 import {
   EuiCodeSharedProps,
   DEFAULT_LANGUAGE,
   checkSupportedLanguage,
   getHtmlContent,
-  nodeToHtml,
   highlightByLine,
+  useOverflowDetection,
+  useCopy,
+  useFullScreen,
+  ListRow,
 } from './utils';
+import {
+  euiCodeBlockStyles,
+  euiCodeBlockPreStyles,
+  euiCodeBlockCodeStyles,
+  euiCodeBlockControlsStyles,
+} from './code_block.styles';
+import { useEuiPaddingCSS } from '../../global_styling';
+import { EuiCodeBlockFullScreenWrapper } from './code_block_full_screen_wrapper';
+import { EuiCodeBlockCopyButton } from './code_block_copy_button';
+import { EuiCodeFullScreenButton } from './code_block_full_screen_button';
 
 // Based on observed line height for non-virtualized code blocks
 const fontSizeToRowHeightMap = {
@@ -48,25 +47,11 @@ const fontSizeToRowHeightMap = {
   l: 24,
 };
 
-const fontSizeToClassNameMap = {
-  s: 'euiCodeBlock--fontSmall',
-  m: 'euiCodeBlock--fontMedium',
-  l: 'euiCodeBlock--fontLarge',
-};
+export const FONT_SIZES = ['s', 'm', 'l'] as const;
+export type EuiCodeBlockFontSize = typeof FONT_SIZES[number];
 
-type PaddingSize = 'none' | 's' | 'm' | 'l';
-type FontSize = 's' | 'm' | 'l';
-
-export const FONT_SIZES = keysOf(fontSizeToClassNameMap);
-
-const paddingSizeToClassNameMap: { [paddingSize in PaddingSize]: string } = {
-  none: '',
-  s: 'euiCodeBlock--paddingSmall',
-  m: 'euiCodeBlock--paddingMedium',
-  l: 'euiCodeBlock--paddingLarge',
-};
-
-export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
+export const PADDING_SIZES = ['none', 's', 'm', 'l'] as const;
+export type EuiCodeBlockPaddingSize = typeof PADDING_SIZES[number];
 
 // This exclusive union enforces specific props based on isVirtualized
 type VirtualizedOptionProps = ExclusiveUnion<
@@ -88,8 +73,8 @@ interface LineNumbersConfig {
 }
 
 export type EuiCodeBlockProps = EuiCodeSharedProps & {
-  paddingSize?: PaddingSize;
-  fontSize?: FontSize;
+  paddingSize?: EuiCodeBlockPaddingSize;
+  fontSize?: EuiCodeBlockFontSize;
 
   /**
    * Specify how `white-space` inside the element is handled.
@@ -191,46 +176,48 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
     toggleFullScreen,
   } = useFullScreen({ overflowHeight });
 
-  // Classes used in both fullscreen and non-fullscreen mode
-  const wrapperClasses = classNames(className, 'euiCodeBlock', {
-    'euiCodeBlock--hasControl': showCopyButton || showFullScreenButton,
-    'euiCodeBlock--hasBothControls': showCopyButton && showFullScreenButton,
-    'euiCodeBlock--hasLineNumbers': lineNumbersConfig.show,
-  });
+  const euiTheme = useEuiTheme();
 
-  // Classes used in non-fullscreen mode only
-  const classes = classNames(
-    wrapperClasses,
-    fontSizeToClassNameMap[fontSize],
-    paddingSizeToClassNameMap[paddingSize],
-    {
-      'euiCodeBlock--transparentBackground': transparentBackground,
-    }
-  );
+  const codeProps = useMemo(() => {
+    const codeStyles = euiCodeBlockCodeStyles(euiTheme);
+    const codeCssStyles = codeStyles.euiCodeBlock__code;
 
-  const codeProps = useMemo(
-    () => ({
+    return {
       className: 'euiCodeBlock__code',
+      css: codeCssStyles,
       'data-code-language': language,
       ...rest,
-    }),
-    [language, rest]
-  );
+    };
+  }, [language, euiTheme, rest]);
 
-  const preClasses = classNames('euiCodeBlock__pre', {
-    'euiCodeBlock__pre--whiteSpacePre': whiteSpace === 'pre' || isVirtualized,
-    'euiCodeBlock__pre--whiteSpacePreWrap':
-      whiteSpace === 'pre-wrap' && !isVirtualized,
-    'euiCodeBlock__pre--isVirtualized': isVirtualized,
-  });
-  const preFullscreenProps = useMemo(
-    () => ({
+  const preCssProps = useMemo(() => {
+    const preClasses = 'euiCodeBlock__pre';
+
+    const preStyles = euiCodeBlockPreStyles(euiTheme);
+
+    const preCssStyles = [
+      preStyles.euiCodeBlock__pre,
+      (whiteSpace === 'pre' || isVirtualized) && preStyles.whiteSpacePre,
+      whiteSpace === 'pre-wrap' &&
+        !isVirtualized &&
+        preStyles.whiteSpacePreWrap,
+      isVirtualized && preStyles.isVirtualized,
+      isFullScreen && preStyles.isFullScreen,
+    ];
+
+    return {
       className: preClasses,
+      css: preCssStyles,
+    };
+  }, [euiTheme, whiteSpace, isVirtualized, isFullScreen]);
+
+  const preFullscreenProps = useMemo(() => {
+    return {
+      ...preCssProps,
       tabIndex: 0,
       onKeyDown,
-    }),
-    [preClasses, onKeyDown]
-  );
+    };
+  }, [onKeyDown, preCssProps]);
 
   const overflowHeightStyles: CSSProperties = useMemo(() => {
     if (overflowHeight) {
@@ -243,25 +230,61 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
     return {};
   }, [overflowHeight]);
 
-  const wrapperProps = useMemo(
-    () => ({
-      className: classes,
+  // Classes used in both fullscreen and non-fullscreen mode
+  const wrapperClasses = 'euiCodeBlock';
+  const styles = euiCodeBlockStyles(euiTheme);
+  const cssStylesPaddingSize = useEuiPaddingCSS()[paddingSize];
+
+  const wrapperCssStyles = useMemo(() => {
+    return [
+      styles.euiCodeBlock,
+      styles[fontSize],
+      cssStylesPaddingSize,
+      !isFullScreen && transparentBackground && styles.transparentBackground,
+      (showCopyButton || showFullScreenButton) && styles.hasControls,
+      showCopyButton && showFullScreenButton && styles.hasBothControls,
+      lineNumbersConfig.show && styles.hasLineNumbers,
+    ];
+  }, [
+    isFullScreen,
+    transparentBackground,
+    showCopyButton,
+    showFullScreenButton,
+    lineNumbersConfig.show,
+    styles,
+    cssStylesPaddingSize,
+    fontSize,
+  ]);
+
+  const wrapperProps = useMemo(() => {
+    return {
+      className: wrapperClasses,
+      css: wrapperCssStyles,
       style: overflowHeightStyles,
-    }),
-    [classes, overflowHeightStyles]
+    };
+  }, [overflowHeightStyles, wrapperCssStyles]);
+
+  const constrolsStyles = euiCodeBlockControlsStyles(euiTheme);
+
+  const controlsCssStyles = useMemo(
+    () => [
+      constrolsStyles.euiCodeBlock__controls,
+      isFullScreen && constrolsStyles.isFullScreen,
+    ],
+    []
   );
 
   const codeBlockControls = useMemo(() => {
     if (showCopyButton || showFullScreenButton) {
       return (
-        <div className="euiCodeBlock__controls">
+        <div className="euiCodeBlock__controls" css={controlsCssStyles}>
           {showFullScreenButton && (
-            <FullScreenButton
+            <EuiCodeFullScreenButton
               isFullScreen={isFullScreen}
               toggleFullScreen={toggleFullScreen}
             />
           )}
-          {showCopyButton && <CopyButton textToCopy={textToCopy} />}
+          {showCopyButton && <EuiCodeBlockCopyButton textToCopy={textToCopy} />}
         </div>
       );
     }
@@ -271,6 +294,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
     showCopyButton,
     showFullScreenButton,
     textToCopy,
+    controlsCssStyles,
   ]);
 
   return (
@@ -287,7 +311,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
         <pre
           ref={combinedRef}
           style={overflowHeightStyles}
-          className={preClasses}
+          {...preCssProps}
           tabIndex={tabIndex}
         >
           <code {...codeProps}>{content}</code>
@@ -296,185 +320,26 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
       {codeBlockControls}
 
       {isFullScreen && (
-        <FullScreenDisplay className={wrapperClasses}>
-          {isVirtualized ? (
-            <VirtualizedCodeBlock
-              data={data}
-              rowHeight={fontSizeToRowHeightMap.l}
-              preProps={preFullscreenProps}
-              codeProps={codeProps}
-            />
-          ) : (
-            <pre {...preFullscreenProps}>
-              <code {...codeProps}>{content}</code>
-            </pre>
-          )}
-          {codeBlockControls}
-        </FullScreenDisplay>
+        <EuiCodeBlockFullScreenWrapper>
+          <div {...wrapperProps}>
+            {isVirtualized ? (
+              <VirtualizedCodeBlock
+                data={data}
+                rowHeight={fontSizeToRowHeightMap.l}
+                preProps={preFullscreenProps}
+                codeProps={codeProps}
+              />
+            ) : (
+              <pre {...preFullscreenProps}>
+                <code {...codeProps}>{content}</code>
+              </pre>
+            )}
+            {codeBlockControls}
+          </div>
+        </EuiCodeBlockFullScreenWrapper>
       )}
     </div>
   );
-};
-
-/**
- * Overflow logic
- *
- * Detects whether the code block overflows and returns a tabIndex of 0 if so,
- * which allows keyboard users to use the up/down arrow keys to scroll through
- * the container.
- */
-
-const useOverflowDetection = () => {
-  const [wrapperRef, setWrapperRef] = useState<Element | null>(null);
-  const [tabIndex, setTabIndex] = useState<-1 | 0>(-1);
-  const { width, height } = useResizeObserver(wrapperRef);
-
-  const doesOverflow = () => {
-    if (!wrapperRef) return;
-
-    const { clientWidth, clientHeight, scrollWidth, scrollHeight } = wrapperRef;
-    const doesOverflow =
-      scrollHeight > clientHeight || scrollWidth > clientWidth;
-
-    setTabIndex(doesOverflow ? 0 : -1);
-  };
-
-  useMutationObserver(wrapperRef, doesOverflow, {
-    subtree: true,
-    childList: true,
-  });
-
-  useEffect(doesOverflow, [width, height, wrapperRef]);
-
-  return { setWrapperRef, tabIndex };
-};
-
-/**
- * Copy logic
- */
-
-const CopyButton: FunctionComponent<{
-  textToCopy: string;
-}> = ({ textToCopy }) => {
-  const copyButton = useEuiI18n('euiCodeBlock.copyButton', 'Copy');
-  return (
-    <div className="euiCodeBlock__copyButton">
-      <EuiCopy textToCopy={textToCopy}>
-        {(copy) => (
-          <EuiButtonIcon
-            onClick={copy}
-            iconType="copyClipboard"
-            color="text"
-            aria-label={copyButton}
-          />
-        )}
-      </EuiCopy>
-    </div>
-  );
-};
-
-const useCopy = ({
-  isCopyable,
-  isVirtualized,
-  children,
-}: {
-  isCopyable: boolean;
-  isVirtualized: boolean;
-  children: ReactNode;
-}) => {
-  const [innerTextRef, _innerText] = useInnerText('');
-  const innerText = useMemo(
-    () => _innerText?.replace(/[\r\n?]{2}|\n\n/g, '\n') || '',
-    [_innerText]
-  );
-  const textToCopy = isVirtualized ? `${children}` : innerText; // Virtualized code blocks do not have inner text
-
-  const showCopyButton = isCopyable && textToCopy;
-
-  return { innerTextRef, showCopyButton, textToCopy };
-};
-
-/**
- * Fullscreen logic
- */
-
-const FullScreenButton: FunctionComponent<{
-  isFullScreen: boolean;
-  toggleFullScreen: () => void;
-}> = ({ isFullScreen, toggleFullScreen }) => {
-  const [fullscreenCollapse, fullscreenExpand] = useEuiI18n(
-    ['euiCodeBlock.fullscreenCollapse', 'euiCodeBlock.fullscreenExpand'],
-    ['Collapse', 'Expand']
-  );
-  return (
-    <EuiButtonIcon
-      className="euiCodeBlock__fullScreenButton"
-      onClick={toggleFullScreen}
-      iconType={isFullScreen ? 'fullScreenExit' : 'fullScreen'}
-      color="text"
-      aria-label={isFullScreen ? fullscreenCollapse : fullscreenExpand}
-    />
-  );
-};
-
-const FullScreenDisplay: FunctionComponent<{
-  className: string;
-}> = ({ children, className }) => {
-  // Force fullscreen to use large font and padding.
-  const fullScreenClasses = classNames(
-    className,
-    'euiCodeBlock--fontLarge',
-    'euiCodeBlock--paddingLarge',
-    'euiCodeBlock-isFullScreen'
-  );
-
-  // Attaches to the body because of EuiOverlayMask's React portal usage.
-  return (
-    <EuiOverlayMask>
-      <EuiFocusTrap clickOutsideDisables={true}>
-        <div className={fullScreenClasses}>{children}</div>
-      </EuiFocusTrap>
-    </EuiOverlayMask>
-  );
-};
-
-const useFullScreen = ({
-  overflowHeight,
-}: {
-  overflowHeight?: number | string;
-}) => {
-  const [isFullScreen, setIsFullScreen] = useState(false);
-
-  const toggleFullScreen = useCallback(() => {
-    setIsFullScreen((isFullScreen) => !isFullScreen);
-  }, []);
-
-  const onKeyDown = useCallback((event: KeyboardEvent<HTMLElement>) => {
-    if (event.key === keys.ESCAPE) {
-      event.preventDefault();
-      event.stopPropagation();
-      setIsFullScreen(false);
-    }
-  }, []);
-
-  const showFullScreenButton = !!overflowHeight;
-
-  return {
-    showFullScreenButton,
-    isFullScreen,
-    toggleFullScreen,
-    onKeyDown,
-  };
-};
-
-/**
- * Virtualization logic
- */
-
-const ListRow = ({ data, index, style }: ListChildComponentProps) => {
-  const row = data[index];
-  row.properties.style = style;
-  return nodeToHtml(row, index, data, 0);
 };
 
 const VirtualizedCodeBlock = ({
