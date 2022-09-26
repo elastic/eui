@@ -292,8 +292,8 @@ export const EuiPagination: FunctionComponent<Props> = ({
 
       centerPageCount = (
         <ul
-          {...accessibleName}
           css={paginationStyles.euiPagination__list}
+          {...accessibleName}
           className="euiPagination__list"
         >
           {firstPageButtons}

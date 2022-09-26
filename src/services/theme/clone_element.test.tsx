@@ -63,7 +63,7 @@ describe('cloneElementWithCss', () => {
 
   it('handles components', () => {
     const TestComponent: React.FC = (props) => (
-      <div {...props} css={{ backgroundColor: 'blue' }}>
+      <div css={{ backgroundColor: 'blue' }} {...props}>
         hello world
       </div>
     );

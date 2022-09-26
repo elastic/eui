@@ -105,7 +105,7 @@ export const EuiPageSection: FunctionComponent<EuiPageSectionProps> = ({
 
   return (
     <Component css={cssStyles} {...rest}>
-      <div {...contentProps} css={cssContentStyles} style={widthStyles}>
+      <div css={cssContentStyles} {...contentProps} style={widthStyles}>
         {children}
       </div>
     </Component>

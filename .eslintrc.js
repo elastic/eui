@@ -45,6 +45,7 @@ module.exports = {
     'local/href-with-rel': 'error',
     'local/forward-ref': 'error',
     'local/css-logical-properties': 'error',
+    'local/css_before_spread_props': 'error',
     'local/require-license-header': [
       'warn',
       {
