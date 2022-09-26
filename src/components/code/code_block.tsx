@@ -6,17 +6,9 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  CSSProperties,
-  HTMLAttributes,
-  FunctionComponent,
-  forwardRef,
-  useMemo,
-} from 'react';
+import React, { CSSProperties, FunctionComponent, useMemo } from 'react';
 import { RefractorNode } from 'refractor';
-import { FixedSizeList } from 'react-window';
 import { useCombinedRefs, useEuiTheme } from '../../services';
-import { EuiAutoSizer } from '../auto_sizer';
 import { ExclusiveUnion } from '../common';
 import {
   EuiCodeSharedProps,
@@ -27,7 +19,6 @@ import {
   useOverflowDetection,
   useCopy,
   useFullScreen,
-  ListRow,
 } from './utils';
 import {
   euiCodeBlockStyles,
@@ -39,6 +30,7 @@ import { useEuiPaddingCSS } from '../../global_styling';
 import { EuiCodeBlockFullScreenWrapper } from './code_block_full_screen_wrapper';
 import { EuiCodeBlockCopyButton } from './code_block_copy_button';
 import { EuiCodeFullScreenButton } from './code_block_full_screen_button';
+import { EuiCodeBlockVirtualized } from './code_block_virtualized';
 
 // Based on observed line height for non-virtualized code blocks
 const fontSizeToRowHeightMap = {
@@ -300,7 +292,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
   return (
     <div {...wrapperProps}>
       {isVirtualized ? (
-        <VirtualizedCodeBlock
+        <EuiCodeBlockVirtualized
           data={data}
           rowHeight={fontSizeToRowHeightMap[fontSize]}
           overflowHeight={overflowHeight}
@@ -323,7 +315,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
         <EuiCodeBlockFullScreenWrapper>
           <div {...wrapperProps}>
             {isVirtualized ? (
-              <VirtualizedCodeBlock
+              <EuiCodeBlockVirtualized
                 data={data}
                 rowHeight={fontSizeToRowHeightMap.l}
                 preProps={preFullscreenProps}
@@ -339,53 +331,5 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
         </EuiCodeBlockFullScreenWrapper>
       )}
     </div>
-  );
-};
-
-const VirtualizedCodeBlock = ({
-  data,
-  rowHeight,
-  overflowHeight,
-  preProps,
-  codeProps,
-}: {
-  data: RefractorNode[];
-  rowHeight: number;
-  overflowHeight?: number | string;
-  preProps: HTMLAttributes<HTMLPreElement>;
-  codeProps: HTMLAttributes<HTMLElement>;
-}) => {
-  const VirtualizedOuterElement = useMemo(
-    () =>
-      forwardRef<any, any>((props, ref) => (
-        <pre {...props} ref={ref} {...preProps} />
-      )),
-    [preProps]
-  );
-
-  const VirtualizedInnerElement = useMemo(
-    () =>
-      forwardRef<any, any>((props, ref) => (
-        <code {...props} ref={ref} {...codeProps} />
-      )),
-    [codeProps]
-  );
-
-  return (
-    <EuiAutoSizer disableHeight={typeof overflowHeight === 'number'}>
-      {({ height, width }) => (
-        <FixedSizeList
-          height={height ?? overflowHeight}
-          width={width}
-          itemData={data}
-          itemSize={rowHeight}
-          itemCount={data.length}
-          outerElementType={VirtualizedOuterElement}
-          innerElementType={VirtualizedInnerElement}
-        >
-          {ListRow}
-        </FixedSizeList>
-      )}
-    </EuiAutoSizer>
   );
 };
