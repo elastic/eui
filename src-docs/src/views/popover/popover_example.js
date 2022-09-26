@@ -223,7 +223,7 @@ export const PopoverExample = {
       text: (
         <>
           <p>
-            Popovers often need titling. Use the
+            Popovers often need titling. Use the{' '}
             <strong>EuiPopoverTitle</strong> component nested somewhere inside
             the popover contents.
           </p>

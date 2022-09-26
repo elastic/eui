@@ -5,6 +5,7 @@ import {
   EuiPopoverTitle,
   EuiPopoverFooter,
   EuiButton,
+  EuiButtonEmpty,
   EuiFlexGroup,
   EuiFlexItem,
   EuiText,
@@ -33,13 +34,13 @@ export default () => {
       <EuiFlexItem grow={false}>
         <EuiPopover
           button={
-            <EuiButton
-              iconType="arrowDown"
+            <EuiButtonEmpty
+              iconType="questionInCircle"
               iconSide="right"
               onClick={onButtonClick1}
             >
               With title
-            </EuiButton>
+            </EuiButtonEmpty>
           }
           isOpen={isPopoverOpen1}
           closePopover={closePopover1}
@@ -60,13 +61,13 @@ export default () => {
       <EuiFlexItem grow={false}>
         <EuiPopover
           button={
-            <EuiButton
-              iconType="arrowDown"
+            <EuiButtonEmpty
+              iconType="questionInCircle"
               iconSide="right"
               onClick={onButtonClick2}
             >
               With footer
-            </EuiButton>
+            </EuiButtonEmpty>
           }
           isOpen={isPopoverOpen2}
           closePopover={closePopover2}
@@ -91,13 +92,13 @@ export default () => {
       <EuiFlexItem grow={false}>
         <EuiPopover
           button={
-            <EuiButton
-              iconType="arrowDown"
+            <EuiButtonEmpty
+              iconType="questionInCircle"
               iconSide="right"
               onClick={onButtonClick3}
             >
               With title and footer button
-            </EuiButton>
+            </EuiButtonEmpty>
           }
           isOpen={isPopoverOpen3}
           closePopover={closePopover3}
