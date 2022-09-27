@@ -11,7 +11,26 @@ import { UseEuiTheme } from '../../../services';
 import { euiRangeVariables } from './range.styles';
 
 export const euiRangeLevelsStyles = (euiThemeContext: UseEuiTheme) => {
+  const { colorMode } = euiThemeContext;
   const range = euiRangeVariables(euiThemeContext);
+
+  const isColorDark = colorMode === 'DARK';
+
+  const stripesBackground = isColorDark
+    ? `repeating-linear-gradient(
+        -45deg,
+        rgba(0, 0, 0, 0.4),
+        rgba(0, 0, 0, 0.4) 2px,
+        rgba(0, 0, 0, 0.6) 2px,
+        rgba(0, 0, 0, 0.6) 4px
+      )`
+    : `repeating-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.4),
+      rgba(255, 255, 255, 0.4) 2px,
+      rgba(255, 255, 255, 0.6) 2px,
+      rgba(255, 255, 255, 0.6) 4px
+    )`;
 
   return {
     // Base
@@ -23,6 +42,15 @@ export const euiRangeLevelsStyles = (euiThemeContext: UseEuiTheme) => {
       inset-inline-end: 0;
       inset-block-start: ${range.trackTopPositionWithoutTicks};
       z-index: ${range.levelsZIndex};
+
+      &::after {
+        content: '';
+        position: absolute;
+        block-size: ${range.trackHeight};
+        inline-size: 100%;
+        background: ${stripesBackground};
+        border-radius: ${range.trackBorderRadius};
+      }
     `,
     hasTicks: css`
       inset-block-start: ${range.trackTopPositionWithTicks};
@@ -31,7 +59,7 @@ export const euiRangeLevelsStyles = (euiThemeContext: UseEuiTheme) => {
 };
 
 export const euiRangeLevelStyles = (euiThemeContext: UseEuiTheme) => {
-  const euiTheme = euiThemeContext.euiTheme;
+  const { euiTheme } = euiThemeContext;
   const range = euiRangeVariables(euiThemeContext);
 
   return {
@@ -39,17 +67,19 @@ export const euiRangeLevelStyles = (euiThemeContext: UseEuiTheme) => {
       display: block;
       position: absolute;
       block-size: ${range.trackHeight};
-      border-radius: ${range.trackBorderRadius};
-      margin: ${euiTheme.size.xxs};
       margin-block-start: 0;
       margin-block-end: 0;
 
       &:first-child {
         margin-inline-start: 0;
+        border-start-start-radius: ${range.trackBorderRadius};
+        border-end-start-radius: ${range.trackBorderRadius};
       }
 
       &:last-child {
         margin-inline-end: 0;
+        border-start-end-radius: ${range.trackBorderRadius};
+        border-end-end-radius: ${range.trackBorderRadius};
       }
     `,
     primary: css`
