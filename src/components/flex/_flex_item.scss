@@ -20,16 +20,3 @@
     }
   }
 }
-
-// On mobile we force them to stack and act the same.
-@include euiBreakpoint('xs', 's') {
-  .euiFlexGroup--responsive > .euiFlexItem,
-  .euiFlexGrid--responsive > .euiFlexItem {
-    // sass-lint:disable-block no-important
-    width: 100% !important;
-    flex-basis: 100% !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    margin-bottom: $euiSize !important;
-  }
-}

@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { euiBreakpoint } from '../../global_styling';
+import { euiBreakpoint, logicalCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 export const euiFlexGroupStyles = (euiThemeContext: UseEuiTheme) => {
@@ -21,6 +21,11 @@ export const euiFlexGroupStyles = (euiThemeContext: UseEuiTheme) => {
     responsive: css`
       ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
         flex-wrap: wrap;
+
+        .euiFlexItem {
+          ${logicalCSS('width', '100%')}
+          flex-basis: 100%;
+        }
       }
     `,
     wrap: css`

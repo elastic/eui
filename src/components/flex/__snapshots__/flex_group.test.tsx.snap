@@ -56,13 +56,13 @@ exports[`EuiFlexGroup props component span is rendered 1`] = `
 
 exports[`EuiFlexGroup props direction column is rendered 1`] = `
 <div
-  class="euiFlexGroup emotion-euiFlexGroup-responsive-l-flexStart-stretch-column"
+  class="euiFlexGroup emotion-euiFlexGroup-l-flexStart-stretch-column"
 />
 `;
 
 exports[`EuiFlexGroup props direction columnReverse is rendered 1`] = `
 <div
-  class="euiFlexGroup emotion-euiFlexGroup-responsive-l-flexStart-stretch-columnReverse"
+  class="euiFlexGroup emotion-euiFlexGroup-l-flexStart-stretch-columnReverse"
 />
 `;
 

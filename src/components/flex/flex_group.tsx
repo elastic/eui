@@ -85,7 +85,7 @@ export const EuiFlexGroup = forwardRef<
     const styles = euiFlexGroupStyles(euiTheme);
     const cssStyles = [
       styles.euiFlexGroup,
-      responsive && styles.responsive,
+      responsive && !direction.includes('column') && styles.responsive,
       wrap && styles.wrap,
       styles.gutterSizes[gutterSize],
       styles.justifyContent[justifyContent],
