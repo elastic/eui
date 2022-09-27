@@ -469,7 +469,7 @@ exports[`EuiPagination props compressed is rendered 1`] = `
     />
   </button>
   <div
-    class="euiText euiPagination__compressedText emotion-euiText-s-euiPagination__compressedText"
+    class="euiText euiPagination__compressedText emotion-euiText-s-euiTextColor-inherit-euiPagination__compressedText"
   >
     <span>
       1

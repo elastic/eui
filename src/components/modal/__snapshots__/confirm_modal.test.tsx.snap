@@ -56,7 +56,7 @@ Array [
           class="euiModalBody__overflow"
         >
           <div
-            class="euiText emotion-euiText-m"
+            class="euiText emotion-euiText-m-euiTextColor-inherit"
             data-test-subj="confirmModalBodyText"
           >
             <p>

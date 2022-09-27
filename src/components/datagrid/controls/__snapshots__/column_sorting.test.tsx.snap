@@ -123,7 +123,7 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                 class="euiFlexItem"
               >
                 <div
-                  class="euiText emotion-euiText-xs"
+                  class="euiText emotion-euiText-xs-euiTextColor-inherit"
                 >
                   <p>
                     Column A

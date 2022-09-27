@@ -1051,7 +1051,7 @@ exports[`EuiAccordion props isLoadingMessage is rendered 1`] = `
           role="progressbar"
         />
         <div
-          class="euiText emotion-euiText-s"
+          class="euiText emotion-euiText-s-euiTextColor-inherit"
         >
           <p>
             Please wait

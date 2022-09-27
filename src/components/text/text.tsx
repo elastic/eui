@@ -6,14 +6,14 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes, CSSProperties } from 'react';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 
 import { useEuiTheme } from '../../services';
 import { euiTextStyles } from './text.styles';
 
-import { TextColor, EuiTextColor } from './text_color';
+import { EuiTextColor, EuiTextColorProps } from './text_color';
 
 import { EuiTextAlign, TextAlignment } from './text_align';
 
@@ -30,13 +30,13 @@ export type EuiTextProps = CommonProps &
     /**
      * Any of our named colors or a `hex`, `rgb` or `rgba` value.
      */
-    color?: TextColor | CSSProperties['color'];
+    color?: EuiTextColorProps['color'];
     grow?: boolean;
   };
 
 export const EuiText: FunctionComponent<EuiTextProps> = ({
   size = 'm',
-  color,
+  color = 'inherit',
   grow = true,
   textAlign,
   children,

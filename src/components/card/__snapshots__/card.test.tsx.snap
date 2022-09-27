@@ -18,7 +18,7 @@ exports[`EuiCard betaBadgeProps renders href 1`] = `
       </span>
     </p>
     <div
-      class="euiText emotion-euiText-s-euiCard__description"
+      class="euiText emotion-euiText-s-euiTextColor-inherit-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -56,7 +56,7 @@ exports[`EuiCard horizontal selectable 1`] = `
       </span>
     </p>
     <div
-      class="euiText emotion-euiText-s-euiCard__description"
+      class="euiText emotion-euiText-s-euiTextColor-inherit-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -103,7 +103,7 @@ exports[`EuiCard is rendered 1`] = `
       </span>
     </p>
     <div
-      class="euiText emotion-euiText-s-euiCard__description"
+      class="euiText emotion-euiText-s-euiTextColor-inherit-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -132,7 +132,7 @@ exports[`EuiCard props a null icon 1`] = `
       </span>
     </p>
     <div
-      class="euiText emotion-euiText-s-euiCard__description"
+      class="euiText emotion-euiText-s-euiTextColor-inherit-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -162,7 +162,7 @@ exports[`EuiCard props accepts div props like style 1`] = `
       </span>
     </p>
     <div
-      class="euiText emotion-euiText-s-euiCard__description"
+      class="euiText emotion-euiText-s-euiTextColor-inherit-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -217,7 +217,7 @@ exports[`EuiCard props children with description 1`] = `
       </span>
     </p>
     <div
-      class="euiText emotion-euiText-s-euiCard__description"
+      class="euiText emotion-euiText-s-euiTextColor-inherit-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -251,7 +251,7 @@ exports[`EuiCard props display accent is rendered 1`] = `
       </span>
     </p>
     <div
-      class="euiText emotion-euiText-s-euiCard__description"
+      class="euiText emotion-euiText-s-euiTextColor-inherit-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -280,7 +280,7 @@ exports[`EuiCard props display danger is rendered 1`] = `
       </span>
     </p>
     <div
-      class="euiText emotion-euiText-s-euiCard__description"
+      class="euiText emotion-euiText-s-euiTextColor-inherit-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -309,7 +309,7 @@ exports[`EuiCard props display plain is rendered 1`] = `
       </span>
     </p>
     <div
-      class="euiText emotion-euiText-s-euiCard__description"
+      class="euiText emotion-euiText-s-euiTextColor-inherit-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -338,7 +338,7 @@ exports[`EuiCard props display primary is rendered 1`] = `
       </span>
     </p>
     <div
-      class="euiText emotion-euiText-s-euiCard__description"
+      class="euiText emotion-euiText-s-euiTextColor-inherit-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -367,7 +367,7 @@ exports[`EuiCard props display subdued is rendered 1`] = `
       </span>
     </p>
     <div
-      class="euiText emotion-euiText-s-euiCard__description"
+      class="euiText emotion-euiText-s-euiTextColor-inherit-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -396,7 +396,7 @@ exports[`EuiCard props display success is rendered 1`] = `
       </span>
     </p>
     <div
-      class="euiText emotion-euiText-s-euiCard__description"
+      class="euiText emotion-euiText-s-euiTextColor-inherit-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -425,7 +425,7 @@ exports[`EuiCard props display transparent is rendered 1`] = `
       </span>
     </p>
     <div
-      class="euiText emotion-euiText-s-euiCard__description"
+      class="euiText emotion-euiText-s-euiTextColor-inherit-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -454,7 +454,7 @@ exports[`EuiCard props display warning is rendered 1`] = `
       </span>
     </p>
     <div
-      class="euiText emotion-euiText-s-euiCard__description"
+      class="euiText emotion-euiText-s-euiTextColor-inherit-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -483,7 +483,7 @@ exports[`EuiCard props footer 1`] = `
       </span>
     </p>
     <div
-      class="euiText emotion-euiText-s-euiCard__description"
+      class="euiText emotion-euiText-s-euiTextColor-inherit-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -519,7 +519,7 @@ exports[`EuiCard props hasBorder 1`] = `
       </span>
     </p>
     <div
-      class="euiText emotion-euiText-s-euiCard__description"
+      class="euiText emotion-euiText-s-euiTextColor-inherit-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -548,7 +548,7 @@ exports[`EuiCard props horizontal 1`] = `
       </span>
     </p>
     <div
-      class="euiText emotion-euiText-s-euiCard__description"
+      class="euiText emotion-euiText-s-euiTextColor-inherit-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -580,7 +580,7 @@ exports[`EuiCard props href supports href as a link 1`] = `
       </a>
     </p>
     <div
-      class="euiText emotion-euiText-s-euiCard__description"
+      class="euiText emotion-euiText-s-euiTextColor-inherit-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -617,7 +617,7 @@ exports[`EuiCard props icon 1`] = `
       </span>
     </p>
     <div
-      class="euiText emotion-euiText-s-euiCard__description"
+      class="euiText emotion-euiText-s-euiTextColor-inherit-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -660,7 +660,7 @@ exports[`EuiCard props image 1`] = `
       </span>
     </p>
     <div
-      class="euiText emotion-euiText-s-euiCard__description"
+      class="euiText emotion-euiText-s-euiTextColor-inherit-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -691,7 +691,7 @@ exports[`EuiCard props isDisabled 1`] = `
       </button>
     </p>
     <div
-      class="euiText emotion-euiText-s-euiCard__description"
+      class="euiText emotion-euiText-s-euiTextColor-inherit-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -720,7 +720,7 @@ exports[`EuiCard props paddingSize l is rendered 1`] = `
       </span>
     </p>
     <div
-      class="euiText emotion-euiText-s-euiCard__description"
+      class="euiText emotion-euiText-s-euiTextColor-inherit-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -749,7 +749,7 @@ exports[`EuiCard props paddingSize m is rendered 1`] = `
       </span>
     </p>
     <div
-      class="euiText emotion-euiText-s-euiCard__description"
+      class="euiText emotion-euiText-s-euiTextColor-inherit-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -778,7 +778,7 @@ exports[`EuiCard props paddingSize none is rendered 1`] = `
       </span>
     </p>
     <div
-      class="euiText emotion-euiText-s-euiCard__description"
+      class="euiText emotion-euiText-s-euiTextColor-inherit-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -807,7 +807,7 @@ exports[`EuiCard props paddingSize s is rendered 1`] = `
       </span>
     </p>
     <div
-      class="euiText emotion-euiText-s-euiCard__description"
+      class="euiText emotion-euiText-s-euiTextColor-inherit-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -836,7 +836,7 @@ exports[`EuiCard props paddingSize xl is rendered 1`] = `
       </span>
     </p>
     <div
-      class="euiText emotion-euiText-s-euiCard__description"
+      class="euiText emotion-euiText-s-euiTextColor-inherit-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -865,7 +865,7 @@ exports[`EuiCard props paddingSize xs is rendered 1`] = `
       </span>
     </p>
     <div
-      class="euiText emotion-euiText-s-euiCard__description"
+      class="euiText emotion-euiText-s-euiTextColor-inherit-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -894,7 +894,7 @@ exports[`EuiCard props selectable 1`] = `
       </span>
     </p>
     <div
-      class="euiText emotion-euiText-s-euiCard__description"
+      class="euiText emotion-euiText-s-euiTextColor-inherit-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -939,7 +939,7 @@ exports[`EuiCard props textAlign 1`] = `
       </span>
     </p>
     <div
-      class="euiText emotion-euiText-s-euiCard__description"
+      class="euiText emotion-euiText-s-euiTextColor-inherit-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -968,7 +968,7 @@ exports[`EuiCard props titleElement 1`] = `
       </span>
     </h4>
     <div
-      class="euiText emotion-euiText-s-euiCard__description"
+      class="euiText emotion-euiText-s-euiTextColor-inherit-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -997,7 +997,7 @@ exports[`EuiCard props titleElement with nodes 1`] = `
       </span>
     </h4>
     <div
-      class="euiText emotion-euiText-s-euiCard__description"
+      class="euiText emotion-euiText-s-euiTextColor-inherit-euiCard__description"
       id="generated-idDescription"
     >
       <p>
@@ -1026,7 +1026,7 @@ exports[`EuiCard props titleSize 1`] = `
       </span>
     </p>
     <div
-      class="euiText emotion-euiText-s-euiCard__description"
+      class="euiText emotion-euiText-s-euiTextColor-inherit-euiCard__description"
       id="generated-idDescription"
     >
       <p>

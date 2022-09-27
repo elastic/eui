@@ -352,7 +352,7 @@ exports[`EuiPageHeaderContent props description is rendered 1`] = `
       class="euiFlexItem"
     >
       <div
-        class="euiText emotion-euiText-constrainedWidth-m"
+        class="euiText emotion-euiText-constrainedWidth-m-euiTextColor-inherit"
       >
         <p>
           Description

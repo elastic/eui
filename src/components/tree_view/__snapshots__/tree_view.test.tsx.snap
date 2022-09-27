@@ -2,7 +2,7 @@
 
 exports[`EuiTreeView is rendered 1`] = `
 <div
-  class="euiText euiTreeView__wrapper emotion-euiText-m"
+  class="euiText euiTreeView__wrapper emotion-euiText-m-euiTextColor-inherit"
 >
   <p
     class="emotion-euiScreenReaderOnly"
@@ -44,7 +44,7 @@ exports[`EuiTreeView is rendered 1`] = `
         id="euiTreeView_generated-id_item_one"
       >
         <div
-          class="euiText euiTreeView__wrapper emotion-euiText-m"
+          class="euiText euiTreeView__wrapper emotion-euiText-m-euiTextColor-inherit"
         >
           <ul
             aria-label="Item One child of aria-label"

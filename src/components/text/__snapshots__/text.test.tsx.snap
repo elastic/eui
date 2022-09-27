@@ -3,7 +3,7 @@
 exports[`EuiText is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiText testClass1 testClass2 emotion-euiText-m"
+  class="euiText testClass1 testClass2 emotion-euiText-m-euiTextColor-inherit"
   data-test-subj="test subject string"
 >
   <p>
@@ -27,7 +27,7 @@ exports[`EuiText props color & align 1`] = `
 exports[`EuiText props grow false 1`] = `
 <div
   aria-label="aria-label"
-  class="euiText testClass1 testClass2 emotion-euiText-constrainedWidth-m"
+  class="euiText testClass1 testClass2 emotion-euiText-constrainedWidth-m-euiTextColor-inherit"
   data-test-subj="test subject string"
 >
   <p>

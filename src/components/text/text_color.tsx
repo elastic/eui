@@ -9,7 +9,6 @@
 import React, {
   FunctionComponent,
   HTMLAttributes,
-  CSSProperties,
   isValidElement,
 } from 'react';
 import { CommonProps } from '../common';
@@ -38,7 +37,7 @@ export type EuiTextColorProps = CommonProps &
     /**
      * Any of our named colors or a `hex`, `rgb` or `rgba` value.
      */
-    color?: TextColor | CSSProperties['color'];
+    color?: TextColor | string;
     /**
      * Determines the root element
      */

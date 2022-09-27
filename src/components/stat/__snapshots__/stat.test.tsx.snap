@@ -7,7 +7,7 @@ exports[`EuiStat is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiText euiStat__description emotion-euiText-s"
+    class="euiText euiStat__description emotion-euiText-s-euiTextColor-inherit"
   >
     <p
       aria-hidden="true"
@@ -34,7 +34,7 @@ exports[`EuiStat props accent is rendered 1`] = `
   class="euiStat emotion-euiStat-left"
 >
   <div
-    class="euiText euiStat__description emotion-euiText-s"
+    class="euiText euiStat__description emotion-euiText-s-euiTextColor-inherit"
   >
     <p
       aria-hidden="true"
@@ -61,7 +61,7 @@ exports[`EuiStat props center is rendered 1`] = `
   class="euiStat emotion-euiStat-center"
 >
   <div
-    class="euiText euiStat__description emotion-euiText-s"
+    class="euiText euiStat__description emotion-euiText-s-euiTextColor-inherit"
   >
     <p
       aria-hidden="true"
@@ -88,7 +88,7 @@ exports[`EuiStat props danger is rendered 1`] = `
   class="euiStat emotion-euiStat-left"
 >
   <div
-    class="euiText euiStat__description emotion-euiText-s"
+    class="euiText euiStat__description emotion-euiText-s-euiTextColor-inherit"
   >
     <p
       aria-hidden="true"
@@ -115,7 +115,7 @@ exports[`EuiStat props default is rendered 1`] = `
   class="euiStat emotion-euiStat-left"
 >
   <div
-    class="euiText euiStat__description emotion-euiText-s"
+    class="euiText euiStat__description emotion-euiText-s-euiTextColor-inherit"
   >
     <p
       aria-hidden="true"
@@ -142,7 +142,7 @@ exports[`EuiStat props hexcode colors are rendered 1`] = `
   class="euiStat emotion-euiStat-left"
 >
   <div
-    class="euiText euiStat__description emotion-euiText-s"
+    class="euiText euiStat__description emotion-euiText-s-euiTextColor-inherit"
   >
     <p
       aria-hidden="true"
@@ -170,7 +170,7 @@ exports[`EuiStat props l is rendered 1`] = `
   class="euiStat emotion-euiStat-left"
 >
   <div
-    class="euiText euiStat__description emotion-euiText-s"
+    class="euiText euiStat__description emotion-euiText-s-euiTextColor-inherit"
   >
     <p
       aria-hidden="true"
@@ -197,7 +197,7 @@ exports[`EuiStat props left is rendered 1`] = `
   class="euiStat emotion-euiStat-left"
 >
   <div
-    class="euiText euiStat__description emotion-euiText-s"
+    class="euiText euiStat__description emotion-euiText-s-euiTextColor-inherit"
   >
     <p
       aria-hidden="true"
@@ -226,7 +226,7 @@ exports[`EuiStat props loading is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiText euiStat__description emotion-euiText-s"
+    class="euiText euiStat__description emotion-euiText-s-euiTextColor-inherit"
   >
     <p
       aria-hidden="true"
@@ -253,7 +253,7 @@ exports[`EuiStat props m is rendered 1`] = `
   class="euiStat emotion-euiStat-left"
 >
   <div
-    class="euiText euiStat__description emotion-euiText-s"
+    class="euiText euiStat__description emotion-euiText-s-euiTextColor-inherit"
   >
     <p
       aria-hidden="true"
@@ -280,7 +280,7 @@ exports[`EuiStat props primary is rendered 1`] = `
   class="euiStat emotion-euiStat-left"
 >
   <div
-    class="euiText euiStat__description emotion-euiText-s"
+    class="euiText euiStat__description emotion-euiText-s-euiTextColor-inherit"
   >
     <p
       aria-hidden="true"
@@ -307,7 +307,7 @@ exports[`EuiStat props render with custom description element 1`] = `
   class="euiStat emotion-euiStat-left"
 >
   <div
-    class="euiText euiStat__description emotion-euiText-s"
+    class="euiText euiStat__description emotion-euiText-s-euiTextColor-inherit"
   >
     <div
       aria-hidden="true"
@@ -332,7 +332,7 @@ exports[`EuiStat props render with custom title element 1`] = `
   class="euiStat emotion-euiStat-left"
 >
   <div
-    class="euiText euiStat__description emotion-euiText-s"
+    class="euiText euiStat__description emotion-euiText-s-euiTextColor-inherit"
   >
     <p
       aria-hidden="true"
@@ -356,7 +356,7 @@ exports[`EuiStat props right is rendered 1`] = `
   class="euiStat emotion-euiStat-right"
 >
   <div
-    class="euiText euiStat__description emotion-euiText-s"
+    class="euiText euiStat__description emotion-euiText-s-euiTextColor-inherit"
   >
     <p
       aria-hidden="true"
@@ -383,7 +383,7 @@ exports[`EuiStat props s is rendered 1`] = `
   class="euiStat emotion-euiStat-left"
 >
   <div
-    class="euiText euiStat__description emotion-euiText-s"
+    class="euiText euiStat__description emotion-euiText-s-euiTextColor-inherit"
   >
     <p
       aria-hidden="true"
@@ -410,7 +410,7 @@ exports[`EuiStat props subdued is rendered 1`] = `
   class="euiStat emotion-euiStat-left"
 >
   <div
-    class="euiText euiStat__description emotion-euiText-s"
+    class="euiText euiStat__description emotion-euiText-s-euiTextColor-inherit"
   >
     <p
       aria-hidden="true"
@@ -437,7 +437,7 @@ exports[`EuiStat props success is rendered 1`] = `
   class="euiStat emotion-euiStat-left"
 >
   <div
-    class="euiText euiStat__description emotion-euiText-s"
+    class="euiText euiStat__description emotion-euiText-s-euiTextColor-inherit"
   >
     <p
       aria-hidden="true"
@@ -470,7 +470,7 @@ exports[`EuiStat props title and description are reversed 1`] = `
     title
   </p>
   <div
-    class="euiText euiStat__description emotion-euiText-s"
+    class="euiText euiStat__description emotion-euiText-s-euiTextColor-inherit"
   >
     <p
       aria-hidden="true"
@@ -491,7 +491,7 @@ exports[`EuiStat props xs is rendered 1`] = `
   class="euiStat emotion-euiStat-left"
 >
   <div
-    class="euiText euiStat__description emotion-euiText-s"
+    class="euiText euiStat__description emotion-euiText-s-euiTextColor-inherit"
   >
     <p
       aria-hidden="true"
@@ -518,7 +518,7 @@ exports[`EuiStat props xxs is rendered 1`] = `
   class="euiStat emotion-euiStat-left"
 >
   <div
-    class="euiText euiStat__description emotion-euiText-s"
+    class="euiText euiStat__description emotion-euiText-s-euiTextColor-inherit"
   >
     <p
       aria-hidden="true"
@@ -545,7 +545,7 @@ exports[`EuiStat props xxxs is rendered 1`] = `
   class="euiStat emotion-euiStat-left"
 >
   <div
-    class="euiText euiStat__description emotion-euiText-s"
+    class="euiText euiStat__description emotion-euiText-s-euiTextColor-inherit"
   >
     <p
       aria-hidden="true"
