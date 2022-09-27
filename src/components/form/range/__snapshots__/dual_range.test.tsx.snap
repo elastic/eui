@@ -466,7 +466,7 @@ exports[`EuiDualRange props levels should render 1`] = `
     class="euiRangeTrack emotion-euiRangeTrack-hasLevels"
   >
     <div
-      class="euiRangeLevels emotion-euiRangeLevels"
+      class="euiRangeLevels emotion-euiRangeLevels-hasRange"
     >
       <span
         class="euiRangeLevel euiRangeLevel--danger emotion-euiRangeLevel-danger"
@@ -491,9 +491,22 @@ exports[`EuiDualRange props levels should render 1`] = `
       class="euiRangeHighlight emotion-euiRangeHighlight"
     >
       <div
-        class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="margin-left:1%;width:7.000000000000001%"
-      />
+        style="background:transparent;margin-left:1%;width:7.000000000000001%;height:6px;position:relative;overflow:hidden"
+      >
+        <div
+          class="euiRangeLevels emotion-euiRangeLevels"
+          style="left:-0px;width:0px;height:6px;top:0"
+        >
+          <span
+            class="euiRangeLevel euiRangeLevel--danger emotion-euiRangeLevel-danger"
+            style="left:calc(0% + 0px);right:calc(100% - 0px)"
+          />
+          <span
+            class="euiRangeLevel euiRangeLevel--success emotion-euiRangeLevel-success"
+            style="left:calc(0% + 0px);right:calc(100% - 0px)"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </div>

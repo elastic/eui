@@ -59,6 +59,8 @@ export interface EuiRangeLevelsProps {
   min: number;
   showTicks?: boolean;
   compressed?: boolean;
+  showRange?: boolean;
+  style?: CSSProperties;
 }
 
 export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
@@ -67,6 +69,8 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
   min,
   showTicks,
   compressed,
+  showRange,
+  style,
 }) => {
   const [trackWidth, setTrackWidth] = useState(0);
   const handleRef = (node: HTMLDivElement | null) => {
@@ -92,10 +96,14 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
 
   const euiTheme = useEuiTheme();
   const styles = euiRangeLevelsStyles(euiTheme);
-  const cssStyles = [styles.euiRangeLevels, showTicks && styles.hasTicks];
+  const cssStyles = [
+    styles.euiRangeLevels,
+    showTicks && styles.hasTicks,
+    showRange && styles.hasRange,
+  ];
 
   return (
-    <div className={classes} css={cssStyles} ref={handleRef}>
+    <div className={classes} css={cssStyles} ref={handleRef} style={style}>
       {levels.map((level, index) => {
         validateLevelIsInRange(level);
 

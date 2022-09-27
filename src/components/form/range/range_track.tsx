@@ -37,6 +37,7 @@ export interface EuiRangeTrackProps
   ticks?: EuiRangeTick[];
   onChange?: MouseEventHandler<HTMLButtonElement>;
   levels?: EuiRangeLevel[];
+  showRange?: boolean;
 }
 
 export class EuiRangeTrackClass extends Component<
@@ -133,6 +134,7 @@ export class EuiRangeTrackClass extends Component<
       value,
       compressed,
       theme,
+      showRange,
       ...rest
     } = this.props;
 
@@ -162,6 +164,7 @@ export class EuiRangeTrackClass extends Component<
             max={max}
             min={min}
             showTicks={showTicks}
+            showRange={showRange}
           />
         )}
         {tickSequence && (

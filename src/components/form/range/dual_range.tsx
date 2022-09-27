@@ -7,7 +7,6 @@
  */
 
 import React, { Component } from 'react';
-import { css } from '@emotion/react';
 import classNames from 'classnames';
 
 import {
@@ -635,8 +634,7 @@ export class EuiDualRangeClass extends Component<
         )
       : { left: '0' };
 
-    const styles = { euiDualRange: css`` }; // TODO: Emotion conversion
-    const cssStyles = [styles.euiDualRange, customCss];
+    const cssStyles = [dualRangeStyles.euiDualRange, customCss];
 
     const theRange = (
       <EuiRangeWrapper
@@ -680,6 +678,7 @@ export class EuiDualRangeClass extends Component<
           onChange={this.handleSliderChange}
           value={value}
           aria-hidden={showInput === true}
+          showRange={showRange}
         >
           <EuiRangeSlider
             className="euiDualRange__slider"
@@ -712,6 +711,7 @@ export class EuiDualRangeClass extends Component<
               max={Number(max)}
               lowerValue={Number(this.lowerValue)}
               upperValue={Number(this.upperValue)}
+              levels={levels}
             />
           )}
 

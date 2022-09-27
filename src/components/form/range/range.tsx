@@ -268,6 +268,7 @@ export class EuiRangeClass extends Component<
           onChange={this.handleOnChange}
           value={value}
           aria-hidden={showInput === true}
+          showRange={showRange}
         >
           <EuiRangeSlider
             id={showInput ? undefined : id} // Attach id only to the input if there is one
@@ -301,6 +302,7 @@ export class EuiRangeClass extends Component<
               max={Number(max)}
               lowerValue={Number(min)}
               upperValue={Number(value)}
+              levels={levels}
             />
           )}
 

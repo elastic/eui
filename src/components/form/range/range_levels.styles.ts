@@ -40,9 +40,10 @@ export const euiRangeLevelsStyles = (euiThemeContext: UseEuiTheme) => {
       position: absolute;
       inset-inline-start: 0;
       inset-inline-end: 0;
-      inset-block-start: ${range.trackTopPositionWithoutTicks};
+      inset-block-start: 0;
       z-index: ${range.levelsZIndex};
-
+    `,
+    hasRange: css`
       &::after {
         content: '';
         position: absolute;
@@ -50,6 +51,15 @@ export const euiRangeLevelsStyles = (euiThemeContext: UseEuiTheme) => {
         inline-size: 100%;
         background: ${stripesBackground};
         border-radius: ${range.trackBorderRadius};
+      }
+
+      .euiRangeHighlight &::after {
+        display: none;
+      }
+
+      .euiRangeHighlight & {
+        position: absolute;
+        inset-block-start: 0;
       }
     `,
     hasTicks: css`
