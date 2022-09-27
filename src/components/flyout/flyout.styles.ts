@@ -19,7 +19,7 @@ import { euiShadowXLarge } from '../../themes/amsterdam/global_styling/mixins';
 import { transparentize } from '../../services/color';
 import { euiFormVariables } from '../form/form.styles';
 
-const euiFlyoutSlideInRight = keyframes`
+export const euiFlyoutSlideInRight = keyframes`
   0% {
     opacity: 0;
     transform: translateX(100%);
@@ -30,7 +30,7 @@ const euiFlyoutSlideInRight = keyframes`
   }
 `;
 
-const euiFlyoutSlideInLeft = keyframes`
+export const euiFlyoutSlideInLeft = keyframes`
   0% {
     opacity: 0;
     transform: translateX(-100%);
