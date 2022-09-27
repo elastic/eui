@@ -7,14 +7,52 @@
  */
 
 import { css } from '@emotion/react';
-import { logicalCSS } from '../../global_styling';
-import { UseEuiTheme } from '../../services';
 
-export const euiFlexItemStyles = ({ euiTheme }: UseEuiTheme) => {
+export const euiFlexItemStyles = () => {
   return {
+    // 1. Allow EuiPanels to expand to fill the item.
     euiFlexItem: css`
-      flex-grow: 1;
+      display: flex; /* 1 */
+      flex-direction: column; /* 1 */
+    `,
+    growZero: css`
+      flex-grow: 0;
+      flex-basis: auto;
+    `,
+    grow: css`
       flex-basis: 0%;
     `,
+    growSizes: {
+      '1': css`
+        flex-grow: 1;
+      `,
+      '2': css`
+        flex-grow: 2;
+      `,
+      '3': css`
+        flex-grow: 3;
+      `,
+      '4': css`
+        flex-grow: 4;
+      `,
+      '5': css`
+        flex-grow: 5;
+      `,
+      '6': css`
+        flex-grow: 6;
+      `,
+      '7': css`
+        flex-grow: 7;
+      `,
+      '8': css`
+        flex-grow: 8;
+      `,
+      '9': css`
+        flex-grow: 9;
+      `,
+      '10': css`
+        flex-grow: 10;
+      `,
+    },
   };
 };
