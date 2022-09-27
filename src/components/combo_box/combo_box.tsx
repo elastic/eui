@@ -28,6 +28,7 @@ import {
   getMatchingOptions,
   flattenOptionGroups,
   getSelectedOptionForSearchValue,
+  SortMatchesBy,
 } from './matching_options';
 import {
   EuiComboBoxInputProps,
@@ -122,7 +123,11 @@ export interface _EuiComboBoxProps<T>
    * `startsWith`: moves items that start with search value to top of the list;
    * `none`: don't change the sort order of initial object
    */
-  sortMatchesBy: 'none' | 'startsWith';
+  sortMatchesBy: SortMatchesBy;
+  /**
+   * Whether to match options with case sensitivity.
+   */
+  isCaseSensitive?: boolean;
   /**
    * Creates an input group with element(s) coming before input. It won't show if `singleSelection` is set to `false`.
    * `string` | `ReactElement` or an array of these
@@ -211,14 +216,15 @@ export class EuiComboBox<T> extends Component<
     listElement: null,
     listPosition: 'bottom',
     listZIndex: undefined,
-    matchingOptions: getMatchingOptions<T>(
-      this.props.options,
-      this.props.selectedOptions,
-      initialSearchValue,
-      this.props.async,
-      Boolean(this.props.singleSelection),
-      this.props.sortMatchesBy
-    ),
+    matchingOptions: getMatchingOptions<T>({
+      options: this.props.options,
+      selectedOptions: this.props.selectedOptions,
+      searchValue: initialSearchValue,
+      isCaseSensitive: this.props.isCaseSensitive,
+      isPreFiltered: this.props.async,
+      showPrevSelected: Boolean(this.props.singleSelection),
+      sortMatchesBy: this.props.sortMatchesBy,
+    }),
     searchValue: initialSearchValue,
     width: 0,
   };
@@ -788,6 +794,8 @@ export class EuiComboBox<T> extends Component<
     prevState: EuiComboBoxState<T>
   ) {
     const {
+      async,
+      isCaseSensitive,
       options,
       selectedOptions,
       singleSelection,
@@ -797,14 +805,15 @@ export class EuiComboBox<T> extends Component<
 
     // Calculate and cache the options which match the searchValue, because we use this information
     // in multiple places and it would be expensive to calculate repeatedly.
-    const matchingOptions = getMatchingOptions(
+    const matchingOptions = getMatchingOptions({
       options,
       selectedOptions,
       searchValue,
-      nextProps.async,
-      Boolean(singleSelection),
-      sortMatchesBy
-    );
+      isCaseSensitive,
+      isPreFiltered: async,
+      showPrevSelected: Boolean(singleSelection),
+      sortMatchesBy,
+    });
 
     const stateUpdate: Partial<EuiComboBoxState<T>> = { matchingOptions };
 
@@ -873,14 +882,15 @@ export class EuiComboBox<T> extends Component<
     // isn't called after a state change, and we track `searchValue` in state
     // instead we need to react to a change in searchValue here
     this.updateMatchingOptionsIfDifferent(
-      getMatchingOptions(
+      getMatchingOptions({
         options,
         selectedOptions,
         searchValue,
-        this.props.async,
-        Boolean(singleSelection),
-        sortMatchesBy
-      )
+        isCaseSensitive: this.props.isCaseSensitive,
+        isPreFiltered: this.props.async,
+        showPrevSelected: Boolean(singleSelection),
+        sortMatchesBy,
+      })
     );
   }
 
@@ -898,6 +908,7 @@ export class EuiComboBox<T> extends Component<
       fullWidth,
       id,
       inputRef,
+      isCaseSensitive,
       isClearable,
       isDisabled,
       isInvalid,

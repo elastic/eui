@@ -461,6 +461,52 @@ describe('behavior', () => {
     });
   });
 
+  describe('isCaseSensitive', () => {
+    const sortMatchesByOptions = [
+      {
+        label: 'Case sensitivity',
+      },
+      ...options,
+    ];
+    test('options "false"', () => {
+      const component = mount<
+        EuiComboBox<TitanOption>,
+        EuiComboBoxProps<TitanOption>,
+        { matchingOptions: TitanOption[] }
+      >(<EuiComboBox options={sortMatchesByOptions} isCaseSensitive={false} />);
+
+      findTestSubject(component, 'comboBoxSearchInput').simulate('change', {
+        target: { value: 'case' },
+      });
+
+      expect(component.state('matchingOptions')[0].label).toBe(
+        'Case sensitivity'
+      );
+    });
+
+    test('options "true"', () => {
+      const component = mount<
+        EuiComboBox<TitanOption>,
+        EuiComboBoxProps<TitanOption>,
+        { matchingOptions: TitanOption[] }
+      >(<EuiComboBox options={sortMatchesByOptions} isCaseSensitive={true} />);
+
+      findTestSubject(component, 'comboBoxSearchInput').simulate('change', {
+        target: { value: 'case' },
+      });
+
+      expect(component.state('matchingOptions').length).toBe(0);
+
+      findTestSubject(component, 'comboBoxSearchInput').simulate('change', {
+        target: { value: 'Case' },
+      });
+
+      expect(component.state('matchingOptions')[0].label).toBe(
+        'Case sensitivity'
+      );
+    });
+  });
+
   it('calls the inputRef prop with the input element', () => {
     const inputRefCallback = jest.fn();
 
