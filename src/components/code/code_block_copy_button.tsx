@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 import React, { FunctionComponent } from 'react';
-import { useEuiTheme } from '../../services';
 import { EuiCopy } from '../copy';
 import { useEuiI18n } from '../i18n';
 import { EuiButtonIcon } from '../button';
@@ -15,8 +14,7 @@ import { euiCodeBlockCopyButtonStyles } from './code_block_copy_button.styles';
 export const EuiCodeBlockCopyButton: FunctionComponent<{
   textToCopy: string;
 }> = ({ textToCopy }) => {
-  const euiTheme = useEuiTheme();
-  const styles = euiCodeBlockCopyButtonStyles(euiTheme);
+  const styles = euiCodeBlockCopyButtonStyles();
   const cssStyles = [styles.euiCodeBlockCopyButton];
 
   const copyButton = useEuiI18n('euiCodeBlockCopyButton.copy', 'Copy');

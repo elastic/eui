@@ -14,9 +14,8 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme } from '../../services';
 
-export const euiCodeFullScreenButtonStyles = ({ euiTheme }: UseEuiTheme) => {
+export const euiCodeFullScreenButtonStyles = () => {
   return {
     euiCodeFullScreenButton: css``,
   };

@@ -14,9 +14,8 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme } from '../../services';
 
-export const euiCodeBlockCopyButtonStyles = ({ euiTheme }: UseEuiTheme) => {
+export const euiCodeBlockCopyButtonStyles = () => {
   return {
     euiCodeBlockCopyButton: css``,
   };

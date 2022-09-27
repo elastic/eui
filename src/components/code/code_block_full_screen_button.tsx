@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 import React, { FunctionComponent } from 'react';
-import { useEuiTheme } from '../../services';
 import { useEuiI18n } from '../i18n';
 import { EuiButtonIcon } from '../button';
 import { euiCodeFullScreenButtonStyles } from './code_block_full_screen_button.styles';
@@ -15,8 +14,7 @@ export const EuiCodeFullScreenButton: FunctionComponent<{
   isFullScreen: boolean;
   toggleFullScreen: () => void;
 }> = ({ isFullScreen, toggleFullScreen }) => {
-  const euiTheme = useEuiTheme();
-  const styles = euiCodeFullScreenButtonStyles(euiTheme);
+  const styles = euiCodeFullScreenButtonStyles();
   const cssStyles = [styles.euiCodeFullScreenButton];
 
   const [fullscreenCollapse, fullscreenExpand] = useEuiI18n(
