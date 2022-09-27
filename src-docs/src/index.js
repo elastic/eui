@@ -1,3 +1,4 @@
+import './analytics';
 import React, { createElement } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
