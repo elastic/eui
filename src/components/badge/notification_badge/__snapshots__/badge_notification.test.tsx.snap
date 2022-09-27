@@ -3,7 +3,7 @@
 exports[`EuiNotificationBadge is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiNotificationBadge testClass1 testClass2"
+  class="euiNotificationBadge testClass1 testClass2 emotion-euiNotificationBadge-s-accent"
   data-test-subj="test subject string"
 >
   5
@@ -12,7 +12,7 @@ exports[`EuiNotificationBadge is rendered 1`] = `
 
 exports[`EuiNotificationBadge props color accent is rendered 1`] = `
 <span
-  class="euiNotificationBadge"
+  class="euiNotificationBadge emotion-euiNotificationBadge-s-accent"
 >
   5
 </span>
@@ -20,7 +20,7 @@ exports[`EuiNotificationBadge props color accent is rendered 1`] = `
 
 exports[`EuiNotificationBadge props color subdued is rendered 1`] = `
 <span
-  class="euiNotificationBadge euiNotificationBadge--subdued"
+  class="euiNotificationBadge emotion-euiNotificationBadge-s-subdued"
 >
   5
 </span>
@@ -28,7 +28,7 @@ exports[`EuiNotificationBadge props color subdued is rendered 1`] = `
 
 exports[`EuiNotificationBadge props size m is rendered 1`] = `
 <span
-  class="euiNotificationBadge euiNotificationBadge--medium"
+  class="euiNotificationBadge emotion-euiNotificationBadge-m-accent"
 >
   5
 </span>
@@ -36,7 +36,7 @@ exports[`EuiNotificationBadge props size m is rendered 1`] = `
 
 exports[`EuiNotificationBadge props size s is rendered 1`] = `
 <span
-  class="euiNotificationBadge"
+  class="euiNotificationBadge emotion-euiNotificationBadge-s-accent"
 >
   5
 </span>

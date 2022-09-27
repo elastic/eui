@@ -9,10 +9,17 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiKeyPadMenu } from './key_pad_menu';
 
 describe('EuiKeyPadMenu', () => {
+  shouldRenderCustomStyles(<EuiKeyPadMenu />);
+  shouldRenderCustomStyles(<EuiKeyPadMenu checkable={{ legend: 'test' }} />, {
+    childProps: ['checkable.legendProps'],
+    skipParentTest: true,
+  });
+
   test('is rendered', () => {
     const component = render(<EuiKeyPadMenu {...requiredProps} />);
 

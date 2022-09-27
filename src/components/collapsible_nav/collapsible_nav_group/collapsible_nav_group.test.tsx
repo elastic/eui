@@ -9,10 +9,16 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiCollapsibleNavGroup, BACKGROUNDS } from './collapsible_nav_group';
 
 describe('EuiCollapsibleNavGroup', () => {
+  shouldRenderCustomStyles(
+    <EuiCollapsibleNavGroup iconType="logoElastic" title="Test" />,
+    { childProps: ['iconProps'] }
+  );
+
   test('is rendered', () => {
     const component = render(
       <EuiCollapsibleNavGroup id="id" {...requiredProps} />

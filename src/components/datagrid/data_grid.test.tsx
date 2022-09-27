@@ -10,11 +10,7 @@ import React, { useEffect, useState } from 'react';
 import { mount, ReactWrapper, render } from 'enzyme';
 import { EuiDataGrid } from './';
 import { EuiDataGridProps } from './data_grid_types';
-import {
-  findTestSubject,
-  requiredProps,
-  takeMountedSnapshot,
-} from '../../test';
+import { findTestSubject, requiredProps } from '../../test';
 import { EuiDataGridColumnResizer } from './body/header/data_grid_column_resizer';
 import { keys } from '../../services';
 import { act } from 'react-dom/test-utils';
@@ -1007,9 +1003,7 @@ describe('EuiDataGrid', () => {
         />
       );
 
-      expect(
-        takeMountedSnapshot(component.find('EuiTablePagination'))
-      ).toMatchSnapshot();
+      expect(component.find('EuiTablePagination').render()).toMatchSnapshot();
     });
 
     describe('page navigation', () => {
@@ -1972,7 +1966,7 @@ describe('EuiDataGrid', () => {
           component,
           `dataGridHeaderCellActionGroup-${col}`
         );
-        expect(actionGroup).toMatchSnapshot();
+        expect(actionGroup.render()).toMatchSnapshot();
       }
     });
   });
@@ -2642,7 +2636,7 @@ describe('EuiDataGrid', () => {
        */
       expect(focusableCell.text()).toEqual('1, A');
       expect(focusableCell.getDOMNode()).toBe(document.activeElement);
-      expect(takeMountedSnapshot(component)).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
 
       /**
        * Disable grid navigation using ENTER
@@ -2657,7 +2651,7 @@ describe('EuiDataGrid', () => {
       expect(buttons.at(0).text()).toEqual('1');
       expect(buttons.at(1).text()).toEqual('A');
       expect(buttons.at(0).getDOMNode()).toBe(document.activeElement); // focus should move to first button
-      expect(takeMountedSnapshot(component)).toMatchSnapshot(); // should prove focus lock is on
+      expect(component.render()).toMatchSnapshot(); // should prove focus lock is on
 
       /**
        * Enable grid navigation ESCAPE
@@ -2669,7 +2663,7 @@ describe('EuiDataGrid', () => {
       focusableCell.simulate('keydown', { key: keys.ARROW_RIGHT });
       focusableCell = getFocusableCell(component);
       expect(focusableCell.text()).toEqual('1, B'); // grid navigation is enabled again, check that we can move
-      expect(takeMountedSnapshot(component)).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
 
       /**
        * Disable grid navigation using F2
@@ -2684,7 +2678,7 @@ describe('EuiDataGrid', () => {
       expect(buttons.at(0).text()).toEqual('1');
       expect(buttons.at(1).text()).toEqual('B');
       expect(buttons.at(0).getDOMNode()).toBe(document.activeElement); // focus should move to first button
-      expect(takeMountedSnapshot(component)).toMatchSnapshot(); // should prove focus lock is on
+      expect(component.render()).toMatchSnapshot(); // should prove focus lock is on
 
       /**
        * Enable grid navigation using F2
@@ -2696,7 +2690,7 @@ describe('EuiDataGrid', () => {
       focusableCell.simulate('keydown', { key: keys.ARROW_UP });
       focusableCell = getFocusableCell(component);
       expect(focusableCell.text()).toEqual('0, B'); // grid navigation is enabled again, check that we can move
-      expect(takeMountedSnapshot(component)).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
   });
 });

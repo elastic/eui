@@ -1,3 +1,68 @@
+## [`68.0.0`](https://github.com/elastic/eui/tree/v68.0.0)
+
+- Added `beta` glyph to `EuiIcon` ([#6250](https://github.com/elastic/eui/pull/6250))
+- Added `launch` and `spaces` glyphs to `EuiIcon` ([#6260](https://github.com/elastic/eui/pull/6260))
+- Added the `fallbackDestination` prop to `EuiSkipLink`, which accepts a string of query selectors to fall back to if the `destinationId` does not have a valid target. Defaults to `main` ([#6261](https://github.com/elastic/eui/pull/6261))
+- `EuiSkipLink` is now always an `a` tag to ensure that it is always placed within screen reader link menus. ([#6261](https://github.com/elastic/eui/pull/6261))
+
+**Bug fixes**
+
+- Fixed `EuiSuperDatePicker` not correctly merging passed `className`s ([#6253](https://github.com/elastic/eui/pull/6253))
+- Fixed `EuiColorStops` not correctly merging in passed `data-test-subj`s, `style`s, or `...rest` ([#6255](https://github.com/elastic/eui/pull/6255))
+- Fixed `EuiResizablePanel` incorrectly passing `style` to the wrapper instead of the panel. Use `wrapperProps.style` to pass styles to the wrapper. ([#6255](https://github.com/elastic/eui/pull/6255))
+- Fixed custom `onClick`s passed to `EuiSkipLink` overriding `overrideLinkBehavior` ([#6261](https://github.com/elastic/eui/pull/6261))
+
+**Breaking changes**
+
+- Removed `inherit` and `ghost` color from `EuiListGroupItem` ([#6207](https://github.com/elastic/eui/pull/6207))
+- Changed default color to `text` instead of `inherit` ([#6207](https://github.com/elastic/eui/pull/6207))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiListGroup` and `EuiListGroupItem` to Emotion; Removed `$euiListGroupGutterTypes`, `$euiListGroupItemColorTypes` and `$euiListGroupItemSizeTypes`; ([#6207](https://github.com/elastic/eui/pull/6207))
+- Converted `EuiBadgeGroup` to Emotion ([#6258](https://github.com/elastic/eui/pull/6258))
+- Converted `EuiBetaBadge` to Emotion ([#6258](https://github.com/elastic/eui/pull/6258))
+- Converted `EuiNotificationBadge` to Emotion ([#6258](https://github.com/elastic/eui/pull/6258))
+
+## [`67.1.2`](https://github.com/elastic/eui/tree/v67.1.2)
+
+**Bug fixes**
+
+- Fixed `EuiFlyout` not correctly merging passed `css` ([#6248](https://github.com/elastic/eui/pull/6248))
+- Fixed `EuiNotificationEvent` not correctly merging passed `className`s ([#6248](https://github.com/elastic/eui/pull/6248))
+- Fixed `EuiAvatar` to no longer mutate the object passed to its `style` prop ([#6251](https://github.com/elastic/eui/pull/6251))
+
+## [`67.1.1`](https://github.com/elastic/eui/tree/v67.1.1)
+
+**Bug fixes**
+
+- Fixed `EuiDataGrid`'s broken fullscreen mode when nested within an `EuiAccordion` ([#6235](https://github.com/elastic/eui/pull/6235))
+- Fixed `EuiPageSection` not correctly merging `contentProps.css` ([#6239](https://github.com/elastic/eui/pull/6239))
+- Fixed `EuiPageHeaderContent` not correctly merging passed `className`s ([#6239](https://github.com/elastic/eui/pull/6239))
+- Fixed `EuiAccordion` not correctly merging `buttonProps.css` and `arrowProps.css` ([#6239](https://github.com/elastic/eui/pull/6239))
+- Fixed `EuiProgress` not correctly merging `labelProps.css` ([#6239](https://github.com/elastic/eui/pull/6239))
+- Fixed `EuiImage` not correctly merging `wrapperProps.css` ([#6239](https://github.com/elastic/eui/pull/6239))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiFlyout` to Emotion; Removed `$euiFlyoutBorder` and `$euiFlyoutPaddingModifiers` ([#6213](https://github.com/elastic/eui/pull/6213))
+
+## [`67.1.0`](https://github.com/elastic/eui/tree/v67.1.0)
+
+- Added an optional dev-mode check to log, warn, or error if a component is rendered outside of `EuiProvider` ([#6216](https://github.com/elastic/eui/pull/6216))
+- Updated `EuiBadge`'s disabled styling to match `EuiButton` ([#6224](https://github.com/elastic/eui/pull/6224))
+- Added the `custom_component` search filter type for the EuiSearchBar. This new type gives the consumer control to render the search filter dropdown. ([#6226](https://github.com/elastic/eui/pull/6226))
+
+**Bug fixes**
+
+- Fixed `Query.toESQuery()` to generate bool queries instead of relying on match query logic, to work with non-text fields ([#6220](https://github.com/elastic/eui/pull/6220))
+- Fixed `EuiInMemoryTable`'s internal state tracking to include changes of `sorting.sort` values ([#6228](https://github.com/elastic/eui/pull/6228))
+- Fixed bug in `EuiButton` where `iconSize` was not being applied ([#6230](https://github.com/elastic/eui/pull/6230))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiBadge` to Emotion ([#6224](https://github.com/elastic/eui/pull/6224))
+
 ## [`67.0.0`](https://github.com/elastic/eui/tree/v67.0.0)
 
 - Updated `EuiSuggest` to accept the `isPreFiltered` prop ([#5930](https://github.com/elastic/eui/pull/5930))
@@ -85,6 +150,30 @@
 - Converted `EuiCard`, `EuiCheckableCard` to Emotion, removed `$euiCheckableCardPadding`, `$euiCardSpacing`, `$euiCardBottomNodeHeight`, `$euiCardSelectButtonBorders`, `$euiCardSelectButtonBackgrounds`, and `$euiCardPaddingModifiers` ([#6110](https://github.com/elastic/eui/pull/6110))
 - Converted `EuiButton` to Emotion ([#6150](https://github.com/elastic/eui/pull/6150))
 - Converted color styles of `EuiButtonIcon`, `EuiButtonEmpty`, `EuiButtonGroup` ([#6150](https://github.com/elastic/eui/pull/6150))
+
+## [`64.0.5`](https://github.com/elastic/eui/tree/v64.0.5)
+
+**Note: this release is a backport containing changes originally made in `67.1.0`, `67.1.1`, and `67.1.2`**
+
+**Bug fixes**
+
+- Fixed `EuiInMemoryTable`'s internal state tracking to include changes of `sorting.sort` values ([#6228](https://github.com/elastic/eui/pull/6228))
+- Fixed `EuiDataGrid`'s broken fullscreen mode when nested within an `EuiAccordion` ([#6235](https://github.com/elastic/eui/pull/6235))
+- Fixed `EuiAvatar` to no longer mutate the object passed to its `style` prop ([#6251](https://github.com/elastic/eui/pull/6251))
+
+## [`64.0.4`](https://github.com/elastic/eui/tree/v64.0.4)
+
+**Note: this release is a backport containing changes originally made in `67.2.0`**
+
+- Added the `custom_component` search filter type for the EuiSearchBar. This new type gives the consumer control to render the search filter dropdown. ([#6226](https://github.com/elastic/eui/pull/6226))
+
+**Bug fixes**
+
+- Fixed `EuiPageSection` not correctly merging `contentProps.css` ([#6239](https://github.com/elastic/eui/pull/6239))
+- Fixed `EuiPageHeaderContent` not correctly merging passed `className`s ([#6239](https://github.com/elastic/eui/pull/6239))
+- Fixed `EuiAccordion` not correctly merging `buttonProps.css` and `arrowProps.css` ([#6239](https://github.com/elastic/eui/pull/6239))
+- Fixed `EuiProgress` not correctly merging `labelProps.css` ([#6239](https://github.com/elastic/eui/pull/6239))
+- Fixed `EuiImage` not correctly merging `wrapperProps.css` ([#6239](https://github.com/elastic/eui/pull/6239))
 
 ## [`64.0.3`](https://github.com/elastic/eui/tree/v64.0.3)
 

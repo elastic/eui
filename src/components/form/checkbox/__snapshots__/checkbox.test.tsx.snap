@@ -2,7 +2,7 @@
 
 exports[`EuiCheckbox is rendered 1`] = `
 <div
-  class="euiCheckbox euiCheckbox--noLabel testClass1 testClass2"
+  class="euiCheckbox euiCheckbox--noLabel testClass1 testClass2 emotion-euiCheckbox"
 >
   <input
     aria-label="aria-label"
@@ -19,7 +19,7 @@ exports[`EuiCheckbox is rendered 1`] = `
 
 exports[`EuiCheckbox props check is rendered 1`] = `
 <div
-  class="euiCheckbox euiCheckbox--noLabel"
+  class="euiCheckbox euiCheckbox--noLabel emotion-euiCheckbox"
 >
   <input
     checked=""
@@ -35,7 +35,7 @@ exports[`EuiCheckbox props check is rendered 1`] = `
 
 exports[`EuiCheckbox props disabled disabled is rendered 1`] = `
 <div
-  class="euiCheckbox euiCheckbox--noLabel"
+  class="euiCheckbox euiCheckbox--noLabel emotion-euiCheckbox"
 >
   <input
     class="euiCheckbox__input"
@@ -51,7 +51,7 @@ exports[`EuiCheckbox props disabled disabled is rendered 1`] = `
 
 exports[`EuiCheckbox props label is rendered 1`] = `
 <div
-  class="euiCheckbox"
+  class="euiCheckbox emotion-euiCheckbox"
 >
   <input
     class="euiCheckbox__input"
@@ -74,7 +74,7 @@ exports[`EuiCheckbox props label is rendered 1`] = `
 
 exports[`EuiCheckbox props labelProps is rendered 1`] = `
 <div
-  class="euiCheckbox"
+  class="euiCheckbox emotion-euiCheckbox"
 >
   <input
     class="euiCheckbox__input"
@@ -97,7 +97,7 @@ exports[`EuiCheckbox props labelProps is rendered 1`] = `
 
 exports[`EuiCheckbox props type inList is rendered 1`] = `
 <div
-  class="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel"
+  class="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel emotion-euiCheckbox"
 >
   <input
     class="euiCheckbox__input"

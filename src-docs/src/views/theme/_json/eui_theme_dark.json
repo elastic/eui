@@ -1,8 +1,4 @@
 {
-  "euiBadgeGroupGutterTypes": {
-    "gutterExtraSmall": "4px",
-    "gutterSmall": "8px"
-  },
   "euiCodeBlockPaddingModifiers": {
     "paddingSmall": "8px",
     "paddingMedium": "16px",
@@ -77,30 +73,6 @@
       "count": 1
     }
   },
-  "flyoutSizes": {
-    "small": {
-      "min": "384px",
-      "width": "25vw",
-      "max": "403px"
-    },
-    "medium": {
-      "min": "424px",
-      "width": "50vw",
-      "max": "768px"
-    },
-    "large": {
-      "min": "691px",
-      "width": "75vw",
-      "max": "992px"
-    }
-  },
-  "euiFlyoutBorder": "none",
-  "euiFlyoutPaddingModifiers": {
-    "paddingNone": 0,
-    "paddingSmall": "8px",
-    "paddingMedium": "16px",
-    "paddingLarge": "24px"
-  },
   "euiFilePickerTallHeight": "128px",
   "euiRangeLevelColors": {
     "primary": "#36a2ef",
@@ -122,24 +94,6 @@
   },
   "euiKeyPadMenuSize": "96px",
   "euiKeyPadMenuMarginSize": "4px",
-  "euiListGroupItemHoverBackground": "rgba(52, 55, 65, 0.25)",
-  "euiListGroupItemHoverBackgroundGhost": "rgba(255, 255, 255, 0.09999999999999998)",
-  "euiListGroupGutterTypes": {
-    "gutterSmall": "8px",
-    "gutterMedium": "16px"
-  },
-  "euiListGroupItemColorTypes": {
-    "primary": "#36a2ef",
-    "text": "#dfe5ef",
-    "subdued": "#7a7f89",
-    "ghost": "#ffffff"
-  },
-  "euiListGroupItemSizeTypes": {
-    "xSmall": "12px",
-    "small": "14px",
-    "medium": "14px",
-    "large": "22px"
-  },
   "euiMarkdownEditorMinHeight": "150px",
   "euiResizableButtonTransitionSpeed": "150ms",
   "euiResizableButtonSize": "16px",
@@ -372,19 +326,25 @@
   },
   "euiFormControlLayoutGroupInputHeight": "38px",
   "euiFormControlLayoutGroupInputCompressedHeight": "30px",
-  "euiFormControlLayoutGroupInputCompressedBorderRadius": "1px",
+  "euiFormControlLayoutGroupInputCompressedBorderRadius": "2px",
   "euiRangeTrackColor": "#343741",
+  "euiRangeHighlightColor": "#98a2b3",
   "euiRangeThumbRadius": "50%",
   "euiRangeThumbHeight": "16px",
   "euiRangeThumbWidth": "16px",
   "euiRangeThumbBorderColor": "#1d1e24",
+  "euiRangeThumbBackgroundColor": "#98a2b3",
   "euiRangeTrackWidth": "100%",
   "euiRangeTrackHeight": "6px",
+  "euiRangeTrackCompressedHeight": "4px",
   "euiRangeTrackBorderWidth": 0,
-  "euiRangeTrackBorderColor": "#98a2b3",
-  "euiRangeTrackRadius": "4px",
+  "euiRangeTrackBorderColor": "#343741",
+  "euiRangeTrackRadius": "6px",
   "euiRangeDisabledOpacity": 0.25,
   "euiRangeHighlightHeight": "6px",
+  "euiRangeHighlightCompressedHeight": "4px",
+  "euiRangeHeight": "40px",
+  "euiRangeCompressedHeight": "32px",
   "euiHeaderBackgroundColor": "#1d1e24",
   "euiHeaderDarkBackgroundColor": "#131317",
   "euiHeaderBorderColor": "#131417",
@@ -401,7 +361,7 @@
   },
   "euiPanelBorderRadiusModifiers": {
     "borderRadiusNone": 0,
-    "borderRadiusMedium": "4px"
+    "borderRadiusMedium": "6px"
   },
   "euiPanelBackgroundColorModifiers": {
     "transparent": "rgba(0, 0, 0, 0)",
@@ -552,12 +512,6 @@
   "euiDatePickerMaxControlWidth": "140px",
   "euiButtonDefaultTransparency": 0.8,
   "euiButtonFontWeight": 500,
-  "euiRangeHighlightColor": "#98a2b3",
-  "euiRangeThumbBackgroundColor": "#98a2b3",
-  "euiRangeTrackCompressedHeight": "4px",
-  "euiRangeHighlightCompressedHeight": "4px",
-  "euiRangeHeight": "40px",
-  "euiRangeCompressedHeight": "32px",
   "euiStepStatusColors": {
     "default": "#36a2ef",
     "complete": "#7dded8",

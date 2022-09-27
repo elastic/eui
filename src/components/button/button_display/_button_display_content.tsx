@@ -14,7 +14,11 @@ import { EuiIcon, IconType } from '../../icon';
 import { euiButtonDisplayContentStyles } from './_button_display_content.styles';
 import classNames from 'classnames';
 
-export type ButtonContentIconSide = 'left' | 'right' | undefined;
+export const ICON_SIZES = ['s', 'm'] as const;
+export type ButtonContentIconSize = typeof ICON_SIZES[number];
+
+export const ICON_SIDES = ['left', 'right'] as const;
+export type ButtonContentIconSide = typeof ICON_SIDES[number] | undefined;
 
 export type EuiButtonDisplayContentType = HTMLAttributes<HTMLSpanElement>;
 
@@ -40,7 +44,7 @@ export interface EuiButtonDisplayContentProps extends CommonProps {
       ref?: Ref<HTMLSpanElement>;
       'data-text'?: string;
     };
-  iconSize?: 's' | 'm';
+  iconSize?: ButtonContentIconSize;
   isDisabled?: boolean;
 }
 
@@ -64,7 +68,10 @@ export const EuiButtonDisplayContent: FunctionComponent<
     iconSide && styles[iconSide],
   ];
   const cssSpinnerStyles = [styles.euiButtonDisplayContent__spinner];
-  const cssIconStyles = [styles.euiButtonDisplayContent__icon];
+  const cssIconStyles = [
+    styles.euiButtonDisplayContent__icon,
+    iconSize && styles[iconSize],
+  ];
 
   // Add an icon to the button if one exists.
   let icon;
@@ -102,7 +109,7 @@ export const EuiButtonDisplayContent: FunctionComponent<
   const isText = typeof children === 'string';
 
   return (
-    <span {...contentProps} css={cssStyles}>
+    <span css={cssStyles} {...contentProps}>
       {icon}
       {isText ? (
         <span

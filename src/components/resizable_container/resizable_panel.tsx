@@ -167,7 +167,6 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   initialSize,
   minSize = '0px', // Actual minSize is calculated in `./helpers.ts`
   scrollable = true,
-  style = {},
   mode,
   registration,
   onToggleCollapsed,
@@ -276,7 +275,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   }
 
   const styles = {
-    ...style,
+    ...wrapperProps?.style,
     ...dimensions,
   };
 

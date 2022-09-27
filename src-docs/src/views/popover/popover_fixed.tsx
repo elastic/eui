@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { EuiButton, EuiPopover } from '../../../../src';
+import { EuiButtonEmpty, EuiPopover, EuiButton } from '../../../../src';
 
 export default () => {
   const [isExampleShown, setIsExampleShown] = useState(false);
@@ -14,14 +14,9 @@ export default () => {
   const closePopover = () => setIsPopoverOpen(false);
 
   const button = (
-    <EuiButton
-      iconType="arrowDown"
-      iconSide="right"
-      onClick={onButtonClick}
-      fill
-    >
+    <EuiButtonEmpty iconType="help" iconSide="right" onClick={onButtonClick}>
       Show fixed popover
-    </EuiButton>
+    </EuiButtonEmpty>
   );
 
   return (

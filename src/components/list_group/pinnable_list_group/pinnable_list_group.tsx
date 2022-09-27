@@ -13,22 +13,9 @@ import { CommonProps } from '../../common';
 import { EuiI18n } from '../../i18n';
 import { EuiListGroup, EuiListGroupProps } from '../list_group';
 import { EuiListGroupItemProps } from '../list_group_item';
+import { useEuiTheme } from '../../../services';
 
-const pinExtraAction: EuiListGroupItemProps['extraAction'] = {
-  color: 'primary',
-  iconType: 'pinFilled',
-  iconSize: 's',
-  className: 'euiPinnableListGroup__itemExtraAction',
-};
-
-const pinnedExtraAction: EuiListGroupItemProps['extraAction'] = {
-  color: 'primary',
-  iconType: 'pinFilled',
-  iconSize: 's',
-  className:
-    'euiPinnableListGroup__itemExtraAction euiPinnableListGroup__itemExtraAction-pinned',
-  alwaysShow: true,
-};
+import { euiPinnableListGroupItemExtraActionStyles } from './pinnable_list_group.styles';
 
 export type EuiPinnableListGroupItemProps = EuiListGroupItemProps & {
   /**
@@ -78,6 +65,26 @@ export const EuiPinnableListGroup: FunctionComponent<EuiPinnableListGroupProps> 
   ...rest
 }) => {
   const classes = classNames('euiPinnableListGroup', className);
+  const euiTheme = useEuiTheme();
+  const itemExtraActionStyles = euiPinnableListGroupItemExtraActionStyles(
+    euiTheme
+  );
+
+  const pinExtraAction: EuiListGroupItemProps['extraAction'] = {
+    iconType: 'pinFilled',
+    iconSize: 's',
+    css: itemExtraActionStyles.euiPinnableListGroup__itemExtraAction,
+  };
+
+  const pinnedExtraAction: EuiListGroupItemProps['extraAction'] = {
+    iconType: 'pinFilled',
+    iconSize: 's',
+    css: [
+      itemExtraActionStyles.euiPinnableListGroup__itemExtraAction,
+      itemExtraActionStyles.pinned,
+    ],
+    alwaysShow: true,
+  };
 
   // Alter listItems object with extra props
   const getNewListItems = (

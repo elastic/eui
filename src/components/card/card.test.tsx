@@ -30,7 +30,10 @@ describe('EuiCard', () => {
     expect(component).toMatchSnapshot();
   });
 
-  shouldRenderCustomStyles(<EuiCard title="Card title" />);
+  shouldRenderCustomStyles(
+    <EuiCard title="Card title" betaBadgeProps={{ label: 'beta' }} />,
+    { childProps: ['betaBadgeProps'] }
+  );
 
   describe('props', () => {
     test('icon', () => {

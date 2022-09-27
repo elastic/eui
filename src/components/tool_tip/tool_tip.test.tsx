@@ -15,10 +15,24 @@ import {
   waitForEuiToolTipHidden,
 } from '../../test/rtl';
 import { requiredProps, findTestSubject } from '../../test';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiToolTip } from './tool_tip';
 
 describe('EuiToolTip', () => {
+  shouldRenderCustomStyles(
+    <EuiToolTip content="test">
+      <button data-test-subj="trigger" />
+    </EuiToolTip>,
+    {
+      childProps: ['anchorProps'],
+      renderCallback: async ({ getByTestSubject }) => {
+        fireEvent.mouseOver(getByTestSubject('trigger'));
+        await waitForEuiToolTipVisible();
+      },
+    }
+  );
+
   it('is rendered', () => {
     const { baseElement } = render(
       <EuiToolTip title="title" id="id" content="content" {...requiredProps}>

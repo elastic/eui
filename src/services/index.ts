@@ -67,8 +67,10 @@ export {
   saturate,
   desaturate,
   lightness,
+  darken,
   makeHighContrastColor,
   makeDisabledContrastColor,
+  wcagContrastMin,
 } from './color';
 
 export type { EuiSetColorMethod } from './color_picker';

@@ -9,13 +9,18 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiDescriptionList } from './description_list';
 import { TYPES, ALIGNMENTS, GUTTER_SIZES } from './description_list_types';
-import { shouldRenderCustomStyles } from '../../test/internal';
 
 describe('EuiDescriptionList', () => {
-  shouldRenderCustomStyles(<EuiDescriptionList />);
+  shouldRenderCustomStyles(
+    <EuiDescriptionList
+      listItems={[{ title: 'hello', description: 'world' }]}
+    />,
+    { childProps: ['titleProps', 'descriptionProps'] }
+  );
 
   test('is rendered', () => {
     const component = render(

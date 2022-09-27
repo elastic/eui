@@ -9,6 +9,7 @@
 import React, { ReactNode } from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
 import { EuiFocusTrap } from '../';
 
 import {
@@ -28,6 +29,14 @@ let id = 0;
 const getId = () => `${id++}`;
 
 describe('EuiPopover', () => {
+  shouldRenderCustomStyles(
+    <EuiPopover button={<button />} closePopover={() => {}} />
+  );
+  shouldRenderCustomStyles(
+    <EuiPopover button={<button />} closePopover={() => {}} isOpen />,
+    { childProps: ['panelProps'], skipStyles: true, skipParentTest: true }
+  );
+
   test('is rendered', () => {
     const component = render(
       <EuiPopover

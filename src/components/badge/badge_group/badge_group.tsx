@@ -8,16 +8,13 @@
 
 import React, { forwardRef, HTMLAttributes, Ref, ReactNode } from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf } from '../../common';
+import { CommonProps } from '../../common';
+import { useEuiTheme } from '../../../services';
 
-const gutterSizeToClassNameMap = {
-  none: null,
-  xs: 'euiBadgeGroup--gutterExtraSmall',
-  s: 'euiBadgeGroup--gutterSmall',
-};
+import { euiBadgeGroupStyles } from './badge_group.styles';
 
-export const GUTTER_SIZES = keysOf(gutterSizeToClassNameMap);
-type BadgeGroupGutterSize = keyof typeof gutterSizeToClassNameMap;
+export const GUTTER_SIZES = ['none', 'xs', 's'] as const;
+type BadgeGroupGutterSize = typeof GUTTER_SIZES[number];
 
 export interface EuiBadgeGroupProps {
   /**
@@ -25,8 +22,7 @@ export interface EuiBadgeGroupProps {
    */
   gutterSize?: BadgeGroupGutterSize;
   /**
-   * Should be a list of EuiBadge's but can also be any other element
-   * Will apply an extra class to add spacing
+   * Should be a list of `EuiBadge`s, but can also be any other element
    */
   children?: ReactNode;
 }
@@ -39,17 +35,16 @@ export const EuiBadgeGroup = forwardRef<
     { children, className, gutterSize = 'xs', ...rest },
     ref: Ref<HTMLDivElement>
   ) => {
-    const classes = classNames(
-      'euiBadgeGroup',
-      gutterSizeToClassNameMap[gutterSize as BadgeGroupGutterSize],
-      className
-    );
+    const euiTheme = useEuiTheme();
+
+    const styles = euiBadgeGroupStyles(euiTheme);
+    const cssStyles = [styles.euiBadgeGroup, styles[gutterSize]];
+
+    const classes = classNames('euiBadgeGroup', className);
 
     return (
-      <div className={classes} ref={ref} {...rest}>
-        {React.Children.map(children, (child: ReactNode) => (
-          <span className="euiBadgeGroup__item">{child}</span>
-        ))}
+      <div css={cssStyles} className={classes} ref={ref} {...rest}>
+        {children}
       </div>
     );
   }

@@ -9,6 +9,7 @@
 import React from 'react';
 import { shallow, render } from 'enzyme';
 import { requiredProps } from '../../../test';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiForm } from '../form';
 import { EuiFormRow } from '../form_row';
@@ -19,6 +20,10 @@ describe('EuiDescribedFormGroup', () => {
     title: <h3>Title</h3>,
     description: 'Test description',
   };
+
+  shouldRenderCustomStyles(<EuiDescribedFormGroup {...props} />, {
+    childProps: ['descriptionFlexItemProps', 'fieldFlexItemProps'],
+  });
 
   test('is rendered', () => {
     const component = shallow(

@@ -14,6 +14,7 @@ import {
   euiTextTruncate,
   euiFocusRing,
   logicalCSS,
+  mathWithUnits,
 } from '../../global_styling';
 
 export const euiBreadcrumbStyles = (euiThemeContext: UseEuiTheme) => {
@@ -70,7 +71,7 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
       vertical-align: baseline;
     `,
     isTruncated: css`
-      ${euiTextTruncate(`${parseFloat(euiTheme.size.base) * 10}px`)}
+      ${euiTextTruncate(mathWithUnits(euiTheme.size.base, (x) => x * 10))}
     `,
     isTruncatedLast: css`
       // This removes the default breadcrumb max-width while ensuring that the last breadcrumb

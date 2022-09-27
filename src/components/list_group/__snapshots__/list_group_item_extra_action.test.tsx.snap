@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiListGroupItem is rendered 1`] = `
+<button
+  aria-label="aria-label"
+  class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction testClass1 testClass2 emotion-euiButtonIcon-empty-primary-hoverStyles-euiListGroupItemExtraAction-hoverStyles"
+  data-test-subj="test subject string"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="euiButtonIcon__icon"
+    color="inherit"
+    data-euiicon-type="star"
+  />
+</button>
+`;
+
+exports[`EuiListGroupItem props alwaysShow 1`] = `
+<button
+  aria-label="aria-label"
+  class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction testClass1 testClass2 emotion-euiButtonIcon-empty-primary-hoverStyles-euiListGroupItemExtraAction-alwaysShow"
+  data-test-subj="test subject string"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="euiButtonIcon__icon"
+    color="inherit"
+    data-euiicon-type="star"
+  />
+</button>
+`;
+
+exports[`EuiListGroupItem props color 1`] = `
+<button
+  aria-label="aria-label"
+  class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction testClass1 testClass2 emotion-euiButtonIcon-empty-accent-hoverStyles-euiListGroupItemExtraAction-hoverStyles"
+  data-test-subj="test subject string"
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="euiButtonIcon__icon"
+    color="inherit"
+    data-euiicon-type="star"
+  />
+</button>
+`;
+
+exports[`EuiListGroupItem props isDisabled 1`] = `
+<button
+  aria-label="aria-label"
+  class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction testClass1 testClass2 emotion-euiButtonIcon-empty-disabled-hoverStyles-euiListGroupItemExtraAction-hoverStyles"
+  data-test-subj="test subject string"
+  disabled=""
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="euiButtonIcon__icon"
+    color="inherit"
+    data-euiicon-type="star"
+  />
+</button>
+`;
+
+exports[`EuiListGroupItem props parentIsDisabled 1`] = `
+<button
+  aria-label="aria-label"
+  class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction testClass1 testClass2 emotion-euiButtonIcon-empty-disabled-hoverStyles-euiListGroupItemExtraAction"
+  data-test-subj="test subject string"
+  disabled=""
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    class="euiButtonIcon__icon"
+    color="inherit"
+    data-euiicon-type="star"
+  />
+</button>
+`;

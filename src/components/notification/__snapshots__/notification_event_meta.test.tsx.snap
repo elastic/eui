@@ -8,13 +8,13 @@ exports[`EuiNotificationEventMeta is rendered 1`] = `
     class="euiNotificationEventMeta__section"
   >
     <span
-      class="euiBadge euiBadge--hollow euiBadge--iconLeft euiNotificationEventMeta__badge"
+      class="euiBadge euiNotificationEventMeta__badge emotion-euiBadge-hollow"
     >
       <span
-        class="euiBadge__content"
+        class="euiBadge__content emotion-euiBadge__content"
       >
         <span
-          class="euiBadge__text"
+          class="euiBadge__text emotion-euiBadge__text"
         >
           Alert
         </span>
@@ -43,14 +43,14 @@ exports[`EuiNotificationEventMeta props badgeColor  is rendered 1`] = `
     class="euiNotificationEventMeta__section"
   >
     <span
-      class="euiBadge euiBadge--iconLeft euiNotificationEventMeta__badge"
+      class="euiBadge euiNotificationEventMeta__badge emotion-euiBadge"
       style="background-color:#6dccb1;color:#000"
     >
       <span
-        class="euiBadge__content"
+        class="euiBadge__content emotion-euiBadge__content"
       >
         <span
-          class="euiBadge__text"
+          class="euiBadge__text emotion-euiBadge__text"
         >
           Alert
         </span>
@@ -136,13 +136,13 @@ exports[`EuiNotificationEventMeta props logoCloud  is rendered 1`] = `
       data-euiicon-type="logoCloud"
     />
     <span
-      class="euiBadge euiBadge--hollow euiBadge--iconLeft euiNotificationEventMeta__badge"
+      class="euiBadge euiNotificationEventMeta__badge emotion-euiBadge-hollow"
     >
       <span
-        class="euiBadge__content"
+        class="euiBadge__content emotion-euiBadge__content"
       >
         <span
-          class="euiBadge__text"
+          class="euiBadge__text emotion-euiBadge__text"
         >
           Alert
         </span>
@@ -171,13 +171,13 @@ exports[`EuiNotificationEventMeta props severity is rendered 1`] = `
     class="euiNotificationEventMeta__section"
   >
     <span
-      class="euiBadge euiBadge--hollow euiBadge--iconLeft euiNotificationEventMeta__badge"
+      class="euiBadge euiNotificationEventMeta__badge emotion-euiBadge-hollow"
     >
       <span
-        class="euiBadge__content"
+        class="euiBadge__content emotion-euiBadge__content"
       >
         <span
-          class="euiBadge__text"
+          class="euiBadge__text emotion-euiBadge__text"
         >
           Alert: severity
         </span>

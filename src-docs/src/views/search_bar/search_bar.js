@@ -170,7 +170,7 @@ export const SearchBar = () => {
       <EuiSearchBar
         defaultQuery={initialQuery}
         box={{
-          placeholder: 'e.g. type:visualization -is:active joe',
+          placeholder: 'type:visualization -is:active joe',
           incremental,
           schema,
         }}

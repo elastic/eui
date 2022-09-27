@@ -2,43 +2,39 @@
 
 exports[`EuiBadgeGroup gutterSize none is rendered 1`] = `
 <div
-  class="euiBadgeGroup"
+  class="euiBadgeGroup emotion-euiBadgeGroup-none"
 />
 `;
 
 exports[`EuiBadgeGroup gutterSize s is rendered 1`] = `
 <div
-  class="euiBadgeGroup euiBadgeGroup--gutterSmall"
+  class="euiBadgeGroup emotion-euiBadgeGroup-s"
 />
 `;
 
 exports[`EuiBadgeGroup gutterSize xs is rendered 1`] = `
 <div
-  class="euiBadgeGroup euiBadgeGroup--gutterExtraSmall"
+  class="euiBadgeGroup emotion-euiBadgeGroup-xs"
 />
 `;
 
 exports[`EuiBadgeGroup is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiBadgeGroup euiBadgeGroup--gutterExtraSmall testClass1 testClass2"
+  class="euiBadgeGroup testClass1 testClass2 emotion-euiBadgeGroup-xs"
   data-test-subj="test subject string"
 >
   <span
-    class="euiBadgeGroup__item"
+    class="euiBadge emotion-euiBadge"
+    style="background-color:#D3DAE6;color:#000"
   >
     <span
-      class="euiBadge euiBadge--iconLeft"
-      style="background-color:#d3dae6;color:#000"
+      class="euiBadge__content emotion-euiBadge__content"
     >
       <span
-        class="euiBadge__content"
+        class="euiBadge__text emotion-euiBadge__text"
       >
-        <span
-          class="euiBadge__text"
-        >
-          Content
-        </span>
+        Content
       </span>
     </span>
   </span>
