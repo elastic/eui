@@ -16,7 +16,9 @@ import { ALIGNMENTS } from './page_section.styles';
 import { PADDING_SIZES, BACKGROUND_COLORS } from '../../../global_styling';
 
 describe('EuiPageSection', () => {
-  shouldRenderCustomStyles(<EuiPageSection />, ['contentProps']);
+  shouldRenderCustomStyles(<EuiPageSection />, {
+    childProps: ['contentProps'],
+  });
 
   test('is rendered', () => {
     const component = render(<EuiPageSection {...requiredProps} />);

@@ -14,7 +14,14 @@ import { shouldRenderCustomStyles } from '../../test/internal';
 import { EuiBadge, COLORS, ICON_SIDES } from './badge';
 
 describe('EuiBadge', () => {
-  shouldRenderCustomStyles(<EuiBadge {...requiredProps} />);
+  shouldRenderCustomStyles(
+    <EuiBadge
+      iconType="cross"
+      iconOnClick={() => {}}
+      iconOnClickAriaLabel="Close"
+    />,
+    { childProps: ['closeButtonProps'] }
+  );
 
   test('is rendered', () => {
     const component = render(<EuiBadge {...requiredProps}>Content</EuiBadge>);

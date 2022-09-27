@@ -67,6 +67,7 @@ export {
   saturate,
   desaturate,
   lightness,
+  darken,
   makeHighContrastColor,
   makeDisabledContrastColor,
   wcagContrastMin,

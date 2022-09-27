@@ -8,23 +8,16 @@
 
 import React, { HTMLAttributes, ReactNode, FunctionComponent } from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf } from '../../common';
+import { CommonProps } from '../../common';
+import { useEuiTheme } from '../../../services';
 
-const colorToClassMap = {
-  accent: null,
-  subdued: 'euiNotificationBadge--subdued',
-};
+import { euiNotificationBadgeStyles } from './badge_notification.styles';
 
-export const COLORS: BadgeNotificationColor[] = keysOf(colorToClassMap);
-export type BadgeNotificationColor = keyof typeof colorToClassMap;
+export const COLORS = ['accent', 'subdued'] as const;
+export type BadgeNotificationColor = typeof COLORS[number];
 
-const sizeToClassNameMap = {
-  s: null,
-  m: 'euiNotificationBadge--medium',
-};
-
-export const SIZES: BadgeNotificationSize[] = keysOf(sizeToClassNameMap);
-export type BadgeNotificationSize = keyof typeof sizeToClassNameMap;
+export const SIZES = ['s', 'm'] as const;
+export type BadgeNotificationSize = typeof SIZES[number];
 
 export interface EuiNotificationBadgeProps
   extends CommonProps,
@@ -44,15 +37,15 @@ export const EuiNotificationBadge: FunctionComponent<EuiNotificationBadgeProps> 
   color = 'accent',
   ...rest
 }) => {
-  const classes = classNames(
-    'euiNotificationBadge',
-    sizeToClassNameMap[size],
-    colorToClassMap[color],
-    className
-  );
+  const euiTheme = useEuiTheme();
+
+  const styles = euiNotificationBadgeStyles(euiTheme);
+  const cssStyles = [styles.euiNotificationBadge, styles[size], styles[color]];
+
+  const classes = classNames('euiNotificationBadge', className);
 
   return (
-    <span className={classes} {...rest}>
+    <span css={cssStyles} className={classes} {...rest}>
       {children}
     </span>
   );

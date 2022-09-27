@@ -109,7 +109,7 @@ export const EuiButtonDisplayContent: FunctionComponent<
   const isText = typeof children === 'string';
 
   return (
-    <span {...contentProps} css={cssStyles}>
+    <span css={cssStyles} {...contentProps}>
       {icon}
       {isText ? (
         <span

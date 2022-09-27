@@ -13,6 +13,7 @@ import React, {
   ReactNode,
   useCallback,
 } from 'react';
+import { css } from '@emotion/react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
@@ -59,6 +60,7 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
   compressed,
   onChange,
   className,
+  css: customCss,
   showLabel = true,
   type = 'button',
   labelProps,
@@ -94,8 +96,11 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
     );
   }
 
+  const styles = { euiSwitch: css`` }; // TODO: Emotion conversion
+  const cssStyles = [styles.euiSwitch, customCss];
+
   return (
-    <div className={classes}>
+    <div css={cssStyles} className={classes}>
       <button
         id={switchId}
         aria-checked={checked || false}

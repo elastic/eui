@@ -59,13 +59,15 @@ describe('EuiPageHeaderContent', () => {
       breadcrumbs={[{ text: 'breadcrumb' }]}
       tabs={[{ label: 'tab' }]}
     />,
-    [
-      'pageTitleProps',
-      'iconProps',
-      'rightSideGroupProps',
-      'breadcrumbProps',
-      'tabsProps',
-    ]
+    {
+      childProps: [
+        'pageTitleProps',
+        'iconProps',
+        'rightSideGroupProps',
+        'breadcrumbProps',
+        'tabsProps',
+      ],
+    }
   );
 
   test('is rendered', () => {

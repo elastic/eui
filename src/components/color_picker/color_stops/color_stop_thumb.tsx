@@ -8,6 +8,7 @@
 
 import React, {
   FunctionComponent,
+  CSSProperties,
   ReactChild,
   useEffect,
   useMemo,
@@ -65,6 +66,7 @@ interface EuiColorStopThumbProps extends CommonProps, ColorStop {
   closePopover: () => void;
   'data-index'?: string;
   'aria-valuetext'?: string;
+  style?: CSSProperties;
   valueInputProps?: Partial<EuiFieldNumberProps>;
 }
 
@@ -94,7 +96,9 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
   closePopover,
   'data-index': dataIndex,
   'aria-valuetext': ariaValueText,
+  style,
   valueInputProps = {},
+  ...rest
 }) => {
   const background = useMemo(() => {
     const chromaColor = getChromaColor(color, colorPickerShowAlpha);
@@ -248,6 +252,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
 
   return (
     <EuiPopover
+      {...rest}
       ref={popoverRef}
       className={classes}
       anchorClassName="euiColorStopPopover__anchor"
@@ -260,6 +265,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
         numberInputRef ? undefined : 'euiColorStopPopover-isLoadingPanel'
       }
       style={{
+        ...style,
         left: `${getPositionFromStopFn(stop)}%`,
       }}
       button={

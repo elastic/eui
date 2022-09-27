@@ -43,7 +43,7 @@ exports[`EuiCheckableCard renders a checkbox when specified 1`] = `
     class="euiPanel euiPanel--subdued euiPanel--paddingMedium euiSplitPanel__inner emotion-euiPanel-none-m-subdued-isClickable"
   >
     <div
-      class="euiCheckbox euiCheckbox--noLabel"
+      class="euiCheckbox euiCheckbox--noLabel emotion-euiCheckbox"
     >
       <input
         aria-label="aria-label"

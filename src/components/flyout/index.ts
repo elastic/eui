@@ -17,3 +17,5 @@ export { EuiFlyoutFooter } from './flyout_footer';
 
 export type { EuiFlyoutHeaderProps } from './flyout_header';
 export { EuiFlyoutHeader } from './flyout_header';
+
+export { euiFlyoutSlideInRight, euiFlyoutSlideInLeft } from './flyout.styles';

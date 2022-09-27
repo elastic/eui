@@ -2,7 +2,7 @@
 
 exports[`EuiDualRange allows value prop to accept empty strings 1`] = `
 <div
-  class="euiRangeWrapper euiDualRange"
+  class="euiRangeWrapper euiDualRange emotion-euiDualRange"
 >
   <div
     aria-hidden="false"
@@ -24,7 +24,7 @@ exports[`EuiDualRange allows value prop to accept empty strings 1`] = `
 
 exports[`EuiDualRange allows value prop to accept numbers 1`] = `
 <div
-  class="euiRangeWrapper euiDualRange"
+  class="euiRangeWrapper euiDualRange emotion-euiDualRange"
 >
   <div
     aria-hidden="false"
@@ -54,7 +54,7 @@ exports[`EuiDualRange allows value prop to accept numbers 1`] = `
 
 exports[`EuiDualRange input props can be applied to min and max inputs 1`] = `
 <div
-  class="euiRangeWrapper euiDualRange"
+  class="euiRangeWrapper euiDualRange emotion-euiDualRange"
 >
   <div
     class="euiFormControlLayout"
@@ -129,7 +129,7 @@ exports[`EuiDualRange input props can be applied to min and max inputs 1`] = `
 
 exports[`EuiDualRange is rendered 1`] = `
 <div
-  class="euiRangeWrapper euiDualRange testClass1 testClass2"
+  class="euiRangeWrapper euiDualRange testClass1 testClass2 emotion-euiDualRange"
 >
   <div
     aria-hidden="false"
@@ -162,7 +162,7 @@ exports[`EuiDualRange is rendered 1`] = `
 
 exports[`EuiDualRange props compressed should render 1`] = `
 <div
-  class="euiRangeWrapper euiRangeWrapper--compressed euiDualRange"
+  class="euiRangeWrapper euiRangeWrapper--compressed euiDualRange emotion-euiDualRange"
 >
   <div
     aria-hidden="false"
@@ -192,7 +192,7 @@ exports[`EuiDualRange props compressed should render 1`] = `
 
 exports[`EuiDualRange props custom ticks should render 1`] = `
 <div
-  class="euiRangeWrapper euiDualRange"
+  class="euiRangeWrapper euiDualRange emotion-euiDualRange"
 >
   <div
     aria-hidden="false"
@@ -251,7 +251,7 @@ exports[`EuiDualRange props custom ticks should render 1`] = `
 
 exports[`EuiDualRange props disabled should render 1`] = `
 <div
-  class="euiRangeWrapper euiDualRange"
+  class="euiRangeWrapper euiDualRange emotion-euiDualRange"
 >
   <div
     aria-hidden="false"
@@ -282,7 +282,7 @@ exports[`EuiDualRange props disabled should render 1`] = `
 
 exports[`EuiDualRange props fullWidth should render 1`] = `
 <div
-  class="euiRangeWrapper euiRangeWrapper--fullWidth euiDualRange"
+  class="euiRangeWrapper euiRangeWrapper--fullWidth euiDualRange emotion-euiDualRange"
 >
   <div
     aria-hidden="false"
@@ -312,7 +312,7 @@ exports[`EuiDualRange props fullWidth should render 1`] = `
 
 exports[`EuiDualRange props inputs should render 1`] = `
 <div
-  class="euiRangeWrapper euiDualRange testClass1 testClass2"
+  class="euiRangeWrapper euiDualRange testClass1 testClass2 emotion-euiDualRange"
 >
   <div
     class="euiFormControlLayout"
@@ -389,7 +389,7 @@ exports[`EuiDualRange props inputs should render 1`] = `
 
 exports[`EuiDualRange props isDraggable should render 1`] = `
 <div
-  class="euiRangeWrapper euiDualRange"
+  class="euiRangeWrapper euiDualRange emotion-euiDualRange"
 >
   <div
     aria-hidden="false"
@@ -419,7 +419,7 @@ exports[`EuiDualRange props isDraggable should render 1`] = `
 
 exports[`EuiDualRange props labels should render 1`] = `
 <div
-  class="euiRangeWrapper euiDualRange"
+  class="euiRangeWrapper euiDualRange emotion-euiDualRange"
 >
   <label
     class="euiRangeLabel euiRangeLabel--min"
@@ -459,7 +459,7 @@ exports[`EuiDualRange props labels should render 1`] = `
 
 exports[`EuiDualRange props levels should render 1`] = `
 <div
-  class="euiRangeWrapper euiDualRange"
+  class="euiRangeWrapper euiDualRange emotion-euiDualRange"
 >
   <div
     aria-hidden="false"
@@ -556,7 +556,7 @@ exports[`EuiDualRange props loading should display when showInput="inputWithPopo
 
 exports[`EuiDualRange props range should render 1`] = `
 <div
-  class="euiRangeWrapper euiDualRange"
+  class="euiRangeWrapper euiDualRange emotion-euiDualRange"
 >
   <div
     aria-hidden="false"
@@ -632,7 +632,7 @@ exports[`EuiDualRange props slider should display in popover 1`] = `
 
 exports[`EuiDualRange props ticks should render 1`] = `
 <div
-  class="euiRangeWrapper euiDualRange"
+  class="euiRangeWrapper euiDualRange emotion-euiDualRange"
 >
   <div
     aria-hidden="false"

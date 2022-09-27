@@ -19,7 +19,7 @@ describe('EuiDescriptionList', () => {
     <EuiDescriptionList
       listItems={[{ title: 'hello', description: 'world' }]}
     />,
-    ['titleProps', 'descriptionProps']
+    { childProps: ['titleProps', 'descriptionProps'] }
   );
 
   test('is rendered', () => {

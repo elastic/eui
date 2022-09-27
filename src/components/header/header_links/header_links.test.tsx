@@ -9,10 +9,15 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiHeaderLinks, GUTTER_SIZES } from './header_links';
 
 describe('EuiHeaderLinks', () => {
+  shouldRenderCustomStyles(<EuiHeaderLinks popoverBreakpoints="all" />, {
+    childProps: ['popoverButtonProps', 'popoverProps'],
+  });
+
   test('is rendered', () => {
     const component = render(<EuiHeaderLinks {...requiredProps} />);
 

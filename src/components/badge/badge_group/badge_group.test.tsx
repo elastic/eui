@@ -9,11 +9,14 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiBadge } from '../badge';
 import { EuiBadgeGroup, GUTTER_SIZES } from './badge_group';
 
 describe('EuiBadgeGroup', () => {
+  shouldRenderCustomStyles(<EuiBadgeGroup />);
+
   test('is rendered', () => {
     const component = render(
       <EuiBadgeGroup {...requiredProps}>

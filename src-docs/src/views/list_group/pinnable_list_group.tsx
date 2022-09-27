@@ -9,7 +9,7 @@ const someListItems: EuiPinnableListGroupItemProps[] = [
   {
     id: '1',
     label: 'Label with iconType',
-    iconType: 'stop',
+    iconType: 'home',
     pinned: false,
   },
   {
@@ -22,6 +22,7 @@ const someListItems: EuiPinnableListGroupItemProps[] = [
     label: 'Link with href and custom pin titles',
     href: '/#',
     pinned: false,
+    color: 'primary',
   },
   {
     id: '3',

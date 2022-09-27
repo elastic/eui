@@ -5,6 +5,7 @@ import {
   EuiPopoverTitle,
   EuiPopoverFooter,
   EuiButton,
+  EuiButtonEmpty,
   EuiFlexGroup,
   EuiFlexItem,
   EuiText,
@@ -50,13 +51,13 @@ export default () => {
           <EuiPopover
             panelPaddingSize="s"
             button={
-              <EuiButton
-                iconType="arrowDown"
+              <EuiButtonEmpty
+                iconType="questionInCircle"
                 iconSide="right"
                 onClick={onButtonClick2}
               >
                 Small panel padding
-              </EuiButton>
+              </EuiButtonEmpty>
             }
             isOpen={isPopoverOpen2}
             closePopover={closePopover2}
@@ -80,13 +81,13 @@ export default () => {
           <EuiPopover
             panelPaddingSize="none"
             button={
-              <EuiButton
-                iconType="arrowDown"
+              <EuiButtonEmpty
+                iconType="questionInCircle"
                 iconSide="right"
                 onClick={onButtonClick1}
               >
                 No panel padding (none)
-              </EuiButton>
+              </EuiButtonEmpty>
             }
             isOpen={isPopoverOpen1}
             closePopover={closePopover1}
@@ -111,13 +112,13 @@ export default () => {
         <EuiFlexItem grow={false}>
           <EuiPopover
             button={
-              <EuiButton
-                iconType="arrowDown"
+              <EuiButtonEmpty
+                iconType="questionInCircle"
                 iconSide="right"
                 onClick={onButtonClick4}
               >
                 No title padding (none)
-              </EuiButton>
+              </EuiButtonEmpty>
             }
             isOpen={isPopoverOpen4}
             closePopover={closePopover4}
@@ -144,13 +145,13 @@ export default () => {
           <EuiPopover
             panelPaddingSize="none"
             button={
-              <EuiButton
-                iconType="arrowDown"
+              <EuiButtonEmpty
+                iconType="questionInCircle"
                 iconSide="right"
                 onClick={onButtonClick3}
               >
                 No panel padding with small title padding
-              </EuiButton>
+              </EuiButtonEmpty>
             }
             isOpen={isPopoverOpen3}
             closePopover={closePopover3}
@@ -177,13 +178,13 @@ export default () => {
         <EuiFlexItem grow={false}>
           <EuiPopover
             button={
-              <EuiButton
-                iconType="arrowDown"
+              <EuiButtonEmpty
+                iconType="questionInCircle"
                 iconSide="right"
                 onClick={onButtonClick5}
               >
                 No footer padding (none)
-              </EuiButton>
+              </EuiButtonEmpty>
             }
             isOpen={isPopoverOpen5}
             closePopover={closePopover5}
@@ -208,13 +209,13 @@ export default () => {
           <EuiPopover
             panelPaddingSize="none"
             button={
-              <EuiButton
-                iconType="arrowDown"
+              <EuiButtonEmpty
+                iconType="questionInCircle"
                 iconSide="right"
                 onClick={onButtonClick6}
               >
                 Set each padding individually
-              </EuiButton>
+              </EuiButtonEmpty>
             }
             isOpen={isPopoverOpen6}
             closePopover={closePopover6}

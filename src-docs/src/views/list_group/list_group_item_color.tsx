@@ -1,15 +1,17 @@
 import React from 'react';
 
 import {
+  EuiSpacer,
+  EuiPanel,
   EuiListGroupItem,
   EuiListGroup,
-} from '../../../../src/components/list_group';
-import { EuiSpacer } from '../../../../src/components/spacer';
+} from '../../../../src/components/';
+import { EuiThemeProvider } from '../../../../src/services';
 
 export default () => (
   <>
     <EuiListGroup>
-      <EuiListGroupItem href="#" label="Inherit by default (xs)" size="xs" />
+      <EuiListGroupItem href="#" label="Text by default (xs)" size="xs" />
 
       <EuiListGroupItem
         onClick={() => {}}
@@ -25,8 +27,12 @@ export default () => (
 
     <EuiSpacer size="s" />
 
-    <EuiListGroup style={{ background: 'black' }}>
-      <EuiListGroupItem href="#" label="Ghost" color="ghost" />
-    </EuiListGroup>
+    <EuiThemeProvider colorMode="dark">
+      <EuiPanel borderRadius="none" hasShadow={false} color="subdued">
+        <EuiListGroup>
+          <EuiListGroupItem href="#" label="Ghost" />
+        </EuiListGroup>
+      </EuiPanel>
+    </EuiThemeProvider>
   </>
 );

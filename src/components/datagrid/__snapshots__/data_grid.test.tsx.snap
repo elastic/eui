@@ -138,784 +138,319 @@ exports[`EuiDataGrid pagination renders 1`] = `
 
 exports[`EuiDataGrid render column actions renders various column actions configurations 1`] = `
 <ul
-  className="euiListGroup euiListGroup-maxWidthDefault"
+  class="euiListGroup emotion-euiListGroup-none-maxWidthDefault"
   data-test-subj="dataGridHeaderCellActionGroup-B"
 >
-  <EuiListGroupItem
-    color="text"
-    iconType="eyeClosed"
-    key="title-0"
-    label={
-      <EuiI18n
-        default="Hide column"
-        token="euiColumnActions.hideColumn"
-      />
-    }
-    onClick={[Function]}
-    showToolTip={false}
-    size="xs"
-    wrapText={false}
+  <li
+    class="euiListGroupItem emotion-euiListGroupItem-text-xs"
   >
-    <li
-      className="euiListGroupItem euiListGroupItem--xSmall euiListGroupItem--text euiListGroupItem-isClickable"
+    <button
+      class="euiListGroupItem__button emotion-euiListGroupItem__inner-xs-text-isClickable"
+      type="button"
     >
-      <button
-        className="euiListGroupItem__button"
-        disabled={false}
-        onClick={[Function]}
-        type="button"
-      >
-        <EuiIcon
-          className="euiListGroupItem__icon"
-          color="inherit"
-          type="eyeClosed"
-        >
-          <span
-            className="euiListGroupItem__icon"
-            color="inherit"
-            data-euiicon-type="eyeClosed"
-          />
-        </EuiIcon>
-        <span
-          className="euiListGroupItem__label"
-          title="Hide column"
-        >
-          <EuiI18n
-            default="Hide column"
-            token="euiColumnActions.hideColumn"
-          >
-            Hide column
-          </EuiI18n>
-        </span>
-      </button>
-    </li>
-  </EuiListGroupItem>
-  <EuiListGroupItem
-    color="text"
-    iconType="sortUp"
-    isDisabled={false}
-    key="title-1"
-    label={
-      <EuiI18n
-        default="Sort {schemaLabel}"
-        token="euiColumnActions.sort"
-        values={
-          Object {
-            "schemaLabel": <EuiI18n
-              default="A-Z"
-              token="euiColumnSortingDraggable.defaultSortAsc"
-            />,
-          }
-        }
+      <span
+        class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
+        color="inherit"
+        data-euiicon-type="eyeClosed"
       />
-    }
-    onClick={[Function]}
-    showToolTip={false}
-    size="xs"
-    wrapText={false}
-  >
-    <li
-      className="euiListGroupItem euiListGroupItem--xSmall euiListGroupItem--text euiListGroupItem-isClickable"
-    >
-      <button
-        className="euiListGroupItem__button"
-        disabled={false}
-        onClick={[Function]}
-        type="button"
+      <span
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+        title="Hide column"
       >
-        <EuiIcon
-          className="euiListGroupItem__icon"
-          color="inherit"
-          type="sortUp"
-        >
-          <span
-            className="euiListGroupItem__icon"
-            color="inherit"
-            data-euiicon-type="sortUp"
-          />
-        </EuiIcon>
-        <span
-          className="euiListGroupItem__label"
-          title="Sort A-Z"
-        >
-          <EuiI18n
-            default="Sort {schemaLabel}"
-            token="euiColumnActions.sort"
-            values={
-              Object {
-                "schemaLabel": <EuiI18n
-                  default="A-Z"
-                  token="euiColumnSortingDraggable.defaultSortAsc"
-                />,
-              }
-            }
-          >
-            <Component
-              schemaLabel={
-                <EuiI18n
-                  default="A-Z"
-                  token="euiColumnSortingDraggable.defaultSortAsc"
-                />
-              }
-            >
-              Sort 
-              <EuiI18n
-                default="A-Z"
-                key="1"
-                token="euiColumnSortingDraggable.defaultSortAsc"
-              >
-                A-Z
-              </EuiI18n>
-            </Component>
-          </EuiI18n>
-        </span>
-      </button>
-    </li>
-  </EuiListGroupItem>
-  <EuiListGroupItem
-    color="text"
-    iconType="sortDown"
-    isDisabled={false}
-    key="title-2"
-    label={
-      <EuiI18n
-        default="Sort {schemaLabel}"
-        token="euiColumnActions.sort"
-        values={
-          Object {
-            "schemaLabel": <EuiI18n
-              default="Z-A"
-              token="euiColumnSortingDraggable.defaultSortDesc"
-            />,
-          }
-        }
+        Hide column
+      </span>
+    </button>
+  </li>
+  <li
+    class="euiListGroupItem emotion-euiListGroupItem-text-xs"
+  >
+    <button
+      class="euiListGroupItem__button emotion-euiListGroupItem__inner-xs-text-isClickable"
+      type="button"
+    >
+      <span
+        class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
+        color="inherit"
+        data-euiicon-type="sortUp"
       />
-    }
-    onClick={[Function]}
-    showToolTip={false}
-    size="xs"
-    wrapText={false}
-  >
-    <li
-      className="euiListGroupItem euiListGroupItem--xSmall euiListGroupItem--text euiListGroupItem-isClickable"
-    >
-      <button
-        className="euiListGroupItem__button"
-        disabled={false}
-        onClick={[Function]}
-        type="button"
+      <span
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+        title="Sort A-Z"
       >
-        <EuiIcon
-          className="euiListGroupItem__icon"
-          color="inherit"
-          type="sortDown"
-        >
-          <span
-            className="euiListGroupItem__icon"
-            color="inherit"
-            data-euiicon-type="sortDown"
-          />
-        </EuiIcon>
-        <span
-          className="euiListGroupItem__label"
-          title="Sort Z-A"
-        >
-          <EuiI18n
-            default="Sort {schemaLabel}"
-            token="euiColumnActions.sort"
-            values={
-              Object {
-                "schemaLabel": <EuiI18n
-                  default="Z-A"
-                  token="euiColumnSortingDraggable.defaultSortDesc"
-                />,
-              }
-            }
-          >
-            <Component
-              schemaLabel={
-                <EuiI18n
-                  default="Z-A"
-                  token="euiColumnSortingDraggable.defaultSortDesc"
-                />
-              }
-            >
-              Sort 
-              <EuiI18n
-                default="Z-A"
-                key="1"
-                token="euiColumnSortingDraggable.defaultSortDesc"
-              >
-                Z-A
-              </EuiI18n>
-            </Component>
-          </EuiI18n>
-        </span>
-      </button>
-    </li>
-  </EuiListGroupItem>
-  <EuiListGroupItem
-    color="text"
-    iconType="sortLeft"
-    isDisabled={false}
-    key="title-3"
-    label={
-      <EuiI18n
-        default="Move left"
-        token="euiColumnActions.moveLeft"
+        Sort A-Z
+      </span>
+    </button>
+  </li>
+  <li
+    class="euiListGroupItem emotion-euiListGroupItem-text-xs"
+  >
+    <button
+      class="euiListGroupItem__button emotion-euiListGroupItem__inner-xs-text-isClickable"
+      type="button"
+    >
+      <span
+        class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
+        color="inherit"
+        data-euiicon-type="sortDown"
       />
-    }
-    onClick={[Function]}
-    showToolTip={false}
-    size="xs"
-    wrapText={false}
-  >
-    <li
-      className="euiListGroupItem euiListGroupItem--xSmall euiListGroupItem--text euiListGroupItem-isClickable"
-    >
-      <button
-        className="euiListGroupItem__button"
-        disabled={false}
-        onClick={[Function]}
-        type="button"
+      <span
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+        title="Sort Z-A"
       >
-        <EuiIcon
-          className="euiListGroupItem__icon"
-          color="inherit"
-          type="sortLeft"
-        >
-          <span
-            className="euiListGroupItem__icon"
-            color="inherit"
-            data-euiicon-type="sortLeft"
-          />
-        </EuiIcon>
-        <span
-          className="euiListGroupItem__label"
-          title="Move left"
-        >
-          <EuiI18n
-            default="Move left"
-            token="euiColumnActions.moveLeft"
-          >
-            Move left
-          </EuiI18n>
-        </span>
-      </button>
-    </li>
-  </EuiListGroupItem>
-  <EuiListGroupItem
-    color="text"
-    iconType="sortRight"
-    isDisabled={false}
-    key="title-4"
-    label={
-      <EuiI18n
-        default="Move right"
-        token="euiColumnActions.moveRight"
+        Sort Z-A
+      </span>
+    </button>
+  </li>
+  <li
+    class="euiListGroupItem emotion-euiListGroupItem-text-xs"
+  >
+    <button
+      class="euiListGroupItem__button emotion-euiListGroupItem__inner-xs-text-isClickable"
+      type="button"
+    >
+      <span
+        class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
+        color="inherit"
+        data-euiicon-type="sortLeft"
       />
-    }
-    onClick={[Function]}
-    showToolTip={false}
-    size="xs"
-    wrapText={false}
-  >
-    <li
-      className="euiListGroupItem euiListGroupItem--xSmall euiListGroupItem--text euiListGroupItem-isClickable"
-    >
-      <button
-        className="euiListGroupItem__button"
-        disabled={false}
-        onClick={[Function]}
-        type="button"
+      <span
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+        title="Move left"
       >
-        <EuiIcon
-          className="euiListGroupItem__icon"
-          color="inherit"
-          type="sortRight"
-        >
-          <span
-            className="euiListGroupItem__icon"
-            color="inherit"
-            data-euiicon-type="sortRight"
-          />
-        </EuiIcon>
-        <span
-          className="euiListGroupItem__label"
-          title="Move right"
-        >
-          <EuiI18n
-            default="Move right"
-            token="euiColumnActions.moveRight"
-          >
-            Move right
-          </EuiI18n>
-        </span>
-      </button>
-    </li>
-  </EuiListGroupItem>
+        Move left
+      </span>
+    </button>
+  </li>
+  <li
+    class="euiListGroupItem emotion-euiListGroupItem-text-xs"
+  >
+    <button
+      class="euiListGroupItem__button emotion-euiListGroupItem__inner-xs-text-isClickable"
+      type="button"
+    >
+      <span
+        class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
+        color="inherit"
+        data-euiicon-type="sortRight"
+      />
+      <span
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+        title="Move right"
+      >
+        Move right
+      </span>
+    </button>
+  </li>
 </ul>
 `;
 
 exports[`EuiDataGrid render column actions renders various column actions configurations 2`] = `
 <ul
-  className="euiListGroup euiListGroup-maxWidthDefault"
+  class="euiListGroup emotion-euiListGroup-none-maxWidthDefault"
   data-test-subj="dataGridHeaderCellActionGroup-C"
 >
-  <EuiListGroupItem
-    key="title-0"
-    label="test"
-    onClick={[Function]}
-    showToolTip={false}
-    wrapText={false}
+  <li
+    class="euiListGroupItem emotion-euiListGroupItem-text-m"
   >
-    <li
-      className="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isClickable"
+    <button
+      class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-text-isClickable"
+      type="button"
     >
-      <button
-        className="euiListGroupItem__button"
-        disabled={false}
-        onClick={[Function]}
-        type="button"
+      <span
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+        title="test"
       >
-        <span
-          className="euiListGroupItem__label"
-          title="test"
-        >
-          test
-        </span>
-      </button>
-    </li>
-  </EuiListGroupItem>
+        test
+      </span>
+    </button>
+  </li>
 </ul>
 `;
 
 exports[`EuiDataGrid render column actions renders various column actions configurations 3`] = `
 <ul
-  className="euiListGroup euiListGroup-maxWidthDefault"
+  class="euiListGroup emotion-euiListGroup-none-maxWidthDefault"
   data-test-subj="dataGridHeaderCellActionGroup-D"
 >
-  <EuiListGroupItem
-    color="text"
-    iconType="sortUp"
-    isDisabled={false}
-    key="title-0"
-    label={
-      <EuiI18n
-        default="Sort {schemaLabel}"
-        token="euiColumnActions.sort"
-        values={
-          Object {
-            "schemaLabel": <EuiI18n
-              default="A-Z"
-              token="euiColumnSortingDraggable.defaultSortAsc"
-            />,
-          }
-        }
+  <li
+    class="euiListGroupItem emotion-euiListGroupItem-text-xs"
+  >
+    <button
+      class="euiListGroupItem__button emotion-euiListGroupItem__inner-xs-text-isClickable"
+      type="button"
+    >
+      <span
+        class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
+        color="inherit"
+        data-euiicon-type="sortUp"
       />
-    }
-    onClick={[Function]}
-    showToolTip={false}
-    size="xs"
-    wrapText={false}
-  >
-    <li
-      className="euiListGroupItem euiListGroupItem--xSmall euiListGroupItem--text euiListGroupItem-isClickable"
-    >
-      <button
-        className="euiListGroupItem__button"
-        disabled={false}
-        onClick={[Function]}
-        type="button"
+      <span
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+        title="Sort A-Z"
       >
-        <EuiIcon
-          className="euiListGroupItem__icon"
-          color="inherit"
-          type="sortUp"
-        >
-          <span
-            className="euiListGroupItem__icon"
-            color="inherit"
-            data-euiicon-type="sortUp"
-          />
-        </EuiIcon>
-        <span
-          className="euiListGroupItem__label"
-          title="Sort A-Z"
-        >
-          <EuiI18n
-            default="Sort {schemaLabel}"
-            token="euiColumnActions.sort"
-            values={
-              Object {
-                "schemaLabel": <EuiI18n
-                  default="A-Z"
-                  token="euiColumnSortingDraggable.defaultSortAsc"
-                />,
-              }
-            }
-          >
-            <Component
-              schemaLabel={
-                <EuiI18n
-                  default="A-Z"
-                  token="euiColumnSortingDraggable.defaultSortAsc"
-                />
-              }
-            >
-              Sort 
-              <EuiI18n
-                default="A-Z"
-                key="1"
-                token="euiColumnSortingDraggable.defaultSortAsc"
-              >
-                A-Z
-              </EuiI18n>
-            </Component>
-          </EuiI18n>
-        </span>
-      </button>
-    </li>
-  </EuiListGroupItem>
-  <EuiListGroupItem
-    color="text"
-    iconType="sortDown"
-    isDisabled={false}
-    key="title-1"
-    label={
-      <EuiI18n
-        default="Sort {schemaLabel}"
-        token="euiColumnActions.sort"
-        values={
-          Object {
-            "schemaLabel": <EuiI18n
-              default="Z-A"
-              token="euiColumnSortingDraggable.defaultSortDesc"
-            />,
-          }
-        }
+        Sort A-Z
+      </span>
+    </button>
+  </li>
+  <li
+    class="euiListGroupItem emotion-euiListGroupItem-text-xs"
+  >
+    <button
+      class="euiListGroupItem__button emotion-euiListGroupItem__inner-xs-text-isClickable"
+      type="button"
+    >
+      <span
+        class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
+        color="inherit"
+        data-euiicon-type="sortDown"
       />
-    }
-    onClick={[Function]}
-    showToolTip={false}
-    size="xs"
-    wrapText={false}
-  >
-    <li
-      className="euiListGroupItem euiListGroupItem--xSmall euiListGroupItem--text euiListGroupItem-isClickable"
-    >
-      <button
-        className="euiListGroupItem__button"
-        disabled={false}
-        onClick={[Function]}
-        type="button"
+      <span
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+        title="Sort Z-A"
       >
-        <EuiIcon
-          className="euiListGroupItem__icon"
-          color="inherit"
-          type="sortDown"
-        >
-          <span
-            className="euiListGroupItem__icon"
-            color="inherit"
-            data-euiicon-type="sortDown"
-          />
-        </EuiIcon>
-        <span
-          className="euiListGroupItem__label"
-          title="Sort Z-A"
-        >
-          <EuiI18n
-            default="Sort {schemaLabel}"
-            token="euiColumnActions.sort"
-            values={
-              Object {
-                "schemaLabel": <EuiI18n
-                  default="Z-A"
-                  token="euiColumnSortingDraggable.defaultSortDesc"
-                />,
-              }
-            }
-          >
-            <Component
-              schemaLabel={
-                <EuiI18n
-                  default="Z-A"
-                  token="euiColumnSortingDraggable.defaultSortDesc"
-                />
-              }
-            >
-              Sort 
-              <EuiI18n
-                default="Z-A"
-                key="1"
-                token="euiColumnSortingDraggable.defaultSortDesc"
-              >
-                Z-A
-              </EuiI18n>
-            </Component>
-          </EuiI18n>
-        </span>
-      </button>
-    </li>
-  </EuiListGroupItem>
-  <EuiListGroupItem
-    key="title-2"
-    label="test"
-    onClick={[Function]}
-    showToolTip={false}
-    wrapText={false}
+        Sort Z-A
+      </span>
+    </button>
+  </li>
+  <li
+    class="euiListGroupItem emotion-euiListGroupItem-text-m"
   >
-    <li
-      className="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isClickable"
+    <button
+      class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-text-isClickable"
+      type="button"
     >
-      <button
-        className="euiListGroupItem__button"
-        disabled={false}
-        onClick={[Function]}
-        type="button"
+      <span
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+        title="test"
       >
-        <span
-          className="euiListGroupItem__label"
-          title="test"
-        >
-          test
-        </span>
-      </button>
-    </li>
-  </EuiListGroupItem>
+        test
+      </span>
+    </button>
+  </li>
 </ul>
 `;
 
 exports[`EuiDataGrid render column actions renders various column actions configurations 4`] = `
 <ul
-  className="euiListGroup euiListGroup-maxWidthDefault"
+  class="euiListGroup emotion-euiListGroup-none-maxWidthDefault"
   data-test-subj="dataGridHeaderCellActionGroup-E"
 >
-  <EuiListGroupItem
-    color="text"
-    iconType="eyeClosed"
-    key="title-0"
-    label="1"
-    onClick={[Function]}
-    showToolTip={false}
-    size="xs"
-    wrapText={false}
+  <li
+    class="euiListGroupItem emotion-euiListGroupItem-text-xs"
   >
-    <li
-      className="euiListGroupItem euiListGroupItem--xSmall euiListGroupItem--text euiListGroupItem-isClickable"
+    <button
+      class="euiListGroupItem__button emotion-euiListGroupItem__inner-xs-text-isClickable"
+      type="button"
     >
-      <button
-        className="euiListGroupItem__button"
-        disabled={false}
-        onClick={[Function]}
-        type="button"
+      <span
+        class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
+        color="inherit"
+        data-euiicon-type="eyeClosed"
+      />
+      <span
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+        title="1"
       >
-        <EuiIcon
-          className="euiListGroupItem__icon"
-          color="inherit"
-          type="eyeClosed"
-        >
-          <span
-            className="euiListGroupItem__icon"
-            color="inherit"
-            data-euiicon-type="eyeClosed"
-          />
-        </EuiIcon>
-        <span
-          className="euiListGroupItem__label"
-          title="1"
-        >
-          1
-        </span>
-      </button>
-    </li>
-  </EuiListGroupItem>
-  <EuiListGroupItem
-    color="text"
-    iconType="sortUp"
-    isDisabled={false}
-    key="title-1"
-    label="2"
-    onClick={[Function]}
-    showToolTip={false}
-    size="xs"
-    wrapText={false}
+        1
+      </span>
+    </button>
+  </li>
+  <li
+    class="euiListGroupItem emotion-euiListGroupItem-text-xs"
   >
-    <li
-      className="euiListGroupItem euiListGroupItem--xSmall euiListGroupItem--text euiListGroupItem-isClickable"
+    <button
+      class="euiListGroupItem__button emotion-euiListGroupItem__inner-xs-text-isClickable"
+      type="button"
     >
-      <button
-        className="euiListGroupItem__button"
-        disabled={false}
-        onClick={[Function]}
-        type="button"
+      <span
+        class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
+        color="inherit"
+        data-euiicon-type="sortUp"
+      />
+      <span
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+        title="2"
       >
-        <EuiIcon
-          className="euiListGroupItem__icon"
-          color="inherit"
-          type="sortUp"
-        >
-          <span
-            className="euiListGroupItem__icon"
-            color="inherit"
-            data-euiicon-type="sortUp"
-          />
-        </EuiIcon>
-        <span
-          className="euiListGroupItem__label"
-          title="2"
-        >
-          2
-        </span>
-      </button>
-    </li>
-  </EuiListGroupItem>
-  <EuiListGroupItem
-    color="text"
-    iconType="sortDown"
-    isDisabled={false}
-    key="title-2"
-    label="3"
-    onClick={[Function]}
-    showToolTip={false}
-    size="xs"
-    wrapText={false}
+        2
+      </span>
+    </button>
+  </li>
+  <li
+    class="euiListGroupItem emotion-euiListGroupItem-text-xs"
   >
-    <li
-      className="euiListGroupItem euiListGroupItem--xSmall euiListGroupItem--text euiListGroupItem-isClickable"
+    <button
+      class="euiListGroupItem__button emotion-euiListGroupItem__inner-xs-text-isClickable"
+      type="button"
     >
-      <button
-        className="euiListGroupItem__button"
-        disabled={false}
-        onClick={[Function]}
-        type="button"
+      <span
+        class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
+        color="inherit"
+        data-euiicon-type="sortDown"
+      />
+      <span
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+        title="3"
       >
-        <EuiIcon
-          className="euiListGroupItem__icon"
-          color="inherit"
-          type="sortDown"
-        >
-          <span
-            className="euiListGroupItem__icon"
-            color="inherit"
-            data-euiicon-type="sortDown"
-          />
-        </EuiIcon>
-        <span
-          className="euiListGroupItem__label"
-          title="3"
-        >
-          3
-        </span>
-      </button>
-    </li>
-  </EuiListGroupItem>
-  <EuiListGroupItem
-    color="text"
-    iconType="sortLeft"
-    isDisabled={false}
-    key="title-3"
-    label="4"
-    onClick={[Function]}
-    showToolTip={false}
-    size="xs"
-    wrapText={false}
+        3
+      </span>
+    </button>
+  </li>
+  <li
+    class="euiListGroupItem emotion-euiListGroupItem-text-xs"
   >
-    <li
-      className="euiListGroupItem euiListGroupItem--xSmall euiListGroupItem--text euiListGroupItem-isClickable"
+    <button
+      class="euiListGroupItem__button emotion-euiListGroupItem__inner-xs-text-isClickable"
+      type="button"
     >
-      <button
-        className="euiListGroupItem__button"
-        disabled={false}
-        onClick={[Function]}
-        type="button"
+      <span
+        class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
+        color="inherit"
+        data-euiicon-type="sortLeft"
+      />
+      <span
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+        title="4"
       >
-        <EuiIcon
-          className="euiListGroupItem__icon"
-          color="inherit"
-          type="sortLeft"
-        >
-          <span
-            className="euiListGroupItem__icon"
-            color="inherit"
-            data-euiicon-type="sortLeft"
-          />
-        </EuiIcon>
-        <span
-          className="euiListGroupItem__label"
-          title="4"
-        >
-          4
-        </span>
-      </button>
-    </li>
-  </EuiListGroupItem>
-  <EuiListGroupItem
-    color="text"
-    iconType="sortRight"
-    isDisabled={true}
-    key="title-4"
-    label="5"
-    onClick={[Function]}
-    showToolTip={false}
-    size="xs"
-    wrapText={false}
+        4
+      </span>
+    </button>
+  </li>
+  <li
+    class="euiListGroupItem emotion-euiListGroupItem-xs"
   >
-    <li
-      className="euiListGroupItem euiListGroupItem--xSmall euiListGroupItem--text euiListGroupItem-isDisabled euiListGroupItem-isClickable"
+    <button
+      class="euiListGroupItem__button emotion-euiListGroupItem__inner-xs-isDisabled"
+      disabled=""
+      type="button"
     >
-      <button
-        className="euiListGroupItem__button"
-        disabled={true}
-        onClick={[Function]}
-        type="button"
+      <span
+        class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
+        color="inherit"
+        data-euiicon-type="sortRight"
+      />
+      <span
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+        title="5"
       >
-        <EuiIcon
-          className="euiListGroupItem__icon"
-          color="inherit"
-          type="sortRight"
-        >
-          <span
-            className="euiListGroupItem__icon"
-            color="inherit"
-            data-euiicon-type="sortRight"
-          />
-        </EuiIcon>
-        <span
-          className="euiListGroupItem__label"
-          title="5"
-        >
-          5
-        </span>
-      </button>
-    </li>
-  </EuiListGroupItem>
-  <EuiListGroupItem
-    key="title-5"
-    label="test"
-    onClick={[Function]}
-    showToolTip={false}
-    wrapText={false}
+        5
+      </span>
+    </button>
+  </li>
+  <li
+    class="euiListGroupItem emotion-euiListGroupItem-text-m"
   >
-    <li
-      className="euiListGroupItem euiListGroupItem--medium euiListGroupItem-isClickable"
+    <button
+      class="euiListGroupItem__button emotion-euiListGroupItem__inner-m-text-isClickable"
+      type="button"
     >
-      <button
-        className="euiListGroupItem__button"
-        disabled={false}
-        onClick={[Function]}
-        type="button"
+      <span
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+        title="test"
       >
-        <span
-          className="euiListGroupItem__label"
-          title="test"
-        >
-          test
-        </span>
-      </button>
-    </li>
-  </EuiListGroupItem>
+        test
+      </span>
+    </button>
+  </li>
 </ul>
 `;
 

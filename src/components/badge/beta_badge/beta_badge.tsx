@@ -15,31 +15,21 @@ import React, {
   ReactNode,
 } from 'react';
 import classNames from 'classnames';
-import { CommonProps, ExclusiveUnion, keysOf } from '../../common';
+import { CommonProps, ExclusiveUnion } from '../../common';
 
-import { getSecureRelForTarget } from '../../../services';
+import { getSecureRelForTarget, useEuiTheme } from '../../../services';
 
 import { EuiToolTip, EuiToolTipProps, ToolTipPositions } from '../../tool_tip';
 
 import { EuiIcon, IconType } from '../../icon';
 
-const colorToClassMap = {
-  accent: 'euiBetaBadge--accent',
-  subdued: 'euiBetaBadge--subdued',
-  hollow: 'euiBetaBadge--hollow',
-};
+import { euiBetaBadgeStyles } from './beta_badge.styles';
 
-export const COLORS: BetaBadgeColor[] = keysOf(colorToClassMap);
-export type BetaBadgeColor = keyof typeof colorToClassMap;
+export const COLORS = ['accent', 'subdued', 'hollow'] as const;
+export type BetaBadgeColor = typeof COLORS[number];
 
-export type BetaBadgeSize = 's' | 'm';
-
-export const sizeToClassMap: { [size in BetaBadgeSize]: string | null } = {
-  s: 'euiBetaBadge--small',
-  m: null,
-};
-
-export const SIZES = keysOf(sizeToClassMap);
+export const SIZES = ['s', 'm'] as const;
+export type BetaBadgeSize = typeof SIZES[number];
 
 type WithButtonProps = {
   /**
@@ -149,27 +139,28 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
   size = 'm',
   ...rest
 }) => {
-  let singleLetter = false;
-  if (typeof label === 'string' && label.length === 1) {
-    singleLetter = true;
-  }
+  const euiTheme = useEuiTheme();
 
-  const classes = classNames(
-    'euiBetaBadge',
-    {
-      'euiBetaBadge--iconOnly': iconType,
-      'euiBetaBadge--singleLetter': singleLetter,
-      'euiBetaBadge-isClickable': onClick || href,
-    },
-    colorToClassMap[color],
-    sizeToClassMap[size],
-    className
-  );
+  const singleLetter = !!(typeof label === 'string' && label.length === 1);
+  const isCircular = iconType || singleLetter;
+
+  const classes = classNames('euiBetaBadge', className);
+
+  const styles = euiBetaBadgeStyles(euiTheme);
+  const cssStyles = [
+    styles.euiBetaBadge,
+    styles[color],
+    styles[size],
+    isCircular
+      ? styles.badgeSizes.circle[size]
+      : styles.badgeSizes.default[size],
+  ];
 
   let icon: JSX.Element | undefined;
   if (iconType) {
     icon = (
       <EuiIcon
+        css={styles.euiBetaBadge__icon}
         className="euiBetaBadge__icon"
         type={iconType}
         size={size === 'm' ? 'm' : 's'}
@@ -203,6 +194,7 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
     content = (
       <Element
         aria-label={onClickAriaLabel}
+        css={cssStyles}
         className={classes}
         title={typeof label === 'string' ? label : title}
         {...(relObj as HTMLAttributes<HTMLElement>)}
@@ -234,7 +226,13 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
           title={title || label}
           anchorProps={anchorProps}
         >
-          <span tabIndex={0} className={classes} role="button" {...rest}>
+          <span
+            tabIndex={0}
+            css={cssStyles}
+            className={classes}
+            role="button"
+            {...rest}
+          >
             {icon || label}
           </span>
         </EuiToolTip>
@@ -247,7 +245,12 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
         );
       }
       return (
-        <span className={classes} title={spanTitle as string} {...rest}>
+        <span
+          css={cssStyles}
+          className={classes}
+          title={spanTitle as string}
+          {...rest}
+        >
           {icon || label}
         </span>
       );

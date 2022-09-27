@@ -9,10 +9,13 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiNotificationBadge, COLORS, SIZES } from './badge_notification';
 
 describe('EuiNotificationBadge', () => {
+  shouldRenderCustomStyles(<EuiNotificationBadge>1</EuiNotificationBadge>);
+
   test('is rendered', () => {
     const component = render(
       <EuiNotificationBadge {...requiredProps}>5</EuiNotificationBadge>

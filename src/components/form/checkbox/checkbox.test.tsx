@@ -13,6 +13,7 @@ import {
   startThrowingReactWarnings,
   stopThrowingReactWarnings,
 } from '../../../test';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiCheckbox, TYPES } from './checkbox';
 
@@ -25,6 +26,15 @@ const checkboxRequiredProps = {
 };
 
 describe('EuiCheckbox', () => {
+  shouldRenderCustomStyles(
+    <EuiCheckbox {...checkboxRequiredProps} />,
+    { skipStyles: true } // styles get applied to the nested input, not to the className wrapper
+  );
+  shouldRenderCustomStyles(
+    <EuiCheckbox {...checkboxRequiredProps} label="test" />,
+    { childProps: ['labelProps'], skipParentTest: true }
+  );
+
   test('is rendered', () => {
     const component = render(
       <EuiCheckbox id="id" onChange={() => {}} {...requiredProps} />

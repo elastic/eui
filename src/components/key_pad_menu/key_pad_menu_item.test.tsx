@@ -8,11 +8,35 @@
 
 import React from 'react';
 import { render, shallow } from 'enzyme';
+import { fireEvent } from '@testing-library/react';
+import { waitForEuiToolTipVisible } from '../../test/rtl';
 import { requiredProps } from '../../test';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiKeyPadMenuItem } from './key_pad_menu_item';
 
 describe('EuiKeyPadMenuItem', () => {
+  shouldRenderCustomStyles(
+    <EuiKeyPadMenuItem label="test">Test</EuiKeyPadMenuItem>
+  );
+  shouldRenderCustomStyles(
+    <EuiKeyPadMenuItem
+      label="test"
+      betaBadgeLabel="Beta"
+      data-test-subj="trigger"
+    >
+      Test
+    </EuiKeyPadMenuItem>,
+    {
+      skipParentTest: true,
+      childProps: ['betaBadgeTooltipProps'],
+      renderCallback: async ({ getByTestSubject }) => {
+        fireEvent.mouseOver(getByTestSubject('trigger'));
+        await waitForEuiToolTipVisible();
+      },
+    }
+  );
+
   test('is rendered', () => {
     const component = render(
       <EuiKeyPadMenuItem label="Label" {...requiredProps}>

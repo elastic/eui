@@ -9,6 +9,7 @@
 import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiFieldPassword, EuiFieldPasswordProps } from './field_password';
 
@@ -23,6 +24,10 @@ const TYPES: Array<EuiFieldPasswordProps['type']> = [
 ];
 
 describe('EuiFieldPassword', () => {
+  shouldRenderCustomStyles(<EuiFieldPassword type="dual" />, {
+    childProps: ['dualToggleProps'],
+  });
+
   test('is rendered', () => {
     const component = render(
       <EuiFieldPassword

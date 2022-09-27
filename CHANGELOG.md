@@ -1,3 +1,26 @@
+## [`67.1.2`](https://github.com/elastic/eui/tree/v67.1.2)
+
+**Bug fixes**
+
+- Fixed `EuiFlyout` not correctly merging passed `css` ([#6248](https://github.com/elastic/eui/pull/6248))
+- Fixed `EuiNotificationEvent` not correctly merging passed `className`s ([#6248](https://github.com/elastic/eui/pull/6248))
+- Fixed `EuiAvatar` to no longer mutate the object passed to its `style` prop ([#6251](https://github.com/elastic/eui/pull/6251))
+
+## [`67.1.1`](https://github.com/elastic/eui/tree/v67.1.1)
+
+**Bug fixes**
+
+- Fixed `EuiDataGrid`'s broken fullscreen mode when nested within an `EuiAccordion` ([#6235](https://github.com/elastic/eui/pull/6235))
+- Fixed `EuiPageSection` not correctly merging `contentProps.css` ([#6239](https://github.com/elastic/eui/pull/6239))
+- Fixed `EuiPageHeaderContent` not correctly merging passed `className`s ([#6239](https://github.com/elastic/eui/pull/6239))
+- Fixed `EuiAccordion` not correctly merging `buttonProps.css` and `arrowProps.css` ([#6239](https://github.com/elastic/eui/pull/6239))
+- Fixed `EuiProgress` not correctly merging `labelProps.css` ([#6239](https://github.com/elastic/eui/pull/6239))
+- Fixed `EuiImage` not correctly merging `wrapperProps.css` ([#6239](https://github.com/elastic/eui/pull/6239))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiFlyout` to Emotion; Removed `$euiFlyoutBorder` and `$euiFlyoutPaddingModifiers` ([#6213](https://github.com/elastic/eui/pull/6213))
+
 ## [`67.1.0`](https://github.com/elastic/eui/tree/v67.1.0)
 
 - Added an optional dev-mode check to log, warn, or error if a component is rendered outside of `EuiProvider` ([#6216](https://github.com/elastic/eui/pull/6216))
@@ -101,6 +124,16 @@
 - Converted `EuiCard`, `EuiCheckableCard` to Emotion, removed `$euiCheckableCardPadding`, `$euiCardSpacing`, `$euiCardBottomNodeHeight`, `$euiCardSelectButtonBorders`, `$euiCardSelectButtonBackgrounds`, and `$euiCardPaddingModifiers` ([#6110](https://github.com/elastic/eui/pull/6110))
 - Converted `EuiButton` to Emotion ([#6150](https://github.com/elastic/eui/pull/6150))
 - Converted color styles of `EuiButtonIcon`, `EuiButtonEmpty`, `EuiButtonGroup` ([#6150](https://github.com/elastic/eui/pull/6150))
+
+## [`64.0.5`](https://github.com/elastic/eui/tree/v64.0.5)
+
+**Note: this release is a backport containing changes originally made in `67.1.0`, `67.1.1`, and `67.1.2`**
+
+**Bug fixes**
+
+- Fixed `EuiInMemoryTable`'s internal state tracking to include changes of `sorting.sort` values ([#6228](https://github.com/elastic/eui/pull/6228))
+- Fixed `EuiDataGrid`'s broken fullscreen mode when nested within an `EuiAccordion` ([#6235](https://github.com/elastic/eui/pull/6235))
+- Fixed `EuiAvatar` to no longer mutate the object passed to its `style` prop ([#6251](https://github.com/elastic/eui/pull/6251))
 
 ## [`64.0.4`](https://github.com/elastic/eui/tree/v64.0.4)
 

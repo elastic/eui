@@ -7,10 +7,11 @@
  */
 
 import React, { ReactElement } from 'react';
-import { render } from '@testing-library/react';
 import { css } from '@emotion/react';
+import { get, set } from 'lodash';
+import { render } from '../rtl';
 
-const customStyles = {
+export const customStyles = {
   className: 'hello',
   css: css`
     color: red;
@@ -18,7 +19,10 @@ const customStyles = {
   style: { content: "'world'" },
 };
 
-const assertOutputStyles = (rendered: HTMLElement) => {
+const assertOutputStyles = (
+  rendered: HTMLElement,
+  { skipStyles }: { skipStyles?: boolean }
+) => {
   // className
   const componentNode = rendered.querySelector('.hello');
   expect(componentNode).not.toBeNull();
@@ -27,46 +31,68 @@ const assertOutputStyles = (rendered: HTMLElement) => {
     expect.stringMatching(/css-[\d\w-]{6,}-css/) // should have generated an emotion class ending with -css
   );
   // style
-  expect(componentNode!.getAttribute('style')).toContain("content: 'world';");
+  // skippable as some components explicitly do not accept custom inline styles
+  if (!skipStyles) {
+    expect(componentNode!.getAttribute('style')).toContain("content: 'world';");
+  }
 };
 
 /**
  * Use this test helper to quickly check that the component supports custom
  * `className`, `css`, and `style` properties.
  *
- * Use the second childProps arg to ensure that any child component props
+ * Use options.childProps to ensure that any child component props
  * also correctly accept custom css/classes/styles.
+ *
+ * Use options.skipStyles for components that specifically
+ * do not allow custom inline styles.
  *
  * Example usage:
  *
  * shouldRenderCustomStyles(<EuiMark {...requiredProps} />Marked</EuiMark>);
- * shouldRenderCustomStyles(<EuiPageSection />, ['contentProps']);
+ * shouldRenderCustomStyles(<EuiPageSection />, { childProps: ['contentProps'] });
+ * shouldRenderCustomStyles(<EuiPopover />, { childProps: ['panelProps'], skipStyles: true });
  */
 export const shouldRenderCustomStyles = (
   component: ReactElement,
-  childProps?: string[]
+  options: {
+    childProps?: string[];
+    skipStyles?: boolean;
+    skipParentTest?: boolean;
+    renderCallback?: (result: ReturnType<typeof render>) => void;
+  } = {}
 ) => {
-  it('should render custom classNames, css, and styles', () => {
-    const { baseElement } = render(
-      <div>{React.cloneElement(component, customStyles)}</div>
-    );
-    assertOutputStyles(baseElement);
-  });
+  const testCases = options.skipStyles
+    ? 'classNames and css'
+    : 'classNames, css, and styles';
+  const testProps = options.skipStyles
+    ? { className: customStyles.className, css: customStyles.css }
+    : customStyles;
 
-  if (childProps) {
-    childProps.forEach((_childProps) => {
-      it(`should render custom classNames, css, and styles on ${_childProps}`, () => {
-        const { baseElement } = render(
-          <div>
-            {React.cloneElement(component, {
-              [_childProps]: {
-                ...(component.props[_childProps] || {}),
-                ...customStyles,
-              },
-            })}
-          </div>
+  // Some tests run separate child props tests with different settings & don't need
+  // to run the base parent test multiple times. If so, allow skipping this test
+  if (!(options.skipParentTest === true && options.childProps)) {
+    it(`should render custom ${testCases}`, async () => {
+      const result = render(
+        <div>{React.cloneElement(component, testProps)}</div>
+      );
+      await options.renderCallback?.(result);
+      assertOutputStyles(result.baseElement, options);
+    });
+  }
+
+  if (options.childProps) {
+    options.childProps.forEach((childProps) => {
+      it(`should render custom ${testCases} on ${childProps}`, async () => {
+        const mergedChildProps = set({ ...component.props }, childProps, {
+          ...get(component.props, childProps),
+          ...testProps,
+        });
+        const result = render(
+          <div>{React.cloneElement(component, mergedChildProps)}</div>
         );
-        assertOutputStyles(baseElement);
+        await options.renderCallback?.(result);
+        assertOutputStyles(result.baseElement, options);
       });
     });
   }
