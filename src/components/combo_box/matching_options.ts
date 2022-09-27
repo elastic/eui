@@ -8,6 +8,27 @@
 
 import { EuiComboBoxOptionOption } from './types';
 
+export type SortMatchesBy = 'none' | 'startsWith';
+interface GetMatchingOptions<T> {
+  options: Array<EuiComboBoxOptionOption<T>>;
+  selectedOptions: Array<EuiComboBoxOptionOption<T>>;
+  searchValue: string;
+  isCaseSensitive?: boolean;
+  isPreFiltered?: boolean;
+  showPrevSelected?: boolean;
+  sortMatchesBy?: SortMatchesBy;
+}
+interface CollectMatchingOption<T>
+  extends Pick<
+    GetMatchingOptions<T>,
+    'isCaseSensitive' | 'isPreFiltered' | 'showPrevSelected'
+  > {
+  accumulator: Array<EuiComboBoxOptionOption<T>>;
+  option: EuiComboBoxOptionOption<T>;
+  selectedOptions: Array<EuiComboBoxOptionOption<T>>;
+  normalizedSearchValue: string;
+}
+
 export const flattenOptionGroups = <T>(
   optionsOrGroups: Array<EuiComboBoxOptionOption<T>>
 ) => {
@@ -40,14 +61,15 @@ export const getSelectedOptionForSearchValue = <T>(
   );
 };
 
-const collectMatchingOption = <T>(
-  accumulator: Array<EuiComboBoxOptionOption<T>>,
-  option: EuiComboBoxOptionOption<T>,
-  selectedOptions: Array<EuiComboBoxOptionOption<T>>,
-  normalizedSearchValue: string,
-  isPreFiltered: boolean,
-  showPrevSelected: boolean
-) => {
+const collectMatchingOption = <T>({
+  accumulator,
+  option,
+  selectedOptions,
+  normalizedSearchValue,
+  isCaseSensitive,
+  isPreFiltered,
+  showPrevSelected,
+}: CollectMatchingOption<T>) => {
   // Only show options which haven't yet been selected unless requested.
   const selectedOption = getSelectedOptionForSearchValue(
     option.label,
@@ -69,35 +91,40 @@ const collectMatchingOption = <T>(
     return;
   }
 
-  const normalizedOption = option.label.trim().toLowerCase();
+  let normalizedOption = option.label.trim();
+  if (!isCaseSensitive) normalizedOption = normalizedOption.toLowerCase();
   if (normalizedOption.includes(normalizedSearchValue)) {
     accumulator.push(option);
   }
 };
 
-export const getMatchingOptions = <T>(
-  options: Array<EuiComboBoxOptionOption<T>>,
-  selectedOptions: Array<EuiComboBoxOptionOption<T>>,
-  searchValue: string,
-  isPreFiltered: boolean,
-  showPrevSelected: boolean,
-  sortMatchesBy: string
-) => {
-  const normalizedSearchValue = searchValue.trim().toLowerCase();
+export const getMatchingOptions = <T>({
+  options,
+  selectedOptions,
+  searchValue,
+  isCaseSensitive = false,
+  isPreFiltered = false,
+  showPrevSelected = false,
+  sortMatchesBy = 'none',
+}: GetMatchingOptions<T>) => {
+  let normalizedSearchValue = searchValue.trim();
+  if (!isCaseSensitive)
+    normalizedSearchValue = normalizedSearchValue.toLocaleLowerCase();
   let matchingOptions: Array<EuiComboBoxOptionOption<T>> = [];
 
   options.forEach((option) => {
     if (option.options) {
       const matchingOptionsForGroup: Array<EuiComboBoxOptionOption<T>> = [];
       option.options.forEach((groupOption: EuiComboBoxOptionOption<T>) => {
-        collectMatchingOption(
-          matchingOptionsForGroup,
-          groupOption,
+        collectMatchingOption({
+          accumulator: matchingOptionsForGroup,
+          option: groupOption,
           selectedOptions,
           normalizedSearchValue,
+          isCaseSensitive,
           isPreFiltered,
-          showPrevSelected
-        );
+          showPrevSelected,
+        });
       });
       if (matchingOptionsForGroup.length > 0) {
         // Add option for group label
@@ -111,14 +138,15 @@ export const getMatchingOptions = <T>(
         matchingOptions = matchingOptions.concat(matchingOptionsForGroup);
       }
     } else {
-      collectMatchingOption(
-        matchingOptions,
+      collectMatchingOption({
+        accumulator: matchingOptions,
         option,
         selectedOptions,
         normalizedSearchValue,
+        isCaseSensitive,
         isPreFiltered,
-        showPrevSelected
-      );
+        showPrevSelected,
+      });
     }
   });
 
@@ -129,7 +157,10 @@ export const getMatchingOptions = <T>(
     } = { startWith: [], others: [] };
 
     matchingOptions.forEach((object) => {
-      if (object.label.toLowerCase().startsWith(normalizedSearchValue)) {
+      const normalizedLabel = isCaseSensitive
+        ? object.label
+        : object.label.toLowerCase();
+      if (normalizedLabel.startsWith(normalizedSearchValue)) {
         refObj.startWith.push(object);
       } else {
         refObj.others.push(object);

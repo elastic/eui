@@ -8,6 +8,7 @@
 
 import { EuiComboBoxOptionOption } from './types';
 import {
+  SortMatchesBy,
   flattenOptionGroups,
   getMatchingOptions,
   getSelectedOptionForSearchValue,
@@ -92,12 +93,13 @@ describe('getSelectedOptionForSearchValue', () => {
 
 interface GetMatchingOptionsTestCase {
   expected: EuiComboBoxOptionOption[];
+  isCaseSensitive: boolean;
   isPreFiltered: boolean;
   options: EuiComboBoxOptionOption[];
   searchValue: string;
   selectedOptions: EuiComboBoxOptionOption[];
   showPrevSelected: boolean;
-  sortMatchesBy: string;
+  sortMatchesBy: SortMatchesBy;
 }
 
 const testCases: GetMatchingOptionsTestCase[] = [
@@ -110,6 +112,7 @@ const testCases: GetMatchingOptionsTestCase[] = [
       },
     ],
     searchValue: 'saturn',
+    isCaseSensitive: false,
     isPreFiltered: false,
     showPrevSelected: false,
     expected: [],
@@ -124,6 +127,7 @@ const testCases: GetMatchingOptionsTestCase[] = [
       },
     ],
     searchValue: 'saturn',
+    isCaseSensitive: false,
     isPreFiltered: true,
     showPrevSelected: false,
     expected: [
@@ -141,6 +145,7 @@ const testCases: GetMatchingOptionsTestCase[] = [
       },
     ],
     searchValue: 'saturn',
+    isCaseSensitive: false,
     isPreFiltered: false,
     showPrevSelected: true,
     expected: [{ 'data-test-subj': 'saturnOption', label: 'Saturn' }],
@@ -155,6 +160,7 @@ const testCases: GetMatchingOptionsTestCase[] = [
       },
     ],
     searchValue: 'saturn',
+    isCaseSensitive: false,
     isPreFiltered: true,
     showPrevSelected: true,
     expected: [
@@ -172,6 +178,7 @@ const testCases: GetMatchingOptionsTestCase[] = [
       },
     ],
     searchValue: 'titan',
+    isCaseSensitive: false,
     isPreFiltered: true,
     showPrevSelected: false,
     expected: [
@@ -191,11 +198,53 @@ const testCases: GetMatchingOptionsTestCase[] = [
       },
     ],
     searchValue: 'titan',
+    isCaseSensitive: false,
     isPreFiltered: true,
     showPrevSelected: false,
     expected: [
       // Duplicate options with an key will be treated as different items
       { label: 'Titan', key: 'titan1' },
+    ],
+    sortMatchesBy: 'none',
+  },
+  // Case sensitivity
+  {
+    options,
+    selectedOptions: [],
+    searchValue: 'saturn',
+    isCaseSensitive: false,
+    isPreFiltered: false,
+    showPrevSelected: false,
+    expected: [
+      {
+        label: 'Saturn',
+        'data-test-subj': 'saturnOption',
+      },
+    ],
+    sortMatchesBy: 'none',
+  },
+  {
+    options,
+    selectedOptions: [],
+    searchValue: 'saturn',
+    isCaseSensitive: true,
+    isPreFiltered: false,
+    showPrevSelected: false,
+    expected: [],
+    sortMatchesBy: 'none',
+  },
+  {
+    options,
+    selectedOptions: [],
+    searchValue: 'Saturn',
+    isCaseSensitive: true,
+    isPreFiltered: false,
+    showPrevSelected: false,
+    expected: [
+      {
+        label: 'Saturn',
+        'data-test-subj': 'saturnOption',
+      },
     ],
     sortMatchesBy: 'none',
   },
@@ -205,16 +254,8 @@ describe('getMatchingOptions', () => {
   test.each(testCases)(
     '.getMatchingOptions(%o)',
     (testCase: typeof testCases[number]) => {
-      expect(
-        getMatchingOptions(
-          testCase.options,
-          testCase.selectedOptions,
-          testCase.searchValue,
-          testCase.isPreFiltered,
-          testCase.showPrevSelected,
-          testCase.sortMatchesBy
-        )
-      ).toMatchObject(testCase.expected);
+      const { expected, ...rest } = testCase;
+      expect(getMatchingOptions(rest)).toMatchObject(expected);
     }
   );
 });
