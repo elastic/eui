@@ -103,10 +103,10 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
               data-test-subj="dataGridColumnSelectorColumnItem-columnA"
             >
               <div
-                class="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+                class="euiFlexGroup emotion-euiFlexGroup-m-flexStart-center-row"
               >
                 <div
-                  class="euiFlexItem"
+                  class="euiFlexItem emotion-euiFlexItem-grow-1"
                 >
                   <div
                     class="euiSwitch euiSwitch--compressed euiSwitch--mini emotion-euiSwitch"
@@ -141,7 +141,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                   </div>
                 </div>
                 <div
-                  class="euiFlexItem euiFlexItem--flexGrowZero"
+                  class="euiFlexItem emotion-euiFlexItem-growZero"
                 >
                   <span
                     color="subdued"
@@ -168,10 +168,10 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
               data-test-subj="dataGridColumnSelectorColumnItem-columnB"
             >
               <div
-                class="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+                class="euiFlexGroup emotion-euiFlexGroup-m-flexStart-center-row"
               >
                 <div
-                  class="euiFlexItem"
+                  class="euiFlexItem emotion-euiFlexItem-grow-1"
                 >
                   <div
                     class="euiSwitch euiSwitch--compressed euiSwitch--mini emotion-euiSwitch"
@@ -206,7 +206,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                   </div>
                 </div>
                 <div
-                  class="euiFlexItem euiFlexItem--flexGrowZero"
+                  class="euiFlexItem emotion-euiFlexItem-growZero"
                 >
                   <span
                     color="subdued"
@@ -226,10 +226,10 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
       class="euiPopoverFooter emotion-euiPopoverFooter-s"
     >
       <div
-        class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow"
+        class="euiFlexGroup emotion-euiFlexGroup-s-spaceBetween-stretch-row"
       >
         <div
-          class="euiFlexItem euiFlexItem--flexGrowZero"
+          class="euiFlexItem emotion-euiFlexItem-growZero"
         >
           <button
             class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushLeft css-9t7nyf-empty-primary"
@@ -248,7 +248,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
           </button>
         </div>
         <div
-          class="euiFlexItem euiFlexItem--flexGrowZero"
+          class="euiFlexItem emotion-euiFlexItem-growZero"
         >
           <button
             class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushRight css-9t7nyf-empty-primary"

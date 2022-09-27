@@ -88,11 +88,11 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
               Column A is sorting this data grid
             </p>
             <div
-              class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+              class="euiFlexGroup emotion-euiFlexGroup-xs-flexStart-center-row"
               data-test-subj="euiDataGridColumnSorting-sortColumn-columnA"
             >
               <div
-                class="euiFlexItem euiFlexItem--flexGrowZero"
+                class="euiFlexItem emotion-euiFlexItem-growZero"
               >
                 <button
                   aria-label="Remove Column A from data grid sort"
@@ -108,7 +108,7 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                 </button>
               </div>
               <div
-                class="euiFlexItem euiFlexItem--flexGrowZero"
+                class="euiFlexItem emotion-euiFlexItem-growZero"
               >
                 <span
                   class="euiToken emotion-euiToken-square-light-s-euiColorVis0"
@@ -120,7 +120,7 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
               </div>
               <div
                 aria-hidden="true"
-                class="euiFlexItem"
+                class="euiFlexItem emotion-euiFlexItem-grow-1"
               >
                 <div
                   class="euiText emotion-euiText-xs"
@@ -131,7 +131,7 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                 </div>
               </div>
               <div
-                class="euiFlexItem euiDataGridColumnSorting__orderButtons"
+                class="euiFlexItem euiDataGridColumnSorting__orderButtons emotion-euiFlexItem-grow-1"
               >
                 <fieldset
                   class="euiButtonGroup euiButtonGroup--compressed euiButtonGroup--text euiButtonGroup--fullWidth euiDataGridColumnSorting__order"
@@ -201,7 +201,7 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
               <div
                 aria-describedby="rbd-hidden-text-0-hidden-text-0"
                 aria-label="Drag handle"
-                class="euiFlexItem euiFlexItem--flexGrowZero"
+                class="euiFlexItem emotion-euiFlexItem-growZero"
                 data-rbd-drag-handle-context-id="0"
                 data-rbd-drag-handle-draggable-id="columnA"
                 draggable="false"
@@ -225,10 +225,10 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
       class="euiPopoverFooter emotion-euiPopoverFooter-s"
     >
       <div
-        class="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow"
+        class="euiFlexGroup emotion-euiFlexGroup-m-spaceBetween-stretch-row"
       >
         <div
-          class="euiFlexItem euiFlexItem--flexGrowZero"
+          class="euiFlexItem emotion-euiFlexItem-growZero"
         >
           <div
             class="euiPopover emotion-euiPopover"
@@ -261,7 +261,7 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
           </div>
         </div>
         <div
-          class="euiFlexItem euiFlexItem--flexGrowZero"
+          class="euiFlexItem emotion-euiFlexItem-growZero"
         >
           <button
             class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushRight css-9t7nyf-empty-primary"

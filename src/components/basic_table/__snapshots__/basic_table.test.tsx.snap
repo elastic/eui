@@ -1412,10 +1412,10 @@ exports[`EuiBasicTable with initial selection 1`] = `
       class="euiTableHeaderMobile"
     >
       <div
-        class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow"
+        class="euiFlexGroup emotion-euiFlexGroup-l-spaceBetween-baseline-row"
       >
         <div
-          class="euiFlexItem euiFlexItem--flexGrowZero"
+          class="euiFlexItem emotion-euiFlexItem-growZero"
         >
           <div
             class="euiCheckbox emotion-euiCheckbox"
@@ -1438,7 +1438,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
           </div>
         </div>
         <div
-          class="euiFlexItem euiFlexItem--flexGrowZero"
+          class="euiFlexItem emotion-euiFlexItem-growZero"
         />
       </div>
     </div>

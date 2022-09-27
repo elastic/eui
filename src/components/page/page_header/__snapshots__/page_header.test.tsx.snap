@@ -26,10 +26,10 @@ exports[`EuiPageHeader props alignItems bottom is rendered 1`] = `
     class="euiPageHeaderContent emotion-euiPageHeaderContent"
   >
     <div
-      class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsFlexEnd euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
+      class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-flexEnd-row"
     >
       <div
-        class="euiFlexItem"
+        class="euiFlexItem emotion-euiFlexItem-grow-1"
       >
         <h1
           class="euiTitle emotion-euiTitle-l"
@@ -38,20 +38,20 @@ exports[`EuiPageHeader props alignItems bottom is rendered 1`] = `
         </h1>
       </div>
       <div
-        class="euiFlexItem euiFlexItem--flexGrowZero"
+        class="euiFlexItem emotion-euiFlexItem-growZero"
       >
         <div
-          class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRowReverse euiFlexGroup--wrap"
+          class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-rowReverse"
         >
           <div
-            class="euiFlexItem euiFlexItem--flexGrowZero"
+            class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             <button>
               Button 1
             </button>
           </div>
           <div
-            class="euiFlexItem euiFlexItem--flexGrowZero"
+            class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             <button>
               Button 2
@@ -72,10 +72,10 @@ exports[`EuiPageHeader props alignItems center is rendered 1`] = `
     class="euiPageHeaderContent emotion-euiPageHeaderContent"
   >
     <div
-      class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
+      class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-center-row"
     >
       <div
-        class="euiFlexItem"
+        class="euiFlexItem emotion-euiFlexItem-grow-1"
       >
         <h1
           class="euiTitle emotion-euiTitle-l"
@@ -84,20 +84,20 @@ exports[`EuiPageHeader props alignItems center is rendered 1`] = `
         </h1>
       </div>
       <div
-        class="euiFlexItem euiFlexItem--flexGrowZero"
+        class="euiFlexItem emotion-euiFlexItem-growZero"
       >
         <div
-          class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRowReverse euiFlexGroup--wrap"
+          class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-rowReverse"
         >
           <div
-            class="euiFlexItem euiFlexItem--flexGrowZero"
+            class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             <button>
               Button 1
             </button>
           </div>
           <div
-            class="euiFlexItem euiFlexItem--flexGrowZero"
+            class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             <button>
               Button 2
@@ -118,10 +118,10 @@ exports[`EuiPageHeader props alignItems stretch is rendered 1`] = `
     class="euiPageHeaderContent emotion-euiPageHeaderContent"
   >
     <div
-      class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
+      class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
     >
       <div
-        class="euiFlexItem"
+        class="euiFlexItem emotion-euiFlexItem-grow-1"
       >
         <h1
           class="euiTitle emotion-euiTitle-l"
@@ -130,20 +130,20 @@ exports[`EuiPageHeader props alignItems stretch is rendered 1`] = `
         </h1>
       </div>
       <div
-        class="euiFlexItem euiFlexItem--flexGrowZero"
+        class="euiFlexItem emotion-euiFlexItem-growZero"
       >
         <div
-          class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRowReverse euiFlexGroup--wrap"
+          class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-rowReverse"
         >
           <div
-            class="euiFlexItem euiFlexItem--flexGrowZero"
+            class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             <button>
               Button 1
             </button>
           </div>
           <div
-            class="euiFlexItem euiFlexItem--flexGrowZero"
+            class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             <button>
               Button 2
@@ -164,10 +164,10 @@ exports[`EuiPageHeader props alignItems top is rendered 1`] = `
     class="euiPageHeaderContent emotion-euiPageHeaderContent"
   >
     <div
-      class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsFlexStart euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
+      class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-flexStart-row"
     >
       <div
-        class="euiFlexItem"
+        class="euiFlexItem emotion-euiFlexItem-grow-1"
       >
         <h1
           class="euiTitle emotion-euiTitle-l"
@@ -176,20 +176,20 @@ exports[`EuiPageHeader props alignItems top is rendered 1`] = `
         </h1>
       </div>
       <div
-        class="euiFlexItem euiFlexItem--flexGrowZero"
+        class="euiFlexItem emotion-euiFlexItem-growZero"
       >
         <div
-          class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRowReverse euiFlexGroup--wrap"
+          class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-rowReverse"
         >
           <div
-            class="euiFlexItem euiFlexItem--flexGrowZero"
+            class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             <button>
               Button 1
             </button>
           </div>
           <div
-            class="euiFlexItem euiFlexItem--flexGrowZero"
+            class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             <button>
               Button 2
@@ -210,10 +210,10 @@ exports[`EuiPageHeader props bottomBorder is rendered as extended 1`] = `
     class="euiPageHeaderContent emotion-euiPageHeaderContent"
   >
     <div
-      class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
+      class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
     >
       <div
-        class="euiFlexItem"
+        class="euiFlexItem emotion-euiFlexItem-grow-1"
       />
     </div>
   </div>
@@ -228,10 +228,10 @@ exports[`EuiPageHeader props bottomBorder is rendered as true 1`] = `
     class="euiPageHeaderContent emotion-euiPageHeaderContent-border-l"
   >
     <div
-      class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
+      class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
     >
       <div
-        class="euiFlexItem"
+        class="euiFlexItem emotion-euiFlexItem-grow-1"
       />
     </div>
   </div>
@@ -281,10 +281,10 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
       class="euiSpacer euiSpacer--s emotion-euiSpacer-s"
     />
     <div
-      class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
+      class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
     >
       <div
-        class="euiFlexItem"
+        class="euiFlexItem emotion-euiFlexItem-grow-1"
       >
         <h1
           aria-label="aria-label"
@@ -356,22 +356,22 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
         </div>
       </div>
       <div
-        class="euiFlexItem euiFlexItem--flexGrowZero"
+        class="euiFlexItem emotion-euiFlexItem-growZero"
       >
         <div
           aria-label="aria-label"
-          class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRowReverse euiFlexGroup--responsive euiFlexGroup--wrap testClass1 testClass2"
+          class="euiFlexGroup testClass1 testClass2 emotion-euiFlexGroup-responsive-wrap-l-flexStart-stretch-rowReverse"
           data-test-subj="test subject string"
         >
           <div
-            class="euiFlexItem euiFlexItem--flexGrowZero"
+            class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             <button>
               Button 1
             </button>
           </div>
           <div
-            class="euiFlexItem euiFlexItem--flexGrowZero"
+            class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             <button>
               Button 2
@@ -392,10 +392,10 @@ exports[`EuiPageHeader props responsive is rendered as false 1`] = `
     class="euiPageHeaderContent emotion-euiPageHeaderContent"
   >
     <div
-      class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiPageHeaderContent__top"
+      class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-l-flexStart-stretch-row"
     >
       <div
-        class="euiFlexItem"
+        class="euiFlexItem emotion-euiFlexItem-grow-1"
       />
     </div>
   </div>
@@ -410,10 +410,10 @@ exports[`EuiPageHeader props responsive is rendered as reverse 1`] = `
     class="euiPageHeaderContent emotion-euiPageHeaderContent"
   >
     <div
-      class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
+      class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
     >
       <div
-        class="euiFlexItem"
+        class="euiFlexItem emotion-euiFlexItem-grow-1"
       />
     </div>
   </div>
@@ -429,10 +429,10 @@ exports[`EuiPageHeader props restrictWidth is rendered as custom 1`] = `
     style="max-width:100px"
   >
     <div
-      class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
+      class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
     >
       <div
-        class="euiFlexItem"
+        class="euiFlexItem emotion-euiFlexItem-grow-1"
       />
     </div>
   </div>
@@ -448,10 +448,10 @@ exports[`EuiPageHeader props restrictWidth is rendered as true 1`] = `
     style="max-width:1200px"
   >
     <div
-      class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
+      class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
     >
       <div
-        class="euiFlexItem"
+        class="euiFlexItem emotion-euiFlexItem-grow-1"
       />
     </div>
   </div>
