@@ -22,6 +22,7 @@ import { get } from '../../../services/objects';
 import { EuiFormHelpText } from '../form_help_text';
 import { EuiFormErrorText } from '../form_error_text';
 import { EuiFormLabel } from '../form_label';
+import { FormContext, FormContextValue } from '../eui_form_context';
 
 import { htmlIdGenerator } from '../../../services/accessibility';
 
@@ -56,6 +57,11 @@ type EuiFormRowCommonProps = CommonProps & {
    */
   display?: EuiFormRowDisplayKeys;
   hasEmptyLabelSpace?: boolean;
+  /**
+   * Expand to fill 100% of the parent.
+   * Defaults to `fullWidth` prop of `<EuiForm>`.
+   * @default false
+   */
   fullWidth?: boolean;
   /**
    * IDs of additional elements that should be part of children's `aria-describedby`
@@ -106,10 +112,11 @@ type LegendProps = {
 export type EuiFormRowProps = ExclusiveUnion<LabelProps, LegendProps>;
 
 export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
+  static contextType = FormContext;
+
   static defaultProps = {
     display: 'row',
     hasEmptyLabelSpace: false,
-    fullWidth: false,
     describedByIds: [],
     labelType: 'label',
     hasChildLabel: true,
@@ -151,6 +158,8 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
   };
 
   render() {
+    const { defaultFullWidth } = this.context as FormContextValue;
+
     const {
       children,
       helpText,
@@ -160,7 +169,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
       labelType,
       labelAppend,
       hasEmptyLabelSpace,
-      fullWidth,
+      fullWidth = defaultFullWidth,
       className,
       describedByIds,
       display,

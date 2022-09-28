@@ -10,6 +10,7 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
+import { EuiForm } from '../form';
 import { EuiFieldNumber } from './field_number';
 
 jest.mock('../form_control_layout', () => {
@@ -87,6 +88,24 @@ describe('EuiFieldNumber', () => {
         );
         expect(component).toMatchSnapshot();
       });
+    });
+  });
+
+  describe('inherits', () => {
+    test('fullWidth from <EuiForm />', () => {
+      const component = render(
+        <EuiForm fullWidth>
+          <EuiFieldNumber />
+        </EuiForm>
+      );
+
+      if (
+        !component.find('.euiFieldNumber').hasClass('euiFieldNumber--fullWidth')
+      ) {
+        throw new Error(
+          'expected EuiFieldNumber to inherit fullWidth from EuiForm'
+        );
+      }
     });
   });
 });

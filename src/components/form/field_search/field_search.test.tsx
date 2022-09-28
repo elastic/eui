@@ -10,6 +10,7 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
+import { EuiForm } from '../form';
 import { EuiFieldSearch } from './field_search';
 
 jest.mock('../form_control_layout', () => ({
@@ -80,6 +81,24 @@ describe('EuiFieldSearch', () => {
       const component = render(<EuiFieldSearch prepend="Append" />);
 
       expect(component).toMatchSnapshot();
+    });
+  });
+
+  describe('inherits', () => {
+    test('fullWidth from <EuiForm />', () => {
+      const component = render(
+        <EuiForm fullWidth>
+          <EuiFieldSearch />
+        </EuiForm>
+      );
+
+      if (
+        !component.find('.euiFieldSearch').hasClass('euiFieldSearch--fullWidth')
+      ) {
+        throw new Error(
+          'expected EuiFieldSearch to inherit fullWidth from EuiForm'
+        );
+      }
     });
   });
 });
