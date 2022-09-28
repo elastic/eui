@@ -15,6 +15,8 @@ import {
 
 import { flexGroupConfig, flexGridConfig } from './playground';
 
+import { FlexItemHighlightWrapper } from './wrapper_styles';
+
 import FlexGroup from './flex_group';
 const flexGroupSource = require('!!raw-loader!./flex_group');
 
@@ -195,9 +197,9 @@ export const FlexExample = {
         </p>
       ),
       demo: (
-        <div className="guideDemo__highlightGrid">
+        <FlexItemHighlightWrapper>
           <FlexGroup />
-        </div>
+        </FlexItemHighlightWrapper>
       ),
       playground: flexGroupConfig,
       props: { EuiFlexGroup, EuiFlexItem },
@@ -238,9 +240,9 @@ export const FlexExample = {
   </EuiFlexItem>
 </EuiFlexGroup>`,
       demo: (
-        <div className="guideDemo__highlightGrid">
+        <FlexItemHighlightWrapper>
           <FlexItem />
-        </div>
+        </FlexItemHighlightWrapper>
       ),
     },
     {
@@ -260,9 +262,9 @@ export const FlexExample = {
       ),
       snippet: componentSpanSnippet,
       demo: (
-        <div className="guideDemo__highlightGrid">
+        <FlexItemHighlightWrapper>
           <ComponentSpan />
-        </div>
+        </FlexItemHighlightWrapper>
       ),
     },
     {
@@ -302,9 +304,9 @@ export const FlexExample = {
       ),
       snippet: flexGrowZeroSnippet,
       demo: (
-        <div className="guideDemo__highlightGrid">
+        <FlexItemHighlightWrapper>
           <FlexGrowZero />
-        </div>
+        </FlexItemHighlightWrapper>
       ),
     },
     {
@@ -324,9 +326,9 @@ export const FlexExample = {
       ),
       snippet: flexGrowNumericSnippet,
       demo: (
-        <div className="guideDemo__highlightGrid">
+        <FlexItemHighlightWrapper>
           <FlexGrowNumeric />
-        </div>
+        </FlexItemHighlightWrapper>
       ),
     },
     {
@@ -355,9 +357,9 @@ export const FlexExample = {
     <EuiFlexItem grow={false}><!-- FlexItem content --></EuiFlexItem>
   </EuiFlexGroup>`,
       demo: (
-        <div className="guideDemo__highlightGrid">
+        <FlexItemHighlightWrapper>
           <FlexJustify />
-        </div>
+        </FlexItemHighlightWrapper>
       ),
     },
     {
@@ -377,9 +379,9 @@ export const FlexExample = {
       ),
       snippet: flexGroupWrap,
       demo: (
-        <div className="guideDemo__highlightGrid">
+        <FlexItemHighlightWrapper>
           <FlexGroupWrap />
-        </div>
+        </FlexItemHighlightWrapper>
       ),
     },
     {
@@ -390,9 +392,9 @@ export const FlexExample = {
         },
       ],
       demo: (
-        <div className="guideDemo__highlightGrid">
+        <FlexItemHighlightWrapper>
           <FlexJustifyBetween />
-        </div>
+        </FlexItemHighlightWrapper>
       ),
       snippet: `<EuiFlexGroup justifyContent="spaceBetween">
     <EuiFlexItem grow={false}><!-- FlexItem content --></EuiFlexItem>
@@ -407,9 +409,9 @@ export const FlexExample = {
         },
       ],
       demo: (
-        <div className="guideDemo__highlightGrid">
+        <FlexItemHighlightWrapper>
           <FlexJustifyEvenly />
-        </div>
+        </FlexItemHighlightWrapper>
       ),
       snippet: `<EuiFlexGroup justifyContent="spaceEvenly">
   <EuiFlexItem grow={false}><!-- FlexItem content --></EuiFlexItem>
@@ -424,9 +426,9 @@ export const FlexExample = {
         },
       ],
       demo: (
-        <div className="guideDemo__highlightGrid">
+        <FlexItemHighlightWrapper>
           <FlexAlignCenter />
-        </div>
+        </FlexItemHighlightWrapper>
       ),
       snippet: `<EuiFlexGroup alignItems="center">
   <EuiFlexItem><!-- FlexItem content --></EuiFlexItem>
@@ -448,9 +450,9 @@ export const FlexExample = {
       ),
       snippet: directionSnippet,
       demo: (
-        <div className="guideDemo__highlightGrid">
+        <FlexItemHighlightWrapper>
           <Direction />
-        </div>
+        </FlexItemHighlightWrapper>
       ),
     },
     {
@@ -472,9 +474,9 @@ export const FlexExample = {
       ),
       snippet: flexGroupResponsiveSnippet,
       demo: (
-        <div className="guideDemo__highlightGrid">
+        <FlexItemHighlightWrapper>
           <FlexGroupResponsive />
-        </div>
+        </FlexItemHighlightWrapper>
       ),
     },
     {
@@ -497,9 +499,9 @@ export const FlexExample = {
       playground: flexGridConfig,
       snippet: flexGridColumnsSnippet,
       demo: (
-        <div className="guideDemo__highlightGridWrap">
+        <FlexItemHighlightWrapper>
           <FlexGridColumns />
-        </div>
+        </FlexItemHighlightWrapper>
       ),
     },
 
@@ -520,9 +522,9 @@ export const FlexExample = {
       ),
       snippet: flexGridColumnFirstSnippet,
       demo: (
-        <div className="guideDemo__highlightGridWrap">
+        <FlexItemHighlightWrapper>
           <FlexGridColumnFirst />
-        </div>
+        </FlexItemHighlightWrapper>
       ),
     },
     {
@@ -554,9 +556,9 @@ export const FlexExample = {
       ),
       snippet: flexNestSnippet,
       demo: (
-        <div className="guideDemo__highlightGrid">
+        <FlexItemHighlightWrapper>
           <FlexNest />
-        </div>
+        </FlexItemHighlightWrapper>
       ),
     },
     {
@@ -576,9 +578,9 @@ export const FlexExample = {
       ),
       snippet: flexGutterSnippet,
       demo: (
-        <div className="guideDemo__highlightGrid">
+        <FlexItemHighlightWrapper>
           <FlexGutter />
-        </div>
+        </FlexItemHighlightWrapper>
       ),
     },
     {
@@ -601,9 +603,9 @@ export const FlexExample = {
       ),
       snippet: flexGridResponsiveSnippet,
       demo: (
-        <div className="guideDemo__highlightGrid">
+        <FlexItemHighlightWrapper>
           <FlexGridResponsive />
-        </div>
+        </FlexItemHighlightWrapper>
       ),
     },
   ],
