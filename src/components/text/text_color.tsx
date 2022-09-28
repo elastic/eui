@@ -10,6 +10,7 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
   isValidElement,
+  CSSProperties,
 } from 'react';
 import { CommonProps } from '../common';
 import { cloneElementWithCss } from '../../services/theme/clone_element';
@@ -37,7 +38,7 @@ export type EuiTextColorProps = CommonProps &
     /**
      * Any of our named colors or a `hex`, `rgb` or `rgba` value.
      */
-    color?: TextColor | string;
+    color?: TextColor | Exclude<CSSProperties['color'], 'inherit'>;
     /**
      * Determines the root element
      */
