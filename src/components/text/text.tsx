@@ -13,7 +13,7 @@ import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
 import { euiTextStyles } from './text.styles';
 
-import { EuiTextColor, TextColor } from './text_color';
+import { TextColor, EuiTextColor } from './text_color';
 
 import { EuiTextAlign, TextAlignment } from './text_align';
 
