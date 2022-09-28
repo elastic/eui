@@ -30,13 +30,12 @@ export interface EuiFlexGridProps {
    */
   children?: ReactNode;
   /**
-   * Number of columns `1-4`, pass `0` for normal display
+   * Number of columns. Accepts `1-4`
    */
-  columns?: 0 | 1 | 2 | 3 | 4; // Leave this as inline so the props table correctly parses it
+  columns?: 1 | 2 | 3 | 4; // Leave this as inline so the props table correctly parses it
   /**
    * Flex layouts default to left-right then top-down (`row`).
    * Change this prop to `column` to create a top-down then left-right display.
-   * Only works with column count of `1-4`.
    */
   direction?: FlexGridDirection;
   /**
@@ -44,7 +43,7 @@ export interface EuiFlexGridProps {
    */
   gutterSize?: FlexGridGutterSize;
   /**
-   * Force each item to be display block on smaller screens
+   * Will display each item at full-width on smaller screens
    */
   responsive?: boolean;
 
@@ -63,7 +62,7 @@ export const EuiFlexGrid: FunctionComponent<
   gutterSize = 'l',
   direction = 'row',
   responsive = true,
-  columns = 0,
+  columns = 1,
   component: Component = 'div',
   ...rest
 }) => {
@@ -77,9 +76,9 @@ export const EuiFlexGrid: FunctionComponent<
   const cssStyles = [
     styles.euiFlexGrid,
     styles.gutterSizes[gutterSize],
-    columns && styles.direction[direction],
-    columns ? styles.columnCount[columns] : styles.zeroColumns.noColumns,
-    responsive && (columns ? styles.responsive : styles.zeroColumns.responsive),
+    styles.direction[direction],
+    styles.columnCount[columns],
+    responsive && styles.responsive,
   ];
 
   const classes = classNames('euiFlexGrid', className);

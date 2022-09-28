@@ -49,25 +49,6 @@ export const euiFlexGridStyles = (
         grid-template-columns: repeat(4, 1fr);
       `,
     },
-    // It's basically not a grid at all with zero columns.
-    // Honestly, I'm not totally sure what the use case is for this
-    zeroColumns: {
-      noColumns: css`
-        display: flex;
-        flex-wrap: wrap;
-
-        & > .euiFlexItem {
-          flex-grow: 0;
-        }
-      `,
-      responsive: css`
-        ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
-          & > .euiFlexItem {
-            flex-basis: 100%;
-          }
-        }
-      `,
-    },
     gutterSizes: {
       none: css``,
       s: css`

@@ -38,7 +38,7 @@ describe('EuiFlexGrid', () => {
     });
 
     describe('columns', () => {
-      ([0, 1, 2, 3, 4] as const).forEach((value) => {
+      ([1, 2, 3, 4] as const).forEach((value) => {
         test(`${value} is rendered`, () => {
           const component = render(<EuiFlexGrid columns={value} />);
 

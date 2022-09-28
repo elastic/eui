@@ -12,12 +12,6 @@ exports[`EuiFlexGrid is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiFlexGrid props columns 0 is rendered 1`] = `
-<div
-  class="euiFlexGrid emotion-euiFlexGrid-l-noColumns-responsive"
-/>
-`;
-
 exports[`EuiFlexGrid props columns 1 is rendered 1`] = `
 <div
   class="euiFlexGrid emotion-euiFlexGrid-l-row-1-responsive"
@@ -44,48 +38,48 @@ exports[`EuiFlexGrid props columns 4 is rendered 1`] = `
 
 exports[`EuiFlexGrid props direction column is rendered 1`] = `
 <div
-  class="euiFlexGrid emotion-euiFlexGrid-l-noColumns-responsive"
+  class="euiFlexGrid emotion-euiFlexGrid-l-column-1-responsive"
 />
 `;
 
 exports[`EuiFlexGrid props direction row is rendered 1`] = `
 <div
-  class="euiFlexGrid emotion-euiFlexGrid-l-noColumns-responsive"
+  class="euiFlexGrid emotion-euiFlexGrid-l-row-1-responsive"
 />
 `;
 
 exports[`EuiFlexGrid props gutterSize l is rendered 1`] = `
 <div
-  class="euiFlexGrid emotion-euiFlexGrid-l-noColumns-responsive"
+  class="euiFlexGrid emotion-euiFlexGrid-l-row-1-responsive"
 />
 `;
 
 exports[`EuiFlexGrid props gutterSize m is rendered 1`] = `
 <div
-  class="euiFlexGrid emotion-euiFlexGrid-m-noColumns-responsive"
+  class="euiFlexGrid emotion-euiFlexGrid-m-row-1-responsive"
 />
 `;
 
 exports[`EuiFlexGrid props gutterSize none is rendered 1`] = `
 <div
-  class="euiFlexGrid emotion-euiFlexGrid-none-noColumns-responsive"
+  class="euiFlexGrid emotion-euiFlexGrid-none-row-1-responsive"
 />
 `;
 
 exports[`EuiFlexGrid props gutterSize s is rendered 1`] = `
 <div
-  class="euiFlexGrid emotion-euiFlexGrid-s-noColumns-responsive"
+  class="euiFlexGrid emotion-euiFlexGrid-s-row-1-responsive"
 />
 `;
 
 exports[`EuiFlexGrid props gutterSize xl is rendered 1`] = `
 <div
-  class="euiFlexGrid emotion-euiFlexGrid-xl-noColumns-responsive"
+  class="euiFlexGrid emotion-euiFlexGrid-xl-row-1-responsive"
 />
 `;
 
 exports[`EuiFlexGrid props responsive is rendered 1`] = `
 <div
-  class="euiFlexGrid emotion-euiFlexGrid-l-noColumns"
+  class="euiFlexGrid emotion-euiFlexGrid-l-row-1"
 />
 `;
