@@ -5,38 +5,39 @@ module.exports = {
       description: 'Enforce CSS props are declared before spread props',
     },
   },
-  create: function(context) {
+  create: function (context) {
     const allElementsArr = [];
 
     return {
       JSXElement(node) {
-        const tempArr = [];
-        node.openingElement.attributes.forEach(attribute => tempArr.push(attribute));
-        allElementsArr.push(tempArr);
+        const attributesArr = [];
+        node.openingElement.attributes.forEach((attribute) =>
+          attributesArr.push(attribute)
+        );
+        allElementsArr.push(attributesArr);
       },
       'Program:exit'() {
-        allElementsArr.forEach(elementArr => {
-          const regex = new RegExp('^(\{\.\.\.).+\}$');
-          const cssPropsIndex = elementArr.findIndex(node => (node.name && node.name.name === 'css'));
-          const spreadPropsIndex = elementArr.findIndex(node => (node.type === 'JSXSpreadAttribute'));
+        allElementsArr.forEach((elementArr) => {
+          const cssPropsIndex = elementArr.findIndex(
+            (node) => node.name && node.name.name === 'css'
+          );
+          if (cssPropsIndex === -1) return;
 
-          if (cssPropsIndex === -1) {
-            return;
-          }
+          const spreadPropsIndex = elementArr.findIndex(
+            (node) => node.type === 'JSXSpreadAttribute'
+          );
+          if (spreadPropsIndex === -1) return;
 
-          if (spreadPropsIndex === -1) {
-            return;
-          }
-
-          if (cssPropsIndex > spreadPropsIndex) { 
+          if (cssPropsIndex > spreadPropsIndex) {
             context.report({
               loc: {
                 line: elementArr[cssPropsIndex].loc.start.line,
-                column: elementArr[cssPropsIndex].loc.start.column
+                column: elementArr[cssPropsIndex].loc.start.column,
               },
-              message: '{{ identifier }}: CSS props must be declared before spread props.',
+              message:
+                '{{ identifier }}: CSS props must be declared before spread props.',
               data: {
-                identifier: elementArr[spreadPropsIndex].argument.name
+                identifier: elementArr[spreadPropsIndex].argument.name,
               },
             });
           }
