@@ -93,8 +93,8 @@ export default () => {
         />
       </EuiFormRow>
 
-      <EuiFormRow label="Works on EuiFilePicker">
-        <EuiFilePicker display="default" />
+      <EuiFormRow label="It can be disabled for a specific control">
+        <EuiFilePicker display="default" fullWidth={false} />
       </EuiFormRow>
     </EuiForm>
   );
