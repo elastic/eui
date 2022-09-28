@@ -135,7 +135,7 @@ export const FormLayoutsExample = {
 </EuiFormRow>`,
     },
     {
-      title: 'Global Full-width',
+      title: 'Global full-width',
       text: (
         <p>
           To set all the row and controls in a form to{' '}
