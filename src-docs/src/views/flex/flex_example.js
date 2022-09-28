@@ -528,6 +528,31 @@ export const FlexExample = {
       ),
     },
     {
+      title: 'Responsive flex grids',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: flexGridResponsiveSource,
+        },
+      ],
+      text: (
+        <p>
+          <strong>EuiFlexGrid</strong> is also similarly responsive by default,
+          responsive by always stacking the items vertically on smaller screens.
+          However, should you want to customize the number of items on small or
+          large screens, we recommend applying the{' '}
+          <EuiCode>responsive={'{false}'}</EuiCode> prop and then conditionally
+          pass a column number based on the current breakpoint.
+        </p>
+      ),
+      snippet: flexGridResponsiveSnippet,
+      demo: (
+        <FlexItemHighlightWrapper>
+          <FlexGridResponsive />
+        </FlexItemHighlightWrapper>
+      ),
+    },
+    {
       title: 'Flex grids and flex groups can nest',
       source: [
         {
@@ -580,31 +605,6 @@ export const FlexExample = {
       demo: (
         <FlexItemHighlightWrapper>
           <FlexGutter />
-        </FlexItemHighlightWrapper>
-      ),
-    },
-    {
-      title: 'Responsive flex grids',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: flexGridResponsiveSource,
-        },
-      ],
-      text: (
-        <p>
-          <strong>EuiFlexGrid</strong> is also similarly responsive by default,
-          responsive by always stacking the items vertically on smaller screens.
-          However, should you want to customize the number of items on small or
-          large screens, we recommend applying the{' '}
-          <EuiCode>responsive={'{false}'}</EuiCode> prop and then conditionally
-          pass a column number based on the current breakpoint.
-        </p>
-      ),
-      snippet: flexGridResponsiveSnippet,
-      demo: (
-        <FlexItemHighlightWrapper>
-          <FlexGridResponsive />
         </FlexItemHighlightWrapper>
       ),
     },
