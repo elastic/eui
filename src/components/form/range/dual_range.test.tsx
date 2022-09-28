@@ -230,7 +230,15 @@ describe('EuiDualRange', () => {
         </EuiForm>
       );
 
-      expect(component).toMatchSnapshot();
+      if (
+        !component
+          .find('.euiRangeWrapper')
+          .hasClass('euiRangeWrapper--fullWidth')
+      ) {
+        throw new Error(
+          'expected EuiDualRange to inherit fullWidth from EuiForm'
+        );
+      }
     });
   });
 });
