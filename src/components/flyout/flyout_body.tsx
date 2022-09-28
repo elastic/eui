@@ -42,7 +42,7 @@ export const EuiFlyoutBody: EuiFlyoutBodyProps = ({
   ];
 
   return (
-    <div className={classes} {...rest} css={cssStyles}>
+    <div className={classes} css={cssStyles} {...rest}>
       <div
         tabIndex={0}
         className="euiFlyoutBody__overflow"
