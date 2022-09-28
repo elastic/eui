@@ -532,23 +532,11 @@ export const FlexExample = {
         },
       ],
       text: (
-        <>
-          <p>
-            The <EuiCode>gutterSize</EuiCode> prop can be applied to either a{' '}
-            <strong>EuiFlexGroup</strong> or a <strong>EuiFlexGrid</strong> to
-            adjust the spacing between <strong>EuiFlexItems</strong>.
-          </p>
-          <EuiCallOut
-            color="warning"
-            title="Gutters are created with using negative margin"
-          >
-            <p>
-              If the parent container of a flex group or grid doesn&apos;t have
-              sufficient padding to account for the negative margins, it may
-              cause overflow scrolling.
-            </p>
-          </EuiCallOut>
-        </>
+        <p>
+          The <EuiCode>gutterSize</EuiCode> prop can be applied to either a{' '}
+          <strong>EuiFlexGroup</strong> or a <strong>EuiFlexGrid</strong> to
+          adjust the spacing between <strong>EuiFlexItems</strong>.
+        </p>
       ),
       snippet: flexGutterSnippet,
       demo: (
