@@ -10,7 +10,9 @@ import {
   EuiTitle,
 } from '../../../../src/components';
 import { BarSeries, LineSeries, AreaSeries } from '@elastic/charts';
-import { devDependencies } from '../../../../package';
+import euiPackage from '../../../../package';
+
+const { devDependencies } = euiPackage;
 
 export const chartsVersion = devDependencies['@elastic/charts'].match(
   /\d+\.\d+\.\d+/

@@ -1,9 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const ts = require('typescript');
 const { SyntaxKind } = require('typescript');
-const glob = require('glob');
-
-const files = glob.sync('src/**/*.{ts,tsx}', { absolute: true });
 
 /**
  * To support extended interfaces and types from tsx files too.
@@ -13,10 +10,9 @@ const options = {
   strict: true,
 };
 
-const program = ts.createProgram(files, options);
-
 module.exports = function(fileSource) {
   const docsInfo = [];
+  const program = ts.createProgram([this.resourcePath], options);
   const source = program.getSourceFile(this.resourcePath);
   if (!source) return fileSource;
   const checker = program.getTypeChecker();
