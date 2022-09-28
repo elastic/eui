@@ -11,6 +11,7 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 
+import { EuiForm } from '../form';
 import { EuiDualRange } from './dual_range';
 
 const props = {
@@ -218,6 +219,26 @@ describe('EuiDualRange', () => {
       );
 
       expect(component).toMatchSnapshot();
+    });
+  });
+
+  describe('inherits', () => {
+    test('fullWidth from <EuiForm />', () => {
+      const component = render(
+        <EuiForm fullWidth>
+          <EuiDualRange value={['1', '8']} onChange={() => {}} />
+        </EuiForm>
+      );
+
+      if (
+        !component
+          .find('.euiRangeWrapper')
+          .hasClass('euiRangeWrapper--fullWidth')
+      ) {
+        throw new Error(
+          'expected EuiDualRange to inherit fullWidth from EuiForm'
+        );
+      }
     });
   });
 });

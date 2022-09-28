@@ -156,7 +156,7 @@ function compileBundle() {
 
   console.log('Building chart theme module...');
   execSync(
-    'webpack --output-library-target="commonjs" --config=src/themes/charts/webpack.config.js',
+    'webpack --config=src/themes/charts/webpack.config.js',
     {
       stdio: 'inherit',
     }

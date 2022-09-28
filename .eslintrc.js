@@ -22,7 +22,7 @@ module.exports = {
         extensions: ['.ts', '.tsx', '.js', '.json'],
       },
       webpack: {
-        config: './src-docs/webpack.config.js',
+        config: './.eslintwebpack.config.js',
       },
     },
     react: {

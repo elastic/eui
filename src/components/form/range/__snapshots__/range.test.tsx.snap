@@ -54,6 +54,32 @@ exports[`EuiRange allows value prop to accept empty string 1`] = `
 </div>
 `;
 
+exports[`EuiRange inherits fullWidth from <EuiForm /> 1`] = `
+<div
+  class="euiForm"
+>
+  <div
+    class="euiRangeWrapper euiRangeWrapper--fullWidth euiRange"
+  >
+    <div
+      aria-hidden="false"
+      class="euiRangeTrack"
+    >
+      <input
+        aria-hidden="false"
+        class="euiRangeSlider"
+        id="generated-id"
+        max="100"
+        min="0"
+        step="1"
+        type="range"
+        value=""
+      />
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiRange is rendered 1`] = `
 <div
   class="euiRangeWrapper euiRange testClass1 testClass2"
