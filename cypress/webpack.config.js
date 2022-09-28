@@ -52,10 +52,6 @@ module.exports = {
         ],
         exclude: /node_modules/,
       },
-      {
-        test: /\.(woff|woff2|ttf|eot|ico|png|gif|jpg|jpeg)(\?|$)/,
-        loader: 'file-loader',
-      },
     ],
     strictExportPresence: false,
   },
