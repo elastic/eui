@@ -23,6 +23,7 @@ import { PanelModeType } from '!!prop-loader!../../../../src/components/resizabl
 import ResizableContainerBasic from './resizable_container_basic';
 import ResizableContainerVertical from './resizable_container_vertical';
 import ResizableContainerResetValues from './resizable_container_reset_values';
+import ResizableContainerCallbacks from './resizable_container_callbacks';
 import ResizablePanels from './resizable_panels';
 import ResizablePanelCollapsible from './resizable_panel_collapsible';
 import ResizablePanelCollapsibleResponsive from './resizable_panel_collapsible_responsive';
@@ -32,6 +33,7 @@ import ResizablePanelCollapsibleExt from './resizable_panel_collapsible_external
 const ResizableContainerSource = require('!!raw-loader!./resizable_container_basic');
 const ResizableContainerVerticalSource = require('!!raw-loader!./resizable_container_vertical');
 const ResizableContainerResetValuesSource = require('!!raw-loader!./resizable_container_reset_values');
+const ResizableContainerCallbacksSource = require('!!raw-loader!./resizable_container_callbacks');
 const ResizablePanelsSource = require('!!raw-loader!./resizable_panels');
 const ResizablePanelCollapsibleSource = require('!!raw-loader!./resizable_panel_collapsible');
 const ResizablePanelCollapsibleResponsiveSource = require('!!raw-loader!./resizable_panel_collapsible_responsive');
@@ -61,6 +63,29 @@ const panelsSnippet = `<EuiResizablePanel color="subdued" paddingSize="none" wra
 </EuiResizablePanel>`;
 
 const verticalSnippet = `<EuiResizableContainer direction="vertical">
+  {(EuiResizablePanel, EuiResizableButton) => (
+    <>
+      <EuiResizablePanel initialSize={50} minSize="20%">
+        <EuiText>
+          <p>{text}</p>
+        </EuiText>
+      </EuiResizablePanel>
+
+      <EuiResizableButton />
+
+      <EuiResizablePanel initialSize={50} minSize="20%">
+        <EuiText>
+          <p>{text}</p>
+        </EuiText>
+      </EuiResizablePanel>
+    </>
+  )}
+</EuiResizableContainer>`;
+
+const callbacksSnippet = `<EuiResizableContainer
+  onResizeStart={(trigger) => console.log('onResizeStart', trigger)}
+  onResizeEnd={() => console.log('onResizeEnd')}
+>
   {(EuiResizablePanel, EuiResizableButton) => (
     <>
       <EuiResizablePanel initialSize={50} minSize="20%">
@@ -312,6 +337,30 @@ export const ResizableContainerExample = {
       props: { EuiResizableContainer, EuiResizablePanel, EuiResizableButton },
       demo: <ResizableContainerVertical />,
       snippet: verticalSnippet,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: ResizableContainerCallbacksSource,
+        },
+      ],
+      title: 'Resizable container callbacks',
+      text: (
+        <>
+          <p>
+            <strong>EuiResizableContainer</strong> supports{' '}
+            <EuiCode>onResizeStart</EuiCode> and <EuiCode>onResizeEnd</EuiCode>{' '}
+            callback props to listen for when resizing starts and ends. The{' '}
+            <EuiCode>onResizeStart</EuiCode> callback is passed a{' '}
+            <EuiCode>{"trigger: 'pointer' | 'key'"}</EuiCode> parameter to
+            determine which user action triggered the resize.
+          </p>
+        </>
+      ),
+      props: { EuiResizableContainer, EuiResizablePanel, EuiResizableButton },
+      demo: <ResizableContainerCallbacks />,
+      snippet: callbacksSnippet,
     },
     {
       source: [
