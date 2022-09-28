@@ -54,6 +54,9 @@ const flexGridColumnsSource = require('!!raw-loader!./flex_grid_columns');
 import FlexGridColumnFirst from './flex_grid_column_first';
 const flexGridColumnFirstSource = require('!!raw-loader!./flex_grid_column_first');
 
+import FlexGridResponsive from './flex_grid_responsive';
+const flexGridResponsiveSource = require('!!raw-loader!./flex_grid_responsive');
+
 import FlexNest from './flex_nest';
 const flexNestSource = require('!!raw-loader!./flex_nest');
 
@@ -118,6 +121,15 @@ const flexGridColumnsSnippet = `<EuiFlexGrid columns={3}>
 </EuiFlexGrid>`;
 
 const flexGridColumnFirstSnippet = `<EuiFlexGrid columns={2} direction="column">
+  <EuiFlexItem>
+    <!-- Item in FlexGrid-->
+  </EuiFlexItem>
+  <EuiFlexItem>
+    <!-- Item in FlexGrid-->
+  </EuiFlexItem>
+</EuiFlexGrid>`;
+
+const flexGridResponsiveSnippet = `<EuiFlexGrid responsive={false} columns={isMobile ? 2 : 4}>
   <EuiFlexItem>
     <!-- Item in FlexGrid-->
   </EuiFlexItem>
@@ -442,6 +454,30 @@ export const FlexExample = {
       ),
     },
     {
+      title: 'Responsive flex groups',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: flexGroupResponsiveSource,
+        },
+      ],
+      text: (
+        <p>
+          By default <strong>EuiFlexGroup</strong> is responsive by always
+          stacking the items on smaller screens. However, often you only want to
+          use groups for alignment and margins, rather than layouts. Simply
+          apply the <EuiCode>responsive={'{false}'}</EuiCode> prop to retain a
+          single row layout for the group.
+        </p>
+      ),
+      snippet: flexGroupResponsiveSnippet,
+      demo: (
+        <div className="guideDemo__highlightGrid">
+          <FlexGroupResponsive />
+        </div>
+      ),
+    },
+    {
       title: 'Flex grids are for repeatable items',
       source: [
         {
@@ -546,26 +582,27 @@ export const FlexExample = {
       ),
     },
     {
-      title: 'Responsive layouts',
+      title: 'Responsive flex grids',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: flexGroupResponsiveSource,
+          code: flexGridResponsiveSource,
         },
       ],
       text: (
         <p>
-          By default <strong>EuiFlexGroup</strong> is responsive by always
-          stacking the items on smaller screens. However, often you only want to
-          use groups for alignment and margins, rather than layouts. Simply
-          apply the <EuiCode>responsive={'{false}'}</EuiCode> prop to retain a
-          single row layout for the group.
+          <strong>EuiFlexGrid</strong> is also similarly responsive by default,
+          responsive by always stacking the items vertically on smaller screens.
+          However, should you want to customize the number of items on small or
+          large screens, we recommend applying the{' '}
+          <EuiCode>responsive={'{false}'}</EuiCode> prop and then conditionally
+          pass a column number based on the current breakpoint.
         </p>
       ),
-      snippet: flexGroupResponsiveSnippet,
+      snippet: flexGridResponsiveSnippet,
       demo: (
         <div className="guideDemo__highlightGrid">
-          <FlexGroupResponsive />
+          <FlexGridResponsive />
         </div>
       ),
     },
