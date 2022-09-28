@@ -25,6 +25,9 @@ const describedFormGroupRatioSource = require('!!raw-loader!./described_form_gro
 import FullWidth from './full_width';
 const fullWidthSource = require('!!raw-loader!./full_width');
 
+import FullWidthViaContext from './full_width_via_context';
+const fullWidthViaContextSource = require('!!raw-loader!./full_width_via_context');
+
 import Inline from './inline';
 const inlineSource = require('!!raw-loader!./inline');
 
@@ -105,21 +108,13 @@ export const FormLayoutsExample = {
     {
       title: 'Full-width',
       text: (
-        <>
-          <p>
-            Form elements will automatically flex to a max-width of{' '}
-            <EuiCode>400px</EuiCode>. You can optionally pass the{' '}
-            <EuiCode>fullWidth</EuiCode> prop to the row and form control to
-            expand to their container. This should be done rarely and usually
-            you will only need it for isolated controls like search bars and
-            sliders.
-          </p>
-          <p>
-            To set all the row and controls in a form to{' '}
-            <EuiCode>fullWidth</EuiCode>, specify the prop on the root{' '}
-            <EuiCode>EuiForm</EuiCode> component.
-          </p>
-        </>
+        <p>
+          Form elements will automatically flex to a max-width of{' '}
+          <EuiCode>400px</EuiCode>. You can optionally pass the{' '}
+          <EuiCode>fullWidth</EuiCode> prop to the row and form control to
+          expand to their container. This should be done rarely and usually you
+          will only need it for isolated controls like search bars and sliders.
+        </p>
       ),
       props: {
         EuiFormRow,
@@ -138,6 +133,31 @@ export const FormLayoutsExample = {
 >
   <EuiRange fullWidth />
 </EuiFormRow>`,
+    },
+    {
+      title: 'Global Full-width',
+      text: (
+        <p>
+          To set all the row and controls in a form to{' '}
+          <EuiCode>fullWidth</EuiCode>, specify the prop on the root{' '}
+          <EuiCode>EuiForm</EuiCode> component.
+        </p>
+      ),
+      props: {
+        EuiForm,
+      },
+      demo: <FullWidthViaContext />,
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: fullWidthViaContextSource,
+        },
+      ],
+      snippet: `<EuiForm fullWidth>
+  <EuiFormRow label="Everything defaults to fullWidth={true}" >
+    <EuiRange />
+  </EuiFormRow>
+</EuiForm>`,
     },
     {
       title: 'Inline',
