@@ -220,7 +220,7 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiText: css`
-      ${euiText(euiTheme)};
+      ${euiText(euiTheme, true)};
 
       // EuiImage with floats are often used within EuiText.
       clear: both;

@@ -38,7 +38,7 @@ export type EuiTextColorProps = CommonProps &
     /**
      * Any of our named colors or a `hex`, `rgb` or `rgba` value.
      */
-    color?: TextColor | Exclude<CSSProperties['color'], 'inherit'>;
+    color?: TextColor | CSSProperties['color'];
     /**
      * Determines the root element
      */
