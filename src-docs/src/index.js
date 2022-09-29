@@ -19,7 +19,6 @@ import Routes from './routes';
 import themeLight from './theme_light.scss';
 import themeDark from './theme_dark.scss';
 import { ThemeProvider } from './components/with_theme/theme_context';
-import { ComponentProps } from 'react';
 
 registerTheme('light', [themeLight]);
 registerTheme('dark', [themeDark]);
