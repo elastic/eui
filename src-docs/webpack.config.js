@@ -130,10 +130,10 @@ const webpackConfig = new Promise(async (resolve, reject) => {
                 loader: '@mdx-js/loader',
                 options: {
                   providerImportSource: '@mdx-js/react',
-                }
-              }
-            ]
-          }
+                },
+              },
+            ],
+          },
         ],
       },
 
