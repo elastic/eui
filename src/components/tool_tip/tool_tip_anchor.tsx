@@ -56,8 +56,8 @@ export const EuiToolTipAnchor = forwardRef<
       // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
       <span
         ref={ref}
-        {...rest}
         css={cssStyles}
+        {...rest}
         className={classes}
         onMouseOver={onMouseOver}
         onMouseOut={onMouseOut}

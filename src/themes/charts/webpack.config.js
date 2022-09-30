@@ -11,10 +11,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-
-const isProduction = process.env.NODE_ENV === 'production';
 
 const plugins = [
   new webpack.NoEmitOnErrorsPlugin(),
@@ -31,14 +28,10 @@ const plugins = [
   }),
 ];
 
-const terserPlugin = new TerserPlugin({
-  sourceMap: true,
-});
-
 module.exports = {
-  mode: isProduction ? 'production' : 'development',
+  mode: 'development',
 
-  devtool: isProduction ? 'source-map' : 'cheap-module-source-map',
+  devtool: 'source-map',
 
   entry: {
     guide: './themes.ts',
@@ -48,7 +41,10 @@ module.exports = {
 
   output: {
     path: path.resolve(__dirname, '../../../dist'),
-    filename: `eui_charts_theme${isProduction ? '.min' : ''}.js`,
+    filename: 'eui_charts_theme.js',
+    library: {
+      type: 'commonjs',
+    },
   },
 
   resolve: {
@@ -64,21 +60,12 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loaders: [
-          'style-loader',
-          'css-loader',
-          'postcss-loader',
-          'sass-loader',
-        ],
+        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
         exclude: /node_modules/,
       },
     ],
-    strictExportPresence: isProduction,
+    strictExportPresence: true,
   },
 
   plugins,
-
-  optimization: {
-    minimizer: isProduction ? [terserPlugin] : [],
-  },
 };

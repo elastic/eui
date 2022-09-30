@@ -19,6 +19,7 @@ import {
 
 import { EuiValidatableControl } from '../validatable_control';
 import { getFormControlClassNameForIconCount } from '../form_control_layout/_num_icons';
+import { FormContext, FormContextValue } from '../eui_form_context';
 
 export interface EuiFieldSearchProps
   extends CommonProps,
@@ -28,6 +29,11 @@ export interface EuiFieldSearchProps
   placeholder?: string;
   value?: string;
   isInvalid?: boolean;
+  /**
+   * Expand to fill 100% of the parent.
+   * Defaults to `fullWidth` prop of `<EuiForm>`.
+   * @default false
+   */
   fullWidth?: boolean;
   isLoading?: boolean;
   /**
@@ -72,8 +78,8 @@ export class EuiFieldSearch extends Component<
   EuiFieldSearchProps,
   EuiFieldSearchState
 > {
+  static contextType = FormContext;
   static defaultProps = {
-    fullWidth: false,
     isLoading: false,
     incremental: false,
     compressed: false,
@@ -197,13 +203,14 @@ export class EuiFieldSearch extends Component<
   };
 
   render() {
+    const { defaultFullWidth } = this.context as FormContextValue;
     const {
       className,
       id,
       name,
       placeholder,
       isInvalid,
-      fullWidth,
+      fullWidth = defaultFullWidth,
       isLoading,
       inputRef,
       incremental,

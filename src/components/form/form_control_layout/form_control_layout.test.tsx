@@ -11,6 +11,7 @@ import { render, mount } from 'enzyme';
 
 import { findTestSubject, requiredProps } from '../../../test';
 
+import { EuiForm } from '../form';
 import { EuiFormControlLayout, ICON_SIDES } from './form_control_layout';
 
 jest.mock('../../', () => ({
@@ -207,6 +208,26 @@ describe('EuiFormControlLayout', () => {
       );
 
       expect(component).toMatchSnapshot();
+    });
+  });
+
+  describe('inherits', () => {
+    test('fullWidth from <EuiForm />', () => {
+      const component = render(
+        <EuiForm fullWidth>
+          <EuiFormControlLayout />
+        </EuiForm>
+      );
+
+      if (
+        !component
+          .find('.euiFormControlLayout')
+          .hasClass('euiFormControlLayout--fullWidth')
+      ) {
+        throw new Error(
+          'expected EuiFormControlLayout to inherit fullWidth from EuiForm'
+        );
+      }
     });
   });
 });

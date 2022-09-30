@@ -10,6 +10,7 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
+import { EuiForm } from '../form';
 import { EuiTextArea } from './text_area';
 
 describe('EuiTextArea', () => {
@@ -17,5 +18,21 @@ describe('EuiTextArea', () => {
     const component = render(<EuiTextArea {...requiredProps} />);
 
     expect(component).toMatchSnapshot();
+  });
+
+  describe('inherits', () => {
+    test('fullWidth from <EuiForm />', () => {
+      const component = render(
+        <EuiForm fullWidth>
+          <EuiTextArea />
+        </EuiForm>
+      );
+
+      if (!component.find('.euiTextArea').hasClass('euiTextArea--fullWidth')) {
+        throw new Error(
+          'expected EuiTextArea to inherit fullWidth from EuiForm'
+        );
+      }
+    });
   });
 });

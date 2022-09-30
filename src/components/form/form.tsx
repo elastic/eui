@@ -18,6 +18,8 @@ import { EuiCallOut } from '../call_out';
 import { EuiI18n } from '../i18n';
 import { CommonProps, ExclusiveUnion } from '../common';
 
+import { FormContext, FormContextValue } from './eui_form_context';
+
 export type EuiFormProps = CommonProps &
   ExclusiveUnion<
     { component: 'form' } & FormHTMLAttributes<HTMLFormElement>,
@@ -33,6 +35,14 @@ export type EuiFormProps = CommonProps &
      * Where to display the callout with the list of errors
      */
     invalidCallout?: 'above' | 'none';
+    /**
+     * When set to `true`, all the rows/controls in this form will
+     * default to taking up 100% of the width of their continer. You
+     * can specify `fullWidth={false}` on individual rows/controls to
+     * disable this behavior for specific components.
+     * @default false
+     */
+    fullWidth?: boolean;
   };
 
 export const EuiForm = forwardRef<HTMLElement, EuiFormProps>(
@@ -44,10 +54,18 @@ export const EuiForm = forwardRef<HTMLElement, EuiFormProps>(
       error,
       component = 'div',
       invalidCallout = 'above',
+      fullWidth,
       ...rest
     },
     ref
   ) => {
+    const formContext = React.useMemo(
+      (): FormContextValue => ({
+        defaultFullWidth: fullWidth ?? false,
+      }),
+      [fullWidth]
+    );
+
     const handleFocus = useCallback((node) => {
       node?.focus();
     }, []);
@@ -103,8 +121,10 @@ export const EuiForm = forwardRef<HTMLElement, EuiFormProps>(
         className={classes}
         {...(rest as HTMLAttributes<HTMLElement>)}
       >
-        {optionalErrorAlert}
-        {children}
+        <FormContext.Provider value={formContext}>
+          {optionalErrorAlert}
+          {children}
+        </FormContext.Provider>
       </Element>
     );
   }
