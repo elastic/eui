@@ -11,6 +11,7 @@ import { render, mount } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 
+import { EuiForm } from '../form';
 import { EuiFieldPassword, EuiFieldPasswordProps } from './field_password';
 
 jest.mock('../validatable_control', () => ({
@@ -138,6 +139,26 @@ describe('EuiFieldPassword', () => {
             .props().type
         ).toBe('eyeClosed');
       });
+    });
+  });
+
+  describe('inherits', () => {
+    test('fullWidth from <EuiForm />', () => {
+      const component = render(
+        <EuiForm fullWidth>
+          <EuiFieldPassword />
+        </EuiForm>
+      );
+
+      if (
+        !component
+          .find('.euiFieldPassword')
+          .hasClass('euiFieldPassword--fullWidth')
+      ) {
+        throw new Error(
+          'expected EuiFieldPassword to inherit fullWidth from EuiForm'
+        );
+      }
     });
   });
 });

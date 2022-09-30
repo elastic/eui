@@ -70,9 +70,9 @@ export const EuiImageFullScreenWrapper: FunctionComponent<EuiImageWrapperProps> 
         <>
           <figure
             aria-label={optionalCaptionText}
+            css={cssStyles}
             {...wrapperProps}
             className={classes}
-            css={cssStyles}
           >
             <EuiImageButton
               hasAlt={!!alt}

@@ -27,6 +27,7 @@ import { EuiRangeTick } from './range_ticks';
 import { EuiRangeTooltip } from './range_tooltip';
 import { EuiRangeTrack } from './range_track';
 import { EuiRangeWrapper } from './range_wrapper';
+import { FormContext, FormContextValue } from '../eui_form_context';
 
 import { euiRangeStyles } from './range.styles';
 
@@ -35,6 +36,11 @@ export interface EuiRangeProps
     Omit<EuiRangeInputProps, 'onChange' | 'digitTolerance' | 'isLoading'> {
   compressed?: boolean;
   readOnly?: boolean;
+  /**
+   * Expand to fill 100% of the parent.
+   * Defaults to `fullWidth` prop of `<EuiForm>`.
+   * @default false
+   */
   fullWidth?: boolean;
   id?: string;
   /**
@@ -95,11 +101,12 @@ export interface EuiRangeProps
 export class EuiRangeClass extends Component<
   EuiRangeProps & WithEuiThemeProps
 > {
+  static contextType = FormContext;
+
   static defaultProps = {
     min: 0,
     max: 100,
     step: 1,
-    fullWidth: false,
     compressed: false,
     isLoading: false,
     showLabels: false,
@@ -171,11 +178,12 @@ export class EuiRangeClass extends Component<
   };
 
   render() {
+    const { defaultFullWidth } = this.context as FormContextValue;
     const {
       className,
       compressed,
       disabled,
-      fullWidth,
+      fullWidth = defaultFullWidth,
       isLoading,
       readOnly,
       id: propsId,

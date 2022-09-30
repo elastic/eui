@@ -35,6 +35,7 @@ import { EuiRangeTick } from './range_ticks';
 import { EuiRangeTrack } from './range_track';
 import { EuiRangeWrapper } from './range_wrapper';
 import { calculateThumbPosition } from './utils';
+import { FormContext, FormContextValue } from '../eui_form_context';
 
 import { euiRangeStyles } from './range.styles';
 import { euiDualRangeStyles } from './dual_range.styles';
@@ -64,6 +65,11 @@ export interface EuiDualRangeProps
       | React.KeyboardEvent<HTMLInputElement>
       | React.KeyboardEvent<HTMLDivElement>
   ) => void;
+  /**
+   * Expand to fill 100% of the parent.
+   * Defaults to `fullWidth` prop of `<EuiForm>`.
+   * @default false
+   */
   fullWidth?: boolean;
   isInvalid?: boolean;
   /**
@@ -119,11 +125,12 @@ export interface EuiDualRangeProps
 export class EuiDualRangeClass extends Component<
   EuiDualRangeProps & WithEuiThemeProps
 > {
+  static contextType = FormContext;
+
   static defaultProps = {
     min: 0,
     max: 100,
     step: 1,
-    fullWidth: false,
     compressed: false,
     isLoading: false,
     showLabels: false,
@@ -512,12 +519,13 @@ export class EuiDualRangeClass extends Component<
   };
 
   render() {
+    const { defaultFullWidth } = this.context as FormContextValue;
     const {
       className,
       css: customCss,
       compressed,
       disabled,
-      fullWidth,
+      fullWidth = defaultFullWidth,
       isLoading,
       readOnly,
       id: propsId,

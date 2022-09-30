@@ -25,6 +25,7 @@ import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../../button';
 import { useEuiI18n } from '../../i18n';
 import { useCombinedRefs } from '../../../services';
 import { getFormControlClassNameForIconCount } from '../form_control_layout/_num_icons';
+import { useFormContext } from '../eui_form_context';
 
 export type EuiFieldPasswordProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -32,6 +33,11 @@ export type EuiFieldPasswordProps = Omit<
 > &
   CommonProps & {
     isInvalid?: boolean;
+    /**
+     * Expand to fill 100% of the parent.
+     * Defaults to `fullWidth` prop of `<EuiForm>`.
+     * @default false
+     */
     fullWidth?: boolean;
     isLoading?: boolean;
     compressed?: boolean;
@@ -54,6 +60,7 @@ export type EuiFieldPasswordProps = Omit<
      * Change the `type` of input for manually handling obfuscation.
      * The `dual` option adds the ability to toggle the obfuscation of the input by
      * adding an icon button as the first `append` element
+     * @default password
      */
     type?: 'password' | 'text' | 'dual';
 
@@ -63,23 +70,28 @@ export type EuiFieldPasswordProps = Omit<
     dualToggleProps?: Partial<EuiButtonIconPropsForButton>;
   };
 
-export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
-  className,
-  id,
-  name,
-  placeholder,
-  value,
-  isInvalid,
-  fullWidth,
-  isLoading,
-  compressed,
-  inputRef: _inputRef,
-  prepend,
-  append,
-  type = 'password',
-  dualToggleProps,
-  ...rest
-}) => {
+export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = (
+  props
+) => {
+  const { defaultFullWidth } = useFormContext();
+  const {
+    className,
+    id,
+    name,
+    placeholder,
+    value,
+    isInvalid,
+    fullWidth = defaultFullWidth,
+    isLoading,
+    compressed,
+    inputRef: _inputRef,
+    prepend,
+    append,
+    type = 'password',
+    dualToggleProps,
+    ...rest
+  } = props;
+
   // Set the initial input type to `password` if they want dual
   const [inputType, setInputType] = useState(
     type === 'dual' ? 'password' : type
@@ -182,7 +194,6 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
 
 EuiFieldPassword.defaultProps = {
   value: undefined,
-  fullWidth: false,
   isLoading: false,
   compressed: false,
 };

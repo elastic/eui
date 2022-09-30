@@ -18,6 +18,7 @@ import {
 import { EuiValidatableControl } from '../validatable_control';
 
 import { IconType } from '../../icon';
+import { useFormContext } from '../eui_form_context';
 import { getFormControlClassNameForIconCount } from '../form_control_layout/_num_icons';
 
 export type EuiFieldNumberProps = Omit<
@@ -27,7 +28,15 @@ export type EuiFieldNumberProps = Omit<
   CommonProps & {
     icon?: IconType;
     isInvalid?: boolean;
+    /**
+     * Expand to fill 100% of the parent.
+     * Defaults to `fullWidth` prop of `<EuiForm>`.
+     * @default false
+     */
     fullWidth?: boolean;
+    /**
+     * @default false
+     */
     isLoading?: boolean;
     readOnly?: boolean;
     min?: number;
@@ -60,30 +69,36 @@ export type EuiFieldNumberProps = Omit<
 
     /**
      * when `true` creates a shorter height input
+     * @default false
      */
     compressed?: boolean;
   };
 
-export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = ({
-  className,
-  icon,
-  id,
-  placeholder,
-  name,
-  min,
-  max,
-  value,
-  isInvalid,
-  fullWidth = false,
-  isLoading = false,
-  compressed = false,
-  prepend,
-  append,
-  inputRef,
-  readOnly,
-  controlOnly,
-  ...rest
-}) => {
+export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
+  props
+) => {
+  const { defaultFullWidth } = useFormContext();
+  const {
+    className,
+    icon,
+    id,
+    placeholder,
+    name,
+    min,
+    max,
+    value,
+    isInvalid,
+    fullWidth = defaultFullWidth,
+    isLoading = false,
+    compressed = false,
+    prepend,
+    append,
+    inputRef,
+    readOnly,
+    controlOnly,
+    ...rest
+  } = props;
+
   const numIconsClass = getFormControlClassNameForIconCount({
     isInvalid,
     isLoading,
