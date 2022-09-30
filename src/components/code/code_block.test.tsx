@@ -146,41 +146,40 @@ describe('EuiCodeBlock', () => {
     });
   });
 
-  // TODO fix test
-  //describe('fullscreen', () => {
-  // it('displays content in fullscreen mode', () => {
-  //   const component = mount(
-  //     <EuiCodeBlock
-  //       {...requiredProps}
-  //       language="javascript"
-  //       overflowHeight={300}
-  //     >
-  //       const value = &quot;hello&quot;
-  //     </EuiCodeBlock>
-  //   );
-  //   component.find('button[aria-label="Expand"]').simulate('click');
-  //   component.update();
-  //   expect(component.find('.euiCodeBlock-isFullScreen')).toMatchSnapshot();
-  // });
-  // it('closes fullscreen mode when the escape key is pressed', () => {
-  //   const component = mount(
-  //     <EuiCodeBlock
-  //       {...requiredProps}
-  //       language="javascript"
-  //       overflowHeight={300}
-  //     >
-  //       const value = &quot;world&quot;
-  //     </EuiCodeBlock>
-  //   );
-  //   component.find('button[aria-label="Expand"]').simulate('click');
-  //   component.update();
-  //   component
-  //     .find('.euiCodeBlock-isFullScreen')
-  //     .childAt(0)
-  //     .simulate('keyDown', { key: 'Escape' });
-  //   expect(component.find('.euiCodeBlock-isFullScreen')).toHaveLength(0);
-  // });
-  // });
+  describe('fullscreen', () => {
+    it('displays content in fullscreen mode', () => {
+      const component = mount(
+        <EuiCodeBlock
+          {...requiredProps}
+          language="javascript"
+          overflowHeight={300}
+        >
+          const value = &quot;hello&quot;
+        </EuiCodeBlock>
+      );
+      component.find('button[aria-label="Expand"]').simulate('click');
+      component.update();
+      expect(component.find('.euiCodeBlock-isFullScreen')).toMatchSnapshot();
+    });
+    it('closes fullscreen mode when the escape key is pressed', () => {
+      const component = mount(
+        <EuiCodeBlock
+          {...requiredProps}
+          language="javascript"
+          overflowHeight={300}
+        >
+          const value = &quot;world&quot;
+        </EuiCodeBlock>
+      );
+      component.find('button[aria-label="Expand"]').simulate('click');
+      component.update();
+      component
+        .find('.euiCodeBlock-isFullScreen')
+        .childAt(0)
+        .simulate('keyDown', { key: 'Escape' });
+      expect(component.find('.euiCodeBlock-isFullScreen')).toHaveLength(0);
+    });
+  });
 
   describe('virtualization', () => {
     it('renders a virtualized code block', () => {
