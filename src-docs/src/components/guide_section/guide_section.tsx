@@ -185,6 +185,7 @@ export const GuideSection: FunctionComponent<GuideSectionProps> = ({
       config,
       setGhostBackground,
       playgroundClassName,
+      playgroundCssStyles,
       playgroundPanelProps,
     } = playground();
 
@@ -192,6 +193,7 @@ export const GuideSection: FunctionComponent<GuideSectionProps> = ({
       config,
       setGhostBackground,
       playgroundClassName,
+      playgroundCssStyles,
       playgroundPanelProps,
       playgroundToggle: renderPlaygroundToggle(),
       tabs: renderTabs(),

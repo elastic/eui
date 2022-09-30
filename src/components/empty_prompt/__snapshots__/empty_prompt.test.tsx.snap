@@ -90,15 +90,15 @@ exports[`EuiEmptyPrompt props actions renders an array 1`] = `
           class="euiSpacer euiSpacer--l emotion-euiSpacer-l"
         />
         <div
-          class="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentCenter euiFlexGroup--directionColumn euiFlexGroup--responsive euiEmptyPrompt__actions"
+          class="euiFlexGroup euiEmptyPrompt__actions emotion-euiFlexGroup-m-center-center-column"
         >
           <div
-            class="euiFlexItem euiFlexItem--flexGrowZero"
+            class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             action1
           </div>
           <div
-            class="euiFlexItem euiFlexItem--flexGrowZero"
+            class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             action2
           </div>

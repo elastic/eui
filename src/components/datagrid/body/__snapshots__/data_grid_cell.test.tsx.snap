@@ -22,10 +22,10 @@ Array [
     class="euiPopoverFooter emotion-euiPopoverFooter-l"
   >
     <div
-      class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--directionRow euiFlexGroup--wrap"
+      class="euiFlexGroup emotion-euiFlexGroup-wrap-s-flexStart-stretch-row"
     >
       <div
-        class="euiFlexItem"
+        class="euiFlexItem emotion-euiFlexItem-grow-1"
       >
         <div>
           <button />

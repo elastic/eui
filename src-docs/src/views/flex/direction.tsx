@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { EuiFlexGroup, EuiFlexItem } from '../../../../src/components/flex';
+import { EuiFlexGroup, EuiFlexItem } from '../../../../src/components';
 
 export default () => (
   <EuiFlexGroup direction="column">
