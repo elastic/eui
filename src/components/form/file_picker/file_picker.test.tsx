@@ -10,6 +10,7 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test';
 
+import { EuiForm } from '../form';
 import { EuiFilePicker } from './file_picker';
 
 describe('EuiFilePicker', () => {
@@ -17,5 +18,23 @@ describe('EuiFilePicker', () => {
     const component = render(<EuiFilePicker {...requiredProps} />);
 
     expect(component).toMatchSnapshot();
+  });
+
+  describe('inherits', () => {
+    test('fullWidth from <EuiForm />', () => {
+      const component = render(
+        <EuiForm fullWidth>
+          <EuiFilePicker />
+        </EuiForm>
+      );
+
+      if (
+        !component.find('.euiFilePicker').hasClass('euiFilePicker--fullWidth')
+      ) {
+        throw new Error(
+          'expected EuiFilePicker to inherit fullWidth from EuiForm'
+        );
+      }
+    });
   });
 });

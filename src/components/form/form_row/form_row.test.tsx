@@ -10,6 +10,7 @@ import React from 'react';
 import { shallow, render, mount } from 'enzyme';
 import { requiredProps } from '../../../test';
 
+import { EuiForm } from '../form';
 import { EuiFormRow, DISPLAYS } from './form_row';
 
 describe('EuiFormRow', () => {
@@ -291,6 +292,24 @@ describe('EuiFormRow', () => {
         // which will pass down to the EuiFormLabel
         expect(component).toMatchSnapshot();
       });
+    });
+  });
+
+  describe('inherits', () => {
+    test('fullWidth from <EuiForm />', () => {
+      const component = render(
+        <EuiForm fullWidth>
+          <EuiFormRow label={<span>Label</span>}>
+            <input />
+          </EuiFormRow>
+        </EuiForm>
+      );
+
+      if (!component.find('.euiFormRow').hasClass('euiFormRow--fullWidth')) {
+        throw new Error(
+          'expected EuiFormRow to inherit fullWidth from EuiForm'
+        );
+      }
     });
   });
 });

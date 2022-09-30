@@ -1,10 +1,13 @@
 import React from 'react';
-import { EuiFlexGroup, EuiFlexItem } from '../../../../src/components/flex';
-import { EuiSpacer } from '../../../../src/components/spacer';
-import { EuiIcon } from '../../../../src/components/icon';
+import {
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+  EuiIcon,
+} from '../../../../src/components';
 
 export default () => (
-  <div>
+  <>
     <EuiFlexGroup alignItems="center">
       <EuiFlexItem grow={false}>
         <EuiIcon type="faceSad" />
@@ -24,5 +27,5 @@ export default () => (
         On mobile, the icon will stay to the left of this text.
       </EuiFlexItem>
     </EuiFlexGroup>
-  </div>
+  </>
 );

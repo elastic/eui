@@ -11,6 +11,7 @@ import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
+import { EuiForm } from '../form';
 import { EuiSelect } from './select';
 
 jest.mock('../form_control_layout', () => ({
@@ -151,6 +152,20 @@ describe('EuiSelect', () => {
       expect(
         component.find('select').getDOMNode<HTMLSelectElement>().value
       ).toBe('');
+    });
+  });
+
+  describe('inherits', () => {
+    test('fullWidth from <EuiForm />', () => {
+      const component = render(
+        <EuiForm fullWidth>
+          <EuiSelect />
+        </EuiForm>
+      );
+
+      if (!component.find('.euiSelect').hasClass('euiSelect--fullWidth')) {
+        throw new Error('expected EuiSelect to inherit fullWidth from EuiForm');
+      }
     });
   });
 });

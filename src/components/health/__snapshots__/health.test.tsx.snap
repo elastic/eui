@@ -7,17 +7,17 @@ exports[`EuiHealth is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+    class="euiFlexGroup emotion-euiFlexGroup-xs-flexStart-center-row"
   >
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
         data-euiicon-type="dot"
       />
     </div>
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     />
   </div>
 </div>
@@ -28,10 +28,10 @@ exports[`EuiHealth props color #000000 is rendered 1`] = `
   class="euiHealth emotion-euiHealth-s"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+    class="euiFlexGroup emotion-euiFlexGroup-xs-flexStart-center-row"
   >
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
         color="#000000"
@@ -39,7 +39,7 @@ exports[`EuiHealth props color #000000 is rendered 1`] = `
       />
     </div>
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     />
   </div>
 </div>
@@ -50,10 +50,10 @@ exports[`EuiHealth props color accent is rendered 1`] = `
   class="euiHealth emotion-euiHealth-s"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+    class="euiFlexGroup emotion-euiFlexGroup-xs-flexStart-center-row"
   >
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
         color="accent"
@@ -61,7 +61,7 @@ exports[`EuiHealth props color accent is rendered 1`] = `
       />
     </div>
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     />
   </div>
 </div>
@@ -72,10 +72,10 @@ exports[`EuiHealth props color danger is rendered 1`] = `
   class="euiHealth emotion-euiHealth-s"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+    class="euiFlexGroup emotion-euiFlexGroup-xs-flexStart-center-row"
   >
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
         color="danger"
@@ -83,7 +83,7 @@ exports[`EuiHealth props color danger is rendered 1`] = `
       />
     </div>
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     />
   </div>
 </div>
@@ -94,10 +94,10 @@ exports[`EuiHealth props color default is rendered 1`] = `
   class="euiHealth emotion-euiHealth-s"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+    class="euiFlexGroup emotion-euiFlexGroup-xs-flexStart-center-row"
   >
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
         color="default"
@@ -105,7 +105,7 @@ exports[`EuiHealth props color default is rendered 1`] = `
       />
     </div>
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     />
   </div>
 </div>
@@ -116,10 +116,10 @@ exports[`EuiHealth props color ghost is rendered 1`] = `
   class="euiHealth emotion-euiHealth-s"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+    class="euiFlexGroup emotion-euiFlexGroup-xs-flexStart-center-row"
   >
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
         color="ghost"
@@ -127,7 +127,7 @@ exports[`EuiHealth props color ghost is rendered 1`] = `
       />
     </div>
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     />
   </div>
 </div>
@@ -138,10 +138,10 @@ exports[`EuiHealth props color inherit is rendered 1`] = `
   class="euiHealth emotion-euiHealth-s"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+    class="euiFlexGroup emotion-euiFlexGroup-xs-flexStart-center-row"
   >
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
         color="inherit"
@@ -149,7 +149,7 @@ exports[`EuiHealth props color inherit is rendered 1`] = `
       />
     </div>
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     />
   </div>
 </div>
@@ -160,10 +160,10 @@ exports[`EuiHealth props color primary is rendered 1`] = `
   class="euiHealth emotion-euiHealth-s"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+    class="euiFlexGroup emotion-euiFlexGroup-xs-flexStart-center-row"
   >
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
         color="primary"
@@ -171,7 +171,7 @@ exports[`EuiHealth props color primary is rendered 1`] = `
       />
     </div>
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     />
   </div>
 </div>
@@ -182,10 +182,10 @@ exports[`EuiHealth props color subdued is rendered 1`] = `
   class="euiHealth emotion-euiHealth-s"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+    class="euiFlexGroup emotion-euiFlexGroup-xs-flexStart-center-row"
   >
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
         color="subdued"
@@ -193,7 +193,7 @@ exports[`EuiHealth props color subdued is rendered 1`] = `
       />
     </div>
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     />
   </div>
 </div>
@@ -204,10 +204,10 @@ exports[`EuiHealth props color success is rendered 1`] = `
   class="euiHealth emotion-euiHealth-s"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+    class="euiFlexGroup emotion-euiFlexGroup-xs-flexStart-center-row"
   >
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
         color="success"
@@ -215,7 +215,7 @@ exports[`EuiHealth props color success is rendered 1`] = `
       />
     </div>
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     />
   </div>
 </div>
@@ -226,10 +226,10 @@ exports[`EuiHealth props color text is rendered 1`] = `
   class="euiHealth emotion-euiHealth-s"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+    class="euiFlexGroup emotion-euiFlexGroup-xs-flexStart-center-row"
   >
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
         color="text"
@@ -237,7 +237,7 @@ exports[`EuiHealth props color text is rendered 1`] = `
       />
     </div>
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     />
   </div>
 </div>
@@ -248,10 +248,10 @@ exports[`EuiHealth props color warning is rendered 1`] = `
   class="euiHealth emotion-euiHealth-s"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+    class="euiFlexGroup emotion-euiFlexGroup-xs-flexStart-center-row"
   >
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
         color="warning"
@@ -259,7 +259,7 @@ exports[`EuiHealth props color warning is rendered 1`] = `
       />
     </div>
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     />
   </div>
 </div>
@@ -270,10 +270,10 @@ exports[`EuiHealth props textSize inherit is rendered 1`] = `
   class="euiHealth emotion-euiHealth-inherit"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+    class="euiFlexGroup emotion-euiFlexGroup-xs-flexStart-center-row"
   >
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
         color="success"
@@ -281,7 +281,7 @@ exports[`EuiHealth props textSize inherit is rendered 1`] = `
       />
     </div>
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     />
   </div>
 </div>
@@ -292,10 +292,10 @@ exports[`EuiHealth props textSize m is rendered 1`] = `
   class="euiHealth emotion-euiHealth-m"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+    class="euiFlexGroup emotion-euiFlexGroup-xs-flexStart-center-row"
   >
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
         color="success"
@@ -303,7 +303,7 @@ exports[`EuiHealth props textSize m is rendered 1`] = `
       />
     </div>
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     />
   </div>
 </div>
@@ -314,10 +314,10 @@ exports[`EuiHealth props textSize s is rendered 1`] = `
   class="euiHealth emotion-euiHealth-s"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+    class="euiFlexGroup emotion-euiFlexGroup-xs-flexStart-center-row"
   >
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
         color="success"
@@ -325,7 +325,7 @@ exports[`EuiHealth props textSize s is rendered 1`] = `
       />
     </div>
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     />
   </div>
 </div>
@@ -336,10 +336,10 @@ exports[`EuiHealth props textSize xs is rendered 1`] = `
   class="euiHealth emotion-euiHealth-xs"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+    class="euiFlexGroup emotion-euiFlexGroup-xs-flexStart-center-row"
   >
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
         color="success"
@@ -347,7 +347,7 @@ exports[`EuiHealth props textSize xs is rendered 1`] = `
       />
     </div>
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     />
   </div>
 </div>

@@ -1,6 +1,8 @@
+import { format } from 'util'
+
 // Fail if a test ends up `console.error`-ing, e.g. if React logs because of a
 // failed prop types check.
-console.error = (message) => {
+console.error = (message, ...rest) => {
   // @see https://github.com/emotion-js/emotion/issues/1105
   // This error that Emotion throws doesn't apply to Jest, so
   // we're just going to straight up ignore the first/nth-child warning
@@ -14,5 +16,5 @@ console.error = (message) => {
     return;
   }
 
-  throw new Error(message);
+  throw new Error(format(message, ...rest));
 };

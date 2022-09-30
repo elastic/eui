@@ -488,10 +488,10 @@ exports[`props options list is rendered 1`] = `
             type="button"
           >
             <span
-              class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+              class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
             >
               <span
-                class="euiFlexItem euiFilterSelectItem__content"
+                class="euiFlexItem euiFilterSelectItem__content emotion-euiFlexItem-grow-1"
               >
                 <span
                   class="euiComboBoxOption__contentWrapper"
@@ -515,10 +515,10 @@ exports[`props options list is rendered 1`] = `
             type="button"
           >
             <span
-              class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+              class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
             >
               <span
-                class="euiFlexItem euiFilterSelectItem__content"
+                class="euiFlexItem euiFilterSelectItem__content emotion-euiFlexItem-grow-1"
               >
                 <span
                   class="euiComboBoxOption__contentWrapper"
@@ -542,10 +542,10 @@ exports[`props options list is rendered 1`] = `
             type="button"
           >
             <span
-              class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+              class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
             >
               <span
-                class="euiFlexItem euiFilterSelectItem__content"
+                class="euiFlexItem euiFilterSelectItem__content emotion-euiFlexItem-grow-1"
               >
                 <span
                   class="euiComboBoxOption__contentWrapper"
@@ -569,10 +569,10 @@ exports[`props options list is rendered 1`] = `
             type="button"
           >
             <span
-              class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+              class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
             >
               <span
-                class="euiFlexItem euiFilterSelectItem__content"
+                class="euiFlexItem euiFilterSelectItem__content emotion-euiFlexItem-grow-1"
               >
                 <span
                   class="euiComboBoxOption__contentWrapper"
@@ -596,10 +596,10 @@ exports[`props options list is rendered 1`] = `
             type="button"
           >
             <span
-              class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+              class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
             >
               <span
-                class="euiFlexItem euiFilterSelectItem__content"
+                class="euiFlexItem euiFilterSelectItem__content emotion-euiFlexItem-grow-1"
               >
                 <span
                   class="euiComboBoxOption__contentWrapper"
@@ -623,10 +623,10 @@ exports[`props options list is rendered 1`] = `
             type="button"
           >
             <span
-              class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+              class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
             >
               <span
-                class="euiFlexItem euiFilterSelectItem__content"
+                class="euiFlexItem euiFilterSelectItem__content emotion-euiFlexItem-grow-1"
               >
                 <span
                   class="euiComboBoxOption__contentWrapper"
@@ -650,10 +650,10 @@ exports[`props options list is rendered 1`] = `
             type="button"
           >
             <span
-              class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+              class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
             >
               <span
-                class="euiFlexItem euiFilterSelectItem__content"
+                class="euiFlexItem euiFilterSelectItem__content emotion-euiFlexItem-grow-1"
               >
                 <span
                   class="euiComboBoxOption__contentWrapper"
@@ -677,10 +677,10 @@ exports[`props options list is rendered 1`] = `
             type="button"
           >
             <span
-              class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+              class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
             >
               <span
-                class="euiFlexItem euiFilterSelectItem__content"
+                class="euiFlexItem euiFilterSelectItem__content emotion-euiFlexItem-grow-1"
               >
                 <span
                   class="euiComboBoxOption__contentWrapper"
@@ -704,10 +704,10 @@ exports[`props options list is rendered 1`] = `
             type="button"
           >
             <span
-              class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+              class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
             >
               <span
-                class="euiFlexItem euiFilterSelectItem__content"
+                class="euiFlexItem euiFilterSelectItem__content emotion-euiFlexItem-grow-1"
               >
                 <span
                   class="euiComboBoxOption__contentWrapper"

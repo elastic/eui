@@ -13,6 +13,7 @@ import {
   startThrowingReactWarnings,
   stopThrowingReactWarnings,
 } from '../../test';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import {
   EuiFlexGroup,
@@ -26,6 +27,8 @@ beforeAll(startThrowingReactWarnings);
 afterAll(stopThrowingReactWarnings);
 
 describe('EuiFlexGroup', () => {
+  shouldRenderCustomStyles(<EuiFlexGroup />);
+
   test('is rendered', () => {
     const component = render(
       <EuiFlexGroup {...requiredProps}>

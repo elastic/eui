@@ -6,31 +6,19 @@
  * Side Public License, v 1.
  */
 
-import React, { HTMLAttributes, FunctionComponent } from 'react';
+import React, { HTMLAttributes, FunctionComponent, ElementType } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 
-export type FlexItemGrowSize =
-  | 1
-  | 2
-  | 3
-  | 4
-  | 5
-  | 6
-  | 7
-  | 8
-  | 9
-  | 10
-  | true
-  | false
-  | null;
+import { euiFlexItemStyles } from './flex_item.styles';
 
 export interface EuiFlexItemProps {
-  grow?: FlexItemGrowSize;
-  component?: keyof JSX.IntrinsicElements;
+  grow?: boolean | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | null; // Leave this as an inline string enum so the props table properly parses it
+  /**
+   * @default div
+   */
+  component?: ElementType;
 }
-
-export const GROW_SIZES: FlexItemGrowSize[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 export const EuiFlexItem: FunctionComponent<
   CommonProps &
@@ -45,30 +33,46 @@ export const EuiFlexItem: FunctionComponent<
 }) => {
   validateGrowValue(grow);
 
-  const classes = classNames(
-    'euiFlexItem',
-    {
-      'euiFlexItem--flexGrowZero': !grow,
-      [`euiFlexItem--flexGrow${grow}`]:
-        typeof grow === 'number' ? GROW_SIZES.indexOf(grow) >= 0 : undefined,
-    },
-    className
-  );
+  const styles = euiFlexItemStyles();
+  const cssStyles = [
+    styles.euiFlexItem,
+    !grow ? styles.growZero : styles.grow,
+    grow &&
+      (typeof grow === 'number'
+        ? styles.growSizes[grow]
+        : styles.growSizes['1']),
+  ];
+
+  const classes = classNames('euiFlexItem', className);
 
   return (
-    // @ts-ignore difficult to verify `rest` applies to `Component`
-    <Component className={classes} {...rest}>
+    <Component css={cssStyles} className={classes} {...rest}>
       {children}
     </Component>
   );
 };
 
+export const VALID_GROW_VALUES = [
+  null,
+  undefined,
+  true,
+  false,
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+] as const;
 function validateGrowValue(value: EuiFlexItemProps['grow']) {
-  const validValues = [null, undefined, true, false, ...GROW_SIZES];
-
-  if (validValues.indexOf(value) === -1) {
+  if (VALID_GROW_VALUES.indexOf(value) === -1) {
     throw new Error(
-      `Prop \`grow\` passed to \`EuiFlexItem\` must be a boolean or an integer between 1 and 10, received \`${value}\``
+      `Prop \`grow\` passed to \`EuiFlexItem\` must be a boolean or an integer between 0 and 10, received \`${value}\``
     );
   }
 }

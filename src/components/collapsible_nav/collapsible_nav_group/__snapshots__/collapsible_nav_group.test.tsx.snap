@@ -39,10 +39,10 @@ exports[`EuiCollapsibleNavGroup props iconProps renders data-test-subj 1`] = `
     class="euiCollapsibleNavGroup__heading"
   >
     <div
-      class="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+      class="euiFlexGroup emotion-euiFlexGroup-m-flexStart-center-row"
     >
       <div
-        class="euiFlexItem euiFlexItem--flexGrowZero"
+        class="euiFlexItem emotion-euiFlexItem-growZero"
       >
         <span
           data-euiicon-type="bolt"
@@ -50,7 +50,7 @@ exports[`EuiCollapsibleNavGroup props iconProps renders data-test-subj 1`] = `
         />
       </div>
       <div
-        class="euiFlexItem"
+        class="euiFlexItem emotion-euiFlexItem-grow-1"
       >
         <h3
           class="euiTitle euiCollapsibleNavGroup__title emotion-euiTitle-xxs"
@@ -73,17 +73,17 @@ exports[`EuiCollapsibleNavGroup props iconSize is rendered 1`] = `
     class="euiCollapsibleNavGroup__heading"
   >
     <div
-      class="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+      class="euiFlexGroup emotion-euiFlexGroup-m-flexStart-center-row"
     >
       <div
-        class="euiFlexItem euiFlexItem--flexGrowZero"
+        class="euiFlexItem emotion-euiFlexItem-growZero"
       >
         <span
           data-euiicon-type="bolt"
         />
       </div>
       <div
-        class="euiFlexItem"
+        class="euiFlexItem emotion-euiFlexItem-grow-1"
       >
         <h3
           class="euiTitle euiCollapsibleNavGroup__title emotion-euiTitle-xxs"
@@ -106,17 +106,17 @@ exports[`EuiCollapsibleNavGroup props iconType is rendered 1`] = `
     class="euiCollapsibleNavGroup__heading"
   >
     <div
-      class="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+      class="euiFlexGroup emotion-euiFlexGroup-m-flexStart-center-row"
     >
       <div
-        class="euiFlexItem euiFlexItem--flexGrowZero"
+        class="euiFlexItem emotion-euiFlexItem-growZero"
       >
         <span
           data-euiicon-type="bolt"
         />
       </div>
       <div
-        class="euiFlexItem"
+        class="euiFlexItem emotion-euiFlexItem-grow-1"
       >
         <h3
           class="euiTitle euiCollapsibleNavGroup__title emotion-euiTitle-xxs"
@@ -139,10 +139,10 @@ exports[`EuiCollapsibleNavGroup props title is rendered 1`] = `
     class="euiCollapsibleNavGroup__heading"
   >
     <div
-      class="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+      class="euiFlexGroup emotion-euiFlexGroup-m-flexStart-center-row"
     >
       <div
-        class="euiFlexItem"
+        class="euiFlexItem emotion-euiFlexItem-grow-1"
       >
         <h3
           class="euiTitle euiCollapsibleNavGroup__title emotion-euiTitle-xxs"
@@ -165,10 +165,10 @@ exports[`EuiCollapsibleNavGroup props titleElement can change the rendered eleme
     class="euiCollapsibleNavGroup__heading"
   >
     <div
-      class="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+      class="euiFlexGroup emotion-euiFlexGroup-m-flexStart-center-row"
     >
       <div
-        class="euiFlexItem"
+        class="euiFlexItem emotion-euiFlexItem-grow-1"
       >
         <h2
           class="euiTitle euiCollapsibleNavGroup__title emotion-euiTitle-xxs"
@@ -218,10 +218,10 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true accepts accordion pro
         class="euiAccordion__buttonContent"
       >
         <div
-          class="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+          class="euiFlexGroup emotion-euiFlexGroup-m-flexStart-center-row"
         >
           <div
-            class="euiFlexItem"
+            class="euiFlexItem emotion-euiFlexItem-grow-1"
           >
             <h3
               class="euiTitle euiCollapsibleNavGroup__title emotion-euiTitle-xxs"
@@ -283,10 +283,10 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accord
         class="euiAccordion__buttonContent"
       >
         <div
-          class="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+          class="euiFlexGroup emotion-euiFlexGroup-m-flexStart-center-row"
         >
           <div
-            class="euiFlexItem"
+            class="euiFlexItem emotion-euiFlexItem-grow-1"
           >
             <h3
               class="euiTitle euiCollapsibleNavGroup__title emotion-euiTitle-xxs"

@@ -6,6 +6,8 @@ import {
 } from '../../../../src/components/';
 import { propUtilityForPlayground } from '../../services/playground';
 
+import { flexItemHiglightStyles } from './wrapper_styles';
+
 export const flexGroupConfig = () => {
   const docgenInfo = Array.isArray(EuiFlexGroup.__docgenInfo)
     ? EuiFlexGroup.__docgenInfo[0]
@@ -42,7 +44,7 @@ export const flexGroupConfig = () => {
         },
       },
     },
-    playgroundClassName: 'guideDemo__highlightGrid',
+    playgroundCssStyles: flexItemHiglightStyles,
   };
 };
 
@@ -84,6 +86,6 @@ export const flexGridConfig = () => {
         },
       },
     },
-    playgroundClassName: 'guideDemo__highlightGrid',
+    playgroundCssStyles: flexItemHiglightStyles,
   };
 };

@@ -8,13 +8,47 @@
 
 import React, { HTMLAttributes, Ref, forwardRef } from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf } from '../common';
+import { CommonProps } from '../common';
 
-export type FlexGroupAlignItems = keyof typeof alignItemsToClassNameMap;
-export type FlexGroupComponentType = 'div' | 'span';
-export type FlexGroupDirection = keyof typeof directionToClassNameMap;
-export type FlexGroupGutterSize = keyof typeof gutterSizeToClassNameMap;
-export type FlexGroupJustifyContent = keyof typeof justifyContentToClassNameMap;
+import { useEuiTheme } from '../../services';
+import { euiFlexGroupStyles } from './flex_group.styles';
+
+export const GUTTER_SIZES = ['none', 'xs', 's', 'm', 'l', 'xl'] as const;
+export type EuiFlexGroupGutterSize = typeof GUTTER_SIZES[number];
+
+export const ALIGN_ITEMS = [
+  'stretch',
+  'flexStart',
+  'flexEnd',
+  'center',
+  'baseline',
+] as const;
+export type FlexGroupAlignItems = typeof ALIGN_ITEMS[number];
+
+export const JUSTIFY_CONTENTS = [
+  'flexStart',
+  'flexEnd',
+  'center',
+  'spaceBetween',
+  'spaceAround',
+  'spaceEvenly',
+] as const;
+type FlexGroupJustifyContent = typeof JUSTIFY_CONTENTS[number];
+
+export const DIRECTIONS = [
+  'row',
+  'rowReverse',
+  'column',
+  'columnReverse',
+] as const;
+type FlexGroupDirection = typeof DIRECTIONS[number];
+
+type FlexGroupComponentType = 'div' | 'span';
+const isValidElement = (
+  component: string
+): component is FlexGroupComponentType => {
+  return ['div', 'span'].includes(component);
+};
 
 export interface EuiFlexGroupProps
   extends CommonProps,
@@ -22,59 +56,11 @@ export interface EuiFlexGroupProps
   alignItems?: FlexGroupAlignItems;
   component?: FlexGroupComponentType;
   direction?: FlexGroupDirection;
-  gutterSize?: FlexGroupGutterSize;
+  gutterSize?: EuiFlexGroupGutterSize;
   justifyContent?: FlexGroupJustifyContent;
   responsive?: boolean;
   wrap?: boolean;
 }
-
-const gutterSizeToClassNameMap = {
-  none: null,
-  xs: 'euiFlexGroup--gutterExtraSmall',
-  s: 'euiFlexGroup--gutterSmall',
-  m: 'euiFlexGroup--gutterMedium',
-  l: 'euiFlexGroup--gutterLarge',
-  xl: 'euiFlexGroup--gutterExtraLarge',
-};
-
-export const GUTTER_SIZES = keysOf(gutterSizeToClassNameMap);
-export type EuiFlexGroupGutterSize = keyof typeof gutterSizeToClassNameMap;
-
-const alignItemsToClassNameMap = {
-  stretch: null,
-  flexStart: 'euiFlexGroup--alignItemsFlexStart',
-  flexEnd: 'euiFlexGroup--alignItemsFlexEnd',
-  center: 'euiFlexGroup--alignItemsCenter',
-  baseline: 'euiFlexGroup--alignItemsBaseline',
-};
-
-export const ALIGN_ITEMS = keysOf(alignItemsToClassNameMap);
-
-const justifyContentToClassNameMap = {
-  flexStart: null,
-  flexEnd: 'euiFlexGroup--justifyContentFlexEnd',
-  center: 'euiFlexGroup--justifyContentCenter',
-  spaceBetween: 'euiFlexGroup--justifyContentSpaceBetween',
-  spaceAround: 'euiFlexGroup--justifyContentSpaceAround',
-  spaceEvenly: 'euiFlexGroup--justifyContentSpaceEvenly',
-};
-
-export const JUSTIFY_CONTENTS = keysOf(justifyContentToClassNameMap);
-
-const directionToClassNameMap = {
-  row: 'euiFlexGroup--directionRow',
-  rowReverse: 'euiFlexGroup--directionRowReverse',
-  column: 'euiFlexGroup--directionColumn',
-  columnReverse: 'euiFlexGroup--directionColumnReverse',
-};
-
-export const DIRECTIONS = keysOf(directionToClassNameMap);
-
-const isValidElement = (
-  component: string
-): component is FlexGroupComponentType => {
-  return ['div', 'span'].includes(component);
-};
 
 export const EuiFlexGroup = forwardRef<
   HTMLDivElement | HTMLSpanElement,
@@ -95,18 +81,19 @@ export const EuiFlexGroup = forwardRef<
     },
     ref: Ref<HTMLDivElement> | Ref<HTMLSpanElement>
   ) => {
-    const classes = classNames(
-      'euiFlexGroup',
-      gutterSizeToClassNameMap[gutterSize as FlexGroupGutterSize],
-      alignItemsToClassNameMap[alignItems as FlexGroupAlignItems],
-      justifyContentToClassNameMap[justifyContent as FlexGroupJustifyContent],
-      directionToClassNameMap[direction as FlexGroupDirection],
-      {
-        'euiFlexGroup--responsive': responsive,
-        'euiFlexGroup--wrap': wrap,
-      },
-      className
-    );
+    const euiTheme = useEuiTheme();
+    const styles = euiFlexGroupStyles(euiTheme);
+    const cssStyles = [
+      styles.euiFlexGroup,
+      responsive && !direction.includes('column') && styles.responsive,
+      wrap && styles.wrap,
+      styles.gutterSizes[gutterSize],
+      styles.justifyContent[justifyContent],
+      styles.alignItems[alignItems],
+      styles.direction[direction],
+    ];
+
+    const classes = classNames('euiFlexGroup', className);
 
     if (!isValidElement(component)) {
       throw new Error(
@@ -116,17 +103,19 @@ export const EuiFlexGroup = forwardRef<
 
     return component === 'span' ? (
       <span
+        css={cssStyles}
         className={classes}
         ref={ref as Ref<HTMLSpanElement>}
-        {...(rest as HTMLAttributes<HTMLSpanElement>)}
+        {...rest}
       >
         {children}
       </span>
     ) : (
       <div
+        css={cssStyles}
         className={classes}
         ref={ref as Ref<HTMLDivElement>}
-        {...(rest as HTMLAttributes<HTMLDivElement>)}
+        {...rest}
       >
         {children}
       </div>
