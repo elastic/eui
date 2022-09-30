@@ -1,4 +1,4 @@
-import './analytics';
+import { RecordPageViews } from './analytics';
 import React, { createElement } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -46,107 +46,109 @@ ReactDOM.render(
     <ThemeProvider>
       <AppContext>
         <Router history={history}>
-          <Switch>
-            {routes.map(
-              ({ name, path, sections, isNew, component, from, to }) => {
-                const meta = (
-                  <Helmet>
-                    <title>{`${name} - Elastic UI Framework`}</title>
-                  </Helmet>
-                );
-                const mainComponent = (
-                  <Route
-                    key={path}
-                    path={`/${path}`}
-                    render={(props) => {
-                      const { location } = props;
-                      // prevents encoded urls with a section id to fail
-                      if (location.pathname.includes('%23')) {
-                        const url = decodeURIComponent(location.pathname);
-                        return <Redirect push to={url} />;
-                      } else {
-                        return (
-                          <AppView
-                            currentRoute={{ name, path, sections, isNew }}
-                          >
-                            {({ theme }) => (
-                              <>
-                                {meta}
-                                {createElement(component, {
-                                  selectedTheme: theme,
-                                  title: name,
-                                })}
-                              </>
-                            )}
-                          </AppView>
-                        );
-                      }
-                    }}
-                  />
-                );
-
-                const standaloneSections = [];
-                (sections || []).forEach(
-                  ({ id, fullScreen, sections: subSections }) => {
-                    if (fullScreen) {
-                      const { slug, demo } = fullScreen;
-                      standaloneSections.push(
-                        <Route
-                          key={`/${path}/${slug}`}
-                          path={`/${path}/${slug}`}
-                          render={() => (
-                            <ExampleContext.Provider
-                              value={{ parentPath: `/${path}#${id}` }}
+          <RecordPageViews>
+            <Switch>
+              {routes.map(
+                ({ name, path, sections, isNew, component, from, to }) => {
+                  const meta = (
+                    <Helmet>
+                      <title>{`${name} - Elastic UI Framework`}</title>
+                    </Helmet>
+                  );
+                  const mainComponent = (
+                    <Route
+                      key={path}
+                      path={`/${path}`}
+                      render={(props) => {
+                        const { location } = props;
+                        // prevents encoded urls with a section id to fail
+                        if (location.pathname.includes('%23')) {
+                          const url = decodeURIComponent(location.pathname);
+                          return <Redirect push to={url} />;
+                        } else {
+                          return (
+                            <AppView
+                              currentRoute={{ name, path, sections, isNew }}
                             >
-                              {meta}
-                              {demo}
-                            </ExampleContext.Provider>
-                          )}
-                        />
-                      );
-                    }
-                    if (subSections) {
-                      subSections.forEach(({ fullScreen, id: sectionId }) => {
-                        if (fullScreen) {
-                          const { slug, demo } = fullScreen;
-                          standaloneSections.push(
-                            <Route
-                              key={`/${path}/${id}/${slug}`}
-                              path={`/${path}/${id}/${slug}`}
-                              render={() => (
-                                <ExampleContext.Provider
-                                  value={{
-                                    parentPath: `/${path}/${id}#${sectionId}`,
-                                  }}
-                                >
+                              {({ theme }) => (
+                                <>
                                   {meta}
-                                  {demo}
-                                </ExampleContext.Provider>
+                                  {createElement(component, {
+                                    selectedTheme: theme,
+                                    title: name,
+                                  })}
+                                </>
                               )}
-                            />
+                            </AppView>
                           );
                         }
-                      });
+                      }}
+                    />
+                  );
+
+                  const standaloneSections = [];
+                  (sections || []).forEach(
+                    ({ id, fullScreen, sections: subSections }) => {
+                      if (fullScreen) {
+                        const { slug, demo } = fullScreen;
+                        standaloneSections.push(
+                          <Route
+                            key={`/${path}/${slug}`}
+                            path={`/${path}/${slug}`}
+                            render={() => (
+                              <ExampleContext.Provider
+                                value={{ parentPath: `/${path}#${id}` }}
+                              >
+                                {meta}
+                                {demo}
+                              </ExampleContext.Provider>
+                            )}
+                          />
+                        );
+                      }
+                      if (subSections) {
+                        subSections.forEach(({ fullScreen, id: sectionId }) => {
+                          if (fullScreen) {
+                            const { slug, demo } = fullScreen;
+                            standaloneSections.push(
+                              <Route
+                                key={`/${path}/${id}/${slug}`}
+                                path={`/${path}/${id}/${slug}`}
+                                render={() => (
+                                  <ExampleContext.Provider
+                                    value={{
+                                      parentPath: `/${path}/${id}#${sectionId}`,
+                                    }}
+                                  >
+                                    {meta}
+                                    {demo}
+                                  </ExampleContext.Provider>
+                                )}
+                              />
+                            );
+                          }
+                        });
+                      }
                     }
-                  }
-                );
-                standaloneSections.filter((x) => !!x);
+                  );
+                  standaloneSections.filter((x) => !!x);
 
-                // place standaloneSections before mainComponent so their routes take precedent
-                const routes = [...standaloneSections, mainComponent];
+                  // place standaloneSections before mainComponent so their routes take precedent
+                  const routes = [...standaloneSections, mainComponent];
 
-                if (from)
-                  return [
-                    ...routes,
-                    <Route exact path={`/${from}`}>
-                      <Redirect to={`/${to}`} />
-                    </Route>,
-                  ];
-                else if (component) return routes;
-                return null;
-              }
-            )}
-          </Switch>
+                  if (from)
+                    return [
+                      ...routes,
+                      <Route exact path={`/${from}`}>
+                        <Redirect to={`/${to}`} />
+                      </Route>,
+                    ];
+                  else if (component) return routes;
+                  return null;
+                }
+              )}
+            </Switch>
+          </RecordPageViews>
         </Router>
       </AppContext>
     </ThemeProvider>
