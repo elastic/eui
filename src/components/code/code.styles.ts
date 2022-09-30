@@ -8,11 +8,11 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
-import { euiCodeBlockColors, euiCodeSyntaxTokens } from './code_block.styles';
+import { euiCodeSyntaxColors } from './code_syntax.styles';
 
 export const euiCodeStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-  const euiCode = euiCodeBlockColors(euiThemeContext);
+  const euiCodeSyntax = euiCodeSyntaxColors(euiThemeContext);
 
   return {
     /*
@@ -22,11 +22,10 @@ export const euiCodeStyles = (euiThemeContext: UseEuiTheme) => {
       font-family: ${euiTheme.font.familyCode};
       font-size: 0.9em; /* 1 */
       padding: 0.2em 0.5em; /* 1 */
-      background: ${euiCode.backgroundColor};
+      background: ${euiCodeSyntax.backgroundColor};
       border-radius: ${euiTheme.border.radius.small};
       font-weight: ${euiTheme.font.weight.bold};
-      color: ${euiCode.inlineCodeColor};
-      ${euiCodeSyntaxTokens(euiThemeContext)};
+      color: ${euiCodeSyntax.inlineCodeColor};
     `,
     transparentBackground: css`
       background: transparent;
