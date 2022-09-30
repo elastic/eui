@@ -88,9 +88,9 @@ export default ({
             {...playgroundPanelProps}
           >
             <Compiler
+              css={playgroundCssStyles?.(euiTheme)}
               {...params.compilerProps}
               placeholder={Placeholder}
-              css={playgroundCssStyles?.(euiTheme)}
               className={classNames('playground__demo', playgroundClassName)}
             />
           </EuiPanel>
