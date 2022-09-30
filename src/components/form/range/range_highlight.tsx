@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import classNames from 'classnames';
 
 import { useEuiTheme } from '../../../services';
@@ -49,8 +49,10 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
   const leftPosition = (lowerValue - min) / (max - min);
   const rangeWidth = (upperValue - lowerValue) / (max - min);
 
-  const highlightRef = React.useRef<HTMLDivElement | null>(null);
-  const trackWidth = highlightRef.current?.clientWidth || 0;
+  const [trackWidth, setTrackWidth] = useState(0);
+  const handleRef = (node: HTMLDivElement | null) => {
+    setTrackWidth(node?.clientWidth ?? 0);
+  };
 
   const classes = classNames(
     'euiRangeHighlight',
@@ -100,12 +102,7 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
   };
 
   return (
-    <div
-      className={classes}
-      css={cssStyles}
-      onClick={onClick}
-      ref={highlightRef}
-    >
+    <div className={classes} css={cssStyles} onClick={onClick} ref={handleRef}>
       {((levels && levels.length === 0) || !levels) && (
         <div
           className={progressClasses}
