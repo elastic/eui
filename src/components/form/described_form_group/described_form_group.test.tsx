@@ -7,10 +7,11 @@
  */
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, render } from 'enzyme';
 import { requiredProps } from '../../../test';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 
+import { EuiForm } from '../form';
 import { EuiFormRow } from '../form_row';
 import { EuiDescribedFormGroup } from './described_form_group';
 
@@ -130,6 +131,26 @@ describe('EuiDescribedFormGroup', () => {
       );
 
       expect(component).toMatchSnapshot();
+    });
+  });
+
+  describe('inherits', () => {
+    test('fullWidth from <EuiForm />', () => {
+      const component = render(
+        <EuiForm fullWidth>
+          <EuiDescribedFormGroup {...props} />
+        </EuiForm>
+      );
+
+      if (
+        !component
+          .find('.euiDescribedFormGroup')
+          .hasClass('euiDescribedFormGroup--fullWidth')
+      ) {
+        throw new Error(
+          'expected EuiDescribedFormGroup to inherit fullWidth from EuiForm'
+        );
+      }
     });
   });
 });

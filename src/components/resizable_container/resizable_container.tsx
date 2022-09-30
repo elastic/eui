@@ -36,9 +36,11 @@ import {
 import { useContainerCallbacks, getPosition } from './helpers';
 import {
   EuiResizableButtonMouseEvent,
-  EuiResizableButtonKeyDownEvent,
+  EuiResizableButtonKeyEvent,
   EuiResizableContainerState,
   EuiResizableContainerActions,
+  KeyMoveDirection,
+  ResizeTrigger,
 } from './types';
 
 const containerDirections = {
@@ -66,8 +68,16 @@ export interface EuiResizableContainerProps
    * Pure function which accepts an object where keys are IDs of panels, which sizes were changed,
    * and values are actual sizes in percents
    */
-  onPanelWidthChange?: ({}: { [key: string]: number }) => any;
+  onPanelWidthChange?: ({}: { [key: string]: number }) => void;
   onToggleCollapsed?: ToggleCollapseCallback;
+  /**
+   * Called when resizing starts
+   */
+  onResizeStart?: (trigger: ResizeTrigger) => void;
+  /**
+   * Called when resizing ends
+   */
+  onResizeEnd?: () => void;
   style?: CSSProperties;
 }
 
@@ -87,6 +97,8 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
   className,
   onPanelWidthChange,
   onToggleCollapsed,
+  onResizeStart,
+  onResizeEnd,
   ...rest
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -122,6 +134,31 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
     }
   }, [initialize, containerSize]);
 
+  const resizeContext = useRef<{
+    trigger?: ResizeTrigger;
+    keyMoveDirection?: KeyMoveDirection;
+  }>({});
+
+  const resizeEnd = useCallback(() => {
+    onResizeEnd?.();
+    resizeContext.current = {};
+  }, [onResizeEnd]);
+
+  const resizeStart = useCallback(
+    (trigger: ResizeTrigger, keyMoveDirection?: KeyMoveDirection) => {
+      // If another resize starts while the previous one is still in progress
+      // (e.g. user presses opposite arrow to change direction while the first
+      // is still held down, or user presses an arrow while dragging with the
+      // mouse), we want to signal the end of the previous resize first.
+      if (resizeContext.current.trigger) {
+        resizeEnd();
+      }
+      onResizeStart?.(trigger);
+      resizeContext.current = { trigger, keyMoveDirection };
+    },
+    [onResizeStart, resizeEnd]
+  );
+
   const onMouseDown = useCallback(
     (event: EuiResizableButtonMouseEvent) => {
       const currentTarget = event.currentTarget;
@@ -131,9 +168,10 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
       const prevPanelId = prevPanel!.id;
       const nextPanelId = nextPanel!.id;
       const position = getPosition(event, isHorizontal);
+      resizeStart('pointer');
       actions.dragStart({ position, prevPanelId, nextPanelId });
     },
-    [actions, isHorizontal]
+    [actions, isHorizontal, resizeStart]
   );
 
   const onMouseMove = useCallback(
@@ -160,49 +198,82 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
     ]
   );
 
-  const onKeyDown = useCallback(
-    (event: EuiResizableButtonKeyDownEvent) => {
-      const { key, currentTarget } = event;
-      const shouldResizeHorizontalPanel =
-        isHorizontal && (key === keys.ARROW_LEFT || key === keys.ARROW_RIGHT);
-      const shouldResizeVerticalPanel =
-        !isHorizontal && (key === keys.ARROW_UP || key === keys.ARROW_DOWN);
-      const prevPanelId = currentTarget.previousElementSibling!.id;
-      const nextPanelId = currentTarget.nextElementSibling!.id;
-      let direction;
-      if (key === keys.ARROW_DOWN || key === keys.ARROW_RIGHT) {
+  const getKeyMoveDirection = useCallback(
+    (key: string) => {
+      let direction: KeyMoveDirection | null = null;
+      if (
+        (isHorizontal && key === keys.ARROW_LEFT) ||
+        (!isHorizontal && key === keys.ARROW_UP)
+      ) {
+        direction = 'backward';
+      } else if (
+        (isHorizontal && key === keys.ARROW_RIGHT) ||
+        (!isHorizontal && key === keys.ARROW_DOWN)
+      ) {
         direction = 'forward';
       }
-      if (key === keys.ARROW_UP || key === keys.ARROW_LEFT) {
-        direction = 'backward';
-      }
+      return direction;
+    },
+    [isHorizontal]
+  );
 
-      if (
-        direction === 'forward' ||
-        (direction === 'backward' &&
-          (shouldResizeHorizontalPanel || shouldResizeVerticalPanel) &&
-          prevPanelId &&
-          nextPanelId)
-      ) {
+  const onKeyDown = useCallback(
+    (event: EuiResizableButtonKeyEvent) => {
+      const { key, currentTarget } = event;
+      const direction = getKeyMoveDirection(key);
+      const prevPanelId = currentTarget.previousElementSibling!.id;
+      const nextPanelId = currentTarget.nextElementSibling!.id;
+
+      if (direction && prevPanelId && nextPanelId) {
+        if (!event.repeat) {
+          resizeStart('key', direction);
+        }
         event.preventDefault();
         actions.keyMove({ direction, prevPanelId, nextPanelId });
       }
     },
-    [actions, isHorizontal]
+    [actions, getKeyMoveDirection, resizeStart]
+  );
+
+  const onKeyUp = useCallback(
+    ({ key }: EuiResizableButtonKeyEvent) => {
+      // We only want to signal the end of a resize if the key that was released
+      // is the same as the one that started the resize. This prevents the end
+      // of a resize if the user presses one arrow key, then presses the opposite
+      // arrow key to change direction, then releases the first arrow key.
+      if (
+        resizeContext.current.trigger === 'key' &&
+        resizeContext.current.keyMoveDirection === getKeyMoveDirection(key)
+      ) {
+        resizeEnd();
+      }
+    },
+    [getKeyMoveDirection, resizeEnd]
   );
 
   const onMouseUp = useCallback(() => {
+    if (resizeContext.current.trigger === 'pointer') {
+      resizeEnd();
+    }
     actions.reset();
-  }, [actions]);
+  }, [actions, resizeEnd]);
+
+  const onBlur = useCallback(() => {
+    if (resizeContext.current.trigger === 'key') {
+      resizeEnd();
+    }
+    actions.resizerBlur();
+  }, [actions, resizeEnd]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const EuiResizableButton = useCallback(
     euiResizableButtonWithControls({
       onKeyDown,
+      onKeyUp,
       onMouseDown,
       onTouchStart: onMouseDown,
       onFocus: actions.resizerFocus,
-      onBlur: actions.resizerBlur,
+      onBlur,
       isHorizontal,
       registration: {
         register: actions.registerResizer,

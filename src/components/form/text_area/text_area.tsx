@@ -10,15 +10,22 @@ import React, { TextareaHTMLAttributes, Ref, FunctionComponent } from 'react';
 import { CommonProps } from '../../common';
 import classNames from 'classnames';
 import { EuiValidatableControl } from '../validatable_control';
+import { useFormContext } from '../eui_form_context';
 
 export type EuiTextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
   CommonProps & {
     isInvalid?: boolean;
+    /**
+     * Expand to fill 100% of the parent.
+     * Defaults to `fullWidth` prop of `<EuiForm>`.
+     * @default false
+     */
     fullWidth?: boolean;
     compressed?: boolean;
 
     /**
      * Which direction, if at all, should the textarea resize
+     * @default vertical
      */
     resize?: keyof typeof resizeToClassNameMap;
 
@@ -34,20 +41,23 @@ const resizeToClassNameMap = {
 
 export const RESIZE = Object.keys(resizeToClassNameMap);
 
-export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = ({
-  children,
-  className,
-  compressed,
-  fullWidth = false,
-  id,
-  inputRef,
-  isInvalid,
-  name,
-  placeholder,
-  resize = 'vertical',
-  rows,
-  ...rest
-}) => {
+export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = (props) => {
+  const { defaultFullWidth } = useFormContext();
+  const {
+    children,
+    className,
+    compressed,
+    fullWidth = defaultFullWidth,
+    id,
+    inputRef,
+    isInvalid,
+    name,
+    placeholder,
+    resize = 'vertical',
+    rows,
+    ...rest
+  } = props;
+
   const classes = classNames(
     'euiTextArea',
     resizeToClassNameMap[resize],
