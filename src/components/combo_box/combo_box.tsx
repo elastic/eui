@@ -439,6 +439,7 @@ export class EuiComboBox<T> extends Component<
 
   addCustomOption = (isContainerBlur: boolean, searchValue: string) => {
     const {
+      isCaseSensitive,
       onCreateOption,
       options,
       selectedOptions,
@@ -462,7 +463,13 @@ export class EuiComboBox<T> extends Component<
     }
 
     // Don't create the value if it's already been selected.
-    if (getSelectedOptionForSearchValue(searchValue, selectedOptions)) {
+    if (
+      getSelectedOptionForSearchValue({
+        isCaseSensitive,
+        searchValue,
+        selectedOptions,
+      })
+    ) {
       return;
     }
 
@@ -988,6 +995,7 @@ export class EuiComboBox<T> extends Component<
                 customOptionText={customOptionText}
                 data-test-subj={optionsListDataTestSubj}
                 fullWidth={fullWidth}
+                isCaseSensitive={isCaseSensitive}
                 isLoading={isLoading}
                 listRef={this.listRefCallback}
                 matchingOptions={matchingOptions}

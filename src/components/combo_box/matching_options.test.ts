@@ -65,7 +65,10 @@ describe('getSelectedOptionForSearchValue', () => {
       'data-test-subj': 'saturnOption',
     };
     // Act
-    const got = getSelectedOptionForSearchValue('saturn', options);
+    const got = getSelectedOptionForSearchValue({
+      searchValue: 'saturn',
+      selectedOptions: options,
+    });
     // Assert
     expect(got).toMatchObject(expected);
   });
@@ -74,7 +77,10 @@ describe('getSelectedOptionForSearchValue', () => {
 describe('getSelectedOptionForSearchValue', () => {
   test('returns undefined when no matching option found for search value', () => {
     // Act
-    const got = getSelectedOptionForSearchValue('Pluto', options);
+    const got = getSelectedOptionForSearchValue({
+      searchValue: 'Pluto',
+      selectedOptions: options,
+    });
     // Assert
     expect(got).toBeUndefined();
   });
@@ -85,7 +91,10 @@ describe('getSelectedOptionForSearchValue', () => {
       'data-test-subj': 'saturnOption',
     };
     // Act
-    const got = getSelectedOptionForSearchValue('saturn', options);
+    const got = getSelectedOptionForSearchValue({
+      searchValue: 'saturn',
+      selectedOptions: options,
+    });
     // Assert
     expect(got).toMatchObject(expected);
   });

@@ -28,6 +28,13 @@ interface CollectMatchingOption<T>
   selectedOptions: Array<EuiComboBoxOptionOption<T>>;
   normalizedSearchValue: string;
 }
+interface GetSelectedOptionForSearchValue<T>
+  extends Pick<
+    GetMatchingOptions<T>,
+    'isCaseSensitive' | 'searchValue' | 'selectedOptions'
+  > {
+  optionKey?: string;
+}
 
 export const flattenOptionGroups = <T>(
   optionsOrGroups: Array<EuiComboBoxOptionOption<T>>
@@ -48,17 +55,24 @@ export const flattenOptionGroups = <T>(
   );
 };
 
-export const getSelectedOptionForSearchValue = <T>(
-  searchValue: string,
-  selectedOptions: Array<EuiComboBoxOptionOption<T>>,
-  optionKey?: string
-) => {
-  const normalizedSearchValue = searchValue.toLowerCase();
-  return selectedOptions.find(
-    (option) =>
-      option.label.toLowerCase() === normalizedSearchValue &&
+export const getSelectedOptionForSearchValue = <T>({
+  isCaseSensitive,
+  searchValue,
+  selectedOptions,
+  optionKey,
+}: GetSelectedOptionForSearchValue<T>) => {
+  const normalizedSearchValue = isCaseSensitive
+    ? searchValue
+    : searchValue.toLowerCase();
+  return selectedOptions.find((option) => {
+    const normalizedOption = isCaseSensitive
+      ? option.label
+      : option.label.toLowerCase();
+    return (
+      normalizedOption === normalizedSearchValue &&
       (!optionKey || option.key === optionKey)
-  );
+    );
+  });
 };
 
 const collectMatchingOption = <T>({
@@ -71,11 +85,12 @@ const collectMatchingOption = <T>({
   showPrevSelected,
 }: CollectMatchingOption<T>) => {
   // Only show options which haven't yet been selected unless requested.
-  const selectedOption = getSelectedOptionForSearchValue(
-    option.label,
+  const selectedOption = getSelectedOptionForSearchValue({
+    isCaseSensitive,
+    searchValue: option.label,
     selectedOptions,
-    option.key
-  );
+    optionKey: option.key,
+  });
   if (selectedOption && !showPrevSelected) {
     return false;
   }
