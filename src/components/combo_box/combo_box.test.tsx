@@ -462,18 +462,20 @@ describe('behavior', () => {
   });
 
   describe('isCaseSensitive', () => {
-    const sortMatchesByOptions = [
+    const isCaseSensitiveOptions = [
       {
         label: 'Case sensitivity',
       },
-      ...options,
     ];
+
     test('options "false"', () => {
       const component = mount<
         EuiComboBox<TitanOption>,
         EuiComboBoxProps<TitanOption>,
         { matchingOptions: TitanOption[] }
-      >(<EuiComboBox options={sortMatchesByOptions} isCaseSensitive={false} />);
+      >(
+        <EuiComboBox options={isCaseSensitiveOptions} isCaseSensitive={false} />
+      );
 
       findTestSubject(component, 'comboBoxSearchInput').simulate('change', {
         target: { value: 'case' },
@@ -489,7 +491,9 @@ describe('behavior', () => {
         EuiComboBox<TitanOption>,
         EuiComboBoxProps<TitanOption>,
         { matchingOptions: TitanOption[] }
-      >(<EuiComboBox options={sortMatchesByOptions} isCaseSensitive={true} />);
+      >(
+        <EuiComboBox options={isCaseSensitiveOptions} isCaseSensitive={true} />
+      );
 
       findTestSubject(component, 'comboBoxSearchInput').simulate('change', {
         target: { value: 'case' },

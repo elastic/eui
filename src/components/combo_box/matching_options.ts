@@ -36,6 +36,11 @@ interface GetSelectedOptionForSearchValue<T>
   optionKey?: string;
 }
 
+export const transformForCaseSensitivity = (
+  string: string,
+  isCaseSensitive?: boolean
+) => (isCaseSensitive ? string : string.toLowerCase());
+
 export const flattenOptionGroups = <T>(
   optionsOrGroups: Array<EuiComboBoxOptionOption<T>>
 ) => {
@@ -61,13 +66,15 @@ export const getSelectedOptionForSearchValue = <T>({
   selectedOptions,
   optionKey,
 }: GetSelectedOptionForSearchValue<T>) => {
-  const normalizedSearchValue = isCaseSensitive
-    ? searchValue
-    : searchValue.toLowerCase();
+  const normalizedSearchValue = transformForCaseSensitivity(
+    searchValue,
+    isCaseSensitive
+  );
   return selectedOptions.find((option) => {
-    const normalizedOption = isCaseSensitive
-      ? option.label
-      : option.label.toLowerCase();
+    const normalizedOption = transformForCaseSensitivity(
+      option.label,
+      isCaseSensitive
+    );
     return (
       normalizedOption === normalizedSearchValue &&
       (!optionKey || option.key === optionKey)
@@ -106,8 +113,10 @@ const collectMatchingOption = <T>({
     return;
   }
 
-  let normalizedOption = option.label.trim();
-  if (!isCaseSensitive) normalizedOption = normalizedOption.toLowerCase();
+  const normalizedOption = transformForCaseSensitivity(
+    option.label.trim(),
+    isCaseSensitive
+  );
   if (normalizedOption.includes(normalizedSearchValue)) {
     accumulator.push(option);
   }
@@ -122,9 +131,10 @@ export const getMatchingOptions = <T>({
   showPrevSelected = false,
   sortMatchesBy = 'none',
 }: GetMatchingOptions<T>) => {
-  let normalizedSearchValue = searchValue.trim();
-  if (!isCaseSensitive)
-    normalizedSearchValue = normalizedSearchValue.toLocaleLowerCase();
+  const normalizedSearchValue = transformForCaseSensitivity(
+    searchValue.trim(),
+    isCaseSensitive
+  );
   let matchingOptions: Array<EuiComboBoxOptionOption<T>> = [];
 
   options.forEach((option) => {
@@ -172,9 +182,10 @@ export const getMatchingOptions = <T>({
     } = { startWith: [], others: [] };
 
     matchingOptions.forEach((object) => {
-      const normalizedLabel = isCaseSensitive
-        ? object.label
-        : object.label.toLowerCase();
+      const normalizedLabel = transformForCaseSensitivity(
+        object.label,
+        isCaseSensitive
+      );
       if (normalizedLabel.startsWith(normalizedSearchValue)) {
         refObj.startWith.push(object);
       } else {

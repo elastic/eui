@@ -221,7 +221,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
 
     if (isGroupLabelOption) {
       return (
-        <div key={key ?? label.toLowerCase()} style={style}>
+        <div key={key ?? label} style={style}>
           <EuiComboBoxTitle>{label}</EuiComboBoxTitle>
         </div>
       );
@@ -244,7 +244,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
     return (
       <EuiFilterSelectItem
         style={style}
-        key={option.key ?? option.label.toLowerCase()}
+        key={option.key ?? option.label}
         onClick={() => {
           if (onOptionClick) {
             onOptionClick(option);

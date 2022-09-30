@@ -28,6 +28,7 @@ import {
   getMatchingOptions,
   flattenOptionGroups,
   getSelectedOptionForSearchValue,
+  transformForCaseSensitivity,
   SortMatchesBy,
 } from './matching_options';
 import {
@@ -497,26 +498,40 @@ export class EuiComboBox<T> extends Component<
     if (this.state.matchingOptions.length !== 1) {
       return false;
     }
-    return (
-      this.state.matchingOptions[0].label.toLowerCase() ===
-      searchValue.toLowerCase()
+    const normalizedSearchSubject = transformForCaseSensitivity(
+      this.state.matchingOptions[0].label,
+      this.props.isCaseSensitive
     );
+    const normalizedSearchValue = transformForCaseSensitivity(
+      searchValue,
+      this.props.isCaseSensitive
+    );
+    return normalizedSearchSubject === normalizedSearchValue;
   };
 
   areAllOptionsSelected = () => {
-    const { options, selectedOptions, async } = this.props;
+    const { options, selectedOptions, async, isCaseSensitive } = this.props;
     // Assume if this is async then there could be infinite options.
     if (async) {
       return false;
     }
 
     const flattenOptions = flattenOptionGroups(options).map((option) => {
-      return { ...option, label: option.label.trim().toLowerCase() };
+      return {
+        ...option,
+        label: transformForCaseSensitivity(
+          option.label.trim(),
+          isCaseSensitive
+        ),
+      };
     });
 
     let numberOfSelectedOptions = 0;
     selectedOptions.forEach(({ label }) => {
-      const trimmedLabel = label.trim().toLowerCase();
+      const trimmedLabel = transformForCaseSensitivity(
+        label.trim(),
+        isCaseSensitive
+      );
       if (
         flattenOptions.findIndex((option) => option.label === trimmedLabel) !==
         -1
