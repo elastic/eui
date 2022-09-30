@@ -21,6 +21,15 @@ import { euiFlexGridStyles } from './flex_grid.styles';
 export const DIRECTIONS = ['row', 'column'] as const;
 export type FlexGridDirection = typeof DIRECTIONS[number];
 
+export const ALIGN_ITEMS = [
+  'stretch',
+  'start',
+  'end',
+  'center',
+  'baseline',
+] as const;
+export type FlexGridAlignItems = typeof ALIGN_ITEMS[number];
+
 export const GUTTER_SIZES = ['none', 's', 'm', 'l', 'xl'] as const;
 export type FlexGridGutterSize = typeof GUTTER_SIZES[number];
 
@@ -38,6 +47,10 @@ export interface EuiFlexGridProps {
    * Change this prop to `column` to create a top-down then left-right display.
    */
   direction?: FlexGridDirection;
+  /**
+   * Aligns grid items vertically
+   */
+  alignItems?: FlexGridAlignItems;
   /**
    * Space between flex items
    */
@@ -61,6 +74,7 @@ export const EuiFlexGrid: FunctionComponent<
   className,
   gutterSize = 'l',
   direction = 'row',
+  alignItems = 'stretch',
   responsive = true,
   columns = 1,
   component: Component = 'div',
@@ -77,6 +91,7 @@ export const EuiFlexGrid: FunctionComponent<
     styles.euiFlexGrid,
     styles.gutterSizes[gutterSize],
     styles.direction[direction],
+    styles.alignItems[alignItems],
     styles.columnCount[columns],
     responsive && styles.responsive,
   ];

@@ -64,5 +64,22 @@ export const euiFlexGridStyles = (
         gap: ${euiTheme.size.xl};
       `,
     },
+    alignItems: {
+      stretch: css`
+        align-items: stretch;
+      `,
+      start: css`
+        align-items: start;
+      `,
+      end: css`
+        align-items: end;
+      `,
+      center: css`
+        align-items: center;
+      `,
+      baseline: css`
+        align-items: baseline;
+      `,
+    },
   };
 };
