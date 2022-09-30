@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
-import { euiCodeSyntaxColors } from './code_syntax.styles';
+import { euiCodeSyntaxColors, euiCodeSyntaxTokens } from './code_syntax.styles';
 
 export const euiCodeStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -26,6 +26,8 @@ export const euiCodeStyles = (euiThemeContext: UseEuiTheme) => {
       border-radius: ${euiTheme.border.radius.small};
       font-weight: ${euiTheme.font.weight.bold};
       color: ${euiCodeSyntax.inlineCodeColor};
+
+      ${euiCodeSyntaxTokens(euiThemeContext)}
     `,
     transparentBackground: css`
       background: transparent;

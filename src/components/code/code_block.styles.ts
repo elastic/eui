@@ -20,7 +20,7 @@ import {
   euiScrollBarStyles,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
-import { euiCodeSyntaxColors } from './code_syntax.styles';
+import { euiCodeSyntaxColors, euiCodeSyntaxTokens } from './code_syntax.styles';
 
 export const euiCodeBlockStyles = (
   euiThemeContext: UseEuiTheme,
@@ -41,6 +41,8 @@ export const euiCodeBlockStyles = (
       display: block;
       position: relative;
       background: ${euiCodeSyntax.backgroundColor};
+
+      ${euiCodeSyntaxTokens(euiThemeContext)}
 
       .euiCodeBlock__line {
         display: block;

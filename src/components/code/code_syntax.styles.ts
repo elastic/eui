@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-import { css } from '@emotion/react';
 import {
   UseEuiTheme,
   makeHighContrastColor,
@@ -185,9 +184,3 @@ export const euiCodeSyntaxTokens = (euiThemeContext: UseEuiTheme) => {
     }
   `;
 };
-
-export const euiCodeSyntaxStyles = (euiThemeContext: UseEuiTheme) => css`
-  .euiCodeBlock {
-    ${euiCodeSyntaxTokens(euiThemeContext)};
-  }
-`;

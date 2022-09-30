@@ -8,7 +8,6 @@
 
 import React, { CSSProperties, FunctionComponent, useMemo } from 'react';
 import { RefractorNode } from 'refractor';
-import { Global } from '@emotion/react';
 import classNames from 'classnames';
 import { useCombinedRefs, useEuiTheme } from '../../services';
 import { ExclusiveUnion } from '../common';
@@ -29,7 +28,6 @@ import {
   euiCodeBlockCodeStyles,
   euiCodeBlockControlsStyles,
 } from './code_block.styles';
-import { euiCodeSyntaxStyles } from './code_syntax.styles';
 import { EuiCodeBlockFullScreenWrapper } from './code_block_full_screen_wrapper';
 import { EuiCodeBlockCopyButton } from './code_block_copy_button';
 import { EuiCodeFullScreenButton } from './code_block_full_screen_button';
@@ -330,8 +328,6 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
 
   return (
     <div {...nonFullScreenProps}>
-      <Global styles={euiCodeSyntaxStyles(euiTheme)} />
-
       {isVirtualized ? (
         <EuiCodeBlockVirtualized
           data={data}
