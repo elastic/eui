@@ -29,7 +29,7 @@ export const EuiFlyoutFooter: EuiFlyoutFooterProps = ({
   const cssStyles = [styles.euiFlyoutFooter];
 
   return (
-    <div className={classes} {...rest} css={cssStyles}>
+    <div className={classes} css={cssStyles} {...rest}>
       {children}
     </div>
   );

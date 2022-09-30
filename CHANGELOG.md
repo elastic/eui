@@ -1,3 +1,29 @@
+## [`68.0.0`](https://github.com/elastic/eui/tree/v68.0.0)
+
+- Added `beta` glyph to `EuiIcon` ([#6250](https://github.com/elastic/eui/pull/6250))
+- Added `launch` and `spaces` glyphs to `EuiIcon` ([#6260](https://github.com/elastic/eui/pull/6260))
+- Added the `fallbackDestination` prop to `EuiSkipLink`, which accepts a string of query selectors to fall back to if the `destinationId` does not have a valid target. Defaults to `main` ([#6261](https://github.com/elastic/eui/pull/6261))
+- `EuiSkipLink` is now always an `a` tag to ensure that it is always placed within screen reader link menus. ([#6261](https://github.com/elastic/eui/pull/6261))
+
+**Bug fixes**
+
+- Fixed `EuiSuperDatePicker` not correctly merging passed `className`s ([#6253](https://github.com/elastic/eui/pull/6253))
+- Fixed `EuiColorStops` not correctly merging in passed `data-test-subj`s, `style`s, or `...rest` ([#6255](https://github.com/elastic/eui/pull/6255))
+- Fixed `EuiResizablePanel` incorrectly passing `style` to the wrapper instead of the panel. Use `wrapperProps.style` to pass styles to the wrapper. ([#6255](https://github.com/elastic/eui/pull/6255))
+- Fixed custom `onClick`s passed to `EuiSkipLink` overriding `overrideLinkBehavior` ([#6261](https://github.com/elastic/eui/pull/6261))
+
+**Breaking changes**
+
+- Removed `inherit` and `ghost` color from `EuiListGroupItem` ([#6207](https://github.com/elastic/eui/pull/6207))
+- Changed default color to `text` instead of `inherit` ([#6207](https://github.com/elastic/eui/pull/6207))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiListGroup` and `EuiListGroupItem` to Emotion; Removed `$euiListGroupGutterTypes`, `$euiListGroupItemColorTypes` and `$euiListGroupItemSizeTypes`; ([#6207](https://github.com/elastic/eui/pull/6207))
+- Converted `EuiBadgeGroup` to Emotion ([#6258](https://github.com/elastic/eui/pull/6258))
+- Converted `EuiBetaBadge` to Emotion ([#6258](https://github.com/elastic/eui/pull/6258))
+- Converted `EuiNotificationBadge` to Emotion ([#6258](https://github.com/elastic/eui/pull/6258))
+
 ## [`67.1.2`](https://github.com/elastic/eui/tree/v67.1.2)
 
 **Bug fixes**

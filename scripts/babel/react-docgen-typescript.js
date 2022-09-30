@@ -9,8 +9,8 @@ const util = require('util');
 const { SyntaxKind } = require('typescript');
 const chokidar = require('chokidar');
 
-const { NODE_ENV, CI, WEBPACK_DEV_SERVER } = process.env;
-const isDevelopment = WEBPACK_DEV_SERVER === 'true' && CI == null;
+const { NODE_ENV, CI, WEBPACK_SERVE } = process.env;
+const isDevelopment = WEBPACK_SERVE === 'true' && CI == null;
 const bypassWatch = NODE_ENV === 'puppeteer' || NODE_ENV === 'production';
 
 /**

@@ -20,6 +20,7 @@ import {
   EuiFlexGroupGutterSize,
   EuiFlexItemProps,
 } from '../../flex';
+import { useFormContext } from '../eui_form_context';
 
 export type EuiDescribedFormGroupProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'title'> & {
@@ -29,17 +30,21 @@ export type EuiDescribedFormGroupProps = CommonProps &
     children?: ReactNode;
     /**
      * Passed to `EuiFlexGroup`.
+     * @default l
      */
     gutterSize?: EuiFlexGroupGutterSize;
     /**
      * Expand to fill 100% of the parent.
+     * Defaults to `fullWidth` prop of `<EuiForm>`.
      * Default max-width is 800px.
+     * @default false
      */
     fullWidth?: boolean;
     /**
      * Width ratio of description column compared to field column.
      * Can be used in conjunction with `fullWidth` and
      * may require `fullWidth` to be applied to child elements.
+     * @default half
      */
     ratio?: 'half' | 'third' | 'quarter';
     /**
@@ -48,6 +53,7 @@ export type EuiDescribedFormGroupProps = CommonProps &
     title: EuiTitleProps['children'];
     /**
      * Adjust the visual `size` of the EuiTitle that wraps `title`.
+     * @default xs
      */
     titleSize?: EuiTitleSize;
     /**
@@ -64,19 +70,24 @@ export type EuiDescribedFormGroupProps = CommonProps &
     fieldFlexItemProps?: PropsOf<typeof EuiFlexItem>;
   };
 
-export const EuiDescribedFormGroup: FunctionComponent<EuiDescribedFormGroupProps> = ({
-  children,
-  className,
-  gutterSize = 'l',
-  fullWidth = false,
-  ratio = 'half',
-  titleSize = 'xs',
-  title,
-  description,
-  descriptionFlexItemProps,
-  fieldFlexItemProps,
-  ...rest
-}) => {
+export const EuiDescribedFormGroup: FunctionComponent<EuiDescribedFormGroupProps> = (
+  props
+) => {
+  const { defaultFullWidth } = useFormContext();
+
+  const {
+    children,
+    className,
+    gutterSize = 'l',
+    fullWidth = defaultFullWidth,
+    ratio = 'half',
+    titleSize = 'xs',
+    title,
+    description,
+    descriptionFlexItemProps,
+    fieldFlexItemProps,
+    ...rest
+  } = props;
   const classes = classNames(
     'euiDescribedFormGroup',
     {
@@ -93,18 +104,16 @@ export const EuiDescribedFormGroup: FunctionComponent<EuiDescribedFormGroupProps
   let renderedDescription: ReactNode;
 
   if (description) {
-    // If the description is just a string, wrap it in a paragraph element
-    if (typeof description === 'string') {
-      description = <p>{description}</p>;
-    }
-
     renderedDescription = (
       <EuiText
         size="s"
         color="subdued"
         className="euiDescribedFormGroup__description"
       >
-        {description}
+        {
+          // If the description is just a string, wrap it in a paragraph element
+          typeof description === 'string' ? <p>{description}</p> : description
+        }
       </EuiText>
     );
   }

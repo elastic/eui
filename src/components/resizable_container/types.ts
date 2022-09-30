@@ -14,6 +14,10 @@ export type PanelPosition = 'first' | 'middle' | 'last';
 
 export type PanelDirection = 'left' | 'right';
 
+export type KeyMoveDirection = 'forward' | 'backward';
+
+export type ResizeTrigger = 'pointer' | 'key';
+
 export interface EuiResizablePanelController {
   id: string;
   size: number;
@@ -41,7 +45,7 @@ export type EuiResizableButtonMouseEvent =
   | MouseEvent<HTMLButtonElement>
   | TouchEvent<HTMLButtonElement>;
 
-export type EuiResizableButtonKeyDownEvent = KeyboardEvent<HTMLButtonElement>;
+export type EuiResizableButtonKeyEvent = KeyboardEvent<HTMLButtonElement>;
 
 export interface EuiResizableContainerState {
   isDragging: boolean;
@@ -82,7 +86,7 @@ export interface ActionKeyMove {
   payload: {
     prevPanelId: string;
     nextPanelId: string;
-    direction: 'forward' | 'backward';
+    direction: KeyMoveDirection;
   };
 }
 

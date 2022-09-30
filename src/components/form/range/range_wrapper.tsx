@@ -9,19 +9,34 @@
 import React, { HTMLAttributes, forwardRef } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
-import { useEuiTheme } from '../../../services';
+import { useFormContext } from '../eui_form_context';
 
+import { useEuiTheme } from '../../../services';
 import { euiRangeWrapperStyles } from './range_wrapper.styles';
 
 export interface EuiRangeWrapperProps
   extends CommonProps,
     HTMLAttributes<HTMLDivElement> {
+  /**
+   * Expand to fill 100% of the parent.
+   * Defaults to `fullWidth` prop of `<EuiForm>`.
+   * @default false
+   */
   fullWidth?: boolean;
   compressed?: boolean;
 }
 
 export const EuiRangeWrapper = forwardRef<HTMLDivElement, EuiRangeWrapperProps>(
-  ({ children, className, fullWidth, compressed, ...rest }, ref) => {
+  (props, ref) => {
+    const { defaultFullWidth } = useFormContext();
+    const {
+      children,
+      className,
+      fullWidth = defaultFullWidth,
+      compressed,
+      ...rest
+    } = props;
+
     const classes = classNames(
       'euiRangeWrapper',
       {
