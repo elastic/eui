@@ -37,6 +37,7 @@ export default () => {
     {
       text:
         'Nebulosa subspecies is also a real mouthful, especially for creatures without mouths',
+      truncate: true,
     },
   ];
 
