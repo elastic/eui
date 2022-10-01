@@ -14,7 +14,7 @@ interface SVGRProps {
   titleId?: string;
 }
 
-const EuiIconFilter = ({
+const EuiIconFilterIgnore = ({
   title,
   titleId,
   ...props
@@ -28,8 +28,8 @@ const EuiIconFilter = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M3 5.5a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm2 3a.5.5 0 01.5-.5h5a.5.5 0 010 1h-5a.5.5 0 01-.5-.5zM7.5 11a.5.5 0 000 1h1a.5.5 0 000-1h-1z" />
+    <path d="M.5 1a.5.5 0 000 1h9a.5.5 0 000-1h-9zM2 4.5a.5.5 0 01.5-.5h5a.5.5 0 010 1h-5a.5.5 0 01-.5-.5zm2 3a.5.5 0 01.5-.5h1a.5.5 0 010 1h-1a.5.5 0 01-.5-.5zM16 11.5a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zm-4.5-.707L9.854 9.146a.5.5 0 10-.708.708l1.647 1.646-1.647 1.646a.5.5 0 00.708.708l1.646-1.647 1.646 1.647a.5.5 0 00.708-.708L12.207 11.5l1.647-1.646a.5.5 0 00-.708-.708L11.5 10.793z" />
   </svg>
 );
 
-export const icon = EuiIconFilter;
+export const icon = EuiIconFilterIgnore;
