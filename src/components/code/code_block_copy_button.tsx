@@ -9,18 +9,14 @@ import React, { FunctionComponent } from 'react';
 import { EuiCopy } from '../copy';
 import { useEuiI18n } from '../i18n';
 import { EuiButtonIcon } from '../button';
-import { euiCodeBlockCopyButtonStyles } from './code_block_copy_button.styles';
 
 export const EuiCodeBlockCopyButton: FunctionComponent<{
   textToCopy: string;
 }> = ({ textToCopy }) => {
-  const styles = euiCodeBlockCopyButtonStyles();
-  const cssStyles = [styles.euiCodeBlockCopyButton];
-
   const copyButton = useEuiI18n('euiCodeBlockCopyButton.copy', 'Copy');
 
   return (
-    <div className="euiCodeBlock__copyButton" css={cssStyles}>
+    <div className="euiCodeBlock__copyButton">
       <EuiCopy textToCopy={textToCopy}>
         {(copy) => (
           <EuiButtonIcon

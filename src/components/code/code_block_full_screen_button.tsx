@@ -8,15 +8,11 @@
 import React, { FunctionComponent } from 'react';
 import { useEuiI18n } from '../i18n';
 import { EuiButtonIcon } from '../button';
-import { euiCodeFullScreenButtonStyles } from './code_block_full_screen_button.styles';
 
 export const EuiCodeFullScreenButton: FunctionComponent<{
   isFullScreen: boolean;
   toggleFullScreen: () => void;
 }> = ({ isFullScreen, toggleFullScreen }) => {
-  const styles = euiCodeFullScreenButtonStyles();
-  const cssStyles = [styles.euiCodeFullScreenButton];
-
   const [fullscreenCollapse, fullscreenExpand] = useEuiI18n(
     [
       'euiCodeBlockFullScreenButton.fullscreenCollapse',
@@ -28,7 +24,6 @@ export const EuiCodeFullScreenButton: FunctionComponent<{
   return (
     <EuiButtonIcon
       className="euiCodeBlock__fullScreenButton"
-      css={cssStyles}
       onClick={toggleFullScreen}
       iconType={isFullScreen ? 'fullScreenExit' : 'fullScreen'}
       color="text"
