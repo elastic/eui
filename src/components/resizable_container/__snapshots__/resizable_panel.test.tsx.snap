@@ -3,7 +3,8 @@
 exports[`EuiResizablePanel props wrapperPadding 1`] = `
 <div>
   <div
-    class="euiResizablePanel euiResizablePanel--middle emotion-euiResizablePanel-l"
+    class="euiResizablePanel emotion-euiResizablePanel-l"
+    data-position="middle"
     id="resizable-panel_generated-id"
     style="width: 100%; height: 0%;"
   >
@@ -21,7 +22,8 @@ exports[`EuiResizablePanel props wrapperPadding 1`] = `
 exports[`EuiResizablePanel renders 1`] = `
 <div>
   <div
-    class="euiResizablePanel euiResizablePanel--middle emotion-euiResizablePanel"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
     style="width: 100%; height: 0%;"
   >

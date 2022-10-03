@@ -245,16 +245,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     isCollapsible && contentStyles[axis].hasCollapsibleButton,
   ];
 
-  const classes = classNames(
-    'euiResizablePanel',
-    {
-      'euiResizablePanel--collapsible': isCollapsible,
-      'euiResizablePanel-isCollapsed': isCollapsed,
-    },
-    `euiResizablePanel--${position}`,
-    wrapperProps && wrapperProps.className
-  );
-
+  const classes = classNames('euiResizablePanel', wrapperProps?.className);
   const panelClasses = classNames('euiResizablePanel__content', className);
 
   let dimensions;
@@ -392,6 +383,8 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
       ref={divRef}
       style={inlineStyles}
       className={classes}
+      data-collapsed={isCollapsed || undefined}
+      data-position={position}
     >
       {/* The toggle is displayed on either side for tab order */}
       {hasVisibleToggle && hasLeftToggle && theToggle}

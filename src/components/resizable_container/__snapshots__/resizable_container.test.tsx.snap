@@ -7,7 +7,8 @@ exports[`EuiResizableContainer can adjust panel props 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiResizablePanel euiResizablePanel--middle emotion-euiResizablePanel"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
     style="width:50%;height:auto"
   >
@@ -25,7 +26,8 @@ exports[`EuiResizableContainer can adjust panel props 1`] = `
     type="button"
   />
   <div
-    class="euiResizablePanel euiResizablePanel--middle emotion-euiResizablePanel"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
     style="width:50%;height:auto"
   >
@@ -45,7 +47,8 @@ exports[`EuiResizableContainer can be controlled externally 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiResizablePanel euiResizablePanel--middle emotion-euiResizablePanel"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
     style="width:50%;height:auto"
   >
@@ -63,7 +66,8 @@ exports[`EuiResizableContainer can be controlled externally 1`] = `
     type="button"
   />
   <div
-    class="euiResizablePanel euiResizablePanel--middle emotion-euiResizablePanel"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
     style="width:50%;height:auto"
   >
@@ -83,7 +87,8 @@ exports[`EuiResizableContainer can be vertical 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiResizablePanel euiResizablePanel--middle emotion-euiResizablePanel"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
     style="width:100%;height:50%"
   >
@@ -101,7 +106,8 @@ exports[`EuiResizableContainer can be vertical 1`] = `
     type="button"
   />
   <div
-    class="euiResizablePanel euiResizablePanel--middle emotion-euiResizablePanel"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
     style="width:100%;height:50%"
   >
@@ -121,7 +127,8 @@ exports[`EuiResizableContainer can have more than two panels 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiResizablePanel euiResizablePanel--middle emotion-euiResizablePanel"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
     style="width:33%;height:auto"
   >
@@ -139,7 +146,8 @@ exports[`EuiResizableContainer can have more than two panels 1`] = `
     type="button"
   />
   <div
-    class="euiResizablePanel euiResizablePanel--middle emotion-euiResizablePanel"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
     style="width:33%;height:auto"
   >
@@ -157,7 +165,8 @@ exports[`EuiResizableContainer can have more than two panels 1`] = `
     type="button"
   />
   <div
-    class="euiResizablePanel euiResizablePanel--middle emotion-euiResizablePanel"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
     style="width:33%;height:auto"
   >
@@ -177,7 +186,8 @@ exports[`EuiResizableContainer can have scrollable panels 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiResizablePanel euiResizablePanel--middle emotion-euiResizablePanel"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
     style="width:50%;height:auto"
   >
@@ -195,7 +205,8 @@ exports[`EuiResizableContainer can have scrollable panels 1`] = `
     type="button"
   />
   <div
-    class="euiResizablePanel euiResizablePanel--middle emotion-euiResizablePanel"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
     style="width:50%;height:auto"
   >
@@ -215,7 +226,8 @@ exports[`EuiResizableContainer can have toggleable panels 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiResizablePanel euiResizablePanel--collapsible euiResizablePanel--middle emotion-euiResizablePanel"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
     style="width:20%;height:auto"
   >
@@ -233,7 +245,8 @@ exports[`EuiResizableContainer can have toggleable panels 1`] = `
     type="button"
   />
   <div
-    class="euiResizablePanel euiResizablePanel--middle emotion-euiResizablePanel"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
     style="width:80%;height:auto"
   >
@@ -253,7 +266,8 @@ exports[`EuiResizableContainer is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiResizablePanel euiResizablePanel--middle emotion-euiResizablePanel"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
     style="width:50%;height:auto"
   >
@@ -271,7 +285,8 @@ exports[`EuiResizableContainer is rendered 1`] = `
     type="button"
   />
   <div
-    class="euiResizablePanel euiResizablePanel--middle emotion-euiResizablePanel"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
     style="width:50%;height:auto"
   >
@@ -291,7 +306,8 @@ exports[`EuiResizableContainer toggleable panels can be configurable 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiResizablePanel euiResizablePanel--collapsible euiResizablePanel--middle emotion-euiResizablePanel"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
     style="width:20%;height:auto"
   >
@@ -309,7 +325,8 @@ exports[`EuiResizableContainer toggleable panels can be configurable 1`] = `
     type="button"
   />
   <div
-    class="euiResizablePanel euiResizablePanel--middle emotion-euiResizablePanel"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
     style="width:80%;height:auto"
   >
