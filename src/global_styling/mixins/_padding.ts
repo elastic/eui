@@ -27,30 +27,38 @@ export const euiPaddingSize = (
   }
 };
 
+export const euiPaddingSizeCSS = (
+  euiThemeContext: UseEuiTheme,
+  side?: LogicalSides
+) => {
+  const property = side ? `padding-${logicalSide[side]}` : 'padding';
+
+  return {
+    none: null,
+    xs: css`
+      ${property}: ${euiPaddingSize(euiThemeContext, 'xs')};
+    `,
+    s: css`
+      ${property}: ${euiPaddingSize(euiThemeContext, 's')};
+    `,
+    m: css`
+      ${property}: ${euiPaddingSize(euiThemeContext, 'm')};
+    `,
+    l: css`
+      ${property}: ${euiPaddingSize(euiThemeContext, 'l')};
+    `,
+    xl: css`
+      ${property}: ${euiPaddingSize(euiThemeContext, 'xl')};
+    `,
+  };
+};
+
 export const useEuiPaddingSize = (size: EuiPaddingSize) => {
   const euiTheme = useEuiTheme();
   return euiPaddingSize(euiTheme, size);
 };
 
 export const useEuiPaddingCSS = (side?: LogicalSides) => {
-  const property = side ? `padding-${logicalSide[side]}` : 'padding';
-
-  return {
-    none: null,
-    xs: css`
-      ${property}: ${useEuiPaddingSize('xs')};
-    `,
-    s: css`
-      ${property}: ${useEuiPaddingSize('s')};
-    `,
-    m: css`
-      ${property}: ${useEuiPaddingSize('m')};
-    `,
-    l: css`
-      ${property}: ${useEuiPaddingSize('l')};
-    `,
-    xl: css`
-      ${property}: ${useEuiPaddingSize('xl')};
-    `,
-  };
+  const euiTheme = useEuiTheme();
+  return euiPaddingSizeCSS(euiTheme, side);
 };

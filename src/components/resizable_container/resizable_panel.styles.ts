@@ -11,6 +11,7 @@ import {
   logicalCSS,
   logicalCSSWithFallback,
   euiScrollBarStyles,
+  euiPaddingSizeCSS,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
@@ -22,6 +23,9 @@ export const euiResizablePanelStyles = (euiThemeContext: UseEuiTheme) => {
     collapsed: css`
       overflow: hidden;
     `,
+    paddingSizes: {
+      ...euiPaddingSizeCSS(euiThemeContext),
+    },
   };
 };
 

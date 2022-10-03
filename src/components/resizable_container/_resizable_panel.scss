@@ -1,10 +1,4 @@
 
-@each $modifier, $amount in $euiPanelPaddingModifiers {
-  .euiResizablePanel--#{$modifier} {
-    padding: $amount;
-  }
-}
-
 .euiResizablePanel-isCollapsed {
   .euiResizablePanel__content * {
     display: none;

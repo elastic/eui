@@ -18,6 +18,7 @@ import React, {
 import classNames from 'classnames';
 
 import { useGeneratedHtmlId, useEuiTheme } from '../../services';
+import { euiPaddingSize } from '../../global_styling';
 import { CommonProps } from '../common';
 
 import { useEuiResizableContainerContext } from './context';
@@ -35,15 +36,6 @@ import {
   euiResizablePanelStyles,
   euiResizablePanelContentStyles,
 } from './resizable_panel.styles';
-
-const panelPaddingValues = {
-  none: 0,
-  xs: 4,
-  s: 8,
-  m: 16,
-  l: 24,
-  xl: 32,
-};
 
 export interface ToggleOptions {
   'data-test-subj'?: string;
@@ -90,12 +82,6 @@ export interface EuiResizablePanelControls {
   onToggleCollapsedInternal: ToggleCollapseCallback;
 }
 
-const paddingSizeToClassNameMap = {
-  none: null,
-  s: 'euiResizablePanel--paddingSmall',
-  m: 'euiResizablePanel--paddingMedium',
-  l: 'euiResizablePanel--paddingLarge',
-};
 export interface EuiResizablePanelProps
   extends _EuiPanelProps,
     CommonProps,
@@ -240,14 +226,14 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     return direction;
   }, [isCollapsed, isCollapsible, position, panels, panelId]);
 
-  const padding = useMemo(() => {
-    return `${panelPaddingValues[paddingSize] * 2}px`;
-  }, [paddingSize]);
-
   const euiTheme = useEuiTheme();
 
   const styles = euiResizablePanelStyles(euiTheme);
-  const cssStyles = [styles.euiResizablePanel, isCollapsed && styles.collapsed];
+  const cssStyles = [
+    styles.euiResizablePanel,
+    isCollapsed && styles.collapsed,
+    styles.paddingSizes[wrapperPadding],
+  ];
   const contentStyles = euiResizablePanelContentStyles(euiTheme);
   const contentCssStyles = [
     contentStyles.euiResizablePanel__content,
@@ -256,9 +242,6 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
 
   const classes = classNames(
     'euiResizablePanel',
-    // @ts-expect-error EuiPanel increased its available sizes
-    // When we convert this component to Emotion, we should also increase sizes to match EuiPanel and remove this comment.
-    paddingSizeToClassNameMap[wrapperPadding],
     {
       'euiResizablePanel--collapsible': isCollapsible,
       'euiResizablePanel-isCollapsed': isCollapsed,
@@ -287,6 +270,8 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     ...wrapperProps?.style,
     ...dimensions,
   };
+
+  const padding = euiPaddingSize(euiTheme, paddingSize) || '0px';
 
   useEffect(() => {
     if (!registration) return;

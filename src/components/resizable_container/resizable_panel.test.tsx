@@ -44,4 +44,18 @@ describe('EuiResizablePanel', () => {
 
     expect(container).toMatchSnapshot();
   });
+
+  describe('props', () => {
+    test('wrapperPadding', () => {
+      const { container } = render(
+        <EuiResizableContainerContextProvider registry={mockRegistry}>
+          <EuiResizablePanel {...requiredProps} wrapperPadding="l">
+            Content
+          </EuiResizablePanel>
+        </EuiResizableContainerContextProvider>
+      );
+
+      expect(container).toMatchSnapshot();
+    });
+  });
 });
