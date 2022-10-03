@@ -8,6 +8,39 @@
 
 import { EuiComboBoxOptionOption } from './types';
 
+export type SortMatchesBy = 'none' | 'startsWith';
+interface GetMatchingOptions<T> {
+  options: Array<EuiComboBoxOptionOption<T>>;
+  selectedOptions: Array<EuiComboBoxOptionOption<T>>;
+  searchValue: string;
+  isCaseSensitive?: boolean;
+  isPreFiltered?: boolean;
+  showPrevSelected?: boolean;
+  sortMatchesBy?: SortMatchesBy;
+}
+interface CollectMatchingOption<T>
+  extends Pick<
+    GetMatchingOptions<T>,
+    'isCaseSensitive' | 'isPreFiltered' | 'showPrevSelected'
+  > {
+  accumulator: Array<EuiComboBoxOptionOption<T>>;
+  option: EuiComboBoxOptionOption<T>;
+  selectedOptions: Array<EuiComboBoxOptionOption<T>>;
+  normalizedSearchValue: string;
+}
+interface GetSelectedOptionForSearchValue<T>
+  extends Pick<
+    GetMatchingOptions<T>,
+    'isCaseSensitive' | 'searchValue' | 'selectedOptions'
+  > {
+  optionKey?: string;
+}
+
+export const transformForCaseSensitivity = (
+  string: string,
+  isCaseSensitive?: boolean
+) => (isCaseSensitive ? string : string.toLowerCase());
+
 export const flattenOptionGroups = <T>(
   optionsOrGroups: Array<EuiComboBoxOptionOption<T>>
 ) => {
@@ -27,33 +60,44 @@ export const flattenOptionGroups = <T>(
   );
 };
 
-export const getSelectedOptionForSearchValue = <T>(
-  searchValue: string,
-  selectedOptions: Array<EuiComboBoxOptionOption<T>>,
-  optionKey?: string
-) => {
-  const normalizedSearchValue = searchValue.toLowerCase();
-  return selectedOptions.find(
-    (option) =>
-      option.label.toLowerCase() === normalizedSearchValue &&
-      (!optionKey || option.key === optionKey)
+export const getSelectedOptionForSearchValue = <T>({
+  isCaseSensitive,
+  searchValue,
+  selectedOptions,
+  optionKey,
+}: GetSelectedOptionForSearchValue<T>) => {
+  const normalizedSearchValue = transformForCaseSensitivity(
+    searchValue,
+    isCaseSensitive
   );
+  return selectedOptions.find((option) => {
+    const normalizedOption = transformForCaseSensitivity(
+      option.label,
+      isCaseSensitive
+    );
+    return (
+      normalizedOption === normalizedSearchValue &&
+      (!optionKey || option.key === optionKey)
+    );
+  });
 };
 
-const collectMatchingOption = <T>(
-  accumulator: Array<EuiComboBoxOptionOption<T>>,
-  option: EuiComboBoxOptionOption<T>,
-  selectedOptions: Array<EuiComboBoxOptionOption<T>>,
-  normalizedSearchValue: string,
-  isPreFiltered: boolean,
-  showPrevSelected: boolean
-) => {
+const collectMatchingOption = <T>({
+  accumulator,
+  option,
+  selectedOptions,
+  normalizedSearchValue,
+  isCaseSensitive,
+  isPreFiltered,
+  showPrevSelected,
+}: CollectMatchingOption<T>) => {
   // Only show options which haven't yet been selected unless requested.
-  const selectedOption = getSelectedOptionForSearchValue(
-    option.label,
+  const selectedOption = getSelectedOptionForSearchValue({
+    isCaseSensitive,
+    searchValue: option.label,
     selectedOptions,
-    option.key
-  );
+    optionKey: option.key,
+  });
   if (selectedOption && !showPrevSelected) {
     return false;
   }
@@ -69,35 +113,43 @@ const collectMatchingOption = <T>(
     return;
   }
 
-  const normalizedOption = option.label.trim().toLowerCase();
+  const normalizedOption = transformForCaseSensitivity(
+    option.label.trim(),
+    isCaseSensitive
+  );
   if (normalizedOption.includes(normalizedSearchValue)) {
     accumulator.push(option);
   }
 };
 
-export const getMatchingOptions = <T>(
-  options: Array<EuiComboBoxOptionOption<T>>,
-  selectedOptions: Array<EuiComboBoxOptionOption<T>>,
-  searchValue: string,
-  isPreFiltered: boolean,
-  showPrevSelected: boolean,
-  sortMatchesBy: string
-) => {
-  const normalizedSearchValue = searchValue.trim().toLowerCase();
+export const getMatchingOptions = <T>({
+  options,
+  selectedOptions,
+  searchValue,
+  isCaseSensitive = false,
+  isPreFiltered = false,
+  showPrevSelected = false,
+  sortMatchesBy = 'none',
+}: GetMatchingOptions<T>) => {
+  const normalizedSearchValue = transformForCaseSensitivity(
+    searchValue.trim(),
+    isCaseSensitive
+  );
   let matchingOptions: Array<EuiComboBoxOptionOption<T>> = [];
 
   options.forEach((option) => {
     if (option.options) {
       const matchingOptionsForGroup: Array<EuiComboBoxOptionOption<T>> = [];
       option.options.forEach((groupOption: EuiComboBoxOptionOption<T>) => {
-        collectMatchingOption(
-          matchingOptionsForGroup,
-          groupOption,
+        collectMatchingOption({
+          accumulator: matchingOptionsForGroup,
+          option: groupOption,
           selectedOptions,
           normalizedSearchValue,
+          isCaseSensitive,
           isPreFiltered,
-          showPrevSelected
-        );
+          showPrevSelected,
+        });
       });
       if (matchingOptionsForGroup.length > 0) {
         // Add option for group label
@@ -111,14 +163,15 @@ export const getMatchingOptions = <T>(
         matchingOptions = matchingOptions.concat(matchingOptionsForGroup);
       }
     } else {
-      collectMatchingOption(
-        matchingOptions,
+      collectMatchingOption({
+        accumulator: matchingOptions,
         option,
         selectedOptions,
         normalizedSearchValue,
+        isCaseSensitive,
         isPreFiltered,
-        showPrevSelected
-      );
+        showPrevSelected,
+      });
     }
   });
 
@@ -129,7 +182,11 @@ export const getMatchingOptions = <T>(
     } = { startWith: [], others: [] };
 
     matchingOptions.forEach((object) => {
-      if (object.label.toLowerCase().startsWith(normalizedSearchValue)) {
+      const normalizedLabel = transformForCaseSensitivity(
+        object.label,
+        isCaseSensitive
+      );
+      if (normalizedLabel.startsWith(normalizedSearchValue)) {
         refObj.startWith.push(object);
       } else {
         refObj.others.push(object);
