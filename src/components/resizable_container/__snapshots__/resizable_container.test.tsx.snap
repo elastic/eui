@@ -3,7 +3,7 @@
 exports[`EuiResizableContainer can adjust panel props 1`] = `
 <div
   aria-label="aria-label"
-  class="euiResizableContainer euiResizableContainer--horizontal testClass1 testClass2"
+  class="euiResizableContainer testClass1 testClass2 emotion-euiResizableContainer-horizontal"
   data-test-subj="test subject string"
 >
   <div
@@ -41,7 +41,7 @@ exports[`EuiResizableContainer can adjust panel props 1`] = `
 exports[`EuiResizableContainer can be controlled externally 1`] = `
 <div
   aria-label="aria-label"
-  class="euiResizableContainer euiResizableContainer--horizontal testClass1 testClass2"
+  class="euiResizableContainer testClass1 testClass2 emotion-euiResizableContainer-horizontal"
   data-test-subj="test subject string"
 >
   <div
@@ -79,7 +79,7 @@ exports[`EuiResizableContainer can be controlled externally 1`] = `
 exports[`EuiResizableContainer can be vertical 1`] = `
 <div
   aria-label="aria-label"
-  class="euiResizableContainer euiResizableContainer--vertical testClass1 testClass2"
+  class="euiResizableContainer testClass1 testClass2 emotion-euiResizableContainer-vertical"
   data-test-subj="test subject string"
 >
   <div
@@ -117,7 +117,7 @@ exports[`EuiResizableContainer can be vertical 1`] = `
 exports[`EuiResizableContainer can have more than two panels 1`] = `
 <div
   aria-label="aria-label"
-  class="euiResizableContainer euiResizableContainer--horizontal testClass1 testClass2"
+  class="euiResizableContainer testClass1 testClass2 emotion-euiResizableContainer-horizontal"
   data-test-subj="test subject string"
 >
   <div
@@ -173,7 +173,7 @@ exports[`EuiResizableContainer can have more than two panels 1`] = `
 exports[`EuiResizableContainer can have scrollable panels 1`] = `
 <div
   aria-label="aria-label"
-  class="euiResizableContainer euiResizableContainer--horizontal testClass1 testClass2"
+  class="euiResizableContainer testClass1 testClass2 emotion-euiResizableContainer-horizontal"
   data-test-subj="test subject string"
 >
   <div
@@ -211,7 +211,7 @@ exports[`EuiResizableContainer can have scrollable panels 1`] = `
 exports[`EuiResizableContainer can have toggleable panels 1`] = `
 <div
   aria-label="aria-label"
-  class="euiResizableContainer euiResizableContainer--horizontal testClass1 testClass2"
+  class="euiResizableContainer testClass1 testClass2 emotion-euiResizableContainer-horizontal"
   data-test-subj="test subject string"
 >
   <div
@@ -249,7 +249,7 @@ exports[`EuiResizableContainer can have toggleable panels 1`] = `
 exports[`EuiResizableContainer is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiResizableContainer euiResizableContainer--horizontal testClass1 testClass2"
+  class="euiResizableContainer testClass1 testClass2 emotion-euiResizableContainer-horizontal"
   data-test-subj="test subject string"
 >
   <div
@@ -287,7 +287,7 @@ exports[`EuiResizableContainer is rendered 1`] = `
 exports[`EuiResizableContainer toggleable panels can be configurable 1`] = `
 <div
   aria-label="aria-label"
-  class="euiResizableContainer euiResizableContainer--horizontal testClass1 testClass2"
+  class="euiResizableContainer testClass1 testClass2 emotion-euiResizableContainer-horizontal"
   data-test-subj="test subject string"
 >
   <div

@@ -9,11 +9,24 @@
 import React from 'react';
 import { mount, render } from 'enzyme';
 import { findTestSubject, requiredProps } from '../../test';
+import { shouldRenderCustomStyles } from '../..//test/internal';
 
 import { EuiResizableContainer } from './resizable_container';
 import { keys } from '../../services';
 
 describe('EuiResizableContainer', () => {
+  shouldRenderCustomStyles(
+    <EuiResizableContainer {...requiredProps}>
+      {(EuiResizablePanel, EuiResizableButton) => (
+        <>
+          <EuiResizablePanel initialSize={50}>Testing</EuiResizablePanel>
+          <EuiResizableButton />
+          <EuiResizablePanel initialSize={50}>123</EuiResizablePanel>
+        </>
+      )}
+    </EuiResizableContainer>
+  );
+
   test('is rendered', () => {
     const component = render(
       <EuiResizableContainer {...requiredProps}>
