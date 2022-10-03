@@ -32,6 +32,8 @@ export const euiResizablePanelStyles = (euiThemeContext: UseEuiTheme) => {
 export const euiResizablePanelContentStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
+  const { euiTheme } = euiThemeContext;
+
   return {
     euiResizablePanel__content: css`
       ${logicalCSS('height', '100%')}
@@ -40,5 +42,26 @@ export const euiResizablePanelContentStyles = (
       ${euiScrollBarStyles(euiThemeContext)}
       ${logicalCSSWithFallback('overflow-y', 'auto')}
     `,
+    collapsedChildren: css`
+      * {
+        display: none;
+      }
+    `,
+    horizontal: {
+      collapsed: css`
+        ${logicalCSS('min-width', '0 !important')}
+      `,
+      hasCollapsibleButton: css`
+        ${logicalCSS('min-width', `${euiTheme.size.l} !important`)}
+      `,
+    },
+    vertical: {
+      collapsed: css`
+        ${logicalCSS('min-height', '0 !important')}
+      `,
+      hasCollapsibleButton: css`
+        ${logicalCSS('min-height', `${euiTheme.size.l} !important`)}
+      `,
+    },
   };
 };

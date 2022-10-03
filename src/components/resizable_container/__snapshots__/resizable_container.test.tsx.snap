@@ -220,7 +220,7 @@ exports[`EuiResizableContainer can have toggleable panels 1`] = `
     style="width:20%;height:auto"
   >
     <div
-      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content emotion-euiPanel-grow-none-m-transparent-euiResizablePanel__content-scrollable"
+      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content emotion-euiPanel-grow-none-m-transparent-euiResizablePanel__content-scrollable-hasCollapsibleButton"
     >
       Sidebar
     </div>
@@ -296,7 +296,7 @@ exports[`EuiResizableContainer toggleable panels can be configurable 1`] = `
     style="width:20%;height:auto"
   >
     <div
-      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content emotion-euiPanel-grow-none-m-transparent-euiResizablePanel__content-scrollable"
+      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content emotion-euiPanel-grow-none-m-transparent-euiResizablePanel__content-scrollable-hasCollapsibleButton"
     >
       Sidebar
     </div>

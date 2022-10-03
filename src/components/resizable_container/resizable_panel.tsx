@@ -226,6 +226,8 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     return direction;
   }, [isCollapsed, isCollapsible, position, panels, panelId]);
 
+  const axis = isHorizontal ? 'horizontal' : 'vertical';
+
   const euiTheme = useEuiTheme();
 
   const styles = euiResizablePanelStyles(euiTheme);
@@ -238,6 +240,9 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   const contentCssStyles = [
     contentStyles.euiResizablePanel__content,
     scrollable && contentStyles.scrollable,
+    isCollapsed && contentStyles.collapsedChildren,
+    isCollapsed && !isCollapsible && contentStyles[axis].collapsed,
+    isCollapsible && contentStyles[axis].hasCollapsibleButton,
   ];
 
   const classes = classNames(
@@ -350,7 +355,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     theToggle = (
       <EuiResizableCollapseButton
         externalPosition="before"
-        direction={isHorizontal ? 'horizontal' : 'vertical'}
+        direction={axis}
         isVisible={
           theResizer && (theResizer.isFocused || theResizer.isDisabled)
         }
@@ -366,7 +371,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     theToggle = (
       <EuiResizableCollapseButton
         externalPosition="after"
-        direction={isHorizontal ? 'horizontal' : 'vertical'}
+        direction={axis}
         isVisible={
           theResizer && (theResizer.isFocused || theResizer.isDisabled)
         }
