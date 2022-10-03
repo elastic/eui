@@ -3,13 +3,13 @@
 exports[`EuiResizablePanel renders 1`] = `
 <div>
   <div
-    class="euiResizablePanel euiResizablePanel--middle"
+    class="euiResizablePanel euiResizablePanel--middle emotion-euiResizablePanel"
     id="resizable-panel_generated-id"
     style="width: 100%; height: 0%;"
   >
     <div
       aria-label="aria-label"
-      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content euiResizablePanel__content--scrollable testClass1 testClass2 emotion-euiPanel-grow-none-m-transparent"
+      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content testClass1 testClass2 emotion-euiPanel-grow-none-m-transparent-euiResizablePanel__content-scrollable"
       data-test-subj="test subject string"
     >
       Content

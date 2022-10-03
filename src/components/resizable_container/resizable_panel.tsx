@@ -17,9 +17,10 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
+import { useGeneratedHtmlId, useEuiTheme } from '../../services';
 import { CommonProps } from '../common';
+
 import { useEuiResizableContainerContext } from './context';
-import { useGeneratedHtmlId } from '../../services';
 import { EuiPanel } from '../panel';
 import { PanelPaddingSize, _EuiPanelProps } from '../panel/panel';
 import { useEuiI18n } from '../i18n';
@@ -30,6 +31,10 @@ import {
   PanelPosition,
 } from './types';
 import { EuiResizableCollapseButton } from './resizable_collapse_button';
+import {
+  euiResizablePanelStyles,
+  euiResizablePanelContentStyles,
+} from './resizable_panel.styles';
 
 const panelPaddingValues = {
   none: 0,
@@ -239,6 +244,16 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     return `${panelPaddingValues[paddingSize] * 2}px`;
   }, [paddingSize]);
 
+  const euiTheme = useEuiTheme();
+
+  const styles = euiResizablePanelStyles(euiTheme);
+  const cssStyles = [styles.euiResizablePanel, isCollapsed && styles.collapsed];
+  const contentStyles = euiResizablePanelContentStyles(euiTheme);
+  const contentCssStyles = [
+    contentStyles.euiResizablePanel__content,
+    scrollable && contentStyles.scrollable,
+  ];
+
   const classes = classNames(
     'euiResizablePanel',
     // @ts-expect-error EuiPanel increased its available sizes
@@ -252,13 +267,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     wrapperProps && wrapperProps.className
   );
 
-  const panelClasses = classNames(
-    'euiResizablePanel__content',
-    {
-      'euiResizablePanel__content--scrollable': scrollable,
-    },
-    className
-  );
+  const panelClasses = classNames('euiResizablePanel__content', className);
 
   let dimensions;
 
@@ -274,7 +283,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     };
   }
 
-  const styles = {
+  const inlineStyles = {
     ...wrapperProps?.style,
     ...dimensions,
   };
@@ -387,15 +396,17 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
 
   return (
     <div
+      css={cssStyles}
       {...wrapperProps}
       id={panelId}
       ref={divRef}
-      style={styles}
+      style={inlineStyles}
       className={classes}
     >
       {/* The toggle is displayed on either side for tab order */}
       {hasVisibleToggle && hasLeftToggle && theToggle}
       <EuiPanel
+        css={contentCssStyles}
         className={panelClasses}
         hasShadow={hasShadow}
         borderRadius={borderRadius}

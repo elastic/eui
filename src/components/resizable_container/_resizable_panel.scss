@@ -1,6 +1,3 @@
-.euiResizablePanel {
-  position: relative;
-}
 
 @each $modifier, $amount in $euiPanelPaddingModifiers {
   .euiResizablePanel--#{$modifier} {
@@ -8,23 +5,7 @@
   }
 }
 
-.euiResizablePanel__content {
-  height: 100%;
-
-  // Manually remove the border for default theme
-  &:not([class*='plain']) {
-    border-width: 0;
-  }
-}
-
-.euiResizablePanel__content--scrollable {
-  @include euiScrollBar;
-  overflow-y: auto;
-}
-
 .euiResizablePanel-isCollapsed {
-  overflow: hidden;
-
   .euiResizablePanel__content * {
     display: none;
   }
