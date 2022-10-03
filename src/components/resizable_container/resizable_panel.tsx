@@ -18,7 +18,7 @@ import React, {
 import classNames from 'classnames';
 
 import { useGeneratedHtmlId, useEuiTheme } from '../../services';
-import { euiPaddingSize } from '../../global_styling';
+import { logicalSizeStyle, euiPaddingSize } from '../../global_styling';
 import { CommonProps } from '../common';
 
 import { useEuiResizableContainerContext } from './context';
@@ -248,23 +248,11 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   const classes = classNames('euiResizablePanel', wrapperProps?.className);
   const panelClasses = classNames('euiResizablePanel__content', className);
 
-  let dimensions;
-
-  if (size) {
-    dimensions = {
-      width: isHorizontal ? `${size}%` : '100%',
-      height: isHorizontal ? 'auto' : `${size}%`,
-    };
-  } else {
-    dimensions = {
-      width: isHorizontal ? `${innerSize}%` : '100%',
-      height: isHorizontal ? 'auto' : `${innerSize}%`,
-    };
-  }
-
   const inlineStyles = {
     ...wrapperProps?.style,
-    ...dimensions,
+    ...(isHorizontal
+      ? logicalSizeStyle(`${size || innerSize}%`, 'auto')
+      : logicalSizeStyle('100%', `${size || innerSize}%`)),
   };
 
   const padding = euiPaddingSize(euiTheme, paddingSize) || '0px';
