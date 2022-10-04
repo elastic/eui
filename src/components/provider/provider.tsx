@@ -7,7 +7,7 @@
  */
 
 import React, { PropsWithChildren } from 'react';
-import createCache from '@emotion/cache';
+import { cache as fallbackCache } from '@emotion/css';
 import { EmotionCache } from '@emotion/react';
 
 import {
@@ -27,9 +27,6 @@ import { EuiCacheProvider } from './cache';
 const isEmotionCacheObject = (
   obj: EmotionCache | Object
 ): obj is EmotionCache => obj.hasOwnProperty('key');
-
-const fallbackCache = createCache({ key: 'css' });
-fallbackCache.compat = true;
 
 export interface EuiProviderProps<T>
   extends Omit<EuiThemeProviderProps<T>, 'children' | 'theme'>,
