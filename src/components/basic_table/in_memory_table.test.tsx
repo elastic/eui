@@ -13,6 +13,7 @@ import { requiredProps } from '../../test';
 import { EuiInMemoryTable, EuiInMemoryTableProps } from './in_memory_table';
 import { keys, SortDirection } from '../../services';
 import { SearchFilterConfig } from '../search_bar/filters';
+import { Query } from '../search_bar/query';
 
 interface BasicItem {
   id: number | string;
@@ -1312,6 +1313,54 @@ describe('EuiInMemoryTable', () => {
       expect(component.find('td').at(1).text()).toBe('Index1');
       expect(component.find('td').at(2).text()).toBe('Index2');
       expect(component.find('td').at(3).text()).toBe('Index3');
+    });
+  });
+
+  describe('controlled search query', () => {
+    it('execute the Query and filters the table items', () => {
+      const items = [{ title: 'foo' }, { title: 'bar' }, { title: 'baz' }];
+      const columns = [{ field: 'title', name: 'Title' }];
+      const query = Query.parse('baz');
+
+      const component = mount(
+        <EuiInMemoryTable
+          items={items}
+          search={{ query }}
+          columns={columns}
+          executeQueryOptions={{ defaultFields: ['title'] }}
+        />
+      );
+
+      const tableContent = component.find(
+        '.euiTableRowCell .euiTableCellContent'
+      );
+
+      expect(tableContent.length).toBe(1); // only 1 match
+      expect(tableContent.at(0).text()).toBe('baz');
+    });
+
+    it('does not execute the Query and renders the items passed as is', () => {
+      const items = [{ title: 'foo' }, { title: 'bar' }, { title: 'baz' }];
+      const columns = [{ field: 'title', name: 'Title' }];
+      const query = Query.parse('baz');
+
+      const component = mount(
+        <EuiInMemoryTable
+          items={items}
+          search={{ query }}
+          columns={columns}
+          executeQueryOptions={{ defaultFields: ['title'], enabled: false }}
+        />
+      );
+
+      const tableContent = component.find(
+        '.euiTableRowCell .euiTableCellContent'
+      );
+
+      expect(tableContent.length).toBe(3);
+      expect(tableContent.at(0).text()).toBe('foo');
+      expect(tableContent.at(1).text()).toBe('bar');
+      expect(tableContent.at(2).text()).toBe('baz');
     });
   });
 });
