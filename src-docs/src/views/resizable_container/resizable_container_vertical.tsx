@@ -1,6 +1,6 @@
 import React from 'react';
-
 import { EuiText, EuiResizableContainer } from '../../../../src/components';
+// @ts-ignore - faker does not have type declarations
 import { fake } from 'faker';
 
 const text = (
