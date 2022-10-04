@@ -89,7 +89,8 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
   useEffect(() => {
     if (!overlayMaskNode) return;
     overlayMaskNode.className = cx('euiOverlayMask', cssStyles, className);
-  }, [overlayMaskNode, cssStyles, className]);
+    overlayMaskNode.dataset.relativeToHeader = headerZindexLocation;
+  }, [overlayMaskNode, className, cssStyles, headerZindexLocation]);
 
   return (
     <EuiPortal portalRef={combinedMaskRef}>

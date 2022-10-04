@@ -82,13 +82,14 @@ export const OverlayMaskExample = {
               <strong>EuiFlyout</strong>
             </Link>{' '}
             which utilizes the overlay mask but should keep the header visible
-            needs to change this prop to <EuiCode>{'"below"'}</EuiCode>.
+            should use <EuiCode>{'"below"'}</EuiCode>.
           </p>
         </>
       ),
       props: { EuiOverlayMask: EuiOverlayMaskProps },
-      snippet: `<EuiOverlayMask onClick={toggleFlyOut} headerZindexLocation="below" />
-<EuiFlyout onClose={toggleFlyOut}></EuiFlyout>`,
+      snippet: `<EuiOverlayMask onClick={toggleFlyOut} headerZindexLocation="below">
+    <!-- Content goes here -->
+</EuiOverlayMask>`,
       demo: <OverlayMaskHeader />,
     },
   ],

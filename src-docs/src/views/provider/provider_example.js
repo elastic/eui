@@ -44,7 +44,7 @@ export const ProviderExample = {
 
           <p>
             See{' '}
-            <EuiLink href="/#/theming/theme-provider">
+            <EuiLink href="#/theming/theme-provider">
               <strong>EuiThemeProvider</strong>
             </EuiLink>{' '}
             for full documentation as all relevant props will pass through. For
@@ -63,7 +63,7 @@ export const ProviderExample = {
             <strong>EuiProvider</strong> by composing its constituent parts.
             More context, functionality, and configurations will be added to{' '}
             <strong>EuiProvider</strong> in future releases. Nested instances of{' '}
-            <EuiLink href="/#/theming/theme-provider">
+            <EuiLink href="#/theming/theme-provider">
               <strong>EuiThemeProvider</strong>
             </EuiLink>
             , however, are valid.
