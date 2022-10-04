@@ -8,7 +8,26 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
+import { EuiRangeLevel } from './range_levels';
 import { euiRangeVariables } from './range.styles';
+
+export const euiRangeLevelColor = (
+  color: EuiRangeLevel['color'],
+  euiTheme: UseEuiTheme['euiTheme']
+) => {
+  switch (color) {
+    case 'primary':
+      return euiTheme.colors.primary;
+    case 'success':
+      return euiTheme.colors.success;
+    case 'warning':
+      return euiTheme.colors.warning;
+    case 'danger':
+      return euiTheme.colors.danger;
+    default:
+      return color;
+  }
+};
 
 export const euiRangeLevelsStyles = (euiThemeContext: UseEuiTheme) => {
   const { colorMode } = euiThemeContext;
@@ -93,16 +112,16 @@ export const euiRangeLevelStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     primary: css`
-      background-color: ${euiTheme.colors.primary};
+      background-color: ${euiRangeLevelColor('primary', euiTheme)};
     `,
     success: css`
-      background-color: ${euiTheme.colors.success};
+      background-color: ${euiRangeLevelColor('success', euiTheme)};
     `,
     warning: css`
-      background-color: ${euiTheme.colors.warning};
+      background-color: ${euiRangeLevelColor('warning', euiTheme)};
     `,
     danger: css`
-      background-color: ${euiTheme.colors.danger};
+      background-color: ${euiRangeLevelColor('danger', euiTheme)};
     `,
     customColor: css``,
   };

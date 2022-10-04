@@ -17,6 +17,8 @@ import {
   euiRangeThumbFocus,
   euiRangeThumbBoxShadow,
 } from './range.styles';
+import { EuiRangeLevel } from './range_levels';
+import { euiRangeLevelColor } from './range_levels.styles';
 import { euiCustomControl } from '../form.styles';
 import { euiShadow } from '../../../themes/amsterdam/global_styling/mixins';
 
@@ -140,5 +142,21 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
         border-color: ${transparentize(range.trackBorderColor, 0.6)};
       `)}
     `,
+    hasLevels: css`
+      ${euiRangeThumbPerBrowser(`
+      background-color: ${range.thumbBackgroundColor};  
+    `)}
+    `,
   };
 };
+
+export const euiRangeSliderThumbStyles = (
+  color: EuiRangeLevel['color'],
+  euiThemeContext: UseEuiTheme
+) => ({
+  thumb: css`
+    ${euiRangeThumbPerBrowser(`
+      background-color: ${euiRangeLevelColor(color, euiThemeContext.euiTheme)}
+    `)}
+  `,
+});

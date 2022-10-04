@@ -18,6 +18,7 @@ import {
   WithEuiThemeProps,
 } from '../../../services/';
 
+import { getLevelColor } from './utils';
 import { EuiRangeHighlight } from './range_highlight';
 import { EuiRangeInput, EuiRangeInputProps } from './range_input';
 import { EuiRangeLabel } from './range_label';
@@ -250,6 +251,7 @@ export class EuiRangeClass extends Component<
     );
 
     const styles = euiRangeStyles(theme);
+    const thumbColor = levels && getLevelColor(levels, Number(value));
 
     const theRange = (
       <EuiRangeWrapper
@@ -299,6 +301,7 @@ export class EuiRangeClass extends Component<
             onFocus={showInput === true ? undefined : onFocus}
             onBlur={showInputOnly ? this.onInputBlur : onBlur}
             aria-hidden={showInput === true ? true : false}
+            thumbColor={thumbColor}
             {...rest}
           />
 

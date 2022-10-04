@@ -16,7 +16,11 @@ import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
 import { useEuiTheme } from '../../../services';
-import { euiRangeSliderStyles } from './range_slider.styles';
+import { EuiRangeLevel } from './range_levels';
+import {
+  euiRangeSliderStyles,
+  euiRangeSliderThumbStyles,
+} from './range_slider.styles';
 
 export type EuiRangeSliderProps = InputHTMLAttributes<HTMLInputElement> &
   CommonProps & {
@@ -33,6 +37,7 @@ export type EuiRangeSliderProps = InputHTMLAttributes<HTMLInputElement> &
     disabled?: boolean;
     tabIndex?: number;
     onChange?: ChangeEventHandler<HTMLInputElement>;
+    thumbColor?: EuiRangeLevel['color'];
   };
 
 export const EuiRangeSlider = forwardRef<HTMLInputElement, EuiRangeSliderProps>(
@@ -52,6 +57,7 @@ export const EuiRangeSlider = forwardRef<HTMLInputElement, EuiRangeSliderProps>(
       showTicks,
       showRange,
       hasFocus,
+      thumbColor,
       ...rest
     },
     ref
@@ -68,11 +74,13 @@ export const EuiRangeSlider = forwardRef<HTMLInputElement, EuiRangeSliderProps>(
 
     const euiTheme = useEuiTheme();
     const styles = euiRangeSliderStyles(euiTheme);
+    const thumbStyles = euiRangeSliderThumbStyles(thumbColor, euiTheme);
     const cssStyles = [
       styles.euiRangeSlider,
       showTicks && styles.hasTicks,
       hasFocus && styles.hasFocus,
       showRange && styles.hasRange,
+      thumbColor && thumbStyles.thumb,
     ];
 
     return (

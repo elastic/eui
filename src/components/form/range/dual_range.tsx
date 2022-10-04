@@ -33,10 +33,11 @@ import { EuiRangeThumb } from './range_thumb';
 import { EuiRangeTick } from './range_ticks';
 import { EuiRangeTrack } from './range_track';
 import { EuiRangeWrapper } from './range_wrapper';
-import { calculateThumbPosition } from './utils';
+import { calculateThumbPosition, getLevelColor } from './utils';
 import { FormContext, FormContextValue } from '../eui_form_context';
 
 import { euiRangeStyles } from './range.styles';
+import { euiRangeLevelColor } from './range_levels.styles';
 import { euiDualRangeStyles } from './dual_range.styles';
 
 type ValueMember = number | string;
@@ -641,6 +642,22 @@ export class EuiDualRangeClass extends Component<
           this.state.rangeWidth
         )
       : { left: '0' };
+    const leftThumbColor =
+      levels && getLevelColor(levels, Number(this.lowerValue));
+    const rightThumbColor =
+      levels && getLevelColor(levels, Number(this.upperValue));
+    const leftThumbStyles = leftThumbColor
+      ? {
+          ...leftThumbPosition,
+          backgroundColor: euiRangeLevelColor(leftThumbColor, theme.euiTheme),
+        }
+      : leftThumbPosition;
+    const rightThumbStyles = rightThumbColor
+      ? {
+          ...rightThumbPosition,
+          backgroundColor: euiRangeLevelColor(rightThumbColor, theme.euiTheme),
+        }
+      : rightThumbPosition;
 
     const cssStyles = [dualRangeStyles.euiDualRange, customCss];
 
@@ -754,7 +771,7 @@ export class EuiDualRangeClass extends Component<
                 onKeyDown={this.handleLowerKeyDown}
                 onFocus={this.onThumbFocus}
                 onBlur={this.onThumbBlur}
-                style={leftThumbPosition}
+                style={leftThumbStyles}
                 aria-describedby={this.props['aria-describedby']}
                 aria-label={this.props['aria-label']}
               />
@@ -769,7 +786,7 @@ export class EuiDualRangeClass extends Component<
                 onKeyDown={this.handleUpperKeyDown}
                 onFocus={this.onThumbFocus}
                 onBlur={this.onThumbBlur}
-                style={rightThumbPosition}
+                style={rightThumbStyles}
                 aria-describedby={this.props['aria-describedby']}
                 aria-label={this.props['aria-label']}
               />
