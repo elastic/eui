@@ -3,40 +3,45 @@ import React, { useState } from 'react';
 import {
   EuiOverlayMask,
   EuiButton,
+  EuiSpacer,
   EuiFlyout,
-  EuiTitle,
   EuiFlyoutHeader,
+  EuiTitle,
 } from '../../../../src/components';
 
 export default () => {
-  const [flyOut, changeFlyOut] = useState(false);
+  const [maskOpen, changeMask] = useState(false);
+  const [showFlyout, changeFlyout] = useState(false);
 
-  const toggleFlyOut = () => {
-    changeFlyOut(!flyOut);
-  };
+  const mask = (
+    <EuiOverlayMask headerZindexLocation="below">
+      <EuiButton onClick={() => changeMask(false)}>
+        Click this button to close
+      </EuiButton>
+    </EuiOverlayMask>
+  );
 
-  let flyout;
-  if (flyOut) {
-    flyout = (
-      <React.Fragment>
-        <EuiOverlayMask headerZindexLocation="below" />
-        <EuiFlyout size="s" onClose={toggleFlyOut}>
-          <EuiFlyoutHeader>
-            <EuiTitle>
-              <h1>Click outside this flyout to close overlay. </h1>
-            </EuiTitle>
-          </EuiFlyoutHeader>
-        </EuiFlyout>
-      </React.Fragment>
-    );
-  }
+  const flyout = (
+    <EuiFlyout size="s" onClose={() => changeFlyout(false)}>
+      <EuiFlyoutHeader>
+        <EuiTitle>
+          <h1>Click outside this flyout to close overlay. </h1>
+        </EuiTitle>
+      </EuiFlyoutHeader>
+    </EuiFlyout>
+  );
 
   return (
-    <React.Fragment>
-      <EuiButton onClick={() => toggleFlyOut()}>
-        Overlay as a sibling of a flyout
+    <>
+      <EuiButton onClick={() => changeMask(true)}>
+        Overlay below header
       </EuiButton>
-      {flyout}
-    </React.Fragment>
+      <EuiSpacer size="xxl" />
+      <EuiButton onClick={() => changeFlyout(true)}>
+        EuiFlyout defaults to below
+      </EuiButton>
+      {maskOpen ? mask : null}
+      {showFlyout ? flyout : null}
+    </>
   );
 };
