@@ -304,12 +304,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
       calculatedPosition,
     } = this.state;
 
-    const classes = classNames(
-      'euiToolTip',
-      positionsToClassNameMap[this.state.calculatedPosition],
-      className
-    );
-
+    const classes = classNames('euiToolTip', className);
     const anchorClasses = classNames(anchorClassName, anchorProps?.className);
 
     return (

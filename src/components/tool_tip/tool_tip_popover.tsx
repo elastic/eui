@@ -76,7 +76,13 @@ export const EuiToolTipPopover: FunctionComponent<Props> = ({
   const classes = classNames('euiToolTipPopover', className);
 
   return (
-    <div css={cssStyles} className={classes} ref={setPopoverRef} {...rest}>
+    <div
+      css={cssStyles}
+      className={classes}
+      ref={setPopoverRef}
+      data-position={calculatedPosition}
+      {...rest}
+    >
       {title && (
         <div css={styles.euiToolTip__title} className="euiToolTip__title">
           {title}
