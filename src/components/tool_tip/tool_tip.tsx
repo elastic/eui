@@ -344,6 +344,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
               <EuiToolTipArrow
                 style={arrowStyles}
                 className="euiToolTip__arrow"
+                position={calculatedPosition}
               />
               <EuiResizeObserver onResize={this.positionToolTip}>
                 {(resizeRef) => <div ref={resizeRef}>{content}</div>}

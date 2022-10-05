@@ -60,9 +60,6 @@ const euiToolTipAnimationHorizontal = (size: string) => keyframes`
 export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
   const animationTiming = `${euiTheme.animation.slow} ease-out 0s forwards`;
-  /*
-   * 1. Shift arrow 1px more than half its size to account for border radius
-   */
   const arrowSize = euiTheme.size.m;
   const arrowPlusSize = mathWithUnits(arrowSize, (x) => (x / 2 + 1) * -1); // 1.
   const arrowMinusSize = mathWithUnits(arrowSize, (x) => (x / 2 - 1) * -1); // 1.
@@ -101,19 +98,11 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
         animation: ${euiToolTipAnimationVertical(euiTheme.size.base)}
           ${animationTiming};
       }
-
-      [class*='euiToolTip__arrow'] {
-        transform: translateY(${arrowMinusSize}) rotateZ(45deg); /* 1 */
-      }
     `,
     left: css`
       ${euiCanAnimate} {
         animation: ${euiToolTipAnimationHorizontal(`-${euiTheme.size.base}`)}
           ${animationTiming};
-      }
-
-      [class*='euiToolTip__arrow'] {
-        transform: translateX(${arrowPlusSize}) rotateZ(45deg); /* 1 */
       }
     `,
     right: css`
@@ -121,12 +110,8 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
         animation: ${euiToolTipAnimationHorizontal(euiTheme.size.base)}
           ${animationTiming};
       }
-
-      [class*='euiToolTip__arrow'] {
-        transform: translateX(${arrowMinusSize}) rotateZ(45deg); /* 1 */
-      }
     `,
-    // Elements
+    // Arrow
     euiToolTip__arrow: css`
       content: '';
       position: absolute;
@@ -134,8 +119,22 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
       border-radius: 2px;
       background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};
       ${logicalSizeCSS(arrowSize, arrowSize)};
-      transform: translateY(${arrowPlusSize}) rotateZ(45deg); /* 1 */
     `,
+    // Shift arrow 1px more than half its size to account for border radius
+    arrowPositions: {
+      top: css`
+        transform: translateY(${arrowPlusSize}) rotateZ(45deg);
+      `,
+      bottom: css`
+        transform: translateY(${arrowMinusSize}) rotateZ(45deg);
+      `,
+      left: css`
+        transform: translateX(${arrowPlusSize}) rotateZ(45deg);
+      `,
+      right: css`
+        transform: translateX(${arrowMinusSize}) rotateZ(45deg);
+      `,
+    },
   };
 };
 

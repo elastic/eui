@@ -79,7 +79,7 @@ exports[`EuiToolTip shows tooltip on mouseover and focus 1`] = `
         title
       </div>
       <div
-        class="euiToolTip__arrow emotion-euiToolTip__arrow-EuiToolTipArrow"
+        class="euiToolTip__arrow emotion-euiToolTip__arrow-top"
         style="left: 4px; top: 0px;"
       />
       <div>
