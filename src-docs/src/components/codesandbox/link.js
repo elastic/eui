@@ -138,6 +138,7 @@ ${demoContent}
               '@elastic/datemath',
               '@emotion/cache',
               '@emotion/react',
+              '@emotion/css',
               'moment',
               'react',
               'react-dom',

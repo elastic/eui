@@ -20,6 +20,7 @@ exports[`EuiProvider applying modifications propagates \`modify\` 1`] = `
         "key": "css",
         "nonce": undefined,
         "prepend": undefined,
+        "speedy": [Function],
         "tags": Array [],
       },
     }
@@ -379,6 +380,7 @@ exports[`EuiProvider changing color modes propagates \`colorMode\` 1`] = `
         "key": "css",
         "nonce": undefined,
         "prepend": undefined,
+        "speedy": [Function],
         "tags": Array [],
       },
     }
@@ -727,6 +729,7 @@ exports[`EuiProvider is rendered 1`] = `
         "key": "css",
         "nonce": undefined,
         "prepend": undefined,
+        "speedy": [Function],
         "tags": Array [],
       },
     }
@@ -1814,6 +1817,7 @@ exports[`EuiProvider providing an @emotion cache config applies the cache to glo
         "key": "css",
         "nonce": undefined,
         "prepend": undefined,
+        "speedy": [Function],
         "tags": Array [],
       },
     }
@@ -2184,6 +2188,7 @@ exports[`EuiProvider providing an @emotion cache config applies the cache to uti
         "key": "css",
         "nonce": undefined,
         "prepend": undefined,
+        "speedy": [Function],
         "tags": Array [],
       },
     }
@@ -2554,6 +2559,7 @@ exports[`EuiProvider providing an @emotion cache config provides a default cache
         "key": "css",
         "nonce": undefined,
         "prepend": undefined,
+        "speedy": [Function],
         "tags": Array [],
       },
     }
@@ -2901,6 +2907,7 @@ exports[`EuiProvider using \`null\` theme option does not add global styles 1`] 
         "key": "css",
         "nonce": undefined,
         "prepend": undefined,
+        "speedy": [Function],
         "tags": Array [],
       },
     }

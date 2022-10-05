@@ -43,7 +43,7 @@ export const GettingStarted = {
           <EuiSpacer />
           <EuiCodeBlock language="bash" isCopyable fontSize="m">
             {
-              'yarn add @elastic/eui @elastic/datemath @emotion/react @emotion/cache moment prop-types'
+              'yarn add @elastic/eui @elastic/datemath @emotion/react @emotion/css moment prop-types'
             }
           </EuiCodeBlock>
           <EuiSpacer />
