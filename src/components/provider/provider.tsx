@@ -7,8 +7,7 @@
  */
 
 import React, { PropsWithChildren } from 'react';
-import { cache as fallbackCache } from '@emotion/css';
-import { EmotionCache } from '@emotion/react';
+import { cache as fallbackCache, EmotionCache } from '@emotion/css';
 
 import {
   EuiGlobalStyles,
