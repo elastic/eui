@@ -1,3 +1,9 @@
+## [`67.1.3`](https://github.com/elastic/eui/tree/v67.1.3)
+
+**Bug fixes**
+
+- Fixed `EuiOverlayMask` to set a `[data-relative-to-header=above|below]` attribute to replace the `--aboveHeader` and `--belowHeader` classNames removed in its Emotion conversion ([#6289](https://github.com/elastic/eui/pull/6289))
+
 ## [`67.1.2`](https://github.com/elastic/eui/tree/v67.1.2)
 
 **Bug fixes**
