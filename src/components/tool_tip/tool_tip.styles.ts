@@ -11,6 +11,7 @@ import {
   logicalCSS,
   logicalSizeCSS,
   euiFontSize,
+  euiCanAnimate,
   mathWithUnits,
 } from '../../global_styling';
 import { COLOR_MODES_STANDARD, UseEuiTheme, tint, shade } from '../../services';
@@ -90,28 +91,36 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // Positions
     top: css`
-      animation: ${euiToolTipAnimationVertical(`-${euiTheme.size.base}`)}
-        ${animationTiming};
+      ${euiCanAnimate} {
+        animation: ${euiToolTipAnimationVertical(`-${euiTheme.size.base}`)}
+          ${animationTiming};
+      }
     `,
     bottom: css`
-      animation: ${euiToolTipAnimationVertical(euiTheme.size.base)}
-        ${animationTiming};
+      ${euiCanAnimate} {
+        animation: ${euiToolTipAnimationVertical(euiTheme.size.base)}
+          ${animationTiming};
+      }
 
       [class*='euiToolTip__arrow'] {
         transform: translateY(${arrowMinusSize}) rotateZ(45deg); /* 1 */
       }
     `,
     left: css`
-      animation: ${euiToolTipAnimationHorizontal(`-${euiTheme.size.base}`)}
-        ${animationTiming};
+      ${euiCanAnimate} {
+        animation: ${euiToolTipAnimationHorizontal(`-${euiTheme.size.base}`)}
+          ${animationTiming};
+      }
 
       [class*='euiToolTip__arrow'] {
         transform: translateX(${arrowPlusSize}) rotateZ(45deg); /* 1 */
       }
     `,
     right: css`
-      animation: ${euiToolTipAnimationHorizontal(euiTheme.size.base)}
-        ${animationTiming};
+      ${euiCanAnimate} {
+        animation: ${euiToolTipAnimationHorizontal(euiTheme.size.base)}
+          ${animationTiming};
+      }
 
       [class*='euiToolTip__arrow'] {
         transform: translateX(${arrowMinusSize}) rotateZ(45deg); /* 1 */
