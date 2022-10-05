@@ -326,7 +326,7 @@ exports[`EuiRange props levels should render 1`] = `
     </div>
     <input
       aria-hidden="false"
-      class="euiRangeSlider emotion-euiRangeSlider"
+      class="euiRangeSlider emotion-euiRangeSlider-thumb"
       id="generated-id"
       max="100"
       min="0"
