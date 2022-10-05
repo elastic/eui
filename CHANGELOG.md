@@ -1,3 +1,9 @@
+## [`67.1.4`](https://github.com/elastic/eui/tree/v67.1.4)
+
+**Bug fixes**
+
+- Fixed `EuiHeader` CSS using removed `EuiOverlayMask` class modifiers ([#6293](https://github.com/elastic/eui/pull/6293))
+
 ## [`67.1.3`](https://github.com/elastic/eui/tree/v67.1.3)
 
 **Bug fixes**
