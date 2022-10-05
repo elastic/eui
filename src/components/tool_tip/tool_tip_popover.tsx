@@ -17,7 +17,7 @@ import React, {
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
-import { euiToolTipStyles, euiToolTipPopoverStyles } from './tool_tip.styles';
+import { euiToolTipStyles } from './tool_tip.styles';
 
 export type ToolTipPositions = 'top' | 'right' | 'bottom' | 'left';
 
@@ -42,9 +42,11 @@ export const EuiToolTipPopover: FunctionComponent<Props> = ({
   const popover = useRef<HTMLDivElement>();
 
   const euiTheme = useEuiTheme();
-  const toolTipCss = euiToolTipStyles(euiTheme);
-  const popoverStyles = euiToolTipPopoverStyles(euiTheme);
-  const titleCss = [popoverStyles.euiToolTip__title];
+  const styles = euiToolTipStyles(euiTheme);
+  const cssStyles = [
+    styles.euiToolTip,
+    calculatedPosition && styles[calculatedPosition],
+  ];
 
   const updateDimensions = useCallback(() => {
     requestAnimationFrame(() => {
@@ -74,17 +76,9 @@ export const EuiToolTipPopover: FunctionComponent<Props> = ({
   const classes = classNames('euiToolTipPopover', className);
 
   return (
-    <div
-      css={[
-        toolTipCss.euiToolTip,
-        calculatedPosition && toolTipCss[calculatedPosition],
-      ]}
-      className={classes}
-      ref={setPopoverRef}
-      {...rest}
-    >
+    <div css={cssStyles} className={classes} ref={setPopoverRef} {...rest}>
       {title && (
-        <div css={titleCss} className="euiToolTip__title">
+        <div css={styles.euiToolTip__title} className="euiToolTip__title">
           {title}
         </div>
       )}

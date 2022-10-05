@@ -135,27 +135,21 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
         transform: translateX(${arrowMinusSize}) rotateZ(45deg);
       `,
     },
+    // Title
+    euiToolTip__title: css`
+      font-weight: ${euiTheme.font.weight.bold};
+      ${logicalCSS(
+        'border-bottom',
+        `solid ${euiTheme.border.width.thin} ${euiToolTipBorderColor(
+          euiTheme,
+          colorMode
+        )}`
+      )};
+      ${logicalCSS('padding-bottom', euiTheme.size.xs)};
+      ${logicalCSS('margin-bottom', euiTheme.size.xs)};
+    `,
   };
 };
-
-export const euiToolTipPopoverStyles = ({
-  euiTheme,
-  colorMode,
-}: UseEuiTheme) => ({
-  // Elements
-  euiToolTip__title: css`
-    font-weight: ${euiTheme.font.weight.bold};
-    ${logicalCSS(
-      'border-bottom',
-      `solid ${euiTheme.border.width.thin} ${euiToolTipBorderColor(
-        euiTheme,
-        colorMode
-      )}`
-    )};
-    ${logicalCSS('padding-bottom', euiTheme.size.xs)};
-    ${logicalCSS('margin-bottom', euiTheme.size.xs)};
-  `,
-});
 
 export const euiToolTipAnchorStyles = () => ({
   // Elements
