@@ -9,7 +9,8 @@ import {
   EuiFlyoutBody,
   EuiFlyoutHeader,
   EuiPanel,
-} from '../../../../src/components';
+  useEuiTheme,
+} from '../../../../src';
 import Knobs from './knobs';
 import { GuideSectionPropsDescription } from '../../components/guide_section/guide_section_parts/guide_section_props_description';
 
@@ -17,6 +18,7 @@ export default ({
   config,
   setGhostBackground,
   playgroundClassName,
+  playgroundCssStyles,
   playgroundPanelProps,
 }) => {
   const getSnippet = (code) => {
@@ -50,6 +52,7 @@ export default ({
   };
 
   const Playground = () => {
+    const euiTheme = useEuiTheme();
     const [isGhost, setGhost] = useState(false);
     const params = useView(config);
 
@@ -85,6 +88,7 @@ export default ({
             {...playgroundPanelProps}
           >
             <Compiler
+              css={playgroundCssStyles?.(euiTheme)}
               {...params.compilerProps}
               placeholder={Placeholder}
               className={classNames('playground__demo', playgroundClassName)}

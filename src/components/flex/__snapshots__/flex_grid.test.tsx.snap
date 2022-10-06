@@ -3,7 +3,7 @@
 exports[`EuiFlexGrid is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--thirds euiFlexGrid--responsive testClass1 testClass2"
+  class="euiFlexGrid testClass1 testClass2 emotion-euiFlexGrid-l-row-stretch-3-responsive"
   data-test-subj="test subject string"
 >
   <h2>
@@ -12,80 +12,104 @@ exports[`EuiFlexGrid is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiFlexGrid props columns 0 is rendered 1`] = `
+exports[`EuiFlexGrid props alignItems baseline is rendered 1`] = `
 <div
-  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--wrap euiFlexGrid--responsive"
+  class="euiFlexGrid emotion-euiFlexGrid-l-row-baseline-1-responsive"
+/>
+`;
+
+exports[`EuiFlexGrid props alignItems center is rendered 1`] = `
+<div
+  class="euiFlexGrid emotion-euiFlexGrid-l-row-center-1-responsive"
+/>
+`;
+
+exports[`EuiFlexGrid props alignItems end is rendered 1`] = `
+<div
+  class="euiFlexGrid emotion-euiFlexGrid-l-row-end-1-responsive"
+/>
+`;
+
+exports[`EuiFlexGrid props alignItems start is rendered 1`] = `
+<div
+  class="euiFlexGrid emotion-euiFlexGrid-l-row-start-1-responsive"
+/>
+`;
+
+exports[`EuiFlexGrid props alignItems stretch is rendered 1`] = `
+<div
+  class="euiFlexGrid emotion-euiFlexGrid-l-row-stretch-1-responsive"
 />
 `;
 
 exports[`EuiFlexGrid props columns 1 is rendered 1`] = `
 <div
-  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--single euiFlexGrid--responsive"
+  class="euiFlexGrid emotion-euiFlexGrid-l-row-stretch-1-responsive"
 />
 `;
 
 exports[`EuiFlexGrid props columns 2 is rendered 1`] = `
 <div
-  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--halves euiFlexGrid--responsive"
+  class="euiFlexGrid emotion-euiFlexGrid-l-row-stretch-2-responsive"
 />
 `;
 
 exports[`EuiFlexGrid props columns 3 is rendered 1`] = `
 <div
-  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--thirds euiFlexGrid--responsive"
+  class="euiFlexGrid emotion-euiFlexGrid-l-row-stretch-3-responsive"
 />
 `;
 
 exports[`EuiFlexGrid props columns 4 is rendered 1`] = `
 <div
-  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--fourths euiFlexGrid--responsive"
+  class="euiFlexGrid emotion-euiFlexGrid-l-row-stretch-4-responsive"
 />
 `;
 
 exports[`EuiFlexGrid props direction column is rendered 1`] = `
 <div
-  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--wrap euiFlexGrid--directionColumn euiFlexGrid--responsive"
+  class="euiFlexGrid emotion-euiFlexGrid-l-column-stretch-1-responsive"
 />
 `;
 
 exports[`EuiFlexGrid props direction row is rendered 1`] = `
 <div
-  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--wrap euiFlexGrid--responsive"
+  class="euiFlexGrid emotion-euiFlexGrid-l-row-stretch-1-responsive"
 />
 `;
 
 exports[`EuiFlexGrid props gutterSize l is rendered 1`] = `
 <div
-  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--wrap euiFlexGrid--responsive"
+  class="euiFlexGrid emotion-euiFlexGrid-l-row-stretch-1-responsive"
 />
 `;
 
 exports[`EuiFlexGrid props gutterSize m is rendered 1`] = `
 <div
-  class="euiFlexGrid euiFlexGrid--gutterMedium euiFlexGrid--wrap euiFlexGrid--responsive"
+  class="euiFlexGrid emotion-euiFlexGrid-m-row-stretch-1-responsive"
 />
 `;
 
 exports[`EuiFlexGrid props gutterSize none is rendered 1`] = `
 <div
-  class="euiFlexGrid euiFlexGrid--gutterNone euiFlexGrid--wrap euiFlexGrid--responsive"
+  class="euiFlexGrid emotion-euiFlexGrid-none-row-stretch-1-responsive"
 />
 `;
 
 exports[`EuiFlexGrid props gutterSize s is rendered 1`] = `
 <div
-  class="euiFlexGrid euiFlexGrid--gutterSmall euiFlexGrid--wrap euiFlexGrid--responsive"
+  class="euiFlexGrid emotion-euiFlexGrid-s-row-stretch-1-responsive"
 />
 `;
 
 exports[`EuiFlexGrid props gutterSize xl is rendered 1`] = `
 <div
-  class="euiFlexGrid euiFlexGrid--gutterXLarge euiFlexGrid--wrap euiFlexGrid--responsive"
+  class="euiFlexGrid emotion-euiFlexGrid-xl-row-stretch-1-responsive"
 />
 `;
 
 exports[`EuiFlexGrid props responsive is rendered 1`] = `
 <div
-  class="euiFlexGrid euiFlexGrid--gutterLarge euiFlexGrid--wrap"
+  class="euiFlexGrid emotion-euiFlexGrid-l-row-stretch-1"
 />
 `;

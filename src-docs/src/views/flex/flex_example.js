@@ -15,6 +15,8 @@ import {
 
 import { flexGroupConfig, flexGridConfig } from './playground';
 
+import { FlexItemHighlightWrapper } from './wrapper_styles';
+
 import FlexGroup from './flex_group';
 const flexGroupSource = require('!!raw-loader!./flex_group');
 
@@ -53,6 +55,9 @@ const flexGridColumnsSource = require('!!raw-loader!./flex_grid_columns');
 
 import FlexGridColumnFirst from './flex_grid_column_first';
 const flexGridColumnFirstSource = require('!!raw-loader!./flex_grid_column_first');
+
+import FlexGridResponsive from './flex_grid_responsive';
+const flexGridResponsiveSource = require('!!raw-loader!./flex_grid_responsive');
 
 import FlexNest from './flex_nest';
 const flexNestSource = require('!!raw-loader!./flex_nest');
@@ -126,6 +131,15 @@ const flexGridColumnFirstSnippet = `<EuiFlexGrid columns={2} direction="column">
   </EuiFlexItem>
 </EuiFlexGrid>`;
 
+const flexGridResponsiveSnippet = `<EuiFlexGrid responsive={false} columns={isMobile ? 2 : 4}>
+  <EuiFlexItem>
+    <!-- Item in FlexGrid-->
+  </EuiFlexItem>
+  <EuiFlexItem>
+    <!-- Item in FlexGrid-->
+  </EuiFlexItem>
+</EuiFlexGrid>`;
+
 const flexNestSnippet = `<EuiFlexGroup>
   <EuiFlexItem>
     <EuiFlexGroup>
@@ -183,9 +197,9 @@ export const FlexExample = {
         </p>
       ),
       demo: (
-        <div className="guideDemo__highlightGrid">
+        <FlexItemHighlightWrapper>
           <FlexGroup />
-        </div>
+        </FlexItemHighlightWrapper>
       ),
       playground: flexGroupConfig,
       props: { EuiFlexGroup, EuiFlexItem },
@@ -226,9 +240,9 @@ export const FlexExample = {
   </EuiFlexItem>
 </EuiFlexGroup>`,
       demo: (
-        <div className="guideDemo__highlightGrid">
+        <FlexItemHighlightWrapper>
           <FlexItem />
-        </div>
+        </FlexItemHighlightWrapper>
       ),
     },
     {
@@ -248,9 +262,9 @@ export const FlexExample = {
       ),
       snippet: componentSpanSnippet,
       demo: (
-        <div className="guideDemo__highlightGrid">
+        <FlexItemHighlightWrapper>
           <ComponentSpan />
-        </div>
+        </FlexItemHighlightWrapper>
       ),
     },
     {
@@ -290,9 +304,9 @@ export const FlexExample = {
       ),
       snippet: flexGrowZeroSnippet,
       demo: (
-        <div className="guideDemo__highlightGrid">
+        <FlexItemHighlightWrapper>
           <FlexGrowZero />
-        </div>
+        </FlexItemHighlightWrapper>
       ),
     },
     {
@@ -312,9 +326,9 @@ export const FlexExample = {
       ),
       snippet: flexGrowNumericSnippet,
       demo: (
-        <div className="guideDemo__highlightGrid">
+        <FlexItemHighlightWrapper>
           <FlexGrowNumeric />
-        </div>
+        </FlexItemHighlightWrapper>
       ),
     },
     {
@@ -343,9 +357,9 @@ export const FlexExample = {
     <EuiFlexItem grow={false}><!-- FlexItem content --></EuiFlexItem>
   </EuiFlexGroup>`,
       demo: (
-        <div className="guideDemo__highlightGrid">
+        <FlexItemHighlightWrapper>
           <FlexJustify />
-        </div>
+        </FlexItemHighlightWrapper>
       ),
     },
     {
@@ -365,9 +379,9 @@ export const FlexExample = {
       ),
       snippet: flexGroupWrap,
       demo: (
-        <div className="guideDemo__highlightGrid">
+        <FlexItemHighlightWrapper>
           <FlexGroupWrap />
-        </div>
+        </FlexItemHighlightWrapper>
       ),
     },
     {
@@ -378,9 +392,9 @@ export const FlexExample = {
         },
       ],
       demo: (
-        <div className="guideDemo__highlightGrid">
+        <FlexItemHighlightWrapper>
           <FlexJustifyBetween />
-        </div>
+        </FlexItemHighlightWrapper>
       ),
       snippet: `<EuiFlexGroup justifyContent="spaceBetween">
     <EuiFlexItem grow={false}><!-- FlexItem content --></EuiFlexItem>
@@ -395,9 +409,9 @@ export const FlexExample = {
         },
       ],
       demo: (
-        <div className="guideDemo__highlightGrid">
+        <FlexItemHighlightWrapper>
           <FlexJustifyEvenly />
-        </div>
+        </FlexItemHighlightWrapper>
       ),
       snippet: `<EuiFlexGroup justifyContent="spaceEvenly">
   <EuiFlexItem grow={false}><!-- FlexItem content --></EuiFlexItem>
@@ -412,9 +426,9 @@ export const FlexExample = {
         },
       ],
       demo: (
-        <div className="guideDemo__highlightGrid">
+        <FlexItemHighlightWrapper>
           <FlexAlignCenter />
-        </div>
+        </FlexItemHighlightWrapper>
       ),
       snippet: `<EuiFlexGroup alignItems="center">
   <EuiFlexItem><!-- FlexItem content --></EuiFlexItem>
@@ -436,9 +450,33 @@ export const FlexExample = {
       ),
       snippet: directionSnippet,
       demo: (
-        <div className="guideDemo__highlightGrid">
+        <FlexItemHighlightWrapper>
           <Direction />
-        </div>
+        </FlexItemHighlightWrapper>
+      ),
+    },
+    {
+      title: 'Responsive flex groups',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: flexGroupResponsiveSource,
+        },
+      ],
+      text: (
+        <p>
+          By default <strong>EuiFlexGroup</strong> is responsive by always
+          stacking the items on smaller screens. However, often you only want to
+          use groups for alignment and margins, rather than layouts. Simply
+          apply the <EuiCode>responsive={'{false}'}</EuiCode> prop to retain a
+          single row layout for the group.
+        </p>
+      ),
+      snippet: flexGroupResponsiveSnippet,
+      demo: (
+        <FlexItemHighlightWrapper>
+          <FlexGroupResponsive />
+        </FlexItemHighlightWrapper>
       ),
     },
     {
@@ -461,9 +499,9 @@ export const FlexExample = {
       playground: flexGridConfig,
       snippet: flexGridColumnsSnippet,
       demo: (
-        <div className="guideDemo__highlightGridWrap">
+        <FlexItemHighlightWrapper>
           <FlexGridColumns />
-        </div>
+        </FlexItemHighlightWrapper>
       ),
     },
 
@@ -484,9 +522,34 @@ export const FlexExample = {
       ),
       snippet: flexGridColumnFirstSnippet,
       demo: (
-        <div className="guideDemo__highlightGridWrap">
+        <FlexItemHighlightWrapper>
           <FlexGridColumnFirst />
-        </div>
+        </FlexItemHighlightWrapper>
+      ),
+    },
+    {
+      title: 'Responsive flex grids',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: flexGridResponsiveSource,
+        },
+      ],
+      text: (
+        <p>
+          <strong>EuiFlexGrid</strong> is also similarly responsive by default,
+          responsive by always stacking the items vertically on smaller screens.
+          However, should you want to customize the number of items on small or
+          large screens, we recommend applying the{' '}
+          <EuiCode>responsive={'{false}'}</EuiCode> prop and then conditionally
+          pass a column number based on the current breakpoint.
+        </p>
+      ),
+      snippet: flexGridResponsiveSnippet,
+      demo: (
+        <FlexItemHighlightWrapper>
+          <FlexGridResponsive />
+        </FlexItemHighlightWrapper>
       ),
     },
     {
@@ -518,9 +581,9 @@ export const FlexExample = {
       ),
       snippet: flexNestSnippet,
       demo: (
-        <div className="guideDemo__highlightGrid">
+        <FlexItemHighlightWrapper>
           <FlexNest />
-        </div>
+        </FlexItemHighlightWrapper>
       ),
     },
     {
@@ -532,53 +595,17 @@ export const FlexExample = {
         },
       ],
       text: (
-        <>
-          <p>
-            The <EuiCode>gutterSize</EuiCode> prop can be applied to either a{' '}
-            <strong>EuiFlexGroup</strong> or a <strong>EuiFlexGrid</strong> to
-            adjust the spacing between <strong>EuiFlexItems</strong>.
-          </p>
-          <EuiCallOut
-            color="warning"
-            title="Gutters are created with using negative margin"
-          >
-            <p>
-              If the parent container of a flex group or grid doesn&apos;t have
-              sufficient padding to account for the negative margins, it may
-              cause overflow scrolling.
-            </p>
-          </EuiCallOut>
-        </>
+        <p>
+          The <EuiCode>gutterSize</EuiCode> prop can be applied to either a{' '}
+          <strong>EuiFlexGroup</strong> or a <strong>EuiFlexGrid</strong> to
+          adjust the spacing between <strong>EuiFlexItems</strong>.
+        </p>
       ),
       snippet: flexGutterSnippet,
       demo: (
-        <div className="guideDemo__highlightGrid">
+        <FlexItemHighlightWrapper>
           <FlexGutter />
-        </div>
-      ),
-    },
-    {
-      title: 'Responsive layouts',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: flexGroupResponsiveSource,
-        },
-      ],
-      text: (
-        <p>
-          By default <strong>EuiFlexGroup</strong> is responsive by always
-          stacking the items on smaller screens. However, often you only want to
-          use groups for alignment and margins, rather than layouts. Simply
-          apply the <EuiCode>responsive={'{false}'}</EuiCode> prop to retain a
-          single row layout for the group.
-        </p>
-      ),
-      snippet: flexGroupResponsiveSnippet,
-      demo: (
-        <div className="guideDemo__highlightGrid">
-          <FlexGroupResponsive />
-        </div>
+        </FlexItemHighlightWrapper>
       ),
     },
   ],

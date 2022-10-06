@@ -8,7 +8,7 @@
 
 import React from 'react';
 import { render } from 'enzyme';
-import { requiredProps } from '../../test';
+import { requiredProps, replaceEmotionPrefix } from '../../test';
 
 import { EuiBreadcrumbs, EuiBreadcrumb } from './';
 
@@ -74,6 +74,101 @@ describe('EuiBreadcrumbs', () => {
     expect(component).toMatchSnapshot();
   });
 
+  describe('truncation', () => {
+    test('setting truncate on breadcrumbs parents cascades down to all children', () => {
+      const component = render(
+        <EuiBreadcrumbs
+          breadcrumbs={[{ text: 'A' }, { text: 'B' }]}
+          truncate={false}
+        />
+      );
+      expect(component).toMatchSnapshot();
+    });
+
+    const getBreadcrumbClass = (component: Cheerio, dataTestSubj: string) =>
+      replaceEmotionPrefix(
+        component.find(`[data-test-subj=${dataTestSubj}]`).attr('class')
+      );
+
+    test('child breadcrumbs can override truncate set on parent breadcrumbs', () => {
+      const component = render(
+        <>
+          <EuiBreadcrumbs
+            breadcrumbs={[
+              { text: 'A', 'data-test-subj': 'A', truncate: false },
+              { text: 'B', 'data-test-subj': 'B' },
+            ]}
+            truncate
+          />
+          <EuiBreadcrumbs
+            breadcrumbs={[
+              { text: 'C', 'data-test-subj': 'C', truncate: true },
+              { text: 'D', 'data-test-subj': 'D' },
+            ]}
+            truncate={false}
+          />
+        </>
+      );
+      expect(getBreadcrumbClass(component, 'A')).toEqual(
+        'emotion-euiBreadcrumb__content-page-euiTextColor-subdued'
+      );
+      expect(getBreadcrumbClass(component, 'C')).toEqual(
+        'emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued'
+      );
+    });
+
+    describe('last breadcrumb', () => {
+      describe('if the parent truncate is true and the last breadcrumb does not have its own truncate property', () => {
+        it('sets a isTruncatedLast style that allows the last breadcrumb to occupy the remaining width of the breadcrumbs line', () => {
+          const component = render(
+            <EuiBreadcrumbs
+              breadcrumbs={[
+                { text: 'A' },
+                { text: 'B', 'data-test-subj': 'last' },
+              ]}
+              truncate
+            />
+          );
+          expect(getBreadcrumbClass(component, 'last')).toEqual(
+            'emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default'
+          );
+        });
+      });
+
+      describe('if the last breadcrumb has its own truncate property', () => {
+        it('uses the normal isTruncated if truncate is true', () => {
+          const component = render(
+            <EuiBreadcrumbs
+              breadcrumbs={[
+                { text: 'A' },
+                { text: 'B', 'data-test-subj': 'last', truncate: true },
+              ]}
+              truncate
+            />
+          );
+          expect(getBreadcrumbClass(component, 'last')).toEqual(
+            'emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-default'
+          );
+        });
+
+        it('does not set any truncation classes if truncate is false', () => {
+          const component = render(
+            <EuiBreadcrumbs
+              breadcrumbs={[
+                { text: 'A' },
+                { text: 'B', 'data-test-subj': 'last', truncate: false },
+              ]}
+              truncate
+            />
+          );
+          expect(getBreadcrumbClass(component, 'last')).toEqual(
+            'emotion-euiBreadcrumb__content-page-euiTextColor-default'
+          );
+        });
+      });
+    });
+  });
+
   describe('props', () => {
     describe('responsive', () => {
       test('is rendered', () => {
@@ -96,15 +191,6 @@ describe('EuiBreadcrumbs', () => {
             breadcrumbs={breadcrumbs}
             responsive={{ xs: 1, s: 1, m: 1, l: 1, xl: 1 }}
           />
-        );
-        expect(component).toMatchSnapshot();
-      });
-    });
-
-    describe('truncate as false', () => {
-      test('is rendered', () => {
-        const component = render(
-          <EuiBreadcrumbs breadcrumbs={breadcrumbs} truncate={false} />
         );
         expect(component).toMatchSnapshot();
       });

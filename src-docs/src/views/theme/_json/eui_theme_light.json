@@ -48,31 +48,6 @@
     "l": "8px"
   },
   "euiEmptyPromptContentMaxWidth": "36em",
-  "gutterTypes": {
-    "gutterExtraSmall": "4px",
-    "gutterSmall": "8px",
-    "gutterMedium": "16px",
-    "gutterLarge": "24px",
-    "gutterExtraLarge": "40px"
-  },
-  "fractions": {
-    "fourths": {
-      "percentage": "25%",
-      "count": 4
-    },
-    "thirds": {
-      "percentage": "33.3%",
-      "count": 3
-    },
-    "halves": {
-      "percentage": "50%",
-      "count": 2
-    },
-    "single": {
-      "percentage": "100%",
-      "count": 1
-    }
-  },
   "euiFilePickerTallHeight": "128px",
   "euiRangeLevelColors": {
     "primary": "#0077cc",

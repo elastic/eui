@@ -4,11 +4,11 @@ import {
   EuiFlexGrid,
   EuiFlexGroup,
   EuiFlexItem,
-} from '../../../../src/components/flex';
-import { EuiSpacer } from '../../../../src/components/spacer';
+  EuiSpacer,
+} from '../../../../src/components';
 
 export default () => (
-  <div>
+  <>
     <EuiFlexGroup>
       <EuiFlexItem grow={false}>
         <div>Flex Group</div>
@@ -29,5 +29,5 @@ export default () => (
         </EuiFlexGrid>
       </EuiFlexItem>
     </EuiFlexGroup>
-  </div>
+  </>
 );

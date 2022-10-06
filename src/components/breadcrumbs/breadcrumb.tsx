@@ -63,6 +63,7 @@ type _EuiBreadcrumbProps = {
   isLastBreadcrumb?: boolean;
   isOnlyBreadcrumb?: boolean;
   highlightLastBreadcrumb?: boolean;
+  truncateLastBreadcrumb?: boolean;
 } & Pick<EuiBreadcrumbProps, 'truncate'>;
 
 export const EuiBreadcrumb: FunctionComponent<
@@ -100,6 +101,7 @@ export const EuiBreadcrumbContent: FunctionComponent<
   isLastBreadcrumb,
   isOnlyBreadcrumb,
   highlightLastBreadcrumb,
+  truncateLastBreadcrumb,
   ...rest
 }) => {
   const classes = classNames('euiBreadcrumb__content', className);
@@ -109,8 +111,8 @@ export const EuiBreadcrumbContent: FunctionComponent<
   const cssStyles = [
     styles.euiBreadcrumb__content,
     styles[type],
-    truncate &&
-      (isLastBreadcrumb ? styles.isTruncatedLast : styles.isTruncated),
+    truncate && !truncateLastBreadcrumb && styles.isTruncated,
+    truncateLastBreadcrumb && styles.isTruncatedLast,
   ];
   if (type === 'application') {
     if (isOnlyBreadcrumb) {
