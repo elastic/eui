@@ -39,7 +39,9 @@ describe('EuiCodeBlock', () => {
 
     describe('isCopyable', () => {
       it('is rendered', () => {
-        const component = mount(<EuiCodeBlock isCopyable>{code}</EuiCodeBlock>);
+        const component = render(
+          <EuiCodeBlock isCopyable>{code}</EuiCodeBlock>
+        );
 
         expect(component).toMatchSnapshot();
       });
@@ -161,7 +163,9 @@ describe('EuiCodeBlock', () => {
       component.find('button[aria-label="Expand"]').simulate('click');
       component.update();
 
-      expect(component.find('.euiCodeBlock-isFullScreen')).toMatchSnapshot();
+      expect(
+        component.find('.euiCodeBlock-isFullScreen').render()
+      ).toMatchSnapshot();
     });
 
     it('closes fullscreen mode when the escape key is pressed', () => {

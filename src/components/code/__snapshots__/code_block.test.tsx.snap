@@ -42,40 +42,35 @@ exports[`EuiCodeBlock dynamic content updates DOM when input changes 2`] = `
 
 exports[`EuiCodeBlock fullscreen displays content in fullscreen mode 1`] = `
 <div
-  className="testClass1 testClass2 euiCodeBlock euiCodeBlock--hasControl euiCodeBlock--fontLarge euiCodeBlock--paddingLarge euiCodeBlock-isFullScreen"
+  class="testClass1 testClass2 euiCodeBlock euiCodeBlock--hasControl euiCodeBlock--fontLarge euiCodeBlock--paddingLarge euiCodeBlock-isFullScreen"
 >
   <pre
-    className="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
-    onKeyDown={[Function]}
-    tabIndex={0}
+    class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
+    tabindex="0"
   >
     <code
       aria-label="aria-label"
-      className="euiCodeBlock__code"
+      class="euiCodeBlock__code"
       data-code-language="javascript"
       data-test-subj="test subject string"
     >
       <span
-        className="euiCodeBlock__line"
-        key="node-0-0"
+        class="euiCodeBlock__line"
       >
         <span
-          className="token keyword"
-          key="node-1-0"
+          class="token keyword"
         >
           const
         </span>
          value 
         <span
-          className="token operator"
-          key="node-1-2"
+          class="token operator"
         >
           =
         </span>
          
         <span
-          className="token string"
-          key="node-1-4"
+          class="token string"
         >
           "hello"
         </span>
@@ -83,234 +78,20 @@ exports[`EuiCodeBlock fullscreen displays content in fullscreen mode 1`] = `
     </code>
   </pre>
   <div
-    className="euiCodeBlock__controls"
+    class="euiCodeBlock__controls"
   >
-    <FullScreenButton
-      isFullScreen={true}
-      toggleFullScreen={[Function]}
+    <button
+      aria-label="Collapse"
+      class="euiButtonIcon euiButtonIcon--xSmall euiCodeBlock__fullScreenButton emotion-euiButtonIcon-empty-text-hoverStyles"
+      type="button"
     >
-      <EuiButtonIcon
-        aria-label="Collapse"
-        className="euiCodeBlock__fullScreenButton"
-        color="text"
-        iconType="fullScreenExit"
-        onClick={[Function]}
-      >
-        <button
-          aria-label="Collapse"
-          css="unknown styles"
-          disabled={false}
-          onClick={[Function]}
-          type="button"
-        >
-          <Insertion
-            cache={
-              Object {
-                "insert": [Function],
-                "inserted": Object {
-                  "animation-ox4vyo": true,
-                  "jcaat8-euiToolTipAnchor-inlineBlock": true,
-                  "o2mzw-euiButtonIcon-empty-text-hoverStyles": true,
-                },
-                "key": "css",
-                "nonce": undefined,
-                "registered": Object {},
-                "sheet": StyleSheet {
-                  "_alreadyInsertedOrderInsensitiveRule": true,
-                  "_insertTag": [Function],
-                  "before": null,
-                  "container": <head>
-                    <style
-                      data-emotion="css-global"
-                      data-s=""
-                    >
-                      
-                      body{overflow:hidden;}
-                    </style>
-                    <style
-                      data-emotion="css-global"
-                      data-s=""
-                    >
-                      
-                      .euiOverlayMask{position:fixed;inset-block-start:0;inset-inline-start:0;inset-inline-end:0;inset-block-end:0;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;padding-block-end:10vh;-webkit-animation:animation-ox4vyo 150ms ease-in;animation:animation-ox4vyo 150ms ease-in;background:rgba(0,0,0,0.5);}
-                    </style>
-                    <style
-                      data-emotion="css-global"
-                      data-s=""
-                    >
-                      
-                      .euiOverlayMask{z-index:6000;}
-                    </style>
-                    <style
-                      data-emotion="css"
-                      data-s=""
-                    >
-                      
-                      .css-jcaat8-euiToolTipAnchor-inlineBlock{display:inline-block;}
-                    </style>
-                    <style
-                      data-emotion="css"
-                      data-s=""
-                    >
-                      
-                      .css-jcaat8-euiToolTipAnchor-inlineBlock *[disabled]{pointer-events:none;}
-                    </style>
-                    <style
-                      data-emotion="css"
-                      data-s=""
-                    >
-                      
-                      .emotion-euiButtonIcon-empty-text-hoverStyles{color:#343741;}
-                    </style>
-                    <style
-                      data-emotion="css"
-                      data-s=""
-                    >
-                      
-                      .emotion-euiButtonIcon-empty-text-hoverStyles:focus,.emotion-euiButtonIcon-empty-text-hoverStyles:active{background-color:rgba(211,218,230,0.2);}
-                    </style>
-                    <style
-                      data-emotion="css"
-                      data-s=""
-                    >
-                      
-                      .emotion-euiButtonIcon-empty-text-hoverStyles:hover{background-color:rgba(211,218,230,0.2);}
-                    </style>
-                    <style
-                      data-emotion="css"
-                      data-s=""
-                    >
-                      
-                      .css-animation-ox4vyo{}
-                    </style>
-                    <style
-                      data-emotion="css"
-                      data-s=""
-                    >
-                      
-                      @-webkit-keyframes animation-ox4vyo{0%{opacity:0;}100%{opacity:1;}}
-                    </style>
-                    <style
-                      data-emotion="css"
-                      data-s=""
-                    >
-                      
-                      @keyframes animation-ox4vyo{0%{opacity:0;}100%{opacity:1;}}
-                    </style>
-                    <style
-                      type="text/css"
-                    >
-                      
- [data-focus-on-hidden] {
-   pointer-events: none !important;
- }
-
-                    </style>
-                  </head>,
-                  "ctr": 8,
-                  "insertionPoint": undefined,
-                  "isSpeedy": false,
-                  "key": "css",
-                  "nonce": undefined,
-                  "prepend": undefined,
-                  "tags": Array [
-                    <style
-                      data-emotion="css"
-                      data-s=""
-                    >
-                      
-                      .css-jcaat8-euiToolTipAnchor-inlineBlock{display:inline-block;}
-                    </style>,
-                    <style
-                      data-emotion="css"
-                      data-s=""
-                    >
-                      
-                      .css-jcaat8-euiToolTipAnchor-inlineBlock *[disabled]{pointer-events:none;}
-                    </style>,
-                    <style
-                      data-emotion="css"
-                      data-s=""
-                    >
-                      
-                      .emotion-euiButtonIcon-empty-text-hoverStyles{color:#343741;}
-                    </style>,
-                    <style
-                      data-emotion="css"
-                      data-s=""
-                    >
-                      
-                      .emotion-euiButtonIcon-empty-text-hoverStyles:focus,.emotion-euiButtonIcon-empty-text-hoverStyles:active{background-color:rgba(211,218,230,0.2);}
-                    </style>,
-                    <style
-                      data-emotion="css"
-                      data-s=""
-                    >
-                      
-                      .emotion-euiButtonIcon-empty-text-hoverStyles:hover{background-color:rgba(211,218,230,0.2);}
-                    </style>,
-                    <style
-                      data-emotion="css"
-                      data-s=""
-                    >
-                      
-                      .css-animation-ox4vyo{}
-                    </style>,
-                    <style
-                      data-emotion="css"
-                      data-s=""
-                    >
-                      
-                      @-webkit-keyframes animation-ox4vyo{0%{opacity:0;}100%{opacity:1;}}
-                    </style>,
-                    <style
-                      data-emotion="css"
-                      data-s=""
-                    >
-                      
-                      @keyframes animation-ox4vyo{0%{opacity:0;}100%{opacity:1;}}
-                    </style>,
-                  ],
-                },
-              }
-            }
-            isStringTag={true}
-            serialized={
-              Object {
-                "map": undefined,
-                "name": "o2mzw-euiButtonIcon-empty-text-hoverStyles",
-                "next": undefined,
-                "styles": ";label:euiButtonIcon;;;color:#343741;&:focus,&:active{background-color:rgba(211,218,230,0.2);};label:empty;;;label:text;;;&:hover{background-color:rgba(211,218,230,0.2);};label:hoverStyles;;;",
-                "toString": [Function],
-              }
-            }
-          />
-          <button
-            aria-label="Collapse"
-            className="euiButtonIcon euiButtonIcon--xSmall euiCodeBlock__fullScreenButton emotion-euiButtonIcon-empty-text-hoverStyles"
-            disabled={false}
-            onClick={[Function]}
-            type="button"
-          >
-            <EuiIcon
-              aria-hidden="true"
-              className="euiButtonIcon__icon"
-              color="inherit"
-              size="m"
-              type="fullScreenExit"
-            >
-              <span
-                aria-hidden="true"
-                className="euiButtonIcon__icon"
-                color="inherit"
-                data-euiicon-type="fullScreenExit"
-                size="m"
-              />
-            </EuiIcon>
-          </button>
-        </button>
-      </EuiButtonIcon>
-    </FullScreenButton>
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="fullScreenExit"
+      />
+    </button>
   </div>
 </div>
 `;
@@ -556,349 +337,31 @@ exports[`EuiCodeBlock props fontSize s is rendered 1`] = `
 `;
 
 exports[`EuiCodeBlock props isCopyable is rendered 1`] = `
-<EuiCodeBlock
-  isCopyable={true}
+<div
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge"
 >
-  <div
-    className="euiCodeBlock euiCodeBlock--hasControl euiCodeBlock--fontSmall euiCodeBlock--paddingLarge"
-    style={Object {}}
+  <pre
+    class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
+    tabindex="-1"
   >
-    <pre
-      className="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
-      style={Object {}}
-      tabIndex={-1}
+    <code
+      class="euiCodeBlock__code"
+      data-code-language="text"
     >
-      <code
-        className="euiCodeBlock__code"
-        data-code-language="text"
+      <span
+        class="euiCodeBlock__line"
       >
-        <span
-          className="euiCodeBlock__line"
-          key="node-0-0"
-        >
-          var some = 'code';
+        var some = 'code';
 
-        </span>
-        <span
-          className="euiCodeBlock__line"
-          key="node-0-1"
-        >
-          console.log(some);
-        </span>
-      </code>
-    </pre>
-    <div
-      className="euiCodeBlock__controls"
-    >
-      <CopyButton
-        textToCopy="var some = 'code';
-console.log(some);"
+      </span>
+      <span
+        class="euiCodeBlock__line"
       >
-        <div
-          className="euiCodeBlock__copyButton"
-        >
-          <EuiCopy
-            afterMessage="Copied"
-            textToCopy="var some = 'code';
-console.log(some);"
-          >
-            <EuiToolTip
-              delay="regular"
-              display="inlineBlock"
-              onMouseOut={[Function]}
-              position="top"
-            >
-              <EuiToolTipAnchor
-                display="inlineBlock"
-                id="generated-id"
-                isVisible={false}
-                onBlur={[Function]}
-                onFocus={[Function]}
-                onMouseOut={[Function]}
-                onMouseOver={[Function]}
-              >
-                <span
-                  css="unknown styles"
-                  onMouseOut={[Function]}
-                  onMouseOver={[Function]}
-                >
-                  <Insertion
-                    cache={
-                      Object {
-                        "insert": [Function],
-                        "inserted": Object {
-                          "jcaat8-euiToolTipAnchor-inlineBlock": true,
-                          "o2mzw-euiButtonIcon-empty-text-hoverStyles": true,
-                        },
-                        "key": "css",
-                        "nonce": undefined,
-                        "registered": Object {},
-                        "sheet": StyleSheet {
-                          "_alreadyInsertedOrderInsensitiveRule": true,
-                          "_insertTag": [Function],
-                          "before": null,
-                          "container": <head>
-                            <style
-                              data-emotion="css"
-                              data-s=""
-                            >
-                              
-                              .emotion-euiToolTipAnchor-inlineBlock{display:inline-block;}
-                            </style>
-                            <style
-                              data-emotion="css"
-                              data-s=""
-                            >
-                              
-                              .emotion-euiToolTipAnchor-inlineBlock *[disabled]{pointer-events:none;}
-                            </style>
-                            <style
-                              data-emotion="css"
-                              data-s=""
-                            >
-                              
-                              .emotion-euiButtonIcon-empty-text-hoverStyles{color:#343741;}
-                            </style>
-                            <style
-                              data-emotion="css"
-                              data-s=""
-                            >
-                              
-                              .emotion-euiButtonIcon-empty-text-hoverStyles:focus,.emotion-euiButtonIcon-empty-text-hoverStyles:active{background-color:rgba(211,218,230,0.2);}
-                            </style>
-                            <style
-                              data-emotion="css"
-                              data-s=""
-                            >
-                              
-                              .emotion-euiButtonIcon-empty-text-hoverStyles:hover{background-color:rgba(211,218,230,0.2);}
-                            </style>
-                          </head>,
-                          "ctr": 5,
-                          "insertionPoint": undefined,
-                          "isSpeedy": false,
-                          "key": "css",
-                          "nonce": undefined,
-                          "prepend": undefined,
-                          "tags": Array [
-                            <style
-                              data-emotion="css"
-                              data-s=""
-                            >
-                              
-                              .emotion-euiToolTipAnchor-inlineBlock{display:inline-block;}
-                            </style>,
-                            <style
-                              data-emotion="css"
-                              data-s=""
-                            >
-                              
-                              .emotion-euiToolTipAnchor-inlineBlock *[disabled]{pointer-events:none;}
-                            </style>,
-                            <style
-                              data-emotion="css"
-                              data-s=""
-                            >
-                              
-                              .emotion-euiButtonIcon-empty-text-hoverStyles{color:#343741;}
-                            </style>,
-                            <style
-                              data-emotion="css"
-                              data-s=""
-                            >
-                              
-                              .emotion-euiButtonIcon-empty-text-hoverStyles:focus,.emotion-euiButtonIcon-empty-text-hoverStyles:active{background-color:rgba(211,218,230,0.2);}
-                            </style>,
-                            <style
-                              data-emotion="css"
-                              data-s=""
-                            >
-                              
-                              .emotion-euiButtonIcon-empty-text-hoverStyles:hover{background-color:rgba(211,218,230,0.2);}
-                            </style>,
-                          ],
-                        },
-                      }
-                    }
-                    isStringTag={true}
-                    serialized={
-                      Object {
-                        "map": undefined,
-                        "name": "jcaat8-euiToolTipAnchor-inlineBlock",
-                        "next": undefined,
-                        "styles": "*[disabled]{pointer-events:none;};label:euiToolTipAnchor;;;display:inline-block;label:inlineBlock;;;",
-                        "toString": [Function],
-                      }
-                    }
-                  />
-                  <span
-                    className="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-                    onMouseOut={[Function]}
-                    onMouseOver={[Function]}
-                  >
-                    <EuiButtonIcon
-                      aria-label="Copy"
-                      color="text"
-                      iconType="copyClipboard"
-                      onBlur={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                    >
-                      <button
-                        aria-label="Copy"
-                        css="unknown styles"
-                        disabled={false}
-                        onBlur={[Function]}
-                        onClick={[Function]}
-                        onFocus={[Function]}
-                        type="button"
-                      >
-                        <Insertion
-                          cache={
-                            Object {
-                              "insert": [Function],
-                              "inserted": Object {
-                                "jcaat8-euiToolTipAnchor-inlineBlock": true,
-                                "o2mzw-euiButtonIcon-empty-text-hoverStyles": true,
-                              },
-                              "key": "css",
-                              "nonce": undefined,
-                              "registered": Object {},
-                              "sheet": StyleSheet {
-                                "_alreadyInsertedOrderInsensitiveRule": true,
-                                "_insertTag": [Function],
-                                "before": null,
-                                "container": <head>
-                                  <style
-                                    data-emotion="css"
-                                    data-s=""
-                                  >
-                                    
-                                    .emotion-euiToolTipAnchor-inlineBlock{display:inline-block;}
-                                  </style>
-                                  <style
-                                    data-emotion="css"
-                                    data-s=""
-                                  >
-                                    
-                                    .emotion-euiToolTipAnchor-inlineBlock *[disabled]{pointer-events:none;}
-                                  </style>
-                                  <style
-                                    data-emotion="css"
-                                    data-s=""
-                                  >
-                                    
-                                    .emotion-euiButtonIcon-empty-text-hoverStyles{color:#343741;}
-                                  </style>
-                                  <style
-                                    data-emotion="css"
-                                    data-s=""
-                                  >
-                                    
-                                    .emotion-euiButtonIcon-empty-text-hoverStyles:focus,.emotion-euiButtonIcon-empty-text-hoverStyles:active{background-color:rgba(211,218,230,0.2);}
-                                  </style>
-                                  <style
-                                    data-emotion="css"
-                                    data-s=""
-                                  >
-                                    
-                                    .emotion-euiButtonIcon-empty-text-hoverStyles:hover{background-color:rgba(211,218,230,0.2);}
-                                  </style>
-                                </head>,
-                                "ctr": 5,
-                                "insertionPoint": undefined,
-                                "isSpeedy": false,
-                                "key": "css",
-                                "nonce": undefined,
-                                "prepend": undefined,
-                                "tags": Array [
-                                  <style
-                                    data-emotion="css"
-                                    data-s=""
-                                  >
-                                    
-                                    .emotion-euiToolTipAnchor-inlineBlock{display:inline-block;}
-                                  </style>,
-                                  <style
-                                    data-emotion="css"
-                                    data-s=""
-                                  >
-                                    
-                                    .emotion-euiToolTipAnchor-inlineBlock *[disabled]{pointer-events:none;}
-                                  </style>,
-                                  <style
-                                    data-emotion="css"
-                                    data-s=""
-                                  >
-                                    
-                                    .emotion-euiButtonIcon-empty-text-hoverStyles{color:#343741;}
-                                  </style>,
-                                  <style
-                                    data-emotion="css"
-                                    data-s=""
-                                  >
-                                    
-                                    .emotion-euiButtonIcon-empty-text-hoverStyles:focus,.emotion-euiButtonIcon-empty-text-hoverStyles:active{background-color:rgba(211,218,230,0.2);}
-                                  </style>,
-                                  <style
-                                    data-emotion="css"
-                                    data-s=""
-                                  >
-                                    
-                                    .emotion-euiButtonIcon-empty-text-hoverStyles:hover{background-color:rgba(211,218,230,0.2);}
-                                  </style>,
-                                ],
-                              },
-                            }
-                          }
-                          isStringTag={true}
-                          serialized={
-                            Object {
-                              "map": undefined,
-                              "name": "o2mzw-euiButtonIcon-empty-text-hoverStyles",
-                              "next": undefined,
-                              "styles": ";label:euiButtonIcon;;;color:#343741;&:focus,&:active{background-color:rgba(211,218,230,0.2);};label:empty;;;label:text;;;&:hover{background-color:rgba(211,218,230,0.2);};label:hoverStyles;;;",
-                              "toString": [Function],
-                            }
-                          }
-                        />
-                        <button
-                          aria-label="Copy"
-                          className="euiButtonIcon euiButtonIcon--xSmall emotion-euiButtonIcon-empty-text-hoverStyles"
-                          disabled={false}
-                          onBlur={[Function]}
-                          onClick={[Function]}
-                          onFocus={[Function]}
-                          type="button"
-                        >
-                          <EuiIcon
-                            aria-hidden="true"
-                            className="euiButtonIcon__icon"
-                            color="inherit"
-                            size="m"
-                            type="copyClipboard"
-                          >
-                            <span
-                              aria-hidden="true"
-                              className="euiButtonIcon__icon"
-                              color="inherit"
-                              data-euiicon-type="copyClipboard"
-                              size="m"
-                            />
-                          </EuiIcon>
-                        </button>
-                      </button>
-                    </EuiButtonIcon>
-                  </span>
-                </span>
-              </EuiToolTipAnchor>
-            </EuiToolTip>
-          </EuiCopy>
-        </div>
-      </CopyButton>
-    </div>
-  </div>
-</EuiCodeBlock>
+        console.log(some);
+      </span>
+    </code>
+  </pre>
+</div>
 `;
 
 exports[`EuiCodeBlock props language is rendered 1`] = `

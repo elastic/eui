@@ -7,8 +7,7 @@
  */
 
 import React, { PropsWithChildren } from 'react';
-import createCache from '@emotion/cache';
-import { EmotionCache } from '@emotion/react';
+import { cache as fallbackCache, EmotionCache } from '@emotion/css';
 
 import {
   EuiGlobalStyles,
@@ -27,9 +26,6 @@ import { EuiCacheProvider } from './cache';
 const isEmotionCacheObject = (
   obj: EmotionCache | Object
 ): obj is EmotionCache => obj.hasOwnProperty('key');
-
-const fallbackCache = createCache({ key: 'css' });
-fallbackCache.compat = true;
 
 export interface EuiProviderProps<T>
   extends Omit<EuiThemeProviderProps<T>, 'children' | 'theme'>,

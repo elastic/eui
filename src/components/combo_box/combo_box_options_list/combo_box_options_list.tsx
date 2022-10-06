@@ -56,10 +56,12 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps &
      */
     customOptionText?: string;
     fullWidth?: boolean;
-    getSelectedOptionForSearchValue?: (
-      searchValue: string,
-      selectedOptions: any[]
-    ) => EuiComboBoxOptionOption<T> | undefined;
+    getSelectedOptionForSearchValue?: (params: {
+      isCaseSensitive?: boolean;
+      searchValue: string;
+      selectedOptions: any[];
+    }) => EuiComboBoxOptionOption<T> | undefined;
+    isCaseSensitive?: boolean;
     isLoading?: boolean;
     listRef: RefCallback<HTMLDivElement>;
     matchingOptions: Array<EuiComboBoxOptionOption<T>>;
@@ -113,6 +115,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
   static defaultProps = {
     'data-test-subj': '',
     rowHeight: 29, // row height of default option renderer
+    isCaseSensitive: false,
   };
 
   updatePosition = () => {
@@ -218,7 +221,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
 
     if (isGroupLabelOption) {
       return (
-        <div key={key ?? label.toLowerCase()} style={style}>
+        <div key={key ?? label} style={style}>
           <EuiComboBoxTitle>{label}</EuiComboBoxTitle>
         </div>
       );
@@ -241,7 +244,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
     return (
       <EuiFilterSelectItem
         style={style}
-        key={option.key ?? option.label.toLowerCase()}
+        key={option.key ?? option.label}
         onClick={() => {
           if (onOptionClick) {
             onOptionClick(option);
@@ -267,6 +270,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
           ) : (
             <EuiHighlight
               search={searchValue}
+              strict={this.props.isCaseSensitive}
               className={OPTION_CONTENT_CLASSNAME}
             >
               {label}
@@ -286,6 +290,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
       customOptionText,
       fullWidth,
       getSelectedOptionForSearchValue,
+      isCaseSensitive,
       isLoading,
       listRef,
       matchingOptions,
@@ -345,10 +350,11 @@ export class EuiComboBoxOptionsList<T> extends Component<
             </div>
           );
         } else {
-          const selectedOptionForValue = getSelectedOptionForSearchValue(
+          const selectedOptionForValue = getSelectedOptionForSearchValue({
+            isCaseSensitive,
             searchValue,
-            selectedOptions
-          );
+            selectedOptions,
+          });
           if (selectedOptionForValue) {
             // Disallow duplicate custom options.
             emptyStateContent = (

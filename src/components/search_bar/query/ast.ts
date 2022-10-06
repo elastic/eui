@@ -255,6 +255,9 @@ const arrayIncludesValue = (array: any[], value: any) => {
   return array.some((item) => valuesEqual(item, value));
 };
 
+const mustToMatch = (must: boolean) =>
+  must === true ? Match.MUST : Match.MUST_NOT;
+
 /**
  * The AST structure is an array of clauses. There are 3 types of clauses that are supported:
  *
@@ -367,13 +370,24 @@ export class _AST {
     return isNil(value) || arrayIncludesValue(clause.value as Value[], value);
   }
 
-  getOrFieldClause(field: string, value?: Value) {
-    return this.getFieldClause(
-      field,
-      (clause) =>
-        isArray(clause.value) &&
-        (isNil(value) || arrayIncludesValue(clause.value, value))
-    );
+  getOrFieldClause(
+    field: string,
+    value?: Value,
+    must?: boolean,
+    operator?: OperatorType
+  ) {
+    return this.getFieldClause(field, (clause) => {
+      if (!isArray(clause.value)) {
+        return false;
+      }
+
+      const matchValue =
+        isNil(value) || arrayIncludesValue(clause.value, value);
+      const matchMust = isNil(must) || mustToMatch(must) === clause.match;
+      const matchOperator = isNil(operator) || operator === clause.operator;
+
+      return matchValue && matchMust && matchOperator;
+    });
   }
 
   addOrFieldValue(
@@ -382,7 +396,13 @@ export class _AST {
     must = true,
     operator: OperatorType = Operator.EQ
   ) {
-    const existingClause = this.getOrFieldClause(field);
+    const existingClause = this.getOrFieldClause(
+      field,
+      undefined,
+      must,
+      operator
+    );
+
     if (!existingClause) {
       const newClause = must
         ? Field.must[operator](field, [value])
