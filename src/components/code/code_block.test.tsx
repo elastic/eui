@@ -162,7 +162,7 @@ describe('EuiCodeBlock', () => {
       component.find('button[aria-label="Expand"]').simulate('click');
       component.update();
       expect(
-        component.find('div.euiCodeBlock-isFullScreen').render()
+        component.find('div.euiCodeBlockFullScreen').render()
       ).toMatchSnapshot();
     });
 
@@ -179,10 +179,10 @@ describe('EuiCodeBlock', () => {
       component.find('button[aria-label="Expand"]').simulate('click');
       component.update();
       component
-        .find('div.euiCodeBlock-isFullScreen')
+        .find('div.euiCodeBlockFullScreen')
         .find('pre.euiCodeBlock__pre')
         .simulate('keyDown', { key: 'Escape' });
-      expect(component.find('.euiCodeBlock-isFullScreen')).toHaveLength(0);
+      expect(component.find('.euiCodeBlockFullScreen')).toHaveLength(0);
     });
   });
 

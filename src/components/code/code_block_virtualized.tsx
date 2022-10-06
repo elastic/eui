@@ -7,10 +7,10 @@
  */
 
 import React, { HTMLAttributes, forwardRef, useMemo } from 'react';
+import { FixedSizeList, ListChildComponentProps } from 'react-window';
 import { RefractorNode } from 'refractor';
-import { FixedSizeList } from 'react-window';
 import { EuiAutoSizer } from '../auto_sizer';
-import { ListRow } from './utils';
+import { nodeToHtml } from './utils';
 
 export const EuiCodeBlockVirtualized = ({
   data,
@@ -58,4 +58,10 @@ export const EuiCodeBlockVirtualized = ({
       )}
     </EuiAutoSizer>
   );
+};
+
+const ListRow = ({ data, index, style }: ListChildComponentProps) => {
+  const row = data[index];
+  row.properties.style = style;
+  return nodeToHtml(row, index, data, 0);
 };

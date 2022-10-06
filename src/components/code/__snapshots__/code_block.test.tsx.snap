@@ -42,7 +42,7 @@ exports[`EuiCodeBlock dynamic content updates DOM when input changes 2`] = `
 
 exports[`EuiCodeBlock fullscreen displays content in fullscreen mode 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock-isFullScreen emotion-euiCodeBlock-l-isFullScreen-hasControls"
+  class="euiCodeBlockFullScreen emotion-euiCodeBlock-l-isFullScreen"
 >
   <pre
     class="euiCodeBlock__pre emotion-euiCodeBlock__pre-whiteSpacePreWrap-isFullScreen"
@@ -395,11 +395,11 @@ exports[`EuiCodeBlock props language is rendered 1`] = `
 exports[`EuiCodeBlock props overflowHeight is rendered 1`] = `
 <div
   class="euiCodeBlock emotion-euiCodeBlock-s-hasControls"
-  style="max-height:200px"
+  style="max-block-size:200px"
 >
   <pre
     class="euiCodeBlock__pre emotion-euiCodeBlock__pre-whiteSpacePreWrap"
-    style="max-height:200px"
+    style="max-block-size:200px"
     tabindex="-1"
   >
     <code
@@ -641,7 +641,7 @@ exports[`EuiCodeBlock renders a code block 1`] = `
 exports[`EuiCodeBlock virtualization renders a virtualized code block 1`] = `
 <div
   class="euiCodeBlock testClass1 testClass2 emotion-euiCodeBlock-s-hasControls"
-  style="height:50%"
+  style="block-size:50%"
 >
   <div
     data-eui="EuiAutoSizer"

@@ -11,21 +11,12 @@ import React, {
   ReactElement,
   ReactNode,
   HTMLAttributes,
-  KeyboardEvent,
-  useEffect,
-  useMemo,
-  useState,
-  useCallback,
 } from 'react';
-import { ListChildComponentProps } from 'react-window';
 import { listLanguages, highlight, AST, RefractorNode } from 'refractor';
 import { cx } from '@emotion/css';
 
 import { CommonProps } from '../common';
-import { keys, UseEuiTheme } from '../../services';
-import { useMutationObserver } from '../observer/mutation_observer';
-import { useResizeObserver } from '../observer/resize_observer';
-import { useInnerText } from '../inner_text';
+import { UseEuiTheme } from '../../services';
 
 import { euiCodeBlockLineStyles } from './code_block_line.styles';
 
@@ -266,97 +257,4 @@ export const highlightByLine = (
     { showLineNumbers: data.show, highlight: data.highlight },
     euiTheme
   );
-};
-
-/**
- * Overflow logic
- *
- * Detects whether the code block overflows and returns a tabIndex of 0 if so,
- * which allows keyboard users to use the up/down arrow keys to scroll through
- * the container.
- */
-
-export const useOverflowDetection = () => {
-  const [wrapperRef, setWrapperRef] = useState<Element | null>(null);
-  const [tabIndex, setTabIndex] = useState<-1 | 0>(-1);
-  const { width, height } = useResizeObserver(wrapperRef);
-
-  const doesOverflow = () => {
-    if (!wrapperRef) return;
-
-    const { clientWidth, clientHeight, scrollWidth, scrollHeight } = wrapperRef;
-    const doesOverflow =
-      scrollHeight > clientHeight || scrollWidth > clientWidth;
-
-    setTabIndex(doesOverflow ? 0 : -1);
-  };
-
-  useMutationObserver(wrapperRef, doesOverflow, {
-    subtree: true,
-    childList: true,
-  });
-
-  useEffect(doesOverflow, [width, height, wrapperRef]);
-
-  return { setWrapperRef, tabIndex };
-};
-
-export const useCopy = ({
-  isCopyable,
-  isVirtualized,
-  children,
-}: {
-  isCopyable: boolean;
-  isVirtualized: boolean;
-  children: ReactNode;
-}) => {
-  const [innerTextRef, _innerText] = useInnerText('');
-  const innerText = useMemo(
-    () => _innerText?.replace(/[\r\n?]{2}|\n\n/g, '\n') || '',
-    [_innerText]
-  );
-  const textToCopy = isVirtualized ? `${children}` : innerText; // Virtualized code blocks do not have inner text
-
-  const showCopyButton = isCopyable && textToCopy;
-
-  return { innerTextRef, showCopyButton, textToCopy };
-};
-
-export const useFullScreen = ({
-  overflowHeight,
-}: {
-  overflowHeight?: number | string;
-}) => {
-  const [isFullScreen, setIsFullScreen] = useState(false);
-
-  const toggleFullScreen = useCallback(() => {
-    setIsFullScreen((isFullScreen) => !isFullScreen);
-  }, []);
-
-  const onKeyDown = useCallback((event: KeyboardEvent<HTMLElement>) => {
-    if (event.key === keys.ESCAPE) {
-      event.preventDefault();
-      event.stopPropagation();
-      setIsFullScreen(false);
-    }
-  }, []);
-
-  const showFullScreenButton = !!overflowHeight;
-
-  return {
-    showFullScreenButton,
-    isFullScreen,
-    toggleFullScreen,
-    onKeyDown,
-  };
-};
-
-/**
- * Virtualization logic
- */
-
-export const ListRow = ({ data, index, style }: ListChildComponentProps) => {
-  const row = data[index];
-  row.properties.style = style;
-  return nodeToHtml(row, index, data, 0);
 };
