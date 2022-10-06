@@ -25,15 +25,16 @@ Remove or strikethrough items that do not apply to your PR.
 - **Does it work?**
 - [ ] Output CSS matches the previous CSS / as expected in browsers
 - [ ] Rendered className reads as expected in snapshots and in browsers
-- [ ] Checked component playground (class components wrapped in `withEuiTheme` need to pass `true` as the second argument to `propUtilityForPlayground`)
+- [ ] Checked component playground (class components wrapped in `withEuiTheme` need to pass `true` as the second argument to its `propUtilityForPlayground` in `src-docs/src/views/{component}/playground.js`)
 &nbsp;
 - **Unit tests**
-- [ ] `shouldRenderCustomStyles()` test was added and passes with parent component and any nested `childProps` (e.g. `tooltipProps`)
-- [ ] Removed any mounted snapshots in favor of `render()` or a more specific assertion
+- [ ] [`shouldRenderCustomStyles()`](https://github.com/elastic/eui/blob/6054e9b8310bdb106371c0c9ff8bc48e3e0e594b/src/test/internal/render_custom_styles.tsx) test was added and passes with parent component and any nested `childProps` (e.g. `tooltipProps`)
+- [ ] Removed any `mount()`ed snapshots in favor of `render()` or a more specific assertion
 &nbsp;
 - **Sass/Emotion conversion process**
 - [ ] Converted all global Sass vars/mixins to JS (e.g. `$euiSize` to `euiTheme.size.base`)
-- [ ] Removed or converted component-specific Sass vars/mixins to exported JS versions, **listed removals in changelog**, and ran `yarn compile-scss` to update JSON files
+- [ ] Removed or converted component-specific Sass vars/mixins to exported JS versions, **listed removals in changelog**, and ran `yarn compile-scss` to update [JSON files](https://github.com/elastic/eui/tree/main/src-docs/src/views/theme/_json)
+- [ ] Simplified `calc()` to `mathWithUnits` if possible (if mixing different unit types, this may not be possible)
 - [ ] Added an `@warn` deprecation message within the `global_styling/mixins/{component}.scss` file
 - [ ] Removed component from `src/components/index.scss`
 - [ ] Deleted any `src/amsterdam/overrides/{component}.scss` files (styles within should have been converted to the baseline Emotion styles)
