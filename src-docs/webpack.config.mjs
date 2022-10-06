@@ -1,11 +1,15 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CircularDependencyPlugin = require('circular-dependency-plugin');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const babelConfig = require('./.babelrc.js');
-const { ProvidePlugin } = require('webpack');
-const getPort = require('get-port');
+import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import CircularDependencyPlugin from 'circular-dependency-plugin';
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
+import babelConfig from './.babelrc.js';
+import Webpack from 'webpack';
+import getPort from 'get-port';
+import remarkGfm from 'remark-gfm';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const { NODE_ENV, CI, WEBPACK_SERVE } = process.env;
 
@@ -63,11 +67,11 @@ const webpackConfig = new Promise(async (resolve, reject) => {
         fallback: {
           fs: false,
           os: false,
-          process: require.resolve('process/browser'),
+          process: await import.meta.resolve('process/browser.js'),
 
           // provide requirements for playground
-          path: require.resolve('path'),
-          buffer: require.resolve('buffer/'),
+          path: await import.meta.resolve('path'),
+          buffer: await import.meta.resolve('buffer/'),
         },
       },
 
@@ -130,6 +134,7 @@ const webpackConfig = new Promise(async (resolve, reject) => {
                 loader: '@mdx-js/loader',
                 options: {
                   providerImportSource: '@mdx-js/react',
+                  remarkPlugins: [remarkGfm],
                 },
               },
             ],
@@ -139,7 +144,7 @@ const webpackConfig = new Promise(async (resolve, reject) => {
 
       plugins: [
         // provide requirements for playground
-        new ProvidePlugin({
+        new Webpack.ProvidePlugin({
           Buffer: ['buffer', 'Buffer'],
           process: 'process/browser',
         }),
@@ -197,4 +202,4 @@ const webpackConfig = new Promise(async (resolve, reject) => {
   }
 });
 
-module.exports = webpackConfig;
+export default webpackConfig;
