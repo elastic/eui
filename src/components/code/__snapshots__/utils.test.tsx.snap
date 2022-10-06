@@ -21,6 +21,7 @@ Array [
           "aria-hidden": true,
           "className": Array [
             "euiCodeBlock__lineNumber",
+            "css-1d0fcfw-euiCodeBlock__lineNumber",
           ],
           "data-line-number": 1,
           "style": Object {
@@ -63,6 +64,7 @@ Array [
         "properties": Object {
           "className": Array [
             "euiCodeBlock__lineText",
+            "css-190fabh-euiCodeBlock__lineText",
           ],
           "style": Object {
             "marginLeft": 16,
@@ -76,6 +78,7 @@ Array [
     "properties": Object {
       "className": Array [
         "euiCodeBlock__line",
+        "css-4l0obi-euiCodeBlock__line-hasLineNumbers",
       ],
     },
     "tagName": "span",
@@ -89,6 +92,7 @@ Array [
           "aria-hidden": true,
           "className": Array [
             "euiCodeBlock__lineNumber",
+            "css-1d0fcfw-euiCodeBlock__lineNumber",
           ],
           "data-line-number": 2,
           "style": Object {
@@ -203,6 +207,7 @@ Array [
         "properties": Object {
           "className": Array [
             "euiCodeBlock__lineText",
+            "css-190fabh-euiCodeBlock__lineText",
           ],
           "style": Object {
             "marginLeft": 16,
@@ -216,6 +221,7 @@ Array [
     "properties": Object {
       "className": Array [
         "euiCodeBlock__line",
+        "css-4l0obi-euiCodeBlock__line-hasLineNumbers",
       ],
     },
     "tagName": "span",
@@ -229,6 +235,7 @@ Array [
           "aria-hidden": true,
           "className": Array [
             "euiCodeBlock__lineNumber",
+            "css-1d0fcfw-euiCodeBlock__lineNumber",
           ],
           "data-line-number": 3,
           "style": Object {
@@ -270,6 +277,7 @@ Array [
         "properties": Object {
           "className": Array [
             "euiCodeBlock__lineText",
+            "css-190fabh-euiCodeBlock__lineText",
           ],
           "style": Object {
             "marginLeft": 16,
@@ -283,6 +291,7 @@ Array [
     "properties": Object {
       "className": Array [
         "euiCodeBlock__line",
+        "css-4l0obi-euiCodeBlock__line-hasLineNumbers",
       ],
     },
     "tagName": "span",
@@ -301,6 +310,7 @@ Array [
           "aria-hidden": true,
           "className": Array [
             "euiCodeBlock__lineNumber",
+            "css-1d0fcfw-euiCodeBlock__lineNumber",
           ],
           "data-line-number": 10,
           "style": Object {
@@ -343,6 +353,7 @@ Array [
         "properties": Object {
           "className": Array [
             "euiCodeBlock__lineText",
+            "css-190fabh-euiCodeBlock__lineText",
           ],
           "style": Object {
             "marginLeft": 24,
@@ -356,6 +367,7 @@ Array [
     "properties": Object {
       "className": Array [
         "euiCodeBlock__line",
+        "css-4l0obi-euiCodeBlock__line-hasLineNumbers",
       ],
     },
     "tagName": "span",
@@ -369,6 +381,7 @@ Array [
           "aria-hidden": true,
           "className": Array [
             "euiCodeBlock__lineNumber",
+            "css-1d0fcfw-euiCodeBlock__lineNumber",
           ],
           "data-line-number": 11,
           "style": Object {
@@ -483,6 +496,7 @@ Array [
         "properties": Object {
           "className": Array [
             "euiCodeBlock__lineText",
+            "css-190fabh-euiCodeBlock__lineText",
           ],
           "style": Object {
             "marginLeft": 24,
@@ -496,6 +510,7 @@ Array [
     "properties": Object {
       "className": Array [
         "euiCodeBlock__line",
+        "css-4l0obi-euiCodeBlock__line-hasLineNumbers",
       ],
     },
     "tagName": "span",
@@ -509,6 +524,7 @@ Array [
           "aria-hidden": true,
           "className": Array [
             "euiCodeBlock__lineNumber",
+            "css-1d0fcfw-euiCodeBlock__lineNumber",
           ],
           "data-line-number": 12,
           "style": Object {
@@ -550,6 +566,7 @@ Array [
         "properties": Object {
           "className": Array [
             "euiCodeBlock__lineText",
+            "css-190fabh-euiCodeBlock__lineText",
           ],
           "style": Object {
             "marginLeft": 24,
@@ -563,6 +580,7 @@ Array [
     "properties": Object {
       "className": Array [
         "euiCodeBlock__line",
+        "css-4l0obi-euiCodeBlock__line-hasLineNumbers",
       ],
     },
     "tagName": "span",
@@ -581,6 +599,7 @@ Array [
           "aria-hidden": true,
           "className": Array [
             "euiCodeBlock__lineNumber",
+            "css-1d0fcfw-euiCodeBlock__lineNumber",
           ],
           "data-line-number": 1,
           "style": Object {
@@ -623,6 +642,7 @@ Array [
         "properties": Object {
           "className": Array [
             "euiCodeBlock__lineText",
+            "css-1lro3ts-euiCodeBlock__lineText-isHighlighted",
           ],
           "style": Object {
             "marginLeft": 16,
@@ -635,7 +655,8 @@ Array [
     ],
     "properties": Object {
       "className": Array [
-        "euiCodeBlock__line euiCodeBlock__line--isHighlighted",
+        "euiCodeBlock__line",
+        "css-4l0obi-euiCodeBlock__line-hasLineNumbers",
       ],
     },
     "tagName": "span",
@@ -649,6 +670,7 @@ Array [
           "aria-hidden": true,
           "className": Array [
             "euiCodeBlock__lineNumber",
+            "css-1d0fcfw-euiCodeBlock__lineNumber",
           ],
           "data-line-number": 2,
           "style": Object {
@@ -763,6 +785,7 @@ Array [
         "properties": Object {
           "className": Array [
             "euiCodeBlock__lineText",
+            "css-1lro3ts-euiCodeBlock__lineText-isHighlighted",
           ],
           "style": Object {
             "marginLeft": 16,
@@ -775,7 +798,8 @@ Array [
     ],
     "properties": Object {
       "className": Array [
-        "euiCodeBlock__line euiCodeBlock__line--isHighlighted",
+        "euiCodeBlock__line",
+        "css-4l0obi-euiCodeBlock__line-hasLineNumbers",
       ],
     },
     "tagName": "span",
@@ -789,6 +813,7 @@ Array [
           "aria-hidden": true,
           "className": Array [
             "euiCodeBlock__lineNumber",
+            "css-1d0fcfw-euiCodeBlock__lineNumber",
           ],
           "data-line-number": 3,
           "style": Object {
@@ -830,6 +855,7 @@ Array [
         "properties": Object {
           "className": Array [
             "euiCodeBlock__lineText",
+            "css-190fabh-euiCodeBlock__lineText",
           ],
           "style": Object {
             "marginLeft": 16,
@@ -843,6 +869,7 @@ Array [
     "properties": Object {
       "className": Array [
         "euiCodeBlock__line",
+        "css-4l0obi-euiCodeBlock__line-hasLineNumbers",
       ],
     },
     "tagName": "span",
@@ -886,6 +913,7 @@ Array [
     "properties": Object {
       "className": Array [
         "euiCodeBlock__line",
+        "css-yn676d-euiCodeBlock__line",
       ],
     },
     "tagName": "span",
@@ -996,6 +1024,7 @@ Array [
     "properties": Object {
       "className": Array [
         "euiCodeBlock__line",
+        "css-yn676d-euiCodeBlock__line",
       ],
     },
     "tagName": "span",
@@ -1033,6 +1062,7 @@ Array [
     "properties": Object {
       "className": Array [
         "euiCodeBlock__line",
+        "css-yn676d-euiCodeBlock__line",
       ],
     },
     "tagName": "span",

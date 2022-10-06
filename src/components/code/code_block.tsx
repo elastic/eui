@@ -119,6 +119,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
   lineNumbers = false,
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
   const language = useMemo(() => checkSupportedLanguage(_language), [
     _language,
   ]);
@@ -135,8 +136,8 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
     if (typeof children !== 'string') {
       return [];
     }
-    return highlightByLine(children, language, lineNumbersConfig);
-  }, [children, language, lineNumbersConfig]);
+    return highlightByLine(children, language, lineNumbersConfig, euiTheme);
+  }, [children, language, lineNumbersConfig, euiTheme]);
 
   // Used by `pre` when `isVirtualized=false` or `children` is not parsable
   const content = useMemo(() => getHtmlContent(data, children), [
@@ -169,8 +170,6 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
     toggleFullScreen,
   } = useFullScreen({ overflowHeight });
 
-  const euiTheme = useEuiTheme();
-
   const codeProps = useMemo(() => {
     const codeStyles = euiCodeBlockCodeStyles(euiTheme);
     const codeCssStyles = [
@@ -188,7 +187,6 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
 
   const hasControls = showCopyButton || showFullScreenButton ? true : false;
   const hasBothControls = showCopyButton && showFullScreenButton ? true : false;
-  const hasLineNumbers = lineNumbersConfig.show ? true : false;
 
   // Force fullscreen to use large padding
   const currentPaddingSize = isFullScreen
@@ -256,16 +254,8 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
       transparentBackground && styles.transparentBackground,
       hasControls && styles.hasControls,
       hasBothControls && styles.hasBothControls,
-      hasLineNumbers && styles.hasLineNumbers,
     ];
-  }, [
-    transparentBackground,
-    styles,
-    fontSize,
-    hasControls,
-    hasBothControls,
-    hasLineNumbers,
-  ]);
+  }, [transparentBackground, styles, fontSize, hasControls, hasBothControls]);
 
   const nonFullScreenProps = useMemo(() => {
     return {
@@ -284,9 +274,8 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
       styles.isFullScreen,
       hasControls && styles.hasControls,
       hasBothControls && styles.hasBothControls,
-      hasLineNumbers && styles.hasLineNumbers,
     ],
-    [styles, hasControls, hasBothControls, hasLineNumbers]
+    [styles, hasControls, hasBothControls]
   );
 
   const fullScreenProps = useMemo(() => {

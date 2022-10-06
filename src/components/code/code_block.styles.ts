@@ -14,11 +14,7 @@
  */
 
 import { css } from '@emotion/react';
-import {
-  euiFontSize,
-  euiBackgroundColor,
-  euiScrollBarStyles,
-} from '../../global_styling';
+import { euiFontSize, euiScrollBarStyles } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiCodeSyntaxColors, euiCodeSyntaxTokens } from './code_syntax.styles';
 
@@ -43,45 +39,6 @@ export const euiCodeBlockStyles = (
       background: ${euiCodeSyntax.backgroundColor};
 
       ${euiCodeSyntaxTokens(euiThemeContext)}
-
-      .euiCodeBlock__line {
-        display: block;
-      }
-
-      .euiCodeBlock__lineText,
-      .euiCodeBlock__lineNumber {
-        display: inline-block;
-      }
-
-      .euiCodeBlock__lineText {
-        padding-inline-start: ${euiTheme.size.s};
-        border-inline-start: ${euiTheme.border.thin};
-        user-select: text;
-      }
-
-      .euiCodeBlock__lineNumber {
-        position: absolute;
-        block-size: 100%;
-        user-select: none;
-        padding-inline-end: ${euiTheme.size.s};
-        // Width is calculated in JS and padding needs to be added on to that value.
-        box-sizing: content-box;
-
-        &:before {
-          content: attr(data-line-number);
-          color: ${euiTheme.colors.subduedText};
-          text-align: end;
-          display: block;
-        }
-      }
-
-      .euiCodeBlock__line--isHighlighted {
-        .euiCodeBlock__lineText {
-          background: ${euiBackgroundColor(euiThemeContext, 'primary')};
-          border-inline-start: ${euiTheme.border.width.thick} solid
-            ${euiTheme.colors.primary};
-        }
-      }
     `,
     // Font size
     s: css`
@@ -103,18 +60,9 @@ export const euiCodeBlockStyles = (
     hasBothControls: css`
       min-block-size: ${bothControlsMinHeight};
     `,
-    hasLineNumbers: css`
-      .euiCodeBlock__line {
-        position: relative;
-        user-select: none;
-      }
-    `,
     isFullScreen: css`
       position: fixed;
-      inset-block-start: 0;
-      inset-inline-start: 0;
-      inset-inline-end: 0;
-      inset-block-end: 0;
+      inset: 0;
     `,
   };
 };

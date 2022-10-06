@@ -55,7 +55,7 @@ exports[`EuiCodeBlock fullscreen displays content in fullscreen mode 1`] = `
       data-test-subj="test subject string"
     >
       <span
-        class="euiCodeBlock__line"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line"
       >
         <span
           class="token keyword"
@@ -98,7 +98,7 @@ exports[`EuiCodeBlock fullscreen displays content in fullscreen mode 1`] = `
 
 exports[`EuiCodeBlock line numbers renders highlighted line numbers 1`] = `
 <div
-  class="euiCodeBlock testClass1 testClass2 emotion-euiCodeBlock-s-hasLineNumbers"
+  class="euiCodeBlock testClass1 testClass2 emotion-euiCodeBlock-s"
 >
   <pre
     class="euiCodeBlock__pre emotion-euiCodeBlock__pre-whiteSpacePreWrap"
@@ -111,16 +111,16 @@ exports[`EuiCodeBlock line numbers renders highlighted line numbers 1`] = `
       data-test-subj="test subject string"
     >
       <span
-        class="euiCodeBlock__line euiCodeBlock__line--isHighlighted"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line-hasLineNumbers"
       >
         <span
           aria-hidden="true"
-          class="euiCodeBlock__lineNumber"
+          class="euiCodeBlock__lineNumber emotion-euiCodeBlock__lineNumber"
           data-line-number="1"
           style="width:8px"
         />
         <span
-          class="euiCodeBlock__lineText"
+          class="euiCodeBlock__lineText emotion-euiCodeBlock__lineText-isHighlighted"
           style="margin-left:16px;width:calc(100% - 8px)"
         >
           var some = 'code';
@@ -128,16 +128,16 @@ exports[`EuiCodeBlock line numbers renders highlighted line numbers 1`] = `
         </span>
       </span>
       <span
-        class="euiCodeBlock__line"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line-hasLineNumbers"
       >
         <span
           aria-hidden="true"
-          class="euiCodeBlock__lineNumber"
+          class="euiCodeBlock__lineNumber emotion-euiCodeBlock__lineNumber"
           data-line-number="2"
           style="width:8px"
         />
         <span
-          class="euiCodeBlock__lineText"
+          class="euiCodeBlock__lineText emotion-euiCodeBlock__lineText"
           style="margin-left:16px;width:calc(100% - 8px)"
         >
           console.log(some);
@@ -150,7 +150,7 @@ exports[`EuiCodeBlock line numbers renders highlighted line numbers 1`] = `
 
 exports[`EuiCodeBlock line numbers renders line numbers 1`] = `
 <div
-  class="euiCodeBlock testClass1 testClass2 emotion-euiCodeBlock-s-hasLineNumbers"
+  class="euiCodeBlock testClass1 testClass2 emotion-euiCodeBlock-s"
 >
   <pre
     class="euiCodeBlock__pre emotion-euiCodeBlock__pre-whiteSpacePreWrap"
@@ -163,16 +163,16 @@ exports[`EuiCodeBlock line numbers renders line numbers 1`] = `
       data-test-subj="test subject string"
     >
       <span
-        class="euiCodeBlock__line"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line-hasLineNumbers"
       >
         <span
           aria-hidden="true"
-          class="euiCodeBlock__lineNumber"
+          class="euiCodeBlock__lineNumber emotion-euiCodeBlock__lineNumber"
           data-line-number="1"
           style="width:8px"
         />
         <span
-          class="euiCodeBlock__lineText"
+          class="euiCodeBlock__lineText emotion-euiCodeBlock__lineText"
           style="margin-left:16px;width:calc(100% - 8px)"
         >
           var some = 'code';
@@ -180,16 +180,16 @@ exports[`EuiCodeBlock line numbers renders line numbers 1`] = `
         </span>
       </span>
       <span
-        class="euiCodeBlock__line"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line-hasLineNumbers"
       >
         <span
           aria-hidden="true"
-          class="euiCodeBlock__lineNumber"
+          class="euiCodeBlock__lineNumber emotion-euiCodeBlock__lineNumber"
           data-line-number="2"
           style="width:8px"
         />
         <span
-          class="euiCodeBlock__lineText"
+          class="euiCodeBlock__lineText emotion-euiCodeBlock__lineText"
           style="margin-left:16px;width:calc(100% - 8px)"
         >
           console.log(some);
@@ -202,7 +202,7 @@ exports[`EuiCodeBlock line numbers renders line numbers 1`] = `
 
 exports[`EuiCodeBlock line numbers renders line numbers with a start value 1`] = `
 <div
-  class="euiCodeBlock testClass1 testClass2 emotion-euiCodeBlock-s-hasLineNumbers"
+  class="euiCodeBlock testClass1 testClass2 emotion-euiCodeBlock-s"
 >
   <pre
     class="euiCodeBlock__pre emotion-euiCodeBlock__pre-whiteSpacePreWrap"
@@ -215,16 +215,16 @@ exports[`EuiCodeBlock line numbers renders line numbers with a start value 1`] =
       data-test-subj="test subject string"
     >
       <span
-        class="euiCodeBlock__line"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line-hasLineNumbers"
       >
         <span
           aria-hidden="true"
-          class="euiCodeBlock__lineNumber"
+          class="euiCodeBlock__lineNumber emotion-euiCodeBlock__lineNumber"
           data-line-number="10"
           style="width:16px"
         />
         <span
-          class="euiCodeBlock__lineText"
+          class="euiCodeBlock__lineText emotion-euiCodeBlock__lineText"
           style="margin-left:24px;width:calc(100% - 16px)"
         >
           var some = 'code';
@@ -232,16 +232,16 @@ exports[`EuiCodeBlock line numbers renders line numbers with a start value 1`] =
         </span>
       </span>
       <span
-        class="euiCodeBlock__line"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line-hasLineNumbers"
       >
         <span
           aria-hidden="true"
-          class="euiCodeBlock__lineNumber"
+          class="euiCodeBlock__lineNumber emotion-euiCodeBlock__lineNumber"
           data-line-number="11"
           style="width:16px"
         />
         <span
-          class="euiCodeBlock__lineText"
+          class="euiCodeBlock__lineText emotion-euiCodeBlock__lineText"
           style="margin-left:24px;width:calc(100% - 16px)"
         >
           console.log(some);
@@ -265,13 +265,13 @@ exports[`EuiCodeBlock props fontSize l is rendered 1`] = `
       data-code-language="text"
     >
       <span
-        class="euiCodeBlock__line"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line"
       >
         var some = 'code';
 
       </span>
       <span
-        class="euiCodeBlock__line"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line"
       >
         console.log(some);
       </span>
@@ -293,13 +293,13 @@ exports[`EuiCodeBlock props fontSize m is rendered 1`] = `
       data-code-language="text"
     >
       <span
-        class="euiCodeBlock__line"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line"
       >
         var some = 'code';
 
       </span>
       <span
-        class="euiCodeBlock__line"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line"
       >
         console.log(some);
       </span>
@@ -321,13 +321,13 @@ exports[`EuiCodeBlock props fontSize s is rendered 1`] = `
       data-code-language="text"
     >
       <span
-        class="euiCodeBlock__line"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line"
       >
         var some = 'code';
 
       </span>
       <span
-        class="euiCodeBlock__line"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line"
       >
         console.log(some);
       </span>
@@ -349,13 +349,13 @@ exports[`EuiCodeBlock props isCopyable is rendered 1`] = `
       data-code-language="text"
     >
       <span
-        class="euiCodeBlock__line"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line"
       >
         var some = 'code';
 
       </span>
       <span
-        class="euiCodeBlock__line"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line"
       >
         console.log(some);
       </span>
@@ -377,13 +377,13 @@ exports[`EuiCodeBlock props language is rendered 1`] = `
       data-code-language="html"
     >
       <span
-        class="euiCodeBlock__line"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line"
       >
         var some = 'code';
 
       </span>
       <span
-        class="euiCodeBlock__line"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line"
       >
         console.log(some);
       </span>
@@ -407,13 +407,13 @@ exports[`EuiCodeBlock props overflowHeight is rendered 1`] = `
       data-code-language="text"
     >
       <span
-        class="euiCodeBlock__line"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line"
       >
         var some = 'code';
 
       </span>
       <span
-        class="euiCodeBlock__line"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line"
       >
         console.log(some);
       </span>
@@ -451,13 +451,13 @@ exports[`EuiCodeBlock props paddingSize l is rendered 1`] = `
       data-code-language="text"
     >
       <span
-        class="euiCodeBlock__line"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line"
       >
         var some = 'code';
 
       </span>
       <span
-        class="euiCodeBlock__line"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line"
       >
         console.log(some);
       </span>
@@ -479,13 +479,13 @@ exports[`EuiCodeBlock props paddingSize m is rendered 1`] = `
       data-code-language="text"
     >
       <span
-        class="euiCodeBlock__line"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line"
       >
         var some = 'code';
 
       </span>
       <span
-        class="euiCodeBlock__line"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line"
       >
         console.log(some);
       </span>
@@ -507,13 +507,13 @@ exports[`EuiCodeBlock props paddingSize none is rendered 1`] = `
       data-code-language="text"
     >
       <span
-        class="euiCodeBlock__line"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line"
       >
         var some = 'code';
 
       </span>
       <span
-        class="euiCodeBlock__line"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line"
       >
         console.log(some);
       </span>
@@ -535,13 +535,13 @@ exports[`EuiCodeBlock props paddingSize s is rendered 1`] = `
       data-code-language="text"
     >
       <span
-        class="euiCodeBlock__line"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line"
       >
         var some = 'code';
 
       </span>
       <span
-        class="euiCodeBlock__line"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line"
       >
         console.log(some);
       </span>
@@ -563,13 +563,13 @@ exports[`EuiCodeBlock props transparentBackground is rendered 1`] = `
       data-code-language="text"
     >
       <span
-        class="euiCodeBlock__line"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line"
       >
         var some = 'code';
 
       </span>
       <span
-        class="euiCodeBlock__line"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line"
       >
         console.log(some);
       </span>
@@ -593,13 +593,13 @@ exports[`EuiCodeBlock props whiteSpace renders a pre block tag with a css class 
       data-test-subj="test subject string"
     >
       <span
-        class="euiCodeBlock__line"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line"
       >
         var some = 'code';
 
       </span>
       <span
-        class="euiCodeBlock__line"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line"
       >
         console.log(some);
       </span>
@@ -623,13 +623,13 @@ exports[`EuiCodeBlock renders a code block 1`] = `
       data-test-subj="test subject string"
     >
       <span
-        class="euiCodeBlock__line"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line"
       >
         var some = 'code';
 
       </span>
       <span
-        class="euiCodeBlock__line"
+        class="euiCodeBlock__line emotion-euiCodeBlock__line"
       >
         console.log(some);
       </span>
@@ -659,14 +659,14 @@ exports[`EuiCodeBlock virtualization renders a virtualized code block 1`] = `
         style="height:36px;width:100%"
       >
         <span
-          class="euiCodeBlock__line"
+          class="euiCodeBlock__line emotion-euiCodeBlock__line"
           style="position:absolute;left:0;top:0;height:18px;width:100%"
         >
           var some = 'code';
 
         </span>
         <span
-          class="euiCodeBlock__line"
+          class="euiCodeBlock__line emotion-euiCodeBlock__line"
           style="position:absolute;left:0;top:18px;height:18px;width:100%"
         >
           console.log(some);
