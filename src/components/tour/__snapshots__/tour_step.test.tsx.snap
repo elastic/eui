@@ -57,7 +57,7 @@ exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
         style="left: 0px; top: 10px;"
       >
         <div
-          class="euiBeacon euiTour__beacon emotion-euiBeacon-euiTourBeacon-left"
+          class="euiBeacon euiTour__beacon emotion-euiBeacon-euiTourBeacon-isOpen-left"
           style="height: 12px; width: 12px;"
         />
       </div>
@@ -160,7 +160,7 @@ exports[`EuiTourStep can have subtitle 1`] = `
         style="left: 0px; top: 10px;"
       >
         <div
-          class="euiBeacon euiTour__beacon emotion-euiBeacon-euiTourBeacon-left"
+          class="euiBeacon euiTour__beacon emotion-euiBeacon-euiTourBeacon-isOpen-left"
           style="height: 12px; width: 12px;"
         />
       </div>
@@ -268,7 +268,7 @@ exports[`EuiTourStep can override the footer action 1`] = `
         style="left: 0px; top: 10px;"
       >
         <div
-          class="euiBeacon euiTour__beacon emotion-euiBeacon-euiTourBeacon-left"
+          class="euiBeacon euiTour__beacon emotion-euiBeacon-euiTourBeacon-isOpen-left"
           style="height: 12px; width: 12px;"
         />
       </div>
@@ -458,7 +458,7 @@ exports[`EuiTourStep is rendered 1`] = `
         style="left: 0px; top: 10px;"
       >
         <div
-          class="euiBeacon euiTour__beacon emotion-euiBeacon-euiTourBeacon-left"
+          class="euiBeacon euiTour__beacon emotion-euiBeacon-euiTourBeacon-isOpen-left"
           style="height: 12px; width: 12px;"
         />
       </div>

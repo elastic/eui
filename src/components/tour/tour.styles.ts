@@ -14,7 +14,7 @@ import {
   COLOR_MODES_STANDARD,
   EuiThemeColorModeStandard,
 } from '../../services';
-import { logicalCSS, mathWithUnits } from '../../global_styling';
+import { logicalCSS, mathWithUnits, euiCanAnimate } from '../../global_styling';
 import { openAnimationTiming } from '../popover/popover_panel/_popover_panel.styles';
 import { popoverArrowSize } from '../popover/popover_arrow/_popover_arrow.styles';
 
@@ -26,19 +26,11 @@ const backgroundColor = (color: string, colorMode: EuiThemeColorModeStandard) =>
 export const euiTourStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
   // Targets EuiPopoverPanel
   euiTour: css`
-    &[data-popover-open='true'] {
-      [class*='euiTourBeacon'] {
-        opacity: 1; // Must alter here otherwise the transition does not occur
-      }
-    }
-
-    [data-popover-arrow='top'] {
-      &:before {
-        ${logicalCSS(
-          'border-top-color',
-          backgroundColor(euiTheme.colors.lightestShade, colorMode)
-        )};
-      }
+    [data-popover-arrow='top']::before {
+      ${logicalCSS(
+        'border-top-color',
+        backgroundColor(euiTheme.colors.lightestShade, colorMode)
+      )};
     }
   `,
 });
@@ -53,10 +45,16 @@ export const euiTourBeaconStyles = ({ euiTheme }: UseEuiTheme) => {
     euiTourBeacon: css`
       pointer-events: none;
       position: absolute;
-      opacity: 0;
-      transition: opacity 0s ${euiTheme.animation[openAnimationTiming]};
+      ${euiCanAnimate} {
+        opacity: 0;
+        transition: opacity 0s ${euiTheme.animation[openAnimationTiming]};
+      }
     `,
-
+    isOpen: css`
+      ${euiCanAnimate} {
+        opacity: 1; // Must alter here otherwise the transition does not occur
+      }
+    `,
     // Positions
     right: css`
       ${logicalCSS('top', arrowHalfSize)};
@@ -84,7 +82,6 @@ export const euiTourHeaderStyles = ({ euiTheme }: UseEuiTheme) => ({
     // Overriding default EuiPopoverTitle styles
     ${logicalCSS('margin-bottom', euiTheme.size.s)};
   `,
-
   // Elements
   euiTourHeader__title: css`
     // Removes extra margin applied to sibling EuiTitle's

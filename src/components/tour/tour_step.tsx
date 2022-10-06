@@ -194,6 +194,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   const beaconStyles = euiTourBeaconStyles(euiTheme);
   const beaconCss = [
     beaconStyles.euiTourBeacon,
+    isStepOpen && beaconStyles.isOpen,
     popoverPosition && beaconStyles[popoverPosition],
   ];
 
