@@ -25,6 +25,7 @@ export default () => {
         title="Title of the current step"
         subtitle="Title of the full tour (optional)"
         anchorPosition="rightUp"
+        panelProps={{ 'data-test-subj': 'test' }}
       >
         <EuiText>
           The tour step{' '}
