@@ -139,6 +139,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   anchor,
   children,
   className,
+  css,
   closePopover = () => {},
   content,
   isStepOpen = false,
@@ -263,7 +264,10 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
     ownFocus: false,
     panelClassName: classes,
     panelStyle: style,
-    panelProps: { ...panelProps, css: tourStyles.euiTour },
+    panelProps: {
+      ...panelProps,
+      css: [tourStyles.euiTour, css, panelProps?.css],
+    },
     offset: hasBeacon ? 10 : 0,
     'aria-labelledby': titleId,
     arrowChildren: hasBeacon && (

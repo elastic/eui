@@ -9,6 +9,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiTourStep } from './tour_step';
 
@@ -30,6 +31,23 @@ const config = {
 };
 
 describe('EuiTourStep', () => {
+  shouldRenderCustomStyles(
+    <EuiTourStep {...config} {...steps[0]} isStepOpen>
+      <span>Test</span>
+    </EuiTourStep>
+  );
+  shouldRenderCustomStyles(
+    <EuiTourStep
+      {...config}
+      {...steps[0]}
+      isStepOpen
+      panelProps={requiredProps}
+    >
+      <span>Test</span>
+    </EuiTourStep>,
+    { childProps: ['panelProps'], skipStyles: true, skipParentTest: true }
+  );
+
   test('is rendered', () => {
     const component = mount(
       <EuiTourStep {...config} {...steps[0]} isStepOpen {...requiredProps}>
