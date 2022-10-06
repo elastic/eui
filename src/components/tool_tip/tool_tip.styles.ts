@@ -11,6 +11,7 @@ import {
   logicalCSS,
   logicalSizeCSS,
   euiFontSize,
+  euiCanAnimate,
   mathWithUnits,
 } from '../../global_styling';
 import { COLOR_MODES_STANDARD, UseEuiTheme, tint, shade } from '../../services';
@@ -59,12 +60,10 @@ const euiToolTipAnimationHorizontal = (size: string) => keyframes`
 export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
   const animationTiming = `${euiTheme.animation.slow} ease-out 0s forwards`;
-  /*
-   * 1. Shift arrow 1px more than half its size to account for border radius
-   */
+  // Shift arrow 1px more than half its size to account for border radius
   const arrowSize = euiTheme.size.m;
-  const arrowPlusSize = mathWithUnits(arrowSize, (x) => (x / 2 + 1) * -1); // 1.
-  const arrowMinusSize = mathWithUnits(arrowSize, (x) => (x / 2 - 1) * -1); // 1.
+  const arrowPlusSize = mathWithUnits(arrowSize, (x) => (x / 2 + 1) * -1);
+  const arrowMinusSize = mathWithUnits(arrowSize, (x) => (x / 2 - 1) * -1);
   return {
     // Base
     euiToolTip: css`
@@ -90,34 +89,30 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // Positions
     top: css`
-      animation: ${euiToolTipAnimationVertical(`-${euiTheme.size.base}`)}
-        ${animationTiming};
+      ${euiCanAnimate} {
+        animation: ${euiToolTipAnimationVertical(`-${euiTheme.size.base}`)}
+          ${animationTiming};
+      }
     `,
     bottom: css`
-      animation: ${euiToolTipAnimationVertical(euiTheme.size.base)}
-        ${animationTiming};
-
-      [class*='euiToolTip__arrow'] {
-        transform: translateY(${arrowMinusSize}) rotateZ(45deg); /* 1 */
+      ${euiCanAnimate} {
+        animation: ${euiToolTipAnimationVertical(euiTheme.size.base)}
+          ${animationTiming};
       }
     `,
     left: css`
-      animation: ${euiToolTipAnimationHorizontal(`-${euiTheme.size.base}`)}
-        ${animationTiming};
-
-      [class*='euiToolTip__arrow'] {
-        transform: translateX(${arrowPlusSize}) rotateZ(45deg); /* 1 */
+      ${euiCanAnimate} {
+        animation: ${euiToolTipAnimationHorizontal(`-${euiTheme.size.base}`)}
+          ${animationTiming};
       }
     `,
     right: css`
-      animation: ${euiToolTipAnimationHorizontal(euiTheme.size.base)}
-        ${animationTiming};
-
-      [class*='euiToolTip__arrow'] {
-        transform: translateX(${arrowMinusSize}) rotateZ(45deg); /* 1 */
+      ${euiCanAnimate} {
+        animation: ${euiToolTipAnimationHorizontal(euiTheme.size.base)}
+          ${animationTiming};
       }
     `,
-    // Elements
+    // Arrow
     euiToolTip__arrow: css`
       content: '';
       position: absolute;
@@ -125,29 +120,36 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
       border-radius: 2px;
       background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};
       ${logicalSizeCSS(arrowSize, arrowSize)};
-      transform: translateY(${arrowPlusSize}) rotateZ(45deg); /* 1 */
+    `,
+    arrowPositions: {
+      top: css`
+        transform: translateY(${arrowPlusSize}) rotateZ(45deg);
+      `,
+      bottom: css`
+        transform: translateY(${arrowMinusSize}) rotateZ(45deg);
+      `,
+      left: css`
+        transform: translateX(${arrowPlusSize}) rotateZ(45deg);
+      `,
+      right: css`
+        transform: translateX(${arrowMinusSize}) rotateZ(45deg);
+      `,
+    },
+    // Title
+    euiToolTip__title: css`
+      font-weight: ${euiTheme.font.weight.bold};
+      ${logicalCSS(
+        'border-bottom',
+        `solid ${euiTheme.border.width.thin} ${euiToolTipBorderColor(
+          euiTheme,
+          colorMode
+        )}`
+      )};
+      ${logicalCSS('padding-bottom', euiTheme.size.xs)};
+      ${logicalCSS('margin-bottom', euiTheme.size.xs)};
     `,
   };
 };
-
-export const euiToolTipPopoverStyles = ({
-  euiTheme,
-  colorMode,
-}: UseEuiTheme) => ({
-  // Elements
-  euiToolTip__title: css`
-    font-weight: ${euiTheme.font.weight.bold};
-    ${logicalCSS(
-      'border-bottom',
-      `solid ${euiTheme.border.width.thin} ${euiToolTipBorderColor(
-        euiTheme,
-        colorMode
-      )}`
-    )};
-    ${logicalCSS('padding-bottom', euiTheme.size.xs)};
-    ${logicalCSS('margin-bottom', euiTheme.size.xs)};
-  `,
-});
 
 export const euiToolTipAnchorStyles = () => ({
   // Elements
