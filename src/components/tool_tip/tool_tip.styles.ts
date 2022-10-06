@@ -60,9 +60,10 @@ const euiToolTipAnimationHorizontal = (size: string) => keyframes`
 export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
   const animationTiming = `${euiTheme.animation.slow} ease-out 0s forwards`;
+  // Shift arrow 1px more than half its size to account for border radius
   const arrowSize = euiTheme.size.m;
-  const arrowPlusSize = mathWithUnits(arrowSize, (x) => (x / 2 + 1) * -1); // 1.
-  const arrowMinusSize = mathWithUnits(arrowSize, (x) => (x / 2 - 1) * -1); // 1.
+  const arrowPlusSize = mathWithUnits(arrowSize, (x) => (x / 2 + 1) * -1);
+  const arrowMinusSize = mathWithUnits(arrowSize, (x) => (x / 2 - 1) * -1);
   return {
     // Base
     euiToolTip: css`
@@ -120,7 +121,6 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
       background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};
       ${logicalSizeCSS(arrowSize, arrowSize)};
     `,
-    // Shift arrow 1px more than half its size to account for border radius
     arrowPositions: {
       top: css`
         transform: translateY(${arrowPlusSize}) rotateZ(45deg);
