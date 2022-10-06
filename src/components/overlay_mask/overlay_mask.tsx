@@ -43,7 +43,7 @@ export interface EuiOverlayMaskInterface {
   maskRef?: Ref<HTMLDivElement> | MutableRefObject<HTMLDivElement>;
 }
 
-export type EuiOverlayMaskProps = CommonProps &
+export type EuiOverlayMaskProps = Omit<CommonProps, 'css'> &
   Omit<
     Partial<Record<keyof HTMLAttributes<HTMLDivElement>, string>>,
     keyof EuiOverlayMaskInterface
@@ -55,7 +55,6 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
   children,
   headerZindexLocation = 'above',
   maskRef,
-  css, // TODO: apply custom CSS-in-JS as a className
   ...rest
 }) => {
   const [overlayMaskNode, setOverlayMaskNode] = useState<HTMLDivElement | null>(
