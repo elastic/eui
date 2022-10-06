@@ -152,6 +152,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   title,
   decoration = 'beacon',
   footerAction,
+  panelProps,
   ...rest
 }) => {
   const titleId = useGeneratedHtmlId();
@@ -262,7 +263,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
     ownFocus: false,
     panelClassName: classes,
     panelStyle: style,
-    panelProps: { css: tourStyles.euiTour },
+    panelProps: { ...panelProps, css: tourStyles.euiTour },
     offset: hasBeacon ? 10 : 0,
     'aria-labelledby': titleId,
     arrowChildren: hasBeacon && (
