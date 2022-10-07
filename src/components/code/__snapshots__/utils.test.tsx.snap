@@ -25,7 +25,7 @@ Array [
           ],
           "data-line-number": 1,
           "style": Object {
-            "width": 8,
+            "inlineSize": 8,
           },
         },
         "tagName": "span",
@@ -92,7 +92,7 @@ Array [
           ],
           "data-line-number": 2,
           "style": Object {
-            "width": 8,
+            "inlineSize": 8,
           },
         },
         "tagName": "span",
@@ -231,7 +231,7 @@ Array [
           ],
           "data-line-number": 3,
           "style": Object {
-            "width": 8,
+            "inlineSize": 8,
           },
         },
         "tagName": "span",
@@ -302,7 +302,7 @@ Array [
           ],
           "data-line-number": 10,
           "style": Object {
-            "width": 16,
+            "inlineSize": 16,
           },
         },
         "tagName": "span",
@@ -369,7 +369,7 @@ Array [
           ],
           "data-line-number": 11,
           "style": Object {
-            "width": 16,
+            "inlineSize": 16,
           },
         },
         "tagName": "span",
@@ -508,7 +508,7 @@ Array [
           ],
           "data-line-number": 12,
           "style": Object {
-            "width": 16,
+            "inlineSize": 16,
           },
         },
         "tagName": "span",
@@ -579,7 +579,7 @@ Array [
           ],
           "data-line-number": 1,
           "style": Object {
-            "width": 8,
+            "inlineSize": 8,
           },
         },
         "tagName": "span",
@@ -646,7 +646,7 @@ Array [
           ],
           "data-line-number": 2,
           "style": Object {
-            "width": 8,
+            "inlineSize": 8,
           },
         },
         "tagName": "span",
@@ -785,7 +785,7 @@ Array [
           ],
           "data-line-number": 3,
           "style": Object {
-            "width": 8,
+            "inlineSize": 8,
           },
         },
         "tagName": "span",

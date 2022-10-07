@@ -211,7 +211,7 @@ function wrapLines(
           type: 'element',
           tagName: 'span',
           properties: {
-            style: { width },
+            style: { inlineSize: width },
             ['data-line-number']: lineNumber,
             ['aria-hidden']: true,
             className: ['euiCodeBlock__lineNumber', lineNumberStyles],
