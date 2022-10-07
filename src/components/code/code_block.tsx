@@ -203,6 +203,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
             ? styles.whiteSpace.pre.controlsOffset[paddingSize]
             : styles.whiteSpace.preWrap.controlsOffset[paddingSize]),
       ],
+      tabIndex: isVirtualized ? 0 : tabIndex,
     };
     const preFullscreenProps = {
       className: 'euiCodeBlock__pre',
@@ -227,6 +228,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
     hasControls,
     paddingSize,
     onKeyDown,
+    tabIndex,
   ]);
 
   const codeProps = useMemo(() => {
@@ -255,16 +257,11 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
           data={data}
           rowHeight={fontSizeToRowHeightMap[fontSize]}
           overflowHeight={overflowHeight}
-          preProps={preFullscreenProps} // Note: the virtualized codeblock always sets a tabIndex of 0
+          preProps={preProps}
           codeProps={codeProps}
         />
       ) : (
-        <pre
-          {...preProps}
-          ref={combinedRef}
-          style={overflowHeightStyles}
-          tabIndex={tabIndex}
-        >
+        <pre {...preProps} ref={combinedRef} style={overflowHeightStyles}>
           <code {...codeProps}>{content}</code>
         </pre>
       )}
