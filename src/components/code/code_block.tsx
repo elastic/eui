@@ -11,7 +11,6 @@ import { RefractorNode } from 'refractor';
 import classNames from 'classnames';
 import { useCombinedRefs, useEuiTheme } from '../../services';
 import { ExclusiveUnion } from '../common';
-import { euiPaddingSize } from '../../global_styling';
 import {
   EuiCodeSharedProps,
   DEFAULT_LANGUAGE,
@@ -25,12 +24,12 @@ import {
   useFullScreen,
   EuiCodeBlockFullScreenWrapper,
 } from './code_block_full_screen';
+import { EuiCodeBlockControls } from './code_block_controls';
 import { EuiCodeBlockVirtualized } from './code_block_virtualized';
 import {
   euiCodeBlockStyles,
   euiCodeBlockPreStyles,
   euiCodeBlockCodeStyles,
-  euiCodeBlockControlsStyles,
 } from './code_block.styles';
 
 // Based on observed line height for non-virtualized code blocks
@@ -172,20 +171,63 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
   const hasControls = !!(copyButton || fullScreenButton);
   const hasBothControls = !!(copyButton && fullScreenButton);
 
-  // Force fullscreen to use large padding
-  const currentPaddingSize = isFullScreen
-    ? euiPaddingSize(euiTheme, 'l')
-    : euiPaddingSize(euiTheme, paddingSize);
-  const paddingAmount = currentPaddingSize ? parseInt(currentPaddingSize) : 0;
-
-  const styles = euiCodeBlockStyles(euiTheme, paddingAmount);
+  const styles = euiCodeBlockStyles(euiTheme);
   const cssStyles = [
     styles.euiCodeBlock,
     styles[fontSize],
     transparentBackground && styles.transparentBackground,
     hasControls &&
-      (hasBothControls ? styles.hasBothControls : styles.hasControls),
+      (hasBothControls
+        ? styles.hasBothControls[paddingSize]
+        : styles.hasControls[paddingSize]),
   ];
+
+  const [preProps, preFullscreenProps] = useMemo(() => {
+    const isWhiteSpacePre = whiteSpace === 'pre' || isVirtualized;
+
+    const styles = euiCodeBlockPreStyles(euiTheme);
+    const cssStyles = [
+      styles.euiCodeBlock__pre,
+      isWhiteSpacePre
+        ? styles.whiteSpace.pre.pre
+        : styles.whiteSpace.preWrap.preWrap,
+    ];
+
+    const preProps = {
+      className: 'euiCodeBlock__pre',
+      css: [
+        ...cssStyles,
+        styles.padding[paddingSize],
+        hasControls &&
+          (isWhiteSpacePre
+            ? styles.whiteSpace.pre.controlsOffset[paddingSize]
+            : styles.whiteSpace.preWrap.controlsOffset[paddingSize]),
+      ],
+    };
+    const preFullscreenProps = {
+      className: 'euiCodeBlock__pre',
+      css: [
+        ...cssStyles,
+        // Force fullscreen to use xl padding
+        styles.padding.xl,
+        hasControls &&
+          (isWhiteSpacePre
+            ? styles.whiteSpace.pre.controlsOffset.xl
+            : styles.whiteSpace.preWrap.controlsOffset.xl),
+      ],
+      tabIndex: 0,
+      onKeyDown,
+    };
+
+    return [preProps, preFullscreenProps];
+  }, [
+    euiTheme,
+    whiteSpace,
+    isVirtualized,
+    hasControls,
+    paddingSize,
+    onKeyDown,
+  ]);
 
   const codeProps = useMemo(() => {
     const styles = euiCodeBlockCodeStyles(euiTheme);
@@ -201,47 +243,6 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
       ...rest,
     };
   }, [language, euiTheme, isVirtualized, rest]);
-
-  const preProps = useMemo(() => {
-    const styles = euiCodeBlockPreStyles(euiTheme, paddingAmount, hasControls);
-    const cssStyles = [
-      styles.euiCodeBlock__pre,
-      (whiteSpace === 'pre' || isVirtualized) && styles.whiteSpacePre,
-      whiteSpace === 'pre-wrap' && !isVirtualized && styles.whiteSpacePreWrap,
-      isFullScreen && styles.isFullScreen,
-    ];
-
-    return {
-      className: 'euiCodeBlock__pre',
-      css: cssStyles,
-    };
-  }, [
-    euiTheme,
-    whiteSpace,
-    isVirtualized,
-    isFullScreen,
-    hasControls,
-    paddingAmount,
-  ]);
-
-  const preFullscreenProps = useMemo(() => {
-    return { ...preProps, tabIndex: 0, onKeyDown };
-  }, [onKeyDown, preProps]);
-
-  const codeBlockControls = useMemo(() => {
-    if (hasControls) {
-      const styles = euiCodeBlockControlsStyles(euiTheme, paddingAmount);
-      return (
-        <div
-          className="euiCodeBlock__controls"
-          css={styles.euiCodeBlock__controls}
-        >
-          {fullScreenButton}
-          {copyButton}
-        </div>
-      );
-    }
-  }, [hasControls, fullScreenButton, copyButton, euiTheme, paddingAmount]);
 
   return (
     <div
@@ -267,7 +268,10 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
           <code {...codeProps}>{content}</code>
         </pre>
       )}
-      {codeBlockControls}
+      <EuiCodeBlockControls
+        controls={[fullScreenButton, copyButton]}
+        paddingSize={paddingSize}
+      />
 
       {isFullScreen && (
         <EuiCodeBlockFullScreenWrapper>
@@ -283,7 +287,10 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
               <code {...codeProps}>{content}</code>
             </pre>
           )}
-          {codeBlockControls}
+          <EuiCodeBlockControls
+            controls={[fullScreenButton, copyButton]}
+            paddingSize="l"
+          />
         </EuiCodeBlockFullScreenWrapper>
       )}
     </div>

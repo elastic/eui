@@ -14,22 +14,18 @@
  */
 
 import { css } from '@emotion/react';
-import { euiFontSize, euiScrollBarStyles } from '../../global_styling';
+import {
+  euiPaddingSize,
+  euiFontSize,
+  euiScrollBarStyles,
+  mathWithUnits,
+} from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiCodeSyntaxColors, euiCodeSyntaxTokens } from './code_syntax.styles';
 
-export const euiCodeBlockStyles = (
-  euiThemeContext: UseEuiTheme,
-  paddingAmount: number
-) => {
+export const euiCodeBlockStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const euiCodeSyntax = euiCodeSyntaxColors(euiThemeContext);
-  const controlsPadding =
-    parseInt(euiTheme.size.l) + parseInt(euiTheme.size.xs);
-  const bothControlsHeight =
-    parseInt(euiTheme.size.l) * 2 + parseInt(euiTheme.size.xs);
-  const hasControlsMinHeight = `${controlsPadding + paddingAmount * 2}px`;
-  const bothControlsMinHeight = `${bothControlsHeight + paddingAmount * 2}px`;
 
   return {
     euiCodeBlock: css`
@@ -54,57 +50,84 @@ export const euiCodeBlockStyles = (
     transparentBackground: css`
       background: transparent;
     `,
-    hasControls: css`
-      min-block-size: ${hasControlsMinHeight};
-    `,
-    hasBothControls: css`
-      min-block-size: ${bothControlsMinHeight};
-    `,
     isFullScreen: css`
       position: fixed;
       inset: 0;
     `,
+    // Account for control heights
+    hasControls: generatePaddingCss(euiThemeContext, (paddingSize: string) => {
+      return css`
+        min-block-size: ${mathWithUnits(
+          [euiTheme.size.l, paddingSize],
+          (iconSize, paddingSize) => iconSize + paddingSize * 2
+        )};
+      `;
+    }),
+    hasBothControls: generatePaddingCss(
+      euiThemeContext,
+      (paddingSize: string) => {
+        return css`
+          min-block-size: ${mathWithUnits(
+            [euiTheme.size.l, euiTheme.size.xs, paddingSize],
+            (iconSize, gap, paddingSize) => iconSize * 2 + gap + paddingSize * 2
+          )};
+        `;
+      }
+    ),
   };
 };
 
-export const euiCodeBlockPreStyles = (
-  euiThemeContext: UseEuiTheme,
-  paddingAmount: number,
-  hasControls?: boolean
-) => {
+export const euiCodeBlockPreStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-  const controlsPadding =
-    parseInt(euiTheme.size.l) + parseInt(euiTheme.size.xs);
-  const controlsPaddingAdjusted = controlsPadding + paddingAmount;
 
   return {
     euiCodeBlock__pre: css`
       block-size: 100%;
       overflow: auto;
       display: block;
-      padding-inline: ${paddingAmount}px;
-      padding-block: ${paddingAmount}px;
       ${euiScrollBarStyles(euiThemeContext)}
     `,
-    whiteSpacePre: css`
-      white-space: pre;
-
-      ${hasControls &&
-      `
-        margin-inline-end: ${controlsPaddingAdjusted}px;
-      `};
-    `,
-    whiteSpacePreWrap: css`
-      white-space: pre-wrap;
-
-      ${hasControls &&
-      `
-        padding-inline-end: ${controlsPaddingAdjusted}px;
-      `}
-    `,
-    isFullScreen: css`
-      padding: ${euiTheme.size.xl};
-    `,
+    padding: {
+      ...generatePaddingCss(euiThemeContext, (paddingSize: string) => {
+        return css`
+          padding: ${paddingSize};
+        `;
+      }),
+    },
+    whiteSpace: {
+      pre: {
+        pre: css`
+          white-space: pre;
+        `,
+        controlsOffset: generatePaddingCss(
+          euiThemeContext,
+          (paddingSize: string) => {
+            return css`
+              margin-inline-end: ${mathWithUnits(
+                [paddingSize, euiTheme.size.l, euiTheme.size.xs],
+                (paddingSize, iconSize, gap) => paddingSize + gap + iconSize
+              )};
+            `;
+          }
+        ),
+      },
+      preWrap: {
+        preWrap: css`
+          white-space: pre-wrap;
+        `,
+        controlsOffset: generatePaddingCss(
+          euiThemeContext,
+          (paddingSize: string) => {
+            return css`
+              padding-inline-end: ${mathWithUnits(
+                [paddingSize, euiTheme.size.l, euiTheme.size.xs],
+                (paddingSize, iconSize, gap) => paddingSize + gap + iconSize
+              )};
+            `;
+          }
+        ),
+      },
+    },
   };
 };
 
@@ -126,23 +149,19 @@ export const euiCodeBlockCodeStyles = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
-export const euiCodeBlockControlsStyles = (
+/**
+ * Helper for generating keys for each code block padding size
+ */
+const generatePaddingCss = (
   euiThemeContext: UseEuiTheme,
-  paddingAmount: number
+  callback: Function
 ) => {
-  const { euiTheme } = euiThemeContext;
-  const euiCodeSyntax = euiCodeSyntaxColors(euiThemeContext);
+  const cssKeys = { none: css``, s: css``, m: css``, l: css``, xl: css`` }; // xl padding used by fullscreen mode
 
-  return {
-    euiCodeBlock__controls: css`
-      position: absolute;
-      inset-block-start: ${paddingAmount}px;
-      inset-inline-end: ${paddingAmount}px;
-      max-inline-size: 100%;
-      display: flex;
-      flex-direction: column;
-      background: ${euiCodeSyntax.backgroundColor};
-      gap: ${euiTheme.size.xs};
-    `,
-  };
+  (['none', 's', 'm', 'l', 'xl'] as const).forEach((size) => {
+    const paddingSize = euiPaddingSize(euiThemeContext, size) || 0;
+    cssKeys[size] = callback(paddingSize);
+  });
+
+  return cssKeys;
 };

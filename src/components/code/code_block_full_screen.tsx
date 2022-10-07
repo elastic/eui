@@ -84,12 +84,8 @@ export const EuiCodeBlockFullScreenWrapper: FunctionComponent = ({
   children,
 }) => {
   const euiThemeContext = useEuiTheme();
-  const { euiTheme } = euiThemeContext;
 
-  const styles = euiCodeBlockStyles(
-    euiThemeContext,
-    parseFloat(euiTheme.size.l)
-  );
+  const styles = euiCodeBlockStyles(euiThemeContext);
   const cssStyles = [
     styles.euiCodeBlock,
     styles.l, // Force fullscreen to use large font
