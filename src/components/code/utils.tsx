@@ -96,7 +96,6 @@ interface LineNumbersConfig {
 
 // Approximate width of a single digit/character
 const CHAR_SIZE = 8;
-const $euiSizeS = 8;
 
 // Creates an array of numbers from comma-separeated
 // string of numbers or number ranges using `-`
@@ -223,10 +222,6 @@ function wrapLines(
           type: 'element',
           tagName: 'span',
           properties: {
-            style: {
-              marginLeft: width + $euiSizeS,
-              width: `calc(100% - ${width}px)`,
-            },
             className: ['euiCodeBlock__lineText', lineTextStyles],
           },
           children: node,

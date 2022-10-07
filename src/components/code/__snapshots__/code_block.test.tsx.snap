@@ -121,7 +121,6 @@ exports[`EuiCodeBlock line numbers renders highlighted line numbers 1`] = `
         />
         <span
           class="euiCodeBlock__lineText emotion-euiCodeBlock__lineText-isHighlighted"
-          style="margin-left:16px;width:calc(100% - 8px)"
         >
           var some = 'code';
 
@@ -138,7 +137,6 @@ exports[`EuiCodeBlock line numbers renders highlighted line numbers 1`] = `
         />
         <span
           class="euiCodeBlock__lineText emotion-euiCodeBlock__lineText"
-          style="margin-left:16px;width:calc(100% - 8px)"
         >
           console.log(some);
         </span>
@@ -173,7 +171,6 @@ exports[`EuiCodeBlock line numbers renders line numbers 1`] = `
         />
         <span
           class="euiCodeBlock__lineText emotion-euiCodeBlock__lineText"
-          style="margin-left:16px;width:calc(100% - 8px)"
         >
           var some = 'code';
 
@@ -190,7 +187,6 @@ exports[`EuiCodeBlock line numbers renders line numbers 1`] = `
         />
         <span
           class="euiCodeBlock__lineText emotion-euiCodeBlock__lineText"
-          style="margin-left:16px;width:calc(100% - 8px)"
         >
           console.log(some);
         </span>
@@ -225,7 +221,6 @@ exports[`EuiCodeBlock line numbers renders line numbers with a start value 1`] =
         />
         <span
           class="euiCodeBlock__lineText emotion-euiCodeBlock__lineText"
-          style="margin-left:24px;width:calc(100% - 16px)"
         >
           var some = 'code';
 
@@ -242,7 +237,6 @@ exports[`EuiCodeBlock line numbers renders line numbers with a start value 1`] =
         />
         <span
           class="euiCodeBlock__lineText emotion-euiCodeBlock__lineText"
-          style="margin-left:24px;width:calc(100% - 16px)"
         >
           console.log(some);
         </span>

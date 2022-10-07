@@ -17,7 +17,7 @@ import { css } from '@emotion/css';
 import { euiBackgroundColor } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
-// Note: These styles must bein a separate file due to using `css` from `@emotion/css`
+// Note: These styles must be in a separate file due to using `css` from `@emotion/css`
 // (i.e., applying styles in vanilla JS / directly to DOM nodes instead of React)
 
 export const euiCodeBlockLineStyles = (euiThemeContext: UseEuiTheme) => {
@@ -28,11 +28,12 @@ export const euiCodeBlockLineStyles = (euiThemeContext: UseEuiTheme) => {
       display: block;
     `,
     hasLineNumbers: css`
-      position: relative;
+      display: flex;
       user-select: none;
     `,
     lineText: {
       euiCodeBlock__lineText: css`
+        flex-grow: 1;
         display: inline-block;
         padding-inline-start: ${euiTheme.size.s};
         border-inline-start: ${euiTheme.border.thin};
@@ -46,12 +47,11 @@ export const euiCodeBlockLineStyles = (euiThemeContext: UseEuiTheme) => {
     },
     lineNumber: {
       euiCodeBlock__lineNumber: css`
-        position: absolute;
-        block-size: 100%;
+        flex-grow: 0;
+        flex-shrink: 0;
         user-select: none;
         padding-inline-end: ${euiTheme.size.s};
-        // Width is calculated in JS and padding needs to be added on to that value.
-        box-sizing: content-box;
+        box-sizing: content-box; // Width is calculated in JS and padding needs to be added on to that value.
 
         &:before {
           content: attr(data-line-number);
