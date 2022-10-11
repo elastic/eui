@@ -13,8 +13,12 @@ import React, {
   HTMLAttributes,
 } from 'react';
 import { listLanguages, highlight, AST, RefractorNode } from 'refractor';
-import classNames from 'classnames';
+import { cx } from '@emotion/css';
+
 import { CommonProps } from '../common';
+import { UseEuiTheme } from '../../services';
+
+import { euiCodeBlockLineStyles } from './code_block_line.styles';
 
 /**
  * Utils shared between EuiCode and EuiCodeBlock
@@ -66,7 +70,7 @@ export const nodeToHtml = (
       {
         ...properties,
         key,
-        className: classNames(properties.className),
+        className: cx(properties.className),
       },
       children && children.map((el, i) => nodeToHtml(el, i, nodes, depth + 1))
     );
@@ -92,7 +96,6 @@ interface LineNumbersConfig {
 
 // Approximate width of a single digit/character
 const CHAR_SIZE = 8;
-const $euiSizeS = 8;
 
 // Creates an array of numbers from comma-separeated
 // string of numbers or number ranges using `-`
@@ -167,11 +170,9 @@ const addLineData = (
 
 function wrapLines(
   nodes: ExtendedRefractorNode[],
-  options: { showLineNumbers: boolean; highlight?: string }
+  options: { showLineNumbers: boolean; highlight?: string },
+  euiTheme: UseEuiTheme
 ) {
-  const highlights = options.highlight
-    ? parseLineRanges(options.highlight)
-    : [];
   const grouped: ExtendedRefractorNode[][] = [];
   nodes.forEach((node) => {
     const lineStart = node.lineStart! - 1;
@@ -182,45 +183,57 @@ function wrapLines(
     }
   });
   const wrapped: RefractorNode[] = [];
-  const digits = grouped.length.toString().length;
-  const width = digits * CHAR_SIZE;
   grouped.forEach((node, i) => {
-    const lineNumber = i + 1;
-    const classes = classNames('euiCodeBlock__line', {
-      'euiCodeBlock__line--isHighlighted': highlights.includes(lineNumber),
-    });
-    const children: RefractorNode[] = options.showLineNumbers
-      ? [
-          {
-            type: 'element',
-            tagName: 'span',
-            properties: {
-              style: { width },
-              ['data-line-number']: lineNumber,
-              ['aria-hidden']: true,
-              className: ['euiCodeBlock__lineNumber'],
-            },
-            children: [],
+    let children: RefractorNode[] = node;
+
+    const styles = euiCodeBlockLineStyles(euiTheme);
+    const lineStyles = cx([
+      styles.euiCodeBlock__line,
+      options.showLineNumbers && styles.hasLineNumbers,
+    ]);
+
+    if (options.showLineNumbers) {
+      const lineNumber = i + 1;
+      const digits = grouped.length.toString().length;
+      const width = digits * CHAR_SIZE;
+
+      const highlights = options.highlight
+        ? parseLineRanges(options.highlight)
+        : [];
+      const lineTextStyles = cx([
+        styles.lineText.euiCodeBlock__lineText,
+        highlights.includes(lineNumber) && styles.lineText.isHighlighted,
+      ]);
+      const lineNumberStyles = cx(styles.lineNumber.euiCodeBlock__lineNumber);
+
+      children = [
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            style: { inlineSize: width },
+            ['data-line-number']: lineNumber,
+            ['aria-hidden']: true,
+            className: ['euiCodeBlock__lineNumber', lineNumberStyles],
           },
-          {
-            type: 'element',
-            tagName: 'span',
-            properties: {
-              style: {
-                marginLeft: width + $euiSizeS,
-                width: `calc(100% - ${width}px)`,
-              },
-              className: ['euiCodeBlock__lineText'],
-            },
-            children: node,
+          children: [],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['euiCodeBlock__lineText', lineTextStyles],
           },
-        ]
-      : node;
+          children: node,
+        },
+      ];
+    }
+
     wrapped.push({
       type: 'element',
       tagName: 'span',
       properties: {
-        className: [classes],
+        className: ['euiCodeBlock__line', lineStyles],
       },
       children,
     });
@@ -231,10 +244,12 @@ function wrapLines(
 export const highlightByLine = (
   children: string,
   language: string,
-  data: LineNumbersConfig
+  data: LineNumbersConfig,
+  euiTheme: UseEuiTheme
 ) => {
   return wrapLines(
     addLineData(highlight(children, language), { lineNumber: data.start }),
-    { showLineNumbers: data.show, highlight: data.highlight }
+    { showLineNumbers: data.show, highlight: data.highlight },
+    euiTheme
   );
 };

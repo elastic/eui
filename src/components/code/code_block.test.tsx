@@ -159,12 +159,10 @@ describe('EuiCodeBlock', () => {
           const value = &quot;hello&quot;
         </EuiCodeBlock>
       );
-
       component.find('button[aria-label="Expand"]').simulate('click');
       component.update();
-
       expect(
-        component.find('.euiCodeBlock-isFullScreen').render()
+        component.find('div.euiCodeBlockFullScreen').render()
       ).toMatchSnapshot();
     });
 
@@ -178,15 +176,13 @@ describe('EuiCodeBlock', () => {
           const value = &quot;world&quot;
         </EuiCodeBlock>
       );
-
       component.find('button[aria-label="Expand"]').simulate('click');
       component.update();
       component
-        .find('.euiCodeBlock-isFullScreen')
-        .childAt(0)
+        .find('div.euiCodeBlockFullScreen')
+        .find('pre.euiCodeBlock__pre')
         .simulate('keyDown', { key: 'Escape' });
-
-      expect(component.find('.euiCodeBlock-isFullScreen')).toHaveLength(0);
+      expect(component.find('.euiCodeBlockFullScreen')).toHaveLength(0);
     });
   });
 
