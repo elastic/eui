@@ -15,8 +15,10 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../common';
-import { getSecureRelForTarget } from '../../services';
+import { getSecureRelForTarget, useEuiTheme } from '../../services';
 import { validateHref } from '../../services/security/href_validator';
+
+import { euiTabStyles, euiTabsExpandedStyles } from './tab.styles';
 
 export interface EuiTabProps extends CommonProps {
   isSelected?: boolean;
@@ -58,18 +60,41 @@ export const EuiTab: FunctionComponent<Props> = ({
   append,
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
   const isHrefValid = !href || validateHref(href);
   const disabled = _disabled || !isHrefValid;
 
+  // Keep CSS classnames for reference
   const classes = classNames('euiTab', className, {
     'euiTab-isSelected': isSelected,
     'euiTab-isDisabled': disabled,
   });
 
+  const tabStyles = euiTabStyles(euiTheme, disabled);
+  const computedStyles = [
+    tabStyles.euiTab,
+    tabStyles.size_m,
+    //tabStyles[`size_${size}`],
+    isSelected && tabStyles.isSelected,
+  ];
+  const tabContentStyles = () => {
+    if (isSelected) {
+      return tabStyles.euiTabContentSelected;
+    } else if (disabled) {
+      return tabStyles.euiTabContentDisabled;
+    } else return tabStyles.euiTabContentBase;
+  };
+
   const prependNode = prepend && (
-    <span className="euiTab__prepend">{prepend}</span>
+    <span className="euiTab__prepend" css={tabStyles.prepend}>
+      {prepend}
+    </span>
   );
-  const appendNode = append && <span className="euiTab__append">{append}</span>;
+  const appendNode = append && (
+    <span className="euiTab__append" css={tabStyles.append}>
+      {append}
+    </span>
+  );
 
   //  <a> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend
   //  this is a button and piggyback off its disabled styles.
@@ -81,13 +106,16 @@ export const EuiTab: FunctionComponent<Props> = ({
         role="tab"
         aria-selected={!!isSelected}
         className={classes}
+        css={computedStyles}
         href={href}
         target={target}
         rel={secureRel}
         {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}
       >
         {prependNode}
-        <span className="euiTab__content">{children}</span>
+        <span css={tabContentStyles()} className="euiTab__content">
+          {children}
+        </span>
         {appendNode}
       </a>
     );
@@ -99,11 +127,14 @@ export const EuiTab: FunctionComponent<Props> = ({
       aria-selected={!!isSelected}
       type="button"
       className={classes}
+      css={computedStyles}
       disabled={disabled}
       {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}
     >
       {prependNode}
-      <span className="euiTab__content">{children}</span>
+      <span css={tabContentStyles()} className="euiTab__content">
+        {children}
+      </span>
       {appendNode}
     </button>
   );

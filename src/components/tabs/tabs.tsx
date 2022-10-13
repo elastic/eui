@@ -14,10 +14,13 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
+import { useEuiTheme } from '../../services';
+
+import { euiTabsStyles } from './tab.styles';
 
 const sizeToClassNameMap = {
   s: 'euiTabs--small',
-  m: null,
+  m: 'euiTabs--medium',
   l: 'euiTabs--large',
   xl: 'euiTabs--xlarge',
 };
@@ -62,6 +65,9 @@ export const EuiTabs = forwardRef<EuiTabRef, PropsWithChildren<EuiTabsProps>>(
     }: PropsWithChildren<EuiTabsProps>,
     ref
   ) => {
+    const euiTheme = useEuiTheme();
+
+    // Keeps CSS classes for reference
     const classes = classNames(
       'euiTabs',
       sizeToClassNameMap[size],
@@ -72,10 +78,17 @@ export const EuiTabs = forwardRef<EuiTabRef, PropsWithChildren<EuiTabsProps>>(
       className
     );
 
+    const tabsStyles = euiTabsStyles(euiTheme);
+    const computedStyles = [
+      tabsStyles.euiTabs,
+      bottomBorder && tabsStyles.bottomBorder,
+    ];
+
     return (
       <div
         ref={ref}
         className={classes}
+        css={computedStyles}
         {...(children && { role: 'tablist' })}
         {...rest}
       >
