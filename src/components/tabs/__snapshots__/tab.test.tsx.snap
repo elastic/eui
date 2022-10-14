@@ -3,12 +3,12 @@
 exports[`EuiTab props append is rendered 1`] = `
 <button
   aria-selected="false"
-  class="euiTab"
+  class="euiTab emotion-euiTab"
   role="tab"
   type="button"
 >
   <span
-    class="euiTab__prepend"
+    class="euiTab__prepend css-1ttsu8e-prepend"
   >
     Append
   </span>
@@ -23,7 +23,7 @@ exports[`EuiTab props append is rendered 1`] = `
 exports[`EuiTab props disabled is rendered 1`] = `
 <button
   aria-selected="false"
-  class="euiTab euiTab-isDisabled"
+  class="euiTab euiTab-isDisabled emotion-euiTab-euiTabDisabled"
   disabled=""
   role="tab"
   type="button"
@@ -40,7 +40,7 @@ exports[`EuiTab props href renders anchor 1`] = `
 <a
   aria-label="aria-label"
   aria-selected="false"
-  class="euiTab testClass1 testClass2"
+  class="euiTab testClass1 testClass2 emotion-euiTab"
   data-test-subj="test subject string"
   href="/baz/bing"
   rel="noreferrer"
@@ -57,7 +57,7 @@ exports[`EuiTab props href renders anchor 1`] = `
 exports[`EuiTab props isSelected is rendered 1`] = `
 <button
   aria-selected="true"
-  class="euiTab euiTab-isSelected"
+  class="euiTab euiTab-isSelected emotion-euiTab-euiTabSelected"
   role="tab"
   type="button"
 >
@@ -73,7 +73,7 @@ exports[`EuiTab props onClick renders button 1`] = `
 <button
   aria-label="aria-label"
   aria-selected="false"
-  class="euiTab testClass1 testClass2"
+  class="euiTab testClass1 testClass2 emotion-euiTab"
   data-test-subj="test subject string"
   role="tab"
   type="button"
@@ -89,12 +89,12 @@ exports[`EuiTab props onClick renders button 1`] = `
 exports[`EuiTab props prepend is rendered 1`] = `
 <button
   aria-selected="false"
-  class="euiTab"
+  class="euiTab emotion-euiTab"
   role="tab"
   type="button"
 >
   <span
-    class="euiTab__prepend"
+    class="euiTab__prepend css-1ttsu8e-prepend"
   >
     Prepend
   </span>

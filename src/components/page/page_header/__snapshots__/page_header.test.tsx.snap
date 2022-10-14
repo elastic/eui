@@ -324,13 +324,13 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
           />
           <div
             aria-label="aria-label"
-            class="euiTabs euiTabs--large testClass1 testClass2"
+            class="euiTabs euiTabs--large testClass1 testClass2 emotion-euiTabs-tabSizeStyles-size_l"
             data-test-subj="test subject string"
             role="tablist"
           >
             <button
               aria-selected="true"
-              class="euiTab euiTab-isSelected"
+              class="euiTab euiTab-isSelected emotion-euiTab-euiTabSelected"
               role="tab"
               type="button"
             >
@@ -342,7 +342,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
             </button>
             <button
               aria-selected="false"
-              class="euiTab"
+              class="euiTab emotion-euiTab"
               role="tab"
               type="button"
             >

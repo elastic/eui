@@ -10,10 +10,58 @@ import { css } from '@emotion/react';
 import { euiFontSize, logicalCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
+import { EuiTabsSizes } from './tabs';
+import { EuiTitleSize } from '../title';
 import { euiTitle } from '../title/title.styles';
+
+type EuiTabSizeCSS = {
+  padding: string;
+  margin: string;
+  titleSize: EuiTitleSize;
+};
 
 export const euiTabsStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+
+  const tabSizeToCssPropertyMap: { [size in EuiTabsSizes]: EuiTabSizeCSS } = {
+    s: {
+      padding: `padding: ${euiTheme.size.xs}`,
+      margin: `${logicalCSS('margin-left', euiTheme.size.m)}`,
+      titleSize: 'xxxs',
+    },
+    m: {
+      padding: `padding: ${euiTheme.size.s} ${euiTheme.size.xs}`,
+      margin: `${logicalCSS('margin-left', euiTheme.size.base)}`,
+      titleSize: 'xxs',
+    },
+    l: {
+      padding: `padding: ${euiTheme.size.s} ${euiTheme.size.xs}`,
+      margin: `${logicalCSS('margin-left', euiTheme.size.l)}`,
+      titleSize: 'xs',
+    },
+    xl: {
+      padding: `padding: ${euiTheme.size.s} ${euiTheme.size.xs}`,
+      margin: `${logicalCSS('margin-left', euiTheme.size.xl)}`,
+      titleSize: 'xs',
+    },
+  };
+
+  const tabSizeStyles = (size: EuiTabsSizes) => {
+    return css`
+      .euiTab {
+        ${tabSizeToCssPropertyMap[size].padding};
+
+        & + .euiTab {
+          ${tabSizeToCssPropertyMap[size].margin};
+        }
+      }
+
+      .euiTab__content {
+        ${euiTitle(euiThemeContext, tabSizeToCssPropertyMap[size].titleSize)};
+      }
+    `;
+  };
+
   return {
     euiTabs: css`
       display: flex;
@@ -29,60 +77,20 @@ export const euiTabsStyles = (euiThemeContext: UseEuiTheme) => {
     `,
 
     size_s: css`
-      .euiTab {
-        padding: ${euiTheme.size.s} ${euiTheme.size.xs};
-
-        & + .euiTab {
-          ${logicalCSS('margin-left', euiTheme.size.m)};
-        }
-      }
-
-      .euiTab__content {
-        ${euiTitle(euiThemeContext, 'xxxs')};
-      }
+      ${tabSizeStyles('s')};
     `,
 
     // DEFAULT
     size_m: css`
-      .euiTab {
-        padding: ${euiTheme.size.s} ${euiTheme.size.xs};
-
-        & + .euiTab {
-          ${logicalCSS('margin-left', euiTheme.size.base)};
-        }
-      }
-
-      .euiTab__content {
-        ${euiTitle(euiThemeContext, 'xxs')};
-      }
+      ${tabSizeStyles('m')};
     `,
 
     size_l: css`
-      .euiTab {
-        padding: ${euiTheme.size.s} ${euiTheme.size.xs};
-
-        & + .euiTab {
-          ${logicalCSS('margin-left', euiTheme.size.l)};
-        }
-      }
-
-      .euiTab__content {
-        ${euiTitle(euiThemeContext, 'xs')};
-      }
+      ${tabSizeStyles('l')};
     `,
 
     size_xl: css`
-      .euiTab {
-        padding: ${euiTheme.size.s} ${euiTheme.size.xs};
-
-        & + .euiTab {
-          ${logicalCSS('margin-left', euiTheme.size.xl)};
-        }
-      }
-
-      .euiTab__content {
-        font-size: calc(${euiTheme.size.base + euiTheme.size.xs});
-      }
+      ${tabSizeStyles('xl')};
 
       line-height: calc(${euiFontSize(euiThemeContext, 'l').lineHeight} * 4.5);
       ${logicalCSS('height', `calc(${euiTheme.size.base} * 4.5`)}
@@ -103,6 +111,7 @@ export const euiTabStyles = (
   isDisabled: boolean
 ) => {
   const { euiTheme } = euiThemeContext;
+
   const borderColor = isDisabled
     ? euiTheme.colors.disabledText
     : euiTheme.colors.primaryText;
@@ -120,7 +129,6 @@ export const euiTabStyles = (
       }
 
       .euiTab__content {
-        ${euiTitle(euiThemeContext, 'xxs')};
         color: ${euiTheme.colors.text};
       }
     `,
@@ -129,7 +137,6 @@ export const euiTabStyles = (
       box-shadow: inset 0 calc(${euiTheme.border.width.thick} * -1) 0
         ${borderColor};
       .euiTab__content {
-        ${euiTitle(euiThemeContext, 'xxs')};
         color: ${euiTheme.colors.primaryText};
       }
     `,
@@ -140,7 +147,6 @@ export const euiTabStyles = (
       }
 
       .euiTab__content {
-        ${euiTitle(euiThemeContext, 'xxs')};
         color: ${euiTheme.colors.disabledText};
       }
     `,

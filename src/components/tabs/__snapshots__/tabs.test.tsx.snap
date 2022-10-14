@@ -2,7 +2,7 @@
 
 exports[`EuiTabs props expand is rendered 1`] = `
 <div
-  class="euiTabs euiTabs--expand euiTabs--bottomBorder"
+  class="euiTabs euiTabs--medium euiTabs--expand euiTabs--bottomBorder emotion-euiTabs-tabSizeStyles-size_m-bottomBorder-expanded"
   role="tablist"
 >
   children
@@ -11,7 +11,7 @@ exports[`EuiTabs props expand is rendered 1`] = `
 
 exports[`EuiTabs props size l is rendered 1`] = `
 <div
-  class="euiTabs euiTabs--large euiTabs--bottomBorder"
+  class="euiTabs euiTabs--large euiTabs--bottomBorder emotion-euiTabs-tabSizeStyles-size_l-bottomBorder"
   role="tablist"
 >
   children
@@ -20,7 +20,7 @@ exports[`EuiTabs props size l is rendered 1`] = `
 
 exports[`EuiTabs props size m is rendered 1`] = `
 <div
-  class="euiTabs euiTabs--bottomBorder"
+  class="euiTabs euiTabs--medium euiTabs--bottomBorder emotion-euiTabs-tabSizeStyles-size_m-bottomBorder"
   role="tablist"
 >
   children
@@ -29,7 +29,7 @@ exports[`EuiTabs props size m is rendered 1`] = `
 
 exports[`EuiTabs props size s is rendered 1`] = `
 <div
-  class="euiTabs euiTabs--small euiTabs--bottomBorder"
+  class="euiTabs euiTabs--small euiTabs--bottomBorder emotion-euiTabs-tabSizeStyles-size_s-bottomBorder"
   role="tablist"
 >
   children
@@ -38,7 +38,7 @@ exports[`EuiTabs props size s is rendered 1`] = `
 
 exports[`EuiTabs props size xl is rendered 1`] = `
 <div
-  class="euiTabs euiTabs--xlarge euiTabs--bottomBorder"
+  class="euiTabs euiTabs--xlarge euiTabs--bottomBorder emotion-euiTabs-tabSizeStyles-size_xl-bottomBorder"
   role="tablist"
 >
   children
@@ -48,7 +48,7 @@ exports[`EuiTabs props size xl is rendered 1`] = `
 exports[`EuiTabs renders 1`] = `
 <div
   aria-label="aria-label"
-  class="euiTabs euiTabs--bottomBorder testClass1 testClass2"
+  class="euiTabs euiTabs--medium euiTabs--bottomBorder testClass1 testClass2 emotion-euiTabs-tabSizeStyles-size_m-bottomBorder"
   data-test-subj="test subject string"
   role="tablist"
 >
