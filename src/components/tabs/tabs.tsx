@@ -81,7 +81,9 @@ export const EuiTabs = forwardRef<EuiTabRef, PropsWithChildren<EuiTabsProps>>(
     const tabsStyles = euiTabsStyles(euiTheme);
     const computedStyles = [
       tabsStyles.euiTabs,
+      tabsStyles[`size_${size}`],
       bottomBorder && tabsStyles.bottomBorder,
+      expand && tabsStyles.expanded,
     ];
 
     return (

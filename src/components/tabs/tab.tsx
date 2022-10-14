@@ -18,7 +18,7 @@ import { CommonProps, ExclusiveUnion } from '../common';
 import { getSecureRelForTarget, useEuiTheme } from '../../services';
 import { validateHref } from '../../services/security/href_validator';
 
-import { euiTabStyles, euiTabsExpandedStyles } from './tab.styles';
+import { euiTabStyles } from './tab.styles';
 
 export interface EuiTabProps extends CommonProps {
   isSelected?: boolean;
@@ -73,17 +73,9 @@ export const EuiTab: FunctionComponent<Props> = ({
   const tabStyles = euiTabStyles(euiTheme, disabled);
   const computedStyles = [
     tabStyles.euiTab,
-    tabStyles.size_m,
-    //tabStyles[`size_${size}`],
-    isSelected && tabStyles.isSelected,
+    isSelected && tabStyles.euiTabSelected,
+    disabled && tabStyles.euiTabDisabled,
   ];
-  const tabContentStyles = () => {
-    if (isSelected) {
-      return tabStyles.euiTabContentSelected;
-    } else if (disabled) {
-      return tabStyles.euiTabContentDisabled;
-    } else return tabStyles.euiTabContentBase;
-  };
 
   const prependNode = prepend && (
     <span className="euiTab__prepend" css={tabStyles.prepend}>
@@ -113,9 +105,7 @@ export const EuiTab: FunctionComponent<Props> = ({
         {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}
       >
         {prependNode}
-        <span css={tabContentStyles()} className="euiTab__content">
-          {children}
-        </span>
+        <span className="euiTab__content">{children}</span>
         {appendNode}
       </a>
     );
@@ -132,9 +122,7 @@ export const EuiTab: FunctionComponent<Props> = ({
       {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}
     >
       {prependNode}
-      <span css={tabContentStyles()} className="euiTab__content">
-        {children}
-      </span>
+      <span className="euiTab__content">{children}</span>
       {appendNode}
     </button>
   );

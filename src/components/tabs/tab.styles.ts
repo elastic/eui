@@ -9,18 +9,11 @@
 import { css } from '@emotion/react';
 import { euiFontSize, logicalCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
-import { EuiThemeComputed } from '../../services/theme/types';
 
-const selectedStyles = (euiTheme: EuiThemeComputed, isDisabled: boolean) => {
-  const selectedColor = isDisabled
-    ? euiTheme.colors.disabledText
-    : euiTheme.colors.primaryText;
-  return css`
-    box-shadow: inset 0 calc(${euiTheme.border.thick} - 1) 0 ${selectedColor};
-  `;
-};
+import { euiTitle } from '../title/title.styles';
 
-export const euiTabsStyles = ({ euiTheme }: UseEuiTheme) => {
+export const euiTabsStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
   return {
     euiTabs: css`
       display: flex;
@@ -34,15 +27,73 @@ export const euiTabsStyles = ({ euiTheme }: UseEuiTheme) => {
       box-shadow: inset 0 calc(${euiTheme.border.width.thin} * -1) 0
         ${euiTheme.border.color};
     `,
-  };
-};
 
-export const euiTabsExpandedStyles = () => {
-  return {
-    euiTabsExpanded: css`
-      flex-basis: 0%;
-      flex-grow: 1;
-      justify-content: center;
+    size_s: css`
+      .euiTab {
+        padding: ${euiTheme.size.s} ${euiTheme.size.xs};
+
+        & + .euiTab {
+          ${logicalCSS('margin-left', euiTheme.size.m)};
+        }
+      }
+
+      .euiTab__content {
+        ${euiTitle(euiThemeContext, 'xxxs')};
+      }
+    `,
+
+    // DEFAULT
+    size_m: css`
+      .euiTab {
+        padding: ${euiTheme.size.s} ${euiTheme.size.xs};
+
+        & + .euiTab {
+          ${logicalCSS('margin-left', euiTheme.size.base)};
+        }
+      }
+
+      .euiTab__content {
+        ${euiTitle(euiThemeContext, 'xxs')};
+      }
+    `,
+
+    size_l: css`
+      .euiTab {
+        padding: ${euiTheme.size.s} ${euiTheme.size.xs};
+
+        & + .euiTab {
+          ${logicalCSS('margin-left', euiTheme.size.l)};
+        }
+      }
+
+      .euiTab__content {
+        ${euiTitle(euiThemeContext, 'xs')};
+      }
+    `,
+
+    size_xl: css`
+      .euiTab {
+        padding: ${euiTheme.size.s} ${euiTheme.size.xs};
+
+        & + .euiTab {
+          ${logicalCSS('margin-left', euiTheme.size.xl)};
+        }
+      }
+
+      .euiTab__content {
+        font-size: calc(${euiTheme.size.base + euiTheme.size.xs});
+      }
+
+      line-height: calc(${euiFontSize(euiThemeContext, 'l').lineHeight} * 4.5);
+      ${logicalCSS('height', `calc(${euiTheme.size.base} * 4.5`)}
+    `,
+
+    expanded: css`
+      .euiTab {
+        flex-basis: 0%;
+        flex-grow: 1;
+        justify-content: center;
+      }
     `,
   };
 };
@@ -52,6 +103,10 @@ export const euiTabStyles = (
   isDisabled: boolean
 ) => {
   const { euiTheme } = euiThemeContext;
+  const borderColor = isDisabled
+    ? euiTheme.colors.disabledText
+    : euiTheme.colors.primaryText;
+
   return {
     euiTab: css`
       cursor: pointer;
@@ -60,44 +115,34 @@ export const euiTabStyles = (
       font-weight: ${euiTheme.font.weight.semiBold};
 
       &:focus {
-        background-color: ${euiTheme.colors.lightestShade};
+        background-color: ${euiTheme.colors.ghost};
         outline-offset: -${euiTheme.focus.width};
+      }
+
+      .euiTab__content {
+        ${euiTitle(euiThemeContext, 'xxs')};
+        color: ${euiTheme.colors.text};
       }
     `,
 
-    euiTabContentBase: css`
-      color: ${euiTheme.colors.text};
+    euiTabSelected: css`
+      box-shadow: inset 0 calc(${euiTheme.border.width.thick} * -1) 0
+        ${borderColor};
+      .euiTab__content {
+        ${euiTitle(euiThemeContext, 'xxs')};
+        color: ${euiTheme.colors.primaryText};
+      }
     `,
 
-    euiTabContentSelected: css`
-      color: ${euiTheme.colors.primaryText};
-    `,
+    euiTabDisabled: css`
+      &:hover {
+        cursor: not-allowed;
+      }
 
-    euiTabContentDisabled: css`
-      color: ${euiTheme.colors.disabledText};
-    `,
-
-    size_s: css`
-      padding: ${euiTheme.size.s};
-      font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
-    `,
-
-    // DEFAULT
-    size_m: css`
-      padding: ${euiTheme.size.m} ${euiTheme.size.base};
-      font-size: ${euiFontSize(euiThemeContext, 'm').fontSize};
-    `,
-
-    size_l: css`
-      padding: ${euiTheme.size.m} ${euiTheme.size.base};
-      font-size: ${euiFontSize(euiThemeContext, 'm').fontSize};
-    `,
-
-    size_xl: css`
-      padding: ${euiTheme.size.s} ${euiTheme.size.l};
-      font-size: ${euiFontSize(euiThemeContext, 'l').fontSize};
-      line-height: calc(${euiFontSize(euiThemeContext, 'l').lineHeight} * 4.5);
-      ${logicalCSS('height', `calc(${euiTheme.size.base} * 4.5`)}
+      .euiTab__content {
+        ${euiTitle(euiThemeContext, 'xxs')};
+        color: ${euiTheme.colors.disabledText};
+      }
     `,
 
     prepend: css`
@@ -108,10 +153,6 @@ export const euiTabStyles = (
     append: css`
       ${logicalCSS('margin-left', euiTheme.size.s)};
       color: ${euiTheme.colors[isDisabled ? 'disabledText' : 'text']};
-    `,
-
-    isSelected: css`
-      ${selectedStyles(euiTheme, isDisabled)};
     `,
   };
 };
