@@ -1,3 +1,5 @@
+- Converted `EuiTabs` to Emotion ([#6311](https://github.com/elastic/eui/pull/6311))
+
 ## [`69.0.0`](https://github.com/elastic/eui/tree/v69.0.0)
 
 - Added support for `fullWidth` prop on EuiForm, which will be the default for all rows/controls within ([#6229](https://github.com/elastic/eui/pull/6229))
