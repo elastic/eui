@@ -15,6 +15,7 @@ import { EuiTitleSize } from '../title';
 import { euiTitle } from '../title/title.styles';
 
 type EuiTabSizeCSS = {
+  lineHeight: string;
   padding: string;
   margin: string;
   titleSize: EuiTitleSize;
@@ -25,22 +26,26 @@ export const euiTabsStyles = (euiThemeContext: UseEuiTheme) => {
 
   const tabSizeToCssPropertyMap: { [size in EuiTabsSizes]: EuiTabSizeCSS } = {
     s: {
-      padding: `padding: ${euiTheme.size.xs}`,
+      lineHeight: `line-height: ${euiTheme.size.xl}`,
+      padding: `padding: 0 ${euiTheme.size.xs}`,
       margin: `${logicalCSS('margin-left', euiTheme.size.m)}`,
       titleSize: 'xxxs',
     },
     m: {
-      padding: `padding: ${euiTheme.size.s} ${euiTheme.size.xs}`,
+      lineHeight: `line-height: ${euiTheme.size.xxl}`,
+      padding: `padding: 0 ${euiTheme.size.xs}`,
       margin: `${logicalCSS('margin-left', euiTheme.size.base)}`,
       titleSize: 'xxs',
     },
     l: {
-      padding: `padding: ${euiTheme.size.s} ${euiTheme.size.xs}`,
+      lineHeight: `line-height: calc(${euiTheme.size.xl} + ${euiTheme.size.s})`,
+      padding: `padding: 0 ${euiTheme.size.xs}`,
       margin: `${logicalCSS('margin-left', euiTheme.size.l)}`,
       titleSize: 'xs',
     },
     xl: {
-      padding: `padding: ${euiTheme.size.s} ${euiTheme.size.xs}`,
+      lineHeight: `line-height: calc(${euiTheme.size.xl} + ${euiTheme.size.s})`,
+      padding: `padding: 0 ${euiTheme.size.xs}`,
       margin: `${logicalCSS('margin-left', euiTheme.size.xl)}`,
       titleSize: 'xs',
     },
@@ -58,6 +63,7 @@ export const euiTabsStyles = (euiThemeContext: UseEuiTheme) => {
 
       .euiTab__content {
         ${euiTitle(euiThemeContext, tabSizeToCssPropertyMap[size].titleSize)};
+        ${tabSizeToCssPropertyMap[size].lineHeight};
       }
     `;
   };
@@ -124,7 +130,7 @@ export const euiTabStyles = (
       font-weight: ${euiTheme.font.weight.semiBold};
 
       &:focus {
-        background-color: ${euiTheme.colors.ghost};
+        background-color: transparent;
         outline-offset: -${euiTheme.focus.width};
       }
 
