@@ -9,6 +9,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiTourStep } from './tour_step';
 
@@ -29,10 +30,24 @@ const config = {
   title: 'A demo',
 };
 
+const props = { ...config, ...steps[0], ...requiredProps };
+
 describe('EuiTourStep', () => {
+  shouldRenderCustomStyles(
+    <EuiTourStep {...props} isStepOpen>
+      <span>Test</span>
+    </EuiTourStep>
+  );
+  shouldRenderCustomStyles(
+    <EuiTourStep {...props} isStepOpen panelProps={requiredProps}>
+      <span>Test</span>
+    </EuiTourStep>,
+    { childProps: ['panelProps'], skipStyles: true, skipParentTest: true }
+  );
+
   test('is rendered', () => {
     const component = mount(
-      <EuiTourStep {...config} {...steps[0]} isStepOpen {...requiredProps}>
+      <EuiTourStep {...props} isStepOpen>
         <span>Test</span>
       </EuiTourStep>
     );
@@ -42,13 +57,7 @@ describe('EuiTourStep', () => {
 
   test('can have subtitle', () => {
     const component = mount(
-      <EuiTourStep
-        {...config}
-        {...steps[0]}
-        isStepOpen
-        subtitle="Subtitle"
-        {...requiredProps}
-      >
+      <EuiTourStep {...props} isStepOpen subtitle="Subtitle">
         <span>Test</span>
       </EuiTourStep>
     );
@@ -58,12 +67,7 @@ describe('EuiTourStep', () => {
 
   test('can be closed', () => {
     const component = mount(
-      <EuiTourStep
-        {...config}
-        {...steps[0]}
-        isStepOpen={false}
-        {...requiredProps}
-      >
+      <EuiTourStep {...props} isStepOpen={false}>
         <span>Test</span>
       </EuiTourStep>
     );
@@ -73,14 +77,7 @@ describe('EuiTourStep', () => {
 
   test('can change the minWidth and maxWidth', () => {
     const component = mount(
-      <EuiTourStep
-        {...config}
-        {...steps[0]}
-        minWidth={240}
-        maxWidth={420}
-        isStepOpen
-        {...requiredProps}
-      >
+      <EuiTourStep {...props} minWidth={240} maxWidth={420} isStepOpen>
         <span>Test</span>
       </EuiTourStep>
     );
@@ -91,11 +88,9 @@ describe('EuiTourStep', () => {
   test('can override the footer action', () => {
     const component = mount(
       <EuiTourStep
-        {...config}
-        {...steps[0]}
+        {...props}
         isStepOpen
         footerAction={<button onClick={() => {}}>Test</button>}
-        {...requiredProps}
       >
         <span>Test</span>
       </EuiTourStep>
@@ -106,13 +101,7 @@ describe('EuiTourStep', () => {
 
   test('can turn off the beacon', () => {
     const component = mount(
-      <EuiTourStep
-        {...config}
-        {...steps[0]}
-        isStepOpen
-        decoration="none"
-        {...requiredProps}
-      >
+      <EuiTourStep {...props} isStepOpen decoration="none">
         <span>Test</span>
       </EuiTourStep>
     );
