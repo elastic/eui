@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { euiFontSize, logicalCSS } from '../../global_styling';
+import { logicalCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 import { EuiTabsSizes } from './tabs';
@@ -44,10 +44,10 @@ export const euiTabsStyles = (euiThemeContext: UseEuiTheme) => {
       titleSize: 'xs',
     },
     xl: {
-      lineHeight: `line-height: calc(${euiTheme.size.xl} + ${euiTheme.size.s})`,
-      padding: `padding: 0 ${euiTheme.size.xs}`,
+      lineHeight: `line-height: calc(${euiTheme.size.xxxl} + ${euiTheme.size.s})`,
+      padding: `padding: ${euiTheme.size.s} ${euiTheme.size.xs}`,
       margin: `${logicalCSS('margin-left', euiTheme.size.xl)}`,
-      titleSize: 'xs',
+      titleSize: 's',
     },
   };
 
@@ -97,9 +97,6 @@ export const euiTabsStyles = (euiThemeContext: UseEuiTheme) => {
 
     size_xl: css`
       ${tabSizeStyles('xl')};
-
-      line-height: calc(${euiFontSize(euiThemeContext, 'l').lineHeight} * 4.5);
-      ${logicalCSS('height', `calc(${euiTheme.size.base} * 4.5`)}
     `,
 
     expanded: css`
