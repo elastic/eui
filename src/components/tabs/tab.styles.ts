@@ -121,7 +121,7 @@ export const euiTabStyles = (
 
   return {
     euiTab: css`
-      cursor: pointer;
+      cursor: ${isDisabled ? 'not-allowed' : 'pointer'};
       flex-direction: row;
       align-items: center;
       font-weight: ${euiTheme.font.weight.semiBold};
@@ -132,7 +132,13 @@ export const euiTabStyles = (
       }
 
       .euiTab__content {
-        color: ${euiTheme.colors.text};
+        color: ${euiTheme.colors[
+          isDisabled ? 'disabledText' : 'text'
+        ]} !important;
+
+        &:hover {
+          text-decoration: ${isDisabled ? 'none' : 'underline'};
+        }
       }
     `,
 
@@ -140,17 +146,7 @@ export const euiTabStyles = (
       box-shadow: inset 0 calc(${euiTheme.border.width.thick} * -1) 0
         ${borderColor};
       .euiTab__content {
-        color: ${euiTheme.colors.primaryText};
-      }
-    `,
-
-    euiTabDisabled: css`
-      &:hover {
-        cursor: not-allowed;
-      }
-
-      .euiTab__content {
-        color: ${euiTheme.colors.disabledText};
+        color: ${euiTheme.colors[isDisabled ? 'disabledText' : 'primaryText']};
       }
     `,
 

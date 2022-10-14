@@ -74,7 +74,6 @@ export const EuiTab: FunctionComponent<Props> = ({
   const computedStyles = [
     tabStyles.euiTab,
     isSelected && tabStyles.euiTabSelected,
-    disabled && tabStyles.euiTabDisabled,
   ];
 
   const prependNode = prepend && (

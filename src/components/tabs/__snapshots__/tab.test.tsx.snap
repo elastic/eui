@@ -23,7 +23,7 @@ exports[`EuiTab props append is rendered 1`] = `
 exports[`EuiTab props disabled is rendered 1`] = `
 <button
   aria-selected="false"
-  class="euiTab euiTab-isDisabled emotion-euiTab-euiTabDisabled"
+  class="euiTab euiTab-isDisabled emotion-euiTab"
   disabled=""
   role="tab"
   type="button"
