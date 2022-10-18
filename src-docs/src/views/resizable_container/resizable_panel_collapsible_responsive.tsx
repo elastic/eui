@@ -1,43 +1,40 @@
 import React, { useState } from 'react';
 import {
+  EuiText,
   EuiResizableContainer,
   EuiListGroup,
   EuiListGroupItem,
   EuiPanel,
   EuiTitle,
   EuiSpacer,
-  EuiText,
   EuiPage,
-} from '../../../../src/components';
+  useIsWithinBreakpoints,
+} from '../../../../src';
+// @ts-ignore - faker does not have type declarations
 import { fake } from 'faker';
-
-const texts = [];
-
-for (let i = 0; i < 4; i++) {
-  texts.push(<p>{fake('{{lorem.paragraph}}')}</p>);
-}
 
 export default () => {
   const items = [
     {
       id: 1,
       label: 'First item',
-      text: texts[0],
+      text: <p>{fake('{{lorem.paragraphs}}')}</p>,
+      active: true,
     },
     {
       id: 2,
       label: 'Second item',
-      text: texts[1],
+      text: <p>{fake('{{lorem.paragraphs}}')}</p>,
     },
     {
       id: 3,
       label: 'Third item',
-      text: texts[2],
+      text: <p>{fake('{{lorem.paragraphs}}')}</p>,
     },
     {
       id: 4,
       label: 'Forth item',
-      text: texts[3],
+      text: <p>{fake('{{lorem.paragraphs}}')}</p>,
     },
   ];
 
@@ -50,20 +47,20 @@ export default () => {
       size="s"
     />
   ));
+
+  const isMobile = useIsWithinBreakpoints(['xs', 's']);
+  const style = isMobile ? { height: '100%' } : { minHeight: '100%' };
+
   return (
     <EuiPage paddingSize="none">
-      <EuiResizableContainer style={{ height: '320px' }}>
+      <EuiResizableContainer
+        direction={isMobile ? 'vertical' : 'horizontal'}
+        style={{ height: '400px' }}
+      >
         {(EuiResizablePanel, EuiResizableButton) => (
           <>
             <EuiResizablePanel
-              mode={[
-                'collapsible',
-                {
-                  className: 'panel-toggle',
-                  'data-test-subj': 'panel-1-toggle',
-                  position: 'top',
-                },
-              ]}
+              mode="collapsible"
               initialSize={20}
               minSize="10%"
             >
@@ -72,31 +69,14 @@ export default () => {
 
             <EuiResizableButton />
 
-            <EuiResizablePanel mode="main" initialSize={60} minSize="20%">
-              <EuiPanel paddingSize="l" style={{ minHeight: '100%' }}>
+            <EuiResizablePanel mode="main" initialSize={80} minSize="50px">
+              <EuiPanel paddingSize="l" style={style}>
                 <EuiTitle>
                   <p>{itemSelected.label}</p>
                 </EuiTitle>
                 <EuiSpacer />
                 <EuiText>{itemSelected.text}</EuiText>
               </EuiPanel>
-            </EuiResizablePanel>
-
-            <EuiResizableButton />
-
-            <EuiResizablePanel
-              mode={[
-                'collapsible',
-                {
-                  className: 'panel-toggle',
-                  'data-test-subj': 'panel-3-toggle',
-                  position: 'bottom',
-                },
-              ]}
-              initialSize={20}
-              minSize="10%"
-            >
-              <EuiListGroup flush>{itemElements}</EuiListGroup>
             </EuiResizablePanel>
           </>
         )}

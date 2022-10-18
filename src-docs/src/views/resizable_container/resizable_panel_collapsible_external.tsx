@@ -23,11 +23,13 @@ const toggleButtons = [
 ];
 
 export default () => {
-  const collapseFn = useRef(() => {});
+  const collapseFn = useRef<Function>(() => {});
 
-  const [toggleIdToSelectedMap, setToggleIdToSelectedMap] = useState({});
+  const [toggleIdToSelectedMap, setToggleIdToSelectedMap] = useState<
+    Record<string, boolean>
+  >({});
 
-  const onCollapse = (optionId) => {
+  const onCollapse = (optionId: string) => {
     const newToggleIdToSelectedMap = {
       ...toggleIdToSelectedMap,
       [optionId]: !toggleIdToSelectedMap[optionId],
@@ -35,7 +37,7 @@ export default () => {
     setToggleIdToSelectedMap(newToggleIdToSelectedMap);
   };
 
-  const onChange = (optionId) => {
+  const onChange = (optionId: string) => {
     onCollapse(optionId);
     collapseFn.current(`panel${optionId}`, optionId === '3' ? 'right' : 'left');
   };
@@ -58,8 +60,11 @@ export default () => {
         style={{ height: '250px' }}
       >
         {(EuiResizablePanel, EuiResizableButton, { togglePanel }) => {
-          collapseFn.current = (id, direction = 'left') =>
-            togglePanel(id, { direction });
+          collapseFn.current = (
+            id: string,
+            direction: 'left' | 'right' = 'left'
+          ) => togglePanel?.(id, { direction });
+
           return (
             <>
               <EuiResizablePanel id="panel1" initialSize={30} minSize="10%">
@@ -103,7 +108,7 @@ export default () => {
                         color="text"
                         aria-label={'Toggle panel 3'}
                         iconType="menuRight"
-                        onClick={() => onChange(3)}
+                        onClick={() => onChange('3')}
                       />
                     </EuiFlexItem>
                   </EuiFlexGroup>

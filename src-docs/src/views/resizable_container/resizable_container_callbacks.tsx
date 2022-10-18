@@ -6,10 +6,10 @@ import {
   EuiFlexItem,
   EuiStat,
   EuiPanel,
-} from '../../../../src/components';
+  useGeneratedHtmlId,
+} from '../../../../src';
 // @ts-ignore - faker does not have type declarations
 import { fake } from 'faker';
-import { useGeneratedHtmlId } from '../../../../src/services';
 
 const text = (
   <>

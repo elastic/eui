@@ -218,7 +218,7 @@ export const ResizableContainerExample = {
     {
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: ResizableContainerSource,
         },
       ],
@@ -257,7 +257,7 @@ export const ResizableContainerExample = {
     {
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: ResizablePanelsSource,
         },
       ],
@@ -288,7 +288,7 @@ export const ResizableContainerExample = {
     {
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: ResizableContainerResetValuesSource,
         },
       ],
@@ -322,7 +322,7 @@ export const ResizableContainerExample = {
     {
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: ResizableContainerVerticalSource,
         },
       ],
@@ -365,7 +365,7 @@ export const ResizableContainerExample = {
     {
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: ResizablePanelCollapsibleSource,
         },
       ],
@@ -406,7 +406,7 @@ export const ResizableContainerExample = {
     {
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: ResizablePanelCollapsibleResponsiveSource,
         },
       ],
@@ -424,7 +424,7 @@ export const ResizableContainerExample = {
     {
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: ResizablePanelCollapsibleOptsSource,
         },
       ],
@@ -452,7 +452,7 @@ export const ResizableContainerExample = {
     {
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: ResizablePanelCollapsibleExtSource,
         },
       ],
