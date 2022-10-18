@@ -8,7 +8,7 @@ exports[`EuiTab props append is rendered 1`] = `
   type="button"
 >
   <span
-    class="euiTab__prepend css-1ttsu8e-prepend"
+    class="euiTab__prepend"
   >
     Append
   </span>
@@ -23,7 +23,7 @@ exports[`EuiTab props append is rendered 1`] = `
 exports[`EuiTab props disabled is rendered 1`] = `
 <button
   aria-selected="false"
-  class="euiTab euiTab-isDisabled emotion-euiTab"
+  class="euiTab euiTab-isDisabled emotion-euiTab-disabled"
   disabled=""
   role="tab"
   type="button"
@@ -57,7 +57,7 @@ exports[`EuiTab props href renders anchor 1`] = `
 exports[`EuiTab props isSelected is rendered 1`] = `
 <button
   aria-selected="true"
-  class="euiTab euiTab-isSelected emotion-euiTab-euiTabSelected"
+  class="euiTab euiTab-isSelected emotion-euiTab-selected"
   role="tab"
   type="button"
 >
@@ -94,7 +94,7 @@ exports[`EuiTab props prepend is rendered 1`] = `
   type="button"
 >
   <span
-    class="euiTab__prepend css-1ttsu8e-prepend"
+    class="euiTab__prepend"
   >
     Prepend
   </span>

@@ -16,7 +16,7 @@ import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
 import { useEuiTheme } from '../../services';
 
-import { euiTabsStyles } from './tab.styles';
+import { euiTabsStyles } from './tabs.styles';
 
 const sizeToClassNameMap = {
   s: 'euiTabs--small',

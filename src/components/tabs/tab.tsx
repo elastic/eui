@@ -70,25 +70,21 @@ export const EuiTab: FunctionComponent<Props> = ({
     'euiTab-isDisabled': disabled,
   });
 
-  const tabStyles = euiTabStyles(euiTheme, disabled);
+  const tabStyles = euiTabStyles(euiTheme);
   const computedStyles = [
     tabStyles.euiTab,
-    isSelected && tabStyles.euiTabSelected,
+    isSelected && tabStyles.selected,
+    disabled && tabStyles.disabled,
   ];
 
   const prependNode = prepend && (
-    <span className="euiTab__prepend" css={tabStyles.prepend}>
-      {prepend}
-    </span>
+    <span className="euiTab__prepend">{prepend}</span>
   );
-  const appendNode = append && (
-    <span className="euiTab__append" css={tabStyles.append}>
-      {append}
-    </span>
-  );
+  const appendNode = append && <span className="euiTab__append">{append}</span>;
 
   //  <a> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend
   //  this is a button and piggyback off its disabled styles.
+
   if (href && !disabled) {
     const secureRel = getSecureRelForTarget({ href, target, rel });
 

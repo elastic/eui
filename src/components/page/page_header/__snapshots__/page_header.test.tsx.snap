@@ -330,7 +330,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
           >
             <button
               aria-selected="true"
-              class="euiTab euiTab-isSelected emotion-euiTab-euiTabSelected"
+              class="euiTab euiTab-isSelected emotion-euiTab-selected"
               role="tab"
               type="button"
             >
