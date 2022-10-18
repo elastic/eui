@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+/// <reference types="cypress" />
 /// <reference types="../../../cypress/support"/>
 
 import React, { useState } from 'react';
@@ -194,6 +195,19 @@ describe('EuiSelectable', () => {
             { ...options[2], checked: 'on' },
           ]);
         });
+    });
+
+    it('restores the options list when the search bar is cleared', () => {
+      cy.realMount(<EuiSelectableWithSearchInput />);
+      cy.get('input')
+        .type('tester123')
+        .then(() => {
+          expect(cy.get('p')).to.exist;
+        });
+
+      cy.get('input').clear();
+
+      expect(cy.get('li[role=option]')).to.exist;
     });
 
     it('has no accessibility errors', () => {
