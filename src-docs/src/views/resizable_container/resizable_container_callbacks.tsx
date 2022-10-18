@@ -8,14 +8,13 @@ import {
   EuiPanel,
   useGeneratedHtmlId,
 } from '../../../../src';
-// @ts-ignore - faker does not have type declarations
-import { fake } from 'faker';
+import { faker } from '@faker-js/faker/locale/en';
 
 const text = (
   <>
-    <p>{fake('{{lorem.paragraphs}}')}</p>
-    <p>{fake('{{lorem.paragraphs}}')}</p>
-    <p>{fake('{{lorem.paragraphs}}')}</p>
+    <p>{faker.lorem.paragraphs()}</p>
+    <p>{faker.lorem.paragraphs()}</p>
+    <p>{faker.lorem.paragraphs()}</p>
   </>
 );
 
