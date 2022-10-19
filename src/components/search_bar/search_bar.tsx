@@ -14,6 +14,7 @@ import { EuiSearchFilters, SearchFilterConfig } from './search_filters';
 import { Query } from './query';
 import { CommonProps } from '../common';
 import { EuiFieldSearchProps } from '../form/field_search';
+import { EuiInputPopoverProps } from '../popover';
 
 export { Query, AST as Ast } from './query';
 
@@ -77,6 +78,27 @@ export interface EuiSearchBarProps extends CommonProps {
    * Date formatter to use when parsing date values
    */
   dateFormat?: object;
+
+  /**
+   * Hint to render below the search bar
+   */
+  hint?: {
+    content: React.ReactNode;
+    popOverProps?: Pick<
+      EuiInputPopoverProps,
+      | 'isOpen'
+      | 'closePopover'
+      | 'fullWidth'
+      | 'disableFocusTrap'
+      | 'panelClassName'
+      | 'panelPaddingSize'
+      | 'panelStyle'
+      | 'panelProps'
+      | 'popoverScreenReaderText'
+      | 'repositionOnScroll'
+      | 'zIndex'
+    >;
+  };
 }
 
 const parseQuery = (
@@ -99,11 +121,14 @@ interface State {
   query: Query;
   queryText: string;
   error: null | Error;
+  isHintVisible: boolean;
 }
 
 // `state.query` is never null, but can be passed as `null` to `notifyControllingParent`
 // when `error` is not null.
-type StateWithOptionalQuery = Omit<State, 'query'> & { query: Query | null };
+type StateWithOptionalQuery = Omit<State, 'query' | 'isHintVisible'> & {
+  query: Query | null;
+};
 
 export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
   static Query = Query;
@@ -115,6 +140,7 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
       query,
       queryText: query.text,
       error: null,
+      isHintVisible: false,
     };
   }
 
@@ -135,6 +161,7 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
         query,
         queryText: query.text,
         error: null,
+        isHintVisible: prevState.isHintVisible,
       };
     }
     return null;
@@ -204,12 +231,13 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
   }
 
   render() {
-    const { query, queryText, error } = this.state;
+    const { query, queryText, error, isHintVisible } = this.state;
     const {
       box: { schema, ...box } = { schema: '' }, // strip `schema` out to prevent passing it to EuiSearchBox
       filters,
       toolsLeft,
       toolsRight,
+      hint,
     } = this.props;
 
     const toolsLeftEl = this.renderTools(toolsLeft);
@@ -236,6 +264,17 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
             onSearch={this.onSearch}
             isInvalid={error != null}
             title={error ? error.message : undefined}
+            hint={
+              hint
+                ? {
+                    isVisible: isHintVisible,
+                    setIsVisible: (isVisible: boolean) => {
+                      this.setState({ isHintVisible: isVisible });
+                    },
+                    ...hint,
+                  }
+                : undefined
+            }
           />
         </EuiFlexItem>
         {filtersBar}
