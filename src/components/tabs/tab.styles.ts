@@ -8,10 +8,9 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
+import { euiTitle } from '../title/title.styles';
 
-export const euiTabStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
-
+export const euiTabStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     euiTab: css`
       display: flex;
@@ -25,24 +24,30 @@ export const euiTabStyles = (euiThemeContext: UseEuiTheme) => {
         background-color: transparent;
         outline-offset: -${euiTheme.focus.width};
       }
-
-      .euiTab__content {
-        color: ${euiTheme.colors.text};
-
-        &:hover {
-          text-decoration: underline;
-        }
-      }
     `,
-
+    // sizes
+    s: css`
+      padding: 0 ${euiTheme.size.xs};
+    `,
+    m: css`
+      padding: 0 ${euiTheme.size.xs};
+    `,
+    l: css`
+      padding: 0 ${euiTheme.size.xs};
+    `,
+    xl: css`
+      padding: ${euiTheme.size.s} ${euiTheme.size.xs};
+    `,
+    // variations
+    expanded: css`
+      flex-basis: 0%;
+      flex-grow: 1;
+      justify-content: center;
+    `,
     selected: css`
       box-shadow: inset 0 calc(${euiTheme.border.width.thick} * -1) 0
         ${euiTheme.colors.primary};
-      .euiTab__content {
-        color: ${euiTheme.colors.primaryText};
-      }
     `,
-
     disabled: css`
       cursor: not-allowed;
 
@@ -60,14 +65,47 @@ export const euiTabStyles = (euiThemeContext: UseEuiTheme) => {
         box-shadow: inset 0 calc(${euiTheme.border.width.thick} * -1) 0
           ${euiTheme.colors.disabledText};
       }
+    `,
+  };
+};
 
-      /* Specificity to get the color applied properly */
-      span.euiTab__content {
-        color: ${euiTheme.colors.disabledText};
+export const euiTabContentStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
 
-        &:hover {
-          text-decoration: none;
-        }
+  return {
+    euiTab__content: css`
+      color: ${euiTheme.colors.disabledText};
+
+      &:hover {
+        text-decoration: none;
+      }
+    `,
+    // sizes
+    s: css`
+      ${euiTitle(euiThemeContext, 'xxxs')};
+      line-height: ${euiTheme.size.xl};
+    `,
+    m: css`
+      ${euiTitle(euiThemeContext, 'xxs')};
+      line-height: ${euiTheme.size.xxl};
+    `,
+    l: css`
+      ${euiTitle(euiThemeContext, 'xs')};
+      line-height: calc(${euiTheme.size.xl} + ${euiTheme.size.s});
+    `,
+    xl: css`
+      ${euiTitle(euiThemeContext, 's')};
+      line-height: calc(${euiTheme.size.xxxl} + ${euiTheme.size.s});
+    `,
+    // variations
+    selected: css`
+      color: ${euiTheme.colors.primaryText};
+    `,
+    disabled: css`
+      color: ${euiTheme.colors.disabledText};
+
+      &:hover {
+        text-decoration: none;
       }
     `,
   };

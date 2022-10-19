@@ -10,61 +10,8 @@ import { css } from '@emotion/react';
 import { logicalCSS, logicalCSSWithFallback } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
-import { EuiTabsSizes } from './tabs';
-import { EuiTitleSize } from '../title';
-import { euiTitle } from '../title/title.styles';
-
-type EuiTabSizeCSS = {
-  lineHeight: string;
-  padding: string;
-  gap: string;
-  titleSize: EuiTitleSize;
-};
-
 export const euiTabsStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-
-  const tabSizeToCssPropertyMap: { [size in EuiTabsSizes]: EuiTabSizeCSS } = {
-    s: {
-      lineHeight: `line-height: ${euiTheme.size.xl}`,
-      padding: `padding: 0 ${euiTheme.size.xs}`,
-      gap: `${euiTheme.size.m}`,
-      titleSize: 'xxxs',
-    },
-    m: {
-      lineHeight: `line-height: ${euiTheme.size.xxl}`,
-      padding: `padding: 0 ${euiTheme.size.xs}`,
-      gap: `${euiTheme.size.base}`,
-      titleSize: 'xxs',
-    },
-    l: {
-      lineHeight: `line-height: calc(${euiTheme.size.xl} + ${euiTheme.size.s})`,
-      padding: `padding: 0 ${euiTheme.size.xs}`,
-      gap: `${euiTheme.size.l}`,
-      titleSize: 'xs',
-    },
-    xl: {
-      lineHeight: `line-height: calc(${euiTheme.size.xxxl} + ${euiTheme.size.s})`,
-      padding: `padding: ${euiTheme.size.s} ${euiTheme.size.xs}`,
-      gap: `${euiTheme.size.xl}`,
-      titleSize: 's',
-    },
-  };
-
-  const tabSizeStyles = (size: EuiTabsSizes) => {
-    return css`
-      gap: ${tabSizeToCssPropertyMap[size].gap};
-
-      .euiTab {
-        ${tabSizeToCssPropertyMap[size].padding};
-      }
-
-      .euiTab__content {
-        ${euiTitle(euiThemeContext, tabSizeToCssPropertyMap[size].titleSize)};
-        ${tabSizeToCssPropertyMap[size].lineHeight};
-      }
-    `;
-  };
 
   return {
     euiTabs: css`
@@ -79,30 +26,22 @@ export const euiTabsStyles = (euiThemeContext: UseEuiTheme) => {
       box-shadow: inset 0 calc(${euiTheme.border.width.thin} * -1) 0
         ${euiTheme.border.color};
     `,
-
-    size_s: css`
-      ${tabSizeStyles('s')};
+    // sizes
+    s: css`
+      gap: ${euiTheme.size.m};
     `,
 
     // DEFAULT
-    size_m: css`
-      ${tabSizeStyles('m')};
+    m: css`
+      gap: ${euiTheme.size.base};
     `,
 
-    size_l: css`
-      ${tabSizeStyles('l')};
+    l: css`
+      gap: ${euiTheme.size.l};
     `,
 
-    size_xl: css`
-      ${tabSizeStyles('xl')};
-    `,
-
-    expanded: css`
-      .euiTab {
-        flex-basis: 0%;
-        flex-grow: 1;
-        justify-content: center;
-      }
+    xl: css`
+      gap: ${euiTheme.size.xl};
     `,
   };
 };

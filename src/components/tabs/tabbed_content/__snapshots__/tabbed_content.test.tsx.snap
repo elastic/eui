@@ -3,19 +3,19 @@
 exports[`EuiTabbedContent behavior when selected tab state isn't controlled by the owner, select the first tab by default 1`] = `
 <div>
   <div
-    class="euiTabs euiTabs--medium euiTabs--bottomBorder emotion-euiTabs-tabSizeStyles-size_m-bottomBorder"
+    class="euiTabs euiTabs--medium euiTabs--bottomBorder emotion-euiTabs-m-bottomBorder"
     role="tablist"
   >
     <button
       aria-controls="generated-id"
       aria-selected="true"
-      class="euiTab euiTab-isSelected emotion-euiTab-selected"
+      class="euiTab euiTab-isSelected emotion-euiTab-selected-m"
       id="es"
       role="tab"
       type="button"
     >
       <span
-        class="euiTab__content"
+        class="euiTab__content emotion-euiTab__content-m-selected"
       >
         Elasticsearch
       </span>
@@ -23,7 +23,7 @@ exports[`EuiTabbedContent behavior when selected tab state isn't controlled by t
     <button
       aria-controls="generated-id"
       aria-selected="false"
-      class="euiTab kibanaTab emotion-euiTab"
+      class="euiTab kibanaTab emotion-euiTab-m"
       data-test-subj="kibanaTab"
       id="kibana"
       role="tab"
@@ -35,7 +35,7 @@ exports[`EuiTabbedContent behavior when selected tab state isn't controlled by t
         prepend
       </span>
       <span
-        class="euiTab__content"
+        class="euiTab__content emotion-euiTab__content-m"
       >
         <strong>
           Kibana
@@ -104,10 +104,16 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
             Object {
               "insert": [Function],
               "inserted": Object {
-                "1cduqyw-euiTab-selected": true,
-                "fv3x4g-euiTab": true,
-                "jdrvl0-euiTabs-tabSizeStyles-size_m-bottomBorder": true,
-                "zcjv1n-euiTabs-tabSizeStyles-size_s-bottomBorder": true,
+                "14123zm-euiTabs-m-bottomBorder": true,
+                "18iwv9m-euiTab__content-s-selected": true,
+                "1galntw-euiTab-m": true,
+                "1hv58yo-euiTab-selected-s": true,
+                "1mw8ylc-euiTab__content-m-selected": true,
+                "1trsq7s-euiTab__content-s": true,
+                "5n6kyr-euiTabs-s-bottomBorder": true,
+                "9jv5g3-euiTab-selected-m": true,
+                "tczhrc-euiTab-s": true,
+                "ymatem-euiTab__content-m": true,
               },
               "key": "css",
               "nonce": undefined,
@@ -122,108 +128,129 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                     data-s=""
                   >
                     
-                    .emotion-euiTabs-tabSizeStyles-size_m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                    .emotion-euiTabs-m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
                   </style>
                   <style
                     data-emotion="css"
                     data-s=""
                   >
                     
-                    .emotion-euiTabs-tabSizeStyles-size_m-bottomBorder .euiTab{padding:0 4px;}
+                    .emotion-euiTab-selected-m{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;box-shadow:inset 0 calc(2px * -1) 0 #07C;padding:0 4px;}
                   </style>
                   <style
                     data-emotion="css"
                     data-s=""
                   >
                     
-                    .emotion-euiTabs-tabSizeStyles-size_m-bottomBorder .euiTab__content{font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;}
+                    .emotion-euiTab-selected-m:focus{background-color:transparent;outline-offset:-2px;}
                   </style>
                   <style
                     data-emotion="css"
                     data-s=""
                   >
                     
-                    .emotion-euiTab-selected{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                    .emotion-euiTab__content-m-selected{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
                   </style>
                   <style
                     data-emotion="css"
                     data-s=""
                   >
                     
-                    .emotion-euiTab-selected:focus{background-color:transparent;outline-offset:-2px;}
+                    .emotion-euiTab__content-m-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
                   </style>
                   <style
                     data-emotion="css"
                     data-s=""
                   >
                     
-                    .emotion-euiTab-selected .euiTab__content{color:#343741;}
+                    .emotion-euiTab-m{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;padding:0 4px;}
                   </style>
                   <style
                     data-emotion="css"
                     data-s=""
                   >
                     
-                    .emotion-euiTab-selected .euiTab__content:hover{-webkit-text-decoration:underline;text-decoration:underline;}
+                    .emotion-euiTab-m:focus{background-color:transparent;outline-offset:-2px;}
                   </style>
                   <style
                     data-emotion="css"
                     data-s=""
                   >
                     
-                    .emotion-euiTab-selected .euiTab__content{color:#006bb8;}
+                    .emotion-euiTab__content-m{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;}
                   </style>
                   <style
                     data-emotion="css"
                     data-s=""
                   >
                     
-                    .emotion-euiTab{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;}
+                    .emotion-euiTab__content-m:hover{-webkit-text-decoration:none;text-decoration:none;}
                   </style>
                   <style
                     data-emotion="css"
                     data-s=""
                   >
                     
-                    .emotion-euiTab:focus{background-color:transparent;outline-offset:-2px;}
+                    .css-5n6kyr-euiTabs-s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
                   </style>
                   <style
                     data-emotion="css"
                     data-s=""
                   >
                     
-                    .emotion-euiTab .euiTab__content{color:#343741;}
+                    .css-1hv58yo-euiTab-selected-s{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;box-shadow:inset 0 calc(2px * -1) 0 #07C;padding:0 4px;}
                   </style>
                   <style
                     data-emotion="css"
                     data-s=""
                   >
                     
-                    .emotion-euiTab .euiTab__content:hover{-webkit-text-decoration:underline;text-decoration:underline;}
+                    .css-1hv58yo-euiTab-selected-s:focus{background-color:transparent;outline-offset:-2px;}
                   </style>
                   <style
                     data-emotion="css"
                     data-s=""
                   >
                     
-                    .css-zcjv1n-euiTabs-tabSizeStyles-size_s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                    .css-18iwv9m-euiTab__content-s-selected{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
                   </style>
                   <style
                     data-emotion="css"
                     data-s=""
                   >
                     
-                    .css-zcjv1n-euiTabs-tabSizeStyles-size_s-bottomBorder .euiTab{padding:0 4px;}
+                    .css-18iwv9m-euiTab__content-s-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
                   </style>
                   <style
                     data-emotion="css"
                     data-s=""
                   >
                     
-                    .css-zcjv1n-euiTabs-tabSizeStyles-size_s-bottomBorder .euiTab__content{font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;}
+                    .css-tczhrc-euiTab-s{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;padding:0 4px;}
+                  </style>
+                  <style
+                    data-emotion="css"
+                    data-s=""
+                  >
+                    
+                    .css-tczhrc-euiTab-s:focus{background-color:transparent;outline-offset:-2px;}
+                  </style>
+                  <style
+                    data-emotion="css"
+                    data-s=""
+                  >
+                    
+                    .css-1trsq7s-euiTab__content-s{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;}
+                  </style>
+                  <style
+                    data-emotion="css"
+                    data-s=""
+                  >
+                    
+                    .css-1trsq7s-euiTab__content-s:hover{-webkit-text-decoration:none;text-decoration:none;}
                   </style>
                 </head>,
-                "ctr": 15,
+                "ctr": 18,
                 "insertionPoint": undefined,
                 "isSpeedy": false,
                 "key": "css",
@@ -235,105 +262,126 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                     data-s=""
                   >
                     
-                    .emotion-euiTabs-tabSizeStyles-size_m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                    .emotion-euiTabs-m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
                   </style>,
                   <style
                     data-emotion="css"
                     data-s=""
                   >
                     
-                    .emotion-euiTabs-tabSizeStyles-size_m-bottomBorder .euiTab{padding:0 4px;}
+                    .emotion-euiTab-selected-m{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;box-shadow:inset 0 calc(2px * -1) 0 #07C;padding:0 4px;}
                   </style>,
                   <style
                     data-emotion="css"
                     data-s=""
                   >
                     
-                    .emotion-euiTabs-tabSizeStyles-size_m-bottomBorder .euiTab__content{font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;}
+                    .emotion-euiTab-selected-m:focus{background-color:transparent;outline-offset:-2px;}
                   </style>,
                   <style
                     data-emotion="css"
                     data-s=""
                   >
                     
-                    .emotion-euiTab-selected{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                    .emotion-euiTab__content-m-selected{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
                   </style>,
                   <style
                     data-emotion="css"
                     data-s=""
                   >
                     
-                    .emotion-euiTab-selected:focus{background-color:transparent;outline-offset:-2px;}
+                    .emotion-euiTab__content-m-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
                   </style>,
                   <style
                     data-emotion="css"
                     data-s=""
                   >
                     
-                    .emotion-euiTab-selected .euiTab__content{color:#343741;}
+                    .emotion-euiTab-m{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;padding:0 4px;}
                   </style>,
                   <style
                     data-emotion="css"
                     data-s=""
                   >
                     
-                    .emotion-euiTab-selected .euiTab__content:hover{-webkit-text-decoration:underline;text-decoration:underline;}
+                    .emotion-euiTab-m:focus{background-color:transparent;outline-offset:-2px;}
                   </style>,
                   <style
                     data-emotion="css"
                     data-s=""
                   >
                     
-                    .emotion-euiTab-selected .euiTab__content{color:#006bb8;}
+                    .emotion-euiTab__content-m{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;}
                   </style>,
                   <style
                     data-emotion="css"
                     data-s=""
                   >
                     
-                    .emotion-euiTab{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;}
+                    .emotion-euiTab__content-m:hover{-webkit-text-decoration:none;text-decoration:none;}
                   </style>,
                   <style
                     data-emotion="css"
                     data-s=""
                   >
                     
-                    .emotion-euiTab:focus{background-color:transparent;outline-offset:-2px;}
+                    .css-5n6kyr-euiTabs-s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
                   </style>,
                   <style
                     data-emotion="css"
                     data-s=""
                   >
                     
-                    .emotion-euiTab .euiTab__content{color:#343741;}
+                    .css-1hv58yo-euiTab-selected-s{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;box-shadow:inset 0 calc(2px * -1) 0 #07C;padding:0 4px;}
                   </style>,
                   <style
                     data-emotion="css"
                     data-s=""
                   >
                     
-                    .emotion-euiTab .euiTab__content:hover{-webkit-text-decoration:underline;text-decoration:underline;}
+                    .css-1hv58yo-euiTab-selected-s:focus{background-color:transparent;outline-offset:-2px;}
                   </style>,
                   <style
                     data-emotion="css"
                     data-s=""
                   >
                     
-                    .css-zcjv1n-euiTabs-tabSizeStyles-size_s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                    .css-18iwv9m-euiTab__content-s-selected{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
                   </style>,
                   <style
                     data-emotion="css"
                     data-s=""
                   >
                     
-                    .css-zcjv1n-euiTabs-tabSizeStyles-size_s-bottomBorder .euiTab{padding:0 4px;}
+                    .css-18iwv9m-euiTab__content-s-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
                   </style>,
                   <style
                     data-emotion="css"
                     data-s=""
                   >
                     
-                    .css-zcjv1n-euiTabs-tabSizeStyles-size_s-bottomBorder .euiTab__content{font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;}
+                    .css-tczhrc-euiTab-s{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;padding:0 4px;}
+                  </style>,
+                  <style
+                    data-emotion="css"
+                    data-s=""
+                  >
+                    
+                    .css-tczhrc-euiTab-s:focus{background-color:transparent;outline-offset:-2px;}
+                  </style>,
+                  <style
+                    data-emotion="css"
+                    data-s=""
+                  >
+                    
+                    .css-1trsq7s-euiTab__content-s{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;}
+                  </style>,
+                  <style
+                    data-emotion="css"
+                    data-s=""
+                  >
+                    
+                    .css-1trsq7s-euiTab__content-s:hover{-webkit-text-decoration:none;text-decoration:none;}
                   </style>,
                 ],
               },
@@ -343,7 +391,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
           serialized={
             Object {
               "map": undefined,
-              "name": "jdrvl0-euiTabs-tabSizeStyles-size_m-bottomBorder",
+              "name": "14123zm-euiTabs-m-bottomBorder",
               "next": undefined,
               "styles": "display:flex;max-inline-size: 100%;;
   overflow-x: auto;
@@ -351,13 +399,13 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
 ;
   overflow-y: hidden;
   overflow-block: hidden;
-;position:relative;flex-shrink:0;;label:euiTabs;;;gap:16px;.euiTab{padding: 0 4px;}.euiTab__content{font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;;line-height: 40px;};label:tabSizeStyles;;;;label:size_m;;;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;;label:bottomBorder;;;;",
+;position:relative;flex-shrink:0;;label:euiTabs;;;gap:16px;;label:m;;;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;;label:bottomBorder;;;",
               "toString": [Function],
             }
           }
         />
         <div
-          className="euiTabs euiTabs--medium euiTabs--bottomBorder emotion-euiTabs-tabSizeStyles-size_m-bottomBorder"
+          className="euiTabs euiTabs--medium euiTabs--bottomBorder emotion-euiTabs-m-bottomBorder"
           onBlur={[Function]}
           onFocus={[Function]}
           role="tablist"
@@ -366,8 +414,9 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
             aria-controls="generated-id"
             id="es"
             isSelected={false}
-            key="es"
+            key=".$es"
             onClick={[Function]}
+            size="m"
           >
             <button
               aria-controls="generated-id"
@@ -384,10 +433,16 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                   Object {
                     "insert": [Function],
                     "inserted": Object {
-                      "1cduqyw-euiTab-selected": true,
-                      "fv3x4g-euiTab": true,
-                      "jdrvl0-euiTabs-tabSizeStyles-size_m-bottomBorder": true,
-                      "zcjv1n-euiTabs-tabSizeStyles-size_s-bottomBorder": true,
+                      "14123zm-euiTabs-m-bottomBorder": true,
+                      "18iwv9m-euiTab__content-s-selected": true,
+                      "1galntw-euiTab-m": true,
+                      "1hv58yo-euiTab-selected-s": true,
+                      "1mw8ylc-euiTab__content-m-selected": true,
+                      "1trsq7s-euiTab__content-s": true,
+                      "5n6kyr-euiTabs-s-bottomBorder": true,
+                      "9jv5g3-euiTab-selected-m": true,
+                      "tczhrc-euiTab-s": true,
+                      "ymatem-euiTab__content-m": true,
                     },
                     "key": "css",
                     "nonce": undefined,
@@ -402,108 +457,129 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                           data-s=""
                         >
                           
-                          .emotion-euiTabs-tabSizeStyles-size_m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                          .emotion-euiTabs-m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
                         </style>
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTabs-tabSizeStyles-size_m-bottomBorder .euiTab{padding:0 4px;}
+                          .emotion-euiTab-selected-m{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;box-shadow:inset 0 calc(2px * -1) 0 #07C;padding:0 4px;}
                         </style>
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTabs-tabSizeStyles-size_m-bottomBorder .euiTab__content{font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;}
+                          .emotion-euiTab-selected-m:focus{background-color:transparent;outline-offset:-2px;}
                         </style>
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab-selected{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                          .emotion-euiTab__content-m-selected{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
                         </style>
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab-selected:focus{background-color:transparent;outline-offset:-2px;}
+                          .emotion-euiTab__content-m-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
                         </style>
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab-selected .euiTab__content{color:#343741;}
+                          .emotion-euiTab-m{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;padding:0 4px;}
                         </style>
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab-selected .euiTab__content:hover{-webkit-text-decoration:underline;text-decoration:underline;}
+                          .emotion-euiTab-m:focus{background-color:transparent;outline-offset:-2px;}
                         </style>
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab-selected .euiTab__content{color:#006bb8;}
+                          .emotion-euiTab__content-m{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;}
                         </style>
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;}
+                          .emotion-euiTab__content-m:hover{-webkit-text-decoration:none;text-decoration:none;}
                         </style>
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab:focus{background-color:transparent;outline-offset:-2px;}
+                          .css-5n6kyr-euiTabs-s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
                         </style>
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab .euiTab__content{color:#343741;}
+                          .css-1hv58yo-euiTab-selected-s{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;box-shadow:inset 0 calc(2px * -1) 0 #07C;padding:0 4px;}
                         </style>
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab .euiTab__content:hover{-webkit-text-decoration:underline;text-decoration:underline;}
+                          .css-1hv58yo-euiTab-selected-s:focus{background-color:transparent;outline-offset:-2px;}
                         </style>
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .css-zcjv1n-euiTabs-tabSizeStyles-size_s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                          .css-18iwv9m-euiTab__content-s-selected{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
                         </style>
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .css-zcjv1n-euiTabs-tabSizeStyles-size_s-bottomBorder .euiTab{padding:0 4px;}
+                          .css-18iwv9m-euiTab__content-s-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
                         </style>
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .css-zcjv1n-euiTabs-tabSizeStyles-size_s-bottomBorder .euiTab__content{font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;}
+                          .css-tczhrc-euiTab-s{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;padding:0 4px;}
+                        </style>
+                        <style
+                          data-emotion="css"
+                          data-s=""
+                        >
+                          
+                          .css-tczhrc-euiTab-s:focus{background-color:transparent;outline-offset:-2px;}
+                        </style>
+                        <style
+                          data-emotion="css"
+                          data-s=""
+                        >
+                          
+                          .css-1trsq7s-euiTab__content-s{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;}
+                        </style>
+                        <style
+                          data-emotion="css"
+                          data-s=""
+                        >
+                          
+                          .css-1trsq7s-euiTab__content-s:hover{-webkit-text-decoration:none;text-decoration:none;}
                         </style>
                       </head>,
-                      "ctr": 15,
+                      "ctr": 18,
                       "insertionPoint": undefined,
                       "isSpeedy": false,
                       "key": "css",
@@ -515,105 +591,126 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                           data-s=""
                         >
                           
-                          .emotion-euiTabs-tabSizeStyles-size_m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                          .emotion-euiTabs-m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
                         </style>,
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTabs-tabSizeStyles-size_m-bottomBorder .euiTab{padding:0 4px;}
+                          .emotion-euiTab-selected-m{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;box-shadow:inset 0 calc(2px * -1) 0 #07C;padding:0 4px;}
                         </style>,
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTabs-tabSizeStyles-size_m-bottomBorder .euiTab__content{font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;}
+                          .emotion-euiTab-selected-m:focus{background-color:transparent;outline-offset:-2px;}
                         </style>,
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab-selected{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                          .emotion-euiTab__content-m-selected{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
                         </style>,
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab-selected:focus{background-color:transparent;outline-offset:-2px;}
+                          .emotion-euiTab__content-m-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
                         </style>,
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab-selected .euiTab__content{color:#343741;}
+                          .emotion-euiTab-m{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;padding:0 4px;}
                         </style>,
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab-selected .euiTab__content:hover{-webkit-text-decoration:underline;text-decoration:underline;}
+                          .emotion-euiTab-m:focus{background-color:transparent;outline-offset:-2px;}
                         </style>,
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab-selected .euiTab__content{color:#006bb8;}
+                          .emotion-euiTab__content-m{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;}
                         </style>,
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;}
+                          .emotion-euiTab__content-m:hover{-webkit-text-decoration:none;text-decoration:none;}
                         </style>,
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab:focus{background-color:transparent;outline-offset:-2px;}
+                          .css-5n6kyr-euiTabs-s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
                         </style>,
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab .euiTab__content{color:#343741;}
+                          .css-1hv58yo-euiTab-selected-s{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;box-shadow:inset 0 calc(2px * -1) 0 #07C;padding:0 4px;}
                         </style>,
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab .euiTab__content:hover{-webkit-text-decoration:underline;text-decoration:underline;}
+                          .css-1hv58yo-euiTab-selected-s:focus{background-color:transparent;outline-offset:-2px;}
                         </style>,
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .css-zcjv1n-euiTabs-tabSizeStyles-size_s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                          .css-18iwv9m-euiTab__content-s-selected{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
                         </style>,
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .css-zcjv1n-euiTabs-tabSizeStyles-size_s-bottomBorder .euiTab{padding:0 4px;}
+                          .css-18iwv9m-euiTab__content-s-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
                         </style>,
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .css-zcjv1n-euiTabs-tabSizeStyles-size_s-bottomBorder .euiTab__content{font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;}
+                          .css-tczhrc-euiTab-s{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;padding:0 4px;}
+                        </style>,
+                        <style
+                          data-emotion="css"
+                          data-s=""
+                        >
+                          
+                          .css-tczhrc-euiTab-s:focus{background-color:transparent;outline-offset:-2px;}
+                        </style>,
+                        <style
+                          data-emotion="css"
+                          data-s=""
+                        >
+                          
+                          .css-1trsq7s-euiTab__content-s{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;}
+                        </style>,
+                        <style
+                          data-emotion="css"
+                          data-s=""
+                        >
+                          
+                          .css-1trsq7s-euiTab__content-s:hover{-webkit-text-decoration:none;text-decoration:none;}
                         </style>,
                       ],
                     },
@@ -623,9 +720,9 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                 serialized={
                   Object {
                     "map": undefined,
-                    "name": "fv3x4g-euiTab",
+                    "name": "1galntw-euiTab-m",
                     "next": undefined,
-                    "styles": "display:flex;cursor:pointer;flex-direction:row;align-items:center;font-weight:600;gap:8px;&:focus{background-color:transparent;outline-offset:-2px;}.euiTab__content{color:#343741;&:hover{text-decoration:underline;}};label:euiTab;;;;;",
+                    "styles": "display:flex;cursor:pointer;flex-direction:row;align-items:center;font-weight:600;gap:8px;&:focus{background-color:transparent;outline-offset:-2px;};label:euiTab;;;;;;padding:0 4px;;label:m;;;",
                     "toString": [Function],
                   }
                 }
@@ -633,7 +730,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
               <button
                 aria-controls="generated-id"
                 aria-selected={false}
-                className="euiTab emotion-euiTab"
+                className="euiTab emotion-euiTab-m"
                 disabled={false}
                 id="es"
                 onClick={[Function]}
@@ -641,9 +738,312 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                 type="button"
               >
                 <span
-                  className="euiTab__content"
+                  css="unknown styles"
                 >
-                  Elasticsearch
+                  <Insertion
+                    cache={
+                      Object {
+                        "insert": [Function],
+                        "inserted": Object {
+                          "14123zm-euiTabs-m-bottomBorder": true,
+                          "18iwv9m-euiTab__content-s-selected": true,
+                          "1galntw-euiTab-m": true,
+                          "1hv58yo-euiTab-selected-s": true,
+                          "1mw8ylc-euiTab__content-m-selected": true,
+                          "1trsq7s-euiTab__content-s": true,
+                          "5n6kyr-euiTabs-s-bottomBorder": true,
+                          "9jv5g3-euiTab-selected-m": true,
+                          "tczhrc-euiTab-s": true,
+                          "ymatem-euiTab__content-m": true,
+                        },
+                        "key": "css",
+                        "nonce": undefined,
+                        "registered": Object {},
+                        "sheet": StyleSheet {
+                          "_alreadyInsertedOrderInsensitiveRule": true,
+                          "_insertTag": [Function],
+                          "before": null,
+                          "container": <head>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTabs-m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTab-selected-m{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;box-shadow:inset 0 calc(2px * -1) 0 #07C;padding:0 4px;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTab-selected-m:focus{background-color:transparent;outline-offset:-2px;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTab__content-m-selected{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTab__content-m-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTab-m{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;padding:0 4px;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTab-m:focus{background-color:transparent;outline-offset:-2px;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTab__content-m{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTab__content-m:hover{-webkit-text-decoration:none;text-decoration:none;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-5n6kyr-euiTabs-s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-1hv58yo-euiTab-selected-s{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;box-shadow:inset 0 calc(2px * -1) 0 #07C;padding:0 4px;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-1hv58yo-euiTab-selected-s:focus{background-color:transparent;outline-offset:-2px;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-18iwv9m-euiTab__content-s-selected{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-18iwv9m-euiTab__content-s-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-tczhrc-euiTab-s{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;padding:0 4px;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-tczhrc-euiTab-s:focus{background-color:transparent;outline-offset:-2px;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-1trsq7s-euiTab__content-s{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-1trsq7s-euiTab__content-s:hover{-webkit-text-decoration:none;text-decoration:none;}
+                            </style>
+                          </head>,
+                          "ctr": 18,
+                          "insertionPoint": undefined,
+                          "isSpeedy": false,
+                          "key": "css",
+                          "nonce": undefined,
+                          "prepend": undefined,
+                          "tags": Array [
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTabs-m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTab-selected-m{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;box-shadow:inset 0 calc(2px * -1) 0 #07C;padding:0 4px;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTab-selected-m:focus{background-color:transparent;outline-offset:-2px;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTab__content-m-selected{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTab__content-m-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTab-m{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;padding:0 4px;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTab-m:focus{background-color:transparent;outline-offset:-2px;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTab__content-m{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTab__content-m:hover{-webkit-text-decoration:none;text-decoration:none;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-5n6kyr-euiTabs-s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-1hv58yo-euiTab-selected-s{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;box-shadow:inset 0 calc(2px * -1) 0 #07C;padding:0 4px;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-1hv58yo-euiTab-selected-s:focus{background-color:transparent;outline-offset:-2px;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-18iwv9m-euiTab__content-s-selected{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-18iwv9m-euiTab__content-s-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-tczhrc-euiTab-s{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;padding:0 4px;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-tczhrc-euiTab-s:focus{background-color:transparent;outline-offset:-2px;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-1trsq7s-euiTab__content-s{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-1trsq7s-euiTab__content-s:hover{-webkit-text-decoration:none;text-decoration:none;}
+                            </style>,
+                          ],
+                        },
+                      }
+                    }
+                    isStringTag={true}
+                    serialized={
+                      Object {
+                        "map": undefined,
+                        "name": "ymatem-euiTab__content-m",
+                        "next": undefined,
+                        "styles": "color:#a2abba;&:hover{text-decoration:none;};label:euiTab__content;;;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;;line-height:40px;;label:m;;;;;",
+                        "toString": [Function],
+                      }
+                    }
+                  />
+                  <span
+                    className="euiTab__content emotion-euiTab__content-m"
+                  >
+                    Elasticsearch
+                  </span>
                 </span>
               </button>
             </button>
@@ -655,9 +1055,10 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
             data-test-subj="kibanaTab"
             id="kibana"
             isSelected={true}
-            key="kibana"
+            key=".$kibana"
             onClick={[Function]}
             prepend="prepend"
+            size="m"
           >
             <button
               aria-controls="generated-id"
@@ -675,10 +1076,16 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                   Object {
                     "insert": [Function],
                     "inserted": Object {
-                      "1cduqyw-euiTab-selected": true,
-                      "fv3x4g-euiTab": true,
-                      "jdrvl0-euiTabs-tabSizeStyles-size_m-bottomBorder": true,
-                      "zcjv1n-euiTabs-tabSizeStyles-size_s-bottomBorder": true,
+                      "14123zm-euiTabs-m-bottomBorder": true,
+                      "18iwv9m-euiTab__content-s-selected": true,
+                      "1galntw-euiTab-m": true,
+                      "1hv58yo-euiTab-selected-s": true,
+                      "1mw8ylc-euiTab__content-m-selected": true,
+                      "1trsq7s-euiTab__content-s": true,
+                      "5n6kyr-euiTabs-s-bottomBorder": true,
+                      "9jv5g3-euiTab-selected-m": true,
+                      "tczhrc-euiTab-s": true,
+                      "ymatem-euiTab__content-m": true,
                     },
                     "key": "css",
                     "nonce": undefined,
@@ -693,108 +1100,129 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                           data-s=""
                         >
                           
-                          .emotion-euiTabs-tabSizeStyles-size_m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                          .emotion-euiTabs-m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
                         </style>
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTabs-tabSizeStyles-size_m-bottomBorder .euiTab{padding:0 4px;}
+                          .emotion-euiTab-selected-m{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;box-shadow:inset 0 calc(2px * -1) 0 #07C;padding:0 4px;}
                         </style>
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTabs-tabSizeStyles-size_m-bottomBorder .euiTab__content{font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;}
+                          .emotion-euiTab-selected-m:focus{background-color:transparent;outline-offset:-2px;}
                         </style>
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab-selected{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                          .emotion-euiTab__content-m-selected{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
                         </style>
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab-selected:focus{background-color:transparent;outline-offset:-2px;}
+                          .emotion-euiTab__content-m-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
                         </style>
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab-selected .euiTab__content{color:#343741;}
+                          .emotion-euiTab-m{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;padding:0 4px;}
                         </style>
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab-selected .euiTab__content:hover{-webkit-text-decoration:underline;text-decoration:underline;}
+                          .emotion-euiTab-m:focus{background-color:transparent;outline-offset:-2px;}
                         </style>
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab-selected .euiTab__content{color:#006bb8;}
+                          .emotion-euiTab__content-m{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;}
                         </style>
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;}
+                          .emotion-euiTab__content-m:hover{-webkit-text-decoration:none;text-decoration:none;}
                         </style>
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab:focus{background-color:transparent;outline-offset:-2px;}
+                          .css-5n6kyr-euiTabs-s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
                         </style>
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab .euiTab__content{color:#343741;}
+                          .css-1hv58yo-euiTab-selected-s{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;box-shadow:inset 0 calc(2px * -1) 0 #07C;padding:0 4px;}
                         </style>
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab .euiTab__content:hover{-webkit-text-decoration:underline;text-decoration:underline;}
+                          .css-1hv58yo-euiTab-selected-s:focus{background-color:transparent;outline-offset:-2px;}
                         </style>
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .css-zcjv1n-euiTabs-tabSizeStyles-size_s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                          .css-18iwv9m-euiTab__content-s-selected{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
                         </style>
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .css-zcjv1n-euiTabs-tabSizeStyles-size_s-bottomBorder .euiTab{padding:0 4px;}
+                          .css-18iwv9m-euiTab__content-s-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
                         </style>
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .css-zcjv1n-euiTabs-tabSizeStyles-size_s-bottomBorder .euiTab__content{font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;}
+                          .css-tczhrc-euiTab-s{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;padding:0 4px;}
+                        </style>
+                        <style
+                          data-emotion="css"
+                          data-s=""
+                        >
+                          
+                          .css-tczhrc-euiTab-s:focus{background-color:transparent;outline-offset:-2px;}
+                        </style>
+                        <style
+                          data-emotion="css"
+                          data-s=""
+                        >
+                          
+                          .css-1trsq7s-euiTab__content-s{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;}
+                        </style>
+                        <style
+                          data-emotion="css"
+                          data-s=""
+                        >
+                          
+                          .css-1trsq7s-euiTab__content-s:hover{-webkit-text-decoration:none;text-decoration:none;}
                         </style>
                       </head>,
-                      "ctr": 15,
+                      "ctr": 18,
                       "insertionPoint": undefined,
                       "isSpeedy": false,
                       "key": "css",
@@ -806,105 +1234,126 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                           data-s=""
                         >
                           
-                          .emotion-euiTabs-tabSizeStyles-size_m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                          .emotion-euiTabs-m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
                         </style>,
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTabs-tabSizeStyles-size_m-bottomBorder .euiTab{padding:0 4px;}
+                          .emotion-euiTab-selected-m{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;box-shadow:inset 0 calc(2px * -1) 0 #07C;padding:0 4px;}
                         </style>,
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTabs-tabSizeStyles-size_m-bottomBorder .euiTab__content{font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;}
+                          .emotion-euiTab-selected-m:focus{background-color:transparent;outline-offset:-2px;}
                         </style>,
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab-selected{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                          .emotion-euiTab__content-m-selected{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
                         </style>,
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab-selected:focus{background-color:transparent;outline-offset:-2px;}
+                          .emotion-euiTab__content-m-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
                         </style>,
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab-selected .euiTab__content{color:#343741;}
+                          .emotion-euiTab-m{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;padding:0 4px;}
                         </style>,
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab-selected .euiTab__content:hover{-webkit-text-decoration:underline;text-decoration:underline;}
+                          .emotion-euiTab-m:focus{background-color:transparent;outline-offset:-2px;}
                         </style>,
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab-selected .euiTab__content{color:#006bb8;}
+                          .emotion-euiTab__content-m{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;}
                         </style>,
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;}
+                          .emotion-euiTab__content-m:hover{-webkit-text-decoration:none;text-decoration:none;}
                         </style>,
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab:focus{background-color:transparent;outline-offset:-2px;}
+                          .css-5n6kyr-euiTabs-s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
                         </style>,
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab .euiTab__content{color:#343741;}
+                          .css-1hv58yo-euiTab-selected-s{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;box-shadow:inset 0 calc(2px * -1) 0 #07C;padding:0 4px;}
                         </style>,
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .emotion-euiTab .euiTab__content:hover{-webkit-text-decoration:underline;text-decoration:underline;}
+                          .css-1hv58yo-euiTab-selected-s:focus{background-color:transparent;outline-offset:-2px;}
                         </style>,
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .css-zcjv1n-euiTabs-tabSizeStyles-size_s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                          .css-18iwv9m-euiTab__content-s-selected{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
                         </style>,
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .css-zcjv1n-euiTabs-tabSizeStyles-size_s-bottomBorder .euiTab{padding:0 4px;}
+                          .css-18iwv9m-euiTab__content-s-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
                         </style>,
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .css-zcjv1n-euiTabs-tabSizeStyles-size_s-bottomBorder .euiTab__content{font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;}
+                          .css-tczhrc-euiTab-s{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;padding:0 4px;}
+                        </style>,
+                        <style
+                          data-emotion="css"
+                          data-s=""
+                        >
+                          
+                          .css-tczhrc-euiTab-s:focus{background-color:transparent;outline-offset:-2px;}
+                        </style>,
+                        <style
+                          data-emotion="css"
+                          data-s=""
+                        >
+                          
+                          .css-1trsq7s-euiTab__content-s{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;}
+                        </style>,
+                        <style
+                          data-emotion="css"
+                          data-s=""
+                        >
+                          
+                          .css-1trsq7s-euiTab__content-s:hover{-webkit-text-decoration:none;text-decoration:none;}
                         </style>,
                       ],
                     },
@@ -914,9 +1363,9 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                 serialized={
                   Object {
                     "map": undefined,
-                    "name": "1cduqyw-euiTab-selected",
+                    "name": "9jv5g3-euiTab-selected-m",
                     "next": undefined,
-                    "styles": "display:flex;cursor:pointer;flex-direction:row;align-items:center;font-weight:600;gap:8px;&:focus{background-color:transparent;outline-offset:-2px;}.euiTab__content{color:#343741;&:hover{text-decoration:underline;}};label:euiTab;;;box-shadow:inset 0 calc(2px * -1) 0 #07C;.euiTab__content{color:#006bb8;};label:selected;;;;",
+                    "styles": "display:flex;cursor:pointer;flex-direction:row;align-items:center;font-weight:600;gap:8px;&:focus{background-color:transparent;outline-offset:-2px;};label:euiTab;;;;box-shadow:inset 0 calc(2px * -1) 0 #07C;;label:selected;;;;padding:0 4px;;label:m;;;",
                     "toString": [Function],
                   }
                 }
@@ -924,7 +1373,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
               <button
                 aria-controls="generated-id"
                 aria-selected={true}
-                className="euiTab kibanaTab euiTab-isSelected emotion-euiTab-selected"
+                className="euiTab kibanaTab euiTab-isSelected emotion-euiTab-selected-m"
                 data-test-subj="kibanaTab"
                 disabled={false}
                 id="kibana"
@@ -938,11 +1387,314 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                   prepend
                 </span>
                 <span
-                  className="euiTab__content"
+                  css="unknown styles"
                 >
-                  <strong>
-                    Kibana
-                  </strong>
+                  <Insertion
+                    cache={
+                      Object {
+                        "insert": [Function],
+                        "inserted": Object {
+                          "14123zm-euiTabs-m-bottomBorder": true,
+                          "18iwv9m-euiTab__content-s-selected": true,
+                          "1galntw-euiTab-m": true,
+                          "1hv58yo-euiTab-selected-s": true,
+                          "1mw8ylc-euiTab__content-m-selected": true,
+                          "1trsq7s-euiTab__content-s": true,
+                          "5n6kyr-euiTabs-s-bottomBorder": true,
+                          "9jv5g3-euiTab-selected-m": true,
+                          "tczhrc-euiTab-s": true,
+                          "ymatem-euiTab__content-m": true,
+                        },
+                        "key": "css",
+                        "nonce": undefined,
+                        "registered": Object {},
+                        "sheet": StyleSheet {
+                          "_alreadyInsertedOrderInsensitiveRule": true,
+                          "_insertTag": [Function],
+                          "before": null,
+                          "container": <head>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTabs-m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTab-selected-m{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;box-shadow:inset 0 calc(2px * -1) 0 #07C;padding:0 4px;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTab-selected-m:focus{background-color:transparent;outline-offset:-2px;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTab__content-m-selected{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTab__content-m-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTab-m{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;padding:0 4px;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTab-m:focus{background-color:transparent;outline-offset:-2px;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTab__content-m{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTab__content-m:hover{-webkit-text-decoration:none;text-decoration:none;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-5n6kyr-euiTabs-s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-1hv58yo-euiTab-selected-s{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;box-shadow:inset 0 calc(2px * -1) 0 #07C;padding:0 4px;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-1hv58yo-euiTab-selected-s:focus{background-color:transparent;outline-offset:-2px;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-18iwv9m-euiTab__content-s-selected{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-18iwv9m-euiTab__content-s-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-tczhrc-euiTab-s{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;padding:0 4px;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-tczhrc-euiTab-s:focus{background-color:transparent;outline-offset:-2px;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-1trsq7s-euiTab__content-s{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;}
+                            </style>
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-1trsq7s-euiTab__content-s:hover{-webkit-text-decoration:none;text-decoration:none;}
+                            </style>
+                          </head>,
+                          "ctr": 18,
+                          "insertionPoint": undefined,
+                          "isSpeedy": false,
+                          "key": "css",
+                          "nonce": undefined,
+                          "prepend": undefined,
+                          "tags": Array [
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTabs-m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTab-selected-m{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;box-shadow:inset 0 calc(2px * -1) 0 #07C;padding:0 4px;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTab-selected-m:focus{background-color:transparent;outline-offset:-2px;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTab__content-m-selected{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTab__content-m-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTab-m{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;padding:0 4px;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTab-m:focus{background-color:transparent;outline-offset:-2px;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTab__content-m{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .emotion-euiTab__content-m:hover{-webkit-text-decoration:none;text-decoration:none;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-5n6kyr-euiTabs-s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-1hv58yo-euiTab-selected-s{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;box-shadow:inset 0 calc(2px * -1) 0 #07C;padding:0 4px;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-1hv58yo-euiTab-selected-s:focus{background-color:transparent;outline-offset:-2px;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-18iwv9m-euiTab__content-s-selected{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-18iwv9m-euiTab__content-s-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-tczhrc-euiTab-s{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;cursor:pointer;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-weight:600;gap:8px;padding:0 4px;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-tczhrc-euiTab-s:focus{background-color:transparent;outline-offset:-2px;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-1trsq7s-euiTab__content-s{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;}
+                            </style>,
+                            <style
+                              data-emotion="css"
+                              data-s=""
+                            >
+                              
+                              .css-1trsq7s-euiTab__content-s:hover{-webkit-text-decoration:none;text-decoration:none;}
+                            </style>,
+                          ],
+                        },
+                      }
+                    }
+                    isStringTag={true}
+                    serialized={
+                      Object {
+                        "map": undefined,
+                        "name": "1mw8ylc-euiTab__content-m-selected",
+                        "next": undefined,
+                        "styles": "color:#a2abba;&:hover{text-decoration:none;};label:euiTab__content;;;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;;line-height:40px;;label:m;;;box-shadow:inset 0 calc(2px * -1) 0 #07C;;label:selected;;;;",
+                        "toString": [Function],
+                      }
+                    }
+                  />
+                  <span
+                    className="euiTab__content emotion-euiTab__content-m-selected"
+                  >
+                    <strong>
+                      Kibana
+                    </strong>
+                  </span>
                 </span>
                 <span
                   className="euiTab__append"
@@ -975,19 +1727,19 @@ exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiTabs euiTabs--medium euiTabs--bottomBorder emotion-euiTabs-tabSizeStyles-size_m-bottomBorder"
+    class="euiTabs euiTabs--medium euiTabs--bottomBorder emotion-euiTabs-m-bottomBorder"
     role="tablist"
   >
     <button
       aria-controls="generated-id"
       aria-selected="true"
-      class="euiTab euiTab-isSelected emotion-euiTab-selected"
+      class="euiTab euiTab-isSelected emotion-euiTab-selected-m"
       id="es"
       role="tab"
       type="button"
     >
       <span
-        class="euiTab__content"
+        class="euiTab__content emotion-euiTab__content-m-selected"
       >
         Elasticsearch
       </span>
@@ -995,7 +1747,7 @@ exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
     <button
       aria-controls="generated-id"
       aria-selected="false"
-      class="euiTab kibanaTab emotion-euiTab"
+      class="euiTab kibanaTab emotion-euiTab-m"
       data-test-subj="kibanaTab"
       id="kibana"
       role="tab"
@@ -1007,7 +1759,7 @@ exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
         prepend
       </span>
       <span
-        class="euiTab__content"
+        class="euiTab__content emotion-euiTab__content-m"
       >
         <strong>
           Kibana
@@ -1035,19 +1787,19 @@ exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
 exports[`EuiTabbedContent props autoFocus initial is rendered 1`] = `
 <div>
   <div
-    class="euiTabs euiTabs--medium euiTabs--bottomBorder emotion-euiTabs-tabSizeStyles-size_m-bottomBorder"
+    class="euiTabs euiTabs--medium euiTabs--bottomBorder emotion-euiTabs-m-bottomBorder"
     role="tablist"
   >
     <button
       aria-controls="generated-id"
       aria-selected="true"
-      class="euiTab euiTab-isSelected emotion-euiTab-selected"
+      class="euiTab euiTab-isSelected emotion-euiTab-selected-m"
       id="es"
       role="tab"
       type="button"
     >
       <span
-        class="euiTab__content"
+        class="euiTab__content emotion-euiTab__content-m-selected"
       >
         Elasticsearch
       </span>
@@ -1055,7 +1807,7 @@ exports[`EuiTabbedContent props autoFocus initial is rendered 1`] = `
     <button
       aria-controls="generated-id"
       aria-selected="false"
-      class="euiTab kibanaTab emotion-euiTab"
+      class="euiTab kibanaTab emotion-euiTab-m"
       data-test-subj="kibanaTab"
       id="kibana"
       role="tab"
@@ -1067,7 +1819,7 @@ exports[`EuiTabbedContent props autoFocus initial is rendered 1`] = `
         prepend
       </span>
       <span
-        class="euiTab__content"
+        class="euiTab__content emotion-euiTab__content-m"
       >
         <strong>
           Kibana
@@ -1095,19 +1847,19 @@ exports[`EuiTabbedContent props autoFocus initial is rendered 1`] = `
 exports[`EuiTabbedContent props autoFocus selected is rendered 1`] = `
 <div>
   <div
-    class="euiTabs euiTabs--medium euiTabs--bottomBorder emotion-euiTabs-tabSizeStyles-size_m-bottomBorder"
+    class="euiTabs euiTabs--medium euiTabs--bottomBorder emotion-euiTabs-m-bottomBorder"
     role="tablist"
   >
     <button
       aria-controls="generated-id"
       aria-selected="true"
-      class="euiTab euiTab-isSelected emotion-euiTab-selected"
+      class="euiTab euiTab-isSelected emotion-euiTab-selected-m"
       id="es"
       role="tab"
       type="button"
     >
       <span
-        class="euiTab__content"
+        class="euiTab__content emotion-euiTab__content-m-selected"
       >
         Elasticsearch
       </span>
@@ -1115,7 +1867,7 @@ exports[`EuiTabbedContent props autoFocus selected is rendered 1`] = `
     <button
       aria-controls="generated-id"
       aria-selected="false"
-      class="euiTab kibanaTab emotion-euiTab"
+      class="euiTab kibanaTab emotion-euiTab-m"
       data-test-subj="kibanaTab"
       id="kibana"
       role="tab"
@@ -1127,7 +1879,7 @@ exports[`EuiTabbedContent props autoFocus selected is rendered 1`] = `
         prepend
       </span>
       <span
-        class="euiTab__content"
+        class="euiTab__content emotion-euiTab__content-m"
       >
         <strong>
           Kibana
@@ -1155,19 +1907,19 @@ exports[`EuiTabbedContent props autoFocus selected is rendered 1`] = `
 exports[`EuiTabbedContent props initialSelectedTab renders a selected tab 1`] = `
 <div>
   <div
-    class="euiTabs euiTabs--medium euiTabs--bottomBorder emotion-euiTabs-tabSizeStyles-size_m-bottomBorder"
+    class="euiTabs euiTabs--medium euiTabs--bottomBorder emotion-euiTabs-m-bottomBorder"
     role="tablist"
   >
     <button
       aria-controls="generated-id"
       aria-selected="false"
-      class="euiTab emotion-euiTab"
+      class="euiTab emotion-euiTab-m"
       id="es"
       role="tab"
       type="button"
     >
       <span
-        class="euiTab__content"
+        class="euiTab__content emotion-euiTab__content-m"
       >
         Elasticsearch
       </span>
@@ -1175,7 +1927,7 @@ exports[`EuiTabbedContent props initialSelectedTab renders a selected tab 1`] = 
     <button
       aria-controls="generated-id"
       aria-selected="true"
-      class="euiTab kibanaTab euiTab-isSelected emotion-euiTab-selected"
+      class="euiTab kibanaTab euiTab-isSelected emotion-euiTab-selected-m"
       data-test-subj="kibanaTab"
       id="kibana"
       role="tab"
@@ -1187,7 +1939,7 @@ exports[`EuiTabbedContent props initialSelectedTab renders a selected tab 1`] = 
         prepend
       </span>
       <span
-        class="euiTab__content"
+        class="euiTab__content emotion-euiTab__content-m-selected"
       >
         <strong>
           Kibana
@@ -1215,19 +1967,19 @@ exports[`EuiTabbedContent props initialSelectedTab renders a selected tab 1`] = 
 exports[`EuiTabbedContent props selectedTab renders a selected tab 1`] = `
 <div>
   <div
-    class="euiTabs euiTabs--medium euiTabs--bottomBorder emotion-euiTabs-tabSizeStyles-size_m-bottomBorder"
+    class="euiTabs euiTabs--medium euiTabs--bottomBorder emotion-euiTabs-m-bottomBorder"
     role="tablist"
   >
     <button
       aria-controls="generated-id"
       aria-selected="false"
-      class="euiTab emotion-euiTab"
+      class="euiTab emotion-euiTab-m"
       id="es"
       role="tab"
       type="button"
     >
       <span
-        class="euiTab__content"
+        class="euiTab__content emotion-euiTab__content-m"
       >
         Elasticsearch
       </span>
@@ -1235,7 +1987,7 @@ exports[`EuiTabbedContent props selectedTab renders a selected tab 1`] = `
     <button
       aria-controls="generated-id"
       aria-selected="true"
-      class="euiTab kibanaTab euiTab-isSelected emotion-euiTab-selected"
+      class="euiTab kibanaTab euiTab-isSelected emotion-euiTab-selected-m"
       data-test-subj="kibanaTab"
       id="kibana"
       role="tab"
@@ -1247,7 +1999,7 @@ exports[`EuiTabbedContent props selectedTab renders a selected tab 1`] = `
         prepend
       </span>
       <span
-        class="euiTab__content"
+        class="euiTab__content emotion-euiTab__content-m-selected"
       >
         <strong>
           Kibana
@@ -1275,19 +2027,19 @@ exports[`EuiTabbedContent props selectedTab renders a selected tab 1`] = `
 exports[`EuiTabbedContent props size can be small 1`] = `
 <div>
   <div
-    class="euiTabs euiTabs--small euiTabs--bottomBorder emotion-euiTabs-tabSizeStyles-size_s-bottomBorder"
+    class="euiTabs euiTabs--small euiTabs--bottomBorder emotion-euiTabs-s-bottomBorder"
     role="tablist"
   >
     <button
       aria-controls="generated-id"
       aria-selected="true"
-      class="euiTab euiTab-isSelected emotion-euiTab-selected"
+      class="euiTab euiTab-isSelected emotion-euiTab-selected-s"
       id="es"
       role="tab"
       type="button"
     >
       <span
-        class="euiTab__content"
+        class="euiTab__content emotion-euiTab__content-s-selected"
       >
         Elasticsearch
       </span>
@@ -1295,7 +2047,7 @@ exports[`EuiTabbedContent props size can be small 1`] = `
     <button
       aria-controls="generated-id"
       aria-selected="false"
-      class="euiTab kibanaTab emotion-euiTab"
+      class="euiTab kibanaTab emotion-euiTab-s"
       data-test-subj="kibanaTab"
       id="kibana"
       role="tab"
@@ -1307,7 +2059,7 @@ exports[`EuiTabbedContent props size can be small 1`] = `
         prepend
       </span>
       <span
-        class="euiTab__content"
+        class="euiTab__content emotion-euiTab__content-s"
       >
         <strong>
           Kibana
