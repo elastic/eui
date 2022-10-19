@@ -92,6 +92,7 @@ export const EuiTabs = forwardRef<EuiTabRef, PropsWithChildren<EuiTabsProps>>(
           // we're passing the parent `size` down to the children
           // so that they can inherit it if they don't have one
           size: size,
+          expand: expand,
           ...child.props,
         });
       }

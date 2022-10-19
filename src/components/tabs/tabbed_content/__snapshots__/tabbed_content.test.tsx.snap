@@ -105,14 +105,14 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
               "insert": [Function],
               "inserted": Object {
                 "14123zm-euiTabs-m-bottomBorder": true,
-                "18iwv9m-euiTab__content-s-selected": true,
+                "1cmfy1w-euiTab__content-s-selected": true,
                 "1galntw-euiTab-m": true,
                 "1hv58yo-euiTab-selected-s": true,
-                "1mw8ylc-euiTab__content-m-selected": true,
                 "1trsq7s-euiTab__content-s": true,
                 "5n6kyr-euiTabs-s-bottomBorder": true,
                 "9jv5g3-euiTab-selected-m": true,
                 "tczhrc-euiTab-s": true,
+                "tuj6ok-euiTab__content-m-selected": true,
                 "ymatem-euiTab__content-m": true,
               },
               "key": "css",
@@ -149,7 +149,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                     data-s=""
                   >
                     
-                    .emotion-euiTab__content-m-selected{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                    .emotion-euiTab__content-m-selected{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;color:#006bb8;}
                   </style>
                   <style
                     data-emotion="css"
@@ -212,14 +212,14 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                     data-s=""
                   >
                     
-                    .css-18iwv9m-euiTab__content-s-selected{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                    .css-1cmfy1w-euiTab__content-s-selected{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;color:#006bb8;}
                   </style>
                   <style
                     data-emotion="css"
                     data-s=""
                   >
                     
-                    .css-18iwv9m-euiTab__content-s-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
+                    .css-1cmfy1w-euiTab__content-s-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
                   </style>
                   <style
                     data-emotion="css"
@@ -283,7 +283,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                     data-s=""
                   >
                     
-                    .emotion-euiTab__content-m-selected{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                    .emotion-euiTab__content-m-selected{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;color:#006bb8;}
                   </style>,
                   <style
                     data-emotion="css"
@@ -346,14 +346,14 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                     data-s=""
                   >
                     
-                    .css-18iwv9m-euiTab__content-s-selected{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                    .css-1cmfy1w-euiTab__content-s-selected{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;color:#006bb8;}
                   </style>,
                   <style
                     data-emotion="css"
                     data-s=""
                   >
                     
-                    .css-18iwv9m-euiTab__content-s-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
+                    .css-1cmfy1w-euiTab__content-s-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
                   </style>,
                   <style
                     data-emotion="css"
@@ -412,6 +412,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
         >
           <EuiTab
             aria-controls="generated-id"
+            expand={false}
             id="es"
             isSelected={false}
             key=".$es"
@@ -434,14 +435,14 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                     "insert": [Function],
                     "inserted": Object {
                       "14123zm-euiTabs-m-bottomBorder": true,
-                      "18iwv9m-euiTab__content-s-selected": true,
+                      "1cmfy1w-euiTab__content-s-selected": true,
                       "1galntw-euiTab-m": true,
                       "1hv58yo-euiTab-selected-s": true,
-                      "1mw8ylc-euiTab__content-m-selected": true,
                       "1trsq7s-euiTab__content-s": true,
                       "5n6kyr-euiTabs-s-bottomBorder": true,
                       "9jv5g3-euiTab-selected-m": true,
                       "tczhrc-euiTab-s": true,
+                      "tuj6ok-euiTab__content-m-selected": true,
                       "ymatem-euiTab__content-m": true,
                     },
                     "key": "css",
@@ -478,7 +479,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                           data-s=""
                         >
                           
-                          .emotion-euiTab__content-m-selected{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                          .emotion-euiTab__content-m-selected{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;color:#006bb8;}
                         </style>
                         <style
                           data-emotion="css"
@@ -541,14 +542,14 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                           data-s=""
                         >
                           
-                          .css-18iwv9m-euiTab__content-s-selected{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                          .css-1cmfy1w-euiTab__content-s-selected{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;color:#006bb8;}
                         </style>
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .css-18iwv9m-euiTab__content-s-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
+                          .css-1cmfy1w-euiTab__content-s-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
                         </style>
                         <style
                           data-emotion="css"
@@ -612,7 +613,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                           data-s=""
                         >
                           
-                          .emotion-euiTab__content-m-selected{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                          .emotion-euiTab__content-m-selected{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;color:#006bb8;}
                         </style>,
                         <style
                           data-emotion="css"
@@ -675,14 +676,14 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                           data-s=""
                         >
                           
-                          .css-18iwv9m-euiTab__content-s-selected{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                          .css-1cmfy1w-euiTab__content-s-selected{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;color:#006bb8;}
                         </style>,
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .css-18iwv9m-euiTab__content-s-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
+                          .css-1cmfy1w-euiTab__content-s-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
                         </style>,
                         <style
                           data-emotion="css"
@@ -746,14 +747,14 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                         "insert": [Function],
                         "inserted": Object {
                           "14123zm-euiTabs-m-bottomBorder": true,
-                          "18iwv9m-euiTab__content-s-selected": true,
+                          "1cmfy1w-euiTab__content-s-selected": true,
                           "1galntw-euiTab-m": true,
                           "1hv58yo-euiTab-selected-s": true,
-                          "1mw8ylc-euiTab__content-m-selected": true,
                           "1trsq7s-euiTab__content-s": true,
                           "5n6kyr-euiTabs-s-bottomBorder": true,
                           "9jv5g3-euiTab-selected-m": true,
                           "tczhrc-euiTab-s": true,
+                          "tuj6ok-euiTab__content-m-selected": true,
                           "ymatem-euiTab__content-m": true,
                         },
                         "key": "css",
@@ -790,7 +791,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                               data-s=""
                             >
                               
-                              .emotion-euiTab__content-m-selected{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                              .emotion-euiTab__content-m-selected{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;color:#006bb8;}
                             </style>
                             <style
                               data-emotion="css"
@@ -853,14 +854,14 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                               data-s=""
                             >
                               
-                              .css-18iwv9m-euiTab__content-s-selected{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                              .css-1cmfy1w-euiTab__content-s-selected{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;color:#006bb8;}
                             </style>
                             <style
                               data-emotion="css"
                               data-s=""
                             >
                               
-                              .css-18iwv9m-euiTab__content-s-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
+                              .css-1cmfy1w-euiTab__content-s-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
                             </style>
                             <style
                               data-emotion="css"
@@ -924,7 +925,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                               data-s=""
                             >
                               
-                              .emotion-euiTab__content-m-selected{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                              .emotion-euiTab__content-m-selected{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;color:#006bb8;}
                             </style>,
                             <style
                               data-emotion="css"
@@ -987,14 +988,14 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                               data-s=""
                             >
                               
-                              .css-18iwv9m-euiTab__content-s-selected{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                              .css-1cmfy1w-euiTab__content-s-selected{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;color:#006bb8;}
                             </style>,
                             <style
                               data-emotion="css"
                               data-s=""
                             >
                               
-                              .css-18iwv9m-euiTab__content-s-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
+                              .css-1cmfy1w-euiTab__content-s-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
                             </style>,
                             <style
                               data-emotion="css"
@@ -1053,6 +1054,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
             aria-controls="generated-id"
             className="kibanaTab"
             data-test-subj="kibanaTab"
+            expand={false}
             id="kibana"
             isSelected={true}
             key=".$kibana"
@@ -1077,14 +1079,14 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                     "insert": [Function],
                     "inserted": Object {
                       "14123zm-euiTabs-m-bottomBorder": true,
-                      "18iwv9m-euiTab__content-s-selected": true,
+                      "1cmfy1w-euiTab__content-s-selected": true,
                       "1galntw-euiTab-m": true,
                       "1hv58yo-euiTab-selected-s": true,
-                      "1mw8ylc-euiTab__content-m-selected": true,
                       "1trsq7s-euiTab__content-s": true,
                       "5n6kyr-euiTabs-s-bottomBorder": true,
                       "9jv5g3-euiTab-selected-m": true,
                       "tczhrc-euiTab-s": true,
+                      "tuj6ok-euiTab__content-m-selected": true,
                       "ymatem-euiTab__content-m": true,
                     },
                     "key": "css",
@@ -1121,7 +1123,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                           data-s=""
                         >
                           
-                          .emotion-euiTab__content-m-selected{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                          .emotion-euiTab__content-m-selected{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;color:#006bb8;}
                         </style>
                         <style
                           data-emotion="css"
@@ -1184,14 +1186,14 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                           data-s=""
                         >
                           
-                          .css-18iwv9m-euiTab__content-s-selected{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                          .css-1cmfy1w-euiTab__content-s-selected{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;color:#006bb8;}
                         </style>
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .css-18iwv9m-euiTab__content-s-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
+                          .css-1cmfy1w-euiTab__content-s-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
                         </style>
                         <style
                           data-emotion="css"
@@ -1255,7 +1257,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                           data-s=""
                         >
                           
-                          .emotion-euiTab__content-m-selected{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                          .emotion-euiTab__content-m-selected{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;color:#006bb8;}
                         </style>,
                         <style
                           data-emotion="css"
@@ -1318,14 +1320,14 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                           data-s=""
                         >
                           
-                          .css-18iwv9m-euiTab__content-s-selected{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                          .css-1cmfy1w-euiTab__content-s-selected{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;color:#006bb8;}
                         </style>,
                         <style
                           data-emotion="css"
                           data-s=""
                         >
                           
-                          .css-18iwv9m-euiTab__content-s-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
+                          .css-1cmfy1w-euiTab__content-s-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
                         </style>,
                         <style
                           data-emotion="css"
@@ -1395,14 +1397,14 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                         "insert": [Function],
                         "inserted": Object {
                           "14123zm-euiTabs-m-bottomBorder": true,
-                          "18iwv9m-euiTab__content-s-selected": true,
+                          "1cmfy1w-euiTab__content-s-selected": true,
                           "1galntw-euiTab-m": true,
                           "1hv58yo-euiTab-selected-s": true,
-                          "1mw8ylc-euiTab__content-m-selected": true,
                           "1trsq7s-euiTab__content-s": true,
                           "5n6kyr-euiTabs-s-bottomBorder": true,
                           "9jv5g3-euiTab-selected-m": true,
                           "tczhrc-euiTab-s": true,
+                          "tuj6ok-euiTab__content-m-selected": true,
                           "ymatem-euiTab__content-m": true,
                         },
                         "key": "css",
@@ -1439,7 +1441,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                               data-s=""
                             >
                               
-                              .emotion-euiTab__content-m-selected{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                              .emotion-euiTab__content-m-selected{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;color:#006bb8;}
                             </style>
                             <style
                               data-emotion="css"
@@ -1502,14 +1504,14 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                               data-s=""
                             >
                               
-                              .css-18iwv9m-euiTab__content-s-selected{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                              .css-1cmfy1w-euiTab__content-s-selected{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;color:#006bb8;}
                             </style>
                             <style
                               data-emotion="css"
                               data-s=""
                             >
                               
-                              .css-18iwv9m-euiTab__content-s-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
+                              .css-1cmfy1w-euiTab__content-s-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
                             </style>
                             <style
                               data-emotion="css"
@@ -1573,7 +1575,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                               data-s=""
                             >
                               
-                              .emotion-euiTab__content-m-selected{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                              .emotion-euiTab__content-m-selected{color:#a2abba;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;line-height:40px;color:#006bb8;}
                             </style>,
                             <style
                               data-emotion="css"
@@ -1636,14 +1638,14 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                               data-s=""
                             >
                               
-                              .css-18iwv9m-euiTab__content-s-selected{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;box-shadow:inset 0 calc(2px * -1) 0 #07C;}
+                              .css-1cmfy1w-euiTab__content-s-selected{color:#a2abba;font-size:0.8571rem;line-height:1.1429rem;font-weight:700;color:#1a1c21;line-height:32px;color:#006bb8;}
                             </style>,
                             <style
                               data-emotion="css"
                               data-s=""
                             >
                               
-                              .css-18iwv9m-euiTab__content-s-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
+                              .css-1cmfy1w-euiTab__content-s-selected:hover{-webkit-text-decoration:none;text-decoration:none;}
                             </style>,
                             <style
                               data-emotion="css"
@@ -1681,9 +1683,9 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                     serialized={
                       Object {
                         "map": undefined,
-                        "name": "1mw8ylc-euiTab__content-m-selected",
+                        "name": "tuj6ok-euiTab__content-m-selected",
                         "next": undefined,
-                        "styles": "color:#a2abba;&:hover{text-decoration:none;};label:euiTab__content;;;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;;line-height:40px;;label:m;;;box-shadow:inset 0 calc(2px * -1) 0 #07C;;label:selected;;;;",
+                        "styles": "color:#a2abba;&:hover{text-decoration:none;};label:euiTab__content;;;font-size:1.0000rem;line-height:1.4286rem;font-weight:700;color:#1a1c21;;line-height:40px;;label:m;;;color:#006bb8;;label:selected;;;;",
                         "toString": [Function],
                       }
                     }
