@@ -1,6 +1,6 @@
 import React from 'react';
 import { EuiText, EuiResizableContainer } from '../../../../src/components';
-import { faker } from '@faker-js/faker/locale/en';
+import { faker } from '@faker-js/faker';
 
 const text = (
   <>

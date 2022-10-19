@@ -9,7 +9,7 @@ import React, {
   createRef,
 } from 'react';
 import { Link } from 'react-router-dom';
-import { faker } from '@faker-js/faker/locale/en';
+import { faker } from '@faker-js/faker';
 
 import {
   EuiButton,
