@@ -15,6 +15,7 @@ import React, {
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
 import { useEuiTheme } from '../../services';
+import { cloneElementWithCss } from '../../services/theme/clone_element';
 
 import { euiTabsStyles } from './tabs.styles';
 
@@ -81,10 +82,20 @@ export const EuiTabs = forwardRef<EuiTabRef, PropsWithChildren<EuiTabsProps>>(
     const tabsStyles = euiTabsStyles(euiTheme);
     const computedStyles = [
       tabsStyles.euiTabs,
-      tabsStyles[`size_${size}`],
+      tabsStyles[size],
       bottomBorder && tabsStyles.bottomBorder,
-      expand && tabsStyles.expanded,
     ];
+
+    const tabItems = React.Children.map(children, (child) => {
+      if (React.isValidElement(child)) {
+        return cloneElementWithCss(child, {
+          // we're passing the parent `size` and `expand` down to the children
+          size: size,
+          expand: expand,
+          ...child.props,
+        });
+      }
+    });
 
     return (
       <div
@@ -94,7 +105,7 @@ export const EuiTabs = forwardRef<EuiTabRef, PropsWithChildren<EuiTabsProps>>(
         {...(children && { role: 'tablist' })}
         {...rest}
       >
-        {children}
+        {tabItems}
       </div>
     );
   }

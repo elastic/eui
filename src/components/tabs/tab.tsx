@@ -18,7 +18,8 @@ import { CommonProps, ExclusiveUnion } from '../common';
 import { getSecureRelForTarget, useEuiTheme } from '../../services';
 import { validateHref } from '../../services/security/href_validator';
 
-import { euiTabStyles } from './tab.styles';
+import { euiTabStyles, euiTabContentStyles } from './tab.styles';
+import { EuiTabsProps } from './tabs';
 
 export interface EuiTabProps extends CommonProps {
   isSelected?: boolean;
@@ -33,6 +34,16 @@ export interface EuiTabProps extends CommonProps {
    * Will be excluded from interactive effects.
    */
   append?: ReactNode;
+  /**
+   * Evenly stretches each tab to fill the
+   * horizontal space
+   */
+  expand?: EuiTabsProps['expand'];
+  /**
+   * Sizes affect both font size and overall size.
+   * Only use the `xl` size when displayed as page titles.
+   */
+  size?: EuiTabsProps['size'];
 }
 
 type EuiTabPropsForAnchor = EuiTabProps &
@@ -58,6 +69,8 @@ export const EuiTab: FunctionComponent<Props> = ({
   rel,
   prepend,
   append,
+  size,
+  expand,
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
@@ -71,10 +84,20 @@ export const EuiTab: FunctionComponent<Props> = ({
   });
 
   const tabStyles = euiTabStyles(euiTheme);
-  const computedStyles = [
+  const cssTabStyles = [
     tabStyles.euiTab,
+    expand && tabStyles.expanded,
     isSelected && tabStyles.selected,
     disabled && tabStyles.disabled,
+    size && tabStyles[size],
+  ];
+
+  const tabContentStyles = euiTabContentStyles(euiTheme);
+  const cssTabContentStyles = [
+    tabContentStyles.euiTab__content,
+    size && tabContentStyles[size],
+    isSelected && tabContentStyles.selected,
+    disabled && tabContentStyles.disabled,
   ];
 
   const prependNode = prepend && (
@@ -93,14 +116,16 @@ export const EuiTab: FunctionComponent<Props> = ({
         role="tab"
         aria-selected={!!isSelected}
         className={classes}
-        css={computedStyles}
+        css={cssTabStyles}
         href={href}
         target={target}
         rel={secureRel}
         {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}
       >
         {prependNode}
-        <span className="euiTab__content">{children}</span>
+        <span className="euiTab__content" css={cssTabContentStyles}>
+          {children}
+        </span>
         {appendNode}
       </a>
     );
@@ -112,12 +137,14 @@ export const EuiTab: FunctionComponent<Props> = ({
       aria-selected={!!isSelected}
       type="button"
       className={classes}
-      css={computedStyles}
+      css={cssTabStyles}
       disabled={disabled}
       {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}
     >
       {prependNode}
-      <span className="euiTab__content">{children}</span>
+      <span className="euiTab__content" css={cssTabContentStyles}>
+        {children}
+      </span>
       {appendNode}
     </button>
   );

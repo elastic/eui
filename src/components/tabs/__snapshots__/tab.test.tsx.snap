@@ -13,7 +13,7 @@ exports[`EuiTab props append is rendered 1`] = `
     Append
   </span>
   <span
-    class="euiTab__content"
+    class="euiTab__content emotion-euiTab__content"
   >
     children
   </span>
@@ -29,7 +29,7 @@ exports[`EuiTab props disabled is rendered 1`] = `
   type="button"
 >
   <span
-    class="euiTab__content"
+    class="euiTab__content emotion-euiTab__content-disabled"
   >
     Click Me
   </span>
@@ -47,7 +47,7 @@ exports[`EuiTab props href renders anchor 1`] = `
   role="tab"
 >
   <span
-    class="euiTab__content"
+    class="euiTab__content emotion-euiTab__content"
   >
     children
   </span>
@@ -62,7 +62,7 @@ exports[`EuiTab props isSelected is rendered 1`] = `
   type="button"
 >
   <span
-    class="euiTab__content"
+    class="euiTab__content emotion-euiTab__content-selected"
   >
     children
   </span>
@@ -79,7 +79,7 @@ exports[`EuiTab props onClick renders button 1`] = `
   type="button"
 >
   <span
-    class="euiTab__content"
+    class="euiTab__content emotion-euiTab__content"
   >
     children
   </span>
@@ -99,7 +99,7 @@ exports[`EuiTab props prepend is rendered 1`] = `
     Prepend
   </span>
   <span
-    class="euiTab__content"
+    class="euiTab__content emotion-euiTab__content"
   >
     children
   </span>
