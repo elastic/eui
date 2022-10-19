@@ -5,6 +5,7 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiButtonEmpty,
+  EuiSpacer,
 } from '../../../../src/components';
 
 export default () => (
@@ -41,6 +42,8 @@ export default () => (
       </EuiFlexItem>
     </EuiFlexGroup>
 
+    <EuiSpacer size="s" />
+
     <EuiFlexGroup responsive={false} wrap gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
         <EuiButtonEmpty onClick={() => {}} iconType="lensApp">
@@ -60,6 +63,8 @@ export default () => (
         </EuiButtonEmpty>
       </EuiFlexItem>
     </EuiFlexGroup>
+
+    <EuiSpacer size="s" />
 
     <EuiFlexGroup responsive={false} wrap gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
@@ -114,6 +119,8 @@ export default () => (
       </EuiFlexItem>
     </EuiFlexGroup>
 
+    <EuiSpacer size="s" />
+
     <EuiFlexGroup responsive={false} wrap gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
         <EuiButtonEmpty
@@ -147,6 +154,8 @@ export default () => (
         </EuiButtonEmpty>
       </EuiFlexItem>
     </EuiFlexGroup>
+
+    <EuiSpacer size="s" />
 
     <EuiFlexGroup responsive={false} wrap gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
@@ -185,6 +194,8 @@ export default () => (
         </EuiButton>
       </EuiFlexItem>
     </EuiFlexGroup>
+
+    <EuiSpacer size="s" />
 
     <EuiFlexGroup responsive={false} wrap gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
