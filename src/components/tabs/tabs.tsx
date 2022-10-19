@@ -89,8 +89,7 @@ export const EuiTabs = forwardRef<EuiTabRef, PropsWithChildren<EuiTabsProps>>(
     const tabItems = React.Children.map(children, (child) => {
       if (React.isValidElement(child)) {
         return cloneElementWithCss(child, {
-          // we're passing the parent `size` down to the children
-          // so that they can inherit it if they don't have one
+          // we're passing the parent `size` and `expand` down to the children
           size: size,
           expand: expand,
           ...child.props,
