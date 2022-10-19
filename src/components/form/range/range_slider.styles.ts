@@ -155,8 +155,20 @@ export const euiRangeSliderThumbStyles = (
   euiThemeContext: UseEuiTheme
 ) => ({
   thumb: css`
-    ${euiRangeThumbPerBrowser(`
+    &,
+    &:focus:not(:focus-visible) {
+      ${euiRangeThumbPerBrowser(`
       background-color: ${euiRangeLevelColor(color, euiThemeContext.euiTheme)}
     `)}
+    }
+
+    &:focus {
+      ${euiRangeThumbPerBrowser(
+        euiRangeThumbFocus(
+          euiThemeContext,
+          euiRangeLevelColor(color, euiThemeContext.euiTheme)
+        )
+      )}
+    }
   `,
 });

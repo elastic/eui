@@ -38,17 +38,17 @@ export const euiRangeLevelsStyles = (euiThemeContext: UseEuiTheme) => {
   const stripesBackground = isColorDark
     ? `repeating-linear-gradient(
         -45deg,
-        rgba(0, 0, 0, 0.4),
-        rgba(0, 0, 0, 0.4) 2px,
-        rgba(0, 0, 0, 0.6) 2px,
-        rgba(0, 0, 0, 0.6) 4px
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5) 2px,
+        rgba(0, 0, 0, 0.7) 2px,
+        rgba(0, 0, 0, 0.7) 4px
       )`
     : `repeating-linear-gradient(
       -45deg,
-      rgba(255, 255, 255, 0.4),
-      rgba(255, 255, 255, 0.4) 2px,
-      rgba(255, 255, 255, 0.6) 2px,
-      rgba(255, 255, 255, 0.6) 4px
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5) 2px,
+      rgba(255, 255, 255, 0.7) 2px,
+      rgba(255, 255, 255, 0.7) 4px
     )`;
 
   return {
