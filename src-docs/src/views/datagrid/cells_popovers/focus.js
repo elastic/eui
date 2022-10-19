@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 import React, { useState, useCallback } from 'react';
-import { fake } from 'faker';
+import { faker } from '@faker-js/faker';
 
 import {
   EuiDataGrid,
@@ -17,17 +17,17 @@ const data = [];
 
 for (let i = 0; i < 10; i++) {
   data.push([
-    <span>{fake('{{name.firstName}}')}</span>,
-    <span>{fake('{{name.firstName}}')}</span>,
+    <span>{faker.name.firstName()}</span>,
+    <span>{faker.name.firstName()}</span>,
 
     <span>
       <EuiLink href="#/tabular-content/data-grid-cells-popovers#focus">
-        {fake('{{internet.email}}')}
+        {faker.internet.email()}
       </EuiLink>
     </span>,
     <span>
       <EuiLink href="#/tabular-content/data-grid-cells-popovers#focus">
-        {fake('{{internet.email}}')}
+        {faker.internet.email()}
       </EuiLink>
     </span>,
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { fake } from 'faker';
+import { faker } from '@faker-js/faker';
 
 import { EuiDataGrid } from '../../../../../src';
 
@@ -33,19 +33,19 @@ const storeData = [];
 
 for (let i = 1; i < 5; i++) {
   storeData.push({
-    default: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
-    boolean: fake('{{random.boolean}}'),
-    numeric: fake('{{finance.account}}'),
-    currency: fake('${{finance.amount}}'),
-    datetime: fake('{{date.past}}'),
+    default: `${faker.name.lastName()}, ${faker.name.firstName()} ${faker.name.suffix()}`,
+    boolean: `${faker.datatype.boolean()}`,
+    numeric: faker.finance.account(),
+    currency: faker.finance.amount(),
+    datetime: `${faker.date.past()}`,
     json: JSON.stringify([
       {
-        default: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
-        boolean: fake('{{random.boolean}}'),
-        numeric: fake('{{finance.account}}'),
-        currency: fake('${{finance.amount}}'),
-        date: fake('{{date.past}}'),
-        custom: fake('{{date.past}}'),
+        default: `${faker.name.lastName()}, ${faker.name.firstName()} ${faker.name.suffix()}`,
+        boolean: `${faker.datatype.boolean()}`,
+        numeric: faker.finance.account(),
+        currency: faker.finance.amount(),
+        date: `${faker.date.past()}`,
+        custom: `${faker.date.past()}`,
       },
     ]),
     custom: i % 2 === 0 ? 'Star Wars' : 'Star Trek',
