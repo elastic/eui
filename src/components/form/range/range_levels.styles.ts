@@ -59,7 +59,7 @@ export const euiRangeLevelsStyles = (euiThemeContext: UseEuiTheme) => {
       position: absolute;
       inset-inline-start: 0;
       inset-inline-end: 0;
-      inset-block-start: 0;
+      inset-block-start: ${range.trackTopPositionWithoutTicks};
       z-index: ${range.levelsZIndex};
     `,
     hasRange: css`
