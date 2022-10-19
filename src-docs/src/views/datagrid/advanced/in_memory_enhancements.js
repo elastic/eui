@@ -1,5 +1,5 @@
 import React, { Fragment, useCallback, useMemo, useState } from 'react';
-import { faker } from '@faker-js/faker/locale/en';
+import { faker } from '@faker-js/faker';
 import { EuiDataGrid, EuiLink } from '../../../../../src';
 
 const columns = [

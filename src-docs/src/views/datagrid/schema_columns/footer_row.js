@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { faker } from '@faker-js/faker/locale/en';
+import { faker } from '@faker-js/faker';
 
 import {
   EuiDataGrid,

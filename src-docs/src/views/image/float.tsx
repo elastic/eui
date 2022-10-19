@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { EuiImage, EuiText } from '../../../../src/components';
-import { faker } from '@faker-js/faker/locale/en';
+import { faker } from '@faker-js/faker';
 
 export default () => (
   <EuiText>

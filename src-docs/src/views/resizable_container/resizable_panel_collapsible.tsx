@@ -9,7 +9,7 @@ import {
   EuiSpacer,
   EuiPage,
 } from '../../../../src/components';
-import { faker } from '@faker-js/faker/locale/en';
+import { faker } from '@faker-js/faker';
 
 export default () => {
   const items = [

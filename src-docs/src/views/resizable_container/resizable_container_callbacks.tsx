@@ -8,7 +8,7 @@ import {
   EuiPanel,
   useGeneratedHtmlId,
 } from '../../../../src';
-import { faker } from '@faker-js/faker/locale/en';
+import { faker } from '@faker-js/faker';
 
 const text = (
   <>
