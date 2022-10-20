@@ -36,6 +36,24 @@ interface ArgsWithError {
 
 export type EuiSearchBarOnChangeArgs = ArgsWithQuery | ArgsWithError;
 
+type HintPopOverProps = Partial<
+  Pick<
+    EuiInputPopoverProps,
+    | 'isOpen'
+    | 'closePopover'
+    | 'fullWidth'
+    | 'disableFocusTrap'
+    | 'panelClassName'
+    | 'panelPaddingSize'
+    | 'panelStyle'
+    | 'panelProps'
+    | 'popoverScreenReaderText'
+    | 'repositionOnScroll'
+    | 'zIndex'
+    | 'data-test-subj'
+  >
+>;
+
 export interface EuiSearchBarProps extends CommonProps {
   onChange?: (args: EuiSearchBarOnChangeArgs) => void | boolean;
 
@@ -84,20 +102,7 @@ export interface EuiSearchBarProps extends CommonProps {
    */
   hint?: {
     content: React.ReactNode;
-    popOverProps?: Pick<
-      EuiInputPopoverProps,
-      | 'isOpen'
-      | 'closePopover'
-      | 'fullWidth'
-      | 'disableFocusTrap'
-      | 'panelClassName'
-      | 'panelPaddingSize'
-      | 'panelStyle'
-      | 'panelProps'
-      | 'popoverScreenReaderText'
-      | 'repositionOnScroll'
-      | 'zIndex'
-    >;
+    popOverProps?: HintPopOverProps;
   };
 }
 
