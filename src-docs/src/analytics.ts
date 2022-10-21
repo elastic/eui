@@ -34,17 +34,20 @@ function getElasticUID(): string {
   return euid;
 }
 
-function recordPageView() {
+function recordPageView({ pathname }: { pathname: string }) {
+  const [, pageCategory, pageSubCategory] = pathname.split('/');
+
   dataLayer.push({
     event: 'page_view',
-    PagePath: `${window.location.pathname}${window.location.search}${window.location.hash}`,
-    PageURL: window.location.href,
-    PageTitle: window.document.title,
-    PageTemplate: '',
-    Team: 'Elastic EUI',
-    PageCategory: '',
-    Hostname: window.location.hostname,
-    CanonicalTag: window.location.href,
+    pagePath: `${window.location.pathname}${window.location.search}${window.location.hash}`,
+    pageURL: window.location.href,
+    pageTitle: window.document.title,
+    pageTemplate: '',
+    team: 'Elastic EUI',
+    pageCategory,
+    pageSubCategory,
+    hostname: window.location.hostname,
+    canonicalTag: window.location.href,
     euid,
     userAgent: navigator.userAgent,
     euiVersion: euiPackage.version,
@@ -59,7 +62,7 @@ export const RecordPageViews = ({
   const location = useLocation();
 
   useEffect(() => {
-    recordPageView();
+    recordPageView(location);
   }, [location]);
 
   return children;
