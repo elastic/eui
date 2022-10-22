@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, FunctionComponent } from 'react';
+import React, { Component, FocusEventHandler, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import moment, { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 import dateMath from '@elastic/datemath';
@@ -86,6 +86,11 @@ export type EuiSuperDatePickerProps = CommonProps & {
    * Used to localize e.g. month names, passed to `moment`
    */
   locale?: LocaleSpecifier;
+
+  /**
+   * Triggered whenever the EuiSuperDatePicker is focused
+   */
+  onFocus?: FocusEventHandler<HTMLDivElement>;
 
   /**
    * Callback for when the refresh interval is fired.
@@ -533,6 +538,7 @@ export class EuiSuperDatePickerInternal extends Component<
       isDisabled,
       isPaused,
       onRefreshChange,
+      onFocus,
       recentlyUsedRanges,
       refreshInterval,
       showUpdateButton,
@@ -546,6 +552,15 @@ export class EuiSuperDatePickerInternal extends Component<
 
     // Force reduction in width if showing quick select only
     const width = isQuickSelectOnly ? 'auto' : _width;
+
+    const handleInputActivity = (
+      event:
+        | React.KeyboardEvent<HTMLInputElement>
+        | React.MouseEvent<HTMLInputElement>
+        | any
+    ) => {
+      if (onFocus) onFocus(event);
+    };
 
     const autoRefreshAppend: EuiFormControlLayoutProps['append'] = !isPaused ? (
       <EuiAutoRefreshButton
@@ -612,6 +627,8 @@ export class EuiSuperDatePickerInternal extends Component<
                 compressed={compressed}
                 isDisabled={isDisabled}
                 prepend={quickSelect}
+                onClick={handleInputActivity}
+                onKeyUp={handleInputActivity}
                 append={autoRefreshAppend}
                 data-test-subj={dataTestSubj}
               >
