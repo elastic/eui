@@ -23,7 +23,7 @@ export const euiTabsStyles = (euiThemeContext: UseEuiTheme) => {
       flex-shrink: 0;
     `,
     bottomBorder: css`
-      box-shadow: inset 0 calc(${euiTheme.border.width.thin} * -1) 0
+      box-shadow: inset 0 ${mathWithUnits(euiTheme.border.width.thin, (x) => x * -1)} 0
         ${euiTheme.border.color};
     `,
     // sizes
