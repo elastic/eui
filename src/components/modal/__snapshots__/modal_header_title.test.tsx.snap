@@ -1,13 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders EuiModalHeaderTitle 1`] = `
-<div
+<h1
   aria-label="aria-label"
-  class="euiModalHeader__title testClass1 testClass2"
+  class="euiTitle euiModalHeader__title testClass1 testClass2 emotion-euiTitle-m"
   data-test-subj="test subject string"
 >
-  <h1>
-    children
-  </h1>
-</div>
+  children
+</h1>
 `;

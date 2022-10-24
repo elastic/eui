@@ -9,13 +9,15 @@
 import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 import classnames from 'classnames';
 
-import { keys } from '../../services';
+import { keys, useEuiTheme } from '../../services';
 
 import { EuiButtonIcon } from '../button';
 
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiOverlayMask } from '../overlay_mask';
 import { EuiI18n } from '../i18n';
+
+import { euiModalStyles } from './modal.styles';
 
 export interface EuiModalProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;
@@ -71,6 +73,12 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
 
   const classes = classnames('euiModal', widthClassName, className);
 
+  const euiTheme = useEuiTheme();
+  const styles = euiModalStyles(euiTheme);
+  const cssStyles = [styles.euiModal, maxWidth && styles.maxWidth];
+
+  const cssCloseStyles = [styles.euiModal__closeIcon];
+
   return (
     <EuiOverlayMask>
       <EuiFocusTrap initialFocus={initialFocus}>
@@ -79,6 +87,7 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
           // fallbackFocus won't work.
         }
         <div
+          css={cssStyles}
           className={classes}
           onKeyDown={onKeyDown}
           tabIndex={0}
@@ -93,6 +102,7 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
               <EuiButtonIcon
                 iconType="cross"
                 onClick={onClose}
+                css={cssCloseStyles}
                 className="euiModal__closeIcon"
                 color="text"
                 aria-label={closeModal}

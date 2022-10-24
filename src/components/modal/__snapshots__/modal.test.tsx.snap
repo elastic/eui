@@ -21,13 +21,13 @@ Array [
   >
     <div
       aria-label="aria-label"
-      class="euiModal euiModal--maxWidth-default testClass1 testClass2"
+      class="euiModal euiModal--maxWidth-default testClass1 testClass2 emotion-euiModal-maxWidth"
       data-test-subj="test subject string"
       tabindex="0"
     >
       <button
         aria-label="Closes this modal window"
-        class="euiButtonIcon euiButtonIcon--xSmall euiModal__closeIcon emotion-euiButtonIcon-empty-text-hoverStyles"
+        class="euiButtonIcon euiButtonIcon--xSmall euiModal__closeIcon emotion-euiButtonIcon-empty-text-hoverStyles-euiModal__closeIcon"
         type="button"
       >
         <span
