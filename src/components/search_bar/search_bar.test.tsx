@@ -145,7 +145,7 @@ describe('SearchBar', () => {
               box={{ 'data-test-subj': 'searchbar' }}
               hint={{
                 content: <span data-test-subj="myHint">Hello from hint</span>,
-                popOverProps: {
+                popoverProps: {
                   isOpen: isHintVisible,
                 },
               }}

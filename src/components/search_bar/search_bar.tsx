@@ -102,7 +102,7 @@ export interface EuiSearchBarProps extends CommonProps {
    */
   hint?: {
     content: React.ReactNode;
-    popOverProps?: HintPopOverProps;
+    popoverProps?: HintPopOverProps;
   };
 }
 

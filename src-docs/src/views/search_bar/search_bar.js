@@ -190,7 +190,7 @@ export const SearchBar = () => {
                     <strong>-dashboard</strong>
                   </span>
                 ),
-                popOverProps: { panelStyle: { backgroundColor: '#f7f8fc' } },
+                popoverProps: { panelStyle: { backgroundColor: '#f7f8fc' } },
               }
             : undefined
         }

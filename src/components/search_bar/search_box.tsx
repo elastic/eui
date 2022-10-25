@@ -85,7 +85,7 @@ export class EuiSearchBox extends Component<EuiSearchBoxProps> {
             'aria-modal': false,
             role: undefined,
           }}
-          {...hint.popOverProps}
+          {...hint.popoverProps}
         >
           {hint.content}
         </EuiInputPopover>
