@@ -7,6 +7,8 @@
  */
 
 import React, { Component, ReactElement } from 'react';
+
+import { htmlIdGenerator } from '../../services/accessibility';
 import { isString } from '../../services/predicate';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiSearchBox, SchemaType } from './search_box';
@@ -51,6 +53,7 @@ type HintPopOverProps = Partial<
     | 'repositionOnScroll'
     | 'zIndex'
     | 'data-test-subj'
+    | 'id'
   >
 >;
 
@@ -137,6 +140,7 @@ type StateWithOptionalQuery = Omit<State, 'query' | 'isHintVisible'> & {
 
 export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
   static Query = Query;
+  hintId = htmlIdGenerator('__hint')();
 
   constructor(props: EuiSearchBarProps) {
     super(props);
@@ -236,7 +240,12 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
   }
 
   render() {
-    const { query, queryText, error, isHintVisible } = this.state;
+    const {
+      query,
+      queryText,
+      error,
+      isHintVisible: isHintVisibleState,
+    } = this.state;
     const {
       box: { schema, ...box } = { schema: '' }, // strip `schema` out to prevent passing it to EuiSearchBox
       filters,
@@ -259,6 +268,11 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
 
     const toolsRightEl = this.renderTools(toolsRight);
 
+    const popoverProps: HintPopOverProps | undefined = hint
+      ? { id: this.hintId, ...hint.popoverProps }
+      : undefined;
+    const isHintVisible = hint?.popoverProps?.isOpen ?? isHintVisibleState;
+
     return (
       <EuiFlexGroup gutterSize="m" alignItems="center" wrap>
         {toolsLeftEl}
@@ -269,6 +283,7 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
             onSearch={this.onSearch}
             isInvalid={error != null}
             title={error ? error.message : undefined}
+            aria-describedby={isHintVisible ? `${this.hintId}` : undefined}
             hint={
               hint
                 ? {
@@ -277,6 +292,7 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
                       this.setState({ isHintVisible: isVisible });
                     },
                     ...hint,
+                    popoverProps,
                   }
                 : undefined
             }
