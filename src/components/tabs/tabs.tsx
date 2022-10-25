@@ -13,22 +13,11 @@ import React, {
   ReactNode,
 } from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf } from '../common';
+import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
 import { cloneElementWithCss } from '../../services/theme/clone_element';
 
 import { euiTabsStyles } from './tabs.styles';
-
-const sizeToClassNameMap = {
-  s: 'euiTabs--small',
-  m: 'euiTabs--medium',
-  l: 'euiTabs--large',
-  xl: 'euiTabs--xlarge',
-};
-
-export const SIZES = keysOf(sizeToClassNameMap);
-
-export type EuiTabsSizes = keyof typeof sizeToClassNameMap;
 
 export type EuiTabsProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
@@ -49,7 +38,7 @@ export type EuiTabsProps = CommonProps &
      * Sizes affect both font size and overall size.
      * Only use the `xl` size when displayed as page titles.
      */
-    size?: EuiTabsSizes;
+    size?: 's' | 'm' | 'l' | 'xl';
   };
 
 export type EuiTabRef = HTMLDivElement;
@@ -68,16 +57,7 @@ export const EuiTabs = forwardRef<EuiTabRef, PropsWithChildren<EuiTabsProps>>(
   ) => {
     const euiTheme = useEuiTheme();
 
-    // Keeps CSS classes for reference
-    const classes = classNames(
-      'euiTabs',
-      sizeToClassNameMap[size],
-      {
-        'euiTabs--expand': expand,
-        'euiTabs--bottomBorder': bottomBorder,
-      },
-      className
-    );
+    const classes = classNames('euiTabs', className);
 
     const tabsStyles = euiTabsStyles(euiTheme);
     const computedStyles = [

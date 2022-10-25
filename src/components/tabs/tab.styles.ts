@@ -50,16 +50,7 @@ export const euiTabStyles = ({ euiTheme }: UseEuiTheme) => {
     `,
     disabled: css`
       cursor: not-allowed;
-
-      .euiTab {
-        box-shadow: inset 0 calc(${euiTheme.border.width.thin} * -1) 0
-          ${euiTheme.colors.disabledText};
-      }
-
-      .euiTab__prepend,
-      .euiTab__append {
-        color: ${euiTheme.colors.disabledText};
-      }
+      color: ${euiTheme.colors.disabledText};
 
       .euiTab.euiTab__isSelected {
         box-shadow: inset 0 calc(${euiTheme.border.width.thick} * -1) 0

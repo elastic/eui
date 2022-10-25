@@ -324,7 +324,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
           />
           <div
             aria-label="aria-label"
-            class="euiTabs euiTabs--large testClass1 testClass2 emotion-euiTabs-l"
+            class="euiTabs testClass1 testClass2 emotion-euiTabs-l"
             data-test-subj="test subject string"
             role="tablist"
           >

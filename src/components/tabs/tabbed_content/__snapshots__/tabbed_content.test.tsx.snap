@@ -3,7 +3,7 @@
 exports[`EuiTabbedContent behavior when selected tab state isn't controlled by the owner, select the first tab by default 1`] = `
 <div>
   <div
-    class="euiTabs euiTabs--medium euiTabs--bottomBorder emotion-euiTabs-m-bottomBorder"
+    class="euiTabs emotion-euiTabs-m-bottomBorder"
     role="tablist"
   >
     <button
@@ -29,9 +29,7 @@ exports[`EuiTabbedContent behavior when selected tab state isn't controlled by t
       role="tab"
       type="button"
     >
-      <span
-        class="euiTab__prepend"
-      >
+      <span>
         prepend
       </span>
       <span
@@ -41,9 +39,7 @@ exports[`EuiTabbedContent behavior when selected tab state isn't controlled by t
           Kibana
         </strong>
       </span>
-      <span
-        class="euiTab__append"
-      >
+      <span>
         append
       </span>
     </button>
@@ -104,12 +100,12 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
             Object {
               "insert": [Function],
               "inserted": Object {
-                "14123zm-euiTabs-m-bottomBorder": true,
+                "13c17-euiTabs-s-bottomBorder": true,
                 "1cmfy1w-euiTab__content-s-selected": true,
                 "1galntw-euiTab-m": true,
+                "1hjld2u-euiTabs-m-bottomBorder": true,
                 "1hv58yo-euiTab-selected-s": true,
                 "1trsq7s-euiTab__content-s": true,
-                "5n6kyr-euiTabs-s-bottomBorder": true,
                 "9jv5g3-euiTab-selected-m": true,
                 "tczhrc-euiTab-s": true,
                 "tuj6ok-euiTab__content-m-selected": true,
@@ -128,7 +124,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                     data-s=""
                   >
                     
-                    .emotion-euiTabs-m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                    .emotion-euiTabs-m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 -1px 0 #D3DAE6;}
                   </style>
                   <style
                     data-emotion="css"
@@ -191,7 +187,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                     data-s=""
                   >
                     
-                    .css-5n6kyr-euiTabs-s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                    .css-13c17-euiTabs-s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 -1px 0 #D3DAE6;}
                   </style>
                   <style
                     data-emotion="css"
@@ -262,7 +258,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                     data-s=""
                   >
                     
-                    .emotion-euiTabs-m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                    .emotion-euiTabs-m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 -1px 0 #D3DAE6;}
                   </style>,
                   <style
                     data-emotion="css"
@@ -325,7 +321,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                     data-s=""
                   >
                     
-                    .css-5n6kyr-euiTabs-s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                    .css-13c17-euiTabs-s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 -1px 0 #D3DAE6;}
                   </style>,
                   <style
                     data-emotion="css"
@@ -391,7 +387,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
           serialized={
             Object {
               "map": undefined,
-              "name": "14123zm-euiTabs-m-bottomBorder",
+              "name": "1hjld2u-euiTabs-m-bottomBorder",
               "next": undefined,
               "styles": "display:flex;max-inline-size: 100%;;
   overflow-x: auto;
@@ -399,13 +395,13 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
 ;
   overflow-y: hidden;
   overflow-block: hidden;
-;position:relative;flex-shrink:0;;label:euiTabs;;;gap:16px;;label:m;;;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;;label:bottomBorder;;;",
+;position:relative;flex-shrink:0;;label:euiTabs;;;gap:16px;;label:m;;;box-shadow:inset 0 -1px 0 #D3DAE6;;label:bottomBorder;;;",
               "toString": [Function],
             }
           }
         />
         <div
-          className="euiTabs euiTabs--medium euiTabs--bottomBorder emotion-euiTabs-m-bottomBorder"
+          className="euiTabs emotion-euiTabs-m-bottomBorder"
           onBlur={[Function]}
           onFocus={[Function]}
           role="tablist"
@@ -434,12 +430,12 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                   Object {
                     "insert": [Function],
                     "inserted": Object {
-                      "14123zm-euiTabs-m-bottomBorder": true,
+                      "13c17-euiTabs-s-bottomBorder": true,
                       "1cmfy1w-euiTab__content-s-selected": true,
                       "1galntw-euiTab-m": true,
+                      "1hjld2u-euiTabs-m-bottomBorder": true,
                       "1hv58yo-euiTab-selected-s": true,
                       "1trsq7s-euiTab__content-s": true,
-                      "5n6kyr-euiTabs-s-bottomBorder": true,
                       "9jv5g3-euiTab-selected-m": true,
                       "tczhrc-euiTab-s": true,
                       "tuj6ok-euiTab__content-m-selected": true,
@@ -458,7 +454,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                           data-s=""
                         >
                           
-                          .emotion-euiTabs-m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                          .emotion-euiTabs-m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 -1px 0 #D3DAE6;}
                         </style>
                         <style
                           data-emotion="css"
@@ -521,7 +517,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                           data-s=""
                         >
                           
-                          .css-5n6kyr-euiTabs-s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                          .css-13c17-euiTabs-s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 -1px 0 #D3DAE6;}
                         </style>
                         <style
                           data-emotion="css"
@@ -592,7 +588,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                           data-s=""
                         >
                           
-                          .emotion-euiTabs-m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                          .emotion-euiTabs-m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 -1px 0 #D3DAE6;}
                         </style>,
                         <style
                           data-emotion="css"
@@ -655,7 +651,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                           data-s=""
                         >
                           
-                          .css-5n6kyr-euiTabs-s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                          .css-13c17-euiTabs-s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 -1px 0 #D3DAE6;}
                         </style>,
                         <style
                           data-emotion="css"
@@ -746,12 +742,12 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                       Object {
                         "insert": [Function],
                         "inserted": Object {
-                          "14123zm-euiTabs-m-bottomBorder": true,
+                          "13c17-euiTabs-s-bottomBorder": true,
                           "1cmfy1w-euiTab__content-s-selected": true,
                           "1galntw-euiTab-m": true,
+                          "1hjld2u-euiTabs-m-bottomBorder": true,
                           "1hv58yo-euiTab-selected-s": true,
                           "1trsq7s-euiTab__content-s": true,
-                          "5n6kyr-euiTabs-s-bottomBorder": true,
                           "9jv5g3-euiTab-selected-m": true,
                           "tczhrc-euiTab-s": true,
                           "tuj6ok-euiTab__content-m-selected": true,
@@ -770,7 +766,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                               data-s=""
                             >
                               
-                              .emotion-euiTabs-m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                              .emotion-euiTabs-m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 -1px 0 #D3DAE6;}
                             </style>
                             <style
                               data-emotion="css"
@@ -833,7 +829,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                               data-s=""
                             >
                               
-                              .css-5n6kyr-euiTabs-s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                              .css-13c17-euiTabs-s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 -1px 0 #D3DAE6;}
                             </style>
                             <style
                               data-emotion="css"
@@ -904,7 +900,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                               data-s=""
                             >
                               
-                              .emotion-euiTabs-m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                              .emotion-euiTabs-m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 -1px 0 #D3DAE6;}
                             </style>,
                             <style
                               data-emotion="css"
@@ -967,7 +963,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                               data-s=""
                             >
                               
-                              .css-5n6kyr-euiTabs-s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                              .css-13c17-euiTabs-s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 -1px 0 #D3DAE6;}
                             </style>,
                             <style
                               data-emotion="css"
@@ -1078,12 +1074,12 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                   Object {
                     "insert": [Function],
                     "inserted": Object {
-                      "14123zm-euiTabs-m-bottomBorder": true,
+                      "13c17-euiTabs-s-bottomBorder": true,
                       "1cmfy1w-euiTab__content-s-selected": true,
                       "1galntw-euiTab-m": true,
+                      "1hjld2u-euiTabs-m-bottomBorder": true,
                       "1hv58yo-euiTab-selected-s": true,
                       "1trsq7s-euiTab__content-s": true,
-                      "5n6kyr-euiTabs-s-bottomBorder": true,
                       "9jv5g3-euiTab-selected-m": true,
                       "tczhrc-euiTab-s": true,
                       "tuj6ok-euiTab__content-m-selected": true,
@@ -1102,7 +1098,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                           data-s=""
                         >
                           
-                          .emotion-euiTabs-m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                          .emotion-euiTabs-m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 -1px 0 #D3DAE6;}
                         </style>
                         <style
                           data-emotion="css"
@@ -1165,7 +1161,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                           data-s=""
                         >
                           
-                          .css-5n6kyr-euiTabs-s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                          .css-13c17-euiTabs-s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 -1px 0 #D3DAE6;}
                         </style>
                         <style
                           data-emotion="css"
@@ -1236,7 +1232,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                           data-s=""
                         >
                           
-                          .emotion-euiTabs-m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                          .emotion-euiTabs-m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 -1px 0 #D3DAE6;}
                         </style>,
                         <style
                           data-emotion="css"
@@ -1299,7 +1295,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                           data-s=""
                         >
                           
-                          .css-5n6kyr-euiTabs-s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                          .css-13c17-euiTabs-s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 -1px 0 #D3DAE6;}
                         </style>,
                         <style
                           data-emotion="css"
@@ -1383,9 +1379,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                 role="tab"
                 type="button"
               >
-                <span
-                  className="euiTab__prepend"
-                >
+                <span>
                   prepend
                 </span>
                 <span
@@ -1396,12 +1390,12 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                       Object {
                         "insert": [Function],
                         "inserted": Object {
-                          "14123zm-euiTabs-m-bottomBorder": true,
+                          "13c17-euiTabs-s-bottomBorder": true,
                           "1cmfy1w-euiTab__content-s-selected": true,
                           "1galntw-euiTab-m": true,
+                          "1hjld2u-euiTabs-m-bottomBorder": true,
                           "1hv58yo-euiTab-selected-s": true,
                           "1trsq7s-euiTab__content-s": true,
-                          "5n6kyr-euiTabs-s-bottomBorder": true,
                           "9jv5g3-euiTab-selected-m": true,
                           "tczhrc-euiTab-s": true,
                           "tuj6ok-euiTab__content-m-selected": true,
@@ -1420,7 +1414,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                               data-s=""
                             >
                               
-                              .emotion-euiTabs-m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                              .emotion-euiTabs-m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 -1px 0 #D3DAE6;}
                             </style>
                             <style
                               data-emotion="css"
@@ -1483,7 +1477,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                               data-s=""
                             >
                               
-                              .css-5n6kyr-euiTabs-s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                              .css-13c17-euiTabs-s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 -1px 0 #D3DAE6;}
                             </style>
                             <style
                               data-emotion="css"
@@ -1554,7 +1548,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                               data-s=""
                             >
                               
-                              .emotion-euiTabs-m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                              .emotion-euiTabs-m-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:16px;box-shadow:inset 0 -1px 0 #D3DAE6;}
                             </style>,
                             <style
                               data-emotion="css"
@@ -1617,7 +1611,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                               data-s=""
                             >
                               
-                              .css-5n6kyr-euiTabs-s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 calc(1px * -1) 0 #D3DAE6;}
+                              .css-13c17-euiTabs-s-bottomBorder{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;max-inline-size:100%;overflow-x:auto;overflow-inline:auto;overflow-y:hidden;overflow-block:hidden;position:relative;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;gap:12px;box-shadow:inset 0 -1px 0 #D3DAE6;}
                             </style>,
                             <style
                               data-emotion="css"
@@ -1698,9 +1692,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
                     </strong>
                   </span>
                 </span>
-                <span
-                  className="euiTab__append"
-                >
+                <span>
                   append
                 </span>
               </button>
@@ -1729,7 +1721,7 @@ exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiTabs euiTabs--medium euiTabs--bottomBorder emotion-euiTabs-m-bottomBorder"
+    class="euiTabs emotion-euiTabs-m-bottomBorder"
     role="tablist"
   >
     <button
@@ -1755,9 +1747,7 @@ exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
       role="tab"
       type="button"
     >
-      <span
-        class="euiTab__prepend"
-      >
+      <span>
         prepend
       </span>
       <span
@@ -1767,9 +1757,7 @@ exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
           Kibana
         </strong>
       </span>
-      <span
-        class="euiTab__append"
-      >
+      <span>
         append
       </span>
     </button>
@@ -1789,7 +1777,7 @@ exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
 exports[`EuiTabbedContent props autoFocus initial is rendered 1`] = `
 <div>
   <div
-    class="euiTabs euiTabs--medium euiTabs--bottomBorder emotion-euiTabs-m-bottomBorder"
+    class="euiTabs emotion-euiTabs-m-bottomBorder"
     role="tablist"
   >
     <button
@@ -1815,9 +1803,7 @@ exports[`EuiTabbedContent props autoFocus initial is rendered 1`] = `
       role="tab"
       type="button"
     >
-      <span
-        class="euiTab__prepend"
-      >
+      <span>
         prepend
       </span>
       <span
@@ -1827,9 +1813,7 @@ exports[`EuiTabbedContent props autoFocus initial is rendered 1`] = `
           Kibana
         </strong>
       </span>
-      <span
-        class="euiTab__append"
-      >
+      <span>
         append
       </span>
     </button>
@@ -1849,7 +1833,7 @@ exports[`EuiTabbedContent props autoFocus initial is rendered 1`] = `
 exports[`EuiTabbedContent props autoFocus selected is rendered 1`] = `
 <div>
   <div
-    class="euiTabs euiTabs--medium euiTabs--bottomBorder emotion-euiTabs-m-bottomBorder"
+    class="euiTabs emotion-euiTabs-m-bottomBorder"
     role="tablist"
   >
     <button
@@ -1875,9 +1859,7 @@ exports[`EuiTabbedContent props autoFocus selected is rendered 1`] = `
       role="tab"
       type="button"
     >
-      <span
-        class="euiTab__prepend"
-      >
+      <span>
         prepend
       </span>
       <span
@@ -1887,9 +1869,7 @@ exports[`EuiTabbedContent props autoFocus selected is rendered 1`] = `
           Kibana
         </strong>
       </span>
-      <span
-        class="euiTab__append"
-      >
+      <span>
         append
       </span>
     </button>
@@ -1909,7 +1889,7 @@ exports[`EuiTabbedContent props autoFocus selected is rendered 1`] = `
 exports[`EuiTabbedContent props initialSelectedTab renders a selected tab 1`] = `
 <div>
   <div
-    class="euiTabs euiTabs--medium euiTabs--bottomBorder emotion-euiTabs-m-bottomBorder"
+    class="euiTabs emotion-euiTabs-m-bottomBorder"
     role="tablist"
   >
     <button
@@ -1935,9 +1915,7 @@ exports[`EuiTabbedContent props initialSelectedTab renders a selected tab 1`] = 
       role="tab"
       type="button"
     >
-      <span
-        class="euiTab__prepend"
-      >
+      <span>
         prepend
       </span>
       <span
@@ -1947,9 +1925,7 @@ exports[`EuiTabbedContent props initialSelectedTab renders a selected tab 1`] = 
           Kibana
         </strong>
       </span>
-      <span
-        class="euiTab__append"
-      >
+      <span>
         append
       </span>
     </button>
@@ -1969,7 +1945,7 @@ exports[`EuiTabbedContent props initialSelectedTab renders a selected tab 1`] = 
 exports[`EuiTabbedContent props selectedTab renders a selected tab 1`] = `
 <div>
   <div
-    class="euiTabs euiTabs--medium euiTabs--bottomBorder emotion-euiTabs-m-bottomBorder"
+    class="euiTabs emotion-euiTabs-m-bottomBorder"
     role="tablist"
   >
     <button
@@ -1995,9 +1971,7 @@ exports[`EuiTabbedContent props selectedTab renders a selected tab 1`] = `
       role="tab"
       type="button"
     >
-      <span
-        class="euiTab__prepend"
-      >
+      <span>
         prepend
       </span>
       <span
@@ -2007,9 +1981,7 @@ exports[`EuiTabbedContent props selectedTab renders a selected tab 1`] = `
           Kibana
         </strong>
       </span>
-      <span
-        class="euiTab__append"
-      >
+      <span>
         append
       </span>
     </button>
@@ -2029,7 +2001,7 @@ exports[`EuiTabbedContent props selectedTab renders a selected tab 1`] = `
 exports[`EuiTabbedContent props size can be small 1`] = `
 <div>
   <div
-    class="euiTabs euiTabs--small euiTabs--bottomBorder emotion-euiTabs-s-bottomBorder"
+    class="euiTabs emotion-euiTabs-s-bottomBorder"
     role="tablist"
   >
     <button
@@ -2055,9 +2027,7 @@ exports[`EuiTabbedContent props size can be small 1`] = `
       role="tab"
       type="button"
     >
-      <span
-        class="euiTab__prepend"
-      >
+      <span>
         prepend
       </span>
       <span
@@ -2067,9 +2037,7 @@ exports[`EuiTabbedContent props size can be small 1`] = `
           Kibana
         </strong>
       </span>
-      <span
-        class="euiTab__append"
-      >
+      <span>
         append
       </span>
     </button>
