@@ -15,18 +15,8 @@ export const euiRangeLevelColor = (
   color: EuiRangeLevel['color'],
   euiTheme: UseEuiTheme['euiTheme']
 ) => {
-  switch (color) {
-    case 'primary':
-      return euiTheme.colors.primary;
-    case 'success':
-      return euiTheme.colors.success;
-    case 'warning':
-      return euiTheme.colors.warning;
-    case 'danger':
-      return euiTheme.colors.danger;
-    default:
-      return color;
-  }
+  const isNamedColor = ['primary, 'success', 'warning', 'danger'].includes(color);
+  return isNamedColor ? euiTheme.colors[color] : color;
 };
 
 export const euiRangeLevelsStyles = (euiThemeContext: UseEuiTheme) => {
