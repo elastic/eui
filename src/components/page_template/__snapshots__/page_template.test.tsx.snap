@@ -49,6 +49,76 @@ exports[`EuiPageTemplate bottomBorder is rendered as true 1`] = `
 </div>
 `;
 
+exports[`EuiPageTemplate children detects sidebars and does not place them in the main EuiPageInner 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiPageTemplate testClass1 testClass2 emotion-euiPageOuter-row-grow"
+  data-test-subj="test subject string"
+  style="min-block-size:max(460px, 100vh)"
+>
+  <div
+    class="emotion-euiPageSidebar-l"
+    style="min-inline-size:248px"
+  />
+  <div
+    class="emotion-euiPageSidebar-l-component"
+    style="min-inline-size:248px"
+  />
+  <main
+    class="emotion-euiPageInner-panelled-left"
+    id="EuiPageTemplateInner_generated-id"
+  />
+</div>
+`;
+
+exports[`EuiPageTemplate children renders all other types within the main EuiPageInner 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiPageTemplate testClass1 testClass2 emotion-euiPageOuter-row-grow"
+  data-test-subj="test subject string"
+  style="min-block-size:max(460px, 100vh)"
+>
+  <main
+    class="emotion-euiPageInner"
+    id="EuiPageTemplateInner_generated-id"
+  >
+    <header
+      class="euiPageHeader emotion-euiPageHeader-l-border"
+    >
+      <div
+        class="emotion-euiPageHeaderContent-l"
+      >
+        <div
+          class="css-ljpjbj-flex-center"
+        >
+          A
+        </div>
+      </div>
+    </header>
+    <section
+      class="emotion-euiPageSection-grow-l-top-plain"
+    >
+      <div
+        class="emotion-euiPageSection__content-l-restrictWidth"
+        style="max-width:1200px"
+      >
+        B
+      </div>
+    </section>
+    <section
+      class="emotion-euiPageSection-grow-l-top-plain"
+    >
+      <div
+        class="emotion-euiPageSection__content-l-restrictWidth"
+        style="max-width:1200px"
+      >
+        C
+      </div>
+    </section>
+  </main>
+</div>
+`;
+
 exports[`EuiPageTemplate is rendered 1`] = `
 <div
   aria-label="aria-label"

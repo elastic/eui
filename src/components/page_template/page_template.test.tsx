@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import { css } from '@emotion/react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
@@ -97,6 +98,35 @@ describe('EuiPageTemplate', () => {
 
         expect(component).toMatchSnapshot();
       });
+    });
+  });
+
+  describe('children', () => {
+    it('detects sidebars and does not place them in the main EuiPageInner', () => {
+      const component = render(
+        <EuiPageTemplate {...requiredProps}>
+          <EuiPageTemplate.Sidebar />
+          <EuiPageTemplate.Sidebar
+            css={css`
+              color: red;
+            `}
+          />
+        </EuiPageTemplate>
+      );
+      expect(component).toMatchSnapshot();
+      expect(component.find('main').children()).toHaveLength(0);
+    });
+
+    it('renders all other types within the main EuiPageInner', () => {
+      const component = render(
+        <EuiPageTemplate {...requiredProps}>
+          <EuiPageTemplate.Header>A</EuiPageTemplate.Header>
+          <EuiPageTemplate.Section>B</EuiPageTemplate.Section>
+          <EuiPageTemplate.Section>C</EuiPageTemplate.Section>
+        </EuiPageTemplate>
+      );
+      expect(component).toMatchSnapshot();
+      expect(component.find('main').children()).toHaveLength(3);
     });
   });
 });
