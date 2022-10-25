@@ -629,6 +629,7 @@ export class EuiDualRangeClass extends Component<
 
     const classes = classNames('euiDualRange', className);
     const dualRangeStyles = euiDualRangeStyles();
+    const cssStyles = [dualRangeStyles.euiDualRange, customCss];
 
     const leftThumbPosition = this.state.rangeSliderRefAvailable
       ? this.calculateThumbPositionStyle(
@@ -658,8 +659,6 @@ export class EuiDualRangeClass extends Component<
           backgroundColor: euiRangeLevelColor(rightThumbColor, theme.euiTheme),
         }
       : rightThumbPosition;
-
-    const cssStyles = [dualRangeStyles.euiDualRange, customCss];
 
     const theRange = (
       <EuiRangeWrapper

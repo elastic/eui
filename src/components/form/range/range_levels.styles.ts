@@ -7,39 +7,39 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme } from '../../../services';
-import { EuiRangeLevel } from './range_levels';
+import { UseEuiTheme, transparentize } from '../../../services';
+import { EuiRangeLevel, EuiRangeLevelColor } from './range_levels';
 import { euiRangeVariables } from './range.styles';
 
 export const euiRangeLevelColor = (
   color: EuiRangeLevel['color'],
   euiTheme: UseEuiTheme['euiTheme']
 ) => {
-  const isNamedColor = ['primary, 'success', 'warning', 'danger'].includes(color);
-  return isNamedColor ? euiTheme.colors[color] : color;
+  const COLORS: EuiRangeLevelColor[] = [
+    'primary',
+    'success',
+    'warning',
+    'danger',
+  ];
+
+  const isNamedColor = COLORS.includes(color as EuiRangeLevelColor);
+
+  return isNamedColor ? euiTheme.colors[color as EuiRangeLevelColor] : color;
 };
 
 export const euiRangeLevelsStyles = (euiThemeContext: UseEuiTheme) => {
-  const { colorMode } = euiThemeContext;
+  const { colorMode, euiTheme } = euiThemeContext;
   const range = euiRangeVariables(euiThemeContext);
 
   const isColorDark = colorMode === 'DARK';
-
-  const stripesBackground = isColorDark
-    ? `repeating-linear-gradient(
+  const stripeColor = isColorDark ? euiTheme.colors.ink : euiTheme.colors.ghost;
+  const stripesBackground = `repeating-linear-gradient(
         -45deg,
-        rgba(0, 0, 0, 0.5),
-        rgba(0, 0, 0, 0.5) 2px,
-        rgba(0, 0, 0, 0.7) 2px,
-        rgba(0, 0, 0, 0.7) 4px
-      )`
-    : `repeating-linear-gradient(
-      -45deg,
-      rgba(255, 255, 255, 0.5),
-      rgba(255, 255, 255, 0.5) 2px,
-      rgba(255, 255, 255, 0.7) 2px,
-      rgba(255, 255, 255, 0.7) 4px
-    )`;
+        ${transparentize(stripeColor, 0.5)},
+        ${transparentize(stripeColor, 0.5)} 2px,
+        ${transparentize(stripeColor, 0.7)} 2px,
+        ${transparentize(stripeColor, 0.7)} 4px
+      )`;
 
   return {
     // Base
