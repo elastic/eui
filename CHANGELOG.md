@@ -1,3 +1,9 @@
+## [`67.1.5`](https://github.com/elastic/eui/tree/v67.1.5)
+
+**Bug fixes**
+
+- Fixed `EuiButton`'s cursor style when the button is disabled ([#6323](https://github.com/elastic/eui/pull/6323))
+
 ## [`67.1.4`](https://github.com/elastic/eui/tree/v67.1.4)
 
 **Bug fixes**
