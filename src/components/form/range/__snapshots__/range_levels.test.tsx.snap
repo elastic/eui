@@ -2,7 +2,9 @@
 
 exports[`EuiRangeLevels is rendered 1`] = `
 <div
-  class="euiRangeLevels euiRangeLevels--hasTicks emotion-euiRangeLevels-hasTicks"
+  aria-label="aria-label"
+  class="testClass1 testClass2 emotion-euiRangeLevels-hasTicks"
+  data-test-subj="test subject string"
 >
   <span
     class="euiRangeLevel euiRangeLevel--danger customClass emotion-euiRangeLevel-danger"
@@ -18,7 +20,9 @@ exports[`EuiRangeLevels is rendered 1`] = `
 
 exports[`EuiRangeLevels is rendered with named and custom color 1`] = `
 <div
-  class="euiRangeLevels euiRangeLevels--hasTicks emotion-euiRangeLevels-hasTicks"
+  aria-label="aria-label"
+  class="testClass1 testClass2 emotion-euiRangeLevels-hasTicks"
+  data-test-subj="test subject string"
 >
   <span
     class="euiRangeLevel euiRangeLevel--danger emotion-euiRangeLevel-danger"

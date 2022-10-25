@@ -49,3 +49,29 @@ export const euiRangeHighlightProgressStyles = (
     `,
   };
 };
+
+export const euiRangeHighlightLevelsWrapperStyles = (
+  euiThemeContext: UseEuiTheme
+) => {
+  const euiRangeVars = euiRangeVariables(euiThemeContext);
+
+  return {
+    euiRangeHighlight__levelsWrapper: css`
+      block-size: ${euiRangeVars.trackHeight};
+      position: relative;
+      overflow: hidden;
+    `,
+  };
+};
+
+export const euiRangeHighlightLevelsStyles = (euiThemeContext: UseEuiTheme) => {
+  const euiRangeVars = euiRangeVariables(euiThemeContext);
+
+  return {
+    euiRangeHighlight__levels: css`
+      background: transparent;
+      block-size: ${euiRangeVars.trackHeight};
+      inset-block-start: 0;
+    `,
+  };
+};

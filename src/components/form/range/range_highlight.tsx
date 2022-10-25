@@ -13,9 +13,10 @@ import { useEuiTheme } from '../../../services';
 import {
   euiRangeHighlightStyles,
   euiRangeHighlightProgressStyles,
+  euiRangeHighlightLevelsWrapperStyles,
+  euiRangeHighlightLevelsStyles,
 } from './range_highlight.styles';
 import { EuiRangeLevels, EuiRangeLevel } from './range_levels';
-import { euiRangeVariables } from './range.styles';
 
 export interface EuiRangeHighlightProps {
   className?: string;
@@ -68,6 +69,7 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
   });
 
   const euiTheme = useEuiTheme();
+
   const styles = euiRangeHighlightStyles(euiTheme);
   const cssStyles = [styles.euiRangeHighlight, showTicks && styles.hasTicks];
 
@@ -76,29 +78,26 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
     progressStyles.euiRangeHighlight__progress,
     hasFocus && progressStyles.hasFocus,
   ];
-
-  const euiRangeVars = euiRangeVariables(euiTheme);
-
-  const rangeWidthStyle = {
+  const progressStyle = {
     background,
     marginLeft: `${leftPosition * 100}%`,
-    width: `${rangeWidth * 100}%`,
+    inlineSize: `${rangeWidth * 100}%`,
   };
 
+  const levelsWrapperStyles = euiRangeHighlightLevelsWrapperStyles(euiTheme);
+  const cssLevelsWrapperStyles = [
+    levelsWrapperStyles.euiRangeHighlight__levelsWrapper,
+  ];
   const levelsWrapperStyle = {
-    background: 'transparent',
     marginLeft: `${leftPosition * 100}%`,
-    width: `${rangeWidth * 100}%`,
-    height: euiRangeVars.trackHeight,
-    position: 'relative',
-    overflow: 'hidden',
+    inlineSize: `${rangeWidth * 100}%`,
   };
 
+  const levelsStyles = euiRangeHighlightLevelsStyles(euiTheme);
+  const cssLevelsStyles = [levelsStyles.euiRangeHighlight__levels];
   const levelsStyle = {
     left: `-${trackWidth * leftPosition}px`,
-    width: `${trackWidth}px`,
-    height: euiRangeVars.trackHeight,
-    top: 0,
+    inlineSize: `${trackWidth}px`,
   };
 
   return (
@@ -107,13 +106,14 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
         <div
           className={progressClasses}
           css={cssProgressStyles}
-          style={rangeWidthStyle}
+          style={progressStyle}
         />
       )}
 
       {levels && !!levels.length && (
-        <div style={levelsWrapperStyle as any}>
+        <div css={cssLevelsWrapperStyles} style={levelsWrapperStyle as any}>
           <EuiRangeLevels
+            css={cssLevelsStyles}
             style={levelsStyle}
             compressed={compressed}
             levels={levels}

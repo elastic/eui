@@ -71,6 +71,7 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
   compressed,
   showRange,
   style,
+  ...rest
 }) => {
   const [trackWidth, setTrackWidth] = useState(0);
   const handleRef = (node: HTMLDivElement | null) => {
@@ -103,7 +104,13 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
   ];
 
   return (
-    <div className={classes} css={cssStyles} ref={handleRef} style={style}>
+    <div
+      className={classes}
+      css={cssStyles}
+      ref={handleRef}
+      style={style}
+      {...rest}
+    >
       {levels.map((level, index) => {
         validateLevelIsInRange(level);
 
@@ -112,7 +119,7 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
           className,
           min: levelMin,
           max: levelMax,
-          ...rest
+          ...levelRest
         } = level;
 
         let left = 0;
@@ -162,7 +169,7 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
             style={styles}
             className={levelClasses}
             css={cssLevelStyles}
-            {...rest}
+            {...levelRest}
           />
         );
       })}
