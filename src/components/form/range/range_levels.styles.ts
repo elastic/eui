@@ -61,15 +61,6 @@ export const euiRangeLevelsStyles = (euiThemeContext: UseEuiTheme) => {
         background: ${stripesBackground};
         border-radius: ${range.trackBorderRadius};
       }
-
-      .euiRangeHighlight &::after {
-        display: none;
-      }
-
-      .euiRangeHighlight & {
-        position: absolute;
-        inset-block-start: 0;
-      }
     `,
     hasTicks: css`
       inset-block-start: ${range.trackTopPositionWithTicks};
