@@ -74,10 +74,6 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
   return (
     <EuiOverlayMask>
       <EuiFocusTrap initialFocus={initialFocus} scrollLock preventScrollOnFocus>
-        {
-          // Create a child div instead of applying these props directly to FocusTrap, or else
-          // fallbackFocus won't work.
-        }
         <div
           className={classes}
           onKeyDown={onKeyDown}
