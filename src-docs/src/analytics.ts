@@ -34,10 +34,16 @@ function getElasticUID(): string {
   return euid;
 }
 
-function recordPageView({ pathname }: { pathname: string }) {
+function recordPageView({ pathname, search }: { pathname: string, search: string }) {
   const [, pageCategory, pageSubCategory] = pathname.split('/');
 
-  dataLayer.push({
+  // `search` from react router, but since we're still on hash routing
+  // any utm params are almost definitely on the landing page's pre-hash
+  // part of the URL, so we fall back to looking for values there
+  const foundSearchValues = search || location.search;
+  const searchParams = new URLSearchParams(foundSearchValues);
+
+  const pageView: Record<string, string> = {
     event: 'page_view',
     pagePath: `${window.location.pathname}${window.location.search}${window.location.hash}`,
     pageURL: window.location.href,
@@ -51,7 +57,23 @@ function recordPageView({ pathname }: { pathname: string }) {
     euid,
     userAgent: navigator.userAgent,
     euiVersion: euiPackage.version,
-  });
+
+    hashedIp: '',
+  };
+
+  // UTM/campaign data
+  const utmSource = searchParams.get('utm_source');
+  const utmMedium = searchParams.get('utm_medium');
+  const utmCampaign = searchParams.get('utm_campaign');
+  const utmTerm = searchParams.get('utm_term');
+  const utmContent = searchParams.get('utm_content');
+  if (utmSource) pageView.utmSource = (console.log('adding utmSource'), utmSource);
+  if (utmMedium) pageView.utmMedium = (console.log('adding utmMedium'), utmMedium);
+  if (utmCampaign) pageView.utmCampaign = (console.log('adding utmCampaign'), utmCampaign);
+  if (utmTerm) pageView.utmTerm = (console.log('adding utmTerm'), utmTerm);
+  if (utmContent) pageView.utmContent = (console.log('adding utmContent'), utmContent);
+
+  dataLayer.push(pageView);
 }
 
 export const RecordPageViews = ({
