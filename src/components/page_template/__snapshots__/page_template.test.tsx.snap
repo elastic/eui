@@ -105,15 +105,8 @@ exports[`EuiPageTemplate children renders all other types within the main EuiPag
         B
       </div>
     </section>
-    <section
-      class="emotion-euiPageSection-grow-l-top-plain"
-    >
-      <div
-        class="emotion-euiPageSection__content-l-restrictWidth"
-        style="max-width:1200px"
-      >
-        C
-      </div>
+    <section>
+      C
     </section>
   </main>
 </div>

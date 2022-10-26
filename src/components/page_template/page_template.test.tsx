@@ -122,7 +122,7 @@ describe('EuiPageTemplate', () => {
         <EuiPageTemplate {...requiredProps}>
           <EuiPageTemplate.Header>A</EuiPageTemplate.Header>
           <EuiPageTemplate.Section>B</EuiPageTemplate.Section>
-          <EuiPageTemplate.Section>C</EuiPageTemplate.Section>
+          <section>C</section>
         </EuiPageTemplate>
       );
       expect(component).toMatchSnapshot();
