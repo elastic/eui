@@ -18,7 +18,7 @@ import {
   WithEuiThemeProps,
 } from '../../../services/';
 
-import { getLevelColor } from './utils';
+import { getLevelColor } from './range_levels_colors';
 import { EuiRangeHighlight } from './range_highlight';
 import { EuiRangeInput, EuiRangeInputProps } from './range_input';
 import { EuiRangeLabel } from './range_label';

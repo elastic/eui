@@ -8,6 +8,8 @@
 
 import { UseEuiTheme } from '../../../services';
 
+import { EuiRangeLevel } from './range_levels';
+
 export const LEVEL_COLORS = [
   'primary',
   'success',
@@ -26,4 +28,15 @@ export const euiRangeLevelColor = (
   return isNamedLevelColor(color)
     ? euiTheme.colors[color as EuiRangeLevelColor]
     : color;
+};
+
+export const getLevelColor = (levels: EuiRangeLevel[], value: number) => {
+  let color;
+  for (const level of levels) {
+    if (level.min <= value && level.max >= value) {
+      color = level.color;
+      return color;
+    }
+  }
+  return undefined;
 };

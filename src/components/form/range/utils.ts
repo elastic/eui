@@ -6,8 +6,6 @@
  * Side Public License, v 1.
  */
 
-import { EuiRangeLevel } from './range_levels';
-
 export const EUI_THUMB_SIZE = 16;
 
 export const calculateThumbPosition = (
@@ -28,15 +26,4 @@ export const calculateThumbPosition = (
   const trackPositionScale = (1 - thumbToTrackRatio) * 100;
 
   return valuePosition * trackPositionScale;
-};
-
-export const getLevelColor = (levels: EuiRangeLevel[], value: number) => {
-  let color;
-  for (const level of levels) {
-    if (level.min <= value && level.max >= value) {
-      color = level.color;
-      return color;
-    }
-  }
-  return undefined;
 };

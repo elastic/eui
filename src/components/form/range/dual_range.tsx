@@ -28,16 +28,16 @@ import { EuiRangeHighlight } from './range_highlight';
 import { EuiRangeInput, EuiRangeInputProps } from './range_input';
 import { EuiRangeLabel } from './range_label';
 import { EuiRangeLevel } from './range_levels';
+import { getLevelColor, euiRangeLevelColor } from './range_levels_colors';
 import { EuiRangeSlider, EuiRangeSliderProps } from './range_slider';
 import { EuiRangeThumb } from './range_thumb';
 import { EuiRangeTick } from './range_ticks';
 import { EuiRangeTrack } from './range_track';
 import { EuiRangeWrapper } from './range_wrapper';
-import { calculateThumbPosition, getLevelColor } from './utils';
+import { calculateThumbPosition } from './utils';
 import { FormContext, FormContextValue } from '../eui_form_context';
 
 import { euiRangeStyles } from './range.styles';
-import { euiRangeLevelColor } from './range_levels_colors';
 import { euiDualRangeStyles } from './dual_range.styles';
 
 type ValueMember = number | string;
