@@ -37,7 +37,7 @@ import { calculateThumbPosition, getLevelColor } from './utils';
 import { FormContext, FormContextValue } from '../eui_form_context';
 
 import { euiRangeStyles } from './range.styles';
-import { euiRangeLevelColor } from './range_levels.styles';
+import { euiRangeLevelColor } from './range_levels_colors';
 import { euiDualRangeStyles } from './dual_range.styles';
 
 type ValueMember = number | string;

@@ -17,7 +17,7 @@ import { CommonProps } from '../../common';
 
 import { useEuiTheme } from '../../../services';
 import { EuiRangeLevel } from './range_levels';
-import { euiRangeLevelColor } from './range_levels.styles';
+import { euiRangeLevelColor } from './range_levels_colors';
 import {
   euiRangeSliderStyles,
   euiRangeSliderThumbStyles,
@@ -85,7 +85,7 @@ export const EuiRangeSlider = forwardRef<HTMLInputElement, EuiRangeSliderProps>(
     ];
 
     const sliderStyle = {
-      color: euiRangeLevelColor(thumbColor, euiTheme.euiTheme),
+      color: thumbColor && euiRangeLevelColor(thumbColor, euiTheme.euiTheme),
       ...style,
     };
 

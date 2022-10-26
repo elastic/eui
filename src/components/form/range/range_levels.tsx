@@ -9,11 +9,13 @@
 import React, { CSSProperties, FunctionComponent, useState } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
+import { useEuiTheme } from '../../../services';
+
+import { EuiRangeLevelColor, isNamedLevelColor } from './range_levels_colors';
 import {
   euiRangeLevelsStyles,
   euiRangeLevelStyles,
 } from './range_levels.styles';
-import { useEuiTheme } from '../../../services';
 
 import { calculateThumbPosition, EUI_THUMB_SIZE } from './utils';
 
@@ -31,15 +33,6 @@ const calculateOffset = (position: number, value: number, bound: number) => {
   }
   return offset;
 };
-
-export type EuiRangeLevelColor = 'primary' | 'success' | 'warning' | 'danger';
-
-export const LEVEL_COLORS: EuiRangeLevelColor[] = [
-  'primary',
-  'success',
-  'warning',
-  'danger',
-];
 
 export interface EuiRangeLevel extends CommonProps {
   min: number;
@@ -139,7 +132,7 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
           rightOffset = calculateOffset(right, levelMax, max);
         }
 
-        const isNamedColor = LEVEL_COLORS.includes(color as EuiRangeLevelColor);
+        const isNamedColor = isNamedLevelColor(color);
 
         const styles = {
           left: `calc(${left}% + ${leftOffset}px)`,

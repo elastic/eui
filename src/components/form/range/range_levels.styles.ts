@@ -8,20 +8,8 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme, transparentize } from '../../../services';
-import {
-  EuiRangeLevel,
-  EuiRangeLevelColor,
-  LEVEL_COLORS,
-} from './range_levels';
+import { euiRangeLevelColor } from './range_levels_colors';
 import { euiRangeVariables } from './range.styles';
-
-export const euiRangeLevelColor = (
-  color: EuiRangeLevel['color'],
-  euiTheme: UseEuiTheme['euiTheme']
-) => {
-  const isNamedColor = LEVEL_COLORS.includes(color as EuiRangeLevelColor);
-  return isNamedColor ? euiTheme.colors[color as EuiRangeLevelColor] : color;
-};
 
 export const euiRangeLevelsStyles = (euiThemeContext: UseEuiTheme) => {
   const { colorMode, euiTheme } = euiThemeContext;
