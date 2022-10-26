@@ -17,3 +17,15 @@ export const euiAnimFadeIn = keyframes`
     opacity: 1;
   }
 `;
+
+export const euiAnimSlideInUp = (size: string) => keyframes`
+   0% {
+    opacity: 0;
+    transform: translateY(${size});
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;

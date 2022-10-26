@@ -6,23 +6,15 @@
  * Side Public License, v 1.
  */
 
-import { css, keyframes } from '@emotion/react';
+import { css } from '@emotion/react';
 import { euiShadow } from '../../themes/amsterdam/global_styling/mixins';
-import { euiCanAnimate, euiBreakpoint } from '../../global_styling';
+import {
+  euiCanAnimate,
+  euiBreakpoint,
+  euiAnimSlideInUp,
+} from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiFormVariables } from '../form/form.styles';
-
-const euiModalAppear = keyframes`
- 0% {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
 
 export const euiModalStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -41,8 +33,8 @@ export const euiModalStyles = (euiThemeContext: UseEuiTheme) => {
       max-inline-size: calc(100vw - ${euiTheme.size.base});
 
       ${euiCanAnimate} {
-        animation: ${euiModalAppear} ${euiTheme.animation.slow}
-          ${euiTheme.animation.bounce};
+        animation: ${euiAnimSlideInUp(euiTheme.size.xxl)}
+          ${euiTheme.animation.slow} ${euiTheme.animation.bounce};
       }
 
       ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
