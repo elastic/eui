@@ -17,8 +17,8 @@ export default () => (
         onClick={() => {}}
         betaBadgeProps={{
           label: 'Beta',
-          // tooltipContent:
-          //   'This module is not GA. Please help us by reporting any bugs.',
+          tooltipContent:
+            'This module is not GA. Please help us by reporting any bugs.',
         }}
       />
     </EuiFlexItem>
@@ -30,8 +30,8 @@ export default () => (
         betaBadgeProps={{
           label: 'Accent',
           color: 'accent',
-          // tooltipContent:
-          //   'You can change the badge color using betaBadgeProps.color.',
+          tooltipContent:
+            'You can change the badge color using betaBadgeProps.color.',
         }}
         onClick={() => {}}
       />
@@ -46,8 +46,8 @@ export default () => (
           href: 'http://www.elastic.co/subscriptions',
           target: '_blank',
           label: 'Basic',
-          // tooltipContent:
-          //   'Disabled cards with still clickable badges will stay hollow.',
+          tooltipContent:
+            'Disabled cards with still clickable badges will stay hollow.',
         }}
         onClick={() => {}}
       />
