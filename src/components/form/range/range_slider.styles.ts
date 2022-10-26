@@ -107,9 +107,7 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
       &:focus {
         ${euiRangeThumbPerBrowser(euiRangeThumbFocus(euiThemeContext))}
 
-        ${euiRangeTrackPerBrowser(`
-          background-color: transparent;
-        `)}
+        ${euiRangeTrackPerBrowser('background-color: transparent')}
 
         outline: none;
 
@@ -141,9 +139,9 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
       `)}
     `,
     hasLevels: css`
-      ${euiRangeThumbPerBrowser(`
-      background-color: ${range.thumbBackgroundColor};  
-    `)}
+      ${euiRangeThumbPerBrowser(
+        `background-color: ${range.thumbBackgroundColor}`
+      )}
     `,
   };
 };
@@ -152,9 +150,7 @@ export const euiRangeSliderThumbStyles = (euiThemeContext: UseEuiTheme) => ({
   thumb: css`
     &,
     &:focus:not(:focus-visible) {
-      ${euiRangeThumbPerBrowser(`
-      background-color: currentcolor;
-    `)}
+      ${euiRangeThumbPerBrowser('background-color: currentcolor')}
     }
 
     &:focus {
