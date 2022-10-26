@@ -87,13 +87,14 @@ interface EuiOverflowShadowStyles {
   direction?: 'y' | 'x';
   side?: 'both' | 'start' | 'end';
 }
+
 const euiOverflowShadowStyles = (
   { euiTheme: { size } }: UseEuiTheme,
   { direction: _direction, side: _side }: EuiOverflowShadowStyles = {}
 ) => {
   const direction = _direction || 'y';
   const side = _side || 'both';
-  const hideHeight = `calc(${size.base} * 0.75 * 1.25)`;
+  const hideHeight = size.s;
   const gradientStart = `
   ${transparentize('red', 0.1)} 0%,
   ${transparentize('red', 1)} ${hideHeight}

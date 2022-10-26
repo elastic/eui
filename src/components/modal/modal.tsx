@@ -77,7 +77,7 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
   const styles = euiModalStyles(euiTheme);
   const cssStyles = [styles.euiModal, maxWidth && styles.maxWidth];
 
-  const cssCloseStyles = [styles.euiModal__closeIcon];
+  const cssCloseIconStyles = [styles.euiModal__closeIcon];
 
   return (
     <EuiOverlayMask>
@@ -102,7 +102,7 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
               <EuiButtonIcon
                 iconType="cross"
                 onClick={onClose}
-                css={cssCloseStyles}
+                css={cssCloseIconStyles}
                 className="euiModal__closeIcon"
                 color="text"
                 aria-label={closeModal}

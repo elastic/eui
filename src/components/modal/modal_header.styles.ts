@@ -18,8 +18,9 @@ export const euiModalHeaderStyles = (euiThemeContext: UseEuiTheme) => {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: ${euiTheme.size.l} ${euiTheme.size.xxl} ${euiTheme.size.base}
-        ${euiTheme.size.l};
+      padding-inline: ${euiTheme.size.l} ${euiTheme.size.xxl};
+      padding-block: ${euiTheme.size.l} ${euiTheme.size.base};
+      ${euiTheme.size.l};
       flex-grow: 0;
       flex-shrink: 0;
 

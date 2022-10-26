@@ -17,28 +17,22 @@ export const euiModalFooterStyles = (euiThemeContext: UseEuiTheme) => {
     euiModalFooter: css`
       display: flex;
       justify-content: flex-end;
-      padding: ${euiTheme.size.base} ${euiTheme.size.l} ${euiTheme.size.l};
+      padding-block: ${euiTheme.size.base} ${euiTheme.size.l};
+      padding-inline: ${euiTheme.size.l};
       flex-grow: 0;
       flex-shrink: 0; // ensure the height of the footer is based off its contents and doesn't squish
-
-      /* row-gap: ${euiTheme.size.base}; */
-
-      > * + * {
-        margin-inline-start: ${euiTheme.size.base};
-      }
+      gap: ${euiTheme.size.base};
 
       ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
         inline-size: 100%;
-        background: $euiColorLightestShade;
-        padding: $euiSizeM $euiSizeL !important;
+        background: ${euiTheme.colors.lightestShade};
+        padding-block: ${euiTheme.size.m};
+        padding-inline: ${euiTheme.size.l};
         justify-content: stretch;
+        gap: ${euiTheme.size.s};
 
         > * {
           flex: 1;
-
-          + * {
-            margin-inline-start: 0;
-          }
         }
       }
     `,

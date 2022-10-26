@@ -29,7 +29,6 @@ export const euiModalStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiModal: css`
-      // This mixin overwrites some of the border above
       ${euiShadow(euiThemeContext, 'l')}
       display: flex;
       flex-direction: column;
@@ -48,9 +47,9 @@ export const euiModalStyles = (euiThemeContext: UseEuiTheme) => {
 
       ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
         position: fixed;
-        inline-size: 100vw !important;
-        max-inline-size: none !important;
-        min-inline-size: 0 !important;
+        inline-size: 100vw;
+        min-inline-size: 0;
+        max-inline-size: none;
         max-block-size: 100vh;
         inset-inline-start: 0;
         inset-inline-end: 0;
@@ -80,7 +79,6 @@ export const euiModalStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     euiModal__closeIcon: css`
-      background-color: transparentize(${euiTheme.colors.emptyShade}, 0.1);
       position: absolute;
       inset-inline-end: ${euiTheme.size.xs};
       inset-block-start: ${euiTheme.size.xs};
