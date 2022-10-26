@@ -26,15 +26,19 @@ exports[`EuiCard betaBadgeProps renders href 1`] = `
       </p>
     </div>
   </div>
-  <a
-    class="euiBetaBadge euiBetaBadge-isClickable euiBetaBadge--hollow emotion-euiCard__betaBadge"
-    href="http://www.elastic.co/"
-    id="generated-idBetaBadge"
-    rel=""
-    title="Link"
+  <span
+    class="emotion-euiCard__betaBadgeAnchor"
   >
-    Link
-  </a>
+    <a
+      class="euiBetaBadge euiBetaBadge-isClickable euiBetaBadge--hollow emotion-euiCard__betaBadge"
+      href="http://www.elastic.co/"
+      id="generated-idBetaBadge"
+      rel=""
+      title="Link"
+    >
+      Link
+    </a>
+  </span>
 </div>
 `;
 

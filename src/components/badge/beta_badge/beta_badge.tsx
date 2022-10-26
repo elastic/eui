@@ -8,7 +8,6 @@
 
 import React, {
   AriaAttributes,
-  Fragment,
   FunctionComponent,
   HTMLAttributes,
   MouseEventHandler,
@@ -223,7 +222,7 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
         </EuiToolTip>
       );
     } else {
-      return <Fragment>{content}</Fragment>;
+      return <span {...anchorProps}>{content}</span>;
     }
   } else {
     if (tooltipContent) {
@@ -247,8 +246,14 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
         );
       }
       return (
-        <span className={classes} title={spanTitle as string} {...rest}>
-          {icon || label}
+        <span {...anchorProps}>
+          <span
+            className={classes}
+            title={spanTitle as string}
+            {...rest}
+          >
+            {icon || label}
+          </span>
         </span>
       );
     }
