@@ -34,8 +34,6 @@ export const euiModalStyles = (euiThemeContext: UseEuiTheme) => {
       display: flex;
       flex-direction: column;
       max-block-size: 75vh; // We overflow the modal body based off this
-      overflow: hidden; // Ensure long, non-breaking text doesn't expand beyond the modal bounds
-
       position: relative;
       background-color: ${euiTheme.colors.emptyShade};
       border-radius: ${euiTheme.border.radius.medium};
