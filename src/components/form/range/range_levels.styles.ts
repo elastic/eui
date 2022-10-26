@@ -8,22 +8,18 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme, transparentize } from '../../../services';
-import { EuiRangeLevel, EuiRangeLevelColor } from './range_levels';
+import {
+  EuiRangeLevel,
+  EuiRangeLevelColor,
+  LEVEL_COLORS,
+} from './range_levels';
 import { euiRangeVariables } from './range.styles';
 
 export const euiRangeLevelColor = (
   color: EuiRangeLevel['color'],
   euiTheme: UseEuiTheme['euiTheme']
 ) => {
-  const COLORS: EuiRangeLevelColor[] = [
-    'primary',
-    'success',
-    'warning',
-    'danger',
-  ];
-
-  const isNamedColor = COLORS.includes(color as EuiRangeLevelColor);
-
+  const isNamedColor = LEVEL_COLORS.includes(color as EuiRangeLevelColor);
   return isNamedColor ? euiTheme.colors[color as EuiRangeLevelColor] : color;
 };
 
