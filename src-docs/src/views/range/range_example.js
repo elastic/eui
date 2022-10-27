@@ -94,7 +94,7 @@ export const RangeControlExample = {
       ),
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: rangeSource,
         },
       ],
@@ -168,7 +168,7 @@ export const RangeControlExample = {
       ),
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: dualRangeSource,
         },
       ],
@@ -214,7 +214,7 @@ export const RangeControlExample = {
       ),
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: inputSource,
         },
       ],
@@ -249,7 +249,7 @@ export const RangeControlExample = {
       ),
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: ticksSource,
         },
       ],
@@ -291,7 +291,7 @@ export const RangeControlExample = {
       ),
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: levelsSource,
         },
       ],
@@ -331,7 +331,7 @@ export const RangeControlExample = {
       ),
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: inputOnlySource,
         },
       ],
@@ -363,7 +363,7 @@ export const RangeControlExample = {
       ),
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: statesSource,
         },
       ],
