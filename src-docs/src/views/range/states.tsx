@@ -35,21 +35,13 @@ export default () => {
     prefix: 'inputRangeWithOptions',
   });
 
-  const onChange = (e: any) => {
-    setValue(e.target.value);
-  };
-
-  const onDualChange = (value: EuiDualRangeProps['value']) => {
-    setDualValue(value);
-  };
-
   return (
     <Fragment>
       <DisplayToggles canAppend canPrepend canLoading={false}>
         <EuiRange
           id={rangeWithOptionsId}
           value={value}
-          onChange={onChange}
+          onChange={(e) => setValue(e.currentTarget.value)}
           min={0}
           max={100}
           showTicks
@@ -69,7 +61,7 @@ export default () => {
         <EuiDualRange
           id={inputRangeWithOptionsId}
           value={dualValue}
-          onChange={onDualChange}
+          onChange={(value) => setDualValue(value)}
           showLabels
           showInput
           showTicks

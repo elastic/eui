@@ -23,15 +23,6 @@ export default () => {
     prefix: 'dualInputRangeSlider',
   });
 
-  // TODO EuiRangeProps['value'] doesn't work
-  const onChange = (e: any) => {
-    setValue(e.target.value);
-  };
-
-  const onDualChange = (value: EuiDualRangeProps['value']) => {
-    setDualValue(value);
-  };
-
   const levels = [
     {
       min: 0,
@@ -51,7 +42,7 @@ export default () => {
         <EuiRange
           id={inputRangeSliderId}
           value={value}
-          onChange={onChange}
+          onChange={(e) => setValue(e.currentTarget.value)}
           min={0}
           max={100}
           showInput="inputWithPopover"
@@ -66,7 +57,7 @@ export default () => {
         <EuiDualRange
           id={dualInputRangeSliderId}
           value={dualValue}
-          onChange={onDualChange}
+          onChange={(value) => setDualValue(value)}
           showInput="inputWithPopover"
           showLabels
           levels={levels}

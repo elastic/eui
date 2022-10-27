@@ -20,20 +20,12 @@ export default () => {
     prefix: 'dualInputRangeSlider',
   });
 
-  const onChange = (e: any) => {
-    setValue(e.target.value);
-  };
-
-  const onDualChange = (value: EuiDualRangeProps['value']) => {
-    setDualValue(value);
-  };
-
   return (
     <Fragment>
       <EuiRange
         id={inputRangeSliderId}
         value={value}
-        onChange={onChange}
+        onChange={(e) => setValue(e.currentTarget.value)}
         min={0}
         max={100}
         showInput
@@ -45,7 +37,7 @@ export default () => {
       <EuiDualRange
         id={dualInputRangeSliderId}
         value={dualValue}
-        onChange={onDualChange}
+        onChange={(value) => setDualValue(value)}
         showInput
         minInputProps={{ 'aria-label': 'Min value' }}
         maxInputProps={{ 'aria-label': 'Max value' }}

@@ -18,16 +18,14 @@ export default () => {
   ]);
   const [noLinearValue, setNoLinearValue] = useState('28');
 
-  const onChange = (e: any) => {
-    setValue(e.target.value);
+  const onChange: EuiRangeProps['onChange'] = (e) => {
+    setValue(e.currentTarget.value);
   };
-
-  const onDualChange = (value: EuiDualRangeProps['value']) => {
+  const onDualChange: EuiDualRangeProps['onChange'] = (value) => {
     setDualValue(value);
   };
-
-  const onChangeNoLinearValue = (e: any) => {
-    setNoLinearValue(e.target.value);
+  const onChangeNoLinearValue: EuiRangeProps['onChange'] = (e) => {
+    setNoLinearValue(e.currentTarget.value);
   };
 
   const rangeBasicTicksId = useGeneratedHtmlId({ prefix: 'rangeBasicTicks' });
