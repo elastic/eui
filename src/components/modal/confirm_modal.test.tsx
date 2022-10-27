@@ -15,6 +15,7 @@ import {
   takeMountedSnapshot,
 } from '../../test';
 import { keys } from '../../services';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import {
   CANCEL_BUTTON,
@@ -31,6 +32,10 @@ beforeEach(() => {
 });
 
 describe('EuiConfirmModal', () => {
+  shouldRenderCustomStyles(
+    <EuiConfirmModal onCancel={() => {}}>children</EuiConfirmModal>
+  );
+
   test('renders EuiConfirmModal', () => {
     const component = mount(
       <EuiConfirmModal

@@ -9,17 +9,22 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { requiredProps, takeMountedSnapshot } from '../../test';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiModal } from './modal';
 
-test('renders EuiModal', () => {
-  const component = (
-    <EuiModal onClose={() => {}} {...requiredProps}>
-      children
-    </EuiModal>
-  );
+describe('EuiModal', () => {
+  shouldRenderCustomStyles(<EuiModal onClose={() => {}}>children</EuiModal>);
 
-  expect(
-    takeMountedSnapshot(mount(component), { hasArrayOutput: true })
-  ).toMatchSnapshot();
+  test('is rendered', () => {
+    const component = (
+      <EuiModal onClose={() => {}} {...requiredProps}>
+        children
+      </EuiModal>
+    );
+
+    expect(
+      takeMountedSnapshot(mount(component), { hasArrayOutput: true })
+    ).toMatchSnapshot();
+  });
 });

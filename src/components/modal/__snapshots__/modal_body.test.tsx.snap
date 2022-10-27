@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders EuiModalBody 1`] = `
+exports[`EuiModalBody is rendered 1`] = `
 <div
   aria-label="aria-label"
   class="euiModalBody testClass1 testClass2 emotion-euiModalBody"
