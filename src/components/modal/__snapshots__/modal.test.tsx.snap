@@ -21,7 +21,7 @@ Array [
   >
     <div
       aria-label="aria-label"
-      class="euiModal euiModal--maxWidth-default testClass1 testClass2 emotion-euiModal-maxWidth"
+      class="euiModal testClass1 testClass2 emotion-euiModal-maxWidthDefault"
       data-test-subj="test subject string"
       tabindex="0"
     >

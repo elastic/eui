@@ -63,19 +63,19 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
   };
 
   let newStyle;
-  let widthClassName;
+
   if (maxWidth === true) {
-    widthClassName = 'euiModal--maxWidth-default';
+    newStyle = style;
   } else if (maxWidth !== false) {
     const value = typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth;
     newStyle = { ...style, maxWidth: value };
   }
 
-  const classes = classnames('euiModal', widthClassName, className);
+  const classes = classnames('euiModal', className);
 
   const euiTheme = useEuiTheme();
   const styles = euiModalStyles(euiTheme);
-  const cssStyles = [styles.euiModal, maxWidth && styles.maxWidth];
+  const cssStyles = [styles.euiModal, maxWidth && styles.maxWidthDefault];
 
   const cssCloseIconStyles = [styles.euiModal__closeIcon];
 
@@ -91,7 +91,7 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
           className={classes}
           onKeyDown={onKeyDown}
           tabIndex={0}
-          style={newStyle || style}
+          style={newStyle}
           {...rest}
         >
           <EuiI18n
