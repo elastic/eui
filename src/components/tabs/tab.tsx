@@ -19,7 +19,7 @@ import { getSecureRelForTarget, useEuiTheme } from '../../services';
 import { validateHref } from '../../services/security/href_validator';
 
 import { euiTabStyles, euiTabContentStyles } from './tab.styles';
-import { EuiTabsProps } from './tabs';
+import { EuiTabsProps, EuiTabSizes } from './tabs';
 
 export interface EuiTabProps extends CommonProps {
   isSelected?: boolean;
@@ -43,7 +43,7 @@ export interface EuiTabProps extends CommonProps {
    * Sizes affect both font size and overall size.
    * Only use the `xl` size when displayed as page titles.
    */
-  size?: EuiTabsProps['size'];
+  size?: EuiTabSizes;
 }
 
 type EuiTabPropsForAnchor = EuiTabProps &
