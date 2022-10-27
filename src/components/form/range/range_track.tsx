@@ -17,10 +17,8 @@ import {
 
 import range from 'lodash/range';
 
-import { EuiRangeLevels, EuiRangeLevel, LEVEL_COLORS } from './range_levels';
+import { EuiRangeLevels, EuiRangeLevel } from './range_levels';
 import { EuiRangeTicks, EuiRangeTick } from './range_ticks';
-
-export { LEVEL_COLORS };
 
 import { euiRangeTrackStyles } from './range_track.styles';
 
@@ -37,6 +35,7 @@ export interface EuiRangeTrackProps
   ticks?: EuiRangeTick[];
   onChange?: MouseEventHandler<HTMLButtonElement>;
   levels?: EuiRangeLevel[];
+  showRange?: boolean;
 }
 
 export class EuiRangeTrackClass extends Component<
@@ -133,6 +132,7 @@ export class EuiRangeTrackClass extends Component<
       value,
       compressed,
       theme,
+      showRange,
       ...rest
     } = this.props;
 
@@ -162,6 +162,7 @@ export class EuiRangeTrackClass extends Component<
             max={max}
             min={min}
             showTicks={showTicks}
+            showRange={showRange}
           />
         )}
         {tickSequence && (

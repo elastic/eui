@@ -9,11 +9,13 @@
 import React, { CSSProperties, FunctionComponent, useState } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
+import { useEuiTheme } from '../../../services';
+
+import { EuiRangeLevelColor, isNamedLevelColor } from './range_levels_colors';
 import {
   euiRangeLevelsStyles,
   euiRangeLevelStyles,
 } from './range_levels.styles';
-import { useEuiTheme } from '../../../services';
 
 import { calculateThumbPosition, EUI_THUMB_SIZE } from './utils';
 
@@ -31,15 +33,6 @@ const calculateOffset = (position: number, value: number, bound: number) => {
   }
   return offset;
 };
-
-export type EuiRangeLevelColor = 'primary' | 'success' | 'warning' | 'danger';
-
-export const LEVEL_COLORS: EuiRangeLevelColor[] = [
-  'primary',
-  'success',
-  'warning',
-  'danger',
-];
 
 export interface EuiRangeLevel extends CommonProps {
   min: number;
@@ -59,6 +52,8 @@ export interface EuiRangeLevelsProps {
   min: number;
   showTicks?: boolean;
   compressed?: boolean;
+  showRange?: boolean;
+  style?: CSSProperties;
 }
 
 export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
@@ -67,6 +62,9 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
   min,
   showTicks,
   compressed,
+  showRange,
+  style,
+  ...rest
 }) => {
   const [trackWidth, setTrackWidth] = useState(0);
   const handleRef = (node: HTMLDivElement | null) => {
@@ -92,10 +90,20 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
 
   const euiTheme = useEuiTheme();
   const styles = euiRangeLevelsStyles(euiTheme);
-  const cssStyles = [styles.euiRangeLevels, showTicks && styles.hasTicks];
+  const cssStyles = [
+    styles.euiRangeLevels,
+    showTicks && styles.hasTicks,
+    showRange && styles.hasRange,
+  ];
 
   return (
-    <div className={classes} css={cssStyles} ref={handleRef}>
+    <div
+      className={classes}
+      css={cssStyles}
+      ref={handleRef}
+      style={style}
+      {...rest}
+    >
       {levels.map((level, index) => {
         validateLevelIsInRange(level);
 
@@ -104,7 +112,7 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
           className,
           min: levelMin,
           max: levelMax,
-          ...rest
+          ...levelRest
         } = level;
 
         let left = 0;
@@ -124,7 +132,7 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
           rightOffset = calculateOffset(right, levelMax, max);
         }
 
-        const isNamedColor = LEVEL_COLORS.includes(color as EuiRangeLevelColor);
+        const isNamedColor = isNamedLevelColor(color);
 
         const styles = {
           left: `calc(${left}% + ${leftOffset}px)`,
@@ -154,7 +162,7 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
             style={styles}
             className={levelClasses}
             css={cssLevelStyles}
-            {...rest}
+            {...levelRest}
           />
         );
       })}

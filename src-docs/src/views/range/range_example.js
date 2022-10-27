@@ -11,13 +11,9 @@ import {
 
 import { rangeConfig, dualRangeConfig } from './playground';
 
-import {
-  EuiRangeLevels,
-  LEVEL_COLORS,
-} from '../../../../src/components/form/range/range_levels'; // eslint-disable-line
-
-// eslint-disable-next-line
-import { EuiRangeLevel } from '!!prop-loader!../../../../src/components/form/range/range_levels';
+import { EuiRangeLevels } from '../../../../src/components/form/range/range_levels'; // eslint-disable-line
+import { LEVEL_COLORS } from '../../../../src/components/form/range/range_levels_colors';
+import { EuiRangeLevel } from '!!prop-loader!../../../../src/components/form/range/range_levels'; // eslint-disable-line
 
 import { EuiRangeTicks } from '../../../../src/components/form/range/range_ticks';
 

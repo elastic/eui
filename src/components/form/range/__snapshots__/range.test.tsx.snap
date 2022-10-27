@@ -326,11 +326,12 @@ exports[`EuiRange props levels should render 1`] = `
     </div>
     <input
       aria-hidden="false"
-      class="euiRangeSlider emotion-euiRangeSlider"
+      class="euiRangeSlider emotion-euiRangeSlider-thumb"
       id="generated-id"
       max="100"
       min="0"
       step="1"
+      style="color:#BD271E"
       type="range"
       value="20"
     />
@@ -403,7 +404,7 @@ exports[`EuiRange props range should render 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="margin-left:0%;width:8%"
+        style="margin-left:0%;inline-size:8%"
       />
     </div>
   </div>

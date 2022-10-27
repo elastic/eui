@@ -119,13 +119,16 @@ export const euiRangeThumbPerBrowser = (content: string) => {
   `;
 };
 
-export const euiRangeThumbFocus = (euiThemeContext: UseEuiTheme) => {
+export const euiRangeThumbFocus = (
+  euiThemeContext: UseEuiTheme,
+  color?: string
+) => {
   const euiTheme = euiThemeContext.euiTheme;
 
   return `
    ${euiRangeThumbBorder(euiThemeContext)};
    ${euiRangeThumbFocusBoxShadow(euiThemeContext)};
-   background-color: ${euiTheme.colors.primary};
+   background-color: ${color || euiTheme.colors.primary};
   `;
 };
 

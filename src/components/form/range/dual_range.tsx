@@ -7,7 +7,6 @@
  */
 
 import React, { Component } from 'react';
-import { css } from '@emotion/react';
 import classNames from 'classnames';
 
 import {
@@ -29,6 +28,7 @@ import { EuiRangeHighlight } from './range_highlight';
 import { EuiRangeInput, EuiRangeInputProps } from './range_input';
 import { EuiRangeLabel } from './range_label';
 import { EuiRangeLevel } from './range_levels';
+import { getLevelColor, euiRangeLevelColor } from './range_levels_colors';
 import { EuiRangeSlider, EuiRangeSliderProps } from './range_slider';
 import { EuiRangeThumb } from './range_thumb';
 import { EuiRangeTick } from './range_ticks';
@@ -629,6 +629,7 @@ export class EuiDualRangeClass extends Component<
 
     const classes = classNames('euiDualRange', className);
     const dualRangeStyles = euiDualRangeStyles();
+    const cssStyles = [dualRangeStyles.euiDualRange, customCss];
 
     const leftThumbPosition = this.state.rangeSliderRefAvailable
       ? this.calculateThumbPositionStyle(
@@ -642,9 +643,22 @@ export class EuiDualRangeClass extends Component<
           this.state.rangeWidth
         )
       : { left: '0' };
-
-    const styles = { euiDualRange: css`` }; // TODO: Emotion conversion
-    const cssStyles = [styles.euiDualRange, customCss];
+    const leftThumbColor =
+      levels && getLevelColor(levels, Number(this.lowerValue));
+    const rightThumbColor =
+      levels && getLevelColor(levels, Number(this.upperValue));
+    const leftThumbStyles = leftThumbColor
+      ? {
+          ...leftThumbPosition,
+          backgroundColor: euiRangeLevelColor(leftThumbColor, theme.euiTheme),
+        }
+      : leftThumbPosition;
+    const rightThumbStyles = rightThumbColor
+      ? {
+          ...rightThumbPosition,
+          backgroundColor: euiRangeLevelColor(rightThumbColor, theme.euiTheme),
+        }
+      : rightThumbPosition;
 
     const theRange = (
       <EuiRangeWrapper
@@ -688,6 +702,7 @@ export class EuiDualRangeClass extends Component<
           onChange={this.handleSliderChange}
           value={value}
           aria-hidden={showInput === true}
+          showRange={showRange}
         >
           <EuiRangeSlider
             className="euiDualRange__slider"
@@ -720,6 +735,7 @@ export class EuiDualRangeClass extends Component<
               max={Number(max)}
               lowerValue={Number(this.lowerValue)}
               upperValue={Number(this.upperValue)}
+              levels={levels}
             />
           )}
 
@@ -754,7 +770,7 @@ export class EuiDualRangeClass extends Component<
                 onKeyDown={this.handleLowerKeyDown}
                 onFocus={this.onThumbFocus}
                 onBlur={this.onThumbBlur}
-                style={leftThumbPosition}
+                style={leftThumbStyles}
                 aria-describedby={this.props['aria-describedby']}
                 aria-label={this.props['aria-label']}
               />
@@ -769,7 +785,7 @@ export class EuiDualRangeClass extends Component<
                 onKeyDown={this.handleUpperKeyDown}
                 onFocus={this.onThumbFocus}
                 onBlur={this.onThumbBlur}
-                style={rightThumbPosition}
+                style={rightThumbStyles}
                 aria-describedby={this.props['aria-describedby']}
                 aria-label={this.props['aria-label']}
               />
