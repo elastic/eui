@@ -31,7 +31,6 @@ export const useDataGridKeyboardShortcuts = (): {
         isOpen={isOpen}
         closePopover={() => setIsOpen(false)}
         anchorPosition="downRight"
-        panelClassName="euiDataGrid__keyboardShortcutsPopoverPanel"
         button={
           <EuiToolTip content={title} delay="long">
             <EuiButtonIcon
@@ -48,7 +47,7 @@ export const useDataGridKeyboardShortcuts = (): {
         <EuiPopoverTitle paddingSize="s">
           <h2 id={titleId}>{title}</h2>
         </EuiPopoverTitle>
-        <EuiText size="xs">
+        <EuiText className="euiDataGrid__keyboardShortcuts" size="xs">
           <EuiDescriptionList
             aria-labelledby={titleId}
             type="column"

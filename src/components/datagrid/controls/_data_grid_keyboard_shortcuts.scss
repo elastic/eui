@@ -1,5 +1,9 @@
-.euiDataGrid__keyboardShortcutsPopoverPanel {
-  width: $euiSizeXXL * 12;
+.euiDataGrid__keyboardShortcuts {
+  display: block;
+  max-inline-size: $euiSizeXXL * 12;
+  max-block-size: 80vh;
+  overflow-y: auto;
+  overflow-block: auto;
 
   .euiDescriptionList {
     .euiDescriptionList__title {
