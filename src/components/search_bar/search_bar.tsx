@@ -53,7 +53,6 @@ type HintPopOverProps = Partial<
     | 'repositionOnScroll'
     | 'zIndex'
     | 'data-test-subj'
-    | 'id'
   >
 >;
 
@@ -268,9 +267,6 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
 
     const toolsRightEl = this.renderTools(toolsRight);
 
-    const popoverProps: HintPopOverProps | undefined = hint
-      ? { id: this.hintId, ...hint.popoverProps }
-      : undefined;
     const isHintVisible = hint?.popoverProps?.isOpen ?? isHintVisibleState;
 
     return (
@@ -291,8 +287,8 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
                     setIsVisible: (isVisible: boolean) => {
                       this.setState({ isHintVisible: isVisible });
                     },
+                    id: this.hintId,
                     ...hint,
-                    popoverProps,
                   }
                 : undefined
             }

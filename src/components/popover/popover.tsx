@@ -625,9 +625,10 @@ export class EuiPopover extends Component<Props, State> {
       container,
       focusTrapProps,
       initialFocus: initialFocusProp,
-      tabIndex: tabIndexProp,
+      tabIndex: _tabIndexProp,
       ...rest
     } = this.props;
+    const tabIndexProp = panelProps?.tabIndex ?? _tabIndexProp;
 
     const styles = euiPopoverStyles();
     const popoverStyles = [styles.euiPopover, { display }];

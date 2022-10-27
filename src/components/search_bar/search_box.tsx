@@ -22,6 +22,7 @@ export interface EuiSearchBoxProps extends EuiFieldSearchProps {
   // This is optional in EuiFieldSearchProps
   onSearch: (queryText: string) => void;
   hint?: {
+    id: string;
     isVisible: boolean;
     setIsVisible: (isVisible: boolean) => void;
   } & EuiSearchBarProps['hint'];
@@ -84,6 +85,8 @@ export class EuiSearchBox extends Component<EuiSearchBoxProps> {
             'aria-live': undefined,
             'aria-modal': false,
             role: undefined,
+            tabIndex: -1,
+            id: hint.id,
           }}
           {...hint.popoverProps}
         >
