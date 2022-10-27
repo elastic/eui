@@ -14,7 +14,7 @@ import { EuiToolTip } from '../../tool_tip';
 import { EuiPopover, EuiPopoverTitle } from '../../popover';
 import { EuiDescriptionList } from '../../description_list';
 import { EuiText } from '../../text';
-import { useEuiI18n } from '../../i18n';
+import { useEuiI18n, EuiI18n } from '../../i18n';
 
 export const useDataGridKeyboardShortcuts = (): {
   keyboardShortcuts: ReactNode;
@@ -56,62 +56,212 @@ export const useDataGridKeyboardShortcuts = (): {
             gutterSize="s"
             listItems={[
               {
-                title: <kbd>Up arrow</kbd>,
-                description: 'Moves focus one cell down.',
+                title: (
+                  <kbd>
+                    <EuiI18n
+                      token="euiKeyboardShortcuts.upArrowTitle"
+                      default="Up arrow"
+                    />
+                  </kbd>
+                ),
+                description: (
+                  <EuiI18n
+                    token="euiKeyboardShortcuts.upArrowDescription"
+                    default="Moves focus one cell up."
+                  />
+                ),
               },
               {
-                title: <kbd>Down arrow</kbd>,
-                description: 'Moves focus one cell up.',
+                title: (
+                  <kbd>
+                    <EuiI18n
+                      token="euiKeyboardShortcuts.downArrowTitle"
+                      default="Down arrow"
+                    />
+                  </kbd>
+                ),
+                description: (
+                  <EuiI18n
+                    token="euiKeyboardShortcuts.downArrowDescription"
+                    default="Moves focus one cell down."
+                  />
+                ),
               },
               {
-                title: <kbd>Right arrow</kbd>,
-                description: 'Moves focus one cell to the right.',
+                title: (
+                  <kbd>
+                    <EuiI18n
+                      token="euiKeyboardShortcuts.rightArrowTitle"
+                      default="Right arrow"
+                    />
+                  </kbd>
+                ),
+                description: (
+                  <EuiI18n
+                    token="euiKeyboardShortcuts.rightArrowDescription"
+                    default="Moves focus one cell to the right."
+                  />
+                ),
               },
               {
-                title: <kbd>Left arrow</kbd>,
-                description: 'Moves focus one cell to the left.',
+                title: (
+                  <kbd>
+                    <EuiI18n
+                      token="euiKeyboardShortcuts.leftArrowTitle"
+                      default="Left arrow"
+                    />
+                  </kbd>
+                ),
+                description: (
+                  <EuiI18n
+                    token="euiKeyboardShortcuts.leftArrowDescription"
+                    default="Moves focus one cell to the left."
+                  />
+                ),
               },
               {
-                title: <kbd>Home</kbd>,
-                description:
-                  'Moves focus to the first cell in the current row.',
+                title: (
+                  <kbd>
+                    <EuiI18n
+                      token="euiKeyboardShortcuts.homeTitle"
+                      default="Home"
+                    />
+                  </kbd>
+                ),
+                description: (
+                  <EuiI18n
+                    token="euiKeyboardShortcuts.homeDescription"
+                    default="Moves focus to the first cell in the current row."
+                  />
+                ),
               },
               {
-                title: <kbd>End</kbd>,
-                description: 'Moves focus to the last cell in the current row.',
+                title: (
+                  <kbd>
+                    <EuiI18n
+                      token="euiKeyboardShortcuts.endTitle"
+                      default="End"
+                    />
+                  </kbd>
+                ),
+                description: (
+                  <EuiI18n
+                    token="euiKeyboardShortcuts.endDescription"
+                    default="Moves focus to the last cell in the current row."
+                  />
+                ),
               },
               {
                 title: (
                   <>
-                    <kbd>Ctrl</kbd> <kbd>Home</kbd>
+                    <kbd>
+                      <EuiI18n
+                        token="euiKeyboardShortcuts.ctrl"
+                        default="Ctrl"
+                      />
+                    </kbd>{' '}
+                    <kbd>
+                      <EuiI18n
+                        token="euiKeyboardShortcuts.homeTitle"
+                        default="Home"
+                      />
+                    </kbd>
                   </>
                 ),
-                description: 'Moves focus to the first cell in the first row.',
+                description: (
+                  <EuiI18n
+                    token="euiKeyboardShortcuts.ctrlHomeDescription"
+                    default="Moves focus to the first cell in the first row."
+                  />
+                ),
               },
               {
                 title: (
                   <>
-                    <kbd>Ctrl</kbd> <kbd>End</kbd>
+                    <kbd>
+                      <EuiI18n
+                        token="euiKeyboardShortcuts.ctrl"
+                        default="Ctrl"
+                      />
+                    </kbd>{' '}
+                    <kbd>
+                      <EuiI18n
+                        token="euiKeyboardShortcuts.endTitle"
+                        default="End"
+                      />
+                    </kbd>
                   </>
                 ),
-                description: 'Moves focus to the last cell in the last row.',
+                description: (
+                  <EuiI18n
+                    token="euiKeyboardShortcuts.ctrlEndDescription"
+                    default="Moves focus to the last cell in the last row."
+                  />
+                ),
               },
               {
-                title: <kbd>Page Up</kbd>,
-                description: 'Paginates to the last row of the previous page.',
+                title: (
+                  <kbd>
+                    <EuiI18n
+                      token="euiKeyboardShortcuts.pageUpTitle"
+                      default="Page Up"
+                    />
+                  </kbd>
+                ),
+                description: (
+                  <EuiI18n
+                    token="euiKeyboardShortcuts.pageUpDescription"
+                    default="Paginates to the last row of the previous page."
+                  />
+                ),
               },
               {
-                title: <kbd>Page Down</kbd>,
-                description: 'Paginates to the first row of the next page.',
+                title: (
+                  <kbd>
+                    <EuiI18n
+                      token="euiKeyboardShortcuts.pageDownTitle"
+                      default="Page Down"
+                    />
+                  </kbd>
+                ),
+                description: (
+                  <EuiI18n
+                    token="euiKeyboardShortcuts.pageDownDescription"
+                    default="Paginates to the first row of the next page."
+                  />
+                ),
               },
               {
-                title: <kbd>Enter</kbd>,
-                description:
-                  'Opens cell expansion popover for interactive cells.',
+                title: (
+                  <kbd>
+                    <EuiI18n
+                      token="euiKeyboardShortcuts.enterTitle"
+                      default="Enter"
+                    />
+                  </kbd>
+                ),
+                description: (
+                  <EuiI18n
+                    token="euiKeyboardShortcuts.enterDescription"
+                    default="Opens cell expansion popover for interactive cells."
+                  />
+                ),
               },
               {
-                title: <kbd>Escape</kbd>,
-                description: 'Closes any open popovers.',
+                title: (
+                  <kbd>
+                    <EuiI18n
+                      token="euiKeyboardShortcuts.escapeTitle"
+                      default="Escape"
+                    />
+                  </kbd>
+                ),
+                description: (
+                  <EuiI18n
+                    token="euiKeyboardShortcuts.escapeDescription"
+                    default="Closes any open popovers."
+                  />
+                ),
               },
             ]}
           />
