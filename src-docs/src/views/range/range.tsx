@@ -15,7 +15,7 @@ export default () => {
     prefix: 'rangeWithValuePrepend',
   });
 
-  const onChange = (e) => {
+  const onChange = (e: any) => {
     setValue(e.target.value);
   };
 

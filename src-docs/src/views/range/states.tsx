@@ -1,13 +1,22 @@
 import React, { useState, Fragment } from 'react';
 
-import { EuiRange, EuiSpacer, EuiDualRange } from '../../../../src/components';
+import {
+  EuiRange,
+  EuiSpacer,
+  EuiDualRange,
+  EuiDualRangeProps,
+} from '../../../../src/components';
 import { DisplayToggles } from '../form_controls/display_toggles';
 
 import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const [value, setValue] = useState('20');
-  const [dualValue, setDualValue] = useState([20, 100]);
+  const [dualValue, setDualValue] = useState<EuiDualRangeProps['value']>([
+    20,
+    100,
+  ]);
+
   const levels = [
     {
       min: 0,
@@ -26,11 +35,11 @@ export default () => {
     prefix: 'inputRangeWithOptions',
   });
 
-  const onChange = (e) => {
+  const onChange = (e: any) => {
     setValue(e.target.value);
   };
 
-  const onDualChange = (value) => {
+  const onDualChange = (value: EuiDualRangeProps['value']) => {
     setDualValue(value);
   };
 
@@ -41,6 +50,8 @@ export default () => {
           id={rangeWithOptionsId}
           value={value}
           onChange={onChange}
+          min={0}
+          max={100}
           showTicks
           showInput
           showLabels
