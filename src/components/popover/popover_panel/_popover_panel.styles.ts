@@ -91,5 +91,30 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
       left: css``,
       right: css``,
     },
+
+    // Overrides for drag & drop contexts within popovers. This is required because
+    // the fixed positions of drag and drop don't work inside of transformed elements
+    hasDragDrop: {
+      hasDragDrop: css`
+        transform: none;
+        // Filter also causes a stacking context that interferes with the positioned children,
+        // so we disable it and recreate the shadow via box-shadow instead
+        filter: none;
+        ${euiShadowMedium(euiThemeContext, { property: 'box-shadow' })};
+      `,
+      // The offset transforms must be recreated in margins
+      top: css`
+        margin-block-start: ${euiTheme.size[translateDistance]};
+      `,
+      bottom: css`
+        margin-block-start: -${euiTheme.size[translateDistance]};
+      `,
+      left: css`
+        margin-inline-start: ${euiTheme.size[translateDistance]};
+      `,
+      right: css`
+        margin-inline-start: -${euiTheme.size[translateDistance]};
+      `,
+    },
   };
 };
