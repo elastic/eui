@@ -6,13 +6,32 @@
  * Side Public License, v 1.
  */
 
-import React, { HTMLAttributes, ReactNode, FunctionComponent } from 'react';
+import React, {
+  HTMLAttributes,
+  ReactNode,
+  FunctionComponent,
+  ElementType,
+} from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf } from '../common';
+import { CommonProps } from '../common';
 
-export type FlexGridGutterSize = keyof typeof gutterSizeToClassNameMap;
-export type FlexGridColumns = 0 | 1 | 2 | 3 | 4;
-export type FlexGridDirection = keyof typeof directionToClassNameMap;
+import { useEuiTheme } from '../../services';
+import { euiFlexGridStyles } from './flex_grid.styles';
+
+export const DIRECTIONS = ['row', 'column'] as const;
+export type FlexGridDirection = typeof DIRECTIONS[number];
+
+export const ALIGN_ITEMS = [
+  'stretch',
+  'start',
+  'end',
+  'center',
+  'baseline',
+] as const;
+export type FlexGridAlignItems = typeof ALIGN_ITEMS[number];
+
+export const GUTTER_SIZES = ['none', 's', 'm', 'l', 'xl'] as const;
+export type FlexGridGutterSize = typeof GUTTER_SIZES[number];
 
 export interface EuiFlexGridProps {
   /**
@@ -20,60 +39,33 @@ export interface EuiFlexGridProps {
    */
   children?: ReactNode;
   /**
-   * Number of columns `1-4`, pass `0` for normal display
+   * Number of columns. Accepts `1-4`
    */
-  columns?: FlexGridColumns;
+  columns?: 1 | 2 | 3 | 4; // Leave this as inline so the props table correctly parses it
   /**
    * Flex layouts default to left-right then top-down (`row`).
    * Change this prop to `column` to create a top-down then left-right display.
-   * Only works with column count of `1-4`.
    */
   direction?: FlexGridDirection;
+  /**
+   * Aligns grid items vertically
+   */
+  alignItems?: FlexGridAlignItems;
   /**
    * Space between flex items
    */
   gutterSize?: FlexGridGutterSize;
   /**
-   * Force each item to be display block on smaller screens
+   * Will display each item at full-width on smaller screens
    */
   responsive?: boolean;
 
   /**
    * The tag to render
+   * @default div
    */
-  component?: keyof JSX.IntrinsicElements;
+  component?: ElementType;
 }
-
-const directionToClassNameMap = {
-  row: null,
-  column: 'euiFlexGrid--directionColumn',
-};
-
-export const DIRECTIONS = keysOf(directionToClassNameMap);
-
-const gutterSizeToClassNameMap = {
-  none: 'euiFlexGrid--gutterNone',
-  s: 'euiFlexGrid--gutterSmall',
-  m: 'euiFlexGrid--gutterMedium',
-  l: 'euiFlexGrid--gutterLarge',
-  xl: 'euiFlexGrid--gutterXLarge',
-};
-
-export const GUTTER_SIZES: FlexGridGutterSize[] = keysOf(
-  gutterSizeToClassNameMap
-);
-
-const columnsToClassNameMap = {
-  0: 'euiFlexGrid--wrap',
-  1: 'euiFlexGrid--single',
-  2: 'euiFlexGrid--halves',
-  3: 'euiFlexGrid--thirds',
-  4: 'euiFlexGrid--fourths',
-};
-
-export const COLUMNS = Object.keys(
-  columnsToClassNameMap
-).map((columns: string) => parseInt(columns, 10)) as FlexGridColumns[];
 
 export const EuiFlexGrid: FunctionComponent<
   CommonProps & HTMLAttributes<HTMLDivElement> & EuiFlexGridProps
@@ -82,25 +74,32 @@ export const EuiFlexGrid: FunctionComponent<
   className,
   gutterSize = 'l',
   direction = 'row',
+  alignItems = 'stretch',
   responsive = true,
-  columns = 0,
+  columns = 1,
   component: Component = 'div',
   ...rest
 }) => {
-  const classes = classNames(
-    'euiFlexGrid',
-    gutterSize ? gutterSizeToClassNameMap[gutterSize] : undefined,
-    columns != null ? columnsToClassNameMap[columns] : undefined,
-    direction ? directionToClassNameMap[direction] : undefined,
-    {
-      'euiFlexGrid--responsive': responsive,
-    },
-    className
-  );
+  const gridTemplateRows =
+    direction === 'column'
+      ? Math.ceil(React.Children.count(children) / columns)
+      : 0;
+
+  const euiTheme = useEuiTheme();
+  const styles = euiFlexGridStyles(euiTheme, gridTemplateRows);
+  const cssStyles = [
+    styles.euiFlexGrid,
+    styles.gutterSizes[gutterSize],
+    styles.direction[direction],
+    styles.alignItems[alignItems],
+    styles.columnCount[columns],
+    responsive && styles.responsive,
+  ];
+
+  const classes = classNames('euiFlexGrid', className);
 
   return (
-    // @ts-ignore difficult to verify `rest` applies to `Component`
-    <Component className={classes} {...rest}>
+    <Component css={cssStyles} className={classes} {...rest}>
       {children}
     </Component>
   );

@@ -17,9 +17,11 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
+import { useGeneratedHtmlId, useEuiTheme } from '../../services';
+import { logicalSizeStyle, euiPaddingSize } from '../../global_styling';
 import { CommonProps } from '../common';
+
 import { useEuiResizableContainerContext } from './context';
-import { useGeneratedHtmlId } from '../../services';
 import { EuiPanel } from '../panel';
 import { PanelPaddingSize, _EuiPanelProps } from '../panel/panel';
 import { useEuiI18n } from '../i18n';
@@ -30,15 +32,10 @@ import {
   PanelPosition,
 } from './types';
 import { EuiResizableCollapseButton } from './resizable_collapse_button';
-
-const panelPaddingValues = {
-  none: 0,
-  xs: 4,
-  s: 8,
-  m: 16,
-  l: 24,
-  xl: 32,
-};
+import {
+  euiResizablePanelStyles,
+  euiResizablePanelContentStyles,
+} from './resizable_panel.styles';
 
 export interface ToggleOptions {
   'data-test-subj'?: string;
@@ -85,12 +82,6 @@ export interface EuiResizablePanelControls {
   onToggleCollapsedInternal: ToggleCollapseCallback;
 }
 
-const paddingSizeToClassNameMap = {
-  none: null,
-  s: 'euiResizablePanel--paddingSmall',
-  m: 'euiResizablePanel--paddingMedium',
-  l: 'euiResizablePanel--paddingLarge',
-};
 export interface EuiResizablePanelProps
   extends _EuiPanelProps,
     CommonProps,
@@ -235,49 +226,36 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     return direction;
   }, [isCollapsed, isCollapsible, position, panels, panelId]);
 
-  const padding = useMemo(() => {
-    return `${panelPaddingValues[paddingSize] * 2}px`;
-  }, [paddingSize]);
+  const axis = isHorizontal ? 'horizontal' : 'vertical';
 
-  const classes = classNames(
-    'euiResizablePanel',
-    // @ts-expect-error EuiPanel increased its available sizes
-    // When we convert this component to Emotion, we should also increase sizes to match EuiPanel and remove this comment.
-    paddingSizeToClassNameMap[wrapperPadding],
-    {
-      'euiResizablePanel--collapsible': isCollapsible,
-      'euiResizablePanel-isCollapsed': isCollapsed,
-    },
-    `euiResizablePanel--${position}`,
-    wrapperProps && wrapperProps.className
-  );
+  const euiTheme = useEuiTheme();
 
-  const panelClasses = classNames(
-    'euiResizablePanel__content',
-    {
-      'euiResizablePanel__content--scrollable': scrollable,
-    },
-    className
-  );
+  const styles = euiResizablePanelStyles(euiTheme);
+  const cssStyles = [
+    styles.euiResizablePanel,
+    isCollapsed && styles.collapsed,
+    styles.paddingSizes[wrapperPadding],
+  ];
+  const contentStyles = euiResizablePanelContentStyles(euiTheme);
+  const contentCssStyles = [
+    contentStyles.euiResizablePanel__content,
+    scrollable && contentStyles.scrollable,
+    isCollapsed && contentStyles.collapsedChildren,
+    isCollapsed && !isCollapsible && contentStyles[axis].collapsed,
+    isCollapsible && contentStyles[axis].hasCollapsibleButton,
+  ];
 
-  let dimensions;
+  const classes = classNames('euiResizablePanel', wrapperProps?.className);
+  const panelClasses = classNames('euiResizablePanel__content', className);
 
-  if (size) {
-    dimensions = {
-      width: isHorizontal ? `${size}%` : '100%',
-      height: isHorizontal ? 'auto' : `${size}%`,
-    };
-  } else {
-    dimensions = {
-      width: isHorizontal ? `${innerSize}%` : '100%',
-      height: isHorizontal ? 'auto' : `${innerSize}%`,
-    };
-  }
-
-  const styles = {
+  const inlineStyles = {
     ...wrapperProps?.style,
-    ...dimensions,
+    ...(isHorizontal
+      ? logicalSizeStyle(`${size || innerSize}%`, 'auto')
+      : logicalSizeStyle('100%', `${size || innerSize}%`)),
   };
+
+  const padding = euiPaddingSize(euiTheme, paddingSize) || '0px';
 
   useEffect(() => {
     if (!registration) return;
@@ -356,7 +334,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     theToggle = (
       <EuiResizableCollapseButton
         externalPosition="before"
-        direction={isHorizontal ? 'horizontal' : 'vertical'}
+        direction={axis}
         isVisible={
           theResizer && (theResizer.isFocused || theResizer.isDisabled)
         }
@@ -372,7 +350,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     theToggle = (
       <EuiResizableCollapseButton
         externalPosition="after"
-        direction={isHorizontal ? 'horizontal' : 'vertical'}
+        direction={axis}
         isVisible={
           theResizer && (theResizer.isFocused || theResizer.isDisabled)
         }
@@ -387,15 +365,19 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
 
   return (
     <div
+      css={cssStyles}
       {...wrapperProps}
       id={panelId}
       ref={divRef}
-      style={styles}
+      style={inlineStyles}
       className={classes}
+      data-collapsed={isCollapsed || undefined}
+      data-position={position}
     >
       {/* The toggle is displayed on either side for tab order */}
       {hasVisibleToggle && hasLeftToggle && theToggle}
       <EuiPanel
+        css={contentCssStyles}
         className={panelClasses}
         hasShadow={hasShadow}
         borderRadius={borderRadius}

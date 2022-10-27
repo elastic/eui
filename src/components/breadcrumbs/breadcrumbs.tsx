@@ -120,7 +120,7 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
         const isLastBreadcrumb = index === visibleBreadcrumbs.length - 1;
         const isOnlyBreadcrumb = visibleBreadcrumbs.length === 1;
 
-        const sharedProps = { type, truncate };
+        const sharedProps = { type, truncate: breadcrumb.truncate ?? truncate };
 
         return breadcrumb.isCollapsedButton ? (
           <EuiBreadcrumbCollapsed
@@ -139,14 +139,17 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
         ) : (
           <EuiBreadcrumb key={index} {...sharedProps}>
             <EuiBreadcrumbContent
+              {...breadcrumb}
+              {...sharedProps}
               isFirstBreadcrumb={isFirstBreadcrumb}
               isLastBreadcrumb={isLastBreadcrumb}
               isOnlyBreadcrumb={isOnlyBreadcrumb}
               highlightLastBreadcrumb={
                 isLastBreadcrumb && lastBreadcrumbIsCurrentPage
               }
-              {...sharedProps}
-              {...breadcrumb}
+              truncateLastBreadcrumb={
+                isLastBreadcrumb && truncate && breadcrumb.truncate == null
+              }
             />
           </EuiBreadcrumb>
         );

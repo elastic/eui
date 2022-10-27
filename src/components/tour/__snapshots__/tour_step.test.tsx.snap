@@ -57,7 +57,7 @@ exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
         style="left: 0px; top: 10px;"
       >
         <div
-          class="euiBeacon euiTour__beacon emotion-euiBeacon-euiTourBeacon-left"
+          class="euiBeacon euiTour__beacon emotion-euiBeacon-euiTourBeacon-isOpen-left"
           style="height: 12px; width: 12px;"
         />
       </div>
@@ -84,10 +84,10 @@ exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
             class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-euiTourFooter"
           >
             <div
-              class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"
+              class="euiFlexGroup emotion-euiFlexGroup-l-flexEnd-stretch-row"
             >
               <div
-                class="euiFlexItem euiFlexItem--flexGrowZero"
+                class="euiFlexItem emotion-euiFlexItem-growZero"
               >
                 <button
                   class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushRight css-wvaqcf-empty-text"
@@ -160,7 +160,7 @@ exports[`EuiTourStep can have subtitle 1`] = `
         style="left: 0px; top: 10px;"
       >
         <div
-          class="euiBeacon euiTour__beacon emotion-euiBeacon-euiTourBeacon-left"
+          class="euiBeacon euiTour__beacon emotion-euiBeacon-euiTourBeacon-isOpen-left"
           style="height: 12px; width: 12px;"
         />
       </div>
@@ -192,10 +192,10 @@ exports[`EuiTourStep can have subtitle 1`] = `
             class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-euiTourFooter"
           >
             <div
-              class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"
+              class="euiFlexGroup emotion-euiFlexGroup-l-flexEnd-stretch-row"
             >
               <div
-                class="euiFlexItem euiFlexItem--flexGrowZero"
+                class="euiFlexItem emotion-euiFlexItem-growZero"
               >
                 <button
                   class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushRight css-wvaqcf-empty-text"
@@ -268,7 +268,7 @@ exports[`EuiTourStep can override the footer action 1`] = `
         style="left: 0px; top: 10px;"
       >
         <div
-          class="euiBeacon euiTour__beacon emotion-euiBeacon-euiTourBeacon-left"
+          class="euiBeacon euiTour__beacon emotion-euiBeacon-euiTourBeacon-isOpen-left"
           style="height: 12px; width: 12px;"
         />
       </div>
@@ -295,10 +295,10 @@ exports[`EuiTourStep can override the footer action 1`] = `
             class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-euiTourFooter"
           >
             <div
-              class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"
+              class="euiFlexGroup emotion-euiFlexGroup-l-flexEnd-stretch-row"
             >
               <div
-                class="euiFlexItem euiFlexItem--flexGrowZero"
+                class="euiFlexItem emotion-euiFlexItem-growZero"
               >
                 <button>
                   Test
@@ -382,10 +382,10 @@ exports[`EuiTourStep can turn off the beacon 1`] = `
             class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-euiTourFooter"
           >
             <div
-              class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"
+              class="euiFlexGroup emotion-euiFlexGroup-l-flexEnd-stretch-row"
             >
               <div
-                class="euiFlexItem euiFlexItem--flexGrowZero"
+                class="euiFlexItem emotion-euiFlexItem-growZero"
               >
                 <button
                   class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushRight css-wvaqcf-empty-text"
@@ -458,7 +458,7 @@ exports[`EuiTourStep is rendered 1`] = `
         style="left: 0px; top: 10px;"
       >
         <div
-          class="euiBeacon euiTour__beacon emotion-euiBeacon-euiTourBeacon-left"
+          class="euiBeacon euiTour__beacon emotion-euiBeacon-euiTourBeacon-isOpen-left"
           style="height: 12px; width: 12px;"
         />
       </div>
@@ -485,10 +485,10 @@ exports[`EuiTourStep is rendered 1`] = `
             class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-euiTourFooter"
           >
             <div
-              class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"
+              class="euiFlexGroup emotion-euiFlexGroup-l-flexEnd-stretch-row"
             >
               <div
-                class="euiFlexItem euiFlexItem--flexGrowZero"
+                class="euiFlexItem emotion-euiFlexItem-growZero"
               >
                 <button
                   class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushRight css-wvaqcf-empty-text"

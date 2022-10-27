@@ -535,6 +535,46 @@ describe('defaultSyntax', () => {
     expect(printedQuery).toBe(query);
   });
 
+  test('field or clause with negation', () => {
+    const query = 'field:(foo or bar) -field:(baz)';
+    const ast = defaultSyntax.parse(query);
+
+    expect(ast).toBeDefined();
+    expect(ast.clauses).toHaveLength(2);
+
+    const clauseMust: Clause = ast.getOrFieldClause('field')!;
+    expect(clauseMust).toBeDefined();
+    expect(clauseMust.value).toHaveLength(2);
+    expect(clauseMust.value).toEqual(['foo', 'bar']);
+
+    const clauseMustNot: Clause = ast.getOrFieldClause(
+      'field',
+      undefined,
+      false
+    )!;
+    expect(clauseMustNot).toBeDefined();
+    expect(clauseMustNot.value).toHaveLength(1);
+    expect(clauseMustNot.value).toEqual(['baz']);
+  });
+
+  test('addOrFieldValue()', () => {
+    const query = 'field:(foo) -field:(baz)';
+    let ast = defaultSyntax.parse(query);
+    expect(ast.getOrFieldClause('field')!.value).toEqual(['foo']);
+    expect(ast.getOrFieldClause('field', undefined, false)!.value).toEqual([
+      'baz',
+    ]);
+
+    ast = ast.addOrFieldValue('field', 'foo2');
+    ast = ast.addOrFieldValue('field', 'baz2', false);
+
+    expect(ast.getOrFieldClause('field')!.value).toEqual(['foo', 'foo2']);
+    expect(ast.getOrFieldClause('field', undefined, false)!.value).toEqual([
+      'baz',
+      'baz2',
+    ]);
+  });
+
   test('field or & and clause & phrases', () => {
     const query = 'field1:(foo or "bar baz") -field2:baz';
     const ast = defaultSyntax.parse(query);

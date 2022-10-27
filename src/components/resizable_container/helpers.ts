@@ -59,7 +59,7 @@ export const sizesOnly = (
 
 const _getPanelMinSize = (panelMinSize: string, containerSize: number) => {
   let panelMinSizePercent = 0;
-  const panelMinSizeInt = parseInt(panelMinSize);
+  const panelMinSizeInt = parseFloat(panelMinSize);
   if (panelMinSize.indexOf('px') > -1) {
     panelMinSizePercent = pxToPercent(panelMinSizeInt, containerSize);
   } else if (panelMinSize.indexOf('%') > -1) {
@@ -102,9 +102,7 @@ const getSiblingPanel = (
     adjacency === 'prev' ? 'previousElementSibling' : 'nextElementSibling';
   let sibling = element[method];
   while (sibling) {
-    if (
-      sibling.matches('.euiResizablePanel:not(.euiResizablePanel-isCollapsed)')
-    ) {
+    if (sibling.matches('.euiResizablePanel:not([data-collapsed])')) {
       return sibling;
     }
     sibling = sibling[method];

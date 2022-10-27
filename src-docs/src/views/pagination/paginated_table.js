@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { fake } from 'faker';
+import { faker } from '@faker-js/faker';
 
 import {
   EuiBasicTable,
@@ -16,8 +16,8 @@ const PAGE_COUNT_KEY = 'paginationGuide_pageCount';
 const raw_data = [];
 
 for (let i = 1; i < 25; i++) {
-  const name = fake('{{name.lastName}}, {{name.firstName}}');
-  const suffix = fake('{{name.suffix}}');
+  const name = `${faker.name.lastName()}, ${faker.name.firstName()}`;
+  const suffix = faker.name.suffix();
   raw_data.push({
     name: {
       formatted: `${name} ${suffix}`,
@@ -25,14 +25,12 @@ for (let i = 1; i < 25; i++) {
     },
     location: (
       <span>
-        {`${fake('{{address.city}}')}, `}
-        <EuiLink href="https://google.com">
-          {fake('{{address.country}}')}
-        </EuiLink>
+        {`${faker.address.city()}, `}
+        <EuiLink href="https://google.com">{faker.address.country()}</EuiLink>
       </span>
     ),
-    date: fake('{{date.past}}'),
-    amount: fake('${{commerce.price}}'),
+    date: `${faker.date.past()}`,
+    amount: faker.commerce.price(),
   });
 }
 

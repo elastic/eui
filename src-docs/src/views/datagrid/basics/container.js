@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { fake } from 'faker';
+import { faker } from '@faker-js/faker';
 
 import { EuiDataGrid, EuiPanel, EuiLink } from '../../../../../src/components';
 
@@ -25,13 +25,11 @@ const data = [];
 
 for (let i = 1; i < 20; i++) {
   data.push({
-    name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
-    email: fake('{{internet.email}}'),
-    city: (
-      <EuiLink href="http://google.com">{fake('{{address.city}}')}</EuiLink>
-    ),
-    country: fake('{{address.country}}'),
-    account: fake('{{finance.account}}'),
+    name: `${faker.name.lastName()}, ${faker.name.firstName()} ${faker.name.suffix()}`,
+    email: faker.internet.email(),
+    city: <EuiLink href="http://google.com">{faker.address.city()}</EuiLink>,
+    country: faker.address.country(),
+    account: faker.finance.account(),
   });
 }
 

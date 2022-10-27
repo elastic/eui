@@ -43,10 +43,7 @@ import {
   ResizeTrigger,
 } from './types';
 
-const containerDirections = {
-  vertical: 'vertical',
-  horizontal: 'horizontal',
-};
+import { euiResizableContainerStyles } from './resizable_container.styles';
 
 export interface EuiResizableContainerProps
   extends HTMLAttributes<HTMLDivElement>,
@@ -54,7 +51,7 @@ export interface EuiResizableContainerProps
   /**
    * Specify the container direction
    */
-  direction?: keyof typeof containerDirections;
+  direction?: 'vertical' | 'horizontal';
   /**
    * Pure function which accepts Panel and Resizer components in arguments
    * and returns a component tree
@@ -102,16 +99,12 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
   ...rest
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const isHorizontal = direction === containerDirections.horizontal;
+  const isHorizontal = direction === 'horizontal';
 
-  const classes = classNames(
-    'euiResizableContainer',
-    {
-      'euiResizableContainer--vertical': !isHorizontal,
-      'euiResizableContainer--horizontal': isHorizontal,
-    },
-    className
-  );
+  const classes = classNames('euiResizableContainer', className);
+
+  const styles = euiResizableContainerStyles();
+  const cssStyles = [styles.euiResizableContainer, styles[direction]];
 
   const [actions, reducerState] = useContainerCallbacks({
     initialState: { ...initialState, isHorizontal },
@@ -328,6 +321,7 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
       }}
     >
       <div
+        css={cssStyles}
         className={classes}
         ref={containerRef}
         onMouseMove={reducerState.isDragging ? onMouseMove : undefined}

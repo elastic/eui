@@ -15,6 +15,8 @@ import {
   checkSupportedLanguage,
   getHtmlContent,
 } from './utils';
+import { useEuiTheme } from '../../services';
+import { euiCodeStyles } from './code.styles';
 
 export type EuiCodeProps = EuiCodeSharedProps;
 
@@ -41,16 +43,22 @@ export const EuiCode: FunctionComponent<EuiCodeProps> = ({
     children,
   ]);
 
-  const classes = classNames(
-    'euiCode',
-    {
-      'euiCode--transparentBackground': transparentBackground,
-    },
-    className
-  );
+  const classes = classNames('euiCode', className);
+
+  const euiTheme = useEuiTheme();
+  const styles = euiCodeStyles(euiTheme);
+  const cssStyles = [
+    styles.euiCode,
+    transparentBackground && styles.transparentBackground,
+  ];
 
   return (
-    <code className={classes} data-code-language={language} {...rest}>
+    <code
+      className={classes}
+      css={cssStyles}
+      data-code-language={language}
+      {...rest}
+    >
       {content}
     </code>
   );

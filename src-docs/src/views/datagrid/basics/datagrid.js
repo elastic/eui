@@ -9,7 +9,7 @@ import React, {
   createRef,
 } from 'react';
 import { Link } from 'react-router-dom';
-import { fake } from 'faker';
+import { faker } from '@faker-js/faker';
 
 import {
   EuiButton,
@@ -40,31 +40,29 @@ const DataContext = createContext();
 const raw_data = [];
 
 for (let i = 1; i < 100; i++) {
-  const email = fake('{{internet.email}}');
-  const name = fake('{{name.lastName}}, {{name.firstName}}');
-  const suffix = fake('{{name.suffix}}');
+  const email = faker.internet.email();
+  const name = `${faker.name.lastName()}, ${faker.name.firstName()}`;
+  const suffix = faker.name.suffix();
   raw_data.push({
     name: {
       formatted: `${name} ${suffix}`,
       raw: name,
     },
     email: {
-      formatted: <EuiLink href="">{fake('{{internet.email}}')}</EuiLink>,
+      formatted: <EuiLink href="">{faker.internet.email()}</EuiLink>,
       raw: email,
     },
     location: (
       <Fragment>
-        {`${fake('{{address.city}}')}, `}
-        <EuiLink href="https://google.com">
-          {fake('{{address.country}}')}
-        </EuiLink>
+        {`${faker.address.city()}, `}
+        <EuiLink href="https://google.com">{faker.address.country()}</EuiLink>
       </Fragment>
     ),
-    date: fake('{{date.past}}'),
-    account: fake('{{finance.account}}'),
-    amount: fake('${{commerce.price}}'),
-    phone: fake('{{phone.phoneNumber}}'),
-    version: fake('{{system.semver}}'),
+    date: `${faker.date.past()}`,
+    account: faker.finance.account(),
+    amount: faker.commerce.price(),
+    phone: faker.phone.number(),
+    version: faker.system.semver(),
   });
 }
 

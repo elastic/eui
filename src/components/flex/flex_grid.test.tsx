@@ -9,10 +9,18 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
-import { EuiFlexGrid, GUTTER_SIZES, COLUMNS, DIRECTIONS } from './flex_grid';
+import {
+  EuiFlexGrid,
+  GUTTER_SIZES,
+  DIRECTIONS,
+  ALIGN_ITEMS,
+} from './flex_grid';
 
 describe('EuiFlexGrid', () => {
+  shouldRenderCustomStyles(<EuiFlexGrid />);
+
   test('is rendered', () => {
     const component = render(
       <EuiFlexGrid columns={3} {...requiredProps}>
@@ -35,7 +43,7 @@ describe('EuiFlexGrid', () => {
     });
 
     describe('columns', () => {
-      COLUMNS.forEach((value) => {
+      ([1, 2, 3, 4] as const).forEach((value) => {
         test(`${value} is rendered`, () => {
           const component = render(<EuiFlexGrid columns={value} />);
 
@@ -48,6 +56,16 @@ describe('EuiFlexGrid', () => {
       DIRECTIONS.forEach((value) => {
         test(`${value} is rendered`, () => {
           const component = render(<EuiFlexGrid direction={value} />);
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('alignItems', () => {
+      ALIGN_ITEMS.forEach((value) => {
+        test(`${value} is rendered`, () => {
+          const component = render(<EuiFlexGrid alignItems={value} />);
 
           expect(component).toMatchSnapshot();
         });

@@ -13,21 +13,30 @@ import {
   startThrowingReactWarnings,
   stopThrowingReactWarnings,
 } from '../../test';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
-import { EuiFlexItem, GROW_SIZES } from './flex_item';
+import { EuiFlexItem, VALID_GROW_VALUES } from './flex_item';
 
 beforeAll(startThrowingReactWarnings);
 afterAll(stopThrowingReactWarnings);
 
 describe('EuiFlexItem', () => {
+  shouldRenderCustomStyles(<EuiFlexItem />);
+
   test('is rendered', () => {
     const component = render(<EuiFlexItem {...requiredProps} />);
 
     expect(component).toMatchSnapshot();
   });
 
+  test('component', () => {
+    const component = render(<EuiFlexItem component="span" />);
+
+    expect(component).toMatchSnapshot();
+  });
+
   describe('grow', () => {
-    GROW_SIZES.concat([true, false]).forEach((value) => {
+    VALID_GROW_VALUES.forEach((value) => {
       test(`${value} is rendered`, () => {
         const component = render(<EuiFlexItem grow={value} />);
 

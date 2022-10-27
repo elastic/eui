@@ -1,3 +1,50 @@
+## [`70.0.0`](https://github.com/elastic/eui/tree/v70.0.0)
+
+- Added the `enabled` option to the `<EuiInMemoryTable />` `executeQueryOptions` prop. This option prevents the Query from being executed when controlled by the consumer. ([#6284](https://github.com/elastic/eui/pull/6284))
+
+**Bug fixes**
+
+- Fixed `EuiOverlayMask` to set a `[data-relative-to-header=above|below]` attribute to replace the `--aboveHeader` and `--belowHeader` classNames removed in its Emotion conversion ([#6289](https://github.com/elastic/eui/pull/6289))
+- Fixed `EuiHeader` CSS using removed `EuiOverlayMask` class modifiers ([#6293](https://github.com/elastic/eui/pull/6293))
+- Fixed `EuiToolTip` not respecting reduced motion preferences ([#6295](https://github.com/elastic/eui/pull/6295))
+- Fixed a bug with `EuiTour` where passing any `panelProps` would cause the beacon to disappear ([#6298](https://github.com/elastic/eui/pull/6298))
+
+**Breaking changes**
+
+- `@emotion/css` is now a required peer dependency, alongside `@emotion/react` ([#6288](https://github.com/elastic/eui/pull/6288))
+- `@emotion/cache` is no longer required peer dependency, although your project must still use it if setting custom cache/injection locations ([#6288](https://github.com/elastic/eui/pull/6288))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiCode` and `EuiCodeBlock` to Emotion; Removed `euiCodeSyntaxTokens` Sass mixin and `$euiCodeBlockPaddingModifiers`; ([#6263](https://github.com/elastic/eui/pull/6263))
+- Converted `EuiResizableContainer` and `EuiResizablePanel` to Emotion ([#6287](https://github.com/elastic/eui/pull/6287))
+
+## [`69.0.0`](https://github.com/elastic/eui/tree/v69.0.0)
+
+- Added support for `fullWidth` prop on EuiForm, which will be the default for all rows/controls within ([#6229](https://github.com/elastic/eui/pull/6229))
+- Added support for `onResizeStart` and `onResizeEnd` callbacks to `EuiResizableContainer` ([#6236](https://github.com/elastic/eui/pull/6236))
+- Added optional case sensitive option matching to `EuiComboBox` with the `isCaseSensitive` prop ([#6268](https://github.com/elastic/eui/pull/6268))
+- `EuiFlexItem` now supports `grow={0}` ([#6270](https://github.com/elastic/eui/pull/6270))
+- Added the `alignItems` prop to `EuiFlexGrid` ([#6281](https://github.com/elastic/eui/pull/6281))
+- Added `filter`, `filterExclude`, `filterIgnore`, `filterInclude`, `indexTemporary`, `infinity`, `sortAscending`, and `sortDescending` glyphs to `EuiIcon` ([#6282](https://github.com/elastic/eui/pull/6282))
+
+**Bug fixes**
+
+- Fixed `EuiTextProps` to show the `color` type option `inherit` as default ([#6267](https://github.com/elastic/eui/pull/6267))
+- `EuiFlexGroup` now correctly respects `gutterSize` when responsive ([#6270](https://github.com/elastic/eui/pull/6270))
+- Fixed the last breadcrumb in `EuiBreadcrumbs`'s `breadcrumbs` array not respecting `truncate` overrides ([#6280](https://github.com/elastic/eui/pull/6280))
+
+**Breaking changes**
+
+- `EuiFlexGrid` no longer supports `columns={0}`. Use `EuiFlexGroup` instead for normal flex display ([#6270](https://github.com/elastic/eui/pull/6270))
+- `EuiFlexGrid` now uses modern `display: grid` CSS ([#6270](https://github.com/elastic/eui/pull/6270))
+- `EuiFlexGroup`, `EuiFlexGrid`, and `EuiFlexItem` now use modern `gap` CSS instead of margins and negative margins ([#6270](https://github.com/elastic/eui/pull/6270))
+- `EuiFlexGroup` no longer applies responsive styles to `column` or `columnReverse` directions ([#6270](https://github.com/elastic/eui/pull/6270))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiFlexGroup`, `EuiFlexGrid`, and `EuiFlexItem` to Emotion ([#6270](https://github.com/elastic/eui/pull/6270))
+
 ## [`68.0.0`](https://github.com/elastic/eui/tree/v68.0.0)
 
 - Added `beta` glyph to `EuiIcon` ([#6250](https://github.com/elastic/eui/pull/6250))

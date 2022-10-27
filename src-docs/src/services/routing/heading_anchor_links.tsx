@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { useLocation } from 'react-router-dom';
-import { ClassNames } from '@emotion/react';
+import { css } from '@emotion/css';
 
 import { EuiButtonIcon, useEuiTheme, logicalCSS } from '../../../../src';
 
@@ -33,43 +33,39 @@ export const useHeadingAnchorLinks = () => {
   // to quickly get/copy the heading anchor link
   const anchorLinks = useMemo(
     () => (
-      <ClassNames>
-        {({ css }) => (
-          <>
-            {headingNodes.map((heading) => {
-              const headingCss = css`
-                &:hover [data-anchor-link] {
-                  opacity: 1;
-                }
-              `;
-              const linkCss = css`
-                opacity: 0;
-                ${logicalCSS('margin-left', euiTheme.size.s)}
+      <>
+        {headingNodes.map((heading) => {
+          const headingCss = css`
+            &:hover [data-anchor-link] {
+              opacity: 1;
+            }
+          `;
+          const linkCss = css`
+            opacity: 0;
+            ${logicalCSS('margin-left', euiTheme.size.s)}
 
-                &:hover,
+            &:hover,
                 &:focus {
-                  opacity: 1;
-                }
-              `;
+              opacity: 1;
+            }
+          `;
 
-              heading.classList.add(headingCss);
+          heading.classList.add(headingCss);
 
-              return createPortal(
-                <EuiButtonIcon
-                  data-anchor-link
-                  iconType="link"
-                  color="text"
-                  size="xs"
-                  css={linkCss}
-                  aria-label="Go to heading anchor link"
-                  href={`#${pathname}#${heading.id}`}
-                />,
-                heading
-              );
-            })}
-          </>
-        )}
-      </ClassNames>
+          return createPortal(
+            <EuiButtonIcon
+              data-anchor-link
+              iconType="link"
+              color="text"
+              size="xs"
+              className={linkCss}
+              aria-label="Go to heading anchor link"
+              href={`#${pathname}#${heading.id}`}
+            />,
+            heading
+          );
+        })}
+      </>
     ),
     [headingNodes] // eslint-disable-line react-hooks/exhaustive-deps
   );

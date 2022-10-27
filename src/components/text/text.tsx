@@ -29,6 +29,7 @@ export type EuiTextProps = CommonProps &
     size?: TextSize;
     /**
      * Any of our named colors or a `hex`, `rgb` or `rgba` value.
+     * @default inherit
      */
     color?: TextColor | CSSProperties['color'];
     grow?: boolean;

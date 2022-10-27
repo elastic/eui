@@ -20,7 +20,7 @@
       }
     }
 
-    &:not(.euiDataGrid__restrictBody) .euiOverlayMask--belowHeader {
+    &:not(.euiDataGrid__restrictBody) .euiOverlayMask[data-relative-to-header='below'] {
       top: #{$headerHeight};
     }
   }

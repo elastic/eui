@@ -9,17 +9,17 @@ exports[`EuiFilterSelectItem is rendered 1`] = `
   type="button"
 >
   <span
-    class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+    class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
   >
     <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+      class="euiFlexItem emotion-euiFlexItem-growZero"
     >
       <span
         data-euiicon-type="empty"
       />
     </div>
     <span
-      class="euiFlexItem euiFilterSelectItem__content"
+      class="euiFlexItem euiFilterSelectItem__content emotion-euiFlexItem-grow-1"
     />
   </span>
 </button>

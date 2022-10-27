@@ -1,6 +1,5 @@
 import React, { useEffect, useState, ReactNode } from 'react';
-// @ts-ignore - faker does not have type declarations
-import { fake } from 'faker';
+import { faker } from '@faker-js/faker';
 
 import {
   EuiDataGrid,
@@ -44,10 +43,10 @@ const columns: EuiDataGridColumn[] = [
 const data: Array<{ [key: string]: ReactNode }> = [];
 for (let i = 1; i < 5; i++) {
   data.push({
-    firstName: fake('{{name.firstName}}'),
-    lastName: fake('{{name.lastName}}'),
-    suffix: fake('{{name.suffix}}'),
-    boolean: fake('{{random.boolean}}'),
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    suffix: faker.name.suffix(),
+    boolean: `${faker.datatype.boolean()}`,
   });
 }
 

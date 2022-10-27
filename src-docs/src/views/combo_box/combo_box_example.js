@@ -150,6 +150,17 @@ const virtualizedSnippet = `<EuiComboBox
   onChange={onChange}
 />`;
 
+import CaseSensitive from './case_sensitive';
+const caseSensitiveSource = require('!!raw-loader!./case_sensitive');
+const caseSensitiveSnippet = `<EuiComboBox
+  aria-label="Accessible screen reader label"
+  placeholder="Select or create options"
+  options={options}
+  onChange={onChange}
+  onCreateOption={onCreateOption}
+  isCaseSensitive
+/>`;
+
 import Disabled from './disabled';
 const disabledSource = require('!!raw-loader!./disabled');
 const disabledSnippet = `<EuiComboBox
@@ -268,6 +279,24 @@ export const ComboBoxExample = {
       props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: disabledSnippet,
       demo: <Disabled />,
+    },
+    {
+      title: 'Case-sensitive matching',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: caseSensitiveSource,
+        },
+      ],
+      text: (
+        <p>
+          Set the prop <EuiCode>isCaseSensitive</EuiCode> to make the combo box
+          option matching case sensitive.
+        </p>
+      ),
+      props: { EuiComboBox, EuiComboBoxOptionOption },
+      snippet: caseSensitiveSnippet,
+      demo: <CaseSensitive />,
     },
     {
       title: 'Virtualized',

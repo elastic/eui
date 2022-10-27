@@ -9,6 +9,7 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiCode } from './code';
 
@@ -16,6 +17,8 @@ const code = `var some = 'code';
 console.log(some);`;
 
 describe('EuiCode', () => {
+  shouldRenderCustomStyles(<EuiCode>{code}</EuiCode>);
+
   it('renders a code snippet', () => {
     const component = render(<EuiCode {...requiredProps}>{code}</EuiCode>);
 

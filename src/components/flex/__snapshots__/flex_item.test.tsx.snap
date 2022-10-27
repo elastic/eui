@@ -1,81 +1,105 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiFlexItem component 1`] = `
+<span
+  class="euiFlexItem emotion-euiFlexItem-grow-1"
+/>
+`;
+
+exports[`EuiFlexItem grow 0 is rendered 1`] = `
+<div
+  class="euiFlexItem emotion-euiFlexItem-growZero"
+/>
+`;
+
 exports[`EuiFlexItem grow 1 is rendered 1`] = `
 <div
-  class="euiFlexItem euiFlexItem--flexGrow1"
+  class="euiFlexItem emotion-euiFlexItem-grow-1"
 />
 `;
 
 exports[`EuiFlexItem grow 2 is rendered 1`] = `
 <div
-  class="euiFlexItem euiFlexItem--flexGrow2"
+  class="euiFlexItem emotion-euiFlexItem-grow-2"
 />
 `;
 
 exports[`EuiFlexItem grow 3 is rendered 1`] = `
 <div
-  class="euiFlexItem euiFlexItem--flexGrow3"
+  class="euiFlexItem emotion-euiFlexItem-grow-3"
 />
 `;
 
 exports[`EuiFlexItem grow 4 is rendered 1`] = `
 <div
-  class="euiFlexItem euiFlexItem--flexGrow4"
+  class="euiFlexItem emotion-euiFlexItem-grow-4"
 />
 `;
 
 exports[`EuiFlexItem grow 5 is rendered 1`] = `
 <div
-  class="euiFlexItem euiFlexItem--flexGrow5"
+  class="euiFlexItem emotion-euiFlexItem-grow-5"
 />
 `;
 
 exports[`EuiFlexItem grow 6 is rendered 1`] = `
 <div
-  class="euiFlexItem euiFlexItem--flexGrow6"
+  class="euiFlexItem emotion-euiFlexItem-grow-6"
 />
 `;
 
 exports[`EuiFlexItem grow 7 is rendered 1`] = `
 <div
-  class="euiFlexItem euiFlexItem--flexGrow7"
+  class="euiFlexItem emotion-euiFlexItem-grow-7"
 />
 `;
 
 exports[`EuiFlexItem grow 8 is rendered 1`] = `
 <div
-  class="euiFlexItem euiFlexItem--flexGrow8"
+  class="euiFlexItem emotion-euiFlexItem-grow-8"
 />
 `;
 
 exports[`EuiFlexItem grow 9 is rendered 1`] = `
 <div
-  class="euiFlexItem euiFlexItem--flexGrow9"
+  class="euiFlexItem emotion-euiFlexItem-grow-9"
 />
 `;
 
 exports[`EuiFlexItem grow 10 is rendered 1`] = `
 <div
-  class="euiFlexItem euiFlexItem--flexGrow10"
+  class="euiFlexItem emotion-euiFlexItem-grow-10"
 />
 `;
 
 exports[`EuiFlexItem grow false is rendered 1`] = `
 <div
-  class="euiFlexItem euiFlexItem--flexGrowZero"
+  class="euiFlexItem emotion-euiFlexItem-growZero"
+/>
+`;
+
+exports[`EuiFlexItem grow null is rendered 1`] = `
+<div
+  class="euiFlexItem emotion-euiFlexItem-growZero"
 />
 `;
 
 exports[`EuiFlexItem grow true is rendered 1`] = `
 <div
-  class="euiFlexItem"
+  class="euiFlexItem emotion-euiFlexItem-grow-1"
+/>
+`;
+
+exports[`EuiFlexItem grow undefined is rendered 1`] = `
+<div
+  class="euiFlexItem emotion-euiFlexItem-grow-1"
 />
 `;
 
 exports[`EuiFlexItem is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiFlexItem testClass1 testClass2"
+  class="euiFlexItem testClass1 testClass2 emotion-euiFlexItem-grow-1"
   data-test-subj="test subject string"
 />
 `;

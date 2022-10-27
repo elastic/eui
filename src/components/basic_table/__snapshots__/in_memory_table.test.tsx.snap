@@ -11,13 +11,13 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
       class="euiTableHeaderMobile"
     >
       <div
-        class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow"
+        class="euiFlexGroup emotion-euiFlexGroup-l-spaceBetween-baseline-row"
       >
         <div
-          class="euiFlexItem euiFlexItem--flexGrowZero"
+          class="euiFlexItem emotion-euiFlexItem-growZero"
         />
         <div
-          class="euiFlexItem euiFlexItem--flexGrowZero"
+          class="euiFlexItem emotion-euiFlexItem-growZero"
         />
       </div>
     </div>
@@ -108,10 +108,10 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
       class="euiSpacer euiSpacer--m emotion-euiSpacer-m"
     />
     <div
-      class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--wrap eui-xScroll"
+      class="euiFlexGroup eui-xScroll emotion-euiFlexGroup-wrap-s-spaceBetween-center-row"
     >
       <div
-        class="euiFlexItem euiFlexItem--flexGrowZero"
+        class="euiFlexItem emotion-euiFlexItem-growZero"
       >
         <div
           class="euiPopover emotion-euiPopover"
@@ -143,7 +143,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
         </div>
       </div>
       <div
-        class="euiFlexItem euiFlexItem--flexGrowZero"
+        class="euiFlexItem emotion-euiFlexItem-growZero"
       >
         <nav
           aria-label="Pagination for table: "
@@ -640,13 +640,13 @@ exports[`EuiInMemoryTable with pagination and "show all" page size 1`] = `
       class="euiTableHeaderMobile"
     >
       <div
-        class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow"
+        class="euiFlexGroup emotion-euiFlexGroup-l-spaceBetween-baseline-row"
       >
         <div
-          class="euiFlexItem euiFlexItem--flexGrowZero"
+          class="euiFlexItem emotion-euiFlexItem-growZero"
         />
         <div
-          class="euiFlexItem euiFlexItem--flexGrowZero"
+          class="euiFlexItem emotion-euiFlexItem-growZero"
         />
       </div>
     </div>
@@ -759,10 +759,10 @@ exports[`EuiInMemoryTable with pagination and "show all" page size 1`] = `
       class="euiSpacer euiSpacer--m emotion-euiSpacer-m"
     />
     <div
-      class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--wrap eui-xScroll"
+      class="euiFlexGroup eui-xScroll emotion-euiFlexGroup-wrap-s-spaceBetween-center-row"
     >
       <div
-        class="euiFlexItem euiFlexItem--flexGrowZero"
+        class="euiFlexItem emotion-euiFlexItem-growZero"
       >
         <div
           class="euiPopover emotion-euiPopover"
@@ -794,7 +794,7 @@ exports[`EuiInMemoryTable with pagination and "show all" page size 1`] = `
         </div>
       </div>
       <div
-        class="euiFlexItem euiFlexItem--flexGrowZero"
+        class="euiFlexItem emotion-euiFlexItem-growZero"
       />
     </div>
   </div>

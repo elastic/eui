@@ -20,15 +20,13 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import classNames from 'classnames';
+import { cx } from '@emotion/css';
 import { Global } from '@emotion/react';
 import { CommonProps, keysOf } from '../common';
 import { useCombinedRefs, useEuiTheme } from '../../services';
 import { EuiPortal } from '../portal';
-import {
-  euiOverlayMaskStyles,
-  euiOverlayMaskBodyStyles,
-} from './overlay_mask.styles';
+import { euiOverlayMaskStyles } from './overlay_mask.styles';
+import { euiOverlayMaskBodyStyles } from './overlay_mask_body.styles';
 
 export interface EuiOverlayMaskInterface {
   /**
@@ -45,7 +43,7 @@ export interface EuiOverlayMaskInterface {
   maskRef?: Ref<HTMLDivElement> | MutableRefObject<HTMLDivElement>;
 }
 
-export type EuiOverlayMaskProps = CommonProps &
+export type EuiOverlayMaskProps = Omit<CommonProps, 'css'> &
   Omit<
     Partial<Record<keyof HTMLAttributes<HTMLDivElement>, string>>,
     keyof EuiOverlayMaskInterface
@@ -57,7 +55,6 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
   children,
   headerZindexLocation = 'above',
   maskRef,
-  css, // TODO: apply custom CSS-in-JS as a className
   ...rest
 }) => {
   const [overlayMaskNode, setOverlayMaskNode] = useState<HTMLDivElement | null>(
@@ -69,10 +66,10 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
   ]);
   const euiTheme = useEuiTheme();
   const styles = euiOverlayMaskStyles(euiTheme);
-  const cssStyles = [
+  const cssStyles = cx([
     styles.euiOverlayMask,
     styles[`${headerZindexLocation}Header`],
-  ];
+  ]);
 
   useEffect(() => {
     if (!overlayMaskNode) return;
@@ -90,13 +87,13 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
 
   useEffect(() => {
     if (!overlayMaskNode) return;
-    overlayMaskNode.className = classNames('euiOverlayMask', className);
-  }, [overlayMaskNode, className]);
+    overlayMaskNode.className = cx('euiOverlayMask', cssStyles, className);
+    overlayMaskNode.dataset.relativeToHeader = headerZindexLocation;
+  }, [overlayMaskNode, className, cssStyles, headerZindexLocation]);
 
   return (
     <EuiPortal portalRef={combinedMaskRef}>
       <Global styles={euiOverlayMaskBodyStyles} />
-      <Global styles={cssStyles} />
       {children}
     </EuiPortal>
   );

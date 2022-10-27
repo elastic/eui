@@ -1,9 +1,4 @@
 {
-  "euiCodeBlockPaddingModifiers": {
-    "paddingSmall": "8px",
-    "paddingMedium": "16px",
-    "paddingLarge": "24px"
-  },
   "euiCollapsibleNavGroupLightBackgroundColor": "#141519",
   "euiCollapsibleNavGroupDarkBackgroundColor": "#131317",
   "euiCollapsibleNavGroupDarkHighContrastColor": "#36a2ef",
@@ -48,31 +43,6 @@
     "l": "8px"
   },
   "euiEmptyPromptContentMaxWidth": "36em",
-  "gutterTypes": {
-    "gutterExtraSmall": "4px",
-    "gutterSmall": "8px",
-    "gutterMedium": "16px",
-    "gutterLarge": "24px",
-    "gutterExtraLarge": "40px"
-  },
-  "fractions": {
-    "fourths": {
-      "percentage": "25%",
-      "count": 4
-    },
-    "thirds": {
-      "percentage": "33.3%",
-      "count": 3
-    },
-    "halves": {
-      "percentage": "50%",
-      "count": 2
-    },
-    "single": {
-      "percentage": "100%",
-      "count": 1
-    }
-  },
   "euiFilePickerTallHeight": "128px",
   "euiRangeLevelColors": {
     "primary": "#36a2ef",
@@ -191,28 +161,6 @@
     "ghost": "#ffffff",
     "text": "#98a2b3"
   },
-  "euiCodeBlockBackgroundColor": "#25262e",
-  "euiCodeBlockColor": "#dfe5ef",
-  "euiCodeBlockSelectedBackgroundColor": "inherit",
-  "euiCodeBlockCommentColor": "#8d919a",
-  "euiCodeBlockSelectorTagColor": "inherit",
-  "euiCodeBlockStringColor": "#d77092",
-  "euiCodeBlockTagColor": "#6092c0",
-  "euiCodeBlockNameColor": "#6092c0",
-  "euiCodeBlockNumberColor": "#54b399",
-  "euiCodeBlockKeywordColor": "#a184c2",
-  "euiCodeBlockFunctionTitleColor": "inherit",
-  "euiCodeBlockTypeColor": "#6092c0",
-  "euiCodeBlockAttributeColor": "inherit",
-  "euiCodeBlockSymbolColor": "#e7664c",
-  "euiCodeBlockParamsColor": "inherit",
-  "euiCodeBlockMetaColor": "#8d919a",
-  "euiCodeBlockTitleColor": "#da8b45",
-  "euiCodeBlockSectionColor": "#e7664c",
-  "euiCodeBlockAdditionColor": "#54b399",
-  "euiCodeBlockDeletionColor": "#f86b63",
-  "euiCodeBlockSelectorClassColor": "inherit",
-  "euiCodeBlockSelectorIdColor": "inherit",
   "euiPaletteColorBlind": {
     "euiColorVis0": {
       "graphic": "#54b399",

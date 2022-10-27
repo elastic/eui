@@ -1,5 +1,5 @@
 import React, { Fragment, useCallback, useMemo, useState } from 'react';
-import { fake } from 'faker';
+import { faker } from '@faker-js/faker';
 
 import { EuiDataGrid, EuiLink } from '../../../../../src';
 
@@ -35,21 +35,19 @@ const raw_data = [];
 
 for (let i = 1; i < 100; i++) {
   raw_data.push({
-    name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
-    email: <EuiLink href="">{fake('{{internet.email}}')}</EuiLink>,
+    name: `${faker.name.lastName()}, ${faker.name.firstName()} ${faker.name.suffix()}`,
+    email: <EuiLink href="">{faker.internet.email()}</EuiLink>,
     location: (
       <Fragment>
-        {`${fake('{{address.city}}')}, `}
-        <EuiLink href="https://google.com">
-          {fake('{{address.country}}')}
-        </EuiLink>
+        {`${faker.address.city()}, `}
+        <EuiLink href="https://google.com">{faker.address.country()}</EuiLink>
       </Fragment>
     ),
-    date: fake('{{date.past}}'),
-    account: fake('{{finance.account}}'),
-    amount: fake('${{commerce.price}}'),
-    phone: fake('{{phone.phoneNumber}}'),
-    version: fake('{{system.semver}}'),
+    date: `${faker.date.past()}`,
+    account: faker.finance.account(),
+    amount: faker.commerce.price(),
+    phone: faker.phone.number(),
+    version: faker.system.semver(),
   });
 }
 

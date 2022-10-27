@@ -229,11 +229,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 180,
+        "line": 182,
         "column": 20
       },
       "end": {
-        "line": 183,
+        "line": 185,
         "column": 3
       }
     },
@@ -304,52 +304,52 @@
     "filepath": "src/components/card/card_select/card_select.tsx"
   },
   {
-    "token": "euiCodeBlock.copyButton",
+    "token": "euiCodeBlockCopy.copy",
     "defString": "Copy",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 359,
-        "column": 21
+        "line": 36,
+        "column": 24
       },
       "end": {
-        "line": 359,
-        "column": 66
+        "line": 36,
+        "column": 67
       }
     },
-    "filepath": "src/components/code/code_block.tsx"
+    "filepath": "src/components/code/code_block_copy.tsx"
   },
   {
-    "token": "euiCodeBlock.fullscreenCollapse",
+    "token": "euiCodeBlockFullScreen.fullscreenCollapse",
     "defString": "Collapse",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 405,
+        "line": 47,
         "column": 49
       },
       "end": {
-        "line": 408,
+        "line": 53,
         "column": 3
       }
     },
-    "filepath": "src/components/code/code_block.tsx"
+    "filepath": "src/components/code/code_block_full_screen.tsx"
   },
   {
-    "token": "euiCodeBlock.fullscreenExpand",
+    "token": "euiCodeBlockFullScreen.fullscreenExpand",
     "defString": "Expand",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 405,
+        "line": 47,
         "column": 49
       },
       "end": {
-        "line": 408,
+        "line": 53,
         "column": 3
       }
     },
-    "filepath": "src/components/code/code_block.tsx"
+    "filepath": "src/components/code/code_block_full_screen.tsx"
   },
   {
     "token": "euiColorPickerSwatch.ariaLabel",
@@ -661,11 +661,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 325,
+        "line": 330,
         "column": 12
       },
       "end": {
-        "line": 328,
+        "line": 333,
         "column": 14
       }
     },
@@ -677,11 +677,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 338,
+        "line": 343,
         "column": 16
       },
       "end": {
-        "line": 342,
+        "line": 347,
         "column": 18
       }
     },
@@ -693,11 +693,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 356,
+        "line": 362,
         "column": 16
       },
       "end": {
-        "line": 362,
+        "line": 368,
         "column": 18
       }
     },
@@ -709,11 +709,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 391,
+        "line": 397,
         "column": 20
       },
       "end": {
-        "line": 397,
+        "line": 403,
         "column": 22
       }
     },
@@ -725,11 +725,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 408,
+        "line": 414,
         "column": 12
       },
       "end": {
-        "line": 412,
+        "line": 418,
         "column": 14
       }
     },
@@ -741,11 +741,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 419,
+        "line": 425,
         "column": 10
       },
       "end": {
-        "line": 422,
+        "line": 428,
         "column": 12
       }
     },
@@ -757,11 +757,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 428,
+        "line": 434,
         "column": 10
       },
       "end": {
-        "line": 431,
+        "line": 437,
         "column": 12
       }
     },
@@ -773,11 +773,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 968,
+        "line": 1001,
         "column": 10
       },
       "end": {
-        "line": 971,
+        "line": 1004,
         "column": 11
       }
     },
@@ -3637,11 +3637,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 89,
+        "line": 101,
         "column": 49
       },
       "end": {
-        "line": 95,
+        "line": 107,
         "column": 3
       }
     },
@@ -3653,11 +3653,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 89,
+        "line": 101,
         "column": 49
       },
       "end": {
-        "line": 95,
+        "line": 107,
         "column": 3
       }
     },
@@ -3669,11 +3669,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 64,
+        "line": 72,
         "column": 6
       },
       "end": {
-        "line": 67,
+        "line": 75,
         "column": 8
       }
     },
@@ -3685,11 +3685,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 88,
+        "line": 96,
         "column": 10
       },
       "end": {
-        "line": 92,
+        "line": 100,
         "column": 12
       }
     },
@@ -3701,11 +3701,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 132,
+        "line": 142,
         "column": 6
       },
       "end": {
-        "line": 135,
+        "line": 145,
         "column": 7
       }
     },
@@ -3717,11 +3717,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 198,
+        "line": 208,
         "column": 18
       },
       "end": {
-        "line": 201,
+        "line": 211,
         "column": 20
       }
     },
@@ -3749,11 +3749,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 76,
+        "line": 94,
         "column": 8
       },
       "end": {
-        "line": 79,
+        "line": 97,
         "column": 9
       }
     },
@@ -3765,11 +3765,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 149,
+        "line": 166,
         "column": 12
       },
       "end": {
-        "line": 153,
+        "line": 170,
         "column": 14
       }
     },
@@ -4693,11 +4693,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 111,
+        "line": 112,
         "column": 4
       },
       "end": {
-        "line": 120,
+        "line": 121,
         "column": 5
       }
     },
@@ -4709,11 +4709,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 111,
+        "line": 112,
         "column": 4
       },
       "end": {
-        "line": 120,
+        "line": 121,
         "column": 5
       }
     },
@@ -4725,11 +4725,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 336,
+        "line": 314,
         "column": 32
       },
       "end": {
-        "line": 339,
+        "line": 317,
         "column": 3
       }
     },
@@ -5605,11 +5605,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 231,
+        "line": 234,
         "column": 10
       },
       "end": {
-        "line": 238,
+        "line": 241,
         "column": 11
       }
     },
@@ -5621,11 +5621,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 231,
+        "line": 234,
         "column": 10
       },
       "end": {
-        "line": 238,
+        "line": 241,
         "column": 11
       }
     },
@@ -5637,11 +5637,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 231,
+        "line": 234,
         "column": 10
       },
       "end": {
-        "line": 238,
+        "line": 241,
         "column": 11
       }
     },

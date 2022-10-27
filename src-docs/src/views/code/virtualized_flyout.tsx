@@ -25,7 +25,7 @@ export default () => {
             <h2 id="flyoutTitle">A flyout with just code</h2>
           </EuiTitle>
         </EuiFlyoutHeader>
-        <div style={{ height: '100%' }}>
+        <div style={{ blockSize: '100%' }}>
           <EuiCodeBlock
             language="json"
             overflowHeight={'100%'}

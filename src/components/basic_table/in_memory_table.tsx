@@ -86,6 +86,11 @@ type InMemoryTableProps<T> = Omit<
     defaultFields?: string[];
     isClauseMatcher?: (...args: any) => boolean;
     explain?: boolean;
+    /**
+     * When the search bar Query is controlled and passed to the `search` prop it is by default executed against the items passed to the table to filter them out.
+     * If the filtering is already done before passing the `items` to the table we can disable the execution by setting `enabled` to `false`.
+     */
+    enabled?: boolean;
   };
   /**
    * Insert content between the search bar and table components.
@@ -577,9 +582,10 @@ export class EuiInMemoryTable<T> extends Component<
 
     const { query, sortName, pageIndex, pageSize } = this.state;
 
-    const matchingItems = query
-      ? EuiSearchBar.Query.execute(query, items, executeQueryOptions)
-      : items;
+    const matchingItems =
+      query !== null && executeQueryOptions?.enabled !== false
+        ? EuiSearchBar.Query.execute(query, items, executeQueryOptions)
+        : items;
 
     const sortedItems = sortName
       ? matchingItems

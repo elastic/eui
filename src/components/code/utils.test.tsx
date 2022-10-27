@@ -8,6 +8,8 @@
 
 import React from 'react';
 import { shallow } from 'enzyme';
+import { renderHook } from '@testing-library/react-hooks';
+import { useEuiTheme } from '../../services';
 
 import {
   checkSupportedLanguage,
@@ -76,9 +78,16 @@ describe('line utils', () => {
   }`;
 
   describe('highlightByLine', () => {
+    // Hook helper required in order to call `highlightByLine` with euiTheme
+    const highlightByLineWithTheme = (config: any) =>
+      renderHook(() => {
+        const euiTheme = useEuiTheme();
+        return highlightByLine(jsonCode, 'json', config, euiTheme);
+      }).result.current;
+
     describe('without line numbers', () => {
       it('renders a single .euiCodeBlock__line element per line', () => {
-        const highlight = highlightByLine(jsonCode, 'json', {
+        const highlight = highlightByLineWithTheme({
           show: false,
           start: 1,
         });
@@ -90,7 +99,7 @@ describe('line utils', () => {
 
     describe('with line numbers', () => {
       it('renders two elements per line: .euiCodeBlock__lineNumber and .euiCodeBlock__lineText', () => {
-        const highlight = highlightByLine(jsonCode, 'json', {
+        const highlight = highlightByLineWithTheme({
           show: true,
           start: 1,
         });
@@ -101,7 +110,7 @@ describe('line utils', () => {
 
       describe('with a custom starting number', () => {
         it('adds the starting lineNumber to each node', () => {
-          const highlight = highlightByLine(jsonCode, 'json', {
+          const highlight = highlightByLineWithTheme({
             show: true,
             start: 10,
           });
@@ -115,7 +124,7 @@ describe('line utils', () => {
 
       describe('with highlighted lines', () => {
         it('adds a class to the specified lines', () => {
-          const highlight = highlightByLine(jsonCode, 'json', {
+          const highlight = highlightByLineWithTheme({
             show: true,
             start: 1,
             highlight: '1-2',
@@ -123,8 +132,8 @@ describe('line utils', () => {
           expect(highlight).toMatchSnapshot();
           expect(
             // @ts-expect-error RefractorNode
-            highlight[0].properties.className[0].includes(
-              'euiCodeBlock__line--isHighlighted'
+            highlight[0].children[1].properties.className[1].includes(
+              'euiCodeBlock__lineText-isHighlighted'
             )
           ).toBe(true);
         });
