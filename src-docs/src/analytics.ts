@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 
 declare global {
   interface Window {
-    dataLayer?: object[];
+    dataLayer?: Record<string, string>[];
   }
 }
 
@@ -67,11 +67,11 @@ function recordPageView({ pathname, search }: { pathname: string, search: string
   const utmCampaign = searchParams.get('utm_campaign');
   const utmTerm = searchParams.get('utm_term');
   const utmContent = searchParams.get('utm_content');
-  if (utmSource) pageView.utmSource = (console.log('adding utmSource'), utmSource);
-  if (utmMedium) pageView.utmMedium = (console.log('adding utmMedium'), utmMedium);
-  if (utmCampaign) pageView.utmCampaign = (console.log('adding utmCampaign'), utmCampaign);
-  if (utmTerm) pageView.utmTerm = (console.log('adding utmTerm'), utmTerm);
-  if (utmContent) pageView.utmContent = (console.log('adding utmContent'), utmContent);
+  if (utmSource) pageView.utmSource = utmSource;
+  if (utmMedium) pageView.utmMedium = utmMedium;
+  if (utmCampaign) pageView.utmCampaign = utmCampaign;
+  if (utmTerm) pageView.utmTerm = utmTerm;
+  if (utmContent) pageView.utmContent = utmContent;
 
   dataLayer.push(pageView);
 }
