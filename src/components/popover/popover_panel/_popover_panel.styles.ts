@@ -12,6 +12,7 @@ import {
   euiShadowFlat,
   euiShadowMedium,
 } from '../../../themes/amsterdam/global_styling/mixins';
+import { getShadowColor } from '../../../themes/amsterdam/global_styling/functions';
 import { UseEuiTheme } from '../../../services';
 import { euiCanAnimate, logicalCSS } from '../../../global_styling';
 
@@ -25,7 +26,7 @@ const translateDistance = 's';
  */
 
 export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, colorMode } = euiThemeContext;
 
   return {
     // Base
@@ -105,15 +106,34 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
       // The offset transforms must be recreated in margins
       top: css`
         margin-block-start: ${euiTheme.size[translateDistance]};
+        // Existing box-shadow of the popover is sufficient to see the arrow
       `,
       bottom: css`
         margin-block-start: -${euiTheme.size[translateDistance]};
+
+        .euiPopover__arrow {
+          filter: drop-shadow(
+            0 -6px 6px ${getShadowColor(euiTheme.colors.shadow, 0.12, colorMode)}
+          );
+        }
       `,
       left: css`
         margin-inline-start: ${euiTheme.size[translateDistance]};
+
+        .euiPopover__arrow {
+          filter: drop-shadow(
+            6px 0 6px ${getShadowColor(euiTheme.colors.shadow, 0.12, colorMode)}
+          );
+        }
       `,
       right: css`
         margin-inline-start: -${euiTheme.size[translateDistance]};
+
+        .euiPopover__arrow {
+          filter: drop-shadow(
+            -6px 0 6px ${getShadowColor(euiTheme.colors.shadow, 0.12, colorMode)}
+          );
+        }
       `,
     },
   };

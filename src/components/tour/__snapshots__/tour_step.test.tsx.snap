@@ -52,7 +52,7 @@ exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
       style="top: -22px; left: -26px; will-change: transform, opacity; z-index: 2000;"
     >
       <div
-        class="emotion-euiPopoverArrow-left"
+        class="euiPopover__arrow emotion-euiPopoverArrow-left"
         data-popover-arrow="left"
         style="left: 0px; top: 10px;"
       >
@@ -155,7 +155,7 @@ exports[`EuiTourStep can have subtitle 1`] = `
       style="top: -22px; left: -26px; will-change: transform, opacity; z-index: 2000;"
     >
       <div
-        class="emotion-euiPopoverArrow-left"
+        class="euiPopover__arrow emotion-euiPopoverArrow-left"
         data-popover-arrow="left"
         style="left: 0px; top: 10px;"
       >
@@ -263,7 +263,7 @@ exports[`EuiTourStep can override the footer action 1`] = `
       style="top: -22px; left: -26px; will-change: transform, opacity; z-index: 2000;"
     >
       <div
-        class="emotion-euiPopoverArrow-left"
+        class="euiPopover__arrow emotion-euiPopoverArrow-left"
         data-popover-arrow="left"
         style="left: 0px; top: 10px;"
       >
@@ -355,7 +355,7 @@ exports[`EuiTourStep can turn off the beacon 1`] = `
       style="top: -22px; left: -16px; will-change: transform, opacity; z-index: 2000;"
     >
       <div
-        class="emotion-euiPopoverArrow-left"
+        class="euiPopover__arrow emotion-euiPopoverArrow-left"
         data-popover-arrow="left"
         style="left: 0px; top: 10px;"
       />
@@ -453,7 +453,7 @@ exports[`EuiTourStep is rendered 1`] = `
       style="top: -22px; left: -26px; will-change: transform, opacity; z-index: 2000;"
     >
       <div
-        class="emotion-euiPopoverArrow-left"
+        class="euiPopover__arrow emotion-euiPopoverArrow-left"
         data-popover-arrow="left"
         style="left: 0px; top: 10px;"
       >
