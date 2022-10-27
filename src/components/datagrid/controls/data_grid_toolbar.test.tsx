@@ -23,6 +23,7 @@ describe('EuiDataGridToolbar', () => {
     isFullScreen: false,
     fullScreenSelector: <div>mock fullscreen selector</div>,
     displaySelector: <div>mock style selector</div>,
+    keyboardShortcuts: <div>mock keyboard shortcuts</div>,
     columnSelector: <div>mock column selector</div>,
     columnSorting: <div>mock column sorting</div>,
   };
@@ -33,7 +34,7 @@ describe('EuiDataGridToolbar', () => {
     expect(component).toMatchInlineSnapshot(`
       <div
         className="euiDataGrid__controls"
-        data-test-sub="dataGridControls"
+        data-test-subj="dataGridControls"
       >
         <div
           className="euiDataGrid__leftControls"
@@ -48,6 +49,9 @@ describe('EuiDataGridToolbar', () => {
         <div
           className="euiDataGrid__rightControls"
         >
+          <div>
+            mock keyboard shortcuts
+          </div>
           <div>
             mock style selector
           </div>
@@ -67,14 +71,24 @@ describe('EuiDataGridToolbar', () => {
     expect(component).toMatchInlineSnapshot(`
       <div
         className="euiDataGrid__controls"
-        data-test-sub="dataGridControls"
+        data-test-subj="dataGridControls"
       >
         <div
           className="euiDataGrid__leftControls"
         />
         <div
           className="euiDataGrid__rightControls"
-        />
+        >
+          <EuiScreenReaderOnly
+            showOnFocus={true}
+          >
+            <span>
+              <div>
+                mock keyboard shortcuts
+              </div>
+            </span>
+          </EuiScreenReaderOnly>
+        </div>
       </div>
     `);
   });
@@ -99,7 +113,7 @@ describe('EuiDataGridToolbar', () => {
     expect(component).toMatchInlineSnapshot(`
       <div
         className="euiDataGrid__controls"
-        data-test-sub="dataGridControls"
+        data-test-subj="dataGridControls"
       >
         <div
           className="euiDataGrid__leftControls"
@@ -113,6 +127,9 @@ describe('EuiDataGridToolbar', () => {
         >
           <div>
             world
+          </div>
+          <div>
+            mock keyboard shortcuts
           </div>
         </div>
       </div>
