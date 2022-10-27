@@ -37,7 +37,7 @@ describe('useScroll', () => {
   describe('cell focus', () => {
     it('fully scrolls cells into view (accounting for sticky headers, rows, and scrollbars)', () => {
       cy.realMount(<EuiDataGrid {...baseProps} />);
-      cy.repeatRealPress('Tab', 3);
+      cy.repeatRealPress('Tab', 4);
       cy.realPress('ArrowDown');
 
       cy.realPress('End');
