@@ -62,6 +62,11 @@ export interface EuiConfirmModalProps
    * Passes `isLoading` prop to the confirm button
    */
   isLoading?: boolean;
+  /**
+   * Specifies what element should initially have focus.
+   * Can be a DOM node, or a selector string (which will be passed to document.querySelector() to find the DOM node), or a function that returns a DOM node.
+   */
+  initialFocus?: HTMLElement | (() => HTMLElement) | string;
 }
 
 export const CONFIRM_BUTTON = 'confirm';

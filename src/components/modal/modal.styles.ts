@@ -58,7 +58,7 @@ export const euiModalStyles = (euiThemeContext: UseEuiTheme) => {
     // Variants
     maxWidthDefault: css`
       max-inline-size: min(
-        ${euiTheme.breakpoint.m},
+        ${euiTheme.breakpoint.m}px,
         calc(100vw - ${euiTheme.size.base})
       );
     `,
