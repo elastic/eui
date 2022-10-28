@@ -64,11 +64,6 @@ export const EuiButtonDisplayContent: FunctionComponent<
   const styles = euiButtonDisplayContentStyles(theme);
 
   const cssStyles = [styles.euiButtonDisplayContent];
-  const cssSpinnerStyles = [styles.euiButtonDisplayContent__spinner];
-  const cssIconStyles = [
-    styles.euiButtonDisplayContent__icon,
-    iconSize && styles[iconSize],
-  ];
 
   // Add an icon to the button if one exists.
   let icon;
@@ -85,17 +80,10 @@ export const EuiButtonDisplayContent: FunctionComponent<
     : undefined;
 
   if (isLoading) {
-    icon = (
-      <EuiLoadingSpinner
-        css={cssSpinnerStyles}
-        size={iconSize}
-        color={loadingSpinnerColor}
-      />
-    );
+    icon = <EuiLoadingSpinner size={iconSize} color={loadingSpinnerColor} />;
   } else if (iconType) {
     icon = (
       <EuiIcon
-        css={cssIconStyles}
         type={iconType}
         size={iconSize}
         color="inherit" // forces the icon to inherit its parent color
