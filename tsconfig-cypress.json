@@ -2,6 +2,7 @@
   "extends": "./tsconfig.json",
   "include": [
     "./src/**/*.spec.tsx",
+    "./src/**/*.a11y.tsx",
   ],
   "compilerOptions": {
     "types": ["cypress", "cypress-real-events", "cypress-axe"]
