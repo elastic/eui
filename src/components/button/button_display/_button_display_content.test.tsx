@@ -65,6 +65,16 @@ describe('EuiButtonDisplayContent', () => {
         expect(container.firstChild).toMatchSnapshot();
         expect(container.querySelector('.euiLoadingSpinner')).toBeTruthy();
       });
+
+      it('renders disabled & loading spinners with custom border color', () => {
+        const { container } = render(
+          <EuiButtonDisplayContent isLoading isDisabled>
+            Loading
+          </EuiButtonDisplayContent>
+        );
+
+        expect(container.firstChild).toMatchSnapshot();
+      });
     });
   });
 

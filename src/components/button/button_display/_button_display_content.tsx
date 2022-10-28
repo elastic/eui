@@ -9,7 +9,7 @@
 import React, { HTMLAttributes, FunctionComponent, Ref } from 'react';
 import { useEuiTheme } from '../../../services';
 import { CommonProps } from '../../common';
-import { EuiLoadingSpinner, EuiLoadingSpinnerProps } from '../../loading';
+import { EuiLoadingSpinner } from '../../loading';
 import { EuiIcon, IconType } from '../../icon';
 import { euiButtonDisplayContentStyles } from './_button_display_content.styles';
 import classNames from 'classnames';
@@ -74,9 +74,7 @@ export const EuiButtonDisplayContent: FunctionComponent<
   // to have the same color of the text. This way we ensure the borders
   // are always visible. The default spinner color could be very light.
   const loadingSpinnerColor = isDisabled
-    ? ({
-        border: 'currentColor',
-      } as EuiLoadingSpinnerProps['color'])
+    ? { border: 'currentcolor' }
     : undefined;
 
   if (isLoading) {

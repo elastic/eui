@@ -1,5 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiButtonDisplayContent button icon loading icon renders disabled & loading spinners with custom border color 1`] = `
+<span
+  class="emotion-euiButtonDisplayContent"
+>
+  <span
+    aria-label="Loading"
+    class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
+    role="progressbar"
+    style="border-color: #07c currentcolor currentcolor currentcolor;"
+  />
+  <span
+    class="eui-textTruncate"
+  >
+    Loading
+  </span>
+</span>
+`;
+
 exports[`EuiButtonDisplayContent button icon loading icon replaces existing icons 1`] = `
 <span
   class="emotion-euiButtonDisplayContent"
