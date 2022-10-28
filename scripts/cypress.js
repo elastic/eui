@@ -20,7 +20,7 @@ const argv = yargs(hideBin(process.argv))
     'skip-css': { type: 'boolean' },
     dev: { type: 'boolean' },
     theme: { type: 'string', default: 'light', choices: ['light', 'dark'] },
-    a11y: { type: 'string', default: 'cypress.a11y.config.ts' },
+    a11y: { type: 'boolean' },
   }).argv;
 
 const isDev = argv.hasOwnProperty('dev');
@@ -43,17 +43,17 @@ if (!skipScss) {
 
 // compile dev and a11y options for how to run tests (headless, local UI)
 // and whether to run component tests or axe checks.
-let isLocalTest = isDev
+const testEnvironment = isDev
   ? 'open --component'
   : 'run --component --browser chrome';
-let isA11yTest = isA11y ? '--config-file cypress.a11y.config.ts' : '';
+const configFile = isA11y ? '--config-file cypress.a11y.config.ts' : '';
 
 const cypressCommandParts = [
   'cross-env', // windows support
   `THEME=${theme}`, // pass the theme
   'BABEL_MODULES=false', // let webpack receive ES Module code
   'NODE_ENV=cypress_test', // enable code coverage checks
-  `cypress ${isLocalTest} ${isA11yTest}`,
+  `cypress ${testEnvironment} ${configFile}`,
   ...argv._, // pass any extra options given to this script
 ];
 const cypressCommand = cypressCommandParts.join(' ');
