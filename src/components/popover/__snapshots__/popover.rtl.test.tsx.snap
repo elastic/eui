@@ -61,7 +61,7 @@ exports[`EuiPopover snapshot testing renders with popover contents 1`] = `
         tabindex="0"
       >
         <div
-          class="emotion-euiPopoverArrow-bottom"
+          class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
           data-popover-arrow="bottom"
           style="left: 10px; top: 0px;"
         />

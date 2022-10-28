@@ -12,6 +12,7 @@ import {
   euiShadowFlat,
   euiShadowMedium,
 } from '../../../themes/amsterdam/global_styling/mixins';
+import { getShadowColor } from '../../../themes/amsterdam/global_styling/functions';
 import { UseEuiTheme } from '../../../services';
 import { euiCanAnimate, logicalCSS } from '../../../global_styling';
 
@@ -25,7 +26,7 @@ const translateDistance = 's';
  */
 
 export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, colorMode } = euiThemeContext;
 
   return {
     // Base
@@ -90,6 +91,50 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
       // Satisfies TS
       left: css``,
       right: css``,
+    },
+
+    // Overrides for drag & drop contexts within popovers. This is required because
+    // the fixed positions of drag and drop don't work inside of transformed elements
+    hasDragDrop: {
+      hasDragDrop: css`
+        transform: none;
+        // Filter also causes a stacking context that interferes with the positioned children,
+        // so we disable it and recreate the shadow via box-shadow instead
+        filter: none;
+        ${euiShadowMedium(euiThemeContext, { property: 'box-shadow' })};
+      `,
+      // The offset transforms must be recreated in margins
+      top: css`
+        margin-block-start: ${euiTheme.size[translateDistance]};
+        // Existing box-shadow of the popover is sufficient to see the arrow
+      `,
+      bottom: css`
+        margin-block-start: -${euiTheme.size[translateDistance]};
+
+        .euiPopover__arrow {
+          filter: drop-shadow(
+            0 -6px 6px ${getShadowColor(euiTheme.colors.shadow, 0.12, colorMode)}
+          );
+        }
+      `,
+      left: css`
+        margin-inline-start: ${euiTheme.size[translateDistance]};
+
+        .euiPopover__arrow {
+          filter: drop-shadow(
+            6px 0 6px ${getShadowColor(euiTheme.colors.shadow, 0.12, colorMode)}
+          );
+        }
+      `,
+      right: css`
+        margin-inline-start: -${euiTheme.size[translateDistance]};
+
+        .euiPopover__arrow {
+          filter: drop-shadow(
+            -6px 0 6px ${getShadowColor(euiTheme.colors.shadow, 0.12, colorMode)}
+          );
+        }
+      `,
     },
   };
 };
