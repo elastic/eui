@@ -25,4 +25,14 @@ describe('EuiButtonDisplay', () => {
 
     expect(container.firstChild).toMatchSnapshot();
   });
+
+  describe('props', () => {
+    test('minWidth', () => {
+      const { container } = render(<EuiButtonDisplay minWidth={0} />);
+
+      expect(container.innerHTML).toEqual(
+        expect.stringContaining('style="min-inline-size: 0;"')
+      );
+    });
+  });
 });

@@ -193,7 +193,7 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
       element,
       {
         css: cssStyles,
-        style: minWidth ? { ...style, minWidth } : style,
+        style: minWidth != null ? { ...style, minInlineSize: minWidth } : style,
         ref,
         ...elementProps,
         ...relObj,
