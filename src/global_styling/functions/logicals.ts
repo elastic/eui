@@ -94,8 +94,8 @@ export const logicalSizeCSS = (width: any, height: any) => {
  */
 export const logicalSizeStyle = (width: any, height: any) => {
   return {
-    [logicals.width]: width,
-    [logicals.height]: height,
+    ...logicalStyle('width', width),
+    ...logicalStyle('height', height),
   };
 };
 

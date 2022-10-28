@@ -36,6 +36,12 @@ describe('EuiPopoverPanel', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('hasDragDrop is rendered', () => {
+      const component = render(<EuiPopoverPanel hasDragDrop />);
+
+      expect(component).toMatchSnapshot();
+    });
+
     describe('position', () => {
       POSITIONS.forEach((position) => {
         test(`${position} is rendered`, () => {

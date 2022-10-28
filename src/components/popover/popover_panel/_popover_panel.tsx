@@ -28,6 +28,7 @@ type EuiPopoverPanelInternalProps = {
   isOpen?: boolean;
   isAttached?: boolean;
   position?: EuiPopoverArrowPositions | null;
+  hasDragDrop?: boolean;
 };
 
 /**
@@ -36,7 +37,15 @@ type EuiPopoverPanelInternalProps = {
  */
 export const EuiPopoverPanel: FunctionComponent<
   EuiPopoverPanelProps & EuiPopoverPanelInternalProps
-> = ({ children, className, isOpen, isAttached, position, ...rest }) => {
+> = ({
+  children,
+  className,
+  isOpen,
+  isAttached,
+  hasDragDrop,
+  position,
+  ...rest
+}) => {
   const panelContext = useContext(EuiPopoverPanelContext);
   if (rest.paddingSize) panelContext.paddingSize = rest.paddingSize;
 
@@ -56,6 +65,14 @@ export const EuiPopoverPanel: FunctionComponent<
       ...panelCSS,
       isOpen && styles.attached.isOpen,
       position && styles.attached[position],
+    ];
+  }
+
+  if (hasDragDrop) {
+    panelCSS = [
+      ...panelCSS,
+      styles.hasDragDrop.hasDragDrop,
+      position && styles.hasDragDrop[position],
     ];
   }
 

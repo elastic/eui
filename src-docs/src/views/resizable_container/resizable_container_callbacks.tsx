@@ -6,16 +6,15 @@ import {
   EuiFlexItem,
   EuiStat,
   EuiPanel,
-} from '../../../../src/components';
-// @ts-ignore - faker does not have type declarations
-import { fake } from 'faker';
-import { useGeneratedHtmlId } from '../../../../src/services';
+  useGeneratedHtmlId,
+} from '../../../../src';
+import { faker } from '@faker-js/faker';
 
 const text = (
   <>
-    <p>{fake('{{lorem.paragraphs}}')}</p>
-    <p>{fake('{{lorem.paragraphs}}')}</p>
-    <p>{fake('{{lorem.paragraphs}}')}</p>
+    <p>{faker.lorem.paragraphs()}</p>
+    <p>{faker.lorem.paragraphs()}</p>
+    <p>{faker.lorem.paragraphs()}</p>
   </>
 );
 

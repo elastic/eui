@@ -1,3 +1,24 @@
+## [`70.0.0`](https://github.com/elastic/eui/tree/v70.0.0)
+
+- Added the `enabled` option to the `<EuiInMemoryTable />` `executeQueryOptions` prop. This option prevents the Query from being executed when controlled by the consumer. ([#6284](https://github.com/elastic/eui/pull/6284))
+
+**Bug fixes**
+
+- Fixed `EuiOverlayMask` to set a `[data-relative-to-header=above|below]` attribute to replace the `--aboveHeader` and `--belowHeader` classNames removed in its Emotion conversion ([#6289](https://github.com/elastic/eui/pull/6289))
+- Fixed `EuiHeader` CSS using removed `EuiOverlayMask` class modifiers ([#6293](https://github.com/elastic/eui/pull/6293))
+- Fixed `EuiToolTip` not respecting reduced motion preferences ([#6295](https://github.com/elastic/eui/pull/6295))
+- Fixed a bug with `EuiTour` where passing any `panelProps` would cause the beacon to disappear ([#6298](https://github.com/elastic/eui/pull/6298))
+
+**Breaking changes**
+
+- `@emotion/css` is now a required peer dependency, alongside `@emotion/react` ([#6288](https://github.com/elastic/eui/pull/6288))
+- `@emotion/cache` is no longer required peer dependency, although your project must still use it if setting custom cache/injection locations ([#6288](https://github.com/elastic/eui/pull/6288))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiCode` and `EuiCodeBlock` to Emotion; Removed `euiCodeSyntaxTokens` Sass mixin and `$euiCodeBlockPaddingModifiers`; ([#6263](https://github.com/elastic/eui/pull/6263))
+- Converted `EuiResizableContainer` and `EuiResizablePanel` to Emotion ([#6287](https://github.com/elastic/eui/pull/6287))
+
 ## [`69.0.0`](https://github.com/elastic/eui/tree/v69.0.0)
 
 - Added support for `fullWidth` prop on EuiForm, which will be the default for all rows/controls within ([#6229](https://github.com/elastic/eui/pull/6229))

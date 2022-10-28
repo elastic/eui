@@ -1,15 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiResizablePanel renders 1`] = `
+exports[`EuiResizablePanel props wrapperPadding 1`] = `
 <div>
   <div
-    class="euiResizablePanel euiResizablePanel--middle"
+    class="euiResizablePanel emotion-euiResizablePanel-l"
+    data-position="middle"
     id="resizable-panel_generated-id"
-    style="width: 100%; height: 0%;"
+    style="inline-size: 100%; block-size: 0%;"
   >
     <div
       aria-label="aria-label"
-      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content euiResizablePanel__content--scrollable testClass1 testClass2 emotion-euiPanel-grow-none-m-transparent"
+      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content testClass1 testClass2 emotion-euiPanel-grow-none-m-transparent-euiResizablePanel__content-scrollable"
+      data-test-subj="test subject string"
+    >
+      Content
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiResizablePanel renders 1`] = `
+<div>
+  <div
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
+    id="resizable-panel_generated-id"
+    style="inline-size: 100%; block-size: 0%;"
+  >
+    <div
+      aria-label="aria-label"
+      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content testClass1 testClass2 emotion-euiPanel-grow-none-m-transparent-euiResizablePanel__content-scrollable"
       data-test-subj="test subject string"
     >
       Content

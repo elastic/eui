@@ -54,7 +54,6 @@ export const euiButtonDisplayStyles = (euiThemeContext: UseEuiTheme) => {
 
     // States
     isDisabled: css`
-      pointer-events: none;
       cursor: not-allowed;
     `,
     fullWidth: css`

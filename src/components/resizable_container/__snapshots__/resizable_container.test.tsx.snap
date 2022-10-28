@@ -3,16 +3,17 @@
 exports[`EuiResizableContainer can adjust panel props 1`] = `
 <div
   aria-label="aria-label"
-  class="euiResizableContainer euiResizableContainer--horizontal testClass1 testClass2"
+  class="euiResizableContainer testClass1 testClass2 emotion-euiResizableContainer-horizontal"
   data-test-subj="test subject string"
 >
   <div
-    class="euiResizablePanel euiResizablePanel--middle"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
-    style="width:50%;height:auto"
+    style="inline-size:50%;block-size:auto"
   >
     <div
-      class="euiPanel euiPanel--transparent euiResizablePanel__content euiResizablePanel__content--scrollable emotion-euiPanel-grow-none-transparent"
+      class="euiPanel euiPanel--transparent euiResizablePanel__content emotion-euiPanel-grow-none-transparent-euiResizablePanel__content-scrollable"
     >
       Testing
     </div>
@@ -25,12 +26,13 @@ exports[`EuiResizableContainer can adjust panel props 1`] = `
     type="button"
   />
   <div
-    class="euiResizablePanel euiResizablePanel--middle"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
-    style="width:50%;height:auto"
+    style="inline-size:50%;block-size:auto"
   >
     <div
-      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiResizablePanel__content euiResizablePanel__content--scrollable emotion-euiPanel-grow-none-m-plain"
+      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiResizablePanel__content emotion-euiPanel-grow-none-m-plain-euiResizablePanel__content-scrollable"
     >
       123
     </div>
@@ -41,16 +43,17 @@ exports[`EuiResizableContainer can adjust panel props 1`] = `
 exports[`EuiResizableContainer can be controlled externally 1`] = `
 <div
   aria-label="aria-label"
-  class="euiResizableContainer euiResizableContainer--horizontal testClass1 testClass2"
+  class="euiResizableContainer testClass1 testClass2 emotion-euiResizableContainer-horizontal"
   data-test-subj="test subject string"
 >
   <div
-    class="euiResizablePanel euiResizablePanel--middle"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
-    style="width:50%;height:auto"
+    style="inline-size:50%;block-size:auto"
   >
     <div
-      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content euiResizablePanel__content--scrollable emotion-euiPanel-grow-none-m-transparent"
+      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content emotion-euiPanel-grow-none-m-transparent-euiResizablePanel__content-scrollable"
     >
       Testing
     </div>
@@ -63,12 +66,13 @@ exports[`EuiResizableContainer can be controlled externally 1`] = `
     type="button"
   />
   <div
-    class="euiResizablePanel euiResizablePanel--middle"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
-    style="width:50%;height:auto"
+    style="inline-size:50%;block-size:auto"
   >
     <div
-      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content euiResizablePanel__content--scrollable emotion-euiPanel-grow-none-m-transparent"
+      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content emotion-euiPanel-grow-none-m-transparent-euiResizablePanel__content-scrollable"
     >
       123
     </div>
@@ -79,16 +83,17 @@ exports[`EuiResizableContainer can be controlled externally 1`] = `
 exports[`EuiResizableContainer can be vertical 1`] = `
 <div
   aria-label="aria-label"
-  class="euiResizableContainer euiResizableContainer--vertical testClass1 testClass2"
+  class="euiResizableContainer testClass1 testClass2 emotion-euiResizableContainer-vertical"
   data-test-subj="test subject string"
 >
   <div
-    class="euiResizablePanel euiResizablePanel--middle"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
-    style="width:100%;height:50%"
+    style="inline-size:100%;block-size:50%"
   >
     <div
-      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content euiResizablePanel__content--scrollable emotion-euiPanel-grow-none-m-transparent"
+      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content emotion-euiPanel-grow-none-m-transparent-euiResizablePanel__content-scrollable"
     >
       Testing
     </div>
@@ -101,12 +106,13 @@ exports[`EuiResizableContainer can be vertical 1`] = `
     type="button"
   />
   <div
-    class="euiResizablePanel euiResizablePanel--middle"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
-    style="width:100%;height:50%"
+    style="inline-size:100%;block-size:50%"
   >
     <div
-      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content euiResizablePanel__content--scrollable emotion-euiPanel-grow-none-m-transparent"
+      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content emotion-euiPanel-grow-none-m-transparent-euiResizablePanel__content-scrollable"
     >
       123
     </div>
@@ -117,16 +123,17 @@ exports[`EuiResizableContainer can be vertical 1`] = `
 exports[`EuiResizableContainer can have more than two panels 1`] = `
 <div
   aria-label="aria-label"
-  class="euiResizableContainer euiResizableContainer--horizontal testClass1 testClass2"
+  class="euiResizableContainer testClass1 testClass2 emotion-euiResizableContainer-horizontal"
   data-test-subj="test subject string"
 >
   <div
-    class="euiResizablePanel euiResizablePanel--middle"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
-    style="width:33%;height:auto"
+    style="inline-size:33%;block-size:auto"
   >
     <div
-      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content euiResizablePanel__content--scrollable emotion-euiPanel-grow-none-m-transparent"
+      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content emotion-euiPanel-grow-none-m-transparent-euiResizablePanel__content-scrollable"
     >
       Testing
     </div>
@@ -139,12 +146,13 @@ exports[`EuiResizableContainer can have more than two panels 1`] = `
     type="button"
   />
   <div
-    class="euiResizablePanel euiResizablePanel--middle"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
-    style="width:33%;height:auto"
+    style="inline-size:33%;block-size:auto"
   >
     <div
-      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content euiResizablePanel__content--scrollable emotion-euiPanel-grow-none-m-transparent"
+      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content emotion-euiPanel-grow-none-m-transparent-euiResizablePanel__content-scrollable"
     >
       123
     </div>
@@ -157,12 +165,13 @@ exports[`EuiResizableContainer can have more than two panels 1`] = `
     type="button"
   />
   <div
-    class="euiResizablePanel euiResizablePanel--middle"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
-    style="width:33%;height:auto"
+    style="inline-size:33%;block-size:auto"
   >
     <div
-      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content euiResizablePanel__content--scrollable emotion-euiPanel-grow-none-m-transparent"
+      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content emotion-euiPanel-grow-none-m-transparent-euiResizablePanel__content-scrollable"
     >
       And again
     </div>
@@ -173,16 +182,17 @@ exports[`EuiResizableContainer can have more than two panels 1`] = `
 exports[`EuiResizableContainer can have scrollable panels 1`] = `
 <div
   aria-label="aria-label"
-  class="euiResizableContainer euiResizableContainer--horizontal testClass1 testClass2"
+  class="euiResizableContainer testClass1 testClass2 emotion-euiResizableContainer-horizontal"
   data-test-subj="test subject string"
 >
   <div
-    class="euiResizablePanel euiResizablePanel--middle"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
-    style="width:50%;height:auto"
+    style="inline-size:50%;block-size:auto"
   >
     <div
-      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content euiResizablePanel__content--scrollable emotion-euiPanel-grow-none-m-transparent"
+      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content emotion-euiPanel-grow-none-m-transparent-euiResizablePanel__content-scrollable"
     >
       Testing
     </div>
@@ -195,12 +205,13 @@ exports[`EuiResizableContainer can have scrollable panels 1`] = `
     type="button"
   />
   <div
-    class="euiResizablePanel euiResizablePanel--middle"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
-    style="width:50%;height:auto"
+    style="inline-size:50%;block-size:auto"
   >
     <div
-      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content euiResizablePanel__content--scrollable emotion-euiPanel-grow-none-m-transparent"
+      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content emotion-euiPanel-grow-none-m-transparent-euiResizablePanel__content-scrollable"
     >
       123
     </div>
@@ -211,16 +222,17 @@ exports[`EuiResizableContainer can have scrollable panels 1`] = `
 exports[`EuiResizableContainer can have toggleable panels 1`] = `
 <div
   aria-label="aria-label"
-  class="euiResizableContainer euiResizableContainer--horizontal testClass1 testClass2"
+  class="euiResizableContainer testClass1 testClass2 emotion-euiResizableContainer-horizontal"
   data-test-subj="test subject string"
 >
   <div
-    class="euiResizablePanel euiResizablePanel--collapsible euiResizablePanel--middle"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
-    style="width:20%;height:auto"
+    style="inline-size:20%;block-size:auto"
   >
     <div
-      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content euiResizablePanel__content--scrollable emotion-euiPanel-grow-none-m-transparent"
+      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content emotion-euiPanel-grow-none-m-transparent-euiResizablePanel__content-scrollable-hasCollapsibleButton"
     >
       Sidebar
     </div>
@@ -233,12 +245,13 @@ exports[`EuiResizableContainer can have toggleable panels 1`] = `
     type="button"
   />
   <div
-    class="euiResizablePanel euiResizablePanel--middle"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
-    style="width:80%;height:auto"
+    style="inline-size:80%;block-size:auto"
   >
     <div
-      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content euiResizablePanel__content--scrollable emotion-euiPanel-grow-none-m-transparent"
+      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content emotion-euiPanel-grow-none-m-transparent-euiResizablePanel__content-scrollable"
     >
       Sidebar content
     </div>
@@ -249,16 +262,17 @@ exports[`EuiResizableContainer can have toggleable panels 1`] = `
 exports[`EuiResizableContainer is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiResizableContainer euiResizableContainer--horizontal testClass1 testClass2"
+  class="euiResizableContainer testClass1 testClass2 emotion-euiResizableContainer-horizontal"
   data-test-subj="test subject string"
 >
   <div
-    class="euiResizablePanel euiResizablePanel--middle"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
-    style="width:50%;height:auto"
+    style="inline-size:50%;block-size:auto"
   >
     <div
-      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content euiResizablePanel__content--scrollable emotion-euiPanel-grow-none-m-transparent"
+      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content emotion-euiPanel-grow-none-m-transparent-euiResizablePanel__content-scrollable"
     >
       Testing
     </div>
@@ -271,12 +285,13 @@ exports[`EuiResizableContainer is rendered 1`] = `
     type="button"
   />
   <div
-    class="euiResizablePanel euiResizablePanel--middle"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
-    style="width:50%;height:auto"
+    style="inline-size:50%;block-size:auto"
   >
     <div
-      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content euiResizablePanel__content--scrollable emotion-euiPanel-grow-none-m-transparent"
+      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content emotion-euiPanel-grow-none-m-transparent-euiResizablePanel__content-scrollable"
     >
       123
     </div>
@@ -287,16 +302,17 @@ exports[`EuiResizableContainer is rendered 1`] = `
 exports[`EuiResizableContainer toggleable panels can be configurable 1`] = `
 <div
   aria-label="aria-label"
-  class="euiResizableContainer euiResizableContainer--horizontal testClass1 testClass2"
+  class="euiResizableContainer testClass1 testClass2 emotion-euiResizableContainer-horizontal"
   data-test-subj="test subject string"
 >
   <div
-    class="euiResizablePanel euiResizablePanel--collapsible euiResizablePanel--middle"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
-    style="width:20%;height:auto"
+    style="inline-size:20%;block-size:auto"
   >
     <div
-      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content euiResizablePanel__content--scrollable emotion-euiPanel-grow-none-m-transparent"
+      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content emotion-euiPanel-grow-none-m-transparent-euiResizablePanel__content-scrollable-hasCollapsibleButton"
     >
       Sidebar
     </div>
@@ -309,12 +325,13 @@ exports[`EuiResizableContainer toggleable panels can be configurable 1`] = `
     type="button"
   />
   <div
-    class="euiResizablePanel euiResizablePanel--middle"
+    class="euiResizablePanel emotion-euiResizablePanel"
+    data-position="middle"
     id="resizable-panel_generated-id"
-    style="width:80%;height:auto"
+    style="inline-size:80%;block-size:auto"
   >
     <div
-      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content euiResizablePanel__content--scrollable emotion-euiPanel-grow-none-m-transparent"
+      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content emotion-euiPanel-grow-none-m-transparent-euiResizablePanel__content-scrollable"
     >
       Sidebar content
     </div>

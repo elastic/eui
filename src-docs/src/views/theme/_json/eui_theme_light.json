@@ -1,9 +1,4 @@
 {
-  "euiCodeBlockPaddingModifiers": {
-    "paddingSmall": "8px",
-    "paddingMedium": "16px",
-    "paddingLarge": "24px"
-  },
   "euiCollapsibleNavGroupLightBackgroundColor": "#fafbfd",
   "euiCollapsibleNavGroupDarkBackgroundColor": "#2a2c34",
   "euiCollapsibleNavGroupDarkHighContrastColor": "#0d7ecf",
@@ -166,28 +161,6 @@
     "ghost": "#ffffff",
     "text": "#69707d"
   },
-  "euiCodeBlockBackgroundColor": "#f5f7fa",
-  "euiCodeBlockColor": "#343741",
-  "euiCodeBlockSelectedBackgroundColor": "inherit",
-  "euiCodeBlockCommentColor": "#69707d",
-  "euiCodeBlockSelectorTagColor": "inherit",
-  "euiCodeBlockStringColor": "#ac4e6d",
-  "euiCodeBlockTagColor": "#4a7194",
-  "euiCodeBlockNameColor": "#4a7194",
-  "euiCodeBlockNumberColor": "#3b7d6a",
-  "euiCodeBlockKeywordColor": "#7c609e",
-  "euiCodeBlockFunctionTitleColor": "inherit",
-  "euiCodeBlockTypeColor": "#4a7194",
-  "euiCodeBlockAttributeColor": "inherit",
-  "euiCodeBlockSymbolColor": "#b34f3b",
-  "euiCodeBlockParamsColor": "inherit",
-  "euiCodeBlockMetaColor": "#69707d",
-  "euiCodeBlockTitleColor": "#996130",
-  "euiCodeBlockSectionColor": "#b34f3b",
-  "euiCodeBlockAdditionColor": "#3b7d6a",
-  "euiCodeBlockDeletionColor": "#bd271e",
-  "euiCodeBlockSelectorClassColor": "inherit",
-  "euiCodeBlockSelectorIdColor": "inherit",
   "euiPaletteColorBlind": {
     "euiColorVis0": {
       "graphic": "#54b399",

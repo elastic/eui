@@ -1,6 +1,5 @@
 import React, { useCallback, useMemo, useState, useRef } from 'react';
-// @ts-ignore - faker does not have type declarations
-import { fake } from 'faker';
+import { faker } from '@faker-js/faker';
 
 import {
   EuiFlexGroup,
@@ -22,11 +21,11 @@ import {
 const raw_data: Array<{ [key: string]: string }> = [];
 for (let i = 1; i < 100; i++) {
   raw_data.push({
-    name: fake('{{name.lastName}}, {{name.firstName}}'),
-    email: fake('{{internet.email}}'),
-    location: fake('{{address.city}}, {{address.country}}'),
-    account: fake('{{finance.account}}'),
-    date: fake('{{date.past}}'),
+    name: `${faker.name.lastName()}, ${faker.name.firstName()}`,
+    email: faker.internet.email(),
+    location: `${faker.address.city()}, ${faker.address.country()}`,
+    account: faker.finance.account(),
+    date: `${faker.date.past()}`,
   });
 }
 

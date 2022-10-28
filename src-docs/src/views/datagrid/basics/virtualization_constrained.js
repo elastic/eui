@@ -7,7 +7,7 @@ import React, {
   useMemo,
   useEffect,
 } from 'react';
-import { fake } from 'faker';
+import { faker } from '@faker-js/faker';
 
 import {
   EuiDataGrid,
@@ -64,25 +64,23 @@ function RenderCellValue({ rowIndex, columnId }) {
   }, [adjustMountedCellCount]);
 
   if (data[rowIndex] == null) {
-    const email = fake('{{internet.email}}');
-    const name = fake('{{name.lastName}}, {{name.firstName}}');
-    const suffix = fake('{{name.suffix}}');
+    const email = faker.internet.email();
+    const name = `${faker.name.lastName()}, ${faker.name.firstName()}`;
+    const suffix = faker.name.suffix();
     data[rowIndex] = {
       name: `${name} ${suffix}`,
       email: <EuiLink href="">{email}</EuiLink>,
       location: (
         <Fragment>
-          {`${fake('{{address.city}}')}, `}
-          <EuiLink href="https://google.com">
-            {fake('{{address.country}}')}
-          </EuiLink>
+          {`${faker.address.city()}, `}
+          <EuiLink href="https://google.com">{faker.address.country()}</EuiLink>
         </Fragment>
       ),
-      date: fake('{{date.past}}'),
-      account: fake('{{finance.account}}'),
-      amount: fake('${{commerce.price}}'),
-      phone: fake('{{phone.phoneNumber}}'),
-      version: fake('{{system.semver}}'),
+      date: `${faker.date.past()}`,
+      account: faker.finance.account(),
+      amount: faker.commerce.price(),
+      phone: faker.phone.number(),
+      version: faker.system.semver(),
     };
   }
 

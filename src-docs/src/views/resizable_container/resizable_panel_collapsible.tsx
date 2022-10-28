@@ -9,36 +9,30 @@ import {
   EuiSpacer,
   EuiPage,
 } from '../../../../src/components';
-import { fake } from 'faker';
-
-const texts = [];
-
-for (let i = 0; i < 4; i++) {
-  texts.push(<p>{fake('{{lorem.paragraph}}')}</p>);
-}
+import { faker } from '@faker-js/faker';
 
 export default () => {
   const items = [
     {
       id: 1,
       label: 'First item',
-      text: texts[0],
+      text: <p>{faker.lorem.paragraphs()}</p>,
       active: true,
     },
     {
       id: 2,
       label: 'Second item',
-      text: texts[1],
+      text: <p>{faker.lorem.paragraphs()}</p>,
     },
     {
       id: 3,
       label: 'Third item',
-      text: texts[2],
+      text: <p>{faker.lorem.paragraphs()}</p>,
     },
     {
       id: 4,
       label: 'Forth item',
-      text: texts[3],
+      text: <p>{faker.lorem.paragraphs()}</p>,
     },
   ];
 

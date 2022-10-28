@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from 'react';
-
 import {
   EuiFlexGroup,
   EuiFlexItem,
@@ -7,16 +6,15 @@ import {
   EuiResizableContainer,
   EuiButton,
   EuiSpacer,
-} from '../../../../src/components';
-import { fake } from 'faker';
-
-import { htmlIdGenerator } from '../../../../src/services';
+  htmlIdGenerator,
+} from '../../../../src';
+import { faker } from '@faker-js/faker';
 
 const text = (
   <>
-    <p>{fake('{{lorem.paragraphs}}')}</p>
-    <p>{fake('{{lorem.paragraphs}}')}</p>
-    <p>{fake('{{lorem.paragraphs}}')}</p>
+    <p>{faker.lorem.paragraphs()}</p>
+    <p>{faker.lorem.paragraphs()}</p>
+    <p>{faker.lorem.paragraphs()}</p>
   </>
 );
 
@@ -33,7 +31,7 @@ export default () => {
   const [savedSizes, setSavedSizes] = useState(storedSizes);
   const [sizes, setSizes] = useState(defaultSizes);
   const onPanelWidthChange = useCallback((newSizes) => {
-    setSizes((prevSizes) => ({
+    setSizes((prevSizes: Record<string, number>) => ({
       ...prevSizes,
       ...newSizes,
     }));
