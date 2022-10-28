@@ -43,17 +43,18 @@ if (!skipScss) {
 
 // compile dev and a11y options for how to run tests (headless, local UI)
 // and whether to run component tests or axe checks.
-const testEnvironment = isDev
+const testParams = isDev
   ? 'open --component'
-  : 'run --component --browser chrome';
-const configFile = isA11y ? '--config-file cypress.a11y.config.ts' : '';
+  : `run --component --browser chrome ${
+      isA11y ? '--spec="./src/**/*.a11y.tsx"' : '--spec="./src/**/*.spec.tsx"'
+    }`;
 
 const cypressCommandParts = [
   'cross-env', // windows support
   `THEME=${theme}`, // pass the theme
   'BABEL_MODULES=false', // let webpack receive ES Module code
   'NODE_ENV=cypress_test', // enable code coverage checks
-  `cypress ${testEnvironment} ${configFile}`,
+  `cypress ${testParams}`,
   ...argv._, // pass any extra options given to this script
 ];
 const cypressCommand = cypressCommandParts.join(' ');

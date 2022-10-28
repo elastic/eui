@@ -30,7 +30,7 @@ export default defineConfig({
 
       return config;
     },
-    specPattern: './src/**/*.spec.tsx',
+    specPattern: ['./src/**/*.spec.tsx', './src/**/*.a11y.tsx'],
     video: false,
   },
 });
