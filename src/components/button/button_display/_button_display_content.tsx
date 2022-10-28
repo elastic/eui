@@ -63,10 +63,7 @@ export const EuiButtonDisplayContent: FunctionComponent<
   const theme = useEuiTheme();
   const styles = euiButtonDisplayContentStyles(theme);
 
-  const cssStyles = [
-    styles.euiButtonDisplayContent,
-    iconSide && styles[iconSide],
-  ];
+  const cssStyles = [styles.euiButtonDisplayContent];
   const cssSpinnerStyles = [styles.euiButtonDisplayContent__spinner];
   const cssIconStyles = [
     styles.euiButtonDisplayContent__icon,
@@ -110,7 +107,7 @@ export const EuiButtonDisplayContent: FunctionComponent<
 
   return (
     <span css={cssStyles} {...contentProps}>
-      {icon}
+      {iconSide === 'left' && icon}
       {isText || textProps ? (
         <span
           {...textProps}
@@ -121,6 +118,7 @@ export const EuiButtonDisplayContent: FunctionComponent<
       ) : (
         children
       )}
+      {iconSide === 'right' && icon}
     </span>
   );
 };
