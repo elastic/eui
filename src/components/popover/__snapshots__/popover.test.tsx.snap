@@ -116,7 +116,7 @@ exports[`EuiPopover props arrowChildren is rendered 1`] = `
         tabindex="0"
       >
         <div
-          class="emotion-euiPopoverArrow-bottom"
+          class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
           data-popover-arrow="bottom"
           style="left: 10px; top: 0px;"
         >
@@ -177,7 +177,7 @@ exports[`EuiPopover props buffer 1`] = `
         tabindex="0"
       >
         <div
-          class="emotion-euiPopoverArrow-bottom"
+          class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
           data-popover-arrow="bottom"
           style="left: 10px; top: 0px;"
         />
@@ -236,7 +236,7 @@ exports[`EuiPopover props buffer for all sides 1`] = `
         tabindex="0"
       >
         <div
-          class="emotion-euiPopoverArrow-bottom"
+          class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
           data-popover-arrow="bottom"
           style="left: 10px; top: 0px;"
         />
@@ -308,7 +308,7 @@ exports[`EuiPopover props focusTrapProps is rendered 1`] = `
         tabindex="0"
       >
         <div
-          class="emotion-euiPopoverArrow-bottom"
+          class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
           data-popover-arrow="bottom"
           style="left: 10px; top: 0px;"
         />
@@ -380,7 +380,7 @@ exports[`EuiPopover props isOpen renders true 1`] = `
         tabindex="0"
       >
         <div
-          class="emotion-euiPopoverArrow-bottom"
+          class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
           data-popover-arrow="bottom"
           style="left: 10px; top: 0px;"
         />
@@ -439,7 +439,7 @@ exports[`EuiPopover props offset with arrow 1`] = `
         tabindex="0"
       >
         <div
-          class="emotion-euiPopoverArrow-bottom"
+          class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
           data-popover-arrow="bottom"
           style="left: 10px; top: 0px;"
         />
@@ -552,7 +552,7 @@ exports[`EuiPopover props ownFocus defaults to true 1`] = `
         tabindex="0"
       >
         <div
-          class="emotion-euiPopoverArrow-bottom"
+          class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
           data-popover-arrow="bottom"
           style="left: 10px; top: 0px;"
         />
@@ -608,7 +608,7 @@ exports[`EuiPopover props ownFocus renders false 1`] = `
         style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
       >
         <div
-          class="emotion-euiPopoverArrow-bottom"
+          class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
           data-popover-arrow="bottom"
           style="left: 10px; top: 0px;"
         />
@@ -661,7 +661,7 @@ exports[`EuiPopover props panelClassName is rendered 1`] = `
         tabindex="0"
       >
         <div
-          class="emotion-euiPopoverArrow-bottom"
+          class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
           data-popover-arrow="bottom"
           style="left: 10px; top: 0px;"
         />
@@ -720,7 +720,7 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
         tabindex="0"
       >
         <div
-          class="emotion-euiPopoverArrow-bottom"
+          class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
           data-popover-arrow="bottom"
           style="left: 10px; top: 0px;"
         />
@@ -780,7 +780,7 @@ exports[`EuiPopover props panelProps is rendered 1`] = `
         tabindex="0"
       >
         <div
-          class="emotion-euiPopoverArrow-bottom"
+          class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
           data-popover-arrow="bottom"
           style="left: 10px; top: 0px;"
         />
@@ -837,7 +837,7 @@ exports[`EuiPopover props popoverScreenReaderText 1`] = `
         style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
       >
         <div
-          class="emotion-euiPopoverArrow-bottom"
+          class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
           data-popover-arrow="bottom"
           style="left: 10px; top: 0px;"
         />
