@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from 'react';
 
-import { EuiRange, EuiSpacer } from '../../../../src/components';
+import { EuiRange, EuiRangeProps, EuiSpacer } from '../../../../src/components';
 
 import { useGeneratedHtmlId } from '../../../../src/services';
 
@@ -15,8 +15,8 @@ export default () => {
     prefix: 'rangeWithValuePrepend',
   });
 
-  const onChange = (e) => {
-    setValue(e.target.value);
+  const onChange: EuiRangeProps['onChange'] = (e) => {
+    setValue(e.currentTarget.value);
   };
 
   return (

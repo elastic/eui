@@ -5,14 +5,17 @@ import {
   EuiSpacer,
   EuiFormHelpText,
   EuiDualRange,
-} from '../../../../src/components';
-
-import { useGeneratedHtmlId } from '../../../../src/services';
+  EuiDualRangeProps,
+  useGeneratedHtmlId,
+} from '../../../../src';
 
 export default () => {
-  const [value, setvalue] = useState('20');
+  const [value, setValue] = useState('20');
   const [customColorsValue, setCustomColorsValue] = useState('15');
-  const [dualValue, setDualValue] = useState([20, 100]);
+  const [dualValue, setDualValue] = useState<EuiDualRangeProps['value']>([
+    20,
+    100,
+  ]);
 
   const levels = [
     {
@@ -82,25 +85,15 @@ export default () => {
     prefix: 'dualRangeWithLevelsHelp',
   });
 
-  const onChange = (e) => {
-    setvalue(e.target.value);
-  };
-
-  const onCustomColorsChange = (e) => {
-    setCustomColorsValue(e.target.value);
-  };
-
-  const onDualChange = (value) => {
-    setDualValue(value);
-  };
-
   return (
     <Fragment>
       <EuiRange
         id={rangeWithLevelsId}
         value={value}
-        onChange={(e) => onChange(e)}
+        onChange={(e) => setValue(e.currentTarget.value)}
         showTicks
+        min={0}
+        max={100}
         tickInterval={20}
         levels={levels}
         aria-label="An example of EuiRange with levels prop"
@@ -115,8 +108,10 @@ export default () => {
       <EuiRange
         id={rangeWithCustomColorsId}
         value={customColorsValue}
-        onChange={(e) => onCustomColorsChange(e)}
+        onChange={(e) => setCustomColorsValue(e.currentTarget.value)}
         showTicks
+        min={0}
+        max={100}
         ticks={customTicks}
         levels={customColorsLevels}
         aria-label="An example of EuiRange with custom colored indicators"
@@ -131,7 +126,7 @@ export default () => {
       <EuiDualRange
         id={dualRangeWithLevelsId}
         value={dualValue}
-        onChange={(value) => onDualChange(value)}
+        onChange={(value) => setDualValue(value)}
         showTicks
         ticks={[
           { label: '20kb', value: 20 },
