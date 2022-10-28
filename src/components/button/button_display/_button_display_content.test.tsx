@@ -29,15 +29,42 @@ describe('EuiButtonDisplayContent', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  describe('props', () => {
-    test('textProps', () => {
-      const { getByTestSubject } = render(
-        <EuiButtonDisplayContent textProps={{ 'data-test-subj': 'testing' }}>
-          Text
+  describe('button icon', () => {
+    it('renders icons on the left side by default', () => {
+      const { container, queryByTestSubject } = render(
+        <EuiButtonDisplayContent iconType="user">
+          <span data-test-subj="content" />
         </EuiButtonDisplayContent>
       );
 
-      expect(getByTestSubject('testing')).toBeTruthy();
+      expect(container.firstChild).toMatchSnapshot();
+      expect(queryByTestSubject('content')?.previousSibling).toBeTruthy();
+      expect(queryByTestSubject('content')?.nextSibling).toBeFalsy();
+    });
+
+    it('renders icons on the right side', () => {
+      const { container, queryByTestSubject } = render(
+        <EuiButtonDisplayContent iconType="user" iconSide="right">
+          <span data-test-subj="content" />
+        </EuiButtonDisplayContent>
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+      expect(queryByTestSubject('content')?.previousSibling).toBeFalsy();
+      expect(queryByTestSubject('content')?.nextSibling).toBeTruthy();
+    });
+
+    describe('loading icon', () => {
+      it('replaces existing icons', () => {
+        const { container } = render(
+          <EuiButtonDisplayContent iconType="user" isLoading>
+            Loading
+          </EuiButtonDisplayContent>
+        );
+
+        expect(container.firstChild).toMatchSnapshot();
+        expect(container.querySelector('.euiLoadingSpinner')).toBeTruthy();
+      });
     });
   });
 

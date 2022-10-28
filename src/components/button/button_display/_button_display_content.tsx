@@ -57,7 +57,7 @@ export const EuiButtonDisplayContent: FunctionComponent<
   isDisabled = false,
   iconType,
   iconSize = 'm',
-  iconSide,
+  iconSide = 'left',
   ...contentProps
 }) => {
   const theme = useEuiTheme();

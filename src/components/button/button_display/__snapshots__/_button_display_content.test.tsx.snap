@@ -1,5 +1,50 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiButtonDisplayContent button icon loading icon replaces existing icons 1`] = `
+<span
+  class="emotion-euiButtonDisplayContent"
+>
+  <span
+    aria-label="Loading"
+    class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
+    role="progressbar"
+  />
+  <span
+    class="eui-textTruncate"
+  >
+    Loading
+  </span>
+</span>
+`;
+
+exports[`EuiButtonDisplayContent button icon renders icons on the left side by default 1`] = `
+<span
+  class="emotion-euiButtonDisplayContent"
+>
+  <span
+    color="inherit"
+    data-euiicon-type="user"
+  />
+  <span
+    data-test-subj="content"
+  />
+</span>
+`;
+
+exports[`EuiButtonDisplayContent button icon renders icons on the right side 1`] = `
+<span
+  class="emotion-euiButtonDisplayContent"
+>
+  <span
+    data-test-subj="content"
+  />
+  <span
+    color="inherit"
+    data-euiicon-type="user"
+  />
+</span>
+`;
+
 exports[`EuiButtonDisplayContent renders 1`] = `
 <span
   aria-label="aria-label"
