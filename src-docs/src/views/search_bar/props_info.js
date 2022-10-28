@@ -36,6 +36,11 @@ export const propsInfo = {
           required: false,
           type: { name: '#SearchFilters[]' },
         },
+        hint: {
+          description: 'Renders a hint below the search bar',
+          required: false,
+          type: { name: '#Hint' },
+        },
       },
     },
   },
@@ -500,6 +505,24 @@ export const propsInfo = {
             'An array of additional queries to add as a `must_not` clause to the generated query',
           required: false,
           type: { name: 'ESQuery[]' },
+        },
+      },
+    },
+  },
+
+  Hint: {
+    __docgenInfo: {
+      _euiObjectType: 'type',
+      props: {
+        content: {
+          description: 'The hint content to render',
+          required: true,
+          type: { name: 'React.ReactNode' },
+        },
+        popOverProps: {
+          description: 'Optional configuration for the hint popover.',
+          required: false,
+          type: { name: 'EuiInputPopoverProps' },
         },
       },
     },
