@@ -111,7 +111,7 @@ export const EuiButtonDisplayContent: FunctionComponent<
   return (
     <span css={cssStyles} {...contentProps}>
       {icon}
-      {isText ? (
+      {isText || textProps ? (
         <span
           {...textProps}
           className={classNames('eui-textTruncate', textProps?.className)}
