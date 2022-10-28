@@ -131,10 +131,8 @@ interface State {
   isHintVisible: boolean;
 }
 
-// `state.query` is never null, but can be passed as `null` to `notifyControllingParent`
-// when `error` is not null.
-type StateWithOptionalQuery = Omit<State, 'query' | 'isHintVisible'> & {
-  query: Query | null;
+type NotifyControllingParent = Pick<State, 'queryText' | 'error'> & {
+  query: Query | null; // `state.query` is never null, but can be passed as `null` when an error is present
 };
 
 export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
@@ -175,7 +173,7 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
     return null;
   }
 
-  notifyControllingParent(newState: StateWithOptionalQuery) {
+  notifyControllingParent(newState: NotifyControllingParent) {
     const { onChange } = this.props;
     if (!onChange) {
       return;

@@ -83,7 +83,7 @@ export class EuiSearchBox extends Component<EuiSearchBoxProps> {
           }}
           panelProps={{
             'aria-live': undefined,
-            'aria-modal': false,
+            'aria-modal': undefined,
             role: undefined,
             tabIndex: -1,
             id: hint.id,
