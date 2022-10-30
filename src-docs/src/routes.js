@@ -524,7 +524,6 @@ const navigation = [
       PopoverExample,
       ResizableContainerExample,
       SpacerExample,
-      SkeletonExample,
     ].map((example) => createExample(example)),
   },
   {
@@ -564,6 +563,7 @@ const navigation = [
       LoadingExample,
       NotificationEventExample,
       ProgressExample,
+      SkeletonExample,
       StatExample,
       TextExample,
       TimelineExample,
