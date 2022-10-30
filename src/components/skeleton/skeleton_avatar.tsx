@@ -12,17 +12,17 @@ import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
 
-import { euiSkeletonStyles } from './skeleton.styles';
+import { euiSkeletonStyles } from './skeleton_avatar.styles';
 
-export const SIZES = ['xs', 's', 'm', 'l', 'xl', 'xxl'] as const;
+export const SIZES = ['s', 'm', 'l', 'xl'] as const;
 export type SkeletonSize = typeof SIZES[number];
 
-export type EuiSkeletonProps = HTMLAttributes<HTMLDivElement> &
+export type EuiSkeletonAvatarProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
     size?: SkeletonSize;
   };
 
-export const EuiSkeleton: FunctionComponent<EuiSkeletonProps> = ({
+export const EuiSkeletonAvatar: FunctionComponent<EuiSkeletonAvatarProps> = ({
   className,
   size = 'l',
   ...rest
@@ -32,13 +32,17 @@ export const EuiSkeleton: FunctionComponent<EuiSkeletonProps> = ({
   const styles = euiSkeletonStyles(euiTheme);
   const classes = classNames(
     'euiSkeleton',
+    // { [`euiSkeleton--${size}`]: size },
     { [`euiSkeleton--${size}`]: size },
     className
   );
 
-  const cssStyles = [styles.euiSkeleton, styles[size]];
+  const cssStyles = [
+    styles.euiSkeleton,
+    styles[size],
+  ];
 
   return (
-    <div className={classes} css={cssStyles} {...rest}>Skeleton</div>
+    <div className={classes} css={cssStyles} {...rest}></div>
   )
 }

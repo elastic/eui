@@ -1,42 +1,28 @@
 import React from 'react';
 
 import {
-  EuiSkeleton,
-  EuiCode,
+  EuiSkeletonAvatar,
   EuiFlexGroup,
   EuiFlexItem,
 } from '../../../../src/components';
 
 export default () => (
   <EuiFlexGroup>
-    <EuiFlexItem>
-      <EuiCode>xs</EuiCode>
-      <EuiSkeleton size="xs" />
+    <EuiFlexItem grow={false}>
+      <EuiSkeletonAvatar type="avatar" size="s" />
     </EuiFlexItem>
 
-    <EuiFlexItem>
-      <EuiCode>s</EuiCode>
-      <EuiSkeleton size="s" />
+    <EuiFlexItem grow={false}>
+      <EuiSkeletonAvatar type="avatar" size="m" />
     </EuiFlexItem>
 
-    <EuiFlexItem>
-      <EuiCode>m</EuiCode>
-      <EuiSkeleton size="m" />
+    <EuiFlexItem grow={false}>
+      <EuiSkeletonAvatar type="avatar" size="l" />
     </EuiFlexItem>
 
-    <EuiFlexItem>
-      <EuiCode>l (default)</EuiCode>
-      <EuiSkeleton />
+    <EuiFlexItem grow={false}>
+      <EuiSkeletonAvatar type="avatar" size="xl" />
     </EuiFlexItem>
 
-    <EuiFlexItem>
-      <EuiCode>xl</EuiCode>
-      <EuiSkeleton size="xl" />
-    </EuiFlexItem>
-
-    <EuiFlexItem>
-      <EuiCode>xxl</EuiCode>
-      <EuiSkeleton size="xxl" />
-    </EuiFlexItem>
   </EuiFlexGroup>
 );
