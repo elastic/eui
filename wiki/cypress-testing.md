@@ -4,6 +4,8 @@
 
 `yarn test-cypress` runs component tests headlessly (no window appears)
 
+`yarn test-cypress-a11y` runs component accessibility tests headlessly (no window appears)
+
 `yarn test-cypress-dev` launches a chrome window controlled by Cypress, which lists out the discovered tests and allows executing/interacting from that window.
 
 ### Setting the theme
@@ -12,7 +14,7 @@ By default tests are run using the light theme. Dark mode can be enabled by pass
 
 ### Skipping CSS compilation
 
-To ensure tests use up-to-date styles, the test runner compiles our SCSS to CSS before executing Cypress. This adds some processing time before the tests can run, and often the existing locally-built styles are still accurate. The CSS compilation step can be skipped by passing the `--skip-css` flag to `yarn test-cypress` and `yarn test-cypress-dev`.
+To ensure tests use up-to-date styles, the test runner compiles our SCSS to CSS before executing Cypress. This adds some processing time before the tests can run, and often the existing locally-built styles are still accurate. The CSS compilation step can be skipped by passing the `--skip-css` flag to `yarn test-cypress`, `yarn test-cypress-dev` and `yarn test-cypress-a11y`.
 
 ### Cypress arguments
 
@@ -71,8 +73,12 @@ describe('TestComponent', () => {
 
 #### Naming your test files
 
-Create Cypress test files with the name pattern of `{component name}.spec.tsx` in the same directory which
-contains `{component name}.tsx`.
+Create Cypress test files with the following name patterns to run in specific situations:
+
+* `{component name}.spec.tsx` will run a full component test as part of every build
+* `{component name}.a11y.tsx` will run an accessibility test using [Cypress Axe](#cypress-axe)
+
+These test files should be in the same directory as `{component name}.tsx`.
 
 #### Do's and don'ts
 
@@ -82,11 +88,14 @@ contains `{component name}.tsx`.
 * DON'T extend the `cy.` global namespace - instead prefer to import helper functions directly
 
 ### Cypress Axe
-EUI components are tested for accessibility as part of the documentation build, but these do not test changes to the DOM such as accordions being opened, or modal dialogs being triggered. [cypress-axe](https://github.com/component-driven/cypress-axe) allows us to interact with components as users would, and run additional automatic axe scans.
+EUI components are tested for accessibility as part of a scheduled task. This allows us to test changes to the DOM such as accordions being opened, or modal dialogs being triggered, more comprehensively. We use [cypress-axe](https://github.com/component-driven/cypress-axe) to access the underlying axe-core API methods and rulesets.
 
 #### How to write cypress-axe tests
 
 ```jsx
+// Names must follow the `{component name}.a11y.tsx` pattern to be run correctly
+// accordion.a11y.tsx
+
 describe('Automated accessibility check', () => {
   it('has zero violations when expanded', () => {
     cy.mount(
@@ -103,14 +112,18 @@ describe('Automated accessibility check', () => {
 });
 ```
 
-#### Configuring the cy.checkAxe() helper method
+#### Configuring `cy.checkAxe()`
 
-The `cy.checkAxe()` method has two optional parameters:
+The `cy.checkAxe()` helper method has four optional parameters:
  
+ - `skipFailures` - Set to `true` to enable report-only mode. Report-only will run the entire suite without causing tests to return early.
  - `context` - This could be the document or a selector such as a class name, id, or element. The `context` default is `div#__cy_root`.
- - `axeConfig` - The [axe.run API](https://www.deque.com/axe/core-documentation/api-documentation/#api-name-axerun) can be modified for elements to include or exclude, individual rules to exclude, and rulesets to include or exclude.
+ - `axeConfig` - The [axe.run API](https://www.deque.com/axe/core-documentation/api-documentation/#api-name-axerun) can be modified to include or exclude elements, individual rules, or entire rulesets.
+ - `callback` - Define a [custom violations callbac](https://github.com/component-driven/cypress-axe#violationcallback-optional) if you need to add side effects or change the reporting structure
  
  ```jsx
+ // Create a custom ruleset by extending EUI defaults
+
 import { defaultAxeConfig } from '../../cypress/support/a11y/axeCheck';
 
 const customAxeConfig = {
@@ -122,7 +135,8 @@ const customAxeConfig = {
   },
 };
 
-cy.checkAxe(undefined, customAxeConfig);
+// Violations will use the custome ruleset and cause tests to fail
+cy.checkAxe(false, customAxeConfig);
  ```
 
 ### Cypress Real Events
