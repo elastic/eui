@@ -3,17 +3,15 @@
 exports[`EuiTab props append is rendered 1`] = `
 <button
   aria-selected="false"
-  class="euiTab"
+  class="euiTab emotion-euiTab"
   role="tab"
   type="button"
 >
-  <span
-    class="euiTab__prepend"
-  >
+  <span>
     Append
   </span>
   <span
-    class="euiTab__content"
+    class="euiTab__content emotion-euiTab__content"
   >
     children
   </span>
@@ -23,13 +21,13 @@ exports[`EuiTab props append is rendered 1`] = `
 exports[`EuiTab props disabled is rendered 1`] = `
 <button
   aria-selected="false"
-  class="euiTab euiTab-isDisabled"
+  class="euiTab emotion-euiTab-disabled"
   disabled=""
   role="tab"
   type="button"
 >
   <span
-    class="euiTab__content"
+    class="euiTab__content emotion-euiTab__content-disabled"
   >
     Click Me
   </span>
@@ -40,14 +38,14 @@ exports[`EuiTab props href renders anchor 1`] = `
 <a
   aria-label="aria-label"
   aria-selected="false"
-  class="euiTab testClass1 testClass2"
+  class="euiTab testClass1 testClass2 emotion-euiTab"
   data-test-subj="test subject string"
   href="/baz/bing"
   rel="noreferrer"
   role="tab"
 >
   <span
-    class="euiTab__content"
+    class="euiTab__content emotion-euiTab__content"
   >
     children
   </span>
@@ -57,12 +55,12 @@ exports[`EuiTab props href renders anchor 1`] = `
 exports[`EuiTab props isSelected is rendered 1`] = `
 <button
   aria-selected="true"
-  class="euiTab euiTab-isSelected"
+  class="euiTab euiTab-isSelected emotion-euiTab-selected"
   role="tab"
   type="button"
 >
   <span
-    class="euiTab__content"
+    class="euiTab__content emotion-euiTab__content-selected"
   >
     children
   </span>
@@ -73,13 +71,13 @@ exports[`EuiTab props onClick renders button 1`] = `
 <button
   aria-label="aria-label"
   aria-selected="false"
-  class="euiTab testClass1 testClass2"
+  class="euiTab testClass1 testClass2 emotion-euiTab"
   data-test-subj="test subject string"
   role="tab"
   type="button"
 >
   <span
-    class="euiTab__content"
+    class="euiTab__content emotion-euiTab__content"
   >
     children
   </span>
@@ -89,17 +87,15 @@ exports[`EuiTab props onClick renders button 1`] = `
 exports[`EuiTab props prepend is rendered 1`] = `
 <button
   aria-selected="false"
-  class="euiTab"
+  class="euiTab emotion-euiTab"
   role="tab"
   type="button"
 >
-  <span
-    class="euiTab__prepend"
-  >
+  <span>
     Prepend
   </span>
   <span
-    class="euiTab__content"
+    class="euiTab__content emotion-euiTab__content"
   >
     children
   </span>

@@ -159,20 +159,20 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   React.Children.toArray(children).forEach((child, index) => {
     if (!React.isValidElement(child)) return; // Skip non-components
 
-    switch (child.type) {
-      case EuiPageSidebar:
-        sidebar.push(
-          React.cloneElement(child, {
-            key: `sidebar${index}`,
-            ...getSideBarProps(),
-            // Allow their props overridden by appending the child props spread at the end
-            ...child.props,
-          })
-        );
-        break;
-
-      default:
-        sections.push(child);
+    if (
+      child.type === EuiPageSidebar ||
+      child.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__ === EuiPageSidebar
+    ) {
+      sidebar.push(
+        React.cloneElement(child, {
+          key: `sidebar${index}`,
+          ...getSideBarProps(),
+          // Allow their props overridden by appending the child props spread at the end
+          ...child.props,
+        })
+      );
+    } else {
+      sections.push(child);
     }
   });
 

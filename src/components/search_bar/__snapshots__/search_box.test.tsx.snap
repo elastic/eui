@@ -12,6 +12,7 @@ exports[`EuiSearchBox render - custom placeholder and incremental 1`] = `
   inputRef={[Function]}
   isClearable={true}
   isLoading={false}
+  onFocus={[Function]}
   onSearch={[Function]}
   placeholder="..."
 />
@@ -29,6 +30,7 @@ exports[`EuiSearchBox render - no config 1`] = `
   inputRef={[Function]}
   isClearable={true}
   isLoading={false}
+  onFocus={[Function]}
   onSearch={[Function]}
   placeholder="Search..."
 />

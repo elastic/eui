@@ -1,81 +1,97 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiBetaBadge is rendered 1`] = `
-<span
-  aria-label="aria-label"
-  class="euiBetaBadge testClass1 testClass2 emotion-euiBetaBadge-hollow-m"
-  data-test-subj="test subject string"
-  title="Beta"
->
-  Beta
+<span>
+  <span
+    aria-label="aria-label"
+    class="euiBetaBadge testClass1 testClass2 emotion-euiBetaBadge-hollow-m"
+    data-test-subj="test subject string"
+    title="Beta"
+  >
+    Beta
+  </span>
 </span>
 `;
 
 exports[`EuiBetaBadge props color accent is rendered 1`] = `
-<span
-  class="euiBetaBadge emotion-euiBetaBadge-accent-m"
-  title="Beta"
->
-  Beta
+<span>
+  <span
+    class="euiBetaBadge emotion-euiBetaBadge-accent-m"
+    title="Beta"
+  >
+    Beta
+  </span>
 </span>
 `;
 
 exports[`EuiBetaBadge props color hollow is rendered 1`] = `
-<span
-  class="euiBetaBadge emotion-euiBetaBadge-hollow-m"
-  title="Beta"
->
-  Beta
+<span>
+  <span
+    class="euiBetaBadge emotion-euiBetaBadge-hollow-m"
+    title="Beta"
+  >
+    Beta
+  </span>
 </span>
 `;
 
 exports[`EuiBetaBadge props color subdued is rendered 1`] = `
-<span
-  class="euiBetaBadge emotion-euiBetaBadge-subdued-m"
-  title="Beta"
->
-  Beta
+<span>
+  <span
+    class="euiBetaBadge emotion-euiBetaBadge-subdued-m"
+    title="Beta"
+  >
+    Beta
+  </span>
 </span>
 `;
 
 exports[`EuiBetaBadge props iconType 1`] = `
-<span
-  class="euiBetaBadge emotion-euiBetaBadge-hollow-m"
-  title="Beta"
->
+<span>
   <span
-    aria-hidden="true"
-    class="euiBetaBadge__icon emotion-euiBetaBadge__icon"
-    color="inherit"
-    data-euiicon-type="beta"
-  />
+    class="euiBetaBadge emotion-euiBetaBadge-hollow-m"
+    title="Beta"
+  >
+    <span
+      aria-hidden="true"
+      class="euiBetaBadge__icon emotion-euiBetaBadge__icon"
+      color="inherit"
+      data-euiicon-type="beta"
+    />
+  </span>
 </span>
 `;
 
 exports[`EuiBetaBadge props single letter 1`] = `
-<span
-  class="euiBetaBadge emotion-euiBetaBadge-hollow-m"
-  title="B"
->
-  B
+<span>
+  <span
+    class="euiBetaBadge emotion-euiBetaBadge-hollow-m"
+    title="B"
+  >
+    B
+  </span>
 </span>
 `;
 
 exports[`EuiBetaBadge props size m is rendered 1`] = `
-<span
-  class="euiBetaBadge emotion-euiBetaBadge-hollow-m"
-  title="Beta"
->
-  Beta
+<span>
+  <span
+    class="euiBetaBadge emotion-euiBetaBadge-hollow-m"
+    title="Beta"
+  >
+    Beta
+  </span>
 </span>
 `;
 
 exports[`EuiBetaBadge props size s is rendered 1`] = `
-<span
-  class="euiBetaBadge emotion-euiBetaBadge-hollow-s"
-  title="Beta"
->
-  Beta
+<span>
+  <span
+    class="euiBetaBadge emotion-euiBetaBadge-hollow-s"
+    title="Beta"
+  >
+    Beta
+  </span>
 </span>
 `;
 
