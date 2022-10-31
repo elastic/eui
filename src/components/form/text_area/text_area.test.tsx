@@ -9,15 +9,54 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiForm } from '../form';
-import { EuiTextArea } from './text_area';
+import { EuiTextArea, RESIZE } from './text_area';
 
 describe('EuiTextArea', () => {
+  shouldRenderCustomStyles(<EuiTextArea />);
+
   test('is rendered', () => {
     const component = render(<EuiTextArea {...requiredProps} />);
 
     expect(component).toMatchSnapshot();
+  });
+
+  describe('props', () => {
+    describe('isInvalid', () => {
+      it('is rendered', () => {
+        const component = render(<EuiTextArea isInvalid />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('fullWidth', () => {
+      it('is rendered', () => {
+        const component = render(<EuiTextArea fullWidth />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('compressed', () => {
+      it('is rendered', () => {
+        const component = render(<EuiTextArea compressed />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('resize', () => {
+      RESIZE.forEach((item) => {
+        it(`${item} is rendered`, () => {
+          const component = render(<EuiTextArea resize={item} />);
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
   });
 
   describe('inherits', () => {

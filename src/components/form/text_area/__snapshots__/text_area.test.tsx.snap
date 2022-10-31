@@ -3,8 +3,58 @@
 exports[`EuiTextArea is rendered 1`] = `
 <textarea
   aria-label="aria-label"
-  class="euiTextArea euiTextArea--resizeVertical testClass1 testClass2"
+  class="euiTextArea testClass1 testClass2 emotion-euiTextArea-vertical"
   data-test-subj="test subject string"
+  rows="6"
+/>
+`;
+
+exports[`EuiTextArea props compressed is rendered 1`] = `
+<textarea
+  class="euiTextArea emotion-euiTextArea-vertical-compressed"
+  rows="3"
+/>
+`;
+
+exports[`EuiTextArea props fullWidth is rendered 1`] = `
+<textarea
+  class="euiTextArea euiTextArea--fullWidth emotion-euiTextArea-vertical-fullWidth"
+  rows="6"
+/>
+`;
+
+exports[`EuiTextArea props isInvalid is rendered 1`] = `
+<textarea
+  aria-invalid="true"
+  class="euiTextArea emotion-euiTextArea-vertical"
+  rows="6"
+/>
+`;
+
+exports[`EuiTextArea props resize both is rendered 1`] = `
+<textarea
+  class="euiTextArea emotion-euiTextArea-both"
+  rows="6"
+/>
+`;
+
+exports[`EuiTextArea props resize horizontal is rendered 1`] = `
+<textarea
+  class="euiTextArea emotion-euiTextArea-horizontal"
+  rows="6"
+/>
+`;
+
+exports[`EuiTextArea props resize none is rendered 1`] = `
+<textarea
+  class="euiTextArea emotion-euiTextArea-none"
+  rows="6"
+/>
+`;
+
+exports[`EuiTextArea props resize vertical is rendered 1`] = `
+<textarea
+  class="euiTextArea emotion-euiTextArea-vertical"
   rows="6"
 />
 `;

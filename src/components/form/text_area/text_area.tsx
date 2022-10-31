@@ -11,6 +11,11 @@ import { CommonProps } from '../../common';
 import classNames from 'classnames';
 import { EuiValidatableControl } from '../validatable_control';
 import { useFormContext } from '../eui_form_context';
+import { useEuiTheme } from '../../../services';
+import { euiTextAreaStyles } from './text_area.styles';
+
+export const RESIZE = ['vertical', 'horizontal', 'both', 'none'] as const;
+export type EuiTextAreaResize = typeof RESIZE[number];
 
 export type EuiTextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
   CommonProps & {
@@ -25,21 +30,11 @@ export type EuiTextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
 
     /**
      * Which direction, if at all, should the textarea resize
-     * @default vertical
      */
-    resize?: keyof typeof resizeToClassNameMap;
+    resize?: EuiTextAreaResize;
 
     inputRef?: Ref<HTMLTextAreaElement>;
   };
-
-const resizeToClassNameMap = {
-  vertical: 'euiTextArea--resizeVertical',
-  horizontal: 'euiTextArea--resizeHorizontal',
-  both: 'euiTextArea--resizeBoth',
-  none: 'euiTextArea--resizeNone',
-};
-
-export const RESIZE = Object.keys(resizeToClassNameMap);
 
 export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = (props) => {
   const { defaultFullWidth } = useFormContext();
@@ -58,12 +53,30 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = (props) => {
     ...rest
   } = props;
 
+  type Options = {
+    fullWidth?: boolean;
+    compressed?: boolean;
+  };
+
+  const options: Options = {
+    fullWidth,
+    compressed,
+  };
+
+  const euiTheme = useEuiTheme();
+  const styles = euiTextAreaStyles(euiTheme, options);
+  const cssStyles = [
+    styles.euiTextArea,
+    styles[resize],
+    fullWidth && styles.fullWidth,
+    compressed && styles.compressed,
+  ];
+
   const classes = classNames(
     'euiTextArea',
-    resizeToClassNameMap[resize],
     {
+      // required for testing
       'euiTextArea--fullWidth': fullWidth,
-      'euiTextArea--compressed': compressed,
     },
     className
   );
@@ -81,6 +94,7 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = (props) => {
   return (
     <EuiValidatableControl isInvalid={isInvalid}>
       <textarea
+        css={cssStyles}
         className={classes}
         {...rest}
         rows={definedRows}
