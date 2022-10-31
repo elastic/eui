@@ -9,7 +9,7 @@
 import React, { HTMLAttributes, FunctionComponent, Ref } from 'react';
 import { useEuiTheme } from '../../../services';
 import { CommonProps } from '../../common';
-import { EuiLoadingSpinner, EuiLoadingSpinnerProps } from '../../loading';
+import { EuiLoadingSpinner } from '../../loading';
 import { EuiIcon, IconType } from '../../icon';
 import { euiButtonDisplayContentStyles } from './_button_display_content.styles';
 import classNames from 'classnames';
@@ -57,21 +57,13 @@ export const EuiButtonDisplayContent: FunctionComponent<
   isDisabled = false,
   iconType,
   iconSize = 'm',
-  iconSide,
+  iconSide = 'left',
   ...contentProps
 }) => {
   const theme = useEuiTheme();
   const styles = euiButtonDisplayContentStyles(theme);
 
-  const cssStyles = [
-    styles.euiButtonDisplayContent,
-    iconSide && styles[iconSide],
-  ];
-  const cssSpinnerStyles = [styles.euiButtonDisplayContent__spinner];
-  const cssIconStyles = [
-    styles.euiButtonDisplayContent__icon,
-    iconSize && styles[iconSize],
-  ];
+  const cssStyles = [styles.euiButtonDisplayContent];
 
   // Add an icon to the button if one exists.
   let icon;
@@ -82,23 +74,14 @@ export const EuiButtonDisplayContent: FunctionComponent<
   // to have the same color of the text. This way we ensure the borders
   // are always visible. The default spinner color could be very light.
   const loadingSpinnerColor = isDisabled
-    ? ({
-        border: 'currentColor',
-      } as EuiLoadingSpinnerProps['color'])
+    ? { border: 'currentcolor' }
     : undefined;
 
   if (isLoading) {
-    icon = (
-      <EuiLoadingSpinner
-        css={cssSpinnerStyles}
-        size={iconSize}
-        color={loadingSpinnerColor}
-      />
-    );
+    icon = <EuiLoadingSpinner size={iconSize} color={loadingSpinnerColor} />;
   } else if (iconType) {
     icon = (
       <EuiIcon
-        css={cssIconStyles}
         type={iconType}
         size={iconSize}
         color="inherit" // forces the icon to inherit its parent color
@@ -110,8 +93,8 @@ export const EuiButtonDisplayContent: FunctionComponent<
 
   return (
     <span css={cssStyles} {...contentProps}>
-      {icon}
-      {isText ? (
+      {iconSide === 'left' && icon}
+      {isText || textProps ? (
         <span
           {...textProps}
           className={classNames('eui-textTruncate', textProps?.className)}
@@ -121,6 +104,7 @@ export const EuiButtonDisplayContent: FunctionComponent<
       ) : (
         children
       )}
+      {iconSide === 'right' && icon}
     </span>
   );
 };
