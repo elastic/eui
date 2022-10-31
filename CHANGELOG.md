@@ -1,3 +1,10 @@
+## [`67.1.6`](https://github.com/elastic/eui/tree/v67.1.6)
+
+**Bug fixes**
+
+- Fixed `EuiButton` not correctly passing `textProps` for children inside fragments or i18n components ([#6332](https://github.com/elastic/eui/pull/6332))
+- Fixed `EuiButton` not correctly respecting `minWidth={0}` ([#6332](https://github.com/elastic/eui/pull/6332))
+
 ## [`67.1.5`](https://github.com/elastic/eui/tree/v67.1.5)
 
 **Bug fixes**
