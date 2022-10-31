@@ -55,6 +55,11 @@ Tips:
   - Note: if you are debugging failing `x-pack` tests, you will want to use `node x-pack/scripts/functional_tests_server` but you will still want to use `node scripts/functional_test_runner` from Kibana root (with `--config` pointed at the relevant x-pack file).
 - To only run a specific suite of tests you want, you can add `describe.only` or `it.only` to the failing test file, or use the `--grep` flag in the CLI command.
 - If a test passes for you locally but is flaky on CI, consider using the [async retry service](https://github.com/elastic/kibana/blob/main/test/common/services/retry/retry.ts).
+- When updating baseline screenshots that are reporting too large a diff, you can either increase the expected diff number or update the baseline screenshots.
+  - To update the baseline screenshots, start a separate `functional_tests_server` and wait for it to be ready
+	- In a separate test runner tab, run the following commands:
+  - `export TEST_BROWSER_HEADLESS=1` (runs screenshot updates in headless mode to match CI)
+	- `yarn node scripts/functional_test_runner --config=... -u --headless` (`-u` or `--updateBaseline` is what updates the screenshots)
 
 #### Security Cypress (`x-pack/plugins/security_solution/cypress/`)
 
