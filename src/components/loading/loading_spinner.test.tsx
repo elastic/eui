@@ -28,4 +28,19 @@ describe('EuiLoadingSpinner', () => {
       });
     });
   });
+
+  test('custom colors', () => {
+    const component = render(
+      <>
+        <EuiLoadingSpinner color={{ border: 'white' }} />
+        <EuiLoadingSpinner color={{ highlight: 'black' }} />
+        <EuiLoadingSpinner
+          color={{ border: 'white', highlight: 'black' }}
+          style={{ color: 'red' }} // Should merge together
+        />
+      </>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
 });

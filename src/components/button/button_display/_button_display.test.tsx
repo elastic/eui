@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render } from '../../../test/rtl';
 import { requiredProps } from '../../../test/required_props';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 
@@ -24,5 +24,140 @@ describe('EuiButtonDisplay', () => {
     );
 
     expect(container.firstChild).toMatchSnapshot();
+  });
+
+  describe('props', () => {
+    test('minWidth', () => {
+      const { container } = render(<EuiButtonDisplay minWidth={0} />);
+
+      expect(container.innerHTML).toEqual(
+        expect.stringContaining('style="min-inline-size: 0;"')
+      );
+    });
+  });
+
+  describe('disabled behavior', () => {
+    it('disables hrefs with javascript in them and renders a button instead of a link', () => {
+      const { container } = render(
+        // eslint-disable-next-line no-script-url
+        <EuiButtonDisplay href="javascript:alert(0)" />
+      );
+      expect(container.querySelector('button[disabled]')).toBeTruthy();
+    });
+
+    it('disables buttons that are isLoading', () => {
+      const { container } = render(<EuiButtonDisplay isLoading />);
+      expect(container.querySelector('button[disabled]')).toBeTruthy();
+    });
+
+    it('disables buttons that are isDisabled', () => {
+      const { container } = render(<EuiButtonDisplay isDisabled />);
+      expect(container.querySelector('button[disabled]')).toBeTruthy();
+    });
+
+    it('disables buttons that pass the native disabled attr', () => {
+      const { container } = render(<EuiButtonDisplay disabled />);
+      expect(container.querySelector('button[disabled]')).toBeTruthy();
+    });
+  });
+
+  describe('link vs button behavior', () => {
+    describe('links', () => {
+      it('renders valid links as <a> tags', () => {
+        const { container } = render(<EuiButtonDisplay href="#" />);
+        expect(container.querySelector('a')).toBeTruthy();
+        expect(container.querySelector('button')).toBeFalsy();
+      });
+
+      it('removes the `type` prop from links', () => {
+        const { container } = render(
+          <EuiButtonDisplay href="#" type="button" />
+        );
+        expect(container.querySelector('a')?.getAttribute('type')).toBeNull();
+      });
+
+      it('inserts `rel=noreferrer` for non-Elastic urls ', () => {
+        const { queryByTestSubject } = render(
+          <>
+            <EuiButtonDisplay
+              href="https://elastic.co"
+              data-test-subj="norel"
+              rel="noreferrer" // Removes this
+            />
+            <EuiButtonDisplay
+              href="ftp://elastic.co"
+              data-test-subj="badprotocol"
+            />
+            <EuiButtonDisplay
+              href="https://hello.world"
+              data-test-subj="notelastic"
+            />
+          </>
+        );
+
+        expect(queryByTestSubject('norel')?.getAttribute('rel')).toEqual('');
+        expect(queryByTestSubject('badprotocol')?.getAttribute('rel')).toEqual(
+          'noreferrer'
+        );
+        expect(queryByTestSubject('notelastic')?.getAttribute('rel')).toEqual(
+          'noreferrer'
+        );
+      });
+
+      it('inserts `rel=noopener` for all target=_blank links', () => {
+        const { queryByTestSubject } = render(
+          <>
+            <EuiButtonDisplay
+              href="https://elastic.co"
+              target="_blank"
+              data-test-subj="elastic"
+            />
+            <EuiButtonDisplay
+              href="https://hello.world"
+              target="_blank"
+              data-test-subj="notelastic"
+            />
+          </>
+        );
+
+        expect(queryByTestSubject('elastic')?.getAttribute('rel')).toEqual(
+          'noopener'
+        );
+        expect(queryByTestSubject('notelastic')?.getAttribute('rel')).toEqual(
+          'noopener noreferrer'
+        );
+      });
+    });
+
+    describe('buttons', () => {
+      it('removes the `href`, `rel` and `target` props from buttons', () => {
+        const { container } = render(
+          <EuiButtonDisplay
+            isDisabled
+            href="#"
+            rel="noopener"
+            target="_blank"
+          />
+        );
+        expect(container.querySelector('a')).toBeFalsy();
+        const button = container.querySelector('button')!;
+
+        expect(button).toBeTruthy();
+        expect(button.getAttribute('href')).toBeNull();
+        expect(button.getAttribute('rel')).toBeNull();
+        expect(button.getAttribute('target')).toBeNull();
+      });
+
+      it('only sets [disabled] and [aria-pressed] on buttons', () => {
+        const { container } = render(
+          <>
+            <EuiButtonDisplay isDisabled isSelected />
+            <EuiButtonDisplay href="#" isSelected />
+          </>
+        );
+        expect(container.querySelectorAll('[disabled]')).toHaveLength(1);
+        expect(container.querySelectorAll('[aria-pressed]')).toHaveLength(1);
+      });
+    });
   });
 });

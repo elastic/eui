@@ -11,7 +11,10 @@ import { CommonProps } from '../common';
 import classNames from 'classnames';
 import { useEuiTheme } from '../..//services';
 import { useLoadingAriaLabel } from './_loading_strings';
-import { euiLoadingSpinnerStyles } from './loading_spinner.styles';
+import {
+  euiLoadingSpinnerStyles,
+  euiSpinnerBorderColorsCSS,
+} from './loading_spinner.styles';
 
 export const SIZES = ['s', 'm', 'l', 'xl', 'xxl'] as const;
 export type EuiLoadingSpinnerSize = typeof SIZES[number];
@@ -37,18 +40,23 @@ export const EuiLoadingSpinner: FunctionComponent<EuiLoadingSpinnerProps> = ({
   className,
   'aria-label': ariaLabel,
   color,
+  style,
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
-  const styles = euiLoadingSpinnerStyles(euiTheme, color);
+  const styles = euiLoadingSpinnerStyles(euiTheme);
   const cssStyles = [styles.euiLoadingSpinner, styles[size]];
   const classes = classNames('euiLoadingSpinner', className);
   const defaultLabel = useLoadingAriaLabel();
+  const customColorStyle = color
+    ? { ...style, borderColor: euiSpinnerBorderColorsCSS(euiTheme, color) }
+    : style;
 
   return (
     <span
       className={classes}
       css={cssStyles}
+      style={customColorStyle}
       role="progressbar"
       aria-label={ariaLabel || defaultLabel}
       {...rest}
