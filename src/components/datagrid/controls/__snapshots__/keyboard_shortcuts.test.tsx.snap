@@ -104,7 +104,7 @@ exports[`useDataGridKeyboardShortcuts returns a popover containing a list of key
               <dd
                 class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left-s"
               >
-                Moves focus one cell up.
+                Move one cell up
               </dd>
               <dt
                 class="euiDescriptionList__title emotion-euiDescriptionList__title-column-s-compressed-right"
@@ -116,7 +116,7 @@ exports[`useDataGridKeyboardShortcuts returns a popover containing a list of key
               <dd
                 class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left-s"
               >
-                Moves focus one cell down.
+                Move one cell down
               </dd>
               <dt
                 class="euiDescriptionList__title emotion-euiDescriptionList__title-column-s-compressed-right"
@@ -128,7 +128,7 @@ exports[`useDataGridKeyboardShortcuts returns a popover containing a list of key
               <dd
                 class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left-s"
               >
-                Moves focus one cell to the right.
+                Move one cell right
               </dd>
               <dt
                 class="euiDescriptionList__title emotion-euiDescriptionList__title-column-s-compressed-right"
@@ -140,7 +140,7 @@ exports[`useDataGridKeyboardShortcuts returns a popover containing a list of key
               <dd
                 class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left-s"
               >
-                Moves focus one cell to the left.
+                Move one cell left
               </dd>
               <dt
                 class="euiDescriptionList__title emotion-euiDescriptionList__title-column-s-compressed-right"
@@ -152,7 +152,7 @@ exports[`useDataGridKeyboardShortcuts returns a popover containing a list of key
               <dd
                 class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left-s"
               >
-                Moves focus to the first cell in the current row.
+                Move to the first cell of the current row
               </dd>
               <dt
                 class="euiDescriptionList__title emotion-euiDescriptionList__title-column-s-compressed-right"
@@ -164,7 +164,7 @@ exports[`useDataGridKeyboardShortcuts returns a popover containing a list of key
               <dd
                 class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left-s"
               >
-                Moves focus to the last cell in the current row.
+                Move to the last cell of the current row
               </dd>
               <dt
                 class="euiDescriptionList__title emotion-euiDescriptionList__title-column-s-compressed-right"
@@ -180,7 +180,7 @@ exports[`useDataGridKeyboardShortcuts returns a popover containing a list of key
               <dd
                 class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left-s"
               >
-                Moves focus to the first cell in the first row.
+                Move to the first cell of the current page
               </dd>
               <dt
                 class="euiDescriptionList__title emotion-euiDescriptionList__title-column-s-compressed-right"
@@ -196,7 +196,7 @@ exports[`useDataGridKeyboardShortcuts returns a popover containing a list of key
               <dd
                 class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left-s"
               >
-                Moves focus to the last cell in the last row.
+                Move to the last cell of the current page
               </dd>
               <dt
                 class="euiDescriptionList__title emotion-euiDescriptionList__title-column-s-compressed-right"
@@ -208,7 +208,7 @@ exports[`useDataGridKeyboardShortcuts returns a popover containing a list of key
               <dd
                 class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left-s"
               >
-                Paginates to the last row of the previous page.
+                Go to the last row of the previous page
               </dd>
               <dt
                 class="euiDescriptionList__title emotion-euiDescriptionList__title-column-s-compressed-right"
@@ -220,7 +220,7 @@ exports[`useDataGridKeyboardShortcuts returns a popover containing a list of key
               <dd
                 class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left-s"
               >
-                Paginates to the first row of the next page.
+                Go to the first row of the next page
               </dd>
               <dt
                 class="euiDescriptionList__title emotion-euiDescriptionList__title-column-s-compressed-right"
@@ -232,7 +232,7 @@ exports[`useDataGridKeyboardShortcuts returns a popover containing a list of key
               <dd
                 class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left-s"
               >
-                Opens cell expansion popover for interactive cells.
+                Open cell details and actions
               </dd>
               <dt
                 class="euiDescriptionList__title emotion-euiDescriptionList__title-column-s-compressed-right"
@@ -244,7 +244,7 @@ exports[`useDataGridKeyboardShortcuts returns a popover containing a list of key
               <dd
                 class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left-s"
               >
-                Closes any open popovers.
+                Close cell details and actions
               </dd>
             </dl>
           </div>

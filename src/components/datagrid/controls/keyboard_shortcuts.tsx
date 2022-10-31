@@ -67,7 +67,7 @@ export const useDataGridKeyboardShortcuts = (): {
                 description: (
                   <EuiI18n
                     token="euiKeyboardShortcuts.upArrowDescription"
-                    default="Moves focus one cell up."
+                    default="Move one cell up"
                   />
                 ),
               },
@@ -83,7 +83,7 @@ export const useDataGridKeyboardShortcuts = (): {
                 description: (
                   <EuiI18n
                     token="euiKeyboardShortcuts.downArrowDescription"
-                    default="Moves focus one cell down."
+                    default="Move one cell down"
                   />
                 ),
               },
@@ -99,7 +99,7 @@ export const useDataGridKeyboardShortcuts = (): {
                 description: (
                   <EuiI18n
                     token="euiKeyboardShortcuts.rightArrowDescription"
-                    default="Moves focus one cell to the right."
+                    default="Move one cell right"
                   />
                 ),
               },
@@ -115,7 +115,7 @@ export const useDataGridKeyboardShortcuts = (): {
                 description: (
                   <EuiI18n
                     token="euiKeyboardShortcuts.leftArrowDescription"
-                    default="Moves focus one cell to the left."
+                    default="Move one cell left"
                   />
                 ),
               },
@@ -131,7 +131,7 @@ export const useDataGridKeyboardShortcuts = (): {
                 description: (
                   <EuiI18n
                     token="euiKeyboardShortcuts.homeDescription"
-                    default="Moves focus to the first cell in the current row."
+                    default="Move to the first cell of the current row"
                   />
                 ),
               },
@@ -147,7 +147,7 @@ export const useDataGridKeyboardShortcuts = (): {
                 description: (
                   <EuiI18n
                     token="euiKeyboardShortcuts.endDescription"
-                    default="Moves focus to the last cell in the current row."
+                    default="Move to the last cell of the current row"
                   />
                 ),
               },
@@ -171,7 +171,7 @@ export const useDataGridKeyboardShortcuts = (): {
                 description: (
                   <EuiI18n
                     token="euiKeyboardShortcuts.ctrlHomeDescription"
-                    default="Moves focus to the first cell in the first row."
+                    default="Move to the first cell of the current page"
                   />
                 ),
               },
@@ -195,7 +195,7 @@ export const useDataGridKeyboardShortcuts = (): {
                 description: (
                   <EuiI18n
                     token="euiKeyboardShortcuts.ctrlEndDescription"
-                    default="Moves focus to the last cell in the last row."
+                    default="Move to the last cell of the current page"
                   />
                 ),
               },
@@ -211,7 +211,7 @@ export const useDataGridKeyboardShortcuts = (): {
                 description: (
                   <EuiI18n
                     token="euiKeyboardShortcuts.pageUpDescription"
-                    default="Paginates to the last row of the previous page."
+                    default="Go to the last row of the previous page"
                   />
                 ),
               },
@@ -227,7 +227,7 @@ export const useDataGridKeyboardShortcuts = (): {
                 description: (
                   <EuiI18n
                     token="euiKeyboardShortcuts.pageDownDescription"
-                    default="Paginates to the first row of the next page."
+                    default="Go to the first row of the next page"
                   />
                 ),
               },
@@ -243,7 +243,7 @@ export const useDataGridKeyboardShortcuts = (): {
                 description: (
                   <EuiI18n
                     token="euiKeyboardShortcuts.enterDescription"
-                    default="Opens cell expansion popover for interactive cells."
+                    default="Open cell details and actions"
                   />
                 ),
               },
@@ -259,7 +259,7 @@ export const useDataGridKeyboardShortcuts = (): {
                 description: (
                   <EuiI18n
                     token="euiKeyboardShortcuts.escapeDescription"
-                    default="Closes any open popovers."
+                    default="Close cell details and actions"
                   />
                 ),
               },
