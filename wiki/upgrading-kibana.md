@@ -61,13 +61,15 @@ Tips:
   - `export TEST_BROWSER_HEADLESS=1` (runs screenshot updates in headless mode to match CI)
 	- `yarn node scripts/functional_test_runner --config=... -u --headless` (`-u` or `--updateBaseline` is what updates the screenshots)
 
-#### Security Cypress (`x-pack/plugins/security_solution/cypress/`)
+#### Security/OSQuery Cypress (`x-pack/plugins/{security_solution|osquery}/cypress/`)
 
-Follow the local [README instructions](https://github.com/elastic/kibana/blob/main/x-pack/plugins/security_solution/cypress/README.md#ftr--interactive) to run individual tests in a nice UI.
+Follow [Security's Cypress README](https://github.com/elastic/kibana/blob/main/x-pack/plugins/security_solution/cypress/README.md#ftr--interactive) or [OSQuery's Cypress README](https://github.com/elastic/kibana/blob/main/x-pack/plugins/osquery/cypress/README.md#ftr--interactive) to run individual tests in a nice UI.
+
+> Note: OSQuery's Cypress tests appear to have copied Security's Cypress setup and should generally function similarly.
 
 #### @elastic/synthetics Tests (`x-pack/plugins/{synthetics|observability/ux}/e2e`)
 
-See the [synthetics/e2e README](https://github.com/elastic/kibana/blob/main/x-pack/plugins/synthetics/e2e/README.md).
+Follow [synthetics/e2e README](https://github.com/elastic/kibana/blob/main/x-pack/plugins/synthetics/e2e/README.md).
 
 For debugging purposes, you will almost certainly want to use the `--bail --no-headless` flags. Like the FTR tests above, you will also want to use `--grep` to only run a certain test block or test (there is no `.only` API for synthetics).
 
