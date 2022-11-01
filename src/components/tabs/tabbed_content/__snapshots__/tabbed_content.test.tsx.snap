@@ -29,7 +29,9 @@ exports[`EuiTabbedContent behavior when selected tab state isn't controlled by t
       role="tab"
       type="button"
     >
-      <span>
+      <span
+        class="euiTab__prepend"
+      >
         prepend
       </span>
       <span
@@ -39,7 +41,9 @@ exports[`EuiTabbedContent behavior when selected tab state isn't controlled by t
           Kibana
         </strong>
       </span>
-      <span>
+      <span
+        class="euiTab__append"
+      >
         append
       </span>
     </button>
@@ -85,7 +89,9 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
       role="tab"
       type="button"
     >
-      <span>
+      <span
+        class="euiTab__prepend"
+      >
         prepend
       </span>
       <span
@@ -95,7 +101,9 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
           Kibana
         </strong>
       </span>
-      <span>
+      <span
+        class="euiTab__append"
+      >
         append
       </span>
     </button>
@@ -145,7 +153,9 @@ exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
       role="tab"
       type="button"
     >
-      <span>
+      <span
+        class="euiTab__prepend"
+      >
         prepend
       </span>
       <span
@@ -155,7 +165,9 @@ exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
           Kibana
         </strong>
       </span>
-      <span>
+      <span
+        class="euiTab__append"
+      >
         append
       </span>
     </button>
@@ -201,7 +213,9 @@ exports[`EuiTabbedContent props autoFocus initial is rendered 1`] = `
       role="tab"
       type="button"
     >
-      <span>
+      <span
+        class="euiTab__prepend"
+      >
         prepend
       </span>
       <span
@@ -211,7 +225,9 @@ exports[`EuiTabbedContent props autoFocus initial is rendered 1`] = `
           Kibana
         </strong>
       </span>
-      <span>
+      <span
+        class="euiTab__append"
+      >
         append
       </span>
     </button>
@@ -257,7 +273,9 @@ exports[`EuiTabbedContent props autoFocus selected is rendered 1`] = `
       role="tab"
       type="button"
     >
-      <span>
+      <span
+        class="euiTab__prepend"
+      >
         prepend
       </span>
       <span
@@ -267,7 +285,9 @@ exports[`EuiTabbedContent props autoFocus selected is rendered 1`] = `
           Kibana
         </strong>
       </span>
-      <span>
+      <span
+        class="euiTab__append"
+      >
         append
       </span>
     </button>
@@ -313,7 +333,9 @@ exports[`EuiTabbedContent props initialSelectedTab renders a selected tab 1`] = 
       role="tab"
       type="button"
     >
-      <span>
+      <span
+        class="euiTab__prepend"
+      >
         prepend
       </span>
       <span
@@ -323,7 +345,9 @@ exports[`EuiTabbedContent props initialSelectedTab renders a selected tab 1`] = 
           Kibana
         </strong>
       </span>
-      <span>
+      <span
+        class="euiTab__append"
+      >
         append
       </span>
     </button>
@@ -369,7 +393,9 @@ exports[`EuiTabbedContent props selectedTab renders a selected tab 1`] = `
       role="tab"
       type="button"
     >
-      <span>
+      <span
+        class="euiTab__prepend"
+      >
         prepend
       </span>
       <span
@@ -379,7 +405,9 @@ exports[`EuiTabbedContent props selectedTab renders a selected tab 1`] = `
           Kibana
         </strong>
       </span>
-      <span>
+      <span
+        class="euiTab__append"
+      >
         append
       </span>
     </button>
@@ -425,7 +453,9 @@ exports[`EuiTabbedContent props size can be small 1`] = `
       role="tab"
       type="button"
     >
-      <span>
+      <span
+        class="euiTab__prepend"
+      >
         prepend
       </span>
       <span
@@ -435,7 +465,9 @@ exports[`EuiTabbedContent props size can be small 1`] = `
           Kibana
         </strong>
       </span>
-      <span>
+      <span
+        class="euiTab__append"
+      >
         append
       </span>
     </button>

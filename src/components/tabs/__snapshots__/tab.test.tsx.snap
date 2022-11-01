@@ -7,7 +7,9 @@ exports[`EuiTab props append is rendered 1`] = `
   role="tab"
   type="button"
 >
-  <span>
+  <span
+    class="euiTab__prepend"
+  >
     Append
   </span>
   <span
@@ -107,7 +109,9 @@ exports[`EuiTab props prepend is rendered 1`] = `
   role="tab"
   type="button"
 >
-  <span>
+  <span
+    class="euiTab__prepend"
+  >
     Prepend
   </span>
   <span
