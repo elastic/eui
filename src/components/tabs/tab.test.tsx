@@ -8,11 +8,14 @@
 
 import React from 'react';
 import { render, shallow } from 'enzyme';
+import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
 
 import { EuiTab } from './tab';
 
 describe('EuiTab', () => {
+  shouldRenderCustomStyles(<EuiTab onClick={() => {}}>children</EuiTab>);
+
   describe('props', () => {
     describe('onClick', () => {
       test('renders button', () => {
