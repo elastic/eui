@@ -64,8 +64,6 @@ export const euiTabContentStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiTab__content: css`
-      color: ${euiTheme.colors.disabledText};
-
       &:hover {
         text-decoration: none;
       }
@@ -99,10 +97,6 @@ export const euiTabContentStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     disabled: css`
       color: ${euiTheme.colors.disabledText};
-
-      &:hover {
-        text-decoration: none;
-      }
     `,
   };
 };
