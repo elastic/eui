@@ -62,11 +62,11 @@ export const EuiTabs = forwardRef<EuiTabRef, PropsWithChildren<EuiTabsProps>>(
 
     const classes = classNames('euiTabs', className);
 
-    const tabsStyles = euiTabsStyles(euiTheme);
-    const computedStyles = [
-      tabsStyles.euiTabs,
-      tabsStyles[size],
-      bottomBorder && tabsStyles.bottomBorder,
+    const styles = euiTabsStyles(euiTheme);
+    const cssStyles = [
+      styles.euiTabs,
+      styles[size],
+      bottomBorder && styles.bottomBorder,
     ];
 
     const tabItems = React.Children.map(children, (child) => {
@@ -83,7 +83,7 @@ export const EuiTabs = forwardRef<EuiTabRef, PropsWithChildren<EuiTabsProps>>(
       <div
         ref={ref}
         className={classes}
-        css={computedStyles}
+        css={cssStyles}
         {...(children && { role: 'tablist' })}
         {...rest}
       >
