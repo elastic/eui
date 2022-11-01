@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { mathWithUnits } from '../../global_styling';
+import { logicalCSS, mathWithUnits } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiTitle } from '../title/title.styles';
 
@@ -28,16 +28,20 @@ export const euiTabStyles = ({ euiTheme }: UseEuiTheme) => {
     `,
     // sizes
     s: css`
-      padding: 0 ${euiTheme.size.xs};
+      ${logicalCSS('padding-vertical', 0)}
+      ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
     `,
     m: css`
-      padding: 0 ${euiTheme.size.xs};
+      ${logicalCSS('padding-vertical', 0)}
+      ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
     `,
     l: css`
-      padding: 0 ${euiTheme.size.xs};
+      ${logicalCSS('padding-vertical', 0)}
+      ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
     `,
     xl: css`
-      padding: ${euiTheme.size.s} ${euiTheme.size.xs};
+      ${logicalCSS('padding-vertical', euiTheme.size.s)}
+      ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
     `,
     // variations
     expanded: css`
