@@ -44,22 +44,32 @@ The vast majority of functional tests use the Mocha-based functional test runner
 
 #### Kibana FTR (`test/`)
 
-Godspeed: [Running functional tests in Kibana](https://www.elastic.co/guide/en/kibana/current/development-tests.html#development-functional-tests)
+**Follow Kibana's docs**: [Running functional tests in Kibana](https://www.elastic.co/guide/en/kibana/current/development-tests.html#development-functional-tests)
 
 The best approach, again, involves narrowing the root cause to a commit in the changelog and triaging various DOM, style, or React possibilities.
 
 Tips:
 
-- To only run a specific suite of tests you want, you can add `describe.only` or `it.only` to the failing test file, or use the `--grep` flag in the CLI command.
-- If a test passes for you locally but is flaky on CI, consider using the [async retry service](https://github.com/elastic/kibana/blob/main/test/common/services/retry/retry.ts).
+* For a basic "does this pass locally for me/is CI potentially flakey" smoke test, we recommend using the `node scripts/functional_tests` script.
+* For failures where you need to dig into the DOM or more closely debug what's happening, Kibana recommends running two separate scripts, `node scripts/functional_tests_server` and `node scripts/functional_test_runner` instead (see the above linked Kibana docs). This will allow you to inspect a local Kibana test environment outside of tests running, and make test debug logs easier to parse.
+    * Note: if you are debugging failing `x-pack` tests, you will want to use `node x-pack/scripts/functional_tests_server` but you will still want to use `node scripts/functional_test_runner` from Kibana root (with `--config` pointed at the relevant x-pack file).
+* To only run a specific suite of tests you want, you can add `describe.only` or `it.only` to the failing test file, or use the `--grep` flag in the CLI command.
+* If a test passes for you locally but is flaky on CI, consider using the [async retry service](https://github.com/elastic/kibana/blob/main/test/common/services/retry/retry.ts).
+* When updating baseline screenshots that are reporting too large a diff, you can either increase the expected diff number or update the baseline screenshots.
+    * To update the baseline screenshots, start a separate `functional_tests_server` and wait for it to be ready
+    * In a separate test runner tab, run the following commands:
+    * `export TEST_BROWSER_HEADLESS=1` (runs screenshot updates in headless mode to match CI)
+    * `yarn node scripts/functional_test_runner --config=... -u --headless` (`-u` or `--updateBaseline` is what updates the screenshots)
 
-#### Security Cypress (`x-pack/plugins/security_solution/cypress/`)
+#### Security/OSQuery Cypress (`x-pack/plugins/{security_solution|osquery}/cypress/`)
 
-Follow the local [README instructions](https://github.com/elastic/kibana/blob/main/x-pack/plugins/security_solution/cypress/README.md#ftr--interactive) to run individual tests in a nice UI.
+Follow [Security's Cypress README](https://github.com/elastic/kibana/blob/main/x-pack/plugins/security_solution/cypress/README.md#ftr--interactive) or [OSQuery's Cypress README](https://github.com/elastic/kibana/blob/main/x-pack/plugins/osquery/cypress/README.md#ftr--interactive) to run individual tests in a nice UI.
+
+> Note: OSQuery's Cypress tests appear to have copied Security's Cypress setup and should generally function similarly.
 
 #### @elastic/synthetics Tests (`x-pack/plugins/{synthetics|observability/ux}/e2e`)
 
-See the [synthetics/e2e README](https://github.com/elastic/kibana/blob/main/x-pack/plugins/synthetics/e2e/README.md).
+Follow [synthetics/e2e README](https://github.com/elastic/kibana/blob/main/x-pack/plugins/synthetics/e2e/README.md).
 
 For debugging purposes, you will almost certainly want to use the `--bail --no-headless` flags. Like the FTR tests above, you will also want to use `--grep` to only run a certain test block or test (there is no `.only` API for synthetics).
 
