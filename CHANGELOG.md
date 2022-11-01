@@ -1,3 +1,18 @@
+## [`67.1.7`](https://github.com/elastic/eui/tree/v67.1.7)
+
+- Added the `enabled` option to the `<EuiInMemoryTable />` `executeQueryOptions` prop. This option prevents the Query from being executed when controlled by the consumer. ([#6284](https://github.com/elastic/eui/pull/6284))
+- Added the `hint` prop to the `<EuiSearchBar />`. This prop lets the consumer render a hint below the search bar that will be displayed on focus. ([#6319](https://github.com/elastic/eui/pull/6319))
+- Added the `hasDragDrop` prop to `EuiPopover`. Use this prop if your popover contains `EuiDragDropContext`. ([#6329](https://github.com/elastic/eui/pull/6329))
+
+**Bug fixes**
+
+- Fixed the last breadcrumb in `EuiBreadcrumbs`'s `breadcrumbs` array not respecting `truncate` overrides ([#6280](https://github.com/elastic/eui/pull/6280))
+- Fixed a bug with `EuiTour` where passing any `panelProps` would cause the beacon to disappear ([#6298](https://github.com/elastic/eui/pull/6298))
+- Fixed `EuiPageTemplate` not recognizing child `EuiPageSidebar`s/`EuiPageTemplate.Sidebar`s with `css` props ([#6324](https://github.com/elastic/eui/pull/6324))
+- Fixed `EuiBetaBadge` to always respect its `anchorProps` values, including when there is no tooltip content ([#6326](https://github.com/elastic/eui/pull/6326))
+- Temporarily patched `EuiModal` to not cause scroll-jumping issues on modal open ([#6327](https://github.com/elastic/eui/pull/6327))
+- Fixed buggy drag & drop behavior within `EuiDataGrid`'s columns & sorting toolbar popovers ([#6329](https://github.com/elastic/eui/pull/6329))
+
 ## [`67.1.6`](https://github.com/elastic/eui/tree/v67.1.6)
 
 **Bug fixes**
