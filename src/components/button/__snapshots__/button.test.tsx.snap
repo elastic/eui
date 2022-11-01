@@ -156,10 +156,9 @@ exports[`EuiButton props iconSide left is rendered 1`] = `
   type="button"
 >
   <span
-    class="emotion-euiButtonDisplayContent-left"
+    class="emotion-euiButtonDisplayContent"
   >
     <span
-      class="emotion-euiButtonDisplayContent__icon-m"
       color="inherit"
       data-euiicon-type="user"
     />
@@ -178,18 +177,17 @@ exports[`EuiButton props iconSide right is rendered 1`] = `
   type="button"
 >
   <span
-    class="emotion-euiButtonDisplayContent-right"
+    class="emotion-euiButtonDisplayContent"
   >
-    <span
-      class="emotion-euiButtonDisplayContent__icon-m"
-      color="inherit"
-      data-euiicon-type="user"
-    />
     <span
       class="eui-textTruncate"
     >
       Content
     </span>
+    <span
+      color="inherit"
+      data-euiicon-type="user"
+    />
   </span>
 </button>
 `;
@@ -203,7 +201,6 @@ exports[`EuiButton props iconSize m is rendered 1`] = `
     class="emotion-euiButtonDisplayContent"
   >
     <span
-      class="emotion-euiButtonDisplayContent__icon-m"
       color="inherit"
       data-euiicon-type="user"
     />
@@ -225,7 +222,6 @@ exports[`EuiButton props iconSize s is rendered 1`] = `
     class="emotion-euiButtonDisplayContent"
   >
     <span
-      class="emotion-euiButtonDisplayContent__icon-s"
       color="inherit"
       data-euiicon-type="user"
     />
@@ -247,7 +243,6 @@ exports[`EuiButton props iconType is rendered 1`] = `
     class="emotion-euiButtonDisplayContent"
   >
     <span
-      class="emotion-euiButtonDisplayContent__icon-m"
       color="inherit"
       data-euiicon-type="user"
     />
@@ -302,8 +297,9 @@ exports[`EuiButton props isLoading is rendered 1`] = `
   >
     <span
       aria-label="Loading"
-      class="euiLoadingSpinner emotion-euiLoadingSpinner-m-euiButtonDisplayContent__spinner"
+      class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
       role="progressbar"
+      style="border-color:#07C currentcolor currentcolor currentcolor"
     />
   </span>
 </button>
@@ -336,6 +332,7 @@ exports[`EuiButton props isSelected is rendered as true 1`] = `
 exports[`EuiButton props minWidth is rendered 1`] = `
 <button
   class="euiButton emotion-euiButtonDisplay-m-m-base-primary"
+  style="min-inline-size:0"
   type="button"
 >
   <span

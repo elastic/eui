@@ -1,5 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiLoadingSpinner custom colors 1`] = `
+Array [
+  <span
+    aria-label="Loading"
+    class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
+    role="progressbar"
+    style="border-color:#07C white white white"
+  />,
+  <span
+    aria-label="Loading"
+    class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
+    role="progressbar"
+    style="border-color:black #D3DAE6 #D3DAE6 #D3DAE6"
+  />,
+  <span
+    aria-label="Loading"
+    class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
+    role="progressbar"
+    style="color:red;border-color:black white white white"
+  />,
+]
+`;
+
 exports[`EuiLoadingSpinner is rendered 1`] = `
 <span
   aria-label="aria-label"

@@ -168,6 +168,11 @@ export interface EuiPopoverProps extends CommonProps {
    */
   repositionOnScroll?: boolean;
   /**
+   * Must be set to true if using `EuiDragDropContext` within a popover,
+   * otherwise your nested drag & drop will have incorrect positioning
+   */
+  hasDragDrop?: boolean;
+  /**
    * By default, popover content inherits the z-index of the anchor
    * component; pass `zIndex` to override
    */
@@ -613,6 +618,7 @@ export class EuiPopover extends Component<Props, State> {
       hasArrow,
       arrowChildren,
       repositionOnScroll,
+      hasDragDrop,
       zIndex,
       attachToAnchor,
       display,
@@ -625,9 +631,10 @@ export class EuiPopover extends Component<Props, State> {
       container,
       focusTrapProps,
       initialFocus: initialFocusProp,
-      tabIndex: tabIndexProp,
+      tabIndex: _tabIndexProp,
       ...rest
     } = this.props;
+    const tabIndexProp = panelProps?.tabIndex ?? _tabIndexProp;
 
     const styles = euiPopoverStyles();
     const popoverStyles = [styles.euiPopover, { display }];
@@ -708,6 +715,7 @@ export class EuiPopover extends Component<Props, State> {
               position={this.state.arrowPosition}
               isAttached={attachToAnchor}
               className={classNames(panelClassName, panelProps?.className)}
+              hasDragDrop={hasDragDrop}
               hasShadow={false}
               paddingSize={panelPaddingSize}
               tabIndex={tabIndex}

@@ -7,7 +7,9 @@
  */
 
 /* eslint-disable react/no-multi-comp */
-import React from 'react';
+import React, { useState } from 'react';
+import { act } from 'react-dom/test-utils';
+
 import { requiredProps } from '../../test';
 import { mount, shallow } from 'enzyme';
 import { EuiSearchBar } from './search_bar';
@@ -103,6 +105,83 @@ describe('SearchBar', () => {
       const [[{ query, queryText }]] = onChange.mock.calls;
       expect(query).toBeInstanceOf(Query);
       expect(queryText).toBe('status:inactive');
+    });
+  });
+
+  describe('hint', () => {
+    test('renders a hint below the search bar on focus', () => {
+      const component = mount(
+        <EuiSearchBar
+          query="status:active"
+          box={{ 'data-test-subj': 'searchbar' }}
+          hint={{
+            content: <span data-test-subj="myHint">Hello from hint</span>,
+          }}
+        />
+      );
+
+      const getHint = () => component.find('[data-test-subj="myHint"]');
+
+      let hint = getHint();
+      expect(hint.length).toBe(0);
+
+      act(() => {
+        component.find('input[data-test-subj="searchbar"]').simulate('focus');
+      });
+      component.update();
+
+      hint = getHint();
+      expect(hint.length).toBe(1);
+      expect(hint.text()).toBe('Hello from hint');
+    });
+
+    test('control the visibility of the hint', () => {
+      const TestComp = () => {
+        const [isHintVisible, setIsHintVisible] = useState(false);
+
+        return (
+          <>
+            <EuiSearchBar
+              box={{ 'data-test-subj': 'searchbar' }}
+              hint={{
+                content: <span data-test-subj="myHint">Hello from hint</span>,
+                popoverProps: {
+                  isOpen: isHintVisible,
+                },
+              }}
+            />
+            <button
+              data-test-subj="showHintBtn"
+              onClick={() => setIsHintVisible(true)}
+            >
+              Show hint
+            </button>
+          </>
+        );
+      };
+
+      const component = mount(<TestComp />);
+      const getHint = () => component.find('[data-test-subj="myHint"]');
+
+      let hint = getHint();
+      expect(hint.length).toBe(0);
+
+      act(() => {
+        component.find('input[data-test-subj="searchbar"]').simulate('focus');
+      });
+      component.update();
+
+      hint = getHint();
+      expect(hint.length).toBe(0); // Not visible on focus as it is controlled
+
+      act(() => {
+        component.find('[data-test-subj="showHintBtn"]').simulate('click');
+      });
+      component.update();
+
+      hint = getHint();
+      expect(hint.length).toBe(1);
+      expect(hint.text()).toBe('Hello from hint');
     });
   });
 });
