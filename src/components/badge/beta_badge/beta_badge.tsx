@@ -247,11 +247,7 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
       }
       return (
         <span {...anchorProps}>
-          <span
-            className={classes}
-            title={spanTitle as string}
-            {...rest}
-          >
+          <span className={classes} title={spanTitle as string} {...rest}>
             {icon || label}
           </span>
         </span>
