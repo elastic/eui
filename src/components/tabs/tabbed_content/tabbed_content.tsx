@@ -16,7 +16,7 @@ import React, {
 
 import { htmlIdGenerator } from '../../../services';
 
-import { EuiTabs } from '../tabs';
+import { EuiTabs, EuiTabsSizes } from '../tabs';
 import { EuiTab, EuiTabProps } from '../tab';
 import { CommonProps } from '../../common';
 
@@ -58,7 +58,7 @@ export type EuiTabbedContentProps = CommonProps &
      * Use this prop if you want to control selection state within the owner component
      */
     selectedTab?: EuiTabbedContentTab;
-    size?: 's' | 'm' | 'l' | 'xl';
+    size?: EuiTabsSizes;
     /**
      * Each tab needs id and content properties, so we can associate it with its panel for accessibility.
      * The name property (a node) is also required to display to the user.
