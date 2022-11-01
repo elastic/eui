@@ -20,28 +20,13 @@ export const euiTabStyles = ({ euiTheme }: UseEuiTheme) => {
       align-items: center;
       font-weight: ${euiTheme.font.weight.semiBold};
       gap: ${euiTheme.size.s};
+      ${logicalCSS('padding-vertical', 0)}
+      ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
 
       &:focus {
         background-color: transparent;
         outline-offset: -${euiTheme.focus.width};
       }
-    `,
-    // sizes
-    s: css`
-      ${logicalCSS('padding-vertical', 0)}
-      ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
-    `,
-    m: css`
-      ${logicalCSS('padding-vertical', 0)}
-      ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
-    `,
-    l: css`
-      ${logicalCSS('padding-vertical', 0)}
-      ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
-    `,
-    xl: css`
-      ${logicalCSS('padding-vertical', euiTheme.size.s)}
-      ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
     `,
     // variations
     expanded: css`

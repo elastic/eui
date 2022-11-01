@@ -330,7 +330,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
           >
             <button
               aria-selected="true"
-              class="euiTab euiTab-isSelected emotion-euiTab-selected-l"
+              class="euiTab euiTab-isSelected emotion-euiTab-selected"
               role="tab"
               type="button"
             >
@@ -342,7 +342,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
             </button>
             <button
               aria-selected="false"
-              class="euiTab emotion-euiTab-l"
+              class="euiTab emotion-euiTab"
               role="tab"
               type="button"
             >

@@ -88,7 +88,6 @@ export const EuiTab: FunctionComponent<Props> = ({
     expand && tabStyles.expanded,
     disabled && tabStyles.disabled.disabled,
     isSelected && (disabled ? tabStyles.disabled.selected : tabStyles.selected),
-    size && tabStyles[size],
   ];
 
   const tabContentStyles = euiTabContentStyles(euiTheme);
