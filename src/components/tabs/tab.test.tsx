@@ -57,6 +57,16 @@ describe('EuiTab', () => {
       expect(render(component)).toMatchSnapshot();
     });
 
+    test('disabled and selected', () => {
+      const component = render(
+        <EuiTab disabled isSelected>
+          Click Me
+        </EuiTab>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     test('prepend is rendered', () => {
       const component = (
         <EuiTab onClick={() => {}} prepend="Prepend">

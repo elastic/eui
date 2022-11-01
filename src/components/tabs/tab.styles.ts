@@ -52,14 +52,15 @@ export const euiTabStyles = ({ euiTheme }: UseEuiTheme) => {
     selected: css`
       box-shadow: inset 0 -${euiTheme.border.width.thick} 0 ${euiTheme.colors.primary};
     `,
-    disabled: css`
-      cursor: not-allowed;
-      color: ${euiTheme.colors.disabledText};
-
-      .euiTab.euiTab__isSelected {
+    disabled: {
+      disabled: css`
+        cursor: not-allowed;
+        color: ${euiTheme.colors.disabledText};
+      `,
+      selected: css`
         box-shadow: inset 0 -${euiTheme.border.width.thick} 0 ${euiTheme.colors.disabledText};
-      }
-    `,
+      `,
+    },
   };
 };
 
