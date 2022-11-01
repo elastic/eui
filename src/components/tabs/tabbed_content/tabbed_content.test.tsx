@@ -116,7 +116,7 @@ describe('EuiTabbedContent', () => {
         ],
       });
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
   });
 });
