@@ -7,6 +7,7 @@
  */
 
 import { css } from '@emotion/react';
+import { mathWithUnits } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiTitle } from '../title/title.styles';
 
@@ -45,16 +46,14 @@ export const euiTabStyles = ({ euiTheme }: UseEuiTheme) => {
       justify-content: center;
     `,
     selected: css`
-      box-shadow: inset 0 calc(${euiTheme.border.width.thick} * -1) 0
-        ${euiTheme.colors.primary};
+      box-shadow: inset 0 -${euiTheme.border.width.thick} 0 ${euiTheme.colors.primary};
     `,
     disabled: css`
       cursor: not-allowed;
       color: ${euiTheme.colors.disabledText};
 
       .euiTab.euiTab__isSelected {
-        box-shadow: inset 0 calc(${euiTheme.border.width.thick} * -1) 0
-          ${euiTheme.colors.disabledText};
+        box-shadow: inset 0 -${euiTheme.border.width.thick} 0 ${euiTheme.colors.disabledText};
       }
     `,
   };
@@ -82,11 +81,17 @@ export const euiTabContentStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     l: css`
       ${euiTitle(euiThemeContext, 'xs')};
-      line-height: calc(${euiTheme.size.xl} + ${euiTheme.size.s});
+      line-height: ${mathWithUnits(
+        [euiTheme.size.xl, euiTheme.size.s],
+        (x, y) => x + y
+      )};
     `,
     xl: css`
       ${euiTitle(euiThemeContext, 's')};
-      line-height: calc(${euiTheme.size.xxxl} + ${euiTheme.size.s});
+      line-height: ${mathWithUnits(
+        [euiTheme.size.xxxl, euiTheme.size.s],
+        (x, y) => x + y
+      )};
     `,
     // variations
     selected: css`
