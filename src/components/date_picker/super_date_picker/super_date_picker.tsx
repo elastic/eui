@@ -421,6 +421,7 @@ export class EuiSuperDatePickerInternal extends Component<
             data-test-subj="superDatePickerShowDatesButton"
             disabled={isDisabled}
             onClick={this.hidePrettyDuration}
+            onFocus={onFocus}
           >
             <PrettyDuration
               timeFrom={start}
