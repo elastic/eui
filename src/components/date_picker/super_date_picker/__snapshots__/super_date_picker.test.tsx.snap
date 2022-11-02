@@ -11,8 +11,6 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
       className="euiSuperDatePicker testClass1 testClass2"
       data-test-subj="test subject string"
       isDisabled={false}
-      onClick={[Function]}
-      onKeyUp={[Function]}
       prepend={
         <EuiQuickSelectPopover
           applyTime={[Function]}
@@ -239,10 +237,18 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
     >
       <EuiDatePickerRange
         className="euiDatePickerRange--inGroup"
-        endDateControl={<div />}
+        endDateControl={
+          <div
+            onFocus={[Function]}
+          />
+        }
         iconType={false}
         isCustom={true}
-        startDateControl={<div />}
+        startDateControl={
+          <div
+            onFocus={[Function]}
+          />
+        }
       >
         <button
           className="euiSuperDatePicker__prettyFormat"
@@ -338,8 +344,6 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
       className="euiSuperDatePicker"
       data-test-subj="mySuperDatePicker"
       isDisabled={false}
-      onClick={[Function]}
-      onKeyUp={[Function]}
       prepend={
         <EuiQuickSelectPopover
           applyTime={[Function]}
@@ -566,10 +570,18 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
     >
       <EuiDatePickerRange
         className="euiDatePickerRange--inGroup"
-        endDateControl={<div />}
+        endDateControl={
+          <div
+            onFocus={[Function]}
+          />
+        }
         iconType={false}
         isCustom={true}
-        startDateControl={<div />}
+        startDateControl={
+          <div
+            onFocus={[Function]}
+          />
+        }
       >
         <button
           className="euiSuperDatePicker__prettyFormat"
@@ -665,8 +677,6 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
       className="euiSuperDatePicker"
       compressed={true}
       isDisabled={false}
-      onClick={[Function]}
-      onKeyUp={[Function]}
       prepend={
         <EuiQuickSelectPopover
           applyTime={[Function]}
@@ -893,10 +903,18 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
     >
       <EuiDatePickerRange
         className="euiDatePickerRange--inGroup"
-        endDateControl={<div />}
+        endDateControl={
+          <div
+            onFocus={[Function]}
+          />
+        }
         iconType={false}
         isCustom={true}
-        startDateControl={<div />}
+        startDateControl={
+          <div
+            onFocus={[Function]}
+          />
+        }
       >
         <button
           className="euiSuperDatePicker__prettyFormat"
@@ -1028,8 +1046,6 @@ exports[`EuiSuperDatePicker props isQuickSelectOnly is rendered 1`] = `
     <EuiFormControlLayout
       className="euiSuperDatePicker"
       isDisabled={false}
-      onClick={[Function]}
-      onKeyUp={[Function]}
       prepend={
         <EuiQuickSelectPopover
           applyTime={[Function]}
@@ -1289,8 +1305,6 @@ exports[`EuiSuperDatePicker props showUpdateButton can be false 1`] = `
     <EuiFormControlLayout
       className="euiSuperDatePicker"
       isDisabled={false}
-      onClick={[Function]}
-      onKeyUp={[Function]}
       prepend={
         <EuiQuickSelectPopover
           applyTime={[Function]}
@@ -1517,10 +1531,18 @@ exports[`EuiSuperDatePicker props showUpdateButton can be false 1`] = `
     >
       <EuiDatePickerRange
         className="euiDatePickerRange--inGroup"
-        endDateControl={<div />}
+        endDateControl={
+          <div
+            onFocus={[Function]}
+          />
+        }
         iconType={false}
         isCustom={true}
-        startDateControl={<div />}
+        startDateControl={
+          <div
+            onFocus={[Function]}
+          />
+        }
       >
         <button
           className="euiSuperDatePicker__prettyFormat"
@@ -1594,8 +1616,6 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
     <EuiFormControlLayout
       className="euiSuperDatePicker"
       isDisabled={false}
-      onClick={[Function]}
-      onKeyUp={[Function]}
       prepend={
         <EuiQuickSelectPopover
           applyTime={[Function]}
@@ -1822,10 +1842,18 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
     >
       <EuiDatePickerRange
         className="euiDatePickerRange--inGroup"
-        endDateControl={<div />}
+        endDateControl={
+          <div
+            onFocus={[Function]}
+          />
+        }
         iconType={false}
         isCustom={true}
-        startDateControl={<div />}
+        startDateControl={
+          <div
+            onFocus={[Function]}
+          />
+        }
       >
         <button
           className="euiSuperDatePicker__prettyFormat"
@@ -1920,8 +1948,6 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
     <EuiFormControlLayout
       className="euiSuperDatePicker"
       isDisabled={false}
-      onClick={[Function]}
-      onKeyUp={[Function]}
       prepend={
         <EuiQuickSelectPopover
           applyTime={[Function]}
@@ -2148,10 +2174,18 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
     >
       <EuiDatePickerRange
         className="euiDatePickerRange--inGroup"
-        endDateControl={<div />}
+        endDateControl={
+          <div
+            onFocus={[Function]}
+          />
+        }
         iconType={false}
         isCustom={true}
-        startDateControl={<div />}
+        startDateControl={
+          <div
+            onFocus={[Function]}
+          />
+        }
       >
         <button
           className="euiSuperDatePicker__prettyFormat"
@@ -2246,8 +2280,6 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
     <EuiFormControlLayout
       className="euiSuperDatePicker"
       isDisabled={false}
-      onClick={[Function]}
-      onKeyUp={[Function]}
       prepend={
         <EuiQuickSelectPopover
           applyTime={[Function]}
@@ -2474,10 +2506,18 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
     >
       <EuiDatePickerRange
         className="euiDatePickerRange--inGroup"
-        endDateControl={<div />}
+        endDateControl={
+          <div
+            onFocus={[Function]}
+          />
+        }
         iconType={false}
         isCustom={true}
-        startDateControl={<div />}
+        startDateControl={
+          <div
+            onFocus={[Function]}
+          />
+        }
       >
         <button
           className="euiSuperDatePicker__prettyFormat"

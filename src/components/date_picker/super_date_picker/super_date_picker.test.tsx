@@ -167,19 +167,13 @@ describe('EuiSuperDatePicker', () => {
       );
     });
 
-    test('keyup or click on FCLayout or DatePickerRange should invoke onFocus on SuperDatePicker', () => {
+    test('should invoke onFocus on SuperDatePicker', () => {
       const focusMock = jest.fn();
-
-      const componentFocus = mount<EuiSuperDatePickerInternal>(
+      const componentFocus = shallow<EuiSuperDatePickerInternal>(
         <EuiSuperDatePicker onTimeChange={noop} onFocus={focusMock} />
       );
-
-      componentFocus.find('EuiFormControlLayout').simulate('keyUp');
-      componentFocus.find('EuiDatePickerRange').simulate('keyUp');
-      componentFocus.find('EuiFormControlLayout').simulate('click');
-      componentFocus.find('EuiDatePickerRange').simulate('click');
-
-      expect(focusMock).toBeCalledTimes(4);
+      componentFocus.dive().simulate('focus');
+      expect(focusMock).toBeCalledTimes(1);
     });
 
     describe('showUpdateButton', () => {

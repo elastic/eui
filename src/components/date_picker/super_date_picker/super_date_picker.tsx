@@ -90,7 +90,7 @@ export type EuiSuperDatePickerProps = CommonProps & {
   /**
    * Triggered whenever the EuiSuperDatePicker is focused
    */
-  onFocus?: FocusEventHandler<HTMLDivElement>;
+  onFocus?: FocusEventHandler;
 
   /**
    * Callback for when the refresh interval is fired.
@@ -398,8 +398,12 @@ export class EuiSuperDatePickerInternal extends Component<
       timeFormat,
       utcOffset,
       compressed,
+      onFocus,
     } = this.props;
 
+    const handleFocusActivity = (e: React.FocusEvent) => {
+      onFocus?.(e);
+    };
     if (
       showPrettyDuration &&
       !isStartDatePopoverOpen &&
@@ -410,8 +414,8 @@ export class EuiSuperDatePickerInternal extends Component<
           className="euiDatePickerRange--inGroup"
           iconType={false}
           isCustom
-          startDateControl={<div />}
-          endDateControl={<div />}
+          startDateControl={<div onFocus={(e) => handleFocusActivity(e)} />}
+          endDateControl={<div onFocus={(e) => handleFocusActivity(e)} />}
         >
           <button
             className={classNames('euiSuperDatePicker__prettyFormat', {
@@ -459,6 +463,7 @@ export class EuiSuperDatePickerInternal extends Component<
                 onPopoverToggle={this.onStartDatePopoverToggle}
                 onPopoverClose={this.onStartDatePopoverClose}
                 timeOptions={timeOptions}
+                buttonProps={{ onFocus: (e) => handleFocusActivity(e) }}
               />
             }
             endDateControl={
@@ -479,6 +484,7 @@ export class EuiSuperDatePickerInternal extends Component<
                 onPopoverToggle={this.onEndDatePopoverToggle}
                 onPopoverClose={this.onEndDatePopoverClose}
                 timeOptions={timeOptions}
+                buttonProps={{ onFocus: (e) => handleFocusActivity(e) }}
               />
             }
           />
@@ -538,7 +544,6 @@ export class EuiSuperDatePickerInternal extends Component<
       isDisabled,
       isPaused,
       onRefreshChange,
-      onFocus,
       recentlyUsedRanges,
       refreshInterval,
       showUpdateButton,
@@ -552,15 +557,6 @@ export class EuiSuperDatePickerInternal extends Component<
 
     // Force reduction in width if showing quick select only
     const width = isQuickSelectOnly ? 'auto' : _width;
-
-    const handleInputActivity = (
-      event:
-        | React.KeyboardEvent<HTMLInputElement>
-        | React.MouseEvent<HTMLInputElement>
-        | any
-    ) => {
-      if (onFocus) onFocus(event);
-    };
 
     const autoRefreshAppend: EuiFormControlLayoutProps['append'] = !isPaused ? (
       <EuiAutoRefreshButton
@@ -627,8 +623,6 @@ export class EuiSuperDatePickerInternal extends Component<
                 compressed={compressed}
                 isDisabled={isDisabled}
                 prepend={quickSelect}
-                onClick={handleInputActivity}
-                onKeyUp={handleInputActivity}
                 append={autoRefreshAppend}
                 data-test-subj={dataTestSubj}
               >

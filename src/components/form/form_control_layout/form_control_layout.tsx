@@ -39,8 +39,6 @@ export type EuiFormControlLayoutProps = CommonProps &
      * Creates an input group with element(s) coming after children.
      * `string` | `ReactElement` or an array of these
      */
-
-    onClick?: (e: React.MouseEvent<HTMLInputElement>) => void;
     append?: PrependAppendType;
     children?: ReactNode;
     icon?: EuiFormControlLayoutIconsProps['icon'];

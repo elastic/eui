@@ -110,7 +110,6 @@ export const EuiDatePopoverButton: FunctionComponent<EuiDatePopoverButtonProps> 
   const button = (
     <button
       onClick={onPopoverToggle}
-      onFocus={() => console.log('This is invoking twice')}
       className={classes}
       title={title}
       disabled={isDisabled}
