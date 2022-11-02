@@ -167,13 +167,22 @@ describe('EuiSuperDatePicker', () => {
       );
     });
 
-    test('should invoke onFocus on SuperDatePicker', () => {
+    it('invokes onFocus callbacks on the date popover buttons', () => {
       const focusMock = jest.fn();
-      const componentFocus = shallow<EuiSuperDatePickerInternal>(
-        <EuiSuperDatePicker onTimeChange={noop} onFocus={focusMock} />
+      const component = mount(
+        <EuiSuperDatePicker onTimeChange={noop} showUpdateButton={false} />
       );
-      componentFocus.dive().simulate('focus');
+
+      component.find('button[data-test-subj="superDatePickerShowDatesButton"]').simulate('click');
       expect(focusMock).toBeCalledTimes(1);
+
+      component.update(); // not 100% sure if this is needed, including just in case
+
+      component.find('button[data-test-subj="superDatePickerstartDatePopoverButton"]').simulate('focus');
+      expect(focusMock).toBeCalledTimes(2);
+
+      component.find('button[data-test-subj="superDatePickerstartDatePopoverButton"]').simulate('focus');
+      expect(focusMock).toBeCalledTimes(3);
     });
 
     describe('showUpdateButton', () => {

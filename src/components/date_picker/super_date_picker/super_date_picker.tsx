@@ -88,7 +88,7 @@ export type EuiSuperDatePickerProps = CommonProps & {
   locale?: LocaleSpecifier;
 
   /**
-   * Triggered whenever the EuiSuperDatePicker is focused
+   * Triggered whenever the EuiSuperDatePicker's dates are focused
    */
   onFocus?: FocusEventHandler;
 
@@ -401,9 +401,6 @@ export class EuiSuperDatePickerInternal extends Component<
       onFocus,
     } = this.props;
 
-    const handleFocusActivity = (e: React.FocusEvent) => {
-      onFocus?.(e);
-    };
     if (
       showPrettyDuration &&
       !isStartDatePopoverOpen &&
@@ -414,8 +411,8 @@ export class EuiSuperDatePickerInternal extends Component<
           className="euiDatePickerRange--inGroup"
           iconType={false}
           isCustom
-          startDateControl={<div onFocus={(e) => handleFocusActivity(e)} />}
-          endDateControl={<div onFocus={(e) => handleFocusActivity(e)} />}
+          startDateControl={<div />}
+          endDateControl={<div />}
         >
           <button
             className={classNames('euiSuperDatePicker__prettyFormat', {
@@ -463,7 +460,7 @@ export class EuiSuperDatePickerInternal extends Component<
                 onPopoverToggle={this.onStartDatePopoverToggle}
                 onPopoverClose={this.onStartDatePopoverClose}
                 timeOptions={timeOptions}
-                buttonProps={{ onFocus: (e) => handleFocusActivity(e) }}
+                buttonProps={{ onFocus }}
               />
             }
             endDateControl={
@@ -484,7 +481,7 @@ export class EuiSuperDatePickerInternal extends Component<
                 onPopoverToggle={this.onEndDatePopoverToggle}
                 onPopoverClose={this.onEndDatePopoverClose}
                 timeOptions={timeOptions}
-                buttonProps={{ onFocus: (e) => handleFocusActivity(e) }}
+                buttonProps={{ onFocus }}
               />
             }
           />
