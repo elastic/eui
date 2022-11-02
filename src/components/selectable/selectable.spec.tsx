@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+/// <reference types="cypress" />
 /// <reference types="../../../cypress/support"/>
 
 import React, { useState } from 'react';
