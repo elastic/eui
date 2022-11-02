@@ -141,7 +141,7 @@ export const useDataGridColumnSorting = (
       closePopover={() => setIsOpen(false)}
       anchorPosition="downLeft"
       panelPaddingSize="s"
-      panelClassName="euiDataGrid__controlPopoverWithDragDrop"
+      hasDragDrop
       button={
         <EuiButtonEmpty
           size="xs"

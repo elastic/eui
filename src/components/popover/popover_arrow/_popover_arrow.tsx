@@ -29,7 +29,12 @@ export const EuiPopoverArrow: FunctionComponent<EuiPopoverArrowProps> = ({
   const cssStyles = [styles.euiPopoverArrow, styles[position]];
 
   return (
-    <div data-popover-arrow={position} css={cssStyles} {...rest}>
+    <div
+      className="euiPopover__arrow"
+      data-popover-arrow={position}
+      css={cssStyles}
+      {...rest}
+    >
       {children}
     </div>
   );

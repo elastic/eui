@@ -4,6 +4,7 @@ import {
   EuiButtonEmpty,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiSpacer,
 } from '../../../../src/components/';
 
 const buttons = ['primary', 'success', 'warning', 'danger', 'text', 'disabled'];
@@ -11,7 +12,7 @@ const buttons = ['primary', 'success', 'warning', 'danger', 'text', 'disabled'];
 export default () => (
   <div>
     {buttons.map((value) => (
-      <React.Fragment key={value}>
+      <>
         <EuiFlexGroup
           key={value}
           responsive={false}
@@ -50,7 +51,8 @@ export default () => (
             </EuiButtonEmpty>
           </EuiFlexItem>
         </EuiFlexGroup>
-      </React.Fragment>
+        <EuiSpacer size="s" />
+      </>
     ))}
   </div>
 );

@@ -1,16 +1,14 @@
 import React from 'react';
 import { EuiText, EuiResizableContainer } from '../../../../src/components';
-// @ts-ignore - faker does not have type declarations
-import { fake } from 'faker';
+import { faker } from '@faker-js/faker';
 
 const text = (
   <>
-    <p>{fake('{{lorem.paragraphs}}')}</p>
-    <p>{fake('{{lorem.paragraphs}}')}</p>
-    <p>{fake('{{lorem.paragraphs}}')}</p>
+    <p>{faker.lorem.paragraphs()}</p>
+    <p>{faker.lorem.paragraphs()}</p>
+    <p>{faker.lorem.paragraphs()}</p>
   </>
 );
-
 export default () => (
   <EuiResizableContainer style={{ height: '400px' }} direction="vertical">
     {(EuiResizablePanel, EuiResizableButton) => (

@@ -111,7 +111,7 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
     {
       children,
       iconType,
-      iconSide,
+      iconSide = 'left',
       iconSize,
       size = 'm',
       isDisabled,
@@ -156,7 +156,7 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
         iconType={iconType}
         iconSide={iconSide}
         iconSize={iconSize}
-        textProps={{ ...textProps }}
+        textProps={textProps}
         {...contentProps}
       >
         {children}
@@ -193,7 +193,7 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
       element,
       {
         css: cssStyles,
-        style: minWidth ? { ...style, minWidth } : style,
+        style: minWidth != null ? { ...style, minInlineSize: minWidth } : style,
         ref,
         ...elementProps,
         ...relObj,

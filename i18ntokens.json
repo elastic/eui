@@ -304,52 +304,52 @@
     "filepath": "src/components/card/card_select/card_select.tsx"
   },
   {
-    "token": "euiCodeBlock.copyButton",
+    "token": "euiCodeBlockCopy.copy",
     "defString": "Copy",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 359,
-        "column": 21
+        "line": 36,
+        "column": 24
       },
       "end": {
-        "line": 359,
-        "column": 66
+        "line": 36,
+        "column": 67
       }
     },
-    "filepath": "src/components/code/code_block.tsx"
+    "filepath": "src/components/code/code_block_copy.tsx"
   },
   {
-    "token": "euiCodeBlock.fullscreenCollapse",
+    "token": "euiCodeBlockFullScreen.fullscreenCollapse",
     "defString": "Collapse",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 405,
+        "line": 47,
         "column": 49
       },
       "end": {
-        "line": 408,
+        "line": 53,
         "column": 3
       }
     },
-    "filepath": "src/components/code/code_block.tsx"
+    "filepath": "src/components/code/code_block_full_screen.tsx"
   },
   {
-    "token": "euiCodeBlock.fullscreenExpand",
+    "token": "euiCodeBlockFullScreen.fullscreenExpand",
     "defString": "Expand",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 405,
+        "line": 47,
         "column": 49
       },
       "end": {
-        "line": 408,
+        "line": 53,
         "column": 3
       }
     },
-    "filepath": "src/components/code/code_block.tsx"
+    "filepath": "src/components/code/code_block_full_screen.tsx"
   },
   {
     "token": "euiColorPickerSwatch.ariaLabel",
@@ -4229,11 +4229,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 88,
+        "line": 107,
         "column": 10
       },
       "end": {
-        "line": 91,
+        "line": 110,
         "column": 11
       }
     },
@@ -4661,11 +4661,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 677,
+        "line": 684,
         "column": 16
       },
       "end": {
-        "line": 680,
+        "line": 687,
         "column": 18
       }
     },
@@ -4725,11 +4725,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 336,
+        "line": 314,
         "column": 32
       },
       "end": {
-        "line": 339,
+        "line": 317,
         "column": 3
       }
     },
@@ -5605,11 +5605,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 231,
+        "line": 234,
         "column": 10
       },
       "end": {
-        "line": 238,
+        "line": 241,
         "column": 11
       }
     },
@@ -5621,11 +5621,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 231,
+        "line": 234,
         "column": 10
       },
       "end": {
-        "line": 238,
+        "line": 241,
         "column": 11
       }
     },
@@ -5637,11 +5637,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 231,
+        "line": 234,
         "column": 10
       },
       "end": {
-        "line": 238,
+        "line": 241,
         "column": 11
       }
     },

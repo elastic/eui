@@ -1,5 +1,37 @@
 [
   {
+    "version": "70.0.0",
+    "changes": [
+      {
+        "token": "euiCodeBlock.copyButton",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiCodeBlock.fullscreenCollapse",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiCodeBlock.fullscreenExpand",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiCodeBlockCopy.copy",
+        "changeType": "added",
+        "value": "Copy"
+      },
+      {
+        "token": "euiCodeBlockFullScreen.fullscreenCollapse",
+        "changeType": "added",
+        "value": "Collapse"
+      },
+      {
+        "token": "euiCodeBlockFullScreen.fullscreenExpand",
+        "changeType": "added",
+        "value": "Expand"
+      }
+    ]
+  },
+  {
     "version": "62.1.0",
     "changes": [
       {

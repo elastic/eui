@@ -60,6 +60,9 @@ const webpackConfig = new Promise(async (resolve, reject) => {
 
       resolve: {
         extensions: ['.ts', '.tsx', '.js', '.json'],
+        alias: {
+          '@faker-js/faker': '@faker-js/faker/locale/en',
+        },
         fallback: {
           fs: false,
           os: false,

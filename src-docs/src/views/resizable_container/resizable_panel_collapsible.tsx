@@ -9,31 +9,30 @@ import {
   EuiSpacer,
   EuiPage,
 } from '../../../../src/components';
-// @ts-ignore - faker does not have type declarations
-import { fake } from 'faker';
+import { faker } from '@faker-js/faker';
 
 export default () => {
   const items = [
     {
       id: 1,
       label: 'First item',
-      text: <p>{fake('{{lorem.paragraphs}}')}</p>,
+      text: <p>{faker.lorem.paragraphs()}</p>,
       active: true,
     },
     {
       id: 2,
       label: 'Second item',
-      text: <p>{fake('{{lorem.paragraphs}}')}</p>,
+      text: <p>{faker.lorem.paragraphs()}</p>,
     },
     {
       id: 3,
       label: 'Third item',
-      text: <p>{fake('{{lorem.paragraphs}}')}</p>,
+      text: <p>{faker.lorem.paragraphs()}</p>,
     },
     {
       id: 4,
       label: 'Forth item',
-      text: <p>{fake('{{lorem.paragraphs}}')}</p>,
+      text: <p>{faker.lorem.paragraphs()}</p>,
     },
   ];
 

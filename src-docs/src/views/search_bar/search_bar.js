@@ -64,6 +64,7 @@ export const SearchBar = () => {
   const [query, setQuery] = useState(initialQuery);
   const [error, setError] = useState(null);
   const [incremental, setIncremental] = useState(false);
+  const [showHint, setShowHint] = useState(false);
 
   const onChange = ({ query, error }) => {
     if (error) {
@@ -75,7 +76,11 @@ export const SearchBar = () => {
   };
 
   const toggleIncremental = () => {
-    setIncremental(!incremental);
+    setIncremental((prev) => !prev);
+  };
+
+  const toggleHint = () => {
+    setShowHint((prev) => !prev);
   };
 
   const renderSearch = () => {
@@ -176,6 +181,19 @@ export const SearchBar = () => {
         }}
         filters={filters}
         onChange={onChange}
+        hint={
+          showHint
+            ? {
+                content: (
+                  <span>
+                    Type search terms, e.g. <strong>visualization</strong> or{' '}
+                    <strong>-dashboard</strong>
+                  </span>
+                ),
+                popoverProps: { panelStyle: { backgroundColor: '#f7f8fc' } },
+              }
+            : undefined
+        }
       />
     );
   };
@@ -292,14 +310,22 @@ export const SearchBar = () => {
 
   return (
     <Fragment>
-      <EuiFlexGroup alignItems="center">
-        <EuiFlexItem>{renderSearch()}</EuiFlexItem>
-
+      {renderSearch()}
+      <EuiSpacer size="s" />
+      <EuiFlexGroup justifyContent="flexEnd">
         <EuiFlexItem grow={false}>
           <EuiSwitch
             label="Incremental"
             checked={incremental}
             onChange={toggleIncremental}
+          />
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            label="Show hint"
+            checked={showHint}
+            onChange={toggleHint}
           />
         </EuiFlexItem>
       </EuiFlexGroup>

@@ -9,10 +9,15 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
-import { EuiTabs, SIZES } from './tabs';
+import { EuiTabs } from './tabs';
+
+const SIZES = ['s', 'm', 'l', 'xl'] as const;
 
 describe('EuiTabs', () => {
+  shouldRenderCustomStyles(<EuiTabs>children</EuiTabs>);
+
   test('renders', () => {
     const component = <EuiTabs {...requiredProps}>children</EuiTabs>;
 

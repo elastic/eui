@@ -7,6 +7,8 @@
  */
 
 import React, { Component, ReactElement } from 'react';
+
+import { htmlIdGenerator } from '../../services/accessibility';
 import { isString } from '../../services/predicate';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiSearchBox, SchemaType } from './search_box';
@@ -14,6 +16,7 @@ import { EuiSearchFilters, SearchFilterConfig } from './search_filters';
 import { Query } from './query';
 import { CommonProps } from '../common';
 import { EuiFieldSearchProps } from '../form/field_search';
+import { EuiInputPopoverProps } from '../popover';
 
 export { Query, AST as Ast } from './query';
 
@@ -34,6 +37,24 @@ interface ArgsWithError {
 }
 
 export type EuiSearchBarOnChangeArgs = ArgsWithQuery | ArgsWithError;
+
+type HintPopOverProps = Partial<
+  Pick<
+    EuiInputPopoverProps,
+    | 'isOpen'
+    | 'closePopover'
+    | 'fullWidth'
+    | 'disableFocusTrap'
+    | 'panelClassName'
+    | 'panelPaddingSize'
+    | 'panelStyle'
+    | 'panelProps'
+    | 'popoverScreenReaderText'
+    | 'repositionOnScroll'
+    | 'zIndex'
+    | 'data-test-subj'
+  >
+>;
 
 export interface EuiSearchBarProps extends CommonProps {
   onChange?: (args: EuiSearchBarOnChangeArgs) => void | boolean;
@@ -77,6 +98,14 @@ export interface EuiSearchBarProps extends CommonProps {
    * Date formatter to use when parsing date values
    */
   dateFormat?: object;
+
+  /**
+   * Hint to render below the search bar
+   */
+  hint?: {
+    content: React.ReactNode;
+    popoverProps?: HintPopOverProps;
+  };
 }
 
 const parseQuery = (
@@ -99,14 +128,16 @@ interface State {
   query: Query;
   queryText: string;
   error: null | Error;
+  isHintVisible: boolean;
 }
 
-// `state.query` is never null, but can be passed as `null` to `notifyControllingParent`
-// when `error` is not null.
-type StateWithOptionalQuery = Omit<State, 'query'> & { query: Query | null };
+type NotifyControllingParent = Pick<State, 'queryText' | 'error'> & {
+  query: Query | null; // `state.query` is never null, but can be passed as `null` when an error is present
+};
 
 export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
   static Query = Query;
+  hintId = htmlIdGenerator('__hint')();
 
   constructor(props: EuiSearchBarProps) {
     super(props);
@@ -115,6 +146,7 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
       query,
       queryText: query.text,
       error: null,
+      isHintVisible: false,
     };
   }
 
@@ -135,12 +167,13 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
         query,
         queryText: query.text,
         error: null,
+        isHintVisible: prevState.isHintVisible,
       };
     }
     return null;
   }
 
-  notifyControllingParent(newState: StateWithOptionalQuery) {
+  notifyControllingParent(newState: NotifyControllingParent) {
     const { onChange } = this.props;
     if (!onChange) {
       return;
@@ -204,12 +237,18 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
   }
 
   render() {
-    const { query, queryText, error } = this.state;
+    const {
+      query,
+      queryText,
+      error,
+      isHintVisible: isHintVisibleState,
+    } = this.state;
     const {
       box: { schema, ...box } = { schema: '' }, // strip `schema` out to prevent passing it to EuiSearchBox
       filters,
       toolsLeft,
       toolsRight,
+      hint,
     } = this.props;
 
     const toolsLeftEl = this.renderTools(toolsLeft);
@@ -226,6 +265,8 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
 
     const toolsRightEl = this.renderTools(toolsRight);
 
+    const isHintVisible = hint?.popoverProps?.isOpen ?? isHintVisibleState;
+
     return (
       <EuiFlexGroup gutterSize="m" alignItems="center" wrap>
         {toolsLeftEl}
@@ -236,6 +277,19 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
             onSearch={this.onSearch}
             isInvalid={error != null}
             title={error ? error.message : undefined}
+            aria-describedby={isHintVisible ? `${this.hintId}` : undefined}
+            hint={
+              hint
+                ? {
+                    isVisible: isHintVisible,
+                    setIsVisible: (isVisible: boolean) => {
+                      this.setState({ isHintVisible: isVisible });
+                    },
+                    id: this.hintId,
+                    ...hint,
+                  }
+                : undefined
+            }
           />
         </EuiFlexItem>
         {filtersBar}

@@ -14,7 +14,7 @@ import {
 import { UseEuiTheme } from '../../services';
 import {
   EuiLoadingSpinnerSize,
-  EuiLoadingSpinnerProps,
+  EuiLoadingSpinnerColor,
 } from './loading_spinner';
 
 const _loadingSpinner = keyframes`
@@ -37,26 +37,26 @@ const spinnerSizes: {
   xxl: 'xxl',
 };
 
-const spinnerColorsCSS = (border?: string, highlight?: string) => {
-  return `
-    border-color: ${highlight} ${border} ${border} ${border};
-  `;
+export const euiSpinnerBorderColorsCSS = (
+  { euiTheme }: UseEuiTheme,
+  colors: EuiLoadingSpinnerColor = {}
+): string => {
+  const {
+    border = euiTheme.colors.lightShade,
+    highlight = euiTheme.colors.primary,
+  } = colors;
+  return `${highlight} ${border} ${border} ${border}`;
 };
 
-export const euiLoadingSpinnerStyles = (
-  { euiTheme }: UseEuiTheme,
-  color?: EuiLoadingSpinnerProps['color']
-) => {
+export const euiLoadingSpinnerStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
   return {
     euiLoadingSpinner: css`
       flex-shrink: 0; // Ensures it never scales down below its intended size
       display: inline-block;
       border-radius: 50%;
       border: ${euiTheme.border.thick};
-      ${spinnerColorsCSS(
-        color?.border || euiTheme.colors.lightShade,
-        color?.highlight || euiTheme.colors.primary
-      )};
+      border-color: ${euiSpinnerBorderColorsCSS(euiThemeContext)};
 
       ${euiCanAnimate} {
         animation: ${_loadingSpinner} 0.6s infinite linear;

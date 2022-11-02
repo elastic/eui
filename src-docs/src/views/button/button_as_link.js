@@ -6,6 +6,7 @@ import {
   EuiButtonIcon,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiSpacer,
 } from '../../../../src/components';
 
 export default () => (
@@ -29,6 +30,8 @@ export default () => (
         />
       </EuiFlexItem>
     </EuiFlexGroup>
+
+    <EuiSpacer size="s" />
 
     <EuiFlexGroup responsive={false} wrap gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>

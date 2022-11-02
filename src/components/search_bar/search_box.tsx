@@ -8,6 +8,8 @@
 
 import React, { Component } from 'react';
 import { EuiFieldSearch, EuiFieldSearchProps } from '../form';
+import { EuiInputPopover } from '../popover';
+import { EuiSearchBarProps } from './search_bar';
 
 export interface SchemaType {
   strict?: boolean;
@@ -19,6 +21,11 @@ export interface EuiSearchBoxProps extends EuiFieldSearchProps {
   query: string;
   // This is optional in EuiFieldSearchProps
   onSearch: (queryText: string) => void;
+  hint?: {
+    id: string;
+    isVisible: boolean;
+    setIsVisible: (isVisible: boolean) => void;
+  } & EuiSearchBarProps['hint'];
 }
 
 type DefaultProps = Pick<EuiSearchBoxProps, 'placeholder' | 'incremental'>;
@@ -39,7 +46,7 @@ export class EuiSearchBox extends Component<EuiSearchBoxProps> {
   }
 
   render() {
-    const { query, incremental, ...rest } = this.props;
+    const { query, incremental, hint, ...rest } = this.props;
 
     let ariaLabel;
     if (incremental) {
@@ -50,15 +57,44 @@ export class EuiSearchBox extends Component<EuiSearchBoxProps> {
         'This is a search bar. After typing your query, hit enter to filter the results lower in the page.';
     }
 
-    return (
+    const search = (
       <EuiFieldSearch
         inputRef={(input) => (this.inputElement = input)}
         fullWidth
         defaultValue={query}
         incremental={incremental}
         aria-label={ariaLabel}
+        onFocus={() => {
+          hint?.setIsVisible(true);
+        }}
         {...rest}
       />
     );
+
+    if (hint) {
+      return (
+        <EuiInputPopover
+          disableFocusTrap
+          input={search}
+          isOpen={hint.isVisible}
+          fullWidth
+          closePopover={() => {
+            hint.setIsVisible(false);
+          }}
+          panelProps={{
+            'aria-live': undefined,
+            'aria-modal': undefined,
+            role: undefined,
+            tabIndex: -1,
+            id: hint.id,
+          }}
+          {...hint.popoverProps}
+        >
+          {hint.content}
+        </EuiInputPopover>
+      );
+    }
+
+    return search;
   }
 }
