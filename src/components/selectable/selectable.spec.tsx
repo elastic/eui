@@ -197,19 +197,6 @@ describe('EuiSelectable', () => {
         });
     });
 
-    it('restores the options list when the search bar is cleared', () => {
-      cy.realMount(<EuiSelectableWithSearchInput />);
-      cy.get('input')
-        .type('tester123')
-        .then(() => {
-          expect(cy.get('p')).to.exist;
-        });
-
-      cy.get('input').clear();
-
-      expect(cy.get('li[role=option]')).to.exist;
-    });
-
     it('has no accessibility errors', () => {
       const onChange = cy.stub();
       cy.realMount(<EuiSelectableWithSearchInput onChange={onChange} />);
