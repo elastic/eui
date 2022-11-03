@@ -11,7 +11,7 @@ import { render, mount } from 'enzyme';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
-import { EuiCard } from './card';
+import { EuiCard, ALIGNMENTS } from './card';
 
 import { EuiIcon, EuiAvatar, EuiI18n } from '../../components';
 import { COLORS, SIZES } from '../panel/panel';
@@ -220,16 +220,20 @@ describe('EuiCard', () => {
       expect(component).toMatchSnapshot();
     });
 
-    test('textAlign', () => {
-      const component = render(
-        <EuiCard
-          title="Card title"
-          description="Card description"
-          textAlign="right"
-        />
-      );
+    describe('textAlign', () => {
+      ALIGNMENTS.forEach((textAlign) => {
+        test(textAlign, () => {
+          const component = render(
+            <EuiCard
+              title="Card title"
+              description="Card description"
+              textAlign={textAlign}
+            />
+          );
 
-      expect(component).toMatchSnapshot();
+          expect(component).toMatchSnapshot();
+        });
+      });
     });
 
     test('isDisabled', () => {
