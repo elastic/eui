@@ -17,6 +17,7 @@ import classNames from 'classnames';
 
 import { CommonProps, ExclusiveUnion, keysOf } from '../common';
 import { getSecureRelForTarget, useEuiTheme } from '../../services';
+import { cloneElementWithCss } from '../../services/theme/clone_element';
 import { EuiText } from '../text';
 import { EuiTitle } from '../title';
 import { EuiBetaBadge, EuiBetaBadgeProps } from '../badge/beta_badge';
@@ -278,7 +279,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
       styles.icon.layout[layout],
       imageNode && styles.icon.withImage,
     ];
-    iconNode = React.cloneElement(icon, {
+    iconNode = cloneElementWithCss(icon, {
       className: classNames(icon.props.className, 'euiCard__icon'),
       css: iconStyles,
     });
