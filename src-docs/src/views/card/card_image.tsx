@@ -5,7 +5,7 @@ import {
   EuiCard,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiIcon,
+  EuiAvatar,
 } from '../../../../src';
 
 export default () => (
@@ -46,7 +46,7 @@ export default () => (
         textAlign="left"
         href="https://elastic.github.io/eui/"
         image="https://source.unsplash.com/400x200/?City"
-        icon={<EuiIcon size="xxl" type="logoBeats" />}
+        icon={<EuiAvatar color="plain" size="xl" name="test" />}
         title={'Beats in the City'}
         description="This card has an href and should be a link."
       />
