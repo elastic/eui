@@ -15,17 +15,14 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, ExclusiveUnion, keysOf } from '../common';
+import { CommonProps, ExclusiveUnion } from '../common';
 import { getSecureRelForTarget, useEuiTheme } from '../../services';
+import { cloneElementWithCss } from '../../services/theme/clone_element';
 import { EuiText } from '../text';
 import { EuiTitle } from '../title';
 import { EuiBetaBadge, EuiBetaBadgeProps } from '../badge/beta_badge';
 import { EuiIconProps } from '../icon';
-import {
-  EuiCardSelect,
-  EuiCardSelectProps,
-  euiCardSelectableColor,
-} from './card_select';
+import { EuiCardSelect, EuiCardSelectProps } from './card_select';
 import { useGeneratedHtmlId } from '../../services/accessibility';
 import { validateHref } from '../../services/security/href_validator';
 import { EuiPanel, EuiPanelProps } from '../panel';
@@ -36,24 +33,8 @@ import {
   euiCardTextStyles,
 } from './card.styles';
 
-type CardAlignment = 'left' | 'center' | 'right';
-
-const textAlignToClassNameMap: { [alignment in CardAlignment]: string } = {
-  left: 'euiCard--leftAligned',
-  center: 'euiCard--centerAligned',
-  right: 'euiCard--rightAligned',
-};
-
-export const ALIGNMENTS = keysOf(textAlignToClassNameMap);
-
-type CardLayout = 'vertical' | 'horizontal';
-
-const layoutToClassNameMap: { [layout in CardLayout]: string } = {
-  vertical: '',
-  horizontal: 'euiCard--horizontal',
-};
-
-export const LAYOUT_ALIGNMENTS = keysOf(layoutToClassNameMap);
+export const ALIGNMENTS = ['left', 'center', 'right'] as const;
+type CardAlignment = typeof ALIGNMENTS[number];
 
 /**
  * Certain props are only allowed when the layout is vertical
@@ -224,28 +205,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
     }
   }
 
-  const selectableColorClass = selectable
-    ? `euiCard--isSelectable--${euiCardSelectableColor(
-        selectable.color,
-        selectable.isSelected
-      )}`
-    : undefined;
-
-  const classes = classNames(
-    'euiCard',
-    textAlignToClassNameMap[textAlign],
-    layoutToClassNameMap[layout],
-    {
-      'euiCard--isClickable': isClickable,
-      'euiCard--hasBetaBadge': betaBadgeProps?.label,
-      'euiCard--hasIcon': icon,
-      'euiCard--isSelectable': selectable,
-      'euiCard-isSelected': selectable?.isSelected,
-      'euiCard-isDisabled': isDisabled,
-    },
-    selectableColorClass,
-    className
-  );
+  const classes = classNames('euiCard', className);
 
   const ariaId = useGeneratedHtmlId();
   const ariaDesc = description ? `${ariaId}Description` : '';
@@ -278,7 +238,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
       styles.icon.layout[layout],
       imageNode && styles.icon.withImage,
     ];
-    iconNode = React.cloneElement(icon, {
+    iconNode = cloneElementWithCss(icon, {
       className: classNames(icon.props.className, 'euiCard__icon'),
       css: iconStyles,
     });
