@@ -1,3 +1,11 @@
+## [`67.1.8`](https://github.com/elastic/eui/tree/v67.1.8)
+
+**Bug fixes**
+
+- Fixed `EuiCard` not correctly merging `css` on its child `icon`s ([#6341](https://github.com/elastic/eui/pull/6341))
+- Fixed `EuiCheckableCard` not setting `css` on the correct DOM node ([#6341](https://github.com/elastic/eui/pull/6341))
+- Fixed a webkit rendering issue with `EuiModal`s containing `EuiBasicTable`s tall enough to scroll ([#6343](https://github.com/elastic/eui/pull/6343))
+
 ## [`67.1.7`](https://github.com/elastic/eui/tree/v67.1.7)
 
 - Added the `enabled` option to the `<EuiInMemoryTable />` `executeQueryOptions` prop. This option prevents the Query from being executed when controlled by the consumer. ([#6284](https://github.com/elastic/eui/pull/6284))
