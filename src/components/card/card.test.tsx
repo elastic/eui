@@ -13,8 +13,7 @@ import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiCard } from './card';
 
-import { EuiIcon } from '../icon';
-import { EuiI18n } from '../i18n';
+import { EuiIcon, EuiAvatar, EuiI18n } from '../../components';
 import { COLORS, SIZES } from '../panel/panel';
 
 describe('EuiCard', () => {
@@ -42,6 +41,18 @@ describe('EuiCard', () => {
           title="Card title"
           description="Card description"
           icon={<EuiIcon className="myIconClass" type="apmApp" />}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('an avatar icon', () => {
+      const component = render(
+        <EuiCard
+          title="Card title"
+          description="Card description"
+          icon={<EuiAvatar color="plain" size="xl" name="test" />}
         />
       );
 

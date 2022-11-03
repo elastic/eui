@@ -177,6 +177,51 @@ exports[`EuiCard props accepts div props like style 1`] = `
 </div>
 `;
 
+exports[`EuiCard props an avatar icon 1`] = `
+<div
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned euiCard--hasIcon emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center-vertical"
+>
+  <div
+    class="euiCard__top emotion-euiCard__top-vertical"
+  >
+    <div
+      aria-label="test"
+      class="euiAvatar euiAvatar--xl euiAvatar--user euiCard__icon emotion-euiCard__icon-vertical"
+      role="img"
+      title="test"
+    >
+      <span
+        aria-hidden="true"
+      >
+        t
+      </span>
+    </div>
+  </div>
+  <div
+    class="euiCard__content emotion-euiCard__content-vertical"
+  >
+    <p
+      class="euiTitle euiCard__title emotion-euiTitle-s"
+      id="generated-idTitle"
+    >
+      <span
+        class="emotion-euiCard__text-center"
+      >
+        Card title
+      </span>
+    </p>
+    <div
+      class="euiText emotion-euiText-s-euiCard__description"
+      id="generated-idDescription"
+    >
+      <p>
+        Card description
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiCard props children 1`] = `
 <div
   class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center-vertical"
