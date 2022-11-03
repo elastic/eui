@@ -50,6 +50,7 @@ export type EuiCheckableCardProps = Omit<
 export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
   children,
   className,
+  css,
   checkableType = 'radio',
   label,
   checked,
@@ -63,6 +64,7 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
   const baseStyles = [
     styles.euiCheckableCard,
     checked && !disabled && styles.isChecked,
+    css,
   ];
   const labelStyles = [
     styles.label.euiCheckableCard__label,
