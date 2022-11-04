@@ -11,10 +11,9 @@ import { render, mount } from 'enzyme';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
-import { EuiCard } from './card';
+import { EuiCard, ALIGNMENTS } from './card';
 
-import { EuiIcon } from '../icon';
-import { EuiI18n } from '../i18n';
+import { EuiIcon, EuiAvatar, EuiI18n } from '../../components';
 import { COLORS, SIZES } from '../panel/panel';
 
 describe('EuiCard', () => {
@@ -42,6 +41,18 @@ describe('EuiCard', () => {
           title="Card title"
           description="Card description"
           icon={<EuiIcon className="myIconClass" type="apmApp" />}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('an avatar icon', () => {
+      const component = render(
+        <EuiCard
+          title="Card title"
+          description="Card description"
+          icon={<EuiAvatar color="plain" size="xl" name="test" />}
         />
       );
 
@@ -209,16 +220,20 @@ describe('EuiCard', () => {
       expect(component).toMatchSnapshot();
     });
 
-    test('textAlign', () => {
-      const component = render(
-        <EuiCard
-          title="Card title"
-          description="Card description"
-          textAlign="right"
-        />
-      );
+    describe('textAlign', () => {
+      ALIGNMENTS.forEach((textAlign) => {
+        test(textAlign, () => {
+          const component = render(
+            <EuiCard
+              title="Card title"
+              description="Card description"
+              textAlign={textAlign}
+            />
+          );
 
-      expect(component).toMatchSnapshot();
+          expect(component).toMatchSnapshot();
+        });
+      });
     });
 
     test('isDisabled', () => {

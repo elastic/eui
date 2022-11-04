@@ -20,18 +20,4 @@ export const euiButtonDisplayContentStyles = ({ euiTheme }: UseEuiTheme) => ({
     vertical-align: middle;
     gap: ${euiTheme.size.s};
   `,
-  // Icon side
-  left: css``,
-  right: css`
-    flex-direction: row-reverse;
-  `,
-  euiButtonDisplayContent__spinner: css`
-    flex-shrink: 0;
-  `,
-  euiButtonDisplayContent__icon: css`
-    flex-shrink: 0;
-  `,
-  // Icon size
-  s: css``,
-  m: css``,
 });
