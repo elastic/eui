@@ -179,17 +179,22 @@ describe('EuiSuperDatePicker', () => {
 
       component
         .find('button[data-test-subj="superDatePickerShowDatesButton"]')
-        .simulate('click');
-
-      component
-        .find('button[data-test-subj="superDatePickerstartDatePopoverButton"]')
         .simulate('focus');
       expect(focusMock).toBeCalledTimes(1);
 
       component
+        .find('button[data-test-subj="superDatePickerShowDatesButton"]')
+        .simulate('click');
+      
+      component
         .find('button[data-test-subj="superDatePickerstartDatePopoverButton"]')
         .simulate('focus');
       expect(focusMock).toBeCalledTimes(2);
+
+      component
+        .find('button[data-test-subj="superDatePickerstartDatePopoverButton"]')
+        .simulate('focus');
+      expect(focusMock).toBeCalledTimes(3);
     });
 
     describe('showUpdateButton', () => {
