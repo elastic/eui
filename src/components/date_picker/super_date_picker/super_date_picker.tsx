@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, FunctionComponent } from 'react';
+import React, { Component, FocusEventHandler, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import moment, { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 import dateMath from '@elastic/datemath';
@@ -86,6 +86,11 @@ export type EuiSuperDatePickerProps = CommonProps & {
    * Used to localize e.g. month names, passed to `moment`
    */
   locale?: LocaleSpecifier;
+
+  /**
+   * Triggered whenever the EuiSuperDatePicker's dates are focused
+   */
+  onFocus?: FocusEventHandler;
 
   /**
    * Callback for when the refresh interval is fired.
@@ -393,6 +398,7 @@ export class EuiSuperDatePickerInternal extends Component<
       timeFormat,
       utcOffset,
       compressed,
+      onFocus,
     } = this.props;
 
     if (
@@ -415,6 +421,7 @@ export class EuiSuperDatePickerInternal extends Component<
             data-test-subj="superDatePickerShowDatesButton"
             disabled={isDisabled}
             onClick={this.hidePrettyDuration}
+            onFocus={onFocus}
           >
             <PrettyDuration
               timeFrom={start}
@@ -454,6 +461,7 @@ export class EuiSuperDatePickerInternal extends Component<
                 onPopoverToggle={this.onStartDatePopoverToggle}
                 onPopoverClose={this.onStartDatePopoverClose}
                 timeOptions={timeOptions}
+                buttonProps={{ onFocus }}
               />
             }
             endDateControl={
@@ -474,6 +482,7 @@ export class EuiSuperDatePickerInternal extends Component<
                 onPopoverToggle={this.onEndDatePopoverToggle}
                 onPopoverClose={this.onEndDatePopoverClose}
                 timeOptions={timeOptions}
+                buttonProps={{ onFocus }}
               />
             }
           />
