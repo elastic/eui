@@ -69,6 +69,7 @@ export const euiCardStyles = (
         horizontal: css`
           flex-direction: row;
           align-items: flex-start; /* 3 */
+          flex-wrap: wrap;
         `,
       },
 
