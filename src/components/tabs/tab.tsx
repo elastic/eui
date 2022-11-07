@@ -19,7 +19,7 @@ import { getSecureRelForTarget, useEuiTheme } from '../../services';
 import { validateHref } from '../../services/security/href_validator';
 
 import { euiTabStyles, euiTabContentStyles } from './tab.styles';
-import { EuiTabsProps, EuiTabSizes } from './tabs';
+import { EuiTabsProps, EuiTabsSizes } from './tabs';
 
 export interface EuiTabProps extends CommonProps {
   isSelected?: boolean;
@@ -43,7 +43,7 @@ export interface EuiTabProps extends CommonProps {
    * Sizes affect both font size and overall size.
    * Only use the `xl` size when displayed as page titles.
    */
-  size?: EuiTabSizes;
+  size?: EuiTabsSizes;
 }
 
 type EuiTabPropsForAnchor = EuiTabProps &
@@ -86,9 +86,8 @@ export const EuiTab: FunctionComponent<Props> = ({
   const cssTabStyles = [
     tabStyles.euiTab,
     expand && tabStyles.expanded,
-    isSelected && tabStyles.selected,
-    disabled && tabStyles.disabled,
-    size && tabStyles[size],
+    disabled && tabStyles.disabled.disabled,
+    isSelected && (disabled ? tabStyles.disabled.selected : tabStyles.selected),
   ];
 
   const tabContentStyles = euiTabContentStyles(euiTheme);
@@ -99,12 +98,13 @@ export const EuiTab: FunctionComponent<Props> = ({
     disabled && tabContentStyles.disabled,
   ];
 
-  const prependNode = prepend && <span>{prepend}</span>;
-  const appendNode = append && <span>{append}</span>;
+  const prependNode = prepend && (
+    <span className="euiTab__prepend">{prepend}</span>
+  );
+  const appendNode = append && <span className="euiTab__append">{append}</span>;
 
   //  <a> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend
   //  this is a button and piggyback off its disabled styles.
-
   if (href && !disabled) {
     const secureRel = getSecureRelForTarget({ href, target, rel });
 

@@ -20,7 +20,7 @@ import { cloneElementWithCss } from '../../services/theme/clone_element';
 import { euiTabsStyles } from './tabs.styles';
 
 export const SIZES = ['s', 'm', 'l', 'xl'] as const;
-export type EuiTabSizes = typeof SIZES[number];
+export type EuiTabsSizes = typeof SIZES[number];
 
 export type EuiTabsProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
@@ -41,7 +41,7 @@ export type EuiTabsProps = CommonProps &
      * Sizes affect both font size and overall size.
      * Only use the `xl` size when displayed as page titles.
      */
-    size?: EuiTabSizes;
+    size?: EuiTabsSizes;
   };
 
 export type EuiTabRef = HTMLDivElement;
@@ -62,11 +62,11 @@ export const EuiTabs = forwardRef<EuiTabRef, PropsWithChildren<EuiTabsProps>>(
 
     const classes = classNames('euiTabs', className);
 
-    const tabsStyles = euiTabsStyles(euiTheme);
-    const computedStyles = [
-      tabsStyles.euiTabs,
-      tabsStyles[size],
-      bottomBorder && tabsStyles.bottomBorder,
+    const styles = euiTabsStyles(euiTheme);
+    const cssStyles = [
+      styles.euiTabs,
+      styles[size],
+      bottomBorder && styles.bottomBorder,
     ];
 
     const tabItems = React.Children.map(children, (child) => {
@@ -83,7 +83,7 @@ export const EuiTabs = forwardRef<EuiTabRef, PropsWithChildren<EuiTabsProps>>(
       <div
         ref={ref}
         className={classes}
-        css={computedStyles}
+        css={cssStyles}
         {...(children && { role: 'tablist' })}
         {...rest}
       >
