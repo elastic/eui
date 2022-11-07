@@ -179,7 +179,7 @@ exports[`EuiAvatar props initials is rendered 1`] = `
   <span
     aria-hidden="true"
   >
-    l
+    lo
   </span>
 </div>
 `;
