@@ -48,6 +48,7 @@ const DataGridStyle = ({
   showColumnSelector,
   showSortSelector,
   showDisplaySelector,
+  showKeyboardShortcuts,
   showFullScreenSelector,
   allowDensity,
   allowRowHeight,
@@ -114,6 +115,7 @@ const DataGridStyle = ({
     showColumnSelector: toggleColumnSelector,
     showSortSelector: showSortSelector,
     showDisplaySelector: toggleDisplaySelector,
+    showKeyboardShortcuts: showKeyboardShortcuts,
     showFullScreenSelector: showFullScreenSelector,
   };
 

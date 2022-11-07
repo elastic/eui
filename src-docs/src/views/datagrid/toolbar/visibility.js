@@ -49,6 +49,7 @@ const DataGrid = () => {
   const [showColumnSelector, setShowColumnSelector] = useState(true);
   const [allowHideColumns, setAllowHideColumns] = useState(true);
   const [allowOrderingColumns, setAllowOrderingColumns] = useState(true);
+  const [showKeyboardShortcuts, setShowKeyboardShortcuts] = useState(true);
   const [showFullScreenSelector, setShowFullScreenSelector] = useState(true);
   const [toolbarType, setToolbarType] = useState('true');
 
@@ -74,6 +75,10 @@ const DataGrid = () => {
   };
   const onAllowRowHeightChange = (optionId) => {
     setAllowRowHeight(optionId === 'true');
+  };
+
+  const onShowKeyboardShortcutsChange = (optionId) => {
+    setShowKeyboardShortcuts(optionId === 'true');
   };
 
   const onShowFullScreenSelectorChange = (optionId) => {
@@ -233,6 +238,13 @@ const DataGrid = () => {
               )}
 
               <li>
+                {createItem('Show keyboard shortcuts', {
+                  idSelected: showKeyboardShortcuts.toString(),
+                  onChange: onShowKeyboardShortcutsChange,
+                })}
+              </li>
+
+              <li>
                 {createItem('Show full screen', {
                   idSelected: showFullScreenSelector.toString(),
                   onChange: onShowFullScreenSelectorChange,
@@ -250,6 +262,7 @@ const DataGrid = () => {
         showColumnSelector={showColumnSelector}
         showSortSelector={showSortSelector}
         showDisplaySelector={showDisplaySelector}
+        showKeyboardShortcuts={showKeyboardShortcuts}
         showFullScreenSelector={showFullScreenSelector}
         allowDensity={allowDensity}
         allowRowHeight={allowRowHeight}
