@@ -185,7 +185,7 @@ describe('EuiSuperDatePicker', () => {
       component
         .find('button[data-test-subj="superDatePickerShowDatesButton"]')
         .simulate('click');
-      
+
       component
         .find('button[data-test-subj="superDatePickerstartDatePopoverButton"]')
         .simulate('focus');
