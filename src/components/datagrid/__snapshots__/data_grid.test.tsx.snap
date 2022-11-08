@@ -476,7 +476,7 @@ Array [
     >
       <div
         class="euiDataGrid__controls"
-        data-test-sub="dataGridControls"
+        data-test-subj="dataGridControls"
       >
         <div
           class="euiDataGrid__leftControls"
@@ -517,6 +517,32 @@ Array [
         <div
           class="euiDataGrid__rightControls"
         >
+          <div
+            class="euiPopover emotion-euiPopover"
+            data-test-subj="dataGridKeyboardShortcutsPopover"
+          >
+            <div
+              class="euiPopover__anchor css-16vtueo-render"
+            >
+              <span
+                class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+              >
+                <button
+                  aria-label="Keyboard shortcuts"
+                  class="euiButtonIcon euiButtonIcon--xSmall emotion-euiButtonIcon-empty-text-hoverStyles"
+                  data-test-subj="dataGridKeyboardShortcutsButton"
+                  type="button"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="euiButtonIcon__icon"
+                    color="inherit"
+                    data-euiicon-type="keyboard"
+                  />
+                </button>
+              </span>
+            </div>
+          </div>
           <div
             class="euiPopover emotion-euiPopover"
             data-test-subj="dataGridDisplaySelectorPopover"
@@ -921,7 +947,7 @@ Array [
     >
       <div
         class="euiDataGrid__controls"
-        data-test-sub="dataGridControls"
+        data-test-subj="dataGridControls"
       >
         <div
           class="euiDataGrid__leftControls"
@@ -962,6 +988,32 @@ Array [
         <div
           class="euiDataGrid__rightControls"
         >
+          <div
+            class="euiPopover emotion-euiPopover"
+            data-test-subj="dataGridKeyboardShortcutsPopover"
+          >
+            <div
+              class="euiPopover__anchor css-16vtueo-render"
+            >
+              <span
+                class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+              >
+                <button
+                  aria-label="Keyboard shortcuts"
+                  class="euiButtonIcon euiButtonIcon--xSmall emotion-euiButtonIcon-empty-text-hoverStyles"
+                  data-test-subj="dataGridKeyboardShortcutsButton"
+                  type="button"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="euiButtonIcon__icon"
+                    color="inherit"
+                    data-euiicon-type="keyboard"
+                  />
+                </button>
+              </span>
+            </div>
+          </div>
           <div
             class="euiPopover emotion-euiPopover"
             data-test-subj="dataGridDisplaySelectorPopover"
@@ -1710,7 +1762,7 @@ Array [
     >
       <div
         class="euiDataGrid__controls"
-        data-test-sub="dataGridControls"
+        data-test-subj="dataGridControls"
       >
         <div
           class="euiDataGrid__leftControls"
@@ -1748,6 +1800,32 @@ Array [
         <div
           class="euiDataGrid__rightControls"
         >
+          <div
+            class="euiPopover emotion-euiPopover"
+            data-test-subj="dataGridKeyboardShortcutsPopover"
+          >
+            <div
+              class="euiPopover__anchor css-16vtueo-render"
+            >
+              <span
+                class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+              >
+                <button
+                  aria-label="Keyboard shortcuts"
+                  class="euiButtonIcon euiButtonIcon--xSmall emotion-euiButtonIcon-empty-text-hoverStyles"
+                  data-test-subj="dataGridKeyboardShortcutsButton"
+                  type="button"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="euiButtonIcon__icon"
+                    color="inherit"
+                    data-euiicon-type="keyboard"
+                  />
+                </button>
+              </span>
+            </div>
+          </div>
           <div
             class="euiPopover emotion-euiPopover"
             data-test-subj="dataGridDisplaySelectorPopover"
@@ -2154,7 +2232,7 @@ Array [
     >
       <div
         class="euiDataGrid__controls"
-        data-test-sub="dataGridControls"
+        data-test-subj="dataGridControls"
       >
         <div
           class="euiDataGrid__leftControls"
@@ -2192,6 +2270,32 @@ Array [
         <div
           class="euiDataGrid__rightControls"
         >
+          <div
+            class="euiPopover emotion-euiPopover"
+            data-test-subj="dataGridKeyboardShortcutsPopover"
+          >
+            <div
+              class="euiPopover__anchor css-16vtueo-render"
+            >
+              <span
+                class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+              >
+                <button
+                  aria-label="Keyboard shortcuts"
+                  class="euiButtonIcon euiButtonIcon--xSmall emotion-euiButtonIcon-empty-text-hoverStyles"
+                  data-test-subj="dataGridKeyboardShortcutsButton"
+                  type="button"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="euiButtonIcon__icon"
+                    color="inherit"
+                    data-euiicon-type="keyboard"
+                  />
+                </button>
+              </span>
+            </div>
+          </div>
           <div
             class="euiPopover emotion-euiPopover"
             data-test-subj="dataGridDisplaySelectorPopover"

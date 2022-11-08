@@ -6,7 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
+import React, {
+  FunctionComponent,
+  ReactNode,
+  HTMLAttributes,
+  useRef,
+  useCallback,
+} from 'react';
 import classnames from 'classnames';
 
 import { keys } from '../../services';
@@ -52,6 +58,18 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
   style,
   ...rest
 }) => {
+  // TODO: Remove this onFocus scroll workaround after react-focus-on supports focusOptions
+  // @see https://github.com/elastic/eui/issues/6304
+  const bodyScrollTop = useRef<undefined | number>(
+    typeof window === 'undefined' ? undefined : window.scrollY // Account for SSR
+  );
+  const onFocus = useCallback(() => {
+    if (bodyScrollTop.current != null) {
+      window.scrollTo({ top: bodyScrollTop.current });
+      bodyScrollTop.current = undefined; // Unset after first auto focus
+    }
+  }, []);
+
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === keys.ESCAPE) {
       event.preventDefault();
@@ -73,7 +91,7 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
 
   return (
     <EuiOverlayMask>
-      <EuiFocusTrap initialFocus={initialFocus}>
+      <EuiFocusTrap initialFocus={initialFocus} scrollLock>
         {
           // Create a child div instead of applying these props directly to FocusTrap, or else
           // fallbackFocus won't work.
@@ -82,6 +100,7 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
           className={classes}
           onKeyDown={onKeyDown}
           tabIndex={0}
+          onFocus={onFocus}
           style={newStyle || style}
           {...rest}
         >

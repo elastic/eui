@@ -204,6 +204,41 @@ describe('EuiSelectable', () => {
       ).toEqual('second value');
     });
 
+    it('updates options list when searchValue state is controlled by searchProps.value', () => {
+      const searchProps = {
+        value: 'Enceladus',
+        'data-test-subj': 'searchInput',
+      };
+      const component = mount(
+        <EuiSelectable options={options} searchable searchProps={searchProps}>
+          {(list, search) => (
+            <>
+              {list}
+              {search}
+            </>
+          )}
+        </EuiSelectable>
+      );
+
+      expect(
+        (component.find('EuiSelectableList').props() as any).visibleOptions
+      ).toHaveLength(1);
+
+      component.setProps({
+        searchProps: { ...searchProps, value: 'value not in list' },
+      });
+
+      expect(component.find('EuiSelectableList').exists()).toBeFalsy();
+
+      component.setProps({
+        searchProps: { ...searchProps, value: '' },
+      });
+
+      expect(
+        (component.find('EuiSelectableList').props() as any).visibleOptions
+      ).toEqual(options);
+    });
+
     it('calls the searchProps.onChange callback on mount', () => {
       const onChange = jest.fn();
       mount(

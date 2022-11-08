@@ -70,6 +70,7 @@ inMemory={{ level: 'sorting' }}`,
   showColumnSelector: false,
   showDisplaySelector: false,
   showSortSelector: false,
+  showKeyboardShortcuts: false,
   showFullScreenSelector: false,
   additionalControls: {
     left: <EuiButtonEmpty size="xs" />,

@@ -13,18 +13,14 @@ import React, {
   ReactNode,
 } from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf } from '../common';
+import { CommonProps } from '../common';
+import { useEuiTheme } from '../../services';
+import { cloneElementWithCss } from '../../services/theme/clone_element';
 
-const sizeToClassNameMap = {
-  s: 'euiTabs--small',
-  m: null,
-  l: 'euiTabs--large',
-  xl: 'euiTabs--xlarge',
-};
+import { euiTabsStyles } from './tabs.styles';
 
-export const SIZES = keysOf(sizeToClassNameMap);
-
-export type EuiTabsSizes = keyof typeof sizeToClassNameMap;
+export const SIZES = ['s', 'm', 'l', 'xl'] as const;
+export type EuiTabsSizes = typeof SIZES[number];
 
 export type EuiTabsProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
@@ -62,24 +58,36 @@ export const EuiTabs = forwardRef<EuiTabRef, PropsWithChildren<EuiTabsProps>>(
     }: PropsWithChildren<EuiTabsProps>,
     ref
   ) => {
-    const classes = classNames(
-      'euiTabs',
-      sizeToClassNameMap[size],
-      {
-        'euiTabs--expand': expand,
-        'euiTabs--bottomBorder': bottomBorder,
-      },
-      className
-    );
+    const euiTheme = useEuiTheme();
+
+    const classes = classNames('euiTabs', className);
+
+    const styles = euiTabsStyles(euiTheme);
+    const cssStyles = [
+      styles.euiTabs,
+      styles[size],
+      bottomBorder && styles.bottomBorder,
+    ];
+
+    const tabItems = React.Children.map(children, (child) => {
+      if (React.isValidElement(child)) {
+        return cloneElementWithCss(child, {
+          // we're passing the parent `size` and `expand` down to the children
+          size: size,
+          expand: expand,
+        });
+      }
+    });
 
     return (
       <div
         ref={ref}
         className={classes}
+        css={cssStyles}
         {...(children && { role: 'tablist' })}
         {...rest}
       >
-        {children}
+        {tabItems}
       </div>
     );
   }

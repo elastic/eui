@@ -3,19 +3,19 @@
 exports[`EuiTabbedContent behavior when selected tab state isn't controlled by the owner, select the first tab by default 1`] = `
 <div>
   <div
-    class="euiTabs euiTabs--bottomBorder"
+    class="euiTabs emotion-euiTabs-m-bottomBorder"
     role="tablist"
   >
     <button
       aria-controls="generated-id"
       aria-selected="true"
-      class="euiTab euiTab-isSelected"
+      class="euiTab euiTab-isSelected emotion-euiTab-selected"
       id="es"
       role="tab"
       type="button"
     >
       <span
-        class="euiTab__content"
+        class="euiTab__content emotion-euiTab__content-m-selected"
       >
         Elasticsearch
       </span>
@@ -23,7 +23,7 @@ exports[`EuiTabbedContent behavior when selected tab state isn't controlled by t
     <button
       aria-controls="generated-id"
       aria-selected="false"
-      class="euiTab kibanaTab"
+      class="euiTab kibanaTab emotion-euiTab"
       data-test-subj="kibanaTab"
       id="kibana"
       role="tab"
@@ -35,7 +35,7 @@ exports[`EuiTabbedContent behavior when selected tab state isn't controlled by t
         prepend
       </span>
       <span
-        class="euiTab__content"
+        class="euiTab__content emotion-euiTab__content-m"
       >
         <strong>
           Kibana
@@ -61,152 +61,29 @@ exports[`EuiTabbedContent behavior when selected tab state isn't controlled by t
 `;
 
 exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should update if it receives new content 1`] = `
-<EuiTabbedContent
-  autoFocus="initial"
-  tabs={
-    Array [
-      Object {
-        "content": <p>
-          Elasticsearch content
-        </p>,
-        "id": "es",
-        "name": "Elasticsearch",
-      },
-      Object {
-        "append": "append",
-        "className": "kibanaTab",
-        "content": <p>
-          updated Kibana content
-        </p>,
-        "data-test-subj": "kibanaTab",
-        "id": "kibana",
-        "name": <strong>
-          Kibana
-        </strong>,
-        "prepend": "prepend",
-      },
-    ]
-  }
->
-  <div>
-    <EuiTabs
-      onBlur={[Function]}
-      onFocus={[Function]}
-    >
-      <div
-        className="euiTabs euiTabs--bottomBorder"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        role="tablist"
-      >
-        <EuiTab
-          aria-controls="generated-id"
-          id="es"
-          isSelected={false}
-          key="es"
-          onClick={[Function]}
-        >
-          <button
-            aria-controls="generated-id"
-            aria-selected={false}
-            className="euiTab"
-            disabled={false}
-            id="es"
-            onClick={[Function]}
-            role="tab"
-            type="button"
-          >
-            <span
-              className="euiTab__content"
-            >
-              Elasticsearch
-            </span>
-          </button>
-        </EuiTab>
-        <EuiTab
-          append="append"
-          aria-controls="generated-id"
-          className="kibanaTab"
-          data-test-subj="kibanaTab"
-          id="kibana"
-          isSelected={true}
-          key="kibana"
-          onClick={[Function]}
-          prepend="prepend"
-        >
-          <button
-            aria-controls="generated-id"
-            aria-selected={true}
-            className="euiTab kibanaTab euiTab-isSelected"
-            data-test-subj="kibanaTab"
-            disabled={false}
-            id="kibana"
-            onClick={[Function]}
-            role="tab"
-            type="button"
-          >
-            <span
-              className="euiTab__prepend"
-            >
-              prepend
-            </span>
-            <span
-              className="euiTab__content"
-            >
-              <strong>
-                Kibana
-              </strong>
-            </span>
-            <span
-              className="euiTab__append"
-            >
-              append
-            </span>
-          </button>
-        </EuiTab>
-      </div>
-    </EuiTabs>
-    <div
-      aria-labelledby="kibana"
-      id="generated-id"
-      role="tabpanel"
-    >
-      <p>
-        updated Kibana content
-      </p>
-    </div>
-  </div>
-</EuiTabbedContent>
-`;
-
-exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
-<div
-  aria-label="aria-label"
-  class="testClass1 testClass2"
-  data-test-subj="test subject string"
->
+<div>
   <div
-    class="euiTabs euiTabs--bottomBorder"
+    class="euiTabs emotion-euiTabs-m-bottomBorder"
     role="tablist"
   >
     <button
       aria-controls="generated-id"
-      aria-selected="true"
-      class="euiTab euiTab-isSelected"
+      aria-selected="false"
+      class="euiTab emotion-euiTab"
       id="es"
       role="tab"
       type="button"
     >
       <span
-        class="euiTab__content"
+        class="euiTab__content emotion-euiTab__content-m"
       >
         Elasticsearch
       </span>
     </button>
     <button
       aria-controls="generated-id"
-      aria-selected="false"
-      class="euiTab kibanaTab"
+      aria-selected="true"
+      class="euiTab kibanaTab euiTab-isSelected emotion-euiTab-selected"
       data-test-subj="kibanaTab"
       id="kibana"
       role="tab"
@@ -218,7 +95,71 @@ exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
         prepend
       </span>
       <span
-        class="euiTab__content"
+        class="euiTab__content emotion-euiTab__content-m-selected"
+      >
+        <strong>
+          Kibana
+        </strong>
+      </span>
+      <span
+        class="euiTab__append"
+      >
+        append
+      </span>
+    </button>
+  </div>
+  <div
+    aria-labelledby="kibana"
+    id="generated-id"
+    role="tabpanel"
+  >
+    <p>
+      updated Kibana content
+    </p>
+  </div>
+</div>
+`;
+
+exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
+<div
+  aria-label="aria-label"
+  class="testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiTabs emotion-euiTabs-m-bottomBorder"
+    role="tablist"
+  >
+    <button
+      aria-controls="generated-id"
+      aria-selected="true"
+      class="euiTab euiTab-isSelected emotion-euiTab-selected"
+      id="es"
+      role="tab"
+      type="button"
+    >
+      <span
+        class="euiTab__content emotion-euiTab__content-m-selected"
+      >
+        Elasticsearch
+      </span>
+    </button>
+    <button
+      aria-controls="generated-id"
+      aria-selected="false"
+      class="euiTab kibanaTab emotion-euiTab"
+      data-test-subj="kibanaTab"
+      id="kibana"
+      role="tab"
+      type="button"
+    >
+      <span
+        class="euiTab__prepend"
+      >
+        prepend
+      </span>
+      <span
+        class="euiTab__content emotion-euiTab__content-m"
       >
         <strong>
           Kibana
@@ -246,19 +187,19 @@ exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
 exports[`EuiTabbedContent props autoFocus initial is rendered 1`] = `
 <div>
   <div
-    class="euiTabs euiTabs--bottomBorder"
+    class="euiTabs emotion-euiTabs-m-bottomBorder"
     role="tablist"
   >
     <button
       aria-controls="generated-id"
       aria-selected="true"
-      class="euiTab euiTab-isSelected"
+      class="euiTab euiTab-isSelected emotion-euiTab-selected"
       id="es"
       role="tab"
       type="button"
     >
       <span
-        class="euiTab__content"
+        class="euiTab__content emotion-euiTab__content-m-selected"
       >
         Elasticsearch
       </span>
@@ -266,7 +207,7 @@ exports[`EuiTabbedContent props autoFocus initial is rendered 1`] = `
     <button
       aria-controls="generated-id"
       aria-selected="false"
-      class="euiTab kibanaTab"
+      class="euiTab kibanaTab emotion-euiTab"
       data-test-subj="kibanaTab"
       id="kibana"
       role="tab"
@@ -278,7 +219,7 @@ exports[`EuiTabbedContent props autoFocus initial is rendered 1`] = `
         prepend
       </span>
       <span
-        class="euiTab__content"
+        class="euiTab__content emotion-euiTab__content-m"
       >
         <strong>
           Kibana
@@ -306,19 +247,19 @@ exports[`EuiTabbedContent props autoFocus initial is rendered 1`] = `
 exports[`EuiTabbedContent props autoFocus selected is rendered 1`] = `
 <div>
   <div
-    class="euiTabs euiTabs--bottomBorder"
+    class="euiTabs emotion-euiTabs-m-bottomBorder"
     role="tablist"
   >
     <button
       aria-controls="generated-id"
       aria-selected="true"
-      class="euiTab euiTab-isSelected"
+      class="euiTab euiTab-isSelected emotion-euiTab-selected"
       id="es"
       role="tab"
       type="button"
     >
       <span
-        class="euiTab__content"
+        class="euiTab__content emotion-euiTab__content-m-selected"
       >
         Elasticsearch
       </span>
@@ -326,7 +267,7 @@ exports[`EuiTabbedContent props autoFocus selected is rendered 1`] = `
     <button
       aria-controls="generated-id"
       aria-selected="false"
-      class="euiTab kibanaTab"
+      class="euiTab kibanaTab emotion-euiTab"
       data-test-subj="kibanaTab"
       id="kibana"
       role="tab"
@@ -338,7 +279,7 @@ exports[`EuiTabbedContent props autoFocus selected is rendered 1`] = `
         prepend
       </span>
       <span
-        class="euiTab__content"
+        class="euiTab__content emotion-euiTab__content-m"
       >
         <strong>
           Kibana
@@ -366,19 +307,19 @@ exports[`EuiTabbedContent props autoFocus selected is rendered 1`] = `
 exports[`EuiTabbedContent props initialSelectedTab renders a selected tab 1`] = `
 <div>
   <div
-    class="euiTabs euiTabs--bottomBorder"
+    class="euiTabs emotion-euiTabs-m-bottomBorder"
     role="tablist"
   >
     <button
       aria-controls="generated-id"
       aria-selected="false"
-      class="euiTab"
+      class="euiTab emotion-euiTab"
       id="es"
       role="tab"
       type="button"
     >
       <span
-        class="euiTab__content"
+        class="euiTab__content emotion-euiTab__content-m"
       >
         Elasticsearch
       </span>
@@ -386,7 +327,7 @@ exports[`EuiTabbedContent props initialSelectedTab renders a selected tab 1`] = 
     <button
       aria-controls="generated-id"
       aria-selected="true"
-      class="euiTab kibanaTab euiTab-isSelected"
+      class="euiTab kibanaTab euiTab-isSelected emotion-euiTab-selected"
       data-test-subj="kibanaTab"
       id="kibana"
       role="tab"
@@ -398,7 +339,7 @@ exports[`EuiTabbedContent props initialSelectedTab renders a selected tab 1`] = 
         prepend
       </span>
       <span
-        class="euiTab__content"
+        class="euiTab__content emotion-euiTab__content-m-selected"
       >
         <strong>
           Kibana
@@ -426,19 +367,19 @@ exports[`EuiTabbedContent props initialSelectedTab renders a selected tab 1`] = 
 exports[`EuiTabbedContent props selectedTab renders a selected tab 1`] = `
 <div>
   <div
-    class="euiTabs euiTabs--bottomBorder"
+    class="euiTabs emotion-euiTabs-m-bottomBorder"
     role="tablist"
   >
     <button
       aria-controls="generated-id"
       aria-selected="false"
-      class="euiTab"
+      class="euiTab emotion-euiTab"
       id="es"
       role="tab"
       type="button"
     >
       <span
-        class="euiTab__content"
+        class="euiTab__content emotion-euiTab__content-m"
       >
         Elasticsearch
       </span>
@@ -446,7 +387,7 @@ exports[`EuiTabbedContent props selectedTab renders a selected tab 1`] = `
     <button
       aria-controls="generated-id"
       aria-selected="true"
-      class="euiTab kibanaTab euiTab-isSelected"
+      class="euiTab kibanaTab euiTab-isSelected emotion-euiTab-selected"
       data-test-subj="kibanaTab"
       id="kibana"
       role="tab"
@@ -458,7 +399,7 @@ exports[`EuiTabbedContent props selectedTab renders a selected tab 1`] = `
         prepend
       </span>
       <span
-        class="euiTab__content"
+        class="euiTab__content emotion-euiTab__content-m-selected"
       >
         <strong>
           Kibana
@@ -486,19 +427,19 @@ exports[`EuiTabbedContent props selectedTab renders a selected tab 1`] = `
 exports[`EuiTabbedContent props size can be small 1`] = `
 <div>
   <div
-    class="euiTabs euiTabs--small euiTabs--bottomBorder"
+    class="euiTabs emotion-euiTabs-s-bottomBorder"
     role="tablist"
   >
     <button
       aria-controls="generated-id"
       aria-selected="true"
-      class="euiTab euiTab-isSelected"
+      class="euiTab euiTab-isSelected emotion-euiTab-selected"
       id="es"
       role="tab"
       type="button"
     >
       <span
-        class="euiTab__content"
+        class="euiTab__content emotion-euiTab__content-s-selected"
       >
         Elasticsearch
       </span>
@@ -506,7 +447,7 @@ exports[`EuiTabbedContent props size can be small 1`] = `
     <button
       aria-controls="generated-id"
       aria-selected="false"
-      class="euiTab kibanaTab"
+      class="euiTab kibanaTab emotion-euiTab"
       data-test-subj="kibanaTab"
       id="kibana"
       role="tab"
@@ -518,7 +459,7 @@ exports[`EuiTabbedContent props size can be small 1`] = `
         prepend
       </span>
       <span
-        class="euiTab__content"
+        class="euiTab__content emotion-euiTab__content-s"
       >
         <strong>
           Kibana

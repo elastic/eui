@@ -5,7 +5,9 @@
   display: flex;
   flex-direction: column;
   max-height: 75vh; // We overflow the modal body based off this
-  overflow: hidden; // Ensure long, non-breaking text doesn't expand beyond the modal bounds
+
+  // TODO: Consider restoring this once https://bugs.chromium.org/p/chromium/issues/detail?id=1229700 is resolved
+  // overflow: hidden; Ensure long, non-breaking text doesn't expand beyond the modal bounds
 
   position: relative;
   background-color: $euiColorEmptyShade;
