@@ -86,6 +86,7 @@ export type EuiPageTemplateProps = _EuiPageOuterProps &
 export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   children,
   // Shared props
+  responsive = ['xs', 's'],
   restrictWidth = true,
   paddingSize = 'l',
   grow = true,
@@ -99,7 +100,6 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   // Outer props
   className,
   minHeight = '460px',
-  responsive = ['xs', 's'],
   ...rest
 }) => {
   const { euiTheme } = useEuiTheme();

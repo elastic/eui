@@ -40,7 +40,7 @@ export type _EuiPageInnerProps<
      */
     paddingSize?: EuiPaddingSize;
     /**
-     * Decides at which point the component will be 100vw.
+     * Decides at which point the main content wrapper will be 100vw.
      */
     responsive?: _EuiThemeBreakpoint[];
   };
