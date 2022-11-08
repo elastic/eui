@@ -29,6 +29,8 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
 
   const controlHeight = euiTheme.size.xxl;
   const controlCompressedHeight = euiTheme.size.xl;
+  // the bordr color needs to be transparent to allow for the focus state to show
+  const borderColor = transparentize(euiTheme.colors.darkestShade, 0.1);
 
   const sizes = {
     maxWidth: mathWithUnits(euiTheme.size.base, (x) => x * 25),
@@ -44,8 +46,8 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
     backgroundColor: backgroundColor,
     backgroundDisabledColor: darken(euiTheme.colors.lightestShade, 0.1),
     backgroundReadOnlyColor: euiTheme.colors.emptyShade,
-    borderColor: transparentize(euiTheme.border.color, 0.9),
-    borderDisabledColor: transparentize(euiTheme.border.color, 0.9),
+    borderColor: borderColor,
+    borderDisabledColor: borderColor,
     controlDisabledColor: euiTheme.colors.mediumShade,
     controlBoxShadow: '0 0 transparent',
     controlPlaceholderText: makeHighContrastColor(euiTheme.colors.subduedText)(
