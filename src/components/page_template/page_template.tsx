@@ -88,6 +88,7 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   panelled,
   // Inner props
   contentBorder,
+  component,
   mainProps,
   // Outer props
   className,
@@ -205,6 +206,7 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
 
         <EuiPageInner
           {...mainProps}
+          component={component}
           id={pageInnerId}
           border={innerBordered()}
           panelled={innerPanelled()}

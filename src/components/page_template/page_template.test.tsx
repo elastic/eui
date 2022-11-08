@@ -35,7 +35,7 @@ describe('EuiPageTemplate', () => {
   test('_EuiPageInnerProps is rendered', () => {
     const component = render(
       <EuiPageTemplate
-        component="main"
+        component="div"
         contentBorder={true}
         panelled={false}
         mainProps={{ id: 'customID', className: 'customClassName' }}
