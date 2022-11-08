@@ -40,13 +40,15 @@ export const euiCardStyles = (
     card: {
       euiCard: css`
         display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        flex-direction: column;
 
         // Apply the outline to the whole card when the internal text button has focus
         &:has([class*='euiCard__text'][class*='-interactive']:focus:focus-visible) {
           outline: ${euiTheme.focus.width} solid currentColor;
         }
       `,
-
       aligned: {
         center: css`
           ${logicalTextAlignCSS('center')};
@@ -61,7 +63,17 @@ export const euiCardStyles = (
           align-items: flex-end;
         `,
       },
+      disabled: css`
+        cursor: not-allowed; // duplicate property due to Chrome bug
+        background-color: ${euiButtonColor(euiThemeContext, 'disabled')};
+        color: ${euiTheme.colors.disabledText};
+      `,
+    },
 
+    main: {
+      euiCard__main: css`
+        display: flex;
+      `,
       layout: {
         vertical: css`
           flex-direction: column;
@@ -71,12 +83,6 @@ export const euiCardStyles = (
           align-items: flex-start; /* 3 */
         `,
       },
-
-      disabled: css`
-        cursor: not-allowed; // duplicate property due to Chrome bug
-        background-color: ${euiButtonColor(euiThemeContext, 'disabled')};
-        color: ${euiTheme.colors.disabledText};
-      `,
     },
 
     content: {
