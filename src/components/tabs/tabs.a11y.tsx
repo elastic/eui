@@ -9,11 +9,15 @@
 /// <reference types="../../../cypress/support"/>
 
 import React from 'react';
-import { EuiTabbedContent, EuiTabbedContentProps } from './tabbed_content';
+import {
+  EuiTabbedContent,
+  EuiTabbedContentProps,
+  EuiTabbedContentTab,
+} from './tabbed_content';
 import { EuiSpacer } from '../spacer';
 import { EuiText } from '../text';
 
-const tabs = [
+const tabs: EuiTabbedContentTab[] = [
   {
     id: 'cobalt--id',
     name: 'Cobalt',
@@ -85,19 +89,64 @@ const tabs = [
 
 const defaultTabProps: EuiTabbedContentProps = {
   tabs: tabs,
-  initialSelectedTab: tabs[1],
+  initialSelectedTab: tabs[0],
   autoFocus: 'selected',
   onTabClick: () => {},
 };
 
-const TabbedContent = () => {
-  return <EuiTabbedContent {...defaultTabProps} />;
-};
-
 describe('EuiTabs', () => {
   describe('Automated accessibility check', () => {
-    it('has zero violations when modal is open', () => {
-      cy.mount(<TabbedContent />);
+    it('has zero violations with default props', () => {
+      cy.mount(<EuiTabbedContent {...defaultTabProps} />);
+      cy.get('div.euiTabs').should('exist');
+      cy.checkAxe();
+    });
+
+    it('has zero violations with second tab open on render', () => {
+      const secondSelectedTab = {
+        ...defaultTabProps,
+        initialSelectedTab: tabs[1],
+      };
+
+      cy.mount(<EuiTabbedContent {...secondSelectedTab} />);
+      cy.get('div.euiTabs').should('exist');
+      cy.checkAxe();
+    });
+
+    it('has zero violations with third tab open on render', () => {
+      const thirdSelectedTab = {
+        ...defaultTabProps,
+        initialSelectedTab: tabs[2],
+      };
+
+      cy.mount(<EuiTabbedContent {...thirdSelectedTab} />);
+      cy.get('div.euiTabs').should('exist');
+      cy.checkAxe();
+    });
+
+    it('has zero violations with last tab open on render', () => {
+      const lastSelectedTab = {
+        ...defaultTabProps,
+        initialSelectedTab: tabs[3],
+      };
+
+      cy.mount(<EuiTabbedContent {...lastSelectedTab} />);
+      cy.get('div.euiTabs').should('exist');
+      cy.checkAxe();
+    });
+
+    it('has zero violations with all tabs disabled except first', () => {
+      const disabledTabs = tabs.map((tab, i) => {
+        if (i === 0) {
+          return tab;
+        }
+        return { ...tab, disabled: true };
+      });
+      const disabledTabProps = {
+        ...defaultTabProps,
+        tabs: disabledTabs,
+      };
+      cy.mount(<EuiTabbedContent {...disabledTabProps} />);
       cy.get('div.euiTabs').should('exist');
       cy.checkAxe();
     });

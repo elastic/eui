@@ -45,15 +45,28 @@ const Popover = () => {
   );
 };
 
-describe('EuiSuperDatePicker', () => {
+beforeEach(() => {
+  cy.mount(<Popover />);
+  cy.get('div.euiPopover__panel').should('not.exist');
+});
+
+describe('EuiPopover', () => {
   describe('Automated accessibility check', () => {
     it('has zero violations on render', () => {
-      cy.mount(<Popover />);
-      cy.get('div.euiPopover__panel').should('not.exist');
       cy.checkAxe();
+    });
 
+    it('has zero violations when popover is opened', () => {
       cy.get('button.euiButtonEmpty').click();
       cy.get('div.euiPopover__panel').should('exist');
+      cy.checkAxe();
+    });
+
+    it('has zero violations when popover is closed', () => {
+      cy.get('button.euiButtonEmpty').click();
+      cy.get('div.euiPopover__panel').should('exist');
+      cy.get('button.euiButtonEmpty').click();
+      cy.get('div.euiPopover__panel').should('not.exist');
       cy.checkAxe();
     });
   });

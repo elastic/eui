@@ -9,11 +9,7 @@
 /// <reference types="../../../../cypress/support"/>
 
 import React, { useState } from 'react';
-import {
-  EuiSuperDatePicker,
-  OnRefreshProps,
-  OnTimeChangeProps,
-} from './super_date_picker';
+import { EuiSuperDatePicker, OnTimeChangeProps } from './super_date_picker';
 
 const SuperDatePicker = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -21,14 +17,6 @@ const SuperDatePicker = () => {
   const [start, setStart] = useState('now-30m');
   const [end, setEnd] = useState('now');
   const [showFill] = useState(true);
-
-  const onRefresh = ({ start, end, refreshInterval }: OnRefreshProps) => {
-    return new Promise((resolve) => {
-      setTimeout(resolve, 100);
-    }).then(() => {
-      console.log(start, end, refreshInterval);
-    });
-  };
 
   const onTimeChange = ({ start, end }: OnTimeChangeProps) => {
     setStart(start);
@@ -50,7 +38,6 @@ const SuperDatePicker = () => {
     start: start,
     end: end,
     onTimeChange: onTimeChange,
-    onRefresh: onRefresh,
     showUpdateButton: showUpdateButton,
   };
 
@@ -62,25 +49,24 @@ const SuperDatePicker = () => {
   );
 };
 
+beforeEach(() => {
+  cy.mount(<SuperDatePicker />);
+  cy.get('div.euiSuperDatePicker__flexWrapper').should('exist');
+});
+
 describe('EuiSuperDatePicker', () => {
   describe('Automated accessibility check', () => {
     it('has zero violations on render', () => {
-      cy.mount(<SuperDatePicker />);
-      cy.get('div.euiSuperDatePicker__flexWrapper').should('exist');
       cy.checkAxe();
     });
 
     it('has zero violations when quick select menu is open', () => {
-      cy.mount(<SuperDatePicker />);
-      cy.get('div.euiSuperDatePicker__flexWrapper').should('exist');
       cy.get('button.euiFormControlLayout__prepend').click();
       cy.get('div.euiPanel').contains('Quick select').should('exist');
       cy.checkAxe();
     });
 
     it('has zero violations when start / end date menus are open', () => {
-      cy.mount(<SuperDatePicker />);
-      cy.get('div.euiSuperDatePicker__flexWrapper').should('exist');
       cy.get('button.euiSuperDatePicker__prettyFormat').click();
       cy.get('div.euiDatePopoverContent').should('exist');
       cy.checkAxe();

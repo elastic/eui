@@ -56,14 +56,22 @@ const Modal = () => {
   );
 };
 
+beforeEach(() => {
+  cy.mount(<Modal />);
+  cy.get('div.euiModal').should('not.exist');
+  cy.get('button.euiButton').click();
+  cy.get('div.euiModal').should('exist');
+});
+
 describe('EuiModal', () => {
   describe('Automated accessibility check', () => {
     it('has zero violations when modal is open', () => {
-      cy.mount(<Modal />);
-      cy.get('div.euiModal').should('not.exist');
+      cy.checkAxe();
+    });
 
-      cy.get('button.euiButton').click();
-      cy.get('div.euiModal').should('exist');
+    it('has zero violations when modal is closed', () => {
+      cy.get('div.euiModalFooter button.euiButton').click();
+      cy.get('div.euiModal').should('not.exist');
       cy.checkAxe();
     });
   });
