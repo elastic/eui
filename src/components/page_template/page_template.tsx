@@ -19,6 +19,7 @@ import classNames from 'classnames';
 
 import { _EuiPageOuter as EuiPageOuter, _EuiPageOuterProps } from './outer';
 import { _EuiPageInner as EuiPageInner, _EuiPageInnerProps } from './inner';
+import { ComponentTypes } from './inner/page_inner';
 import {
   _EuiPageBottomBar as EuiPageBottomBar,
   _EuiPageBottomBarProps,
@@ -49,7 +50,7 @@ export const TemplateContext = createContext({
 
 export type EuiPageTemplateProps = _EuiPageOuterProps &
   // We re-define the `border` prop below to be named more appropriately
-  Omit<_EuiPageInnerProps, 'border'> &
+  Omit<_EuiPageInnerProps, 'border' | 'component'> &
   _EuiPageRestrictWidth &
   _EuiPageBottomBorder & {
     /**
@@ -71,6 +72,11 @@ export type EuiPageTemplateProps = _EuiPageOuterProps &
      * Passes through some common HTML attributes to the `main` content wrapper
      */
     mainProps?: CommonProps & HTMLAttributes<HTMLElement>;
+    /**
+     * Sets which HTML element to render for the `main` content wrapper
+     * @default main
+     */
+    component?: ComponentTypes;
   };
 
 /**
@@ -80,6 +86,7 @@ export type EuiPageTemplateProps = _EuiPageOuterProps &
 export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   children,
   // Shared props
+  responsive = ['xs', 's'],
   restrictWidth = true,
   paddingSize = 'l',
   grow = true,
@@ -88,11 +95,11 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   panelled,
   // Inner props
   contentBorder,
+  component,
   mainProps,
   // Outer props
   className,
   minHeight = '460px',
-  responsive = ['xs', 's'],
   ...rest
 }) => {
   const { euiTheme } = useEuiTheme();
@@ -205,6 +212,7 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
 
         <EuiPageInner
           {...mainProps}
+          component={component}
           id={pageInnerId}
           border={innerBordered()}
           panelled={innerPanelled()}

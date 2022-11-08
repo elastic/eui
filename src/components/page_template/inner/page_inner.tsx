@@ -16,7 +16,7 @@ import {
 import { useEuiTheme, useIsWithinBreakpoints } from '../../../services';
 import { euiPageInnerStyles } from './page_inner.styles';
 
-type ComponentTypes = keyof JSX.IntrinsicElements | ComponentType;
+export type ComponentTypes = keyof JSX.IntrinsicElements | ComponentType;
 
 export type _EuiPageInnerProps<
   T extends ComponentTypes = 'main'
@@ -40,7 +40,7 @@ export type _EuiPageInnerProps<
      */
     paddingSize?: EuiPaddingSize;
     /**
-     * Decides at which point the component will be 100vw.
+     * Decides at which point the main content wrapper will be 100vw.
      */
     responsive?: _EuiThemeBreakpoint[];
   };
