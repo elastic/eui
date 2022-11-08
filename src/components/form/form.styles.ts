@@ -29,7 +29,7 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
 
   const controlHeight = euiTheme.size.xxl;
   const controlCompressedHeight = euiTheme.size.xl;
-  // the bordr color needs to be transparent to allow for the focus state to show
+  // the border color needs to be transparent to allow for the focus state to show
   const borderColor = transparentize(euiTheme.colors.darkestShade, 0.1);
 
   const sizes = {
