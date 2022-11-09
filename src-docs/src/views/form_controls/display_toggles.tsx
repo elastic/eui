@@ -1,4 +1,10 @@
-import React, { cloneElement, useState, Fragment } from 'react';
+import React, {
+  cloneElement,
+  useState,
+  Fragment,
+  ReactElement,
+  FunctionComponent,
+} from 'react';
 
 import {
   EuiFlexGroup,
@@ -9,9 +15,39 @@ import {
   EuiButtonEmpty,
   EuiPopover,
   EuiSpacer,
+  EuiSpacerProps,
 } from '../../../../src/components';
 
-export const DisplayToggles = ({
+export type DisplayTogglesProps = {
+  canIsDisabled?: boolean;
+  canDisabled?: boolean;
+  canReadOnly?: boolean;
+  canLoading?: boolean;
+  canCompressed?: boolean;
+  canFullWidth?: boolean;
+  canInvalid?: boolean;
+  canPrepend?: boolean;
+  canAppend?: boolean;
+  canClear?: boolean;
+  children: ReactElement;
+  extras?: ReactElement[];
+  spacerSize?: EuiSpacerProps['size'];
+};
+
+export type CanPropsType = {
+  disabled?: boolean;
+  isDisabled?: boolean;
+  readOnly?: boolean;
+  fullWidth?: boolean;
+  compressed?: boolean;
+  isLoading?: boolean;
+  prepend?: string;
+  append?: string;
+  isInvalid?: boolean;
+  isClearable?: boolean;
+};
+
+export const DisplayToggles: FunctionComponent<DisplayTogglesProps> = ({
   canIsDisabled = false,
   canDisabled = true,
   canReadOnly = true,
@@ -37,7 +73,7 @@ export const DisplayToggles = ({
   const [invalid, setInvalid] = useState(false);
   const [isClearable, setIsClearable] = useState(false);
 
-  const canProps = {};
+  const canProps: CanPropsType = {};
   if (canDisabled) canProps.disabled = disabled;
   if (canIsDisabled) canProps.isDisabled = disabled;
   if (canReadOnly) canProps.readOnly = readOnly;

@@ -345,7 +345,7 @@ export const FormControlsExample = {
       title: 'Textarea',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: textAreaSource,
         },
       ],

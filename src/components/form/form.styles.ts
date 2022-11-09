@@ -183,11 +183,14 @@ export const euiFormControlDefaultShadow = (
     background-color: ${form.backgroundColor};
     background-repeat: no-repeat;
     background-size: 0% 100%; // 1
-    transition:
-      box-shadow ${euiTheme.animation.fast} ease-in,
-      background-image ${euiTheme.animation.fast} ease-in,
-      background-size ${euiTheme.animation.fast} ease-in,
-      background-color ${euiTheme.animation.fast} ease-in;
+
+    ${euiCanAnimate} {
+      transition:
+        box-shadow ${euiTheme.animation.fast} ease-in,
+        background-image ${euiTheme.animation.fast} ease-in,
+        background-size ${euiTheme.animation.fast} ease-in,
+        background-color ${euiTheme.animation.fast} ease-in;
+    }
 
     // Fixes bug in Firefox where adding a transition to the background-color
     // caused a flash of differently styled dropdown.
@@ -286,8 +289,7 @@ export const euiFormControlFocusStyle = (
 
   const borderOnlyStyles = borderOnly
     ? `box-shadow: inset 0 0 0 1px ${form.borderColor};`
-    : `box-shadow:
-    inset 0 0 0 1px ${form.borderColor};`;
+    : `box-shadow: inset 0 0 0 1px ${form.borderColor};`;
 
   const backgroundColor = isColorDark
     ? shade(euiTheme.colors.emptyShade, 0.4)
@@ -331,19 +333,19 @@ export const euiFormControlStyleCompressed = (
     includeStates &&
     `
       &:invalid { // 2
-        ${euiFormControlInvalidStyle(euiThemeContext)};
+        ${euiFormControlInvalidStyle(euiThemeContext)}
       }
 
       &:focus { // 2
-        ${euiFormControlFocusStyle(euiThemeContext)};
+        ${euiFormControlFocusStyle(euiThemeContext)}
       }
 
       &:disabled {
-        ${euiFormControlDisabledStyle(euiThemeContext)};
+        ${euiFormControlDisabledStyle(euiThemeContext)}
       }
 
       &[readOnly] {
-        ${euiFormControlReadOnlyStyle(euiThemeContext)};
+        ${euiFormControlReadOnlyStyle(euiThemeContext)}
       }
     `;
 
@@ -384,19 +386,19 @@ export const euiFormControlStyle = (
     includeStates &&
     `
       &:invalid { // 2
-        ${euiFormControlInvalidStyle(euiThemeContext)};
+        ${euiFormControlInvalidStyle(euiThemeContext)}
       }
 
       &:focus { // 2
-        ${euiFormControlFocusStyle(euiThemeContext)};
+        ${euiFormControlFocusStyle(euiThemeContext)}
       }
 
       &:disabled {
-        ${euiFormControlDisabledStyle(euiThemeContext)};
+        ${euiFormControlDisabledStyle(euiThemeContext)}
       }
 
       &[readOnly] {
-        ${euiFormControlReadOnlyStyle(euiThemeContext)};
+        ${euiFormControlReadOnlyStyle(euiThemeContext)}
       }
 
       // Needs to be set for autofill
