@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 
 declare global {
   interface Window {
-    dataLayer?: Record<string, string>[];
+    dataLayer?: Array<Record<string, string>>;
   }
 }
 
@@ -34,13 +34,19 @@ function getElasticUID(): string {
   return euid;
 }
 
-function recordPageView({ pathname, search }: { pathname: string, search: string }) {
+function recordPageView({
+  pathname,
+  search,
+}: {
+  pathname: string;
+  search: string;
+}) {
   const [, pageCategory, pageSubCategory] = pathname.split('/');
 
   // `search` from react router, but since we're still on hash routing
   // any utm params are almost definitely on the landing page's pre-hash
   // part of the URL, so we fall back to looking for values there
-  const foundSearchValues = search || location.search;
+  const foundSearchValues = search || window.location.search;
   const searchParams = new URLSearchParams(foundSearchValues);
 
   const pageView: Record<string, string> = {
@@ -67,11 +73,11 @@ function recordPageView({ pathname, search }: { pathname: string, search: string
   const utmCampaign = searchParams.get('utm_campaign');
   const utmTerm = searchParams.get('utm_term');
   const utmContent = searchParams.get('utm_content');
-  if (utmSource) pageView.utmSource = utmSource;
-  if (utmMedium) pageView.utmMedium = utmMedium;
-  if (utmCampaign) pageView.utmCampaign = utmCampaign;
-  if (utmTerm) pageView.utmTerm = utmTerm;
-  if (utmContent) pageView.utmContent = utmContent;
+  if (utmSource) pageView.utm_source = utmSource;
+  if (utmMedium) pageView.utm_medium = utmMedium;
+  if (utmCampaign) pageView.utm_campaign = utmCampaign;
+  if (utmTerm) pageView.utm_term = utmTerm;
+  if (utmContent) pageView.utm_content = utmContent;
 
   dataLayer.push(pageView);
 }
