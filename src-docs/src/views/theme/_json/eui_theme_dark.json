@@ -50,12 +50,6 @@
     "warning": "#f3d371",
     "danger": "#f86b63"
   },
-  "textareaResizing": {
-    "vertical": "resizeVertical",
-    "horizontal": "resizeHorizontal",
-    "both": "resizeBoth",
-    "none": "resizeNone"
-  },
   "euiHeaderLinksGutterSizes": {
     "gutterXS": "4px",
     "gutterS": "8px",

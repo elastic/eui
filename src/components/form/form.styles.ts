@@ -175,12 +175,8 @@ export const euiFormControlDefaultShadow = (
   const { borderOnly = false } = options;
 
   const borderOnlyStyles = borderOnly
-    ? `
-    box-shadow: inset 0 0 0 1px ${form.borderColor};
-  `
-    : `
-    box-shadow: ${form.controlBoxShadow}, inset 0 0 0 1px ${form.borderColor};
-    `;
+    ? `box-shadow: inset 0 0 0 1px ${form.borderColor};`
+    : `box-shadow: ${form.controlBoxShadow}, inset 0 0 0 1px ${form.borderColor};`;
 
   return `
     ${borderOnlyStyles}
@@ -188,14 +184,14 @@ export const euiFormControlDefaultShadow = (
     background-repeat: no-repeat;
     background-size: 0% 100%; // 1
     transition:
-    box-shadow ${euiTheme.animation.fast} ease-in,
-    background-image ${euiTheme.animation.fast} ease-in,
-    background-size ${euiTheme.animation.fast} ease-in,
-    background-color ${euiTheme.animation.fast} ease-in;
+      box-shadow ${euiTheme.animation.fast} ease-in,
+      background-image ${euiTheme.animation.fast} ease-in,
+      background-size ${euiTheme.animation.fast} ease-in,
+      background-color ${euiTheme.animation.fast} ease-in;
 
     // Fixes bug in Firefox where adding a transition to the background-color
     // caused a flash of differently styled dropdown.
-    @supports (-moz-appearance: none) { // sass-lint:disable-line no-vendor-prefixes
+    @supports (-moz-appearance: none) {
       // List *must* be in the same order as the above.
       transition-property: box-shadow, background-image, background-size;
     }
@@ -224,11 +220,11 @@ const euiFormControlDisabledStyle = (euiThemeContext: UseEuiTheme) => {
   const form = euiFormVariables(euiThemeContext);
 
   return `
-  ${euiFormControlDisabledTextStyle(euiThemeContext)}
-  cursor: not-allowed;
-  background: ${form.backgroundDisabledColor};
-  box-shadow: inset 0 0 0 1px ${form.borderDisabledColor};
-  ${euiPlaceholderPerBrowser(`color: ${form.controlDisabledColor};`)}
+    ${euiFormControlDisabledTextStyle(euiThemeContext)}
+    cursor: not-allowed;
+    background: ${form.backgroundDisabledColor};
+    box-shadow: inset 0 0 0 1px ${form.borderDisabledColor};
+    ${euiPlaceholderPerBrowser(`color: ${form.controlDisabledColor};`)}
   `;
 };
 
