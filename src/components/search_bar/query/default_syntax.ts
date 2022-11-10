@@ -451,7 +451,11 @@ const printValue = (value: Value, options: ParseOptions) => {
     return value.toString();
   }
 
-  if (value.length === 0 || value.match(/\s/) || value.toLowerCase() === 'or') {
+  if (
+    value.length === 0 ||
+    value.match(/[^\w\-_*:()"/\\]/) || // Escape spaces and special characters not used as syntax identifiers
+    value.toLowerCase() === 'or'
+  ) {
     return `"${escapePhraseValue(value)}"`;
   }
 
