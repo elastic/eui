@@ -94,16 +94,19 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
     setHasValidId(false);
 
     // If no valid element via ID is available, use the fallback query selectors
-    const fallbackEl = document.querySelector<HTMLElement>(fallbackDestination);
-    if (fallbackEl) {
-      setDestinationEl(fallbackEl);
+    if (fallbackDestination) {
+      const fallbackEl = document.querySelector<HTMLElement>(
+        fallbackDestination
+      );
+      if (fallbackEl) {
+        setDestinationEl(fallbackEl);
+      }
     }
   }, [destinationId, fallbackDestination]);
 
   const onClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {
-      if (overrideLinkBehavior || !hasValidId) {
-        if (!destinationEl) return;
+      if ((overrideLinkBehavior || !hasValidId) && destinationEl) {
         e.preventDefault();
 
         // Scroll to the top of the destination content only if it's ~mostly out of view
