@@ -69,7 +69,7 @@ export const EuiTab: FunctionComponent<Props> = ({
   rel,
   prepend,
   append,
-  size = 'm',
+  size,
   expand,
   ...rest
 }) => {
