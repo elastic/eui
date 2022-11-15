@@ -1,3 +1,10 @@
+## [`70.2.1`](https://github.com/elastic/eui/tree/v70.2.1)
+
+**Bug fixes**
+
+- Re-fixed `EuiPageSection` not correctly merging `contentProps.css` ([#6365](https://github.com/elastic/eui/pull/6365))
+- Fixed `EuiTab` not defaulting to size `m` ([#6366](https://github.com/elastic/eui/pull/6366))
+
 ## [`70.2.0`](https://github.com/elastic/eui/tree/v70.2.0)
 
 - Added a keyboard shortcuts popover to `EuiDataGrid`'s toolbar. This can be visually hidden via `toolbarVisibility.showKeyboardShortcuts`, but will always remain accessible to keyboard and screen reader users. ([#6036](https://github.com/elastic/eui/pull/6036))
