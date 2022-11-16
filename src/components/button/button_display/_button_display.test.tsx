@@ -41,8 +41,13 @@ describe('EuiButtonDisplay', () => {
       expect(container.innerHTML).toContain('style="min-inline-size: 200px;"');
     });
 
-    it('does not apply an inline style or `defaultMinWidth` if set to 0', () => {
-      const { container } = render(<EuiButtonDisplay minWidth={0} />);
+    it('does not apply an inline style or `defaultMinWidth` if set to 0 or false', () => {
+      const { container } = render(
+        <>
+          <EuiButtonDisplay minWidth={0} />
+          <EuiButtonDisplay minWidth={false} />
+        </>
+      );
 
       expect(container.innerHTML).not.toContain('defaultMinWidth');
       expect(container.innerHTML).not.toContain('style');

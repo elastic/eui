@@ -58,7 +58,7 @@ export interface EuiButtonDisplayCommonProps
   /**
    * Override the default minimum width
    */
-  minWidth?: CSSProperties['minWidth'];
+  minWidth?: CSSProperties['minWidth'] | false;
   /**
    * Force disables the button and changes the icon to a loading spinner
    */
