@@ -178,7 +178,7 @@ export class EuiSuperUpdateButton extends Component<
           <EuiShowFor sizes={responsive || 'none'}>
             <EuiButton
               className={classes}
-              minWidth={0}
+              minWidth={false}
               {...(sharedButtonProps as EuiButtonProps)}
               fill={fill}
               textProps={{
