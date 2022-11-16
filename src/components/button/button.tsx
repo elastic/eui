@@ -250,6 +250,7 @@ export const EuiButtonDisplayDeprecated = forwardRef<
     if (minWidth !== undefined || minWidth !== null) {
       calculatedStyle = {
         ...calculatedStyle,
+        // @ts-ignore - deprecated component
         minWidth,
       };
     }

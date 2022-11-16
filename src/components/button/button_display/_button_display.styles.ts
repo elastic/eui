@@ -42,7 +42,6 @@ export const euiButtonDisplayStyles = (euiThemeContext: UseEuiTheme) => {
     // Base
     euiButtonDisplay: css`
       ${euiButtonBaseCSS()};
-      ${logicalCSS('min-width', `${euiTheme.base * 7}px`)}
       font-weight: ${euiTheme.font.weight.medium};
       padding: 0 ${euiTheme.size.m};
 
@@ -51,7 +50,6 @@ export const euiButtonDisplayStyles = (euiThemeContext: UseEuiTheme) => {
         text-decoration: underline;
       }
     `,
-
     // States
     isDisabled: css`
       cursor: not-allowed;
@@ -59,6 +57,9 @@ export const euiButtonDisplayStyles = (euiThemeContext: UseEuiTheme) => {
     fullWidth: css`
       display: block;
       ${logicalCSS('width', '100%')}
+    `,
+    defaultMinWidth: css`
+      ${logicalCSS('min-width', `${euiTheme.base * 7}px`)}
     `,
     // Sizes
     xs: css(_buttonSize(euiTheme.size.l), euiFontSize(euiThemeContext, 'xs')),
