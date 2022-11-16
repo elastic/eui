@@ -167,7 +167,6 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
     styles.card.euiCard,
     // Text alignment should always be left when horizontal
     styles.card.aligned[layout === 'horizontal' ? 'left' : textAlign],
-    styles.card.layout[layout],
     isDisabled && styles.card.disabled,
   ];
 
@@ -175,6 +174,8 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
     styles.content.euiCard__content,
     styles.content.layout[layout],
   ];
+
+  const mainStyles = [styles.main.euiCard__main, styles.main.layout[layout]];
 
   const textStyles = euiCardTextStyles(euiThemeContext);
   const textCSS = [
@@ -401,26 +402,28 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
       paddingSize={paddingSize}
       {...rest}
     >
-      {optionalCardTop}
+      <div className="euiCard__main" css={mainStyles}>
+        {optionalCardTop}
 
-      <div className="euiCard__content" css={contentStyles}>
-        <EuiTitle
-          id={`${ariaId}Title`}
-          className="euiCard__title"
-          size={titleSize}
-        >
-          <TitleElement>{theTitle}</TitleElement>
-        </EuiTitle>
+        <div className="euiCard__content" css={contentStyles}>
+          <EuiTitle
+            id={`${ariaId}Title`}
+            className="euiCard__title"
+            size={titleSize}
+          >
+            <TitleElement>{theTitle}</TitleElement>
+          </EuiTitle>
 
-        {optionalDescription}
+          {optionalDescription}
 
-        {optionalChildren}
+          {optionalChildren}
+        </div>
+
+        {/* Beta badge should always be after the title/description but before any footer buttons */}
+        {optionalBetaBadge}
+
+        {optionalFooter}
       </div>
-
-      {/* Beta badge should always be after the title/description but before any footer buttons */}
-      {optionalBetaBadge}
-
-      {optionalFooter}
 
       {optionalSelectButton}
     </EuiPanel>

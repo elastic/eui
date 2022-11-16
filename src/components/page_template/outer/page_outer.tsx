@@ -26,7 +26,7 @@ export interface _EuiPageOuterProps
    */
   direction?: 'row' | 'column';
   /**
-   * When direction is `row`, it will flip to `column` when within these breakpoints
+   * When direction is `row`, it will flip to `column` when within these breakpoints.
    */
   responsive?: _EuiThemeBreakpoint[];
 }

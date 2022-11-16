@@ -3,10 +3,9 @@
 exports[`EuiPageTemplate _EuiPageInnerProps is rendered 1`] = `
 <div
   class="euiPageTemplate emotion-euiPageOuter-row-grow"
-  component="main"
   style="min-block-size:max(460px, 100vh)"
 >
-  <main
+  <div
     class="customClassName emotion-euiPageInner-left"
     id="customID"
   />
