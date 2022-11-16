@@ -17,11 +17,11 @@ import {
 const random = new Random();
 
 const tags = [
-  { name: 'market ing', color: 'danger' },
-  { name: 'fi@nance', color: 'success' },
-  { name: 'eng!&$#%^', color: 'success' },
-  { name: 's*a:les', color: 'warning' },
-  { name: 'g\\a/', color: 'success' },
+  { name: 'marketing', color: 'danger' },
+  { name: 'finance', color: 'success' },
+  { name: 'eng', color: 'success' },
+  { name: 'sales', color: 'warning' },
+  { name: 'ga', color: 'success' },
 ];
 
 const types = ['dashboard', 'visualization', 'watch'];
