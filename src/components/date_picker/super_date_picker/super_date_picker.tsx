@@ -6,7 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, FocusEventHandler, FunctionComponent } from 'react';
+import React, {
+  Component,
+  FocusEventHandler,
+  FunctionComponent,
+  ReactNode,
+  ReactElement,
+} from 'react';
 import classNames from 'classnames';
 import moment, { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 import dateMath from '@elastic/datemath';
@@ -43,6 +49,9 @@ import {
   EuiAutoRefreshButton,
 } from '../auto_refresh/auto_refresh';
 
+import { EuiCommonlyUsedTimeRanges } from './quick_select_popover/commonly_used_time_ranges';
+import { EuiRecentlyUsed } from './quick_select_popover/recently_used';
+
 export interface OnTimeChangeProps extends DurationRange {
   isInvalid: boolean;
   isQuickSelection: boolean;
@@ -55,6 +64,15 @@ export interface OnRefreshProps extends DurationRange {
 export type EuiSuperDatePickerProps = CommonProps & {
   commonlyUsedRanges?: DurationRange[];
   customQuickSelectPanels?: QuickSelectPanel[];
+
+  /**
+   * A function that allows the Quick Select panels to render in a custom order
+   */
+  customQuickSelectRender?: (
+    commonlyUsedTimes: ReactElement<typeof EuiCommonlyUsedTimeRanges>,
+    recentlyUsedTimes: ReactElement<typeof EuiRecentlyUsed>,
+    customQuickSelectPanels?: ReactElement<QuickSelectPanel[]>
+  ) => ReactNode;
 
   /**
    * Specifies the formatted used when displaying dates and/or datetimes
@@ -536,6 +554,7 @@ export class EuiSuperDatePickerInternal extends Component<
       commonlyUsedRanges,
       timeOptions,
       customQuickSelectPanels,
+      customQuickSelectRender,
       dateFormat,
       end,
       isAutoRefreshOnly,
@@ -575,6 +594,7 @@ export class EuiSuperDatePickerInternal extends Component<
         applyTime={this.applyQuickTime}
         commonlyUsedRanges={commonlyUsedRanges}
         customQuickSelectPanels={customQuickSelectPanels}
+        customQuickSelectRender={customQuickSelectRender}
         dateFormat={dateFormat}
         end={end}
         isDisabled={isDisabled}

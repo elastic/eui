@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment, ReactNode, ReactElement } from 'react';
 
 import { EuiButtonEmpty } from '../../../button';
 import { EuiIcon } from '../../../icon';
@@ -33,6 +33,11 @@ export interface EuiQuickSelectPopoverProps {
   applyTime: ApplyTime;
   commonlyUsedRanges: DurationRange[];
   customQuickSelectPanels?: QuickSelectPanel[];
+  customQuickSelectRender?: (
+    commonlyUsedTimes: ReactElement<typeof EuiCommonlyUsedTimeRanges>,
+    recentlyUsedTimes: ReactElement<typeof EuiRecentlyUsed>,
+    customQuickSelectPanels?: ReactElement<QuickSelectPanel[]>
+  ) => ReactNode;
   dateFormat: string;
   end: string;
   isDisabled: boolean;
@@ -92,8 +97,35 @@ export class EuiQuickSelectPopover extends Component<
       recentlyUsedRanges,
       start,
       timeOptions,
+      customQuickSelectRender,
     } = this.props;
     const { prevQuickSelect } = this.state;
+
+    const commonlyUsedRangesElement = (
+      <>
+        {commonlyUsedRanges.length > 0 && <EuiHorizontalRule margin="s" />}
+        <EuiCommonlyUsedTimeRanges
+          applyTime={this.applyTime}
+          commonlyUsedRanges={commonlyUsedRanges}
+        />
+      </>
+    );
+
+    const recentlyUsedRangesElement = (
+      <>
+        {recentlyUsedRanges.length > 0 && <EuiHorizontalRule margin="s" />}
+        <EuiRecentlyUsed
+          applyTime={this.applyTime}
+          commonlyUsedRanges={commonlyUsedRanges}
+          dateFormat={dateFormat}
+          recentlyUsedRanges={recentlyUsedRanges}
+        />
+      </>
+    );
+
+    const customQuickSelectPanelsElement = (
+      <>{this.renderCustomQuickSelectPanels()}</>
+    );
 
     return (
       <Fragment>
@@ -104,19 +136,20 @@ export class EuiQuickSelectPopover extends Component<
           prevQuickSelect={prevQuickSelect}
           timeOptions={timeOptions}
         />
-        {commonlyUsedRanges.length > 0 && <EuiHorizontalRule margin="s" />}
-        <EuiCommonlyUsedTimeRanges
-          applyTime={this.applyTime}
-          commonlyUsedRanges={commonlyUsedRanges}
-        />
-        {recentlyUsedRanges.length > 0 && <EuiHorizontalRule margin="s" />}
-        <EuiRecentlyUsed
-          applyTime={this.applyTime}
-          commonlyUsedRanges={commonlyUsedRanges}
-          dateFormat={dateFormat}
-          recentlyUsedRanges={recentlyUsedRanges}
-        />
-        {this.renderCustomQuickSelectPanels()}
+
+        {customQuickSelectRender ? (
+          customQuickSelectRender(
+            commonlyUsedRangesElement,
+            recentlyUsedRangesElement,
+            customQuickSelectPanelsElement
+          )
+        ) : (
+          <>
+            {commonlyUsedRangesElement}
+            {recentlyUsedRangesElement}
+            {customQuickSelectPanelsElement}
+          </>
+        )}
       </Fragment>
     );
   };
