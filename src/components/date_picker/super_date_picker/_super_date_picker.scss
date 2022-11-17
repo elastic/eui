@@ -1,15 +1,17 @@
 // sass-lint:disable-block function-name-format
 
 .euiSuperDatePicker__flexWrapper {
-  // Need to offset 8px because of negative margins added by small size gutter
-  max-width: calc(100% + #{$euiSizeS});
+  max-width: 100%;
   // Set a sensible min-width for when width is auto
   min-width: MIN(($euiFormMaxWidth / 2) + $euiSuperDatePickerButtonWidth + $euiSizeS, 100%);
   width: $euiSuperDatePickerWidth + $euiSuperDatePickerButtonWidth + $euiSizeS;
 
+  @include euiBreakpoint('xs', 's') {
+    width: 100%;
+  }
+
   &.euiSuperDatePicker__flexWrapper--fullWidth {
-    // Need to offset 8px because of negative margins added by small size gutter
-    width: calc(100% + #{$euiSizeS});
+    width: 100%;
   }
 
   &.euiSuperDatePicker__flexWrapper--isQuickSelectOnly {
@@ -74,11 +76,5 @@
     background-color: $euiFormBackgroundDisabledColor;
     color: $euiColorDarkShade;
     cursor: not-allowed;
-  }
-}
-
-@include euiBreakpoint('xs', 's') {
-  .euiSuperDatePicker__flexWrapper {
-    width: calc(100% + #{$euiSizeS});
   }
 }
