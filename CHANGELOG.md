@@ -1,3 +1,13 @@
+## [`70.2.2`](https://github.com/elastic/eui/tree/v70.2.2)
+
+- `EuiButton` now accepts `minWidth={false}` ([#6373](https://github.com/elastic/eui/pull/6373))
+
+**Bug fixes**
+
+- `EuiButton` no longer outputs unnecessary inline styles for `minWidth={0}` or `minWidth={false}` ([#6373](https://github.com/elastic/eui/pull/6373))
+- `EuiFacetButton` no longer reports type issues when passing props accepted by `EuiButton` ([#6373](https://github.com/elastic/eui/pull/6373))
+- Fixed the shadow sizes of `.eui-yScrollWithShadows` and `.eui-xScrollWithShadows` ([#6374](https://github.com/elastic/eui/pull/6374))
+
 ## [`70.2.1`](https://github.com/elastic/eui/tree/v70.2.1)
 
 **Bug fixes**
