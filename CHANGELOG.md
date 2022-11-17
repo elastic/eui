@@ -1,3 +1,9 @@
+## [`70.2.3`](https://github.com/elastic/eui/tree/v70.2.3)
+
+**Bug fixes**
+
+- Fixed incorrect margins in `EuiSuperDatePicker` caused by `EuiFlex` CSS gap change ([#6380](https://github.com/elastic/eui/pull/6380))
+
 ## [`70.2.2`](https://github.com/elastic/eui/tree/v70.2.2)
 
 - `EuiButton` now accepts `minWidth={false}` ([#6373](https://github.com/elastic/eui/pull/6373))
