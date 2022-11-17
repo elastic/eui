@@ -1,3 +1,9 @@
+## [`70.2.4`](https://github.com/elastic/eui/tree/v70.2.4)
+
+**Bug fixes**
+
+- Fixed visual bug in nested `EuiFlexGroup`s, where the parent `EuiFlexGroup` is responsive but a child `EuiFlexGroup` is not ([#6381](https://github.com/elastic/eui/pull/6381))
+
 ## [`70.2.3`](https://github.com/elastic/eui/tree/v70.2.3)
 
 **Bug fixes**
