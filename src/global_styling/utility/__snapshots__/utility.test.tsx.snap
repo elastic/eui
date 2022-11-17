@@ -178,9 +178,9 @@ exports[`global utility styles generates static global styles 1`] = `
 
   mask-image: linear-gradient(to bottom, 
   rgba(255,0,0,0.1) 0%,
-  rgb(255,0,0) calc(16px * 0.75 * 1.25)
+  rgb(255,0,0) 8px
   , 
-  rgb(255,0,0) calc(100% - calc(16px * 0.75 * 1.25)),
+  rgb(255,0,0) calc(100% - 8px),
   rgba(255,0,0,0.1) 100%
   );
 ;}
@@ -217,9 +217,9 @@ exports[`global utility styles generates static global styles 1`] = `
 
   mask-image: linear-gradient(to right, 
   rgba(255,0,0,0.1) 0%,
-  rgb(255,0,0) calc(16px * 0.75 * 1.25)
+  rgb(255,0,0) 8px
   , 
-  rgb(255,0,0) calc(100% - calc(16px * 0.75 * 1.25)),
+  rgb(255,0,0) calc(100% - 8px),
   rgba(255,0,0,0.1) 100%
   );
 ;}[class*='eui-showFor']{display:none!important;}
