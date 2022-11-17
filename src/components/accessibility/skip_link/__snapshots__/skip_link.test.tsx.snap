@@ -22,7 +22,7 @@ exports[`EuiSkipLink is rendered 1`] = `
 
 exports[`EuiSkipLink props onClick is rendered 1`] = `
 <a
-  class="euiSkipLink emotion-euiButtonDisplay-s-s-fill-primary-euiSkipLink-euiScreenReaderOnly"
+  class="euiSkipLink emotion-euiButtonDisplay-s-defaultMinWidth-s-fill-primary-euiSkipLink-euiScreenReaderOnly"
   href="#somewhere"
   rel="noreferrer"
 >
