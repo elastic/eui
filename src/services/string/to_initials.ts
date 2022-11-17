@@ -29,7 +29,7 @@ export function toInitials(
 ): string | null {
   // Calculate the number of initials to show, maxing out at MAX_INITIALS
   let calculatedInitialsLength: number = initials
-    ? initials.split(' ').length
+    ? initials.split('').length
     : name.split(' ').length;
 
   calculatedInitialsLength =

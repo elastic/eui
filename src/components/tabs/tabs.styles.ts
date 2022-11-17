@@ -7,11 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import {
-  logicalCSS,
-  logicalCSSWithFallback,
-  mathWithUnits,
-} from '../../global_styling';
+import { logicalCSS, logicalCSSWithFallback } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 export const euiTabsStyles = (euiThemeContext: UseEuiTheme) => {
@@ -27,9 +23,7 @@ export const euiTabsStyles = (euiThemeContext: UseEuiTheme) => {
       flex-shrink: 0;
     `,
     bottomBorder: css`
-      box-shadow: inset 0
-        ${mathWithUnits(euiTheme.border.width.thin, (x) => x * -1)} 0
-        ${euiTheme.border.color};
+      box-shadow: inset 0 -${euiTheme.border.width.thin} 0 ${euiTheme.border.color};
     `,
     // sizes
     s: css`

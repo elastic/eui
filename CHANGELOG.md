@@ -1,3 +1,19 @@
+## [`70.2.0`](https://github.com/elastic/eui/tree/v70.2.0)
+
+- Added a keyboard shortcuts popover to `EuiDataGrid`'s toolbar. This can be visually hidden via `toolbarVisibility.showKeyboardShortcuts`, but will always remain accessible to keyboard and screen reader users. ([#6036](https://github.com/elastic/eui/pull/6036))
+- `EuiScreenReaderOnly`'s `showOnFocus` prop now also shows on focus within its children ([#6036](https://github.com/elastic/eui/pull/6036))
+- Added `onFocus` prop callback to `EuiSuperDatePicker` ([#6320](https://github.com/elastic/eui/pull/6320))
+
+**Bug fixes**
+
+- Fixed `EuiSelectable` to ensure the full options list is re-displayed when the search bar is controlled and cleared using `searchProps.value` ([#6317](https://github.com/elastic/eui/pull/6317))
+- Fixed incorrect padding on `xl`-sized `EuiTabs` ([#6336](https://github.com/elastic/eui/pull/6336))
+- Fixed `EuiCard` not correctly merging `css` on its child `icon`s ([#6341](https://github.com/elastic/eui/pull/6341))
+- Fixed `EuiCheckableCard` not setting `css` on the correct DOM node ([#6341](https://github.com/elastic/eui/pull/6341))
+- Fixed a webkit rendering issue with `EuiModal`s containing `EuiBasicTable`s tall enough to scroll ([#6343](https://github.com/elastic/eui/pull/6343))
+- Fixed bug in `to_initials` that truncates custom initials ([#6346](https://github.com/elastic/eui/pull/6346))
+- Fix bug in `EuiCard` where layout breaks when `horizontal` and `selectable` are both passed ([#6348](https://github.com/elastic/eui/pull/6348))
+
 ## [`70.1.0`](https://github.com/elastic/eui/tree/v70.1.0)
 
 - Added the `hint` prop to the `<EuiSearchBar />`. This prop lets the consumer render a hint below the search bar that will be displayed on focus. ([#6319](https://github.com/elastic/eui/pull/6319))

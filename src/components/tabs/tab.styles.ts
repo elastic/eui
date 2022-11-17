@@ -7,6 +7,7 @@
  */
 
 import { css } from '@emotion/react';
+import { logicalCSS, mathWithUnits } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiTitle } from '../title/title.styles';
 
@@ -19,24 +20,13 @@ export const euiTabStyles = ({ euiTheme }: UseEuiTheme) => {
       align-items: center;
       font-weight: ${euiTheme.font.weight.semiBold};
       gap: ${euiTheme.size.s};
+      ${logicalCSS('padding-vertical', 0)}
+      ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
 
       &:focus {
         background-color: transparent;
         outline-offset: -${euiTheme.focus.width};
       }
-    `,
-    // sizes
-    s: css`
-      padding: 0 ${euiTheme.size.xs};
-    `,
-    m: css`
-      padding: 0 ${euiTheme.size.xs};
-    `,
-    l: css`
-      padding: 0 ${euiTheme.size.xs};
-    `,
-    xl: css`
-      padding: ${euiTheme.size.s} ${euiTheme.size.xs};
     `,
     // variations
     expanded: css`
@@ -45,18 +35,17 @@ export const euiTabStyles = ({ euiTheme }: UseEuiTheme) => {
       justify-content: center;
     `,
     selected: css`
-      box-shadow: inset 0 calc(${euiTheme.border.width.thick} * -1) 0
-        ${euiTheme.colors.primary};
+      box-shadow: inset 0 -${euiTheme.border.width.thick} 0 ${euiTheme.colors.primary};
     `,
-    disabled: css`
-      cursor: not-allowed;
-      color: ${euiTheme.colors.disabledText};
-
-      .euiTab.euiTab__isSelected {
-        box-shadow: inset 0 calc(${euiTheme.border.width.thick} * -1) 0
-          ${euiTheme.colors.disabledText};
-      }
-    `,
+    disabled: {
+      disabled: css`
+        cursor: not-allowed;
+        color: ${euiTheme.colors.disabledText};
+      `,
+      selected: css`
+        box-shadow: inset 0 -${euiTheme.border.width.thick} 0 ${euiTheme.colors.disabledText};
+      `,
+    },
   };
 };
 
@@ -65,8 +54,6 @@ export const euiTabContentStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiTab__content: css`
-      color: ${euiTheme.colors.disabledText};
-
       &:hover {
         text-decoration: none;
       }
@@ -82,11 +69,17 @@ export const euiTabContentStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     l: css`
       ${euiTitle(euiThemeContext, 'xs')};
-      line-height: calc(${euiTheme.size.xl} + ${euiTheme.size.s});
+      line-height: ${mathWithUnits(
+        [euiTheme.size.xl, euiTheme.size.s],
+        (x, y) => x + y
+      )};
     `,
     xl: css`
       ${euiTitle(euiThemeContext, 's')};
-      line-height: calc(${euiTheme.size.xxxl} + ${euiTheme.size.s});
+      line-height: ${mathWithUnits(
+        [euiTheme.size.xxxl, euiTheme.size.s],
+        (x, y) => x + y
+      )};
     `,
     // variations
     selected: css`
@@ -94,10 +87,6 @@ export const euiTabContentStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     disabled: css`
       color: ${euiTheme.colors.disabledText};
-
-      &:hover {
-        text-decoration: none;
-      }
     `,
   };
 };

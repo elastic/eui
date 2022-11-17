@@ -19,7 +19,7 @@ export interface EuiScreenReaderOnlyProps {
   children: ReactElement;
 
   /**
-   * For keyboard navigation, force content to display visually upon focus.
+   * For keyboard navigation, force content to display visually upon focus/focus-within.
    */
   showOnFocus?: boolean;
   className?: string;

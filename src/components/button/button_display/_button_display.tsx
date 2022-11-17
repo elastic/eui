@@ -58,7 +58,7 @@ export interface EuiButtonDisplayCommonProps
   /**
    * Override the default minimum width
    */
-  minWidth?: CSSProperties['minWidth'];
+  minWidth?: CSSProperties['minWidth'] | false;
   /**
    * Force disables the button and changes the icon to a loading spinner
    */
@@ -145,6 +145,7 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
       styles.euiButtonDisplay,
       styles[size],
       fullWidth && styles.fullWidth,
+      minWidth == null && styles.defaultMinWidth,
       buttonIsDisabled && styles.isDisabled,
       buttonRadiusStyle,
     ];
@@ -193,7 +194,7 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
       element,
       {
         css: cssStyles,
-        style: minWidth != null ? { ...style, minInlineSize: minWidth } : style,
+        style: minWidth ? { ...style, minInlineSize: minWidth } : style,
         ref,
         ...elementProps,
         ...relObj,

@@ -106,7 +106,7 @@ export const CardExample = {
       title: 'Layout',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: cardLayoutSource,
         },
       ],
@@ -148,7 +148,7 @@ export const CardExample = {
       title: 'Images',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: cardImageSource,
         },
       ],
@@ -194,7 +194,7 @@ export const CardExample = {
       title: 'Footer',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: cardFooterSource,
         },
       ],
@@ -235,7 +235,7 @@ export const CardExample = {
       title: 'Beta badge',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: cardBetaSource,
         },
       ],
@@ -269,7 +269,7 @@ export const CardExample = {
       title: 'Selectable',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: cardSelectableSource,
         },
       ],
@@ -319,7 +319,7 @@ export const CardExample = {
       ),
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: cardCheckableCheckboxSource,
         },
       ],
@@ -345,7 +345,7 @@ export const CardExample = {
       ),
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: cardCheckableSource,
         },
       ],
@@ -358,7 +358,7 @@ export const CardExample = {
       title: 'Custom children',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: cardChildrenSource,
         },
       ],
@@ -395,7 +395,7 @@ export const CardExample = {
       title: 'Plain and other colors',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: cardDisplaySource,
         },
       ],

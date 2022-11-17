@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import { css } from '@emotion/react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 import { shouldRenderCustomStyles } from '../../../test/internal';
@@ -108,5 +109,28 @@ describe('EuiPageSection', () => {
         expect(component).toMatchSnapshot();
       });
     });
+  });
+
+  // Regression test for recurring bug / unintuitive Emotion behavior
+  it('correctly merges `css` passed to `contentProps`', () => {
+    const component = render(
+      <EuiPageSection
+        contentProps={{
+          css: css`
+            color: red;
+          `,
+          'data-test-subj': 'content',
+        }}
+      />
+    );
+    const content = component.find('[data-test-subj="content"]');
+    expect(content).toMatchInlineSnapshot(`
+      <div
+        class="emotion-euiPageSection__content-l-css"
+        data-test-subj="content"
+      />
+    `);
+    expect(content.attr('class')).toContain('euiPageSection__content'); // Preserves our CSS
+    expect(content.attr('class').endsWith('-css')).toBeTruthy(); // Concatenates custom CSS
   });
 });

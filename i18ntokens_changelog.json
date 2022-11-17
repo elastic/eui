@@ -1,5 +1,130 @@
 [
   {
+    "version": "70.2.0",
+    "changes": [
+      {
+        "token": "euiKeyboardShortcuts.title",
+        "changeType": "added",
+        "value": "Keyboard shortcuts"
+      },
+      {
+        "token": "euiKeyboardShortcuts.upArrowTitle",
+        "changeType": "added",
+        "value": "Up arrow"
+      },
+      {
+        "token": "euiKeyboardShortcuts.upArrowDescription",
+        "changeType": "added",
+        "value": "Move one cell up"
+      },
+      {
+        "token": "euiKeyboardShortcuts.downArrowTitle",
+        "changeType": "added",
+        "value": "Down arrow"
+      },
+      {
+        "token": "euiKeyboardShortcuts.downArrowDescription",
+        "changeType": "added",
+        "value": "Move one cell down"
+      },
+      {
+        "token": "euiKeyboardShortcuts.rightArrowTitle",
+        "changeType": "added",
+        "value": "Right arrow"
+      },
+      {
+        "token": "euiKeyboardShortcuts.rightArrowDescription",
+        "changeType": "added",
+        "value": "Move one cell right"
+      },
+      {
+        "token": "euiKeyboardShortcuts.leftArrowTitle",
+        "changeType": "added",
+        "value": "Left arrow"
+      },
+      {
+        "token": "euiKeyboardShortcuts.leftArrowDescription",
+        "changeType": "added",
+        "value": "Move one cell left"
+      },
+      {
+        "token": "euiKeyboardShortcuts.homeTitle",
+        "changeType": "added",
+        "value": "Home"
+      },
+      {
+        "token": "euiKeyboardShortcuts.homeDescription",
+        "changeType": "added",
+        "value": "Move to the first cell of the current row"
+      },
+      {
+        "token": "euiKeyboardShortcuts.endTitle",
+        "changeType": "added",
+        "value": "End"
+      },
+      {
+        "token": "euiKeyboardShortcuts.endDescription",
+        "changeType": "added",
+        "value": "Move to the last cell of the current row"
+      },
+      {
+        "token": "euiKeyboardShortcuts.ctrl",
+        "changeType": "added",
+        "value": "Ctrl"
+      },
+      {
+        "token": "euiKeyboardShortcuts.ctrlHomeDescription",
+        "changeType": "added",
+        "value": "Move to the first cell of the current page"
+      },
+      {
+        "token": "euiKeyboardShortcuts.ctrlEndDescription",
+        "changeType": "added",
+        "value": "Move to the last cell of the current page"
+      },
+      {
+        "token": "euiKeyboardShortcuts.pageUpTitle",
+        "changeType": "added",
+        "value": "Page Up"
+      },
+      {
+        "token": "euiKeyboardShortcuts.pageUpDescription",
+        "changeType": "added",
+        "value": "Go to the last row of the previous page"
+      },
+      {
+        "token": "euiKeyboardShortcuts.pageDownTitle",
+        "changeType": "added",
+        "value": "Page Down"
+      },
+      {
+        "token": "euiKeyboardShortcuts.pageDownDescription",
+        "changeType": "added",
+        "value": "Go to the first row of the next page"
+      },
+      {
+        "token": "euiKeyboardShortcuts.enterTitle",
+        "changeType": "added",
+        "value": "Enter"
+      },
+      {
+        "token": "euiKeyboardShortcuts.enterDescription",
+        "changeType": "added",
+        "value": "Open cell details and actions"
+      },
+      {
+        "token": "euiKeyboardShortcuts.escapeTitle",
+        "changeType": "added",
+        "value": "Escape"
+      },
+      {
+        "token": "euiKeyboardShortcuts.escapeDescription",
+        "changeType": "added",
+        "value": "Close cell details and actions"
+      }
+    ]
+  },
+  {
     "version": "70.0.0",
     "changes": [
       {

@@ -1,0 +1,17 @@
+.euiDataGrid__keyboardShortcuts {
+  display: block;
+  max-inline-size: $euiSizeXXL * 10;
+  max-block-size: 80vh;
+  overflow-y: auto;
+  overflow-block: auto;
+
+  .euiDescriptionList {
+    .euiDescriptionList__title {
+      width: 25%;
+    }
+
+    .euiDescriptionList__description {
+      width: 75%;
+    }
+  }
+}
