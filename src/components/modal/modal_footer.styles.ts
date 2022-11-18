@@ -24,7 +24,6 @@ export const euiModalFooterStyles = (euiThemeContext: UseEuiTheme) => {
       gap: ${euiTheme.size.base};
 
       ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
-        inline-size: 100%;
         background: ${euiTheme.colors.lightestShade};
         padding-block: ${euiTheme.size.m};
         padding-inline: ${euiTheme.size.l};

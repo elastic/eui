@@ -21,10 +21,6 @@ export const euiModalBodyStyles = (euiThemeContext: UseEuiTheme) => {
       display: flex;
       flex-direction: column;
 
-      ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
-        inline-size: 100%;
-      }
-
       // If a footer doesn't exist (body is the last element) add padding to the bottom
       &:last-of-type .euiModalBody__overflow {
         padding-block-end: ${euiTheme.size.l};
