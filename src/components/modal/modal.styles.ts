@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { euiShadow } from '../../themes/amsterdam/global_styling/mixins';
+import { euiShadowXLarge } from '../../themes/amsterdam/global_styling/mixins';
 import {
   euiCanAnimate,
   euiBreakpoint,
@@ -21,7 +21,7 @@ export const euiModalStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiModal: css`
-      ${euiShadow(euiThemeContext, 'l')}
+      ${euiShadowXLarge(euiThemeContext)}
       display: flex;
       flex-direction: column;
       max-block-size: 75vh; // We overflow the modal body based off this
@@ -65,7 +65,7 @@ export const euiModalStyles = (euiThemeContext: UseEuiTheme) => {
       min-inline-size: ${euiFormVariables(euiThemeContext).maxWidth};
 
       ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
-        ${euiShadow(euiThemeContext, 'l')}
+        ${euiShadowXLarge(euiThemeContext, { reverse: true })}
         inset-block-start: auto;
       }
     `,
