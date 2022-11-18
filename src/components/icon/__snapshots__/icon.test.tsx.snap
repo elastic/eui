@@ -3048,6 +3048,25 @@ exports[`EuiIcon props type filterIgnore is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type filterInCircle is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="filterInCircle"
+  data-is-loaded="true"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M7.999 15.999a8 8 0 110-16 8 8 0 010 16zM8 15A7 7 0 108 1a7 7 0 000 14zM3.5 5h9a.5.5 0 110 1h-9a.5.5 0 010-1zm2 3h5a.5.5 0 110 1h-5a.5.5 0 010-1zm2 3h1a.5.5 0 110 1h-1a.5.5 0 110-1z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type filterInclude is rendered 1`] = `
 <svg
   aria-hidden="true"
