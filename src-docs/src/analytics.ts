@@ -3,6 +3,8 @@ import euiPackage from '../../package.json';
 import { ReactNode, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
+type Location = ReturnType<typeof useLocation>;
+
 declare global {
   interface Window {
     dataLayer?: Array<Record<string, string>>;
@@ -34,13 +36,7 @@ function getElasticUID(): string {
   return euid;
 }
 
-function recordPageView({
-  pathname,
-  search,
-}: {
-  pathname: string;
-  search: string;
-}) {
+function recordPageView({ pathname, search }: Location) {
   const [, pageCategory, pageSubCategory] = pathname.split('/');
 
   // `search` from react router, but since we're still on hash routing
