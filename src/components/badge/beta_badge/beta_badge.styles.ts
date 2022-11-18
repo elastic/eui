@@ -91,9 +91,6 @@ export const euiBetaBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     middle: css`
       vertical-align: middle;
     `,
-    super: css`
-      vertical-align: super;
-    `,
   };
 };
 
