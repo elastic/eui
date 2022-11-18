@@ -1,6 +1,15 @@
 .euiQuickSelectPopover__content {
   width: $euiFormMaxWidth;
   max-width: 100%;
+
+  // Add border between customQuickSelect sections
+  > *:first-child {
+    padding-bottom: $euiSizeM;
+  }
+  > *:not(:first-child) {
+    border-top: $euiBorderThin;
+    padding: $euiSizeM 0;
+  }
 }
 
 .euiQuickSelectPopover__section {
