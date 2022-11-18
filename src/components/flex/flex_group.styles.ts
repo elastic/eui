@@ -22,7 +22,7 @@ export const euiFlexGroupStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
         flex-wrap: wrap;
 
-        .euiFlexItem {
+        & > .euiFlexItem {
           ${logicalCSS('width', '100%')}
           flex-basis: 100%;
         }

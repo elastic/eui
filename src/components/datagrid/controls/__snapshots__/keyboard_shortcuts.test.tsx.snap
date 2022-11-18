@@ -2,10 +2,7 @@
 
 exports[`useDataGridKeyboardShortcuts returns a popover containing a list of keyboard shortcuts 1`] = `
 <body>
-  <div
-    aria-hidden="true"
-    data-aria-hidden="true"
-  >
+  <div>
     <div
       class="euiPopover euiPopover-isOpen emotion-euiPopover"
       data-test-subj="dataGridKeyboardShortcutsPopover"
@@ -37,18 +34,9 @@ exports[`useDataGridKeyboardShortcuts returns a popover containing a list of key
     data-euiportal="true"
   >
     <div
-      aria-hidden="true"
-      data-aria-hidden="true"
       data-focus-guard="true"
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
-    />
-    <div
-      aria-hidden="true"
-      data-aria-hidden="true"
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="1"
     />
     <div
       data-focus-lock-disabled="false"
@@ -252,8 +240,6 @@ exports[`useDataGridKeyboardShortcuts returns a popover containing a list of key
       </div>
     </div>
     <div
-      aria-hidden="true"
-      data-aria-hidden="true"
       data-focus-guard="true"
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"

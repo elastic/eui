@@ -4,8 +4,30 @@ exports[`EuiBetaBadge is rendered 1`] = `
 <span>
   <span
     aria-label="aria-label"
-    class="euiBetaBadge testClass1 testClass2 emotion-euiBetaBadge-hollow-m"
+    class="euiBetaBadge testClass1 testClass2 emotion-euiBetaBadge-hollow-m-baseline"
     data-test-subj="test subject string"
+    title="Beta"
+  >
+    Beta
+  </span>
+</span>
+`;
+
+exports[`EuiBetaBadge props alignement baseline is rendered 1`] = `
+<span>
+  <span
+    class="euiBetaBadge emotion-euiBetaBadge-hollow-m-baseline"
+    title="Beta"
+  >
+    Beta
+  </span>
+</span>
+`;
+
+exports[`EuiBetaBadge props alignement middle is rendered 1`] = `
+<span>
+  <span
+    class="euiBetaBadge emotion-euiBetaBadge-hollow-m-middle"
     title="Beta"
   >
     Beta
@@ -16,7 +38,7 @@ exports[`EuiBetaBadge is rendered 1`] = `
 exports[`EuiBetaBadge props color accent is rendered 1`] = `
 <span>
   <span
-    class="euiBetaBadge emotion-euiBetaBadge-accent-m"
+    class="euiBetaBadge emotion-euiBetaBadge-accent-m-baseline"
     title="Beta"
   >
     Beta
@@ -27,7 +49,7 @@ exports[`EuiBetaBadge props color accent is rendered 1`] = `
 exports[`EuiBetaBadge props color hollow is rendered 1`] = `
 <span>
   <span
-    class="euiBetaBadge emotion-euiBetaBadge-hollow-m"
+    class="euiBetaBadge emotion-euiBetaBadge-hollow-m-baseline"
     title="Beta"
   >
     Beta
@@ -38,7 +60,7 @@ exports[`EuiBetaBadge props color hollow is rendered 1`] = `
 exports[`EuiBetaBadge props color subdued is rendered 1`] = `
 <span>
   <span
-    class="euiBetaBadge emotion-euiBetaBadge-subdued-m"
+    class="euiBetaBadge emotion-euiBetaBadge-subdued-m-baseline"
     title="Beta"
   >
     Beta
@@ -49,7 +71,7 @@ exports[`EuiBetaBadge props color subdued is rendered 1`] = `
 exports[`EuiBetaBadge props iconType 1`] = `
 <span>
   <span
-    class="euiBetaBadge emotion-euiBetaBadge-hollow-m"
+    class="euiBetaBadge emotion-euiBetaBadge-hollow-m-baseline"
     title="Beta"
   >
     <span
@@ -65,7 +87,7 @@ exports[`EuiBetaBadge props iconType 1`] = `
 exports[`EuiBetaBadge props single letter 1`] = `
 <span>
   <span
-    class="euiBetaBadge emotion-euiBetaBadge-hollow-m"
+    class="euiBetaBadge emotion-euiBetaBadge-hollow-m-baseline"
     title="B"
   >
     B
@@ -76,7 +98,7 @@ exports[`EuiBetaBadge props single letter 1`] = `
 exports[`EuiBetaBadge props size m is rendered 1`] = `
 <span>
   <span
-    class="euiBetaBadge emotion-euiBetaBadge-hollow-m"
+    class="euiBetaBadge emotion-euiBetaBadge-hollow-m-baseline"
     title="Beta"
   >
     Beta
@@ -87,7 +109,7 @@ exports[`EuiBetaBadge props size m is rendered 1`] = `
 exports[`EuiBetaBadge props size s is rendered 1`] = `
 <span>
   <span
-    class="euiBetaBadge emotion-euiBetaBadge-hollow-s"
+    class="euiBetaBadge emotion-euiBetaBadge-hollow-s-baseline"
     title="Beta"
   >
     Beta
@@ -101,7 +123,7 @@ exports[`EuiBetaBadge props tooltip and anchorProps are rendered 1`] = `
   data-test-subj="DTS"
 >
   <span
-    class="euiBetaBadge emotion-euiBetaBadge-hollow-m"
+    class="euiBetaBadge emotion-euiBetaBadge-hollow-m-baseline"
     role="button"
     tabindex="0"
   >

@@ -33,7 +33,7 @@ exports[`EuiCard betaBadgeProps renders href 1`] = `
       class="emotion-euiCard__betaBadgeAnchor"
     >
       <a
-        class="euiBetaBadge emotion-euiBetaBadge-hollow-m-euiCard__betaBadge"
+        class="euiBetaBadge emotion-euiBetaBadge-hollow-m-baseline-euiCard__betaBadge"
         href="http://www.elastic.co/"
         id="generated-idBetaBadge"
         rel=""
@@ -82,7 +82,7 @@ exports[`EuiCard horizontal selectable 1`] = `
   <button
     aria-checked="false"
     aria-describedby="generated-idTitle generated-idDescription"
-    class="emotion-euiButtonDisplay-m-fullWidth-m-base-text-euiCardSelect"
+    class="emotion-euiButtonDisplay-m-fullWidth-defaultMinWidth-m-base-text-euiCardSelect"
     role="switch"
     type="button"
   >
@@ -1077,7 +1077,7 @@ exports[`EuiCard props selectable 1`] = `
   <button
     aria-checked="false"
     aria-describedby="generated-idTitle generated-idDescription"
-    class="emotion-euiButtonDisplay-m-fullWidth-m-base-text-euiCardSelect"
+    class="emotion-euiButtonDisplay-m-fullWidth-defaultMinWidth-m-base-text-euiCardSelect"
     role="switch"
     type="button"
   >

@@ -12,7 +12,6 @@ import { EuiButtonEmpty } from '../../../button';
 import { EuiIcon } from '../../../icon';
 import { EuiPopover } from '../../../popover';
 import { EuiTitle } from '../../../title';
-import { EuiSpacer } from '../../../spacer';
 import { EuiHorizontalRule } from '../../../horizontal_rule';
 import { EuiText } from '../../../text';
 
@@ -135,7 +134,6 @@ export class EuiQuickSelectPopover extends Component<
           <EuiTitle size="xxxs">
             <span>{title}</span>
           </EuiTitle>
-          <EuiSpacer size="xs" />
           <EuiText size="s" className="euiQuickSelectPopover__section">
             {React.cloneElement(content, { applyTime: this.applyTime })}
           </EuiText>

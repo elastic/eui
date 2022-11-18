@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import moment from 'moment';
 
 import { EuiDatePicker, EuiDatePickerRange } from '../../../../src';
-
-// @ts-ignore Importing from JS
 import { DisplayToggles } from '../form_controls/display_toggles';
 
 export default () => {

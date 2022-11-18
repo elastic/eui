@@ -462,11 +462,6 @@ Array [
     tabindex="-1"
   />,
   <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
-  <div
     class="euiDataGrid__focusWrap"
     data-focus-lock-disabled="disabled"
   >
@@ -933,11 +928,6 @@ Array [
     tabindex="-1"
   />,
   <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
-  <div
     class="euiDataGrid__focusWrap"
     data-focus-lock-disabled="disabled"
   >
@@ -1241,11 +1231,6 @@ Array [
                 tabindex="-1"
               />
               <div
-                data-focus-guard="true"
-                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                tabindex="-1"
-              />
-              <div
                 data-focus-lock-disabled="disabled"
               >
                 <div
@@ -1356,11 +1341,6 @@ Array [
                 tabindex="-1"
               />
               <div
-                data-focus-guard="true"
-                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                tabindex="-1"
-              />
-              <div
                 data-focus-lock-disabled="disabled"
               >
                 <div
@@ -1401,11 +1381,6 @@ Array [
               style="position:absolute;left:0;top:0;height:34px;width:50px"
               tabindex="-1"
             >
-              <div
-                data-focus-guard="true"
-                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                tabindex="-1"
-              />
               <div
                 data-focus-guard="true"
                 style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
@@ -1522,11 +1497,6 @@ Array [
                 tabindex="-1"
               />
               <div
-                data-focus-guard="true"
-                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                tabindex="-1"
-              />
-              <div
                 data-focus-lock-disabled="disabled"
               >
                 <div
@@ -1567,11 +1537,6 @@ Array [
               style="position:absolute;left:0;top:0;height:34px;width:50px"
               tabindex="-1"
             >
-              <div
-                data-focus-guard="true"
-                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                tabindex="-1"
-              />
               <div
                 data-focus-guard="true"
                 style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
@@ -1688,11 +1653,6 @@ Array [
                 tabindex="-1"
               />
               <div
-                data-focus-guard="true"
-                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                tabindex="-1"
-              />
-              <div
                 data-focus-lock-disabled="disabled"
               >
                 <div
@@ -1742,11 +1702,6 @@ Array [
 
 exports[`EuiDataGrid rendering renders custom column headers 1`] = `
 Array [
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
   <div
     data-focus-guard="true"
     style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
@@ -2212,11 +2167,6 @@ Array [
 
 exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
 Array [
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
   <div
     data-focus-guard="true"
     style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
