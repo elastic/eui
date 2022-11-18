@@ -1,3 +1,30 @@
+## [`70.3.0`](https://github.com/elastic/eui/tree/v70.3.0)
+
+- `EuiSearchBar` now automatically wraps special characters not used by query syntax in quotes ([#6356](https://github.com/elastic/eui/pull/6356))
+- Added `alignment` prop to `EuiBetaBadge` ([#6361](https://github.com/elastic/eui/pull/6361))
+- `EuiButton` now accepts `minWidth={false}` ([#6373](https://github.com/elastic/eui/pull/6373))
+
+**Bug fixes**
+
+- Fixed `EuiPageTemplate` not correctly passing the `component` prop to the inner main content wrapper. ([#6352](https://github.com/elastic/eui/pull/6352))
+- `EuiSkipLink` now correctly calls `onClick` even when `fallbackDestination` is invalid ([#6355](https://github.com/elastic/eui/pull/6355))
+- Permanently fixed `EuiModal` to not cause scroll-jumping issues on modal open ([#6360](https://github.com/elastic/eui/pull/6360))
+- Re-fixed `EuiPageSection` not correctly merging `contentProps.css` ([#6365](https://github.com/elastic/eui/pull/6365))
+- Fixed `EuiTab` not defaulting to size `m` ([#6366](https://github.com/elastic/eui/pull/6366))
+- Fixed the shadow sizes of `.eui-yScrollWithShadows` and `.eui-xScrollWithShadows` ([#6374](https://github.com/elastic/eui/pull/6374))
+- Fixed bug in `EuiCard` where the inner content in vertical cards was not growing 100% in width ([#6377](https://github.com/elastic/eui/pull/6377))
+- Fixed incorrect margins in `EuiSuperDatePicker` caused by `EuiFlex` CSS gap change ([#6380](https://github.com/elastic/eui/pull/6380))
+- Fixed visual bug in nested `EuiFlexGroup`s, where the parent `EuiFlexGroup` is responsive but a child `EuiFlexGroup` is not ([#6381](https://github.com/elastic/eui/pull/6381))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiModal` to Emotion ([#6321](https://github.com/elastic/eui/pull/6321))
+
+**Fixes**
+
+- `EuiButton` no longer outputs unnecessary inline styles for `minWidth={0}` or `minWidth={false}` ([#6373](https://github.com/elastic/eui/pull/6373))
+- `EuiFacetButton` no longer reports type issues when passing props accepted by `EuiButton` ([#6373](https://github.com/elastic/eui/pull/6373))
+
 ## [`70.2.0`](https://github.com/elastic/eui/tree/v70.2.0)
 
 - Added a keyboard shortcuts popover to `EuiDataGrid`'s toolbar. This can be visually hidden via `toolbarVisibility.showKeyboardShortcuts`, but will always remain accessible to keyboard and screen reader users. ([#6036](https://github.com/elastic/eui/pull/6036))
