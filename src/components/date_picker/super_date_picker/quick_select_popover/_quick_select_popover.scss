@@ -6,6 +6,7 @@
   > *:first-child {
     padding-bottom: $euiSizeM;
   }
+
   > *:not(:first-child) {
     border-top: $euiBorderThin;
     padding: $euiSizeM 0;

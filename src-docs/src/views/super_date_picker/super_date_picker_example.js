@@ -10,6 +10,7 @@ import {
   EuiLink,
   EuiText,
   EuiSuperDatePicker,
+  EuiBasicTable,
 } from '../../../../src/components';
 
 import { EuiSuperUpdateButtonProps } from './props';
@@ -26,6 +27,9 @@ const superDatePickerWidthSource = require('!!raw-loader!./super_date_picker_wid
 
 import SuperDatePickerCustomQuickSelect from './super_date_picker_custom_quick_select';
 const superDatePickerCustomQuickSelectSource = require('!!raw-loader!./super_date_picker_custom_quick_select');
+
+import SuperDatePickerCustomQuickSelectCustomOrder from './super_date_picker_custom_quick_select_custom_order';
+const superDatePickerCustomQuickSelectCustomOrderSource = require('!!raw-loader!./super_date_picker_custom_quick_select_custom_order');
 
 import AutoRefresh from './auto_refresh';
 const autoRefreshSource = require('!!raw-loader!./auto_refresh');
@@ -56,6 +60,69 @@ const superDatePickerCustomQuickSelectSnippet = `<EuiSuperDatePicker
   ]}
 />
 `;
+
+const superDatePickerCustomQuickSelectCustomOrderSnippet = `<EuiSuperDatePicker
+  onTimeChange={onTimeChange}
+  recentlyUsedRanges={[
+    end: ShortDate,
+    start: ShortDate,
+    label?: string,
+  ]}
+  customQuickSelectPanels={[
+    {
+      title: string,
+      content: ReactElement,
+    },
+  ]}
+  customQuickSelectRender={({
+    quickSelect,
+    commonlyUsedTimes,
+    recentlyUsedTimes,
+    customQuickSelectPanels,
+  }) => (
+    <>
+      {customQuickSelectPanels}
+      {quickSelect}
+      {commonlyUsedTimes}
+      {recentlyUsedTimes}
+    </>
+  )}
+/>
+`;
+
+const quickSelectTableColumns = [
+  {
+    field: 'key',
+    name: 'Key',
+  },
+  {
+    field: 'controls',
+    name: 'Panel Controlled',
+  },
+];
+
+const quickSelectTableItems = [
+  {
+    key: 'quickSelect',
+    controls: 'Quick select',
+  },
+  {
+    key: 'commonlyUsedTimes',
+    controls: 'Commonly used',
+  },
+  {
+    key: 'recentlyUsedTimes',
+    controls: 'Recently used',
+  },
+  {
+    key: 'customQuickSelectPanels',
+    controls: 'Custom panels',
+  },
+  {
+    key: 'applyRefreshIntervalPanels',
+    controls: 'Refresh toggles',
+  },
+];
 
 export const SuperDatePickerExample = {
   title: 'Super date picker',
@@ -217,6 +284,32 @@ if (!endMoment || !endMoment.isValid()) {
       ),
       snippet: superDatePickerCustomQuickSelectSnippet,
       demo: <SuperDatePickerCustomQuickSelect />,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: superDatePickerCustomQuickSelectCustomOrderSource,
+        },
+      ],
+      text: (
+        <>
+          <h3>Customing panel order</h3>
+          <p>
+            You can optionally pass the{' '}
+            <EuiCode>customQuickSelectRender</EuiCode> prop that returns Quick
+            Select panels and allows you to customize the order of them.{' '}
+          </p>
+          <EuiBasicTable
+            tableCaption="Quick select panel keys"
+            items={quickSelectTableItems}
+            rowHeader="key"
+            columns={quickSelectTableColumns}
+          />
+        </>
+      ),
+      snippet: superDatePickerCustomQuickSelectCustomOrderSnippet,
+      demo: <SuperDatePickerCustomQuickSelectCustomOrder />,
     },
     {
       title: 'Sizing',
