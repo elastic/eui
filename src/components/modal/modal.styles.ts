@@ -41,12 +41,14 @@ export const euiModalStyles = (euiThemeContext: UseEuiTheme) => {
 
       ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
         position: fixed;
-        inline-size: 100vw;
-        min-inline-size: 0;
-        max-inline-size: none;
-        max-block-size: 100vh;
         inset: 0;
         border-radius: 0;
+        // The below importants are required to override any
+        // inline width/heights that consumers set via {style}
+        inline-size: 100vw !important;
+        min-inline-size: 0 !important;
+        max-inline-size: none !important;
+        max-block-size: 100vh !important;
       }
 
       // Remove the outline from the focusable container
