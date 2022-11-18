@@ -15,6 +15,7 @@ import Tour from './tour';
 import Managed from './managed';
 import ManagedHook from './managed_hook';
 import FullScreen from './fullscreen';
+import NotActionDriven from './not_action_driven';
 
 import Guidelines from './guidelines';
 
@@ -169,6 +170,24 @@ export const TourExample = {
         </p>
       ),
       demo: <Managed />,
+    },
+    {
+      title: 'Not action driven tour',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: managedSource,
+        },
+      ],
+      text: (
+        <p>
+          You can use the <strong>EuiTour</strong> to provide sequential help
+          without the user performing any action (e.g. filling out a form or
+          copying a text). For this scenario, you should include two buttons.
+          One to close the tour, and another to move to the next step.
+        </p>
+      ),
+      demo: <NotActionDriven />,
     },
     {
       title: 'Fullscreen demo',

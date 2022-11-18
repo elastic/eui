@@ -79,7 +79,7 @@ exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
             class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-euiTourFooter"
           >
             <div
-              class="euiFlexGroup emotion-euiFlexGroup-l-flexEnd-stretch-row"
+              class="euiFlexGroup emotion-euiFlexGroup-l-flexEnd-center-row"
             >
               <div
                 class="euiFlexItem emotion-euiFlexItem-growZero"
@@ -182,7 +182,7 @@ exports[`EuiTourStep can have subtitle 1`] = `
             class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-euiTourFooter"
           >
             <div
-              class="euiFlexGroup emotion-euiFlexGroup-l-flexEnd-stretch-row"
+              class="euiFlexGroup emotion-euiFlexGroup-l-flexEnd-center-row"
             >
               <div
                 class="euiFlexItem emotion-euiFlexItem-growZero"
@@ -280,7 +280,7 @@ exports[`EuiTourStep can override the footer action 1`] = `
             class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-euiTourFooter"
           >
             <div
-              class="euiFlexGroup emotion-euiFlexGroup-l-flexEnd-stretch-row"
+              class="euiFlexGroup emotion-euiFlexGroup-l-flexEnd-center-row"
             >
               <div
                 class="euiFlexItem emotion-euiFlexItem-growZero"
@@ -362,7 +362,7 @@ exports[`EuiTourStep can turn off the beacon 1`] = `
             class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-euiTourFooter"
           >
             <div
-              class="euiFlexGroup emotion-euiFlexGroup-l-flexEnd-stretch-row"
+              class="euiFlexGroup emotion-euiFlexGroup-l-flexEnd-center-row"
             >
               <div
                 class="euiFlexItem emotion-euiFlexItem-growZero"
@@ -460,7 +460,7 @@ exports[`EuiTourStep is rendered 1`] = `
             class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-euiTourFooter"
           >
             <div
-              class="euiFlexGroup emotion-euiFlexGroup-l-flexEnd-stretch-row"
+              class="euiFlexGroup emotion-euiFlexGroup-l-flexEnd-center-row"
             >
               <div
                 class="euiFlexItem emotion-euiFlexItem-growZero"

@@ -129,9 +129,10 @@ export type EuiTourStepProps = CommonProps &
     decoration?: 'none' | 'beacon';
 
     /**
-     * Element to replace the 'Skip tour' link in the footer
+     * Element to replace the 'Skip tour' link in the footer.
+     * Ideally, pass an one button or an array of up to 2 buttons.
      */
-    footerAction?: ReactElement;
+    footerAction?: ReactNode | ReactNode[];
   };
 
 export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
@@ -204,10 +205,25 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
     size: 'xs',
   };
 
+  const isFooterActionArray = Array.isArray(footerAction);
+
+  const optionalFooterAction: JSX.Element = isFooterActionArray ? (
+    <EuiFlexGroup gutterSize="s" alignItems="center" justifyContent="flexEnd">
+      {footerAction.map((action, index) => (
+        <EuiFlexItem key={index} grow={false}>
+          {action}
+        </EuiFlexItem>
+      ))}
+    </EuiFlexGroup>
+  ) : (
+    <EuiFlexItem grow={false}>{footerAction}</EuiFlexItem>
+  );
+
   const footer = (
     <EuiFlexGroup
       responsive={false}
       justifyContent={stepsTotal > 1 ? 'spaceBetween' : 'flexEnd'}
+      alignItems="center"
     >
       {stepsTotal > 1 && (
         <EuiFlexItem grow={false}>
@@ -228,7 +244,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
       )}
 
       {footerAction ? (
-        <EuiFlexItem grow={false}>{footerAction}</EuiFlexItem>
+        optionalFooterAction
       ) : (
         <EuiFlexItem grow={false}>
           <EuiI18n
