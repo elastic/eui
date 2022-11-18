@@ -161,8 +161,8 @@ export class EuiQuickSelectPopover extends Component<
             {quickSelectElement}
             {commonlyUsedElement}
             {recentlyUsedElement}
-            {customQuickSelectPanelsElement}
             {applyRefreshInterval && refreshIntervalElement}
+            {customQuickSelectPanelsElement}
           </>
         )}
       </Fragment>
