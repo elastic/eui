@@ -45,10 +45,7 @@ export const euiModalStyles = (euiThemeContext: UseEuiTheme) => {
         min-inline-size: 0;
         max-inline-size: none;
         max-block-size: 100vh;
-        inset-inline-start: 0;
-        inset-inline-end: 0;
-        inset-block-end: 0;
-        inset-block-start: 0;
+        inset: 0;
         border-radius: 0;
       }
 
