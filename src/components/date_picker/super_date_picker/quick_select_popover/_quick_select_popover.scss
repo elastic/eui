@@ -8,7 +8,7 @@
   max-height: $euiSizeM * 11;
   overflow: hidden;
   overflow-y: auto;
-  padding: $euiSizeS 0 $euiSizeXS; // Offset negative margin from flex items
+  margin: $euiSizeS 0 0;
 }
 
 // sass-lint:disable no-important
@@ -25,7 +25,9 @@
   font-size: $euiFontSizeS;
   line-height: $euiFontSizeS;
 
-  &:not(:last-of-type) {
-    margin-bottom: $euiSizeS;
+  &--recentlyUsed {
+    &:not(:last-of-type) {
+      margin-bottom: $euiSizeS;
+    }
   }
 }

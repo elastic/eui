@@ -14,7 +14,6 @@ import React, {
   ReactElement,
 } from 'react';
 import classNames from 'classnames';
-import { CommonProps } from '../common';
 
 import { EuiNotificationBadge } from '../badge';
 
@@ -32,11 +31,12 @@ import {
 } from './facet_button.styles';
 import {
   EuiButtonDisplay,
+  EuiButtonDisplayCommonProps,
   isButtonDisabled,
 } from '../button/button_display/_button_display';
 
 export interface EuiFacetButtonProps
-  extends CommonProps,
+  extends EuiButtonDisplayCommonProps,
     HTMLAttributes<HTMLButtonElement> {
   buttonRef?: RefCallback<HTMLButtonElement>;
   /**

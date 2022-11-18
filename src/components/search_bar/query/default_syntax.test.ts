@@ -639,6 +639,33 @@ describe('defaultSyntax', () => {
     expect(printedQuery).toBe(query);
   });
 
+  describe('phrases with special characters', () => {
+    const wrappedSpecialChars = "~`!@#$%^&+={}[];',.?".split('');
+
+    wrappedSpecialChars.forEach((char) => {
+      test(`${char} should be wrapped in quotes`, () => {
+        const query = `user:("foo${char}bar")`;
+
+        const ast = defaultSyntax.parse(query);
+        const printedQuery = defaultSyntax.print(ast);
+        expect(printedQuery).toBe(query);
+      });
+    });
+
+    const unwrappedSpecialChars = ['\\"', '(', ')', '_', '-', ':', '*', '\\'];
+
+    unwrappedSpecialChars.forEach((char) => {
+      test(`${char} should not be wrapped in quotes`, () => {
+        const query = `user:("foo${char}bar")`;
+        const expected = `user:(foo${char.replaceAll('\\', '')}bar)`;
+
+        const ast = defaultSyntax.parse(query);
+        const printedQuery = defaultSyntax.print(ast);
+        expect(printedQuery).toBe(expected);
+      });
+    });
+  });
+
   test('single term or expression', () => {
     const query = 'f:(foo)';
     const ast = defaultSyntax.parse(query);
