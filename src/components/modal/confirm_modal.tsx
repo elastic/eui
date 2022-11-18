@@ -28,10 +28,7 @@ import { EuiButtonColor, EuiButton, EuiButtonEmpty } from '../button';
 import { EuiText } from '../text';
 
 export interface EuiConfirmModalProps
-  extends Omit<
-    EuiModalProps,
-    'children' | 'initialFocus' | 'onClose' | 'title'
-  > {
+  extends Omit<EuiModalProps, 'children' | 'onClose' | 'title'> {
   /**
    * ReactNode to render as this component's content
    */
@@ -47,6 +44,10 @@ export interface EuiConfirmModalProps
   onConfirm?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   confirmButtonDisabled?: boolean;
   className?: string;
+  /**
+   * Allows focusing either the confirm or cancel button on modal initialization.
+   * Will take precedence over `initialFocus`, if `initialFocus` is passed.
+   */
   defaultFocusedButton?: typeof CONFIRM_BUTTON | typeof CANCEL_BUTTON;
   buttonColor?: EuiButtonColor;
   // For docs only, will get passed with ...rest
@@ -62,11 +63,6 @@ export interface EuiConfirmModalProps
    * Passes `isLoading` prop to the confirm button
    */
   isLoading?: boolean;
-  /**
-   * Specifies what element should initially have focus.
-   * Can be a DOM node, or a selector string (which will be passed to document.querySelector() to find the DOM node), or a function that returns a DOM node.
-   */
-  initialFocus?: HTMLElement | (() => HTMLElement) | string;
 }
 
 export const CONFIRM_BUTTON = 'confirm';
