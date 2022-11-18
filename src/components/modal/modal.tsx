@@ -72,7 +72,7 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
 
   const euiTheme = useEuiTheme();
   const styles = euiModalStyles(euiTheme);
-  const cssStyles = [styles.euiModal, maxWidth && styles.maxWidthDefault];
+  const cssStyles = [styles.euiModal, maxWidth && styles.defaultMaxWidth];
 
   const cssCloseIconStyles = [styles.euiModal__closeIcon];
 
