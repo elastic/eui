@@ -110,14 +110,27 @@ export default () => {
                 subtitle={state.tourSubtitle}
                 title={step.title}
                 anchorPosition="rightUp"
-                footerAction={[
-                  <EuiButtonEmpty size="s" color="text" onClick={finishTour}>
-                    Close tour
-                  </EuiButtonEmpty>,
-                  <EuiButton color="success" size="s" onClick={handleClick}>
-                    Next
-                  </EuiButton>,
-                ]}
+                footerAction={
+                  // if it's the last step, we don't want to show the next button
+                  index === demoTourSteps.length - 1 ? (
+                    <EuiButton color="success" size="s" onClick={finishTour}>
+                      Finish tour
+                    </EuiButton>
+                  ) : (
+                    [
+                      <EuiButtonEmpty
+                        size="s"
+                        color="text"
+                        onClick={finishTour}
+                      >
+                        Close tour
+                      </EuiButtonEmpty>,
+                      <EuiButton color="success" size="s" onClick={handleClick}>
+                        Next
+                      </EuiButton>,
+                    ]
+                  )
+                }
               >
                 <EuiButtonIcon iconType={step.iconType} color="text" />
               </EuiTourStep>
