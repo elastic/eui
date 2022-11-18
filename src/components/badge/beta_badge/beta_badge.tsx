@@ -30,7 +30,7 @@ export type BetaBadgeColor = typeof COLORS[number];
 export const SIZES = ['s', 'm'] as const;
 export type BetaBadgeSize = typeof SIZES[number];
 
-export const ALIGNMENTS = ['baseline', 'middle', 'super'] as const;
+export const ALIGNMENTS = ['baseline', 'middle'] as const;
 export type BetaBadgeAlignment = typeof ALIGNMENTS[number];
 
 type WithButtonProps = {
