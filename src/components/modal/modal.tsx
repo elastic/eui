@@ -62,13 +62,10 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
     }
   };
 
-  let newStyle;
+  let newStyle = style;
 
-  if (maxWidth === true) {
-    newStyle = style;
-  } else if (maxWidth !== false) {
-    const value = typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth;
-    newStyle = { ...style, maxWidth: value };
+  if (typeof maxWidth !== 'boolean') {
+    newStyle = { ...newStyle, maxInlineSize: maxWidth };
   }
 
   const classes = classnames('euiModal', className);
@@ -87,7 +84,7 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
           className={classes}
           onKeyDown={onKeyDown}
           tabIndex={0}
-          style={newStyle || style}
+          style={newStyle}
           {...rest}
         >
           <EuiI18n
