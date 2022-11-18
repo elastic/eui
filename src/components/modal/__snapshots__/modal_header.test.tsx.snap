@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders EuiModalHeader 1`] = `
+exports[`EuiModalHeader is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiModalHeader testClass1 testClass2"
+  class="euiModalHeader testClass1 testClass2 emotion-euiModalHeader"
   data-test-subj="test subject string"
 >
   children

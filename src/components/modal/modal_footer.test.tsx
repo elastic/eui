@@ -9,12 +9,17 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiModalFooter } from './modal_footer';
 
-test('renders EuiModalFooter', () => {
-  const component = (
-    <EuiModalFooter {...requiredProps}>children</EuiModalFooter>
-  );
-  expect(render(component)).toMatchSnapshot();
+describe('EuiModalFooter', () => {
+  shouldRenderCustomStyles(<EuiModalFooter>children</EuiModalFooter>);
+
+  test('is rendered', () => {
+    const component = (
+      <EuiModalFooter {...requiredProps}>children</EuiModalFooter>
+    );
+    expect(render(component)).toMatchSnapshot();
+  });
 });

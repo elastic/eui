@@ -5,7 +5,7 @@ import {
   EuiConfirmModal,
   EuiFlexGroup,
   EuiFlexItem,
-} from '../../../../src/components';
+} from '../../../../src';
 
 export default () => {
   const [isModalVisible, setIsModalVisible] = useState(false);

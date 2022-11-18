@@ -131,7 +131,7 @@ export const ModalExample = {
     {
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: modalSource,
         },
       ],
@@ -167,7 +167,7 @@ export const ModalExample = {
       title: 'Forms in a modal',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: modalFormSource,
         },
       ],
@@ -192,7 +192,7 @@ export const ModalExample = {
       title: 'Confirm modal',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: confirmModalSource,
         },
       ],
@@ -214,7 +214,7 @@ export const ModalExample = {
       title: 'Loading and disabling confirm button',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: confirmModalLoadingSource,
         },
       ],
@@ -236,7 +236,7 @@ export const ModalExample = {
       title: 'Widths',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: modalWidthSource,
         },
       ],

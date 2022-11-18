@@ -5,15 +5,17 @@ import {
   EuiConfirmModal,
   EuiFormRow,
   EuiFieldText,
-} from '../../../../src/components';
+} from '../../../../src';
 
 export default () => {
   const [isLoading, setIsLoading] = useState(false);
-  clearTimeout(searchTimeout);
+
   const searchTimeout = setTimeout(() => {
     // Simulate a remotely-executed search.
     setIsLoading(false);
   }, 1200);
+
+  clearTimeout(searchTimeout);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const showModal = () => {
@@ -27,7 +29,7 @@ export default () => {
   };
 
   const [value, setValue] = useState('');
-  const onChange = (e) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
 

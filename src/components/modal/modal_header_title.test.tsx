@@ -9,12 +9,17 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiModalHeaderTitle } from './modal_header_title';
 
-test('renders EuiModalHeaderTitle', () => {
-  const component = (
-    <EuiModalHeaderTitle {...requiredProps}>children</EuiModalHeaderTitle>
-  );
-  expect(render(component)).toMatchSnapshot();
+describe('EuiModalHeaderTitle', () => {
+  shouldRenderCustomStyles(<EuiModalHeaderTitle>children</EuiModalHeaderTitle>);
+
+  test('is rendered', () => {
+    const component = (
+      <EuiModalHeaderTitle {...requiredProps}>children</EuiModalHeaderTitle>
+    );
+    expect(render(component)).toMatchSnapshot();
+  });
 });
