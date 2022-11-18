@@ -8,7 +8,6 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
-import { euiBreakpoint } from '../../global_styling';
 
 export const euiModalHeaderStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -20,17 +19,12 @@ export const euiModalHeaderStyles = (euiThemeContext: UseEuiTheme) => {
       align-items: center;
       padding-inline: ${euiTheme.size.l} ${euiTheme.size.xxl};
       padding-block: ${euiTheme.size.l} ${euiTheme.size.base};
-      ${euiTheme.size.l};
       flex-grow: 0;
       flex-shrink: 0;
 
       // If a body doesn't exist, remove some extra padding from footer
       & + .euiModalFooter {
         padding-block-start: ${euiTheme.size.s};
-      }
-
-      ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
-        inline-size: 100%;
       }
     `,
   };

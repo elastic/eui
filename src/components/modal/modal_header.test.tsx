@@ -15,6 +15,7 @@ import { EuiModalHeader } from './modal_header';
 
 describe('EuiModalHeader', () => {
   shouldRenderCustomStyles(<EuiModalHeader>children</EuiModalHeader>);
+
   test('is rendered', () => {
     const component = (
       <EuiModalHeader {...requiredProps}>children</EuiModalHeader>
