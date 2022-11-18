@@ -28,15 +28,20 @@ import {
   QuickSelectPanel,
 } from '../../types';
 
+export type CustomQuickSelectRenderOptions = {
+  quickSelect: ReactElement<typeof EuiQuickSelect>;
+  commonlyUsedTimes: ReactElement<typeof EuiCommonlyUsedTimeRanges>;
+  recentlyUsedTimes: ReactElement<typeof EuiRecentlyUsed>;
+  customQuickSelectPanels?: ReactElement<QuickSelectPanel[]>;
+};
+
 export interface EuiQuickSelectPopoverProps {
   applyRefreshInterval?: ApplyRefreshInterval;
   applyTime: ApplyTime;
   commonlyUsedRanges: DurationRange[];
   customQuickSelectPanels?: QuickSelectPanel[];
   customQuickSelectRender?: (
-    commonlyUsedTimes: ReactElement<typeof EuiCommonlyUsedTimeRanges>,
-    recentlyUsedTimes: ReactElement<typeof EuiRecentlyUsed>,
-    customQuickSelectPanels?: ReactElement<QuickSelectPanel[]>
+    options: CustomQuickSelectRenderOptions
   ) => ReactNode;
   dateFormat: string;
   end: string;
@@ -101,7 +106,20 @@ export class EuiQuickSelectPopover extends Component<
     } = this.props;
     const { prevQuickSelect } = this.state;
 
-    const commonlyUsedRangesElement = (
+    const quickSelectElement = (
+      <>
+        {customQuickSelectRender && <EuiHorizontalRule margin="s" />}
+        <EuiQuickSelect
+          applyTime={this.applyTime}
+          start={start}
+          end={end}
+          prevQuickSelect={prevQuickSelect}
+          timeOptions={timeOptions}
+        />
+      </>
+    );
+
+    const commonlyUsedElement = (
       <>
         {commonlyUsedRanges.length > 0 && <EuiHorizontalRule margin="s" />}
         <EuiCommonlyUsedTimeRanges
@@ -111,7 +129,7 @@ export class EuiQuickSelectPopover extends Component<
       </>
     );
 
-    const recentlyUsedRangesElement = (
+    const recentlyUsedElement = (
       <>
         {recentlyUsedRanges.length > 0 && <EuiHorizontalRule margin="s" />}
         <EuiRecentlyUsed
@@ -129,24 +147,18 @@ export class EuiQuickSelectPopover extends Component<
 
     return (
       <Fragment>
-        <EuiQuickSelect
-          applyTime={this.applyTime}
-          start={start}
-          end={end}
-          prevQuickSelect={prevQuickSelect}
-          timeOptions={timeOptions}
-        />
-
         {customQuickSelectRender ? (
-          customQuickSelectRender(
-            commonlyUsedRangesElement,
-            recentlyUsedRangesElement,
-            customQuickSelectPanelsElement
-          )
+          customQuickSelectRender({
+            quickSelect: quickSelectElement,
+            commonlyUsedTimes: commonlyUsedElement,
+            recentlyUsedTimes: recentlyUsedElement,
+            customQuickSelectPanels: customQuickSelectPanelsElement,
+          })
         ) : (
           <>
-            {commonlyUsedRangesElement}
-            {recentlyUsedRangesElement}
+            {quickSelectElement}
+            {commonlyUsedElement}
+            {recentlyUsedElement}
             {customQuickSelectPanelsElement}
           </>
         )}

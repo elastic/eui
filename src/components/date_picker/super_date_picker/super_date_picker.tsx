@@ -11,7 +11,6 @@ import React, {
   FocusEventHandler,
   FunctionComponent,
   ReactNode,
-  ReactElement,
 } from 'react';
 import classNames from 'classnames';
 import moment, { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
@@ -40,7 +39,10 @@ import {
   EuiSuperUpdateButton,
   EuiSuperUpdateButtonProps,
 } from './super_update_button';
-import { EuiQuickSelectPopover } from './quick_select_popover/quick_select_popover';
+import {
+  EuiQuickSelectPopover,
+  CustomQuickSelectRenderOptions,
+} from './quick_select_popover/quick_select_popover';
 import { EuiDatePopoverButton } from './date_popover/date_popover_button';
 
 import { EuiDatePopoverContentProps } from './date_popover/date_popover_content';
@@ -48,9 +50,6 @@ import {
   EuiAutoRefresh,
   EuiAutoRefreshButton,
 } from '../auto_refresh/auto_refresh';
-
-import { EuiCommonlyUsedTimeRanges } from './quick_select_popover/commonly_used_time_ranges';
-import { EuiRecentlyUsed } from './quick_select_popover/recently_used';
 
 export interface OnTimeChangeProps extends DurationRange {
   isInvalid: boolean;
@@ -69,9 +68,7 @@ export type EuiSuperDatePickerProps = CommonProps & {
    * A function that allows the Quick Select panels to render in a custom order
    */
   customQuickSelectRender?: (
-    commonlyUsedTimes: ReactElement<typeof EuiCommonlyUsedTimeRanges>,
-    recentlyUsedTimes: ReactElement<typeof EuiRecentlyUsed>,
-    customQuickSelectPanels?: ReactElement<QuickSelectPanel[]>
+    options: CustomQuickSelectRenderOptions
   ) => ReactNode;
 
   /**
