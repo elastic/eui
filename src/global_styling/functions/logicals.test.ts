@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-import { testCustomHook } from '../../test/internal';
 import {
   LOGICAL_PROPERTIES,
   LOGICAL_TEXT_ALIGNMENT,
@@ -21,19 +20,15 @@ describe('logicalCSS mixin returns a string property', () => {
   describe('for each directional property:', () => {
     LOGICAL_PROPERTIES.forEach((prop) => {
       it(prop, () => {
-        expect(
-          testCustomHook(() => logicalCSS(prop, '8px')).return
-        ).toMatchSnapshot();
+        expect(logicalCSS(prop, '8px')).toMatchSnapshot();
       });
     });
   });
 });
 
-describe('logicalCSSWithFallback ', () => {
+describe('logicalCSSWithFallback', () => {
   it('returns both the original property and the logical property', () => {
-    expect(
-      testCustomHook(() => logicalCSSWithFallback('overflow-x', 'auto')).return
-    ).toMatchSnapshot();
+    expect(logicalCSSWithFallback('overflow-x', 'auto')).toMatchSnapshot();
   });
 });
 
@@ -41,9 +36,7 @@ describe('logicalStyle mixin returns an object property', () => {
   describe('for each directional property:', () => {
     LOGICAL_PROPERTIES.forEach((prop) => {
       it(prop, () => {
-        expect(
-          testCustomHook(() => logicalStyle(prop, '8px')).return
-        ).toMatchSnapshot();
+        expect(logicalStyle(prop, '8px')).toMatchSnapshot();
       });
     });
   });
@@ -53,9 +46,7 @@ describe('logicalTextAlignCSS mixin returns a string property', () => {
   describe('for each text align value:', () => {
     LOGICAL_TEXT_ALIGNMENT.forEach((align) => {
       it(align, () => {
-        expect(
-          testCustomHook(() => logicalTextAlignCSS(align)).return
-        ).toMatchSnapshot();
+        expect(logicalTextAlignCSS(align)).toMatchSnapshot();
       });
     });
   });
@@ -65,9 +56,7 @@ describe('logicalTextAlignStyle mixin returns a string property', () => {
   describe('for each text align value:', () => {
     LOGICAL_TEXT_ALIGNMENT.forEach((align) => {
       it(align, () => {
-        expect(
-          testCustomHook(() => logicalTextAlignStyle(align)).return
-        ).toMatchSnapshot();
+        expect(logicalTextAlignStyle(align)).toMatchSnapshot();
       });
     });
   });
