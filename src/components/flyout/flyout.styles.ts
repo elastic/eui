@@ -39,7 +39,7 @@ const euiFlyoutSlideInLeft = keyframes`
   75% {
     opacity: 1;
     transform: translateX(0%);
-}
+  }
 `;
 
 export const euiFlyoutCloseButtonStyles = (euiThemeContext: UseEuiTheme) => {
@@ -145,7 +145,8 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       clip-path: polygon(0 0, 150% 0, 150% 100%, 0 100%);
 
       ${euiCanAnimate} {
-        animation: ${euiFlyoutSlideInLeft};
+        animation: ${euiFlyoutSlideInLeft} ${euiTheme.animation.normal}
+          ${euiTheme.animation.resistance};
       }
     `,
 
