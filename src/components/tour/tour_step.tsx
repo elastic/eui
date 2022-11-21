@@ -129,8 +129,8 @@ export type EuiTourStepProps = CommonProps &
     decoration?: 'none' | 'beacon';
 
     /**
-     * Element to replace the 'Skip tour' link in the footer.
-     * Ideally, pass an one button or an array of up to 2 buttons.
+     * Accepts any `ReactNode` to replace the 'Skip tour' link in the footer.
+     * Ideally, pass one button or an array of up to 2 buttons.
      */
     footerAction?: ReactNode | ReactNode[];
   };
