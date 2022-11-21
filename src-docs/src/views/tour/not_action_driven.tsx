@@ -49,7 +49,7 @@ const tourConfig = {
   tourSubtitle: 'Demo tour',
 };
 
-const STORAGE_KEY = 'tourDemo';
+const STORAGE_KEY = 'notActionDrivenDemoTour';
 
 export default () => {
   const [state, setState] = useState(() => {
