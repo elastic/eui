@@ -1,19 +1,64 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiBeacon accepts size 1`] = `
-<div
-  aria-label="aria-label"
-  class="euiBeacon testClass1 testClass2 emotion-euiBeacon"
-  data-test-subj="test subject string"
-  style="height:14px;width:14px"
-/>
-`;
-
 exports[`EuiBeacon is rendered 1`] = `
 <div
   aria-label="aria-label"
   class="euiBeacon testClass1 testClass2 emotion-euiBeacon"
   data-test-subj="test subject string"
   style="height:12px;width:12px"
+/>
+`;
+
+exports[`EuiBeacon props color accent is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiBeacon testClass1 testClass2 emotion-euiBeacon"
+  data-test-subj="test subject string"
+  style="height:12px;width:12px"
+/>
+`;
+
+exports[`EuiBeacon props color danger is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiBeacon testClass1 testClass2 emotion-euiBeacon"
+  data-test-subj="test subject string"
+  style="height:12px;width:12px"
+/>
+`;
+
+exports[`EuiBeacon props color primary is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiBeacon testClass1 testClass2 emotion-euiBeacon"
+  data-test-subj="test subject string"
+  style="height:12px;width:12px"
+/>
+`;
+
+exports[`EuiBeacon props color success is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiBeacon testClass1 testClass2 emotion-euiBeacon"
+  data-test-subj="test subject string"
+  style="height:12px;width:12px"
+/>
+`;
+
+exports[`EuiBeacon props color warning is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiBeacon testClass1 testClass2 emotion-euiBeacon"
+  data-test-subj="test subject string"
+  style="height:12px;width:12px"
+/>
+`;
+
+exports[`EuiBeacon props size accepts size 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiBeacon testClass1 testClass2 emotion-euiBeacon"
+  data-test-subj="test subject string"
+  style="height:14px;width:14px"
 />
 `;

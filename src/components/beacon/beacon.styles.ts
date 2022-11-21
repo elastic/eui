@@ -7,14 +7,13 @@
  */
 
 import { keyframes, css } from '@emotion/react';
-import { euiPaletteColorBlind } from '../../services';
+import { UseEuiTheme } from '../../services';
 import {
   euiCanAnimate,
   logicalCSS,
   logicalSizeCSS,
 } from '../../global_styling';
-
-const visColors = euiPaletteColorBlind();
+import { EuiBeaconColor } from './beacon';
 
 const euiBeaconPulseLarge = keyframes`
  0% {
@@ -48,11 +47,14 @@ const euiBeaconPulseSmall = keyframes`
   }
 `;
 
-export const euiBeaconStyles = () => ({
+export const euiBeaconStyles = (
+  { euiTheme }: UseEuiTheme,
+  color: EuiBeaconColor
+) => ({
   // Base
   euiBeacon: css`
     position: relative;
-    background-color: ${visColors[0]};
+    background-color: ${euiTheme.colors[color]};
     border-radius: 50%;
 
     &:before,
@@ -64,7 +66,7 @@ export const euiBeaconStyles = () => ({
       ${logicalCSS('top', 0)}
       background-color: transparent;
       border-radius: 50%;
-      box-shadow: 0 0 1px 1px ${visColors[0]};
+      box-shadow: 0 0 1px 1px ${euiTheme.colors[color]};
     }
 
     // Without the animation, we only display one ring around the circle

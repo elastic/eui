@@ -11,6 +11,17 @@ import { CommonProps } from '../common';
 import classNames from 'classnames';
 
 import { euiBeaconStyles } from './beacon.styles';
+import { useEuiTheme } from '../../services';
+
+export const COLORS = [
+  'primary',
+  'success',
+  'accent',
+  'danger',
+  'warning',
+] as const;
+
+export type EuiBeaconColor = typeof COLORS[number];
 
 export type EuiBeaconProps = Omit<HTMLAttributes<HTMLDivElement>, 'children'> &
   CommonProps & {
@@ -18,16 +29,22 @@ export type EuiBeaconProps = Omit<HTMLAttributes<HTMLDivElement>, 'children'> &
      * Height and width of the center circle. Value is passed directly to the `style` attribute
      */
     size?: number | string;
+    /**
+     * Any of the named color palette options.
+     */
+    color?: EuiBeaconColor;
   };
 
 export const EuiBeacon: FunctionComponent<EuiBeaconProps> = ({
   className,
   size = 12,
+  color = 'success',
   style,
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
   const classes = classNames('euiBeacon', className);
-  const styles = euiBeaconStyles();
+  const styles = euiBeaconStyles(euiTheme, color);
   const cssStyles = [styles.euiBeacon];
 
   const beaconStyle = {
