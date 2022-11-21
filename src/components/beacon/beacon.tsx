@@ -23,7 +23,10 @@ export const COLORS = [
 
 export type EuiBeaconColor = typeof COLORS[number];
 
-export type EuiBeaconProps = Omit<HTMLAttributes<HTMLDivElement>, 'children'> &
+export type EuiBeaconProps = Omit<
+  HTMLAttributes<HTMLDivElement>,
+  'children' | 'color'
+> &
   CommonProps & {
     /**
      * Height and width of the center circle. Value is passed directly to the `style` attribute
