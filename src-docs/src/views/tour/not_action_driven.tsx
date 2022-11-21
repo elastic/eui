@@ -138,8 +138,8 @@ export default () => {
           ))}
         </EuiFlexGroup>
       </EuiPanel>
-      <EuiSpacer />
-      <EuiButtonEmpty iconType="refresh" flush="left" onClick={resetTour}>
+      <EuiSpacer size="m" />
+      <EuiButtonEmpty iconType="refresh" onClick={resetTour}>
         Reset tour
       </EuiButtonEmpty>
     </div>

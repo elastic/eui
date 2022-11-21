@@ -45,6 +45,7 @@ const stepDomSource = require('!!raw-loader!./step_dom');
 const tourSource = require('!!raw-loader!./tour');
 const managedSource = require('!!raw-loader!./managed');
 const managedHookSource = require('!!raw-loader!./managed_hook');
+const notActionDriven = require('!!raw-loader!./not_action_driven');
 
 const fullSource = require('!!raw-loader!./fullscreen');
 
@@ -175,16 +176,16 @@ export const TourExample = {
       title: 'Not action driven tour',
       source: [
         {
-          type: GuideSectionTypes.JS,
-          code: managedSource,
+          type: GuideSectionTypes.TSX,
+          code: notActionDriven,
         },
       ],
       text: (
         <p>
-          You can use the <strong>EuiTour</strong> to provide sequential help
-          without the user performing any action (e.g. filling out a form or
-          copying a text). For this scenario, you should include two buttons.
-          One to close the tour, and another to move to the next step.
+          Use the <strong>EuiTour</strong> to provide sequential help without
+          the user performing any action (e.g. filling out a form or copying a
+          text). For this scenario, consider using two buttons,{' '}
+          <strong>Close tour</strong> and <strong>Next</strong>.
         </p>
       ),
       demo: <NotActionDriven />,
