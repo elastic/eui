@@ -24,6 +24,7 @@ import {
   useDataGridDisplaySelector,
   startingStyles,
   useDataGridFullScreenSelector,
+  useDataGridKeyboardShortcuts,
   checkOrDefaultToolBarDisplayOptions,
   EuiDataGridToolbar,
 } from './controls';
@@ -271,9 +272,11 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
     const { cellPopoverContext, cellPopover } = useCellPopover();
 
     /**
-     * Toolbar & fullscreen
+     * Toolbar, keyboard shortcuts, & fullscreen
      */
     const showToolbar = !!toolbarVisibility;
+
+    const { keyboardShortcuts } = useDataGridKeyboardShortcuts();
 
     const {
       isFullScreen,
@@ -384,6 +387,7 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
                     toolbarVisibility={toolbarVisibility}
                     isFullScreen={isFullScreen}
                     fullScreenSelector={fullScreenSelector}
+                    keyboardShortcuts={keyboardShortcuts}
                     displaySelector={displaySelector}
                     columnSelector={columnSelector}
                     columnSorting={columnSorting}

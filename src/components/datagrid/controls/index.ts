@@ -9,6 +9,7 @@
 export { useDataGridColumnSelector } from './column_selector';
 export { useDataGridColumnSorting } from './column_sorting';
 export { useDataGridDisplaySelector, startingStyles } from './display_selector';
+export { useDataGridKeyboardShortcuts } from './keyboard_shortcuts';
 export { useDataGridFullScreenSelector } from './fullscreen_selector';
 export {
   checkOrDefaultToolBarDisplayOptions,

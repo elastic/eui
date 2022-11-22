@@ -12,6 +12,7 @@ export const euiCardSelectStyles = () => {
   return {
     euiCardSelect: css`
       transform: none !important;
+      align-self: flex-end;
     `,
   };
 };

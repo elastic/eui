@@ -14,6 +14,7 @@ import {
   EuiDataGridToolBarAdditionalControlsOptions,
   EuiDataGridToolBarAdditionalControlsLeftOptions,
 } from '../data_grid_types';
+import { EuiScreenReaderOnly } from '../../accessibility';
 import { IS_JEST_ENVIRONMENT } from '../../../utils';
 
 // When below this number the grid only shows the right control icon buttons
@@ -25,6 +26,7 @@ export const EuiDataGridToolbar = ({
   toolbarVisibility,
   isFullScreen,
   fullScreenSelector,
+  keyboardShortcuts,
   displaySelector,
   columnSelector,
   columnSorting,
@@ -35,7 +37,7 @@ export const EuiDataGridToolbar = ({
     : gridWidth > minSizeForControls || isFullScreen;
 
   return (
-    <div className="euiDataGrid__controls" data-test-sub="dataGridControls">
+    <div className="euiDataGrid__controls" data-test-subj="dataGridControls">
       {hasRoomForGridControls && (
         <div className="euiDataGrid__leftControls">
           {renderAdditionalControls(toolbarVisibility, 'left.prepend')}
@@ -56,6 +58,16 @@ export const EuiDataGridToolbar = ({
       )}
       <div className="euiDataGrid__rightControls">
         {renderAdditionalControls(toolbarVisibility, 'right')}
+        {checkOrDefaultToolBarDisplayOptions(
+          toolbarVisibility,
+          'showKeyboardShortcuts'
+        ) ? (
+          keyboardShortcuts
+        ) : (
+          <EuiScreenReaderOnly showOnFocus>
+            <span>{keyboardShortcuts}</span>
+          </EuiScreenReaderOnly>
+        )}
         {checkOrDefaultToolBarDisplayOptions(
           toolbarVisibility,
           'showDisplaySelector'

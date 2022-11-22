@@ -30,6 +30,9 @@ export type BetaBadgeColor = typeof COLORS[number];
 export const SIZES = ['s', 'm'] as const;
 export type BetaBadgeSize = typeof SIZES[number];
 
+export const ALIGNMENTS = ['baseline', 'middle'] as const;
+export type BetaBadgeAlignment = typeof ALIGNMENTS[number];
+
 type WithButtonProps = {
   /**
    * Will apply an onclick to the badge itself
@@ -112,6 +115,10 @@ type BadgeProps = {
    */
   color?: BetaBadgeColor;
   size?: BetaBadgeSize;
+  /**
+   * Sets the `vertical-align` CSS property
+   */
+  alignment?: BetaBadgeAlignment;
 } & ExclusiveUnion<LabelAsNode, LabelAsString>;
 
 export type EuiBetaBadgeProps = CommonProps &
@@ -136,6 +143,7 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
   rel,
   target,
   size = 'm',
+  alignment = 'baseline',
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
@@ -150,6 +158,7 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
     styles.euiBetaBadge,
     styles[color],
     styles[size],
+    styles[alignment],
     isCircular
       ? styles.badgeSizes.circle[size]
       : styles.badgeSizes.default[size],

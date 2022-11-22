@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiButton,
@@ -15,7 +15,7 @@ import {
   EuiSwitch,
   EuiSuperSelect,
   EuiText,
-} from '../../../../src/components';
+} from '../../../../src';
 
 import { useGeneratedHtmlId } from '../../../../src/services';
 
@@ -39,36 +39,36 @@ export default () => {
       value: 'option_one',
       inputDisplay: 'Option one',
       dropdownDisplay: (
-        <Fragment>
+        <>
           <strong>Option one</strong>
           <EuiText size="s" color="subdued">
             <p>Has a short description giving more detail to the option.</p>
           </EuiText>
-        </Fragment>
+        </>
       ),
     },
     {
       value: 'option_two',
       inputDisplay: 'Option two',
       dropdownDisplay: (
-        <Fragment>
+        <>
           <strong>Option two</strong>
           <EuiText size="s" color="subdued">
             <p>Has a short description giving more detail to the option.</p>
           </EuiText>
-        </Fragment>
+        </>
       ),
     },
     {
       value: 'option_three',
       inputDisplay: 'Option three',
       dropdownDisplay: (
-        <Fragment>
+        <>
           <strong>Option three</strong>
           <EuiText size="s" color="subdued">
             <p>Has a short description giving more detail to the option.</p>
           </EuiText>
-        </Fragment>
+        </>
       ),
     },
   ];
@@ -90,7 +90,7 @@ export default () => {
       </EuiFormRow>
 
       <EuiFormRow label="Range" helpText="Some help text for the range">
-        <EuiRange min={0} max={100} name="poprange" />
+        <EuiRange min={0} max={100} value={50} name="poprange" />
       </EuiFormRow>
 
       <EuiFormRow label="An EuiSuperSelect">
@@ -105,7 +105,7 @@ export default () => {
     </EuiForm>
   );
 
-  const onSuperSelectChange = (value) => {
+  const onSuperSelectChange = (value: string) => {
     setSuperSelectValue(value);
   };
 

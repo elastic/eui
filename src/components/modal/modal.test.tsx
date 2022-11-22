@@ -7,13 +7,15 @@
  */
 
 import React from 'react';
-import { fireEvent } from '@testing-library/dom';
-import { render } from '../../test/rtl';
+import { render, screen } from '../../test/rtl';
 import { requiredProps } from '../../test';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiModal } from './modal';
 
 describe('EuiModal', () => {
+  shouldRenderCustomStyles(<EuiModal onClose={() => {}}>children</EuiModal>);
+
   it('renders', () => {
     const { baseElement } = render(
       <EuiModal onClose={() => {}} {...requiredProps}>
@@ -25,26 +27,57 @@ describe('EuiModal', () => {
     expect(baseElement).toMatchSnapshot();
   });
 
-  // TODO: Remove this onFocus scroll workaround after react-focus-on supports focusOptions
-  // @see https://github.com/elastic/eui/issues/6304
-  describe('focus/scroll workaround', () => {
-    it('scrolls back to the original window position on initial modal focus', () => {
-      window.scrollTo = jest.fn();
+  describe('maxWidth', () => {
+    it('true/undefined should apply the `defaultMaxWidth` class and no inline style', () => {
+      render(
+        <>
+          <EuiModal onClose={() => {}} data-test-subj="A" maxWidth={true}>
+            children
+          </EuiModal>
+          <EuiModal onClose={() => {}} data-test-subj="B">
+            children
+          </EuiModal>
+        </>
+      );
+      const modalA = screen.queryByTestSubject('A')!;
+      const modalB = screen.queryByTestSubject('B')!;
 
-      const { getByTestSubject } = render(
-        <EuiModal data-test-subj="modal" onClose={() => {}}>
+      expect(modalA.className).toContain('defaultMaxWidth');
+      expect(modalB.className).toContain('defaultMaxWidth');
+      expect(modalA.getAttribute('style')).toBeNull();
+      expect(modalB.getAttribute('style')).toBeNull();
+    });
+
+    test('false should not apply either the `defaultMaxWidth` class or an inline style', () => {
+      render(
+        <EuiModal onClose={() => {}} data-test-subj="A" maxWidth={false}>
           children
         </EuiModal>
       );
+      const modal = screen.queryByTestSubject('A')!;
 
-      // For whatever reason, react-focus-lock doesn't appear to trigger focus in RTL so we'll do it manually
-      fireEvent.focusIn(getByTestSubject('modal'));
-      // Confirm that scrolling does not occur more than once
-      fireEvent.focusIn(getByTestSubject('modal'));
-      fireEvent.focusIn(getByTestSubject('modal'));
+      expect(modal.className).not.toContain('defaultMaxWidth');
+      expect(modal.getAttribute('style')).toBeNull();
+    });
 
-      expect(window.scrollTo).toHaveBeenCalledTimes(1);
-      jest.restoreAllMocks();
+    test('custom max width should not apply the `defaultMaxWidth` but should apply an inline style', () => {
+      render(
+        <>
+          <EuiModal onClose={() => {}} data-test-subj="A" maxWidth={300}>
+            children
+          </EuiModal>
+          <EuiModal onClose={() => {}} data-test-subj="B" maxWidth="50%">
+            children
+          </EuiModal>
+        </>
+      );
+      const modalA = screen.queryByTestSubject('A')!;
+      const modalB = screen.queryByTestSubject('B')!;
+
+      expect(modalA.className).not.toContain('defaultMaxWidth');
+      expect(modalB.className).not.toContain('defaultMaxWidth');
+      expect(modalA.getAttribute('style')).toEqual('max-inline-size: 300px;');
+      expect(modalB.getAttribute('style')).toEqual('max-inline-size: 50%;');
     });
   });
 });

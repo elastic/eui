@@ -22,7 +22,6 @@ export const euiBetaBadgeStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     euiBetaBadge: css`
       display: inline-block;
-      vertical-align: super; // if displayed inline with text
       border-radius: ${euiTheme.size.l};
       cursor: default;
 
@@ -84,6 +83,13 @@ export const euiBetaBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     euiBetaBadge__icon: css`
       position: relative;
       transform: translate(0, -1px);
+    `,
+    // Alignments
+    baseline: css`
+      vertical-align: baseline;
+    `,
+    middle: css`
+      vertical-align: middle;
     `,
   };
 };

@@ -33,11 +33,6 @@ exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
     tabindex="-1"
   />
   <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
-  />
-  <div
     data-focus-lock-disabled="disabled"
   >
     <div
@@ -130,11 +125,6 @@ exports[`EuiTourStep can have subtitle 1`] = `
       Test
     </span>
   </div>
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
-  />
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -244,11 +234,6 @@ exports[`EuiTourStep can override the footer action 1`] = `
     tabindex="-1"
   />
   <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
-  />
-  <div
     data-focus-lock-disabled="disabled"
   >
     <div
@@ -330,11 +315,6 @@ exports[`EuiTourStep can turn off the beacon 1`] = `
       Test
     </span>
   </div>
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
-  />
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -428,11 +408,6 @@ exports[`EuiTourStep is rendered 1`] = `
       Test
     </span>
   </div>
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="-1"
-  />
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
