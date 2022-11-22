@@ -52,5 +52,12 @@
   "border-top-left-radius": "border-start-start-radius",
   "border-top-right-radius": "border-start-end-radius",
   "border-bottom-left-radius": "border-end-start-radius",
-  "border-bottom-right-radius": "border-end-end-radius"
+  "border-bottom-right-radius": "border-end-end-radius",
+  "_shorthands": [
+    "margin",
+    "scroll-margin",
+    "padding",
+    "scroll-padding",
+    "inset"
+  ]
 }
