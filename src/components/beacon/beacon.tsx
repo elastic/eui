@@ -14,6 +14,7 @@ import { euiBeaconStyles } from './beacon.styles';
 import { useEuiTheme } from '../../services';
 
 export const COLORS = [
+  'subdued',
   'primary',
   'success',
   'accent',
@@ -47,8 +48,8 @@ export const EuiBeacon: FunctionComponent<EuiBeaconProps> = ({
 }) => {
   const euiTheme = useEuiTheme();
   const classes = classNames('euiBeacon', className);
-  const styles = euiBeaconStyles(euiTheme, color);
-  const cssStyles = [styles.euiBeacon];
+  const styles = euiBeaconStyles(euiTheme);
+  const cssStyles = [styles.euiBeacon, styles[color]];
 
   const beaconStyle = {
     ...style,
