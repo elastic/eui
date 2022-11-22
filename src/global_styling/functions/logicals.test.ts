@@ -12,6 +12,7 @@ import {
   logicalCSS,
   logicalCSSWithFallback,
   logicalStyle,
+  logicalStyles,
   logicalTextAlignCSS,
   logicalTextAlignStyle,
 } from '../functions/logicals';
@@ -38,6 +39,25 @@ describe('logicalStyle mixin returns an object property', () => {
       it(prop, () => {
         expect(logicalStyle(prop, '8px')).toMatchSnapshot();
       });
+    });
+  });
+});
+
+describe('logicalStyles returns an object property', () => {
+  it('converts all properties in an object to their logical equivalent', () => {
+    expect(
+      logicalStyles({ width: '100%', top: 30, marginRight: '20px' })
+    ).toEqual({
+      inlineSize: '100%',
+      insetBlockStart: 30,
+      marginInlineEnd: '20px',
+    });
+  });
+
+  it('does nothing if no convertible logical CSS properties exist', () => {
+    expect(logicalStyles({ color: 'red', backgroundColor: 'blue' })).toEqual({
+      color: 'red',
+      backgroundColor: 'blue',
     });
   });
 });
