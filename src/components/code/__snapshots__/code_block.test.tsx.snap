@@ -642,7 +642,7 @@ exports[`EuiCodeBlock virtualization renders a virtualized code block 1`] = `
   >
     <pre
       class="euiCodeBlock__pre emotion-euiCodeBlock__pre-pre-padding-controlsOffset"
-      style="position:relative;height:600px;width:600px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
+      style="position:relative;block-size:600px;inline-size:600px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
       tabindex="0"
     >
       <code
@@ -650,18 +650,18 @@ exports[`EuiCodeBlock virtualization renders a virtualized code block 1`] = `
         class="euiCodeBlock__code emotion-euiCodeBlock__code-isVirtualized"
         data-code-language="text"
         data-test-subj="test subject string"
-        style="height:36px;width:100%"
+        style="block-size:36px;inline-size:100%"
       >
         <span
           class="euiCodeBlock__line emotion-euiCodeBlock__line"
-          style="position:absolute;left:0;top:0;height:18px;width:100%"
+          style="position:absolute;inset-inline-start:0;inset-block-start:0;block-size:18px;inline-size:100%"
         >
           var some = 'code';
 
         </span>
         <span
           class="euiCodeBlock__line emotion-euiCodeBlock__line"
-          style="position:absolute;left:0;top:18px;height:18px;width:100%"
+          style="position:absolute;inset-inline-start:0;inset-block-start:18px;block-size:18px;inline-size:100%"
         >
           console.log(some);
         </span>
