@@ -208,7 +208,13 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   const isFooterActionArray = Array.isArray(footerAction);
 
   const optionalFooterAction: JSX.Element = isFooterActionArray ? (
-    <EuiFlexGroup gutterSize="s" alignItems="center" justifyContent="flexEnd">
+    <EuiFlexGroup
+      gutterSize="s"
+      alignItems="center"
+      justifyContent="flexEnd"
+      responsive={false}
+      wrap
+    >
       {footerAction.map((action, index) => (
         <EuiFlexItem key={index} grow={false}>
           {action}

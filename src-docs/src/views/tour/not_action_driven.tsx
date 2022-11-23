@@ -95,7 +95,7 @@ export default () => {
   return (
     <div>
       <EuiPanel style={{ width: 'max-content' }}>
-        <EuiFlexGroup>
+        <EuiFlexGroup responsive={false}>
           {demoTourSteps.map((step, index) => (
             <EuiFlexItem grow={false}>
               <EuiTourStep

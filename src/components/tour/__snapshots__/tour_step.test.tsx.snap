@@ -67,7 +67,7 @@ exports[`EuiTourStep accepts an array of buttons in the footerAction prop 1`] = 
               class="euiFlexGroup emotion-euiFlexGroup-l-flexEnd-center-row"
             >
               <div
-                class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexEnd-center-row"
+                class="euiFlexGroup emotion-euiFlexGroup-wrap-s-flexEnd-center-row"
               >
                 <div
                   class="euiFlexItem emotion-euiFlexItem-growZero"
