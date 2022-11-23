@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiRange,
@@ -42,7 +42,7 @@ export default () => {
   const rangeNoLinearId = useGeneratedHtmlId({ prefix: 'rangeNoLinaerId' });
 
   return (
-    <Fragment>
+    <>
       <EuiRange
         id={rangeBasicTicksId}
         step={10}
@@ -143,6 +143,6 @@ export default () => {
         ]}
         aria-label="An example of EuiDualRange with no linear intervals"
       />
-    </Fragment>
+    </>
   );
 };

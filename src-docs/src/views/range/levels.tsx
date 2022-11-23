@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiRange,
@@ -86,7 +86,7 @@ export default () => {
   });
 
   return (
-    <Fragment>
+    <>
       <EuiRange
         id={rangeWithLevelsId}
         value={value}
@@ -140,6 +140,6 @@ export default () => {
       <EuiFormHelpText id={dualRangeWithLevelsHelpId}>
         Recommended size is {levels[1].min}kb and above.
       </EuiFormHelpText>
-    </Fragment>
+    </>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiRange,
@@ -36,7 +36,7 @@ export default () => {
   });
 
   return (
-    <Fragment>
+    <>
       <DisplayToggles canAppend canPrepend canLoading={false}>
         <EuiRange
           id={rangeWithOptionsId}
@@ -73,6 +73,6 @@ export default () => {
           aria-label="An example of EuiRange"
         />
       </DisplayToggles>
-    </Fragment>
+    </>
   );
 };

@@ -65,7 +65,8 @@ export const euiRangeTooltipValueStyles = (euiThemeContext: UseEuiTheme) => {
       line-height: ${euiFontSize(euiThemeContext, 's').lineHeight};
       border: 1px solid ${euiToolTipBackgroundColor(euiTheme, colorMode)};
       position: absolute;
-      padding: ${euiTheme.size.xxs} ${euiTheme.size.s};
+      padding-block: ${euiTheme.size.xxs};
+      padding-inline: ${euiTheme.size.s};
       background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};
       color: ${euiTheme.colors.ghost};
       max-inline-size: 256px;

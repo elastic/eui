@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiRange,
@@ -21,7 +21,7 @@ export default () => {
   });
 
   return (
-    <Fragment>
+    <>
       <EuiRange
         id={inputRangeSliderId}
         value={value}
@@ -43,6 +43,6 @@ export default () => {
         maxInputProps={{ 'aria-label': 'Max value' }}
         aria-label="An example of EuiDualRange with inputs"
       />
-    </Fragment>
+    </>
   );
 };

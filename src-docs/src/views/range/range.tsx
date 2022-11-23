@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 
 import { EuiRange, EuiRangeProps, EuiSpacer } from '../../../../src/components';
 
@@ -20,7 +20,7 @@ export default () => {
   };
 
   return (
-    <Fragment>
+    <>
       <EuiRange
         id={basicRangeId}
         min={100}
@@ -59,6 +59,6 @@ export default () => {
         valuePrepend="100 - "
         aria-label="An example of EuiRange with valuePrepend prop"
       />
-    </Fragment>
+    </>
   );
 };
