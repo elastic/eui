@@ -9,6 +9,7 @@ import {
   logicalCSS,
   logicalStyle,
   logicals,
+  logicalShorthandCSS,
   EuiText,
   useEuiPaddingSize,
   useEuiBackgroundColor,
@@ -22,6 +23,7 @@ import {
   logicalSizeCSS,
   logicalSizeStyle,
 } from '../../../../../src';
+const { _shorthands, ..._logicals } = logicals;
 
 import { ThemeExample } from '../_components/_theme_example';
 
@@ -243,6 +245,36 @@ export const UtilsJS = () => {
         snippet={"${logicals['padding-left']}: 100px;"}
       />
 
+      <ThemeExample
+        title={<code>{'logicalShorthandCSS(property, value)'}</code>}
+        type="function"
+        description={
+          <p>
+            Until an official W3 spec is available, this utility converts
+            shorthand properties that describe 4-sided boxes/corners such as{' '}
+            <EuiCode language="css">margin</EuiCode>,{' '}
+            <EuiCode language="css">padding</EuiCode>,
+            <EuiCode language="css">inset</EuiCode>, and{' '}
+            <EuiCode language="css">border-radius</EuiCode> to their
+            corresponding logical inline/block properties.
+          </p>
+        }
+        example={
+          <p
+            css={[
+              useEuiBackgroundColorCSS().warning,
+              logicalShorthandCSS('padding', '10px 50px'),
+            ]}
+          >
+            <pre>
+              <code>{logicalShorthandCSS('padding', '10px 50px')}</code>
+            </pre>
+          </p>
+        }
+        snippetLanguage="emotion"
+        snippet={"${logicalShorthandCSS('padding', '10px 50px')};"}
+      />
+
       <EuiPanel color="subdued">
         <EuiAccordion
           id={htmlIdGenerator()()}
@@ -256,7 +288,23 @@ export const UtilsJS = () => {
             `}
             size="s"
           >
-            <code>{Object.keys(logicals).join('\r\n')}</code>
+            <code>{Object.keys(_logicals).join('\r\n')}</code>
+          </EuiText>
+        </EuiAccordion>
+        <EuiSpacer size="s" />
+        <EuiAccordion
+          id={htmlIdGenerator()()}
+          buttonContent={<strong>All supported shorthand properties</strong>}
+          paddingSize="m"
+        >
+          <EuiText
+            css={css`
+              white-space: pre;
+              columns: 3;
+            `}
+            size="s"
+          >
+            <code>{_shorthands.join('\r\n')}</code>
           </EuiText>
         </EuiAccordion>
       </EuiPanel>
@@ -289,7 +337,7 @@ export const UtilsJS = () => {
       />
 
       <ThemeExample
-        title={<code>{'logicalStyle(property, value)'}</code>}
+        title={<code>{'logicalSizeStyle(property, value)'}</code>}
         type="function"
         description={
           <p>
