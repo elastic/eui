@@ -15,7 +15,7 @@ const demoTourSteps = [
   {
     step: 1,
     title: 'Preview mode',
-    content: <p>See how your project looks like.</p>,
+    content: <p>See what your project looks like.</p>,
     anchorRef: 'notActionDrivenStep1',
     iconType: 'eye',
   },

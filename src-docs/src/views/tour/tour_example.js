@@ -173,7 +173,7 @@ export const TourExample = {
       demo: <Managed />,
     },
     {
-      title: 'Not action driven tour',
+      title: 'Passive tour',
       source: [
         {
           type: GuideSectionTypes.TSX,
@@ -183,8 +183,8 @@ export const TourExample = {
       text: (
         <p>
           Use the <strong>EuiTour</strong> to provide sequential help without
-          the user performing any action (e.g. filling out a form or copying a
-          text). For this scenario, consider using two buttons,{' '}
+          the user performing any actions (e.g. filling out a form or copying a
+          text). In this scenario, consider using two buttons,{' '}
           <strong>Close tour</strong> and <strong>Next</strong>.
         </p>
       ),
