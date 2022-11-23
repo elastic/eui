@@ -61,6 +61,7 @@
     "inset",
     "border-color",
     "border-width",
-    "border-style"
+    "border-style",
+    "border-radius"
   ]
 }

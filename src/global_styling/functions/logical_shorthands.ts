@@ -32,6 +32,9 @@ export const logicalShorthandCSS = (
       `${property} is not a shorthand property that needs logical CSS`
     );
   }
+  if (property === 'border-radius') {
+    return logicalBorderRadiusCSS(String(value));
+  }
 
   // Split all potential values by spaces
   const values = String(value).split(/\s+/);
@@ -71,4 +74,97 @@ export const logicalShorthandCSS = (
     ${property}-inline: ${horizontalInlineValue};
     `;
   }
+};
+
+/**
+ * Logical border radius is unfortunately a very special case as it handles corners
+ * and not sides (@see https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties#corners_of_a_box)
+ * and does not have `-inline` or `-block` shorthands.
+ *
+ * It also needs to account for `/` syntax (horizontal vs vertical radii)
+ * @see https://www.sitepoint.com/setting-css3-border-radius-with-slash-syntax/
+ */
+export const logicalBorderRadiusCSS = (
+  value: string,
+  ignoreZeroes: boolean = false
+) => {
+  const borderRadiusMap = {
+    'border-start-start-radius': '',
+    'border-start-end-radius': '',
+    'border-end-end-radius': '',
+    'border-end-start-radius': '',
+  };
+  let values: string[] = [];
+
+  if (value.includes('/')) {
+    values = ['', '', '', ''];
+
+    // Split into horizontal & vertical radii strings
+    value.split('/').forEach((radiiAxes) => {
+      const radii = radiiAxes.trim().split(/\s+/);
+
+      values.forEach((_, i) => {
+        // Add a space between the horizontal and vertical radius
+        let combinedValue = values[i] ? `${values[i]} ` : values[i];
+
+        switch (radii.length) {
+          case 1:
+            // Every value is repeated
+            combinedValue += radii[0];
+            break;
+          case 2:
+            // If the corner is an even index, give it the first value, if odd, second value
+            combinedValue += i % 2 ? radii[1] : radii[0];
+            break;
+          case 3:
+            // The last corner should repeat the second value
+            combinedValue += i === 3 ? radii[1] : radii[i];
+            break;
+          case 4:
+          default:
+            // Every value is specified
+            combinedValue += radii[i];
+        }
+
+        values[i] = combinedValue;
+      });
+    });
+  } else {
+    values = value.split(/\s+/);
+  }
+
+  switch (values.length) {
+    case 1:
+      // If it's the same value all around, no need to use logical properties
+      return `border-radius: ${value};`;
+    case 2:
+      borderRadiusMap['border-start-start-radius'] = values[0];
+      borderRadiusMap['border-start-end-radius'] = values[1];
+      borderRadiusMap['border-end-end-radius'] = values[0];
+      borderRadiusMap['border-end-start-radius'] = values[1];
+      break;
+    case 3:
+      borderRadiusMap['border-start-start-radius'] = values[0];
+      borderRadiusMap['border-start-end-radius'] = values[1];
+      borderRadiusMap['border-end-end-radius'] = values[2];
+      borderRadiusMap['border-end-start-radius'] = values[1];
+      break;
+    case 4:
+    default:
+      borderRadiusMap['border-start-start-radius'] = values[0];
+      borderRadiusMap['border-start-end-radius'] = values[1];
+      borderRadiusMap['border-end-end-radius'] = values[2];
+      borderRadiusMap['border-end-start-radius'] = values[3];
+      break;
+  }
+
+  const borderRadiusCSS: string[] = [];
+  Object.entries(borderRadiusMap).forEach(([property, value]) => {
+    if (value) {
+      if ((ignoreZeroes && value !== '0' && value !== '0px') || !ignoreZeroes) {
+        borderRadiusCSS.push(`${property}: ${value};`);
+      }
+    }
+  });
+  return borderRadiusCSS.join('\n');
 };
