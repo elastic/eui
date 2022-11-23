@@ -205,9 +205,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
     size: 'xs',
   };
 
-  const isFooterActionArray = Array.isArray(footerAction);
-
-  const optionalFooterAction: JSX.Element = isFooterActionArray ? (
+  const optionalFooterAction: JSX.Element = Array.isArray(footerAction) ? (
     <EuiFlexGroup
       gutterSize="s"
       alignItems="center"
