@@ -1,5 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`euiMaxBreakpoint generates a max-width only media query (l) 1`] = `"@media only screen and (max-width: 991px)"`;
+
+exports[`euiMaxBreakpoint generates a max-width only media query (m) 1`] = `"@media only screen and (max-width: 767px)"`;
+
+exports[`euiMaxBreakpoint generates a max-width only media query (s) 1`] = `"@media only screen and (max-width: 574px)"`;
+
+exports[`euiMaxBreakpoint generates a max-width only media query (xl) 1`] = `"@media only screen and (max-width: 1199px)"`;
+
+exports[`euiMinBreakpoint generates a min-width only media query (l) 1`] = `"@media only screen and (min-width: 992px)"`;
+
+exports[`euiMinBreakpoint generates a min-width only media query (m) 1`] = `"@media only screen and (min-width: 768px)"`;
+
+exports[`euiMinBreakpoint generates a min-width only media query (s) 1`] = `"@media only screen and (min-width: 575px)"`;
+
+exports[`euiMinBreakpoint generates a min-width only media query (xl) 1`] = `"@media only screen and (min-width: 1200px)"`;
+
 exports[`useEuiBreakpoint common breakpoint size arrays returns a media query for two element breakpoint combinations (l and xl) 1`] = `"@media only screen and (min-width: 992px)"`;
 
 exports[`useEuiBreakpoint common breakpoint size arrays returns a media query for two element breakpoint combinations (m and l) 1`] = `"@media only screen and (min-width: 768px) and (max-width: 1199px)"`;
