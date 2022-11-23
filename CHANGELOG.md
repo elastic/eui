@@ -1,3 +1,12 @@
+## [`67.1.10`](https://github.com/elastic/eui/tree/v67.1.10)
+
+- Added the `euiMaxBreakpoint` and `euiMinBreakpoint` CSS-in-JS utilities for creating min/max-width media queries ([#6431](https://github.com/elastic/eui/pull/6431))
+
+**Bug fixes**
+
+- Fixed missing slide-in animation on `EuiCollapsibleNav`s and left-side `EuiFlyout`s ([#6422](https://github.com/elastic/eui/pull/6422))
+- Fixed multiple component media queries for consumers with custom theme breakpoints ([#6431](https://github.com/elastic/eui/pull/6431))
+
 ## [`67.1.9`](https://github.com/elastic/eui/tree/v67.1.9)
 
 - `EuiButton` now accepts `minWidth={false}` ([#6373](https://github.com/elastic/eui/pull/6373))
