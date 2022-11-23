@@ -34,9 +34,8 @@ export default () => {
       layout="vertical"
       body={
         <p>
-          We can&apos;t find the page you&apos;re looking for. It might
-          have been removed, renamed, or it didn&apos;t exist in the first
-          place.
+          We can&apos;t find the page you&apos;re looking for. It might have
+          been removed, renamed, or it didn&apos;t exist in the first place.
         </p>
       }
       actions={[
