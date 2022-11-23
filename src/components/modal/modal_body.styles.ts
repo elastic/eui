@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { euiYScrollWithShadows, euiBreakpoint } from '../../global_styling';
+import { euiYScrollWithShadows, euiMaxBreakpoint } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 export const euiModalBodyStyles = (euiThemeContext: UseEuiTheme) => {
@@ -31,7 +31,7 @@ export const euiModalBodyStyles = (euiThemeContext: UseEuiTheme) => {
       padding-inline: ${euiTheme.size.l};
       padding-block: ${euiTheme.size.s};
 
-      ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
+      ${euiMaxBreakpoint(euiThemeContext, 'm')} {
         padding-block-end: ${euiTheme.size.l};
       }
     `,
