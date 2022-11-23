@@ -8,7 +8,7 @@
 
 import { css, keyframes } from '@emotion/react';
 import {
-  euiBreakpoint,
+  euiMaxBreakpoint,
   euiScrollBarStyles,
   logicalCSS,
   logicalCSSWithFallback,
@@ -53,7 +53,7 @@ export const euiGlobalToastListStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('padding-vertical', euiTheme.size.base)};
       }
 
-      ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
+      ${euiMaxBreakpoint(euiThemeContext, 'm')} {
         &:not(:empty) {
           ${logicalCSS('left', 0)};
           ${logicalCSS('width', '100%')}; /* 1 */
@@ -66,7 +66,7 @@ export const euiGlobalToastListStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('right', 0)};
         ${logicalCSS('padding-left', `${euiTheme.base * 4}px`)}; /* 2 */
       }
-      ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
+      ${euiMaxBreakpoint(euiThemeContext, 'm')} {
         &:not(:empty) {
           ${logicalCSS('padding-left', euiTheme.size.base)};
         }
@@ -77,7 +77,7 @@ export const euiGlobalToastListStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('left', 0)};
         ${logicalCSS('padding-right', `${euiTheme.base * 4}px`)}; /* 2 */
       }
-      ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
+      ${euiMaxBreakpoint(euiThemeContext, 'm')} {
         &:not(:empty) {
           ${logicalCSS('padding-right', euiTheme.size.base)};
         }

@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { euiBreakpoint } from '../../global_styling';
+import { euiMaxBreakpoint } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 // Note: the only way to get column direction working with `display: grid`
@@ -23,7 +23,7 @@ export const euiFlexGridStyles = (
       display: grid;
     `,
     responsive: css`
-      ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
+      ${euiMaxBreakpoint(euiThemeContext, 'm')} {
         grid-template-columns: repeat(1, 1fr);
         grid-auto-flow: row;
       }

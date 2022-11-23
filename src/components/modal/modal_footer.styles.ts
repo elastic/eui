@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { euiBreakpoint } from '../../global_styling';
+import { euiMaxBreakpoint } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 export const euiModalFooterStyles = (euiThemeContext: UseEuiTheme) => {
@@ -23,7 +23,7 @@ export const euiModalFooterStyles = (euiThemeContext: UseEuiTheme) => {
       flex-shrink: 0; // ensure the height of the footer is based off its contents and doesn't squish
       gap: ${euiTheme.size.base};
 
-      ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
+      ${euiMaxBreakpoint(euiThemeContext, 'm')} {
         background: ${euiTheme.colors.lightestShade};
         padding-block: ${euiTheme.size.m};
         padding-inline: ${euiTheme.size.l};
