@@ -6,8 +6,10 @@
 import React from 'react';
 
 import {
+  EuiBreadcrumb,
   EuiHeader,
   EuiHeaderLogo,
+  EuiHeaderSections,
   EuiHeaderSectionItemButton,
   EuiIcon,
   EuiAvatar,
@@ -29,7 +31,7 @@ export default () => {
     </EuiHeaderSectionItemButton>
   );
 
-  const breadcrumbs = [
+  const breadcrumbs: EuiBreadcrumb[] = [
     {
       text: 'Management',
       href: '#',
@@ -70,7 +72,7 @@ export default () => {
     </EuiHeaderSectionItemButton>
   );
 
-  const sections = [
+  const sections: EuiHeaderSections[] = [
     {
       items: [renderLogo, renderSpaces],
       borders: 'right',

@@ -11,6 +11,7 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
   >
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-application-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <a
         class="euiLink euiBreadcrumb__content customClass emotion-euiLink-subdued-euiBreadcrumb__content-application-isTruncated-firstChild"
@@ -24,6 +25,7 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-application-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <button
         class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-application-isTruncated"
@@ -35,6 +37,7 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-application-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <a
         class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-application-isTruncated"
@@ -47,6 +50,7 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-application-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <span
         aria-current="page"
@@ -71,6 +75,7 @@ exports[`EuiHeaderBreadcrumbs renders only one breadcrumb with all rounded corne
   >
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-application-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <span
         aria-current="page"

@@ -25,6 +25,7 @@ Array [
         >
           <li
             class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+            data-test-subj="euiBreadcrumb"
           >
             <span
               class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
@@ -34,6 +35,7 @@ Array [
           </li>
           <li
             class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+            data-test-subj="euiBreadcrumb"
           >
             <span
               aria-current="page"
@@ -117,6 +119,7 @@ Array [
         >
           <li
             class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+            data-test-subj="euiBreadcrumb"
           >
             <span
               class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
@@ -127,6 +130,7 @@ Array [
           </li>
           <li
             class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+            data-test-subj="euiBreadcrumb"
           >
             <span
               aria-current="page"
@@ -211,6 +215,7 @@ Array [
         >
           <li
             class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+            data-test-subj="euiBreadcrumb"
           >
             <span
               class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
@@ -221,6 +226,7 @@ Array [
           </li>
           <li
             class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+            data-test-subj="euiBreadcrumb"
           >
             <span
               aria-current="page"
@@ -305,6 +311,7 @@ Array [
         >
           <li
             class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+            data-test-subj="euiBreadcrumb"
           >
             <span
               class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
@@ -315,6 +322,7 @@ Array [
           </li>
           <li
             class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+            data-test-subj="euiBreadcrumb"
           >
             <span
               aria-current="page"
@@ -398,6 +406,7 @@ exports[`EuiControlBar props position is rendered 1`] = `
       >
         <li
           class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+          data-test-subj="euiBreadcrumb"
         >
           <span
             class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
@@ -408,6 +417,7 @@ exports[`EuiControlBar props position is rendered 1`] = `
         </li>
         <li
           class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+          data-test-subj="euiBreadcrumb"
         >
           <span
             aria-current="page"
@@ -485,6 +495,7 @@ Array [
         >
           <li
             class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+            data-test-subj="euiBreadcrumb"
           >
             <span
               class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
@@ -495,6 +506,7 @@ Array [
           </li>
           <li
             class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+            data-test-subj="euiBreadcrumb"
           >
             <span
               aria-current="page"
@@ -579,6 +591,7 @@ Array [
         >
           <li
             class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+            data-test-subj="euiBreadcrumb"
           >
             <span
               class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
@@ -589,6 +602,7 @@ Array [
           </li>
           <li
             class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+            data-test-subj="euiBreadcrumb"
           >
             <span
               aria-current="page"
@@ -678,6 +692,7 @@ Array [
         >
           <li
             class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+            data-test-subj="euiBreadcrumb"
           >
             <span
               class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
@@ -688,6 +703,7 @@ Array [
           </li>
           <li
             class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+            data-test-subj="euiBreadcrumb"
           >
             <span
               aria-current="page"

@@ -17,10 +17,16 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-const HeaderUpdates = forwardRef(
+interface HeaderUpdateProps {
+  showNotification: boolean;
+  setShowNotification: (x: boolean) => void;
+  notificationsNumber: number;
+}
+
+const HeaderUpdates = forwardRef<{ euiAnimate: () => void }, HeaderUpdateProps>(
   ({ showNotification, notificationsNumber }, ref) => {
-    const bellRef = useRef();
-    const cheerRef = useRef();
+    const bellRef = useRef<any>();
+    const cheerRef = useRef<any>();
 
     // wrapping the `euiAnimate` methods to make them available through this component's `ref`
     const euiAnimate = useCallback(() => {
@@ -74,7 +80,7 @@ HeaderUpdates.displayName = 'HeaderUpdates';
 
 export default () => {
   const [showNotification, setShowNotification] = useState(false);
-  const headerUpdatesRef = useRef();
+  const headerUpdatesRef = useRef<any>();
   const [notificationsNumber, setNotificationsNumber] = useState(0);
 
   const notify = () => {

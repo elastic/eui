@@ -2,6 +2,7 @@ import React from 'react';
 
 import {
   EuiBreadcrumbs,
+  EuiBreadcrumb,
   EuiButton,
   EuiPanel,
   EuiPageHeader,
@@ -9,7 +10,7 @@ import {
 } from '../../../../src/components';
 
 export default () => {
-  const breadcrumbs = [
+  const breadcrumbs: EuiBreadcrumb[] = [
     {
       text: 'Animals',
       href: '#',

@@ -11,6 +11,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
   >
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <a
         class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated"
@@ -23,6 +24,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <span
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
@@ -32,6 +34,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isCollapsed"
+      data-test-subj="euiBreadcrumb"
     >
       <div
         class="euiPopover emotion-euiPopover"
@@ -55,6 +58,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <button
         class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated"
@@ -65,6 +69,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <a
         class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated"
@@ -77,6 +82,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <span
         aria-current="page"
@@ -100,6 +106,7 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
   >
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <a
         class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated"
@@ -112,6 +119,7 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <span
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
@@ -121,6 +129,7 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isCollapsed"
+      data-test-subj="euiBreadcrumb"
     >
       <div
         class="euiPopover emotion-euiPopover"
@@ -144,6 +153,7 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <a
         class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated"
@@ -156,6 +166,7 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <span
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
@@ -165,6 +176,7 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <a
         aria-current="page"
@@ -189,6 +201,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
   >
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <a
         class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated"
@@ -201,6 +214,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <span
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
@@ -210,6 +224,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <span
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
@@ -219,6 +234,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <span
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
@@ -228,6 +244,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <span
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
@@ -237,6 +254,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <button
         class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated"
@@ -247,6 +265,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <a
         class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated"
@@ -259,6 +278,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <span
         aria-current="page"
@@ -281,6 +301,7 @@ exports[`EuiBreadcrumbs props max renders 1 item 1`] = `
   >
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isCollapsed"
+      data-test-subj="euiBreadcrumb"
     >
       <div
         class="euiPopover emotion-euiPopover"
@@ -304,6 +325,7 @@ exports[`EuiBreadcrumbs props max renders 1 item 1`] = `
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <span
         aria-current="page"
@@ -326,6 +348,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
   >
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <a
         class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated"
@@ -338,6 +361,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <span
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
@@ -347,6 +371,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <span
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
@@ -356,6 +381,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <span
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
@@ -365,6 +391,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <span
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
@@ -374,6 +401,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <button
         class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated"
@@ -384,6 +412,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <a
         class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated"
@@ -396,6 +425,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <span
         aria-current="page"
@@ -418,6 +448,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
   >
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <a
         class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated"
@@ -430,6 +461,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <span
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
@@ -439,6 +471,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isCollapsed"
+      data-test-subj="euiBreadcrumb"
     >
       <div
         class="euiPopover emotion-euiPopover"
@@ -462,6 +495,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <button
         class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated"
@@ -472,6 +506,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <a
         class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated"
@@ -484,6 +519,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <span
         aria-current="page"
@@ -506,6 +542,7 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
   >
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <a
         class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated"
@@ -518,6 +555,7 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <span
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
@@ -527,6 +565,7 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isCollapsed"
+      data-test-subj="euiBreadcrumb"
     >
       <div
         class="euiPopover emotion-euiPopover"
@@ -550,6 +589,7 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <button
         class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated"
@@ -560,6 +600,7 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <a
         class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated"
@@ -572,6 +613,7 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <span
         aria-current="page"
@@ -594,6 +636,7 @@ exports[`EuiBreadcrumbs props responsive is rendered with custom breakpoints 1`]
   >
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isCollapsed"
+      data-test-subj="euiBreadcrumb"
     >
       <div
         class="euiPopover emotion-euiPopover"
@@ -617,6 +660,7 @@ exports[`EuiBreadcrumbs props responsive is rendered with custom breakpoints 1`]
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+      data-test-subj="euiBreadcrumb"
     >
       <span
         aria-current="page"
@@ -639,6 +683,7 @@ exports[`EuiBreadcrumbs truncation setting truncate on breadcrumbs parents casca
   >
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page"
+      data-test-subj="euiBreadcrumb"
     >
       <span
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-euiTextColor-subdued"
@@ -648,6 +693,7 @@ exports[`EuiBreadcrumbs truncation setting truncate on breadcrumbs parents casca
     </li>
     <li
       class="euiBreadcrumb emotion-euiBreadcrumb-page"
+      data-test-subj="euiBreadcrumb"
     >
       <span
         aria-current="page"
