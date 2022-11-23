@@ -1,3 +1,18 @@
+## [`70.4.0`](https://github.com/elastic/eui/tree/v70.4.0)
+
+- Updated `EuiTourStep.footerAction` type to accept `ReactNode[]` ([#6384](https://github.com/elastic/eui/pull/6384))
+- Vertically aligned all footer content so that `euiTourStepIndicator` is always centered ([#6384](https://github.com/elastic/eui/pull/6384))
+- Added `filterInCircle` glyph to `EuiIcon` ([#6385](https://github.com/elastic/eui/pull/6385))
+- Added `color` prop to `EuiBeacon` ([#6420](https://github.com/elastic/eui/pull/6420))
+- Added the `euiMaxBreakpoint` and `euiMinBreakpoint` CSS-in-JS utilities for creating min/max-width media queries ([#6431](https://github.com/elastic/eui/pull/6431))
+
+**Bug fixes**
+
+- Restores the previous match operator behaviour when the query value is split into multiple terms after analysis. ([#6409](https://github.com/elastic/eui/pull/6409))
+- Fixed missing slide-in animation on `EuiCollapsibleNav`s and left-side `EuiFlyout`s ([#6422](https://github.com/elastic/eui/pull/6422))
+- Fix bug in `EuiCard` where footer were not aligned to the bottom of the card ([#6424](https://github.com/elastic/eui/pull/6424))
+- Fixed multiple component media queries for consumers with custom theme breakpoints ([#6431](https://github.com/elastic/eui/pull/6431))
+
 ## [`70.3.0`](https://github.com/elastic/eui/tree/v70.3.0)
 
 - `EuiSearchBar` now automatically wraps special characters not used by query syntax in quotes ([#6356](https://github.com/elastic/eui/pull/6356))
