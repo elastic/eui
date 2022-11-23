@@ -162,7 +162,7 @@ exports[`EuiDualRange is rendered 1`] = `
 
 exports[`EuiDualRange props compressed should render 1`] = `
 <div
-  class="euiRangeWrapper euiRangeWrapper--compressed euiDualRange emotion-euiRangeWrapper-compressed-euiDualRange"
+  class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-compressed-euiDualRange"
 >
   <div
     aria-hidden="false"
@@ -282,7 +282,7 @@ exports[`EuiDualRange props disabled should render 1`] = `
 
 exports[`EuiDualRange props fullWidth should render 1`] = `
 <div
-  class="euiRangeWrapper euiRangeWrapper--fullWidth euiDualRange emotion-euiRangeWrapper-regular-euiDualRange"
+  class="euiRangeWrapper euiRangeWrapper--fullWidth euiDualRange emotion-euiRangeWrapper-regular-fullWidth-euiDualRange"
 >
   <div
     aria-hidden="false"

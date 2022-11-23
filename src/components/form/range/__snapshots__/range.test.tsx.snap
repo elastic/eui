@@ -59,7 +59,7 @@ exports[`EuiRange inherits fullWidth from <EuiForm /> 1`] = `
   class="euiForm"
 >
   <div
-    class="euiRangeWrapper euiRangeWrapper--fullWidth euiRange emotion-euiRangeWrapper-regular-euiRange"
+    class="euiRangeWrapper euiRangeWrapper--fullWidth euiRange emotion-euiRangeWrapper-regular-fullWidth-euiRange"
   >
     <div
       aria-hidden="false"
@@ -107,7 +107,7 @@ exports[`EuiRange is rendered 1`] = `
 
 exports[`EuiRange props compressed should render 1`] = `
 <div
-  class="euiRangeWrapper euiRangeWrapper--compressed euiRange emotion-euiRangeWrapper-compressed-euiRange"
+  class="euiRangeWrapper euiRange emotion-euiRangeWrapper-compressed-euiRange"
 >
   <div
     aria-hidden="false"
@@ -203,7 +203,7 @@ exports[`EuiRange props disabled should render 1`] = `
 
 exports[`EuiRange props fullWidth should render 1`] = `
 <div
-  class="euiRangeWrapper euiRangeWrapper--fullWidth euiRange emotion-euiRangeWrapper-regular-euiRange"
+  class="euiRangeWrapper euiRangeWrapper--fullWidth euiRange emotion-euiRangeWrapper-regular-fullWidth-euiRange"
 >
   <div
     aria-hidden="false"
