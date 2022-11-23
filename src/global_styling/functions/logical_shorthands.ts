@@ -34,7 +34,7 @@ export const logicalShorthandCSS = (
   }
 
   // Split all potential values by spaces
-  const values = String(value).split(' ');
+  const values = String(value).split(/\s+/);
 
   let verticalBlockValue;
   let horizontalInlineValue;

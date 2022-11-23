@@ -43,6 +43,16 @@ describe('logicalShorthandCSS', () => {
             "
       `);
     });
+
+    it('ignores extra spaces between values', () => {
+      expect(logicalShorthandCSS('border-color', 'red  green   blue    yellow'))
+        .toMatchInlineSnapshot(`
+        "
+            border-block-color: red blue;
+            border-inline-color: yellow green;
+            "
+      `);
+    });
   });
 
   it('throws an error if the passed property is not a shorthand property', () => {
