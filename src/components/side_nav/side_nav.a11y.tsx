@@ -13,211 +13,55 @@ import { EuiSideNav } from './side_nav';
 import { EuiIcon } from '../icon';
 import { htmlIdGenerator } from '../../services';
 
-const SimpleSideNav = () => {
-  const [isSideNavOpenOnMobile, setisSideNavOpenOnMobile] = useState(false);
-  const toggleOpenOnMobile = () => {
-    setisSideNavOpenOnMobile(!isSideNavOpenOnMobile);
-  };
-  const basicSideNav = [
-    {
-      name: 'Root item',
-      id: htmlIdGenerator('basicExample')(),
-      items: [
-        {
-          name: 'Item with onClick',
-          id: htmlIdGenerator('basicExample')(),
-        },
-        {
-          name: 'Item with href',
-          id: htmlIdGenerator('basicExample')(),
-          href: '/#/navigation/side-nav',
-        },
-        {
-          name: 'Selected item',
-          id: htmlIdGenerator('basicExample')(),
-          isSelected: true,
-        },
-        {
-          name: 'Disabled item',
-          id: htmlIdGenerator('basicExample')(),
-          disabled: true,
-        },
-      ],
-    },
-  ];
-
-  return (
-    <EuiSideNav
-      aria-label="Basic example"
-      mobileTitle="Basic example"
-      toggleOpenOnMobile={() => toggleOpenOnMobile()}
-      isOpenOnMobile={isSideNavOpenOnMobile}
-      style={{ width: 192 }}
-      items={basicSideNav}
-    />
-  );
-};
-
-const ComplexSideNav = () => {
-  const [isSideNavOpenOnMobile, setIsSideNavOpenOnMobile] = useState(false);
-  const [selectedItemName, setSelectedItem] = useState('Time stuff');
-
-  const toggleOpenOnMobile = () => {
-    setIsSideNavOpenOnMobile(!isSideNavOpenOnMobile);
-  };
-
-  const selectItem = (name) => {
-    setSelectedItem(name);
-  };
-
-  const createItem = (name, data = {}) => {
-    // NOTE: Duplicate `name` values will cause `id` collisions.
-    return {
-      id: `${name}-id`,
-      name,
-      isSelected: selectedItemName === name,
-      onClick: () => selectItem(name),
-      ...data,
+describe('Mobile EuiSidenav', () => {
+  const MobileSideNav = () => {
+    const [isSideNavOpenOnMobile, setisSideNavOpenOnMobile] = useState(false);
+    const toggleOpenOnMobile = () => {
+      setisSideNavOpenOnMobile(!isSideNavOpenOnMobile);
     };
+    const basicSideNav = [
+      {
+        name: 'Root item',
+        id: htmlIdGenerator('basicExample')(),
+        items: [
+          {
+            name: 'Item with onClick',
+            id: htmlIdGenerator('basicExample')(),
+          },
+          {
+            name: 'Item with href',
+            id: htmlIdGenerator('basicExample')(),
+            href: '/#/navigation/side-nav',
+          },
+          {
+            name: 'Selected item',
+            id: htmlIdGenerator('basicExample')(),
+            isSelected: true,
+          },
+          {
+            name: 'Disabled item',
+            id: htmlIdGenerator('basicExample')(),
+            disabled: true,
+          },
+        ],
+      },
+    ];
+
+    return (
+      <EuiSideNav
+        aria-label="Basic example"
+        mobileTitle="Basic example"
+        toggleOpenOnMobile={() => toggleOpenOnMobile()}
+        isOpenOnMobile={isSideNavOpenOnMobile}
+        style={{ width: 192 }}
+        items={basicSideNav}
+      />
+    );
   };
 
-  const complexSideNav = [
-    createItem('Elasticsearch', {
-      onClick: undefined,
-      icon: <EuiIcon type="logoElasticsearch" />,
-      items: [
-        createItem('Data sources'),
-        createItem('Users'),
-        createItem('Roles'),
-        createItem('Watches'),
-        createItem(
-          'Extremely long title will become truncated when the browser is narrow enough'
-        ),
-      ],
-    }),
-    createItem('Kibana', {
-      onClick: undefined,
-      icon: <EuiIcon type="logoKibana" />,
-      items: [
-        createItem('Advanced settings', {
-          items: [
-            createItem('General', { disabled: true }),
-            createItem('Timelion', {
-              items: [
-                createItem('Time stuff', {
-                  icon: <EuiIcon type="clock" />,
-                }),
-                createItem('Lion stuff', {
-                  icon: <EuiIcon type="stats" />,
-                }),
-              ],
-            }),
-            createItem('Visualizations'),
-          ],
-        }),
-        createItem('Index Patterns'),
-        createItem('Saved Objects'),
-        createItem('Reporting'),
-      ],
-    }),
-    createItem('Logstash', {
-      onClick: undefined,
-      icon: <EuiIcon type="logoLogstash" />,
-      items: [createItem('Pipeline viewer')],
-    }),
-  ];
-
-  return (
-    <EuiSideNav
-      aria-label="Complex example"
-      mobileTitle="Navigate within $APP_NAME"
-      toggleOpenOnMobile={toggleOpenOnMobile}
-      isOpenOnMobile={isSideNavOpenOnMobile}
-      items={complexSideNav}
-      style={{ width: 192 }}
-    />
-  );
-};
-
-const NestedSideNav = () => {
-  const [isSideNavOpenOnMobile, setIsSideNavOpenOnMobile] = useState(false);
-  const [selectedItemName, setSelectedItem] = useState(null);
-
-  const toggleOpenOnMobile = () => {
-    setIsSideNavOpenOnMobile(!isSideNavOpenOnMobile);
-  };
-
-  const selectItem = (name) => {
-    setSelectedItem(name);
-  };
-
-  const createItem = (name, data = {}) => {
-    // NOTE: Duplicate `name` values will cause `id` collisions.
-    return {
-      id: name,
-      name,
-      isSelected: selectedItemName === name,
-      onClick: () => selectItem(name),
-      ...data,
-    };
-  };
-
-  const nestedSideNav = [
-    {
-      name: 'Kibana',
-      id: 'Kibana',
-      icon: <EuiIcon type="logoKibana" />,
-      items: [
-        createItem('Has normal children', {
-          items: [
-            createItem('Without forceOpen', {
-              items: [createItem('Child 1'), createItem('Child 2')],
-            }),
-          ],
-        }),
-        createItem('Normally not open', {
-          items: [
-            createItem('Has forceOpen:true', {
-              forceOpen: true,
-              items: [createItem('Child 3'), createItem('Child 4')],
-            }),
-          ],
-        }),
-        createItem('With forceOpen:true', {
-          forceOpen: true,
-          items: [
-            createItem('Normal child', {
-              items: [createItem('Child 5'), createItem('Child 6')],
-            }),
-          ],
-        }),
-        createItem('Children only, no link', {
-          onClick: undefined,
-          items: [
-            createItem('Another child', {
-              items: [createItem('Child 7'), createItem('Child 8')],
-            }),
-          ],
-        }),
-      ],
-    },
-  ];
-
-  return (
-    <EuiSideNav
-      aria-label="Force-open example"
-      mobileTitle="Navigate within $APP_NAME"
-      toggleOpenOnMobile={toggleOpenOnMobile}
-      isOpenOnMobile={isSideNavOpenOnMobile}
-      items={nestedSideNav}
-      style={{ width: 192 }}
-    />
-  );
-};
-
-describe('Simple EuiSidenav', () => {
   beforeEach(() => {
-    cy.mount(<SimpleSideNav />);
+    cy.viewport(375, 667); // iphone-se2
+    cy.mount(<MobileSideNav />);
   });
 
   describe('Automated accessibility check', () => {
@@ -230,19 +74,140 @@ describe('Simple EuiSidenav', () => {
       cy.get('div.euiSideNav__content').should('exist');
       cy.checkAxe();
     });
+  });
+});
 
+describe('Simple EuiSidenav', () => {
+  const SimpleSideNav = () => {
+    const basicSideNav = [
+      {
+        name: 'Root item',
+        id: htmlIdGenerator('basicExample')(),
+        items: [
+          {
+            name: 'Item with onClick',
+            id: htmlIdGenerator('basicExample')(),
+          },
+          {
+            name: 'Item with href',
+            id: htmlIdGenerator('basicExample')(),
+            href: '/#/navigation/side-nav',
+          },
+          {
+            name: 'Selected item',
+            id: htmlIdGenerator('basicExample')(),
+            isSelected: true,
+          },
+          {
+            name: 'Disabled item',
+            id: htmlIdGenerator('basicExample')(),
+            disabled: true,
+          },
+        ],
+      },
+    ];
+
+    return (
+      <EuiSideNav
+        aria-label="Basic example"
+        style={{ width: 192 }}
+        items={basicSideNav}
+      />
+    );
+  };
+
+  beforeEach(() => {
+    cy.viewport(768, 1024); // ipad-2
+    cy.mount(<SimpleSideNav />);
+  });
+
+  describe('Automated accessibility check', () => {
     it('has zero violations when rendered using non-mobile breakpoint', () => {
-      cy.viewport('ipad-2');
       cy.get('nav.euiSideNav').should('exist');
       cy.checkAxe();
     });
   });
 });
 
-describe('Complex EuiSidenav', () => {
+describe('Nested EuiSidenav', () => {
+  const NestedSideNav = () => {
+    const nestedSideNav = [
+      {
+        name: 'Kibana',
+        id: 'kibana-1',
+        icon: <EuiIcon type="logoKibana" />,
+        isSelected: false,
+        items: [
+          {
+            name: 'Has normal children',
+            id: 'has-normal-children-1',
+            isSelected: false,
+          },
+          {
+            name: 'Normally not open',
+            id: 'normally-not-open-1',
+            isSelected: false,
+            items: [
+              {
+                name: 'Open by override',
+                id: 'open-by-override-1',
+                isSelected: false,
+                forceOpen: true,
+                items: [
+                  {
+                    name: 'Child 3',
+                    id: 'child-3-1',
+                    isSelected: true,
+                  },
+                  {
+                    name: 'Child 4',
+                    id: 'child-4-1',
+                    isSelected: false,
+                  },
+                  {
+                    name: 'Child 5',
+                    id: 'child-5-1',
+                    isSelected: false,
+                  },
+                  {
+                    name: 'Child 6',
+                    id: 'child-6-1',
+                    isSelected: false,
+                    disabled: true,
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            name: 'Has expanded children',
+            id: 'has-expanded-children-1',
+            isSelected: false,
+            forceOpen: true,
+            items: [
+              {
+                name: 'Child 7',
+                id: 'child-7-1',
+                isSelected: false,
+              },
+            ],
+          },
+        ],
+      },
+    ];
+
+    return (
+      <EuiSideNav
+        aria-label="Force-open example"
+        items={nestedSideNav}
+        style={{ width: 192 }}
+      />
+    );
+  };
+
   beforeEach(() => {
-    cy.viewport('ipad-2');
-    cy.mount(<ComplexSideNav />);
+    cy.viewport(768, 1024); // ipad-2
+    cy.mount(<NestedSideNav />);
     cy.get('nav.euiSideNav').should('exist');
   });
 
@@ -253,10 +218,130 @@ describe('Complex EuiSidenav', () => {
   });
 });
 
-describe('Nested EuiSidenav', () => {
+describe('Complex EuiSidenav', () => {
+  const ComplexSideNav = () => {
+    const complexSideNav = [
+      {
+        name: 'Elasticsearch',
+        id: 'elasticsearch-1',
+        icon: <EuiIcon type="logoElasticsearch" />,
+        isSelected: false,
+        items: [
+          {
+            name: 'Data sources',
+            id: 'data-sources-1',
+            isSelected: false,
+          },
+          {
+            name: 'Users',
+            id: 'users-1',
+            isSelected: false,
+          },
+          {
+            name: 'Roles',
+            id: 'roles-1',
+            isSelected: false,
+          },
+          {
+            name: 'Watches',
+            id: 'watches-1',
+            isSelected: false,
+          },
+          {
+            name:
+              'Extremely long title will become truncated when the browser is narrow enough',
+            id: 'extremely-long-title-1',
+            isSelected: false,
+          },
+        ],
+      },
+      {
+        name: 'Kibana',
+        id: 'kibana-1',
+        icon: <EuiIcon type="logoKibana" />,
+        isSelected: false,
+        items: [
+          {
+            name: 'Advanced settings',
+            id: 'advanced-settings-1',
+            isSelected: false,
+            items: [
+              {
+                name: 'General',
+                id: 'general-1',
+                isSelected: false,
+                disabled: true,
+              },
+              {
+                name: 'Timelion',
+                id: 'timelino-1',
+                isSelected: false,
+                items: [
+                  {
+                    name: 'Time stuff',
+                    id: 'time-stuff-1',
+                    icon: <EuiIcon type="clock" />,
+                    isSelected: true,
+                  },
+                  {
+                    name: 'Lion stuff',
+                    id: 'lion-stuff-1',
+                    icon: <EuiIcon type="stats" />,
+                    isSelected: false,
+                  },
+                ],
+              },
+              {
+                name: 'Visualizations',
+                id: 'visualizations-1',
+                isSelected: false,
+              },
+            ],
+          },
+          {
+            name: 'Index patterns',
+            id: 'index-patterns-1',
+            isSelected: false,
+          },
+          {
+            name: 'Saved objects',
+            id: 'saved-objects-1',
+            isSelected: false,
+          },
+          {
+            name: 'Reporting',
+            id: 'reporting-1',
+            isSelected: false,
+          },
+        ],
+      },
+      {
+        name: 'Logstash',
+        id: 'logstash-1',
+        icon: <EuiIcon type="logoLogstash" />,
+        isSelected: false,
+        items: [
+          {
+            name: 'Pipeline viewer',
+            id: 'data-sources-1',
+            isSelected: false,
+          },
+        ],
+      },
+    ];
+
+    return (
+      <EuiSideNav
+        aria-label="Complex example"
+        items={complexSideNav}
+        style={{ width: 192 }}
+      />
+    );
+  };
+
   beforeEach(() => {
-    cy.viewport('ipad-2');
-    cy.mount(<NestedSideNav />);
+    cy.viewport(768, 1024); // ipad-2
+    cy.mount(<ComplexSideNav />);
     cy.get('nav.euiSideNav').should('exist');
   });
 

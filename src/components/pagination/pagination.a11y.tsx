@@ -13,12 +13,11 @@ import { EuiPagination } from './pagination';
 
 const Pagination = () => {
   const [activePage, setActivePage] = useState(0);
-  const PAGE_COUNT = 22;
 
   return (
     <EuiPagination
       aria-label="Many pages example"
-      pageCount={PAGE_COUNT}
+      pageCount={22}
       activePage={activePage}
       onPageClick={(activePage) => setActivePage(activePage)}
     />
@@ -28,13 +27,14 @@ const Pagination = () => {
 describe('EuiPagination', () => {
   describe('Automated accessibility check', () => {
     it('has zero violations on first mobile render', () => {
+      cy.viewport(375, 667); // iphone-se2
       cy.mount(<Pagination />);
       cy.get('nav.euiPagination').should('exist');
       cy.checkAxe();
     });
 
     it('has zero violations when rendered using non-mobile breakpoint', () => {
-      cy.viewport('macbook-13');
+      cy.viewport(1280, 800); //macbook-13
       cy.mount(<Pagination />);
       cy.get('nav.euiPagination').should('exist');
       cy.checkAxe();

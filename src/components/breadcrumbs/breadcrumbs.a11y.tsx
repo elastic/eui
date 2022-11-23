@@ -46,7 +46,8 @@ const breadcrumbs = [
 ];
 
 beforeEach(() => {
-  cy.viewport('ipad-2'); // Displays all breadcrumbs except the single truncated one
+  // Displays all breadcrumbs except the single truncated one
+  cy.viewport(768, 1024); // ipad-2
   cy.mount(
     <EuiBreadcrumbs
       max={4}
@@ -64,8 +65,8 @@ describe('EuiBreadcrumbs', () => {
     });
 
     it('has zero violations when truncated menu is open', () => {
-      cy.get('button.euiBreadcrumb__content').click();
-      cy.get('nav.euiBreadcrumbs').should('exist');
+      cy.get('[aria-label="See collapsed breadcrumbs"]').click();
+      cy.get('[data-popover-open="true"] nav.euiBreadcrumbs').should('exist');
       cy.checkAxe();
     });
   });
