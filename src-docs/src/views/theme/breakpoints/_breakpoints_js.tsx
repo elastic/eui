@@ -165,8 +165,8 @@ useIsWithinMinBreakpoint('s')`}
         type="hook"
         description={
           <p>
-            Given a single breakpoint key, these hook generates a single min or
-            max CSS media query string based on the single breakpoint dimension
+            Given a single breakpoint key, these hooks generate a min or max CSS
+            media query string based on the single breakpoint dimension
             returned.
           </p>
         }
