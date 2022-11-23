@@ -14,7 +14,11 @@ import {
   shade,
 } from '../../../services';
 import { euiRangeVariables } from './range.styles';
-import { euiFontSize, mathWithUnits } from '../../../global_styling';
+import {
+  euiFontSize,
+  mathWithUnits,
+  euiCanAnimate,
+} from '../../../global_styling';
 
 export const euiRangeTooltipStyles = (euiThemeContext: UseEuiTheme) => {
   const range = euiRangeVariables(euiThemeContext);
@@ -67,9 +71,12 @@ export const euiRangeTooltipValueStyles = (euiThemeContext: UseEuiTheme) => {
       max-inline-size: 256px;
       border-radius: ${euiTheme.border.radius.small};
       inset-block-start: 50%;
-      transition: box-shadow ${euiTheme.animation.normal}
-          ${euiTheme.animation.resistance},
-        transform ${euiTheme.animation.normal} ${euiTheme.animation.resistance};
+      ${euiCanAnimate} {
+        transition: box-shadow ${euiTheme.animation.normal}
+            ${euiTheme.animation.resistance},
+          transform ${euiTheme.animation.normal}
+            ${euiTheme.animation.resistance};
+      }
 
       &::after,
       &::before {
