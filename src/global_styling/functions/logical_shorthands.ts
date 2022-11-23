@@ -58,8 +58,17 @@ export const logicalShorthandCSS = (
       break;
   }
 
-  return `
+  if (property.includes('border-')) {
+    // Border properties have a different naming syntax than margin/padding/etc
+    const borderProperty = property.split('-')[1];
+    return `
+    border-block-${borderProperty}: ${verticalBlockValue};
+    border-inline-${borderProperty}: ${horizontalInlineValue};
+    `;
+  } else {
+    return `
     ${property}-block: ${verticalBlockValue};
     ${property}-inline: ${horizontalInlineValue};
-  `;
+    `;
+  }
 };

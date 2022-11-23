@@ -58,6 +58,9 @@
     "scroll-margin",
     "padding",
     "scroll-padding",
-    "inset"
+    "inset",
+    "border-color",
+    "border-width",
+    "border-style"
   ]
 }

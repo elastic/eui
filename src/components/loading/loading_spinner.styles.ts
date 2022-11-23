@@ -10,6 +10,7 @@ import {
   _EuiThemeSize,
   euiCanAnimate,
   logicalSizeCSS,
+  logicalShorthandCSS,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import {
@@ -56,7 +57,10 @@ export const euiLoadingSpinnerStyles = (euiThemeContext: UseEuiTheme) => {
       display: inline-block;
       border-radius: 50%;
       border: ${euiTheme.border.thick};
-      border-color: ${euiSpinnerBorderColorsCSS(euiThemeContext)};
+      ${logicalShorthandCSS(
+        'border-color',
+        euiSpinnerBorderColorsCSS(euiThemeContext)
+      )}
 
       ${euiCanAnimate} {
         animation: ${_loadingSpinner} 0.6s infinite linear;

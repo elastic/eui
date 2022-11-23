@@ -20,17 +20,17 @@ describe('logicalShorthandCSS', () => {
         "
             padding-block: 10px;
             padding-inline: 20px;
-          "
+            "
       `);
     });
 
     it('handles 3 values', () => {
-      expect(logicalShorthandCSS('padding', '10px 20px 30px'))
+      expect(logicalShorthandCSS('border-width', '10px 20px 30px'))
         .toMatchInlineSnapshot(`
         "
-            padding-block: 10px 30px;
-            padding-inline: 20px;
-          "
+            border-block-width: 10px 30px;
+            border-inline-width: 20px;
+            "
       `);
     });
 
@@ -40,7 +40,7 @@ describe('logicalShorthandCSS', () => {
         "
             padding-block: 10px 30px;
             padding-inline: 40px 20px;
-          "
+            "
       `);
     });
   });
