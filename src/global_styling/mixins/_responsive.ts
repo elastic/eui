@@ -11,7 +11,7 @@ import { useEuiTheme, UseEuiTheme } from '../../services/theme/hooks';
 import { _EuiThemeBreakpoint } from '../variables';
 
 /**
- * Generates a CSS media query rule string based on the input breakpoint ranges.
+ * Generates a CSS media query rule string based on the input breakpoint *ranges*.
  * Examples with default theme breakpoints:
  *
  * euiBreakpoint(['s']) becomes `@media only screen and (min-width: 575px) and (max-width: 767px)`
@@ -64,4 +64,55 @@ export const useEuiBreakpoint = (
 ) => {
   const euiTheme = useEuiTheme();
   return euiBreakpoint(euiTheme, sizes);
+};
+
+/**
+ * Min/Max width breakpoint utilities that generate only a single min/max query/bound
+ *
+ * *Unlike the above euiBreakpoint utility*, these utilities treat breakpoint
+ * sizes as a one-dimensional point, rather than a two-dimensional *screen range*.
+ * Examples with default theme breakpoints:
+ *
+ * euiMaxBreakpoint('m') becomes `@media only screen and (max-width: 767px)`
+ * euiMinBreakpoint('m') becomes `@media only screen and (min-width: 768px)`
+ *
+ * This is safer and more intentional to use than euiBreakpoint(['xs', 's']) / euiBreakpoint(['m', 'xl'])
+ * in the event that consumers add larger or smaller custom breakpoints (e.g 'xxs' or `xxl`)
+ * and if the intention of the media query is actually "m and below/above" vs. "only screens m/l/xl".
+ */
+
+export const euiMinBreakpoint = (
+  { euiTheme }: UseEuiTheme,
+  size: _EuiThemeBreakpoint
+) => {
+  const minBreakpointSize = euiTheme.breakpoint[size];
+  if (minBreakpointSize) {
+    return `@media only screen and (min-width: ${minBreakpointSize}px)`;
+  } else {
+    console.warn(`Invalid min breakpoint size: ${size}`);
+    return '@media only screen';
+  }
+};
+
+export const useEuiMinBreakpoint = (size: _EuiThemeBreakpoint) => {
+  const euiTheme = useEuiTheme();
+  return euiMinBreakpoint(euiTheme, size);
+};
+
+export const euiMaxBreakpoint = (
+  { euiTheme }: UseEuiTheme,
+  size: _EuiThemeBreakpoint
+) => {
+  const maxBreakpointSize = euiTheme.breakpoint[size];
+  if (maxBreakpointSize) {
+    return `@media only screen and (max-width: ${maxBreakpointSize - 1}px)`;
+  } else {
+    console.warn(`Invalid max breakpoint size: ${size}`);
+    return '@media only screen';
+  }
+};
+
+export const useEuiMaxBreakpoint = (size: _EuiThemeBreakpoint) => {
+  const euiTheme = useEuiTheme();
+  return euiMaxBreakpoint(euiTheme, size);
 };

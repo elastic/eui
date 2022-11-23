@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { logicalTextAlignCSS, euiBreakpoint } from '../../global_styling';
+import { logicalTextAlignCSS, euiMinBreakpoint } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
@@ -29,7 +29,7 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // Responsive columns behave as a row on breakpoints xs-s
     responsiveColumn: css`
-      ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
+      ${euiMinBreakpoint(euiThemeContext, 'm')} {
         ${columnDisplay}
       }
     `,

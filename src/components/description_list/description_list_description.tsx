@@ -9,7 +9,7 @@
 import React, { HTMLAttributes, FunctionComponent, useContext } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
-import { useEuiTheme } from '../../services';
+import { useEuiTheme, useIsWithinMinBreakpoint } from '../../services';
 import { euiDescriptionListDescriptionStyles } from './description_list_description.styles';
 import { EuiDescriptionListContext } from './description_list_context';
 
@@ -26,6 +26,7 @@ export const EuiDescriptionListDescription: FunctionComponent<EuiDescriptionList
   const { type, textStyle, compressed, align, gutterSize } = useContext(
     EuiDescriptionListContext
   );
+  const showResponsiveColumns = useIsWithinMinBreakpoint('m');
 
   const theme = useEuiTheme();
   const styles = euiDescriptionListDescriptionStyles(theme);
@@ -47,7 +48,9 @@ export const EuiDescriptionListDescription: FunctionComponent<EuiDescriptionList
       if (align === 'center') {
         conditionalStyles.push(styles.left);
       }
-      conditionalStyles.push(styles[gutterSize]);
+      if (type === 'column' || showResponsiveColumns) {
+        conditionalStyles.push(styles[gutterSize]);
+      }
       break;
   }
 
