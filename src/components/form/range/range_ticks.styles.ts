@@ -87,12 +87,6 @@ export const euiRangeTickStyles = (euiThemeContext: UseEuiTheme) => {
       &:focus {
         color: ${euiTheme.colors.primary};
       }
-
-      &:not(.euiRangeTick--hasTickMark)::before {
-        ${tickStyles(euiThemeContext, range)}
-        content: '';
-        inset-inline-start: calc(50% - ${euiTheme.size.xs});
-      }
     `,
     // compressed and non-compressed styles
     compressed: css`
@@ -129,6 +123,17 @@ export const euiRangeTickStyles = (euiThemeContext: UseEuiTheme) => {
         inset-inline-end: 0;
       }
     `,
-    hasTickMark: css``,
+    hasPseudoTickMark: css`
+      &::before {
+        border: 2px solid red;
+      }
+    `,
+    hasTickMark: css`
+      &::before {
+        ${tickStyles(euiThemeContext, range)}
+        content: '';
+        inset-inline-start: calc(50% - ${euiTheme.size.xs});
+      }
+    `,
   };
 };

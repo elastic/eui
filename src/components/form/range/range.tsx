@@ -242,21 +242,16 @@ export class EuiRangeClass extends Component<
       />
     ) : null;
 
-    const classes = classNames(
-      'euiRange',
-      {
-        'euiRange--hasInput': showInput,
-      },
-      className
-    );
+    const classes = classNames('euiRange', className);
 
     const styles = euiRangeStyles(theme);
+    const cssStyles = [styles.euiRange, showInput && styles.hasInput];
     const thumbColor = levels && getLevelColor(levels, Number(value));
 
     const theRange = (
       <EuiRangeWrapper
         className={classes}
-        css={styles.euiRange}
+        css={cssStyles}
         fullWidth={fullWidth}
         compressed={compressed}
       >

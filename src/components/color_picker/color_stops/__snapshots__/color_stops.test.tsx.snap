@@ -129,7 +129,7 @@ exports[`renders compressed EuiColorStops 1`] = `
     class="euiRangeTrack emotion-euiRangeTrack"
   >
     <div
-      class="euiRangeHighlight euiRangeHighlight--compressed euiColorStops__highlight emotion-euiRangeHighlight"
+      class="euiRangeHighlight euiColorStops__highlight emotion-euiRangeHighlight"
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"

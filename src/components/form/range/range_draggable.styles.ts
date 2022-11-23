@@ -25,18 +25,7 @@ export const euiRangeDraggableStyles = (euiThemeContext: UseEuiTheme) => {
       position: absolute;
       inset-block-start: ${mathWithUnits(range.height, (x) => x / 4)};
       pointer-events: none;
-      z-index: ${range.highlightZIndex};
-
-      &:not(.euiRangeDraggable--disabled) {
-        .euiRangeDraggle__inner {
-          cursor: grab;
-          pointer-events: all;
-
-          &:active {
-            cursor: grabbing;
-          }
-        }
-      }
+      z-index: ${range.thumbZIndex};
 
       &:focus {
         outline: none;
@@ -66,12 +55,31 @@ export const euiRangeDraggableStyles = (euiThemeContext: UseEuiTheme) => {
       inset-block-start: 0;
     `,
     disabled: css``,
-    euiRangeDraggle__inner: css`
+  };
+};
+
+export const euiRangeDraggableInnerStyles = (
+  euiThemeContext: UseEuiTheme,
+  disabled: boolean | undefined
+) => {
+  const range = euiRangeVariables(euiThemeContext);
+
+  return {
+    euiRangeDraggable__inner: css`
       position: absolute;
-      inset-inline-start: ${range.thumbWidth};
-      inset-inline-end: ${range.thumbWidth};
-      inset-block-start: 0;
-      inset-block-end: 0;
+      inset-inline: ${range.thumbWidth};
+      inset-block: 0;
+
+      ${!disabled &&
+      `
+        cursor: grab;
+        pointer-events: all;
+
+        &:active {
+          cursor: grabbing;
+        }
+      `}
     `,
+    disabled: css``,
   };
 };

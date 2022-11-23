@@ -26,9 +26,7 @@ export const EuiRangeLabel: FunctionComponent<EuiRangeLabelProps> = ({
   disabled,
   side = 'max',
 }) => {
-  const classes = classNames('euiRangeLabel', `euiRangeLabel--${side}`, {
-    'euiRangeLabel--isDisabled': disabled,
-  });
+  const classes = classNames('euiRangeLabel');
 
   const euiTheme = useEuiTheme();
   const styles = euiRangeLabelStyles(euiTheme);

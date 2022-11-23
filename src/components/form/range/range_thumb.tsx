@@ -43,13 +43,7 @@ export const EuiRangeThumb: FunctionComponent<EuiRangeThumbProps> = ({
   tabIndex,
   ...rest
 }) => {
-  const classes = classNames(
-    'euiRangeThumb',
-    {
-      'euiRangeThumb--hasTicks': showTicks,
-    },
-    className
-  );
+  const classes = classNames('euiRangeThumb', className);
 
   const euiTheme = useEuiTheme();
   const styles = euiRangeThumbStyles(euiTheme);

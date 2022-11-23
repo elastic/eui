@@ -61,10 +61,8 @@ export const EuiRangeTooltip: FunctionComponent<EuiRangeTooltipProps> = ({
   // Change left/right position based on value (half way point)
   const valueClasses = classNames(
     'euiRangeTooltip__value',
-    `euiRangeTooltip__value--${valuePositionSide}`,
-    {
-      'euiRangeTooltip__value--hasTicks': showTicks,
-    }
+    // class in use in src/components/form/range/range_slider.styles.ts
+    `euiRangeTooltip__value--${valuePositionSide}`
   );
 
   const euiTheme = useEuiTheme();

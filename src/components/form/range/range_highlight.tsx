@@ -55,18 +55,9 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
     setTrackWidth(node?.clientWidth ?? 0);
   };
 
-  const classes = classNames(
-    'euiRangeHighlight',
-    {
-      'euiRangeHighlight--hasTicks': showTicks,
-      'euiRangeHighlight--compressed': compressed,
-    },
-    className
-  );
+  const classes = classNames('euiRangeHighlight', className);
 
-  const progressClasses = classNames('euiRangeHighlight__progress', {
-    'euiRangeHighlight__progress--hasFocus': hasFocus,
-  });
+  const progressClasses = classNames('euiRangeHighlight__progress');
 
   const euiTheme = useEuiTheme();
 

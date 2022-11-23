@@ -83,10 +83,7 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
     }
   };
 
-  const classes = classNames('euiRangeLevels', {
-    'euiRangeLevels--hasTicks': showTicks,
-    'euiRangeLevels--compressed': compressed,
-  });
+  const classes = classNames('euiRangeLevels');
 
   const euiTheme = useEuiTheme();
   const styles = euiRangeLevelsStyles(euiTheme);

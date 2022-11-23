@@ -136,10 +136,10 @@ exports[`EuiRange props custom ticks should render 1`] = `
     class="euiRangeTrack emotion-euiRangeTrack-hasTicks"
   >
     <div
-      class="euiRangeTicks euiRangeTicks--isCustom emotion-euiRangeTicks-regular-isCustom"
+      class="euiRangeTicks emotion-euiRangeTicks-regular-isCustom"
     >
       <button
-        class="euiRangeTick euiRangeTick--isCustom emotion-euiRangeTick-isCustom-regular"
+        class="euiRangeTick emotion-euiRangeTick-isCustom-hasTickMark-regular"
         style="left:calc(-Infinity% + 8px)"
         tabindex="-1"
         title="20kb"
@@ -149,7 +149,7 @@ exports[`EuiRange props custom ticks should render 1`] = `
         20kb
       </button>
       <button
-        class="euiRangeTick euiRangeTick--isCustom euiRangeTick--isMax euiRangeTick--hasTickMark emotion-euiRangeTick-isCustom-isMax-hasTickMark-regular"
+        class="euiRangeTick emotion-euiRangeTick-isCustom-isMax-hasPseudoTickMark-regular"
         style="right:0%;margin-right:-1.25em"
         tabindex="-1"
         title="100kb"
@@ -166,7 +166,7 @@ exports[`EuiRange props custom ticks should render 1`] = `
     </div>
     <input
       aria-hidden="false"
-      class="euiRangeSlider euiRangeSlider--hasTicks emotion-euiRangeSlider-hasTicks"
+      class="euiRangeSlider emotion-euiRangeSlider-hasTicks"
       id="generated-id"
       max="100"
       min="0"
@@ -225,7 +225,7 @@ exports[`EuiRange props fullWidth should render 1`] = `
 
 exports[`EuiRange props input should render 1`] = `
 <div
-  class="euiRangeWrapper euiRange euiRange--hasInput testClass1 testClass2 emotion-euiRangeWrapper-regular-euiRange"
+  class="euiRangeWrapper euiRange testClass1 testClass2 emotion-euiRangeWrapper-regular-euiRange-hasInput"
 >
   <div
     aria-hidden="true"
@@ -277,7 +277,7 @@ exports[`EuiRange props labels should render 1`] = `
   class="euiRangeWrapper euiRange emotion-euiRangeWrapper-regular-euiRange"
 >
   <label
-    class="euiRangeLabel euiRangeLabel--min emotion-euiRangeLabel-min"
+    class="euiRangeLabel emotion-euiRangeLabel-min"
   >
     0
   </label>
@@ -297,7 +297,7 @@ exports[`EuiRange props labels should render 1`] = `
     />
   </div>
   <label
-    class="euiRangeLabel euiRangeLabel--max emotion-euiRangeLabel-max"
+    class="euiRangeLabel emotion-euiRangeLabel-max"
   >
     100
   </label>
@@ -391,7 +391,7 @@ exports[`EuiRange props range should render 1`] = `
   >
     <input
       aria-hidden="false"
-      class="euiRangeSlider euiRangeSlider--hasRange emotion-euiRangeSlider-hasRange"
+      class="euiRangeSlider emotion-euiRangeSlider-hasRange"
       id="generated-id"
       max="100"
       min="0"
@@ -456,7 +456,7 @@ exports[`EuiRange props ticks should render 1`] = `
       class="euiRangeTicks emotion-euiRangeTicks-regular"
     >
       <button
-        class="euiRangeTick emotion-euiRangeTick-regular"
+        class="euiRangeTick emotion-euiRangeTick-hasTickMark-regular"
         style="left:calc(NaN% + 8px);max-width:16.666666666666664%"
         tabindex="-1"
         type="button"
@@ -465,7 +465,7 @@ exports[`EuiRange props ticks should render 1`] = `
         0
       </button>
       <button
-        class="euiRangeTick emotion-euiRangeTick-regular"
+        class="euiRangeTick emotion-euiRangeTick-hasTickMark-regular"
         style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
         tabindex="-1"
         type="button"
@@ -474,7 +474,7 @@ exports[`EuiRange props ticks should render 1`] = `
         20
       </button>
       <button
-        class="euiRangeTick emotion-euiRangeTick-regular"
+        class="euiRangeTick emotion-euiRangeTick-hasTickMark-regular"
         style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
         tabindex="-1"
         type="button"
@@ -483,7 +483,7 @@ exports[`EuiRange props ticks should render 1`] = `
         40
       </button>
       <button
-        class="euiRangeTick emotion-euiRangeTick-regular"
+        class="euiRangeTick emotion-euiRangeTick-hasTickMark-regular"
         style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
         tabindex="-1"
         type="button"
@@ -492,7 +492,7 @@ exports[`EuiRange props ticks should render 1`] = `
         60
       </button>
       <button
-        class="euiRangeTick emotion-euiRangeTick-regular"
+        class="euiRangeTick emotion-euiRangeTick-hasTickMark-regular"
         style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
         tabindex="-1"
         type="button"
@@ -501,7 +501,7 @@ exports[`EuiRange props ticks should render 1`] = `
         80
       </button>
       <button
-        class="euiRangeTick emotion-euiRangeTick-regular"
+        class="euiRangeTick emotion-euiRangeTick-hasTickMark-regular"
         style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
         tabindex="-1"
         type="button"
@@ -512,7 +512,7 @@ exports[`EuiRange props ticks should render 1`] = `
     </div>
     <input
       aria-hidden="false"
-      class="euiRangeSlider euiRangeSlider--hasTicks emotion-euiRangeSlider-hasTicks"
+      class="euiRangeSlider emotion-euiRangeSlider-hasTicks"
       id="generated-id"
       max="100"
       min="0"

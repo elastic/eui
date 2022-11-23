@@ -40,6 +40,7 @@ export const EuiRangeWrapper = forwardRef<HTMLDivElement, EuiRangeWrapperProps>(
     const classes = classNames(
       'euiRangeWrapper',
       {
+        // used in src/components/form/range/dual_range.test.tsx
         'euiRangeWrapper--fullWidth': fullWidth,
       },
       className

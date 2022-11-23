@@ -10,7 +10,10 @@ import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import { useMouseMove, useEuiTheme } from '../../../services';
-import { euiRangeDraggableStyles } from './range_draggable.styles';
+import {
+  euiRangeDraggableStyles,
+  euiRangeDraggableInnerStyles,
+} from './range_draggable.styles';
 
 export interface EuiRangeDraggableProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
@@ -63,6 +66,13 @@ export const EuiRangeDraggable: FunctionComponent<EuiRangeDraggableProps> = ({
     disabled && styles.disabled,
   ];
 
+  const innerStyles = euiRangeDraggableInnerStyles(euiTheme, disabled);
+
+  const cssInnerStyles = [
+    innerStyles.euiRangeDraggable__inner,
+    disabled && styles.disabled,
+  ];
+
   const commonProps = {
     className: classes,
     css: cssStyles,
@@ -79,7 +89,7 @@ export const EuiRangeDraggable: FunctionComponent<EuiRangeDraggableProps> = ({
     <div style={outerStyle} {...commonProps} {...rest}>
       <div
         className="euiRangeDraggle__inner"
-        css={styles.euiRangeDraggle__inner}
+        css={cssInnerStyles}
         onMouseDown={handleMouseDown}
         onTouchStart={handleInteraction}
         onTouchMove={handleInteraction}

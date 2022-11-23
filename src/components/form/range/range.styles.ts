@@ -135,6 +135,7 @@ export const euiRangeThumbFocus = (
 export const euiRangeStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Base
   euiRange: css``,
+  hasInput: css``,
   euiRange__horizontalSpacer: css`
     inline-size: ${euiTheme.size.base};
   `,

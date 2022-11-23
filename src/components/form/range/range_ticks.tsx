@@ -99,13 +99,7 @@ const EuiTickValue: FunctionComponent<
 
   const pseudoTick = tickObject && !!labelShiftVal && (isMinTick || isMaxTick);
 
-  const tickClasses = classNames('euiRangeTick', {
-    'euiRangeTick--selected': value === tickValue,
-    'euiRangeTick--isCustom': customTicks,
-    'euiRangeTick--isMin': labelShiftVal && isMinTick,
-    'euiRangeTick--isMax': labelShiftVal && isMaxTick,
-    'euiRangeTick--hasTickMark': pseudoTick,
-  });
+  const tickClasses = classNames('euiRangeTick');
 
   const euiTheme = useEuiTheme();
 
@@ -116,7 +110,8 @@ const EuiTickValue: FunctionComponent<
     customTicks && styles.isCustom,
     labelShiftVal && isMinTick && styles.isMin,
     labelShiftVal && isMaxTick && styles.isMax,
-    pseudoTick && styles.hasTickMark,
+    pseudoTick && styles.hasPseudoTickMark,
+    !pseudoTick && styles.hasTickMark,
     compressed && styles.compressed,
     !compressed && styles.regular,
   ];
@@ -155,10 +150,7 @@ export const EuiRangeTicks: FunctionComponent<EuiRangeTicksProps> = (props) => {
   // Calculate the width of each tick mark
   const percentageWidth = (interval / (max - min + interval)) * 100;
 
-  const classes = classNames('euiRangeTicks', {
-    'euiRangeTicks--compressed': compressed,
-    'euiRangeTicks--isCustom': ticks,
-  });
+  const classes = classNames('euiRangeTicks');
 
   const euiTheme = useEuiTheme();
   const styles = euiRangeTicksStyles(euiTheme);

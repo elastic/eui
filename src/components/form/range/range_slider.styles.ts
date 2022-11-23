@@ -61,7 +61,7 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
       `)}
 
       &:focus-visible,
-      &.euiRangeSlider--hasFocus {
+      &[class*="-hasFocus"] {
         ~ .euiRangeThumb {
           border-color: ${range.thumbBorderColor};
         }
