@@ -63,7 +63,6 @@ describe('EuiSideNav', () => {
     beforeEach(() => {
       cy.viewport(375, 667); // iphone-se2
       cy.mount(<MobileSideNav />);
-      cy.get('nav.euiSideNav').should('exist');
     });
 
     describe('Automated accessibility check', () => {
@@ -121,6 +120,7 @@ describe('EuiSideNav', () => {
     beforeEach(() => {
       cy.viewport(768, 1024); // ipad-2
       cy.mount(<SimpleSideNav />);
+      cy.get('nav.euiSideNav').should('exist');
     });
 
     describe('Automated accessibility check', () => {
