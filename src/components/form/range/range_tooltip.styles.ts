@@ -14,7 +14,7 @@ import {
   shade,
 } from '../../../services';
 import { euiRangeVariables } from './range.styles';
-import { euiFontSize } from '../../../global_styling';
+import { euiFontSize, mathWithUnits } from '../../../global_styling';
 
 export const euiRangeTooltipStyles = (euiThemeContext: UseEuiTheme) => {
   const range = euiRangeVariables(euiThemeContext);
@@ -29,7 +29,7 @@ export const euiRangeTooltipStyles = (euiThemeContext: UseEuiTheme) => {
       inset-block-start: 0;
       inset-block-end: 0;
       inline-size: calc(100% - ${range.thumbWidth});
-      margin-inline-start: calc(${range.thumbWidth} / 2);
+      margin-inline-start: ${mathWithUnits(range.thumbWidth, (x) => x / 2)};
       pointer-events: none;
       z-index: ${range.thumbZIndex};
     `,
@@ -75,7 +75,7 @@ export const euiRangeTooltipValueStyles = (euiThemeContext: UseEuiTheme) => {
       &::before {
         content: '';
         position: absolute;
-        inset-block-end: calc(${arrowSize} / 2);
+        inset-block-end: ${mathWithUnits(arrowSize, (x) => x / 2)};
         inset-inline-start: 50%;
         transform-origin: center;
         background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};

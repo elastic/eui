@@ -8,6 +8,7 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
+import { mathWithUnits } from '../../../global_styling';
 import {
   euiRangeVariables,
   euiRangeThumbFocus,
@@ -20,9 +21,9 @@ export const euiRangeDraggableStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     // Base
     euiRangeDraggable: css`
-      block-size: calc(${range.height} / 2);
+      block-size: ${mathWithUnits(range.height, (x) => x / 2)};
       position: absolute;
-      inset-block-start: calc(${range.height} / 4);
+      inset-block-start: ${mathWithUnits(range.height, (x) => x / 4)};
       pointer-events: none;
       z-index: ${range.highlightZIndex};
 

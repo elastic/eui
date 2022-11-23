@@ -8,6 +8,7 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
+import { mathWithUnits } from '../../../global_styling';
 import {
   euiRangeThumbStyle,
   euiRangeThumbFocus,
@@ -27,7 +28,10 @@ export const euiRangeThumbStyles = (euiThemeContext: UseEuiTheme) => {
       position: absolute;
       inset-inline-start: 0;
       inset-block-start: 50%;
-      margin-block-start: calc((${range.thumbHeight} / 2) * -1);
+      margin-block-start: ${mathWithUnits(
+        range.thumbHeight,
+        (x) => (x / 2) * -1
+      )};
       pointer-events: none;
       z-index: ${range.thumbZIndex};
 
