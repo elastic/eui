@@ -10,6 +10,7 @@ import { UseEuiTheme } from '../../../services';
 import {
   euiFontSize,
   logicalCSS,
+  logicalShorthandCSS,
   logicalTextAlignStyle,
 } from '../../../global_styling';
 
@@ -43,7 +44,7 @@ export const euiButtonDisplayStyles = (euiThemeContext: UseEuiTheme) => {
     euiButtonDisplay: css`
       ${euiButtonBaseCSS()};
       font-weight: ${euiTheme.font.weight.medium};
-      padding: 0 ${euiTheme.size.m};
+      ${logicalShorthandCSS('padding', `0 ${euiTheme.size.m}`)}
 
       &:hover:not(:disabled),
       &:focus {
