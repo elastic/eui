@@ -8,11 +8,14 @@
 
 import React from 'react';
 import { render, shallow } from 'enzyme';
+import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
 
 import { EuiTab } from './tab';
 
 describe('EuiTab', () => {
+  shouldRenderCustomStyles(<EuiTab onClick={() => {}}>children</EuiTab>);
+
   describe('props', () => {
     describe('onClick', () => {
       test('renders button', () => {
@@ -55,6 +58,16 @@ describe('EuiTab', () => {
         </EuiTab>
       );
       expect(render(component)).toMatchSnapshot();
+    });
+
+    test('disabled and selected', () => {
+      const component = render(
+        <EuiTab disabled isSelected>
+          Click Me
+        </EuiTab>
+      );
+
+      expect(component).toMatchSnapshot();
     });
 
     test('prepend is rendered', () => {

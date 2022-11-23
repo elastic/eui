@@ -26,13 +26,31 @@ describe('EuiButtonDisplay', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  describe('props', () => {
-    test('minWidth', () => {
-      const { container } = render(<EuiButtonDisplay minWidth={0} />);
+  describe('minWidth', () => {
+    it('applies a `defaultMinWidth` class and no inline styles by default', () => {
+      const { container } = render(<EuiButtonDisplay />);
 
-      expect(container.innerHTML).toEqual(
-        expect.stringContaining('style="min-inline-size: 0;"')
+      expect(container.innerHTML).toContain('defaultMinWidth');
+      expect(container.innerHTML).not.toContain('style');
+    });
+
+    it('applies an inline style & not the `defaultMinWidth` class if a custom minWidth is passed', () => {
+      const { container } = render(<EuiButtonDisplay minWidth={200} />);
+
+      expect(container.innerHTML).not.toContain('defaultMinWidth');
+      expect(container.innerHTML).toContain('style="min-inline-size: 200px;"');
+    });
+
+    it('does not apply an inline style or `defaultMinWidth` if set to 0 or false', () => {
+      const { container } = render(
+        <>
+          <EuiButtonDisplay minWidth={0} />
+          <EuiButtonDisplay minWidth={false} />
+        </>
       );
+
+      expect(container.innerHTML).not.toContain('defaultMinWidth');
+      expect(container.innerHTML).not.toContain('style');
     });
   });
 

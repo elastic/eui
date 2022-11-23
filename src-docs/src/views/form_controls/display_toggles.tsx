@@ -34,7 +34,7 @@ export type DisplayTogglesProps = {
   spacerSize?: EuiSpacerProps['size'];
 };
 
-export type canPropsType = {
+export type CanPropsType = {
   disabled?: boolean;
   isDisabled?: boolean;
   readOnly?: boolean;
@@ -73,7 +73,7 @@ export const DisplayToggles: FunctionComponent<DisplayTogglesProps> = ({
   const [invalid, setInvalid] = useState(false);
   const [isClearable, setIsClearable] = useState(false);
 
-  const canProps: canPropsType = {};
+  const canProps: CanPropsType = {};
   if (canDisabled) canProps.disabled = disabled;
   if (canIsDisabled) canProps.isDisabled = disabled;
   if (canReadOnly) canProps.readOnly = readOnly;

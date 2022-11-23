@@ -40,7 +40,7 @@ export const EuiRecentlyUsed: FunctionComponent<EuiRecentlyUsedProps> = ({
     };
     return (
       <li
-        className="euiQuickSelectPopover__sectionItem"
+        className="euiQuickSelectPopover__sectionItem euiQuickSelectPopover__sectionItem--recentlyUsed"
         key={`${start}-${end}`}
       >
         <EuiLink onClick={applyRecentlyUsed}>

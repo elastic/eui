@@ -91,6 +91,7 @@ export const iconTypes = [
   'filterExclude',
   'filterIgnore',
   'filterInclude',
+  'filterInCircle',
   'flag',
   'fold',
   'folderCheck',

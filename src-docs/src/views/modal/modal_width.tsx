@@ -8,8 +8,8 @@ import {
   EuiModalHeader,
   EuiModalHeaderTitle,
   EuiCodeBlock,
-} from '../../../../src/components';
-import { EuiSpacer } from '../../../../src/components/spacer';
+  EuiSpacer,
+} from '../../../../src';
 
 export default () => {
   const [isModalVisible, setIsModalVisible] = useState(false);

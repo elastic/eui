@@ -120,6 +120,28 @@ describe('EuiSkipLink', () => {
         expect(onClick).toHaveBeenCalled();
       });
 
+      test('is called even when no valid destination exists', () => {
+        const onClick = jest.fn(() =>
+          document.querySelector('button')!.focus()
+        );
+        const { getByText } = render(
+          <>
+            <EuiSkipLink
+              destinationId=""
+              fallbackDestination=""
+              onClick={onClick}
+            >
+              Test
+            </EuiSkipLink>
+            <button />
+          </>
+        );
+        fireEvent.click(getByText('Test'));
+
+        expect(onClick).toHaveBeenCalled();
+        expect(document.activeElement?.tagName.toLowerCase()).toEqual('button');
+      });
+
       test('does not override overrideLinkBehavior', () => {
         const onClick = jest.fn();
         const { getByText } = render(

@@ -10,6 +10,9 @@ import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classnames from 'classnames';
 import { CommonProps } from '../common';
 
+import { useEuiTheme } from '../../services';
+import { euiModalFooterStyles } from './modal_footer.styles';
+
 export type EuiModalFooterProps = FunctionComponent<
   HTMLAttributes<HTMLDivElement> & CommonProps
 >;
@@ -20,8 +23,13 @@ export const EuiModalFooter: EuiModalFooterProps = ({
   ...rest
 }) => {
   const classes = classnames('euiModalFooter', className);
+
+  const euiTheme = useEuiTheme();
+  const styles = euiModalFooterStyles(euiTheme);
+  const cssStyles = [styles.euiModalFooter];
+
   return (
-    <div className={classes} {...rest}>
+    <div css={cssStyles} className={classes} {...rest}>
       {children}
     </div>
   );

@@ -290,7 +290,7 @@ exports[`EuiPageHeaderContent props children is rendered even if content props a
         >
           <button
             aria-selected="true"
-            class="euiTab euiTab-isSelected emotion-euiTab-selected-l"
+            class="euiTab euiTab-isSelected emotion-euiTab-selected"
             role="tab"
             type="button"
           >
@@ -302,7 +302,7 @@ exports[`EuiPageHeaderContent props children is rendered even if content props a
           </button>
           <button
             aria-selected="false"
-            class="euiTab emotion-euiTab-l"
+            class="euiTab emotion-euiTab"
             role="tab"
             type="button"
           >
@@ -579,7 +579,7 @@ exports[`EuiPageHeaderContent props tabs is rendered 1`] = `
       >
         <button
           aria-selected="true"
-          class="euiTab euiTab-isSelected emotion-euiTab-selected-xl"
+          class="euiTab euiTab-isSelected emotion-euiTab-selected"
           role="tab"
           type="button"
         >
@@ -591,7 +591,7 @@ exports[`EuiPageHeaderContent props tabs is rendered 1`] = `
         </button>
         <button
           aria-selected="false"
-          class="euiTab emotion-euiTab-xl"
+          class="euiTab emotion-euiTab"
           role="tab"
           type="button"
         >
@@ -630,7 +630,7 @@ exports[`EuiPageHeaderContent props tabs is rendered with tabsProps 1`] = `
       >
         <button
           aria-selected="true"
-          class="euiTab euiTab-isSelected emotion-euiTab-selected-xl"
+          class="euiTab euiTab-isSelected emotion-euiTab-selected"
           role="tab"
           type="button"
         >
@@ -642,7 +642,7 @@ exports[`EuiPageHeaderContent props tabs is rendered with tabsProps 1`] = `
         </button>
         <button
           aria-selected="false"
-          class="euiTab emotion-euiTab-xl"
+          class="euiTab emotion-euiTab"
           role="tab"
           type="button"
         >

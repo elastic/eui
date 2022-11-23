@@ -35,10 +35,26 @@ describe('_EuiPageInner', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test('component is rendered', () => {
-    const component = render(<EuiPageInner component="div" />);
+  describe('component', () => {
+    it('renders HTML tag strings', () => {
+      const component = render(<EuiPageInner component="div" />);
 
-    expect(component).toMatchSnapshot();
+      expect(component).toMatchSnapshot();
+    });
+
+    it('renders custom React components', () => {
+      const TestComponent: React.FC<{ test?: boolean }> = ({ test }) => (
+        <div>{test ? 'hello' : 'world'}</div>
+      );
+
+      const component = render(
+        <>
+          <EuiPageInner component={TestComponent} test />
+          <EuiPageInner component={TestComponent} />
+        </>
+      );
+      expect(component).toMatchSnapshot();
+    });
   });
 
   describe('paddingSize', () => {

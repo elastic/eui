@@ -240,26 +240,26 @@ export class EuiSelectable<T = {}> extends Component<
     const { options, isPreFiltered, searchProps } = nextProps;
     const { activeOptionIndex, searchValue } = prevState;
 
-    const matchingOptions = getMatchingOptions<T>(
-      options,
-      searchValue,
-      isPreFiltered
-    );
-
     const stateUpdate: Partial<EuiSelectableState<T>> = {
-      visibleOptions: matchingOptions,
+      searchValue,
       activeOptionIndex,
     };
 
-    if (
-      activeOptionIndex != null &&
-      activeOptionIndex >= matchingOptions.length
-    ) {
-      stateUpdate.activeOptionIndex = -1;
-    }
-
     if (searchProps?.value != null && searchProps.value !== searchValue) {
       stateUpdate.searchValue = searchProps.value;
+    }
+
+    stateUpdate.visibleOptions = getMatchingOptions<T>(
+      options,
+      stateUpdate.searchValue ?? '',
+      isPreFiltered
+    );
+
+    if (
+      activeOptionIndex != null &&
+      activeOptionIndex >= stateUpdate.visibleOptions.length
+    ) {
+      stateUpdate.activeOptionIndex = -1;
     }
 
     return stateUpdate;

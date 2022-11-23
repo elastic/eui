@@ -138,6 +138,7 @@ export const typeToPathMap = {
   filterExclude: 'filterExclude',
   filterIgnore: 'filterIgnore',
   filterInclude: 'filterInclude',
+  filterInCircle: 'filterInCircle',
   flag: 'flag',
   fleetApp: 'app_agent',
   fold: 'fold',

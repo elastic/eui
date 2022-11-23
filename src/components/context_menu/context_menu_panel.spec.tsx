@@ -389,17 +389,4 @@ describe('EuiContextMenuPanel', () => {
       });
     });
   });
-
-  describe('Automated accessibility check', () => {
-    it('has zero violations', () => {
-      const showNextPanelHandler = cy.stub();
-      cy.mount(
-        <EuiContextMenuPanel
-          items={items}
-          showNextPanel={showNextPanelHandler}
-        />
-      );
-      cy.checkAxe();
-    });
-  });
 });

@@ -6,11 +6,12 @@
  * Side Public License, v 1.
  */
 
-import { css, keyframes } from '@emotion/react';
+import { css } from '@emotion/react';
 import {
   logicalCSS,
   logicalTextAlignCSS,
   euiCanAnimate,
+  euiAnimSlideInUp,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
@@ -28,7 +29,7 @@ export const euiImageFullscreenWrapperStyles = (
       line-height: 0; // Fixes cropping when image is resized by forcing its height to be determined by the image not line-height
 
       ${euiCanAnimate} {
-        animation: ${euiImageFullScreen(euiTheme.size.xxxxl)}
+        animation: ${euiAnimSlideInUp(euiTheme.size.xxxxl)}
           ${euiTheme.animation.extraSlow} ${euiTheme.animation.bounce};
       }
 
@@ -42,15 +43,3 @@ export const euiImageFullscreenWrapperStyles = (
     `,
   };
 };
-
-const euiImageFullScreen = (size: string) => keyframes`
-  0% {
-    opacity: 0;
-    transform: translateY(${size});
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;

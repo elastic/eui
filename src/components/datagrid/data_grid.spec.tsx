@@ -271,6 +271,12 @@ describe('EuiDataGrid', () => {
         cy.focused().should(
           'have.attr',
           'data-test-subj',
+          'dataGridKeyboardShortcutsButton'
+        );
+        cy.realPress('Tab');
+        cy.focused().should(
+          'have.attr',
+          'data-test-subj',
           'dataGridDisplaySelectorButton'
         );
         cy.realPress('Tab');

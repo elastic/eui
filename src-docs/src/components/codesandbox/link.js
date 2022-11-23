@@ -198,7 +198,7 @@ ReactDOM.render(
   if (hasDisplayToggles(demoContent)) {
     const cleanedDisplayToggles = cleanEuiImports(displayTogglesRawCode);
 
-    config.files['display_toggles.js'] = {
+    config.files['display_toggles.tsx'] = {
       content: cleanedDisplayToggles,
     };
   }

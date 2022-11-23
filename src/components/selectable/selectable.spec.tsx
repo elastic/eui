@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+/// <reference types="cypress" />
 /// <reference types="../../../cypress/support"/>
 
 import React, { useState } from 'react';
@@ -195,12 +196,6 @@ describe('EuiSelectable', () => {
           ]);
         });
     });
-
-    it('has no accessibility errors', () => {
-      const onChange = cy.stub();
-      cy.realMount(<EuiSelectableWithSearchInput onChange={onChange} />);
-      cy.checkAxe();
-    });
   });
 
   describe('without a `searchable` configuration', () => {
@@ -230,17 +225,6 @@ describe('EuiSelectable', () => {
           { ...options[2], checked: 'on' },
         ]);
       });
-    });
-
-    it('has no accessibility errors', () => {
-      const onChange = cy.stub();
-      cy.realMount(
-        <EuiSelectableListboxOnly
-          aria-label="No search box"
-          onChange={onChange}
-        />
-      );
-      cy.checkAxe();
     });
   });
 
@@ -288,13 +272,6 @@ describe('EuiSelectable', () => {
       cy.realPress('Tab');
       cy.realPress('Enter');
       expect(cy.get('ul[role=listbox]')).to.exist;
-    });
-
-    it('has no accessibility errors', () => {
-      cy.realMount(<EuiSelectableNested />);
-      cy.get('button').realClick();
-      cy.get('li[role=option]').first(); // Make sure the EuiSelectable is rendered before a11y check
-      cy.checkAxe();
     });
   });
 });

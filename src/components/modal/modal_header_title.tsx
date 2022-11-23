@@ -10,6 +10,8 @@ import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classnames from 'classnames';
 import { CommonProps } from '../common';
 
+import { EuiTitle } from '../title';
+
 export type EuiModalHeaderTitleProps = FunctionComponent<
   HTMLAttributes<HTMLDivElement> & CommonProps
 >;
@@ -20,9 +22,10 @@ export const EuiModalHeaderTitle: EuiModalHeaderTitleProps = ({
   ...rest
 }) => {
   const classes = classnames('euiModalHeader__title', className);
+
   return (
-    <div className={classes} {...rest}>
+    <EuiTitle size="m" className={classes} {...rest}>
       {React.isValidElement(children) ? children : <h1>{children}</h1>}
-    </div>
+    </EuiTitle>
   );
 };
