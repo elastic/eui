@@ -37,7 +37,7 @@ exports[`EuiTourStep accepts an array of buttons in the footerAction prop 1`] = 
         style="left: 0px; top: 10px;"
       >
         <div
-          class="euiBeacon euiTour__beacon emotion-euiBeacon-euiTourBeacon-isOpen-left"
+          class="euiBeacon euiTour__beacon emotion-euiBeacon-success-euiTourBeacon-isOpen-left"
           style="height: 12px; width: 12px;"
         />
       </div>
