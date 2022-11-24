@@ -2008,6 +2008,28 @@ exports[`EuiIcon props type discoverApp is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type discuss is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="discuss"
+  data-is-loaded="true"
+  fill="none"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M4.967 10.864c.332.787 1.085 1.337 1.962 1.337h3.673l2.755 2.8v-2.8c1.184 0 2.143-1.003 2.143-2.24V6.604c0-1.237-.96-2.24-2.143-2.24h-1.071v4.334c0 1.197-.896 2.167-2 2.167h-5.32z"
+  />
+  <path
+    d="M4.905 8.718h4.166c.592 0 1.072-.502 1.072-1.12V4.24c0-.618-.48-1.12-1.072-1.12H2.643c-.592 0-1.072.502-1.072 1.12V7.6c0 .617.48 1.119 1.072 1.119h1.071v1.452l1.191-1.452zm.493 1.12l-2.755 2.798V9.837C1.459 9.837.5 8.835.5 7.598V4.24C.5 3.003 1.46 2 2.643 2H9.07c1.184 0 2.143 1.003 2.143 2.24v3.358c0 1.237-.96 2.24-2.143 2.24H5.398z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type document is rendered 1`] = `
 <svg
   aria-hidden="true"
@@ -2102,6 +2124,30 @@ exports[`EuiIcon props type dot is rendered 1`] = `
     cx="8"
     cy="8"
     r="4"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type dotInCircle is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="dotInCircle"
+  data-is-loaded="true"
+  fill="none"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M8 .5c4.136 0 7.5 3.364 7.5 7.5s-3.364 7.5-7.5 7.5S.5 12.136.5 8 3.864.5 8 .5zm0 .882a6.618 6.618 0 100 13.236A6.618 6.618 0 008 1.382z"
+    fill-rule="evenodd"
+  />
+  <path
+    d="M9 8a1 1 0 11-2 0 1 1 0 012 0z"
   />
 </svg>
 `;
