@@ -14,7 +14,7 @@ import { EuiIcon } from '../icon';
 import { htmlIdGenerator } from '../../services';
 
 describe('EuiSideNav', () => {
-  describe('Mobile EuiSidenav', () => {
+  describe('Mobile EuiSideNav', () => {
     const MobileSideNav = () => {
       const [isSideNavOpenOnMobile, setisSideNavOpenOnMobile] = useState(false);
       const toggleOpenOnMobile = () => {
@@ -61,7 +61,7 @@ describe('EuiSideNav', () => {
     };
 
     beforeEach(() => {
-      cy.viewport(375, 667); // iphone-se2
+      cy.viewport(375, 667); // small breakpoint
       cy.mount(<MobileSideNav />);
     });
 
@@ -78,7 +78,7 @@ describe('EuiSideNav', () => {
     });
   });
 
-  describe('Simple EuiSidenav', () => {
+  describe('Simple EuiSideNav', () => {
     const SimpleSideNav = () => {
       const basicSideNav = [
         {
@@ -118,7 +118,7 @@ describe('EuiSideNav', () => {
     };
 
     beforeEach(() => {
-      cy.viewport(768, 1024); // ipad-2
+      cy.viewport(768, 1024); // medium breakpoint
       cy.mount(<SimpleSideNav />);
       cy.get('nav.euiSideNav').should('exist');
     });
@@ -131,7 +131,7 @@ describe('EuiSideNav', () => {
     });
   });
 
-  describe('Nested EuiSidenav', () => {
+  describe('Nested EuiSideNav', () => {
     const NestedSideNav = () => {
       const nestedSideNav = [
         {
@@ -208,7 +208,7 @@ describe('EuiSideNav', () => {
     };
 
     beforeEach(() => {
-      cy.viewport(768, 1024); // ipad-2
+      cy.viewport(768, 1024); // medium breakpoint
       cy.mount(<NestedSideNav />);
       cy.get('nav.euiSideNav').should('exist');
     });
@@ -220,7 +220,7 @@ describe('EuiSideNav', () => {
     });
   });
 
-  describe('Complex EuiSidenav', () => {
+  describe('Complex EuiSideNav', () => {
     const ComplexSideNav = () => {
       const complexSideNav = [
         {
@@ -342,7 +342,7 @@ describe('EuiSideNav', () => {
     };
 
     beforeEach(() => {
-      cy.viewport(768, 1024); // ipad-2
+      cy.viewport(768, 1024); // medium breakpoint
       cy.mount(<ComplexSideNav />);
       cy.get('nav.euiSideNav').should('exist');
     });

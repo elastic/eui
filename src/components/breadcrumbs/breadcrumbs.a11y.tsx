@@ -47,7 +47,7 @@ const breadcrumbs = [
 
 beforeEach(() => {
   // Displays all breadcrumbs except the single truncated one
-  cy.viewport(768, 1024); // ipad-2
+  cy.viewport(768, 1024); // medium breakpoint
   cy.mount(
     <EuiBreadcrumbs
       max={4}

@@ -27,7 +27,7 @@ const Pagination = () => {
 describe('EuiPagination', () => {
   describe('Automated accessibility check', () => {
     it('has zero violations on first mobile render', () => {
-      cy.viewport(375, 667); // iphone-se2
+      cy.viewport(375, 667); // small breakpoint
       cy.mount(<Pagination />);
       cy.get('nav.euiPagination').should('exist');
       cy.checkAxe();
