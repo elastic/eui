@@ -1,0 +1,16 @@
+name: Moves assigned card
+
+on:
+  issues:
+    types:
+      - assigned
+
+jobs:
+  move_assigned-card:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: alex-pagegithub-project-automation-plus@5bcba1c1c091a222584d10913e5c060d32c44044/
+        with:
+          project-url: https://github.com/orgs/elastic/projects/1079
+          column: In Progress
+          github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
