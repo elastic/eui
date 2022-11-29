@@ -141,7 +141,7 @@ export const euiFontWeights = [
   'euiFontWeightMedium',
   'euiFontWeightSemiBold',
   'euiFontWeightBold',
-];
+] as const;
 
 export const FontWeightSass: FunctionComponent<ThemeRowType> = ({
   description,
