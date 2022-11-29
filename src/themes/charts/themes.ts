@@ -10,11 +10,9 @@ import { PartialTheme, LineAnnotationSpec } from '@elastic/charts';
 
 import { euiPaletteColorBlind } from '../../services/color/eui_palettes';
 import { DEFAULT_VISUALIZATION_COLOR } from '../../services/color/visualization_colors';
-
-// @ts-ignore typescript doesn't understand the webpack loader
-import lightColors from '!!sass-vars-to-js-loader!../../themes/amsterdam/_colors_light.scss';
-// @ts-ignore typescript doesn't understand the webpack loader
-import darkColors from '!!sass-vars-to-js-loader!../../themes/amsterdam/_colors_dark.scss';
+import { tint, shade } from '../../services/color';
+import { buildTheme, getComputed } from '../../services/theme/utils';
+import { EuiThemeAmsterdam } from '../../themes/amsterdam/theme';
 
 const fontFamily = `'Inter', 'Inter UI', -apple-system, BlinkMacSystemFont,
   'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'`;
@@ -29,19 +27,19 @@ function createTheme(colors: any): EuiChartThemeType {
     lineAnnotation: {
       line: {
         strokeWidth: 1,
-        stroke: colors.euiColorDarkShade.rgba,
+        stroke: colors.darkShade,
         opacity: 1,
       },
       details: {
         fontSize: 10,
         fontFamily: fontFamily,
-        fill: colors.euiTextColor.rgba,
+        fill: colors.text,
         padding: 0,
       },
     },
     theme: {
       background: {
-        color: colors.euiColorEmptyShade.rgba,
+        color: colors.emptyShade,
       },
       chartMargins: {
         left: 0,
@@ -54,7 +52,7 @@ function createTheme(colors: any): EuiChartThemeType {
           strokeWidth: 2,
         },
         point: {
-          fill: colors.euiColorEmptyShade.rgba,
+          fill: colors.emptyShade,
           strokeWidth: 2,
           radius: 3,
         },
@@ -68,7 +66,7 @@ function createTheme(colors: any): EuiChartThemeType {
         },
         point: {
           visible: false,
-          fill: colors.euiColorEmptyShade.rgba,
+          fill: colors.emptyShade,
           strokeWidth: 2,
           radius: 3,
         },
@@ -94,19 +92,19 @@ function createTheme(colors: any): EuiChartThemeType {
         axisTitle: {
           fontSize: 12,
           fontFamily: fontFamily,
-          fill: colors.euiTextColor.rgba,
+          fill: colors.text,
           padding: {
             inner: 10,
             outer: 0,
           },
         },
         axisLine: {
-          stroke: colors.euiColorChartLines.rgba,
+          stroke: colors.chartLines,
         },
         tickLabel: {
           fontSize: 10,
           fontFamily: fontFamily,
-          fill: colors.euiTextSubduedColor.rgba,
+          fill: colors.subduedText,
           padding: {
             outer: 8,
             inner: 10,
@@ -114,20 +112,20 @@ function createTheme(colors: any): EuiChartThemeType {
         },
         tickLine: {
           visible: false,
-          stroke: colors.euiColorChartLines.rgba,
+          stroke: colors.chartLines,
           strokeWidth: 1,
         },
         gridLine: {
           horizontal: {
             visible: true,
-            stroke: colors.euiColorChartLines.rgba,
+            stroke: colors.chartLines,
             strokeWidth: 1,
             opacity: 1,
             dash: [0, 0],
           },
           vertical: {
             visible: true,
-            stroke: colors.euiColorChartLines.rgba,
+            stroke: colors.chartLines,
             strokeWidth: 1,
             opacity: 1,
             dash: [4, 4],
@@ -140,15 +138,15 @@ function createTheme(colors: any): EuiChartThemeType {
       },
       crosshair: {
         band: {
-          fill: colors.euiColorChartBand.rgba,
+          fill: colors.chartBand,
         },
         line: {
-          stroke: colors.euiColorDarkShade.rgba,
+          stroke: colors.darkShade,
           strokeWidth: 1,
           dash: [4, 4],
         },
         crossLine: {
-          stroke: colors.euiColorDarkShade.rgba,
+          stroke: colors.darkShade,
           strokeWidth: 1,
           dash: [4, 4],
         },
@@ -156,32 +154,32 @@ function createTheme(colors: any): EuiChartThemeType {
       goal: {
         tickLabel: {
           fontFamily: fontFamily,
-          fill: colors.euiTextSubduedColor.rgba,
+          fill: colors.subduedText,
         },
         majorLabel: {
           fontFamily: fontFamily,
-          fill: colors.euiTextColor.rgba,
+          fill: colors.text,
         },
         minorLabel: {
           fontFamily: fontFamily,
-          fill: colors.euiTextSubduedColor.rgba,
+          fill: colors.subduedText,
         },
         majorCenterLabel: {
           fontFamily: fontFamily,
-          fill: colors.euiTextColor.rgba,
+          fill: colors.text,
         },
         minorCenterLabel: {
           fontFamily: fontFamily,
-          fill: colors.euiTextSubduedColor.rgba,
+          fill: colors.subduedText,
         },
         targetLine: {
-          stroke: colors.euiColorDarkestShade.rgba,
+          stroke: colors.darkestShade,
         },
         tickLine: {
-          stroke: colors.euiColorMediumShade.rgba,
+          stroke: colors.mediumShade,
         },
         progressLine: {
-          stroke: colors.euiColorDarkestShade.rgba,
+          stroke: colors.darkestShade,
         },
       },
       partition: {
@@ -196,21 +194,37 @@ function createTheme(colors: any): EuiChartThemeType {
         linkLabel: {
           maxCount: 5,
           fontSize: 11,
-          textColor: colors.euiTextColor.rgba,
+          textColor: colors.text,
         },
         outerSizeRatio: 1,
         circlePadding: 4,
-        sectorLineStroke: colors.euiColorEmptyShade.rgba,
+        sectorLineStroke: colors.emptyShade,
         sectorLineWidth: 1.5,
       },
     },
   };
 }
 
-export const EUI_CHARTS_THEME_LIGHT: EuiChartThemeType = createTheme(
-  lightColors
-);
-export const EUI_CHARTS_THEME_DARK: EuiChartThemeType = createTheme(darkColors);
+// Build a static output of the EUI Amsterdam theme colors
+// TODO: At some point, should EuiCharts be able to inherit or create a theme dynamically from our theme provider?
+const KEY = '_EUI_CHART_THEME_AMSTERDAM';
+const builtTheme = buildTheme({}, KEY) as typeof EuiThemeAmsterdam;
+const lightColors = getComputed(EuiThemeAmsterdam, builtTheme, 'LIGHT').colors;
+const darkColors = getComputed(EuiThemeAmsterdam, builtTheme, 'DARK').colors;
+
+export const EUI_CHARTS_THEME_LIGHT: EuiChartThemeType = createTheme({
+  ...lightColors,
+  // TODO: Should theme colors be part of the base EuiTheme, or separate?
+  chartLines: shade(lightColors.lightestShade, 0.03),
+  chartBand: lightColors.lightestShade,
+});
+
+export const EUI_CHARTS_THEME_DARK: EuiChartThemeType = createTheme({
+  ...darkColors,
+  // TODO: Should these colors be part of the base EuiTheme, or separate?
+  chartLines: darkColors.lightShade,
+  chartBand: tint(darkColors.lightestShade, 0.025),
+});
 
 export const EUI_SPARKLINE_THEME_PARTIAL: PartialTheme = {
   lineSeriesStyle: {
