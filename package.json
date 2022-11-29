@@ -239,7 +239,6 @@
     "sass-lint": "^1.13.1",
     "sass-lint-auto-fix": "^0.21.2",
     "sass-loader": "^13.0.2",
-    "sass-vars-to-js-loader": "^2.1.1",
     "shelljs": "^0.8.4",
     "start-server-and-test": "^1.11.3",
     "style-loader": "^3.3.1",
