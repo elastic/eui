@@ -1,128 +1,11 @@
 declare module '@elastic/eui/dist/eui_theme_dark.json' {
   const sassVariables: {
-    euiCollapsibleNavGroupLightBackgroundColor: string;
-    euiCollapsibleNavGroupDarkBackgroundColor: string;
-    euiCollapsibleNavGroupDarkHighContrastColor: string;
-    euiColorPickerValueRange0: string;
-    euiColorPickerValueRange1: string;
-    euiColorPickerSaturationRange0: string;
-    euiColorPickerSaturationRange1: string;
-    euiColorPickerIndicatorSize: string;
-    euiColorPickerWidth: string;
-    euiColorPaletteDisplaySizes: {
-      sizeExtraSmall: string;
-      sizeSmall: string;
-      sizeMedium: string;
-    };
-    euiContextMenuWidth: string;
-    euiControlBarBackground: string;
-    euiControlBarText: string;
-    euiControlBarBorderColor: string;
-    euiControlBarInitialHeight: string;
-    euiControlBarMaxHeight: string;
-    euiControlBarHeights: {
-      s: string;
-      m: string;
-      l: string;
-    };
-    euiDataGridPrefix: string;
-    euiDataGridStyles: string;
     euiZDataGrid: number;
     euiZHeaderBelowDataGrid: number;
     euiZDataGridCellPopover: number;
-    euiDataGridColumnResizerWidth: string;
-    euiDataGridPopoverMaxHeight: string;
     euiDataGridCellPaddingS: string;
     euiDataGridCellPaddingM: string;
     euiDataGridCellPaddingL: string;
-    euiDataGridVerticalBorder: string;
-    euiSuperDatePickerWidth: string;
-    euiSuperDatePickerButtonWidth: string;
-    euiDragAndDropSpacing: {
-      s: string;
-      m: string;
-      l: string;
-    };
-    euiEmptyPromptContentMaxWidth: string;
-    euiFilePickerTallHeight: string;
-    euiRangeLevelColors: {
-      primary: string;
-      success: string;
-      warning: string;
-      danger: string;
-    };
-    textareaResizing: {
-      vertical: string;
-      horizontal: string;
-      both: string;
-      none: string;
-    };
-    euiHeaderLinksGutterSizes: {
-      gutterXS: string;
-      gutterS: string;
-      gutterM: string;
-      gutterL: string;
-    };
-    euiKeyPadMenuSize: string;
-    euiKeyPadMenuMarginSize: string;
-    euiMarkdownEditorMinHeight: string;
-    euiResizableButtonTransitionSpeed: string;
-    euiResizableButtonSize: string;
-    euiSelectableListItemBorder: string;
-    euiSelectableListItemPadding: string;
-    euiSelectableTemplateSitewideTypes: {
-      application: {
-        color: string;
-        'font-weight': number;
-      };
-      deployment: {
-        color: string;
-        'font-weight': number;
-      };
-      article: {
-        color: string;
-        'font-weight': number;
-      };
-      case: {
-        color: string;
-        'font-weight': number;
-      };
-      platform: {
-        color: string;
-        'font-weight': number;
-      };
-    };
-    euiSideNavEmphasizedBackgroundColor: string;
-    euiSideNavRootTextcolor: string;
-    euiSideNavBranchTextcolor: string;
-    euiSideNavSelectedTextcolor: string;
-    euiSideNavDisabledTextcolor: string;
-    euiStepNumberSize: string;
-    euiStepNumberSmallSize: string;
-    euiStepNumberMargin: string;
-    euiStepStatusColorsToFade: {
-      warning: string;
-      danger: string;
-      disabled: string;
-      incomplete: string;
-    };
-    euiSuggestItemColors: {
-      tint0: string;
-      tint1: string;
-      tint2: string;
-      tint3: string;
-      tint4: string;
-      tint5: string;
-      tint6: string;
-      tint7: string;
-      tint8: string;
-      tint9: string;
-      tint10: string;
-    };
-    euiTableCellContentPadding: string;
-    euiTableCellContentPaddingCompressed: string;
-    euiTableCellCheckboxWidth: string;
-    euiTableActionsAreaWidth: string;
     euiTableHoverColor: string;
     euiTableSelectedColor: string;
     euiTableHoverSelectedColor: string;
@@ -276,24 +159,6 @@ declare module '@elastic/eui/dist/eui_theme_dark.json' {
     euiFormControlLayoutGroupInputHeight: string;
     euiFormControlLayoutGroupInputCompressedHeight: string;
     euiFormControlLayoutGroupInputCompressedBorderRadius: string;
-    euiRangeTrackColor: string;
-    euiRangeHighlightColor: string;
-    euiRangeThumbRadius: string;
-    euiRangeThumbHeight: string;
-    euiRangeThumbWidth: string;
-    euiRangeThumbBorderColor: string;
-    euiRangeThumbBackgroundColor: string;
-    euiRangeTrackWidth: string;
-    euiRangeTrackHeight: string;
-    euiRangeTrackCompressedHeight: string;
-    euiRangeTrackBorderWidth: number;
-    euiRangeTrackBorderColor: string;
-    euiRangeTrackRadius: string;
-    euiRangeDisabledOpacity: number;
-    euiRangeHighlightHeight: string;
-    euiRangeHighlightCompressedHeight: string;
-    euiRangeHeight: string;
-    euiRangeCompressedHeight: string;
     euiHeaderBackgroundColor: string;
     euiHeaderDarkBackgroundColor: string;
     euiHeaderBorderColor: string;
@@ -338,7 +203,6 @@ declare module '@elastic/eui/dist/eui_theme_dark.json' {
     euiSizeL: string;
     euiSizeXL: string;
     euiSizeXXL: string;
-    euiButtonMinWidth: string;
     euiScrollBar: string;
     euiScrollBarCorner: string;
     euiScrollBarCornerThin: string;
@@ -351,14 +215,6 @@ declare module '@elastic/eui/dist/eui_theme_dark.json' {
     euiFocusTransparency: number;
     euiFocusTransparencyPercent: string;
     euiFocusBackgroundColor: string;
-    euiTooltipBackgroundColor: string;
-    euiTooltipBorderColor: string;
-    euiTooltipAnimations: {
-      top: string;
-      left: string;
-      bottom: string;
-      right: string;
-    };
     euiFontFamily: string;
     euiCodeFontFamily: string;
     euiFontFeatureSettings: string;
@@ -452,21 +308,6 @@ declare module '@elastic/eui/dist/eui_theme_dark.json' {
     euiLinkColor: string;
     euiColorChartLines: string;
     euiColorChartBand: string;
-    euiDatePickerCalendarWidth: string;
-    euiDatePickerPadding: string;
-    euiDatePickerGap: string;
-    euiDatePickerCalendarColumns: number;
-    euiDatePickerButtonSize: string;
-    euiDatePickerMinControlWidth: string;
-    euiDatePickerMaxControlWidth: string;
-    euiButtonDefaultTransparency: number;
-    euiButtonFontWeight: number;
-    euiStepStatusColors: {
-      default: string;
-      complete: string;
-      warning: string;
-      danger: string;
-    };
   };
   export default sassVariables;
 }
