@@ -58,7 +58,7 @@ function recordPageView({ pathname, search }: Location) {
     canonicalTag: window.location.href,
     euid,
     userAgent: navigator.userAgent,
-    euiVersion: euiPackage.version,
+    releaseVersion: euiPackage.version,
 
     hashedIp: '',
   };
