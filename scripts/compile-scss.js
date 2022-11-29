@@ -37,13 +37,15 @@ async function compileScssFiles({
     }
   }
 
-  const inputFilenames = (await glob(sourcePattern, undefined)).filter(filename => {
-    if (targetTheme == null) return true;
-    return filename === `src/themes/amsterdam/theme_${targetTheme}.scss`;
-  });
+  const inputFilenames = (await glob(sourcePattern, undefined)).filter(
+    (filename) => {
+      if (targetTheme == null) return true;
+      return filename === `src/themes/amsterdam/theme_${targetTheme}.scss`;
+    }
+  );
 
   await Promise.all(
-    inputFilenames.map(async inputFilename => {
+    inputFilenames.map(async (inputFilename) => {
       console.log(chalk`{cyan …} Compiling {gray ${inputFilename}}`);
 
       try {
@@ -55,14 +57,12 @@ async function compileScssFiles({
 
         console.log(
           chalk`{green ✔} Finished compiling {gray ${inputFilename}} to ${outputFilenames
-            .map(filename => chalk.gray(filename))
+            .map((filename) => chalk.gray(filename))
             .join(', ')}`
         );
       } catch (error) {
         console.log(
-          chalk`{red ✗} Failed to compile {gray ${inputFilename}} with ${
-            error.stack
-          }`
+          chalk`{red ✗} Failed to compile {gray ${inputFilename}} with ${error.stack}`
         );
       }
     })
@@ -133,9 +133,9 @@ if (require.main === module) {
   }
 
   compileScssFiles({
-    sourcePattern: path.join('src/themes/amsterdam', 'theme_*.scss'), 
+    sourcePattern: path.join('src/themes/amsterdam', 'theme_*.scss'),
     destinationDirectory: 'dist',
     docsVariablesDirectory: 'src-docs/src/views/theme/_json',
-    packageName: euiPackageName
+    packageName: euiPackageName,
   });
 }
