@@ -1,8 +1,5 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 
-// @ts-ignore Importing from Sass file
-import fonts from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../../src/global_styling/variables/_font_weight.scss';
-
 import { EuiCode, EuiBasicTable, EuiSpacer } from '../../../../../src';
 
 // @ts-ignore Importing from JS
@@ -149,13 +146,15 @@ export const euiFontWeights = [
 export const FontWeightSass: FunctionComponent<ThemeRowType> = ({
   description,
 }) => {
+  const values = useJsonVars();
+
   return (
     <>
       <ThemeExample
         title={<code>$euiFontWeight[Weight]</code>}
         description={description}
         example={
-          <div style={{ fontWeight: fonts.euiFontWeightBold }}>
+          <div style={{ fontWeight: values.euiFontWeightBold }}>
             I am proper bold
           </div>
         }
