@@ -16,6 +16,7 @@ import {
   EuiIcon,
   EuiSpacer,
 } from '../../../../src/components';
+import { EuiHeaderSectionItemButtonRef } from '../../../../src/components/header/header_section/header_section_item_button';
 
 interface HeaderUpdateProps {
   showNotification: boolean;
@@ -25,8 +26,8 @@ interface HeaderUpdateProps {
 
 const HeaderUpdates = forwardRef<{ euiAnimate: () => void }, HeaderUpdateProps>(
   ({ showNotification, notificationsNumber }, ref) => {
-    const bellRef = useRef<any>();
-    const cheerRef = useRef<any>();
+    const bellRef = useRef<EuiHeaderSectionItemButtonRef>(null);
+    const cheerRef = useRef<EuiHeaderSectionItemButtonRef>(null);
 
     // wrapping the `euiAnimate` methods to make them available through this component's `ref`
     const euiAnimate = useCallback(() => {
