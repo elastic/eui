@@ -1,5 +1,6 @@
 import React, { useContext, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { css } from '@emotion/react';
 
 import themeVars from '../_json/eui_theme_light.json'; // Only grabbing font weight vars, so color mode is irrelevant
 
@@ -180,12 +181,17 @@ export default () => {
                 showValue
                 aria-label="Font weight"
                 showTicks
-                ticks={euiFontWeights.map(function (name) {
-                  return {
-                    label: name.split('euiFontWeight').pop(),
-                    value: themeVars[name],
-                  };
-                })}
+                ticks={Object.entries(euiTheme.font.weight).map(
+                  ([name, value]) => ({
+                    label: name,
+                    value: Number(value),
+                  })
+                )}
+                css={css`
+                  .euiRangeTick {
+                    text-transform: capitalize;
+                  }
+                `}
               />
             </>
           }
