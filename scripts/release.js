@@ -64,10 +64,6 @@ if (args.dry_run) {
     // to i18ntokens_changelog.json, committing both to the workspace before running `npm version`
     execSync(`npm run update-token-changelog -- ${versionTarget}`, execOptions);
 
-    // similarly, the build may have generated new theme json tokens
-    // TODO: this can be removed when the Emotion conversion is complete and the theme JSON files no longer exist
-    await commitThemeTokens();
-
     // Update CHANGELOG.md
     updateChangelog(changelog, versionTarget);
 
@@ -266,38 +262,4 @@ async function promptUserForOneTimePassword() {
       }
     );
   });
-}
-
-async function commitThemeTokens() {
-  const repoDir = path.resolve(__dirname, '..');
-  const repo = await git.Repository.open(repoDir);
-
-  // find dirty files
-  const diff = await git.Diff.indexToWorkdir(repo, null, { FLAGS: git.Diff.OPTION.INCLUDE_UNTRACKED });
-  const patches = await diff.patches();
-  const dirtyFiles = new Set(patches.map(patch => patch.oldFile().path()));
-
-  let createCommit = false;
-
-  const index = await repo.refreshIndex();
-
-  if (dirtyFiles.has('src-docs/src/views/theme/_json/eui_theme_light.json')) {
-    createCommit = true;
-    await index.addByPath('src-docs/src/views/theme/_json/eui_theme_light.json');
-  }
-  if (dirtyFiles.has('src-docs/src/views/theme/_json/eui_theme_dark.json')) {
-    createCommit = true;
-    await index.addByPath('src-docs/src/views/theme/_json/eui_theme_dark.json');
-  }
-
-  if (createCommit) {
-    await index.write();
-    const oid = await index.writeTree();
-    const head = await git.Reference.nameToId(repo, 'HEAD');
-    const parent = await repo.getCommit(head);
-
-    const userSignature = await repo.defaultSignature();
-
-    return repo.createCommit('HEAD', userSignature, userSignature, 'update theme json tokens', oid, [parent]);
-  }
 }
