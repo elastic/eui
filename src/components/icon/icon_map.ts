@@ -25,6 +25,7 @@ export const typeToPathMap = {
   arrowUp: 'arrow_up',
   arrowStart: 'arrowStart',
   arrowEnd: 'arrowEnd',
+  article: 'article',
   asterisk: 'asterisk',
   auditbeatApp: 'app_auditbeat',
   beaker: 'beaker',

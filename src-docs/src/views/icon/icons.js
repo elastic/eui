@@ -24,6 +24,7 @@ export const iconTypes = [
   'arrowUp',
   'arrowStart',
   'arrowEnd',
+  'article',
   'asterisk',
   'beaker',
   'bell',
