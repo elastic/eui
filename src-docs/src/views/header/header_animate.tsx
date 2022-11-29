@@ -16,65 +16,73 @@ import {
   EuiIcon,
   EuiSpacer,
 } from '../../../../src/components';
+import { EuiHeaderSectionItemButtonRef } from '../../../../src/components/header/header_section/header_section_item_button';
 
-const HeaderUpdates = forwardRef(
-  ({ showNotification, notificationsNumber }, ref) => {
-    const bellRef = useRef();
-    const cheerRef = useRef();
+interface HeaderUpdatesProps {
+  showNotification: boolean;
+  setShowNotification: (x: boolean) => void;
+  notificationsNumber: number;
+}
 
-    // wrapping the `euiAnimate` methods to make them available through this component's `ref`
-    const euiAnimate = useCallback(() => {
-      bellRef.current?.euiAnimate();
-      cheerRef.current?.euiAnimate();
-    }, []);
+const HeaderUpdates = forwardRef<
+  { euiAnimate: () => void },
+  HeaderUpdatesProps
+>(({ showNotification, notificationsNumber }, ref) => {
+  const bellRef = useRef<EuiHeaderSectionItemButtonRef>(null);
+  const cheerRef = useRef<EuiHeaderSectionItemButtonRef>(null);
 
-    // we're using the `useImperativeHandle` which allows the child to expose a function to the parent
-    // this way we can trigger the animations on both child components: `bellRef` and `cheerRef`
-    useImperativeHandle(
-      ref,
-      () => ({
-        euiAnimate,
-      }),
-      [euiAnimate]
-    );
+  // wrapping the `euiAnimate` methods to make them available through this component's `ref`
+  const euiAnimate = useCallback(() => {
+    bellRef.current?.euiAnimate();
+    cheerRef.current?.euiAnimate();
+  }, []);
 
-    const bellButton = (
-      <EuiHeaderSectionItemButton
-        ref={bellRef}
-        aria-label={`News feed: ${
-          showNotification ? 'Updates available' : 'No updates'
-        }`}
-        notification={showNotification}
-      >
-        <EuiIcon type="bell" />
-      </EuiHeaderSectionItemButton>
-    );
+  // we're using the `useImperativeHandle` which allows the child to expose a function to the parent
+  // this way we can trigger the animations on both child components: `bellRef` and `cheerRef`
+  useImperativeHandle(
+    ref,
+    () => ({
+      euiAnimate,
+    }),
+    [euiAnimate]
+  );
 
-    const cheerButton = (
-      <EuiHeaderSectionItemButton
-        ref={cheerRef}
-        aria-label={`News feed: ${
-          showNotification ? 'Updates available' : 'No updates'
-        }`}
-        notification={showNotification && notificationsNumber}
-      >
-        <EuiIcon type="cheer" />
-      </EuiHeaderSectionItemButton>
-    );
+  const bellButton = (
+    <EuiHeaderSectionItemButton
+      ref={bellRef}
+      aria-label={`News feed: ${
+        showNotification ? 'Updates available' : 'No updates'
+      }`}
+      notification={showNotification}
+    >
+      <EuiIcon type="bell" />
+    </EuiHeaderSectionItemButton>
+  );
 
-    return (
-      <>
-        {bellButton}
-        {cheerButton}
-      </>
-    );
-  }
-);
+  const cheerButton = (
+    <EuiHeaderSectionItemButton
+      ref={cheerRef}
+      aria-label={`News feed: ${
+        showNotification ? 'Updates available' : 'No updates'
+      }`}
+      notification={showNotification && notificationsNumber}
+    >
+      <EuiIcon type="cheer" />
+    </EuiHeaderSectionItemButton>
+  );
+
+  return (
+    <>
+      {bellButton}
+      {cheerButton}
+    </>
+  );
+});
 HeaderUpdates.displayName = 'HeaderUpdates';
 
 export default () => {
   const [showNotification, setShowNotification] = useState(false);
-  const headerUpdatesRef = useRef();
+  const headerUpdatesRef = useRef<EuiHeaderSectionItemButtonRef>(null);
   const [notificationsNumber, setNotificationsNumber] = useState(0);
 
   const notify = () => {

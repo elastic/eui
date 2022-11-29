@@ -29,6 +29,7 @@ import {
   useGeneratedHtmlId,
 } from '../../../../src';
 
+// @ts-ignore Not TS yet
 import { ExampleContext } from '../../services';
 
 export default () => {
@@ -354,7 +355,7 @@ export default () => {
                 <EuiHeaderLink color="primary">Share</EuiHeaderLink>
                 <EuiHeaderLink color="primary">Clone</EuiHeaderLink>
                 <ExampleContext.Consumer>
-                  {({ parentPath }) => (
+                  {({ parentPath }: { parentPath: string }) => (
                     <EuiButton
                       iconType="exit"
                       style={{ minWidth: 80 }}

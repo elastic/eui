@@ -47,6 +47,7 @@ exports[`EuiHeader sections render breadcrumbs and props 1`] = `
     >
       <li
         class="euiBreadcrumb emotion-euiBreadcrumb-application-isTruncated"
+        data-test-subj="euiBreadcrumb"
       >
         <span
           aria-current="page"
