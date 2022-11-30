@@ -6,10 +6,6 @@ declare module '@elastic/eui/dist/eui_theme_light.json' {
     euiDataGridCellPaddingS: string;
     euiDataGridCellPaddingM: string;
     euiDataGridCellPaddingL: string;
-    euiTableCellContentPadding: string;
-    euiTableCellContentPaddingCompressed: string;
-    euiTableCellCheckboxWidth: string;
-    euiTableActionsAreaWidth: string;
     euiTableHoverColor: string;
     euiTableSelectedColor: string;
     euiTableHoverSelectedColor: string;
@@ -219,8 +215,6 @@ declare module '@elastic/eui/dist/eui_theme_light.json' {
     euiFocusTransparency: number;
     euiFocusTransparencyPercent: string;
     euiFocusBackgroundColor: string;
-    euiTooltipBackgroundColor: string;
-    euiTooltipBorderColor: string;
     euiFontFamily: string;
     euiCodeFontFamily: string;
     euiFontFeatureSettings: string;
