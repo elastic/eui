@@ -152,7 +152,7 @@ export const HeaderExample = {
     {
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: headerSource,
         },
       ],
@@ -215,7 +215,7 @@ export const HeaderExample = {
       title: 'Sections',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: headerSectionsSource,
         },
       ],
@@ -255,7 +255,7 @@ export const HeaderExample = {
       title: 'Header links',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: headerLinksSource,
         },
       ],
@@ -292,7 +292,7 @@ export const HeaderExample = {
       title: 'Fixed header',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: headerPositionSource,
         },
       ],
@@ -328,7 +328,7 @@ export const HeaderExample = {
       title: 'Dark theme',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: headerDarkSource,
         },
       ],
@@ -355,7 +355,7 @@ export const HeaderExample = {
       title: 'Portal content in the header',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: headerAlertSource,
         },
       ],
@@ -409,7 +409,7 @@ export const HeaderExample = {
       title: 'Header notifications',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: headerAnimateSource,
         },
       ],
@@ -441,7 +441,7 @@ export const HeaderExample = {
       title: 'Stacked headers',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: headerStackedSource,
         },
       ],
@@ -469,7 +469,7 @@ export const HeaderExample = {
       title: 'The Elastic navigation pattern',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: headerElasticPatternSource,
         },
       ],
