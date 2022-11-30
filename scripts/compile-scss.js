@@ -125,13 +125,6 @@ async function compileScssFile({ inputFilename, outputCssFilename }) {
 }
 
 if (require.main === module) {
-  const [nodeBin, scriptName] = process.argv;
-
-  if (process.argv.length < 3) {
-    console.log(chalk`{bold Usage:} ${nodeBin} ${scriptName} eui-package-name`);
-    process.exit(1);
-  }
-
   compileScssFiles({
     sourcePattern: path.join('src/themes/amsterdam', 'theme_*.scss'),
     destinationDirectory: 'dist',
