@@ -16,6 +16,7 @@ import {
   EuiIcon,
   EuiSpacer,
 } from '../../../../src/components';
+
 import { EuiHeaderSectionItemButtonRef } from '../../../../src/components/header/header_section/header_section_item_button';
 
 interface HeaderUpdatesProps {

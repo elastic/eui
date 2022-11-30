@@ -1,10 +1,5 @@
 import React from 'react';
 
-/**
- * Docs note: Consuming apps should import the theme via the export json file
- * import theme from '@elastic/eui/dist/eui_theme_light.json';
- */
-
 import {
   EuiHeader,
   EuiHeaderLogo,
@@ -16,6 +11,11 @@ import {
   EuiAvatar,
   useEuiTheme,
 } from '../../../../src';
+
+/**
+ * Docs note: Consuming apps should import the theme via the exported json file
+ * '@elastic/eui/dist/eui_theme_light.json';
+ */
 
 export default () => {
   const { euiTheme } = useEuiTheme();
