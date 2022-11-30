@@ -8,7 +8,11 @@
 
 import { css } from '@emotion/react';
 import chroma from 'chroma-js';
-import { logicalCSS, logicalSizeCSS } from '../../global_styling';
+import {
+  logicalCSS,
+  logicalSizeCSS,
+  mathWithUnits,
+} from '../../global_styling';
 import {
   UseEuiTheme,
   euiPaletteColorBlind,
@@ -103,8 +107,12 @@ export const euiTokenStyles = (
   xs: css`
     ${logicalSizeCSS(euiTheme.size.s, euiTheme.size.s)};
 
-    &[class*='-square'] {
-      border-radius: calc(${euiTheme.border.radius.small} / 2);
+    &[class*='-square'],
+    &[class*='-rectangle'] {
+      border-radius: ${mathWithUnits(
+        euiTheme.border.radius.small,
+        (x) => x / 2
+      )};
     }
 
     &[class*='-rectangle'] {
@@ -113,7 +121,6 @@ export const euiTokenStyles = (
         '1px'
       )}; // adds a small padding so that the icon is not touching the border
       ${logicalCSS('padding-horizontal', euiTheme.size.xs)};
-      border-radius: calc(${euiTheme.border.radius.small} / 2);
     }
   `,
   s: css`

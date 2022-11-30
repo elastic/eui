@@ -28,7 +28,8 @@ export const LOGICAL_SIDES = keysOf(logicalSide);
 export type LogicalSides = typeof LOGICAL_SIDES[number];
 
 export const logicals = LOGICALS;
-export const LOGICAL_PROPERTIES = keysOf(logicals);
+const { _shorthands, ..._logicals } = LOGICALS;
+export const LOGICAL_PROPERTIES = keysOf(_logicals);
 export type LogicalProperties = typeof LOGICAL_PROPERTIES[number];
 
 /**
