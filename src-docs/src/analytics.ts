@@ -75,7 +75,11 @@ function recordPageView({ pathname, search }: Location) {
   if (utmTerm) pageView.utm_term = utmTerm;
   if (utmContent) pageView.utm_content = utmContent;
 
-  dataLayer.push(pageView);
+  // short delay requested by implementation testers to avoid
+  // competing with GTM's history api integration & tracking
+  setTimeout(() => {
+    dataLayer.push(pageView);
+  }, 250);
 }
 
 export const RecordPageViews = ({
