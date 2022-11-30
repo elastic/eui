@@ -2,6 +2,7 @@ import React, { useContext, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { css } from '@emotion/react';
 
+// @ts-ignore Importing JSON
 import themeVars from '../_json/eui_theme_light.json'; // Only grabbing font weight vars, so color mode is irrelevant
 
 import { GuideSection } from '../../../components/guide_section/guide_section';
