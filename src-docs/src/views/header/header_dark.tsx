@@ -12,11 +12,6 @@ import {
   useEuiTheme,
 } from '../../../../src';
 
-/**
- * Docs note: Consuming apps should import the theme via the exported json file
- * '@elastic/eui/dist/eui_theme_light.json';
- */
-
 export default () => {
   const { euiTheme } = useEuiTheme();
 
