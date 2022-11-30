@@ -68,9 +68,10 @@ const collateChangelogFiles = () => {
 
       if (text) {
         // Split changelog text into discrete log items (if there are multiple) and append a PR link for each
-        let items = text
-          .split(/\r?\n/)
-          .map((item) => `${item} ${pullRequestLink}`);
+        let items = text.split(/\r?\n/).map((item) =>
+          // Skip indented changelog items - they're presumably a child item providing more info, and don't need individual links
+          item.startsWith('  -') ? item : `${item} ${pullRequestLink}`
+        );
 
         if (!heading) {
           // No heading, so must be new features/enhancements only
