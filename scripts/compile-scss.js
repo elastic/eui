@@ -125,7 +125,7 @@ async function compileScssFile({ inputFilename, outputCssFilename }) {
 }
 
 if (require.main === module) {
-  const [nodeBin, scriptName, euiPackageName] = process.argv;
+  const [nodeBin, scriptName] = process.argv;
 
   if (process.argv.length < 3) {
     console.log(chalk`{bold Usage:} ${nodeBin} ${scriptName} eui-package-name`);
@@ -136,6 +136,5 @@ if (require.main === module) {
     sourcePattern: path.join('src/themes/amsterdam', 'theme_*.scss'),
     destinationDirectory: 'dist',
     docsVariablesDirectory: 'src-docs/src/views/theme/_json',
-    packageName: euiPackageName,
   });
 }
