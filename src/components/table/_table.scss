@@ -111,7 +111,7 @@
     }
 
     &:hover,
-    &:hover + .euiTableRow.euiTableRow-isExpandedRow .euiTableRowCell  {
+    &:hover + .euiTableRow.euiTableRow-isExpandedRow .euiTableRowCell {
       background-color: $euiTableHoverSelectedColor;
     }
   }

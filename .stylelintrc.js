@@ -18,6 +18,10 @@ module.exports = {
       },
     ],
     'string-quotes': 'single',
+    // Mimic 1tbs `} else {` brace style, like our JS
+    'block-opening-brace-space-before': 'always',
+    'block-closing-brace-newline-before': 'always-multi-line',
+    'scss/at-if-closing-brace-space-after': 'always-intermediate',
     'number-leading-zero': 'never',
     'color-hex-case': 'upper',
   },

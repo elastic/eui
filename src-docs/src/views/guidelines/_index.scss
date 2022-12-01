@@ -274,11 +274,11 @@
   }
 
   &--euiTitle {
-    @include euiTitle('s')
+    @include euiTitle('s');
   }
 
   &--fontSize {
-    @include fontSize(19px)
+    @include fontSize(19px);
   }
 }
 

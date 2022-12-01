@@ -6,7 +6,7 @@
   &:not(.euiKeyPadMenuItem-isDisabled) {
     &:hover,
     &:focus:hover,
-    &:focus-within  {
+    &:focus-within {
       @include euiBottomShadowSmall;
     }
 

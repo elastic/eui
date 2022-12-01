@@ -1,9 +1,4 @@
 rules:
-  # } else { style on one line, like our JS
-  brace-style:
-    - 2
-    -
-      style: '1tbs'
   # Order how you please
   property-sort-order: 0
   hex-notation:
@@ -19,9 +14,6 @@ rules:
     - 2
     - convention: 'none'
   force-element-nesting: 0
-  # something { not something{
-  space-before-brace:
-    - 2
   force-pseudo-nesting: 0
   # This removes the need for ::hover
   pseudo-element: 0

@@ -70,7 +70,7 @@
     width: 50%;
     z-index: 300;
 
-    &:hover ~ .guideHomePage__illustrationEffectSVG  {
+    &:hover ~ .guideHomePage__illustrationEffectSVG {
       transform: perspective(1600px) rotateX(-5deg) rotateY(-5deg);
     }
   }
@@ -96,7 +96,7 @@
     width: 50%;
     z-index: 300;
 
-    &:hover ~ .guideHomePage__illustrationEffectSVG  {
+    &:hover ~ .guideHomePage__illustrationEffectSVG {
       transform: perspective(1600px) rotateX(5deg) rotateY(-5deg);
     }
   }

@@ -48,7 +48,7 @@
   &.euiKeyPadMenuItem-isDisabled {
     @include euiDisabledState;
 
-    .euiKeyPadMenuItem__icon  {
+    .euiKeyPadMenuItem__icon {
       filter: grayscale(100%);
 
       svg * { // sass-lint:disable-line nesting-depth
