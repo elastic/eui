@@ -22,8 +22,25 @@ module.exports = {
     'block-opening-brace-space-before': 'always',
     'block-closing-brace-newline-before': 'always-multi-line',
     'scss/at-if-closing-brace-space-after': 'always-intermediate',
+
+    // Value preferences
     'number-leading-zero': 'never',
+    'number-max-precision': null,
     'color-hex-case': 'upper',
+    // Prefer lowercase values, except for font names and currentColor
+    'value-keyword-case': [
+      'lower',
+      {
+        ignoreProperties: ['font-family', '/^\\$eui[\\w]+/'], // Allow fonts and Sass variables
+        ignoreKeywords: ['currentColor'],
+      },
+    ],
+    'declaration-block-no-duplicate-properties': [
+      true,
+      {
+        ignore: ['consecutive-duplicates'], // We occasionally use duplicate property values for cross-browser fallbacks
+      },
+    ],
   },
   ignoreFiles: [
     'generator-eui/**/*.scss',

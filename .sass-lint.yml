@@ -1,10 +1,6 @@
 rules:
   # Order how you please
   property-sort-order: 0
-  hex-notation:
-    - 2
-    -
-      style: 'uppercase'
   mixins-before-declarations:
     - 2
     -
@@ -32,13 +28,6 @@ rules:
       allow-element-with-attribute: 1
   # Files can end without a newline
   final-newline: 0
-  # We use some rare duplicate property values for browser variance
-  no-duplicate-properties:
-    - 2
-    -
-      exclude:
-        - 'font-size'
-        - 'word-break'
   # Put a line-break between sections of CSS, but allow quicky one-liners for legibility
   empty-line-between-blocks:
     - 2

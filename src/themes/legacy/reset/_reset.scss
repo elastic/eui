@@ -136,7 +136,7 @@ blockquote, q {
 blockquote:before, blockquote:after,
 q:before, q:after {
   content: '';
-  content: none; // sass-lint:disable-line no-duplicate-properties
+  content: none;
 }
 
 table {
