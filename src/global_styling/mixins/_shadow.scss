@@ -1,5 +1,5 @@
 // This file uses RGBA literal values responsibly
-// sass-lint:disable no-color-literals, no-color-keywords, quotes
+// sass-lint:disable no-color-literals, no-color-keywords
 
 @function shadowOpacity($opacity) {
   @if (lightness($euiTextColor) < 50) {

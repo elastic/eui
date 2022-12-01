@@ -1,8 +1,4 @@
 rules:
-  quotes:
-    - 2
-    -
-      style: 'single'
   # } else { style on one line, like our JS
   brace-style:
     - 2

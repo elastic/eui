@@ -17,6 +17,7 @@ module.exports = {
         indentInsideParens: 'once-at-root-twice-in-block',
       },
     ],
+    'string-quotes': 'single',
     'number-leading-zero': 'never',
     'color-hex-case': 'upper',
   },
