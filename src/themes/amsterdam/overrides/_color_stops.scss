@@ -38,8 +38,9 @@
 
     .euiRangeTrack::after {
       // sass-lint:disable-block no-color-literals
-      box-shadow: 0 0 0 1px rgba($euiColorEmptyShade, .8),
-      0 0 0 3px $euiFocusRingColor;
+      box-shadow:
+        0 0 0 1px rgba($euiColorEmptyShade, .8),
+        0 0 0 3px $euiFocusRingColor;
     }
   }
 

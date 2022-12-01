@@ -77,7 +77,6 @@
   pointer-events: none; /* 1 */
   border-radius: $euiFormControlBorderRadius;
 
-  // sass-lint:disable-block indentation
   transition:
     box-shadow $euiAnimSpeedFast ease-in,
     background-color $euiAnimSpeedFast ease-in,

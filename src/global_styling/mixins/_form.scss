@@ -143,7 +143,6 @@
 // 1. Must supply both values to background-size or some browsers apply the single value to both directions
 
 @mixin euiFormControlDefaultShadow($borderOnly: false) {
-  // sass-lint:disable-block indentation
   background-color: $euiFormBackgroundColor;
   background-repeat: no-repeat;
   background-size: 0% 100%; // 1
@@ -164,14 +163,14 @@
 
   // Fixes bug in Firefox where adding a transition to the background-color
   // caused a flash of differently styled dropdown.
-  @supports (-moz-appearance: none) { // sass-lint:disable-line no-vendor-prefixes
+  @supports (-moz-appearance: none) {
     // List *must* be in the same order as the above.
     transition-property: box-shadow, background-image, background-size;
   }
 }
 
 @mixin euiFormControlFocusStyle($borderOnly: false) {
-  // sass-lint:disable-block indentation, empty-args
+  // sass-lint:disable-block empty-args
   background-color: tintOrShade($euiColorEmptyShade, 0%, 40%);
   background-image: euiFormControlGradient();
   background-size: 100% 100%; // 1
@@ -191,7 +190,6 @@
 }
 
 @mixin euiFormControlDisabledTextStyle {
-  // sass-lint:disable-block no-vendor-prefixes
   color: $euiFormControlDisabledColor;
   -webkit-text-fill-color: $euiFormControlDisabledColor; // Required for Safari
 }
@@ -209,7 +207,6 @@
 }
 
 @mixin euiFormControlReadOnlyStyle {
-  // sass-lint:disable-block no-vendor-prefixes
   cursor: default;
   color: $euiTextColor;
   -webkit-text-fill-color: $euiTextColor; // Required for Safari
@@ -249,7 +246,6 @@
     }
 
     // Needs to be set for autofill
-    // sass-lint:disable-block no-vendor-prefixes
     &:-webkit-autofill {
       -webkit-text-fill-color: lightOrDarkTheme($euiColorDarkestShade, $euiColorLightShade);
 
@@ -313,9 +309,9 @@
   } @else if $type == 'square' {
     border-radius: $euiCheckboxBorderRadius;
   }
-  // sass-lint:disable-block indentation
+
   transition: background-color $euiAnimSpeedFast ease-in,
-              border-color $euiAnimSpeedFast ease-in;
+              border-color $euiAnimSpeedFast ease-in; // stylelint-disable-line indentation
 }
 
 

@@ -27,8 +27,6 @@ rules:
   space-before-brace:
     - 2
   force-pseudo-nesting: 0
-  # 2 spaces for indentation
-  indentation: 2
   # This removes the need for ::hover
   pseudo-element: 0
   # ($var / 2) rather than ($var/2)

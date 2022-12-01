@@ -32,9 +32,10 @@ The following files still use the Sass version:
 
 @mixin euiRangeThumbBoxShadow {
   // sass-lint:disable-block no-color-literals
-  box-shadow: 0 0 0 1px $euiRangeThumbBorderColor,
-  0 2px 2px -1px rgba($euiShadowColor, .2),
-  0 1px 5px -2px rgba($euiShadowColor, .2);
+  box-shadow:
+    0 0 0 1px $euiRangeThumbBorderColor,
+    0 2px 2px -1px rgba($euiShadowColor, .2),
+    0 1px 5px -2px rgba($euiShadowColor, .2);
 }
 
 @mixin euiRangeThumbFocusBoxShadow {

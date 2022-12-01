@@ -13,12 +13,12 @@
     top: 50%;
     left: 50%;
     background-color: $euiColorDarkestShade;
-    transition: (
+    transition:
       width $euiResizableButtonTransitionSpeed ease,
       height $euiResizableButtonTransitionSpeed ease,
       transform $euiResizableButtonTransitionSpeed ease,
       background-color $euiResizableButtonTransitionSpeed ease
-    );
+    ;
   }
 
   &.euiResizableButton--horizontal {
@@ -80,11 +80,11 @@
     &:after {
       background-color: $euiColorPrimary;
       // Overrides default transition so that "grab" icon background-color doesn't animate
-      transition: (
+      transition:
         width $euiResizableButtonTransitionSpeed ease,
         height $euiResizableButtonTransitionSpeed ease,
         transform $euiResizableButtonTransitionSpeed ease
-      );
+      ;
       transition-delay: $euiResizableButtonTransitionSpeed / 2;
     }
   }
