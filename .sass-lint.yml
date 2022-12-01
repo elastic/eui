@@ -8,12 +8,6 @@ rules:
     - 2
     -
       style: '1tbs'
-  variable-name-format:
-    - 2
-    -
-      convention: 'camelcase'
-  # Needs regex, right now we ignore
-  class-name-format: 0
   # Order how you please
   property-sort-order: 0
   hex-notation:
@@ -24,11 +18,6 @@ rules:
     - 2
     -
       exclude: ['euiBreakpoint', 'euiCanAnimate']
-  mixin-name-format:
-    - 2
-    -
-      allow-leading-underscore: false
-      convention: 'camelcase'
   # Use none instead of 0 for no border
   border-zero:
     - 2
@@ -40,11 +29,6 @@ rules:
   force-pseudo-nesting: 0
   # 2 spaces for indentation
   indentation: 2
-  function-name-format:
-    - 2
-    -
-      allow-leading-underscore: false
-      convention: 'camelcase'
   # This removes the need for ::hover
   pseudo-element: 0
   # ($var / 2) rather than ($var/2)

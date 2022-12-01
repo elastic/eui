@@ -1,6 +1,15 @@
+const camelCaseRegex = '^[a-z][\\w-]*$'; // Note: also allows `_` as part of BEM naming
+
 module.exports = {
   extends: ['stylelint-config-standard-scss', 'stylelint-config-prettier-scss'],
   rules: {
+    // Enforce camelCase naming
+    'selector-class-pattern': camelCaseRegex,
+    'keyframes-name-pattern': camelCaseRegex,
+    'scss/dollar-variable-pattern': camelCaseRegex,
+    'scss/at-mixin-pattern': camelCaseRegex,
+    'scss/at-function-pattern': camelCaseRegex,
+
     'number-leading-zero': 'never',
     'color-hex-case': 'upper',
   },

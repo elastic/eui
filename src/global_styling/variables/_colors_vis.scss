@@ -59,7 +59,6 @@ $euiColorVis7: map-get(map-get($euiPaletteColorBlind, 'euiColorVis7'), 'graphic'
 $euiColorVis8: map-get(map-get($euiPaletteColorBlind, 'euiColorVis8'), 'graphic') !default;
 $euiColorVis9: map-get(map-get($euiPaletteColorBlind, 'euiColorVis9'), 'graphic') !default;
 
-// sass-lint:disable-block variable-name-format
 $euiColorVis0_behindText: map-get(map-get($euiPaletteColorBlind, 'euiColorVis0'), 'behindText') !default;
 $euiColorVis1_behindText: map-get(map-get($euiPaletteColorBlind, 'euiColorVis1'), 'behindText') !default;
 $euiColorVis2_behindText: map-get(map-get($euiPaletteColorBlind, 'euiColorVis2'), 'behindText') !default;
