@@ -285,6 +285,11 @@ import { ElasticChartsPieExample } from './views/elastic_charts/pie_example';
 
 import { ElasticChartsAccessibilityExample } from './views/elastic_charts/accessibility_example';
 
+import { DashboardGoodPractices } from './views/elastic_charts/dashboard_good_practices';
+
+import { MetricChart } from './views/elastic_charts/metric_chart';
+import { Barchart } from './views/elastic_charts/barchart';
+
 const createExample = (example, customTitle) => {
   if (!example) {
     throw new Error(
@@ -614,6 +619,10 @@ const navigation = [
     ].map((example) => createExample(example)),
   },
   {
+    name: 'Data Visualization',
+    items: [DashboardGoodPractices].map((example) => createExample(example)),
+  },
+  {
     name: 'Elastic Charts',
     items: [
       ElasticChartsThemingExample,
@@ -622,6 +631,8 @@ const navigation = [
       ElasticChartsCategoryExample,
       ElasticChartsPieExample,
       ElasticChartsAccessibilityExample,
+      MetricChart,
+      Barchart,
     ].map((example) => createExample(example)),
   },
   {
