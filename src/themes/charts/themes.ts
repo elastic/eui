@@ -206,7 +206,7 @@ function createTheme(colors: any): EuiChartThemeType {
 }
 
 // Build a static output of the EUI Amsterdam theme colors
-// TODO: At some point, should EuiCharts be able to inherit or create a theme dynamically from our theme provider?
+// TODO: At some point, should Elastic Charts be able to inherit or create a theme dynamically from our theme provider?
 const KEY = '_EUI_CHART_THEME_AMSTERDAM';
 const builtTheme = buildTheme({}, KEY) as typeof EuiThemeAmsterdam;
 const lightColors = getComputed(EuiThemeAmsterdam, builtTheme, 'LIGHT').colors;
@@ -214,14 +214,12 @@ const darkColors = getComputed(EuiThemeAmsterdam, builtTheme, 'DARK').colors;
 
 export const EUI_CHARTS_THEME_LIGHT: EuiChartThemeType = createTheme({
   ...lightColors,
-  // TODO: Should theme colors be part of the base EuiTheme, or separate?
   chartLines: shade(lightColors.lightestShade, 0.03),
   chartBand: lightColors.lightestShade,
 });
 
 export const EUI_CHARTS_THEME_DARK: EuiChartThemeType = createTheme({
   ...darkColors,
-  // TODO: Should these colors be part of the base EuiTheme, or separate?
   chartLines: darkColors.lightShade,
   chartBand: tint(darkColors.lightestShade, 0.025),
 });
