@@ -1,6 +1,3 @@
-// Prefixes are unique in this file
-// sass-lint:disable no-vendor-prefixes
-
 /*
 The CSS in JS version of this file lives in:
   - src/components/form/range/range.styles.ts
@@ -58,7 +55,6 @@ The following files still use the Sass version:
   &::-moz-range-thumb { @content; }
   &::-ms-thumb { @content; }
 }
-
 
 @mixin euiRangeThumbFocus {
   @include euiRangeThumbBorder;

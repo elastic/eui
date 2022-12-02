@@ -43,7 +43,7 @@
     }
 
     &[disabled] {
-      //sass-lint:disable no-important
+      // sass-lint:disable no-important
       cursor: not-allowed !important;
 
       ~ .euiRadio__label {

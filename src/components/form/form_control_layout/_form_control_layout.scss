@@ -140,7 +140,6 @@
     }
   }
 
-  //
   // BORDERS on buttons only
 
   .euiButtonEmpty {
@@ -155,7 +154,6 @@
     border-left: $euiFormInputGroupBorder;
   }
 
-  //
   // Compressed alterations
 
   &.euiFormControlLayout--compressed {
@@ -183,7 +181,6 @@
     }
   }
 
-  //
   // ReadOnly alterations
   &.euiFormControlLayout--readOnly {
     cursor: default;
