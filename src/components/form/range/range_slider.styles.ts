@@ -17,7 +17,6 @@ import {
   euiRangeThumbStyle,
   euiRangeThumbPerBrowser,
   euiRangeVariables,
-  euiRangeTrackSize,
   euiRangeTrackPerBrowser,
   euiRangeThumbFocus,
   euiRangeThumbBoxShadow,
@@ -91,14 +90,6 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
 
       &::-moz-focus-outer {
         border: none;
-      }
-
-      &::-ms-track {
-        ${euiRangeTrackSize(euiThemeContext)};
-        background: transparent;
-        border-color: transparent;
-        border-width: ${parseInt(range.thumbHeight) / 2}px 0;
-        color: transparent;
       }
 
       &:focus {
