@@ -27,7 +27,7 @@ describe('EuiDualRange', () => {
       {...props}
       {...requiredProps}
     />,
-    { skipStyles: true }
+    { skipStyles: true } // style is in ...rest and is spread to a different location than className/css
   );
 
   test('is rendered', () => {
