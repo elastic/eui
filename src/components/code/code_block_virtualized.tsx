@@ -9,6 +9,7 @@
 import React, { HTMLAttributes, forwardRef, useMemo } from 'react';
 import { FixedSizeList, ListChildComponentProps } from 'react-window';
 import { RefractorNode } from 'refractor';
+import { logicalStyles } from '../../global_styling';
 import { EuiAutoSizer } from '../auto_sizer';
 import { nodeToHtml } from './utils';
 
@@ -27,16 +28,21 @@ export const EuiCodeBlockVirtualized = ({
 }) => {
   const VirtualizedOuterElement = useMemo(
     () =>
-      forwardRef<any, any>((props, ref) => (
-        <pre {...props} ref={ref} {...preProps} />
+      forwardRef<any, any>(({ style, ...props }, ref) => (
+        <pre style={logicalStyles(style)} {...props} ref={ref} {...preProps} />
       )),
     [preProps]
   );
 
   const VirtualizedInnerElement = useMemo(
     () =>
-      forwardRef<any, any>((props, ref) => (
-        <code {...props} ref={ref} {...codeProps} />
+      forwardRef<any, any>(({ style, ...props }, ref) => (
+        <code
+          style={logicalStyles(style)}
+          {...props}
+          ref={ref}
+          {...codeProps}
+        />
       )),
     [codeProps]
   );
@@ -62,6 +68,6 @@ export const EuiCodeBlockVirtualized = ({
 
 const ListRow = ({ data, index, style }: ListChildComponentProps) => {
   const row = data[index];
-  row.properties.style = style;
+  row.properties.style = logicalStyles(style);
   return nodeToHtml(row, index, data, 0);
 };
