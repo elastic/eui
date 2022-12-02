@@ -469,11 +469,11 @@ exports[`EuiDualRange props levels should render 1`] = `
       class="euiRangeLevels emotion-euiRangeLevels-hasRange"
     >
       <span
-        class="euiRangeLevel euiRangeLevel--danger emotion-euiRangeLevel-danger"
+        class="euiRangeLevel emotion-euiRangeLevel-danger"
         style="left:calc(0% + 0px);right:calc(100% - 0px)"
       />
       <span
-        class="euiRangeLevel euiRangeLevel--success emotion-euiRangeLevel-success"
+        class="euiRangeLevel emotion-euiRangeLevel-success"
         style="left:calc(0% + 0px);right:calc(100% - 0px)"
       />
     </div>
@@ -499,11 +499,11 @@ exports[`EuiDualRange props levels should render 1`] = `
           style="left:-0px;inline-size:0px"
         >
           <span
-            class="euiRangeLevel euiRangeLevel--danger emotion-euiRangeLevel-danger"
+            class="euiRangeLevel emotion-euiRangeLevel-danger"
             style="left:calc(0% + 0px);right:calc(100% - 0px)"
           />
           <span
-            class="euiRangeLevel euiRangeLevel--success emotion-euiRangeLevel-success"
+            class="euiRangeLevel emotion-euiRangeLevel-success"
             style="left:calc(0% + 0px);right:calc(100% - 0px)"
           />
         </div>

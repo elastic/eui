@@ -135,20 +135,14 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
           backgroundColor: !isNamedColor ? color : undefined,
         };
 
-        const levelClasses = classNames(
-          'euiRangeLevel',
-          {
-            'euiRangeLevel--customColor': !isNamedColor,
-            [`euiRangeLevel--${color}`]: isNamedColor,
-          },
-          className
-        );
+        const levelClasses = classNames('euiRangeLevel', className);
 
         const levelStyles = euiRangeLevelStyles(euiTheme);
         const cssLevelStyles = [
           levelStyles.euiRangeLevel,
-          !isNamedColor && levelStyles.customColor,
-          isNamedColor && levelStyles[color as EuiRangeLevelColor],
+          isNamedColor
+            ? levelStyles[color as EuiRangeLevelColor]
+            : levelStyles.customColor,
         ];
 
         return (
