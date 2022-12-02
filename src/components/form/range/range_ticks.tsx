@@ -106,7 +106,7 @@ const EuiTickValue: FunctionComponent<
   const styles = euiRangeTickStyles(euiTheme);
   const cssTickStyles = [
     styles.euiRangeTick,
-    value === tickValue && styles.selected,
+    value === String(tickValue) && styles.selected,
     customTicks && styles.isCustom,
     labelShiftVal && isMinTick && styles.isMin,
     labelShiftVal && isMaxTick && styles.isMax,

@@ -25,7 +25,6 @@ const tickStyles = ({ euiTheme }: UseEuiTheme, range: any) => {
     background-color: ${euiTheme.colors.lightShade};
     inline-size: ${range.tickWidth};
     block-size: ${range.tickHeight};
-    border-radius: 100%;
     border-radius: ${euiTheme.border.radius.small};
   `;
 };
@@ -77,11 +76,6 @@ export const euiRangeTickStyles = (euiThemeContext: UseEuiTheme) => {
       font-size: ${euiFontSize(euiThemeContext, 'xs').fontSize};
       position: absolute;
       transform: translateX(-50%);
-
-      &::before {
-        background-color: ${euiTheme.colors.lightShade};
-        border-radius: ${euiTheme.border.radius.small};
-      }
 
       &:disabled {
         cursor: not-allowed;

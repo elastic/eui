@@ -19,7 +19,7 @@ exports[`EuiRangeTrack is rendered 1`] = `
       0
     </button>
     <button
-      class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
+      class="euiRangeTick emotion-euiRangeTick-selected-hasPseudoTickMark-regular"
       style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:9.090909090909092%"
       tabindex="-1"
       type="button"
