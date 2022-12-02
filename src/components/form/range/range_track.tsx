@@ -7,7 +7,6 @@
  */
 
 import React, { Component, MouseEventHandler, HTMLAttributes } from 'react';
-import classNames from 'classnames';
 
 import {
   withEuiTheme,
@@ -143,8 +142,6 @@ export class EuiRangeTrackClass extends Component<
       showTicks === true &&
       this.calculateTicks(min, max, step, tickInterval, ticks);
 
-    const trackClasses = classNames('euiRangeTrack');
-
     const styles = euiRangeTrackStyles(theme);
     const cssStyles = [
       styles.euiRangeTrack,
@@ -154,7 +151,7 @@ export class EuiRangeTrackClass extends Component<
     ];
 
     return (
-      <div className={trackClasses} css={cssStyles} {...rest}>
+      <div className="euiRangeTrack" css={cssStyles} {...rest}>
         {levels && !!levels.length && (
           <EuiRangeLevels
             compressed={compressed}

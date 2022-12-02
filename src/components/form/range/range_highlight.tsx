@@ -57,8 +57,6 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
 
   const classes = classNames('euiRangeHighlight', className);
 
-  const progressClasses = classNames('euiRangeHighlight__progress');
-
   const euiTheme = useEuiTheme();
 
   const styles = euiRangeHighlightStyles(euiTheme);
@@ -95,7 +93,7 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
     <div className={classes} css={cssStyles} onClick={onClick} ref={handleRef}>
       {((levels && levels.length === 0) || !levels) && (
         <div
-          className={progressClasses}
+          className="euiRangeHighlight__progress"
           css={cssProgressStyles}
           style={progressStyle}
         />

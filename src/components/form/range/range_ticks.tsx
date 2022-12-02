@@ -14,7 +14,6 @@ import React, {
   CSSProperties,
   MutableRefObject,
 } from 'react';
-import classNames from 'classnames';
 
 import { calculateThumbPosition, EUI_THUMB_SIZE } from './utils';
 
@@ -99,8 +98,6 @@ const EuiTickValue: FunctionComponent<
 
   const pseudoTick = tickObject && !!labelShiftVal && (isMinTick || isMaxTick);
 
-  const tickClasses = classNames('euiRangeTick');
-
   const euiTheme = useEuiTheme();
 
   const styles = euiRangeTickStyles(euiTheme);
@@ -121,7 +118,7 @@ const EuiTickValue: FunctionComponent<
   return (
     <button
       type="button"
-      className={tickClasses}
+      className="euiRangeTick"
       css={cssTickStyles}
       value={tickValue}
       disabled={disabled}
@@ -150,8 +147,6 @@ export const EuiRangeTicks: FunctionComponent<EuiRangeTicksProps> = (props) => {
   // Calculate the width of each tick mark
   const percentageWidth = (interval / (max - min + interval)) * 100;
 
-  const classes = classNames('euiRangeTicks');
-
   const euiTheme = useEuiTheme();
   const styles = euiRangeTicksStyles(euiTheme);
   const cssStyles = [
@@ -162,7 +157,7 @@ export const EuiRangeTicks: FunctionComponent<EuiRangeTicksProps> = (props) => {
   ];
 
   return (
-    <div className={classes} css={cssStyles} ref={ticksRef}>
+    <div className="euiRangeTicks" css={cssStyles} ref={ticksRef}>
       {tickSequence.map((tickValue) => (
         <EuiTickValue
           key={tickValue}

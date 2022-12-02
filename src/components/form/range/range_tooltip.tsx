@@ -34,8 +34,6 @@ export const EuiRangeTooltip: FunctionComponent<EuiRangeTooltipProps> = ({
   name,
   showTicks,
 }) => {
-  const classes = classNames('euiRangeTooltip', {});
-
   // Calculate the left position based on value
   let val = 0;
   if (typeof value === 'number') {
@@ -77,7 +75,7 @@ export const EuiRangeTooltip: FunctionComponent<EuiRangeTooltipProps> = ({
   ];
 
   return (
-    <div className={classes} css={cssStyles}>
+    <div className="euiRangeTooltip" css={cssStyles}>
       <output
         className={valueClasses}
         css={cssValueStyles}

@@ -83,8 +83,6 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
     }
   };
 
-  const classes = classNames('euiRangeLevels');
-
   const euiTheme = useEuiTheme();
   const styles = euiRangeLevelsStyles(euiTheme);
   const cssStyles = [
@@ -95,7 +93,7 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
 
   return (
     <div
-      className={classes}
+      className="euiRangeLevels"
       css={cssStyles}
       ref={handleRef}
       style={style}
