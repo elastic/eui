@@ -14,11 +14,7 @@ import {
   shade,
 } from '../../../services';
 import { euiRangeVariables } from './range.styles';
-import {
-  euiFontSize,
-  mathWithUnits,
-  euiCanAnimate,
-} from '../../../global_styling';
+import { euiFontSize, mathWithUnits } from '../../../global_styling';
 
 export const euiRangeTooltipStyles = (euiThemeContext: UseEuiTheme) => {
   const range = euiRangeVariables(euiThemeContext);
@@ -58,74 +54,48 @@ export const euiRangeTooltipValueStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiRangeTooltip__value: css`
-      font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
-      line-height: ${euiFontSize(euiThemeContext, 's').lineHeight};
-      border: ${euiTheme.border.width.thin} solid
-        ${euiToolTipBackgroundColor(euiTheme, colorMode)};
       position: absolute;
+      inset-block-start: 50%;
+      max-inline-size: ${mathWithUnits(euiTheme.size.base, (x) => x * 16)};
       padding-block: ${euiTheme.size.xxs};
       padding-inline: ${euiTheme.size.s};
-      background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};
-      color: ${euiTheme.colors.ghost};
-      max-inline-size: ${mathWithUnits(euiTheme.size.base, (x) => x * 16)};
-      border-radius: ${euiTheme.border.radius.small};
-      inset-block-start: 50%;
-      ${euiCanAnimate} {
-        transition: box-shadow ${euiTheme.animation.normal}
-            ${euiTheme.animation.resistance},
-          transform ${euiTheme.animation.normal}
-            ${euiTheme.animation.resistance};
-      }
+      transform: translateX(0) translateY(-50%);
 
-      &::after,
+      ${euiFontSize(euiThemeContext, 's')}
+      line-height: ${euiFontSize(euiThemeContext, 's').lineHeight};
+      color: ${euiTheme.colors.ghost};
+      background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};
+      border: ${euiTheme.border.width.thin} solid
+        ${euiToolTipBackgroundColor(euiTheme, colorMode)};
+      border-radius: ${euiTheme.border.radius.small};
+
       &::before {
         content: '';
         position: absolute;
-        inset-block-end: ${mathWithUnits(arrowSize, (x) => x / 2)};
-        inset-inline-start: 50%;
-        transform-origin: center;
-        background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};
+        inset-block-end: 50%;
         inline-size: ${arrowSize};
         block-size: ${arrowSize};
+        transform-origin: center;
+        transform: translateY(50%) rotateZ(45deg);
+        background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};
         border-radius: ${mathWithUnits(
           euiTheme.border.radius.small,
           (x) => x / 2
         )};
       }
-
-      &::before {
-        background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};
-      }
     `,
     left: css`
       margin-inline-end: ${euiTheme.size.l};
-      transform: translateX(0) translateY(-50%);
-
-      &:before,
-      &:after {
-        inset-inline-start: auto;
-        inset-inline-end: ${arrowMinusSize};
-        inset-block-end: 50%;
-        transform: translateY(50%) rotateZ(45deg);
-      }
 
       &::before {
-        margin-inline-end: -${mathWithUnits(range.thumbBorderWidth, (x) => x / 2)};
+        inset-inline-end: ${arrowMinusSize};
       }
     `,
     right: css`
       margin-inline-start: ${euiTheme.size.l};
-      transform: translateX(0) translateY(-50%);
-
-      &:before,
-      &:after {
-        inset-inline-start: ${arrowMinusSize};
-        inset-block-end: 50%;
-        transform: translateY(50%) rotateZ(45deg);
-      }
 
       &::before {
-        margin-inline-start: -${mathWithUnits(range.thumbBorderWidth, (x) => x / 2)};
+        inset-inline-start: ${arrowMinusSize};
       }
     `,
     hasTicks: css`
