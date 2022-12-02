@@ -7,25 +7,26 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme } from '../../../services';
+import { UseEuiTheme, transparentize } from '../../../services';
+import { mathWithUnits } from '../../../global_styling';
+
 import { euiRangeLevelColor } from './range_levels_colors';
 import { euiRangeVariables } from './range.styles';
 
 export const euiRangeLevelsStyles = (euiThemeContext: UseEuiTheme) => {
-  const { colorMode } = euiThemeContext;
+  const { euiTheme, colorMode } = euiThemeContext;
   const range = euiRangeVariables(euiThemeContext);
 
   const isColorDark = colorMode === 'DARK';
-
-  const stripesLightEncodedSVGUrl =
-    'url("data:image/svg+xml, %3Csvg%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%206%22%3E%0A%20%20%3Crect%20width%3D%2224%22%20height%3D%226%22%20fill%3D%22%23fff%22%20fill-opacity%3D%22.5%22%2F%3E%0A%20%20%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22m12%206%206-6h-3l-3%203v3ZM18%206V3l-3%203h3ZM6%206l6-6H9L6%203v3Z%22%20fill%3D%22%23fff%22%20fill-opacity%3D%22.5%22%2F%3E%0A%20%20%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M12%206V3L9%206h3ZM0%206l6-6H3L0%203v3ZM6%206V3L3%206h3ZM18%206l6-6h-3l-3%203v3ZM24%206V3l-3%203h3Z%22%20fill%3D%22%23fff%22%20fill-opacity%3D%22.5%22%2F%3E%0A%3C%2Fsvg%3E")';
-
-  const stripesDarkEncodedSVGUrl =
-    'url("data:image/svg+xml, %3Csvg%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%206%22%3E%0A%20%20%3Crect%20width%3D%2224%22%20height%3D%226%22%20fill%3D%22%23000%22%20fill-opacity%3D%22.5%22%2F%3E%0A%20%20%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22m12%206%206-6h-3l-3%203v3ZM18%206V3l-3%203h3ZM6%206l6-6H9L6%203v3Z%22%20fill%3D%22%23000%22%20fill-opacity%3D%22.5%22%2F%3E%0A%20%20%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M12%206V3L9%206h3ZM0%206l6-6H3L0%203v3ZM6%206V3L3%206h3ZM18%206l6-6h-3l-3%203v3ZM24%206V3l-3%203h3Z%22%20fill%3D%22%23000%22%20fill-opacity%3D%22.5%22%2F%3E%0A%3C%2Fsvg%3E")';
-
-  const stripesBg = isColorDark
-    ? stripesDarkEncodedSVGUrl
-    : stripesLightEncodedSVGUrl;
+  const stripeColor = isColorDark ? euiTheme.colors.ink : euiTheme.colors.ghost;
+  // prettier-ignore
+  const stripesBackground = `repeating-linear-gradient(
+    -45deg,
+    ${transparentize(stripeColor, 0.5)},
+    ${transparentize(stripeColor, 0.5)} ${euiTheme.border.width.thick},
+    ${transparentize(stripeColor, 0.7)} ${euiTheme.border.width.thick},
+    ${transparentize(stripeColor, 0.7)} ${mathWithUnits(euiTheme.border.width.thick, (x) => x * 2)}
+  )`;
 
   return {
     // Base
@@ -44,7 +45,7 @@ export const euiRangeLevelsStyles = (euiThemeContext: UseEuiTheme) => {
         position: absolute;
         block-size: ${range.trackHeight};
         inline-size: 100%;
-        background-image: ${stripesBg};
+        background-image: ${stripesBackground};
         background-repeat: repeat;
         border-radius: ${range.trackBorderRadius};
       }
