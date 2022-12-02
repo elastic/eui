@@ -11,6 +11,7 @@ import { UseEuiTheme } from '../../../services';
 import {
   logicalCSS,
   logicalSizeCSS,
+  logicalCSSWithFallback,
   euiFontSize,
 } from '../../../global_styling';
 import { euiRangeVariables } from './range.styles';
@@ -67,8 +68,8 @@ export const euiRangeTickStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     // Base
     euiRangeTick: css`
-      overflow-inline: hidden; // Overridden if labels overflow horizontally
-      overflow-block: hidden; // Should never scroll vertically
+      ${logicalCSSWithFallback('overflow-x', 'hidden')}
+      ${logicalCSSWithFallback('overflow-y', 'hidden')}
       text-overflow: ellipsis;
       font-size: ${euiFontSize(euiThemeContext, 'xs').fontSize};
       position: absolute;
@@ -107,7 +108,7 @@ export const euiRangeTickStyles = (euiThemeContext: UseEuiTheme) => {
       color: ${euiTheme.colors.primary};
     `,
     isCustom: css`
-      overflow-inline: visible;
+      ${logicalCSSWithFallback('overflow-x', 'hidden')}
     `,
     isMin: css`
       transform: translateX(0);
