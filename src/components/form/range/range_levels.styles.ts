@@ -8,7 +8,6 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme, transparentize } from '../../../services';
-import { mathWithUnits } from '../../../global_styling';
 
 import { euiRangeLevelColor } from './range_levels_colors';
 import { euiRangeVariables } from './range.styles';
@@ -19,13 +18,13 @@ export const euiRangeLevelsStyles = (euiThemeContext: UseEuiTheme) => {
 
   const isColorDark = colorMode === 'DARK';
   const stripeColor = isColorDark ? euiTheme.colors.ink : euiTheme.colors.ghost;
-  // prettier-ignore
   const stripesBackground = `repeating-linear-gradient(
     -45deg,
     ${transparentize(stripeColor, 0.5)},
-    ${transparentize(stripeColor, 0.5)} ${euiTheme.border.width.thick},
-    ${transparentize(stripeColor, 0.7)} ${euiTheme.border.width.thick},
-    ${transparentize(stripeColor, 0.7)} ${mathWithUnits(euiTheme.border.width.thick, (x) => x * 2)}
+    ${transparentize(stripeColor, 0.5)} 25%,
+    ${transparentize(stripeColor, 0.7)} 25%,
+    ${transparentize(stripeColor, 0.7)} 50%,
+    ${transparentize(stripeColor, 0.5)} 50%
   )`;
 
   return {
@@ -46,7 +45,7 @@ export const euiRangeLevelsStyles = (euiThemeContext: UseEuiTheme) => {
         block-size: ${range.trackHeight};
         inline-size: 100%;
         background-image: ${stripesBackground};
-        background-repeat: repeat;
+        background-size: ${euiTheme.size.s} ${euiTheme.size.s}; // Percentage stops and background-size are both needed for Safari to render the gradient at fullWidth correctly
         border-radius: ${range.trackBorderRadius};
       }
     `,
