@@ -62,6 +62,8 @@ const EuiTickValue: FunctionComponent<
   ticksRef,
   compressed,
 }) => {
+  const euiTheme = useEuiTheme();
+
   const tickStyle: CSSProperties = {};
   const tickObject = customTicks
     ? customTicks.find((o) => o.value === tickValue)
@@ -94,12 +96,12 @@ const EuiTickValue: FunctionComponent<
   if (labelShiftVal) {
     const labelShift = isMaxTick ? 'marginRight' : 'marginLeft';
     tickStyle[labelShift] = `-${labelShiftVal}em`;
-    pseudoShift[labelShift] = `calc(${labelShiftVal}em + 4px)`; // 4px derived from .euiRangeTicks left/right offset
+
+    const tickOffset = euiTheme.euiTheme.size.xs; // xs derived from .euiRangeTicks left/right offset
+    pseudoShift[labelShift] = `calc(${labelShiftVal}em + ${tickOffset})`;
   }
 
   const pseudoTick = tickObject && !!labelShiftVal && (isMinTick || isMaxTick);
-
-  const euiTheme = useEuiTheme();
 
   const styles = euiRangeTickStyles(euiTheme);
   const cssTickStyles = [

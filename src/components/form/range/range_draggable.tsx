@@ -43,9 +43,11 @@ export const EuiRangeDraggable: FunctionComponent<EuiRangeDraggableProps> = ({
   value,
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
+
   const outerStyle: React.CSSProperties = {
     left: lowerPosition,
-    right: `calc(100% - ${upperPosition} - 16px)`,
+    right: `calc(100% - ${upperPosition} - ${euiTheme.euiTheme.size.base})`,
   };
 
   const classes = classNames('euiRangeDraggable', className);
@@ -60,7 +62,6 @@ export const EuiRangeDraggable: FunctionComponent<EuiRangeDraggableProps> = ({
 
   const [handleMouseDown, handleInteraction] = useMouseMove(handleChange);
 
-  const euiTheme = useEuiTheme();
   const styles = euiRangeDraggableStyles(euiTheme);
   const cssStyles = [
     styles.euiRangeDraggable,

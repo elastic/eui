@@ -52,24 +52,22 @@ export const euiRangeTooltipValueStyles = (euiThemeContext: UseEuiTheme) => {
   const range = euiRangeVariables(euiThemeContext);
   const { euiTheme, colorMode } = euiThemeContext;
 
-  /*
-   * 1. Shift arrow 1px more than half its size to account for border radius
-   */
   const arrowSize = euiTheme.size.m;
   const arrowSizeInt = parseInt(arrowSize, 10);
-  const arrowMinusSize = `${(arrowSizeInt / 2 - 1) * -1}px`; /* 1 */
+  const arrowMinusSize = `${(arrowSizeInt / 2 - 1) * -1}px`; // Shift arrow 1px more than half its size to account for border radius
 
   return {
     euiRangeTooltip__value: css`
       font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
       line-height: ${euiFontSize(euiThemeContext, 's').lineHeight};
-      border: 1px solid ${euiToolTipBackgroundColor(euiTheme, colorMode)};
+      border: ${euiTheme.border.width.thin} solid
+        ${euiToolTipBackgroundColor(euiTheme, colorMode)};
       position: absolute;
       padding-block: ${euiTheme.size.xxs};
       padding-inline: ${euiTheme.size.s};
       background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};
       color: ${euiTheme.colors.ghost};
-      max-inline-size: 256px;
+      max-inline-size: ${mathWithUnits(euiTheme.size.base, (x) => x * 16)};
       border-radius: ${euiTheme.border.radius.small};
       inset-block-start: 50%;
       ${euiCanAnimate} {
@@ -89,7 +87,10 @@ export const euiRangeTooltipValueStyles = (euiThemeContext: UseEuiTheme) => {
         background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};
         inline-size: ${arrowSize};
         block-size: ${arrowSize};
-        border-radius: 2px;
+        border-radius: ${mathWithUnits(
+          euiTheme.border.radius.small,
+          (x) => x / 2
+        )};
       }
 
       &::before {
@@ -109,7 +110,7 @@ export const euiRangeTooltipValueStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       &::before {
-        margin-inline-end: -1px;
+        margin-inline-end: -${mathWithUnits(range.thumbBorderWidth, (x) => x / 2)};
       }
     `,
     right: css`
@@ -124,7 +125,7 @@ export const euiRangeTooltipValueStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       &::before {
-        margin-inline-start: -1px;
+        margin-inline-start: -${mathWithUnits(range.thumbBorderWidth, (x) => x / 2)};
       }
     `,
     hasTicks: css`
