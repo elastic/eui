@@ -16,6 +16,7 @@ import {
   WithEuiThemeProps,
 } from '../../../services';
 import { isWithinRange } from '../../../services/number';
+import { logicalStyles } from '../../../global_styling';
 import { EuiInputPopover } from '../../popover';
 import {
   EuiFormControlLayoutDelimited,
@@ -544,7 +545,6 @@ export class EuiDualRangeClass extends Component<
       onFocus,
       showRange,
       value,
-      style,
       isInvalid,
       append,
       prepend,
@@ -715,7 +715,6 @@ export class EuiDualRangeClass extends Component<
             step={step}
             disabled={disabled}
             onChange={this.handleSliderChange}
-            style={style}
             showTicks={showTicks}
             hasFocus={this.state.hasFocus}
             aria-hidden={true}
@@ -770,7 +769,7 @@ export class EuiDualRangeClass extends Component<
                 onKeyDown={this.handleLowerKeyDown}
                 onFocus={this.onThumbFocus}
                 onBlur={this.onThumbBlur}
-                style={leftThumbStyles}
+                style={logicalStyles(leftThumbStyles)}
                 aria-describedby={this.props['aria-describedby']}
                 aria-label={this.props['aria-label']}
               />
@@ -785,7 +784,7 @@ export class EuiDualRangeClass extends Component<
                 onKeyDown={this.handleUpperKeyDown}
                 onFocus={this.onThumbFocus}
                 onBlur={this.onThumbBlur}
-                style={rightThumbStyles}
+                style={logicalStyles(rightThumbStyles)}
                 aria-describedby={this.props['aria-describedby']}
                 aria-label={this.props['aria-label']}
               />

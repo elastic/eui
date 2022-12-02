@@ -10,6 +10,8 @@ import React, { FunctionComponent, useState } from 'react';
 import classNames from 'classnames';
 
 import { useEuiTheme } from '../../../services';
+import { logicalStyles } from '../../../global_styling';
+
 import {
   euiRangeHighlightStyles,
   euiRangeHighlightProgressStyles,
@@ -46,7 +48,6 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
   levels,
 }) => {
   // Calculate the width the range based on value
-  // const rangeWidth = (value - min) / (max - min);
   const leftPosition = (lowerValue - min) / (max - min);
   const rangeWidth = (upperValue - lowerValue) / (max - min);
 
@@ -70,7 +71,7 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
   const progressStyle = {
     background,
     marginLeft: `${leftPosition * 100}%`,
-    inlineSize: `${rangeWidth * 100}%`,
+    width: `${rangeWidth * 100}%`,
   };
 
   const levelsWrapperStyles = euiRangeHighlightLevelsWrapperStyles(euiTheme);
@@ -79,14 +80,14 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
   ];
   const levelsWrapperStyle = {
     marginLeft: `${leftPosition * 100}%`,
-    inlineSize: `${rangeWidth * 100}%`,
+    width: `${rangeWidth * 100}%`,
   };
 
   const levelsStyles = euiRangeHighlightLevelsStyles(euiTheme);
   const cssLevelsStyles = [levelsStyles.euiRangeHighlight__levels];
   const levelsStyle = {
     left: `-${trackWidth * leftPosition}px`,
-    inlineSize: `${trackWidth}px`,
+    width: `${trackWidth}px`,
   };
 
   return (
@@ -95,15 +96,18 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
         <div
           className="euiRangeHighlight__progress"
           css={cssProgressStyles}
-          style={progressStyle}
+          style={logicalStyles(progressStyle)}
         />
       )}
 
       {levels && !!levels.length && (
-        <div css={cssLevelsWrapperStyles} style={levelsWrapperStyle as any}>
+        <div
+          css={cssLevelsWrapperStyles}
+          style={logicalStyles(levelsWrapperStyle)}
+        >
           <EuiRangeLevels
             css={cssLevelsStyles}
-            style={levelsStyle}
+            style={logicalStyles(levelsStyle)}
             compressed={compressed}
             levels={levels}
             max={max}

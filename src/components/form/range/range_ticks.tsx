@@ -20,6 +20,7 @@ import { calculateThumbPosition, EUI_THUMB_SIZE } from './utils';
 import { useInnerText } from '../../inner_text';
 
 import { useEuiTheme } from '../../../services';
+import { logicalStyles } from '../../../global_styling';
 import { euiRangeTicksStyles, euiRangeTickStyles } from './range_ticks.styles';
 
 export interface EuiRangeTick {
@@ -121,7 +122,7 @@ const EuiTickValue: FunctionComponent<
       value={tickValue}
       disabled={disabled}
       onClick={onChange}
-      style={tickStyle}
+      style={logicalStyles(tickStyle)}
       tabIndex={-1}
       ref={ref}
       title={typeof label === 'string' ? label : innerText}
@@ -131,7 +132,7 @@ const EuiTickValue: FunctionComponent<
           className="euiRangeTick__pseudo"
           css={styles.euiRangeTick__pseudo}
           aria-hidden
-          style={pseudoShift}
+          style={logicalStyles(pseudoShift)}
         />
       )}
       {label}

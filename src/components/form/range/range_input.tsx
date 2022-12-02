@@ -8,9 +8,10 @@
 
 import React, { FunctionComponent } from 'react';
 
+import { useEuiTheme } from '../../../services';
+import { logicalStyles } from '../../../global_styling';
 import { EuiFieldNumber, EuiFieldNumberProps } from '../field_number';
 
-import { useEuiTheme } from '../../../services';
 import { euiRangeInputStyles } from './range_input.styles';
 
 export interface EuiRangeInputProps
@@ -43,7 +44,7 @@ export const EuiRangeInput: FunctionComponent<EuiRangeInputProps> = ({
   // Add 2 to accommodate for input stepper
   const widthStyle = autoSize
     ? { width: `${digitTolerance / 1.25 + 2}em` }
-    : undefined;
+    : {};
 
   const euiTheme = useEuiTheme();
   const styles = euiRangeInputStyles(euiTheme);
@@ -61,7 +62,7 @@ export const EuiRangeInput: FunctionComponent<EuiRangeInputProps> = ({
       disabled={disabled}
       compressed={compressed}
       onChange={onChange}
-      style={widthStyle}
+      style={logicalStyles(widthStyle)}
       fullWidth={fullWidth}
       {...rest}
     />

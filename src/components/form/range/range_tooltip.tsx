@@ -9,6 +9,8 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 
 import { useEuiTheme } from '../../../services';
+import { logicalStyles } from '../../../global_styling';
+
 import {
   euiRangeTooltipStyles,
   euiRangeTooltipValueStyles,
@@ -73,7 +75,7 @@ export const EuiRangeTooltip: FunctionComponent<EuiRangeTooltipProps> = ({
         className="euiRangeTooltip__value"
         css={cssValueStyles}
         htmlFor={name}
-        style={valuePositionStyle}
+        style={logicalStyles(valuePositionStyle)}
       >
         {valuePrepend}
         {value}

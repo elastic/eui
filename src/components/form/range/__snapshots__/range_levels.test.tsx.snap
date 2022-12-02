@@ -9,11 +9,11 @@ exports[`EuiRangeLevels is rendered 1`] = `
   <span
     class="euiRangeLevel customClass emotion-euiRangeLevel-danger"
     data-test-subj="firstLevel"
-    style="left:calc(0% + 0px);right:calc(100% - 0px)"
+    style="inset-inline-start:calc(0% + 0px);inset-inline-end:calc(100% - 0px)"
   />
   <span
     class="euiRangeLevel emotion-euiRangeLevel-success"
-    style="left:calc(0% + 0px);right:calc(100% - 0px)"
+    style="inset-inline-start:calc(0% + 0px);inset-inline-end:calc(100% - 0px)"
   />
 </div>
 `;
@@ -26,11 +26,11 @@ exports[`EuiRangeLevels is rendered with named and custom color 1`] = `
 >
   <span
     class="euiRangeLevel emotion-euiRangeLevel-danger"
-    style="left:calc(0% + 0px);right:calc(100% - 0px)"
+    style="inset-inline-start:calc(0% + 0px);inset-inline-end:calc(100% - 0px)"
   />
   <span
     class="euiRangeLevel emotion-euiRangeLevel-customColor"
-    style="left:calc(0% + 0px);right:calc(100% - 0px);background-color:#ff0000"
+    style="inset-inline-start:calc(0% + 0px);inset-inline-end:calc(100% - 0px);background-color:#ff0000"
   />
 </div>
 `;

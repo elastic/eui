@@ -8,8 +8,10 @@
 
 import React, { CSSProperties, FunctionComponent, useState } from 'react';
 import classNames from 'classnames';
+
 import { CommonProps } from '../../common';
 import { useEuiTheme } from '../../../services';
+import { logicalStyles } from '../../../global_styling';
 
 import { EuiRangeLevelColor, isNamedLevelColor } from './range_levels_colors';
 import {
@@ -63,7 +65,6 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
   showTicks,
   compressed,
   showRange,
-  style,
   ...rest
 }) => {
   const [trackWidth, setTrackWidth] = useState(0);
@@ -92,13 +93,7 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
   ];
 
   return (
-    <div
-      className="euiRangeLevels"
-      css={cssStyles}
-      ref={handleRef}
-      style={style}
-      {...rest}
-    >
+    <div className="euiRangeLevels" css={cssStyles} ref={handleRef} {...rest}>
       {levels.map((level, index) => {
         validateLevelIsInRange(level);
 
@@ -148,7 +143,7 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
         return (
           <span
             key={index}
-            style={styles}
+            style={logicalStyles(styles)}
             className={levelClasses}
             css={cssLevelStyles}
             {...levelRest}

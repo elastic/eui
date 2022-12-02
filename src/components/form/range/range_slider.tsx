@@ -14,8 +14,9 @@ import React, {
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
-
 import { useEuiTheme } from '../../../services';
+import { logicalStyles } from '../../../global_styling';
+
 import { EuiRangeLevel } from './range_levels';
 import { euiRangeLevelColor } from './range_levels_colors';
 import {
@@ -95,7 +96,7 @@ export const EuiRangeSlider = forwardRef<HTMLInputElement, EuiRangeSliderProps>(
         value={value}
         disabled={disabled}
         onChange={onChange}
-        style={sliderStyle}
+        style={logicalStyles(sliderStyle)}
         tabIndex={tabIndex}
         {...rest}
       />

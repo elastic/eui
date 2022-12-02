@@ -10,6 +10,8 @@ import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import { useMouseMove, useEuiTheme } from '../../../services';
+import { logicalStyles } from '../../../global_styling';
+
 import {
   euiRangeDraggableStyles,
   euiRangeDraggableInnerStyles,
@@ -84,7 +86,7 @@ export const EuiRangeDraggable: FunctionComponent<EuiRangeDraggableProps> = ({
   };
 
   return (
-    <div style={outerStyle} {...commonProps} {...rest}>
+    <div style={logicalStyles(outerStyle)} {...commonProps} {...rest}>
       <div
         className="euiRangeDraggable__inner"
         css={cssInnerStyles}

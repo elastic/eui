@@ -45,7 +45,7 @@ exports[`EuiDualRange allows value prop to accept numbers 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="margin-left:1%;inline-size:7.000000000000001%"
+        style="margin-inline-start:1%;inline-size:7.000000000000001%"
       />
     </div>
   </div>
@@ -69,7 +69,7 @@ exports[`EuiDualRange input props can be applied to min and max inputs 1`] = `
         min="1"
         name="name-minValue"
         step="1"
-        style="width:3.6em"
+        style="inline-size:3.6em"
         type="number"
         value="1"
       />
@@ -98,7 +98,7 @@ exports[`EuiDualRange input props can be applied to min and max inputs 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="margin-left:0%;inline-size:77.77777777777779%"
+        style="margin-inline-start:0%;inline-size:77.77777777777779%"
       />
     </div>
   </div>
@@ -118,7 +118,7 @@ exports[`EuiDualRange input props can be applied to min and max inputs 1`] = `
         min="1"
         name="name-maxValue"
         step="1"
-        style="width:3.6em"
+        style="inline-size:3.6em"
         type="number"
         value="8"
       />
@@ -153,7 +153,7 @@ exports[`EuiDualRange is rendered 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="margin-left:1%;inline-size:7.000000000000001%"
+        style="margin-inline-start:1%;inline-size:7.000000000000001%"
       />
     </div>
   </div>
@@ -183,7 +183,7 @@ exports[`EuiDualRange props compressed should render 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="margin-left:1%;inline-size:7.000000000000001%"
+        style="margin-inline-start:1%;inline-size:7.000000000000001%"
       />
     </div>
   </div>
@@ -203,7 +203,7 @@ exports[`EuiDualRange props custom ticks should render 1`] = `
     >
       <button
         class="euiRangeTick emotion-euiRangeTick-isCustom-hasPseudoTickMark-regular"
-        style="left:calc(-Infinity% + 8px)"
+        style="inset-inline-start:calc(-Infinity% + 8px)"
         tabindex="-1"
         title="20kb"
         type="button"
@@ -213,7 +213,7 @@ exports[`EuiDualRange props custom ticks should render 1`] = `
       </button>
       <button
         class="euiRangeTick emotion-euiRangeTick-isCustom-isMax-regular"
-        style="right:0%;margin-right:-1.25em"
+        style="inset-inline-end:0%;margin-inline-end:-1.25em"
         tabindex="-1"
         title="100kb"
         type="button"
@@ -222,7 +222,7 @@ exports[`EuiDualRange props custom ticks should render 1`] = `
         <span
           aria-hidden="true"
           class="euiRangeTick__pseudo emotion-euiRangeTick__pseudo"
-          style="margin-right:calc(1.25em + 4px)"
+          style="margin-inline-end:calc(1.25em + 4px)"
         />
         100kb
       </button>
@@ -242,7 +242,7 @@ exports[`EuiDualRange props custom ticks should render 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="margin-left:20%;inline-size:80%"
+        style="margin-inline-start:20%;inline-size:80%"
       />
     </div>
   </div>
@@ -273,7 +273,7 @@ exports[`EuiDualRange props disabled should render 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="margin-left:1%;inline-size:7.000000000000001%"
+        style="margin-inline-start:1%;inline-size:7.000000000000001%"
       />
     </div>
   </div>
@@ -303,7 +303,7 @@ exports[`EuiDualRange props fullWidth should render 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="margin-left:1%;inline-size:7.000000000000001%"
+        style="margin-inline-start:1%;inline-size:7.000000000000001%"
       />
     </div>
   </div>
@@ -327,7 +327,7 @@ exports[`EuiDualRange props inputs should render 1`] = `
         min="0"
         name="name-minValue"
         step="1"
-        style="width:4.4em"
+        style="inline-size:4.4em"
         type="number"
         value="1"
       />
@@ -358,7 +358,7 @@ exports[`EuiDualRange props inputs should render 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="margin-left:1%;inline-size:7.000000000000001%"
+        style="margin-inline-start:1%;inline-size:7.000000000000001%"
       />
     </div>
   </div>
@@ -378,7 +378,7 @@ exports[`EuiDualRange props inputs should render 1`] = `
         min="1"
         name="name-maxValue"
         step="1"
-        style="width:4.4em"
+        style="inline-size:4.4em"
         type="number"
         value="8"
       />
@@ -410,7 +410,7 @@ exports[`EuiDualRange props isDraggable should render 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="margin-left:1%;inline-size:7.000000000000001%"
+        style="margin-inline-start:1%;inline-size:7.000000000000001%"
       />
     </div>
   </div>
@@ -445,7 +445,7 @@ exports[`EuiDualRange props labels should render 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="margin-left:1%;inline-size:7.000000000000001%"
+        style="margin-inline-start:1%;inline-size:7.000000000000001%"
       />
     </div>
   </div>
@@ -470,11 +470,11 @@ exports[`EuiDualRange props levels should render 1`] = `
     >
       <span
         class="euiRangeLevel emotion-euiRangeLevel-danger"
-        style="left:calc(0% + 0px);right:calc(100% - 0px)"
+        style="inset-inline-start:calc(0% + 0px);inset-inline-end:calc(100% - 0px)"
       />
       <span
         class="euiRangeLevel emotion-euiRangeLevel-success"
-        style="left:calc(0% + 0px);right:calc(100% - 0px)"
+        style="inset-inline-start:calc(0% + 0px);inset-inline-end:calc(100% - 0px)"
       />
     </div>
     <input
@@ -492,19 +492,19 @@ exports[`EuiDualRange props levels should render 1`] = `
     >
       <div
         class="emotion-euiRangeHighlight__levelsWrapper"
-        style="margin-left:1%;inline-size:7.000000000000001%"
+        style="margin-inline-start:1%;inline-size:7.000000000000001%"
       >
         <div
           class="emotion-euiRangeLevels-euiRangeHighlight__levels"
-          style="left:-0px;inline-size:0px"
+          style="inset-inline-start:-0px;inline-size:0px"
         >
           <span
             class="euiRangeLevel emotion-euiRangeLevel-danger"
-            style="left:calc(0% + 0px);right:calc(100% - 0px)"
+            style="inset-inline-start:calc(0% + 0px);inset-inline-end:calc(100% - 0px)"
           />
           <span
             class="euiRangeLevel emotion-euiRangeLevel-success"
-            style="left:calc(0% + 0px);right:calc(100% - 0px)"
+            style="inset-inline-start:calc(0% + 0px);inset-inline-end:calc(100% - 0px)"
           />
         </div>
       </div>
@@ -591,7 +591,7 @@ exports[`EuiDualRange props range should render 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="margin-left:1%;inline-size:7.000000000000001%"
+        style="margin-inline-start:1%;inline-size:7.000000000000001%"
       />
     </div>
   </div>
@@ -657,7 +657,7 @@ exports[`EuiDualRange props ticks should render 1`] = `
     >
       <button
         class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
-        style="left:calc(NaN% + 8px);max-width:16.666666666666664%"
+        style="inset-inline-start:calc(NaN% + 8px);max-inline-size:16.666666666666664%"
         tabindex="-1"
         type="button"
         value="0"
@@ -666,7 +666,7 @@ exports[`EuiDualRange props ticks should render 1`] = `
       </button>
       <button
         class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
-        style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
+        style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:16.666666666666664%"
         tabindex="-1"
         type="button"
         value="20"
@@ -675,7 +675,7 @@ exports[`EuiDualRange props ticks should render 1`] = `
       </button>
       <button
         class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
-        style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
+        style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:16.666666666666664%"
         tabindex="-1"
         type="button"
         value="40"
@@ -684,7 +684,7 @@ exports[`EuiDualRange props ticks should render 1`] = `
       </button>
       <button
         class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
-        style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
+        style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:16.666666666666664%"
         tabindex="-1"
         type="button"
         value="60"
@@ -693,7 +693,7 @@ exports[`EuiDualRange props ticks should render 1`] = `
       </button>
       <button
         class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
-        style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
+        style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:16.666666666666664%"
         tabindex="-1"
         type="button"
         value="80"
@@ -702,7 +702,7 @@ exports[`EuiDualRange props ticks should render 1`] = `
       </button>
       <button
         class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
-        style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
+        style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:16.666666666666664%"
         tabindex="-1"
         type="button"
         value="100"
@@ -725,7 +725,7 @@ exports[`EuiDualRange props ticks should render 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="margin-left:1%;inline-size:7.000000000000001%"
+        style="margin-inline-start:1%;inline-size:7.000000000000001%"
       />
     </div>
   </div>

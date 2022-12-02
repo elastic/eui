@@ -206,7 +206,6 @@ export class EuiRangeClass extends Component<
       onChange,
       onFocus,
       value,
-      style,
       tabIndex,
       isInvalid,
       theme,
@@ -284,7 +283,6 @@ export class EuiRangeClass extends Component<
             value={value}
             disabled={disabled}
             onChange={this.handleOnChange}
-            style={style}
             showTicks={showTicks}
             showRange={showRange}
             tabIndex={showInput ? -1 : tabIndex}
