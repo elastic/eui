@@ -71,6 +71,17 @@ module.exports = {
     'selector-not-notation': 'simple',
     'color-function-notation': 'legacy',
     'alpha-value-notation': 'number',
+
+    // Disable various opinionated extended stylelint rules that EUI has not previously enforced
+    'no-descending-specificity': null,
+    'function-name-case': null,
+    'keyframe-selector-notation': null,
+    'declaration-block-no-redundant-longhand-properties': null,
+    'scss/no-global-function-names': null,
+    'scss/dollar-variable-empty-line-before': null,
+    'scss/at-rule-conditional-no-parentheses': null,
+    'scss/double-slash-comment-empty-line-before': null,
+    'scss/at-if-no-null': null,
   },
   ignoreFiles: [
     'generator-eui/**/*.scss',
