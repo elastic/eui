@@ -66,6 +66,11 @@ module.exports = {
         ignore: ['consecutive-duplicates'], // We occasionally use duplicate property values for cross-browser fallbacks
       },
     ],
+
+    // TODO: It may be worth investigating and updating these rules to their more modern counterparts
+    'selector-not-notation': 'simple',
+    'color-function-notation': 'legacy',
+    'alpha-value-notation': 'number',
   },
   ignoreFiles: [
     'generator-eui/**/*.scss',
