@@ -22,6 +22,14 @@ module.exports = {
     'block-opening-brace-space-before': 'always',
     'block-closing-brace-newline-before': 'always-multi-line',
     'scss/at-if-closing-brace-space-after': 'always-intermediate',
+    // Put a line-break between sections of CSS, but allow quick one-liners for legibility
+    'rule-empty-line-before': [
+      'always-multi-line',
+      {
+        except: ['first-nested'],
+        ignore: ['after-comment'],
+      },
+    ],
 
     // Value preferences
     'number-leading-zero': 'never',

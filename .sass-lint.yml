@@ -26,11 +26,6 @@ rules:
       allow-element-with-attribute: 1
   # Files can end without a newline
   final-newline: 0
-  # Put a line-break between sections of CSS, but allow quicky one-liners for legibility
-  empty-line-between-blocks:
-    - 2
-    -
-      allow-single-line-rulesets: 1
   # Warns are nice for deprecations and development
   no-warn: 0
   # Transition all is useful in certain situations and there's no recent info to suggest slowdown
