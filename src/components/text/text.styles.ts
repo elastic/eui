@@ -338,7 +338,10 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
         line-height: 1;
         border: ${euiTheme.border.width.thin} solid ${euiTheme.colors.text};
-        border-radius: calc(${euiTheme.border.radius.small} / 2);
+        border-radius: ${mathWithUnits(
+          euiTheme.border.radius.small,
+          (x) => x / 2
+        )};
       }
     `,
     constrainedWidth: css`

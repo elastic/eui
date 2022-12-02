@@ -99,6 +99,23 @@ describe('EuiTourStep', () => {
     expect(component.render()).toMatchSnapshot();
   });
 
+  test('accepts an array of buttons in the footerAction prop', () => {
+    const component = mount(
+      <EuiTourStep
+        {...props}
+        isStepOpen
+        footerAction={[
+          <button onClick={() => {}}>Button 1</button>,
+          <button onClick={() => {}}>Button 2</button>,
+        ]}
+      >
+        <span>Test</span>
+      </EuiTourStep>
+    );
+
+    expect(component.render()).toMatchSnapshot();
+  });
+
   test('can turn off the beacon', () => {
     const component = mount(
       <EuiTourStep {...props} isStepOpen decoration="none">

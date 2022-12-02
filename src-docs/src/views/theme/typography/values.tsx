@@ -1,8 +1,9 @@
 import React, { useContext, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { css } from '@emotion/react';
 
-// @ts-ignore Importing from Sass file
-import fonts from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../../src/global_styling/variables/_font_weight.scss';
+// @ts-ignore Importing JSON
+import themeVars from '../_json/eui_theme_light.json'; // Only grabbing font weight vars, so color mode is irrelevant
 
 import { GuideSection } from '../../../components/guide_section/guide_section';
 
@@ -181,12 +182,17 @@ export default () => {
                 showValue
                 aria-label="Font weight"
                 showTicks
-                ticks={euiFontWeights.map(function (name) {
-                  return {
-                    label: name.split('euiFontWeight').pop(),
-                    value: fonts[name],
-                  };
-                })}
+                ticks={Object.entries(euiTheme.font.weight).map(
+                  ([name, value]) => ({
+                    label: name,
+                    value: Number(value),
+                  })
+                )}
+                css={css`
+                  .euiRangeTick {
+                    text-transform: capitalize;
+                  }
+                `}
               />
             </>
           }
@@ -241,8 +247,8 @@ const findJSFontWeight = ({
 };
 
 const findSassFontWeight = ({ fontWeight }: { fontWeight: number }) => {
-  const weight = Object.keys(fonts).find(
-    (key) => fonts[key] === Number(fontWeight)
+  const weight = euiFontWeights.find(
+    (key) => themeVars[key] === Number(fontWeight)
   );
   return `font-weight: ${weight ? `$${weight}` : fontWeight};`;
 };

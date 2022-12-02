@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import {
+  EuiBreadcrumb,
   EuiHeader,
   EuiHeaderLogo,
   EuiHeaderSectionItemButton,
@@ -13,7 +14,7 @@ import {
 export default () => {
   const [isFixed, setIsFixed] = useState(false);
 
-  const breadcrumbs = [
+  const breadcrumbs: EuiBreadcrumb[] = [
     {
       text: 'Management',
       href: '#',

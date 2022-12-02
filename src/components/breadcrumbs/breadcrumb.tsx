@@ -80,7 +80,12 @@ export const EuiBreadcrumb: FunctionComponent<
   ];
 
   return (
-    <li className={classes} css={cssStyles} {...rest}>
+    <li
+      className={classes}
+      css={cssStyles}
+      data-test-subj="euiBreadcrumb"
+      {...rest}
+    >
       {children}
     </li>
   );

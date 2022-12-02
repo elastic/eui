@@ -11,6 +11,7 @@ import {
   EuiPaddingSize,
   euiPaddingSize,
   logicalCSS,
+  logicalShorthandCSS,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiTitle } from '../title/title.styles';
@@ -53,5 +54,8 @@ const getPaddingOffset = (
 ) => {
   const panelPaddingSize = euiPaddingSize(euiThemeContext, size);
 
-  return `margin: -${panelPaddingSize} -${panelPaddingSize} ${panelPaddingSize};`;
+  return logicalShorthandCSS(
+    'margin',
+    `-${panelPaddingSize} -${panelPaddingSize} ${panelPaddingSize}`
+  );
 };

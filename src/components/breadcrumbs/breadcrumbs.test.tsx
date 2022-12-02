@@ -9,6 +9,7 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps, replaceEmotionPrefix } from '../../test';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiBreadcrumbs, EuiBreadcrumb } from './';
 
@@ -57,6 +58,10 @@ const breadcrumbs: EuiBreadcrumb[] = [
 ];
 
 describe('EuiBreadcrumbs', () => {
+  shouldRenderCustomStyles(
+    <EuiBreadcrumbs {...requiredProps} breadcrumbs={breadcrumbs} />
+  );
+
   test('is rendered', () => {
     const component = render(
       <EuiBreadcrumbs {...requiredProps} breadcrumbs={breadcrumbs} />

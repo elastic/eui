@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 import {
-  euiBreakpoint,
+  euiMinBreakpoint,
   logicalCSS,
   logicalTextAlignCSS,
   logicalSide,
@@ -49,7 +49,7 @@ export const euiImageWrapperStyles = (euiThemeContext: UseEuiTheme) => {
     // 1: Logical properties/values in `float` is currently not yet supported by all browsers w/o flags
     // @see https://caniuse.com/mdn-css_properties_float_flow_relative_values for when we can remove left/right fallbacks
     left: css`
-      ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
+      ${euiMinBreakpoint(euiThemeContext, 'm')} {
         float: left; /* 1 */
         float: ${logicalSide.left};
         ${logicalCSS('margin-left', '0')};
@@ -57,7 +57,7 @@ export const euiImageWrapperStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     right: css`
-      ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
+      ${euiMinBreakpoint(euiThemeContext, 'm')} {
         float: right; /* 1 */
         float: ${logicalSide.right};
         ${logicalCSS('margin-right', '0')};

@@ -10,6 +10,7 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 import {
   logicalCSS,
+  logicalShorthandCSS,
   euiFontSize,
   _FontScaleOptions,
   mathWithUnits,
@@ -34,7 +35,7 @@ const euiScaleMarkdownFormatText = (
 
   return `
     .euiMarkdownFormat__blockquote {
-      padding: 0 ${fontSize};
+      ${logicalShorthandCSS('padding', `0 ${fontSize}`)}
       ${logicalCSS('border-left-width', blockQuoteBorderWidth)}
       ${logicalCSS('margin-bottom', fontSize)}
     }

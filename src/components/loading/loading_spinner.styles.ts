@@ -10,6 +10,8 @@ import {
   _EuiThemeSize,
   euiCanAnimate,
   logicalSizeCSS,
+  logicalShorthandCSS,
+  mathWithUnits,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import {
@@ -56,7 +58,10 @@ export const euiLoadingSpinnerStyles = (euiThemeContext: UseEuiTheme) => {
       display: inline-block;
       border-radius: 50%;
       border: ${euiTheme.border.thick};
-      border-color: ${euiSpinnerBorderColorsCSS(euiThemeContext)};
+      ${logicalShorthandCSS(
+        'border-color',
+        euiSpinnerBorderColorsCSS(euiThemeContext)
+      )}
 
       ${euiCanAnimate} {
         animation: ${_loadingSpinner} 0.6s infinite linear;
@@ -69,14 +74,20 @@ export const euiLoadingSpinnerStyles = (euiThemeContext: UseEuiTheme) => {
         euiTheme.size[spinnerSizes.s],
         euiTheme.size[spinnerSizes.s]
       )}
-      border-width: calc(${euiTheme.border.width.thin} * 1.5);
+      border-width: ${mathWithUnits(
+        euiTheme.border.width.thin,
+        (x) => x * 1.5
+      )};
     `,
     m: css`
       ${logicalSizeCSS(
         euiTheme.size[spinnerSizes.m],
         euiTheme.size[spinnerSizes.m]
       )}
-      border-width: calc(${euiTheme.border.width.thin} * 1.5);
+      border-width: ${mathWithUnits(
+        euiTheme.border.width.thin,
+        (x) => x * 1.5
+      )};
     `,
     l: css`
       ${logicalSizeCSS(

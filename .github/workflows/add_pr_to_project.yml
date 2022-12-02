@@ -1,0 +1,16 @@
+name: Adds PR to project board
+
+on:
+  pull_request:
+    types:
+      - opened
+
+jobs:
+  add-to-project:
+    name: Add PR to project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/add-to-project@0.4.0
+        with:
+          project-url: https://github.com/orgs/elastic/projects/1079
+          github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
