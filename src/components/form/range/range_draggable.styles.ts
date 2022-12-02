@@ -58,10 +58,7 @@ export const euiRangeDraggableStyles = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
-export const euiRangeDraggableInnerStyles = (
-  euiThemeContext: UseEuiTheme,
-  disabled: boolean | undefined
-) => {
+export const euiRangeDraggableInnerStyles = (euiThemeContext: UseEuiTheme) => {
   const range = euiRangeVariables(euiThemeContext);
 
   return {
@@ -69,16 +66,14 @@ export const euiRangeDraggableInnerStyles = (
       position: absolute;
       inset-inline: ${range.thumbWidth};
       inset-block: 0;
+    `,
+    enabled: css`
+      cursor: grab;
+      pointer-events: all;
 
-      ${!disabled &&
-      `
-        cursor: grab;
-        pointer-events: all;
-
-        &:active {
-          cursor: grabbing;
-        }
-      `}
+      &:active {
+        cursor: grabbing;
+      }
     `,
     disabled: css``,
   };
