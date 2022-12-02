@@ -19,7 +19,11 @@
       "matchBaseBranches": ["main"],
       "labels": ["dependencies", "skip-changelog"],
       "automerge": true,
-      "enabled": true
+      "enabled": true,
+      "reviewers": ["team:visualizations", "markov00", "nickofthyme"],
+      "draftPR": true,
+      "assignAutomerge": true,
+      "prCreation": "immediate"
     },
     {
       "matchPackagePatterns": ["*"],
