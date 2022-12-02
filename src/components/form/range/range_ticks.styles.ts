@@ -109,7 +109,7 @@ export const euiRangeTickStyles = (euiThemeContext: UseEuiTheme) => {
       &::before {
         ${tickStyles(euiThemeContext, range)}
         content: '';
-        inset-inline-start: calc(50% - ${euiTheme.size.xs});
+        inset-inline-start: calc(50% - ${range.thumbBorderWidth});
       }
     `,
     euiRangeTick__pseudo: css`
