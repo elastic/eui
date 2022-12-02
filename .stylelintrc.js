@@ -30,6 +30,9 @@ module.exports = {
         ignore: ['after-comment'],
       },
     ],
+    // Ensure multiple selectors on one line each
+    'selector-list-comma-newline-before': 'never-multi-line',
+    'selector-list-comma-newline-after': 'always',
     // Trim unnecessary newlines/whitespace
     'block-closing-brace-empty-line-before': 'never',
     'declaration-empty-line-before': null,
