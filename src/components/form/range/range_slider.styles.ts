@@ -72,11 +72,7 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
 
         ~ .euiRangeTooltip .euiRangeTooltip__value {
           ${euiShadow(euiThemeContext, 'm')};
-
-          &.euiRangeTooltip__value--right,
-          &.euiRangeTooltip__value--left {
-            transform: translateX(0) translateY(-50%) scale(1.1);
-          }
+          transform: translateX(0) translateY(-50%) scale(1.1);
         }
       }
 

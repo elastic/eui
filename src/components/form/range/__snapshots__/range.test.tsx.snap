@@ -22,7 +22,7 @@ exports[`EuiRange allows value prop to accept a number 1`] = `
       class="euiRangeTooltip emotion-euiRangeTooltip"
     >
       <output
-        class="euiRangeTooltip__value euiRangeTooltip__value--right emotion-euiRangeTooltip__value-right"
+        class="euiRangeTooltip__value emotion-euiRangeTooltip__value-right"
         style="left:8%"
       >
         8
@@ -546,7 +546,7 @@ exports[`EuiRange props value should render 1`] = `
       class="euiRangeTooltip emotion-euiRangeTooltip"
     >
       <output
-        class="euiRangeTooltip__value euiRangeTooltip__value--left emotion-euiRangeTooltip__value-left"
+        class="euiRangeTooltip__value emotion-euiRangeTooltip__value-left"
         style="right:0%"
       >
         before200after
