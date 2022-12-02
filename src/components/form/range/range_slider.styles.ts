@@ -7,7 +7,12 @@
  */
 
 import { css } from '@emotion/react';
+
 import { UseEuiTheme, transparentize } from '../../../services';
+import { mathWithUnits } from '../../../global_styling';
+import { euiShadow } from '../../../themes/amsterdam/global_styling/mixins';
+import { euiCustomControl } from '../form.styles';
+
 import {
   euiRangeThumbStyle,
   euiRangeThumbPerBrowser,
@@ -17,8 +22,6 @@ import {
   euiRangeThumbFocus,
   euiRangeThumbBoxShadow,
 } from './range.styles';
-import { euiCustomControl } from '../form.styles';
-import { euiShadow } from '../../../themes/amsterdam/global_styling/mixins';
 
 export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
   const range = euiRangeVariables(euiThemeContext);
@@ -78,14 +81,12 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
 
       // Resets
 
-      // Disable linter for these very unique vendor controls
-      // sass-lint:disable-block no-vendor-prefixes
       &::-webkit-slider-thumb {
         -webkit-appearance: none;
-        margin-block-start: ${(-parseInt(range.trackBorderWidth) * 2 +
-          parseInt(range.trackHeight)) /
-          2 -
-        parseInt(range.thumbHeight) / 4}px;
+        margin-block-start: ${mathWithUnits(
+          [range.trackBorderWidth, range.trackHeight, range.thumbHeight],
+          (x, y, z) => (x * 2 + y) / 2 - z / 4
+        )};
       }
 
       &::-moz-focus-outer {

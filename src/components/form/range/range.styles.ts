@@ -8,6 +8,7 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme, hexToRgb } from '../../../services';
+import { mathWithUnits } from '../../../global_styling';
 import { euiFormVariables } from '../form.styles';
 
 export const euiRangeVariables = (euiThemeContext: UseEuiTheme) => {
@@ -42,9 +43,15 @@ export const euiRangeVariables = (euiThemeContext: UseEuiTheme) => {
     height: form.controlHeight,
     compressedHeight: form.controlCompressedHeight,
 
-    // position of the track and hihglight relative to the parent container
-    trackTopPositionWithTicks: `calc((${thumbHeight} - ${trackHeight}) / 2)`,
-    trackBottomPositionWithTicks: `calc(${thumbHeight} - ((${thumbHeight} - ${trackHeight}) / 2))`,
+    // position of the track and highlight relative to the parent container
+    trackTopPositionWithTicks: mathWithUnits(
+      [thumbHeight, trackHeight],
+      (x, y) => (x - y) / 2
+    ),
+    trackBottomPositionWithTicks: mathWithUnits(
+      [thumbHeight, trackHeight],
+      (x, y) => x - (x - y) / 2
+    ),
     trackTopPositionWithoutTicks: `calc(50% - (${trackHeight} / 2))`,
 
     // Z-indexes

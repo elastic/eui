@@ -128,7 +128,7 @@ export const euiRangeTooltipValueStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     hasTicks: css`
-      inset-block-start: calc(${range.thumbWidth} / 2);
+      inset-block-start: ${mathWithUnits(range.thumbWidth, (x) => x / 2)};
     `,
   };
 };

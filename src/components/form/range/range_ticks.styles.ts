@@ -13,6 +13,7 @@ import {
   logicalSizeCSS,
   logicalCSSWithFallback,
   euiFontSize,
+  mathWithUnits,
 } from '../../../global_styling';
 import { euiRangeVariables } from './range.styles';
 
@@ -36,27 +37,29 @@ export const euiRangeTicksStyles = (euiThemeContext: UseEuiTheme) => {
     // Base
     euiRangeTicks: css`
       position: absolute;
-      inset-inline-start: 0;
-      inset-inline-end: 0;
+      inset-inline: 0;
       display: flex;
     `,
     isCustom: css`
-      inset-inline-start: (${range.thumbWidth} / 8);
-      inset-inline-end: (${range.thumbWidth} / 8);
+      inset-inline: ${mathWithUnits(range.thumbWidth, (x) => x / 8)};
     `,
     // compressed and non-compressed styles
     regular: css`
-      block-size: calc(${range.height} - ${range.thumbHeight});
+      block-size: ${mathWithUnits(
+        [range.height, range.thumbHeight],
+        (x, y) => x - y
+      )};
       inset-block-start: ${range.thumbHeight};
     `,
     compressed: css`
-      block-size: calc(
-        ${range.compressedHeight} - ${range.trackBottomPositionWithTicks}
-      );
-      inset-block-start: calc(
-        ${range.thumbHeight} -
-          ((${range.thumbHeight} - ${range.trackHeight}) / 2)
-      );
+      block-size: ${mathWithUnits(
+        [range.compressedHeight, range.trackBottomPositionWithTicks],
+        (x, y) => x - y
+      )};
+      inset-block-start: ${mathWithUnits(
+        [range.thumbHeight, range.trackHeight],
+        (x, y) => x - (x - y) / 2
+      )};
     `,
   };
 };

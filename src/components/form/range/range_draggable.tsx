@@ -44,7 +44,7 @@ export const EuiRangeDraggable: FunctionComponent<EuiRangeDraggableProps> = ({
   ...rest
 }) => {
   const outerStyle: React.CSSProperties = {
-    left: `calc(${lowerPosition})`,
+    left: lowerPosition,
     right: `calc(100% - ${upperPosition} - 16px)`,
   };
 
