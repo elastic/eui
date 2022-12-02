@@ -12,6 +12,7 @@ import {
   euiFocusRing,
   euiTextTruncate,
   logicalCSS,
+  logicalShorthandCSS,
   logicalTextAlignCSS,
   mathWithUnits,
 } from '../../global_styling';
@@ -25,7 +26,7 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     euiBadge: css`
       display: inline-block;
       vertical-align: middle;
-      padding: 0 ${euiTheme.size.s};
+      ${logicalShorthandCSS('padding', `0 ${euiTheme.size.s}`)}
       ${logicalCSS('max-width', '100%')}
       font-size: ${euiFontSize(euiThemeContext, 'xs').fontSize};
       line-height: ${euiTheme.base + 2}px; // Accounts for the border

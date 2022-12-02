@@ -13,6 +13,7 @@ import {
   EuiHeader,
   EuiHeaderAlert,
   EuiHeaderLogo,
+  EuiHeaderProps,
   EuiHeaderSection,
   EuiHeaderSectionItem,
   EuiHeaderSectionItemButton,
@@ -320,8 +321,10 @@ const HeaderUserMenu = () => {
 };
 
 export default () => {
-  const [position, setPosition] = useState('static');
-  const [theme, setTheme] = useState('default');
+  const [position, setPosition] = useState<EuiHeaderProps['position']>(
+    'static'
+  );
+  const [theme, setTheme] = useState<EuiHeaderProps['theme']>('default');
 
   return (
     <>

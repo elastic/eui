@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import {
   EuiAvatar,
+  EuiBreadcrumb,
   EuiButton,
   EuiFlexGroup,
   EuiFlexItem,
@@ -21,6 +22,8 @@ import {
   EuiPopoverTitle,
   EuiSelectable,
   EuiSelectableMessage,
+  EuiSelectableOption,
+  EuiSelectableProps,
   EuiSelectableTemplateSitewide,
   EuiSpacer,
   EuiText,
@@ -38,7 +41,7 @@ export default () => {
   );
 
   const renderBreadcrumbs = () => {
-    const breadcrumbs = [
+    const breadcrumbs: EuiBreadcrumb[] = [
       {
         text: 'Management',
         href: '#',
@@ -211,7 +214,7 @@ const HeaderSpacesMenu = () => {
   const headerSpacesPopoverId = useGeneratedHtmlId({
     prefix: 'headerSpacesPopover',
   });
-  const spacesValues = [
+  const spacesValues: EuiSelectableOption[] = [
     {
       label: 'Sales team',
       prepend: <EuiAvatar type="space" name="Sales Team" size="s" />,
@@ -250,7 +253,7 @@ const HeaderSpacesMenu = () => {
     },
   ];
 
-  const [spaces, setSpaces] = useState(spacesValues);
+  const [spaces, setSpaces] = useState<EuiSelectableOption[]>(spacesValues);
   const [selectedSpace, setSelectedSpace] = useState(
     spaces.filter((option) => option.checked)[0]
   );
@@ -268,7 +271,7 @@ const HeaderSpacesMenu = () => {
     setIsOpen(false);
   };
 
-  const onChange = (options) => {
+  const onChange: EuiSelectableProps['onChange'] = (options) => {
     setSpaces(options);
     setSelectedSpace(options.filter((option) => option.checked)[0]);
     setIsOpen(false);
@@ -300,11 +303,13 @@ const HeaderSpacesMenu = () => {
       panelPaddingSize="none"
     >
       <EuiSelectable
-        searchable={isListExtended()}
-        searchProps={{
-          placeholder: 'Find a space',
-          compressed: true,
-        }}
+        {...({
+          searchable: isListExtended(),
+          searchProps: {
+            placeholder: 'Find a space',
+            compressed: true,
+          },
+        } as Partial<EuiSelectableProps>)}
         options={spaces}
         singleSelection="always"
         style={{ width: 300 }}

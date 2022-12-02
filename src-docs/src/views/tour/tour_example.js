@@ -15,6 +15,7 @@ import Tour from './tour';
 import Managed from './managed';
 import ManagedHook from './managed_hook';
 import FullScreen from './fullscreen';
+import NotActionDriven from './not_action_driven';
 
 import Guidelines from './guidelines';
 
@@ -44,6 +45,7 @@ const stepDomSource = require('!!raw-loader!./step_dom');
 const tourSource = require('!!raw-loader!./tour');
 const managedSource = require('!!raw-loader!./managed');
 const managedHookSource = require('!!raw-loader!./managed_hook');
+const notActionDriven = require('!!raw-loader!./not_action_driven');
 
 const fullSource = require('!!raw-loader!./fullscreen');
 
@@ -169,6 +171,24 @@ export const TourExample = {
         </p>
       ),
       demo: <Managed />,
+    },
+    {
+      title: 'Passive tour',
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: notActionDriven,
+        },
+      ],
+      text: (
+        <p>
+          Use the <strong>EuiTour</strong> to provide sequential help without
+          the user performing any actions (e.g. filling out a form or copying a
+          text). In this scenario, consider using two buttons,{' '}
+          <strong>Close tour</strong> and <strong>Next</strong>.
+        </p>
+      ),
+      demo: <NotActionDriven />,
     },
     {
       title: 'Fullscreen demo',

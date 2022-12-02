@@ -10,7 +10,7 @@ import { css } from '@emotion/react';
 import { euiShadowXLarge } from '../../themes/amsterdam/global_styling/mixins';
 import {
   euiCanAnimate,
-  euiBreakpoint,
+  euiMaxBreakpoint,
   euiAnimSlideInUp,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
@@ -39,7 +39,7 @@ export const euiModalStyles = (euiThemeContext: UseEuiTheme) => {
           ${euiTheme.animation.slow} ${euiTheme.animation.bounce};
       }
 
-      ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
+      ${euiMaxBreakpoint(euiThemeContext, 'm')} {
         position: fixed;
         inset: 0;
         border-radius: 0;
@@ -66,7 +66,7 @@ export const euiModalStyles = (euiThemeContext: UseEuiTheme) => {
     confirmation: css`
       min-inline-size: ${euiFormVariables(euiThemeContext).maxWidth};
 
-      ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
+      ${euiMaxBreakpoint(euiThemeContext, 'm')} {
         ${euiShadowXLarge(euiThemeContext, { reverse: true })}
         inset-block-start: auto;
       }

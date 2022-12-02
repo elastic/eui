@@ -255,6 +255,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
       >
         <li
           class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+          data-test-subj="euiBreadcrumb"
         >
           <a
             class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated"
@@ -267,6 +268,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
         </li>
         <li
           class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
+          data-test-subj="euiBreadcrumb"
         >
           <span
             aria-current="page"
