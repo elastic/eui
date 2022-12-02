@@ -179,8 +179,7 @@
   @if ($borderOnly) {
     box-shadow: inset 0 0 0 1px $euiFormBorderColor;
   } @else {
-    box-shadow:
-      inset 0 0 0 1px $euiFormBorderColor;
+    box-shadow: inset 0 0 0 1px $euiFormBorderColor;
   }
 }
 

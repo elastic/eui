@@ -11,8 +11,6 @@ rules:
     - convention: 'none'
   force-element-nesting: 0
   force-pseudo-nesting: 0
-  # ($var / 2) rather than ($var/2)
-  space-around-operator: 2
   # We minify css, so this doesn't apply
   no-css-comments: 0
   # We use _ (underscores) for import path that don't directly compile

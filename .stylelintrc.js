@@ -38,6 +38,15 @@ module.exports = {
     'declaration-empty-line-before': null,
     'max-empty-lines': 1,
     'no-eol-whitespace': true,
+    // Enforce spacing around various syntax symbols (colons, operators, etc.)
+    'declaration-colon-space-after': 'always-single-line',
+    'declaration-colon-space-before': 'never',
+    'function-calc-no-unspaced-operator': true,
+    'scss/operator-no-unspaced': true,
+    'selector-combinator-space-before': 'always',
+    'selector-combinator-space-after': 'always',
+    // Ensure trailing semicolons are always present on non-oneliners
+    'declaration-block-semicolon-newline-after': 'always-multi-line',
 
     // Value preferences
     'number-leading-zero': 'never',
