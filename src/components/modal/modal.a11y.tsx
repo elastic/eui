@@ -59,7 +59,7 @@ const Modal = () => {
 beforeEach(() => {
   cy.mount(<Modal />);
   cy.get('div.euiModal').should('not.exist');
-  cy.get('button.euiButton').click();
+  cy.get('button.euiButton').realClick();
   cy.get('div.euiModal').should('exist');
 });
 
@@ -70,7 +70,7 @@ describe('EuiModal', () => {
     });
 
     it('has zero violations when modal is closed', () => {
-      cy.get('div.euiModalFooter button.euiButton').click();
+      cy.get('div.euiModalFooter button.euiButton').realClick();
       cy.get('div.euiModal').should('not.exist');
       cy.checkAxe();
     });

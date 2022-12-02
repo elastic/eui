@@ -171,15 +171,15 @@ describe('EuiControlBar', () => {
     });
 
     it('has zero violations when control bar is shown', () => {
-      cy.get('button.euiButton').contains('Toggle example').click();
+      cy.get('button.euiButton').contains('Toggle example').realClick();
       cy.get('section[aria-label="Page level controls"]').should('exist');
       cy.checkAxe({ context: 'section[aria-label="Page level controls"]' });
     });
 
     it('has zero violations when control bar is hidden', () => {
-      cy.get('button.euiButton').contains('Toggle example').click();
+      cy.get('button.euiButton').contains('Toggle example').realClick();
       cy.get('section[aria-label="Page level controls"]').should('exist');
-      cy.get('button.euiButton').contains('Toggle example').click();
+      cy.get('button.euiButton').contains('Toggle example').realClick();
       cy.get('section[aria-label="Page level controls"]').should('not.exist');
       cy.checkAxe();
     });

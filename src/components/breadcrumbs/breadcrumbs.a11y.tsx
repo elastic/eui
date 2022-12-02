@@ -65,7 +65,7 @@ describe('EuiBreadcrumbs', () => {
     });
 
     it('has zero violations when truncated menu is open', () => {
-      cy.get('[aria-label="See collapsed breadcrumbs"]').click();
+      cy.get('[aria-label="See collapsed breadcrumbs"]').realClick();
       cy.get('[data-popover-open="true"] nav.euiBreadcrumbs').should('exist');
       cy.checkAxe();
     });
