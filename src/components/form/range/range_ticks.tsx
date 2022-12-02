@@ -107,10 +107,8 @@ const EuiTickValue: FunctionComponent<
     customTicks && styles.isCustom,
     labelShiftVal && isMinTick && styles.isMin,
     labelShiftVal && isMaxTick && styles.isMax,
-    pseudoTick && styles.hasPseudoTickMark,
-    !pseudoTick && styles.hasTickMark,
-    compressed && styles.compressed,
-    !compressed && styles.regular,
+    !pseudoTick && styles.hasPseudoTickMark,
+    compressed ? styles.compressed : styles.regular,
   ];
 
   const [ref, innerText] = useInnerText();
@@ -151,8 +149,7 @@ export const EuiRangeTicks: FunctionComponent<EuiRangeTicksProps> = (props) => {
   const styles = euiRangeTicksStyles(euiTheme);
   const cssStyles = [
     styles.euiRangeTicks,
-    compressed && styles.compressed,
-    !compressed && styles.regular,
+    compressed ? styles.compressed : styles.regular,
     ticks && styles.isCustom,
   ];
 

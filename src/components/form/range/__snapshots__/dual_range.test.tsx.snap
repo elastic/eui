@@ -202,7 +202,7 @@ exports[`EuiDualRange props custom ticks should render 1`] = `
       class="euiRangeTicks emotion-euiRangeTicks-regular-isCustom"
     >
       <button
-        class="euiRangeTick emotion-euiRangeTick-isCustom-hasTickMark-regular"
+        class="euiRangeTick emotion-euiRangeTick-isCustom-hasPseudoTickMark-regular"
         style="left:calc(-Infinity% + 8px)"
         tabindex="-1"
         title="20kb"
@@ -212,7 +212,7 @@ exports[`EuiDualRange props custom ticks should render 1`] = `
         20kb
       </button>
       <button
-        class="euiRangeTick emotion-euiRangeTick-isCustom-isMax-hasPseudoTickMark-regular"
+        class="euiRangeTick emotion-euiRangeTick-isCustom-isMax-regular"
         style="right:0%;margin-right:-1.25em"
         tabindex="-1"
         title="100kb"
@@ -656,7 +656,7 @@ exports[`EuiDualRange props ticks should render 1`] = `
       class="euiRangeTicks emotion-euiRangeTicks-regular"
     >
       <button
-        class="euiRangeTick emotion-euiRangeTick-hasTickMark-regular"
+        class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
         style="left:calc(NaN% + 8px);max-width:16.666666666666664%"
         tabindex="-1"
         type="button"
@@ -665,7 +665,7 @@ exports[`EuiDualRange props ticks should render 1`] = `
         0
       </button>
       <button
-        class="euiRangeTick emotion-euiRangeTick-hasTickMark-regular"
+        class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
         style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
         tabindex="-1"
         type="button"
@@ -674,7 +674,7 @@ exports[`EuiDualRange props ticks should render 1`] = `
         20
       </button>
       <button
-        class="euiRangeTick emotion-euiRangeTick-hasTickMark-regular"
+        class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
         style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
         tabindex="-1"
         type="button"
@@ -683,7 +683,7 @@ exports[`EuiDualRange props ticks should render 1`] = `
         40
       </button>
       <button
-        class="euiRangeTick emotion-euiRangeTick-hasTickMark-regular"
+        class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
         style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
         tabindex="-1"
         type="button"
@@ -692,7 +692,7 @@ exports[`EuiDualRange props ticks should render 1`] = `
         60
       </button>
       <button
-        class="euiRangeTick emotion-euiRangeTick-hasTickMark-regular"
+        class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
         style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
         tabindex="-1"
         type="button"
@@ -701,7 +701,7 @@ exports[`EuiDualRange props ticks should render 1`] = `
         80
       </button>
       <button
-        class="euiRangeTick emotion-euiRangeTick-hasTickMark-regular"
+        class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
         style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
         tabindex="-1"
         type="button"

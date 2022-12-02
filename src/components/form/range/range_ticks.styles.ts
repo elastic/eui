@@ -100,15 +100,23 @@ export const euiRangeTickStyles = (euiThemeContext: UseEuiTheme) => {
     regular: css`
       ${logicalCSS('padding-top', euiTheme.size.m)};
     `,
-    euiRangeTick__pseudo: css`
-      ${tickStyles(euiThemeContext, range)};
-    `,
     selected: css`
       font-weight: ${euiTheme.font.weight.medium};
       color: ${euiTheme.colors.primary};
     `,
     isCustom: css`
       ${logicalCSSWithFallback('overflow-x', 'hidden')}
+    `,
+    // Tick marks can use either a ::before pseudo element or a span __pseudo node
+    hasPseudoTickMark: css`
+      &::before {
+        ${tickStyles(euiThemeContext, range)}
+        content: '';
+        inset-inline-start: calc(50% - ${euiTheme.size.xs});
+      }
+    `,
+    euiRangeTick__pseudo: css`
+      ${tickStyles(euiThemeContext, range)};
     `,
     isMin: css`
       transform: translateX(0);
@@ -122,18 +130,6 @@ export const euiRangeTickStyles = (euiThemeContext: UseEuiTheme) => {
 
       .euiRangeTick__pseudo {
         inset-inline-end: 0;
-      }
-    `,
-    hasPseudoTickMark: css`
-      &::before {
-        border: 2px solid red;
-      }
-    `,
-    hasTickMark: css`
-      &::before {
-        ${tickStyles(euiThemeContext, range)}
-        content: '';
-        inset-inline-start: calc(50% - ${euiTheme.size.xs});
       }
     `,
   };
