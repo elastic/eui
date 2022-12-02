@@ -37,7 +37,7 @@
     width: 100%;
     height: auto;
 
-    &:before {
+    &::before {
       content: '';
       display: block;
       position: absolute;

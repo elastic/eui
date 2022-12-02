@@ -15,8 +15,8 @@
   position: relative;
 
   // To make our fake range skinny, we add some pseudo borders to fake the height of the gradient
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     content: '';
     left: 0;
     position: absolute;
@@ -25,7 +25,7 @@
     width: 100%;
   }
 
-  &:after {
+  &::after {
     bottom: 0;
   }
 }

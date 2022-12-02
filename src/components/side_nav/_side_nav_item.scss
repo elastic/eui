@@ -89,7 +89,7 @@
     position: static;
     margin-left: 0;
 
-    &:after {
+    &::after {
       display: none;
     }
   }
@@ -148,7 +148,7 @@
     padding-left: $euiSizeS;
     padding-right: $euiSizeS; /* 2 */
 
-    &:after {
+    &::after {
       position: absolute; /* 2 */
       content: '';
       top: $euiSizeM;

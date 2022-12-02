@@ -7,7 +7,7 @@
       overflow: hidden;
     }
 
-    tbody:before {
+    tbody::before {
       position: absolute;
       content: '';
       width: 100%;

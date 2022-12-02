@@ -13,7 +13,7 @@
   }
 
   .euiHeaderSectionItem {
-    &:after {
+    &::after {
       background: lightOrDarkTheme($euiColorDarkShade, $euiColorLightestShade);
     }
   }

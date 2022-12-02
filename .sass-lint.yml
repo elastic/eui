@@ -11,8 +11,6 @@ rules:
     - convention: 'none'
   force-element-nesting: 0
   force-pseudo-nesting: 0
-  # This removes the need for ::hover
-  pseudo-element: 0
   # ($var / 2) rather than ($var/2)
   space-around-operator: 2
   # We minify css, so this doesn't apply

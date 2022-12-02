@@ -10,7 +10,7 @@
   z-index: 2; // Needs to be a level above the cells themselves in case of overlaps
 
   // Center a vertical line within the button above
-  &:after {
+  &::after {
     content: '';
     position: absolute;
     left: $euiSizeS - 1px;
@@ -40,7 +40,7 @@
       right: 0;
       width: $euiSize / 2;
 
-      &:after {
+      &::after {
         left: auto;
         right: 0;
       }
