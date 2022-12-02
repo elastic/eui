@@ -10,41 +10,31 @@ import { css } from '@emotion/react';
 import { euiFormControlSize } from '../form.styles';
 import { UseEuiTheme } from '../../../services';
 
-/*
- * 1. There's no way to target the layout of the extra input, so we must
- *    use the descendant selector to allow the width to shrink.
- *
- * 2. Prevent the prepend/append label from extending outside the parent element
- */
-export const euiRangeWrapperStyles = (
-  euiThemeContext: UseEuiTheme,
-  fullWidth: boolean
-) => {
+export const euiRangeWrapperStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     euiRangeWrapper: css`
       display: flex;
       align-items: center;
 
       > .euiFormControlLayout {
-        /* 1 */
+        // There's no way to target the layout of the extra input, so we must
+        // use the descendant selector to allow the width to shrink.
         inline-size: auto;
 
         &.euiFormControlLayout--group {
-          flex-shrink: 0; /* 2 */
+          // Prevent the prepend/append label from extending outside the parent element
+          flex-shrink: 0;
         }
       }
     `,
     regular: css`
-      ${euiFormControlSize(euiThemeContext, {
-        fullWidth: fullWidth,
-      })}
+      ${euiFormControlSize(euiThemeContext)}
     `,
     compressed: css`
-      ${euiFormControlSize(euiThemeContext, {
-        compressed: true,
-        fullWidth: fullWidth,
-      })}
+      ${euiFormControlSize(euiThemeContext)}
     `,
-    fullWidth: css``,
+    fullWidth: css`
+      max-inline-size: 100%;
+    `,
   };
 };

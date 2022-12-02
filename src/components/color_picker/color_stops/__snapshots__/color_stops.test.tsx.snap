@@ -528,7 +528,7 @@ exports[`renders free-range EuiColorStops 1`] = `
 exports[`renders fullWidth EuiColorStops 1`] = `
 <div
   aria-label="aria-label"
-  class="euiRangeWrapper euiRangeWrapper--fullWidth euiColorStops testClass1 testClass2 emotion-euiRangeWrapper-regular-fullWidth"
+  class="euiRangeWrapper euiColorStops testClass1 testClass2 emotion-euiRangeWrapper-regular-fullWidth"
   data-test-subj="euiColorStops test subject string"
   tabindex="0"
 >

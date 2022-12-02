@@ -233,9 +233,7 @@ describe('EuiDualRange', () => {
       );
 
       if (
-        !component
-          .find('.euiRangeWrapper')
-          .hasClass('euiRangeWrapper--fullWidth')
+        !component.find('.euiRangeWrapper').attr('class').includes('-fullWidth')
       ) {
         throw new Error(
           'expected EuiDualRange to inherit fullWidth from EuiForm'

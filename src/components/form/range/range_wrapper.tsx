@@ -37,17 +37,10 @@ export const EuiRangeWrapper = forwardRef<HTMLDivElement, EuiRangeWrapperProps>(
       ...rest
     } = props;
 
-    const classes = classNames(
-      'euiRangeWrapper',
-      {
-        // used in src/components/form/range/dual_range.test.tsx
-        'euiRangeWrapper--fullWidth': fullWidth,
-      },
-      className
-    );
+    const classes = classNames('euiRangeWrapper', className);
 
     const euiTheme = useEuiTheme();
-    const styles = euiRangeWrapperStyles(euiTheme, fullWidth);
+    const styles = euiRangeWrapperStyles(euiTheme);
     const cssStyles = [
       styles.euiRangeWrapper,
       !compressed && styles.regular,
