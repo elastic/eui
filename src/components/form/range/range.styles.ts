@@ -108,7 +108,7 @@ export const euiRangeThumbFocusBoxShadow = (euiThemeContext: UseEuiTheme) => {
   const range = euiRangeVariables(euiThemeContext);
 
   return `
-    box-shadow: 0 0 0 ${range.thumbBorderWidth} ${euiTheme.focus.color};
+    box-shadow: 0 0 0 ${range.thumbBorderWidth} ${euiTheme.colors.primary};
   `;
 };
 
