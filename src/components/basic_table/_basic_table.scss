@@ -1,5 +1,4 @@
 .euiBasicTable {
-
   &-loading {
     position: relative;
 
@@ -16,10 +15,8 @@
       animation: euiBasicTableLoading 1000ms linear;
       animation-iteration-count: infinite;
     }
-
   }
 }
-
 
 @keyframes euiBasicTableLoading {
   from {

@@ -366,7 +366,6 @@
   transition-duration: $euiAnimSpeedSlow;
 }
 
-
 .guideSass__themedBox {
   padding: $euiSize;
   border-left: $euiBorderThick;
@@ -451,11 +450,9 @@
   }
 }
 
-
 .guideSection__emptyBox {
   background-color: $euiColorEmptyShade;
 }
-
 
 @each $key, $size in $euiBreakpoints {
   .guideSass__breakpoint--#{$key} {

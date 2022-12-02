@@ -216,7 +216,6 @@
   box-shadow: inset 0 0 0 1px $euiFormBorderDisabledColor;
 }
 
-
 // 2. Override invalid state with focus state.
 
 @mixin euiFormControlStyle($borderOnly: false, $includeStates: true, $includeSizes: true) {
@@ -253,7 +252,6 @@
         color: lightOrDarkTheme($euiColorDarkestShade, $euiColorLightShade);
       }
     }
-
   }
 
   @if ($includeSizes) {
@@ -313,7 +311,6 @@
   transition: background-color $euiAnimSpeedFast ease-in,
               border-color $euiAnimSpeedFast ease-in; // stylelint-disable-line indentation
 }
-
 
 @mixin euiCustomControlSelected($type: null) {
   border-color: $euiColorPrimary;

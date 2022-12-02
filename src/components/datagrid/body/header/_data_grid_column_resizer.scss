@@ -35,7 +35,6 @@
 // we don't use negative positioning and the borders from the cell will match the container.
 @include euiDataGridHeaderCell {
   &:last-child {
-
     .euiDataGridColumnResizer {
       right: 0;
       width: $euiSize / 2;

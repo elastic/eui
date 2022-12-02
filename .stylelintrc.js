@@ -30,6 +30,11 @@ module.exports = {
         ignore: ['after-comment'],
       },
     ],
+    // Trim unnecessary newlines/whitespace
+    'block-closing-brace-empty-line-before': 'never',
+    'declaration-empty-line-before': null,
+    'max-empty-lines': 1,
+    'no-eol-whitespace': true,
 
     // Value preferences
     'number-leading-zero': 'never',

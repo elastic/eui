@@ -2,7 +2,6 @@
 // All line-heights are aligned to baseline grid
 // sass-lint:disable no-vendor-prefixes
 
-
 @function fontSizeToRemOrEm($size, $sizingMethod: 'rem') {
   @if ($sizingMethod == 'rem') {
     @return #{$size / $euiFontSize}rem;

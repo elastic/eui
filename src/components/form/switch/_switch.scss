@@ -181,7 +181,6 @@
   // Compressed and mini switches have some style overlap
   &.euiSwitch--compressed,
   &.euiSwitch--mini {
-
     .euiSwitch__button[aria-checked='false'] {
       .euiSwitch__thumb {
         left: 1px;

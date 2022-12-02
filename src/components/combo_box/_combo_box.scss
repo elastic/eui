@@ -109,7 +109,7 @@
     .euiComboBox__inputWrap {
       // sass-lint:disable-block no-vendor-prefixes
       @include euiFormControlDisabledStyle;
-      -webkit-text-fill-color: unset; // overrides $euiFormControlDisabledColor because the color doesn't work with multiple background colors 
+      -webkit-text-fill-color: unset; // overrides $euiFormControlDisabledColor because the color doesn't work with multiple background colors
     }
 
     .euiComboBoxPlaceholder,
