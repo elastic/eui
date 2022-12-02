@@ -25,7 +25,7 @@
   }
 
   // Turn off linter for some MS specific bits.
-  // sass-lint:disable no-vendor-prefixes
+  // stylelint-disable selector-no-vendor-prefix
   &::-ms-expand {
     display: none;
   }

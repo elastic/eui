@@ -11,7 +11,7 @@
     scrollbar-width: thin;
   }
 
-  // sass-lint:disable-block no-vendor-prefixes
+  // stylelint-disable selector-no-vendor-prefix
   &::-webkit-scrollbar {
     width: $euiScrollBar;
     height: $euiScrollBar;

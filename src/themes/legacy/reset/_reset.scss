@@ -72,7 +72,7 @@ body {
 *:focus {
   outline: none;
 
-  // sass-lint:disable no-vendor-prefixes
+  // stylelint-disable selector-no-vendor-prefix
   // Disables border that shows up when tabbing in Firefox.
   &::-moz-focus-inner {
     border: none;

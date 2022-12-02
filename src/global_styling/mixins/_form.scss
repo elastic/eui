@@ -55,7 +55,7 @@
 }
 
 @mixin euiPlaceholderPerBrowser {
-  // sass-lint:disable-block no-vendor-prefixes
+  // stylelint-disable selector-no-vendor-prefix
   // Each prefix must be its own content block
   &::-webkit-input-placeholder { @content; opacity: 1; }
   &::-moz-placeholder { @content; opacity: 1; }
