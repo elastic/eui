@@ -15,7 +15,6 @@ export const euiRangeDraggableStyles = (euiThemeContext: UseEuiTheme) => {
   const range = euiRangeVariables(euiThemeContext);
 
   return {
-    // Base
     euiRangeDraggable: css`
       block-size: ${mathWithUnits(range.height, (x) => x / 2)};
       position: absolute;

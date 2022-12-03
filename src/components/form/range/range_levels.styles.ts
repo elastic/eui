@@ -28,13 +28,11 @@ export const euiRangeLevelsStyles = (euiThemeContext: UseEuiTheme) => {
   )`;
 
   return {
-    // Base
     euiRangeLevels: css`
       display: flex;
       justify-content: stretch;
       position: absolute;
-      inset-inline-start: 0;
-      inset-inline-end: 0;
+      inset-inline: 0;
       inset-block-start: ${range.trackTopPositionWithoutTicks};
       z-index: ${range.levelsZIndex};
     `,
@@ -64,8 +62,7 @@ export const euiRangeLevelStyles = (euiThemeContext: UseEuiTheme) => {
       display: block;
       position: absolute;
       block-size: ${range.trackHeight};
-      margin-block-start: 0;
-      margin-block-end: 0;
+      margin-block: 0;
 
       &:first-child {
         margin-inline-start: 0;

@@ -10,9 +10,8 @@ import { css } from '@emotion/react';
 import { euiRangeThumbPerBrowser } from './range.styles';
 
 export const euiDualRangeStyles = () => ({
-  // Base
   euiDualRange: css``,
   euiDualRange__slider: css`
-    ${euiRangeThumbPerBrowser('visibility: hidden;')}
+    ${euiRangeThumbPerBrowser('visibility: hidden')}
   `,
 });

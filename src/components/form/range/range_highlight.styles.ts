@@ -14,7 +14,6 @@ export const euiRangeHighlightStyles = (euiThemeContext: UseEuiTheme) => {
   const range = euiRangeVariables(euiThemeContext);
 
   return {
-    // Base
     euiRangeHighlight: css`
       position: absolute;
       block-size: ${range.highlightHeight};

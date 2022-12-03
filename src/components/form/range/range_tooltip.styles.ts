@@ -26,8 +26,7 @@ export const euiRangeTooltipStyles = (euiThemeContext: UseEuiTheme) => {
       display: block;
       position: absolute;
       inset-inline-start: 0;
-      inset-block-start: 0;
-      inset-block-end: 0;
+      inset-block: 0;
       inline-size: calc(100% - ${range.thumbWidth});
       margin-inline-start: ${mathWithUnits(range.thumbWidth, (x) => x / 2)};
       pointer-events: none;
