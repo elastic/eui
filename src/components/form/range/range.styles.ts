@@ -63,13 +63,6 @@ export const euiRangeVariables = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
-export const euiRangeTrackSize = (euiThemeContext: UseEuiTheme) => {
-  return `
-    inline-size: ${euiRangeVariables(euiThemeContext).trackWidth};
-    block-size: ${euiRangeVariables(euiThemeContext).trackHeight};
-    `;
-};
-
 export const euiRangeTrackPerBrowser = (content: string) => {
   return `
     &::-webkit-slider-runnable-track { ${content}; }
