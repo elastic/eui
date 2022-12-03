@@ -20,11 +20,6 @@ export const euiRangeWrapperStyles = (euiThemeContext: UseEuiTheme) => {
         // There's no way to target the layout of the extra input, so we must
         // use the descendant selector to allow the width to shrink.
         inline-size: auto;
-
-        &.euiFormControlLayout--group {
-          // Prevent the prepend/append label from extending outside the parent element
-          flex-shrink: 0;
-        }
       }
     `,
     regular: css`
