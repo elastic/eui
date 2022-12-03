@@ -14,13 +14,13 @@ import React, {
   CSSProperties,
   MutableRefObject,
 } from 'react';
-import classNames from 'classnames';
 
 import { calculateThumbPosition, EUI_THUMB_SIZE } from './utils';
 
 import { useInnerText } from '../../inner_text';
 
 import { useEuiTheme } from '../../../services';
+import { logicalStyles } from '../../../global_styling';
 import { euiRangeTicksStyles, euiRangeTickStyles } from './range_ticks.styles';
 
 export interface EuiRangeTick {
@@ -62,6 +62,8 @@ const EuiTickValue: FunctionComponent<
   ticksRef,
   compressed,
 }) => {
+  const euiTheme = useEuiTheme();
+
   const tickStyle: CSSProperties = {};
   const tickObject = customTicks
     ? customTicks.find((o) => o.value === tickValue)
@@ -94,31 +96,22 @@ const EuiTickValue: FunctionComponent<
   if (labelShiftVal) {
     const labelShift = isMaxTick ? 'marginRight' : 'marginLeft';
     tickStyle[labelShift] = `-${labelShiftVal}em`;
-    pseudoShift[labelShift] = `calc(${labelShiftVal}em + 4px)`; // 4px derived from .euiRangeTicks left/right offset
+
+    const tickOffset = euiTheme.euiTheme.size.xs; // xs derived from .euiRangeTicks left/right offset
+    pseudoShift[labelShift] = `calc(${labelShiftVal}em + ${tickOffset})`;
   }
 
   const pseudoTick = tickObject && !!labelShiftVal && (isMinTick || isMaxTick);
 
-  const tickClasses = classNames('euiRangeTick', {
-    'euiRangeTick--selected': value === tickValue,
-    'euiRangeTick--isCustom': customTicks,
-    'euiRangeTick--isMin': labelShiftVal && isMinTick,
-    'euiRangeTick--isMax': labelShiftVal && isMaxTick,
-    'euiRangeTick--hasTickMark': pseudoTick,
-  });
-
-  const euiTheme = useEuiTheme();
-
   const styles = euiRangeTickStyles(euiTheme);
   const cssTickStyles = [
     styles.euiRangeTick,
-    value === tickValue && styles.selected,
+    value === String(tickValue) && styles.selected,
     customTicks && styles.isCustom,
     labelShiftVal && isMinTick && styles.isMin,
     labelShiftVal && isMaxTick && styles.isMax,
-    pseudoTick && styles.hasTickMark,
-    compressed && styles.compressed,
-    !compressed && styles.regular,
+    !pseudoTick && styles.hasPseudoTickMark,
+    compressed ? styles.compressed : styles.regular,
   ];
 
   const [ref, innerText] = useInnerText();
@@ -126,12 +119,12 @@ const EuiTickValue: FunctionComponent<
   return (
     <button
       type="button"
-      className={tickClasses}
+      className="euiRangeTick"
       css={cssTickStyles}
       value={tickValue}
       disabled={disabled}
       onClick={onChange}
-      style={tickStyle}
+      style={logicalStyles(tickStyle)}
       tabIndex={-1}
       ref={ref}
       title={typeof label === 'string' ? label : innerText}
@@ -141,7 +134,7 @@ const EuiTickValue: FunctionComponent<
           className="euiRangeTick__pseudo"
           css={styles.euiRangeTick__pseudo}
           aria-hidden
-          style={pseudoShift}
+          style={logicalStyles(pseudoShift)}
         />
       )}
       {label}
@@ -155,22 +148,16 @@ export const EuiRangeTicks: FunctionComponent<EuiRangeTicksProps> = (props) => {
   // Calculate the width of each tick mark
   const percentageWidth = (interval / (max - min + interval)) * 100;
 
-  const classes = classNames('euiRangeTicks', {
-    'euiRangeTicks--compressed': compressed,
-    'euiRangeTicks--isCustom': ticks,
-  });
-
   const euiTheme = useEuiTheme();
   const styles = euiRangeTicksStyles(euiTheme);
   const cssStyles = [
     styles.euiRangeTicks,
-    compressed && styles.compressed,
-    !compressed && styles.regular,
+    compressed ? styles.compressed : styles.regular,
     ticks && styles.isCustom,
   ];
 
   return (
-    <div className={classes} css={cssStyles} ref={ticksRef}>
+    <div className="euiRangeTicks" css={cssStyles} ref={ticksRef}>
       {tickSequence.map((tickValue) => (
         <EuiTickValue
           key={tickValue}

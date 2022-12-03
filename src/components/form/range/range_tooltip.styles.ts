@@ -14,7 +14,7 @@ import {
   shade,
 } from '../../../services';
 import { euiRangeVariables } from './range.styles';
-import { euiFontSize } from '../../../global_styling';
+import { euiFontSize, mathWithUnits } from '../../../global_styling';
 
 export const euiRangeTooltipStyles = (euiThemeContext: UseEuiTheme) => {
   const range = euiRangeVariables(euiThemeContext);
@@ -26,10 +26,9 @@ export const euiRangeTooltipStyles = (euiThemeContext: UseEuiTheme) => {
       display: block;
       position: absolute;
       inset-inline-start: 0;
-      inset-block-start: 0;
-      inset-block-end: 0;
+      inset-block: 0;
       inline-size: calc(100% - ${range.thumbWidth});
-      margin-inline-start: calc(${range.thumbWidth} / 2);
+      margin-inline-start: ${mathWithUnits(range.thumbWidth, (x) => x / 2)};
       pointer-events: none;
       z-index: ${range.thumbZIndex};
     `,
@@ -48,79 +47,58 @@ export const euiRangeTooltipValueStyles = (euiThemeContext: UseEuiTheme) => {
   const range = euiRangeVariables(euiThemeContext);
   const { euiTheme, colorMode } = euiThemeContext;
 
-  /*
-   * 1. Shift arrow 1px more than half its size to account for border radius
-   */
   const arrowSize = euiTheme.size.m;
   const arrowSizeInt = parseInt(arrowSize, 10);
-  const arrowMinusSize = `${(arrowSizeInt / 2 - 1) * -1}px`; /* 1 */
+  const arrowMinusSize = `${(arrowSizeInt / 2 - 1) * -1}px`; // Shift arrow 1px more than half its size to account for border radius
 
   return {
     euiRangeTooltip__value: css`
-      font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
-      line-height: ${euiFontSize(euiThemeContext, 's').lineHeight};
-      border: 1px solid ${euiToolTipBackgroundColor(euiTheme, colorMode)};
       position: absolute;
-      padding: ${euiTheme.size.xxs} ${euiTheme.size.s};
-      background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};
-      color: ${euiTheme.colors.ghost};
-      max-inline-size: 256px;
-      border-radius: ${euiTheme.border.radius.small};
       inset-block-start: 50%;
-      transition: box-shadow ${euiTheme.animation.normal}
-          ${euiTheme.animation.resistance},
-        transform ${euiTheme.animation.normal} ${euiTheme.animation.resistance};
+      max-inline-size: ${mathWithUnits(euiTheme.size.base, (x) => x * 16)};
+      padding-block: ${euiTheme.size.xxs};
+      padding-inline: ${euiTheme.size.s};
+      transform: translateX(0) translateY(-50%);
 
-      &::after,
+      ${euiFontSize(euiThemeContext, 's')}
+      line-height: ${euiFontSize(euiThemeContext, 's').lineHeight};
+      color: ${euiTheme.colors.ghost};
+      background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};
+      border: ${euiTheme.border.width.thin} solid
+        ${euiToolTipBackgroundColor(euiTheme, colorMode)};
+      border-radius: ${euiTheme.border.radius.small};
+
       &::before {
         content: '';
         position: absolute;
-        inset-block-end: calc(${arrowSize} / 2);
-        inset-inline-start: 50%;
-        transform-origin: center;
-        background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};
+        inset-block-end: 50%;
         inline-size: ${arrowSize};
         block-size: ${arrowSize};
-        border-radius: 2px;
-      }
-
-      &::before {
+        transform-origin: center;
+        transform: translateY(50%) rotateZ(45deg);
         background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};
+        border-radius: ${mathWithUnits(
+          euiTheme.border.radius.small,
+          (x) => x / 2
+        )};
       }
     `,
     left: css`
       margin-inline-end: ${euiTheme.size.l};
-      transform: translateX(0) translateY(-50%);
-
-      &:before,
-      &:after {
-        inset-inline-start: auto;
-        inset-inline-end: ${arrowMinusSize};
-        inset-block-end: 50%;
-        transform: translateY(50%) rotateZ(45deg);
-      }
 
       &::before {
-        margin-inline-end: -1px;
+        inset-inline-end: ${arrowMinusSize};
       }
     `,
     right: css`
       margin-inline-start: ${euiTheme.size.l};
-      transform: translateX(0) translateY(-50%);
-
-      &:before,
-      &:after {
-        inset-inline-start: ${arrowMinusSize};
-        inset-block-end: 50%;
-        transform: translateY(50%) rotateZ(45deg);
-      }
 
       &::before {
-        margin-inline-start: -1px;
+        inset-inline-start: ${arrowMinusSize};
       }
     `,
     hasTicks: css`
-      inset-block-start: calc(${range.thumbWidth} / 2);
+      inset-block-start: ${mathWithUnits(range.thumbWidth, (x) => x / 2)};
     `,
   };
 };

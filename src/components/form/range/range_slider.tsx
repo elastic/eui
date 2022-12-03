@@ -14,8 +14,9 @@ import React, {
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
-
 import { useEuiTheme } from '../../../services';
+import { logicalStyles } from '../../../global_styling';
+
 import { EuiRangeLevel } from './range_levels';
 import { euiRangeLevelColor } from './range_levels_colors';
 import {
@@ -32,7 +33,6 @@ export type EuiRangeSliderProps = InputHTMLAttributes<HTMLInputElement> &
     step?: number;
     compressed?: boolean;
     isLoading?: boolean;
-    hasFocus?: boolean;
     showRange?: boolean;
     showTicks?: boolean;
     disabled?: boolean;
@@ -57,21 +57,12 @@ export const EuiRangeSlider = forwardRef<HTMLInputElement, EuiRangeSliderProps>(
       style,
       showTicks,
       showRange,
-      hasFocus,
       thumbColor,
       ...rest
     },
     ref
   ) => {
-    const classes = classNames(
-      'euiRangeSlider',
-      {
-        'euiRangeSlider--hasTicks': showTicks,
-        'euiRangeSlider--hasFocus': hasFocus,
-        'euiRangeSlider--hasRange': showRange,
-      },
-      className
-    );
+    const classes = classNames('euiRangeSlider', className);
 
     const euiTheme = useEuiTheme();
     const styles = euiRangeSliderStyles(euiTheme);
@@ -79,7 +70,6 @@ export const EuiRangeSlider = forwardRef<HTMLInputElement, EuiRangeSliderProps>(
     const cssStyles = [
       styles.euiRangeSlider,
       showTicks && styles.hasTicks,
-      hasFocus && styles.hasFocus,
       showRange && styles.hasRange,
       thumbColor && thumbStyles.thumb,
     ];
@@ -103,7 +93,7 @@ export const EuiRangeSlider = forwardRef<HTMLInputElement, EuiRangeSliderProps>(
         value={value}
         disabled={disabled}
         onChange={onChange}
-        style={sliderStyle}
+        style={logicalStyles(sliderStyle)}
         tabIndex={tabIndex}
         {...rest}
       />

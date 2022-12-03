@@ -10,6 +10,8 @@ import React, { FunctionComponent, useState } from 'react';
 import classNames from 'classnames';
 
 import { useEuiTheme } from '../../../services';
+import { logicalStyles } from '../../../global_styling';
+
 import {
   euiRangeHighlightStyles,
   euiRangeHighlightProgressStyles,
@@ -22,7 +24,6 @@ export interface EuiRangeHighlightProps {
   className?: string;
   background?: string;
   compressed?: boolean;
-  hasFocus?: boolean;
   showTicks?: boolean;
   lowerValue: number;
   upperValue: number;
@@ -34,7 +35,6 @@ export interface EuiRangeHighlightProps {
 
 export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
   className,
-  hasFocus,
   showTicks,
   lowerValue,
   upperValue,
@@ -46,7 +46,6 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
   levels,
 }) => {
   // Calculate the width the range based on value
-  // const rangeWidth = (value - min) / (max - min);
   const leftPosition = (lowerValue - min) / (max - min);
   const rangeWidth = (upperValue - lowerValue) / (max - min);
 
@@ -55,18 +54,7 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
     setTrackWidth(node?.clientWidth ?? 0);
   };
 
-  const classes = classNames(
-    'euiRangeHighlight',
-    {
-      'euiRangeHighlight--hasTicks': showTicks,
-      'euiRangeHighlight--compressed': compressed,
-    },
-    className
-  );
-
-  const progressClasses = classNames('euiRangeHighlight__progress', {
-    'euiRangeHighlight__progress--hasFocus': hasFocus,
-  });
+  const classes = classNames('euiRangeHighlight', className);
 
   const euiTheme = useEuiTheme();
 
@@ -74,14 +62,11 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
   const cssStyles = [styles.euiRangeHighlight, showTicks && styles.hasTicks];
 
   const progressStyles = euiRangeHighlightProgressStyles(euiTheme);
-  const cssProgressStyles = [
-    progressStyles.euiRangeHighlight__progress,
-    hasFocus && progressStyles.hasFocus,
-  ];
+  const cssProgressStyles = [progressStyles.euiRangeHighlight__progress];
   const progressStyle = {
     background,
     marginLeft: `${leftPosition * 100}%`,
-    inlineSize: `${rangeWidth * 100}%`,
+    width: `${rangeWidth * 100}%`,
   };
 
   const levelsWrapperStyles = euiRangeHighlightLevelsWrapperStyles(euiTheme);
@@ -90,31 +75,34 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
   ];
   const levelsWrapperStyle = {
     marginLeft: `${leftPosition * 100}%`,
-    inlineSize: `${rangeWidth * 100}%`,
+    width: `${rangeWidth * 100}%`,
   };
 
   const levelsStyles = euiRangeHighlightLevelsStyles(euiTheme);
   const cssLevelsStyles = [levelsStyles.euiRangeHighlight__levels];
   const levelsStyle = {
     left: `-${trackWidth * leftPosition}px`,
-    inlineSize: `${trackWidth}px`,
+    width: `${trackWidth}px`,
   };
 
   return (
     <div className={classes} css={cssStyles} onClick={onClick} ref={handleRef}>
       {((levels && levels.length === 0) || !levels) && (
         <div
-          className={progressClasses}
+          className="euiRangeHighlight__progress"
           css={cssProgressStyles}
-          style={progressStyle}
+          style={logicalStyles(progressStyle)}
         />
       )}
 
       {levels && !!levels.length && (
-        <div css={cssLevelsWrapperStyles} style={levelsWrapperStyle as any}>
+        <div
+          css={cssLevelsWrapperStyles}
+          style={logicalStyles(levelsWrapperStyle)}
+        >
           <EuiRangeLevels
             css={cssLevelsStyles}
-            style={levelsStyle}
+            style={logicalStyles(levelsStyle)}
             compressed={compressed}
             levels={levels}
             max={max}

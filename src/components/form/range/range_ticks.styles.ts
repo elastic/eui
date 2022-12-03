@@ -11,7 +11,9 @@ import { UseEuiTheme } from '../../../services';
 import {
   logicalCSS,
   logicalSizeCSS,
+  logicalCSSWithFallback,
   euiFontSize,
+  mathWithUnits,
 } from '../../../global_styling';
 import { euiRangeVariables } from './range.styles';
 
@@ -23,7 +25,6 @@ const tickStyles = ({ euiTheme }: UseEuiTheme, range: any) => {
     background-color: ${euiTheme.colors.lightShade};
     inline-size: ${range.tickWidth};
     block-size: ${range.tickHeight};
-    border-radius: 100%;
     border-radius: ${euiTheme.border.radius.small};
   `;
 };
@@ -35,27 +36,29 @@ export const euiRangeTicksStyles = (euiThemeContext: UseEuiTheme) => {
     // Base
     euiRangeTicks: css`
       position: absolute;
-      inset-inline-start: 0;
-      inset-inline-end: 0;
+      inset-inline: 0;
       display: flex;
     `,
     isCustom: css`
-      inset-inline-start: (${range.thumbWidth} / 8);
-      inset-inline-end: (${range.thumbWidth} / 8);
+      inset-inline: ${mathWithUnits(range.thumbWidth, (x) => x / 8)};
     `,
     // compressed and non-compressed styles
     regular: css`
-      block-size: calc(${range.height} - ${range.thumbHeight});
+      block-size: ${mathWithUnits(
+        [range.height, range.thumbHeight],
+        (x, y) => x - y
+      )};
       inset-block-start: ${range.thumbHeight};
     `,
     compressed: css`
-      block-size: calc(
-        ${range.compressedHeight} - ${range.trackBottomPositionWithTicks}
-      );
-      inset-block-start: calc(
-        ${range.thumbHeight} -
-          ((${range.thumbHeight} - ${range.trackHeight}) / 2)
-      );
+      block-size: ${mathWithUnits(
+        [range.compressedHeight, range.trackBottomPositionWithTicks],
+        (x, y) => x - y
+      )};
+      inset-block-start: ${mathWithUnits(
+        [range.thumbHeight, range.trackHeight],
+        (x, y) => x - (x - y) / 2
+      )};
     `,
   };
 };
@@ -67,17 +70,12 @@ export const euiRangeTickStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     // Base
     euiRangeTick: css`
-      overflow-inline: hidden; // Overridden if labels overflow horizontally
-      overflow-block: hidden; // Should never scroll vertically
+      ${logicalCSSWithFallback('overflow-x', 'hidden')}
+      ${logicalCSSWithFallback('overflow-y', 'hidden')}
       text-overflow: ellipsis;
       font-size: ${euiFontSize(euiThemeContext, 'xs').fontSize};
       position: absolute;
       transform: translateX(-50%);
-
-      &::before {
-        background-color: ${euiTheme.colors.lightShade};
-        border-radius: ${euiTheme.border.radius.small};
-      }
 
       &:disabled {
         cursor: not-allowed;
@@ -85,13 +83,7 @@ export const euiRangeTickStyles = (euiThemeContext: UseEuiTheme) => {
 
       &:enabled:hover,
       &:focus {
-        color: ${euiTheme.colors.primary};
-      }
-
-      &:not(.euiRangeTick--hasTickMark)::before {
-        ${tickStyles(euiThemeContext, range)}
-        content: '';
-        inset-inline-start: calc(50% - ${euiTheme.size.xs});
+        color: ${range.focusColor};
       }
     `,
     // compressed and non-compressed styles
@@ -105,15 +97,23 @@ export const euiRangeTickStyles = (euiThemeContext: UseEuiTheme) => {
     regular: css`
       ${logicalCSS('padding-top', euiTheme.size.m)};
     `,
-    euiRangeTick__pseudo: css`
-      ${tickStyles(euiThemeContext, range)};
-    `,
     selected: css`
       font-weight: ${euiTheme.font.weight.medium};
-      color: ${euiTheme.colors.primary};
+      color: ${range.focusColor};
     `,
     isCustom: css`
-      overflow-inline: visible;
+      ${logicalCSSWithFallback('overflow-x', 'hidden')}
+    `,
+    // Tick marks can use either a ::before pseudo element or a span __pseudo node
+    hasPseudoTickMark: css`
+      &::before {
+        ${tickStyles(euiThemeContext, range)}
+        content: '';
+        inset-inline-start: calc(50% - ${range.thumbBorderWidth});
+      }
+    `,
+    euiRangeTick__pseudo: css`
+      ${tickStyles(euiThemeContext, range)};
     `,
     isMin: css`
       transform: translateX(0);
@@ -129,6 +129,5 @@ export const euiRangeTickStyles = (euiThemeContext: UseEuiTheme) => {
         inset-inline-end: 0;
       }
     `,
-    hasTickMark: css``,
   };
 };

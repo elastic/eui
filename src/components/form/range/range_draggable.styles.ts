@@ -8,52 +8,21 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
-import {
-  euiRangeVariables,
-  euiRangeThumbFocus,
-  euiRangeThumbBoxShadow,
-} from './range.styles';
+import { mathWithUnits } from '../../../global_styling';
+import { euiRangeVariables, euiRangeThumbFocus } from './range.styles';
 
 export const euiRangeDraggableStyles = (euiThemeContext: UseEuiTheme) => {
   const range = euiRangeVariables(euiThemeContext);
 
   return {
-    // Base
     euiRangeDraggable: css`
-      block-size: calc(${range.height} / 2);
+      block-size: ${mathWithUnits(range.height, (x) => x / 2)};
       position: absolute;
-      inset-block-start: calc(${range.height} / 4);
+      inset-block-start: ${mathWithUnits(range.height, (x) => x / 4)};
       pointer-events: none;
-      z-index: ${range.highlightZIndex};
-
-      &:not(.euiRangeDraggable--disabled) {
-        .euiRangeDraggle__inner {
-          cursor: grab;
-          pointer-events: all;
-
-          &:active {
-            cursor: grabbing;
-          }
-        }
-      }
+      z-index: ${range.thumbZIndex};
 
       &:focus {
-        outline: none;
-
-        ~ .euiRangeThumb {
-          ${euiRangeThumbFocus(euiThemeContext)}
-        }
-      }
-
-      // in Chrome/FF/Edge we don't want to focus on click
-      &:focus:not(:focus-visible) {
-        ~ .euiRangeThumb {
-          ${euiRangeThumbBoxShadow(euiThemeContext)}
-          outline: none;
-        }
-      }
-
-      &:focus-visible {
         outline: none;
 
         ~ .euiRangeThumb {
@@ -65,12 +34,26 @@ export const euiRangeDraggableStyles = (euiThemeContext: UseEuiTheme) => {
       inset-block-start: 0;
     `,
     disabled: css``,
-    euiRangeDraggle__inner: css`
+  };
+};
+
+export const euiRangeDraggableInnerStyles = (euiThemeContext: UseEuiTheme) => {
+  const range = euiRangeVariables(euiThemeContext);
+
+  return {
+    euiRangeDraggable__inner: css`
       position: absolute;
-      inset-inline-start: ${range.thumbWidth};
-      inset-inline-end: ${range.thumbWidth};
-      inset-block-start: 0;
-      inset-block-end: 0;
+      inset-inline: ${range.thumbWidth};
+      inset-block: 0;
     `,
+    enabled: css`
+      cursor: grab;
+      pointer-events: all;
+
+      &:active {
+        cursor: grabbing;
+      }
+    `,
+    disabled: css``,
   };
 };

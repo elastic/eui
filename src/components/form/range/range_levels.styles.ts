@@ -8,31 +8,31 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme, transparentize } from '../../../services';
+
 import { euiRangeLevelColor } from './range_levels_colors';
 import { euiRangeVariables } from './range.styles';
 
 export const euiRangeLevelsStyles = (euiThemeContext: UseEuiTheme) => {
-  const { colorMode, euiTheme } = euiThemeContext;
+  const { euiTheme, colorMode } = euiThemeContext;
   const range = euiRangeVariables(euiThemeContext);
 
   const isColorDark = colorMode === 'DARK';
   const stripeColor = isColorDark ? euiTheme.colors.ink : euiTheme.colors.ghost;
   const stripesBackground = `repeating-linear-gradient(
-        -45deg,
-        ${transparentize(stripeColor, 0.5)},
-        ${transparentize(stripeColor, 0.5)} 2px,
-        ${transparentize(stripeColor, 0.7)} 2px,
-        ${transparentize(stripeColor, 0.7)} 4px
-      )`;
+    -45deg,
+    ${transparentize(stripeColor, 0.5)},
+    ${transparentize(stripeColor, 0.5)} 25%,
+    ${transparentize(stripeColor, 0.7)} 25%,
+    ${transparentize(stripeColor, 0.7)} 50%,
+    ${transparentize(stripeColor, 0.5)} 50%
+  )`;
 
   return {
-    // Base
     euiRangeLevels: css`
       display: flex;
       justify-content: stretch;
       position: absolute;
-      inset-inline-start: 0;
-      inset-inline-end: 0;
+      inset-inline: 0;
       inset-block-start: ${range.trackTopPositionWithoutTicks};
       z-index: ${range.levelsZIndex};
     `,
@@ -42,7 +42,8 @@ export const euiRangeLevelsStyles = (euiThemeContext: UseEuiTheme) => {
         position: absolute;
         block-size: ${range.trackHeight};
         inline-size: 100%;
-        background: ${stripesBackground};
+        background-image: ${stripesBackground};
+        background-size: ${euiTheme.size.s} ${euiTheme.size.s}; // Percentage stops and background-size are both needed for Safari to render the gradient at fullWidth correctly
         border-radius: ${range.trackBorderRadius};
       }
     `,
@@ -61,8 +62,7 @@ export const euiRangeLevelStyles = (euiThemeContext: UseEuiTheme) => {
       display: block;
       position: absolute;
       block-size: ${range.trackHeight};
-      margin-block-start: 0;
-      margin-block-end: 0;
+      margin-block: 0;
 
       &:first-child {
         margin-inline-start: 0;

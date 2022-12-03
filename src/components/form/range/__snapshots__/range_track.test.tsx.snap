@@ -10,8 +10,8 @@ exports[`EuiRangeTrack is rendered 1`] = `
     class="euiRangeTicks emotion-euiRangeTicks-regular"
   >
     <button
-      class="euiRangeTick emotion-euiRangeTick-regular"
-      style="left:calc(NaN% + 8px);max-width:9.090909090909092%"
+      class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
+      style="inset-inline-start:calc(NaN% + 8px);max-inline-size:9.090909090909092%"
       tabindex="-1"
       type="button"
       value="0"
@@ -19,8 +19,8 @@ exports[`EuiRangeTrack is rendered 1`] = `
       0
     </button>
     <button
-      class="euiRangeTick emotion-euiRangeTick-regular"
-      style="left:calc(-Infinity% + 8px);max-width:9.090909090909092%"
+      class="euiRangeTick emotion-euiRangeTick-selected-hasPseudoTickMark-regular"
+      style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:9.090909090909092%"
       tabindex="-1"
       type="button"
       value="10"
@@ -28,8 +28,8 @@ exports[`EuiRangeTrack is rendered 1`] = `
       10
     </button>
     <button
-      class="euiRangeTick emotion-euiRangeTick-regular"
-      style="left:calc(-Infinity% + 8px);max-width:9.090909090909092%"
+      class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
+      style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:9.090909090909092%"
       tabindex="-1"
       type="button"
       value="20"
@@ -37,8 +37,8 @@ exports[`EuiRangeTrack is rendered 1`] = `
       20
     </button>
     <button
-      class="euiRangeTick emotion-euiRangeTick-regular"
-      style="left:calc(-Infinity% + 8px);max-width:9.090909090909092%"
+      class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
+      style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:9.090909090909092%"
       tabindex="-1"
       type="button"
       value="30"
@@ -46,8 +46,8 @@ exports[`EuiRangeTrack is rendered 1`] = `
       30
     </button>
     <button
-      class="euiRangeTick emotion-euiRangeTick-regular"
-      style="left:calc(-Infinity% + 8px);max-width:9.090909090909092%"
+      class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
+      style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:9.090909090909092%"
       tabindex="-1"
       type="button"
       value="40"
@@ -55,8 +55,8 @@ exports[`EuiRangeTrack is rendered 1`] = `
       40
     </button>
     <button
-      class="euiRangeTick emotion-euiRangeTick-regular"
-      style="left:calc(-Infinity% + 8px);max-width:9.090909090909092%"
+      class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
+      style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:9.090909090909092%"
       tabindex="-1"
       type="button"
       value="50"
@@ -64,8 +64,8 @@ exports[`EuiRangeTrack is rendered 1`] = `
       50
     </button>
     <button
-      class="euiRangeTick emotion-euiRangeTick-regular"
-      style="left:calc(-Infinity% + 8px);max-width:9.090909090909092%"
+      class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
+      style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:9.090909090909092%"
       tabindex="-1"
       type="button"
       value="60"
@@ -73,8 +73,8 @@ exports[`EuiRangeTrack is rendered 1`] = `
       60
     </button>
     <button
-      class="euiRangeTick emotion-euiRangeTick-regular"
-      style="left:calc(-Infinity% + 8px);max-width:9.090909090909092%"
+      class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
+      style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:9.090909090909092%"
       tabindex="-1"
       type="button"
       value="70"
@@ -82,8 +82,8 @@ exports[`EuiRangeTrack is rendered 1`] = `
       70
     </button>
     <button
-      class="euiRangeTick emotion-euiRangeTick-regular"
-      style="left:calc(-Infinity% + 8px);max-width:9.090909090909092%"
+      class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
+      style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:9.090909090909092%"
       tabindex="-1"
       type="button"
       value="80"
@@ -91,8 +91,8 @@ exports[`EuiRangeTrack is rendered 1`] = `
       80
     </button>
     <button
-      class="euiRangeTick emotion-euiRangeTick-regular"
-      style="left:calc(-Infinity% + 8px);max-width:9.090909090909092%"
+      class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
+      style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:9.090909090909092%"
       tabindex="-1"
       type="button"
       value="90"
@@ -100,8 +100,8 @@ exports[`EuiRangeTrack is rendered 1`] = `
       90
     </button>
     <button
-      class="euiRangeTick emotion-euiRangeTick-regular"
-      style="left:calc(-Infinity% + 8px);max-width:9.090909090909092%"
+      class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
+      style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:9.090909090909092%"
       tabindex="-1"
       type="button"
       value="100"

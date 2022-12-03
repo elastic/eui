@@ -10,7 +10,7 @@ exports[`EuiDualRange allows value prop to accept empty strings 1`] = `
   >
     <input
       aria-hidden="true"
-      class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider emotion-euiRangeSlider-hasRange-euiDualRange__slider"
+      class="euiRangeSlider euiDualRange__slider emotion-euiRangeSlider-hasRange-euiDualRange__slider"
       id="generated-id"
       max="100"
       min="0"
@@ -32,7 +32,7 @@ exports[`EuiDualRange allows value prop to accept numbers 1`] = `
   >
     <input
       aria-hidden="true"
-      class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider emotion-euiRangeSlider-hasRange-euiDualRange__slider"
+      class="euiRangeSlider euiDualRange__slider emotion-euiRangeSlider-hasRange-euiDualRange__slider"
       id="generated-id"
       max="100"
       min="0"
@@ -45,7 +45,7 @@ exports[`EuiDualRange allows value prop to accept numbers 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="margin-left:1%;inline-size:7.000000000000001%"
+        style="margin-inline-start:1%;inline-size:7.000000000000001%"
       />
     </div>
   </div>
@@ -69,7 +69,7 @@ exports[`EuiDualRange input props can be applied to min and max inputs 1`] = `
         min="1"
         name="name-minValue"
         step="1"
-        style="width:3.6em"
+        style="inline-size:3.6em"
         type="number"
         value="1"
       />
@@ -84,7 +84,7 @@ exports[`EuiDualRange input props can be applied to min and max inputs 1`] = `
   >
     <input
       aria-hidden="true"
-      class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider emotion-euiRangeSlider-hasRange-euiDualRange__slider"
+      class="euiRangeSlider euiDualRange__slider emotion-euiRangeSlider-hasRange-euiDualRange__slider"
       id="id"
       max="10"
       min="1"
@@ -98,7 +98,7 @@ exports[`EuiDualRange input props can be applied to min and max inputs 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="margin-left:0%;inline-size:77.77777777777779%"
+        style="margin-inline-start:0%;inline-size:77.77777777777779%"
       />
     </div>
   </div>
@@ -118,7 +118,7 @@ exports[`EuiDualRange input props can be applied to min and max inputs 1`] = `
         min="1"
         name="name-maxValue"
         step="1"
-        style="width:3.6em"
+        style="inline-size:3.6em"
         type="number"
         value="8"
       />
@@ -138,7 +138,7 @@ exports[`EuiDualRange is rendered 1`] = `
     <input
       aria-hidden="true"
       aria-label="aria-label"
-      class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider emotion-euiRangeSlider-hasRange-euiDualRange__slider"
+      class="euiRangeSlider euiDualRange__slider emotion-euiRangeSlider-hasRange-euiDualRange__slider"
       data-test-subj="test subject string"
       id="id"
       max="100"
@@ -153,7 +153,7 @@ exports[`EuiDualRange is rendered 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="margin-left:1%;inline-size:7.000000000000001%"
+        style="margin-inline-start:1%;inline-size:7.000000000000001%"
       />
     </div>
   </div>
@@ -162,7 +162,7 @@ exports[`EuiDualRange is rendered 1`] = `
 
 exports[`EuiDualRange props compressed should render 1`] = `
 <div
-  class="euiRangeWrapper euiRangeWrapper--compressed euiDualRange emotion-euiRangeWrapper-compressed-euiDualRange"
+  class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-compressed-euiDualRange"
 >
   <div
     aria-hidden="false"
@@ -170,7 +170,7 @@ exports[`EuiDualRange props compressed should render 1`] = `
   >
     <input
       aria-hidden="true"
-      class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider emotion-euiRangeSlider-hasRange-euiDualRange__slider"
+      class="euiRangeSlider euiDualRange__slider emotion-euiRangeSlider-hasRange-euiDualRange__slider"
       id="generated-id"
       max="100"
       min="0"
@@ -179,11 +179,11 @@ exports[`EuiDualRange props compressed should render 1`] = `
       type="range"
     />
     <div
-      class="euiRangeHighlight euiRangeHighlight--compressed emotion-euiRangeHighlight"
+      class="euiRangeHighlight emotion-euiRangeHighlight"
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="margin-left:1%;inline-size:7.000000000000001%"
+        style="margin-inline-start:1%;inline-size:7.000000000000001%"
       />
     </div>
   </div>
@@ -199,11 +199,11 @@ exports[`EuiDualRange props custom ticks should render 1`] = `
     class="euiRangeTrack emotion-euiRangeTrack-hasTicks"
   >
     <div
-      class="euiRangeTicks euiRangeTicks--isCustom emotion-euiRangeTicks-regular-isCustom"
+      class="euiRangeTicks emotion-euiRangeTicks-regular-isCustom"
     >
       <button
-        class="euiRangeTick euiRangeTick--isCustom emotion-euiRangeTick-isCustom-regular"
-        style="left:calc(-Infinity% + 8px)"
+        class="euiRangeTick emotion-euiRangeTick-isCustom-hasPseudoTickMark-regular"
+        style="inset-inline-start:calc(-Infinity% + 8px)"
         tabindex="-1"
         title="20kb"
         type="button"
@@ -212,8 +212,8 @@ exports[`EuiDualRange props custom ticks should render 1`] = `
         20kb
       </button>
       <button
-        class="euiRangeTick euiRangeTick--isCustom euiRangeTick--isMax euiRangeTick--hasTickMark emotion-euiRangeTick-isCustom-isMax-hasTickMark-regular"
-        style="right:0%;margin-right:-1.25em"
+        class="euiRangeTick emotion-euiRangeTick-isCustom-isMax-regular"
+        style="inset-inline-end:0%;margin-inline-end:-1.25em"
         tabindex="-1"
         title="100kb"
         type="button"
@@ -222,14 +222,14 @@ exports[`EuiDualRange props custom ticks should render 1`] = `
         <span
           aria-hidden="true"
           class="euiRangeTick__pseudo emotion-euiRangeTick__pseudo"
-          style="margin-right:calc(1.25em + 4px)"
+          style="margin-inline-end:calc(1.25em + 4px)"
         />
         100kb
       </button>
     </div>
     <input
       aria-hidden="true"
-      class="euiRangeSlider euiRangeSlider--hasTicks euiRangeSlider--hasRange euiDualRange__slider emotion-euiRangeSlider-hasTicks-hasRange-euiDualRange__slider"
+      class="euiRangeSlider euiDualRange__slider emotion-euiRangeSlider-hasTicks-hasRange-euiDualRange__slider"
       id="generated-id"
       max="100"
       min="0"
@@ -238,11 +238,11 @@ exports[`EuiDualRange props custom ticks should render 1`] = `
       type="range"
     />
     <div
-      class="euiRangeHighlight euiRangeHighlight--hasTicks emotion-euiRangeHighlight-hasTicks"
+      class="euiRangeHighlight emotion-euiRangeHighlight-hasTicks"
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="margin-left:20%;inline-size:80%"
+        style="margin-inline-start:20%;inline-size:80%"
       />
     </div>
   </div>
@@ -259,7 +259,7 @@ exports[`EuiDualRange props disabled should render 1`] = `
   >
     <input
       aria-hidden="true"
-      class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider emotion-euiRangeSlider-hasRange-euiDualRange__slider"
+      class="euiRangeSlider euiDualRange__slider emotion-euiRangeSlider-hasRange-euiDualRange__slider"
       disabled=""
       id="generated-id"
       max="100"
@@ -273,7 +273,7 @@ exports[`EuiDualRange props disabled should render 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="margin-left:1%;inline-size:7.000000000000001%"
+        style="margin-inline-start:1%;inline-size:7.000000000000001%"
       />
     </div>
   </div>
@@ -282,7 +282,7 @@ exports[`EuiDualRange props disabled should render 1`] = `
 
 exports[`EuiDualRange props fullWidth should render 1`] = `
 <div
-  class="euiRangeWrapper euiRangeWrapper--fullWidth euiDualRange emotion-euiRangeWrapper-regular-euiDualRange"
+  class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-regular-fullWidth-euiDualRange"
 >
   <div
     aria-hidden="false"
@@ -290,7 +290,7 @@ exports[`EuiDualRange props fullWidth should render 1`] = `
   >
     <input
       aria-hidden="true"
-      class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider emotion-euiRangeSlider-hasRange-euiDualRange__slider"
+      class="euiRangeSlider euiDualRange__slider emotion-euiRangeSlider-hasRange-euiDualRange__slider"
       id="generated-id"
       max="100"
       min="0"
@@ -303,7 +303,7 @@ exports[`EuiDualRange props fullWidth should render 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="margin-left:1%;inline-size:7.000000000000001%"
+        style="margin-inline-start:1%;inline-size:7.000000000000001%"
       />
     </div>
   </div>
@@ -327,7 +327,7 @@ exports[`EuiDualRange props inputs should render 1`] = `
         min="0"
         name="name-minValue"
         step="1"
-        style="width:4.4em"
+        style="inline-size:4.4em"
         type="number"
         value="1"
       />
@@ -343,7 +343,7 @@ exports[`EuiDualRange props inputs should render 1`] = `
     <input
       aria-hidden="true"
       aria-label="aria-label"
-      class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider emotion-euiRangeSlider-hasRange-euiDualRange__slider"
+      class="euiRangeSlider euiDualRange__slider emotion-euiRangeSlider-hasRange-euiDualRange__slider"
       data-test-subj="test subject string"
       id="id"
       max="100"
@@ -358,7 +358,7 @@ exports[`EuiDualRange props inputs should render 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="margin-left:1%;inline-size:7.000000000000001%"
+        style="margin-inline-start:1%;inline-size:7.000000000000001%"
       />
     </div>
   </div>
@@ -378,7 +378,7 @@ exports[`EuiDualRange props inputs should render 1`] = `
         min="1"
         name="name-maxValue"
         step="1"
-        style="width:4.4em"
+        style="inline-size:4.4em"
         type="number"
         value="8"
       />
@@ -397,7 +397,7 @@ exports[`EuiDualRange props isDraggable should render 1`] = `
   >
     <input
       aria-hidden="true"
-      class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider emotion-euiRangeSlider-hasRange-euiDualRange__slider"
+      class="euiRangeSlider euiDualRange__slider emotion-euiRangeSlider-hasRange-euiDualRange__slider"
       id="generated-id"
       max="100"
       min="0"
@@ -410,7 +410,7 @@ exports[`EuiDualRange props isDraggable should render 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="margin-left:1%;inline-size:7.000000000000001%"
+        style="margin-inline-start:1%;inline-size:7.000000000000001%"
       />
     </div>
   </div>
@@ -422,7 +422,7 @@ exports[`EuiDualRange props labels should render 1`] = `
   class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-regular-euiDualRange"
 >
   <label
-    class="euiRangeLabel euiRangeLabel--min emotion-euiRangeLabel-min"
+    class="euiRangeLabel emotion-euiRangeLabel-min"
   >
     0
   </label>
@@ -432,7 +432,7 @@ exports[`EuiDualRange props labels should render 1`] = `
   >
     <input
       aria-hidden="true"
-      class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider emotion-euiRangeSlider-hasRange-euiDualRange__slider"
+      class="euiRangeSlider euiDualRange__slider emotion-euiRangeSlider-hasRange-euiDualRange__slider"
       id="generated-id"
       max="100"
       min="0"
@@ -445,12 +445,12 @@ exports[`EuiDualRange props labels should render 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="margin-left:1%;inline-size:7.000000000000001%"
+        style="margin-inline-start:1%;inline-size:7.000000000000001%"
       />
     </div>
   </div>
   <label
-    class="euiRangeLabel euiRangeLabel--max emotion-euiRangeLabel-max"
+    class="euiRangeLabel emotion-euiRangeLabel-max"
   >
     100
   </label>
@@ -469,17 +469,17 @@ exports[`EuiDualRange props levels should render 1`] = `
       class="euiRangeLevels emotion-euiRangeLevels-hasRange"
     >
       <span
-        class="euiRangeLevel euiRangeLevel--danger emotion-euiRangeLevel-danger"
-        style="left:calc(0% + 0px);right:calc(100% - 0px)"
+        class="euiRangeLevel emotion-euiRangeLevel-danger"
+        style="inset-inline-start:calc(0% + 0px);inset-inline-end:calc(100% - 0px)"
       />
       <span
-        class="euiRangeLevel euiRangeLevel--success emotion-euiRangeLevel-success"
-        style="left:calc(0% + 0px);right:calc(100% - 0px)"
+        class="euiRangeLevel emotion-euiRangeLevel-success"
+        style="inset-inline-start:calc(0% + 0px);inset-inline-end:calc(100% - 0px)"
       />
     </div>
     <input
       aria-hidden="true"
-      class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider emotion-euiRangeSlider-hasRange-euiDualRange__slider"
+      class="euiRangeSlider euiDualRange__slider emotion-euiRangeSlider-hasRange-euiDualRange__slider"
       id="generated-id"
       max="100"
       min="0"
@@ -492,19 +492,19 @@ exports[`EuiDualRange props levels should render 1`] = `
     >
       <div
         class="emotion-euiRangeHighlight__levelsWrapper"
-        style="margin-left:1%;inline-size:7.000000000000001%"
+        style="margin-inline-start:1%;inline-size:7.000000000000001%"
       >
         <div
           class="emotion-euiRangeLevels-euiRangeHighlight__levels"
-          style="left:-0px;inline-size:0px"
+          style="inset-inline-start:-0px;inline-size:0px"
         >
           <span
-            class="euiRangeLevel euiRangeLevel--danger emotion-euiRangeLevel-danger"
-            style="left:calc(0% + 0px);right:calc(100% - 0px)"
+            class="euiRangeLevel emotion-euiRangeLevel-danger"
+            style="inset-inline-start:calc(0% + 0px);inset-inline-end:calc(100% - 0px)"
           />
           <span
-            class="euiRangeLevel euiRangeLevel--success emotion-euiRangeLevel-success"
-            style="left:calc(0% + 0px);right:calc(100% - 0px)"
+            class="euiRangeLevel emotion-euiRangeLevel-success"
+            style="inset-inline-start:calc(0% + 0px);inset-inline-end:calc(100% - 0px)"
           />
         </div>
       </div>
@@ -578,7 +578,7 @@ exports[`EuiDualRange props range should render 1`] = `
   >
     <input
       aria-hidden="true"
-      class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider emotion-euiRangeSlider-hasRange-euiDualRange__slider"
+      class="euiRangeSlider euiDualRange__slider emotion-euiRangeSlider-hasRange-euiDualRange__slider"
       id="generated-id"
       max="100"
       min="0"
@@ -591,7 +591,7 @@ exports[`EuiDualRange props range should render 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="margin-left:1%;inline-size:7.000000000000001%"
+        style="margin-inline-start:1%;inline-size:7.000000000000001%"
       />
     </div>
   </div>
@@ -656,8 +656,8 @@ exports[`EuiDualRange props ticks should render 1`] = `
       class="euiRangeTicks emotion-euiRangeTicks-regular"
     >
       <button
-        class="euiRangeTick emotion-euiRangeTick-regular"
-        style="left:calc(NaN% + 8px);max-width:16.666666666666664%"
+        class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
+        style="inset-inline-start:calc(NaN% + 8px);max-inline-size:16.666666666666664%"
         tabindex="-1"
         type="button"
         value="0"
@@ -665,8 +665,8 @@ exports[`EuiDualRange props ticks should render 1`] = `
         0
       </button>
       <button
-        class="euiRangeTick emotion-euiRangeTick-regular"
-        style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
+        class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
+        style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:16.666666666666664%"
         tabindex="-1"
         type="button"
         value="20"
@@ -674,8 +674,8 @@ exports[`EuiDualRange props ticks should render 1`] = `
         20
       </button>
       <button
-        class="euiRangeTick emotion-euiRangeTick-regular"
-        style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
+        class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
+        style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:16.666666666666664%"
         tabindex="-1"
         type="button"
         value="40"
@@ -683,8 +683,8 @@ exports[`EuiDualRange props ticks should render 1`] = `
         40
       </button>
       <button
-        class="euiRangeTick emotion-euiRangeTick-regular"
-        style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
+        class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
+        style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:16.666666666666664%"
         tabindex="-1"
         type="button"
         value="60"
@@ -692,8 +692,8 @@ exports[`EuiDualRange props ticks should render 1`] = `
         60
       </button>
       <button
-        class="euiRangeTick emotion-euiRangeTick-regular"
-        style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
+        class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
+        style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:16.666666666666664%"
         tabindex="-1"
         type="button"
         value="80"
@@ -701,8 +701,8 @@ exports[`EuiDualRange props ticks should render 1`] = `
         80
       </button>
       <button
-        class="euiRangeTick emotion-euiRangeTick-regular"
-        style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
+        class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
+        style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:16.666666666666664%"
         tabindex="-1"
         type="button"
         value="100"
@@ -712,7 +712,7 @@ exports[`EuiDualRange props ticks should render 1`] = `
     </div>
     <input
       aria-hidden="true"
-      class="euiRangeSlider euiRangeSlider--hasTicks euiRangeSlider--hasRange euiDualRange__slider emotion-euiRangeSlider-hasTicks-hasRange-euiDualRange__slider"
+      class="euiRangeSlider euiDualRange__slider emotion-euiRangeSlider-hasTicks-hasRange-euiDualRange__slider"
       id="generated-id"
       max="100"
       min="0"
@@ -721,11 +721,11 @@ exports[`EuiDualRange props ticks should render 1`] = `
       type="range"
     />
     <div
-      class="euiRangeHighlight euiRangeHighlight--hasTicks emotion-euiRangeHighlight-hasTicks"
+      class="euiRangeHighlight emotion-euiRangeHighlight-hasTicks"
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="margin-left:1%;inline-size:7.000000000000001%"
+        style="margin-inline-start:1%;inline-size:7.000000000000001%"
       />
     </div>
   </div>

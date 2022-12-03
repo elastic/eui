@@ -37,14 +37,7 @@ export const EuiRangeWrapper = forwardRef<HTMLDivElement, EuiRangeWrapperProps>(
       ...rest
     } = props;
 
-    const classes = classNames(
-      'euiRangeWrapper',
-      {
-        'euiRangeWrapper--fullWidth': fullWidth,
-        'euiRangeWrapper--compressed': compressed,
-      },
-      className
-    );
+    const classes = classNames('euiRangeWrapper', className);
 
     const euiTheme = useEuiTheme();
     const styles = euiRangeWrapperStyles(euiTheme);
@@ -52,6 +45,7 @@ export const EuiRangeWrapper = forwardRef<HTMLDivElement, EuiRangeWrapperProps>(
       styles.euiRangeWrapper,
       !compressed && styles.regular,
       compressed && styles.compressed,
+      fullWidth && styles.fullWidth,
     ];
 
     return (

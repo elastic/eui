@@ -10,13 +10,12 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
 
 export const euiRangeInputStyles = ({ euiTheme }: UseEuiTheme) => ({
-  // Base
   euiRangeInput: css`
     inline-size: auto;
     min-inline-size: ${euiTheme.base * 4}px;
 
     .euiRange__popover & {
-      margin: 0 !important;
+      margin: 0;
       inline-size: 100%;
     }
   `,

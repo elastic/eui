@@ -10,7 +10,12 @@ import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import { useMouseMove, useEuiTheme } from '../../../services';
-import { euiRangeDraggableStyles } from './range_draggable.styles';
+import { logicalStyles } from '../../../global_styling';
+
+import {
+  euiRangeDraggableStyles,
+  euiRangeDraggableInnerStyles,
+} from './range_draggable.styles';
 
 export interface EuiRangeDraggableProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
@@ -38,9 +43,11 @@ export const EuiRangeDraggable: FunctionComponent<EuiRangeDraggableProps> = ({
   value,
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
+
   const outerStyle: React.CSSProperties = {
-    left: `calc(${lowerPosition})`,
-    right: `calc(100% - ${upperPosition} - 16px)`,
+    left: lowerPosition,
+    right: `calc(100% - ${upperPosition} - ${euiTheme.euiTheme.size.base})`,
   };
 
   const classes = classNames('euiRangeDraggable', className);
@@ -55,12 +62,16 @@ export const EuiRangeDraggable: FunctionComponent<EuiRangeDraggableProps> = ({
 
   const [handleMouseDown, handleInteraction] = useMouseMove(handleChange);
 
-  const euiTheme = useEuiTheme();
   const styles = euiRangeDraggableStyles(euiTheme);
   const cssStyles = [
     styles.euiRangeDraggable,
     showTicks && styles.hasTicks,
     disabled && styles.disabled,
+  ];
+  const innerStyles = euiRangeDraggableInnerStyles(euiTheme);
+  const cssInnerStyles = [
+    innerStyles.euiRangeDraggable__inner,
+    disabled ? styles.disabled : innerStyles.enabled,
   ];
 
   const commonProps = {
@@ -76,10 +87,10 @@ export const EuiRangeDraggable: FunctionComponent<EuiRangeDraggableProps> = ({
   };
 
   return (
-    <div style={outerStyle} {...commonProps} {...rest}>
+    <div style={logicalStyles(outerStyle)} {...commonProps} {...rest}>
       <div
-        className="euiRangeDraggle__inner"
-        css={styles.euiRangeDraggle__inner}
+        className="euiRangeDraggable__inner"
+        css={cssInnerStyles}
         onMouseDown={handleMouseDown}
         onTouchStart={handleInteraction}
         onTouchMove={handleInteraction}

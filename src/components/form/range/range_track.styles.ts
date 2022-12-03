@@ -10,15 +10,6 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
 import { euiRangeVariables } from './range.styles';
 
-export const euiRangeTrackSize = (euiThemeContext: UseEuiTheme) => {
-  const range = euiRangeVariables(euiThemeContext);
-
-  return `
-    block-size: ${range.trackHeight};
-    inline-size: ${range.trackWidth};
-  `;
-};
-
 export const euiRangeTrackStyles = (euiThemeContext: UseEuiTheme) => {
   const range = euiRangeVariables(euiThemeContext);
 
@@ -33,12 +24,13 @@ export const euiRangeTrackStyles = (euiThemeContext: UseEuiTheme) => {
       &::after {
         content: '';
         display: block;
-        background: ${range.trackColor};
-        border-radius: ${range.trackBorderRadius};
         position: absolute;
         inset-block-start: ${range.trackTopPositionWithoutTicks};
         inset-inline-start: 0;
-        ${euiRangeTrackSize(euiThemeContext)};
+        block-size: ${range.trackHeight};
+        inline-size: ${range.trackWidth};
+        background: ${range.trackColor};
+        border-radius: ${range.trackBorderRadius};
       }
     `,
     hasTicks: css`

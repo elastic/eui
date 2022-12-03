@@ -16,14 +16,13 @@ export const euiRangeLabelStyles = (euiThemeContext: UseEuiTheme) => {
   const range = euiRangeVariables(euiThemeContext);
 
   return {
-    // Base
-    euiRangeLabel: css``,
-    min: css`
+    euiRangeLabel: css`
       font-size: ${euiFontSize(euiThemeContext, 'xs').fontSize};
+    `,
+    min: css`
       ${logicalCSS('padding-right', euiTheme.size.s)}
     `,
     max: css`
-      font-size: ${euiFontSize(euiThemeContext, 'xs').fontSize};
       ${logicalCSS('padding-left', euiTheme.size.s)}
     `,
     isDisabled: css`

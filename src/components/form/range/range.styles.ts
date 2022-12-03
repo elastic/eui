@@ -8,6 +8,7 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme, hexToRgb } from '../../../services';
+import { mathWithUnits } from '../../../global_styling';
 import { euiFormVariables } from '../form.styles';
 
 export const euiRangeVariables = (euiThemeContext: UseEuiTheme) => {
@@ -20,9 +21,11 @@ export const euiRangeVariables = (euiThemeContext: UseEuiTheme) => {
   return {
     trackColor: euiTheme.colors.lightShade,
     highlightColor: euiTheme.colors.darkShade,
+    focusColor: euiTheme.colors.primary,
 
     thumbHeight: thumbHeight,
     thumbWidth: thumbWidth,
+    thumbBorderWidth: euiTheme.border.width.thick,
     thumbBorderColor: euiTheme.colors.emptyShade,
     thumbBackgroundColor: euiTheme.colors.darkShade, // same as highlightColor
 
@@ -42,9 +45,15 @@ export const euiRangeVariables = (euiThemeContext: UseEuiTheme) => {
     height: form.controlHeight,
     compressedHeight: form.controlCompressedHeight,
 
-    // position of the track and hihglight relative to the parent container
-    trackTopPositionWithTicks: `calc((${thumbHeight} - ${trackHeight}) / 2)`,
-    trackBottomPositionWithTicks: `calc(${thumbHeight} - ((${thumbHeight} - ${trackHeight}) / 2))`,
+    // position of the track and highlight relative to the parent container
+    trackTopPositionWithTicks: mathWithUnits(
+      [thumbHeight, trackHeight],
+      (x, y) => (x - y) / 2
+    ),
+    trackBottomPositionWithTicks: mathWithUnits(
+      [thumbHeight, trackHeight],
+      (x, y) => x - (x - y) / 2
+    ),
     trackTopPositionWithoutTicks: `calc(50% - (${trackHeight} / 2))`,
 
     // Z-indexes
@@ -52,13 +61,6 @@ export const euiRangeVariables = (euiThemeContext: UseEuiTheme) => {
     highlightZIndex: 2,
     thumbZIndex: 3,
   };
-};
-
-export const euiRangeTrackSize = (euiThemeContext: UseEuiTheme) => {
-  return `
-    inline-size: ${euiRangeVariables(euiThemeContext).trackWidth};
-    block-size: ${euiRangeVariables(euiThemeContext).trackHeight};
-    `;
 };
 
 export const euiRangeTrackPerBrowser = (content: string) => {
@@ -71,42 +73,49 @@ export const euiRangeTrackPerBrowser = (content: string) => {
 };
 
 export const euiRangeThumbBorder = (euiThemeContext: UseEuiTheme) => {
+  const range = euiRangeVariables(euiThemeContext);
+
   return `
-    border: 2px solid ${euiRangeVariables(euiThemeContext).thumbBorderColor};
+    border: ${range.thumbBorderWidth} solid ${range.thumbBorderColor};
   `;
 };
 
 export const euiRangeThumbBoxShadow = (euiThemeContext: UseEuiTheme) => {
   const euiTheme = euiThemeContext.euiTheme;
+  const shadowColor = `rgba(${hexToRgb(euiTheme.colors.shadow)}, .2)`;
+
+  const range = euiRangeVariables(euiThemeContext);
+  const borderWidth = range.thumbBorderWidth;
+  const halfBorderWidth = mathWithUnits(borderWidth, (x) => x / 2);
+  const largeBorderWidth = mathWithUnits(borderWidth, (x) => x * 2.5);
 
   return `
-    box-shadow: 0 0 0 1px ${
-      euiRangeVariables(euiThemeContext).thumbBorderColor
-    },
-    0 2px 2px -1px rgba(${hexToRgb(euiTheme.colors.shadow)}, .2),
-    0 1px 5px -2px rgba(${hexToRgb(euiTheme.colors.shadow)}, .2);
+    box-shadow:
+      0 0 0 ${halfBorderWidth} ${range.thumbBorderColor},
+      0 ${borderWidth} ${borderWidth} -${halfBorderWidth} ${shadowColor},
+      0 ${halfBorderWidth} ${largeBorderWidth} -${borderWidth} ${shadowColor};
   `;
 };
 
 export const euiRangeThumbFocusBoxShadow = (euiThemeContext: UseEuiTheme) => {
-  const euiTheme = euiThemeContext.euiTheme;
+  const range = euiRangeVariables(euiThemeContext);
 
   return `
-    box-shadow: 0 0 0 2px ${euiTheme.focus.color};
+    box-shadow: 0 0 0 ${range.thumbBorderWidth} ${range.focusColor};
   `;
 };
 
 export const euiRangeThumbStyle = (euiThemeContext: UseEuiTheme) => {
+  const range = euiRangeVariables(euiThemeContext);
+
   return `
     ${euiRangeThumbBoxShadow(euiThemeContext)};
     ${euiRangeThumbBorder(euiThemeContext)};
     cursor: pointer;
-    background-color: ${
-      euiRangeVariables(euiThemeContext).thumbBackgroundColor
-    };
+    background-color: ${range.thumbBackgroundColor};
     padding: 0;
-    block-size: ${euiRangeVariables(euiThemeContext).thumbHeight};
-    inline-size: ${euiRangeVariables(euiThemeContext).thumbWidth};
+    block-size: ${range.thumbHeight};
+    inline-size: ${range.thumbWidth};
     box-sizing: border-box;  // required for firefox or the border makes the width and height to increase
   `;
 };
@@ -123,18 +132,19 @@ export const euiRangeThumbFocus = (
   euiThemeContext: UseEuiTheme,
   color?: string
 ) => {
-  const euiTheme = euiThemeContext.euiTheme;
+  const range = euiRangeVariables(euiThemeContext);
 
   return `
    ${euiRangeThumbBorder(euiThemeContext)};
    ${euiRangeThumbFocusBoxShadow(euiThemeContext)};
-   background-color: ${color || euiTheme.colors.primary};
+   background-color: ${color || range.focusColor};
   `;
 };
 
 export const euiRangeStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Base
   euiRange: css``,
+  hasInput: css``,
   euiRange__horizontalSpacer: css`
     inline-size: ${euiTheme.size.base};
   `,

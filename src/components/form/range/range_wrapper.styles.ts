@@ -12,27 +12,24 @@ import { UseEuiTheme } from '../../../services';
 
 export const euiRangeWrapperStyles = (euiThemeContext: UseEuiTheme) => {
   return {
-    // Base
     euiRangeWrapper: css`
       display: flex;
       align-items: center;
 
       > .euiFormControlLayout {
-        /* 1 */
+        // There's no way to target the layout of the extra input, so we must
+        // use the descendant selector to allow the width to shrink.
         inline-size: auto;
-
-        &.euiFormControlLayout--group {
-          flex-shrink: 0; /* 2 */
-        }
       }
     `,
     regular: css`
       ${euiFormControlSize(euiThemeContext)}
     `,
     compressed: css`
-      ${euiFormControlSize(euiThemeContext, {
-        compressed: true,
-      })}
+      ${euiFormControlSize(euiThemeContext)}
+    `,
+    fullWidth: css`
+      max-inline-size: 100%;
     `,
   };
 };

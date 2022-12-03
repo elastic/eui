@@ -9,7 +9,7 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
-// import { shouldRenderCustomStyles } from '../../../test/internal';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiForm } from '../form';
 import { EuiDualRange } from './dual_range';
@@ -19,16 +19,16 @@ const props = {
 };
 
 describe('EuiDualRange', () => {
-  // TODO - Test fails with: expect(componentNode.attr('style')).toContain("content:'world'");
-  // shouldRenderCustomStyles(
-  //   <EuiDualRange
-  //     name="name"
-  //     id="id"
-  //     value={['1', '8']}
-  //     {...props}
-  //     {...requiredProps}
-  //   />
-  // );
+  shouldRenderCustomStyles(
+    <EuiDualRange
+      name="name"
+      id="id"
+      value={['1', '8']}
+      {...props}
+      {...requiredProps}
+    />,
+    { skipStyles: true } // style is in ...rest and is spread to a different location than className/css
+  );
 
   test('is rendered', () => {
     const component = render(
@@ -233,9 +233,7 @@ describe('EuiDualRange', () => {
       );
 
       if (
-        !component
-          .find('.euiRangeWrapper')
-          .hasClass('euiRangeWrapper--fullWidth')
+        !component.find('.euiRangeWrapper').attr('class').includes('-fullWidth')
       ) {
         throw new Error(
           'expected EuiDualRange to inherit fullWidth from EuiForm'
