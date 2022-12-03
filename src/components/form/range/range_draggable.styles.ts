@@ -9,11 +9,7 @@
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
 import { mathWithUnits } from '../../../global_styling';
-import {
-  euiRangeVariables,
-  euiRangeThumbFocus,
-  euiRangeThumbBoxShadow,
-} from './range.styles';
+import { euiRangeVariables, euiRangeThumbFocus } from './range.styles';
 
 export const euiRangeDraggableStyles = (euiThemeContext: UseEuiTheme) => {
   const range = euiRangeVariables(euiThemeContext);
@@ -28,22 +24,6 @@ export const euiRangeDraggableStyles = (euiThemeContext: UseEuiTheme) => {
       z-index: ${range.thumbZIndex};
 
       &:focus {
-        outline: none;
-
-        ~ .euiRangeThumb {
-          ${euiRangeThumbFocus(euiThemeContext)}
-        }
-      }
-
-      // in Chrome/FF/Edge we don't want to focus on click
-      &:focus:not(:focus-visible) {
-        ~ .euiRangeThumb {
-          ${euiRangeThumbBoxShadow(euiThemeContext)}
-          outline: none;
-        }
-      }
-
-      &:focus-visible {
         outline: none;
 
         ~ .euiRangeThumb {
