@@ -21,6 +21,7 @@ export const euiRangeVariables = (euiThemeContext: UseEuiTheme) => {
   return {
     trackColor: euiTheme.colors.lightShade,
     highlightColor: euiTheme.colors.darkShade,
+    focusColor: euiTheme.colors.primary,
 
     thumbHeight: thumbHeight,
     thumbWidth: thumbWidth,
@@ -104,11 +105,10 @@ export const euiRangeThumbBoxShadow = (euiThemeContext: UseEuiTheme) => {
 };
 
 export const euiRangeThumbFocusBoxShadow = (euiThemeContext: UseEuiTheme) => {
-  const euiTheme = euiThemeContext.euiTheme;
   const range = euiRangeVariables(euiThemeContext);
 
   return `
-    box-shadow: 0 0 0 ${range.thumbBorderWidth} ${euiTheme.colors.primary};
+    box-shadow: 0 0 0 ${range.thumbBorderWidth} ${range.focusColor};
   `;
 };
 
@@ -139,12 +139,12 @@ export const euiRangeThumbFocus = (
   euiThemeContext: UseEuiTheme,
   color?: string
 ) => {
-  const euiTheme = euiThemeContext.euiTheme;
+  const range = euiRangeVariables(euiThemeContext);
 
   return `
    ${euiRangeThumbBorder(euiThemeContext)};
    ${euiRangeThumbFocusBoxShadow(euiThemeContext)};
-   background-color: ${color || euiTheme.colors.primary};
+   background-color: ${color || range.focusColor};
   `;
 };
 

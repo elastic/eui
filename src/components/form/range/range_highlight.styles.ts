@@ -35,7 +35,6 @@ export const euiRangeHighlightProgressStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
   const range = euiRangeVariables(euiThemeContext);
-  const euiTheme = euiThemeContext.euiTheme;
 
   return {
     euiRangeHighlight__progress: css`
@@ -43,9 +42,13 @@ export const euiRangeHighlightProgressStyles = (
       border-radius: ${range.trackBorderRadius};
       background-color: ${range.highlightColor};
       border-color: ${range.highlightColor};
-    `,
-    hasFocus: css`
-      background-color: ${euiTheme.colors.primary};
+
+      // Change highlight color to focus on keyboard focus and on mouse drag
+      .euiRangeSlider:focus-visible ~ .euiRangeHighlight &,
+      .euiRangeThumb:focus-visible ~ .euiRangeHighlight &,
+      .euiRangeDraggable:focus ~ .euiRangeHighlight & {
+        background-color: ${range.focusColor};
+      }
     `,
   };
 };

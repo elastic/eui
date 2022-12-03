@@ -24,7 +24,6 @@ export interface EuiRangeHighlightProps {
   className?: string;
   background?: string;
   compressed?: boolean;
-  hasFocus?: boolean;
   showTicks?: boolean;
   lowerValue: number;
   upperValue: number;
@@ -36,7 +35,6 @@ export interface EuiRangeHighlightProps {
 
 export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
   className,
-  hasFocus,
   showTicks,
   lowerValue,
   upperValue,
@@ -64,10 +62,7 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
   const cssStyles = [styles.euiRangeHighlight, showTicks && styles.hasTicks];
 
   const progressStyles = euiRangeHighlightProgressStyles(euiTheme);
-  const cssProgressStyles = [
-    progressStyles.euiRangeHighlight__progress,
-    hasFocus && progressStyles.hasFocus,
-  ];
+  const cssProgressStyles = [progressStyles.euiRangeHighlight__progress];
   const progressStyle = {
     background,
     marginLeft: `${leftPosition * 100}%`,

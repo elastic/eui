@@ -39,10 +39,6 @@ export const euiRangeThumbStyles = (euiThemeContext: UseEuiTheme) => {
         ${euiRangeThumbFocus(euiThemeContext)};
         outline: none;
       }
-
-      &:focus:focus-visible {
-        outline: none;
-      }
     `,
     hasTicks: css`
       inset-block-start: 0;

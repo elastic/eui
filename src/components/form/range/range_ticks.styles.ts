@@ -83,7 +83,7 @@ export const euiRangeTickStyles = (euiThemeContext: UseEuiTheme) => {
 
       &:enabled:hover,
       &:focus {
-        color: ${euiTheme.colors.primary};
+        color: ${range.focusColor};
       }
     `,
     // compressed and non-compressed styles
@@ -99,7 +99,7 @@ export const euiRangeTickStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     selected: css`
       font-weight: ${euiTheme.font.weight.medium};
-      color: ${euiTheme.colors.primary};
+      color: ${range.focusColor};
     `,
     isCustom: css`
       ${logicalCSSWithFallback('overflow-x', 'hidden')}

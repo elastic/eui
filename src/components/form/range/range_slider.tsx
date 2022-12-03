@@ -33,7 +33,6 @@ export type EuiRangeSliderProps = InputHTMLAttributes<HTMLInputElement> &
     step?: number;
     compressed?: boolean;
     isLoading?: boolean;
-    hasFocus?: boolean;
     showRange?: boolean;
     showTicks?: boolean;
     disabled?: boolean;
@@ -58,7 +57,6 @@ export const EuiRangeSlider = forwardRef<HTMLInputElement, EuiRangeSliderProps>(
       style,
       showTicks,
       showRange,
-      hasFocus,
       thumbColor,
       ...rest
     },
@@ -72,7 +70,6 @@ export const EuiRangeSlider = forwardRef<HTMLInputElement, EuiRangeSliderProps>(
     const cssStyles = [
       styles.euiRangeSlider,
       showTicks && styles.hasTicks,
-      hasFocus && styles.hasFocus,
       showRange && styles.hasRange,
       thumbColor && thumbStyles.thumb,
     ];

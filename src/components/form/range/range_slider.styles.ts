@@ -9,8 +9,6 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme, transparentize } from '../../../services';
-import { mathWithUnits } from '../../../global_styling';
-import { euiShadow } from '../../../themes/amsterdam/global_styling/mixins';
 import { euiCustomControl } from '../form.styles';
 
 import {
@@ -19,12 +17,10 @@ import {
   euiRangeVariables,
   euiRangeTrackPerBrowser,
   euiRangeThumbFocus,
-  euiRangeThumbBoxShadow,
 } from './range.styles';
 
 export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
   const range = euiRangeVariables(euiThemeContext);
-  const { euiTheme } = euiThemeContext;
 
   return {
     // Base
@@ -37,89 +33,37 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
       cursor: pointer; // Keep cursor to full range bounds
       z-index: ${range.thumbZIndex};
 
-      &:disabled {
-        cursor: not-allowed;
-
-        ${euiRangeThumbPerBrowser(`
-          cursor: not-allowed;
-          border-color: ${range.thumbBorderColor};
-          background-color: ${range.thumbBackgroundColor};
-          box-shadow: none;
-        `)}
-
-        ~ .euiRangeThumb {
-          cursor: not-allowed;
-          border-color: ${range.thumbBorderColor};
-          background-color: ${range.thumbBackgroundColor};
-          box-shadow: none;
-        }
-      }
-
       ${euiRangeThumbPerBrowser(`
-        ${euiCustomControl(euiThemeContext, {
-          type: 'round',
-        })};
+        ${euiCustomControl(euiThemeContext, { type: 'round' })};
         ${euiRangeThumbStyle(euiThemeContext)};
       `)}
 
-      &:focus-visible,
-      &[class*="-hasFocus"] {
-        ~ .euiRangeThumb {
-          border-color: ${range.thumbBorderColor};
-        }
-
-        ~ .euiRangeHighlight .euiRangeHighlight__progress {
-          background-color: ${euiTheme.colors.primary};
-        }
-
-        ~ .euiRangeTooltip .euiRangeTooltip__value {
-          ${euiShadow(euiThemeContext, 'm')};
-          transform: translateX(0) translateY(-50%) scale(1.1);
-        }
+      &:disabled {
+        cursor: not-allowed;
+        ${euiRangeThumbPerBrowser('cursor: not-allowed')}
       }
 
       // Resets
-
       &::-webkit-slider-thumb {
         -webkit-appearance: none;
-        margin-block-start: ${mathWithUnits(
-          [range.trackBorderWidth, range.trackHeight, range.thumbHeight],
-          (x, y, z) => (x * 2 + y) / 2 - z / 4
-        )};
-      }
-
-      &::-moz-focus-outer {
-        border: none;
       }
 
       &:focus {
-        ${euiRangeThumbPerBrowser(euiRangeThumbFocus(euiThemeContext))}
-
-        ${euiRangeTrackPerBrowser('background-color: transparent')}
-
         outline: none;
-
-        ~ .euiRangeHighlight .euiRangeHighlight__progress {
-          background-color: ${euiTheme.colors.primary};
-        }
       }
 
-      // in Chrome/FF/Edge we don't want to focus on click
-      &:focus:not(:focus-visible) {
-        ${euiRangeThumbPerBrowser(`
-          ${euiRangeThumbBoxShadow(euiThemeContext)}
-          background-color: ${range.thumbBackgroundColor};  
-        `)}
+      // Styles that should appear only on keyboard focus, not click
+      &:focus-visible {
+        ${euiRangeThumbPerBrowser(euiRangeThumbFocus(euiThemeContext))}
 
-        ~ .euiRangeHighlight .euiRangeHighlight__progress {
-          background-color: ${range.highlightColor};
+        & ~ .euiRangeTooltip .euiRangeTooltip__value {
+          transform: translateX(0) translateY(-50%) scale(1.1);
         }
       }
     `,
     hasTicks: css`
       block-size: ${range.thumbHeight}; // the track has the same height as the thumb
     `,
-    hasFocus: css``,
     hasRange: css`
       ${euiRangeTrackPerBrowser(`
         background-color: transparent;
@@ -136,12 +80,9 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
 
 export const euiRangeSliderThumbStyles = (euiThemeContext: UseEuiTheme) => ({
   thumb: css`
-    &,
-    &:focus:not(:focus-visible) {
-      ${euiRangeThumbPerBrowser('background-color: currentcolor')}
-    }
+    ${euiRangeThumbPerBrowser('background-color: currentcolor')}
 
-    &:focus {
+    &:focus-visible {
       ${euiRangeThumbPerBrowser(
         euiRangeThumbFocus(euiThemeContext, 'currentcolor')
       )}
