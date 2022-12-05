@@ -1,10 +1,7 @@
-name: Adds issues and PRs to project board
+name: Adds issues to project board
 
 on:
   issues:
-    types:
-      - opened
-  pull_request:
     types:
       - opened
 
