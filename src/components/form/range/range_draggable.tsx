@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import React, {
+  FunctionComponent,
+  HTMLAttributes,
+  useCallback,
+  useMemo,
+} from 'react';
 import classNames from 'classnames';
 
 import { useMouseMove, useEuiTheme } from '../../../services';
@@ -45,22 +50,23 @@ export const EuiRangeDraggable: FunctionComponent<EuiRangeDraggableProps> = ({
 }) => {
   const euiTheme = useEuiTheme();
 
-  const outerStyle: React.CSSProperties = {
-    left: lowerPosition,
-    right: `calc(100% - ${upperPosition} - ${euiTheme.euiTheme.size.base})`,
-  };
+  const outerStyle: React.CSSProperties = useMemo(() => {
+    return logicalStyles({
+      left: lowerPosition,
+      right: `calc(100% - ${upperPosition} - ${euiTheme.euiTheme.size.base})`,
+    });
+  }, [lowerPosition, upperPosition, euiTheme.euiTheme.size.base]);
+
+  const handleChange = useCallback(
+    ({ x }: { x: number; y: number }, isFirstInteraction?: boolean) => {
+      if (disabled) return;
+      onChange(x, isFirstInteraction);
+    },
+    [disabled, onChange]
+  );
+  const [handleMouseDown, handleInteraction] = useMouseMove(handleChange);
 
   const classes = classNames('euiRangeDraggable', className);
-
-  const handleChange = (
-    { x }: { x: number; y: number },
-    isFirstInteraction?: boolean
-  ) => {
-    if (disabled) return;
-    onChange(x, isFirstInteraction);
-  };
-
-  const [handleMouseDown, handleInteraction] = useMouseMove(handleChange);
 
   const styles = euiRangeDraggableStyles(euiTheme);
   const cssStyles = [
@@ -87,7 +93,7 @@ export const EuiRangeDraggable: FunctionComponent<EuiRangeDraggableProps> = ({
   };
 
   return (
-    <div style={logicalStyles(outerStyle)} {...commonProps} {...rest}>
+    <div style={outerStyle} {...commonProps} {...rest}>
       <div
         className="euiRangeDraggable__inner"
         css={cssInnerStyles}

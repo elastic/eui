@@ -10,6 +10,7 @@ import React, {
   ChangeEventHandler,
   InputHTMLAttributes,
   forwardRef,
+  useMemo,
 } from 'react';
 import classNames from 'classnames';
 
@@ -74,10 +75,12 @@ export const EuiRangeSlider = forwardRef<HTMLInputElement, EuiRangeSliderProps>(
       thumbColor && thumbStyles.thumb,
     ];
 
-    const sliderStyle = {
-      color: thumbColor && euiRangeLevelColor(thumbColor, euiTheme.euiTheme),
-      ...style,
-    };
+    const sliderStyle = useMemo(() => {
+      return logicalStyles({
+        color: thumbColor && euiRangeLevelColor(thumbColor, euiTheme.euiTheme),
+        ...style,
+      });
+    }, [thumbColor, euiTheme, style]);
 
     return (
       <input
@@ -93,7 +96,7 @@ export const EuiRangeSlider = forwardRef<HTMLInputElement, EuiRangeSliderProps>(
         value={value}
         disabled={disabled}
         onChange={onChange}
-        style={logicalStyles(sliderStyle)}
+        style={sliderStyle}
         tabIndex={tabIndex}
         {...rest}
       />

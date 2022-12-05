@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useState } from 'react';
+import React, {
+  FunctionComponent,
+  useState,
+  useMemo,
+  useCallback,
+} from 'react';
 import classNames from 'classnames';
 
 import { useEuiTheme } from '../../../services';
@@ -45,14 +50,19 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
   onClick,
   levels,
 }) => {
-  // Calculate the width the range based on value
-  const leftPosition = (lowerValue - min) / (max - min);
-  const rangeWidth = (upperValue - lowerValue) / (max - min);
+  // Calculate the width of the range based on value
+  const leftPosition = useMemo(() => {
+    return (lowerValue - min) / (max - min);
+  }, [lowerValue, min, max]);
+
+  const rangeWidth = useMemo(() => {
+    return (upperValue - lowerValue) / (max - min);
+  }, [upperValue, lowerValue, min, max]);
 
   const [trackWidth, setTrackWidth] = useState(0);
-  const handleRef = (node: HTMLDivElement | null) => {
+  const handleRef = useCallback((node: HTMLDivElement | null) => {
     setTrackWidth(node?.clientWidth ?? 0);
-  };
+  }, []);
 
   const classes = classNames('euiRangeHighlight', className);
 
@@ -63,27 +73,33 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
 
   const progressStyles = euiRangeHighlightProgressStyles(euiTheme);
   const cssProgressStyles = [progressStyles.euiRangeHighlight__progress];
-  const progressStyle = {
-    background,
-    marginLeft: `${leftPosition * 100}%`,
-    width: `${rangeWidth * 100}%`,
-  };
+  const progressStyle = useMemo(() => {
+    return logicalStyles({
+      background,
+      marginLeft: `${leftPosition * 100}%`,
+      width: `${rangeWidth * 100}%`,
+    });
+  }, [background, leftPosition, rangeWidth]);
 
   const levelsWrapperStyles = euiRangeHighlightLevelsWrapperStyles(euiTheme);
   const cssLevelsWrapperStyles = [
     levelsWrapperStyles.euiRangeHighlight__levelsWrapper,
   ];
-  const levelsWrapperStyle = {
-    marginLeft: `${leftPosition * 100}%`,
-    width: `${rangeWidth * 100}%`,
-  };
+  const levelsWrapperStyle = useMemo(() => {
+    return logicalStyles({
+      marginLeft: `${leftPosition * 100}%`,
+      width: `${rangeWidth * 100}%`,
+    });
+  }, [leftPosition, rangeWidth]);
 
   const levelsStyles = euiRangeHighlightLevelsStyles(euiTheme);
   const cssLevelsStyles = [levelsStyles.euiRangeHighlight__levels];
-  const levelsStyle = {
-    left: `-${trackWidth * leftPosition}px`,
-    width: `${trackWidth}px`,
-  };
+  const levelsStyle = useMemo(() => {
+    return logicalStyles({
+      left: `-${trackWidth * leftPosition}px`,
+      width: `${trackWidth}px`,
+    });
+  }, [trackWidth, leftPosition]);
 
   return (
     <div className={classes} css={cssStyles} onClick={onClick} ref={handleRef}>
@@ -91,18 +107,15 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
         <div
           className="euiRangeHighlight__progress"
           css={cssProgressStyles}
-          style={logicalStyles(progressStyle)}
+          style={progressStyle}
         />
       )}
 
       {levels && !!levels.length && (
-        <div
-          css={cssLevelsWrapperStyles}
-          style={logicalStyles(levelsWrapperStyle)}
-        >
+        <div css={cssLevelsWrapperStyles} style={levelsWrapperStyle}>
           <EuiRangeLevels
             css={cssLevelsStyles}
-            style={logicalStyles(levelsStyle)}
+            style={levelsStyle}
             compressed={compressed}
             levels={levels}
             max={max}

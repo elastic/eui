@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ReactNode } from 'react';
+import React, { FunctionComponent, ReactNode, useMemo } from 'react';
 
 import { useEuiTheme } from '../../../services';
 import { logicalStyles } from '../../../global_styling';
@@ -36,27 +36,31 @@ export const EuiRangeTooltip: FunctionComponent<EuiRangeTooltipProps> = ({
   showTicks,
 }) => {
   // Calculate the left position based on value
-  let val = 0;
-  if (typeof value === 'number') {
-    val = value;
-  } else if (typeof value === 'string') {
-    val = parseFloat(value);
-  }
-  const decimal = (val - min) / (max - min);
-  // Must be between 0-100%
-  let valuePosition = decimal <= 1 ? decimal : 1;
-  valuePosition = valuePosition >= 0 ? valuePosition : 0;
+  const valuePosition = useMemo(() => {
+    let val = 0;
+    if (typeof value === 'number') {
+      val = value;
+    } else if (typeof value === 'string') {
+      val = parseFloat(value);
+    }
+    const decimal = (val - min) / (max - min);
+    // Must be between 0-100%
+    const valuePosition = decimal <= 1 ? decimal : 1;
+    return valuePosition >= 0 ? valuePosition : 0;
+  }, [value, min, max]);
 
   // Change left/right position based on value (half way point)
-  let valuePositionSide: 'left' | 'right';
-  let valuePositionStyle;
-  if (valuePosition > 0.5) {
-    valuePositionSide = 'left';
-    valuePositionStyle = { right: `${(1 - valuePosition) * 100}%` };
-  } else {
-    valuePositionSide = 'right';
-    valuePositionStyle = { left: `${valuePosition * 100}%` };
-  }
+  const valuePositionSide = useMemo(
+    () => (valuePosition > 0.5 ? 'left' : 'right'),
+    [valuePosition]
+  );
+  const valuePositionStyle = useMemo(() => {
+    if (valuePositionSide === 'left') {
+      return logicalStyles({ right: `${(1 - valuePosition) * 100}%` });
+    } else if (valuePositionSide === 'right') {
+      return logicalStyles({ left: `${valuePosition * 100}%` });
+    }
+  }, [valuePosition, valuePositionSide]);
 
   const euiTheme = useEuiTheme();
   const styles = euiRangeTooltipStyles(euiTheme);
@@ -75,7 +79,7 @@ export const EuiRangeTooltip: FunctionComponent<EuiRangeTooltipProps> = ({
         className="euiRangeTooltip__value"
         css={cssValueStyles}
         htmlFor={name}
-        style={logicalStyles(valuePositionStyle)}
+        style={valuePositionStyle}
       >
         {valuePrepend}
         {value}

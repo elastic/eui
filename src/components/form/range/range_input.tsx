@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useMemo } from 'react';
 
 import { useEuiTheme } from '../../../services';
 import { logicalStyles } from '../../../global_styling';
@@ -42,9 +42,11 @@ export const EuiRangeInput: FunctionComponent<EuiRangeInputProps> = ({
   // Chrome will properly size the input based on the max value, but FF does not.
   // Calculate the width of the input based on highest number of characters.
   // Add 2 to accommodate for input stepper
-  const widthStyle = autoSize
-    ? { width: `${digitTolerance / 1.25 + 2}em` }
-    : {};
+  const widthStyle = useMemo(() => {
+    return autoSize
+      ? logicalStyles({ width: `${digitTolerance / 1.25 + 2}em` })
+      : {};
+  }, [autoSize, digitTolerance]);
 
   const euiTheme = useEuiTheme();
   const styles = euiRangeInputStyles(euiTheme);
@@ -62,7 +64,7 @@ export const EuiRangeInput: FunctionComponent<EuiRangeInputProps> = ({
       disabled={disabled}
       compressed={compressed}
       onChange={onChange}
-      style={logicalStyles(widthStyle)}
+      style={widthStyle}
       fullWidth={fullWidth}
       {...rest}
     />
