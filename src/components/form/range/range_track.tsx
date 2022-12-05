@@ -6,13 +6,15 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, MouseEventHandler, HTMLAttributes } from 'react';
+import React, {
+  FunctionComponent,
+  useMemo,
+  useEffect,
+  MouseEventHandler,
+  HTMLAttributes,
+} from 'react';
 
-import {
-  withEuiTheme,
-  WithEuiThemeProps,
-  isEvenlyDivisibleBy,
-} from '../../../services';
+import { useEuiTheme, isEvenlyDivisibleBy } from '../../../services';
 
 import range from 'lodash/range';
 
@@ -37,150 +39,123 @@ export interface EuiRangeTrackProps
   showRange?: boolean;
 }
 
-export class EuiRangeTrackClass extends Component<
-  EuiRangeTrackProps & WithEuiThemeProps
-> {
-  validateValueIsInStep = (value: number) => {
-    if (value < this.props.min) {
-      throw new Error(
-        `The value of ${value} is lower than the min value of ${this.props.min}.`
-      );
-    }
-    if (value > this.props.max) {
-      throw new Error(
-        `The value of ${value} is higher than the max value of ${this.props.max}.`
-      );
-    }
-    // Error out if the value doesn't line up with the sequence of steps
-    if (
-      !isEvenlyDivisibleBy(
-        value - this.props.min,
-        this.props.step !== undefined ? this.props.step : 1
-      )
-    ) {
-      throw new Error(
-        `The value of ${value} is not included in the possible sequence provided by the step of ${this.props.step}.`
-      );
-    }
-    // Return the value if nothing fails
-    return value;
-  };
+export const EuiRangeTrack: FunctionComponent<EuiRangeTrackProps> = ({
+  children,
+  disabled,
+  max,
+  min,
+  step,
+  showTicks,
+  tickInterval,
+  ticks,
+  levels,
+  onChange,
+  value,
+  compressed,
+  showRange,
+  ...rest
+}) => {
+  useEffect(() => {
+    validateValueIsInStep(max, { min, max, step });
+  }, [value, min, max, step]);
 
-  calculateSequence = (
-    min: EuiRangeTrackProps['min'],
-    max: EuiRangeTrackProps['max'],
-    interval?: EuiRangeTrackProps['tickInterval']
-  ) => {
-    // Loop from min to max, creating adding values at each interval
-    const sequence = range(min, max, interval);
-    // range is non-inclusive of max, so make it inclusive
-    if (max % interval! === 0 && !sequence.includes(max)) {
-      sequence.push(max);
-    }
-    return sequence;
-  };
+  const tickSequence: number[] | undefined = useMemo(() => {
+    if (showTicks !== true) return;
 
-  calculateTicks = (
-    min: EuiRangeTrackProps['min'],
-    max: EuiRangeTrackProps['max'],
-    step?: EuiRangeTrackProps['step'],
-    tickInterval?: EuiRangeTrackProps['tickInterval'],
-    customTicks?: EuiRangeTick[]
-  ) => {
-    let ticks;
+    let sequence;
 
-    if (customTicks) {
+    if (ticks) {
       // If custom values were passed, use those for the sequence
       // But make sure they align with the possible sequence
-      ticks = customTicks.map((tick) => {
-        return this.validateValueIsInStep(tick.value);
+      sequence = ticks.map((tick) => {
+        return validateValueIsInStep(tick.value, { min, max, step });
       });
     } else {
       // If a custom interval was passed, use those for the sequence
       // But make sure they align with the possible sequence
       const interval = tickInterval || step;
-      const tickSequence = this.calculateSequence(min, max, interval);
 
-      ticks = tickSequence.map((tick) => {
-        return this.validateValueIsInStep(tick);
+      // Calculate sequence - loop from min to max, creating adding values at each interval
+      const sequenceRange = range(min, max, interval);
+      // range is non-inclusive of max, so make it inclusive
+      if (max % interval! === 0 && !sequenceRange.includes(max)) {
+        sequenceRange.push(max);
+      }
+
+      sequence = sequenceRange.map((tick) => {
+        return validateValueIsInStep(tick, { min, max, step });
       });
     }
 
     // Error out if there are too many ticks to render
-    if (ticks.length > 20) {
+    if (sequence.length > 20) {
       throw new Error(
-        `The number of ticks to render is too high (${ticks.length}), reduce the interval.`
+        `The number of ticks to render is too high (${sequence.length}), reduce the interval.`
       );
     }
 
-    return ticks;
-  };
+    return sequence;
+  }, [showTicks, ticks, min, max, tickInterval, step]);
 
-  render() {
-    const {
-      children,
-      disabled,
-      max,
-      min,
-      step,
-      showTicks,
-      tickInterval,
-      ticks,
-      levels,
-      onChange,
-      value,
-      compressed,
-      theme,
-      showRange,
-      ...rest
-    } = this.props;
+  const euiTheme = useEuiTheme();
+  const styles = euiRangeTrackStyles(euiTheme);
+  const cssStyles = [
+    styles.euiRangeTrack,
+    disabled && styles.disabled,
+    levels && !!levels.length && styles.hasLevels,
+    (tickSequence || ticks) && styles.hasTicks,
+  ];
 
-    // TODO: Move these to only re-calculate if no-value props have changed
-    this.validateValueIsInStep(max);
+  return (
+    <div className="euiRangeTrack" css={cssStyles} {...rest}>
+      {levels && !!levels.length && (
+        <EuiRangeLevels
+          compressed={compressed}
+          levels={levels}
+          max={max}
+          min={min}
+          showTicks={showTicks}
+          showRange={showRange}
+        />
+      )}
+      {tickSequence && (
+        <EuiRangeTicks
+          disabled={disabled}
+          compressed={compressed}
+          onChange={onChange}
+          ticks={ticks}
+          tickSequence={tickSequence}
+          value={value}
+          min={min}
+          max={max}
+          interval={tickInterval || step}
+        />
+      )}
+      {children}
+    </div>
+  );
+};
 
-    const tickSequence =
-      showTicks === true &&
-      this.calculateTicks(min, max, step, tickInterval, ticks);
-
-    const styles = euiRangeTrackStyles(theme);
-    const cssStyles = [
-      styles.euiRangeTrack,
-      disabled && styles.disabled,
-      levels && !!levels.length && styles.hasLevels,
-      (tickSequence || ticks) && styles.hasTicks,
-    ];
-
-    return (
-      <div className="euiRangeTrack" css={cssStyles} {...rest}>
-        {levels && !!levels.length && (
-          <EuiRangeLevels
-            compressed={compressed}
-            levels={levels}
-            max={max}
-            min={min}
-            showTicks={showTicks}
-            showRange={showRange}
-          />
-        )}
-        {tickSequence && (
-          <EuiRangeTicks
-            disabled={disabled}
-            compressed={compressed}
-            onChange={onChange}
-            ticks={ticks}
-            tickSequence={tickSequence}
-            value={value}
-            min={min}
-            max={max}
-            interval={tickInterval || step}
-          />
-        )}
-        {children}
-      </div>
+const validateValueIsInStep = (
+  value: number,
+  { min, max, step }: Pick<EuiRangeTrackProps, 'min' | 'max' | 'step'>
+) => {
+  if (value < min) {
+    throw new Error(
+      `The value of ${value} is lower than the min value of ${min}.`
     );
   }
-}
-
-export const EuiRangeTrack = withEuiTheme<EuiRangeTrackProps>(
-  EuiRangeTrackClass
-);
+  if (value > max) {
+    throw new Error(
+      `The value of ${value} is higher than the max value of ${max}.`
+    );
+  }
+  // Error out if the value doesn't line up with the sequence of steps
+  if (!isEvenlyDivisibleBy(value - min, step !== undefined ? step : 1)) {
+    throw new Error(
+      `The value of ${value} is not included in the possible sequence provided by the step of ${step}.`
+    );
+  }
+  // Return the value if nothing fails
+  return value;
+};

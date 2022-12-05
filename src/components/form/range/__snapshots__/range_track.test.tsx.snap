@@ -11,8 +11,9 @@ exports[`EuiRangeTrack is rendered 1`] = `
   >
     <button
       class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
-      style="inset-inline-start:calc(NaN% + 8px);max-inline-size:9.090909090909092%"
+      style="inset-inline-start: calc(NaN% + 8px); max-inline-size: 9.090909090909092%;"
       tabindex="-1"
+      title="0"
       type="button"
       value="0"
     >
@@ -20,8 +21,9 @@ exports[`EuiRangeTrack is rendered 1`] = `
     </button>
     <button
       class="euiRangeTick emotion-euiRangeTick-selected-hasPseudoTickMark-regular"
-      style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:9.090909090909092%"
+      style="inset-inline-start: calc(-Infinity% + 8px); max-inline-size: 9.090909090909092%;"
       tabindex="-1"
+      title="10"
       type="button"
       value="10"
     >
@@ -29,8 +31,9 @@ exports[`EuiRangeTrack is rendered 1`] = `
     </button>
     <button
       class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
-      style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:9.090909090909092%"
+      style="inset-inline-start: calc(-Infinity% + 8px); max-inline-size: 9.090909090909092%;"
       tabindex="-1"
+      title="20"
       type="button"
       value="20"
     >
@@ -38,8 +41,9 @@ exports[`EuiRangeTrack is rendered 1`] = `
     </button>
     <button
       class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
-      style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:9.090909090909092%"
+      style="inset-inline-start: calc(-Infinity% + 8px); max-inline-size: 9.090909090909092%;"
       tabindex="-1"
+      title="30"
       type="button"
       value="30"
     >
@@ -47,8 +51,9 @@ exports[`EuiRangeTrack is rendered 1`] = `
     </button>
     <button
       class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
-      style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:9.090909090909092%"
+      style="inset-inline-start: calc(-Infinity% + 8px); max-inline-size: 9.090909090909092%;"
       tabindex="-1"
+      title="40"
       type="button"
       value="40"
     >
@@ -56,8 +61,9 @@ exports[`EuiRangeTrack is rendered 1`] = `
     </button>
     <button
       class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
-      style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:9.090909090909092%"
+      style="inset-inline-start: calc(-Infinity% + 8px); max-inline-size: 9.090909090909092%;"
       tabindex="-1"
+      title="50"
       type="button"
       value="50"
     >
@@ -65,8 +71,9 @@ exports[`EuiRangeTrack is rendered 1`] = `
     </button>
     <button
       class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
-      style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:9.090909090909092%"
+      style="inset-inline-start: calc(-Infinity% + 8px); max-inline-size: 9.090909090909092%;"
       tabindex="-1"
+      title="60"
       type="button"
       value="60"
     >
@@ -74,8 +81,9 @@ exports[`EuiRangeTrack is rendered 1`] = `
     </button>
     <button
       class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
-      style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:9.090909090909092%"
+      style="inset-inline-start: calc(-Infinity% + 8px); max-inline-size: 9.090909090909092%;"
       tabindex="-1"
+      title="70"
       type="button"
       value="70"
     >
@@ -83,8 +91,9 @@ exports[`EuiRangeTrack is rendered 1`] = `
     </button>
     <button
       class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
-      style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:9.090909090909092%"
+      style="inset-inline-start: calc(-Infinity% + 8px); max-inline-size: 9.090909090909092%;"
       tabindex="-1"
+      title="80"
       type="button"
       value="80"
     >
@@ -92,8 +101,9 @@ exports[`EuiRangeTrack is rendered 1`] = `
     </button>
     <button
       class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
-      style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:9.090909090909092%"
+      style="inset-inline-start: calc(-Infinity% + 8px); max-inline-size: 9.090909090909092%;"
       tabindex="-1"
+      title="90"
       type="button"
       value="90"
     >
@@ -101,8 +111,9 @@ exports[`EuiRangeTrack is rendered 1`] = `
     </button>
     <button
       class="euiRangeTick emotion-euiRangeTick-hasPseudoTickMark-regular"
-      style="inset-inline-start:calc(-Infinity% + 8px);max-inline-size:9.090909090909092%"
+      style="inset-inline-start: calc(-Infinity% + 8px); max-inline-size: 9.090909090909092%;"
       tabindex="-1"
+      title="100"
       type="button"
       value="100"
     >
@@ -112,14 +123,14 @@ exports[`EuiRangeTrack is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiRangeTrack should throw error if \`max\` does not line up with \`step\` interval 1`] = `"The value of 105 is not included in the possible sequence provided by the step of 10."`;
+exports[`EuiRangeTrack thrown errors should throw error if \`max\` does not line up with \`step\` interval 1`] = `"The value of 105 is not included in the possible sequence provided by the step of 10."`;
 
-exports[`EuiRangeTrack should throw error if \`tickInterval\` is off sequence from \`step\` 1`] = `"The value of 3 is not included in the possible sequence provided by the step of 10."`;
+exports[`EuiRangeTrack thrown errors should throw error if \`tickInterval\` is off sequence from \`step\` 1`] = `"The value of 3 is not included in the possible sequence provided by the step of 10."`;
 
-exports[`EuiRangeTrack should throw error if custom tick value is higher than \`max\` 1`] = `"The value of 200 is higher than the max value of 100."`;
+exports[`EuiRangeTrack thrown errors should throw error if custom tick value is higher than \`max\` 1`] = `"The value of 200 is higher than the max value of 100."`;
 
-exports[`EuiRangeTrack should throw error if custom tick value is lower than \`min\` 1`] = `"The value of -100 is lower than the min value of 0."`;
+exports[`EuiRangeTrack thrown errors should throw error if custom tick value is lower than \`min\` 1`] = `"The value of -100 is lower than the min value of 0."`;
 
-exports[`EuiRangeTrack should throw error if custom tick value is off sequence from \`step\` 1`] = `"The value of 10 is not included in the possible sequence provided by the step of 50."`;
+exports[`EuiRangeTrack thrown errors should throw error if custom tick value is off sequence from \`step\` 1`] = `"The value of 10 is not included in the possible sequence provided by the step of 50."`;
 
-exports[`EuiRangeTrack should throw error if there are too many ticks to render 1`] = `"The number of ticks to render is too high (21), reduce the interval."`;
+exports[`EuiRangeTrack thrown errors should throw error if there are too many ticks to render 1`] = `"The number of ticks to render is too high (21), reduce the interval."`;
