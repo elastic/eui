@@ -3,7 +3,7 @@
 - Implemented new `EuiRange` and `EuiDualRange` designs where the `levels` are now on top of the tracks ([#6092](https://github.com/elastic/eui/pull/6092))
 - Added `discuss` and `dotInCircle` glyphs to `EuiIcon` ([#6434](https://github.com/elastic/eui/pull/6434))
 - Added `article` glyph to `EuiIcon` ([#6437](https://github.com/elastic/eui/pull/6437))
-Changed the `EuiProvider` usage warnings to not rely on development mode. ([#6451](https://github.com/elastic/eui/pull/6451))
+- Changed the `EuiProvider` usage warnings to not rely on development mode. ([#6451](https://github.com/elastic/eui/pull/6451))
 
 **Breaking changes**
 
