@@ -25,10 +25,10 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     // Base
     euiRangeSlider: css`
-      block-size: ${range.height};
       appearance: none;
       background: transparent; // Otherwise white in Chrome
-      inline-size: 100%; // ensures the slider expands to fill flex display
+      inline-size: 100%; // Ensures the slider expands to fill flex display
+      block-size: 100%; // Inherits both regular and compressed heights from the range wrapper
       position: relative;
       cursor: pointer; // Keep cursor to full range bounds
       z-index: ${range.thumbZIndex};
