@@ -68,7 +68,7 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
   return (
     <div className="euiRangeLevels" css={cssStyles} {...rest}>
       {levels.map((level, index) => (
-        <EuiRangeLevel
+        <EuiRangeLevelElement
           key={index}
           level={level}
           min={min}
@@ -80,7 +80,8 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
   );
 };
 
-const EuiRangeLevel: FunctionComponent<{
+// Internal subcomponent
+const EuiRangeLevelElement: FunctionComponent<{
   level: EuiRangeLevel;
   min: EuiRangeLevelsProps['min'];
   max: EuiRangeLevelsProps['max'];
