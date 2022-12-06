@@ -1,3 +1,46 @@
+## [`71.0.0`](https://github.com/elastic/eui/tree/v71.0.0)
+
+- Implemented new `EuiRange` and `EuiDualRange` designs where the `levels` are now on top of the tracks ([#6092](https://github.com/elastic/eui/pull/6092))
+- Added `discuss` and `dotInCircle` glyphs to `EuiIcon` ([#6434](https://github.com/elastic/eui/pull/6434))
+- Added `article` glyph to `EuiIcon` ([#6437](https://github.com/elastic/eui/pull/6437))
+Changed the `EuiProvider` usage warnings to not rely on development mode. ([#6451](https://github.com/elastic/eui/pull/6451))
+
+**Breaking changes**
+
+- `EuiDualRange` now explicitly requires both `min` and `max` via props types, to match `EuiRange` ([#6092](https://github.com/elastic/eui/pull/6092))
+- `EuiRange` and `EuiDualRange`'s `compressed` size no longer impacts track or level sizes, but continues to compress tick and input sizes. ([#6092](https://github.com/elastic/eui/pull/6092))
+- Removed all variables for the following components from EUI's theme JSON files: ([#6443](https://github.com/elastic/eui/pull/6443))
+  - `euiCollapsibleNav*`
+  - `euiColorPicker*`
+  - `euiContextMenu*`
+  - `euiControlBar*`
+  - `euiDataGrid* `(except for z-indices and cell padding sizes)
+  - `euiDatePicker*`
+  - `euiSuperDatePicker*`
+  - `euiDragAndDrop*`
+  - `euiEuiEmptyPrompt*`
+  - `euiFilePicker*`
+  - `euiRange*`
+  - `euiHeaderLinks*`
+  - `euiKeyPad*`
+  - `euiMarkdownEditor*`
+  - `euiResizable*`
+  - `euiSelectable*`
+  - `euiSideNav*`
+  - `euiStep*`
+  - `euiSuggest*`
+  - `euiTable*` (except for color variables)
+  - `euiTooltip*`
+  - `euiButtonFontWeight`, `euiButtonDefaultTransparency`, and `euiButtonMinWidth`
+- If you were importing any of the above removed JSON variables, we strongly recommend using generic color or sizing variables from `useEuiTheme()` instead. ([#6443](https://github.com/elastic/eui/pull/6443))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiRange` and `EuiDualRange` to Emotion; Removed `$euiRangeThumbRadius` ([#6092](https://github.com/elastic/eui/pull/6092))
+- Added a new `logicalStyles` utility that automatically converts all non-logical properties in a `style` object to their corresponding logical properties ([#6426](https://github.com/elastic/eui/pull/6426))
+- Added a new `logicalShorthandCSS` utility that automatically converts `margin`, `padding`, and other 4-sided shorthands to their corresponding logical properties ([#6429](https://github.com/elastic/eui/pull/6429))
+- Added a new `logicalBorderRadiusCSS` utility that automatically converts `border-radius` to corresponding logical properties ([#6429](https://github.com/elastic/eui/pull/6429))
+
 ## [`70.4.0`](https://github.com/elastic/eui/tree/v70.4.0)
 
 - Updated `EuiTourStep.footerAction` type to accept `ReactNode[]` ([#6384](https://github.com/elastic/eui/pull/6384))
