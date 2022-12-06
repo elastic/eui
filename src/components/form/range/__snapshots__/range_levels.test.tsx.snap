@@ -3,34 +3,32 @@
 exports[`EuiRangeLevels is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="testClass1 testClass2 emotion-euiRangeLevels-hasTicks"
+  class="testClass1 testClass2 emotion-euiRangeLevels"
   data-test-subj="test subject string"
 >
   <span
     class="euiRangeLevel customClass emotion-euiRangeLevel-danger"
     data-test-subj="firstLevel"
-    style="inset-inline-start: calc(0% + 0px); inset-inline-end: calc(100% - 0px);"
+    style="inset-inline-start: calc(0% + 0px); inset-inline-end: calc(80.8% - 9.5625px);"
   />
   <span
     class="euiRangeLevel emotion-euiRangeLevel-success"
-    style="inset-inline-start: calc(0% + 0px); inset-inline-end: calc(100% - 0px);"
+    style="inset-inline-start: calc(19.200000000000003% + 9.5625px); inset-inline-end: calc(0% - 0px);"
   />
 </div>
 `;
 
 exports[`EuiRangeLevels is rendered with named and custom color 1`] = `
 <div
-  aria-label="aria-label"
-  class="testClass1 testClass2 emotion-euiRangeLevels-hasTicks"
-  data-test-subj="test subject string"
+  class="euiRangeLevels emotion-euiRangeLevels"
 >
   <span
     class="euiRangeLevel emotion-euiRangeLevel-danger"
-    style="inset-inline-start: calc(0% + 0px); inset-inline-end: calc(100% - 0px);"
+    style="inset-inline-start: calc(0% + 0px); inset-inline-end: calc(80.8% - 9.5625px);"
   />
   <span
     class="euiRangeLevel emotion-euiRangeLevel-customColor"
-    style="inset-inline-start: calc(0% + 0px); inset-inline-end: calc(100% - 0px); background-color: rgb(255, 0, 0);"
+    style="inset-inline-start: calc(19.200000000000003% + 9.5625px); inset-inline-end: calc(0% - 0px); background-color: rgb(255, 0, 0);"
   />
 </div>
 `;

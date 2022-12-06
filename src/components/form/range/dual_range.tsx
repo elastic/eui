@@ -695,89 +695,93 @@ export class EuiDualRangeClass extends Component<
           aria-hidden={showInput === true}
           showRange={showRange}
         >
-          <EuiRangeSlider
-            className="euiDualRange__slider"
-            css={dualRangeStyles.euiDualRange__slider}
-            ref={this.handleRangeSliderRefUpdate}
-            id={id}
-            name={name}
-            min={min}
-            max={max}
-            step={step}
-            disabled={disabled}
-            onChange={this.handleSliderChange}
-            showTicks={showTicks}
-            aria-hidden={true}
-            tabIndex={-1}
-            showRange={showRange}
-            onFocus={onFocus}
-            onBlur={onBlur}
-            {...rest}
-          />
+          {(trackWidth) => (
+            <>
+              <EuiRangeSlider
+                className="euiDualRange__slider"
+                css={dualRangeStyles.euiDualRange__slider}
+                ref={this.handleRangeSliderRefUpdate}
+                id={id}
+                name={name}
+                min={min}
+                max={max}
+                step={step}
+                disabled={disabled}
+                onChange={this.handleSliderChange}
+                showTicks={showTicks}
+                aria-hidden={true}
+                tabIndex={-1}
+                showRange={showRange}
+                onFocus={onFocus}
+                onBlur={onBlur}
+                {...rest}
+              />
 
-          {this.state.rangeSliderRefAvailable && (
-            <React.Fragment>
-              {isDraggable && this.isValid && (
-                <EuiRangeDraggable
-                  min={min}
-                  max={max}
-                  value={[Number(this.lowerValue), Number(this.upperValue)]}
-                  disabled={disabled}
-                  lowerPosition={leftThumbPosition.left}
-                  upperPosition={rightThumbPosition.left}
-                  showTicks={showTicks}
-                  compressed={compressed}
-                  onChange={this.handleDrag}
-                  onFocus={this.onThumbFocus}
-                  onBlur={this.onThumbBlur}
-                  onKeyDown={this.handleDraggableKeyDown}
-                  aria-describedby={this.props['aria-describedby']}
-                  aria-label={this.props['aria-label']}
-                />
+              {this.state.rangeSliderRefAvailable && (
+                <React.Fragment>
+                  {isDraggable && this.isValid && (
+                    <EuiRangeDraggable
+                      min={min}
+                      max={max}
+                      value={[Number(this.lowerValue), Number(this.upperValue)]}
+                      disabled={disabled}
+                      lowerPosition={leftThumbPosition.left}
+                      upperPosition={rightThumbPosition.left}
+                      showTicks={showTicks}
+                      compressed={compressed}
+                      onChange={this.handleDrag}
+                      onFocus={this.onThumbFocus}
+                      onBlur={this.onThumbBlur}
+                      onKeyDown={this.handleDraggableKeyDown}
+                      aria-describedby={this.props['aria-describedby']}
+                      aria-label={this.props['aria-label']}
+                    />
+                  )}
+
+                  <EuiRangeThumb
+                    min={min}
+                    max={Number(this.upperValue)}
+                    value={this.lowerValue}
+                    disabled={disabled}
+                    showTicks={showTicks}
+                    showInput={!!showInput}
+                    onKeyDown={this.handleLowerKeyDown}
+                    onFocus={this.onThumbFocus}
+                    onBlur={this.onThumbBlur}
+                    style={logicalStyles(leftThumbStyles)}
+                    aria-describedby={this.props['aria-describedby']}
+                    aria-label={this.props['aria-label']}
+                  />
+
+                  <EuiRangeThumb
+                    min={Number(this.lowerValue)}
+                    max={max}
+                    value={this.upperValue}
+                    disabled={disabled}
+                    showTicks={showTicks}
+                    showInput={!!showInput}
+                    onKeyDown={this.handleUpperKeyDown}
+                    onFocus={this.onThumbFocus}
+                    onBlur={this.onThumbBlur}
+                    style={logicalStyles(rightThumbStyles)}
+                    aria-describedby={this.props['aria-describedby']}
+                    aria-label={this.props['aria-label']}
+                  />
+                </React.Fragment>
               )}
 
-              <EuiRangeThumb
-                min={min}
-                max={Number(this.upperValue)}
-                value={this.lowerValue}
-                disabled={disabled}
-                showTicks={showTicks}
-                showInput={!!showInput}
-                onKeyDown={this.handleLowerKeyDown}
-                onFocus={this.onThumbFocus}
-                onBlur={this.onThumbBlur}
-                style={logicalStyles(leftThumbStyles)}
-                aria-describedby={this.props['aria-describedby']}
-                aria-label={this.props['aria-label']}
-              />
-
-              <EuiRangeThumb
-                min={Number(this.lowerValue)}
-                max={max}
-                value={this.upperValue}
-                disabled={disabled}
-                showTicks={showTicks}
-                showInput={!!showInput}
-                onKeyDown={this.handleUpperKeyDown}
-                onFocus={this.onThumbFocus}
-                onBlur={this.onThumbBlur}
-                style={logicalStyles(rightThumbStyles)}
-                aria-describedby={this.props['aria-describedby']}
-                aria-label={this.props['aria-label']}
-              />
-            </React.Fragment>
-          )}
-
-          {showRange && this.isValid && (
-            <EuiRangeHighlight
-              compressed={compressed}
-              showTicks={showTicks}
-              min={Number(min)}
-              max={Number(max)}
-              lowerValue={Number(this.lowerValue)}
-              upperValue={Number(this.upperValue)}
-              levels={levels}
-            />
+              {showRange && this.isValid && (
+                <EuiRangeHighlight
+                  showTicks={showTicks}
+                  min={Number(min)}
+                  max={Number(max)}
+                  lowerValue={Number(this.lowerValue)}
+                  upperValue={Number(this.upperValue)}
+                  levels={levels}
+                  trackWidth={trackWidth}
+                />
+              )}
+            </>
           )}
         </EuiRangeTrack>
         {showLabels && <EuiRangeLabel disabled={disabled}>{max}</EuiRangeLabel>}

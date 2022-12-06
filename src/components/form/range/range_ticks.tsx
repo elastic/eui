@@ -12,7 +12,6 @@ import React, {
   FunctionComponent,
   ReactNode,
   CSSProperties,
-  MutableRefObject,
   useMemo,
 } from 'react';
 
@@ -35,6 +34,7 @@ export type EuiRangeTicksProps = Omit<
 > & {
   ticks?: EuiRangeTick[];
   tickSequence: number[];
+  trackWidth: number;
   value?: number | string | Array<string | number>;
   min: number;
   max: number;
@@ -46,7 +46,6 @@ export type EuiRangeTicksProps = Omit<
 
 const EuiTickValue: FunctionComponent<
   EuiRangeTicksProps & {
-    ticksRef: MutableRefObject<HTMLDivElement | null>;
     tickValue: any;
     percentageWidth: number;
     compressed?: boolean;
@@ -60,8 +59,8 @@ const EuiTickValue: FunctionComponent<
   onChange,
   percentageWidth,
   tickValue,
-  ticksRef,
   compressed,
+  trackWidth,
 }) => {
   const euiTheme = useEuiTheme();
 
@@ -93,7 +92,6 @@ const EuiTickValue: FunctionComponent<
       styles.right = '0%';
       styles.marginRight = shift;
     } else {
-      const trackWidth = ticksRef.current?.clientWidth ?? 0;
       const position = calculateThumbPosition(tickValue, min, max, trackWidth);
       const thumbOffset = labelShiftVal ? 0 : EUI_THUMB_SIZE / 2;
 
@@ -108,7 +106,7 @@ const EuiTickValue: FunctionComponent<
   }, [
     isMaxTick,
     labelShiftVal,
-    ticksRef,
+    trackWidth,
     tickValue,
     min,
     max,
@@ -171,8 +169,6 @@ const EuiTickValue: FunctionComponent<
 export const EuiRangeTicks: FunctionComponent<EuiRangeTicksProps> = (props) => {
   const { ticks, tickSequence, max, min, interval = 1, compressed } = props;
 
-  const ticksRef = React.useRef<HTMLDivElement | null>(null);
-
   // Calculate the width of each tick mark
   const percentageWidth = useMemo(
     () => (interval / (max - min + interval)) * 100,
@@ -188,14 +184,13 @@ export const EuiRangeTicks: FunctionComponent<EuiRangeTicksProps> = (props) => {
   ];
 
   return (
-    <div className="euiRangeTicks" css={cssStyles} ref={ticksRef}>
+    <div className="euiRangeTicks" css={cssStyles}>
       {tickSequence.map((tickValue) => (
         <EuiTickValue
           key={tickValue}
           {...props}
           percentageWidth={percentageWidth}
           tickValue={tickValue}
-          ticksRef={ticksRef}
           compressed={compressed}
         />
       ))}

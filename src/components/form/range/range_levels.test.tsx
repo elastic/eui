@@ -13,12 +13,16 @@ import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiRangeLevels } from './range_levels';
 
+const props = {
+  min: 0,
+  max: 100,
+  trackWidth: 400,
+};
+
 describe('EuiRangeLevels', () => {
   shouldRenderCustomStyles(
     <EuiRangeLevels
-      min={0}
-      max={100}
-      showTicks
+      {...props}
       levels={[
         {
           min: 0,
@@ -38,9 +42,7 @@ describe('EuiRangeLevels', () => {
   test('is rendered', () => {
     const { container } = render(
       <EuiRangeLevels
-        min={0}
-        max={100}
-        showTicks
+        {...props}
         levels={[
           {
             min: 0,
@@ -65,9 +67,7 @@ describe('EuiRangeLevels', () => {
   test('is rendered with named and custom color', () => {
     const { container } = render(
       <EuiRangeLevels
-        min={0}
-        max={100}
-        showTicks
+        {...props}
         levels={[
           {
             min: 0,
@@ -80,7 +80,6 @@ describe('EuiRangeLevels', () => {
             color: '#ff0000',
           },
         ]}
-        {...requiredProps}
       />
     );
 
@@ -103,8 +102,8 @@ describe('EuiRangeLevels', () => {
       const component = () =>
         render(
           <EuiRangeLevels
+            {...props}
             min={0}
-            max={100}
             levels={[
               {
                 min: -10,
@@ -122,7 +121,7 @@ describe('EuiRangeLevels', () => {
       const component = () =>
         render(
           <EuiRangeLevels
-            min={0}
+            {...props}
             max={100}
             levels={[
               {

@@ -8,10 +8,12 @@
 
 import React, {
   FunctionComponent,
+  useState,
   useMemo,
   useEffect,
   MouseEventHandler,
   HTMLAttributes,
+  ReactNode,
 } from 'react';
 
 import { useEuiTheme, isEvenlyDivisibleBy } from '../../../services';
@@ -37,6 +39,7 @@ export interface EuiRangeTrackProps
   onChange?: MouseEventHandler<HTMLButtonElement>;
   levels?: EuiRangeLevel[];
   showRange?: boolean;
+  children?: ReactNode | ((trackWidth: number) => React.ReactNode);
 }
 
 export const EuiRangeTrack: FunctionComponent<EuiRangeTrackProps> = ({
@@ -106,16 +109,25 @@ export const EuiRangeTrack: FunctionComponent<EuiRangeTrackProps> = ({
     (tickSequence || ticks) && styles.hasTicks,
   ];
 
+  const [trackWidth, setTrackWidth] = useState(0);
+
   return (
-    <div className="euiRangeTrack" css={cssStyles} {...rest}>
+    <div
+      className="euiRangeTrack"
+      css={cssStyles}
+      {...rest}
+      ref={(node: HTMLDivElement | null) => {
+        setTrackWidth(node?.clientWidth ?? 0);
+      }}
+    >
       {levels && !!levels.length && (
         <EuiRangeLevels
-          compressed={compressed}
           levels={levels}
           max={max}
           min={min}
           showTicks={showTicks}
           showRange={showRange}
+          trackWidth={trackWidth}
         />
       )}
       {tickSequence && (
@@ -129,9 +141,10 @@ export const EuiRangeTrack: FunctionComponent<EuiRangeTrackProps> = ({
           min={min}
           max={max}
           interval={tickInterval || step}
+          trackWidth={trackWidth}
         />
       )}
-      {children}
+      {typeof children === 'function' ? children(trackWidth) : children}
     </div>
   );
 };

@@ -6,12 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  FunctionComponent,
-  useState,
-  useMemo,
-  useCallback,
-} from 'react';
+import React, { FunctionComponent, useMemo } from 'react';
 import classNames from 'classnames';
 
 import { useEuiTheme } from '../../../services';
@@ -28,6 +23,7 @@ import { EuiRangeLevels, EuiRangeLevel } from './range_levels';
 export interface EuiRangeHighlightProps {
   className?: string;
   background?: string;
+  trackWidth: number;
   compressed?: boolean;
   showTicks?: boolean;
   lowerValue: number;
@@ -41,6 +37,7 @@ export interface EuiRangeHighlightProps {
 export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
   className,
   showTicks,
+  trackWidth,
   lowerValue,
   upperValue,
   max,
@@ -58,11 +55,6 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
   const rangeWidth = useMemo(() => {
     return (upperValue - lowerValue) / (max - min);
   }, [upperValue, lowerValue, min, max]);
-
-  const [trackWidth, setTrackWidth] = useState(0);
-  const handleRef = useCallback((node: HTMLDivElement | null) => {
-    setTrackWidth(node?.clientWidth ?? 0);
-  }, []);
 
   const classes = classNames('euiRangeHighlight', className);
 
@@ -102,7 +94,7 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
   }, [trackWidth, leftPosition]);
 
   return (
-    <div className={classes} css={cssStyles} onClick={onClick} ref={handleRef}>
+    <div className={classes} css={cssStyles} onClick={onClick}>
       {((levels && levels.length === 0) || !levels) && (
         <div
           className="euiRangeHighlight__progress"
@@ -121,6 +113,7 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
             max={max}
             min={min}
             showTicks={showTicks}
+            trackWidth={trackWidth}
           />
         </div>
       )}

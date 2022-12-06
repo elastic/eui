@@ -274,52 +274,56 @@ export class EuiRangeClass extends Component<
           aria-hidden={showInput === true}
           showRange={showRange}
         >
-          <EuiRangeSlider
-            id={showInput ? undefined : id} // Attach id only to the input if there is one
-            name={name}
-            min={min}
-            max={max}
-            step={step}
-            value={value}
-            disabled={disabled}
-            onChange={this.handleOnChange}
-            showTicks={showTicks}
-            showRange={showRange}
-            tabIndex={showInput ? -1 : tabIndex}
-            onMouseDown={
-              showInputOnly
-                ? () => (this.preventPopoverClose = true)
-                : undefined
-            }
-            onFocus={showInput === true ? undefined : onFocus}
-            onBlur={showInputOnly ? this.onInputBlur : onBlur}
-            aria-hidden={showInput === true ? true : false}
-            thumbColor={thumbColor}
-            {...rest}
-          />
+          {(trackWidth) => (
+            <>
+              <EuiRangeSlider
+                id={showInput ? undefined : id} // Attach id only to the input if there is one
+                name={name}
+                min={min}
+                max={max}
+                step={step}
+                value={value}
+                disabled={disabled}
+                onChange={this.handleOnChange}
+                showTicks={showTicks}
+                showRange={showRange}
+                tabIndex={showInput ? -1 : tabIndex}
+                onMouseDown={
+                  showInputOnly
+                    ? () => (this.preventPopoverClose = true)
+                    : undefined
+                }
+                onFocus={showInput === true ? undefined : onFocus}
+                onBlur={showInputOnly ? this.onInputBlur : onBlur}
+                aria-hidden={showInput === true ? true : false}
+                thumbColor={thumbColor}
+                {...rest}
+              />
 
-          {showRange && this.isValid && (
-            <EuiRangeHighlight
-              compressed={compressed}
-              showTicks={showTicks}
-              min={Number(min)}
-              max={Number(max)}
-              lowerValue={Number(min)}
-              upperValue={Number(value)}
-              levels={levels}
-            />
-          )}
+              {showRange && this.isValid && (
+                <EuiRangeHighlight
+                  showTicks={showTicks}
+                  min={Number(min)}
+                  max={Number(max)}
+                  lowerValue={Number(min)}
+                  upperValue={Number(value)}
+                  levels={levels}
+                  trackWidth={trackWidth}
+                />
+              )}
 
-          {showValue && !!String(value).length && (
-            <EuiRangeTooltip
-              value={value}
-              max={max}
-              min={min}
-              name={name}
-              showTicks={showTicks}
-              valuePrepend={valuePrepend}
-              valueAppend={valueAppend}
-            />
+              {showValue && !!String(value).length && (
+                <EuiRangeTooltip
+                  value={value}
+                  max={max}
+                  min={min}
+                  name={name}
+                  showTicks={showTicks}
+                  valuePrepend={valuePrepend}
+                  valueAppend={valueAppend}
+                />
+              )}
+            </>
           )}
         </EuiRangeTrack>
         {showLabels && (

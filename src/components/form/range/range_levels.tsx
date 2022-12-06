@@ -9,8 +9,6 @@
 import React, {
   CSSProperties,
   FunctionComponent,
-  useState,
-  useCallback,
   useMemo,
   useEffect,
 } from 'react';
@@ -47,6 +45,7 @@ export interface EuiRangeLevelsProps {
   showTicks?: boolean;
   compressed?: boolean;
   showRange?: boolean;
+  trackWidth: number;
   style?: CSSProperties;
 }
 
@@ -57,13 +56,9 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
   showTicks,
   compressed,
   showRange,
+  trackWidth,
   ...rest
 }) => {
-  const [trackWidth, setTrackWidth] = useState(0);
-  const handleRef = useCallback((node: HTMLDivElement | null) => {
-    setTrackWidth(node?.clientWidth ?? 0);
-  }, []);
-
   const euiTheme = useEuiTheme();
   const styles = euiRangeLevelsStyles(euiTheme);
   const cssStyles = [
@@ -73,7 +68,7 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
   ];
 
   return (
-    <div className="euiRangeLevels" css={cssStyles} ref={handleRef} {...rest}>
+    <div className="euiRangeLevels" css={cssStyles} {...rest}>
       {levels.map((level, index) => (
         <EuiRangeLevel
           key={index}
