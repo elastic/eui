@@ -11,12 +11,10 @@ import {
 
 import { rangeConfig, dualRangeConfig } from './playground';
 
-import { EuiRangeLevels } from '../../../../src/components/form/range/range_levels'; // eslint-disable-line
+import { EuiRangeLevels } from '../../../../src/components/form/range/range_levels';
 import { LEVEL_COLORS } from '../../../../src/components/form/range/range_levels_colors';
-import { EuiRangeLevel } from '!!prop-loader!../../../../src/components/form/range/range_levels'; // eslint-disable-line
-
+import { EuiRangeLevel } from '!!prop-loader!../../../../src/components/form/range/types';
 import { EuiRangeTicks } from '../../../../src/components/form/range/range_ticks';
-
 import { EuiRangeInput } from '../../../../src/components/form/range/range_input';
 
 import DualRangeExample from './dual_range';

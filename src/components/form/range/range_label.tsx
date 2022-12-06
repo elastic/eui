@@ -9,15 +9,16 @@
 import React, { FunctionComponent } from 'react';
 
 import { useEuiTheme } from '../../../services';
+import type { _SharedRangeInputProps, _SharedRangeInputSide } from './types';
 import { euiRangeLabelStyles } from './range_label.styles';
 
-export interface EuiRangeLabelProps {
+export interface EuiRangeLabelProps
+  extends Pick<_SharedRangeInputProps, 'disabled'>,
+    _SharedRangeInputSide {
   /**
    * ReactNode to render as this component's content
    */
   children: string | number;
-  disabled?: boolean;
-  side?: 'min' | 'max';
 }
 
 export const EuiRangeLabel: FunctionComponent<EuiRangeLabelProps> = ({

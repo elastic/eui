@@ -9,19 +9,18 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
+import { useEuiTheme } from '../../../services';
 import { CommonProps, ExclusiveUnion } from '../../common';
 
-import { useEuiTheme } from '../../../services';
+import type { EuiRangeProps } from './types';
 import { euiRangeThumbStyles } from './range_thumb.styles';
 
-interface BaseProps extends CommonProps {
-  min: number;
-  max: number;
-  value?: number | string;
-  disabled?: boolean;
-  showInput?: boolean;
-  showTicks?: boolean;
-}
+interface BaseProps
+  extends CommonProps,
+    Pick<
+      EuiRangeProps,
+      'min' | 'max' | 'value' | 'disabled' | 'showInput' | 'showTicks'
+    > {}
 
 interface ButtonLike extends BaseProps, HTMLAttributes<HTMLButtonElement> {}
 interface DivLike

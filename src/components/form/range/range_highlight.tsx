@@ -12,24 +12,22 @@ import classNames from 'classnames';
 import { useEuiTheme } from '../../../services';
 import { logicalStyles } from '../../../global_styling';
 
+import type { EuiRangeProps } from './types';
 import {
   euiRangeHighlightStyles,
   euiRangeHighlightProgressStyles,
   euiRangeHighlightLevelsWrapperStyles,
   euiRangeHighlightLevelsStyles,
 } from './range_highlight.styles';
-import { EuiRangeLevels, EuiRangeLevel } from './range_levels';
+import { EuiRangeLevels } from './range_levels';
 
-export interface EuiRangeHighlightProps {
+export interface EuiRangeHighlightProps
+  extends Pick<EuiRangeProps, 'min' | 'max' | 'levels' | 'showTicks'> {
   className?: string;
   background?: string;
   trackWidth: number;
-  showTicks?: boolean;
   lowerValue: number;
   upperValue: number;
-  max: number;
-  min: number;
-  levels?: EuiRangeLevel[];
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 

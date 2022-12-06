@@ -8,7 +8,7 @@
 
 import { UseEuiTheme } from '../../../services';
 
-import { EuiRangeLevel } from './range_levels';
+import type { EuiRangeLevel } from './types';
 
 export const LEVEL_COLORS = [
   'primary',

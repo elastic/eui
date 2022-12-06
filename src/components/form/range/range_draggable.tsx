@@ -17,18 +17,19 @@ import classNames from 'classnames';
 import { useMouseMove, useEuiTheme } from '../../../services';
 import { logicalStyles } from '../../../global_styling';
 
+import type { EuiDualRangeProps } from './types';
+
 import {
   euiRangeDraggableStyles,
   euiRangeDraggableInnerStyles,
 } from './range_draggable.styles';
 
 export interface EuiRangeDraggableProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
-  min: number;
-  max: number;
-  value: number[];
-  disabled?: boolean;
-  showTicks?: boolean;
+  extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>,
+    Pick<
+      EuiDualRangeProps,
+      'min' | 'max' | 'value' | 'disabled' | 'showTicks'
+    > {
   lowerPosition: string;
   upperPosition: string;
   onChange: (x: number, isFirstInteraction?: boolean) => void;
@@ -84,7 +85,7 @@ export const EuiRangeDraggable: FunctionComponent<EuiRangeDraggableProps> = ({
     role: 'slider',
     'aria-valuemin': min,
     'aria-valuemax': max,
-    'aria-valuenow': value[0],
+    'aria-valuenow': Number(value[0]),
     'aria-valuetext': `${value[0]}, ${value[1]}`,
     'aria-disabled': !!disabled,
     tabIndex: !!disabled ? -1 : 0,

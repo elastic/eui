@@ -18,28 +18,32 @@ import { CommonProps } from '../../common';
 import { useEuiTheme } from '../../../services';
 import { logicalStyles } from '../../../global_styling';
 
-import { EuiRangeLevel } from './range_levels';
+import type { EuiRangeProps, EuiRangeLevel } from './types';
 import { euiRangeLevelColor } from './range_levels_colors';
 import {
   euiRangeSliderStyles,
   euiRangeSliderThumbStyles,
 } from './range_slider.styles';
 
-export type EuiRangeSliderProps = InputHTMLAttributes<HTMLInputElement> &
-  CommonProps & {
-    id?: string;
-    name?: string;
-    min: number;
-    max: number;
-    step?: number;
-    isLoading?: boolean;
-    showRange?: boolean;
-    showTicks?: boolean;
-    disabled?: boolean;
-    tabIndex?: number;
-    onChange?: ChangeEventHandler<HTMLInputElement>;
-    thumbColor?: EuiRangeLevel['color'];
-  };
+export interface EuiRangeSliderProps
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'min' | 'max' | 'step'>,
+    CommonProps,
+    Pick<
+      EuiRangeProps,
+      | 'id'
+      | 'name'
+      | 'tabIndex'
+      | 'min'
+      | 'max'
+      | 'step'
+      | 'disabled'
+      | 'isLoading'
+      | 'showRange'
+      | 'showTicks'
+    > {
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+  thumbColor?: EuiRangeLevel['color'];
+}
 
 export const EuiRangeSlider = forwardRef<HTMLInputElement, EuiRangeSliderProps>(
   (

@@ -6,24 +6,23 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ReactNode, useMemo } from 'react';
+import React, { FunctionComponent, useMemo } from 'react';
 
 import { useEuiTheme } from '../../../services';
 import { logicalStyles } from '../../../global_styling';
 
+import type { EuiRangeProps } from './types';
 import {
   euiRangeTooltipStyles,
   euiRangeTooltipValueStyles,
 } from './range_tooltip.styles';
 
-export interface EuiRangeTooltipProps {
-  value?: number | string;
-  valueAppend?: ReactNode;
-  valuePrepend?: ReactNode;
-  max: number;
-  min: number;
+export interface EuiRangeTooltipProps
+  extends Pick<
+    EuiRangeProps,
+    'min' | 'max' | 'value' | 'valueAppend' | 'valuePrepend' | 'showTicks'
+  > {
   name?: string;
-  showTicks?: boolean;
 }
 
 export const EuiRangeTooltip: FunctionComponent<EuiRangeTooltipProps> = ({

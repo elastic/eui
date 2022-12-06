@@ -14,10 +14,10 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps } from '../../common';
 import { useEuiTheme } from '../../../services';
 import { logicalStyles } from '../../../global_styling';
 
+import type { EuiRangeLevel, EuiRangeProps } from './types';
 import { EuiRangeLevelColor, isNamedLevelColor } from './range_levels_colors';
 import {
   euiRangeLevelsStyles,
@@ -26,24 +26,11 @@ import {
 
 import { calculateThumbPosition, EUI_THUMB_SIZE } from './utils';
 
-export interface EuiRangeLevel extends CommonProps {
-  min: number;
-  max: number;
-  /**
-   * Accepts one of `["primary", "success", "warning", "danger"]` or a valid CSS color value.
-   */
-  color: EuiRangeLevelColor | CSSProperties['color'];
-}
-
-export interface EuiRangeLevelsProps {
-  /**
-   * An array of #EuiRangeLevel objects
-   */
-  levels?: EuiRangeLevel[];
-  max: number;
-  min: number;
-  showTicks?: boolean;
-  showRange?: boolean;
+export interface EuiRangeLevelsProps
+  extends Pick<
+    EuiRangeProps,
+    'levels' | 'min' | 'max' | 'showTicks' | 'showRange'
+  > {
   trackWidth: number;
   style?: CSSProperties;
 }

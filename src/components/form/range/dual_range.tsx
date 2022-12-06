@@ -18,110 +18,25 @@ import {
 import { isWithinRange } from '../../../services/number';
 import { logicalStyles } from '../../../global_styling';
 import { EuiInputPopover } from '../../popover';
-import {
-  EuiFormControlLayoutDelimited,
-  EuiFormControlLayoutProps,
-} from '../form_control_layout';
+import { EuiFormControlLayoutDelimited } from '../form_control_layout';
+import { FormContext, FormContextValue } from '../eui_form_context';
 
-import { EuiRangeProps } from './range';
 import { EuiRangeDraggable } from './range_draggable';
 import { EuiRangeHighlight } from './range_highlight';
-import { EuiRangeInput, EuiRangeInputProps } from './range_input';
+import { EuiRangeInput } from './range_input';
 import { EuiRangeLabel } from './range_label';
-import { EuiRangeLevel } from './range_levels';
 import { getLevelColor, euiRangeLevelColor } from './range_levels_colors';
-import { EuiRangeSlider, EuiRangeSliderProps } from './range_slider';
+import { EuiRangeSlider } from './range_slider';
 import { EuiRangeThumb } from './range_thumb';
-import { EuiRangeTick } from './range_ticks';
 import { EuiRangeTrack } from './range_track';
 import { EuiRangeWrapper } from './range_wrapper';
 import { calculateThumbPosition } from './utils';
-import { FormContext, FormContextValue } from '../eui_form_context';
+import type { EuiDualRangeProps, _SingleRangeValue } from './types';
 
 import { euiRangeStyles } from './range.styles';
 import { euiDualRangeStyles } from './dual_range.styles';
 
-type ValueMember = number | string;
-
-export interface EuiDualRangeProps
-  extends Omit<
-    EuiRangeSliderProps,
-    'onChange' | 'onBlur' | 'onFocus' | 'value' | 'isLoading' | 'min' | 'max'
-  > {
-  min?: EuiRangeSliderProps['min'];
-  max?: EuiRangeSliderProps['max'];
-  value: [ValueMember, ValueMember];
-  onBlur?: (
-    event: React.FocusEvent<HTMLInputElement> | React.FocusEvent<HTMLDivElement>
-  ) => void;
-  onFocus?: (
-    event: React.FocusEvent<HTMLInputElement> | React.FocusEvent<HTMLDivElement>
-  ) => void;
-  onChange: (
-    values: [ValueMember, ValueMember],
-    isValid: boolean,
-    event?:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.MouseEvent<HTMLButtonElement>
-      | React.KeyboardEvent<HTMLInputElement>
-      | React.KeyboardEvent<HTMLDivElement>
-  ) => void;
-  /**
-   * Expand to fill 100% of the parent.
-   * Defaults to `fullWidth` prop of `<EuiForm>`.
-   * @default false
-   */
-  fullWidth?: boolean;
-  isInvalid?: boolean;
-  /**
-   * Create colored indicators for certain intervals
-   */
-  levels?: EuiRangeLevel[];
-  /**
-   * Shows static min/max labels on the sides of the range slider
-   */
-  showLabels?: boolean;
-  /**
-   * Pass `true` to displays an extra input control for direct manipulation.
-   * Pass `'inputWithPopover'` to only show the input but show the range in a dropdown.
-   */
-  showInput?: EuiRangeProps['showInput'];
-  /**
-   * Modifies the number of tick marks and at what interval
-   */
-  tickInterval?: number;
-  /**
-   * Specified ticks at specified values
-   */
-  ticks?: EuiRangeTick[];
-  /**
-   * Creates an input group with element(s) coming before input.  Will only show if `showInput = inputWithPopover`.
-   * `string` | `ReactElement` or an array of these
-   */
-  prepend?: EuiFormControlLayoutProps['prepend'];
-  /**
-   * Creates an input group with element(s) coming after input. Will only show if `showInput = inputWithPopover`.
-   * `string` | `ReactElement` or an array of these
-   */
-  append?: EuiFormControlLayoutProps['append'];
-  /**
-   *  Intended to be uses with aria attributes. Some attributes may be overwritten.
-   */
-  minInputProps?: Partial<EuiRangeInputProps>;
-
-  /**
-   *  Intended to be uses with aria attributes. Some attributes may be overwritten.
-   */
-  maxInputProps?: Partial<EuiRangeInputProps>;
-  /**
-   *  Creates a draggble highlighted range area
-   */
-  isDraggable?: boolean;
-  /**
-   * Will only show if `showInput = inputWithPopover`
-   */
-  isLoading?: boolean;
-}
+type ValueMember = _SingleRangeValue['value'];
 
 export class EuiDualRangeClass extends Component<
   EuiDualRangeProps & WithEuiThemeProps
@@ -723,7 +638,7 @@ export class EuiDualRangeClass extends Component<
                     <EuiRangeDraggable
                       min={min}
                       max={max}
-                      value={[Number(this.lowerValue), Number(this.upperValue)]}
+                      value={[this.lowerValue, this.upperValue]}
                       disabled={disabled}
                       lowerPosition={leftThumbPosition.left}
                       upperPosition={rightThumbPosition.left}

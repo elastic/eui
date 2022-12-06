@@ -9,7 +9,6 @@
 import React, { Component, ReactNode } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps } from '../../common';
 import { isWithinRange } from '../../../services/number';
 import { EuiInputPopover } from '../../popover';
 import {
@@ -18,86 +17,19 @@ import {
   WithEuiThemeProps,
 } from '../../../services/';
 
+import { FormContext, FormContextValue } from '../eui_form_context';
 import { getLevelColor } from './range_levels_colors';
 import { EuiRangeHighlight } from './range_highlight';
-import { EuiRangeInput, EuiRangeInputProps } from './range_input';
+import { EuiRangeInput } from './range_input';
 import { EuiRangeLabel } from './range_label';
-import { EuiRangeLevel } from './range_levels';
 import { EuiRangeSlider } from './range_slider';
-import { EuiRangeTick } from './range_ticks';
 import { EuiRangeTooltip } from './range_tooltip';
 import { EuiRangeTrack } from './range_track';
 import { EuiRangeWrapper } from './range_wrapper';
-import { FormContext, FormContextValue } from '../eui_form_context';
+
+import type { EuiRangeProps } from './types';
 
 import { euiRangeStyles } from './range.styles';
-
-export interface EuiRangeProps
-  extends CommonProps,
-    Omit<EuiRangeInputProps, 'onChange' | 'digitTolerance' | 'isLoading'> {
-  compressed?: boolean;
-  readOnly?: boolean;
-  /**
-   * Expand to fill 100% of the parent.
-   * Defaults to `fullWidth` prop of `<EuiForm>`.
-   * @default false
-   */
-  fullWidth?: boolean;
-  id?: string;
-  /**
-   * Create colored indicators for certain intervals
-   */
-  levels?: EuiRangeLevel[];
-  step?: number;
-  /**
-   * Pass `true` to displays an extra input control for direct manipulation.
-   * Pass `'inputWithPopover'` to only show the input but show the range in a dropdown.
-   */
-  showInput?: boolean | 'inputWithPopover';
-  /**
-   * Shows static min/max labels on the sides of the range slider
-   */
-  showLabels?: boolean;
-  /**
-   * Shows a thick line from min to value
-   */
-  showRange?: boolean;
-  /**
-   * Shows clickable tick marks and labels at the given interval (`step`/`tickInterval`)
-   */
-  showTicks?: boolean;
-  /**
-   * Shows a tooltip styled value
-   */
-  showValue?: boolean;
-  /**
-   * Specified ticks at specified values
-   */
-  ticks?: EuiRangeTick[];
-  /**
-   * Modifies the number of tick marks and at what interval
-   */
-  tickInterval?: number;
-  /**
-   * Appends to the tooltip
-   */
-  valueAppend?: ReactNode;
-  /**
-   * Prepends to the tooltip
-   */
-  valuePrepend?: ReactNode;
-  /**
-   * Will only show if `showInput = inputWithPopover`
-   */
-  isLoading?: boolean;
-
-  onChange?: (
-    event:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.MouseEvent<HTMLButtonElement>,
-    isValid: boolean
-  ) => void;
-}
 
 export class EuiRangeClass extends Component<
   EuiRangeProps & WithEuiThemeProps

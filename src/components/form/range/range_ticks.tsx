@@ -10,39 +10,32 @@ import React, {
   ButtonHTMLAttributes,
   MouseEventHandler,
   FunctionComponent,
-  ReactNode,
   CSSProperties,
   useMemo,
 } from 'react';
 
-import { calculateThumbPosition, EUI_THUMB_SIZE } from './utils';
-
-import { useInnerText } from '../../inner_text';
-
 import { useEuiTheme } from '../../../services';
 import { logicalStyles } from '../../../global_styling';
+import { useInnerText } from '../../inner_text';
+
+import type {
+  _SharedRangesValues,
+  _SharedRangeDataStructures,
+  _SharedRangeInputProps,
+} from './types';
+import { calculateThumbPosition, EUI_THUMB_SIZE } from './utils';
+
 import { euiRangeTicksStyles, euiRangeTickStyles } from './range_ticks.styles';
 
-export interface EuiRangeTick {
-  value: number;
-  label: ReactNode;
-}
-
-export type EuiRangeTicksProps = Omit<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  'value'
-> & {
-  ticks?: EuiRangeTick[];
+export interface EuiRangeTicksProps
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'value'>,
+    _SharedRangesValues,
+    Pick<_SharedRangeInputProps, 'compressed' | 'disabled'>,
+    Pick<_SharedRangeDataStructures, 'ticks' | 'tickInterval'> {
   tickSequence: number[];
   trackWidth: number;
-  value?: number | string | Array<string | number>;
-  min: number;
-  max: number;
-  compressed?: boolean;
-  interval?: number;
-  disabled?: boolean;
   onChange?: MouseEventHandler<HTMLButtonElement>;
-};
+}
 
 const EuiTickValue: FunctionComponent<
   EuiRangeTicksProps & {
@@ -87,7 +80,7 @@ const EuiTickValue: FunctionComponent<
     const styles: CSSProperties = {};
     const shift = `-${labelShiftVal}em`;
 
-    if (isMaxTick && !!labelShiftVal) {
+    if (isMaxTick && labelShiftVal) {
       styles.right = '0%';
       styles.marginRight = shift;
     } else {
@@ -166,12 +159,12 @@ const EuiTickValue: FunctionComponent<
 };
 
 export const EuiRangeTicks: FunctionComponent<EuiRangeTicksProps> = (props) => {
-  const { ticks, tickSequence, max, min, interval = 1, compressed } = props;
+  const { ticks, tickSequence, max, min, tickInterval = 1, compressed } = props;
 
   // Calculate the width of each tick mark
   const percentageWidth = useMemo(
-    () => (interval / (max - min + interval)) * 100,
-    [interval, min, max]
+    () => (tickInterval / (max - min + tickInterval)) * 100,
+    [tickInterval, min, max]
   );
 
   const euiTheme = useEuiTheme();

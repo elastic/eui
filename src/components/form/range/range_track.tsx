@@ -16,29 +16,28 @@ import React, {
   ReactNode,
 } from 'react';
 
-import { useEuiTheme, isEvenlyDivisibleBy } from '../../../services';
-
 import range from 'lodash/range';
 
-import { EuiRangeLevels, EuiRangeLevel } from './range_levels';
-import { EuiRangeTicks, EuiRangeTick } from './range_ticks';
+import { useEuiTheme, isEvenlyDivisibleBy } from '../../../services';
+
+import { EuiRangeLevels } from './range_levels';
+import { EuiRangeTicks } from './range_ticks';
+import type {
+  _SharedRangesValues,
+  _SharedRangeDataStructures,
+  _SharedRangeVisualConfiguration,
+  _SharedRangeInputProps,
+} from './types';
 
 import { euiRangeTrackStyles } from './range_track.styles';
 
 export interface EuiRangeTrackProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
-  min: number;
-  max: number;
-  step?: number;
-  value?: number | string | Array<string | number>;
-  compressed?: boolean;
-  disabled?: boolean;
-  showTicks?: boolean;
-  tickInterval?: number;
-  ticks?: EuiRangeTick[];
+  extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>,
+    _SharedRangesValues,
+    _SharedRangeDataStructures,
+    Pick<_SharedRangeVisualConfiguration, 'showTicks' | 'showRange'>,
+    Pick<_SharedRangeInputProps, 'compressed' | 'disabled'> {
   onChange?: MouseEventHandler<HTMLButtonElement>;
-  levels?: EuiRangeLevel[];
-  showRange?: boolean;
   children?: ReactNode | ((trackWidth: number) => React.ReactNode);
 }
 
@@ -136,11 +135,11 @@ export const EuiRangeTrack: FunctionComponent<EuiRangeTrackProps> = ({
           compressed={compressed}
           onChange={onChange}
           ticks={ticks}
+          tickInterval={tickInterval || step}
           tickSequence={tickSequence}
           value={value}
           min={min}
           max={max}
-          interval={tickInterval || step}
           trackWidth={trackWidth}
         />
       )}

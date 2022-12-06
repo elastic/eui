@@ -12,16 +12,15 @@ import { useEuiTheme } from '../../../services';
 import { logicalStyles } from '../../../global_styling';
 import { EuiFieldNumber, EuiFieldNumberProps } from '../field_number';
 
+import type { _SingleRangeValue, _SharedRangeInputSide } from './types';
 import { euiRangeInputStyles } from './range_input.styles';
 
 export interface EuiRangeInputProps
-  extends Omit<EuiFieldNumberProps, 'max' | 'min' | 'value'> {
+  extends Omit<EuiFieldNumberProps, 'max' | 'min' | 'value' | 'step'>,
+    Omit<_SingleRangeValue, 'onChange'>,
+    _SharedRangeInputSide {
   autoSize?: boolean;
   digitTolerance: number;
-  max: number;
-  min: number;
-  side?: 'min' | 'max';
-  value: string | number;
 }
 
 export const EuiRangeInput: FunctionComponent<EuiRangeInputProps> = ({
