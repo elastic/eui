@@ -71,7 +71,7 @@ describe('EuiSideNav', () => {
       });
 
       it('has zero violations when mobile side nav is expanded', () => {
-        cy.get('button').contains('Basic example').click();
+        cy.get('button').contains('Basic example').realClick();
         cy.get('div.euiSideNav__content').should('exist');
         cy.checkAxe();
       });
