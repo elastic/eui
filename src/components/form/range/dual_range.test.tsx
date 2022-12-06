@@ -12,31 +12,25 @@ import { requiredProps } from '../../../test/required_props';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiForm } from '../form';
+import type { EuiDualRangeProps } from './types';
 import { EuiDualRange } from './dual_range';
 
 const props = {
+  min: 0,
+  max: 100,
+  value: ['1', '8'] as EuiDualRangeProps['value'],
   onChange: () => {},
 };
 
 describe('EuiDualRange', () => {
   shouldRenderCustomStyles(
-    <EuiDualRange {...props} value={['1', '8']} />,
-    { skipStyles: true } // styles get applied to the underlying slider instead of the className wrapper
-  );
-  shouldRenderCustomStyles(
-    <EuiDualRange {...props} value={['1', '8']} showInput />,
-    { childProps: ['minInputProps', 'maxInputProps'], skipParentTest: true }
+    <EuiDualRange name="name" id="id" {...props} {...requiredProps} />,
+    { skipStyles: true } // style is in ...rest and is spread to a different location than className/css
   );
 
   test('is rendered', () => {
     const component = render(
-      <EuiDualRange
-        name="name"
-        id="id"
-        value={['1', '8']}
-        {...props}
-        {...requiredProps}
-      />
+      <EuiDualRange name="name" id="id" {...props} {...requiredProps} />
     );
 
     expect(component).toMatchSnapshot();
@@ -44,45 +38,32 @@ describe('EuiDualRange', () => {
 
   describe('props', () => {
     test('disabled should render', () => {
-      const component = render(
-        <EuiDualRange {...props} value={['1', '8']} disabled />
-      );
+      const component = render(<EuiDualRange {...props} disabled />);
 
       expect(component).toMatchSnapshot();
     });
 
     test('fullWidth should render', () => {
-      const component = render(
-        <EuiDualRange {...props} value={['1', '8']} fullWidth />
-      );
+      const component = render(<EuiDualRange {...props} fullWidth />);
 
       expect(component).toMatchSnapshot();
     });
 
     test('compressed should render', () => {
-      const component = render(
-        <EuiDualRange {...props} value={['1', '8']} compressed />
-      );
+      const component = render(<EuiDualRange {...props} compressed />);
 
       expect(component).toMatchSnapshot();
     });
 
     test('labels should render', () => {
-      const component = render(
-        <EuiDualRange {...props} value={['1', '8']} showLabels />
-      );
+      const component = render(<EuiDualRange {...props} showLabels />);
 
       expect(component).toMatchSnapshot();
     });
 
     test('ticks should render', () => {
       const component = render(
-        <EuiDualRange
-          {...props}
-          value={['1', '8']}
-          showTicks
-          tickInterval={20}
-        />
+        <EuiDualRange {...props} showTicks tickInterval={20} />
       );
 
       expect(component).toMatchSnapshot();
@@ -105,9 +86,7 @@ describe('EuiDualRange', () => {
     });
 
     test('range should render', () => {
-      const component = render(
-        <EuiDualRange {...props} showRange value={[1, 8]} />
-      );
+      const component = render(<EuiDualRange {...props} showRange />);
 
       expect(component).toMatchSnapshot();
     });
@@ -115,12 +94,11 @@ describe('EuiDualRange', () => {
     test('inputs should render', () => {
       const component = render(
         <EuiDualRange
-          name="name"
-          id="id"
-          value={['1', '8']}
-          showInput
           {...props}
           {...requiredProps}
+          name="name"
+          id="id"
+          showInput
         />
       );
 
@@ -130,12 +108,10 @@ describe('EuiDualRange', () => {
     test('slider should display in popover', () => {
       const component = render(
         <EuiDualRange
+          {...props}
           name="name"
           id="id"
-          value={['1', '8']}
           showInput="inputWithPopover"
-          {...props}
-          {...requiredProps}
         />
       );
 
@@ -145,13 +121,11 @@ describe('EuiDualRange', () => {
     test('loading should display when showInput="inputWithPopover"', () => {
       const component = render(
         <EuiDualRange
+          {...props}
           name="name"
           id="id"
-          value={['1', '8']}
           showInput="inputWithPopover"
           isLoading
-          {...props}
-          {...requiredProps}
         />
       );
 
@@ -161,6 +135,7 @@ describe('EuiDualRange', () => {
     test('levels should render', () => {
       const component = render(
         <EuiDualRange
+          {...props}
           levels={[
             {
               min: 0,
@@ -173,8 +148,6 @@ describe('EuiDualRange', () => {
               color: 'success',
             },
           ]}
-          value={['1', '8']}
-          onChange={() => {}}
         />
       );
 
@@ -182,22 +155,20 @@ describe('EuiDualRange', () => {
     });
 
     test('isDraggable should render', () => {
-      const component = render(
-        <EuiDualRange isDraggable value={['1', '8']} onChange={() => {}} />
-      );
+      const component = render(<EuiDualRange {...props} isDraggable />);
 
       expect(component).toMatchSnapshot();
     });
   });
 
   test('allows value prop to accept numbers', () => {
-    const component = render(<EuiDualRange value={[1, 8]} {...props} />);
+    const component = render(<EuiDualRange {...props} value={[1, 8]} />);
 
     expect(component).toMatchSnapshot();
   });
 
   test('allows value prop to accept empty strings', () => {
-    const component = render(<EuiDualRange value={['', '']} {...props} />);
+    const component = render(<EuiDualRange {...props} value={['', '']} />);
 
     expect(component).toMatchSnapshot();
   });
@@ -206,12 +177,11 @@ describe('EuiDualRange', () => {
     test('can be applied to min and max inputs', () => {
       const component = render(
         <EuiDualRange
+          {...props}
           name="name"
           id="id"
           min={1}
           max={10}
-          value={['1', '8']}
-          onChange={() => {}}
           showInput
           minInputProps={{ 'aria-label': 'Min value' }}
           maxInputProps={{ 'aria-label': 'Max value' }}
@@ -226,14 +196,12 @@ describe('EuiDualRange', () => {
     test('fullWidth from <EuiForm />', () => {
       const component = render(
         <EuiForm fullWidth>
-          <EuiDualRange value={['1', '8']} onChange={() => {}} />
+          <EuiDualRange {...props} />
         </EuiForm>
       );
 
       if (
-        !component
-          .find('.euiRangeWrapper')
-          .hasClass('euiRangeWrapper--fullWidth')
+        !component.find('.euiRangeWrapper').attr('class').includes('-fullWidth')
       ) {
         throw new Error(
           'expected EuiDualRange to inherit fullWidth from EuiForm'

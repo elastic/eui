@@ -10,27 +10,40 @@ import React, {
   ChangeEventHandler,
   InputHTMLAttributes,
   forwardRef,
+  useMemo,
 } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
+import { useEuiTheme } from '../../../services';
+import { logicalStyles } from '../../../global_styling';
 
-export type EuiRangeSliderProps = InputHTMLAttributes<HTMLInputElement> &
-  CommonProps & {
-    id?: string;
-    name?: string;
-    min: number;
-    max: number;
-    step?: number;
-    compressed?: boolean;
-    isLoading?: boolean;
-    hasFocus?: boolean;
-    showRange?: boolean;
-    showTicks?: boolean;
-    disabled?: boolean;
-    tabIndex?: number;
-    onChange?: ChangeEventHandler<HTMLInputElement>;
-  };
+import type { EuiRangeProps, EuiRangeLevel } from './types';
+import { euiRangeLevelColor } from './range_levels_colors';
+import {
+  euiRangeSliderStyles,
+  euiRangeSliderThumbStyles,
+} from './range_slider.styles';
+
+export interface EuiRangeSliderProps
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'min' | 'max' | 'step'>,
+    CommonProps,
+    Pick<
+      EuiRangeProps,
+      | 'id'
+      | 'name'
+      | 'tabIndex'
+      | 'min'
+      | 'max'
+      | 'step'
+      | 'disabled'
+      | 'isLoading'
+      | 'showRange'
+      | 'showTicks'
+    > {
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+  thumbColor?: EuiRangeLevel['color'];
+}
 
 export const EuiRangeSlider = forwardRef<HTMLInputElement, EuiRangeSliderProps>(
   (
@@ -48,22 +61,30 @@ export const EuiRangeSlider = forwardRef<HTMLInputElement, EuiRangeSliderProps>(
       style,
       showTicks,
       showRange,
-      hasFocus,
-      compressed,
+      thumbColor,
       ...rest
     },
     ref
   ) => {
-    const classes = classNames(
-      'euiRangeSlider',
-      {
-        'euiRangeSlider--hasTicks': showTicks,
-        'euiRangeSlider--hasFocus': hasFocus,
-        'euiRangeSlider--hasRange': showRange,
-        'euiRangeSlider--compressed': compressed,
-      },
-      className
-    );
+    const classes = classNames('euiRangeSlider', className);
+
+    const euiTheme = useEuiTheme();
+    const styles = euiRangeSliderStyles(euiTheme);
+    const thumbStyles = euiRangeSliderThumbStyles(euiTheme);
+    const cssStyles = [
+      styles.euiRangeSlider,
+      showTicks && styles.hasTicks,
+      showRange && styles.hasRange,
+      thumbColor && thumbStyles.thumb,
+    ];
+
+    const sliderStyle = useMemo(() => {
+      return logicalStyles({
+        color: thumbColor && euiRangeLevelColor(thumbColor, euiTheme.euiTheme),
+        ...style,
+      });
+    }, [thumbColor, euiTheme, style]);
+
     return (
       <input
         ref={ref}
@@ -71,13 +92,14 @@ export const EuiRangeSlider = forwardRef<HTMLInputElement, EuiRangeSliderProps>(
         id={id}
         name={name}
         className={classes}
+        css={cssStyles}
         min={min}
         max={max}
         step={step}
         value={value}
         disabled={disabled}
         onChange={onChange}
-        style={style}
+        style={sliderStyle}
         tabIndex={tabIndex}
         {...rest}
       />

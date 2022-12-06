@@ -6,11 +6,12 @@
  * Side Public License, v 1.
  */
 
-export { EuiDualRange } from './dual_range';
-export { EuiRange } from './range';
-export type {
-  EuiRangeProps,
-  EuiDualRangeProps,
-  EuiRangeTick,
-  EuiRangeLevel,
-} from './types';
+import { css } from '@emotion/react';
+import { euiRangeThumbPerBrowser } from './range.styles';
+
+export const euiDualRangeStyles = () => ({
+  euiDualRange: css``,
+  euiDualRange__slider: css`
+    ${euiRangeThumbPerBrowser('visibility: hidden')}
+  `,
+});

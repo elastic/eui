@@ -1,26 +1,27 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 
-import { EuiRange, EuiSpacer, EuiDualRange } from '../../../../src/components';
+import {
+  EuiRange,
+  EuiRangeProps,
+  EuiSpacer,
+  EuiDualRange,
+  EuiDualRangeProps,
+  useGeneratedHtmlId,
+} from '../../../../src';
 
 import { DisplayToggles } from '../form_controls/display_toggles';
-import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
-  const [value, setValue] = useState('20');
-  const [dualValue, setDualValue] = useState([20, 100]);
+  const [value, setValue] = useState<EuiRangeProps['value']>('20');
+  const [dualValue, setDualValue] = useState<EuiDualRangeProps['value']>([
+    20,
+    100,
+  ]);
 
   const inputRangeSliderId = useGeneratedHtmlId({ prefix: 'inputRangeSlider' });
   const dualInputRangeSliderId = useGeneratedHtmlId({
     prefix: 'dualInputRangeSlider',
   });
-
-  const onChange = (e) => {
-    setValue(e.target.value);
-  };
-
-  const onDualChange = (value) => {
-    setDualValue(value);
-  };
 
   const levels = [
     {
@@ -36,12 +37,14 @@ export default () => {
   ];
 
   return (
-    <Fragment>
+    <>
       <DisplayToggles canAppend canPrepend>
         <EuiRange
           id={inputRangeSliderId}
+          min={0}
+          max={100}
           value={value}
-          onChange={onChange}
+          onChange={(e) => setValue(e.currentTarget.value)}
           showInput="inputWithPopover"
           showLabels
           aria-label="An example of EuiRange with showInput prop"
@@ -53,14 +56,16 @@ export default () => {
       <DisplayToggles canAppend canPrepend>
         <EuiDualRange
           id={dualInputRangeSliderId}
+          min={0}
+          max={100}
           value={dualValue}
-          onChange={onDualChange}
+          onChange={(value) => setDualValue(value)}
           showInput="inputWithPopover"
           showLabels
           levels={levels}
           aria-label="An example of EuiDualRange with showInput prop"
         />
       </DisplayToggles>
-    </Fragment>
+    </>
   );
 };

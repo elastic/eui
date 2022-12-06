@@ -1,6 +1,6 @@
 .euiColorStops__addTarget,
 .euiColorStops__addContainer {
-  z-index: 1;
+  z-index: 3; // same z-index as .euiRangeThumb
 }
 
 .euiColorStops__addTarget {

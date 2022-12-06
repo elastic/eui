@@ -6,11 +6,17 @@
  * Side Public License, v 1.
  */
 
-export { EuiDualRange } from './dual_range';
-export { EuiRange } from './range';
-export type {
-  EuiRangeProps,
-  EuiDualRangeProps,
-  EuiRangeTick,
-  EuiRangeLevel,
-} from './types';
+import { css } from '@emotion/react';
+import { UseEuiTheme } from '../../../services';
+
+export const euiRangeInputStyles = ({ euiTheme }: UseEuiTheme) => ({
+  euiRangeInput: css`
+    inline-size: auto;
+    min-inline-size: ${euiTheme.base * 4}px;
+
+    .euiRange__popover & {
+      margin: 0;
+      inline-size: 100%;
+    }
+  `,
+});

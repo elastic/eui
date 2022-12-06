@@ -3,7 +3,7 @@
 exports[`renders EuiColorStops 1`] = `
 <div
   aria-label="aria-label"
-  class="euiRangeWrapper euiColorStops testClass1 testClass2"
+  class="euiRangeWrapper euiColorStops testClass1 testClass2 emotion-euiRangeWrapper-regular"
   data-test-subj="euiColorStops test subject string"
   tabindex="0"
 >
@@ -14,14 +14,14 @@ exports[`renders EuiColorStops 1`] = `
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    class="euiRangeTrack"
+    class="euiRangeTrack emotion-euiRangeTrack"
   >
     <div
-      class="euiRangeHighlight euiColorStops__highlight"
+      class="euiRangeHighlight euiColorStops__highlight emotion-euiRangeHighlight"
     >
       <div
-        class="euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,currentColor, currentColor undefined%, rgb(255,0,0) undefined%,rgb(0,255,0) undefined%,rgb(0,0,255) undefined%);margin-left:0%;width:100%"
+        class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        style="background:linear-gradient(to right,currentColor, currentColor undefined%, rgb(255,0,0) undefined%,rgb(0,255,0) undefined%,rgb(0,0,255) undefined%);margin-inline-start:0%;inline-size:100%"
       />
     </div>
     <div
@@ -47,7 +47,7 @@ exports[`renders EuiColorStops 1`] = `
           aria-valuemin="0"
           aria-valuenow="0"
           aria-valuetext="Stop: 0, Color: #FF0000 (1 of 3)"
-          class="euiRangeThumb euiColorStopThumb"
+          class="euiRangeThumb euiColorStopThumb emotion-euiRangeThumb"
           data-index="euiColorStop_0"
           data-test-subj="euiColorStopThumb"
           role="slider"
@@ -72,7 +72,7 @@ exports[`renders EuiColorStops 1`] = `
           aria-valuemin="1"
           aria-valuenow="25"
           aria-valuetext="Stop: 25, Color: #00FF00 (2 of 3)"
-          class="euiRangeThumb euiColorStopThumb"
+          class="euiRangeThumb euiColorStopThumb emotion-euiRangeThumb"
           data-index="euiColorStop_1"
           data-test-subj="euiColorStopThumb"
           role="slider"
@@ -97,7 +97,7 @@ exports[`renders EuiColorStops 1`] = `
           aria-valuemin="26"
           aria-valuenow="35"
           aria-valuetext="Stop: 35, Color: #0000FF (3 of 3)"
-          class="euiRangeThumb euiColorStopThumb"
+          class="euiRangeThumb euiColorStopThumb emotion-euiRangeThumb"
           data-index="euiColorStop_2"
           data-test-subj="euiColorStopThumb"
           role="slider"
@@ -115,7 +115,7 @@ exports[`renders EuiColorStops 1`] = `
 exports[`renders compressed EuiColorStops 1`] = `
 <div
   aria-label="aria-label"
-  class="euiRangeWrapper euiColorStops testClass1 testClass2"
+  class="euiRangeWrapper euiColorStops testClass1 testClass2 emotion-euiRangeWrapper-regular"
   data-test-subj="euiColorStops test subject string"
   tabindex="0"
 >
@@ -126,14 +126,14 @@ exports[`renders compressed EuiColorStops 1`] = `
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    class="euiRangeTrack euiRangeTrack--compressed"
+    class="euiRangeTrack emotion-euiRangeTrack"
   >
     <div
-      class="euiRangeHighlight euiRangeHighlight--compressed euiColorStops__highlight"
+      class="euiRangeHighlight euiColorStops__highlight emotion-euiRangeHighlight"
     >
       <div
-        class="euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,currentColor, currentColor undefined%, rgb(255,0,0) undefined%,rgb(0,255,0) undefined%,rgb(0,0,255) undefined%);margin-left:0%;width:100%"
+        class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        style="background:linear-gradient(to right,currentColor, currentColor undefined%, rgb(255,0,0) undefined%,rgb(0,255,0) undefined%,rgb(0,0,255) undefined%);margin-inline-start:0%;inline-size:100%"
       />
     </div>
     <div
@@ -159,7 +159,7 @@ exports[`renders compressed EuiColorStops 1`] = `
           aria-valuemin="0"
           aria-valuenow="0"
           aria-valuetext="Stop: 0, Color: #FF0000 (1 of 3)"
-          class="euiRangeThumb euiColorStopThumb"
+          class="euiRangeThumb euiColorStopThumb emotion-euiRangeThumb"
           data-index="euiColorStop_0"
           data-test-subj="euiColorStopThumb"
           role="slider"
@@ -184,7 +184,7 @@ exports[`renders compressed EuiColorStops 1`] = `
           aria-valuemin="1"
           aria-valuenow="25"
           aria-valuetext="Stop: 25, Color: #00FF00 (2 of 3)"
-          class="euiRangeThumb euiColorStopThumb"
+          class="euiRangeThumb euiColorStopThumb emotion-euiRangeThumb"
           data-index="euiColorStop_1"
           data-test-subj="euiColorStopThumb"
           role="slider"
@@ -209,7 +209,7 @@ exports[`renders compressed EuiColorStops 1`] = `
           aria-valuemin="26"
           aria-valuenow="35"
           aria-valuetext="Stop: 35, Color: #0000FF (3 of 3)"
-          class="euiRangeThumb euiColorStopThumb"
+          class="euiRangeThumb euiColorStopThumb emotion-euiRangeThumb"
           data-index="euiColorStop_2"
           data-test-subj="euiColorStopThumb"
           role="slider"
@@ -227,7 +227,7 @@ exports[`renders compressed EuiColorStops 1`] = `
 exports[`renders disabled EuiColorStops 1`] = `
 <div
   aria-label="aria-label"
-  class="euiRangeWrapper euiColorStops euiColorStops-isDisabled testClass1 testClass2"
+  class="euiRangeWrapper euiColorStops euiColorStops-isDisabled testClass1 testClass2 emotion-euiRangeWrapper-regular"
   data-test-subj="euiColorStops test subject string"
   tabindex="-1"
 >
@@ -238,14 +238,14 @@ exports[`renders disabled EuiColorStops 1`] = `
     Test:  Disabled. Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    class="euiRangeTrack euiRangeTrack--disabled"
+    class="euiRangeTrack emotion-euiRangeTrack-disabled"
   >
     <div
-      class="euiRangeHighlight euiColorStops__highlight"
+      class="euiRangeHighlight euiColorStops__highlight emotion-euiRangeHighlight"
     >
       <div
-        class="euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,currentColor, currentColor undefined%, rgb(255,0,0) undefined%,rgb(0,255,0) undefined%,rgb(0,0,255) undefined%);margin-left:0%;width:100%"
+        class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        style="background:linear-gradient(to right,currentColor, currentColor undefined%, rgb(255,0,0) undefined%,rgb(0,255,0) undefined%,rgb(0,0,255) undefined%);margin-inline-start:0%;inline-size:100%"
       />
     </div>
     <div
@@ -271,7 +271,7 @@ exports[`renders disabled EuiColorStops 1`] = `
           aria-valuemin="0"
           aria-valuenow="0"
           aria-valuetext="Stop: 0, Color: #FF0000 (1 of 3)"
-          class="euiRangeThumb euiColorStopThumb"
+          class="euiRangeThumb euiColorStopThumb emotion-euiRangeThumb"
           data-index="euiColorStop_0"
           data-test-subj="euiColorStopThumb"
           disabled=""
@@ -297,7 +297,7 @@ exports[`renders disabled EuiColorStops 1`] = `
           aria-valuemin="1"
           aria-valuenow="25"
           aria-valuetext="Stop: 25, Color: #00FF00 (2 of 3)"
-          class="euiRangeThumb euiColorStopThumb"
+          class="euiRangeThumb euiColorStopThumb emotion-euiRangeThumb"
           data-index="euiColorStop_1"
           data-test-subj="euiColorStopThumb"
           disabled=""
@@ -323,7 +323,7 @@ exports[`renders disabled EuiColorStops 1`] = `
           aria-valuemin="26"
           aria-valuenow="35"
           aria-valuetext="Stop: 35, Color: #0000FF (3 of 3)"
-          class="euiRangeThumb euiColorStopThumb"
+          class="euiRangeThumb euiColorStopThumb emotion-euiRangeThumb"
           data-index="euiColorStop_2"
           data-test-subj="euiColorStopThumb"
           disabled=""
@@ -342,7 +342,7 @@ exports[`renders disabled EuiColorStops 1`] = `
 exports[`renders empty EuiColorStops 1`] = `
 <div
   aria-label="aria-label"
-  class="euiRangeWrapper euiColorStops testClass1 testClass2"
+  class="euiRangeWrapper euiColorStops testClass1 testClass2 emotion-euiRangeWrapper-regular"
   data-test-subj="euiColorStops test subject string"
   tabindex="0"
 >
@@ -353,14 +353,14 @@ exports[`renders empty EuiColorStops 1`] = `
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    class="euiRangeTrack"
+    class="euiRangeTrack emotion-euiRangeTrack"
   >
     <div
-      class="euiRangeHighlight euiColorStops__highlight"
+      class="euiRangeHighlight euiColorStops__highlight emotion-euiRangeHighlight"
     >
       <div
-        class="euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,);margin-left:0%;width:100%"
+        class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        style="background:linear-gradient(to right,);margin-inline-start:0%;inline-size:100%"
       />
     </div>
     <div
@@ -379,7 +379,7 @@ exports[`renders empty EuiColorStops 1`] = `
 exports[`renders fixed stop EuiColorStops 1`] = `
 <div
   aria-label="aria-label"
-  class="euiRangeWrapper euiColorStops testClass1 testClass2"
+  class="euiRangeWrapper euiColorStops testClass1 testClass2 emotion-euiRangeWrapper-regular"
   data-test-subj="euiColorStops test subject string"
   tabindex="0"
 >
@@ -390,14 +390,14 @@ exports[`renders fixed stop EuiColorStops 1`] = `
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    class="euiRangeTrack"
+    class="euiRangeTrack emotion-euiRangeTrack"
   >
     <div
-      class="euiRangeHighlight euiColorStops__highlight"
+      class="euiRangeHighlight euiColorStops__highlight emotion-euiRangeHighlight"
     >
       <div
-        class="euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,currentColor, currentColor undefined%, rgb(255,0,0) undefined%, rgb(255,0,0) undefined%,rgb(0,255,0) undefined%, rgb(0,255,0) undefined%,rgb(0,0,255) undefined%);margin-left:0%;width:100%"
+        class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        style="background:linear-gradient(to right,currentColor, currentColor undefined%, rgb(255,0,0) undefined%, rgb(255,0,0) undefined%,rgb(0,255,0) undefined%, rgb(0,255,0) undefined%,rgb(0,0,255) undefined%);margin-inline-start:0%;inline-size:100%"
       />
     </div>
     <div
@@ -423,7 +423,7 @@ exports[`renders fixed stop EuiColorStops 1`] = `
           aria-valuemin="0"
           aria-valuenow="0"
           aria-valuetext="Stop: 0, Color: #FF0000 (1 of 3)"
-          class="euiRangeThumb euiColorStopThumb"
+          class="euiRangeThumb euiColorStopThumb emotion-euiRangeThumb"
           data-index="euiColorStop_0"
           data-test-subj="euiColorStopThumb"
           role="slider"
@@ -448,7 +448,7 @@ exports[`renders fixed stop EuiColorStops 1`] = `
           aria-valuemin="1"
           aria-valuenow="25"
           aria-valuetext="Stop: 25, Color: #00FF00 (2 of 3)"
-          class="euiRangeThumb euiColorStopThumb"
+          class="euiRangeThumb euiColorStopThumb emotion-euiRangeThumb"
           data-index="euiColorStop_1"
           data-test-subj="euiColorStopThumb"
           role="slider"
@@ -473,7 +473,7 @@ exports[`renders fixed stop EuiColorStops 1`] = `
           aria-valuemin="26"
           aria-valuenow="35"
           aria-valuetext="Stop: 35, Color: #0000FF (3 of 3)"
-          class="euiRangeThumb euiColorStopThumb"
+          class="euiRangeThumb euiColorStopThumb emotion-euiRangeThumb"
           data-index="euiColorStop_2"
           data-test-subj="euiColorStopThumb"
           role="slider"
@@ -491,7 +491,7 @@ exports[`renders fixed stop EuiColorStops 1`] = `
 exports[`renders free-range EuiColorStops 1`] = `
 <div
   aria-label="aria-label"
-  class="euiRangeWrapper euiColorStops testClass1 testClass2"
+  class="euiRangeWrapper euiColorStops testClass1 testClass2 emotion-euiRangeWrapper-regular"
   data-test-subj="euiColorStops test subject string"
   tabindex="0"
 >
@@ -502,14 +502,14 @@ exports[`renders free-range EuiColorStops 1`] = `
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    class="euiRangeTrack"
+    class="euiRangeTrack emotion-euiRangeTrack"
   >
     <div
-      class="euiRangeHighlight euiColorStops__highlight"
+      class="euiRangeHighlight euiColorStops__highlight emotion-euiRangeHighlight"
     >
       <div
-        class="euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,);margin-left:0%;width:100%"
+        class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        style="background:linear-gradient(to right,);margin-inline-start:0%;inline-size:100%"
       />
     </div>
     <div
@@ -528,7 +528,7 @@ exports[`renders free-range EuiColorStops 1`] = `
 exports[`renders fullWidth EuiColorStops 1`] = `
 <div
   aria-label="aria-label"
-  class="euiRangeWrapper euiRangeWrapper--fullWidth euiColorStops testClass1 testClass2"
+  class="euiRangeWrapper euiColorStops testClass1 testClass2 emotion-euiRangeWrapper-regular-fullWidth"
   data-test-subj="euiColorStops test subject string"
   tabindex="0"
 >
@@ -539,14 +539,14 @@ exports[`renders fullWidth EuiColorStops 1`] = `
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    class="euiRangeTrack"
+    class="euiRangeTrack emotion-euiRangeTrack"
   >
     <div
-      class="euiRangeHighlight euiColorStops__highlight"
+      class="euiRangeHighlight euiColorStops__highlight emotion-euiRangeHighlight"
     >
       <div
-        class="euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,currentColor, currentColor undefined%, rgb(255,0,0) undefined%,rgb(0,255,0) undefined%,rgb(0,0,255) undefined%);margin-left:0%;width:100%"
+        class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        style="background:linear-gradient(to right,currentColor, currentColor undefined%, rgb(255,0,0) undefined%,rgb(0,255,0) undefined%,rgb(0,0,255) undefined%);margin-inline-start:0%;inline-size:100%"
       />
     </div>
     <div
@@ -572,7 +572,7 @@ exports[`renders fullWidth EuiColorStops 1`] = `
           aria-valuemin="0"
           aria-valuenow="0"
           aria-valuetext="Stop: 0, Color: #FF0000 (1 of 3)"
-          class="euiRangeThumb euiColorStopThumb"
+          class="euiRangeThumb euiColorStopThumb emotion-euiRangeThumb"
           data-index="euiColorStop_0"
           data-test-subj="euiColorStopThumb"
           role="slider"
@@ -597,7 +597,7 @@ exports[`renders fullWidth EuiColorStops 1`] = `
           aria-valuemin="1"
           aria-valuenow="25"
           aria-valuetext="Stop: 25, Color: #00FF00 (2 of 3)"
-          class="euiRangeThumb euiColorStopThumb"
+          class="euiRangeThumb euiColorStopThumb emotion-euiRangeThumb"
           data-index="euiColorStop_1"
           data-test-subj="euiColorStopThumb"
           role="slider"
@@ -622,7 +622,7 @@ exports[`renders fullWidth EuiColorStops 1`] = `
           aria-valuemin="26"
           aria-valuenow="35"
           aria-valuetext="Stop: 35, Color: #0000FF (3 of 3)"
-          class="euiRangeThumb euiColorStopThumb"
+          class="euiRangeThumb euiColorStopThumb emotion-euiRangeThumb"
           data-index="euiColorStop_2"
           data-test-subj="euiColorStopThumb"
           role="slider"
@@ -640,7 +640,7 @@ exports[`renders fullWidth EuiColorStops 1`] = `
 exports[`renders max-only EuiColorStops 1`] = `
 <div
   aria-label="aria-label"
-  class="euiRangeWrapper euiColorStops testClass1 testClass2"
+  class="euiRangeWrapper euiColorStops testClass1 testClass2 emotion-euiRangeWrapper-regular"
   data-test-subj="euiColorStops test subject string"
   tabindex="0"
 >
@@ -651,14 +651,14 @@ exports[`renders max-only EuiColorStops 1`] = `
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    class="euiRangeTrack"
+    class="euiRangeTrack emotion-euiRangeTrack"
   >
     <div
-      class="euiRangeHighlight euiColorStops__highlight"
+      class="euiRangeHighlight euiColorStops__highlight emotion-euiRangeHighlight"
     >
       <div
-        class="euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,);margin-left:0%;width:100%"
+        class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        style="background:linear-gradient(to right,);margin-inline-start:0%;inline-size:100%"
       />
     </div>
     <div
@@ -677,7 +677,7 @@ exports[`renders max-only EuiColorStops 1`] = `
 exports[`renders min-only EuiColorStops 1`] = `
 <div
   aria-label="aria-label"
-  class="euiRangeWrapper euiColorStops testClass1 testClass2"
+  class="euiRangeWrapper euiColorStops testClass1 testClass2 emotion-euiRangeWrapper-regular"
   data-test-subj="euiColorStops test subject string"
   tabindex="0"
 >
@@ -688,14 +688,14 @@ exports[`renders min-only EuiColorStops 1`] = `
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    class="euiRangeTrack"
+    class="euiRangeTrack emotion-euiRangeTrack"
   >
     <div
-      class="euiRangeHighlight euiColorStops__highlight"
+      class="euiRangeHighlight euiColorStops__highlight emotion-euiRangeHighlight"
     >
       <div
-        class="euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,);margin-left:0%;width:100%"
+        class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        style="background:linear-gradient(to right,);margin-inline-start:0%;inline-size:100%"
       />
     </div>
     <div
@@ -714,7 +714,7 @@ exports[`renders min-only EuiColorStops 1`] = `
 exports[`renders readOnly EuiColorStops 1`] = `
 <div
   aria-label="aria-label"
-  class="euiRangeWrapper euiColorStops euiColorStops-isReadOnly testClass1 testClass2"
+  class="euiRangeWrapper euiColorStops euiColorStops-isReadOnly testClass1 testClass2 emotion-euiRangeWrapper-regular"
   data-test-subj="euiColorStops test subject string"
   tabindex="0"
 >
@@ -725,14 +725,14 @@ exports[`renders readOnly EuiColorStops 1`] = `
     Test: Read-only.  Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    class="euiRangeTrack"
+    class="euiRangeTrack emotion-euiRangeTrack"
   >
     <div
-      class="euiRangeHighlight euiColorStops__highlight"
+      class="euiRangeHighlight euiColorStops__highlight emotion-euiRangeHighlight"
     >
       <div
-        class="euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,currentColor, currentColor undefined%, rgb(255,0,0) undefined%,rgb(0,255,0) undefined%,rgb(0,0,255) undefined%);margin-left:0%;width:100%"
+        class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        style="background:linear-gradient(to right,currentColor, currentColor undefined%, rgb(255,0,0) undefined%,rgb(0,255,0) undefined%,rgb(0,0,255) undefined%);margin-inline-start:0%;inline-size:100%"
       />
     </div>
     <div
@@ -758,7 +758,7 @@ exports[`renders readOnly EuiColorStops 1`] = `
           aria-valuemin="0"
           aria-valuenow="0"
           aria-valuetext="Stop: 0, Color: #FF0000 (1 of 3)"
-          class="euiRangeThumb euiColorStopThumb"
+          class="euiRangeThumb euiColorStopThumb emotion-euiRangeThumb"
           data-index="euiColorStop_0"
           data-test-subj="euiColorStopThumb"
           role="slider"
@@ -783,7 +783,7 @@ exports[`renders readOnly EuiColorStops 1`] = `
           aria-valuemin="1"
           aria-valuenow="25"
           aria-valuetext="Stop: 25, Color: #00FF00 (2 of 3)"
-          class="euiRangeThumb euiColorStopThumb"
+          class="euiRangeThumb euiColorStopThumb emotion-euiRangeThumb"
           data-index="euiColorStop_1"
           data-test-subj="euiColorStopThumb"
           role="slider"
@@ -808,7 +808,7 @@ exports[`renders readOnly EuiColorStops 1`] = `
           aria-valuemin="26"
           aria-valuenow="35"
           aria-valuetext="Stop: 35, Color: #0000FF (3 of 3)"
-          class="euiRangeThumb euiColorStopThumb"
+          class="euiRangeThumb euiColorStopThumb emotion-euiRangeThumb"
           data-index="euiColorStop_2"
           data-test-subj="euiColorStopThumb"
           role="slider"
@@ -825,8 +825,12 @@ exports[`renders readOnly EuiColorStops 1`] = `
 
 exports[`renders stepped stop EuiColorStops 1`] = `
 Object {
-  "background": "linear-gradient(to right, currentColor 0%, #ff0000 0% 2.94%, #d72800 2.94% 5.88%, #b04f00 5.880000000000001% 8.82%, #887700 8.82% 11.76%, #609f00 11.76% 14.7%, #39c600 14.700000000000001% 17.64%, #11ee00 17.64% 20.580000000000002%, #00c639 20.580000000000002% 23.520000000000003%, #00639c 23.520000000000003% 26.460000000000004%, #0000ff 26.460000000000004% 29.400000000000006%)",
-  "marginLeft": "0%",
-  "width": "100%",
+  "0": "background",
+  "1": "margin-inline-start",
+  "2": "inline-size",
+  "background": "linear-gradient(to right,currentColor, currentColor undefined%, rgb(255,0,0) undefined%, rgb(255,0,0) undefined%,rgb(0,255,0) undefined%, rgb(0,255,0) undefined%,rgb(0,0,255) undefined%)",
+  "inline-size": "100%",
+  "length": 3,
+  "margin-inline-start": "0%",
 }
 `;

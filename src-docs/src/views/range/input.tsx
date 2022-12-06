@@ -1,32 +1,33 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 
-import { EuiRange, EuiSpacer, EuiDualRange } from '../../../../src/components';
-
-import { useGeneratedHtmlId } from '../../../../src/services';
+import {
+  EuiRange,
+  EuiSpacer,
+  EuiDualRange,
+  EuiDualRangeProps,
+  useGeneratedHtmlId,
+} from '../../../../src';
 
 export default () => {
   const [value, setValue] = useState('20');
-  const [dualValue, setDualValue] = useState([20, 100]);
+  const [dualValue, setDualValue] = useState<EuiDualRangeProps['value']>([
+    20,
+    100,
+  ]);
 
   const inputRangeSliderId = useGeneratedHtmlId({ prefix: 'inputRangeSlider' });
   const dualInputRangeSliderId = useGeneratedHtmlId({
     prefix: 'dualInputRangeSlider',
   });
 
-  const onChange = (e) => {
-    setValue(e.target.value);
-  };
-
-  const onDualChange = (value) => {
-    setDualValue(value);
-  };
-
   return (
-    <Fragment>
+    <>
       <EuiRange
         id={inputRangeSliderId}
+        min={0}
+        max={100}
         value={value}
-        onChange={onChange}
+        onChange={(e) => setValue(e.currentTarget.value)}
         showInput
         aria-label="An example of EuiRange"
       />
@@ -35,13 +36,15 @@ export default () => {
 
       <EuiDualRange
         id={dualInputRangeSliderId}
+        min={0}
+        max={100}
         value={dualValue}
-        onChange={onDualChange}
+        onChange={(value) => setDualValue(value)}
         showInput
         minInputProps={{ 'aria-label': 'Min value' }}
         maxInputProps={{ 'aria-label': 'Max value' }}
         aria-label="An example of EuiDualRange with inputs"
       />
-    </Fragment>
+    </>
   );
 };

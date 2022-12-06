@@ -175,7 +175,7 @@ test('renders fixed stop EuiColorStops', () => {
 });
 
 test('renders stepped stop EuiColorStops', () => {
-  const colorStops = mount(
+  const colorStops = render(
     <EuiColorStops
       label="Test"
       onChange={onChange}

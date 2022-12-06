@@ -3,6 +3,7 @@ import { EuiRange, EuiDualRange } from '../../../../src/components/';
 import {
   propUtilityForPlayground,
   dummyFunction,
+  simulateFunction,
 } from '../../services/playground';
 
 export const rangeConfig = () => {
@@ -13,23 +14,25 @@ export const rangeConfig = () => {
 
   propsToUse.value = {
     ...propsToUse.value,
-    type: PropTypes.String,
+    type: PropTypes.Number,
+    value: '5',
+  };
+  propsToUse.min = {
+    ...propsToUse.value,
+    type: PropTypes.Number,
+    value: '0',
+  };
+  propsToUse.max = {
+    ...propsToUse.value,
+    type: PropTypes.Number,
     value: '10',
   };
 
-  propsToUse.onChange = {
-    ...propsToUse.onChange,
-    type: PropTypes.Custom,
-    value: undefined,
-    custom: {
-      ...propsToUse.onChange.custom,
-      use: 'switch',
-      label: 'Simulate',
-    },
-  };
+  propsToUse.onChange = simulateFunction(propsToUse.onChange, true);
 
   propsToUse.tickInterval = {
     ...propsToUse.tickInterval,
+    value: '1',
     custom: {
       ...propsToUse.tickInterval.custom,
       checkDep: (val, state) => {
@@ -45,6 +48,15 @@ export const rangeConfig = () => {
     ...propsToUse.showInput,
     type: PropTypes.Boolean,
     value: false,
+  };
+
+  propsToUse.append = {
+    ...propsToUse.append,
+    type: PropTypes.String,
+  };
+  propsToUse.prepend = {
+    ...propsToUse.valuePrepend,
+    type: PropTypes.String,
   };
   propsToUse.valueAppend = {
     ...propsToUse.valueAppend,
@@ -82,20 +94,21 @@ export const dualRangeConfig = () => {
 
   propsToUse.value = {
     ...propsToUse.value,
-    type: PropTypes.String,
+    type: PropTypes.Array,
+    value: '[1, 9]',
+  };
+  propsToUse.min = {
+    ...propsToUse.value,
+    type: PropTypes.Number,
+    value: '0',
+  };
+  propsToUse.max = {
+    ...propsToUse.value,
+    type: PropTypes.Number,
     value: '10',
   };
 
-  propsToUse.onChange = {
-    ...propsToUse.onChange,
-    type: PropTypes.Custom,
-    value: undefined,
-    custom: {
-      ...propsToUse.onChange.custom,
-      use: 'switch',
-      label: 'Simulate',
-    },
-  };
+  propsToUse.onChange = simulateFunction(propsToUse.onChange, true);
 
   propsToUse.showInput = {
     ...propsToUse.showInput,
@@ -105,6 +118,7 @@ export const dualRangeConfig = () => {
 
   propsToUse.tickInterval = {
     ...propsToUse.tickInterval,
+    value: '1',
     custom: {
       ...propsToUse.tickInterval.custom,
       checkDep: (val, state) => {

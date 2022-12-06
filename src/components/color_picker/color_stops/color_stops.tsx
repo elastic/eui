@@ -528,32 +528,36 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
         disabled={disabled}
         step={1}
       >
-        <EuiRangeHighlight
-          className="euiColorStops__highlight"
-          min={min || rangeMin}
-          max={max || rangeMax}
-          lowerValue={min || rangeMin}
-          upperValue={max || rangeMax}
-          background={gradient}
-          compressed={compressed}
-        />
-        <div
-          data-test-subj="euiColorStopsAdd"
-          className={classNames('euiColorStops__addContainer', {
-            'euiColorStops__addContainer-isDisabled':
-              isHoverDisabled || disabled || readOnly,
-          })}
-          onClick={handleAddClick}
-          onMouseMove={handleAddHover}
-        >
-          <div
-            className="euiColorStops__addTarget"
-            style={{
-              left: `${addTargetPosition}%`,
-            }}
-          />
-        </div>
-        {thumbs}
+        {(trackWidth) => (
+          <>
+            <EuiRangeHighlight
+              className="euiColorStops__highlight"
+              min={min || rangeMin}
+              max={max || rangeMax}
+              lowerValue={min || rangeMin}
+              upperValue={max || rangeMax}
+              background={gradient}
+              trackWidth={trackWidth}
+            />
+            <div
+              data-test-subj="euiColorStopsAdd"
+              className={classNames('euiColorStops__addContainer', {
+                'euiColorStops__addContainer-isDisabled':
+                  isHoverDisabled || disabled || readOnly,
+              })}
+              onClick={handleAddClick}
+              onMouseMove={handleAddHover}
+            >
+              <div
+                className="euiColorStops__addTarget"
+                style={{
+                  left: `${addTargetPosition}%`,
+                }}
+              />
+            </div>
+            {thumbs}
+          </>
+        )}
       </EuiRangeTrack>
     </EuiRangeWrapper>
   );

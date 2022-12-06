@@ -1,17 +1,31 @@
 import React, { useState } from 'react';
 
-import { EuiDualRange, EuiSpacer, EuiTitle } from '../../../../src/components';
-
-import { useGeneratedHtmlId } from '../../../../src/services';
+import {
+  EuiDualRange,
+  EuiDualRangeProps,
+  EuiSpacer,
+  EuiTitle,
+  useGeneratedHtmlId,
+} from '../../../../src';
 
 export default () => {
-  const [value, setValue] = useState(['100', '150']);
-  const [value2, setValue2] = useState(['40', '60']);
+  const [dualValue, setDualValue] = useState<EuiDualRangeProps['value']>([
+    '100',
+    '150',
+  ]);
+  const [dualValue2, setDualValue2] = useState<EuiDualRangeProps['value']>([
+    '40',
+    '60',
+  ]);
 
   const basicRangeSliderId = useGeneratedHtmlId({ prefix: 'basicRangeSlider' });
   const draggableRangeSliderId = useGeneratedHtmlId({
     prefix: 'draggableRangeSlider',
   });
+
+  const onDualChange = (value: EuiDualRangeProps['value']) => {
+    setDualValue(value);
+  };
 
   return (
     <>
@@ -20,8 +34,8 @@ export default () => {
         min={0}
         max={300}
         step={10}
-        value={value}
-        onChange={setValue}
+        value={dualValue}
+        onChange={onDualChange}
         showLabels
         aria-label="An example of EuiDualRange"
       />
@@ -39,8 +53,8 @@ export default () => {
         min={0}
         max={100}
         step={1}
-        value={value2}
-        onChange={setValue2}
+        value={dualValue2}
+        onChange={setDualValue2}
         showLabels
         aria-label="An example of EuiDualRange with isDraggable='true'"
         isDraggable

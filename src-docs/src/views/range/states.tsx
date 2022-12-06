@@ -1,13 +1,22 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 
-import { EuiRange, EuiSpacer, EuiDualRange } from '../../../../src/components';
+import {
+  EuiRange,
+  EuiSpacer,
+  EuiDualRange,
+  EuiDualRangeProps,
+} from '../../../../src/components';
 import { DisplayToggles } from '../form_controls/display_toggles';
 
 import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const [value, setValue] = useState('20');
-  const [dualValue, setDualValue] = useState([20, 100]);
+  const [dualValue, setDualValue] = useState<EuiDualRangeProps['value']>([
+    20,
+    100,
+  ]);
+
   const levels = [
     {
       min: 0,
@@ -26,21 +35,15 @@ export default () => {
     prefix: 'inputRangeWithOptions',
   });
 
-  const onChange = (e) => {
-    setValue(e.target.value);
-  };
-
-  const onDualChange = (value) => {
-    setDualValue(value);
-  };
-
   return (
-    <Fragment>
+    <>
       <DisplayToggles canAppend canPrepend canLoading={false}>
         <EuiRange
           id={rangeWithOptionsId}
+          min={0}
+          max={100}
           value={value}
-          onChange={onChange}
+          onChange={(e) => setValue(e.currentTarget.value)}
           showTicks
           showInput
           showLabels
@@ -57,8 +60,10 @@ export default () => {
       <DisplayToggles canLoading={false}>
         <EuiDualRange
           id={inputRangeWithOptionsId}
+          min={0}
+          max={100}
           value={dualValue}
-          onChange={onDualChange}
+          onChange={(value) => setDualValue(value)}
           showLabels
           showInput
           showTicks
@@ -70,6 +75,6 @@ export default () => {
           aria-label="An example of EuiRange"
         />
       </DisplayToggles>
-    </Fragment>
+    </>
   );
 };

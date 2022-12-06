@@ -26,6 +26,7 @@ import {
   EuiFormControlLayoutProps,
   EuiFormRow,
   EuiRange,
+  EuiRangeProps,
 } from '../form';
 import { useEuiI18n } from '../i18n';
 import { EuiPopover } from '../popover';
@@ -437,12 +438,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     handleFinalSelection();
   };
 
-  const handleAlphaSelection = (
-    e:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.MouseEvent<HTMLButtonElement>,
-    isValid: boolean
-  ) => {
+  const handleAlphaSelection: EuiRangeProps['onChange'] = (e, isValid) => {
     const target = e.target as HTMLInputElement;
     setAlphaRangeValue(target.value || '');
     if (isValid) {

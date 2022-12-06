@@ -1,24 +1,31 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiRange,
+  EuiRangeProps,
   EuiSpacer,
   EuiTitle,
   EuiDualRange,
-} from '../../../../src/components';
-
-import { useGeneratedHtmlId } from '../../../../src/services';
+  EuiDualRangeProps,
+  useGeneratedHtmlId,
+} from '../../../../src';
 
 export default () => {
-  const [value, setValue] = useState('20');
-  const [dualValue, setDualValue] = useState([20, 100]);
+  const [value, setValue] = useState<EuiRangeProps['value']>('20');
+  const [dualValue, setDualValue] = useState<EuiDualRangeProps['value']>([
+    20,
+    100,
+  ]);
+  const [noLinearValue, setNoLinearValue] = useState('28');
 
-  const onChange = (e) => {
-    setValue(e.target.value);
+  const onChange: EuiRangeProps['onChange'] = (e) => {
+    setValue(e.currentTarget.value);
   };
-
-  const onDualChange = (value) => {
+  const onDualChange: EuiDualRangeProps['onChange'] = (value) => {
     setDualValue(value);
+  };
+  const onChangeNoLinearValue: EuiRangeProps['onChange'] = (e) => {
+    setNoLinearValue(e.currentTarget.value);
   };
 
   const rangeBasicTicksId = useGeneratedHtmlId({ prefix: 'rangeBasicTicks' });
@@ -32,13 +39,17 @@ export default () => {
     prefix: 'dualRangeLongLabels',
   });
 
+  const rangeNoLinearId = useGeneratedHtmlId({ prefix: 'rangeNoLinaerId' });
+
   return (
-    <Fragment>
+    <>
       <EuiRange
         id={rangeBasicTicksId}
         step={10}
         value={value}
         onChange={onChange}
+        min={0}
+        max={100}
         showTicks
         aria-label="An example of EuiRange with ticks"
       />
@@ -55,6 +66,8 @@ export default () => {
         id={rangeCustomTickIntervalId}
         value={value}
         onChange={onChange}
+        min={0}
+        max={100}
         showInput
         showRange
         showTicks
@@ -72,6 +85,8 @@ export default () => {
 
       <EuiDualRange
         id={dualRangeBasicTicksId}
+        min={0}
+        max={100}
         value={dualValue}
         onChange={onDualChange}
         showTicks
@@ -93,6 +108,8 @@ export default () => {
 
       <EuiDualRange
         id={dualRangeLongLabelsId}
+        min={0}
+        max={100}
         value={dualValue}
         onChange={onDualChange}
         showTicks
@@ -103,6 +120,33 @@ export default () => {
         ]}
         aria-label="An example of EuiDualRange with long tick labels"
       />
-    </Fragment>
+
+      <EuiSpacer size="xl" />
+
+      <EuiTitle size="xxs">
+        <h3>No linear intervals</h3>
+      </EuiTitle>
+
+      <EuiSpacer size="l" />
+
+      <EuiRange
+        id={rangeNoLinearId}
+        value={noLinearValue}
+        onChange={onChangeNoLinearValue}
+        showTicks
+        min={0}
+        max={84}
+        ticks={[
+          { label: '1 GB', value: 0 },
+          { label: '2GB', value: 14 },
+          { label: '4GB', value: 28 },
+          { label: '8GB', value: 42 },
+          { label: '16GB', value: 56 },
+          { label: '32GB', value: 70 },
+          { label: '64GB', value: 84 },
+        ]}
+        aria-label="An example of EuiDualRange with no linear intervals"
+      />
+    </>
   );
 };
