@@ -32,7 +32,6 @@ export type EuiRangeSliderProps = InputHTMLAttributes<HTMLInputElement> &
     min: number;
     max: number;
     step?: number;
-    compressed?: boolean;
     isLoading?: boolean;
     showRange?: boolean;
     showTicks?: boolean;

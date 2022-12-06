@@ -48,7 +48,6 @@ const EuiTickValue: FunctionComponent<
   EuiRangeTicksProps & {
     tickValue: any;
     percentageWidth: number;
-    compressed?: boolean;
   }
 > = ({
   disabled,
@@ -191,7 +190,6 @@ export const EuiRangeTicks: FunctionComponent<EuiRangeTicksProps> = (props) => {
           {...props}
           percentageWidth={percentageWidth}
           tickValue={tickValue}
-          compressed={compressed}
         />
       ))}
     </div>

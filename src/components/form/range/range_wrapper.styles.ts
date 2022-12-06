@@ -26,7 +26,7 @@ export const euiRangeWrapperStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiFormControlSize(euiThemeContext)}
     `,
     compressed: css`
-      ${euiFormControlSize(euiThemeContext)}
+      ${euiFormControlSize(euiThemeContext, { compressed: true })}
     `,
     fullWidth: css`
       max-inline-size: 100%;

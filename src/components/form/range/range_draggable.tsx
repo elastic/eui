@@ -28,7 +28,6 @@ export interface EuiRangeDraggableProps
   max: number;
   value: number[];
   disabled?: boolean;
-  compressed?: boolean;
   showTicks?: boolean;
   lowerPosition: string;
   upperPosition: string;
@@ -40,7 +39,6 @@ export const EuiRangeDraggable: FunctionComponent<EuiRangeDraggableProps> = ({
   showTicks,
   lowerPosition,
   upperPosition,
-  compressed,
   onChange,
   min,
   max,

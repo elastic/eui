@@ -24,7 +24,6 @@ export interface EuiRangeHighlightProps {
   className?: string;
   background?: string;
   trackWidth: number;
-  compressed?: boolean;
   showTicks?: boolean;
   lowerValue: number;
   upperValue: number;
@@ -42,7 +41,6 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
   upperValue,
   max,
   min,
-  compressed,
   background,
   onClick,
   levels,
@@ -108,7 +106,6 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
           <EuiRangeLevels
             css={cssLevelsStyles}
             style={levelsStyle}
-            compressed={compressed}
             levels={levels}
             max={max}
             min={min}

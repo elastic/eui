@@ -43,7 +43,6 @@ export interface EuiRangeLevelsProps {
   max: number;
   min: number;
   showTicks?: boolean;
-  compressed?: boolean;
   showRange?: boolean;
   trackWidth: number;
   style?: CSSProperties;
@@ -54,7 +53,6 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
   max,
   min,
   showTicks,
-  compressed,
   showRange,
   trackWidth,
   ...rest

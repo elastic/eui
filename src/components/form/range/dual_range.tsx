@@ -728,7 +728,6 @@ export class EuiDualRangeClass extends Component<
                       lowerPosition={leftThumbPosition.left}
                       upperPosition={rightThumbPosition.left}
                       showTicks={showTicks}
-                      compressed={compressed}
                       onChange={this.handleDrag}
                       onFocus={this.onThumbFocus}
                       onBlur={this.onThumbBlur}
