@@ -89,11 +89,11 @@ export default () => {
     <>
       <EuiRange
         id={rangeWithLevelsId}
+        min={0}
+        max={100}
         value={value}
         onChange={(e) => setValue(e.currentTarget.value)}
         showTicks
-        min={0}
-        max={100}
         tickInterval={20}
         levels={levels}
         aria-label="An example of EuiRange with levels prop"
@@ -107,11 +107,11 @@ export default () => {
 
       <EuiRange
         id={rangeWithCustomColorsId}
+        min={0}
+        max={100}
         value={customColorsValue}
         onChange={(e) => setCustomColorsValue(e.currentTarget.value)}
         showTicks
-        min={0}
-        max={100}
         ticks={customTicks}
         levels={customColorsLevels}
         aria-label="An example of EuiRange with custom colored indicators"
@@ -125,6 +125,8 @@ export default () => {
       <EuiSpacer size="xl" />
       <EuiDualRange
         id={dualRangeWithLevelsId}
+        min={0}
+        max={100}
         value={dualValue}
         onChange={(value) => setDualValue(value)}
         showTicks

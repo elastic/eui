@@ -41,10 +41,10 @@ export default () => {
       <DisplayToggles canAppend canPrepend>
         <EuiRange
           id={inputRangeSliderId}
-          value={value}
-          onChange={(e) => setValue(e.currentTarget.value)}
           min={0}
           max={100}
+          value={value}
+          onChange={(e) => setValue(e.currentTarget.value)}
           showInput="inputWithPopover"
           showLabels
           aria-label="An example of EuiRange with showInput prop"
@@ -56,6 +56,8 @@ export default () => {
       <DisplayToggles canAppend canPrepend>
         <EuiDualRange
           id={dualInputRangeSliderId}
+          min={0}
+          max={100}
           value={dualValue}
           onChange={(value) => setDualValue(value)}
           showInput="inputWithPopover"

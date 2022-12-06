@@ -85,6 +85,8 @@ export default () => {
 
       <EuiDualRange
         id={dualRangeBasicTicksId}
+        min={0}
+        max={100}
         value={dualValue}
         onChange={onDualChange}
         showTicks
@@ -106,6 +108,8 @@ export default () => {
 
       <EuiDualRange
         id={dualRangeLongLabelsId}
+        min={0}
+        max={100}
         value={dualValue}
         onChange={onDualChange}
         showTicks

@@ -77,16 +77,16 @@ export class EuiDualRangeClass extends Component<
   private dragAcc = 0;
 
   get lowerValue() {
-    return this.props.value ? this.props.value[0] : this.props.min!;
+    return this.props.value ? this.props.value[0] : this.props.min;
   }
   get upperValue() {
-    return this.props.value ? this.props.value[1] : this.props.max!;
+    return this.props.value ? this.props.value[1] : this.props.max;
   }
   get lowerValueIsValid() {
-    return isWithinRange(this.props.min!, this.upperValue, this.lowerValue);
+    return isWithinRange(this.props.min, this.upperValue, this.lowerValue);
   }
   get upperValueIsValid() {
-    return isWithinRange(this.lowerValue, this.props.max!, this.upperValue);
+    return isWithinRange(this.lowerValue, this.props.max, this.upperValue);
   }
   get isValid() {
     return this.lowerValueIsValid && this.upperValueIsValid;
@@ -122,8 +122,8 @@ export class EuiDualRangeClass extends Component<
     // If the values are invalid, find whether the new value is in the upper
     // or lower half and move the appropriate handle to the new value,
     // while the other handle gets moved to the opposite bound (if invalid)
-    const min = this.props.min!;
-    const max = this.props.max!;
+    const min = this.props.min;
+    const max = this.props.max;
     const lowerHalf = Math.abs(max - min) / 2 + min;
     const newValIsLow = isWithinRange(min, lowerHalf, newVal);
     if (newValIsLow) {
@@ -190,8 +190,8 @@ export class EuiDualRangeClass extends Component<
       | React.KeyboardEvent<HTMLDivElement>
   ) => {
     const isValid =
-      isWithinRange(this.props.min!, upper, lower) &&
-      isWithinRange(lower, this.props.max!, upper);
+      isWithinRange(this.props.min, upper, lower) &&
+      isWithinRange(lower, this.props.max, upper);
     this.props.onChange([lower, upper], isValid, e);
   };
 
@@ -204,7 +204,7 @@ export class EuiDualRangeClass extends Component<
   _resetToRangeEnds = (e: React.KeyboardEvent<HTMLInputElement>) => {
     // Arbitrary decision to pass `min` instead of `max`. Result is the same.
     this._determineInvalidThumbMovement(
-      this.props.min!,
+      this.props.min,
       this.lowerValue,
       this.upperValue,
       e
@@ -247,7 +247,7 @@ export class EuiDualRangeClass extends Component<
     let newVal = Number(value);
     let stepRemainder = 0;
     const step = this.props.step || 1;
-    const min = this.props.min!;
+    const min = this.props.min;
     switch (event.key) {
       case keys.ARROW_UP:
       case keys.ARROW_RIGHT:
@@ -285,7 +285,7 @@ export class EuiDualRangeClass extends Component<
         }
         lower = this._handleKeyDown(lower, event);
     }
-    if (lower >= this.upperValue || lower < this.props.min!) return;
+    if (lower >= this.upperValue || lower < this.props.min) return;
     this._handleOnChange(lower, this.upperValue, event);
   };
 
@@ -303,7 +303,7 @@ export class EuiDualRangeClass extends Component<
         }
         upper = this._handleKeyDown(upper, event);
     }
-    if (upper <= this.lowerValue || upper > this.props.max!) return;
+    if (upper <= this.lowerValue || upper > this.props.max) return;
     this._handleOnChange(this.lowerValue, upper, event);
   };
 
@@ -317,8 +317,8 @@ export class EuiDualRangeClass extends Component<
         lower = this._handleKeyDown(lower, event);
         upper = this._handleKeyDown(upper, event);
     }
-    if (lower >= this.upperValue || lower < this.props.min!) return;
-    if (upper <= this.lowerValue || upper > this.props.max!) return;
+    if (lower >= this.upperValue || lower < this.props.min) return;
+    if (upper <= this.lowerValue || upper > this.props.max) return;
     this._handleOnChange(lower, upper, event);
   };
 
@@ -330,8 +330,8 @@ export class EuiDualRangeClass extends Component<
 
     const position = calculateThumbPosition(
       value,
-      this.props.min!,
-      this.props.max!,
+      this.props.min,
+      this.props.max,
       trackWidth
     );
     return { left: `${position}%` };
@@ -389,9 +389,9 @@ export class EuiDualRangeClass extends Component<
   };
 
   getNearestStep = (value: number) => {
-    const min = this.props.min!;
-    const max = this.props.max!;
-    const steps = (this.props.max! - this.props.min!) / this.props.step!;
+    const min = this.props.min;
+    const max = this.props.max;
+    const steps = (this.props.max - this.props.min) / this.props.step!;
     const approx = Math.round(((value - min) * steps) / (max - min)) / steps;
     const bound = Math.min(Math.max(approx, 0), 1);
     const nearest = bound * (max - min) + min;
@@ -403,8 +403,8 @@ export class EuiDualRangeClass extends Component<
       this.leftPosition = x;
       this.dragAcc = 0;
     }
-    const min = this.props.min!;
-    const max = this.props.max!;
+    const min = this.props.min;
+    const max = this.props.max;
     const lowerValue = Number(this.lowerValue);
     const upperValue = Number(this.upperValue);
     const delta = this.leftPosition - x;

@@ -30,7 +30,7 @@ export interface _SingleRangeValue extends _SharedRangeValuesProps {
   value: string | number;
   onChange?: (event: _SingleRangeChangeEvent, isValid: boolean) => void;
 }
-export interface _DualRangeValue extends Partial<_SharedRangeValuesProps> {
+export interface _DualRangeValue extends _SharedRangeValuesProps {
   value: [_SingleRangeValue['value'], _SingleRangeValue['value']];
   onChange: (
     values: [_SingleRangeValue['value'], _SingleRangeValue['value']],

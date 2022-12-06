@@ -528,7 +528,6 @@ exports[`EuiDualRange props loading should display when showInput="inputWithPopo
           class="euiFormControlLayout__childrenWrapper"
         >
           <input
-            aria-label="aria-label"
             class="euiFieldNumber euiFormControlLayoutDelimited__input emotion-euiRangeInput"
             max="8"
             min="0"
@@ -543,7 +542,6 @@ exports[`EuiDualRange props loading should display when showInput="inputWithPopo
             →
           </div>
           <input
-            aria-label="aria-label"
             class="euiFieldNumber euiFormControlLayoutDelimited__input emotion-euiRangeInput"
             max="100"
             min="1"
@@ -613,7 +611,6 @@ exports[`EuiDualRange props slider should display in popover 1`] = `
           class="euiFormControlLayout__childrenWrapper"
         >
           <input
-            aria-label="aria-label"
             class="euiFieldNumber euiFormControlLayoutDelimited__input emotion-euiRangeInput"
             max="8"
             min="0"
@@ -628,7 +625,6 @@ exports[`EuiDualRange props slider should display in popover 1`] = `
             →
           </div>
           <input
-            aria-label="aria-label"
             class="euiFieldNumber euiFormControlLayoutDelimited__input emotion-euiRangeInput"
             max="100"
             min="1"

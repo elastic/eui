@@ -24,10 +24,10 @@ export default () => {
     <>
       <EuiRange
         id={inputRangeSliderId}
-        value={value}
-        onChange={(e) => setValue(e.currentTarget.value)}
         min={0}
         max={100}
+        value={value}
+        onChange={(e) => setValue(e.currentTarget.value)}
         showInput
         aria-label="An example of EuiRange"
       />
@@ -36,6 +36,8 @@ export default () => {
 
       <EuiDualRange
         id={dualInputRangeSliderId}
+        min={0}
+        max={100}
         value={dualValue}
         onChange={(value) => setDualValue(value)}
         showInput

@@ -40,10 +40,10 @@ export default () => {
       <DisplayToggles canAppend canPrepend canLoading={false}>
         <EuiRange
           id={rangeWithOptionsId}
-          value={value}
-          onChange={(e) => setValue(e.currentTarget.value)}
           min={0}
           max={100}
+          value={value}
+          onChange={(e) => setValue(e.currentTarget.value)}
           showTicks
           showInput
           showLabels
@@ -60,6 +60,8 @@ export default () => {
       <DisplayToggles canLoading={false}>
         <EuiDualRange
           id={inputRangeWithOptionsId}
+          min={0}
+          max={100}
           value={dualValue}
           onChange={(value) => setDualValue(value)}
           showLabels
