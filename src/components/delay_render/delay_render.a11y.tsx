@@ -74,7 +74,8 @@ describe('EuiDelayRender', () => {
       cy.get('input.euiCheckbox__input').realClick();
       cy.get('div.euiFormRow__fieldWrapper')
         .last()
-        .find('span[role="progressbar"]', { timeout: 5000 });
+        .find('span[role="progressbar"]', { timeout: 5000 })
+        .should('exist');
       cy.checkAxe();
     });
 
