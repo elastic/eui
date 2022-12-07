@@ -1,7 +1,10 @@
 const camelCaseRegex = '^[a-z][\\w-]*$'; // Note: also allows `_` as part of BEM naming
 
+// TODO: Remove Sass-specific config & rules once we're completely off Sass
 module.exports = {
   extends: ['stylelint-config-standard-scss', 'stylelint-config-prettier-scss'],
+  // @see https://stylelint.io/user-guide/rules
+  // @see https://github.com/stylelint-scss/stylelint-scss#list-of-rules
   rules: {
     // Enforce camelCase naming
     'selector-class-pattern': camelCaseRegex,
