@@ -216,7 +216,6 @@
     "postcss-loader": "^7.0.1",
     "pre-commit": "^1.2.2",
     "prettier": "^2.1.2",
-    "prettier-stylelint": "^0.4.2",
     "process": "^0.11.10",
     "prompt": "^1.0.0",
     "prop-types": "^15.6.0",
