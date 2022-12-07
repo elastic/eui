@@ -1,6 +1,3 @@
-// This file uses RGBA literal values responsibly
-// sass-lint:disable no-color-literals, no-color-keywords
-
 @function shadowOpacity($opacity) {
   @if (lightness($euiTextColor) < 50) {
     @return $opacity * 1;
@@ -74,6 +71,7 @@
     0 23px 35px rgba($color, shadowOpacity(.05));
 }
 
+// stylelint-disable color-named
 @mixin euiOverflowShadow($direction: 'y', $side: 'both') {
   $hideHeight: $euiScrollBarCornerThin * 1.25;
   $gradient: null;

@@ -1,6 +1,6 @@
 // This wraps the range. It is needed because there is no way to do a linear gradient in ie11 for the track
 .euiHue {
-  // sass-lint:disable-block no-color-literals
+  // stylelint-disable color-no-hex
   background: linear-gradient(to right,
     #FF3232 0%,
     #FFF130 20%,
@@ -10,6 +10,7 @@
     #FF28FB 88%,
     #FF0094 100%
   );
+  // stylelint-enable color-no-hex
   height: $euiSizeL;
   margin: $euiSizeXS 0;
   position: relative;

@@ -1,3 +1,4 @@
+// stylelint-disable color-no-hex
 // -------------------------------------
 // Colors guideline page
 // -------------------------------------
@@ -68,12 +69,10 @@
   background: shade($euiColorDanger, 30%);
 }
 
-// sass-lint:disable no-color-literals
 .guideSass__swatch--primaryLight {
   background: #0079A5;
 }
 
-// sass-lint:disable no-color-literals
 .guideSass__swatch--primaryDark {
   background: #4DA1C0;
 }
@@ -371,7 +370,6 @@
   border-left: $euiBorderThick;
 }
 
-// sass-lint:disable no-color-literals
 .guideSass__themedBox--light {
   border-color: #0079A5;
   background: tint(#0079A5, 90%);
@@ -379,7 +377,6 @@
 }
 
 .guideSass__themedBox--dark {
-  // sass-lint:disable no-color-literals
   border-color: #4DA1C0;
   background: shade(#4DA1C0, 70%);
   color: #FFF;

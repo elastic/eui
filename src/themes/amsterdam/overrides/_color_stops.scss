@@ -9,7 +9,6 @@
 }
 
 .euiColorStopThumb.euiRangeThumb:not(:disabled) {
-  // sass-lint:disable-block no-color-literals
   @include euiRangeThumbBorder;
   @include euiRangeThumbBoxShadow;;
 
@@ -37,7 +36,6 @@
     outline: none;
 
     .euiRangeTrack::after {
-      // sass-lint:disable-block no-color-literals
       box-shadow:
         0 0 0 1px rgba($euiColorEmptyShade, .8),
         0 0 0 3px $euiFocusRingColor;

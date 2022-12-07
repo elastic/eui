@@ -75,6 +75,9 @@ module.exports = {
     'number-leading-zero': 'never',
     'number-max-precision': null,
     'color-hex-case': 'upper',
+    // Attempt to catch/flag non-variable color values
+    'color-named': 'never',
+    'color-no-hex': true,
     // Prefer lowercase values, except for font names and currentColor
     'value-keyword-case': [
       'lower',
