@@ -12,6 +12,12 @@ module.exports = {
 
     // Opinionated rules
     'declaration-no-important': true,
+    'max-nesting-depth': [
+      2,
+      {
+        ignore: ['blockless-at-rules', 'pseudo-classes'],
+      },
+    ],
 
     // 2 spaces for indentation
     indentation: [

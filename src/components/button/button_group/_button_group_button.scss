@@ -1,5 +1,5 @@
 // This file has lots of modifiers and is somewhat nesty by nature
-// sass-lint:disable nesting-depth
+// stylelint-disable max-nesting-depth
 
 .euiButtonGroupButton {
   @include euiButtonBase;

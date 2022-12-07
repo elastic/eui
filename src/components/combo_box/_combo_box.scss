@@ -1,3 +1,6 @@
+// TODO: Address nesting during Emotion conversion, if possible
+// stylelint-disable max-nesting-depth
+
 .euiComboBox {
   @include euiFormControlSize(auto, $includeAlternates: true);
   position: relative;

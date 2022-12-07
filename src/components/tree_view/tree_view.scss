@@ -57,6 +57,8 @@
   }
 }
 
+// TODO: Address nesting during Emotion conversion, if possible
+// stylelint-disable max-nesting-depth
 .euiTreeView--compressed {
   .euiTreeView__node {
     max-height: $euiSizeL;

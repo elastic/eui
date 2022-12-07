@@ -177,7 +177,7 @@
 
 // Large styles only
 .euiFilePicker--large {
-  // sass-lint:disable-block nesting-depth
+  // stylelint-disable max-nesting-depth
   // Hover and focus
   .euiFilePicker__input:hover:not(:disabled),
   .euiFilePicker__input:focus {

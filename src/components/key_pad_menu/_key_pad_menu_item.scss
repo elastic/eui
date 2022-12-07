@@ -31,7 +31,6 @@
       border-color: $euiBorderColor;
 
       // sass-lint:disable-block mixins-before-declarations
-      // sass-lint:disable-block nesting-depth
       @include euiCanAnimate {
         .euiKeyPadMenuItem__icon {
           transform: translateY(0);
@@ -51,7 +50,7 @@
     .euiKeyPadMenuItem__icon {
       filter: grayscale(100%);
 
-      svg * { // sass-lint:disable-line nesting-depth
+      svg * { // stylelint-disable-line max-nesting-depth
         fill: $euiButtonColorDisabledText;
       }
     }
