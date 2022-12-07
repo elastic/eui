@@ -294,7 +294,7 @@ if (!endMoment || !endMoment.isValid()) {
       ],
       text: (
         <>
-          <h3>Customing panel order</h3>
+          <h3 id="customizing-panel-order">Customizing panel order</h3>
           <p>
             You can optionally pass the{' '}
             <EuiCode>customQuickSelectRender</EuiCode> prop that returns Quick

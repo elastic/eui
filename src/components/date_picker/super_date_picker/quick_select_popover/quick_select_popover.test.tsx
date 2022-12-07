@@ -110,17 +110,12 @@ describe('EuiQuickSelectPopover', () => {
         );
 
         expect(menu.children()).toHaveLength(5);
-
         expect(menu.children().at(0).is(EuiQuickSelect)).toBeTruthy();
-
         expect(
           menu.children().at(1).is(EuiCommonlyUsedTimeRanges)
         ).toBeTruthy();
-
         expect(menu.children().at(2).is(EuiRecentlyUsed)).toBeTruthy();
-
         expect(menu.children().at(3).is(EuiRefreshInterval)).toBeTruthy();
-
         expect(menu.children().at(4).is('div')).toBeTruthy();
       });
 
@@ -157,17 +152,12 @@ describe('EuiQuickSelectPopover', () => {
         );
 
         expect(menu.children()).toHaveLength(5);
-
         expect(menu.children().at(0).is('div')).toBeTruthy();
-
         expect(menu.children().at(1).is(EuiRefreshInterval)).toBeTruthy();
-
         expect(menu.children().at(2).is(EuiQuickSelect)).toBeTruthy();
-
         expect(
           menu.children().at(3).is(EuiCommonlyUsedTimeRanges)
         ).toBeTruthy();
-
         expect(menu.children().at(4).is(EuiRecentlyUsed)).toBeTruthy();
       });
     });
