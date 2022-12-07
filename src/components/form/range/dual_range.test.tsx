@@ -6,14 +6,14 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
-import { render } from 'enzyme';
+import React, { useEffect, useRef } from 'react';
+import { render, mount } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiForm } from '../form';
 import type { EuiDualRangeProps } from './types';
-import { EuiDualRange } from './dual_range';
+import { EuiDualRange, EuiDualRangeClass } from './dual_range';
 
 const props = {
   min: 0,
@@ -207,6 +207,37 @@ describe('EuiDualRange', () => {
           'expected EuiDualRange to inherit fullWidth from EuiForm'
         );
       }
+    });
+  });
+
+  describe('ref methods', () => {
+    // Whether we like it or not, at least 2 Kibana instances are using EuiDualRange
+    // `ref`s to access the `onResize` instance method (search for `rangeRef.current?.onResize`)
+    // If we switch EuiDualRange to a function component, we'll need to use `useImperativeHandle`
+    // to allow Kibana to continue calling `onResize`
+    test('onResize', () => {
+      // This super annoying type is now required to pass both the `ref` typing and account for instance methods
+      type EuiDualRangeRef = React.ComponentProps<typeof EuiDualRange> &
+        EuiDualRangeClass;
+
+      const ConsumerDualRange = ({ callResize }: { callResize?: boolean }) => {
+        const rangeRef = useRef<EuiDualRangeRef>(null);
+
+        useEffect(() => {
+          if (callResize) rangeRef.current?.onResize(500);
+        }, [callResize]);
+
+        return <EuiDualRange {...props} ref={rangeRef} />;
+      };
+
+      const component = mount(<ConsumerDualRange />);
+      const instance = component
+        .find(EuiDualRangeClass)
+        .instance() as EuiDualRangeClass;
+
+      const onResizeSpy = jest.spyOn(instance, 'onResize');
+      component.setProps({ callResize: true }).update();
+      expect(onResizeSpy).toHaveBeenCalled();
     });
   });
 });
