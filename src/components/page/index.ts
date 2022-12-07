@@ -39,7 +39,7 @@ export {
 export type { EuiPageSectionProps } from './page_section';
 export { EuiPageSection } from './page_section';
 
-export type { EuiPageSideBarProps } from './page_side_bar';
+export type { EuiPageSideBarProps_Deprecated } from './page_side_bar';
 export { EuiPageSideBar_Deprecated } from './page_side_bar';
 
 export type { EuiPageSidebarProps } from './page_sidebar';
