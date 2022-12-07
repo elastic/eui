@@ -1,10 +1,6 @@
 rules:
   # Order how you please
   property-sort-order: 0
-  # Use none instead of 0 for no border
-  border-zero:
-    - 2
-    - convention: 'none'
   force-element-nesting: 0
   force-pseudo-nesting: 0
   # We minify css, so this doesn't apply
