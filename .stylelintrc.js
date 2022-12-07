@@ -19,6 +19,12 @@ module.exports = {
       },
     ],
     'block-no-empty': true,
+    'selector-no-qualifying-type': [
+      true,
+      {
+        ignore: ['attribute'], // Allows input[type=search]
+      },
+    ],
 
     // 2 spaces for indentation
     indentation: [
