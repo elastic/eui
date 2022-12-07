@@ -12,7 +12,7 @@ import { css } from '@emotion/react';
 import { EuiPage, EuiPageProps } from './page';
 import {
   EuiPageSideBar_Deprecated as EuiPageSideBar,
-  EuiPageSideBarProps,
+  EuiPageSideBarProps_Deprecated as EuiPageSideBarProps,
 } from './page_side_bar';
 import { EuiPageBody, EuiPageBodyProps } from './page_body';
 import { EuiPageHeader, EuiPageHeaderProps } from './page_header';
