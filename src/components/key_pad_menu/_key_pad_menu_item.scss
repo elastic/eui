@@ -13,7 +13,6 @@
   border-radius: $euiBorderRadius;
   color: $euiTextColor; // Override possible link color
 
-  // sass-lint:disable-block mixins-before-declarations
   @include euiCanAnimate {
     transition:
       background-color $euiAnimSpeedFast ease-in,
@@ -30,7 +29,6 @@
       @include euiSlightShadow;
       border-color: $euiBorderColor;
 
-      // sass-lint:disable-block mixins-before-declarations
       @include euiCanAnimate {
         .euiKeyPadMenuItem__icon {
           transform: translateY(0);

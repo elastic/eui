@@ -78,7 +78,6 @@
   font-size: $euiFontSizeS;
   color: $euiTextColor;
 
-  // sass-lint:disable-block mixins-before-declarations
   @include euiPlaceholderPerBrowser {
     color: $euiFormControlPlaceholderText;
   }
@@ -198,7 +197,6 @@
   background: $euiFormBackgroundDisabledColor;
   box-shadow: inset 0 0 0 1px $euiFormBorderDisabledColor;
 
-  // sass-lint:disable-block mixins-before-declarations
   @include euiPlaceholderPerBrowser {
     color: $euiFormControlDisabledColor;
   }

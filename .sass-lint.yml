@@ -1,10 +1,6 @@
 rules:
   # Order how you please
   property-sort-order: 0
-  mixins-before-declarations:
-    - 2
-    -
-      exclude: ['euiBreakpoint', 'euiCanAnimate']
   # Use none instead of 0 for no border
   border-zero:
     - 2

@@ -24,7 +24,6 @@
     display: flex; /* 1 */
     outline: none; // Fixes an intermittent focus ring in Firefox
 
-    // sass-lint:disable-block mixins-before-declarations
     // to override the padding added above
     @include euiFormControlLayoutPadding(1); /* 2 */
 
@@ -132,7 +131,6 @@
       padding-top: 0;
       padding-bottom: 0;
 
-      // sass-lint:disable-block mixins-before-declarations
       @include euiFormControlLayoutPadding(1, $compressed: true); /* 2 */
 
       &.euiComboBox__inputWrap-isClearable {

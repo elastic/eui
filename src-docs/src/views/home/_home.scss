@@ -2,7 +2,6 @@
   min-width: 200px;
   flex-basis: 100% !important; // stylelint-disable-line declaration-no-important
 
-  // sass-lint:disable-block mixins-before-declarations
   @include euiBreakpoint('s', 'm') {
     flex-basis: 45% !important; // stylelint-disable-line declaration-no-important
   }
