@@ -9,51 +9,47 @@
 /// <reference types="../../../cypress/support"/>
 
 import React, { useState } from 'react';
-import { EuiDelayRender } from './delay_render';
+import { EuiDelayHide } from './delay_hide';
 import { EuiCheckbox, EuiFieldNumber, EuiFormRow } from '../form';
 import { EuiFlexItem } from '../flex';
 import { EuiLoadingSpinner } from '../loading';
 
-const DelayRender = () => {
-  const [minimumDelay, setDelay] = useState(1000);
-  const [render, setRender] = useState(false);
+const DelayHide = () => {
+  const [minimumDuration, setDuration] = useState(1000);
+  const [hide, setHide] = useState(false);
 
-  const onChangeMinimumDelay = (event) => {
-    setDelay(parseInt(event.target.value, 10));
+  const onChangeMinimumDuration = (event) => {
+    setDuration(parseInt(event.target.value, 10));
   };
 
   const onChangeHide = (event) => {
-    setRender(event.target.checked);
+    setHide(event.target.checked);
   };
 
-  const status = render ? 'showing' : 'hidden';
-  const label = `Child (${status})`;
   return (
     <>
       <EuiFlexItem>
         <EuiFormRow>
           <EuiCheckbox
             id="dummy-id"
-            checked={render}
+            checked={hide}
             onChange={onChangeHide}
-            label="Show child"
+            label="Hide child"
           />
         </EuiFormRow>
-        <EuiFormRow label="Minimum delay">
+        <EuiFormRow label="Minimum duration">
           <EuiFieldNumber
-            value={minimumDelay}
-            onChange={onChangeMinimumDelay}
+            value={minimumDuration}
+            onChange={onChangeMinimumDuration}
           />
         </EuiFormRow>
 
-        <EuiFormRow label={label}>
-          {render ? (
-            <EuiDelayRender delay={minimumDelay}>
-              <EuiLoadingSpinner size="m" />
-            </EuiDelayRender>
-          ) : (
-            <></>
-          )}
+        <EuiFormRow label="Child to render">
+          <EuiDelayHide
+            hide={hide}
+            minimumDuration={minimumDuration}
+            render={() => <EuiLoadingSpinner size="m" />}
+          />
         </EuiFormRow>
       </EuiFlexItem>
     </>
@@ -61,46 +57,48 @@ const DelayRender = () => {
 };
 
 beforeEach(() => {
-  cy.realMount(<DelayRender />);
+  cy.realMount(<DelayHide />);
 });
 
-describe('EuiDelayRender', () => {
+describe('EuiHideRender', () => {
   describe('Automated accessibility check', () => {
     it('has zero violations on first render', () => {
       cy.checkAxe();
     });
 
-    it('has zero violations when the show child input is checked', () => {
+    it('has zero violations when the hide child input is checked', () => {
       cy.get('input.euiCheckbox__input').realClick();
       cy.get('div.euiFormRow__fieldWrapper')
         .last()
-        .find('span[role="progressbar"]', { timeout: 5000 });
-      cy.checkAxe();
-    });
-
-    it('has zero violations when the show child input is pressed', () => {
-      cy.realPress('Tab');
-      cy.get('input.euiCheckbox__input').should('have.focus');
-      cy.realPress('Space');
-      cy.get('div.euiFormRow__fieldWrapper')
-        .last()
         .find('span[role="progressbar"]', { timeout: 5000 })
-        .should('exist');
+        .should('not.exist');
       cy.checkAxe();
     });
 
-    it('has zero violations when the show child input is toggled', () => {
+    it('has zero violations when the hide child input is pressed', () => {
       cy.realPress('Tab');
       cy.get('input.euiCheckbox__input').should('have.focus');
-      cy.realPress('Space');
-      cy.get('div.euiFormRow__fieldWrapper')
-        .last()
-        .find('span[role="progressbar"]', { timeout: 5000 });
       cy.realPress('Space');
       cy.get('div.euiFormRow__fieldWrapper')
         .last()
         .find('span[role="progressbar"]', { timeout: 5000 })
         .should('not.exist');
+      cy.checkAxe();
+    });
+
+    it('has zero violations when the hide child input is toggled', () => {
+      cy.realPress('Tab');
+      cy.get('input.euiCheckbox__input').should('have.focus');
+      cy.realPress('Space');
+      cy.get('div.euiFormRow__fieldWrapper')
+        .last()
+        .find('span[role="progressbar"]')
+        .should('not.exist');
+      cy.realPress('Space');
+      cy.get('div.euiFormRow__fieldWrapper')
+        .last()
+        .find('span[role="progressbar"]', { timeout: 5000 })
+        .should('exist');
       cy.checkAxe();
     });
   });
