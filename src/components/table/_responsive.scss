@@ -5,14 +5,14 @@
 
 @include euiBreakpoint('xs', 's') {
   .euiTableRowCell--hideForMobile { // must come last to override any special cases
-    // sass-lint:disable-block no-important
+    // stylelint-disable-next-line declaration-no-important
     display: none !important;
   }
 }
 
 @include euiBreakpoint('m', 'l', 'xl') {
   .euiTableRowCell--hideForDesktop { // must come last to override any special cases
-    // sass-lint:disable-block no-important
+    // stylelint-disable-next-line declaration-no-important
     display: none !important;
   }
 }

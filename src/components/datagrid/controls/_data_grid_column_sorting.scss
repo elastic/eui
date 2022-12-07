@@ -34,8 +34,8 @@
     border: none;
 
     // Hack to overwrite some nested, unreachable component code with button groups
-    // sass-lint:disable-block no-important
     button {
+      // stylelint-disable-next-line declaration-no-important
       font-size: $euiFontSizeXS !important;
     }
   }

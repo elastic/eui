@@ -29,7 +29,7 @@
 
 .euiButtonGroup--compressed {
   .euiButtonGroup__buttons {
-    box-shadow: none !important; // sass-lint:disable-line no-important
+    box-shadow: none !important; // stylelint-disable-line declaration-no-important
     border-radius: $euiFormControlCompressedBorderRadius;
     background-color: $euiFormBackgroundColor;
     height: $euiFormControlCompressedHeight;

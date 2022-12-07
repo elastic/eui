@@ -84,7 +84,7 @@ button.euiSuggestItem { // sass-lint:disable-line no-qualifying-elements
 
   &.euiSuggestItem__description--wrap {
     @include euiTextBreakWord;
-    white-space: normal !important; // sass-lint:disable-line no-important
+    white-space: normal !important; // stylelint-disable-line declaration-no-important
   }
 }
 

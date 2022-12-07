@@ -18,6 +18,6 @@
 
 @mixin euiLinkFocus {
   text-decoration: underline;
-  // sass-lint:disable-block no-misspelled-properties no-important
+  // stylelint-disable-next-line declaration-no-important
   text-decoration-thickness: $euiBorderWidthThick !important;
 }

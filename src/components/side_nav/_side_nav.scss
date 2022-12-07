@@ -4,7 +4,7 @@
   border-bottom: $euiBorderThin;
   width: 100%;
   text-align: left;
-  border-radius: 0 !important; // sass-lint:disable-line no-important
+  border-radius: 0 !important; // stylelint-disable-line declaration-no-important
   font-size: $euiFontSizeM;
   padding: 0 $euiSize; // This plus the inner padding is equal to paddingSize large for EuiPage
 

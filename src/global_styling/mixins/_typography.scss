@@ -1,5 +1,5 @@
 // stylelint-disable property-no-vendor-prefix
-// sass-lint:disable no-important
+// stylelint-disable declaration-no-important
 
 @function fontSizeToRemOrEm($size, $sizingMethod: 'rem') {
   @if ($sizingMethod == 'rem') {
@@ -138,7 +138,6 @@
  * 1. Ensure that the node has a maximum width after which truncation can occur.
  */
 @mixin euiTextTruncate {
-  // sass-lint:disable-block no-important
   max-width: 100%; // 1
   overflow: hidden !important;
   text-overflow: ellipsis !important;

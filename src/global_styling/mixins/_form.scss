@@ -259,7 +259,7 @@
     }
 
     &--inGroup {
-      // sass-lint:disable-block no-important
+      // stylelint-disable-next-line declaration-no-important
       box-shadow: none !important;
       border-radius: 0;
     }
@@ -355,7 +355,7 @@
 
 @mixin euiHiddenSelectableInput {
   position: absolute;
-  // sass-lint:disable no-important
+  // stylelint-disable-next-line declaration-no-important
   opacity: 0 !important; // Make sure it's still hidden when :disabled
   width: 100%;
   height: 100%;

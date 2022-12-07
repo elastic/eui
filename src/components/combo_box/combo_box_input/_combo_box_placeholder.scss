@@ -7,5 +7,5 @@
   padding-left: $euiSizeXS;
   line-height: $euiSizeXL;
   color: $euiFormControlPlaceholderText;
-  margin-bottom: 0 !important; // sass-lint:disable-line no-important
+  margin-bottom: 0 !important; // stylelint-disable-line declaration-no-important
 }

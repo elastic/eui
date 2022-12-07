@@ -10,6 +10,9 @@ module.exports = {
     'scss/at-mixin-pattern': camelCaseRegex,
     'scss/at-function-pattern': camelCaseRegex,
 
+    // Opinionated rules
+    'declaration-no-important': true,
+
     // 2 spaces for indentation
     indentation: [
       2,

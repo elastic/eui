@@ -75,11 +75,11 @@
     &.euiButtonEmpty,
     .euiButtonIcon,
     .euiButtonEmpty {
-      transform: none !important;
+      transform: none !important; // stylelint-disable-line declaration-no-important
 
       // Undo sizing from icons inside buttons
       .euiIcon {
-        background: none !important;
+        background: none !important; // stylelint-disable-line declaration-no-important
         padding: 0;
         width: $euiSize;
       }
@@ -114,7 +114,7 @@
     max-width: 50%; // Make sure max-width only applies to the outer most append/prepend element
   }
 
-  // sass-lint:disable-block no-important
+  // stylelint-disable declaration-no-important
   // This is the only way to target specific components to override styling
 
   // TEXT

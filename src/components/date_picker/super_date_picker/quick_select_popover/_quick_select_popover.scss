@@ -11,9 +11,9 @@
   margin: $euiSizeS 0 0;
 }
 
-// sass-lint:disable no-important
 .euiQuickSelectPopover__buttonText {
   // Override specificity from universal and sibling selectors
+  // stylelint-disable-next-line declaration-no-important
   margin-right: $euiSizeXS !important;
 }
 

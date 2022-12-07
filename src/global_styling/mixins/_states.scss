@@ -1,10 +1,10 @@
 @mixin euiFocusRing($size: 'small', $amsterdamOnlyProp: null) {
   @if $size == 'large' {
     // It's always OK to use the focus animation. This will take precedence over times we turn it off individually like EuiButtonEmpty
-    // sass-lint:disable-block no-important
+    // stylelint-disable-next-line declaration-no-important
     animation: $euiAnimSpeedSlow $euiAnimSlightResistance 1 normal forwards focusRingAnimateLarge !important;
   } @else {
-    // sass-lint:disable-block no-important
+    // stylelint-disable-next-line declaration-no-important
     animation: $euiAnimSpeedSlow $euiAnimSlightResistance 1 normal forwards focusRingAnimate !important;
   }
 }

@@ -4,7 +4,7 @@
 
 .guideBody {
   // Override euiHeaderAffordForFixed mixin since the page template handles this now
-  padding-top: 0 !important; // sass-lint:disable-line no-important
+  padding-top: 0 !important; // stylelint-disable-line declaration-no-important
 }
 
 .euiBody--headerIsFixed--double {

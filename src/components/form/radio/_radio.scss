@@ -43,12 +43,11 @@
     }
 
     &[disabled] {
-      // sass-lint:disable no-important
-      cursor: not-allowed !important;
+      cursor: not-allowed !important; // stylelint-disable-line declaration-no-important
 
       ~ .euiRadio__label {
         color: $euiFormControlDisabledColor;
-        cursor: not-allowed !important;
+        cursor: not-allowed !important; // stylelint-disable-line declaration-no-important
       }
 
       + .euiRadio__circle {

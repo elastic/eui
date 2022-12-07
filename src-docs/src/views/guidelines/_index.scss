@@ -22,8 +22,8 @@
   font-size: $euiFontSizeS;
 }
 
-// sass-lint:disable no-important
 .guidelineColor__title {
+  // stylelint-disable-next-line declaration-no-important
   color: $euiColorMediumShade !important;
 }
 

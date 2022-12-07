@@ -48,12 +48,11 @@
     }
 
     &[disabled] {
-      // sass-lint:disable-block no-important
-      cursor: not-allowed !important;
+      cursor: not-allowed !important; // stylelint-disable-line declaration-no-important
 
       ~ .euiCheckbox__label {
         color: $euiFormControlDisabledColor;
-        cursor: not-allowed !important;
+        cursor: not-allowed !important; // stylelint-disable-line declaration-no-important
       }
 
       + .euiCheckbox__square {

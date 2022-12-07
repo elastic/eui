@@ -1,6 +1,6 @@
 .euiSelectableTemplateSitewide__listItem {
   .euiSelectableListItem__text {
-    text-decoration: none !important; // sass-lint:disable-line no-important
+    text-decoration: none !important; // stylelint-disable-line declaration-no-important
   }
 
   // TODO: Any better way to override this focus underline?

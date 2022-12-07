@@ -71,7 +71,7 @@
    * 5. Prevent a lot of input from causing the react-input-autosize to overflow the container.
    */
   .euiComboBox__input {
-    // sass-lint:disable-block no-important
+    // stylelint-disable-next-line declaration-no-important
     display: inline-flex !important; /* 1 */
     height: $euiSizeXL; /* 2 */
     overflow: hidden; /* 5 */
@@ -153,7 +153,7 @@
   // Overrides the euiFormControlLayout prepend and append height that is 100%
   .euiFormControlLayout__prepend,
   .euiFormControlLayout__append {
-    // sass-lint:disable-block no-important
+    // stylelint-disable-next-line declaration-no-important
     height: auto !important;
   }
 }

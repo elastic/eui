@@ -57,7 +57,7 @@
 .euiButtonGroup--medium,
 .euiButtonGroup--small {
   .euiButtonGroupButton {
-    border-radius: 0 !important; // sass-lint:disable-line no-important
+    border-radius: 0 !important; // stylelint-disable-line declaration-no-important
     font-weight: $euiButtonFontWeight;
 
     &:focus,

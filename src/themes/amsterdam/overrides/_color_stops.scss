@@ -9,7 +9,7 @@
 }
 
 .euiColorStopThumb.euiRangeThumb:not(:disabled) {
-  // sass-lint:disable-block no-important no-color-literals
+  // sass-lint:disable-block no-color-literals
   @include euiRangeThumbBorder;
   @include euiRangeThumbBoxShadow;;
 

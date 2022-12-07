@@ -73,16 +73,17 @@
 }
 
 .euiFormControlLayoutDelimited__input {
-  // sass-lint:disable-block no-important
+  // stylelint-disable declaration-no-important
   box-shadow: none !important;
   border-radius: 0 !important;
+  // stylelint-enable declaration-no-important
   text-align: center;
   height: 100%;
   min-width: 0; // Fixes FF
 }
 
 .euiFormControlLayoutDelimited__delimeter {
-  // sass-lint:disable-block no-important
+  // stylelint-disable-next-line declaration-no-important
   line-height: 1 !important; // Override EuiText line-height
   flex: 0 0 auto;
   padding-left: $euiFormControlPadding / 2;

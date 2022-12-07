@@ -37,11 +37,11 @@
 
 .euiColorPicker__popoverPanel--pickerOnly {
   // Override of EuiPanel padding
-  // sass-lint:disable no-important
+  // stylelint-disable-next-line declaration-no-important
   padding-bottom: 0 !important;
 }
 
-// sass-lint:disable no-important
+// stylelint-disable declaration-no-important
 .euiColorPicker__input--inGroup {
   height: $euiFormControlLayoutGroupInputHeight !important;
   box-shadow: none !important;
@@ -52,6 +52,7 @@
     border-radius: 0;
   }
 }
+// stylelint-enable declaration-no-important
 
 .euiColorPicker__alphaRange {
   .euiRangeInput {
