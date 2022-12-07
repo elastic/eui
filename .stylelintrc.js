@@ -9,6 +9,13 @@ module.exports = {
     'scss/dollar-variable-pattern': camelCaseRegex,
     'scss/at-mixin-pattern': camelCaseRegex,
     'scss/at-function-pattern': camelCaseRegex,
+    // TODO: This rule can be removed entirely (already lower by default) once we're fully off Sass
+    'function-name-case': [
+      'lower',
+      {
+        ignoreFunctions: [`/${camelCaseRegex}/`, 'MIN'],
+      },
+    ],
 
     // Opinionated rules
     'declaration-no-important': true,
@@ -90,7 +97,6 @@ module.exports = {
 
     // Disable various opinionated extended stylelint rules that EUI has not previously enforced
     'no-descending-specificity': null,
-    'function-name-case': null,
     'keyframe-selector-notation': null,
     'declaration-block-no-redundant-longhand-properties': null,
     'scss/no-global-function-names': null,
