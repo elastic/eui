@@ -18,6 +18,7 @@ module.exports = {
         ignore: ['blockless-at-rules', 'pseudo-classes'],
       },
     ],
+    'block-no-empty': true,
 
     // 2 spaces for indentation
     indentation: [
