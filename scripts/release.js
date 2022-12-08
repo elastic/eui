@@ -3,7 +3,6 @@ const chalk = require('chalk');
 const path = require('path');
 const prompt = require('prompt');
 let { execSync } = require('child_process');
-const git = require('nodegit');
 
 const cwd = path.resolve(__dirname, '..');
 const stdio = 'inherit';
@@ -138,12 +137,10 @@ async function ensureMainBranch() {
     return;
   }
 
-  // delay importing nodegit because it can introduce environmental pains in a CI environment
-  const git = require('nodegit');
-  const repo = await git.Repository.open(cwd);
-  const currentBranch = await repo.getCurrentBranch();
-  const currentBranchName = currentBranch.shorthand();
-
+  // Obtain current branch name from git
+  const currentBranchName = execSync('git rev-parse --abbrev-ref HEAD')
+    .toString()
+    .trim();
   if (currentBranchName !== 'main') {
     console.error(`Unable to release: currently on branch "${currentBranchName}", expected "main"`);
     process.exit(1);
