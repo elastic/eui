@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-const git = require('nodegit');
 const semver = require('semver');
+const { execSync } = require('child_process');
 
 const repoDir = path.resolve(__dirname, '..');
 const packagePath = path.resolve(repoDir, 'package.json');
@@ -18,13 +18,6 @@ if (validVersionTypes.has(versionIncrementType) === false) {
 
 const { version: oldPackageVersion } = require(packagePath);
 const newPackageVersion = semver.inc(oldPackageVersion, versionIncrementType);
-
-async function getFileContentsFromCommit(commit, filePath) {
-  // https://github.com/nodegit/nodegit/blob/master/examples/read-file.js
-  const entry = await commit.getEntry(filePath);
-  const entryBlob = await entry.getBlob();
-  return entryBlob.content().toString();
-}
 
 function getTokenMap(tokenInstances) {
   // tokenInstances is the total set of tokens across all files
@@ -66,7 +59,7 @@ function getTokenChanges(oldTokenInstances, newTokenInstances) {
       // token has been removed
       changes.push({
         token: key,
-        changeType: 'deleted'
+        changeType: 'deleted',
       });
     }
   });
@@ -86,70 +79,37 @@ function getTokenChanges(oldTokenInstances, newTokenInstances) {
   return changes;
 }
 
-async function getDirtyFiles(repo) {
-  const diff = await git.Diff.indexToWorkdir(repo, null, { FLAGS: git.Diff.OPTION.INCLUDE_UNTRACKED });
-  const patches = await diff.patches();
-
-  return new Set(patches.map(patch => patch.oldFile().path()));
-}
-
-async function commitTokenChanges(repo) {
-  // add i18ntokens.json and i18ntokens_changelog.json if modified, and commit
-  // https://github.com/nodegit/nodegit/blob/master/examples/add-and-commit.js
-  const dirtyFiles = await getDirtyFiles(repo);
-  let createCommit = false;
-
-  const index = await repo.refreshIndex();
-
-  if (dirtyFiles.has('i18ntokens.json')) {
-    createCommit = true;
-    await index.addByPath('i18ntokens.json');
-  }
-
-  if (dirtyFiles.has('i18ntokens_changelog.json')) {
-    createCommit = true;
-    await index.addByPath('i18ntokens_changelog.json');
-  }
-
-  if (createCommit) {
-    await index.write();
-    const oid = await index.writeTree();
-    const head = await git.Reference.nameToId(repo, 'HEAD');
-    const parent = await repo.getCommit(head);
-
-    const userSignature = await repo.defaultSignature();
-
-    return repo.createCommit('HEAD', userSignature, userSignature, 'update i18ntokens', oid, [parent]);
-  }
-}
-
-async function getCommitForTagName(repo, tagname) {
-  const tag = await repo.getTagByName(tagname);
-  return git.Commit.lookup(repo, tag.targetId());
-}
-
-async function getPreviousI18nTokens(previousVersionCommit) {
+async function commitTokenChanges() {
   try {
-    return JSON.parse(
-      await getFileContentsFromCommit(previousVersionCommit, 'i18ntokens.json')
-    );
-  } catch (err) {
-    // If failed, try with the previous path where it used to exist
-    return JSON.parse(
-      await getFileContentsFromCommit(
-        previousVersionCommit,
-        'src-docs/src/i18ntokens.json'
-      )
-    );
+    execSync('git add ./i18ntokens.json ./i18ntokens_changelog.json');
+    execSync('git commit -m "update i18ntokens" -n');
+    console.log('i18n token changes committed');
+  } catch {
+    const staging = execSync('git status').toString().trim();
+    if (staging.includes('i18ntokens')) {
+      console.error(
+        'i18n tokens updates changed, but nothing was committed. Staging is still dirty'
+      );
+      process.exit(1);
+    } else {
+      console.log('No i18n token changes found to commit');
+    }
   }
+}
+
+async function getPreviousI18nTokens() {
+  const commitID = execSync(`git rev-parse v${oldPackageVersion}`)
+    .toString()
+    .trim();
+  const fileContents = execSync(`git cat-file blob ${commitID}:i18ntokens.json`)
+    .toString()
+    .trim();
+  return JSON.parse(fileContents);
 }
 
 async function main() {
-  const repo = await git.Repository.open(repoDir);
-  const previousVersionCommit = await getCommitForTagName(repo, `v${oldPackageVersion}`);
-
   // check for i18n token differences between the current file & the most recent EUI version
-  const originalTokens = await getPreviousI18nTokens(previousVersionCommit);
+  const originalTokens = await getPreviousI18nTokens();
   const newTokens = require(tokensPath);
 
   const changes = getTokenChanges(originalTokens, newTokens);
@@ -165,10 +125,10 @@ async function main() {
   }
 
   // commit pending changes to i18ntokens.json or i18ntokens_changelog.json
-  await commitTokenChanges(repo);
+  await commitTokenChanges();
 }
 
-main().catch(e => {
+main().catch((e) => {
   console.error(e);
   process.exit(1);
 });
