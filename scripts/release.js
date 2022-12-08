@@ -53,6 +53,9 @@ if (args.dry_run) {
   let versionTarget;
 
   if (args.steps.indexOf('version') > -1) {
+    // Fetch latest tags and clear any local ones
+    execSync('git fetch upstream --tags --prune --prune-tags --force');
+
     const { changelogMap, changelog } = collateChangelogFiles();
 
     // prompt user for what type of version bump to make (major|minor|patch)
@@ -65,9 +68,6 @@ if (args.dry_run) {
 
     // Update CHANGELOG.md
     updateChangelog(changelog, versionTarget);
-
-    // Clear any local tags
-    execSync('git fetch upstream --tags --prune --prune-tags --force');
 
     // update package.json & package-lock.json version, git commit, git tag
     execSync(`npm version ${versionTarget}`, execOptions);
