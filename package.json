@@ -44,8 +44,7 @@
     "start-test-server-and-a11y-test": "cross-env WAIT_ON_TIMEOUT=600000 start-server-and-test start-test-server http-get://localhost:9999 test-a11y",
     "yo-doc": "yo ./generator-eui/app/documentation.js",
     "yo-changelog": "yo ./generator-eui/changelog/index.js",
-    "release": "node ./scripts/release.js",
-    "postinstall": "node ./scripts/postinstall.js"
+    "release": "node ./scripts/release.js"
   },
   "repository": {
     "type": "git",
@@ -269,7 +268,6 @@
     "lib",
     "licenses",
     "optimize",
-    "scripts/postinstall.js",
     "src/**/*.scss",
     "test-env",
     "eui.d.ts",
