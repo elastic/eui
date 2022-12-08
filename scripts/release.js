@@ -213,35 +213,22 @@ async function getVersionTypeFromChangelog(changelogMap) {
       )} ${chalk.gray('(major, minor, patch)')}`
     );
 
-    return await promptUserForVersionType();
+    return await promptUserForVersionType(humanReadableRecommendation);
   }
 }
 
-async function promptUserForVersionType() {
-  return new Promise((resolve, reject) => {
-    prompt.message = '';
-    prompt.delimiter = '';
-    prompt.start();
-    prompt.get(
-      {
-        properties: {
-          version: {
-            description: 'choice:',
-            pattern: /^(major|minor|patch)$/,
-            message: 'Your choice must be major, minor or patch',
-            required: true,
-          },
-        },
-      },
-      (err, { version }) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(version);
-        }
-      }
-    );
-  });
+async function promptUserForVersionType(recommendedType) {
+  const inquirer = await import('inquirer');
+  const { versionType } = await inquirer.default.prompt([
+    {
+      type: 'list',
+      name: 'versionType',
+      message: 'Your choice must be major, minor, or patch',
+      choices: ['major', 'minor', 'patch'],
+      default: recommendedType || '',
+    },
+  ]);
+  return versionType;
 }
 
 async function getOneTimePassword(versionTarget) {
