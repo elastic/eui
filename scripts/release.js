@@ -8,7 +8,10 @@ const cwd = path.resolve(__dirname, '..');
 const stdio = 'inherit';
 const execOptions = { cwd, stdio };
 
-const { collateChangelogFiles, updateChangelog } = require('./update-changelog');
+const {
+  collateChangelogFiles,
+  updateChangelog,
+} = require('./update-changelog');
 
 const TYPE_MAJOR = 0;
 const TYPE_MINOR = 1;
@@ -16,14 +19,16 @@ const TYPE_PATCH = 2;
 const humanReadableTypes = {
   [TYPE_MAJOR]: 'major',
   [TYPE_MINOR]: 'minor',
-  [TYPE_PATCH]: 'patch'
+  [TYPE_PATCH]: 'patch',
 };
 
 const args = parseArguments();
 
 if (args.dry_run) {
-  console.warn(chalk.yellow('Dry run mode: no changes will be pushed to npm or Github'));
-  execSync = function() {
+  console.warn(
+    chalk.yellow('Dry run mode: no changes will be pushed to npm or Github')
+  );
+  execSync = function () {
     console.log.apply(null, arguments);
   };
 }
@@ -90,7 +95,7 @@ if (args.dry_run) {
     // update docs, git commit, git push
     execSync('npm run sync-docs', execOptions);
   }
-}()).catch(e => console.error(e));
+})().catch((e) => console.error(e));
 
 function parseArguments() {
   const parser = new argparse.ArgumentParser({
@@ -111,15 +116,16 @@ function parseArguments() {
 
   const allSteps = ['test', 'build', 'version', 'tag', 'publish', 'docs'];
   parser.add_argument('--steps', {
-    help: 'Which release steps to run; a comma-separated list of values that can include "test", "build", "version", "tag", "publish" and "docs". If no value is given, all steps are run. Example: --steps=test,build,version,tag',
+    help:
+      'Which release steps to run; a comma-separated list of values that can include "test", "build", "version", "tag", "publish" and "docs". If no value is given, all steps are run. Example: --steps=test,build,version,tag',
     default: allSteps.join(','),
   });
 
   const args = parser.parse_args();
 
   // validate --steps argument
-  const steps = args.steps.split(',').map(step => step.trim());
-  const diff = steps.filter(x => allSteps.indexOf(x) === -1);
+  const steps = args.steps.split(',').map((step) => step.trim());
+  const diff = steps.filter((x) => allSteps.indexOf(x) === -1);
   if (diff.length > 0) {
     console.error(`Invalid --step value(s): ${diff.join(', ')}`);
     process.exit(1);
@@ -142,7 +148,9 @@ async function ensureMainBranch() {
     .toString()
     .trim();
   if (currentBranchName !== 'main') {
-    console.error(`Unable to release: currently on branch "${currentBranchName}", expected "main"`);
+    console.error(
+      `Unable to release: currently on branch "${currentBranchName}", expected "main"`
+    );
     process.exit(1);
   }
 }
@@ -173,21 +181,37 @@ async function getVersionTypeFromChangelog(changelogMap) {
     console.log(chalk.gray(`${section}: ${items.length}`));
   });
   console.log('');
-  console.log(`${chalk.magenta('The recommended version update for these changes is')} ${chalk.blue(humanReadableRecommendation)}`);
+  console.log(
+    `${chalk.magenta(
+      'The recommended version update for these changes is'
+    )} ${chalk.blue(humanReadableRecommendation)}`
+  );
 
   // checking for --type argument value; used by CI to automate releases
   const versionType = args.type;
   if (versionType) {
     // detected version type preference set
-    console.log(`${chalk.magenta('--type argument identifed, set to')} ${chalk.blue(versionType)}`);
+    console.log(
+      `${chalk.magenta('--type argument identifed, set to')} ${chalk.blue(
+        versionType
+      )}`
+    );
 
     if (versionType !== humanReadableRecommendation) {
-      console.warn(`${chalk.yellow('WARNING: --type argument does not match recommended version update')}`);
+      console.warn(
+        `${chalk.yellow(
+          'WARNING: --type argument does not match recommended version update'
+        )}`
+      );
     }
 
     return versionType;
   } else {
-    console.log(`${chalk.magenta('What part of the package version do you want to bump?')} ${chalk.gray('(major, minor, patch)')}`);
+    console.log(
+      `${chalk.magenta(
+        'What part of the package version do you want to bump?'
+      )} ${chalk.gray('(major, minor, patch)')}`
+    );
 
     return await promptUserForVersionType();
   }
@@ -205,9 +229,9 @@ async function promptUserForVersionType() {
             description: 'choice:',
             pattern: /^(major|minor|patch)$/,
             message: 'Your choice must be major, minor or patch',
-            required: true
+            required: true,
           },
-        }
+        },
       },
       (err, { version }) => {
         if (err) {
@@ -221,12 +245,22 @@ async function promptUserForVersionType() {
 }
 
 async function getOneTimePassword(versionTarget) {
-  console.log(chalk.magenta(`Preparing to publish @elastic/eui@${versionTarget} to npm registry`));
+  console.log(
+    chalk.magenta(
+      `Preparing to publish @elastic/eui@${versionTarget} to npm registry`
+    )
+  );
   console.log('');
-  console.log(chalk.magenta('The @elastic organization requires membership and 2FA to publish'));
+  console.log(
+    chalk.magenta(
+      'The @elastic organization requires membership and 2FA to publish'
+    )
+  );
 
   if (process.env.NPM_OTP) {
-    console.log(chalk.magenta('2FA code provided by NPM_OTP environment variable'));
+    console.log(
+      chalk.magenta('2FA code provided by NPM_OTP environment variable')
+    );
     return process.env.NPM_OTP;
   }
 
@@ -246,9 +280,9 @@ async function promptUserForOneTimePassword() {
           otp: {
             description: 'Enter password:',
             message: 'One-time password is required',
-            required: true
+            required: true,
           },
-        }
+        },
       },
       (err, { otp }) => {
         if (err) {
