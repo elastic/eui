@@ -66,7 +66,7 @@ function getTokenChanges(oldTokenInstances, newTokenInstances) {
       // token has been removed
       changes.push({
         token: key,
-        changeType: 'deleted'
+        changeType: 'deleted',
       });
     }
   });
@@ -87,10 +87,12 @@ function getTokenChanges(oldTokenInstances, newTokenInstances) {
 }
 
 async function getDirtyFiles(repo) {
-  const diff = await git.Diff.indexToWorkdir(repo, null, { FLAGS: git.Diff.OPTION.INCLUDE_UNTRACKED });
+  const diff = await git.Diff.indexToWorkdir(repo, null, {
+    FLAGS: git.Diff.OPTION.INCLUDE_UNTRACKED,
+  });
   const patches = await diff.patches();
 
-  return new Set(patches.map(patch => patch.oldFile().path()));
+  return new Set(patches.map((patch) => patch.oldFile().path()));
 }
 
 async function commitTokenChanges(repo) {
@@ -119,7 +121,14 @@ async function commitTokenChanges(repo) {
 
     const userSignature = await repo.defaultSignature();
 
-    return repo.createCommit('HEAD', userSignature, userSignature, 'update i18ntokens', oid, [parent]);
+    return repo.createCommit(
+      'HEAD',
+      userSignature,
+      userSignature,
+      'update i18ntokens',
+      oid,
+      [parent]
+    );
   }
 }
 
@@ -146,7 +155,10 @@ async function getPreviousI18nTokens(previousVersionCommit) {
 
 async function main() {
   const repo = await git.Repository.open(repoDir);
-  const previousVersionCommit = await getCommitForTagName(repo, `v${oldPackageVersion}`);
+  const previousVersionCommit = await getCommitForTagName(
+    repo,
+    `v${oldPackageVersion}`
+  );
 
   // check for i18n token differences between the current file & the most recent EUI version
   const originalTokens = await getPreviousI18nTokens(previousVersionCommit);
@@ -168,7 +180,7 @@ async function main() {
   await commitTokenChanges(repo);
 }
 
-main().catch(e => {
+main().catch((e) => {
   console.error(e);
   process.exit(1);
 });
