@@ -1,7 +1,6 @@
 const argparse = require('argparse');
 const chalk = require('chalk');
 const path = require('path');
-const prompt = require('prompt');
 let { execSync } = require('child_process');
 
 const cwd = path.resolve(__dirname, '..');
@@ -253,31 +252,19 @@ async function getOneTimePassword(versionTarget) {
 
   console.log(chalk.magenta('What is your one-time password?'));
 
-  return await promptUserForOneTimePassword();
-}
-
-async function promptUserForOneTimePassword() {
-  return new Promise((resolve, reject) => {
-    prompt.message = '';
-    prompt.delimiter = '';
-    prompt.start();
-    prompt.get(
-      {
-        properties: {
-          otp: {
-            description: 'Enter password:',
-            message: 'One-time password is required',
-            required: true,
-          },
-        },
-      },
-      (err, { otp }) => {
-        if (err) {
-          reject(err);
+  const inquirer = await import('inquirer');
+  const { otp } = await inquirer.default.prompt([
+    {
+      name: 'otp',
+      message: 'Enter password:',
+      validate: (input) => {
+        if (input && !isNaN(input) && input.toString().length >= 6) {
+          return true;
         } else {
-          resolve(otp);
+          return 'Please enter a six-digit numerical 2FA code';
         }
-      }
-    );
-  });
+      },
+    },
+  ]);
+  return otp;
 }
