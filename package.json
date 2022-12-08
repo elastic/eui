@@ -53,7 +53,6 @@
   "resolutions": {
     "**/prismjs": "1.27.0",
     "**/trim": "0.0.3",
-    "**/node-sass": "^6.0.1",
     "**/react": "^17.0.0",
     "**/known-css-properties": "0.24.0"
   },
@@ -205,7 +204,6 @@
     "jest-cli": "^24.1.0",
     "moment": "^2.27.0",
     "moment-timezone": "^0.5.31",
-    "node-sass": "^6.0.1",
     "path": "^0.12.7",
     "pegjs": "^0.10.0",
     "postcss": "^8.4.19",
@@ -233,7 +231,8 @@
     "redux-thunk": "^2.3.0",
     "resolve": "^1.17.0",
     "rimraf": "^3.0.2",
-    "sass-loader": "^13.0.2",
+    "sass": "^1.56.1",
+    "sass-loader": "^13.2.0",
     "shelljs": "^0.8.4",
     "start-server-and-test": "^1.11.3",
     "style-loader": "^3.3.1",
