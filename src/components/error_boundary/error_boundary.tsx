@@ -6,14 +6,19 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, HTMLAttributes, ReactNode } from 'react';
+import React, {
+  Component,
+  FunctionComponent,
+  HTMLAttributes,
+  ReactNode,
+} from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 
 import { EuiTitle } from '../title';
 import { EuiCodeBlock } from '../code';
 import { EuiI18n } from '../i18n';
-import { withEuiTheme, WithEuiThemeProps } from '../../services';
+import { useEuiTheme } from '../../services';
 
 import { euiErrorBoundaryStyles } from './error_boundary.styles';
 
@@ -30,13 +35,11 @@ export type EuiErrorBoundaryProps = CommonProps &
     children: ReactNode;
   };
 
-type EuiErrorBoundaryExtendedProps = EuiErrorBoundaryProps & WithEuiThemeProps;
-
-export class _EuiErrorBoundary extends Component<
-  EuiErrorBoundaryExtendedProps,
+export class EuiErrorBoundary extends Component<
+  EuiErrorBoundaryProps,
   EuiErrorBoundaryState
 > {
-  constructor(props: EuiErrorBoundaryExtendedProps) {
+  constructor(props: EuiErrorBoundaryProps) {
     super(props);
 
     const errorState: EuiErrorBoundaryState = {
@@ -62,41 +65,42 @@ ${stackStr}`;
   }
 
   render() {
-    const {
-      className,
-      children,
-      'data-test-subj': _dataTestSubj,
-      theme,
-      ...rest
-    } = this.props;
-    const dataTestSubj = classNames('euiErrorBoundary', _dataTestSubj);
-    const styles = euiErrorBoundaryStyles(theme);
+    const { children, ...rest } = this.props;
 
     if (this.state.hasError) {
       // You can render any custom fallback UI
-      return (
-        <div
-          css={styles.euiErrorBoundary}
-          className={classNames('euiErrorBoundary', className)}
-          data-test-subj={dataTestSubj}
-          {...rest}
-        >
-          <EuiCodeBlock>
-            <EuiTitle size="xs">
-              <p>
-                <EuiI18n token="euiErrorBoundary.error" default="Error" />
-              </p>
-            </EuiTitle>
-            {this.state.error}
-          </EuiCodeBlock>
-        </div>
-      );
+      return <EuiErrorMessage {...rest} errorMessage={this.state.error} />;
     }
 
     return children;
   }
 }
 
-export const EuiErrorBoundary = withEuiTheme<EuiErrorBoundaryProps>(
-  _EuiErrorBoundary
-);
+/**
+ * Split out into a separate styling-only component for easier use of hooks,
+ * and also for internal re-use by EUI's docs/playgrounds
+ */
+export const EuiErrorMessage: FunctionComponent<
+  CommonProps & { errorMessage?: string }
+> = ({ errorMessage, className, 'data-test-subj': dataTestSubj, ...rest }) => {
+  const euiTheme = useEuiTheme();
+  const styles = euiErrorBoundaryStyles(euiTheme);
+
+  return (
+    <div
+      css={styles.euiErrorBoundary}
+      className={classNames('euiErrorBoundary', className)}
+      data-test-subj={classNames('euiErrorBoundary', dataTestSubj)}
+      {...rest}
+    >
+      <EuiCodeBlock>
+        <EuiTitle size="xs">
+          <p>
+            <EuiI18n token="euiErrorBoundary.error" default="Error" />
+          </p>
+        </EuiTitle>
+        {errorMessage}
+      </EuiCodeBlock>
+    </div>
+  );
+};
