@@ -1,9 +1,9 @@
 @import '../variables/header';
 
 @mixin euiHeaderAffordForFixed($headerHeight: $euiHeaderHeightCompensation) {
-  // The `&` allows for grouping inside another specific body class.
+  // The `@at-root #{&}` allows for grouping alongside another specific body class.
   // When not applied inside of another selector, it simply renders with the single class
-  &.euiBody--headerIsFixed {
+  @at-root #{&}.euiBody--headerIsFixed {
     padding-top: $headerHeight;
 
     // When the EuiHeader is fixed, we need to account for it in the position of the flyout
