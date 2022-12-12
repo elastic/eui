@@ -159,9 +159,9 @@ import { ListGroupExample } from './views/list_group/list_group_example';
 
 import { LoadingExample } from './views/loading/loading_example';
 
-import { MarkdownEditorExample } from './views/markdown_editor/mardown_editor_example';
+import { MarkdownEditorExample } from './views/markdown_editor/markdown_editor_example';
 
-import { MarkdownFormatExample } from './views/markdown_editor/mardown_format_example';
+import { MarkdownFormatExample } from './views/markdown_editor/markdown_format_example';
 
 import { MarkdownPluginExample } from './views/markdown_editor/markdown_plugin_example';
 
