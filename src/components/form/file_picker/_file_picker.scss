@@ -68,13 +68,14 @@
   * 4. Static height so that it doesn't shift its surrounding contents around
   */
 .euiFilePicker__prompt {
-  @include euiFormControlDefaultShadow;
+  // @include euiFormControlDefaultShadow;
   @include euiFormControlWithIcon; /* 2 */
   height: $euiFormControlHeight;
   padding-top: $euiFormControlPadding;
   padding-right: $euiFormControlPadding;
   padding-bottom: $euiFormControlPadding;
   pointer-events: none; /* 1 */
+  border: 2px dashed $euiColorLightShade;
   border-radius: $euiFormControlBorderRadius;
 
   transition:
@@ -115,7 +116,9 @@
 
   // make normal sized prompt look like placeholder
   .euiFilePicker:not(.euiFilePicker--large):not(.euiFilePicker-hasFiles) & {
-    color: $euiColorMediumShade;
+    color: $euiColorPrimaryText;
+    position: relative;
+    top: -2px;
   }
 }
 
