@@ -1,5 +1,5 @@
-import React, { useState, Fragment, useContext } from 'react';
-import { ThemeContext } from '../../components';
+import React, { useState } from 'react';
+
 import {
   Chart,
   Settings,
@@ -31,6 +31,7 @@ import {
   euiPaletteNegative,
   euiPalettePositive,
   euiPaletteGray,
+  useEuiTheme,
 } from '../../../../src/services';
 
 const paletteData = {
@@ -47,8 +48,8 @@ const paletteData = {
 
 const paletteNames = Object.keys(paletteData);
 
-export const Theming = () => {
-  const themeContext = useContext(ThemeContext);
+export default () => {
+  const { colorMode } = useEuiTheme();
 
   const palettes = paletteNames.map((paletteName, index) => {
     const options =
@@ -78,7 +79,7 @@ export const Theming = () => {
   /**
    * Setup theme based on current light/dark theme
    */
-  const isDarkTheme = themeContext.theme.includes('dark');
+  const isDarkTheme = colorMode === 'DARK';
   const theme = isDarkTheme
     ? EUI_CHARTS_THEME_DARK.theme
     : EUI_CHARTS_THEME_LIGHT.theme;
@@ -98,7 +99,7 @@ export const Theming = () => {
       : theme;
 
   return (
-    <Fragment>
+    <>
       <Chart size={{ height: 200 }}>
         <Settings theme={customTheme} showLegend={false} />
         <BarSeries
@@ -136,6 +137,6 @@ export const Theming = () => {
           />
         </EuiFlexItem>
       </EuiFlexGroup>
-    </Fragment>
+    </>
   );
 };
