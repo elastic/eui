@@ -75,7 +75,6 @@ module.exports = {
     'declaration-block-semicolon-newline-after': 'always-multi-line',
 
     // Value preferences
-    'number-leading-zero': 'never',
     'number-max-precision': null,
     'color-hex-case': 'upper',
     // Attempt to catch/flag non-variable color values
