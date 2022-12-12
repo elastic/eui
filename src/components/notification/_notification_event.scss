@@ -22,7 +22,7 @@
   }
 
   &--isRead {
-    color: $euiColorDarkShade !important; // sass-lint:disable-line no-important
+    color: $euiColorDarkShade !important; // stylelint-disable-line declaration-no-important
   }
 }
 

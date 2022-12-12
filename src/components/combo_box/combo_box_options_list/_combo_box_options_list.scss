@@ -4,12 +4,11 @@
  */
 .euiComboBoxOptionsList {
   // Remove transforms from popover panel
-  transform: none !important; // sass-lint:disable-line no-important
+  transform: none !important; // stylelint-disable-line declaration-no-important
   top: 0;
 
   .euiFilterSelectItem__content {
-    // sass-lint:disable no-important
-    margin-block: 0 !important;
+    margin-block: 0 !important; // stylelint-disable-line declaration-no-important
   }
 }
 

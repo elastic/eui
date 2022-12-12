@@ -82,7 +82,6 @@
   &--in-range#{&}--disabled:not(.react-datepicker__day--selected):hover {
     $backgroundColor: transparentize($euiColorPrimary, $euiButtonDefaultTransparency);
 
-    // sass-lint:disable-block indentation
     box-shadow: -2px 0 $backgroundColor,
                  2px 0 $backgroundColor;
     border-radius: 0;

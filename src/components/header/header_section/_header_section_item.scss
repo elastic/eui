@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
 
-  &:after {
+  &::after {
     position: absolute;
     content: '';
     top: $euiSize;
@@ -16,14 +16,14 @@
 }
 
 .euiHeaderSectionItem--borderLeft {
-  &:after {
+  &::after {
     left: 0;
     width: 1px;
   }
 }
 
 .euiHeaderSectionItem--borderRight {
-  &:after {
+  &::after {
     width: 1px;
     left: auto;
     right: 0;
@@ -37,7 +37,7 @@
 
   .euiHeaderSectionItem--borderLeft,
   .euiHeaderSectionItem--borderRight {
-    &:after {
+    &::after {
       display: none;
     }
   }

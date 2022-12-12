@@ -55,7 +55,7 @@
 }
 
 @mixin euiPlaceholderPerBrowser {
-  // sass-lint:disable-block no-vendor-prefixes
+  // stylelint-disable selector-no-vendor-prefix
   // Each prefix must be its own content block
   &::-webkit-input-placeholder { @content; opacity: 1; }
   &::-moz-placeholder { @content; opacity: 1; }
@@ -78,7 +78,6 @@
   font-size: $euiFontSizeS;
   color: $euiTextColor;
 
-  // sass-lint:disable-block mixins-before-declarations
   @include euiPlaceholderPerBrowser {
     color: $euiFormControlPlaceholderText;
   }
@@ -143,7 +142,6 @@
 // 1. Must supply both values to background-size or some browsers apply the single value to both directions
 
 @mixin euiFormControlDefaultShadow($borderOnly: false) {
-  // sass-lint:disable-block indentation
   background-color: $euiFormBackgroundColor;
   background-repeat: no-repeat;
   background-size: 0% 100%; // 1
@@ -164,14 +162,13 @@
 
   // Fixes bug in Firefox where adding a transition to the background-color
   // caused a flash of differently styled dropdown.
-  @supports (-moz-appearance: none) { // sass-lint:disable-line no-vendor-prefixes
+  @supports (-moz-appearance: none) {
     // List *must* be in the same order as the above.
     transition-property: box-shadow, background-image, background-size;
   }
 }
 
 @mixin euiFormControlFocusStyle($borderOnly: false) {
-  // sass-lint:disable-block indentation, empty-args
   background-color: tintOrShade($euiColorEmptyShade, 0%, 40%);
   background-image: euiFormControlGradient();
   background-size: 100% 100%; // 1
@@ -180,8 +177,7 @@
   @if ($borderOnly) {
     box-shadow: inset 0 0 0 1px $euiFormBorderColor;
   } @else {
-    box-shadow:
-      inset 0 0 0 1px $euiFormBorderColor;
+    box-shadow: inset 0 0 0 1px $euiFormBorderColor;
   }
 }
 
@@ -191,7 +187,6 @@
 }
 
 @mixin euiFormControlDisabledTextStyle {
-  // sass-lint:disable-block no-vendor-prefixes
   color: $euiFormControlDisabledColor;
   -webkit-text-fill-color: $euiFormControlDisabledColor; // Required for Safari
 }
@@ -202,14 +197,12 @@
   background: $euiFormBackgroundDisabledColor;
   box-shadow: inset 0 0 0 1px $euiFormBorderDisabledColor;
 
-  // sass-lint:disable-block mixins-before-declarations
   @include euiPlaceholderPerBrowser {
     color: $euiFormControlDisabledColor;
   }
 }
 
 @mixin euiFormControlReadOnlyStyle {
-  // sass-lint:disable-block no-vendor-prefixes
   cursor: default;
   color: $euiTextColor;
   -webkit-text-fill-color: $euiTextColor; // Required for Safari
@@ -218,7 +211,6 @@
   border-color: transparent;
   box-shadow: inset 0 0 0 1px $euiFormBorderDisabledColor;
 }
-
 
 // 2. Override invalid state with focus state.
 
@@ -249,7 +241,6 @@
     }
 
     // Needs to be set for autofill
-    // sass-lint:disable-block no-vendor-prefixes
     &:-webkit-autofill {
       -webkit-text-fill-color: lightOrDarkTheme($euiColorDarkestShade, $euiColorLightShade);
 
@@ -257,7 +248,6 @@
         color: lightOrDarkTheme($euiColorDarkestShade, $euiColorLightShade);
       }
     }
-
   }
 
   @if ($includeSizes) {
@@ -266,7 +256,7 @@
     }
 
     &--inGroup {
-      // sass-lint:disable-block no-important
+      // stylelint-disable-next-line declaration-no-important
       box-shadow: none !important;
       border-radius: 0;
     }
@@ -313,11 +303,10 @@
   } @else if $type == 'square' {
     border-radius: $euiCheckboxBorderRadius;
   }
-  // sass-lint:disable-block indentation
-  transition: background-color $euiAnimSpeedFast ease-in,
-              border-color $euiAnimSpeedFast ease-in;
-}
 
+  transition: background-color $euiAnimSpeedFast ease-in,
+              border-color $euiAnimSpeedFast ease-in; // stylelint-disable-line indentation
+}
 
 @mixin euiCustomControlSelected($type: null) {
   border-color: $euiColorPrimary;
@@ -363,7 +352,7 @@
 
 @mixin euiHiddenSelectableInput {
   position: absolute;
-  // sass-lint:disable no-important
+  // stylelint-disable-next-line declaration-no-important
   opacity: 0 !important; // Make sure it's still hidden when :disabled
   width: 100%;
   height: 100%;

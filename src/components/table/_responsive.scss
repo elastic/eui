@@ -1,3 +1,6 @@
+// TODO: Address nesting during Emotion conversion, if possible
+// stylelint-disable max-nesting-depth
+
 .euiTableRowCell__mobileHeader {
   // Don't display by default unless table is responsive
   display: none;
@@ -5,20 +8,19 @@
 
 @include euiBreakpoint('xs', 's') {
   .euiTableRowCell--hideForMobile { // must come last to override any special cases
-    // sass-lint:disable-block no-important
+    // stylelint-disable-next-line declaration-no-important
     display: none !important;
   }
 }
 
 @include euiBreakpoint('m', 'l', 'xl') {
   .euiTableRowCell--hideForDesktop { // must come last to override any special cases
-    // sass-lint:disable-block no-important
+    // stylelint-disable-next-line declaration-no-important
     display: none !important;
   }
 }
 
 @include euiBreakpoint('xs', 's') {
-
   .euiTable.euiTable--responsive {
     // Not allowing compressed styles in mobile view (for now)
 

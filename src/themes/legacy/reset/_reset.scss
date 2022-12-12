@@ -1,12 +1,12 @@
 // This file allows multi-line selectors to make it more readable
-// sass-lint:disable single-line-per-selector
+// stylelint-disable selector-list-comma-newline-after
 
 /**
  * Adapted from Eric Meyer's reset (http://meyerweb.com/eric/tools/css/reset/, v2.0 | 20110126).
  *
  */
 
-*, *:before, *:after {
+*, *::before, *::after {
   box-sizing: border-box;
 }
 
@@ -72,7 +72,7 @@ body {
 *:focus {
   outline: none;
 
-  // sass-lint:disable no-vendor-prefixes
+  // stylelint-disable selector-no-vendor-prefix
   // Disables border that shows up when tabbing in Firefox.
   &::-moz-focus-inner {
     border: none;
@@ -133,10 +133,10 @@ blockquote, q {
   quotes: none;
 }
 
-blockquote:before, blockquote:after,
-q:before, q:after {
+blockquote::before, blockquote::after,
+q::before, q::after {
   content: '';
-  content: none; // sass-lint:disable-line no-duplicate-properties
+  content: none;
 }
 
 table {
@@ -155,6 +155,7 @@ fieldset {
 /* Chrome has an issue around RTL languages in SVGs when letter-spacing is negative
  * https://bugs.chromium.org/p/chromium/issues/detail?id=966480
  */
+
 svg text {
-  letter-spacing: normal !important; // sass-lint:disable-line no-important
+  letter-spacing: normal !important; // stylelint-disable-line declaration-no-important
 }

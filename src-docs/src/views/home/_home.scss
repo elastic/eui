@@ -1,18 +1,17 @@
 .guideHomePage__blockformCard {
   min-width: 200px;
-  flex-basis: 100% !important; // sass-lint:disable-line no-important
+  flex-basis: 100% !important; // stylelint-disable-line declaration-no-important
 
-  // sass-lint:disable-block mixins-before-declarations
   @include euiBreakpoint('s', 'm') {
-    flex-basis: 45% !important; // sass-lint:disable-line no-important
+    flex-basis: 45% !important; // stylelint-disable-line declaration-no-important
   }
 
   @include euiBreakpoint('l') {
-    flex-basis: 30% !important; // sass-lint:disable-line no-important
+    flex-basis: 30% !important; // stylelint-disable-line declaration-no-important
   }
 
   @include euiBreakpoint('xl') {
-    flex-basis: 22% !important; // sass-lint:disable-line no-important
+    flex-basis: 22% !important; // stylelint-disable-line declaration-no-important
   }
 }
 
@@ -37,7 +36,7 @@
     width: 100%;
     height: auto;
 
-    &:before {
+    &::before {
       content: '';
       display: block;
       position: absolute;
@@ -58,7 +57,6 @@
 
     &:hover ~ .guideHomePage__illustrationEffectSVG {
       transform: perspective(1600px) rotateX(-5deg) rotateY(5deg);
-
     }
   }
 
@@ -70,7 +68,7 @@
     width: 50%;
     z-index: 300;
 
-    &:hover ~ .guideHomePage__illustrationEffectSVG  {
+    &:hover ~ .guideHomePage__illustrationEffectSVG {
       transform: perspective(1600px) rotateX(-5deg) rotateY(-5deg);
     }
   }
@@ -96,10 +94,10 @@
     width: 50%;
     z-index: 300;
 
-    &:hover ~ .guideHomePage__illustrationEffectSVG  {
+    &:hover ~ .guideHomePage__illustrationEffectSVG {
       transform: perspective(1600px) rotateX(5deg) rotateY(-5deg);
     }
-	}
+  }
 }
 
 .guideHome__footer {
@@ -112,10 +110,11 @@
 }
 
 .guideHome__footerLogo {
-  // sass-lint:disable-block no-important
   vertical-align: middle;
+  // stylelint-disable declaration-no-important
   display: inline-block !important;
   margin-bottom: 0 !important;
+  // stylelint-enable declaration-no-important
   position: relative;
   top: -1px;
 }

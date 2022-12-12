@@ -1,6 +1,6 @@
 // For using icons as background images (data-uri)
 @mixin euiIconBackground($type, $color: $euiColorEmptyShade) {
-  // sass-lint:disable-block quotes
+  // stylelint-disable string-quotes
   @if variable-exists(type) == false {
     @error 'A $type:string must be provided to @mixin euiIconBackground().';
   } @else if type-of($color) != color {

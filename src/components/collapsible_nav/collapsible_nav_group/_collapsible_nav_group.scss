@@ -22,7 +22,7 @@
   // Forcing better contrast of focus state on EuiAccordion toggle icon
   .euiCollapsibleNavGroup__heading:focus .euiAccordion__iconWrapper {
     color: $euiCollapsibleNavGroupDarkHighContrastColor;
-    animation-name: euiCollapsibleNavGroupDarkFocusRingAnimate !important; // sass-lint:disable-line no-important
+    animation-name: euiCollapsibleNavGroupDarkFocusRingAnimate !important; // stylelint-disable-line declaration-no-important
   }
 
   .euiCollapsibleNavGroup__title {

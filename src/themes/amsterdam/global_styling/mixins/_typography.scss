@@ -1,7 +1,6 @@
 // Font sizing extends, using rem mixin
 // All line-heights are aligned to baseline grid
-// sass-lint:disable no-vendor-prefixes
-
+// stylelint-disable property-no-vendor-prefix
 
 @function fontSizeToRemOrEm($size, $sizingMethod: 'rem') {
   @if ($sizingMethod == 'rem') {

@@ -4,8 +4,6 @@
  */
 .euiKeyPadMenuItem {
   @include euiFont; /* 1 */
-  // Disable indentation for transition legibility
-  // sass-lint:disable-block indentation
   display: block;
   padding: $euiSizeXS;
   height: $euiKeyPadMenuSize;
@@ -15,7 +13,6 @@
   border-radius: $euiBorderRadius;
   color: $euiTextColor; // Override possible link color
 
-  // sass-lint:disable-block mixins-before-declarations
   @include euiCanAnimate {
     transition:
       background-color $euiAnimSpeedFast ease-in,
@@ -32,8 +29,6 @@
       @include euiSlightShadow;
       border-color: $euiBorderColor;
 
-      // sass-lint:disable-block mixins-before-declarations
-      // sass-lint:disable-block nesting-depth
       @include euiCanAnimate {
         .euiKeyPadMenuItem__icon {
           transform: translateY(0);
@@ -50,10 +45,10 @@
   &.euiKeyPadMenuItem-isDisabled {
     @include euiDisabledState;
 
-    .euiKeyPadMenuItem__icon  {
+    .euiKeyPadMenuItem__icon {
       filter: grayscale(100%);
 
-      svg * { // sass-lint:disable-line nesting-depth
+      svg * { // stylelint-disable-line max-nesting-depth
         fill: $euiButtonColorDisabledText;
       }
     }

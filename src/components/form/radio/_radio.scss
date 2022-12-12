@@ -1,3 +1,6 @@
+// TODO: Address nesting during Emotion conversion, if possible
+// stylelint-disable max-nesting-depth
+
 /**
   * 1. Float above the visual radio and match its dimension, so that when users try to click it
   *    they actually click this input.
@@ -43,12 +46,11 @@
     }
 
     &[disabled] {
-      //sass-lint:disable no-important
-      cursor: not-allowed !important;
+      cursor: not-allowed !important; // stylelint-disable-line declaration-no-important
 
       ~ .euiRadio__label {
         color: $euiFormControlDisabledColor;
-        cursor: not-allowed !important;
+        cursor: not-allowed !important; // stylelint-disable-line declaration-no-important
       }
 
       + .euiRadio__circle {

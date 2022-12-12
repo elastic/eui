@@ -5,20 +5,20 @@
   flex-shrink: 0;
   z-index: 1;
 
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     content: '';
     display: block;
     position: absolute;
     top: 50%;
     left: 50%;
     background-color: $euiColorDarkestShade;
-    transition: (
+    transition:
       width $euiResizableButtonTransitionSpeed ease,
       height $euiResizableButtonTransitionSpeed ease,
       transform $euiResizableButtonTransitionSpeed ease,
       background-color $euiResizableButtonTransitionSpeed ease
-    );
+    ;
   }
 
   &.euiResizableButton--horizontal {
@@ -27,17 +27,17 @@
     margin-left: -($euiResizableButtonSize / 2);
     margin-right: -($euiResizableButtonSize / 2);
 
-    &:before,
-    &:after {
+    &::before,
+    &::after {
       width: 1px;
       height: $euiSizeM;
     }
 
-    &:before {
+    &::before {
       transform: translate(-2px, -50%);
     }
 
-    &:after {
+    &::after {
       transform: translate(1px, -50%);
     }
   }
@@ -48,82 +48,82 @@
     margin-top: -($euiResizableButtonSize / 2);
     margin-bottom: -($euiResizableButtonSize / 2);
 
-    &:before,
-    &:after {
+    &::before,
+    &::after {
       width: $euiSizeM;
       height: 1px;
     }
 
-    &:before {
+    &::before {
       transform: translate(-50%, -2px);
     }
 
-    &:after {
+    &::after {
       transform: translate(-50%, 1px);
     }
   }
 
-  //Lighten the "grab" icon on :hover
+  // Lighten the "grab" icon on :hover
   &:hover:not(:disabled) {
-    &:before,
-    &:after {
+    &::before,
+    &::after {
       background-color: $euiColorMediumShade;
-      transition-delay: $euiResizableButtonTransitionSpeed; //Delay transition on hover so animation is not accidentally triggered on mouse over
+      transition-delay: $euiResizableButtonTransitionSpeed; // Delay transition on hover so animation is not accidentally triggered on mouse over
     }
   }
 
-  //Add a transparent background to the container and emphasis the "grab" icon with primary color on :focus
+  // Add a transparent background to the container and emphasis the "grab" icon with primary color on :focus
   &:focus:not(:disabled) {
     background-color: transparentize($euiColorPrimary, .9);
 
-    &:before,
-    &:after {
+    &::before,
+    &::after {
       background-color: $euiColorPrimary;
       // Overrides default transition so that "grab" icon background-color doesn't animate
-      transition: (
+      transition:
         width $euiResizableButtonTransitionSpeed ease,
         height $euiResizableButtonTransitionSpeed ease,
         transform $euiResizableButtonTransitionSpeed ease
-      );
+      ;
       transition-delay: $euiResizableButtonTransitionSpeed / 2;
     }
   }
 
-  //Morph the "grab" icon into a fluid 2px straight line on :hover and :focus
+  // Morph the "grab" icon into a fluid 2px straight line on :hover and :focus
   &:hover:not(:disabled),
   &:focus:not(:disabled) {
     &.euiResizableButton--horizontal {
-      &:before,
-      &:after {
+      &::before,
+      &::after {
         height: 100%;
       }
 
-      &:before {
+      &::before {
         transform: translate(-1px, -50%);
       }
 
-      &:after {
+      &::after {
         transform: translate(0, -50%);
       }
     }
 
     &.euiResizableButton--vertical {
-      &:before,
-      &:after {
+      &::before,
+      &::after {
         width: 100%;
       }
 
-      &:before {
+      &::before {
         transform: translate(-50%, -1px);
       }
 
-      &:after {
+      &::after {
         transform: translate(-50%, 0);
       }
     }
   }
 
   &:disabled {
-    display: none !important; // sass-lint:disable-line no-important
+    display: none !important; // stylelint-disable-line declaration-no-important
   }
 }
