@@ -1,5 +1,5 @@
-// sass-lint:disable no-vendor-prefixes
-// sass-lint:disable no-important
+// stylelint-disable property-no-vendor-prefix
+// stylelint-disable declaration-no-important
 
 @function fontSizeToRemOrEm($size, $sizingMethod: 'rem') {
   @if ($sizingMethod == 'rem') {
@@ -130,16 +130,14 @@
   word-break: break-word;
 }
 
-// Text truncation
-//
-// Prevent text from wrapping onto multiple lines, and truncate with an
-// ellipsis.
-//
-// 1. Ensure that the node has a maximum width after which truncation can
-//    occur.
-
+/**
+ * Text truncation
+ *
+ * Prevent text from wrapping onto multiple lines, and truncate with an ellipsis.
+ *
+ * 1. Ensure that the node has a maximum width after which truncation can occur.
+ */
 @mixin euiTextTruncate {
-  // sass-lint:disable-block no-important
   max-width: 100%; // 1
   overflow: hidden !important;
   text-overflow: ellipsis !important;
@@ -150,13 +148,13 @@
   font-feature-settings: $euiFontFeatureSettings, 'tnum' 1; // Fixed-width numbers for tabular data
 }
 
-
-// Text weight shifting
-//
-// When changing the font-weight based the state of the component
-// this mixin will ensure that the sizing is dependent on the boldest
-// weight so it doesn't shifter sibling content.
-
+/**
+ * Text weight shifting
+ *
+ * When changing the font-weight based the state of the component
+ * this mixin will ensure that the sizing is dependent on the boldest
+ * weight so it doesn't shifter sibling content.
+ */
 @mixin euiTextShift($fontWeight: $euiFontWeightBold, $attr: 'data-text') {
   &::after {
     display: block;
@@ -167,4 +165,3 @@
     visibility: hidden;
   }
 }
-

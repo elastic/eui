@@ -4,14 +4,13 @@
 @mixin euiScrollBar($thumbColor: $euiColorDarkShade, $trackBackgroundColor: transparent, $size: 'thin') {
   // Firefox's scrollbar coloring cascades, but the sizing does not,
   // so it's being added to this mixin for allowing support wherever custom scrollbars are
-  // sass-lint:disable-block no-misspelled-properties
   scrollbar-color: transparentize($thumbColor, .5) $trackBackgroundColor; // Firefox support
 
   @if ($size == 'thin') {
     scrollbar-width: thin;
   }
 
-  // sass-lint:disable-block no-vendor-prefixes
+  // stylelint-disable selector-no-vendor-prefix
   &::-webkit-scrollbar {
     width: $euiScrollBar;
     height: $euiScrollBar;

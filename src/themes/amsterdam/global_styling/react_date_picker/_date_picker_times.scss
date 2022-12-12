@@ -43,7 +43,7 @@
   @include euiYScroll;
   padding: $euiSizeXS $euiSizeM;
   // Set the min-height with the following, but it should stretch to fit if the container is larger
-  height: 100px !important; // sass-lint:disable-line no-important
+  height: 100px !important;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -54,7 +54,6 @@
 // Mainly a copy/paste of .euiEmptyButton
 .react-datepicker__time-list-item {
   @include euiButton;
-  // sass-lint:disable-block no-important
   transform: none !important; /* 1 */
   animation: none !important; /* 1 */
   transition-timing-function: ease-in; /* 2 */
@@ -93,7 +92,7 @@
 
 // When in time only mode we make the dropdown look more like the combo box styling.
 .react-datepicker--time-only {
-  padding: 0 !important; // sass-lint:disable-line no-important
+  padding: 0 !important;
 
   .react-datepicker__time-container {
     background-color: transparent;
@@ -101,7 +100,7 @@
   }
 
   .react-datepicker__time-list {
-    height: 204px !important; // sass-lint:disable-line no-important
+    height: 204px !important;
   }
 
   .react-datepicker__time-list-item {

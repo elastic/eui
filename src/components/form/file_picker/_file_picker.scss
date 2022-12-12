@@ -77,7 +77,6 @@
   pointer-events: none; /* 1 */
   border-radius: $euiFormControlBorderRadius;
 
-  // sass-lint:disable-block indentation
   transition:
     box-shadow $euiAnimSpeedFast ease-in,
     background-color $euiAnimSpeedFast ease-in,
@@ -178,7 +177,7 @@
 
 // Large styles only
 .euiFilePicker--large {
-  // sass-lint:disable-block nesting-depth
+  // stylelint-disable max-nesting-depth
   // Hover and focus
   .euiFilePicker__input:hover:not(:disabled),
   .euiFilePicker__input:focus {

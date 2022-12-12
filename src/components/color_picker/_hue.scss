@@ -1,6 +1,6 @@
 // This wraps the range. It is needed because there is no way to do a linear gradient in ie11 for the track
 .euiHue {
-  // sass-lint:disable-block no-color-literals
+  // stylelint-disable color-no-hex
   background: linear-gradient(to right,
     #FF3232 0%,
     #FFF130 20%,
@@ -9,14 +9,15 @@
     #282CFF 71%,
     #FF28FB 88%,
     #FF0094 100%
-   );
+  );
+  // stylelint-enable color-no-hex
   height: $euiSizeL;
   margin: $euiSizeXS 0;
   position: relative;
 
   // To make our fake range skinny, we add some pseudo borders to fake the height of the gradient
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     content: '';
     left: 0;
     position: absolute;
@@ -25,7 +26,7 @@
     width: 100%;
   }
 
-  &:after {
+  &::after {
     bottom: 0;
   }
 }
@@ -45,11 +46,10 @@
   background: transparent;
   z-index: 2; // Needed to place the thumb above the :after pseudo border from .euiRange
 
-
   // Resets for the range
 
   // Disable linter for these very unique vendor controls
-  // sass-lint:disable-block no-vendor-prefixes
+  // stylelint-disable property-no-vendor-prefix, selector-no-vendor-prefix
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
     margin-top: 0;

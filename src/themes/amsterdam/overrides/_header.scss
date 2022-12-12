@@ -5,8 +5,8 @@
 }
 
 // Remove borders without deleting the prop just yet
-.euiHeaderSectionItem:after {
-  display: none !important; // sass-lint:disable-line no-important
+.euiHeaderSectionItem::after {
+  display: none !important; // stylelint-disable-line declaration-no-important
 }
 
 .euiHeaderLogo {

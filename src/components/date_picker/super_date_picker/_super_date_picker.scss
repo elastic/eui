@@ -1,5 +1,3 @@
-// sass-lint:disable-block function-name-format
-
 .euiSuperDatePicker__flexWrapper {
   max-width: 100%;
   // Set a sensible min-width for when width is auto
@@ -34,10 +32,9 @@
   width: $euiSuperDatePickerWidth;
 }
 
-
 .euiSuperDatePicker {
-  // sass-lint:disable-block no-important
   // Allow it to always grow to fit the container since the default form max width is too small
+  // stylelint-disable-next-line declaration-no-important
   max-width: 100% !important;
 
   > .euiFormControlLayout__childrenWrapper {

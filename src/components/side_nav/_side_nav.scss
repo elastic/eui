@@ -4,7 +4,7 @@
   border-bottom: $euiBorderThin;
   width: 100%;
   text-align: left;
-  border-radius: 0 !important; // sass-lint:disable-line no-important
+  border-radius: 0 !important; // stylelint-disable-line declaration-no-important
   font-size: $euiFontSizeM;
   padding: 0 $euiSize; // This plus the inner padding is equal to paddingSize large for EuiPage
 
@@ -22,6 +22,7 @@
 }
 
 // Loop through the breakpoints and apply mobile styles only to the right className
+// stylelint-disable max-nesting-depth
 @each $breakpoint in $euiBreakpointKeys {
   @include euiBreakpoint($breakpoint) {
     .euiSideNav__contentMobile-#{$breakpoint} {
