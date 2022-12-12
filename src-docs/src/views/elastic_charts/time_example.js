@@ -1,21 +1,17 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import { ExternalBadge } from './shared';
-import { TimeChart } from './time_chart';
+import TimeChart from './time_chart';
 
 import { EuiCode } from '../../../../src/components';
 
 export const ElasticChartsTimeExample = {
   title: 'Time series',
-  intro: (
-    <Fragment>
-      <ExternalBadge />
-    </Fragment>
-  ),
+  intro: <ExternalBadge />,
   sections: [
     {
       text: (
-        <Fragment>
+        <>
           <p>
             Time series charts show data over a period of time, such as trends
             or comparisons across multiple categories. When smaller changes
@@ -37,7 +33,7 @@ export const ElasticChartsTimeExample = {
               </EuiCode>
             </li>
           </ul>
-        </Fragment>
+        </>
       ),
       demo: <TimeChart />,
     },
