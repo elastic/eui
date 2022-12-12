@@ -10,12 +10,10 @@
 
 import React, { useState } from 'react';
 import { EuiExpression } from './expression';
-import { EuiFieldNumber } from '../form';
+import { EuiFieldNumber, EuiSelect } from '../form';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiPanel } from '../panel';
-import { EuiPopover } from '../popover';
-import { EuiPopoverTitle } from '../popover';
-import { EuiSelect } from '../form';
+import { EuiPopover, EuiPopoverTitle } from '../popover';
 import { EuiSpacer } from '../spacer';
 import { useGeneratedHtmlId } from '../../services';
 

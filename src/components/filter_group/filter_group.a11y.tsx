@@ -8,14 +8,11 @@
 
 /// <reference types="../../../cypress/support"/>
 
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { EuiFilterButton } from './filter_button';
 import { EuiFilterGroup } from './filter_group';
 import { EuiPopover, EuiPopoverTitle } from '../popover';
 import { EuiSelectable } from '../selectable';
-import { EuiSelectableGroupLabelOption } from '../selectable/selectable_option';
-import { EuiSpacer } from '../spacer';
-import { EuiSwitch } from '../form';
 import { useGeneratedHtmlId } from '../../services';
 
 describe('EuiFilterGroup single filter example', () => {
