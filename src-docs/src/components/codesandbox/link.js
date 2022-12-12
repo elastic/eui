@@ -125,7 +125,15 @@ ${demoContent}
     const displayToggleDeps = listExtraDeps(cleanedDisplayToggles);
 
     /* 6 */
-    mergedDeps = { ...demoContentDeps, ...displayToggleDeps };
+    mergedDeps = { ...mergedDeps, ...displayToggleDeps };
+  }
+
+  /**
+   * If dependencies include @elastic/charts, we need to include a few peer dependencies
+   * @see https://github.com/elastic/elastic-charts/wiki/Consuming-@elastic-charts#using-elastic-charts-in-a-standalone-project
+   */
+  if (demoContentDeps.hasOwnProperty('@elastic/charts')) {
+    mergedDeps = { ...mergedDeps, 'moment-timezone': 'latest' };
   }
 
   const config = {
