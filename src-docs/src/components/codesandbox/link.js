@@ -49,19 +49,14 @@ export const CodeSandboxLinkComponent = ({
   type = 'js',
   context,
 }) => {
-  let cssFile;
-  switch (context.theme) {
-    case 'dark':
-      cssFile = '@elastic/eui/dist/eui_theme_dark.css';
-      break;
-    default:
-      cssFile = '@elastic/eui/dist/eui_theme_light.css';
-      break;
-  }
+  const isDarkMode = context.theme.includes('dark');
+  const colorMode = isDarkMode ? 'dark' : 'light';
+
+  const cssFile = `@elastic/eui/dist/eui_theme_${colorMode}.css`;
 
   const providerPropsObject = {};
   // Only add configuration if it isn't the default
-  if (context.theme.includes('dark')) {
+  if (isDarkMode) {
     providerPropsObject.colorMode = 'dark';
   }
   // Can't spread an object inside of a string literal
@@ -125,7 +120,21 @@ ${demoContent}
     const displayToggleDeps = listExtraDeps(cleanedDisplayToggles);
 
     /* 6 */
-    mergedDeps = { ...demoContentDeps, ...displayToggleDeps };
+    mergedDeps = { ...mergedDeps, ...displayToggleDeps };
+  }
+
+  /**
+   * If dependencies include @elastic/charts, we need to include a few peer dependencies
+   * @see https://github.com/elastic/elastic-charts/wiki/Consuming-@elastic-charts#using-elastic-charts-in-a-standalone-project
+   */
+  if (demoContentDeps.hasOwnProperty('@elastic/charts')) {
+    mergedDeps = { ...mergedDeps, 'moment-timezone': 'latest' };
+    // We need to require the theme CSS as well for charts to actually render
+    demoContent = demoContent.replace(
+      "from '@elastic/charts';",
+      `from '@elastic/charts';
+import '@elastic/charts/dist/theme_only_${colorMode}.css';`
+    );
   }
 
   const config = {

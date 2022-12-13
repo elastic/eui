@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Chart, Settings, Goal } from '@elastic/charts';
 import { EuiSpacer, EuiTitle } from '../../../../src/components';
 import {
@@ -6,21 +6,21 @@ import {
   euiPalettePositive,
   colorPalette,
   euiPaletteGray,
+  useEuiTheme,
 } from '../../../../src/services';
-import { ThemeContext } from '../../components';
 import {
   EUI_CHARTS_THEME_DARK,
   EUI_CHARTS_THEME_LIGHT,
 } from '../../../../src/themes/charts/themes';
 
-export const AccessibilityBullet = () => {
-  const themeContext = useContext(ThemeContext);
+export default () => {
+  const { colorMode } = useEuiTheme();
   const id = htmlIdGenerator()();
 
   /**
    * Setup theme based on current light/dark theme
    */
-  const isDarkTheme = themeContext.theme.includes('dark');
+  const isDarkTheme = colorMode === 'DARK';
   const euiChartTheme = isDarkTheme
     ? EUI_CHARTS_THEME_DARK
     : EUI_CHARTS_THEME_LIGHT;

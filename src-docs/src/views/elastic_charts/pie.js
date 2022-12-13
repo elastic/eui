@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { ThemeContext } from '../../components';
+import React from 'react';
+
 import { Chart, Partition, Settings, PartitionLayout } from '@elastic/charts';
 
 import {
@@ -12,10 +12,10 @@ import {
   EuiTitle,
   EuiSpacer,
 } from '../../../../src/components';
-import { htmlIdGenerator } from '../../../../src/services';
+import { htmlIdGenerator, useEuiTheme } from '../../../../src/services';
 
 export default () => {
-  const themeContext = useContext(ThemeContext);
+  const { colorMode } = useEuiTheme();
   const htmlId = htmlIdGenerator();
   const exampleOne = htmlId();
   const exampleTwo = htmlId();
@@ -23,7 +23,7 @@ export default () => {
   /**
    * Setup theme based on current light/dark theme
    */
-  const isDarkTheme = themeContext.theme.includes('dark');
+  const isDarkTheme = colorMode === 'DARK';
   const euiChartTheme = isDarkTheme
     ? EUI_CHARTS_THEME_DARK
     : EUI_CHARTS_THEME_LIGHT;

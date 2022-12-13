@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { ThemeContext } from '../../components';
+import React from 'react';
 import { Chart, Partition, Settings, PartitionLayout } from '@elastic/charts';
 
 import {
@@ -7,16 +6,16 @@ import {
   EUI_CHARTS_THEME_LIGHT,
 } from '../../../../src/themes/charts/themes';
 import { EuiTitle, EuiSpacer } from '../../../../src/components';
-import { htmlIdGenerator } from '../../../../src/services';
+import { useEuiTheme, htmlIdGenerator } from '../../../../src/services';
 
-export const AccessibilitySunburst = () => {
-  const themeContext = useContext(ThemeContext);
+export default () => {
+  const { colorMode } = useEuiTheme();
   const id = htmlIdGenerator()();
 
   /**
    * Setup theme based on current light/dark theme
    */
-  const isDarkTheme = themeContext.theme.includes('dark');
+  const isDarkTheme = colorMode === 'DARK';
   const euiChartTheme = isDarkTheme
     ? EUI_CHARTS_THEME_DARK
     : EUI_CHARTS_THEME_LIGHT;
@@ -41,7 +40,7 @@ export const AccessibilitySunburst = () => {
     { fruit: 'Lulo', count: 2 },
   ];
 
-  const chart = isDarkTheme ? (
+  return (
     <>
       <EuiTitle className="eui-textCenter" size="xs">
         <h3 id={id}>Students&apos; favorite fruit</h3>
@@ -58,36 +57,6 @@ export const AccessibilitySunburst = () => {
           data={data}
           layout={PartitionLayout.sunburst}
           valueAccessor={({ count }) => count}
-          layers={[
-            {
-              groupByRollup: ({ fruit }) => fruit,
-              shape: {
-                fillColor: ({ sortIndex }) =>
-                  vizColors[sortIndex % vizColors.length],
-              },
-            },
-          ]}
-          clockwiseSectors={false}
-        />
-      </Chart>
-    </>
-  ) : (
-    <>
-      <EuiTitle className="eui-textCenter" size="xs">
-        <h3 id={id}>Students&apos; favorite fruit</h3>
-      </EuiTitle>
-      <EuiSpacer />
-      <Chart size={{ height: 200 }}>
-        <Settings
-          theme={euiChartTheme.theme}
-          ariaLabelledBy={id}
-          ariaDescription="There is a great variety of reported favorite fruit"
-          ariaTableCaption="For the chart representation, after Clementine (22) individual results are not labelled as the segments become too small"
-        />
-        <Partition
-          data={data}
-          valueAccessor={({ count }) => count}
-          layout={PartitionLayout.sunburst}
           layers={[
             {
               groupByRollup: ({ fruit }) => fruit,
@@ -102,6 +71,4 @@ export const AccessibilitySunburst = () => {
       </Chart>
     </>
   );
-
-  return chart;
 };

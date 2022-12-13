@@ -1,7 +1,6 @@
 /* eslint-disable no-nested-ternary */
-import React, { Fragment, useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Chart, Settings, Axis, DataGenerator } from '@elastic/charts';
-import { ThemeContext } from '../../components';
 
 import {
   EUI_CHARTS_THEME_DARK,
@@ -29,10 +28,11 @@ import {
   euiPalettePositive,
   euiPaletteForStatus,
   euiPaletteGray,
+  useEuiTheme,
 } from '../../../../src/services';
 
-export const Categorical = () => {
-  const themeContext = useContext(ThemeContext);
+export default () => {
+  const { colorMode } = useEuiTheme();
   const highlightColor = euiPaletteColorBlind()[2];
 
   const idPrefix = 'colorType';
@@ -72,7 +72,7 @@ export const Categorical = () => {
     createCategoryChart(3);
   }, []);
 
-  const isDarkTheme = themeContext.theme.includes('dark');
+  const isDarkTheme = colorMode === 'DARK';
   const theme = isDarkTheme
     ? EUI_CHARTS_THEME_DARK.theme
     : EUI_CHARTS_THEME_LIGHT.theme;
@@ -320,7 +320,7 @@ export const Categorical = () => {
   if (colorType === 'Highlight') showLegend = false;
 
   return (
-    <Fragment>
+    <>
       {customTitle}
       {customLegend}
       <div style={{ position: 'relative' }}>
@@ -466,6 +466,6 @@ export const Categorical = () => {
           )}
         </EuiCopy>
       </div>
-    </Fragment>
+    </>
   );
 };

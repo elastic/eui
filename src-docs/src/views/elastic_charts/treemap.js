@@ -1,8 +1,6 @@
-import React, { useContext, useMemo } from 'react';
-import { ThemeContext } from '../../components';
+import React, { useMemo } from 'react';
+
 import { Chart, Partition, Settings, PartitionLayout } from '@elastic/charts';
-import { GITHUB_DATASET_MOD } from './data';
-import { euiPaletteColorBlind } from '../../../../src/services';
 
 import {
   EUI_CHARTS_THEME_DARK,
@@ -14,14 +12,17 @@ import {
   EuiTitle,
   EuiSpacer,
 } from '../../../../src/components';
+import { euiPaletteColorBlind, useEuiTheme } from '../../../../src/services';
+
+import { GITHUB_DATASET_MOD } from './data';
 
 export default () => {
-  const themeContext = useContext(ThemeContext);
+  const { colorMode } = useEuiTheme();
 
   /**
    * Setup theme based on current light/dark theme
    */
-  const isDarkTheme = themeContext.theme.includes('dark');
+  const isDarkTheme = colorMode === 'DARK';
 
   /**
    * Create a 3 rotation palette (one for each level)
@@ -38,7 +39,7 @@ export default () => {
   );
 
   return (
-    <div>
+    <>
       <EuiTitle className="eui-textCenter" size="xs">
         <h3>Github issues by label</h3>
       </EuiTitle>
@@ -119,6 +120,6 @@ export default () => {
           </Chart>
         </EuiFlexItem>
       </EuiFlexGrid>
-    </div>
+    </>
   );
 };

@@ -3,7 +3,22 @@ export const hasDisplayToggles = (code) => {
 };
 
 export const cleanEuiImports = (code) => {
-  return code.replace(/(from )'(..\/)+src(\/.*)?';/g, "from '@elastic/eui';");
+  let cleanedCode = code;
+
+  // Charts themes have a non-top-level import
+  if (code.includes('EUI_CHARTS_THEME_')) {
+    cleanedCode = cleanedCode.replace(
+      /(from )'(..\/)+src\/themes\/charts\/themes';/g,
+      "from '@elastic/eui/dist/eui_charts_theme';"
+    );
+  }
+
+  // Replace all other relative src imports
+  cleanedCode = cleanedCode.replace(
+    /(from )'(..\/)+src(\/.*)?';/g,
+    "from '@elastic/eui';"
+  );
+  return cleanedCode;
 };
 
 export const listExtraDeps = (code) => {
