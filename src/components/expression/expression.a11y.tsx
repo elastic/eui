@@ -14,10 +14,7 @@ import { EuiFieldNumber, EuiSelect } from '../form';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiPanel } from '../panel';
 import { EuiPopover, EuiPopoverTitle } from '../popover';
-import { EuiSpacer } from '../spacer';
 import { useGeneratedHtmlId } from '../../services';
-
-import { defaultAxeConfig } from '../../../cypress/support/a11y/defaultAxeConfig';
 
 interface Examples {
   description?: string;
@@ -25,10 +22,7 @@ interface Examples {
   isOpen?: boolean;
 }
 
-// Rise the popovers above GuidePageSideNav
-const POPOVER_STYLE: object = { zIndex: '200' };
-
-describe('EuiExpression base example', () => {
+describe('EuiExpression', () => {
   const BaseExpression = () => {
     const [example1, setExample1] = useState<Examples>({
       isOpen: false,
@@ -108,7 +102,7 @@ describe('EuiExpression base example', () => {
     };
 
     const renderPopover1 = () => (
-      <div style={POPOVER_STYLE} data-test-subj="cy-expression-popover-1">
+      <div data-test-subj="cy-expression-popover-1">
         <EuiPopoverTitle>When</EuiPopoverTitle>
         <EuiSelect
           compressed
@@ -127,7 +121,7 @@ describe('EuiExpression base example', () => {
     );
 
     const renderPopover2 = () => (
-      <div style={POPOVER_STYLE} data-test-subj="cy-expression-popover-2">
+      <div data-test-subj="cy-expression-popover-2">
         <EuiFlexGroup gutterSize="s">
           <EuiFlexItem grow={false} style={{ width: 150 }}>
             <EuiSelect
@@ -226,7 +220,7 @@ describe('EuiExpression base example', () => {
       cy.checkAxe();
     });
 
-    it('has zero violations when count popover is interacted with by keyboard', () => {
+    it('has zero violations when first popover is interacted with by keyboard', () => {
       cy.realPress('Tab');
       cy.get('button')
         .contains(/When count\(\)/i)
@@ -239,20 +233,10 @@ describe('EuiExpression base example', () => {
       cy.get('button')
         .contains(/When average\(\)/i)
         .should('have.focus');
-      // Adding back color contrast checking to ensure no regression on hover state
-      cy.checkAxe({
-        axeConfig: {
-          ...defaultAxeConfig,
-          rules: {
-            'color-contrast': {
-              enabled: true,
-            },
-          },
-        },
-      });
+      cy.checkAxe();
     });
 
-    it('has zero violations when is above popover is interacted with by keyboard', () => {
+    it('has zero violations when second popover is interacted with by keyboard', () => {
       cy.repeatRealPress('Tab');
       cy.get('button')
         .contains(/Is above 100/i)
@@ -268,153 +252,7 @@ describe('EuiExpression base example', () => {
       cy.get('button')
         .contains(/Is exactly 500/i)
         .should('have.focus');
-      // Adding back color contrast checking to ensure no regression on focus state
-      cy.checkAxe({
-        axeConfig: {
-          ...defaultAxeConfig,
-          rules: {
-            'color-contrast': {
-              enabled: true,
-            },
-          },
-        },
-      });
-    });
-  });
-});
-
-describe('EuiExpression color example', () => {
-  const ColorExpression = () => (
-    <div>
-      <EuiExpression description="Success" value="isDefault()" />
-      <EuiSpacer size="s" />
-      <EuiExpression description="Primary" value="color()" color="primary" />
-      <EuiSpacer size="s" />
-      <EuiExpression description="accent" value="color()" color="accent" />
-      <EuiSpacer size="s" />
-      <EuiExpression description="warning" value="color()" color="warning" />
-      <EuiSpacer size="s" />
-      <EuiExpression description="danger" value="color()" color="danger" />
-      <EuiSpacer size="s" />
-      <EuiExpression description="subdued" value="color()" color="subdued" />
-      <EuiSpacer size="s" />
-      <EuiExpression
-        description="active"
-        value="state will get color() as well"
-        color="accent"
-        isActive
-      />
-    </div>
-  );
-
-  beforeEach(() => {
-    cy.viewport(1024, 768); // medium breakpoint
-    cy.realMount(<ColorExpression />);
-  });
-
-  describe('Automated accessibility check', () => {
-    it('has zero violations on first render with color contrast enabled', () => {
-      cy.checkAxe({
-        axeConfig: {
-          ...defaultAxeConfig,
-          rules: {
-            'color-contrast': {
-              enabled: true,
-            },
-          },
-        },
-      });
-    });
-  });
-});
-
-describe('EuiExpression combined example', () => {
-  const CombinedExpression = () => (
-    <div>
-      <EuiExpression description="Select" value="count(*)" onClick={() => {}} />
-      <EuiExpression
-        description="From"
-        value="kibana_sample_data_ky_counties left"
-      />
-      <EuiExpression
-        description="join"
-        value="kibana_sample_data_ky_avl right"
-        onClick={() => {}}
-      />
-      <EuiExpression
-        description="on"
-        value="left.smis = right.kytccountynmbr"
-      />
-      <EuiExpression
-        description="group by"
-        value="right.kytccountynmbr"
-        onClick={() => {}}
-        color="accent"
-      />
-      <EuiExpression description="sort by" value="count" />
-    </div>
-  );
-
-  beforeEach(() => {
-    cy.viewport(1024, 768); // medium breakpoint
-    cy.realMount(<CombinedExpression />);
-  });
-
-  describe('Automated accessibility check', () => {
-    it('has zero violations on first render with color contrast enabled', () => {
-      cy.checkAxe({
-        axeConfig: {
-          ...defaultAxeConfig,
-          rules: {
-            'color-contrast': {
-              enabled: true,
-            },
-          },
-        },
-      });
-    });
-  });
-});
-
-describe('EuiExpression invalid example', () => {
-  const InvalidExpression = () => (
-    <div>
-      <EuiExpression
-        onClick={() => {}}
-        description="sort by"
-        value="count"
-        isInvalid
-      />
-      <EuiSpacer />
-      <div style={{ maxWidth: 220 }}>
-        <EuiExpression
-          description="email"
-          display="columns"
-          isInvalid
-          value="example@mail."
-          onClick={() => {}}
-        />
-      </div>
-    </div>
-  );
-
-  beforeEach(() => {
-    cy.viewport(1024, 768); // medium breakpoint
-    cy.realMount(<InvalidExpression />);
-  });
-
-  describe('Automated accessibility check', () => {
-    it('has zero violations on first render with color contrast enabled', () => {
-      cy.checkAxe({
-        axeConfig: {
-          ...defaultAxeConfig,
-          rules: {
-            'color-contrast': {
-              enabled: true,
-            },
-          },
-        },
-      });
+      cy.checkAxe();
     });
   });
 });
