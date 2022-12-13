@@ -11,7 +11,7 @@ _**Before you get started**_
   - if you have 2FA enabled, you may be prompted for an [OTP or other token](https://github.com/settings/tokens)
 
 ### Releasing `@elastic/eui`
-Check for latest code and dependencies. Run the following commands in a new terminal window:
+Ensure you have both the latest code and dependencies by running the following commands:
 
 ```shell
 git checkout main && git pull
