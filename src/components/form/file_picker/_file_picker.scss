@@ -68,7 +68,6 @@
   * 4. Static height so that it doesn't shift its surrounding contents around
   */
 .euiFilePicker__prompt {
-  // @include euiFormControlDefaultShadow;
   @include euiFormControlWithIcon; /* 2 */
   height: $euiFormControlHeight;
   padding-top: $euiFormControlPadding;
