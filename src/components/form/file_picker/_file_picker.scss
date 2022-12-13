@@ -116,8 +116,7 @@
   // make normal sized prompt look like placeholder
   .euiFilePicker:not(.euiFilePicker--large):not(.euiFilePicker-hasFiles) & {
     color: $euiColorPrimaryText;
-    position: relative;
-    top: -2px;
+    margin-top: calc(#{$euiSizeXS} / -2);
   }
 }
 
