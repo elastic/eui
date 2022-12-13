@@ -4005,12 +4005,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 87,
-        "column": 16
+        "line": 99,
+        "column": 12
       },
       "end": {
-        "line": 87,
-        "column": 74
+        "line": 99,
+        "column": 70
       }
     },
     "filepath": "src/components/error_boundary/error_boundary.tsx"
