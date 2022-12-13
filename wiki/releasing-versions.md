@@ -12,12 +12,8 @@ _**Before you get started**_
 
 ### Releasing `@elastic/eui`
 Ensure you have both the latest code and dependencies by running the following commands:
-
-```shell
-git checkout main && git pull
-
-# Run after the git pull completes
-yarn
+```sh
+git checkout main && git pull && yarn
 ```
 
 The release process is started by running the following command.
