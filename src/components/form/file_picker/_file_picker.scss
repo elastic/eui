@@ -102,7 +102,6 @@
 
   .euiFilePicker--large.euiFilePicker--compressed & {
     height: $euiFilePickerTallHeight - $euiSizeL; /* 4 */
-    box-shadow: none;
   }
 
   .euiFilePicker-isInvalid & {
