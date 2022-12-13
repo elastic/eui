@@ -75,7 +75,7 @@
   padding-right: $euiFormControlPadding;
   padding-bottom: $euiFormControlPadding;
   pointer-events: none; /* 1 */
-  border: 2px dashed $euiColorLightShade;
+  border: $euiBorderWidthThick dashed $euiColorLightShade;
   border-radius: $euiFormControlBorderRadius;
 
   transition:
