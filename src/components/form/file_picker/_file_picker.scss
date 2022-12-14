@@ -111,7 +111,7 @@
   @include euiTextTruncate;
   line-height: $euiSize;
 
-  // Make normal sized propmpt stand out a bit more - on the large sizez we don't need this as its already identifiable
+  // Make normal sized prompt stand out a bit more - on the large size we don't need this as it's already identifiable
   .euiFilePicker:not(.euiFilePicker--large):not(.euiFilePicker-hasFiles) & {
     color: $euiColorPrimaryText;
   }
