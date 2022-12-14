@@ -2,6 +2,6 @@
 // It adds separation between the header and flyout
 $euiHeaderBorderColor: lightOrDarkTheme(shade($euiBorderColor, 3%), shade($euiColorEmptyShade, 35%));
 
-$euiHeaderHeight: $euiSizeXXL + $euiSizeS;
+$euiHeaderHeight: $euiSizeXXL + $euiSizeS !default;
 $euiHeaderChildSize: $euiSizeXXL;
 $euiHeaderHeightCompensation: $euiHeaderHeight;
