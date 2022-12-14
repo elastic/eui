@@ -64,7 +64,7 @@
 /**
   * 1. Don't block the user from dropping files onto the filepicker.
   * 2. Ensure space for import icon, loading spinner, and clear button (only if it has files)
-  * 3. Static height so that it doesn't shift its surrounding contents around
+  * 4. Static height so that it doesn't shift its surrounding contents around
   */
 .euiFilePicker__prompt {
   @include euiFormControlWithIcon; /* 2 */
