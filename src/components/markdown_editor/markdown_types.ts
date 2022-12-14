@@ -10,7 +10,7 @@ import { ComponentType, ReactNode } from 'react';
 import { VFile } from 'vfile';
 // eslint-disable-next-line import/no-unresolved
 import { Node as UnistNode, Position as UnistPosition } from 'unist';
-import { Parser } from 'remark-parse';
+import { Parser } from 'remark-parse-no-trim';
 import { VFileMessage } from 'vfile-message';
 import { IconType } from '../icon';
 
