@@ -153,10 +153,10 @@
 // Focus
 .euiFilePicker__showDrop .euiFilePicker__prompt,
 .euiFilePicker__input:focus + .euiFilePicker__prompt {
-  @include euiFormControlFocusStyle;
+  border-color: $euiColorPrimary;
 
   .euiFilePicker--compressed & {
-    @include euiFormControlFocusStyle($borderOnly: true);
+    border-color: $euiColorPrimary;
   }
 }
 
