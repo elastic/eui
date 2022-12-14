@@ -64,8 +64,7 @@
 /**
   * 1. Don't block the user from dropping files onto the filepicker.
   * 2. Ensure space for import icon, loading spinner, and clear button (only if it has files)
-  * 3. Delay focus gradient or else it will only partially transition while file chooser opens
-  * 4. Static height so that it doesn't shift its surrounding contents around
+  * 3. Static height so that it doesn't shift its surrounding contents around
   */
 .euiFilePicker__prompt {
   @include euiFormControlWithIcon; /* 2 */
@@ -78,10 +77,8 @@
   border-radius: $euiFormControlBorderRadius;
 
   transition:
-    box-shadow $euiAnimSpeedFast ease-in,
-    background-color $euiAnimSpeedFast ease-in,
-    background-image $euiAnimSpeedFast ease-in,
-    background-size $euiAnimSpeedFast ease-in $euiAnimSpeedFast; /* 3 */
+    border-color $euiAnimSpeedFast ease-in,
+    background-color $euiAnimSpeedFast ease-in;
 
   .euiFilePicker--compressed & {
     @include euiFormControlStyleCompressed($includeStates: false);
@@ -114,9 +111,13 @@
   @include euiTextTruncate;
   line-height: $euiSize;
 
-  // make normal sized prompt look like placeholder
+  // Make normal sized propmpt stand out a bit more - on the large sizez we don't need this as its already identifiable
   .euiFilePicker:not(.euiFilePicker--large):not(.euiFilePicker-hasFiles) & {
     color: $euiColorPrimaryText;
+  }
+
+  // Offset/center prompt text for non-large file-pickers
+  .euiFilePicker:not(.euiFilePicker--large) & {
     margin-top: $euiSizeXS / -2;
   }
 }
@@ -153,10 +154,6 @@
 .euiFilePicker__showDrop .euiFilePicker__prompt,
 .euiFilePicker__input:focus + .euiFilePicker__prompt {
   border-color: $euiColorPrimary;
-
-  .euiFilePicker--compressed & {
-    border-color: $euiColorPrimary;
-  }
 }
 
 // Disabled
