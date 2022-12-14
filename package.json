@@ -52,8 +52,7 @@
   },
   "resolutions": {
     "**/prismjs": "1.27.0",
-    "**/react": "^17.0.0",
-    "**/known-css-properties": "0.24.0"
+    "**/react": "^17.0.0"
   },
   "pre-commit": [
     "test-staged"
