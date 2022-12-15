@@ -46,10 +46,7 @@ export default () => {
       aria-label="Example of Selectable supporting exclusions"
       allowExclusions
       options={options}
-      onChange={(newOptions, event, changedOption) => {
-        setOptions(newOptions);
-        console.log({ newOptions, event, changedOption });
-      }}
+      onChange={(newOptions) => setOptions(newOptions)}
     >
       {(list) => list}
     </EuiSelectable>
