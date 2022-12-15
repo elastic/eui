@@ -5,7 +5,6 @@
 }
 
 @include euiBreakpoint('xs', 's') {
-
   .euiTableHeaderMobile {
     display: flex;
     justify-content: flex-end;
@@ -15,5 +14,4 @@
   .euiTableSortMobile {
     display: block;
   }
-
 }

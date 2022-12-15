@@ -1,4 +1,4 @@
-  // Resizer straddles the column border and is an invisible hitzone for dragging
+// Resizer straddles the column border and is an invisible hitzone for dragging
 .euiDataGridColumnResizer {
   position: absolute;
   top: 0;
@@ -10,7 +10,7 @@
   z-index: 2; // Needs to be a level above the cells themselves in case of overlaps
 
   // Center a vertical line within the button above
-  &:after {
+  &::after {
     content: '';
     position: absolute;
     left: $euiSizeS - 1px;
@@ -35,12 +35,11 @@
 // we don't use negative positioning and the borders from the cell will match the container.
 @include euiDataGridHeaderCell {
   &:last-child {
-
     .euiDataGridColumnResizer {
       right: 0;
       width: $euiSize / 2;
 
-      &:after {
+      &::after {
         left: auto;
         right: 0;
       }

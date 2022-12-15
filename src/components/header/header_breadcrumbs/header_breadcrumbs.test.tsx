@@ -9,38 +9,43 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiHeaderBreadcrumbs } from './header_breadcrumbs';
 
-describe('EuiHeaderBreadcrumbs', () => {
-  it('is rendered', () => {
-    const breadcrumbs = [
-      {
-        text: 'Animals',
-        href: '#',
-        onClick: (e: React.MouseEvent) => {
-          e.preventDefault();
-          console.log('You clicked Animals');
-        },
-        'data-test-subj': 'breadcrumbsAnimals',
-        className: 'customClass',
-      },
-      {
-        text: 'Reptiles',
-        onClick: (e: React.MouseEvent) => {
-          e.preventDefault();
-          console.log('You clicked Reptiles');
-        },
-      },
-      {
-        text: 'Boa constrictor',
-        href: '#',
-      },
-      {
-        text: 'Edit',
-      },
-    ];
+const breadcrumbs = [
+  {
+    text: 'Animals',
+    href: '#',
+    onClick: (e: React.MouseEvent) => {
+      e.preventDefault();
+      console.log('You clicked Animals');
+    },
+    'data-test-subj': 'breadcrumbsAnimals',
+    className: 'customClass',
+  },
+  {
+    text: 'Reptiles',
+    onClick: (e: React.MouseEvent) => {
+      e.preventDefault();
+      console.log('You clicked Reptiles');
+    },
+  },
+  {
+    text: 'Boa constrictor',
+    href: '#',
+  },
+  {
+    text: 'Edit',
+  },
+];
 
+describe('EuiHeaderBreadcrumbs', () => {
+  shouldRenderCustomStyles(
+    <EuiHeaderBreadcrumbs breadcrumbs={breadcrumbs} {...requiredProps} />
+  );
+
+  it('is rendered', () => {
     const component = mount(
       <EuiHeaderBreadcrumbs breadcrumbs={breadcrumbs} {...requiredProps} />
     );

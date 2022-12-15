@@ -9,13 +9,15 @@
 import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 import classnames from 'classnames';
 
-import { keys } from '../../services';
+import { keys, useEuiTheme } from '../../services';
 
 import { EuiButtonIcon } from '../button';
 
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiOverlayMask } from '../overlay_mask';
 import { EuiI18n } from '../i18n';
+
+import { euiModalStyles } from './modal.styles';
 
 export interface EuiModalProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;
@@ -60,25 +62,32 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
     }
   };
 
-  let newStyle;
-  let widthClassName;
-  if (maxWidth === true) {
-    widthClassName = 'euiModal--maxWidth-default';
-  } else if (maxWidth !== false) {
-    const value = typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth;
-    newStyle = { ...style, maxWidth: value };
+  let newStyle = style;
+
+  if (typeof maxWidth !== 'boolean') {
+    newStyle = { ...newStyle, maxInlineSize: maxWidth };
   }
 
-  const classes = classnames('euiModal', widthClassName, className);
+  const classes = classnames('euiModal', className);
+
+  const euiTheme = useEuiTheme();
+  const styles = euiModalStyles(euiTheme);
+  const cssStyles = [
+    styles.euiModal,
+    maxWidth === true && styles.defaultMaxWidth,
+  ];
+
+  const cssCloseIconStyles = [styles.euiModal__closeIcon];
 
   return (
     <EuiOverlayMask>
       <EuiFocusTrap initialFocus={initialFocus} scrollLock preventScrollOnFocus>
         <div
+          css={cssStyles}
           className={classes}
           onKeyDown={onKeyDown}
           tabIndex={0}
-          style={newStyle || style}
+          style={newStyle}
           {...rest}
         >
           <EuiI18n
@@ -89,6 +98,7 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
               <EuiButtonIcon
                 iconType="cross"
                 onClick={onClose}
+                css={cssCloseIconStyles}
                 className="euiModal__closeIcon"
                 color="text"
                 aria-label={closeModal}

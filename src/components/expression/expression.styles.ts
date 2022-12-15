@@ -10,6 +10,7 @@ import { css } from '@emotion/react';
 import {
   euiFontSize,
   logicalCSS,
+  logicalShorthandCSS,
   logicalTextAlignCSS,
   euiTextBreakWord,
   euiTextTruncate,
@@ -39,7 +40,10 @@ export const euiExpressionStyles = (euiThemeContext: UseEuiTheme) => {
       )}
       ${euiFontSize(euiThemeContext, 's')};
       ${logicalTextAlignCSS('left')}
-      padding: ${mathWithUnits(euiTheme.size.s, (x) => x / 2)} 0;
+      ${logicalShorthandCSS(
+        'padding',
+        `${mathWithUnits(euiTheme.size.s, (x) => x / 2)} 0`
+      )}
       color: ${euiTheme.colors.text};
 
       &:focus {

@@ -11,7 +11,7 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../../test';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 
-import { EuiBetaBadge, COLORS, SIZES } from './beta_badge';
+import { EuiBetaBadge, COLORS, SIZES, ALIGNMENTS } from './beta_badge';
 
 describe('EuiBetaBadge', () => {
   shouldRenderCustomStyles(
@@ -71,6 +71,18 @@ describe('EuiBetaBadge', () => {
       );
 
       expect(component).toMatchSnapshot();
+    });
+
+    describe('alignement', () => {
+      ALIGNMENTS.forEach((alignment) => {
+        test(`${alignment} is rendered`, () => {
+          const component = render(
+            <EuiBetaBadge label="Beta" alignment={alignment} />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
+      });
     });
   });
 });

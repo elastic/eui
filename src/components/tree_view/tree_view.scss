@@ -41,7 +41,6 @@
   .euiTreeView__iconPlaceholder {
     width: $euiSizeXL;
   }
-
 }
 
 .euiTreeView__nodeLabel {
@@ -58,6 +57,8 @@
   }
 }
 
+// TODO: Address nesting during Emotion conversion, if possible
+// stylelint-disable max-nesting-depth
 .euiTreeView--compressed {
   .euiTreeView__node {
     max-height: $euiSizeL;
@@ -65,7 +66,6 @@
 
     .euiTreeView__nodeInner {
       height: $euiSizeL;
-
     }
 
     .euiTreeView__iconWrapper {

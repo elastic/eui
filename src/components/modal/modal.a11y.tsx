@@ -59,7 +59,7 @@ const Modal = () => {
 beforeEach(() => {
   cy.mount(<Modal />);
   cy.get('div.euiModal').should('not.exist');
-  cy.get('button.euiButton').click();
+  cy.get('button.euiButton').realClick();
   cy.get('div.euiModal').should('exist');
 });
 

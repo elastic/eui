@@ -117,7 +117,10 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
       content: '';
       position: absolute;
       transform-origin: center;
-      border-radius: 2px;
+      border-radius: ${mathWithUnits(
+        euiTheme.border.radius.small,
+        (x) => x / 2
+      )};
       background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};
       ${logicalSizeCSS(arrowSize, arrowSize)};
     `,

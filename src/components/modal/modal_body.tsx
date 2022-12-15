@@ -10,6 +10,9 @@ import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classnames from 'classnames';
 import { CommonProps } from '../common';
 
+import { useEuiTheme } from '../../services';
+import { euiModalBodyStyles } from './modal_body.styles';
+
 export type EuiModalBodyProps = FunctionComponent<
   HTMLAttributes<HTMLDivElement> & CommonProps
 >;
@@ -20,9 +23,17 @@ export const EuiModalBody: EuiModalBodyProps = ({
   ...rest
 }) => {
   const classes = classnames('euiModalBody', className);
+
+  const euiTheme = useEuiTheme();
+  const styles = euiModalBodyStyles(euiTheme);
+  const cssStyles = [styles.euiModalBody];
+  const cssOverflowStyles = [styles.euiModalBody__overflow];
+
   return (
-    <div className={classes} {...rest}>
-      <div className="euiModalBody__overflow">{children}</div>
+    <div css={cssStyles} className={classes} {...rest}>
+      <div css={cssOverflowStyles} className="euiModalBody__overflow">
+        {children}
+      </div>
     </div>
   );
 };

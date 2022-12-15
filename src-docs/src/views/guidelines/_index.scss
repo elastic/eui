@@ -1,3 +1,4 @@
+// stylelint-disable color-no-hex
 // -------------------------------------
 // Colors guideline page
 // -------------------------------------
@@ -22,8 +23,8 @@
   font-size: $euiFontSizeS;
 }
 
-// sass-lint:disable no-important
 .guidelineColor__title {
+  // stylelint-disable-next-line declaration-no-important
   color: $euiColorMediumShade !important;
 }
 
@@ -68,12 +69,10 @@
   background: shade($euiColorDanger, 30%);
 }
 
-// sass-lint:disable no-color-literals
 .guideSass__swatch--primaryLight {
   background: #0079A5;
 }
 
-// sass-lint:disable no-color-literals
 .guideSass__swatch--primaryDark {
   background: #4DA1C0;
 }
@@ -274,11 +273,11 @@
   }
 
   &--euiTitle {
-    @include euiTitle('s')
+    @include euiTitle('s');
   }
 
   &--fontSize {
-    @include fontSize(19px)
+    @include fontSize(19px);
   }
 }
 
@@ -366,13 +365,11 @@
   transition-duration: $euiAnimSpeedSlow;
 }
 
-
 .guideSass__themedBox {
   padding: $euiSize;
   border-left: $euiBorderThick;
 }
 
-// sass-lint:disable no-color-literals
 .guideSass__themedBox--light {
   border-color: #0079A5;
   background: tint(#0079A5, 90%);
@@ -380,7 +377,6 @@
 }
 
 .guideSass__themedBox--dark {
-  // sass-lint:disable no-color-literals
   border-color: #4DA1C0;
   background: shade(#4DA1C0, 70%);
   color: #FFF;
@@ -451,11 +447,9 @@
   }
 }
 
-
 .guideSection__emptyBox {
   background-color: $euiColorEmptyShade;
 }
-
 
 @each $key, $size in $euiBreakpoints {
   .guideSass__breakpoint--#{$key} {

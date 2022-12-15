@@ -12,13 +12,13 @@ Array [
   >
     <div
       aria-label="aria-label"
-      class="euiModal euiModal--maxWidth-default euiModal--confirmation testClass1 testClass2"
+      class="euiModal euiModal--confirmation testClass1 testClass2 emotion-euiModal-defaultMaxWidth-confirmation"
       data-test-subj="test subject string"
       tabindex="0"
     >
       <button
         aria-label="Closes this modal window"
-        class="euiButtonIcon euiButtonIcon--xSmall euiModal__closeIcon emotion-euiButtonIcon-empty-text-hoverStyles"
+        class="euiButtonIcon euiButtonIcon--xSmall euiModal__closeIcon emotion-euiButtonIcon-empty-text-hoverStyles-euiModal__closeIcon"
         type="button"
       >
         <span
@@ -29,22 +29,20 @@ Array [
         />
       </button>
       <div
-        class="euiModalHeader"
+        class="euiModalHeader emotion-euiModalHeader"
       >
-        <div
-          class="euiModalHeader__title"
+        <h1
+          class="euiTitle euiModalHeader__title emotion-euiTitle-m"
           data-test-subj="confirmModalTitleText"
         >
-          <h1>
-            A confirmation modal
-          </h1>
-        </div>
+          A confirmation modal
+        </h1>
       </div>
       <div
-        class="euiModalBody"
+        class="euiModalBody emotion-euiModalBody"
       >
         <div
-          class="euiModalBody__overflow"
+          class="euiModalBody__overflow emotion-euiModalBody__overflow"
         >
           <div
             class="euiText emotion-euiText-m"
@@ -57,7 +55,7 @@ Array [
         </div>
       </div>
       <div
-        class="euiModalFooter"
+        class="euiModalFooter emotion-euiModalFooter"
       >
         <button
           class="euiButtonEmpty css-9t7nyf-empty-primary"
@@ -112,13 +110,13 @@ Array [
   >
     <div
       aria-label="aria-label"
-      class="euiModal euiModal--maxWidth-default euiModal--confirmation testClass1 testClass2"
+      class="euiModal euiModal--confirmation testClass1 testClass2 emotion-euiModal-defaultMaxWidth-confirmation"
       data-test-subj="test subject string"
       tabindex="0"
     >
       <button
         aria-label="Closes this modal window"
-        class="euiButtonIcon euiButtonIcon--xSmall euiModal__closeIcon emotion-euiButtonIcon-empty-text-hoverStyles"
+        class="euiButtonIcon euiButtonIcon--xSmall euiModal__closeIcon emotion-euiButtonIcon-empty-text-hoverStyles-euiModal__closeIcon"
         type="button"
       >
         <span
@@ -129,19 +127,17 @@ Array [
         />
       </button>
       <div
-        class="euiModalHeader"
+        class="euiModalHeader emotion-euiModalHeader"
       >
-        <div
-          class="euiModalHeader__title"
+        <h1
+          class="euiTitle euiModalHeader__title emotion-euiTitle-m"
           data-test-subj="confirmModalTitleText"
         >
-          <h1>
-            A confirmation modal
-          </h1>
-        </div>
+          A confirmation modal
+        </h1>
       </div>
       <div
-        class="euiModalFooter"
+        class="euiModalFooter emotion-euiModalFooter"
       >
         <button
           class="euiButtonEmpty css-9t7nyf-empty-primary"

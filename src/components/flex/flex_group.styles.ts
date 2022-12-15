@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { euiBreakpoint, logicalCSS } from '../../global_styling';
+import { euiMaxBreakpoint, logicalCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 export const euiFlexGroupStyles = (euiThemeContext: UseEuiTheme) => {
@@ -19,10 +19,10 @@ export const euiFlexGroupStyles = (euiThemeContext: UseEuiTheme) => {
       flex-grow: 1; // Grow nested flex-groups by default
     `,
     responsive: css`
-      ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
+      ${euiMaxBreakpoint(euiThemeContext, 'm')} {
         flex-wrap: wrap;
 
-        .euiFlexItem {
+        & > .euiFlexItem {
           ${logicalCSS('width', '100%')}
           flex-basis: 100%;
         }

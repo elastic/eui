@@ -17,7 +17,8 @@
 
 // When `onClick` is provided, EuiSuggestItem renders as a <button>
 // and we want to adjust styles to better afford the interaction
-button.euiSuggestItem { // sass-lint:disable-line no-qualifying-elements
+// stylelint-disable selector-no-qualifying-type
+button.euiSuggestItem {
   width: 100%;
   text-align: left;
 
@@ -31,6 +32,7 @@ button.euiSuggestItem { // sass-lint:disable-line no-qualifying-elements
     }
   }
 }
+// stylelint-enable selector-no-qualifying-type
 
 @each $name, $color in $euiSuggestItemColors {
   .euiSuggestItem__type--#{$name} {
@@ -84,10 +86,9 @@ button.euiSuggestItem { // sass-lint:disable-line no-qualifying-elements
 
   &.euiSuggestItem__description--wrap {
     @include euiTextBreakWord;
-    white-space: normal !important; // sass-lint:disable-line no-important
+    white-space: normal !important; // stylelint-disable-line declaration-no-important
   }
 }
-
 
 // For specifically within EuiSelectable
 

@@ -1,6 +1,5 @@
 // Because we don't have control over react-datepicker's dom we use SVG URIs for the navigation arrows.
 // There is one for light and dark.
-// sass-lint:disable-block url-quotes
 @mixin datePickerCaret {
   background-position: center;
   @if (lightness($euiColorEmptyShade) > 50) {

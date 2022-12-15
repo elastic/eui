@@ -6,61 +6,112 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useMemo } from 'react';
 import classNames from 'classnames';
 
-export interface EuiRangeHighlightProps {
+import { useEuiTheme } from '../../../services';
+import { logicalStyles } from '../../../global_styling';
+
+import type { EuiRangeProps } from './types';
+import {
+  euiRangeHighlightStyles,
+  euiRangeHighlightProgressStyles,
+  euiRangeHighlightLevelsWrapperStyles,
+  euiRangeHighlightLevelsStyles,
+} from './range_highlight.styles';
+import { EuiRangeLevels } from './range_levels';
+
+export interface EuiRangeHighlightProps
+  extends Pick<EuiRangeProps, 'min' | 'max' | 'levels' | 'showTicks'> {
   className?: string;
   background?: string;
-  compressed?: boolean;
-  hasFocus?: boolean;
-  showTicks?: boolean;
+  trackWidth: number;
   lowerValue: number;
   upperValue: number;
-  max: number;
-  min: number;
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
   className,
-  hasFocus,
   showTicks,
+  trackWidth,
   lowerValue,
   upperValue,
   max,
   min,
-  compressed,
   background,
   onClick,
+  levels,
 }) => {
-  // Calculate the width the range based on value
-  // const rangeWidth = (value - min) / (max - min);
-  const leftPosition = (lowerValue - min) / (max - min);
-  const rangeWidth = (upperValue - lowerValue) / (max - min);
+  // Calculate the width of the range based on value
+  const leftPosition = useMemo(() => {
+    return (lowerValue - min) / (max - min);
+  }, [lowerValue, min, max]);
 
-  const rangeWidthStyle = {
-    background,
-    marginLeft: `${leftPosition * 100}%`,
-    width: `${rangeWidth * 100}%`,
-  };
+  const rangeWidth = useMemo(() => {
+    return (upperValue - lowerValue) / (max - min);
+  }, [upperValue, lowerValue, min, max]);
 
-  const classes = classNames(
-    'euiRangeHighlight',
-    {
-      'euiRangeHighlight--hasTicks': showTicks,
-      'euiRangeHighlight--compressed': compressed,
-    },
-    className
-  );
+  const classes = classNames('euiRangeHighlight', className);
 
-  const progressClasses = classNames('euiRangeHighlight__progress', {
-    'euiRangeHighlight__progress--hasFocus': hasFocus,
-  });
+  const euiTheme = useEuiTheme();
+
+  const styles = euiRangeHighlightStyles(euiTheme);
+  const cssStyles = [styles.euiRangeHighlight, showTicks && styles.hasTicks];
+
+  const progressStyles = euiRangeHighlightProgressStyles(euiTheme);
+  const cssProgressStyles = [progressStyles.euiRangeHighlight__progress];
+  const progressStyle = useMemo(() => {
+    return logicalStyles({
+      background,
+      marginLeft: `${leftPosition * 100}%`,
+      width: `${rangeWidth * 100}%`,
+    });
+  }, [background, leftPosition, rangeWidth]);
+
+  const levelsWrapperStyles = euiRangeHighlightLevelsWrapperStyles(euiTheme);
+  const cssLevelsWrapperStyles = [
+    levelsWrapperStyles.euiRangeHighlight__levelsWrapper,
+  ];
+  const levelsWrapperStyle = useMemo(() => {
+    return logicalStyles({
+      marginLeft: `${leftPosition * 100}%`,
+      width: `${rangeWidth * 100}%`,
+    });
+  }, [leftPosition, rangeWidth]);
+
+  const levelsStyles = euiRangeHighlightLevelsStyles(euiTheme);
+  const cssLevelsStyles = [levelsStyles.euiRangeHighlight__levels];
+  const levelsStyle = useMemo(() => {
+    return logicalStyles({
+      left: `-${trackWidth * leftPosition}px`,
+      width: `${trackWidth}px`,
+    });
+  }, [trackWidth, leftPosition]);
 
   return (
-    <div className={classes} onClick={onClick}>
-      <div className={progressClasses} style={rangeWidthStyle} />
+    <div className={classes} css={cssStyles} onClick={onClick}>
+      {((levels && levels.length === 0) || !levels) && (
+        <div
+          className="euiRangeHighlight__progress"
+          css={cssProgressStyles}
+          style={progressStyle}
+        />
+      )}
+
+      {levels && !!levels.length && (
+        <div css={cssLevelsWrapperStyles} style={levelsWrapperStyle}>
+          <EuiRangeLevels
+            css={cssLevelsStyles}
+            style={levelsStyle}
+            levels={levels}
+            max={max}
+            min={min}
+            showTicks={showTicks}
+            trackWidth={trackWidth}
+          />
+        </div>
+      )}
     </div>
   );
 };

@@ -1,3 +1,6 @@
+// TODO: Address nesting during Emotion conversion, if possible
+// stylelint-disable max-nesting-depth
+
 .euiComboBox {
   @include euiFormControlSize(auto, $includeAlternates: true);
   position: relative;
@@ -21,7 +24,6 @@
     display: flex; /* 1 */
     outline: none; // Fixes an intermittent focus ring in Firefox
 
-    // sass-lint:disable-block mixins-before-declarations
     // to override the padding added above
     @include euiFormControlLayoutPadding(1); /* 2 */
 
@@ -71,7 +73,7 @@
    * 5. Prevent a lot of input from causing the react-input-autosize to overflow the container.
    */
   .euiComboBox__input {
-    // sass-lint:disable-block no-important
+    // stylelint-disable-next-line declaration-no-important
     display: inline-flex !important; /* 1 */
     height: $euiSizeXL; /* 2 */
     overflow: hidden; /* 5 */
@@ -107,9 +109,9 @@
 
   &.euiComboBox-isDisabled {
     .euiComboBox__inputWrap {
-      // sass-lint:disable-block no-vendor-prefixes
+      // stylelint-disable property-no-vendor-prefix
       @include euiFormControlDisabledStyle;
-      -webkit-text-fill-color: unset; // overrides $euiFormControlDisabledColor because the color doesn't work with multiple background colors 
+      -webkit-text-fill-color: unset; // overrides $euiFormControlDisabledColor because the color doesn't work with multiple background colors
     }
 
     .euiComboBoxPlaceholder,
@@ -129,7 +131,6 @@
       padding-top: 0;
       padding-bottom: 0;
 
-      // sass-lint:disable-block mixins-before-declarations
       @include euiFormControlLayoutPadding(1, $compressed: true); /* 2 */
 
       &.euiComboBox__inputWrap-isClearable {
@@ -153,7 +154,7 @@
   // Overrides the euiFormControlLayout prepend and append height that is 100%
   .euiFormControlLayout__prepend,
   .euiFormControlLayout__append {
-    // sass-lint:disable-block no-important
+    // stylelint-disable-next-line declaration-no-important
     height: auto !important;
   }
 }

@@ -10,7 +10,8 @@ import { css, keyframes } from '@emotion/react';
 import { _EuiFlyoutPaddingSize, EuiFlyoutSize } from './flyout';
 import {
   euiCanAnimate,
-  euiBreakpoint,
+  euiMaxBreakpoint,
+  euiMinBreakpoint,
   logicalCSS,
   mathWithUnits,
 } from '../../global_styling';
@@ -38,7 +39,7 @@ export const euiFlyoutSlideInLeft = keyframes`
   75% {
     opacity: 1;
     transform: translateX(0%);
-}
+  }
 `;
 
 export const euiFlyoutCloseButtonStyles = (euiThemeContext: UseEuiTheme) => {
@@ -66,21 +67,21 @@ export const euiFlyoutCloseButtonStyles = (euiThemeContext: UseEuiTheme) => {
       right: css`
         ${logicalCSS('left', 0)}
 
-        ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
-          transform: translateX(calc(-100% - ${euiTheme.size.l})) !important;
-        }
-        ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
+        ${euiMaxBreakpoint(euiThemeContext, 'm')} {
           transform: translateX(calc(-100% - ${euiTheme.size.xs})) !important;
+        }
+        ${euiMinBreakpoint(euiThemeContext, 'm')} {
+          transform: translateX(calc(-100% - ${euiTheme.size.l})) !important;
         }
       `,
       left: css`
         ${logicalCSS('right', 0)}
 
-        ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
-          transform: translateX(calc(100% + ${euiTheme.size.l})) !important;
-        }
-        ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
+        ${euiMaxBreakpoint(euiThemeContext, 'm')} {
           transform: translateX(calc(100% + ${euiTheme.size.xs})) !important;
+        }
+        ${euiMinBreakpoint(euiThemeContext, 'm')} {
+          transform: translateX(calc(100% + ${euiTheme.size.l})) !important;
         }
       `,
     },
@@ -107,7 +108,7 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
         outline: none;
       }
 
-      ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
+      ${euiMaxBreakpoint(euiThemeContext, 'm')} {
         // 1. Leave only a small sliver exposed on small screens so users understand that this is not a new page
         // 2. If a custom maxWidth is set, we need to override it.
         ${logicalCSS('max-width', '90vw !important')}
@@ -144,7 +145,8 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       clip-path: polygon(0 0, 150% 0, 150% 100%, 0 100%);
 
       ${euiCanAnimate} {
-        animation: ${euiFlyoutSlideInLeft};
+        animation: ${euiFlyoutSlideInLeft} ${euiTheme.animation.normal}
+          ${euiTheme.animation.resistance};
       }
     `,
 
@@ -218,13 +220,13 @@ const composeFlyoutSizing = (
   return `
     ${logicalCSS('max-width', flyoutSizes[size].max)}
 
-    ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
-      ${logicalCSS('min-width', flyoutSizes[size].min)}
-      ${logicalCSS('width', flyoutSizes[size].width)}
-    }
-    ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
+    ${euiMaxBreakpoint(euiThemeContext, 'm')} {
       ${logicalCSS('min-width', 0)}
       ${logicalCSS('width', flyoutSizes[size].min)}
+    }
+    ${euiMinBreakpoint(euiThemeContext, 'm')} {
+      ${logicalCSS('min-width', flyoutSizes[size].min)}
+      ${logicalCSS('width', flyoutSizes[size].width)}
     }
   `;
 };

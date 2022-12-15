@@ -20,15 +20,15 @@ import { EuiModalHeader } from './modal_header';
 import { EuiModalHeaderTitle } from './modal_header_title';
 import { EuiModalBody } from './modal_body';
 
+import { useEuiTheme } from '../../services';
+import { euiModalStyles } from './modal.styles';
+
 import { EuiButtonColor, EuiButton, EuiButtonEmpty } from '../button';
 
 import { EuiText } from '../text';
 
 export interface EuiConfirmModalProps
-  extends Omit<
-    EuiModalProps,
-    'children' | 'initialFocus' | 'onClose' | 'title'
-  > {
+  extends Omit<EuiModalProps, 'children' | 'onClose' | 'title'> {
   /**
    * ReactNode to render as this component's content
    */
@@ -44,6 +44,10 @@ export interface EuiConfirmModalProps
   onConfirm?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   confirmButtonDisabled?: boolean;
   className?: string;
+  /**
+   * Allows focusing either the confirm or cancel button on modal initialization.
+   * Will take precedence over `initialFocus`, if `initialFocus` is passed.
+   */
   defaultFocusedButton?: typeof CONFIRM_BUTTON | typeof CANCEL_BUTTON;
   buttonColor?: EuiButtonColor;
   // For docs only, will get passed with ...rest
@@ -105,6 +109,10 @@ export const EuiConfirmModal: FunctionComponent<EuiConfirmModalProps> = ({
 
   const classes = classnames('euiModal--confirmation', className);
 
+  const euiTheme = useEuiTheme();
+  const styles = euiModalStyles(euiTheme);
+  const cssStyles = [styles.confirmation];
+
   let modalTitle;
 
   if (title) {
@@ -126,7 +134,7 @@ export const EuiConfirmModal: FunctionComponent<EuiConfirmModalProps> = ({
   }
 
   return (
-    <EuiModal className={classes} onClose={onCancel} {...rest}>
+    <EuiModal className={classes} css={cssStyles} onClose={onCancel} {...rest}>
       {modalTitle}
 
       {message && (

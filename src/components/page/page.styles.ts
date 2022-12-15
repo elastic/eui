@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { euiBreakpoint, logicalCSS } from '../../global_styling';
+import { euiMinBreakpoint, logicalCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 export const euiPageStyles = (euiThemeContext: UseEuiTheme) => {
@@ -36,7 +36,7 @@ export const euiPageStyles = (euiThemeContext: UseEuiTheme) => {
     row: css`
       flex-direction: column;
 
-      ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
+      ${euiMinBreakpoint(euiThemeContext, 'm')} {
         flex-direction: row;
       }
     `,

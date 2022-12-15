@@ -107,7 +107,7 @@ exports[`EuiKeyPadMenuItem props betaBadge renders 1`] = `
       <span>
         <span
           aria-hidden="true"
-          class="euiBetaBadge euiKeyPadMenuItem__betaBadge emotion-euiBetaBadge-subdued-s"
+          class="euiBetaBadge euiKeyPadMenuItem__betaBadge emotion-euiBetaBadge-subdued-s-baseline"
           title="B"
         >
           B
@@ -142,7 +142,7 @@ exports[`EuiKeyPadMenuItem props betaBadge renders extra betaBadgeTooltipProps 1
       <span>
         <span
           aria-hidden="true"
-          class="euiBetaBadge euiKeyPadMenuItem__betaBadge emotion-euiBetaBadge-subdued-s"
+          class="euiBetaBadge euiKeyPadMenuItem__betaBadge emotion-euiBetaBadge-subdued-s-baseline"
           title="B"
         >
           B
@@ -177,7 +177,7 @@ exports[`EuiKeyPadMenuItem props betaBadge renders with betaBadgeIconType 1`] = 
       <span>
         <span
           aria-hidden="true"
-          class="euiBetaBadge euiKeyPadMenuItem__betaBadge emotion-euiBetaBadge-subdued-s"
+          class="euiBetaBadge euiKeyPadMenuItem__betaBadge emotion-euiBetaBadge-subdued-s-baseline"
           title="B"
         >
           <span
@@ -217,7 +217,7 @@ exports[`EuiKeyPadMenuItem props betaBadge renders with betaBadgeTooltipContent 
       <span>
         <span
           aria-hidden="true"
-          class="euiBetaBadge euiKeyPadMenuItem__betaBadge emotion-euiBetaBadge-subdued-s"
+          class="euiBetaBadge euiKeyPadMenuItem__betaBadge emotion-euiBetaBadge-subdued-s-baseline"
           title="B"
         >
           B

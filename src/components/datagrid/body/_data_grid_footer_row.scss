@@ -18,9 +18,10 @@
 @include euiDataGridStyles(footerOverline) {
   @include euiDataGridFooterCell {
     border-top: $euiBorderThick;
-    // sass-lint:disable-block no-important
+    // stylelint-disable declaration-no-important
     border-top-color: $euiTextColor !important;
     background: $euiColorEmptyShade !important;
+    // stylelint-enable declaration-no-important
   }
 }
 

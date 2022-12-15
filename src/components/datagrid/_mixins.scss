@@ -67,7 +67,7 @@ $euiDataGridStyles: (
     border: $euiBorderWidthThick solid $euiFocusRingColor;
     border-radius: $euiBorderRadiusSmall;
     z-index: 2; // We want this to be on top of all the content
-    pointer-events: none; // Because we put it with a higher z-index we don't want to make it clickable this way we allow selecting the content behind 
+    pointer-events: none; // Because we put it with a higher z-index we don't want to make it clickable this way we allow selecting the content behind
   }
 }
 

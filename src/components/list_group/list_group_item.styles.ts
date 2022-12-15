@@ -11,6 +11,7 @@ import {
   euiCanAnimate,
   euiFontSize,
   logicalCSS,
+  logicalShorthandCSS,
   euiBackgroundColor,
   euiTextTruncate,
   euiTextBreakWord,
@@ -96,7 +97,10 @@ export const euiListGroupItemInnerStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     // Base
     euiListGroupItem__inner: css`
-      padding: ${euiTheme.size.xs} ${euiTheme.size.s};
+      ${logicalShorthandCSS(
+        'padding',
+        `${euiTheme.size.xs} ${euiTheme.size.s}`
+      )}
       display: flex;
       align-items: center;
       flex-grow: 1;

@@ -7,114 +7,40 @@
  */
 
 import React, { Component } from 'react';
-import { css } from '@emotion/react';
 import classNames from 'classnames';
 
-import { keys } from '../../../services';
-import { isWithinRange } from '../../../services/number';
-import { EuiInputPopover } from '../../popover';
 import {
-  EuiFormControlLayoutDelimited,
-  EuiFormControlLayoutProps,
-} from '../form_control_layout';
+  keys,
+  htmlIdGenerator,
+  withEuiTheme,
+  WithEuiThemeProps,
+} from '../../../services';
+import { isWithinRange } from '../../../services/number';
+import { logicalStyles } from '../../../global_styling';
+import { EuiInputPopover } from '../../popover';
+import { EuiFormControlLayoutDelimited } from '../form_control_layout';
+import { FormContext, FormContextValue } from '../eui_form_context';
 
-import { htmlIdGenerator } from '../../../services/accessibility';
-
-import { EuiRangeProps } from './range';
 import { EuiRangeDraggable } from './range_draggable';
 import { EuiRangeHighlight } from './range_highlight';
-import { EuiRangeInput, EuiRangeInputProps } from './range_input';
+import { EuiRangeInput } from './range_input';
 import { EuiRangeLabel } from './range_label';
-import { EuiRangeLevel } from './range_levels';
-import { EuiRangeSlider, EuiRangeSliderProps } from './range_slider';
+import { getLevelColor, euiRangeLevelColor } from './range_levels_colors';
+import { EuiRangeSlider } from './range_slider';
 import { EuiRangeThumb } from './range_thumb';
-import { EuiRangeTick } from './range_ticks';
 import { EuiRangeTrack } from './range_track';
 import { EuiRangeWrapper } from './range_wrapper';
 import { calculateThumbPosition } from './utils';
-import { FormContext, FormContextValue } from '../eui_form_context';
+import type { EuiDualRangeProps, _SingleRangeValue } from './types';
 
-type ValueMember = number | string;
+import { euiRangeStyles } from './range.styles';
+import { euiDualRangeStyles } from './dual_range.styles';
 
-export interface EuiDualRangeProps
-  extends Omit<
-    EuiRangeSliderProps,
-    'onChange' | 'onBlur' | 'onFocus' | 'value' | 'isLoading'
-  > {
-  value: [ValueMember, ValueMember];
-  onBlur?: (
-    event: React.FocusEvent<HTMLInputElement> | React.FocusEvent<HTMLDivElement>
-  ) => void;
-  onFocus?: (
-    event: React.FocusEvent<HTMLInputElement> | React.FocusEvent<HTMLDivElement>
-  ) => void;
-  onChange: (
-    values: [ValueMember, ValueMember],
-    isValid: boolean,
-    event?:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.MouseEvent<HTMLButtonElement>
-      | React.KeyboardEvent<HTMLInputElement>
-      | React.KeyboardEvent<HTMLDivElement>
-  ) => void;
-  /**
-   * Expand to fill 100% of the parent.
-   * Defaults to `fullWidth` prop of `<EuiForm>`.
-   * @default false
-   */
-  fullWidth?: boolean;
-  isInvalid?: boolean;
-  /**
-   * Create colored indicators for certain intervals
-   */
-  levels?: EuiRangeLevel[];
-  /**
-   * Shows static min/max labels on the sides of the range slider
-   */
-  showLabels?: boolean;
-  /**
-   * Pass `true` to displays an extra input control for direct manipulation.
-   * Pass `'inputWithPopover'` to only show the input but show the range in a dropdown.
-   */
-  showInput?: EuiRangeProps['showInput'];
-  /**
-   * Modifies the number of tick marks and at what interval
-   */
-  tickInterval?: number;
-  /**
-   * Specified ticks at specified values
-   */
-  ticks?: EuiRangeTick[];
-  /**
-   * Creates an input group with element(s) coming before input.  Will only show if `showInput = inputWithPopover`.
-   * `string` | `ReactElement` or an array of these
-   */
-  prepend?: EuiFormControlLayoutProps['prepend'];
-  /**
-   * Creates an input group with element(s) coming after input. Will only show if `showInput = inputWithPopover`.
-   * `string` | `ReactElement` or an array of these
-   */
-  append?: EuiFormControlLayoutProps['append'];
-  /**
-   *  Intended to be uses with aria attributes. Some attributes may be overwritten.
-   */
-  minInputProps?: Partial<EuiRangeInputProps>;
+type ValueMember = _SingleRangeValue['value'];
 
-  /**
-   *  Intended to be uses with aria attributes. Some attributes may be overwritten.
-   */
-  maxInputProps?: Partial<EuiRangeInputProps>;
-  /**
-   *  Creates a draggble highlighted range area
-   */
-  isDraggable?: boolean;
-  /**
-   * Will only show if `showInput = inputWithPopover`
-   */
-  isLoading?: boolean;
-}
-
-export class EuiDualRange extends Component<EuiDualRangeProps> {
+export class EuiDualRangeClass extends Component<
+  EuiDualRangeProps & WithEuiThemeProps
+> {
   static contextType = FormContext;
 
   static defaultProps = {
@@ -132,7 +58,6 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
 
   state = {
     id: this.props.id || htmlIdGenerator()(),
-    hasFocus: false,
     rangeSliderRefAvailable: false,
     isPopoverOpen: false,
     rangeWidth: undefined,
@@ -197,14 +122,15 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     // If the values are invalid, find whether the new value is in the upper
     // or lower half and move the appropriate handle to the new value,
     // while the other handle gets moved to the opposite bound (if invalid)
-    const lowerHalf =
-      Math.abs(this.props.max - this.props.min) / 2 + this.props.min;
-    const newValIsLow = isWithinRange(this.props.min, lowerHalf, newVal);
+    const min = this.props.min;
+    const max = this.props.max;
+    const lowerHalf = Math.abs(max - min) / 2 + min;
+    const newValIsLow = isWithinRange(min, lowerHalf, newVal);
     if (newValIsLow) {
       lower = newVal;
-      upper = !this.upperValueIsValid ? this.props.max : upper;
+      upper = !this.upperValueIsValid ? max : upper;
     } else {
-      lower = !this.lowerValueIsValid ? this.props.min : lower;
+      lower = !this.lowerValueIsValid ? min : lower;
       upper = newVal;
     }
     this._handleOnChange(lower, upper, e);
@@ -321,12 +247,13 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     let newVal = Number(value);
     let stepRemainder = 0;
     const step = this.props.step || 1;
+    const min = this.props.min;
     switch (event.key) {
       case keys.ARROW_UP:
       case keys.ARROW_RIGHT:
         event.preventDefault();
         newVal += step;
-        stepRemainder = (newVal - this.props.min) % step;
+        stepRemainder = (newVal - min) % step;
         if (step !== 1 && stepRemainder > 0) {
           newVal = newVal - stepRemainder;
         }
@@ -335,7 +262,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
       case keys.ARROW_LEFT:
         event.preventDefault();
         newVal -= step;
-        stepRemainder = (newVal - this.props.min) % step;
+        stepRemainder = (newVal - min) % step;
         if (step !== 1 && stepRemainder > 0) {
           newVal = newVal + (step - stepRemainder);
         }
@@ -410,24 +337,16 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     return { left: `${position}%` };
   };
 
-  toggleHasFocus = (shouldFocused = !this.state.hasFocus) => {
-    this.setState({
-      hasFocus: shouldFocused,
-    });
-  };
-
   onThumbFocus = (e: React.FocusEvent<HTMLDivElement>) => {
     if (this.props.onFocus) {
       this.props.onFocus(e);
     }
-    this.toggleHasFocus(true);
   };
 
   onThumbBlur = (e: React.FocusEvent<HTMLDivElement>) => {
     if (this.props.onBlur) {
       this.props.onBlur(e);
     }
-    this.toggleHasFocus(false);
   };
 
   onInputFocus = (e: React.FocusEvent<HTMLInputElement>) => {
@@ -470,13 +389,12 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
   };
 
   getNearestStep = (value: number) => {
+    const min = this.props.min;
+    const max = this.props.max;
     const steps = (this.props.max - this.props.min) / this.props.step!;
-    const approx =
-      Math.round(
-        ((value - this.props.min) * steps) / (this.props.max - this.props.min)
-      ) / steps;
+    const approx = Math.round(((value - min) * steps) / (max - min)) / steps;
     const bound = Math.min(Math.max(approx, 0), 1);
-    const nearest = bound * (this.props.max - this.props.min) + this.props.min;
+    const nearest = bound * (max - min) + min;
     return (Number(nearest.toPrecision(10)) * 100) / 100;
   };
 
@@ -485,7 +403,8 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
       this.leftPosition = x;
       this.dragAcc = 0;
     }
-    const { min, max } = this.props;
+    const min = this.props.min;
+    const max = this.props.max;
     const lowerValue = Number(this.lowerValue);
     const upperValue = Number(this.upperValue);
     const delta = this.leftPosition - x;
@@ -517,8 +436,8 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
       isLoading,
       readOnly,
       id: propsId,
-      max,
-      min,
+      max: maxProps,
+      min: minProps,
       name,
       step,
       showLabels,
@@ -532,21 +451,25 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
       onFocus,
       showRange,
       value,
-      style,
       isInvalid,
       append,
       prepend,
       minInputProps,
       maxInputProps,
       isDraggable,
+      theme,
       ...rest
     } = this.props;
+    const min = minProps!;
+    const max = maxProps!;
 
     const { id } = this.state;
 
     const digitTolerance = Math.max(String(min).length, String(max).length);
     const showInputOnly = showInput === 'inputWithPopover';
     const canShowDropdown = showInputOnly && !readOnly && !disabled;
+
+    const rangeStyles = euiRangeStyles(theme);
 
     const minInput = !!showInput ? (
       <EuiRangeInput
@@ -611,6 +534,9 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     ) : undefined;
 
     const classes = classNames('euiDualRange', className);
+    const dualRangeStyles = euiDualRangeStyles();
+    const cssStyles = [dualRangeStyles.euiDualRange, customCss];
+
     const leftThumbPosition = this.state.rangeSliderRefAvailable
       ? this.calculateThumbPositionStyle(
           Number(this.lowerValue) || min,
@@ -623,9 +549,22 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
           this.state.rangeWidth
         )
       : { left: '0' };
-
-    const styles = { euiDualRange: css`` }; // TODO: Emotion conversion
-    const cssStyles = [styles.euiDualRange, customCss];
+    const leftThumbColor =
+      levels && getLevelColor(levels, Number(this.lowerValue));
+    const rightThumbColor =
+      levels && getLevelColor(levels, Number(this.upperValue));
+    const leftThumbStyles = leftThumbColor
+      ? {
+          ...leftThumbPosition,
+          backgroundColor: euiRangeLevelColor(leftThumbColor, theme.euiTheme),
+        }
+      : leftThumbPosition;
+    const rightThumbStyles = rightThumbColor
+      ? {
+          ...rightThumbPosition,
+          backgroundColor: euiRangeLevelColor(rightThumbColor, theme.euiTheme),
+        }
+      : rightThumbPosition;
 
     const theRange = (
       <EuiRangeWrapper
@@ -642,6 +581,11 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
                 showTicks || ticks
                   ? 'euiRange__slimHorizontalSpacer'
                   : 'euiRange__horizontalSpacer'
+              }
+              css={
+                showTicks || ticks
+                  ? rangeStyles.euiRange__slimHorizontalSpacer
+                  : rangeStyles.euiRange__horizontalSpacer
               }
             />
           </>
@@ -664,92 +608,94 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
           onChange={this.handleSliderChange}
           value={value}
           aria-hidden={showInput === true}
+          showRange={showRange}
         >
-          <EuiRangeSlider
-            className="euiDualRange__slider"
-            ref={this.handleRangeSliderRefUpdate}
-            id={id}
-            name={name}
-            min={min}
-            max={max}
-            step={step}
-            disabled={disabled}
-            compressed={compressed}
-            onChange={this.handleSliderChange}
-            style={style}
-            showTicks={showTicks}
-            hasFocus={this.state.hasFocus}
-            aria-hidden={true}
-            tabIndex={-1}
-            showRange={showRange}
-            onFocus={onFocus}
-            onBlur={onBlur}
-            {...rest}
-          />
+          {(trackWidth) => (
+            <>
+              <EuiRangeSlider
+                className="euiDualRange__slider"
+                css={dualRangeStyles.euiDualRange__slider}
+                ref={this.handleRangeSliderRefUpdate}
+                id={id}
+                name={name}
+                min={min}
+                max={max}
+                step={step}
+                disabled={disabled}
+                onChange={this.handleSliderChange}
+                showTicks={showTicks}
+                aria-hidden={true}
+                tabIndex={-1}
+                showRange={showRange}
+                onFocus={onFocus}
+                onBlur={onBlur}
+                {...rest}
+              />
 
-          {showRange && this.isValid && (
-            <EuiRangeHighlight
-              compressed={compressed}
-              hasFocus={this.state.hasFocus}
-              showTicks={showTicks}
-              min={Number(min)}
-              max={Number(max)}
-              lowerValue={Number(this.lowerValue)}
-              upperValue={Number(this.upperValue)}
-            />
-          )}
+              {this.state.rangeSliderRefAvailable && (
+                <React.Fragment>
+                  {isDraggable && this.isValid && (
+                    <EuiRangeDraggable
+                      min={min}
+                      max={max}
+                      value={[this.lowerValue, this.upperValue]}
+                      disabled={disabled}
+                      lowerPosition={leftThumbPosition.left}
+                      upperPosition={rightThumbPosition.left}
+                      showTicks={showTicks}
+                      onChange={this.handleDrag}
+                      onFocus={this.onThumbFocus}
+                      onBlur={this.onThumbBlur}
+                      onKeyDown={this.handleDraggableKeyDown}
+                      aria-describedby={this.props['aria-describedby']}
+                      aria-label={this.props['aria-label']}
+                    />
+                  )}
 
-          {this.state.rangeSliderRefAvailable && (
-            <React.Fragment>
-              {isDraggable && this.isValid && (
-                <EuiRangeDraggable
-                  min={min}
-                  max={max}
-                  value={[Number(this.lowerValue), Number(this.upperValue)]}
-                  disabled={disabled}
-                  lowerPosition={leftThumbPosition.left}
-                  upperPosition={rightThumbPosition.left}
-                  showTicks={showTicks}
-                  compressed={compressed}
-                  onChange={this.handleDrag}
-                  onFocus={this.onThumbFocus}
-                  onBlur={this.onThumbBlur}
-                  onKeyDown={this.handleDraggableKeyDown}
-                  aria-describedby={this.props['aria-describedby']}
-                  aria-label={this.props['aria-label']}
-                />
+                  <EuiRangeThumb
+                    min={min}
+                    max={Number(this.upperValue)}
+                    value={this.lowerValue}
+                    disabled={disabled}
+                    showTicks={showTicks}
+                    showInput={!!showInput}
+                    onKeyDown={this.handleLowerKeyDown}
+                    onFocus={this.onThumbFocus}
+                    onBlur={this.onThumbBlur}
+                    style={logicalStyles(leftThumbStyles)}
+                    aria-describedby={this.props['aria-describedby']}
+                    aria-label={this.props['aria-label']}
+                  />
+
+                  <EuiRangeThumb
+                    min={Number(this.lowerValue)}
+                    max={max}
+                    value={this.upperValue}
+                    disabled={disabled}
+                    showTicks={showTicks}
+                    showInput={!!showInput}
+                    onKeyDown={this.handleUpperKeyDown}
+                    onFocus={this.onThumbFocus}
+                    onBlur={this.onThumbBlur}
+                    style={logicalStyles(rightThumbStyles)}
+                    aria-describedby={this.props['aria-describedby']}
+                    aria-label={this.props['aria-label']}
+                  />
+                </React.Fragment>
               )}
 
-              <EuiRangeThumb
-                min={min}
-                max={Number(this.upperValue)}
-                value={this.lowerValue}
-                disabled={disabled}
-                showTicks={showTicks}
-                showInput={!!showInput}
-                onKeyDown={this.handleLowerKeyDown}
-                onFocus={this.onThumbFocus}
-                onBlur={this.onThumbBlur}
-                style={leftThumbPosition}
-                aria-describedby={this.props['aria-describedby']}
-                aria-label={this.props['aria-label']}
-              />
-
-              <EuiRangeThumb
-                min={Number(this.lowerValue)}
-                max={max}
-                value={this.upperValue}
-                disabled={disabled}
-                showTicks={showTicks}
-                showInput={!!showInput}
-                onKeyDown={this.handleUpperKeyDown}
-                onFocus={this.onThumbFocus}
-                onBlur={this.onThumbBlur}
-                style={rightThumbPosition}
-                aria-describedby={this.props['aria-describedby']}
-                aria-label={this.props['aria-label']}
-              />
-            </React.Fragment>
+              {showRange && this.isValid && (
+                <EuiRangeHighlight
+                  showTicks={showTicks}
+                  min={Number(min)}
+                  max={Number(max)}
+                  lowerValue={Number(this.lowerValue)}
+                  upperValue={Number(this.upperValue)}
+                  levels={levels}
+                  trackWidth={trackWidth}
+                />
+              )}
+            </>
           )}
         </EuiRangeTrack>
         {showLabels && <EuiRangeLabel disabled={disabled}>{max}</EuiRangeLabel>}
@@ -760,6 +706,11 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
                 showTicks || ticks
                   ? 'euiRange__slimHorizontalSpacer'
                   : 'euiRange__horizontalSpacer'
+              }
+              css={
+                showTicks || ticks
+                  ? rangeStyles.euiRange__slimHorizontalSpacer
+                  : rangeStyles.euiRange__horizontalSpacer
               }
             />
             {maxInput}
@@ -797,3 +748,5 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     return thePopover || theRange;
   }
 }
+
+export const EuiDualRange = withEuiTheme<EuiDualRangeProps>(EuiDualRangeClass);

@@ -170,7 +170,9 @@ export const Table = () => {
         <EuiButtonIcon
           onClick={() => toggleDetails(item)}
           aria-label={itemIdToExpandedRowMap[item.id] ? 'Collapse' : 'Expand'}
-          iconType={itemIdToExpandedRowMap[item.id] ? 'arrowUp' : 'arrowDown'}
+          iconType={
+            itemIdToExpandedRowMap[item.id] ? 'arrowDown' : 'arrowRight'
+          }
         />
       ),
     },

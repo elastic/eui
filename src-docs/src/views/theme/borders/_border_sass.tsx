@@ -113,7 +113,7 @@ export const WidthSass: FunctionComponent<ThemeRowType> = ({ description }) => {
         }
         example={
           <div className={'guideSass__border guideSass__border--thickDashed'}>
-            <strong>{`border-width: ${values.euiBorderWidthThick} dashed ${values.euiBorderColor};`}</strong>
+            <strong>{`border: ${values.euiBorderWidthThick} dashed ${values.euiBorderColor};`}</strong>
           </div>
         }
         snippet={'border: $euiBorderWidthThick dashed $euiBorderColor;'}

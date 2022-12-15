@@ -34,13 +34,13 @@ export default () => {
       layout="vertical"
       body={
         <p>
-          Sorry, we can&apos;t find the page you&apos;re looking for. It might
-          have been removed or renamed, or maybe it never existed.
+          We can&apos;t find the page you&apos;re looking for. It might have
+          been removed, renamed, or it didn&apos;t exist in the first place.
         </p>
       }
       actions={[
         <EuiButton color="primary" fill>
-          Go home
+          Home
         </EuiButton>,
         <EuiButtonEmpty iconType="arrowLeft" flush="both">
           Go back

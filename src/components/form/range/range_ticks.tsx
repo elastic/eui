@@ -10,104 +10,133 @@ import React, {
   ButtonHTMLAttributes,
   MouseEventHandler,
   FunctionComponent,
-  ReactNode,
   CSSProperties,
-  MutableRefObject,
+  useMemo,
 } from 'react';
-import classNames from 'classnames';
 
-import { calculateThumbPosition, EUI_THUMB_SIZE } from './utils';
-
+import { useEuiTheme } from '../../../services';
+import { logicalStyles } from '../../../global_styling';
 import { useInnerText } from '../../inner_text';
 
-export interface EuiRangeTick {
-  value: number;
-  label: ReactNode;
-}
+import type {
+  _SharedRangesValues,
+  _SharedRangeDataStructures,
+  _SharedRangeInputProps,
+} from './types';
+import { calculateThumbPosition, EUI_THUMB_SIZE } from './utils';
 
-export type EuiRangeTicksProps = Omit<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  'value'
-> & {
-  ticks?: EuiRangeTick[];
+import { euiRangeTicksStyles, euiRangeTickStyles } from './range_ticks.styles';
+
+export interface EuiRangeTicksProps
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'value'>,
+    _SharedRangesValues,
+    Pick<_SharedRangeInputProps, 'compressed' | 'disabled'>,
+    Pick<_SharedRangeDataStructures, 'ticks' | 'tickInterval'> {
   tickSequence: number[];
-  value?: number | string | Array<string | number>;
-  min: number;
-  max: number;
-  compressed?: boolean;
-  interval?: number;
-  disabled?: boolean;
+  trackWidth: number;
   onChange?: MouseEventHandler<HTMLButtonElement>;
-};
+}
 
 const EuiTickValue: FunctionComponent<
   EuiRangeTicksProps & {
-    ticksRef: MutableRefObject<HTMLDivElement | null>;
     tickValue: any;
     percentageWidth: number;
   }
 > = ({
   disabled,
-  ticks: customTicks,
+  ticks,
   min,
   max,
   value,
   onChange,
   percentageWidth,
   tickValue,
-  ticksRef,
+  compressed,
+  trackWidth,
 }) => {
-  const tickStyle: CSSProperties = {};
-  const tickObject = customTicks
-    ? customTicks.find((o) => o.value === tickValue)
-    : { value: tickValue, label: tickValue };
+  const euiTheme = useEuiTheme();
+
+  const hasCustomTicks = !!ticks;
+
+  const tickObject = useMemo(() => {
+    return hasCustomTicks
+      ? ticks.find((o) => o.value === tickValue)
+      : { value: tickValue, label: tickValue };
+  }, [hasCustomTicks, ticks, tickValue]);
+
   const isMinTick = tickObject?.value === min;
   const isMaxTick = tickObject?.value === max;
-
   const label = tickObject ? tickObject.label : tickValue;
 
   // Math worked out by trial and error
   // Shifts the label into the reserved margin of EuiRangeTrack
-  const labelShiftVal =
-    (isMinTick || isMaxTick) && label.length > 3
+  const labelShiftVal = useMemo(() => {
+    return (isMinTick || isMaxTick) && label.length > 3
       ? Math.min(label.length * 0.25, 1.25)
       : 0;
+  }, [isMinTick, isMaxTick, label]);
 
-  if (isMaxTick && !!labelShiftVal) {
-    tickStyle.right = '0%';
-  } else {
-    const trackWidth = ticksRef.current?.clientWidth ?? 0;
+  const tickStyle = useMemo(() => {
+    const styles: CSSProperties = {};
+    const shift = `-${labelShiftVal}em`;
 
-    const position = calculateThumbPosition(tickValue, min, max, trackWidth);
+    if (isMaxTick && labelShiftVal) {
+      styles.right = '0%';
+      styles.marginRight = shift;
+    } else {
+      const position = calculateThumbPosition(tickValue, min, max, trackWidth);
+      const thumbOffset = labelShiftVal ? 0 : EUI_THUMB_SIZE / 2;
 
-    const thumbOffset = labelShiftVal ? 0 : EUI_THUMB_SIZE / 2;
-    tickStyle.left = `calc(${position}% + ${thumbOffset}px)`;
-  }
-  tickStyle.maxWidth = customTicks ? undefined : `${percentageWidth}%`;
+      styles.left = `calc(${position}% + ${thumbOffset}px)`;
 
-  const pseudoShift: CSSProperties = {};
-  if (labelShiftVal) {
-    const labelShift = isMaxTick ? 'marginRight' : 'marginLeft';
-    tickStyle[labelShift] = `-${labelShiftVal}em`;
-    pseudoShift[labelShift] = `calc(${labelShiftVal}em + 4px)`; // 4px derived from .euiRangeTicks left/right offset
-  }
+      if (labelShiftVal) styles.marginLeft = shift;
+    }
 
+    styles.maxWidth = hasCustomTicks ? undefined : `${percentageWidth}%`;
+
+    return logicalStyles(styles);
+  }, [
+    isMaxTick,
+    labelShiftVal,
+    trackWidth,
+    tickValue,
+    min,
+    max,
+    hasCustomTicks,
+    percentageWidth,
+  ]);
+
+  // Some ticks need an actual DOM element instead of using a ::before
   const pseudoTick = tickObject && !!labelShiftVal && (isMinTick || isMaxTick);
+  const pseudoShift = useMemo(() => {
+    if (!labelShiftVal) return {};
 
-  const tickClasses = classNames('euiRangeTick', {
-    'euiRangeTick--selected': value === tickValue,
-    'euiRangeTick--isCustom': customTicks,
-    'euiRangeTick--isMin': labelShiftVal && isMinTick,
-    'euiRangeTick--isMax': labelShiftVal && isMaxTick,
-    'euiRangeTick--hasTickMark': pseudoTick,
-  });
+    const marginProperty = isMaxTick ? 'marginRight' : 'marginLeft';
+    const tickOffset = euiTheme.euiTheme.size.xs; // xs derived from .euiRangeTicks left/right offset
+
+    return logicalStyles({
+      [marginProperty]: `calc(${labelShiftVal}em + ${tickOffset})`,
+    });
+  }, [labelShiftVal, isMaxTick, euiTheme.euiTheme.size.xs]);
+
+  const styles = euiRangeTickStyles(euiTheme);
+  const cssTickStyles = [
+    styles.euiRangeTick,
+    value === String(tickValue) && styles.selected,
+    hasCustomTicks && styles.isCustom,
+    labelShiftVal && isMinTick && styles.isMin,
+    labelShiftVal && isMaxTick && styles.isMax,
+    !pseudoTick && styles.hasPseudoTickMark,
+    compressed ? styles.compressed : styles.regular,
+  ];
 
   const [ref, innerText] = useInnerText();
 
   return (
     <button
       type="button"
-      className={tickClasses}
+      className="euiRangeTick"
+      css={cssTickStyles}
       value={tickValue}
       disabled={disabled}
       onClick={onChange}
@@ -119,6 +148,7 @@ const EuiTickValue: FunctionComponent<
       {pseudoTick && (
         <span
           className="euiRangeTick__pseudo"
+          css={styles.euiRangeTick__pseudo}
           aria-hidden
           style={pseudoShift}
         />
@@ -129,25 +159,30 @@ const EuiTickValue: FunctionComponent<
 };
 
 export const EuiRangeTicks: FunctionComponent<EuiRangeTicksProps> = (props) => {
-  const { ticks, tickSequence, max, min, interval = 1, compressed } = props;
-  const ticksRef = React.useRef<HTMLDivElement | null>(null);
-  // Calculate the width of each tick mark
-  const percentageWidth = (interval / (max - min + interval)) * 100;
+  const { ticks, tickSequence, max, min, tickInterval = 1, compressed } = props;
 
-  const classes = classNames('euiRangeTicks', {
-    'euiRangeTicks--compressed': compressed,
-    'euiRangeTicks--isCustom': ticks,
-  });
+  // Calculate the width of each tick mark
+  const percentageWidth = useMemo(
+    () => (tickInterval / (max - min + tickInterval)) * 100,
+    [tickInterval, min, max]
+  );
+
+  const euiTheme = useEuiTheme();
+  const styles = euiRangeTicksStyles(euiTheme);
+  const cssStyles = [
+    styles.euiRangeTicks,
+    compressed ? styles.compressed : styles.regular,
+    ticks && styles.isCustom,
+  ];
 
   return (
-    <div className={classes} ref={ticksRef}>
+    <div className="euiRangeTicks" css={cssStyles}>
       {tickSequence.map((tickValue) => (
         <EuiTickValue
           key={tickValue}
           {...props}
           percentageWidth={percentageWidth}
           tickValue={tickValue}
-          ticksRef={ticksRef}
         />
       ))}
     </div>

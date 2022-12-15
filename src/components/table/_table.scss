@@ -82,9 +82,7 @@
     background-color: $euiTableHoverColor;
   }
 
-
   &.euiTableRow-isClickable {
-
     &:hover {
       background-color: $euiTableHoverClickableColor;
       cursor: pointer;
@@ -111,7 +109,7 @@
     }
 
     &:hover,
-    &:hover + .euiTableRow.euiTableRow-isExpandedRow .euiTableRowCell  {
+    &:hover + .euiTableRow.euiTableRow-isExpandedRow .euiTableRowCell {
       background-color: $euiTableHoverSelectedColor;
     }
   }
@@ -189,7 +187,7 @@
 .euiTableCellContent--overflowingContent {
   overflow: visible;
   white-space: normal;
-  //* 4 */ overflow-wrap is not supported on flex parents
+  // /* 4 */ overflow-wrap is not supported on flex parents
   word-break: break-word;
 }
 

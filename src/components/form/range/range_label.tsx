@@ -7,15 +7,18 @@
  */
 
 import React, { FunctionComponent } from 'react';
-import classNames from 'classnames';
 
-export interface EuiRangeLabelProps {
+import { useEuiTheme } from '../../../services';
+import type { _SharedRangeInputProps, _SharedRangeInputSide } from './types';
+import { euiRangeLabelStyles } from './range_label.styles';
+
+export interface EuiRangeLabelProps
+  extends Pick<_SharedRangeInputProps, 'disabled'>,
+    _SharedRangeInputSide {
   /**
    * ReactNode to render as this component's content
    */
   children: string | number;
-  disabled?: boolean;
-  side?: 'min' | 'max';
 }
 
 export const EuiRangeLabel: FunctionComponent<EuiRangeLabelProps> = ({
@@ -23,8 +26,17 @@ export const EuiRangeLabel: FunctionComponent<EuiRangeLabelProps> = ({
   disabled,
   side = 'max',
 }) => {
-  const classes = classNames('euiRangeLabel', `euiRangeLabel--${side}`, {
-    'euiRangeLabel--isDisabled': disabled,
-  });
-  return <label className={classes}>{children}</label>;
+  const euiTheme = useEuiTheme();
+  const styles = euiRangeLabelStyles(euiTheme);
+  const cssStyles = [
+    styles.euiRangeLabel,
+    styles[side],
+    disabled && styles.isDisabled,
+  ];
+
+  return (
+    <label className="euiRangeLabel" css={cssStyles}>
+      {children}
+    </label>
+  );
 };

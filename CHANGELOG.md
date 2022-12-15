@@ -1,3 +1,88 @@
+## [`71.0.0`](https://github.com/elastic/eui/tree/v71.0.0)
+
+- Implemented new `EuiRange` and `EuiDualRange` designs where the `levels` are now on top of the tracks ([#6092](https://github.com/elastic/eui/pull/6092))
+- Added `discuss` and `dotInCircle` glyphs to `EuiIcon` ([#6434](https://github.com/elastic/eui/pull/6434))
+- Added `article` glyph to `EuiIcon` ([#6437](https://github.com/elastic/eui/pull/6437))
+- Changed the `EuiProvider` usage warnings to not rely on development mode. ([#6451](https://github.com/elastic/eui/pull/6451))
+
+**Breaking changes**
+
+- `EuiDualRange` now explicitly requires both `min` and `max` via props types, to match `EuiRange` ([#6092](https://github.com/elastic/eui/pull/6092))
+- `EuiRange` and `EuiDualRange`'s `compressed` size no longer impacts track or level sizes, but continues to compress tick and input sizes. ([#6092](https://github.com/elastic/eui/pull/6092))
+- Removed all variables for the following components from EUI's theme JSON files: ([#6443](https://github.com/elastic/eui/pull/6443))
+  - `euiCollapsibleNav*`
+  - `euiColorPicker*`
+  - `euiContextMenu*`
+  - `euiControlBar*`
+  - `euiDataGrid* `(except for z-indices and cell padding sizes)
+  - `euiDatePicker*`
+  - `euiSuperDatePicker*`
+  - `euiDragAndDrop*`
+  - `euiEuiEmptyPrompt*`
+  - `euiFilePicker*`
+  - `euiRange*`
+  - `euiHeaderLinks*`
+  - `euiKeyPad*`
+  - `euiMarkdownEditor*`
+  - `euiResizable*`
+  - `euiSelectable*`
+  - `euiSideNav*`
+  - `euiStep*`
+  - `euiSuggest*`
+  - `euiTable*` (except for color variables)
+  - `euiTooltip*`
+  - `euiButtonFontWeight`, `euiButtonDefaultTransparency`, and `euiButtonMinWidth`
+- If you were importing any of the above removed JSON variables, we strongly recommend using generic color or sizing variables from `useEuiTheme()` instead. ([#6443](https://github.com/elastic/eui/pull/6443))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiRange` and `EuiDualRange` to Emotion; Removed `$euiRangeThumbRadius` ([#6092](https://github.com/elastic/eui/pull/6092))
+- Added a new `logicalStyles` utility that automatically converts all non-logical properties in a `style` object to their corresponding logical properties ([#6426](https://github.com/elastic/eui/pull/6426))
+- Added a new `logicalShorthandCSS` utility that automatically converts `margin`, `padding`, and other 4-sided shorthands to their corresponding logical properties ([#6429](https://github.com/elastic/eui/pull/6429))
+- Added a new `logicalBorderRadiusCSS` utility that automatically converts `border-radius` to corresponding logical properties ([#6429](https://github.com/elastic/eui/pull/6429))
+
+## [`70.4.0`](https://github.com/elastic/eui/tree/v70.4.0)
+
+- Updated `EuiTourStep.footerAction` type to accept `ReactNode[]` ([#6384](https://github.com/elastic/eui/pull/6384))
+- Vertically aligned all footer content so that `euiTourStepIndicator` is always centered ([#6384](https://github.com/elastic/eui/pull/6384))
+- Added `filterInCircle` glyph to `EuiIcon` ([#6385](https://github.com/elastic/eui/pull/6385))
+- Added `color` prop to `EuiBeacon` ([#6420](https://github.com/elastic/eui/pull/6420))
+- Added the `euiMaxBreakpoint` and `euiMinBreakpoint` CSS-in-JS utilities for creating min/max-width media queries ([#6431](https://github.com/elastic/eui/pull/6431))
+
+**Bug fixes**
+
+- Restores the previous match operator behaviour when the query value is split into multiple terms after analysis. ([#6409](https://github.com/elastic/eui/pull/6409))
+- Fixed missing slide-in animation on `EuiCollapsibleNav`s and left-side `EuiFlyout`s ([#6422](https://github.com/elastic/eui/pull/6422))
+- Fix bug in `EuiCard` where footer were not aligned to the bottom of the card ([#6424](https://github.com/elastic/eui/pull/6424))
+- Fixed multiple component media queries for consumers with custom theme breakpoints ([#6431](https://github.com/elastic/eui/pull/6431))
+
+## [`70.3.0`](https://github.com/elastic/eui/tree/v70.3.0)
+
+- `EuiSearchBar` now automatically wraps special characters not used by query syntax in quotes ([#6356](https://github.com/elastic/eui/pull/6356))
+- Added `alignment` prop to `EuiBetaBadge` ([#6361](https://github.com/elastic/eui/pull/6361))
+- `EuiButton` now accepts `minWidth={false}` ([#6373](https://github.com/elastic/eui/pull/6373))
+
+**Bug fixes**
+
+- Fixed `EuiPageTemplate` not correctly passing the `component` prop to the inner main content wrapper. ([#6352](https://github.com/elastic/eui/pull/6352))
+- `EuiSkipLink` now correctly calls `onClick` even when `fallbackDestination` is invalid ([#6355](https://github.com/elastic/eui/pull/6355))
+- Permanently fixed `EuiModal` to not cause scroll-jumping issues on modal open ([#6360](https://github.com/elastic/eui/pull/6360))
+- Re-fixed `EuiPageSection` not correctly merging `contentProps.css` ([#6365](https://github.com/elastic/eui/pull/6365))
+- Fixed `EuiTab` not defaulting to size `m` ([#6366](https://github.com/elastic/eui/pull/6366))
+- Fixed the shadow sizes of `.eui-yScrollWithShadows` and `.eui-xScrollWithShadows` ([#6374](https://github.com/elastic/eui/pull/6374))
+- Fixed bug in `EuiCard` where the inner content in vertical cards was not growing 100% in width ([#6377](https://github.com/elastic/eui/pull/6377))
+- Fixed incorrect margins in `EuiSuperDatePicker` caused by `EuiFlex` CSS gap change ([#6380](https://github.com/elastic/eui/pull/6380))
+- Fixed visual bug in nested `EuiFlexGroup`s, where the parent `EuiFlexGroup` is responsive but a child `EuiFlexGroup` is not ([#6381](https://github.com/elastic/eui/pull/6381))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiModal` to Emotion ([#6321](https://github.com/elastic/eui/pull/6321))
+
+**Fixes**
+
+- `EuiButton` no longer outputs unnecessary inline styles for `minWidth={0}` or `minWidth={false}` ([#6373](https://github.com/elastic/eui/pull/6373))
+- `EuiFacetButton` no longer reports type issues when passing props accepted by `EuiButton` ([#6373](https://github.com/elastic/eui/pull/6373))
+
 ## [`70.2.0`](https://github.com/elastic/eui/tree/v70.2.0)
 
 - Added a keyboard shortcuts popover to `EuiDataGrid`'s toolbar. This can be visually hidden via `toolbarVisibility.showKeyboardShortcuts`, but will always remain accessible to keyboard and screen reader users. ([#6036](https://github.com/elastic/eui/pull/6036))

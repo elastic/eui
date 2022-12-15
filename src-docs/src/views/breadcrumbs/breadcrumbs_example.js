@@ -56,7 +56,7 @@ export const BreadcrumbsExample = {
     {
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: breadcrumbsSource,
         },
       ],
@@ -110,7 +110,7 @@ export const BreadcrumbsExample = {
       title: 'Limit the number of breadcrumbs',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: maxSource,
         },
       ],
@@ -135,7 +135,7 @@ export const BreadcrumbsExample = {
       title: 'Truncate each breadcrumb',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: truncateSource,
         },
       ],
@@ -161,7 +161,7 @@ export const BreadcrumbsExample = {
     {
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: truncateSingleSource,
         },
       ],
@@ -192,7 +192,7 @@ export const BreadcrumbsExample = {
       title: 'Responsive',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: responsiveSource,
         },
       ],
@@ -219,7 +219,7 @@ export const BreadcrumbsExample = {
     {
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: responsiveCustomSource,
         },
       ],
@@ -268,7 +268,7 @@ export const BreadcrumbsExample = {
       demo: <Color />,
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: colorSource,
         },
       ],

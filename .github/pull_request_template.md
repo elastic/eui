@@ -33,7 +33,7 @@ Remove or strikethrough items that do not apply to your PR.
 &nbsp;
 - **Sass/Emotion conversion process**
 - [ ] Converted all global Sass vars/mixins to JS (e.g. `$euiSize` to `euiTheme.size.base`)
-- [ ] Removed or converted component-specific Sass vars/mixins to exported JS versions, listed removals in changelog, and ran `yarn compile-scss` to update [JSON files](https://github.com/elastic/eui/tree/main/src-docs/src/views/theme/_json)
+- [ ] Removed or converted component-specific Sass vars/mixins to exported JS versions, listed removals in changelog, and [manually updated our theme JSON files](https://github.com/elastic/eui/tree/main/src-docs/src/views/theme/_json)
 - [ ] Simplified `calc()` to `mathWithUnits` if possible (if mixing different unit types, this may not be possible)
 - [ ] Added an `@warn` deprecation message within the `global_styling/mixins/{component}.scss` file
 - [ ] Removed component from `src/components/index.scss`

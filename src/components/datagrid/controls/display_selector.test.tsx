@@ -306,7 +306,7 @@ describe('useDataGridDisplaySelector', () => {
       describe('lineCount', () => {
         const getLineCountNumber = (component: ReactWrapper) =>
           component
-            .find('EuiRange[data-test-subj="lineCountNumber"]')
+            .find('input[type="range"][data-test-subj="lineCountNumber"]')
             .prop('value');
         const setLineCountNumber = (component: ReactWrapper, number: number) =>
           component
