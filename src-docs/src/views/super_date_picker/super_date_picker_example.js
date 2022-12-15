@@ -10,7 +10,6 @@ import {
   EuiLink,
   EuiText,
   EuiSuperDatePicker,
-  EuiBasicTable,
 } from '../../../../src/components';
 
 import { EuiSuperUpdateButtonProps } from './props';
@@ -89,40 +88,6 @@ const superDatePickerCustomQuickSelectCustomOrderSnippet = `<EuiSuperDatePicker
   )}
 />
 `;
-
-const quickSelectTableColumns = [
-  {
-    field: 'key',
-    name: 'Key',
-  },
-  {
-    field: 'controls',
-    name: 'Panel Controlled',
-  },
-];
-
-const quickSelectTableItems = [
-  {
-    key: 'quickSelect',
-    controls: 'Quick select',
-  },
-  {
-    key: 'commonlyUsedTimes',
-    controls: 'Commonly used',
-  },
-  {
-    key: 'recentlyUsedTimes',
-    controls: 'Recently used',
-  },
-  {
-    key: 'customQuickSelectPanels',
-    controls: 'Custom panels',
-  },
-  {
-    key: 'applyRefreshIntervalPanels',
-    controls: 'Refresh toggles',
-  },
-];
 
 export const SuperDatePickerExample = {
   title: 'Super date picker',
@@ -300,12 +265,6 @@ if (!endMoment || !endMoment.isValid()) {
             <EuiCode>customQuickSelectRender</EuiCode> prop that returns Quick
             Select panels and allows you to customize the order of them.{' '}
           </p>
-          <EuiBasicTable
-            tableCaption="Quick select panel keys"
-            items={quickSelectTableItems}
-            rowHeader="key"
-            columns={quickSelectTableColumns}
-          />
         </>
       ),
       snippet: superDatePickerCustomQuickSelectCustomOrderSnippet,

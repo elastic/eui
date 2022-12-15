@@ -2,10 +2,12 @@ import React, { useState, Fragment } from 'react';
 
 import {
   EuiSuperDatePicker,
+  EuiSwitch,
   EuiSpacer,
   EuiLink,
   OnTimeChangeProps,
   OnRefreshProps,
+  OnRefreshChangeProps,
   ApplyTime,
   EuiSuperDatePickerProps,
 } from '../../../../src';
@@ -21,6 +23,32 @@ function MyCustomQuickSelectPanel({ applyTime }: { applyTime?: ApplyTime }) {
 }
 
 export default () => {
+  const [showQuickSelectPanel, setShowQuickSelectPanel] = useState(true);
+  const [showCustomQuickSelectPanel, setShowCustomQuickSelectPanel] = useState(
+    true
+  );
+  const [showRecentlyUsed, setShowRecentlyUsed] = useState(true);
+  const [showCommonlyUsed, setCommonlyUsed] = useState(true);
+  const [showApplyRefreshInterval, setApplyRefreshInterval] = useState(true);
+  const [refreshInterval, setRefreshInterval] = useState(1000);
+  const [isPaused, setIsPaused] = useState(true);
+
+  const toggleShowQuickSelectPanel = () => {
+    setShowQuickSelectPanel(!showQuickSelectPanel);
+  };
+  const toggleShowCustomQuickSelectPanel = () => {
+    setShowCustomQuickSelectPanel(!showCustomQuickSelectPanel);
+  };
+  const toggleShowRecentlyUsed = () => {
+    setShowRecentlyUsed(!showRecentlyUsed);
+  };
+  const toggleShowCommonlyUsed = () => {
+    setCommonlyUsed(!showCommonlyUsed);
+  };
+  const toggleShowApplyRefreshInterval = () => {
+    setApplyRefreshInterval(!showApplyRefreshInterval);
+  };
+
   const [recentlyUsedRanges, setRecentlyUsedRanges] = useState<
     NonNullable<EuiSuperDatePickerProps['recentlyUsedRanges']>
   >([]);
@@ -54,6 +82,14 @@ export default () => {
     });
   };
 
+  const onRefreshChange = ({
+    isPaused,
+    refreshInterval,
+  }: OnRefreshChangeProps) => {
+    setIsPaused(isPaused);
+    setRefreshInterval(refreshInterval);
+  };
+
   const startLoading = () => {
     setTimeout(stopLoading, 1000);
   };
@@ -71,25 +107,64 @@ export default () => {
 
   return (
     <Fragment>
+      <EuiSwitch
+        label="Show Quick Select Panel"
+        onChange={toggleShowQuickSelectPanel}
+        checked={showQuickSelectPanel}
+      />
+      <EuiSpacer />
+      <EuiSwitch
+        label="Show Recently Used Times Panel"
+        onChange={toggleShowRecentlyUsed}
+        checked={showRecentlyUsed}
+      />
+      <EuiSpacer />
+      <EuiSwitch
+        label="Show Commonly Used Times Panel"
+        onChange={toggleShowCommonlyUsed}
+        checked={showCommonlyUsed}
+      />
+      <EuiSpacer />
+      <EuiSwitch
+        label="Show Custom Quick Select Panel"
+        onChange={toggleShowCustomQuickSelectPanel}
+        checked={showCustomQuickSelectPanel}
+      />
+      <EuiSpacer />
+      <EuiSwitch
+        label="Show Apply Refresh Interval Panel"
+        onChange={toggleShowApplyRefreshInterval}
+        checked={showApplyRefreshInterval}
+      />
+
+      <EuiSpacer />
       <EuiSuperDatePicker
         isLoading={isLoading}
         start={start}
         end={end}
         onTimeChange={onTimeChange}
         onRefresh={onRefresh}
-        recentlyUsedRanges={recentlyUsedRanges}
-        customQuickSelectPanels={customQuickSelectPanels}
+        recentlyUsedRanges={showRecentlyUsed ? recentlyUsedRanges : undefined}
+        customQuickSelectPanels={
+          showCustomQuickSelectPanel ? customQuickSelectPanels : undefined
+        }
+        isQuickSelectOnly={true}
+        isPaused={isPaused}
+        refreshInterval={refreshInterval}
+        onRefreshChange={onRefreshChange}
         customQuickSelectRender={({
           quickSelect,
           commonlyUsedTimes,
           recentlyUsedTimes,
           customQuickSelectPanels,
+          applyRefreshIntervalPanel,
         }) => (
           <>
-            {customQuickSelectPanels}
-            {quickSelect}
-            {commonlyUsedTimes}
-            {recentlyUsedTimes}
+            {showCustomQuickSelectPanel ? customQuickSelectPanels : undefined}
+            {showCommonlyUsed ? commonlyUsedTimes : undefined}
+            {showRecentlyUsed ? recentlyUsedTimes : undefined}
+            {showQuickSelectPanel ? quickSelect : undefined}
+            {showApplyRefreshInterval ? applyRefreshIntervalPanel : undefined}
           </>
         )}
       />
