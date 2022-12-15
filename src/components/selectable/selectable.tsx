@@ -96,11 +96,13 @@ export type EuiSelectableProps<T = {}> = CommonProps &
     options: Array<EuiSelectableOption<T>>;
     /**
      * Passes back the altered `options` array with selected options having `checked: 'on'`.
-     * Also passes back the React click/keyboard event as a second argument.
+     * Also passes back the React click/keyboard event as a second argument,
+     * and the option that triggered the onChange event as a third argument.
      */
     onChange?: (
       options: Array<EuiSelectableOption<T>>,
-      event: EuiSelectableOnChangeEvent
+      event: EuiSelectableOnChangeEvent,
+      changedOption: EuiSelectableOption<T>
     ) => void;
     /**
      * Passes back the current active option whenever the user changes the currently
@@ -455,7 +457,8 @@ export class EuiSelectable<T = {}> extends Component<
 
   onOptionClick = (
     options: Array<EuiSelectableOption<T>>,
-    event: EuiSelectableOnChangeEvent
+    event: EuiSelectableOnChangeEvent,
+    clickedOption: EuiSelectableOption<T>
   ) => {
     const { isPreFiltered, onChange } = this.props;
     const { searchValue } = this.state;
@@ -468,7 +471,7 @@ export class EuiSelectable<T = {}> extends Component<
     this.setState({ visibleOptions });
 
     if (onChange) {
-      onChange(options, event);
+      onChange(options, event, clickedOption);
     }
   };
 
