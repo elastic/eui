@@ -8,6 +8,7 @@ import {
   EuiIcon,
   EuiSwitch,
   EuiSpacer,
+  EuiTextColor,
 } from '../../../../src/components';
 
 export default () => {
@@ -21,54 +22,117 @@ export default () => {
     <div>
       <EuiFlexGroup>
         <EuiFlexItem>
-          <EuiPanel>
-            <EuiStat
-              title="8,888"
-              description="Total widgets"
-              textAlign="right"
-              isLoading={isLoading}
-            >
-              <EuiIcon type="empty" />
-            </EuiStat>
+          <EuiPanel hasBorder={true}>
+            <EuiFlexGroup>
+              <EuiFlexItem>
+                <EuiStat
+                  title="2,000"
+                  textAlign="left"
+                  isLoading={isLoading}
+                  titleColor="accent"
+                  description={
+                    <EuiTextColor color="accent">
+                      <span>
+                        <EuiIcon type="clock" color="accent" /> 70,29%
+                      </span>
+                    </EuiTextColor>
+                  }
+                >
+                  Pending widgets
+                </EuiStat>
+              </EuiFlexItem>
+              <EuiFlexItem>
+                <EuiStat
+                  title="22,550"
+                  textAlign="left"
+                  isLoading={isLoading}
+                  titleColor="success"
+                  description={
+                    <EuiTextColor color="success">
+                      <span>
+                        <EuiIcon type="check" color="success" /> 88,88%
+                      </span>
+                    </EuiTextColor>
+                  }
+                >
+                  Successes
+                </EuiStat>
+              </EuiFlexItem>
+            </EuiFlexGroup>
           </EuiPanel>
         </EuiFlexItem>
         <EuiFlexItem>
-          <EuiPanel>
-            <EuiStat
-              title="2,000"
-              description="Pending widgets"
-              titleColor="accent"
-              textAlign="right"
-              isLoading={isLoading}
-            >
-              <EuiIcon type="clock" color="accent" />
-            </EuiStat>
+          <EuiPanel hasBorder={true}>
+            <EuiFlexGroup>
+              <EuiFlexItem>
+                <EuiStat
+                  title="1,554"
+                  textAlign="left"
+                  isLoading={isLoading}
+                  titleColor="danger"
+                  description={
+                    <EuiTextColor color="accent">
+                      <span>
+                        <EuiIcon type="alert" color="danger" /> 12,20%
+                      </span>
+                    </EuiTextColor>
+                  }
+                >
+                  Errors
+                </EuiStat>
+              </EuiFlexItem>
+              <EuiFlexItem>
+                <EuiStat
+                  title="8,888"
+                  description={
+                    <EuiTextColor color="success">
+                      <span>
+                        <EuiIcon type="sortUp" /> 23,30%
+                      </span>
+                    </EuiTextColor>
+                  }
+                  textAlign="left"
+                  isLoading={isLoading}
+                >
+                  Visitor count
+                </EuiStat>
+              </EuiFlexItem>
+            </EuiFlexGroup>
           </EuiPanel>
         </EuiFlexItem>
         <EuiFlexItem>
-          <EuiPanel>
-            <EuiStat
-              title="6,800"
-              description="Success widgets"
-              titleColor="success"
-              textAlign="right"
-              isLoading={isLoading}
-            >
-              <EuiIcon type="check" color="success" />
-            </EuiStat>
-          </EuiPanel>
-        </EuiFlexItem>
-        <EuiFlexItem>
-          <EuiPanel>
-            <EuiStat
-              title="88"
-              description="Error widgets"
-              titleColor="danger"
-              textAlign="right"
-              isLoading={isLoading}
-            >
-              <EuiIcon type="alert" color="danger" />
-            </EuiStat>
+          <EuiPanel hasBorder={true}>
+            <EuiFlexGroup>
+              <EuiFlexItem>
+                <EuiStat
+                  title="1,554"
+                  textAlign="left"
+                  isLoading={isLoading}
+                  titleColor="danger"
+                  description="Good news"
+                >
+                  <EuiTextColor color="accent">
+                    <span>
+                      <EuiIcon type="alert" color="danger" /> 66,55%
+                    </span>
+                  </EuiTextColor>
+                </EuiStat>
+              </EuiFlexItem>
+              <EuiFlexItem>
+                <EuiStat
+                  title="8,888"
+                  description="Great news"
+                  textAlign="left"
+                  isLoading={isLoading}
+                >
+                  <EuiTextColor color="success">
+                    <span>
+                      <EuiIcon type="sortUp" /> 27,83%
+                    </span>
+                  </EuiTextColor>
+                </EuiStat>
+              </EuiFlexItem>
+            </EuiFlexGroup>
           </EuiPanel>
         </EuiFlexItem>
       </EuiFlexGroup>
