@@ -376,7 +376,7 @@ describe('EuiSelectable', () => {
   });
 
   describe('onChange', () => {
-    it('calls onChange with selected options array and click/keyboard event', () => {
+    it('calls onChange with selected options array, click/keyboard event, and the clicked option', () => {
       const onChange = jest.fn();
       const component = mount(
         <EuiSelectable options={options} onChange={onChange}>
@@ -388,11 +388,19 @@ describe('EuiSelectable', () => {
       expect(onChange).toHaveBeenCalledTimes(1);
       expect(onChange.mock.calls[0][0][0].checked).toEqual('on');
       expect(onChange.mock.calls[0][1].type).toEqual('click');
+      expect(onChange.mock.calls[0][2]).toEqual({
+        ...options[0],
+        checked: 'on',
+      });
 
       component.simulate('keydown', { key: 'Enter', shiftKey: true });
       expect(onChange).toHaveBeenCalledTimes(2);
       expect(onChange.mock.calls[1][0][0].checked).toEqual('on');
       expect(onChange.mock.calls[1][1].type).toEqual('keydown');
+      expect(onChange.mock.calls[1][2]).toEqual({
+        ...options[0],
+        checked: 'on',
+      });
     });
   });
 

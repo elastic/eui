@@ -108,11 +108,13 @@ export type EuiSelectableListProps<T> = EuiSelectableOptionsListProps & {
    */
   searchValue: string;
   /**
-   * Returns the array of options with altered checked state
+   * Returns the array of options with altered checked state, the click/keyboard event,
+   * and the option that triggered the click/keyboard event
    */
   onOptionClick: (
     options: Array<EuiSelectableOption<T>>,
-    event: EuiSelectableOnChangeEvent
+    event: EuiSelectableOnChangeEvent,
+    clickedOption: EuiSelectableOption<T>
   ) => void;
   /**
    * Custom render for the label portion of the option;
@@ -450,6 +452,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
     event: EuiSelectableOnChangeEvent
   ) => {
     const { onOptionClick, options, singleSelection } = this.props;
+    let changedOption = { ...addedOption };
 
     const updatedOptions = options.map((option) => {
       // if singleSelection is enabled, uncheck any selected option(s)
@@ -461,12 +464,13 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
       // if this is the now-selected option, check it
       if (option === addedOption) {
         updatedOption.checked = 'on';
+        changedOption = updatedOption;
       }
 
       return updatedOption;
     });
 
-    onOptionClick(updatedOptions, event);
+    onOptionClick(updatedOptions, event, changedOption);
   };
 
   private onRemoveOption = (
@@ -474,18 +478,20 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
     event: EuiSelectableOnChangeEvent
   ) => {
     const { onOptionClick, singleSelection, options } = this.props;
+    let changedOption = { ...removedOption };
 
     const updatedOptions = options.map((option) => {
       const updatedOption = { ...option };
 
       if (option === removedOption && singleSelection !== 'always') {
         delete updatedOption.checked;
+        changedOption = updatedOption;
       }
 
       return updatedOption;
     });
 
-    onOptionClick(updatedOptions, event);
+    onOptionClick(updatedOptions, event, changedOption);
   };
 
   private onExcludeOption = (
@@ -493,18 +499,19 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
     event: EuiSelectableOnChangeEvent
   ) => {
     const { onOptionClick, options } = this.props;
-    excludedOption.checked = 'off';
+    let changedOption = { ...excludedOption };
 
     const updatedOptions = options.map((option) => {
       const updatedOption = { ...option };
 
       if (option === excludedOption) {
         updatedOption.checked = 'off';
+        changedOption = updatedOption;
       }
 
       return updatedOption;
     });
 
-    onOptionClick(updatedOptions, event);
+    onOptionClick(updatedOptions, event, changedOption);
   };
 }
