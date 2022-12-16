@@ -14,7 +14,7 @@ exports[`renders EuiColorStops 1`] = `
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    class="euiRangeTrack emotion-euiRangeTrack"
+    class="euiRangeTrack euiColorStops__track emotion-euiRangeTrack-euiColorStops__track"
   >
     <div
       class="euiRangeHighlight euiColorStops__highlight emotion-euiRangeHighlight"
@@ -126,7 +126,7 @@ exports[`renders compressed EuiColorStops 1`] = `
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    class="euiRangeTrack emotion-euiRangeTrack"
+    class="euiRangeTrack euiColorStops__track emotion-euiRangeTrack-euiColorStops__track"
   >
     <div
       class="euiRangeHighlight euiColorStops__highlight emotion-euiRangeHighlight"
@@ -238,7 +238,7 @@ exports[`renders disabled EuiColorStops 1`] = `
     Test:  Disabled. Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    class="euiRangeTrack emotion-euiRangeTrack-disabled"
+    class="euiRangeTrack euiColorStops__track emotion-euiRangeTrack-disabled-euiColorStops__track"
   >
     <div
       class="euiRangeHighlight euiColorStops__highlight emotion-euiRangeHighlight"
@@ -353,7 +353,7 @@ exports[`renders empty EuiColorStops 1`] = `
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    class="euiRangeTrack emotion-euiRangeTrack"
+    class="euiRangeTrack euiColorStops__track emotion-euiRangeTrack-euiColorStops__track"
   >
     <div
       class="euiRangeHighlight euiColorStops__highlight emotion-euiRangeHighlight"
@@ -390,7 +390,7 @@ exports[`renders fixed stop EuiColorStops 1`] = `
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    class="euiRangeTrack emotion-euiRangeTrack"
+    class="euiRangeTrack euiColorStops__track emotion-euiRangeTrack-euiColorStops__track"
   >
     <div
       class="euiRangeHighlight euiColorStops__highlight emotion-euiRangeHighlight"
@@ -502,7 +502,7 @@ exports[`renders free-range EuiColorStops 1`] = `
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    class="euiRangeTrack emotion-euiRangeTrack"
+    class="euiRangeTrack euiColorStops__track emotion-euiRangeTrack-euiColorStops__track"
   >
     <div
       class="euiRangeHighlight euiColorStops__highlight emotion-euiRangeHighlight"
@@ -539,7 +539,7 @@ exports[`renders fullWidth EuiColorStops 1`] = `
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    class="euiRangeTrack emotion-euiRangeTrack"
+    class="euiRangeTrack euiColorStops__track emotion-euiRangeTrack-euiColorStops__track"
   >
     <div
       class="euiRangeHighlight euiColorStops__highlight emotion-euiRangeHighlight"
@@ -651,7 +651,7 @@ exports[`renders max-only EuiColorStops 1`] = `
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    class="euiRangeTrack emotion-euiRangeTrack"
+    class="euiRangeTrack euiColorStops__track emotion-euiRangeTrack-euiColorStops__track"
   >
     <div
       class="euiRangeHighlight euiColorStops__highlight emotion-euiRangeHighlight"
@@ -688,7 +688,7 @@ exports[`renders min-only EuiColorStops 1`] = `
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    class="euiRangeTrack emotion-euiRangeTrack"
+    class="euiRangeTrack euiColorStops__track emotion-euiRangeTrack-euiColorStops__track"
   >
     <div
       class="euiRangeHighlight euiColorStops__highlight emotion-euiRangeHighlight"
@@ -725,7 +725,7 @@ exports[`renders readOnly EuiColorStops 1`] = `
     Test: Read-only.  Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    class="euiRangeTrack emotion-euiRangeTrack"
+    class="euiRangeTrack euiColorStops__track emotion-euiRangeTrack-euiColorStops__track"
   >
     <div
       class="euiRangeHighlight euiColorStops__highlight emotion-euiRangeHighlight"

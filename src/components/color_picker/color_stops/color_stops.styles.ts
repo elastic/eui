@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme, transparentize } from '../../../services';
+import { UseEuiTheme, transparentize, hexToRgb } from '../../../services';
 import { mathWithUnits, euiCanAnimate } from '../../../global_styling';
 import { euiCustomControl } from '../../form/form.styles';
 
@@ -38,15 +38,34 @@ export const euiColorStopsStyles = (
     euiColorStops: css`
       ${!isDisabled &&
       `
-      &:focus {
-        outline: 2px solid ${euiTheme.focus.color};
-      }
+        &:focus {
+          outline: none;
 
-      .euiRangeTrack::after {
+          .euiColorStops__track::after {
+            box-shadow: 0 0 0 1px rgba(${hexToRgb(
+              euiTheme.colors.emptyShade
+            )}, 0.8),
+              0 0 0 3px ${range.focusColor};
+          }
+        }
+
+        &:focus:not(:focus-visible) {
+          .euiColorStops__track::after {
+            box-shadow: none;
+          }
+        }
+      `}
+    `,
+    euiColorStops__track: css`
+      &:after {
         background: ${stripesBackground};
         background-size: ${euiTheme.size.xs} ${euiTheme.size.xs}; // Percentage stops and background-size are both needed for Safari to render the gradient at fullWidth correctly
+        transition-property: box-shadow;
+
+        // this transition-delay prevents Safari of adding the focus ring (box-shadow) every time we click the EuiColorStops
+        // the focus still appear when we drag a color stop in Safari
+        transition-delay: ${euiTheme.animation.extraFast};
       }
-   `}
     `,
     euiColorStops__addTarget: css`
       ${euiCustomControl(euiThemeContext, { type: 'round' })};
@@ -58,6 +77,9 @@ export const euiColorStopsStyles = (
       background-color: ${euiTheme.colors.lightestShade};
       pointer-events: none;
       opacity: 0;
+      border: 1px solid ${euiTheme.colors.darkShade};
+      box-shadow: none;
+      z-index: ${range.thumbZIndex};
       ${euiCanAnimate} {
         transition: opacity ${euiTheme.animation.fast} ease-in;
       }
@@ -88,6 +110,7 @@ export const euiColorStopsAddContainerStyles = (
       inset-block-start: 50%;
       block-size: ${range.thumbHeight};
       margin-block-start: ${mathWithUnits(range.thumbHeight, (x) => x * -0.5)};
+      z-index: ${range.thumbZIndex};
 
       ${!isDisabled &&
       `

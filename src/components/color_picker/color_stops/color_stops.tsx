@@ -205,6 +205,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     disabled && styles.isDisabled,
     readOnly && styles.isReadOnly,
   ];
+  const cssTrackStyles = [styles.euiColorStops__track];
   const cssAddTargetStyles = [styles.euiColorStops__addTarget];
 
   const addContainerIsDisabled = isHoverDisabled || disabled || readOnly;
@@ -542,6 +543,8 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
         </p>
       </EuiScreenReaderOnly>
       <EuiRangeTrack
+        className="euiColorStops__track"
+        css={cssTrackStyles}
         min={min || rangeMin}
         max={max || rangeMax}
         compressed={compressed}

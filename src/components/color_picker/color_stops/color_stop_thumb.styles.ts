@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme } from '../../../services';
+import { UseEuiTheme, hexToRgb } from '../../../services';
 import { mathWithUnits } from '../../../global_styling';
 import { euiRangeVariables } from '../../form/range/range.styles';
 import { euiColorPickerVariables } from '../color_picker.styles';
@@ -26,8 +26,8 @@ export const euiColorStopThumbStyles = (euiThemeContext: UseEuiTheme) => {
         cursor: grab;
         border: solid ${euiTheme.size.xxs} ${euiTheme.colors.emptyShade};
         box-shadow: 0 0 0 1px ${euiTheme.colors.mediumShade},
-          0 2px 2px -1px rgba(${euiTheme.colors.shadow}, 0.2),
-          0 1px 5px -2px rgba(${euiTheme.colors.shadow}, 0.2);
+          0 2px 2px -1px rgba(${hexToRgb(euiTheme.colors.shadow)}, 0.2),
+          0 1px 5px -2px rgba(${hexToRgb(euiTheme.colors.shadow)}, 0.2);
 
         &:active {
           cursor: grabbing;
