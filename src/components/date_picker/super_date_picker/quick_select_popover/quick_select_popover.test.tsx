@@ -8,6 +8,7 @@
 
 import React from 'react';
 import { shallow } from 'enzyme';
+import { render } from '../../../../test/rtl';
 
 import { RenderI18nTimeOptions } from '../time_options';
 import {
@@ -75,7 +76,7 @@ describe('EuiQuickSelectPopover', () => {
   describe('props', () => {
     describe('customQuickSelectPanels', () => {
       it('should render custom panels', () => {
-        const component = shallow(
+        const component = render(
           <RenderI18nTimeOptions>
             {(timeOptions) => (
               <EuiQuickSelectPopover
@@ -85,7 +86,7 @@ describe('EuiQuickSelectPopover', () => {
               />
             )}
           </RenderI18nTimeOptions>
-        ).dive();
+        );
 
         expect(component).toMatchSnapshot();
       });

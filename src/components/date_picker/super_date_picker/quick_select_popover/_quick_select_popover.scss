@@ -2,14 +2,17 @@
   width: $euiFormMaxWidth;
   max-width: 100%;
 
-  // Add border between customQuickSelect sections
-  > *:first-child {
-    padding-bottom: $euiSizeM;
-  }
+  .euiQuickSelectPopover__panel {
+    &:not(:first-child) {
+      border-top: $euiBorderThin;
+      padding-top: $euiSizeM;
+      margin-top: $euiSizeM;
+    }
 
-  > *:not(:first-child) {
-    border-top: $euiBorderThin;
-    padding: $euiSizeM 0;
+    .euiQuickSelectPopover__panelTitle {
+      float: left;
+      margin-bottom: $euiSizeM;
+    }
   }
 }
 
@@ -19,6 +22,7 @@
   overflow: hidden;
   overflow-y: auto;
   margin: $euiSizeS 0 0;
+  clear: both;
 }
 
 .euiQuickSelectPopover__buttonText {

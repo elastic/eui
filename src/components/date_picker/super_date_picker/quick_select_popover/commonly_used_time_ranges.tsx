@@ -45,17 +45,15 @@ export const EuiCommonlyUsedTimeRanges: FunctionComponent<EuiCommonlyUsedTimeRan
   });
 
   return (
-    <fieldset>
-      <EuiFlexItem>
-        <EuiTitle size="xxxs">
-          <legend id={legendId}>
-            <EuiI18n
-              token="euiCommonlyUsedTimeRanges.legend"
-              default="Commonly used"
-            />
-          </legend>
-        </EuiTitle>
-      </EuiFlexItem>
+    <fieldset className="euiQuickSelectPopover__panel">
+      <EuiTitle size="xxxs">
+        <legend id={legendId} className="euiQuickSelectPopover__panelTitle">
+          <EuiI18n
+            token="euiCommonlyUsedTimeRanges.legend"
+            default="Commonly used"
+          />
+        </legend>
+      </EuiTitle>
       <div className="euiQuickSelectPopover__section">
         <EuiFlexGrid
           aria-labelledby={legendId}

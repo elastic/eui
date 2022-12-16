@@ -56,9 +56,9 @@ export const EuiRecentlyUsed: FunctionComponent<EuiRecentlyUsedProps> = ({
   });
 
   return (
-    <fieldset>
+    <fieldset className="euiQuickSelectPopover__panel">
       <EuiTitle size="xxxs">
-        <legend id={legendId}>
+        <legend id={legendId} className="euiQuickSelectPopover__panelTitle">
           <EuiI18n
             token="euiRecentlyUsed.legend"
             default="Recently used date ranges"

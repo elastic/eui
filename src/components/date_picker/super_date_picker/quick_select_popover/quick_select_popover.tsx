@@ -177,7 +177,7 @@ export class EuiQuickSelectPopover extends Component<
 
     return customQuickSelectPanels.map(({ title, content }) => {
       return (
-        <div key={title}>
+        <div key={title} className="euiQuickSelectPopover__panel">
           <EuiTitle size="xxxs">
             <span>{title}</span>
           </EuiTitle>
