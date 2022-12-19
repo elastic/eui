@@ -1,10 +1,14 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiSuperDatePicker,
   EuiSwitch,
   EuiSpacer,
   EuiLink,
+  EuiTitle,
+  EuiCode,
+  EuiCodeBlock,
+  EuiFlexGrid,
   OnTimeChangeProps,
   OnRefreshProps,
   OnRefreshChangeProps,
@@ -30,6 +34,7 @@ export default () => {
   const [showRecentlyUsed, setShowRecentlyUsed] = useState(true);
   const [showCommonlyUsed, setCommonlyUsed] = useState(true);
   const [showRefreshInterval, setShowRefreshInterval] = useState(true);
+  const [showCustomContent, setShowCustomContent] = useState(false);
   const [refreshInterval, setRefreshInterval] = useState(1000);
   const [isPaused, setIsPaused] = useState(true);
 
@@ -47,6 +52,9 @@ export default () => {
   };
   const toggleShowRefreshInterval = () => {
     setShowRefreshInterval(!showRefreshInterval);
+  };
+  const toggleShowCustomContent = () => {
+    setShowCustomContent(!showCustomContent);
   };
 
   const [recentlyUsedRanges, setRecentlyUsedRanges] = useState<
@@ -105,38 +113,103 @@ export default () => {
     },
   ];
 
-  return (
-    <Fragment>
-      <EuiSwitch
-        label="Show Quick Select Panel"
-        onChange={toggleShowQuickSelectPanel}
-        checked={showQuickSelectPanel}
-      />
-      <EuiSpacer />
-      <EuiSwitch
-        label="Show Recently Used Times Panel"
-        onChange={toggleShowRecentlyUsed}
-        checked={showRecentlyUsed}
-      />
-      <EuiSpacer />
-      <EuiSwitch
-        label="Show Commonly Used Times Panel"
-        onChange={toggleShowCommonlyUsed}
-        checked={showCommonlyUsed}
-      />
-      <EuiSpacer />
-      <EuiSwitch
-        label="Show Custom Quick Select Panel"
-        onChange={toggleShowCustomQuickSelectPanel}
-        checked={showCustomQuickSelectPanel}
-      />
-      <EuiSpacer />
-      <EuiSwitch
-        label="Show Refresh Interval Panel"
-        onChange={toggleShowRefreshInterval}
-        checked={showRefreshInterval}
-      />
+  const snippet = `const customQuickSelectRender = ({
+  quickSelect,
+  commonlyUsedTimes,
+  recentlyUsedTimes,
+  refreshInterval,
+  customQuickSelectPanels,
+}) => (
+  <>${
+    showCustomContent
+      ? `
+    <EuiTitle size="xxs"><span>Hello world!</span></EuiTitle>`
+      : ''
+  }${
+    showCustomQuickSelectPanel
+      ? `
+    {customQuickSelectPanels}`
+      : ''
+  }${
+    showCommonlyUsed
+      ? `
+    {commonlyUsedTimes}`
+      : ''
+  }${
+    showRecentlyUsed
+      ? `
+    {recentlyUsedTimes}`
+      : ''
+  }${
+    showQuickSelectPanel
+      ? `
+    {quickSelect}`
+      : ''
+  }${
+    showRefreshInterval
+      ? `
+    {refreshInterval}`
+      : ''
+  }
+  </>
+);
 
+<EuiSuperDatePicker customQuickSelectRender={customQuickSelectRender} />`;
+
+  return (
+    <>
+      <EuiFlexGrid columns={3} gutterSize="s">
+        <EuiSwitch
+          label={
+            <>
+              Show <EuiCode>quickSelect</EuiCode> panel
+            </>
+          }
+          onChange={toggleShowQuickSelectPanel}
+          checked={showQuickSelectPanel}
+        />
+        <EuiSwitch
+          label={
+            <>
+              Show <EuiCode>recentlyUsedTimes</EuiCode> panel
+            </>
+          }
+          onChange={toggleShowRecentlyUsed}
+          checked={showRecentlyUsed}
+        />
+        <EuiSwitch
+          label={
+            <>
+              Show <EuiCode>commonlyUsedTimes</EuiCode> panel
+            </>
+          }
+          onChange={toggleShowCommonlyUsed}
+          checked={showCommonlyUsed}
+        />
+        <EuiSwitch
+          label={
+            <>
+              Show <EuiCode>customQuickSelectPanels</EuiCode>
+            </>
+          }
+          onChange={toggleShowCustomQuickSelectPanel}
+          checked={showCustomQuickSelectPanel}
+        />
+        <EuiSwitch
+          label={
+            <>
+              Show <EuiCode>refreshInterval</EuiCode> panel
+            </>
+          }
+          onChange={toggleShowRefreshInterval}
+          checked={showRefreshInterval}
+        />
+        <EuiSwitch
+          label="Show completely custom content"
+          onChange={toggleShowCustomContent}
+          checked={showCustomContent}
+        />
+      </EuiFlexGrid>
       <EuiSpacer />
       <EuiSuperDatePicker
         isLoading={isLoading}
@@ -160,6 +233,11 @@ export default () => {
           refreshInterval,
         }) => (
           <>
+            {showCustomContent && (
+              <EuiTitle size="xxs">
+                <span>Hello world!</span>
+              </EuiTitle>
+            )}
             {showCustomQuickSelectPanel ? customQuickSelectPanels : undefined}
             {showCommonlyUsed ? commonlyUsedTimes : undefined}
             {showRecentlyUsed ? recentlyUsedTimes : undefined}
@@ -169,6 +247,11 @@ export default () => {
         )}
       />
       <EuiSpacer />
-    </Fragment>
+      <EuiTitle size="xs">
+        <strong>Example snippet:</strong>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      <EuiCodeBlock language="jsx">{snippet}</EuiCodeBlock>
+    </>
   );
 };

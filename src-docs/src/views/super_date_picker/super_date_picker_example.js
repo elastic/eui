@@ -27,8 +27,7 @@ const superDatePickerWidthSource = require('!!raw-loader!./super_date_picker_wid
 import SuperDatePickerCustomQuickSelect from './super_date_picker_custom_quick_select';
 const superDatePickerCustomQuickSelectSource = require('!!raw-loader!./super_date_picker_custom_quick_select');
 
-import SuperDatePickerCustomQuickSelectCustomOrder from './super_date_picker_custom_quick_select_custom_order';
-const superDatePickerCustomQuickSelectCustomOrderSource = require('!!raw-loader!./super_date_picker_custom_quick_select_custom_order');
+import SuperDatePickerCustomQuickSelectRender from './super_date_picker_custom_quick_select_render';
 
 import AutoRefresh from './auto_refresh';
 const autoRefreshSource = require('!!raw-loader!./auto_refresh');
@@ -57,35 +56,6 @@ const superDatePickerCustomQuickSelectSnippet = `<EuiSuperDatePicker
       content: ReactElement,
     },
   ]}
-/>
-`;
-
-const superDatePickerCustomQuickSelectCustomOrderSnippet = `<EuiSuperDatePicker
-  onTimeChange={onTimeChange}
-  recentlyUsedRanges={[
-    end: ShortDate,
-    start: ShortDate,
-    label?: string,
-  ]}
-  customQuickSelectPanels={[
-    {
-      title: string,
-      content: ReactElement,
-    },
-  ]}
-  customQuickSelectRender={({
-    quickSelect,
-    commonlyUsedTimes,
-    recentlyUsedTimes,
-    customQuickSelectPanels,
-  }) => (
-    <>
-      {customQuickSelectPanels}
-      {quickSelect}
-      {commonlyUsedTimes}
-      {recentlyUsedTimes}
-    </>
-  )}
 />
 `;
 
@@ -251,24 +221,18 @@ if (!endMoment || !endMoment.isValid()) {
       demo: <SuperDatePickerCustomQuickSelect />,
     },
     {
-      source: [
-        {
-          type: GuideSectionTypes.TSX,
-          code: superDatePickerCustomQuickSelectCustomOrderSource,
-        },
-      ],
       text: (
         <>
-          <h3 id="customizing-panel-order">Customizing panel order</h3>
+          <h3 id="quickselect-custom-rendering">Custom rendering</h3>
           <p>
             You can optionally pass the{' '}
-            <EuiCode>customQuickSelectRender</EuiCode> prop that returns Quick
-            Select panels and allows you to customize the order of them.{' '}
+            <EuiCode>customQuickSelectRender</EuiCode> prop that passes default
+            panels as arguments and allows you to re-order panels, omit certain
+            panels entirely, or pass in your own fully custom content.
           </p>
         </>
       ),
-      snippet: superDatePickerCustomQuickSelectCustomOrderSnippet,
-      demo: <SuperDatePickerCustomQuickSelectCustomOrder />,
+      demo: <SuperDatePickerCustomQuickSelectRender />,
     },
     {
       title: 'Sizing',
