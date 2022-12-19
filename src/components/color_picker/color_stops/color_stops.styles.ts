@@ -64,11 +64,13 @@ export const euiColorStopsStyles = (
       &:after {
         background: ${stripesBackground};
         background-size: ${euiTheme.size.xs} ${euiTheme.size.xs}; // Percentage stops and background-size are both needed for Safari to render the gradient at fullWidth correctly
-        transition-property: box-shadow;
 
-        // this transition-delay prevents Safari of adding the focus ring (box-shadow) every time we click the EuiColorStops
-        // the focus still appear when we drag a color stop in Safari
-        transition-delay: ${euiTheme.animation.extraFast};
+        ${euiCanAnimate} {
+          transition-property: box-shadow;
+          // this transition-delay prevents Safari of adding the focus ring (box-shadow) every time we click the EuiColorStops
+          // the focus still appear when we drag a color stop in Safari
+          transition-delay: ${euiTheme.animation.extraFast};
+        }
       }
     `,
     euiColorStops__addTarget: css`

@@ -71,10 +71,9 @@ export const euiColorStopThumbPopoverStyles = (
           background: ${euiTheme.colors.emptyShade};
         }
       }
-
-      .euiColorStopPopover-isLoadingPanel {
-        visibility: hidden !important; // Overrides a stateful class on EuiPopover -> EuiPanel
-      }
+    `,
+    isLoadingPanel: css`
+      visibility: hidden !important; // Overrides a stateful class on EuiPopover -> EuiPanel
     `,
     hasFocus: css`
       z-index: ${range.thumbZIndex};

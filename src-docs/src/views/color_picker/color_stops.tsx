@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import {
   EuiColorStops,
+  EuiColorStopsProps,
   EuiFormRow,
   EuiRange,
   EuiFlexGroup,
@@ -24,7 +25,9 @@ export default () => {
   const [value, setValue] = useState(10);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
-  const [extendedColorStops, setExtendedColorStops] = useState([
+  const [extendedColorStops, setExtendedColorStops] = useState<
+    EuiColorStopsProps['colorStops']
+  >([
     {
       stop: 100,
       color: '#54B399',
@@ -39,14 +42,18 @@ export default () => {
     },
   ]);
 
-  const handleExtendedChange = (colorStops) => {
+  const handleExtendedChange = (
+    colorStops: EuiColorStopsProps['colorStops']
+  ) => {
     setExtendedColorStops(colorStops);
   };
 
-  const [emptyColorStops, setEmptyColorStops] = useState([]);
+  const [emptyColorStops, setEmptyColorStops] = useState<
+    EuiColorStopsProps['colorStops']
+  >([]);
 
-  const handleEmptyChange = (colorStops) => {
-    setEmptyColorStops(colorStops);
+  const handleEmptyChange: EuiColorStopsProps['onChange'] = (colorStops) => {
+    setEmptyColorStops(colorStops as EuiColorStopsProps['colorStops']);
   };
 
   const onButtonClick = () =>
@@ -79,8 +86,8 @@ export default () => {
       <EuiFormRow label="Standard">
         <EuiColorStops
           label="Standard"
-          onChange={setStandardColorStops}
-          colorStops={standardColorStops}
+          onChange={setStandardColorStops as EuiColorStopsProps['onChange']}
+          colorStops={standardColorStops as EuiColorStopsProps['colorStops']}
           min={0}
           max={100}
         />
@@ -88,17 +95,17 @@ export default () => {
       <EuiFormRow label="Random new color">
         <EuiColorStops
           label="Random new color"
-          onChange={setRandomColorStops}
-          colorStops={randomColorStops}
+          onChange={setRandomColorStops as EuiColorStopsProps['onChange']}
+          colorStops={randomColorStops as EuiColorStopsProps['colorStops']}
           min={0}
           max={100}
-          addColor={addRandomColor}
+          addColor={addRandomColor as EuiColorStopsProps['addColor']}
         />
       </EuiFormRow>
       <EuiFormRow label="Extended range">
         <EuiColorStops
           label="Extended range"
-          onChange={handleExtendedChange}
+          onChange={() => handleExtendedChange}
           colorStops={extendedColorStops}
           min={100}
           max={400}
@@ -107,8 +114,8 @@ export default () => {
       <EuiFormRow label="Fixed color segments">
         <EuiColorStops
           label="Fixed color segments"
-          onChange={setFixedColorStops}
-          colorStops={fixedColorStops}
+          onChange={setFixedColorStops as EuiColorStopsProps['onChange']}
+          colorStops={fixedColorStops as EuiColorStopsProps['colorStops']}
           min={0}
           max={100}
           stopType="fixed"
@@ -120,8 +127,8 @@ export default () => {
           <EuiFlexItem>
             <EuiColorStops
               label="Stepped color segments"
-              onChange={setSteppedColorStops}
-              colorStops={steppedColorStops}
+              onChange={setSteppedColorStops as EuiColorStopsProps['onChange']}
+              colorStops={steppedColorStops as EuiColorStopsProps['colorStops']}
               stepNumber={value}
               min={0}
               max={100}
@@ -139,6 +146,7 @@ export default () => {
               <EuiFormRow label="Number of steps" display="columnCompressed">
                 <EuiRange
                   value={value}
+                  // @ts-ignore-next-line
                   onChange={(e) => setValue(parseInt(e.target.value))}
                   showInput
                   aria-label="Change the number of steps"
