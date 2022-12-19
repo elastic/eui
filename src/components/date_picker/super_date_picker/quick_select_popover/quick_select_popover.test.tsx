@@ -129,7 +129,7 @@ describe('EuiQuickSelectPopover', () => {
                 timeOptions={timeOptions}
                 customQuickSelectPanels={customQuickSelectPanels}
                 customQuickSelectRender={({
-                  applyRefreshIntervalPanel,
+                  refreshInterval,
                   quickSelect,
                   commonlyUsedTimes,
                   recentlyUsedTimes,
@@ -137,7 +137,7 @@ describe('EuiQuickSelectPopover', () => {
                 }) => (
                   <>
                     {customQuickSelectPanels}
-                    {applyRefreshIntervalPanel}
+                    {refreshInterval}
                     {quickSelect}
                     {commonlyUsedTimes}
                     {recentlyUsedTimes}

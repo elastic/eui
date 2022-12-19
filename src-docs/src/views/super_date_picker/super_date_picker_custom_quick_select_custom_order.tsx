@@ -29,7 +29,7 @@ export default () => {
   );
   const [showRecentlyUsed, setShowRecentlyUsed] = useState(true);
   const [showCommonlyUsed, setCommonlyUsed] = useState(true);
-  const [showApplyRefreshInterval, setApplyRefreshInterval] = useState(true);
+  const [showRefreshInterval, setShowRefreshInterval] = useState(true);
   const [refreshInterval, setRefreshInterval] = useState(1000);
   const [isPaused, setIsPaused] = useState(true);
 
@@ -45,8 +45,8 @@ export default () => {
   const toggleShowCommonlyUsed = () => {
     setCommonlyUsed(!showCommonlyUsed);
   };
-  const toggleShowApplyRefreshInterval = () => {
-    setApplyRefreshInterval(!showApplyRefreshInterval);
+  const toggleShowRefreshInterval = () => {
+    setShowRefreshInterval(!showRefreshInterval);
   };
 
   const [recentlyUsedRanges, setRecentlyUsedRanges] = useState<
@@ -132,9 +132,9 @@ export default () => {
       />
       <EuiSpacer />
       <EuiSwitch
-        label="Show Apply Refresh Interval Panel"
-        onChange={toggleShowApplyRefreshInterval}
-        checked={showApplyRefreshInterval}
+        label="Show Refresh Interval Panel"
+        onChange={toggleShowRefreshInterval}
+        checked={showRefreshInterval}
       />
 
       <EuiSpacer />
@@ -157,14 +157,14 @@ export default () => {
           commonlyUsedTimes,
           recentlyUsedTimes,
           customQuickSelectPanels,
-          applyRefreshIntervalPanel,
+          refreshInterval,
         }) => (
           <>
             {showCustomQuickSelectPanel ? customQuickSelectPanels : undefined}
             {showCommonlyUsed ? commonlyUsedTimes : undefined}
             {showRecentlyUsed ? recentlyUsedTimes : undefined}
             {showQuickSelectPanel ? quickSelect : undefined}
-            {showApplyRefreshInterval ? applyRefreshIntervalPanel : undefined}
+            {showRefreshInterval ? refreshInterval : undefined}
           </>
         )}
       />
