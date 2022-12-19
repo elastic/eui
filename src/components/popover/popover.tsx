@@ -16,7 +16,7 @@ import React, {
   RefCallback,
 } from 'react';
 import classNames from 'classnames';
-import { focusable } from 'tabbable';
+import { focusable, tabbable } from 'tabbable';
 
 import { CommonProps, NoArgCallback } from '../common';
 import { FocusTarget, EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
@@ -275,6 +275,7 @@ interface State {
   arrowPosition: EuiPopoverArrowPositions | null;
   openPosition: any; // What should this be?
   isOpenStable: boolean;
+  isTabbable: boolean;
 }
 
 type PropsWithDefaults = Props & {
@@ -343,6 +344,7 @@ export class EuiPopover extends Component<Props, State> {
       arrowPosition: null,
       openPosition: null, // once a stable position has been found, keep the contents on that side
       isOpenStable: false, // wait for any initial opening transitions to finish before marking as stable
+      isTabbable: false,
     };
   }
 
@@ -400,6 +402,7 @@ export class EuiPopover extends Component<Props, State> {
     // We need to set this state a beat after the render takes place, so that the CSS
     // transition can take effect.
     this.closingTransitionAnimationFrame = window.requestAnimationFrame(() => {
+      this.testTabbable();
       this.setState({
         isOpening: true,
       });
@@ -570,6 +573,17 @@ export class EuiPopover extends Component<Props, State> {
     this.positionPopover(false);
   };
 
+  testTabbable = () => {
+    if (!this.panel) return;
+    const tabbables = tabbable(this.panel);
+
+    if (tabbables.length > 0) {
+      this.setState({
+        isTabbable: true,
+      });
+    }
+  };
+
   panelRef = (node: HTMLElement | null) => {
     this.panel = node;
     this.props.panelRef && this.props.panelRef(node);
@@ -677,13 +691,22 @@ export class EuiPopover extends Component<Props, State> {
       let focusTrapScreenReaderText;
       if (ownFocus || popoverScreenReaderText) {
         ariaDescribedby = this.descriptionId;
+        const isTabbable = this.state.isTabbable;
+
         focusTrapScreenReaderText = (
           <EuiScreenReaderOnly>
             <p id={this.descriptionId}>
-              {ownFocus && (
+              {ownFocus && !isTabbable && (
                 <EuiI18n
                   token="euiPopover.screenReaderAnnouncement"
                   default="You are in a dialog. To close this dialog, hit escape."
+                />
+              )}
+              {/* TODO: Change the translation key for EuiPopover */}
+              {ownFocus && isTabbable && (
+                <EuiI18n
+                  token="euiPopover.screenReaderAnnouncement"
+                  default="You are in a dialog. To close this dialog, hit escape. Use the Tab key to reach the first interactable element."
                 />
               )}
               {popoverScreenReaderText}
@@ -693,7 +716,6 @@ export class EuiPopover extends Component<Props, State> {
       }
 
       const returnFocus = this.state.isOpenStable ? returnFocusConfig : false;
-
       panel = (
         <EuiPortal insert={insert}>
           <EuiFocusTrap
