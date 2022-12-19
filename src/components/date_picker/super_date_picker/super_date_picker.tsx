@@ -64,7 +64,8 @@ export type EuiSuperDatePickerProps = CommonProps & {
   commonlyUsedRanges?: DurationRange[];
   customQuickSelectPanels?: QuickSelectPanel[];
 
-  /* An optional render prop function that allows customizing the display of the Quick Select menu.
+  /**
+   * An optional render prop function that allows customizing the display of the Quick Select menu.
    * This function passes all default quick select panels within an object, allowing you to
    * re-order panels, omit certain panels entirely, or pass in your own fully custom content.
    */
