@@ -7,7 +7,7 @@ exports[`renders EuiColorStopThumb 1`] = `
   style="left:0%"
 >
   <div
-    class="euiPopover__anchor euiColorStopPopover__anchor css-16vtueo-render"
+    class="euiPopover__anchor euiColorStopThumbPopover__anchor css-16vtueo-render"
   >
     <button
       aria-disabled="false"
@@ -34,7 +34,7 @@ exports[`renders disabled EuiColorStopThumb 1`] = `
   style="left:0%"
 >
   <div
-    class="euiPopover__anchor euiColorStopPopover__anchor css-16vtueo-render"
+    class="euiPopover__anchor euiColorStopThumbPopover__anchor css-16vtueo-render"
   >
     <button
       aria-disabled="true"
@@ -62,7 +62,7 @@ exports[`renders picker-only EuiColorStopThumb 1`] = `
   style="left:0%"
 >
   <div
-    class="euiPopover__anchor euiColorStopPopover__anchor css-16vtueo-render"
+    class="euiPopover__anchor euiColorStopThumbPopover__anchor css-16vtueo-render"
   >
     <button
       aria-disabled="false"
@@ -89,7 +89,7 @@ exports[`renders readOnly EuiColorStopThumb 1`] = `
   style="left:0%"
 >
   <div
-    class="euiPopover__anchor euiColorStopPopover__anchor css-16vtueo-render"
+    class="euiPopover__anchor euiColorStopThumbPopover__anchor css-16vtueo-render"
   >
     <button
       aria-disabled="false"
@@ -116,7 +116,7 @@ exports[`renders swatch-only EuiColorStopThumb 1`] = `
   style="left:0%"
 >
   <div
-    class="euiPopover__anchor euiColorStopPopover__anchor css-16vtueo-render"
+    class="euiPopover__anchor euiColorStopThumbPopover__anchor css-16vtueo-render"
   >
     <button
       aria-disabled="false"
