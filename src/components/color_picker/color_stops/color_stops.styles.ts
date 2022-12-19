@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme, transparentize, hexToRgb } from '../../../services';
+import { UseEuiTheme, darken, brighten, hexToRgb } from '../../../services';
 import { mathWithUnits, euiCanAnimate } from '../../../global_styling';
 import { euiCustomControl } from '../../form/form.styles';
 
@@ -22,14 +22,18 @@ export const euiColorStopsStyles = (
   isDisabled: boolean | undefined
 ) => {
   const range = euiRangeVariables(euiThemeContext);
-  const { euiTheme } = euiThemeContext;
-  const stripeColor = euiTheme.colors.ink;
+  const { euiTheme, colorMode } = euiThemeContext;
+  const isDarkMode = colorMode === 'DARK';
+  const stripeColor = isDarkMode
+    ? brighten(range.trackColor, 0.5)
+    : darken(range.trackColor, 0.5);
+
   const stripesBackground = `repeating-linear-gradient(
     -45deg,
     ${range.trackColor},
     ${range.trackColor} 25%,
-    ${transparentize(stripeColor, 0.25)} 25%,
-    ${transparentize(stripeColor, 0.25)} 50%,
+    ${stripeColor} 25%,
+    ${stripeColor} 50%,
     ${range.trackColor} 50%
   )`;
 

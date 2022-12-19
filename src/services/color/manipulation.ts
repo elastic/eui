@@ -103,3 +103,11 @@ export const lightness = (color: string) => chroma(color).get('hsl.l') * 100;
  */
 export const darken = (color: string, amount: number) =>
   chroma(color).darken(amount).hex();
+
+/**
+ * Returns the brighten value of a color. 0-100
+ * @param color - Color to manipulate
+ * @param amount - Amount to change in absolute terms. 0-1.
+ */
+export const brighten = (color: string, amount: number) =>
+  chroma(color).brighten(amount).hex();
