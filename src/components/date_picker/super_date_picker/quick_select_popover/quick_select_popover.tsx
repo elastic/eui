@@ -29,8 +29,8 @@ import {
 
 export type CustomQuickSelectRenderOptions = {
   quickSelect: ReactElement<typeof EuiQuickSelect>;
-  commonlyUsedTimes: ReactElement<typeof EuiCommonlyUsedTimeRanges>;
-  recentlyUsedTimes: ReactElement<typeof EuiRecentlyUsed>;
+  commonlyUsedRanges: ReactElement<typeof EuiCommonlyUsedTimeRanges>;
+  recentlyUsedRanges: ReactElement<typeof EuiRecentlyUsed>;
   customQuickSelectPanels?: ReactElement<QuickSelectPanel[]>;
   refreshInterval?: ReactElement<typeof EuiRefreshInterval>;
 };
@@ -152,8 +152,8 @@ export class EuiQuickSelectPopover extends Component<
         {customQuickSelectRender ? (
           customQuickSelectRender({
             quickSelect: quickSelectElement,
-            commonlyUsedTimes: commonlyUsedElement,
-            recentlyUsedTimes: recentlyUsedElement,
+            commonlyUsedRanges: commonlyUsedElement,
+            recentlyUsedRanges: recentlyUsedElement,
             customQuickSelectPanels: customQuickSelectPanelsElement,
             refreshInterval: refreshIntervalElement,
           })

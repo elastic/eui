@@ -115,8 +115,8 @@ export default () => {
 
   const snippet = `const customQuickSelectRender = ({
   quickSelect,
-  commonlyUsedTimes,
-  recentlyUsedTimes,
+  commonlyUsedRanges,
+  recentlyUsedRanges,
   refreshInterval,
   customQuickSelectPanels,
 }) => (
@@ -133,12 +133,12 @@ export default () => {
   }${
     showCommonlyUsed
       ? `
-    {commonlyUsedTimes}`
+    {commonlyUsedRanges}`
       : ''
   }${
     showRecentlyUsed
       ? `
-    {recentlyUsedTimes}`
+    {recentlyUsedRanges}`
       : ''
   }${
     showQuickSelectPanel
@@ -171,7 +171,7 @@ export default () => {
         <EuiSwitch
           label={
             <>
-              Show <EuiCode>recentlyUsedTimes</EuiCode> panel
+              Show <EuiCode>recentlyUsedRanges</EuiCode> panel
             </>
           }
           onChange={toggleShowRecentlyUsed}
@@ -180,7 +180,7 @@ export default () => {
         <EuiSwitch
           label={
             <>
-              Show <EuiCode>commonlyUsedTimes</EuiCode> panel
+              Show <EuiCode>commonlyUsedRanges</EuiCode> panel
             </>
           }
           onChange={toggleShowCommonlyUsed}
@@ -227,8 +227,8 @@ export default () => {
         onRefreshChange={onRefreshChange}
         customQuickSelectRender={({
           quickSelect,
-          commonlyUsedTimes,
-          recentlyUsedTimes,
+          commonlyUsedRanges,
+          recentlyUsedRanges,
           customQuickSelectPanels,
           refreshInterval,
         }) => (
@@ -239,8 +239,8 @@ export default () => {
               </EuiTitle>
             )}
             {showCustomQuickSelectPanel ? customQuickSelectPanels : undefined}
-            {showCommonlyUsed ? commonlyUsedTimes : undefined}
-            {showRecentlyUsed ? recentlyUsedTimes : undefined}
+            {showCommonlyUsed ? commonlyUsedRanges : undefined}
+            {showRecentlyUsed ? recentlyUsedRanges : undefined}
             {showQuickSelectPanel ? quickSelect : undefined}
             {showRefreshInterval ? refreshInterval : undefined}
           </>
