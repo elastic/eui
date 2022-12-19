@@ -6,7 +6,7 @@ const copyFilePromise = util.promisify(fs.copyFile);
 
 const chalk = require('chalk');
 const postcss = require('postcss');
-const sass = require('node-sass'); // TODO: Switch to dart sass
+const sass = require('sass');
 
 const postcssConfiguration = require('../postcss.config.js');
 
@@ -99,6 +99,7 @@ async function compileScssFile({ inputFilename, outputCssFilename }) {
   const { css: renderedCss } = sass.renderSync({
     file: inputFilename,
     outFile: outputCssFilename,
+    logger: sass.Logger.silent, // Silence warnings about division - we won't be on Sass for much longer
   });
 
   const { css: postprocessedCss } = await postcss(postcssConfiguration).process(

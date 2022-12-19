@@ -244,6 +244,7 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
                 <div className="euiFilePicker__prompt" id={promptId}>
                   <EuiIcon
                     className="euiFilePicker__icon"
+                    color={disabled ? 'subdued' : 'primary'}
                     type="importAction"
                     size={normalFormControl ? 'm' : 'l'}
                     aria-hidden="true"

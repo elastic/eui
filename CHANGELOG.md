@@ -1,3 +1,9 @@
+## [`71.1.0`](https://github.com/elastic/eui/tree/v71.1.0)
+
+**Deprecations**
+
+- Renamed `EuiPageSideBarProps` to `EuiPageSideBarProps_Deprecated`, to reduce usage/confusion with `EuiPageSidebar` ([#6468](https://github.com/elastic/eui/pull/6468))
+
 ## [`71.0.0`](https://github.com/elastic/eui/tree/v71.0.0)
 
 - Implemented new `EuiRange` and `EuiDualRange` designs where the `levels` are now on top of the tracks ([#6092](https://github.com/elastic/eui/pull/6092))

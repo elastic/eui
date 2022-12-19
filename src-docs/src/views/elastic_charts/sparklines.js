@@ -1,6 +1,5 @@
-import React, { useContext, Fragment } from 'react';
-import cloneDeep from 'lodash/cloneDeep';
-import { ThemeContext } from '../../components';
+import React from 'react';
+
 import {
   Chart,
   BarSeries,
@@ -26,29 +25,40 @@ import {
   EuiText,
 } from '../../../../src/components';
 
-import { TIME_DATA_SMALL } from './data';
 import {
   euiPaletteForDarkBackground,
   euiPaletteForLightBackground,
+  useEuiTheme,
 } from '../../../../src/services';
 
-export const Sparklines = () => {
-  const themeContext = useContext(ThemeContext);
-  const isDarkTheme = themeContext.theme.includes('dark');
+export const TIME_DATA_SMALL = [
+  [1551438630000, 8.515625],
+  [1551438660000, 10.796875],
+  [1551438690000, 11.125],
+  [1551438720000, 21.40625],
+  [1551438750000, 17.921875],
+  [1551438780000, 26.640625],
+  [1551438810000, 31.390625],
+  [1551438840000, 23.953125],
+];
+const TIME_DATA_SMALL_REVERSE = [...TIME_DATA_SMALL].reverse();
+
+const TIME_DATA_MAJOR = [...TIME_DATA_SMALL_REVERSE];
+const lastIndex = TIME_DATA_MAJOR.length - 1;
+TIME_DATA_MAJOR[lastIndex] = [...TIME_DATA_MAJOR[lastIndex]];
+TIME_DATA_MAJOR[lastIndex][1] = -100;
+
+export default () => {
+  const { colorMode } = useEuiTheme();
+  const isDarkTheme = colorMode === 'DARK';
 
   const theme = [
     EUI_SPARKLINE_THEME_PARTIAL,
     isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LIGHT.theme,
   ];
 
-  const TIME_DATA_SMALL_REVERSE = cloneDeep(TIME_DATA_SMALL).reverse();
-  const TIME_DATA_SMALL_REVERSE_MAJOR = cloneDeep(TIME_DATA_SMALL_REVERSE);
-  TIME_DATA_SMALL_REVERSE_MAJOR[
-    TIME_DATA_SMALL_REVERSE_MAJOR.length - 1
-  ][1] = -100;
-
   return (
-    <Fragment>
+    <>
       <EuiFlexGrid columns={4} responsive={false}>
         <EuiFlexItem>
           <EuiPanel>
@@ -119,7 +129,7 @@ export const Sparklines = () => {
                 <Settings theme={theme} showLegend={false} tooltip="none" />
                 <LineSeries
                   id="major"
-                  data={TIME_DATA_SMALL_REVERSE_MAJOR}
+                  data={TIME_DATA_MAJOR}
                   xAccessor={0}
                   yAccessors={[1]}
                   color={[
@@ -163,6 +173,6 @@ export const Sparklines = () => {
           </EuiPanel>
         </EuiFlexItem>
       </EuiFlexGrid>
-    </Fragment>
+    </>
   );
 };
