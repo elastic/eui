@@ -1,3 +1,18 @@
+## [`72.0.0`](https://github.com/elastic/eui/tree/v72.0.0)
+
+- Added the `customQuickSelectRender` render prop to `EuiSuperDatePicker`, which allows customizing the Quick Select popover ([#6382](https://github.com/elastic/eui/pull/6382))
+- `EuiFilePicker` styles have been updated to look more like an interactive element. ([#6479](https://github.com/elastic/eui/pull/6479))
+- Added a third argument to `EuiSelectable`'s `onChange` callback. The single `option` object that triggered the `onChange` event is now also passed to consumers with its most recent `checked` state ([#6487](https://github.com/elastic/eui/pull/6487))
+
+**Bug fixes**
+
+- `EuiTabs` now passes `size` and `expand` to all children using a React context provider. ([#6478](https://github.com/elastic/eui/pull/6478))
+- Fixed security warnings caused by `trim@0.0.1` sub-dependency ([#6482](https://github.com/elastic/eui/pull/6482))
+
+**Breaking changes**
+
+- Removed `size` and `expand` props from `EuiTab` ([#6478](https://github.com/elastic/eui/pull/6478))
+
 ## [`71.1.0`](https://github.com/elastic/eui/tree/v71.1.0)
 
 **Deprecations**
