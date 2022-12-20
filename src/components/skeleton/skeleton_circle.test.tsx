@@ -11,14 +11,14 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
-import { EuiSkeletonAvatar } from './skeleton_avatar';
+import { EuiSkeletonCircle } from './skeleton_circle';
 
 describe('EuiSkeleton', () => {
   test('is rendered', () => {
-    const component = render(<EuiSkeletonAvatar {...requiredProps} />);
+    const component = render(<EuiSkeletonCircle {...requiredProps} />);
 
     expect(component).toMatchSnapshot();
   });
 
-  shouldRenderCustomStyles(<EuiSkeletonAvatar />);
+  shouldRenderCustomStyles(<EuiSkeletonCircle />);
 });

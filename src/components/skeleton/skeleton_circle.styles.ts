@@ -20,7 +20,7 @@ const loadingContentGradient = keyframes`
   }
 `;
 
-export const euiSkeletonStyles = ({
+export const euiSkeletonCircleStyles = ({
   euiTheme,
   colorMode,
 }: UseEuiTheme) => {
@@ -38,6 +38,8 @@ export const euiSkeletonStyles = ({
       display: block;
       background: ${gradientStartStop};
       overflow: hidden;
+      width: 100px;
+      height: 100px;
 
       &::after {
         content: '';

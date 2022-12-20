@@ -12,37 +12,37 @@ import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
 
-import { euiSkeletonStyles } from './skeleton_avatar.styles';
+import { euiSkeletonRectStyles } from './skeleton_rect.styles';
 
-export const SIZES = ['s', 'm', 'l', 'xl'] as const;
-export type SkeletonSize = typeof SIZES[number];
-
-export type EuiSkeletonAvatarProps = HTMLAttributes<HTMLDivElement> &
+export type EuiSkeletonRectProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
-    size?: SkeletonSize;
+    width?: string,
+    height?: string,
+    children?: React.ReactChild | React.ReactChild[],
   };
 
-export const EuiSkeletonAvatar: FunctionComponent<EuiSkeletonAvatarProps> = ({
+export const EuiSkeletonRect: FunctionComponent<EuiSkeletonRectProps> = ({
   className,
-  size = 'l',
+  width = 'auto',
+  height = 'auto',
+  children,
   ...rest
 }) => {
 
   const euiTheme = useEuiTheme();
-  const styles = euiSkeletonStyles(euiTheme);
+  const styles = euiSkeletonRectStyles(euiTheme, width, height);
   const classes = classNames(
-    'euiSkeleton',
-    // { [`euiSkeleton--${size}`]: size },
-    { [`euiSkeleton--${size}`]: size },
+    'euiSkeletonRect',
     className
   );
 
   const cssStyles = [
-    styles.euiSkeleton,
-    styles[size],
+    styles.euiSkeleton__rect,
+    styles.width,
+    styles.height,
   ];
 
   return (
-    <div className={classes} css={cssStyles} {...rest}></div>
+    <div className={classes} css={cssStyles} aria-busy={true} {...rest}></div>
   )
 }
