@@ -6,13 +6,21 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, Fragment, ReactNode, ReactElement } from 'react';
+import React, {
+  FunctionComponent,
+  useState,
+  useCallback,
+  useMemo,
+  ReactNode,
+  ReactElement,
+} from 'react';
 
 import { EuiButtonEmpty } from '../../../button';
 import { EuiIcon } from '../../../icon';
 import { EuiPopover } from '../../../popover';
 import { EuiTitle } from '../../../title';
 import { EuiText } from '../../../text';
+import { useEuiI18n } from '../../../i18n';
 
 import { EuiQuickSelect } from './quick_select';
 import { EuiCommonlyUsedTimeRanges } from './commonly_used_time_ranges';
@@ -31,8 +39,8 @@ export type CustomQuickSelectRenderOptions = {
   quickSelect: ReactElement<typeof EuiQuickSelect>;
   commonlyUsedRanges: ReactElement<typeof EuiCommonlyUsedTimeRanges>;
   recentlyUsedRanges: ReactElement<typeof EuiRecentlyUsed>;
-  customQuickSelectPanels?: ReactElement<QuickSelectPanel[]>;
   refreshInterval?: ReactElement<typeof EuiRefreshInterval>;
+  customQuickSelectPanels?: ReactNode;
 };
 
 export interface EuiQuickSelectPopoverProps {
@@ -53,129 +61,124 @@ export interface EuiQuickSelectPopoverProps {
   timeOptions: TimeOptions;
 }
 
-interface EuiQuickSelectPopoverState {
-  isOpen: boolean;
-  prevQuickSelect?: QuickSelect;
-}
+export const EuiQuickSelectPopover: FunctionComponent<EuiQuickSelectPopoverProps> = ({
+  applyTime: _applyTime,
+  ...props
+}) => {
+  const [prevQuickSelect, setQuickSelect] = useState<QuickSelect>();
+  const [isOpen, setIsOpen] = useState(false);
+  const closePopover = useCallback(() => setIsOpen(false), []);
+  const togglePopover = useCallback(() => setIsOpen((isOpen) => !isOpen), []);
 
-export class EuiQuickSelectPopover extends Component<
-  EuiQuickSelectPopoverProps,
-  EuiQuickSelectPopoverState
-> {
-  state: EuiQuickSelectPopoverState = {
-    isOpen: false,
-  };
+  const applyTime: ApplyTime = useCallback(
+    ({ start, end, quickSelect, keepPopoverOpen = false }) => {
+      _applyTime({ start, end });
+      if (quickSelect) {
+        setQuickSelect(quickSelect);
+      }
+      if (!keepPopoverOpen) {
+        closePopover();
+      }
+    },
+    [_applyTime, closePopover]
+  );
 
-  closePopover = () => {
-    this.setState({ isOpen: false });
-  };
+  const buttonlabel = useEuiI18n(
+    'euiQuickSelectPopover.buttonLabel',
+    'Date quick select'
+  );
 
-  togglePopover = () => {
-    this.setState((prevState) => ({
-      isOpen: !prevState.isOpen,
-    }));
-  };
+  const quickSelectButton = (
+    <EuiButtonEmpty
+      className="euiFormControlLayout__prepend"
+      textProps={{ className: 'euiQuickSelectPopover__buttonText' }}
+      onClick={togglePopover}
+      aria-label={buttonlabel}
+      title={buttonlabel}
+      size="xs"
+      iconType="arrowDown"
+      iconSide="right"
+      isDisabled={props.isDisabled}
+      data-test-subj="superDatePickerToggleQuickMenuButton"
+    >
+      <EuiIcon type="calendar" />
+    </EuiButtonEmpty>
+  );
 
-  applyTime: ApplyTime = ({
-    start,
-    end,
-    quickSelect,
-    keepPopoverOpen = false,
-  }) => {
-    this.props.applyTime({
-      start,
-      end,
-    });
-    if (quickSelect) {
-      this.setState({ prevQuickSelect: quickSelect });
-    }
-    if (!keepPopoverOpen) {
-      this.closePopover();
-    }
-  };
-
-  renderQuickSelectMenuSections = () => {
-    const {
-      commonlyUsedRanges,
-      dateFormat,
-      end,
-      recentlyUsedRanges,
-      start,
-      timeOptions,
-      customQuickSelectRender,
-      applyRefreshInterval,
-      isPaused,
-      refreshInterval,
-    } = this.props;
-    const { prevQuickSelect } = this.state;
-
-    const quickSelectElement = (
-      <EuiQuickSelect
-        applyTime={this.applyTime}
-        start={start}
-        end={end}
+  return (
+    <EuiPopover
+      button={quickSelectButton}
+      isOpen={isOpen}
+      closePopover={closePopover}
+      anchorPosition="downLeft"
+      anchorClassName="euiQuickSelectPopover__anchor"
+    >
+      <EuiQuickSelectPanels
+        {...props}
+        applyTime={applyTime}
         prevQuickSelect={prevQuickSelect}
-        timeOptions={timeOptions}
       />
-    );
+    </EuiPopover>
+  );
+};
 
-    const commonlyUsedElement = (
-      <EuiCommonlyUsedTimeRanges
-        applyTime={this.applyTime}
-        commonlyUsedRanges={commonlyUsedRanges}
-      />
-    );
+export const EuiQuickSelectPanels: FunctionComponent<
+  Omit<EuiQuickSelectPopoverProps, 'isDisabled'> & {
+    prevQuickSelect?: QuickSelect;
+  }
+> = ({
+  start,
+  end,
+  dateFormat,
+  timeOptions,
+  commonlyUsedRanges,
+  recentlyUsedRanges,
+  customQuickSelectPanels,
+  customQuickSelectRender,
+  isPaused,
+  refreshInterval,
+  applyRefreshInterval,
+  applyTime,
+  prevQuickSelect,
+}) => {
+  const quickSelectElement = (
+    <EuiQuickSelect
+      applyTime={applyTime}
+      start={start}
+      end={end}
+      prevQuickSelect={prevQuickSelect}
+      timeOptions={timeOptions}
+    />
+  );
 
-    const recentlyUsedElement = (
-      <EuiRecentlyUsed
-        applyTime={this.applyTime}
-        commonlyUsedRanges={commonlyUsedRanges}
-        dateFormat={dateFormat}
-        recentlyUsedRanges={recentlyUsedRanges}
-      />
-    );
+  const commonlyUsedElement = (
+    <EuiCommonlyUsedTimeRanges
+      applyTime={applyTime}
+      commonlyUsedRanges={commonlyUsedRanges}
+    />
+  );
 
-    const customQuickSelectPanelsElement = (
-      <>{this.renderCustomQuickSelectPanels()}</>
-    );
+  const recentlyUsedElement = (
+    <EuiRecentlyUsed
+      applyTime={applyTime}
+      commonlyUsedRanges={commonlyUsedRanges}
+      dateFormat={dateFormat}
+      recentlyUsedRanges={recentlyUsedRanges}
+    />
+  );
 
-    const refreshIntervalElement = applyRefreshInterval && (
-      <EuiRefreshInterval
-        onRefreshChange={applyRefreshInterval}
-        isPaused={isPaused}
-        refreshInterval={refreshInterval}
-      />
-    );
+  const refreshIntervalElement = applyRefreshInterval && (
+    <EuiRefreshInterval
+      onRefreshChange={applyRefreshInterval}
+      isPaused={isPaused}
+      refreshInterval={refreshInterval}
+    />
+  );
 
-    return (
-      <Fragment>
-        {customQuickSelectRender ? (
-          customQuickSelectRender({
-            quickSelect: quickSelectElement,
-            commonlyUsedRanges: commonlyUsedElement,
-            recentlyUsedRanges: recentlyUsedElement,
-            customQuickSelectPanels: customQuickSelectPanelsElement,
-            refreshInterval: refreshIntervalElement,
-          })
-        ) : (
-          <>
-            {quickSelectElement}
-            {commonlyUsedElement}
-            {recentlyUsedElement}
-            {refreshIntervalElement}
-            {customQuickSelectPanelsElement}
-          </>
-        )}
-      </Fragment>
-    );
-  };
-
-  renderCustomQuickSelectPanels = () => {
-    const { customQuickSelectPanels } = this.props;
+  const customQuickSelectPanelsElement = useMemo(() => {
     if (!customQuickSelectPanels) {
       return null;
     }
-
     return customQuickSelectPanels.map(({ title, content }) => {
       return (
         <div key={title} className="euiQuickSelectPopover__panel">
@@ -183,48 +186,35 @@ export class EuiQuickSelectPopover extends Component<
             <span>{title}</span>
           </EuiTitle>
           <EuiText size="s" className="euiQuickSelectPopover__section">
-            {React.cloneElement(content, { applyTime: this.applyTime })}
+            {React.cloneElement(content, { applyTime })}
           </EuiText>
         </div>
       );
     });
-  };
+  }, [customQuickSelectPanels, applyTime]);
 
-  render() {
-    const { isDisabled } = this.props;
-    const { isOpen } = this.state;
-
-    const quickSelectButton = (
-      <EuiButtonEmpty
-        className="euiFormControlLayout__prepend"
-        textProps={{ className: 'euiQuickSelectPopover__buttonText' }}
-        onClick={this.togglePopover}
-        aria-label="Date quick select"
-        size="xs"
-        iconType="arrowDown"
-        iconSide="right"
-        isDisabled={isDisabled}
-        data-test-subj="superDatePickerToggleQuickMenuButton"
-      >
-        <EuiIcon type="calendar" />
-      </EuiButtonEmpty>
-    );
-
-    return (
-      <EuiPopover
-        button={quickSelectButton}
-        isOpen={isOpen}
-        closePopover={this.closePopover}
-        anchorPosition="downLeft"
-        anchorClassName="euiQuickSelectPopover__anchor"
-      >
-        <div
-          className="euiQuickSelectPopover__content"
-          data-test-subj="superDatePickerQuickMenu"
-        >
-          {this.renderQuickSelectMenuSections()}
-        </div>
-      </EuiPopover>
-    );
-  }
-}
+  return (
+    <div
+      className="euiQuickSelectPopover__content"
+      data-test-subj="superDatePickerQuickMenu"
+    >
+      {customQuickSelectRender ? (
+        customQuickSelectRender({
+          quickSelect: quickSelectElement,
+          commonlyUsedRanges: commonlyUsedElement,
+          recentlyUsedRanges: recentlyUsedElement,
+          refreshInterval: refreshIntervalElement,
+          customQuickSelectPanels: customQuickSelectPanelsElement,
+        })
+      ) : (
+        <>
+          {quickSelectElement}
+          {commonlyUsedElement}
+          {recentlyUsedElement}
+          {refreshIntervalElement}
+          {customQuickSelectPanelsElement}
+        </>
+      )}
+    </div>
+  );
+};

@@ -14,9 +14,9 @@ import { RenderI18nTimeOptions } from '../time_options';
 import {
   EuiQuickSelectPopover,
   EuiQuickSelectPopoverProps,
+  EuiQuickSelectPanels,
 } from './quick_select_popover';
 
-import { ApplyTime } from '../../types';
 import { EuiLink } from '../../../link';
 
 import { EuiQuickSelect } from './quick_select';
@@ -25,28 +25,6 @@ import { EuiRecentlyUsed } from './recently_used';
 import { EuiRefreshInterval } from '../../auto_refresh/refresh_interval';
 
 const noop = () => {};
-
-function MyCustomQuickSelectPanel({ applyTime }: { applyTime?: ApplyTime }) {
-  function applyMyCustomTime() {
-    applyTime!({ start: 'now-30d', end: 'now+7d' });
-  }
-
-  return (
-    <EuiLink
-      onClick={applyMyCustomTime}
-      data-test-subj="myCustomComponentSelectPanel"
-    >
-      Entire dataset timerange
-    </EuiLink>
-  );
-}
-
-const customQuickSelectPanels = [
-  {
-    title: 'My custom panel',
-    content: <MyCustomQuickSelectPanel />,
-  },
-];
 
 const defaultProps: Omit<EuiQuickSelectPopoverProps, 'timeOptions'> = {
   applyTime: noop,
@@ -63,104 +41,114 @@ const defaultProps: Omit<EuiQuickSelectPopoverProps, 'timeOptions'> = {
 
 describe('EuiQuickSelectPopover', () => {
   test('is rendered', () => {
-    const component = shallow(
+    const { container } = render(
       <RenderI18nTimeOptions>
         {(timeOptions) => (
           <EuiQuickSelectPopover {...defaultProps} timeOptions={timeOptions} />
         )}
       </RenderI18nTimeOptions>
-    ).dive();
-    expect(component).toMatchSnapshot();
+    );
+    expect(container.firstChild).toMatchSnapshot();
+  });
+});
+
+describe('EuiQuickSelectPanels', () => {
+  const CustomQuickSelectPanel = () => {
+    return (
+      <EuiLink onClick={noop} data-test-subj="customComponentSelectPanel">
+        Entire dataset timerange
+      </EuiLink>
+    );
+  };
+  const customQuickSelectPanels = [
+    {
+      title: 'My custom panel',
+      content: <CustomQuickSelectPanel />,
+    },
+  ];
+
+  describe('customQuickSelectPanels', () => {
+    it('should render custom panels', () => {
+      const { container } = render(
+        <RenderI18nTimeOptions>
+          {(timeOptions) => (
+            <EuiQuickSelectPanels
+              {...defaultProps}
+              timeOptions={timeOptions}
+              customQuickSelectPanels={customQuickSelectPanels}
+            />
+          )}
+        </RenderI18nTimeOptions>
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+    });
   });
 
-  describe('props', () => {
-    describe('customQuickSelectPanels', () => {
-      it('should render custom panels', () => {
-        const component = render(
-          <RenderI18nTimeOptions>
-            {(timeOptions) => (
-              <EuiQuickSelectPopover
-                {...defaultProps}
-                timeOptions={timeOptions}
-                customQuickSelectPanels={customQuickSelectPanels}
-              />
-            )}
-          </RenderI18nTimeOptions>
-        );
+  describe('customQuickSelectRender', () => {
+    it('should render Quick Select sections in default order when customQuickSelectRender is not present', () => {
+      const component = shallow(
+        <RenderI18nTimeOptions>
+          {(timeOptions) => (
+            <EuiQuickSelectPanels
+              {...defaultProps}
+              timeOptions={timeOptions}
+              customQuickSelectPanels={customQuickSelectPanels}
+            />
+          )}
+        </RenderI18nTimeOptions>
+      ).dive();
 
-        expect(component).toMatchSnapshot();
-      });
+      const menu = component.find(
+        '[data-test-subj="superDatePickerQuickMenu"]'
+      );
+
+      expect(menu.children()).toHaveLength(5);
+      expect(menu.children().at(0).is(EuiQuickSelect)).toBeTruthy();
+      expect(menu.children().at(1).is(EuiCommonlyUsedTimeRanges)).toBeTruthy();
+      expect(menu.children().at(2).is(EuiRecentlyUsed)).toBeTruthy();
+      expect(menu.children().at(3).is(EuiRefreshInterval)).toBeTruthy();
+      expect(menu.children().at(4).is('div')).toBeTruthy();
     });
 
-    describe('customQuickSelectRender', () => {
-      it('should render Quick Select sections in default order when customQuickSelectRender is not present', () => {
-        const component = shallow(
-          <RenderI18nTimeOptions>
-            {(timeOptions) => (
-              <EuiQuickSelectPopover
-                {...defaultProps}
-                timeOptions={timeOptions}
-                customQuickSelectPanels={customQuickSelectPanels}
-              />
-            )}
-          </RenderI18nTimeOptions>
-        ).dive();
+    it('should render Quick Select sections in a custom order customQuickSelectRender is present', () => {
+      const component = shallow(
+        <RenderI18nTimeOptions>
+          {(timeOptions) => (
+            <EuiQuickSelectPanels
+              {...defaultProps}
+              timeOptions={timeOptions}
+              customQuickSelectPanels={customQuickSelectPanels}
+              customQuickSelectRender={({
+                refreshInterval,
+                quickSelect,
+                commonlyUsedRanges,
+                recentlyUsedRanges,
+                customQuickSelectPanels,
+              }) => (
+                <>
+                  {customQuickSelectPanels}
+                  {refreshInterval}
+                  {quickSelect}
+                  {commonlyUsedRanges}
+                  {recentlyUsedRanges}
+                </>
+              )}
+            />
+          )}
+        </RenderI18nTimeOptions>
+      ).dive();
 
-        const menu = component.find(
-          '[data-test-subj="superDatePickerQuickMenu"]'
-        );
+      const menu = component.find(
+        '[data-test-subj="superDatePickerQuickMenu"]'
+      );
 
-        expect(menu.children()).toHaveLength(5);
-        expect(menu.children().at(0).is(EuiQuickSelect)).toBeTruthy();
-        expect(
-          menu.children().at(1).is(EuiCommonlyUsedTimeRanges)
-        ).toBeTruthy();
-        expect(menu.children().at(2).is(EuiRecentlyUsed)).toBeTruthy();
-        expect(menu.children().at(3).is(EuiRefreshInterval)).toBeTruthy();
-        expect(menu.children().at(4).is('div')).toBeTruthy();
-      });
-
-      it('should render Quick Select sections in a custom order customQuickSelectRender is present', () => {
-        const component = shallow(
-          <RenderI18nTimeOptions>
-            {(timeOptions) => (
-              <EuiQuickSelectPopover
-                {...defaultProps}
-                timeOptions={timeOptions}
-                customQuickSelectPanels={customQuickSelectPanels}
-                customQuickSelectRender={({
-                  refreshInterval,
-                  quickSelect,
-                  commonlyUsedRanges,
-                  recentlyUsedRanges,
-                  customQuickSelectPanels,
-                }) => (
-                  <>
-                    {customQuickSelectPanels}
-                    {refreshInterval}
-                    {quickSelect}
-                    {commonlyUsedRanges}
-                    {recentlyUsedRanges}
-                  </>
-                )}
-              />
-            )}
-          </RenderI18nTimeOptions>
-        ).dive();
-
-        const menu = component.find(
-          '[data-test-subj="superDatePickerQuickMenu"]'
-        );
-
-        expect(menu.children()).toHaveLength(5);
-        expect(menu.children().at(0).is('div')).toBeTruthy();
-        expect(menu.children().at(1).is(EuiRefreshInterval)).toBeTruthy();
-        expect(menu.children().at(2).is(EuiQuickSelect)).toBeTruthy();
-        expect(
-          menu.children().at(3).is(EuiCommonlyUsedTimeRanges)
-        ).toBeTruthy();
-        expect(menu.children().at(4).is(EuiRecentlyUsed)).toBeTruthy();
-      });
+      expect(menu.children()).toHaveLength(5);
+      expect(menu.children().at(0).is('div')).toBeTruthy();
+      expect(menu.children().at(1).is(EuiRefreshInterval)).toBeTruthy();
+      expect(menu.children().at(2).is(EuiQuickSelect)).toBeTruthy();
+      expect(menu.children().at(3).is(EuiCommonlyUsedTimeRanges)).toBeTruthy();
+      expect(menu.children().at(4).is(EuiRecentlyUsed)).toBeTruthy();
     });
   });
 });
