@@ -1,6 +1,19 @@
 .euiQuickSelectPopover__content {
   width: $euiFormMaxWidth;
   max-width: 100%;
+
+  .euiQuickSelectPopover__panel {
+    &:not(:first-child) {
+      border-top: $euiBorderThin;
+      padding-top: $euiSizeM;
+      margin-top: $euiSizeM;
+    }
+
+    .euiQuickSelectPopover__panelTitle {
+      float: left;
+      margin-bottom: $euiSizeM;
+    }
+  }
 }
 
 .euiQuickSelectPopover__section {
@@ -9,6 +22,7 @@
   overflow: hidden;
   overflow-y: auto;
   margin: $euiSizeS 0 0;
+  clear: both;
 }
 
 .euiQuickSelectPopover__buttonText {

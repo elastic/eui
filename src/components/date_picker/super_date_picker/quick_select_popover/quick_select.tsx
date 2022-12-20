@@ -158,7 +158,7 @@ export class EuiQuickSelect extends Component<
     const timeUnit = matchedTimeUnit ? matchedTimeUnit.text : '';
 
     return (
-      <fieldset>
+      <fieldset className="euiQuickSelectPopover__panel">
         <EuiI18n
           token="euiQuickSelect.legendText"
           default="Quick select a time range"
