@@ -25,7 +25,7 @@ exports[`renders EuiColorStops 1`] = `
       />
     </div>
     <div
-      class="euiColorStops__addContainer emotion-euiColorStopsAddContainer"
+      class="euiColorStops__addContainer emotion-euiColorStopsAddContainer-isEnabled"
       data-test-subj="euiColorStopsAdd"
     >
       <div
@@ -137,7 +137,7 @@ exports[`renders compressed EuiColorStops 1`] = `
       />
     </div>
     <div
-      class="euiColorStops__addContainer emotion-euiColorStopsAddContainer"
+      class="euiColorStops__addContainer emotion-euiColorStopsAddContainer-isEnabled"
       data-test-subj="euiColorStopsAdd"
     >
       <div
@@ -364,7 +364,7 @@ exports[`renders empty EuiColorStops 1`] = `
       />
     </div>
     <div
-      class="euiColorStops__addContainer emotion-euiColorStopsAddContainer"
+      class="euiColorStops__addContainer emotion-euiColorStopsAddContainer-isEnabled"
       data-test-subj="euiColorStopsAdd"
     >
       <div
@@ -401,7 +401,7 @@ exports[`renders fixed stop EuiColorStops 1`] = `
       />
     </div>
     <div
-      class="euiColorStops__addContainer emotion-euiColorStopsAddContainer"
+      class="euiColorStops__addContainer emotion-euiColorStopsAddContainer-isEnabled"
       data-test-subj="euiColorStopsAdd"
     >
       <div
@@ -513,7 +513,7 @@ exports[`renders free-range EuiColorStops 1`] = `
       />
     </div>
     <div
-      class="euiColorStops__addContainer emotion-euiColorStopsAddContainer"
+      class="euiColorStops__addContainer emotion-euiColorStopsAddContainer-isEnabled"
       data-test-subj="euiColorStopsAdd"
     >
       <div
@@ -550,7 +550,7 @@ exports[`renders fullWidth EuiColorStops 1`] = `
       />
     </div>
     <div
-      class="euiColorStops__addContainer emotion-euiColorStopsAddContainer"
+      class="euiColorStops__addContainer emotion-euiColorStopsAddContainer-isEnabled"
       data-test-subj="euiColorStopsAdd"
     >
       <div
@@ -662,7 +662,7 @@ exports[`renders max-only EuiColorStops 1`] = `
       />
     </div>
     <div
-      class="euiColorStops__addContainer emotion-euiColorStopsAddContainer"
+      class="euiColorStops__addContainer emotion-euiColorStopsAddContainer-isEnabled"
       data-test-subj="euiColorStopsAdd"
     >
       <div
@@ -699,7 +699,7 @@ exports[`renders min-only EuiColorStops 1`] = `
       />
     </div>
     <div
-      class="euiColorStops__addContainer emotion-euiColorStopsAddContainer"
+      class="euiColorStops__addContainer emotion-euiColorStopsAddContainer-isEnabled"
       data-test-subj="euiColorStopsAdd"
     >
       <div

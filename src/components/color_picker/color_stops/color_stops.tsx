@@ -210,13 +210,12 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
 
   const addContainerIsDisabled = isHoverDisabled || disabled || readOnly;
 
-  const addContainerStyles = euiColorStopsAddContainerStyles(
-    euiTheme,
-    addContainerIsDisabled
-  );
+  const addContainerStyles = euiColorStopsAddContainerStyles(euiTheme);
   const cssAddContainerStyles = [
     addContainerStyles.euiColorStopsAddContainer,
-    addContainerIsDisabled && addContainerStyles.isDisabled,
+    !addContainerIsDisabled
+      ? addContainerStyles.isEnabled
+      : addContainerStyles.isDisabled,
   ];
 
   const getStopFromMouseLocationFn = (location: { x: number; y: number }) => {

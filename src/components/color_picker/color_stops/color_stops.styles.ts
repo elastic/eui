@@ -102,8 +102,7 @@ export const euiColorStopsStyles = (
 };
 
 export const euiColorStopsAddContainerStyles = (
-  euiThemeContext: UseEuiTheme,
-  isDisabled: boolean | undefined
+  euiThemeContext: UseEuiTheme
 ) => {
   const range = euiRangeVariables(euiThemeContext);
 
@@ -117,17 +116,15 @@ export const euiColorStopsAddContainerStyles = (
       block-size: ${range.thumbHeight};
       margin-block-start: ${mathWithUnits(range.thumbHeight, (x) => x * -0.5)};
       z-index: ${range.thumbZIndex};
+    `,
+    isEnabled: css`
+      &:hover {
+        cursor: pointer;
 
-      ${!isDisabled &&
-      `
-        &:hover {
-          cursor: pointer;
-
-          .euiColorStops__addTarget {
-            opacity: 0.7;
-          }
+        .euiColorStops__addTarget {
+          opacity: 0.7;
         }
-      `}
+      }
     `,
     isDisabled: css``,
   };
