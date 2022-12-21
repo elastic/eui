@@ -133,7 +133,8 @@ export const ModalExample = {
       >
         <p>
           EUI recommends including an <EuiCode>EuiModalHeaderTitle</EuiCode>.
-          Pick the best <EuiCode>children</EuiCode> prop type for your use case.
+          The <EuiCode>children</EuiCode> prop accepts strings, HTML, or React
+          components.
         </p>
         <EuiScreenReaderOnly>
           <span id="modal-header-children-title">
@@ -142,12 +143,12 @@ export const ModalExample = {
         </EuiScreenReaderOnly>
         <ul aria-labelledby="modal-header-children-title">
           <li>
-            Wrap React components in an <EuiCode>h1</EuiCode> tag before passing
-            them as the <EuiCode>children</EuiCode> prop.
+            Wrap React components or HTML in an <EuiCode>h1</EuiCode> tag before
+            passing them to <EuiCode>children</EuiCode>
           </li>
           <li>
-            Pass a string as the <EuiCode>children</EuiCode> prop to render an
-            H1 automatically.
+            Pass a string to <EuiCode>children</EuiCode> to render an h1
+            automatically
           </li>
         </ul>
       </EuiCallOut>
