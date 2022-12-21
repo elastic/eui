@@ -200,12 +200,12 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   const classes = classNames('euiColorStops', className);
 
   const euiTheme = useEuiTheme();
-  const styles = euiColorStopsStyles(euiTheme, disabled);
+  const styles = euiColorStopsStyles(euiTheme);
   const cssPopoverStyles = [
     styles.euiColorStops,
-    isDragging && styles.isDragging,
-    disabled && styles.isDisabled,
+    !disabled ? styles.isEnabled : styles.isDisabled,
     readOnly && styles.isReadOnly,
+    isDragging && styles.isDragging,
   ];
   const cssTrackStyles = [styles.euiColorStops__track];
   const cssAddTargetStyles = [styles.euiColorStops__addTarget];
