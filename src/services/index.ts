@@ -8,8 +8,6 @@
 
 // Export all keys under a `keys` named variable
 import * as keys from './keys';
-export { keys };
-
 export {
   accessibleClickKeys,
   cascadingMenuKeys,
@@ -17,112 +15,94 @@ export {
   htmlIdGenerator,
   useGeneratedHtmlId,
 } from './accessibility';
-
+export { CENTER_ALIGNMENT, LEFT_ALIGNMENT, RIGHT_ALIGNMENT } from './alignment';
 export type { HorizontalAlignment } from './alignment';
-export { LEFT_ALIGNMENT, RIGHT_ALIGNMENT, CENTER_ALIGNMENT } from './alignment';
-
-export type { EuiBreakpointSize } from './breakpoint';
 export {
-  useIsWithinBreakpoints,
-  useIsWithinMaxBreakpoint,
-  useIsWithinMinBreakpoint,
   CurrentEuiBreakpointContext,
   CurrentEuiBreakpointProvider,
   useCurrentEuiBreakpoint,
+  useIsWithinBreakpoints,
+  useIsWithinMaxBreakpoint,
+  useIsWithinMinBreakpoint,
 } from './breakpoint';
-
-export type { HSV } from './color';
+export type { EuiBreakpointSize } from './breakpoint';
 export {
-  isColorDark,
-  isValidHex,
+  brighten,
   calculateContrast,
   calculateLuminance,
+  colorPalette,
+  darken,
+  DEFAULT_VISUALIZATION_COLOR,
+  desaturate,
+  euiPaletteColorBlind,
+  euiPaletteColorBlindBehindText,
+  euiPaletteComplimentary,
+  euiPaletteCool,
+  euiPaletteForDarkBackground,
+  euiPaletteForLightBackground,
+  euiPaletteForStatus,
+  euiPaletteForTemperature,
+  euiPaletteGray,
+  euiPaletteNegative,
+  euiPalettePositive,
+  euiPaletteWarm,
+  getSteppedGradient,
   hexToHsv,
   hexToRgb,
   hsvToHex,
   hsvToRgb,
+  isColorDark,
+  isValidHex,
+  lightness,
+  makeDisabledContrastColor,
+  makeHighContrastColor,
   rgbToHex,
   rgbToHsv,
-  VISUALIZATION_COLORS,
-  DEFAULT_VISUALIZATION_COLOR,
-  colorPalette,
-  euiPaletteForLightBackground,
-  euiPaletteForDarkBackground,
-  euiPaletteColorBlind,
-  euiPaletteColorBlindBehindText,
-  euiPaletteForStatus,
-  euiPaletteForTemperature,
-  euiPaletteComplimentary,
-  euiPaletteNegative,
-  euiPalettePositive,
-  euiPaletteCool,
-  euiPaletteWarm,
-  euiPaletteGray,
-  getSteppedGradient,
-  transparentize,
-  tint,
-  shade,
-  tintOrShade,
-  shadeOrTint,
   saturate,
-  desaturate,
-  lightness,
-  darken,
-  makeHighContrastColor,
-  makeDisabledContrastColor,
+  shade,
+  shadeOrTint,
+  tint,
+  tintOrShade,
+  transparentize,
+  VISUALIZATION_COLORS,
   wcagContrastMin,
 } from './color';
-
-export type { EuiSetColorMethod } from './color_picker';
+export type { HSV } from './color';
 export { useColorPickerState, useColorStopsState } from './color_picker';
-
+export type { EuiSetColorMethod } from './color_picker';
 export * from './console';
-
 export { copyToClipboard } from './copy_to_clipboard';
-
 export * from './findElement';
-
 export {
+  dateFormatAliases,
   formatAuto,
   formatBoolean,
   formatDate,
   formatNumber,
   formatText,
-  dateFormatAliases,
 } from './format';
-
+export * from './hooks';
 export { isEvenlyDivisibleBy, isWithinRange } from './number';
-
 export { Pager } from './paging';
-
-export { Random } from './random';
-
-export { getSecureRelForTarget } from './security';
-
-export { toSentenceCase, toInitials, slugify } from './string';
-
-export type { PropertySort, Direction } from './sort';
-export {
-  PropertySortType,
-  SortDirectionType,
-  SortDirection,
-  SortableProperties,
-  Comparators,
-} from './sort';
-
 export { calculatePopoverPosition, findPopoverPosition } from './popover';
-
+export { Random } from './random';
+export { getSecureRelForTarget } from './security';
+export {
+  Comparators,
+  PropertySortType,
+  SortableProperties,
+  SortDirection,
+  SortDirectionType,
+} from './sort';
+export type { Direction, PropertySort } from './sort';
+export { slugify, toInitials, toSentenceCase } from './string';
+export * from './theme';
+export { throttle } from './throttle';
 export {
   getDurationAndPerformOnFrame,
   getTransitionTimings,
   getWaitDuration,
   performOnFrame,
 } from './transition';
-
 export { EuiWindowEvent } from './window_event';
-
-export * from './hooks';
-
-export { throttle } from './throttle';
-
-export * from './theme';
+export { keys };
