@@ -91,9 +91,7 @@ export const euiColorStopsStyles = (
       }
     `,
     isDragging: css`
-      &:not(.euiColorStops-isDisabled):not(.euiColorStops-isReadOnly) {
-        cursor: grabbing;
-      }
+      cursor: grabbing;
     `,
     isHoverDisabled: css``,
     isDisabled: css``,
