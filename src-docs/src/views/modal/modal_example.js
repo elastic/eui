@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
+import { EuiCallOut } from '../../../../src';
 
 import {
   EuiCode,
@@ -11,6 +12,7 @@ import {
   EuiModalBody,
   EuiModalFooter,
   EuiConfirmModal,
+  EuiScreenReaderOnly,
   EuiText,
 } from '../../../../src/components';
 import Guidelines from './guidelines';
@@ -125,6 +127,30 @@ export const ModalExample = {
         </Link>{' '}
         instead.
       </p>
+      <EuiCallOut
+        iconType="accessibility"
+        title={<>Modal titles should be an H1</>}
+      >
+        <p>
+          EUI recommends including an <EuiCode>EuiModalHeaderTitle</EuiCode>.
+          Pick the best <EuiCode>children</EuiCode> prop type for your use case.
+        </p>
+        <EuiScreenReaderOnly>
+          <span id="modal-header-children-title">
+            EUI Modal Header Title children prop - options
+          </span>
+        </EuiScreenReaderOnly>
+        <ul aria-labelledby="modal-header-children-title">
+          <li>
+            Wrap React components in an <EuiCode>h1</EuiCode> tag before passing
+            them as the <EuiCode>children</EuiCode> prop.
+          </li>
+          <li>
+            Pass a string as the <EuiCode>children</EuiCode> prop to render an
+            H1 automatically.
+          </li>
+        </ul>
+      </EuiCallOut>
     </EuiText>
   ),
   sections: [
