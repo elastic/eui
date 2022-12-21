@@ -8,14 +8,15 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme, hexToRgb } from '../../../services';
+import { UseEuiTheme } from '../../../services';
 import { mathWithUnits } from '../../../global_styling';
-import { euiRangeVariables } from '../../form/range/range.styles';
+import {
+  euiRangeVariables,
+  euiRangeThumbFocus,
+} from '../../form/range/range.styles';
 import { euiColorPickerVariables } from '../color_picker.styles';
 
 export const euiColorStopThumbStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
-
   return {
     // Base
     euiColorStopThumb: css`
@@ -24,15 +25,14 @@ export const euiColorStopThumbStyles = (euiThemeContext: UseEuiTheme) => {
         margin-block-start: 0;
         pointer-events: auto;
         cursor: grab;
-        border: solid ${euiTheme.size.xxs} ${euiTheme.colors.emptyShade};
-        box-shadow: 0 0 0 1px ${euiTheme.colors.mediumShade},
-          0 2px 2px -1px rgba(${hexToRgb(euiTheme.colors.shadow)}, 0.2),
-          0 1px 5px -2px rgba(${hexToRgb(euiTheme.colors.shadow)}, 0.2);
 
         &:active {
           cursor: grabbing;
         }
       }
+    `,
+    isPopoverOpen: css`
+      ${euiRangeThumbFocus(euiThemeContext)};
     `,
   };
 };

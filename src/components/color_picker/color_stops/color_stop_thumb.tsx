@@ -257,7 +257,10 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
   ];
 
   const thumbStyles = euiColorStopThumbStyles(euiTheme);
-  const cssThumbStyles = thumbStyles.euiColorStopThumb;
+  const cssThumbStyles = [
+    thumbStyles.euiColorStopThumb,
+    isPopoverOpen && thumbStyles.isPopoverOpen,
+  ];
 
   const colorStopStyles = euiColorStopStyles(euiTheme);
   const cssColorStopStyles = colorStopStyles.euiColorStop;

@@ -434,7 +434,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
         aria-valuetext={`Stop: ${colorStop.stop}, Color: ${colorStop.color} (${
           index + 1
         } of ${colorStops.length})`}
-        isPopoverOpen={colorStop.id === openedStopId}
+        isPopoverOpen={!isDragging && colorStop.id === openedStopId}
         openPopover={() => {
           setOpenedStopId(colorStop.id);
         }}
@@ -448,6 +448,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     colorStops,
     disabled,
     handleOnChange,
+    isDragging,
     max,
     min,
     mode,
