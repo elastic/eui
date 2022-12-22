@@ -83,7 +83,6 @@ const outsideClickSnippet = `<EuiPopover
   focusTrapProps={{
     clickOutsideDisables: false,
     onClickOutside: doSomething,
-    onEscapeKey: doSomething,
   }}
 >
   <!-- Popover content -->
@@ -430,11 +429,10 @@ export const PopoverExample = {
       text: (
         <>
           <p>
-            If you do not wish the popover to auto-close on outside clicks or
-            escape key presses, you can use{' '}
-            <EuiCode language="ts">focusTrapProps</EuiCode> to customize this
-            behavior. The below example triggers a confirmation modal which can
-            leave the popover open if the user presses &apos;No&apos;.
+            If you do not wish the popover to auto-close on outside clicks, you
+            can use <EuiCode language="ts">focusTrapProps</EuiCode> to customize
+            this behavior. The below example triggers a confirmation modal which
+            can leave the popover open if the user presses &apos;No&apos;.
           </p>
         </>
       ),

@@ -95,7 +95,7 @@ describe('EuiPopover', () => {
     });
 
     describe('focusTrapProps', () => {
-      it('allows overriding clickOutsideDisables, onClickOutside, and onEscapeKey', () => {
+      it('allows overriding clickOutsideDisables and onClickOutside', () => {
         const PopoverWithConfirmModal = () => {
           const [isPopoverOpen, setIsPopoverOpen] = useState(false);
           const closePopover = () => setIsPopoverOpen(false);
@@ -129,7 +129,6 @@ describe('EuiPopover', () => {
                 focusTrapProps={{
                   clickOutsideDisables: false,
                   onClickOutside: showModal,
-                  onEscapeKey: showModal,
                 }}
                 closePopover={closePopover}
                 isOpen={isPopoverOpen}
@@ -145,14 +144,11 @@ describe('EuiPopover', () => {
         cy.get('[data-test-subj="togglePopover"]').click();
         cy.focused().should('have.attr', 'data-test-subj', 'popoverPanel'); // Popover exists
 
-        // Trigger the confirm modal via Esc key and then cancel (popover remains)
-        cy.realPress('Escape');
-        cy.focused().should(
-          'have.attr',
-          'data-test-subj',
-          'confirmModalCancelButton'
-        ); // Confirm modal exists
-        cy.realPress('Enter');
+        // Trigger the confirm modal via outside click and then cancel (popover remains)
+        cy.get('body').click('bottomRight');
+        cy.focused()
+          .should('have.attr', 'data-test-subj', 'confirmModalCancelButton')
+          .click();
         cy.focused().should('have.attr', 'data-test-subj', 'popoverPanel'); // Confirm modal should close and popover should still exist and be re-focused
 
         // Trigger the confirm modal via outside click and then confirm (popover closes)

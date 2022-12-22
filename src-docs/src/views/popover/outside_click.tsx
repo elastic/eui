@@ -47,7 +47,6 @@ export default () => {
         focusTrapProps={{
           clickOutsideDisables: false,
           onClickOutside: showModal,
-          onEscapeKey: showModal,
         }}
       >
         <EuiText>
