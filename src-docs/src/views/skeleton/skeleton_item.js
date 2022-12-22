@@ -11,19 +11,19 @@ export default () => (
     <EuiFlexItem>
       <EuiFlexGroup>
         <EuiFlexItem grow={false}>
-          <EuiSkeletonItem size="xxs" squared />
-        </EuiFlexItem>
-
-        <EuiFlexItem grow={false}>
-          <EuiSkeletonItem size="xs" squared />
-        </EuiFlexItem>
-
-        <EuiFlexItem grow={false}>
           <EuiSkeletonItem size="s" squared />
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
           <EuiSkeletonItem size="m" squared />
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiSkeletonItem size="l" squared />
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiSkeletonItem size="xl" squared />
         </EuiFlexItem>
 
       </EuiFlexGroup>
@@ -32,19 +32,19 @@ export default () => (
     <EuiFlexItem>
       <EuiFlexGroup>
         <EuiFlexItem grow={false}>
-          <EuiSkeletonItem size="xxs" />
-        </EuiFlexItem>
-
-        <EuiFlexItem grow={false}>
-          <EuiSkeletonItem size="xs" />
-        </EuiFlexItem>
-
-        <EuiFlexItem grow={false}>
           <EuiSkeletonItem size="s" />
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
           <EuiSkeletonItem size="m" />
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiSkeletonItem size="l" />
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiSkeletonItem size="xl" />
         </EuiFlexItem>
 
       </EuiFlexGroup>
@@ -55,11 +55,8 @@ export default () => (
         <EuiFlexItem grow={false}>
           <EuiSkeletonItem size="customSize" width='36px' height='120px' />
         </EuiFlexItem>
-
       </EuiFlexGroup>
     </EuiFlexItem>
   </EuiFlexGroup>
-
-
 
 );

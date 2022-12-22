@@ -14,7 +14,7 @@ import { useEuiTheme } from '../../services';
 
 import { euiSkeletonItemStyles } from './skeleton_item.styles';
 
-export const SIZES = ['xxs', 'xs', 's', 'm', 'customSize'] as const;
+export const SIZES = ['s', 'm', 'l', 'xl', 'customSize'] as const;
 export type SkeletonItemSize = typeof SIZES[number];
 
 export type EuiSkeletonItemProps = HTMLAttributes<HTMLDivElement> &
@@ -27,7 +27,7 @@ export type EuiSkeletonItemProps = HTMLAttributes<HTMLDivElement> &
 
 export const EuiSkeletonItem: FunctionComponent<EuiSkeletonItemProps> = ({
   className,
-  size = 'xs',
+  size = 's',
   squared = false,
   width,
   height,

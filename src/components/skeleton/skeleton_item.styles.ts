@@ -62,22 +62,22 @@ export const euiSkeletonItemStyles = (
       }
     `,
     // Sizes
-    xxs: css`
+    s: css`
       ${logicalCSS('height', euiTheme.size.l)};
       ${logicalCSS('width', `calc(${euiTheme.size.l} * ${squared ? 1 : 3})`)};
       border-radius: ${euiTheme.border.radius.small};
     `,
-    xs: css`
+    m: css`
       ${logicalCSS('height', euiTheme.size.xl)};
       ${logicalCSS('width', `calc(${euiTheme.size.xl} * ${squared ? 1 : 2})`)};
       border-radius: ${euiTheme.border.radius.medium};
     `,
-    s: css`
+    l: css`
       ${logicalCSS('height', euiTheme.size.xxl)};
       ${logicalCSS('width', `calc(${euiTheme.size.xxl} * ${squared ? 1 : 2})`)};
       border-radius: ${euiTheme.border.radius.medium};
     `,
-    m: css`
+    xl: css`
       ${logicalCSS('height', `calc(${euiTheme.size.base} * 4)`)};
       ${logicalCSS('width', `calc(${euiTheme.size.base} * ${squared ? 4 : 8})`)};
       border-radius: ${euiTheme.border.radius.medium};
