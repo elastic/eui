@@ -15,11 +15,11 @@ import { useEuiTheme } from '../../services';
 import { euiSkeletonCircleStyles } from './skeleton_circle.styles';
 
 export const SIZES = ['s', 'm', 'l', 'xl'] as const;
-export type SkeletonSize = typeof SIZES[number];
+export type SkeletonCircleSize = typeof SIZES[number];
 
 export type EuiSkeletonCircleProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
-    size?: SkeletonSize;
+    size?: SkeletonCircleSize;
   };
 
 export const EuiSkeletonCircle: FunctionComponent<EuiSkeletonCircleProps> = ({
@@ -31,13 +31,13 @@ export const EuiSkeletonCircle: FunctionComponent<EuiSkeletonCircleProps> = ({
   const euiTheme = useEuiTheme();
   const styles = euiSkeletonCircleStyles(euiTheme);
   const classes = classNames(
-    'euiSkeletonCircle',
-    { [`euiSkeleton--${size}`]: size },
+    'euiSkeleton__circle',
+    { [`euiSkeleton__circle--${size}`]: size },
     className
   );
 
   const cssStyles = [
-    styles.euiSkeleton,
+    styles.euiSkeleton__circle,
     styles[size],
   ];
 

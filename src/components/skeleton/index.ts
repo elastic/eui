@@ -10,12 +10,8 @@ export type { EuiSkeletonCircleProps } from './skeleton_circle';
 export { EuiSkeletonCircle } from './skeleton_circle';
 export type { EuiSkeletonTextProps } from './skeleton_text';
 export { EuiSkeletonText } from './skeleton_text';
-// export type { EuiSkeletonButtonProps } from './skeleton_button';
-// export { EuiSkeletonButton } from './skeleton_button';
-// export type { EuiSkeletonIconProps } from './skeleton_icon';
-// export { EuiSkeletonIcon } from './skeleton_icon';
-// export type { EuiSkeletonLogoProps } from './skeleton_logo';
-// export { EuiSkeletonLogo } from './skeleton_logo';
+export type { EuiSkeletonItemProps } from './skeleton_item';
+export { EuiSkeletonItem } from './skeleton_item';
 export type { EuiSkeletonRectProps } from './skeleton_rect';
 export { EuiSkeletonRect } from './skeleton_rect';
 

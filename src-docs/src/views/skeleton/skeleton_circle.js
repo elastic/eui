@@ -9,19 +9,19 @@ import {
 export default () => (
   <EuiFlexGroup>
     <EuiFlexItem grow={false}>
-      <EuiSkeletonCircle type="circle" size="s" />
+      <EuiSkeletonCircle size="s" />
     </EuiFlexItem>
 
     <EuiFlexItem grow={false}>
-      <EuiSkeletonCircle type="circle" size="m" />
+      <EuiSkeletonCircle size="m" />
     </EuiFlexItem>
 
     <EuiFlexItem grow={false}>
-      <EuiSkeletonCircle type="circle" size="l" />
+      <EuiSkeletonCircle size="l" />
     </EuiFlexItem>
 
     <EuiFlexItem grow={false}>
-      <EuiSkeletonCircle type="circle" size="xl" />
+      <EuiSkeletonCircle size="xl" />
     </EuiFlexItem>
 
   </EuiFlexGroup>

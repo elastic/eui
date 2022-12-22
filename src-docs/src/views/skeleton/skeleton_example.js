@@ -6,6 +6,7 @@ import { EuiCode } from '../../../../src/components';
 import {
   EuiSkeletonRectProps,
   EuiSkeletonTextProps,
+  EuiSkeletonItemProps,
   EuiSkeletonCircleProps,
 } from '../../../../src/components/EuiSkeleton';
 
@@ -20,9 +21,13 @@ const skeletonTextSource = require('!!raw-loader!./skeleton_text');
 import SkeletonRect from './skeleton_rect';
 const skeletonRectSource = require('!!raw-loader!./skeleton_rect');
 
-const skeletonCircleSnippet = '<EuiSkeleton type="circle" size="m" />';
-const skeletonTextSnippet = '<EuiSkeleton type="text" lines={3} />';
-const skeletonRectSnippet = '<EuiSkeleton type="rect" width="200px" height="20px" />';
+import SkeletonItem from './skeleton_item';
+const skeletonItemSource = require('!!raw-loader!./skeleton_item');
+
+const skeletonCircleSnippet = '<EuiSkeletonCircle size="m" />';
+const skeletonTextSnippet = '<EuiSkeletonText lines={3} />';
+const skeletonRectSnippet = '<EuiSkeletonRect width="200px" height="20px" />';
+const skeletonItemSnippet = '<EuiSkeletonItem width="200px" height="20px" />';
 
 export const SkeletonExample = {
   title: 'Skeleton',
@@ -43,13 +48,13 @@ export const SkeletonExample = {
       ],
       text: (
         <p>
-          The <strong>Circle</strong> type display a circular preview basically for avatars.
+          The <strong>Circle</strong> type display a circular preview mainly for avatars.
         </p>
       ),
       props: { },
       snippet: skeletonCircleSnippet,
       demo: (
-        <div className="guideDemo__highlightSkeleton">
+        <div className="guideDemo__highlightSkeleton__circle">
           <SkeletonCircle />
         </div>
       ),
@@ -70,7 +75,7 @@ export const SkeletonExample = {
       props: { },
       snippet: skeletonTextSnippet,
       demo: (
-        <div className="guideDemo__highlightSkeleton">
+        <div className="guideDemo__highlightSkeleton__text">
           <SkeletonText />
         </div>
       ),
@@ -85,80 +90,37 @@ export const SkeletonExample = {
       ],
       text: (
         <p>
-          The <strong>Text</strong> type display a variable number of text lines preview.
+          The <strong>Rect</strong> type display a variable number of text lines preview.
         </p>
       ),
       props: { },
       snippet: skeletonRectSnippet,
       demo: (
-        <div className="guideDemo__highlightSkeleton">
+        <div className="guideDemo__highlightSkeleton__rect">
           <SkeletonRect />
         </div>
       ),
     },
     {
-      title: 'Button',
+      title: 'Item',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: skeletonTextSource,
+          code: skeletonItemSource,
         },
       ],
       text: (
         <p>
-          The <strong>Text</strong> type display a variable number of text lines preview.
+          The <strong>Item</strong> type display a.
         </p>
       ),
       props: { },
-      snippet: skeletonTextSnippet,
+      snippet: skeletonItemSnippet,
       demo: (
-        <div className="guideDemo__highlightSkeleton">
-          <SkeletonText />
+        <div className="guideDemo__highlightSkeleton__item">
+          <SkeletonItem />
         </div>
       ),
-    },
-    {
-      title: 'Logo',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: skeletonTextSource,
-        },
-      ],
-      text: (
-        <p>
-          The <strong>Text</strong> type display a variable number of text lines preview.
-        </p>
-      ),
-      props: { },
-      snippet: skeletonTextSnippet,
-      demo: (
-        <div className="guideDemo__highlightSkeleton">
-          <SkeletonText />
-        </div>
-      ),
-    },
-    {
-      title: 'Icon',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: skeletonTextSource,
-        },
-      ],
-      text: (
-        <p>
-          The <strong>Text</strong> type display a variable number of text lines preview.
-        </p>
-      ),
-      props: { },
-      snippet: skeletonTextSnippet,
-      demo: (
-        <div className="guideDemo__highlightSkeleton">
-          <SkeletonText />
-        </div>
-      ),
-      // playground: skeletonConfig,
     },
   ],
 };

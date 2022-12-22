@@ -12,30 +12,40 @@ import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
 
-import { euiSkeletonRectStyles } from './skeleton_rect.styles';
+import { euiSkeletonItemStyles } from './skeleton_item.styles';
 
-export type EuiSkeletonRectProps = HTMLAttributes<HTMLDivElement> &
+export const SIZES = ['xxs', 'xs', 's', 'm', 'customSize'] as const;
+export type SkeletonItemSize = typeof SIZES[number];
+
+export type EuiSkeletonItemProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
-    width: string,
-    height: string,
+    squared?: boolean;
+    width?: string; // TODO dimension need to be required only if 'customSize'
+    height?: string;
+    size?: SkeletonItemSize;
   };
 
-export const EuiSkeletonRect: FunctionComponent<EuiSkeletonRectProps> = ({
+export const EuiSkeletonItem: FunctionComponent<EuiSkeletonItemProps> = ({
   className,
+  size = 'xs',
+  squared = false,
   width,
   height,
   ...rest
 }) => {
 
   const euiTheme = useEuiTheme();
-  const styles = euiSkeletonRectStyles(euiTheme, width, height);
+  const styles = euiSkeletonItemStyles(euiTheme, width, height, squared);
   const classes = classNames(
-    'euiSkeleton__rect',
+    { [`euiSkeleton__item--${size}`]: size },
+    squared && 'euiSkeleton__item--squared',
+    'euiSkeleton__item',
     className
   );
 
   const cssStyles = [
-    styles.euiSkeleton__rect,
+    styles.euiSkeleton__item,
+    styles[size],
   ];
 
   return (

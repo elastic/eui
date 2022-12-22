@@ -4,7 +4,6 @@ import {
   EuiSkeletonRect,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiButton,
 } from '../../../../src/components';
 
 export default () => (
@@ -14,7 +13,11 @@ export default () => (
     </EuiFlexItem>
 
     <EuiFlexItem grow={false}>
-      <EuiSkeletonRect />
+      <EuiSkeletonRect width="200px" height="100px" />
+    </EuiFlexItem>
+
+    <EuiFlexItem grow={false}>
+      <EuiSkeletonRect width="50px" height="50px" />
     </EuiFlexItem>
 
   </EuiFlexGroup>

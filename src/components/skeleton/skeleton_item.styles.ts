@@ -20,10 +20,12 @@ const loadingContentGradient = keyframes`
   }
 `;
 
-export const euiSkeletonCommonStyles = ({
-  euiTheme,
-  colorMode,
-}: UseEuiTheme) => {
+export const euiSkeletonItemStyles = (
+  { euiTheme, colorMode }: UseEuiTheme,
+  propsHeight?: string,
+  propsWidth?: string,
+  squared?: boolean,
+) => {
   const gradientStartStop =
     colorMode === COLOR_MODES_STANDARD.dark
       ? shade(euiTheme.colors.lightShade, 0.12)
@@ -33,22 +35,13 @@ export const euiSkeletonCommonStyles = ({
       ? shade(euiTheme.colors.lightShade, 0.24)
       : tint(euiTheme.colors.lightShade, 0.8);
 
+      console.log('ITEM', squared, propsHeight, propsWidth)
+
   return {
-    euiSkeleton__text: css`
+    euiSkeleton__item: css`
       display: block;
-      ${logicalCSS('width', '100%')}
-      ${logicalCSS('height', euiTheme.size.base)}
-      border-radius: ${euiTheme.border.radius.medium};
       background: ${gradientStartStop};
       overflow: hidden;
-
-      &:not(:last-child) {
-        ${logicalCSS('margin-bottom', euiTheme.size.s)}
-      }
-
-      &:last-child:not(:only-child) {
-        ${logicalCSS('width', '75%')}
-      }
 
       &::after {
         content: '';
@@ -68,5 +61,42 @@ export const euiSkeletonCommonStyles = ({
         }
       }
     `,
+    // Sizes
+    xxs: css`
+      ${logicalCSS('height', euiTheme.size.l)};
+      ${logicalCSS('width', `calc(${euiTheme.size.l} * ${squared ? 1 : 3})`)};
+      border-radius: ${euiTheme.border.radius.small};
+    `,
+    xs: css`
+      ${logicalCSS('height', euiTheme.size.xl)};
+      ${logicalCSS('width', `calc(${euiTheme.size.xl} * ${squared ? 1 : 2})`)};
+      border-radius: ${euiTheme.border.radius.medium};
+    `,
+    s: css`
+      ${logicalCSS('height', euiTheme.size.xxl)};
+      ${logicalCSS('width', `calc(${euiTheme.size.xxl} * ${squared ? 1 : 2})`)};
+      border-radius: ${euiTheme.border.radius.medium};
+    `,
+    m: css`
+      ${logicalCSS('height', `calc(${euiTheme.size.base} * 4)`)};
+      ${logicalCSS('width', `calc(${euiTheme.size.base} * ${squared ? 4 : 8})`)};
+      border-radius: ${euiTheme.border.radius.medium};
+    `,
+    customSize: css`
+      width: ${propsWidth};
+      height: ${propsHeight};
+      border-radius: ${euiTheme.border.radius.medium};
+    `,
   };
 };
+
+// xxs: "2px"
+// xs: "4px"
+// s: "8px"
+// m: "12px"
+// xl: "16px"
+// l: "24px"
+// xl: "32px"
+// xxl: "40px"
+// xxxl: "48px"
+// xxxxl: "64px"

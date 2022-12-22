@@ -20,12 +20,11 @@ const loadingContentGradient = keyframes`
   }
 `;
 
-export const euiSkeletonRectStyles = ({
-  euiTheme,
-  colorMode,
-}: UseEuiTheme,
-propwidth: string,
-propheight: string) => {
+export const euiSkeletonRectStyles = (
+  { euiTheme, colorMode }: UseEuiTheme,
+  propwidth: string,
+  propheight: string
+) => {
   const gradientStartStop =
     colorMode === COLOR_MODES_STANDARD.dark
       ? shade(euiTheme.colors.lightShade, 0.12)
@@ -35,11 +34,15 @@ propheight: string) => {
       ? shade(euiTheme.colors.lightShade, 0.24)
       : tint(euiTheme.colors.lightShade, 0.8);
 
+  console.log('RECT', propwidth, propwidth);
+
   return {
     euiSkeleton__rect: css`
       display: block;
       background: ${gradientStartStop};
       overflow: hidden;
+      width: ${propwidth};
+      height: ${propheight};
 
       &::after {
         content: '';
@@ -59,8 +62,5 @@ propheight: string) => {
         }
       }
     `,
-    // Dimension
-    width: css`width: ${propwidth}`,
-    height: css`height: ${propheight}`
   };
 };
