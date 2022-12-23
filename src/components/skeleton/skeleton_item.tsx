@@ -14,38 +14,35 @@ import { useEuiTheme } from '../../services';
 
 import { euiSkeletonItemStyles } from './skeleton_item.styles';
 
-export const SIZES = ['s', 'm', 'l', 'xl', 'customSize'] as const;
-export type SkeletonItemSize = typeof SIZES[number];
+export const RADIUS = ['s', 'm', 'none'] as const;
+export type SkeletonItemRadius = typeof RADIUS[number];
 
 export type EuiSkeletonItemProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
-    squared?: boolean;
-    width?: string; // TODO dimension need to be required only if 'customSize'
+    width?: string;
     height?: string;
-    size?: SkeletonItemSize;
+    radius?: SkeletonItemRadius;
   };
 
 export const EuiSkeletonItem: FunctionComponent<EuiSkeletonItemProps> = ({
   className,
-  size = 's',
-  squared = false,
-  width,
-  height,
+  radius = 's',
+  width = '24px',
+  height = '24px',
   ...rest
 }) => {
 
   const euiTheme = useEuiTheme();
-  const styles = euiSkeletonItemStyles(euiTheme, width, height, squared);
+  const styles = euiSkeletonItemStyles(euiTheme, width, height);
   const classes = classNames(
-    { [`euiSkeleton__item--${size}`]: size },
-    squared && 'euiSkeleton__item--squared',
+    { [`euiSkeleton__item--${radius}`]: radius },
     'euiSkeleton__item',
     className
   );
 
   const cssStyles = [
     styles.euiSkeleton__item,
-    styles[size],
+    styles[radius],
   ];
 
   return (

@@ -12,33 +12,36 @@ import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
 
-import { euiSkeletonRectStyles } from './skeleton_rect.styles';
+import { euiSkeletonHeadingStyles } from './skeleton_heading.styles';
 
-export type EuiSkeletonRectProps = HTMLAttributes<HTMLDivElement> &
+// type SkeletonHeadingProps = Pick<EuiTextProps, 'size'>
+const HEADING = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const;
+type SkeletonHeadingProps = typeof HEADING[number];
+
+export type EuiSkeletonHeadingProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
-    width: string,
-    height: string,
+    size: SkeletonHeadingProps;
   };
 
-export const EuiSkeletonRect: FunctionComponent<EuiSkeletonRectProps> = ({
+export const EuiSkeletonHeading: FunctionComponent<EuiSkeletonHeadingProps> = ({
   className,
-  width,
-  height,
+  size = 'h1',
   ...rest
 }) => {
 
   const euiTheme = useEuiTheme();
-  const styles = euiSkeletonRectStyles(euiTheme, width, height);
+  const styles = euiSkeletonHeadingStyles(euiTheme);
   const classes = classNames(
-    'euiSkeleton__rect',
+    'euiSkeleton__heading',
     className
   );
 
   const cssStyles = [
-    styles.euiSkeleton__rect,
+    styles.euiSkeleton__heading,
+    styles[size],
   ];
 
   return (
-    <div className={classes} css={cssStyles} aria-busy={true} {...rest}></div>
+    <span className={classes} css={cssStyles} aria-busy={true} {...rest}></span>
   )
 }

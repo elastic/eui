@@ -10,7 +10,7 @@ import { css, keyframes } from '@emotion/react';
 import { euiCanAnimate, logicalCSS } from '../../global_styling';
 import { COLOR_MODES_STANDARD, shade, tint, UseEuiTheme } from '../../services';
 
-const loadingContentGradient = keyframes`
+const skeletonGradient = keyframes`
   0% {
     transform: translateX(-53%);
   }
@@ -38,8 +38,6 @@ export const euiSkeletonCircleStyles = ({
       display: block;
       background: ${gradientStartStop};
       overflow: hidden;
-      width: 100px;
-      height: 100px;
 
       &::after {
         content: '';
@@ -54,7 +52,7 @@ export const euiSkeletonCircleStyles = ({
         );
 
         ${euiCanAnimate} {
-          animation: ${loadingContentGradient} 1.5s
+          animation: ${skeletonGradient} 1.5s
             ${euiTheme.animation.resistance} infinite;
         }
       }

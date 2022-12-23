@@ -7,56 +7,23 @@ import {
 } from '../../../../src/components';
 
 export default () => (
-  <EuiFlexGroup direction='column'>
-    <EuiFlexItem>
+
       <EuiFlexGroup>
+        {/* <EuiFlexItem grow={false}>
+          <EuiSkeletonItem width="12px" height="24px" radius="none" />
+        </EuiFlexItem> */}
+
         <EuiFlexItem grow={false}>
-          <EuiSkeletonItem size="s" squared />
+          <EuiSkeletonItem width="18px" height="18px" radius="s" />
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
-          <EuiSkeletonItem size="m" squared />
+          <EuiSkeletonItem width="86px" height="32px" radius="m" />
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
-          <EuiSkeletonItem size="l" squared />
-        </EuiFlexItem>
-
-        <EuiFlexItem grow={false}>
-          <EuiSkeletonItem size="xl" squared />
-        </EuiFlexItem>
-
-      </EuiFlexGroup>
-    </EuiFlexItem>
-
-    <EuiFlexItem>
-      <EuiFlexGroup>
-        <EuiFlexItem grow={false}>
-          <EuiSkeletonItem size="s" />
-        </EuiFlexItem>
-
-        <EuiFlexItem grow={false}>
-          <EuiSkeletonItem size="m" />
-        </EuiFlexItem>
-
-        <EuiFlexItem grow={false}>
-          <EuiSkeletonItem size="l" />
-        </EuiFlexItem>
-
-        <EuiFlexItem grow={false}>
-          <EuiSkeletonItem size="xl" />
-        </EuiFlexItem>
-
-      </EuiFlexGroup>
-    </EuiFlexItem>
-
-    <EuiFlexItem>
-      <EuiFlexGroup>
-        <EuiFlexItem grow={false}>
-          <EuiSkeletonItem size="customSize" width='36px' height='120px' />
+          <EuiSkeletonItem width="130px" height="130px" radius="none" />
         </EuiFlexItem>
       </EuiFlexGroup>
-    </EuiFlexItem>
-  </EuiFlexGroup>
 
 );

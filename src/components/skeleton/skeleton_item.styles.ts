@@ -22,9 +22,8 @@ const loadingContentGradient = keyframes`
 
 export const euiSkeletonItemStyles = (
   { euiTheme, colorMode }: UseEuiTheme,
-  propsHeight?: string,
   propsWidth?: string,
-  squared?: boolean,
+  propsHeight?: string,
 ) => {
   const gradientStartStop =
     colorMode === COLOR_MODES_STANDARD.dark
@@ -35,13 +34,14 @@ export const euiSkeletonItemStyles = (
       ? shade(euiTheme.colors.lightShade, 0.24)
       : tint(euiTheme.colors.lightShade, 0.8);
 
-      console.log('ITEM', squared, propsHeight, propsWidth)
-
   return {
     euiSkeleton__item: css`
       display: block;
       background: ${gradientStartStop};
       overflow: hidden;
+
+      width: ${propsWidth};
+      height: ${propsHeight};
 
       &::after {
         content: '';
@@ -61,42 +61,14 @@ export const euiSkeletonItemStyles = (
         }
       }
     `,
-    // Sizes
     s: css`
-      ${logicalCSS('height', euiTheme.size.l)};
-      ${logicalCSS('width', `calc(${euiTheme.size.l} * ${squared ? 1 : 3})`)};
       border-radius: ${euiTheme.border.radius.small};
     `,
     m: css`
-      ${logicalCSS('height', euiTheme.size.xl)};
-      ${logicalCSS('width', `calc(${euiTheme.size.xl} * ${squared ? 1 : 2})`)};
       border-radius: ${euiTheme.border.radius.medium};
     `,
-    l: css`
-      ${logicalCSS('height', euiTheme.size.xxl)};
-      ${logicalCSS('width', `calc(${euiTheme.size.xxl} * ${squared ? 1 : 2})`)};
-      border-radius: ${euiTheme.border.radius.medium};
-    `,
-    xl: css`
-      ${logicalCSS('height', `calc(${euiTheme.size.base} * 4)`)};
-      ${logicalCSS('width', `calc(${euiTheme.size.base} * ${squared ? 4 : 8})`)};
-      border-radius: ${euiTheme.border.radius.medium};
-    `,
-    customSize: css`
-      width: ${propsWidth};
-      height: ${propsHeight};
-      border-radius: ${euiTheme.border.radius.medium};
+    none: css`
+      border-radius: none;
     `,
   };
 };
-
-// xxs: "2px"
-// xs: "4px"
-// s: "8px"
-// m: "12px"
-// xl: "16px"
-// l: "24px"
-// xl: "32px"
-// xxl: "40px"
-// xxxl: "48px"
-// xxxxl: "64px"

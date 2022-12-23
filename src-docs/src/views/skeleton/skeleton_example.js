@@ -4,11 +4,11 @@ import { GuideSectionTypes } from '../../components';
 
 import { EuiCode } from '../../../../src/components';
 import {
-  EuiSkeletonRectProps,
-  EuiSkeletonTextProps,
-  EuiSkeletonItemProps,
-  EuiSkeletonCircleProps,
-} from '../../../../src/components/EuiSkeleton';
+  EuiSkeletonHeading,
+  EuiSkeletonText,
+  EuiSkeletonItem,
+  EuiSkeletonCircle,
+} from '../../../../src/components';
 
 import { skeletonConfig } from './playground';
 
@@ -18,16 +18,16 @@ const skeletonCircleSource = require('!!raw-loader!./skeleton_circle');
 import SkeletonText from './skeleton_text';
 const skeletonTextSource = require('!!raw-loader!./skeleton_text');
 
-import SkeletonRect from './skeleton_rect';
-const skeletonRectSource = require('!!raw-loader!./skeleton_rect');
+import SkeletonHeading from './skeleton_heading';
+const skeletonHeadingSource = require('!!raw-loader!./skeleton_heading');
 
 import SkeletonItem from './skeleton_item';
 const skeletonItemSource = require('!!raw-loader!./skeleton_item');
 
 const skeletonCircleSnippet = '<EuiSkeletonCircle size="m" />';
 const skeletonTextSnippet = '<EuiSkeletonText lines={3} />';
-const skeletonRectSnippet = '<EuiSkeletonRect width="200px" height="20px" />';
-const skeletonItemSnippet = '<EuiSkeletonItem width="200px" height="20px" />';
+const skeletonHeadingSnippet = '<EuiSkeletonHeading size="h2" />';
+const skeletonItemSnippet = '<EuiSkeletonItem width="200px" height="20px" radius="m" />';
 
 export const SkeletonExample = {
   title: 'Skeleton',
@@ -51,7 +51,7 @@ export const SkeletonExample = {
           The <strong>Circle</strong> type display a circular preview mainly for avatars.
         </p>
       ),
-      props: { },
+      props: { EuiSkeletonCircle },
       snippet: skeletonCircleSnippet,
       demo: (
         <div className="guideDemo__highlightSkeleton__circle">
@@ -72,7 +72,7 @@ export const SkeletonExample = {
           The <strong>Text</strong> type display a variable number of text lines preview.
         </p>
       ),
-      props: { },
+      props: { EuiSkeletonText },
       snippet: skeletonTextSnippet,
       demo: (
         <div className="guideDemo__highlightSkeleton__text">
@@ -81,23 +81,23 @@ export const SkeletonExample = {
       ),
     },
     {
-      title: 'Rect',
+      title: 'Heading',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: skeletonRectSource,
+          code: skeletonHeadingSource,
         },
       ],
       text: (
         <p>
-          The <strong>Rect</strong> type display a variable number of text lines preview.
+          The <strong>Heading</strong> type display a placeholder for heading texts.
         </p>
       ),
-      props: { },
-      snippet: skeletonRectSnippet,
+      props: { EuiSkeletonHeading },
+      snippet: skeletonHeadingSnippet,
       demo: (
-        <div className="guideDemo__highlightSkeleton__rect">
-          <SkeletonRect />
+        <div className="guideDemo__highlightSkeleton__heading">
+          <SkeletonHeading />
         </div>
       ),
     },
@@ -111,10 +111,10 @@ export const SkeletonExample = {
       ],
       text: (
         <p>
-          The <strong>Item</strong> type display a.
+          The <strong>Item</strong> type let you free to define whatever shape you want to mock with a skeleton by defining <EuiCode>width</EuiCode> <EuiCode>height</EuiCode> and <EuiCode>radius</EuiCode>.
         </p>
       ),
-      props: { },
+      props: { EuiSkeletonItem },
       snippet: skeletonItemSnippet,
       demo: (
         <div className="guideDemo__highlightSkeleton__item">
