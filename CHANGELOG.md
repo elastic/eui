@@ -1,3 +1,14 @@
+## [`72.1.0`](https://github.com/elastic/eui/tree/v72.1.0)
+
+- Changed design of empty ranges in `EuiColorStops` to have diagonal gray stripes instead of a solid light gray color ([#6489](https://github.com/elastic/eui/pull/6489))
+- Changed popover in `EuiColorStops` to not appear when dragging/moving a color stop ([#6489](https://github.com/elastic/eui/pull/6489))
+- `EuiPopover` now supports overriding `focusTrapProps.onClickOutside`, which allows customization of auto-close behavior on outside click. ([#6500](https://github.com/elastic/eui/pull/6500))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiColorStops` to Emotion ([#6489](https://github.com/elastic/eui/pull/6489))
+- Added `brighten` service to manipulate CSS-in-JS colors ([#6489](https://github.com/elastic/eui/pull/6489))
+
 ## [`72.0.0`](https://github.com/elastic/eui/tree/v72.0.0)
 
 - Added the `customQuickSelectRender` render prop to `EuiSuperDatePicker`, which allows customizing the Quick Select popover ([#6382](https://github.com/elastic/eui/pull/6382))
