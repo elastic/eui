@@ -32,7 +32,7 @@ export const EuiImageFullScreenWrapper: FunctionComponent<EuiImageWrapperProps> 
   wrapperProps,
   isFullWidth,
   fullScreenIconColor,
-  onFullScreen
+  onFullScreen,
 }) => {
   const euiTheme = useEuiTheme();
 
