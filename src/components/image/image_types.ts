@@ -71,6 +71,10 @@ export type EuiImageProps = CommonProps &
      */
     allowFullScreen?: boolean;
     /**
+     * Callback when the image is clicked and `allowFullScreen` is `true`
+     */
+    onFullScreen?: (isFullScreen: boolean) => void;
+    /**
      * Changes the color of the icon that floats above the image when it can be clicked to fullscreen.
      * The default value of `light` is fine unless your image has a white background, in which case you should change it to `dark`.
      */
@@ -91,6 +95,7 @@ export type EuiImageWrapperProps = Pick<
   | 'wrapperProps'
   | 'fullScreenIconColor'
   | 'allowFullScreen'
+  | 'onFullScreen'
 > & {
   isFullWidth: boolean;
   setIsFullScreen: (isFullScreen: boolean) => void;
