@@ -194,10 +194,10 @@ export const StatExample = {
       text: (
         <p>
           In the following example, you can see variants of how the{' '}
-          <strong>EuiStat</strong> component can be assembled.
-          This component is very helpful for constructing single-value
-          visualizations and summaries for different dashboards and page 
-          layouts and for communicating trends over time.
+          <strong>EuiStat</strong> component can be assembled. This component is
+          very helpful for constructing single-value visualizations and
+          summaries for different dashboards and page layouts and for
+          communicating trends over time.
         </p>
       ),
       demo: <StatCombos />,
