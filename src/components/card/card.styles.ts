@@ -74,6 +74,7 @@ export const euiCardStyles = (
       euiCard__main: css`
         display: flex;
         inline-size: 100%;
+        flex-grow: 1;
       `,
       layout: {
         vertical: css`

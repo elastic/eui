@@ -2,35 +2,37 @@
 
 exports[`EuiRangeLevels is rendered 1`] = `
 <div
-  class="euiRangeLevels euiRangeLevels--hasTicks"
+  aria-label="aria-label"
+  class="testClass1 testClass2 emotion-euiRangeLevels"
+  data-test-subj="test subject string"
 >
   <span
-    class="euiRangeLevel euiRangeLevel--danger customClass"
+    class="euiRangeLevel customClass emotion-euiRangeLevel-danger"
     data-test-subj="firstLevel"
-    style="left:calc(0% + 0px);right:calc(100% - 0px)"
+    style="inset-inline-start: calc(0% + 0px); inset-inline-end: calc(80.8% - 9.5625px);"
   />
   <span
-    class="euiRangeLevel euiRangeLevel--success"
-    style="left:calc(0% + 0px);right:calc(100% - 0px)"
+    class="euiRangeLevel emotion-euiRangeLevel-success"
+    style="inset-inline-start: calc(19.200000000000003% + 9.5625px); inset-inline-end: calc(0% - 0px);"
   />
 </div>
 `;
 
 exports[`EuiRangeLevels is rendered with named and custom color 1`] = `
 <div
-  class="euiRangeLevels euiRangeLevels--hasTicks"
+  class="euiRangeLevels emotion-euiRangeLevels"
 >
   <span
-    class="euiRangeLevel euiRangeLevel--danger"
-    style="left:calc(0% + 0px);right:calc(100% - 0px)"
+    class="euiRangeLevel emotion-euiRangeLevel-danger"
+    style="inset-inline-start: calc(0% + 0px); inset-inline-end: calc(80.8% - 9.5625px);"
   />
   <span
-    class="euiRangeLevel euiRangeLevel--customColor"
-    style="left:calc(0% + 0px);right:calc(100% - 0px);background-color:#ff0000"
+    class="euiRangeLevel emotion-euiRangeLevel-customColor"
+    style="inset-inline-start: calc(19.200000000000003% + 9.5625px); inset-inline-end: calc(0% - 0px); background-color: rgb(255, 0, 0);"
   />
 </div>
 `;
 
-exports[`EuiRangeLevels should throw error if \`level.max\` is higher than \`max\` 1`] = `"The level max of 200 is higher than the max value of 100."`;
+exports[`EuiRangeLevels thrown errors should throw error if \`level.max\` is higher than \`max\` 1`] = `"The level max of 200 is higher than the max value of 100."`;
 
-exports[`EuiRangeLevels should throw error if \`level.min\` is lower than \`min\` 1`] = `"The level min of -10 is lower than the min value of 0."`;
+exports[`EuiRangeLevels thrown errors should throw error if \`level.min\` is lower than \`min\` 1`] = `"The level min of -10 is lower than the min value of 0."`;

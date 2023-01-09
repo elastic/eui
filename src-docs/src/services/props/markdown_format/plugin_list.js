@@ -1,4 +1,4 @@
-import markdown from 'remark-parse';
+import markdown from 'remark-parse-no-trim';
 import highlight from '../../../../../src/components/markdown_editor/plugins/remark/remark_prismjs';
 import { getDefaultEuiMarkdownProcessingPlugins } from '../../../../../src/components';
 

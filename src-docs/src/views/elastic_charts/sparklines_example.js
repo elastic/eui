@@ -1,24 +1,20 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { GuideSectionTypes } from '../../components';
 
 import { ExternalBadge } from './shared';
-import { Sizes } from './sizes';
-import { Sparklines } from './sparklines';
+import Sizes from './sizes';
+import Sparklines from './sparklines';
 const sparklinesSource = require('!!raw-loader!./sparklines');
 
 import { EuiCode, EuiCodeBlock } from '../../../../src/components';
 
 export const ElasticChartsSparklinesExample = {
   title: 'Sizing',
-  intro: (
-    <Fragment>
-      <ExternalBadge />
-    </Fragment>
-  ),
+  intro: <ExternalBadge />,
   sections: [
     {
       text: (
-        <Fragment>
+        <>
           <p>
             When placing charts into smaller containers or panels, you must
             re-evaluate your data to provide a more simplified version. This
@@ -26,7 +22,7 @@ export const ElasticChartsSparklinesExample = {
             to the bottom or adding annotations to give context and describe the
             key points in your data.
           </p>
-        </Fragment>
+        </>
       ),
       demo: <Sizes />,
     },
@@ -39,7 +35,7 @@ export const ElasticChartsSparklinesExample = {
         },
       ],
       text: (
-        <Fragment>
+        <>
           <p>
             Sparklines are quick visual summaries of data where actual values
             are not important. They should be only a single series and not
@@ -70,7 +66,7 @@ const euiTheme = isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LI
               </EuiCode>
             </li>
           </ul>
-        </Fragment>
+        </>
       ),
       demo: <Sparklines />,
     },

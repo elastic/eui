@@ -5,7 +5,6 @@
  * 4. Restrict the underline to the button __label so it doesn't affect other components that might live within
  */
 
-
 .euiSideNavItemButton {
   @include euiFontSizeS;
   text-align: left; /* 1 */
@@ -89,7 +88,7 @@
     position: static;
     margin-left: 0;
 
-    &:after {
+    &::after {
       display: none;
     }
   }
@@ -148,7 +147,7 @@
     padding-left: $euiSizeS;
     padding-right: $euiSizeS; /* 2 */
 
-    &:after {
+    &::after {
       position: absolute; /* 2 */
       content: '';
       top: $euiSizeM;

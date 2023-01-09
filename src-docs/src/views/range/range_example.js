@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import { GuideSectionTypes } from '../../components';
 
@@ -11,16 +11,10 @@ import {
 
 import { rangeConfig, dualRangeConfig } from './playground';
 
-import {
-  EuiRangeLevels,
-  LEVEL_COLORS,
-} from '../../../../src/components/form/range/range_levels'; // eslint-disable-line
-
-// eslint-disable-next-line
-import { EuiRangeLevel } from '!!prop-loader!../../../../src/components/form/range/range_levels';
-
+import { EuiRangeLevels } from '../../../../src/components/form/range/range_levels';
+import { LEVEL_COLORS } from '../../../../src/components/form/range/range_levels_colors';
+import { EuiRangeLevel } from '!!prop-loader!../../../../src/components/form/range/types';
 import { EuiRangeTicks } from '../../../../src/components/form/range/range_ticks';
-
 import { EuiRangeInput } from '../../../../src/components/form/range/range_input';
 
 import DualRangeExample from './dual_range';
@@ -47,7 +41,7 @@ const inputOnlySource = require('!!raw-loader!./input_only');
 export const RangeControlExample = {
   title: 'Range sliders',
   intro: (
-    <Fragment>
+    <>
       <EuiCallOut color="warning" title="Understanding precision">
         <p>
           Range sliders should only be used when{' '}
@@ -56,13 +50,13 @@ export const RangeControlExample = {
           or use a <strong>EuiFieldNumber</strong> instead.
         </p>
       </EuiCallOut>
-    </Fragment>
+    </>
   ),
   sections: [
     {
       title: 'Single range',
       text: (
-        <Fragment>
+        <>
           <h3>Required</h3>
           <ul>
             <li>
@@ -94,11 +88,11 @@ export const RangeControlExample = {
               minimum value to the selected value.
             </li>
           </ul>
-        </Fragment>
+        </>
       ),
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: rangeSource,
         },
       ],
@@ -141,7 +135,7 @@ export const RangeControlExample = {
     {
       title: 'Dual range',
       text: (
-        <Fragment>
+        <>
           <p>
             The <strong>EuiDualRange</strong> accepts almost all the same props
             as the regular <strong>EuiRange</strong>, with the exception of{' '}
@@ -168,11 +162,11 @@ export const RangeControlExample = {
               <EuiCode>input[type=hidden]</EuiCode>.
             </p>
           </EuiCallOut>
-        </Fragment>
+        </>
       ),
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: dualRangeSource,
         },
       ],
@@ -203,7 +197,7 @@ export const RangeControlExample = {
     {
       title: 'Inputs',
       text: (
-        <Fragment>
+        <>
           <p>
             The <EuiCode>showInput</EuiCode> prop, will append or bookend the
             range slider with number type inputs. This is important for allowing
@@ -214,11 +208,11 @@ export const RangeControlExample = {
             will allow the inputs to be blank, though the range handles will
             show at the min (or max and min) positions.
           </p>
-        </Fragment>
+        </>
       ),
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: inputSource,
         },
       ],
@@ -229,7 +223,7 @@ export const RangeControlExample = {
     {
       title: 'Tick marks',
       text: (
-        <Fragment>
+        <>
           <p>
             To show clickable tick marks and labels at a given interval, add the
             prop <EuiCode>showTicks</EuiCode>. By default, tick mark interval is
@@ -249,11 +243,11 @@ export const RangeControlExample = {
               number to 20.
             </p>
           </EuiCallOut>
-        </Fragment>
+        </>
       ),
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: ticksSource,
         },
       ],
@@ -274,7 +268,7 @@ export const RangeControlExample = {
     {
       title: 'Levels',
       text: (
-        <Fragment>
+        <>
           <p>
             To create colored indicators for certain intervals, pass an array of
             objects that include a <EuiCode>min</EuiCode>,{' '}
@@ -291,11 +285,11 @@ export const RangeControlExample = {
             Be sure to then add an <EuiCode>aria-describedby</EuiCode> and match
             it to the id of a <strong>EuiFormHelpText</strong>.
           </p>
-        </Fragment>
+        </>
       ),
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: levelsSource,
         },
       ],
@@ -321,7 +315,7 @@ export const RangeControlExample = {
     {
       title: 'Inputs with range in a dropdown',
       text: (
-        <Fragment>
+        <>
           <p>
             Passing{' '}
             <EuiCode language="js">
@@ -331,11 +325,11 @@ export const RangeControlExample = {
             interacted with in which case a dropdown will appear displaying the
             actual slider.
           </p>
-        </Fragment>
+        </>
       ),
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: inputOnlySource,
         },
       ],
@@ -358,16 +352,16 @@ export const RangeControlExample = {
     {
       title: 'Kitchen sink',
       text: (
-        <Fragment>
+        <>
           <p>
             Other alterations you can add to the range are{' '}
             <EuiCode>fullWidth</EuiCode>, and <EuiCode>disabled</EuiCode>.
           </p>
-        </Fragment>
+        </>
       ),
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: statesSource,
         },
       ],

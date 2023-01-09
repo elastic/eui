@@ -144,12 +144,21 @@ export const _fieldValuesToQuery = (
           queries.push({
             bool: {
               [andOr === 'and' ? 'must' : 'should']: [
-                ...terms.map((value) => ({ match: { [field]: value } })),
+                ...terms.map((value) => ({
+                  match: {
+                    [field]: {
+                      query: value,
+                      operator: andOr,
+                    },
+                  },
+                })),
               ],
             },
           });
         } else if (terms.length === 1) {
-          queries.push({ match: { [field]: terms[0] } });
+          queries.push({
+            match: { [field]: { query: terms[0], operator: andOr } },
+          });
         }
 
         if (phrases.length > 0) {

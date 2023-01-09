@@ -73,7 +73,7 @@
 }
 
 .euiDataGridHeader__action--selected {
-  // sass-lint:disable-block no-important
+  // stylelint-disable-next-line declaration-no-important
   font-weight: $euiFontWeightBold !important;
 }
 

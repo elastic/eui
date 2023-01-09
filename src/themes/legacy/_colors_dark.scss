@@ -1,3 +1,5 @@
+// stylelint-disable color-no-hex
+
 // This extra import allows any variables that are created via functions to work when loaded into JS
 @import '../../global_styling/functions/index';
 
@@ -45,4 +47,3 @@ $euiLinkColor: $euiColorPrimaryText !default;
 // Charts
 $euiColorChartLines: $euiColorLightShade !default;
 $euiColorChartBand: tint($euiColorLightestShade, 2.5%) !default;
-

@@ -11,7 +11,7 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
-import { EuiBeacon } from './beacon';
+import { EuiBeacon, COLORS } from './beacon';
 
 describe('EuiBeacon', () => {
   shouldRenderCustomStyles(<EuiBeacon />);
@@ -22,9 +22,24 @@ describe('EuiBeacon', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test('accepts size', () => {
-    const component = render(<EuiBeacon size={14} {...requiredProps} />);
+  describe('props', () => {
+    describe('color', () => {
+      COLORS.forEach((color) => {
+        it(`${color} is rendered`, () => {
+          const component = render(
+            <EuiBeacon color={color} {...requiredProps} />
+          );
 
-    expect(component).toMatchSnapshot();
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
+    describe('size', () => {
+      it('accepts size', () => {
+        const component = render(<EuiBeacon size={14} {...requiredProps} />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 });

@@ -11,10 +11,20 @@ _**Before you get started**_
   - if you have 2FA enabled, you may be prompted for an [OTP or other token](https://github.com/settings/tokens)
 
 ### Releasing `@elastic/eui`
+Log into your NPM account:
+```sh
+npm login # Will prompt for credentials and 2FA token
+npm whoami # Should return your NPM username
+```
 
-The release process is started by running the following command.
+Ensure you have both the latest code and dependencies by running the following commands:
+```sh
+git checkout main && git pull && yarn
+```
 
-```shell
+The release process is started by running the following command:
+
+```sh
 npm run release
 ```
 
@@ -28,6 +38,12 @@ The latest changes have now been pushed to GitHub, a new `git` tag now exists on
 
 <sup>_\* GitHub Pages sites are cached aggressively and can sometimes take a couple of minutes to update._</sup>
 
+(Optional) log out of your NPM account:
+```sh
+npm logout
+npm whoami # Should return an error about not being logged in
+```
+
 ### Deploying to eui.elastic.co
 
 In addition to the GitHub pages deployment, we need to manually deploy to the EUI Bekitzur environment (which will eventually be the canonical home of the EUI docs).
@@ -39,7 +55,11 @@ In addition to the GitHub pages deployment, we need to manually deploy to the EU
 
 ### Tag the release in GitHub
 
-We also update the [release's tag in github](https://github.com/elastic/eui/tags) by _creating a release_ for the version and copying over its _CHANGELOG.md_ entries. (TODO: screencast this next time to include a GIF here)
+We also update the [release's tag in github](https://github.com/elastic/eui/tags) by _creating a release_ for the version and copying over its _CHANGELOG.md_ entries. 
+* Click the three dot menu on the right side of the latest tag, then click "Create release" from the flyout menu
+* Type a lowercase "v" and the tag number into the release name field with no spaces
+* Copy the _CHANGELOG.md_ entry into the release description. Do not included the linked version header.
+* (TODO: screencast this next time to include a GIF here)
 
 ## `@elastic/eslint-plugin-eui`
 
@@ -66,7 +86,6 @@ This provides a walkthrough of the patching & backport release process; examples
   * in the EUI git repo, checkout the release tag the patch is intended for - `git checkout v22.3.0`
   * create a new branch from the versioned tag, the name is unimportant but I use the target version without a leading `v` - `git checkout -b 22.3.1`
 * Run `yarn` to ensure you have the correct dependencies for that point in time installed
-  * If you run into an error about `nodegit.node` being compiled against a different version of Node.js, try running `rm -rf node_modules && yarn`
 * Apply the commit(s) with the desired changes
   * GitHub issue references #3369, #3378, #3330, and #3398
   * We always use squash merges, so each PR has a single commit hash to include
@@ -90,11 +109,5 @@ This provides a walkthrough of the patching & backport release process; examples
   * Publish the new version to npm
     * Get your npm One Time Password (OTP) from Google Authenticator, Authy, etc
     * Publish with your OPT and the new version as the tag - `npm publish --tag=backport --otp=your-one-time-password`
-* Update `main`'s changelog to include this release
-  * On the branch you used to build & release, copy the relevant changelog section - e.g. contents of ```## [`22.3.1`](https://github.com/elastic/eui/tree/v22.3.1)```
-  * Checkout `main` - `git checkout main`
-  * Paste the changelog section at the correct location in _CHANGELOG.md_
-    * Include an extra line at the top of this section describing it as a backport, e.g. **Note: this release is a backport containing changes originally made in `23.0.0`, `23.1.0`, and `23.2.0`**
-  * Commit the changelog entry to main and push - `git commit -anm "changelog" && git push`
 * Let people know the backport is released
 * Celebrate profusely

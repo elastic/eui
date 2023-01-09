@@ -144,7 +144,7 @@ export const ProviderExample = {
           </p>
           <p>
             <EuiCode>setEuiDevProviderWarning</EuiCode> is a function that will
-            enable adding logging or erroring in development mode only. It
+            enable adding logging or erroring if the Provider is missing. It
             accepts three levels:
           </p>
           <ul>

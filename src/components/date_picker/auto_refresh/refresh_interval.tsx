@@ -208,7 +208,7 @@ export class EuiRefreshInterval extends Component<
     return (
       <RenderI18nTimeOptions>
         {({ refreshUnitsOptions }) => (
-          <fieldset>
+          <fieldset className="euiQuickSelectPopover__panel">
             <EuiFlexGroup
               alignItems="center"
               gutterSize="s"

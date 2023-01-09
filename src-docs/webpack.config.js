@@ -128,6 +128,13 @@ const webpackConfig = new Promise(async (resolve, reject) => {
           },
         ],
       },
+      // Ignore Sass warnings - we won't be on Sass for much longer
+      ignoreWarnings: [
+        {
+          module: /\.scss$/,
+        },
+        () => true,
+      ],
 
       plugins: [
         // provide requirements for playground

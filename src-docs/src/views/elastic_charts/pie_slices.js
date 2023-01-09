@@ -1,7 +1,6 @@
 /* eslint-disable no-nested-ternary */
-import React, { Fragment, useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Chart, Partition, Settings, PartitionLayout } from '@elastic/charts';
-import { ThemeContext } from '../../components';
 
 import {
   EUI_CHARTS_THEME_DARK,
@@ -25,12 +24,14 @@ import {
   EuiText,
 } from '../../../../src/components';
 
+import { useEuiTheme } from '../../../../src/services';
+
 import { ChartCard } from './shared';
 import { BROWSER_DATA_2019 } from './data';
 
 export default () => {
-  const themeContext = useContext(ThemeContext);
-  const isDarkTheme = themeContext.theme.includes('dark');
+  const { colorMode } = useEuiTheme();
+  const isDarkTheme = colorMode === 'DARK';
   const euiChartTheme = isDarkTheme
     ? EUI_CHARTS_THEME_DARK
     : EUI_CHARTS_THEME_LIGHT;
@@ -146,7 +147,7 @@ export default () => {
   };
 
   return (
-    <Fragment>
+    <>
       {customTitle}
       <div style={{ position: 'relative' }}>
         <Chart size={{ height: 200 }}>
@@ -332,6 +333,6 @@ export default () => {
           )}
         </EuiCopy>
       </div>
-    </Fragment>
+    </>
   );
 };

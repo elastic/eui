@@ -8,7 +8,7 @@
 
 import React from 'react';
 import { render, mount } from 'enzyme';
-import { requiredProps } from '../../test/';
+import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiFacetButton } from './facet_button';

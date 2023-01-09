@@ -10,6 +10,9 @@
       - github-pull-request:
           org-list:
             - elastic
+          white-list:
+            - renovate
+            - renovatebot
           allow-whitelist-orgs-as-admins: true
           trigger-phrase: '(.*(?:jenkins\W+)?test\W+(?:this|it)(?:\W+please)?.*)|^retest$'
           github-hooks: true

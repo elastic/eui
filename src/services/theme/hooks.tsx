@@ -35,22 +35,20 @@ export const useEuiTheme = <T extends {} = {}>(): UseEuiTheme<T> => {
   const colorMode = useContext(EuiColorModeContext);
   const modifications = useContext(EuiModificationsContext);
 
-  if (process.env.NODE_ENV !== 'production') {
-    const isFallback = theme === defaultComputedTheme;
-    const warningLevel = getEuiDevProviderWarning();
-    if (isFallback && typeof warningLevel !== 'undefined') {
-      switch (warningLevel) {
-        case 'log':
-          console.log(providerMessage);
-          break;
-        case 'warn':
-          console.warn(providerMessage);
-          break;
-        case 'error':
-          throw new Error(providerMessage);
-        default:
-          break;
-      }
+  const isFallback = theme === defaultComputedTheme;
+  const warningLevel = getEuiDevProviderWarning();
+  if (isFallback && typeof warningLevel !== 'undefined') {
+    switch (warningLevel) {
+      case 'log':
+        console.log(providerMessage);
+        break;
+      case 'warn':
+        console.warn(providerMessage);
+        break;
+      case 'error':
+        throw new Error(providerMessage);
+      default:
+        break;
     }
   }
 

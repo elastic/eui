@@ -19,7 +19,10 @@ const paddingSizeToClassNameMap = {
 
 export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
 
-export interface EuiPageSideBarProps
+/**
+ * @deprecated Use the new EuiPageSidebarProps in page/page_sidebar instead
+ */
+export interface EuiPageSideBarProps_Deprecated
   extends CommonProps,
     HTMLAttributes<HTMLDivElement> {
   /**
@@ -35,7 +38,7 @@ export interface EuiPageSideBarProps
 /**
  * @deprecated Use the new EuiPageSidebar in page/page_sidebar instead
  */
-export const EuiPageSideBar_Deprecated: FunctionComponent<EuiPageSideBarProps> = ({
+export const EuiPageSideBar_Deprecated: FunctionComponent<EuiPageSideBarProps_Deprecated> = ({
   children,
   className,
   sticky,

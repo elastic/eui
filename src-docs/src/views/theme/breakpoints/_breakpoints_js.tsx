@@ -5,6 +5,8 @@ import {
   EuiCode,
   EuiText,
   useEuiBreakpoint,
+  useEuiMaxBreakpoint,
+  useEuiMinBreakpoint,
   useCurrentEuiBreakpoint,
   useIsWithinBreakpoints,
   useIsWithinMaxBreakpoint,
@@ -110,19 +112,10 @@ useIsWithinMinBreakpoint('s')`}
         title={<code>useEuiBreakpoint(sizes[])</code>}
         type="hook"
         description={
-          <>
-            <p>
-              Given an array of breakpoint keys, this hook generates a CSS media
-              query string based on the minimum width and maximum width
-              provided.
-            </p>
-            <p>
-              You can also create media queries with a{' '}
-              <EuiCode>(max-width)</EuiCode> only or{' '}
-              <EuiCode>(min-width)</EuiCode> only by utilizing the{' '}
-              <EuiCode>xs</EuiCode> and <EuiCode>xl</EuiCode> arguments.
-            </p>
-          </>
+          <p>
+            Given an array of screen sizes, this hook generates a CSS media
+            query string based on the minimum and maximum screen sizes provided.
+          </p>
         }
         example={
           <p
@@ -156,6 +149,46 @@ useIsWithinMinBreakpoint('s')`}
     color: yellow;
   }
   \${useEuiBreakpoint(['l', 'xl'])} {
+    color: green;
+  }`}
+        snippetLanguage="emotion"
+      />
+
+      <ThemeExample
+        title={
+          <>
+            <code>useEuiMaxBreakpoint(size)</code>
+            <br />
+            <code>useEuiMinBreakpoint(size)</code>
+          </>
+        }
+        type="hook"
+        description={
+          <p>
+            Given a single breakpoint key, these hooks generate a min or max CSS
+            media query string based on the single breakpoint dimension
+            returned.
+          </p>
+        }
+        example={
+          <p
+            css={css`
+              ${useEuiMaxBreakpoint('m')} {
+                color: ${euiTheme.colors.dangerText};
+              }
+              ${useEuiMinBreakpoint('m')} {
+                color: ${euiTheme.colors.successText};
+              }
+            `}
+          >
+            This text is red on screens below the medium breakpoint, and green
+            on screens above.
+          </p>
+        }
+        snippet={`\${useEuiMaxBreakpoint('m')} {
+    color: red;
+  }
+  \${useEuiMinBreakpoint('m')} {
     color: green;
   }`}
         snippetLanguage="emotion"

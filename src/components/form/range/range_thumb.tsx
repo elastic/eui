@@ -9,16 +9,18 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
+import { useEuiTheme } from '../../../services';
 import { CommonProps, ExclusiveUnion } from '../../common';
 
-interface BaseProps extends CommonProps {
-  min: number;
-  max: number;
-  value?: number | string;
-  disabled?: boolean;
-  showInput?: boolean;
-  showTicks?: boolean;
-}
+import type { EuiRangeProps } from './types';
+import { euiRangeThumbStyles } from './range_thumb.styles';
+
+interface BaseProps
+  extends CommonProps,
+    Pick<
+      EuiRangeProps,
+      'min' | 'max' | 'value' | 'disabled' | 'showInput' | 'showTicks'
+    > {}
 
 interface ButtonLike extends BaseProps, HTMLAttributes<HTMLButtonElement> {}
 interface DivLike
@@ -40,15 +42,15 @@ export const EuiRangeThumb: FunctionComponent<EuiRangeThumbProps> = ({
   tabIndex,
   ...rest
 }) => {
-  const classes = classNames(
-    'euiRangeThumb',
-    {
-      'euiRangeThumb--hasTicks': showTicks,
-    },
-    className
-  );
+  const classes = classNames('euiRangeThumb', className);
+
+  const euiTheme = useEuiTheme();
+  const styles = euiRangeThumbStyles(euiTheme);
+  const cssStyles = [styles.euiRangeThumb, showTicks && styles.hasTicks];
+
   const commonAttrs = {
     className: classes,
+    css: cssStyles,
     role: 'slider',
     'aria-valuemin': min,
     'aria-valuemax': max,
@@ -56,6 +58,7 @@ export const EuiRangeThumb: FunctionComponent<EuiRangeThumbProps> = ({
     'aria-disabled': !!disabled,
     tabIndex: showInput || !!disabled ? -1 : tabIndex || 0,
   };
+
   return onClick || onMouseDown ? (
     <button
       type="button"

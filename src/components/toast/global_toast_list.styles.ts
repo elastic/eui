@@ -8,7 +8,8 @@
 
 import { css, keyframes } from '@emotion/react';
 import {
-  euiBreakpoint,
+  euiMaxBreakpoint,
+  euiMinBreakpoint,
   euiScrollBarStyles,
   logicalCSS,
   logicalCSSWithFallback,
@@ -18,7 +19,7 @@ import { UseEuiTheme } from '../../services';
 
 export const euiGlobalToastListStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-  const euiToastWidth = euiTheme.base * 20;
+  const euiToastWidth = euiTheme.base * 25;
   return {
     /**
      * 1. Allow list to expand as items are added, but cap it at the screen height.
@@ -33,7 +34,7 @@ export const euiGlobalToastListStyles = (euiThemeContext: UseEuiTheme) => {
       position: fixed;
       z-index: ${euiTheme.levels.toast};
       ${logicalCSS('bottom', 0)};
-      ${logicalCSS('width', `${euiToastWidth + euiTheme.base * 5}px`)}; /* 2 */
+      ${logicalCSS('width', `${euiToastWidth}px`)}; /* 2 */
       ${logicalCSS('max-height', '100vh')}; /* 1 */
       ${logicalCSSWithFallback('overflow-y', 'auto')};
 
@@ -53,7 +54,7 @@ export const euiGlobalToastListStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('padding-vertical', euiTheme.size.base)};
       }
 
-      ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
+      ${euiMaxBreakpoint(euiThemeContext, 'm')} {
         &:not(:empty) {
           ${logicalCSS('left', 0)};
           ${logicalCSS('width', '100%')}; /* 1 */
@@ -64,22 +65,18 @@ export const euiGlobalToastListStyles = (euiThemeContext: UseEuiTheme) => {
     right: css`
       &:not(:empty) {
         ${logicalCSS('right', 0)};
-        ${logicalCSS('padding-left', `${euiTheme.base * 4}px`)}; /* 2 */
-      }
-      ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
-        &:not(:empty) {
-          ${logicalCSS('padding-left', euiTheme.size.base)};
+
+        ${euiMinBreakpoint(euiThemeContext, 'm')} {
+          ${logicalCSS('padding-left', `${euiTheme.base * 4}px`)}; /* 2 */
         }
       }
     `,
     left: css`
       &:not(:empty) {
         ${logicalCSS('left', 0)};
-        ${logicalCSS('padding-right', `${euiTheme.base * 4}px`)}; /* 2 */
-      }
-      ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
-        &:not(:empty) {
-          ${logicalCSS('padding-right', euiTheme.size.base)};
+
+        ${euiMinBreakpoint(euiThemeContext, 'm')} {
+          ${logicalCSS('padding-right', `${euiTheme.base * 4}px`)}; /* 2 */
         }
       }
     `,

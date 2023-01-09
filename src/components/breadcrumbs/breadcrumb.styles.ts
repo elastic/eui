@@ -14,6 +14,7 @@ import {
   euiTextTruncate,
   euiFocusRing,
   logicalCSS,
+  logicalBorderRadiusCSS,
   mathWithUnits,
 } from '../../global_styling';
 
@@ -126,8 +127,10 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('padding-horizontal', euiTheme.size.m)},
       `,
       firstChild: css`
-        border-radius: ${euiTheme.border.radius.medium} 0 0
-          ${euiTheme.border.radius.medium};
+        ${logicalBorderRadiusCSS(
+          `${euiTheme.border.radius.medium} 0 0 ${euiTheme.border.radius.medium}`,
+          true
+        )}
         clip-path: polygon(
           0 0,
           calc(100% - ${euiTheme.size.s}) 0,
@@ -138,8 +141,10 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('padding-left', euiTheme.size.m)},
       `,
       lastChild: css`
-        border-radius: 0 ${euiTheme.border.radius.medium}
-          ${euiTheme.border.radius.medium} 0;
+        ${logicalBorderRadiusCSS(
+          `0 ${euiTheme.border.radius.medium} ${euiTheme.border.radius.medium} 0`,
+          true
+        )}
         clip-path: polygon(
           0 0,
           100% 0,

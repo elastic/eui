@@ -121,7 +121,7 @@ $euiEmptyPromptContentMaxWidth: 36em;
 
     &.euiEmptyPrompt--horizontal {
       .euiEmptyPrompt__main {
-        gap: $amount; // sass-lint:disable-line no-misspelled-properties
+        gap: $amount;
       }
     }
   }

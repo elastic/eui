@@ -20,7 +20,6 @@ $euiFontSizeXXL:    $euiFontSize * nth($euiTextScale, 1) !default; // 36px
 $euiLineHeight:     1.5 !default;
 $euiBodyLineHeight: 1 !default;
 
-
 // Normally functions are imported before variables in `_index.scss` files
 // But because they need to consume some typography variables they need to live here
 @function convertToRem($size) {
@@ -32,9 +31,8 @@ $euiBodyLineHeight: 1 !default;
 //     If our base font size (euiFontSize) is 16, our baseline is 8 (16*1.5 / 3). To ensure the
 //     text stays on the baseline, we pass a multiplier to calculate a line-height in rems.
 @function lineHeightFromBaseline($multiplier: 3) {
-  @return convertToRem(($euiFontSize/2)*$multiplier);
+  @return convertToRem(($euiFontSize / 2) * $multiplier);
 }
-
 
 // Titles map
 // Lists all the properties per EuiTitle size that then gets looped through to create the selectors.

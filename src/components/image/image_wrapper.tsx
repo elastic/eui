@@ -30,9 +30,11 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
   wrapperProps,
   fullScreenIconColor,
   isFullWidth,
+  onFullScreen,
 }) => {
   const openFullScreen = () => {
     setIsFullScreen(true);
+    onFullScreen?.(true);
   };
 
   const classes = classNames(

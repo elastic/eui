@@ -16,7 +16,6 @@
   // Removes default firefox margin
   margin: 0;
 
-  // sass-lint:disable-block indentation
   transition:
     box-shadow $euiAnimSpeedFast ease-in,
     background-image $euiAnimSpeedFast ease-in,
@@ -26,7 +25,7 @@
   &:focus,
   // preventing the text area of loosing focus when clicking on an action button
   // from the toolbar
-  .euiMarkdownEditor:focus-within &  {
+  .euiMarkdownEditor:focus-within & {
     background-color: tintOrShade($euiColorEmptyShade, 0%, 40%);
     background-image: euiFormControlGradient();
     background-size: 100% 100%;

@@ -229,11 +229,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 182,
+        "line": 187,
         "column": 20
       },
       "end": {
-        "line": 185,
+        "line": 190,
         "column": 3
       }
     },
@@ -373,11 +373,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 215,
+        "line": 216,
         "column": 6
       },
       "end": {
-        "line": 234,
+        "line": 235,
         "column": 3
       }
     },
@@ -389,11 +389,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 215,
+        "line": 216,
         "column": 6
       },
       "end": {
-        "line": 234,
+        "line": 235,
         "column": 3
       }
     },
@@ -405,11 +405,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 215,
+        "line": 216,
         "column": 6
       },
       "end": {
-        "line": 234,
+        "line": 235,
         "column": 3
       }
     },
@@ -421,11 +421,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 215,
+        "line": 216,
         "column": 6
       },
       "end": {
-        "line": 234,
+        "line": 235,
         "column": 3
       }
     },
@@ -437,11 +437,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 215,
+        "line": 216,
         "column": 6
       },
       "end": {
-        "line": 234,
+        "line": 235,
         "column": 3
       }
     },
@@ -453,11 +453,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 215,
+        "line": 216,
         "column": 6
       },
       "end": {
-        "line": 234,
+        "line": 235,
         "column": 3
       }
     },
@@ -469,11 +469,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 215,
+        "line": 216,
         "column": 6
       },
       "end": {
-        "line": 234,
+        "line": 235,
         "column": 3
       }
     },
@@ -485,11 +485,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 272,
+        "line": 290,
         "column": 8
       },
       "end": {
-        "line": 281,
+        "line": 299,
         "column": 9
       }
     },
@@ -501,11 +501,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 272,
+        "line": 290,
         "column": 8
       },
       "end": {
-        "line": 281,
+        "line": 299,
         "column": 9
       }
     },
@@ -517,11 +517,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 318,
+        "line": 341,
         "column": 12
       },
       "end": {
-        "line": 323,
+        "line": 346,
         "column": 14
       }
     },
@@ -533,11 +533,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 328,
+        "line": 351,
         "column": 12
       },
       "end": {
-        "line": 334,
+        "line": 357,
         "column": 13
       }
     },
@@ -549,11 +549,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 328,
+        "line": 351,
         "column": 12
       },
       "end": {
-        "line": 334,
+        "line": 357,
         "column": 13
       }
     },
@@ -565,11 +565,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 360,
+        "line": 383,
         "column": 16
       },
       "end": {
-        "line": 363,
+        "line": 386,
         "column": 17
       }
     },
@@ -581,11 +581,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 513,
+        "line": 534,
         "column": 10
       },
       "end": {
-        "line": 521,
+        "line": 542,
         "column": 12
       }
     },
@@ -3152,6 +3152,22 @@
     "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/commonly_used_time_ranges.tsx"
   },
   {
+    "token": "euiQuickSelectPopover.buttonLabel",
+    "defString": "Date quick select",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 86,
+        "column": 22
+      },
+      "end": {
+        "line": 89,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select_popover.tsx"
+  },
+  {
     "token": "euiQuickSelect.legendText",
     "defString": "Quick select a time range",
     "highlighting": "string",
@@ -4005,12 +4021,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 87,
-        "column": 16
+        "line": 99,
+        "column": 12
       },
       "end": {
-        "line": 87,
-        "column": 74
+        "line": 99,
+        "column": 70
       }
     },
     "filepath": "src/components/error_boundary/error_boundary.tsx"
@@ -5093,11 +5109,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 684,
+        "line": 688,
         "column": 16
       },
       "end": {
-        "line": 687,
+        "line": 691,
         "column": 18
       }
     },
@@ -5349,11 +5365,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 567,
+        "line": 570,
         "column": 16
       },
       "end": {
-        "line": 570,
+        "line": 573,
         "column": 18
       }
     },
@@ -5365,11 +5381,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 589,
+        "line": 592,
         "column": 14
       },
       "end": {
-        "line": 593,
+        "line": 596,
         "column": 16
       }
     },
@@ -5381,11 +5397,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 608,
+        "line": 611,
         "column": 14
       },
       "end": {
-        "line": 611,
+        "line": 614,
         "column": 16
       }
     },
@@ -5397,11 +5413,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 673,
+        "line": 676,
         "column": 6
       },
       "end": {
-        "line": 673,
+        "line": 676,
         "column": 78
       }
     },
@@ -5413,11 +5429,11 @@
     "highlighting": "code",
     "loc": {
       "start": {
-        "line": 700,
+        "line": 703,
         "column": 6
       },
       "end": {
-        "line": 706,
+        "line": 709,
         "column": 8
       }
     },
@@ -5429,11 +5445,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 718,
+        "line": 721,
         "column": 6
       },
       "end": {
-        "line": 727,
+        "line": 730,
         "column": 7
       }
     },
@@ -5445,11 +5461,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 718,
+        "line": 721,
         "column": 6
       },
       "end": {
-        "line": 727,
+        "line": 730,
         "column": 7
       }
     },
@@ -6037,11 +6053,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 234,
+        "line": 254,
         "column": 10
       },
       "end": {
-        "line": 241,
+        "line": 261,
         "column": 11
       }
     },
@@ -6053,11 +6069,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 234,
+        "line": 254,
         "column": 10
       },
       "end": {
-        "line": 241,
+        "line": 261,
         "column": 11
       }
     },
@@ -6069,11 +6085,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 234,
+        "line": 254,
         "column": 10
       },
       "end": {
-        "line": 241,
+        "line": 261,
         "column": 11
       }
     },

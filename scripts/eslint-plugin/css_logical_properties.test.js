@@ -16,6 +16,15 @@ const valid = [
     border-width: 1px;
     scrollbar-width: 30px
   \``,
+  // Allow shorthand properties that set the same value for all sides
+  `\`
+    inset: 0;
+    margin: 10px;
+    padding: \${euiTheme.size.l};
+    border-width: \${euiTheme.base}px;
+  \``,
+  // Ensure we don't accidentally consider !important a shorthand value
+  'css`padding: 0 !important;`',
 ];
 
 const invalid = [
@@ -90,6 +99,26 @@ const invalid = [
       { messageId: 'preferLogicalValue' },
       { messageId: 'preferLogicalProperty' },
     ],
+  },
+  // Shorthand
+  {
+    code: 'css`margin: 10px 50%;`',
+    errors: [{ messageId: 'preferLogicalShorthand' }],
+  },
+  {
+    code:
+      'css`padding: ${euiTheme.size.s} ${euiTheme.size.m} ${euiTheme.size.l};`',
+    errors: [{ messageId: 'preferLogicalShorthand' }],
+  },
+  {
+    code: `css\`
+      inset:
+        \${euiTheme.base}px
+        \${mathWithUnits(euiTheme.size.xl, (x) => x / 3)}
+        \${euiTheme.size.xl}
+        \${euiTheme.base}px;
+    \``,
+    errors: [{ messageId: 'preferLogicalShorthand' }],
   },
 ];
 

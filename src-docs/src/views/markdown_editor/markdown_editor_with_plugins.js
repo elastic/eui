@@ -8,7 +8,10 @@ import {
   DataGenerator,
 } from '@elastic/charts';
 
-import { EUI_CHARTS_THEME_LIGHT } from '../../../../src/themes/charts/themes';
+import {
+  EUI_CHARTS_THEME_LIGHT,
+  EUI_CHARTS_THEME_DARK,
+} from '../../../../src/themes/charts/themes';
 
 import {
   getDefaultEuiMarkdownParsingPlugins,
@@ -33,6 +36,7 @@ import {
 } from '../../../../src/components';
 
 import {
+  useEuiTheme,
   euiPaletteComplimentary,
   euiPaletteCool,
   euiPaletteForStatus,
@@ -41,7 +45,7 @@ import {
   euiPaletteNegative,
   euiPalettePositive,
   euiPaletteWarm,
-} from '../../../../src/services/color';
+} from '../../../../src/services';
 import { getDefaultEuiMarkdownUiPlugins } from '../../../../src/components/markdown_editor';
 
 const paletteData = {
@@ -91,7 +95,7 @@ const chartDemoPlugin = {
     const [categories, setCategories] = useState(5);
 
     const onChange = (e) => {
-      setCategories(parseInt(e.target.value));
+      setCategories(Number(e.target.value));
     };
 
     const palettes = paletteNames.map((paletteName, index) => {
@@ -230,6 +234,7 @@ function ChartMarkdownParser() {
 
 // receives the configuration from the parser and renders
 const ChartMarkdownRenderer = ({ palette, categories }) => {
+  const { colorMode } = useEuiTheme();
   const customColors = {
     colors: {
       vizColors: paletteData[paletteNames[palette - 1]](categories),
@@ -238,7 +243,12 @@ const ChartMarkdownRenderer = ({ palette, categories }) => {
   return (
     <Chart size={{ height: 320 }}>
       <Settings
-        theme={[customColors, EUI_CHARTS_THEME_LIGHT]}
+        theme={[
+          customColors,
+          colorMode === 'DARK'
+            ? EUI_CHARTS_THEME_DARK.theme
+            : EUI_CHARTS_THEME_LIGHT.theme,
+        ]}
         showLegend={false}
         showLegendDisplayValue={false}
       />

@@ -1,3 +1,93 @@
+## [`72.1.0`](https://github.com/elastic/eui/tree/v72.1.0)
+
+- Changed design of empty ranges in `EuiColorStops` to have diagonal gray stripes instead of a solid light gray color ([#6489](https://github.com/elastic/eui/pull/6489))
+- Changed popover in `EuiColorStops` to not appear when dragging/moving a color stop ([#6489](https://github.com/elastic/eui/pull/6489))
+- `EuiPopover` now supports overriding `focusTrapProps.onClickOutside`, which allows customization of auto-close behavior on outside click. ([#6500](https://github.com/elastic/eui/pull/6500))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiColorStops` to Emotion ([#6489](https://github.com/elastic/eui/pull/6489))
+- Added `brighten` service to manipulate CSS-in-JS colors ([#6489](https://github.com/elastic/eui/pull/6489))
+
+## [`72.0.0`](https://github.com/elastic/eui/tree/v72.0.0)
+
+- Added the `customQuickSelectRender` render prop to `EuiSuperDatePicker`, which allows customizing the Quick Select popover ([#6382](https://github.com/elastic/eui/pull/6382))
+- `EuiFilePicker` styles have been updated to look more like an interactive element. ([#6479](https://github.com/elastic/eui/pull/6479))
+- Added a third argument to `EuiSelectable`'s `onChange` callback. The single `option` object that triggered the `onChange` event is now also passed to consumers with its most recent `checked` state ([#6487](https://github.com/elastic/eui/pull/6487))
+
+**Bug fixes**
+
+- `EuiTabs` now passes `size` and `expand` to all children using a React context provider. ([#6478](https://github.com/elastic/eui/pull/6478))
+- Fixed security warnings caused by `trim@0.0.1` sub-dependency ([#6482](https://github.com/elastic/eui/pull/6482))
+
+**Breaking changes**
+
+- Removed `size` and `expand` props from `EuiTab` ([#6478](https://github.com/elastic/eui/pull/6478))
+
+## [`71.1.0`](https://github.com/elastic/eui/tree/v71.1.0)
+
+**Deprecations**
+
+- Renamed `EuiPageSideBarProps` to `EuiPageSideBarProps_Deprecated`, to reduce usage/confusion with `EuiPageSidebar` ([#6468](https://github.com/elastic/eui/pull/6468))
+
+## [`71.0.0`](https://github.com/elastic/eui/tree/v71.0.0)
+
+- Implemented new `EuiRange` and `EuiDualRange` designs where the `levels` are now on top of the tracks ([#6092](https://github.com/elastic/eui/pull/6092))
+- Added `discuss` and `dotInCircle` glyphs to `EuiIcon` ([#6434](https://github.com/elastic/eui/pull/6434))
+- Added `article` glyph to `EuiIcon` ([#6437](https://github.com/elastic/eui/pull/6437))
+- Changed the `EuiProvider` usage warnings to not rely on development mode. ([#6451](https://github.com/elastic/eui/pull/6451))
+
+**Breaking changes**
+
+- `EuiDualRange` now explicitly requires both `min` and `max` via props types, to match `EuiRange` ([#6092](https://github.com/elastic/eui/pull/6092))
+- `EuiRange` and `EuiDualRange`'s `compressed` size no longer impacts track or level sizes, but continues to compress tick and input sizes. ([#6092](https://github.com/elastic/eui/pull/6092))
+- Removed all variables for the following components from EUI's theme JSON files: ([#6443](https://github.com/elastic/eui/pull/6443))
+  - `euiCollapsibleNav*`
+  - `euiColorPicker*`
+  - `euiContextMenu*`
+  - `euiControlBar*`
+  - `euiDataGrid* `(except for z-indices and cell padding sizes)
+  - `euiDatePicker*`
+  - `euiSuperDatePicker*`
+  - `euiDragAndDrop*`
+  - `euiEuiEmptyPrompt*`
+  - `euiFilePicker*`
+  - `euiRange*`
+  - `euiHeaderLinks*`
+  - `euiKeyPad*`
+  - `euiMarkdownEditor*`
+  - `euiResizable*`
+  - `euiSelectable*`
+  - `euiSideNav*`
+  - `euiStep*`
+  - `euiSuggest*`
+  - `euiTable*` (except for color variables)
+  - `euiTooltip*`
+  - `euiButtonFontWeight`, `euiButtonDefaultTransparency`, and `euiButtonMinWidth`
+- If you were importing any of the above removed JSON variables, we strongly recommend using generic color or sizing variables from `useEuiTheme()` instead. ([#6443](https://github.com/elastic/eui/pull/6443))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiRange` and `EuiDualRange` to Emotion; Removed `$euiRangeThumbRadius` ([#6092](https://github.com/elastic/eui/pull/6092))
+- Added a new `logicalStyles` utility that automatically converts all non-logical properties in a `style` object to their corresponding logical properties ([#6426](https://github.com/elastic/eui/pull/6426))
+- Added a new `logicalShorthandCSS` utility that automatically converts `margin`, `padding`, and other 4-sided shorthands to their corresponding logical properties ([#6429](https://github.com/elastic/eui/pull/6429))
+- Added a new `logicalBorderRadiusCSS` utility that automatically converts `border-radius` to corresponding logical properties ([#6429](https://github.com/elastic/eui/pull/6429))
+
+## [`70.4.0`](https://github.com/elastic/eui/tree/v70.4.0)
+
+- Updated `EuiTourStep.footerAction` type to accept `ReactNode[]` ([#6384](https://github.com/elastic/eui/pull/6384))
+- Vertically aligned all footer content so that `euiTourStepIndicator` is always centered ([#6384](https://github.com/elastic/eui/pull/6384))
+- Added `filterInCircle` glyph to `EuiIcon` ([#6385](https://github.com/elastic/eui/pull/6385))
+- Added `color` prop to `EuiBeacon` ([#6420](https://github.com/elastic/eui/pull/6420))
+- Added the `euiMaxBreakpoint` and `euiMinBreakpoint` CSS-in-JS utilities for creating min/max-width media queries ([#6431](https://github.com/elastic/eui/pull/6431))
+
+**Bug fixes**
+
+- Restores the previous match operator behaviour when the query value is split into multiple terms after analysis. ([#6409](https://github.com/elastic/eui/pull/6409))
+- Fixed missing slide-in animation on `EuiCollapsibleNav`s and left-side `EuiFlyout`s ([#6422](https://github.com/elastic/eui/pull/6422))
+- Fix bug in `EuiCard` where footer were not aligned to the bottom of the card ([#6424](https://github.com/elastic/eui/pull/6424))
+- Fixed multiple component media queries for consumers with custom theme breakpoints ([#6431](https://github.com/elastic/eui/pull/6431))
+
 ## [`70.3.0`](https://github.com/elastic/eui/tree/v70.3.0)
 
 - `EuiSearchBar` now automatically wraps special characters not used by query syntax in quotes ([#6356](https://github.com/elastic/eui/pull/6356))

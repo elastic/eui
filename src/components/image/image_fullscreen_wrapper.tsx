@@ -32,6 +32,7 @@ export const EuiImageFullScreenWrapper: FunctionComponent<EuiImageWrapperProps> 
   wrapperProps,
   isFullWidth,
   fullScreenIconColor,
+  onFullScreen,
 }) => {
   const euiTheme = useEuiTheme();
 
@@ -54,6 +55,7 @@ export const EuiImageFullScreenWrapper: FunctionComponent<EuiImageWrapperProps> 
 
   const closeFullScreen = () => {
     setIsFullScreen(false);
+    onFullScreen?.(false);
   };
 
   const [optionalCaptionRef, optionalCaptionText] = useInnerText();

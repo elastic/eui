@@ -1,14 +1,13 @@
 // This file has lots of modifiers and is somewhat nesty by nature
-// sass-lint:disable nesting-depth
+// stylelint-disable max-nesting-depth
 
 .euiButtonGroupButton {
   @include euiButtonBase;
   @include euiFont;
   @include euiFontSize;
 
-  // sass-lint:disable-block indentation
   transition: background-color $euiAnimSpeedNormal ease-in-out,
-              color $euiAnimSpeedNormal ease-in-out;
+              color $euiAnimSpeedNormal ease-in-out; // stylelint-disable-line indentation
 
   // Allow button to shrink and truncate
   min-width: 0;
@@ -58,7 +57,7 @@
 .euiButtonGroup--medium,
 .euiButtonGroup--small {
   .euiButtonGroupButton {
-    border-radius: 0 !important; // sass-lint:disable-line no-important
+    border-radius: 0 !important; // stylelint-disable-line declaration-no-important
     font-weight: $euiButtonFontWeight;
 
     &:focus,

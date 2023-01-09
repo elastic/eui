@@ -1,12 +1,11 @@
 /* eslint-disable no-nested-ternary */
-import React, { useState, Fragment, useContext } from 'react';
+import React, { useState } from 'react';
 import groupBy from 'lodash/groupBy';
 import mapValues from 'lodash/mapValues';
 import orderBy from 'lodash/orderBy';
 import sortBy from 'lodash/sortBy';
 import sumBy from 'lodash/sumBy';
 
-import { ThemeContext } from '../../components';
 import { Chart, Settings, Axis, BarSeries } from '@elastic/charts';
 
 import {
@@ -24,16 +23,18 @@ import {
   EuiButton,
 } from '../../../../src/components';
 
-import { GITHUB_DATASET, GITHUB_DATASET_MOD, DAYS_OF_RAIN } from './data';
-import { ChartCard } from './shared';
 import {
   euiPaletteForTemperature,
   euiPaletteColorBlind,
   euiPaletteGray,
+  useEuiTheme,
 } from '../../../../src/services';
 
+import { GITHUB_DATASET, GITHUB_DATASET_MOD, DAYS_OF_RAIN } from './data';
+import { ChartCard } from './shared';
+
 export default () => {
-  const themeContext = useContext(ThemeContext);
+  const { colorMode } = useEuiTheme();
 
   const [stacked, setStacked] = useState(true);
   const [rotated, setRotated] = useState(true);
@@ -42,7 +43,7 @@ export default () => {
   const [formattedData, setFormattedData] = useState(false);
   const [grouped, setGrouped] = useState(false);
 
-  const isDarkTheme = themeContext.theme.includes('dark');
+  const isDarkTheme = colorMode === 'DARK';
   const theme = isDarkTheme
     ? EUI_CHARTS_THEME_DARK.theme
     : EUI_CHARTS_THEME_LIGHT.theme;
@@ -125,7 +126,7 @@ export default () => {
   }
 
   return (
-    <Fragment>
+    <>
       {usesRainData ? (
         <>
           <EuiTitle size="xxs">
@@ -325,6 +326,6 @@ export default () => {
           )}
         </EuiCopy>
       </div>
-    </Fragment>
+    </>
   );
 };
