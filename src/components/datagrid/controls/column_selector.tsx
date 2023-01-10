@@ -216,14 +216,15 @@ export const useDataGridColumnSelector = (
                         >
                           <EuiFlexGroup
                             responsive={false}
-                            gutterSize="m"
+                            gutterSize="s"
                             alignItems="center"
                           >
-                            <EuiFlexItem>
-                              {allowColumnHiding ? (
+                            {allowColumnHiding && (
+                              <EuiFlexItem grow={false}>
                                 <EuiSwitch
                                   name={id}
                                   label={displayValues[id] || id}
+                                  showLabel={false}
                                   checked={visibleColumnIds.has(id)}
                                   compressed
                                   className="euiSwitch--mini"
@@ -243,11 +244,18 @@ export const useDataGridColumnSelector = (
                                   }}
                                   data-test-subj={`dataGridColumnSelectorToggleColumnVisibility-${id}`}
                                 />
-                              ) : (
-                                <span className="euiDataGridColumnSelector__itemLabel">
-                                  {id}
-                                </span>
-                              )}
+                              </EuiFlexItem>
+                            )}
+                            <EuiFlexItem
+                              // This extra column name flex item affords the column more grabbable real estate
+                              // for mouse users, while hiding repetition for keyboard/screen reader users
+                              {...provided.dragHandleProps}
+                              aria-hidden
+                              tabIndex={-1}
+                            >
+                              <span className="euiDataGridColumnSelector__itemLabel">
+                                {displayValues[id] || id}
+                              </span>
                             </EuiFlexItem>
                             {isDragEnabled && (
                               <EuiFlexItem
