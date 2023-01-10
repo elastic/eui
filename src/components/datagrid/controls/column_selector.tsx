@@ -16,7 +16,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { EuiPopover, EuiPopoverFooter, EuiPopoverTitle } from '../../popover';
-import { EuiI18n } from '../../i18n';
+import { EuiI18n, useEuiI18n } from '../../i18n';
 import { EuiButtonEmpty } from '../../button';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiSwitch, EuiFieldText } from '../../form';
@@ -116,6 +116,10 @@ export const useDataGridColumnSelector = (
   );
 
   const isDragEnabled = allowColumnReorder && columnSearchText.length === 0; // only allow drag-and-drop when not filtering columns
+  const dragHandleAriaLabel = useEuiI18n(
+    'euiColumnSelector.dragHandleAriaLabel',
+    'Drag handle'
+  );
 
   let buttonText = (
     <EuiI18n token="euiColumnSelector.button" default="Columns" />
@@ -199,6 +203,8 @@ export const useDataGridColumnSelector = (
                       draggableId={id}
                       index={index}
                       isDragDisabled={!isDragEnabled}
+                      hasInteractiveChildren
+                      customDragHandle
                     >
                       {(provided, state) => (
                         <div
@@ -244,7 +250,11 @@ export const useDataGridColumnSelector = (
                               )}
                             </EuiFlexItem>
                             {isDragEnabled && (
-                              <EuiFlexItem grow={false}>
+                              <EuiFlexItem
+                                grow={false}
+                                {...provided.dragHandleProps}
+                                aria-label={dragHandleAriaLabel}
+                              >
                                 <EuiIcon type="grab" color="subdued" />
                               </EuiFlexItem>
                             )}

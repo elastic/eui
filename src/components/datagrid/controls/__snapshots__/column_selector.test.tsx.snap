@@ -87,19 +87,14 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
           data-test-subj="droppable"
         >
           <div
-            aria-describedby="rbd-hidden-text-0-hidden-text-0"
-            class="euiDraggable"
-            data-rbd-drag-handle-context-id="0"
-            data-rbd-drag-handle-draggable-id="columnA"
+            class="euiDraggable euiDraggable--hasCustomDragHandle"
             data-rbd-draggable-context-id="0"
             data-rbd-draggable-id="columnA"
             data-test-subj="draggable"
-            draggable="false"
-            role="button"
-            tabindex="0"
+            role="group"
           >
             <div
-              class="euiDataGridColumnSelector__item false euiDraggable__item"
+              class="euiDataGridColumnSelector__item false euiDraggable__item euiDraggable__item--hasCustomDragHandle"
               data-test-subj="dataGridColumnSelectorColumnItem-columnA"
             >
               <div
@@ -141,7 +136,14 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                   </div>
                 </div>
                 <div
+                  aria-describedby="rbd-hidden-text-0-hidden-text-0"
+                  aria-label="Drag handle"
                   class="euiFlexItem emotion-euiFlexItem-growZero"
+                  data-rbd-drag-handle-context-id="0"
+                  data-rbd-drag-handle-draggable-id="columnA"
+                  draggable="false"
+                  role="button"
+                  tabindex="0"
                 >
                   <span
                     color="subdued"
@@ -152,19 +154,14 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
             </div>
           </div>
           <div
-            aria-describedby="rbd-hidden-text-0-hidden-text-0"
-            class="euiDraggable"
-            data-rbd-drag-handle-context-id="0"
-            data-rbd-drag-handle-draggable-id="columnB"
+            class="euiDraggable euiDraggable--hasCustomDragHandle"
             data-rbd-draggable-context-id="0"
             data-rbd-draggable-id="columnB"
             data-test-subj="draggable"
-            draggable="false"
-            role="button"
-            tabindex="0"
+            role="group"
           >
             <div
-              class="euiDataGridColumnSelector__item false euiDraggable__item"
+              class="euiDataGridColumnSelector__item false euiDraggable__item euiDraggable__item--hasCustomDragHandle"
               data-test-subj="dataGridColumnSelectorColumnItem-columnB"
             >
               <div
@@ -206,7 +203,14 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                   </div>
                 </div>
                 <div
+                  aria-describedby="rbd-hidden-text-0-hidden-text-0"
+                  aria-label="Drag handle"
                   class="euiFlexItem emotion-euiFlexItem-growZero"
+                  data-rbd-drag-handle-context-id="0"
+                  data-rbd-drag-handle-draggable-id="columnB"
+                  draggable="false"
+                  role="button"
+                  tabindex="0"
                 >
                   <span
                     color="subdued"

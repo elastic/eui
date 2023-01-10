@@ -158,7 +158,7 @@ describe('EuiDataGrid', () => {
       cy.checkAxe();
     });
 
-    it('has zero violations when the columns reorder menu is open', () => {
+    it('has zero violations when the columns visibility menu is open', () => {
       cy.get(
         'button[data-test-subj="dataGridColumnSelectorButton"]'
       ).realClick();
