@@ -243,12 +243,15 @@ describe('EuiDataGrid', () => {
       cy.checkAxe();
     });
 
-    it('has zero violations when the Favorite Distro column has been sorted', () => {
+    it('has zero violations on sort and when the columns sorting menu is open', () => {
       cy.get('button.euiDataGridHeaderCell__button').last().realClick();
       cy.get('button.euiListGroupItem__button')
         .contains('Sort Alma to Debian')
         .should('exist')
         .realClick();
+      cy.get(
+        'button[data-test-subj="dataGridColumnSortingPopover"]'
+      ).realClick();
       cy.checkAxe();
     });
 

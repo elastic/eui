@@ -67,7 +67,13 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<EuiDataGridCol
   );
 
   return (
-    <EuiDraggable draggableId={id} index={index} {...rest}>
+    <EuiDraggable
+      draggableId={id}
+      index={index}
+      hasInteractiveChildren
+      customDragHandle
+      {...rest}
+    >
       {(provided, state) => (
         <div
           className={`euiDataGridColumnSorting__item ${
