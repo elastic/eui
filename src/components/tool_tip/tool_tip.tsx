@@ -108,6 +108,13 @@ export interface EuiToolTipProps {
    * Suggested position. If there is not enough room for it this will be changed.
    */
   position: ToolTipPositions;
+  /**
+   * When `true`, the tooltip's position is re-calculated when the user
+   * scrolls. This supports having fixed-position tooltip anchors.
+   *
+   * When nesting an `EuiTooltip` in a scrollable container, `repositionOnScroll` should be `true`
+   */
+  repositionOnScroll?: boolean;
 
   /**
    * If supplied, called when mouse movement causes the tool tip to be
@@ -154,16 +161,29 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
 
   componentDidMount() {
     this._isMounted = true;
+    if (this.props.repositionOnScroll) {
+      window.addEventListener('scroll', this.positionToolTip, true);
+    }
   }
 
   componentWillUnmount() {
     this.clearAnimationTimeout();
     this._isMounted = false;
+    window.removeEventListener('scroll', this.positionToolTip, true);
   }
 
   componentDidUpdate(prevProps: EuiToolTipProps, prevState: State) {
     if (prevState.visible === false && this.state.visible === true) {
       requestAnimationFrame(this.testAnchor);
+    }
+
+    // update scroll listener
+    if (prevProps.repositionOnScroll !== this.props.repositionOnScroll) {
+      if (this.props.repositionOnScroll) {
+        window.addEventListener('scroll', this.positionToolTip, true);
+      } else {
+        window.removeEventListener('scroll', this.positionToolTip, true);
+      }
     }
   }
 
@@ -293,6 +313,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
       title,
       delay,
       display,
+      repositionOnScroll,
       ...rest
     } = this.props;
 
