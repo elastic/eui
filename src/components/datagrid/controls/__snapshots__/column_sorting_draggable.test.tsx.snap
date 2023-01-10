@@ -109,26 +109,34 @@ exports[`EuiDataGridColumnSortingDraggable renders an EuiDraggable component of 
       </EuiI18n>
     </EuiFlexItem>
     <EuiFlexItem
-      grow={false}
-    >
-      <EuiToken
-        iconType="tokenNumber"
-      />
-    </EuiFlexItem>
-    <EuiFlexItem
       aria-hidden={true}
+      className="euiDataGridColumnSorting__name"
+      tabIndex={-1}
     >
-      <EuiText
-        size="xs"
+      <EuiFlexGroup
+        alignItems="center"
+        gutterSize="xs"
+        responsive={false}
       >
-        <p>
-          Column A
-        </p>
-      </EuiText>
+        <EuiFlexItem
+          grow={false}
+        >
+          <EuiToken
+            iconType="tokenNumber"
+          />
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiText
+            size="xs"
+          >
+            <p>
+              Column A
+            </p>
+          </EuiText>
+        </EuiFlexItem>
+      </EuiFlexGroup>
     </EuiFlexItem>
-    <EuiFlexItem
-      className="euiDataGridColumnSorting__orderButtons"
-    >
+    <EuiFlexItem>
       <EuiI18n
         default="Select sorting method for {display}"
         token="euiColumnSortingDraggable.toggleLegend"
