@@ -32,11 +32,12 @@
     min-width: unset;
   }
   min-width: 200px;
-  border: none;
 
-  // Hack to overwrite some nested, unreachable component code with button groups
-  button {
-    // stylelint-disable-next-line declaration-no-important
-    font-size: $euiFontSizeXS !important;
+  .euiButtonGroup__buttons {
+    border: none;
+  }
+
+  .euiButtonGroupButton {
+    font-size: $euiFontSizeXS;
   }
 }
