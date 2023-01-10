@@ -1,3 +1,10 @@
+## [`72.2.0`](https://github.com/elastic/eui/tree/v72.2.0)
+
+- Added `onFullScreen` callback to expose the `isFullScreen` state of the `EuiImage` ([#6504](https://github.com/elastic/eui/pull/6504))
+- Added an extra spacing between the title and subtitle to `EuiTour` ([#6512](https://github.com/elastic/eui/pull/6512))
+- Updated `EuiText.blockquote` styles to match the `EuiMarkdownFormat.blockquote` styles ([#6514](https://github.com/elastic/eui/pull/6514))
+- Added the `repositionOnScroll` prop to `EuiToolTip` ([#6515](https://github.com/elastic/eui/pull/6515))
+
 ## [`72.1.0`](https://github.com/elastic/eui/tree/v72.1.0)
 
 - Changed design of empty ranges in `EuiColorStops` to have diagonal gray stripes instead of a solid light gray color ([#6489](https://github.com/elastic/eui/pull/6489))
