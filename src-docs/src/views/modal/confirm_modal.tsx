@@ -22,6 +22,7 @@ export default () => {
   if (isModalVisible) {
     modal = (
       <EuiConfirmModal
+        style={{ width: 600 }}
         title="Update subscription to Platinum?"
         onCancel={closeModal}
         onConfirm={closeModal}
