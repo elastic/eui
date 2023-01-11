@@ -16,14 +16,14 @@ import React, {
 import classNames from 'classnames';
 
 import { CommonProps, keysOf } from '../common';
+import { findPopoverPosition, htmlIdGenerator } from '../../services';
+import { enqueueStateChange } from '../../services/react';
+import { EuiResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
+
+import { EuiToolTipPopover, ToolTipPositions } from './tool_tip_popover';
 import { EuiToolTipAnchor } from './tool_tip_anchor';
 import { EuiToolTipArrow } from './tool_tip_arrow';
-import { EuiToolTipPopover, ToolTipPositions } from './tool_tip_popover';
-import { enqueueStateChange } from '../../services/react';
-import { findPopoverPosition, htmlIdGenerator } from '../../services';
-
-import { EuiResizeObserver } from '../observer/resize_observer';
 
 const positionsToClassNameMap: { [key in ToolTipPositions]: string } = {
   top: 'euiToolTip--top',
