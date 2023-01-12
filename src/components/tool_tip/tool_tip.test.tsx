@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { mount } from 'enzyme';
 import { fireEvent } from '@testing-library/react';
 import {
@@ -146,5 +146,70 @@ describe('EuiToolTip', () => {
     // Should remove the scroll event listener on unmount
     unmount();
     expect(removeEventSpy).toHaveBeenCalledWith('scroll', repositionFn, true);
+  });
+
+  describe('ref methods', () => {
+    // Although we don't publicly recommend it, consumers may need to reach into EuiToolTip
+    // class methods to manually control visibility state via `show/hideToolTip`.
+    // If we switch EuiToolTip to a function component, we'll need to use
+    // `useImperativeHandle` to continue exposing these APIs
+
+    test('showToolTip', async () => {
+      const ConsumerToolTip = () => {
+        const toolTipRef = useRef<EuiToolTip>(null);
+
+        const showToolTip = () => {
+          toolTipRef.current?.showToolTip();
+        };
+
+        // NOTE: KEEP IN MIND THAT THIS IS BAD ACCESSIBILITY PRACTICE AND ONLY HERE FOR TESTING
+        // Because focus is on separate item from the tooltip, aria-describedby does not trigger
+        // and the tooltip contents are not read out to screen readers
+        return (
+          <>
+            <EuiToolTip content="Tooltip text" ref={toolTipRef}>
+              <span>Not focusable</span>
+            </EuiToolTip>
+            <button data-test-subj="trigger" onClick={showToolTip}>
+              Controls tooltip
+            </button>
+          </>
+        );
+      };
+      const { getByTestSubject } = render(<ConsumerToolTip />);
+
+      fireEvent.click(getByTestSubject('trigger'));
+      await waitForEuiToolTipVisible();
+    });
+
+    test('hideToolTip', async () => {
+      // Consumers appear to mostly want this after modal/flyout/focus trap close, when
+      // focus is returned to toggling buttons with a tooltip, & said tooltip blocks UI
+      // @see https://github.com/elastic/eui/issues/5883#issuecomment-1120908605 for example
+      const ConsumerToolTip = () => {
+        const toolTipRef = useRef<EuiToolTip>(null);
+
+        const hideToolTip = () => {
+          toolTipRef.current?.hideToolTip();
+        };
+
+        return (
+          <>
+            <EuiToolTip content="Tooltip text" ref={toolTipRef}>
+              <button data-test-subj="trigger" onClick={hideToolTip}>
+                Closes tooltip on click
+              </button>
+            </EuiToolTip>
+          </>
+        );
+      };
+      const { getByTestSubject } = render(<ConsumerToolTip />);
+
+      fireEvent.mouseOver(getByTestSubject('trigger'));
+      await waitForEuiToolTipVisible();
+
+      fireEvent.click(getByTestSubject('trigger'));
+      await waitForEuiToolTipHidden();
+    });
   });
 });
