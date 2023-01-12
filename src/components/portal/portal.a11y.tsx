@@ -12,12 +12,10 @@ import React, { useState } from 'react';
 import { EuiButton, EuiButtonIcon } from '../button';
 import { EuiEmptyPrompt } from '../empty_prompt';
 import { EuiFocusTrap } from '../focus_trap';
-import { EuiHorizontalRule } from '../horizontal_rule';
 import { EuiOverlayMask } from '../overlay_mask';
 import { EuiPanel } from '../panel';
 import { EuiPortal } from './portal';
 import { EuiSpacer } from '../spacer';
-import { EuiText, EuiTextColor } from '../text';
 import { EuiTitle } from '../title';
 import { euiCanAnimate } from '../../global_styling';
 import { euiFlyoutSlideInRight } from '../flyout';
@@ -82,49 +80,6 @@ const Portal = () => {
                       inset-inline-end: ${euiTheme.size.base};
                     `}
                   />
-
-                  <EuiHorizontalRule />
-                </div>
-
-                {/* Flyout Body */}
-                <div>
-                  <div>
-                    <EuiText size="s">
-                      <p>
-                        Elastic Observability provides a unified view into the
-                        health and performance of your entire digital ecosystem.
-                        With easy ingest of multiple kinds of data via pre-built
-                        collectors for hundreds of data sources.
-                      </p>
-
-                      <EuiHorizontalRule />
-
-                      <ol>
-                        <li>
-                          <h3>Step 1</h3>
-                          <p>Select an ingestion method</p>
-
-                          <EuiHorizontalRule />
-                        </li>
-                        <li>
-                          <EuiTextColor color="subdued">
-                            <h3>Step 2</h3>
-                            <p>Select an ingestion method</p>
-                          </EuiTextColor>
-
-                          <EuiHorizontalRule />
-                        </li>
-                        <li>
-                          <EuiTextColor color="subdued">
-                            <h3>Step 3</h3>
-                            <p>Select an ingestion method</p>
-                          </EuiTextColor>
-
-                          <EuiHorizontalRule />
-                        </li>
-                      </ol>
-                    </EuiText>
-                  </div>
                 </div>
               </div>
             </EuiPanel>
