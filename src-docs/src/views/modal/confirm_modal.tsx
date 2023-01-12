@@ -35,7 +35,6 @@ export default () => {
           a lower subscription later, it will not take affect until the next
           billing cycle.
         </p>
-        <p>Do you want to continue?</p>
       </EuiConfirmModal>
     );
   }
