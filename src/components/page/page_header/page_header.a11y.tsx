@@ -20,32 +20,6 @@ describe('EuiPageHeader', () => {
         pageTitle="Page title"
         iconType="logoKibana"
         description="This description should be describing the current page as depicted by the page title. It will never extend beneath the right side content."
-        breadcrumbs={[
-          {
-            text: 'Breadcrumb 1',
-            href: '#',
-            onClick: (e) => e.preventDefault(),
-          },
-          {
-            text: 'Breadcrumb 2',
-            href: '#',
-            onClick: (e) => e.preventDefault(),
-          },
-          {
-            text: 'Current',
-            href: '#',
-            onClick: (e) => e.preventDefault(),
-          },
-        ]}
-        tabs={[
-          {
-            label: 'Tab 1',
-            isSelected: true,
-          },
-          {
-            label: 'Tab 2',
-          },
-        ]}
         rightSideItems={[
           <EuiButton fill>Add something</EuiButton>,
           <EuiButton>Do something</EuiButton>,

@@ -82,6 +82,15 @@ describe('EuiNotificationEvent', () => {
       cy.get('div.euiPopover__panel').should('exist');
       cy.checkAxe();
     });
+
+    it('has zero violations after the Mark as read button is clicked', () => {
+      cy.get(
+        'button[data-test-subj="cy-eui-notification-1-notificationEventMetaButton"]'
+      ).realClick();
+      cy.get('div.euiPopover__panel').should('exist');
+      cy.get('div.euiPopover__panel button').first().realClick();
+      cy.checkAxe();
+    });
   });
 
   describe('Keyboard accessibility', () => {

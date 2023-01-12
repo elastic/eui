@@ -9,23 +9,11 @@
 /// <reference types="../../../cypress/support"/>
 
 import React, { useState } from 'react';
-import { EuiButton, EuiButtonIcon } from '../button';
-import { EuiEmptyPrompt } from '../empty_prompt';
-import { EuiFocusTrap } from '../focus_trap';
-import { EuiOverlayMask } from '../overlay_mask';
-import { EuiPanel } from '../panel';
+import { EuiButton } from '../button';
 import { EuiPortal } from './portal';
-import { EuiSpacer } from '../spacer';
-import { EuiTitle } from '../title';
-import { euiCanAnimate } from '../../global_styling';
-import { euiFlyoutSlideInRight } from '../flyout';
-import { useEuiTheme } from '../../services';
-import { css } from '@emotion/react';
 
 const Portal = () => {
   const [isCustomFlyoutVisible, setIsCustomFlyoutVisible] = useState(false);
-  const euiThemeContext = useEuiTheme();
-  const euiTheme = euiThemeContext.euiTheme;
 
   const toggleCustomFlyout = () => {
     setIsCustomFlyoutVisible(!isCustomFlyoutVisible);
@@ -40,71 +28,15 @@ const Portal = () => {
   if (isCustomFlyoutVisible) {
     customFlyout = (
       <EuiPortal>
-        <EuiOverlayMask>
-          <EuiFocusTrap onClickOutside={closeCustomFlyout}>
-            <EuiPanel
-              aria-labelledby="custom-heading-title"
-              role="dialog"
-              paddingSize="l"
-              css={css`
-                position: fixed;
-                max-inline-size: 480px;
-                max-block-size: auto;
-                inset-inline-end: ${euiTheme.size.l};
-                inset-block-start: ${euiTheme.size.l};
-                block-size: calc(100% - (${euiTheme.size.l} * 2));
-
-                ${euiCanAnimate} {
-                  animation: ${euiFlyoutSlideInRight}
-                    ${euiTheme.animation.normal}
-                    ${euiTheme.animation.resistance};
-                }
-              `}
-            >
-              <div>
-                {/* Flyout Header */}
-                <div>
-                  <EuiSpacer size="s" />
-                  <EuiTitle size="m">
-                    <h2 id="custom-heading-title">Let&apos;s get started!</h2>
-                  </EuiTitle>
-
-                  <EuiButtonIcon
-                    iconType="cross"
-                    aria-label="Close modal"
-                    onClick={closeCustomFlyout}
-                    color="text"
-                    css={css`
-                      position: absolute;
-                      inset-block-start: ${euiTheme.size.base};
-                      inset-inline-end: ${euiTheme.size.base};
-                    `}
-                  />
-                </div>
-              </div>
-            </EuiPanel>
-          </EuiFocusTrap>
-        </EuiOverlayMask>
+        <div>This is the portal. Click anywhere to close.</div>
+        <EuiButton onClick={closeCustomFlyout}>Close portal</EuiButton>
       </EuiPortal>
     );
   }
 
   return (
     <div>
-      <EuiEmptyPrompt
-        color="subdued"
-        iconType="logoObservability"
-        iconColor="default"
-        title={<h2>Observe my data</h2>}
-        titleSize="xs"
-        body={
-          <p>
-            Choose one of our many integrations to bring your data in, and start
-            visualizing it.
-          </p>
-        }
-        actions={<EuiButton onClick={toggleCustomFlyout}>View guide</EuiButton>}
-      />
+      <EuiButton onClick={toggleCustomFlyout}>View guide</EuiButton>
       {customFlyout}
     </div>
   );
@@ -124,7 +56,7 @@ describe('EuiPortal', () => {
 
     it('has zero violations after the portal is activated', () => {
       cy.get('button[type="button"]').contains('View guide').realClick();
-      cy.get('div[data-relative-to-header="above"]').should('exist');
+      cy.get('div[data-euiportal="true"]').should('exist');
       cy.checkAxe();
     });
   });
@@ -134,12 +66,11 @@ describe('EuiPortal', () => {
       cy.realPress('Tab');
       cy.get('button[type="button"]').should('have.focus');
       cy.realPress('Enter');
-      cy.get('div[data-relative-to-header="above"]').should('exist');
-      cy.get('button[aria-label="Close modal"]').should('have.focus');
+      cy.get('div[data-euiportal="true"]').should('exist');
       cy.checkAxe();
+      cy.realPress('Tab');
       cy.realPress('Enter');
-      cy.get('div[data-relative-to-header="above"]').should('not.exist');
-      cy.get('button[type="button"]').should('have.focus');
+      cy.get('div[data-euiportal="true"]').should('not.exist');
       cy.checkAxe();
     });
   });
