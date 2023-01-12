@@ -48,7 +48,7 @@ export const SkeletonExample = {
       ],
       text: (
         <p>
-          The <strong>Circle</strong> type display a circular preview mainly for avatars.
+          Use the <strong>EuiSkeletonCircle</strong> to display a circular preview mainly for avatars.
         </p>
       ),
       props: { EuiSkeletonCircle },
