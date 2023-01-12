@@ -69,7 +69,7 @@ export const SkeletonExample = {
       ],
       text: (
         <p>
-          The <strong>Text</strong> type display a variable number of text lines preview.
+          Use the <strong>EuiSkeletonText</strong> to display a placeholder for multiple lines of text.
         </p>
       ),
       props: { EuiSkeletonText },
