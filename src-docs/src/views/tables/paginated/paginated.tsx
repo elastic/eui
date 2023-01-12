@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import { faker } from '@faker-js/faker';
 import { formatDate } from '../../../../../src/services/format';
-import { createDataStore } from '../data_store';
 
 import {
   EuiBasicTable,
@@ -15,43 +15,61 @@ import {
   EuiText,
 } from '../../../../../src/components';
 
-/*
-Example user object:
+const getEmojiFlag = (countryCode: string) => {
+  const codePoints = countryCode
+    .toUpperCase()
+    .split('')
+    .map((char) => 127397 + char.charCodeAt(0));
+  return String.fromCodePoint(...codePoints);
+};
 
-{
-  id: '1',
-  firstName: 'john',
-  lastName: 'doe',
-  github: 'johndoe',
-  dateOfBirth: Date.now(),
-  nationality: 'NL',
-  online: true
+type User = {
+  id: string;
+  firstName: string | null | undefined;
+  lastName: string;
+  github: string;
+  dateOfBirth: Date;
+  online: boolean;
+  country: {
+    code: string;
+    name: string;
+    flag: string;
+  };
+};
+
+const users: User[] = [];
+
+const usersLength = 20;
+
+for (let i = 0; i < usersLength; i++) {
+  users.push({
+    id: faker.datatype.uuid(),
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    github: faker.internet.userName(),
+    dateOfBirth: faker.date.past(),
+    online: faker.datatype.boolean(),
+    country: {
+      code: faker.address.countryCode(),
+      name: faker.address.country(),
+      flag: faker.address.countryCode(),
+    },
+  });
 }
 
-Example country object:
-
-{
-  code: 'NL',
-  name: 'Netherlands',
-  flag: '🇳🇱'
-}
-*/
-
-const store = createDataStore();
-
-export const Table = () => {
+export default () => {
   const [pageIndex, setPageIndex] = useState(0);
   const [pageSize, setPageSize] = useState(10);
   const [showPerPageOptions, setShowPerPageOptions] = useState(true);
 
   const onTableChange = ({ page = {} }) => {
-    const { index: pageIndex, size: pageSize } = page;
+    const { index: pageIndex, size: pageSize }: any = page;
 
     setPageIndex(pageIndex);
     setPageSize(pageSize);
   };
 
-  const renderStatus = (online) => {
+  const renderStatus = (online: User['online']) => {
     const color = online ? 'success' : 'danger';
     const label = online ? 'Online' : 'Offline';
     return <EuiHealth color={color}>{label}</EuiHealth>;
@@ -59,7 +77,26 @@ export const Table = () => {
 
   const togglePerPageOptions = () => setShowPerPageOptions(!showPerPageOptions);
 
-  const { pageOfItems, totalItemCount } = store.findUsers(pageIndex, pageSize);
+  const findUsers = (users: User[], pageIndex: number, pageSize: number) => {
+    let pageOfItems;
+
+    if (!pageIndex && !pageSize) {
+      pageOfItems = users;
+    } else {
+      const startIndex = pageIndex * pageSize;
+      pageOfItems = users.slice(
+        startIndex,
+        Math.min(startIndex + pageSize, users.length)
+      );
+    }
+
+    return {
+      pageOfItems,
+      totalItemCount: users.length,
+    };
+  };
+
+  const { pageOfItems, totalItemCount } = findUsers(users, pageIndex, pageSize);
 
   const columns = [
     {
@@ -87,19 +124,19 @@ export const Table = () => {
         enlarge: true,
         width: '100%',
       },
-      render: (name, item) => (
+      render: (user: User) => (
         <EuiFlexGroup responsive={false} alignItems="center">
           <EuiFlexItem>
-            {item.firstName} {item.lastName}
+            {user.firstName} {user.lastName}
           </EuiFlexItem>
-          <EuiFlexItem grow={false}>{renderStatus(item.online)}</EuiFlexItem>
+          <EuiFlexItem grow={false}>{renderStatus(user.online)}</EuiFlexItem>
         </EuiFlexGroup>
       ),
     },
     {
       field: 'github',
       name: 'Github',
-      render: (username) => (
+      render: (username: User['github']) => (
         <EuiLink href={`https://github.com/${username}`} target="_blank">
           {username}
         </EuiLink>
@@ -109,21 +146,21 @@ export const Table = () => {
       field: 'dateOfBirth',
       name: 'Date of Birth',
       dataType: 'date',
-      render: (date) => formatDate(date, 'dobLong'),
+      render: (dateOfBirth: User['dateOfBirth']) =>
+        formatDate(dateOfBirth, 'dobLong'),
     },
     {
-      field: 'nationality',
+      field: 'country',
       name: 'Nationality',
-      render: (countryCode) => {
-        const country = store.getCountry(countryCode);
-        return `${country.flag} ${country.name}`;
+      render: (country: User['country']) => {
+        return `${getEmojiFlag(country.flag)} ${country.name}`;
       },
     },
     {
       field: 'online',
       name: 'Online',
       dataType: 'boolean',
-      render: (online) => renderStatus(online),
+      render: (online: User['online']) => renderStatus(online),
       mobileOptions: {
         show: false,
       },
@@ -171,7 +208,7 @@ export const Table = () => {
       <EuiBasicTable
         tableCaption="Demo for EuiBasicTable with pagination"
         items={pageOfItems}
-        columns={columns}
+        columns={columns as any}
         pagination={pagination}
         onChange={onTableChange}
       />

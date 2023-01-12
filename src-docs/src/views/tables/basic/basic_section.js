@@ -1,7 +1,7 @@
 import React from 'react';
 import { GuideSectionTypes } from '../../../components';
 import { EuiCode } from '../../../../../src/components';
-import { Table } from './basic';
+import Table from './basic';
 import { EuiBasicTable } from '../../../../../src/components/basic_table';
 import {
   Criteria,
@@ -24,7 +24,7 @@ export const section = {
   title: 'A basic table',
   source: [
     {
-      type: GuideSectionTypes.JS,
+      type: GuideSectionTypes.TSX,
       code: source,
     },
   ],
