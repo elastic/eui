@@ -90,7 +90,7 @@ export const SkeletonExample = {
       ],
       text: (
         <p>
-          The <strong>Heading</strong> type display a placeholder for heading texts.
+          Use <strong>EuiSkeletonTitle</strong> to display a placeholder for heading texts.
         </p>
       ),
       props: { EuiSkeletonHeading },
