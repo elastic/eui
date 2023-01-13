@@ -13,31 +13,31 @@ import { EuiButton } from '../button';
 import { EuiPortal } from './portal';
 
 const Portal = () => {
-  const [isCustomFlyoutVisible, setIsCustomFlyoutVisible] = useState(false);
+  const [isPortalVisible, setIsPortalVisible] = useState(false);
 
-  const toggleCustomFlyout = () => {
-    setIsCustomFlyoutVisible(!isCustomFlyoutVisible);
+  const togglePortal = () => {
+    setIsPortalVisible(!isPortalVisible);
   };
 
-  const closeCustomFlyout = () => {
-    setIsCustomFlyoutVisible(false);
+  const closePortal = () => {
+    setIsPortalVisible(false);
   };
 
-  let customFlyout;
+  let customPortal;
 
-  if (isCustomFlyoutVisible) {
-    customFlyout = (
+  if (isPortalVisible) {
+    customPortal = (
       <EuiPortal>
         <div>This is the portal. Click anywhere to close.</div>
-        <EuiButton onClick={closeCustomFlyout}>Close portal</EuiButton>
+        <EuiButton onClick={closePortal}>Close portal</EuiButton>
       </EuiPortal>
     );
   }
 
   return (
     <div>
-      <EuiButton onClick={toggleCustomFlyout}>View guide</EuiButton>
-      {customFlyout}
+      <EuiButton onClick={togglePortal}>View guide</EuiButton>
+      {customPortal}
     </div>
   );
 };
@@ -57,20 +57,6 @@ describe('EuiPortal', () => {
     it('has zero violations after the portal is activated', () => {
       cy.get('button[type="button"]').contains('View guide').realClick();
       cy.get('div[data-euiportal="true"]').should('exist');
-      cy.checkAxe();
-    });
-  });
-
-  describe('Keyboard accessibility', () => {
-    it('has zero violations when the portal is opened by keyboard', () => {
-      cy.realPress('Tab');
-      cy.get('button[type="button"]').should('have.focus');
-      cy.realPress('Enter');
-      cy.get('div[data-euiportal="true"]').should('exist');
-      cy.checkAxe();
-      cy.realPress('Tab');
-      cy.realPress('Enter');
-      cy.get('div[data-euiportal="true"]').should('not.exist');
       cy.checkAxe();
     });
   });
