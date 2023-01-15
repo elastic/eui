@@ -57,11 +57,7 @@ export const SkeletonExample = {
       ),
       props: { EuiSkeletonCircle },
       snippet: skeletonCircleSnippet,
-      demo: (
-        <div className="guideDemo__highlightSkeleton__circle">
-          <SkeletonCircle />
-        </div>
-      ),
+      demo: <SkeletonCircle />,
     },
     {
       title: 'Text',
@@ -80,11 +76,7 @@ export const SkeletonExample = {
       ),
       props: { EuiSkeletonText },
       snippet: skeletonTextSnippet,
-      demo: (
-        <div className="guideDemo__highlightSkeleton__text">
-          <SkeletonText />
-        </div>
-      ),
+      demo: <SkeletonText />,
     },
     {
       title: 'Heading',
@@ -103,11 +95,7 @@ export const SkeletonExample = {
       ),
       props: { EuiSkeletonHeading },
       snippet: skeletonHeadingSnippet,
-      demo: (
-        <div className="guideDemo__highlightSkeleton__heading">
-          <SkeletonHeading />
-        </div>
-      ),
+      demo: <SkeletonHeading />,
     },
     {
       title: 'Item',
@@ -126,11 +114,7 @@ export const SkeletonExample = {
       ),
       props: { EuiSkeletonItem },
       snippet: skeletonItemSnippet,
-      demo: (
-        <div className="guideDemo__highlightSkeleton__item">
-          <SkeletonItem />
-        </div>
-      ),
+      demo: <SkeletonItem />,
     },
   ],
 };
