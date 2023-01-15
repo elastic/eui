@@ -6,19 +6,10 @@
  * Side Public License, v 1.
  */
 
-import { css, keyframes } from '@emotion/react';
+import { css } from '@emotion/react';
 import { euiCanAnimate, logicalCSS } from '../../global_styling';
+import { euiAnimSkeletonGradient } from '../../global_styling/utility/animations';
 import { COLOR_MODES_STANDARD, shade, tint, UseEuiTheme } from '../../services';
-
-const skeletonGradient = keyframes`
-  0% {
-    transform: translateX(-53%);
-  }
-
-  100% {
-    transform: translateX(0);
-  }
-`;
 
 export const euiSkeletonCircleStyles = ({
   euiTheme,
@@ -52,7 +43,7 @@ export const euiSkeletonCircleStyles = ({
         );
 
         ${euiCanAnimate} {
-          animation: ${skeletonGradient} 1.5s
+          animation: ${euiAnimSkeletonGradient} 1.5s
             ${euiTheme.animation.resistance} infinite;
         }
       }

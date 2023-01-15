@@ -29,3 +29,13 @@ export const euiAnimSlideInUp = (size: string) => keyframes`
     transform: translateY(0);
   }
 `;
+
+export const euiAnimSkeletonGradient = keyframes`
+  0% {
+    transform: translateX(-53%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+`;

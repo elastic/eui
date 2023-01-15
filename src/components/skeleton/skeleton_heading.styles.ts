@@ -6,29 +6,23 @@
  * Side Public License, v 1.
  */
 
-import { css, keyframes } from '@emotion/react';
-import { euiCanAnimate, logicalCSS, _FontScaleOptions } from '../../global_styling';
+import { css } from '@emotion/react';
+import {
+  euiCanAnimate,
+  logicalCSS,
+  _FontScaleOptions,
+} from '../../global_styling';
+
+import { euiAnimSkeletonGradient } from '../../global_styling/utility/animations';
 import { COLOR_MODES_STANDARD, shade, tint, UseEuiTheme } from '../../services';
 
-const skeletonGradient = keyframes`
-  0% {
-    transform: translateX(-53%);
-  }
-
-  100% {
-    transform: translateX(0);
-  }
-`;
-
-export const euiSkeletonHeadingStyles = (
-  euiThemeContext: UseEuiTheme,
-) => {
+export const euiSkeletonHeadingStyles = (euiThemeContext: UseEuiTheme) => {
   const gradientStartStop =
-  euiThemeContext.colorMode === COLOR_MODES_STANDARD.dark
+    euiThemeContext.colorMode === COLOR_MODES_STANDARD.dark
       ? shade(euiThemeContext.euiTheme.colors.lightShade, 0.12)
       : tint(euiThemeContext.euiTheme.colors.lightShade, 0.65);
   const gradientMiddle =
-  euiThemeContext.colorMode === COLOR_MODES_STANDARD.dark
+    euiThemeContext.colorMode === COLOR_MODES_STANDARD.dark
       ? shade(euiThemeContext.euiTheme.colors.lightShade, 0.24)
       : tint(euiThemeContext.euiTheme.colors.lightShade, 0.8);
 
@@ -39,7 +33,7 @@ export const euiSkeletonHeadingStyles = (
     h4: '1.1429rem',
     h5: '1rem',
     h6: '0.8571rem',
-  }
+  };
 
   return {
     euiSkeleton__heading: css`
@@ -60,41 +54,41 @@ export const euiSkeletonHeadingStyles = (
         );
 
         ${euiCanAnimate} {
-          animation: ${skeletonGradient} 1.5s
+          animation: ${euiAnimSkeletonGradient} 1.5s
             ${euiThemeContext.euiTheme.animation.resistance} infinite;
         }
       }
     `,
     // Sizes
     h1: css`
-      height: ${skeletonHeadingSizes.h1};
+      ${logicalCSS('height', skeletonHeadingSizes.h1)};
       border-radius: ${euiThemeContext.euiTheme.border.radius.medium};
-      width: 45%;
+      ${logicalCSS('width', '45%')};
     `,
     h2: css`
-      height: ${skeletonHeadingSizes.h2};
+      ${logicalCSS('height', skeletonHeadingSizes.h2)};
       border-radius: ${euiThemeContext.euiTheme.border.radius.medium};
-      width: 45%;
+      ${logicalCSS('width', '45%')};
     `,
     h3: css`
-      height: ${skeletonHeadingSizes.h3};
+      ${logicalCSS('height', skeletonHeadingSizes.h3)};
       border-radius: ${euiThemeContext.euiTheme.border.radius.medium};
-      width: 45%;
+      ${logicalCSS('width', '45%')};
     `,
     h4: css`
-      height: ${skeletonHeadingSizes.h4};
+      ${logicalCSS('height', skeletonHeadingSizes.h4)};
       border-radius: ${euiThemeContext.euiTheme.border.radius.medium};
-      width: 45%;
+      ${logicalCSS('width', '45%')};
     `,
     h5: css`
-      height: ${skeletonHeadingSizes.h5};
+      ${logicalCSS('height', skeletonHeadingSizes.h5)};
       border-radius: ${euiThemeContext.euiTheme.border.radius.medium};
-      width: 45%;
+      ${logicalCSS('width', '45%')};
     `,
     h6: css`
-      height: ${skeletonHeadingSizes.h6};
+      ${logicalCSS('height', skeletonHeadingSizes.h6)};
       border-radius: ${euiThemeContext.euiTheme.border.radius.medium};
-      width: 45%;
-    `
+      ${logicalCSS('width', '45%')};
+    `,
   };
 };

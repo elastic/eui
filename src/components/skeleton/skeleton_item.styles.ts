@@ -6,24 +6,15 @@
  * Side Public License, v 1.
  */
 
-import { css, keyframes } from '@emotion/react';
+import { css } from '@emotion/react';
 import { euiCanAnimate, logicalCSS } from '../../global_styling';
+import { euiAnimSkeletonGradient } from '../../global_styling/utility/animations';
 import { COLOR_MODES_STANDARD, shade, tint, UseEuiTheme } from '../../services';
-
-const loadingContentGradient = keyframes`
-  0% {
-    transform: translateX(-53%);
-  }
-
-  100% {
-    transform: translateX(0);
-  }
-`;
 
 export const euiSkeletonItemStyles = (
   { euiTheme, colorMode }: UseEuiTheme,
   propsWidth?: string,
-  propsHeight?: string,
+  propsHeight?: string
 ) => {
   const gradientStartStop =
     colorMode === COLOR_MODES_STANDARD.dark
@@ -40,8 +31,8 @@ export const euiSkeletonItemStyles = (
       background: ${gradientStartStop};
       overflow: hidden;
 
-      width: ${propsWidth};
-      height: ${propsHeight};
+      ${logicalCSS('width', propsWidth)};
+      ${logicalCSS('height', propsHeight)};
 
       &::after {
         content: '';
@@ -56,7 +47,7 @@ export const euiSkeletonItemStyles = (
         );
 
         ${euiCanAnimate} {
-          animation: ${loadingContentGradient} 1.5s
+          animation: ${euiAnimSkeletonGradient} 1.5s
             ${euiTheme.animation.resistance} infinite;
         }
       }
