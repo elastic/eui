@@ -12,7 +12,5 @@ export type { EuiSkeletonTextProps } from './skeleton_text';
 export { EuiSkeletonText } from './skeleton_text';
 export type { EuiSkeletonItemProps } from './skeleton_item';
 export { EuiSkeletonItem } from './skeleton_item';
-export type { EuiSkeletonHeadingProps } from './skeleton_heading';
-export { EuiSkeletonHeading } from './skeleton_heading';
-
-
+export type { EuiSkeletonTitleProps } from './skeleton_title';
+export { EuiSkeletonTitle } from './skeleton_title';

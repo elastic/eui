@@ -24,5 +24,4 @@ export default () => (
       <EuiSkeletonItem width="130px" height="130px" radius="none" />
     </EuiFlexItem>
   </EuiFlexGroup>
-
 );

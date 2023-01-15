@@ -4,7 +4,7 @@ import { GuideSectionTypes } from '../../components';
 import {
   EuiCode,
   EuiText,
-  EuiSkeletonHeading,
+  EuiSkeletonTitle,
   EuiSkeletonText,
   EuiSkeletonItem,
   EuiSkeletonCircle,
@@ -18,15 +18,15 @@ const skeletonCircleSource = require('!!raw-loader!./skeleton_circle');
 import SkeletonText from './skeleton_text';
 const skeletonTextSource = require('!!raw-loader!./skeleton_text');
 
-import SkeletonHeading from './skeleton_heading';
-const skeletonHeadingSource = require('!!raw-loader!./skeleton_heading');
+import SkeletonTitle from './skeleton_title';
+const skeletonTitleSource = require('!!raw-loader!./skeleton_title');
 
 import SkeletonItem from './skeleton_item';
 const skeletonItemSource = require('!!raw-loader!./skeleton_item');
 
 const skeletonCircleSnippet = '<EuiSkeletonCircle size="m" />';
 const skeletonTextSnippet = '<EuiSkeletonText lines={3} />';
-const skeletonHeadingSnippet = '<EuiSkeletonHeading size="h2" />';
+const skeletonTitleSnippet = '<EuiSkeletonTitle size="h2" />';
 const skeletonItemSnippet = '<EuiSkeletonItem width="200px" height="20px" radius="m" />';
 
 export const SkeletonExample = {
@@ -79,11 +79,11 @@ export const SkeletonExample = {
       demo: <SkeletonText />,
     },
     {
-      title: 'Heading',
+      title: 'Title',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: skeletonHeadingSource,
+          code: skeletonTitleSource,
         },
       ],
       text: (
@@ -93,9 +93,9 @@ export const SkeletonExample = {
           </p>
         </EuiText>
       ),
-      props: { EuiSkeletonHeading },
-      snippet: skeletonHeadingSnippet,
-      demo: <SkeletonHeading />,
+      props: { EuiSkeletonTitle },
+      snippet: skeletonTitleSnippet,
+      demo: <SkeletonTitle />,
     },
     {
       title: 'Item',
