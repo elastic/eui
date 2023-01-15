@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { GuideSectionTypes } from '../../components';
-
-import { EuiCode } from '../../../../src/components';
 import {
+  EuiCode,
+  EuiText,
   EuiSkeletonHeading,
   EuiSkeletonText,
   EuiSkeletonItem,
@@ -32,10 +32,12 @@ const skeletonItemSnippet = '<EuiSkeletonItem width="200px" height="20px" radius
 export const SkeletonExample = {
   title: 'Skeleton',
   intro: (
-    <p>
-      The <strong>EuiSkeleton</strong> it's a placeholder component for content which hasn't yet loaded,
-      in order to provide a meaningful preview and avoid layout content shifts.
-    </p>
+    <EuiText>
+      <p>
+        The <strong>EuiSkeleton</strong> it's a placeholder component for content which hasn't yet loaded,
+        in order to provide a meaningful preview and avoid layout content shifts.
+      </p>
+    </EuiText>
   ),
   sections: [
     {
@@ -47,9 +49,11 @@ export const SkeletonExample = {
         },
       ],
       text: (
-        <p>
-          Use the <strong>EuiSkeletonCircle</strong> to display a circular preview mainly for avatars.
-        </p>
+        <EuiText>
+          <p>
+            Use the <strong>EuiSkeletonCircle</strong> to display a circular preview mainly for avatars.
+          </p>
+        </EuiText>
       ),
       props: { EuiSkeletonCircle },
       snippet: skeletonCircleSnippet,
@@ -68,9 +72,11 @@ export const SkeletonExample = {
         },
       ],
       text: (
-        <p>
-          Use the <strong>EuiSkeletonText</strong> to display a placeholder for multiple lines of text.
-        </p>
+        <EuiText>
+          <p>
+            Use the <strong>EuiSkeletonText</strong> to display a placeholder for multiple lines of text.
+          </p>
+        </EuiText>
       ),
       props: { EuiSkeletonText },
       snippet: skeletonTextSnippet,
@@ -89,9 +95,11 @@ export const SkeletonExample = {
         },
       ],
       text: (
-        <p>
-          Use <strong>EuiSkeletonTitle</strong> to display a placeholder for heading texts.
-        </p>
+        <EuiText>
+          <p>
+            Use <strong>EuiSkeletonTitle</strong> to display a placeholder for heading texts.
+          </p>
+        </EuiText>
       ),
       props: { EuiSkeletonHeading },
       snippet: skeletonHeadingSnippet,
@@ -110,9 +118,11 @@ export const SkeletonExample = {
         },
       ],
       text: (
-        <p>
-          The <strong>Item</strong> type let you free to define whatever shape you want to mock with a skeleton by defining <EuiCode>width</EuiCode> <EuiCode>height</EuiCode> and <EuiCode>radius</EuiCode>.
-        </p>
+        <EuiText>
+          <p>
+            The <strong>Item</strong> type let you free to define whatever shape you want to mock with a skeleton by defining <EuiCode>width</EuiCode> <EuiCode>height</EuiCode> and <EuiCode>radius</EuiCode>.
+          </p>
+        </EuiText>
       ),
       props: { EuiSkeletonItem },
       snippet: skeletonItemSnippet,

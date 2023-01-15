@@ -19,6 +19,5 @@ export default () => (
     <EuiFlexItem>
       <EuiSkeletonHeading size="h1" />
     </EuiFlexItem>
-
   </EuiFlexGroup>
 );

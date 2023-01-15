@@ -7,7 +7,7 @@ import {
 } from '../../../../src/components';
 
 export default () => (
-  <EuiFlexGroup direction='column'>
+  <EuiFlexGroup direction="column">
     <EuiFlexItem>
       <EuiSkeletonText lines={3} />
     </EuiFlexItem>
