@@ -2,7 +2,7 @@ import React from 'react';
 import { EuiBasicTable } from '../../../../../src/components';
 import { GuideSectionTypes } from '../../../components';
 
-import { Table } from './actions';
+import Table from './actions';
 import { EuiCode } from '../../../../../src/components/code';
 const source = require('!!raw-loader!./actions');
 
@@ -10,7 +10,7 @@ export const section = {
   title: 'Adding actions to table',
   source: [
     {
-      type: GuideSectionTypes.JS,
+      type: GuideSectionTypes.TSX,
       code: source,
     },
   ],

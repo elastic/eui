@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from 'react';
-import { formatDate } from '../../../../../src/services/format';
-import { createDataStore } from '../data_store';
+import { faker } from '@faker-js/faker';
+import { formatDate, Comparators } from '../../../../../src/services';
 
 import {
   EuiBasicTable,
@@ -13,31 +13,49 @@ import {
   EuiSpacer,
 } from '../../../../../src/components';
 
-/*
-Example user object:
+const getEmojiFlag = (countryCode: string) => {
+  const codePoints = countryCode
+    .toUpperCase()
+    .split('')
+    .map((char) => 127397 + char.charCodeAt(0));
+  return String.fromCodePoint(...codePoints);
+};
 
-{
-  id: '1',
-  firstName: 'john',
-  lastName: 'doe',
-  github: 'johndoe',
-  dateOfBirth: Date.now(),
-  nationality: 'NL',
-  online: true
+type User = {
+  id: number;
+  firstName: string | null | undefined;
+  lastName: string;
+  github: string;
+  dateOfBirth: Date;
+  online: boolean;
+  country: {
+    code: string;
+    name: string;
+    flag: string;
+  };
+};
+
+const users: User[] = [];
+
+const usersLength = 20;
+
+for (let i = 0; i < usersLength; i++) {
+  users.push({
+    id: i + 1,
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    github: faker.internet.userName(),
+    dateOfBirth: faker.date.past(),
+    online: faker.datatype.boolean(),
+    country: {
+      code: faker.address.countryCode(),
+      name: faker.address.country(),
+      flag: faker.address.countryCode(),
+    },
+  });
 }
 
-Example country object:
-
-{
-  code: 'NL',
-  name: 'Netherlands',
-  flag: '🇳🇱'
-}
-*/
-
-const store = createDataStore();
-
-export const Table = () => {
+export default () => {
   const [pageIndex, setPageIndex] = useState(0);
   const [pageSize, setPageSize] = useState(5);
   const [sortField, setSortField] = useState('firstName');
@@ -47,9 +65,9 @@ export const Table = () => {
   const [customAction, setCustomAction] = useState(false);
 
   const onTableChange = ({ page = {}, sort = {} }) => {
-    const { index: pageIndex, size: pageSize } = page;
+    const { index: pageIndex, size: pageSize }: any = page;
 
-    const { field: sortField, direction: sortDirection } = sort;
+    const { field: sortField, direction: sortDirection }: any = sort;
 
     setPageIndex(pageIndex);
     setPageSize(pageSize);
@@ -57,13 +75,36 @@ export const Table = () => {
     setSortDirection(sortDirection);
   };
 
+  const renderStatus = (online: User['online']) => {
+    const color = online ? 'success' : 'danger';
+    const label = online ? 'Online' : 'Offline';
+    return <EuiHealth color={color}>{label}</EuiHealth>;
+  };
+
+  const deleteUsersByIds = (...ids: number[]) => {
+    ids.forEach((id) => {
+      const index = users.findIndex((user) => user.id === id);
+      if (index >= 0) {
+        users.splice(index, 1);
+      }
+    });
+  };
+
+  const cloneUserbyId = (id: number) => {
+    const index = users.findIndex((user) => user.id === id);
+    if (index >= 0) {
+      const user = users[index];
+      users.splice(index, 0, { ...user, id: users.length });
+    }
+  };
+
   const onClickDelete = () => {
-    store.deleteUsers(...selectedItems.map((user) => user.id));
+    deleteUsersByIds(...selectedItems.map((user: User) => user.id));
 
     setSelectedItems([]);
   };
 
-  const onSelectionChange = (selectedItems) => {
+  const onSelectionChange = (selectedItems: []) => {
     setSelectedItems(selectedItems);
   };
 
@@ -89,17 +130,55 @@ export const Table = () => {
     setCustomAction(!customAction);
   };
 
-  const deleteUser = (user) => {
-    store.deleteUsers(user.id);
+  const deleteUser = (user: User) => {
+    deleteUsersByIds(user.id);
     setSelectedItems([]);
   };
 
-  const cloneUser = (user) => {
-    store.cloneUser(user.id);
+  const cloneUser = (user: User) => {
+    cloneUserbyId(user.id);
     setSelectedItems([]);
   };
 
-  const { pageOfItems, totalItemCount } = store.findUsers(
+  const findUsers = (
+    users: User[],
+    pageIndex: number,
+    pageSize: number,
+    sortField: any,
+    sortDirection: any
+  ) => {
+    let items;
+
+    if (sortField) {
+      items = users
+        .slice(0)
+        .sort(
+          Comparators.property(sortField, Comparators.default(sortDirection))
+        );
+    } else {
+      items = users;
+    }
+
+    let pageOfItems;
+
+    if (!pageIndex && !pageSize) {
+      pageOfItems = items;
+    } else {
+      const startIndex = pageIndex * pageSize;
+      pageOfItems = items.slice(
+        startIndex,
+        Math.min(startIndex + pageSize, users.length)
+      );
+    }
+
+    return {
+      pageOfItems,
+      totalItemCount: users.length,
+    };
+  };
+
+  const { pageOfItems, totalItemCount } = findUsers(
+    users,
     pageIndex,
     pageSize,
     sortField,
@@ -114,18 +193,18 @@ export const Table = () => {
     actions = customAction
       ? [
           {
-            render: (item) => {
+            render: (user: User) => {
               return (
-                <EuiLink color="success" onClick={() => cloneUser(item)}>
+                <EuiLink color="success" onClick={() => cloneUser(user)}>
                   Clone
                 </EuiLink>
               );
             },
           },
           {
-            render: (item) => {
+            render: (user: User) => {
               return (
-                <EuiLink color="danger" onClick={() => deleteUser(item)}>
+                <EuiLink color="danger" onClick={() => deleteUser(user)}>
                   Delete
                 </EuiLink>
               );
@@ -141,7 +220,7 @@ export const Table = () => {
             'data-test-subj': 'action-clone',
           },
           {
-            name: (item) => (item.id ? 'Delete' : 'Remove'),
+            name: (user: User) => (user.id ? 'Delete' : 'Remove'),
             description: 'Delete this user',
             icon: 'trash',
             color: 'danger',
@@ -153,7 +232,7 @@ export const Table = () => {
           {
             name: 'Edit',
             isPrimary: true,
-            available: ({ online }) => !online,
+            available: ({ online }: { online: boolean }) => !online,
             description: 'Edit this user',
             icon: 'pencil',
             type: 'icon',
@@ -183,9 +262,9 @@ export const Table = () => {
     actions = customAction
       ? [
           {
-            render: (item) => {
+            render: (user: User) => {
               return (
-                <EuiLink onClick={() => deleteUser(item)} color="danger">
+                <EuiLink onClick={() => deleteUser(user)} color="danger">
                   Delete
                 </EuiLink>
               );
@@ -213,9 +292,9 @@ export const Table = () => {
       truncateText: true,
       sortable: true,
       mobileOptions: {
-        render: (item) => (
+        render: (user: User) => (
           <span>
-            {item.firstName} {item.lastName}
+            {user.firstName} {user.lastName}
           </span>
         ),
         header: false,
@@ -235,7 +314,7 @@ export const Table = () => {
     {
       field: 'github',
       name: 'Github',
-      render: (username) => (
+      render: (username: User['github']) => (
         <EuiLink href={`https://github.com/${username}`} target="_blank">
           {username}
         </EuiLink>
@@ -245,26 +324,21 @@ export const Table = () => {
       field: 'dateOfBirth',
       name: 'Date of Birth',
       dataType: 'date',
-      render: (date) => formatDate(date, 'dobLong'),
-      sortable: true,
+      render: (dateOfBirth: User['dateOfBirth']) =>
+        formatDate(dateOfBirth, 'dobLong'),
     },
     {
-      field: 'nationality',
+      field: 'country',
       name: 'Nationality',
-      render: (countryCode) => {
-        const country = store.getCountry(countryCode);
-        return `${country.flag} ${country.name}`;
+      render: (country: User['country']) => {
+        return `${getEmojiFlag(country.flag)} ${country.name}`;
       },
     },
     {
       field: 'online',
       name: 'Online',
       dataType: 'boolean',
-      render: (online) => {
-        const color = online ? 'success' : 'danger';
-        const label = online ? 'Online' : 'Offline';
-        return <EuiHealth color={color}>{label}</EuiHealth>;
-      },
+      render: (online: User['online']) => renderStatus(online),
       sortable: true,
     },
     {
@@ -288,8 +362,8 @@ export const Table = () => {
   };
 
   const selection = {
-    selectable: (user) => user.online,
-    selectableMessage: (selectable) =>
+    selectable: (user: User) => user.online,
+    selectableMessage: (selectable: boolean) =>
       !selectable ? 'User is currently offline' : undefined,
     onSelectionChange: onSelectionChange,
   };
@@ -321,10 +395,10 @@ export const Table = () => {
         tableCaption="Demo of EuiBasicTable with actions"
         items={pageOfItems}
         itemId="id"
-        columns={columns}
+        columns={columns as any}
         pagination={pagination}
-        sorting={sorting}
-        selection={selection}
+        sorting={sorting as any}
+        selection={selection as any}
         hasActions={customAction ? false : true}
         onChange={onTableChange}
       />
