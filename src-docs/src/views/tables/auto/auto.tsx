@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-
-import { createDataStore } from '../data_store';
-
-import { htmlIdGenerator } from '../../../../../src/services';
+import { faker } from '@faker-js/faker';
+import { htmlIdGenerator, formatDate } from '../../../../../src/services';
 
 import {
   EuiBasicTable,
@@ -12,43 +10,45 @@ import {
   EuiSpacer,
 } from '../../../../../src/components';
 
-/*
-Example user object:
+type User = {
+  id: number;
+  firstName: string | null | undefined;
+  lastName: string;
+  github: string;
+  dateOfBirth: Date;
+  jobTitle: string;
+  address: string;
+};
 
-{
-  id: '1',
-  firstName: 'john',
-  lastName: 'doe',
-  github: 'johndoe',
-  dateOfBirth: Date.now(),
-  nationality: 'NL',
-  online: true
+const users: User[] = [];
+
+const usersLength = 20;
+
+for (let i = 0; i < usersLength; i++) {
+  users.push({
+    id: i + 1,
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    github: faker.internet.userName(),
+    dateOfBirth: faker.date.past(),
+    jobTitle: faker.name.jobTitle(),
+    address: `${faker.address.streetAddress()} ${faker.address.cityName()} ${faker.address.stateAbbr()} ${faker.address.zipCode()}`,
+  });
 }
 
-Example country object:
-
-{
-  code: 'NL',
-  name: 'Netherlands',
-  flag: '🇳🇱'
-}
-*/
-
-const store = createDataStore();
-
-const columns = [
+const columns: any = [
   {
     field: 'firstName',
     name: 'First Name',
-    sortable: true,
     truncateText: true,
+    sortable: true,
     'data-test-subj': 'firstNameCell',
     mobileOptions: {
-      render: (item) => (
+      render: (user: User) => (
         <span>
-          {item.firstName}{' '}
+          {user.firstName}{' '}
           <EuiLink href="#" target="_blank">
-            {item.lastName}
+            {user.lastName}
           </EuiLink>
         </span>
       ),
@@ -61,9 +61,9 @@ const columns = [
   {
     field: 'lastName',
     name: 'Last Name',
-    render: (name) => (
+    render: (lastName: User['lastName']) => (
       <EuiLink href="#" target="_blank">
-        {name}
+        {lastName}
       </EuiLink>
     ),
     mobileOptions: {
@@ -74,13 +74,29 @@ const columns = [
     field: 'github',
     name: 'Github',
   },
+  {
+    field: 'dateOfBirth',
+    name: 'Date of Birth',
+    dataType: 'date',
+    render: (dateOfBirth: User['dateOfBirth']) =>
+      formatDate(dateOfBirth, 'dobLong'),
+  },
+  {
+    field: 'jobTitle',
+    name: 'Job title',
+  },
+  {
+    field: 'address',
+    name: 'Address',
+    truncateText: true,
+  },
 ];
 
-const items = store.users.filter((user, index) => index < 10);
+const filteredUsers = users.filter((user, index) => index < 10);
 
 const idPrefix = htmlIdGenerator()();
 
-const toggleButtons = [
+const toggleButtons: any[] = [
   {
     id: `${idPrefix}0`,
     label: 'Fixed',
@@ -98,7 +114,7 @@ const toggleButtons = [
   },
 ];
 
-const vAlignButtons = [
+const vAlignButtons: any[] = [
   {
     id: `${idPrefix}4`,
     label: 'Top',
@@ -116,7 +132,7 @@ const vAlignButtons = [
   },
 ];
 
-const alignButtons = [
+const alignButtons: any[] = [
   {
     id: `${idPrefix}6`,
     label: 'Left',
@@ -134,7 +150,7 @@ const alignButtons = [
   },
 ];
 
-export const Table = () => {
+export default () => {
   const [layout, setLayout] = useState('fixed');
   const [toggleIdSelected, setToggleIdSelected] = useState(`${idPrefix}0`);
   const [vAlignButtonsIdSelected, setVAlignButtonsIdSelected] = useState(
@@ -144,41 +160,41 @@ export const Table = () => {
     `${idPrefix}6`
   );
 
-  const onChange = (optionId) => {
+  const onChange = (optionId: string) => {
     const alignment = toggleButtons.find((x) => x.id === optionId).value;
-    columns[0].width = alignment === 'custom' ? '20%' : undefined;
+
+    columns[5].width = alignment === 'custom' ? '20%' : undefined;
 
     setToggleIdSelected(optionId);
     setLayout(alignment);
   };
 
-  const onVAlignChange = (optionId) => {
+  const onVAlignChange = (optionId: string) => {
     setVAlignButtonsIdSelected(optionId);
     const alignment = vAlignButtons.find((x) => x.id === optionId).value;
 
-    columns.forEach((column) => (column.valign = alignment));
+    columns.forEach((column: any) => (column.valign = alignment));
   };
 
-  const onAlignChange = (optionId) => {
+  const onAlignChange = (optionId: string) => {
     setAlignButtonsIdSelected(optionId);
     const alignment = alignButtons.find((x) => x.id === optionId).value;
 
-    columns.forEach((column) => (column.align = alignment));
+    columns.forEach((column: any) => (column.align = alignment));
   };
 
   let callOutText;
 
   switch (layout) {
     case 'fixed':
-      callOutText = 'First Name has truncateText set to true';
+      callOutText = 'Address has truncateText set to true';
       break;
     case 'auto':
       callOutText =
-        'First Name has truncateText set to true which is not applied since tableLayout is set to auto';
+        'Address has truncateText set to true which is not applied since tableLayout is set to auto';
       break;
     case 'custom':
-      callOutText =
-        'First Name has truncateText set to true and width set to 20%';
+      callOutText = 'Address has truncateText set to true and width set to 20%';
       break;
   }
 
@@ -213,7 +229,7 @@ export const Table = () => {
       <EuiSpacer size="m" />
       <EuiBasicTable
         tableCaption="Demo of EuiBasicTable's table layout options"
-        items={items}
+        items={filteredUsers}
         columns={columns}
         tableLayout={layout === 'auto' ? 'auto' : 'fixed'}
       />

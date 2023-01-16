@@ -144,10 +144,6 @@ export default () => {
 
   const filteredUsers = users.filter((user, index) => index < 10);
 
-  const items = users.filter((user, index) => index < 10);
-
-  console.log('items', items);
-
   return (
     <EuiBasicTable
       tableCaption="Demo of EuiBasicTable"
