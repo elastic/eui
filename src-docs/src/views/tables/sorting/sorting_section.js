@@ -4,14 +4,14 @@ import { GuideSectionTypes } from '../../../components';
 
 import { EuiTableSortingType } from '!!prop-loader!../../../../../src/components/basic_table/table_types';
 
-import { Table } from './sorting';
+import Table from './sorting';
 const source = require('!!raw-loader!./sorting');
 
 export const section = {
   title: 'Adding sorting to a table',
   source: [
     {
-      type: GuideSectionTypes.JS,
+      type: GuideSectionTypes.TSX,
       code: source,
     },
   ],

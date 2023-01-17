@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { formatDate } from '../../../../../src/services/format';
-import { createDataStore } from '../data_store';
+import { faker } from '@faker-js/faker';
+import { formatDate, Comparators } from '../../../../../src/services';
 
 import {
   EuiBasicTable,
@@ -15,31 +15,49 @@ import {
   EuiCode,
 } from '../../../../../src/components';
 
-/*
-Example user object:
+const getEmojiFlag = (countryCode: string) => {
+  const codePoints = countryCode
+    .toUpperCase()
+    .split('')
+    .map((char) => 127397 + char.charCodeAt(0));
+  return String.fromCodePoint(...codePoints);
+};
 
-{
-  id: '1',
-  firstName: 'john',
-  lastName: 'doe',
-  github: 'johndoe',
-  dateOfBirth: Date.now(),
-  nationality: 'NL',
-  online: true
+type User = {
+  id: number;
+  firstName: string | null | undefined;
+  lastName: string;
+  github: string;
+  dateOfBirth: Date;
+  online: boolean;
+  country: {
+    code: string;
+    name: string;
+    flag: string;
+  };
+};
+
+const users: User[] = [];
+
+const usersLength = 20;
+
+for (let i = 0; i < usersLength; i++) {
+  users.push({
+    id: i + 1,
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    github: faker.internet.userName(),
+    dateOfBirth: faker.date.past(),
+    online: faker.datatype.boolean(),
+    country: {
+      code: faker.address.countryCode(),
+      name: faker.address.country(),
+      flag: faker.address.countryCode(),
+    },
+  });
 }
 
-Example country object:
-
-{
-  code: 'NL',
-  name: 'Netherlands',
-  flag: '🇳🇱'
-}
-*/
-
-const store = createDataStore();
-
-export const Table = () => {
+export default () => {
   const [enableAll, setEnableAll] = useState(false);
   const [readonly, setReadonly] = useState(false);
 
@@ -49,9 +67,9 @@ export const Table = () => {
   const [sortDirection, setSortDirection] = useState('asc');
 
   const onTableChange = ({ page = {}, sort = {} }) => {
-    const { index: pageIndex, size: pageSize } = page;
+    const { index: pageIndex, size: pageSize }: any = page;
 
-    const { field: sortField, direction: sortDirection } = sort;
+    const { field: sortField, direction: sortDirection }: any = sort;
 
     setPageIndex(pageIndex);
     setPageSize(pageSize);
@@ -59,13 +77,56 @@ export const Table = () => {
     setSortDirection(sortDirection);
   };
 
-  const { pageOfItems, totalItemCount } = store.findUsers(
+  const renderStatus = (online: User['online']) => {
+    const color = online ? 'success' : 'danger';
+    const label = online ? 'Online' : 'Offline';
+    return <EuiHealth color={color}>{label}</EuiHealth>;
+  };
+
+  const findUsers = (
+    users: User[],
+    pageIndex: number,
+    pageSize: number,
+    sortField: any,
+    sortDirection: any
+  ) => {
+    let items;
+
+    if (sortField) {
+      items = users
+        .slice(0)
+        .sort(
+          Comparators.property(sortField, Comparators.default(sortDirection))
+        );
+    } else {
+      items = users;
+    }
+
+    let pageOfItems;
+
+    if (!pageIndex && !pageSize) {
+      pageOfItems = items;
+    } else {
+      const startIndex = pageIndex * pageSize;
+      pageOfItems = items.slice(
+        startIndex,
+        Math.min(startIndex + pageSize, users.length)
+      );
+    }
+
+    return {
+      pageOfItems,
+      totalItemCount: users.length,
+    };
+  };
+
+  const { pageOfItems, totalItemCount } = findUsers(
+    users,
     pageIndex,
     pageSize,
     sortField,
     sortDirection
   );
-
   const columns = [
     {
       field: 'firstName',
@@ -73,9 +134,9 @@ export const Table = () => {
       sortable: true,
       truncateText: true,
       mobileOptions: {
-        render: (item) => (
+        render: (user: User) => (
           <span>
-            {item.firstName} {item.lastName}
+            {user.firstName} {user.lastName}
           </span>
         ),
         header: false,
@@ -107,7 +168,7 @@ export const Table = () => {
           </span>
         </EuiToolTip>
       ),
-      render: (username) => (
+      render: (username: User['github']) => (
         <EuiLink href={`https://github.com/${username}`} target="_blank">
           {username}
         </EuiLink>
@@ -129,10 +190,11 @@ export const Table = () => {
         </EuiToolTip>
       ),
       schema: 'date',
-      render: (date) => formatDate(date, 'dobLong'),
+      render: (dateOfBirth: User['dateOfBirth']) =>
+        formatDate(dateOfBirth, 'dobLong'),
     },
     {
-      field: 'nationality',
+      field: 'country',
       name: (
         <EuiToolTip content="The nation in which this person resides">
           <span>
@@ -146,9 +208,8 @@ export const Table = () => {
           </span>
         </EuiToolTip>
       ),
-      render: (countryCode) => {
-        const country = store.getCountry(countryCode);
-        return `${country.flag} ${country.name}`;
+      render: (country: User['country']) => {
+        return `${getEmojiFlag(country.flag)} ${country.name}`;
       },
     },
     {
@@ -167,11 +228,7 @@ export const Table = () => {
         </EuiToolTip>
       ),
       schema: 'boolean',
-      render: (online) => {
-        const color = online ? 'success' : 'danger';
-        const label = online ? 'Online' : 'Offline';
-        return <EuiHealth color={color}>{label}</EuiHealth>;
-      },
+      render: (online: User['online']) => renderStatus(online),
     },
   ];
 
@@ -215,7 +272,7 @@ export const Table = () => {
         items={pageOfItems}
         columns={columns}
         pagination={pagination}
-        sorting={sorting}
+        sorting={sorting as any}
         onChange={onTableChange}
       />
     </div>
