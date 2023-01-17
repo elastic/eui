@@ -9,9 +9,9 @@ import {
   EuiButton,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiSwitch,
-  EuiSpacer,
 } from '../../../../../src/components';
+
+import uniqBy from 'lodash/uniqBy';
 
 const getEmojiFlag = (countryCode: string) => {
   const codePoints = countryCode
@@ -61,8 +61,6 @@ export default () => {
   const [sortField, setSortField] = useState('firstName');
   const [sortDirection, setSortDirection] = useState('asc');
   const [selectedItems, setSelectedItems] = useState([]);
-  const [multiAction, setMultiAction] = useState(false);
-  const [customAction, setCustomAction] = useState(false);
 
   const onTableChange = ({ page = {}, sort = {} }) => {
     const { index: pageIndex, size: pageSize }: any = page;
@@ -75,18 +73,8 @@ export default () => {
     setSortDirection(sortDirection);
   };
 
-  const renderStatus = (online: User['online']) => {
-    const color = online ? 'success' : 'danger';
-    const label = online ? 'Online' : 'Offline';
-    return <EuiHealth color={color}>{label}</EuiHealth>;
-  };
-
-  const cloneUserbyId = (id: number) => {
-    const index = users.findIndex((user) => user.id === id);
-    if (index >= 0) {
-      const user = users[index];
-      users.splice(index, 0, { ...user, id: users.length });
-    }
+  const onSelectionChange = (selectedItems: []) => {
+    setSelectedItems(selectedItems);
   };
 
   const deleteUsersByIds = (...ids: number[]) => {
@@ -104,40 +92,22 @@ export default () => {
     setSelectedItems([]);
   };
 
-  const onSelectionChange = (selectedItems: []) => {
-    setSelectedItems(selectedItems);
-  };
-
   const renderDeleteButton = () => {
     if (selectedItems.length === 0) {
       return;
     }
 
     return (
-      <EuiFlexItem grow={false}>
-        <EuiButton color="danger" iconType="trash" onClick={onClickDelete}>
-          Delete {selectedItems.length} Users
-        </EuiButton>
-      </EuiFlexItem>
+      <EuiButton color="danger" iconType="trash" onClick={onClickDelete}>
+        Delete {selectedItems.length} Users
+      </EuiButton>
     );
   };
 
-  const toggleMultiAction = () => {
-    setMultiAction(!multiAction);
-  };
-
-  const toggleCustomAction = () => {
-    setCustomAction(!customAction);
-  };
-
-  const deleteUser = (user: User) => {
-    deleteUsersByIds(user.id);
-    setSelectedItems([]);
-  };
-
-  const cloneUser = (user: User) => {
-    cloneUserbyId(user.id);
-    setSelectedItems([]);
+  const renderStatus = (online: User['online']) => {
+    const color = online ? 'success' : 'danger';
+    const label = online ? 'Online' : 'Offline';
+    return <EuiHealth color={color}>{label}</EuiHealth>;
   };
 
   const findUsers = (
@@ -187,120 +157,15 @@ export default () => {
 
   const deleteButton = renderDeleteButton();
 
-  let actions = null;
-
-  if (multiAction) {
-    actions = customAction
-      ? [
-          {
-            render: (user: User) => {
-              return (
-                <EuiLink color="success" onClick={() => cloneUser(user)}>
-                  Clone
-                </EuiLink>
-              );
-            },
-          },
-          {
-            render: (user: User) => {
-              return (
-                <EuiLink color="danger" onClick={() => deleteUser(user)}>
-                  Delete
-                </EuiLink>
-              );
-            },
-          },
-        ]
-      : [
-          {
-            name: <span>Clone</span>,
-            description: 'Clone this user',
-            icon: 'copy',
-            onClick: cloneUser,
-            'data-test-subj': 'action-clone',
-          },
-          {
-            name: (user: User) => (user.id ? 'Delete' : 'Remove'),
-            description: 'Delete this user',
-            icon: 'trash',
-            color: 'danger',
-            type: 'icon',
-            onClick: deleteUser,
-            isPrimary: true,
-            'data-test-subj': 'action-delete',
-          },
-          {
-            name: 'Edit',
-            isPrimary: true,
-            available: ({ online }: { online: boolean }) => !online,
-            description: 'Edit this user',
-            icon: 'pencil',
-            type: 'icon',
-            onClick: () => {},
-            'data-test-subj': 'action-edit',
-          },
-          {
-            name: 'Share',
-            isPrimary: true,
-            description: 'Share this user',
-            icon: 'share',
-            type: 'icon',
-            onClick: () => {},
-            'data-test-subj': 'action-share',
-          },
-          {
-            name: 'Elastic.co',
-            description: 'Go to elastic.co',
-            icon: 'logoElastic',
-            type: 'icon',
-            href: 'https://elastic.co',
-            target: '_blank',
-            'data-test-subj': 'action-outboundlink',
-          },
-        ];
-  } else {
-    actions = customAction
-      ? [
-          {
-            render: (user: User) => {
-              return (
-                <EuiLink onClick={() => deleteUser(user)} color="danger">
-                  Delete
-                </EuiLink>
-              );
-            },
-          },
-        ]
-      : [
-          {
-            name: 'Elastic.co',
-            description: 'Go to elastic.co',
-            icon: 'editorLink',
-            color: 'primary',
-            type: 'icon',
-            href: 'https://elastic.co',
-            target: '_blank',
-            'data-test-subj': 'action-outboundlink',
-          },
-        ];
-  }
-
   const columns = [
     {
       field: 'firstName',
       name: 'First Name',
-      truncateText: true,
+      footer: <em>Page totals:</em>,
       sortable: true,
+      truncateText: true,
       mobileOptions: {
-        render: (user: User) => (
-          <span>
-            {user.firstName} {user.lastName}
-          </span>
-        ),
-        header: false,
-        truncateText: false,
-        enlarge: true,
-        width: '100%',
+        show: false,
       },
     },
     {
@@ -312,8 +177,28 @@ export default () => {
       },
     },
     {
+      field: 'firstName',
+      name: 'Full Name',
+      mobileOptions: {
+        header: false,
+        only: true,
+        width: '100%',
+      },
+      render: (user: User) => (
+        <EuiFlexGroup responsive={false} alignItems="center">
+          <EuiFlexItem>
+            {user.firstName} {user.lastName}
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>{renderStatus(user.online)}</EuiFlexItem>
+        </EuiFlexGroup>
+      ),
+    },
+    {
       field: 'github',
       name: 'Github',
+      footer: ({ items }: { items: User[] }) => (
+        <span>{uniqBy(items, 'github').length} users</span>
+      ),
       render: (username: User['github']) => (
         <EuiLink href={`https://github.com/${username}`} target="_blank">
           {username}
@@ -326,10 +211,14 @@ export default () => {
       dataType: 'date',
       render: (dateOfBirth: User['dateOfBirth']) =>
         formatDate(dateOfBirth, 'dobLong'),
+      sortable: true,
     },
     {
       field: 'country',
       name: 'Nationality',
+      footer: ({ items }: { items: User[] }) => (
+        <span>{uniqBy(items, 'country').length} countries</span>
+      ),
       render: (country: User['country']) => {
         return `${getEmojiFlag(country.flag)} ${country.name}`;
       },
@@ -337,13 +226,17 @@ export default () => {
     {
       field: 'online',
       name: 'Online',
+      footer: ({ items }: { items: User[] }) => {
+        return (
+          <span>
+            {items.filter((user: User) => !!user.online).length} online
+          </span>
+        );
+      },
       dataType: 'boolean',
       render: (online: User['online']) => renderStatus(online),
       sortable: true,
-    },
-    {
-      name: 'Actions',
-      actions,
+      mobileOptions: { show: false },
     },
   ];
 
@@ -370,36 +263,16 @@ export default () => {
 
   return (
     <Fragment>
-      <EuiFlexGroup alignItems="center">
-        <EuiFlexItem grow={false}>
-          <EuiSwitch
-            label="Multiple Actions"
-            checked={multiAction}
-            onChange={toggleMultiAction}
-          />
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <EuiSwitch
-            label="Custom Actions"
-            checked={customAction}
-            onChange={toggleCustomAction}
-          />
-        </EuiFlexItem>
-        <EuiFlexItem />
-        {deleteButton}
-      </EuiFlexGroup>
-
-      <EuiSpacer size="l" />
-
+      {deleteButton}
       <EuiBasicTable
-        tableCaption="Demo of EuiBasicTable with actions"
+        tableCaption="Demo of EuiBasicTable with footer"
         items={pageOfItems}
         itemId="id"
         columns={columns as any}
         pagination={pagination}
         sorting={sorting as any}
+        isSelectable={true}
         selection={selection as any}
-        hasActions={customAction ? false : true}
         onChange={onTableChange}
       />
     </Fragment>
