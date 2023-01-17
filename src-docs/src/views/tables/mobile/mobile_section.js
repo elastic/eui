@@ -1,7 +1,7 @@
 import React from 'react';
 import { GuideSectionTypes } from '../../../components';
 
-import { Table } from './mobile';
+import Table from './mobile';
 import { EuiTextColor } from '../../../../../src/components/text';
 import { EuiCode, EuiCodeBlock } from '../../../../../src/components/code';
 const source = require('!!raw-loader!./mobile');
@@ -25,7 +25,7 @@ export const section = {
   title: 'Responsive tables',
   source: [
     {
-      type: GuideSectionTypes.JS,
+      type: GuideSectionTypes.TSX,
       code: source,
     },
   ],
