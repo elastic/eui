@@ -85,6 +85,7 @@ export const euiToastHeaderStyles = (euiThemeContext: UseEuiTheme) => {
     euiToastHeader__title: css`
       ${euiTitle(euiThemeContext, 'xs')};
       font-weight: ${euiTheme.font.weight.bold};
+      word-break: break-word;
     `,
     // Variants
     withBody: css`
