@@ -1,6 +1,6 @@
 import React, { useState, Fragment, useRef } from 'react';
-import { formatDate } from '../../../../../src/services/format';
-import { createDataStore } from '../data_store';
+import { faker } from '@faker-js/faker';
+import { formatDate, Comparators } from '../../../../../src/services';
 
 import {
   EuiBasicTable,
@@ -12,42 +12,61 @@ import {
   EuiSpacer,
 } from '../../../../../src/components';
 
-/*
-Example user object:
+const getEmojiFlag = (countryCode: string) => {
+  const codePoints = countryCode
+    .toUpperCase()
+    .split('')
+    .map((char) => 127397 + char.charCodeAt(0));
+  return String.fromCodePoint(...codePoints);
+};
 
-{
-  id: '1',
-  firstName: 'john',
-  lastName: 'doe',
-  github: 'johndoe',
-  dateOfBirth: Date.now(),
-  nationality: 'NL',
-  online: true
+type User = {
+  id: number;
+  firstName: string | null | undefined;
+  lastName: string;
+  github: string;
+  dateOfBirth: Date;
+  online: boolean;
+  country: {
+    code: string;
+    name: string;
+    flag: string;
+  };
+};
+
+const users: User[] = [];
+
+const usersLength = 20;
+
+for (let i = 0; i < usersLength; i++) {
+  users.push({
+    id: i + 1,
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    github: faker.internet.userName(),
+    dateOfBirth: faker.date.past(),
+    online: faker.datatype.boolean(),
+    country: {
+      code: faker.address.countryCode(),
+      name: faker.address.country(),
+      flag: faker.address.countryCode(),
+    },
+  });
 }
 
-Example country object:
-
-{
-  code: 'NL',
-  name: 'Netherlands',
-  flag: '🇳🇱'
-}
-*/
-
-const store = createDataStore();
-
-export const Table = () => {
+export default () => {
   const [pageIndex, setPageIndex] = useState(0);
   const [pageSize, setPageSize] = useState(5);
   const [sortField, setSortField] = useState('firstName');
   const [sortDirection, setSortDirection] = useState('asc');
   const [selectedItems, setSelectedItems] = useState([]);
+
   const tableRef = useRef();
 
   const onTableChange = ({ page = {}, sort = {} }) => {
-    const { index: pageIndex, size: pageSize } = page;
+    const { index: pageIndex, size: pageSize }: any = page;
 
-    const { field: sortField, direction: sortDirection } = sort;
+    const { field: sortField, direction: sortDirection }: any = sort;
 
     setPageIndex(pageIndex);
     setPageSize(pageSize);
@@ -55,12 +74,21 @@ export const Table = () => {
     setSortDirection(sortDirection);
   };
 
-  const onSelectionChange = (selectedItems) => {
+  const onSelectionChange = (selectedItems: []) => {
     setSelectedItems(selectedItems);
   };
 
+  const deleteUsersByIds = (...ids: number[]) => {
+    ids.forEach((id) => {
+      const index = users.findIndex((user) => user.id === id);
+      if (index >= 0) {
+        users.splice(index, 1);
+      }
+    });
+  };
+
   const onClickDelete = () => {
-    store.deleteUsers(...selectedItems.map((user) => user.id));
+    deleteUsersByIds(...selectedItems.map((user: User) => user.id));
 
     setSelectedItems([]);
   };
@@ -77,13 +105,51 @@ export const Table = () => {
     );
   };
 
-  const renderStatus = (online) => {
+  const renderStatus = (online: User['online']) => {
     const color = online ? 'success' : 'danger';
     const label = online ? 'Online' : 'Offline';
     return <EuiHealth color={color}>{label}</EuiHealth>;
   };
 
-  const { pageOfItems, totalItemCount } = store.findUsers(
+  const findUsers = (
+    users: User[],
+    pageIndex: number,
+    pageSize: number,
+    sortField: any,
+    sortDirection: any
+  ) => {
+    let items;
+
+    if (sortField) {
+      items = users
+        .slice(0)
+        .sort(
+          Comparators.property(sortField, Comparators.default(sortDirection))
+        );
+    } else {
+      items = users;
+    }
+
+    let pageOfItems;
+
+    if (!pageIndex && !pageSize) {
+      pageOfItems = items;
+    } else {
+      const startIndex = pageIndex * pageSize;
+      pageOfItems = items.slice(
+        startIndex,
+        Math.min(startIndex + pageSize, users.length)
+      );
+    }
+
+    return {
+      pageOfItems,
+      totalItemCount: users.length,
+    };
+  };
+
+  const { pageOfItems, totalItemCount } = findUsers(
+    users,
     pageIndex,
     pageSize,
     sortField,
@@ -119,19 +185,19 @@ export const Table = () => {
         enlarge: true,
         width: '100%',
       },
-      render: (name, item) => (
+      render: (user: User) => (
         <EuiFlexGroup responsive={false} alignItems="center">
           <EuiFlexItem>
-            {item.firstName} {item.lastName}
+            {user.firstName} {user.lastName}
           </EuiFlexItem>
-          <EuiFlexItem grow={false}>{renderStatus(item.online)}</EuiFlexItem>
+          <EuiFlexItem grow={false}>{renderStatus(user.online)}</EuiFlexItem>
         </EuiFlexGroup>
       ),
     },
     {
       field: 'github',
       name: 'Github',
-      render: (username) => (
+      render: (username: User['github']) => (
         <EuiLink href={`https://github.com/${username}`} target="_blank">
           {username}
         </EuiLink>
@@ -141,22 +207,22 @@ export const Table = () => {
       field: 'dateOfBirth',
       name: 'Date of Birth',
       dataType: 'date',
-      render: (date) => formatDate(date, 'dobLong'),
+      render: (dateOfBirth: User['dateOfBirth']) =>
+        formatDate(dateOfBirth, 'dobLong'),
       sortable: true,
     },
     {
-      field: 'nationality',
+      field: 'country',
       name: 'Nationality',
-      render: (countryCode) => {
-        const country = store.getCountry(countryCode);
-        return `${country.flag} ${country.name}`;
+      render: (country: User['country']) => {
+        return `${getEmojiFlag(country.flag)} ${country.name}`;
       },
     },
     {
       field: 'online',
       name: 'Online',
       dataType: 'boolean',
-      render: (online) => renderStatus(online),
+      render: (online: User['online']) => renderStatus(online),
       sortable: true,
       mobileOptions: {
         show: false,
@@ -178,17 +244,20 @@ export const Table = () => {
     },
   };
 
-  const onlineUsers = store.users.filter((user) => user.online);
+  const onlineUsers = users.filter((user) => user.online);
 
   const selection = {
-    selectable: (user) => user.online,
-    selectableMessage: (selectable) =>
+    selectable: (user: User) => user.online,
+    selectableMessage: (selectable: boolean) =>
       !selectable ? 'User is currently offline' : undefined,
     onSelectionChange: onSelectionChange,
     initialSelected: onlineUsers,
   };
 
   const onSelection = () => {
+    if (!tableRef.current) return;
+
+    // @ts-ignore - Property 'setSelection' does not exist on type 'never'
     tableRef.current.setSelection(onlineUsers);
   };
 
@@ -206,14 +275,14 @@ export const Table = () => {
 
       <EuiBasicTable
         tableCaption="Demo for EuiBasicTable with selection"
-        ref={tableRef}
+        ref={tableRef as any}
         items={pageOfItems}
         itemId="id"
-        columns={columns}
+        columns={columns as any}
         pagination={pagination}
-        sorting={sorting}
+        sorting={sorting as any}
         isSelectable={true}
-        selection={selection}
+        selection={selection as any}
         onChange={onTableChange}
         rowHeader="firstName"
       />
