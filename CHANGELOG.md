@@ -1,3 +1,14 @@
+## [`73.0.0`](https://github.com/elastic/eui/tree/v73.0.0)
+
+**Bug fixes**
+
+- Fixed `EuiDataGrid` a11y errors within toolbar popovers containing draggable elements with interactive children ([#6517](https://github.com/elastic/eui/pull/6517))
+- Fixed several styling bugs within `EuiDataGrid`'s sorting toolbar popover ([#6517](https://github.com/elastic/eui/pull/6517))
+
+**Breaking changes**
+
+- `EuiToolTip`s now internally enforce only showing **one** tooltip at a time (the most recently triggered tooltip). This primarily affects scenarios where users are focused on a tooltip toggle via click, and then hover onto another tooltip toggle. ([#6520](https://github.com/elastic/eui/pull/6520))
+
 ## [`72.2.0`](https://github.com/elastic/eui/tree/v72.2.0)
 
 - Added `onFullScreen` callback to expose the `isFullScreen` state of the `EuiImage` ([#6504](https://github.com/elastic/eui/pull/6504))
