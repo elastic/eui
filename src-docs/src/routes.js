@@ -287,7 +287,7 @@ import { ElasticChartsAccessibilityExample } from './views/elastic_charts/access
 
 import { DashboardGoodPractices } from './views/elastic_charts/dashboard_good_practices';
 
-import { MetricChart } from './views/elastic_charts/metric_chart';
+import { MetricChartExample } from './views/elastic_charts/metric/metric_chart_example';
 import { Barchart } from './views/elastic_charts/barchart';
 
 const createExample = (example, customTitle) => {
@@ -631,7 +631,7 @@ const navigation = [
       ElasticChartsCategoryExample,
       ElasticChartsPieExample,
       ElasticChartsAccessibilityExample,
-      MetricChart,
+      MetricChartExample,
       Barchart,
     ].map((example) => createExample(example)),
   },

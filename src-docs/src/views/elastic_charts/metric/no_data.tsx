@@ -1,0 +1,78 @@
+import {
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiPanel,
+  EuiText,
+} from '../../../../../src';
+import {
+  Chart,
+  DARK_THEME,
+  LIGHT_THEME,
+  Metric,
+  Settings,
+} from '@elastic/charts';
+import React, { useContext } from 'react';
+import { ThemeContext } from '../../../components/with_theme';
+import {
+  EUI_CHARTS_THEME_DARK,
+  EUI_CHARTS_THEME_LIGHT,
+} from '../../../../../src/themes/charts/themes';
+
+export function NoData() {
+  const themeContext = useContext(ThemeContext);
+  const isDarkTheme = themeContext.theme.includes('dark');
+
+  const euiChartTheme = isDarkTheme
+    ? EUI_CHARTS_THEME_DARK
+    : EUI_CHARTS_THEME_LIGHT;
+  const chartBaseTheme = isDarkTheme ? DARK_THEME : LIGHT_THEME;
+  return (
+    <EuiFlexGroup gutterSize="l" alignItems="flexStart">
+      <EuiFlexItem grow={0}>
+        <EuiFlexGroup gutterSize="s" alignItems="center" direction="column">
+          <EuiText textAlign="center">No Data</EuiText>
+          <EuiPanel paddingSize="none" style={{ overflow: 'hidden' }}>
+            <Chart size={[200, 200]}>
+              <Settings
+                baseTheme={chartBaseTheme}
+                theme={euiChartTheme.theme}
+              />
+              <Metric
+                id="1"
+                data={[
+                  [
+                    {
+                      color: chartBaseTheme.metric?.background ?? 'white',
+                      title: 'Number of visitors',
+                      extra: (
+                        <span>
+                          Prev Week <strong>N/A</strong>
+                        </span>
+                      ),
+                      value: NaN,
+                      valueFormatter: (v) => `${v}k`,
+                    },
+                  ],
+                ]}
+              />{' '}
+            </Chart>
+          </EuiPanel>
+        </EuiFlexGroup>
+      </EuiFlexItem>
+      <EuiFlexItem grow={0}>
+        <EuiFlexGroup gutterSize="s" alignItems="center" direction="column">
+          <EuiText textAlign="center">Filtered Out</EuiText>
+          <EuiPanel paddingSize="none" style={{ overflow: 'hidden' }}>
+            <Chart size={[200, 200]}>
+              <Settings
+                theme={euiChartTheme.theme}
+                baseTheme={chartBaseTheme}
+              />
+              <Metric id="1" data={[[undefined]]} />{' '}
+            </Chart>
+          </EuiPanel>
+        </EuiFlexGroup>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  );
+}
