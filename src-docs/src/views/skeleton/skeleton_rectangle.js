@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-  EuiSkeletonItem,
+  EuiSkeletonRectangle,
   EuiFlexGroup,
   EuiFlexItem,
 } from '../../../../src/components';
@@ -9,19 +9,19 @@ import {
 export default () => (
   <EuiFlexGroup>
     {/* <EuiFlexItem grow={false}>
-      <EuiSkeletonItem width="12px" height="24px" radius="none" />
+      <EuiSkeletonRectangle width="12px" height="24px" borderRadius="none" />
     </EuiFlexItem> */}
 
     <EuiFlexItem grow={false}>
-      <EuiSkeletonItem width="18px" height="18px" radius="s" />
+      <EuiSkeletonRectangle width="18px" height="18px" borderRadius="s" />
     </EuiFlexItem>
 
     <EuiFlexItem grow={false}>
-      <EuiSkeletonItem width="86px" height="32px" radius="m" />
+      <EuiSkeletonRectangle width="86px" height="32px" borderRadius="m" />
     </EuiFlexItem>
 
     <EuiFlexItem grow={false}>
-      <EuiSkeletonItem width="130px" height="130px" radius="none" />
+      <EuiSkeletonRectangle width="130px" height="130px" borderRadius="none" />
     </EuiFlexItem>
   </EuiFlexGroup>
 );

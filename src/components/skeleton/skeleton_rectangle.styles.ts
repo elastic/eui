@@ -11,7 +11,7 @@ import { euiCanAnimate, logicalCSS } from '../../global_styling';
 import { euiAnimSkeletonGradient } from '../../global_styling/utility/animations';
 import { COLOR_MODES_STANDARD, shade, tint, UseEuiTheme } from '../../services';
 
-export const euiSkeletonItemStyles = (
+export const euiSkeletonRectangleStyles = (
   { euiTheme, colorMode }: UseEuiTheme,
   propsWidth?: string,
   propsHeight?: string
@@ -26,7 +26,7 @@ export const euiSkeletonItemStyles = (
       : tint(euiTheme.colors.lightShade, 0.8);
 
   return {
-    euiSkeleton__item: css`
+    euiSkeleton__rectangle: css`
       display: block;
       background: ${gradientStartStop};
       overflow: hidden;

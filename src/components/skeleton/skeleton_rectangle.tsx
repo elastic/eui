@@ -12,40 +12,34 @@ import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
 
-import { euiSkeletonItemStyles } from './skeleton_item.styles';
+import { euiSkeletonRectangleStyles } from './skeleton_rectangle.styles';
 
 export const RADIUS = ['s', 'm', 'none'] as const;
-export type SkeletonItemRadius = typeof RADIUS[number];
+export type SkeletonRectangleBorderRadius = typeof RADIUS[number];
 
-export type EuiSkeletonItemProps = HTMLAttributes<HTMLDivElement> &
+export type EuiSkeletonRectangleProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
     width?: string;
     height?: string;
-    radius?: SkeletonItemRadius;
+    borderRadius?: SkeletonRectangleBorderRadius;
   };
 
-export const EuiSkeletonItem: FunctionComponent<EuiSkeletonItemProps> = ({
+export const EuiSkeletonRectangle: FunctionComponent<EuiSkeletonRectangleProps> = ({
   className,
-  radius = 's',
+  borderRadius = 's',
   width = '24px',
   height = '24px',
   ...rest
 }) => {
-
   const euiTheme = useEuiTheme();
-  const styles = euiSkeletonItemStyles(euiTheme, width, height);
+  const styles = euiSkeletonRectangleStyles(euiTheme, width, height);
   const classes = classNames(
-    { [`euiSkeleton__item--${radius}`]: radius },
-    'euiSkeleton__item',
+    { [`euiSkeleton__rectangle--${borderRadius}`]: borderRadius },
+    'euiSkeleton__rectangle',
     className
   );
 
-  const cssStyles = [
-    styles.euiSkeleton__item,
-    styles[radius],
-  ];
+  const cssStyles = [styles.euiSkeleton__rectangle, styles[borderRadius]];
 
-  return (
-    <div className={classes} css={cssStyles} aria-busy={true} {...rest}></div>
-  )
-}
+  return <div className={classes} css={cssStyles} aria-busy={true} {...rest} />;
+};

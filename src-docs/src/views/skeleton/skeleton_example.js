@@ -6,11 +6,11 @@ import {
   EuiText,
   EuiSkeletonTitle,
   EuiSkeletonText,
-  EuiSkeletonItem,
+  EuiSkeletonRectangle,
   EuiSkeletonCircle,
 } from '../../../../src/components';
 
-import { skeletonConfig } from './playground';
+// import { skeletonConfig } from './playground';
 
 import SkeletonCircle from './skeleton_circle';
 const skeletonCircleSource = require('!!raw-loader!./skeleton_circle');
@@ -21,21 +21,23 @@ const skeletonTextSource = require('!!raw-loader!./skeleton_text');
 import SkeletonTitle from './skeleton_title';
 const skeletonTitleSource = require('!!raw-loader!./skeleton_title');
 
-import SkeletonItem from './skeleton_item';
-const skeletonItemSource = require('!!raw-loader!./skeleton_item');
+import SkeletonRectangle from './skeleton_rectangle';
+const skeletonRectangleSource = require('!!raw-loader!./skeleton_rectangle');
 
 const skeletonCircleSnippet = '<EuiSkeletonCircle size="m" />';
 const skeletonTextSnippet = '<EuiSkeletonText lines={3} />';
 const skeletonTitleSnippet = '<EuiSkeletonTitle size="h2" />';
-const skeletonItemSnippet = '<EuiSkeletonItem width="200px" height="20px" radius="m" />';
+const skeletonRectangleSnippet =
+  '<EuiSkeletonRectangle width="200px" height="20px" borderRadius="m" />';
 
 export const SkeletonExample = {
   title: 'Skeleton',
   intro: (
     <EuiText>
       <p>
-        The <strong>EuiSkeleton</strong> it's a placeholder component for content which hasn't yet loaded,
-        in order to provide a meaningful preview and avoid layout content shifts.
+        The <strong>EuiSkeleton</strong> it&apos;s a placeholder component for
+        content which hasn&apos;t yet loaded, in order to provide a meaningful
+        preview and avoid layout content shifts.
       </p>
     </EuiText>
   ),
@@ -51,7 +53,8 @@ export const SkeletonExample = {
       text: (
         <EuiText>
           <p>
-            Use the <strong>EuiSkeletonCircle</strong> to display a circular preview mainly for avatars.
+            Use the <strong>EuiSkeletonCircle</strong> to display a circular
+            preview mainly for avatars.
           </p>
         </EuiText>
       ),
@@ -70,7 +73,8 @@ export const SkeletonExample = {
       text: (
         <EuiText>
           <p>
-            Use the <strong>EuiSkeletonText</strong> to display a placeholder for multiple lines of text.
+            Use the <strong>EuiSkeletonText</strong> to display a placeholder
+            for multiple lines of text.
           </p>
         </EuiText>
       ),
@@ -89,7 +93,8 @@ export const SkeletonExample = {
       text: (
         <EuiText>
           <p>
-            Use <strong>EuiSkeletonTitle</strong> to display a placeholder for heading texts.
+            Use <strong>EuiSkeletonTitle</strong> to display a placeholder for
+            heading texts.
           </p>
         </EuiText>
       ),
@@ -98,23 +103,26 @@ export const SkeletonExample = {
       demo: <SkeletonTitle />,
     },
     {
-      title: 'Item',
+      title: 'Rectangle',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: skeletonItemSource,
+          code: skeletonRectangleSource,
         },
       ],
       text: (
         <EuiText>
           <p>
-            The <strong>Item</strong> type let you free to define whatever shape you want to mock with a skeleton by defining <EuiCode>width</EuiCode> <EuiCode>height</EuiCode> and <EuiCode>radius</EuiCode>.
+            The <strong>Rectangle</strong> type let you free to define whatever
+            shape you want to mock with a skeleton by defining
+            <EuiCode>width</EuiCode> <EuiCode>height</EuiCode>
+            and <EuiCode>borderRadius</EuiCode>.
           </p>
         </EuiText>
       ),
-      props: { EuiSkeletonItem },
-      snippet: skeletonItemSnippet,
-      demo: <SkeletonItem />,
+      props: { EuiSkeletonRectangle },
+      snippet: skeletonRectangleSnippet,
+      demo: <SkeletonRectangle />,
     },
   ],
 };
