@@ -216,7 +216,7 @@ export const ResizableContainerExample = {
       <>
         <EuiCallOut title="Consider adding a tabindex for keyboard accessibility">
           <p>
-            Add a prop <EuiCode>tabindex=&ldquo;0&rdquo;</EuiCode> to the{' '}
+            Add a prop <EuiCode>tabIndex={0}</EuiCode> to the{' '}
             <strong>EuiResizableContainer</strong> if it is a fixed height or
             has a lot of content. This ensures keyboard users can set focus on
             the container and scroll to the bottom using arrow keys.

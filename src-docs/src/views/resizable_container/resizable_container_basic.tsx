@@ -14,7 +14,7 @@ export default () => (
   <EuiResizableContainer style={{ height: '200px' }}>
     {(EuiResizablePanel, EuiResizableButton) => (
       <>
-        <EuiResizablePanel initialSize={50} minSize="30%" tabindex="0">
+        <EuiResizablePanel initialSize={50} minSize="30%" tabIndex={0}>
           <EuiText>
             <div>{text}</div>
             <a href="">Hello world</a>
@@ -23,7 +23,7 @@ export default () => (
 
         <EuiResizableButton />
 
-        <EuiResizablePanel initialSize={50} minSize="200px" tabindex="0">
+        <EuiResizablePanel initialSize={50} minSize="200px" tabIndex={0}>
           <EuiText>{text}</EuiText>
         </EuiResizablePanel>
       </>

@@ -70,7 +70,7 @@ export default () => {
               mode="main"
               initialSize={60}
               minSize="20%"
-              tabindex="0"
+              tabIndex={0}
             >
               <EuiPanel paddingSize="l" style={{ minHeight: '100%' }}>
                 <EuiTitle>

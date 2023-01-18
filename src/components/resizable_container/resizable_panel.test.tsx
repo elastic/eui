@@ -57,5 +57,17 @@ describe('EuiResizablePanel', () => {
 
       expect(container).toMatchSnapshot();
     });
+
+    test('tabindex', () => {
+      const { container } = render(
+        <EuiResizableContainerContextProvider registry={mockRegistry}>
+          <EuiResizablePanel {...requiredProps} wrapperPadding="l" tabIndex={0}>
+            Content
+          </EuiResizablePanel>
+        </EuiResizableContainerContextProvider>
+      );
+
+      expect(container).toMatchSnapshot();
+    });
   });
 });
