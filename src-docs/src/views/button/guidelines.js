@@ -543,14 +543,6 @@ export default () => (
       <EuiTableBody>
         <EuiTableRow>
           <EuiTableRowCell>
-            <EuiButton color="danger">Discard</EuiButton>
-          </EuiTableRowCell>
-
-          <EuiTableRowCell>Remove or Delete</EuiTableRowCell>
-        </EuiTableRow>
-
-        <EuiTableRow>
-          <EuiTableRowCell>
             <EuiButton>New</EuiButton>
           </EuiTableRowCell>
 

@@ -15,6 +15,7 @@ import React, {
   HTMLAttributes,
   ReactNode,
 } from 'react';
+import classNames from 'classnames';
 
 import range from 'lodash/range';
 
@@ -55,6 +56,7 @@ export const EuiRangeTrack: FunctionComponent<EuiRangeTrackProps> = ({
   value,
   compressed,
   showRange,
+  className,
   ...rest
 }) => {
   useEffect(() => {
@@ -110,9 +112,11 @@ export const EuiRangeTrack: FunctionComponent<EuiRangeTrackProps> = ({
 
   const [trackWidth, setTrackWidth] = useState(0);
 
+  const classes = classNames('euiRangeTrack', className);
+
   return (
     <div
-      className="euiRangeTrack"
+      className={classes}
       css={cssStyles}
       {...rest}
       ref={(node: HTMLDivElement | null) => {

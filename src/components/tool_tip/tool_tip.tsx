@@ -16,14 +16,15 @@ import React, {
 import classNames from 'classnames';
 
 import { CommonProps, keysOf } from '../common';
+import { findPopoverPosition, htmlIdGenerator } from '../../services';
+import { enqueueStateChange } from '../../services/react';
+import { EuiResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
+
+import { EuiToolTipPopover, ToolTipPositions } from './tool_tip_popover';
 import { EuiToolTipAnchor } from './tool_tip_anchor';
 import { EuiToolTipArrow } from './tool_tip_arrow';
-import { EuiToolTipPopover, ToolTipPositions } from './tool_tip_popover';
-import { enqueueStateChange } from '../../services/react';
-import { findPopoverPosition, htmlIdGenerator } from '../../services';
-
-import { EuiResizeObserver } from '../observer/resize_observer';
+import { toolTipManager } from './tool_tip_manager';
 
 const positionsToClassNameMap: { [key in ToolTipPositions]: string } = {
   top: 'euiToolTip--top',
@@ -108,6 +109,13 @@ export interface EuiToolTipProps {
    * Suggested position. If there is not enough room for it this will be changed.
    */
   position: ToolTipPositions;
+  /**
+   * When `true`, the tooltip's position is re-calculated when the user
+   * scrolls. This supports having fixed-position tooltip anchors.
+   *
+   * When nesting an `EuiTooltip` in a scrollable container, `repositionOnScroll` should be `true`
+   */
+  repositionOnScroll?: boolean;
 
   /**
    * If supplied, called when mouse movement causes the tool tip to be
@@ -154,16 +162,29 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
 
   componentDidMount() {
     this._isMounted = true;
+    if (this.props.repositionOnScroll) {
+      window.addEventListener('scroll', this.positionToolTip, true);
+    }
   }
 
   componentWillUnmount() {
     this.clearAnimationTimeout();
     this._isMounted = false;
+    window.removeEventListener('scroll', this.positionToolTip, true);
   }
 
   componentDidUpdate(prevProps: EuiToolTipProps, prevState: State) {
     if (prevState.visible === false && this.state.visible === true) {
       requestAnimationFrame(this.testAnchor);
+    }
+
+    // update scroll listener
+    if (prevProps.repositionOnScroll !== this.props.repositionOnScroll) {
+      if (this.props.repositionOnScroll) {
+        window.addEventListener('scroll', this.positionToolTip, true);
+      } else {
+        window.removeEventListener('scroll', this.positionToolTip, true);
+      }
     }
   }
 
@@ -189,7 +210,10 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
   showToolTip = () => {
     if (!this.timeoutId) {
       this.timeoutId = setTimeout(() => {
-        enqueueStateChange(() => this.setState({ visible: true }));
+        enqueueStateChange(() => {
+          this.setState({ visible: true });
+          toolTipManager.registerTooltip(this.hideToolTip);
+        });
       }, delayToMsMap[this.props.delay]);
     }
   };
@@ -247,6 +271,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
           toolTipStyles: DEFAULT_TOOLTIP_STYLES,
           arrowStyles: undefined,
         });
+        toolTipManager.deregisterToolTip(this.hideToolTip);
       }
     });
   };
@@ -293,6 +318,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
       title,
       delay,
       display,
+      repositionOnScroll,
       ...rest
     } = this.props;
 

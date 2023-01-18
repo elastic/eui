@@ -1,3 +1,32 @@
+## [`73.0.0`](https://github.com/elastic/eui/tree/v73.0.0)
+
+**Bug fixes**
+
+- Fixed `EuiDataGrid` a11y errors within toolbar popovers containing draggable elements with interactive children ([#6517](https://github.com/elastic/eui/pull/6517))
+- Fixed several styling bugs within `EuiDataGrid`'s sorting toolbar popover ([#6517](https://github.com/elastic/eui/pull/6517))
+
+**Breaking changes**
+
+- `EuiToolTip`s now internally enforce only showing **one** tooltip at a time (the most recently triggered tooltip). This primarily affects scenarios where users are focused on a tooltip toggle via click, and then hover onto another tooltip toggle. ([#6520](https://github.com/elastic/eui/pull/6520))
+
+## [`72.2.0`](https://github.com/elastic/eui/tree/v72.2.0)
+
+- Added `onFullScreen` callback to expose the `isFullScreen` state of the `EuiImage` ([#6504](https://github.com/elastic/eui/pull/6504))
+- Added an extra spacing between the title and subtitle to `EuiTour` ([#6512](https://github.com/elastic/eui/pull/6512))
+- Updated `EuiText.blockquote` styles to match the `EuiMarkdownFormat.blockquote` styles ([#6514](https://github.com/elastic/eui/pull/6514))
+- Added the `repositionOnScroll` prop to `EuiToolTip` ([#6515](https://github.com/elastic/eui/pull/6515))
+
+## [`72.1.0`](https://github.com/elastic/eui/tree/v72.1.0)
+
+- Changed design of empty ranges in `EuiColorStops` to have diagonal gray stripes instead of a solid light gray color ([#6489](https://github.com/elastic/eui/pull/6489))
+- Changed popover in `EuiColorStops` to not appear when dragging/moving a color stop ([#6489](https://github.com/elastic/eui/pull/6489))
+- `EuiPopover` now supports overriding `focusTrapProps.onClickOutside`, which allows customization of auto-close behavior on outside click. ([#6500](https://github.com/elastic/eui/pull/6500))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiColorStops` to Emotion ([#6489](https://github.com/elastic/eui/pull/6489))
+- Added `brighten` service to manipulate CSS-in-JS colors ([#6489](https://github.com/elastic/eui/pull/6489))
+
 ## [`72.0.0`](https://github.com/elastic/eui/tree/v72.0.0)
 
 - Added the `customQuickSelectRender` render prop to `EuiSuperDatePicker`, which allows customizing the Quick Select popover ([#6382](https://github.com/elastic/eui/pull/6382))
