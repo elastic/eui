@@ -29,6 +29,7 @@ export default () => (
           borderRadius="m"
           wrapperPadding="m"
           minSize="20%"
+          tabindex="0"
         >
           <EuiText size="s">
             <p>

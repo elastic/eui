@@ -93,6 +93,7 @@ export default () => {
               id={firstPanelId}
               size={sizes[firstPanelId]}
               minSize="30%"
+              tabindex="0"
             >
               <EuiText>
                 <div>{text}</div>
@@ -105,6 +106,7 @@ export default () => {
               id={secondPanelId}
               size={sizes[secondPanelId]}
               minSize="200px"
+              tabindex="0"
             >
               <EuiText>
                 <div>{text}</div>
