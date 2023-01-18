@@ -214,7 +214,7 @@ export const ResizableContainerExample = {
       </p>
 
       <>
-        <EuiCallOut title="Consider adding a tabindex for keyboard accessibility">
+        <EuiCallOut title="Consider adding a tabIndex for keyboard accessibility">
           <p>
             Add a prop <EuiCode>tabIndex={0}</EuiCode> to the{' '}
             <strong>EuiResizableContainer</strong> if it is a fixed height or
