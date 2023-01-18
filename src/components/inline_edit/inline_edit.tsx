@@ -93,16 +93,27 @@ export const EuiInlineEdit = <T extends AcceptableComponents>({
     const input = (document.getElementById(
       inlineTextEditInputId
     ) as HTMLInputElement).value;
-    setTextReadViewValue(input);
-    setIsInEdit(!isInEdit);
-    onConfirm && onConfirm();
+
+    // If there's no text, cancel the action, reset the input text, and return to readView
+    if (input) {
+      setTextReadViewValue(input);
+      setIsInEdit(!isInEdit);
+      onConfirm && onConfirm();
+    } else {
+      setTextEditViewValue(textReadViewValue);
+      setIsInEdit(!isInEdit);
+    }
   };
 
   const saveComboBoxEditValue = () => {
-    // we will need to do a check to see if the array is larger than 0 here.
-    setComboBoxSelectedOptions(editViewTypeProps['selectedOptions']);
-    setIsInEdit(!isInEdit);
-    onConfirm && onConfirm();
+    // If there are no selections, but the user tries to save, cancel the action and return to readView
+    if (editViewTypeProps['selectedOptions'].length !== 0) {
+      setComboBoxSelectedOptions(editViewTypeProps['selectedOptions']);
+      setIsInEdit(!isInEdit);
+      onConfirm && onConfirm();
+    } else {
+      setIsInEdit(!isInEdit);
+    }
   };
 
   /* Shared Elements & Functions (Text & ComboBox) */
