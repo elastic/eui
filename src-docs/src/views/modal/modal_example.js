@@ -132,9 +132,9 @@ export const ModalExample = {
         title={<>Modal titles should be an H1</>}
       >
         <p>
-          EUI recommends including an <EuiCode>EuiModalHeaderTitle</EuiCode>.
-          The <EuiCode>children</EuiCode> prop accepts strings, HTML, or React
-          components.
+          EUI recommends all modal dialogs include a{' '}
+          <EuiCode>EuiModalHeaderTitle</EuiCode>. This title should explain what
+          action(s) users will take.
         </p>
         <EuiScreenReaderOnly>
           <span id="modal-header-children-title">
@@ -143,12 +143,13 @@ export const ModalExample = {
         </EuiScreenReaderOnly>
         <ul aria-labelledby="modal-header-children-title">
           <li>
-            Wrap React components or HTML in an <EuiCode>h1</EuiCode> tag before
-            passing them to <EuiCode>children</EuiCode>
+            The <EuiCode>EuiModalHeaderTitle</EuiCode> wraps its{' '}
+            <EuiCode>children</EuiCode> prop in an H1 automatically.
           </li>
           <li>
-            Pass a string to <EuiCode>children</EuiCode> to render an h1
-            automatically
+            Pass a string <EuiCode>&lsquo;div&rsquo;</EuiCode> to the{' '}
+            <EuiCode>component</EuiCode> prop to render the heading as a generic
+            container.
           </li>
         </ul>
       </EuiCallOut>
