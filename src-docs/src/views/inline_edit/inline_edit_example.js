@@ -18,7 +18,7 @@ export const InlineEditExample = {
   ),
   sections: [
     {
-      title: 'InlineEdit',
+      title: 'Inline edit',
       text: (
         <>
           <p>

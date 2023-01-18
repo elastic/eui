@@ -246,3 +246,18 @@ export type RecursivePartial<T> = {
     : RecursivePartial<T[P]>; // recurse for all non-array and non-primitive values
 };
 type NonAny = number | boolean | string | symbol | null;
+
+// `Defaultize` copied out of @types/react
+type Defaultize<P, D> = P extends any
+  ? string extends keyof P
+    ? P
+    : Pick<P, Exclude<keyof P, keyof D>> &
+        Partial<Pick<P, Extract<keyof P, keyof D>>> &
+        Partial<Pick<D, Exclude<keyof D, keyof P>>>
+  : never;
+
+export type WithDefaultPropsApplied<
+  T extends keyof JSX.IntrinsicElements | JSXElementConstructor<any>
+> = T extends { defaultProps: infer D }
+  ? Defaultize<ComponentProps<T>, D>
+  : ComponentProps<T>;
