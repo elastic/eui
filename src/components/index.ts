@@ -89,6 +89,8 @@ export * from './icon';
 
 export * from './image';
 
+export * from './inline_edit';
+
 export * from './inner_text';
 
 export * from './i18n';
