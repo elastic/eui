@@ -12,8 +12,6 @@ import {
   EuiHealth,
 } from '../../../../../src/components';
 
-import uniqBy from 'lodash/uniqBy';
-
 type User = {
   id: number;
   firstName: string | null | undefined;
@@ -77,9 +75,7 @@ const columns: Array<EuiBasicTableColumn<User>> = [
   {
     field: 'github',
     name: 'Github',
-    footer: ({ items }: { items: User[] }) => (
-      <span>{uniqBy(items, 'github').length} users</span>
-    ),
+    footer: ({ items }: { items: User[] }) => <span>{items.length} users</span>,
     render: (username: User['github']) => (
       <EuiLink href={`https://github.com/${username}`} target="_blank">
         {username}
@@ -97,9 +93,12 @@ const columns: Array<EuiBasicTableColumn<User>> = [
   {
     field: 'location',
     name: 'Location',
-    footer: ({ items }: { items: User[] }) => (
-      <span>{uniqBy(items, 'location').length} countries</span>
-    ),
+    footer: ({ items }: { items: User[] }) => {
+      const uniqueCountries = new Set(
+        items.map((user) => user.location.country)
+      );
+      return <span>{uniqueCountries.size} countries</span>;
+    },
     render: (location: User['location']) => {
       return `${location.city}, ${location.country}`;
     },
