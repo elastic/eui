@@ -10,14 +10,6 @@ import {
   EuiHealth,
 } from '../../../../../src/components';
 
-const getEmojiFlag = (countryCode: string) => {
-  const codePoints = countryCode
-    .toUpperCase()
-    .split('')
-    .map((char) => 127397 + char.charCodeAt(0));
-  return String.fromCodePoint(...codePoints);
-};
-
 type User = {
   id: string;
   firstName: string | null | undefined;
@@ -28,7 +20,6 @@ type User = {
   country: {
     code: string;
     name: string;
-    flag: string;
   };
 };
 
@@ -45,7 +36,6 @@ for (let i = 0; i < 10; i++) {
     country: {
       code: faker.address.countryCode(),
       name: faker.address.country(),
-      flag: faker.address.countryCode(),
     },
   });
 }
@@ -99,7 +89,7 @@ export default () => {
       field: 'country',
       name: 'Nationality',
       render: (country: User['country']) => {
-        return `${getEmojiFlag(country.flag)} ${country.name}`;
+        return `${getEmojiFlag(country.code)} ${country.name}`;
       },
     },
     {
@@ -146,4 +136,12 @@ export default () => {
       cellProps={getCellProps}
     />
   );
+};
+
+const getEmojiFlag = (countryCode: string) => {
+  const codePoints = countryCode
+    .toUpperCase()
+    .split('')
+    .map((char) => 127397 + char.charCodeAt(0));
+  return String.fromCodePoint(...codePoints);
 };

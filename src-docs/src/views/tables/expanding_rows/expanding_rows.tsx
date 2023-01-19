@@ -18,14 +18,6 @@ import {
   EuiScreenReaderOnly,
 } from '../../../../../src/components';
 
-const getEmojiFlag = (countryCode: string) => {
-  const codePoints = countryCode
-    .toUpperCase()
-    .split('')
-    .map((char) => 127397 + char.charCodeAt(0));
-  return String.fromCodePoint(...codePoints);
-};
-
 type User = {
   id: number;
   firstName: string | null | undefined;
@@ -36,7 +28,6 @@ type User = {
   country: {
     code: string;
     name: string;
-    flag: string;
   };
 };
 
@@ -55,7 +46,6 @@ for (let i = 0; i < usersLength; i++) {
     country: {
       code: faker.address.countryCode(),
       name: faker.address.country(),
-      flag: faker.address.countryCode(),
     },
   });
 }
@@ -100,7 +90,7 @@ export default () => {
       const listItems = [
         {
           title: 'Nationality',
-          description: `${getEmojiFlag(country.flag)} ${country.name}`,
+          description: `${getEmojiFlag(country.code)} ${country.name}`,
         },
         {
           title: 'Online',
@@ -268,4 +258,12 @@ export default () => {
       onChange={onTableChange}
     />
   );
+};
+
+const getEmojiFlag = (countryCode: string) => {
+  const codePoints = countryCode
+    .toUpperCase()
+    .split('')
+    .map((char) => 127397 + char.charCodeAt(0));
+  return String.fromCodePoint(...codePoints);
 };

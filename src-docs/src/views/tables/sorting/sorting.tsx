@@ -18,14 +18,6 @@ import {
   EuiCode,
 } from '../../../../../src/components';
 
-const getEmojiFlag = (countryCode: string) => {
-  const codePoints = countryCode
-    .toUpperCase()
-    .split('')
-    .map((char) => 127397 + char.charCodeAt(0));
-  return String.fromCodePoint(...codePoints);
-};
-
 type User = {
   id: number;
   firstName: string | null | undefined;
@@ -36,7 +28,6 @@ type User = {
   country: {
     code: string;
     name: string;
-    flag: string;
   };
 };
 
@@ -55,7 +46,6 @@ for (let i = 0; i < usersLength; i++) {
     country: {
       code: faker.address.countryCode(),
       name: faker.address.country(),
-      flag: faker.address.countryCode(),
     },
   });
 }
@@ -207,7 +197,7 @@ export default () => {
         </EuiToolTip>
       ),
       render: (country: User['country']) => {
-        return `${getEmojiFlag(country.flag)} ${country.name}`;
+        return `${getEmojiFlag(country.code)} ${country.name}`;
       },
     },
     {
@@ -278,4 +268,12 @@ export default () => {
       />
     </>
   );
+};
+
+const getEmojiFlag = (countryCode: string) => {
+  const codePoints = countryCode
+    .toUpperCase()
+    .split('')
+    .map((char) => 127397 + char.charCodeAt(0));
+  return String.fromCodePoint(...codePoints);
 };
