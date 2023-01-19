@@ -106,9 +106,8 @@ export default () => {
     });
   };
 
-  const onClickDelete = () => {
+  const deleteSelectedUsers = () => {
     deleteUsersByIds(...selectedItems.map((user: User) => user.id));
-
     setSelectedItems([]);
   };
 
@@ -116,19 +115,12 @@ export default () => {
     setSelectedItems(selectedItems);
   };
 
-  const renderDeleteButton = () => {
-    if (selectedItems.length === 0) {
-      return;
-    }
-
-    return (
-      <EuiFlexItem grow={false}>
-        <EuiButton color="danger" iconType="trash" onClick={onClickDelete}>
-          Delete {selectedItems.length} Users
-        </EuiButton>
-      </EuiFlexItem>
-    );
-  };
+  const deleteButton =
+    selectedItems.length > 0 ? (
+      <EuiButton color="danger" iconType="trash" onClick={deleteSelectedUsers}>
+        Delete {selectedItems.length} Users
+      </EuiButton>
+    ) : null;
 
   const toggleMultiAction = () => {
     setMultiAction(!multiAction);
@@ -192,8 +184,6 @@ export default () => {
     sortField,
     sortDirection
   );
-
-  const deleteButton = renderDeleteButton();
 
   const actions = useMemo(() => {
     if (customAction) {

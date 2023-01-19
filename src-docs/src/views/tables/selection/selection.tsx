@@ -93,23 +93,17 @@ export default () => {
     });
   };
 
-  const onClickDelete = () => {
+  const deleteSelectedUsers = () => {
     deleteUsersByIds(...selectedItems.map((user: User) => user.id));
-
     setSelectedItems([]);
   };
 
-  const renderDeleteButton = () => {
-    if (selectedItems.length === 0) {
-      return;
-    }
-
-    return (
-      <EuiButton color="danger" iconType="trash" onClick={onClickDelete}>
+  const deleteButton =
+    selectedItems.length > 0 ? (
+      <EuiButton color="danger" iconType="trash" onClick={deleteSelectedUsers}>
         Delete {selectedItems.length} Users
       </EuiButton>
-    );
-  };
+    ) : null;
 
   const renderStatus = (online: User['online']) => {
     const color = online ? 'success' : 'danger';
@@ -161,8 +155,6 @@ export default () => {
     sortField,
     sortDirection
   );
-
-  const deleteButton = renderDeleteButton();
 
   const columns: Array<EuiBasicTableColumn<User>> = [
     {
@@ -266,12 +258,11 @@ export default () => {
 
   return (
     <>
-      <EuiFlexGroup alignItems="center">
+      <EuiFlexGroup alignItems="center" justifyContent="spaceBetween">
         <EuiFlexItem grow={false}>
           <EuiButton onClick={onSelection}>Select online users</EuiButton>
         </EuiFlexItem>
-        <EuiFlexItem />
-        {deleteButton}
+        <EuiFlexItem grow={false}>{deleteButton}</EuiFlexItem>
       </EuiFlexGroup>
 
       <EuiSpacer size="l" />

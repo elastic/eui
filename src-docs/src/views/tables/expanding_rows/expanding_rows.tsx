@@ -14,7 +14,6 @@ import {
   Criteria,
   EuiButtonIcon,
   EuiHealth,
-  EuiButton,
   EuiDescriptionList,
   EuiScreenReaderOnly,
 } from '../../../../../src/components';
@@ -66,7 +65,7 @@ export default () => {
   const [pageSize, setPageSize] = useState(5);
   const [sortField, setSortField] = useState<keyof User>('firstName');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
-  const [selectedItems, setSelectedItems] = useState<User[]>([]);
+  const [, setSelectedItems] = useState<User[]>([]);
   const [itemIdToExpandedRowMap, setItemIdToExpandedRowMap] = useState<
     Record<string, ReactNode>
   >({});
@@ -86,32 +85,6 @@ export default () => {
 
   const onSelectionChange = (selectedItems: User[]) => {
     setSelectedItems(selectedItems);
-  };
-
-  const deleteUsersByIds = (...ids: number[]) => {
-    ids.forEach((id) => {
-      const index = users.findIndex((user) => user.id === id);
-      if (index >= 0) {
-        users.splice(index, 1);
-      }
-    });
-  };
-
-  const onClickDelete = () => {
-    deleteUsersByIds(...selectedItems.map((user: User) => user.id));
-
-    setSelectedItems([]);
-  };
-
-  const renderDeleteButton = () => {
-    if (selectedItems.length === 0) {
-      return;
-    }
-    return (
-      <EuiButton color="danger" iconType="trash" onClick={onClickDelete}>
-        Delete {selectedItems.length} Users
-      </EuiButton>
-    );
   };
 
   const toggleDetails = (user: User) => {
@@ -185,7 +158,6 @@ export default () => {
     sortField,
     sortDirection
   );
-  const deleteButton = renderDeleteButton();
 
   const columns: Array<EuiBasicTableColumn<User>> = [
     {
@@ -281,22 +253,19 @@ export default () => {
   };
 
   return (
-    <>
-      {deleteButton}
-      <EuiBasicTable
-        tableCaption="Demo of EuiBasicTable with expanding rows"
-        items={pageOfItems}
-        itemId="id"
-        itemIdToExpandedRowMap={itemIdToExpandedRowMap}
-        isExpandable={true}
-        hasActions={true}
-        columns={columns}
-        pagination={pagination}
-        sorting={sorting}
-        isSelectable={true}
-        selection={selection}
-        onChange={onTableChange}
-      />
-    </>
+    <EuiBasicTable
+      tableCaption="Demo of EuiBasicTable with expanding rows"
+      items={pageOfItems}
+      itemId="id"
+      itemIdToExpandedRowMap={itemIdToExpandedRowMap}
+      isExpandable={true}
+      hasActions={true}
+      columns={columns}
+      pagination={pagination}
+      sorting={sorting}
+      isSelectable={true}
+      selection={selection}
+      onChange={onTableChange}
+    />
   );
 };
