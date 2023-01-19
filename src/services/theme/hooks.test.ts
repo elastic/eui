@@ -8,9 +8,32 @@
 
 import { renderHook } from '@testing-library/react-hooks';
 
+import { setEuiDevProviderWarning } from './provider';
 import { useEuiTheme } from './hooks';
 
 describe('useEuiTheme', () => {
+  it('returns a context with theme variables, color mode, and modifications', () => {
+    const { result } = renderHook(useEuiTheme);
+    expect(result.current).toEqual({
+      euiTheme: expect.any(Object),
+      colorMode: 'LIGHT',
+      modifications: {},
+    });
+  });
+
+  it('logs, warns, or errors if a provider warning level has been set', () => {
+    const warnSpy = jest.spyOn(console, 'warn').mockImplementation();
+    setEuiDevProviderWarning('warn');
+
+    renderHook(useEuiTheme);
+    expect(warnSpy).toHaveBeenCalledWith(
+      expect.stringContaining('`EuiProvider` is missing')
+    );
+
+    setEuiDevProviderWarning(undefined);
+    warnSpy.mockRestore();
+  });
+
   it('consecutive calls return a stable object', () => {
     const { result, rerender } = renderHook(useEuiTheme);
     expect(result.all.length).toEqual(1);
