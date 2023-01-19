@@ -6,13 +6,17 @@
  * Side Public License, v 1.
  */
 
-import { testCustomHook } from '../../test/internal';
+import { renderHook } from '@testing-library/react-hooks';
+
 import { useEuiTheme } from './hooks';
 
 describe('useEuiTheme', () => {
   it('consecutive calls return a stable object', () => {
-    const hookResult = testCustomHook(useEuiTheme);
-    hookResult.updateHookArgs({});
-    expect(hookResult.return).toBe(hookResult.getUpdatedState());
+    const { result, rerender } = renderHook(useEuiTheme);
+    expect(result.all.length).toEqual(1);
+    rerender({});
+    expect(result.all.length).toEqual(2);
+
+    expect(result.all[0]).toBe(result.all[1]);
   });
 });
