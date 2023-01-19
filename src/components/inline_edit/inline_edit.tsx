@@ -112,6 +112,7 @@ export const EuiInlineEdit = <T extends AcceptableComponents>({
       setIsInEdit(!isInEdit);
       onConfirm && onConfirm();
     } else {
+      editViewTypeProps['selectedOptions'] = comboBoxSelectedOptions;
       setIsInEdit(!isInEdit);
     }
   };
@@ -173,6 +174,7 @@ export const EuiInlineEdit = <T extends AcceptableComponents>({
     <>
       <EditViewType
         id={inlineTextEditInputId}
+        selectedOptions={comboBoxSelectedOptions}
         {...editViewTypeProps}
         {...(rest as any)}
       />
