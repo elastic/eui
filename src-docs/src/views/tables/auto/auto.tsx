@@ -4,7 +4,9 @@ import { htmlIdGenerator, formatDate } from '../../../../../src/services';
 
 import {
   EuiBasicTable,
+  EuiTableFieldDataColumnType,
   EuiButtonGroup,
+  EuiButtonGroupOptionProps,
   EuiCallOut,
   EuiLink,
   EuiSpacer,
@@ -36,7 +38,7 @@ for (let i = 0; i < usersLength; i++) {
   });
 }
 
-const columns: any = [
+const columns: Array<EuiTableFieldDataColumnType<User>> = [
   {
     field: 'firstName',
     name: 'First Name',
@@ -96,7 +98,7 @@ const filteredUsers = users.filter((user, index) => index < 10);
 
 const idPrefix = htmlIdGenerator()();
 
-const toggleButtons: any[] = [
+const toggleButtons: EuiButtonGroupOptionProps[] = [
   {
     id: `${idPrefix}0`,
     label: 'Fixed',
@@ -114,7 +116,7 @@ const toggleButtons: any[] = [
   },
 ];
 
-const vAlignButtons: any[] = [
+const vAlignButtons: EuiButtonGroupOptionProps[] = [
   {
     id: `${idPrefix}4`,
     label: 'Top',
@@ -132,7 +134,7 @@ const vAlignButtons: any[] = [
   },
 ];
 
-const alignButtons: any[] = [
+const alignButtons: EuiButtonGroupOptionProps[] = [
   {
     id: `${idPrefix}6`,
     label: 'Left',
@@ -161,7 +163,7 @@ export default () => {
   );
 
   const onChange = (optionId: string) => {
-    const alignment = toggleButtons.find((x) => x.id === optionId).value;
+    const alignment = toggleButtons.find((x) => x.id === optionId)?.value;
 
     columns[5].width = alignment === 'custom' ? '20%' : undefined;
 
@@ -171,16 +173,16 @@ export default () => {
 
   const onVAlignChange = (optionId: string) => {
     setVAlignButtonsIdSelected(optionId);
-    const alignment = vAlignButtons.find((x) => x.id === optionId).value;
+    const alignment = vAlignButtons.find((x) => x.id === optionId)?.value;
 
-    columns.forEach((column: any) => (column.valign = alignment));
+    columns.forEach((column) => (column.valign = alignment));
   };
 
   const onAlignChange = (optionId: string) => {
     setAlignButtonsIdSelected(optionId);
-    const alignment = alignButtons.find((x) => x.id === optionId).value;
+    const alignment = alignButtons.find((x) => x.id === optionId)?.value;
 
-    columns.forEach((column: any) => (column.align = alignment));
+    columns.forEach((column) => (column.align = alignment));
   };
 
   let callOutText;

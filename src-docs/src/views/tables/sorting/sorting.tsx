@@ -4,6 +4,9 @@ import { formatDate, Comparators } from '../../../../../src/services';
 
 import {
   EuiBasicTable,
+  EuiBasicTableColumn,
+  EuiTableSortingType,
+  Criteria,
   EuiHealth,
   EuiIcon,
   EuiLink,
@@ -63,18 +66,20 @@ export default () => {
 
   const [pageIndex, setPageIndex] = useState(0);
   const [pageSize, setPageSize] = useState(5);
-  const [sortField, setSortField] = useState('firstName');
-  const [sortDirection, setSortDirection] = useState('asc');
+  const [sortField, setSortField] = useState<keyof User>('firstName');
+  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
 
-  const onTableChange = ({ page = {}, sort = {} }) => {
-    const { index: pageIndex, size: pageSize }: any = page;
-
-    const { field: sortField, direction: sortDirection }: any = sort;
-
-    setPageIndex(pageIndex);
-    setPageSize(pageSize);
-    setSortField(sortField);
-    setSortDirection(sortDirection);
+  const onTableChange = ({ page, sort }: Criteria<User>) => {
+    if (page) {
+      const { index: pageIndex, size: pageSize } = page;
+      setPageIndex(pageIndex);
+      setPageSize(pageSize);
+    }
+    if (sort) {
+      const { field: sortField, direction: sortDirection } = sort;
+      setSortField(sortField);
+      setSortDirection(sortDirection);
+    }
   };
 
   const renderStatus = (online: User['online']) => {
@@ -87,8 +92,8 @@ export default () => {
     users: User[],
     pageIndex: number,
     pageSize: number,
-    sortField: any,
-    sortDirection: any
+    sortField: keyof User,
+    sortDirection: 'asc' | 'desc'
   ) => {
     let items;
 
@@ -127,7 +132,7 @@ export default () => {
     sortField,
     sortDirection
   );
-  const columns = [
+  const columns: Array<EuiBasicTableColumn<User>> = [
     {
       field: 'firstName',
       name: 'First Name',
@@ -189,7 +194,6 @@ export default () => {
           </span>
         </EuiToolTip>
       ),
-      schema: 'date',
       render: (dateOfBirth: User['dateOfBirth']) =>
         formatDate(dateOfBirth, 'dobLong'),
     },
@@ -227,7 +231,6 @@ export default () => {
           </span>
         </EuiToolTip>
       ),
-      schema: 'boolean',
       render: (online: User['online']) => renderStatus(online),
     },
   ];
@@ -239,7 +242,7 @@ export default () => {
     pageSizeOptions: [3, 5, 8],
   };
 
-  const sorting = {
+  const sorting: EuiTableSortingType<User> = {
     sort: {
       field: sortField,
       direction: sortDirection,
@@ -272,7 +275,7 @@ export default () => {
         items={pageOfItems}
         columns={columns}
         pagination={pagination}
-        sorting={sorting as any}
+        sorting={sorting}
         onChange={onTableChange}
       />
     </div>

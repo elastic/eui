@@ -1,9 +1,13 @@
-import React, { useState, Fragment, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { faker } from '@faker-js/faker';
 import { formatDate, Comparators } from '../../../../../src/services';
 
 import {
   EuiBasicTable,
+  EuiBasicTableColumn,
+  EuiTableSelectionType,
+  EuiTableSortingType,
+  Criteria,
   EuiLink,
   EuiHealth,
   EuiButton,
@@ -57,24 +61,26 @@ for (let i = 0; i < usersLength; i++) {
 export default () => {
   const [pageIndex, setPageIndex] = useState(0);
   const [pageSize, setPageSize] = useState(5);
-  const [sortField, setSortField] = useState('firstName');
-  const [sortDirection, setSortDirection] = useState('asc');
-  const [selectedItems, setSelectedItems] = useState([]);
+  const [sortField, setSortField] = useState<keyof User>('firstName');
+  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
+  const [selectedItems, setSelectedItems] = useState<User[]>([]);
 
-  const tableRef = useRef();
+  const tableRef = useRef<EuiBasicTable | null>(null);
 
-  const onTableChange = ({ page = {}, sort = {} }) => {
-    const { index: pageIndex, size: pageSize }: any = page;
-
-    const { field: sortField, direction: sortDirection }: any = sort;
-
-    setPageIndex(pageIndex);
-    setPageSize(pageSize);
-    setSortField(sortField);
-    setSortDirection(sortDirection);
+  const onTableChange = ({ page, sort }: Criteria<User>) => {
+    if (page) {
+      const { index: pageIndex, size: pageSize } = page;
+      setPageIndex(pageIndex);
+      setPageSize(pageSize);
+    }
+    if (sort) {
+      const { field: sortField, direction: sortDirection } = sort;
+      setSortField(sortField);
+      setSortDirection(sortDirection);
+    }
   };
 
-  const onSelectionChange = (selectedItems: []) => {
+  const onSelectionChange = (selectedItems: User[]) => {
     setSelectedItems(selectedItems);
   };
 
@@ -115,8 +121,8 @@ export default () => {
     users: User[],
     pageIndex: number,
     pageSize: number,
-    sortField: any,
-    sortDirection: any
+    sortField: keyof User,
+    sortDirection: 'asc' | 'desc'
   ) => {
     let items;
 
@@ -158,7 +164,7 @@ export default () => {
 
   const deleteButton = renderDeleteButton();
 
-  const columns = [
+  const columns: Array<EuiBasicTableColumn<User>> = [
     {
       field: 'firstName',
       name: 'First Name',
@@ -237,7 +243,7 @@ export default () => {
     pageSizeOptions: [3, 5, 8],
   };
 
-  const sorting = {
+  const sorting: EuiTableSortingType<User> = {
     sort: {
       field: sortField,
       direction: sortDirection,
@@ -246,23 +252,20 @@ export default () => {
 
   const onlineUsers = users.filter((user) => user.online);
 
-  const selection = {
+  const selection: EuiTableSelectionType<User> = {
     selectable: (user: User) => user.online,
     selectableMessage: (selectable: boolean) =>
-      !selectable ? 'User is currently offline' : undefined,
-    onSelectionChange: onSelectionChange,
+      !selectable ? 'User is currently offline' : '',
+    onSelectionChange,
     initialSelected: onlineUsers,
   };
 
   const onSelection = () => {
-    if (!tableRef.current) return;
-
-    // @ts-ignore - Property 'setSelection' does not exist on type 'never'
-    tableRef.current.setSelection(onlineUsers);
+    tableRef.current?.setSelection(onlineUsers);
   };
 
   return (
-    <Fragment>
+    <>
       <EuiFlexGroup alignItems="center">
         <EuiFlexItem grow={false}>
           <EuiButton onClick={onSelection}>Select online users</EuiButton>
@@ -275,17 +278,17 @@ export default () => {
 
       <EuiBasicTable
         tableCaption="Demo for EuiBasicTable with selection"
-        ref={tableRef as any}
+        ref={tableRef}
         items={pageOfItems}
         itemId="id"
-        columns={columns as any}
+        columns={columns}
         pagination={pagination}
-        sorting={sorting as any}
+        sorting={sorting}
         isSelectable={true}
-        selection={selection as any}
+        selection={selection}
         onChange={onTableChange}
         rowHeader="firstName"
       />
-    </Fragment>
+    </>
   );
 };

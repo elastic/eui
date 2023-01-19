@@ -4,6 +4,8 @@ import { formatDate } from '../../../../../src/services/format';
 
 import {
   EuiBasicTable,
+  EuiBasicTableColumn,
+  Criteria,
   EuiCode,
   EuiLink,
   EuiHealth,
@@ -62,11 +64,12 @@ export default () => {
   const [pageSize, setPageSize] = useState(10);
   const [showPerPageOptions, setShowPerPageOptions] = useState(true);
 
-  const onTableChange = ({ page = {} }) => {
-    const { index: pageIndex, size: pageSize }: any = page;
-
-    setPageIndex(pageIndex);
-    setPageSize(pageSize);
+  const onTableChange = ({ page }: Criteria<User>) => {
+    if (page) {
+      const { index: pageIndex, size: pageSize } = page;
+      setPageIndex(pageIndex);
+      setPageSize(pageSize);
+    }
   };
 
   const renderStatus = (online: User['online']) => {
@@ -98,7 +101,7 @@ export default () => {
 
   const { pageOfItems, totalItemCount } = findUsers(users, pageIndex, pageSize);
 
-  const columns = [
+  const columns: Array<EuiBasicTableColumn<User>> = [
     {
       field: 'firstName',
       name: 'First Name',
@@ -208,7 +211,7 @@ export default () => {
       <EuiBasicTable
         tableCaption="Demo for EuiBasicTable with pagination"
         items={pageOfItems}
-        columns={columns as any}
+        columns={columns}
         pagination={pagination}
         onChange={onTableChange}
       />

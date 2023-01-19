@@ -4,6 +4,7 @@ import { formatDate } from '../../../../../src/services/format';
 
 import {
   EuiBasicTable,
+  EuiBasicTableColumn,
   EuiTableFieldDataColumnType,
   EuiLink,
   EuiHealth,
@@ -58,7 +59,7 @@ const renderStatus = (online: User['online']) => {
 };
 
 export default () => {
-  const columns = [
+  const columns: Array<EuiBasicTableColumn<User>> = [
     {
       field: 'firstName',
       name: 'First Name',
@@ -131,7 +132,7 @@ export default () => {
 
   const getCellProps = (
     user: User,
-    column: EuiTableFieldDataColumnType<any>
+    column: EuiTableFieldDataColumnType<User>
   ) => {
     const { id } = user;
     const { field } = column;
@@ -149,7 +150,7 @@ export default () => {
       tableCaption="Demo of EuiBasicTable"
       items={filteredUsers}
       rowHeader="firstName"
-      columns={columns as any}
+      columns={columns}
       rowProps={getRowProps}
       cellProps={getCellProps}
     />

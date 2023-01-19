@@ -1,9 +1,15 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, useMemo, Fragment } from 'react';
 import { faker } from '@faker-js/faker';
 import { formatDate, Comparators } from '../../../../../src/services';
 
 import {
   EuiBasicTable,
+  EuiBasicTableColumn,
+  EuiTableSelectionType,
+  EuiTableSortingType,
+  Criteria,
+  DefaultItemAction,
+  CustomItemAction,
   EuiLink,
   EuiHealth,
   EuiButton,
@@ -58,21 +64,23 @@ for (let i = 0; i < usersLength; i++) {
 export default () => {
   const [pageIndex, setPageIndex] = useState(0);
   const [pageSize, setPageSize] = useState(5);
-  const [sortField, setSortField] = useState('firstName');
-  const [sortDirection, setSortDirection] = useState('asc');
-  const [selectedItems, setSelectedItems] = useState([]);
+  const [sortField, setSortField] = useState<keyof User>('firstName');
+  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
+  const [selectedItems, setSelectedItems] = useState<User[]>([]);
   const [multiAction, setMultiAction] = useState(false);
   const [customAction, setCustomAction] = useState(false);
 
-  const onTableChange = ({ page = {}, sort = {} }) => {
-    const { index: pageIndex, size: pageSize }: any = page;
-
-    const { field: sortField, direction: sortDirection }: any = sort;
-
-    setPageIndex(pageIndex);
-    setPageSize(pageSize);
-    setSortField(sortField);
-    setSortDirection(sortDirection);
+  const onTableChange = ({ page, sort }: Criteria<User>) => {
+    if (page) {
+      const { index: pageIndex, size: pageSize } = page;
+      setPageIndex(pageIndex);
+      setPageSize(pageSize);
+    }
+    if (sort) {
+      const { field: sortField, direction: sortDirection } = sort;
+      setSortField(sortField);
+      setSortDirection(sortDirection);
+    }
   };
 
   const renderStatus = (online: User['online']) => {
@@ -104,7 +112,7 @@ export default () => {
     setSelectedItems([]);
   };
 
-  const onSelectionChange = (selectedItems: []) => {
+  const onSelectionChange = (selectedItems: User[]) => {
     setSelectedItems(selectedItems);
   };
 
@@ -144,8 +152,8 @@ export default () => {
     users: User[],
     pageIndex: number,
     pageSize: number,
-    sortField: any,
-    sortDirection: any
+    sortField: keyof User,
+    sortDirection: 'asc' | 'desc'
   ) => {
     let items;
 
@@ -187,11 +195,21 @@ export default () => {
 
   const deleteButton = renderDeleteButton();
 
-  let actions = null;
-
-  if (multiAction) {
-    actions = customAction
-      ? [
+  const actions = useMemo(() => {
+    if (customAction) {
+      let actions: Array<CustomItemAction<User>> = [
+        {
+          render: (user: User) => {
+            return (
+              <EuiLink onClick={() => deleteUser(user)} color="danger">
+                Delete
+              </EuiLink>
+            );
+          },
+        },
+      ];
+      if (multiAction) {
+        actions = [
           {
             render: (user: User) => {
               return (
@@ -201,21 +219,30 @@ export default () => {
               );
             },
           },
-          {
-            render: (user: User) => {
-              return (
-                <EuiLink color="danger" onClick={() => deleteUser(user)}>
-                  Delete
-                </EuiLink>
-              );
-            },
-          },
-        ]
-      : [
+          ...actions,
+        ];
+      }
+      return actions;
+    } else {
+      let actions: Array<DefaultItemAction<User>> = [
+        {
+          name: 'Elastic.co',
+          description: 'Go to elastic.co',
+          icon: 'editorLink',
+          color: 'primary',
+          type: 'icon',
+          href: 'https://elastic.co',
+          target: '_blank',
+          'data-test-subj': 'action-outboundlink',
+        },
+      ];
+      if (multiAction) {
+        actions = [
           {
             name: <span>Clone</span>,
             description: 'Clone this user',
             icon: 'copy',
+            type: 'icon',
             onClick: cloneUser,
             'data-test-subj': 'action-clone',
           },
@@ -248,44 +275,14 @@ export default () => {
             onClick: () => {},
             'data-test-subj': 'action-share',
           },
-          {
-            name: 'Elastic.co',
-            description: 'Go to elastic.co',
-            icon: 'logoElastic',
-            type: 'icon',
-            href: 'https://elastic.co',
-            target: '_blank',
-            'data-test-subj': 'action-outboundlink',
-          },
+          ...actions,
         ];
-  } else {
-    actions = customAction
-      ? [
-          {
-            render: (user: User) => {
-              return (
-                <EuiLink onClick={() => deleteUser(user)} color="danger">
-                  Delete
-                </EuiLink>
-              );
-            },
-          },
-        ]
-      : [
-          {
-            name: 'Elastic.co',
-            description: 'Go to elastic.co',
-            icon: 'editorLink',
-            color: 'primary',
-            type: 'icon',
-            href: 'https://elastic.co',
-            target: '_blank',
-            'data-test-subj': 'action-outboundlink',
-          },
-        ];
-  }
+      }
+      return actions;
+    }
+  }, [customAction, multiAction]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const columns = [
+  const columns: Array<EuiBasicTableColumn<User>> = [
     {
       field: 'firstName',
       name: 'First Name',
@@ -354,18 +351,18 @@ export default () => {
     pageSizeOptions: [3, 5, 8],
   };
 
-  const sorting = {
+  const sorting: EuiTableSortingType<User> = {
     sort: {
       field: sortField,
       direction: sortDirection,
     },
   };
 
-  const selection = {
+  const selection: EuiTableSelectionType<User> = {
     selectable: (user: User) => user.online,
     selectableMessage: (selectable: boolean) =>
-      !selectable ? 'User is currently offline' : undefined,
-    onSelectionChange: onSelectionChange,
+      !selectable ? 'User is currently offline' : '',
+    onSelectionChange,
   };
 
   return (
@@ -395,10 +392,10 @@ export default () => {
         tableCaption="Demo of EuiBasicTable with actions"
         items={pageOfItems}
         itemId="id"
-        columns={columns as any}
+        columns={columns}
         pagination={pagination}
-        sorting={sorting as any}
-        selection={selection as any}
+        sorting={sorting}
+        selection={selection}
         hasActions={customAction ? false : true}
         onChange={onTableChange}
       />
