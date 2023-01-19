@@ -66,6 +66,8 @@ import {
 } from './table_types';
 import { EuiTableSortMobileProps } from '../table/mobile/table_sort_mobile';
 
+import { euiBasicTableActionsWrapper } from './basic_table.styles';
+
 type DataTypeProfiles = Record<
   EuiTableDataType,
   {
@@ -1214,6 +1216,7 @@ export class EuiBasicTable<T = any> extends Component<
         align="right"
         textOnly={false}
         hasActions={true}
+        css={euiBasicTableActionsWrapper}
       >
         {tools}
       </EuiTableRowCell>
