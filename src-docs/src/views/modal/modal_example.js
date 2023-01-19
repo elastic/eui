@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
-import { EuiCallOut } from '../../../../src';
 
 import {
   EuiCode,
@@ -12,7 +11,6 @@ import {
   EuiModalBody,
   EuiModalFooter,
   EuiConfirmModal,
-  EuiScreenReaderOnly,
   EuiText,
 } from '../../../../src/components';
 import Guidelines from './guidelines';
@@ -127,32 +125,6 @@ export const ModalExample = {
         </Link>{' '}
         instead.
       </p>
-      <EuiCallOut
-        iconType="accessibility"
-        title={<>Modal titles should be an H1</>}
-      >
-        <p>
-          EUI recommends all modal dialogs include a{' '}
-          <EuiCode>EuiModalHeaderTitle</EuiCode>. This title should explain what
-          action(s) users will take.
-        </p>
-        <EuiScreenReaderOnly>
-          <span id="modal-header-children-title">
-            EUI Modal Header Title children prop - options
-          </span>
-        </EuiScreenReaderOnly>
-        <ul aria-labelledby="modal-header-children-title">
-          <li>
-            The <EuiCode>EuiModalHeaderTitle</EuiCode> wraps its{' '}
-            <EuiCode>children</EuiCode> prop in an H1 automatically.
-          </li>
-          <li>
-            Pass a string <EuiCode>&lsquo;div&rsquo;</EuiCode> to the{' '}
-            <EuiCode>component</EuiCode> prop to render the heading as a generic
-            container.
-          </li>
-        </ul>
-      </EuiCallOut>
     </EuiText>
   ),
   sections: [
