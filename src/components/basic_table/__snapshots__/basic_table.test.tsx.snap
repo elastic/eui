@@ -1723,6 +1723,7 @@ exports[`EuiBasicTable with multiple record actions with custom availability 1`]
           </EuiTableRowCell>
           <EuiTableRowCell
             align="right"
+            css="unknown styles"
             hasActions={true}
             key="record_actions_1_1"
             showOnHover={true}
@@ -1784,6 +1785,7 @@ exports[`EuiBasicTable with multiple record actions with custom availability 1`]
           </EuiTableRowCell>
           <EuiTableRowCell
             align="right"
+            css="unknown styles"
             hasActions={true}
             key="record_actions_2_1"
             showOnHover={true}
@@ -1846,6 +1848,7 @@ exports[`EuiBasicTable with multiple record actions with custom availability 1`]
           </EuiTableRowCell>
           <EuiTableRowCell
             align="right"
+            css="unknown styles"
             hasActions={true}
             key="record_actions_3_1"
             showOnHover={true}
@@ -1903,6 +1906,7 @@ exports[`EuiBasicTable with multiple record actions with custom availability 1`]
           </EuiTableRowCell>
           <EuiTableRowCell
             align="right"
+            css="unknown styles"
             hasActions={true}
             key="record_actions_4_1"
             showOnHover={true}
@@ -3023,6 +3027,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
           </EuiTableRowCell>
           <EuiTableRowCell
             align="right"
+            css="unknown styles"
             hasActions={true}
             key="record_actions_1_1"
             showOnHover={true}
@@ -3081,6 +3086,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
           </EuiTableRowCell>
           <EuiTableRowCell
             align="right"
+            css="unknown styles"
             hasActions={true}
             key="record_actions_2_1"
             showOnHover={true}
@@ -3139,6 +3145,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
           </EuiTableRowCell>
           <EuiTableRowCell
             align="right"
+            css="unknown styles"
             hasActions={true}
             key="record_actions_3_1"
             showOnHover={true}
@@ -3707,6 +3714,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
           </EuiTableRowCell>
           <EuiTableRowCell
             align="right"
+            css="unknown styles"
             hasActions={true}
             key="record_actions_1_1"
             showOnHover={true}
@@ -3771,6 +3779,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
           </EuiTableRowCell>
           <EuiTableRowCell
             align="right"
+            css="unknown styles"
             hasActions={true}
             key="record_actions_2_1"
             showOnHover={true}
@@ -3835,6 +3844,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
           </EuiTableRowCell>
           <EuiTableRowCell
             align="right"
+            css="unknown styles"
             hasActions={true}
             key="record_actions_3_1"
             showOnHover={true}
