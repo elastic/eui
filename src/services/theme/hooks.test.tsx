@@ -11,7 +11,12 @@ import { renderHook } from '@testing-library/react-hooks';
 import { render } from '@testing-library/react';
 
 import { setEuiDevProviderWarning } from './provider';
-import { useEuiTheme, UseEuiTheme, withEuiTheme } from './hooks';
+import {
+  useEuiTheme,
+  UseEuiTheme,
+  withEuiTheme,
+  RenderWithEuiTheme,
+} from './hooks';
 
 describe('useEuiTheme', () => {
   it('returns a context with theme variables, color mode, and modifications', () => {
@@ -58,6 +63,19 @@ describe('withEuiTheme', () => {
 
   it('provides underlying class components with a `theme` prop', () => {
     const { container } = render(<Component />);
+    expect(container.firstChild!.textContent).toEqual(
+      'euiTheme,colorMode,modifications'
+    );
+  });
+});
+
+describe('RenderWithEuiTheme', () => {
+  it('passes the `theme` arg to children as a render prop', () => {
+    const { container } = render(
+      <RenderWithEuiTheme>
+        {(theme) => <>{Object.keys(theme).join()}</>}
+      </RenderWithEuiTheme>
+    );
     expect(container.firstChild!.textContent).toEqual(
       'euiTheme,colorMode,modifications'
     );
