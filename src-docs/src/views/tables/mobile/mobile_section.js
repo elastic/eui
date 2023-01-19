@@ -30,7 +30,7 @@ export const section = {
     },
   ],
   text: (
-    <div>
+    <>
       <p>
         Allowing a table to be responsive means breaking each row down into its
         own section and individually displaying each table header above the cell
@@ -70,7 +70,7 @@ export const section = {
         mobile layouts, though you must also be passing a mobile specific render
         function.
       </p>
-    </div>
+    </>
   ),
   props: { EuiTableRowCellMobileOptionsShape },
   demo: <Table />,

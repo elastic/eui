@@ -15,7 +15,7 @@ export const section = {
     },
   ],
   text: (
-    <div>
+    <>
       <p>
         The following example demonstrates &quot;actions&quot; columns. These
         are special columns where you define per-row, item level actions. The
@@ -37,7 +37,7 @@ export const section = {
           stays visible at all times.
         </li>
       </ul>
-    </div>
+    </>
   ),
   components: { EuiBasicTable },
   demo: <Table />,

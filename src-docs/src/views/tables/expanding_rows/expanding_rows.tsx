@@ -1,4 +1,4 @@
-import React, { useState, ReactNode, Fragment } from 'react';
+import React, { useState, ReactNode } from 'react';
 import { faker } from '@faker-js/faker';
 import {
   formatDate,
@@ -281,7 +281,7 @@ export default () => {
   };
 
   return (
-    <Fragment>
+    <>
       {deleteButton}
       <EuiBasicTable
         tableCaption="Demo of EuiBasicTable with expanding rows"
@@ -297,6 +297,6 @@ export default () => {
         selection={selection}
         onChange={onTableChange}
       />
-    </Fragment>
+    </>
   );
 };

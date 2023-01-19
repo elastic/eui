@@ -1,4 +1,4 @@
-import React, { useState, useMemo, Fragment } from 'react';
+import React, { useState, useMemo } from 'react';
 import { faker } from '@faker-js/faker';
 import { formatDate, Comparators } from '../../../../../src/services';
 
@@ -366,7 +366,7 @@ export default () => {
   };
 
   return (
-    <Fragment>
+    <>
       <EuiFlexGroup alignItems="center">
         <EuiFlexItem grow={false}>
           <EuiSwitch
@@ -399,6 +399,6 @@ export default () => {
         hasActions={customAction ? false : true}
         onChange={onTableChange}
       />
-    </Fragment>
+    </>
   );
 };

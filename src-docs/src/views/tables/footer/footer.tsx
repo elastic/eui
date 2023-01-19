@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import { faker } from '@faker-js/faker';
 import { formatDate, Comparators } from '../../../../../src/services';
 
@@ -268,7 +268,7 @@ export default () => {
   };
 
   return (
-    <Fragment>
+    <>
       {deleteButton}
       <EuiBasicTable
         tableCaption="Demo of EuiBasicTable with footer"
@@ -281,6 +281,6 @@ export default () => {
         selection={selection}
         onChange={onTableChange}
       />
-    </Fragment>
+    </>
   );
 };

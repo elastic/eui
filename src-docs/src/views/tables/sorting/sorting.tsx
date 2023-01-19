@@ -252,7 +252,7 @@ export default () => {
   };
 
   return (
-    <div>
+    <>
       <EuiFlexGroup>
         <EuiFlexItem grow={false}>
           <EuiSwitch
@@ -278,6 +278,6 @@ export default () => {
         sorting={sorting}
         onChange={onTableChange}
       />
-    </div>
+    </>
   );
 };

@@ -29,7 +29,7 @@ export const section = {
     },
   ],
   text: (
-    <div>
+    <>
       <p>
         <strong>EuiBasicTable</strong> is an opinionated high level component
         that standardizes both display and injection. At its most simple it only
@@ -86,7 +86,7 @@ export const section = {
           properly.
         </li>
       </ul>
-    </div>
+    </>
   ),
   props: {
     EuiBasicTable,

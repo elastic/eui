@@ -191,7 +191,7 @@ export default () => {
     );
 
   return (
-    <div>
+    <>
       <EuiSwitch
         checked={!showPerPageOptions}
         label={
@@ -215,6 +215,6 @@ export default () => {
         pagination={pagination}
         onChange={onTableChange}
       />
-    </div>
+    </>
   );
 };

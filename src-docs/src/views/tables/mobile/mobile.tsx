@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import { faker } from '@faker-js/faker';
 import { formatDate, Comparators } from '../../../../../src/services';
 
@@ -273,7 +273,7 @@ export default () => {
   };
 
   return (
-    <Fragment>
+    <>
       <EuiFlexGroup alignItems="center" responsive={false}>
         <EuiFlexItem grow={false}>
           <EuiSwitch
@@ -307,6 +307,6 @@ export default () => {
         responsive={isResponsive}
         onChange={onTableChange}
       />
-    </Fragment>
+    </>
   );
 };

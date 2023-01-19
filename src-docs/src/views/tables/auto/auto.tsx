@@ -201,7 +201,7 @@ export default () => {
   }
 
   return (
-    <div>
+    <>
       <EuiButtonGroup
         legend="Table layout options"
         options={toggleButtons}
@@ -235,6 +235,6 @@ export default () => {
         columns={columns}
         tableLayout={layout === 'auto' ? 'auto' : 'fixed'}
       />
-    </div>
+    </>
   );
 };
