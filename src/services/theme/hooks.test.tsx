@@ -6,10 +6,12 @@
  * Side Public License, v 1.
  */
 
+import React from 'react';
 import { renderHook } from '@testing-library/react-hooks';
+import { render } from '@testing-library/react';
 
 import { setEuiDevProviderWarning } from './provider';
-import { useEuiTheme } from './hooks';
+import { useEuiTheme, UseEuiTheme, withEuiTheme } from './hooks';
 
 describe('useEuiTheme', () => {
   it('returns a context with theme variables, color mode, and modifications', () => {
@@ -41,5 +43,23 @@ describe('useEuiTheme', () => {
     expect(result.all.length).toEqual(2);
 
     expect(result.all[0]).toBe(result.all[1]);
+  });
+});
+
+describe('withEuiTheme', () => {
+  class ClassComponent extends React.Component<{ theme: UseEuiTheme }> {
+    render() {
+      const { theme } = this.props;
+      // output
+      return Object.keys(theme).join();
+    }
+  }
+  const Component = withEuiTheme(ClassComponent);
+
+  it('provides underlying class components with a `theme` prop', () => {
+    const { container } = render(<Component />);
+    expect(container.firstChild!.textContent).toEqual(
+      'euiTheme,colorMode,modifications'
+    );
   });
 });
