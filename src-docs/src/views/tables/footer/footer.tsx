@@ -10,8 +10,6 @@ import {
   Criteria,
   EuiLink,
   EuiHealth,
-  EuiFlexGroup,
-  EuiFlexItem,
 } from '../../../../../src/components';
 
 import uniqBy from 'lodash/uniqBy';
@@ -82,12 +80,6 @@ export default () => {
     setSelectedItems(selectedItems);
   };
 
-  const renderStatus = (online: User['online']) => {
-    const color = online ? 'success' : 'danger';
-    const label = online ? 'Online' : 'Offline';
-    return <EuiHealth color={color}>{label}</EuiHealth>;
-  };
-
   const findUsers = (
     users: User[],
     pageIndex: number,
@@ -141,7 +133,18 @@ export default () => {
       sortable: true,
       truncateText: true,
       mobileOptions: {
-        show: false,
+        render: (user: User) => (
+          <span>
+            {user.firstName}{' '}
+            <EuiLink href="#" target="_blank">
+              {user.lastName}
+            </EuiLink>
+          </span>
+        ),
+        header: false,
+        truncateText: false,
+        enlarge: true,
+        width: '100%',
       },
     },
     {
@@ -151,23 +154,6 @@ export default () => {
       mobileOptions: {
         show: false,
       },
-    },
-    {
-      field: 'firstName',
-      name: 'Full Name',
-      mobileOptions: {
-        header: false,
-        only: true,
-        width: '100%',
-      },
-      render: (user: User) => (
-        <EuiFlexGroup responsive={false} alignItems="center">
-          <EuiFlexItem>
-            {user.firstName} {user.lastName}
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>{renderStatus(user.online)}</EuiFlexItem>
-        </EuiFlexGroup>
-      ),
     },
     {
       field: 'github',
@@ -210,9 +196,12 @@ export default () => {
         );
       },
       dataType: 'boolean',
-      render: (online: User['online']) => renderStatus(online),
+      render: (online: User['online']) => {
+        const color = online ? 'success' : 'danger';
+        const label = online ? 'Online' : 'Offline';
+        return <EuiHealth color={color}>{label}</EuiHealth>;
+      },
       sortable: true,
-      mobileOptions: { show: false },
     },
   ];
 

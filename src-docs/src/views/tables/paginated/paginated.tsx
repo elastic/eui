@@ -9,8 +9,6 @@ import {
   EuiCode,
   EuiLink,
   EuiHealth,
-  EuiFlexGroup,
-  EuiFlexItem,
   EuiSpacer,
   EuiSwitch,
   EuiHorizontalRule,
@@ -72,12 +70,6 @@ export default () => {
     }
   };
 
-  const renderStatus = (online: User['online']) => {
-    const color = online ? 'success' : 'danger';
-    const label = online ? 'Online' : 'Offline';
-    return <EuiHealth color={color}>{label}</EuiHealth>;
-  };
-
   const togglePerPageOptions = () => setShowPerPageOptions(!showPerPageOptions);
 
   const findUsers = (users: User[], pageIndex: number, pageSize: number) => {
@@ -107,7 +99,18 @@ export default () => {
       name: 'First Name',
       truncateText: true,
       mobileOptions: {
-        show: false,
+        render: (user: User) => (
+          <span>
+            {user.firstName}{' '}
+            <EuiLink href="#" target="_blank">
+              {user.lastName}
+            </EuiLink>
+          </span>
+        ),
+        header: false,
+        truncateText: false,
+        enlarge: true,
+        width: '100%',
       },
     },
     {
@@ -117,24 +120,6 @@ export default () => {
       mobileOptions: {
         show: false,
       },
-    },
-    {
-      field: 'firstName',
-      name: 'Full Name',
-      mobileOptions: {
-        header: false,
-        only: true,
-        enlarge: true,
-        width: '100%',
-      },
-      render: (user: User) => (
-        <EuiFlexGroup responsive={false} alignItems="center">
-          <EuiFlexItem>
-            {user.firstName} {user.lastName}
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>{renderStatus(user.online)}</EuiFlexItem>
-        </EuiFlexGroup>
-      ),
     },
     {
       field: 'github',
@@ -163,9 +148,10 @@ export default () => {
       field: 'online',
       name: 'Online',
       dataType: 'boolean',
-      render: (online: User['online']) => renderStatus(online),
-      mobileOptions: {
-        show: false,
+      render: (online: User['online']) => {
+        const color = online ? 'success' : 'danger';
+        const label = online ? 'Online' : 'Offline';
+        return <EuiHealth color={color}>{label}</EuiHealth>;
       },
     },
   ];

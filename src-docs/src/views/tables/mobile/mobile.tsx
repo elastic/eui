@@ -228,6 +228,14 @@ export default () => {
       sortable: true,
     },
     {
+      field: '',
+      name: 'Mobile only',
+      mobileOptions: {
+        only: true,
+        render: () => 'This column only appears on mobile',
+      },
+    },
+    {
       name: 'Actions',
       actions: [
         {
