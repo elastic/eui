@@ -19,6 +19,7 @@ import {
   LEFT_ALIGNMENT,
   RIGHT_ALIGNMENT,
   SortDirection,
+  RenderWithEuiTheme,
 } from '../../services';
 import { CommonProps } from '../common';
 import { isFunction } from '../../services/predicate';
@@ -66,7 +67,10 @@ import {
 } from './table_types';
 import { EuiTableSortMobileProps } from '../table/mobile/table_sort_mobile';
 
-import { euiBasicTableActionsWrapper } from './basic_table.styles';
+import {
+  euiBasicTableBodyLoading,
+  euiBasicTableActionsWrapper,
+} from './basic_table.styles';
 
 type DataTypeProfiles = Record<
   EuiTableDataType,
@@ -559,9 +563,7 @@ export class EuiBasicTable<T = any> extends Component<
 
     const classes = classNames(
       'euiBasicTable',
-      {
-        'euiBasicTable-loading': loading,
-      },
+      { 'euiBasicTable-loading': loading },
       className
     );
 
@@ -942,10 +944,11 @@ export class EuiBasicTable<T = any> extends Component<
   }
 
   renderTableBody() {
-    if (this.props.error) {
-      return this.renderErrorBody(this.props.error);
+    const { error, loading, items } = this.props;
+
+    if (error) {
+      return this.renderErrorBody(error);
     }
-    const { items } = this.props;
     if (items.length === 0) {
       return this.renderEmptyBody();
     }
@@ -959,7 +962,18 @@ export class EuiBasicTable<T = any> extends Component<
           : index;
       return this.renderItemRow(item, tableItemIndex);
     });
-    return <EuiTableBody bodyRef={this.setTbody}>{rows}</EuiTableBody>;
+    return (
+      <RenderWithEuiTheme>
+        {(theme) => (
+          <EuiTableBody
+            bodyRef={this.setTbody}
+            css={loading && euiBasicTableBodyLoading(theme)}
+          >
+            {rows}
+          </EuiTableBody>
+        )}
+      </RenderWithEuiTheme>
+    );
   }
 
   renderErrorBody(error: string) {
