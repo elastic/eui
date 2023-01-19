@@ -30,9 +30,7 @@ type User = {
 
 const users: User[] = [];
 
-const usersLength = 20;
-
-for (let i = 0; i < usersLength; i++) {
+for (let i = 0; i < 20; i++) {
   users.push({
     id: faker.datatype.uuid(),
     firstName: faker.name.firstName(),

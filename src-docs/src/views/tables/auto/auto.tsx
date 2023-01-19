@@ -25,9 +25,7 @@ type User = {
 
 const users: User[] = [];
 
-const usersLength = 20;
-
-for (let i = 0; i < usersLength; i++) {
+for (let i = 0; i < 10; i++) {
   users.push({
     id: i + 1,
     firstName: faker.name.firstName(),
@@ -94,8 +92,6 @@ const columns: Array<EuiTableFieldDataColumnType<User>> = [
     truncateText: true,
   },
 ];
-
-const filteredUsers = users.filter((user, index) => index < 10);
 
 const tableLayoutButtons: EuiButtonGroupOptionProps[] = [
   {
@@ -217,7 +213,7 @@ export default () => {
       <EuiSpacer size="m" />
       <EuiBasicTable
         tableCaption="Demo of EuiBasicTable's table layout options"
-        items={filteredUsers}
+        items={users}
         columns={columns}
         tableLayout={tableLayout === 'tableLayoutAuto' ? 'auto' : 'fixed'}
       />
