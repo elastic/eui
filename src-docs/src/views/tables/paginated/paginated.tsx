@@ -22,9 +22,9 @@ type User = {
   github: string;
   dateOfBirth: Date;
   online: boolean;
-  country: {
-    code: string;
-    name: string;
+  location: {
+    city: string;
+    country: string;
   };
 };
 
@@ -38,9 +38,9 @@ for (let i = 0; i < 20; i++) {
     github: faker.internet.userName(),
     dateOfBirth: faker.date.past(),
     online: faker.datatype.boolean(),
-    country: {
-      code: faker.address.countryCode(),
-      name: faker.address.country(),
+    location: {
+      city: faker.address.city(),
+      country: faker.address.country(),
     },
   });
 }
@@ -90,10 +90,10 @@ const columns: Array<EuiBasicTableColumn<User>> = [
       formatDate(dateOfBirth, 'dobLong'),
   },
   {
-    field: 'country',
-    name: 'Nationality',
-    render: (country: User['country']) => {
-      return `${getEmojiFlag(country.code)} ${country.name}`;
+    field: 'location',
+    name: 'Location',
+    render: (location: User['location']) => {
+      return `${location.city}, ${location.country}`;
     },
   },
   {
@@ -192,12 +192,4 @@ export default () => {
       />
     </>
   );
-};
-
-const getEmojiFlag = (countryCode: string) => {
-  const codePoints = countryCode
-    .toUpperCase()
-    .split('')
-    .map((char) => 127397 + char.charCodeAt(0));
-  return String.fromCodePoint(...codePoints);
 };

@@ -21,9 +21,9 @@ type User = {
   github: string;
   dateOfBirth: Date;
   online: boolean;
-  country: {
-    code: string;
-    name: string;
+  location: {
+    city: string;
+    country: string;
   };
 };
 
@@ -37,9 +37,9 @@ for (let i = 0; i < 20; i++) {
     github: faker.internet.userName(),
     dateOfBirth: faker.date.past(),
     online: faker.datatype.boolean(),
-    country: {
-      code: faker.address.countryCode(),
-      name: faker.address.country(),
+    location: {
+      city: faker.address.city(),
+      country: faker.address.country(),
     },
   });
 }
@@ -105,14 +105,14 @@ export default () => {
     if (itemIdToExpandedRowMapValues[user.id]) {
       delete itemIdToExpandedRowMapValues[user.id];
     } else {
-      const { online, country } = user;
+      const { online, location } = user;
 
       const color = online ? 'success' : 'danger';
       const label = online ? 'Online' : 'Offline';
       const listItems = [
         {
-          title: 'Nationality',
-          description: `${getEmojiFlag(country.code)} ${country.name}`,
+          title: 'Location',
+          description: `${location.city}, ${location.country}`,
         },
         {
           title: 'Online',
@@ -268,12 +268,4 @@ export default () => {
       onChange={onTableChange}
     />
   );
-};
-
-const getEmojiFlag = (countryCode: string) => {
-  const codePoints = countryCode
-    .toUpperCase()
-    .split('')
-    .map((char) => 127397 + char.charCodeAt(0));
-  return String.fromCodePoint(...codePoints);
 };
