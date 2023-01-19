@@ -34,9 +34,7 @@ type User = {
 
 const users: User[] = [];
 
-const usersLength = 10;
-
-for (let i = 0; i < usersLength; i++) {
+for (let i = 0; i < 10; i++) {
   users.push({
     id: faker.datatype.uuid(),
     firstName: faker.name.firstName(),
@@ -57,7 +55,6 @@ export default () => {
     {
       field: 'firstName',
       name: 'First Name',
-      sortable: true,
       'data-test-subj': 'firstNameCell',
       mobileOptions: {
         render: (user: User) => (
@@ -139,12 +136,10 @@ export default () => {
     };
   };
 
-  const filteredUsers = users.filter((user, index) => index < 10);
-
   return (
     <EuiBasicTable
       tableCaption="Demo of EuiBasicTable"
-      items={filteredUsers}
+      items={users}
       rowHeader="firstName"
       columns={columns}
       rowProps={getRowProps}
