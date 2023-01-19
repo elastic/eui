@@ -52,12 +52,6 @@ for (let i = 0; i < usersLength; i++) {
   });
 }
 
-const renderStatus = (online: User['online']) => {
-  const color = online ? 'success' : 'danger';
-  const label = online ? 'Online' : 'Offline';
-  return <EuiHealth color={color}>{label}</EuiHealth>;
-};
-
 export default () => {
   const columns: Array<EuiBasicTableColumn<User>> = [
     {
@@ -116,7 +110,9 @@ export default () => {
       name: 'Online',
       dataType: 'boolean',
       render: (online: User['online']) => {
-        return renderStatus(online);
+        const color = online ? 'success' : 'danger';
+        const label = online ? 'Online' : 'Offline';
+        return <EuiHealth color={color}>{label}</EuiHealth>;
       },
     },
   ];

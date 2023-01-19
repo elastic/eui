@@ -82,12 +82,6 @@ export default () => {
     }
   };
 
-  const renderStatus = (online: User['online']) => {
-    const color = online ? 'success' : 'danger';
-    const label = online ? 'Online' : 'Offline';
-    return <EuiHealth color={color}>{label}</EuiHealth>;
-  };
-
   const findUsers = (
     users: User[],
     pageIndex: number,
@@ -231,7 +225,11 @@ export default () => {
           </span>
         </EuiToolTip>
       ),
-      render: (online: User['online']) => renderStatus(online),
+      render: (online: User['online']) => {
+        const color = online ? 'success' : 'danger';
+        const label = online ? 'Online' : 'Offline';
+        return <EuiHealth color={color}>{label}</EuiHealth>;
+      },
     },
   ];
 

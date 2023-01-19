@@ -83,12 +83,6 @@ export default () => {
     }
   };
 
-  const renderStatus = (online: User['online']) => {
-    const color = online ? 'success' : 'danger';
-    const label = online ? 'Online' : 'Offline';
-    return <EuiHealth color={color}>{label}</EuiHealth>;
-  };
-
   const cloneUserbyId = (id: number) => {
     const index = users.findIndex((user) => user.id === id);
     if (index >= 0) {
@@ -325,7 +319,11 @@ export default () => {
       field: 'online',
       name: 'Online',
       dataType: 'boolean',
-      render: (online: User['online']) => renderStatus(online),
+      render: (online: User['online']) => {
+        const color = online ? 'success' : 'danger';
+        const label = online ? 'Online' : 'Offline';
+        return <EuiHealth color={color}>{label}</EuiHealth>;
+      },
       sortable: true,
     },
     {
