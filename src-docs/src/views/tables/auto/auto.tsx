@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { faker } from '@faker-js/faker';
-import { htmlIdGenerator, formatDate } from '../../../../../src/services';
+import { formatDate } from '../../../../../src/services';
 
 import {
   EuiBasicTable,
@@ -10,6 +10,7 @@ import {
   EuiCallOut,
   EuiLink,
   EuiSpacer,
+  EuiFlexGroup,
 } from '../../../../../src/components';
 
 type User = {
@@ -96,21 +97,19 @@ const columns: Array<EuiTableFieldDataColumnType<User>> = [
 
 const filteredUsers = users.filter((user, index) => index < 10);
 
-const idPrefix = htmlIdGenerator()();
-
-const toggleButtons: EuiButtonGroupOptionProps[] = [
+const tableLayoutButtons: EuiButtonGroupOptionProps[] = [
   {
-    id: `${idPrefix}0`,
+    id: 'tableLayoutFixed',
     label: 'Fixed',
     value: 'fixed',
   },
   {
-    id: `${idPrefix}1`,
+    id: 'tableLayoutAuto',
     label: 'Auto',
     value: 'auto',
   },
   {
-    id: `${idPrefix}2`,
+    id: 'tableLayoutCustom',
     label: 'Custom',
     value: 'custom',
   },
@@ -118,17 +117,17 @@ const toggleButtons: EuiButtonGroupOptionProps[] = [
 
 const vAlignButtons: EuiButtonGroupOptionProps[] = [
   {
-    id: `${idPrefix}4`,
+    id: 'columnVAlignTop',
     label: 'Top',
     value: 'top',
   },
   {
-    id: `${idPrefix}3`,
+    id: 'columnVAlignMiddle',
     label: 'Middle',
     value: 'middle',
   },
   {
-    id: `${idPrefix}5`,
+    id: 'columnVAlignBottom',
     label: 'Bottom',
     value: 'bottom',
   },
@@ -136,96 +135,83 @@ const vAlignButtons: EuiButtonGroupOptionProps[] = [
 
 const alignButtons: EuiButtonGroupOptionProps[] = [
   {
-    id: `${idPrefix}6`,
+    id: 'columnAlignLeft',
     label: 'Left',
     value: 'left',
   },
   {
-    id: `${idPrefix}7`,
+    id: 'columnAlignCenter',
     label: 'Center',
     value: 'center',
   },
   {
-    id: `${idPrefix}8`,
+    id: 'columnAlignRight',
     label: 'Right',
     value: 'right',
   },
 ];
 
 export default () => {
-  const [layout, setLayout] = useState('fixed');
-  const [toggleIdSelected, setToggleIdSelected] = useState(`${idPrefix}0`);
-  const [vAlignButtonsIdSelected, setVAlignButtonsIdSelected] = useState(
-    `${idPrefix}3`
-  );
-  const [alignButtonsIdSelected, setAlignButtonsIdSelected] = useState(
-    `${idPrefix}6`
-  );
+  const [tableLayout, setTableLayout] = useState('tableLayoutFixed');
+  const [vAlign, setVAlign] = useState('columnVAlignTop');
+  const [align, setAlign] = useState('columnAlignLeft');
 
-  const onChange = (optionId: string) => {
-    const alignment = toggleButtons.find((x) => x.id === optionId)?.value;
-
-    columns[5].width = alignment === 'custom' ? '20%' : undefined;
-
-    setToggleIdSelected(optionId);
-    setLayout(alignment);
+  const onTableLayoutChange = (id: string, value: string) => {
+    setTableLayout(id);
+    columns[5].width = value === 'custom' ? '20%' : undefined;
   };
 
-  const onVAlignChange = (optionId: string) => {
-    setVAlignButtonsIdSelected(optionId);
-    const alignment = vAlignButtons.find((x) => x.id === optionId)?.value;
-
-    columns.forEach((column) => (column.valign = alignment));
+  const onVAlignChange = (id: string, value: 'top' | 'middle' | 'bottom') => {
+    setVAlign(id);
+    columns.forEach((column) => (column.valign = value));
   };
 
-  const onAlignChange = (optionId: string) => {
-    setAlignButtonsIdSelected(optionId);
-    const alignment = alignButtons.find((x) => x.id === optionId)?.value;
-
-    columns.forEach((column) => (column.align = alignment));
+  const onAlignChange = (id: string, value: 'left' | 'center' | 'right') => {
+    setAlign(id);
+    columns.forEach((column) => (column.align = value));
   };
 
   let callOutText;
 
-  switch (layout) {
-    case 'fixed':
+  switch (tableLayout) {
+    case 'tableLayoutFixed':
       callOutText = 'Address has truncateText set to true';
       break;
-    case 'auto':
+    case 'tableLayoutAuto':
       callOutText =
         'Address has truncateText set to true which is not applied since tableLayout is set to auto';
       break;
-    case 'custom':
+    case 'tableLayoutCustom':
       callOutText = 'Address has truncateText set to true and width set to 20%';
       break;
   }
 
   return (
     <>
-      <EuiButtonGroup
-        legend="Table layout options"
-        options={toggleButtons}
-        idSelected={toggleIdSelected}
-        onChange={onChange}
-      />
-      &emsp;
-      <EuiButtonGroup
-        legend="Vertical align options"
-        options={vAlignButtons}
-        idSelected={vAlignButtonsIdSelected}
-        onChange={onVAlignChange}
-      />
-      &emsp;
-      <EuiButtonGroup
-        legend="Horizontal align options"
-        options={alignButtons}
-        idSelected={alignButtonsIdSelected}
-        onChange={onAlignChange}
-      />
+      <EuiFlexGroup alignItems="flexStart">
+        <EuiButtonGroup
+          legend="Table layout options"
+          options={tableLayoutButtons}
+          idSelected={tableLayout}
+          onChange={onTableLayoutChange}
+        />
+        <EuiButtonGroup
+          legend="Vertical align options"
+          options={vAlignButtons}
+          idSelected={vAlign}
+          onChange={onVAlignChange}
+        />
+        <EuiButtonGroup
+          legend="Horizontal align options"
+          options={alignButtons}
+          idSelected={align}
+          onChange={onAlignChange}
+        />
+      </EuiFlexGroup>
       <EuiSpacer size="m" />
       <EuiCallOut
         size="s"
-        color={layout === 'auto' ? 'warning' : 'primary'}
+        color={tableLayout === 'tableLayoutAuto' ? 'warning' : 'primary'}
         title={callOutText}
       />
       <EuiSpacer size="m" />
@@ -233,7 +219,7 @@ export default () => {
         tableCaption="Demo of EuiBasicTable's table layout options"
         items={filteredUsers}
         columns={columns}
-        tableLayout={layout === 'auto' ? 'auto' : 'fixed'}
+        tableLayout={tableLayout === 'tableLayoutAuto' ? 'auto' : 'fixed'}
       />
     </>
   );
