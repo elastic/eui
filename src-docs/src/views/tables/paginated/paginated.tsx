@@ -45,6 +45,69 @@ for (let i = 0; i < 20; i++) {
   });
 }
 
+const columns: Array<EuiBasicTableColumn<User>> = [
+  {
+    field: 'firstName',
+    name: 'First Name',
+    truncateText: true,
+    mobileOptions: {
+      render: (user: User) => (
+        <span>
+          {user.firstName}{' '}
+          <EuiLink href="#" target="_blank">
+            {user.lastName}
+          </EuiLink>
+        </span>
+      ),
+      header: false,
+      truncateText: false,
+      enlarge: true,
+      width: '100%',
+    },
+  },
+  {
+    field: 'lastName',
+    name: 'Last Name',
+    truncateText: true,
+    mobileOptions: {
+      show: false,
+    },
+  },
+  {
+    field: 'github',
+    name: 'Github',
+    render: (username: User['github']) => (
+      <EuiLink href={`https://github.com/${username}`} target="_blank">
+        {username}
+      </EuiLink>
+    ),
+  },
+  {
+    field: 'dateOfBirth',
+    name: 'Date of Birth',
+    dataType: 'date',
+    render: (dateOfBirth: User['dateOfBirth']) =>
+      formatDate(dateOfBirth, 'dobLong'),
+  },
+  {
+    field: 'country',
+    name: 'Nationality',
+    render: (country: User['country']) => {
+      return `${getEmojiFlag(country.code)} ${country.name}`;
+    },
+  },
+  {
+    field: 'online',
+    name: 'Online',
+    dataType: 'boolean',
+    render: (online: User['online']) => {
+      const color = online ? 'success' : 'danger';
+      const label = online ? 'Online' : 'Offline';
+      return <EuiHealth color={color}>{label}</EuiHealth>;
+    },
+  },
+];
+
 export default () => {
   const [pageIndex, setPageIndex] = useState(0);
   const [pageSize, setPageSize] = useState(10);
@@ -60,6 +123,7 @@ export default () => {
 
   const togglePerPageOptions = () => setShowPerPageOptions(!showPerPageOptions);
 
+  // Manually handle pagination of data
   const findUsers = (users: User[], pageIndex: number, pageSize: number) => {
     let pageOfItems;
 
@@ -80,69 +144,6 @@ export default () => {
   };
 
   const { pageOfItems, totalItemCount } = findUsers(users, pageIndex, pageSize);
-
-  const columns: Array<EuiBasicTableColumn<User>> = [
-    {
-      field: 'firstName',
-      name: 'First Name',
-      truncateText: true,
-      mobileOptions: {
-        render: (user: User) => (
-          <span>
-            {user.firstName}{' '}
-            <EuiLink href="#" target="_blank">
-              {user.lastName}
-            </EuiLink>
-          </span>
-        ),
-        header: false,
-        truncateText: false,
-        enlarge: true,
-        width: '100%',
-      },
-    },
-    {
-      field: 'lastName',
-      name: 'Last Name',
-      truncateText: true,
-      mobileOptions: {
-        show: false,
-      },
-    },
-    {
-      field: 'github',
-      name: 'Github',
-      render: (username: User['github']) => (
-        <EuiLink href={`https://github.com/${username}`} target="_blank">
-          {username}
-        </EuiLink>
-      ),
-    },
-    {
-      field: 'dateOfBirth',
-      name: 'Date of Birth',
-      dataType: 'date',
-      render: (dateOfBirth: User['dateOfBirth']) =>
-        formatDate(dateOfBirth, 'dobLong'),
-    },
-    {
-      field: 'country',
-      name: 'Nationality',
-      render: (country: User['country']) => {
-        return `${getEmojiFlag(country.code)} ${country.name}`;
-      },
-    },
-    {
-      field: 'online',
-      name: 'Online',
-      dataType: 'boolean',
-      render: (online: User['online']) => {
-        const color = online ? 'success' : 'danger';
-        const label = online ? 'Online' : 'Offline';
-        return <EuiHealth color={color}>{label}</EuiHealth>;
-      },
-    },
-  ];
 
   const pagination = {
     pageIndex,

@@ -44,32 +44,60 @@ for (let i = 0; i < 20; i++) {
   });
 }
 
+const columns: Array<EuiBasicTableColumn<User>> = [
+  {
+    field: 'firstName',
+    name: 'First Name',
+    sortable: true,
+    truncateText: true,
+    mobileOptions: {
+      render: (user: User) => (
+        <span>
+          {user.firstName} {user.lastName}
+        </span>
+      ),
+      header: false,
+      truncateText: false,
+      enlarge: true,
+      width: '100%',
+    },
+  },
+  {
+    field: 'lastName',
+    name: 'Last Name',
+    truncateText: true,
+    mobileOptions: {
+      show: false,
+    },
+  },
+  {
+    field: 'dateOfBirth',
+    name: 'Date of Birth',
+    dataType: 'date',
+    render: (dateOfBirth: User['dateOfBirth']) =>
+      formatDate(dateOfBirth, 'dobLong'),
+  },
+  {
+    name: 'Actions',
+    actions: [
+      {
+        name: 'Clone',
+        description: 'Clone this person',
+        type: 'icon',
+        icon: 'copy',
+        onClick: () => '',
+      },
+    ],
+  },
+];
+
 export default () => {
-  const [pageIndex, setPageIndex] = useState(0);
-  const [pageSize, setPageSize] = useState(5);
-  const [sortField, setSortField] = useState<keyof User>('firstName');
-  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
-  const [, setSelectedItems] = useState<User[]>([]);
+  /**
+   * Expanding rows
+   */
   const [itemIdToExpandedRowMap, setItemIdToExpandedRowMap] = useState<
     Record<string, ReactNode>
   >({});
-
-  const onTableChange = ({ page, sort }: Criteria<User>) => {
-    if (page) {
-      const { index: pageIndex, size: pageSize } = page;
-      setPageIndex(pageIndex);
-      setPageSize(pageSize);
-    }
-    if (sort) {
-      const { field: sortField, direction: sortDirection } = sort;
-      setSortField(sortField);
-      setSortDirection(sortDirection);
-    }
-  };
-
-  const onSelectionChange = (selectedItems: User[]) => {
-    setSelectedItems(selectedItems);
-  };
 
   const toggleDetails = (user: User) => {
     const itemIdToExpandedRowMapValues = { ...itemIdToExpandedRowMap };
@@ -98,6 +126,73 @@ export default () => {
     setItemIdToExpandedRowMap(itemIdToExpandedRowMapValues);
   };
 
+  const columnsWithExpandingRowToggle: Array<EuiBasicTableColumn<User>> = [
+    ...columns,
+    {
+      align: 'right',
+      width: '40px',
+      isExpander: true,
+      name: (
+        <EuiScreenReaderOnly>
+          <span>Expand rows</span>
+        </EuiScreenReaderOnly>
+      ),
+      render: (user: User) => {
+        const itemIdToExpandedRowMapValues = { ...itemIdToExpandedRowMap };
+
+        return (
+          <EuiButtonIcon
+            onClick={() => toggleDetails(user)}
+            aria-label={
+              itemIdToExpandedRowMapValues[user.id] ? 'Collapse' : 'Expand'
+            }
+            iconType={
+              itemIdToExpandedRowMapValues[user.id] ? 'arrowDown' : 'arrowRight'
+            }
+          />
+        );
+      },
+    },
+  ];
+
+  /**
+   * Selection
+   */
+  const [, setSelectedItems] = useState<User[]>([]);
+
+  const onSelectionChange = (selectedItems: User[]) => {
+    setSelectedItems(selectedItems);
+  };
+
+  /**
+   * Pagination & sorting
+   */
+  const [pageIndex, setPageIndex] = useState(0);
+  const [pageSize, setPageSize] = useState(5);
+  const [sortField, setSortField] = useState<keyof User>('firstName');
+  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
+
+  const onTableChange = ({ page, sort }: Criteria<User>) => {
+    if (page) {
+      const { index: pageIndex, size: pageSize } = page;
+      setPageIndex(pageIndex);
+      setPageSize(pageSize);
+    }
+    if (sort) {
+      const { field: sortField, direction: sortDirection } = sort;
+      setSortField(sortField);
+      setSortDirection(sortDirection);
+    }
+  };
+
+  const selection: EuiTableSelectionType<User> = {
+    selectable: (user: User) => user.online,
+    selectableMessage: (selectable: boolean) =>
+      !selectable ? 'User is currently offline' : '',
+    onSelectionChange,
+  };
+
+  // Manually handle sorting and pagination of data
   const findUsers = (
     users: User[],
     pageIndex: number,
@@ -143,78 +238,6 @@ export default () => {
     sortDirection
   );
 
-  const columns: Array<EuiBasicTableColumn<User>> = [
-    {
-      field: 'firstName',
-      name: 'First Name',
-      sortable: true,
-      truncateText: true,
-      mobileOptions: {
-        render: (user: User) => (
-          <span>
-            {user.firstName} {user.lastName}
-          </span>
-        ),
-        header: false,
-        truncateText: false,
-        enlarge: true,
-        width: '100%',
-      },
-    },
-    {
-      field: 'lastName',
-      name: 'Last Name',
-      truncateText: true,
-      mobileOptions: {
-        show: false,
-      },
-    },
-    {
-      field: 'dateOfBirth',
-      name: 'Date of Birth',
-      dataType: 'date',
-      render: (dateOfBirth: User['dateOfBirth']) =>
-        formatDate(dateOfBirth, 'dobLong'),
-    },
-    {
-      name: 'Actions',
-      actions: [
-        {
-          name: 'Clone',
-          description: 'Clone this person',
-          type: 'icon',
-          icon: 'copy',
-          onClick: () => '',
-        },
-      ],
-    },
-    {
-      align: 'right',
-      width: '40px',
-      isExpander: true,
-      name: (
-        <EuiScreenReaderOnly>
-          <span>Expand rows</span>
-        </EuiScreenReaderOnly>
-      ),
-      render: (user: User) => {
-        const itemIdToExpandedRowMapValues = { ...itemIdToExpandedRowMap };
-
-        return (
-          <EuiButtonIcon
-            onClick={() => toggleDetails(user)}
-            aria-label={
-              itemIdToExpandedRowMapValues[user.id] ? 'Collapse' : 'Expand'
-            }
-            iconType={
-              itemIdToExpandedRowMapValues[user.id] ? 'arrowDown' : 'arrowRight'
-            }
-          />
-        );
-      },
-    },
-  ];
-
   const pagination = {
     pageIndex: pageIndex,
     pageSize: pageSize,
@@ -229,13 +252,6 @@ export default () => {
     },
   };
 
-  const selection: EuiTableSelectionType<User> = {
-    selectable: (user: User) => user.online,
-    selectableMessage: (selectable: boolean) =>
-      !selectable ? 'User is currently offline' : '',
-    onSelectionChange,
-  };
-
   return (
     <EuiBasicTable
       tableCaption="Demo of EuiBasicTable with expanding rows"
@@ -244,7 +260,7 @@ export default () => {
       itemIdToExpandedRowMap={itemIdToExpandedRowMap}
       isExpandable={true}
       hasActions={true}
-      columns={columns}
+      columns={columnsWithExpandingRowToggle}
       pagination={pagination}
       sorting={sorting}
       isSelectable={true}

@@ -46,39 +46,106 @@ for (let i = 0; i < 20; i++) {
   });
 }
 
+const onlineUsers = users.filter((user) => user.online);
+
+const deleteUsersByIds = (...ids: number[]) => {
+  ids.forEach((id) => {
+    const index = users.findIndex((user) => user.id === id);
+    if (index >= 0) {
+      users.splice(index, 1);
+    }
+  });
+};
+
+const columns: Array<EuiBasicTableColumn<User>> = [
+  {
+    field: 'firstName',
+    name: 'First Name',
+    sortable: true,
+    truncateText: true,
+    mobileOptions: {
+      render: (user: User) => (
+        <span>
+          {user.firstName}{' '}
+          <EuiLink href="#" target="_blank">
+            {user.lastName}
+          </EuiLink>
+        </span>
+      ),
+      header: false,
+      truncateText: false,
+      enlarge: true,
+      width: '100%',
+    },
+  },
+  {
+    field: 'lastName',
+    name: 'Last Name',
+    truncateText: true,
+    mobileOptions: {
+      show: false,
+    },
+  },
+  {
+    field: 'github',
+    name: 'Github',
+    render: (username: User['github']) => (
+      <EuiLink href={`https://github.com/${username}`} target="_blank">
+        {username}
+      </EuiLink>
+    ),
+  },
+  {
+    field: 'dateOfBirth',
+    name: 'Date of Birth',
+    dataType: 'date',
+    render: (dateOfBirth: User['dateOfBirth']) =>
+      formatDate(dateOfBirth, 'dobLong'),
+    sortable: true,
+  },
+  {
+    field: 'country',
+    name: 'Nationality',
+    render: (country: User['country']) => {
+      return `${getEmojiFlag(country.code)} ${country.name}`;
+    },
+  },
+  {
+    field: 'online',
+    name: 'Online',
+    dataType: 'boolean',
+    render: (online: User['online']) => {
+      const color = online ? 'success' : 'danger';
+      const label = online ? 'Online' : 'Offline';
+      return <EuiHealth color={color}>{label}</EuiHealth>;
+    },
+    sortable: true,
+    mobileOptions: {
+      show: false,
+    },
+  },
+];
+
 export default () => {
-  const [pageIndex, setPageIndex] = useState(0);
-  const [pageSize, setPageSize] = useState(5);
-  const [sortField, setSortField] = useState<keyof User>('firstName');
-  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
+  /**
+   * Selection
+   */
   const [selectedItems, setSelectedItems] = useState<User[]>([]);
-
-  const tableRef = useRef<EuiBasicTable | null>(null);
-
-  const onTableChange = ({ page, sort }: Criteria<User>) => {
-    if (page) {
-      const { index: pageIndex, size: pageSize } = page;
-      setPageIndex(pageIndex);
-      setPageSize(pageSize);
-    }
-    if (sort) {
-      const { field: sortField, direction: sortDirection } = sort;
-      setSortField(sortField);
-      setSortDirection(sortDirection);
-    }
-  };
-
   const onSelectionChange = (selectedItems: User[]) => {
     setSelectedItems(selectedItems);
   };
 
-  const deleteUsersByIds = (...ids: number[]) => {
-    ids.forEach((id) => {
-      const index = users.findIndex((user) => user.id === id);
-      if (index >= 0) {
-        users.splice(index, 1);
-      }
-    });
+  const tableRef = useRef<EuiBasicTable | null>(null);
+  const selectOnlineUsers = () => {
+    tableRef.current?.setSelection(onlineUsers);
+  };
+
+  const selection: EuiTableSelectionType<User> = {
+    selectable: (user: User) => user.online,
+    selectableMessage: (selectable: boolean) =>
+      !selectable ? 'User is currently offline' : '',
+    onSelectionChange,
+    initialSelected: onlineUsers,
   };
 
   const deleteSelectedUsers = () => {
@@ -93,6 +160,28 @@ export default () => {
       </EuiButton>
     ) : null;
 
+  /**
+   * Pagination & sorting
+   */
+  const [pageIndex, setPageIndex] = useState(0);
+  const [pageSize, setPageSize] = useState(5);
+  const [sortField, setSortField] = useState<keyof User>('firstName');
+  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
+
+  const onTableChange = ({ page, sort }: Criteria<User>) => {
+    if (page) {
+      const { index: pageIndex, size: pageSize } = page;
+      setPageIndex(pageIndex);
+      setPageSize(pageSize);
+    }
+    if (sort) {
+      const { field: sortField, direction: sortDirection } = sort;
+      setSortField(sortField);
+      setSortDirection(sortDirection);
+    }
+  };
+
+  // Manually handle sorting and pagination of data
   const findUsers = (
     users: User[],
     pageIndex: number,
@@ -138,75 +227,6 @@ export default () => {
     sortDirection
   );
 
-  const columns: Array<EuiBasicTableColumn<User>> = [
-    {
-      field: 'firstName',
-      name: 'First Name',
-      sortable: true,
-      truncateText: true,
-      mobileOptions: {
-        render: (user: User) => (
-          <span>
-            {user.firstName}{' '}
-            <EuiLink href="#" target="_blank">
-              {user.lastName}
-            </EuiLink>
-          </span>
-        ),
-        header: false,
-        truncateText: false,
-        enlarge: true,
-        width: '100%',
-      },
-    },
-    {
-      field: 'lastName',
-      name: 'Last Name',
-      truncateText: true,
-      mobileOptions: {
-        show: false,
-      },
-    },
-    {
-      field: 'github',
-      name: 'Github',
-      render: (username: User['github']) => (
-        <EuiLink href={`https://github.com/${username}`} target="_blank">
-          {username}
-        </EuiLink>
-      ),
-    },
-    {
-      field: 'dateOfBirth',
-      name: 'Date of Birth',
-      dataType: 'date',
-      render: (dateOfBirth: User['dateOfBirth']) =>
-        formatDate(dateOfBirth, 'dobLong'),
-      sortable: true,
-    },
-    {
-      field: 'country',
-      name: 'Nationality',
-      render: (country: User['country']) => {
-        return `${getEmojiFlag(country.code)} ${country.name}`;
-      },
-    },
-    {
-      field: 'online',
-      name: 'Online',
-      dataType: 'boolean',
-      render: (online: User['online']) => {
-        const color = online ? 'success' : 'danger';
-        const label = online ? 'Online' : 'Offline';
-        return <EuiHealth color={color}>{label}</EuiHealth>;
-      },
-      sortable: true,
-      mobileOptions: {
-        show: false,
-      },
-    },
-  ];
-
   const pagination = {
     pageIndex: pageIndex,
     pageSize: pageSize,
@@ -221,25 +241,11 @@ export default () => {
     },
   };
 
-  const onlineUsers = users.filter((user) => user.online);
-
-  const selection: EuiTableSelectionType<User> = {
-    selectable: (user: User) => user.online,
-    selectableMessage: (selectable: boolean) =>
-      !selectable ? 'User is currently offline' : '',
-    onSelectionChange,
-    initialSelected: onlineUsers,
-  };
-
-  const onSelection = () => {
-    tableRef.current?.setSelection(onlineUsers);
-  };
-
   return (
     <>
       <EuiFlexGroup alignItems="center" justifyContent="spaceBetween">
         <EuiFlexItem grow={false}>
-          <EuiButton onClick={onSelection}>Select online users</EuiButton>
+          <EuiButton onClick={selectOnlineUsers}>Select online users</EuiButton>
         </EuiFlexItem>
         <EuiFlexItem grow={false}>{deleteButton}</EuiFlexItem>
       </EuiFlexGroup>

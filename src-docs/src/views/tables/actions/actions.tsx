@@ -49,68 +49,91 @@ for (let i = 0; i < 20; i++) {
   });
 }
 
-export default () => {
-  const [pageIndex, setPageIndex] = useState(0);
-  const [pageSize, setPageSize] = useState(5);
-  const [sortField, setSortField] = useState<keyof User>('firstName');
-  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
-  const [selectedItems, setSelectedItems] = useState<User[]>([]);
-  const [multiAction, setMultiAction] = useState(false);
-  const [customAction, setCustomAction] = useState(false);
+const cloneUserbyId = (id: number) => {
+  const index = users.findIndex((user) => user.id === id);
+  if (index >= 0) {
+    const user = users[index];
+    users.splice(index, 0, { ...user, id: users.length });
+  }
+};
 
-  const onTableChange = ({ page, sort }: Criteria<User>) => {
-    if (page) {
-      const { index: pageIndex, size: pageSize } = page;
-      setPageIndex(pageIndex);
-      setPageSize(pageSize);
-    }
-    if (sort) {
-      const { field: sortField, direction: sortDirection } = sort;
-      setSortField(sortField);
-      setSortDirection(sortDirection);
-    }
-  };
-
-  const cloneUserbyId = (id: number) => {
+const deleteUsersByIds = (...ids: number[]) => {
+  ids.forEach((id) => {
     const index = users.findIndex((user) => user.id === id);
     if (index >= 0) {
-      const user = users[index];
-      users.splice(index, 0, { ...user, id: users.length });
+      users.splice(index, 1);
     }
-  };
+  });
+};
 
-  const deleteUsersByIds = (...ids: number[]) => {
-    ids.forEach((id) => {
-      const index = users.findIndex((user) => user.id === id);
-      if (index >= 0) {
-        users.splice(index, 1);
-      }
-    });
-  };
+const columns: Array<EuiBasicTableColumn<User>> = [
+  {
+    field: 'firstName',
+    name: 'First Name',
+    truncateText: true,
+    sortable: true,
+    mobileOptions: {
+      render: (user: User) => (
+        <span>
+          {user.firstName} {user.lastName}
+        </span>
+      ),
+      header: false,
+      truncateText: false,
+      enlarge: true,
+      width: '100%',
+    },
+  },
+  {
+    field: 'lastName',
+    name: 'Last Name',
+    truncateText: true,
+    mobileOptions: {
+      show: false,
+    },
+  },
+  {
+    field: 'github',
+    name: 'Github',
+    render: (username: User['github']) => (
+      <EuiLink href={`https://github.com/${username}`} target="_blank">
+        {username}
+      </EuiLink>
+    ),
+  },
+  {
+    field: 'dateOfBirth',
+    name: 'Date of Birth',
+    dataType: 'date',
+    render: (dateOfBirth: User['dateOfBirth']) =>
+      formatDate(dateOfBirth, 'dobLong'),
+  },
+  {
+    field: 'country',
+    name: 'Nationality',
+    render: (country: User['country']) => {
+      return `${getEmojiFlag(country.code)} ${country.name}`;
+    },
+  },
+  {
+    field: 'online',
+    name: 'Online',
+    dataType: 'boolean',
+    render: (online: User['online']) => {
+      const color = online ? 'success' : 'danger';
+      const label = online ? 'Online' : 'Offline';
+      return <EuiHealth color={color}>{label}</EuiHealth>;
+    },
+    sortable: true,
+  },
+];
 
-  const deleteSelectedUsers = () => {
-    deleteUsersByIds(...selectedItems.map((user: User) => user.id));
-    setSelectedItems([]);
-  };
-
-  const onSelectionChange = (selectedItems: User[]) => {
-    setSelectedItems(selectedItems);
-  };
-
-  const deleteButton =
-    selectedItems.length > 0 ? (
-      <EuiButton color="danger" iconType="trash" onClick={deleteSelectedUsers}>
-        Delete {selectedItems.length} Users
-      </EuiButton>
-    ) : null;
-
-  const toggleMultiAction = () => {
-    setMultiAction(!multiAction);
-  };
-
-  const toggleCustomAction = () => {
-    setCustomAction(!customAction);
-  };
+export default () => {
+  /**
+   * Actions
+   */
+  const [multiAction, setMultiAction] = useState(false);
+  const [customAction, setCustomAction] = useState(false);
 
   const deleteUser = (user: User) => {
     deleteUsersByIds(user.id);
@@ -121,51 +144,6 @@ export default () => {
     cloneUserbyId(user.id);
     setSelectedItems([]);
   };
-
-  const findUsers = (
-    users: User[],
-    pageIndex: number,
-    pageSize: number,
-    sortField: keyof User,
-    sortDirection: 'asc' | 'desc'
-  ) => {
-    let items;
-
-    if (sortField) {
-      items = users
-        .slice(0)
-        .sort(
-          Comparators.property(sortField, Comparators.default(sortDirection))
-        );
-    } else {
-      items = users;
-    }
-
-    let pageOfItems;
-
-    if (!pageIndex && !pageSize) {
-      pageOfItems = items;
-    } else {
-      const startIndex = pageIndex * pageSize;
-      pageOfItems = items.slice(
-        startIndex,
-        Math.min(startIndex + pageSize, users.length)
-      );
-    }
-
-    return {
-      pageOfItems,
-      totalItemCount: users.length,
-    };
-  };
-
-  const { pageOfItems, totalItemCount } = findUsers(
-    users,
-    pageIndex,
-    pageSize,
-    sortField,
-    sortDirection
-  );
 
   const actions = useMemo(() => {
     if (customAction) {
@@ -252,73 +230,110 @@ export default () => {
       }
       return actions;
     }
-  }, [customAction, multiAction]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [customAction, multiAction]);
 
-  const columns: Array<EuiBasicTableColumn<User>> = [
-    {
-      field: 'firstName',
-      name: 'First Name',
-      truncateText: true,
-      sortable: true,
-      mobileOptions: {
-        render: (user: User) => (
-          <span>
-            {user.firstName} {user.lastName}
-          </span>
-        ),
-        header: false,
-        truncateText: false,
-        enlarge: true,
-        width: '100%',
-      },
-    },
-    {
-      field: 'lastName',
-      name: 'Last Name',
-      truncateText: true,
-      mobileOptions: {
-        show: false,
-      },
-    },
-    {
-      field: 'github',
-      name: 'Github',
-      render: (username: User['github']) => (
-        <EuiLink href={`https://github.com/${username}`} target="_blank">
-          {username}
-        </EuiLink>
-      ),
-    },
-    {
-      field: 'dateOfBirth',
-      name: 'Date of Birth',
-      dataType: 'date',
-      render: (dateOfBirth: User['dateOfBirth']) =>
-        formatDate(dateOfBirth, 'dobLong'),
-    },
-    {
-      field: 'country',
-      name: 'Nationality',
-      render: (country: User['country']) => {
-        return `${getEmojiFlag(country.code)} ${country.name}`;
-      },
-    },
-    {
-      field: 'online',
-      name: 'Online',
-      dataType: 'boolean',
-      render: (online: User['online']) => {
-        const color = online ? 'success' : 'danger';
-        const label = online ? 'Online' : 'Offline';
-        return <EuiHealth color={color}>{label}</EuiHealth>;
-      },
-      sortable: true,
-    },
+  const columnsWithActions = [
+    ...columns,
     {
       name: 'Actions',
       actions,
     },
   ];
+
+  /**
+   * Selection
+   */
+  const [selectedItems, setSelectedItems] = useState<User[]>([]);
+
+  const onSelectionChange = (selectedItems: User[]) => {
+    setSelectedItems(selectedItems);
+  };
+
+  const selection: EuiTableSelectionType<User> = {
+    selectable: (user: User) => user.online,
+    selectableMessage: (selectable: boolean) =>
+      !selectable ? 'User is currently offline' : '',
+    onSelectionChange,
+  };
+
+  const deleteSelectedUsers = () => {
+    deleteUsersByIds(...selectedItems.map((user: User) => user.id));
+    setSelectedItems([]);
+  };
+
+  const deleteButton =
+    selectedItems.length > 0 ? (
+      <EuiButton color="danger" iconType="trash" onClick={deleteSelectedUsers}>
+        Delete {selectedItems.length} Users
+      </EuiButton>
+    ) : null;
+
+  /**
+   * Pagination & sorting
+   */
+  const [pageIndex, setPageIndex] = useState(0);
+  const [pageSize, setPageSize] = useState(5);
+  const [sortField, setSortField] = useState<keyof User>('firstName');
+  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
+
+  const onTableChange = ({ page, sort }: Criteria<User>) => {
+    if (page) {
+      const { index: pageIndex, size: pageSize } = page;
+      setPageIndex(pageIndex);
+      setPageSize(pageSize);
+    }
+    if (sort) {
+      const { field: sortField, direction: sortDirection } = sort;
+      setSortField(sortField);
+      setSortDirection(sortDirection);
+    }
+  };
+
+  // Manually handle sorting and pagination of data
+  const findUsers = (
+    users: User[],
+    pageIndex: number,
+    pageSize: number,
+    sortField: keyof User,
+    sortDirection: 'asc' | 'desc'
+  ) => {
+    let items;
+
+    if (sortField) {
+      items = users
+        .slice(0)
+        .sort(
+          Comparators.property(sortField, Comparators.default(sortDirection))
+        );
+    } else {
+      items = users;
+    }
+
+    let pageOfItems;
+
+    if (!pageIndex && !pageSize) {
+      pageOfItems = items;
+    } else {
+      const startIndex = pageIndex * pageSize;
+      pageOfItems = items.slice(
+        startIndex,
+        Math.min(startIndex + pageSize, users.length)
+      );
+    }
+
+    return {
+      pageOfItems,
+      totalItemCount: users.length,
+    };
+  };
+
+  const { pageOfItems, totalItemCount } = findUsers(
+    users,
+    pageIndex,
+    pageSize,
+    sortField,
+    sortDirection
+  );
 
   const pagination = {
     pageIndex: pageIndex,
@@ -334,13 +349,6 @@ export default () => {
     },
   };
 
-  const selection: EuiTableSelectionType<User> = {
-    selectable: (user: User) => user.online,
-    selectableMessage: (selectable: boolean) =>
-      !selectable ? 'User is currently offline' : '',
-    onSelectionChange,
-  };
-
   return (
     <>
       <EuiFlexGroup alignItems="center">
@@ -348,14 +356,14 @@ export default () => {
           <EuiSwitch
             label="Multiple Actions"
             checked={multiAction}
-            onChange={toggleMultiAction}
+            onChange={() => setMultiAction(!multiAction)}
           />
         </EuiFlexItem>
         <EuiFlexItem grow={false}>
           <EuiSwitch
             label="Custom Actions"
             checked={customAction}
-            onChange={toggleCustomAction}
+            onChange={() => setCustomAction(!customAction)}
           />
         </EuiFlexItem>
         <EuiFlexItem />
@@ -368,7 +376,7 @@ export default () => {
         tableCaption="Demo of EuiBasicTable with actions"
         items={pageOfItems}
         itemId="id"
-        columns={columns}
+        columns={columnsWithActions}
         pagination={pagination}
         sorting={sorting}
         selection={selection}

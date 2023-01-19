@@ -48,6 +48,113 @@ for (let i = 0; i < 20; i++) {
   });
 }
 
+const columns: Array<EuiBasicTableColumn<User>> = [
+  {
+    field: 'firstName',
+    name: 'First Name',
+    sortable: true,
+    truncateText: true,
+    mobileOptions: {
+      render: (user: User) => (
+        <span>
+          {user.firstName} {user.lastName}
+        </span>
+      ),
+      header: false,
+      truncateText: false,
+      enlarge: true,
+      width: '100%',
+    },
+  },
+  {
+    field: 'lastName',
+    name: 'Last Name',
+    truncateText: true,
+    mobileOptions: {
+      show: false,
+    },
+  },
+  {
+    field: 'github',
+    name: (
+      <EuiToolTip content="Their mascot is the Octokitty">
+        <span>
+          Github{' '}
+          <EuiIcon
+            size="s"
+            color="subdued"
+            type="questionInCircle"
+            className="eui-alignTop"
+          />
+        </span>
+      </EuiToolTip>
+    ),
+    render: (username: User['github']) => (
+      <EuiLink href={`https://github.com/${username}`} target="_blank">
+        {username}
+      </EuiLink>
+    ),
+  },
+  {
+    field: 'dateOfBirth',
+    name: (
+      <EuiToolTip content="Colloquially known as a 'birthday'">
+        <span>
+          Date of Birth{' '}
+          <EuiIcon
+            size="s"
+            color="subdued"
+            type="questionInCircle"
+            className="eui-alignTop"
+          />
+        </span>
+      </EuiToolTip>
+    ),
+    render: (dateOfBirth: User['dateOfBirth']) =>
+      formatDate(dateOfBirth, 'dobLong'),
+  },
+  {
+    field: 'country',
+    name: (
+      <EuiToolTip content="The nation in which this person resides">
+        <span>
+          Nationality{' '}
+          <EuiIcon
+            size="s"
+            color="subdued"
+            type="questionInCircle"
+            className="eui-alignTop"
+          />
+        </span>
+      </EuiToolTip>
+    ),
+    render: (country: User['country']) => {
+      return `${getEmojiFlag(country.code)} ${country.name}`;
+    },
+  },
+  {
+    field: 'online',
+    name: (
+      <EuiToolTip content="Free to talk or busy with business">
+        <span>
+          Online{' '}
+          <EuiIcon
+            size="s"
+            color="subdued"
+            type="questionInCircle"
+            className="eui-alignTop"
+          />
+        </span>
+      </EuiToolTip>
+    ),
+    render: (online: User['online']) => {
+      const color = online ? 'success' : 'danger';
+      const label = online ? 'Online' : 'Offline';
+      return <EuiHealth color={color}>{label}</EuiHealth>;
+    },
+  },
+];
+
 export default () => {
   const [enableAll, setEnableAll] = useState(false);
   const [readonly, setReadonly] = useState(false);
@@ -70,6 +177,7 @@ export default () => {
     }
   };
 
+  // Manually handle sorting and pagination of data
   const findUsers = (
     users: User[],
     pageIndex: number,
@@ -114,112 +222,6 @@ export default () => {
     sortField,
     sortDirection
   );
-  const columns: Array<EuiBasicTableColumn<User>> = [
-    {
-      field: 'firstName',
-      name: 'First Name',
-      sortable: true,
-      truncateText: true,
-      mobileOptions: {
-        render: (user: User) => (
-          <span>
-            {user.firstName} {user.lastName}
-          </span>
-        ),
-        header: false,
-        truncateText: false,
-        enlarge: true,
-        width: '100%',
-      },
-    },
-    {
-      field: 'lastName',
-      name: 'Last Name',
-      truncateText: true,
-      mobileOptions: {
-        show: false,
-      },
-    },
-    {
-      field: 'github',
-      name: (
-        <EuiToolTip content="Their mascot is the Octokitty">
-          <span>
-            Github{' '}
-            <EuiIcon
-              size="s"
-              color="subdued"
-              type="questionInCircle"
-              className="eui-alignTop"
-            />
-          </span>
-        </EuiToolTip>
-      ),
-      render: (username: User['github']) => (
-        <EuiLink href={`https://github.com/${username}`} target="_blank">
-          {username}
-        </EuiLink>
-      ),
-    },
-    {
-      field: 'dateOfBirth',
-      name: (
-        <EuiToolTip content="Colloquially known as a 'birthday'">
-          <span>
-            Date of Birth{' '}
-            <EuiIcon
-              size="s"
-              color="subdued"
-              type="questionInCircle"
-              className="eui-alignTop"
-            />
-          </span>
-        </EuiToolTip>
-      ),
-      render: (dateOfBirth: User['dateOfBirth']) =>
-        formatDate(dateOfBirth, 'dobLong'),
-    },
-    {
-      field: 'country',
-      name: (
-        <EuiToolTip content="The nation in which this person resides">
-          <span>
-            Nationality{' '}
-            <EuiIcon
-              size="s"
-              color="subdued"
-              type="questionInCircle"
-              className="eui-alignTop"
-            />
-          </span>
-        </EuiToolTip>
-      ),
-      render: (country: User['country']) => {
-        return `${getEmojiFlag(country.code)} ${country.name}`;
-      },
-    },
-    {
-      field: 'online',
-      name: (
-        <EuiToolTip content="Free to talk or busy with business">
-          <span>
-            Online{' '}
-            <EuiIcon
-              size="s"
-              color="subdued"
-              type="questionInCircle"
-              className="eui-alignTop"
-            />
-          </span>
-        </EuiToolTip>
-      ),
-      render: (online: User['online']) => {
-        const color = online ? 'success' : 'danger';
-        const label = online ? 'Online' : 'Offline';
-        return <EuiHealth color={color}>{label}</EuiHealth>;
-      },
-    },
-  ];
 
   const pagination = {
     pageIndex: pageIndex,

@@ -46,111 +46,29 @@ for (let i = 0; i < 20; i++) {
   });
 }
 
-export default () => {
-  const [pageIndex, setPageIndex] = useState(0);
-  const [pageSize, setPageSize] = useState(5);
-  const [sortField, setSortField] = useState<keyof User>('firstName');
-  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
-  const [, setSelectedItems] = useState<User[]>([]);
-  const [customHeader, setCustomHeader] = useState(true);
-  const [isResponsive, setIsResponsive] = useState(true);
+const cloneUserbyId = (id: number) => {
+  const index = users.findIndex((user) => user.id === id);
+  if (index >= 0) {
+    const user = users[index];
+    users.splice(index, 0, { ...user, id: users.length });
+  }
+};
 
-  const onTableChange = ({ page, sort }: Criteria<User>) => {
-    if (page) {
-      const { index: pageIndex, size: pageSize } = page;
-      setPageIndex(pageIndex);
-      setPageSize(pageSize);
-    }
-    if (sort) {
-      const { field: sortField, direction: sortDirection } = sort;
-      setSortField(sortField);
-      setSortDirection(sortDirection);
-    }
-  };
-
-  const onSelectionChange = (selectedItems: User[]) => {
-    setSelectedItems(selectedItems);
-  };
-
-  const toggleHeader = () => {
-    setCustomHeader(!customHeader);
-  };
-
-  const toggleResponsive = () => {
-    setIsResponsive(!isResponsive);
-  };
-
-  const deleteUsersByIds = (...ids: number[]) => {
-    ids.forEach((id) => {
-      const index = users.findIndex((user) => user.id === id);
-      if (index >= 0) {
-        users.splice(index, 1);
-      }
-    });
-  };
-
-  const deleteUser = (user: User) => {
-    deleteUsersByIds(user.id);
-    setSelectedItems([]);
-  };
-
-  const cloneUserbyId = (id: number) => {
+const deleteUsersByIds = (...ids: number[]) => {
+  ids.forEach((id) => {
     const index = users.findIndex((user) => user.id === id);
     if (index >= 0) {
-      const user = users[index];
-      users.splice(index, 0, { ...user, id: users.length });
+      users.splice(index, 1);
     }
-  };
+  });
+};
 
-  const cloneUser = (user: User) => {
-    cloneUserbyId(user.id);
-    setSelectedItems([]);
-  };
-
-  const findUsers = (
-    users: User[],
-    pageIndex: number,
-    pageSize: number,
-    sortField: keyof User,
-    sortDirection: 'asc' | 'desc'
-  ) => {
-    let items;
-
-    if (sortField) {
-      items = users
-        .slice(0)
-        .sort(
-          Comparators.property(sortField, Comparators.default(sortDirection))
-        );
-    } else {
-      items = users;
-    }
-
-    let pageOfItems;
-
-    if (!pageIndex && !pageSize) {
-      pageOfItems = items;
-    } else {
-      const startIndex = pageIndex * pageSize;
-      pageOfItems = items.slice(
-        startIndex,
-        Math.min(startIndex + pageSize, users.length)
-      );
-    }
-
-    return {
-      pageOfItems,
-      totalItemCount: users.length,
-    };
-  };
-
-  const { pageOfItems, totalItemCount } = findUsers(
-    users,
-    pageIndex,
-    pageSize,
-    sortField,
-    sortDirection
-  );
+export default () => {
+  /**
+   * Mobile column options
+   */
+  const [customHeader, setCustomHeader] = useState(true);
+  const [isResponsive, setIsResponsive] = useState(true);
 
   const columns: Array<EuiBasicTableColumn<User>> = [
     {
@@ -231,7 +149,10 @@ export default () => {
           description: 'Clone this person',
           icon: 'copy',
           type: 'icon',
-          onClick: cloneUser,
+          onClick: (user: User) => {
+            cloneUserbyId(user.id);
+            setSelectedItems([]);
+          },
         },
         {
           name: 'Delete',
@@ -239,11 +160,97 @@ export default () => {
           icon: 'trash',
           type: 'icon',
           color: 'danger',
-          onClick: deleteUser,
+          onClick: (user: User) => {
+            deleteUsersByIds(user.id);
+            setSelectedItems([]);
+          },
         },
       ],
     },
   ];
+
+  /**
+   * Selection
+   */
+  const [, setSelectedItems] = useState<User[]>([]);
+
+  const onSelectionChange = (selectedItems: User[]) => {
+    setSelectedItems(selectedItems);
+  };
+
+  const selection: EuiTableSelectionType<User> = {
+    selectable: (user: User) => user.online,
+    selectableMessage: (selectable: boolean) =>
+      !selectable ? 'User is currently offline' : '',
+    onSelectionChange,
+  };
+
+  /**
+   * Pagination & sorting
+   */
+  const [pageIndex, setPageIndex] = useState(0);
+  const [pageSize, setPageSize] = useState(5);
+  const [sortField, setSortField] = useState<keyof User>('firstName');
+  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
+
+  const onTableChange = ({ page, sort }: Criteria<User>) => {
+    if (page) {
+      const { index: pageIndex, size: pageSize } = page;
+      setPageIndex(pageIndex);
+      setPageSize(pageSize);
+    }
+    if (sort) {
+      const { field: sortField, direction: sortDirection } = sort;
+      setSortField(sortField);
+      setSortDirection(sortDirection);
+    }
+  };
+
+  // Manually handle sorting and pagination of data
+  const findUsers = (
+    users: User[],
+    pageIndex: number,
+    pageSize: number,
+    sortField: keyof User,
+    sortDirection: 'asc' | 'desc'
+  ) => {
+    let items;
+
+    if (sortField) {
+      items = users
+        .slice(0)
+        .sort(
+          Comparators.property(sortField, Comparators.default(sortDirection))
+        );
+    } else {
+      items = users;
+    }
+
+    let pageOfItems;
+
+    if (!pageIndex && !pageSize) {
+      pageOfItems = items;
+    } else {
+      const startIndex = pageIndex * pageSize;
+      pageOfItems = items.slice(
+        startIndex,
+        Math.min(startIndex + pageSize, users.length)
+      );
+    }
+
+    return {
+      pageOfItems,
+      totalItemCount: users.length,
+    };
+  };
+
+  const { pageOfItems, totalItemCount } = findUsers(
+    users,
+    pageIndex,
+    pageSize,
+    sortField,
+    sortDirection
+  );
 
   const pagination = {
     pageIndex: pageIndex,
@@ -259,13 +266,6 @@ export default () => {
     },
   };
 
-  const selection: EuiTableSelectionType<User> = {
-    selectable: (user: User) => user.online,
-    selectableMessage: (selectable: boolean) =>
-      !selectable ? 'User is currently offline' : '',
-    onSelectionChange,
-  };
-
   return (
     <>
       <EuiFlexGroup alignItems="center" responsive={false}>
@@ -273,7 +273,7 @@ export default () => {
           <EuiSwitch
             label="Responsive"
             checked={isResponsive}
-            onChange={toggleResponsive}
+            onChange={() => setIsResponsive(!isResponsive)}
           />
         </EuiFlexItem>
         <EuiFlexItem grow={false}>
@@ -281,7 +281,7 @@ export default () => {
             label="Custom header"
             disabled={!isResponsive}
             checked={isResponsive && customHeader}
-            onChange={toggleHeader}
+            onChange={() => setCustomHeader(!customHeader)}
           />
         </EuiFlexItem>
       </EuiFlexGroup>
