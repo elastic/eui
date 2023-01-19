@@ -42,15 +42,10 @@ const columns: Array<EuiTableFieldDataColumnType<User>> = [
     field: 'firstName',
     name: 'First Name',
     truncateText: true,
-    sortable: true,
-    'data-test-subj': 'firstNameCell',
     mobileOptions: {
       render: (user: User) => (
         <span>
-          {user.firstName}{' '}
-          <EuiLink href="#" target="_blank">
-            {user.lastName}
-          </EuiLink>
+          {user.firstName} {user.lastName}
         </span>
       ),
       header: false,
@@ -62,11 +57,7 @@ const columns: Array<EuiTableFieldDataColumnType<User>> = [
   {
     field: 'lastName',
     name: 'Last Name',
-    render: (lastName: User['lastName']) => (
-      <EuiLink href="#" target="_blank">
-        {lastName}
-      </EuiLink>
-    ),
+    truncateText: true,
     mobileOptions: {
       show: false,
     },
@@ -74,6 +65,11 @@ const columns: Array<EuiTableFieldDataColumnType<User>> = [
   {
     field: 'github',
     name: 'Github',
+    render: (username: User['github']) => (
+      <EuiLink href="#" target="_blank">
+        {username}
+      </EuiLink>
+    ),
   },
   {
     field: 'dateOfBirth',

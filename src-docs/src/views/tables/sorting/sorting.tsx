@@ -90,7 +90,7 @@ const columns: Array<EuiBasicTableColumn<User>> = [
       </EuiToolTip>
     ),
     render: (username: User['github']) => (
-      <EuiLink href={`https://github.com/${username}`} target="_blank">
+      <EuiLink href="#" target="_blank">
         {username}
       </EuiLink>
     ),

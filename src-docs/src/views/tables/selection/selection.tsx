@@ -66,10 +66,7 @@ const columns: Array<EuiBasicTableColumn<User>> = [
     mobileOptions: {
       render: (user: User) => (
         <span>
-          {user.firstName}{' '}
-          <EuiLink href="#" target="_blank">
-            {user.lastName}
-          </EuiLink>
+          {user.firstName} {user.lastName}
         </span>
       ),
       header: false,
@@ -90,7 +87,7 @@ const columns: Array<EuiBasicTableColumn<User>> = [
     field: 'github',
     name: 'Github',
     render: (username: User['github']) => (
-      <EuiLink href={`https://github.com/${username}`} target="_blank">
+      <EuiLink href="#" target="_blank">
         {username}
       </EuiLink>
     ),

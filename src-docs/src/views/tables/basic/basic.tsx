@@ -49,10 +49,7 @@ export default () => {
       mobileOptions: {
         render: (user: User) => (
           <span>
-            {user.firstName}{' '}
-            <EuiLink href="#" target="_blank">
-              {user.lastName}
-            </EuiLink>
+            {user.firstName} {user.lastName}
           </span>
         ),
         header: false,
@@ -65,11 +62,6 @@ export default () => {
       field: 'lastName',
       name: 'Last Name',
       truncateText: true,
-      render: (lastName: User['lastName']) => (
-        <EuiLink href="#" target="_blank">
-          {lastName}
-        </EuiLink>
-      ),
       mobileOptions: {
         show: false,
       },
@@ -77,6 +69,11 @@ export default () => {
     {
       field: 'github',
       name: 'Github',
+      render: (username: User['github']) => (
+        <EuiLink href="#" target="_blank">
+          {username}
+        </EuiLink>
+      ),
     },
     {
       field: 'dateOfBirth',
