@@ -116,7 +116,7 @@ const columns: Array<EuiBasicTableColumn<User>> = [
   {
     field: 'location',
     name: (
-      <EuiToolTip content="The nation in which this person resides">
+      <EuiToolTip content="The city and country in which this person resides">
         <span>
           Nationality{' '}
           <EuiIcon
@@ -131,6 +131,8 @@ const columns: Array<EuiBasicTableColumn<User>> = [
     render: (location: User['location']) => {
       return `${location.city}, ${location.country}`;
     },
+    truncateText: true,
+    textOnly: true,
   },
   {
     field: 'online',

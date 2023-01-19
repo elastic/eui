@@ -93,6 +93,8 @@ const columns: Array<EuiBasicTableColumn<User>> = [
   {
     field: 'location',
     name: 'Location',
+    truncateText: true,
+    textOnly: true,
     footer: ({ items }: { items: User[] }) => {
       const uniqueCountries = new Set(
         items.map((user) => user.location.country)
