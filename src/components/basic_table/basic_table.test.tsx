@@ -7,7 +7,8 @@
  */
 
 import React from 'react';
-import { shallow, render } from 'enzyme';
+import { shallow } from 'enzyme';
+import { render } from '../../test/rtl';
 import { requiredProps } from '../../test';
 
 import {
@@ -115,6 +116,24 @@ describe('EuiBasicTable', () => {
 
       expect(component).toMatchSnapshot();
     });
+  });
+
+  test('loading', () => {
+    const props = {
+      ...requiredProps,
+      items: [],
+      columns: basicColumns,
+      loading: true,
+    };
+    const { container } = render(<EuiBasicTable {...props} />);
+    expect(container.firstChild).toMatchSnapshot();
+
+    expect(container.querySelector('.euiBasicTable-loading')).toBeTruthy(); // Used by several Kibana tests as an assertion
+    expect(
+      container
+        .querySelector('tbody')
+        ?.className.includes('euiBasicTableBodyLoading')
+    ).toBeTruthy();
   });
 
   describe('rowProps', () => {
@@ -479,9 +498,9 @@ describe('EuiBasicTable', () => {
         initialSelected: [{ id: '1', name: 'name1' }],
       },
     };
-    const component = render(<EuiBasicTable {...props} />);
+    const { container } = render(<EuiBasicTable {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('with pagination and selection', () => {
