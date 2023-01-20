@@ -946,22 +946,24 @@ export class EuiBasicTable<T = any> extends Component<
   renderTableBody() {
     const { error, loading, items } = this.props;
 
+    let content: ReactNode;
+
     if (error) {
-      return this.renderErrorBody(error);
-    }
-    if (items.length === 0) {
-      return this.renderEmptyBody();
+      content = this.renderErrorMessage(error);
+    } else if (items.length === 0) {
+      content = this.renderEmptyMessage();
+    } else {
+      content = items.map((item: T, index: number) => {
+        // if there's pagination the item's index must be adjusted to the where it is in the whole dataset
+        const tableItemIndex =
+          hasPagination(this.props) && this.props.pagination.pageSize > 0
+            ? this.props.pagination.pageIndex * this.props.pagination.pageSize +
+              index
+            : index;
+        return this.renderItemRow(item, tableItemIndex);
+      });
     }
 
-    const rows = items.map((item: T, index: number) => {
-      // if there's pagination the item's index must be adjusted to the where it is in the whole dataset
-      const tableItemIndex =
-        hasPagination(this.props) && this.props.pagination.pageSize > 0
-          ? this.props.pagination.pageIndex * this.props.pagination.pageSize +
-            index
-          : index;
-      return this.renderItemRow(item, tableItemIndex);
-    });
     return (
       <RenderWithEuiTheme>
         {(theme) => (
@@ -969,45 +971,41 @@ export class EuiBasicTable<T = any> extends Component<
             bodyRef={this.setTbody}
             css={loading && euiBasicTableBodyLoading(theme)}
           >
-            {rows}
+            {content}
           </EuiTableBody>
         )}
       </RenderWithEuiTheme>
     );
   }
 
-  renderErrorBody(error: string) {
+  renderErrorMessage(error: string) {
     const colSpan = this.props.columns.length + (this.props.selection ? 1 : 0);
     return (
-      <EuiTableBody>
-        <EuiTableRow>
-          <EuiTableRowCell
-            align="center"
-            colSpan={colSpan}
-            mobileOptions={{ width: '100%' }}
-          >
-            <EuiIcon type="minusInCircle" color="danger" /> {error}
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </EuiTableBody>
+      <EuiTableRow>
+        <EuiTableRowCell
+          align="center"
+          colSpan={colSpan}
+          mobileOptions={{ width: '100%' }}
+        >
+          <EuiIcon type="minusInCircle" color="danger" /> {error}
+        </EuiTableRowCell>
+      </EuiTableRow>
     );
   }
 
-  renderEmptyBody() {
+  renderEmptyMessage() {
     const { columns, selection, noItemsMessage } = this.props;
     const colSpan = columns.length + (selection ? 1 : 0);
     return (
-      <EuiTableBody>
-        <EuiTableRow>
-          <EuiTableRowCell
-            align="center"
-            colSpan={colSpan}
-            mobileOptions={{ width: '100%' }}
-          >
-            {noItemsMessage}
-          </EuiTableRowCell>
-        </EuiTableRow>
-      </EuiTableBody>
+      <EuiTableRow>
+        <EuiTableRowCell
+          align="center"
+          colSpan={colSpan}
+          mobileOptions={{ width: '100%' }}
+        >
+          {noItemsMessage}
+        </EuiTableRowCell>
+      </EuiTableRow>
     );
   }
 
