@@ -9,6 +9,7 @@
 import React from 'react';
 import { render } from '../../test/rtl';
 import { requiredProps } from '../../test';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import {
   EuiBasicTable,
@@ -64,6 +65,10 @@ const basicItems = [
 ];
 
 describe('EuiBasicTable', () => {
+  shouldRenderCustomStyles(
+    <EuiBasicTable items={basicItems} columns={basicColumns} />
+  );
+
   it('renders (bare-bones)', () => {
     const props = {
       ...requiredProps,
