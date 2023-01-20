@@ -69,6 +69,7 @@ import { EuiTableSortMobileProps } from '../table/mobile/table_sort_mobile';
 
 import {
   euiBasicTableBodyLoading,
+  safariLoadingWorkaround,
   euiBasicTableActionsWrapper,
 } from './basic_table.styles';
 
@@ -579,7 +580,7 @@ export class EuiBasicTable<T = any> extends Component<
   }
 
   renderTable() {
-    const { compressed, responsive, tableLayout } = this.props;
+    const { compressed, responsive, tableLayout, loading } = this.props;
 
     const mobileHeader = responsive ? (
       <EuiTableHeaderMobile>
@@ -605,6 +606,7 @@ export class EuiBasicTable<T = any> extends Component<
           tableLayout={tableLayout}
           responsive={responsive}
           compressed={compressed}
+          css={loading && safariLoadingWorkaround}
         >
           {caption}
           {head}

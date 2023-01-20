@@ -22,7 +22,7 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
       </div>
     </div>
     <table
-      class="euiTable euiTable--responsive"
+      class="euiTable css-0 euiTable--responsive"
       id="__table_generated-id"
       tabindex="-1"
     >
@@ -202,7 +202,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
       </div>
     </div>
     <table
-      class="euiTable euiTable--responsive"
+      class="euiTable css-0 euiTable--responsive"
       id="__table_generated-id"
       tabindex="-1"
     >

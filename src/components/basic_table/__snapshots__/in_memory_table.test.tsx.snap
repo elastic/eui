@@ -22,7 +22,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
       </div>
     </div>
     <table
-      class="euiTable euiTable--responsive"
+      class="euiTable css-0 euiTable--responsive"
       id="__table_generated-id"
       tabindex="-1"
     >
@@ -653,7 +653,7 @@ exports[`EuiInMemoryTable with pagination and "show all" page size 1`] = `
       </div>
     </div>
     <table
-      class="euiTable euiTable--responsive"
+      class="euiTable css-0 euiTable--responsive"
       id="__table_generated-id"
       tabindex="-1"
     >

@@ -127,11 +127,13 @@ describe('EuiBasicTable', () => {
     const { container } = render(<EuiBasicTable {...props} />);
 
     expect(container.querySelector('.euiBasicTable-loading')).toBeTruthy(); // Used by several Kibana tests as an assertion
-    expect(
-      container
-        .querySelector('tbody')
-        ?.className.includes('euiBasicTableBodyLoading')
-    ).toBeTruthy();
+    expect(container.querySelector('tbody')?.className).toContain(
+      'euiBasicTableBodyLoading'
+    );
+    // Hopefully one day we can delete this when Safari gets its act together
+    expect(container.querySelector('table')?.className).toContain(
+      'safariLoadingWorkaround'
+    );
   });
 
   describe('rowProps', () => {
