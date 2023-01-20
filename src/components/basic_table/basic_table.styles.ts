@@ -8,7 +8,7 @@
 
 import { css, keyframes } from '@emotion/react';
 
-import { logicalCSS } from '../../global_styling';
+import { logicalCSS, euiCantAnimate } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 const tableLoadingLine = keyframes`
@@ -43,8 +43,11 @@ export const euiBasicTableBodyLoading = ({ euiTheme }: UseEuiTheme) => css`
     ${logicalCSS('width', '100%')}
     ${logicalCSS('height', euiTheme.border.width.thick)}
     background-color: ${euiTheme.colors.primary};
-    animation: ${tableLoadingLine} 1000ms linear;
-    animation-iteration-count: infinite;
+    animation: ${tableLoadingLine} 1s linear infinite;
+
+    ${euiCantAnimate} {
+      animation-duration: 2s;
+    }
   }
 `;
 
