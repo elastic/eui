@@ -27,21 +27,16 @@ export const EuiSkeletonCircle: FunctionComponent<EuiSkeletonCircleProps> = ({
   size = 'l',
   ...rest
 }) => {
-
   const euiTheme = useEuiTheme();
   const styles = euiSkeletonCircleStyles(euiTheme);
-  const classes = classNames(
-    'euiSkeleton__circle',
-    { [`euiSkeleton__circle--${size}`]: size },
-    className
-  );
-
-  const cssStyles = [
-    styles.euiSkeleton__circle,
-    styles[size],
-  ];
+  const cssStyles = [styles.euiSkeletonCircle, styles[size]];
 
   return (
-    <div className={classes} css={cssStyles} aria-busy={true} {...rest}></div>
-  )
-}
+    <div
+      className={classNames('euiSkeletonCircle', className)}
+      css={cssStyles}
+      aria-busy={true}
+      {...rest}
+    />
+  );
+};

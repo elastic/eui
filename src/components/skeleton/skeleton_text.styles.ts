@@ -46,7 +46,7 @@ export const euiSkeletonCommonStyles = (euiThemeContext: UseEuiTheme) => {
       : tint(euiTheme.colors.lightShade, 0.8);
 
   return {
-    euiSkeleton__text: css`
+    euiSkeletonText: css`
       display: block;
       ${logicalCSS('width', '100%')}
       border-radius: ${euiTheme.border.radius.medium};

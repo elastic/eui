@@ -33,13 +33,14 @@ export const EuiSkeletonRectangle: FunctionComponent<EuiSkeletonRectangleProps> 
 }) => {
   const euiTheme = useEuiTheme();
   const styles = euiSkeletonRectangleStyles(euiTheme, width, height);
-  const classes = classNames(
-    { [`euiSkeleton__rectangle--${borderRadius}`]: borderRadius },
-    'euiSkeleton__rectangle',
-    className
+  const cssStyles = [styles.euiSkeletonRectangle, styles[borderRadius]];
+
+  return (
+    <div
+      className={classNames('euiSkeletonRectangle', className)}
+      css={cssStyles}
+      aria-busy={true}
+      {...rest}
+    />
   );
-
-  const cssStyles = [styles.euiSkeleton__rectangle, styles[borderRadius]];
-
-  return <div className={classes} css={cssStyles} aria-busy={true} {...rest} />;
 };

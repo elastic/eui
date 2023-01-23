@@ -26,7 +26,7 @@ export const euiSkeletonRectangleStyles = (
       : tint(euiTheme.colors.lightShade, 0.8);
 
   return {
-    euiSkeleton__rectangle: css`
+    euiSkeletonRectangle: css`
       display: block;
       background: ${gradientStartStop};
       overflow: hidden;
@@ -52,6 +52,7 @@ export const euiSkeletonRectangleStyles = (
         }
       }
     `,
+    // Border radii
     s: css`
       border-radius: ${euiTheme.border.radius.small};
     `,

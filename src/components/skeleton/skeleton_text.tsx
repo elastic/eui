@@ -32,19 +32,17 @@ export const EuiSkeletonText: FunctionComponent<EuiSkeletonTextProps> = ({
 }) => {
   const euiTheme = useEuiTheme();
   const styles = euiSkeletonCommonStyles(euiTheme);
-  const lineCssStyles = [styles.euiSkeleton__text, styles[size]];
+  const lineCssStyles = [styles.euiSkeletonText, styles[size]];
   const defaultLabel = useLoadingAriaLabel();
 
-  const classes = classNames('euiSkeletonText', className);
   const lineElements = [];
-
   for (let i = 0; i < lines; i++) {
     lineElements.push(<span key={i} css={lineCssStyles} />);
   }
 
   return (
     <span
-      className={classes}
+      className={classNames('euiSkeletonText', className)}
       role="progressbar"
       aria-label={ariaLabel || defaultLabel}
       aria-busy={true}

@@ -25,7 +25,7 @@ export const euiSkeletonCircleStyles = ({
       : tint(euiTheme.colors.lightShade, 0.8);
 
   return {
-    euiSkeleton__circle: css`
+    euiSkeletonCircle: css`
       display: block;
       background: ${gradientStartStop};
       overflow: hidden;

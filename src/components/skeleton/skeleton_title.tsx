@@ -26,11 +26,14 @@ export const EuiSkeletonTitle: FunctionComponent<EuiSkeletonTitleProps> = ({
 }) => {
   const euiTheme = useEuiTheme();
   const styles = euiSkeletonTitleStyles(euiTheme);
-  const classes = classNames('euiSkeleton__title', className);
-
-  const cssStyles = [styles.euiSkeleton__title, styles[size]];
+  const cssStyles = [styles.euiSkeletonTitle, styles[size]];
 
   return (
-    <span className={classes} css={cssStyles} aria-busy={true} {...rest} />
+    <span
+      className={classNames('euiSkeletonTitle', className)}
+      css={cssStyles}
+      aria-busy={true}
+      {...rest}
+    />
   );
 };

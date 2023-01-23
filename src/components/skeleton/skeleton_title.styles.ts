@@ -23,7 +23,7 @@ export const euiSkeletonTitleStyles = (euiThemeContext: UseEuiTheme) => {
       : tint(euiThemeContext.euiTheme.colors.lightShade, 0.8);
 
   return {
-    euiSkeleton__title: css`
+    euiSkeletonTitle: css`
       display: block;
       background: ${gradientStartStop};
       overflow: hidden;
