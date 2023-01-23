@@ -242,9 +242,7 @@ const trailingControlColumns = [
         modal = (
           <EuiModal onClose={closeModal} style={{ width: 500 }}>
             <EuiModalHeader>
-              <EuiModalHeaderTitle>
-                <h2>A typical modal</h2>
-              </EuiModalHeaderTitle>
+              <EuiModalHeaderTitle>A typical modal</EuiModalHeaderTitle>
             </EuiModalHeader>
 
             <EuiModalBody>

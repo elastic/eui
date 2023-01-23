@@ -32,7 +32,7 @@ const modalWidthSource = require('!!raw-loader!./modal_width');
 
 const modalSnippet = `<EuiModal onClose={closeModal}>
   <EuiModalHeader>
-    <EuiModalHeaderTitle><h1><!-- Modal title --></h1></EuiModalHeaderTitle>
+    <EuiModalHeaderTitle><!-- Modal title --></EuiModalHeaderTitle>
   </EuiModalHeader>
 
   <EuiModalBody>
@@ -46,7 +46,7 @@ const modalSnippet = `<EuiModal onClose={closeModal}>
 
 const modalWidthSnippet = `<EuiModal style={{ width: 800 }} onClose={closeModal}>
   <EuiModalHeader>
-    <EuiModalHeaderTitle><h1><!-- Modal title --></h1></EuiModalHeaderTitle>
+    <EuiModalHeaderTitle><!-- Modal title --></EuiModalHeaderTitle>
   </EuiModalHeader>
 
   <EuiModalBody>
@@ -60,7 +60,7 @@ const modalWidthSnippet = `<EuiModal style={{ width: 800 }} onClose={closeModal}
 
 const modalFormSnippet = `<EuiModal onClose={closeModal}>
   <EuiModalHeader>
-    <EuiModalHeaderTitle><h1><!-- Modal title --></h1></EuiModalHeaderTitle>
+    <EuiModalHeaderTitle><!-- Modal title --></EuiModalHeaderTitle>
   </EuiModalHeader>
 
   <EuiModalBody>

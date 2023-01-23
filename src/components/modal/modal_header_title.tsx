@@ -16,7 +16,8 @@ export type EuiModalHeaderTitleProps = FunctionComponent<
   HTMLAttributes<HTMLHeadingElement> &
     CommonProps & {
       /**
-       * The tag to render
+       * The tag to render. Can be changed to a lower heading
+       * level like `h2` or a container `div`.
        * @default h1
        */
       component?: ElementType;

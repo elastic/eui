@@ -66,9 +66,7 @@ export default () => {
     modal = (
       <EuiModal onClose={closeModal} style={{ width: '800px' }}>
         <EuiModalHeader>
-          <EuiModalHeaderTitle>
-            <h1>Color picker in a modal</h1>
-          </EuiModalHeaderTitle>
+          <EuiModalHeaderTitle>Color picker in a modal</EuiModalHeaderTitle>
         </EuiModalHeader>
 
         <EuiModalBody>
