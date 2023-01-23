@@ -58,7 +58,7 @@ describe('EuiResizablePanel', () => {
       expect(container).toMatchSnapshot();
     });
 
-    test('tabindex', () => {
+    test('tabIndex', () => {
       const { container } = render(
         <EuiResizableContainerContextProvider registry={mockRegistry}>
           <EuiResizablePanel {...requiredProps} wrapperPadding="l" tabIndex={0}>

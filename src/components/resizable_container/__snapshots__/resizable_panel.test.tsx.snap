@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiResizablePanel props tabindex 1`] = `
+exports[`EuiResizablePanel props tabIndex 1`] = `
 <div>
   <div
     class="euiResizablePanel emotion-euiResizablePanel-l"
