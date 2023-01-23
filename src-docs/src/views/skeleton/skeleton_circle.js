@@ -1,28 +1,58 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiSkeletonCircle,
+  EuiAvatar,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiSwitch,
+  EuiSpacer,
 } from '../../../../src/components';
 
-export default () => (
-  <EuiFlexGroup>
-    <EuiFlexItem grow={false}>
-      <EuiSkeletonCircle size="s" />
-    </EuiFlexItem>
+export default () => {
+  const [isLoading, setIsLoading] = useState(true);
 
-    <EuiFlexItem grow={false}>
-      <EuiSkeletonCircle size="m" />
-    </EuiFlexItem>
+  return (
+    <>
+      <EuiSwitch
+        label="Toggle loaded state"
+        checked={isLoading}
+        onChange={() => setIsLoading(!isLoading)}
+      />
+      <EuiSpacer />
+      <EuiFlexGroup gutterSize="s" alignItems="center">
+        <EuiFlexItem grow={false}>
+          {isLoading ? (
+            <EuiSkeletonCircle size="s" />
+          ) : (
+            <EuiAvatar size="s" name="Raphael" />
+          )}
+        </EuiFlexItem>
 
-    <EuiFlexItem grow={false}>
-      <EuiSkeletonCircle size="l" />
-    </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          {isLoading ? (
+            <EuiSkeletonCircle size="m" />
+          ) : (
+            <EuiAvatar size="m" name="Donatello" />
+          )}
+        </EuiFlexItem>
 
-    <EuiFlexItem grow={false}>
-      <EuiSkeletonCircle size="xl" />
-    </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          {isLoading ? (
+            <EuiSkeletonCircle size="l" />
+          ) : (
+            <EuiAvatar size="l" name="Leonardo" />
+          )}
+        </EuiFlexItem>
 
-  </EuiFlexGroup>
-);
+        <EuiFlexItem grow={false}>
+          {isLoading ? (
+            <EuiSkeletonCircle size="xl" />
+          ) : (
+            <EuiAvatar size="xl" name="Michelangelo" />
+          )}
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </>
+  );
+};
