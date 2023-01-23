@@ -26,7 +26,7 @@ const skeletonRectangleSource = require('!!raw-loader!./skeleton_rectangle');
 
 const skeletonCircleSnippet = '<EuiSkeletonCircle size="m" />';
 const skeletonTextSnippet = '<EuiSkeletonText lines={3} />';
-const skeletonTitleSnippet = '<EuiSkeletonTitle size="h2" />';
+const skeletonTitleSnippet = '<EuiSkeletonTitle size="l" />';
 const skeletonRectangleSnippet =
   '<EuiSkeletonRectangle width="200px" height="20px" borderRadius="m" />';
 
