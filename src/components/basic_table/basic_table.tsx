@@ -349,10 +349,6 @@ export class EuiBasicTable<T = any> extends Component<
     return null;
   }
 
-  // used for moving in & out of `loading` state
-  private cleanups: Array<() => void> = [];
-  private tbody: HTMLTableSectionElement | null = null;
-
   constructor(props: EuiBasicTableProps<T>) {
     super(props);
     this.state = {
@@ -363,23 +359,11 @@ export class EuiBasicTable<T = any> extends Component<
   }
 
   componentDidMount() {
-    if (this.props.loading && this.tbody) this.addLoadingListeners(this.tbody);
     this.getInitialSelection();
   }
 
-  componentDidUpdate(prevProps: EuiBasicTableProps<T>) {
-    if (prevProps.loading !== this.props.loading) {
-      if (this.props.loading && this.tbody) {
-        this.addLoadingListeners(this.tbody);
-      } else {
-        this.removeLoadingListeners();
-      }
-    }
+  componentDidUpdate() {
     this.getInitialSelection();
-  }
-
-  componentWillUnmount() {
-    this.removeLoadingListeners();
   }
 
   getInitialSelection() {
@@ -397,49 +381,6 @@ export class EuiBasicTable<T = any> extends Component<
   setSelection(newSelection: T[]) {
     this.changeSelection(newSelection);
   }
-
-  private setTbody = (tbody: HTMLTableSectionElement | null) => {
-    // remove listeners from an existing element
-    this.removeLoadingListeners();
-
-    // update the ref
-    this.tbody = tbody;
-
-    // if loading, add listeners
-    if (this.props.loading === true && tbody) {
-      this.addLoadingListeners(tbody);
-    }
-  };
-
-  private addLoadingListeners = (tbody: HTMLTableSectionElement) => {
-    const listener = (event: Event) => {
-      event.stopPropagation();
-      event.preventDefault();
-    };
-    [
-      'mousedown',
-      'mouseup',
-      'mouseover',
-      'mouseout',
-      'mouseenter',
-      'mouseleave',
-      'click',
-      'dblclick',
-      'keydown',
-      'keyup',
-      'keypress',
-    ].forEach((event) => {
-      tbody.addEventListener(event, listener, true);
-      this.cleanups.push(() => {
-        tbody.removeEventListener(event, listener, true);
-      });
-    });
-  };
-
-  private removeLoadingListeners = () => {
-    this.cleanups.forEach((cleanup) => cleanup());
-    this.cleanups.length = 0;
-  };
 
   buildCriteria(props: EuiBasicTableProps<T>): Criteria<T> {
     const criteria: Criteria<T> = {};
@@ -969,10 +910,7 @@ export class EuiBasicTable<T = any> extends Component<
     return (
       <RenderWithEuiTheme>
         {(theme) => (
-          <EuiTableBody
-            bodyRef={this.setTbody}
-            css={loading && euiBasicTableBodyLoading(theme)}
-          >
+          <EuiTableBody css={loading && euiBasicTableBodyLoading(theme)}>
             {content}
           </EuiTableBody>
         )}
