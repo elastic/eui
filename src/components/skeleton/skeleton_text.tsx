@@ -13,7 +13,7 @@ import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
 import { TextSize } from '../text/text';
 
-import { useLoadingAriaAttributes } from './_skeleton';
+import { useLoadingAriaAttributes } from './utils';
 import { euiSkeletonCommonStyles } from './skeleton_text.styles';
 
 export type LineRange = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;

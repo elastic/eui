@@ -30,9 +30,9 @@ export const euiAnimSlideInUp = (size: string) => keyframes`
   }
 `;
 
-export const euiAnimSkeletonGradient = keyframes`
+export const euiAnimSlideX = (size: string) => keyframes`
   0% {
-    transform: translateX(-53%);
+    transform: translateX(${size});
   }
 
   100% {

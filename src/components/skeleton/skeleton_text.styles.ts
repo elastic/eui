@@ -7,14 +7,10 @@
  */
 
 import { css } from '@emotion/react';
-import {
-  euiFontSize,
-  euiCanAnimate,
-  logicalCSS,
-  mathWithUnits,
-} from '../../global_styling';
-import { euiAnimSkeletonGradient } from '../../global_styling/utility/animations';
-import { COLOR_MODES_STANDARD, shade, tint, UseEuiTheme } from '../../services';
+import { euiFontSize, logicalCSS, mathWithUnits } from '../../global_styling';
+import { UseEuiTheme } from '../../services';
+
+import { euiSkeletonGradientAnimation } from './utils';
 
 const calculateLineSize = (
   euiThemeContext: UseEuiTheme,
@@ -34,48 +30,20 @@ const calculateLineSize = (
 };
 
 export const euiSkeletonCommonStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, colorMode } = euiThemeContext;
-
-  const gradientStartStop =
-    colorMode === COLOR_MODES_STANDARD.dark
-      ? shade(euiTheme.colors.lightShade, 0.12)
-      : tint(euiTheme.colors.lightShade, 0.65);
-  const gradientMiddle =
-    colorMode === COLOR_MODES_STANDARD.dark
-      ? shade(euiTheme.colors.lightShade, 0.24)
-      : tint(euiTheme.colors.lightShade, 0.8);
+  const { euiTheme } = euiThemeContext;
 
   return {
     euiSkeletonText: css`
       display: block;
       ${logicalCSS('width', '100%')}
       border-radius: ${euiTheme.border.radius.medium};
-      background: ${gradientStartStop};
-      overflow: hidden;
+      ${euiSkeletonGradientAnimation(euiThemeContext)}
 
       // Offset via transform to more closely match placement of text
       transform: translateY(-25%);
 
       &:last-child:not(:only-child) {
         ${logicalCSS('width', '75%')}
-      }
-
-      &::after {
-        content: '';
-        display: block;
-        ${logicalCSS('width', '220%')}
-        ${logicalCSS('height', '100%')}
-        background: linear-gradient(
-          137deg,
-          ${gradientStartStop} 45%,
-          ${gradientMiddle} 50%,
-          ${gradientStartStop} 55%
-        );
-
-        ${euiCanAnimate} {
-          animation: ${euiAnimSkeletonGradient} 1.5s
-            ${euiTheme.animation.resistance} infinite;
-        }
       }
     `,
     // Sizes

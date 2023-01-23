@@ -12,7 +12,7 @@ import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
 
-import { useLoadingAriaAttributes } from './_skeleton';
+import { useLoadingAriaAttributes } from './utils';
 import { euiSkeletonRectangleStyles } from './skeleton_rectangle.styles';
 
 export const RADIUS = ['s', 'm', 'none'] as const;

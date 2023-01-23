@@ -7,46 +7,21 @@
  */
 
 import { css } from '@emotion/react';
-import { euiCanAnimate, logicalCSS } from '../../global_styling';
-import { euiAnimSkeletonGradient } from '../../global_styling/utility/animations';
-import { COLOR_MODES_STANDARD, shade, tint, UseEuiTheme } from '../../services';
+import { logicalCSS } from '../../global_styling';
+import { UseEuiTheme } from '../../services';
 
-export const euiSkeletonCircleStyles = ({
-  euiTheme,
-  colorMode,
-}: UseEuiTheme) => {
-  const gradientStartStop =
-    colorMode === COLOR_MODES_STANDARD.dark
-      ? shade(euiTheme.colors.lightShade, 0.12)
-      : tint(euiTheme.colors.lightShade, 0.65);
-  const gradientMiddle =
-    colorMode === COLOR_MODES_STANDARD.dark
-      ? shade(euiTheme.colors.lightShade, 0.24)
-      : tint(euiTheme.colors.lightShade, 0.8);
+import { euiSkeletonGradientAnimation } from './_skeleton';
+
+export const euiSkeletonCircleStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
 
   return {
     euiSkeletonCircle: css`
       display: block;
-      background: ${gradientStartStop};
-      overflow: hidden;
-
-      &::after {
-        content: '';
-        display: block;
-        ${logicalCSS('width', '220%')}
-        ${logicalCSS('height', '100%')}
-        background: linear-gradient(
-          137deg,
-          ${gradientStartStop} 45%,
-          ${gradientMiddle} 50%,
-          ${gradientStartStop} 55%
-        );
-
-        ${euiCanAnimate} {
-          animation: ${euiAnimSkeletonGradient} 1.5s
-            ${euiTheme.animation.resistance} infinite;
-        }
-      }
+      ${euiSkeletonGradientAnimation(euiThemeContext, {
+        slideSize: '-70%',
+        gradientSize: '280%',
+      })}
     `,
     // Sizes
     s: css`
