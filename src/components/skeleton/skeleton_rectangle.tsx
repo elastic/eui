@@ -12,6 +12,7 @@ import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
 
+import { useLoadingAriaAttributes } from './_skeleton';
 import { euiSkeletonRectangleStyles } from './skeleton_rectangle.styles';
 
 export const RADIUS = ['s', 'm', 'none'] as const;
@@ -39,7 +40,7 @@ export const EuiSkeletonRectangle: FunctionComponent<EuiSkeletonRectangleProps> 
     <div
       className={classNames('euiSkeletonRectangle', className)}
       css={cssStyles}
-      aria-busy={true}
+      {...useLoadingAriaAttributes()}
       {...rest}
     />
   );

@@ -12,6 +12,7 @@ import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
 
+import { useLoadingAriaAttributes } from './_skeleton';
 import { euiSkeletonCircleStyles } from './skeleton_circle.styles';
 
 export const SIZES = ['s', 'm', 'l', 'xl'] as const;
@@ -35,7 +36,7 @@ export const EuiSkeletonCircle: FunctionComponent<EuiSkeletonCircleProps> = ({
     <div
       className={classNames('euiSkeletonCircle', className)}
       css={cssStyles}
-      aria-busy={true}
+      {...useLoadingAriaAttributes()}
       {...rest}
     />
   );

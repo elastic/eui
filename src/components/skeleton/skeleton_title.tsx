@@ -12,6 +12,8 @@ import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
 import { EuiTitleSize } from '../title';
+
+import { useLoadingAriaAttributes } from './_skeleton';
 import { euiSkeletonTitleStyles } from './skeleton_title.styles';
 
 export type EuiSkeletonTitleProps = HTMLAttributes<HTMLDivElement> &
@@ -32,7 +34,7 @@ export const EuiSkeletonTitle: FunctionComponent<EuiSkeletonTitleProps> = ({
     <span
       className={classNames('euiSkeletonTitle', className)}
       css={cssStyles}
-      aria-busy={true}
+      {...useLoadingAriaAttributes()}
       {...rest}
     />
   );

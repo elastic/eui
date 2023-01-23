@@ -8,6 +8,12 @@
 
 import { useEuiI18n } from '../i18n';
 
-export const useLoadingAriaLabel = (): string => {
-  return useEuiI18n('euiSkeleton.ariaLabel', 'Loading');
+export const useLoadingAriaAttributes = () => {
+  const defaultLabel = useEuiI18n('euiSkeleton.ariaLabel', 'Loading');
+
+  return {
+    'aria-busy': true,
+    'aria-label': defaultLabel,
+    role: 'progressbar',
+  };
 };
