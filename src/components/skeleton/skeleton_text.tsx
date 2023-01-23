@@ -10,6 +10,8 @@ import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
+import { TextSize } from '../text/text';
+
 import { useLoadingAriaLabel } from './_skeleton';
 import { euiSkeletonCommonStyles } from './skeleton_text.styles';
 
@@ -18,17 +20,19 @@ export type LineRange = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 export type EuiSkeletonTextProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     lines?: LineRange;
+    size?: TextSize;
   };
 
 export const EuiSkeletonText: FunctionComponent<EuiSkeletonTextProps> = ({
   lines = 3,
+  size = 'm',
   className,
   'aria-label': ariaLabel,
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
   const styles = euiSkeletonCommonStyles(euiTheme);
-  const lineCssStyles = [styles.euiSkeleton__text];
+  const lineCssStyles = [styles.euiSkeleton__text, styles[size]];
   const defaultLabel = useLoadingAriaLabel();
 
   const classes = classNames('euiSkeletonText', className);

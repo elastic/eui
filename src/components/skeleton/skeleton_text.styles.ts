@@ -7,14 +7,35 @@
  */
 
 import { css } from '@emotion/react';
-import { euiCanAnimate, logicalCSS } from '../../global_styling';
+import {
+  euiFontSize,
+  euiCanAnimate,
+  logicalCSS,
+  mathWithUnits,
+} from '../../global_styling';
 import { euiAnimSkeletonGradient } from '../../global_styling/utility/animations';
 import { COLOR_MODES_STANDARD, shade, tint, UseEuiTheme } from '../../services';
 
-export const euiSkeletonCommonStyles = ({
-  euiTheme,
-  colorMode,
-}: UseEuiTheme) => {
+const calculateLineSize = (
+  euiThemeContext: UseEuiTheme,
+  size: 'xs' | 's' | 'm'
+) => {
+  const { fontSize, lineHeight } = euiFontSize(euiThemeContext, 'm', {
+    customScale: size,
+  });
+
+  return `
+    ${logicalCSS('height', fontSize)}
+    ${logicalCSS(
+      'margin-top',
+      mathWithUnits([lineHeight, fontSize], (x, y) => x - y)
+    )}
+  `;
+};
+
+export const euiSkeletonCommonStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme, colorMode } = euiThemeContext;
+
   const gradientStartStop =
     colorMode === COLOR_MODES_STANDARD.dark
       ? shade(euiTheme.colors.lightShade, 0.12)
@@ -28,14 +49,12 @@ export const euiSkeletonCommonStyles = ({
     euiSkeleton__text: css`
       display: block;
       ${logicalCSS('width', '100%')}
-      ${logicalCSS('height', euiTheme.size.base)}
       border-radius: ${euiTheme.border.radius.medium};
       background: ${gradientStartStop};
       overflow: hidden;
 
-      &:not(:last-child) {
-        ${logicalCSS('margin-bottom', euiTheme.size.s)}
-      }
+      // Offset via transform to more closely match placement of text
+      transform: translateY(-25%);
 
       &:last-child:not(:only-child) {
         ${logicalCSS('width', '75%')}
@@ -58,6 +77,20 @@ export const euiSkeletonCommonStyles = ({
             ${euiTheme.animation.resistance} infinite;
         }
       }
+    `,
+    // Sizes
+    m: css`
+      ${calculateLineSize(euiThemeContext, 'm')}
+    `,
+    s: css`
+      ${calculateLineSize(euiThemeContext, 's')}
+    `,
+    xs: css`
+      ${calculateLineSize(euiThemeContext, 'xs')}
+    `,
+    relative: css`
+      ${logicalCSS('height', '1em')}
+      ${logicalCSS('margin-top', '0.5em')}
     `,
   };
 };
