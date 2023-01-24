@@ -23,9 +23,7 @@ export default () => {
     modal = (
       <EuiModal onClose={closeModal}>
         <EuiModalHeader>
-          <EuiModalHeaderTitle>
-            <h1>Modal title</h1>
-          </EuiModalHeaderTitle>
+          <EuiModalHeaderTitle>Modal title</EuiModalHeaderTitle>
         </EuiModalHeader>
 
         <EuiModalBody>
@@ -34,7 +32,7 @@ export default () => {
           <EuiCodeBlock language="html" isCopyable>
             {`<EuiModal onClose={closeModal}>
   <EuiModalHeader>
-    <EuiModalHeaderTitle><h1><!-- Modal title --></h1></EuiModalHeaderTitle>
+    <EuiModalHeaderTitle><!-- Modal title --></EuiModalHeaderTitle>
   </EuiModalHeader>
 
   <EuiModalBody>

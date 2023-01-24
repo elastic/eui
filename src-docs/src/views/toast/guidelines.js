@@ -36,7 +36,7 @@ export default () => {
       <EuiModal onClose={closeModal}>
         <EuiModalHeader>
           <EuiModalHeaderTitle>
-            <h1>Your visualization has an error</h1>
+            Your visualization has an error
           </EuiModalHeaderTitle>
         </EuiModalHeader>
 

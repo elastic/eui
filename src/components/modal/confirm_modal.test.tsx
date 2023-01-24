@@ -8,6 +8,7 @@
 
 import React from 'react';
 import { mount } from 'enzyme';
+import { render } from '../../test/rtl';
 
 import {
   findTestSubject,
@@ -33,7 +34,10 @@ beforeEach(() => {
 
 describe('EuiConfirmModal', () => {
   shouldRenderCustomStyles(
-    <EuiConfirmModal onCancel={() => {}}>children</EuiConfirmModal>
+    <EuiConfirmModal title="Test" onCancel={() => {}}>
+      children
+    </EuiConfirmModal>,
+    { childProps: ['titleProps'] }
   );
 
   test('renders EuiConfirmModal', () => {
@@ -195,5 +199,17 @@ describe('EuiConfirmModal', () => {
         done();
       });
     });
+  });
+
+  test('titleProps', () => {
+    const { baseElement } = render(
+      <EuiConfirmModal
+        title="A confirmation modal"
+        titleProps={{ component: 'div', className: 'titlePropsTest' }}
+        onCancel={() => {}}
+      />
+    );
+    const title = baseElement.querySelector('.titlePropsTest');
+    expect(title?.tagName.toLowerCase()).toEqual('div');
   });
 });
