@@ -1,3 +1,9 @@
+## [`74.0.1`](https://github.com/elastic/eui/tree/v74.0.1)
+
+**Bug fixes**
+
+- Fixed `EuiModalHeaderTitle` type errors when passed `EuiTitle` props ([#6547](https://github.com/elastic/eui/pull/6547))
+
 ## [`74.0.0`](https://github.com/elastic/eui/tree/v74.0.0)
 
 - Added the `component` prop to `EuiModalHeaderTitle`, which allows overriding the default `h1` tag ([#6530](https://github.com/elastic/eui/pull/6530))
