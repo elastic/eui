@@ -721,7 +721,7 @@ export default class extends Component {
     }
 
     return (
-      <div>
+      <>
         <EuiFlexGroup gutterSize="m">
           {optionalActionButtons}
 
@@ -766,7 +766,7 @@ export default class extends Component {
           onChangePage={this.onChangePage}
           compressed
         />
-      </div>
+      </>
     );
   }
 }

@@ -11,14 +11,20 @@ _**Before you get started**_
   - if you have 2FA enabled, you may be prompted for an [OTP or other token](https://github.com/settings/tokens)
 
 ### Releasing `@elastic/eui`
+Log into your NPM account:
+```sh
+npm login # Will prompt for credentials and 2FA token
+npm whoami # Should return your NPM username
+```
+
 Ensure you have both the latest code and dependencies by running the following commands:
 ```sh
 git checkout main && git pull && yarn
 ```
 
-The release process is started by running the following command.
+The release process is started by running the following command:
 
-```shell
+```sh
 npm run release
 ```
 
@@ -32,6 +38,12 @@ The latest changes have now been pushed to GitHub, a new `git` tag now exists on
 
 <sup>_\* GitHub Pages sites are cached aggressively and can sometimes take a couple of minutes to update._</sup>
 
+(Optional) log out of your NPM account:
+```sh
+npm logout
+npm whoami # Should return an error about not being logged in
+```
+
 ### Deploying to eui.elastic.co
 
 In addition to the GitHub pages deployment, we need to manually deploy to the EUI Bekitzur environment (which will eventually be the canonical home of the EUI docs).
@@ -43,7 +55,11 @@ In addition to the GitHub pages deployment, we need to manually deploy to the EU
 
 ### Tag the release in GitHub
 
-We also update the [release's tag in github](https://github.com/elastic/eui/tags) by _creating a release_ for the version and copying over its _CHANGELOG.md_ entries. (TODO: screencast this next time to include a GIF here)
+We also update the [release's tag in github](https://github.com/elastic/eui/tags) by _creating a release_ for the version and copying over its _CHANGELOG.md_ entries. 
+* Click the three dot menu on the right side of the latest tag, then click "Create release" from the flyout menu
+* Type a lowercase "v" and the tag number into the release name field with no spaces
+* Copy the _CHANGELOG.md_ entry into the release description. Do not included the linked version header.
+* (TODO: screencast this next time to include a GIF here)
 
 ## `@elastic/eslint-plugin-eui`
 

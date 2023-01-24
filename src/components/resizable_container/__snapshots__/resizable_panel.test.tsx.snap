@@ -1,5 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiResizablePanel props tabIndex 1`] = `
+<div>
+  <div
+    class="euiResizablePanel emotion-euiResizablePanel-l"
+    data-position="middle"
+    id="resizable-panel_generated-id"
+    style="inline-size: 100%; block-size: 0%;"
+  >
+    <div
+      aria-label="aria-label"
+      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content testClass1 testClass2 emotion-euiPanel-grow-none-m-transparent-euiResizablePanel__content-scrollable"
+      data-test-subj="test subject string"
+      tabindex="0"
+    >
+      Content
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiResizablePanel props wrapperPadding 1`] = `
 <div>
   <div

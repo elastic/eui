@@ -85,7 +85,7 @@ export const StatExample = {
       playground: statConfig,
     },
     {
-      title: 'Applying color',
+      title: 'Color variants',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -184,7 +184,7 @@ export const StatExample = {
       demo: <StatLoading />,
     },
     {
-      title: 'Putting it all together',
+      title: 'Component variants',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -193,8 +193,11 @@ export const StatExample = {
       ],
       text: (
         <p>
-          Following are samples demonstrating how you might assemble and display{' '}
-          <strong>EuiStat</strong> components.
+          In the following example, you can see variants of how the{' '}
+          <strong>EuiStat</strong> component can be assembled. This component is
+          very helpful for constructing single-value visualizations and
+          summaries for different dashboards and page layouts and for
+          communicating trends over time.
         </p>
       ),
       demo: <StatCombos />,

@@ -24,6 +24,9 @@ import {
 const providerMessage = `\`EuiProvider\` is missing which can result in negative effects.
 Wrap your component in \`EuiProvider\`: https://ela.st/euiprovider.`;
 
+/**
+ * Hook for function components
+ */
 export interface UseEuiTheme<T extends {} = {}> {
   euiTheme: EuiThemeComputed<T>;
   colorMode: EuiThemeColorModeStandard;
@@ -64,6 +67,9 @@ export const useEuiTheme = <T extends {} = {}>(): UseEuiTheme<T> => {
   return assembledTheme;
 };
 
+/**
+ * HOC for class components
+ */
 export interface WithEuiThemeProps<P extends {} = {}> {
   theme: UseEuiTheme<P>;
 }
@@ -87,4 +93,17 @@ export const withEuiTheme = <T extends {} = {}, U extends {} = {}>(
   WithEuiTheme.displayName = componentName;
 
   return WithEuiTheme;
+};
+
+/**
+ * Render prop alternative for complex class components
+ * Most useful for scenarios where a HOC may interfere with typing
+ */
+export const RenderWithEuiTheme = <T extends {} = {}>({
+  children,
+}: {
+  children: (theme: UseEuiTheme) => React.ReactElement;
+}) => {
+  const theme = useEuiTheme<T>();
+  return children(theme);
 };

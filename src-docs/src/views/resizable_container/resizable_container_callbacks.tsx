@@ -78,6 +78,7 @@ export default () => {
                 id={firstPanelId}
                 size={sizes[firstPanelId]}
                 minSize="30%"
+                tabIndex={0}
               >
                 <EuiText>
                   <div>{text}</div>
@@ -91,6 +92,7 @@ export default () => {
                 id={secondPanelId}
                 size={sizes[secondPanelId]}
                 minSize="200px"
+                tabIndex={0}
               >
                 <EuiText>{text}</EuiText>
               </EuiResizablePanel>

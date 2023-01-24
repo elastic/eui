@@ -129,6 +129,10 @@ export interface EuiResizablePanelProps
    */
   style?: CSSProperties;
   /**
+   * tabIndex={0} provides full keyboard access when content overflows `<EuiResizablePanel />`
+   */
+  tabIndex?: number;
+  /**
    * Props to add to the wrapping `.euiResizablePanel` div
    */
   wrapperProps?: CommonProps & HTMLAttributes<HTMLDivElement>;
