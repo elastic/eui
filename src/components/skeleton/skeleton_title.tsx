@@ -13,7 +13,7 @@ import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
 import { EuiTitleSize } from '../title';
 
-import { useLoadingAriaAttributes } from './_skeleton';
+import { useLoadingAriaAttributes } from './utils';
 import { euiSkeletonTitleStyles } from './skeleton_title.styles';
 
 export type EuiSkeletonTitleProps = HTMLAttributes<HTMLDivElement> &

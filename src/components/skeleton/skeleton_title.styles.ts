@@ -14,41 +14,33 @@ import { euiTitle } from '../title/title.styles';
 import { euiSkeletonGradientAnimation } from './utils';
 
 export const euiSkeletonTitleStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+
   return {
     euiSkeletonTitle: css`
       display: block;
+      ${logicalCSS('width', '45%')};
+      border-radius: ${euiTheme.border.radius.medium};
       ${euiSkeletonGradientAnimation(euiThemeContext)}
     `,
     // Sizes
     l: css`
       ${logicalCSS('height', euiTitle(euiThemeContext, 'l').lineHeight)};
-      border-radius: ${euiThemeContext.euiTheme.border.radius.medium};
-      ${logicalCSS('width', '45%')};
     `,
     m: css`
       ${logicalCSS('height', euiTitle(euiThemeContext, 'm').lineHeight)};
-      border-radius: ${euiThemeContext.euiTheme.border.radius.medium};
-      ${logicalCSS('width', '45%')};
     `,
     s: css`
       ${logicalCSS('height', euiTitle(euiThemeContext, 's').lineHeight)};
-      border-radius: ${euiThemeContext.euiTheme.border.radius.medium};
-      ${logicalCSS('width', '45%')};
     `,
     xs: css`
       ${logicalCSS('height', euiTitle(euiThemeContext, 'xs').lineHeight)};
-      border-radius: ${euiThemeContext.euiTheme.border.radius.medium};
-      ${logicalCSS('width', '45%')};
     `,
     xxs: css`
       ${logicalCSS('height', euiTitle(euiThemeContext, 'xxs').lineHeight)};
-      border-radius: ${euiThemeContext.euiTheme.border.radius.medium};
-      ${logicalCSS('width', '45%')};
     `,
     xxxs: css`
       ${logicalCSS('height', euiTitle(euiThemeContext, 'xxxs').lineHeight)};
-      border-radius: ${euiThemeContext.euiTheme.border.radius.medium};
-      ${logicalCSS('width', '45%')};
     `,
   };
 };

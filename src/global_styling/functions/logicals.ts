@@ -108,7 +108,7 @@ export const logicalStyles = (styleObject: CSSProperties) => {
  * @param height A string value for the LTR height
  * @returns `string` Returns the logical CSS properties for height and width
  */
-export const logicalSizeCSS = (width: any, height: any) => {
+export const logicalSizeCSS = (width: any, height: any = width) => {
   return `
     ${logicals.width}: ${width};
     ${logicals.height}: ${height};

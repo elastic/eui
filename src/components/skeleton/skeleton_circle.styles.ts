@@ -7,10 +7,10 @@
  */
 
 import { css } from '@emotion/react';
-import { logicalCSS } from '../../global_styling';
+import { logicalSizeCSS, mathWithUnits } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
-import { euiSkeletonGradientAnimation } from './_skeleton';
+import { euiSkeletonGradientAnimation } from './utils';
 
 export const euiSkeletonCircleStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -18,6 +18,7 @@ export const euiSkeletonCircleStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     euiSkeletonCircle: css`
       display: block;
+      border-radius: 50%;
       ${euiSkeletonGradientAnimation(euiThemeContext, {
         slideSize: '-70%',
         gradientSize: '280%',
@@ -25,24 +26,16 @@ export const euiSkeletonCircleStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // Sizes
     s: css`
-      ${logicalCSS('width', euiTheme.size.l)};
-      ${logicalCSS('height', euiTheme.size.l)};
-      border-radius: 50%;
+      ${logicalSizeCSS(euiTheme.size.l)};
     `,
     m: css`
-      ${logicalCSS('width', euiTheme.size.xl)};
-      ${logicalCSS('height', euiTheme.size.xl)};
-      border-radius: 50%;
+      ${logicalSizeCSS(euiTheme.size.xl)};
     `,
     l: css`
-      ${logicalCSS('width', euiTheme.size.xxl)};
-      ${logicalCSS('height', euiTheme.size.xxl)};
-      border-radius: 50%;
+      ${logicalSizeCSS(euiTheme.size.xxl)};
     `,
     xl: css`
-      ${logicalCSS('width', `calc(${euiTheme.size.base} * 4)`)};
-      ${logicalCSS('height', `calc(${euiTheme.size.base} * 4)`)};
-      border-radius: 50%;
+      ${logicalSizeCSS(mathWithUnits(euiTheme.size.base, (x) => x * 4))};
     `,
   };
 };
