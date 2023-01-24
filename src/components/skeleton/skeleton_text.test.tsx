@@ -12,7 +12,7 @@ import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { TEXT_SIZES } from '../text/text';
-import { EuiSkeletonText } from './skeleton_text';
+import { EuiSkeletonText, LINES } from './skeleton_text';
 
 describe('EuiSkeletonText', () => {
   shouldRenderCustomStyles(<EuiSkeletonText />);
@@ -24,7 +24,7 @@ describe('EuiSkeletonText', () => {
   });
 
   describe('lines', () => {
-    ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as const).forEach((count) => {
+    LINES.forEach((count) => {
       test(String(count), () => {
         const { getByRole } = render(<EuiSkeletonText lines={count} />);
         const container = getByRole('progressbar');

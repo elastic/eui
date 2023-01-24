@@ -16,7 +16,8 @@ import { TextSize } from '../text/text';
 import { useLoadingAriaAttributes } from './utils';
 import { euiSkeletonCommonStyles } from './skeleton_text.styles';
 
-export type LineRange = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+export const LINES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as const;
+export type LineRange = typeof LINES[number];
 
 export type EuiSkeletonTextProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
