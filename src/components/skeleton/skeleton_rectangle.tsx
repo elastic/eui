@@ -11,6 +11,7 @@ import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
+import { logicalStyles } from '../../global_styling';
 
 import { useLoadingAriaAttributes } from './utils';
 import { euiSkeletonRectangleStyles } from './skeleton_rectangle.styles';
@@ -30,16 +31,18 @@ export const EuiSkeletonRectangle: FunctionComponent<EuiSkeletonRectangleProps> 
   borderRadius = 's',
   width = '24px',
   height = '24px',
+  style,
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
-  const styles = euiSkeletonRectangleStyles(euiTheme, width, height);
+  const styles = euiSkeletonRectangleStyles(euiTheme);
   const cssStyles = [styles.euiSkeletonRectangle, styles[borderRadius]];
 
   return (
     <div
       className={classNames('euiSkeletonRectangle', className)}
       css={cssStyles}
+      style={logicalStyles({ ...style, width, height })}
       {...useLoadingAriaAttributes()}
       {...rest}
     />

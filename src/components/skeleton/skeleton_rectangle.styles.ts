@@ -7,16 +7,11 @@
  */
 
 import { css } from '@emotion/react';
-import { logicalCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 import { euiSkeletonGradientAnimation } from './utils';
 
-export const euiSkeletonRectangleStyles = (
-  euiThemeContext: UseEuiTheme,
-  propsWidth?: string,
-  propsHeight?: string
-) => {
+export const euiSkeletonRectangleStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
   return {
@@ -26,9 +21,6 @@ export const euiSkeletonRectangleStyles = (
         slideSize: '-75%',
         gradientSize: '350%',
       })}
-
-      ${logicalCSS('width', propsWidth)};
-      ${logicalCSS('height', propsHeight)};
     `,
     // Border radii
     s: css`
