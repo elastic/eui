@@ -10,7 +10,12 @@ import {
   EuiSkeletonCircle,
 } from '../../../../src/components';
 
-// import { skeletonConfig } from './playground';
+import {
+  skeletonTextConfig,
+  skeletonTitleConfig,
+  skeletonCircleConfig,
+  skeletonRectangleConfig,
+} from './playground';
 
 import SkeletonCircle from './skeleton_circle';
 const skeletonCircleSource = require('!!raw-loader!./skeleton_circle');
@@ -61,6 +66,7 @@ export const SkeletonExample = {
       props: { EuiSkeletonText },
       snippet: skeletonTextSnippet,
       demo: <SkeletonText />,
+      playground: skeletonTextConfig,
     },
     {
       title: 'Title',
@@ -81,6 +87,7 @@ export const SkeletonExample = {
       props: { EuiSkeletonTitle },
       snippet: skeletonTitleSnippet,
       demo: <SkeletonTitle />,
+      playground: skeletonTitleConfig,
     },
     {
       title: 'Circle',
@@ -101,6 +108,7 @@ export const SkeletonExample = {
       props: { EuiSkeletonCircle },
       snippet: skeletonCircleSnippet,
       demo: <SkeletonCircle />,
+      playground: skeletonCircleConfig,
     },
     {
       title: 'Rectangle',
@@ -123,6 +131,7 @@ export const SkeletonExample = {
       props: { EuiSkeletonRectangle },
       snippet: skeletonRectangleSnippet,
       demo: <SkeletonRectangle />,
+      playground: skeletonRectangleConfig,
     },
   ],
 };
