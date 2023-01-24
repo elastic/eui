@@ -21,8 +21,8 @@ export type SkeletonRectangleBorderRadius = typeof RADIUS[number];
 
 export type EuiSkeletonRectangleProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
-    width?: string;
-    height?: string;
+    width?: string | number;
+    height?: string | number;
     borderRadius?: SkeletonRectangleBorderRadius;
   };
 
