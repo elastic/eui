@@ -29,4 +29,13 @@ describe('EuiModalHeaderTitle', () => {
     );
     expect(container.firstChild).toMatchSnapshot();
   });
+
+  it('allows passing any props that EuiTitle accepts', () => {
+    const { container } = render(
+      <EuiModalHeaderTitle size="s" textTransform="uppercase">
+        children
+      </EuiModalHeaderTitle>
+    );
+    expect(container.firstChild).toMatchSnapshot();
+  });
 });
