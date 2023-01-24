@@ -8,13 +8,12 @@
 
 import React, { FunctionComponent, HTMLAttributes, ElementType } from 'react';
 import classnames from 'classnames';
-import { CommonProps } from '../common';
 
-import { EuiTitle } from '../title';
+import { EuiTitle, EuiTitleProps } from '../title';
 
 export type EuiModalHeaderTitleProps = FunctionComponent<
-  HTMLAttributes<HTMLHeadingElement> &
-    CommonProps & {
+  Omit<EuiTitleProps, 'children'> &
+    HTMLAttributes<HTMLHeadingElement> & {
       /**
        * The tag to render. Can be changed to a lower heading
        * level like `h2` or a container `div`.
