@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 
 import {
-  EuiSkeletonRectangle,
+  EuiSkeletonCircle,
+  EuiAvatar,
   EuiFlexGroup,
   EuiFlexItem,
   EuiSwitch,
   EuiSpacer,
-  EuiImage,
-  EuiBadge,
-  EuiIcon,
 } from '../../../../src/components';
 
 export default () => {
@@ -22,41 +20,36 @@ export default () => {
         onChange={() => setIsLoading(!isLoading)}
       />
       <EuiSpacer />
-      <EuiFlexGroup>
+      <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
         <EuiFlexItem grow={false}>
           {isLoading ? (
-            <EuiSkeletonRectangle width="16px" height="16px" borderRadius="s" />
+            <EuiSkeletonCircle size="s" />
           ) : (
-            <EuiIcon type="cheer" />
+            <EuiAvatar size="s" name="Raphael" />
           )}
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
           {isLoading ? (
-            <EuiSkeletonRectangle
-              width="54.16px"
-              height="20px"
-              borderRadius="m"
-            />
+            <EuiSkeletonCircle size="m" />
           ) : (
-            <EuiBadge color="success">Active</EuiBadge>
+            <EuiAvatar size="m" name="Donatello" />
           )}
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
           {isLoading ? (
-            <EuiSkeletonRectangle
-              width={100}
-              height={100}
-              borderRadius="none"
-            />
+            <EuiSkeletonCircle size="l" />
           ) : (
-            <EuiImage
-              width={100}
-              height={100}
-              src="https://picsum.photos/300/300"
-              alt="A randomized image"
-            />
+            <EuiAvatar size="l" name="Leonardo" />
+          )}
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          {isLoading ? (
+            <EuiSkeletonCircle size="xl" />
+          ) : (
+            <EuiAvatar size="xl" name="Michelangelo" />
           )}
         </EuiFlexItem>
       </EuiFlexGroup>

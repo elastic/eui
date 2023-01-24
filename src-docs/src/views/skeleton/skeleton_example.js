@@ -66,7 +66,7 @@ export const SkeletonExample = {
       title: 'Text',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: skeletonTextSource,
         },
       ],

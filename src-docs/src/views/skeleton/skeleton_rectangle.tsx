@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 
 import {
-  EuiSkeletonCircle,
-  EuiAvatar,
+  EuiSkeletonRectangle,
   EuiFlexGroup,
   EuiFlexItem,
   EuiSwitch,
   EuiSpacer,
+  EuiImage,
+  EuiBadge,
+  EuiIcon,
 } from '../../../../src/components';
 
 export default () => {
@@ -20,36 +22,41 @@ export default () => {
         onChange={() => setIsLoading(!isLoading)}
       />
       <EuiSpacer />
-      <EuiFlexGroup gutterSize="s" alignItems="center">
+      <EuiFlexGroup responsive={false} wrap>
         <EuiFlexItem grow={false}>
           {isLoading ? (
-            <EuiSkeletonCircle size="s" />
+            <EuiSkeletonRectangle width="16px" height="16px" borderRadius="s" />
           ) : (
-            <EuiAvatar size="s" name="Raphael" />
+            <EuiIcon type="cheer" />
           )}
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
           {isLoading ? (
-            <EuiSkeletonCircle size="m" />
+            <EuiSkeletonRectangle
+              width="54.16px"
+              height="20px"
+              borderRadius="m"
+            />
           ) : (
-            <EuiAvatar size="m" name="Donatello" />
+            <EuiBadge color="success">Active</EuiBadge>
           )}
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
           {isLoading ? (
-            <EuiSkeletonCircle size="l" />
+            <EuiSkeletonRectangle
+              width={100}
+              height={100}
+              borderRadius="none"
+            />
           ) : (
-            <EuiAvatar size="l" name="Leonardo" />
-          )}
-        </EuiFlexItem>
-
-        <EuiFlexItem grow={false}>
-          {isLoading ? (
-            <EuiSkeletonCircle size="xl" />
-          ) : (
-            <EuiAvatar size="xl" name="Michelangelo" />
+            <EuiImage
+              width={100}
+              height={100}
+              src="https://picsum.photos/300/300"
+              alt="A randomized image"
+            />
           )}
         </EuiFlexItem>
       </EuiFlexGroup>

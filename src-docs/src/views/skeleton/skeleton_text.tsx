@@ -11,9 +11,11 @@ import {
   EuiFlexItem,
 } from '../../../../src/components';
 
+type TextSizes = 'm' | 's' | 'xs' | 'relative';
+
 export default () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [size, setSize] = useState('m');
+  const [size, setSize] = useState<TextSizes>('m');
 
   return (
     <>
@@ -27,7 +29,7 @@ export default () => {
           legend="Change text size"
           idSelected={size}
           onChange={(optionId) => {
-            setSize(optionId);
+            setSize(optionId as TextSizes);
           }}
           options={[
             { label: 'Medium', id: 'm' },
