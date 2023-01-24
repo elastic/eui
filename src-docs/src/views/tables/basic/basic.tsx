@@ -133,7 +133,6 @@ export default () => {
       columns={columns}
       rowProps={getRowProps}
       cellProps={getCellProps}
-      loading
     />
   );
 };
