@@ -35,33 +35,13 @@ export const SkeletonExample = {
   intro: (
     <EuiText>
       <p>
-        The <strong>EuiSkeleton</strong> it&apos;s a placeholder component for
-        content which hasn&apos;t yet loaded, in order to provide a meaningful
+        The <strong>EuiSkeleton</strong> components are placeholder components
+        for content which haven&apos;t yet loaded. They provide a meaningful
         preview and avoid layout content shifts.
       </p>
     </EuiText>
   ),
   sections: [
-    {
-      title: 'Circle',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: skeletonCircleSource,
-        },
-      ],
-      text: (
-        <EuiText>
-          <p>
-            Use the <strong>EuiSkeletonCircle</strong> to display a circular
-            preview mainly for avatars.
-          </p>
-        </EuiText>
-      ),
-      props: { EuiSkeletonCircle },
-      snippet: skeletonCircleSnippet,
-      demo: <SkeletonCircle />,
-    },
     {
       title: 'Text',
       source: [
@@ -73,8 +53,8 @@ export const SkeletonExample = {
       text: (
         <EuiText>
           <p>
-            Use the <strong>EuiSkeletonText</strong> to display a placeholder
-            for multiple lines of text.
+            Use <strong>EuiSkeletonText</strong> to display a placeholder for
+            multiple lines of text.
           </p>
         </EuiText>
       ),
@@ -94,13 +74,33 @@ export const SkeletonExample = {
         <EuiText>
           <p>
             Use <strong>EuiSkeletonTitle</strong> to display a placeholder for
-            heading texts.
+            heading titles.
           </p>
         </EuiText>
       ),
       props: { EuiSkeletonTitle },
       snippet: skeletonTitleSnippet,
       demo: <SkeletonTitle />,
+    },
+    {
+      title: 'Circle',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: skeletonCircleSource,
+        },
+      ],
+      text: (
+        <EuiText>
+          <p>
+            Use <strong>EuiSkeletonCircle</strong> to display a circular
+            preview, mainly for avatars.
+          </p>
+        </EuiText>
+      ),
+      props: { EuiSkeletonCircle },
+      snippet: skeletonCircleSnippet,
+      demo: <SkeletonCircle />,
     },
     {
       title: 'Rectangle',
@@ -113,10 +113,10 @@ export const SkeletonExample = {
       text: (
         <EuiText>
           <p>
-            The <strong>Rectangle</strong> type let you free to define whatever
-            shape you want to mock with a skeleton by defining
-            <EuiCode>width</EuiCode> <EuiCode>height</EuiCode>
-            and <EuiCode>borderRadius</EuiCode>.
+            <strong>EuiSkeletonCircle</strong> allows you define a large and
+            customizable shape via its <EuiCode>width</EuiCode>,{' '}
+            <EuiCode>height</EuiCode>, and <EuiCode>borderRadius</EuiCode>{' '}
+            props.
           </p>
         </EuiText>
       ),
