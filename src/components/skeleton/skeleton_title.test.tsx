@@ -11,21 +11,22 @@ import { render } from '../../test/rtl';
 import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
-import { EuiSkeletonCircle, SIZES } from './skeleton_circle';
+import { TITLE_SIZES } from '../title/title';
+import { EuiSkeletonTitle } from './skeleton_title';
 
-describe('EuiSkeletonCircle', () => {
-  shouldRenderCustomStyles(<EuiSkeletonCircle />);
+describe('EuiSkeletonTitle', () => {
+  shouldRenderCustomStyles(<EuiSkeletonTitle />);
 
   test('is rendered', () => {
-    const { container } = render(<EuiSkeletonCircle {...requiredProps} />);
+    const { container } = render(<EuiSkeletonTitle {...requiredProps} />);
 
     expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('size', () => {
-    SIZES.forEach((size) => {
+    TITLE_SIZES.forEach((size) => {
       test(size, () => {
-        const { container } = render(<EuiSkeletonCircle size={size} />);
+        const { container } = render(<EuiSkeletonTitle size={size} />);
 
         expect(container.firstChild).toMatchSnapshot();
       });

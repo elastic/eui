@@ -11,21 +11,33 @@ import { render } from '../../test/rtl';
 import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
-import { EuiSkeletonCircle, SIZES } from './skeleton_circle';
+import { TEXT_SIZES } from '../text/text';
+import { EuiSkeletonText } from './skeleton_text';
 
-describe('EuiSkeletonCircle', () => {
-  shouldRenderCustomStyles(<EuiSkeletonCircle />);
+describe('EuiSkeletonText', () => {
+  shouldRenderCustomStyles(<EuiSkeletonText />);
 
   test('is rendered', () => {
-    const { container } = render(<EuiSkeletonCircle {...requiredProps} />);
+    const { container } = render(<EuiSkeletonText {...requiredProps} />);
 
     expect(container.firstChild).toMatchSnapshot();
   });
 
+  describe('lines', () => {
+    ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as const).forEach((count) => {
+      test(String(count), () => {
+        const { getByRole } = render(<EuiSkeletonText lines={count} />);
+        const container = getByRole('progressbar');
+
+        expect(container.querySelectorAll('span')).toHaveLength(count);
+      });
+    });
+  });
+
   describe('size', () => {
-    SIZES.forEach((size) => {
+    TEXT_SIZES.forEach((size) => {
       test(size, () => {
-        const { container } = render(<EuiSkeletonCircle size={size} />);
+        const { container } = render(<EuiSkeletonText size={size} />);
 
         expect(container.firstChild).toMatchSnapshot();
       });

@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiSkeletonTitle is rendered 1`] = `
+<span
+  aria-busy="true"
+  aria-label="aria-label"
+  class="euiSkeletonTitle testClass1 testClass2 emotion-euiSkeletonGradientAnimation-euiSkeletonTitle-m"
+  data-test-subj="test subject string"
+  role="progressbar"
+/>
+`;
+
+exports[`EuiSkeletonTitle size l 1`] = `
+<span
+  aria-busy="true"
+  aria-label="Loading"
+  class="euiSkeletonTitle emotion-euiSkeletonGradientAnimation-euiSkeletonTitle-l"
+  role="progressbar"
+/>
+`;
+
+exports[`EuiSkeletonTitle size m 1`] = `
+<span
+  aria-busy="true"
+  aria-label="Loading"
+  class="euiSkeletonTitle emotion-euiSkeletonGradientAnimation-euiSkeletonTitle-m"
+  role="progressbar"
+/>
+`;
+
+exports[`EuiSkeletonTitle size s 1`] = `
+<span
+  aria-busy="true"
+  aria-label="Loading"
+  class="euiSkeletonTitle emotion-euiSkeletonGradientAnimation-euiSkeletonTitle-s"
+  role="progressbar"
+/>
+`;
+
+exports[`EuiSkeletonTitle size xs 1`] = `
+<span
+  aria-busy="true"
+  aria-label="Loading"
+  class="euiSkeletonTitle emotion-euiSkeletonGradientAnimation-euiSkeletonTitle-xs"
+  role="progressbar"
+/>
+`;
+
+exports[`EuiSkeletonTitle size xxs 1`] = `
+<span
+  aria-busy="true"
+  aria-label="Loading"
+  class="euiSkeletonTitle emotion-euiSkeletonGradientAnimation-euiSkeletonTitle-xxs"
+  role="progressbar"
+/>
+`;
+
+exports[`EuiSkeletonTitle size xxxs 1`] = `
+<span
+  aria-busy="true"
+  aria-label="Loading"
+  class="euiSkeletonTitle emotion-euiSkeletonGradientAnimation-euiSkeletonTitle-xxxs"
+  role="progressbar"
+/>
+`;

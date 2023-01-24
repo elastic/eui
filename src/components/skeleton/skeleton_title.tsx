@@ -18,7 +18,7 @@ import { euiSkeletonTitleStyles } from './skeleton_title.styles';
 
 export type EuiSkeletonTitleProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
-    size: EuiTitleSize;
+    size?: EuiTitleSize;
   };
 
 export const EuiSkeletonTitle: FunctionComponent<EuiSkeletonTitleProps> = ({
