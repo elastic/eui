@@ -28,9 +28,8 @@ const mappings = {
   },
 };
 
-const ContextConsumer = (props) => {
+const ContextConsumer = ({ language }) => {
   const [name, setName] = useState('');
-  const { language } = props;
   const placeholderName = useEuiI18n('euiContext.placeholder', 'John Doe');
 
   return (
