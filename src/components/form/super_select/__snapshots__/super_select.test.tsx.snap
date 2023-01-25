@@ -179,7 +179,7 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
               class="emotion-euiScreenReaderOnly"
               id="euiSuperSelect__generated-id__screenreaderDescribeId"
             >
-              You are in a form selector and must select a single option. Use the up and down keys to navigate or escape to close.
+              You are in a form selector and must select a single option. Use the Up and Down arrow keys to navigate or Escape to close.
             </p>
             <div
               aria-describedby="euiSuperSelect__generated-id__screenreaderDescribeId"
@@ -442,7 +442,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
               class="emotion-euiScreenReaderOnly"
               id="euiSuperSelect__generated-id__screenreaderDescribeId"
             >
-              You are in a form selector and must select a single option. Use the up and down keys to navigate or escape to close.
+              You are in a form selector and must select a single option. Use the Up and Down arrow keys to navigate or Escape to close.
             </p>
             <div
               aria-activedescendant="1"
@@ -594,7 +594,7 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
               class="emotion-euiScreenReaderOnly"
               id="euiSuperSelect__generated-id__screenreaderDescribeId"
             >
-              You are in a form selector and must select a single option. Use the up and down keys to navigate or escape to close.
+              You are in a form selector and must select a single option. Use the Up and Down arrow keys to navigate or Escape to close.
             </p>
             <div
               aria-describedby="euiSuperSelect__generated-id__screenreaderDescribeId"
@@ -745,7 +745,7 @@ exports[`EuiSuperSelect props renders popoverProps on the underlying EuiPopover 
               class="emotion-euiScreenReaderOnly"
               id="euiSuperSelect__generated-id__screenreaderDescribeId"
             >
-              You are in a form selector and must select a single option. Use the up and down keys to navigate or escape to close.
+              You are in a form selector and must select a single option. Use the Up and Down arrow keys to navigate or Escape to close.
             </p>
             <div
               aria-activedescendant="2"
