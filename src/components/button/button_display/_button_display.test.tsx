@@ -94,30 +94,25 @@ describe('EuiButtonDisplay', () => {
         expect(container.querySelector('a')?.getAttribute('type')).toBeNull();
       });
 
-      it('inserts `rel=noreferrer` for non-Elastic urls ', () => {
+      it('inserts `rel=noreferrer`', () => {
         const { queryByTestSubject } = render(
           <>
             <EuiButtonDisplay
               href="https://elastic.co"
+              data-test-subj="rel"
+              rel="noreferrer"
+            />
+            <EuiButtonDisplay
+              href="https://elastic.co"
               data-test-subj="norel"
-              rel="noreferrer" // Removes this
-            />
-            <EuiButtonDisplay
-              href="ftp://elastic.co"
-              data-test-subj="badprotocol"
-            />
-            <EuiButtonDisplay
-              href="https://hello.world"
-              data-test-subj="notelastic"
             />
           </>
         );
 
-        expect(queryByTestSubject('norel')?.getAttribute('rel')).toEqual('');
-        expect(queryByTestSubject('badprotocol')?.getAttribute('rel')).toEqual(
+        expect(queryByTestSubject('rel')?.getAttribute('rel')).toEqual(
           'noreferrer'
         );
-        expect(queryByTestSubject('notelastic')?.getAttribute('rel')).toEqual(
+        expect(queryByTestSubject('norel')?.getAttribute('rel')).toEqual(
           'noreferrer'
         );
       });
@@ -128,20 +123,12 @@ describe('EuiButtonDisplay', () => {
             <EuiButtonDisplay
               href="https://elastic.co"
               target="_blank"
-              data-test-subj="elastic"
-            />
-            <EuiButtonDisplay
-              href="https://hello.world"
-              target="_blank"
-              data-test-subj="notelastic"
+              data-test-subj="blank"
             />
           </>
         );
 
-        expect(queryByTestSubject('elastic')?.getAttribute('rel')).toEqual(
-          'noopener'
-        );
-        expect(queryByTestSubject('notelastic')?.getAttribute('rel')).toEqual(
+        expect(queryByTestSubject('blank')?.getAttribute('rel')).toEqual(
           'noopener noreferrer'
         );
       });

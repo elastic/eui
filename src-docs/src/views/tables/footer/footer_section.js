@@ -2,14 +2,14 @@ import React from 'react';
 import { EuiBasicTable, EuiCode } from '../../../../../src/components';
 import { GuideSectionTypes } from '../../../components';
 
-import { Table } from './footer';
+import Table from './footer';
 const source = require('!!raw-loader!./footer');
 
 export const section = {
   title: 'Adding a footer to a table',
   source: [
     {
-      type: GuideSectionTypes.JS,
+      type: GuideSectionTypes.TSX,
       code: source,
     },
   ],

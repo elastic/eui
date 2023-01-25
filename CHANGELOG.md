@@ -1,3 +1,40 @@
+## [`74.0.1`](https://github.com/elastic/eui/tree/v74.0.1)
+
+**Bug fixes**
+
+- Fixed `EuiModalHeaderTitle` type errors when passed `EuiTitle` props ([#6547](https://github.com/elastic/eui/pull/6547))
+
+## [`74.0.0`](https://github.com/elastic/eui/tree/v74.0.0)
+
+- Added the `component` prop to `EuiModalHeaderTitle`, which allows overriding the default `h1` tag ([#6530](https://github.com/elastic/eui/pull/6530))
+- Added the `titleProps` prop to `EuiConfirmModal`, which allows overriding the default `h1` tag ([#6530](https://github.com/elastic/eui/pull/6530))
+
+**Bug fixes**
+
+- Fixed slight row height jumping in `EuiBasicTable`s when actions with tooltips became disabled ([#6538](https://github.com/elastic/eui/pull/6538))
+
+**Breaking changes**
+
+- `EuiModalHeaderTitle` now **always** wraps its children in a `h1` tag (previously attempted to conditionally detect whether its children were raw strings or not). To change this tag type to, e.g. a more generic `div`, use  the new `component` prop. ([#6530](https://github.com/elastic/eui/pull/6530))
+- `EuiLink` now applies `rel="noreferrer"` to all domains, including `elastic.co` ([#6535](https://github.com/elastic/eui/pull/6535))
+- `EuiBasicTable` no longer blocks mouse/keyboard interactions while `loading` ([#6543](https://github.com/elastic/eui/pull/6543))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiBasicTable` to Emotion ([#6539](https://github.com/elastic/eui/pull/6539))
+- Added a new `RenderWithEuiTheme` render prop utility ([#6539](https://github.com/elastic/eui/pull/6539))
+
+## [`73.0.0`](https://github.com/elastic/eui/tree/v73.0.0)
+
+**Bug fixes**
+
+- Fixed `EuiDataGrid` a11y errors within toolbar popovers containing draggable elements with interactive children ([#6517](https://github.com/elastic/eui/pull/6517))
+- Fixed several styling bugs within `EuiDataGrid`'s sorting toolbar popover ([#6517](https://github.com/elastic/eui/pull/6517))
+
+**Breaking changes**
+
+- `EuiToolTip`s now internally enforce only showing **one** tooltip at a time (the most recently triggered tooltip). This primarily affects scenarios where users are focused on a tooltip toggle via click, and then hover onto another tooltip toggle. ([#6520](https://github.com/elastic/eui/pull/6520))
+
 ## [`72.2.0`](https://github.com/elastic/eui/tree/v72.2.0)
 
 - Added `onFullScreen` callback to expose the `isFullScreen` state of the `EuiImage` ([#6504](https://github.com/elastic/eui/pull/6504))

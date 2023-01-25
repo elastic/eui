@@ -41,7 +41,8 @@ if (args.dry_run) {
     process.exit(1);
   }
 
-  // ensure git is on the main branch
+  // ensure git is on the correct remote and branch
+  await ensureUpstreamRemote();
   await ensureMainBranch();
 
   // run linting and unit tests
@@ -134,6 +135,30 @@ function parseArguments() {
     ...args,
     steps,
   };
+}
+
+async function ensureUpstreamRemote() {
+  try {
+    const upstreamRemote = execSync('git config --get remote.upstream.url')
+      .toString()
+      .trim();
+    if (
+      !(
+        upstreamRemote.endsWith(':elastic/eui.git') || // : for SSH, / for HTTPS
+        upstreamRemote.endsWith('/elastic/eui.git')
+      )
+    ) {
+      console.error(
+        'Your `upstream` remote must be pointed to https://github.com/elastic/eui.\nPlease run `git remote -v` to ensure you have an `upstream` remote pointed at the correct repo.\n'
+      );
+      process.exit(1);
+    }
+  } catch {
+    console.error(
+      'No `upstream` remote found.\nPlease run: `git remote add upstream git@github.com:elastic/eui.git`\n'
+    );
+    process.exit(1);
+  }
 }
 
 async function ensureMainBranch() {

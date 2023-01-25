@@ -16,7 +16,7 @@ import { section as mobileSection } from './mobile';
 export const TableExample = {
   title: 'Tables',
   intro: (
-    <div>
+    <>
       <EuiCallOut title="EUI provides opinionated and non-opinionated ways to build tables">
         <p>
           Tables can get complicated very fast. If you&apos;re just looking for
@@ -33,7 +33,7 @@ export const TableExample = {
           <strong>at the bottom of this page</strong>.
         </p>
       </EuiCallOut>
-    </div>
+    </>
   ),
   sections: [
     basicSection,

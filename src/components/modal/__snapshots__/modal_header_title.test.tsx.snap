@@ -1,5 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiModalHeaderTitle allows passing any props that EuiTitle accepts 1`] = `
+<h1
+  class="euiTitle euiModalHeader__title emotion-euiTitle-uppercase-s"
+>
+  children
+</h1>
+`;
+
+exports[`EuiModalHeaderTitle component 1`] = `
+<div
+  class="euiTitle euiModalHeader__title emotion-euiTitle-m"
+>
+  children
+</div>
+`;
+
 exports[`EuiModalHeaderTitle is rendered 1`] = `
 <h1
   aria-label="aria-label"

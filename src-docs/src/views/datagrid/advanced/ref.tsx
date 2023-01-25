@@ -220,9 +220,7 @@ export default () => {
       {isModalVisible && (
         <EuiModal onClose={closeModal} style={{ width: 500 }}>
           <EuiModalHeader>
-            <EuiModalHeaderTitle>
-              <h2>Example modal</h2>
-            </EuiModalHeaderTitle>
+            <EuiModalHeaderTitle>Example modal</EuiModalHeaderTitle>
           </EuiModalHeader>
 
           <EuiModalBody>

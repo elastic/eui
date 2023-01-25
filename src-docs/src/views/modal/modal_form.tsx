@@ -115,9 +115,7 @@ export default () => {
     modal = (
       <EuiModal onClose={closeModal} initialFocus="[name=popswitch]">
         <EuiModalHeader>
-          <EuiModalHeaderTitle>
-            <h1>Modal title</h1>
-          </EuiModalHeaderTitle>
+          <EuiModalHeaderTitle>Modal title</EuiModalHeaderTitle>
         </EuiModalHeader>
 
         <EuiModalBody>{formSample}</EuiModalBody>

@@ -6,26 +6,34 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import React, { FunctionComponent, HTMLAttributes, ElementType } from 'react';
 import classnames from 'classnames';
-import { CommonProps } from '../common';
 
-import { EuiTitle } from '../title';
+import { EuiTitle, EuiTitleProps } from '../title';
 
 export type EuiModalHeaderTitleProps = FunctionComponent<
-  HTMLAttributes<HTMLDivElement> & CommonProps
+  Omit<EuiTitleProps, 'children'> &
+    HTMLAttributes<HTMLHeadingElement> & {
+      /**
+       * The tag to render. Can be changed to a lower heading
+       * level like `h2` or a container `div`.
+       * @default h1
+       */
+      component?: ElementType;
+    }
 >;
 
 export const EuiModalHeaderTitle: EuiModalHeaderTitleProps = ({
   className,
   children,
+  component: Component = 'h1',
   ...rest
 }) => {
   const classes = classnames('euiModalHeader__title', className);
 
   return (
     <EuiTitle size="m" className={classes} {...rest}>
-      {React.isValidElement(children) ? children : <h1>{children}</h1>}
+      <Component>{children}</Component>
     </EuiTitle>
   );
 };
