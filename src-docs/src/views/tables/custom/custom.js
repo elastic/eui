@@ -38,8 +38,6 @@ import {
   SortableProperties,
 } from '../../../../../src/services';
 
-import { isFunction } from '../../../../../src/services/predicate';
-
 export default class extends Component {
   constructor(props) {
     super(props);
@@ -699,7 +697,7 @@ export default class extends Component {
     }
 
     if (column.footer) {
-      if (isFunction(column.footer)) {
+      if (typeof column.footer === 'function') {
         return column.footer({ items, pagination });
       }
       return column.footer;
