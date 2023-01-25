@@ -10,8 +10,6 @@
 
 import React from 'react';
 import { EuiResizableContainer } from './resizable_container';
-import { EuiResizablePanel } from './resizable_panel';
-import { EuiResizableButton } from './resizable_button';
 import { EuiText } from '../text';
 import { faker } from '@faker-js/faker';
 
@@ -60,7 +58,7 @@ describe('EuiProgress', () => {
   });
 
   describe('Keyboard accessibility check', () => {
-    it('has zero violations when first panel is scrolled', () => {
+    it('has zero violations when first panel is scrolled vertically', () => {
       cy.realPress('Tab');
       cy.get('div.euiPanel').first().should('have.focus');
       cy.realPress('End');
@@ -68,7 +66,7 @@ describe('EuiProgress', () => {
       cy.checkAxe();
     });
 
-    it('has zero violations when second panel is scrolled', () => {
+    it('has zero violations when second panel is scrolled vertically', () => {
       cy.repeatRealPress('Tab', 4);
       cy.get('div.euiPanel').last().should('have.focus');
       cy.realPress('End');
