@@ -339,7 +339,7 @@ export class EuiSuperSelect<T extends string> extends Component<
             <EuiI18n
               token="euiSuperSelect.screenReaderAnnouncement"
               default="You are in a form selector and must select a single option.
-              Use the up and down keys to navigate or escape to close."
+              Use the Up and Down arrow keys to navigate or Escape to close."
             />
           </p>
         </EuiScreenReaderOnly>

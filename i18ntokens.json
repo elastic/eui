@@ -4241,7 +4241,7 @@
   },
   {
     "token": "euiSuperSelect.screenReaderAnnouncement",
-    "defString": "You are in a form selector and must select a single option.\n              Use the up and down keys to navigate or escape to close.",
+    "defString": "You are in a form selector and must select a single option.\n              Use the Up and Down arrow keys to navigate or Escape to close.",
     "highlighting": "string",
     "loc": {
       "start": {
