@@ -7,13 +7,14 @@
  */
 
 import { css } from '@emotion/react';
-import { useEuiI18n } from '../i18n';
+
 import { UseEuiTheme, shade, tint } from '../../services';
 import { euiCanAnimate, logicalCSS } from '../../global_styling';
 import { euiAnimSlideX } from '../../global_styling/utility/animations';
+import { useLoadingAriaLabel } from '../loading/_loading_strings';
 
 export const useLoadingAriaAttributes = () => {
-  const defaultLabel = useEuiI18n('euiSkeleton.ariaLabel', 'Loading'); // eslint-disable-line local/i18n -- this is a reusable i18n token
+  const defaultLabel = useLoadingAriaLabel();
 
   return {
     'aria-busy': true,
