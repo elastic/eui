@@ -2,7 +2,7 @@ import React from 'react';
 import { EuiCode } from '../../../../../src/components';
 import { GuideSectionTypes } from '../../../components';
 
-import { Table } from './in_memory_selection';
+import Table from './in_memory_selection';
 import { EuiInMemoryTable } from '../../../../../src/components/basic_table/in_memory_table';
 import {
   Criteria,
@@ -31,7 +31,7 @@ export const selectionSection = {
   title: 'In-memory table selection',
   source: [
     {
-      type: GuideSectionTypes.JS,
+      type: GuideSectionTypes.TSX,
       code: source,
     },
   ],
