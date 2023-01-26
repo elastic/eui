@@ -21,36 +21,36 @@ const text = (
   </>
 );
 
-const Container = () => (
-  <EuiResizableContainer style={{ height: '200px' }}>
-    {(EuiResizablePanel, EuiResizableButton) => (
-      <>
-        <EuiResizablePanel initialSize={50} minSize="30%" tabIndex={0}>
-          <EuiText>
-            <div>{text}</div>
-            <a href="#" data-test-subj="hello-world-link">
-              Hello world
-            </a>
-          </EuiText>
-        </EuiResizablePanel>
+describe('Horizontal EuiProgress', () => {
+  const HorizontalContainer = () => (
+    <EuiResizableContainer style={{ height: '200px' }}>
+      {(EuiResizablePanel, EuiResizableButton) => (
+        <>
+          <EuiResizablePanel initialSize={50} minSize="30%" tabIndex={0}>
+            <EuiText>
+              <div>{text}</div>
+              <a href="#" data-test-subj="hello-world-link">
+                Hello world
+              </a>
+            </EuiText>
+          </EuiResizablePanel>
 
-        <EuiResizableButton />
+          <EuiResizableButton />
 
-        <EuiResizablePanel initialSize={50} minSize="200px" tabIndex={0}>
-          <EuiText>{text}</EuiText>
-        </EuiResizablePanel>
-      </>
-    )}
-  </EuiResizableContainer>
-);
+          <EuiResizablePanel initialSize={50} minSize="200px" tabIndex={0}>
+            <EuiText>{text}</EuiText>
+          </EuiResizablePanel>
+        </>
+      )}
+    </EuiResizableContainer>
+  );
 
-beforeEach(() => {
-  cy.viewport(1024, 768); // medium breakpoint
-  cy.realMount(<Container />);
-  cy.get('div.euiResizablePanel').should('exist');
-});
+  beforeEach(() => {
+    cy.viewport(1024, 768); // medium breakpoint
+    cy.realMount(<HorizontalContainer />);
+    cy.get('div.euiResizablePanel').should('exist');
+  });
 
-describe('EuiProgress', () => {
   describe('Automated accessibility check', () => {
     it('has zero violations on first render', () => {
       cy.checkAxe();
@@ -78,6 +78,49 @@ describe('EuiProgress', () => {
       cy.repeatRealPress('Tab', 3);
       cy.get('button.euiResizableButton').should('have.focus');
       cy.repeatRealPress('ArrowRight', 10);
+      cy.checkAxe();
+    });
+  });
+});
+
+describe('Vertical EuiProgress', () => {
+  const VerticalContainer = () => (
+    <EuiResizableContainer style={{ height: '400px' }} direction="vertical">
+      {(EuiResizablePanel, EuiResizableButton) => (
+        <>
+          <EuiResizablePanel initialSize={60} minSize="40%" tabIndex={0}>
+            <EuiText>
+              <div>{text}</div>
+            </EuiText>
+          </EuiResizablePanel>
+
+          <EuiResizableButton />
+
+          <EuiResizablePanel initialSize={40} minSize="10%" tabIndex={0}>
+            <EuiText>
+              <div>{text}</div>
+            </EuiText>
+          </EuiResizablePanel>
+        </>
+      )}
+    </EuiResizableContainer>
+  );
+
+  beforeEach(() => {
+    cy.viewport(1024, 768); // medium breakpoint
+    cy.realMount(<VerticalContainer />);
+    cy.get('div.euiResizablePanel').should('exist');
+  });
+
+  describe('Automated accessibility check', () => {
+    it('has zero violations on first render', () => {
+      cy.checkAxe();
+    });
+
+    it('has zero violations when the vertical panels are resized', () => {
+      cy.repeatRealPress('Tab');
+      cy.get('button.euiResizableButton').should('have.focus');
+      cy.repeatRealPress('ArrowDown', 10);
       cy.checkAxe();
     });
   });

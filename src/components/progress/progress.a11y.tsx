@@ -10,43 +10,46 @@
 
 import React from 'react';
 import { EuiProgress } from './progress';
+import { EuiSpacer } from '../spacer';
 
 const ProgressCommonProps = {
   color: 'success',
   max: 100,
-  value: 50,
 };
 
 const ProgressBars = () => {
   return (
     <>
-      <EuiProgress
-        valueText
-        size="xs"
-        data-test-subj="cy-progress-1"
-        {...ProgressCommonProps}
-      />
+      <div data-test-subj="cy-progress-1">
+        <EuiProgress valueText size="xs" value={0} {...ProgressCommonProps} />
+      </div>
 
-      <EuiProgress
-        valueText
-        size="s"
-        data-test-subj="cy-progress-2"
-        {...ProgressCommonProps}
-      />
+      <div data-test-subj="cy-progress-2">
+        <EuiProgress valueText size="s" value={33} {...ProgressCommonProps} />
+      </div>
 
-      <EuiProgress
-        valueText
-        size="m"
-        data-test-subj="cy-progress-3"
-        {...ProgressCommonProps}
-      />
+      <div data-test-subj="cy-progress-3">
+        <EuiProgress valueText size="m" value={66} {...ProgressCommonProps} />
+      </div>
 
-      <EuiProgress
-        valueText
-        size="l"
-        data-test-subj="cy-progress-4"
-        {...ProgressCommonProps}
-      />
+      <div data-test-subj="cy-progress-4">
+        <EuiProgress valueText size="l" value={100} {...ProgressCommonProps} />
+      </div>
+
+      <div data-test-subj="cy-progress-5">
+        <EuiProgress
+          label="Basic percentage"
+          size="l"
+          value={100}
+          {...ProgressCommonProps}
+        />
+      </div>
+
+      <EuiSpacer size="m" />
+
+      <div data-test-subj="cy-progress-6">
+        <EuiProgress valueText size="l" color="success" />
+      </div>
     </>
   );
 };
@@ -54,13 +57,34 @@ const ProgressBars = () => {
 beforeEach(() => {
   cy.viewport(1024, 768); // medium breakpoint
   cy.realMount(<ProgressBars />);
-  cy.get('progress[data-test-subj="cy-progress-1"]').should('exist');
+  cy.get('div[data-test-subj="cy-progress-1"]').should('exist');
 });
 
 describe('EuiProgress', () => {
   describe('Automated accessibility check', () => {
     it('has zero violations on first render', () => {
       cy.checkAxe();
+    });
+
+    it('displays correct progress values and labels', () => {
+      cy.get(
+        'div[data-test-subj="cy-progress-1"] span.euiProgress__valueText'
+      ).contains('0');
+      cy.get(
+        'div[data-test-subj="cy-progress-2"] span.euiProgress__valueText'
+      ).contains('33');
+      cy.get(
+        'div[data-test-subj="cy-progress-3"] span.euiProgress__valueText'
+      ).contains('66');
+      cy.get(
+        'div[data-test-subj="cy-progress-4"] span.euiProgress__valueText'
+      ).contains('100');
+      cy.get(
+        'div[data-test-subj="cy-progress-5"] span.euiProgress__label'
+      ).contains('Basic percentage');
+      cy.get(
+        'div[data-test-subj="cy-progress-6"] span.euiProgress__valueText'
+      ).should('not.exist');
     });
   });
 });
