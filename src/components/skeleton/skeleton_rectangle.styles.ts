@@ -22,7 +22,7 @@ export const euiSkeletonRectangleStyles = (euiThemeContext: UseEuiTheme) => {
         gradientSize: '350%',
       })}
     `,
-    // Border radii
+    // Border radius
     s: css`
       border-radius: ${euiTheme.border.radius.small};
     `,
@@ -30,7 +30,7 @@ export const euiSkeletonRectangleStyles = (euiThemeContext: UseEuiTheme) => {
       border-radius: ${euiTheme.border.radius.medium};
     `,
     none: css`
-      border-radius: none;
+      border-radius: 0;
     `,
   };
 };
