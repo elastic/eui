@@ -23,6 +23,8 @@ import {
   useI18nStep,
   useI18nWarningStep,
 } from './step_strings';
+import { useEuiTheme } from '../../services';
+import { euiStepHorizontalStyles } from './step_horizontal.styles';
 
 export interface EuiStepHorizontalProps
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'>,
@@ -63,19 +65,33 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
 
   if (disabled) status = 'disabled';
 
-  const classes = classNames('euiStepHorizontal', className, {
-    'euiStepHorizontal-isSelected': status === 'current',
-    'euiStepHorizontal-isComplete': status === 'complete',
-    'euiStepHorizontal-isIncomplete': status === 'incomplete',
-    'euiStepHorizontal-isDisabled': status === 'disabled',
-  });
+  const classes = classNames('euiStepHorizontal', className);
+
+  const isSelected = status === 'current';
+  const isComplete = status === 'complete';
+  const isIncomplete = status === 'incomplete';
+  const isDisabled = status === 'disabled';
+  const isWarning = status === 'warning';
+
+  const euiTheme = useEuiTheme();
+  const styles = euiStepHorizontalStyles(euiTheme, isDisabled);
+  const cssStyles = [
+    styles.euiStepHorizontal,
+    isSelected && styles.isSelected,
+    isComplete && styles.isComplete,
+    isIncomplete && styles.isIncomplete,
+    isDisabled && styles.isDisabled,
+  ];
+
+  const cssNumberStyles = styles.euiStepHorizontal__number;
+  const cssTitleStyles = styles.euiStepHorizontal__title;
 
   let stepTitle = buttonTitle;
-  if (status === 'disabled') stepTitle = disabledTitle;
-  if (status === 'complete') stepTitle = completeTitle;
-  if (status === 'incomplete') stepTitle = incompleteTitle;
-  if (status === 'warning') stepTitle = warningTitle;
-  if (status === 'current') stepTitle = currentTitle;
+  if (isDisabled) stepTitle = disabledTitle;
+  if (isComplete) stepTitle = completeTitle;
+  if (isIncomplete) stepTitle = incompleteTitle;
+  if (isWarning) stepTitle = warningTitle;
+  if (isSelected) stepTitle = currentTitle;
 
   const onStepClick = (
     event: ReactMouseEvent<HTMLButtonElement, MouseEvent>
@@ -89,15 +105,19 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
       title={stepTitle}
       onClick={onStepClick}
       disabled={disabled}
+      css={cssStyles}
       {...rest}
     >
       <EuiStepNumber
         className="euiStepHorizontal__number"
         status={status}
         number={step}
+        css={cssNumberStyles}
       />
 
-      <span className="euiStepHorizontal__title">{title}</span>
+      <span className="euiStepHorizontal__title" css={cssTitleStyles}>
+        {title}
+      </span>
     </button>
   );
 };

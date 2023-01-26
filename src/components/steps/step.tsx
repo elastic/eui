@@ -16,6 +16,8 @@ import React, {
 import { CommonProps } from '../common';
 import { EuiTitle, EuiTitleProps, EuiTitleSize } from '../title';
 import { EuiStepNumber, EuiStepStatus } from './step_number';
+import { useEuiTheme } from '../../services';
+import { euiStepStyles } from './step.styles';
 
 export interface EuiStepInterface {
   /**
@@ -58,30 +60,45 @@ export const EuiStep: FunctionComponent<EuiStepProps> = ({
   const classes = classNames(
     'euiStep',
     {
-      'euiStep--small': titleSize === 'xs',
       'euiStep-isDisabled': status === 'disabled',
     },
     className
   );
-  const numberClasses = classNames('euiStep__circle', {
-    'euiStepNumber--small': titleSize === 'xs',
-  });
+  const numberClasses = classNames('euiStep__circle', {});
+
+  const isSmall = titleSize === 'xs';
+
+  const euiTheme = useEuiTheme();
+  const styles = euiStepStyles(euiTheme);
+  const cssStyles = [styles.euiStep, isSmall && styles.small];
+
+  const contentStyles = [
+    isSmall && styles.euiStep__content.small,
+    !isSmall && styles.euiStep__content.regular,
+  ];
+
+  const titleWrapperStyles = styles.euiStep__titleWrapper;
+
+  const circleStyles = [styles.euiStep__circle];
 
   return (
-    <div className={classes} {...rest}>
-      <div className="euiStep__titleWrapper">
+    <div className={classes} css={cssStyles} {...rest}>
+      <div className="euiStep__titleWrapper" css={titleWrapperStyles}>
         <EuiStepNumber
           className={numberClasses}
           number={step}
           status={status}
           titleSize={titleSize}
+          css={circleStyles}
         />
         <EuiTitle size={titleSize as EuiTitleSize} className="euiStep__title">
           {createElement(headingElement, null, title)}
         </EuiTitle>
       </div>
 
-      <div className="euiStep__content">{children}</div>
+      <div className="euiStep__content" css={contentStyles}>
+        {children}
+      </div>
     </div>
   );
 };

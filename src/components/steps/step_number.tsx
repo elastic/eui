@@ -9,7 +9,7 @@
 import classNames from 'classnames';
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import { EuiScreenReaderOnly } from '../accessibility';
-import { CommonProps, keysOf } from '../common';
+import { CommonProps } from '../common';
 import { EuiIcon } from '../icon';
 import { EuiStepProps } from './step';
 import {
@@ -24,17 +24,18 @@ import {
 } from './step_strings';
 import { EuiLoadingSpinner } from '../loading';
 
-const statusToClassNameMap = {
-  incomplete: 'euiStepNumber--incomplete',
-  disabled: 'euiStepNumber--disabled',
-  loading: 'euiStepNumber--loading',
-  warning: 'euiStepNumber--warning',
-  danger: 'euiStepNumber--danger',
-  complete: 'euiStepNumber--complete',
-  current: null, // Current displays the same as the default (undefined)
-};
+import { useEuiTheme } from '../../services';
+import { euiStepNumberStyles } from './step_number.styles';
 
-export const STATUS = keysOf(statusToClassNameMap);
+export const STATUS = [
+  'incomplete',
+  'disabled',
+  'loading',
+  'warning',
+  'danger',
+  'complete',
+  'current',
+] as const;
 export type EuiStepStatus = typeof STATUS[number];
 
 export interface EuiStepNumberProps
@@ -67,11 +68,15 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
   const loadingAriaLabel = useI18nLoadingStep({ number });
   const currentAriaLabel = useI18nCurrentStep({ number });
 
-  const classes = classNames(
-    'euiStepNumber',
-    status ? statusToClassNameMap[status] : undefined,
-    className
-  );
+  const classes = classNames('euiStepNumber', className);
+
+  const statusIsComplete = status === 'complete';
+
+  const euiTheme = useEuiTheme();
+  const styles = euiStepNumberStyles(euiTheme, statusIsComplete);
+  const cssStyles = [styles.euiStepNumber, status && styles[status]];
+
+  const cssIconStyles = styles.euiStepNumber__icon;
 
   const iconSize = titleSize === 'xs' ? 's' : 'm';
   let screenReaderText = stepAriaLabel;
@@ -98,6 +103,7 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
         className="euiStepNumber__icon"
         size={iconSize}
         aria-label={completeAriaLabel}
+        css={cssIconStyles}
       />
     );
   } else if (status === 'warning') {
@@ -107,6 +113,7 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
         className="euiStepNumber__icon"
         size={iconSize}
         aria-label={warningAriaLabel}
+        css={cssIconStyles}
       />
     );
   } else if (status === 'danger') {
@@ -116,6 +123,7 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
         className="euiStepNumber__icon"
         size={iconSize}
         aria-label={errorsAriaLabel}
+        css={cssIconStyles}
       />
     );
   } else if (status === 'loading') {
@@ -133,7 +141,7 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
   }
 
   return (
-    <span className={classes} {...rest}>
+    <span className={classes} css={cssStyles} {...rest}>
       {numberOrIcon}
     </span>
   );

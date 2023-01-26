@@ -111,3 +111,10 @@ export const darken = (color: string, amount: number) =>
  */
 export const brighten = (color: string, amount: number) =>
   chroma(color).brighten(amount).hex();
+
+/**
+ * Returns the saturation value of a color. 0-100
+ * @param color
+ * @returns
+ */
+export const getSaturation = (color: string) => chroma(color).get('hsl.s');

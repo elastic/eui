@@ -9,6 +9,8 @@
 import React, { HTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
+import { useEuiTheme } from '../../services';
+import { euiSubStepsStyles } from './sub_steps.styles';
 
 export type EuiSubStepsProps = FunctionComponent<
   HTMLAttributes<HTMLDivElement> & CommonProps
@@ -20,9 +22,12 @@ export const EuiSubSteps: EuiSubStepsProps = ({
   ...rest
 }) => {
   const classes = classNames('euiSubSteps', className);
+  const euiTheme = useEuiTheme();
+  const styles = euiSubStepsStyles(euiTheme);
+  const cssStyles = [styles.euiSubSteps];
 
   return (
-    <div className={classes} {...rest}>
+    <div className={classes} css={cssStyles} {...rest}>
       {children}
     </div>
   );

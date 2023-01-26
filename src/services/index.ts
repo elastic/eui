@@ -46,6 +46,7 @@ export {
   euiPaletteNegative,
   euiPalettePositive,
   euiPaletteWarm,
+  getSaturation,
   getSteppedGradient,
   hexToHsv,
   hexToRgb,
