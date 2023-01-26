@@ -1,50 +1,138 @@
-import React, { useState, Fragment, useRef } from 'react';
-import { formatDate } from '../../../../../src/services/format';
-import { createDataStore } from '../data_store';
+import React, { useState, useRef, ReactNode } from 'react';
+import { faker } from '@faker-js/faker';
+import { formatDate, Random } from '../../../../../src/services';
+
 import {
+  EuiInMemoryTable,
+  EuiBasicTableColumn,
+  EuiTableSelectionType,
+  EuiSearchBarProps,
   EuiLink,
   EuiHealth,
   EuiButton,
-  EuiInMemoryTable,
   EuiEmptyPrompt,
   EuiFlexGroup,
   EuiFlexItem,
   EuiSpacer,
 } from '../../../../../src/components';
-import { Random } from '../../../../../src/services/random';
 
-/*
-Example user object:
+type User = {
+  id: number;
+  firstName: string | null | undefined;
+  lastName: string;
+  github: string;
+  dateOfBirth: Date;
+  online: boolean;
+  location: {
+    city: string;
+    country: string;
+  };
+};
 
-{
-  id: '1',
-  firstName: 'john',
-  lastName: 'doe',
-  github: 'johndoe',
-  dateOfBirth: Date.now(),
-  nationality: 'NL',
-  online: true
+const userData: User[] = [];
+
+for (let i = 0; i < 20; i++) {
+  userData.push({
+    id: i + 1,
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    github: faker.internet.userName(),
+    dateOfBirth: faker.date.past(),
+    online: faker.datatype.boolean(),
+    location: {
+      city: faker.address.city(),
+      country: faker.address.country(),
+    },
+  });
 }
 
-Example country object:
+const onlineUsers = userData.filter((user) => user.online);
 
-{
-  code: 'NL',
-  name: 'Netherlands',
-  flag: '🇳🇱'
-}
-*/
+const deleteUsersByIds = (...ids: number[]) => {
+  ids.forEach((id) => {
+    const index = userData.findIndex((user) => user.id === id);
+    if (index >= 0) {
+      userData.splice(index, 1);
+    }
+  });
+};
+
+const columns: Array<EuiBasicTableColumn<User>> = [
+  {
+    field: 'firstName',
+    name: 'First Name',
+    sortable: true,
+    truncateText: true,
+    mobileOptions: {
+      render: (user: User) => (
+        <span>
+          {user.firstName} {user.lastName}
+        </span>
+      ),
+      header: false,
+      truncateText: false,
+      enlarge: true,
+      width: '100%',
+    },
+  },
+  {
+    field: 'lastName',
+    name: 'Last Name',
+    truncateText: true,
+    mobileOptions: {
+      show: false,
+    },
+  },
+  {
+    field: 'github',
+    name: 'Github',
+    render: (username: User['github']) => (
+      <EuiLink href="#" target="_blank">
+        {username}
+      </EuiLink>
+    ),
+  },
+  {
+    field: 'dateOfBirth',
+    name: 'Date of Birth',
+    dataType: 'date',
+    render: (dateOfBirth: User['dateOfBirth']) =>
+      formatDate(dateOfBirth, 'dobLong'),
+    sortable: true,
+  },
+  {
+    field: 'location',
+    name: 'Location',
+    truncateText: true,
+    textOnly: true,
+    render: (location: User['location']) => {
+      return `${location.city}, ${location.country}`;
+    },
+  },
+  {
+    field: 'online',
+    name: 'Online',
+    dataType: 'boolean',
+    render: (online: User['online']) => {
+      const color = online ? 'success' : 'danger';
+      const label = online ? 'Online' : 'Offline';
+      return <EuiHealth color={color}>{label}</EuiHealth>;
+    },
+    sortable: true,
+    mobileOptions: {
+      show: false,
+    },
+  },
+];
 
 const random = new Random();
 
-const store = createDataStore();
-
 const noItemsFoundMsg = 'No users match search criteria';
 
-export const Table = () => {
+export default () => {
   const [loading, setLoading] = useState(false);
-  const [users, setUsers] = useState([]);
-  const [message, setMessage] = useState(
+  const [users, setUsers] = useState<User[]>([]);
+  const [message, setMessage] = useState<ReactNode>(
     <EuiEmptyPrompt
       title={<h3>No users</h3>}
       titleSize="xs"
@@ -63,9 +151,9 @@ export const Table = () => {
     />
   );
 
-  const [selection, setSelection] = useState([]);
-  const [error, setError] = useState();
-  const tableRef = useRef();
+  const [selection, setSelection] = useState<User[]>([]);
+  const [error, setError] = useState<string | undefined>();
+  const tableRef = useRef<EuiInMemoryTable<User> | null>(null);
 
   const loadUsers = () => {
     setMessage('Loading users...');
@@ -76,7 +164,7 @@ export const Table = () => {
       setLoading(false);
       setMessage(noItemsFoundMsg);
       setError(undefined);
-      setUsers(store.users);
+      setUsers(userData);
     }, random.number({ min: 0, max: 3000 }));
   };
 
@@ -90,7 +178,6 @@ export const Table = () => {
       setMessage(noItemsFoundMsg);
       setError('ouch!... again... ');
       setUsers([]);
-      users: [];
     }, random.number({ min: 0, max: 3000 }));
   };
 
@@ -100,7 +187,7 @@ export const Table = () => {
     }
 
     const onClick = () => {
-      store.deleteUsers(...selection.map((user) => user.id));
+      deleteUsersByIds(...selection.map((user) => user.id));
       setSelection([]);
     };
 
@@ -134,56 +221,7 @@ export const Table = () => {
     ];
   };
 
-  const columns = [
-    {
-      field: 'firstName',
-      name: 'First Name',
-      sortable: true,
-      truncateText: true,
-    },
-    {
-      field: 'lastName',
-      name: 'Last Name',
-      truncateText: true,
-    },
-    {
-      field: 'github',
-      name: 'Github',
-      render: (username) => (
-        <EuiLink href={`https://github.com/${username}`} target="_blank">
-          {username}
-        </EuiLink>
-      ),
-    },
-    {
-      field: 'dateOfBirth',
-      name: 'Date of Birth',
-      dataType: 'date',
-      render: (date) => formatDate(date, 'dobLong'),
-      sortable: true,
-    },
-    {
-      field: 'nationality',
-      name: 'Nationality',
-      render: (countryCode) => {
-        const country = store.getCountry(countryCode);
-        return `${country.flag} ${country.name}`;
-      },
-    },
-    {
-      field: 'online',
-      name: 'Online',
-      dataType: 'boolean',
-      render: (online) => {
-        const color = online ? 'success' : 'danger';
-        const label = online ? 'Online' : 'Offline';
-        return <EuiHealth color={color}>{label}</EuiHealth>;
-      },
-      sortable: true,
-    },
-  ];
-
-  const search = {
+  const search: EuiSearchBarProps = {
     toolsLeft: renderToolsLeft(),
     toolsRight: renderToolsRight(),
     box: {
@@ -198,13 +236,11 @@ export const Table = () => {
       },
       {
         type: 'field_value_selection',
-        field: 'nationality',
-        name: 'Nationality',
+        field: 'location.country',
+        name: 'Country',
         multiSelect: false,
-        options: store.countries.map((country) => ({
-          value: country.code,
-          name: country.name,
-          view: `${country.flag} ${country.name}`,
+        options: userData.map(({ location: { country } }) => ({
+          value: country,
         })),
       },
     ],
@@ -215,22 +251,20 @@ export const Table = () => {
     pageSizeOptions: [3, 5, 8],
   };
 
-  const onlineUsers = store.users.filter((user) => user.online);
-
-  const selectionValue = {
+  const selectionValue: EuiTableSelectionType<User> = {
     selectable: (user) => user.online,
     selectableMessage: (selectable) =>
-      !selectable ? 'User is currently offline' : undefined,
+      !selectable ? 'User is currently offline' : '',
     onSelectionChange: (selection) => setSelection(selection),
     initialSelected: onlineUsers,
   };
 
   const onSelection = () => {
-    tableRef.current.setSelection(onlineUsers);
+    tableRef.current?.setSelection(onlineUsers);
   };
 
   return (
-    <Fragment>
+    <>
       <EuiFlexGroup alignItems="center">
         <EuiFlexItem grow={false}>
           <EuiButton onClick={onSelection}>Select online users</EuiButton>
@@ -255,6 +289,6 @@ export const Table = () => {
         selection={selectionValue}
         isSelectable={true}
       />
-    </Fragment>
+    </>
   );
 };
