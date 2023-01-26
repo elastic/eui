@@ -613,8 +613,10 @@ exports[`EuiIcon props type alert is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    d="M7.59 10.059L7.35 5.18h1.3L8.4 10.06h-.81zm.394 1.901a.61.61 0 01-.448-.186.606.606 0 01-.186-.444c0-.174.062-.323.186-.446a.614.614 0 01.448-.184c.169 0 .315.06.44.182.124.122.186.27.186.448a.6.6 0 01-.189.446.607.607 0 01-.437.184zM2 14a1 1 0 01-.878-1.479l6-11a1 1 0 011.756 0l6 11A1 1 0 0114 14H2zm0-1h12L8 2 2 13z"
-    fill-rule="evenodd"
+    d="M8.55 9.502l.35-3.507a.905.905 0 10-1.8 0l.35 3.507a.552.552 0 001.1 0zM9 12a1 1 0 11-2 0 1 1 0 012 0z"
+  />
+  <path
+    d="M8.864 1.496a1 1 0 00-1.728 0l-7 12A1 1 0 001 15h14a1 1 0 00.864-1.504l-7-12zM1 14L8 2l7 12H1z"
   />
 </svg>
 `;
@@ -2865,6 +2867,25 @@ exports[`EuiIcon props type eraser is rendered 1`] = `
   />
   <path
     d="M14 11.5a.5.5 0 11-1 0 .5.5 0 011 0zm1.5-.5a.5.5 0 100-1 .5.5 0 000 1zm-1 2a.5.5 0 000 1h1a.5.5 0 000-1h-1z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type error is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="error"
+  data-is-loaded="true"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M10 1a1 1 0 01.707.293l4 4A1 1 0 0115 6v5a1 1 0 01-.293.707l-4 4A1 1 0 0110 16H5a1 1 0 01-.707-.293l-4-4A1 1 0 010 11V6a1 1 0 01.293-.707l4-4A1 1 0 015 1h5zM4.146 5.146a.5.5 0 01.708 0L7.5 7.793l2.646-2.647a.5.5 0 01.708.708L8.207 8.5l2.647 2.646a.5.5 0 01-.708.708L7.5 9.207l-2.646 2.647a.5.5 0 01-.708-.708L6.793 8.5 4.146 5.854a.5.5 0 010-.708z"
+    fill-rule="evenodd"
   />
 </svg>
 `;
