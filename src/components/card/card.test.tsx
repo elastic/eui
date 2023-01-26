@@ -143,12 +143,12 @@ describe('EuiCard', () => {
         const handler = jest.fn();
         const component = mount(
           <EuiCard
-            title={<span>Hoi</span>}
+            title={<span data-test-subj="click">Hoi</span>}
             description="There"
             onClick={handler}
           />
         );
-        component.find('button').simulate('click');
+        component.find('[data-test-subj="click"]').simulate('click');
         expect(handler.mock.calls.length).toEqual(1);
       });
     });
