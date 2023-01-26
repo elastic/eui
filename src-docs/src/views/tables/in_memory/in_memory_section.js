@@ -2,7 +2,7 @@ import React from 'react';
 import { GuideSectionTypes } from '../../../components';
 
 import { EuiCode, EuiCallOut } from '../../../../../src/components';
-import { Table } from './in_memory';
+import Table from './in_memory';
 
 import { EuiInMemoryTable } from '../../../../../src/components/basic_table/in_memory_table';
 import {
@@ -31,7 +31,7 @@ const source = require('!!raw-loader!./in_memory');
 export const section = {
   source: [
     {
-      type: GuideSectionTypes.JS,
+      type: GuideSectionTypes.TSX,
       code: source,
     },
   ],
