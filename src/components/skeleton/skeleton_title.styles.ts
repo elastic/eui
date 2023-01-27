@@ -41,6 +41,7 @@ export const euiSkeletonTitleStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     xxxs: css`
       ${logicalCSS('height', euiTitle(euiThemeContext, 'xxxs').lineHeight)};
+      border-radius: ${euiTheme.border.radius.small};
     `,
   };
 };
