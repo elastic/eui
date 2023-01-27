@@ -15,7 +15,7 @@ import { EuiDualRangeProps, EuiRangeProps } from './types';
 
 describe('Single EuiRange', () => {
   const SingleRange = () => {
-    const [value, setValue] = useState('120');
+    const [value, setValue] = useState('100');
 
     const onChange: EuiRangeProps['onChange'] = (e) => {
       setValue(e.currentTarget.value);
@@ -54,7 +54,7 @@ describe('Single EuiRange', () => {
       cy.realPress('Tab');
       cy.get('input#cy-range-single').should('have.focus');
       cy.repeatRealPress('ArrowRight', 10);
-      cy.get('output.euiRangeTooltip__value').contains('100 - 130');
+      cy.get('output.euiRangeTooltip__value').contains('100 - 110');
       cy.checkAxe();
     });
 
@@ -62,7 +62,7 @@ describe('Single EuiRange', () => {
       cy.realPress('Tab');
       cy.get('input#cy-range-single').should('have.focus');
       cy.repeatRealPress('ArrowLeft', 10);
-      cy.get('output.euiRangeTooltip__value').contains('100 - 110');
+      cy.get('output.euiRangeTooltip__value').contains('100 - 100');
       cy.checkAxe();
     });
   });
@@ -126,7 +126,7 @@ describe('Dual EuiRange', () => {
   });
 });
 
-describe('Draggable Area EuiRange', () => {
+describe('Highlight Area EuiRange', () => {
   const DraggableRange = () => {
     const [dualValue, setDualValue] = useState<EuiDualRangeProps['value']>([
       '40',
@@ -161,7 +161,7 @@ describe('Draggable Area EuiRange', () => {
   });
 
   describe('Keyboard accessibility check', () => {
-    it('has zero violations when the range slider is dragged', () => {
+    it('has zero violations when the highlight area is adjusted using arrow keys', () => {
       cy.realPress('Tab');
       cy.get('div[role="slider"]').first().should('have.focus');
       cy.repeatRealPress('ArrowLeft', 3);
@@ -170,6 +170,63 @@ describe('Draggable Area EuiRange', () => {
         .invoke('attr', 'aria-valuetext')
         .should('eq', '37, 57');
       cy.checkAxe();
+    });
+  });
+
+  describe('Drag and drop accessibility check', () => {
+    it('has zero violations when the higlight area is dragged using a mouse', () => {
+      cy.get('.euiRangeDraggable__inner')
+        .realMouseDown({ position: 'center' })
+        .realMouseMove(100, 0, {})
+        .realMouseUp();
+      cy.get('div[role="slider"]')
+        .first()
+        .invoke('attr', 'aria-valuetext')
+        .should('be.oneOf', ['62, 82', '61, 81']); // Edge and Chrome disagree which side of the pixel this value should fall
+      cy.checkAxe();
+    });
+  });
+
+  describe('EuiRange in a dropdown', () => {
+    const InputWithRange = () => {
+      const [value, setValue] = useState<EuiRangeProps['value']>('20');
+
+      return (
+        <EuiRange
+          id="cy-range-in-dropdown"
+          min={0}
+          max={100}
+          value={value}
+          onChange={(e) => setValue(e.currentTarget.value)}
+          showInput="inputWithPopover"
+          showLabels
+          aria-label="An example of EuiRange with showInput prop"
+        />
+      );
+    };
+    beforeEach(() => {
+      cy.viewport(1024, 768); // medium breakpoint
+      cy.realMount(<InputWithRange />);
+      cy.get('input#cy-range-in-dropdown').should('exist');
+    });
+
+    describe('Automated accessibility check', () => {
+      it('has zero violations on first render', () => {
+        cy.checkAxe();
+      });
+    });
+
+    describe('Keyboard accessibility check', () => {
+      it('updates the range value using arrow keys with input[type="number"]', () => {
+        cy.realPress('Tab');
+        cy.get('input#cy-range-in-dropdown').should('have.focus');
+        cy.repeatRealPress('ArrowUp', 10);
+        cy.get('input[type="range"]')
+          .first()
+          .invoke('attr', 'value')
+          .should('eq', '30');
+        cy.checkAxe();
+      });
     });
   });
 });

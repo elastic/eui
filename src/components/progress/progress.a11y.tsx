@@ -38,6 +38,7 @@ const ProgressBars = () => {
 
       <div data-test-subj="cy-progress-5">
         <EuiProgress
+          valueText
           label="Basic percentage"
           size="l"
           value={100}
@@ -82,6 +83,9 @@ describe('EuiProgress', () => {
       cy.get(
         'div[data-test-subj="cy-progress-5"] span.euiProgress__label'
       ).contains('Basic percentage');
+      cy.get(
+        'div[data-test-subj="cy-progress-5"] span.euiProgress__valueText'
+      ).contains('100');
       cy.get(
         'div[data-test-subj="cy-progress-6"] span.euiProgress__valueText'
       ).should('not.exist');
