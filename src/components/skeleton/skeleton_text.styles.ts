@@ -36,7 +36,7 @@ export const euiSkeletonCommonStyles = (euiThemeContext: UseEuiTheme) => {
     euiSkeletonText: css`
       display: block;
       ${logicalCSS('width', '100%')}
-      border-radius: ${euiTheme.border.radius.medium};
+      border-radius: ${euiTheme.border.radius.small};
       ${euiSkeletonGradientAnimation(euiThemeContext)}
 
       // Offset via transform to more closely match placement of text

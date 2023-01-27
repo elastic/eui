@@ -121,7 +121,7 @@ export const SkeletonExample = {
       text: (
         <EuiText>
           <p>
-            <strong>EuiSkeletonCircle</strong> allows you define a large and
+            <strong>EuiSkeletonRectangle</strong> allows you define a large and
             customizable shape via its <EuiCode>width</EuiCode>,{' '}
             <EuiCode>height</EuiCode>, and <EuiCode>borderRadius</EuiCode>{' '}
             props.
