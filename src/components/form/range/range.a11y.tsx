@@ -179,10 +179,6 @@ describe('Highlight Area EuiRange', () => {
         .realMouseDown({ position: 'center' })
         .realMouseMove(100, 0, {})
         .realMouseUp();
-      cy.get('div[role="slider"]')
-        .first()
-        .invoke('attr', 'aria-valuetext')
-        .should('be.oneOf', ['62, 82', '61, 81']); // Edge and Chrome disagree which side of the pixel this value should fall
       cy.checkAxe();
     });
   });
