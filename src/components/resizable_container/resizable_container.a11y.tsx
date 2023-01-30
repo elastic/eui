@@ -83,7 +83,7 @@ describe('Horizontal EuiResizableContainer', () => {
   });
 });
 
-describe('Vertical EuiProgress', () => {
+describe('Vertical EuiResizableContainer', () => {
   const VerticalContainer = () => (
     <EuiResizableContainer style={{ height: '400px' }} direction="vertical">
       {(EuiResizablePanel, EuiResizableButton) => (
