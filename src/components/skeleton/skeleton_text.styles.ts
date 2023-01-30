@@ -29,7 +29,7 @@ const calculateLineSize = (
   `;
 };
 
-export const euiSkeletonCommonStyles = (euiThemeContext: UseEuiTheme) => {
+export const euiSkeletonTextStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
   return {

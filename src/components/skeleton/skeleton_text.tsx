@@ -14,7 +14,7 @@ import { useEuiTheme } from '../../services';
 import { TextSize } from '../text/text';
 
 import { useLoadingAriaAttributes } from './utils';
-import { euiSkeletonCommonStyles } from './skeleton_text.styles';
+import { euiSkeletonTextStyles } from './skeleton_text.styles';
 
 export const LINES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as const;
 export type LineRange = typeof LINES[number];
@@ -32,7 +32,7 @@ export const EuiSkeletonText: FunctionComponent<EuiSkeletonTextProps> = ({
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
-  const styles = euiSkeletonCommonStyles(euiTheme);
+  const styles = euiSkeletonTextStyles(euiTheme);
   const lineCssStyles = [styles.euiSkeletonText, styles[size]];
 
   const lineElements = [];
