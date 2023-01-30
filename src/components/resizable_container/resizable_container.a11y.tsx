@@ -21,7 +21,7 @@ const text = (
   </>
 );
 
-describe('Horizontal EuiProgress', () => {
+describe('Horizontal EuiResizableContainer', () => {
   const HorizontalContainer = () => (
     <EuiResizableContainer style={{ height: '200px' }}>
       {(EuiResizablePanel, EuiResizableButton) => (
