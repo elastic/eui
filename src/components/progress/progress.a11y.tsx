@@ -48,7 +48,7 @@ const ProgressBars = () => {
 
       <EuiSpacer size="m" />
 
-      <div data-test-subj="cy-progress-6">
+      <div data-test-subj="cy-progress-infinite">
         <EuiProgress valueText size="l" color="success" />
       </div>
     </>
