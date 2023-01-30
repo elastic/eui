@@ -49,6 +49,8 @@ export const euiStepStyles = (
     `,
     isDisabled: css``,
     euiStep__title: css`
+      padding-block-start: ${euiTheme.size.xxs};
+
       ${isDisabled &&
       `
          color: ${euiTheme.colors.disabledText};
