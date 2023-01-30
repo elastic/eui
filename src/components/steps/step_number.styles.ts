@@ -15,19 +15,18 @@ import {
 } from '../../global_styling';
 import {
   UseEuiTheme,
-  shade,
-  tint,
-  getSaturation,
-  makeHighContrastColor,
+  chooseLightOrDarkText,
+  transparentize,
 } from '../../services';
 import { euiStepVariables } from './step.styles';
+import { euiButtonColor } from '../../themes/amsterdam/global_styling/mixins';
 
 const createStepsNumber = (
   euiTheme: UseEuiTheme['euiTheme'],
   size: string,
   fontSize: string
 ) => {
-  return css`
+  return `
     display: inline-block;
     line-height: ${size};
     border-radius: ${size};
@@ -41,19 +40,18 @@ const createStepsNumber = (
   `;
 };
 
-const getBackground = (euiThemeContext: UseEuiTheme, color: string) => {
-  const { euiTheme, colorMode } = euiThemeContext;
+const getBackground = (
+  euiThemeContext: UseEuiTheme,
+  backgroundColor: string
+) => {
+  const { euiTheme } = euiThemeContext;
 
-  const isDarkMode = colorMode === 'DARK';
-  const backgroundForSaturation = isDarkMode
-    ? shade(color, 0.9)
-    : tint(color, 0.7);
-
-  const backgroundColor =
-    getSaturation(color) > 0.5 ? backgroundForSaturation : color;
-
-  return css`
-    color: ${makeHighContrastColor(euiTheme.colors.text)(backgroundColor)};
+  return `
+    color: ${chooseLightOrDarkText(
+      backgroundColor,
+      euiTheme.colors.ghost,
+      euiTheme.colors.ink
+    )};
     background-color: ${backgroundColor};
   `;
 };
@@ -64,28 +62,44 @@ export const euiStepNumberStyles = (
 ) => {
   const euiTheme = euiThemeContext.euiTheme;
   const euiStep = euiStepVariables(euiThemeContext);
+  const buttonColorDisabled = euiButtonColor(euiThemeContext, 'disabled')
+    .backgroundColor;
 
   return {
     euiStepNumber: css`
-      ${createStepsNumber(
-        euiTheme,
-        euiStep.numberSize,
-        euiFontSizeFromScale('m', euiTheme)
-      )}
+      flex-shrink: 0;
     `,
+    // sizes
     small: css`
       ${createStepsNumber(
         euiTheme,
         euiStep.numberSmallSize,
+        euiFontSizeFromScale('xs', euiTheme)
+      )}
+    `,
+    medium: css`
+      ${createStepsNumber(
+        euiTheme,
+        euiStep.numberSize,
         euiFontSizeFromScale('s', euiTheme)
       )}
     `,
     // status
     incomplete: css`
-      ${getBackground(euiThemeContext, euiTheme.colors.darkShade)}
+      background-color: transparent;
+      color: ${euiTheme.colors.text};
+      border: ${euiTheme.border.thick};
+
+      .euiStepNumber__number {
+        // adjusts position because of thicker border
+        display: unset;
+        position: relative;
+        inset-block-start: -2px;
+      }
     `,
     disabled: css`
-      ${getBackground(euiThemeContext, euiTheme.colors.darkShade)}
+      background-color: ${transparentize(buttonColorDisabled, 0.7)};
+      color: ${euiTheme.colors.disabledText};
     `,
     loading: css`
       background: transparent;
@@ -106,6 +120,7 @@ export const euiStepNumberStyles = (
       }
     `,
     complete: css`
+      ${getBackground(euiThemeContext, euiTheme.colors.success)}
       ${euiCanAnimate} {
         animation: ${euiAnimScale} ${euiTheme.animation.fast}
           ${euiTheme.animation.bounce};
@@ -115,7 +130,7 @@ export const euiStepNumberStyles = (
     euiStepNumber__icon: css`
       vertical-align: middle;
       position: relative;
-      inset-block-start: -2px;
+      inset-block-start: -1px;
 
       // Thicken the checkmark by adding a slight stroke.
       ${statusIsComplete &&

@@ -10,7 +10,6 @@ import classNames from 'classnames';
 import React, { FunctionComponent, OlHTMLAttributes } from 'react';
 import { CommonProps } from '../common';
 import { EuiStepHorizontal, EuiStepHorizontalProps } from './step_horizontal';
-import { useEuiTheme } from '../../services';
 import { euiStepsHorizontalStyles } from './steps_horizontal.styles';
 
 export interface EuiStepsHorizontalProps
@@ -28,9 +27,9 @@ export const EuiStepsHorizontal: FunctionComponent<EuiStepsHorizontalProps> = ({
   ...rest
 }) => {
   const classes = classNames('euiStepsHorizontal', className);
-  const euiTheme = useEuiTheme();
-  const styles = euiStepsHorizontalStyles(euiTheme);
+  const styles = euiStepsHorizontalStyles();
   const cssStyles = [styles.euiStepsHorizontal];
+  const cssItemStyles = styles.euiStepsHorizontal_item;
 
   return (
     <ol className={classes} css={cssStyles} {...rest}>
@@ -41,7 +40,12 @@ export const EuiStepsHorizontal: FunctionComponent<EuiStepsHorizontalProps> = ({
             : {};
 
         return (
-          <li key={index} className="euiStepHorizontal__item" {...isCurrent}>
+          <li
+            key={index}
+            className="euiStepsHorizontal__item"
+            css={cssItemStyles}
+            {...isCurrent}
+          >
             <EuiStepHorizontal step={index + 1} {...stepProps} />
           </li>
         );

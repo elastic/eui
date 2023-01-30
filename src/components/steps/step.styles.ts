@@ -18,7 +18,11 @@ export const euiStepVariables = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
-export const euiStepStyles = (euiThemeContext: UseEuiTheme) => {
+export const euiStepStyles = (
+  euiThemeContext: UseEuiTheme,
+  isDisabled: boolean,
+  isSmall: boolean
+) => {
   const euiTheme = euiThemeContext.euiTheme;
   const euiStep = euiStepVariables(euiThemeContext);
 
@@ -27,44 +31,52 @@ export const euiStepStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     euiStep: css`
       // Create border on all but the last step &:not(:last-of-type) {
-      background-image: ${linerGradient};
-      background-repeat: no-repeat;
-
+      &:not(:last-of-type) {
+        background-image: ${linerGradient};
+        background-repeat: no-repeat;
+      }
+    `,
+    // sizes
+    medium: css`
       &:not(:last-of-type) {
         background-position: left ${euiTheme.size.xl};
       }
     `,
     small: css`
       &:not(:last-of-type) {
-        background-position: left -${euiTheme.size.xs} ${euiTheme.size.l};
+        background-position: -${euiTheme.size.xs} ${euiTheme.size.l};
       }
+    `,
+    isDisabled: css``,
+    euiStep__title: css`
+      ${isDisabled &&
+      `
+         color: ${euiTheme.colors.disabledText};
+      `}
     `,
     euiStep__titleWrapper: css`
       display: flex;
+      gap: ${euiStep.numberMargin};
     `,
-    euiStep__circle: css`
-      flex-shrink: 0;
-      margin-inline-end: ${euiStep.numberMargin};
-      // Ensure that the step number vertically aligns with the title text
-      vertical-align: top;
-    `,
-    euiStep__content: {
-      small: css`
-        ${logicalShorthandCSS(
-          'padding',
-          `${euiTheme.size.base} ${euiTheme.size.base} ${euiTheme.size.xl}`
-        )}
-        ${logicalShorthandCSS('margin', `${euiTheme.size.s} 0`)}
-        // Align the content's contents with the title
-        padding-inline-start: ${mathWithUnits(
-          [euiStep.numberSize, euiStep.numberMargin],
-          (x, y) => x / 2 + y
-        )};
+    euiStep__content: css`
+      ${logicalShorthandCSS(
+        'padding',
+        `${euiTheme.size.base} ${euiTheme.size.base} ${euiTheme.size.xl}`
+      )}
+      ${logicalShorthandCSS('margin', `${euiTheme.size.s} 0`)}
+         // Align the content's contents with the title
+         padding-inline-start: ${mathWithUnits(
+        [euiStep.numberSize, euiStep.numberMargin],
+        (x, y) => x / 2 + y
+      )};
+      margin-block-end: 0;
+      padding-block-end: ${mathWithUnits(
+        [euiTheme.size.xl, euiTheme.size.s],
+        (x, y) => x + y
+      )};
 
-        // Align content border to horizontal center of step number
-        margin-inline-start: ${mathWithUnits(euiStep.numberSize, (x) => x / 2)};
-      `,
-      regular: css`
+      ${isSmall &&
+      `
         // Align the content's contents with the title
         padding-inline-start: ${mathWithUnits(
           [euiStep.numberSmallSize, euiStep.numberMargin],
@@ -76,7 +88,19 @@ export const euiStepStyles = (euiThemeContext: UseEuiTheme) => {
           euiStep.numberSmallSize,
           (x) => x / 2
         )};
-      `,
-    },
+      `}
+
+      ${!isSmall &&
+      `
+        // Align the content's contents with the title
+        padding-inline-start: ${mathWithUnits(
+          [euiStep.numberSize, euiStep.numberMargin],
+          (x, y) => x / 2 + y
+        )};
+
+        // Align content border to horizontal center of step number
+        margin-inline-start: ${mathWithUnits(euiStep.numberSize, (x) => x / 2)};
+      `}
+    `,
   };
 };

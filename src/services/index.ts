@@ -30,6 +30,7 @@ export {
   brighten,
   calculateContrast,
   calculateLuminance,
+  chooseLightOrDarkText,
   colorPalette,
   darken,
   DEFAULT_VISUALIZATION_COLOR,

@@ -7,14 +7,23 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme, transparentize } from '../../services';
 
-export const euiStepsHorizontalStyles = ({ euiTheme }: UseEuiTheme) => {
+//  1. Make each step the same width
+export const euiStepsHorizontalStyles = () => {
   return {
     euiStepsHorizontal: css`
       display: flex;
       align-items: stretch;
-      background: ${transparentize(euiTheme.colors.lightestShade, 0.5)};
+    `,
+    euiStepsHorizontal_item: css`
+      flex-grow: 1; /* 1 */
+      flex-basis: 0%; /* 1 */
+
+      // Remove the respective lines if the first or last child
+      &:first-of-type > .euiStepHorizontal::before,
+      &:last-of-type > .euiStepHorizontal::after {
+        display: none;
+      }
     `,
   };
 };

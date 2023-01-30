@@ -57,41 +57,34 @@ export const EuiStep: FunctionComponent<EuiStepProps> = ({
   status,
   ...rest
 }) => {
-  const classes = classNames(
-    'euiStep',
-    {
-      'euiStep-isDisabled': status === 'disabled',
-    },
-    className
-  );
-  const numberClasses = classNames('euiStep__circle', {});
+  const isDisabled = status === 'disabled';
+  const classes = classNames('euiStep', className);
 
   const isSmall = titleSize === 'xs';
 
   const euiTheme = useEuiTheme();
-  const styles = euiStepStyles(euiTheme);
-  const cssStyles = [styles.euiStep, isSmall && styles.small];
-
-  const contentStyles = [
-    isSmall && styles.euiStep__content.small,
-    !isSmall && styles.euiStep__content.regular,
+  const styles = euiStepStyles(euiTheme, isDisabled, isSmall);
+  const cssStyles = [
+    styles.euiStep,
+    isSmall && styles.small,
+    !isSmall && styles.medium,
+    isDisabled && styles.isDisabled,
   ];
 
-  const titleWrapperStyles = styles.euiStep__titleWrapper;
+  const contentStyles = styles.euiStep__content;
 
-  const circleStyles = [styles.euiStep__circle];
+  const euiStepTitleStyles = styles.euiStep__title;
+  const titleWrapperStyles = styles.euiStep__titleWrapper;
 
   return (
     <div className={classes} css={cssStyles} {...rest}>
       <div className="euiStep__titleWrapper" css={titleWrapperStyles}>
-        <EuiStepNumber
-          className={numberClasses}
-          number={step}
-          status={status}
-          titleSize={titleSize}
-          css={circleStyles}
-        />
-        <EuiTitle size={titleSize as EuiTitleSize} className="euiStep__title">
+        <EuiStepNumber number={step} status={status} titleSize={titleSize} />
+        <EuiTitle
+          size={titleSize as EuiTitleSize}
+          className="euiStep__title"
+          css={euiStepTitleStyles}
+        >
           {createElement(headingElement, null, title)}
         </EuiTitle>
       </div>

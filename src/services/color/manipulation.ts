@@ -118,3 +118,18 @@ export const brighten = (color: string, amount: number) =>
  * @returns
  */
 export const getSaturation = (color: string) => chroma(color).get('hsl.s');
+
+/**
+ * Returns the hue value of a color. 0-360
+ * @param backgroundColor
+ * @param lightColor
+ * @param darkColor
+ */
+export const chooseLightOrDarkText = (
+  backgroundColor: string,
+  lightColor: string,
+  darkColor: string
+) => {
+  const lightnessValue = lightness(backgroundColor);
+  return lightnessValue > 50 ? darkColor : lightColor;
+};
