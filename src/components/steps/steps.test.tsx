@@ -9,6 +9,7 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiContainedStepProps, EuiSteps } from './steps';
 
@@ -29,6 +30,8 @@ const steps: EuiContainedStepProps[] = [
 ];
 
 describe('EuiSteps', () => {
+  shouldRenderCustomStyles(<EuiSteps {...requiredProps} steps={steps} />);
+
   test('renders steps', () => {
     const component = render(<EuiSteps {...requiredProps} steps={steps} />);
 

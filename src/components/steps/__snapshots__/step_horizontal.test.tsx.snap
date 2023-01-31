@@ -3,12 +3,12 @@
 exports[`EuiStepHorizontal is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiStepHorizontal testClass1 testClass2 euiStepHorizontal-isIncomplete"
+  class="euiStepHorizontal testClass1 testClass2 css-23d05n-makeLineProgress-euiStepHorizontal-isIncomplete"
   data-test-subj="test subject string"
   title="Step 1 is incomplete"
 >
   <span
-    class="euiStepNumber euiStepNumber--incomplete euiStepHorizontal__number"
+    class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-medium-incomplete-euiStepHorizontal__number"
   >
     <span
       class="emotion-euiScreenReaderOnly"
@@ -23,39 +23,39 @@ exports[`EuiStepHorizontal is rendered 1`] = `
     </span>
   </span>
   <span
-    class="euiStepHorizontal__title"
+    class="euiStepHorizontal__title emotion-euiStepHorizontal__title"
   />
 </button>
 `;
 
 exports[`EuiStepHorizontal props status complete is rendered 1`] = `
 <button
-  class="euiStepHorizontal euiStepHorizontal-isComplete"
+  class="euiStepHorizontal css-1siz2xe-makeLineProgress-euiStepHorizontal-makeLineProgress-isComplete"
   title="Step 1 is complete"
 >
   <span
-    class="euiStepNumber euiStepNumber--complete euiStepHorizontal__number"
+    class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-medium-complete-euiStepHorizontal__number"
   >
     <span
-      class="euiStepNumber__icon"
+      class="euiStepNumber__icon emotion-euiStepNumber__icon"
       data-euiicon-type="check"
     >
       Step 1 is complete
     </span>
   </span>
   <span
-    class="euiStepHorizontal__title"
+    class="euiStepHorizontal__title emotion-euiStepHorizontal__title"
   />
 </button>
 `;
 
 exports[`EuiStepHorizontal props status current is rendered 1`] = `
 <button
-  class="euiStepHorizontal euiStepHorizontal-isSelected"
+  class="euiStepHorizontal css-7ngohm-makeLineProgress-euiStepHorizontal-makeLineProgress-isSelected"
   title="Current step is 1"
 >
   <span
-    class="euiStepNumber euiStepHorizontal__number"
+    class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-medium-current-euiStepHorizontal__number"
   >
     <span
       class="emotion-euiScreenReaderOnly"
@@ -70,39 +70,39 @@ exports[`EuiStepHorizontal props status current is rendered 1`] = `
     </span>
   </span>
   <span
-    class="euiStepHorizontal__title"
+    class="euiStepHorizontal__title emotion-euiStepHorizontal__title"
   />
 </button>
 `;
 
 exports[`EuiStepHorizontal props status danger is rendered 1`] = `
 <button
-  class="euiStepHorizontal"
+  class="euiStepHorizontal css-dsk0p5-makeLineProgress-euiStepHorizontal"
   title="Step 1"
 >
   <span
-    class="euiStepNumber euiStepNumber--danger euiStepHorizontal__number"
+    class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-medium-danger-euiStepHorizontal__number"
   >
     <span
-      class="euiStepNumber__icon"
+      class="euiStepNumber__icon emotion-euiStepNumber__icon"
       data-euiicon-type="cross"
     >
       Step 1 has errors
     </span>
   </span>
   <span
-    class="euiStepHorizontal__title"
+    class="euiStepHorizontal__title emotion-euiStepHorizontal__title"
   />
 </button>
 `;
 
 exports[`EuiStepHorizontal props status disabled is rendered 1`] = `
 <button
-  class="euiStepHorizontal euiStepHorizontal-isDisabled"
+  class="euiStepHorizontal css-1tjk2kl-makeLineProgress-euiStepHorizontal-isDisabled"
   title="Step 1 is disabled"
 >
   <span
-    class="euiStepNumber euiStepNumber--disabled euiStepHorizontal__number"
+    class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-medium-disabled-euiStepHorizontal__number"
   >
     <span
       class="emotion-euiScreenReaderOnly"
@@ -117,19 +117,19 @@ exports[`EuiStepHorizontal props status disabled is rendered 1`] = `
     </span>
   </span>
   <span
-    class="euiStepHorizontal__title"
+    class="euiStepHorizontal__title emotion-euiStepHorizontal__title"
   />
 </button>
 `;
 
 exports[`EuiStepHorizontal props status disabled overrides the passed status 1`] = `
 <button
-  class="euiStepHorizontal euiStepHorizontal-isDisabled"
+  class="euiStepHorizontal css-1tjk2kl-makeLineProgress-euiStepHorizontal-isDisabled"
   disabled=""
   title="Step 1 is disabled"
 >
   <span
-    class="euiStepNumber euiStepNumber--disabled euiStepHorizontal__number"
+    class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-medium-disabled-euiStepHorizontal__number"
   >
     <span
       class="emotion-euiScreenReaderOnly"
@@ -144,18 +144,18 @@ exports[`EuiStepHorizontal props status disabled overrides the passed status 1`]
     </span>
   </span>
   <span
-    class="euiStepHorizontal__title"
+    class="euiStepHorizontal__title emotion-euiStepHorizontal__title"
   />
 </button>
 `;
 
 exports[`EuiStepHorizontal props status incomplete is rendered 1`] = `
 <button
-  class="euiStepHorizontal euiStepHorizontal-isIncomplete"
+  class="euiStepHorizontal css-23d05n-makeLineProgress-euiStepHorizontal-isIncomplete"
   title="Step 1 is incomplete"
 >
   <span
-    class="euiStepNumber euiStepNumber--incomplete euiStepHorizontal__number"
+    class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-medium-incomplete-euiStepHorizontal__number"
   >
     <span
       class="emotion-euiScreenReaderOnly"
@@ -170,18 +170,18 @@ exports[`EuiStepHorizontal props status incomplete is rendered 1`] = `
     </span>
   </span>
   <span
-    class="euiStepHorizontal__title"
+    class="euiStepHorizontal__title emotion-euiStepHorizontal__title"
   />
 </button>
 `;
 
 exports[`EuiStepHorizontal props status loading is rendered 1`] = `
 <button
-  class="euiStepHorizontal"
+  class="euiStepHorizontal css-dsk0p5-makeLineProgress-euiStepHorizontal"
   title="Step 1"
 >
   <span
-    class="euiStepNumber euiStepNumber--loading euiStepHorizontal__number"
+    class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-medium-loading-euiStepHorizontal__number"
   >
     <span
       class="emotion-euiScreenReaderOnly"
@@ -195,39 +195,39 @@ exports[`EuiStepHorizontal props status loading is rendered 1`] = `
     />
   </span>
   <span
-    class="euiStepHorizontal__title"
+    class="euiStepHorizontal__title emotion-euiStepHorizontal__title"
   />
 </button>
 `;
 
 exports[`EuiStepHorizontal props status warning is rendered 1`] = `
 <button
-  class="euiStepHorizontal"
+  class="euiStepHorizontal css-dsk0p5-makeLineProgress-euiStepHorizontal"
   title="Step 1 has warnings"
 >
   <span
-    class="euiStepNumber euiStepNumber--warning euiStepHorizontal__number"
+    class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-medium-warning-euiStepHorizontal__number"
   >
     <span
-      class="euiStepNumber__icon"
+      class="euiStepNumber__icon emotion-euiStepNumber__icon"
       data-euiicon-type="alert"
     >
       Step 1 has warnings
     </span>
   </span>
   <span
-    class="euiStepHorizontal__title"
+    class="euiStepHorizontal__title emotion-euiStepHorizontal__title"
   />
 </button>
 `;
 
 exports[`EuiStepHorizontal props step 1`] = `
 <button
-  class="euiStepHorizontal euiStepHorizontal-isIncomplete"
+  class="euiStepHorizontal css-23d05n-makeLineProgress-euiStepHorizontal-isIncomplete"
   title="Step 5 is incomplete"
 >
   <span
-    class="euiStepNumber euiStepNumber--incomplete euiStepHorizontal__number"
+    class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-medium-incomplete-euiStepHorizontal__number"
   >
     <span
       class="emotion-euiScreenReaderOnly"
@@ -242,18 +242,18 @@ exports[`EuiStepHorizontal props step 1`] = `
     </span>
   </span>
   <span
-    class="euiStepHorizontal__title"
+    class="euiStepHorizontal__title emotion-euiStepHorizontal__title"
   />
 </button>
 `;
 
 exports[`EuiStepHorizontal props title 1`] = `
 <button
-  class="euiStepHorizontal euiStepHorizontal-isIncomplete"
+  class="euiStepHorizontal css-23d05n-makeLineProgress-euiStepHorizontal-isIncomplete"
   title="Step 1: First step is incomplete"
 >
   <span
-    class="euiStepNumber euiStepNumber--incomplete euiStepHorizontal__number"
+    class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-medium-incomplete-euiStepHorizontal__number"
   >
     <span
       class="emotion-euiScreenReaderOnly"
@@ -268,7 +268,7 @@ exports[`EuiStepHorizontal props title 1`] = `
     </span>
   </span>
   <span
-    class="euiStepHorizontal__title"
+    class="euiStepHorizontal__title emotion-euiStepHorizontal__title"
   >
     First step
   </span>

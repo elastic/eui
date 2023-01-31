@@ -3,14 +3,14 @@
 exports[`EuiStep is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiStep testClass1 testClass2"
+  class="euiStep testClass1 testClass2 emotion-euiStep-medium"
   data-test-subj="test subject string"
 >
   <div
-    class="euiStep__titleWrapper"
+    class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
   >
     <span
-      class="euiStepNumber euiStep__circle"
+      class="euiStepNumber emotion-euiStepNumber-medium"
     >
       <span
         class="emotion-euiScreenReaderOnly"
@@ -25,13 +25,13 @@ exports[`EuiStep is rendered 1`] = `
       </span>
     </span>
     <p
-      class="euiTitle euiStep__title emotion-euiTitle-s"
+      class="euiTitle euiStep__title emotion-euiTitle-s-euiStep__title"
     >
       First step
     </p>
   </div>
   <div
-    class="euiStep__content"
+    class="euiStep__content emotion-euiStep__content"
   >
     <p>
       Do this
@@ -42,13 +42,13 @@ exports[`EuiStep is rendered 1`] = `
 
 exports[`EuiStep props headingElement 1`] = `
 <div
-  class="euiStep"
+  class="euiStep emotion-euiStep-medium"
 >
   <div
-    class="euiStep__titleWrapper"
+    class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
   >
     <span
-      class="euiStepNumber euiStep__circle"
+      class="euiStepNumber emotion-euiStepNumber-medium"
     >
       <span
         class="emotion-euiScreenReaderOnly"
@@ -63,13 +63,13 @@ exports[`EuiStep props headingElement 1`] = `
       </span>
     </span>
     <h3
-      class="euiTitle euiStep__title emotion-euiTitle-s"
+      class="euiTitle euiStep__title emotion-euiTitle-s-euiStep__title"
     >
       First step
     </h3>
   </div>
   <div
-    class="euiStep__content"
+    class="euiStep__content emotion-euiStep__content"
   >
     <p>
       Do this
@@ -80,29 +80,29 @@ exports[`EuiStep props headingElement 1`] = `
 
 exports[`EuiStep props status complete is rendered 1`] = `
 <div
-  class="euiStep"
+  class="euiStep emotion-euiStep-medium"
 >
   <div
-    class="euiStep__titleWrapper"
+    class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
   >
     <span
-      class="euiStepNumber euiStepNumber--complete euiStep__circle"
+      class="euiStepNumber emotion-euiStepNumber-medium-complete"
     >
       <span
-        class="euiStepNumber__icon"
+        class="euiStepNumber__icon emotion-euiStepNumber__icon"
         data-euiicon-type="check"
       >
         Step 1 is complete
       </span>
     </span>
     <p
-      class="euiTitle euiStep__title emotion-euiTitle-s"
+      class="euiTitle euiStep__title emotion-euiTitle-s-euiStep__title"
     >
       First step
     </p>
   </div>
   <div
-    class="euiStep__content"
+    class="euiStep__content emotion-euiStep__content"
   >
     <p>
       Do this
@@ -113,13 +113,13 @@ exports[`EuiStep props status complete is rendered 1`] = `
 
 exports[`EuiStep props status current is rendered 1`] = `
 <div
-  class="euiStep"
+  class="euiStep emotion-euiStep-medium"
 >
   <div
-    class="euiStep__titleWrapper"
+    class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
   >
     <span
-      class="euiStepNumber euiStep__circle"
+      class="euiStepNumber emotion-euiStepNumber-medium-current"
     >
       <span
         class="emotion-euiScreenReaderOnly"
@@ -134,13 +134,13 @@ exports[`EuiStep props status current is rendered 1`] = `
       </span>
     </span>
     <p
-      class="euiTitle euiStep__title emotion-euiTitle-s"
+      class="euiTitle euiStep__title emotion-euiTitle-s-euiStep__title"
     >
       First step
     </p>
   </div>
   <div
-    class="euiStep__content"
+    class="euiStep__content emotion-euiStep__content"
   >
     <p>
       Do this
@@ -151,29 +151,29 @@ exports[`EuiStep props status current is rendered 1`] = `
 
 exports[`EuiStep props status danger is rendered 1`] = `
 <div
-  class="euiStep"
+  class="euiStep emotion-euiStep-medium"
 >
   <div
-    class="euiStep__titleWrapper"
+    class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
   >
     <span
-      class="euiStepNumber euiStepNumber--danger euiStep__circle"
+      class="euiStepNumber emotion-euiStepNumber-medium-danger"
     >
       <span
-        class="euiStepNumber__icon"
+        class="euiStepNumber__icon emotion-euiStepNumber__icon"
         data-euiicon-type="cross"
       >
         Step 1 has errors
       </span>
     </span>
     <p
-      class="euiTitle euiStep__title emotion-euiTitle-s"
+      class="euiTitle euiStep__title emotion-euiTitle-s-euiStep__title"
     >
       First step
     </p>
   </div>
   <div
-    class="euiStep__content"
+    class="euiStep__content emotion-euiStep__content"
   >
     <p>
       Do this
@@ -184,13 +184,13 @@ exports[`EuiStep props status danger is rendered 1`] = `
 
 exports[`EuiStep props status disabled is rendered 1`] = `
 <div
-  class="euiStep euiStep-isDisabled"
+  class="euiStep emotion-euiStep-medium-isDisabled"
 >
   <div
-    class="euiStep__titleWrapper"
+    class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
   >
     <span
-      class="euiStepNumber euiStepNumber--disabled euiStep__circle"
+      class="euiStepNumber emotion-euiStepNumber-medium-disabled"
     >
       <span
         class="emotion-euiScreenReaderOnly"
@@ -205,13 +205,13 @@ exports[`EuiStep props status disabled is rendered 1`] = `
       </span>
     </span>
     <p
-      class="euiTitle euiStep__title emotion-euiTitle-s"
+      class="euiTitle euiStep__title emotion-euiTitle-s-euiStep__title"
     >
       First step
     </p>
   </div>
   <div
-    class="euiStep__content"
+    class="euiStep__content emotion-euiStep__content"
   >
     <p>
       Do this
@@ -222,13 +222,13 @@ exports[`EuiStep props status disabled is rendered 1`] = `
 
 exports[`EuiStep props status incomplete is rendered 1`] = `
 <div
-  class="euiStep"
+  class="euiStep emotion-euiStep-medium"
 >
   <div
-    class="euiStep__titleWrapper"
+    class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
   >
     <span
-      class="euiStepNumber euiStepNumber--incomplete euiStep__circle"
+      class="euiStepNumber emotion-euiStepNumber-medium-incomplete"
     >
       <span
         class="emotion-euiScreenReaderOnly"
@@ -243,13 +243,13 @@ exports[`EuiStep props status incomplete is rendered 1`] = `
       </span>
     </span>
     <p
-      class="euiTitle euiStep__title emotion-euiTitle-s"
+      class="euiTitle euiStep__title emotion-euiTitle-s-euiStep__title"
     >
       First step
     </p>
   </div>
   <div
-    class="euiStep__content"
+    class="euiStep__content emotion-euiStep__content"
   >
     <p>
       Do this
@@ -260,13 +260,13 @@ exports[`EuiStep props status incomplete is rendered 1`] = `
 
 exports[`EuiStep props status loading is rendered 1`] = `
 <div
-  class="euiStep"
+  class="euiStep emotion-euiStep-medium"
 >
   <div
-    class="euiStep__titleWrapper"
+    class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
   >
     <span
-      class="euiStepNumber euiStepNumber--loading euiStep__circle"
+      class="euiStepNumber emotion-euiStepNumber-medium-loading"
     >
       <span
         class="emotion-euiScreenReaderOnly"
@@ -280,13 +280,13 @@ exports[`EuiStep props status loading is rendered 1`] = `
       />
     </span>
     <p
-      class="euiTitle euiStep__title emotion-euiTitle-s"
+      class="euiTitle euiStep__title emotion-euiTitle-s-euiStep__title"
     >
       First step
     </p>
   </div>
   <div
-    class="euiStep__content"
+    class="euiStep__content emotion-euiStep__content"
   >
     <p>
       Do this
@@ -297,29 +297,29 @@ exports[`EuiStep props status loading is rendered 1`] = `
 
 exports[`EuiStep props status warning is rendered 1`] = `
 <div
-  class="euiStep"
+  class="euiStep emotion-euiStep-medium"
 >
   <div
-    class="euiStep__titleWrapper"
+    class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
   >
     <span
-      class="euiStepNumber euiStepNumber--warning euiStep__circle"
+      class="euiStepNumber emotion-euiStepNumber-medium-warning"
     >
       <span
-        class="euiStepNumber__icon"
+        class="euiStepNumber__icon emotion-euiStepNumber__icon"
         data-euiicon-type="alert"
       >
         Step 1 has warnings
       </span>
     </span>
     <p
-      class="euiTitle euiStep__title emotion-euiTitle-s"
+      class="euiTitle euiStep__title emotion-euiTitle-s-euiStep__title"
     >
       First step
     </p>
   </div>
   <div
-    class="euiStep__content"
+    class="euiStep__content emotion-euiStep__content"
   >
     <p>
       Do this
@@ -330,13 +330,13 @@ exports[`EuiStep props status warning is rendered 1`] = `
 
 exports[`EuiStep props step 1`] = `
 <div
-  class="euiStep"
+  class="euiStep emotion-euiStep-medium"
 >
   <div
-    class="euiStep__titleWrapper"
+    class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
   >
     <span
-      class="euiStepNumber euiStep__circle"
+      class="euiStepNumber emotion-euiStepNumber-medium"
     >
       <span
         class="emotion-euiScreenReaderOnly"
@@ -351,13 +351,13 @@ exports[`EuiStep props step 1`] = `
       </span>
     </span>
     <p
-      class="euiTitle euiStep__title emotion-euiTitle-s"
+      class="euiTitle euiStep__title emotion-euiTitle-s-euiStep__title"
     >
       First step
     </p>
   </div>
   <div
-    class="euiStep__content"
+    class="euiStep__content emotion-euiStep__content"
   >
     <p>
       Do this
@@ -368,13 +368,13 @@ exports[`EuiStep props step 1`] = `
 
 exports[`EuiStep props titleSize 1`] = `
 <div
-  class="euiStep euiStep--small"
+  class="euiStep emotion-euiStep-small"
 >
   <div
-    class="euiStep__titleWrapper"
+    class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
   >
     <span
-      class="euiStepNumber euiStep__circle euiStepNumber--small"
+      class="euiStepNumber emotion-euiStepNumber-small"
     >
       <span
         class="emotion-euiScreenReaderOnly"
@@ -389,13 +389,13 @@ exports[`EuiStep props titleSize 1`] = `
       </span>
     </span>
     <p
-      class="euiTitle euiStep__title emotion-euiTitle-xs"
+      class="euiTitle euiStep__title emotion-euiTitle-xs-euiStep__title"
     >
       First step
     </p>
   </div>
   <div
-    class="euiStep__content"
+    class="euiStep__content emotion-euiStep__content"
   >
     <p>
       Do this

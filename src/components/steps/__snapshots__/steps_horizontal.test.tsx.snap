@@ -3,28 +3,28 @@
 exports[`EuiStepsHorizontal is rendered 1`] = `
 <ol
   aria-label="aria-label"
-  class="euiStepsHorizontal testClass1 testClass2"
+  class="euiStepsHorizontal testClass1 testClass2 emotion-euiStepsHorizontal"
   data-test-subj="test subject string"
 >
   <li
-    class="euiStepHorizontal__item"
+    class="euiStepsHorizontal__item emotion-euiStepsHorizontal_item"
   >
     <button
-      class="euiStepHorizontal euiStepHorizontal-isComplete"
+      class="euiStepHorizontal css-1siz2xe-makeLineProgress-euiStepHorizontal-makeLineProgress-isComplete"
       title="Step 1: Completed Step 1 is complete"
     >
       <span
-        class="euiStepNumber euiStepNumber--complete euiStepHorizontal__number"
+        class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-medium-complete-euiStepHorizontal__number"
       >
         <span
-          class="euiStepNumber__icon"
+          class="euiStepNumber__icon emotion-euiStepNumber__icon"
           data-euiicon-type="check"
         >
           Step 1 is complete
         </span>
       </span>
       <span
-        class="euiStepHorizontal__title"
+        class="euiStepHorizontal__title emotion-euiStepHorizontal__title"
       >
         Completed Step 1
       </span>
@@ -32,14 +32,14 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
   </li>
   <li
     aria-current="step"
-    class="euiStepHorizontal__item"
+    class="euiStepsHorizontal__item emotion-euiStepsHorizontal_item"
   >
     <button
-      class="euiStepHorizontal euiStepHorizontal-isSelected"
+      class="euiStepHorizontal css-7ngohm-makeLineProgress-euiStepHorizontal-makeLineProgress-isSelected"
       title="Current step 2: Selected Step 2"
     >
       <span
-        class="euiStepNumber euiStepHorizontal__number"
+        class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-medium-current-euiStepHorizontal__number"
       >
         <span
           class="emotion-euiScreenReaderOnly"
@@ -54,21 +54,21 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
         </span>
       </span>
       <span
-        class="euiStepHorizontal__title"
+        class="euiStepHorizontal__title emotion-euiStepHorizontal__title"
       >
         Selected Step 2
       </span>
     </button>
   </li>
   <li
-    class="euiStepHorizontal__item"
+    class="euiStepsHorizontal__item emotion-euiStepsHorizontal_item"
   >
     <button
-      class="euiStepHorizontal euiStepHorizontal-isIncomplete"
+      class="euiStepHorizontal css-23d05n-makeLineProgress-euiStepHorizontal-isIncomplete"
       title="Step 3: Incomplete Step 3 is incomplete"
     >
       <span
-        class="euiStepNumber euiStepNumber--incomplete euiStepHorizontal__number"
+        class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-medium-incomplete-euiStepHorizontal__number"
       >
         <span
           class="emotion-euiScreenReaderOnly"
@@ -83,21 +83,21 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
         </span>
       </span>
       <span
-        class="euiStepHorizontal__title"
+        class="euiStepHorizontal__title emotion-euiStepHorizontal__title"
       >
         Incomplete Step 3
       </span>
     </button>
   </li>
   <li
-    class="euiStepHorizontal__item"
+    class="euiStepsHorizontal__item emotion-euiStepsHorizontal_item"
   >
     <button
-      class="euiStepHorizontal euiStepHorizontal-isDisabled"
+      class="euiStepHorizontal css-1tjk2kl-makeLineProgress-euiStepHorizontal-isDisabled"
       title="Step 4: Disabled Step 4 is disabled"
     >
       <span
-        class="euiStepNumber euiStepNumber--disabled euiStepHorizontal__number"
+        class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-medium-disabled-euiStepHorizontal__number"
       >
         <span
           class="emotion-euiScreenReaderOnly"
@@ -112,7 +112,7 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
         </span>
       </span>
       <span
-        class="euiStepHorizontal__title"
+        class="euiStepHorizontal__title emotion-euiStepHorizontal__title"
       >
         Disabled Step 4
       </span>
