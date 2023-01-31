@@ -2,12 +2,15 @@ import React from 'react';
 
 import { GuideSectionTypes } from '../../components';
 import {
-  EuiCode,
-  EuiText,
   EuiSkeletonTitle,
   EuiSkeletonText,
   EuiSkeletonRectangle,
   EuiSkeletonCircle,
+  EuiSkeletonLoading,
+  EuiText,
+  EuiSpacer,
+  EuiCallOut,
+  EuiCode,
 } from '../../../../src/components';
 
 import {
@@ -19,32 +22,85 @@ import {
 
 import SkeletonCircle from './skeleton_circle';
 const skeletonCircleSource = require('!!raw-loader!./skeleton_circle');
+const skeletonCircleSnippet = `<EuiSkeletonCircle size="m" isLoading={isLoading} contentAriaLabel="Avatar">
+  <EuiAvatar size="s" name="Sally" />
+</EuiSkeletonCircle>`;
 
 import SkeletonText from './skeleton_text';
 const skeletonTextSource = require('!!raw-loader!./skeleton_text');
+const skeletonTextSnippet = `<EuiSkeletonText lines={3} size="m" isLoading={isLoading} contentAriaLabel="Example text">
+  <EuiText size="m"><p>Example text</p></EuiText>
+</EuiSkeletonText>`;
 
 import SkeletonTitle from './skeleton_title';
 const skeletonTitleSource = require('!!raw-loader!./skeleton_title');
+const skeletonTitleSnippet = `<EuiSkeletonTitle size="l" isLoading={isLoading} contentAriaLabel="Example title">
+  <EuiTitle><h1>Example title</h1></EuiTitle>
+</EuiSkeletonTitle>`;
 
 import SkeletonRectangle from './skeleton_rectangle';
 const skeletonRectangleSource = require('!!raw-loader!./skeleton_rectangle');
+const skeletonRectangleSnippet = `<EuiSkeletonRectangle
+  width="100%"
+  height={500}
+  borderRadius="m"
+  isLoading={isLoading}
+  contentAriaLabel="Example description"
+>
+  <EuiPanel />
+</EuiSkeletonRectangle>`;
 
-const skeletonCircleSnippet = '<EuiSkeletonCircle size="m" />';
-const skeletonTextSnippet = '<EuiSkeletonText lines={3} size="m" />';
-const skeletonTitleSnippet = '<EuiSkeletonTitle size="l" />';
-const skeletonRectangleSnippet =
-  '<EuiSkeletonRectangle width="200px" height="20px" borderRadius="m" />';
+import SkeletonLoading from './skeleton_loading';
+const skeletonLoadingSource = require('!!raw-loader!./skeleton_loading');
+const skeletonLoadingSnippet = `<EuiSkeletonLoading
+  isLoading={isLoading}
+  contentAriaLabel="User data"
+  loadingContent={
+    <>
+      <EuiSkeletonTitle />
+      <EuiSkeletonText />
+      <EuiSkeletonCircle />
+      <EuiSkeletonRectangle />
+    </>
+  }
+  loadedContent={
+    <>
+      {/* Equivalent loaded content */}
+    </>
+  }
+/>`;
 
 export const SkeletonExample = {
   title: 'Skeleton',
   intro: (
-    <EuiText>
-      <p>
-        The <strong>EuiSkeleton</strong> components are placeholder components
-        for content which haven&apos;t yet loaded. They provide a meaningful
-        preview and avoid layout content shifts.
-      </p>
-    </EuiText>
+    <>
+      <EuiText>
+        <p>
+          The <strong>EuiSkeleton</strong> components are placeholder components
+          for content which has yet to load. They provide meaningful previews,
+          avoid layout content shifts, and add accessible announcements to
+          screen readers when content is done loading.
+        </p>
+      </EuiText>
+      <EuiSpacer />
+      <EuiCallOut
+        iconType="accessibility"
+        title={
+          <>
+            Using the <EuiCode>contentAriaLabel</EuiCode> prop
+          </>
+        }
+      >
+        <p>
+          The <EuiCode>contentAriaLabel</EuiCode> prop should be used to help
+          describe the type of content that is loading to screen reader users.
+          If you do not provide a descriptive label and have have multiple
+          loading skeletons on the page, screen reader users may hear a
+          multitude of &ldquo;Loaded&rdquo; messages in a row, with no
+          meaningful indication of what actually loaded.
+        </p>
+      </EuiCallOut>
+    </>
   ),
   sections: [
     {
@@ -132,6 +188,39 @@ export const SkeletonExample = {
       snippet: skeletonRectangleSnippet,
       demo: <SkeletonRectangle />,
       playground: skeletonRectangleConfig,
+    },
+    {
+      title: 'Combining multiple skeletons',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: skeletonLoadingSource,
+        },
+      ],
+      text: (
+        <EuiText>
+          <p>
+            <strong>EuiSkeletonLoading</strong> is a light wrapper around the{' '}
+            <strong>EuiSkeleton</strong> components that handles loading
+            accessibility and flipping between skeleton and loaded content.
+          </p>
+          <p>
+            As you may have noticed in the previous demos, toggling multiple
+            skeletons to their loaded state all at once triggers multiple queued
+            screen reader announcements, which can be annoying to SR users.
+          </p>
+          <p>
+            To circumvent this, use <strong>EuiSkeletonLoading</strong> to
+            handle a single parent-level <EuiCode>isLoading</EuiCode> state.{' '}
+            <strong>EuiSkeleton</strong> children passed to the{' '}
+            <EuiCode>loadingContent</EuiCode> should not have their own{' '}
+            <EuiCode>isLoading</EuiCode> props or children.
+          </p>
+        </EuiText>
+      ),
+      props: { EuiSkeletonLoading },
+      snippet: skeletonLoadingSnippet,
+      demo: <SkeletonLoading />,
     },
   ],
 };

@@ -6,7 +6,6 @@ import {
   EuiSwitch,
   EuiSpacer,
   EuiFlexGroup,
-  EuiFlexItem,
 } from '../../../../src/components';
 
 export default () => {
@@ -21,65 +20,65 @@ export default () => {
       />
       <EuiSpacer />
       <EuiFlexGroup direction="column">
-        <EuiFlexItem>
-          {isLoading ? (
-            <EuiSkeletonTitle size="xxxs" />
-          ) : (
-            <EuiTitle size="xxxs">
-              <span>This is an extra extra extra small title</span>
-            </EuiTitle>
-          )}
-        </EuiFlexItem>
+        <EuiSkeletonTitle
+          size="xxxs"
+          isLoading={isLoading}
+          contentAriaLabel="Demo skeleton title"
+        >
+          <EuiTitle size="xxxs">
+            <span>This is an extra extra extra small title</span>
+          </EuiTitle>
+        </EuiSkeletonTitle>
 
-        <EuiFlexItem>
-          {isLoading ? (
-            <EuiSkeletonTitle size="xxs" />
-          ) : (
-            <EuiTitle size="xxs">
-              <span>This is an extra extra small title</span>
-            </EuiTitle>
-          )}
-        </EuiFlexItem>
+        <EuiSkeletonTitle
+          size="xxs"
+          isLoading={isLoading}
+          contentAriaLabel="Demo skeleton title"
+        >
+          <EuiTitle size="xxs">
+            <span>This is an extra extra small title</span>
+          </EuiTitle>
+        </EuiSkeletonTitle>
 
-        <EuiFlexItem>
-          {isLoading ? (
-            <EuiSkeletonTitle size="xs" />
-          ) : (
-            <EuiTitle size="xs">
-              <span>This is an extra small title</span>
-            </EuiTitle>
-          )}
-        </EuiFlexItem>
+        <EuiSkeletonTitle
+          size="xs"
+          isLoading={isLoading}
+          contentAriaLabel="Demo skeleton title"
+        >
+          <EuiTitle size="xs">
+            <span>This is an extra small title</span>
+          </EuiTitle>
+        </EuiSkeletonTitle>
 
-        <EuiFlexItem>
-          {isLoading ? (
-            <EuiSkeletonTitle size="s" />
-          ) : (
-            <EuiTitle size="s">
-              <span>This is a small title</span>
-            </EuiTitle>
-          )}
-        </EuiFlexItem>
+        <EuiSkeletonTitle
+          size="s"
+          isLoading={isLoading}
+          contentAriaLabel="Demo skeleton title"
+        >
+          <EuiTitle size="s">
+            <span>This is a small title</span>
+          </EuiTitle>
+        </EuiSkeletonTitle>
 
-        <EuiFlexItem>
-          {isLoading ? (
-            <EuiSkeletonTitle size="m" />
-          ) : (
-            <EuiTitle size="m">
-              <span>This is a medium title</span>
-            </EuiTitle>
-          )}
-        </EuiFlexItem>
+        <EuiSkeletonTitle
+          size="m"
+          isLoading={isLoading}
+          contentAriaLabel="Demo skeleton title"
+        >
+          <EuiTitle size="m">
+            <span>This is a medium title</span>
+          </EuiTitle>
+        </EuiSkeletonTitle>
 
-        <EuiFlexItem>
-          {isLoading ? (
-            <EuiSkeletonTitle size="l" />
-          ) : (
-            <EuiTitle size="l">
-              <span>This is a large title</span>
-            </EuiTitle>
-          )}
-        </EuiFlexItem>
+        <EuiSkeletonTitle
+          size="l"
+          isLoading={isLoading}
+          contentAriaLabel="Demo skeleton title"
+        >
+          <EuiTitle size="l">
+            <span>This is a large title</span>
+          </EuiTitle>
+        </EuiSkeletonTitle>
       </EuiFlexGroup>
     </>
   );

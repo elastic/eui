@@ -15,7 +15,9 @@ import { TITLE_SIZES } from '../title/title';
 import { EuiSkeletonTitle } from './skeleton_title';
 
 describe('EuiSkeletonTitle', () => {
-  shouldRenderCustomStyles(<EuiSkeletonTitle />);
+  shouldRenderCustomStyles(<EuiSkeletonTitle />, {
+    childProps: ['ariaWrapperProps'],
+  });
 
   test('is rendered', () => {
     const { container } = render(<EuiSkeletonTitle {...requiredProps} />);
@@ -31,5 +33,16 @@ describe('EuiSkeletonTitle', () => {
         expect(container.firstChild).toMatchSnapshot();
       });
     });
+  });
+
+  it('renders its children when `isLoading=false`', () => {
+    const { queryByRole, queryByTestSubject } = render(
+      <EuiSkeletonTitle isLoading={false}>
+        <span data-test-subj="loaded" />
+      </EuiSkeletonTitle>
+    );
+
+    expect(queryByRole('progressbar')).toBeFalsy();
+    expect(queryByTestSubject('loaded')).toBeTruthy();
   });
 });

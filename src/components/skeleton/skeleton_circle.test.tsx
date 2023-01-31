@@ -14,7 +14,9 @@ import { shouldRenderCustomStyles } from '../../test/internal';
 import { EuiSkeletonCircle, SIZES } from './skeleton_circle';
 
 describe('EuiSkeletonCircle', () => {
-  shouldRenderCustomStyles(<EuiSkeletonCircle />);
+  shouldRenderCustomStyles(<EuiSkeletonCircle />, {
+    childProps: ['ariaWrapperProps'],
+  });
 
   test('is rendered', () => {
     const { container } = render(<EuiSkeletonCircle {...requiredProps} />);
@@ -30,5 +32,16 @@ describe('EuiSkeletonCircle', () => {
         expect(container.firstChild).toMatchSnapshot();
       });
     });
+  });
+
+  it('renders its children when `isLoading=false`', () => {
+    const { queryByRole, queryByTestSubject } = render(
+      <EuiSkeletonCircle isLoading={false}>
+        <span data-test-subj="loaded" />
+      </EuiSkeletonCircle>
+    );
+
+    expect(queryByRole('progressbar')).toBeFalsy();
+    expect(queryByTestSubject('loaded')).toBeTruthy();
   });
 });

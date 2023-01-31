@@ -1,21 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiLoadingContent is rendered 1`] = `
-<span
+<div
   aria-busy="true"
-  aria-label="aria-label"
-  class="euiSkeletonText testClass1 testClass2"
-  data-test-subj="test subject string"
-  role="progressbar"
+  data-test-subj="euiSkeletonLoadingAriaWrapper"
 >
   <span
-    class="emotion-euiSkeletonGradientAnimation-euiSkeletonText-m"
-  />
-  <span
-    class="emotion-euiSkeletonGradientAnimation-euiSkeletonText-m"
-  />
-  <span
-    class="emotion-euiSkeletonGradientAnimation-euiSkeletonText-m"
-  />
-</span>
+    aria-label="Loading "
+    class="euiSkeletonText testClass1 testClass2"
+    data-test-subj="test subject string"
+    role="progressbar"
+  >
+    <span
+      class="emotion-euiSkeletonGradientAnimation-euiSkeletonText-m"
+    />
+    <span
+      class="emotion-euiSkeletonGradientAnimation-euiSkeletonText-m"
+    />
+    <span
+      class="emotion-euiSkeletonGradientAnimation-euiSkeletonText-m"
+    />
+  </span>
+</div>
 `;

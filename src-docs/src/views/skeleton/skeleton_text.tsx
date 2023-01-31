@@ -8,7 +8,6 @@ import {
   EuiButtonGroup,
   EuiSpacer,
   EuiFlexGroup,
-  EuiFlexItem,
 } from '../../../../src/components';
 
 type TextSizes = 'm' | 's' | 'xs' | 'relative';
@@ -40,35 +39,34 @@ export default () => {
         />
       </EuiFlexGroup>
       <EuiSpacer />
-      <EuiFlexGroup direction="column">
-        <EuiFlexItem>
-          {isLoading ? (
-            <EuiSkeletonText lines={3} size={size} />
-          ) : (
-            <EuiText
-              // Trim text to 3 lines to visually match the skeleton lines
-              css={css`
-                text-overflow: ellipsis;
-                overflow: hidden;
-                line-clamp: 3;
-                display: -webkit-box;
-                -webkit-line-clamp: 3;
-                -webkit-box-orient: vertical;
-              `}
-              size={size}
-            >
-              <p>
-                Far out in the uncharted backwaters of the unfashionable end of
-                the western spiral arm of the Galaxy lies a small unregarded
-                yellow sun. Orbiting this at a distance of roughly ninety-two
-                million miles is an utterly insignificant little blue green
-                planet whose ape-descended life forms are so amazingly primitive
-                that they still think digital watches are a pretty neat idea.
-              </p>
-            </EuiText>
-          )}
-        </EuiFlexItem>
-      </EuiFlexGroup>
+      <EuiSkeletonText
+        lines={3}
+        size={size}
+        isLoading={isLoading}
+        contentAriaLabel="Demo skeleton text"
+      >
+        <EuiText
+          // Trim text to 3 lines to visually match the skeleton lines
+          css={css`
+            text-overflow: ellipsis;
+            overflow: hidden;
+            line-clamp: 3;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+          `}
+          size={size}
+        >
+          <p>
+            Far out in the uncharted backwaters of the unfashionable end of the
+            western spiral arm of the Galaxy lies a small unregarded yellow sun.
+            Orbiting this at a distance of roughly ninety-two million miles is
+            an utterly insignificant little blue green planet whose
+            ape-descended life forms are so amazingly primitive that they still
+            think digital watches are a pretty neat idea.
+          </p>
+        </EuiText>
+      </EuiSkeletonText>
     </>
   );
 };

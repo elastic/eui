@@ -6,6 +6,8 @@
  * Side Public License, v 1.
  */
 
+export type { EuiSkeletonLoadingProps } from './skeleton_loading';
+export { EuiSkeletonLoading } from './skeleton_loading';
 export type { EuiSkeletonCircleProps } from './skeleton_circle';
 export { EuiSkeletonCircle } from './skeleton_circle';
 export type { EuiSkeletonTextProps } from './skeleton_text';

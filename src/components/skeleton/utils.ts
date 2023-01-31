@@ -11,17 +11,6 @@ import { css } from '@emotion/react';
 import { UseEuiTheme, shade, tint } from '../../services';
 import { euiCanAnimate, logicalCSS } from '../../global_styling';
 import { euiAnimSlideX } from '../../global_styling/utility/animations';
-import { useLoadingAriaLabel } from '../loading/_loading_strings';
-
-export const useLoadingAriaAttributes = () => {
-  const defaultLabel = useLoadingAriaLabel();
-
-  return {
-    'aria-busy': true,
-    'aria-label': defaultLabel,
-    role: 'progressbar',
-  };
-};
 
 type AnimationOptions = {
   slideSize?: string;
@@ -46,7 +35,7 @@ export const euiSkeletonGradientAnimation = (
 
     ${euiCanAnimate} {
       overflow: hidden;
-      z-index: 1; // This is unfortunately necessary workaround that forces Safari to correctly respect border-radius
+      isolation: isolate; // This is unfortunately necessary workaround that forces Safari to correctly respect border-radius
 
       &::after {
         content: '';

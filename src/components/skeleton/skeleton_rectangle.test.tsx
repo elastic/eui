@@ -14,7 +14,9 @@ import { shouldRenderCustomStyles } from '../../test/internal';
 import { EuiSkeletonRectangle, RADIUS } from './skeleton_rectangle';
 
 describe('EuiSkeletonRectangle', () => {
-  shouldRenderCustomStyles(<EuiSkeletonRectangle />);
+  shouldRenderCustomStyles(<EuiSkeletonRectangle />, {
+    childProps: ['ariaWrapperProps'],
+  });
 
   test('is rendered', () => {
     const { container } = render(<EuiSkeletonRectangle {...requiredProps} />);
@@ -48,5 +50,16 @@ describe('EuiSkeletonRectangle', () => {
     );
 
     expect(container.firstChild).toMatchSnapshot();
+  });
+
+  it('renders its children when `isLoading=false`', () => {
+    const { queryByRole, queryByTestSubject } = render(
+      <EuiSkeletonRectangle isLoading={false}>
+        <span data-test-subj="loaded" />
+      </EuiSkeletonRectangle>
+    );
+
+    expect(queryByRole('progressbar')).toBeFalsy();
+    expect(queryByTestSubject('loaded')).toBeTruthy();
   });
 });

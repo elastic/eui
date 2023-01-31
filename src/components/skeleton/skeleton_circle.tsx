@@ -12,20 +12,25 @@ import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
 
-import { useLoadingAriaAttributes } from './utils';
+import { EuiSkeletonLoading, _EuiSkeletonAriaProps } from './skeleton_loading';
 import { euiSkeletonCircleStyles } from './skeleton_circle.styles';
 
 export const SIZES = ['s', 'm', 'l', 'xl'] as const;
 export type SkeletonCircleSize = typeof SIZES[number];
 
 export type EuiSkeletonCircleProps = HTMLAttributes<HTMLDivElement> &
-  CommonProps & {
+  CommonProps &
+  _EuiSkeletonAriaProps & {
     size?: SkeletonCircleSize;
   };
 
 export const EuiSkeletonCircle: FunctionComponent<EuiSkeletonCircleProps> = ({
-  className,
+  isLoading = true,
   size = 'l',
+  className,
+  contentAriaLabel,
+  ariaWrapperProps,
+  children,
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
@@ -33,11 +38,18 @@ export const EuiSkeletonCircle: FunctionComponent<EuiSkeletonCircleProps> = ({
   const cssStyles = [styles.euiSkeletonCircle, styles[size]];
 
   return (
-    <div
-      className={classNames('euiSkeletonCircle', className)}
-      css={cssStyles}
-      {...useLoadingAriaAttributes()}
-      {...rest}
+    <EuiSkeletonLoading
+      isLoading={isLoading}
+      loadingContent={
+        <div
+          className={classNames('euiSkeletonCircle', className)}
+          css={cssStyles}
+          {...rest}
+        />
+      }
+      loadedContent={children || ''}
+      contentAriaLabel={contentAriaLabel}
+      {...ariaWrapperProps}
     />
   );
 };
