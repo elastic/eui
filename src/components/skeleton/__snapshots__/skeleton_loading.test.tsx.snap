@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiSkeletonLoading renders \`loadedContent\` when \`isLoading\` is false 1`] = `
+<div
+  aria-busy="false"
+  data-test-subj="euiSkeletonLoadingAriaWrapper"
+>
+  <div
+    class="emotion-euiScreenReaderOnly"
+  >
+    <div
+      aria-atomic="true"
+      aria-live="polite"
+      role="status"
+    >
+      Loaded Sample user data
+    </div>
+    <div
+      aria-atomic="true"
+      aria-hidden="true"
+      aria-live="off"
+      role="status"
+    />
+  </div>
+  <span
+    data-test-subj="loaded"
+  />
+</div>
+`;
+
+exports[`EuiSkeletonLoading renders \`loadingContent\` when \`isLoading\` is true 1`] = `
+<div
+  aria-busy="true"
+  data-test-subj="euiSkeletonLoadingAriaWrapper"
+>
+  <span
+    aria-label="Loading Sample user data"
+    data-test-subj="loading"
+    role="progressbar"
+  />
+</div>
+`;
