@@ -1,9 +1,13 @@
 import { PropTypes } from 'react-view';
 import {
   EuiSkeletonText,
+  EuiText,
   EuiSkeletonTitle,
+  EuiTitle,
   EuiSkeletonCircle,
+  EuiAvatar,
   EuiSkeletonRectangle,
+  EuiPanel,
 } from '../../../../src/components/';
 import { propUtilityForPlayground } from '../../services/playground';
 
@@ -19,16 +23,25 @@ export const skeletonTextConfig = () => {
     value: 3,
   };
 
+  propsToUse.children = {
+    type: PropTypes.ReactNode,
+    value: `<EuiText>
+  <p>Hello world</p>
+</EuiText>`,
+    hidden: false,
+  };
+
   return {
     config: {
       componentName: 'EuiSkeletonText',
       props: propsToUse,
       scope: {
         EuiSkeletonText,
+        EuiText,
       },
       imports: {
         '@elastic/eui': {
-          named: ['EuiSkeletonText'],
+          named: ['EuiSkeletonText', 'EuiText'],
         },
       },
     },
@@ -41,16 +54,26 @@ export const skeletonTitleConfig = () => {
     : EuiSkeletonTitle.__docgenInfo;
   const propsToUse = propUtilityForPlayground(docgenInfo.props);
 
+  propsToUse.children = {
+    ...propsToUse.children,
+    type: PropTypes.ReactNode,
+    value: `<EuiTitle>
+  <h4>Hello world</h4>
+</EuiTitle>`,
+    hidden: false,
+  };
+
   return {
     config: {
       componentName: 'EuiSkeletonTitle',
       props: propsToUse,
       scope: {
         EuiSkeletonTitle,
+        EuiTitle,
       },
       imports: {
         '@elastic/eui': {
-          named: ['EuiSkeletonTitle'],
+          named: ['EuiSkeletonTitle', 'EuiTitle'],
         },
       },
     },
@@ -63,16 +86,24 @@ export const skeletonCircleConfig = () => {
     : EuiSkeletonCircle.__docgenInfo;
   const propsToUse = propUtilityForPlayground(docgenInfo.props);
 
+  propsToUse.children = {
+    ...propsToUse.children,
+    type: PropTypes.ReactNode,
+    value: '<EuiAvatar name="Hello World" />',
+    hidden: false,
+  };
+
   return {
     config: {
       componentName: 'EuiSkeletonCircle',
       props: propsToUse,
       scope: {
         EuiSkeletonCircle,
+        EuiAvatar,
       },
       imports: {
         '@elastic/eui': {
-          named: ['EuiSkeletonCircle'],
+          named: ['EuiSkeletonCircle', 'EuiAvatar'],
         },
       },
     },
@@ -96,16 +127,24 @@ export const skeletonRectangleConfig = () => {
     value: '24px',
   };
 
+  propsToUse.children = {
+    ...propsToUse.children,
+    type: PropTypes.ReactNode,
+    value: '<EuiPanel color="subdued" />',
+    hidden: false,
+  };
+
   return {
     config: {
       componentName: 'EuiSkeletonRectangle',
       props: propsToUse,
       scope: {
         EuiSkeletonRectangle,
+        EuiPanel,
       },
       imports: {
         '@elastic/eui': {
-          named: ['EuiSkeletonRectangle'],
+          named: ['EuiSkeletonRectangle', 'EuiPanel'],
         },
       },
     },
