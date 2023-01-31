@@ -518,7 +518,6 @@ export const MetricChartExample = {
               <strong>Barchart</strong>: When many indicators/metrics share the
               same scale (e.g. percentage) it&apos;s better to put them on the
               same chart in order to simplify the comparison among them.{' '}
-              <Link to="/elastic-charts/barchart">Barchart Page</Link>{' '}
             </li>
             <li>
               <strong>Table</strong>: Tables offer the possibility to sort and
