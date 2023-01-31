@@ -207,6 +207,8 @@ import { SelectableExample } from './views/selectable/selectable_example';
 
 import { SideNavExample } from './views/side_nav/side_nav_example';
 
+import { SkeletonExample } from './views/skeleton/skeleton_example';
+
 import { SpacerExample } from './views/spacer/spacer_example';
 
 import { StatExample } from './views/stat/stat_example';
@@ -561,6 +563,7 @@ const navigation = [
       LoadingExample,
       NotificationEventExample,
       ProgressExample,
+      SkeletonExample,
       StatExample,
       TextExample,
       TimelineExample,
