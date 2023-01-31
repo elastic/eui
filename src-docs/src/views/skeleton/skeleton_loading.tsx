@@ -12,6 +12,7 @@ import {
   EuiAvatar,
   EuiSwitch,
   EuiSpacer,
+  EuiPanel,
   EuiFlexGroup,
   EuiFlexItem,
   EuiIcon,
@@ -33,7 +34,7 @@ export default () => {
         isLoading={isLoading}
         contentAriaLabel="Demo loading section"
         loadingContent={
-          <section>
+          <EuiPanel>
             <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
               <EuiFlexItem grow={false}>
                 <EuiSkeletonCircle size="s" />
@@ -51,10 +52,10 @@ export default () => {
                 <EuiSkeletonRectangle width="100%" height={148} />
               </EuiFlexItem>
             </EuiFlexGroup>
-          </section>
+          </EuiPanel>
         }
         loadedContent={
-          <section>
+          <EuiPanel>
             <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
               <EuiAvatar size="s" name="Avatar" />
               <EuiTitle size="l">
@@ -79,13 +80,14 @@ export default () => {
               </EuiFlexItem>
               <EuiFlexItem>
                 <EuiCard
+                  display="subdued"
                   icon={<EuiIcon size="xxl" type="logoElastic" />}
                   title="Elastic Cloud"
                   description="Example card description."
                 />
               </EuiFlexItem>
             </EuiFlexGroup>
-          </section>
+          </EuiPanel>
         }
       />
     </>
