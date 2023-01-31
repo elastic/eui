@@ -30,7 +30,6 @@ export function Resizing() {
       }}
     >
       <div
-        className={'guideDemo__ElasticChartsMetricResize'}
         style={{
           resize: 'both',
           padding: '0px',

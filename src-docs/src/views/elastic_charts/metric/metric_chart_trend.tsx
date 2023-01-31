@@ -35,10 +35,16 @@ export function Trend() {
               {
                 color: '#6ECCB1',
                 title: 'Number of visitors',
-                extra: <span>Unique visitors</span>,
+                subtitle: 'www.eui.co',
+                extra: <span>unique visitors</span>,
                 value: TIME_DATA[TIME_DATA.length - 1][1] * 10000,
                 valueFormatter: (v) => `${(v / 1000).toFixed(0)}K`,
                 trend: TIME_DATA.map((d) => ({ x: d[0], y: d[1] * 10000 })),
+                trendShape: 'area',
+                trendA11yTitle:
+                  'The current number of visitors in the last 10 minutes',
+                trendA11yDescription:
+                  'The trends shows a steady number of unique visitors over the last 10 minutes',
               },
             ],
           ]}

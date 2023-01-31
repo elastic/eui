@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { ExternalBadge } from '../shared';
@@ -15,26 +15,43 @@ import {
 
 import metric_anatomy from '../../../images/metric_anatomy.png';
 import metric_intro from '../../../images/metric_intro.png';
-import { Grid } from './grid';
-import { NoData } from './no_data';
+import { GuideSectionTypes } from '../../../components';
+import { Grid } from './metric_chart_grid';
+import { NoData } from './metric_chart_no_data';
 import {
   MetricProps,
   MetricDatumWProgress,
   MetricDatumWNumber,
   MetricDatumWText,
   MetricDatumWTrend,
-} from './props';
-import { ProgressBar } from './progress_bar';
-import { Trend } from './trend';
-import { ContextVsNoContext } from './context_vs_no_context';
-import { SingleValue } from './single_value';
-import { Resizing } from './resizing';
-import { MetricVsTimeseries } from './metric_vs_timeseries';
+} from './metric_chart_props';
+import { ProgressBar } from './metric_chart_progress_bar';
+import { Trend } from './metric_chart_trend';
+import { Overview } from './metric_chart_overview';
+import { SingleValue } from './metric_chart_single_value';
+import { Resizing } from './metric_chart_resizing';
+import { GridRow } from './metric_chart_grid_row';
+import { GridColumn } from './metric_chart_grid_column';
+import {
+  gridColumnSnippet,
+  gridRowSnippet,
+  gridSnippet,
+  progressBarSnippet,
+  singleValueSnippet,
+  trendSnippet,
+} from './metric_chart_snippets';
+
+const gridColumnSource = require('!!raw-loader!./metric_chart_grid_column');
+const gridRowSource = require('!!raw-loader!./metric_chart_grid_row');
+const gridSource = require('!!raw-loader!./metric_chart_grid');
+const progressBarSource = require('!!raw-loader!./metric_chart_progress_bar');
+const singleValueSource = require('!!raw-loader!./metric_chart_single_value');
+const trendSource = require('!!raw-loader!./metric_chart_trend');
 
 export const MetricChartExample = {
   title: 'Metric Chart',
   intro: (
-    <Fragment>
+    <>
       <ExternalBadge />
       <EuiSpacer size="l" />
       <EuiText>
@@ -55,7 +72,7 @@ export const MetricChartExample = {
         url={metric_intro}
         size="900px"
       />
-    </Fragment>
+    </>
   ),
   sections: [
     {
@@ -68,18 +85,30 @@ export const MetricChartExample = {
             size="700px"
           />
           <p>
-            The Metric is used to convey a single value, that could represent a
-            specific indicator (like the current CPU value, or the number of log
-            ingested in the last minute). A number is a simple way to give an
-            immediate immediate status of such indicator. Used sparsely, can be
-            very effective to highlight a value that represent an overall
-            status.
+            The Metric is used to convey a single numerical value. It usually
+            can represent a specific indicator like: the current CPU value or
+            the number of log ingested in the last minute. Used correctly, can
+            be very effective represent an overall status.
           </p>
+          <p>Some of the questions answered by this chart can be:</p>
+          <ul>
+            <li>How many visitors are online now?</li>
+            <li>What&apos;s the current usage of CPU and Memory?</li>
+            <li>
+              How many flights have been delayed in the selected time range?
+            </li>
+          </ul>
           <p>
             The value can be associated with a secondary visual representation
             that takes place in the background (like a progress bar or a trend),
             providing a contextual information layer.
           </p>
+          <EuiCallOut title="Decorations" iconType="image">
+            These secondary visual representation should be considered
+            decorations. They cannot coexist at the same time (progress bar and
+            trend) to limit the visual complexity and improve the
+            understandability of the data
+          </EuiCallOut>
         </>
       ),
     },
@@ -88,25 +117,25 @@ export const MetricChartExample = {
       text: (
         <>
           <p>
-            Quantitative information such as plain numbers, counts of elements
-            (visitors, flights…), percentages and formulas (sum, average…).
+            It can convey quantitative information such as plain numbers, counts
+            of elements (visitors, flights, etc), percentages and formulas (sum,
+            average, etc).
           </p>
           <p>
-            Rely on all the required elements to make your metric chart as clear
-            as possible. Text and values should be self-explanatory and
-            shouldn&apos;t require any prior contextual knowledge in order to be
-            understood, try to be specific without being too verbose.
+            A qualitative value can be described through a plain background
+            color, or even better through a progress bar.
           </p>
           <p>
-            If the values displayed are the result of any kind of filter and
-            they do not reflect the current timeframe selected on your
-            dashboard, please remember to make this explicit. You can use
-            subtitles or Unit Text to clarify this and to inform the user of the
-            choices and calculations that have been made prior.
+            When using this chart the used text, title, subtitles should be
+            clearly described and self-explanatory, try to be specific without
+            being too verbose. Longer text, or very precise multi-digit numbers
+            can nullify the scope of the chart. You can use subtitles or Unit
+            Text to clarify this and to inform the user of the choices and
+            calculations that have been made prior.
           </p>
         </>
       ),
-      demo: <ContextVsNoContext />,
+      demo: <Overview />,
       props: {
         Metric: MetricProps,
         MetricWNumber: MetricDatumWNumber,
@@ -116,20 +145,7 @@ export const MetricChartExample = {
       },
     },
     {
-      title: 'Questions answered by this chart',
-      text: (
-        <ul>
-          <li>How many visitors are online now?</li>
-          <li>What&apos;s the current usage of CPU and Memory?</li>
-          <li>
-            How many flights have been delayed in the selected time range?
-          </li>
-        </ul>
-      ),
-    },
-
-    {
-      title: 'Single Value',
+      title: 'Single value',
       text: (
         <>
           <p>
@@ -153,6 +169,13 @@ export const MetricChartExample = {
             that depends on your value range, to give a qualitative indicator
             about your value in that range.
           </p>
+          <p>
+            If the passed <EuiCode>value</EuiCode> is a{' '}
+            <EuiCode>Number</EuiCode> then you must provide a{' '}
+            <EuiCode>valueFormatter</EuiCode>, if instead is a{' '}
+            <EuiCode>String</EuiCode> then you the{' '}
+            <EuiCode>valueFormatter</EuiCode> is not required.
+          </p>
         </>
       ),
       demo: <SingleValue />,
@@ -161,51 +184,238 @@ export const MetricChartExample = {
         MetricWNumber: MetricDatumWNumber,
         MetricWText: MetricDatumWText,
       },
+      snippet: singleValueSnippet,
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: singleValueSource,
+        },
+      ],
     },
     {
-      title: 'Progress Bar',
+      title: 'Progress bar',
       text: (
-        <Fragment>
+        <>
           <p>
-            <EuiCode>progressBarDirection</EuiCode> and{' '}
-            <EuiCode>domainMax</EuiCode>
-            TODO
+            The metric can also represent a progress, or a quantity within a
+            range. This abbelishment improves the context and increase the
+            readibility of the data.
           </p>
-        </Fragment>
+          <p>
+            The length of a bar is one natural representation of a progress. To
+            simplify the readibility of the length, the bar always start at{' '}
+            <strong>zero</strong>.
+          </p>
+          <EuiCallOut title="Zero baseline" color="warning" iconType="help">
+            <p>
+              The zero baseline constraint, is a constraint that we already know
+              from bar charts: when the length of the bar is not proportional to
+              the value it represent that is becomes hard to discern that
+              quantity. If you are thinking of using a non-zero baseline (not
+              available in the Metric) try to reconsider the problem by
+              considering the bar as the increment/decrement of the value in
+              respect to a non-zero baseline like: revenue change from the past
+              year, or how many degrees above the normal body temperature.
+              Consider also that the absence of a visual scale with numerical
+              references makes the bar abstract and should be immediately clear
+              what it represents.
+            </p>
+          </EuiCallOut>
+          <EuiCallOut title="Negative values" color="warning" iconType="help">
+            <p>
+              If your metric chart could display negative values (such as
+              temperature, variations in time, YTD losses..) please be aware of
+              this limit and the inner complexity that derives from negative
+              values in such a simple component, please consider adding visual
+              guidance (use an icon to highlight, for instance) to facilitate
+              the user in understanding what is happening.
+            </p>
+          </EuiCallOut>
+          <br />
+          <p>
+            To use this progress bar, your data should adhere to the{' '}
+            <EuiCode>MetricWProgress</EuiCode> type. In particular, in addition
+            to the already required properties you have to specify the maximum
+            value the progress bar can reach through the{' '}
+            <EuiCode>domainMax</EuiCode> prop and you have to specify a progress
+            bar direction via <EuiCode>progressBarDirection</EuiCode>.
+          </p>
+        </>
       ),
       demo: <ProgressBar />,
       props: { Metric: MetricProps, MetricWProgress: MetricDatumWProgress },
+      snippet: progressBarSnippet,
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: progressBarSource,
+        },
+      ],
     },
     {
       title: 'Trend',
       text: (
-        <Fragment>
+        <>
           <p>
-            <EuiCode>trend</EuiCode>
-            TODO
+            A metric usually represent a statistic of a variable in a time
+            frame. To add a bit more context is possible to represent the trend
+            of that variable over time, by plotting an overlay on the metric
+            background.
           </p>
-        </Fragment>
+          <p>
+            To achieve that, the <EuiCode>trend</EuiCode> needs to be filled
+            with an array of object in the form of{' '}
+            <EuiCode language="js">{'{x: number, y: number}'}</EuiCode>
+          </p>
+          <p>The trend is then rendered following these principles:</p>
+          <ul>
+            <li>
+              the vertical height represent the range from 0 to the maximum{' '}
+              <EuiCode>y</EuiCode> value.
+            </li>
+            <li>
+              the horizontal space represent the range from the minimum to the
+              maximum <EuiCode>x</EuiCode> value
+            </li>
+            <li>
+              the trend height is limited to the 50% of the overall Metric
+              height, so the maximum <EuiCode>y</EuiCode> value always touches
+              the vertical middle of the metric chart.
+            </li>
+          </ul>
+        </>
       ),
       demo: <Trend />,
       props: { Metric: MetricProps, MetricWTrend: MetricDatumWTrend },
+      snippet: trendSnippet,
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: trendSource,
+        },
+      ],
     },
     {
-      title: 'Grid of metrics',
+      title: 'Multiple metrics',
       text: (
-        <Fragment>
+        <>
           <p>
-            TODO When applying a break-down-by functionality, you can rotate the
-            visual indicator of values (background bar or sidebar) in order to
-            facilitate comparison among multiple metrics. When metric charts are
-            in columns, an horizontal display of bars could help identify
-            differences between them, on the contrary when charts are
-            distributed in rows a vertical bar is easier to read.
+            Metric can live alone or be rendered in a grid. To support this, the{' '}
+            <EuiCode>data</EuiCode> prop is structured to accept an Array of
+            Arrays representing respectively columns and rows of a grid. In this
+            way you can build:
           </p>
-        </Fragment>
+          <ul>
+            <li>
+              a single row of multiple metrics using{' '}
+              <EuiCode>{'[[{col1}, {col2}, {col3}]]'}</EuiCode>
+            </li>
+            <li>
+              a single column of multiple metrics using{' '}
+              <EuiCode>{'[[{row1}], [{row2}], [{row3}]]'}</EuiCode>
+            </li>
+            <li>
+              a grid column ✕ rows of multiple metrics using{' '}
+              <EuiCode>
+                {'[[{col1row1}, {col2row1}], [{col1row2}], [{col2row2}]]'}
+              </EuiCode>
+            </li>
+          </ul>
+        </>
+      ),
+    },
+    {
+      title: 'Multiple horizontal metrics',
+      text: (
+        <>
+          <p>
+            Providing the following data structure{' '}
+            <EuiCode>{'data={[[{col1}, {col2}, {col3}]]}'}</EuiCode>
+            you will get an horizontally aligned set of metrics
+          </p>
+          <p>
+            You can align vertically the progress bars directions to compare
+            values using <EuiCode>LayoutDirection.Vertical</EuiCode>
+          </p>
+        </>
+      ),
+      demo: <GridRow />,
+      props: {
+        Metric: MetricProps,
+        MetricWNumber: MetricDatumWNumber,
+        MetricWProgress: MetricDatumWProgress,
+        MetricWTrend: MetricDatumWTrend,
+        MetricWText: MetricDatumWText,
+      },
+      snippet: gridRowSnippet,
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: gridRowSource,
+        },
+      ],
+    },
+    {
+      title: 'Multiple vertical metrics',
+      text: (
+        <>
+          <p>
+            Providing the following data structure{' '}
+            <EuiCode>{'data={[[{col1}], [{col2}], [{col3}]]}'}</EuiCode>
+            you will get an vertically aligned set of metrics
+          </p>
+          <p>
+            You can align horizontally the progress bars directions to compare
+            values using <EuiCode>LayoutDirection.Horizontal</EuiCode>
+          </p>
+        </>
+      ),
+      demo: <GridColumn />,
+      props: {
+        Metric: MetricProps,
+        MetricWNumber: MetricDatumWNumber,
+        MetricWProgress: MetricDatumWProgress,
+        MetricWTrend: MetricDatumWTrend,
+        MetricWText: MetricDatumWText,
+      },
+      snippet: gridColumnSnippet,
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: gridColumnSource,
+        },
+      ],
+    },
+    {
+      title: 'Grid',
+      text: (
+        <>
+          <p>
+            You can mix column and rows in the <EuiCode>data</EuiCode> array to
+            create a grid. The grid is filled with missing tiles to cover the
+            last grid row. If you want to skip a tile, you can pass an{' '}
+            <EuiCode>undefined</EuiCode> datum as an element of the array.
+          </p>
+          <p>Different type of metric can be mixed together</p>
+        </>
       ),
       demo: <Grid />,
-      props: { Metric: MetricProps, MetricWProgress: MetricDatumWProgress },
+      props: {
+        Metric: MetricProps,
+        MetricWNumber: MetricDatumWNumber,
+        MetricWProgress: MetricDatumWProgress,
+        MetricWTrend: MetricDatumWTrend,
+        MetricWText: MetricDatumWText,
+      },
+      snippet: gridSnippet,
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: gridSource,
+        },
+      ],
     },
+
     {
       title: 'Resizing',
       text: (
@@ -237,12 +447,12 @@ export const MetricChartExample = {
             elements (Title, value). Be aware of this limitation when dealing
             with small metrics.
           </p>
-          <EuiCallOut>
-            <p>
-              Please be always aware of this limit and resize the Metric
-              component accordingly within your interface or dashboard.
-            </p>
-          </EuiCallOut>
+          <EuiCallOut
+            color="warning"
+            iconType="help"
+            title="Please be always aware of this limit and resize the Metric
+              component accordingly within your interface or dashboard."
+          />
         </>
       ),
       demo: <Resizing />,
@@ -274,43 +484,11 @@ export const MetricChartExample = {
       demo: <NoData />,
     },
     {
-      title: 'Relevant choices we made',
+      title: 'Alternatives and similarities',
       text: (
-        <Fragment>
+        <>
           <p>
-            <strong>Additional attributes coexistence →</strong> In order to
-            avoid excessive decoration which can compromise readability, some
-            attributes can&apos;t exist at the same time. <br />
-            Background trendline can&apos;t coexist with the background progress
-            bar, they can work only with full background.
-          </p>
-          <p>
-            <strong>Progress bar with negative values →</strong> For The time
-            being we decided to avoid the possibility for the user to set a
-            baseline for the progress bar other than 0 (zero). We opted for this
-            since it would be extremely complex for the readers to understand a
-            progress bar that has a baseline different from zero, especially if
-            negative values are applied. The absence of a visual scale with
-            proper numerical references makes it too abstract and we prefer to
-            limit a functionality that could cause many problems. <br />
-            <br />
-            If your metric chart could display negative values (such as
-            temperature, variations in time, YTD losses..) please be aware of
-            this limit and the inner complexity that derives from negative
-            values in such a simple component, please consider adding visual
-            guidance (use an icon to highlight, for instance) to facilitate the
-            user in understanding what is happening.
-          </p>
-        </Fragment>
-      ),
-    },
-
-    {
-      title: 'DONTs',
-      text: (
-        <Fragment>
-          <p>
-            Don&apos;t rely solely on the background trendline to provide a
+            Don&apos;t rely solely on the background trend-line to provide a
             precise and understandable analysis of data trends. These options
             give a contextual and wider layer of information that could help
             understanding the overall trends and evolution of data but they are
@@ -320,7 +498,7 @@ export const MetricChartExample = {
             If your goal is to precisely see evolution of values over time
             please use a line chart instead, where you&apos;ll have all the
             information required to perform a proper analysis (grid, values,
-            axis, legend…)
+            axis, legend, etc)
           </p>
           <p>
             If the values displayed are the result of any kind of filter and
@@ -329,44 +507,33 @@ export const MetricChartExample = {
             subtitles or Unit Text to clarify this and to inform the user of the
             choices and calculations that have been made prior.
           </p>
-        </Fragment>
-      ),
-      demo: <MetricVsTimeseries />,
-      props: { Metric: MetricProps, MetricWTrend: MetricDatumWTrend },
-    },
-    {
-      title: 'Chart alternatives and similarities',
-      text: (
-        <Fragment>
-          <p>
-            <ol>
-              <li>
-                <strong>Bullet Chart →</strong> A more complex version of the
-                Metric Chart which provides additional features to display
-                values more technically and exhaustively.
-              </li>
-              <li>
-                <strong>Barchart →</strong> When many indicators/metrics share
-                the same scale (e.g. percentage) it&apos;s better to put them on
-                the same chart in order to simplify the comparison among them.{' '}
-                <Link to="/elastic-charts/barchart">Barchart Page</Link>{' '}
-              </li>
-              <li>
-                <strong>Table →</strong> Tables offer the possibility to sort
-                and handle data in a more detailed manner. Use tables with
-                conditional formatting to obtain a similar result but with more
-                controls.
-              </li>
-              <li>
-                <strong>Plain Text →</strong> Within your dashboards, use plain
-                text with a dedicated box when a long explanation is needed.
-                Metric chart has limitations in terms of component size and
-                length of text, instead of abounding with text, switch to a
-                simpler component such a plain text.
-              </li>
-            </ol>
-          </p>
-        </Fragment>
+
+          <ol>
+            <li>
+              <strong>Bullet Chart</strong>: A more complex version of the
+              Metric Chart which provides additional features to display values
+              more technically and exhaustively.
+            </li>
+            <li>
+              <strong>Barchart</strong>: When many indicators/metrics share the
+              same scale (e.g. percentage) it&apos;s better to put them on the
+              same chart in order to simplify the comparison among them.{' '}
+              <Link to="/elastic-charts/barchart">Barchart Page</Link>{' '}
+            </li>
+            <li>
+              <strong>Table</strong>: Tables offer the possibility to sort and
+              handle data in a more detailed manner. Use tables with conditional
+              formatting to obtain a similar result but with more controls.
+            </li>
+            <li>
+              <strong>Plain Text</strong>: Within your dashboards, use plain
+              text with a dedicated box when a long explanation is needed.
+              Metric chart has limitations in terms of component size and length
+              of text, instead of abounding with text, switch to a simpler
+              component such a plain text.
+            </li>
+          </ol>
+        </>
       ),
     },
   ],

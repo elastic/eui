@@ -2,6 +2,7 @@ import { EuiFlexGroup, EuiFlexItem, EuiPanel } from '../../../../../src';
 import {
   Chart,
   DARK_THEME,
+  LayoutDirection,
   LIGHT_THEME,
   Metric,
   Settings,
@@ -34,12 +35,18 @@ export function ProgressBar() {
               data={[
                 [
                   {
-                    color: '#F1D86F',
+                    color: '#A2CB9F',
                     title: 'CPU Usage',
+                    subtitle: 'eui.co',
                     value: 34.2,
-                    domainMax: 100,
-                    progressBarDirection: 'vertical',
                     valueFormatter: (v) => `${v}%`,
+                    domainMax: 100,
+                    progressBarDirection: LayoutDirection.Vertical,
+                    extra: (
+                      <span>
+                        last 10 min <strong>18.3%</strong>
+                      </span>
+                    ),
                   },
                 ],
               ]}
@@ -59,11 +66,18 @@ export function ProgressBar() {
               data={[
                 [
                   {
-                    color: '#F1D86F',
+                    color: '#E07A5F',
                     title: 'CPU Usage',
-                    value: 34.2,
-                    domainMax: 100,
+                    subtitle: 'charts.co',
+                    extra: (
+                      <span>
+                        last 10 min <strong>18.3%</strong>
+                      </span>
+                    ),
+                    value: 74.2,
                     valueFormatter: (v) => `${v}%`,
+                    domainMax: 100,
+                    progressBarDirection: LayoutDirection.Horizontal,
                   },
                 ],
               ]}
