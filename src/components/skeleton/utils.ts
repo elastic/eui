@@ -35,7 +35,7 @@ export const euiSkeletonGradientAnimation = (
 
     ${euiCanAnimate} {
       overflow: hidden;
-      z-index: 1; // This is unfortunately necessary workaround that forces Safari to correctly respect border-radius
+      isolation: isolate; // This is unfortunately necessary workaround that forces Safari to correctly respect border-radius
 
       &::after {
         content: '';
