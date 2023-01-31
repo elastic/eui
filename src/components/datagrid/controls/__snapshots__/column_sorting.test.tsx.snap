@@ -53,7 +53,7 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
     class="emotion-euiScreenReaderOnly"
     id="generated-id"
   >
-    You are in a dialog. To close this dialog, hit escape.
+    You are in a dialog. Press Escape, tap, or click outside this modal to close.
   </p>
   <div>
     <div

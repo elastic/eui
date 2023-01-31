@@ -5121,7 +5121,7 @@
   },
   {
     "token": "euiPopover.screenReaderAnnouncement",
-    "defString": "You are in a dialog. To close this dialog, hit escape.",
+    "defString": "You are in a dialog. Press Escape, tap, or click outside this modal to close.",
     "highlighting": "string",
     "loc": {
       "start": {
