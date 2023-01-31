@@ -3,6 +3,7 @@ import {
   EuiFlexItem,
   EuiPanel,
   EuiRange,
+  useEuiTheme,
 } from '../../../../../src';
 import {
   Chart,
@@ -11,16 +12,15 @@ import {
   Metric,
   Settings,
 } from '@elastic/charts';
-import React, { useContext, useState } from 'react';
-import { ThemeContext } from '../../../components/with_theme';
+import React, { useState } from 'react';
 import {
   EUI_CHARTS_THEME_DARK,
   EUI_CHARTS_THEME_LIGHT,
 } from '../../../../../src/themes/charts/themes';
 
 export function SingleValue() {
-  const themeContext = useContext(ThemeContext);
-  const isDarkTheme = themeContext.theme.includes('dark');
+  const { colorMode } = useEuiTheme();
+  const isDarkTheme = colorMode === 'DARK';
 
   const euiChartTheme = isDarkTheme
     ? EUI_CHARTS_THEME_DARK

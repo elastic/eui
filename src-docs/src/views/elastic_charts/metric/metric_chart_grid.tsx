@@ -1,4 +1,5 @@
-import { EuiIcon, EuiPanel } from '../../../../../src';
+import React from 'react';
+import { EuiIcon, EuiPanel, useEuiTheme } from '../../../../../src';
 import {
   Chart,
   DARK_THEME,
@@ -7,8 +8,6 @@ import {
   MetricSpec,
   Settings,
 } from '@elastic/charts';
-import React, { useContext } from 'react';
-import { ThemeContext } from '../../../components/with_theme';
 import {
   EUI_CHARTS_THEME_DARK,
   EUI_CHARTS_THEME_LIGHT,
@@ -142,8 +141,8 @@ const DATA: MetricSpec['data'] = [
 ];
 
 export function Grid() {
-  const themeContext = useContext(ThemeContext);
-  const isDarkTheme = themeContext.theme.includes('dark');
+  const { colorMode } = useEuiTheme();
+  const isDarkTheme = colorMode === 'DARK';
   const euiChartTheme = isDarkTheme
     ? EUI_CHARTS_THEME_DARK
     : EUI_CHARTS_THEME_LIGHT;
