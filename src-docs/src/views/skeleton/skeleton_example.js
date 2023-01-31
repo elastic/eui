@@ -37,9 +37,15 @@ const skeletonTitleSnippet = `<EuiSkeletonTitle size="l" isLoading={isLoading} c
 
 import SkeletonRectangle from './skeleton_rectangle';
 const skeletonRectangleSource = require('!!raw-loader!./skeleton_rectangle');
-
-const skeletonRectangleSnippet =
-  '<EuiSkeletonRectangle width="200px" height="20px" borderRadius="m" />';
+const skeletonRectangleSnippet = `<EuiSkeletonRectangle
+  width="100%"
+  height={500}
+  borderRadius="m"
+  isLoading={isLoading}
+  contentAriaLabel="Example description"
+>
+  <EuiPanel />
+</EuiSkeletonRectangle>`;
 
 export const SkeletonExample = {
   title: 'Skeleton',

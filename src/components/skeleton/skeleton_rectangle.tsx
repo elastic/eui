@@ -13,25 +13,30 @@ import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
 import { logicalStyles } from '../../global_styling';
 
-import { useLoadingAriaAttributes } from './utils';
+import { EuiSkeletonLoading, _EuiSkeletonAriaProps } from './skeleton_loading';
 import { euiSkeletonRectangleStyles } from './skeleton_rectangle.styles';
 
 export const RADIUS = ['s', 'm', 'none'] as const;
 export type SkeletonRectangleBorderRadius = typeof RADIUS[number];
 
 export type EuiSkeletonRectangleProps = HTMLAttributes<HTMLDivElement> &
-  CommonProps & {
+  CommonProps &
+  _EuiSkeletonAriaProps & {
     width?: string | number;
     height?: string | number;
     borderRadius?: SkeletonRectangleBorderRadius;
   };
 
 export const EuiSkeletonRectangle: FunctionComponent<EuiSkeletonRectangleProps> = ({
-  className,
+  isLoading = true,
   borderRadius = 's',
   width = '24px',
   height = '24px',
   style,
+  className,
+  contentAriaLabel,
+  ariaWrapperProps,
+  children,
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
@@ -39,12 +44,19 @@ export const EuiSkeletonRectangle: FunctionComponent<EuiSkeletonRectangleProps> 
   const cssStyles = [styles.euiSkeletonRectangle, styles[borderRadius]];
 
   return (
-    <div
-      className={classNames('euiSkeletonRectangle', className)}
-      css={cssStyles}
-      style={logicalStyles({ ...style, width, height })}
-      {...useLoadingAriaAttributes()}
-      {...rest}
+    <EuiSkeletonLoading
+      isLoading={isLoading}
+      loadingContent={
+        <div
+          className={classNames('euiSkeletonRectangle', className)}
+          css={cssStyles}
+          style={logicalStyles({ ...style, width, height })}
+          {...rest}
+        />
+      }
+      loadedContent={children || ''}
+      contentAriaLabel={contentAriaLabel}
+      {...ariaWrapperProps}
     />
   );
 };
