@@ -7,7 +7,7 @@ exports[`EuiSkeletonCircle is rendered 1`] = `
 >
   <div
     aria-label="Loading "
-    class="euiSkeletonCircle testClass1 testClass2 emotion-euiSkeletonGradientAnimation-euiSkeletonCircle-l"
+    class="euiSkeletonCircle testClass1 testClass2 emotion-euiSkeletonGradientAnimation-euiSkeletonCircle-m"
     data-test-subj="test subject string"
     role="progressbar"
   />

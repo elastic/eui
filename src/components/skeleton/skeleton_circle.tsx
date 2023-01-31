@@ -26,7 +26,7 @@ export type EuiSkeletonCircleProps = HTMLAttributes<HTMLDivElement> &
 
 export const EuiSkeletonCircle: FunctionComponent<EuiSkeletonCircleProps> = ({
   isLoading = true,
-  size = 'l',
+  size = 'm',
   className,
   contentAriaLabel,
   ariaWrapperProps,
