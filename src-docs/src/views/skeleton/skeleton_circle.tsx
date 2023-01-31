@@ -22,35 +22,43 @@ export default () => {
       <EuiSpacer />
       <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
         <EuiFlexItem grow={false}>
-          {isLoading ? (
-            <EuiSkeletonCircle size="s" />
-          ) : (
+          <EuiSkeletonCircle
+            size="s"
+            isLoading={isLoading}
+            contentAriaLabel="Demo skeleton avatar"
+          >
             <EuiAvatar size="s" name="Raphael" />
-          )}
+          </EuiSkeletonCircle>
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
-          {isLoading ? (
-            <EuiSkeletonCircle size="m" />
-          ) : (
+          <EuiSkeletonCircle
+            size="m"
+            isLoading={isLoading}
+            contentAriaLabel="Demo skeleton avatar"
+          >
             <EuiAvatar size="m" name="Donatello" />
-          )}
+          </EuiSkeletonCircle>
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
-          {isLoading ? (
-            <EuiSkeletonCircle size="l" />
-          ) : (
+          <EuiSkeletonCircle
+            size="l"
+            isLoading={isLoading}
+            contentAriaLabel="Demo skeleton avatar"
+          >
             <EuiAvatar size="l" name="Leonardo" />
-          )}
+          </EuiSkeletonCircle>
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
-          {isLoading ? (
-            <EuiSkeletonCircle size="xl" />
-          ) : (
+          <EuiSkeletonCircle
+            size="xl"
+            isLoading={isLoading}
+            contentAriaLabel="Demo skeleton avatar"
+          >
             <EuiAvatar size="xl" name="Michelangelo" />
-          )}
+          </EuiSkeletonCircle>
         </EuiFlexItem>
       </EuiFlexGroup>
     </>
