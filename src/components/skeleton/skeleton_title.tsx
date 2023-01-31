@@ -13,17 +13,25 @@ import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
 import { EuiTitleSize } from '../title';
 
-import { useLoadingAriaAttributes } from './utils';
+import { EuiSkeletonLoading, _EuiSkeletonAriaProps } from './skeleton_loading';
 import { euiSkeletonTitleStyles } from './skeleton_title.styles';
 
 export type EuiSkeletonTitleProps = HTMLAttributes<HTMLDivElement> &
-  CommonProps & {
+  CommonProps &
+  _EuiSkeletonAriaProps & {
+    /**
+     * EuiTitle size to render
+     */
     size?: EuiTitleSize;
   };
 
 export const EuiSkeletonTitle: FunctionComponent<EuiSkeletonTitleProps> = ({
-  className,
+  isLoading = true,
   size = 'm',
+  className,
+  contentAriaLabel,
+  ariaWrapperProps,
+  children,
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
@@ -31,11 +39,18 @@ export const EuiSkeletonTitle: FunctionComponent<EuiSkeletonTitleProps> = ({
   const cssStyles = [styles.euiSkeletonTitle, styles[size]];
 
   return (
-    <span
-      className={classNames('euiSkeletonTitle', className)}
-      css={cssStyles}
-      {...useLoadingAriaAttributes()}
-      {...rest}
+    <EuiSkeletonLoading
+      isLoading={isLoading}
+      loadingContent={
+        <span
+          className={classNames('euiSkeletonTitle', className)}
+          css={cssStyles}
+          {...rest}
+        />
+      }
+      loadedContent={children || ''}
+      contentAriaLabel={contentAriaLabel}
+      {...ariaWrapperProps}
     />
   );
 };
