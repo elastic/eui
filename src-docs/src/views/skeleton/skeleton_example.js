@@ -22,6 +22,9 @@ const skeletonCircleSource = require('!!raw-loader!./skeleton_circle');
 
 import SkeletonText from './skeleton_text';
 const skeletonTextSource = require('!!raw-loader!./skeleton_text');
+const skeletonTextSnippet = `<EuiSkeletonText lines={3} size="m" isLoading={isLoading} contentAriaLabel="Example text">
+  <EuiText size="m"><p>Example text</p></EuiText>
+</EuiSkeletonText>`;
 
 import SkeletonTitle from './skeleton_title';
 const skeletonTitleSource = require('!!raw-loader!./skeleton_title');
@@ -30,7 +33,6 @@ import SkeletonRectangle from './skeleton_rectangle';
 const skeletonRectangleSource = require('!!raw-loader!./skeleton_rectangle');
 
 const skeletonCircleSnippet = '<EuiSkeletonCircle size="m" />';
-const skeletonTextSnippet = '<EuiSkeletonText lines={3} size="m" />';
 const skeletonTitleSnippet = '<EuiSkeletonTitle size="l" />';
 const skeletonRectangleSnippet =
   '<EuiSkeletonRectangle width="200px" height="20px" borderRadius="m" />';

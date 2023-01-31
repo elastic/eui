@@ -15,7 +15,9 @@ import { TEXT_SIZES } from '../text/text';
 import { EuiSkeletonText, LINES } from './skeleton_text';
 
 describe('EuiSkeletonText', () => {
-  shouldRenderCustomStyles(<EuiSkeletonText />);
+  shouldRenderCustomStyles(<EuiSkeletonText />, {
+    childProps: ['ariaWrapperProps'],
+  });
 
   test('is rendered', () => {
     const { container } = render(<EuiSkeletonText {...requiredProps} />);
@@ -42,5 +44,16 @@ describe('EuiSkeletonText', () => {
         expect(container.firstChild).toMatchSnapshot();
       });
     });
+  });
+
+  it('renders its children when `isLoading=false`', () => {
+    const { queryByRole, queryByTestSubject } = render(
+      <EuiSkeletonText isLoading={false}>
+        <span data-test-subj="loaded" />
+      </EuiSkeletonText>
+    );
+
+    expect(queryByRole('progressbar')).toBeFalsy();
+    expect(queryByTestSubject('loaded')).toBeTruthy();
   });
 });
