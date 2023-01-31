@@ -28,17 +28,10 @@ const euiScaleMarkdownFormatText = (
   const lineHeightSize = measurement === 'em' ? `${lineHeight}em` : lineHeight;
 
   // Custom scales
-  const blockQuoteBorderWidth = mathWithUnits(fontSize, (x) => x / 4);
   const tablePaddingVertical = mathWithUnits(fontSize, (x) => x / 4);
   const tablePaddingHorizontal = mathWithUnits(fontSize, (x) => x / 2);
 
   return `
-    .euiMarkdownFormat__blockquote {
-      padding: 0 ${fontSize};
-      ${logicalCSS('border-left-width', blockQuoteBorderWidth)}
-      ${logicalCSS('margin-bottom', fontSize)}
-    }
-
     .euiCheckbox .euiCheckbox__input ~ .euiCheckbox__label { // Extra specificity necessary to override default checkbox CSS
       font-size: ${fontSize};
       ${logicalCSS('padding-left', lineHeightSize)}

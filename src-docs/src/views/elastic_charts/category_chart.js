@@ -1,8 +1,7 @@
-import React, { useState, Fragment, useContext } from 'react';
+import React, { useState } from 'react';
 import orderBy from 'lodash/orderBy';
 import round from 'lodash/round';
 
-import { ThemeContext } from '../../components';
 import { Chart, Settings, Axis } from '@elastic/charts';
 
 import {
@@ -21,6 +20,8 @@ import {
   EuiButton,
 } from '../../../../src/components';
 
+import { useEuiTheme } from '../../../../src/services';
+
 import { SIMPLE_GITHUB_DATASET, GITHUB_DATASET } from './data';
 import {
   ChartTypeCard,
@@ -29,8 +30,8 @@ import {
   ChartCard,
 } from './shared';
 
-export const CategoryChart = () => {
-  const themeContext = useContext(ThemeContext);
+export default () => {
+  const { colorMode } = useEuiTheme();
 
   const [multi, setMulti] = useState(false);
   const [stacked, setStacked] = useState(false);
@@ -65,7 +66,7 @@ export const CategoryChart = () => {
     setValueLabels(e.target.checked);
   };
 
-  const isDarkTheme = themeContext.theme.includes('dark');
+  const isDarkTheme = colorMode === 'DARK';
   const theme = isDarkTheme
     ? EUI_CHARTS_THEME_DARK.theme
     : EUI_CHARTS_THEME_LIGHT.theme;
@@ -186,7 +187,7 @@ ${removeEmptyLines(chartConfigurationToCopy)}`
     : `${removeEmptyLines(chartConfigurationToCopy)}`;
 
   return (
-    <Fragment>
+    <>
       <EuiTitle size="xxs">
         <h2>
           Number of GitHub issues per visualization type
@@ -313,6 +314,6 @@ ${removeEmptyLines(chartConfigurationToCopy)}`
           )}
         </EuiCopy>
       </div>
-    </Fragment>
+    </>
   );
 };

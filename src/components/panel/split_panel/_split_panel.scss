@@ -7,8 +7,8 @@
   .euiSplitPanel__inner {
     flex-basis: 0%; // Make sure they're evenly split
     // Ensure no movement if they have click handlers
-    transform: none !important; // sass-lint:disable-line no-important
-    box-shadow: none !important; // sass-lint:disable-line no-important
+    transform: none !important; // stylelint-disable-line declaration-no-important
+    box-shadow: none !important; // stylelint-disable-line declaration-no-important
   }
 }
 

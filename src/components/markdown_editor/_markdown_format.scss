@@ -34,6 +34,7 @@
 .euiMarkdownFormat {
   $euiMarkdownAlphaShade: rgba($euiColorFullShade, .15);
 
+  // stylelint-disable indentation
   $euiMarkdownBorderColors: (
     default: $euiMarkdownAlphaShade,
     subdued: $euiTextSubduedColor,
@@ -45,6 +46,7 @@
     inherit: currentColor,
     custom: currentColor,
   );
+  // stylelint-enable indentation
 
   // We're adjusting the borders of the elements by passing a color defined in $euiMarkdownBorderColors.
   // For the `custom` and `inherit` colors we're assigning the `currentColor` so we can get the current or computed value of the `color` property
@@ -54,17 +56,13 @@
     }
   }
 
-  .euiMarkdownFormat__blockquote {
-    border-left-style: solid;
-  }
-
   .euiCheckbox {
-    // sass-lint:disable-block no-important
+    // stylelint-disable-next-line declaration-no-important
     margin-bottom: 0 !important;
   }
 
   // We're adjusting the position of the checkboxes so that when the text size is `relative` the checkboxes get better positioned
-  .euiCheckbox .euiCheckbox__input + .euiCheckbox__square  {
+  .euiCheckbox .euiCheckbox__input + .euiCheckbox__square {
     top: 50%;
     transform: translateY(-50%);
   }

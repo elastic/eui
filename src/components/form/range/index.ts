@@ -6,7 +6,11 @@
  * Side Public License, v 1.
  */
 
-export type { EuiDualRangeProps } from './dual_range';
 export { EuiDualRange } from './dual_range';
-export type { EuiRangeProps } from './range';
 export { EuiRange } from './range';
+export type {
+  EuiRangeProps,
+  EuiDualRangeProps,
+  EuiRangeTick,
+  EuiRangeLevel,
+} from './types';

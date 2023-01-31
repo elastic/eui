@@ -32,6 +32,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
   caption,
   float,
   margin,
+  onFullScreen,
   ...rest
 }) => {
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -77,6 +78,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
     caption,
     float,
     margin,
+    onFullScreen,
   };
 
   const commonImgProps = {

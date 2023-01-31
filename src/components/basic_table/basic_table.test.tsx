@@ -7,8 +7,9 @@
  */
 
 import React from 'react';
-import { shallow, render } from 'enzyme';
+import { render } from '../../test/rtl';
 import { requiredProps } from '../../test';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import {
   EuiBasicTable,
@@ -47,16 +48,9 @@ interface BasicItem {
   id: string;
   name: string;
 }
-
 interface AgeItem extends BasicItem {
   age: number;
 }
-
-interface CountItem {
-  id: string;
-  count: number;
-}
-
 const basicColumns: Array<EuiBasicTableColumn<BasicItem>> = [
   {
     field: 'name',
@@ -64,74 +58,89 @@ const basicColumns: Array<EuiBasicTableColumn<BasicItem>> = [
     description: 'description',
   },
 ];
+const basicItems = [
+  { id: '1', name: 'name1' },
+  { id: '2', name: 'name2' },
+  { id: '3', name: 'name3' },
+];
 
 describe('EuiBasicTable', () => {
+  shouldRenderCustomStyles(
+    <EuiBasicTable items={basicItems} columns={basicColumns} />
+  );
+
+  it('renders (bare-bones)', () => {
+    const props = {
+      ...requiredProps,
+      items: basicItems,
+      columns: basicColumns,
+    };
+    const { container } = render(<EuiBasicTable {...props} />);
+
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
   describe('empty', () => {
     test('is rendered', () => {
       const props = {
-        ...requiredProps,
         items: [],
         columns: basicColumns,
       };
-      const component = shallow(<EuiBasicTable {...props} />);
+      const { getByText } = render(<EuiBasicTable {...props} />);
 
-      expect(component).toMatchSnapshot();
+      expect(getByText('No items found')).toBeTruthy();
     });
 
     test('renders a string as a custom message', () => {
       const props: EuiBasicTableProps<BasicItem> = {
         items: [],
-        columns: [
-          {
-            field: 'name',
-            name: 'Name',
-            description: 'description',
-          },
-        ],
+        columns: basicColumns,
         noItemsMessage: 'where my items at?',
       };
-      const component = shallow(<EuiBasicTable {...props} />);
+      const { getByText } = render(<EuiBasicTable {...props} />);
 
-      expect(component).toMatchSnapshot();
+      expect(getByText('where my items at?')).toBeTruthy();
     });
 
     test('renders a node as a custom message', () => {
       const props: EuiBasicTableProps<BasicItem> = {
         items: [],
-        columns: [
-          {
-            field: 'name',
-            name: 'Name',
-            description: 'description',
-          },
-        ],
+        columns: basicColumns,
         noItemsMessage: (
           <p>
             no items, click <a href="">here</a> to make some
           </p>
         ),
       };
-      const component = shallow(<EuiBasicTable {...props} />);
+      const { getByRole } = render(<EuiBasicTable {...props} />);
 
-      expect(component).toMatchSnapshot();
+      expect(getByRole('link')).toBeTruthy();
     });
+  });
+
+  test('loading', () => {
+    const props = {
+      items: basicItems,
+      columns: basicColumns,
+      loading: true,
+    };
+    const { container } = render(<EuiBasicTable {...props} />);
+
+    expect(container.querySelector('.euiBasicTable-loading')).toBeTruthy(); // Used by several Kibana tests as an assertion
+    expect(container.querySelector('tbody')?.className).toContain(
+      'euiBasicTableBodyLoading'
+    );
+    // Hopefully one day we can delete this when Safari gets its act together
+    expect(container.querySelector('table')?.className).toContain(
+      'safariLoadingWorkaround'
+    );
   });
 
   describe('rowProps', () => {
     test('renders rows with custom props from a callback', () => {
       const props: EuiBasicTableProps<BasicItem> = {
-        items: [
-          { id: '1', name: 'name1' },
-          { id: '2', name: 'name2' },
-          { id: '3', name: 'name3' },
-        ],
-        columns: [
-          {
-            field: 'name',
-            name: 'Name',
-            description: 'description',
-          },
-        ],
+        items: basicItems,
+        columns: basicColumns,
         rowProps: (item) => {
           const { id } = item;
           return {
@@ -141,52 +150,36 @@ describe('EuiBasicTable', () => {
           };
         },
       };
-      const component = shallow(<EuiBasicTable<BasicItem> {...props} />);
+      const { getByTestSubject } = render(
+        <EuiBasicTable<BasicItem> {...props} />
+      );
 
-      expect(component).toMatchSnapshot();
+      expect(getByTestSubject('row-1')).toBeTruthy();
+      expect(getByTestSubject('row-2')).toBeTruthy();
+      expect(getByTestSubject('row-3')).toBeTruthy();
     });
 
     test('renders rows with custom props from an object', () => {
       const props: EuiBasicTableProps<BasicItem> = {
-        items: [
-          { id: '1', name: 'name1' },
-          { id: '2', name: 'name2' },
-          { id: '3', name: 'name3' },
-        ],
-        columns: [
-          {
-            field: 'name',
-            name: 'Name',
-            description: 'description',
-          },
-        ],
+        items: basicItems,
+        columns: basicColumns,
         rowProps: {
           'data-test-subj': 'row',
           className: 'customClass',
           onClick: () => {},
         },
       };
-      const component = shallow(<EuiBasicTable {...props} />);
+      const { getAllByTestSubject } = render(<EuiBasicTable {...props} />);
 
-      expect(component).toMatchSnapshot();
+      expect(getAllByTestSubject('row')).toHaveLength(3);
     });
   });
 
   describe('cellProps', () => {
     test('renders cells with custom props from a callback', () => {
       const props: EuiBasicTableProps<BasicItem> = {
-        items: [
-          { id: '1', name: 'name1' },
-          { id: '2', name: 'name2' },
-          { id: '3', name: 'name3' },
-        ],
-        columns: [
-          {
-            field: 'name',
-            name: 'Name',
-            description: 'description',
-          },
-        ],
+        items: basicItems,
+        columns: basicColumns,
         cellProps: (item, column) => {
           const { id } = item;
           const { field } = column as EuiTableFieldDataColumnType<BasicItem>;
@@ -197,76 +190,48 @@ describe('EuiBasicTable', () => {
           };
         },
       };
-      const component = shallow(<EuiBasicTable {...props} />);
+      const { getByTestSubject } = render(<EuiBasicTable {...props} />);
 
-      expect(component).toMatchSnapshot();
+      expect(getByTestSubject('cell-1-name')).toBeTruthy();
+      expect(getByTestSubject('cell-2-name')).toBeTruthy();
+      expect(getByTestSubject('cell-3-name')).toBeTruthy();
     });
 
-    test('renders rows with custom props from an object', () => {
+    test('renders cells with custom props from an object', () => {
       const props: EuiBasicTableProps<BasicItem> = {
-        items: [
-          { id: '1', name: 'name1' },
-          { id: '2', name: 'name2' },
-          { id: '3', name: 'name3' },
-        ],
-        columns: [
-          {
-            field: 'name',
-            name: 'Name',
-            description: 'description',
-          },
-        ],
+        items: basicItems,
+        columns: basicColumns,
         cellProps: {
           'data-test-subj': 'cell',
           className: 'customClass',
           onClick: () => {},
         },
       };
-      const component = shallow(<EuiBasicTable {...props} />);
+      const { getAllByTestSubject } = render(<EuiBasicTable {...props} />);
 
-      expect(component).toMatchSnapshot();
+      expect(getAllByTestSubject('cell')).toHaveLength(3);
     });
   });
 
   test('itemIdToExpandedRowMap renders an expanded row', () => {
     const props: EuiBasicTableProps<BasicItem> = {
-      items: [
-        { id: '1', name: 'name1' },
-        { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' },
-      ],
+      items: basicItems,
+      columns: basicColumns,
       itemId: 'id',
-      columns: [
-        {
-          field: 'name',
-          name: 'Name',
-          description: 'description',
-        },
-      ],
       itemIdToExpandedRowMap: {
         '1': <div>Expanded row</div>,
       },
-      onChange: () => {},
+      isExpandable: true,
     };
-    const component = shallow(<EuiBasicTable {...props} />);
+    const { getByText } = render(<EuiBasicTable {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(getByText('Expanded row')).toBeTruthy();
   });
 
   test('with pagination', () => {
     const props: EuiBasicTableProps<BasicItem> = {
-      items: [
-        { id: '1', name: 'name1' },
-        { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' },
-      ],
-      columns: [
-        {
-          field: 'name',
-          name: 'Name',
-          description: 'description',
-        },
-      ],
+      items: basicItems,
+      columns: basicColumns,
       pagination: {
         pageIndex: 0,
         pageSize: 3,
@@ -274,24 +239,18 @@ describe('EuiBasicTable', () => {
       },
       onChange: () => {},
     };
-    const component = shallow(<EuiBasicTable {...props} />);
+    const { container, getByRole } = render(<EuiBasicTable {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(getByRole('list')).toBeTruthy();
+    expect(
+      container.querySelector('[aria-current="true"]')?.textContent
+    ).toEqual('1');
   });
 
   test('with pagination - 2nd page', () => {
     const props: EuiBasicTableProps<BasicItem> = {
-      items: [
-        { id: '1', name: 'name1' },
-        { id: '2', name: 'name2' },
-      ],
-      columns: [
-        {
-          field: 'name',
-          name: 'Name',
-          description: 'description',
-        },
-      ],
+      items: basicItems,
+      columns: basicColumns,
       pagination: {
         pageIndex: 1,
         pageSize: 3,
@@ -299,24 +258,17 @@ describe('EuiBasicTable', () => {
       },
       onChange: () => {},
     };
-    const component = shallow(<EuiBasicTable {...props} />);
+    const { container } = render(<EuiBasicTable {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(
+      container.querySelector('[aria-current="true"]')?.textContent
+    ).toEqual('2');
   });
 
   test('with pagination - show all', () => {
     const props: EuiBasicTableProps<BasicItem> = {
-      items: [
-        { id: '1', name: 'name1' },
-        { id: '2', name: 'name2' },
-      ],
-      columns: [
-        {
-          field: 'name',
-          name: 'Name',
-          description: 'description',
-        },
-      ],
+      items: basicItems,
+      columns: basicColumns,
       pagination: {
         pageIndex: 0,
         pageSize: 0,
@@ -325,52 +277,40 @@ describe('EuiBasicTable', () => {
       },
       onChange: () => {},
     };
-    const component = shallow(<EuiBasicTable {...props} />);
+    const { getByTestSubject, getByText } = render(
+      <EuiBasicTable {...props} />
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(getByTestSubject('tablePaginationPopoverButton')).toBeTruthy();
+    expect(getByText('Showing all rows')).toBeTruthy();
   });
 
-  test('with pagination and error', () => {
+  it('does not show pagination bar if there is an error', () => {
     const props: EuiBasicTableProps<BasicItem> = {
-      items: [
-        { id: '1', name: 'name1' },
-        { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' },
-      ],
-      columns: [
-        {
-          field: 'name',
-          name: 'Name',
-          description: 'description',
-        },
-      ],
+      items: basicItems,
+      columns: basicColumns,
       pagination: {
         pageIndex: 0,
         pageSize: 3,
+        pageSizeOptions: [1, 5, 0],
         totalItemCount: 5,
       },
       onChange: () => {},
       error: 'no can do',
     };
-    const component = shallow(<EuiBasicTable {...props} />);
+    const { getByText, queryByTestSubject, queryByRole } = render(
+      <EuiBasicTable {...props} />
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(getByText('no can do')).toBeTruthy();
+    expect(queryByTestSubject('tablePaginationPopoverButton')).toBeFalsy();
+    expect(queryByRole('list')).toBeFalsy();
   });
 
   test('with pagination, hiding the per page options', () => {
     const props: EuiBasicTableProps<BasicItem> = {
-      items: [
-        { id: '1', name: 'name1' },
-        { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' },
-      ],
-      columns: [
-        {
-          field: 'name',
-          name: 'Name',
-          description: 'description',
-        },
-      ],
+      items: basicItems,
+      columns: basicColumns,
       pagination: {
         pageIndex: 0,
         pageSize: 3,
@@ -379,23 +319,18 @@ describe('EuiBasicTable', () => {
       },
       onChange: () => {},
     };
-    const component = shallow(<EuiBasicTable {...props} />);
+    const { queryByTestSubject } = render(<EuiBasicTable {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(queryByTestSubject('tablePaginationPopoverButton')).toBeFalsy();
   });
 
   test('with sorting', () => {
     const props: EuiBasicTableProps<BasicItem> = {
-      items: [
-        { id: '1', name: 'name1' },
-        { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' },
-      ],
+      items: basicItems,
       columns: [
         {
           field: 'name',
           name: 'Name',
-          description: 'description',
           sortable: true,
         },
       ],
@@ -404,18 +339,19 @@ describe('EuiBasicTable', () => {
       },
       onChange: () => {},
     };
-    const component = shallow(<EuiBasicTable {...props} />);
+    const { container, getByTestSubject } = render(
+      <EuiBasicTable {...props} />
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(getByTestSubject('tableHeaderSortButton')).toBeTruthy();
+    expect(
+      container.querySelector('[aria-sort="ascending"]')?.textContent
+    ).toEqual('Name');
   });
 
   test('with sortable columns and sorting disabled', () => {
     const props: EuiBasicTableProps<BasicItem> = {
-      items: [
-        { id: '1', name: 'name1' },
-        { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' },
-      ],
+      items: basicItems,
       columns: [
         {
           field: 'name',
@@ -426,25 +362,18 @@ describe('EuiBasicTable', () => {
       ],
       onChange: () => {},
     };
-    const component = shallow(<EuiBasicTable {...props} />);
+    const { container, queryByTestSubject } = render(
+      <EuiBasicTable {...props} />
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(queryByTestSubject('tableHeaderSortButton')).toBeFalsy();
+    expect(container.querySelector('[aria-sort]')).toBeFalsy();
   });
 
   test('with sorting enabled and enable all columns for sorting', () => {
     const props: EuiBasicTableProps<BasicItem> = {
-      items: [
-        { id: '1', name: 'name1' },
-        { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' },
-      ],
-      columns: [
-        {
-          field: 'name',
-          name: 'Name',
-          description: 'description',
-        },
-      ],
+      items: basicItems,
+      columns: basicColumns,
       sorting: {
         sort: {
           field: 'name',
@@ -454,310 +383,295 @@ describe('EuiBasicTable', () => {
       },
       onChange: () => {},
     };
-    const component = shallow(<EuiBasicTable {...props} />);
+    const { container, getByTestSubject } = render(
+      <EuiBasicTable {...props} />
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(getByTestSubject('tableHeaderSortButton')).toBeTruthy();
+    expect(container.querySelector('[aria-sort]')).toBeTruthy();
   });
 
   test('with initial selection', () => {
     const props: EuiBasicTableProps<BasicItem> = {
+      items: basicItems,
+      columns: basicColumns,
+      itemId: 'id',
+      selection: {
+        onSelectionChange: () => {},
+        initialSelected: [basicItems[0]],
+      },
+    };
+    const { getByTestSubject } = render(<EuiBasicTable {...props} />);
+
+    expect(
+      (getByTestSubject('checkboxSelectRow-1') as HTMLInputElement).checked
+    ).toBeTruthy();
+    expect(
+      (getByTestSubject('checkboxSelectRow-2') as HTMLInputElement).checked
+    ).toBeFalsy();
+  });
+
+  test('footers', () => {
+    const props: EuiBasicTableProps<AgeItem> = {
       items: [
-        { id: '1', name: 'name1' },
-        { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' },
+        { id: '1', name: 'name1', age: 20 },
+        { id: '2', name: 'name2', age: 21 },
+        { id: '3', name: 'name3', age: 22 },
       ],
       itemId: 'id',
       columns: [
         {
           field: 'name',
           name: 'Name',
-          description: 'description',
+          description: 'your name',
+          // No footer
         },
-      ],
-      selection: {
-        onSelectionChange: () => undefined,
-        initialSelected: [{ id: '1', name: 'name1' }],
-      },
-    };
-    const component = render(<EuiBasicTable {...props} />);
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('with pagination and selection', () => {
-    const props: EuiBasicTableProps<BasicItem> = {
-      items: [
-        { id: '1', name: 'name1' },
-        { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' },
-      ],
-      itemId: 'id',
-      columns: [
         {
-          field: 'name',
-          name: 'Name',
-          description: 'description',
+          field: 'id',
+          name: 'ID',
+          description: 'your id',
+          footer: 'Total users: 3',
         },
-      ],
-      pagination: {
-        pageIndex: 0,
-        pageSize: 3,
-        totalItemCount: 5,
-      },
-      selection: {
-        onSelectionChange: () => undefined,
-      },
-      onChange: () => {},
-    };
-    const component = shallow(<EuiBasicTable {...props} />);
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('with pagination, selection and sorting', () => {
-    const props: EuiBasicTableProps<BasicItem> = {
-      items: [
-        { id: '1', name: 'name1' },
-        { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' },
-      ],
-      itemId: 'id',
-      columns: [
         {
-          field: 'name',
-          name: 'Name',
-          description: 'description',
-          sortable: true,
-        },
-      ],
-      pagination: {
-        pageIndex: 0,
-        pageSize: 3,
-        totalItemCount: 5,
-      },
-      selection: {
-        onSelectionChange: () => undefined,
-      },
-      sorting: {
-        sort: { field: 'name', direction: SortDirection.ASC },
-      },
-      onChange: () => {},
-    };
-    const component = shallow(<EuiBasicTable {...props} />);
-
-    expect(component).toMatchSnapshot();
-  });
-
-  describe('footers', () => {
-    test('do not render without a column footer definition', () => {
-      const props: EuiBasicTableProps<AgeItem> = {
-        items: [
-          { id: '1', name: 'name1', age: 20 },
-          { id: '2', name: 'name2', age: 21 },
-          { id: '3', name: 'name3', age: 22 },
-        ],
-        itemId: 'id',
-        columns: [
-          {
-            field: 'name',
-            name: 'Name',
-            description: 'your name',
-          },
-          {
-            field: 'id',
-            name: 'ID',
-            description: 'your id',
-          },
-          {
-            field: 'age',
-            name: 'Age',
-            description: 'your age',
-          },
-        ],
-        onChange: () => {},
-      };
-      const component = shallow(<EuiBasicTable {...props} />);
-
-      expect(component).toMatchSnapshot();
-    });
-
-    test('render with pagination, selection, sorting, and footer', () => {
-      const props: EuiBasicTableProps<AgeItem> = {
-        items: [
-          { id: '1', name: 'name1', age: 20 },
-          { id: '2', name: 'name2', age: 21 },
-          { id: '3', name: 'name3', age: 22 },
-        ],
-        itemId: 'id',
-        columns: [
-          {
-            field: 'name',
-            name: 'Name',
-            description: 'your name',
-            sortable: true,
-            footer: <strong>Name</strong>,
-          },
-          {
-            field: 'id',
-            name: 'ID',
-            description: 'your id',
-            footer: 'ID',
-          },
-          {
-            field: 'age',
-            name: 'Age',
-            description: 'your age',
-            footer: ({ items, pagination }) => (
+          field: 'age',
+          name: 'Age',
+          description: 'your age',
+          footer: ({ items }) => (
+            <>
               <strong>
-                sum:
-                {items.reduce((acc, cur) => acc + cur.age, 0)}
-                <br />
-                total items:
-                {pagination!.totalItemCount}
+                Total ages: {items.reduce((acc, cur) => acc + cur.age, 0)}
               </strong>
-            ),
-          },
-        ],
-        pagination: {
-          pageIndex: 0,
-          pageSize: 3,
-          totalItemCount: 5,
+              <br />
+              <strong>Total items: {items.length}</strong>
+            </>
+          ),
         },
-        selection: {
-          onSelectionChange: () => undefined,
-        },
-        sorting: {
-          sort: { field: 'name', direction: SortDirection.ASC },
-        },
-        onChange: () => {},
-      };
-      const component = shallow(<EuiBasicTable {...props} />);
+      ],
+      onChange: () => {},
+    };
+    const { getByText } = render(<EuiBasicTable {...props} />);
 
-      expect(component).toMatchSnapshot();
-    });
+    expect(getByText('Total users: 3')).toBeTruthy();
+    expect(getByText('Total ages: 63')).toBeTruthy();
+    expect(getByText('Total items: 3')).toBeTruthy();
   });
 
-  test('with pagination, selection, sorting and column renderer', () => {
+  test('column renderer', () => {
     const props: EuiBasicTableProps<BasicItem> = {
-      items: [
-        { id: '1', name: 'name1' },
-        { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' },
-      ],
-      itemId: 'id',
+      items: basicItems,
       columns: [
         {
           field: 'name',
           name: 'Name',
           description: 'description',
-          sortable: true,
           render: (name: string) => name.toUpperCase(),
         },
       ],
-      pagination: {
-        pageIndex: 0,
-        pageSize: 3,
-        totalItemCount: 5,
-      },
-      selection: {
-        onSelectionChange: () => undefined,
-      },
-      sorting: {
-        sort: { field: 'name', direction: SortDirection.ASC },
-      },
-      onChange: () => {},
     };
-    const component = shallow(<EuiBasicTable {...props} />);
+    const { getByText } = render(<EuiBasicTable {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(getByText('NAME1')).toBeTruthy();
+    expect(getByText('NAME2')).toBeTruthy();
+    expect(getByText('NAME3')).toBeTruthy();
   });
 
-  test('with pagination, selection, sorting and column dataType', () => {
-    const props: EuiBasicTableProps<CountItem> = {
-      items: [
-        { id: '1', count: 1 },
-        { id: '2', count: 2 },
-        { id: '3', count: 3 },
-      ],
-      itemId: 'id',
-      columns: [
-        {
-          field: 'count',
-          name: 'Count',
-          description: 'description of count',
-          sortable: true,
-          dataType: 'number',
-        },
-      ],
-      pagination: {
-        pageIndex: 0,
-        pageSize: 3,
-        totalItemCount: 5,
-      },
-      selection: {
-        onSelectionChange: () => undefined,
-      },
-      sorting: {
-        sort: { field: 'count', direction: SortDirection.ASC },
-      },
-      onChange: () => {},
-    };
-    const component = shallow(<EuiBasicTable {...props} />);
+  describe('column dataType', () => {
+    interface DataTypeItem {
+      id: string;
+      count: number;
+      online: boolean;
+      date: Date;
+    }
+    const dataTypeItems = [
+      { id: '1', count: 1, online: true, date: new Date('1/1/1970') },
+      { id: '2', count: 2, online: false, date: new Date('2/2/1971') },
+    ];
 
-    expect(component).toMatchSnapshot();
+    test('number, boolean, and date types', () => {
+      const props: EuiBasicTableProps<DataTypeItem> = {
+        items: dataTypeItems,
+        columns: [
+          {
+            field: 'age',
+            name: 'Count',
+            dataType: 'number',
+          },
+          {
+            field: 'online',
+            name: 'Status',
+            dataType: 'boolean',
+          },
+          {
+            field: 'date',
+            name: 'Date',
+            dataType: 'date',
+          },
+        ],
+      };
+      const { container, getByText } = render(<EuiBasicTable {...props} />);
+
+      // Numbers should be right aligned
+      expect(
+        container.querySelectorAll('.euiTableCellContent--alignRight')
+      ).toHaveLength(3);
+
+      // Booleans should output as Yes or No
+      expect(getByText('Yes')).toBeTruthy();
+      expect(getByText('No')).toBeTruthy();
+
+      // Dates should auto format
+      expect(getByText('1 Jan 1970 00:00')).toBeTruthy();
+      expect(getByText('2 Feb 1971 00:00')).toBeTruthy();
+    });
+
+    test('column renderer takes precedence over column data type', () => {
+      const props: EuiBasicTableProps<DataTypeItem> = {
+        items: dataTypeItems,
+        columns: [
+          {
+            field: 'online',
+            name: 'Status',
+            dataType: 'boolean',
+            render: (online: boolean) => (online ? 'Online' : 'Offline'),
+          },
+          {
+            field: 'date',
+            name: 'Date',
+            dataType: 'date',
+            render: (date: Date) => date.getFullYear(),
+          },
+        ],
+      };
+      const { queryByText } = render(<EuiBasicTable {...props} />);
+
+      expect(queryByText('Yes')).toBeFalsy();
+      expect(queryByText('Online')).toBeTruthy();
+
+      expect(queryByText('No')).toBeFalsy();
+      expect(queryByText('Offline')).toBeTruthy();
+
+      expect(queryByText('1970')).toBeTruthy();
+      expect(queryByText('1971')).toBeTruthy();
+    });
   });
 
-  // here we want to verify that the column renderer takes precedence over the column data type
-  test('with pagination, selection, sorting, column renderer and column dataType', () => {
-    const props: EuiBasicTableProps<CountItem> = {
-      items: [
-        { id: '1', count: 1 },
-        { id: '2', count: 2 },
-        { id: '3', count: 3 },
-      ],
-      itemId: 'id',
-      columns: [
-        {
-          field: 'count',
-          name: 'Count',
-          description: 'description of count',
-          sortable: true,
-          dataType: 'number',
-          render: (count: number) => 'x'.repeat(count),
-        },
-      ],
-      pagination: {
-        pageIndex: 0,
-        pageSize: 3,
-        totalItemCount: 5,
-      },
-      selection: {
-        onSelectionChange: () => undefined,
-      },
-      sorting: {
-        sort: { field: 'count', direction: SortDirection.ASC },
-      },
-      onChange: () => {},
-    };
-    const component = shallow(<EuiBasicTable {...props} />);
+  describe('actions', () => {
+    test('single action', () => {
+      const props: EuiBasicTableProps<BasicItem> = {
+        items: basicItems,
+        columns: [
+          ...basicColumns,
+          {
+            name: 'Actions',
+            actions: [
+              {
+                type: 'button',
+                name: 'Edit',
+                description: 'edit',
+                onClick: () => {},
+              },
+            ],
+          },
+        ],
+      };
+      const { getAllByText } = render(<EuiBasicTable {...props} />);
 
-    expect(component).toMatchSnapshot();
+      expect(getAllByText('Edit')).toHaveLength(basicItems.length);
+    });
+
+    test('multiple actions with custom availability', () => {
+      const props: EuiBasicTableProps<BasicItem> = {
+        items: [...basicItems, { id: '4', name: 'name4' }],
+        columns: [
+          ...basicColumns,
+          {
+            name: 'Actions',
+            actions: [
+              {
+                type: 'icon',
+                name: 'Edit',
+                isPrimary: true,
+                icon: 'pencil',
+                available: ({ id }) => !(Number(id) % 2),
+                description: 'edit',
+                onClick: () => {},
+              },
+              {
+                type: 'icon',
+                name: 'Share',
+                icon: 'share',
+                isPrimary: true,
+                available: ({ id }) => id !== '3',
+                description: 'share',
+                onClick: () => {},
+              },
+              // Below actions are not primary and should be hidden behind collapse button
+              {
+                type: 'icon',
+                name: 'Copy',
+                icon: 'copy',
+                description: 'copy',
+                onClick: () => {},
+              },
+              {
+                type: 'icon',
+                name: 'Delete',
+                icon: 'trash',
+                description: 'delete',
+                onClick: () => {},
+              },
+              {
+                type: 'icon',
+                name: 'elastic.co',
+                icon: 'link',
+                description: 'Go to link',
+                onClick: () => {},
+              },
+            ],
+          },
+        ],
+      };
+      const { getAllByText, getAllByTestSubject } = render(
+        <EuiBasicTable {...props} />
+      );
+
+      expect(getAllByText('Edit')).toHaveLength(2);
+      expect(getAllByText('Share')).toHaveLength(3);
+      expect(getAllByTestSubject('euiCollapsedItemActionsButton')).toHaveLength(
+        4
+      );
+    });
   });
 
-  test('with pagination, selection, sorting and a single record action', () => {
-    const props: EuiBasicTableProps<BasicItem> = {
+  it('renders (kitchen sink) with pagination, selection, sorting, actions, and footer', () => {
+    const props: EuiBasicTableProps<AgeItem> = {
       items: [
-        { id: '1', name: 'name1' },
-        { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' },
+        { id: '1', name: 'name1', age: 20 },
+        { id: '2', name: 'name2', age: 21 },
+        { id: '3', name: 'name3', age: 22 },
       ],
       itemId: 'id',
       columns: [
         {
           field: 'name',
           name: 'Name',
-          description: 'description',
+          description: 'your name',
           sortable: true,
+          render: (name: string) => name.toUpperCase(),
+        },
+        {
+          field: 'id',
+          name: 'ID',
+          description: 'your id',
+          footer: ({ pagination }) => (
+            <strong>Total items: {pagination!.totalItemCount}</strong>
+          ),
+        },
+        {
+          field: 'age',
+          name: 'Age',
+          description: 'your age',
+          dataType: 'number',
         },
         {
           name: 'Actions',
@@ -766,58 +680,13 @@ describe('EuiBasicTable', () => {
               type: 'button',
               name: 'Edit',
               description: 'edit',
-              onClick: () => undefined,
-            },
-          ],
-        },
-      ],
-      pagination: {
-        pageIndex: 0,
-        pageSize: 3,
-        totalItemCount: 5,
-      },
-      selection: {
-        onSelectionChange: () => undefined,
-      },
-      sorting: {
-        sort: { field: 'name', direction: SortDirection.ASC },
-      },
-      onChange: () => {},
-    };
-    const component = shallow(<EuiBasicTable {...props} />);
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('with pagination, selection, sorting and multiple record actions', () => {
-    const props: EuiBasicTableProps<BasicItem> = {
-      items: [
-        { id: '1', name: 'name1' },
-        { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' },
-      ],
-      itemId: 'id',
-      columns: [
-        {
-          field: 'name',
-          name: 'Name',
-          description: 'description',
-          sortable: true,
-        },
-        {
-          name: 'Actions',
-          actions: [
-            {
-              type: 'button',
-              name: 'Edit',
-              description: 'edit',
-              onClick: () => undefined,
+              onClick: () => {},
             },
             {
               type: 'button',
               name: 'Delete',
               description: 'delete',
-              onClick: () => undefined,
+              onClick: () => {},
             },
           ],
         },
@@ -828,76 +697,15 @@ describe('EuiBasicTable', () => {
         totalItemCount: 5,
       },
       selection: {
-        onSelectionChange: () => undefined,
+        onSelectionChange: () => {},
       },
       sorting: {
         sort: { field: 'name', direction: SortDirection.ASC },
       },
       onChange: () => {},
     };
-    const component = shallow(<EuiBasicTable {...props} />);
+    const { container } = render(<EuiBasicTable {...props} />);
 
-    expect(component).toMatchSnapshot();
-  });
-
-  test('with multiple record actions with custom availability', () => {
-    const props: EuiBasicTableProps<BasicItem> = {
-      items: [
-        { id: '1', name: 'name1' },
-        { id: '2', name: 'name2' },
-        { id: '3', name: 'name3' },
-        { id: '4', name: 'name3' },
-      ],
-      itemId: 'id',
-      columns: [
-        {
-          field: 'name',
-          name: 'Name',
-          description: 'description',
-        },
-        {
-          name: 'Actions',
-          actions: [
-            {
-              type: 'icon',
-              name: 'Edit',
-              isPrimary: true,
-              icon: 'pencil',
-              available: ({ id }) => !(Number(id) % 2),
-              description: 'edit',
-              onClick: () => undefined,
-            },
-            {
-              type: 'icon',
-              name: 'Copy',
-              isPrimary: true,
-              icon: 'copy',
-              description: 'copy',
-              onClick: () => undefined,
-            },
-            {
-              type: 'icon',
-              name: 'Delete',
-              isPrimary: true,
-              icon: 'trash',
-              description: 'delete',
-              onClick: () => undefined,
-            },
-            {
-              type: 'icon',
-              name: 'Share',
-              icon: 'trash',
-              available: ({ id }) => id !== '3',
-              description: 'share',
-              onClick: () => undefined,
-            },
-          ],
-        },
-      ],
-      onChange: () => {},
-    };
-    const component = shallow(<EuiBasicTable {...props} />);
-
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

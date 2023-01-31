@@ -20,6 +20,7 @@ import {
   keys,
   DEFAULT_VISUALIZATION_COLOR,
   getSteppedGradient,
+  useEuiTheme,
 } from '../../../services';
 import { EuiColorStopThumb, ColorStop } from './color_stop_thumb';
 import {
@@ -39,6 +40,11 @@ import { EuiRangeHighlight } from '../../form/range/range_highlight';
 import { EuiRangeTrack } from '../../form/range/range_track';
 import { EuiRangeWrapper } from '../../form/range/range_wrapper';
 import { EuiFieldNumberProps } from '../../form/field_number';
+
+import {
+  euiColorStopsStyles,
+  euiColorStopsAddContainerStyles,
+} from './color_stops.styles';
 
 export interface EuiColorStopsProps extends CommonProps {
   addColor?: ColorStop['color'];
@@ -188,16 +194,29 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   );
 
   const isNotInteractive = disabled || readOnly;
+  const isDragging = isHoverDisabled && !isNotInteractive;
+  const addContainerIsDisabled = isHoverDisabled || isNotInteractive;
 
-  const classes = classNames(
-    'euiColorStops',
-    {
-      'euiColorStops-isDragging': isHoverDisabled,
-      'euiColorStops-isDisabled': disabled,
-      'euiColorStops-isReadOnly': readOnly,
-    },
-    className
-  );
+  const classes = classNames('euiColorStops', className);
+
+  const euiTheme = useEuiTheme();
+  const styles = euiColorStopsStyles(euiTheme);
+  const cssPopoverStyles = [
+    styles.euiColorStops,
+    !disabled ? styles.isEnabled : styles.isDisabled,
+    readOnly && styles.isReadOnly,
+    isDragging && styles.isDragging,
+  ];
+  const cssTrackStyles = [styles.euiColorStops__track];
+  const cssAddTargetStyles = [styles.euiColorStops__addTarget];
+
+  const addContainerStyles = euiColorStopsAddContainerStyles(euiTheme);
+  const cssAddContainerStyles = [
+    addContainerStyles.euiColorStopsAddContainer,
+    !addContainerIsDisabled
+      ? addContainerStyles.isEnabled
+      : addContainerStyles.isDisabled,
+  ];
 
   const getStopFromMouseLocationFn = (location: { x: number; y: number }) => {
     // Guard against `null` ref in usage
@@ -415,7 +434,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
         aria-valuetext={`Stop: ${colorStop.stop}, Color: ${colorStop.color} (${
           index + 1
         } of ${colorStops.length})`}
-        isPopoverOpen={colorStop.id === openedStopId}
+        isPopoverOpen={!isDragging && colorStop.id === openedStopId}
         openPopover={() => {
           setOpenedStopId(colorStop.id);
         }}
@@ -429,6 +448,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     colorStops,
     disabled,
     handleOnChange,
+    isDragging,
     max,
     min,
     mode,
@@ -449,9 +469,9 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     : [];
   const gradientStop = (colorStop: ColorStop, index: number) => {
     const color = getChromaColor(colorStop.color, showAlpha);
-    const rgba = color ? color.css() : 'currentColor';
+    const rgba = color ? color.css() : 'transparent';
     if (index === 0) {
-      return `currentColor, currentColor ${positions[index]}%, ${rgba} ${positions[index]}%`;
+      return `transparent, transparent ${positions[index]}%, ${rgba} ${positions[index]}%`;
     }
     return `${rgba} ${positions[index]}%`;
   };
@@ -485,7 +505,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
       percentageSteps = percentageSteps + percentage;
     });
     steppedGradient = steppedGradient.substring(0, steppedGradient.length - 2);
-    gradient = `linear-gradient(to right, currentColor ${trailingPercentage}%, ${steppedGradient})`;
+    gradient = `linear-gradient(to right, transparent ${trailingPercentage}%, ${steppedGradient})`;
   } else {
     const linearGradient = sortedStops.map(
       stopType === 'gradient' ? gradientStop : fixedStop
@@ -495,6 +515,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
 
   return (
     <EuiRangeWrapper
+      css={cssPopoverStyles}
       {...rest}
       data-test-subj={classNames('euiColorStops', rest['data-test-subj'])}
       ref={setWrapperRef}
@@ -522,38 +543,43 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
         </p>
       </EuiScreenReaderOnly>
       <EuiRangeTrack
+        className="euiColorStops__track"
+        css={cssTrackStyles}
         min={min || rangeMin}
         max={max || rangeMax}
         compressed={compressed}
         disabled={disabled}
         step={1}
       >
-        <EuiRangeHighlight
-          className="euiColorStops__highlight"
-          min={min || rangeMin}
-          max={max || rangeMax}
-          lowerValue={min || rangeMin}
-          upperValue={max || rangeMax}
-          background={gradient}
-          compressed={compressed}
-        />
-        <div
-          data-test-subj="euiColorStopsAdd"
-          className={classNames('euiColorStops__addContainer', {
-            'euiColorStops__addContainer-isDisabled':
-              isHoverDisabled || disabled || readOnly,
-          })}
-          onClick={handleAddClick}
-          onMouseMove={handleAddHover}
-        >
-          <div
-            className="euiColorStops__addTarget"
-            style={{
-              left: `${addTargetPosition}%`,
-            }}
-          />
-        </div>
-        {thumbs}
+        {(trackWidth) => (
+          <>
+            <EuiRangeHighlight
+              className="euiColorStops__highlight"
+              min={min || rangeMin}
+              max={max || rangeMax}
+              lowerValue={min || rangeMin}
+              upperValue={max || rangeMax}
+              background={gradient}
+              trackWidth={trackWidth}
+            />
+            <div
+              data-test-subj="euiColorStopsAdd"
+              className="euiColorStops__addContainer"
+              css={cssAddContainerStyles}
+              onClick={handleAddClick}
+              onMouseMove={handleAddHover}
+            >
+              <div
+                className="euiColorStops__addTarget"
+                css={cssAddTargetStyles}
+                style={{
+                  left: `${addTargetPosition}%`,
+                }}
+              />
+            </div>
+            {thumbs}
+          </>
+        )}
       </EuiRangeTrack>
     </EuiRangeWrapper>
   );

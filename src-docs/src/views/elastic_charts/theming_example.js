@@ -1,14 +1,13 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { GuideSectionTypes } from '../../components';
 
 import { ExternalBadge } from './shared';
 
-import { Theming } from './theming';
+import Theming from './theming';
 const themingSource = require('!!raw-loader!./theming');
 
-import { Categorical } from './theming_categorical';
+import Categorical from './theming_categorical';
 
 import {
   EuiSpacer,
@@ -21,7 +20,7 @@ import {
 export const ElasticChartsThemingExample = {
   title: 'Creating charts',
   intro: (
-    <Fragment>
+    <>
       <ExternalBadge />
       <EuiSpacer size="l" />
       <EuiText>
@@ -37,7 +36,7 @@ export const ElasticChartsThemingExample = {
           Elastic.
         </p>
       </EuiText>
-    </Fragment>
+    </>
   ),
   sections: [
     {
@@ -49,7 +48,7 @@ export const ElasticChartsThemingExample = {
         },
       ],
       text: (
-        <Fragment>
+        <>
           <p>
             EUI provides both light and dark theme files to use in tandem with
             Elastic Charts. Simply import these objects from the themes folder
@@ -100,14 +99,14 @@ const customColors = {
 <Settings theme={[customColors, euiTheme]} />`}
           </EuiCodeBlock>
           <p>You&apos;ll find an example of these in the demo below.</p>
-        </Fragment>
+        </>
       ),
       demo: <Theming />,
     },
     {
       title: 'Coloring charts',
       text: (
-        <Fragment>
+        <>
           <p>
             <strong>
               Use color to distinguish categories, represent quantity/density,
@@ -142,7 +141,7 @@ const customColors = {
             Whan signifying quantities, group values into intervals instead of a
             continuous gradient scale.
           </p>
-        </Fragment>
+        </>
       ),
       demo: <Categorical />,
     },

@@ -1,3 +1,6 @@
+// TODO: Address nesting during Emotion conversion, if possible
+// stylelint-disable max-nesting-depth
+
 .euiSwitch {
   position: relative;
   display: inline-flex;
@@ -181,7 +184,6 @@
   // Compressed and mini switches have some style overlap
   &.euiSwitch--compressed,
   &.euiSwitch--mini {
-
     .euiSwitch__button[aria-checked='false'] {
       .euiSwitch__thumb {
         left: 1px;

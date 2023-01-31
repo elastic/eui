@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { GuideSectionTypes } from '../../components';
 
 import { ExternalBadge } from './shared';
@@ -113,7 +113,7 @@ const orderingTooltip = (
 export const ElasticChartsPieExample = {
   title: 'Part to whole comparisons',
   intro: (
-    <Fragment>
+    <>
       <ExternalBadge />
       <EuiSpacer size="l" />
       <EuiFlexGroup responsive={false} wrap>
@@ -139,7 +139,7 @@ export const ElasticChartsPieExample = {
           </EuiFlexItem>
         ))}
       </EuiFlexGroup>
-    </Fragment>
+    </>
   ),
   sections: [
     {

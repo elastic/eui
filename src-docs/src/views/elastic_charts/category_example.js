@@ -1,20 +1,16 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { ExternalBadge } from './shared';
-import { CategoryChart } from './category_chart';
+import CategoryChart from './category_chart';
 
 import { EuiCode } from '../../../../src/components';
 
 export const ElasticChartsCategoryExample = {
   title: 'Categorical',
-  intro: (
-    <Fragment>
-      <ExternalBadge />
-    </Fragment>
-  ),
+  intro: <ExternalBadge />,
   sections: [
     {
       text: (
-        <Fragment>
+        <>
           <p>
             Categorical charts compare data between multiple distinct
             categories. Avoid using a line chart because it might create
@@ -46,7 +42,7 @@ export const ElasticChartsCategoryExample = {
               </EuiCode>
             </li>
           </ul>
-        </Fragment>
+        </>
       ),
       demo: <CategoryChart />,
     },

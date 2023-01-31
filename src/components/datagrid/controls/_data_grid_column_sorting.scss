@@ -1,5 +1,4 @@
 .euiDataGridColumnSorting__item {
-
   &-isDragging {
     @include euiBottomShadow;
     background: $euiColorEmptyShade;
@@ -21,23 +20,24 @@
   outline-offset: -$euiFocusRingSize;
 }
 
-.euiDataGridColumnSorting__orderButtons {
+.euiDataGridColumnSorting__name {
   @include euiBreakpoint('xs', 's') {
-    padding-left: $euiSizeXS;
+    padding-right: $euiSizeXS;
   }
-  padding-left: $euiSizeL;
+  padding-right: $euiSizeL;
+}
 
-  .euiDataGridColumnSorting__order {
-    @include euiBreakpoint('xs', 's') {
-      min-width: unset;
-    }
-    min-width: 200px;
+.euiDataGridColumnSorting__order {
+  @include euiBreakpoint('xs', 's') {
+    min-width: unset;
+  }
+  min-width: 200px;
+
+  .euiButtonGroup__buttons {
     border: none;
+  }
 
-    // Hack to overwrite some nested, unreachable component code with button groups
-    // sass-lint:disable-block no-important
-    button {
-      font-size: $euiFontSizeXS !important;
-    }
+  .euiButtonGroupButton {
+    font-size: $euiFontSizeXS;
   }
 }

@@ -10,6 +10,7 @@ import {
   EuiAvatar,
   useEuiFontSize,
   logicalCSS,
+  logicalBorderRadiusCSS,
   EuiSpacer,
   EuiAccordion,
   EuiCodeBlock,
@@ -65,8 +66,10 @@ export default ({ snippet }: { snippet: ReactNode }) => {
           >
             <div
               css={css`
-                border-radius: ${euiTheme.border.radius.small}
-                  ${euiTheme.border.radius.small} 0 0;
+                ${logicalBorderRadiusCSS(
+                  `${euiTheme.border.radius.small} ${euiTheme.border.radius.small} 0 0`,
+                  true
+                )}
                 padding: ${euiTheme.size.s};
                 background: ${euiTheme.colors.lightestShade};
                 ${logicalCSS('border-bottom', euiTheme.border.thin)}

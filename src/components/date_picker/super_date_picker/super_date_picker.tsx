@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, FocusEventHandler, FunctionComponent } from 'react';
+import React, {
+  Component,
+  FocusEventHandler,
+  FunctionComponent,
+  ReactNode,
+} from 'react';
 import classNames from 'classnames';
 import moment, { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 import dateMath from '@elastic/datemath';
@@ -34,7 +39,10 @@ import {
   EuiSuperUpdateButton,
   EuiSuperUpdateButtonProps,
 } from './super_update_button';
-import { EuiQuickSelectPopover } from './quick_select_popover/quick_select_popover';
+import {
+  EuiQuickSelectPopover,
+  CustomQuickSelectRenderOptions,
+} from './quick_select_popover/quick_select_popover';
 import { EuiDatePopoverButton } from './date_popover/date_popover_button';
 
 import { EuiDatePopoverContentProps } from './date_popover/date_popover_content';
@@ -55,6 +63,15 @@ export interface OnRefreshProps extends DurationRange {
 export type EuiSuperDatePickerProps = CommonProps & {
   commonlyUsedRanges?: DurationRange[];
   customQuickSelectPanels?: QuickSelectPanel[];
+
+  /**
+   * An optional render prop function that allows customizing the display of the Quick Select menu.
+   * This function passes all default quick select panels within an object, allowing you to
+   * re-order panels, omit certain panels entirely, or pass in your own fully custom content.
+   */
+  customQuickSelectRender?: (
+    options: CustomQuickSelectRenderOptions
+  ) => ReactNode;
 
   /**
    * Specifies the formatted used when displaying dates and/or datetimes
@@ -536,6 +553,7 @@ export class EuiSuperDatePickerInternal extends Component<
       commonlyUsedRanges,
       timeOptions,
       customQuickSelectPanels,
+      customQuickSelectRender,
       dateFormat,
       end,
       isAutoRefreshOnly,
@@ -575,6 +593,7 @@ export class EuiSuperDatePickerInternal extends Component<
         applyTime={this.applyQuickTime}
         commonlyUsedRanges={commonlyUsedRanges}
         customQuickSelectPanels={customQuickSelectPanels}
+        customQuickSelectRender={customQuickSelectRender}
         dateFormat={dateFormat}
         end={end}
         isDisabled={isDisabled}

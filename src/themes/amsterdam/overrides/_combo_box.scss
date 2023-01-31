@@ -1,3 +1,6 @@
+// TODO: Address nesting during Emotion conversion, if possible
+// stylelint-disable max-nesting-depth
+
 .euiComboBox {
   // Round the left border when we append a label
   &--appended {

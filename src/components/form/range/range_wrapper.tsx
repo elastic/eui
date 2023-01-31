@@ -8,20 +8,18 @@
 
 import React, { HTMLAttributes, forwardRef } from 'react';
 import classNames from 'classnames';
+
+import { useEuiTheme } from '../../../services';
 import { CommonProps } from '../../common';
 import { useFormContext } from '../eui_form_context';
 
+import type { _SharedRangeInputProps } from './types';
+import { euiRangeWrapperStyles } from './range_wrapper.styles';
+
 export interface EuiRangeWrapperProps
   extends CommonProps,
-    HTMLAttributes<HTMLDivElement> {
-  /**
-   * Expand to fill 100% of the parent.
-   * Defaults to `fullWidth` prop of `<EuiForm>`.
-   * @default false
-   */
-  fullWidth?: boolean;
-  compressed?: boolean;
-}
+    HTMLAttributes<HTMLDivElement>,
+    Pick<_SharedRangeInputProps, 'fullWidth' | 'compressed'> {}
 
 export const EuiRangeWrapper = forwardRef<HTMLDivElement, EuiRangeWrapperProps>(
   (props, ref) => {
@@ -34,17 +32,19 @@ export const EuiRangeWrapper = forwardRef<HTMLDivElement, EuiRangeWrapperProps>(
       ...rest
     } = props;
 
-    const classes = classNames(
-      'euiRangeWrapper',
-      {
-        'euiRangeWrapper--fullWidth': fullWidth,
-        'euiRangeWrapper--compressed': compressed,
-      },
-      className
-    );
+    const classes = classNames('euiRangeWrapper', className);
+
+    const euiTheme = useEuiTheme();
+    const styles = euiRangeWrapperStyles(euiTheme);
+    const cssStyles = [
+      styles.euiRangeWrapper,
+      !compressed && styles.regular,
+      compressed && styles.compressed,
+      fullWidth && styles.fullWidth,
+    ];
 
     return (
-      <div className={classes} ref={ref} {...rest}>
+      <div className={classes} css={cssStyles} ref={ref} {...rest}>
         {children}
       </div>
     );

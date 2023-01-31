@@ -64,31 +64,28 @@
 /**
   * 1. Don't block the user from dropping files onto the filepicker.
   * 2. Ensure space for import icon, loading spinner, and clear button (only if it has files)
-  * 3. Delay focus gradient or else it will only partially transition while file chooser opens
   * 4. Static height so that it doesn't shift its surrounding contents around
   */
 .euiFilePicker__prompt {
-  @include euiFormControlDefaultShadow;
   @include euiFormControlWithIcon; /* 2 */
   height: $euiFormControlHeight;
   padding-top: $euiFormControlPadding;
   padding-right: $euiFormControlPadding;
   padding-bottom: $euiFormControlPadding;
   pointer-events: none; /* 1 */
+  border: $euiBorderWidthThick dashed $euiColorLightShade;
   border-radius: $euiFormControlBorderRadius;
 
-  // sass-lint:disable-block indentation
   transition:
-    box-shadow $euiAnimSpeedFast ease-in,
-    background-color $euiAnimSpeedFast ease-in,
-    background-image $euiAnimSpeedFast ease-in,
-    background-size $euiAnimSpeedFast ease-in $euiAnimSpeedFast; /* 3 */
+    border-color $euiAnimSpeedFast ease-in,
+    background-color $euiAnimSpeedFast ease-in;
 
   .euiFilePicker--compressed & {
     @include euiFormControlStyleCompressed($includeStates: false);
     @include euiFormControlWithIcon($compressed: true); /* 2 */
     height: $euiFormControlCompressedHeight;
     border-radius: $euiFormControlCompressedBorderRadius;
+    box-shadow: none;
   }
 
   .euiFilePicker--large & {
@@ -105,7 +102,7 @@
   }
 
   .euiFilePicker-isInvalid & {
-    @include euiFormControlInvalidStyle;
+    border: $euiBorderWidthThick dashed $euiColorDanger;
   }
 }
 
@@ -114,9 +111,14 @@
   @include euiTextTruncate;
   line-height: $euiSize;
 
-  // make normal sized prompt look like placeholder
+  // Make normal sized prompt stand out a bit more - on the large size we don't need this as it's already identifiable
   .euiFilePicker:not(.euiFilePicker--large):not(.euiFilePicker-hasFiles) & {
-    color: $euiColorMediumShade;
+    color: $euiColorPrimaryText;
+  }
+
+  // Offset/center prompt text for non-large file-pickers
+  .euiFilePicker:not(.euiFilePicker--large) & {
+    margin-top: $euiSizeXS / -2;
   }
 }
 
@@ -151,16 +153,13 @@
 // Focus
 .euiFilePicker__showDrop .euiFilePicker__prompt,
 .euiFilePicker__input:focus + .euiFilePicker__prompt {
-  @include euiFormControlFocusStyle;
-
-  .euiFilePicker--compressed & {
-    @include euiFormControlFocusStyle($borderOnly: true);
-  }
+  border-color: $euiColorPrimary;
 }
 
 // Disabled
 .euiFilePicker__input:disabled + .euiFilePicker__prompt {
   @include euiFormControlDisabledStyle;
+  box-shadow: none;
 }
 
 // Make space for the icons on the right
@@ -178,7 +177,7 @@
 
 // Large styles only
 .euiFilePicker--large {
-  // sass-lint:disable-block nesting-depth
+  // stylelint-disable max-nesting-depth
   // Hover and focus
   .euiFilePicker__input:hover:not(:disabled),
   .euiFilePicker__input:focus {

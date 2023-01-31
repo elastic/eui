@@ -3,9 +3,9 @@
  */
 
 .euiStep {
-  // sass-lint:disable indentation
   // Create border on all but the last step
   &:not(:last-of-type) {
+    // stylelint-disable indentation
     background-image: linear-gradient(
                         to right,
                         transparent 0,
@@ -15,6 +15,7 @@
                         transparent ($euiSize + 1),
                         transparent 100%
                       );
+    // stylelint-enable indentation
     background-repeat: no-repeat;
     background-position: left $euiSizeXXL;
   }

@@ -12,6 +12,7 @@ import {
   euiPaddingSize,
   EuiPaddingSize,
   logicalCSS,
+  logicalShorthandCSS,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
@@ -29,8 +30,12 @@ export const euiPopoverFooterStyles = (
     euiPopoverFooter: css`
       ${euiFontSize(euiThemeContext, 's')};
       ${logicalCSS('border-top', euiTheme.border.thin)};
+
       // Negative margins for panel padding
-      margin: ${panelPaddingSize} -${panelPaddingSize} -${panelPaddingSize};
+      ${logicalShorthandCSS(
+        'margin',
+        `${panelPaddingSize} -${panelPaddingSize} -${panelPaddingSize}`
+      )}
     `,
   };
 };

@@ -65,7 +65,7 @@ type Sorting = boolean | SortingOptions;
 
 type InMemoryTableProps<T> = Omit<
   EuiBasicTableProps<T>,
-  'pagination' | 'sorting' | 'noItemsMessage'
+  'pagination' | 'sorting' | 'noItemsMessage' | 'onChange'
 > & {
   message?: ReactNode;
   /**
@@ -78,6 +78,12 @@ type InMemoryTableProps<T> = Omit<
    * Set `allowNeutralSort` to false to force column sorting. Defaults to true.
    */
   allowNeutralSort?: boolean;
+  /**
+   * `onChange` is not required when `pagination` and/or `sorting` are configured,
+   * but if `onChange` is present it is responsible for handling state for each/both.
+   * See #Criteria or #CriteriaWithPagination
+   */
+  onChange?: EuiBasicTableProps<T>['onChange'];
   /**
    * Callback for when table pagination or sorting is changed. This is meant to be informational only, and not used to set any state as the in-memory table already manages this state. See #Criteria or #CriteriaWithPagination.
    */

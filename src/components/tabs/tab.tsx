@@ -12,6 +12,7 @@ import React, {
   ButtonHTMLAttributes,
   FunctionComponent,
   ReactNode,
+  useContext,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../common';
@@ -19,7 +20,7 @@ import { getSecureRelForTarget, useEuiTheme } from '../../services';
 import { validateHref } from '../../services/security/href_validator';
 
 import { euiTabStyles, euiTabContentStyles } from './tab.styles';
-import { EuiTabsProps, EuiTabsSizes } from './tabs';
+import { EuiTabsContext } from './tabs_context';
 
 export interface EuiTabProps extends CommonProps {
   isSelected?: boolean;
@@ -34,16 +35,6 @@ export interface EuiTabProps extends CommonProps {
    * Will be excluded from interactive effects.
    */
   append?: ReactNode;
-  /**
-   * Evenly stretches each tab to fill the
-   * horizontal space
-   */
-  expand?: EuiTabsProps['expand'];
-  /**
-   * Sizes affect both font size and overall size.
-   * Only use the `xl` size when displayed as page titles.
-   */
-  size?: EuiTabsSizes;
 }
 
 type EuiTabPropsForAnchor = EuiTabProps &
@@ -69,10 +60,9 @@ export const EuiTab: FunctionComponent<Props> = ({
   rel,
   prepend,
   append,
-  size = 'm',
-  expand,
   ...rest
 }) => {
+  const { size, expand } = useContext(EuiTabsContext);
   const euiTheme = useEuiTheme();
   const isHrefValid = !href || validateHref(href);
   const disabled = _disabled || !isHrefValid;

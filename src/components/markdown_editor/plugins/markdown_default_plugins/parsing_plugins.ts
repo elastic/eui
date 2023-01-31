@@ -22,7 +22,7 @@ import {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   Settings,
 } from 'unified';
-import markdown from 'remark-parse';
+import markdown from 'remark-parse-no-trim';
 import emoji from 'remark-emoji';
 import breaks from 'remark-breaks';
 import highlight from '../remark/remark_prismjs';

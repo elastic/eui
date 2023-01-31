@@ -108,7 +108,7 @@ exports[`logicalCSS mixin returns a string property for each directional propert
 
 exports[`logicalCSS mixin returns a string property for each directional property: width 1`] = `"inline-size: 8px;"`;
 
-exports[`logicalCSSWithFallback  returns both the original property and the logical property 1`] = `
+exports[`logicalCSSWithFallback returns both the original property and the logical property 1`] = `
 "
   overflow-x: auto;
   overflow-inline: auto;

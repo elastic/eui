@@ -87,33 +87,28 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
           data-test-subj="droppable"
         >
           <div
-            aria-describedby="rbd-hidden-text-0-hidden-text-0"
-            class="euiDraggable"
-            data-rbd-drag-handle-context-id="0"
-            data-rbd-drag-handle-draggable-id="columnA"
+            class="euiDraggable euiDraggable--hasCustomDragHandle"
             data-rbd-draggable-context-id="0"
             data-rbd-draggable-id="columnA"
             data-test-subj="draggable"
-            draggable="false"
-            role="button"
-            tabindex="0"
+            role="group"
           >
             <div
-              class="euiDataGridColumnSelector__item false euiDraggable__item"
+              class="euiDataGridColumnSelector__item false euiDraggable__item euiDraggable__item--hasCustomDragHandle"
               data-test-subj="dataGridColumnSelectorColumnItem-columnA"
             >
               <div
-                class="euiFlexGroup emotion-euiFlexGroup-m-flexStart-center-row"
+                class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
               >
                 <div
-                  class="euiFlexItem emotion-euiFlexItem-grow-1"
+                  class="euiFlexItem emotion-euiFlexItem-growZero"
                 >
                   <div
                     class="euiSwitch euiSwitch--compressed euiSwitch--mini emotion-euiSwitch"
                   >
                     <button
                       aria-checked="true"
-                      aria-labelledby="generated-id"
+                      aria-label="columnA"
                       class="euiSwitch__button"
                       data-test-subj="dataGridColumnSelectorToggleColumnVisibility-columnA"
                       id="generated-id"
@@ -132,16 +127,33 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                         />
                       </span>
                     </button>
-                    <span
-                      class="euiSwitch__label"
-                      id="generated-id"
-                    >
-                      columnA
-                    </span>
                   </div>
                 </div>
                 <div
+                  aria-describedby="rbd-hidden-text-0-hidden-text-0"
+                  aria-hidden="true"
+                  class="euiFlexItem emotion-euiFlexItem-grow-1"
+                  data-rbd-drag-handle-context-id="0"
+                  data-rbd-drag-handle-draggable-id="columnA"
+                  draggable="false"
+                  role="button"
+                  tabindex="-1"
+                >
+                  <span
+                    class="euiDataGridColumnSelector__itemLabel"
+                  >
+                    columnA
+                  </span>
+                </div>
+                <div
+                  aria-describedby="rbd-hidden-text-0-hidden-text-0"
+                  aria-label="Drag handle"
                   class="euiFlexItem emotion-euiFlexItem-growZero"
+                  data-rbd-drag-handle-context-id="0"
+                  data-rbd-drag-handle-draggable-id="columnA"
+                  draggable="false"
+                  role="button"
+                  tabindex="0"
                 >
                   <span
                     color="subdued"
@@ -152,33 +164,28 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
             </div>
           </div>
           <div
-            aria-describedby="rbd-hidden-text-0-hidden-text-0"
-            class="euiDraggable"
-            data-rbd-drag-handle-context-id="0"
-            data-rbd-drag-handle-draggable-id="columnB"
+            class="euiDraggable euiDraggable--hasCustomDragHandle"
             data-rbd-draggable-context-id="0"
             data-rbd-draggable-id="columnB"
             data-test-subj="draggable"
-            draggable="false"
-            role="button"
-            tabindex="0"
+            role="group"
           >
             <div
-              class="euiDataGridColumnSelector__item false euiDraggable__item"
+              class="euiDataGridColumnSelector__item false euiDraggable__item euiDraggable__item--hasCustomDragHandle"
               data-test-subj="dataGridColumnSelectorColumnItem-columnB"
             >
               <div
-                class="euiFlexGroup emotion-euiFlexGroup-m-flexStart-center-row"
+                class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
               >
                 <div
-                  class="euiFlexItem emotion-euiFlexItem-grow-1"
+                  class="euiFlexItem emotion-euiFlexItem-growZero"
                 >
                   <div
                     class="euiSwitch euiSwitch--compressed euiSwitch--mini emotion-euiSwitch"
                   >
                     <button
                       aria-checked="true"
-                      aria-labelledby="generated-id"
+                      aria-label="columnB"
                       class="euiSwitch__button"
                       data-test-subj="dataGridColumnSelectorToggleColumnVisibility-columnB"
                       id="generated-id"
@@ -197,16 +204,33 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                         />
                       </span>
                     </button>
-                    <span
-                      class="euiSwitch__label"
-                      id="generated-id"
-                    >
-                      columnB
-                    </span>
                   </div>
                 </div>
                 <div
+                  aria-describedby="rbd-hidden-text-0-hidden-text-0"
+                  aria-hidden="true"
+                  class="euiFlexItem emotion-euiFlexItem-grow-1"
+                  data-rbd-drag-handle-context-id="0"
+                  data-rbd-drag-handle-draggable-id="columnB"
+                  draggable="false"
+                  role="button"
+                  tabindex="-1"
+                >
+                  <span
+                    class="euiDataGridColumnSelector__itemLabel"
+                  >
+                    columnB
+                  </span>
+                </div>
+                <div
+                  aria-describedby="rbd-hidden-text-0-hidden-text-0"
+                  aria-label="Drag handle"
                   class="euiFlexItem emotion-euiFlexItem-growZero"
+                  data-rbd-drag-handle-context-id="0"
+                  data-rbd-drag-handle-draggable-id="columnB"
+                  draggable="false"
+                  role="button"
+                  tabindex="0"
                 >
                   <span
                     color="subdued"

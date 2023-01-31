@@ -7,18 +7,42 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { render } from '../../../test/rtl';
 import { requiredProps } from '../../../test/required_props';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiRangeLevels } from './range_levels';
 
+const props = {
+  min: 0,
+  max: 100,
+  trackWidth: 400,
+};
+
 describe('EuiRangeLevels', () => {
+  shouldRenderCustomStyles(
+    <EuiRangeLevels
+      {...props}
+      levels={[
+        {
+          min: 0,
+          max: 20,
+          color: 'danger',
+        },
+        {
+          min: 20,
+          max: 100,
+          color: 'success',
+        },
+      ]}
+      {...requiredProps}
+    />
+  );
+
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiRangeLevels
-        min={0}
-        max={100}
-        showTicks
+        {...props}
         levels={[
           {
             min: 0,
@@ -37,15 +61,13 @@ describe('EuiRangeLevels', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('is rendered with named and custom color', () => {
-    const component = render(
+    const { container } = render(
       <EuiRangeLevels
-        min={0}
-        max={100}
-        showTicks
+        {...props}
         levels={[
           {
             min: 0,
@@ -58,48 +80,60 @@ describe('EuiRangeLevels', () => {
             color: '#ff0000',
           },
         ]}
-        {...requiredProps}
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('should throw error if `level.min` is lower than `min`', () => {
-    const component = () =>
-      render(
-        <EuiRangeLevels
-          min={0}
-          max={100}
-          levels={[
-            {
-              min: -10,
-              max: 20,
-              color: 'danger',
-            },
-          ]}
-        />
-      );
+  describe('thrown errors', () => {
+    // Silence console errors - otherwise RTL fails/outputs a ton of unwanted logs
+    let silenceConsoleErrors: jest.SpyInstance;
+    beforeAll(() => {
+      silenceConsoleErrors = jest
+        .spyOn(console, 'error')
+        .mockImplementation(() => {});
+    });
+    afterAll(() => {
+      silenceConsoleErrors.mockRestore();
+    });
 
-    expect(component).toThrowErrorMatchingSnapshot();
-  });
+    test('should throw error if `level.min` is lower than `min`', () => {
+      const component = () =>
+        render(
+          <EuiRangeLevels
+            {...props}
+            min={0}
+            levels={[
+              {
+                min: -10,
+                max: 20,
+                color: 'danger',
+              },
+            ]}
+          />
+        );
 
-  test('should throw error if `level.max` is higher than `max`', () => {
-    const component = () =>
-      render(
-        <EuiRangeLevels
-          min={0}
-          max={100}
-          levels={[
-            {
-              min: 20,
-              max: 200,
-              color: 'danger',
-            },
-          ]}
-        />
-      );
+      expect(component).toThrowErrorMatchingSnapshot();
+    });
 
-    expect(component).toThrowErrorMatchingSnapshot();
+    test('should throw error if `level.max` is higher than `max`', () => {
+      const component = () =>
+        render(
+          <EuiRangeLevels
+            {...props}
+            max={100}
+            levels={[
+              {
+                min: 20,
+                max: 200,
+                color: 'danger',
+              },
+            ]}
+          />
+        );
+
+      expect(component).toThrowErrorMatchingSnapshot();
+    });
   });
 });

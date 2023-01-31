@@ -31,7 +31,7 @@ import {
 } from './markdown_editor_text_area';
 import { EuiMarkdownFormat, EuiMarkdownFormatProps } from './markdown_format';
 import { EuiMarkdownEditorDropZone } from './markdown_editor_drop_zone';
-import { useGeneratedHtmlId } from '../../services/';
+import { useGeneratedHtmlId } from '../../services';
 
 import { MARKDOWN_MODE, MODE_EDITING, MODE_VIEWING } from './markdown_modes';
 import {

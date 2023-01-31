@@ -21,6 +21,7 @@ exports[`EuiFilePicker is rendered 1`] = `
       <span
         aria-hidden="true"
         class="euiFilePicker__icon"
+        color="primary"
         data-euiicon-type="importAction"
       />
       <div

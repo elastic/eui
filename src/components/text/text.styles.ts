@@ -10,6 +10,7 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 import {
   logicalCSS,
+  logicalShorthandCSS,
   logicalTextAlignCSS,
   euiFontSize,
   euiBackgroundColor,
@@ -61,6 +62,7 @@ const euiScaleText = (
   const marginSize = euiTheme.size[customScale];
   const headingMarginTop = mathWithUnits(marginSize, (x) => x * 2);
   const headingMarginBottom = marginSize;
+  const blockQuoteBorderWidth = mathWithUnits(fontSize, (x) => x / 4);
 
   return `
     font-size: ${fontSize};
@@ -156,7 +158,9 @@ const euiScaleText = (
   
     blockquote {
       font-size: ${fontSize};
-      padding: ${lineHeightSize};
+      ${logicalShorthandCSS('padding', `0 ${fontSize}`)}
+      ${logicalCSS('border-left-width', blockQuoteBorderWidth)}
+      ${logicalCSS('margin-bottom', fontSize)}
     }
 
     dd + dt {
@@ -244,36 +248,17 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
         list-style: decimal;
       }
 
+      blockquote {
+        border-inline-start-color: ${euiTheme.border.color};
+        border-inline-start-style: solid;
+      }
+
+      // the blockquote color in euiMarkdownFormat works differently
+      // it inherits the color from the parent element
+      // for this reason, we just apply the subdued text color for
+      // blockquotes that are not in euiMarkdownFormat
       blockquote:not(.euiMarkdownFormat__blockquote) {
-        position: relative;
-        ${logicalTextAlignCSS('center')}
-        ${logicalCSS('margin-horizontal', 'auto')}
-        font-family: ${euiTheme.font.familySerif};
-        font-style: italic;
-        letter-spacing: normal;
-
-        p:last-child {
-          ${logicalCSS('margin-bottom', '0')}
-        }
-
-        &:before,
-        &:after {
-          position: absolute;
-          content: '';
-          ${logicalCSS('height', euiTheme.border.width.thick)}
-          ${logicalCSS('width', '50%')}
-          ${logicalCSS('left', '25%')}
-          ${logicalCSS('right', '25%')}
-          background: ${euiTheme.colors.darkShade};
-        }
-
-        &:before {
-          ${logicalCSS('top', '0')}
-        }
-
-        &:after {
-          ${logicalCSS('bottom', '0')}
-        }
+        color: ${euiTheme.colors.subduedText};
       }
 
       h1 {
@@ -338,7 +323,10 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
         line-height: 1;
         border: ${euiTheme.border.width.thin} solid ${euiTheme.colors.text};
-        border-radius: calc(${euiTheme.border.radius.small} / 2);
+        border-radius: ${mathWithUnits(
+          euiTheme.border.radius.small,
+          (x) => x / 2
+        )};
       }
     `,
     constrainedWidth: css`

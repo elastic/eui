@@ -1,12 +1,12 @@
 .euiKeyPadMenuItem {
-  border: none !important; // sass-lint:disable-line no-important
+  border: none !important; // stylelint-disable-line declaration-no-important
   box-shadow: none;
 
   // Focus and Hover states (when not disabled)
   &:not(.euiKeyPadMenuItem-isDisabled) {
     &:hover,
     &:focus:hover,
-    &:focus-within  {
+    &:focus-within {
       @include euiBottomShadowSmall;
     }
 

@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import { CSSProperties } from 'react';
 import { keysOf } from '../../components/common';
 import LOGICALS from './logicals.json';
 
@@ -28,7 +29,8 @@ export const LOGICAL_SIDES = keysOf(logicalSide);
 export type LogicalSides = typeof LOGICAL_SIDES[number];
 
 export const logicals = LOGICALS;
-export const LOGICAL_PROPERTIES = keysOf(logicals);
+const { _shorthands, ..._logicals } = LOGICALS;
+export const LOGICAL_PROPERTIES = keysOf(_logicals);
 export type LogicalProperties = typeof LOGICAL_PROPERTIES[number];
 
 /**
@@ -60,17 +62,44 @@ export const logicalCSSWithFallback = (
 `;
 
 /**
+ * Casing utils for swapping between camel case (style objs) and kebab case (CSS)
+ */
+const camelCase = (kebabCasedString: string): string =>
+  kebabCasedString.replace(/-\w/g, (str) => str.charAt(1).toUpperCase());
+const kebabCase = (camelCasedString: string): string =>
+  camelCasedString.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+
+/**
  *
  * @param property A string that is a valid CSS logical property
  * @param value String to output as the property value
  * @returns `object` Returns the logical CSS property version for the given `property: value` pair
  */
 export const logicalStyle = (property: LogicalProperties, value?: any) => {
-  // Strip hyphens and camelCase the CSS logical property so React doesn't throw errors
-  const camelCasedProperty = logicals[property].replace(/-\w/g, (str) =>
-    str.charAt(1).toUpperCase()
-  );
-  return { [camelCasedProperty]: value };
+  return { [camelCase(logicals[property])]: value };
+};
+
+/**
+ * Given a style object with any amount of unknown CSS properties,
+ * find ones that can be converted to logical properties and convert them
+ *
+ * @param styleObject - A React object of camelCased styles
+ * @returns `object`
+ */
+export const logicalStyles = (styleObject: CSSProperties) => {
+  const logicalStyleObject: Record<string, string | number | undefined> = {};
+
+  Object.entries(styleObject).forEach(([key, value]) => {
+    const cssProperty = kebabCase(key);
+    if (logicals.hasOwnProperty(cssProperty)) {
+      const logicalKey = camelCase(logicals[cssProperty as LogicalProperties]);
+      logicalStyleObject[logicalKey] = value;
+    } else {
+      logicalStyleObject[key] = value;
+    }
+  });
+
+  return logicalStyleObject;
 };
 
 /**

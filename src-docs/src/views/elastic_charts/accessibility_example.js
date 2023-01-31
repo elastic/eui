@@ -9,10 +9,10 @@ import {
 } from '../../../../src/components';
 import { GuideSectionTypes } from '../../components';
 import { chartsVersion, ExternalBadge } from './shared';
-import { TextureMultiSeriesChart } from './texture';
+import TextureMultiSeriesChart from './texture';
 import { TexturedStylesProps } from './texture_props';
-import { AccessibilitySunburst } from './accessibility_sunburst';
-import { AccessibilityBullet } from './accessibility_bullet';
+import AccessibilitySunburst from './accessibility_sunburst';
+import AccessibilityBullet from './accessibility_bullet';
 
 const TextureMultiSeriesChartSource = require('!!raw-loader!./texture');
 const BulletChartSource = require('!!raw-loader!./accessibility_bullet');
@@ -77,7 +77,7 @@ export const ElasticChartsAccessibilityExample = {
             other accessible elements elsewhere in your app.
           </p>
           <EuiCodeBlock language="jsx" isCopyable fontSize="s">
-            {`<Fragment>
+            {`<>
   <h1 id="randomHeadingId">Days of the week: weekdays vs weekends</h1>
   <Chart>
     <Settings
@@ -85,7 +85,7 @@ export const ElasticChartsAccessibilityExample = {
     />
     <BarSeries {...props} />
   </Chart>
-</Fragment>`}
+</>`}
           </EuiCodeBlock>
           <p>
             If using <EuiCode>{'ariaLabel'}</EuiCode>, you can set a heading
@@ -154,7 +154,7 @@ export const ElasticChartsAccessibilityExample = {
             passing in a custom description, you can disable this prop.
           </p>
           <EuiCodeBlock language="jsx" isCopyable fontSize="s">
-            {`<Fragment>
+            {`<>
   <h1 id="randomHeadingId">Days of the week: weekdays vs weekends</h1>
   <p id="randomDescId">Bar chart with two bars. Bar one is labelled weekdays and has a value of 5. Bar two is labelled weekends and has a value of 2.</p>
   <Chart>
@@ -165,7 +165,7 @@ export const ElasticChartsAccessibilityExample = {
     />
     <BarSeries {...props} />
   </Chart>
-</Fragment>`}
+</>`}
           </EuiCodeBlock>
         </>
       ),

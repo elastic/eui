@@ -34,7 +34,7 @@
     margin-left: $euiColorPickerIndicatorSize * -.5;
     border: 1px solid $euiColorDarkestShade;
 
-    &:before {
+    &::before {
       content: '';
       position: absolute;
       top: 0;

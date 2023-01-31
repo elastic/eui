@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { GuideSectionTypes } from '../../../components';
 
-import { Table } from './in_memory_search_callback';
+import Table from './in_memory_search_callback';
 
 import { EuiInMemoryTable } from '../../../../../src/components/basic_table/in_memory_table';
 import {
@@ -31,7 +31,7 @@ export const searchCallbackSection = {
   title: 'In-memory table with search callback',
   source: [
     {
-      type: GuideSectionTypes.JS,
+      type: GuideSectionTypes.TSX,
       code: source,
     },
   ],

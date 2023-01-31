@@ -36,9 +36,7 @@ const Modal = () => {
       {isModalVisible && (
         <EuiModal {...modalProps}>
           <EuiModalHeader>
-            <EuiModalHeaderTitle>
-              <h1>Title of modal</h1>
-            </EuiModalHeaderTitle>
+            <EuiModalHeaderTitle>Title of modal</EuiModalHeaderTitle>
           </EuiModalHeader>
 
           <EuiModalBody>
@@ -59,7 +57,7 @@ const Modal = () => {
 beforeEach(() => {
   cy.mount(<Modal />);
   cy.get('div.euiModal').should('not.exist');
-  cy.get('button.euiButton').click();
+  cy.get('button.euiButton').realClick();
   cy.get('div.euiModal').should('exist');
 });
 

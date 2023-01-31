@@ -15,9 +15,8 @@ import React, {
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
-import { cloneElementWithCss } from '../../services/theme/clone_element';
-
 import { euiTabsStyles } from './tabs.styles';
+import { EuiTabsContext } from './tabs_context';
 
 export const SIZES = ['s', 'm', 'l', 'xl'] as const;
 export type EuiTabsSizes = typeof SIZES[number];
@@ -63,21 +62,12 @@ export const EuiTabs = forwardRef<EuiTabRef, PropsWithChildren<EuiTabsProps>>(
     const classes = classNames('euiTabs', className);
 
     const styles = euiTabsStyles(euiTheme);
+
     const cssStyles = [
       styles.euiTabs,
       styles[size],
       bottomBorder && styles.bottomBorder,
     ];
-
-    const tabItems = React.Children.map(children, (child) => {
-      if (React.isValidElement(child)) {
-        return cloneElementWithCss(child, {
-          // we're passing the parent `size` and `expand` down to the children
-          size: size,
-          expand: expand,
-        });
-      }
-    });
 
     return (
       <div
@@ -87,7 +77,9 @@ export const EuiTabs = forwardRef<EuiTabRef, PropsWithChildren<EuiTabsProps>>(
         {...(children && { role: 'tablist' })}
         {...rest}
       >
-        {tabItems}
+        <EuiTabsContext.Provider value={{ expand, size }}>
+          {children}
+        </EuiTabsContext.Provider>
       </div>
     );
   }

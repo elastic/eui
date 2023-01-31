@@ -354,7 +354,7 @@ export class EuiAccordionClass extends Component<
           />
           <EuiText size="s">
             <p>
-              {isLoadingMessage && isLoadingMessage !== true ? (
+              {isLoadingMessage !== true ? (
                 isLoadingMessage
               ) : (
                 <EuiI18n token="euiAccordion.isLoading" default="Loading" />

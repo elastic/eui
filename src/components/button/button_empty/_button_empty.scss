@@ -7,9 +7,8 @@
   @include euiButton;
   border-radius: $euiBorderRadius;
 
-  // sass-lint:disable-block no-important
-  transform: none !important; /* 1 */
-  animation: none !important; /* 1 */
+  transform: none !important; /* 1 */ // stylelint-disable-line declaration-no-important
+  animation: none !important; /* 1 */ // stylelint-disable-line declaration-no-important
   transition-timing-function: ease-in; /* 2 */
   transition-duration: $euiAnimSpeedFast; /* 2 */
 
@@ -42,7 +41,6 @@
     }
   }
 }
-
 
 .euiButtonEmpty--flushLeft,
 .euiButtonEmpty--flushRight,

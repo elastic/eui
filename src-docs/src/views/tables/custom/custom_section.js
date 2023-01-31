@@ -24,7 +24,7 @@ export const section = {
   title: 'Build a custom table from individual components',
   source: [
     {
-      type: GuideSectionTypes.JS,
+      type: GuideSectionTypes.TSX,
       code: source,
     },
   ],

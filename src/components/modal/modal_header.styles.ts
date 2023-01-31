@@ -7,6 +7,7 @@
  */
 
 import { css } from '@emotion/react';
+import { logicalShorthandCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 export const euiModalHeaderStyles = (euiThemeContext: UseEuiTheme) => {
@@ -17,10 +18,12 @@ export const euiModalHeaderStyles = (euiThemeContext: UseEuiTheme) => {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-inline: ${euiTheme.size.l} ${euiTheme.size.xxl};
-      padding-block: ${euiTheme.size.l} ${euiTheme.size.base};
       flex-grow: 0;
       flex-shrink: 0;
+      ${logicalShorthandCSS(
+        'padding',
+        `${euiTheme.size.l} ${euiTheme.size.xxl} ${euiTheme.size.base} ${euiTheme.size.l}`
+      )}
 
       // If a body doesn't exist, remove some extra padding from footer
       & + .euiModalFooter {

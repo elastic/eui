@@ -138,6 +138,19 @@ describe('EuiCard', () => {
         component.find('button').simulate('click');
         expect(handler.mock.calls.length).toEqual(1);
       });
+
+      it('should only call onClick once when title is a React node', () => {
+        const handler = jest.fn();
+        const component = mount(
+          <EuiCard
+            title={<span data-test-subj="click">Hoi</span>}
+            description="There"
+            onClick={handler}
+          />
+        );
+        component.find('[data-test-subj="click"]').simulate('click');
+        expect(handler.mock.calls.length).toEqual(1);
+      });
     });
 
     test('titleElement', () => {
