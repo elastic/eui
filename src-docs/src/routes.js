@@ -285,8 +285,6 @@ import { ElasticChartsPieExample } from './views/elastic_charts/pie_example';
 
 import { ElasticChartsAccessibilityExample } from './views/elastic_charts/accessibility_example';
 
-import { DashboardGoodPractices } from './views/elastic_charts/dashboard_good_practices';
-
 import { MetricChartExample } from './views/elastic_charts/metric/metric_chart_example';
 
 const createExample = (example, customTitle) => {
@@ -616,10 +614,6 @@ const navigation = [
       MarkdownPluginExample,
       CodeExample,
     ].map((example) => createExample(example)),
-  },
-  {
-    name: 'Data Visualization',
-    items: [DashboardGoodPractices].map((example) => createExample(example)),
   },
   {
     name: 'Elastic Charts',
