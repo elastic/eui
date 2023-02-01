@@ -121,7 +121,7 @@ exports[`EuiPopover props arrowChildren is rendered 1`] = `
           class="emotion-euiScreenReaderOnly"
           id="generated-id"
         >
-          You are in a dialog. To close this dialog, hit escape.
+          You are in a dialog. Press Escape, or tap/click outside the dialog to close.
         </p>
         <div />
       </div>
@@ -175,7 +175,7 @@ exports[`EuiPopover props buffer 1`] = `
           class="emotion-euiScreenReaderOnly"
           id="generated-id"
         >
-          You are in a dialog. To close this dialog, hit escape.
+          You are in a dialog. Press Escape, or tap/click outside the dialog to close.
         </p>
         <div />
       </div>
@@ -229,7 +229,7 @@ exports[`EuiPopover props buffer for all sides 1`] = `
           class="emotion-euiScreenReaderOnly"
           id="generated-id"
         >
-          You are in a dialog. To close this dialog, hit escape.
+          You are in a dialog. Press Escape, or tap/click outside the dialog to close.
         </p>
         <div />
       </div>
@@ -296,7 +296,7 @@ exports[`EuiPopover props focusTrapProps is rendered 1`] = `
           class="emotion-euiScreenReaderOnly"
           id="generated-id"
         >
-          You are in a dialog. To close this dialog, hit escape.
+          You are in a dialog. Press Escape, or tap/click outside the dialog to close.
         </p>
         <div />
       </div>
@@ -363,7 +363,7 @@ exports[`EuiPopover props isOpen renders true 1`] = `
           class="emotion-euiScreenReaderOnly"
           id="generated-id"
         >
-          You are in a dialog. To close this dialog, hit escape.
+          You are in a dialog. Press Escape, or tap/click outside the dialog to close.
         </p>
         <div />
       </div>
@@ -417,7 +417,7 @@ exports[`EuiPopover props offset with arrow 1`] = `
           class="emotion-euiScreenReaderOnly"
           id="generated-id"
         >
-          You are in a dialog. To close this dialog, hit escape.
+          You are in a dialog. Press Escape, or tap/click outside the dialog to close.
         </p>
         <div />
       </div>
@@ -466,7 +466,7 @@ exports[`EuiPopover props offset without arrow 1`] = `
           class="emotion-euiScreenReaderOnly"
           id="generated-id"
         >
-          You are in a dialog. To close this dialog, hit escape.
+          You are in a dialog. Press Escape, or tap/click outside the dialog to close.
         </p>
         <div />
       </div>
@@ -520,7 +520,7 @@ exports[`EuiPopover props ownFocus defaults to true 1`] = `
           class="emotion-euiScreenReaderOnly"
           id="generated-id"
         >
-          You are in a dialog. To close this dialog, hit escape.
+          You are in a dialog. Press Escape, or tap/click outside the dialog to close.
         </p>
         <div />
       </div>
@@ -619,7 +619,7 @@ exports[`EuiPopover props panelClassName is rendered 1`] = `
           class="emotion-euiScreenReaderOnly"
           id="generated-id"
         >
-          You are in a dialog. To close this dialog, hit escape.
+          You are in a dialog. Press Escape, or tap/click outside the dialog to close.
         </p>
         <div />
       </div>
@@ -673,7 +673,7 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
           class="emotion-euiScreenReaderOnly"
           id="generated-id"
         >
-          You are in a dialog. To close this dialog, hit escape.
+          You are in a dialog. Press Escape, or tap/click outside the dialog to close.
         </p>
         <div />
       </div>
@@ -728,7 +728,7 @@ exports[`EuiPopover props panelProps is rendered 1`] = `
           class="emotion-euiScreenReaderOnly"
           id="generated-id"
         >
-          You are in a dialog. To close this dialog, hit escape.
+          You are in a dialog. Press Escape, or tap/click outside the dialog to close.
         </p>
         <div />
       </div>
