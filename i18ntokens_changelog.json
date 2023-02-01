@@ -1,5 +1,30 @@
 [
   {
+    "version": "74.1.0",
+    "changes": [
+      {
+        "token": "euiSuperSelect.screenReaderAnnouncement",
+        "changeType": "modified",
+        "value": "You are in a form selector and must select a single option.\n              Use the Up and Down arrow keys to navigate or Escape to close."
+      },
+      {
+        "token": "euiPopover.screenReaderAnnouncement",
+        "changeType": "modified",
+        "value": "You are in a dialog. Press Escape, or tap/click outside the dialog to close."
+      },
+      {
+        "token": "euiSkeletonLoading.loadingAriaText",
+        "changeType": "added",
+        "value": "Loading {contentAriaLabel}"
+      },
+      {
+        "token": "euiSkeletonLoading.loadedAriaText",
+        "changeType": "added",
+        "value": "Loaded {contentAriaLabel}"
+      }
+    ]
+  },
+  {
     "version": "73.0.0",
     "changes": [
       {

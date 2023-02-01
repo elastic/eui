@@ -5488,6 +5488,38 @@
     "filepath": "src/components/selectable/selectable.tsx"
   },
   {
+    "token": "euiSkeletonLoading.loadingAriaText",
+    "defString": "Loading {contentAriaLabel}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 52,
+        "column": 27
+      },
+      "end": {
+        "line": 56,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/skeleton/skeleton_loading.tsx"
+  },
+  {
+    "token": "euiSkeletonLoading.loadedAriaText",
+    "defString": "Loaded {contentAriaLabel}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 57,
+        "column": 25
+      },
+      "end": {
+        "line": 61,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/skeleton/skeleton_loading.tsx"
+  },
+  {
     "token": "euiStat.loadingText",
     "defString": "Statistic is loading",
     "highlighting": "string",
