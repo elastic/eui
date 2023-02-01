@@ -331,8 +331,8 @@ export const MetricChartExample = {
             you will get an horizontally aligned set of metrics
           </p>
           <p>
-            You can align vertically the progress bars' directions to compare
-            values using <EuiCode>LayoutDirection.Vertical</EuiCode>
+            You can align vertically the progress bars&apos; directions to
+            compare values using <EuiCode>LayoutDirection.Vertical</EuiCode>
           </p>
         </>
       ),
