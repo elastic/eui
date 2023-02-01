@@ -1,3 +1,20 @@
+## [`74.1.0`](https://github.com/elastic/eui/tree/v74.1.0)
+
+- Added new `EuiSkeletonText`, `EuiSkeletonTitle`, `EuiSkeletonCircle`, and `EuiSkeletonRectangle` components ([#6502](https://github.com/elastic/eui/pull/6502))
+- Updated `EuiSuperSelect` screen reader instructions to be more specific ([#6549](https://github.com/elastic/eui/pull/6549))
+- Added `error` and updated `alert` glyphs to `EuiIcon` ([#6550](https://github.com/elastic/eui/pull/6550))
+- All `EuiSkeleton` components now accept an `isLoading` flag and `children`, which automatically handles conditionally rendering loading skeletons vs.  loaded content (`children`) ([#6562](https://github.com/elastic/eui/pull/6562))
+- All `EuiSkeleton` components now accept a `contentAriaLabel` prop, which more meaningfully describes the loaded content to screen readers ([#6562](https://github.com/elastic/eui/pull/6562))
+- Updated `EuiPopover` screen reader instructions for mobile and click behaviors ([#6567](https://github.com/elastic/eui/pull/6567))
+
+**Bug fixes**
+
+- Fixed `EuiCard` to ensure `onClick` method only runs once when `title` contains a React node ([#6551](https://github.com/elastic/eui/pull/6551))
+
+**Deprecations**
+
+- Deprecated `EuiLoadingContent` - use `EuiSkeletonText` instead ([#6557](https://github.com/elastic/eui/pull/6557))
+
 ## [`74.0.1`](https://github.com/elastic/eui/tree/v74.0.1)
 
 **Bug fixes**
