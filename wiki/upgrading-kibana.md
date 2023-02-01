@@ -25,8 +25,10 @@ If changes exist:
 1. Manually update [`i18n_eui_mapping.tsx`](https://github.com/elastic/kibana/blob/main/src/core/public/i18n/i18n_eui_mapping.tsx) to match the changes
 	* This file is strongly typed will surface missing or outdated token entries
 	* Provide descriptions for new entries
-2. Run `yarn test:jest packages/core/i18n/core-i18n-browser-internal/src/i18n_service.test.ts -u` to update mapping snapshots
-3. Run `node scripts/i18n_check --fix` to delete removed or updated token entries from the [various translation files](https://github.com/elastic/kibana/tree/main/x-pack/plugins/translations/translations)
+	* New lines and additional whitespace will need to be stripped out of strings, or `i18n_eui_mapping.test.ts` will fail
+2. Run `yarn test:jest packages/core/i18n/core-i18n-browser-internal/src/i18n_eui_mapping.test.ts` and ensure it passes
+3. Run `yarn test:jest packages/core/i18n/core-i18n-browser-internal/src/i18n_service.test.ts -u` to update mapping snapshots
+4. Run `node scripts/i18n_check --fix` to delete removed or updated token entries from the [various translation files](https://github.com/elastic/kibana/tree/main/x-pack/plugins/translations/translations)
 
 ## Opening a draft PR to kick off CI
 
