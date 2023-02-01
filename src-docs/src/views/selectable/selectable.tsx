@@ -20,10 +20,6 @@ export default () => {
       label: 'Dione',
     },
     {
-      label: "I'm a group label",
-      isGroupLabel: true,
-    },
-    {
       label: 'Iapetus',
       checked: 'on',
     },
@@ -42,10 +38,6 @@ export default () => {
     },
     {
       label: 'Hyperion',
-    },
-    {
-      label: "I'm a group label",
-      isGroupLabel: true,
     },
   ]);
 
