@@ -37,7 +37,7 @@ const DATA: MetricSpec['data'] = [
       trendShape: 'area',
       trendA11yTitle: 'The current inbound traffic for the eth0 network',
       trendA11yDescription:
-        'The last 10 minutes of inbound traffic for eth0 shows a trend going going downward',
+        'The last 10 minutes of inbound traffic for eth0 shows a negative trend',
     },
     {
       color: '#FF7E62',
@@ -57,7 +57,7 @@ const DATA: MetricSpec['data'] = [
       trendShape: 'area',
       trendA11yTitle: 'The current inbound traffic for the eth1 network',
       trendA11yDescription:
-        'The last 10 minutes of inbound traffic for eth1 shows a trend going going upward',
+        'The last 10 minutes of inbound traffic for eth1 shows a positive trend',
     },
     {
       color: '#F1D86F',
@@ -115,7 +115,7 @@ const DATA: MetricSpec['data'] = [
       trendShape: 'area',
       trendA11yTitle: 'The current outbound traffic for the eth1 network',
       trendA11yDescription:
-        'The last 10 minutes of outbound traffic for eth1 shows upward trend',
+        'The last 10 minutes of outbound traffic for eth1 shows a positive trend',
     },
     {
       color: '#F1D86F',
@@ -135,7 +135,7 @@ const DATA: MetricSpec['data'] = [
       trendShape: 'area',
       trendA11yTitle: 'The current outbound traffic for the eth2 network',
       trendA11yDescription:
-        'The last 10 minutes of outbound traffic for eth2 shows downward trend',
+        'The last 10 minutes of outbound traffic for eth2 shows a negative trend',
     },
   ],
 ];

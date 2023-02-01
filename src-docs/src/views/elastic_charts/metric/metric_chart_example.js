@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import { ExternalBadge } from '../shared';
 
@@ -63,8 +62,7 @@ export const MetricChartExample = {
           >
             Elastic Charts
           </EuiLink>
-          , an open source charting library also created and maintained by
-          Elastic.
+          , the charting library created and maintained by Elastic.
         </p>
       </EuiText>
       <EuiImage
@@ -87,7 +85,7 @@ export const MetricChartExample = {
           <p>
             The Metric is used to convey a single numerical value. It usually
             can represent a specific indicator like: the current CPU value or
-            the number of log ingested in the last minute. Used correctly, can
+            the number of logs ingested in the last minute. Used correctly, can
             be very effective represent an overall status.
           </p>
           <p>Some of the questions answered by this chart can be:</p>
@@ -104,7 +102,7 @@ export const MetricChartExample = {
             providing a contextual information layer.
           </p>
           <EuiCallOut title="Decorations" iconType="image">
-            These secondary visual representation should be considered
+            These secondary visual representations should be considered
             decorations. They cannot coexist at the same time (progress bar and
             trend) to limit the visual complexity and improve the
             understandability of the data
@@ -126,9 +124,9 @@ export const MetricChartExample = {
             color, or even better through a progress bar.
           </p>
           <p>
-            When using this chart the used text, title, subtitles should be
+            When using this chart the used text, title, and subtitles should be
             clearly described and self-explanatory, try to be specific without
-            being too verbose. Longer text, or very precise multi-digit numbers
+            being too verbose. Longer text or very precise multi-digit numbers
             can nullify the scope of the chart. You can use subtitles or Unit
             Text to clarify this and to inform the user of the choices and
             calculations that have been made prior.
@@ -155,26 +153,26 @@ export const MetricChartExample = {
             A <EuiCode>valueFormatter</EuiCode> is required to format the value.
             <br />
             Is important to limit the number of digits to the right amount
-            depending on your use case. Giving a 7digit number, for example{' '}
-            <EuiCode>$3,364,726M</EuiCode>
+            depending on your use case. Given a 7 digits number, for example,{' '}
+            <EuiCode>$3,364,726</EuiCode>
             to represent the current company is a detail that can be reserved
-            for tables, in this case you probably just need to represent the
-            overall magnitude, so reducing it to 4 digit plus a prefix could
+            for tables. In this case, you probably just need to represent the
+            overall magnitude, so reducing it to 4 digits plus a suffix could
             suffice <EuiCode>$3.365M</EuiCode>.
           </p>
           <p>
             The <EuiCode>color</EuiCode> attribute can be used to render a color
             background. Such color can be used for two reasons: aesthetic or
-            functional. In the functional one you can associated a color scale,
-            that depends on your value range, to give a qualitative indicator
-            about your value in that range.
+            functional. In the functional one you can associate a color scale,
+            which depends on your value range, to give a qualitative indicator
+            of your value in that range.
           </p>
           <p>
             If the passed <EuiCode>value</EuiCode> is a{' '}
             <EuiCode>Number</EuiCode> then you must provide a{' '}
             <EuiCode>valueFormatter</EuiCode>, if instead is a{' '}
-            <EuiCode>String</EuiCode> then you the{' '}
-            <EuiCode>valueFormatter</EuiCode> is not required.
+            <EuiCode>String</EuiCode> then the <EuiCode>valueFormatter</EuiCode>{' '}
+            is not required.
           </p>
         </>
       ),
@@ -197,28 +195,27 @@ export const MetricChartExample = {
       text: (
         <>
           <p>
-            The metric can also represent a progress, or a quantity within a
-            range. This abbelishment improves the context and increase the
-            readibility of the data.
+            The metric can also represent a progress or a quantity within a
+            range. This embellishment improves the context and increases the
+            readability of the data.
           </p>
           <p>
-            The length of a bar is one natural representation of a progress. To
-            simplify the readibility of the length, the bar always start at{' '}
+            The length of a bar is one natural representation of progress. To
+            simplify the readability of the length, the bar always starts at{' '}
             <strong>zero</strong>.
           </p>
           <EuiCallOut title="Zero baseline" color="warning" iconType="help">
             <p>
-              The zero baseline constraint, is a constraint that we already know
+              The zero baseline constraint is a constraint that we already know
               from bar charts: when the length of the bar is not proportional to
-              the value it represent that is becomes hard to discern that
-              quantity. If you are thinking of using a non-zero baseline (not
-              available in the Metric) try to reconsider the problem by
-              considering the bar as the increment/decrement of the value in
-              respect to a non-zero baseline like: revenue change from the past
-              year, or how many degrees above the normal body temperature.
-              Consider also that the absence of a visual scale with numerical
-              references makes the bar abstract and should be immediately clear
-              what it represents.
+              the value it represents it becomes hard to discern that quantity.
+              If you are thinking of using a non-zero baseline (not available in
+              the Metric) try to reconsider the problem by considering the bar
+              as the increment/decrement of the value with respect to a non-zero
+              baseline like revenue change from the past year, or how many
+              degrees above the normal body temperature. Consider also that the
+              absence of a visual scale with numerical references makes the bar
+              abstract and should be immediately clear what it represents.
             </p>
           </EuiCallOut>
           <EuiCallOut title="Negative values" color="warning" iconType="help">
@@ -257,30 +254,30 @@ export const MetricChartExample = {
       text: (
         <>
           <p>
-            A metric usually represent a statistic of a variable in a time
+            A metric usually represents a statistic of a variable in a time
             frame. To add a bit more context is possible to represent the trend
             of that variable over time, by plotting an overlay on the metric
             background.
           </p>
           <p>
             To achieve that, the <EuiCode>trend</EuiCode> needs to be filled
-            with an array of object in the form of{' '}
+            with an array of objects in the form of{' '}
             <EuiCode language="js">{'{x: number, y: number}'}</EuiCode>
           </p>
           <p>The trend is then rendered following these principles:</p>
           <ul>
             <li>
-              the vertical height represent the range from 0 to the maximum{' '}
+              the vertical height represents the range from 0 to the maximum{' '}
               <EuiCode>y</EuiCode> value.
             </li>
             <li>
-              the horizontal space represent the range from the minimum to the
+              the horizontal space represents the range from the minimum to the
               maximum <EuiCode>x</EuiCode> value
             </li>
             <li>
-              the trend height is limited to the 50% of the overall Metric
-              height, so the maximum <EuiCode>y</EuiCode> value always touches
-              the vertical middle of the metric chart.
+              the trend height is limited to 50% of the overall Metric height,
+              so the maximum <EuiCode>y</EuiCode> value always touches the
+              vertical middle of the metric chart.
             </li>
           </ul>
         </>
@@ -334,7 +331,7 @@ export const MetricChartExample = {
             you will get an horizontally aligned set of metrics
           </p>
           <p>
-            You can align vertically the progress bars directions to compare
+            You can align vertically the progress bars' directions to compare
             values using <EuiCode>LayoutDirection.Vertical</EuiCode>
           </p>
         </>
@@ -391,12 +388,12 @@ export const MetricChartExample = {
       text: (
         <>
           <p>
-            You can mix column and rows in the <EuiCode>data</EuiCode> array to
+            You can mix columns and rows in the <EuiCode>data</EuiCode> array to
             create a grid. The grid is filled with missing tiles to cover the
             last grid row. If you want to skip a tile, you can pass an{' '}
             <EuiCode>undefined</EuiCode> datum as an element of the array.
           </p>
-          <p>Different type of metric can be mixed together</p>
+          <p>Different types of metrics can be mixed together.</p>
         </>
       ),
       demo: <Grid />,
@@ -421,30 +418,31 @@ export const MetricChartExample = {
       text: (
         <>
           <p>
-            The Metric chart will take the parent <EuiCode>height</EuiCode> or
+            The Metric chart will take the parent <EuiCode>height</EuiCode> or{' '}
             <EuiCode>width</EuiCode> if those are fixed. If not you can still
             specify a fixed size for the component by constraining the size from
-            the <EuiCode>Chart</EuiCode>
-            component.
+            the <EuiCode>Chart</EuiCode> component.
           </p>
           <p>
             There is <strong>no minimum size</strong> for this component even
-            though, since font-sizes do not scale according to size but only
-            according to specific breakpoints, you might encounter few problems
-            if you work with large numbers at really small sizes.
+            though since font sizes do not scale according to size but only
+            according to specific breakpoints, you might encounter a few
+            problems if you work with large numbers at really small sizes.
           </p>
           <p>
-            Metric charts are composed by a series of elements that follow a
+            Metric charts are composed of a series of elements that follow a
             specified hierarchy. When resizing vertically, it might occur that
             there is not enough room to place all of them within the component.
             If that happens, automatically these elements get hidden starting
-            from the least important to the most important. Title and value will
-            never be hidden.
+            from the least important to the most important.{' '}
+            <EuiCode>title</EuiCode> and <EuiCode>value</EuiCode> will never be
+            hidden.
           </p>
           <p>
-            Below certain breakpoints, secondary elements such as Subtitle are
-            removed in order to leave as much space as possible for primary
-            elements (Title, value). Be aware of this limitation when dealing
+            Below certain breakpoints, secondary elements such as{' '}
+            <EuiCode>subtitles</EuiCode> are removed in order to leave as much
+            space as possible for primary elements (<EuiCode>title</EuiCode>,{' '}
+            <EuiCode>value</EuiCode>). Be aware of this limitation when dealing
             with small metrics.
           </p>
           <EuiCallOut
@@ -468,8 +466,7 @@ export const MetricChartExample = {
               When an applied filter makes the metric uncomputable (missing
               values in a windowed function, or filtered out values for a
               percentage calculation), then a <EuiCode>NaN</EuiCode> can be sent
-              as the
-              <EuiCode>value</EuiCode>. This will result in rendering a{' '}
+              as the <EuiCode>value</EuiCode>. This will result in rendering a{' '}
               <EuiCode>N/A</EuiCode> string, making clear that the chart is
               working but is not possible to compute the metric correctly.
             </li>
@@ -490,12 +487,12 @@ export const MetricChartExample = {
           <p>
             Don&apos;t rely solely on the background trend-line to provide a
             precise and understandable analysis of data trends. These options
-            give a contextual and wider layer of information that could help
+            give a contextual and wider layer of information that could help in
             understanding the overall trends and evolution of data but they are
             not detailed enough to get specific insights.
             <br />
             <br />
-            If your goal is to precisely see evolution of values over time
+            If your goal is to precisely see the evolution of values over time
             please use a line chart instead, where you&apos;ll have all the
             information required to perform a proper analysis (grid, values,
             axis, legend, etc)
@@ -526,10 +523,10 @@ export const MetricChartExample = {
             </li>
             <li>
               <strong>Plain Text</strong>: Within your dashboards, use plain
-              text with a dedicated box when a long explanation is needed.
+              text with a dedicated box when a long explanation is needed. The
               Metric chart has limitations in terms of component size and length
               of text, instead of abounding with text, switch to a simpler
-              component such a plain text.
+              component such as plain text.
             </li>
           </ol>
         </>

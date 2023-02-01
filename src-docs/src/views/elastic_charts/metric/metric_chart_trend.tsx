@@ -46,7 +46,7 @@ export function Trend() {
                 trendA11yTitle:
                   'The current number of visitors in the last 10 minutes',
                 trendA11yDescription:
-                  'The trends shows a steady number of unique visitors over the last 10 minutes',
+                  'The trend shows a stable number of unique visitors over the last 10 minutes',
               },
             ],
           ]}
