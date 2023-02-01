@@ -148,7 +148,11 @@ export const EuiHeader: FunctionComponent<EuiHeaderProps> = ({
   }
 
   return (
-    <div className={classes} {...rest}>
+    <div
+      className={classes}
+      data-fixed-header={position === 'fixed' || undefined} // Used by EuiFlyouts as a query selector
+      {...rest}
+    >
       {contents}
     </div>
   );

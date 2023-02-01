@@ -148,6 +148,14 @@ interface _EuiFlyoutProps {
    * `closeOnMouseup` will delay the close callback, allowing time for external toggle buttons to handle close behavior.
    */
   focusTrapProps?: Pick<EuiFocusTrapProps, 'closeOnMouseup' | 'shards'>;
+  /**
+   * By default, EuiFlyout will consider any fixed `EuiHeader`s that sit alongside or above the EuiFlyout
+   * as part of the flyout's focus trap. This prevents focus fighting with interactive elements
+   * within fixed headers.
+   *
+   * Set this to `false` if you need to disable this behavior for a specific reason.
+   */
+  includeFixedHeadersInFocusTrap?: boolean;
 }
 
 const defaultElement = 'div';
@@ -186,7 +194,8 @@ export const EuiFlyout = forwardRef(
       outsideClickCloses,
       role = 'dialog',
       pushMinBreakpoint = 'l',
-      focusTrapProps,
+      focusTrapProps: _focusTrapProps = {},
+      includeFixedHeadersInFocusTrap = true,
       ...rest
     }: EuiFlyoutProps<T>,
     ref:
@@ -316,6 +325,25 @@ export const EuiFlyout = forwardRef(
         </EuiI18n>
       );
     }
+
+    /*
+     * If not disabled, automatically add fixed EuiHeaders as shards
+     * to EuiFlyout focus traps, to prevent focus fighting
+     */
+    const [fixedHeaders, setFixedHeaders] = useState<HTMLDivElement[]>([]);
+    useEffect(() => {
+      if (includeFixedHeadersInFocusTrap) {
+        const fixedHeaderEls = document.querySelectorAll<HTMLDivElement>(
+          '.euiHeader[data-fixed-header]'
+        );
+        setFixedHeaders(Array.from(fixedHeaderEls));
+      }
+    }, [includeFixedHeadersInFocusTrap]);
+
+    const focusTrapProps: EuiFlyoutProps['focusTrapProps'] = {
+      ..._focusTrapProps,
+      shards: [...fixedHeaders, ...(_focusTrapProps.shards || [])],
+    };
 
     const hasOverlayMask = ownFocus && !isPushed;
     const onClickOutside = (event: MouseEvent | TouchEvent) => {
