@@ -271,4 +271,61 @@ describe('EuiSelectableListItem', () => {
       });
     });
   });
+
+  describe('group labels', () => {
+    const optionsWithGroupLabels: EuiSelectableOption[] = [
+      { label: 'Spaaaace' },
+      {
+        label: 'Moons',
+        isGroupLabel: true,
+      },
+      { label: 'Titan' },
+      { label: 'Io' },
+      {
+        label: 'Planets',
+        isGroupLabel: true,
+      },
+      { label: 'Mercury' },
+      { label: 'Mars' },
+      {
+        label: 'Suns',
+        isGroupLabel: true,
+      },
+    ];
+
+    it('renders with correct aria-setsize and aria-posinset offsets on non-group-labels', () => {
+      const { container } = render(
+        <EuiSelectableList
+          options={optionsWithGroupLabels}
+          {...selectableListRequiredProps}
+        />
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
+    it('handles updating aria attrs correctly when options are changed/updated', () => {
+      const { container, rerender } = render(
+        <EuiSelectableList
+          options={optionsWithGroupLabels}
+          isVirtualized={false}
+          {...selectableListRequiredProps}
+        />
+      );
+
+      const updatedOptions: EuiSelectableOption[] = [
+        ...optionsWithGroupLabels.slice(1),
+        { label: 'Sol' },
+      ];
+      rerender(
+        <EuiSelectableList
+          options={updatedOptions}
+          isVirtualized={false}
+          {...selectableListRequiredProps}
+        />
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+    });
+  });
 });

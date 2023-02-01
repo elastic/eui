@@ -3705,3 +3705,366 @@ exports[`EuiSelectableListItem props visibleOptions 1`] = `
   </div>
 </div>
 `;
+
+exports[`EuiSelectableListItem group labels handles updating aria attrs correctly when options are changed/updated 1`] = `
+<div
+  class="euiSelectableList testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiSelectableList__list"
+    tabindex="-1"
+  >
+    <ul
+      aria-activedescendant="option_undefined"
+      aria-label="aria-label"
+      aria-multiselectable="true"
+      id="list"
+      role="listbox"
+      tabindex="0"
+    >
+      <li
+        class="euiSelectableList__groupLabel"
+        role="presentation"
+      >
+        Moons
+      </li>
+      <li
+        aria-checked="false"
+        aria-posinset="1"
+        aria-selected="false"
+        aria-setsize="5"
+        class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+        data-test-selected="false"
+        id="option_1"
+        role="option"
+        title="Titan"
+      >
+        <span
+          class="euiSelectableListItem__content"
+        >
+          <span
+            class="euiSelectableListItem__icon"
+            data-euiicon-type="empty"
+          />
+          <span
+            class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+          >
+            <span>
+              Titan
+            </span>
+          </span>
+        </span>
+      </li>
+      <li
+        aria-checked="false"
+        aria-posinset="2"
+        aria-selected="false"
+        aria-setsize="5"
+        class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+        data-test-selected="false"
+        id="option_2"
+        role="option"
+        title="Io"
+      >
+        <span
+          class="euiSelectableListItem__content"
+        >
+          <span
+            class="euiSelectableListItem__icon"
+            data-euiicon-type="empty"
+          />
+          <span
+            class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+          >
+            <span>
+              Io
+            </span>
+          </span>
+        </span>
+      </li>
+      <li
+        class="euiSelectableList__groupLabel"
+        role="presentation"
+      >
+        Planets
+      </li>
+      <li
+        aria-checked="false"
+        aria-posinset="3"
+        aria-selected="false"
+        aria-setsize="5"
+        class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+        data-test-selected="false"
+        id="option_4"
+        role="option"
+        title="Mercury"
+      >
+        <span
+          class="euiSelectableListItem__content"
+        >
+          <span
+            class="euiSelectableListItem__icon"
+            data-euiicon-type="empty"
+          />
+          <span
+            class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+          >
+            <span>
+              Mercury
+            </span>
+          </span>
+        </span>
+      </li>
+      <li
+        aria-checked="false"
+        aria-posinset="4"
+        aria-selected="false"
+        aria-setsize="5"
+        class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+        data-test-selected="false"
+        id="option_5"
+        role="option"
+        title="Mars"
+      >
+        <span
+          class="euiSelectableListItem__content"
+        >
+          <span
+            class="euiSelectableListItem__icon"
+            data-euiicon-type="empty"
+          />
+          <span
+            class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+          >
+            <span>
+              Mars
+            </span>
+          </span>
+        </span>
+      </li>
+      <li
+        class="euiSelectableList__groupLabel"
+        role="presentation"
+      >
+        Suns
+      </li>
+      <li
+        aria-checked="false"
+        aria-posinset="5"
+        aria-selected="false"
+        aria-setsize="5"
+        class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+        data-test-selected="false"
+        id="option_7"
+        role="option"
+        title="Sol"
+      >
+        <span
+          class="euiSelectableListItem__content"
+        >
+          <span
+            class="euiSelectableListItem__icon"
+            data-euiicon-type="empty"
+          />
+          <span
+            class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+          >
+            <span>
+              Sol
+            </span>
+          </span>
+        </span>
+      </li>
+    </ul>
+  </div>
+</div>
+`;
+
+exports[`EuiSelectableListItem group labels renders with correct aria-setsize and aria-posinset offsets on non-group-labels 1`] = `
+<div
+  class="euiSelectableList testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    data-eui="EuiAutoSizer"
+  >
+    <div
+      class="euiSelectableList__list"
+      style="position: relative; height: 208px; width: 600px; overflow: auto; will-change: transform; direction: ltr;"
+      tabindex="-1"
+    >
+      <ul
+        aria-label="aria-label"
+        aria-multiselectable="true"
+        id="list"
+        role="listbox"
+        style="height: 256px; width: 100%;"
+        tabindex="0"
+      >
+        <li
+          aria-checked="false"
+          aria-posinset="1"
+          aria-selected="false"
+          aria-setsize="5"
+          class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+          data-test-selected="false"
+          id="option_0"
+          role="option"
+          style="position: absolute; left: 0px; top: 0px; height: 32px; width: 100%;"
+          title="Spaaaace"
+        >
+          <span
+            class="euiSelectableListItem__content"
+          >
+            <span
+              class="euiSelectableListItem__icon"
+              data-euiicon-type="empty"
+            />
+            <span
+              class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+            >
+              <span>
+                Spaaaace
+              </span>
+            </span>
+          </span>
+        </li>
+        <li
+          class="euiSelectableList__groupLabel"
+          role="presentation"
+          style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
+        >
+          Moons
+        </li>
+        <li
+          aria-checked="false"
+          aria-posinset="2"
+          aria-selected="false"
+          aria-setsize="5"
+          class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+          data-test-selected="false"
+          id="option_2"
+          role="option"
+          style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
+          title="Titan"
+        >
+          <span
+            class="euiSelectableListItem__content"
+          >
+            <span
+              class="euiSelectableListItem__icon"
+              data-euiicon-type="empty"
+            />
+            <span
+              class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+            >
+              <span>
+                Titan
+              </span>
+            </span>
+          </span>
+        </li>
+        <li
+          aria-checked="false"
+          aria-posinset="3"
+          aria-selected="false"
+          aria-setsize="5"
+          class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+          data-test-selected="false"
+          id="option_3"
+          role="option"
+          style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
+          title="Io"
+        >
+          <span
+            class="euiSelectableListItem__content"
+          >
+            <span
+              class="euiSelectableListItem__icon"
+              data-euiicon-type="empty"
+            />
+            <span
+              class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+            >
+              <span>
+                Io
+              </span>
+            </span>
+          </span>
+        </li>
+        <li
+          class="euiSelectableList__groupLabel"
+          role="presentation"
+          style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
+        >
+          Planets
+        </li>
+        <li
+          aria-checked="false"
+          aria-posinset="4"
+          aria-selected="false"
+          aria-setsize="5"
+          class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+          data-test-selected="false"
+          id="option_5"
+          role="option"
+          style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
+          title="Mercury"
+        >
+          <span
+            class="euiSelectableListItem__content"
+          >
+            <span
+              class="euiSelectableListItem__icon"
+              data-euiicon-type="empty"
+            />
+            <span
+              class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+            >
+              <span>
+                Mercury
+              </span>
+            </span>
+          </span>
+        </li>
+        <li
+          aria-checked="false"
+          aria-posinset="5"
+          aria-selected="false"
+          aria-setsize="5"
+          class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+          data-test-selected="false"
+          id="option_6"
+          role="option"
+          style="position: absolute; left: 0px; top: 192px; height: 32px; width: 100%;"
+          title="Mars"
+        >
+          <span
+            class="euiSelectableListItem__content"
+          >
+            <span
+              class="euiSelectableListItem__icon"
+              data-euiicon-type="empty"
+            />
+            <span
+              class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+            >
+              <span>
+                Mars
+              </span>
+            </span>
+          </span>
+        </li>
+        <li
+          class="euiSelectableList__groupLabel"
+          role="presentation"
+          style="position: absolute; left: 0px; top: 224px; height: 32px; width: 100%;"
+        >
+          Suns
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
