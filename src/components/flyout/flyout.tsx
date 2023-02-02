@@ -127,15 +127,6 @@ interface _EuiFlyoutProps {
    */
   side?: _EuiFlyoutSide;
   /**
-   * Defaults to `dialog` which is best for most cases of the flyout.
-   *
-   * You may pass in your own aria role, or `null` to remove it and use the semantic `as` element instead,
-   * but be **extremely** cautious as this affects the instructions read out to screen readers.
-   *
-   * @default dialog
-   */
-  role?: null | string;
-  /**
    * Named breakpoint (`xs` through `xl`) for customizing the minimum window width to enable the `push` type
    * @default l
    */
@@ -190,7 +181,6 @@ export const EuiFlyout = forwardRef(
       maskProps,
       type = 'overlay',
       outsideClickCloses,
-      role = 'dialog',
       pushMinBreakpoint = 'l',
       focusTrapProps: _focusTrapProps = {},
       includeFixedHeadersInFocusTrap = true,
@@ -303,11 +293,7 @@ export const EuiFlyout = forwardRef(
       ];
 
       closeButton = (
-        <EuiI18n
-          token="euiFlyout.closeAriaLabel"
-          default="Close this {role}"
-          values={{ role: role || Element }}
-        >
+        <EuiI18n token="euiFlyout.closeAriaLabel" default="Close this dialog">
           {(closeAriaLabel: string) => (
             <EuiButtonIcon
               css={closeButtonCssStyles}
@@ -369,23 +355,21 @@ export const EuiFlyout = forwardRef(
     const screenReaderDescription = (
       <EuiScreenReaderOnly>
         <p id={descriptionId}>
-          <EuiI18n
-            token="euiFlyout.screenReaderEscapeToClose"
-            default="You are in a {role}. To close this {role}, press Escape."
-            values={{ role: role || Element }}
-          />{' '}
-          {hasOverlayMask && (
+          {hasOverlayMask ? (
             <EuiI18n
-              token="euiFlyout.screenReaderTapToClose"
-              default="Or tap/click outside the {role} on the shadowed overlay to close."
-              values={{ role: role || Element }}
+              token="euiFlyout.screenReaderModalDialog"
+              default="You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close."
+            />
+          ) : (
+            <EuiI18n
+              token="euiFlyout.screenReaderNonModalDialog"
+              default="You are in a non-modal dialog. To close the dialog, press Escape."
             />
           )}{' '}
           {fixedHeaders.length > 0 && (
             <EuiI18n
               token="euiFlyout.screenReaderFixedHeaders"
-              default="You can still continue tabbing through the page headers in addition to the {role}."
-              values={{ role: role || Element }}
+              default="You can still continue tabbing through the page headers in addition to the dialog."
             />
           )}
         </p>
@@ -428,7 +412,7 @@ export const EuiFlyout = forwardRef(
         <Element
           css={cssStyles}
           {...(rest as ComponentPropsWithRef<T>)}
-          role={role}
+          role="dialog"
           className={classes}
           tabIndex={0}
           data-autofocus
