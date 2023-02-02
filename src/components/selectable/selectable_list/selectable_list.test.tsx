@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { render } from '../../../test/rtl';
 import { requiredProps } from '../../../test/required_props';
 
 import { EuiSelectableList } from './selectable_list';
@@ -47,15 +47,16 @@ const selectableListRequiredProps = {
 
 describe('EuiSelectableListItem', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiSelectableList options={options} {...selectableListRequiredProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
+
   describe('props', () => {
     test('visibleOptions', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelectableList
           options={options}
           visibleOptions={options.slice(2)}
@@ -63,11 +64,11 @@ describe('EuiSelectableListItem', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('searchValue', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelectableList
           options={options}
           searchValue="Mi"
@@ -75,11 +76,11 @@ describe('EuiSelectableListItem', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('searchValue', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelectableList
           options={options}
           searchValue="Mi"
@@ -87,11 +88,11 @@ describe('EuiSelectableListItem', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('renderOption', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelectableList
           options={options}
           renderOption={(option: EuiSelectableOption, searchValue?: string) => {
@@ -105,11 +106,11 @@ describe('EuiSelectableListItem', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('height is forced', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelectableList
           options={options}
           height={200}
@@ -117,11 +118,11 @@ describe('EuiSelectableListItem', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('height is full', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelectableList
           options={options}
           height="full"
@@ -129,11 +130,11 @@ describe('EuiSelectableListItem', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('allowExclusions', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelectableList
           options={options}
           allowExclusions
@@ -141,11 +142,11 @@ describe('EuiSelectableListItem', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('activeOptionIndex', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelectableList
           options={options}
           activeOptionIndex={2}
@@ -153,11 +154,11 @@ describe('EuiSelectableListItem', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('rowHeight', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelectableList
           options={options}
           rowHeight={20}
@@ -165,11 +166,11 @@ describe('EuiSelectableListItem', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('showIcons can be turned off', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelectableList
           options={options}
           showIcons={false}
@@ -177,11 +178,11 @@ describe('EuiSelectableListItem', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('singleSelection can be turned on', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelectableList
           options={options}
           singleSelection={true}
@@ -189,11 +190,11 @@ describe('EuiSelectableListItem', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('singleSelection can be forced so that at least one must be selected', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelectableList
           options={options}
           singleSelection="always"
@@ -201,11 +202,11 @@ describe('EuiSelectableListItem', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('bordered', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelectableList
           options={options}
           bordered
@@ -213,11 +214,11 @@ describe('EuiSelectableListItem', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('isVirtualized can be false', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelectableList
           options={options}
           isVirtualized={false}
@@ -225,11 +226,11 @@ describe('EuiSelectableListItem', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('searchable enables correct screen reader instructions', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelectableList
           options={options}
           searchable={true}
@@ -237,13 +238,13 @@ describe('EuiSelectableListItem', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     describe('paddingSize', () => {
       PADDING_SIZES.forEach((size) => {
         test(`${size} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiSelectableList
               options={options}
               paddingSize={size}
@@ -251,14 +252,14 @@ describe('EuiSelectableListItem', () => {
             />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
 
     describe('textWrap', () => {
       test('can be "wrap"', () => {
-        const component = render(
+        const { container } = render(
           <EuiSelectableList
             options={options}
             textWrap="wrap"
@@ -266,8 +267,65 @@ describe('EuiSelectableListItem', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
+    });
+  });
+
+  describe('group labels', () => {
+    const optionsWithGroupLabels: EuiSelectableOption[] = [
+      { label: 'Spaaaace' },
+      {
+        label: 'Moons',
+        isGroupLabel: true,
+      },
+      { label: 'Titan' },
+      { label: 'Io' },
+      {
+        label: 'Planets',
+        isGroupLabel: true,
+      },
+      { label: 'Mercury' },
+      { label: 'Mars' },
+      {
+        label: 'Suns',
+        isGroupLabel: true,
+      },
+    ];
+
+    it('renders with correct aria-setsize and aria-posinset offsets on non-group-labels', () => {
+      const { container } = render(
+        <EuiSelectableList
+          options={optionsWithGroupLabels}
+          {...selectableListRequiredProps}
+        />
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
+    it('handles updating aria attrs correctly when options are changed/updated', () => {
+      const { container, rerender } = render(
+        <EuiSelectableList
+          options={optionsWithGroupLabels}
+          isVirtualized={false}
+          {...selectableListRequiredProps}
+        />
+      );
+
+      const updatedOptions: EuiSelectableOption[] = [
+        ...optionsWithGroupLabels.slice(1),
+        { label: 'Sol' },
+      ];
+      rerender(
+        <EuiSelectableList
+          options={updatedOptions}
+          isVirtualized={false}
+          {...selectableListRequiredProps}
+        />
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });
