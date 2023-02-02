@@ -84,7 +84,7 @@ export type EuiCodeBlockProps = EuiCodeSharedProps & {
   /**
    * Displays line numbers.
    * Optionally accepts a configuration object for setting the starting number, visual highlighting ranges and annotations:
-   * `{ start: 100, highlight: '1, 5-10, 20-30, 40', annotation: '2, 5, 10' }`
+   * `{ start: 100, highlight: '1, 5-10, 20-30, 40', annotations: { 3: 'Some annotation text', 5: 'Another annotation text' }`
    */
   lineNumbers?: boolean | LineNumbersConfig;
 

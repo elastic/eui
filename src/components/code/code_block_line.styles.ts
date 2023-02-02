@@ -62,7 +62,7 @@ export const euiCodeBlockLineStyles = (euiThemeContext: UseEuiTheme) => {
         }
       `,
       hasAnnotation: css`
-        background: red;
+        background: pink;
       `,
     },
   };
