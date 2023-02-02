@@ -11,6 +11,7 @@
 import React, { useState } from 'react';
 
 import { EuiGlobalToastList } from '../toast';
+import { EuiHeader } from '../header';
 import { EuiFlyout } from './flyout';
 
 const childrenDefault = (
@@ -155,6 +156,58 @@ describe('EuiFlyout', () => {
         .then(() => {
           expect(cy.get('[data-test-subj="flyoutSpec"]').should('not.exist'));
         });
+    });
+  });
+
+  describe('EuiHeader shards', () => {
+    const FlyoutWithHeader = ({ children = childrenDefault, ...rest }) => {
+      const [isOpen, setIsOpen] = useState(false);
+
+      return (
+        <>
+          <EuiHeader position="fixed">
+            <button
+              data-test-subj="toggleFlyoutFromHeader"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              Toggle flyout
+            </button>
+          </EuiHeader>
+          {isOpen ? (
+            <EuiFlyout
+              data-test-subj="flyoutSpec"
+              onClose={() => setIsOpen(false)}
+              {...rest}
+            >
+              {children}
+            </EuiFlyout>
+          ) : null}
+        </>
+      );
+    };
+
+    it('correctly focuses on the flyout wrapper when flyouts are toggled from headers', () => {
+      cy.mount(<FlyoutWithHeader />);
+      cy.get('[data-test-subj="toggleFlyoutFromHeader"]').click();
+      cy.focused().should('have.class', 'euiFlyout');
+    });
+
+    it('automatically includes fixed EuiHeaders on the page as shards, including them in the tab rotation', () => {
+      cy.mount(<FlyoutWithHeader />);
+      cy.get('[data-test-subj="toggleFlyoutFromHeader"]').click();
+      cy.repeatRealPress('Tab', 6);
+      cy.focused().should(
+        'have.attr',
+        'data-test-subj',
+        'toggleFlyoutFromHeader'
+      );
+    });
+
+    it('does not shard fixed headers if `includeFixedHeadersInFocusTrap` is set to false', () => {
+      cy.mount(<FlyoutWithHeader includeFixedHeadersInFocusTrap={false} />);
+      cy.get('[data-test-subj="toggleFlyoutFromHeader"]').click();
+      cy.repeatRealPress('Tab', 6);
+      cy.focused().should('have.class', 'euiFlyout');
     });
   });
 });

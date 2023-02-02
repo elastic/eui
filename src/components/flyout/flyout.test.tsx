@@ -8,9 +8,11 @@
 
 import React from 'react';
 import { mount } from 'enzyme';
+import { render } from '../../test/rtl';
 import { requiredProps, takeMountedSnapshot } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
+import { EuiHeader } from '../header';
 import { EuiFlyout, SIZES, PADDING_SIZES, SIDES } from './flyout';
 
 jest.mock('../overlay_mask', () => ({
@@ -37,6 +39,36 @@ describe('EuiFlyout', () => {
     expect(
       takeMountedSnapshot(component, { hasArrayOutput: true })
     ).toMatchSnapshot();
+  });
+
+  it('renders extra screen reader instructions when fixed EuiHeaders headers exist on the page', () => {
+    const { baseElement, queryByText, rerender } = render(
+      <>
+        <EuiHeader position="fixed" />
+        <EuiFlyout {...requiredProps} onClose={() => {}} />
+      </>
+    );
+
+    expect(baseElement).toMatchSnapshot();
+    expect(
+      queryByText(
+        'You can still continue tabbing through the page headers in addition to the dialog.',
+        { exact: false }
+      )
+    ).toBeTruthy();
+
+    // Should not shard or render instructions when `includeFixedHeadersInFocusTrap={false}
+    rerender(
+      <>
+        <EuiHeader position="fixed" />
+        <EuiFlyout onClose={() => {}} includeFixedHeadersInFocusTrap={false} />
+      </>
+    );
+    expect(
+      queryByText('You can still continue tabbing through the page headers', {
+        exact: false,
+      })
+    ).toBeFalsy();
   });
 
   describe('props', () => {

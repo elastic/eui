@@ -349,6 +349,9 @@ export const EuiFlyout = forwardRef(
             resizeRef?.focus();
           }
         });
+      } else {
+        // Clear existing headers if necessary, e.g. switching to `false`
+        setFixedHeaders((headers) => (headers.length ? [] : headers));
       }
     }, [includeFixedHeadersInFocusTrap, resizeRef]);
 
