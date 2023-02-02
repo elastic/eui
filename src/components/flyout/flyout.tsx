@@ -14,7 +14,6 @@ import React, {
   ComponentPropsWithRef,
   CSSProperties,
   ElementType,
-  Fragment,
   FunctionComponent,
   MouseEvent as ReactMouseEvent,
   MutableRefObject,
@@ -458,10 +457,10 @@ export const EuiFlyout = forwardRef(
     }
 
     return (
-      <Fragment>
+      <>
         <EuiWindowEvent event="keydown" handler={onKeyDown} />
         {flyout}
-      </Fragment>
+      </>
     );
   }
   // React.forwardRef interferes with the inferred element type
