@@ -184,6 +184,7 @@ export const typeToPathMap = {
   indexSettings: 'index_settings',
   indexTemporary: 'indexTemporary',
   infinity: 'infinity',
+  info: 'info',
   inputOutput: 'inputOutput',
   inspect: 'inspect',
   invert: 'invert',

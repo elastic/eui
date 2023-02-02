@@ -129,6 +129,7 @@ export const iconTypes = [
   'indexSettings',
   'indexTemporary',
   'infinity',
+  'info',
   'inputOutput',
   'inspect',
   'invert',
