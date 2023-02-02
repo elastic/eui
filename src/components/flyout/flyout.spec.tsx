@@ -42,23 +42,17 @@ const Flyout = ({ children = childrenDefault, ...rest }) => {
 
 describe('EuiFlyout', () => {
   describe('Focus behavior', () => {
-    it('focuses the close button by default', () => {
+    it('focuses the flyout wrapper by default', () => {
       cy.mount(<Flyout />);
-      cy.focused().should(
-        'have.attr',
-        'data-test-subj',
-        'euiFlyoutCloseButton'
-      );
+      cy.focused().should('have.class', 'euiFlyout');
+      cy.focused().should('have.attr', 'data-autofocus', 'true');
     });
 
     it('traps focus and cycles tabbable items', () => {
       cy.mount(<Flyout />);
-      cy.realPress('Tab');
-      cy.realPress('Tab');
-      cy.realPress('Tab');
+      cy.repeatRealPress('Tab', 4);
       cy.focused().should('have.attr', 'data-test-subj', 'itemC');
-      cy.realPress('Tab');
-      cy.realPress('Tab');
+      cy.repeatRealPress('Tab', 3);
       cy.focused().should(
         'have.attr',
         'data-test-subj',
@@ -70,9 +64,11 @@ describe('EuiFlyout', () => {
   describe('Close behavior: standard', () => {
     it('closes the flyout when the close button is clicked', () => {
       cy.mount(<Flyout />);
-      cy.realPress('Enter').then(() => {
-        expect(cy.get('[data-test-subj="flyoutSpec"]').should('not.exist'));
-      });
+      cy.get('[data-test-subj="euiFlyoutCloseButton"]')
+        .click()
+        .then(() => {
+          expect(cy.get('[data-test-subj="flyoutSpec"]').should('not.exist'));
+        });
     });
 
     it('closes the flyout with `escape` key', () => {

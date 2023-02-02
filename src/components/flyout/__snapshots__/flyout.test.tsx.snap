@@ -14,9 +14,10 @@ Array [
       <div
         aria-label="aria-label"
         class="euiFlyout testClass1 testClass2 emotion-euiFlyout-l-m-noMaxWidth-overlay-right"
+        data-autofocus="true"
         data-test-subj="test subject string"
         role="dialog"
-        tabindex="-1"
+        tabindex="0"
       >
         <button
           aria-label="Close this dialog"
@@ -55,9 +56,10 @@ Array [
     >
       <div
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right"
+        data-autofocus="true"
         id="imaflyout"
         role="dialog"
-        tabindex="-1"
+        tabindex="0"
       >
         <button
           aria-label="Close this dialog"
@@ -96,8 +98,9 @@ Array [
     >
       <div
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right"
+        data-autofocus="true"
         role="dialog"
-        tabindex="-1"
+        tabindex="0"
       >
         <button
           aria-label="Close this dialog"
@@ -136,8 +139,9 @@ Array [
     >
       <div
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right"
+        data-autofocus="true"
         role="dialog"
-        tabindex="-1"
+        tabindex="0"
       >
         <button
           aria-label="aria-label"
@@ -176,8 +180,9 @@ Array [
     >
       <div
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right"
+        data-autofocus="true"
         role="dialog"
-        tabindex="-1"
+        tabindex="0"
       />
     </div>
     <div
@@ -202,8 +207,9 @@ Array [
     >
       <nav
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right"
+        data-autofocus="true"
         role="dialog"
-        tabindex="-1"
+        tabindex="0"
       >
         <button
           aria-label="Close this dialog"
@@ -242,9 +248,10 @@ Array [
     >
       <div
         class="euiFlyout emotion-euiFlyout-l-m-overlay-right"
+        data-autofocus="true"
         role="dialog"
         style="max-inline-size: 1024px;"
-        tabindex="-1"
+        tabindex="0"
       >
         <button
           aria-label="Close this dialog"
@@ -283,9 +290,10 @@ Array [
     >
       <div
         class="euiFlyout emotion-euiFlyout-l-m-overlay-right"
+        data-autofocus="true"
         role="dialog"
         style="max-inline-size: 24rem;"
-        tabindex="-1"
+        tabindex="0"
       >
         <button
           aria-label="Close this dialog"
@@ -324,8 +332,9 @@ Array [
     >
       <div
         class="euiFlyout emotion-euiFlyout-l-m-overlay-right"
+        data-autofocus="true"
         role="dialog"
-        tabindex="-1"
+        tabindex="0"
       >
         <button
           aria-label="Close this dialog"
@@ -363,9 +372,11 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
+        aria-describedby="generated-id"
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right"
+        data-autofocus="true"
         role="dialog"
-        tabindex="-1"
+        tabindex="0"
       >
         <button
           aria-label="Close this dialog"
@@ -404,8 +415,9 @@ Array [
     >
       <div
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right"
+        data-autofocus="true"
         role="dialog"
-        tabindex="-1"
+        tabindex="0"
       >
         <button
           aria-label="Close this dialog"
@@ -443,8 +455,9 @@ Array [
   >
     <div
       class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right"
+      data-autofocus="true"
       role="dialog"
-      tabindex="-1"
+      tabindex="0"
     >
       <button
         aria-label="Close this dialog"
@@ -482,8 +495,9 @@ Array [
     >
       <div
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right"
+        data-autofocus="true"
         role="dialog"
-        tabindex="-1"
+        tabindex="0"
       >
         <button
           aria-label="Close this dialog"
@@ -522,8 +536,9 @@ Array [
     >
       <div
         class="euiFlyout emotion-euiFlyout-m-m-noMaxWidth-overlay-right"
+        data-autofocus="true"
         role="dialog"
-        tabindex="-1"
+        tabindex="0"
       >
         <button
           aria-label="Close this dialog"
@@ -562,8 +577,9 @@ Array [
     >
       <div
         class="euiFlyout emotion-euiFlyout-none-m-noMaxWidth-overlay-right"
+        data-autofocus="true"
         role="dialog"
-        tabindex="-1"
+        tabindex="0"
       >
         <button
           aria-label="Close this dialog"
@@ -602,8 +618,9 @@ Array [
     >
       <div
         class="euiFlyout emotion-euiFlyout-s-m-noMaxWidth-overlay-right"
+        data-autofocus="true"
         role="dialog"
-        tabindex="-1"
+        tabindex="0"
       >
         <button
           aria-label="Close this dialog"
@@ -642,7 +659,8 @@ Array [
     >
       <div
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right"
-        tabindex="-1"
+        data-autofocus="true"
+        tabindex="0"
       >
         <button
           aria-label="Close this dialog"
@@ -681,8 +699,9 @@ Array [
     >
       <div
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-left"
+        data-autofocus="true"
         role="dialog"
-        tabindex="-1"
+        tabindex="0"
       >
         <button
           aria-label="Close this dialog"
@@ -721,8 +740,9 @@ Array [
     >
       <div
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right"
+        data-autofocus="true"
         role="dialog"
-        tabindex="-1"
+        tabindex="0"
       >
         <button
           aria-label="Close this dialog"
@@ -761,9 +781,10 @@ Array [
     >
       <div
         class="euiFlyout emotion-euiFlyout-l-noMaxWidth-overlay-right"
+        data-autofocus="true"
         role="dialog"
         style="inline-size: 500px;"
-        tabindex="-1"
+        tabindex="0"
       >
         <button
           aria-label="Close this dialog"
@@ -802,8 +823,9 @@ Array [
     >
       <div
         class="euiFlyout emotion-euiFlyout-l-l-noMaxWidth-overlay-right"
+        data-autofocus="true"
         role="dialog"
-        tabindex="-1"
+        tabindex="0"
       >
         <button
           aria-label="Close this dialog"
@@ -842,8 +864,9 @@ Array [
     >
       <div
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right"
+        data-autofocus="true"
         role="dialog"
-        tabindex="-1"
+        tabindex="0"
       >
         <button
           aria-label="Close this dialog"
@@ -882,8 +905,9 @@ Array [
     >
       <div
         class="euiFlyout emotion-euiFlyout-l-s-noMaxWidth-overlay-right"
+        data-autofocus="true"
         role="dialog"
-        tabindex="-1"
+        tabindex="0"
       >
         <button
           aria-label="Close this dialog"
@@ -921,8 +945,9 @@ Array [
   >
     <div
       class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-push-right-right"
+      data-autofocus="true"
       role="dialog"
-      tabindex="-1"
+      tabindex="0"
     >
       <button
         aria-label="Close this dialog"
@@ -945,4 +970,67 @@ Array [
     tabindex="-1"
   />,
 ]
+`;
+
+exports[`EuiFlyout renders extra screen reader instructions when fixed EuiHeaders headers exist on the page 1`] = `
+<body
+  class="euiBody--headerIsFixed euiBody--hasFlyout"
+  data-fixed-headers="1"
+>
+  <div>
+    <div
+      class="euiHeader euiHeader--default euiHeader--fixed"
+      data-fixed-header="true"
+    />
+    <div>
+      <div
+        data-focus-guard="true"
+        style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+        tabindex="0"
+      />
+      <div
+        data-focus-lock-disabled="false"
+      >
+        <div
+          aria-describedby="generated-id"
+          aria-label="aria-label"
+          class="euiFlyout testClass1 testClass2 emotion-euiFlyout-l-m-noMaxWidth-overlay-right"
+          data-autofocus="true"
+          data-test-subj="test subject string"
+          role="dialog"
+          tabindex="0"
+        >
+          <p
+            class="emotion-euiScreenReaderOnly"
+            id="generated-id"
+          >
+            You are in a dialog. To close this dialog, press Escape.
+             
+            Or tap/click outside the dialog on the shadowed overlay to close.
+             
+            You can still continue tabbing through the page headers in addition to the dialog.
+          </p>
+          <button
+            aria-label="Close this dialog"
+            class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
+            data-test-subj="euiFlyoutCloseButton"
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+              class="euiButtonIcon__icon"
+              color="inherit"
+              data-euiicon-type="cross"
+            />
+          </button>
+        </div>
+      </div>
+      <div
+        data-focus-guard="true"
+        style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+        tabindex="0"
+      />
+    </div>
+  </div>
+</body>
 `;

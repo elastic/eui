@@ -330,15 +330,25 @@ export const EuiFlyout = forwardRef(
      * If not disabled, automatically add fixed EuiHeaders as shards
      * to EuiFlyout focus traps, to prevent focus fighting
      */
+    const flyoutToggle = useRef<Element | null>(document.activeElement);
     const [fixedHeaders, setFixedHeaders] = useState<HTMLDivElement[]>([]);
+
     useEffect(() => {
       if (includeFixedHeadersInFocusTrap) {
         const fixedHeaderEls = document.querySelectorAll<HTMLDivElement>(
           '.euiHeader[data-fixed-header]'
         );
         setFixedHeaders(Array.from(fixedHeaderEls));
+
+        // Flyouts that are toggled from fixed headers do not have working
+        // focus trap autoFocus, so we need to focus the flyout wrapper ourselves
+        fixedHeaderEls.forEach((header) => {
+          if (header.contains(flyoutToggle.current)) {
+            resizeRef?.focus();
+          }
+        });
       }
-    }, [includeFixedHeadersInFocusTrap]);
+    }, [includeFixedHeadersInFocusTrap, resizeRef]);
 
     const focusTrapProps: EuiFlyoutProps['focusTrapProps'] = {
       ..._focusTrapProps,
@@ -383,7 +393,8 @@ export const EuiFlyout = forwardRef(
           {...(rest as ComponentPropsWithRef<T>)}
           role={role}
           className={classes}
-          tabIndex={-1}
+          tabIndex={0}
+          data-autofocus
           style={newStyle}
           ref={setRef}
         >

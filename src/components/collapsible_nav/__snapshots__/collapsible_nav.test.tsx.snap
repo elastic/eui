@@ -13,9 +13,10 @@ Array [
     >
       <nav
         class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left"
+        data-autofocus="true"
         id="id"
         style="inline-size: 320px;"
-        tabindex="-1"
+        tabindex="0"
       >
         <button
           aria-label="Close this dialog"
@@ -57,10 +58,11 @@ Array [
       <nav
         aria-label="aria-label"
         class="euiFlyout euiCollapsibleNav testClass1 testClass2 emotion-euiFlyout-none-noMaxWidth-overlay-left"
+        data-autofocus="true"
         data-test-subj="test subject string"
         id="id"
         style="inline-size: 320px;"
-        tabindex="-1"
+        tabindex="0"
       >
         <button
           aria-label="Close this dialog"
@@ -98,9 +100,10 @@ Array [
   >
     <nav
       class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left"
+      data-autofocus="true"
       id="id"
       style="inline-size: 240px;"
-      tabindex="-1"
+      tabindex="0"
     >
       <button
         aria-label="Close this dialog"
@@ -143,9 +146,10 @@ Array [
     >
       <nav
         class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left"
+        data-autofocus="true"
         id="id"
         style="inline-size: 320px;"
-        tabindex="-1"
+        tabindex="0"
       >
         <button
           aria-label="Close this dialog"
@@ -184,9 +188,10 @@ Array [
     >
       <nav
         class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left"
+        data-autofocus="true"
         id="id"
         style="inline-size: 320px;"
-        tabindex="-1"
+        tabindex="0"
       >
         <button
           aria-label="Close this dialog"
@@ -224,9 +229,10 @@ Array [
   >
     <nav
       class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-push-left-left"
+      data-autofocus="true"
       id="id"
       style="inline-size:320px"
-      tabindex="-1"
+      tabindex="0"
     />
   </div>,
   <div
@@ -250,9 +256,10 @@ Array [
     >
       <nav
         class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left"
+        data-autofocus="true"
         id="id"
         style="inline-size: 320px;"
-        tabindex="-1"
+        tabindex="0"
       >
         <button
           aria-label="Close this dialog"
@@ -295,9 +302,10 @@ Array [
   >
     <nav
       class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-push-left-left"
+      data-autofocus="true"
       id="id"
       style="inline-size: 320px;"
-      tabindex="-1"
+      tabindex="0"
     />
   </div>,
   <div
@@ -321,9 +329,10 @@ Array [
     >
       <nav
         class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left"
+        data-autofocus="true"
         id="id"
         style="inline-size: 240px;"
-        tabindex="-1"
+        tabindex="0"
       >
         <button
           aria-label="Close this dialog"
