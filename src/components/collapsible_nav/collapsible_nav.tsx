@@ -24,7 +24,7 @@ import { EuiFlyout, EuiFlyoutProps } from '../flyout';
 // Extend all the flyout props except `onClose` because we handle this internally
 export type EuiCollapsibleNavProps = Omit<
   EuiFlyoutProps,
-  'closeButtonAriaLabel' | 'type' | 'pushBreakpoint'
+  'type' | 'pushBreakpoint'
 > & {
   /**
    * ReactNode to render as this component's content

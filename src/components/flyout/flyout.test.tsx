@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { render, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import { requiredProps, takeMountedSnapshot } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
@@ -74,29 +74,6 @@ describe('EuiFlyout', () => {
       expect(
         takeMountedSnapshot(component, { hasArrayOutput: true })
       ).toMatchSnapshot();
-    });
-
-    describe('closeButtonAriaLabel', () => {
-      test('has a default label for the close button', () => {
-        const component = render(<EuiFlyout onClose={() => {}} />);
-        const label = component
-          .find('[data-test-subj="euiFlyoutCloseButton"]')
-          .prop('aria-label');
-        expect(label).toBe('Close this dialog');
-      });
-
-      test('sets a custom label for the close button', () => {
-        const component = render(
-          <EuiFlyout
-            onClose={() => {}}
-            closeButtonAriaLabel="Closes specific flyout"
-          />
-        );
-        const label = component
-          .find('[data-test-subj="euiFlyoutCloseButton"]')
-          .prop('aria-label');
-        expect(label).toBe('Closes specific flyout');
-      });
     });
 
     test('accepts div props', () => {

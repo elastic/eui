@@ -96,11 +96,6 @@ interface _EuiFlyoutProps {
    */
   hideCloseButton?: boolean;
   /**
-   * Specify a custom aria-label for the close button of the flyout.
-   * @default "Close this dialog"
-   */
-  closeButtonAriaLabel?: string;
-  /**
    * Extends EuiButtonIconProps onto the close button
    */
   closeButtonProps?: Partial<EuiButtonIconPropsForButton>;
@@ -185,7 +180,6 @@ export const EuiFlyout = forwardRef(
       as,
       hideCloseButton = false,
       closeButtonProps,
-      closeButtonAriaLabel,
       closeButtonPosition = 'inside',
       onClose,
       ownFocus = true,
