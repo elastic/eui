@@ -13,7 +13,7 @@ import {
   EUI_CHARTS_THEME_LIGHT,
 } from '../../../../../src/themes/charts/themes';
 
-export function GridRow() {
+export default () => {
   const { colorMode } = useEuiTheme();
   const isDarkTheme = colorMode === 'DARK';
   const euiChartTheme = isDarkTheme
@@ -58,4 +58,4 @@ export function GridRow() {
       </Chart>
     </EuiPanel>
   );
-}
+};

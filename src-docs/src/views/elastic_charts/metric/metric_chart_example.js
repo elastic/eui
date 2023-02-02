@@ -15,8 +15,6 @@ import {
 import metric_anatomy from '../../../images/metric_anatomy.png';
 import metric_intro from '../../../images/metric_intro.png';
 import { GuideSectionTypes } from '../../../components';
-import { Grid } from './metric_chart_grid';
-import { NoData } from './metric_chart_no_data';
 import {
   MetricProps,
   MetricDatumWProgress,
@@ -24,13 +22,15 @@ import {
   MetricDatumWText,
   MetricDatumWTrend,
 } from './metric_chart_props';
-import { ProgressBar } from './metric_chart_progress_bar';
-import { Trend } from './metric_chart_trend';
-import { Overview } from './metric_chart_overview';
-import { SingleValue } from './metric_chart_single_value';
-import { Resizing } from './metric_chart_resizing';
-import { GridRow } from './metric_chart_grid_row';
-import { GridColumn } from './metric_chart_grid_column';
+import Grid from './metric_chart_grid';
+import NoData from './metric_chart_no_data';
+import ProgressBar from './metric_chart_progress_bar';
+import Trend from './metric_chart_trend';
+import Overview from './metric_chart_overview';
+import SingleValue from './metric_chart_single_value';
+import Resizing from './metric_chart_resizing';
+import GridRow from './metric_chart_grid_row';
+import GridColumn from './metric_chart_grid_column';
 import {
   gridColumnSnippet,
   gridRowSnippet,

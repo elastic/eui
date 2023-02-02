@@ -18,7 +18,7 @@ import {
   EUI_CHARTS_THEME_LIGHT,
 } from '../../../../../src/themes/charts/themes';
 
-export function NoData() {
+export default () => {
   const { colorMode } = useEuiTheme();
   const isDarkTheme = colorMode === 'DARK';
 
@@ -75,4 +75,4 @@ export function NoData() {
       </EuiFlexItem>
     </EuiFlexGroup>
   );
-}
+};

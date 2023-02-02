@@ -18,7 +18,7 @@ import {
   EUI_CHARTS_THEME_LIGHT,
 } from '../../../../../src/themes/charts/themes';
 
-export function ProgressBar() {
+export default () => {
   const { colorMode } = useEuiTheme();
   const isDarkTheme = colorMode === 'DARK';
 
@@ -92,4 +92,4 @@ export function ProgressBar() {
       </EuiFlexItem>
     </EuiFlexGroup>
   );
-}
+};

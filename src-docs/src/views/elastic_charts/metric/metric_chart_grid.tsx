@@ -140,7 +140,7 @@ const DATA: MetricSpec['data'] = [
   ],
 ];
 
-export function Grid() {
+export default () => {
   const { colorMode } = useEuiTheme();
   const isDarkTheme = colorMode === 'DARK';
   const euiChartTheme = isDarkTheme
@@ -155,4 +155,4 @@ export function Grid() {
       </Chart>
     </EuiPanel>
   );
-}
+};
