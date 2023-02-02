@@ -29,6 +29,7 @@ export const <%= componentName %>: FunctionComponent<<%= componentName %>Props> 
   return (
     <div
       className={classes}
+      css={cssStyles}
       {...rest}
     >
       {children}
