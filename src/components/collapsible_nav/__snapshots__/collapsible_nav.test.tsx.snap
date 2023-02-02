@@ -12,14 +12,21 @@ Array [
       data-focus-lock-disabled="false"
     >
       <nav
+        aria-describedby="generated-id"
         class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left"
         data-autofocus="true"
         id="id"
         style="inline-size: 320px;"
         tabindex="0"
       >
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a nav. To close this nav, press Escape. Or tap/click outside the nav on the shadowed overlay to close. 
+        </p>
         <button
-          aria-label="Close this dialog"
+          aria-label="Close this nav"
           class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-fill-text-euiFlyout__closeButton-outside-left"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
@@ -56,6 +63,7 @@ Array [
       data-focus-lock-disabled="false"
     >
       <nav
+        aria-describedby="generated-id"
         aria-label="aria-label"
         class="euiFlyout euiCollapsibleNav testClass1 testClass2 emotion-euiFlyout-none-noMaxWidth-overlay-left"
         data-autofocus="true"
@@ -64,8 +72,14 @@ Array [
         style="inline-size: 320px;"
         tabindex="0"
       >
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a nav. To close this nav, press Escape. Or tap/click outside the nav on the shadowed overlay to close. 
+        </p>
         <button
-          aria-label="Close this dialog"
+          aria-label="Close this nav"
           class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-fill-text-euiFlyout__closeButton-outside-left"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
@@ -99,14 +113,21 @@ Array [
     data-focus-lock-disabled="false"
   >
     <nav
+      aria-describedby="generated-id"
       class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left"
       data-autofocus="true"
       id="id"
       style="inline-size: 240px;"
       tabindex="0"
     >
+      <p
+        class="emotion-euiScreenReaderOnly"
+        id="generated-id"
+      >
+        You are in a nav. To close this nav, press Escape.  
+      </p>
       <button
-        aria-label="Close this dialog"
+        aria-label="Close this nav"
         class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-fill-text-euiFlyout__closeButton-outside-left"
         data-test-subj="euiFlyoutCloseButton"
         type="button"
@@ -145,14 +166,21 @@ Array [
       data-focus-lock-disabled="false"
     >
       <nav
+        aria-describedby="generated-id"
         class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left"
         data-autofocus="true"
         id="id"
         style="inline-size: 320px;"
         tabindex="0"
       >
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a nav. To close this nav, press Escape. Or tap/click outside the nav on the shadowed overlay to close. 
+        </p>
         <button
-          aria-label="Close this dialog"
+          aria-label="Close this nav"
           class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-fill-text-euiFlyout__closeButton-outside-left"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
@@ -187,14 +215,21 @@ Array [
       data-focus-lock-disabled="false"
     >
       <nav
+        aria-describedby="generated-id"
         class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left"
         data-autofocus="true"
         id="id"
         style="inline-size: 320px;"
         tabindex="0"
       >
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a nav. To close this nav, press Escape. Or tap/click outside the nav on the shadowed overlay to close. 
+        </p>
         <button
-          aria-label="Close this dialog"
+          aria-label="Close this nav"
           class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-fill-text-euiFlyout__closeButton-outside-left"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
@@ -255,14 +290,21 @@ Array [
       data-focus-lock-disabled="false"
     >
       <nav
+        aria-describedby="generated-id"
         class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left"
         data-autofocus="true"
         id="id"
         style="inline-size: 320px;"
         tabindex="0"
       >
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a nav. To close this nav, press Escape. Or tap/click outside the nav on the shadowed overlay to close. 
+        </p>
         <button
-          aria-label="Close this dialog"
+          aria-label="Close this nav"
           class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-fill-text-euiFlyout__closeButton-outside-left"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
@@ -328,14 +370,21 @@ Array [
       data-focus-lock-disabled="false"
     >
       <nav
+        aria-describedby="generated-id"
         class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left"
         data-autofocus="true"
         id="id"
         style="inline-size: 240px;"
         tabindex="0"
       >
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a nav. To close this nav, press Escape. Or tap/click outside the nav on the shadowed overlay to close. 
+        </p>
         <button
-          aria-label="Close this dialog"
+          aria-label="Close this nav"
           class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-fill-text-euiFlyout__closeButton-outside-left"
           data-test-subj="euiFlyoutCloseButton"
           type="button"

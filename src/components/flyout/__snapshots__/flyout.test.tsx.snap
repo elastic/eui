@@ -12,6 +12,7 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
+        aria-describedby="generated-id"
         aria-label="aria-label"
         class="euiFlyout testClass1 testClass2 emotion-euiFlyout-l-m-noMaxWidth-overlay-right"
         data-autofocus="true"
@@ -19,6 +20,12 @@ Array [
         role="dialog"
         tabindex="0"
       >
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a dialog. To close this dialog, press Escape. Or tap/click outside the dialog on the shadowed overlay to close. 
+        </p>
         <button
           aria-label="Close this dialog"
           class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
@@ -55,12 +62,19 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
+        aria-describedby="generated-id"
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right"
         data-autofocus="true"
         id="imaflyout"
         role="dialog"
         tabindex="0"
       >
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a dialog. To close this dialog, press Escape. Or tap/click outside the dialog on the shadowed overlay to close. 
+        </p>
         <button
           aria-label="Close this dialog"
           class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
@@ -97,11 +111,18 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
+        aria-describedby="generated-id"
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right"
         data-autofocus="true"
         role="dialog"
         tabindex="0"
       >
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a dialog. To close this dialog, press Escape. Or tap/click outside the dialog on the shadowed overlay to close. 
+        </p>
         <button
           aria-label="Close this dialog"
           class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-fill-text-euiFlyout__closeButton-outside-right"
@@ -138,11 +159,18 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
+        aria-describedby="generated-id"
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right"
         data-autofocus="true"
         role="dialog"
         tabindex="0"
       >
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a dialog. To close this dialog, press Escape. Or tap/click outside the dialog on the shadowed overlay to close. 
+        </p>
         <button
           aria-label="aria-label"
           class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton testClass1 testClass2 emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
@@ -179,11 +207,19 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
+        aria-describedby="generated-id"
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right"
         data-autofocus="true"
         role="dialog"
         tabindex="0"
-      />
+      >
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a dialog. To close this dialog, press Escape. Or tap/click outside the dialog on the shadowed overlay to close. 
+        </p>
+      </div>
     </div>
     <div
       data-focus-guard="true"
@@ -206,11 +242,18 @@ Array [
       data-focus-lock-disabled="false"
     >
       <nav
+        aria-describedby="generated-id"
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right"
         data-autofocus="true"
         role="dialog"
         tabindex="0"
       >
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a dialog. To close this dialog, press Escape. Or tap/click outside the dialog on the shadowed overlay to close. 
+        </p>
         <button
           aria-label="Close this dialog"
           class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
@@ -247,12 +290,19 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
+        aria-describedby="generated-id"
         class="euiFlyout emotion-euiFlyout-l-m-overlay-right"
         data-autofocus="true"
         role="dialog"
         style="max-inline-size: 1024px;"
         tabindex="0"
       >
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a dialog. To close this dialog, press Escape. Or tap/click outside the dialog on the shadowed overlay to close. 
+        </p>
         <button
           aria-label="Close this dialog"
           class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
@@ -289,12 +339,19 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
+        aria-describedby="generated-id"
         class="euiFlyout emotion-euiFlyout-l-m-overlay-right"
         data-autofocus="true"
         role="dialog"
         style="max-inline-size: 24rem;"
         tabindex="0"
       >
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a dialog. To close this dialog, press Escape. Or tap/click outside the dialog on the shadowed overlay to close. 
+        </p>
         <button
           aria-label="Close this dialog"
           class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
@@ -331,11 +388,18 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
+        aria-describedby="generated-id"
         class="euiFlyout emotion-euiFlyout-l-m-overlay-right"
         data-autofocus="true"
         role="dialog"
         tabindex="0"
       >
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a dialog. To close this dialog, press Escape. Or tap/click outside the dialog on the shadowed overlay to close. 
+        </p>
         <button
           aria-label="Close this dialog"
           class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
@@ -378,6 +442,12 @@ Array [
         role="dialog"
         tabindex="0"
       >
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a dialog. To close this dialog, press Escape. Or tap/click outside the dialog on the shadowed overlay to close. 
+        </p>
         <button
           aria-label="Close this dialog"
           class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
@@ -414,11 +484,18 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
+        aria-describedby="generated-id"
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right"
         data-autofocus="true"
         role="dialog"
         tabindex="0"
       >
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a dialog. To close this dialog, press Escape. Or tap/click outside the dialog on the shadowed overlay to close. 
+        </p>
         <button
           aria-label="Close this dialog"
           class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
@@ -454,11 +531,18 @@ Array [
     data-focus-lock-disabled="false"
   >
     <div
+      aria-describedby="generated-id"
       class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right"
       data-autofocus="true"
       role="dialog"
       tabindex="0"
     >
+      <p
+        class="emotion-euiScreenReaderOnly"
+        id="generated-id"
+      >
+        You are in a dialog. To close this dialog, press Escape.  
+      </p>
       <button
         aria-label="Close this dialog"
         class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
@@ -494,11 +578,18 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
+        aria-describedby="generated-id"
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right"
         data-autofocus="true"
         role="dialog"
         tabindex="0"
       >
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a dialog. To close this dialog, press Escape. Or tap/click outside the dialog on the shadowed overlay to close. 
+        </p>
         <button
           aria-label="Close this dialog"
           class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
@@ -535,11 +626,18 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
+        aria-describedby="generated-id"
         class="euiFlyout emotion-euiFlyout-m-m-noMaxWidth-overlay-right"
         data-autofocus="true"
         role="dialog"
         tabindex="0"
       >
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a dialog. To close this dialog, press Escape. Or tap/click outside the dialog on the shadowed overlay to close. 
+        </p>
         <button
           aria-label="Close this dialog"
           class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
@@ -576,11 +674,18 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
+        aria-describedby="generated-id"
         class="euiFlyout emotion-euiFlyout-none-m-noMaxWidth-overlay-right"
         data-autofocus="true"
         role="dialog"
         tabindex="0"
       >
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a dialog. To close this dialog, press Escape. Or tap/click outside the dialog on the shadowed overlay to close. 
+        </p>
         <button
           aria-label="Close this dialog"
           class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
@@ -617,11 +722,18 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
+        aria-describedby="generated-id"
         class="euiFlyout emotion-euiFlyout-s-m-noMaxWidth-overlay-right"
         data-autofocus="true"
         role="dialog"
         tabindex="0"
       >
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a dialog. To close this dialog, press Escape. Or tap/click outside the dialog on the shadowed overlay to close. 
+        </p>
         <button
           aria-label="Close this dialog"
           class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
@@ -658,12 +770,19 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
+        aria-describedby="generated-id"
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right"
         data-autofocus="true"
         tabindex="0"
       >
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a div. To close this div, press Escape. Or tap/click outside the div on the shadowed overlay to close. 
+        </p>
         <button
-          aria-label="Close this dialog"
+          aria-label="Close this div"
           class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
@@ -698,11 +817,18 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
+        aria-describedby="generated-id"
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-left"
         data-autofocus="true"
         role="dialog"
         tabindex="0"
       >
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a dialog. To close this dialog, press Escape. Or tap/click outside the dialog on the shadowed overlay to close. 
+        </p>
         <button
           aria-label="Close this dialog"
           class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
@@ -739,11 +865,18 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
+        aria-describedby="generated-id"
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right"
         data-autofocus="true"
         role="dialog"
         tabindex="0"
       >
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a dialog. To close this dialog, press Escape. Or tap/click outside the dialog on the shadowed overlay to close. 
+        </p>
         <button
           aria-label="Close this dialog"
           class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
@@ -780,12 +913,19 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
+        aria-describedby="generated-id"
         class="euiFlyout emotion-euiFlyout-l-noMaxWidth-overlay-right"
         data-autofocus="true"
         role="dialog"
         style="inline-size: 500px;"
         tabindex="0"
       >
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a dialog. To close this dialog, press Escape. Or tap/click outside the dialog on the shadowed overlay to close. 
+        </p>
         <button
           aria-label="Close this dialog"
           class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
@@ -822,11 +962,18 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
+        aria-describedby="generated-id"
         class="euiFlyout emotion-euiFlyout-l-l-noMaxWidth-overlay-right"
         data-autofocus="true"
         role="dialog"
         tabindex="0"
       >
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a dialog. To close this dialog, press Escape. Or tap/click outside the dialog on the shadowed overlay to close. 
+        </p>
         <button
           aria-label="Close this dialog"
           class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
@@ -863,11 +1010,18 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
+        aria-describedby="generated-id"
         class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-overlay-right"
         data-autofocus="true"
         role="dialog"
         tabindex="0"
       >
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a dialog. To close this dialog, press Escape. Or tap/click outside the dialog on the shadowed overlay to close. 
+        </p>
         <button
           aria-label="Close this dialog"
           class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
@@ -904,11 +1058,18 @@ Array [
       data-focus-lock-disabled="false"
     >
       <div
+        aria-describedby="generated-id"
         class="euiFlyout emotion-euiFlyout-l-s-noMaxWidth-overlay-right"
         data-autofocus="true"
         role="dialog"
         tabindex="0"
       >
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a dialog. To close this dialog, press Escape. Or tap/click outside the dialog on the shadowed overlay to close. 
+        </p>
         <button
           aria-label="Close this dialog"
           class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"

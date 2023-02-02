@@ -28,6 +28,7 @@ import {
   EuiBreakpointSize,
   useIsWithinMinBreakpoint,
   useEuiTheme,
+  useGeneratedHtmlId,
 } from '../../services';
 import { logicalStyle } from '../../global_styling';
 
@@ -38,6 +39,7 @@ import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../button';
 import { EuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
+import { EuiScreenReaderOnly } from '../accessibility';
 
 import { euiFlyoutStyles, euiFlyoutCloseButtonStyles } from './flyout.styles';
 
@@ -132,7 +134,10 @@ interface _EuiFlyoutProps {
   side?: _EuiFlyoutSide;
   /**
    * Defaults to `dialog` which is best for most cases of the flyout.
-   * Otherwise pass in your own, aria-role, or `null` to remove it and use the semantic `as` element instead
+   *
+   * You may pass in your own aria role, or `null` to remove it and use the semantic `as` element instead,
+   * but be **extremely** cautious as this affects the instructions read out to screen readers.
+   *
    * @default dialog
    */
   role?: null | string;
@@ -305,14 +310,18 @@ export const EuiFlyout = forwardRef(
       ];
 
       closeButton = (
-        <EuiI18n token="euiFlyout.closeAriaLabel" default="Close this dialog">
+        <EuiI18n
+          token="euiFlyout.closeAriaLabel"
+          default="Close this {role}"
+          values={{ role: role || Element }}
+        >
           {(closeAriaLabel: string) => (
             <EuiButtonIcon
               css={closeButtonCssStyles}
               display={closeButtonPosition === 'outside' ? 'fill' : 'empty'}
               iconType="cross"
               color="text"
-              aria-label={closeButtonAriaLabel || closeAriaLabel}
+              aria-label={closeAriaLabel}
               data-test-subj="euiFlyoutCloseButton"
               {...closeButtonProps}
               className={closeButtonClasses}
@@ -355,7 +364,50 @@ export const EuiFlyout = forwardRef(
       shards: [...fixedHeaders, ...(_focusTrapProps.shards || [])],
     };
 
+    /*
+     * Provide meaningful screen reader instructions/details
+     */
     const hasOverlayMask = ownFocus && !isPushed;
+    const descriptionId = useGeneratedHtmlId();
+
+    const screenReaderDescription = (
+      <EuiScreenReaderOnly>
+        <p id={descriptionId}>
+          <EuiI18n
+            token="euiFlyout.screenReaderEscapeToClose"
+            default="You are in a {role}. To close this {role}, press Escape."
+            values={{ role: role || Element }}
+          />{' '}
+          {hasOverlayMask && (
+            <EuiI18n
+              token="euiFlyout.screenReaderTapToClose"
+              default="Or tap/click outside the {role} on the shadowed overlay to close."
+              values={{ role: role || Element }}
+            />
+          )}{' '}
+          {fixedHeaders.length > 0 && (
+            <EuiI18n
+              token="euiFlyout.screenReaderFixedHeaders"
+              default="You can still continue tabbing through the page headers in addition to the {role}."
+              values={{ role: role || Element }}
+            />
+          )}
+        </p>
+      </EuiScreenReaderOnly>
+    );
+
+    /*
+     * Trap focus even when `ownFocus={false}`, otherwise closing
+     * the flyout won't return focus to the originating button.
+     *
+     * Set `clickOutsideDisables={true}` when `ownFocus={false}`
+     * to allow non-keyboard users the ability to interact with
+     * elements outside the flyout.
+     *
+     * Set `onClickOutside={onClose}` when `ownFocus` and `type` are the defaults,
+     * or if `outsideClickCloses={true}` to close on clicks that target
+     * (both mousedown and mouseup) the overlay mask.
+     */
     const onClickOutside = (event: MouseEvent | TouchEvent) => {
       // Do not close the flyout for any external click
       if (outsideClickCloses === false) return undefined;
@@ -369,18 +421,7 @@ export const EuiFlyout = forwardRef(
       // Otherwise if ownFocus is false and outsideClickCloses is undefined, outside clicks should not close the flyout
       return undefined;
     };
-    /*
-     * Trap focus even when `ownFocus={false}`, otherwise closing
-     * the flyout won't return focus to the originating button.
-     *
-     * Set `clickOutsideDisables={true}` when `ownFocus={false}`
-     * to allow non-keyboard users the ability to interact with
-     * elements outside the flyout.
-     *
-     * Set `onClickOutside={onClose}` when `ownFocus` and `type` are the defaults,
-     * or if `outsideClickCloses={true}` to close on clicks that target
-     * (both mousedown and mouseup) the overlay mask.
-     */
+
     let flyout = (
       <EuiFocusTrap
         disabled={isPushed}
@@ -395,9 +436,11 @@ export const EuiFlyout = forwardRef(
           className={classes}
           tabIndex={0}
           data-autofocus
+          aria-describedby={!isPushed ? descriptionId : undefined}
           style={newStyle}
           ref={setRef}
         >
+          {!isPushed && screenReaderDescription}
           {closeButton}
           {children}
         </Element>
