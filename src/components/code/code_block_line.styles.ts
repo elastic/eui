@@ -47,6 +47,7 @@ export const euiCodeBlockLineStyles = (euiThemeContext: UseEuiTheme) => {
     },
     lineNumber: {
       euiCodeBlock__lineNumber: css`
+        position: relative;
         flex-grow: 0;
         flex-shrink: 0;
         user-select: none;
@@ -59,6 +60,9 @@ export const euiCodeBlockLineStyles = (euiThemeContext: UseEuiTheme) => {
           text-align: end;
           display: block;
         }
+      `,
+      hasAnnotation: css`
+        background: red;
       `,
     },
   };

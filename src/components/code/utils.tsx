@@ -92,6 +92,7 @@ interface LineNumbersConfig {
   start: number;
   show: boolean;
   highlight?: string;
+  annotations?: Record<number, ReactNode>;
 }
 
 // Approximate width of a single digit/character
@@ -168,9 +169,14 @@ const addLineData = (
   }, []);
 };
 
+// Wraps each line of code in a span with a unique key
 function wrapLines(
   nodes: ExtendedRefractorNode[],
-  options: { showLineNumbers: boolean; highlight?: string },
+  options: {
+    showLineNumbers: boolean;
+    highlight?: string;
+    annotations: LineNumbersConfig['annotations'];
+  },
   euiTheme: UseEuiTheme
 ) {
   const grouped: ExtendedRefractorNode[][] = [];
@@ -200,11 +206,22 @@ function wrapLines(
       const highlights = options.highlight
         ? parseLineRanges(options.highlight)
         : [];
+      const annotationsHighlights =
+        options.annotations && Object.keys(options.annotations);
+
       const lineTextStyles = cx([
         styles.lineText.euiCodeBlock__lineText,
         highlights.includes(lineNumber) && styles.lineText.isHighlighted,
       ]);
-      const lineNumberStyles = cx(styles.lineNumber.euiCodeBlock__lineNumber);
+      const lineNumberStyles = cx(
+        styles.lineNumber.euiCodeBlock__lineNumber,
+        annotationsHighlights?.includes(lineNumber.toString()) &&
+          styles.lineNumber.hasAnnotation
+      );
+
+      const hasAnnotation = annotationsHighlights?.includes(
+        lineNumber.toString()
+      );
 
       children = [
         {
@@ -213,6 +230,7 @@ function wrapLines(
           properties: {
             style: { inlineSize: width },
             ['data-line-number']: lineNumber,
+            ['data-line-annotation-number']: hasAnnotation && lineNumber,
             ['aria-hidden']: true,
             className: ['euiCodeBlock__lineNumber', lineNumberStyles],
           },
@@ -248,8 +266,14 @@ export const highlightByLine = (
   euiTheme: UseEuiTheme
 ) => {
   return wrapLines(
-    addLineData(highlight(children, language), { lineNumber: data.start }),
-    { showLineNumbers: data.show, highlight: data.highlight },
+    addLineData(highlight(children, language), {
+      lineNumber: data.start,
+    }),
+    {
+      showLineNumbers: data.show,
+      highlight: data.highlight,
+      annotations: data.annotations,
+    },
     euiTheme
   );
 };

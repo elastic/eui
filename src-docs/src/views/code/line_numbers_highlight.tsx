@@ -7,7 +7,18 @@ export default () => (
     language="json"
     fontSize="m"
     paddingSize="m"
-    lineNumbers={{ start: 32, highlight: '32, 34-37, 40' }}
+    lineNumbers={{
+      highlight: '7, 8, 9',
+      annotations: {
+        3: (
+          <>
+            The <strong>shard</strong> is the unit at which Elasticsearch
+            distributes data around the cluster.
+          </>
+        ),
+        5: 'Some quick popover text',
+      },
+    }}
   >
     {`"OriginLocation": [
   {

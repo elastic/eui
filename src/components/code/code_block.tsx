@@ -59,9 +59,10 @@ type VirtualizedOptionProps = ExclusiveUnion<
   }
 >;
 
-interface LineNumbersConfig {
+export interface LineNumbersConfig {
   start?: number;
   highlight?: string;
+  annotations?: { [lineNumber: number]: React.ReactNode };
 }
 
 export type EuiCodeBlockProps = EuiCodeSharedProps & {
@@ -82,8 +83,8 @@ export type EuiCodeBlockProps = EuiCodeSharedProps & {
 
   /**
    * Displays line numbers.
-   * Optionally accepts a configuration object for setting the starting number and visual highlighting ranges:
-   * `{ start: 100, highlight: '1, 5-10, 20-30, 40' }`
+   * Optionally accepts a configuration object for setting the starting number, visual highlighting ranges and annotations:
+   * `{ start: 100, highlight: '1, 5-10, 20-30, 40', annotation: '2, 5, 10' }`
    */
   lineNumbers?: boolean | LineNumbersConfig;
 
