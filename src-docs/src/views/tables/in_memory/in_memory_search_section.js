@@ -1,7 +1,7 @@
 import React from 'react';
 import { GuideSectionTypes } from '../../../components';
 
-import { Table } from './in_memory_search';
+import Table from './in_memory_search';
 import { Link } from 'react-router-dom';
 
 import { EuiInMemoryTable } from '../../../../../src/components/basic_table/in_memory_table';
@@ -32,7 +32,7 @@ export const searchSection = {
   title: 'In-memory table with search',
   source: [
     {
-      type: GuideSectionTypes.JS,
+      type: GuideSectionTypes.TSX,
       code: source,
     },
   ],

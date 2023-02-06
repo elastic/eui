@@ -45,9 +45,9 @@ export const EuiCommonlyUsedTimeRanges: FunctionComponent<EuiCommonlyUsedTimeRan
   });
 
   return (
-    <fieldset>
+    <fieldset className="euiQuickSelectPopover__panel">
       <EuiTitle size="xxxs">
-        <legend id={legendId}>
+        <legend id={legendId} className="euiQuickSelectPopover__panelTitle">
           <EuiI18n
             token="euiCommonlyUsedTimeRanges.legend"
             default="Commonly used"

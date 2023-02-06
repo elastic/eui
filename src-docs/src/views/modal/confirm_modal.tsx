@@ -22,15 +22,19 @@ export default () => {
   if (isModalVisible) {
     modal = (
       <EuiConfirmModal
-        title="Do this thing"
+        style={{ width: 600 }}
+        title="Update subscription to Platinum?"
         onCancel={closeModal}
         onConfirm={closeModal}
-        cancelButtonText="No, don't do it"
-        confirmButtonText="Yes, do it"
+        cancelButtonText="Cancel"
+        confirmButtonText="Update subscription"
         defaultFocusedButton="confirm"
       >
-        <p>You&rsquo;re about to do something.</p>
-        <p>Are you sure you want to do this?</p>
+        <p>
+          Your subscription and benefits increase immediately. If you change to
+          a lower subscription later, it will not take affect until the next
+          billing cycle.
+        </p>
       </EuiConfirmModal>
     );
   }
@@ -40,16 +44,15 @@ export default () => {
   if (isDestroyModalVisible) {
     destroyModal = (
       <EuiConfirmModal
-        title="Do this destructive thing"
+        title="Discard dashboard changes?"
         onCancel={closeDestroyModal}
         onConfirm={closeDestroyModal}
-        cancelButtonText="No, don't do it"
-        confirmButtonText="Yes, do it"
+        cancelButtonText="Keep editing"
+        confirmButtonText="Discard changes"
         buttonColor="danger"
         defaultFocusedButton="confirm"
       >
-        <p>You&rsquo;re about to destroy something.</p>
-        <p>Are you sure you want to do this?</p>
+        <p>You will lose all unsaved changes made to this dashboard.</p>
       </EuiConfirmModal>
     );
   }

@@ -16,7 +16,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { EuiPopover, EuiPopoverFooter, EuiPopoverTitle } from '../../popover';
-import { EuiI18n } from '../../i18n';
+import { EuiI18n, useEuiI18n } from '../../i18n';
 import { EuiButtonEmpty } from '../../button';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiSwitch, EuiFieldText } from '../../form';
@@ -116,6 +116,10 @@ export const useDataGridColumnSelector = (
   );
 
   const isDragEnabled = allowColumnReorder && columnSearchText.length === 0; // only allow drag-and-drop when not filtering columns
+  const dragHandleAriaLabel = useEuiI18n(
+    'euiColumnSelector.dragHandleAriaLabel',
+    'Drag handle'
+  );
 
   let buttonText = (
     <EuiI18n token="euiColumnSelector.button" default="Columns" />
@@ -199,6 +203,8 @@ export const useDataGridColumnSelector = (
                       draggableId={id}
                       index={index}
                       isDragDisabled={!isDragEnabled}
+                      hasInteractiveChildren
+                      customDragHandle
                     >
                       {(provided, state) => (
                         <div
@@ -210,14 +216,15 @@ export const useDataGridColumnSelector = (
                         >
                           <EuiFlexGroup
                             responsive={false}
-                            gutterSize="m"
+                            gutterSize="s"
                             alignItems="center"
                           >
-                            <EuiFlexItem>
-                              {allowColumnHiding ? (
+                            {allowColumnHiding && (
+                              <EuiFlexItem grow={false}>
                                 <EuiSwitch
                                   name={id}
                                   label={displayValues[id] || id}
+                                  showLabel={false}
                                   checked={visibleColumnIds.has(id)}
                                   compressed
                                   className="euiSwitch--mini"
@@ -237,14 +244,25 @@ export const useDataGridColumnSelector = (
                                   }}
                                   data-test-subj={`dataGridColumnSelectorToggleColumnVisibility-${id}`}
                                 />
-                              ) : (
-                                <span className="euiDataGridColumnSelector__itemLabel">
-                                  {id}
-                                </span>
-                              )}
+                              </EuiFlexItem>
+                            )}
+                            <EuiFlexItem
+                              // This extra column name flex item affords the column more grabbable real estate
+                              // for mouse users, while hiding repetition for keyboard/screen reader users
+                              {...provided.dragHandleProps}
+                              aria-hidden
+                              tabIndex={-1}
+                            >
+                              <span className="euiDataGridColumnSelector__itemLabel">
+                                {displayValues[id] || id}
+                              </span>
                             </EuiFlexItem>
                             {isDragEnabled && (
-                              <EuiFlexItem grow={false}>
+                              <EuiFlexItem
+                                grow={false}
+                                {...provided.dragHandleProps}
+                                aria-label={dragHandleAriaLabel}
+                              >
                                 <EuiIcon type="grab" color="subdued" />
                               </EuiFlexItem>
                             )}

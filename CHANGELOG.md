@@ -1,3 +1,90 @@
+## [`74.1.0`](https://github.com/elastic/eui/tree/v74.1.0)
+
+- Added new `EuiSkeletonText`, `EuiSkeletonTitle`, `EuiSkeletonCircle`, and `EuiSkeletonRectangle` components ([#6502](https://github.com/elastic/eui/pull/6502))
+- Updated `EuiSuperSelect` screen reader instructions to be more specific ([#6549](https://github.com/elastic/eui/pull/6549))
+- Added `error` and updated `alert` glyphs to `EuiIcon` ([#6550](https://github.com/elastic/eui/pull/6550))
+- All `EuiSkeleton` components now accept an `isLoading` flag and `children`, which automatically handles conditionally rendering loading skeletons vs.  loaded content (`children`) ([#6562](https://github.com/elastic/eui/pull/6562))
+- All `EuiSkeleton` components now accept a `contentAriaLabel` prop, which more meaningfully describes the loaded content to screen readers ([#6562](https://github.com/elastic/eui/pull/6562))
+- Updated `EuiPopover` screen reader instructions for mobile and click behaviors ([#6567](https://github.com/elastic/eui/pull/6567))
+
+**Bug fixes**
+
+- Fixed `EuiCard` to ensure `onClick` method only runs once when `title` contains a React node ([#6551](https://github.com/elastic/eui/pull/6551))
+
+**Deprecations**
+
+- Deprecated `EuiLoadingContent` - use `EuiSkeletonText` instead ([#6557](https://github.com/elastic/eui/pull/6557))
+
+## [`74.0.1`](https://github.com/elastic/eui/tree/v74.0.1)
+
+**Bug fixes**
+
+- Fixed `EuiModalHeaderTitle` type errors when passed `EuiTitle` props ([#6547](https://github.com/elastic/eui/pull/6547))
+
+## [`74.0.0`](https://github.com/elastic/eui/tree/v74.0.0)
+
+- Added the `component` prop to `EuiModalHeaderTitle`, which allows overriding the default `h1` tag ([#6530](https://github.com/elastic/eui/pull/6530))
+- Added the `titleProps` prop to `EuiConfirmModal`, which allows overriding the default `h1` tag ([#6530](https://github.com/elastic/eui/pull/6530))
+
+**Bug fixes**
+
+- Fixed slight row height jumping in `EuiBasicTable`s when actions with tooltips became disabled ([#6538](https://github.com/elastic/eui/pull/6538))
+
+**Breaking changes**
+
+- `EuiModalHeaderTitle` now **always** wraps its children in a `h1` tag (previously attempted to conditionally detect whether its children were raw strings or not). To change this tag type to, e.g. a more generic `div`, use  the new `component` prop. ([#6530](https://github.com/elastic/eui/pull/6530))
+- `EuiLink` now applies `rel="noreferrer"` to all domains, including `elastic.co` ([#6535](https://github.com/elastic/eui/pull/6535))
+- `EuiBasicTable` no longer blocks mouse/keyboard interactions while `loading` ([#6543](https://github.com/elastic/eui/pull/6543))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiBasicTable` to Emotion ([#6539](https://github.com/elastic/eui/pull/6539))
+- Added a new `RenderWithEuiTheme` render prop utility ([#6539](https://github.com/elastic/eui/pull/6539))
+
+## [`73.0.0`](https://github.com/elastic/eui/tree/v73.0.0)
+
+**Bug fixes**
+
+- Fixed `EuiDataGrid` a11y errors within toolbar popovers containing draggable elements with interactive children ([#6517](https://github.com/elastic/eui/pull/6517))
+- Fixed several styling bugs within `EuiDataGrid`'s sorting toolbar popover ([#6517](https://github.com/elastic/eui/pull/6517))
+
+**Breaking changes**
+
+- `EuiToolTip`s now internally enforce only showing **one** tooltip at a time (the most recently triggered tooltip). This primarily affects scenarios where users are focused on a tooltip toggle via click, and then hover onto another tooltip toggle. ([#6520](https://github.com/elastic/eui/pull/6520))
+
+## [`72.2.0`](https://github.com/elastic/eui/tree/v72.2.0)
+
+- Added `onFullScreen` callback to expose the `isFullScreen` state of the `EuiImage` ([#6504](https://github.com/elastic/eui/pull/6504))
+- Added an extra spacing between the title and subtitle to `EuiTour` ([#6512](https://github.com/elastic/eui/pull/6512))
+- Updated `EuiText.blockquote` styles to match the `EuiMarkdownFormat.blockquote` styles ([#6514](https://github.com/elastic/eui/pull/6514))
+- Added the `repositionOnScroll` prop to `EuiToolTip` ([#6515](https://github.com/elastic/eui/pull/6515))
+
+## [`72.1.0`](https://github.com/elastic/eui/tree/v72.1.0)
+
+- Changed design of empty ranges in `EuiColorStops` to have diagonal gray stripes instead of a solid light gray color ([#6489](https://github.com/elastic/eui/pull/6489))
+- Changed popover in `EuiColorStops` to not appear when dragging/moving a color stop ([#6489](https://github.com/elastic/eui/pull/6489))
+- `EuiPopover` now supports overriding `focusTrapProps.onClickOutside`, which allows customization of auto-close behavior on outside click. ([#6500](https://github.com/elastic/eui/pull/6500))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiColorStops` to Emotion ([#6489](https://github.com/elastic/eui/pull/6489))
+- Added `brighten` service to manipulate CSS-in-JS colors ([#6489](https://github.com/elastic/eui/pull/6489))
+
+## [`72.0.0`](https://github.com/elastic/eui/tree/v72.0.0)
+
+- Added the `customQuickSelectRender` render prop to `EuiSuperDatePicker`, which allows customizing the Quick Select popover ([#6382](https://github.com/elastic/eui/pull/6382))
+- `EuiFilePicker` styles have been updated to look more like an interactive element. ([#6479](https://github.com/elastic/eui/pull/6479))
+- Added a third argument to `EuiSelectable`'s `onChange` callback. The single `option` object that triggered the `onChange` event is now also passed to consumers with its most recent `checked` state ([#6487](https://github.com/elastic/eui/pull/6487))
+
+**Bug fixes**
+
+- `EuiTabs` now passes `size` and `expand` to all children using a React context provider. ([#6478](https://github.com/elastic/eui/pull/6478))
+- Fixed security warnings caused by `trim@0.0.1` sub-dependency ([#6482](https://github.com/elastic/eui/pull/6482))
+
+**Breaking changes**
+
+- Removed `size` and `expand` props from `EuiTab` ([#6478](https://github.com/elastic/eui/pull/6478))
+
 ## [`71.1.0`](https://github.com/elastic/eui/tree/v71.1.0)
 
 **Deprecations**

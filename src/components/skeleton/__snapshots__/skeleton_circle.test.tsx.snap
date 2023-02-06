@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiSkeletonCircle is rendered 1`] = `
+<div
+  aria-busy="true"
+  data-test-subj="euiSkeletonLoadingAriaWrapper"
+>
+  <div
+    aria-label="Loading "
+    class="euiSkeletonCircle testClass1 testClass2 emotion-euiSkeletonGradientAnimation-euiSkeletonCircle-m"
+    data-test-subj="test subject string"
+    role="progressbar"
+  />
+</div>
+`;
+
+exports[`EuiSkeletonCircle size l 1`] = `
+<div
+  aria-busy="true"
+  data-test-subj="euiSkeletonLoadingAriaWrapper"
+>
+  <div
+    aria-label="Loading "
+    class="euiSkeletonCircle emotion-euiSkeletonGradientAnimation-euiSkeletonCircle-l"
+    role="progressbar"
+  />
+</div>
+`;
+
+exports[`EuiSkeletonCircle size m 1`] = `
+<div
+  aria-busy="true"
+  data-test-subj="euiSkeletonLoadingAriaWrapper"
+>
+  <div
+    aria-label="Loading "
+    class="euiSkeletonCircle emotion-euiSkeletonGradientAnimation-euiSkeletonCircle-m"
+    role="progressbar"
+  />
+</div>
+`;
+
+exports[`EuiSkeletonCircle size s 1`] = `
+<div
+  aria-busy="true"
+  data-test-subj="euiSkeletonLoadingAriaWrapper"
+>
+  <div
+    aria-label="Loading "
+    class="euiSkeletonCircle emotion-euiSkeletonGradientAnimation-euiSkeletonCircle-s"
+    role="progressbar"
+  />
+</div>
+`;
+
+exports[`EuiSkeletonCircle size xl 1`] = `
+<div
+  aria-busy="true"
+  data-test-subj="euiSkeletonLoadingAriaWrapper"
+>
+  <div
+    aria-label="Loading "
+    class="euiSkeletonCircle emotion-euiSkeletonGradientAnimation-euiSkeletonCircle-xl"
+    role="progressbar"
+  />
+</div>
+`;

@@ -89,6 +89,7 @@ export const euiTourHeaderStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
   euiTourHeader__subtitle: css`
     color: ${euiTheme.colors.subduedText};
+    padding-block-end: ${euiTheme.size.xs};
   `,
 });
 

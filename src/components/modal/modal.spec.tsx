@@ -36,9 +36,7 @@ const Modal = () => {
       {isModalVisible && (
         <EuiModal {...modalProps}>
           <EuiModalHeader>
-            <EuiModalHeaderTitle>
-              <h1>Title of modal</h1>
-            </EuiModalHeaderTitle>
+            <EuiModalHeaderTitle>Title of modal</EuiModalHeaderTitle>
           </EuiModalHeader>
 
           <EuiModalBody>

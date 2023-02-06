@@ -81,6 +81,7 @@ export const iconTypes = [
   'empty',
   'eql',
   'eraser',
+  'error',
   'exit',
   'expand',
   'expandMini',

@@ -7,10 +7,12 @@
  */
 
 import React from 'react';
-import { render, mount } from 'enzyme';
+import { mount } from 'enzyme';
+import { render } from '../../test/rtl';
 import { requiredProps, takeMountedSnapshot } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
+import { EuiHeader } from '../header';
 import { EuiFlyout, SIZES, PADDING_SIZES, SIDES } from './flyout';
 
 jest.mock('../overlay_mask', () => ({
@@ -39,15 +41,37 @@ describe('EuiFlyout', () => {
     ).toMatchSnapshot();
   });
 
+  it('renders extra screen reader instructions when fixed EuiHeaders headers exist on the page', () => {
+    const { baseElement, queryByText, rerender } = render(
+      <>
+        <EuiHeader position="fixed" />
+        <EuiFlyout {...requiredProps} onClose={() => {}} />
+      </>
+    );
+
+    expect(baseElement).toMatchSnapshot();
+    expect(
+      queryByText(
+        'You can still continue tabbing through the page headers in addition to the dialog.',
+        { exact: false }
+      )
+    ).toBeTruthy();
+
+    // Should not shard or render instructions when `includeFixedHeadersInFocusTrap={false}
+    rerender(
+      <>
+        <EuiHeader position="fixed" />
+        <EuiFlyout onClose={() => {}} includeFixedHeadersInFocusTrap={false} />
+      </>
+    );
+    expect(
+      queryByText('You can still continue tabbing through the page headers', {
+        exact: false,
+      })
+    ).toBeFalsy();
+  });
+
   describe('props', () => {
-    test('role can be removed', () => {
-      const component = mount(<EuiFlyout onClose={() => {}} role={null} />);
-
-      expect(
-        takeMountedSnapshot(component, { hasArrayOutput: true })
-      ).toMatchSnapshot();
-    });
-
     test('hideCloseButton', () => {
       const component = mount(<EuiFlyout onClose={() => {}} hideCloseButton />);
 
@@ -74,29 +98,6 @@ describe('EuiFlyout', () => {
       expect(
         takeMountedSnapshot(component, { hasArrayOutput: true })
       ).toMatchSnapshot();
-    });
-
-    describe('closeButtonAriaLabel', () => {
-      test('has a default label for the close button', () => {
-        const component = render(<EuiFlyout onClose={() => {}} />);
-        const label = component
-          .find('[data-test-subj="euiFlyoutCloseButton"]')
-          .prop('aria-label');
-        expect(label).toBe('Close this dialog');
-      });
-
-      test('sets a custom label for the close button', () => {
-        const component = render(
-          <EuiFlyout
-            onClose={() => {}}
-            closeButtonAriaLabel="Closes specific flyout"
-          />
-        );
-        const label = component
-          .find('[data-test-subj="euiFlyoutCloseButton"]')
-          .prop('aria-label');
-        expect(label).toBe('Closes specific flyout');
-      });
     });
 
     test('accepts div props', () => {

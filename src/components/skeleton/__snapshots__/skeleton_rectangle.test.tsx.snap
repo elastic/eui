@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiSkeletonRectangle borderRadius m 1`] = `
+<div
+  aria-busy="true"
+  data-test-subj="euiSkeletonLoadingAriaWrapper"
+>
+  <div
+    aria-label="Loading "
+    class="euiSkeletonRectangle emotion-euiSkeletonGradientAnimation-euiSkeletonRectangle-m"
+    role="progressbar"
+    style="inline-size: 24px; block-size: 24px;"
+  />
+</div>
+`;
+
+exports[`EuiSkeletonRectangle borderRadius none 1`] = `
+<div
+  aria-busy="true"
+  data-test-subj="euiSkeletonLoadingAriaWrapper"
+>
+  <div
+    aria-label="Loading "
+    class="euiSkeletonRectangle emotion-euiSkeletonGradientAnimation-euiSkeletonRectangle-none"
+    role="progressbar"
+    style="inline-size: 24px; block-size: 24px;"
+  />
+</div>
+`;
+
+exports[`EuiSkeletonRectangle borderRadius s 1`] = `
+<div
+  aria-busy="true"
+  data-test-subj="euiSkeletonLoadingAriaWrapper"
+>
+  <div
+    aria-label="Loading "
+    class="euiSkeletonRectangle emotion-euiSkeletonGradientAnimation-euiSkeletonRectangle-s"
+    role="progressbar"
+    style="inline-size: 24px; block-size: 24px;"
+  />
+</div>
+`;
+
+exports[`EuiSkeletonRectangle correctly renders passed styles 1`] = `
+<div
+  aria-busy="true"
+  data-test-subj="euiSkeletonLoadingAriaWrapper"
+>
+  <div
+    aria-label="Loading "
+    class="euiSkeletonRectangle emotion-euiSkeletonGradientAnimation-euiSkeletonRectangle-s"
+    role="progressbar"
+    style="background-color: red; inline-size: 24px; block-size: 24px;"
+  />
+</div>
+`;
+
+exports[`EuiSkeletonRectangle is rendered 1`] = `
+<div
+  aria-busy="true"
+  data-test-subj="euiSkeletonLoadingAriaWrapper"
+>
+  <div
+    aria-label="Loading "
+    class="euiSkeletonRectangle testClass1 testClass2 emotion-euiSkeletonGradientAnimation-euiSkeletonRectangle-s"
+    data-test-subj="test subject string"
+    role="progressbar"
+    style="inline-size: 24px; block-size: 24px;"
+  />
+</div>
+`;
+
+exports[`EuiSkeletonRectangle width and height 1`] = `
+<div
+  aria-busy="true"
+  data-test-subj="euiSkeletonLoadingAriaWrapper"
+>
+  <div
+    aria-label="Loading "
+    class="euiSkeletonRectangle emotion-euiSkeletonGradientAnimation-euiSkeletonRectangle-s"
+    role="progressbar"
+    style="inline-size: 100%; block-size: 33vh;"
+  />
+</div>
+`;

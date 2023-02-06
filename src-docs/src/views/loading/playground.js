@@ -7,9 +7,7 @@ import {
   EuiLoadingChart,
   EuiLoadingLogo,
   EuiLoadingSpinner,
-  EuiLoadingContent,
 } from '../../../../src/components/';
-import { PropTypes } from 'react-view';
 
 export const loadingElasticConfig = () => {
   const docgenInfo = Array.isArray(EuiLoadingElastic.__docgenInfo)
@@ -94,33 +92,6 @@ export const loadingSpinnerConfig = () => {
       imports: {
         '@elastic/eui': {
           named: ['EuiLoadingSpinner'],
-        },
-      },
-    },
-  };
-};
-
-export const loadingContentConfig = () => {
-  const docgenInfo = Array.isArray(EuiLoadingContent.__docgenInfo)
-    ? EuiLoadingContent.__docgenInfo[0]
-    : EuiLoadingContent.__docgenInfo;
-  const propsToUse = propUtilityForPlayground(docgenInfo.props);
-
-  propsToUse.lines = {
-    ...propsToUse.lines,
-    type: PropTypes.Number,
-  };
-
-  return {
-    config: {
-      componentName: 'EuiLoadingContent',
-      props: propsToUse,
-      scope: {
-        EuiLoadingContent,
-      },
-      imports: {
-        '@elastic/eui': {
-          named: ['EuiLoadingContent'],
         },
       },
     },

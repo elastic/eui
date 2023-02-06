@@ -95,7 +95,12 @@ exports[`euiTextStyles sizes m 1`] = `
   
     blockquote {
       font-size: 1.1429rem;
-      padding: 1.7143rem;
+      
+    padding-block: 0;
+    padding-inline: 1.1429rem;
+    
+      border-inline-start-width: 0.285725rem;
+      margin-block-end: 1.1429rem;
     }
 
     dd + dt {
@@ -238,7 +243,12 @@ exports[`euiTextStyles sizes relative 1`] = `
   
     blockquote {
       font-size: 1em;
-      padding: 1.5000em;
+      
+    padding-block: 0;
+    padding-inline: 1em;
+    
+      border-inline-start-width: 0.25em;
+      margin-block-end: 1em;
     }
 
     dd + dt {
@@ -366,7 +376,12 @@ exports[`euiTextStyles sizes s 1`] = `
   
     blockquote {
       font-size: 1.0000rem;
-      padding: 1.4286rem;
+      
+    padding-block: 0;
+    padding-inline: 1.0000rem;
+    
+      border-inline-start-width: 0.25rem;
+      margin-block-end: 1.0000rem;
     }
 
     dd + dt {
@@ -494,7 +509,12 @@ exports[`euiTextStyles sizes xs 1`] = `
   
     blockquote {
       font-size: 0.8571rem;
-      padding: 1.1429rem;
+      
+    padding-block: 0;
+    padding-inline: 0.8571rem;
+    
+      border-inline-start-width: 0.214275rem;
+      margin-block-end: 0.8571rem;
     }
 
     dd + dt {

@@ -8,6 +8,7 @@
 
 import React, {
   FunctionComponent,
+  ComponentProps,
   ReactNode,
   useEffect,
   useState,
@@ -17,7 +18,10 @@ import classnames from 'classnames';
 import { EuiModal, EuiModalProps } from './modal';
 import { EuiModalFooter } from './modal_footer';
 import { EuiModalHeader } from './modal_header';
-import { EuiModalHeaderTitle } from './modal_header_title';
+import {
+  EuiModalHeaderTitle,
+  EuiModalHeaderTitleProps,
+} from './modal_header_title';
 import { EuiModalBody } from './modal_body';
 
 import { useEuiTheme } from '../../services';
@@ -34,6 +38,7 @@ export interface EuiConfirmModalProps
    */
   children?: ReactNode;
   title?: ReactNode;
+  titleProps?: ComponentProps<EuiModalHeaderTitleProps>;
   cancelButtonText?: ReactNode;
   confirmButtonText?: ReactNode;
   onCancel: (
@@ -71,6 +76,7 @@ export const CANCEL_BUTTON = 'cancel';
 export const EuiConfirmModal: FunctionComponent<EuiConfirmModalProps> = ({
   children,
   title,
+  titleProps,
   onCancel,
   onConfirm,
   cancelButtonText,
@@ -118,7 +124,10 @@ export const EuiConfirmModal: FunctionComponent<EuiConfirmModalProps> = ({
   if (title) {
     modalTitle = (
       <EuiModalHeader>
-        <EuiModalHeaderTitle data-test-subj="confirmModalTitleText">
+        <EuiModalHeaderTitle
+          data-test-subj="confirmModalTitleText"
+          {...titleProps}
+        >
           {title}
         </EuiModalHeaderTitle>
       </EuiModalHeader>

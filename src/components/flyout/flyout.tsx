@@ -14,7 +14,6 @@ import React, {
   ComponentPropsWithRef,
   CSSProperties,
   ElementType,
-  Fragment,
   FunctionComponent,
   MouseEvent as ReactMouseEvent,
   MutableRefObject,
@@ -28,6 +27,7 @@ import {
   EuiBreakpointSize,
   useIsWithinMinBreakpoint,
   useEuiTheme,
+  useGeneratedHtmlId,
 } from '../../services';
 import { logicalStyle } from '../../global_styling';
 
@@ -38,6 +38,7 @@ import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../button';
 import { EuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
+import { EuiScreenReaderOnly } from '../accessibility';
 
 import { euiFlyoutStyles, euiFlyoutCloseButtonStyles } from './flyout.styles';
 
@@ -94,11 +95,6 @@ interface _EuiFlyoutProps {
    */
   hideCloseButton?: boolean;
   /**
-   * Specify a custom aria-label for the close button of the flyout.
-   * @default "Close this dialog"
-   */
-  closeButtonAriaLabel?: string;
-  /**
    * Extends EuiButtonIconProps onto the close button
    */
   closeButtonProps?: Partial<EuiButtonIconPropsForButton>;
@@ -131,12 +127,6 @@ interface _EuiFlyoutProps {
    */
   side?: _EuiFlyoutSide;
   /**
-   * Defaults to `dialog` which is best for most cases of the flyout.
-   * Otherwise pass in your own, aria-role, or `null` to remove it and use the semantic `as` element instead
-   * @default dialog
-   */
-  role?: null | string;
-  /**
    * Named breakpoint (`xs` through `xl`) for customizing the minimum window width to enable the `push` type
    * @default l
    */
@@ -148,6 +138,14 @@ interface _EuiFlyoutProps {
    * `closeOnMouseup` will delay the close callback, allowing time for external toggle buttons to handle close behavior.
    */
   focusTrapProps?: Pick<EuiFocusTrapProps, 'closeOnMouseup' | 'shards'>;
+  /**
+   * By default, EuiFlyout will consider any fixed `EuiHeader`s that sit alongside or above the EuiFlyout
+   * as part of the flyout's focus trap. This prevents focus fighting with interactive elements
+   * within fixed headers.
+   *
+   * Set this to `false` if you need to disable this behavior for a specific reason.
+   */
+  includeFixedHeadersInFocusTrap?: boolean;
 }
 
 const defaultElement = 'div';
@@ -172,7 +170,6 @@ export const EuiFlyout = forwardRef(
       as,
       hideCloseButton = false,
       closeButtonProps,
-      closeButtonAriaLabel,
       closeButtonPosition = 'inside',
       onClose,
       ownFocus = true,
@@ -184,9 +181,9 @@ export const EuiFlyout = forwardRef(
       maskProps,
       type = 'overlay',
       outsideClickCloses,
-      role = 'dialog',
       pushMinBreakpoint = 'l',
-      focusTrapProps,
+      focusTrapProps: _focusTrapProps = {},
+      includeFixedHeadersInFocusTrap = true,
       ...rest
     }: EuiFlyoutProps<T>,
     ref:
@@ -303,7 +300,7 @@ export const EuiFlyout = forwardRef(
               display={closeButtonPosition === 'outside' ? 'fill' : 'empty'}
               iconType="cross"
               color="text"
-              aria-label={closeButtonAriaLabel || closeAriaLabel}
+              aria-label={closeAriaLabel}
               data-test-subj="euiFlyoutCloseButton"
               {...closeButtonProps}
               className={closeButtonClasses}
@@ -317,7 +314,80 @@ export const EuiFlyout = forwardRef(
       );
     }
 
+    /*
+     * If not disabled, automatically add fixed EuiHeaders as shards
+     * to EuiFlyout focus traps, to prevent focus fighting
+     */
+    const flyoutToggle = useRef<Element | null>(document.activeElement);
+    const [fixedHeaders, setFixedHeaders] = useState<HTMLDivElement[]>([]);
+
+    useEffect(() => {
+      if (includeFixedHeadersInFocusTrap) {
+        const fixedHeaderEls = document.querySelectorAll<HTMLDivElement>(
+          '.euiHeader[data-fixed-header]'
+        );
+        setFixedHeaders(Array.from(fixedHeaderEls));
+
+        // Flyouts that are toggled from fixed headers do not have working
+        // focus trap autoFocus, so we need to focus the flyout wrapper ourselves
+        fixedHeaderEls.forEach((header) => {
+          if (header.contains(flyoutToggle.current)) {
+            resizeRef?.focus();
+          }
+        });
+      } else {
+        // Clear existing headers if necessary, e.g. switching to `false`
+        setFixedHeaders((headers) => (headers.length ? [] : headers));
+      }
+    }, [includeFixedHeadersInFocusTrap, resizeRef]);
+
+    const focusTrapProps: EuiFlyoutProps['focusTrapProps'] = {
+      ..._focusTrapProps,
+      shards: [...fixedHeaders, ...(_focusTrapProps.shards || [])],
+    };
+
+    /*
+     * Provide meaningful screen reader instructions/details
+     */
     const hasOverlayMask = ownFocus && !isPushed;
+    const descriptionId = useGeneratedHtmlId();
+
+    const screenReaderDescription = (
+      <EuiScreenReaderOnly>
+        <p id={descriptionId}>
+          {hasOverlayMask ? (
+            <EuiI18n
+              token="euiFlyout.screenReaderModalDialog"
+              default="You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close."
+            />
+          ) : (
+            <EuiI18n
+              token="euiFlyout.screenReaderNonModalDialog"
+              default="You are in a non-modal dialog. To close the dialog, press Escape."
+            />
+          )}{' '}
+          {fixedHeaders.length > 0 && (
+            <EuiI18n
+              token="euiFlyout.screenReaderFixedHeaders"
+              default="You can still continue tabbing through the page headers in addition to the dialog."
+            />
+          )}
+        </p>
+      </EuiScreenReaderOnly>
+    );
+
+    /*
+     * Trap focus even when `ownFocus={false}`, otherwise closing
+     * the flyout won't return focus to the originating button.
+     *
+     * Set `clickOutsideDisables={true}` when `ownFocus={false}`
+     * to allow non-keyboard users the ability to interact with
+     * elements outside the flyout.
+     *
+     * Set `onClickOutside={onClose}` when `ownFocus` and `type` are the defaults,
+     * or if `outsideClickCloses={true}` to close on clicks that target
+     * (both mousedown and mouseup) the overlay mask.
+     */
     const onClickOutside = (event: MouseEvent | TouchEvent) => {
       // Do not close the flyout for any external click
       if (outsideClickCloses === false) return undefined;
@@ -331,18 +401,7 @@ export const EuiFlyout = forwardRef(
       // Otherwise if ownFocus is false and outsideClickCloses is undefined, outside clicks should not close the flyout
       return undefined;
     };
-    /*
-     * Trap focus even when `ownFocus={false}`, otherwise closing
-     * the flyout won't return focus to the originating button.
-     *
-     * Set `clickOutsideDisables={true}` when `ownFocus={false}`
-     * to allow non-keyboard users the ability to interact with
-     * elements outside the flyout.
-     *
-     * Set `onClickOutside={onClose}` when `ownFocus` and `type` are the defaults,
-     * or if `outsideClickCloses={true}` to close on clicks that target
-     * (both mousedown and mouseup) the overlay mask.
-     */
+
     let flyout = (
       <EuiFocusTrap
         disabled={isPushed}
@@ -353,12 +412,15 @@ export const EuiFlyout = forwardRef(
         <Element
           css={cssStyles}
           {...(rest as ComponentPropsWithRef<T>)}
-          role={role}
+          role="dialog"
           className={classes}
-          tabIndex={-1}
+          tabIndex={0}
+          data-autofocus
+          aria-describedby={!isPushed ? descriptionId : undefined}
           style={newStyle}
           ref={setRef}
         >
+          {!isPushed && screenReaderDescription}
           {closeButton}
           {children}
         </Element>
@@ -382,10 +444,10 @@ export const EuiFlyout = forwardRef(
     }
 
     return (
-      <Fragment>
+      <>
         <EuiWindowEvent event="keydown" handler={onKeyDown} />
         {flyout}
-      </Fragment>
+      </>
     );
   }
   // React.forwardRef interferes with the inferred element type

@@ -2,7 +2,7 @@ import React from 'react';
 import { EuiBasicTable } from '../../../../../src/components';
 import { GuideSectionTypes } from '../../../components';
 
-import { Table } from './actions';
+import Table from './actions';
 import { EuiCode } from '../../../../../src/components/code';
 const source = require('!!raw-loader!./actions');
 
@@ -10,12 +10,12 @@ export const section = {
   title: 'Adding actions to table',
   source: [
     {
-      type: GuideSectionTypes.JS,
+      type: GuideSectionTypes.TSX,
       code: source,
     },
   ],
   text: (
-    <div>
+    <>
       <p>
         The following example demonstrates &quot;actions&quot; columns. These
         are special columns where you define per-row, item level actions. The
@@ -37,7 +37,7 @@ export const section = {
           stays visible at all times.
         </li>
       </ul>
-    </div>
+    </>
   ),
   components: { EuiBasicTable },
   demo: <Table />,

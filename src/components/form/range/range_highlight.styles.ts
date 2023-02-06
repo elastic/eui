@@ -40,7 +40,6 @@ export const euiRangeHighlightProgressStyles = (
       block-size: ${range.highlightHeight};
       border-radius: ${range.trackBorderRadius};
       background-color: ${range.highlightColor};
-      border-color: ${range.highlightColor};
 
       // Change highlight color to focus on keyboard focus and on mouse drag
       .euiRangeSlider:focus-visible ~ .euiRangeHighlight &,

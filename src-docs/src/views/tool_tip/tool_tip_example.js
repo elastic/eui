@@ -36,6 +36,9 @@ const tooltipSnippet = [
 import ToolTipComponent from './tool_tip_components';
 const toolTipComponentSource = require('!!raw-loader!./tool_tip_components');
 
+import ToolTipFixed from './tool_tip_fixed';
+const toolTipFixedSource = require('!!raw-loader!./tool_tip_fixed');
+
 import IconTip from './icon_tip';
 const infoTipSource = require('!!raw-loader!./icon_tip');
 const infoTipSnippet = `<EuiIconTip
@@ -145,6 +148,25 @@ export const ToolTipExample = {
 
       props: { EuiToolTip },
       demo: <ToolTipComponent />,
+    },
+    {
+      title: 'Tooltip on a fixed element',
+      text: (
+        <p>
+          Tooltips even work on <EuiCode>position: fixed;</EuiCode> elements.
+          Add the <EuiCode>repositionOnScroll</EuiCode> boolean prop to ensure
+          the tooltip realigns to the fixed anchor on scroll.
+        </p>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: toolTipFixedSource,
+        },
+      ],
+
+      props: { EuiToolTip },
+      demo: <ToolTipFixed />,
     },
     {
       title: 'IconTip',

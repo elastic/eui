@@ -105,7 +105,11 @@ export interface EuiPopoverProps extends CommonProps {
    */
   focusTrapProps?: Pick<
     EuiFocusTrapProps,
-    'clickOutsideDisables' | 'noIsolation' | 'scrollLock' | 'shards'
+    | 'clickOutsideDisables'
+    | 'onClickOutside'
+    | 'noIsolation'
+    | 'scrollLock'
+    | 'shards'
   >;
   /**
    * Show arrow indicating to originating button
@@ -699,7 +703,7 @@ export class EuiPopover extends Component<Props, State> {
               {ownFocus && !isTabbable && (
                 <EuiI18n
                   token="euiPopover.screenReaderAnnouncement"
-                  default="You are in a dialog. To close this dialog, hit escape."
+                  default="You are in a dialog. Press Escape, or tap/click outside the dialog to close."
                 />
               )}
               {/* TODO: Change the translation key for EuiPopover */}
@@ -720,11 +724,11 @@ export class EuiPopover extends Component<Props, State> {
         <EuiPortal insert={insert}>
           <EuiFocusTrap
             clickOutsideDisables={true}
+            onClickOutside={this.onClickOutside}
             {...focusTrapProps}
             returnFocus={returnFocus} // Ignore temporary state of indecisive focus
             initialFocus={initialFocus}
             onDeactivation={onTrapDeactivation}
-            onClickOutside={this.onClickOutside}
             onEscapeKey={this.onEscapeKey}
             disabled={
               !ownFocus || !this.state.isOpenStable || this.state.isClosing
