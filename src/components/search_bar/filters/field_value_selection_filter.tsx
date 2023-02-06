@@ -259,23 +259,23 @@ export class FieldValueSelectionFilter extends Component<
     if (!multiSelect && autoClose) {
       this.closePopover();
       const query = checked
-        ? this.props.query.removeSimpleFieldClauses(field)
-        : this.props.query
+        ? this.props.query
             .removeSimpleFieldClauses(field)
-            .addSimpleFieldValue(field, value, true, operator);
+            .addSimpleFieldValue(field, value, true, operator)
+        : this.props.query.removeSimpleFieldClauses(field);
 
       this.props.onChange(query);
     } else {
       if (multiSelect === 'or') {
         const query = checked
-          ? this.props.query.removeOrFieldValue(field, value)
-          : this.props.query.addOrFieldValue(field, value, true, operator);
+          ? this.props.query.addOrFieldValue(field, value, true, operator)
+          : this.props.query.removeOrFieldValue(field, value);
 
         this.props.onChange(query);
       } else {
         const query = checked
-          ? this.props.query.removeSimpleFieldValue(field, value)
-          : this.props.query.addSimpleFieldValue(field, value, true, operator);
+          ? this.props.query.addSimpleFieldValue(field, value, true, operator)
+          : this.props.query.removeSimpleFieldValue(field, value);
 
         this.props.onChange(query);
       }
@@ -404,15 +404,12 @@ export class FieldValueSelectionFilter extends Component<
           listProps={{
             isVirtualized: isOverSearchThreshold || false,
           }}
-          onChange={(options) => {
-            const diff = items.find(
-              (item, index) => item.checked !== options[index].checked
-            );
-            if (diff) {
+          onChange={(options, event, changedOption) => {
+            if (changedOption.data) {
               this.onOptionClick(
-                diff.data.optionField,
-                diff.data.value,
-                diff.checked
+                changedOption.data.optionField,
+                changedOption.data.value,
+                changedOption.checked
               );
             }
           }}
