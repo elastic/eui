@@ -68,7 +68,7 @@ export const MetricChartExample = {
       <EuiImage
         alt="Overview of metric component."
         url={metric_intro}
-        size="900px"
+        style={{ width: '100%', maxWidth: '900px' }}
       />
     </>
   ),
@@ -80,7 +80,7 @@ export const MetricChartExample = {
           <EuiImage
             alt="Anatomy of metric component"
             url={metric_anatomy}
-            size="700px"
+            style={{ width: '100%', maxWidth: '900px' }}
           />
           <p>
             The Metric is used to convey a single numerical value. It usually
