@@ -39,6 +39,7 @@ import {
   singleValueSnippet,
   trendSnippet,
 } from './metric_chart_snippets';
+import { Link } from 'react-router-dom';
 
 const gridColumnSource = require('!!raw-loader!./metric_chart_grid_column');
 const gridRowSource = require('!!raw-loader!./metric_chart_grid_row');
@@ -55,14 +56,20 @@ export const MetricChartExample = {
       <EuiSpacer size="l" />
       <EuiText>
         <p>
-          EUI provides utilities and documentation for working with{' '}
+          The <strong>Metric</strong> chart is a single value visualization
+          available from{' '}
           <EuiLink
             href="https://elastic.github.io/elastic-charts"
             target="_blank"
           >
             Elastic Charts
           </EuiLink>
-          , the charting library created and maintained by Elastic.
+          . It allows you to represent a metric, a KPI, a specific state with a
+          very simple interface, similar to{' '}
+          <Link to="/display/stat">
+            <strong>EuiStat</strong>
+          </Link>{' '}
+          but with more data visualization oriented capabilities.
         </p>
       </EuiText>
       <EuiImage
