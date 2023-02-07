@@ -1,5 +1,25 @@
 [
   {
+    "version": "75.0.0",
+    "changes": [
+      {
+        "token": "euiFlyout.screenReaderModalDialog",
+        "changeType": "added",
+        "value": "You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close."
+      },
+      {
+        "token": "euiFlyout.screenReaderNonModalDialog",
+        "changeType": "added",
+        "value": "You are in a non-modal dialog. To close the dialog, press Escape."
+      },
+      {
+        "token": "euiFlyout.screenReaderFixedHeaders",
+        "changeType": "added",
+        "value": "You can still continue tabbing through the page headers in addition to the dialog."
+      }
+    ]
+  },
+  {
     "version": "74.1.0",
     "changes": [
       {

@@ -4085,12 +4085,60 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 299,
+        "line": 296,
         "column": 8
       },
       "end": {
-        "line": 299,
+        "line": 296,
         "column": 78
+      }
+    },
+    "filepath": "src/components/flyout/flyout.tsx"
+  },
+  {
+    "token": "euiFlyout.screenReaderModalDialog",
+    "defString": "You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 359,
+        "column": 12
+      },
+      "end": {
+        "line": 362,
+        "column": 14
+      }
+    },
+    "filepath": "src/components/flyout/flyout.tsx"
+  },
+  {
+    "token": "euiFlyout.screenReaderNonModalDialog",
+    "defString": "You are in a non-modal dialog. To close the dialog, press Escape.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 364,
+        "column": 12
+      },
+      "end": {
+        "line": 367,
+        "column": 14
+      }
+    },
+    "filepath": "src/components/flyout/flyout.tsx"
+  },
+  {
+    "token": "euiFlyout.screenReaderFixedHeaders",
+    "defString": "You can still continue tabbing through the page headers in addition to the dialog.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 370,
+        "column": 12
+      },
+      "end": {
+        "line": 373,
+        "column": 14
       }
     },
     "filepath": "src/components/flyout/flyout.tsx"
