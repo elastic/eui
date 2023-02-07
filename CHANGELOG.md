@@ -1,3 +1,18 @@
+## [`75.0.0`](https://github.com/elastic/eui/tree/v75.0.0)
+
+- `EuiFlyout`s now automatically shard all fixed `EuiHeader`s on the page. This means that interactions (mouse & keyboard) with items inside `EuiHeader`s when flyouts are open will no longer trigger focus fighting ([#6566](https://github.com/elastic/eui/pull/6566))
+- `EuiFlyout`s now read out detailed screen reader dialog instructions and hints on open ([#6566](https://github.com/elastic/eui/pull/6566))
+
+**Bug fixes**
+
+- Fixed `EuiSelectable` options with incorrect `aria-posinset` indices when rendered with group labels not at the start of the array ([#6571](https://github.com/elastic/eui/pull/6571))
+- Fixed a bug with `EuiSearchBar` where filters with `multiSelect: false` were not able to select a new option when an option was already selected ([#6577](https://github.com/elastic/eui/pull/6577))
+
+**Breaking changes**
+
+- Removed the ability to customize the `role` prop of `EuiFlyout`s. `EuiFlyout`s should always be dialog roles for screen reader consistency. ([#6566](https://github.com/elastic/eui/pull/6566))
+- Removed `closeButtonAriaLabel` prop from `EuiFlyout` - use `closeButtonProps['aria-label']` instead ([#6566](https://github.com/elastic/eui/pull/6566))
+
 ## [`74.1.0`](https://github.com/elastic/eui/tree/v74.1.0)
 
 - Added new `EuiSkeletonText`, `EuiSkeletonTitle`, `EuiSkeletonCircle`, and `EuiSkeletonRectangle` components ([#6502](https://github.com/elastic/eui/pull/6502))
