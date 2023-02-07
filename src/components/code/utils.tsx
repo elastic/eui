@@ -18,6 +18,10 @@ import { cx } from '@emotion/css';
 import { CommonProps } from '../common';
 import { UseEuiTheme } from '../../services';
 
+import {
+  EuiCodeBlockAnnotation,
+  LineAnnotationMap,
+} from './code_block_annotations';
 import { euiCodeBlockLineStyles } from './code_block_line.styles';
 
 /**
@@ -72,7 +76,16 @@ export const nodeToHtml = (
         key,
         className: cx(properties.className),
       },
-      children && children.map((el, i) => nodeToHtml(el, i, nodes, depth + 1))
+      children &&
+        children.map((el, i) =>
+          // @ts-ignore - using a custom type here to handle JSX annotations
+          el.type === 'annotation' ? (
+            // @ts-ignore - custom keys are passed by annotationElement below
+            <EuiCodeBlockAnnotation lineNumber={el.lineNumber} children={el.annotation} key={i} /> // prettier-ignore
+          ) : (
+            nodeToHtml(el, i, nodes, depth + 1)
+          )
+        )
     );
   }
 
@@ -92,6 +105,7 @@ interface LineNumbersConfig {
   start: number;
   show: boolean;
   highlight?: string;
+  annotations?: LineAnnotationMap;
 }
 
 // Approximate width of a single digit/character
@@ -170,7 +184,7 @@ const addLineData = (
 
 function wrapLines(
   nodes: ExtendedRefractorNode[],
-  options: { showLineNumbers: boolean; highlight?: string },
+  options: { showLineNumbers: boolean; highlight?: string; annotations?: any },
   euiTheme: UseEuiTheme
 ) {
   const grouped: ExtendedRefractorNode[][] = [];
@@ -197,6 +211,7 @@ function wrapLines(
       const digits = grouped.length.toString().length;
       const width = digits * CHAR_SIZE;
 
+      // Line text element and highlights
       const highlights = options.highlight
         ? parseLineRanges(options.highlight)
         : [];
@@ -204,29 +219,55 @@ function wrapLines(
         styles.lineText.euiCodeBlock__lineText,
         highlights.includes(lineNumber) && styles.lineText.isHighlighted,
       ]);
-      const lineNumberStyles = cx(styles.lineNumber.euiCodeBlock__lineNumber);
+      const lineTextElement: RefractorNode = {
+        type: 'element',
+        tagName: 'span',
+        properties: {
+          className: ['euiCodeBlock__lineText', lineTextStyles],
+        },
+        children: node,
+      };
 
-      children = [
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            style: { inlineSize: width },
-            ['data-line-number']: lineNumber,
-            ['aria-hidden']: true,
-            className: ['euiCodeBlock__lineNumber', lineNumberStyles],
-          },
-          children: [],
+      // Line number column/wrapper
+      const lineNumberWrapperStyles = cx(
+        styles.lineNumber.euiCodeBlock__lineNumberWrapper
+      );
+      const lineNumberWrapperElement: RefractorNode = {
+        type: 'element',
+        tagName: 'span',
+        properties: {
+          style: { inlineSize: width },
+          ['data-line-number']: lineNumber,
+          className: ['euiCodeBlock__lineNumber', lineNumberWrapperStyles],
         },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['euiCodeBlock__lineText', lineTextStyles],
-          },
-          children: node,
+        children: [],
+      };
+
+      // Line number element
+      const lineNumberStyles = cx(styles.lineNumber.euiCodeBlock__lineNumber);
+      const lineNumberElement: RefractorNode = {
+        type: 'element',
+        tagName: 'span',
+        properties: {
+          className: [lineNumberStyles],
+          ['aria-hidden']: true,
         },
-      ];
+        children: [{ type: 'text', value: String(lineNumber) }],
+      };
+      lineNumberWrapperElement.children.push(lineNumberElement);
+
+      // Annotation element
+      const hasAnnotation = options.annotations?.hasOwnProperty(lineNumber);
+      if (hasAnnotation) {
+        const annotationElement = ({
+          type: 'annotation',
+          annotation: options.annotations[lineNumber],
+          lineNumber,
+        } as unknown) as RefractorNode;
+        lineNumberWrapperElement.children.push(annotationElement);
+      }
+
+      children = [lineNumberWrapperElement, lineTextElement];
     }
 
     wrapped.push({
@@ -249,7 +290,11 @@ export const highlightByLine = (
 ) => {
   return wrapLines(
     addLineData(highlight(children, language), { lineNumber: data.start }),
-    { showLineNumbers: data.show, highlight: data.highlight },
+    {
+      showLineNumbers: data.show,
+      highlight: data.highlight,
+      annotations: data.annotations,
+    },
     euiTheme
   );
 };

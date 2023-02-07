@@ -69,6 +69,28 @@ describe('shared utils', () => {
       const component = shallow(<div>{output}</div>);
       expect(component).toMatchSnapshot();
     });
+
+    it('handles rendering custom annotation types', () => {
+      const output = nodeToHtml(
+        {
+          type: 'element',
+          tagName: 'span',
+          children: [
+            {
+              // @ts-ignore - custom annotation type
+              type: 'annotation',
+              lineNumber: 3,
+              annotation: 'Hello world',
+            },
+          ],
+          properties: { className: ['hello-world'] },
+        },
+        0,
+        []
+      );
+      const component = shallow(<div>{output}</div>);
+      expect(component).toMatchSnapshot();
+    });
   });
 });
 
@@ -136,6 +158,23 @@ describe('line utils', () => {
               'euiCodeBlock__lineText-isHighlighted'
             )
           ).toBe(true);
+        });
+      });
+
+      describe('with annotations', () => {
+        it('adds a custom annotation object after the lineNumber object', () => {
+          const annotation = highlightByLineWithTheme({
+            show: true,
+            start: 1,
+            annotations: { 1: 'Hello world' },
+          });
+          expect(annotation).toMatchSnapshot();
+          // @ts-expect-error RefractorNode
+          expect(annotation[0].children[0].children[1]).toEqual({
+            type: 'annotation',
+            lineNumber: 1,
+            annotation: 'Hello world',
+          });
         });
       });
     });
