@@ -29,4 +29,6 @@ describe('EuiCodeBlockAnnotation', () => {
 
     expect(baseElement).toMatchSnapshot();
   });
+
+  // See code_block_annotations.spec.tsx for more in-depth E2E testing
 });
