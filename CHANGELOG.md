@@ -1,3 +1,11 @@
+## [`74.0.2`](https://github.com/elastic/eui/tree/v74.0.2)
+
+**Bug fixes**
+
+- Fixed `EuiCard` to ensure `onClick` method only runs once when `title` contains a React node ([#6551](https://github.com/elastic/eui/pull/6551))
+- Fixed `EuiSelectable` options with incorrect `aria-posinset` indices when rendered with group labels not at the start of the array ([#6571](https://github.com/elastic/eui/pull/6571))
+- Fixed a bug with `EuiSearchBar` where filters with `multiSelect: false` were not able to select a new option when an option was already selected ([#6577](https://github.com/elastic/eui/pull/6577))
+
 ## [`74.0.1`](https://github.com/elastic/eui/tree/v74.0.1)
 
 **Bug fixes**
