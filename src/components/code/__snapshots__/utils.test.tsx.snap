@@ -1,27 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`shared utils nodeToHtml recursively converts refactor nodes to React JSX 1`] = `
-<div>
-  <span
-    className="hello-world"
-    key="node-0-0"
-  >
-    Hello world
-  </span>
-</div>
-`;
-
 exports[`line utils highlightByLine with line numbers renders two elements per line: .euiCodeBlock__lineNumber and .euiCodeBlock__lineText 1`] = `
 Array [
   Object {
     "children": Array [
       Object {
-        "children": Array [],
+        "children": Array [
+          Object {
+            "children": Array [
+              Object {
+                "type": "text",
+                "value": "1",
+              },
+            ],
+            "properties": Object {
+              "aria-hidden": true,
+              "className": Array [
+                "css-5u6z3m-euiCodeBlock__lineNumber",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+        ],
         "properties": Object {
-          "aria-hidden": true,
           "className": Array [
             "euiCodeBlock__lineNumber",
-            "css-13odi3l-euiCodeBlock__lineNumber",
+            "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
           "data-line-number": 1,
           "style": Object {
@@ -64,7 +69,7 @@ Array [
         "properties": Object {
           "className": Array [
             "euiCodeBlock__lineText",
-            "css-ttqtsf-euiCodeBlock__lineText",
+            "css-rnrc4n-euiCodeBlock__lineText",
           ],
         },
         "tagName": "span",
@@ -83,12 +88,28 @@ Array [
   Object {
     "children": Array [
       Object {
-        "children": Array [],
+        "children": Array [
+          Object {
+            "children": Array [
+              Object {
+                "type": "text",
+                "value": "2",
+              },
+            ],
+            "properties": Object {
+              "aria-hidden": true,
+              "className": Array [
+                "css-5u6z3m-euiCodeBlock__lineNumber",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+        ],
         "properties": Object {
-          "aria-hidden": true,
           "className": Array [
             "euiCodeBlock__lineNumber",
-            "css-13odi3l-euiCodeBlock__lineNumber",
+            "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
           "data-line-number": 2,
           "style": Object {
@@ -203,7 +224,7 @@ Array [
         "properties": Object {
           "className": Array [
             "euiCodeBlock__lineText",
-            "css-ttqtsf-euiCodeBlock__lineText",
+            "css-rnrc4n-euiCodeBlock__lineText",
           ],
         },
         "tagName": "span",
@@ -222,12 +243,28 @@ Array [
   Object {
     "children": Array [
       Object {
-        "children": Array [],
+        "children": Array [
+          Object {
+            "children": Array [
+              Object {
+                "type": "text",
+                "value": "3",
+              },
+            ],
+            "properties": Object {
+              "aria-hidden": true,
+              "className": Array [
+                "css-5u6z3m-euiCodeBlock__lineNumber",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+        ],
         "properties": Object {
-          "aria-hidden": true,
           "className": Array [
             "euiCodeBlock__lineNumber",
-            "css-13odi3l-euiCodeBlock__lineNumber",
+            "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
           "data-line-number": 3,
           "style": Object {
@@ -269,7 +306,7 @@ Array [
         "properties": Object {
           "className": Array [
             "euiCodeBlock__lineText",
-            "css-ttqtsf-euiCodeBlock__lineText",
+            "css-rnrc4n-euiCodeBlock__lineText",
           ],
         },
         "tagName": "span",
@@ -293,12 +330,28 @@ Array [
   Object {
     "children": Array [
       Object {
-        "children": Array [],
+        "children": Array [
+          Object {
+            "children": Array [
+              Object {
+                "type": "text",
+                "value": "10",
+              },
+            ],
+            "properties": Object {
+              "aria-hidden": true,
+              "className": Array [
+                "css-5u6z3m-euiCodeBlock__lineNumber",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+        ],
         "properties": Object {
-          "aria-hidden": true,
           "className": Array [
             "euiCodeBlock__lineNumber",
-            "css-13odi3l-euiCodeBlock__lineNumber",
+            "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
           "data-line-number": 10,
           "style": Object {
@@ -341,7 +394,7 @@ Array [
         "properties": Object {
           "className": Array [
             "euiCodeBlock__lineText",
-            "css-ttqtsf-euiCodeBlock__lineText",
+            "css-rnrc4n-euiCodeBlock__lineText",
           ],
         },
         "tagName": "span",
@@ -360,12 +413,28 @@ Array [
   Object {
     "children": Array [
       Object {
-        "children": Array [],
+        "children": Array [
+          Object {
+            "children": Array [
+              Object {
+                "type": "text",
+                "value": "11",
+              },
+            ],
+            "properties": Object {
+              "aria-hidden": true,
+              "className": Array [
+                "css-5u6z3m-euiCodeBlock__lineNumber",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+        ],
         "properties": Object {
-          "aria-hidden": true,
           "className": Array [
             "euiCodeBlock__lineNumber",
-            "css-13odi3l-euiCodeBlock__lineNumber",
+            "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
           "data-line-number": 11,
           "style": Object {
@@ -480,7 +549,7 @@ Array [
         "properties": Object {
           "className": Array [
             "euiCodeBlock__lineText",
-            "css-ttqtsf-euiCodeBlock__lineText",
+            "css-rnrc4n-euiCodeBlock__lineText",
           ],
         },
         "tagName": "span",
@@ -499,12 +568,28 @@ Array [
   Object {
     "children": Array [
       Object {
-        "children": Array [],
+        "children": Array [
+          Object {
+            "children": Array [
+              Object {
+                "type": "text",
+                "value": "12",
+              },
+            ],
+            "properties": Object {
+              "aria-hidden": true,
+              "className": Array [
+                "css-5u6z3m-euiCodeBlock__lineNumber",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+        ],
         "properties": Object {
-          "aria-hidden": true,
           "className": Array [
             "euiCodeBlock__lineNumber",
-            "css-13odi3l-euiCodeBlock__lineNumber",
+            "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
           "data-line-number": 12,
           "style": Object {
@@ -546,7 +631,7 @@ Array [
         "properties": Object {
           "className": Array [
             "euiCodeBlock__lineText",
-            "css-ttqtsf-euiCodeBlock__lineText",
+            "css-rnrc4n-euiCodeBlock__lineText",
           ],
         },
         "tagName": "span",
@@ -565,17 +650,38 @@ Array [
 ]
 `;
 
-exports[`line utils highlightByLine with line numbers with highlighted lines adds a class to the specified lines 1`] = `
+exports[`line utils highlightByLine with line numbers with annotations adds a custom annotation object after the lineNumber object 1`] = `
 Array [
   Object {
     "children": Array [
       Object {
-        "children": Array [],
+        "children": Array [
+          Object {
+            "children": Array [
+              Object {
+                "type": "text",
+                "value": "1",
+              },
+            ],
+            "properties": Object {
+              "aria-hidden": true,
+              "className": Array [
+                "css-5u6z3m-euiCodeBlock__lineNumber",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+          Object {
+            "annotation": "Hello world",
+            "lineNumber": 1,
+            "type": "annotation",
+          },
+        ],
         "properties": Object {
-          "aria-hidden": true,
           "className": Array [
             "euiCodeBlock__lineNumber",
-            "css-13odi3l-euiCodeBlock__lineNumber",
+            "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
           "data-line-number": 1,
           "style": Object {
@@ -618,7 +724,7 @@ Array [
         "properties": Object {
           "className": Array [
             "euiCodeBlock__lineText",
-            "css-1k1cwxr-euiCodeBlock__lineText-isHighlighted",
+            "css-rnrc4n-euiCodeBlock__lineText",
           ],
         },
         "tagName": "span",
@@ -637,12 +743,28 @@ Array [
   Object {
     "children": Array [
       Object {
-        "children": Array [],
+        "children": Array [
+          Object {
+            "children": Array [
+              Object {
+                "type": "text",
+                "value": "2",
+              },
+            ],
+            "properties": Object {
+              "aria-hidden": true,
+              "className": Array [
+                "css-5u6z3m-euiCodeBlock__lineNumber",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+        ],
         "properties": Object {
-          "aria-hidden": true,
           "className": Array [
             "euiCodeBlock__lineNumber",
-            "css-13odi3l-euiCodeBlock__lineNumber",
+            "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
           "data-line-number": 2,
           "style": Object {
@@ -757,7 +879,7 @@ Array [
         "properties": Object {
           "className": Array [
             "euiCodeBlock__lineText",
-            "css-1k1cwxr-euiCodeBlock__lineText-isHighlighted",
+            "css-rnrc4n-euiCodeBlock__lineText",
           ],
         },
         "tagName": "span",
@@ -776,12 +898,28 @@ Array [
   Object {
     "children": Array [
       Object {
-        "children": Array [],
+        "children": Array [
+          Object {
+            "children": Array [
+              Object {
+                "type": "text",
+                "value": "3",
+              },
+            ],
+            "properties": Object {
+              "aria-hidden": true,
+              "className": Array [
+                "css-5u6z3m-euiCodeBlock__lineNumber",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+        ],
         "properties": Object {
-          "aria-hidden": true,
           "className": Array [
             "euiCodeBlock__lineNumber",
-            "css-13odi3l-euiCodeBlock__lineNumber",
+            "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
           "data-line-number": 3,
           "style": Object {
@@ -823,7 +961,332 @@ Array [
         "properties": Object {
           "className": Array [
             "euiCodeBlock__lineText",
-            "css-ttqtsf-euiCodeBlock__lineText",
+            "css-rnrc4n-euiCodeBlock__lineText",
+          ],
+        },
+        "tagName": "span",
+        "type": "element",
+      },
+    ],
+    "properties": Object {
+      "className": Array [
+        "euiCodeBlock__line",
+        "css-8rt6cm-euiCodeBlock__line-hasLineNumbers",
+      ],
+    },
+    "tagName": "span",
+    "type": "element",
+  },
+]
+`;
+
+exports[`line utils highlightByLine with line numbers with highlighted lines adds a class to the specified lines 1`] = `
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "children": Array [
+          Object {
+            "children": Array [
+              Object {
+                "type": "text",
+                "value": "1",
+              },
+            ],
+            "properties": Object {
+              "aria-hidden": true,
+              "className": Array [
+                "css-5u6z3m-euiCodeBlock__lineNumber",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+        ],
+        "properties": Object {
+          "className": Array [
+            "euiCodeBlock__lineNumber",
+            "css-wlfghs-euiCodeBlock__lineNumberWrapper",
+          ],
+          "data-line-number": 1,
+          "style": Object {
+            "inlineSize": 8,
+          },
+        },
+        "tagName": "span",
+        "type": "element",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "children": Array [
+              Object {
+                "lineEnd": 1,
+                "lineStart": 1,
+                "type": "text",
+                "value": "{",
+              },
+            ],
+            "lineEnd": 1,
+            "lineStart": 1,
+            "properties": Object {
+              "className": Array [
+                "token",
+                "punctuation",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+          Object {
+            "lineEnd": 1,
+            "lineStart": 1,
+            "type": "text",
+            "value": "
+",
+          },
+        ],
+        "properties": Object {
+          "className": Array [
+            "euiCodeBlock__lineText",
+            "css-96t2rh-euiCodeBlock__lineText-isHighlighted",
+          ],
+        },
+        "tagName": "span",
+        "type": "element",
+      },
+    ],
+    "properties": Object {
+      "className": Array [
+        "euiCodeBlock__line",
+        "css-8rt6cm-euiCodeBlock__line-hasLineNumbers",
+      ],
+    },
+    "tagName": "span",
+    "type": "element",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "children": Array [
+          Object {
+            "children": Array [
+              Object {
+                "type": "text",
+                "value": "2",
+              },
+            ],
+            "properties": Object {
+              "aria-hidden": true,
+              "className": Array [
+                "css-5u6z3m-euiCodeBlock__lineNumber",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+        ],
+        "properties": Object {
+          "className": Array [
+            "euiCodeBlock__lineNumber",
+            "css-wlfghs-euiCodeBlock__lineNumberWrapper",
+          ],
+          "data-line-number": 2,
+          "style": Object {
+            "inlineSize": 8,
+          },
+        },
+        "tagName": "span",
+        "type": "element",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "lineEnd": 2,
+            "lineStart": 2,
+            "type": "text",
+            "value": "    ",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "lineEnd": 2,
+                "lineStart": 2,
+                "type": "text",
+                "value": "\\"id\\"",
+              },
+            ],
+            "lineEnd": 2,
+            "lineStart": 2,
+            "properties": Object {
+              "className": Array [
+                "token",
+                "property",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "lineEnd": 2,
+                "lineStart": 2,
+                "type": "text",
+                "value": ":",
+              },
+            ],
+            "lineEnd": 2,
+            "lineStart": 2,
+            "properties": Object {
+              "className": Array [
+                "token",
+                "operator",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+          Object {
+            "lineEnd": 2,
+            "lineStart": 2,
+            "type": "text",
+            "value": " ",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "lineEnd": 2,
+                "lineStart": 2,
+                "type": "text",
+                "value": "\\"1\\"",
+              },
+            ],
+            "lineEnd": 2,
+            "lineStart": 2,
+            "properties": Object {
+              "className": Array [
+                "token",
+                "string",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "lineEnd": 2,
+                "lineStart": 2,
+                "type": "text",
+                "value": ",",
+              },
+            ],
+            "lineEnd": 2,
+            "lineStart": 2,
+            "properties": Object {
+              "className": Array [
+                "token",
+                "punctuation",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+          Object {
+            "lineEnd": 2,
+            "lineStart": 2,
+            "type": "text",
+            "value": "
+",
+          },
+        ],
+        "properties": Object {
+          "className": Array [
+            "euiCodeBlock__lineText",
+            "css-96t2rh-euiCodeBlock__lineText-isHighlighted",
+          ],
+        },
+        "tagName": "span",
+        "type": "element",
+      },
+    ],
+    "properties": Object {
+      "className": Array [
+        "euiCodeBlock__line",
+        "css-8rt6cm-euiCodeBlock__line-hasLineNumbers",
+      ],
+    },
+    "tagName": "span",
+    "type": "element",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "children": Array [
+          Object {
+            "children": Array [
+              Object {
+                "type": "text",
+                "value": "3",
+              },
+            ],
+            "properties": Object {
+              "aria-hidden": true,
+              "className": Array [
+                "css-5u6z3m-euiCodeBlock__lineNumber",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+        ],
+        "properties": Object {
+          "className": Array [
+            "euiCodeBlock__lineNumber",
+            "css-wlfghs-euiCodeBlock__lineNumberWrapper",
+          ],
+          "data-line-number": 3,
+          "style": Object {
+            "inlineSize": 8,
+          },
+        },
+        "tagName": "span",
+        "type": "element",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "lineEnd": 3,
+            "lineStart": 3,
+            "type": "text",
+            "value": "  ",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "lineEnd": 3,
+                "lineStart": 3,
+                "type": "text",
+                "value": "}",
+              },
+            ],
+            "lineEnd": 3,
+            "lineStart": 3,
+            "properties": Object {
+              "className": Array [
+                "token",
+                "punctuation",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+        ],
+        "properties": Object {
+          "className": Array [
+            "euiCodeBlock__lineText",
+            "css-rnrc4n-euiCodeBlock__lineText",
           ],
         },
         "tagName": "span",
@@ -1033,4 +1496,31 @@ Array [
     "type": "element",
   },
 ]
+`;
+
+exports[`shared utils nodeToHtml handles rendering custom annotation types 1`] = `
+<div>
+  <span
+    className="hello-world"
+    key="node-0-0"
+  >
+    <EuiCodeBlockAnnotation
+      key="0"
+      lineNumber={3}
+    >
+      Hello world
+    </EuiCodeBlockAnnotation>
+  </span>
+</div>
+`;
+
+exports[`shared utils nodeToHtml recursively converts refactor nodes to React JSX 1`] = `
+<div>
+  <span
+    className="hello-world"
+    key="node-0-0"
+  >
+    Hello world
+  </span>
+</div>
 `;

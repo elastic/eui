@@ -264,5 +264,17 @@ describe('EuiCodeBlock', () => {
       );
       expect(component).toMatchSnapshot();
     });
+
+    it('renders annotated line numbers', () => {
+      const component = render(
+        <EuiCodeBlock
+          lineNumbers={{ annotations: { 1: 'hello world' } }}
+          {...requiredProps}
+        >
+          {code}
+        </EuiCodeBlock>
+      );
+      expect(component).toMatchSnapshot();
+    });
   });
 });
