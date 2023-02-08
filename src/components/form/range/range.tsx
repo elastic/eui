@@ -203,7 +203,11 @@ export class EuiRangeClass extends Component<
           levels={levels}
           onChange={this.handleOnChange}
           value={value}
-          aria-hidden={showInput === true}
+          aria-hidden={
+            showInput === true || showInput === 'inputWithPopover'
+              ? true
+              : false
+          }
           showRange={showRange}
         >
           {(trackWidth) => (
@@ -227,7 +231,11 @@ export class EuiRangeClass extends Component<
                 }
                 onFocus={showInput === true ? undefined : onFocus}
                 onBlur={showInputOnly ? this.onInputBlur : onBlur}
-                aria-hidden={showInput === true ? true : false}
+                aria-hidden={
+                  showInput === true || showInput === 'inputWithPopover'
+                    ? true
+                    : false
+                }
                 thumbColor={thumbColor}
                 {...rest}
               />
@@ -291,6 +299,7 @@ export class EuiRangeClass extends Component<
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover}
         disableFocusTrap={true}
+        popoverScreenReaderText="You are in a custom range slider. Use the Up and Down arrow keys to change the value."
       >
         {theRange}
       </EuiInputPopover>

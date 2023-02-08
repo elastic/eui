@@ -4,12 +4,6 @@ exports[`EuiSelectable custom options with data 1`] = `
 <div
   class="euiSelectable"
 >
-  <p
-    class="emotion-euiScreenReaderOnly"
-    id="generated-id_instructions"
-  >
-    Filter options
-  </p>
   <div
     class="euiSelectableList"
     data-test-subj="euiSelectableList"
@@ -119,12 +113,6 @@ exports[`EuiSelectable errorMessage prop can render an element as the message 1`
 <div
   class="euiSelectable"
 >
-  <p
-    class="emotion-euiScreenReaderOnly"
-    id="generated-id_instructions"
-  >
-    Filter options
-  </p>
   <div
     class="euiText euiSelectableMessage emotion-euiText-xs-euiTextColor-subdued"
     data-test-subj="euiSelectableMessage"
@@ -141,12 +129,6 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
 <div
   class="euiSelectable"
 >
-  <p
-    class="emotion-euiScreenReaderOnly"
-    id="generated-id_instructions"
-  >
-    Filter options
-  </p>
   <div
     class="euiSelectableList"
     data-test-subj="euiSelectableList"
@@ -257,12 +239,6 @@ exports[`EuiSelectable errorMessage prop does renders the message when defined 1
 <div
   class="euiSelectable"
 >
-  <p
-    class="emotion-euiScreenReaderOnly"
-    id="generated-id_instructions"
-  >
-    Filter options
-  </p>
   <div
     class="euiText euiSelectableMessage emotion-euiText-xs-euiTextColor-subdued"
     data-test-subj="euiSelectableMessage"
@@ -357,12 +333,6 @@ exports[`EuiSelectable search value supports inheriting initialSearchValue from 
       </p>
     </div>
   </div>
-  <p
-    class="emotion-euiScreenReaderOnly"
-    id="generated-id_instructions"
-  >
-    Filter options
-  </p>
   <div
     class="euiText euiSelectableMessage emotion-euiText-xs-euiTextColor-subdued"
     data-test-subj="euiSelectableMessage"
@@ -383,6 +353,7 @@ exports[`EuiSelectable search value supports inheriting initialSearchValue from 
     >
       <input
         aria-activedescendant=""
+        aria-describedby="generated-id_instructions"
         aria-haspopup="listbox"
         aria-label="Filter options"
         autocomplete="off"
@@ -422,6 +393,12 @@ exports[`EuiSelectable search value supports inheriting initialSearchValue from 
       </div>
     </div>
   </div>
+  <p
+    class="emotion-euiScreenReaderOnly"
+    id="generated-id_instructions"
+  >
+    Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+  </p>
 </div>
 `;
 

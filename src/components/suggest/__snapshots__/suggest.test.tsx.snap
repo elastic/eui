@@ -20,6 +20,7 @@ Array [
             >
               <input
                 aria-activedescendant=""
+                aria-describedby="generated-id_instructions"
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
@@ -44,6 +45,12 @@ Array [
               </div>
             </div>
           </div>
+          <p
+            class="emotion-euiScreenReaderOnly"
+            id="generated-id_instructions"
+          >
+            Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+          </p>
         </div>
       </div>
     </div>
@@ -52,7 +59,7 @@ Array [
     class="emotion-euiScreenReaderOnly"
     id="generated-id"
   >
-    State: unchanged.
+    State: unchanged. Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
   </p>,
 ]
 `;
@@ -77,6 +84,7 @@ Array [
             >
               <input
                 aria-activedescendant=""
+                aria-describedby="generated-id_instructions"
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
@@ -106,6 +114,12 @@ Array [
               Appended
             </span>
           </div>
+          <p
+            class="emotion-euiScreenReaderOnly"
+            id="generated-id_instructions"
+          >
+            Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+          </p>
         </div>
       </div>
     </div>
@@ -114,7 +128,7 @@ Array [
     class="emotion-euiScreenReaderOnly"
     id="generated-id"
   >
-    State: unchanged.
+    State: unchanged. Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
   </p>,
 ]
 `;
@@ -139,6 +153,7 @@ Array [
             >
               <input
                 aria-activedescendant=""
+                aria-describedby="generated-id_instructions"
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
@@ -163,6 +178,12 @@ Array [
               </div>
             </div>
           </div>
+          <p
+            class="emotion-euiScreenReaderOnly"
+            id="generated-id_instructions"
+          >
+            Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+          </p>
         </div>
       </div>
     </div>
@@ -171,7 +192,7 @@ Array [
     class="emotion-euiScreenReaderOnly"
     id="generated-id"
   >
-    State: unchanged.
+    State: unchanged. Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
   </p>,
 ]
 `;
@@ -196,6 +217,7 @@ Array [
             >
               <input
                 aria-activedescendant=""
+                aria-describedby="generated-id_instructions"
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
@@ -220,6 +242,12 @@ Array [
               </div>
             </div>
           </div>
+          <p
+            class="emotion-euiScreenReaderOnly"
+            id="generated-id_instructions"
+          >
+            Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+          </p>
         </div>
       </div>
     </div>
@@ -228,7 +256,7 @@ Array [
     class="emotion-euiScreenReaderOnly"
     id="generated-id"
   >
-    State: unchanged.
+    State: unchanged. Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
   </p>,
 ]
 `;
@@ -253,6 +281,7 @@ Array [
             >
               <input
                 aria-activedescendant=""
+                aria-describedby="generated-id_instructions"
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
@@ -277,6 +306,12 @@ Array [
               </div>
             </div>
           </div>
+          <p
+            class="emotion-euiScreenReaderOnly"
+            id="generated-id_instructions"
+          >
+            Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+          </p>
         </div>
       </div>
     </div>
@@ -285,7 +320,7 @@ Array [
     class="emotion-euiScreenReaderOnly"
     id="generated-id"
   >
-    State: unchanged.
+    State: unchanged. Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
   </p>,
 ]
 `;
@@ -310,6 +345,7 @@ Array [
             >
               <input
                 aria-activedescendant=""
+                aria-describedby="generated-id_instructions"
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
@@ -334,6 +370,12 @@ Array [
               </div>
             </div>
           </div>
+          <p
+            class="emotion-euiScreenReaderOnly"
+            id="generated-id_instructions"
+          >
+            Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+          </p>
         </div>
       </div>
     </div>
@@ -342,7 +384,7 @@ Array [
     class="emotion-euiScreenReaderOnly"
     id="generated-id"
   >
-    State: unchanged.
+    State: unchanged. Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
   </p>,
 ]
 `;
@@ -367,6 +409,7 @@ Array [
             >
               <input
                 aria-activedescendant=""
+                aria-describedby="generated-id_instructions"
                 aria-haspopup="listbox"
                 aria-invalid="true"
                 aria-label="aria-label"
@@ -413,6 +456,12 @@ Array [
               </div>
             </div>
           </div>
+          <p
+            class="emotion-euiScreenReaderOnly"
+            id="generated-id_instructions"
+          >
+            Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+          </p>
         </div>
       </div>
     </div>
@@ -421,7 +470,7 @@ Array [
     class="emotion-euiScreenReaderOnly"
     id="testId_generated-id"
   >
-    State: unchanged.
+    State: unchanged. Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
   </p>,
 ]
 `;
@@ -446,6 +495,7 @@ Array [
             >
               <input
                 aria-activedescendant=""
+                aria-describedby="generated-id_instructions"
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
@@ -479,6 +529,12 @@ Array [
               </div>
             </div>
           </div>
+          <p
+            class="emotion-euiScreenReaderOnly"
+            id="generated-id_instructions"
+          >
+            Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+          </p>
         </div>
       </div>
     </div>
@@ -487,7 +543,7 @@ Array [
     class="emotion-euiScreenReaderOnly"
     id="generated-id"
   >
-    State: loading.
+    State: loading. Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
   </p>,
 ]
 `;
@@ -512,6 +568,7 @@ Array [
             >
               <input
                 aria-activedescendant=""
+                aria-describedby="generated-id_instructions"
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
@@ -545,6 +602,12 @@ Array [
               />
             </span>
           </div>
+          <p
+            class="emotion-euiScreenReaderOnly"
+            id="generated-id_instructions"
+          >
+            Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+          </p>
         </div>
       </div>
     </div>
@@ -553,7 +616,7 @@ Array [
     class="emotion-euiScreenReaderOnly"
     id="generated-id"
   >
-    State: saved.
+    State: saved. Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
   </p>,
 ]
 `;
@@ -578,6 +641,7 @@ Array [
             >
               <input
                 aria-activedescendant=""
+                aria-describedby="generated-id_instructions"
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
@@ -602,6 +666,12 @@ Array [
               </div>
             </div>
           </div>
+          <p
+            class="emotion-euiScreenReaderOnly"
+            id="generated-id_instructions"
+          >
+            Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+          </p>
         </div>
       </div>
     </div>
@@ -610,7 +680,7 @@ Array [
     class="emotion-euiScreenReaderOnly"
     id="generated-id"
   >
-    State: unchanged.
+    State: unchanged. Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
   </p>,
 ]
 `;
@@ -635,6 +705,7 @@ Array [
             >
               <input
                 aria-activedescendant=""
+                aria-describedby="generated-id_instructions"
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
@@ -668,6 +739,12 @@ Array [
               />
             </span>
           </div>
+          <p
+            class="emotion-euiScreenReaderOnly"
+            id="generated-id_instructions"
+          >
+            Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+          </p>
         </div>
       </div>
     </div>
@@ -676,7 +753,7 @@ Array [
     class="emotion-euiScreenReaderOnly"
     id="generated-id"
   >
-    State: unsaved.
+    State: unsaved. Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
   </p>,
 ]
 `;
@@ -701,6 +778,7 @@ Array [
             >
               <input
                 aria-activedescendant=""
+                aria-describedby="generated-id_instructions"
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
@@ -734,6 +812,12 @@ Array [
               </div>
             </div>
           </div>
+          <p
+            class="emotion-euiScreenReaderOnly"
+            id="generated-id_instructions"
+          >
+            Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+          </p>
         </div>
       </div>
     </div>
@@ -742,7 +826,7 @@ Array [
     class="emotion-euiScreenReaderOnly"
     id="generated-id"
   >
-    State: loading.
+    State: loading. Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
   </p>,
 ]
 `;
@@ -767,6 +851,7 @@ Array [
             >
               <input
                 aria-activedescendant=""
+                aria-describedby="generated-id_instructions"
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
@@ -800,6 +885,12 @@ Array [
               />
             </span>
           </div>
+          <p
+            class="emotion-euiScreenReaderOnly"
+            id="generated-id_instructions"
+          >
+            Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+          </p>
         </div>
       </div>
     </div>
@@ -808,7 +899,7 @@ Array [
     class="emotion-euiScreenReaderOnly"
     id="generated-id"
   >
-    State: saved.
+    State: saved. Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
   </p>,
 ]
 `;
@@ -833,6 +924,7 @@ Array [
             >
               <input
                 aria-activedescendant=""
+                aria-describedby="generated-id_instructions"
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
@@ -857,6 +949,12 @@ Array [
               </div>
             </div>
           </div>
+          <p
+            class="emotion-euiScreenReaderOnly"
+            id="generated-id_instructions"
+          >
+            Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+          </p>
         </div>
       </div>
     </div>
@@ -865,7 +963,7 @@ Array [
     class="emotion-euiScreenReaderOnly"
     id="generated-id"
   >
-    State: unchanged.
+    State: unchanged. Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
   </p>,
 ]
 `;
@@ -890,6 +988,7 @@ Array [
             >
               <input
                 aria-activedescendant=""
+                aria-describedby="generated-id_instructions"
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
@@ -923,6 +1022,12 @@ Array [
               />
             </span>
           </div>
+          <p
+            class="emotion-euiScreenReaderOnly"
+            id="generated-id_instructions"
+          >
+            Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+          </p>
         </div>
       </div>
     </div>
@@ -931,7 +1036,7 @@ Array [
     class="emotion-euiScreenReaderOnly"
     id="generated-id"
   >
-    State: unsaved.
+    State: unsaved. Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
   </p>,
 ]
 `;

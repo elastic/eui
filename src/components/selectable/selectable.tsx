@@ -673,26 +673,42 @@ export class EuiSelectable<T = {}> extends Component<
       Object.keys(searchAccessibleName).length
     );
     const search = searchable ? (
-      <EuiI18n token="euiSelectable.placeholderName" default="Filter options">
-        {(placeholderName: string) => (
-          <EuiSelectableSearch<T>
-            key="listSearch"
-            options={options}
-            value={searchValue}
-            onChange={this.onSearchChange}
-            listId={this.optionsListRef.current ? this.listId : undefined} // Only pass the listId if it exists on the page
-            aria-activedescendant={this.makeOptionId(activeOptionIndex)} // the current faux-focused option
-            placeholder={placeholderName}
-            isPreFiltered={isPreFiltered ?? false}
-            inputRef={(node) => {
-              this.inputRef = node;
-              searchProps?.inputRef?.(node);
-            }}
-            {...(searchHasAccessibleName
-              ? searchAccessibleName
-              : { 'aria-label': placeholderName })}
-            {...cleanedSearchProps}
-          />
+      <EuiI18n
+        tokens={[
+          'euiSelectable.screenReaderInstructions',
+          'euiSelectable.placeholderName',
+        ]}
+        defaults={[
+          'Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.',
+          'Filter options',
+        ]}
+      >
+        {([screenReaderInstructions, placeholderName]: string[]) => (
+          <>
+            <EuiSelectableSearch<T>
+              aria-describedby={listAriaDescribedbyId}
+              key="listSearch"
+              options={options}
+              value={searchValue}
+              onChange={this.onSearchChange}
+              listId={this.optionsListRef.current ? this.listId : undefined} // Only pass the listId if it exists on the page
+              aria-activedescendant={this.makeOptionId(activeOptionIndex)} // the current faux-focused option
+              placeholder={placeholderName}
+              isPreFiltered={isPreFiltered ?? false}
+              inputRef={(node) => {
+                this.inputRef = node;
+                searchProps?.inputRef?.(node);
+              }}
+              {...(searchHasAccessibleName
+                ? searchAccessibleName
+                : { 'aria-label': placeholderName })}
+              {...cleanedSearchProps}
+            />
+
+            <EuiScreenReaderOnly>
+              <p id={listAriaDescribedbyId}>{screenReaderInstructions}</p>
+            </EuiScreenReaderOnly>
+          </>
         )}
       </EuiI18n>
     ) : undefined;
@@ -718,17 +734,8 @@ export class EuiSelectable<T = {}> extends Component<
       Object.keys(listAccessibleName).length
     );
     const list = (
-      <EuiI18n
-        tokens={[
-          'euiSelectable.screenReaderInstructions',
-          'euiSelectable.placeholderName',
-        ]}
-        defaults={[
-          'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.',
-          'Filter options',
-        ]}
-      >
-        {([placeholderName, screenReaderInstructions]: string[]) => (
+      <EuiI18n token="euiSelectable.placeholderName" default="Filter options">
+        {(placeholderName: string) => (
           <>
             {searchable && (
               <EuiScreenReaderLive
@@ -737,10 +744,6 @@ export class EuiSelectable<T = {}> extends Component<
                 {messageContent || listScreenReaderStatus}
               </EuiScreenReaderLive>
             )}
-
-            <EuiScreenReaderOnly>
-              <p id={listAriaDescribedbyId}>{screenReaderInstructions}</p>
-            </EuiScreenReaderOnly>
 
             {messageContent ? (
               <EuiSelectableMessage

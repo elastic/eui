@@ -740,6 +740,7 @@ export class EuiDualRangeClass extends Component<
         closePopover={this.closePopover}
         disableFocusTrap={true}
         onPanelResize={this.onResize}
+        popoverScreenReaderText="You are in a custom range slider. Use the Up and Down arrow keys to change the minimum value. Press Tab to interact with the maximum value." // TODO: Translation key
       >
         {theRange}
       </EuiInputPopover>

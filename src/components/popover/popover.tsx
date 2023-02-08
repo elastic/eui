@@ -406,7 +406,7 @@ export class EuiPopover extends Component<Props, State> {
     // We need to set this state a beat after the render takes place, so that the CSS
     // transition can take effect.
     this.closingTransitionAnimationFrame = window.requestAnimationFrame(() => {
-      this.testTabbable();
+      this.findTabbleElems();
       this.setState({
         isOpening: true,
       });
@@ -569,15 +569,7 @@ export class EuiPopover extends Component<Props, State> {
     });
   };
 
-  positionPopoverFixed = () => {
-    this.positionPopover(true);
-  };
-
-  positionPopoverFluid = () => {
-    this.positionPopover(false);
-  };
-
-  testTabbable = () => {
+  findTabbleElems = () => {
     if (!this.panel) return;
     const tabbables = tabbable(this.panel);
 
@@ -586,6 +578,14 @@ export class EuiPopover extends Component<Props, State> {
         isTabbable: true,
       });
     }
+  };
+
+  positionPopoverFixed = () => {
+    this.positionPopover(true);
+  };
+
+  positionPopoverFluid = () => {
+    this.positionPopover(false);
   };
 
   panelRef = (node: HTMLElement | null) => {
@@ -706,11 +706,10 @@ export class EuiPopover extends Component<Props, State> {
                   default="You are in a dialog. Press Escape, or tap/click outside the dialog to close."
                 />
               )}
-              {/* TODO: Change the translation key for EuiPopover */}
               {ownFocus && isTabbable && (
                 <EuiI18n
-                  token="euiPopover.screenReaderAnnouncement"
-                  default="You are in a dialog. To close this dialog, hit escape. Use the Tab key to reach the first interactable element."
+                  token="euiPopover.screenReaderAnnouncementInteractive"
+                  default="You are in a dialog. Press Escape, or tap/click outside the dialog to close. Press Tab to interact with the dialog."
                 />
               )}
               {popoverScreenReaderText}

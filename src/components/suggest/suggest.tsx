@@ -234,6 +234,11 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
     ['State: loading.', 'State: saved.', 'State: unsaved.', 'State: unchanged.']
   );
 
+  const screenReaderInstructions = useEuiI18n(
+    'euiSuggest.screenReaderInstructions',
+    'Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.'
+  );
+
   const stateMessageMap = {
     loading: stateLoading,
     saved: stateSaved,
@@ -341,8 +346,11 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
           </EuiInputPopover>
         )}
       </EuiSelectable>
+
       <EuiScreenReaderOnly>
-        <p id={inputDescribedbyId}>{stateMessage}</p>
+        <p id={inputDescribedbyId}>
+          {stateMessage} {screenReaderInstructions}
+        </p>
       </EuiScreenReaderOnly>
     </>
   );
