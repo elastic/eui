@@ -7,23 +7,28 @@
  */
 
 import { css } from '@emotion/react';
-import { logicalCSS, logicalSizeCSS } from '../../global_styling';
+import {
+  logicalCSS,
+  logicalSizeCSS,
+  mathWithUnits,
+} from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 export const euiCodeBlockAnnotationsStyles = (
   euiTheme: UseEuiTheme['euiTheme']
 ) => {
+  const buttonIconSize = mathWithUnits(euiTheme.size.base, (x) => x - 1.5);
+
   return {
     euiCodeBlockAnnotation: css`
       position: absolute;
       ${logicalCSS('right', 0)}
       ${logicalCSS('top', '50%')}
-      transform: translateY(-50%) translateX(50%);
+      transform: translate(50%, -50%);
       line-height: 1;
     `,
     euiCodeBlockAnnotation__buttonIcon: css`
-      ${logicalSizeCSS(euiTheme.size.base)}
-      transform: scale(0.9);
+      ${logicalSizeCSS(buttonIconSize)}
       display: flex;
       align-items: center;
       justify-content: center;

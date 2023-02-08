@@ -12,6 +12,7 @@ import { useEuiTheme } from '../../services';
 import { useEuiI18n } from '../i18n';
 import { EuiPopover } from '../popover';
 import { EuiIcon } from '../icon';
+import { useEuiButtonFocusCSS } from '../../themes/amsterdam/global_styling/mixins/button';
 
 import { euiCodeBlockAnnotationsStyles } from './code_block_annotations.style';
 
@@ -28,8 +29,15 @@ export const EuiCodeBlockAnnotation: FunctionComponent<{
     { lineNumber }
   );
 
-  const { euiTheme } = useEuiTheme();
+  const { euiTheme, colorMode } = useEuiTheme();
   const styles = euiCodeBlockAnnotationsStyles(euiTheme);
+  const buttonIconFocusStyle = useEuiButtonFocusCSS();
+  const cssButtonIconStyles = [
+    styles.euiCodeBlockAnnotation__buttonIcon,
+    buttonIconFocusStyle,
+  ];
+
+  const isDarkMode = colorMode === 'DARK';
 
   return (
     <EuiPopover
@@ -39,10 +47,14 @@ export const EuiCodeBlockAnnotation: FunctionComponent<{
         <button
           onClick={() => setIsOpen(!isOpen)}
           aria-label={ariaLabel}
-          css={styles.euiCodeBlockAnnotation__buttonIcon}
+          css={cssButtonIconStyles}
           data-test-subj="euiCodeBlockAnnotationIcon"
         >
-          <EuiIcon type={AnnotationInfoIcon} color="ghost" size="s" />
+          <EuiIcon
+            type={AnnotationInfoIcon}
+            size="s"
+            color={isDarkMode ? euiTheme.colors.ink : 'ghost'}
+          />
         </button>
       }
       css={styles.euiCodeBlockAnnotation}
@@ -57,8 +69,8 @@ export const EuiCodeBlockAnnotation: FunctionComponent<{
 
 const AnnotationInfoIcon: FunctionComponent = (props) => (
   <svg
-    width={16}
-    height={16}
+    width={11}
+    height={11}
     viewBox="0 0 16 16"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
