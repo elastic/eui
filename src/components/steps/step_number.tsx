@@ -73,10 +73,8 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
 
   const classes = classNames('euiStepNumber', className);
 
-  const statusIsComplete = status === 'complete';
-
   const euiTheme = useEuiTheme();
-  const styles = euiStepNumberStyles(euiTheme, statusIsComplete);
+  const styles = euiStepNumberStyles(euiTheme);
   const cssStyles = [
     styles.euiStepNumber,
     isSmall && styles.small,

@@ -1,8 +1,11 @@
 import React from 'react';
 
-import { EuiStepsHorizontal } from '../../../../src/components';
+import {
+  EuiStepsHorizontal,
+  EuiStepsHorizontalProps,
+} from '../../../../src/components';
 
-const horizontalSteps = [
+const horizontalSteps: EuiStepsHorizontalProps['steps'] = [
   {
     title: 'Completed step 1',
     status: 'complete',

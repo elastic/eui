@@ -36,10 +36,7 @@ const createStepsNumber = (
   `;
 };
 
-export const euiStepNumberStyles = (
-  euiThemeContext: UseEuiTheme,
-  statusIsComplete?: boolean
-) => {
+export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
   const euiTheme = euiThemeContext.euiTheme;
   const euiStep = euiStepVariables(euiThemeContext);
 
@@ -102,6 +99,12 @@ export const euiStepNumberStyles = (
         animation: ${euiAnimScale} ${euiTheme.animation.fast}
           ${euiTheme.animation.bounce};
       }
+
+      // Thicken the checkmark by adding a slight stroke.
+      .euiStepNumber__icon {
+        stroke: currentColor;
+        stroke-width: 0.5px;
+      }
     `,
     complete: css`
       color: ${euiButtonFillColor(euiThemeContext, 'success').color};
@@ -112,19 +115,18 @@ export const euiStepNumberStyles = (
         animation: ${euiAnimScale} ${euiTheme.animation.fast}
           ${euiTheme.animation.bounce};
       }
+
+      // Thicken the checkmark by adding a slight stroke.
+      .euiStepNumber__icon {
+        stroke: currentColor;
+        stroke-width: 0.5px;
+      }
     `,
     current: css``,
     euiStepNumber__icon: css`
       vertical-align: middle;
       position: relative;
       inset-block-start: -1px;
-
-      // Thicken the checkmark by adding a slight stroke.
-      ${statusIsComplete &&
-      `
-        stroke: currentColor;
-        stroke-width: 0.5px;
-      `}
     `,
   };
 };

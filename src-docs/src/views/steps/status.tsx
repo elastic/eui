@@ -3,13 +3,14 @@ import React, { useState, Fragment } from 'react';
 import {
   EuiSpacer,
   EuiSteps,
+  EuiStepStatus,
   EuiButton,
   EuiFlexGroup,
   EuiFlexItem,
 } from '../../../../src/components';
 
 export default () => {
-  const [status, setStatus] = useState('incomplete');
+  const [status, setStatus] = useState<EuiStepStatus>('incomplete');
 
   let completeButton;
   if (status !== 'complete') {

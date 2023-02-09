@@ -129,7 +129,7 @@ export const StepsExample = {
     {
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: stepsSource,
         },
       ],
@@ -152,7 +152,7 @@ export const StepsExample = {
       title: 'Complex steps',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: stepsComplexSource,
         },
       ],
@@ -171,7 +171,7 @@ export const StepsExample = {
       title: 'Heading elements',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: headingElementStepsSource,
         },
       ],
@@ -198,7 +198,7 @@ export const StepsExample = {
       title: 'Steps status',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: statusSource,
         },
       ],
@@ -220,7 +220,7 @@ export const StepsExample = {
       title: 'Custom title sizes',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: stepsTitleSizesSource,
         },
       ],
@@ -243,7 +243,7 @@ export const StepsExample = {
       title: 'Horizontal steps',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: stepsHorizontalSource,
         },
       ],
