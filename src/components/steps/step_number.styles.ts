@@ -13,13 +13,9 @@ import {
   euiCanAnimate,
   euiAnimScale,
 } from '../../global_styling';
-import {
-  UseEuiTheme,
-  chooseLightOrDarkText,
-  transparentize,
-} from '../../services';
+import { UseEuiTheme } from '../../services';
 import { euiStepVariables } from './step.styles';
-import { euiButtonColor } from '../../themes/amsterdam/global_styling/mixins';
+import { euiButtonFillColor } from '../../themes/amsterdam/global_styling/mixins';
 
 const createStepsNumber = (
   euiTheme: UseEuiTheme['euiTheme'],
@@ -40,30 +36,12 @@ const createStepsNumber = (
   `;
 };
 
-const getBackground = (
-  euiThemeContext: UseEuiTheme,
-  backgroundColor: string
-) => {
-  const { euiTheme } = euiThemeContext;
-
-  return `
-    color: ${chooseLightOrDarkText(
-      backgroundColor,
-      euiTheme.colors.ghost,
-      euiTheme.colors.ink
-    )};
-    background-color: ${backgroundColor};
-  `;
-};
-
 export const euiStepNumberStyles = (
   euiThemeContext: UseEuiTheme,
   statusIsComplete?: boolean
 ) => {
   const euiTheme = euiThemeContext.euiTheme;
   const euiStep = euiStepVariables(euiThemeContext);
-  const buttonColorDisabled = euiButtonColor(euiThemeContext, 'disabled')
-    .backgroundColor;
 
   return {
     euiStepNumber: css`
@@ -98,14 +76,17 @@ export const euiStepNumberStyles = (
       }
     `,
     disabled: css`
-      background-color: ${transparentize(buttonColorDisabled, 0.7)};
-      color: ${euiTheme.colors.disabledText};
+      color: ${euiButtonFillColor(euiThemeContext, 'disabled').color};
+      background-color: ${euiButtonFillColor(euiThemeContext, 'disabled')
+        .backgroundColor};
     `,
     loading: css`
       background: transparent;
     `,
     warning: css`
-      ${getBackground(euiThemeContext, euiTheme.colors.warning)}
+      color: ${euiButtonFillColor(euiThemeContext, 'warning').color};
+      background-color: ${euiButtonFillColor(euiThemeContext, 'warning')
+        .backgroundColor};
 
       ${euiCanAnimate} {
         animation: ${euiAnimScale} ${euiTheme.animation.fast}
@@ -113,14 +94,20 @@ export const euiStepNumberStyles = (
       }
     `,
     danger: css`
-      ${getBackground(euiThemeContext, euiTheme.colors.danger)}
+      color: ${euiButtonFillColor(euiThemeContext, 'danger').color};
+      background-color: ${euiButtonFillColor(euiThemeContext, 'danger')
+        .backgroundColor};
+
       ${euiCanAnimate} {
         animation: ${euiAnimScale} ${euiTheme.animation.fast}
           ${euiTheme.animation.bounce};
       }
     `,
     complete: css`
-      ${getBackground(euiThemeContext, euiTheme.colors.success)}
+      color: ${euiButtonFillColor(euiThemeContext, 'success').color};
+      background-color: ${euiButtonFillColor(euiThemeContext, 'success')
+        .backgroundColor};
+
       ${euiCanAnimate} {
         animation: ${euiAnimScale} ${euiTheme.animation.fast}
           ${euiTheme.animation.bounce};

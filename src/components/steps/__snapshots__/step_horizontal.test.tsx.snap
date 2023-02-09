@@ -3,7 +3,7 @@
 exports[`EuiStepHorizontal is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiStepHorizontal testClass1 testClass2 css-23d05n-makeLineProgress-euiStepHorizontal-isIncomplete"
+  class="euiStepHorizontal testClass1 testClass2 emotion-euiStepHorizontal-isIncomplete"
   data-test-subj="test subject string"
   title="Step 1 is incomplete"
 >
@@ -30,7 +30,7 @@ exports[`EuiStepHorizontal is rendered 1`] = `
 
 exports[`EuiStepHorizontal props status complete is rendered 1`] = `
 <button
-  class="euiStepHorizontal css-1siz2xe-makeLineProgress-euiStepHorizontal-makeLineProgress-isComplete"
+  class="euiStepHorizontal emotion-euiStepHorizontal-isComplete"
   title="Step 1 is complete"
 >
   <span
@@ -51,7 +51,7 @@ exports[`EuiStepHorizontal props status complete is rendered 1`] = `
 
 exports[`EuiStepHorizontal props status current is rendered 1`] = `
 <button
-  class="euiStepHorizontal css-7ngohm-makeLineProgress-euiStepHorizontal-makeLineProgress-isSelected"
+  class="euiStepHorizontal emotion-euiStepHorizontal-isSelected"
   title="Current step is 1"
 >
   <span
@@ -77,7 +77,7 @@ exports[`EuiStepHorizontal props status current is rendered 1`] = `
 
 exports[`EuiStepHorizontal props status danger is rendered 1`] = `
 <button
-  class="euiStepHorizontal css-dsk0p5-makeLineProgress-euiStepHorizontal"
+  class="euiStepHorizontal emotion-euiStepHorizontal"
   title="Step 1"
 >
   <span
@@ -98,7 +98,7 @@ exports[`EuiStepHorizontal props status danger is rendered 1`] = `
 
 exports[`EuiStepHorizontal props status disabled is rendered 1`] = `
 <button
-  class="euiStepHorizontal css-1tjk2kl-makeLineProgress-euiStepHorizontal-isDisabled"
+  class="euiStepHorizontal emotion-euiStepHorizontal-isDisabled"
   title="Step 1 is disabled"
 >
   <span
@@ -124,7 +124,7 @@ exports[`EuiStepHorizontal props status disabled is rendered 1`] = `
 
 exports[`EuiStepHorizontal props status disabled overrides the passed status 1`] = `
 <button
-  class="euiStepHorizontal css-1tjk2kl-makeLineProgress-euiStepHorizontal-isDisabled"
+  class="euiStepHorizontal emotion-euiStepHorizontal-isDisabled"
   disabled=""
   title="Step 1 is disabled"
 >
@@ -151,7 +151,7 @@ exports[`EuiStepHorizontal props status disabled overrides the passed status 1`]
 
 exports[`EuiStepHorizontal props status incomplete is rendered 1`] = `
 <button
-  class="euiStepHorizontal css-23d05n-makeLineProgress-euiStepHorizontal-isIncomplete"
+  class="euiStepHorizontal emotion-euiStepHorizontal-isIncomplete"
   title="Step 1 is incomplete"
 >
   <span
@@ -177,7 +177,7 @@ exports[`EuiStepHorizontal props status incomplete is rendered 1`] = `
 
 exports[`EuiStepHorizontal props status loading is rendered 1`] = `
 <button
-  class="euiStepHorizontal css-dsk0p5-makeLineProgress-euiStepHorizontal"
+  class="euiStepHorizontal emotion-euiStepHorizontal"
   title="Step 1"
 >
   <span
@@ -202,7 +202,7 @@ exports[`EuiStepHorizontal props status loading is rendered 1`] = `
 
 exports[`EuiStepHorizontal props status warning is rendered 1`] = `
 <button
-  class="euiStepHorizontal css-dsk0p5-makeLineProgress-euiStepHorizontal"
+  class="euiStepHorizontal emotion-euiStepHorizontal"
   title="Step 1 has warnings"
 >
   <span
@@ -223,7 +223,7 @@ exports[`EuiStepHorizontal props status warning is rendered 1`] = `
 
 exports[`EuiStepHorizontal props step 1`] = `
 <button
-  class="euiStepHorizontal css-23d05n-makeLineProgress-euiStepHorizontal-isIncomplete"
+  class="euiStepHorizontal emotion-euiStepHorizontal-isIncomplete"
   title="Step 5 is incomplete"
 >
   <span
@@ -249,7 +249,7 @@ exports[`EuiStepHorizontal props step 1`] = `
 
 exports[`EuiStepHorizontal props title 1`] = `
 <button
-  class="euiStepHorizontal css-23d05n-makeLineProgress-euiStepHorizontal-isIncomplete"
+  class="euiStepHorizontal emotion-euiStepHorizontal-isIncomplete"
   title="Step 1: First step is incomplete"
 >
   <span

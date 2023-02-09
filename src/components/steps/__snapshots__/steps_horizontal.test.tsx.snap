@@ -10,7 +10,7 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
     class="euiStepsHorizontal__item emotion-euiStepsHorizontal_item"
   >
     <button
-      class="euiStepHorizontal css-1siz2xe-makeLineProgress-euiStepHorizontal-makeLineProgress-isComplete"
+      class="euiStepHorizontal emotion-euiStepHorizontal-isComplete"
       title="Step 1: Completed Step 1 is complete"
     >
       <span
@@ -35,7 +35,7 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
     class="euiStepsHorizontal__item emotion-euiStepsHorizontal_item"
   >
     <button
-      class="euiStepHorizontal css-7ngohm-makeLineProgress-euiStepHorizontal-makeLineProgress-isSelected"
+      class="euiStepHorizontal emotion-euiStepHorizontal-isSelected"
       title="Current step 2: Selected Step 2"
     >
       <span
@@ -64,7 +64,7 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
     class="euiStepsHorizontal__item emotion-euiStepsHorizontal_item"
   >
     <button
-      class="euiStepHorizontal css-23d05n-makeLineProgress-euiStepHorizontal-isIncomplete"
+      class="euiStepHorizontal emotion-euiStepHorizontal-isIncomplete"
       title="Step 3: Incomplete Step 3 is incomplete"
     >
       <span
@@ -93,7 +93,7 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
     class="euiStepsHorizontal__item emotion-euiStepsHorizontal_item"
   >
     <button
-      class="euiStepHorizontal css-1tjk2kl-makeLineProgress-euiStepHorizontal-isDisabled"
+      class="euiStepHorizontal emotion-euiStepHorizontal-isDisabled"
       title="Step 4: Disabled Step 4 is disabled"
     >
       <span

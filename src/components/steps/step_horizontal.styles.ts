@@ -20,7 +20,7 @@ import { euiTitle } from '../title/title.styles';
 import { euiStepVariables } from './step.styles';
 
 const makeLineProgress = (euiTheme: UseEuiTheme['euiTheme']) => {
-  return css`
+  return `
     block-size: 2px;
     background-color: ${euiTheme.border.color};
   `;
@@ -62,15 +62,21 @@ export const euiStepHorizontalStyles = (
             text-decoration: underline;
           }
         }
-      `}
 
-      &:focus:not(.euiStepHorizontal-isDisabled) {
-        outline: none;
+        &:focus {
+          outline: none;
+  
+          .euiStepHorizontal__number {
+            ${euiFocusRing(euiThemeContext)}
+          }
 
-        .euiStepHorizontal__number {
-          ${euiFocusRing(euiThemeContext)}
+          .euiStepHorizontal__number:not(:focus-visible) {
+            outline: ${euiTheme.focus.width} solid ${
+        euiTheme.colors.darkestShade
+      };
+          }
         }
-      }
+      `}
 
       // create the connecting lines
       &::before,
@@ -119,7 +125,7 @@ export const euiStepHorizontalStyles = (
     `,
     euiStepHorizontal__number: css`
       position: relative; /* 1 */
-      z-index: ${euiTheme.levels.content} + 1; /* 1 */
+      z-index: ${mathWithUnits(euiTheme.levels.content, (x) => x + 1)}; /* 1 */
       margin-inline-end: 0;
 
       ${euiCanAnimate} {

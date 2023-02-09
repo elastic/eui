@@ -1,6 +1,12 @@
 import React, { useState, Fragment } from 'react';
 
-import { EuiSpacer, EuiSteps, EuiButton } from '../../../../src/components';
+import {
+  EuiSpacer,
+  EuiSteps,
+  EuiButton,
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '../../../../src/components';
 
 export default () => {
   const [status, setStatus] = useState('incomplete');
@@ -59,7 +65,16 @@ export default () => {
         <Fragment>
           <p>We are fancy buttons just waiting to be pushed!</p>
           <EuiSpacer />
-          {completeButton} {warningButton} {dangerButton}
+          <EuiFlexGroup
+            gutterSize="s"
+            alignItems="center"
+            responsive={false}
+            wrap
+          >
+            <EuiFlexItem grow={false}> {completeButton} </EuiFlexItem>
+            <EuiFlexItem grow={false}> {warningButton} </EuiFlexItem>
+            <EuiFlexItem grow={false}> {dangerButton} </EuiFlexItem>
+          </EuiFlexGroup>
         </Fragment>
       ),
       status: status,
