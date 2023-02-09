@@ -250,7 +250,7 @@ describe('EuiDataGrid', () => {
         .should('exist')
         .realClick();
       cy.get(
-        'button[data-test-subj="dataGridColumnSortingPopover"]'
+        'div[data-test-subj="dataGridColumnSortingPopover"] button'
       ).realClick();
       cy.checkAxe();
     });

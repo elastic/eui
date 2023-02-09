@@ -54,8 +54,18 @@ const codeBlockLinesSnippet = `<EuiCodeBlock language="json" lineNumbers>
 `;
 import CodeBlockLinesHighlight from './line_numbers_highlight';
 const codeBlockLinesHighlightSource = require('!!raw-loader!./line_numbers_highlight');
-const codeBlockLinesHighlightSnippet = `<EuiCodeBlock language="json" lineNumbers={{ start: 32, highlight: '32, 34-37, 40' }}>
-{}
+const codeBlockLinesHighlightSnippet = `<EuiCodeBlock
+  language="json"
+  lineNumbers={{
+    start: 32,
+    highlight: '32, 34-37, 40',
+    annotations: {
+      33: <>A <b>special</b> note about this line</>,
+      45: 'Also accepts quick plaintext notes',
+    }
+  }}
+>
+  {}
 </EuiCodeBlock>
 `;
 
@@ -225,14 +235,30 @@ export const CodeExample = {
     },
     {
       text: (
-        <p>
-          You can also optionally change the starting number and/or visually
-          highlight certain lines by passing a configuration object:{' '}
-          <EuiCode>
-            {'lineNumbers={{ start: 32, highlight: "32, 34-37, 40" }}'}
-          </EuiCode>
-          .
-        </p>
+        <>
+          <p>
+            You can customize line number display further with a configuration
+            object containing the following optional settings:
+          </p>
+          <ul>
+            <li>
+              <EuiCode>start</EuiCode>: Changes the starting number of the first
+              line. Defaults to <EuiCode>1</EuiCode>.
+            </li>
+            <li>
+              <EuiCode>highlight</EuiCode>: Visually highlights certain lines
+              (e.g. <EuiCode>&quot;3</EuiCode>), or ranges of lines (e.g.{' '}
+              <EuiCode>&quot;5-10&quot;</EuiCode>). Accepts a comma-separated
+              string of lines or line ranges.
+            </li>
+            <li>
+              <EuiCode>annotations</EuiCode>: Displays an informational icon
+              next to certain line numbers, that provides more context via a
+              popover. Pass an object of line numbers with corresponding
+              annotations (accepts strings or React nodes).
+            </li>
+          </ul>
+        </>
       ),
       source: [
         {

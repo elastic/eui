@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiSkeletonText is rendered 1`] = `
+<div
+  aria-busy="true"
+  data-test-subj="euiSkeletonLoadingAriaWrapper"
+>
+  <span
+    aria-label="Loading "
+    class="euiSkeletonText testClass1 testClass2"
+    data-test-subj="test subject string"
+    role="progressbar"
+  >
+    <span
+      class="emotion-euiSkeletonGradientAnimation-euiSkeletonText-m"
+    />
+    <span
+      class="emotion-euiSkeletonGradientAnimation-euiSkeletonText-m"
+    />
+    <span
+      class="emotion-euiSkeletonGradientAnimation-euiSkeletonText-m"
+    />
+  </span>
+</div>
+`;
+
+exports[`EuiSkeletonText size m 1`] = `
+<div
+  aria-busy="true"
+  data-test-subj="euiSkeletonLoadingAriaWrapper"
+>
+  <span
+    aria-label="Loading "
+    class="euiSkeletonText"
+    role="progressbar"
+  >
+    <span
+      class="emotion-euiSkeletonGradientAnimation-euiSkeletonText-m"
+    />
+    <span
+      class="emotion-euiSkeletonGradientAnimation-euiSkeletonText-m"
+    />
+    <span
+      class="emotion-euiSkeletonGradientAnimation-euiSkeletonText-m"
+    />
+  </span>
+</div>
+`;
+
+exports[`EuiSkeletonText size relative 1`] = `
+<div
+  aria-busy="true"
+  data-test-subj="euiSkeletonLoadingAriaWrapper"
+>
+  <span
+    aria-label="Loading "
+    class="euiSkeletonText"
+    role="progressbar"
+  >
+    <span
+      class="emotion-euiSkeletonGradientAnimation-euiSkeletonText-relative"
+    />
+    <span
+      class="emotion-euiSkeletonGradientAnimation-euiSkeletonText-relative"
+    />
+    <span
+      class="emotion-euiSkeletonGradientAnimation-euiSkeletonText-relative"
+    />
+  </span>
+</div>
+`;
+
+exports[`EuiSkeletonText size s 1`] = `
+<div
+  aria-busy="true"
+  data-test-subj="euiSkeletonLoadingAriaWrapper"
+>
+  <span
+    aria-label="Loading "
+    class="euiSkeletonText"
+    role="progressbar"
+  >
+    <span
+      class="emotion-euiSkeletonGradientAnimation-euiSkeletonText-s"
+    />
+    <span
+      class="emotion-euiSkeletonGradientAnimation-euiSkeletonText-s"
+    />
+    <span
+      class="emotion-euiSkeletonGradientAnimation-euiSkeletonText-s"
+    />
+  </span>
+</div>
+`;
+
+exports[`EuiSkeletonText size xs 1`] = `
+<div
+  aria-busy="true"
+  data-test-subj="euiSkeletonLoadingAriaWrapper"
+>
+  <span
+    aria-label="Loading "
+    class="euiSkeletonText"
+    role="progressbar"
+  >
+    <span
+      class="emotion-euiSkeletonGradientAnimation-euiSkeletonText-xs"
+    />
+    <span
+      class="emotion-euiSkeletonGradientAnimation-euiSkeletonText-xs"
+    />
+    <span
+      class="emotion-euiSkeletonGradientAnimation-euiSkeletonText-xs"
+    />
+  </span>
+</div>
+`;

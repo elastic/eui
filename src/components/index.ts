@@ -141,6 +141,8 @@ export * from './selectable';
 
 export * from './side_nav';
 
+export * from './skeleton';
+
 export * from './spacer';
 
 export * from './stat';

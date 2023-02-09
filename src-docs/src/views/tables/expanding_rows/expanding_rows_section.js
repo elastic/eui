@@ -2,14 +2,14 @@ import React from 'react';
 import { EuiBasicTable, EuiCode } from '../../../../../src/components';
 import { GuideSectionTypes } from '../../../components';
 
-import { Table } from './expanding_rows';
+import Table from './expanding_rows';
 const source = require('!!raw-loader!./expanding_rows');
 
 export const section = {
   title: 'Expanding rows',
   source: [
     {
-      type: GuideSectionTypes.JS,
+      type: GuideSectionTypes.TSX,
       code: source,
     },
   ],

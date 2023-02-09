@@ -27,6 +27,7 @@ exports[`EuiHeader renders dark theme 1`] = `
 exports[`EuiHeader renders in fixed position 1`] = `
 <div
   class="euiHeader euiHeader--default euiHeader--fixed"
+  data-fixed-header="true"
 >
   <span>
     Hello!

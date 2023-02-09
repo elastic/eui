@@ -127,6 +127,7 @@ export const typeToPathMap = {
   emsApp: 'app_ems',
   eql: 'eql',
   eraser: 'eraser',
+  error: 'error',
   exit: 'exit',
   expand: 'expand',
   expandMini: 'expandMini',

@@ -2,7 +2,7 @@ import React from 'react';
 import { GuideSectionTypes } from '../../../components';
 import { EuiCode } from '../../../../../src/components';
 
-import { Table } from './auto';
+import Table from './auto';
 
 const source = require('!!raw-loader!./auto');
 const layoutSnippet = [
@@ -32,7 +32,7 @@ export const section = {
   title: 'Table layout',
   source: [
     {
-      type: GuideSectionTypes.JS,
+      type: GuideSectionTypes.TSX,
       code: source,
     },
   ],

@@ -28,12 +28,12 @@ const mappings = {
   },
 };
 
-const ContextConsumer = () => {
+const ContextConsumer = ({ language }) => {
   const [name, setName] = useState('');
   const placeholderName = useEuiI18n('euiContext.placeholder', 'John Doe');
 
   return (
-    <div>
+    <div lang={language}>
       <strong>
         <EuiI18n
           token="euiContext.greeting"
@@ -96,13 +96,21 @@ export default () => {
     <>
       <EuiFlexGroup gutterSize="s" alignItems="center">
         <EuiFlexItem grow={false}>
-          <EuiButton fill={language === 'en'} onClick={() => setLanguage('en')}>
+          <EuiButton
+            aria-pressed={language === 'en' ? 'true' : 'false'}
+            fill={language === 'en'}
+            onClick={() => setLanguage('en')}
+          >
             <EuiI18n token="euiContext.english" default="English" />
           </EuiButton>
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
-          <EuiButton fill={language === 'fr'} onClick={() => setLanguage('fr')}>
+          <EuiButton
+            aria-pressed={language === 'fr' ? 'true' : 'false'}
+            fill={language === 'fr'}
+            onClick={() => setLanguage('fr')}
+          >
             <EuiI18n token="euiContext.french" default="French" />
           </EuiButton>
         </EuiFlexItem>
@@ -119,7 +127,7 @@ export default () => {
       <EuiSpacer size="m" />
 
       <EuiContext i18n={i18n}>
-        <ContextConsumer />
+        <ContextConsumer language={language} />
       </EuiContext>
     </>
   );

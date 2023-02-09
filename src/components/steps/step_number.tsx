@@ -36,6 +36,7 @@ export const STATUS = [
   'complete',
   'current',
 ] as const;
+
 export type EuiStepStatus = typeof STATUS[number];
 
 export interface EuiStepNumberProps

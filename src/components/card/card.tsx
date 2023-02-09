@@ -193,7 +193,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
    */
   let link: HTMLAnchorElement | HTMLButtonElement | null = null;
   const outerOnClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (link && link !== e.target) {
+    if (link && link !== e.target && !link.contains(e.target as Node)) {
       link.click();
     }
   };

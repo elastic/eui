@@ -11,7 +11,7 @@ Remove or strikethrough items that do not apply to your PR.
 - [ ] Checked in both **light and dark** modes
 - [ ] Checked in **mobile**
 - [ ] Checked in **Chrome**, **Safari**, **Edge**, and **Firefox**
-- [ ] Props have proper **autodocs** and **[playground toggles](https://github.com/elastic/eui/blob/main/wiki/documentation-guidelines.md#adding-playground-toggles)**
+- [ ] Props have proper **autodocs** (using `@default` if default values are missing) and **[playground toggles](https://github.com/elastic/eui/blob/main/wiki/documentation-guidelines.md#adding-playground-toggles)**
 - [ ] Added **[documentation](https://github.com/elastic/eui/blob/main/wiki/documentation-guidelines.md)**
 - [ ] Checked **[Code Sandbox](https://codesandbox.io/)** works for any docs examples
 - [ ] Added or updated **[jest](https://github.com/elastic/eui/blob/main/wiki/testing.md) and [cypress](https://github.com/elastic/eui/blob/main/wiki/cypress-testing.md) tests**

@@ -2,7 +2,7 @@ import React from 'react';
 import { EuiCode } from '../../../../../src/components';
 import { GuideSectionTypes } from '../../../components';
 
-import { Table } from './in_memory_controlled_pagination';
+import Table from './in_memory_controlled_pagination';
 
 import { EuiInMemoryTable } from '../../../../../src/components/basic_table/in_memory_table';
 import {
@@ -32,7 +32,7 @@ export const controlledPaginationSection = {
   title: 'In-memory table with controlled pagination',
   source: [
     {
-      type: GuideSectionTypes.JS,
+      type: GuideSectionTypes.TSX,
       code: source,
     },
   ],

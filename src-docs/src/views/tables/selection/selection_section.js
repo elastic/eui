@@ -2,14 +2,14 @@ import React from 'react';
 import { EuiBasicTable, EuiCode } from '../../../../../src/components';
 import { GuideSectionTypes } from '../../../components';
 
-import { Table } from './selection';
+import Table from './selection';
 const source = require('!!raw-loader!./selection');
 
 export const section = {
   title: 'Adding selection to a table',
   source: [
     {
-      type: GuideSectionTypes.JS,
+      type: GuideSectionTypes.TSX,
       code: source,
     },
   ],

@@ -348,7 +348,7 @@ exports[`EuiSideNav props items renders items which are links 1`] = `
       <a
         class="euiSideNavItemButton euiSideNavItemButton--isClickable"
         href="http://www.elastic.co"
-        rel=""
+        rel="noreferrer"
       >
         <span
           class="euiSideNavItemButton__content"

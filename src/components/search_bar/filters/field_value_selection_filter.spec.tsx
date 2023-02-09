@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+/// <reference types="../../../../cypress/support"/>
+
+import React, { useState } from 'react';
 import { requiredProps } from '../../../test';
 import {
   FieldValueSelectionFilter,
@@ -135,31 +137,90 @@ describe('FieldValueSelectionFilter', () => {
     );
   });
 
-  it('uses multi-select OR', () => {
-    const props: FieldValueSelectionFilterProps = {
-      ...requiredProps,
-      index: 0,
-      onChange: () => {},
-      query: Query.parse(''),
-      config: {
-        type: 'field_value_selection',
-        field: 'tag',
-        name: 'Tag',
-        multiSelect: 'or',
-        available: () => false,
-        loadingMessage: 'loading...',
-        noOptionsMessage: 'oops...',
-        searchThreshold: 5,
-        options: () => Promise.resolve([]),
-      },
+  describe('multi-select testing', () => {
+    const FieldValueSelectionFilterWithState = ({
+      multiSelect,
+    }: {
+      multiSelect: 'or' | boolean;
+    }) => {
+      const [query, setQuery] = useState(Query.parse(''));
+      const onChange = (newQuery) => setQuery(newQuery);
+
+      const props: FieldValueSelectionFilterProps = {
+        ...requiredProps,
+        index: 0,
+        onChange,
+        query,
+        config: {
+          type: 'field_value_selection',
+          field: 'tag',
+          name: 'Tag',
+          multiSelect,
+          options: staticOptions,
+        },
+      };
+
+      return <FieldValueSelectionFilter {...props} />;
     };
 
-    cy.mount(<FieldValueSelectionFilter {...props} />);
-    cy.get('button').click();
-    cy.get('[data-test-subj="euiSelectableMessage"]').should(
-      'have.text',
-      'oops...'
-    );
+    it('uses multi-select OR', () => {
+      cy.mount(<FieldValueSelectionFilterWithState multiSelect="or" />);
+      cy.get('button').click();
+
+      cy.get('li[role="option"][title="feature"]')
+        .should('have.attr', 'aria-checked', 'false')
+        .click();
+      cy.get('.euiNotificationBadge').should('have.text', '1');
+      cy.get('li[role="option"][title="feature"]').should(
+        'have.attr',
+        'aria-checked',
+        'true'
+      );
+      // Popover should still be open when multiselect is true/or
+      cy.get('li[role="option"][title="Bug"]')
+        .should('have.attr', 'aria-checked', 'false')
+        .click();
+      cy.get('.euiNotificationBadge').should('have.text', '2');
+      cy.get('li[role="option"][title="Bug"]').should(
+        'have.attr',
+        'aria-checked',
+        'true'
+      );
+    });
+
+    it('uses multi-select false', () => {
+      cy.mount(<FieldValueSelectionFilterWithState multiSelect={false} />);
+      cy.get('button').click();
+
+      cy.get('li[role="option"][title="feature"]')
+        .should('have.attr', 'aria-checked', 'false')
+        .click();
+      cy.get('.euiNotificationBadge').should('have.text', '1');
+      cy.get('li[role="option"][title="feature"]').should(
+        'have.attr',
+        'aria-checked',
+        'true'
+      );
+
+      // Multiselect false should close the popover, so we need to re-open it
+      cy.get('button').click();
+      cy.get('li[role="option"][title="Bug"]')
+        .should('have.attr', 'aria-checked', 'false')
+        .click();
+      // Filter count should have remained at 1
+      cy.get('.euiNotificationBadge').should('have.text', '1');
+      cy.get('li[role="option"][title="Bug"]').should(
+        'have.attr',
+        'aria-checked',
+        'true'
+      );
+      // 'featured' should now be unchecked
+      cy.get('li[role="option"][title="feature"]').should(
+        'have.attr',
+        'aria-checked',
+        'false'
+      );
+    });
   });
 
   it('has inactive filters, field is global', () => {
