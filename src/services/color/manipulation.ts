@@ -111,25 +111,3 @@ export const darken = (color: string, amount: number) =>
  */
 export const brighten = (color: string, amount: number) =>
   chroma(color).brighten(amount).hex();
-
-/**
- * Returns the saturation value of a color. 0-100
- * @param color
- * @returns
- */
-export const getSaturation = (color: string) => chroma(color).get('hsl.s');
-
-/**
- * Returns the hue value of a color. 0-360
- * @param backgroundColor
- * @param lightColor
- * @param darkColor
- */
-export const chooseLightOrDarkText = (
-  backgroundColor: string,
-  lightColor: string,
-  darkColor: string
-) => {
-  const lightnessValue = lightness(backgroundColor);
-  return lightnessValue > 50 ? darkColor : lightColor;
-};
