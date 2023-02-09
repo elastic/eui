@@ -107,7 +107,7 @@ export const EuiRangeTrack: FunctionComponent<EuiRangeTrackProps> = ({
     styles.euiRangeTrack,
     disabled && styles.disabled,
     levels && !!levels.length && styles.hasLevels,
-    showTicks && styles.hasTicks,
+    showTicks && (tickSequence || ticks) && styles.hasTicks,
   ];
 
   const [trackWidth, setTrackWidth] = useState(0);
