@@ -35,6 +35,7 @@ import type { EuiDualRangeProps, _SingleRangeValue } from './types';
 
 import { euiRangeStyles } from './range.styles';
 import { euiDualRangeStyles } from './dual_range.styles';
+import { EuiI18n } from '../../i18n';
 
 type ValueMember = _SingleRangeValue['value'];
 
@@ -566,6 +567,18 @@ export class EuiDualRangeClass extends Component<
         }
       : rightThumbPosition;
 
+    // const dualSliderScreenReaderInstructions = useEuiI18n(
+    //   'euiDualRange.sliderScreenReaderInstructions',
+    //   'You are in a custom range slider. Use the Up and Down arrow keys to change the minimum value. Press Tab to interact with the maximum value.'
+    // );
+
+    const dualSliderScreenReaderInstructions = (
+      <EuiI18n
+        token="euiDualRange.sliderScreenReaderInstructions"
+        default="You are in a custom range slider. Use the Up and Down arrow keys to change the minimum value. Press Tab to interact with the maximum value."
+      />
+    );
+
     const theRange = (
       <EuiRangeWrapper
         css={cssStyles}
@@ -740,7 +753,7 @@ export class EuiDualRangeClass extends Component<
         closePopover={this.closePopover}
         disableFocusTrap={true}
         onPanelResize={this.onResize}
-        popoverScreenReaderText="You are in a custom range slider. Use the Up and Down arrow keys to change the minimum value. Press Tab to interact with the maximum value." // TODO: Translation key
+        popoverScreenReaderText={dualSliderScreenReaderInstructions}
       >
         {theRange}
       </EuiInputPopover>

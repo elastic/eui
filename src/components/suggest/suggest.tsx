@@ -236,7 +236,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
 
   const screenReaderInstructions = useEuiI18n(
     'euiSuggest.screenReaderInstructions',
-    'Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.'
+    'Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.'
   );
 
   const stateMessageMap = {

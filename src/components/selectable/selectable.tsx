@@ -679,7 +679,7 @@ export class EuiSelectable<T = {}> extends Component<
           'euiSelectable.placeholderName',
         ]}
         defaults={[
-          'Use Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.',
+          'Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.',
           'Filter options',
         ]}
       >
