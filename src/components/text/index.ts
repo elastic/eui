@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-export type { EuiTextProps } from './text';
+export type { EuiTextProps, TextSize } from './text';
 export { EuiText } from './text';
 export type { EuiTextColorProps } from './text_color';
 export { EuiTextColor } from './text_color';
