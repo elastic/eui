@@ -19,10 +19,9 @@ export interface EuiCommonlyUsedTimeRangesProps {
   commonlyUsedRanges: DurationRange[];
 }
 
-export const EuiCommonlyUsedTimeRanges: FunctionComponent<React.PropsWithChildren<EuiCommonlyUsedTimeRangesProps>> = ({
-  applyTime,
-  commonlyUsedRanges,
-}) => {
+export const EuiCommonlyUsedTimeRanges: FunctionComponent<React.PropsWithChildren<
+  EuiCommonlyUsedTimeRangesProps
+>> = ({ applyTime, commonlyUsedRanges }) => {
   const legendId = useGeneratedHtmlId();
   const links = commonlyUsedRanges.map(({ start, end, label }) => {
     const applyCommonlyUsed = () => {

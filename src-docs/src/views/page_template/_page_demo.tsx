@@ -58,14 +58,16 @@ type showing = {
   sidebar?: boolean;
 };
 
-export const PageDemo: FunctionComponent<React.PropsWithChildren<Pick<GuideSectionProps, 'props'> & {
-  fullscreen?: boolean;
-  slug: string;
-  show?: showing;
-  toggle?: toggles;
-  template?: any;
-  source?: any;
-}>> = ({
+export const PageDemo: FunctionComponent<React.PropsWithChildren<
+  Pick<GuideSectionProps, 'props'> & {
+    fullscreen?: boolean;
+    slug: string;
+    show?: showing;
+    toggle?: toggles;
+    template?: any;
+    source?: any;
+  }
+>> = ({
   fullscreen,
   props,
   slug,

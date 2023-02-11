@@ -8,6 +8,6 @@
 
 import React, { FunctionComponent } from 'react';
 
-export const EuiComboBoxTitle: FunctionComponent<React.PropsWithChildren<{}>> = ({ children }) => (
-  <div className="euiComboBoxTitle">{children}</div>
-);
+export const EuiComboBoxTitle: FunctionComponent<React.PropsWithChildren<{}>> = ({
+  children,
+}) => <div className="euiComboBoxTitle">{children}</div>;

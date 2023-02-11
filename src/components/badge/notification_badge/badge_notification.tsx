@@ -30,13 +30,9 @@ export interface EuiNotificationBadgeProps
   color?: BadgeNotificationColor;
 }
 
-export const EuiNotificationBadge: FunctionComponent<React.PropsWithChildren<EuiNotificationBadgeProps>> = ({
-  children,
-  className,
-  size = 's',
-  color = 'accent',
-  ...rest
-}) => {
+export const EuiNotificationBadge: FunctionComponent<React.PropsWithChildren<
+  EuiNotificationBadgeProps
+>> = ({ children, className, size = 's', color = 'accent', ...rest }) => {
   const euiTheme = useEuiTheme();
 
   const styles = euiNotificationBadgeStyles(euiTheme);

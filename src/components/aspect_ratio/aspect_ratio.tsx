@@ -32,15 +32,9 @@ export type EuiAspectRatioProps = HTMLAttributes<HTMLDivElement> &
     children: ReactElement<any>;
   };
 
-export const EuiAspectRatio: FunctionComponent<React.PropsWithChildren<EuiAspectRatioProps>> = ({
-  children,
-  className,
-  height,
-  width,
-  maxWidth,
-  style,
-  ...rest
-}) => {
+export const EuiAspectRatio: FunctionComponent<React.PropsWithChildren<
+  EuiAspectRatioProps
+>> = ({ children, className, height, width, maxWidth, style, ...rest }) => {
   const classes = classNames('euiAspectRatio', className);
 
   const euiAspectRatioStyle = {

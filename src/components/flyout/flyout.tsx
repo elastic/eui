@@ -457,4 +457,5 @@ export const EuiFlyout = forwardRef(
   props: EuiFlyoutProps<T>
 ) => JSX.Element;
 // Recast to allow `displayName`
-(EuiFlyout as FunctionComponent<React.PropsWithChildren<unknown>>).displayName = 'EuiFlyout';
+(EuiFlyout as FunctionComponent<React.PropsWithChildren<unknown>>).displayName =
+  'EuiFlyout';

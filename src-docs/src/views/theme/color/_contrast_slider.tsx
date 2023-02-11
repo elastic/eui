@@ -27,12 +27,9 @@ type ContrastSlider = EuiFlexGroupProps & {
   onChange?: (value: number | string, checked: boolean) => void;
 };
 
-export const ContrastSlider: FunctionComponent<React.PropsWithChildren<ContrastSlider>> = ({
-  contrastValue,
-  showTextVariants,
-  onChange,
-  ...rest
-}) => {
+export const ContrastSlider: FunctionComponent<React.PropsWithChildren<
+  ContrastSlider
+>> = ({ contrastValue, showTextVariants, onChange, ...rest }) => {
   const [value, setValue] = useState(contrastValue);
   const [checked, setChecked] = useState(showTextVariants);
   const ticks = [

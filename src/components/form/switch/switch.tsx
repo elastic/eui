@@ -52,7 +52,9 @@ export type EuiSwitchProps = CommonProps &
     labelProps?: CommonProps & HTMLAttributes<HTMLSpanElement>;
   };
 
-export const EuiSwitch: FunctionComponent<React.PropsWithChildren<EuiSwitchProps>> = ({
+export const EuiSwitch: FunctionComponent<React.PropsWithChildren<
+  EuiSwitchProps
+>> = ({
   label,
   id,
   checked,

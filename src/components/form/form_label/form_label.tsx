@@ -45,7 +45,9 @@ export type EuiFormLabelProps = ExclusiveUnion<
   _EuiFormLegendProps
 >;
 
-export const EuiFormLabel: FunctionComponent<React.PropsWithChildren<EuiFormLabelProps>> = ({
+export const EuiFormLabel: FunctionComponent<React.PropsWithChildren<
+  EuiFormLabelProps
+>> = ({
   type = 'label',
   isFocused,
   isInvalid,

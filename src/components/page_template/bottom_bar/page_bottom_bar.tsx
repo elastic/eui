@@ -24,13 +24,9 @@ export interface _EuiPageBottomBarProps
   parent?: string;
 }
 
-export const _EuiPageBottomBar: FunctionComponent<React.PropsWithChildren<_EuiPageBottomBarProps>> = ({
-  children,
-  paddingSize,
-  restrictWidth,
-  parent,
-  ...rest
-}) => {
+export const _EuiPageBottomBar: FunctionComponent<React.PropsWithChildren<
+  _EuiPageBottomBarProps
+>> = ({ children, paddingSize, restrictWidth, parent, ...rest }) => {
   // In order for the bottom bar to be placed at the end of the content,
   // it must know what parent element to insert into
   const [hasValidAnchor, setHasValidAnchor] = useState<boolean>(false);

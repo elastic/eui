@@ -23,10 +23,9 @@ export interface EuiShowForProps {
   sizes: EuiShowForBreakpoints[] | 'all' | 'none';
 }
 
-export const EuiShowFor: FunctionComponent<React.PropsWithChildren<EuiShowForProps>> = ({
-  children,
-  sizes,
-}) => {
+export const EuiShowFor: FunctionComponent<React.PropsWithChildren<
+  EuiShowForProps
+>> = ({ children, sizes }) => {
   const currentBreakpoint = useCurrentEuiBreakpoint();
   const isWithinBreakpointSizes =
     currentBreakpoint && sizes.includes(currentBreakpoint);

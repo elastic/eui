@@ -39,13 +39,9 @@ export type EuiBeaconProps = Omit<
     color?: EuiBeaconColor;
   };
 
-export const EuiBeacon: FunctionComponent<React.PropsWithChildren<EuiBeaconProps>> = ({
-  className,
-  size = 12,
-  color = 'success',
-  style,
-  ...rest
-}) => {
+export const EuiBeacon: FunctionComponent<React.PropsWithChildren<
+  EuiBeaconProps
+>> = ({ className, size = 12, color = 'success', style, ...rest }) => {
   const euiTheme = useEuiTheme();
   const classes = classNames('euiBeacon', className);
   const styles = euiBeaconStyles(euiTheme);

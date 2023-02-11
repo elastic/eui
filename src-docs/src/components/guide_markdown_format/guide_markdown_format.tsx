@@ -6,10 +6,9 @@ import {
 } from '../../../../src/components/markdown_editor';
 import { slugify } from '../../../../src/services';
 
-export const GuideMarkdownFormat: FunctionComponent<React.PropsWithChildren<EuiMarkdownFormatProps>> = ({
-  children,
-  ...rest
-}) => {
+export const GuideMarkdownFormat: FunctionComponent<React.PropsWithChildren<
+  EuiMarkdownFormatProps
+>> = ({ children, ...rest }) => {
   const processingPlugins = getDefaultEuiMarkdownProcessingPlugins();
   const rehype2reactConfig = processingPlugins[1][1];
 

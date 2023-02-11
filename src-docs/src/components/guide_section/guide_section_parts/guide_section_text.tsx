@@ -12,12 +12,9 @@ type GuideSectionExampleText = {
   wrapText?: boolean;
 };
 
-export const GuideSectionExampleText: FunctionComponent<React.PropsWithChildren<GuideSectionExampleText>> = ({
-  title,
-  id,
-  children,
-  wrapText = true,
-}) => {
+export const GuideSectionExampleText: FunctionComponent<React.PropsWithChildren<
+  GuideSectionExampleText
+>> = ({ title, id, children, wrapText = true }) => {
   let titleNode;
 
   if (title) {

@@ -63,7 +63,9 @@ export interface PluginWithImmediateFormatting {
 
 export interface PluginWithDelayedFormatting<NodeShape> {
   formatting?: never;
-  editor: ComponentType<React.PropsWithChildren<EuiMarkdownEditorUiPluginEditorProps<NodeShape>>>;
+  editor: ComponentType<
+    React.PropsWithChildren<EuiMarkdownEditorUiPluginEditorProps<NodeShape>>
+  >;
 }
 
 export type EuiMarkdownEditorUiPlugin<NodeShape = any> = {

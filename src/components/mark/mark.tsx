@@ -25,12 +25,9 @@ export type EuiMarkProps = HTMLAttributes<HTMLElement> &
     children: ReactNode;
   };
 
-export const EuiMark: FunctionComponent<React.PropsWithChildren<EuiMarkProps>> = ({
-  children,
-  className,
-  hasScreenReaderHelpText = true,
-  ...rest
-}) => {
+export const EuiMark: FunctionComponent<React.PropsWithChildren<
+  EuiMarkProps
+>> = ({ children, className, hasScreenReaderHelpText = true, ...rest }) => {
   const useTheme = useEuiTheme();
   const highlightStart = useEuiI18n(
     'euiMark.highlightStart',

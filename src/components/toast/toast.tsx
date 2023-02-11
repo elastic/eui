@@ -41,15 +41,9 @@ export interface EuiToastProps
   onClose?: () => void;
 }
 
-export const EuiToast: FunctionComponent<React.PropsWithChildren<EuiToastProps>> = ({
-  title,
-  color,
-  iconType,
-  onClose,
-  children,
-  className,
-  ...rest
-}) => {
+export const EuiToast: FunctionComponent<React.PropsWithChildren<
+  EuiToastProps
+>> = ({ title, color, iconType, onClose, children, className, ...rest }) => {
   const euiTheme = useEuiTheme();
   const baseStyles = euiToastStyles(euiTheme);
   const baseCss = [baseStyles.euiToast, color && baseStyles[color]];

@@ -38,7 +38,9 @@ export type EuiResizableCollapseButtonProps = Omit<
   isCollapsed?: boolean;
 };
 
-export const EuiResizableCollapseButton: FunctionComponent<React.PropsWithChildren<EuiResizableCollapseButtonProps>> = ({
+export const EuiResizableCollapseButton: FunctionComponent<React.PropsWithChildren<
+  EuiResizableCollapseButtonProps
+>> = ({
   className,
   externalPosition,
   internalPosition = 'middle',

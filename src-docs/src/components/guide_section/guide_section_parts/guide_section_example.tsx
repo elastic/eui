@@ -15,7 +15,9 @@ export interface GuideSectionExample {
   exampleToggles?: any;
 }
 
-export const GuideSectionExample: FunctionComponent<React.PropsWithChildren<GuideSectionExample>> = ({
+export const GuideSectionExample: FunctionComponent<React.PropsWithChildren<
+  GuideSectionExample
+>> = ({
   example,
   tabs,
   ghostBackground = false,

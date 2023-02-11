@@ -26,7 +26,9 @@ export type GuideTabbedPageProps = CommonProps & {
   title: string;
 };
 
-const GuideTabbedPageComponent: FunctionComponent<React.PropsWithChildren<GuideTabbedPageProps>> = ({
+const GuideTabbedPageComponent: FunctionComponent<React.PropsWithChildren<
+  GuideTabbedPageProps
+>> = ({
   description,
   guidelines,
   history,

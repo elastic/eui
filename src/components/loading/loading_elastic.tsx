@@ -20,7 +20,9 @@ export interface EuiLoadingElasticProps {
   size?: EuiLoadingElasticSize;
 }
 
-export const EuiLoadingElastic: FunctionComponent<React.PropsWithChildren<CommonProps & HTMLAttributes<HTMLDivElement> & EuiLoadingElasticProps>> = ({ size = 'm', className, 'aria-label': ariaLabel, ...rest }) => {
+export const EuiLoadingElastic: FunctionComponent<React.PropsWithChildren<
+  CommonProps & HTMLAttributes<HTMLDivElement> & EuiLoadingElasticProps
+>> = ({ size = 'm', className, 'aria-label': ariaLabel, ...rest }) => {
   const styles = euiLoadingElasticStyles();
   const cssStyles = [styles.euiLoadingElastic];
   const defaultLabel = useLoadingAriaLabel();

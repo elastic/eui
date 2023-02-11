@@ -29,7 +29,9 @@ interface DivLike
 
 export type EuiRangeThumbProps = ExclusiveUnion<ButtonLike, DivLike>;
 
-export const EuiRangeThumb: FunctionComponent<React.PropsWithChildren<EuiRangeThumbProps>> = ({
+export const EuiRangeThumb: FunctionComponent<React.PropsWithChildren<
+  EuiRangeThumbProps
+>> = ({
   className,
   min,
   max,

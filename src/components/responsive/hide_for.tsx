@@ -23,10 +23,9 @@ export interface EuiHideForProps {
   sizes: EuiHideForBreakpoints[] | 'all' | 'none';
 }
 
-export const EuiHideFor: FunctionComponent<React.PropsWithChildren<EuiHideForProps>> = ({
-  children,
-  sizes,
-}) => {
+export const EuiHideFor: FunctionComponent<React.PropsWithChildren<
+  EuiHideForProps
+>> = ({ children, sizes }) => {
   const currentBreakpoint = useCurrentEuiBreakpoint();
   const isWithinBreakpointSizes =
     currentBreakpoint && sizes.includes(currentBreakpoint);

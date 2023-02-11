@@ -25,15 +25,9 @@ export interface EuiRangeTooltipProps
   name?: string;
 }
 
-export const EuiRangeTooltip: FunctionComponent<React.PropsWithChildren<EuiRangeTooltipProps>> = ({
-  value,
-  valueAppend,
-  valuePrepend,
-  max,
-  min,
-  name,
-  showTicks,
-}) => {
+export const EuiRangeTooltip: FunctionComponent<React.PropsWithChildren<
+  EuiRangeTooltipProps
+>> = ({ value, valueAppend, valuePrepend, max, min, name, showTicks }) => {
   // Calculate the left position based on value
   const valuePosition = useMemo(() => {
     let val = 0;

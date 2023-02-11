@@ -83,7 +83,9 @@ const responsiveDefault: EuiBreadcrumbResponsiveMaxCount = {
   m: 4,
 };
 
-export const EuiBreadcrumbs: FunctionComponent<React.PropsWithChildren<EuiBreadcrumbsProps>> = ({
+export const EuiBreadcrumbs: FunctionComponent<React.PropsWithChildren<
+  EuiBreadcrumbsProps
+>> = ({
   breadcrumbs,
   className,
   responsive = responsiveDefault,

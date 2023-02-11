@@ -41,12 +41,9 @@ const marginToClassNameMap: {
   xxl: 'marginXXLarge',
 };
 
-export const EuiHorizontalRule: FunctionComponent<React.PropsWithChildren<EuiHorizontalRuleProps>> = ({
-  className,
-  size = 'full',
-  margin = 'l',
-  ...rest
-}) => {
+export const EuiHorizontalRule: FunctionComponent<React.PropsWithChildren<
+  EuiHorizontalRuleProps
+>> = ({ className, size = 'full', margin = 'l', ...rest }) => {
   const euiTheme = useEuiTheme();
   const styles = euiHorizontalRuleStyles(euiTheme);
 

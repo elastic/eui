@@ -63,7 +63,9 @@ export type EuiSelectableTemplateSitewideProps = Partial<
   popoverButtonBreakpoints?: EuiBreakpointSize[];
 };
 
-export const EuiSelectableTemplateSitewide: FunctionComponent<React.PropsWithChildren<EuiSelectableTemplateSitewideProps>> = ({
+export const EuiSelectableTemplateSitewide: FunctionComponent<React.PropsWithChildren<
+  EuiSelectableTemplateSitewideProps
+>> = ({
   children,
   className,
   options,

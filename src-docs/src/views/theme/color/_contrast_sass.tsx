@@ -62,12 +62,9 @@ type ColorSection = {
   matchPanelColor?: boolean;
 };
 
-export const ColorSectionSass: FunctionComponent<React.PropsWithChildren<ColorSection>> = ({
-  color,
-  minimumContrast,
-  showTextVariants,
-  matchPanelColor,
-}) => {
+export const ColorSectionSass: FunctionComponent<React.PropsWithChildren<
+  ColorSection
+>> = ({ color, minimumContrast, showTextVariants, matchPanelColor }) => {
   const palette = useJsonVars();
   const colorsForContrast = showTextVariants ? textVariants : allowedColors;
 
@@ -117,11 +114,9 @@ type ColorsContrastItem = {
   minimumContrast: string | number;
 };
 
-const ColorsContrastItem: FunctionComponent<React.PropsWithChildren<ColorsContrastItem>> = ({
-  foreground,
-  background,
-  minimumContrast,
-}) => {
+const ColorsContrastItem: FunctionComponent<React.PropsWithChildren<
+  ColorsContrastItem
+>> = ({ foreground, background, minimumContrast }) => {
   const { euiTheme } = useEuiTheme();
   const palette = useJsonVars();
   const backgroundColor = palette[background];

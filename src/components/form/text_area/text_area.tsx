@@ -41,7 +41,9 @@ const resizeToClassNameMap = {
 
 export const RESIZE = Object.keys(resizeToClassNameMap);
 
-export const EuiTextArea: FunctionComponent<React.PropsWithChildren<EuiTextAreaProps>> = (props) => {
+export const EuiTextArea: FunctionComponent<React.PropsWithChildren<
+  EuiTextAreaProps
+>> = (props) => {
   const { defaultFullWidth } = useFormContext();
   const {
     children,

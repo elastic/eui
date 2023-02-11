@@ -120,7 +120,9 @@ const groupSizeToClassNameMap = {
   compressed: '--compressed',
 };
 
-export const EuiButtonGroup: FunctionComponent<React.PropsWithChildren<Props>> = ({
+export const EuiButtonGroup: FunctionComponent<React.PropsWithChildren<
+  Props
+>> = ({
   className,
   buttonSize = 's',
   color = 'text',

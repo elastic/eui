@@ -111,7 +111,9 @@ const colorToClassNameMap: ColorToClassMap = {
 
 export const COLORS = keysOf(colorToClassNameMap);
 
-export const EuiSuggestItem: FunctionComponent<React.PropsWithChildren<EuiSuggestItemProps>> = ({
+export const EuiSuggestItem: FunctionComponent<React.PropsWithChildren<
+  EuiSuggestItemProps
+>> = ({
   className,
   label,
   type,

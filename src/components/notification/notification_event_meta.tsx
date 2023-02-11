@@ -64,7 +64,9 @@ export type EuiNotificationEventMetaProps = {
   >;
 };
 
-export const EuiNotificationEventMeta: FunctionComponent<React.PropsWithChildren<EuiNotificationEventMetaProps>> = ({
+export const EuiNotificationEventMeta: FunctionComponent<React.PropsWithChildren<
+  EuiNotificationEventMetaProps
+>> = ({
   id,
   iconType,
   type,

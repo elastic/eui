@@ -41,7 +41,10 @@ export const TYPES = keysOf(typeToPathMap);
 
 export type EuiIconType = keyof typeof typeToPathMap;
 
-export type IconType = EuiIconType | string | ComponentType<React.PropsWithChildren<unknown>>;
+export type IconType =
+  | EuiIconType
+  | string
+  | ComponentType<React.PropsWithChildren<unknown>>;
 
 // We accept arbitrary color strings, which are impossible to type.
 export type IconColor = string | NamedColor;
@@ -109,7 +112,9 @@ function getInitialIcon(icon: EuiIconProps['type']) {
 
 const generateId = htmlIdGenerator();
 
-let iconComponentCache: { [iconType: string]: ComponentType<React.PropsWithChildren<unknown>> } = {};
+let iconComponentCache: {
+  [iconType: string]: ComponentType<React.PropsWithChildren<unknown>>;
+} = {};
 
 export const clearIconComponentCache = (iconType?: EuiIconType) => {
   if (iconType != null) {

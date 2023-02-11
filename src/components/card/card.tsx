@@ -133,7 +133,9 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> &
     hasBorder?: EuiPanelProps['hasBorder'];
   };
 
-export const EuiCard: FunctionComponent<React.PropsWithChildren<EuiCardProps>> = ({
+export const EuiCard: FunctionComponent<React.PropsWithChildren<
+  EuiCardProps
+>> = ({
   className,
   description,
   isDisabled: _isDisabled,

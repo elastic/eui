@@ -16,10 +16,9 @@ import {
   CustomComponentProps,
 } from './custom_component_filter';
 
-const CustomComponent: React.FC<React.PropsWithChildren<CustomComponentProps>> = ({
-  query,
-  onChange,
-}) => {
+const CustomComponent: React.FC<React.PropsWithChildren<
+  CustomComponentProps
+>> = ({ query, onChange }) => {
   useEffect(() => {
     onChange?.(query);
   }, [onChange, query]);

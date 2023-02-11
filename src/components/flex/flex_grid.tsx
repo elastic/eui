@@ -67,7 +67,9 @@ export interface EuiFlexGridProps {
   component?: ElementType;
 }
 
-export const EuiFlexGrid: FunctionComponent<React.PropsWithChildren<CommonProps & HTMLAttributes<HTMLDivElement> & EuiFlexGridProps>> = ({
+export const EuiFlexGrid: FunctionComponent<React.PropsWithChildren<
+  CommonProps & HTMLAttributes<HTMLDivElement> & EuiFlexGridProps
+>> = ({
   children,
   className,
   gutterSize = 'l',

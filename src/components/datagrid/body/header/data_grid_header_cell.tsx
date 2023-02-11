@@ -35,7 +35,9 @@ import { getColumnActions } from './column_actions';
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
 import { EuiDataGridHeaderCellWrapper } from './data_grid_header_cell_wrapper';
 
-export const EuiDataGridHeaderCell: FunctionComponent<React.PropsWithChildren<EuiDataGridHeaderCellProps>> = ({
+export const EuiDataGridHeaderCell: FunctionComponent<React.PropsWithChildren<
+  EuiDataGridHeaderCellProps
+>> = ({
   column,
   index,
   columns,

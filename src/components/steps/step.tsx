@@ -45,7 +45,9 @@ export type EuiStepProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'title'> &
   EuiStepInterface;
 
-export const EuiStep: FunctionComponent<React.PropsWithChildren<EuiStepProps>> = ({
+export const EuiStep: FunctionComponent<React.PropsWithChildren<
+  EuiStepProps
+>> = ({
   className,
   children,
   headingElement = 'p',

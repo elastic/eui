@@ -18,7 +18,9 @@ import { euiImageWrapperStyles } from './image_wrapper.styles';
 import { EuiImageButton } from './image_button';
 import { EuiImageCaption } from './image_caption';
 
-export const EuiImageWrapper: FunctionComponent<React.PropsWithChildren<EuiImageWrapperProps>> = ({
+export const EuiImageWrapper: FunctionComponent<React.PropsWithChildren<
+  EuiImageWrapperProps
+>> = ({
   alt,
   caption,
   hasShadow,

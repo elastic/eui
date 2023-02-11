@@ -150,7 +150,9 @@ export type EuiKeyPadMenuItemProps = CommonProps &
     >
   >;
 
-export const EuiKeyPadMenuItem: FunctionComponent<React.PropsWithChildren<EuiKeyPadMenuItemProps>> = ({
+export const EuiKeyPadMenuItem: FunctionComponent<React.PropsWithChildren<
+  EuiKeyPadMenuItemProps
+>> = ({
   id,
   isSelected,
   isDisabled: _isDisabled,

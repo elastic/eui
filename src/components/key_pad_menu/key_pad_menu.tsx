@@ -45,12 +45,9 @@ export type EuiKeyPadMenuProps = CommonProps &
     checkable?: _EuiKeyPadMenuCheckableProps | true;
   };
 
-export const EuiKeyPadMenu: FunctionComponent<React.PropsWithChildren<EuiKeyPadMenuProps>> = ({
-  children,
-  className,
-  checkable,
-  ...rest
-}) => {
+export const EuiKeyPadMenu: FunctionComponent<React.PropsWithChildren<
+  EuiKeyPadMenuProps
+>> = ({ children, className, checkable, ...rest }) => {
   const classes = classNames('euiKeyPadMenu', className);
 
   const legend =

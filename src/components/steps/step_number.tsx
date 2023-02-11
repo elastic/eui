@@ -51,13 +51,9 @@ export interface EuiStepNumberProps
   titleSize?: EuiStepProps['titleSize'];
 }
 
-export const EuiStepNumber: FunctionComponent<React.PropsWithChildren<EuiStepNumberProps>> = ({
-  className,
-  status,
-  number,
-  titleSize,
-  ...rest
-}) => {
+export const EuiStepNumber: FunctionComponent<React.PropsWithChildren<
+  EuiStepNumberProps
+>> = ({ className, status, number, titleSize, ...rest }) => {
   const stepAriaLabel = useI18nStep({ number });
   const completeAriaLabel = useI18nCompleteStep({ number });
   const warningAriaLabel = useI18nWarningStep({ number });

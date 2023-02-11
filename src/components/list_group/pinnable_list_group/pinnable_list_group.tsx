@@ -56,14 +56,9 @@ export interface EuiPinnableListGroupProps
   unpinTitle?: (item: EuiPinnableListGroupItemProps) => string;
 }
 
-export const EuiPinnableListGroup: FunctionComponent<React.PropsWithChildren<EuiPinnableListGroupProps>> = ({
-  className,
-  listItems,
-  pinTitle,
-  unpinTitle,
-  onPinClick,
-  ...rest
-}) => {
+export const EuiPinnableListGroup: FunctionComponent<React.PropsWithChildren<
+  EuiPinnableListGroupProps
+>> = ({ className, listItems, pinTitle, unpinTitle, onPinClick, ...rest }) => {
   const classes = classNames('euiPinnableListGroup', className);
   const euiTheme = useEuiTheme();
   const itemExtraActionStyles = euiPinnableListGroupItemExtraActionStyles(

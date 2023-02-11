@@ -12,10 +12,14 @@ import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
 import { euiFlyoutHeaderStyles } from './flyout_header.styles';
 
-export type EuiFlyoutHeaderProps = FunctionComponent<React.PropsWithChildren<HTMLAttributes<HTMLDivElement> &
-  CommonProps & {
-    hasBorder?: boolean;
-  }>>;
+export type EuiFlyoutHeaderProps = FunctionComponent<
+  React.PropsWithChildren<
+    HTMLAttributes<HTMLDivElement> &
+      CommonProps & {
+        hasBorder?: boolean;
+      }
+  >
+>;
 
 export const EuiFlyoutHeader: EuiFlyoutHeaderProps = ({
   children,

@@ -9,7 +9,9 @@ import {
   EuiThemeColorMode,
 } from '../../../../../src';
 
-const Box: FunctionComponent<React.PropsWithChildren<{ children: ReactNode }>> = ({ children }) => {
+const Box: FunctionComponent<React.PropsWithChildren<{
+  children: ReactNode;
+}>> = ({ children }) => {
   const { euiTheme } = useEuiTheme();
 
   return (

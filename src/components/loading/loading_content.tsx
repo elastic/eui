@@ -18,6 +18,6 @@ export type EuiLoadingContentProps = EuiSkeletonTextProps;
 /**
  * @deprecated Use `EuiSkeletonText` instead
  */
-export const EuiLoadingContent: FunctionComponent<React.PropsWithChildren<EuiSkeletonTextProps>> = (
-  props
-) => <EuiSkeletonText {...props} />;
+export const EuiLoadingContent: FunctionComponent<React.PropsWithChildren<
+  EuiSkeletonTextProps
+>> = (props) => <EuiSkeletonText {...props} />;

@@ -29,15 +29,9 @@ export type EuiHeaderAlertProps = CommonProps &
     badge?: ReactNode;
   };
 
-export const EuiHeaderAlert: FunctionComponent<React.PropsWithChildren<EuiHeaderAlertProps>> = ({
-  action,
-  className,
-  date,
-  text,
-  title,
-  badge,
-  ...rest
-}) => {
+export const EuiHeaderAlert: FunctionComponent<React.PropsWithChildren<
+  EuiHeaderAlertProps
+>> = ({ action, className, date, text, title, badge, ...rest }) => {
   const classes = classNames('euiHeaderAlert', className);
 
   const ariaId = useGeneratedHtmlId();

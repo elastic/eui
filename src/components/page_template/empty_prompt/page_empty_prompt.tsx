@@ -18,7 +18,9 @@ export type _EuiPageEmptyPromptProps = Omit<
     panelled?: boolean;
   };
 
-export const _EuiPageEmptyPrompt: FunctionComponent<React.PropsWithChildren<_EuiPageEmptyPromptProps>> = ({
+export const _EuiPageEmptyPrompt: FunctionComponent<React.PropsWithChildren<
+  _EuiPageEmptyPromptProps
+>> = ({
   children,
   alignment = 'center',
   restrictWidth = false,

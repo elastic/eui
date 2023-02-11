@@ -45,7 +45,9 @@ export interface EuiStepHorizontalProps
   status?: EuiStepStatus;
 }
 
-export const EuiStepHorizontal: FunctionComponent<React.PropsWithChildren<EuiStepHorizontalProps>> = ({
+export const EuiStepHorizontal: FunctionComponent<React.PropsWithChildren<
+  EuiStepHorizontalProps
+>> = ({
   className,
   step = 1,
   title,

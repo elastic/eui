@@ -42,7 +42,9 @@ export interface EuiRangeTrackProps
   children?: ReactNode | ((trackWidth: number) => React.ReactNode);
 }
 
-export const EuiRangeTrack: FunctionComponent<React.PropsWithChildren<EuiRangeTrackProps>> = ({
+export const EuiRangeTrack: FunctionComponent<React.PropsWithChildren<
+  EuiRangeTrackProps
+>> = ({
   children,
   disabled,
   max,

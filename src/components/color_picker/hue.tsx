@@ -29,14 +29,9 @@ export type EuiHueProps = Omit<
     onChange: (hue: number) => void;
   };
 
-export const EuiHue: FunctionComponent<React.PropsWithChildren<EuiHueProps>> = ({
-  className,
-  hex,
-  hue = 1,
-  id,
-  onChange,
-  ...rest
-}) => {
+export const EuiHue: FunctionComponent<React.PropsWithChildren<
+  EuiHueProps
+>> = ({ className, hex, hue = 1, id, onChange, ...rest }) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     onChange(Number(e.target.value));
   };

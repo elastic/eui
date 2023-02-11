@@ -47,7 +47,9 @@ export type CanPropsType = {
   isClearable?: boolean;
 };
 
-export const DisplayToggles: FunctionComponent<React.PropsWithChildren<DisplayTogglesProps>> = ({
+export const DisplayToggles: FunctionComponent<React.PropsWithChildren<
+  DisplayTogglesProps
+>> = ({
   canIsDisabled = false,
   canDisabled = true,
   canReadOnly = true,

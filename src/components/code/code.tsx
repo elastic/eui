@@ -20,7 +20,9 @@ import { euiCodeStyles } from './code.styles';
 
 export type EuiCodeProps = EuiCodeSharedProps;
 
-export const EuiCode: FunctionComponent<React.PropsWithChildren<EuiCodeProps>> = ({
+export const EuiCode: FunctionComponent<React.PropsWithChildren<
+  EuiCodeProps
+>> = ({
   transparentBackground = false,
   language: _language = DEFAULT_LANGUAGE,
   children,

@@ -5,9 +5,9 @@ type ThemeNotice = {
   type?: 'support' | null;
 };
 
-export const ThemeNotice: FunctionComponent<React.PropsWithChildren<ThemeNotice>> = ({
-  type = 'support',
-}) => {
+export const ThemeNotice: FunctionComponent<React.PropsWithChildren<
+  ThemeNotice
+>> = ({ type = 'support' }) => {
   const support = (
     <EuiCallOut color="warning" title="Partial component support">
       <p>

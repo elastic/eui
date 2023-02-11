@@ -73,7 +73,9 @@ export interface EuiConfirmModalProps
 export const CONFIRM_BUTTON = 'confirm';
 export const CANCEL_BUTTON = 'cancel';
 
-export const EuiConfirmModal: FunctionComponent<React.PropsWithChildren<EuiConfirmModalProps>> = ({
+export const EuiConfirmModal: FunctionComponent<React.PropsWithChildren<
+  EuiConfirmModalProps
+>> = ({
   children,
   title,
   titleProps,

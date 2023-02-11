@@ -179,7 +179,9 @@ const getHsv = (hsv?: number[], fallback: number = 0) => {
   return [hue, hsv[1], hsv[2]] as ColorSpaces['hsv'];
 };
 
-export const EuiColorPicker: FunctionComponent<React.PropsWithChildren<EuiColorPickerProps>> = ({
+export const EuiColorPicker: FunctionComponent<React.PropsWithChildren<
+  EuiColorPickerProps
+>> = ({
   button,
   className,
   color,

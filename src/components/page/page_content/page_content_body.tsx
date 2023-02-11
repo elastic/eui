@@ -37,7 +37,9 @@ export interface EuiPageContentBodyProps
 /**
  * @deprecated Use EuiPageSection instead
  */
-export const EuiPageContentBody_Deprecated: FunctionComponent<React.PropsWithChildren<EuiPageContentBodyProps>> = ({
+export const EuiPageContentBody_Deprecated: FunctionComponent<React.PropsWithChildren<
+  EuiPageContentBodyProps
+>> = ({
   children,
   restrictWidth = false,
   paddingSize = 'none',

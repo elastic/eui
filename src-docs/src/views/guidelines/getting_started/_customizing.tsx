@@ -40,7 +40,9 @@ ${files}
   );
 };
 
-export const Customizing: FunctionComponent<React.PropsWithChildren<unknown>> = () => {
+export const Customizing: FunctionComponent<React.PropsWithChildren<
+  unknown
+>> = () => {
   const themeContext = useContext(ThemeContext);
   const currentLanguage = themeContext.themeLanguage;
   const showSass = currentLanguage.includes('sass');

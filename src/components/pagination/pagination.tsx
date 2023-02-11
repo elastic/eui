@@ -66,7 +66,9 @@ export interface EuiPaginationProps {
 
 type Props = CommonProps & HTMLAttributes<HTMLDivElement> & EuiPaginationProps;
 
-export const EuiPagination: FunctionComponent<React.PropsWithChildren<Props>> = ({
+export const EuiPagination: FunctionComponent<React.PropsWithChildren<
+  Props
+>> = ({
   className,
   pageCount = 1,
   activePage = 0,

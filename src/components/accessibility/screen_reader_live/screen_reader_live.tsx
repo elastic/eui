@@ -46,7 +46,9 @@ export interface EuiScreenReaderLiveProps {
   focusRegionOnTextChange?: boolean;
 }
 
-export const EuiScreenReaderLive: FunctionComponent<React.PropsWithChildren<EuiScreenReaderLiveProps>> = ({
+export const EuiScreenReaderLive: FunctionComponent<React.PropsWithChildren<
+  EuiScreenReaderLiveProps
+>> = ({
   children,
   isActive = true,
   role = 'status',

@@ -108,9 +108,9 @@ export const FontJS = () => {
   );
 };
 
-export const FontWeightJS: FunctionComponent<React.PropsWithChildren<ThemeRowType>> = ({
-  description,
-}) => {
+export const FontWeightJS: FunctionComponent<React.PropsWithChildren<
+  ThemeRowType
+>> = ({ description }) => {
   const { euiTheme } = useEuiTheme();
 
   return (

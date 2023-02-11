@@ -50,7 +50,9 @@ export type EuiTextColorProps = CommonProps &
     cloneElement?: boolean;
   };
 
-export const EuiTextColor: FunctionComponent<React.PropsWithChildren<EuiTextColorProps>> = ({
+export const EuiTextColor: FunctionComponent<React.PropsWithChildren<
+  EuiTextColorProps
+>> = ({
   children,
   color = 'default',
   component = 'span',

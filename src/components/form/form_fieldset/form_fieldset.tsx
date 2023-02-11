@@ -19,12 +19,9 @@ export interface EuiFormFieldsetProps
   legend?: EuiFormLegendProps;
 }
 
-export const EuiFormFieldset: FunctionComponent<React.PropsWithChildren<EuiFormFieldsetProps>> = ({
-  children,
-  className,
-  legend,
-  ...rest
-}) => {
+export const EuiFormFieldset: FunctionComponent<React.PropsWithChildren<
+  EuiFormFieldsetProps
+>> = ({ children, className, legend, ...rest }) => {
   const legendDisplay = !!legend && <EuiFormLegend {...legend} />;
 
   return (

@@ -7,16 +7,18 @@ import { EuiTableRowCellMobileOptionsShape as _EuiTableRowCellMobileOptionsShape
 // Simulating the `item` generic
 type T = {};
 
-export const DefaultItemActionProps: FunctionComponent<React.PropsWithChildren<DefaultItemAction<
-  T
->>> = () => <div />;
+export const DefaultItemActionProps: FunctionComponent<React.PropsWithChildren<
+  DefaultItemAction<T>
+>> = () => <div />;
 
-export const SearchProps: FunctionComponent<React.PropsWithChildren<Search>> = () => <div />;
+export const SearchProps: FunctionComponent<React.PropsWithChildren<
+  Search
+>> = () => <div />;
 
-export const SearchFilterConfigProps: FunctionComponent<React.PropsWithChildren<SearchFilterConfig>> = () => (
-  <div />
-);
+export const SearchFilterConfigProps: FunctionComponent<React.PropsWithChildren<
+  SearchFilterConfig
+>> = () => <div />;
 
-export const EuiTableRowCellMobileOptionsShape: FunctionComponent<React.PropsWithChildren<_EuiTableRowCellMobileOptionsShape>> = () => (
-  <div />
-);
+export const EuiTableRowCellMobileOptionsShape: FunctionComponent<React.PropsWithChildren<
+  _EuiTableRowCellMobileOptionsShape
+>> = () => <div />;

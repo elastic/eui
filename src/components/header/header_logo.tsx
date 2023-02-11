@@ -31,7 +31,9 @@ export type EuiHeaderLogoProps = CommonProps &
     children?: ReactNode;
   };
 
-export const EuiHeaderLogo: FunctionComponent<React.PropsWithChildren<EuiHeaderLogoProps>> = ({
+export const EuiHeaderLogo: FunctionComponent<React.PropsWithChildren<
+  EuiHeaderLogoProps
+>> = ({
   iconType = 'logoElastic',
   iconTitle = 'Elastic',
   href,

@@ -56,7 +56,9 @@ export interface EuiCommentEventProps extends CommonProps {
   eventColor?: EuiPanelProps['color'];
 }
 
-export const EuiCommentEvent: FunctionComponent<React.PropsWithChildren<EuiCommentEventProps>> = ({
+export const EuiCommentEvent: FunctionComponent<React.PropsWithChildren<
+  EuiCommentEventProps
+>> = ({
   children,
   className,
   eventIcon,

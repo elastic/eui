@@ -56,7 +56,9 @@ export interface EuiDraggableProps
   style?: CSSProperties;
 }
 
-export const EuiDraggable: FunctionComponent<React.PropsWithChildren<EuiDraggableProps>> = ({
+export const EuiDraggable: FunctionComponent<React.PropsWithChildren<
+  EuiDraggableProps
+>> = ({
   customDragHandle = false,
   draggableId,
   isDragDisabled = false,

@@ -95,9 +95,9 @@ export type EuiColorPalettePickerProps<T extends string> = CommonProps &
     palettes: EuiColorPalettePickerPaletteProps[];
   };
 
-export const EuiColorPalettePicker: FunctionComponent<React.PropsWithChildren<EuiColorPalettePickerProps<
-  string
->>> = ({
+export const EuiColorPalettePicker: FunctionComponent<React.PropsWithChildren<
+  EuiColorPalettePickerProps<string>
+>> = ({
   className,
   compressed = false,
   disabled,

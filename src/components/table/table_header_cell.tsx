@@ -110,7 +110,9 @@ const CellContents = ({
   );
 };
 
-export const EuiTableHeaderCell: FunctionComponent<React.PropsWithChildren<EuiTableHeaderCellProps>> = ({
+export const EuiTableHeaderCell: FunctionComponent<React.PropsWithChildren<
+  EuiTableHeaderCellProps
+>> = ({
   children,
   align = LEFT_ALIGNMENT,
   onSort,

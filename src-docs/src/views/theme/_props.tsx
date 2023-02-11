@@ -9,24 +9,28 @@ export type ThemeRowType = {
 
 import { EuiThemeComputed, EuiThemeShape } from '../../../../src/services';
 
-export const EuiTheme: FunctionComponent<React.PropsWithChildren<EuiThemeShape>> = () => <div />;
+export const EuiTheme: FunctionComponent<React.PropsWithChildren<
+  EuiThemeShape
+>> = () => <div />;
 
 import {
   _EuiThemeColorsMode,
   _EuiThemeConstantColors,
 } from '../../../../src/global_styling/variables/colors';
 
-export const EuiThemeColors: FunctionComponent<React.PropsWithChildren<_EuiThemeColorsMode>> = () => (
-  <div />
-);
+export const EuiThemeColors: FunctionComponent<React.PropsWithChildren<
+  _EuiThemeColorsMode
+>> = () => <div />;
 
-export const EuiThemeConstantColors: FunctionComponent<React.PropsWithChildren<_EuiThemeConstantColors>> = () => (
-  <div />
-);
+export const EuiThemeConstantColors: FunctionComponent<React.PropsWithChildren<
+  _EuiThemeConstantColors
+>> = () => <div />;
 
 import { _EuiThemeSizes } from '../../../../src/global_styling/variables/size';
 
-export const EuiThemeSize: FunctionComponent<React.PropsWithChildren<_EuiThemeSizes>> = () => <div />;
+export const EuiThemeSize: FunctionComponent<React.PropsWithChildren<
+  _EuiThemeSizes
+>> = () => <div />;
 
 import {
   _EuiThemeFontBase,
@@ -35,16 +39,18 @@ import {
   _EuiThemeBody,
 } from '../../../../src/global_styling';
 
-export const EuiThemeFontBase: FunctionComponent<React.PropsWithChildren<_EuiThemeFontBase>> = () => (
-  <div />
-);
-export const EuiThemeFontWeight: FunctionComponent<React.PropsWithChildren<_EuiThemeFontWeights>> = () => (
-  <div />
-);
-export const EuiThemeFontScale: FunctionComponent<React.PropsWithChildren<_EuiThemeFontScales>> = () => (
-  <div />
-);
-export const EuiThemeBody: FunctionComponent<React.PropsWithChildren<_EuiThemeBody>> = () => <div />;
+export const EuiThemeFontBase: FunctionComponent<React.PropsWithChildren<
+  _EuiThemeFontBase
+>> = () => <div />;
+export const EuiThemeFontWeight: FunctionComponent<React.PropsWithChildren<
+  _EuiThemeFontWeights
+>> = () => <div />;
+export const EuiThemeFontScale: FunctionComponent<React.PropsWithChildren<
+  _EuiThemeFontScales
+>> = () => <div />;
+export const EuiThemeBody: FunctionComponent<React.PropsWithChildren<
+  _EuiThemeBody
+>> = () => <div />;
 
 import {
   _EuiThemeBorderColorValues,
@@ -53,34 +59,36 @@ import {
   _EuiThemeBorderWidthValues,
 } from '../../../../src/global_styling/variables/borders';
 
-export const EuiThemeBorderRadiusValues: FunctionComponent<React.PropsWithChildren<_EuiThemeBorderRadiusValues>> = () => (
-  <div />
-);
-export const EuiThemeBorderWidthValues: FunctionComponent<React.PropsWithChildren<_EuiThemeBorderWidthValues>> = () => (
-  <div />
-);
-export const EuiThemeBorderColorValues: FunctionComponent<React.PropsWithChildren<_EuiThemeBorderColorValues>> = () => (
-  <div />
-);
-export const EuiThemeBorderTypes: FunctionComponent<React.PropsWithChildren<_EuiThemeBorderTypes>> = () => (
-  <div />
-);
+export const EuiThemeBorderRadiusValues: FunctionComponent<React.PropsWithChildren<
+  _EuiThemeBorderRadiusValues
+>> = () => <div />;
+export const EuiThemeBorderWidthValues: FunctionComponent<React.PropsWithChildren<
+  _EuiThemeBorderWidthValues
+>> = () => <div />;
+export const EuiThemeBorderColorValues: FunctionComponent<React.PropsWithChildren<
+  _EuiThemeBorderColorValues
+>> = () => <div />;
+export const EuiThemeBorderTypes: FunctionComponent<React.PropsWithChildren<
+  _EuiThemeBorderTypes
+>> = () => <div />;
 
 import { _EuiThemeFocus } from '../../../../src/global_styling/variables/states';
 
-export const EuiThemeFocus: FunctionComponent<React.PropsWithChildren<_EuiThemeFocus>> = () => <div />;
+export const EuiThemeFocus: FunctionComponent<React.PropsWithChildren<
+  _EuiThemeFocus
+>> = () => <div />;
 
 import {
   _EuiThemeAnimationSpeeds,
   _EuiThemeAnimationEasings,
 } from '../../../../src/global_styling/variables/animations';
 
-export const EuiThemeAnimationSpeed: FunctionComponent<React.PropsWithChildren<_EuiThemeAnimationSpeeds>> = () => (
-  <div />
-);
-export const EuiThemeAnimationEasing: FunctionComponent<React.PropsWithChildren<_EuiThemeAnimationEasings>> = () => (
-  <div />
-);
+export const EuiThemeAnimationSpeed: FunctionComponent<React.PropsWithChildren<
+  _EuiThemeAnimationSpeeds
+>> = () => <div />;
+export const EuiThemeAnimationEasing: FunctionComponent<React.PropsWithChildren<
+  _EuiThemeAnimationEasings
+>> = () => <div />;
 
 export const euiThemeBreakpointType = {
   custom: { origin: { type: { name: 'number' } } },
@@ -88,9 +96,9 @@ export const euiThemeBreakpointType = {
 
 import { _EuiThemeLevels } from '../../../../src/global_styling/variables/levels';
 
-export const EuiThemeLevelsProps: FunctionComponent<React.PropsWithChildren<_EuiThemeLevels>> = () => (
-  <div />
-);
+export const EuiThemeLevelsProps: FunctionComponent<React.PropsWithChildren<
+  _EuiThemeLevels
+>> = () => <div />;
 
 export function getType(type: any, euiTheme: EuiThemeComputed<{}>) {
   let typeRender: ReactNode;

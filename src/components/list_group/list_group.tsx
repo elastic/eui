@@ -74,7 +74,9 @@ export type EuiListGroupProps = CommonProps &
     ariaLabelledby?: string;
   };
 
-export const EuiListGroup: FunctionComponent<React.PropsWithChildren<EuiListGroupProps>> = ({
+export const EuiListGroup: FunctionComponent<React.PropsWithChildren<
+  EuiListGroupProps
+>> = ({
   children,
   className,
   listItems,

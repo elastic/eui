@@ -159,7 +159,10 @@ describe('EuiContextMenuPanel', () => {
     });
 
     describe('within an EuiPopover', () => {
-      const ContextMenuInPopover: React.FC<React.PropsWithChildren<any>> = ({ children, ...rest }) => {
+      const ContextMenuInPopover: React.FC<React.PropsWithChildren<any>> = ({
+        children,
+        ...rest
+      }) => {
         const [isOpen, setIsOpen] = useState(false);
         const closePopover = () => setIsOpen(false);
         const openPopover = () => setIsOpen(true);

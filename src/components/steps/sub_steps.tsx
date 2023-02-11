@@ -10,7 +10,9 @@ import React, { HTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 
-export type EuiSubStepsProps = FunctionComponent<React.PropsWithChildren<HTMLAttributes<HTMLDivElement> & CommonProps>>;
+export type EuiSubStepsProps = FunctionComponent<
+  React.PropsWithChildren<HTMLAttributes<HTMLDivElement> & CommonProps>
+>;
 
 export const EuiSubSteps: EuiSubStepsProps = ({
   children,

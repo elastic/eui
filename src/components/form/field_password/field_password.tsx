@@ -70,9 +70,9 @@ export type EuiFieldPasswordProps = Omit<
     dualToggleProps?: Partial<EuiButtonIconPropsForButton>;
   };
 
-export const EuiFieldPassword: FunctionComponent<React.PropsWithChildren<EuiFieldPasswordProps>> = (
-  props
-) => {
+export const EuiFieldPassword: FunctionComponent<React.PropsWithChildren<
+  EuiFieldPasswordProps
+>> = (props) => {
   const { defaultFullWidth } = useFormContext();
   const {
     className,

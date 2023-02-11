@@ -92,7 +92,9 @@ export type Props = ExclusiveUnion<
  * EuiButton is largely responsible for providing relevant props
  * and the logic for element-specific attributes
  */
-export const EuiButton: FunctionComponent<React.PropsWithChildren<Props>> = (props) => {
+export const EuiButton: FunctionComponent<React.PropsWithChildren<Props>> = (
+  props
+) => {
   const { buttonRef, color: _color = 'primary', fill, ...rest } = props;
 
   const buttonIsDisabled = isButtonDisabled({

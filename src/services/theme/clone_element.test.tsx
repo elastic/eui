@@ -14,7 +14,10 @@ import { render } from 'enzyme';
 import { cloneElementWithCss } from './clone_element';
 
 describe('cloneElementWithCss', () => {
-  const CloningParent: React.FC<React.PropsWithChildren<any>> = ({ children, ...props }) => {
+  const CloningParent: React.FC<React.PropsWithChildren<any>> = ({
+    children,
+    ...props
+  }) => {
     return cloneElementWithCss(children, props);
   };
 
@@ -62,7 +65,9 @@ describe('cloneElementWithCss', () => {
   });
 
   it('handles components', () => {
-    const TestComponent: React.FC<React.PropsWithChildren<unknown>> = (props) => (
+    const TestComponent: React.FC<React.PropsWithChildren<unknown>> = (
+      props
+    ) => (
       <div css={{ backgroundColor: 'blue' }} {...props}>
         hello world
       </div>

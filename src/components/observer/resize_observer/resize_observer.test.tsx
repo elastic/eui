@@ -46,7 +46,9 @@ describe.skip('testResizeObservers', () => {
       expect.assertions(2);
       const onResize = jest.fn();
 
-      const Wrapper: FunctionComponent<React.PropsWithChildren<{}>> = ({ children }) => {
+      const Wrapper: FunctionComponent<React.PropsWithChildren<{}>> = ({
+        children,
+      }) => {
         return (
           <EuiResizeObserver onResize={onResize}>
             {(resizeRef: (e: HTMLElement | null) => void) => (
@@ -82,11 +84,13 @@ describe.skip('testResizeObservers', () => {
     it('watches for a resize', async () => {
       expect.assertions(2);
 
-      const Wrapper: FunctionComponent<React.PropsWithChildren<{}>> = jest.fn(({ children }) => {
-        const [ref, setRef] = useState<Element | null>(null);
-        useResizeObserver(ref);
-        return <div ref={setRef}>{children}</div>;
-      });
+      const Wrapper: FunctionComponent<React.PropsWithChildren<{}>> = jest.fn(
+        ({ children }) => {
+          const [ref, setRef] = useState<Element | null>(null);
+          useResizeObserver(ref);
+          return <div ref={setRef}>{children}</div>;
+        }
+      );
 
       const component = mount(<Wrapper children={<div>Hello World</div>} />);
 

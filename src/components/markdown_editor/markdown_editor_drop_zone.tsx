@@ -55,9 +55,9 @@ const getUnacceptedItems = (
   return unacceptedItems;
 };
 
-export const EuiMarkdownEditorDropZone: FunctionComponent<React.PropsWithChildren<EuiMarkdownEditorDropZoneProps>> = (
-  props
-) => {
+export const EuiMarkdownEditorDropZone: FunctionComponent<React.PropsWithChildren<
+  EuiMarkdownEditorDropZoneProps
+>> = (props) => {
   const [isDragging, toggleDragging] = React.useState(false);
   const [isUploadingFiles, toggleUploadingFiles] = React.useState(false);
   const [isDraggingError, toggleDraggingError] = React.useState(false);

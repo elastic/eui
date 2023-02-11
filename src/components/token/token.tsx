@@ -25,7 +25,9 @@ import { euiTokenStyles } from './token.styles';
 const isTokenColor = (color: string): color is TokenColor =>
   COLORS.includes(color as TokenColor);
 
-export const EuiToken: FunctionComponent<React.PropsWithChildren<EuiTokenProps>> = ({
+export const EuiToken: FunctionComponent<React.PropsWithChildren<
+  EuiTokenProps
+>> = ({
   iconType,
   color,
   fill,

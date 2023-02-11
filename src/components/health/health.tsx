@@ -32,13 +32,9 @@ export type EuiHealthProps = CommonProps &
     textSize?: typeof TEXT_SIZES[number];
   };
 
-export const EuiHealth: FunctionComponent<React.PropsWithChildren<EuiHealthProps>> = ({
-  children,
-  className,
-  color,
-  textSize = 's',
-  ...rest
-}) => {
+export const EuiHealth: FunctionComponent<React.PropsWithChildren<
+  EuiHealthProps
+>> = ({ children, className, color, textSize = 's', ...rest }) => {
   const euiTheme = useEuiTheme();
   const styles = euiHealthStyles(euiTheme);
   const cssStyles = [styles.euiHealth, styles[textSize]];

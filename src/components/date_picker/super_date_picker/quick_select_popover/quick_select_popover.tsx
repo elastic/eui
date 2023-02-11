@@ -61,10 +61,9 @@ export interface EuiQuickSelectPopoverProps {
   timeOptions: TimeOptions;
 }
 
-export const EuiQuickSelectPopover: FunctionComponent<React.PropsWithChildren<EuiQuickSelectPopoverProps>> = ({
-  applyTime: _applyTime,
-  ...props
-}) => {
+export const EuiQuickSelectPopover: FunctionComponent<React.PropsWithChildren<
+  EuiQuickSelectPopoverProps
+>> = ({ applyTime: _applyTime, ...props }) => {
   const [prevQuickSelect, setQuickSelect] = useState<QuickSelect>();
   const [isOpen, setIsOpen] = useState(false);
   const closePopover = useCallback(() => setIsOpen(false), []);
@@ -122,9 +121,11 @@ export const EuiQuickSelectPopover: FunctionComponent<React.PropsWithChildren<Eu
   );
 };
 
-export const EuiQuickSelectPanels: FunctionComponent<React.PropsWithChildren<Omit<EuiQuickSelectPopoverProps, 'isDisabled'> & {
-  prevQuickSelect?: QuickSelect;
-}>> = ({
+export const EuiQuickSelectPanels: FunctionComponent<React.PropsWithChildren<
+  Omit<EuiQuickSelectPopoverProps, 'isDisabled'> & {
+    prevQuickSelect?: QuickSelect;
+  }
+>> = ({
   start,
   end,
   dateFormat,

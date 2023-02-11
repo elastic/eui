@@ -72,7 +72,9 @@ export interface EuiStatProps {
   descriptionElement?: string;
 }
 
-export const EuiStat: FunctionComponent<React.PropsWithChildren<CommonProps & Omit<HTMLAttributes<HTMLDivElement>, 'title'> & EuiStatProps>> = ({
+export const EuiStat: FunctionComponent<React.PropsWithChildren<
+  CommonProps & Omit<HTMLAttributes<HTMLDivElement>, 'title'> & EuiStatProps
+>> = ({
   children,
   className,
   description,

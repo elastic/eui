@@ -19,11 +19,9 @@ export type EuiPopoverArrowProps = HTMLAttributes<HTMLDivElement> &
     position: EuiPopoverArrowPositions;
   };
 
-export const EuiPopoverArrow: FunctionComponent<React.PropsWithChildren<EuiPopoverArrowProps>> = ({
-  children,
-  position,
-  ...rest
-}) => {
+export const EuiPopoverArrow: FunctionComponent<React.PropsWithChildren<
+  EuiPopoverArrowProps
+>> = ({ children, position, ...rest }) => {
   const euiTheme = useEuiTheme();
   const styles = euiPopoverArrowStyles(euiTheme);
   const cssStyles = [styles.euiPopoverArrow, styles[position]];

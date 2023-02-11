@@ -35,7 +35,9 @@ type EuiPopoverPanelInternalProps = {
  * *INTERNAL ONLY*
  * Purely for re-use of styling
  */
-export const EuiPopoverPanel: FunctionComponent<React.PropsWithChildren<EuiPopoverPanelProps & EuiPopoverPanelInternalProps>> = ({
+export const EuiPopoverPanel: FunctionComponent<React.PropsWithChildren<
+  EuiPopoverPanelProps & EuiPopoverPanelInternalProps
+>> = ({
   children,
   className,
   isOpen,

@@ -14,7 +14,9 @@ describe('useRenderToText', () => {
   it("Returns a ReactNode's rendered string content", () => {
     const renderedTexts: string[] = [];
 
-    const Component: FunctionComponent<React.PropsWithChildren<unknown>> = ({ children }) => {
+    const Component: FunctionComponent<React.PropsWithChildren<unknown>> = ({
+      children,
+    }) => {
       const text = useRenderToText(children);
       renderedTexts.push(text);
       return <div>{text}</div>;

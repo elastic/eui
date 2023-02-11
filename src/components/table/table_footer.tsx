@@ -9,11 +9,9 @@
 import React, { FunctionComponent } from 'react';
 import { CommonProps } from '../common';
 
-export const EuiTableFooter: FunctionComponent<React.PropsWithChildren<CommonProps>> = ({
-  children,
-  className,
-  ...rest
-}) => {
+export const EuiTableFooter: FunctionComponent<React.PropsWithChildren<
+  CommonProps
+>> = ({ children, className, ...rest }) => {
   return (
     <tfoot className={className} {...rest}>
       <tr>{children}</tr>

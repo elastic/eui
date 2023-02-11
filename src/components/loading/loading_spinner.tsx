@@ -35,7 +35,9 @@ export type EuiLoadingSpinnerProps = CommonProps &
     color?: EuiLoadingSpinnerColor;
   };
 
-export const EuiLoadingSpinner: FunctionComponent<React.PropsWithChildren<EuiLoadingSpinnerProps>> = ({
+export const EuiLoadingSpinner: FunctionComponent<React.PropsWithChildren<
+  EuiLoadingSpinnerProps
+>> = ({
   size = 'm',
   className,
   'aria-label': ariaLabel,

@@ -42,7 +42,9 @@ export type EuiSkeletonLoadingProps = CommonProps &
     loadedContent: any;
   };
 
-export const EuiSkeletonLoading: FunctionComponent<React.PropsWithChildren<EuiSkeletonLoadingProps>> = ({
+export const EuiSkeletonLoading: FunctionComponent<React.PropsWithChildren<
+  EuiSkeletonLoadingProps
+>> = ({
   isLoading = true,
   contentAriaLabel,
   loadingContent,

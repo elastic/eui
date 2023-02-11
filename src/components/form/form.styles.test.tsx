@@ -17,9 +17,9 @@ import {
   euiCustomControl,
 } from './form.styles';
 
-const darkModeWrapper: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => (
-  <EuiProvider colorMode="DARK">{children}</EuiProvider>
-);
+const darkModeWrapper: React.FC<React.PropsWithChildren<unknown>> = ({
+  children,
+}) => <EuiProvider colorMode="DARK">{children}</EuiProvider>;
 
 describe('euiFormVariables', () => {
   it('outputs an object of reusable form vars', () => {

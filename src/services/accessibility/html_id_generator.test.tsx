@@ -57,9 +57,9 @@ describe('htmlIdGenerator', () => {
 
 describe('useGeneratedHtmlId', () => {
   it('does not change when a component updates', () => {
-    const MockComponent: React.FC<React.PropsWithChildren<unknown>> = (props) => (
-      <div id={useGeneratedHtmlId()} {...props} />
-    );
+    const MockComponent: React.FC<React.PropsWithChildren<unknown>> = (
+      props
+    ) => <div id={useGeneratedHtmlId()} {...props} />;
     const component = shallow(<MockComponent />);
     const initialId = component.find('div').prop('id');
 
@@ -81,9 +81,10 @@ describe('useGeneratedHtmlId', () => {
   });
 
   it('allows overriding generated IDs with conditional IDs (typically from props)', () => {
-    const MockComponent: React.FC<React.PropsWithChildren<{ id?: string }>> = ({ id, ...props }) => (
-      <div id={useGeneratedHtmlId({ conditionalId: id })} {...props} />
-    );
+    const MockComponent: React.FC<React.PropsWithChildren<{ id?: string }>> = ({
+      id,
+      ...props
+    }) => <div id={useGeneratedHtmlId({ conditionalId: id })} {...props} />;
     const component = shallow(<MockComponent id="hello" />);
     expect(component.find('div').prop('id')).toEqual('hello');
 

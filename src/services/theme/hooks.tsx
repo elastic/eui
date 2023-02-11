@@ -76,7 +76,9 @@ export interface WithEuiThemeProps<P extends {} = {}> {
 // Provide the component props interface as the generic to allow the docs props table to populate.
 // e.g., `const EuiComponent = withEuiTheme<EuiComponentProps>(_EuiComponent)`
 export const withEuiTheme = <T extends {} = {}, U extends {} = {}>(
-  Component: React.ComponentType<React.PropsWithChildren<T & WithEuiThemeProps<U>>>
+  Component: React.ComponentType<
+    React.PropsWithChildren<T & WithEuiThemeProps<U>>
+  >
 ) => {
   const componentName =
     Component.displayName || Component.name || 'ComponentWithTheme';

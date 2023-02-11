@@ -153,7 +153,9 @@ const getPosition = (ref: HTMLDivElement) => {
   return position;
 };
 
-export const EuiResizablePanel: FunctionComponent<React.PropsWithChildren<EuiResizablePanelProps>> = ({
+export const EuiResizablePanel: FunctionComponent<React.PropsWithChildren<
+  EuiResizablePanelProps
+>> = ({
   children,
   className,
   id,

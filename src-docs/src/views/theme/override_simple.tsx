@@ -3,7 +3,9 @@ import { EuiCode } from '../../../../src/components/code';
 import { EuiText } from '../../../../src/components/text';
 import { EuiThemeProvider, useEuiTheme } from '../../../../src/services';
 
-const Box: FunctionComponent<React.PropsWithChildren<{ children: ReactNode }>> = ({ children }) => {
+const Box: FunctionComponent<React.PropsWithChildren<{
+  children: ReactNode;
+}>> = ({ children }) => {
   const { euiTheme } = useEuiTheme();
 
   return (

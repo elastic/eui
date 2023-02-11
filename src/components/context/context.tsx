@@ -30,7 +30,9 @@ export interface I18nShape {
    * Some browsers' translation features don't work with a rendered `<Fragment>` component.
    * The `render` function allows you to pass in another component instead, e.g. `<div>`
    */
-  render?: (children: any) => FunctionComponent<React.PropsWithChildren<unknown>>;
+  render?: (
+    children: any
+  ) => FunctionComponent<React.PropsWithChildren<unknown>>;
   formatNumber?: (x: number) => string;
   formatDateTime?: (x: Date) => string;
   locale?: string;
@@ -47,9 +49,10 @@ export interface EuiContextProps {
   children: ReactNode;
 }
 
-const EuiContext: FunctionComponent<React.PropsWithChildren<EuiContextProps>> = ({
-  i18n = {},
-  children,
-}) => <EuiI18nProvider value={i18n}>{children}</EuiI18nProvider>;
+const EuiContext: FunctionComponent<React.PropsWithChildren<
+  EuiContextProps
+>> = ({ i18n = {}, children }) => (
+  <EuiI18nProvider value={i18n}>{children}</EuiI18nProvider>
+);
 
 export { EuiContext, EuiI18nConsumer, I18nContext };

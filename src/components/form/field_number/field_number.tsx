@@ -74,9 +74,9 @@ export type EuiFieldNumberProps = Omit<
     compressed?: boolean;
   };
 
-export const EuiFieldNumber: FunctionComponent<React.PropsWithChildren<EuiFieldNumberProps>> = (
-  props
-) => {
+export const EuiFieldNumber: FunctionComponent<React.PropsWithChildren<
+  EuiFieldNumberProps
+>> = (props) => {
   const { defaultFullWidth } = useFormContext();
   const {
     className,

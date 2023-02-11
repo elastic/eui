@@ -30,13 +30,9 @@ export interface EuiTimelineProps
   gutterSize?: EuiTimelineGutterSize;
 }
 
-export const EuiTimeline: FunctionComponent<React.PropsWithChildren<EuiTimelineProps>> = ({
-  className,
-  items = [],
-  children,
-  gutterSize = 'xl',
-  ...rest
-}) => {
+export const EuiTimeline: FunctionComponent<React.PropsWithChildren<
+  EuiTimelineProps
+>> = ({ className, items = [], children, gutterSize = 'xl', ...rest }) => {
   const classes = classNames('euiTimeline', className);
 
   const euiTheme = useEuiTheme();

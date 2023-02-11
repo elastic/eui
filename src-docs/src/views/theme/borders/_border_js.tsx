@@ -24,7 +24,9 @@ import { ThemeExample } from '../_components/_theme_example';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
 import { getDescription } from '../../../services/props/get_description';
 
-export const TypesJS: FunctionComponent<React.PropsWithChildren<ThemeRowType>> = ({ description }) => {
+export const TypesJS: FunctionComponent<React.PropsWithChildren<
+  ThemeRowType
+>> = ({ description }) => {
   const { euiTheme } = useEuiTheme();
   return (
     <>
@@ -79,7 +81,9 @@ export const TypesValuesJS = () => {
   );
 };
 
-export const ColorJS: FunctionComponent<React.PropsWithChildren<ThemeRowType>> = ({ description }) => {
+export const ColorJS: FunctionComponent<React.PropsWithChildren<
+  ThemeRowType
+>> = ({ description }) => {
   const { euiTheme } = useEuiTheme();
   const colorProps = getPropsFromComponent(EuiThemeBorderColorValues);
 
@@ -136,7 +140,9 @@ export const ColorValuesJS = () => {
   );
 };
 
-export const WidthJS: FunctionComponent<React.PropsWithChildren<ThemeRowType>> = ({ description }) => {
+export const WidthJS: FunctionComponent<React.PropsWithChildren<
+  ThemeRowType
+>> = ({ description }) => {
   const { euiTheme } = useEuiTheme();
 
   const wrappingExampleStyle = {
@@ -206,7 +212,9 @@ export const WidthValuesJS = () => {
   );
 };
 
-export const RadiusJS: FunctionComponent<React.PropsWithChildren<ThemeRowType>> = ({ description }) => {
+export const RadiusJS: FunctionComponent<React.PropsWithChildren<
+  ThemeRowType
+>> = ({ description }) => {
   const { euiTheme } = useEuiTheme();
 
   return (

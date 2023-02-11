@@ -67,7 +67,9 @@ export const EuiCodeBlockAnnotation: FunctionComponent<React.PropsWithChildren<{
   );
 };
 
-const AnnotationInfoIcon: FunctionComponent<React.PropsWithChildren<unknown>> = (props) => (
+const AnnotationInfoIcon: FunctionComponent<React.PropsWithChildren<
+  unknown
+>> = (props) => (
   <svg
     width={11}
     height={11}

@@ -23,7 +23,9 @@ const PageSource = require('!!raw-loader!./page');
 // @ts-ignore Importing from JS
 import { pageConfig } from './playground';
 
-export const PageComponentDemo: FunctionComponent<React.PropsWithChildren<unknown>> = () => {
+export const PageComponentDemo: FunctionComponent<React.PropsWithChildren<
+  unknown
+>> = () => {
   const [showSideBar, setShowSideBar] = useState(true);
   const [horizontal, setHorizontal] = useState(true);
   const [restrictWidth, setRestrictWidth] = useState<

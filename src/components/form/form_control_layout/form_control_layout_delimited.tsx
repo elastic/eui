@@ -39,13 +39,9 @@ export type EuiFormControlLayoutDelimitedProps = Partial<
   className?: string;
 };
 
-export const EuiFormControlLayoutDelimited: FunctionComponent<React.PropsWithChildren<EuiFormControlLayoutDelimitedProps>> = ({
-  startControl,
-  endControl,
-  delimiter = '→',
-  className,
-  ...rest
-}) => {
+export const EuiFormControlLayoutDelimited: FunctionComponent<React.PropsWithChildren<
+  EuiFormControlLayoutDelimitedProps
+>> = ({ startControl, endControl, delimiter = '→', className, ...rest }) => {
   const classes = classNames('euiFormControlLayoutDelimited', className);
 
   return (

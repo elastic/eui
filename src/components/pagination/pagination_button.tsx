@@ -38,7 +38,9 @@ type Props = ExclusiveUnion<
   EuiPaginationButtonPropsForButton
 >;
 
-export const EuiPaginationButton: FunctionComponent<React.PropsWithChildren<Props>> = ({
+export const EuiPaginationButton: FunctionComponent<React.PropsWithChildren<
+  Props
+>> = ({
   className,
   isActive,
   isPlaceholder,

@@ -11,7 +11,9 @@ import { useEuiTheme } from '../../services';
 import { ToolTipPositions } from './tool_tip_popover';
 import { euiToolTipStyles } from './tool_tip.styles';
 
-export const EuiToolTipArrow: FunctionComponent<React.PropsWithChildren<{ position: ToolTipPositions } & HTMLAttributes<HTMLDivElement>>> = ({ position, ...props }) => {
+export const EuiToolTipArrow: FunctionComponent<React.PropsWithChildren<
+  { position: ToolTipPositions } & HTMLAttributes<HTMLDivElement>
+>> = ({ position, ...props }) => {
   const euiTheme = useEuiTheme();
   const styles = euiToolTipStyles(euiTheme);
   const cssStyles = [styles.euiToolTip__arrow, styles.arrowPositions[position]];

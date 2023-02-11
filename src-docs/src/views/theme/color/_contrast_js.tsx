@@ -29,7 +29,9 @@ type ColorSection = {
   hookName?: string;
 };
 
-export const ColorSectionJS: FunctionComponent<React.PropsWithChildren<ColorSection>> = ({
+export const ColorSectionJS: FunctionComponent<React.PropsWithChildren<
+  ColorSection
+>> = ({
   color,
   colorValue: _colorValue,
   minimumContrast,
@@ -92,12 +94,9 @@ type ColorsContrastItem = {
   styleString?: string;
 };
 
-const ColorsContrastItem: FunctionComponent<React.PropsWithChildren<ColorsContrastItem>> = ({
-  foreground,
-  background,
-  minimumContrast,
-  styleString,
-}) => {
+const ColorsContrastItem: FunctionComponent<React.PropsWithChildren<
+  ColorsContrastItem
+>> = ({ foreground, background, minimumContrast, styleString }) => {
   const { euiTheme } = useEuiTheme();
   const backgroundColorIsToken =
     euiTheme.colors[background as keyof _EuiThemeColorsMode];

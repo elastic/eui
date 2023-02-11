@@ -115,7 +115,9 @@ export type EuiBadgeProps = {
     WithSpanProps
   >;
 
-export const EuiBadge: FunctionComponent<React.PropsWithChildren<EuiBadgeProps>> = ({
+export const EuiBadge: FunctionComponent<React.PropsWithChildren<
+  EuiBadgeProps
+>> = ({
   children,
   color = 'default',
   iconType,

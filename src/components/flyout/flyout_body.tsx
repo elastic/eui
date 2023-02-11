@@ -12,13 +12,17 @@ import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
 import { euiFlyoutBodyStyles } from './flyout_body.styles';
 
-export type EuiFlyoutBodyProps = FunctionComponent<React.PropsWithChildren<HTMLAttributes<HTMLDivElement> &
-  CommonProps & {
-    /**
-     * Use to display a banner at the top of the body. It is suggested to use `EuiCallOut` for it.
-     */
-    banner?: ReactNode;
-  }>>;
+export type EuiFlyoutBodyProps = FunctionComponent<
+  React.PropsWithChildren<
+    HTMLAttributes<HTMLDivElement> &
+      CommonProps & {
+        /**
+         * Use to display a banner at the top of the body. It is suggested to use `EuiCallOut` for it.
+         */
+        banner?: ReactNode;
+      }
+  >
+>;
 
 export const EuiFlyoutBody: EuiFlyoutBodyProps = ({
   children,

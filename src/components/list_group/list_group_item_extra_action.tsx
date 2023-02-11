@@ -20,7 +20,9 @@ export type EuiListGroupItemExtraActionProps = {
 
 type _FromEuiListGroupItem = { parentIsDisabled?: boolean };
 
-export const EuiListGroupItemExtraAction: FunctionComponent<React.PropsWithChildren<EuiListGroupItemExtraActionProps & _FromEuiListGroupItem>> = ({
+export const EuiListGroupItemExtraAction: FunctionComponent<React.PropsWithChildren<
+  EuiListGroupItemExtraActionProps & _FromEuiListGroupItem
+>> = ({
   iconType,
   alwaysShow,
   className,

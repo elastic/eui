@@ -66,7 +66,9 @@ type _EuiBreadcrumbProps = {
   truncateLastBreadcrumb?: boolean;
 } & Pick<EuiBreadcrumbProps, 'truncate'>;
 
-export const EuiBreadcrumb: FunctionComponent<React.PropsWithChildren<HTMLAttributes<HTMLLIElement> & _EuiBreadcrumbProps>> = ({ children, className, type, truncate, ...rest }) => {
+export const EuiBreadcrumb: FunctionComponent<React.PropsWithChildren<
+  HTMLAttributes<HTMLLIElement> & _EuiBreadcrumbProps
+>> = ({ children, className, type, truncate, ...rest }) => {
   const classes = classNames('euiBreadcrumb', className);
 
   const euiTheme = useEuiTheme();
@@ -89,7 +91,9 @@ export const EuiBreadcrumb: FunctionComponent<React.PropsWithChildren<HTMLAttrib
   );
 };
 
-export const EuiBreadcrumbContent: FunctionComponent<React.PropsWithChildren<EuiBreadcrumbProps & _EuiBreadcrumbProps>> = ({
+export const EuiBreadcrumbContent: FunctionComponent<React.PropsWithChildren<
+  EuiBreadcrumbProps & _EuiBreadcrumbProps
+>> = ({
   text,
   truncate,
   type,
@@ -169,11 +173,9 @@ export const EuiBreadcrumbContent: FunctionComponent<React.PropsWithChildren<Eui
   );
 };
 
-export const EuiBreadcrumbCollapsed: FunctionComponent<React.PropsWithChildren<_EuiBreadcrumbProps>> = ({
-  children,
-  isFirstBreadcrumb,
-  type,
-}) => {
+export const EuiBreadcrumbCollapsed: FunctionComponent<React.PropsWithChildren<
+  _EuiBreadcrumbProps
+>> = ({ children, isFirstBreadcrumb, type }) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   const euiTheme = useEuiTheme();

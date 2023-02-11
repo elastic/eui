@@ -47,7 +47,9 @@ type ThemeValue = {
   forceUpdateType?: 'string' | 'number' | 'color';
 };
 
-export const ThemeValue: FunctionComponent<React.PropsWithChildren<ThemeValue>> = ({
+export const ThemeValue: FunctionComponent<React.PropsWithChildren<
+  ThemeValue
+>> = ({
   property,
   name,
   value,

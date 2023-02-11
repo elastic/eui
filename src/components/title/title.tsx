@@ -29,13 +29,9 @@ export type EuiTitleProps = CommonProps & {
   id?: string;
 };
 
-export const EuiTitle: FunctionComponent<React.PropsWithChildren<EuiTitleProps>> = ({
-  size = 'm',
-  children,
-  className,
-  textTransform,
-  ...rest
-}) => {
+export const EuiTitle: FunctionComponent<React.PropsWithChildren<
+  EuiTitleProps
+>> = ({ size = 'm', children, className, textTransform, ...rest }) => {
   const euiTheme = useEuiTheme();
   const styles = euiTitleStyles(euiTheme);
   const cssStyles = [

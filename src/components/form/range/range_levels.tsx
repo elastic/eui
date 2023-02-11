@@ -35,15 +35,9 @@ export interface EuiRangeLevelsProps
   style?: CSSProperties;
 }
 
-export const EuiRangeLevels: FunctionComponent<React.PropsWithChildren<EuiRangeLevelsProps>> = ({
-  levels = [],
-  max,
-  min,
-  showTicks,
-  showRange,
-  trackWidth,
-  ...rest
-}) => {
+export const EuiRangeLevels: FunctionComponent<React.PropsWithChildren<
+  EuiRangeLevelsProps
+>> = ({ levels = [], max, min, showTicks, showRange, trackWidth, ...rest }) => {
   const euiTheme = useEuiTheme();
   const styles = euiRangeLevelsStyles(euiTheme);
   const cssStyles = [

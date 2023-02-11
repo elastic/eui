@@ -94,7 +94,9 @@ export type EuiPanelProps = ExclusiveUnion<
   _EuiPanelDivlike
 >;
 
-export const EuiPanel: FunctionComponent<React.PropsWithChildren<EuiPanelProps>> = ({
+export const EuiPanel: FunctionComponent<React.PropsWithChildren<
+  EuiPanelProps
+>> = ({
   children,
   className,
   paddingSize = 'm',

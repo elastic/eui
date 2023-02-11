@@ -24,13 +24,9 @@ export type EuiHeaderSectionProps = CommonProps &
     grow?: boolean;
   };
 
-export const EuiHeaderSection: FunctionComponent<React.PropsWithChildren<EuiHeaderSectionProps>> = ({
-  side = 'left',
-  children,
-  className,
-  grow = false,
-  ...rest
-}) => {
+export const EuiHeaderSection: FunctionComponent<React.PropsWithChildren<
+  EuiHeaderSectionProps
+>> = ({ side = 'left', children, className, grow = false, ...rest }) => {
   const classes = classNames(
     'euiHeaderSection',
     {

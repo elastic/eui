@@ -34,13 +34,9 @@ export type Props = Partial<Omit<EuiButtonIconPropsForAnchor, 'type'>> & {
   ariaControls?: string;
 };
 
-export const EuiPaginationButtonArrow: FunctionComponent<React.PropsWithChildren<Props>> = ({
-  className,
-  type,
-  disabled,
-  ariaControls,
-  onClick,
-}) => {
+export const EuiPaginationButtonArrow: FunctionComponent<React.PropsWithChildren<
+  Props
+>> = ({ className, type, disabled, ariaControls, onClick }) => {
   const euiTheme = useEuiTheme();
   const styles = euiPaginationButtonArrowStyles(euiTheme);
 

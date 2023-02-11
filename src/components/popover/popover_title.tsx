@@ -14,14 +14,18 @@ import { CommonProps } from '../common';
 import { euiPopoverTitleStyles } from './popover_title.styles';
 import { EuiPopoverPanelContext } from './popover_panel/_popover_panel';
 
-export type EuiPopoverTitleProps = FunctionComponent<React.PropsWithChildren<HTMLAttributes<HTMLDivElement> &
-  CommonProps & {
-    /**
-     * Customize the all around padding of the popover title.
-     * Leave `undefined` to inherit from the `panelPaddingSize` of the containing EuiPopover
-     */
-    paddingSize?: EuiPaddingSize;
-  }>>;
+export type EuiPopoverTitleProps = FunctionComponent<
+  React.PropsWithChildren<
+    HTMLAttributes<HTMLDivElement> &
+      CommonProps & {
+        /**
+         * Customize the all around padding of the popover title.
+         * Leave `undefined` to inherit from the `panelPaddingSize` of the containing EuiPopover
+         */
+        paddingSize?: EuiPaddingSize;
+      }
+  >
+>;
 
 export const EuiPopoverTitle: EuiPopoverTitleProps = ({
   children,

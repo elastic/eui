@@ -13,10 +13,9 @@ export type GuideSectionPropsTable = {
   component: any;
 };
 
-export const GuideSectionPropsTable: FunctionComponent<React.PropsWithChildren<GuideSectionPropsTable>> = ({
-  componentName,
-  component,
-}) => {
+export const GuideSectionPropsTable: FunctionComponent<React.PropsWithChildren<
+  GuideSectionPropsTable
+>> = ({ componentName, component }) => {
   const docgenInfo = Array.isArray(component.__docgenInfo)
     ? component.__docgenInfo[0]
     : component.__docgenInfo;
@@ -43,7 +42,10 @@ export const GuideSectionPropsTable: FunctionComponent<React.PropsWithChildren<G
   );
 };
 
-const PlaygroundProps: FunctionComponent<React.PropsWithChildren<any>> = ({ config, isPlayground }) => {
+const PlaygroundProps: FunctionComponent<React.PropsWithChildren<any>> = ({
+  config,
+  isPlayground,
+}) => {
   const params = useView(config);
 
   return <Knobs {...params.knobProps} isPlayground={isPlayground} />;

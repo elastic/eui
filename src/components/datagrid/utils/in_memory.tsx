@@ -83,13 +83,9 @@ export const useInMemoryValues = (
 /**
  * InMemory renderer
  */
-export const EuiDataGridInMemoryRenderer: FunctionComponent<React.PropsWithChildren<EuiDataGridInMemoryRendererProps>> = ({
-  inMemory,
-  columns,
-  rowCount,
-  renderCellValue,
-  onCellRender,
-}) => {
+export const EuiDataGridInMemoryRenderer: FunctionComponent<React.PropsWithChildren<
+  EuiDataGridInMemoryRendererProps
+>> = ({ inMemory, columns, rowCount, renderCellValue, onCellRender }) => {
   const [documentFragment] = useState(() => document.createDocumentFragment());
 
   const cells = useMemo(() => {

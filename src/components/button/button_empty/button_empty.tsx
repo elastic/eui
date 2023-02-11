@@ -98,9 +98,9 @@ export type EuiButtonEmptyProps = ExclusiveUnion<
   EuiButtonEmptyPropsForButton
 >;
 
-export const EuiButtonEmpty: FunctionComponent<React.PropsWithChildren<EuiButtonEmptyProps>> = (
-  props
-) => {
+export const EuiButtonEmpty: FunctionComponent<React.PropsWithChildren<
+  EuiButtonEmptyProps
+>> = (props) => {
   const {
     children,
     className,

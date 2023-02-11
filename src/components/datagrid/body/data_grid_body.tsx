@@ -46,12 +46,9 @@ import { useScrollBars, useScroll } from '../utils/scrolling';
 import { DataGridSortingContext } from '../utils/sorting';
 import { IS_JEST_ENVIRONMENT } from '../../../utils';
 
-export const Cell: FunctionComponent<React.PropsWithChildren<GridChildComponentProps>> = ({
-  columnIndex,
-  rowIndex: visibleRowIndex,
-  style,
-  data,
-}) => {
+export const Cell: FunctionComponent<React.PropsWithChildren<
+  GridChildComponentProps
+>> = ({ columnIndex, rowIndex: visibleRowIndex, style, data }) => {
   const {
     leadingControlColumns,
     trailingControlColumns,
@@ -209,9 +206,9 @@ const InnerElement: VariableSizeGridProps['innerElementType'] = forwardRef<
 });
 InnerElement.displayName = 'EuiDataGridInnerElement';
 
-export const EuiDataGridBody: FunctionComponent<React.PropsWithChildren<EuiDataGridBodyProps>> = (
-  props
-) => {
+export const EuiDataGridBody: FunctionComponent<React.PropsWithChildren<
+  EuiDataGridBodyProps
+>> = (props) => {
   const {
     leadingControlColumns,
     trailingControlColumns,

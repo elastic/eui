@@ -27,7 +27,9 @@ export type EuiSkeletonRectangleProps = HTMLAttributes<HTMLDivElement> &
     borderRadius?: SkeletonRectangleBorderRadius;
   };
 
-export const EuiSkeletonRectangle: FunctionComponent<React.PropsWithChildren<EuiSkeletonRectangleProps>> = ({
+export const EuiSkeletonRectangle: FunctionComponent<React.PropsWithChildren<
+  EuiSkeletonRectangleProps
+>> = ({
   isLoading = true,
   borderRadius = 's',
   width = '24px',

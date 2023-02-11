@@ -40,13 +40,15 @@ import {
 import { DefaultCellPopover } from './data_grid_cell_popover';
 import { IS_JEST_ENVIRONMENT } from '../../../utils';
 
-const EuiDataGridCellContent: FunctionComponent<React.PropsWithChildren<EuiDataGridCellValueProps & {
-  setCellProps: EuiDataGridCellValueElementProps['setCellProps'];
-  setCellContentsRef: EuiDataGridCell['setCellContentsRef'];
-  isExpanded: boolean;
-  isDefinedHeight: boolean;
-  ariaRowIndex: number;
-}>> = memo(
+const EuiDataGridCellContent: FunctionComponent<React.PropsWithChildren<
+  EuiDataGridCellValueProps & {
+    setCellProps: EuiDataGridCellValueElementProps['setCellProps'];
+    setCellContentsRef: EuiDataGridCell['setCellContentsRef'];
+    isExpanded: boolean;
+    isDefinedHeight: boolean;
+    ariaRowIndex: number;
+  }
+>> = memo(
   ({
     renderCellValue,
     column,

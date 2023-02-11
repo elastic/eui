@@ -71,7 +71,9 @@ export type EuiSelectProps = Omit<
     append?: EuiFormControlLayoutProps['append'];
   };
 
-export const EuiSelect: FunctionComponent<React.PropsWithChildren<EuiSelectProps>> = (props) => {
+export const EuiSelect: FunctionComponent<React.PropsWithChildren<
+  EuiSelectProps
+>> = (props) => {
   const { defaultFullWidth } = useFormContext();
   const {
     className,

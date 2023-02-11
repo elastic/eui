@@ -56,10 +56,14 @@ export type EuiPageSectionProps = CommonProps &
     /**
      * Sets which HTML element to render.
      */
-    component?: keyof JSX.IntrinsicElements | ComponentType<React.PropsWithChildren<unknown>>;
+    component?:
+      | keyof JSX.IntrinsicElements
+      | ComponentType<React.PropsWithChildren<unknown>>;
   } & Omit<HTMLAttributes<Element>, 'color'>;
 
-export const EuiPageSection: FunctionComponent<React.PropsWithChildren<EuiPageSectionProps>> = ({
+export const EuiPageSection: FunctionComponent<React.PropsWithChildren<
+  EuiPageSectionProps
+>> = ({
   children,
   alignment = 'top',
   restrictWidth = false,

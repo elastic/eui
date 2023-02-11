@@ -21,11 +21,9 @@ export interface EuiRangeLabelProps
   children: string | number;
 }
 
-export const EuiRangeLabel: FunctionComponent<React.PropsWithChildren<EuiRangeLabelProps>> = ({
-  children,
-  disabled,
-  side = 'max',
-}) => {
+export const EuiRangeLabel: FunctionComponent<React.PropsWithChildren<
+  EuiRangeLabelProps
+>> = ({ children, disabled, side = 'max' }) => {
   const euiTheme = useEuiTheme();
   const styles = euiRangeLabelStyles(euiTheme);
   const cssStyles = [

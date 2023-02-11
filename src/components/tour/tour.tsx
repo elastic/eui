@@ -21,11 +21,9 @@ export interface EuiTourProps {
   initialState: EuiTourState;
 }
 
-export const EuiTour: FunctionComponent<React.PropsWithChildren<EuiTourProps>> = ({
-  children,
-  steps,
-  initialState,
-}) => {
+export const EuiTour: FunctionComponent<React.PropsWithChildren<
+  EuiTourProps
+>> = ({ children, steps, initialState }) => {
   const [stepProps, actions, state] = useEuiTour(steps, initialState);
   return children(stepProps, actions, state);
 };

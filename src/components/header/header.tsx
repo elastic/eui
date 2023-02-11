@@ -78,7 +78,9 @@ export type EuiHeaderProps = CommonProps &
 // Start a counter to manage the total number of fixed headers that need the body class
 let euiHeaderFixedCounter = 0;
 
-export const EuiHeader: FunctionComponent<React.PropsWithChildren<EuiHeaderProps>> = ({
+export const EuiHeader: FunctionComponent<React.PropsWithChildren<
+  EuiHeaderProps
+>> = ({
   children,
   className,
   sections,

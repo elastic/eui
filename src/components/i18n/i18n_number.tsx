@@ -37,7 +37,9 @@ function hasValues(x: EuiI18nNumberProps): x is EuiI18nNumberValuesShape {
   return x.values != null;
 }
 
-const EuiI18nNumber: FunctionComponent<React.PropsWithChildren<EuiI18nNumberProps>> = (props) => (
+const EuiI18nNumber: FunctionComponent<React.PropsWithChildren<
+  EuiI18nNumberProps
+>> = (props) => (
   <EuiI18nConsumer>
     {(i18nConfig) => {
       const formatNumber = i18nConfig.formatNumber || defaultFormatNumber;

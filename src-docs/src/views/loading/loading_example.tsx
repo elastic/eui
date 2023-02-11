@@ -22,9 +22,9 @@ import {
 
 import { EuiLoadingSpinnerColor as EuiLoadingSpinnerColorProps } from '../../../../src/components/loading/loading_spinner';
 
-export const EuiLoadingSpinnerColor: FunctionComponent<React.PropsWithChildren<EuiLoadingSpinnerColorProps>> = () => (
-  <div />
-);
+export const EuiLoadingSpinnerColor: FunctionComponent<React.PropsWithChildren<
+  EuiLoadingSpinnerColorProps
+>> = () => <div />;
 
 import LoadingLogo from './loading_kibana';
 const loadingLogoSource = require('!!raw-loader!./loading_kibana');

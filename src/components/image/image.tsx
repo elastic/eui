@@ -18,7 +18,9 @@ import type { EuiImageProps, EuiImageSize } from './image_types';
 
 import { SIZES } from './image_types';
 
-export const EuiImage: FunctionComponent<React.PropsWithChildren<EuiImageProps>> = ({
+export const EuiImage: FunctionComponent<React.PropsWithChildren<
+  EuiImageProps
+>> = ({
   className,
   alt,
   url,

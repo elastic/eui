@@ -96,7 +96,9 @@ export type EuiAvatarProps = Omit<HTMLAttributes<HTMLDivElement>, 'color'> &
     isDisabled?: boolean;
   };
 
-export const EuiAvatar: FunctionComponent<React.PropsWithChildren<EuiAvatarProps>> = ({
+export const EuiAvatar: FunctionComponent<React.PropsWithChildren<
+  EuiAvatarProps
+>> = ({
   className,
   color,
   imageUrl,

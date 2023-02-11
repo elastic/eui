@@ -37,10 +37,9 @@ export type GuideSectionExampleTabsProps = {
   rightSideControl?: ReactNode;
 };
 
-export const GuideSectionExampleTabs: FunctionComponent<React.PropsWithChildren<GuideSectionExampleTabsProps>> = ({
-  tabs,
-  rightSideControl,
-}) => {
+export const GuideSectionExampleTabs: FunctionComponent<React.PropsWithChildren<
+  GuideSectionExampleTabsProps
+>> = ({ tabs, rightSideControl }) => {
   const [selectedTabId, setSelectedTabId] = useState('');
 
   const onSelectedTabChanged = (id: string) => {

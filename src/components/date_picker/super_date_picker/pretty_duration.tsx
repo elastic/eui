@@ -259,12 +259,9 @@ export const usePrettyDuration = ({
   return prettyDuration;
 };
 
-export const PrettyDuration: React.FC<React.PropsWithChildren<PrettyDurationProps>> = ({
-  timeFrom,
-  timeTo,
-  quickRanges,
-  dateFormat,
-}) => {
+export const PrettyDuration: React.FC<React.PropsWithChildren<
+  PrettyDurationProps
+>> = ({ timeFrom, timeTo, quickRanges, dateFormat }) => {
   const prettyDuration = usePrettyDuration({
     timeFrom,
     timeTo,

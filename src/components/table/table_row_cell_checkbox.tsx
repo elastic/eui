@@ -10,7 +10,9 @@ import React, { FunctionComponent, TdHTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 
-export const EuiTableRowCellCheckbox: FunctionComponent<React.PropsWithChildren<CommonProps & TdHTMLAttributes<HTMLTableCellElement>>> = ({ children, className, ...rest }) => {
+export const EuiTableRowCellCheckbox: FunctionComponent<React.PropsWithChildren<
+  CommonProps & TdHTMLAttributes<HTMLTableCellElement>
+>> = ({ children, className, ...rest }) => {
   const classes = classNames('euiTableRowCellCheckbox', className);
 
   return (

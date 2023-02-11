@@ -29,7 +29,9 @@ export type EuiLoadingLogoProps = CommonProps &
     logo?: IconType;
   };
 
-export const EuiLoadingLogo: FunctionComponent<React.PropsWithChildren<EuiLoadingLogoProps>> = ({
+export const EuiLoadingLogo: FunctionComponent<React.PropsWithChildren<
+  EuiLoadingLogoProps
+>> = ({
   size = 'm',
   logo = 'logoKibana',
   'aria-label': ariaLabel,

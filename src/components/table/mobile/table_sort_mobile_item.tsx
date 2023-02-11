@@ -29,7 +29,9 @@ export interface EuiTableSortMobileItemProps extends CommonProps {
   ariaLabel?: string;
 }
 
-export const EuiTableSortMobileItem: FunctionComponent<React.PropsWithChildren<EuiTableSortMobileItemProps>> = ({
+export const EuiTableSortMobileItem: FunctionComponent<React.PropsWithChildren<
+  EuiTableSortMobileItemProps
+>> = ({
   children,
   onSort,
   isSorted,

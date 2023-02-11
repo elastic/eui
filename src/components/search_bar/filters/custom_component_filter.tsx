@@ -34,9 +34,9 @@ export interface CustomComponentFilterProps<
   onChange?: (query: Query) => void;
 }
 
-export const CustomComponentFilter: FC<React.PropsWithChildren<CustomComponentFilterProps>> = (
-  props
-) => {
+export const CustomComponentFilter: FC<React.PropsWithChildren<
+  CustomComponentFilterProps
+>> = (props) => {
   const { component: CustomComponent } = props.config;
   return <CustomComponent query={props.query} onChange={props.onChange} />;
 };

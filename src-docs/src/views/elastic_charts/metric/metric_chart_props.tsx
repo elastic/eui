@@ -12,8 +12,15 @@ export const MetricProps: FunctionComponent<React.PropsWithChildren<{
   >;
 }>> = () => null;
 
-export const MetricDatumWText: FunctionComponent<React.PropsWithChildren<MetricWText>> = () => null;
-export const MetricDatumWNumber: FunctionComponent<React.PropsWithChildren<MetricWNumber>> = () => null;
-export const MetricDatumWProgress: FunctionComponent<React.PropsWithChildren<MetricWProgress>> = () =>
-  null;
-export const MetricDatumWTrend: FunctionComponent<React.PropsWithChildren<MetricWTrend>> = () => null;
+export const MetricDatumWText: FunctionComponent<React.PropsWithChildren<
+  MetricWText
+>> = () => null;
+export const MetricDatumWNumber: FunctionComponent<React.PropsWithChildren<
+  MetricWNumber
+>> = () => null;
+export const MetricDatumWProgress: FunctionComponent<React.PropsWithChildren<
+  MetricWProgress
+>> = () => null;
+export const MetricDatumWTrend: FunctionComponent<React.PropsWithChildren<
+  MetricWTrend
+>> = () => null;

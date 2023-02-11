@@ -25,7 +25,9 @@ export type EuiTableFooterCellProps = CommonProps &
     width?: string | number;
   };
 
-export const EuiTableFooterCell: FunctionComponent<React.PropsWithChildren<EuiTableFooterCellProps>> = ({
+export const EuiTableFooterCell: FunctionComponent<React.PropsWithChildren<
+  EuiTableFooterCellProps
+>> = ({
   children,
   align = LEFT_ALIGNMENT,
   className,

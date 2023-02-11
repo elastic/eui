@@ -43,9 +43,9 @@ describe('_EuiPageInner', () => {
     });
 
     it('renders custom React components', () => {
-      const TestComponent: React.FC<React.PropsWithChildren<{ test?: boolean }>> = ({ test }) => (
-        <div>{test ? 'hello' : 'world'}</div>
-      );
+      const TestComponent: React.FC<React.PropsWithChildren<{
+        test?: boolean;
+      }>> = ({ test }) => <div>{test ? 'hello' : 'world'}</div>;
 
       const component = render(
         <>

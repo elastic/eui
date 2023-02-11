@@ -14,14 +14,18 @@ import { CommonProps } from '../common';
 import { euiPopoverFooterStyles } from './popover_footer.styles';
 import { EuiPopoverPanelContext } from './popover_panel/_popover_panel';
 
-export type EuiPopoverFooterProps = FunctionComponent<React.PropsWithChildren<HTMLAttributes<HTMLDivElement> &
-  CommonProps & {
-    /**
-     * Customize the all around padding of the popover footer.
-     * Leave `undefined` to inherit from the `panelPaddingSize` of the containing EuiPopover
-     */
-    paddingSize?: EuiPaddingSize;
-  }>>;
+export type EuiPopoverFooterProps = FunctionComponent<
+  React.PropsWithChildren<
+    HTMLAttributes<HTMLDivElement> &
+      CommonProps & {
+        /**
+         * Customize the all around padding of the popover footer.
+         * Leave `undefined` to inherit from the `panelPaddingSize` of the containing EuiPopover
+         */
+        paddingSize?: EuiPaddingSize;
+      }
+  >
+>;
 
 export const EuiPopoverFooter: EuiPopoverFooterProps = ({
   children,

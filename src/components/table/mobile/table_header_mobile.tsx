@@ -10,7 +10,9 @@ import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
-export const EuiTableHeaderMobile: FunctionComponent<React.PropsWithChildren<CommonProps & HTMLAttributes<HTMLDivElement>>> = ({ children, className, ...rest }) => {
+export const EuiTableHeaderMobile: FunctionComponent<React.PropsWithChildren<
+  CommonProps & HTMLAttributes<HTMLDivElement>
+>> = ({ children, className, ...rest }) => {
   const classes = classNames('euiTableHeaderMobile', className);
 
   return (

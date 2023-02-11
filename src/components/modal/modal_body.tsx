@@ -13,7 +13,9 @@ import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
 import { euiModalBodyStyles } from './modal_body.styles';
 
-export type EuiModalBodyProps = FunctionComponent<React.PropsWithChildren<HTMLAttributes<HTMLDivElement> & CommonProps>>;
+export type EuiModalBodyProps = FunctionComponent<
+  React.PropsWithChildren<HTMLAttributes<HTMLDivElement> & CommonProps>
+>;
 
 export const EuiModalBody: EuiModalBodyProps = ({
   className,

@@ -23,7 +23,9 @@ import { euiImageButtonIconStyles } from './image_button.styles';
 
 import { EuiImageCaption } from './image_caption';
 
-export const EuiImageFullScreenWrapper: FunctionComponent<React.PropsWithChildren<EuiImageWrapperProps>> = ({
+export const EuiImageFullScreenWrapper: FunctionComponent<React.PropsWithChildren<
+  EuiImageWrapperProps
+>> = ({
   alt,
   hasShadow,
   caption,

@@ -88,7 +88,9 @@ const initialState: EuiResizableContainerState = {
   resizers: {},
 };
 
-export const EuiResizableContainer: FunctionComponent<React.PropsWithChildren<EuiResizableContainerProps>> = ({
+export const EuiResizableContainer: FunctionComponent<React.PropsWithChildren<
+  EuiResizableContainerProps
+>> = ({
   direction = 'horizontal',
   children,
   className,

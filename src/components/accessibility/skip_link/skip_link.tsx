@@ -60,7 +60,9 @@ export type EuiSkipLinkProps = PropsForAnchor<
   }
 >;
 
-export const EuiSkipLink: FunctionComponent<React.PropsWithChildren<EuiSkipLinkProps>> = ({
+export const EuiSkipLink: FunctionComponent<React.PropsWithChildren<
+  EuiSkipLinkProps
+>> = ({
   destinationId,
   fallbackDestination = 'main',
   overrideLinkBehavior,

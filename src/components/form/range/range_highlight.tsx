@@ -31,7 +31,9 @@ export interface EuiRangeHighlightProps
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
-export const EuiRangeHighlight: FunctionComponent<React.PropsWithChildren<EuiRangeHighlightProps>> = ({
+export const EuiRangeHighlight: FunctionComponent<React.PropsWithChildren<
+  EuiRangeHighlightProps
+>> = ({
   className,
   showTicks,
   trackWidth,

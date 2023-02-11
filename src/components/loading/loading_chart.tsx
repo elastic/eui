@@ -27,7 +27,9 @@ export type EuiLoadingChartProps = CommonProps &
     mono?: boolean;
   };
 
-export const EuiLoadingChart: FunctionComponent<React.PropsWithChildren<EuiLoadingChartProps>> = ({
+export const EuiLoadingChart: FunctionComponent<React.PropsWithChildren<
+  EuiLoadingChartProps
+>> = ({
   size = 'm',
   mono = false,
   className,

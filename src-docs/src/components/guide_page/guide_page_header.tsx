@@ -26,10 +26,9 @@ export type GuidePageHeaderProps = {
   selectedLocale: string;
 };
 
-export const GuidePageHeader: React.FunctionComponent<React.PropsWithChildren<GuidePageHeaderProps>> = ({
-  onToggleLocale,
-  selectedLocale,
-}) => {
+export const GuidePageHeader: React.FunctionComponent<React.PropsWithChildren<
+  GuidePageHeaderProps
+>> = ({ onToggleLocale, selectedLocale }) => {
   const isMobileSize = useIsWithinBreakpoints(['xs', 's']);
 
   function renderLogo() {

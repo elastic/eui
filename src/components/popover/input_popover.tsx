@@ -42,7 +42,9 @@ export type EuiInputPopoverProps = CommonProps &
   HTMLAttributes<HTMLDivElement> &
   _EuiInputPopoverProps;
 
-export const EuiInputPopover: FunctionComponent<React.PropsWithChildren<EuiInputPopoverProps>> = ({
+export const EuiInputPopover: FunctionComponent<React.PropsWithChildren<
+  EuiInputPopoverProps
+>> = ({
   children,
   className,
   disableFocusTrap = false,

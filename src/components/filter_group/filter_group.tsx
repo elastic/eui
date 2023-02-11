@@ -23,13 +23,9 @@ export type EuiFilterGroupProps = HTMLAttributes<HTMLDivElement> &
     compressed?: boolean;
   };
 
-export const EuiFilterGroup: FunctionComponent<React.PropsWithChildren<EuiFilterGroupProps>> = ({
-  children,
-  className,
-  fullWidth = false,
-  compressed,
-  ...rest
-}) => {
+export const EuiFilterGroup: FunctionComponent<React.PropsWithChildren<
+  EuiFilterGroupProps
+>> = ({ children, className, fullWidth = false, compressed, ...rest }) => {
   const classes = classNames(
     'euiFilterGroup',
     {

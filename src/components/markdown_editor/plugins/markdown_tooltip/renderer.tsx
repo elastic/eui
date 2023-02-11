@@ -12,9 +12,11 @@ import { EuiToolTip } from '../../../tool_tip';
 import { EuiIcon } from '../../../icon';
 import { TooltipNodeDetails } from './types';
 
-export const tooltipMarkdownRenderer: FunctionComponent<React.PropsWithChildren<TooltipNodeDetails & {
-  position: EuiMarkdownAstNodePosition;
-}>> = ({ content, children }) => {
+export const tooltipMarkdownRenderer: FunctionComponent<React.PropsWithChildren<
+  TooltipNodeDetails & {
+    position: EuiMarkdownAstNodePosition;
+  }
+>> = ({ content, children }) => {
   return (
     <span>
       <EuiToolTip content={content}>

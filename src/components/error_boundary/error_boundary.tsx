@@ -80,7 +80,9 @@ ${stackStr}`;
  * Split out into a separate styling-only component for easier use of hooks,
  * and also for internal re-use by EUI's docs/playgrounds
  */
-export const EuiErrorMessage: FunctionComponent<React.PropsWithChildren<CommonProps & { errorMessage?: string }>> = ({ errorMessage, className, 'data-test-subj': dataTestSubj, ...rest }) => {
+export const EuiErrorMessage: FunctionComponent<React.PropsWithChildren<
+  CommonProps & { errorMessage?: string }
+>> = ({ errorMessage, className, 'data-test-subj': dataTestSubj, ...rest }) => {
   const euiTheme = useEuiTheme();
   const styles = euiErrorBoundaryStyles(euiTheme);
 

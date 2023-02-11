@@ -152,7 +152,9 @@ function getRangeMax(colorStops: ColorStop[], max?: number) {
   return DEFAULT_MAX;
 }
 
-export const EuiColorStops: FunctionComponent<React.PropsWithChildren<EuiColorStopsProps>> = ({
+export const EuiColorStops: FunctionComponent<React.PropsWithChildren<
+  EuiColorStopsProps
+>> = ({
   addColor = DEFAULT_VISUALIZATION_COLOR,
   max,
   min,

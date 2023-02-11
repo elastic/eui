@@ -32,7 +32,9 @@ export type EuiMarkdownFormatProps = CommonProps &
     textSize?: EuiTextProps['size'];
   };
 
-export const EuiMarkdownFormat: FunctionComponent<React.PropsWithChildren<EuiMarkdownFormatProps>> = ({
+export const EuiMarkdownFormat: FunctionComponent<React.PropsWithChildren<
+  EuiMarkdownFormatProps
+>> = ({
   children,
   className,
   parsingPluginList = defaultParsingPlugins,

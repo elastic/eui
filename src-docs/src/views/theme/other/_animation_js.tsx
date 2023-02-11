@@ -25,7 +25,9 @@ const animationString = `\${euiCanAnimate} {
     transition: padding \${euiTheme.animation.slow} \${euiTheme.animation.resistance};
   }`;
 
-export const SpeedJS: FunctionComponent<React.PropsWithChildren<ThemeRowType>> = ({ description }) => {
+export const SpeedJS: FunctionComponent<React.PropsWithChildren<
+  ThemeRowType
+>> = ({ description }) => {
   const { euiTheme } = useEuiTheme();
   return (
     <ThemeExample
@@ -92,7 +94,9 @@ export const SpeedValuesJS = () => {
   );
 };
 
-export const EasingJS: FunctionComponent<React.PropsWithChildren<ThemeRowType>> = ({ description }) => {
+export const EasingJS: FunctionComponent<React.PropsWithChildren<
+  ThemeRowType
+>> = ({ description }) => {
   const { euiTheme } = useEuiTheme();
 
   return (

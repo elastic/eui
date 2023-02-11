@@ -35,7 +35,9 @@ export interface EuiRangeDraggableProps
   onChange: (x: number, isFirstInteraction?: boolean) => void;
 }
 
-export const EuiRangeDraggable: FunctionComponent<React.PropsWithChildren<EuiRangeDraggableProps>> = ({
+export const EuiRangeDraggable: FunctionComponent<React.PropsWithChildren<
+  EuiRangeDraggableProps
+>> = ({
   className,
   showTicks,
   lowerPosition,
