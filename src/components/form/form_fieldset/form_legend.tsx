@@ -24,7 +24,7 @@ export type EuiFormLegendProps = HTMLAttributes<HTMLLegendElement> &
     compressed?: boolean;
   };
 
-export const EuiFormLegend: FunctionComponent<EuiFormLegendProps> = ({
+export const EuiFormLegend: FunctionComponent<React.PropsWithChildren<EuiFormLegendProps>> = ({
   children,
   className,
   display = 'visible',

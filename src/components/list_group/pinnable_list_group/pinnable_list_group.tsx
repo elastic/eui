@@ -56,7 +56,7 @@ export interface EuiPinnableListGroupProps
   unpinTitle?: (item: EuiPinnableListGroupItemProps) => string;
 }
 
-export const EuiPinnableListGroup: FunctionComponent<EuiPinnableListGroupProps> = ({
+export const EuiPinnableListGroup: FunctionComponent<React.PropsWithChildren<EuiPinnableListGroupProps>> = ({
   className,
   listItems,
   pinTitle,

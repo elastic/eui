@@ -57,7 +57,7 @@ export const EuiDroppableContext = React.createContext({
   cloneItems: false,
 });
 
-export const EuiDroppable: FunctionComponent<EuiDroppableProps> = ({
+export const EuiDroppable: FunctionComponent<React.PropsWithChildren<EuiDroppableProps>> = ({
   droppableId,
   direction,
   isDropDisabled = false,

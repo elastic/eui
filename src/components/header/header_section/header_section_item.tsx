@@ -31,7 +31,7 @@ export type EuiHeaderSectionItemProps = CommonProps & {
   children?: ReactNode;
 };
 
-export const EuiHeaderSectionItem: FunctionComponent<EuiHeaderSectionItemProps> = ({
+export const EuiHeaderSectionItem: FunctionComponent<React.PropsWithChildren<EuiHeaderSectionItemProps>> = ({
   border = 'left',
   children,
   className,

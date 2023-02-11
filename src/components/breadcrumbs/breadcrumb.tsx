@@ -66,9 +66,7 @@ type _EuiBreadcrumbProps = {
   truncateLastBreadcrumb?: boolean;
 } & Pick<EuiBreadcrumbProps, 'truncate'>;
 
-export const EuiBreadcrumb: FunctionComponent<
-  HTMLAttributes<HTMLLIElement> & _EuiBreadcrumbProps
-> = ({ children, className, type, truncate, ...rest }) => {
+export const EuiBreadcrumb: FunctionComponent<React.PropsWithChildren<HTMLAttributes<HTMLLIElement> & _EuiBreadcrumbProps>> = ({ children, className, type, truncate, ...rest }) => {
   const classes = classNames('euiBreadcrumb', className);
 
   const euiTheme = useEuiTheme();
@@ -91,9 +89,7 @@ export const EuiBreadcrumb: FunctionComponent<
   );
 };
 
-export const EuiBreadcrumbContent: FunctionComponent<
-  EuiBreadcrumbProps & _EuiBreadcrumbProps
-> = ({
+export const EuiBreadcrumbContent: FunctionComponent<React.PropsWithChildren<EuiBreadcrumbProps & _EuiBreadcrumbProps>> = ({
   text,
   truncate,
   type,
@@ -173,7 +169,7 @@ export const EuiBreadcrumbContent: FunctionComponent<
   );
 };
 
-export const EuiBreadcrumbCollapsed: FunctionComponent<_EuiBreadcrumbProps> = ({
+export const EuiBreadcrumbCollapsed: FunctionComponent<React.PropsWithChildren<_EuiBreadcrumbProps>> = ({
   children,
   isFirstBreadcrumb,
   type,

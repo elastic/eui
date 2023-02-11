@@ -29,7 +29,7 @@ export type EuiTextAlignProps = CommonProps &
     cloneElement?: boolean;
   };
 
-export const EuiTextAlign: FunctionComponent<EuiTextAlignProps> = ({
+export const EuiTextAlign: FunctionComponent<React.PropsWithChildren<EuiTextAlignProps>> = ({
   children,
   textAlign = 'left',
   cloneElement = false,

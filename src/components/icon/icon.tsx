@@ -41,7 +41,7 @@ export const TYPES = keysOf(typeToPathMap);
 
 export type EuiIconType = keyof typeof typeToPathMap;
 
-export type IconType = EuiIconType | string | ComponentType;
+export type IconType = EuiIconType | string | ComponentType<React.PropsWithChildren<unknown>>;
 
 // We accept arbitrary color strings, which are impossible to type.
 export type IconColor = string | NamedColor;
@@ -83,7 +83,7 @@ export type EuiIconProps = CommonProps &
   };
 
 interface State {
-  icon: undefined | ComponentType | string;
+  icon: undefined | ComponentType<React.PropsWithChildren<unknown>> | string;
   iconTitle: undefined | string;
   isLoading: boolean;
   neededLoading: boolean; // controls the fade-in animation, cached icons are immediately rendered
@@ -109,7 +109,7 @@ function getInitialIcon(icon: EuiIconProps['type']) {
 
 const generateId = htmlIdGenerator();
 
-let iconComponentCache: { [iconType: string]: ComponentType } = {};
+let iconComponentCache: { [iconType: string]: ComponentType<React.PropsWithChildren<unknown>> } = {};
 
 export const clearIconComponentCache = (iconType?: EuiIconType) => {
   if (iconType != null) {
@@ -120,7 +120,7 @@ export const clearIconComponentCache = (iconType?: EuiIconType) => {
 };
 
 export const appendIconComponentCache = (iconTypeToIconComponentMap: {
-  [iconType: string]: ComponentType;
+  [iconType: string]: ComponentType<React.PropsWithChildren<unknown>>;
 }) => {
   for (const iconType in iconTypeToIconComponentMap) {
     if (iconTypeToIconComponentMap.hasOwnProperty(iconType)) {

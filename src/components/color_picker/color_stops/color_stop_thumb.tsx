@@ -76,7 +76,7 @@ interface EuiColorStopThumbProps extends CommonProps, ColorStop {
   valueInputProps?: Partial<EuiFieldNumberProps>;
 }
 
-export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
+export const EuiColorStopThumb: FunctionComponent<React.PropsWithChildren<EuiColorStopThumbProps>> = ({
   className,
   stop,
   color,

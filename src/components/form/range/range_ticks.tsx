@@ -37,12 +37,10 @@ export interface EuiRangeTicksProps
   onChange?: MouseEventHandler<HTMLButtonElement>;
 }
 
-const EuiTickValue: FunctionComponent<
-  EuiRangeTicksProps & {
-    tickValue: any;
-    percentageWidth: number;
-  }
-> = ({
+const EuiTickValue: FunctionComponent<React.PropsWithChildren<EuiRangeTicksProps & {
+  tickValue: any;
+  percentageWidth: number;
+}>> = ({
   disabled,
   ticks,
   min,
@@ -158,7 +156,7 @@ const EuiTickValue: FunctionComponent<
   );
 };
 
-export const EuiRangeTicks: FunctionComponent<EuiRangeTicksProps> = (props) => {
+export const EuiRangeTicks: FunctionComponent<React.PropsWithChildren<EuiRangeTicksProps>> = (props) => {
   const { ticks, tickSequence, max, min, tickInterval = 1, compressed } = props;
 
   // Calculate the width of each tick mark

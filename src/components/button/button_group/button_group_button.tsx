@@ -49,7 +49,7 @@ type Props = EuiButtonGroupOptionProps & {
   onChange: EuiButtonGroupProps['onChange'];
 };
 
-export const EuiButtonGroupButton: FunctionComponent<Props> = ({
+export const EuiButtonGroupButton: FunctionComponent<React.PropsWithChildren<Props>> = ({
   className,
   id,
   isDisabled,

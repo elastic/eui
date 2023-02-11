@@ -29,7 +29,7 @@ export const EuiDragDropContextContext = createContext<EuiDragDropContextProps>(
   }
 );
 
-export const EuiDragDropContext: FunctionComponent<DragDropContextProps> = ({
+export const EuiDragDropContext: FunctionComponent<React.PropsWithChildren<DragDropContextProps>> = ({
   onBeforeDragStart,
   onDragStart,
   onDragUpdate,

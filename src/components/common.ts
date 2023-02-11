@@ -14,7 +14,7 @@ import {
   FunctionComponent,
   JSXElementConstructor,
   MouseEventHandler,
-  SFC,
+  FC,
 } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
 
@@ -58,9 +58,9 @@ export function keysOf<T, K extends keyof T>(obj: T): K[] {
  */
 export type ValueOf<T> = T[keyof T];
 
-export type PropsOf<C> = C extends SFC<infer SFCProps>
+export type PropsOf<C> = C extends FC<React.PropsWithChildren<infer SFCProps>>
   ? SFCProps
-  : C extends FunctionComponent<infer FunctionProps>
+  : C extends FunctionComponent<React.PropsWithChildren<infer FunctionProps>>
   ? FunctionProps
   : C extends Component<infer ComponentProps>
   ? ComponentProps

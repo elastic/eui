@@ -119,7 +119,7 @@ export type EuiButtonIconSizes = keyof typeof sizeToClassNameMap;
 
 export const SIZES = keysOf(sizeToClassNameMap);
 
-export const EuiButtonIcon: FunctionComponent<Props> = (props) => {
+export const EuiButtonIcon: FunctionComponent<React.PropsWithChildren<Props>> = (props) => {
   const {
     className,
     iconType,

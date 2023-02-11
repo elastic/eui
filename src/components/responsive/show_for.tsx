@@ -23,7 +23,7 @@ export interface EuiShowForProps {
   sizes: EuiShowForBreakpoints[] | 'all' | 'none';
 }
 
-export const EuiShowFor: FunctionComponent<EuiShowForProps> = ({
+export const EuiShowFor: FunctionComponent<React.PropsWithChildren<EuiShowForProps>> = ({
   children,
   sizes,
 }) => {

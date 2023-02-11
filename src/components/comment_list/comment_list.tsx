@@ -25,7 +25,7 @@ export type EuiCommentListProps = Omit<
   gutterSize?: EuiTimelineProps['gutterSize'];
 };
 
-export const EuiCommentList: FunctionComponent<EuiCommentListProps> = ({
+export const EuiCommentList: FunctionComponent<React.PropsWithChildren<EuiCommentListProps>> = ({
   children,
   className,
   comments,

@@ -25,7 +25,7 @@ export type EuiSkeletonTitleProps = HTMLAttributes<HTMLDivElement> &
     size?: EuiTitleSize;
   };
 
-export const EuiSkeletonTitle: FunctionComponent<EuiSkeletonTitleProps> = ({
+export const EuiSkeletonTitle: FunctionComponent<React.PropsWithChildren<EuiSkeletonTitleProps>> = ({
   isLoading = true,
   size = 'm',
   className,

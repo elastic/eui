@@ -29,7 +29,7 @@ export type EuiTitleProps = CommonProps & {
   id?: string;
 };
 
-export const EuiTitle: FunctionComponent<EuiTitleProps> = ({
+export const EuiTitle: FunctionComponent<React.PropsWithChildren<EuiTitleProps>> = ({
   size = 'm',
   children,
   className,

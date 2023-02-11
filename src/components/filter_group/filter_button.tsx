@@ -45,7 +45,7 @@ export type EuiFilterButtonProps = {
   withNext?: boolean;
 } & DistributiveOmit<EuiButtonEmptyProps, 'flush' | 'size'>;
 
-export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
+export const EuiFilterButton: FunctionComponent<React.PropsWithChildren<EuiFilterButtonProps>> = ({
   children,
   className,
   iconType,

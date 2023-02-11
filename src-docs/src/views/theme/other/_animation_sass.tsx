@@ -17,7 +17,7 @@ const animationSpeeds = [
 
 const animationEases = ['euiAnimSlightBounce', 'euiAnimSlightResistance'];
 
-export const SpeedSass: FunctionComponent<ThemeRowType> = ({ description }) => {
+export const SpeedSass: FunctionComponent<React.PropsWithChildren<ThemeRowType>> = ({ description }) => {
   return (
     <ThemeExample
       title={<code>$euiAnimSpeed[Speed]</code>}
@@ -62,7 +62,7 @@ export const SpeedValuesSass = () => {
   );
 };
 
-export const EasingSass: FunctionComponent<ThemeRowType> = ({
+export const EasingSass: FunctionComponent<React.PropsWithChildren<ThemeRowType>> = ({
   description,
 }) => {
   return (

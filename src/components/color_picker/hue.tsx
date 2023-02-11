@@ -29,7 +29,7 @@ export type EuiHueProps = Omit<
     onChange: (hue: number) => void;
   };
 
-export const EuiHue: FunctionComponent<EuiHueProps> = ({
+export const EuiHue: FunctionComponent<React.PropsWithChildren<EuiHueProps>> = ({
   className,
   hex,
   hue = 1,

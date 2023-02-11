@@ -16,7 +16,7 @@ import {
   CustomComponentProps,
 } from './custom_component_filter';
 
-const CustomComponent: React.FC<CustomComponentProps> = ({
+const CustomComponent: React.FC<React.PropsWithChildren<CustomComponentProps>> = ({
   query,
   onChange,
 }) => {

@@ -19,7 +19,7 @@ export interface EuiCommentProps
   extends EuiCommentEventProps,
     EuiCommentTimelineProps {}
 
-export const EuiComment: FunctionComponent<EuiCommentProps> = ({
+export const EuiComment: FunctionComponent<React.PropsWithChildren<EuiCommentProps>> = ({
   children,
   className,
   username,

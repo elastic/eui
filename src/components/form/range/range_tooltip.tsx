@@ -25,7 +25,7 @@ export interface EuiRangeTooltipProps
   name?: string;
 }
 
-export const EuiRangeTooltip: FunctionComponent<EuiRangeTooltipProps> = ({
+export const EuiRangeTooltip: FunctionComponent<React.PropsWithChildren<EuiRangeTooltipProps>> = ({
   value,
   valueAppend,
   valuePrepend,

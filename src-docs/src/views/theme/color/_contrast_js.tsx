@@ -29,7 +29,7 @@ type ColorSection = {
   hookName?: string;
 };
 
-export const ColorSectionJS: FunctionComponent<ColorSection> = ({
+export const ColorSectionJS: FunctionComponent<React.PropsWithChildren<ColorSection>> = ({
   color,
   colorValue: _colorValue,
   minimumContrast,
@@ -92,7 +92,7 @@ type ColorsContrastItem = {
   styleString?: string;
 };
 
-const ColorsContrastItem: FunctionComponent<ColorsContrastItem> = ({
+const ColorsContrastItem: FunctionComponent<React.PropsWithChildren<ColorsContrastItem>> = ({
   foreground,
   background,
   minimumContrast,

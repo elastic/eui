@@ -50,7 +50,7 @@ export interface EuiGlobalToastListProps extends CommonProps {
   side?: ToastSide;
 }
 
-export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
+export const EuiGlobalToastList: FunctionComponent<React.PropsWithChildren<EuiGlobalToastListProps>> = ({
   className,
   toasts = [],
   dismissToast: dismissToastProp,

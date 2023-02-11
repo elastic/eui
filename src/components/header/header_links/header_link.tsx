@@ -19,7 +19,7 @@ export type EuiHeaderLinkProps = EuiButtonEmptyProps & {
   isActive?: boolean;
 };
 
-export const EuiHeaderLink: FunctionComponent<EuiHeaderLinkProps> = ({
+export const EuiHeaderLink: FunctionComponent<React.PropsWithChildren<EuiHeaderLinkProps>> = ({
   isActive,
   className,
   ...rest

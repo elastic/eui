@@ -67,7 +67,7 @@ export interface EuiInnerTextProps {
   children: (ref?: (node: RefT) => void, innerText?: string) => ReactElement;
   fallback?: string;
 }
-export const EuiInnerText: FunctionComponent<EuiInnerTextProps> = ({
+export const EuiInnerText: FunctionComponent<React.PropsWithChildren<EuiInnerTextProps>> = ({
   children,
   fallback,
 }) => {

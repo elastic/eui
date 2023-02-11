@@ -22,7 +22,7 @@ export interface EuiRecentlyUsedProps {
   recentlyUsedRanges?: DurationRange[];
 }
 
-export const EuiRecentlyUsed: FunctionComponent<EuiRecentlyUsedProps> = ({
+export const EuiRecentlyUsed: FunctionComponent<React.PropsWithChildren<EuiRecentlyUsedProps>> = ({
   applyTime,
   commonlyUsedRanges,
   dateFormat,

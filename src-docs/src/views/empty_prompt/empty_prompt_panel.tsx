@@ -8,9 +8,9 @@ import {
   EuiEmptyPromptProps,
 } from '../../../../src/components';
 
-export const Panel: FunctionComponent<{
+export const Panel: FunctionComponent<React.PropsWithChildren<{
   color: EuiEmptyPromptProps['color'];
-}> = ({ color }) => {
+}>> = ({ color }) => {
   return (
     <EuiEmptyPrompt
       iconType="securityAnalyticsApp"

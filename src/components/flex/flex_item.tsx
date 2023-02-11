@@ -20,11 +20,9 @@ export interface EuiFlexItemProps {
   component?: ElementType;
 }
 
-export const EuiFlexItem: FunctionComponent<
-  CommonProps &
-    HTMLAttributes<HTMLDivElement | HTMLSpanElement> &
-    EuiFlexItemProps
-> = ({
+export const EuiFlexItem: FunctionComponent<React.PropsWithChildren<CommonProps &
+  HTMLAttributes<HTMLDivElement | HTMLSpanElement> &
+  EuiFlexItemProps>> = ({
   children,
   className,
   grow = true,

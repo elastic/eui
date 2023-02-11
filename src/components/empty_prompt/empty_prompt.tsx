@@ -80,7 +80,7 @@ export type EuiEmptyPromptProps = CommonProps &
     paddingSize?: PaddingSize;
   };
 
-export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
+export const EuiEmptyPrompt: FunctionComponent<React.PropsWithChildren<EuiEmptyPromptProps>> = ({
   icon,
   iconType,
   iconColor: _iconColor,

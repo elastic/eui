@@ -51,7 +51,7 @@ type Props = Omit<EuiToolTipProps, 'children' | 'delay' | 'position'> &
     position?: EuiToolTipProps['position'];
   };
 
-export const EuiIconTip: FunctionComponent<Props> = ({
+export const EuiIconTip: FunctionComponent<React.PropsWithChildren<Props>> = ({
   type = 'questionInCircle',
   'aria-label': ariaLabel = 'Info',
   color,

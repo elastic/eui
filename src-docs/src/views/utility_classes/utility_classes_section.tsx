@@ -8,7 +8,7 @@ type UtilityClassesSection = ThemeExample & {
   code: string;
 };
 
-export const UtilityClassesSection: FunctionComponent<UtilityClassesSection> = ({
+export const UtilityClassesSection: FunctionComponent<React.PropsWithChildren<UtilityClassesSection>> = ({
   code,
   ...rest
 }) => {

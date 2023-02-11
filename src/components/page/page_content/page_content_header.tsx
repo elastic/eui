@@ -23,7 +23,7 @@ export interface EuiPageContentHeaderProps
 /**
  * @deprecated Use EuiPageHeader instead
  */
-export const EuiPageContentHeader_Deprecated: FunctionComponent<EuiPageContentHeaderProps> = ({
+export const EuiPageContentHeader_Deprecated: FunctionComponent<React.PropsWithChildren<EuiPageContentHeaderProps>> = ({
   children,
   className,
   responsive = true,

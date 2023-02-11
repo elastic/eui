@@ -6,7 +6,7 @@ export type GuideSectionSnippets = {
   snippets: string | string[];
 };
 
-export const GuideSectionSnippets: FunctionComponent<GuideSectionSnippets> = ({
+export const GuideSectionSnippets: FunctionComponent<React.PropsWithChildren<GuideSectionSnippets>> = ({
   snippets,
 }) => {
   let snippetCode;

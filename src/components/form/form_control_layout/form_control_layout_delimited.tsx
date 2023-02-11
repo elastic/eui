@@ -39,7 +39,7 @@ export type EuiFormControlLayoutDelimitedProps = Partial<
   className?: string;
 };
 
-export const EuiFormControlLayoutDelimited: FunctionComponent<EuiFormControlLayoutDelimitedProps> = ({
+export const EuiFormControlLayoutDelimited: FunctionComponent<React.PropsWithChildren<EuiFormControlLayoutDelimitedProps>> = ({
   startControl,
   endControl,
   delimiter = '→',

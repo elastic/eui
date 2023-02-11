@@ -47,7 +47,7 @@ export type EuiCheckableCardProps = Omit<
   'label' | 'id'
 > &
   EuiCheckableCardBaseProps;
-export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
+export const EuiCheckableCard: FunctionComponent<React.PropsWithChildren<EuiCheckableCardProps>> = ({
   children,
   className,
   css,

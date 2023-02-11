@@ -20,7 +20,7 @@ export interface EuiStepsHorizontalProps
   steps: Array<Omit<EuiStepHorizontalProps, 'step'>>;
 }
 
-export const EuiStepsHorizontal: FunctionComponent<EuiStepsHorizontalProps> = ({
+export const EuiStepsHorizontal: FunctionComponent<React.PropsWithChildren<EuiStepsHorizontalProps>> = ({
   className,
   steps,
   ...rest

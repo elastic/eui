@@ -13,11 +13,9 @@ import { useGeneratedHtmlId } from '../../../../services/accessibility';
 import { EuiMarkdownAstNodePosition } from '../../markdown_types';
 import { CheckboxNodeDetails } from './types';
 
-export const CheckboxMarkdownRenderer: FunctionComponent<
-  CheckboxNodeDetails & {
-    position: EuiMarkdownAstNodePosition;
-  }
-> = ({ position, lead, label, isChecked, children }) => {
+export const CheckboxMarkdownRenderer: FunctionComponent<React.PropsWithChildren<CheckboxNodeDetails & {
+  position: EuiMarkdownAstNodePosition;
+}>> = ({ position, lead, label, isChecked, children }) => {
   const { replaceNode } = useContext(EuiMarkdownContext);
   return (
     <EuiCheckbox

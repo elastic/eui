@@ -83,7 +83,7 @@ export type EuiPageTemplateProps = _EuiPageOuterProps &
  * Consumed via `EuiPageTemplate`,
  * it controls and propogates most of the shared props per direct child
  */
-export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
+export const _EuiPageTemplate: FunctionComponent<React.PropsWithChildren<EuiPageTemplateProps>> = ({
   children,
   // Shared props
   responsive = ['xs', 's'],
@@ -225,19 +225,19 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   );
 };
 
-const _EuiPageSection: FunctionComponent<EuiPageSectionProps> = (props) => {
+const _EuiPageSection: FunctionComponent<React.PropsWithChildren<EuiPageSectionProps>> = (props) => {
   const templateContext = useContext(TemplateContext);
 
   return <EuiPageSection {...templateContext.section} grow {...props} />;
 };
 
-const _EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = (props) => {
+const _EuiPageHeader: FunctionComponent<React.PropsWithChildren<EuiPageHeaderProps>> = (props) => {
   const templateContext = useContext(TemplateContext);
 
   return <EuiPageHeader {...templateContext.header} {...props} />;
 };
 
-const _EuiPageEmptyPrompt: FunctionComponent<_EuiPageEmptyPromptProps> = (
+const _EuiPageEmptyPrompt: FunctionComponent<React.PropsWithChildren<_EuiPageEmptyPromptProps>> = (
   props
 ) => {
   const templateContext = useContext(TemplateContext);
@@ -245,7 +245,7 @@ const _EuiPageEmptyPrompt: FunctionComponent<_EuiPageEmptyPromptProps> = (
   return <EuiPageEmptyPrompt {...templateContext.emptyPrompt} {...props} />;
 };
 
-const _EuiPageBottomBar: FunctionComponent<_EuiPageBottomBarProps> = (
+const _EuiPageBottomBar: FunctionComponent<React.PropsWithChildren<_EuiPageBottomBarProps>> = (
   props
 ) => {
   const { bottomBar } = useContext(TemplateContext);

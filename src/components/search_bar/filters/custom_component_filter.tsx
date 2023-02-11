@@ -21,7 +21,7 @@ export interface CustomComponentFilterConfigType<
   T extends CustomComponentProps = CustomComponentProps
 > {
   type: 'custom_component';
-  component: React.ComponentType<T>;
+  component: React.ComponentType<React.PropsWithChildren<T>>;
   available?: () => boolean;
 }
 
@@ -34,7 +34,7 @@ export interface CustomComponentFilterProps<
   onChange?: (query: Query) => void;
 }
 
-export const CustomComponentFilter: FC<CustomComponentFilterProps> = (
+export const CustomComponentFilter: FC<React.PropsWithChildren<CustomComponentFilterProps>> = (
   props
 ) => {
   const { component: CustomComponent } = props.config;

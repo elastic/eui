@@ -135,7 +135,7 @@ export type EuiTourStepProps = CommonProps &
     footerAction?: ReactNode | ReactNode[];
   };
 
-export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
+export const EuiTourStep: FunctionComponent<React.PropsWithChildren<EuiTourStepProps>> = ({
   anchorPosition = 'leftUp',
   anchor,
   children,

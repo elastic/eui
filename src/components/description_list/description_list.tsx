@@ -21,9 +21,7 @@ import { EuiDescriptionListProps } from './description_list_types';
 
 import { EuiDescriptionListContext } from './description_list_context';
 
-export const EuiDescriptionList: FunctionComponent<
-  CommonProps & HTMLAttributes<HTMLDListElement> & EuiDescriptionListProps
-> = ({
+export const EuiDescriptionList: FunctionComponent<React.PropsWithChildren<CommonProps & HTMLAttributes<HTMLDListElement> & EuiDescriptionListProps>> = ({
   align = 'left',
   children,
   className,

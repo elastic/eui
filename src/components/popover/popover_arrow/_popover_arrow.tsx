@@ -19,7 +19,7 @@ export type EuiPopoverArrowProps = HTMLAttributes<HTMLDivElement> &
     position: EuiPopoverArrowPositions;
   };
 
-export const EuiPopoverArrow: FunctionComponent<EuiPopoverArrowProps> = ({
+export const EuiPopoverArrow: FunctionComponent<React.PropsWithChildren<EuiPopoverArrowProps>> = ({
   children,
   position,
   ...rest

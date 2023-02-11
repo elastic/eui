@@ -19,10 +19,10 @@ import {
 } from './is_within_hooks';
 
 describe('useIsWithinBreakpoints', () => {
-  const MockComponent: FunctionComponent<{
+  const MockComponent: FunctionComponent<React.PropsWithChildren<{
     sizes: _EuiThemeBreakpoint[];
     isResponsive?: boolean;
-  }> = ({ sizes, isResponsive }) => {
+  }>> = ({ sizes, isResponsive }) => {
     const isWithinBreakpoints = useIsWithinBreakpoints(sizes, isResponsive);
     return isWithinBreakpoints ? <strong data-test-subj>true</strong> : null;
   };
@@ -79,9 +79,9 @@ describe('useIsWithinBreakpoints', () => {
 });
 
 describe('useIsWithinMaxBreakpoint', () => {
-  const MockComponent: FunctionComponent<{
+  const MockComponent: FunctionComponent<React.PropsWithChildren<{
     size: _EuiThemeBreakpoint;
-  }> = ({ size }) => {
+  }>> = ({ size }) => {
     const isWithinMaxBreakpoint = useIsWithinMaxBreakpoint(size);
     return isWithinMaxBreakpoint ? <strong data-test-subj>true</strong> : null;
   };
@@ -126,9 +126,9 @@ describe('useIsWithinMaxBreakpoint', () => {
 });
 
 describe('useIsWithinMinBreakpoint', () => {
-  const MockComponent: FunctionComponent<{
+  const MockComponent: FunctionComponent<React.PropsWithChildren<{
     size: _EuiThemeBreakpoint;
-  }> = ({ size }) => {
+  }>> = ({ size }) => {
     const isWithinMinBreakpoint = useIsWithinMinBreakpoint(size);
     return isWithinMinBreakpoint ? <strong data-test-subj>true</strong> : null;
   };

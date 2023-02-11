@@ -35,7 +35,7 @@ export type EuiTextProps = CommonProps &
     grow?: boolean;
   };
 
-export const EuiText: FunctionComponent<EuiTextProps> = ({
+export const EuiText: FunctionComponent<React.PropsWithChildren<EuiTextProps>> = ({
   size = 'm',
   color,
   grow = true,

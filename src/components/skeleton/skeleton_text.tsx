@@ -32,7 +32,7 @@ export type EuiSkeletonTextProps = CommonProps &
     size?: TextSize;
   };
 
-export const EuiSkeletonText: FunctionComponent<EuiSkeletonTextProps> = ({
+export const EuiSkeletonText: FunctionComponent<React.PropsWithChildren<EuiSkeletonTextProps>> = ({
   isLoading = true,
   lines = 3,
   size = 'm',

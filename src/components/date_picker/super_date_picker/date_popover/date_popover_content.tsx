@@ -37,7 +37,7 @@ export interface EuiDatePopoverContentProps {
   timeOptions: TimeOptions;
 }
 
-export const EuiDatePopoverContent: FunctionComponent<EuiDatePopoverContentProps> = ({
+export const EuiDatePopoverContent: FunctionComponent<React.PropsWithChildren<EuiDatePopoverContentProps>> = ({
   value,
   roundUp = false,
   onChange,

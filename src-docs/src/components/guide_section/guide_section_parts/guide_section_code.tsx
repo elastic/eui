@@ -12,7 +12,7 @@ export type GuideSectionExampleCode = {
   type?: string;
 };
 
-export const GuideSectionExampleCode: FunctionComponent<GuideSectionExampleCode> = ({
+export const GuideSectionExampleCode: FunctionComponent<React.PropsWithChildren<GuideSectionExampleCode>> = ({
   code,
   type = GuideSectionTypes.JS,
 }) => {

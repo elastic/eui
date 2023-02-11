@@ -48,9 +48,7 @@ export interface EuiButtonDisplayContentProps extends CommonProps {
   isDisabled?: boolean;
 }
 
-export const EuiButtonDisplayContent: FunctionComponent<
-  EuiButtonDisplayContentType & EuiButtonDisplayContentProps
-> = ({
+export const EuiButtonDisplayContent: FunctionComponent<React.PropsWithChildren<EuiButtonDisplayContentType & EuiButtonDisplayContentProps>> = ({
   children,
   textProps,
   isLoading = false,

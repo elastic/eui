@@ -37,7 +37,7 @@ export type GuideSectionExampleTabsProps = {
   rightSideControl?: ReactNode;
 };
 
-export const GuideSectionExampleTabs: FunctionComponent<GuideSectionExampleTabsProps> = ({
+export const GuideSectionExampleTabs: FunctionComponent<React.PropsWithChildren<GuideSectionExampleTabsProps>> = ({
   tabs,
   rightSideControl,
 }) => {

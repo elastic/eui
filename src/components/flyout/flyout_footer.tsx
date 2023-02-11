@@ -12,9 +12,7 @@ import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
 import { euiFlyoutFooterStyles } from './flyout_footer.styles';
 
-export type EuiFlyoutFooterProps = FunctionComponent<
-  HTMLAttributes<HTMLDivElement> & CommonProps
->;
+export type EuiFlyoutFooterProps = FunctionComponent<React.PropsWithChildren<HTMLAttributes<HTMLDivElement> & CommonProps>>;
 
 export const EuiFlyoutFooter: EuiFlyoutFooterProps = ({
   children,

@@ -25,7 +25,7 @@ export type EuiFormControlLayoutClearButtonProps = CommonProps &
     size?: typeof SIZES[number];
   };
 
-export const EuiFormControlLayoutClearButton: FunctionComponent<EuiFormControlLayoutClearButtonProps> = ({
+export const EuiFormControlLayoutClearButton: FunctionComponent<React.PropsWithChildren<EuiFormControlLayoutClearButtonProps>> = ({
   className,
   onClick,
   size = 'm',

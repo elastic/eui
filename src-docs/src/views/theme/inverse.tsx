@@ -4,7 +4,7 @@ import { EuiSpacer } from '../../../../src/components/spacer';
 import { EuiText } from '../../../../src/components/text';
 import { EuiThemeProvider, useEuiTheme } from '../../../../src/services';
 
-const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
+const Box: FunctionComponent<React.PropsWithChildren<{ children: ReactNode }>> = ({ children }) => {
   const { euiTheme } = useEuiTheme();
 
   return (

@@ -57,8 +57,8 @@ export interface EuiResizableContainerProps
    * and returns a component tree
    */
   children: (
-    Panel: ComponentType<EuiResizablePanelProps>,
-    Resizer: ComponentType<EuiResizableButtonProps>,
+    Panel: ComponentType<React.PropsWithChildren<EuiResizablePanelProps>>,
+    Resizer: ComponentType<React.PropsWithChildren<EuiResizableButtonProps>>,
     actions: Partial<EuiResizableContainerActions>
   ) => ReactNode;
   /**
@@ -88,7 +88,7 @@ const initialState: EuiResizableContainerState = {
   resizers: {},
 };
 
-export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps> = ({
+export const EuiResizableContainer: FunctionComponent<React.PropsWithChildren<EuiResizableContainerProps>> = ({
   direction = 'horizontal',
   children,
   className,

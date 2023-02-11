@@ -25,7 +25,7 @@ type GuideThemeSelectorProps = {
   context?: any;
 };
 
-export const GuideThemeSelector: React.FunctionComponent<GuideThemeSelectorProps> = ({
+export const GuideThemeSelector: React.FunctionComponent<React.PropsWithChildren<GuideThemeSelectorProps>> = ({
   ...rest
 }) => {
   return (
@@ -37,7 +37,7 @@ export const GuideThemeSelector: React.FunctionComponent<GuideThemeSelectorProps
 
 const STORAGE_KEY = 'legacy_theme_notification';
 
-const GuideThemeSelectorComponent: React.FunctionComponent<GuideThemeSelectorProps> = ({
+const GuideThemeSelectorComponent: React.FunctionComponent<React.PropsWithChildren<GuideThemeSelectorProps>> = ({
   context,
   onToggleLocale,
   selectedLocale,

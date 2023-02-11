@@ -39,7 +39,7 @@ export type EuiBeaconProps = Omit<
     color?: EuiBeaconColor;
   };
 
-export const EuiBeacon: FunctionComponent<EuiBeaconProps> = ({
+export const EuiBeacon: FunctionComponent<React.PropsWithChildren<EuiBeaconProps>> = ({
   className,
   size = 12,
   color = 'success',

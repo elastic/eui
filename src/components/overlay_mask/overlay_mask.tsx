@@ -50,7 +50,7 @@ export type EuiOverlayMaskProps = Omit<CommonProps, 'css'> &
   > &
   EuiOverlayMaskInterface;
 
-export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
+export const EuiOverlayMask: FunctionComponent<React.PropsWithChildren<EuiOverlayMaskProps>> = ({
   className,
   children,
   headerZindexLocation = 'above',

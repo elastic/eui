@@ -18,7 +18,7 @@ export const flexItemHiglightStyles = ({ euiTheme }: UseEuiTheme) => {
   `;
 };
 
-export const FlexItemHighlightWrapper: React.FC = ({ children }) => {
+export const FlexItemHighlightWrapper: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
   const euiTheme = useEuiTheme();
   return <div css={flexItemHiglightStyles(euiTheme)}>{children}</div>;
 };

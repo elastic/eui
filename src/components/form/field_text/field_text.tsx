@@ -57,7 +57,7 @@ export type EuiFieldTextProps = InputHTMLAttributes<HTMLInputElement> &
     compressed?: boolean;
   };
 
-export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = (props) => {
+export const EuiFieldText: FunctionComponent<React.PropsWithChildren<EuiFieldTextProps>> = (props) => {
   const { defaultFullWidth } = useFormContext();
   const {
     id,

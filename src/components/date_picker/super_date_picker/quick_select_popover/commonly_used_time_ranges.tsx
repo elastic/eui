@@ -19,7 +19,7 @@ export interface EuiCommonlyUsedTimeRangesProps {
   commonlyUsedRanges: DurationRange[];
 }
 
-export const EuiCommonlyUsedTimeRanges: FunctionComponent<EuiCommonlyUsedTimeRangesProps> = ({
+export const EuiCommonlyUsedTimeRanges: FunctionComponent<React.PropsWithChildren<EuiCommonlyUsedTimeRangesProps>> = ({
   applyTime,
   commonlyUsedRanges,
 }) => {

@@ -79,10 +79,10 @@ type Determinate = EuiProgressProps &
     labelProps?: CommonProps & HTMLAttributes<HTMLSpanElement>;
   };
 
-export const EuiProgress: FunctionComponent<ExclusiveUnion<
+export const EuiProgress: FunctionComponent<React.PropsWithChildren<ExclusiveUnion<
   Determinate,
   Indeterminate
->> = ({
+>>> = ({
   className,
   color = 'success',
   size = 'm',

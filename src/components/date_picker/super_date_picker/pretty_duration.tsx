@@ -259,7 +259,7 @@ export const usePrettyDuration = ({
   return prettyDuration;
 };
 
-export const PrettyDuration: React.FC<PrettyDurationProps> = ({
+export const PrettyDuration: React.FC<React.PropsWithChildren<PrettyDurationProps>> = ({
   timeFrom,
   timeTo,
   quickRanges,

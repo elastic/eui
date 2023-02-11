@@ -26,7 +26,7 @@ const tableLayoutToClassMap: { [tableLayout: string]: string | null } = {
   auto: 'euiTable--auto',
 };
 
-export const EuiTable: FunctionComponent<EuiTableProps> = ({
+export const EuiTable: FunctionComponent<React.PropsWithChildren<EuiTableProps>> = ({
   children,
   className,
   compressed,

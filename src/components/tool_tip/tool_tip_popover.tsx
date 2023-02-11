@@ -30,7 +30,7 @@ type Props = CommonProps &
     calculatedPosition?: ToolTipPositions;
   };
 
-export const EuiToolTipPopover: FunctionComponent<Props> = ({
+export const EuiToolTipPopover: FunctionComponent<React.PropsWithChildren<Props>> = ({
   children,
   title,
   className,

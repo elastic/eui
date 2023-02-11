@@ -10,7 +10,7 @@ import { ThemeRowType } from '../_props';
 
 const euiBorders = ['euiBorderThin', 'euiBorderThick', 'euiBorderEditable'];
 
-export const TypesSass: FunctionComponent<ThemeRowType> = ({ description }) => {
+export const TypesSass: FunctionComponent<React.PropsWithChildren<ThemeRowType>> = ({ description }) => {
   const values = useJsonVars();
 
   return (
@@ -55,7 +55,7 @@ export const TypesValuesSass = () => {
   );
 };
 
-export const ColorSass: FunctionComponent<ThemeRowType> = ({ description }) => {
+export const ColorSass: FunctionComponent<React.PropsWithChildren<ThemeRowType>> = ({ description }) => {
   const token = 'euiBorderColor';
   const color = useJsonVars()[token];
 
@@ -98,7 +98,7 @@ export const ColorValuesSass = () => {
 
 const euiBorderWidths = ['euiBorderWidthThin', 'euiBorderWidthThick'];
 
-export const WidthSass: FunctionComponent<ThemeRowType> = ({ description }) => {
+export const WidthSass: FunctionComponent<React.PropsWithChildren<ThemeRowType>> = ({ description }) => {
   const values = useJsonVars();
 
   return (
@@ -150,7 +150,7 @@ export const WidthValuesSass = () => {
 
 const euiBorderRadii = ['euiBorderRadius', 'euiBorderRadiusSmall'];
 
-export const RadiusSass: FunctionComponent<ThemeRowType> = ({
+export const RadiusSass: FunctionComponent<React.PropsWithChildren<ThemeRowType>> = ({
   description,
 }) => {
   const values = useJsonVars();

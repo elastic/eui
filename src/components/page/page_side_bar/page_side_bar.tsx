@@ -38,7 +38,7 @@ export interface EuiPageSideBarProps_Deprecated
 /**
  * @deprecated Use the new EuiPageSidebar in page/page_sidebar instead
  */
-export const EuiPageSideBar_Deprecated: FunctionComponent<EuiPageSideBarProps_Deprecated> = ({
+export const EuiPageSideBar_Deprecated: FunctionComponent<React.PropsWithChildren<EuiPageSideBarProps_Deprecated>> = ({
   children,
   className,
   sticky,

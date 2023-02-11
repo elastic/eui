@@ -22,7 +22,7 @@ import {
 
 import { EuiLoadingSpinnerColor as EuiLoadingSpinnerColorProps } from '../../../../src/components/loading/loading_spinner';
 
-export const EuiLoadingSpinnerColor: FunctionComponent<EuiLoadingSpinnerColorProps> = () => (
+export const EuiLoadingSpinnerColor: FunctionComponent<React.PropsWithChildren<EuiLoadingSpinnerColorProps>> = () => (
   <div />
 );
 

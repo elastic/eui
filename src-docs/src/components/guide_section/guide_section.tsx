@@ -80,7 +80,7 @@ export const GuideSectionCodeTypesMap = {
   },
 };
 
-export const GuideSection: FunctionComponent<GuideSectionProps> = ({
+export const GuideSection: FunctionComponent<React.PropsWithChildren<GuideSectionProps>> = ({
   id,
   title,
   text,

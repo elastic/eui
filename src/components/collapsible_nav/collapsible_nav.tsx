@@ -52,7 +52,7 @@ export type EuiCollapsibleNavProps = Omit<
   showButtonIfDocked?: boolean;
 };
 
-export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
+export const EuiCollapsibleNav: FunctionComponent<React.PropsWithChildren<EuiCollapsibleNavProps>> = ({
   id,
   children,
   className,

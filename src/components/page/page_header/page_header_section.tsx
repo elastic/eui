@@ -14,7 +14,7 @@ export interface EuiPageHeaderSectionProps
   extends CommonProps,
     HTMLAttributes<HTMLDivElement> {}
 
-export const EuiPageHeaderSection: FunctionComponent<EuiPageHeaderSectionProps> = ({
+export const EuiPageHeaderSection: FunctionComponent<React.PropsWithChildren<EuiPageHeaderSectionProps>> = ({
   children,
   className,
   ...rest

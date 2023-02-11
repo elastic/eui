@@ -23,7 +23,7 @@ export type EuiNotificationEventMessagesProps = {
   eventName: string;
 };
 
-export const EuiNotificationEventMessages: FunctionComponent<EuiNotificationEventMessagesProps> = ({
+export const EuiNotificationEventMessages: FunctionComponent<React.PropsWithChildren<EuiNotificationEventMessagesProps>> = ({
   messages,
   eventName,
 }) => {

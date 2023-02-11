@@ -17,7 +17,7 @@ interface ThemeExtensions {
   };
 }
 
-const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
+const Box: FunctionComponent<React.PropsWithChildren<{ children: ReactNode }>> = ({ children }) => {
   const { euiTheme } = useEuiTheme<ThemeExtensions>();
 
   return (

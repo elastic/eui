@@ -131,7 +131,7 @@ export type EuiSuggestProps = _EuiSuggestProps &
     }
   >;
 
-export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
+export const EuiSuggest: FunctionComponent<React.PropsWithChildren<EuiSuggestProps>> = ({
   onItemClick,
   onBlur,
   onFocus,

@@ -87,7 +87,7 @@ export const useFullScreen = ({
 /**
  * Portalled full screen wrapper
  */
-export const EuiCodeBlockFullScreenWrapper: FunctionComponent = ({
+export const EuiCodeBlockFullScreenWrapper: FunctionComponent<React.PropsWithChildren<unknown>> = ({
   children,
 }) => {
   const euiThemeContext = useEuiTheme();

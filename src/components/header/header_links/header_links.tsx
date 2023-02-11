@@ -65,7 +65,7 @@ const gutterSizeToClassNameMap: {
 };
 export const GUTTER_SIZES = keysOf(gutterSizeToClassNameMap);
 
-export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
+export const EuiHeaderLinks: FunctionComponent<React.PropsWithChildren<EuiHeaderLinksProps>> = ({
   children,
   className,
   gutterSize = 's',

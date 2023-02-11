@@ -48,7 +48,7 @@ type Props = CommonProps &
   HTMLAttributes<HTMLTableRowElement> &
   EuiTableRowProps;
 
-export const EuiTableRow: FunctionComponent<Props> = ({
+export const EuiTableRow: FunctionComponent<React.PropsWithChildren<Props>> = ({
   children,
   className,
   isSelected,

@@ -658,7 +658,7 @@ export class EuiSuperDatePickerInternal extends Component<
 // we have to use a render prop here in order for us to pass i18n'd strings/objects/etc
 // to all underlying usages of our timeOptions constants. If someday we convert
 // EuiSuperDatePicker to an FC, we can likely get rid of this wrapper.
-export const EuiSuperDatePicker: FunctionComponent<EuiSuperDatePickerProps> = (
+export const EuiSuperDatePicker: FunctionComponent<React.PropsWithChildren<EuiSuperDatePickerProps>> = (
   props
 ) => (
   <RenderI18nTimeOptions>

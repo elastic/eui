@@ -25,7 +25,7 @@ export type EuiMarkProps = HTMLAttributes<HTMLElement> &
     children: ReactNode;
   };
 
-export const EuiMark: FunctionComponent<EuiMarkProps> = ({
+export const EuiMark: FunctionComponent<React.PropsWithChildren<EuiMarkProps>> = ({
   children,
   className,
   hasScreenReaderHelpText = true,

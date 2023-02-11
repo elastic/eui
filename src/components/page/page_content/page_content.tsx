@@ -44,7 +44,7 @@ export type EuiPageContentProps = CommonProps &
 /**
  * @deprecated Use EuiPageSection instead
  */
-export const EuiPageContent_Deprecated: FunctionComponent<EuiPageContentProps> = ({
+export const EuiPageContent_Deprecated: FunctionComponent<React.PropsWithChildren<EuiPageContentProps>> = ({
   verticalPosition,
   horizontalPosition,
   paddingSize = 'l',

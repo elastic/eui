@@ -24,7 +24,7 @@ export interface EuiTourStepIndicatorProps
   status: EuiTourStepStatus;
 }
 
-export const EuiTourStepIndicator: FunctionComponent<EuiTourStepIndicatorProps> = ({
+export const EuiTourStepIndicator: FunctionComponent<React.PropsWithChildren<EuiTourStepIndicatorProps>> = ({
   className,
   number,
   status,

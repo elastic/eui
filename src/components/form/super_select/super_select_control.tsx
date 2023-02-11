@@ -81,7 +81,7 @@ export interface EuiSuperSelectControlProps<T>
 
 export const EuiSuperSelectControl: <T extends string>(
   props: EuiSuperSelectControlProps<T>
-) => ReturnType<FunctionComponent<EuiSuperSelectControlProps<T>>> = (props) => {
+) => ReturnType<FunctionComponent<React.PropsWithChildren<EuiSuperSelectControlProps<T>>>> = (props) => {
   const { defaultFullWidth } = useFormContext();
   const {
     className,

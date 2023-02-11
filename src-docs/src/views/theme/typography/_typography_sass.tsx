@@ -143,7 +143,7 @@ export const euiFontWeights = [
   'euiFontWeightBold',
 ] as const;
 
-export const FontWeightSass: FunctionComponent<ThemeRowType> = ({
+export const FontWeightSass: FunctionComponent<React.PropsWithChildren<ThemeRowType>> = ({
   description,
 }) => {
   const values = useJsonVars();

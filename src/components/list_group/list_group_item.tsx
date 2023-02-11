@@ -143,7 +143,7 @@ export type EuiListGroupItemProps = CommonProps &
     toolTipText?: string;
   };
 
-export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
+export const EuiListGroupItem: FunctionComponent<React.PropsWithChildren<EuiListGroupItemProps>> = ({
   label,
   isActive = false,
   isDisabled: _isDisabled = false,

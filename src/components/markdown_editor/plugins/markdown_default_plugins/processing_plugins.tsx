@@ -40,7 +40,7 @@ const unknownHandler: Handler = (h, node) => {
 };
 
 export interface Rehype2ReactOptions {
-  components: { [key: string]: React.ComponentType<any> };
+  components: { [key: string]: React.ComponentType<React.PropsWithChildren<any>> };
   [key: string]: any;
 }
 

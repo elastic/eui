@@ -81,7 +81,7 @@ function lookupToken<
     return children as RESOLVED;
   }
 
-  const Component: FunctionComponent<any> = render
+  const Component: FunctionComponent<React.PropsWithChildren<any>> = render
     ? render(children)
     : () => <Fragment>{children}</Fragment>;
 

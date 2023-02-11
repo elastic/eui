@@ -51,7 +51,7 @@ export interface EuiTablePaginationProps
   'aria-label'?: string;
 }
 
-export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = ({
+export const EuiTablePagination: FunctionComponent<React.PropsWithChildren<EuiTablePaginationProps>> = ({
   activePage,
   itemsPerPage = 50,
   itemsPerPageOptions = [10, 20, 50, 100],

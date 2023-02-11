@@ -26,7 +26,7 @@ export interface EuiTimelineItemIconProps {
   iconAriaLabel?: string;
 }
 
-export const EuiTimelineItemIcon: FunctionComponent<EuiTimelineItemIconProps> = ({
+export const EuiTimelineItemIcon: FunctionComponent<React.PropsWithChildren<EuiTimelineItemIconProps>> = ({
   icon,
   verticalAlign = 'center',
   iconAriaLabel,

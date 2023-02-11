@@ -49,7 +49,7 @@ export type EuiRadioGroupProps = CommonProps & {
   onChange: EuiRadioGroupChangeCallback;
 } & ExclusiveUnion<AsDivProps, WithLegendProps>;
 
-export const EuiRadioGroup: FunctionComponent<EuiRadioGroupProps> = ({
+export const EuiRadioGroup: FunctionComponent<React.PropsWithChildren<EuiRadioGroupProps>> = ({
   options = [],
   idSelected,
   onChange,

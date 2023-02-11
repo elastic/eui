@@ -13,7 +13,7 @@ import { EuiBreadcrumbs, EuiBreadcrumbsProps } from '../../breadcrumbs';
 import { euiHeaderBreadcrumbsStyles } from './header_breadcrumbs.styles';
 import { useEuiTheme } from '../../../services';
 
-export const EuiHeaderBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
+export const EuiHeaderBreadcrumbs: FunctionComponent<React.PropsWithChildren<EuiBreadcrumbsProps>> = ({
   className,
   breadcrumbs,
   ...rest

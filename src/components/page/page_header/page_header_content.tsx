@@ -141,7 +141,7 @@ export interface EuiPageHeaderContentProps
     HTMLAttributes<HTMLDivElement>,
     _EuiPageHeaderContentProps {}
 
-export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> = ({
+export const EuiPageHeaderContent: FunctionComponent<React.PropsWithChildren<EuiPageHeaderContentProps>> = ({
   className,
   pageTitle,
   pageTitleProps,

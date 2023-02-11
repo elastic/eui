@@ -33,7 +33,7 @@ export type EuiAutoRefreshProps = EuiAutoRefreshSharedProps & {
   readOnly?: EuiFieldTextProps['readOnly'];
 } & Omit<EuiFieldTextProps, 'icon' | 'prepend' | 'controlOnly' | 'readOnly'>;
 
-export const EuiAutoRefresh: FunctionComponent<EuiAutoRefreshProps> = ({
+export const EuiAutoRefresh: FunctionComponent<React.PropsWithChildren<EuiAutoRefreshProps>> = ({
   className,
   onRefreshChange,
   isDisabled,
@@ -102,7 +102,7 @@ export type EuiAutoRefreshButtonProps = EuiAutoRefreshSharedProps & {
     'isSelected' | 'iconType' | 'iconSide' | 'iconSize' | 'onClick' | 'type'
   >;
 
-export const EuiAutoRefreshButton: FunctionComponent<EuiAutoRefreshButtonProps> = ({
+export const EuiAutoRefreshButton: FunctionComponent<React.PropsWithChildren<EuiAutoRefreshButtonProps>> = ({
   className,
   onRefreshChange,
   isDisabled,

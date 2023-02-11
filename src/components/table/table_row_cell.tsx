@@ -108,7 +108,7 @@ type Props = CommonProps &
   Omit<TdHTMLAttributes<HTMLTableCellElement>, 'valign'> &
   EuiTableRowCellProps;
 
-export const EuiTableRowCell: FunctionComponent<Props> = ({
+export const EuiTableRowCell: FunctionComponent<React.PropsWithChildren<Props>> = ({
   align = LEFT_ALIGNMENT,
   children,
   className,

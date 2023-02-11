@@ -51,7 +51,7 @@ export interface EuiStepNumberProps
   titleSize?: EuiStepProps['titleSize'];
 }
 
-export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
+export const EuiStepNumber: FunctionComponent<React.PropsWithChildren<EuiStepNumberProps>> = ({
   className,
   status,
   number,

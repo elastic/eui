@@ -32,7 +32,7 @@ export type EuiHealthProps = CommonProps &
     textSize?: typeof TEXT_SIZES[number];
   };
 
-export const EuiHealth: FunctionComponent<EuiHealthProps> = ({
+export const EuiHealth: FunctionComponent<React.PropsWithChildren<EuiHealthProps>> = ({
   children,
   className,
   color,

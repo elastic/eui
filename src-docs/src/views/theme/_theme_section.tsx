@@ -17,7 +17,7 @@ type ThemeSection = {
   customSnippet?: string;
 };
 
-export const ThemeSection: FunctionComponent<ThemeSection> = ({
+export const ThemeSection: FunctionComponent<React.PropsWithChildren<ThemeSection>> = ({
   code,
   description,
   themeValues,

@@ -54,7 +54,7 @@ export interface EuiPageSidebarProps
   responsive?: _EuiThemeBreakpoint[];
 }
 
-export const EuiPageSidebar: FunctionComponent<EuiPageSidebarProps> = ({
+export const EuiPageSidebar: FunctionComponent<React.PropsWithChildren<EuiPageSidebarProps>> = ({
   children,
   className,
   sticky = false,

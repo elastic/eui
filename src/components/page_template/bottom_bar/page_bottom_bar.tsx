@@ -24,7 +24,7 @@ export interface _EuiPageBottomBarProps
   parent?: string;
 }
 
-export const _EuiPageBottomBar: FunctionComponent<_EuiPageBottomBarProps> = ({
+export const _EuiPageBottomBar: FunctionComponent<React.PropsWithChildren<_EuiPageBottomBarProps>> = ({
   children,
   paddingSize,
   restrictWidth,

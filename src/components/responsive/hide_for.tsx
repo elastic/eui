@@ -23,7 +23,7 @@ export interface EuiHideForProps {
   sizes: EuiHideForBreakpoints[] | 'all' | 'none';
 }
 
-export const EuiHideFor: FunctionComponent<EuiHideForProps> = ({
+export const EuiHideFor: FunctionComponent<React.PropsWithChildren<EuiHideForProps>> = ({
   children,
   sizes,
 }) => {

@@ -18,7 +18,7 @@ export interface EuiTimelineItemEventProps {
   verticalAlign?: EuiTimelineItemVerticalAlign;
 }
 
-export const EuiTimelineItemEvent: FunctionComponent<EuiTimelineItemEventProps> = ({
+export const EuiTimelineItemEvent: FunctionComponent<React.PropsWithChildren<EuiTimelineItemEventProps>> = ({
   children,
   verticalAlign = 'center',
 }) => {

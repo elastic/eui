@@ -18,7 +18,7 @@ export interface EuiDescriptionListTitleProps
   extends CommonProps,
     HTMLAttributes<HTMLElement> {}
 
-export const EuiDescriptionListTitle: FunctionComponent<EuiDescriptionListTitleProps> = ({
+export const EuiDescriptionListTitle: FunctionComponent<React.PropsWithChildren<EuiDescriptionListTitleProps>> = ({
   children,
   className,
   ...rest

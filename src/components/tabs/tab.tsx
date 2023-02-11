@@ -50,7 +50,7 @@ type EuiTabPropsForButton = EuiTabProps &
 
 export type Props = ExclusiveUnion<EuiTabPropsForAnchor, EuiTabPropsForButton>;
 
-export const EuiTab: FunctionComponent<Props> = ({
+export const EuiTab: FunctionComponent<React.PropsWithChildren<Props>> = ({
   isSelected,
   children,
   className,

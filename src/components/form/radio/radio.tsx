@@ -46,7 +46,7 @@ export type EuiRadioProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'onChange' | 'id'> &
   ExclusiveUnion<ExclusiveUnion<RadioProps, idWithLabel>, withId>;
 
-export const EuiRadio: FunctionComponent<EuiRadioProps> = ({
+export const EuiRadio: FunctionComponent<React.PropsWithChildren<EuiRadioProps>> = ({
   className,
   id,
   name,

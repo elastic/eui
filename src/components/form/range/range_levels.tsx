@@ -35,7 +35,7 @@ export interface EuiRangeLevelsProps
   style?: CSSProperties;
 }
 
-export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
+export const EuiRangeLevels: FunctionComponent<React.PropsWithChildren<EuiRangeLevelsProps>> = ({
   levels = [],
   max,
   min,
@@ -68,12 +68,12 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
 };
 
 // Internal subcomponent
-const EuiRangeLevelElement: FunctionComponent<{
+const EuiRangeLevelElement: FunctionComponent<React.PropsWithChildren<{
   level: EuiRangeLevel;
   min: EuiRangeLevelsProps['min'];
   max: EuiRangeLevelsProps['max'];
   trackWidth: number;
-}> = ({ level, min, max, trackWidth }) => {
+}>> = ({ level, min, max, trackWidth }) => {
   const {
     color,
     className,

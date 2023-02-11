@@ -30,7 +30,7 @@ export type EuiNotificationEventReadButtonProps = Omit<
   eventName: string;
 };
 
-export const EuiNotificationEventReadButton: FunctionComponent<EuiNotificationEventReadButtonProps> = ({
+export const EuiNotificationEventReadButton: FunctionComponent<React.PropsWithChildren<EuiNotificationEventReadButtonProps>> = ({
   id,
   isRead,
   onClick,

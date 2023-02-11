@@ -45,7 +45,7 @@ export interface EuiModalProps extends HTMLAttributes<HTMLDivElement> {
   initialFocus?: HTMLElement | (() => HTMLElement) | string;
 }
 
-export const EuiModal: FunctionComponent<EuiModalProps> = ({
+export const EuiModal: FunctionComponent<React.PropsWithChildren<EuiModalProps>> = ({
   className,
   children,
   initialFocus,

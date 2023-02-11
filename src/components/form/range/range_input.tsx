@@ -23,7 +23,7 @@ export interface EuiRangeInputProps
   digitTolerance: number;
 }
 
-export const EuiRangeInput: FunctionComponent<EuiRangeInputProps> = ({
+export const EuiRangeInput: FunctionComponent<React.PropsWithChildren<EuiRangeInputProps>> = ({
   min,
   max,
   step,

@@ -5,7 +5,7 @@ type ThemeNotice = {
   type?: 'support' | null;
 };
 
-export const ThemeNotice: FunctionComponent<ThemeNotice> = ({
+export const ThemeNotice: FunctionComponent<React.PropsWithChildren<ThemeNotice>> = ({
   type = 'support',
 }) => {
   const support = (

@@ -36,7 +36,7 @@ import { ThemeValuesTable } from '../_components/_theme_values_table';
 
 export const brandKeys = Object.keys(brand_colors);
 
-export const BrandJS: FunctionComponent<ThemeRowType> = ({ description }) => {
+export const BrandJS: FunctionComponent<React.PropsWithChildren<ThemeRowType>> = ({ description }) => {
   const { euiTheme } = useEuiTheme();
 
   return (
@@ -87,7 +87,7 @@ export const BrandValuesJS = () => {
 export const brandTextKeys = Object.keys(brand_text_colors);
 export const textKeys = Object.keys(text_colors);
 
-export const TextJS: FunctionComponent<ThemeRowType> = ({ description }) => {
+export const TextJS: FunctionComponent<React.PropsWithChildren<ThemeRowType>> = ({ description }) => {
   const { euiTheme } = useEuiTheme();
 
   return (
@@ -159,7 +159,7 @@ export const TextValuesJS = () => {
 
 export const shadeKeys = Object.keys(shade_colors);
 
-export const ShadeJS: FunctionComponent<ThemeRowType> = ({ description }) => {
+export const ShadeJS: FunctionComponent<React.PropsWithChildren<ThemeRowType>> = ({ description }) => {
   const { euiTheme } = useEuiTheme();
 
   return (
@@ -212,7 +212,7 @@ export const ShadeValuesJS = () => {
 
 const specialKeys = Object.keys(special_colors);
 
-export const SpecialJS: FunctionComponent<ThemeRowType> = ({ description }) => {
+export const SpecialJS: FunctionComponent<React.PropsWithChildren<ThemeRowType>> = ({ description }) => {
   const { euiTheme } = useEuiTheme();
 
   return (

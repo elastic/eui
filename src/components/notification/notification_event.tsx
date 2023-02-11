@@ -96,7 +96,7 @@ export type EuiNotificationEventProps = Omit<
     >;
   };
 
-export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> = ({
+export const EuiNotificationEvent: FunctionComponent<React.PropsWithChildren<EuiNotificationEventProps>> = ({
   id,
   type,
   severity,

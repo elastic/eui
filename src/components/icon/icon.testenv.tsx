@@ -23,7 +23,7 @@ export const EuiIcon = ({ type, 'aria-label': ariaLabel, ...rest }: any) => (
 );
 
 export const appendIconComponentCache = (_: {
-  [iconType: string]: ComponentType;
+  [iconType: string]: ComponentType<React.PropsWithChildren<unknown>>;
 }) => {
   // manually appending to the internal EuiIcon cache is out-of-scope of this test environment
 };

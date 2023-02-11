@@ -23,7 +23,7 @@ import { GuideSectionTypes } from '../../components/guide_section/guide_section_
 
 const PageConfigurationsSource = require('!!raw-loader!./page_configurations');
 
-export const PageConfigurationsDemo: FunctionComponent = () => {
+export const PageConfigurationsDemo: FunctionComponent<React.PropsWithChildren<unknown>> = () => {
   const [showSideBar, setShowSideBar] = useState(true);
   const [showPageHeader, setShowPageHeader] = useState(true);
   const [centeredContent, setCenteredContent] = useState(false);

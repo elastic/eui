@@ -17,7 +17,7 @@ export interface EuiPageContentHeaderSectionProps
 /**
  * @deprecated Use EuiPageHeader instead
  */
-export const EuiPageContentHeaderSection_Deprecated: FunctionComponent<EuiPageContentHeaderSectionProps> = ({
+export const EuiPageContentHeaderSection_Deprecated: FunctionComponent<React.PropsWithChildren<EuiPageContentHeaderSectionProps>> = ({
   children,
   className,
   ...rest

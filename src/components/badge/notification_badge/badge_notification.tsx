@@ -30,7 +30,7 @@ export interface EuiNotificationBadgeProps
   color?: BadgeNotificationColor;
 }
 
-export const EuiNotificationBadge: FunctionComponent<EuiNotificationBadgeProps> = ({
+export const EuiNotificationBadge: FunctionComponent<React.PropsWithChildren<EuiNotificationBadgeProps>> = ({
   children,
   className,
   size = 's',

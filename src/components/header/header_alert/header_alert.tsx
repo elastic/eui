@@ -29,7 +29,7 @@ export type EuiHeaderAlertProps = CommonProps &
     badge?: ReactNode;
   };
 
-export const EuiHeaderAlert: FunctionComponent<EuiHeaderAlertProps> = ({
+export const EuiHeaderAlert: FunctionComponent<React.PropsWithChildren<EuiHeaderAlertProps>> = ({
   action,
   className,
   date,

@@ -22,7 +22,7 @@ interface paletteItem {
   width: string;
 }
 
-export const EuiColorPaletteDisplayFixed: FunctionComponent<EuiColorPaletteDisplayFixedProps> = ({
+export const EuiColorPaletteDisplayFixed: FunctionComponent<React.PropsWithChildren<EuiColorPaletteDisplayFixedProps>> = ({
   palette,
   title,
   ...rest

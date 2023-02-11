@@ -11,10 +11,10 @@ import { useEuiTheme } from '../../services';
 import type { EuiCodeBlockPaddingSize } from './code_block';
 import { euiCodeBlockControlsStyles } from './code_block_controls.styles';
 
-export const EuiCodeBlockControls: FC<{
+export const EuiCodeBlockControls: FC<React.PropsWithChildren<{
   controls: ReactNode[];
   paddingSize: EuiCodeBlockPaddingSize;
-}> = ({ paddingSize, controls }) => {
+}>> = ({ paddingSize, controls }) => {
   const euiTheme = useEuiTheme();
   const styles = euiCodeBlockControlsStyles(euiTheme);
   const cssStyles = [styles.euiCodeBlock__controls, styles.offset[paddingSize]];

@@ -17,7 +17,7 @@ export type GuideSectionPropsDescription = {
   component: any;
 };
 
-export const GuideSectionPropsDescription: FunctionComponent<GuideSectionPropsDescription> = ({
+export const GuideSectionPropsDescription: FunctionComponent<React.PropsWithChildren<GuideSectionPropsDescription>> = ({
   className,
   componentName,
   component,

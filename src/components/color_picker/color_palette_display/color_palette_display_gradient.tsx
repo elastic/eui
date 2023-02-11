@@ -17,7 +17,7 @@ export interface EuiColorPaletteDisplayGradientProps
     CommonProps,
     EuiColorPaletteDisplayShared {}
 
-export const EuiColorPaletteDisplayGradient: FunctionComponent<EuiColorPaletteDisplayGradientProps> = ({
+export const EuiColorPaletteDisplayGradient: FunctionComponent<React.PropsWithChildren<EuiColorPaletteDisplayGradientProps>> = ({
   palette,
   title,
   style = {},

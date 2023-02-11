@@ -13,7 +13,7 @@ export type EuiTableBodyProps = CommonProps & {
   bodyRef?: Ref<HTMLTableSectionElement>;
 };
 
-export const EuiTableBody: FunctionComponent<EuiTableBodyProps> = ({
+export const EuiTableBody: FunctionComponent<React.PropsWithChildren<EuiTableBodyProps>> = ({
   children,
   className,
   bodyRef,

@@ -78,7 +78,7 @@ export type EuiDatePickerRangeProps = CommonProps & {
   onFocus?: FocusEventHandler<HTMLInputElement>;
 };
 
-export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
+export const EuiDatePickerRange: FunctionComponent<React.PropsWithChildren<EuiDatePickerRangeProps>> = ({
   children,
   className,
   startDateControl,

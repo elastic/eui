@@ -33,7 +33,7 @@ export type EuiFacetGroupProps = CommonProps &
     gutterSize?: EuiFacetGroupGutterSizes;
   };
 
-export const EuiFacetGroup: FunctionComponent<EuiFacetGroupProps> = ({
+export const EuiFacetGroup: FunctionComponent<React.PropsWithChildren<EuiFacetGroupProps>> = ({
   children,
   className,
   layout = 'vertical',

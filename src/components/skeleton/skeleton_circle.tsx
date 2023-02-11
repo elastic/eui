@@ -24,7 +24,7 @@ export type EuiSkeletonCircleProps = HTMLAttributes<HTMLDivElement> &
     size?: SkeletonCircleSize;
   };
 
-export const EuiSkeletonCircle: FunctionComponent<EuiSkeletonCircleProps> = ({
+export const EuiSkeletonCircle: FunctionComponent<React.PropsWithChildren<EuiSkeletonCircleProps>> = ({
   isLoading = true,
   size = 'm',
   className,

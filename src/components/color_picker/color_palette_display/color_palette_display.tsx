@@ -58,7 +58,7 @@ export type EuiColorPaletteDisplayProps = {
   size?: EuiColorPaletteDisplaySize;
 } & ExclusiveUnion<DisplayFixed, DisplayGradient>;
 
-export const EuiColorPaletteDisplay: FunctionComponent<EuiColorPaletteDisplayProps> = ({
+export const EuiColorPaletteDisplay: FunctionComponent<React.PropsWithChildren<EuiColorPaletteDisplayProps>> = ({
   type = 'fixed',
   palette,
   className,

@@ -26,7 +26,7 @@ export type GuidePageHeaderProps = {
   selectedLocale: string;
 };
 
-export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
+export const GuidePageHeader: React.FunctionComponent<React.PropsWithChildren<GuidePageHeaderProps>> = ({
   onToggleLocale,
   selectedLocale,
 }) => {

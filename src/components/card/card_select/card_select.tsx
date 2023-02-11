@@ -14,7 +14,7 @@ import { euiCardSelectStyles } from './card_select.styles';
 
 export type EuiCardSelectProps = Props;
 
-export const EuiCardSelect: FunctionComponent<EuiCardSelectProps> = ({
+export const EuiCardSelect: FunctionComponent<React.PropsWithChildren<EuiCardSelectProps>> = ({
   isSelected = false,
   isDisabled,
   disabled,

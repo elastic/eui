@@ -18,12 +18,12 @@ export interface BasicItem {
   link?: any;
 }
 
-export const DataGridPropsTable: FunctionComponent<{
+export const DataGridPropsTable: FunctionComponent<React.PropsWithChildren<{
   component: any;
   exclude?: string[];
   snippets: any;
   links?: any;
-}> = ({ component, exclude, snippets, links }) => {
+}>> = ({ component, exclude, snippets, links }) => {
   const gridProps = getPropsFromComponent(component);
   const gridPropsKeys = Object.keys(gridProps)
     .filter((i) => !exclude?.includes(i))

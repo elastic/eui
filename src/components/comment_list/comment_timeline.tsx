@@ -25,7 +25,7 @@ export interface EuiCommentTimelineProps extends CommonProps {
   timelineAvatarAriaLabel?: string;
 }
 
-export const EuiCommentTimeline: FunctionComponent<EuiCommentTimelineProps> = ({
+export const EuiCommentTimeline: FunctionComponent<React.PropsWithChildren<EuiCommentTimelineProps>> = ({
   timelineAvatar,
   timelineAvatarAriaLabel,
 }) => {

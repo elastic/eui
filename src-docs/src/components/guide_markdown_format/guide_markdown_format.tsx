@@ -6,7 +6,7 @@ import {
 } from '../../../../src/components/markdown_editor';
 import { slugify } from '../../../../src/services';
 
-export const GuideMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
+export const GuideMarkdownFormat: FunctionComponent<React.PropsWithChildren<EuiMarkdownFormatProps>> = ({
   children,
   ...rest
 }) => {

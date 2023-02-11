@@ -61,7 +61,7 @@ function renderSteps(
   });
 }
 
-export const EuiSteps: FunctionComponent<EuiStepsProps> = ({
+export const EuiSteps: FunctionComponent<React.PropsWithChildren<EuiStepsProps>> = ({
   className,
   firstStepNumber = 1,
   headingElement = 'p',

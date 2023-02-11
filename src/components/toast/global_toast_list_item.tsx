@@ -21,9 +21,7 @@ export interface EuiGlobalToastListItemProps {
   children?: ReactElement;
 }
 
-export const EuiGlobalToastListItem: FunctionComponent<
-  CommonProps & EuiGlobalToastListItemProps
-> = ({ children, className, isDismissed }) => {
+export const EuiGlobalToastListItem: FunctionComponent<React.PropsWithChildren<CommonProps & EuiGlobalToastListItemProps>> = ({ children, className, isDismissed }) => {
   const euiTheme = useEuiTheme();
   if (!children) {
     return null;

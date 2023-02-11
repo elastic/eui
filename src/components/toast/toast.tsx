@@ -41,7 +41,7 @@ export interface EuiToastProps
   onClose?: () => void;
 }
 
-export const EuiToast: FunctionComponent<EuiToastProps> = ({
+export const EuiToast: FunctionComponent<React.PropsWithChildren<EuiToastProps>> = ({
   title,
   color,
   iconType,

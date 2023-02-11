@@ -13,9 +13,7 @@ import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
 import { euiModalFooterStyles } from './modal_footer.styles';
 
-export type EuiModalFooterProps = FunctionComponent<
-  HTMLAttributes<HTMLDivElement> & CommonProps
->;
+export type EuiModalFooterProps = FunctionComponent<React.PropsWithChildren<HTMLAttributes<HTMLDivElement> & CommonProps>>;
 
 export const EuiModalFooter: EuiModalFooterProps = ({
   className,

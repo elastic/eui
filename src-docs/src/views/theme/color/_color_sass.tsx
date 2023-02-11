@@ -19,7 +19,7 @@ import {
 
 const euiBrandColors = [...coreColors];
 
-export const BrandSass: FunctionComponent<ThemeRowType> = ({ description }) => {
+export const BrandSass: FunctionComponent<React.PropsWithChildren<ThemeRowType>> = ({ description }) => {
   const values = useJsonVars();
 
   return (
@@ -60,7 +60,7 @@ export const BrandValuesSass = () => {
 
 const euiTextColors = [...textOnly, ...coreTextVariants];
 
-export const TextSass: FunctionComponent<ThemeRowType> = ({ description }) => {
+export const TextSass: FunctionComponent<React.PropsWithChildren<ThemeRowType>> = ({ description }) => {
   const values = useJsonVars();
 
   return (
@@ -116,7 +116,7 @@ export const TextValuesSass = () => {
 
 const euiShadeColors = [...grayColors];
 
-export const ShadeSass: FunctionComponent<ThemeRowType> = ({ description }) => {
+export const ShadeSass: FunctionComponent<React.PropsWithChildren<ThemeRowType>> = ({ description }) => {
   const values = useJsonVars();
 
   return (
@@ -164,7 +164,7 @@ const euiSpecialColors = [
   'euiColorInk',
 ];
 
-export const SpecialSass: FunctionComponent<ThemeRowType> = ({
+export const SpecialSass: FunctionComponent<React.PropsWithChildren<ThemeRowType>> = ({
   description,
 }) => {
   return (

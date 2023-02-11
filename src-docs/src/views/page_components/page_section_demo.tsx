@@ -20,7 +20,7 @@ const PageSectionSource = require('!!raw-loader!./page_section');
 // @ts-ignore Importing from JS
 import { pageSectionConfig } from './playground';
 
-export const PageSectionDemo: FunctionComponent = () => {
+export const PageSectionDemo: FunctionComponent<React.PropsWithChildren<unknown>> = () => {
   const [restrictWidth, setRestrictWidth] = useState(false);
   const [centeredContent, setCenteredContent] = useState(false);
   const [extendedBorder, setExtendedBorder] = useState(true);

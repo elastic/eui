@@ -31,7 +31,7 @@ export interface _EuiPageOuterProps
   responsive?: _EuiThemeBreakpoint[];
 }
 
-export const _EuiPageOuter: FunctionComponent<_EuiPageOuterProps> = ({
+export const _EuiPageOuter: FunctionComponent<React.PropsWithChildren<_EuiPageOuterProps>> = ({
   children,
   grow = true,
   direction = 'row',

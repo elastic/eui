@@ -10,7 +10,7 @@ import React, { FunctionComponent } from 'react';
 import { EuiDataGridControlHeaderCellProps } from '../../data_grid_types';
 import { EuiDataGridHeaderCellWrapper } from './data_grid_header_cell_wrapper';
 
-export const EuiDataGridControlHeaderCell: FunctionComponent<EuiDataGridControlHeaderCellProps> = ({
+export const EuiDataGridControlHeaderCell: FunctionComponent<React.PropsWithChildren<EuiDataGridControlHeaderCellProps>> = ({
   controlColumn,
   index,
   headerIsInteractive,

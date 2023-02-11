@@ -28,7 +28,7 @@ export type EuiFormControlLayoutCustomIconProps = CommonProps &
       | ((el: HTMLButtonElement | HTMLSpanElement | null) => void);
   };
 
-export const EuiFormControlLayoutCustomIcon: FunctionComponent<EuiFormControlLayoutCustomIconProps> = ({
+export const EuiFormControlLayoutCustomIcon: FunctionComponent<React.PropsWithChildren<EuiFormControlLayoutCustomIconProps>> = ({
   className,
   onClick,
   type,

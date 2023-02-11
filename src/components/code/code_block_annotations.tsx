@@ -18,9 +18,9 @@ import { euiCodeBlockAnnotationsStyles } from './code_block_annotations.style';
 
 export type LineAnnotationMap = Record<number, ReactNode>;
 
-export const EuiCodeBlockAnnotation: FunctionComponent<{
+export const EuiCodeBlockAnnotation: FunctionComponent<React.PropsWithChildren<{
   lineNumber: number;
-}> = ({ lineNumber, children }) => {
+}>> = ({ lineNumber, children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const ariaLabel = useEuiI18n(
@@ -67,7 +67,7 @@ export const EuiCodeBlockAnnotation: FunctionComponent<{
   );
 };
 
-const AnnotationInfoIcon: FunctionComponent = (props) => (
+const AnnotationInfoIcon: FunctionComponent<React.PropsWithChildren<unknown>> = (props) => (
   <svg
     width={11}
     height={11}

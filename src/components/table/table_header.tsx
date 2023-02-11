@@ -22,7 +22,7 @@ export type EuiTableHeaderProps = CommonProps &
     wrapWithTableRow?: boolean;
   };
 
-export const EuiTableHeader: FunctionComponent<EuiTableHeaderProps> = ({
+export const EuiTableHeader: FunctionComponent<React.PropsWithChildren<EuiTableHeaderProps>> = ({
   children,
   className,
   wrapWithTableRow = true,

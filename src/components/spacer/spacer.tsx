@@ -22,7 +22,7 @@ export type EuiSpacerProps = HTMLAttributes<HTMLDivElement> &
     size?: SpacerSize;
   };
 
-export const EuiSpacer: FunctionComponent<EuiSpacerProps> = ({
+export const EuiSpacer: FunctionComponent<React.PropsWithChildren<EuiSpacerProps>> = ({
   className,
   size = 'l',
   ...rest

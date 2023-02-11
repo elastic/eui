@@ -62,7 +62,7 @@ type ColorSection = {
   matchPanelColor?: boolean;
 };
 
-export const ColorSectionSass: FunctionComponent<ColorSection> = ({
+export const ColorSectionSass: FunctionComponent<React.PropsWithChildren<ColorSection>> = ({
   color,
   minimumContrast,
   showTextVariants,
@@ -117,7 +117,7 @@ type ColorsContrastItem = {
   minimumContrast: string | number;
 };
 
-const ColorsContrastItem: FunctionComponent<ColorsContrastItem> = ({
+const ColorsContrastItem: FunctionComponent<React.PropsWithChildren<ColorsContrastItem>> = ({
   foreground,
   background,
   minimumContrast,

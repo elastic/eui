@@ -29,7 +29,7 @@ const fullScreenIconColorMap: {
   dark: 'default',
 };
 
-export const EuiImageButton: FunctionComponent<EuiImageButtonProps> = ({
+export const EuiImageButton: FunctionComponent<React.PropsWithChildren<EuiImageButtonProps>> = ({
   hasAlt,
   hasShadow,
   children,

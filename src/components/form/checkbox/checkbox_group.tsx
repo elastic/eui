@@ -50,7 +50,7 @@ export type EuiCheckboxGroupProps = CommonProps & {
   disabled?: boolean;
 } & ExclusiveUnion<AsDivProps, WithLegendProps>;
 
-export const EuiCheckboxGroup: FunctionComponent<EuiCheckboxGroupProps> = ({
+export const EuiCheckboxGroup: FunctionComponent<React.PropsWithChildren<EuiCheckboxGroupProps>> = ({
   options = [],
   idToSelectedMap = {},
   onChange,

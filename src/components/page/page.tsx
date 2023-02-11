@@ -38,7 +38,7 @@ export interface EuiPageProps
   direction?: 'row' | 'column';
 }
 
-export const EuiPage: FunctionComponent<EuiPageProps> = ({
+export const EuiPage: FunctionComponent<React.PropsWithChildren<EuiPageProps>> = ({
   children,
   restrictWidth = false,
   className,

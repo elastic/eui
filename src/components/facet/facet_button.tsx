@@ -62,7 +62,7 @@ export interface EuiFacetButtonProps
   quantity?: number;
 }
 
-export const EuiFacetButton: FunctionComponent<EuiFacetButtonProps> = ({
+export const EuiFacetButton: FunctionComponent<React.PropsWithChildren<EuiFacetButtonProps>> = ({
   children,
   className,
   icon,

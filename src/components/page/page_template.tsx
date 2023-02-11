@@ -105,7 +105,7 @@ export type EuiPageTemplateProps_Deprecated = Omit<
  *
  * @deprecated use EuiPageTemplate from page_template/page_template instead
  */
-export const EuiPageTemplate_Deprecated: FunctionComponent<EuiPageTemplateProps_Deprecated> = ({
+export const EuiPageTemplate_Deprecated: FunctionComponent<React.PropsWithChildren<EuiPageTemplateProps_Deprecated>> = ({
   template = 'default',
   restrictWidth = true,
   grow = true,

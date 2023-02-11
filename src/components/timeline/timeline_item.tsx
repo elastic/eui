@@ -32,7 +32,7 @@ export interface EuiTimelineItemProps
   verticalAlign?: EuiTimelineItemVerticalAlign;
 }
 
-export const EuiTimelineItem: FunctionComponent<EuiTimelineItemProps> = ({
+export const EuiTimelineItem: FunctionComponent<React.PropsWithChildren<EuiTimelineItemProps>> = ({
   children,
   verticalAlign = 'center',
   icon,

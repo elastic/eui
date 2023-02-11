@@ -36,7 +36,7 @@ export interface EuiPageHeaderProps
   paddingSize?: EuiPaddingSize;
 }
 
-export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
+export const EuiPageHeader: FunctionComponent<React.PropsWithChildren<EuiPageHeaderProps>> = ({
   className,
   restrictWidth = false,
   paddingSize = 'none',

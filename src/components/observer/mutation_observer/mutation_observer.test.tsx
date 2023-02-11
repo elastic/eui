@@ -21,7 +21,7 @@ describe('EuiMutationObserver', () => {
     expect.assertions(1);
     const onMutation = jest.fn();
 
-    const Wrapper: FunctionComponent<{ value: number }> = ({ value }) => {
+    const Wrapper: FunctionComponent<React.PropsWithChildren<{ value: number }>> = ({ value }) => {
       return (
         <EuiMutationObserver
           observerOptions={{ attributes: true }}
@@ -51,7 +51,7 @@ describe('useMutationObserver', () => {
     expect.assertions(2);
 
     const mutationCallback = jest.fn();
-    const Wrapper: FunctionComponent<{}> = jest.fn(({ children }) => {
+    const Wrapper: FunctionComponent<React.PropsWithChildren<{}>> = jest.fn(({ children }) => {
       const [ref, setRef] = useState<Element | null>(null);
       useMutationObserver(ref, mutationCallback, {
         childList: true,

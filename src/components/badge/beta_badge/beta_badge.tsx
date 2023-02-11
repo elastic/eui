@@ -128,7 +128,7 @@ export type EuiBetaBadgeProps = CommonProps &
   > &
   BadgeProps;
 
-export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
+export const EuiBetaBadge: FunctionComponent<React.PropsWithChildren<EuiBetaBadgeProps>> = ({
   className,
   label,
   color = 'hollow',

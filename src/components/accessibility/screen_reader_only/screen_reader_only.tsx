@@ -25,7 +25,7 @@ export interface EuiScreenReaderOnlyProps {
   className?: string;
 }
 
-export const EuiScreenReaderOnly: FunctionComponent<EuiScreenReaderOnlyProps> = ({
+export const EuiScreenReaderOnly: FunctionComponent<React.PropsWithChildren<EuiScreenReaderOnlyProps>> = ({
   children,
   className,
   showOnFocus,

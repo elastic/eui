@@ -48,7 +48,7 @@ export interface EuiResizableButtonProps
     CommonProps,
     Partial<EuiResizableButtonControls> {}
 
-export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
+export const EuiResizableButton: FunctionComponent<React.PropsWithChildren<EuiResizableButtonProps>> = ({
   isHorizontal,
   className,
   id,

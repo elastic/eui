@@ -165,7 +165,7 @@ const fillInChunks = (
   return allChunks;
 };
 
-export const EuiHighlight: FunctionComponent<EuiHighlightProps> = ({
+export const EuiHighlight: FunctionComponent<React.PropsWithChildren<EuiHighlightProps>> = ({
   children,
   className,
   search,

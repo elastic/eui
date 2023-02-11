@@ -6,14 +6,14 @@ import {
   MetricWTrend,
 } from '@elastic/charts';
 
-export const MetricProps: FunctionComponent<{
+export const MetricProps: FunctionComponent<React.PropsWithChildren<{
   data: Array<
     Array<MetricWNumber | MetricWProgress | MetricWTrend | MetricWText>
   >;
-}> = () => null;
+}>> = () => null;
 
-export const MetricDatumWText: FunctionComponent<MetricWText> = () => null;
-export const MetricDatumWNumber: FunctionComponent<MetricWNumber> = () => null;
-export const MetricDatumWProgress: FunctionComponent<MetricWProgress> = () =>
+export const MetricDatumWText: FunctionComponent<React.PropsWithChildren<MetricWText>> = () => null;
+export const MetricDatumWNumber: FunctionComponent<React.PropsWithChildren<MetricWNumber>> = () => null;
+export const MetricDatumWProgress: FunctionComponent<React.PropsWithChildren<MetricWProgress>> = () =>
   null;
-export const MetricDatumWTrend: FunctionComponent<MetricWTrend> = () => null;
+export const MetricDatumWTrend: FunctionComponent<React.PropsWithChildren<MetricWTrend>> = () => null;

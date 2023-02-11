@@ -13,7 +13,7 @@ import { CommonProps } from '../../common';
 
 export type EuiFormHelpTextProps = CommonProps & HTMLAttributes<HTMLDivElement>;
 
-export const EuiFormHelpText: FunctionComponent<EuiFormHelpTextProps> = ({
+export const EuiFormHelpText: FunctionComponent<React.PropsWithChildren<EuiFormHelpTextProps>> = ({
   children,
   className,
   ...rest

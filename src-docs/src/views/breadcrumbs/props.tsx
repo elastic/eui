@@ -5,8 +5,8 @@ import {
   EuiBreadcrumbResponsiveMaxCount,
 } from '../../../../src/components/breadcrumbs';
 
-export const BreadcrumbProps: FunctionComponent<EuiBreadcrumb> = () => <div />;
+export const BreadcrumbProps: FunctionComponent<React.PropsWithChildren<EuiBreadcrumb>> = () => <div />;
 
-export const BreadcrumbResponsiveMaxCount: FunctionComponent<EuiBreadcrumbResponsiveMaxCount> = () => (
+export const BreadcrumbResponsiveMaxCount: FunctionComponent<React.PropsWithChildren<EuiBreadcrumbResponsiveMaxCount>> = () => (
   <div />
 );

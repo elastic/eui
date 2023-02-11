@@ -83,7 +83,7 @@ export const useInMemoryValues = (
 /**
  * InMemory renderer
  */
-export const EuiDataGridInMemoryRenderer: FunctionComponent<EuiDataGridInMemoryRendererProps> = ({
+export const EuiDataGridInMemoryRenderer: FunctionComponent<React.PropsWithChildren<EuiDataGridInMemoryRendererProps>> = ({
   inMemory,
   columns,
   rowCount,

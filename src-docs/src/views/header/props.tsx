@@ -2,6 +2,6 @@ import React, { FunctionComponent } from 'react';
 
 import { EuiHeaderSections } from '../../../../src/components/header';
 
-export const EuiHeaderSectionsProp: FunctionComponent<EuiHeaderSections> = () => (
+export const EuiHeaderSectionsProp: FunctionComponent<React.PropsWithChildren<EuiHeaderSections>> = () => (
   <div />
 );

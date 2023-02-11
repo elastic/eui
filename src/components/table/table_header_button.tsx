@@ -18,7 +18,7 @@ export type EuiTableHeaderButtonProps = CommonProps &
     iconType?: IconType;
   };
 
-export const EuiTableHeaderButton: FunctionComponent<EuiTableHeaderButtonProps> = ({
+export const EuiTableHeaderButton: FunctionComponent<React.PropsWithChildren<EuiTableHeaderButtonProps>> = ({
   children,
   className,
   iconType,

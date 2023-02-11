@@ -37,7 +37,7 @@ export type ThemeExample = {
   };
 };
 
-export const ThemeExample: FunctionComponent<ThemeExample> = ({
+export const ThemeExample: FunctionComponent<React.PropsWithChildren<ThemeExample>> = ({
   color,
   type = 'token',
   title,

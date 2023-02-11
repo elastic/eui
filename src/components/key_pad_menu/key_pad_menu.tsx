@@ -45,7 +45,7 @@ export type EuiKeyPadMenuProps = CommonProps &
     checkable?: _EuiKeyPadMenuCheckableProps | true;
   };
 
-export const EuiKeyPadMenu: FunctionComponent<EuiKeyPadMenuProps> = ({
+export const EuiKeyPadMenu: FunctionComponent<React.PropsWithChildren<EuiKeyPadMenuProps>> = ({
   children,
   className,
   checkable,

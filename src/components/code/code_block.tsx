@@ -107,7 +107,7 @@ export type EuiCodeBlockProps = EuiCodeSharedProps & {
   isVirtualized?: boolean;
 } & VirtualizedOptionProps;
 
-export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
+export const EuiCodeBlock: FunctionComponent<React.PropsWithChildren<EuiCodeBlockProps>> = ({
   language: _language = DEFAULT_LANGUAGE,
   transparentBackground = false,
   paddingSize = 'l',

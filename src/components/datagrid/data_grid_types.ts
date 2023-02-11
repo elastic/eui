@@ -550,7 +550,7 @@ export interface EuiDataGridControlColumn {
   /**
    * Component to render in the column header
    */
-  headerCellRender: ComponentType;
+  headerCellRender: ComponentType<React.PropsWithChildren<unknown>>;
   /**
    * Component to render for each row in the column
    */

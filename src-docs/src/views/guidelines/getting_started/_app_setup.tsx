@@ -11,7 +11,7 @@ import {
 
 type AppSetup = {};
 
-export const AppSetup: FunctionComponent<AppSetup> = ({}) => {
+export const AppSetup: FunctionComponent<React.PropsWithChildren<AppSetup>> = ({}) => {
   const { colorMode } = useEuiTheme();
 
   const appSetup = (
