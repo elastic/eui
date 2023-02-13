@@ -3,7 +3,11 @@ import React from 'react';
 import { EuiCodeBlock, EuiSpacer } from '../../../../src/components';
 
 const jsCode = `/* I'm an example of JS */
-import React from 'react';`;
+const myObj = {
+  key1: 1,
+  key2: 'string value'
+  key3: ['val', 'val2', 'val3']
+};`;
 
 export default () => (
   <>
