@@ -25,7 +25,12 @@ export const euiStepStyles = (
   const euiTheme = euiThemeContext.euiTheme;
   const euiStep = euiStepVariables(euiThemeContext);
 
-  const linerGradient = `linear-gradient(to right, transparent 0, transparent 15px, ${euiTheme.border.color} 15px, ${euiTheme.border.color} 17px, transparent 17px, transparent 100%)`;
+  // the vertical line is centered on the number, so we need to offset the line by half the number size
+  // and because the vertical line is 2px, we also need to offset the number by 1px to center it
+  const lineStartPosition = mathWithUnits(euiStep.numberSize, (x) => x / 2 - 1);
+  const lineEndPosition = mathWithUnits(euiStep.numberSize, (x) => x / 2 + 1);
+
+  const linerGradient = `linear-gradient(to right, transparent 0, transparent ${lineStartPosition}, ${euiTheme.border.color} ${lineStartPosition}, ${euiTheme.border.color} ${lineEndPosition}, transparent ${lineEndPosition}, transparent 100%)`;
 
   return {
     euiStep: css`
@@ -47,6 +52,7 @@ export const euiStepStyles = (
     `,
     small: css`
       &:not(:last-of-type) {
+        // Adjust the line to be centered on the small number
         background-position: -${euiTheme.size.xs} ${euiTheme.size.l};
       }
     `,

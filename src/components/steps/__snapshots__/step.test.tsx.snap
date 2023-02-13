@@ -31,7 +31,7 @@ exports[`EuiStep is rendered 1`] = `
     </p>
   </div>
   <div
-    class="euiStep__content emotion-euiStep__content"
+    class="euiStep__content emotion-euiStep__content-medium"
   >
     <p>
       Do this
@@ -69,7 +69,7 @@ exports[`EuiStep props headingElement 1`] = `
     </h3>
   </div>
   <div
-    class="euiStep__content emotion-euiStep__content"
+    class="euiStep__content emotion-euiStep__content-medium"
   >
     <p>
       Do this
@@ -102,7 +102,7 @@ exports[`EuiStep props status complete is rendered 1`] = `
     </p>
   </div>
   <div
-    class="euiStep__content emotion-euiStep__content"
+    class="euiStep__content emotion-euiStep__content-medium"
   >
     <p>
       Do this
@@ -140,7 +140,7 @@ exports[`EuiStep props status current is rendered 1`] = `
     </p>
   </div>
   <div
-    class="euiStep__content emotion-euiStep__content"
+    class="euiStep__content emotion-euiStep__content-medium"
   >
     <p>
       Do this
@@ -173,7 +173,7 @@ exports[`EuiStep props status danger is rendered 1`] = `
     </p>
   </div>
   <div
-    class="euiStep__content emotion-euiStep__content"
+    class="euiStep__content emotion-euiStep__content-medium"
   >
     <p>
       Do this
@@ -211,7 +211,7 @@ exports[`EuiStep props status disabled is rendered 1`] = `
     </p>
   </div>
   <div
-    class="euiStep__content emotion-euiStep__content"
+    class="euiStep__content emotion-euiStep__content-medium"
   >
     <p>
       Do this
@@ -249,7 +249,7 @@ exports[`EuiStep props status incomplete is rendered 1`] = `
     </p>
   </div>
   <div
-    class="euiStep__content emotion-euiStep__content"
+    class="euiStep__content emotion-euiStep__content-medium"
   >
     <p>
       Do this
@@ -286,7 +286,7 @@ exports[`EuiStep props status loading is rendered 1`] = `
     </p>
   </div>
   <div
-    class="euiStep__content emotion-euiStep__content"
+    class="euiStep__content emotion-euiStep__content-medium"
   >
     <p>
       Do this
@@ -319,7 +319,7 @@ exports[`EuiStep props status warning is rendered 1`] = `
     </p>
   </div>
   <div
-    class="euiStep__content emotion-euiStep__content"
+    class="euiStep__content emotion-euiStep__content-medium"
   >
     <p>
       Do this
@@ -357,7 +357,7 @@ exports[`EuiStep props step 1`] = `
     </p>
   </div>
   <div
-    class="euiStep__content emotion-euiStep__content"
+    class="euiStep__content emotion-euiStep__content-medium"
   >
     <p>
       Do this
@@ -395,7 +395,7 @@ exports[`EuiStep props titleSize 1`] = `
     </p>
   </div>
   <div
-    class="euiStep__content emotion-euiStep__content"
+    class="euiStep__content emotion-euiStep__content-small"
   >
     <p>
       Do this
