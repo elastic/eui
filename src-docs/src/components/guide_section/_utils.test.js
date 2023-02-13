@@ -315,7 +315,7 @@ describe('renderJsSourceCode', () => {
       );
     });
 
-    it('handles importing React correctly by ignoring code comments', () => {
+    it('does not handle import statements within template literal backticks', () => {
       expect(
         renderJsSourceCode({
           default: dedent(`
