@@ -314,5 +314,30 @@ describe('renderJsSourceCode', () => {
           export default () => 'Hello world!';`)
       );
     });
+
+    it('handles importing React correctly by ignoring code comments', () => {
+      expect(
+        renderJsSourceCode({
+          default: dedent(`
+            import React from 'react';
+
+            import { v4 } from '@uuid/v4';
+
+            const jsCode = \`/* I'm an example of JS */
+            import React from 'react';\`;
+  
+            export default () => 'Hello world!';`),
+        })
+      ).toEqual(
+        dedent(`
+            import React from 'react';
+            import { v4 } from '@uuid/v4';
+
+            const jsCode = \`/* I'm an example of JS */
+            import React from 'react';\`;
+  
+            export default () => 'Hello world!';`)
+      );
+    });
   });
 });
