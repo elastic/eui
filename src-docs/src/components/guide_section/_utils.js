@@ -14,7 +14,6 @@ export const renderJsSourceCode = (code) => {
    * Extract React import (to ensure it's always at the top)
    */
   let reactImport = '';
-
   renderedCode = renderedCode.replace(
     // import          - import + space
     // (React)?        - optional import `React` prefix - some files (like hooks) do not need it
@@ -80,7 +79,7 @@ export const renderJsSourceCode = (code) => {
     // import                        - import + whitespace
     // ([^]+?)                       - capture any characters (including newlines)
     //  from ('[A-Za-z0-9 -_.@/]*';) - ` from 'someLibrary';` - alphanumeric and certain special characters only
-    /(\/\/.+\n)?import ([^]+?) from ('[A-Za-z0-9 -_.@/]*';)/g,
+    /(\/\/.+\n)?import ((?!React)[^]+?) from ('[A-Za-z0-9 -_.@/]*';)/g,
     (match) => {
       remainingImports.push(match);
       return '';

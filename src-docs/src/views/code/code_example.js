@@ -21,11 +21,7 @@ import CodeBlock from './code_block';
 const codeBlockSource = require('!!raw-loader!./code_block');
 const codeBlockSnippet = `<EuiCodeBlock language="jsx" fontSize="m" paddingSize="m">
   { \`/* I'm an example of JS */
-  const myObj = {
-    key1: 1,
-    key2: 'string value'
-    key3: ['val', 'val2', 'val3']
-  }\` }
+  import React from 'react';\` }
 </EuiCodeBlock>
 `;
 
