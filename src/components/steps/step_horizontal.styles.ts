@@ -27,8 +27,8 @@ const makeLineProgress = (euiTheme: UseEuiTheme['euiTheme']) => {
 };
 
 export const euiStepHorizontalStyles = (euiThemeContext: UseEuiTheme) => {
-  const euiTheme = euiThemeContext.euiTheme;
-  const euiStep = euiStepVariables(euiThemeContext);
+  const { euiTheme } = euiThemeContext;
+  const euiStep = euiStepVariables(euiTheme);
 
   /**
    * 1. Ensure the connecting lines stays behind the number
@@ -130,7 +130,7 @@ export const euiStepHorizontalStyles = (euiThemeContext: UseEuiTheme) => {
 };
 
 export const euiStepHorizontalTitleStyles = (euiThemeContext: UseEuiTheme) => {
-  const euiTheme = euiThemeContext.euiTheme;
+  const { euiTheme } = euiThemeContext;
 
   return {
     euiStepHorizontal__title: css`

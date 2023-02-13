@@ -37,8 +37,8 @@ const createStepsNumber = (
 };
 
 export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
-  const euiTheme = euiThemeContext.euiTheme;
-  const euiStep = euiStepVariables(euiThemeContext);
+  const { euiTheme } = euiThemeContext;
+  const euiStep = euiStepVariables(euiTheme);
 
   return {
     euiStepNumber: css`

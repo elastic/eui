@@ -10,17 +10,17 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 import { mathWithUnits, logicalShorthandCSS } from '../../global_styling';
 
-export const euiStepVariables = (euiThemeContext: UseEuiTheme) => {
+export const euiStepVariables = (euiTheme: UseEuiTheme['euiTheme']) => {
   return {
-    numberSmallSize: euiThemeContext.euiTheme.size.l,
-    numberSize: euiThemeContext.euiTheme.size.xl,
-    numberMargin: euiThemeContext.euiTheme.size.base,
+    numberSmallSize: euiTheme.size.l,
+    numberSize: euiTheme.size.xl,
+    numberMargin: euiTheme.size.base,
   };
 };
 
 export const euiStepStyles = (euiThemeContext: UseEuiTheme) => {
-  const euiTheme = euiThemeContext.euiTheme;
-  const euiStep = euiStepVariables(euiThemeContext);
+  const { euiTheme } = euiThemeContext;
+  const euiStep = euiStepVariables(euiTheme);
 
   // the vertical line is centered on the number, so we need to offset the line by half the number size
   // and because the vertical line is 2px, we also need to offset the number by 1px to center it
@@ -67,8 +67,8 @@ export const euiStepStyles = (euiThemeContext: UseEuiTheme) => {
 };
 
 export const euiStepContentStyles = (euiThemeContext: UseEuiTheme) => {
-  const euiTheme = euiThemeContext.euiTheme;
-  const euiStep = euiStepVariables(euiThemeContext);
+  const { euiTheme } = euiThemeContext;
+  const euiStep = euiStepVariables(euiTheme);
 
   return {
     euiStep__content: css`
