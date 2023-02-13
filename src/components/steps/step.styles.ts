@@ -18,10 +18,7 @@ export const euiStepVariables = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
-export const euiStepStyles = (
-  euiThemeContext: UseEuiTheme,
-  isDisabled: boolean
-) => {
+export const euiStepStyles = (euiThemeContext: UseEuiTheme) => {
   const euiTheme = euiThemeContext.euiTheme;
   const euiStep = euiStepVariables(euiThemeContext);
 
@@ -57,12 +54,11 @@ export const euiStepStyles = (
       }
     `,
     isDisabled: css``,
-    euiStep__title: css`
-      ${isDisabled &&
-      `
+    euiStep__title: {
+      isDisabled: css`
         color: ${euiTheme.colors.disabledText};
-      `}
-    `,
+      `,
+    },
     euiStep__titleWrapper: css`
       display: flex;
       gap: ${euiStep.numberMargin};

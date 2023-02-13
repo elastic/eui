@@ -25,7 +25,7 @@ exports[`EuiStep is rendered 1`] = `
       </span>
     </span>
     <p
-      class="euiTitle euiStep__title emotion-euiTitle-s-euiStep__title"
+      class="euiTitle euiStep__title emotion-euiTitle-s-isDisabled"
     >
       First step
     </p>
@@ -63,7 +63,7 @@ exports[`EuiStep props headingElement 1`] = `
       </span>
     </span>
     <h3
-      class="euiTitle euiStep__title emotion-euiTitle-s-euiStep__title"
+      class="euiTitle euiStep__title emotion-euiTitle-s-isDisabled"
     >
       First step
     </h3>
@@ -96,7 +96,7 @@ exports[`EuiStep props status complete is rendered 1`] = `
       </span>
     </span>
     <p
-      class="euiTitle euiStep__title emotion-euiTitle-s-euiStep__title"
+      class="euiTitle euiStep__title emotion-euiTitle-s-isDisabled"
     >
       First step
     </p>
@@ -134,7 +134,7 @@ exports[`EuiStep props status current is rendered 1`] = `
       </span>
     </span>
     <p
-      class="euiTitle euiStep__title emotion-euiTitle-s-euiStep__title"
+      class="euiTitle euiStep__title emotion-euiTitle-s-isDisabled"
     >
       First step
     </p>
@@ -167,7 +167,7 @@ exports[`EuiStep props status danger is rendered 1`] = `
       </span>
     </span>
     <p
-      class="euiTitle euiStep__title emotion-euiTitle-s-euiStep__title"
+      class="euiTitle euiStep__title emotion-euiTitle-s-isDisabled"
     >
       First step
     </p>
@@ -205,7 +205,7 @@ exports[`EuiStep props status disabled is rendered 1`] = `
       </span>
     </span>
     <p
-      class="euiTitle euiStep__title emotion-euiTitle-s-euiStep__title"
+      class="euiTitle euiStep__title emotion-euiTitle-s-isDisabled-isDisabled"
     >
       First step
     </p>
@@ -243,7 +243,7 @@ exports[`EuiStep props status incomplete is rendered 1`] = `
       </span>
     </span>
     <p
-      class="euiTitle euiStep__title emotion-euiTitle-s-euiStep__title"
+      class="euiTitle euiStep__title emotion-euiTitle-s-isDisabled"
     >
       First step
     </p>
@@ -280,7 +280,7 @@ exports[`EuiStep props status loading is rendered 1`] = `
       />
     </span>
     <p
-      class="euiTitle euiStep__title emotion-euiTitle-s-euiStep__title"
+      class="euiTitle euiStep__title emotion-euiTitle-s-isDisabled"
     >
       First step
     </p>
@@ -313,7 +313,7 @@ exports[`EuiStep props status warning is rendered 1`] = `
       </span>
     </span>
     <p
-      class="euiTitle euiStep__title emotion-euiTitle-s-euiStep__title"
+      class="euiTitle euiStep__title emotion-euiTitle-s-isDisabled"
     >
       First step
     </p>
@@ -351,7 +351,7 @@ exports[`EuiStep props step 1`] = `
       </span>
     </span>
     <p
-      class="euiTitle euiStep__title emotion-euiTitle-s-euiStep__title"
+      class="euiTitle euiStep__title emotion-euiTitle-s-isDisabled"
     >
       First step
     </p>
@@ -389,7 +389,7 @@ exports[`EuiStep props titleSize 1`] = `
       </span>
     </span>
     <p
-      class="euiTitle euiStep__title emotion-euiTitle-xs-euiStep__title"
+      class="euiTitle euiStep__title emotion-euiTitle-xs-isDisabled"
     >
       First step
     </p>

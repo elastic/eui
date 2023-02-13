@@ -24,7 +24,10 @@ import {
   useI18nWarningStep,
 } from './step_strings';
 import { useEuiTheme } from '../../services';
-import { euiStepHorizontalStyles } from './step_horizontal.styles';
+import {
+  euiStepHorizontalStyles,
+  euiStepHorizontalTitleStyles,
+} from './step_horizontal.styles';
 
 export interface EuiStepHorizontalProps
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'>,
@@ -74,7 +77,7 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
   const isWarning = status === 'warning';
 
   const euiTheme = useEuiTheme();
-  const styles = euiStepHorizontalStyles(euiTheme, isDisabled);
+  const styles = euiStepHorizontalStyles(euiTheme);
   const cssStyles = [
     styles.euiStepHorizontal,
     isSelected && styles.isSelected,
@@ -84,7 +87,12 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
   ];
 
   const cssNumberStyles = styles.euiStepHorizontal__number;
-  const cssTitleStyles = styles.euiStepHorizontal__title;
+
+  const titleStyles = euiStepHorizontalTitleStyles(euiTheme);
+  const cssTitleStyles = [
+    titleStyles.euiStepHorizontal__title,
+    isDisabled && titleStyles.isDisabled,
+  ];
 
   let stepTitle = buttonTitle;
   if (isDisabled) stepTitle = disabledTitle;

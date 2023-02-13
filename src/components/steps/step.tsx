@@ -63,7 +63,7 @@ export const EuiStep: FunctionComponent<EuiStepProps> = ({
   const isSmall = titleSize === 'xs';
 
   const euiTheme = useEuiTheme();
-  const styles = euiStepStyles(euiTheme, isDisabled);
+  const styles = euiStepStyles(euiTheme);
   const cssStyles = [
     styles.euiStep,
     isSmall && styles.small,
@@ -78,17 +78,20 @@ export const EuiStep: FunctionComponent<EuiStepProps> = ({
     !isSmall && contentStyles.medium,
   ];
 
-  const euiStepTitleStyles = styles.euiStep__title;
-  const titleWrapperStyles = styles.euiStep__titleWrapper;
+  const cssStepTitleStyles = [
+    styles.euiStep__title,
+    isDisabled && styles.euiStep__title.isDisabled,
+  ];
+  const cssTitleWrapperStyles = styles.euiStep__titleWrapper;
 
   return (
     <div className={classes} css={cssStyles} {...rest}>
-      <div className="euiStep__titleWrapper" css={titleWrapperStyles}>
+      <div className="euiStep__titleWrapper" css={cssTitleWrapperStyles}>
         <EuiStepNumber number={step} status={status} titleSize={titleSize} />
         <EuiTitle
           size={titleSize as EuiTitleSize}
           className="euiStep__title"
-          css={euiStepTitleStyles}
+          css={cssStepTitleStyles}
         >
           {createElement(headingElement, null, title)}
         </EuiTitle>

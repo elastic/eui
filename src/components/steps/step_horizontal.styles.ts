@@ -26,10 +26,7 @@ const makeLineProgress = (euiTheme: UseEuiTheme['euiTheme']) => {
   `;
 };
 
-export const euiStepHorizontalStyles = (
-  euiThemeContext: UseEuiTheme,
-  isDisabled: boolean
-) => {
+export const euiStepHorizontalStyles = (euiThemeContext: UseEuiTheme) => {
   const euiTheme = euiThemeContext.euiTheme;
   const euiStep = euiStepVariables(euiThemeContext);
 
@@ -53,9 +50,7 @@ export const euiStepHorizontalStyles = (
       position: relative;
       inline-size: 100%;
 
-      // focus & hover state
-      ${!isDisabled &&
-      `
+      &:not([class*='-isDisabled']) {
         &:focus,
         &:hover {
           .euiStepHorizontal__title {
@@ -65,18 +60,17 @@ export const euiStepHorizontalStyles = (
 
         &:focus {
           outline: none;
-  
+
           .euiStepHorizontal__number {
             ${euiFocusRing(euiThemeContext)}
           }
 
           .euiStepHorizontal__number:not(:focus-visible) {
-            outline: ${euiTheme.focus.width} solid ${
-        euiTheme.colors.darkestShade
-      };
+            outline: ${euiTheme.focus.width} solid
+              ${euiTheme.colors.darkestShade};
           }
         }
-      `}
+      }
 
       // create the connecting lines
       &::before,
@@ -132,21 +126,26 @@ export const euiStepHorizontalStyles = (
         transition: all ${euiTheme.animation.fast} ease-in-out;
       }
     `,
+  };
+};
+
+export const euiStepHorizontalTitleStyles = (euiThemeContext: UseEuiTheme) => {
+  const euiTheme = euiThemeContext.euiTheme;
+
+  return {
     euiStepHorizontal__title: css`
       ${euiTitle(euiThemeContext, 'xs')};
       margin-block-start: ${euiTheme.size.s};
       font-weight: ${euiTheme.font.weight.bold};
       text-align: center;
 
-      ${isDisabled &&
-      `
-         color: ${euiTheme.colors.disabledText};
-      `}
-
       // hide titles on small screens
       ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
         display: none;
       }
+    `,
+    isDisabled: css`
+      color: ${euiTheme.colors.disabledText};
     `,
   };
 };

@@ -117,7 +117,7 @@ exports[`EuiStepHorizontal props status disabled is rendered 1`] = `
     </span>
   </span>
   <span
-    class="euiStepHorizontal__title emotion-euiStepHorizontal__title"
+    class="euiStepHorizontal__title emotion-euiStepHorizontal__title-isDisabled"
   />
 </button>
 `;
@@ -144,7 +144,7 @@ exports[`EuiStepHorizontal props status disabled overrides the passed status 1`]
     </span>
   </span>
   <span
-    class="euiStepHorizontal__title emotion-euiStepHorizontal__title"
+    class="euiStepHorizontal__title emotion-euiStepHorizontal__title-isDisabled"
   />
 </button>
 `;

@@ -112,7 +112,7 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
         </span>
       </span>
       <span
-        class="euiStepHorizontal__title emotion-euiStepHorizontal__title"
+        class="euiStepHorizontal__title emotion-euiStepHorizontal__title-isDisabled"
       >
         Disabled Step 4
       </span>
