@@ -19,13 +19,6 @@ import { euiShadowXSmall } from '../../themes/amsterdam/global_styling/mixins';
 import { euiTitle } from '../title/title.styles';
 import { euiStepVariables } from './step.styles';
 
-const makeLineProgress = (euiTheme: UseEuiTheme['euiTheme']) => {
-  return `
-    block-size: 2px;
-    background-color: ${euiTheme.border.color};
-  `;
-};
-
 export const euiStepHorizontalStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const euiStep = euiStepVariables(euiTheme);
@@ -50,34 +43,13 @@ export const euiStepHorizontalStyles = (euiThemeContext: UseEuiTheme) => {
       position: relative;
       inline-size: 100%;
 
-      &:not([class*='-isDisabled']) {
-        &:focus,
-        &:hover {
-          .euiStepHorizontal__title {
-            text-decoration: underline;
-          }
-        }
-
-        &:focus {
-          outline: none;
-
-          .euiStepHorizontal__number {
-            ${euiFocusRing(euiThemeContext)}
-          }
-
-          .euiStepHorizontal__number:not(:focus-visible) {
-            outline: ${euiTheme.focus.width} solid
-              ${euiTheme.colors.darkestShade};
-          }
-        }
-      }
-
       // create the connecting lines
       &::before,
       &::after {
-        ${makeLineProgress(euiTheme)}
         content: '';
         position: absolute;
+        background-color: ${euiTheme.border.color};
+        block-size: 2px;
         inline-size: calc(50% - (${euiStep.numberSize} / 2));
         inset-block-start: ${mathWithUnits(
           [euiTheme.size.l, euiStep.numberSize],
@@ -93,38 +65,49 @@ export const euiStepHorizontalStyles = (euiThemeContext: UseEuiTheme) => {
       &::after {
         inset-inline-end: 0;
       }
+    `,
+    // Note: these selectors must be nested because focus/hover state
+    // is on the parent container, but affects specific children
+    enabled: css`
+      &:focus,
+      &:hover {
+        .euiStepHorizontal__title {
+          text-decoration: underline;
+        }
+      }
 
-      ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
-        display: inline-block !important;
+      &:focus {
+        outline: none;
+
+        .euiStepHorizontal__number {
+          ${euiFocusRing(euiThemeContext)}
+        }
+
+        .euiStepHorizontal__number:not(:focus-visible) {
+          outline: ${euiTheme.focus.width} solid ${euiTheme.colors.darkestShade};
+        }
       }
     `,
-    isComplete: css`
-      &::before,
-      &::after {
-        ${makeLineProgress(euiTheme)}
-      }
-    `,
-    isIncomplete: css``,
-    isDisabled: css`
+    disabled: css`
       cursor: not-allowed;
     `,
-    isSelected: css`
-      .euiStepHorizontal__number:not([class*='danger']):not([class*='warning']):not([class*='loading']) {
-        ${euiShadowXSmall(euiThemeContext)}
-      }
+  };
+};
 
-      &::before {
-        ${makeLineProgress(euiTheme)}
-      }
-    `,
+export const euiStepHorizontalNumberStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+
+  return {
     euiStepHorizontal__number: css`
       position: relative; /* 1 */
-      z-index: ${mathWithUnits(euiTheme.levels.content, (x) => x + 1)}; /* 1 */
-      margin-inline-end: 0;
+      z-index: ${Number(euiTheme.levels.content) + 1}; /* 1 */
 
       ${euiCanAnimate} {
         transition: all ${euiTheme.animation.fast} ease-in-out;
       }
+    `,
+    current: css`
+      ${euiShadowXSmall(euiThemeContext)}
     `,
   };
 };
@@ -144,7 +127,7 @@ export const euiStepHorizontalTitleStyles = (euiThemeContext: UseEuiTheme) => {
         display: none;
       }
     `,
-    isDisabled: css`
+    disabled: css`
       color: ${euiTheme.colors.disabledText};
     `,
   };

@@ -28,23 +28,18 @@ export const EuiStepsHorizontal: FunctionComponent<EuiStepsHorizontalProps> = ({
 }) => {
   const classes = classNames('euiStepsHorizontal', className);
   const styles = euiStepsHorizontalStyles();
-  const cssStyles = [styles.euiStepsHorizontal];
-  const cssItemStyles = styles.euiStepsHorizontal_item;
+  const cssStyles = styles.euiStepsHorizontal;
+  const cssItemStyles = styles.euiStepsHorizontal__item;
 
   return (
     <ol className={classes} css={cssStyles} {...rest}>
       {steps.map((stepProps, index) => {
-        const isCurrent =
-          stepProps.status === 'current'
-            ? { 'aria-current': 'step' as const }
-            : {};
-
         return (
           <li
             key={index}
             className="euiStepsHorizontal__item"
             css={cssItemStyles}
-            {...isCurrent}
+            aria-current={stepProps.status === 'current' ? 'step' : undefined}
           >
             <EuiStepHorizontal step={index + 1} {...stepProps} />
           </li>

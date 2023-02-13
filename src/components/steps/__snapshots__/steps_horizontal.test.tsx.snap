@@ -7,10 +7,11 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <li
-    class="euiStepsHorizontal__item emotion-euiStepsHorizontal_item"
+    class="euiStepsHorizontal__item emotion-euiStepsHorizontal__item"
   >
     <button
-      class="euiStepHorizontal emotion-euiStepHorizontal-isComplete"
+      class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
+      data-step-status="complete"
       title="Step 1: Completed Step 1 is complete"
     >
       <span
@@ -32,14 +33,15 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
   </li>
   <li
     aria-current="step"
-    class="euiStepsHorizontal__item emotion-euiStepsHorizontal_item"
+    class="euiStepsHorizontal__item emotion-euiStepsHorizontal__item"
   >
     <button
-      class="euiStepHorizontal emotion-euiStepHorizontal-isSelected"
+      class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
+      data-step-status="current"
       title="Current step 2: Selected Step 2"
     >
       <span
-        class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-s-current-euiStepHorizontal__number"
+        class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-s-current-euiStepHorizontal__number-current"
       >
         <span
           class="emotion-euiScreenReaderOnly"
@@ -61,10 +63,11 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
     </button>
   </li>
   <li
-    class="euiStepsHorizontal__item emotion-euiStepsHorizontal_item"
+    class="euiStepsHorizontal__item emotion-euiStepsHorizontal__item"
   >
     <button
-      class="euiStepHorizontal emotion-euiStepHorizontal-isIncomplete"
+      class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
+      data-step-status="incomplete"
       title="Step 3: Incomplete Step 3 is incomplete"
     >
       <span
@@ -90,10 +93,11 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
     </button>
   </li>
   <li
-    class="euiStepsHorizontal__item emotion-euiStepsHorizontal_item"
+    class="euiStepsHorizontal__item emotion-euiStepsHorizontal__item"
   >
     <button
-      class="euiStepHorizontal emotion-euiStepHorizontal-isDisabled"
+      class="euiStepHorizontal emotion-euiStepHorizontal-disabled"
+      data-step-status="disabled"
       title="Step 4: Disabled Step 4 is disabled"
     >
       <span
@@ -112,7 +116,7 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
         </span>
       </span>
       <span
-        class="euiStepHorizontal__title emotion-euiStepHorizontal__title-isDisabled"
+        class="euiStepHorizontal__title emotion-euiStepHorizontal__title-disabled"
       >
         Disabled Step 4
       </span>

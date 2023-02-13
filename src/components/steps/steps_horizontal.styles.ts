@@ -15,7 +15,7 @@ export const euiStepsHorizontalStyles = () => {
       display: flex;
       align-items: stretch;
     `,
-    euiStepsHorizontal_item: css`
+    euiStepsHorizontal__item: css`
       flex-grow: 1; /* 1 */
       flex-basis: 0%; /* 1 */
 
