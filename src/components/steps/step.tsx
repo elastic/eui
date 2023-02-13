@@ -17,7 +17,11 @@ import { CommonProps } from '../common';
 import { EuiTitle, EuiTitleProps, EuiTitleSize } from '../title';
 import { EuiStepNumber, EuiStepStatus } from './step_number';
 import { useEuiTheme } from '../../services';
-import { euiStepStyles, euiStepContentStyles } from './step.styles';
+import {
+  euiStepStyles,
+  euiStepContentStyles,
+  euiStepTitleStyles,
+} from './step.styles';
 
 export interface EuiStepInterface {
   /**
@@ -57,32 +61,25 @@ export const EuiStep: FunctionComponent<EuiStepProps> = ({
   status,
   ...rest
 }) => {
-  const isDisabled = status === 'disabled';
   const classes = classNames('euiStep', className);
-
-  const isSmall = titleSize === 'xs';
 
   const euiTheme = useEuiTheme();
   const styles = euiStepStyles(euiTheme);
-  const cssStyles = [
-    styles.euiStep,
-    isSmall && styles.small,
-    !isSmall && styles.medium,
-    isDisabled && styles.isDisabled,
-  ];
+  const cssStyles = [styles.euiStep, styles[titleSize]];
 
   const contentStyles = euiStepContentStyles(euiTheme);
   const cssContentStyles = [
     contentStyles.euiStep__content,
-    isSmall && contentStyles.small,
-    !isSmall && contentStyles.medium,
+    contentStyles[titleSize],
   ];
 
+  const titleStyles = euiStepTitleStyles(euiTheme);
   const cssStepTitleStyles = [
-    styles.euiStep__title,
-    isDisabled && styles.euiStep__title.isDisabled,
+    titleStyles.euiStep__title,
+    status === 'disabled' && titleStyles.isDisabled,
+    titleStyles[titleSize],
   ];
-  const cssTitleWrapperStyles = styles.euiStep__titleWrapper;
+  const cssTitleWrapperStyles = titleStyles.euiStep__titleWrapper;
 
   return (
     <div className={classes} css={cssStyles} {...rest}>

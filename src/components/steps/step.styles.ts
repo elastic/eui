@@ -8,12 +8,12 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
-import { mathWithUnits, logicalShorthandCSS } from '../../global_styling';
+import { mathWithUnits, logicalCSS } from '../../global_styling';
 
 export const euiStepVariables = (euiTheme: UseEuiTheme['euiTheme']) => {
   return {
-    numberSmallSize: euiTheme.size.l,
     numberSize: euiTheme.size.xl,
+    numberXSSize: euiTheme.size.l,
     numberMargin: euiTheme.size.base,
   };
 };
@@ -27,41 +27,38 @@ export const euiStepStyles = (euiThemeContext: UseEuiTheme) => {
   const lineStartPosition = mathWithUnits(euiStep.numberSize, (x) => x / 2 - 1);
   const lineEndPosition = mathWithUnits(euiStep.numberSize, (x) => x / 2 + 1);
 
-  const linerGradient = `linear-gradient(to right, transparent 0, transparent ${lineStartPosition}, ${euiTheme.border.color} ${lineStartPosition}, ${euiTheme.border.color} ${lineEndPosition}, transparent ${lineEndPosition}, transparent 100%)`;
+  const lineGradient = `linear-gradient(to right,
+    transparent 0,
+    transparent ${lineStartPosition},
+    ${euiTheme.border.color} ${lineStartPosition},
+    ${euiTheme.border.color} ${lineEndPosition},
+    transparent ${lineEndPosition},
+    transparent 100%)`;
 
   return {
     euiStep: css`
-      // Create border on all but the last step &:not(:last-of-type) {
+      // Create border on all but the last step
       &:not(:last-of-type) {
-        background-image: ${linerGradient};
+        background-image: ${lineGradient};
         background-repeat: no-repeat;
       }
     `,
-    // sizes
-    medium: css`
+    // Sizes
+    m: css`
       &:not(:last-of-type) {
         background-position: left ${euiTheme.size.xl};
       }
-
-      .euiStep__title {
-        padding-block-start: ${euiTheme.size.xxs};
+    `,
+    s: css`
+      &:not(:last-of-type) {
+        background-position: left ${euiTheme.size.xl};
       }
     `,
-    small: css`
+    xs: css`
       &:not(:last-of-type) {
-        // Adjust the line to be centered on the small number
+        // Adjust the line to be centered on the smaller number
         background-position: -${euiTheme.size.xs} ${euiTheme.size.l};
       }
-    `,
-    isDisabled: css``,
-    euiStep__title: {
-      isDisabled: css`
-        color: ${euiTheme.colors.disabledText};
-      `,
-    },
-    euiStep__titleWrapper: css`
-      display: flex;
-      gap: ${euiStep.numberMargin};
     `,
   };
 };
@@ -70,46 +67,72 @@ export const euiStepContentStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const euiStep = euiStepVariables(euiTheme);
 
-  return {
+  const styles = {
     euiStep__content: css`
-      ${logicalShorthandCSS(
-        'padding',
-        `${euiTheme.size.base} ${euiTheme.size.base} ${euiTheme.size.xl}`
+      ${logicalCSS('margin-top', euiTheme.size.s)}
+      ${logicalCSS('padding-top', euiTheme.size.base)}
+      ${logicalCSS(
+        'padding-bottom',
+        mathWithUnits([euiTheme.size.xl, euiTheme.size.s], (x, y) => x + y)
       )}
-      ${logicalShorthandCSS('margin', `${euiTheme.size.s} 0`)}
-         // Align the content's contents with the title
-         padding-inline-start: ${mathWithUnits(
-        [euiStep.numberSize, euiStep.numberMargin],
-        (x, y) => x / 2 + y
-      )};
-      margin-block-end: 0;
-      padding-block-end: ${mathWithUnits(
-        [euiTheme.size.xl, euiTheme.size.s],
-        (x, y) => x + y
-      )};
+      ${logicalCSS('padding-right', euiTheme.size.base)}
     `,
-    small: css`
+    // Sizes
+    m: css`
       // Align the content's contents with the title
-      padding-inline-start: ${mathWithUnits(
-        [euiStep.numberSmallSize, euiStep.numberMargin],
-        (x, y) => x / 2 + y
-      )};
-
+      ${logicalCSS(
+        'padding-left',
+        mathWithUnits(
+          [euiStep.numberSize, euiStep.numberMargin],
+          (x, y) => x / 2 + y
+        )
+      )}
       // Align content border to horizontal center of step number
-      margin-inline-start: ${mathWithUnits(
-        euiStep.numberSmallSize,
-        (x) => x / 2
-      )};
+      ${logicalCSS(
+        'margin-left',
+        mathWithUnits(euiStep.numberSize, (x) => x / 2)
+      )}
     `,
-    medium: css`
+    s: css``, // s is the same as m, so we'll programmatically duplicate it below
+    xs: css`
       // Align the content's contents with the title
-      padding-inline-start: ${mathWithUnits(
-        [euiStep.numberSize, euiStep.numberMargin],
-        (x, y) => x / 2 + y
-      )};
-
+      ${logicalCSS(
+        'padding-left',
+        mathWithUnits(
+          [euiStep.numberXSSize, euiStep.numberMargin],
+          (x, y) => x / 2 + y
+        )
+      )}
       // Align content border to horizontal center of step number
-      margin-inline-start: ${mathWithUnits(euiStep.numberSize, (x) => x / 2)};
+      ${logicalCSS(
+        'margin-left',
+        mathWithUnits(euiStep.numberXSSize, (x) => x / 2)
+      )}
     `,
+  };
+  styles.s = styles.m;
+
+  return styles;
+};
+
+export const euiStepTitleStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  const euiStep = euiStepVariables(euiTheme);
+
+  return {
+    euiStep__titleWrapper: css`
+      display: flex;
+      gap: ${euiStep.numberMargin};
+    `,
+    euiStep__title: css``,
+    isDisabled: css`
+      color: ${euiTheme.colors.disabledText};
+    `,
+    // Sizes
+    m: css``,
+    s: css`
+      ${logicalCSS('padding-top', euiTheme.size.xs)}
+    `,
+    xs: css``,
   };
 };

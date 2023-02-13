@@ -45,18 +45,25 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
       flex-shrink: 0;
     `,
     // sizes
-    small: css`
-      ${createStepsNumber(
-        euiTheme,
-        euiStep.numberSmallSize,
-        euiFontSizeFromScale('xs', euiTheme)
-      )}
-    `,
-    medium: css`
+    m: css`
       ${createStepsNumber(
         euiTheme,
         euiStep.numberSize,
         euiFontSizeFromScale('s', euiTheme)
+      )}
+    `,
+    s: css`
+      ${createStepsNumber(
+        euiTheme,
+        euiStep.numberSize,
+        euiFontSizeFromScale('s', euiTheme)
+      )}
+    `,
+    xs: css`
+      ${createStepsNumber(
+        euiTheme,
+        euiStep.numberXSSize,
+        euiFontSizeFromScale('xs', euiTheme)
       )}
     `,
     // status

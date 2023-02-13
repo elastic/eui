@@ -14,7 +14,7 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
       title="Step 1: Completed Step 1 is complete"
     >
       <span
-        class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-medium-complete-euiStepHorizontal__number"
+        class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-s-complete-euiStepHorizontal__number"
       >
         <span
           class="euiStepNumber__icon emotion-euiStepNumber__icon"
@@ -39,7 +39,7 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
       title="Current step 2: Selected Step 2"
     >
       <span
-        class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-medium-current-euiStepHorizontal__number"
+        class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-s-current-euiStepHorizontal__number"
       >
         <span
           class="emotion-euiScreenReaderOnly"
@@ -68,7 +68,7 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
       title="Step 3: Incomplete Step 3 is incomplete"
     >
       <span
-        class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-medium-incomplete-euiStepHorizontal__number"
+        class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-s-incomplete-euiStepHorizontal__number"
       >
         <span
           class="emotion-euiScreenReaderOnly"
@@ -97,7 +97,7 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
       title="Step 4: Disabled Step 4 is disabled"
     >
       <span
-        class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-medium-disabled-euiStepHorizontal__number"
+        class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-s-disabled-euiStepHorizontal__number"
       >
         <span
           class="emotion-euiScreenReaderOnly"

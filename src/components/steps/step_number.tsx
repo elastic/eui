@@ -57,7 +57,7 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
   className,
   status,
   number,
-  titleSize,
+  titleSize = 's',
   ...rest
 }) => {
   const stepAriaLabel = useI18nStep({ number });
@@ -69,16 +69,13 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
   const loadingAriaLabel = useI18nLoadingStep({ number });
   const currentAriaLabel = useI18nCurrentStep({ number });
 
-  const isSmall = titleSize === 'xs';
-
   const classes = classNames('euiStepNumber', className);
 
   const euiTheme = useEuiTheme();
   const styles = euiStepNumberStyles(euiTheme);
   const cssStyles = [
     styles.euiStepNumber,
-    isSmall && styles.small,
-    !isSmall && styles.medium,
+    styles[titleSize],
     status && styles[status],
   ];
 
