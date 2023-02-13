@@ -6,6 +6,4 @@
  * Side Public License, v 1.
  */
 
-export {
-  EuiInlineEdit,
-} from './inline_edit';
+export { EuiInlineEdit } from './inline_edit';

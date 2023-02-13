@@ -14,7 +14,9 @@ import { EuiInlineEdit } from './inline_edit';
 
 describe('EuiInlineEdit', () => {
   test('is rendered', () => {
-    const component = render(<EuiInlineEdit {...requiredProps} />);
+    const component = render(
+      <EuiInlineEdit display="text" inputLabel="textInput" {...requiredProps} />
+    );
 
     expect(component).toMatchSnapshot();
   });

@@ -11,7 +11,7 @@ export const InlineEditExample = {
   title: 'Inline edit',
   intro: (
     <>
-      <EuiText></EuiText>
+      <EuiText>This is where the description will go</EuiText>
     </>
   ),
   sections: [
