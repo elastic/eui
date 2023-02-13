@@ -6,15 +6,16 @@
  * Side Public License, v 1.
  */
 
-import React, { HTMLAttributes, FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { CommonProps, ExclusiveUnion } from '../common';
 import classNames from 'classnames';
-import { EuiButtonEmpty, EuiButtonIcon } from '../button';
-import { EuiFieldText, EuiFormRow } from '../form';
+import { EuiButtonEmpty, EuiButton } from '../button';
+import { EuiFieldText, EuiFormRow, EuiForm } from '../form';
 import { EuiTitle, EuiTitleSize } from '../title';
 import { EuiText, TextSize } from '../text';
-import { useEuiTheme } from '../../services';
-import { euiInlineEditStyles } from './inline_edit.styles';
+import { EuiFlexGroup, EuiFlexItem } from '../flex';
+// import { useEuiTheme } from '../../services';
+// import { euiInlineEditStyles } from './inline_edit.styles';
 import { htmlIdGenerator } from '../../services/accessibility';
 
 export const DISPLAY_TYPES = ['title', 'text'] as const;
@@ -29,8 +30,6 @@ interface TextDisplayProps {
   display: 'text';
   size?: TextSize;
 }
-
-type DisplayProps = TitleDisplayProps | TextDisplayProps;
 
 export type EuiInlineEditProps = CommonProps &
   ExclusiveUnion<TextDisplayProps, TitleDisplayProps> & {
@@ -73,9 +72,11 @@ export const EuiInlineEdit: FunctionComponent<EuiInlineEditProps> = ({
   ...rest
 }) => {
   const classes = classNames('euiInlineEdit', className);
-  const theme = useEuiTheme();
+
+  // Styles to come later
+  /*const theme = useEuiTheme();
   const styles = euiInlineEditStyles(theme);
-  const cssStyles = [styles.euiInlineEdit];
+  const cssStyles = [styles.euiInlineEdit];*/
 
   const [isInEdit, setIsInEdit] = useState(startWithEditOpen);
   const inlineEditInputId = htmlIdGenerator('__inlineEditInput')();
@@ -104,38 +105,54 @@ export const EuiInlineEdit: FunctionComponent<EuiInlineEditProps> = ({
     }
   };
 
-  const editViewButtons = (
-    <>
-      <EuiButtonIcon
-        iconType="check"
-        aria-label={confirmButtonAriaLabel || 'confirm'}
-        onClick={saveTextEditValue}
-      />
-      <EuiButtonIcon
-        iconType="cross"
-        aria-label={cancelButtonAriaLabel || 'cancel'}
-        onClick={() => {
-          setEditViewValue(readViewValue);
-          setIsInEdit(!isInEdit);
-        }}
-      />
-    </>
-  );
-
   const textEditViewElement = (
-    <EuiFormRow label={inputLabel}>
-      <>
-        <EuiFieldText
-          id={inlineEditInputId}
-          value={editViewValue}
-          onChange={editTextViewOnChange}
-          autoFocus
-          {...(rest as any)}
-        />
+    <EuiForm fullWidth>
+      <EuiFlexGroup>
+        <EuiFlexItem>
+          <EuiFormRow label={inputLabel}>
+            <>
+              <EuiFieldText
+                id={inlineEditInputId}
+                value={editViewValue}
+                onChange={editTextViewOnChange}
+                autoFocus
+                {...(rest as any)}
+              />
+            </>
+          </EuiFormRow>
+        </EuiFlexItem>
 
-        {editViewButtons}
-      </>
-    </EuiFormRow>
+        <EuiFlexItem grow={false}>
+          <EuiFormRow hasEmptyLabelSpace>
+            <EuiButton
+              iconType="check"
+              aria-label={confirmButtonAriaLabel || 'confirm'}
+              onClick={saveTextEditValue}
+              color="primary"
+              fill
+            >
+              Save
+            </EuiButton>
+          </EuiFormRow>
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiFormRow hasEmptyLabelSpace>
+            <EuiButton
+              iconType="cross"
+              aria-label={cancelButtonAriaLabel || 'cancel'}
+              onClick={() => {
+                setEditViewValue(readViewValue);
+                setIsInEdit(!isInEdit);
+              }}
+              color="primary"
+            >
+              Cancel
+            </EuiButton>
+          </EuiFormRow>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </EuiForm>
   );
 
   const textReadViewElement = (
@@ -149,11 +166,11 @@ export const EuiInlineEdit: FunctionComponent<EuiInlineEditProps> = ({
       }}
     >
       {display === 'title' ? (
-        <EuiTitle size={size}>
+        <EuiTitle size={size as EuiTitleSize}>
           <h2>{readViewValue}</h2>
         </EuiTitle>
       ) : (
-        <EuiText size={size}>{readViewValue}</EuiText>
+        <EuiText size={size as TextSize}>{readViewValue}</EuiText>
       )}
     </EuiButtonEmpty>
   );
