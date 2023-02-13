@@ -23,7 +23,7 @@ export default () => {
         {
           name: 'Item with href',
           id: htmlIdGenerator('basicExample')(),
-          href: '/#/navigation/side-nav',
+          href: '#/navigation/side-nav',
         },
         {
           name: 'Selected item',
