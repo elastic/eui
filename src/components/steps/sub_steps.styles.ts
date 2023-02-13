@@ -21,8 +21,8 @@ export const euiSubStepsStyles = ({ euiTheme }: UseEuiTheme) => {
       }
 
       // change ordered list from numbers to lowercase letters
-      .euiText & ol,
-      & ol {
+      & ol,
+      .euiText & ol {
         list-style-type: lower-alpha;
       }
     `,

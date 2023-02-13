@@ -17,7 +17,7 @@ import { CommonProps } from '../common';
 import { EuiTitle, EuiTitleProps, EuiTitleSize } from '../title';
 import { EuiStepNumber, EuiStepStatus } from './step_number';
 import { useEuiTheme } from '../../services';
-import { euiStepStyles } from './step.styles';
+import { euiStepStyles, euiStepContentStyles } from './step.styles';
 
 export interface EuiStepInterface {
   /**
@@ -63,7 +63,7 @@ export const EuiStep: FunctionComponent<EuiStepProps> = ({
   const isSmall = titleSize === 'xs';
 
   const euiTheme = useEuiTheme();
-  const styles = euiStepStyles(euiTheme, isDisabled, isSmall);
+  const styles = euiStepStyles(euiTheme, isDisabled);
   const cssStyles = [
     styles.euiStep,
     isSmall && styles.small,
@@ -71,7 +71,12 @@ export const EuiStep: FunctionComponent<EuiStepProps> = ({
     isDisabled && styles.isDisabled,
   ];
 
-  const contentStyles = styles.euiStep__content;
+  const contentStyles = euiStepContentStyles(euiTheme);
+  const cssContentStyles = [
+    contentStyles.euiStep__content,
+    isSmall && contentStyles.small,
+    !isSmall && contentStyles.medium,
+  ];
 
   const euiStepTitleStyles = styles.euiStep__title;
   const titleWrapperStyles = styles.euiStep__titleWrapper;
@@ -89,7 +94,7 @@ export const EuiStep: FunctionComponent<EuiStepProps> = ({
         </EuiTitle>
       </div>
 
-      <div className="euiStep__content" css={contentStyles}>
+      <div className="euiStep__content" css={cssContentStyles}>
         {children}
       </div>
     </div>
