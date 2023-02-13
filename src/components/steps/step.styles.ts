@@ -41,6 +41,10 @@ export const euiStepStyles = (
       &:not(:last-of-type) {
         background-position: left ${euiTheme.size.xl};
       }
+
+      .euiStep__title {
+        padding-block-start: ${euiTheme.size.xxs};
+      }
     `,
     small: css`
       &:not(:last-of-type) {
@@ -49,8 +53,6 @@ export const euiStepStyles = (
     `,
     isDisabled: css``,
     euiStep__title: css`
-      padding-block-start: ${euiTheme.size.xxs};
-
       ${isDisabled &&
       `
          color: ${euiTheme.colors.disabledText};
