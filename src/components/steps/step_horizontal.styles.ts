@@ -15,7 +15,6 @@ import {
   euiCanAnimate,
   mathWithUnits,
 } from '../../global_styling/';
-import { euiShadowXSmall } from '../../themes/amsterdam/global_styling/mixins';
 import { euiTitle } from '../title/title.styles';
 import { euiStepVariables } from './step.styles';
 
@@ -105,9 +104,6 @@ export const euiStepHorizontalNumberStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiCanAnimate} {
         transition: all ${euiTheme.animation.fast} ease-in-out;
       }
-    `,
-    current: css`
-      ${euiShadowXSmall(euiThemeContext)}
     `,
   };
 };

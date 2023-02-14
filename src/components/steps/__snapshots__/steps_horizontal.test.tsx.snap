@@ -41,7 +41,7 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
       title="Current step 2: Selected Step 2"
     >
       <span
-        class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-s-current-euiStepHorizontal__number-current"
+        class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-s-current-euiStepHorizontal__number"
       >
         <span
           class="emotion-euiScreenReaderOnly"

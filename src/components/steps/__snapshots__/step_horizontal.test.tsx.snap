@@ -58,7 +58,7 @@ exports[`EuiStepHorizontal props status current is rendered 1`] = `
   title="Current step is 1"
 >
   <span
-    class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-s-current-euiStepHorizontal__number-current"
+    class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-s-current-euiStepHorizontal__number"
   >
     <span
       class="emotion-euiScreenReaderOnly"

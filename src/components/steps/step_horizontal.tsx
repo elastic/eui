@@ -74,10 +74,7 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
   ];
 
   const numberStyles = euiStepHorizontalNumberStyles(euiTheme);
-  const cssNumberStyles = [
-    numberStyles.euiStepHorizontal__number,
-    status === 'current' && numberStyles.current,
-  ];
+  const cssNumberStyles = [numberStyles.euiStepHorizontal__number];
 
   const titleStyles = euiStepHorizontalTitleStyles(euiTheme);
   const cssTitleStyles = [

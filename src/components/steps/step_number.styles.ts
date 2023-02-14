@@ -33,7 +33,7 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
       color: ${euiTheme.colors.emptyShade};
       background-color: ${euiTheme.colors.primary};
       font-size: ${fontSize};
-      font-weight: ${euiTheme.font.weight.bold};
+      font-weight: ${euiTheme.font.weight.medium};
     `;
   };
 
