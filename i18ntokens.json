@@ -304,6 +304,22 @@
     "filepath": "src/components/card/card_select/card_select.tsx"
   },
   {
+    "token": "euiCodeBlockAnnotations.ariaLabel",
+    "defString": "Click to view a code annotation for line {lineNumber}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 26,
+        "column": 20
+      },
+      "end": {
+        "line": 30,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/code/code_block_annotations.tsx"
+  },
+  {
     "token": "euiCodeBlockCopy.copy",
     "defString": "Copy",
     "highlighting": "string",
@@ -325,11 +341,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 47,
+        "line": 54,
         "column": 49
       },
       "end": {
-        "line": 53,
+        "line": 60,
         "column": 3
       }
     },
@@ -341,11 +357,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 47,
+        "line": 54,
         "column": 49
       },
       "end": {
-        "line": 53,
+        "line": 60,
         "column": 3
       }
     },
@@ -6101,11 +6117,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 52,
+        "line": 51,
         "column": 6
       },
       "end": {
-        "line": 52,
+        "line": 51,
         "column": 74
       }
     },
@@ -6117,11 +6133,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 65,
+        "line": 59,
         "column": 6
       },
       "end": {
-        "line": 65,
+        "line": 59,
         "column": 78
       }
     },
@@ -6133,11 +6149,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 79,
+        "line": 68,
         "column": 4
       },
       "end": {
-        "line": 83,
+        "line": 72,
         "column": 5
       }
     },
