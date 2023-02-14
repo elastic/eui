@@ -7,8 +7,8 @@ export default () => (
     size="l"
     width={400}
     hasShadow
-    caption="Flowchart diagram"
-    alt="Flowchart diagram"
+    caption="Diagram of fishapod timelines"
+    alt="Diagram of fishapod timelines"
     src="https://upload.wikimedia.org/wikipedia/commons/a/af/Fishapods.svg"
     allowFullScreen
   />
