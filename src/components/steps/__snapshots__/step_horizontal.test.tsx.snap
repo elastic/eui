@@ -82,7 +82,7 @@ exports[`EuiStepHorizontal props status danger is rendered 1`] = `
 <button
   class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
   data-step-status="danger"
-  title="Step 1"
+  title="Step 1 has errors"
 >
   <span
     class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-s-danger-euiStepHorizontal__number"
@@ -186,7 +186,7 @@ exports[`EuiStepHorizontal props status loading is rendered 1`] = `
 <button
   class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
   data-step-status="loading"
-  title="Step 1"
+  title="Step 1 is loading"
 >
   <span
     class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-s-loading-euiStepHorizontal__number"
