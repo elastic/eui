@@ -16,6 +16,12 @@ import React, {
 import { CommonProps } from '../common';
 import { EuiTitle, EuiTitleProps, EuiTitleSize } from '../title';
 import { EuiStepNumber, EuiStepStatus } from './step_number';
+import { useEuiTheme } from '../../services';
+import {
+  euiStepStyles,
+  euiStepContentStyles,
+  euiStepTitleStyles,
+} from './step.styles';
 
 export interface EuiStepInterface {
   /**
@@ -55,33 +61,42 @@ export const EuiStep: FunctionComponent<EuiStepProps> = ({
   status,
   ...rest
 }) => {
-  const classes = classNames(
-    'euiStep',
-    {
-      'euiStep--small': titleSize === 'xs',
-      'euiStep-isDisabled': status === 'disabled',
-    },
-    className
-  );
-  const numberClasses = classNames('euiStep__circle', {
-    'euiStepNumber--small': titleSize === 'xs',
-  });
+  const classes = classNames('euiStep', className);
+
+  const euiTheme = useEuiTheme();
+  const styles = euiStepStyles(euiTheme);
+  const cssStyles = [styles.euiStep, styles[titleSize]];
+
+  const contentStyles = euiStepContentStyles(euiTheme);
+  const cssContentStyles = [
+    contentStyles.euiStep__content,
+    contentStyles[titleSize],
+  ];
+
+  const titleStyles = euiStepTitleStyles(euiTheme);
+  const cssStepTitleStyles = [
+    titleStyles.euiStep__title,
+    status === 'disabled' && titleStyles.isDisabled,
+    titleStyles[titleSize],
+  ];
+  const cssTitleWrapperStyles = titleStyles.euiStep__titleWrapper;
 
   return (
-    <div className={classes} {...rest}>
-      <div className="euiStep__titleWrapper">
-        <EuiStepNumber
-          className={numberClasses}
-          number={step}
-          status={status}
-          titleSize={titleSize}
-        />
-        <EuiTitle size={titleSize as EuiTitleSize} className="euiStep__title">
+    <div className={classes} css={cssStyles} {...rest}>
+      <div className="euiStep__titleWrapper" css={cssTitleWrapperStyles}>
+        <EuiStepNumber number={step} status={status} titleSize={titleSize} />
+        <EuiTitle
+          size={titleSize as EuiTitleSize}
+          className="euiStep__title"
+          css={cssStepTitleStyles}
+        >
           {createElement(headingElement, null, title)}
         </EuiTitle>
       </div>
 
-      <div className="euiStep__content">{children}</div>
+      <div className="euiStep__content" css={cssContentStyles}>
+        {children}
+      </div>
     </div>
   );
 };

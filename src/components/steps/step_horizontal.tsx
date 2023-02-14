@@ -22,7 +22,15 @@ import {
   useI18nIncompleteStep,
   useI18nStep,
   useI18nWarningStep,
+  useI18nErrorsStep,
+  useI18nLoadingStep,
 } from './step_strings';
+import { useEuiTheme } from '../../services';
+import {
+  euiStepHorizontalStyles,
+  euiStepHorizontalNumberStyles,
+  euiStepHorizontalTitleStyles,
+} from './step_horizontal.styles';
 
 export interface EuiStepHorizontalProps
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'>,
@@ -40,7 +48,7 @@ export interface EuiStepHorizontalProps
   /**
    * Visual representation of the step number indicator.
    * May replace the number provided in props.step with alternate styling.
-   * The `isSelected`, `isComplete`, and `disabled` props will override these.
+   * The `disabled` prop will override this.
    */
   status?: EuiStepStatus;
 }
@@ -54,28 +62,37 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
   status = 'incomplete',
   ...rest
 }) => {
-  const buttonTitle = useI18nStep({ number: step, title });
-  const completeTitle = useI18nCompleteStep({ number: step, title });
-  const disabledTitle = useI18nDisabledStep({ number: step, title });
-  const incompleteTitle = useI18nIncompleteStep({ number: step, title });
-  const warningTitle = useI18nWarningStep({ number: step, title });
-  const currentTitle = useI18nCurrentStep({ number: step, title });
-
   if (disabled) status = 'disabled';
 
-  const classes = classNames('euiStepHorizontal', className, {
-    'euiStepHorizontal-isSelected': status === 'current',
-    'euiStepHorizontal-isComplete': status === 'complete',
-    'euiStepHorizontal-isIncomplete': status === 'incomplete',
-    'euiStepHorizontal-isDisabled': status === 'disabled',
-  });
+  const classes = classNames('euiStepHorizontal', className);
 
-  let stepTitle = buttonTitle;
-  if (status === 'disabled') stepTitle = disabledTitle;
-  if (status === 'complete') stepTitle = completeTitle;
-  if (status === 'incomplete') stepTitle = incompleteTitle;
-  if (status === 'warning') stepTitle = warningTitle;
-  if (status === 'current') stepTitle = currentTitle;
+  const euiTheme = useEuiTheme();
+  const styles = euiStepHorizontalStyles(euiTheme);
+  const cssStyles = [
+    styles.euiStepHorizontal,
+    status === 'disabled' ? styles.disabled : styles.enabled,
+  ];
+
+  const numberStyles = euiStepHorizontalNumberStyles(euiTheme);
+  const cssNumberStyles = [numberStyles.euiStepHorizontal__number];
+
+  const titleStyles = euiStepHorizontalTitleStyles(euiTheme);
+  const cssTitleStyles = [
+    titleStyles.euiStepHorizontal__title,
+    status === 'disabled' && titleStyles.disabled,
+  ];
+
+  const titleAttrsMap: Record<EuiStepStatus | 'step', string> = {
+    step: useI18nStep({ number: step, title }),
+    current: useI18nCurrentStep({ number: step, title }),
+    disabled: useI18nDisabledStep({ number: step, title }),
+    incomplete: useI18nIncompleteStep({ number: step, title }),
+    complete: useI18nCompleteStep({ number: step, title }),
+    warning: useI18nWarningStep({ number: step, title }),
+    danger: useI18nErrorsStep({ number: step, title }),
+    loading: useI18nLoadingStep({ number: step, title }),
+  };
+  const titleAttr = titleAttrsMap[status || 'step'];
 
   const onStepClick = (
     event: ReactMouseEvent<HTMLButtonElement, MouseEvent>
@@ -86,18 +103,23 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
   return (
     <button
       className={classes}
-      title={stepTitle}
+      title={titleAttr}
       onClick={onStepClick}
       disabled={disabled}
+      css={cssStyles}
+      data-step-status={status}
       {...rest}
     >
       <EuiStepNumber
         className="euiStepHorizontal__number"
         status={status}
         number={step}
+        css={cssNumberStyles}
       />
 
-      <span className="euiStepHorizontal__title">{title}</span>
+      <span className="euiStepHorizontal__title" css={cssTitleStyles}>
+        {title}
+      </span>
     </button>
   );
 };

@@ -1,9 +1,16 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 
-import { EuiSpacer, EuiSteps, EuiButton } from '../../../../src/components';
+import {
+  EuiSpacer,
+  EuiSteps,
+  EuiStepStatus,
+  EuiButton,
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '../../../../src/components';
 
 export default () => {
-  const [status, setStatus] = useState('incomplete');
+  const [status, setStatus] = useState<EuiStepStatus>('incomplete');
 
   let completeButton;
   if (status !== 'complete') {
@@ -56,19 +63,24 @@ export default () => {
     {
       title: 'Push the button to complete this final step',
       children: (
-        <Fragment>
+        <>
           <p>We are fancy buttons just waiting to be pushed!</p>
           <EuiSpacer />
-          {completeButton} {warningButton} {dangerButton}
-        </Fragment>
+          <EuiFlexGroup
+            gutterSize="s"
+            alignItems="center"
+            responsive={false}
+            wrap
+          >
+            <EuiFlexItem grow={false}> {completeButton} </EuiFlexItem>
+            <EuiFlexItem grow={false}> {warningButton} </EuiFlexItem>
+            <EuiFlexItem grow={false}> {dangerButton} </EuiFlexItem>
+          </EuiFlexGroup>
+        </>
       ),
       status: status,
     },
   ];
 
-  return (
-    <div>
-      <EuiSteps steps={firstSetOfSteps} />
-    </div>
-  );
+  return <EuiSteps steps={firstSetOfSteps} />;
 };
