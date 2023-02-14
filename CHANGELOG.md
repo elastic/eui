@@ -1,3 +1,17 @@
+## [`75.1.0`](https://github.com/elastic/eui/tree/v75.1.0)
+
+- Added padding to `EuiStep` title to better align with icon ([#6555](https://github.com/elastic/eui/pull/6555))
+- Added a new `lineNumbers.annotations` API to `EuiCodeBlock`. This new feature displays an informational icon next to the specified line number(s), providing more context via popover ([#6580](https://github.com/elastic/eui/pull/6580))
+
+**Bug fixes**
+
+- Fixed bug in `EuiRange` where styles were applied incorrectly when custom ticks were passed but `showTicks` were false ([#6588](https://github.com/elastic/eui/pull/6588))
+- Fixed `fleetApp` and `agentApp` icons that were swapped ([#6590](https://github.com/elastic/eui/pull/6590))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiSteps` to Emotion; Removed `$euiStepStatusColorsToFade`, `$euiStepNumberSize`, `$euiStepNumberSmallSize`, and `$euiStepNumberMargin` ([#6555](https://github.com/elastic/eui/pull/6555))
+
 ## [`75.0.0`](https://github.com/elastic/eui/tree/v75.0.0)
 
 - `EuiFlyout`s now automatically shard all fixed `EuiHeader`s on the page. This means that interactions (mouse & keyboard) with items inside `EuiHeader`s when flyouts are open will no longer trigger focus fighting ([#6566](https://github.com/elastic/eui/pull/6566))
