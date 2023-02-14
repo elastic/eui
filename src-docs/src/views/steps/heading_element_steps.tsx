@@ -14,7 +14,7 @@ const steps = [
 ];
 
 export default () => (
-  <div>
+  <>
     <EuiTitle size="l">
       <h1>Heading 1</h1>
     </EuiTitle>
@@ -22,5 +22,5 @@ export default () => (
     <EuiSpacer size="xl" />
 
     <EuiSteps steps={steps} headingElement="h2" />
-  </div>
+  </>
 );

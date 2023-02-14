@@ -46,7 +46,7 @@ const nextSetOfSteps = [
 ];
 
 export default () => (
-  <div>
+  <>
     <EuiSteps steps={firstSetOfSteps} />
 
     <EuiSpacer size="m" />
@@ -62,5 +62,5 @@ export default () => (
       firstStepNumber={firstSetOfSteps.length + 1}
       steps={nextSetOfSteps}
     />
-  </div>
+  </>
 );

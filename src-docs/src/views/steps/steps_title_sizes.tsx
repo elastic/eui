@@ -23,8 +23,4 @@ const firstSetOfSteps = [
   },
 ];
 
-export default () => (
-  <div>
-    <EuiSteps titleSize="xs" steps={firstSetOfSteps} />
-  </div>
-);
+export default () => <EuiSteps titleSize="xs" steps={firstSetOfSteps} />;

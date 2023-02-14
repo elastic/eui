@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiSpacer,
@@ -63,7 +63,7 @@ export default () => {
     {
       title: 'Push the button to complete this final step',
       children: (
-        <Fragment>
+        <>
           <p>We are fancy buttons just waiting to be pushed!</p>
           <EuiSpacer />
           <EuiFlexGroup
@@ -76,15 +76,11 @@ export default () => {
             <EuiFlexItem grow={false}> {warningButton} </EuiFlexItem>
             <EuiFlexItem grow={false}> {dangerButton} </EuiFlexItem>
           </EuiFlexGroup>
-        </Fragment>
+        </>
       ),
       status: status,
     },
   ];
 
-  return (
-    <div>
-      <EuiSteps steps={firstSetOfSteps} />
-    </div>
-  );
+  return <EuiSteps steps={firstSetOfSteps} />;
 };

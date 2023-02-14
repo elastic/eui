@@ -6,8 +6,8 @@ import {
   EuiText,
   EuiCodeBlock,
   EuiSubSteps,
+  EuiSpacer,
 } from '../../../../src/components';
-import { EuiSpacer } from '../../../../src/components/spacer';
 
 const steps = [
   {
