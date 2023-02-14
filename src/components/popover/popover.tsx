@@ -279,7 +279,6 @@ interface State {
   arrowPosition: EuiPopoverArrowPositions | null;
   openPosition: any; // What should this be?
   isOpenStable: boolean;
-  isTabbable: boolean;
 }
 
 type PropsWithDefaults = Props & {
@@ -348,7 +347,6 @@ export class EuiPopover extends Component<Props, State> {
       arrowPosition: null,
       openPosition: null, // once a stable position has been found, keep the contents on that side
       isOpenStable: false, // wait for any initial opening transitions to finish before marking as stable
-      isTabbable: false,
     };
   }
 
@@ -700,6 +698,7 @@ export class EuiPopover extends Component<Props, State> {
       }
 
       const returnFocus = this.state.isOpenStable ? returnFocusConfig : false;
+
       panel = (
         <EuiPortal insert={insert}>
           <EuiFocusTrap
