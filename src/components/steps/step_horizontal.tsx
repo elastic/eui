@@ -48,7 +48,7 @@ export interface EuiStepHorizontalProps
   /**
    * Visual representation of the step number indicator.
    * May replace the number provided in props.step with alternate styling.
-   * The `disabled` props will override this.
+   * The `disabled` prop will override this.
    */
   status?: EuiStepStatus;
 }
