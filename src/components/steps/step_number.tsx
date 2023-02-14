@@ -7,7 +7,7 @@
  */
 
 import classNames from 'classnames';
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { CommonProps } from '../common';
 import { EuiIcon } from '../icon';
@@ -25,7 +25,10 @@ import {
 import { EuiLoadingSpinner } from '../loading';
 
 import { useEuiTheme } from '../../services';
-import { euiStepNumberStyles } from './step_number.styles';
+import {
+  euiStepNumberStyles,
+  euiStepNumberContentStyles,
+} from './step_number.styles';
 
 export const STATUS = [
   'incomplete',
@@ -60,14 +63,16 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
   titleSize = 's',
   ...rest
 }) => {
-  const stepAriaLabel = useI18nStep({ number });
-  const completeAriaLabel = useI18nCompleteStep({ number });
-  const warningAriaLabel = useI18nWarningStep({ number });
-  const errorsAriaLabel = useI18nErrorsStep({ number });
-  const incompleteAriaLabel = useI18nIncompleteStep({ number });
-  const disabledAriaLabel = useI18nDisabledStep({ number });
-  const loadingAriaLabel = useI18nLoadingStep({ number });
-  const currentAriaLabel = useI18nCurrentStep({ number });
+  const ariaLabelsMap: Record<EuiStepStatus | 'step', string> = {
+    step: useI18nStep({ number }),
+    current: useI18nCurrentStep({ number }),
+    incomplete: useI18nIncompleteStep({ number }),
+    complete: useI18nCompleteStep({ number }),
+    disabled: useI18nDisabledStep({ number }),
+    warning: useI18nWarningStep({ number }),
+    danger: useI18nErrorsStep({ number }),
+    loading: useI18nLoadingStep({ number }),
+  };
 
   const classes = classNames('euiStepNumber', className);
 
@@ -79,73 +84,76 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
     status && styles[status],
   ];
 
-  const cssIconStyles = styles.euiStepNumber__icon;
+  const contentStyles = euiStepNumberContentStyles(euiTheme);
+  let content: ReactNode;
+  let screenReaderText: string | undefined;
 
-  const iconSize = titleSize === 'xs' ? 's' : 'm';
-  let screenReaderText = stepAriaLabel;
-  if (status === 'incomplete') screenReaderText = incompleteAriaLabel;
-  else if (status === 'disabled') screenReaderText = disabledAriaLabel;
-  else if (status === 'loading') screenReaderText = loadingAriaLabel;
-  else if (status === 'current') screenReaderText = currentAriaLabel;
-
-  let numberOrIcon = (
-    <>
-      <EuiScreenReaderOnly>
-        <span>{screenReaderText}</span>
-      </EuiScreenReaderOnly>
-      <span className="euiStepNumber__number" aria-hidden="true">
-        {number}
-      </span>
-    </>
-  );
-
-  if (status === 'complete') {
-    numberOrIcon = (
-      <EuiIcon
-        type="check"
-        className="euiStepNumber__icon"
-        size={iconSize}
-        aria-label={completeAriaLabel}
-        css={cssIconStyles}
-      />
-    );
-  } else if (status === 'warning') {
-    numberOrIcon = (
-      <EuiIcon
-        type="alert"
-        className="euiStepNumber__icon"
-        size={iconSize}
-        aria-label={warningAriaLabel}
-        css={cssIconStyles}
-      />
-    );
-  } else if (status === 'danger') {
-    numberOrIcon = (
-      <EuiIcon
-        type="cross"
-        className="euiStepNumber__icon"
-        size={iconSize}
-        aria-label={errorsAriaLabel}
-        css={cssIconStyles}
-      />
-    );
-  } else if (status === 'loading') {
-    numberOrIcon = (
-      <>
-        <EuiScreenReaderOnly>
-          <span>{screenReaderText}</span>
-        </EuiScreenReaderOnly>
+  switch (status) {
+    // Loading spinner
+    case 'loading':
+      screenReaderText = ariaLabelsMap.loading;
+      content = (
         <EuiLoadingSpinner
           className="euiStepNumber__loader"
-          size={iconSize === 's' ? 'l' : 'xl'}
+          size={titleSize === 'xs' ? 'l' : 'xl'}
         />
-      </>
-    );
+      );
+      break;
+    // Statuses with icons
+    case 'danger':
+    case 'warning':
+    case 'complete':
+      const cssIconStyles = [
+        contentStyles.euiStepNumber__icon,
+        contentStyles[status],
+      ];
+      const iconTypeMap = {
+        danger: 'cross',
+        warning: 'alert',
+        complete: 'check',
+      };
+
+      content = (
+        <EuiIcon
+          type={iconTypeMap[status]}
+          aria-label={ariaLabelsMap[status]}
+          size={titleSize === 'xs' ? 's' : 'm'}
+          className="euiStepNumber__icon"
+          css={cssIconStyles}
+        />
+      );
+      break;
+    // Statuses with numbers
+    case 'incomplete':
+    case 'current':
+    case 'disabled':
+    default:
+      const cssNumberStyles = [
+        contentStyles.euiStepNumber__number,
+        status && contentStyles[status],
+      ];
+
+      screenReaderText = ariaLabelsMap[status || 'step'];
+      content = (
+        <span
+          aria-hidden="true"
+          className="euiStepNumber__number"
+          css={cssNumberStyles}
+        >
+          {number}
+        </span>
+      );
+      break;
   }
 
   return (
     <span className={classes} css={cssStyles} {...rest}>
-      {numberOrIcon}
+      {screenReaderText && (
+        <EuiScreenReaderOnly>
+          <span>{screenReaderText}</span>
+        </EuiScreenReaderOnly>
+      )}
+      {content}
     </span>
   );
 };

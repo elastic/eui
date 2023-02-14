@@ -8,6 +8,7 @@
 
 import { css } from '@emotion/react';
 import {
+  mathWithUnits,
   logicalCSS,
   euiFontSizeFromScale,
   euiCanAnimate,
@@ -17,28 +18,24 @@ import { UseEuiTheme } from '../../services';
 import { euiStepVariables } from './step.styles';
 import { euiButtonFillColor } from '../../themes/amsterdam/global_styling/mixins';
 
-const createStepsNumber = (
-  euiTheme: UseEuiTheme['euiTheme'],
-  size: string,
-  fontSize: string
-) => {
-  return `
-    display: inline-block;
-    line-height: ${size};
-    border-radius: ${size};
-    ${logicalCSS('width', size)};
-    ${logicalCSS('height', size)};
-    text-align: center;
-    color: ${euiTheme.colors.emptyShade};
-    background-color: ${euiTheme.colors.primary};
-    font-size: ${fontSize};
-    font-weight: ${euiTheme.font.weight.bold};
-  `;
-};
-
 export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const euiStep = euiStepVariables(euiTheme);
+
+  const createStepsNumber = (size: string, fontSize: string) => {
+    return `
+      display: inline-block;
+      line-height: ${size};
+      border-radius: ${size};
+      ${logicalCSS('width', size)};
+      ${logicalCSS('height', size)};
+      text-align: center;
+      color: ${euiTheme.colors.emptyShade};
+      background-color: ${euiTheme.colors.primary};
+      font-size: ${fontSize};
+      font-weight: ${euiTheme.font.weight.bold};
+    `;
+  };
 
   return {
     euiStepNumber: css`
@@ -47,21 +44,18 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
     // sizes
     m: css`
       ${createStepsNumber(
-        euiTheme,
         euiStep.numberSize,
         euiFontSizeFromScale('s', euiTheme)
       )}
     `,
     s: css`
       ${createStepsNumber(
-        euiTheme,
         euiStep.numberSize,
         euiFontSizeFromScale('s', euiTheme)
       )}
     `,
     xs: css`
       ${createStepsNumber(
-        euiTheme,
         euiStep.numberXSSize,
         euiFontSizeFromScale('xs', euiTheme)
       )}
@@ -71,13 +65,6 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
       background-color: transparent;
       color: ${euiTheme.colors.text};
       border: ${euiTheme.border.thick};
-
-      .euiStepNumber__number {
-        // adjusts position because of thicker border
-        display: unset;
-        position: relative;
-        inset-block-start: -2px;
-      }
     `,
     disabled: css`
       color: ${euiButtonFillColor(euiThemeContext, 'disabled').color};
@@ -106,12 +93,6 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
         animation: ${euiAnimScale} ${euiTheme.animation.fast}
           ${euiTheme.animation.bounce};
       }
-
-      // Thicken the checkmark by adding a slight stroke.
-      .euiStepNumber__icon {
-        stroke: currentColor;
-        stroke-width: 0.5px;
-      }
     `,
     complete: css`
       color: ${euiButtonFillColor(euiThemeContext, 'success').color};
@@ -122,18 +103,43 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
         animation: ${euiAnimScale} ${euiTheme.animation.fast}
           ${euiTheme.animation.bounce};
       }
-
-      // Thicken the checkmark by adding a slight stroke.
-      .euiStepNumber__icon {
-        stroke: currentColor;
-        stroke-width: 0.5px;
-      }
     `,
     current: css``,
+  };
+};
+
+export const euiStepNumberContentStyles = ({ euiTheme }: UseEuiTheme) => {
+  return {
+    // Statuses with icon content
     euiStepNumber__icon: css`
       vertical-align: middle;
       position: relative;
-      inset-block-start: -1px;
+      inset-block-start: -${euiTheme.border.width.thin};
     `,
+    complete: css`
+      // Thicken the checkmark by adding a slight stroke.
+      stroke: currentColor;
+      stroke-width: ${mathWithUnits(euiTheme.border.width.thin, (x) => x / 2)};
+    `,
+    danger: css`
+      // Thicken the cross by adding a slight stroke.
+      stroke: currentColor;
+      stroke-width: ${mathWithUnits(euiTheme.border.width.thin, (x) => x / 2)};
+    `,
+    warning: css`
+      // Slight extra visual offset
+      inset-block-start: -${euiTheme.border.width.thick};
+    `,
+    // Statuses with number content
+    euiStepNumber__number: css``,
+    incomplete: css`
+      // adjusts position because of thicker border
+      display: unset;
+      position: relative;
+      inset-block-start: -${euiTheme.border.width.thick};
+    `,
+    loading: css``,
+    disabled: css``,
+    current: css``,
   };
 };

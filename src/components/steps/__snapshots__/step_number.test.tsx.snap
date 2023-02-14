@@ -13,7 +13,7 @@ exports[`EuiStepNumber is rendered 1`] = `
   </span>
   <span
     aria-hidden="true"
-    class="euiStepNumber__number"
+    class="euiStepNumber__number emotion-euiStepNumber__number"
   />
 </span>
 `;
@@ -29,7 +29,7 @@ exports[`EuiStepNumber props has titleSize is rendered 1`] = `
   </span>
   <span
     aria-hidden="true"
-    class="euiStepNumber__number"
+    class="euiStepNumber__number emotion-euiStepNumber__number"
   >
     1
   </span>
@@ -41,7 +41,7 @@ exports[`EuiStepNumber props status complete is rendered 1`] = `
   class="euiStepNumber emotion-euiStepNumber-s-complete"
 >
   <span
-    class="euiStepNumber__icon emotion-euiStepNumber__icon"
+    class="euiStepNumber__icon emotion-euiStepNumber__icon-complete"
     data-euiicon-type="check"
   >
     Step 1 is complete
@@ -60,7 +60,7 @@ exports[`EuiStepNumber props status current is rendered 1`] = `
   </span>
   <span
     aria-hidden="true"
-    class="euiStepNumber__number"
+    class="euiStepNumber__number emotion-euiStepNumber__number-current"
   >
     1
   </span>
@@ -72,7 +72,7 @@ exports[`EuiStepNumber props status danger is rendered 1`] = `
   class="euiStepNumber emotion-euiStepNumber-s-danger"
 >
   <span
-    class="euiStepNumber__icon emotion-euiStepNumber__icon"
+    class="euiStepNumber__icon emotion-euiStepNumber__icon-danger"
     data-euiicon-type="cross"
   >
     Step 1 has errors
@@ -91,7 +91,7 @@ exports[`EuiStepNumber props status disabled is rendered 1`] = `
   </span>
   <span
     aria-hidden="true"
-    class="euiStepNumber__number"
+    class="euiStepNumber__number emotion-euiStepNumber__number-disabled"
   >
     1
   </span>
@@ -109,7 +109,7 @@ exports[`EuiStepNumber props status incomplete is rendered 1`] = `
   </span>
   <span
     aria-hidden="true"
-    class="euiStepNumber__number"
+    class="euiStepNumber__number emotion-euiStepNumber__number-incomplete"
   >
     1
   </span>
@@ -138,7 +138,7 @@ exports[`EuiStepNumber props status warning is rendered 1`] = `
   class="euiStepNumber emotion-euiStepNumber-s-warning"
 >
   <span
-    class="euiStepNumber__icon emotion-euiStepNumber__icon"
+    class="euiStepNumber__icon emotion-euiStepNumber__icon-warning"
     data-euiicon-type="alert"
   >
     Step 1 has warnings

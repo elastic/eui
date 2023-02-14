@@ -18,7 +18,7 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
         class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-s-complete-euiStepHorizontal__number"
       >
         <span
-          class="euiStepNumber__icon emotion-euiStepNumber__icon"
+          class="euiStepNumber__icon emotion-euiStepNumber__icon-complete"
           data-euiicon-type="check"
         >
           Step 1 is complete
@@ -50,7 +50,7 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
         </span>
         <span
           aria-hidden="true"
-          class="euiStepNumber__number"
+          class="euiStepNumber__number emotion-euiStepNumber__number-current"
         >
           2
         </span>
@@ -80,7 +80,7 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
         </span>
         <span
           aria-hidden="true"
-          class="euiStepNumber__number"
+          class="euiStepNumber__number emotion-euiStepNumber__number-incomplete"
         >
           3
         </span>
@@ -110,7 +110,7 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
         </span>
         <span
           aria-hidden="true"
-          class="euiStepNumber__number"
+          class="euiStepNumber__number emotion-euiStepNumber__number-disabled"
         >
           4
         </span>

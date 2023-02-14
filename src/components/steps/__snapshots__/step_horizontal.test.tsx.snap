@@ -18,7 +18,7 @@ exports[`EuiStepHorizontal is rendered 1`] = `
     </span>
     <span
       aria-hidden="true"
-      class="euiStepNumber__number"
+      class="euiStepNumber__number emotion-euiStepNumber__number-incomplete"
     >
       1
     </span>
@@ -39,7 +39,7 @@ exports[`EuiStepHorizontal props status complete is rendered 1`] = `
     class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-s-complete-euiStepHorizontal__number"
   >
     <span
-      class="euiStepNumber__icon emotion-euiStepNumber__icon"
+      class="euiStepNumber__icon emotion-euiStepNumber__icon-complete"
       data-euiicon-type="check"
     >
       Step 1 is complete
@@ -67,7 +67,7 @@ exports[`EuiStepHorizontal props status current is rendered 1`] = `
     </span>
     <span
       aria-hidden="true"
-      class="euiStepNumber__number"
+      class="euiStepNumber__number emotion-euiStepNumber__number-current"
     >
       1
     </span>
@@ -88,7 +88,7 @@ exports[`EuiStepHorizontal props status danger is rendered 1`] = `
     class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-s-danger-euiStepHorizontal__number"
   >
     <span
-      class="euiStepNumber__icon emotion-euiStepNumber__icon"
+      class="euiStepNumber__icon emotion-euiStepNumber__icon-danger"
       data-euiicon-type="cross"
     >
       Step 1 has errors
@@ -116,7 +116,7 @@ exports[`EuiStepHorizontal props status disabled is rendered 1`] = `
     </span>
     <span
       aria-hidden="true"
-      class="euiStepNumber__number"
+      class="euiStepNumber__number emotion-euiStepNumber__number-disabled"
     >
       1
     </span>
@@ -144,7 +144,7 @@ exports[`EuiStepHorizontal props status disabled overrides the passed status 1`]
     </span>
     <span
       aria-hidden="true"
-      class="euiStepNumber__number"
+      class="euiStepNumber__number emotion-euiStepNumber__number-disabled"
     >
       1
     </span>
@@ -171,7 +171,7 @@ exports[`EuiStepHorizontal props status incomplete is rendered 1`] = `
     </span>
     <span
       aria-hidden="true"
-      class="euiStepNumber__number"
+      class="euiStepNumber__number emotion-euiStepNumber__number-incomplete"
     >
       1
     </span>
@@ -218,7 +218,7 @@ exports[`EuiStepHorizontal props status warning is rendered 1`] = `
     class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-s-warning-euiStepHorizontal__number"
   >
     <span
-      class="euiStepNumber__icon emotion-euiStepNumber__icon"
+      class="euiStepNumber__icon emotion-euiStepNumber__icon-warning"
       data-euiicon-type="alert"
     >
       Step 1 has warnings
@@ -246,7 +246,7 @@ exports[`EuiStepHorizontal props step 1`] = `
     </span>
     <span
       aria-hidden="true"
-      class="euiStepNumber__number"
+      class="euiStepNumber__number emotion-euiStepNumber__number-incomplete"
     >
       5
     </span>
@@ -273,7 +273,7 @@ exports[`EuiStepHorizontal props title 1`] = `
     </span>
     <span
       aria-hidden="true"
-      class="euiStepNumber__number"
+      class="euiStepNumber__number emotion-euiStepNumber__number-incomplete"
     >
       1
     </span>
