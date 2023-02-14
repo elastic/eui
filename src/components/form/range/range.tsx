@@ -180,11 +180,6 @@ export class EuiRangeClass extends Component<
     const cssStyles = [styles.euiRange, showInput && styles.hasInput];
     const thumbColor = levels && getLevelColor(levels, Number(value));
 
-    // const sliderScreenReaderInstructions = useEuiI18n(
-    //   'euiRange.sliderScreenReaderInstructions',
-    //   'You are in a custom range slider. Use the Up and Down arrow keys to change the value.'
-    // );
-
     const sliderScreenReaderInstructions = (
       <EuiI18n
         token="euiRange.sliderScreenReaderInstructions"

@@ -567,11 +567,6 @@ export class EuiDualRangeClass extends Component<
         }
       : rightThumbPosition;
 
-    // const dualSliderScreenReaderInstructions = useEuiI18n(
-    //   'euiDualRange.sliderScreenReaderInstructions',
-    //   'You are in a custom range slider. Use the Up and Down arrow keys to change the minimum value. Press Tab to interact with the maximum value.'
-    // );
-
     const dualSliderScreenReaderInstructions = (
       <EuiI18n
         token="euiDualRange.sliderScreenReaderInstructions"

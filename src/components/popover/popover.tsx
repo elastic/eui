@@ -16,7 +16,7 @@ import React, {
   RefCallback,
 } from 'react';
 import classNames from 'classnames';
-import { focusable, tabbable } from 'tabbable';
+import { focusable } from 'tabbable';
 
 import { CommonProps, NoArgCallback } from '../common';
 import { FocusTarget, EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
@@ -406,7 +406,6 @@ export class EuiPopover extends Component<Props, State> {
     // We need to set this state a beat after the render takes place, so that the CSS
     // transition can take effect.
     this.closingTransitionAnimationFrame = window.requestAnimationFrame(() => {
-      this.findTabbleElems();
       this.setState({
         isOpening: true,
       });
@@ -569,17 +568,6 @@ export class EuiPopover extends Component<Props, State> {
     });
   };
 
-  findTabbleElems = () => {
-    if (!this.panel) return;
-    const tabbables = tabbable(this.panel);
-
-    if (tabbables.length > 0) {
-      this.setState({
-        isTabbable: true,
-      });
-    }
-  };
-
   positionPopoverFixed = () => {
     this.positionPopover(true);
   };
@@ -695,21 +683,14 @@ export class EuiPopover extends Component<Props, State> {
       let focusTrapScreenReaderText;
       if (ownFocus || popoverScreenReaderText) {
         ariaDescribedby = this.descriptionId;
-        const isTabbable = this.state.isTabbable;
 
         focusTrapScreenReaderText = (
           <EuiScreenReaderOnly>
             <p id={this.descriptionId}>
-              {ownFocus && !isTabbable && (
+              {ownFocus && (
                 <EuiI18n
                   token="euiPopover.screenReaderAnnouncement"
                   default="You are in a dialog. Press Escape, or tap/click outside the dialog to close."
-                />
-              )}
-              {ownFocus && isTabbable && (
-                <EuiI18n
-                  token="euiPopover.screenReaderAnnouncementInteractive"
-                  default="You are in a dialog. Press Escape, or tap/click outside the dialog to close. Press Tab to interact with the dialog."
                 />
               )}
               {popoverScreenReaderText}
