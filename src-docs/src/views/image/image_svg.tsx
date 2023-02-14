@@ -5,7 +5,7 @@ import { EuiImage } from '../../../../src/components';
 export default () => (
   <EuiImage
     size="l"
-    width={400}
+    width={600}
     hasShadow
     caption="Diagram of fishapod timelines"
     alt="Diagram of fishapod timelines"
