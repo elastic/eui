@@ -22,10 +22,16 @@ export const euiStepStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const euiStep = euiStepVariables(euiTheme);
 
-  // the vertical line is centered on the number, so we need to offset the line by half the number size
-  // and because the vertical line is 2px, we also need to offset the number by 1px to center it
-  const lineStartPosition = mathWithUnits(euiStep.numberSize, (x) => x / 2 - 1);
-  const lineEndPosition = mathWithUnits(euiStep.numberSize, (x) => x / 2 + 1);
+  // the vertical line is centered on the number, so we need to offset the line
+  // by half of the number size & half of the line size to center it
+  const lineStartPosition = mathWithUnits(
+    [euiStep.numberSize, euiTheme.border.width.thick],
+    (x, y) => x / 2 - y / 2
+  );
+  const lineEndPosition = mathWithUnits(
+    [euiStep.numberSize, euiTheme.border.width.thick],
+    (x, y) => x / 2 + y / 2
+  );
 
   const lineGradient = `linear-gradient(to right,
     transparent 0,

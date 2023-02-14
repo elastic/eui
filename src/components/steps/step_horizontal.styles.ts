@@ -49,7 +49,7 @@ export const euiStepHorizontalStyles = (euiThemeContext: UseEuiTheme) => {
         content: '';
         position: absolute;
         background-color: ${euiTheme.border.color};
-        block-size: 2px;
+        block-size: ${euiTheme.border.width.thick};
         inline-size: calc(50% - (${euiStep.numberSize} / 2));
         inset-block-start: ${mathWithUnits(
           [euiTheme.size.l, euiStep.numberSize],
