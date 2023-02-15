@@ -17,7 +17,7 @@ import { EuiFlexGroup, EuiFlexItem } from '../flex';
 // import { useEuiTheme } from '../../services';
 // import { euiInlineEditStyles } from './inline_edit.styles';
 import { htmlIdGenerator } from '../../services/accessibility';
-import { EuiI18n, useEuiI18n } from '../i18n';
+import { useEuiI18n } from '../i18n';
 
 export const DISPLAY_TYPES = ['title', 'text'] as const;
 export type EuiInlineEditDisplayType = typeof DISPLAY_TYPES[number];
@@ -46,16 +46,17 @@ export type EuiInlineEditProps = CommonProps &
      * Allow users to pass in a function when the confirm button is clicked
      */
     onConfirm?: () => void;
-    confirmButtonAriaLabel?: string;
+    /**
+     * Form label that appears above the form control
+     * This is required for accessibility because there is no visual label on the input
+     */
+    inputAriaLabel: String;
+    saveButtonAriaLabel?: string;
     cancelButtonAriaLabel?: string;
     /**
      * Start in editView
      */
     startWithEditOpen?: boolean;
-    /**
-     * Form label that appears above the form control
-     */
-    inputLabel: String;
   };
 
 export const EuiInlineEdit: FunctionComponent<EuiInlineEditProps> = ({
@@ -66,10 +67,10 @@ export const EuiInlineEdit: FunctionComponent<EuiInlineEditProps> = ({
   size = 'm',
   defaultValue = 'Click me to edit',
   onConfirm,
+  inputAriaLabel,
   saveButtonAriaLabel,
   cancelButtonAriaLabel,
   startWithEditOpen,
-  inputLabel,
   ...rest
 }) => {
   const classes = classNames('euiInlineEdit', className);
@@ -124,7 +125,7 @@ export const EuiInlineEdit: FunctionComponent<EuiInlineEditProps> = ({
             id={inlineEditInputId}
             value={editViewValue}
             onChange={editTextViewOnChange}
-            aria-label={inputLabel}
+            aria-label={inputAriaLabel}
             autoFocus
             {...(rest as any)}
           />
