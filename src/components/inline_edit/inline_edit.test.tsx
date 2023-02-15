@@ -13,11 +13,31 @@ import { requiredProps } from '../../test/required_props';
 import { EuiInlineEdit } from './inline_edit';
 
 describe('EuiInlineEdit', () => {
-  test('is rendered', () => {
-    const component = render(
-      <EuiInlineEdit display="text" inputLabel="textInput" {...requiredProps} />
-    );
+  describe('props', () => {
+    test('renders as text', () => {
+      const component = render(
+        <EuiInlineEdit
+          display="text"
+          inputAriaLabel={'textInput'}
+          defaultValue="hello world"
+          {...requiredProps}
+        />
+      );
 
-    expect(component).toMatchSnapshot();
+      expect(component).toMatchSnapshot();
+    });
+
+    test('renders as a title', () => {
+      const component = render(
+        <EuiInlineEdit
+          display="text"
+          inputAriaLabel={'titleInput'}
+          defaultValue="hello world"
+          {...requiredProps}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 });
