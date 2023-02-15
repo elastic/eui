@@ -76,12 +76,12 @@ export const renderJsSourceCode = (code) => {
   const remainingImports = [];
 
   renderedCode = renderedCode.replace(
+    // (?<!(`[\s\S]*))               - negative lookbehind ensuring that import statements aren't part of a template literal
     // (\/\/.+\n)?                   - optional preceding comments that must be above specific imports, e.g. // @ts-ignore
     // import                        - import + whitespace
     // ([^]+?)                       - capture any characters (including newlines)
     //  from ('[A-Za-z0-9 -_.@/]*';) - ` from 'someLibrary';` - alphanumeric and certain special characters only
-    // (?!(`))                       - negative lookahead ensuring that import statements aren't part of a template literal
-    /(\/\/.+\n)?import ([^]+?) from ('[A-Za-z0-9 -_.@/]*';)(?!(`))/g,
+    /(?<!(`[\s\S]*))(\/\/.+\n)?import ([^]+?) from ('[A-Za-z0-9 -_.@/]*';)/g,
     (match) => {
       remainingImports.push(match);
       return '';
