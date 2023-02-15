@@ -59,7 +59,7 @@ export const EuiCodeBlockAnnotation: FunctionComponent<{
       }
       css={styles.euiCodeBlockAnnotation}
       zIndex={Number(euiTheme.levels.mask) + 1} // Ensure fullscreen annotation popovers sit above the mask
-      anchorPosition="leftCenter"
+      anchorPosition="downLeft"
       panelProps={{ 'data-test-subj': 'euiCodeBlockAnnotationPopover' }}
     >
       {children}
