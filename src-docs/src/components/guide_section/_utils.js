@@ -8,7 +8,19 @@
 import { cleanEuiImports } from '../../services';
 
 export const renderJsSourceCode = (code) => {
-  let renderedCode = cleanEuiImports(code.default);
+  /**
+   * Split code by the first template literal backtick, so we don't catch imports
+   * being used as part of a code snippet (that aren't actually valid imports).
+   * Template literals aren't valid in import statements & eslint ensures our imports
+   * are at the top of the file, so this should be a fairly safe assumption to make
+   */
+  const [codeBeforeFirstTemplateLiteral, ...rest] = code.default.split('`');
+  const remainingCode = rest.length
+    ? '`' + rest.join('`') // eslint-disable-line prefer-template
+    : ''; // If there were no template literals in the snippet, nothing to do here
+
+  // Clean EUI imports
+  let renderedCode = cleanEuiImports(codeBeforeFirstTemplateLiteral);
 
   /**
    * Extract React import (to ensure it's always at the top)
@@ -76,14 +88,10 @@ export const renderJsSourceCode = (code) => {
   const remainingImports = [];
 
   renderedCode = renderedCode.replace(
-    // (?<!(`[\s\S]*))               - negative lookbehind ensuring that import statements aren't part of a template literal
     // (\/\/.+\n)?                   - optional preceding comments that must be above specific imports, e.g. // @ts-ignore
     // import                        - import + whitespace
     // ([^]+?)                       - capture any characters (including newlines)
     //  from ('[A-Za-z0-9 -_.@/]*';) - ` from 'someLibrary';` - alphanumeric and certain special characters only
-    // /(?<!(`[\s\S]*))(\/\/.+\n)?import ([^]+?) from ('[A-Za-z0-9 -_.@/]*';)/g,
-
-    // reverting to the old regex for now, as the negative lookbehind is not supported in Safari (fix coming in https://github.com/elastic/eui/pull/6603)
     /(\/\/.+\n)?import ([^]+?) from ('[A-Za-z0-9 -_.@/]*';)/g,
     (match) => {
       remainingImports.push(match);
@@ -102,6 +110,8 @@ export const renderJsSourceCode = (code) => {
   ]
     .filter((stripEmptyImports) => stripEmptyImports)
     .join('\n');
+  // Trim starting/ending newlines (but not spaces) in the remaining code
+  renderedCode = renderedCode.replace(/^[\r\n]+|[\r\n]+$/g, '');
 
-  return `${renderedImports}\n\n${renderedCode.trim()}`;
+  return `${renderedImports}\n\n${renderedCode}${remainingCode}`;
 };

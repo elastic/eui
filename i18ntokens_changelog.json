@@ -1,5 +1,15 @@
 [
   {
+    "version": "75.1.0",
+    "changes": [
+      {
+        "token": "euiCodeBlockAnnotations.ariaLabel",
+        "changeType": "added",
+        "value": "Click to view a code annotation for line {lineNumber}"
+      }
+    ]
+  },
+  {
     "version": "75.0.0",
     "changes": [
       {
