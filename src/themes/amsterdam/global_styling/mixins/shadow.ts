@@ -66,9 +66,11 @@ export const euiShadowMedium = (
 
   if (property === 'filter') {
     // To prevent Safari from rendering multiple weird shadows we can only use one drop-shadow
-    return `filter: drop-shadow(
-      0 5.7px 9px ${getShadowColor(color, 0.2, colorMode)}
-);`;
+    return `filter: drop-shadow(0 5.7px 9px ${getShadowColor(
+      color,
+      0.2,
+      colorMode
+    )});`;
   } else {
     return `box-shadow: ${array.map((v) => v)};`;
   }
