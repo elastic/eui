@@ -110,6 +110,8 @@ export const renderJsSourceCode = (code) => {
   ]
     .filter((stripEmptyImports) => stripEmptyImports)
     .join('\n');
+  // Trim starting/ending newlines (but not spaces) in the remaining code
+  renderedCode = renderedCode.replace(/^[\r\n]+|[\r\n]+$/g, '');
 
-  return `${renderedImports}\n\n${renderedCode.trim()}${remainingCode}`;
+  return `${renderedImports}\n\n${renderedCode}${remainingCode}`;
 };
