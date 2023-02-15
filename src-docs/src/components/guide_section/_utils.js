@@ -8,7 +8,19 @@
 import { cleanEuiImports } from '../../services';
 
 export const renderJsSourceCode = (code) => {
-  let renderedCode = cleanEuiImports(code.default);
+  /**
+   * Split code by the first template literal backtick, so we don't catch imports
+   * being used as part of a code snippet (that aren't actually valid imports).
+   * Template literals aren't valid in import statements & eslint ensures our imports
+   * are at the top of the file, so this should be a fairly safe assumption to make
+   */
+  const [codeBeforeFirstTemplateLiteral, ...rest] = code.default.split('`');
+  const remainingCode = rest.length
+    ? '`' + rest.join('`') // eslint-disable-line prefer-template
+    : ''; // If there were no template literals in the snippet, nothing to do here
+
+  // Clean EUI imports
+  let renderedCode = cleanEuiImports(codeBeforeFirstTemplateLiteral);
 
   /**
    * Extract React import (to ensure it's always at the top)
@@ -99,5 +111,5 @@ export const renderJsSourceCode = (code) => {
     .filter((stripEmptyImports) => stripEmptyImports)
     .join('\n');
 
-  return `${renderedImports}\n\n${renderedCode.trim()}`;
+  return `${renderedImports}\n\n${renderedCode.trim()}${remainingCode}`;
 };
