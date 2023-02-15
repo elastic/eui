@@ -324,7 +324,8 @@ describe('renderJsSourceCode', () => {
             import { v4 } from '@uuid/v4';
 
             const jsCode = \`/* I'm an example of JS */
-            import React from 'react';\`;
+            import React from 'react';
+            const hello = 'world';\`;
   
             export default () => 'Hello world!';`),
         })
@@ -334,7 +335,8 @@ describe('renderJsSourceCode', () => {
             import { v4 } from '@uuid/v4';
 
             const jsCode = \`/* I'm an example of JS */
-            import React from 'react';\`;
+            import React from 'react';
+            const hello = 'world';\`;
   
             export default () => 'Hello world!';`)
       );
