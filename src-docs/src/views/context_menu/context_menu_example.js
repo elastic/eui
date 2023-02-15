@@ -135,7 +135,7 @@ export const ContextMenuExample = {
       title: 'Displaying custom elements',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: contentPanelSource,
         },
       ],

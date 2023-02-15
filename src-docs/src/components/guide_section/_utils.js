@@ -81,7 +81,10 @@ export const renderJsSourceCode = (code) => {
     // import                        - import + whitespace
     // ([^]+?)                       - capture any characters (including newlines)
     //  from ('[A-Za-z0-9 -_.@/]*';) - ` from 'someLibrary';` - alphanumeric and certain special characters only
-    /(?<!(`[\s\S]*))(\/\/.+\n)?import ([^]+?) from ('[A-Za-z0-9 -_.@/]*';)/g,
+    // /(?<!(`[\s\S]*))(\/\/.+\n)?import ([^]+?) from ('[A-Za-z0-9 -_.@/]*';)/g,
+
+    // reverting to the old regex for now, as the negative lookbehind is not supported in Safari (fix coming in https://github.com/elastic/eui/pull/6603)
+    /(\/\/.+\n)?import ([^]+?) from ('[A-Za-z0-9 -_.@/]*';)/g,
     (match) => {
       remainingImports.push(match);
       return '';
