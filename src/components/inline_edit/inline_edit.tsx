@@ -17,6 +17,7 @@ import { EuiFlexGroup, EuiFlexItem } from '../flex';
 // import { useEuiTheme } from '../../services';
 // import { euiInlineEditStyles } from './inline_edit.styles';
 import { htmlIdGenerator } from '../../services/accessibility';
+import { EuiI18n, useEuiI18n } from '../i18n';
 
 export const DISPLAY_TYPES = ['title', 'text'] as const;
 export type EuiInlineEditDisplayType = typeof DISPLAY_TYPES[number];
@@ -65,7 +66,7 @@ export const EuiInlineEdit: FunctionComponent<EuiInlineEditProps> = ({
   size = 'm',
   defaultValue = 'Click me to edit',
   onConfirm,
-  confirmButtonAriaLabel,
+  saveButtonAriaLabel,
   cancelButtonAriaLabel,
   startWithEditOpen,
   inputLabel,
@@ -105,28 +106,35 @@ export const EuiInlineEdit: FunctionComponent<EuiInlineEditProps> = ({
     }
   };
 
+  const defaultSaveButtonAriaLabel = useEuiI18n(
+    'euiInlineEdit.saveButtonAriaLabel',
+    'Save'
+  );
+
+  const defaultCancelButtonAriaLabel = useEuiI18n(
+    'euiInlineEdit.cancelButtonAriaLabel',
+    'Save'
+  );
+
   const textEditViewElement = (
     <EuiForm fullWidth>
       <EuiFlexGroup>
         <EuiFlexItem>
-          <EuiFormRow label={inputLabel}>
-            <>
-              <EuiFieldText
-                id={inlineEditInputId}
-                value={editViewValue}
-                onChange={editTextViewOnChange}
-                autoFocus
-                {...(rest as any)}
-              />
-            </>
-          </EuiFormRow>
+          <EuiFieldText
+            id={inlineEditInputId}
+            value={editViewValue}
+            onChange={editTextViewOnChange}
+            aria-label={inputLabel}
+            autoFocus
+            {...(rest as any)}
+          />
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
-          <EuiFormRow hasEmptyLabelSpace>
+          <EuiFormRow>
             <EuiButton
               iconType="check"
-              aria-label={confirmButtonAriaLabel || 'confirm'}
+              aria-label={saveButtonAriaLabel || defaultSaveButtonAriaLabel}
               onClick={saveTextEditValue}
               color="primary"
               fill
@@ -137,10 +145,10 @@ export const EuiInlineEdit: FunctionComponent<EuiInlineEditProps> = ({
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
-          <EuiFormRow hasEmptyLabelSpace>
+          <EuiFormRow>
             <EuiButton
               iconType="cross"
-              aria-label={cancelButtonAriaLabel || 'cancel'}
+              aria-label={cancelButtonAriaLabel || defaultCancelButtonAriaLabel}
               onClick={() => {
                 setEditViewValue(readViewValue);
                 setIsInEdit(!isInEdit);
