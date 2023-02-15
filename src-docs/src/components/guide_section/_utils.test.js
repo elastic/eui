@@ -321,6 +321,8 @@ describe('renderJsSourceCode', () => {
           default: dedent(`
             import React from 'react';
 
+            import foo from 'bar';
+
             import { v4 } from '@uuid/v4';
 
             const jsCode = \`/* I'm an example of JS */
@@ -331,6 +333,7 @@ describe('renderJsSourceCode', () => {
       ).toEqual(
         dedent(`
             import React from 'react';
+            import foo from 'bar';
             import { v4 } from '@uuid/v4';
 
             const jsCode = \`/* I'm an example of JS */
