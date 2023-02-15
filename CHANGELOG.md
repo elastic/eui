@@ -1,3 +1,11 @@
+## [`75.1.1`](https://github.com/elastic/eui/tree/v75.1.1)
+
+- Updated `EuiCodeBlock` annotation popovers to have an anchor position of `downLeft` ([#6600](https://github.com/elastic/eui/pull/6600))
+
+**Bug fixes**
+
+- (Documentation only) Fixed a negative lookbehind regex causing our docs to crash when viewed in Safari ([#6603](https://github.com/elastic/eui/pull/6603))
+
 ## [`75.1.0`](https://github.com/elastic/eui/tree/v75.1.0)
 
 - Added padding to `EuiStep` title to better align with icon ([#6555](https://github.com/elastic/eui/pull/6555))
