@@ -41,7 +41,7 @@ export type EuiInlineEditProps = CommonProps &
     /**
      * Default string value for input in readView
      */
-    defaultValue?: string;
+    defaultValue: string;
     /**
      * Allow users to pass in a function when the confirm button is clicked
      */
@@ -65,7 +65,7 @@ export const EuiInlineEdit: FunctionComponent<EuiInlineEditProps> = ({
   display,
   // m is the default for both EuiTitle and EuiText
   size = 'm',
-  defaultValue = 'Click me to edit',
+  defaultValue,
   onConfirm,
   inputAriaLabel,
   saveButtonAriaLabel,
@@ -84,7 +84,7 @@ export const EuiInlineEdit: FunctionComponent<EuiInlineEditProps> = ({
   const inlineEditInputId = htmlIdGenerator('__inlineEditInput')();
 
   /* Text Controls */
-  const [editViewValue, setEditViewValue] = useState(defaultValue || '');
+  const [editViewValue, setEditViewValue] = useState(defaultValue);
   const [readViewValue, setReadViewValue] = useState(defaultValue);
 
   const editTextViewOnChange = (e: any) => {
