@@ -552,6 +552,10 @@ export interface EuiDataGridControlColumn {
    */
   headerCellRender: ComponentType;
   /**
+   * Optional props to pass to the column header cell
+   */
+  headerCellProps?: HTMLAttributes<HTMLDivElement>;
+  /**
    * Component to render for each row in the column
    */
   rowCellRender: EuiDataGridCellProps['renderCellValue'];

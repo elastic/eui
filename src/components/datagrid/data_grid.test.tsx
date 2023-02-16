@@ -679,6 +679,7 @@ describe('EuiDataGrid', () => {
               id: 'leading',
               width: 50,
               headerCellRender: () => <span>leading heading</span>,
+              headerCellProps: { className: 'leadingControlCol' },
               rowCellRender: ({ rowIndex }) => rowIndex,
             },
           ]}
@@ -687,6 +688,7 @@ describe('EuiDataGrid', () => {
               id: 'trailing',
               width: 50,
               headerCellRender: () => <span>trailing heading</span>,
+              headerCellProps: { className: 'trailingControlCol' },
               rowCellRender: ({ rowIndex }) => rowIndex,
             },
           ]}
@@ -699,6 +701,8 @@ describe('EuiDataGrid', () => {
       );
 
       expect(component).toMatchSnapshot();
+      expect(component.find('.leadingControlCol')).toHaveLength(1);
+      expect(component.find('.trailingControlCol')).toHaveLength(1);
     });
 
     it('can hide the toolbar', () => {
