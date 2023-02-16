@@ -7,3 +7,4 @@
  */
 
 export { EuiDataGridFooterRow } from './data_grid_footer_row';
+export { useDataGridFooter } from './use_data_grid_footer';
