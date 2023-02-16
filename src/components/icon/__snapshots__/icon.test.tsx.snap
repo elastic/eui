@@ -7951,6 +7951,27 @@ exports[`EuiIcon props type pipelineApp is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type pivot is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="pivot"
+  data-is-loaded="true"
+  fill="none"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M2.89 13.847L11.239 5.5a.522.522 0 00-.737-.737L2.154 13.11a.522.522 0 00.738.738zM14 6.696a.522.522 0 11-1.043 0v-3.13a.522.522 0 00-.522-.523h-3.13a.522.522 0 110-1.043h3.13C13.299 2 14 2.7 14 3.565v3.13z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type play is rendered 1`] = `
 <svg
   aria-hidden="true"

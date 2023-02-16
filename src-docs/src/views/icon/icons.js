@@ -192,6 +192,7 @@ export const iconTypes = [
   'percent',
   'pin',
   'pinFilled',
+  'pivot',
   'play',
   'playFilled',
   'plus',
