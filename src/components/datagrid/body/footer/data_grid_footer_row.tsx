@@ -63,18 +63,25 @@ const EuiDataGridFooterRow = memo(
           data-test-subj={dataTestSubj}
           {...rest}
         >
-          {leadingControlColumns.map(({ id, width, footerCellRender }, i) => (
-            <EuiDataGridCell
-              {...sharedCellProps}
-              key={`${id}-${rowIndex}`}
-              colIndex={i}
-              columnId={id}
-              width={width}
-              renderCellValue={footerCellRender ?? renderEmpty}
-              isExpandable={false}
-              className="euiDataGridFooterCell euiDataGridRowCell--controlColumn"
-            />
-          ))}
+          {leadingControlColumns.map(
+            ({ id, width, footerCellRender, footerCellProps }, i) => (
+              <EuiDataGridCell
+                {...footerCellProps}
+                {...sharedCellProps}
+                key={`${id}-${rowIndex}`}
+                colIndex={i}
+                columnId={id}
+                width={width}
+                renderCellValue={footerCellRender ?? renderEmpty}
+                isExpandable={false}
+                className={classnames(
+                  'euiDataGridFooterCell',
+                  'euiDataGridRowCell--controlColumn',
+                  footerCellProps?.className
+                )}
+              />
+            )
+          )}
           {columns.map(({ id }, i) => {
             const columnType = schema[id] ? schema[id].columnType : null;
             const width = columnWidths[id] || defaultColumnWidth;
@@ -95,22 +102,30 @@ const EuiDataGridFooterRow = memo(
               />
             );
           })}
-          {trailingControlColumns.map(({ id, width, footerCellRender }, i) => {
-            const colIndex = i + columns.length + leadingControlColumns.length;
+          {trailingControlColumns.map(
+            ({ id, width, footerCellRender, footerCellProps }, i) => {
+              const colIndex =
+                i + columns.length + leadingControlColumns.length;
 
-            return (
-              <EuiDataGridCell
-                {...sharedCellProps}
-                key={`${id}-${rowIndex}`}
-                colIndex={colIndex}
-                columnId={id}
-                width={width}
-                renderCellValue={footerCellRender ?? renderEmpty}
-                isExpandable={false}
-                className="euiDataGridFooterCell euiDataGridRowCell--controlColumn"
-              />
-            );
-          })}
+              return (
+                <EuiDataGridCell
+                  {...footerCellProps}
+                  {...sharedCellProps}
+                  key={`${id}-${rowIndex}`}
+                  colIndex={colIndex}
+                  columnId={id}
+                  width={width}
+                  renderCellValue={footerCellRender ?? renderEmpty}
+                  isExpandable={false}
+                  className={classnames(
+                    'euiDataGridFooterCell',
+                    'euiDataGridRowCell--controlColumn',
+                    footerCellProps?.className
+                  )}
+                />
+              );
+            }
+          )}
         </div>
       );
     }

@@ -567,6 +567,10 @@ export interface EuiDataGridControlColumn {
    * Component to render in the optional column footer
    */
   footerCellRender?: EuiDataGridCellProps['renderCellValue'];
+  /**
+   * Optional props to pass to the column footer cell
+   */
+  footerCellProps?: HTMLAttributes<HTMLDivElement>;
 }
 
 export interface EuiDataGridColumn {

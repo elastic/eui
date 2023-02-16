@@ -196,7 +196,7 @@ describe('EuiDataGridFooterRow', () => {
       expect(renderCellValue()).toEqual(null);
     });
 
-    it('renders control column `footerCellRender`s if passed', () => {
+    it('renders control column `footerCellRender`s and `footerCellProps` if passed', () => {
       const component = render(
         <EuiDataGridFooterRow
           {...requiredProps}
@@ -208,6 +208,7 @@ describe('EuiDataGridFooterRow', () => {
               footerCellRender: () => (
                 <div data-test-subj="customLeadingControlFooterCell" />
               ),
+              footerCellProps: { className: 'leading' },
             },
           ]}
           trailingControlColumns={[
@@ -217,14 +218,18 @@ describe('EuiDataGridFooterRow', () => {
               footerCellRender: () => (
                 <div data-test-subj="customTrailingControlFooterCell" />
               ),
+              footerCellProps: { className: 'trailing' },
             },
           ]}
         />
       );
 
+      expect(component.find('.euiDataGridFooterCell.leading')).toHaveLength(1);
       expect(
         component.find('[data-test-subj="customLeadingControlFooterCell"]')
       ).toHaveLength(1);
+
+      expect(component.find('.euiDataGridFooterCell.trailing')).toHaveLength(1);
       expect(
         component.find('[data-test-subj="customTrailingControlFooterCell"]')
       ).toHaveLength(1);
