@@ -12,6 +12,8 @@ import { EuiDataGridCell } from '../data_grid_cell';
 import { DataGridCellPopoverContext } from '../data_grid_cell_popover';
 import { EuiDataGridFooterRowProps } from '../../data_grid_types';
 
+const renderEmpty = () => null;
+
 const EuiDataGridFooterRow = memo(
   forwardRef<HTMLDivElement, EuiDataGridFooterRowProps>(
     (
@@ -50,7 +52,6 @@ const EuiDataGridFooterRow = memo(
         rowIndex,
         visibleRowIndex,
         interactiveCellId,
-        isExpandable: true,
         popoverContext,
       };
 
@@ -62,14 +63,15 @@ const EuiDataGridFooterRow = memo(
           data-test-subj={dataTestSubj}
           {...rest}
         >
-          {leadingControlColumns.map(({ id, width }, i) => (
+          {leadingControlColumns.map(({ id, width, footerCellRender }, i) => (
             <EuiDataGridCell
               {...sharedCellProps}
               key={`${id}-${rowIndex}`}
               colIndex={i}
               columnId={id}
               width={width}
-              renderCellValue={() => null}
+              renderCellValue={footerCellRender ?? renderEmpty}
+              isExpandable={false}
               className="euiDataGridFooterCell euiDataGridRowCell--controlColumn"
             />
           ))}
@@ -88,11 +90,12 @@ const EuiDataGridFooterRow = memo(
                 width={width || undefined}
                 renderCellValue={renderCellValue}
                 renderCellPopover={renderCellPopover}
+                isExpandable={true}
                 className="euiDataGridFooterCell"
               />
             );
           })}
-          {trailingControlColumns.map(({ id, width }, i) => {
+          {trailingControlColumns.map(({ id, width, footerCellRender }, i) => {
             const colIndex = i + columns.length + leadingControlColumns.length;
 
             return (
@@ -102,7 +105,8 @@ const EuiDataGridFooterRow = memo(
                 colIndex={colIndex}
                 columnId={id}
                 width={width}
-                renderCellValue={() => null}
+                renderCellValue={footerCellRender ?? renderEmpty}
+                isExpandable={false}
                 className="euiDataGridFooterCell euiDataGridRowCell--controlColumn"
               />
             );

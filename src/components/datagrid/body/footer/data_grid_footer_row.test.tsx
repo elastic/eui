@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, render } from 'enzyme';
 
 import { EuiDataGridFooterRow } from './data_grid_footer_row';
 
@@ -87,116 +87,148 @@ describe('EuiDataGridFooterRow', () => {
     `);
   });
 
-  it('renders leading control columns', () => {
-    const component = shallow(
-      <EuiDataGridFooterRow
-        {...requiredProps}
-        columns={[]}
-        leadingControlColumns={[
-          {
-            id: 'someLeadingColumn',
-            headerCellRender: () => <div />,
-            rowCellRender: () => <div />,
-            width: 25,
-          },
-        ]}
-      />
-    );
+  describe('control columns', () => {
+    const requiredColumnProps = {
+      headerCellRender: () => <div />,
+      rowCellRender: () => <div />,
+      width: 25,
+    };
 
-    expect(component).toMatchInlineSnapshot(`
-      <div
-        className="euiDataGridRow euiDataGridFooter"
-        data-test-subj="dataGridRow dataGridFooterRow"
-        role="row"
-      >
-        <EuiDataGridCell
-          className="euiDataGridFooterCell euiDataGridRowCell--controlColumn"
-          colIndex={0}
-          columnId="someLeadingColumn"
-          interactiveCellId="someId"
-          isExpandable={true}
-          key="someLeadingColumn-10"
-          popoverContext={
-            Object {
-              "cellLocation": Object {
-                "colIndex": 0,
-                "rowIndex": 0,
-              },
-              "closeCellPopover": [Function],
-              "openCellPopover": [Function],
-              "popoverIsOpen": false,
-              "setPopoverAnchor": [Function],
-              "setPopoverContent": [Function],
-            }
-          }
-          renderCellValue={[Function]}
-          rowIndex={10}
-          visibleRowIndex={10}
-          width={25}
+    it('renders leading control columns as null/empty by default', () => {
+      const component = shallow(
+        <EuiDataGridFooterRow
+          {...requiredProps}
+          columns={[]}
+          leadingControlColumns={[
+            { id: 'someLeadingColumn', ...requiredColumnProps },
+          ]}
         />
-      </div>
-    `);
+      );
 
-    const renderCellValue: Function = component
-      .find('EuiDataGridCell')
-      .prop('renderCellValue');
-    expect(renderCellValue()).toEqual(null);
-  });
-
-  it('renders trailing control columns', () => {
-    const component = shallow(
-      <EuiDataGridFooterRow
-        {...requiredProps}
-        columns={[]}
-        trailingControlColumns={[
-          {
-            id: 'someTrailingColumn',
-            headerCellRender: () => <div />,
-            rowCellRender: () => <div />,
-            width: 50,
-          },
-        ]}
-      />
-    );
-
-    expect(component).toMatchInlineSnapshot(`
-      <div
-        className="euiDataGridRow euiDataGridFooter"
-        data-test-subj="dataGridRow dataGridFooterRow"
-        role="row"
-      >
-        <EuiDataGridCell
-          className="euiDataGridFooterCell euiDataGridRowCell--controlColumn"
-          colIndex={0}
-          columnId="someTrailingColumn"
-          interactiveCellId="someId"
-          isExpandable={true}
-          key="someTrailingColumn-10"
-          popoverContext={
-            Object {
-              "cellLocation": Object {
-                "colIndex": 0,
-                "rowIndex": 0,
-              },
-              "closeCellPopover": [Function],
-              "openCellPopover": [Function],
-              "popoverIsOpen": false,
-              "setPopoverAnchor": [Function],
-              "setPopoverContent": [Function],
+      expect(component).toMatchInlineSnapshot(`
+        <div
+          className="euiDataGridRow euiDataGridFooter"
+          data-test-subj="dataGridRow dataGridFooterRow"
+          role="row"
+        >
+          <EuiDataGridCell
+            className="euiDataGridFooterCell euiDataGridRowCell--controlColumn"
+            colIndex={0}
+            columnId="someLeadingColumn"
+            interactiveCellId="someId"
+            isExpandable={false}
+            key="someLeadingColumn-10"
+            popoverContext={
+              Object {
+                "cellLocation": Object {
+                  "colIndex": 0,
+                  "rowIndex": 0,
+                },
+                "closeCellPopover": [Function],
+                "openCellPopover": [Function],
+                "popoverIsOpen": false,
+                "setPopoverAnchor": [Function],
+                "setPopoverContent": [Function],
+              }
             }
-          }
-          renderCellValue={[Function]}
-          rowIndex={10}
-          visibleRowIndex={10}
-          width={50}
-        />
-      </div>
-    `);
+            renderCellValue={[Function]}
+            rowIndex={10}
+            visibleRowIndex={10}
+            width={25}
+          />
+        </div>
+      `);
 
-    const renderCellValue: Function = component
-      .find('EuiDataGridCell')
-      .prop('renderCellValue');
-    expect(renderCellValue()).toEqual(null);
+      const renderCellValue: Function = component
+        .find('EuiDataGridCell')
+        .prop('renderCellValue');
+      expect(renderCellValue()).toEqual(null);
+    });
+
+    it('renders trailing control columns as null/empty by default', () => {
+      const component = shallow(
+        <EuiDataGridFooterRow
+          {...requiredProps}
+          columns={[]}
+          trailingControlColumns={[
+            { id: 'someTrailingColumn', ...requiredColumnProps },
+          ]}
+        />
+      );
+
+      expect(component).toMatchInlineSnapshot(`
+        <div
+          className="euiDataGridRow euiDataGridFooter"
+          data-test-subj="dataGridRow dataGridFooterRow"
+          role="row"
+        >
+          <EuiDataGridCell
+            className="euiDataGridFooterCell euiDataGridRowCell--controlColumn"
+            colIndex={0}
+            columnId="someTrailingColumn"
+            interactiveCellId="someId"
+            isExpandable={false}
+            key="someTrailingColumn-10"
+            popoverContext={
+              Object {
+                "cellLocation": Object {
+                  "colIndex": 0,
+                  "rowIndex": 0,
+                },
+                "closeCellPopover": [Function],
+                "openCellPopover": [Function],
+                "popoverIsOpen": false,
+                "setPopoverAnchor": [Function],
+                "setPopoverContent": [Function],
+              }
+            }
+            renderCellValue={[Function]}
+            rowIndex={10}
+            visibleRowIndex={10}
+            width={25}
+          />
+        </div>
+      `);
+
+      const renderCellValue: Function = component
+        .find('EuiDataGridCell')
+        .prop('renderCellValue');
+      expect(renderCellValue()).toEqual(null);
+    });
+
+    it('renders control column `footerCellRender`s if passed', () => {
+      const component = render(
+        <EuiDataGridFooterRow
+          {...requiredProps}
+          columns={[]}
+          leadingControlColumns={[
+            {
+              id: 'someLeadingColumn',
+              ...requiredColumnProps,
+              footerCellRender: () => (
+                <div data-test-subj="customLeadingControlFooterCell" />
+              ),
+            },
+          ]}
+          trailingControlColumns={[
+            {
+              id: 'someTrailingColumn',
+              ...requiredColumnProps,
+              footerCellRender: () => (
+                <div data-test-subj="customTrailingControlFooterCell" />
+              ),
+            },
+          ]}
+        />
+      );
+
+      expect(
+        component.find('[data-test-subj="customLeadingControlFooterCell"]')
+      ).toHaveLength(1);
+      expect(
+        component.find('[data-test-subj="customTrailingControlFooterCell"]')
+      ).toHaveLength(1);
+    });
   });
 
   it('renders striped styling if the footer row is odd', () => {

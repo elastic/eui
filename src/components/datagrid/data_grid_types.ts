@@ -548,6 +548,10 @@ export interface EuiDataGridControlColumn {
    */
   id: string;
   /**
+   * Width of the column, users are unable to change this
+   */
+  width: number;
+  /**
    * Component to render in the column header
    */
   headerCellRender: ComponentType;
@@ -560,9 +564,9 @@ export interface EuiDataGridControlColumn {
    */
   rowCellRender: EuiDataGridCellProps['renderCellValue'];
   /**
-   * Width of the column, uses are unable to change this
+   * Component to render in the optional column footer
    */
-  width: number;
+  footerCellRender?: EuiDataGridCellProps['renderCellValue'];
 }
 
 export interface EuiDataGridColumn {
