@@ -25,7 +25,7 @@ import {
 import { useMutationObserver } from '../../observer/mutation_observer';
 import { useResizeObserver } from '../../observer/resize_observer';
 import { EuiDataGridCell } from './data_grid_cell';
-import { EuiDataGridFooterRow } from './data_grid_footer_row';
+import { EuiDataGridFooterRow } from './footer';
 import { EuiDataGridHeaderRow } from './header';
 import { DataGridCellPopoverContext } from './data_grid_cell_popover';
 import {
