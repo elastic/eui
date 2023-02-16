@@ -57,13 +57,6 @@ export const euiShadowMedium = (
 ) => {
   const color = _color || euiTheme.colors.shadow;
 
-  const array = [
-    `0 .9px 4px ${getShadowColor(color, 0.08, colorMode)}`,
-    `0 2.6px 8px ${getShadowColor(color, 0.06, colorMode)}`,
-    `0 5.7px 12px ${getShadowColor(color, 0.05, colorMode)}`,
-    `0 15px 15px ${getShadowColor(color, 0.04, colorMode)}`,
-  ];
-
   if (property === 'filter') {
     // Using only one drop-shadow filter instead of multiple is more performant & prevents Safari bugs
     return `filter: drop-shadow(0 5.7px 9px ${getShadowColor(
