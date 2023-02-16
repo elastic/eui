@@ -578,6 +578,10 @@ export interface EuiDataGridColumn {
    */
   displayAsText?: string;
   /**
+   * Optional props to pass to the column header cell
+   */
+  displayHeaderCellProps?: HTMLAttributes<HTMLDivElement>;
+  /**
    * Initial width (in pixels) of the column
    */
   initialWidth?: number;

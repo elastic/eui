@@ -11,6 +11,7 @@ inMemory={{ level: 'sorting' }}`,
     id: 'A', // required
     display: <>Column A <EuiIcon type="dot" /></>, // optional column header rendering
     displayAsText: 'Column A', // column header as plain text
+    displayHeaderCellProps: { className: 'eui-textCenter' }, // optional column header cell props
     initialWidth: 150, // starting width of 150px
     isResizable: false, // prevents the user from resizing width
     isExpandable: false, // doesn't allow clicking in to see the content in a popup

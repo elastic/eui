@@ -1459,6 +1459,36 @@ describe('EuiDataGrid', () => {
       expect(getCellColorAt(0)).toEqual('blue');
       expect(getCellColorAt(1)).toEqual(undefined);
     });
+
+    test('column display, displayAsText, and displayHeaderCellProps', () => {
+      const component = render(
+        <EuiDataGrid
+          aria-labelledby="#test"
+          columnVisibility={{
+            visibleColumns: ['ColumnA'],
+            setVisibleColumns: () => {},
+          }}
+          columns={[
+            {
+              id: 'ColumnA',
+              display: <span data-test-subj="display">Hello world</span>,
+              displayAsText: 'displayAsText',
+              displayHeaderCellProps: { className: 'displayHeaderCellProps' },
+            },
+          ]}
+          rowCount={1}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}, ${columnId}`
+          }
+        />
+      );
+      const colHeaderCell = component.find(
+        '.euiDataGridHeaderCell.displayHeaderCellProps'
+      );
+      expect(colHeaderCell).toHaveLength(1);
+      expect(colHeaderCell.find('[data-test-subj="display"]')).toHaveLength(1);
+      expect(colHeaderCell.find('[title="displayAsText"]')).toHaveLength(1);
+    });
   });
 
   describe('column sorting', () => {
