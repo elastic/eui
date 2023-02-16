@@ -72,7 +72,11 @@ export const euiShadowMedium = (
       colorMode
     )});`;
   } else {
-    return `box-shadow: ${array.map((v) => v)};`;
+    return `box-shadow:
+      0 .9px 4px ${getShadowColor(color, 0.08, colorMode)},
+      0 2.6px 8px ${getShadowColor(color, 0.06, colorMode)},
+      0 5.7px 12px ${getShadowColor(color, 0.05, colorMode)},
+      0 15px 15px ${getShadowColor(color, 0.04, colorMode)};`;
   }
 };
 
