@@ -18,7 +18,7 @@ describe('EuiFormControlLayoutCustomIcon', () => {
   test('is rendered as button', () => {
     const props: EuiFormControlLayoutCustomIconProps = {
       onClick: () => null,
-      type: 'alert',
+      type: 'error',
       iconRef: 'icon',
       color: 'danger',
     };
@@ -31,7 +31,7 @@ describe('EuiFormControlLayoutCustomIcon', () => {
 
   test('is rendered as span', () => {
     const props: EuiFormControlLayoutCustomIconProps = {
-      type: 'alert',
+      type: 'error',
       iconRef: 'icon',
     };
     const component = render(

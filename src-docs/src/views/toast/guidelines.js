@@ -45,7 +45,7 @@ export default () => {
             title="The maximum bucket size of 200 was exceeded"
             color="danger"
             size="s"
-            iconType="alert"
+            iconType="error"
           />
           <EuiSpacer size="s" />
           <EuiCodeBlock>
@@ -305,7 +305,7 @@ and space to read it properly. Alternatively just link to a full page.
         <GuideRuleExample
           type="do"
           text="The check icon reinforces that the action succeeded.
-                The alert icon helps users understand the message is an error."
+                The error icon helps users understand the message is an error."
         >
           <div>
             <EuiToast
@@ -320,7 +320,7 @@ and space to read it properly. Alternatively just link to a full page.
             <EuiToast
               style={{ maxWidth: 300 }}
               title="A dashboard named 'MyDashboard' already exists"
-              iconType="alert"
+              iconType="error"
               color="danger"
             />
           </div>

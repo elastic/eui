@@ -14,7 +14,7 @@ interface SVGRProps {
   titleId?: string;
 }
 
-const EuiIconCrossInACircleFilled = ({
+const EuiIconWarning = ({
   title,
   titleId,
   ...props
@@ -28,8 +28,9 @@ const EuiIconCrossInACircleFilled = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M8.746 8l3.1-3.1a.527.527 0 10-.746-.746L8 7.254l-3.1-3.1a.527.527 0 10-.746.746l3.1 3.1-3.1 3.1a.527.527 0 10.746.746l3.1-3.1 3.1 3.1a.527.527 0 10.746-.746L8.746 8zM8 16A8 8 0 118 0a8 8 0 010 16z" />
+    <path d="M8.55 9.502l.35-3.507a.905.905 0 10-1.8 0l.35 3.507a.552.552 0 001.1 0zM9 12a1 1 0 11-2 0 1 1 0 012 0z" />
+    <path d="M8.864 1.496a1 1 0 00-1.728 0l-7 12A1 1 0 001 15h14a1 1 0 00.864-1.504l-7-12zM1 14L8 2l7 12H1z" />
   </svg>
 );
 
-export const icon = EuiIconCrossInACircleFilled;
+export const icon = EuiIconWarning;

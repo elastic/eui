@@ -128,7 +128,7 @@ export const WritingExamples = () => {
         >
           <EuiCallOut
             title="Index privileges missing"
-            iconType="alert"
+            iconType="error"
             color="danger"
           >
             <p>

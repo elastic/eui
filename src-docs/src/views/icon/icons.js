@@ -13,7 +13,6 @@ import {
 export const iconTypes = [
   'accessibility',
   'aggregate',
-  'alert',
   'analyzeEvent',
   'annotation',
   'apmTrace',
@@ -62,7 +61,7 @@ export const iconTypes = [
   'copyClipboard',
   'cross',
   'crosshairs',
-  'crossInACircleFilled',
+  'error',
   'currency',
   'cut',
   'database',
@@ -277,6 +276,7 @@ export const iconTypes = [
   'visTimelion',
   'visVega',
   'visVisualBuilder',
+  'warning',
   'wordWrap',
   'wordWrapDisabled',
   'wrench',
@@ -285,7 +285,7 @@ export const iconTypes = [
 export default () => (
   <>
     <EuiCodeBlock language="html" isCopyable paddingSize="m">
-      {'<EuiIcon type="alert" />'}
+      {'<EuiIcon type="warning" />'}
     </EuiCodeBlock>
     <EuiSpacer />
     <EuiFlexGrid direction="column" columns={3}>

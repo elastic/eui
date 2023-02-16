@@ -109,7 +109,7 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
       ];
       const iconTypeMap = {
         danger: 'cross',
-        warning: 'alert',
+        warning: 'warning',
         complete: 'check',
       };
 

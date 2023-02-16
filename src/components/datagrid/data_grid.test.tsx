@@ -920,7 +920,7 @@ describe('EuiDataGrid', () => {
                     ? 1
                     : 0;
                 },
-                icon: 'alert',
+                icon: 'warning',
                 color: 'primary',
                 sortTextAsc: 'a-z',
                 sortTextDesc: 'z-a',
@@ -2096,7 +2096,7 @@ describe('EuiDataGrid', () => {
                   return (
                     <Component
                       onClick={() => alertFn(rowIndex, columnId)}
-                      iconType="alert"
+                      iconType="warning"
                       aria-label="test1 aria label"
                       data-test-subj={
                         isExpanded ? 'alertActionPopover' : 'alertAction'

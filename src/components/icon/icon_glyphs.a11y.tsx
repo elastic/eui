@@ -16,7 +16,6 @@ describe('EuiIcons', () => {
     const GlyphIcons = [
       'accessibility',
       'aggregate',
-      'alert',
       'analyzeEvent',
       'annotation',
       'apmTrace',
@@ -65,7 +64,6 @@ describe('EuiIcons', () => {
       'copyClipboard',
       'cross',
       'crosshairs',
-      'crossInACircleFilled',
       'currency',
       'cut',
       'database',
@@ -279,6 +277,7 @@ describe('EuiIcons', () => {
       'visTimelion',
       'visVega',
       'visVisualBuilder',
+      'warning',
       'wordWrap',
       'wordWrapDisabled',
       'wrench',

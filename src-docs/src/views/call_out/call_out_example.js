@@ -40,7 +40,7 @@ const warningSnippet = [
 import Danger from './danger';
 const dangerSource = require('!!raw-loader!./danger');
 const dangerSnippet = [
-  `<EuiCallOut title="Sorry, there was an error" color="danger" iconType="alert">
+  `<EuiCallOut title="Sorry, there was an error" color="danger" iconType="error">
   <p><!-- Content --></p>
 </EuiCallOut>
 `,

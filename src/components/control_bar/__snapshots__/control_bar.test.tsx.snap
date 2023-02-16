@@ -72,7 +72,7 @@ Array [
       <span
         class="euiControlBar__icon"
         color="danger"
-        data-euiicon-type="alert"
+        data-euiicon-type="error"
       >
         Sample Icon
       </span>
@@ -168,7 +168,7 @@ Array [
       <span
         class="euiControlBar__icon"
         color="danger"
-        data-euiicon-type="alert"
+        data-euiicon-type="error"
       >
         Sample Icon
       </span>
@@ -264,7 +264,7 @@ Array [
       <span
         class="euiControlBar__icon"
         color="danger"
-        data-euiicon-type="alert"
+        data-euiicon-type="error"
       >
         Sample Icon
       </span>
@@ -360,7 +360,7 @@ Array [
       <span
         class="euiControlBar__icon"
         color="danger"
-        data-euiicon-type="alert"
+        data-euiicon-type="error"
       >
         Sample Icon
       </span>
@@ -455,7 +455,7 @@ exports[`EuiControlBar props position is rendered 1`] = `
     <span
       class="euiControlBar__icon"
       color="danger"
-      data-euiicon-type="alert"
+      data-euiicon-type="error"
     >
       Sample Icon
     </span>
@@ -544,7 +544,7 @@ Array [
       <span
         class="euiControlBar__icon"
         color="danger"
-        data-euiicon-type="alert"
+        data-euiicon-type="error"
       >
         Sample Icon
       </span>
@@ -640,7 +640,7 @@ Array [
       <span
         class="euiControlBar__icon"
         color="danger"
-        data-euiicon-type="alert"
+        data-euiicon-type="error"
       >
         Sample Icon
       </span>
@@ -741,7 +741,7 @@ Array [
       <span
         class="euiControlBar__icon"
         color="danger"
-        data-euiicon-type="alert"
+        data-euiicon-type="error"
       >
         Sample Icon
       </span>
