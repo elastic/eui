@@ -114,8 +114,9 @@ and space to read it properly. Alternatively just link to a full page.
                 Warning toasts direct user attention to a potential problem
               </dt>
               <dd>
-                These toasts work well in monitoring apps when something
-                significant requires action.
+                You should receive a warning message when the program detects
+                that something is not behaving right, but it didn&apos;t cause
+                any termination.
               </dd>
             </EuiText>
           </EuiFlexItem>
@@ -136,8 +137,9 @@ and space to read it properly. Alternatively just link to a full page.
             <EuiText>
               <dt>Error toasts report a problem</dt>
               <dd>
-                An error toast might let users know an action didn&apos;t
-                complete or that a form has errors.
+                You should receive an error message when the issue is terminal,
+                this doesn&apos;t always mean that the operation stops
+                completely, but the task is not complete
               </dd>
             </EuiText>
           </EuiFlexItem>
