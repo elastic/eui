@@ -43,7 +43,7 @@ describe('EuiFormControlLayoutCustomIcon', () => {
 
   test('size is rendered', () => {
     const component = render(
-      <EuiFormControlLayoutCustomIcon type="alert" size="s" />
+      <EuiFormControlLayoutCustomIcon type="warning" size="s" />
     );
 
     expect(component).toMatchSnapshot();
