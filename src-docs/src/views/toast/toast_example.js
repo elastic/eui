@@ -202,7 +202,7 @@ export const ToastExample = {
       text: (
         <p>
           Use this callout to warn the user against decisions they might regret.
-          You should receive a warning message when the program detects that
+          Show a warning message when the program detects that {' '}
           <b>
             something is not behaving right, but it didn&apos;t cause any
             termination.
