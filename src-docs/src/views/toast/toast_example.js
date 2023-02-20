@@ -159,7 +159,8 @@ export const ToastExample = {
       ],
       text: (
         <p>
-          Setting <EuiCode language="js">type=&quot;info&quot;</EuiCode>.
+          For informative messages use{' '}
+          <EuiCode language="js">type=&quot;info&quot;</EuiCode>.
         </p>
       ),
       demo: (
@@ -179,7 +180,8 @@ export const ToastExample = {
       ],
       text: (
         <p>
-          Setting <EuiCode language="js">color=&quot;success&quot;</EuiCode>.
+          For success messages use{' '}
+          <EuiCode language="js">color=&quot;success&quot;</EuiCode>.
         </p>
       ),
       demo: (
@@ -201,8 +203,11 @@ export const ToastExample = {
         <p>
           Use this callout to warn the user against decisions they might regret.
           You should receive a warning message when the program detects that
-          something is not behaving right, but it didn&apos;t cause any
-          termination. Setting{' '}
+          <b>
+            something is not behaving right, but it didn&apos;t cause any
+            termination.
+          </b>{' '}
+          For warning messages use{' '}
           <EuiCode language="js">color=&quot;warning&quot;</EuiCode>.
         </p>
       ),
@@ -225,9 +230,12 @@ export const ToastExample = {
         <p>
           Use this callout to let the user know that something went wrong. For
           example if you want to communicate an error. You should receive an
-          error message when the issue is terminal, this doesn&apos;t always
-          mean that the operation stops completely, but the task is not
-          complete. Setting{' '}
+          error message when the issue is{' '}
+          <b>
+            terminal, this doesn&apos;t always mean that the operation stops
+            completely, but the task is not complete
+          </b>
+          . For errors messages use{' '}
           <EuiCode language="js">color=&quot;danger&quot;</EuiCode>.
         </p>
       ),
