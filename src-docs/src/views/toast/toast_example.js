@@ -229,7 +229,7 @@ export const ToastExample = {
       text: (
         <p>
           Use this callout to let the user know that something went wrong. For
-          example if you want to communicate an error. You should receive an
+          example if you want to communicate an error. You should show an
           error message when the issue is{' '}
           <b>
             terminal, this doesn&apos;t always mean that the operation stops
