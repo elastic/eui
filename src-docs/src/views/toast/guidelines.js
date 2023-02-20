@@ -115,8 +115,8 @@ and space to read it properly. Alternatively just link to a full page.
               </dt>
               <dd>
                 You should receive a warning message when the program detects
-                that something is not behaving right, but it didn't cause any
-                termination.
+                that something is not behaving right, but it didn&apos;t cause
+                any termination.
               </dd>
             </EuiText>
           </EuiFlexItem>
@@ -138,8 +138,8 @@ and space to read it properly. Alternatively just link to a full page.
               <dt>Error toasts report a problem</dt>
               <dd>
                 You should receive an error message when the issue is terminal,
-                this doesn't always mean that the operation stops completely,
-                but the task is not complete
+                this doesn&apos;t always mean that the operation stops
+                completely, but the task is not complete
               </dd>
             </EuiText>
           </EuiFlexItem>
