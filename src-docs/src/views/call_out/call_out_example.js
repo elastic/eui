@@ -130,6 +130,11 @@ export const CallOutExample = {
       text: (
         <p>
           Use this callout to warn the user against decisions they might regret.
+          You should receive a warning message when the program detects that{' '}
+          <b>
+            something is not behaving right, but it didn't cause any termination
+          </b>
+          .
         </p>
       ),
       snippet: warningSnippet,
@@ -144,7 +149,16 @@ export const CallOutExample = {
         },
       ],
       text: (
-        <p>Use this callout to let the user know that something went wrong.</p>
+        <p>
+          Use this callout to let the user know that something went wrong. For
+          example if you want to communicate an error. You should receive an
+          error message when the issue is{' '}
+          <b>
+            terminal, this doesn't always mean that the operation stops
+            completely, but the task is not complete
+          </b>
+          .
+        </p>
       ),
       snippet: dangerSnippet,
       demo: <Danger />,
