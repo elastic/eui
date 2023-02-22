@@ -29,7 +29,7 @@ interface TitleDisplayProps {
 
 interface TextDisplayProps {
   display: 'text';
-  size?: TextSize;
+  size?: EuiTextProps['size'];
 }
 
 export type EuiInlineEditProps = CommonProps &
