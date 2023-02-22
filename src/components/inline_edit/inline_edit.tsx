@@ -119,7 +119,7 @@ export const EuiInlineEdit: FunctionComponent<EuiInlineEditProps> = ({
 
   const textEditViewElement = (
     <EuiForm fullWidth>
-      <EuiFlexGroup>
+      <EuiFlexGroup gutterSize="s">
         <EuiFlexItem>
           <EuiFieldText
             id={inlineEditInputId}
