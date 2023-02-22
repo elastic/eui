@@ -9,7 +9,7 @@
 import React, { FunctionComponent, useState } from 'react';
 import { CommonProps, ExclusiveUnion } from '../common';
 import classNames from 'classnames';
-import { EuiButtonEmpty, EuiButton } from '../button';
+import { EuiButtonEmpty, EuiButton, EuiButtonIconProps } from '../button';
 import { EuiFieldText, EuiFormRow, EuiForm } from '../form';
 import { EuiTitle, EuiTitleSize } from '../title';
 import { EuiText, EuiTextProps } from '../text';
@@ -92,13 +92,9 @@ export const EuiInlineEdit: FunctionComponent<EuiInlineEditProps> = ({
   };
 
   const saveTextEditValue = () => {
-    const input = (document.getElementById(
-      inlineEditInputId
-    ) as HTMLInputElement).value;
-
     // If there's no text, cancel the action, reset the input text, and return to readView
-    if (input) {
-      setReadViewValue(input);
+    if (editViewValue) {
+      setReadViewValue(editViewValue);
       setIsInEdit(!isInEdit);
       onConfirm && onConfirm();
     } else {
@@ -117,6 +113,22 @@ export const EuiInlineEdit: FunctionComponent<EuiInlineEditProps> = ({
     'Cancel'
   );
 
+  let iconSize: EuiButtonIconProps['iconSize'];
+  let compressed; // affects FieldText compressed field and editView button size
+  switch (size) {
+    case 'xxxs':
+    case 'xxs':
+    case 'xs':
+    case 's':
+      iconSize = 's';
+      compressed = true;
+      break;
+    default:
+      iconSize = 'm';
+      compressed = false;
+      break;
+  }
+
   const textEditViewElement = (
     <EuiForm fullWidth>
       <EuiFlexGroup gutterSize="s">
@@ -127,6 +139,7 @@ export const EuiInlineEdit: FunctionComponent<EuiInlineEditProps> = ({
             onChange={editTextViewOnChange}
             aria-label={inputAriaLabel}
             autoFocus
+            compressed={compressed}
             {...(rest as any)}
           />
         </EuiFlexItem>
@@ -139,6 +152,7 @@ export const EuiInlineEdit: FunctionComponent<EuiInlineEditProps> = ({
               onClick={saveTextEditValue}
               color="primary"
               fill
+              size={compressed ? 's' : 'm'}
             >
               Save
             </EuiButton>
@@ -155,6 +169,7 @@ export const EuiInlineEdit: FunctionComponent<EuiInlineEditProps> = ({
                 setIsInEdit(!isInEdit);
               }}
               color="primary"
+              size={compressed ? 's' : 'm'}
             >
               Cancel
             </EuiButton>
@@ -170,6 +185,8 @@ export const EuiInlineEdit: FunctionComponent<EuiInlineEditProps> = ({
       iconType="pencil"
       iconSide="right"
       autoFocus
+      flush="both"
+      iconSize={iconSize}
       onClick={() => {
         setIsInEdit(!isInEdit);
       }}
