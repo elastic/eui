@@ -15,7 +15,7 @@ import { EuiInlineEdit } from './inline_edit';
 describe('EuiInlineEdit', () => {
   describe('props', () => {
     test('renders as text', () => {
-      const component = render(
+      const { container } = render(
         <EuiInlineEdit
           display="text"
           inputAriaLabel={'textInput'}
@@ -24,7 +24,7 @@ describe('EuiInlineEdit', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('renders as a title', () => {
