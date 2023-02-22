@@ -57,7 +57,7 @@ export default () => {
 
       <EuiInlineEdit
         display="title"
-        inputAriaLabel="textControlInput"
+        inputAriaLabel="Edit title inline"
         defaultValue="Hello World (but as a title)!"
         size={toggleTitleButtonSize}
         heading="h3"

@@ -41,15 +41,15 @@ export default () => {
       <EuiButtonGroup
         legend="This is a basic group"
         options={textSizeButtons}
-        idSelected={toggleTextButtonSize}
-        onChange={(id: any) => textOnChange(id as EuiTextProps['size'])}
+        idSelected={toggleTextButtonSize as string}
+        onChange={(id) => textOnChange(id as EuiTextProps['size'])}
       />
 
       <EuiSpacer />
 
       <EuiInlineEdit
         display="text"
-        inputAriaLabel="textControlInput"
+        inputAriaLabel="Edit text inline"
         defaultValue="Hello World!"
         size={toggleTextButtonSize}
       />
