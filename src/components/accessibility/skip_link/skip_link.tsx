@@ -6,13 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  FunctionComponent,
-  Ref,
-  useState,
-  useEffect,
-  useCallback,
-} from 'react';
+import React, { FunctionComponent, Ref, useCallback } from 'react';
 import classNames from 'classnames';
 import { isTabbable } from 'tabbable';
 import { useEuiTheme } from '../../../services';
@@ -81,31 +75,17 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
     position !== 'static' ? styles[position] : undefined,
   ];
 
-  const [destinationEl, setDestinationEl] = useState<HTMLElement | null>(null);
-  const [hasValidId, setHasValidId] = useState(true);
-
-  useEffect(() => {
-    const idEl = document.getElementById(destinationId);
-    if (idEl) {
-      setHasValidId(true);
-      setDestinationEl(idEl);
-      return;
-    }
-    setHasValidId(false);
-
-    // If no valid element via ID is available, use the fallback query selectors
-    if (fallbackDestination) {
-      const fallbackEl = document.querySelector<HTMLElement>(
-        fallbackDestination
-      );
-      if (fallbackEl) {
-        setDestinationEl(fallbackEl);
-      }
-    }
-  }, [destinationId, fallbackDestination]);
-
   const onClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {
+      let destinationEl: HTMLElement | null = null;
+      // Check if the destination ID is valid
+      destinationEl = document.getElementById(destinationId);
+      const hasValidId = !!destinationEl;
+      // Check the fallback destination if not
+      if (!destinationEl && fallbackDestination) {
+        destinationEl = document.querySelector(fallbackDestination);
+      }
+
       if ((overrideLinkBehavior || !hasValidId) && destinationEl) {
         e.preventDefault();
 
@@ -124,7 +104,7 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
           destinationEl.tabIndex = -1;
           destinationEl.addEventListener(
             'blur',
-            () => destinationEl.removeAttribute('tabindex'),
+            () => destinationEl?.removeAttribute('tabindex'),
             { once: true }
           );
         }
@@ -134,7 +114,7 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
 
       _onClick?.(e);
     },
-    [overrideLinkBehavior, hasValidId, destinationEl, _onClick]
+    [overrideLinkBehavior, destinationId, fallbackDestination, _onClick]
   );
 
   return (
