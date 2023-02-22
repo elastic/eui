@@ -1,3 +1,9 @@
+## [`75.1.2`](https://github.com/elastic/eui/tree/v75.1.2)
+
+**Bug fixes**
+
+- Fixed bug in `EuiPopover` where multiple filter `drop-shadow()` were causing inner shadows in Safari ([#6604](https://github.com/elastic/eui/pull/6604))
+
 ## [`75.1.1`](https://github.com/elastic/eui/tree/v75.1.1)
 
 - Updated `EuiCodeBlock` annotation popovers to have an anchor position of `downLeft` ([#6600](https://github.com/elastic/eui/pull/6600))
