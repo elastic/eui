@@ -313,6 +313,7 @@ export const typeToPathMap = {
   pin: 'pin',
   pinFilled: 'pin_filled',
   pipelineApp: 'app_pipeline',
+  pivot: 'pivot',
   play: 'play',
   playFilled: 'playFilled',
   plus: 'plus',
