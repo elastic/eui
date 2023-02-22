@@ -33,7 +33,7 @@ describe('_EuiPageEmptyPrompt', () => {
     const component = render(
       <EuiPageEmptyPrompt
         footer="Footer"
-        iconType="alert"
+        iconType="warning"
         layout="horizontal"
       />
     );

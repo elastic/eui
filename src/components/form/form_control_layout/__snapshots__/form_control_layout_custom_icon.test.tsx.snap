@@ -11,7 +11,7 @@ exports[`EuiFormControlLayoutCustomIcon is rendered as button 1`] = `
     aria-hidden="true"
     class="euiFormControlLayoutCustomIcon__icon"
     color="danger"
-    data-euiicon-type="alert"
+    data-euiicon-type="error"
   />
 </button>
 `;
@@ -25,7 +25,7 @@ exports[`EuiFormControlLayoutCustomIcon is rendered as span 1`] = `
   <span
     aria-hidden="true"
     class="euiFormControlLayoutCustomIcon__icon"
-    data-euiicon-type="alert"
+    data-euiicon-type="error"
   />
 </span>
 `;
@@ -37,7 +37,7 @@ exports[`EuiFormControlLayoutCustomIcon size is rendered 1`] = `
   <span
     aria-hidden="true"
     class="euiFormControlLayoutCustomIcon__icon"
-    data-euiicon-type="alert"
+    data-euiicon-type="warning"
   />
 </span>
 `;

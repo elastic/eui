@@ -39,7 +39,7 @@ export default () => {
       <EuiIconTip
         aria-label="Warning"
         size="xl"
-        type="alert"
+        type="warning"
         color="warning"
         content="I do not think it means what you think it means"
       />

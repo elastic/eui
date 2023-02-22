@@ -68,7 +68,7 @@ export type EuiExpressionProps = CommonProps & {
    */
   display?: 'inline' | 'columns';
   /**
-   * Forces color to display as `danger` and shows an `alert` icon
+   * Forces color to display as `danger` and shows an `error` icon
    */
   isInvalid?: boolean;
   /**
@@ -161,7 +161,7 @@ export const EuiExpression: FunctionComponent<ExclusiveUnion<
   const invalidIcon = isInvalid ? (
     <EuiIcon
       className="euiExpression__icon"
-      type="alert"
+      type="warning"
       css={cssIconStyles}
       color={calculatedColor}
     />

@@ -79,7 +79,7 @@ const dangerToastSnippet = [
   `<EuiToast
   title="Danger toast"
   color="danger"
-  iconType="alert"
+  iconType="error"
   onClose={closeToast}>
   <!-- Raw HTML content -->
   </EuiToast>`,

@@ -219,7 +219,7 @@ exports[`EuiStepHorizontal props status warning is rendered 1`] = `
   >
     <span
       class="euiStepNumber__icon emotion-euiStepNumber__icon-warning"
-      data-euiicon-type="alert"
+      data-euiicon-type="warning"
     >
       Step 1 has warnings
     </span>
