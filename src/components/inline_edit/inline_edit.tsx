@@ -114,7 +114,7 @@ export const EuiInlineEdit: FunctionComponent<EuiInlineEditProps> = ({
 
   const defaultCancelButtonAriaLabel = useEuiI18n(
     'euiInlineEdit.cancelButtonAriaLabel',
-    'Save'
+    'Cancel'
   );
 
   const textEditViewElement = (
@@ -179,7 +179,7 @@ export const EuiInlineEdit: FunctionComponent<EuiInlineEditProps> = ({
           <h2>{readViewValue}</h2>
         </EuiTitle>
       ) : (
-        <EuiText size={size as TextSize}>{readViewValue}</EuiText>
+        <EuiText size={size as EuiTextProps['size']}>{readViewValue}</EuiText>
       )}
     </EuiButtonEmpty>
   );

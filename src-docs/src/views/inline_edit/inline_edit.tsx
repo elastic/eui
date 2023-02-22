@@ -5,7 +5,6 @@ import {
   EuiSpacer,
   EuiButtonGroup,
   EuiTextProps,
-  EuiTitleSize,
 } from '../../../../src';
 
 export default () => {
@@ -29,61 +28,21 @@ export default () => {
     },
   ];
 
-  const [toggleTextButtonSize, setToggleTextButtonSize] = useState<EuiTextProps['size']>(
-    'm'
-  );
-
-  const textOnChange = (optionId: TextSize) => {
-    setToggleTextButtonSize(optionId);
-  };
-
-  // Display Title Toggles
-  const titleSizeButtons = [
-    {
-      id: 'xxxs',
-      label: '3X Small',
-    },
-    {
-      id: 'xxs',
-      label: '2X Small',
-    },
-    {
-      id: 'xs',
-      label: 'Extra Small',
-    },
-    {
-      id: 's',
-      label: 'Small',
-    },
-    {
-      id: 'm',
-      label: 'Medium',
-    },
-    {
-      id: 'l',
-      label: 'Large',
-    },
-  ];
-
-  const [toggleTitleButtonSize, setToggleTitleButtonSize] = useState<
-    EuiTitleSize
+  const [toggleTextButtonSize, setToggleTextButtonSize] = useState<
+    EuiTextProps['size']
   >('m');
 
-  const titleOnChange = (optionId: EuiTitleSize) => {
-    setToggleTitleButtonSize(optionId);
+  const textOnChange = (optionId: EuiTextProps['size']) => {
+    setToggleTextButtonSize(optionId);
   };
 
   return (
     <>
-      <p>EuiInlineEdit - Text</p>
-
-      <EuiSpacer />
-
       <EuiButtonGroup
         legend="This is a basic group"
         options={textSizeButtons}
         idSelected={toggleTextButtonSize}
-        onChange={(id) => textOnChange(id as TextSize)}
+        onChange={(id: any) => textOnChange(id as EuiTextProps['size'])}
       />
 
       <EuiSpacer />
@@ -93,28 +52,6 @@ export default () => {
         inputAriaLabel="textControlInput"
         defaultValue="Hello World!"
         size={toggleTextButtonSize}
-      />
-
-      <EuiSpacer />
-
-      <p>EuiInlineEdit - Title</p>
-
-      <EuiSpacer />
-
-      <EuiButtonGroup
-        legend="This is a basic group"
-        options={titleSizeButtons}
-        idSelected={toggleTitleButtonSize}
-        onChange={(id) => titleOnChange(id as EuiTitleSize)}
-      />
-
-      <EuiSpacer />
-
-      <EuiInlineEdit
-        display="title"
-        inputAriaLabel="textControlInput"
-        defaultValue="Hello World (but as a title)!"
-        size={toggleTitleButtonSize}
       />
     </>
   );
