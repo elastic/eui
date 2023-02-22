@@ -22,9 +22,13 @@ import { useEuiI18n } from '../i18n';
 export const DISPLAY_TYPES = ['title', 'text'] as const;
 export type EuiInlineEditDisplayType = typeof DISPLAY_TYPES[number];
 
+export const HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const;
+type Heading = typeof HEADINGS[number];
+
 interface TitleDisplayProps {
   display: 'title';
   size?: EuiTitleSize;
+  heading?: Heading;
 }
 
 interface TextDisplayProps {
@@ -71,6 +75,7 @@ export const EuiInlineEdit: FunctionComponent<EuiInlineEditProps> = ({
   saveButtonAriaLabel,
   cancelButtonAriaLabel,
   startWithEditOpen,
+  heading = 'h2',
   ...rest
 }) => {
   const classes = classNames('euiInlineEdit', className);
@@ -179,6 +184,7 @@ export const EuiInlineEdit: FunctionComponent<EuiInlineEditProps> = ({
     </EuiForm>
   );
 
+  const H: Heading = heading;
   const textReadViewElement = (
     <EuiButtonEmpty
       color="text"
@@ -193,7 +199,7 @@ export const EuiInlineEdit: FunctionComponent<EuiInlineEditProps> = ({
     >
       {display === 'title' ? (
         <EuiTitle size={size as EuiTitleSize}>
-          <h2>{readViewValue}</h2>
+          <H>{readViewValue}</H>
         </EuiTitle>
       ) : (
         <EuiText size={size as EuiTextProps['size']}>{readViewValue}</EuiText>
