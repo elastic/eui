@@ -29,7 +29,7 @@ export default () => {
     },
   ];
 
-  const [toggleTextButtonSize, setToggleTextButtonSize] = useState<TextSize>(
+  const [toggleTextButtonSize, setToggleTextButtonSize] = useState<EuiTextProps['size']>(
     'm'
   );
 
