@@ -4,7 +4,7 @@ import {
   EuiInlineEdit,
   EuiSpacer,
   EuiButtonGroup,
-  TextSize,
+  EuiTextProps,
   EuiTitleSize,
 } from '../../../../src';
 
