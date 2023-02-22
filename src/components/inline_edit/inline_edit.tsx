@@ -12,7 +12,7 @@ import classNames from 'classnames';
 import { EuiButtonEmpty, EuiButton } from '../button';
 import { EuiFieldText, EuiFormRow, EuiForm } from '../form';
 import { EuiTitle, EuiTitleSize } from '../title';
-import { EuiText, TextSize } from '../text';
+import { EuiText, EuiTextProps } from '../text';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 // import { useEuiTheme } from '../../services';
 // import { euiInlineEditStyles } from './inline_edit.styles';
