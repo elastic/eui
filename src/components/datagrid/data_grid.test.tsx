@@ -679,6 +679,7 @@ describe('EuiDataGrid', () => {
               id: 'leading',
               width: 50,
               headerCellRender: () => <span>leading heading</span>,
+              headerCellProps: { className: 'leadingControlCol' },
               rowCellRender: ({ rowIndex }) => rowIndex,
             },
           ]}
@@ -687,6 +688,7 @@ describe('EuiDataGrid', () => {
               id: 'trailing',
               width: 50,
               headerCellRender: () => <span>trailing heading</span>,
+              headerCellProps: { className: 'trailingControlCol' },
               rowCellRender: ({ rowIndex }) => rowIndex,
             },
           ]}
@@ -699,6 +701,8 @@ describe('EuiDataGrid', () => {
       );
 
       expect(component).toMatchSnapshot();
+      expect(component.find('.leadingControlCol')).toHaveLength(1);
+      expect(component.find('.trailingControlCol')).toHaveLength(1);
     });
 
     it('can hide the toolbar', () => {
@@ -1458,6 +1462,36 @@ describe('EuiDataGrid', () => {
 
       expect(getCellColorAt(0)).toEqual('blue');
       expect(getCellColorAt(1)).toEqual(undefined);
+    });
+
+    test('column display, displayAsText, and displayHeaderCellProps', () => {
+      const component = render(
+        <EuiDataGrid
+          aria-labelledby="#test"
+          columnVisibility={{
+            visibleColumns: ['ColumnA'],
+            setVisibleColumns: () => {},
+          }}
+          columns={[
+            {
+              id: 'ColumnA',
+              display: <span data-test-subj="display">Hello world</span>,
+              displayAsText: 'displayAsText',
+              displayHeaderCellProps: { className: 'displayHeaderCellProps' },
+            },
+          ]}
+          rowCount={1}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}, ${columnId}`
+          }
+        />
+      );
+      const colHeaderCell = component.find(
+        '.euiDataGridHeaderCell.displayHeaderCellProps'
+      );
+      expect(colHeaderCell).toHaveLength(1);
+      expect(colHeaderCell.find('[data-test-subj="display"]')).toHaveLength(1);
+      expect(colHeaderCell.find('[title="displayAsText"]')).toHaveLength(1);
     });
   });
 

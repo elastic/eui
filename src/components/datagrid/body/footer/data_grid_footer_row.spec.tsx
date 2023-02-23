@@ -6,10 +6,10 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../../cypress/support"/>
+/// <reference types="../../../../../cypress/support"/>
 
 import React, { useState, useEffect } from 'react';
-import { EuiDataGrid } from '../';
+import { EuiDataGrid } from '../../';
 
 describe('EuiDataGridFooterRow', () => {
   const mockData = [10, 15, 20];

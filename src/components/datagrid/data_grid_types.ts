@@ -548,17 +548,29 @@ export interface EuiDataGridControlColumn {
    */
   id: string;
   /**
+   * Width of the column, users are unable to change this
+   */
+  width: number;
+  /**
    * Component to render in the column header
    */
   headerCellRender: ComponentType;
+  /**
+   * Optional props to pass to the column header cell
+   */
+  headerCellProps?: HTMLAttributes<HTMLDivElement>;
   /**
    * Component to render for each row in the column
    */
   rowCellRender: EuiDataGridCellProps['renderCellValue'];
   /**
-   * Width of the column, uses are unable to change this
+   * Component to render in the optional column footer
    */
-  width: number;
+  footerCellRender?: EuiDataGridCellProps['renderCellValue'];
+  /**
+   * Optional props to pass to the column footer cell
+   */
+  footerCellProps?: HTMLAttributes<HTMLDivElement>;
 }
 
 export interface EuiDataGridColumn {
@@ -577,6 +589,10 @@ export interface EuiDataGridColumn {
    * If not passed, `id` will be shown as the column name.
    */
   displayAsText?: string;
+  /**
+   * Optional props to pass to the column header cell
+   */
+  displayHeaderCellProps?: HTMLAttributes<HTMLDivElement>;
   /**
    * Initial width (in pixels) of the column
    */

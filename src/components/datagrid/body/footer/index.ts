@@ -6,5 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiDataGridHeaderRow } from './data_grid_header_row';
-export { useDataGridHeader } from './use_data_grid_header';
+export { EuiDataGridFooterRow } from './data_grid_footer_row';
+export { useDataGridFooter } from './use_data_grid_footer';
