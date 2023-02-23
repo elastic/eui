@@ -142,12 +142,12 @@ const euiScaleText = (
     }
 
     p,
-    ul,
-    ol,
     dl,
     blockquote,
     img,
-    pre {
+    pre,
+    > ul,
+    > ol {
       ${logicalCSS('margin-bottom', lineHeightSize)}
     }
 
@@ -158,6 +158,7 @@ const euiScaleText = (
 
     // The styles of the nested ordered lists follow the style of GitHub
     // which is commonly used in Markdown or MDX formatting.
+
     ol ol,
     ul ol {
       list-style-type: lower-roman;

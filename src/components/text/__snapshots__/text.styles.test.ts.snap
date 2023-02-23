@@ -79,12 +79,12 @@ exports[`euiTextStyles sizes m 1`] = `
     }
 
     p,
-    ul,
-    ol,
     dl,
     blockquote,
     img,
-    pre {
+    pre,
+    > ul,
+    > ol {
       margin-block-end: 1.7143rem;
     }
 
@@ -95,6 +95,7 @@ exports[`euiTextStyles sizes m 1`] = `
 
     // The styles of the nested ordered lists follow the style of GitHub
     // which is commonly used in Markdown or MDX formatting.
+
     ol ol,
     ul ol {
       list-style-type: lower-roman;
@@ -241,12 +242,12 @@ exports[`euiTextStyles sizes relative 1`] = `
     }
 
     p,
-    ul,
-    ol,
     dl,
     blockquote,
     img,
-    pre {
+    pre,
+    > ul,
+    > ol {
       margin-block-end: 1.5000em;
     }
 
@@ -257,6 +258,7 @@ exports[`euiTextStyles sizes relative 1`] = `
 
     // The styles of the nested ordered lists follow the style of GitHub
     // which is commonly used in Markdown or MDX formatting.
+
     ol ol,
     ul ol {
       list-style-type: lower-roman;
@@ -388,12 +390,12 @@ exports[`euiTextStyles sizes s 1`] = `
     }
 
     p,
-    ul,
-    ol,
     dl,
     blockquote,
     img,
-    pre {
+    pre,
+    > ul,
+    > ol {
       margin-block-end: 1.4286rem;
     }
 
@@ -404,6 +406,7 @@ exports[`euiTextStyles sizes s 1`] = `
 
     // The styles of the nested ordered lists follow the style of GitHub
     // which is commonly used in Markdown or MDX formatting.
+
     ol ol,
     ul ol {
       list-style-type: lower-roman;
@@ -535,12 +538,12 @@ exports[`euiTextStyles sizes xs 1`] = `
     }
 
     p,
-    ul,
-    ol,
     dl,
     blockquote,
     img,
-    pre {
+    pre,
+    > ul,
+    > ol {
       margin-block-end: 1.1429rem;
     }
 
@@ -551,6 +554,7 @@ exports[`euiTextStyles sizes xs 1`] = `
 
     // The styles of the nested ordered lists follow the style of GitHub
     // which is commonly used in Markdown or MDX formatting.
+
     ol ol,
     ul ol {
       list-style-type: lower-roman;
