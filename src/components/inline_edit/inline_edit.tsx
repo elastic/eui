@@ -110,12 +110,12 @@ export const EuiInlineEdit: FunctionComponent<EuiInlineEditProps> = ({
 
   const defaultSaveButtonAriaLabel = useEuiI18n(
     'euiInlineEdit.saveButtonAriaLabel',
-    'Save'
+    'Save edit'
   );
 
   const defaultCancelButtonAriaLabel = useEuiI18n(
     'euiInlineEdit.cancelButtonAriaLabel',
-    'Cancel'
+    'Cancel edit'
   );
 
   let iconSize: EuiButtonIconProps['iconSize'];
@@ -193,6 +193,7 @@ export const EuiInlineEdit: FunctionComponent<EuiInlineEditProps> = ({
       autoFocus
       flush="both"
       iconSize={iconSize}
+      size={compressed ? 's' : 'm'}
       onClick={() => {
         setIsInEdit(!isInEdit);
       }}
