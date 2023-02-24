@@ -146,7 +146,7 @@ export const EuiSuperSelectControl: <T extends string>(
     accessiblePrependId = '';
 
     React.Children.map(prepend, (_, index) => {
-      accessiblePrependId = `${accessiblePrependId}prepend-${index}-${id} `;
+      accessiblePrependId = accessiblePrependId + `prepend-${index}-${id} `;
     });
 
     accessiblePrependId = accessiblePrependId.trimRight();
@@ -161,7 +161,7 @@ export const EuiSuperSelectControl: <T extends string>(
     accessibleAppendId = '';
 
     React.Children.map(append, (_, index) => {
-      accessibleAppendId = `${accessibleAppendId} append-${index}-${id}`;
+      accessibleAppendId = accessibleAppendId + ` append-${index}-${id}`;
     });
 
     accessibleAppendId = accessibleAppendId.trimLeft();
