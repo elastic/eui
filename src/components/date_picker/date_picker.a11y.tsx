@@ -10,10 +10,10 @@
 
 import React, { useState } from 'react';
 import moment from 'moment';
-import { EuiDatePicker } from './date_picker';
+import { EuiDatePicker, EuiDatePickerProps } from './date_picker';
 import { EuiFormRow } from '../form';
 
-const DatePicker = () => {
+const DatePicker = (extraProps: Partial<EuiDatePickerProps>) => {
   const [startDate, setStartDate] = useState(moment());
 
   const handleChange = (date) => {
@@ -22,18 +22,22 @@ const DatePicker = () => {
 
   return (
     <EuiFormRow label="Select a date">
-      <EuiDatePicker selected={startDate} onChange={handleChange} />
+      <EuiDatePicker
+        {...extraProps}
+        selected={startDate}
+        onChange={handleChange}
+      />
     </EuiFormRow>
   );
 };
 
-beforeEach(() => {
-  cy.realMount(<DatePicker />);
-  cy.get('input.euiDatePicker').should('exist');
-});
-
 describe('EuiDatePicker', () => {
   describe('Automated accessibility check', () => {
+    beforeEach(() => {
+      cy.realMount(<DatePicker />);
+      cy.get('input.euiDatePicker').should('exist');
+    });
+
     it('has zero violations on first render', () => {
       cy.checkAxe();
     });
@@ -66,6 +70,17 @@ describe('EuiDatePicker', () => {
       cy.realPress('Space');
       cy.repeatRealPress('ArrowDown');
       cy.realPress('Enter');
+      cy.checkAxe();
+    });
+  });
+
+  describe('Automated accessibility check - invalid state', () => {
+    beforeEach(() => {
+      cy.realMount(<DatePicker isInvalid />);
+      cy.get('input.euiDatePicker').should('exist');
+    });
+
+    it('has zero violations on first render', () => {
       cy.checkAxe();
     });
   });

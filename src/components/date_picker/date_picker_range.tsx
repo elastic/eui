@@ -23,6 +23,11 @@ import { EuiDatePickerProps } from './date_picker';
 
 export type EuiDatePickerRangeProps = CommonProps & {
   /**
+   * Space-separated list of element IDs describing the elements for ARIA purposes.
+   */
+  'aria-describedby'?: string;
+
+  /**
    * Including any children will replace all innards with the provided children
    */
   children?: ReactNode;

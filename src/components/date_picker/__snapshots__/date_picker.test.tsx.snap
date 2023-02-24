@@ -9,11 +9,9 @@ exports[`EuiDatePicker is rendered 1`] = `
     icon="calendar"
     isLoading={false}
   >
-    <EuiValidatableControl>
-      <ContextConsumer>
-        <Component />
-      </ContextConsumer>
-    </EuiValidatableControl>
+    <ContextConsumer>
+      <Component />
+    </ContextConsumer>
   </EuiFormControlLayout>
 </span>
 `;
@@ -59,6 +57,295 @@ exports[`EuiDatePicker is rendered 2`] = `
   withPortal={false}
   yearDropdownItemNumber={7}
 />
+`;
+
+exports[`EuiDatePicker isInvalid is rendered 1`] = `
+<DatePicker
+  accessibleMode={true}
+  adjustDateOnChange={true}
+  allowSameDay={false}
+  aria-invalid={true}
+  aria-label="aria-label"
+  className="euiDatePicker euiFieldText euiFieldText--withIcon euiFieldText-isInvalid testClass1 testClass2"
+  data-test-subj="test subject string"
+  dateFormat="MM/DD/YYYY"
+  dateFormatCalendar="MMMM YYYY"
+  disabled={false}
+  disabledKeyboardNavigation={false}
+  dropdownMode="scroll"
+  monthsShown={1}
+  nextMonthButtonLabel="Next month"
+  onBlur={[Function]}
+  onChange={[Function]}
+  onClickOutside={[Function]}
+  onFocus={[Function]}
+  onInputClick={[Function]}
+  onInputError={[Function]}
+  onKeyDown={[Function]}
+  onMonthChange={[Function]}
+  onSelect={[Function]}
+  onYearChange={[Function]}
+  popperPlacement="downLeft"
+  preventOpenOnFocus={false}
+  previousMonthButtonLabel="Previous Month"
+  readOnly={false}
+  renderDayContents={[Function]}
+  shouldCloseOnSelect={true}
+  showMonthDropdown={true}
+  showTimeSelect={false}
+  showYearDropdown={true}
+  strictParsing={false}
+  timeCaption="Time"
+  timeFormat="hh:mm A"
+  timeIntervals={30}
+  withPortal={false}
+  yearDropdownItemNumber={7}
+>
+  <EuiPopover
+    anchorPosition="downLeft"
+    buffer={0}
+    button={
+      <div
+        className="react-datepicker__input-container"
+      >
+        <input
+          aria-invalid={true}
+          aria-label="Press the down key to open a popover containing a calendar."
+          className="euiDatePicker euiFieldText euiFieldText--withIcon euiFieldText-isInvalid testClass1 testClass2"
+          disabled={false}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          readOnly={false}
+          type="text"
+          value=""
+        />
+      </div>
+    }
+    closePopover={[Function]}
+    display="block"
+    hasArrow={false}
+    isOpen={false}
+    ownFocus={false}
+    panelPaddingSize="none"
+    panelRef={[Function]}
+  >
+    <EuiOutsideClickDetector
+      onOutsideClick={[Function]}
+    >
+      <div
+        css="unknown styles"
+        onKeyDown={[Function]}
+        onMouseDown={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+      >
+        <Insertion
+          cache={
+            Object {
+              "insert": [Function],
+              "inserted": Object {
+                "6tb1tw-euiPopover": true,
+                "hus3oj-euiScreenReaderOnly": true,
+                "zih94u-render": true,
+              },
+              "key": "css",
+              "nonce": undefined,
+              "registered": Object {},
+              "sheet": StyleSheet {
+                "_alreadyInsertedOrderInsensitiveRule": true,
+                "_insertTag": [Function],
+                "before": null,
+                "container": <head>
+                  <style
+                    data-emotion="css"
+                    data-s=""
+                  >
+                    
+                    .emotion-euiPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
+                  </style>
+                  <style
+                    data-emotion="css"
+                    data-s=""
+                  >
+                    
+                    .css-zih94u-render{display:block;}
+                  </style>
+                  <style
+                    data-emotion="css"
+                    data-s=""
+                  >
+                    
+                    .css-hus3oj-euiScreenReaderOnly{position:absolute;inset-block-start:auto;inset-inline-start:-10000px;inline-size:1px;block-size:1px;clip:rect(0 0 0 0);-webkit-clip-path:inset(50%);clip-path:inset(50%);overflow:hidden;margin:-1px;}
+                  </style>
+                </head>,
+                "ctr": 3,
+                "insertionPoint": undefined,
+                "isSpeedy": false,
+                "key": "css",
+                "nonce": undefined,
+                "prepend": undefined,
+                "tags": Array [
+                  <style
+                    data-emotion="css"
+                    data-s=""
+                  >
+                    
+                    .emotion-euiPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
+                  </style>,
+                  <style
+                    data-emotion="css"
+                    data-s=""
+                  >
+                    
+                    .css-zih94u-render{display:block;}
+                  </style>,
+                  <style
+                    data-emotion="css"
+                    data-s=""
+                  >
+                    
+                    .css-hus3oj-euiScreenReaderOnly{position:absolute;inset-block-start:auto;inset-inline-start:-10000px;inline-size:1px;block-size:1px;clip:rect(0 0 0 0);-webkit-clip-path:inset(50%);clip-path:inset(50%);overflow:hidden;margin:-1px;}
+                  </style>,
+                ],
+              },
+            }
+          }
+          isStringTag={true}
+          serialized={
+            Object {
+              "map": undefined,
+              "name": "6tb1tw-euiPopover",
+              "next": undefined,
+              "styles": "position:relative;vertical-align:middle;max-inline-size: 100%;;;label:euiPopover;;;display:block;;",
+              "toString": [Function],
+            }
+          }
+        />
+        <div
+          className="euiPopover emotion-euiPopover"
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+        >
+          <div
+            css="unknown styles"
+          >
+            <Insertion
+              cache={
+                Object {
+                  "insert": [Function],
+                  "inserted": Object {
+                    "6tb1tw-euiPopover": true,
+                    "hus3oj-euiScreenReaderOnly": true,
+                    "zih94u-render": true,
+                  },
+                  "key": "css",
+                  "nonce": undefined,
+                  "registered": Object {},
+                  "sheet": StyleSheet {
+                    "_alreadyInsertedOrderInsensitiveRule": true,
+                    "_insertTag": [Function],
+                    "before": null,
+                    "container": <head>
+                      <style
+                        data-emotion="css"
+                        data-s=""
+                      >
+                        
+                        .emotion-euiPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
+                      </style>
+                      <style
+                        data-emotion="css"
+                        data-s=""
+                      >
+                        
+                        .css-zih94u-render{display:block;}
+                      </style>
+                      <style
+                        data-emotion="css"
+                        data-s=""
+                      >
+                        
+                        .css-hus3oj-euiScreenReaderOnly{position:absolute;inset-block-start:auto;inset-inline-start:-10000px;inline-size:1px;block-size:1px;clip:rect(0 0 0 0);-webkit-clip-path:inset(50%);clip-path:inset(50%);overflow:hidden;margin:-1px;}
+                      </style>
+                    </head>,
+                    "ctr": 3,
+                    "insertionPoint": undefined,
+                    "isSpeedy": false,
+                    "key": "css",
+                    "nonce": undefined,
+                    "prepend": undefined,
+                    "tags": Array [
+                      <style
+                        data-emotion="css"
+                        data-s=""
+                      >
+                        
+                        .emotion-euiPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
+                      </style>,
+                      <style
+                        data-emotion="css"
+                        data-s=""
+                      >
+                        
+                        .css-zih94u-render{display:block;}
+                      </style>,
+                      <style
+                        data-emotion="css"
+                        data-s=""
+                      >
+                        
+                        .css-hus3oj-euiScreenReaderOnly{position:absolute;inset-block-start:auto;inset-inline-start:-10000px;inline-size:1px;block-size:1px;clip:rect(0 0 0 0);-webkit-clip-path:inset(50%);clip-path:inset(50%);overflow:hidden;margin:-1px;}
+                      </style>,
+                    ],
+                  },
+                }
+              }
+              isStringTag={true}
+              serialized={
+                Object {
+                  "map": undefined,
+                  "name": "zih94u-render",
+                  "next": undefined,
+                  "styles": "display:block;;label:render;",
+                  "toString": [Function],
+                }
+              }
+            />
+            <div
+              className="euiPopover__anchor css-zih94u-render"
+            >
+              <div
+                className="react-datepicker__input-container"
+              >
+                <input
+                  aria-invalid={true}
+                  aria-label="Press the down key to open a popover containing a calendar."
+                  className="euiDatePicker euiFieldText euiFieldText--withIcon euiFieldText-isInvalid testClass1 testClass2"
+                  disabled={false}
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  readOnly={false}
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </EuiOutsideClickDetector>
+  </EuiPopover>
+</DatePicker>
 `;
 
 exports[`EuiDatePicker localization accepts the locale prop 1`] = `

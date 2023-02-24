@@ -1,18 +1,18 @@
 /*
  * The MIT License (MIT)
- * 
+ *
  * Copyright (c) 2018 HackerOne Inc and individual contributors
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,7 +20,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- * 
+ *
  */
 
 import Calendar from "./calendar";
@@ -98,6 +98,8 @@ export default class DatePicker extends React.Component {
   static propTypes = {
     adjustDateOnChange: PropTypes.bool,
     allowSameDay: PropTypes.bool,
+    "aria-describedby": PropTypes.string,
+    "aria-invalid": PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     autoComplete: PropTypes.string,
     autoFocus: PropTypes.bool,
     calendarClassName: PropTypes.string,
@@ -344,13 +346,13 @@ export default class DatePicker extends React.Component {
               enableFocusTrap: skipSetBlur ? false : prev.enableFocusTrap
             }),
             () => {
-              // Skip `onBlur` if 
+              // Skip `onBlur` if
               // 1) we are possibly manually moving focus between the input and popover (skipSetBlur) and
-              // 2) the blur event keeps focus on the input 
+              // 2) the blur event keeps focus on the input
               // Focus is also guaranteed to not be inside the popover at this point
               if (!skipSetBlur || (document != null && document.activeElement !== this.input)) {
                 this.setBlur();
-              } 
+              }
 
               this.setState({ inputValue: null });
             }
@@ -548,7 +550,7 @@ export default class DatePicker extends React.Component {
     }
 
     this.props.onSelect(changedDate);
-    
+
     if (this.props.shouldCloseOnSelect) {
       this.setOpen(false, true);
     }
@@ -798,6 +800,8 @@ export default class DatePicker extends React.Component {
       readOnly: this.props.readOnly,
       required: this.props.required,
       tabIndex: this.props.tabIndex,
+      "aria-invalid": this.props["aria-invalid"],
+      "aria-describedby": this.props["aria-describedby"],
       "aria-label": this.state.open ? 'Press the down key to enter a popover containing a calendar. Press the escape key to close the popover.' : 'Press the down key to open a popover containing a calendar.'
     });
   };
@@ -881,7 +885,6 @@ export default class DatePicker extends React.Component {
             {this.renderAccessibleButton()}
           </div>
         }
-        
       >
         {calendar}
       </EuiPopover>

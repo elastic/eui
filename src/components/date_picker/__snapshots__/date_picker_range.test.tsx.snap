@@ -203,6 +203,7 @@ exports[`EuiDatePickerRange isInvalid is rendered 1`] = `
               class="react-datepicker__input-container"
             >
               <input
+                aria-invalid="true"
                 aria-label="Press the down key to open a popover containing a calendar."
                 class="euiDatePicker euiFieldText euiFieldText--withIcon euiFieldText-isInvalid euiDatePickerRange__start"
                 type="text"
@@ -254,6 +255,7 @@ exports[`EuiDatePickerRange isInvalid is rendered 1`] = `
               class="react-datepicker__input-container"
             >
               <input
+                aria-invalid="true"
                 aria-label="Press the down key to open a popover containing a calendar."
                 class="euiDatePicker euiFieldText euiFieldText-isInvalid euiDatePickerRange__end"
                 type="text"

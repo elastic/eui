@@ -25,6 +25,9 @@ import * as moment from 'moment';
 import {PopoverAnchorPosition} from '../../../popover';
 
 export interface ReactDatePickerProps {
+  'aria-describedby'?: string;
+  'aria-invalid'?: string | boolean;
+
   /**
    * Whether changes to Year and Month (via dropdowns) should trigger `onChange`
    */

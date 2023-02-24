@@ -21,7 +21,11 @@ describe('EuiDatePicker', () => {
     );
 
     expect(component).toMatchSnapshot(); // snapshot of wrapping dom
-    expect(component.find('ContextConsumer').shallow()).toMatchSnapshot(); // snapshot of DatePicker usage
+
+    const contextChildren = component.find('ContextConsumer').dive();
+    const euiValidatableControl = contextChildren.find('EuiValidatableControl');
+
+    expect(euiValidatableControl.find('DatePicker')).toMatchSnapshot(); // snapshot of DatePicker usage
   });
 
   describe('popoverPlacement', () => {
@@ -58,6 +62,16 @@ describe('EuiDatePicker', () => {
       );
 
       expect(takeMountedSnapshot(component)).toMatchSnapshot();
+    });
+  });
+
+  describe('isInvalid', () => {
+    it('is rendered', () => {
+      const component = mount<EuiDatePicker>(
+        <EuiDatePicker {...requiredProps} isInvalid />
+      );
+
+      expect(component.find('DatePicker')).toMatchSnapshot();
     });
   });
 });

@@ -224,10 +224,10 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
           clear={selected && onClear ? { onClick: onClear } : undefined}
           isLoading={isLoading}
         >
-          <EuiValidatableControl isInvalid={isInvalid}>
-            <EuiI18nConsumer>
-              {({ locale: contextLocale }) => {
-                return (
+          <EuiI18nConsumer>
+            {({ locale: contextLocale }) => {
+              return (
+                <EuiValidatableControl isInvalid={isInvalid}>
                   <ReactDatePicker
                     adjustDateOnChange={adjustDateOnChange}
                     calendarClassName={calendarClassName}
@@ -263,10 +263,10 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
                     popperPlacement={popoverPlacement}
                     {...rest}
                   />
-                );
-              }}
-            </EuiI18nConsumer>
-          </EuiValidatableControl>
+                </EuiValidatableControl>
+              );
+            }}
+          </EuiI18nConsumer>
         </EuiFormControlLayout>
       </span>
     );
