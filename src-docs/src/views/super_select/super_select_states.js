@@ -30,13 +30,26 @@ export default () => {
     setValue(value);
   };
 
+  const testId = '12345';
+
   return (
     /* DisplayToggles wrapper for Docs only */
-    <DisplayToggles canPrepend={true} canAppend={true}>
+    <DisplayToggles canPrepend={false} canAppend={false}>
       <EuiSuperSelect
+        id={testId}
         options={options}
         valueOfSelected={value}
         onChange={(value) => onChange(value)}
+        append={[
+          <span className="euiFormLabel">After one</span>,
+          <span className="euiFormLabel">After two</span>,
+        ]}
+        prepend={[
+          <span className="euiFormLabel">One</span>,
+          <span className="euiFormLabel">Two</span>,
+        ]}
+        // append={<span className="euiFormLabel">After one</span>}
+        // prepend={<span className="euiFormLabel">One</span>}
       />
     </DisplayToggles>
   );

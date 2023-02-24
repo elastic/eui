@@ -139,7 +139,7 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
     const appendNodes = React.Children.map(nodes, (item, index) =>
       typeof item === 'string'
         ? this.createFormLabel(side, item, inputId)
-        : this.createSideNode(side, item, index)
+        : this.createSideNode(side, item, index, inputId)
     );
 
     return appendNodes;
@@ -163,13 +163,15 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
   createSideNode(
     side: 'append' | 'prepend',
     node: ReactElement,
-    key: React.Key
+    key: React.Key,
+    inputId?: string
   ) {
     return cloneElement(node, {
       className: classNames(
         `euiFormControlLayout__${side}`,
         node.props.className
       ),
+      id: inputId ? `${side}-${key}-${inputId}` : null,
       key: key,
     });
   }

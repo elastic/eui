@@ -135,11 +135,46 @@ export const EuiSuperSelectControl: <T extends string>(
       : selectedValue;
   }
 
+  // Assume we're not going to build an accessible label
+  // unless specific props are passed in
+  let accessiblePrependId: string | null = null;
+  let accessibleAppendId: string | null = null;
+  let accessibleLabelId: string | null = null;
+
+  // Prepend a ReactElement and pass an ID
+  if (prepend && typeof prepend !== 'string' && id) {
+    accessiblePrependId = '';
+
+    React.Children.map(prepend, (_, index) => {
+      accessiblePrependId = `${accessiblePrependId}prepend-${index}-${id} `;
+    });
+
+    accessiblePrependId = accessiblePrependId.trimRight();
+
+    accessibleLabelId = accessibleAppendId
+      ? `${accessiblePrependId} ${id} ${accessibleAppendId}`
+      : `${accessiblePrependId} ${id}`;
+  }
+
+  // Append a ReactElement and pass an ID
+  if (append && typeof append !== 'string' && id) {
+    accessibleAppendId = '';
+
+    React.Children.map(append, (_, index) => {
+      accessibleAppendId = `${accessibleAppendId} append-${index}-${id}`;
+    });
+
+    accessibleAppendId = accessibleAppendId.trimLeft();
+
+    accessibleLabelId = accessiblePrependId
+      ? `${accessiblePrependId} ${id} ${accessibleAppendId}`
+      : `${id} ${accessibleAppendId}`;
+  }
+
   return (
     <Fragment>
       <input
         type="hidden"
-        id={id}
         name={name}
         defaultValue={selectDefaultValue}
         value={value}
@@ -156,6 +191,7 @@ export const EuiSuperSelectControl: <T extends string>(
         compressed={compressed}
         prepend={prepend}
         append={append}
+        inputId={id}
       >
         {/*
           This is read when the user tabs in. The comma is important,
@@ -171,10 +207,15 @@ export const EuiSuperSelectControl: <T extends string>(
           </span>
         </EuiScreenReaderOnly>
         <button
+          aria-labelledby={accessibleLabelId ?? null}
           type="button"
           className={classes}
           aria-haspopup="listbox"
           disabled={disabled || readOnly}
+          // The input[type="hidden"] is ignored by screen readers.
+          // Moving the `id` prop here to create an inclusive accessible label
+          // if users pass a `prepend` or `append` ReactElement and an id.
+          id={id}
           // @ts-ignore Using as a selector only for mixin use
           readOnly={readOnly}
           {...rest}
