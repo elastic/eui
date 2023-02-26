@@ -7,10 +7,15 @@
  */
 
 import React from 'react';
+import { act } from 'react-dom/test-utils';
 import { render, mount } from 'enzyme';
-import { requiredProps } from '../../test';
+import moment from 'moment';
 
-import { EuiDatePickerRange } from './date_picker_range';
+import { requiredProps } from '../../test';
+import {
+  EuiDatePickerRange,
+  EuiDatePickerRangeValue,
+} from './date_picker_range';
 import { EuiDatePicker } from './date_picker';
 
 describe('EuiDatePickerRange', () => {
@@ -125,5 +130,85 @@ describe('EuiDatePickerRange', () => {
     endControl.props().onBlur?.({} as React.FocusEvent);
     expect(endControlOnBlurMock).toHaveBeenCalledTimes(1);
     expect(rangeControlOnBlurMock).toHaveBeenCalledTimes(2);
+  });
+
+  it('calls onChange handlers for date pickers while also triggering range control handlers', () => {
+    const rangeControlOnChangeMock = jest.fn();
+    const startControlOnChangeMock = jest.fn();
+    const endControlOnChangeMock = jest.fn();
+
+    const component = mount(
+      <EuiDatePickerRange
+        onChange={rangeControlOnChangeMock}
+        startDateControl={<EuiDatePicker onChange={startControlOnChangeMock} />}
+        endDateControl={<EuiDatePicker onChange={endControlOnChangeMock} />}
+      />
+    );
+
+    const startControl = component.find(EuiDatePicker).at(0);
+    const endControl = component.find(EuiDatePicker).at(1);
+
+    act(() => {
+      startControl.props().onChange?.(moment());
+    });
+
+    expect(startControlOnChangeMock).toHaveBeenCalledTimes(1);
+    expect(rangeControlOnChangeMock).toHaveBeenCalledTimes(1);
+
+    act(() => {
+      endControl.props().onChange?.(moment());
+    });
+
+    expect(endControlOnChangeMock).toHaveBeenCalledTimes(1);
+    expect(rangeControlOnChangeMock).toHaveBeenCalledTimes(2);
+  });
+
+  it('updates start and end date picker values when value prop changes', () => {
+    const value: EuiDatePickerRangeValue = {
+      startDate: moment([2023, 1, 1]),
+      endDate: moment([2023, 2, 1]),
+    };
+
+    const component = mount(
+      <EuiDatePickerRange
+        value={value}
+        startDateControl={<EuiDatePicker />}
+        endDateControl={<EuiDatePicker />}
+      />
+    );
+
+    let controls = component.find(EuiDatePicker);
+    expect(controls.at(0).props().selected).toEqual(value.startDate);
+    expect(controls.at(1).props().selected).toEqual(value.endDate);
+
+    value.startDate = moment([2023, 2, 1]);
+    value.endDate = moment([2023, 2, 10]);
+    component.setProps({ value });
+
+    controls = component.find(EuiDatePicker);
+    expect(controls.at(0).props().selected).toEqual(value.startDate);
+    expect(controls.at(1).props().selected).toEqual(value.endDate);
+  });
+
+  it('renders the ARIA description element when non-custom controls are used', () => {
+    const value: EuiDatePickerRangeValue = {
+      startDate: moment([2023, 1, 1]),
+      endDate: moment([2023, 1, 10]),
+    };
+
+    const component = mount(
+      <EuiDatePickerRange
+        value={value}
+        startDateControl={<EuiDatePicker />}
+        endDateControl={<EuiDatePicker />}
+      />
+    );
+
+    const controls = component.find(EuiDatePicker);
+    expect(controls.at(0).props()).toHaveProperty('aria-describedby');
+    const describedById = controls.at(0).props()['aria-describedby'];
+    expect(describedById).toEqual(controls.at(1).props()['aria-describedby']);
+
+    expect(component.find(`#${describedById}`)).toMatchSnapshot();
   });
 });

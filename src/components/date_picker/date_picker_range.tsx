@@ -9,17 +9,28 @@
 import React, {
   FocusEvent,
   FocusEventHandler,
-  Fragment,
   FunctionComponent,
   ReactNode,
   cloneElement,
   ReactElement,
+  SyntheticEvent,
+  useCallback,
+  useState,
+  useEffect,
 } from 'react';
 import classNames from 'classnames';
+import moment from 'moment';
 
-import { IconType, EuiIcon } from '../icon';
+import { useGeneratedHtmlId, useUpdateEffect } from '../../services';
 import { CommonProps } from '../common';
 import { EuiDatePickerProps } from './date_picker';
+import { IconType, EuiIcon } from '../icon';
+import { EuiI18n, useEuiI18n } from '../i18n';
+
+export interface EuiDatePickerRangeValue {
+  startDate: moment.Moment | null;
+  endDate: moment.Moment | null;
+}
 
 export type EuiDatePickerRangeProps = CommonProps & {
   /**
@@ -73,6 +84,16 @@ export type EuiDatePickerRangeProps = CommonProps & {
   fullWidth?: boolean;
 
   /**
+   * Value object of the date range picker
+   */
+  value?: EuiDatePickerRangeValue;
+
+  /**
+   * Triggered whenever the start or end controls' values are changed
+   */
+  onChange?: (value: EuiDatePickerRangeValue) => void;
+
+  /**
    * Triggered whenever the start or end controls are blurred
    */
   onBlur?: FocusEventHandler<HTMLInputElement>;
@@ -94,6 +115,8 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
   readOnly,
   isInvalid,
   disabled,
+  value,
+  onChange,
   onFocus,
   onBlur,
   ...rest
@@ -109,6 +132,44 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
     className
   );
 
+  const [currentValue, setCurrentValue] = useState<EuiDatePickerRangeValue>(
+    () =>
+      value || {
+        startDate: startDateControl?.props.selected,
+        endDate: endDateControl?.props.selected,
+      }
+  );
+
+  useEffect(() => {
+    if (value && currentValue !== value) {
+      setCurrentValue(value);
+    }
+  }, [value, currentValue]);
+
+  const handleChange = useCallback(
+    (date: moment.Moment | null, key: keyof EuiDatePickerRangeValue) => {
+      setCurrentValue((prevState) => ({
+        ...prevState,
+        [key]: date,
+      }));
+    },
+    [setCurrentValue]
+  );
+
+  useUpdateEffect(() => {
+    onChange?.(currentValue);
+  }, [currentValue, onChange]);
+
+  const describedById = useGeneratedHtmlId({
+    prefix: 'euiDatePickerRange',
+    suffix: 'description',
+  });
+
+  const emptyDateString = useEuiI18n(
+    'euiDatePickerRange.inputsAriaDescribedByEmptyDate',
+    'Empty date'
+  );
+
   let startControl = startDateControl;
   let endControl = endDateControl;
 
@@ -122,10 +183,17 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
         readOnly: readOnly,
         disabled: disabled || startDateControl.props.disabled,
         isInvalid: isInvalid || startDateControl.props.isInvalid,
+        selected: currentValue.startDate || startDateControl.props.selected,
+        'aria-describedby':
+          startDateControl.props['aria-describedby'] ?? describedById,
         className: classNames(
           'euiDatePickerRange__start',
           startDateControl.props.className
         ),
+        onChange: (date: moment.Moment | null, event: SyntheticEvent<any>) => {
+          startDateControl.props?.onChange?.(date, event);
+          handleChange(date, 'startDate');
+        },
         onBlur: (event: FocusEvent<HTMLInputElement>) => {
           startDateControl.props?.onBlur?.(event);
           onBlur?.(event);
@@ -145,11 +213,18 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
         readOnly: readOnly,
         disabled: disabled || endDateControl.props.disabled,
         isInvalid: isInvalid || endDateControl.props.isInvalid,
+        selected: currentValue.endDate || endDateControl.props.selected,
+        'aria-describedby':
+          endDateControl.props['aria-describedby'] ?? describedById,
         popoverPlacement: 'downRight',
         className: classNames(
           'euiDatePickerRange__end',
           endDateControl.props.className
         ),
+        onChange: (date: moment.Moment | null, event: SyntheticEvent<any>) => {
+          endDateControl.props?.onChange?.(date, event);
+          handleChange(date, 'endDate');
+        },
         onBlur: (event: FocusEvent<HTMLInputElement>) => {
           endDateControl.props?.onBlur?.(event);
           onBlur?.(event);
@@ -172,16 +247,32 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
   );
 
   return (
-    <div className={classes} {...rest}>
-      {children ? (
-        children
-      ) : (
-        <Fragment>
-          {startControl}
-          {delimiter}
-          {endControl}
-        </Fragment>
+    <>
+      <div className={classes} {...rest}>
+        {children ? (
+          children
+        ) : (
+          <>
+            {startControl}
+            {delimiter}
+            {endControl}
+          </>
+        )}
+      </div>
+      {/* Custom ARIA description for start and end date inputs */}
+      {!isCustom && (
+        <p id={describedById} hidden>
+          <EuiI18n
+            token="euiDatePickerRange.inputsAriaDescribedBy"
+            default="Selected range: {startDate} to {endDate}"
+            values={{
+              startDate:
+                currentValue.startDate?.format('LLL') || emptyDateString,
+              endDate: currentValue.endDate?.format('LLL') || emptyDateString,
+            }}
+          />
+        </p>
       )}
-    </div>
+    </>
   );
 };

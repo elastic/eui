@@ -2384,6 +2384,38 @@
     "filepath": "src/components/date_picker/auto_refresh/refresh_interval.tsx"
   },
   {
+    "token": "euiDatePickerRange.inputsAriaDescribedByEmptyDate",
+    "defString": "Empty date",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 168,
+        "column": 26
+      },
+      "end": {
+        "line": 171,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/date_picker_range.tsx"
+  },
+  {
+    "token": "euiDatePickerRange.inputsAriaDescribedBy",
+    "defString": "Selected range: {startDate} to {endDate}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 265,
+        "column": 10
+      },
+      "end": {
+        "line": 273,
+        "column": 12
+      }
+    },
+    "filepath": "src/components/date_picker/date_picker_range.tsx"
+  },
+  {
     "token": "euiAbsoluteTab.dateFormatError",
     "defString": "Expected format: {dateFormat}",
     "highlighting": "string",
