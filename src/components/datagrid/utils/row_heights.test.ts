@@ -8,7 +8,7 @@
 
 import type { MutableRefObject } from 'react';
 import { act } from 'react-dom/test-utils';
-import { testCustomHook } from '../../../test/internal';
+import { renderHook } from '@testing-library/react-hooks';
 import { startingStyles } from '../controls';
 import type { ImperativeGridApi } from '../data_grid_types';
 import {
@@ -618,60 +618,63 @@ describe('useRowHeightUtils', () => {
   });
 
   it('instantiates and returns an instance of RowHeightUtils', () => {
-    const { return: rowHeightUtils } = testCustomHook<RowHeightUtils>(() =>
-      useRowHeightUtils(mockArgs)
-    );
-    expect(rowHeightUtils).toBeInstanceOf(RowHeightUtils);
+    const { result } = renderHook(useRowHeightUtils, {
+      initialProps: mockArgs,
+    });
+    expect(result.current).toBeInstanceOf(RowHeightUtils);
   });
 
   it('instantiates and returns an instance of RowHeightVirtualizationUtils if a `virtualization` obj is passed', () => {
-    const { return: rowHeightUtils } = testCustomHook<
-      RowHeightVirtualizationUtils
-    >(() => useRowHeightUtils(mockVirtualizationArgs));
-
-    expect(rowHeightUtils).toBeInstanceOf(RowHeightVirtualizationUtils);
+    const { result } = renderHook(useRowHeightUtils, {
+      initialProps: mockVirtualizationArgs,
+    });
+    expect(result.current).toBeInstanceOf(RowHeightVirtualizationUtils);
   });
 
   it('forces a rerender every time rowHeightsOptions changes', () => {
-    const { updateHookArgs } = testCustomHook<RowHeightUtils>(
-      useRowHeightUtils,
-      mockArgs
-    );
+    const { rerender } = renderHook(useRowHeightUtils, {
+      initialProps: mockArgs,
+    });
     expect(requestAnimationFrameSpy).toHaveBeenCalledTimes(1);
 
-    updateHookArgs({ rowHeightsOptions: { defaultHeight: 300 } });
+    rerender({ ...mockArgs, rowHeightsOptions: { defaultHeight: 300 } });
     expect(requestAnimationFrameSpy).toHaveBeenCalledTimes(2);
 
-    updateHookArgs({
+    rerender({
+      ...mockArgs,
       rowHeightsOptions: { defaultHeight: 300, rowHeights: { 0: 200 } },
     });
     expect(requestAnimationFrameSpy).toHaveBeenCalledTimes(3);
   });
 
   it('updates internal cached styles whenever gridStyle.cellPadding changes', () => {
-    const { return: rowHeightUtils, updateHookArgs } = testCustomHook<
-      RowHeightUtils
-    >(useRowHeightUtils, mockArgs);
+    const { result, rerender } = renderHook(useRowHeightUtils, {
+      initialProps: mockArgs,
+    });
 
-    updateHookArgs({ gridStyles: { ...startingStyles, cellPadding: 's' } });
+    rerender({
+      ...mockArgs,
+      gridStyles: { ...startingStyles, cellPadding: 's' },
+    });
+
     // @ts-ignore - intentionally inspecting private var for test
-    expect(rowHeightUtils.styles).toEqual({
+    expect(result.current.styles).toEqual({
       paddingTop: 4,
       paddingBottom: 4,
     });
   });
 
   it('prunes columns from the row heights cache if a column is hidden', () => {
-    const { return: rowHeightUtils, updateHookArgs } = testCustomHook<
-      RowHeightUtils
-    >(useRowHeightUtils, mockArgs);
+    const { result, rerender } = renderHook(useRowHeightUtils, {
+      initialProps: mockArgs,
+    });
 
     act(() => {
-      rowHeightUtils.setRowHeight(0, 'A', 30, 0);
-      rowHeightUtils.setRowHeight(0, 'B', 50, 0);
+      result.current.setRowHeight(0, 'A', 30, 0);
+      result.current.setRowHeight(0, 'B', 50, 0);
     });
     // @ts-ignore - intentionally inspecting private var for test
-    expect(rowHeightUtils.heightsCache).toMatchInlineSnapshot(`
+    expect(result.current.heightsCache).toMatchInlineSnapshot(`
       Map {
         0 => Map {
           "A" => 42,
@@ -680,10 +683,10 @@ describe('useRowHeightUtils', () => {
       }
     `);
 
-    updateHookArgs({ columns: [{ id: 'A' }] }); // Hiding column B
+    rerender({ ...mockArgs, columns: [{ id: 'A' }] }); // Hiding column B
 
     // @ts-ignore - intentionally inspecting private var for test
-    expect(rowHeightUtils.heightsCache).toMatchInlineSnapshot(`
+    expect(result.current.heightsCache).toMatchInlineSnapshot(`
       Map {
         0 => Map {
           "A" => 42,
