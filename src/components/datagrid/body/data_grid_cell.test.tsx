@@ -16,12 +16,7 @@ import { DataGridFocusContext } from '../utils/focus';
 import { EuiDataGridCell } from './data_grid_cell';
 
 describe('EuiDataGridCell', () => {
-  const mockRowHeightUtils = new RowHeightUtils(
-    { current: null },
-    { current: null },
-    { current: null },
-    { current: null }
-  );
+  const mockRowHeightUtils = new RowHeightUtils();
 
   const mockPopoverContext = {
     popoverIsOpen: false,

@@ -15,22 +15,6 @@ import { schemaDetectors } from '../utils/data_grid_schema';
 import { EuiDataGridBody, Cell } from './data_grid_body';
 
 describe('EuiDataGridBody', () => {
-  const gridRef = {
-    current: {
-      resetAfterColumnIndex: jest.fn(),
-      resetAfterRowIndex: jest.fn(),
-    } as any,
-  };
-  const outerGridElementRef = { current: null };
-  const gridItemsRendered = { current: null };
-  const rerenderGridBodyRef = { current: null };
-  const rowHeightUtils = new RowHeightUtils(
-    gridRef,
-    outerGridElementRef,
-    gridItemsRendered,
-    rerenderGridBodyRef
-  );
-
   const requiredProps = {
     headerIsInteractive: true,
     rowCount: 1,
@@ -55,12 +39,12 @@ describe('EuiDataGridBody', () => {
     setVisibleColumns: jest.fn(),
     switchColumnPos: jest.fn(),
     schemaDetectors,
-    rowHeightUtils,
+    rowHeightUtils: new RowHeightUtils(),
     isFullScreen: false,
     gridStyles: {},
     gridWidth: 300,
-    gridRef,
-    gridItemsRendered,
+    gridRef: { current: null },
+    gridItemsRendered: { current: null },
     wrapperRef: { current: document.createElement('div') },
   };
 
