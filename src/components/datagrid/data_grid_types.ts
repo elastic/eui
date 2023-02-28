@@ -25,7 +25,7 @@ import {
 import { EuiListGroupItemProps } from '../list_group';
 import { EuiButtonEmpty, EuiButtonIcon } from '../button';
 import { ExclusiveUnion, CommonProps, OneOf } from '../common';
-import { RowHeightUtils } from './utils/row_heights';
+import { RowHeightUtilsType } from './utils/row_heights';
 import { IconType } from '../icon';
 import { EuiTokenProps } from '../token';
 
@@ -525,7 +525,7 @@ export interface EuiDataGridCellProps {
   getRowHeight?: (rowIndex: number) => number;
   style?: React.CSSProperties;
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
-  rowHeightUtils?: RowHeightUtils;
+  rowHeightUtils?: RowHeightUtilsType;
   rowManager?: EuiDataGridRowManager;
   pagination?: EuiDataGridPaginationProps;
 }

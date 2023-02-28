@@ -39,6 +39,8 @@ export const cellPaddingsMap: Record<EuiDataGridStyleCellPaddings, number> = {
 export const AUTO_HEIGHT = 'auto';
 export const DEFAULT_ROW_HEIGHT = 34;
 
+export type RowHeightUtilsType = RowHeightUtils | RowHeightVirtualizationUtils;
+
 export class RowHeightUtils {
   getRowHeightOption(
     rowIndex: number,
