@@ -126,6 +126,7 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
       width,
       rowHeightsOptions: _rowHeightsOptions,
       virtualizationOptions,
+      renderCustomGridBody,
       ...rest
     } = props;
 
@@ -457,6 +458,7 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
                     gridRef={gridRef}
                     gridItemsRendered={gridItemsRendered}
                     wrapperRef={contentRef}
+                    renderCustomGridBody={renderCustomGridBody}
                   />
                 </div>
                 {pagination && props['aria-labelledby'] && (

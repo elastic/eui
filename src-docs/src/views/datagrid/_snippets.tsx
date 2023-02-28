@@ -62,6 +62,11 @@ inMemory={{ level: 'sorting' }}`,
 )}`,
   renderFooterCellValue:
     'renderFooterCellValue={({ rowIndex, columnId }) => {}}',
+  renderCustomGridBody: `// Optional; advanced usage only. This render function is an escape hatch for consumers who need to opt out of virtualization or otherwise need total custom control over how data grid cells are rendered.
+
+renderCustomDataGridBody={({ visibleColumns, visibleRowData, Cell }) => (
+  <Cell colIndex={mappedFromVisibleColumns} visibleRowIndex={mappedFromVisibleRowData} />
+)}`,
   pagination: `pagination={{
   pageIndex: 1,
   pageSize: 100,

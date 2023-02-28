@@ -264,6 +264,18 @@ export type CommonGridProps = CommonProps &
      */
     renderFooterCellValue?: EuiDataGridCellProps['renderCellValue'];
     /**
+     * An optional function called to completely customize and control the rendering of
+     * EuiDataGrid's body and cell placement.  This can be used to, e.g. remove EuiDataGrid's
+     * virtualization library, or roll your own.
+     *
+     * This component is **only** meant as an escape hatch for extremely custom use cases.
+     *
+     * Behind the scenes, this function is treated as a React component,
+     * allowing hooks, context, and other React concepts to be used.
+     * It receives #EuiDataGridCustomBodyProps as its only argument.
+     */
+    renderCustomGridBody?: (args: EuiDataGridCustomBodyProps) => ReactNode;
+    /**
      * Defines the initial style of the grid. Accepts a partial #EuiDataGridStyle object.
      * Settings provided may be overwritten or merged with user defined preferences if `toolbarVisibility.showDisplaySelector.allowDensity = true` (which is the default).
      */
@@ -410,6 +422,7 @@ export interface EuiDataGridBodyProps {
   renderCellValue: EuiDataGridCellProps['renderCellValue'];
   renderCellPopover?: EuiDataGridCellProps['renderCellPopover'];
   renderFooterCellValue?: EuiDataGridCellProps['renderCellValue'];
+  renderCustomGridBody?: EuiDataGridProps['renderCustomGridBody'];
   interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
   pagination?: EuiDataGridPaginationProps;
   headerIsInteractive: boolean;
@@ -425,6 +438,39 @@ export interface EuiDataGridBodyProps {
   gridRef: MutableRefObject<Grid | null>;
   gridItemsRendered: MutableRefObject<GridOnItemsRenderedProps | null>;
   wrapperRef: MutableRefObject<HTMLDivElement | null>;
+}
+
+export interface EuiDataGridCustomBodyProps {
+  /**
+   * When taking control of data grid rendering, the underlying `EuiDataGridCell`
+   * is passed as a prop for usage. You **must** pass in a valid `colIndex`
+   * and `visibleRowIndex` to this cell component.
+   *
+   * You may also pass in any other optional cell prop overrides
+   * that `EuiDataGridCell` accepts, such as `isExpandable` or `renderCellValue`.
+   */
+  Cell: JSXElementConstructor<
+    { colIndex: number; visibleRowIndex: number } & Partial<
+      EuiDataGridCellProps
+    >
+  >;
+  /**
+   * The currently visible columns (affected by hiding and sorting) are passed to
+   * your data grid renderer so that your custom grid can continue to automatically
+   * adjust to column hiding reordering
+   */
+  visibleColumns: EuiDataGridColumn[];
+  /**
+   * The currently visible columns (affected by hiding and sorting) are passed to
+   * your data grid renderer so that your custom grid can continue to adjust
+   * to sorting and pagination. You will need to manually slice your data with
+   * `startRow` and `endRow` in order to simulate pagination.
+   */
+  visibleRowData: {
+    startRow: number;
+    endRow: number;
+    visibleRowCount: number;
+  };
 }
 
 /**
