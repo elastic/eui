@@ -24,6 +24,7 @@
   }
 
   &:focus {
+    position: relative;
     @include euiDataGridCellFocus;
   }
 
