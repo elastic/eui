@@ -175,7 +175,7 @@ describe('EuiDataGridBodyCustomRender', () => {
     cy.get('.euiDataGrid').invoke('outerHeight').should('eq', 300);
     cy.get('.euiDataGrid').invoke('outerWidth').should('eq', 300);
     cy.get('.euiDataGrid__customRenderBody')
-      .invoke('outerHeight')
+      .invoke('prop', 'scrollHeight')
       .should('be.gt', 300);
 
     // Virtualization isn't a thing, so check that the last row is present on the page
