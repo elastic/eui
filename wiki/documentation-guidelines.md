@@ -214,7 +214,7 @@ import { ExampleContext } from '../../services';
 
 ## Changelog
 
-Any updates to the `src/` folder require a new [upcoming changelog](../upcoming_changelog/_template.md) file. Our release script will handle collating upcoming changelog files into our main [CHANGELOG.md](../CHANGELOG.md) on new EUI versions. Here are our guidelines for creating a changelog:
+Any updates to the `src/` folder require a new [upcoming changelog](../upcoming_changelogs/_template.md) file. Our release script will handle collating upcoming changelog files into our main [CHANGELOG.md](../CHANGELOG.md) on new EUI versions. Here are our guidelines for creating a changelog:
 
 * Create a new file with the ID/number of the pull request
   * You can use `yarn yo-changelog #####` (passing the PR ID/number) to automatically generate a changelog boilerplate file
