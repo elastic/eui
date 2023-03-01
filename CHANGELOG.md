@@ -1,3 +1,23 @@
+## [`76.0.0`](https://github.com/elastic/eui/tree/v76.0.0)
+
+- Added `pivot` glyph to `EuiIcon` ([#6605](https://github.com/elastic/eui/pull/6605))
+- Added the `displayHeaderCellProps` API to `EuiDataGrid`'s columns, which allows passing custom props directly to column header cells ([#6609](https://github.com/elastic/eui/pull/6609))
+- Added the new `headerCellProps`/`footerCellProps` APIs to `EuiDataGrid`'s control columns, which allows passing custom props directly to control column header or footer cells ([#6609](https://github.com/elastic/eui/pull/6609))
+- Added a new `footerCellRender` API to `EuiDataGrid`'s control columns, which allows completely customizing control column rendering (previously rendered an empty cell) ([#6609](https://github.com/elastic/eui/pull/6609))
+- Updated the styling of nested ordered lists in `EuiText` to align with GitHub's list style, which is a popular format used in Markdown or MDX formatting ([#6615](https://github.com/elastic/eui/pull/6615))
+- Added a margin-bottom property exclusively to the direct child `ul` and `ol` elements of the `EuiText` component ([#6615](https://github.com/elastic/eui/pull/6615))
+- Fix issue with badges appearing within an `EuiBadgeGroup`, where the CSS rule to override the `margin-inline-start` was not being applied correctly due to the order of appearance in the CSS rules ([#6618](https://github.com/elastic/eui/pull/6618))
+
+**Bug fixes**
+
+- Fixed `EuiDataGrid` footer control columns rendering with cell expansion popovers when they should not have been ([#6609](https://github.com/elastic/eui/pull/6609))
+- Fixed an `EuiSkipLink` bug where main content loading in progressively/dynamically after the skip link rendered was not being correctly focused ([#6613](https://github.com/elastic/eui/pull/6613))
+
+**Breaking changes**
+
+- Renamed `EuiIcon`'s `alert` to `warning` ([#6608](https://github.com/elastic/eui/pull/6608))
+- Removed `EuiIcon`'s `crossInACircleFilled` in favor of `error` ([#6608](https://github.com/elastic/eui/pull/6608))
+
 ## [`75.1.2`](https://github.com/elastic/eui/tree/v75.1.2)
 
 **Bug fixes**
