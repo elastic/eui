@@ -587,8 +587,8 @@ export class EuiDataGridCell extends Component<
     };
 
     cellProps.style = {
-      ...style, // from react-window
-      top: 0, // The cell's row will handle top positioning
+      ...style, // set by react-window or the custom renderer
+      top: style?.top ? 0 : undefined, // The cell's row will handle top positioning
       width, // column width, can be undefined
       lineHeight: rowHeightsOptions?.lineHeight ?? undefined, // lineHeight configuration
       ...cellPropsStyle, // apply anything from setCellProps({ style })
