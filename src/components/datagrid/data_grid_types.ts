@@ -455,16 +455,15 @@ export interface EuiDataGridCustomBodyProps {
     >
   >;
   /**
-   * The currently visible columns (affected by hiding and sorting) are passed to
-   * your data grid renderer so that your custom grid can continue to automatically
-   * adjust to column hiding reordering
+   * The currently visible columns are passed to your data grid renderer so that your
+   * custom grid can automatically adjust to column hiding & reordering.
    */
   visibleColumns: EuiDataGridColumn[];
   /**
-   * The currently visible columns (affected by hiding and sorting) are passed to
-   * your data grid renderer so that your custom grid can continue to adjust
-   * to sorting and pagination. You will need to manually slice your data with
-   * `startRow` and `endRow` in order to simulate pagination.
+   * The currently visible rows are passed to your data grid renderer so that your
+   * custom grid can automatically adjust to sorting and pagination.
+   *
+   * You will need  to manually slice your data with `startRow` and `endRow` in order to simulate pagination.
    */
   visibleRowData: {
     startRow: number;
