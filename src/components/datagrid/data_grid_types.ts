@@ -588,6 +588,7 @@ export type EuiDataGridCellValueProps = Omit<
   EuiDataGridCellProps,
   'width' | 'interactiveCellId' | 'popoverContext' | 'rowManager'
 >;
+
 export interface EuiDataGridControlColumn {
   /**
    * Used as the React `key` when rendering content
@@ -618,6 +619,9 @@ export interface EuiDataGridControlColumn {
    */
   footerCellProps?: HTMLAttributes<HTMLDivElement>;
 }
+// The empty control column array fallbacks need to be cached, or
+// they'll cause rerendering/remount issues in memoized dependencies
+export const emptyControlColumns: EuiDataGridControlColumn[] = [];
 
 export interface EuiDataGridColumn {
   /**

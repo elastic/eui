@@ -92,6 +92,25 @@ describe('EuiDataGridBodyCustomRender', () => {
     );
   };
 
+  it('inherits cell focus and popover behavior correctly', () => {
+    cy.realMount(<DataGridTest />);
+    cy.repeatRealPress('Tab', 6);
+    cy.realPress('ArrowDown');
+    cy.focused()
+      .should('have.attr', 'data-gridcell-row-index', '0')
+      .should('have.attr', 'data-gridcell-column-index', '0')
+      .should('have.attr', 'tabindex', '0');
+    cy.wait(500);
+    cy.realPress('Enter');
+    cy.focused().should('have.attr', 'data-popover-open', 'true');
+    cy.realPress('Escape');
+    cy.realPress('ArrowRight');
+    cy.focused()
+      .should('have.attr', 'data-gridcell-row-index', '0')
+      .should('have.attr', 'data-gridcell-column-index', '1')
+      .should('have.attr', 'tabindex', '0');
+  });
+
   it('handles pagination correctly when consumers slice their data based on visibleRowData', () => {
     cy.realMount(<DataGridTest />);
     cy.get('[data-test-subj="pagination-button-last"]').click();

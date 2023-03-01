@@ -52,6 +52,7 @@ import {
 } from './utils/data_grid_schema';
 import { useImperativeGridRef } from './utils/ref';
 import {
+  emptyControlColumns,
   EuiDataGridColumn,
   EuiDataGridProps,
   EuiDataGridRefProps,
@@ -105,8 +106,8 @@ const cellPaddingsToClassMap: {
 export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
   (props, ref) => {
     const {
-      leadingControlColumns = [],
-      trailingControlColumns = [],
+      leadingControlColumns = emptyControlColumns,
+      trailingControlColumns = emptyControlColumns,
       columns,
       columnVisibility,
       schemaDetectors,
