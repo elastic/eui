@@ -655,8 +655,14 @@ export class EuiDualRangeClass extends Component<
                       onFocus={this.onThumbFocus}
                       onBlur={this.onThumbBlur}
                       onKeyDown={this.handleDraggableKeyDown}
-                      aria-describedby={this.props['aria-describedby']}
-                      aria-label={this.props['aria-label']}
+                      aria-describedby={
+                        showInputOnly
+                          ? undefined
+                          : this.props['aria-describedby']
+                      }
+                      aria-label={
+                        showInputOnly ? undefined : this.props['aria-label']
+                      }
                     />
                   )}
 
@@ -671,8 +677,12 @@ export class EuiDualRangeClass extends Component<
                     onFocus={this.onThumbFocus}
                     onBlur={this.onThumbBlur}
                     style={logicalStyles(leftThumbStyles)}
-                    aria-describedby={this.props['aria-describedby']}
-                    aria-label={this.props['aria-label']}
+                    aria-describedby={
+                      showInputOnly ? undefined : this.props['aria-describedby']
+                    }
+                    aria-label={
+                      showInputOnly ? undefined : this.props['aria-label']
+                    }
                   />
 
                   <EuiRangeThumb
@@ -686,8 +696,12 @@ export class EuiDualRangeClass extends Component<
                     onFocus={this.onThumbFocus}
                     onBlur={this.onThumbBlur}
                     style={logicalStyles(rightThumbStyles)}
-                    aria-describedby={this.props['aria-describedby']}
-                    aria-label={this.props['aria-label']}
+                    aria-describedby={
+                      showInputOnly ? undefined : this.props['aria-describedby']
+                    }
+                    aria-label={
+                      showInputOnly ? undefined : this.props['aria-label']
+                    }
                   />
                 </React.Fragment>
               )}

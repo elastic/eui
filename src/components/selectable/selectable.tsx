@@ -705,9 +705,11 @@ export class EuiSelectable<T = {}> extends Component<
               {...cleanedSearchProps}
             />
 
-            <EuiScreenReaderOnly>
-              <p id={listAriaDescribedbyId}>{screenReaderInstructions}</p>
-            </EuiScreenReaderOnly>
+            {searchable && (
+              <EuiScreenReaderOnly>
+                <p id={listAriaDescribedbyId}>{screenReaderInstructions}</p>
+              </EuiScreenReaderOnly>
+            )}
           </>
         )}
       </EuiI18n>
