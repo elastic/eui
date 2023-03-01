@@ -6,22 +6,26 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useMemo } from 'react';
+import React, { FunctionComponent, useMemo, useCallback } from 'react';
 
 import { useDefaultColumnWidth, useColumnWidths } from '../utils/col_widths';
+import { useRowHeightUtils, useDefaultRowHeight } from '../utils/row_heights';
 
 import { EuiDataGridBodyProps } from '../data_grid_types';
 import { useDataGridHeader } from './header';
 import { useDataGridFooter } from './footer';
+import { Cell } from './data_grid_cell_wrapper';
 
 export const EuiDataGridBodyCustomRender: FunctionComponent<EuiDataGridBodyProps> = ({
   renderCustomGridBody,
   leadingControlColumns,
   trailingControlColumns,
   columns,
+  visibleColCount,
   schema,
   schemaDetectors,
   visibleRows,
+  renderCellValue,
   renderCellPopover,
   renderFooterCellValue,
   interactiveCellId,
@@ -31,6 +35,9 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<EuiDataGridBodyProps
   switchColumnPos,
   onColumnResize,
   gridWidth,
+  gridStyles,
+  pagination,
+  rowHeightsOptions,
 }) => {
   /**
    * Columns & widths
@@ -53,6 +60,20 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<EuiDataGridBodyProps
     trailingControlColumns,
     defaultColumnWidth,
     onColumnResize,
+  });
+
+  /**
+   * Row heights
+   */
+  const rowHeightUtils = useRowHeightUtils({
+    rowHeightsOptions,
+    gridStyles,
+    columns,
+  });
+
+  const { setRowHeight, getRowHeight } = useDefaultRowHeight({
+    rowHeightsOptions,
+    rowHeightUtils,
   });
 
   /**
@@ -87,13 +108,52 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<EuiDataGridBodyProps
     schema,
   });
 
+  /**
+   * Cell render fn
+   */
+  const cellProps = {
+    schema,
+    schemaDetectors,
+    pagination,
+    columns,
+    leadingControlColumns,
+    trailingControlColumns,
+    visibleColCount,
+    columnWidths,
+    defaultColumnWidth,
+    renderCellValue,
+    renderCellPopover,
+    interactiveCellId,
+    setRowHeight,
+    rowHeightsOptions,
+    rowHeightUtils,
+  };
+
+  const _Cell = useCallback(
+    ({ colIndex, visibleRowIndex, ...rest }) => {
+      const style = {
+        height: rowHeightUtils.isAutoHeight(visibleRowIndex, rowHeightsOptions)
+          ? 'auto'
+          : getRowHeight(visibleRowIndex),
+      };
+      const props = {
+        colIndex,
+        visibleRowIndex,
+        style,
+        ...cellProps,
+      };
+      return <Cell {...props} {...rest} />;
+    },
+    [...Object.values(cellProps), getRowHeight] // eslint-disable-line react-hooks/exhaustive-deps
+  );
+
   return (
     <div className="euiDataGrid__customRenderBody">
       {headerRow}
       {renderCustomGridBody!({
         visibleColumns,
         visibleRowData: visibleRows,
-        Cell: () => null, // TODO
+        Cell: _Cell,
       })}
       {footerRow}
     </div>

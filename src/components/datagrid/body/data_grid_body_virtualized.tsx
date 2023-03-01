@@ -21,14 +21,12 @@ import {
   VariableSizeGridProps,
 } from 'react-window';
 import { useResizeObserver } from '../../observer/resize_observer';
-import { EuiDataGridCell } from './data_grid_cell';
 import { useDataGridHeader } from './header';
 import { useDataGridFooter } from './footer';
-import { DataGridCellPopoverContext } from './data_grid_cell_popover';
+import { Cell } from './data_grid_cell_wrapper';
 import {
   EuiDataGridBodyProps,
   DataGridWrapperRowsContentsShape,
-  EuiDataGridSchemaDetector,
 } from '../data_grid_types';
 import { useRowManager } from './data_grid_row_manager';
 import {
@@ -39,138 +37,26 @@ import {
 import { useDefaultColumnWidth, useColumnWidths } from '../utils/col_widths';
 import { useRowHeightUtils, useDefaultRowHeight } from '../utils/row_heights';
 import { useScrollBars, useScroll } from '../utils/scrolling';
-import { DataGridSortingContext } from '../utils/sorting';
 import { IS_JEST_ENVIRONMENT } from '../../../utils';
 
-export const Cell: FunctionComponent<GridChildComponentProps> = ({
+export const _Cell: FunctionComponent<GridChildComponentProps> = ({
   columnIndex,
-  rowIndex: visibleRowIndex,
+  rowIndex,
   style,
   data,
 }) => {
-  const {
-    leadingControlColumns,
-    trailingControlColumns,
-    columns,
-    visibleColCount,
-    schema,
-    columnWidths,
-    defaultColumnWidth,
-    renderCellValue,
-    renderCellPopover,
-    interactiveCellId,
-    setRowHeight,
-    schemaDetectors,
-    rowHeightsOptions,
-    rowHeightUtils,
-    rowManager,
-    pagination,
-  } = data;
-  const popoverContext = useContext(DataGridCellPopoverContext);
   const { headerRowHeight } = useContext(DataGridWrapperRowsContext);
-  const { getCorrectRowIndex } = useContext(DataGridSortingContext);
-
-  let cellContent;
-
-  const isFirstColumn = columnIndex === 0;
-  const isLastColumn = columnIndex === visibleColCount - 1;
-
-  const isLeadingControlColumn = columnIndex < leadingControlColumns.length;
-  const isTrailingControlColumn =
-    columnIndex >= leadingControlColumns.length + columns.length;
-
-  const dataColumnIndex = columnIndex - leadingControlColumns.length;
-  const column = columns[dataColumnIndex];
-  const columnId = column?.id;
-
-  const transformClass = schemaDetectors.filter(
-    (row: EuiDataGridSchemaDetector) => {
-      return column?.schema
-        ? column?.schema === row.type
-        : columnId === row.type;
-    }
-  )[0];
-  const textTransform = transformClass?.textTransform;
-
-  const classes = classNames({
-    'euiDataGridRowCell--firstColumn': isFirstColumn,
-    'euiDataGridRowCell--lastColumn': isLastColumn,
-    'euiDataGridRowCell--controlColumn':
-      isLeadingControlColumn || isTrailingControlColumn,
-    [`euiDataGridRowCell--${textTransform}`]: textTransform,
-  });
-
-  const sharedCellProps = {
-    rowIndex: getCorrectRowIndex(visibleRowIndex),
-    visibleRowIndex,
-    colIndex: columnIndex,
-    interactiveCellId,
-    className: classes,
-    style: {
-      ...style,
-      top: `${parseFloat(style.top as string) + headerRowHeight}px`,
-    },
-    rowHeightsOptions,
-    rowHeightUtils,
-    setRowHeight: isFirstColumn ? setRowHeight : undefined,
-    rowManager,
-    popoverContext,
-    pagination,
-  };
-
-  if (isLeadingControlColumn) {
-    const leadingColumn = leadingControlColumns[columnIndex];
-    const { id, rowCellRender } = leadingColumn;
-
-    cellContent = (
-      <EuiDataGridCell
-        {...sharedCellProps}
-        columnId={id}
-        width={leadingColumn.width}
-        renderCellValue={rowCellRender}
-        isExpandable={false}
-      />
-    );
-  } else if (isTrailingControlColumn) {
-    const columnOffset = columns.length + leadingControlColumns.length;
-    const trailingColumnIndex = columnIndex - columnOffset;
-    const trailingColumn = trailingControlColumns[trailingColumnIndex];
-    const { id, rowCellRender } = trailingColumn;
-
-    cellContent = (
-      <EuiDataGridCell
-        {...sharedCellProps}
-        columnId={id}
-        width={trailingColumn.width}
-        renderCellValue={rowCellRender}
-        isExpandable={false}
-      />
-    );
-  } else {
-    // this is a normal data cell
-    const columnType = schema[columnId] ? schema[columnId].columnType : null;
-
-    const isExpandable =
-      column.isExpandable !== undefined ? column.isExpandable : true;
-
-    const width = columnWidths[columnId] || defaultColumnWidth;
-
-    cellContent = (
-      <EuiDataGridCell
-        {...sharedCellProps}
-        columnId={columnId}
-        column={column}
-        columnType={columnType}
-        width={width || undefined}
-        renderCellValue={renderCellValue}
-        renderCellPopover={renderCellPopover}
-        interactiveCellId={interactiveCellId}
-        isExpandable={isExpandable}
-      />
-    );
-  }
-
-  return cellContent;
+  return (
+    <Cell
+      colIndex={columnIndex}
+      visibleRowIndex={rowIndex}
+      style={{
+        ...style,
+        top: `${parseFloat(style.top as string) + headerRowHeight}px`,
+      }}
+      {...data}
+    />
+  );
 };
 
 // Context is required to pass props to react-window's innerElementType
@@ -443,7 +329,7 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
           IS_JEST_ENVIRONMENT || headerRowHeight > 0 ? visibleRowCount : 0
         }
       >
-        {Cell}
+        {_Cell}
       </Grid>
       {scrollBorderOverlay}
     </DataGridWrapperRowsContext.Provider>
