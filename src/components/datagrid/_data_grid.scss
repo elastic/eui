@@ -35,6 +35,13 @@
   font-feature-settings: 'tnum' 1; // Tabular numbers
 }
 
+.euiDataGrid__customRenderBody {
+  @include euiScrollBar($euiColorDarkShade, $euiColorEmptyShade);
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
 .euiDataGrid__pagination {
   z-index: 2; // Sits above the content above it
   padding-top: $euiSizeXS;
