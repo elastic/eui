@@ -1,4 +1,4 @@
-import React, { useState, ReactNode } from 'react';
+import React, { useState, useEffect, ReactNode } from 'react';
 import { faker } from '@faker-js/faker';
 
 import {
@@ -73,11 +73,17 @@ const RenderCellPopover = (props: EuiDataGridCellPopoverElementProps) => {
     cellActions,
     cellContentsElement,
     DefaultCellPopover,
+    setCellPopoverProps,
   } = props;
 
   let title: ReactNode = 'Custom popover';
   let content: ReactNode = <EuiText size="s">{children}</EuiText>;
   let footer: ReactNode = cellActions;
+
+  // Set custom cell expansion popover props
+  useEffect(() => {
+    setCellPopoverProps({ panelClassName: 'customCellPopover' });
+  }, [setCellPopoverProps]);
 
   // An example of custom popover content
   if (schema === 'favoriteFranchise') {
