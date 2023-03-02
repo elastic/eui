@@ -229,7 +229,7 @@ Array [
       >
         <span
           color="danger"
-          data-euiicon-type="alert"
+          data-euiicon-type="warning"
         />
         <span
           class="euiFormControlLayoutCustomIcon"
