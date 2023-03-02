@@ -12,11 +12,6 @@ Array [
     <div
       class="euiFormControlLayout__childrenWrapper"
     >
-      <span
-        class="emotion-euiScreenReaderOnly"
-      >
-        Select an option: , is selected
-      </span>
       <button
         aria-haspopup="listbox"
         aria-label="aria-label"
@@ -54,11 +49,6 @@ Array [
     <div
       class="euiFormControlLayout__childrenWrapper"
     >
-      <span
-        class="emotion-euiScreenReaderOnly"
-      >
-        Select an option: , is selected
-      </span>
       <button
         aria-haspopup="listbox"
         class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--compressed"
@@ -94,11 +84,6 @@ Array [
     <div
       class="euiFormControlLayout__childrenWrapper"
     >
-      <span
-        class="emotion-euiScreenReaderOnly"
-      >
-        Select an option: , is selected
-      </span>
       <button
         aria-haspopup="listbox"
         class="euiSuperSelectControl euiFormControlLayout--1icons"
@@ -134,11 +119,6 @@ Array [
     <div
       class="euiFormControlLayout__childrenWrapper"
     >
-      <span
-        class="emotion-euiScreenReaderOnly"
-      >
-        Select an option: , is selected
-      </span>
       <button
         aria-haspopup="listbox"
         class="euiSuperSelectControl euiFormControlLayout--1icons"
@@ -174,11 +154,6 @@ Array [
     <div
       class="euiFormControlLayout__childrenWrapper"
     >
-      <span
-        class="emotion-euiScreenReaderOnly"
-      >
-        Select an option: , is selected
-      </span>
       <button
         aria-haspopup="listbox"
         class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--fullWidth"
@@ -214,11 +189,6 @@ Array [
     <div
       class="euiFormControlLayout__childrenWrapper"
     >
-      <span
-        class="emotion-euiScreenReaderOnly"
-      >
-        Select an option: , is selected
-      </span>
       <button
         aria-haspopup="listbox"
         class="euiSuperSelectControl euiFormControlLayout--2icons euiSuperSelectControl-isInvalid"
@@ -258,11 +228,6 @@ Array [
     <div
       class="euiFormControlLayout__childrenWrapper"
     >
-      <span
-        class="emotion-euiScreenReaderOnly"
-      >
-        Select an option: , is selected
-      </span>
       <button
         aria-haspopup="listbox"
         class="euiSuperSelectControl euiFormControlLayout--2icons euiSuperSelectControl-isLoading"
@@ -344,11 +309,6 @@ Array [
     <div
       class="euiFormControlLayout__childrenWrapper"
     >
-      <span
-        class="emotion-euiScreenReaderOnly"
-      >
-        Select an option: Option #1, is selected
-      </span>
       <button
         aria-haspopup="listbox"
         class="euiSuperSelectControl euiFormControlLayout--1icons"

@@ -16,12 +16,10 @@ import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
 
-import { EuiScreenReaderOnly } from '../../accessibility';
 import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
 } from '../form_control_layout';
-import { EuiI18n } from '../../i18n';
 import { getFormControlClassNameForIconCount } from '../form_control_layout/_num_icons';
 import { useFormContext } from '../eui_form_context';
 
@@ -161,19 +159,6 @@ export const EuiSuperSelectControl: <T extends string>(
         prepend={prepend}
         append={append}
       >
-        {/*
-          This is read when the user tabs in. The comma is important,
-          otherwise the screen reader often combines the text.
-        */}
-        <EuiScreenReaderOnly>
-          <span id={screenReaderId}>
-            <EuiI18n
-              token="euiSuperSelectControl.selectAnOption"
-              default="Select an option: {selectedValue}, is selected"
-              values={{ selectedValue }}
-            />
-          </span>
-        </EuiScreenReaderOnly>
         <button
           type="button"
           className={classes}
