@@ -478,7 +478,11 @@ export class EuiDataGridCell extends Component<
 
   handleCellPopover = () => {
     if (this.isPopoverOpen()) {
-      const { setPopoverAnchor, setPopoverContent } = this.props.popoverContext;
+      const {
+        setPopoverAnchor,
+        setPopoverContent,
+        setCellPopoverProps,
+      } = this.props.popoverContext;
 
       // Set popover anchor
       const cellAnchorEl = this.popoverAnchorRef.current!;
@@ -515,6 +519,7 @@ export class EuiDataGridCell extends Component<
             <EuiDataGridCellPopoverActions {...sharedProps} column={column} />
           }
           DefaultCellPopover={DefaultCellPopover}
+          setCellPopoverProps={setCellPopoverProps}
         >
           <CellElement
             {...sharedProps}
