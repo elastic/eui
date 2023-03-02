@@ -1,3 +1,9 @@
+## [`76.0.1`](https://github.com/elastic/eui/tree/v76.0.1)
+
+**Bug fixes**
+
+- Fixed broken icons on all `isInvalid` form controls ([#6629](https://github.com/elastic/eui/pull/6629))
+
 ## [`76.0.0`](https://github.com/elastic/eui/tree/v76.0.0)
 
 - Added `pivot` glyph to `EuiIcon` ([#6605](https://github.com/elastic/eui/pull/6605))
