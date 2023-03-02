@@ -293,7 +293,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
   return (
     <>
       <EuiSelectable<EuiSuggestionProps>
-        ariaDescriptiveInstructions={screenreaderCombinedInstructions}
+        selectableScreenReaderText={screenreaderCombinedInstructions}
         singleSelection={true}
         height={isVirtualized ? undefined : 'full'}
         options={suggestionList}

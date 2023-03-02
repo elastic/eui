@@ -171,10 +171,10 @@ export type EuiSelectableProps<T = {}> = CommonProps &
      */
     isPreFiltered?: boolean;
     /**
-     * Screen readers will announce the ariaDescriptiveInstructions after they
+     * Screen readers will announce the selectableScreenReaderText after they
      * read the `EuiSelectable` label and a brief pause
      */
-    ariaDescriptiveInstructions?: string;
+    selectableScreenReaderText?: string;
   };
 
 export interface EuiSelectableState<T> {
@@ -508,7 +508,7 @@ export class EuiSelectable<T = {}> extends Component<
       noMatchesMessage,
       emptyMessage,
       errorMessage,
-      ariaDescriptiveInstructions,
+      selectableScreenReaderText,
       isPreFiltered,
       ...rest
     } = this.props;
@@ -713,7 +713,7 @@ export class EuiSelectable<T = {}> extends Component<
 
             <EuiScreenReaderOnly>
               <p id={listAriaDescribedbyId}>
-                {ariaDescriptiveInstructions ?? screenReaderInstructions}
+                {selectableScreenReaderText ?? screenReaderInstructions}
               </p>
             </EuiScreenReaderOnly>
           </>
