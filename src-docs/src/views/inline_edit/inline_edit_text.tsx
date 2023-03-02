@@ -46,12 +46,6 @@ export default () => {
         inputAriaLabel="Edit text inline"
         defaultValue="Hello World!"
         size={toggleTextButtonSize}
-        editModeProps={{
-          icon: 'cross',
-        }}
-        readModeProps={{
-          color: 'success',
-        }}
       />
     </>
   );
