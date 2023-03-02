@@ -118,7 +118,7 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
       color="text"
       iconType="pencil"
       iconSide="right"
-      //autoFocus
+      autoFocus
       flush="both"
       iconSize={buttonSettings.iconSize}
       size={buttonSettings.compressed ? 's' : 'm'}
