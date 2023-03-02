@@ -8,7 +8,7 @@
 
 /// <reference types="../../../../cypress/support"/>
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { EuiDataGrid, EuiDataGridProps } from '../';
 
 const baseProps: EuiDataGridProps = {
@@ -99,5 +99,32 @@ describe('EuiDataGridCellPopover', () => {
     cy.get('[data-test-subj="euiDataGridExpansionPopover"]').should(
       'not.exist'
     );
+  });
+
+  it('allows consumers to use setCellPopoverProps, passed from renderCellPopover, to customize popover props', () => {
+    const RenderCellPopover = ({
+      DefaultCellPopover,
+      setCellPopoverProps,
+      ...props
+    }) => {
+      useEffect(() => {
+        setCellPopoverProps({
+          panelClassName: 'hello',
+          panelProps: { className: 'world' },
+        });
+      }, [setCellPopoverProps]);
+
+      return <DefaultCellPopover {...props} />;
+    };
+
+    cy.realMount(
+      <EuiDataGrid {...baseProps} renderCellPopover={RenderCellPopover} />
+    );
+    cy.get(
+      '[data-gridcell-row-index="0"][data-gridcell-column-index="0"]'
+    ).realClick();
+    cy.get('[data-test-subj="euiDataGridCellExpandButton"]').realClick();
+
+    cy.get('.euiDataGridRowCell__popover.hello.world').should('exist');
   });
 });

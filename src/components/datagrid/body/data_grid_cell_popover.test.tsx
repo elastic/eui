@@ -218,6 +218,8 @@ describe('useCellPopover', () => {
       });
     });
   });
+
+  // setCellPopoverProps is tested in the Cypress .spec file
 });
 
 describe('popover content renderers', () => {
