@@ -34,7 +34,7 @@ describe('EuiFieldNumber', () => {
         max={8}
         step={1}
         value={1}
-        icon="alert"
+        icon="warning"
         onChange={() => {}}
         {...requiredProps}
       />

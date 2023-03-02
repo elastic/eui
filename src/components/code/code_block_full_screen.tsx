@@ -38,9 +38,16 @@ export const useFullScreen = ({
 
   const onKeyDown = useCallback((event: KeyboardEvent<HTMLElement>) => {
     if (event.key === keys.ESCAPE) {
-      event.preventDefault();
-      event.stopPropagation();
-      setIsFullScreen(false);
+      // We need to make sure annotation Escape keypresses don't also cause fullscreen mode to close
+      const focus = document.activeElement as HTMLElement;
+      const isAnnotationPopover =
+        !!focus?.dataset.popoverOpen || !!focus?.closest('[data-popover-open]');
+
+      if (!isAnnotationPopover) {
+        event.preventDefault();
+        event.stopPropagation();
+        setIsFullScreen(false);
+      }
     }
   }, []);
 

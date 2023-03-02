@@ -402,7 +402,7 @@ exports[`EuiSuggest props remaining EuiFieldSearch props are spread to the searc
               </button>
               <span
                 color="danger"
-                data-euiicon-type="alert"
+                data-euiicon-type="warning"
               />
             </div>
           </div>

@@ -13,20 +13,17 @@ import React, {
   createContext,
   useContext,
   useEffect,
-  useMemo,
   useRef,
-  useState,
 } from 'react';
 import {
   GridChildComponentProps,
   VariableSizeGrid as Grid,
   VariableSizeGridProps,
 } from 'react-window';
-import { useMutationObserver } from '../../observer/mutation_observer';
 import { useResizeObserver } from '../../observer/resize_observer';
 import { EuiDataGridCell } from './data_grid_cell';
-import { EuiDataGridFooterRow } from './data_grid_footer_row';
-import { EuiDataGridHeaderRow } from './header';
+import { useDataGridHeader } from './header';
+import { useDataGridFooter } from './footer';
 import { DataGridCellPopoverContext } from './data_grid_cell_popover';
 import {
   EuiDataGridBodyProps,
@@ -41,7 +38,6 @@ import {
 } from '../utils/grid_height_width';
 import { useDefaultColumnWidth, useColumnWidths } from '../utils/col_widths';
 import { useRowHeightUtils, useDefaultRowHeight } from '../utils/row_heights';
-import { useHeaderFocusWorkaround } from '../utils/focus';
 import { useScrollBars, useScroll } from '../utils/scrolling';
 import { DataGridSortingContext } from '../utils/sorting';
 import { IS_JEST_ENVIRONMENT } from '../../../utils';
@@ -284,33 +280,11 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   });
 
   /**
-   * Header
+   * Header & footer
    */
-  const [headerRowRef, setHeaderRowRef] = useState<HTMLDivElement | null>(null);
-  useMutationObserver(headerRowRef, handleHeaderMutation, {
-    subtree: true,
-    childList: true,
-  });
-  const { height: headerRowHeight } = useResizeObserver(headerRowRef, 'height');
-
-  const headerRow = useMemo(() => {
-    return (
-      <EuiDataGridHeaderRow
-        ref={setHeaderRowRef}
-        switchColumnPos={switchColumnPos}
-        setVisibleColumns={setVisibleColumns}
-        leadingControlColumns={leadingControlColumns}
-        trailingControlColumns={trailingControlColumns}
-        columns={columns}
-        columnWidths={columnWidths}
-        defaultColumnWidth={defaultColumnWidth}
-        setColumnWidth={setColumnWidth}
-        schema={schema}
-        schemaDetectors={schemaDetectors}
-        headerIsInteractive={headerIsInteractive}
-      />
-    );
-  }, [
+  const { headerRow, headerRowHeight } = useDataGridHeader({
+    headerIsInteractive,
+    handleHeaderMutation,
     switchColumnPos,
     setVisibleColumns,
     leadingControlColumns,
@@ -321,47 +295,21 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     setColumnWidth,
     schema,
     schemaDetectors,
-    headerIsInteractive,
-  ]);
+  });
 
-  useHeaderFocusWorkaround(headerIsInteractive);
-
-  /**
-   * Footer
-   */
-  const [footerRowRef, setFooterRowRef] = useState<HTMLDivElement | null>(null);
-  const { height: footerRowHeight } = useResizeObserver(footerRowRef, 'height');
-
-  const footerRow = useMemo(() => {
-    if (renderFooterCellValue == null) return null;
-    return (
-      <EuiDataGridFooterRow
-        ref={setFooterRowRef}
-        leadingControlColumns={leadingControlColumns}
-        trailingControlColumns={trailingControlColumns}
-        columns={columns}
-        schema={schema}
-        columnWidths={columnWidths}
-        defaultColumnWidth={defaultColumnWidth}
-        renderCellValue={renderFooterCellValue}
-        renderCellPopover={renderCellPopover}
-        rowIndex={visibleRowCount}
-        visibleRowIndex={visibleRowCount}
-        interactiveCellId={interactiveCellId}
-      />
-    );
-  }, [
-    columnWidths,
-    columns,
-    defaultColumnWidth,
-    interactiveCellId,
-    leadingControlColumns,
+  const { footerRow, footerRowHeight } = useDataGridFooter({
     renderFooterCellValue,
     renderCellPopover,
-    schema,
+    rowIndex: visibleRowCount,
+    visibleRowIndex: visibleRowCount,
+    interactiveCellId,
+    leadingControlColumns,
     trailingControlColumns,
-    visibleRowCount,
-  ]);
+    columns,
+    columnWidths,
+    defaultColumnWidth,
+    schema,
+  });
 
   /**
    * Handle scrolling cells fully into view

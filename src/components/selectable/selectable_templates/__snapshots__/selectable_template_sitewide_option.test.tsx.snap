@@ -57,7 +57,7 @@ Array [
     "className": "euiSelectableTemplateSitewide__listItem",
     "icon": Object {
       "color": "accent",
-      "type": "alert",
+      "type": "warning",
     },
     "key": "Other metas",
     "label": "Other metas",
@@ -81,7 +81,7 @@ Array [
     "prepend": <EuiIcon
       color="accent"
       size="l"
-      type="alert"
+      type="warning"
     />,
     "searchableLabel": "Totally custom with pink metadata",
     "title": "Other metas • Article, Case, Text, I have a custom type",

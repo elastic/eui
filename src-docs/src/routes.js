@@ -287,6 +287,8 @@ import { ElasticChartsPieExample } from './views/elastic_charts/pie_example';
 
 import { ElasticChartsAccessibilityExample } from './views/elastic_charts/accessibility_example';
 
+import { MetricChartExample } from './views/elastic_charts/metric/metric_chart_example';
+
 const createExample = (example, customTitle) => {
   if (!example) {
     throw new Error(
@@ -624,6 +626,7 @@ const navigation = [
       ElasticChartsTimeExample,
       ElasticChartsCategoryExample,
       ElasticChartsPieExample,
+      MetricChartExample,
       ElasticChartsAccessibilityExample,
     ].map((example) => createExample(example)),
   },

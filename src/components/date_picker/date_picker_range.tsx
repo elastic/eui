@@ -161,7 +161,7 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
     <span className="euiDatePickerRange__delimeter">
       <EuiIcon
         color={isInvalid ? 'danger' : 'subdued'}
-        type={isInvalid ? 'alert' : 'sortRight'}
+        type={isInvalid ? 'warning' : 'sortRight'}
       />
     </span>
   );

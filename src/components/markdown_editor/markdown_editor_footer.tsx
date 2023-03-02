@@ -160,7 +160,7 @@ export const EuiMarkdownEditorFooter = forwardRef<
       <EuiPopover
         button={
           <EuiButtonEmpty
-            iconType="crossInACircleFilled"
+            iconType="error"
             size="s"
             color="danger"
             aria-label={ariaLabels.showSyntaxErrors}

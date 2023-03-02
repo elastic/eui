@@ -51,7 +51,7 @@ export default () => (
       <p>
         This tooltip appears on the bottom of this icon:{' '}
         <EuiToolTip position="bottom" content="Here is some tooltip text">
-          <EuiIcon tabIndex="0" type="alert" title="Icon with tooltip" />
+          <EuiIcon tabIndex="0" type="warning" title="Icon with tooltip" />
         </EuiToolTip>
       </p>
     </EuiText>

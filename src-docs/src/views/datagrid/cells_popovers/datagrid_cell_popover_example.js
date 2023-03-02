@@ -92,7 +92,7 @@ export const DataGridCellPopoverExample = {
               custom popover content but default cell actions.
               <EuiCallOut
                 color="warning"
-                iconType="alert"
+                iconType="warning"
                 title="Using custom cell actions"
               >
                 If deliberately leaving out the default{' '}
@@ -150,7 +150,7 @@ export const DataGridCellPopoverExample = {
           </p>
           <EuiCallOut
             color="warning"
-            iconType="alert"
+            iconType="warning"
             title="Cells with actions are always expandable"
           >
             If <EuiCode>columns.cellActions</EuiCode> is defined,{' '}

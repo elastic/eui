@@ -18,7 +18,7 @@ exports[`_EuiPageEmptyPrompt EuiEmptyPromptProps is rendered 1`] = `
         >
           <span
             color="subdued"
-            data-euiicon-type="alert"
+            data-euiicon-type="warning"
           />
         </div>
         <div
