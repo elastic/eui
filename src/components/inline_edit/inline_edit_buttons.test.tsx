@@ -10,34 +10,23 @@ import React from 'react';
 import { render } from '../../test/rtl';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiInlineEdit } from './inline_edit_text';
+import { EuiInlineEditButtons } from './inline_edit_buttons';
 
-describe('EuiInlineEdit', () => {
+describe('EuiInlineEditButtons', () => {
   describe('props', () => {
-    test('renders as text', () => {
+    test('renders InlineEdit buttons', () => {
+      const onSave = jest.fn();
+      const onCancel = jest.fn();
+
       const { container } = render(
-        <EuiInlineEdit
-          display="text"
-          inputAriaLabel={'textInput'}
-          defaultValue="hello world"
+        <EuiInlineEditButtons
+          saveFunction={onSave}
+          cancelFunction={onCancel}
           {...requiredProps}
         />
       );
 
       expect(container.firstChild).toMatchSnapshot();
-    });
-
-    test('renders as a title', () => {
-      const component = render(
-        <EuiInlineEdit
-          display="text"
-          inputAriaLabel={'titleInput'}
-          defaultValue="hello world"
-          {...requiredProps}
-        />
-      );
-
-      expect(component).toMatchSnapshot();
     });
   });
 });

@@ -28,9 +28,6 @@ export type EuiInlineEditTextProps = CommonProps &
      * Text size level
      */
     size?: EuiInlineEditTextSizes;
-    /**
-     * Default string value for input in readMode
-     */
   };
 
 export const EuiInlineEditText: FunctionComponent<EuiInlineEditTextProps> = ({
@@ -54,27 +51,28 @@ export const EuiInlineEditText: FunctionComponent<EuiInlineEditTextProps> = ({
   const styles = euiInlineEditStyles(theme);
   const cssStyles = [styles.euiInlineEdit];*/
 
-  const [isInEdit, setIsInEdit] = useState(startWithEditOpen);
+  const [isEditing, setIsEditing] = useState(startWithEditOpen);
   const inlineEditInputId = useGeneratedHtmlId({ prefix: '__inlineEditInput' });
 
   const [editModeValue, setEditModeValue] = useState(defaultValue);
   const [readModeValue, setReadModeValue] = useState(defaultValue);
 
-  const saveTextEditValue = () => {
-    // If there's no text, cancel the action, reset the input text, and return to readMode
-    if (editModeValue) {
-      setReadModeValue(editModeValue);
-      setIsInEdit(!isInEdit);
-      onConfirm && onConfirm();
-    } else {
-      setEditModeValue(readModeValue);
-      setIsInEdit(!isInEdit);
-    }
-  };
-
   const cancelTextEdit = () => {
     setEditModeValue(readModeValue);
-    setIsInEdit(!isInEdit);
+    setIsEditing(!isEditing);
+  };
+
+  const saveTextEditValue = () => {
+    if (editModeValue && onConfirm && !onConfirm()) {
+      // If there is text, an onConfirm method is present, and it has returned false, cancel the action
+      return;
+    } else if (editModeValue) {
+      setReadModeValue(editModeValue);
+      setIsEditing(!isEditing);
+    } else {
+      // If there's no text, cancel the action, reset the input text, and return to readMode
+      cancelTextEdit();
+    }
   };
 
   const buttonSettings = getInlineEditIconButtonSettings(size);
@@ -113,7 +111,7 @@ export const EuiInlineEditText: FunctionComponent<EuiInlineEditTextProps> = ({
       iconSize={buttonSettings.iconSize}
       size={buttonSettings.compressed ? 's' : 'm'}
       onClick={() => {
-        setIsInEdit(!isInEdit);
+        setIsEditing(!isEditing);
       }}
       {...readModeProps}
     >
@@ -123,7 +121,7 @@ export const EuiInlineEditText: FunctionComponent<EuiInlineEditTextProps> = ({
 
   return (
     <div className={classes} {...rest}>
-      {isInEdit ? textEditModeElement : textReadModeElement}
+      {isEditing ? textEditModeElement : textReadModeElement}
     </div>
   );
 };

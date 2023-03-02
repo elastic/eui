@@ -8,7 +8,7 @@
 
 import React, { FunctionComponent } from 'react';
 import { CommonProps } from '../common';
-import classNames from 'classnames';
+//import classNames from 'classnames';
 import { EuiButtonIcon } from '../button';
 import { EuiFormRow } from '../form';
 import { EuiTextProps } from '../text';
@@ -28,15 +28,15 @@ export type EuiInlineEditButtonsProps = CommonProps & {
 };
 
 export const EuiInlineEditButtons: FunctionComponent<EuiInlineEditButtonsProps> = ({
-  children,
-  className,
+  //children,
+  //className,
   size = 'm',
   saveButtonAriaLabel,
   cancelButtonAriaLabel,
   saveFunction,
   cancelFunction,
 }) => {
-  const classes = classNames('euiInlineEditButtons', className);
+  //const classes = classNames('euiInlineEditButtons', className);
 
   // Styles to come later
   /*const theme = useEuiTheme();

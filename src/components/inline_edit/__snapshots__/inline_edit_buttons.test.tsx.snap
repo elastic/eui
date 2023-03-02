@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiInlineEditButtons props renders InlineEdit buttons 1`] = `
+<div
+  class="euiFlexItem emotion-euiFlexItem-growZero"
+>
+  <div
+    class="euiFormRow"
+    id="generated-id-row"
+  >
+    <div
+      class="euiFormRow__fieldWrapper"
+    >
+      <button
+        aria-label="Save edit"
+        class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-success"
+        id="generated-id"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          color="inherit"
+          data-euiicon-type="check"
+        />
+      </button>
+    </div>
+  </div>
+</div>
+`;

@@ -9,7 +9,7 @@
 import React, { FunctionComponent, useState } from 'react';
 import { CommonProps } from '../common';
 import classNames from 'classnames';
-import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
+import { EuiButtonEmpty } from '../button';
 import { EuiFieldText, EuiForm } from '../form';
 import { EuiTitle, EuiTitleSize } from '../title';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
@@ -17,7 +17,6 @@ import { useGeneratedHtmlId } from '../../services/accessibility';
 import { EuiInlineEditButtons } from './inline_edit_buttons';
 import { getInlineEditIconButtonSettings } from './inline_edit_utils';
 import { EuiInlineEditCommonProps } from './inline_edit_types';
-import { EuiEmptyPromptProps } from '../empty_prompt';
 // import { useEuiTheme } from '../../services';
 // import { euiInlineEditStyles } from './inline_edit.styles';
 
@@ -34,9 +33,6 @@ export type EuiInlineEditTitleProps = CommonProps &
      * Level of heading to be used for the title
      */
     heading: Heading;
-    /**
-     * Default string value for input in readMode
-     */
   };
 
 export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
@@ -61,27 +57,28 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
   const styles = euiInlineEditStyles(theme);
   const cssStyles = [styles.euiInlineEdit];*/
 
-  const [isInEdit, setIsInEdit] = useState(startWithEditOpen);
+  const [isEditing, setIsEditing] = useState(startWithEditOpen);
   const inlineEditInputId = useGeneratedHtmlId({ prefix: '__inlineEditInput' });
 
   const [editModeValue, setEditModeValue] = useState(defaultValue);
   const [readModeValue, setReadModeValue] = useState(defaultValue);
 
-  const saveTitleEditValue = () => {
-    // If there's no text, cancel the action, reset the input text, and return to readMode
-    if (editModeValue) {
-      setReadModeValue(editModeValue);
-      setIsInEdit(!isInEdit);
-      onConfirm && onConfirm();
-    } else {
-      setEditModeValue(readModeValue);
-      setIsInEdit(!isInEdit);
-    }
-  };
-
   const cancelTitleEdit = () => {
     setEditModeValue(readModeValue);
-    setIsInEdit(!isInEdit);
+    setIsEditing(!isEditing);
+  };
+
+  const saveTitleEditValue = () => {
+    if (editModeValue && onConfirm && !onConfirm()) {
+      // If there is text, an onConfirm method is present, and it has returned false, cancel the action
+      return;
+    } else if (editModeValue) {
+      setReadModeValue(editModeValue);
+      setIsEditing(!isEditing);
+    } else {
+      // If there's no text, cancel the action, reset the input text, and return to readMode
+      cancelTitleEdit();
+    }
   };
 
   const buttonSettings = getInlineEditIconButtonSettings(size);
@@ -123,7 +120,7 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
       iconSize={buttonSettings.iconSize}
       size={buttonSettings.compressed ? 's' : 'm'}
       onClick={() => {
-        setIsInEdit(!isInEdit);
+        setIsEditing(!isEditing);
       }}
       {...readModeProps}
     >
@@ -135,7 +132,7 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
 
   return (
     <div className={classes} {...rest}>
-      {isInEdit ? titleEditModeElement : titleReadModeElement}
+      {isEditing ? titleEditModeElement : titleReadModeElement}
     </div>
   );
 };

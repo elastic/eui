@@ -14,6 +14,9 @@ const inlineEditTextSource = require('!!raw-loader!./inline_edit_text');
 import InlineEditTitle from './inline_edit_title';
 const inlineEditTitleSource = require('!!raw-loader!./inline_edit_title');
 
+import InlineEditConfirm from './inline_edit_confirm';
+const inlineEditConfirmSource = require('!!raw-loader!././inline_edit_confirm');
+
 export const InlineEditExample = {
   title: 'Inline edit',
   intro: (
@@ -59,6 +62,25 @@ export const InlineEditExample = {
       ],
       demo: <InlineEditTitle />,
       props: { EuiInlineEditTitle },
+    },
+    {
+      title: 'Confirm inline edit',
+      text: (
+        <>
+          <p>
+            Description needed: how to use the <strong>EuiInlineEdit</strong>{' '}
+            component.
+          </p>
+        </>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: inlineEditConfirmSource,
+        },
+      ],
+      demo: <InlineEditConfirm />,
+      props: { EuiInlineEditText },
     },
   ],
 };
