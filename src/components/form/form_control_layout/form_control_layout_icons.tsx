@@ -164,7 +164,7 @@ export class EuiFormControlLayoutIcons extends Component<
     }
 
     return (
-      <EuiIcon size={compressed ? 's' : 'm'} color="danger" type="alert" />
+      <EuiIcon size={compressed ? 's' : 'm'} color="danger" type="warning" />
     );
   }
 }

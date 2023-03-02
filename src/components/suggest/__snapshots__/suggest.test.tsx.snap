@@ -408,7 +408,7 @@ Array [
                 </button>
                 <span
                   color="danger"
-                  data-euiicon-type="alert"
+                  data-euiicon-type="warning"
                 />
               </div>
             </div>
