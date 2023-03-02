@@ -71,11 +71,6 @@ export interface EuiSuperSelectControlProps<T>
    * `string` | `ReactElement` or an array of these
    */
   append?: EuiFormControlLayoutProps['append'];
-  /**
-   * Creates a semantic label ID for the `div[role="listbox"]` that's opened on click or keypress.
-   * __Generated and passed down by `EuiSuperSelect`.__
-   */
-  screenReaderId?: string;
 }
 
 export const EuiSuperSelectControl: <T extends string>(
@@ -97,7 +92,6 @@ export const EuiSuperSelectControl: <T extends string>(
     placeholder,
     prepend,
     append,
-    screenReaderId,
     disabled,
     ...rest
   } = props;

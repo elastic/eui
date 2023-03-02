@@ -106,7 +106,6 @@ export class EuiSuperSelect<T extends string> extends Component<
   private _isMounted: boolean = false;
 
   describedById = htmlIdGenerator('euiSuperSelect_')('_screenreaderDescribeId');
-  labelledById = htmlIdGenerator('euiSuperSelect_')('_screenreaderLabelId');
 
   state = {
     isPopoverOpen: this.props.isOpen || false,
@@ -293,7 +292,6 @@ export class EuiSuperSelect<T extends string> extends Component<
 
     const button = (
       <EuiSuperSelectControl
-        screenReaderId={this.labelledById}
         options={options}
         value={valueOfSelected}
         placeholder={placeholder}
@@ -351,7 +349,6 @@ export class EuiSuperSelect<T extends string> extends Component<
           </p>
         </EuiScreenReaderOnly>
         <div
-          aria-labelledby={this.labelledById}
           aria-describedby={this.describedById}
           className="euiSuperSelect__listbox"
           role="listbox"
