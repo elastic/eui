@@ -10,7 +10,7 @@ import React from 'react';
 import { render } from '../../test/rtl';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiInlineEdit } from './inline_edit';
+import { EuiInlineEdit } from './inline_edit_text';
 
 describe('EuiInlineEdit', () => {
   describe('props', () => {

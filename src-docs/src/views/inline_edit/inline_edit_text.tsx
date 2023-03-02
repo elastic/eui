@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 
 import {
-  EuiInlineEdit,
+  EuiInlineEditText,
   EuiSpacer,
   EuiButtonGroup,
-  EuiTextProps,
+  EuiInlineEditTextSizes,
 } from '../../../../src';
 
 export default () => {
-  // Display Text Toggles
   const textSizeButtons = [
     {
       id: 'xs',
@@ -22,36 +21,37 @@ export default () => {
       id: 'm',
       label: 'Medium',
     },
-    {
-      id: 'relative',
-      label: 'Relative',
-    },
   ];
 
   const [toggleTextButtonSize, setToggleTextButtonSize] = useState<
-    EuiTextProps['size']
+    EuiInlineEditTextSizes
   >('m');
 
-  const textOnChange = (optionId: EuiTextProps['size']) => {
+  const textSizeOnChange = (optionId: EuiInlineEditTextSizes) => {
     setToggleTextButtonSize(optionId);
   };
 
   return (
     <>
       <EuiButtonGroup
-        legend="This is a basic group"
+        legend="Text size"
         options={textSizeButtons}
         idSelected={toggleTextButtonSize as string}
-        onChange={(id) => textOnChange(id as EuiTextProps['size'])}
+        onChange={(id) => textSizeOnChange(id as EuiInlineEditTextSizes)}
       />
 
       <EuiSpacer />
 
-      <EuiInlineEdit
-        display="text"
+      <EuiInlineEditText
         inputAriaLabel="Edit text inline"
         defaultValue="Hello World!"
         size={toggleTextButtonSize}
+        editModeProps={{
+          icon: 'cross',
+        }}
+        readModeProps={{
+          color: 'success',
+        }}
       />
     </>
   );

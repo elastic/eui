@@ -2,10 +2,14 @@ import React from 'react';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiText, EuiInlineEdit } from '../../../../src';
+import {
+  EuiText,
+  EuiInlineEditText,
+  EuiInlineEditTitle,
+} from '../../../../src';
 
-import InlineEdit from './inline_edit';
-const inlineEditSource = require('!!raw-loader!./inline_edit');
+import InlineEditText from './inline_edit_text';
+const inlineEditTextSource = require('!!raw-loader!./inline_edit_text');
 
 import InlineEditTitle from './inline_edit_title';
 const inlineEditTitleSource = require('!!raw-loader!./inline_edit_title');
@@ -19,7 +23,7 @@ export const InlineEditExample = {
   ),
   sections: [
     {
-      title: 'InlineEdit - Text',
+      title: 'InlineEditText',
       text: (
         <>
           <p>
@@ -31,14 +35,14 @@ export const InlineEditExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: inlineEditSource,
+          code: inlineEditTextSource,
         },
       ],
-      demo: <InlineEdit />,
-      props: { EuiInlineEdit },
+      demo: <InlineEditText />,
+      props: { EuiInlineEditText },
     },
     {
-      title: 'InlineEdit - Title',
+      title: 'InlineEditTitle',
       text: (
         <>
           <p>
@@ -54,7 +58,7 @@ export const InlineEditExample = {
         },
       ],
       demo: <InlineEditTitle />,
-      props: { EuiInlineEdit },
+      props: { EuiInlineEditTitle },
     },
   ],
 };

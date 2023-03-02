@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 
 import {
-  EuiInlineEdit,
+  EuiInlineEditTitle,
   EuiSpacer,
   EuiButtonGroup,
   EuiTitleSize,
 } from '../../../../src';
 
 export default () => {
-  // Display Title Toggles
   const titleSizeButtons = [
     {
       id: 'xxxs',
@@ -20,7 +19,7 @@ export default () => {
     },
     {
       id: 'xs',
-      label: 'Extra Small',
+      label: 'Extra small',
     },
     {
       id: 's',
@@ -40,27 +39,32 @@ export default () => {
     EuiTitleSize
   >('m');
 
-  const titleOnChange = (optionId: EuiTitleSize) => {
+  const titleSizeOnChange = (optionId: EuiTitleSize) => {
     setToggleTitleButtonSize(optionId);
   };
 
   return (
     <>
       <EuiButtonGroup
-        legend="This is a basic group"
+        legend="Title size"
         options={titleSizeButtons}
         idSelected={toggleTitleButtonSize}
-        onChange={(id) => titleOnChange(id as EuiTitleSize)}
+        onChange={(id) => titleSizeOnChange(id as EuiTitleSize)}
       />
 
       <EuiSpacer />
 
-      <EuiInlineEdit
-        display="title"
+      <EuiInlineEditTitle
         inputAriaLabel="Edit title inline"
         defaultValue="Hello World (but as a title)!"
         size={toggleTitleButtonSize}
         heading="h3"
+        editModeProps={{
+          icon: 'cross',
+        }}
+        readModeProps={{
+          color: 'success',
+        }}
       />
     </>
   );
