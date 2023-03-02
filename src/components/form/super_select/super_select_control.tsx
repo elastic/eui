@@ -35,7 +35,7 @@ export interface EuiSuperSelectOption<T> {
 
 export interface EuiSuperSelectControlProps<T>
   extends CommonProps,
-    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'value'> {
+    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'value' | 'placeholder'> {
   /**
    * @default false
    */
@@ -57,6 +57,7 @@ export interface EuiSuperSelectControlProps<T>
   readOnly?: boolean;
 
   name?: string;
+  placeholder?: ReactNode;
   value?: T;
 
   options?: Array<EuiSuperSelectOption<T>>;
@@ -95,6 +96,7 @@ export const EuiSuperSelectControl: <T extends string>(
     defaultValue,
     compressed = false,
     value,
+    placeholder,
     prepend,
     append,
     screenReaderId,
@@ -134,6 +136,8 @@ export const EuiSuperSelectControl: <T extends string>(
       ? selectedOption.inputDisplay
       : selectedValue;
   }
+
+  const showPlaceholder = !!placeholder && !selectedValue;
 
   return (
     <Fragment>
@@ -179,7 +183,13 @@ export const EuiSuperSelectControl: <T extends string>(
           readOnly={readOnly}
           {...rest}
         >
-          {selectedValue}
+          {showPlaceholder ? (
+            <span className="euiSuperSelectControl__placeholder">
+              {placeholder}
+            </span>
+          ) : (
+            selectedValue
+          )}
         </button>
       </EuiFormControlLayout>
     </Fragment>

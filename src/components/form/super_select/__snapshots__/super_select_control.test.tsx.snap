@@ -291,6 +291,47 @@ Array [
 ]
 `;
 
+exports[`EuiSuperSelectControl props placeholder is rendered 1`] = `
+Array [
+  <input
+    type="hidden"
+    value=""
+  />,
+  <div
+    class="euiFormControlLayout"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <button
+        aria-haspopup="listbox"
+        class="euiSuperSelectControl euiFormControlLayout--1icons"
+        type="button"
+      >
+        <span
+          class="euiSuperSelectControl__placeholder"
+        >
+          Select an option
+        </span>
+      </button>
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+      >
+        <span
+          class="euiFormControlLayoutCustomIcon"
+        >
+          <span
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
 exports[`EuiSuperSelectControl props value option is rendered 1`] = `
 Array [
   <input

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, FocusEvent } from 'react';
+import React, { Component, FocusEvent, ReactNode } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
@@ -45,6 +45,11 @@ export type EuiSuperSelectProps<T extends string> = CommonProps &
     options: Array<EuiSuperSelectOption<T>>;
 
     valueOfSelected?: T;
+
+    /**
+     * Placeholder to display when the current selected value is empty.
+     */
+    placeholder?: ReactNode;
 
     /**
      * Classes for the context menu item
@@ -253,6 +258,7 @@ export class EuiSuperSelect<T extends string> extends Component<
       className,
       options,
       valueOfSelected,
+      placeholder,
       onChange,
       isOpen,
       isInvalid,
@@ -290,6 +296,7 @@ export class EuiSuperSelect<T extends string> extends Component<
         screenReaderId={this.labelledById}
         options={options}
         value={valueOfSelected}
+        placeholder={placeholder}
         onClick={
           this.state.isPopoverOpen ? this.closePopover : this.openPopover
         }
