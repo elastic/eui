@@ -8,6 +8,8 @@ import {
   EuiSwitch,
   EuiSelectable,
   EuiSelectableOption,
+  EuiFilterGroup,
+  EuiFilterButton,
 } from '../../../../src';
 
 const countryData = [
@@ -80,6 +82,8 @@ export default () => {
     );
   };
 
+  const [inputRef, setInputRef] = useState<HTMLInputElement | null>(null);
+
   const [useCustomContent, setUseCustomContent] = useState(true);
   const [isVirtualized, setIsVirtualized] = useState(true);
 
@@ -107,12 +111,27 @@ export default () => {
           rowHeight: useCustomContent ? 50 : undefined,
           showIcons: false,
         }}
+        searchProps={{ inputRef: setInputRef }}
         renderOption={useCustomContent ? renderCountryOption : undefined}
         height={240}
       >
         {(list, search) => (
           <>
             {search}
+            <EuiSpacer size="s" />
+            <EuiFilterGroup>
+              <EuiFilterButton
+                iconType="arrowDown"
+                onClick={() => {
+                  inputRef?.focus();
+                }}
+                numFilters={10}
+                hasActiveFilters={true}
+                numActiveFilters={2}
+              >
+                Filters
+              </EuiFilterButton>
+            </EuiFilterGroup>
             {list}
           </>
         )}
