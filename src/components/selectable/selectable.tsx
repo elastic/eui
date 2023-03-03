@@ -280,6 +280,17 @@ export class EuiSelectable<T = {}> extends Component<
     }
   }
 
+  isFocusOnSearchOrListBox = (target: EventTarget | null) => {
+    const searchHasFocus = this.props.searchable && target === this.inputRef;
+
+    const listBox = this.optionsListRef.current?.listBoxRef?.parentElement;
+    const listBoxContainsFocus =
+      target instanceof Node && listBox?.contains(target);
+    const listBoxHasFocus = target === listBox || listBoxContainsFocus;
+
+    return searchHasFocus || listBoxHasFocus;
+  };
+
   onMouseDown = () => {
     // Bypass onFocus when a click event originates from this.containerRef.
     // Prevents onFocus from scrolling away from a clicked option and negating the selection event.
@@ -319,6 +330,15 @@ export class EuiSelectable<T = {}> extends Component<
   onKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     const optionsList = this.optionsListRef.current;
 
+    // Check if the user is interacting with something other than the
+    // searchbox or selection list. If so, the user may be attempting to
+    // interact with the search clear button or a totally custom button,
+    // and listbox keyboard navigation/selection should not be triggered.
+    if (!this.isFocusOnSearchOrListBox(event.target)) {
+      this.setState({ activeOptionIndex: undefined, isFocused: false });
+      return;
+    }
+
     switch (event.key) {
       case keys.ARROW_UP:
         event.preventDefault();
@@ -341,19 +361,6 @@ export class EuiSelectable<T = {}> extends Component<
           // For searchable instances, SPACE is reserved as a character for filtering
           // via the input box, and as such only ENTER will toggle selection.
           if (event.target === this.inputRef && event.key === keys.SPACE) {
-            return;
-          }
-          // Check if the user is interacting with something other than the
-          // searchbox or selection list. If not, the user is attempting to
-          // interact with an internal button such as the clear button,
-          // and the event should not be altered.
-          if (
-            !(
-              event.target === this.inputRef ||
-              event.target ===
-                this.optionsListRef.current?.listBoxRef?.parentElement
-            )
-          ) {
             return;
           }
         }
