@@ -14,6 +14,7 @@ import React, {
   ReactElement,
   KeyboardEvent,
   MouseEvent,
+  FocusEvent,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../common';
@@ -298,7 +299,7 @@ export class EuiSelectable<T = {}> extends Component<
     this.preventOnFocus = true;
   };
 
-  onFocus = () => {
+  onFocus = (event?: FocusEvent) => {
     if (this.preventOnFocus) {
       this.preventOnFocus = false;
       return;
@@ -308,6 +309,10 @@ export class EuiSelectable<T = {}> extends Component<
       !this.state.visibleOptions.length ||
       this.state.activeOptionIndex != null
     ) {
+      return;
+    }
+
+    if (event && !this.isFocusOnSearchOrListBox(event.target)) {
       return;
     }
 
@@ -450,9 +455,7 @@ export class EuiSelectable<T = {}> extends Component<
 
   onContainerBlur = (e: React.FocusEvent) => {
     // Ignore blur events when moving from search to option to avoid activeOptionIndex conflicts
-    if (
-      ((e.relatedTarget as Node)?.firstChild as HTMLElement)?.id === this.listId
-    ) {
+    if (this.isFocusOnSearchOrListBox(e.relatedTarget)) {
       return;
     }
 
