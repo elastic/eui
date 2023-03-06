@@ -165,6 +165,7 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
             </p>
             <div
               aria-describedby="euiSuperSelect__generated-id__screenreaderDescribeId"
+              aria-label="Select listbox"
               class="euiSuperSelect__listbox"
               role="listbox"
               tabindex="0"
@@ -410,6 +411,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
             <div
               aria-activedescendant="1"
               aria-describedby="euiSuperSelect__generated-id__screenreaderDescribeId"
+              aria-label="Select listbox"
               class="euiSuperSelect__listbox"
               role="listbox"
               tabindex="0"
@@ -554,6 +556,7 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
             </p>
             <div
               aria-describedby="euiSuperSelect__generated-id__screenreaderDescribeId"
+              aria-label="Select listbox"
               class="euiSuperSelect__listbox"
               role="listbox"
               tabindex="0"
@@ -699,6 +702,7 @@ exports[`EuiSuperSelect props renders popoverProps on the underlying EuiPopover 
             <div
               aria-activedescendant="2"
               aria-describedby="euiSuperSelect__generated-id__screenreaderDescribeId"
+              aria-label="Select listbox"
               class="euiSuperSelect__listbox"
               role="listbox"
               tabindex="0"

@@ -348,15 +348,20 @@ export class EuiSuperSelect<T extends string> extends Component<
             />
           </p>
         </EuiScreenReaderOnly>
-        <div
-          aria-describedby={this.describedById}
-          className="euiSuperSelect__listbox"
-          role="listbox"
-          aria-activedescendant={valueOfSelected}
-          tabIndex={0}
-        >
-          {items}
-        </div>
+        <EuiI18n token="euiSuperSelect.ariaLabel" default="Select listbox">
+          {(ariaLabel: string) => (
+            <div
+              aria-label={ariaLabel}
+              aria-describedby={this.describedById}
+              className="euiSuperSelect__listbox"
+              role="listbox"
+              aria-activedescendant={valueOfSelected}
+              tabIndex={0}
+            >
+              {items}
+            </div>
+          )}
+        </EuiI18n>
       </EuiInputPopover>
     );
   }
