@@ -477,4 +477,18 @@ describe('EuiSelectable', () => {
       expect(component).toMatchSnapshot();
     });
   });
+
+  describe('accessible instructions', () => {
+    const component = render(
+      <EuiSelectable
+        options={options}
+        errorMessage={<span>Element error!</span>}
+        selectableScreenReaderText="Custom screenreader instructions"
+      >
+        {(list) => list}
+      </EuiSelectable>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
 });
