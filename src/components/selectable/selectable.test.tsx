@@ -495,7 +495,7 @@ describe('EuiSelectable', () => {
         </EuiSelectable>
       );
 
-      expect(component.find('p').text()).toEqual(
+      expect(component.find('p#generated-id_instructions').text()).toEqual(
         'Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.'
       );
     });
@@ -522,7 +522,7 @@ describe('EuiSelectable', () => {
       );
 
       expect(component).toMatchSnapshot();
-      expect(component.find('p').text()).toEqual(
+      expect(component.find('p#generated-id_instructions').text()).toEqual(
         'Custom screenreader instructions. Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.'
       );
     });
