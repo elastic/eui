@@ -478,17 +478,53 @@ describe('EuiSelectable', () => {
     });
   });
 
-  describe('accessible instructions', () => {
-    const component = render(
-      <EuiSelectable
-        options={options}
-        errorMessage={<span>Element error!</span>}
-        selectableScreenReaderText="Custom screenreader instructions"
-      >
-        {(list) => list}
-      </EuiSelectable>
-    );
+  describe('screen reader instructions', () => {
+    it('sets default accessibility instructions correctly', () => {
+      const searchProps = {
+        value: 'Enceladus',
+        'data-test-subj': 'searchInput',
+      };
+      const component = mount(
+        <EuiSelectable options={options} searchable searchProps={searchProps}>
+          {(list, search) => (
+            <>
+              {list}
+              {search}
+            </>
+          )}
+        </EuiSelectable>
+      );
 
-    expect(component).toMatchSnapshot();
+      expect(component.find('p').text()).toEqual(
+        'Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.'
+      );
+    });
+
+    it('sets custom accessibility instructions correctly', () => {
+      const searchProps = {
+        value: 'Enceladus',
+        'data-test-subj': 'searchInput',
+      };
+      const component = mount(
+        <EuiSelectable
+          selectableScreenReaderText="Custom screenreader instructions."
+          options={options}
+          searchable
+          searchProps={searchProps}
+        >
+          {(list, search) => (
+            <>
+              {list}
+              {search}
+            </>
+          )}
+        </EuiSelectable>
+      );
+
+      expect(component).toMatchSnapshot();
+      expect(component.find('p').text()).toEqual(
+        'Custom screenreader instructions. Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.'
+      );
+    });
   });
 });
