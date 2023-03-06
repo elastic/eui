@@ -171,8 +171,9 @@ export type EuiSelectableProps<T = {}> = CommonProps &
      */
     isPreFiltered?: boolean;
     /**
-     * Screen readers will announce the selectableScreenReaderText after they
-     * read the `EuiSelectable` label and a brief pause
+     * Optional screen reader instructions to announce upon focus/interaction. This text is read out
+     * after the `EuiSelectable` label and a brief pause, but before the default keyboard instructions for
+     * interacting with a selectable are read out.
      */
     selectableScreenReaderText?: string;
   };
@@ -713,7 +714,9 @@ export class EuiSelectable<T = {}> extends Component<
 
             <EuiScreenReaderOnly>
               <p id={listAriaDescribedbyId}>
-                {selectableScreenReaderText ?? screenReaderInstructions}
+                {selectableScreenReaderText
+                  ? `${selectableScreenReaderText} ${screenReaderInstructions}`
+                  : screenReaderInstructions}
               </p>
             </EuiScreenReaderOnly>
           </>

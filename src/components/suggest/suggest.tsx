@@ -230,11 +230,6 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
     ['State: loading.', 'State: saved.', 'State: unsaved.', 'State: unchanged.']
   );
 
-  const screenReaderInstructions = useEuiI18n(
-    'euiSuggest.screenReaderInstructions',
-    'Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.'
-  );
-
   const stateMessageMap = {
     loading: stateLoading,
     saved: stateSaved,
@@ -242,8 +237,6 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
     unchanged: stateUnchanged,
   };
   const stateMessage = stateMessageMap[status];
-
-  const screenreaderCombinedInstructions = `${stateMessage} ${screenReaderInstructions}`;
 
   /**
    * Options list
@@ -293,7 +286,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
   return (
     <>
       <EuiSelectable<EuiSuggestionProps>
-        selectableScreenReaderText={screenreaderCombinedInstructions}
+        selectableScreenReaderText={stateMessage}
         singleSelection={true}
         height={isVirtualized ? undefined : 'full'}
         options={suggestionList}
