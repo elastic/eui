@@ -714,9 +714,7 @@ export class EuiSelectable<T = {}> extends Component<
 
             <EuiScreenReaderOnly>
               <p id={listAriaDescribedbyId}>
-                {selectableScreenReaderText
-                  ? `${selectableScreenReaderText} ${screenReaderInstructions}`
-                  : screenReaderInstructions}
+                {selectableScreenReaderText} {screenReaderInstructions}
               </p>
             </EuiScreenReaderOnly>
           </>
