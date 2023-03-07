@@ -18,6 +18,11 @@
 .euiSelectableList__list {
   @include euiOverflowShadow;
   @include euiScrollBar;
+
+  &:focus,
+  & > ul:focus {
+    outline: none;
+  }
 }
 
 .euiSelectableList__groupLabel {
