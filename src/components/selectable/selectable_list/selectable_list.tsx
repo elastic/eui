@@ -197,7 +197,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
       }
 
       if (typeof ariaDescribedby === 'string') {
-        ref.setAttribute('aria-labelledby', ariaDescribedby);
+        ref.setAttribute('aria-describedby', ariaDescribedby);
       }
     }
   };

@@ -681,6 +681,7 @@ export class EuiPopover extends Component<Props, State> {
       let focusTrapScreenReaderText;
       if (ownFocus || popoverScreenReaderText) {
         ariaDescribedby = this.descriptionId;
+
         focusTrapScreenReaderText = (
           <EuiScreenReaderOnly>
             <p id={this.descriptionId}>
