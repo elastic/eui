@@ -28,6 +28,7 @@ import { ExclusiveUnion, CommonProps, OneOf } from '../common';
 import { RowHeightUtils } from './utils/row_heights';
 import { IconType } from '../icon';
 import { EuiTokenProps } from '../token';
+import { EuiPopoverProps } from '../popover';
 
 // since react-window doesn't export a type with the imperative api only we can
 // use this to omit the react-specific class component methods
@@ -206,6 +207,7 @@ export interface DataGridCellPopoverContextShape {
   closeCellPopover(): void;
   setPopoverAnchor(anchor: HTMLElement): void;
   setPopoverContent(content: ReactNode): void;
+  setCellPopoverProps: EuiDataGridCellPopoverElementProps['setCellPopoverProps'];
 }
 
 export type CommonGridProps = CommonProps &
@@ -501,6 +503,13 @@ export interface EuiDataGridCellPopoverElementProps
    * If so, that component is provided here as a passed React function component for your usage.
    */
   DefaultCellPopover: JSXElementConstructor<EuiDataGridCellPopoverElementProps>;
+  /**
+   * Allows passing props to the wrapping cell expansion popover and panel.
+   * Accepts any props that `EuiPopover` accepts, except for `button` and `closePopover`.
+   */
+  setCellPopoverProps: (
+    props: Omit<EuiPopoverProps, 'button' | 'closePopover'>
+  ) => void;
 }
 
 export interface EuiDataGridCellProps {

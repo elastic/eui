@@ -112,6 +112,15 @@ export const DataGridCellPopoverExample = {
                 rendering for other cells.
               </p>
             </li>
+            <li>
+              <p>
+                <EuiCode>setCellPopoverProps</EuiCode> - this callback is passed
+                to allow customizing the cell expansion popover. Accepts any
+                prop that <EuiCode>EuiPopover</EuiCode> accepts, except for{' '}
+                <EuiCode>button</EuiCode> & <EuiCode>closePopover</EuiCode>,
+                which is controlled by the data grid.
+              </p>
+            </li>
           </ul>
           <p>
             Take a look at the below example&apos;s demo code to see the above
