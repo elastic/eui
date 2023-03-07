@@ -1,3 +1,14 @@
+## [`76.1.0`](https://github.com/elastic/eui/tree/v76.1.0)
+
+- Added more detailed screen reader instructions to `EuiSelectable`, `EuiSuggest`, `EuiSelectableTemplateSitewide`, `EuiRange`, and `EuiDualRange`. ([#6589](https://github.com/elastic/eui/pull/6589))
+- Added new `placeholder` prop to `EuiSuperSelect` ([#6630](https://github.com/elastic/eui/pull/6630))
+- Added new `setCellPopoverProps` parameter callback to `EuiDataGrid`'s `renderCellPopover` prop ([#6632](https://github.com/elastic/eui/pull/6632))
+
+**Bug fixes**
+
+- Fixed an ARIA attribute in `EuiSelectableList` ([#6589](https://github.com/elastic/eui/pull/6589))
+- Fixed `EuiSelectable` to no longer show active selection state or respond to the Up/Down arrow keys when focus is inside the selectable container, but not on the searchbox or listbox. ([#6631](https://github.com/elastic/eui/pull/6631))
+
 ## [`76.0.1`](https://github.com/elastic/eui/tree/v76.0.1)
 
 **Bug fixes**
