@@ -36,9 +36,12 @@ export default () => {
     /* DisplayToggles wrapper for Docs only */
     <DisplayToggles canPrepend={false} canAppend={false}>
       <EuiSuperSelect
+        id={testId}
         options={options}
         valueOfSelected={value}
         onChange={(value) => onChange(value)}
+        append={<span className="euiFormLabel">Append</span>}
+        prepend={<span className="euiFormLabel">Prepend</span>}
       />
     </DisplayToggles>
   );

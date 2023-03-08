@@ -135,40 +135,40 @@ export const EuiSuperSelectControl: <T extends string>(
       : selectedValue;
   }
 
-  // Assume we're not going to build an accessible label
-  // unless specific props are passed in
-  let accessiblePrependId: string | null = null;
-  let accessibleAppendId: string | null = null;
+  // Build a string of unique IDs to create an
+  // accessible button label with `aria-labelledby`
   let accessibleLabelId: string | null = null;
+  const accessibleLabelIdSet: Set<string> = new Set();
 
-  // Prepend a ReactElement and pass an ID
+  // Iterate `prepend` for ReactElements
   if (prepend && typeof prepend !== 'string' && id) {
-    accessiblePrependId = '';
-
     React.Children.map(prepend, (_, index) => {
-      accessiblePrependId = accessiblePrependId + `prepend-${index}-${id} `;
+      accessibleLabelIdSet.add(`prepend-${index}-${id}`);
     });
 
-    accessiblePrependId = accessiblePrependId.trimRight();
-
-    accessibleLabelId = accessibleAppendId
-      ? `${accessiblePrependId} ${id} ${accessibleAppendId}`
-      : `${accessiblePrependId} ${id}`;
+    accessibleLabelIdSet.add(id);
   }
 
-  // Append a ReactElement and pass an ID
+  // Iterate `append` for ReactElements
   if (append && typeof append !== 'string' && id) {
-    accessibleAppendId = '';
+    accessibleLabelIdSet.add(id);
 
     React.Children.map(append, (_, index) => {
-      accessibleAppendId = accessibleAppendId + ` append-${index}-${id}`;
+      accessibleLabelIdSet.add(`append-${index}-${id}`);
     });
+  }
 
-    accessibleAppendId = accessibleAppendId.trimLeft();
+  // Iterate the set of label IDs and concatenate
+  if (accessibleLabelIdSet.size > 0) {
+    const labelPointers = accessibleLabelIdSet.entries();
 
-    accessibleLabelId = accessiblePrependId
-      ? `${accessiblePrependId} ${id} ${accessibleAppendId}`
-      : `${id} ${accessibleAppendId}`;
+    accessibleLabelId = '';
+
+    for (const entry of labelPointers) {
+      accessibleLabelId = `${accessibleLabelId} ${entry[0]}`;
+    }
+
+    accessibleLabelId = accessibleLabelId.trimLeft();
   }
 
   return (

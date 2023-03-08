@@ -2,7 +2,13 @@ import React from 'react';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiSuperSelect } from '../../../../src/components';
+import {
+  EuiCallOut,
+  EuiCode,
+  EuiSpacer,
+  EuiSuperSelect,
+  EuiText,
+} from '../../../../src/components';
 
 import SuperSelectBasic from './super_select_basic';
 const superSelectBasicSource = require('!!raw-loader!./super_select_basic');
@@ -51,6 +57,21 @@ const superSelectStatesSnippet = `<EuiSuperSelect
   append={append}
 />
 `;
+
+import SuperSelectAppendPrepend from './super_select_append_prepend';
+const superSelectAppendPrepend = require('!!raw-loader!./super_select_append_prepend');
+const superSelectAppendPrependSnippet = `<EuiSuperSelect
+id={testId}
+options={options}
+valueOfSelected={value}
+onChange={(value) => onChange(value)}
+append={[
+  <span className="euiFormLabel">Append</span>,
+]}
+prepend={[
+  <span className="euiFormLabel">Prepend</span>,
+]}
+/>`;
 
 export const SuperSelectExample = {
   title: 'Super select',
@@ -132,6 +153,55 @@ export const SuperSelectExample = {
       props: { EuiSuperSelect },
       snippet: superSelectStatesSnippet,
       demo: <SuperSelectStates />,
+    },
+    {
+      title: 'Append and Prepend',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: superSelectAppendPrepend,
+        },
+      ],
+      text: (
+        <>
+          <EuiText>
+            <p>
+              <EuiCode>EuiSuperSelect</EuiCode> allows you to create custom
+              labels by passing <EuiCode>append</EuiCode> or{' '}
+              <EuiCode>prepend</EuiCode> props.
+            </p>
+          </EuiText>
+          <EuiSpacer />
+          <EuiCallOut
+            iconType="accessibility"
+            title={
+              <>
+                Make your <EuiCode>append</EuiCode> and{' '}
+                <EuiCode>prepend</EuiCode> label accessible
+              </>
+            }
+          >
+            <EuiSpacer size="s" />
+            <p>
+              You must do two things to create accessible append/prepend labels
+              for <EuiCode>EuiSuperSelect</EuiCode>:
+            </p>
+            <ul>
+              <li>
+                Pass a unique <EuiCode>id</EuiCode> prop
+              </li>
+              <li>
+                Pass a custom ReactElement for the <EuiCode>append</EuiCode> and{' '}
+                <EuiCode>prepend</EuiCode> props. This could be a{' '}
+                <EuiCode>SPAN</EuiCode> or <EuiCode>DIV</EuiCode>.
+              </li>
+            </ul>
+          </EuiCallOut>
+        </>
+      ),
+      props: { EuiSuperSelect },
+      snippet: superSelectAppendPrependSnippet,
+      demo: <SuperSelectAppendPrepend />,
     },
   ],
 };
