@@ -15,6 +15,7 @@ import {
   ReactElement,
   AriaAttributes,
   MutableRefObject,
+  Ref,
   Component,
 } from 'react';
 import {
@@ -477,7 +478,9 @@ export interface EuiDataGridCustomBodyProps {
   setCustomGridBodyProps: (props: EuiDataGridSetCustomGridBodyProps) => void;
 }
 export type EuiDataGridSetCustomGridBodyProps = CommonProps &
-  HTMLAttributes<HTMLDivElement>;
+  HTMLAttributes<HTMLDivElement> & {
+    ref?: MutableRefObject<HTMLDivElement> | Ref<HTMLDivElement>;
+  };
 
 /**
  * Props shared between renderCellValue and renderCellPopover

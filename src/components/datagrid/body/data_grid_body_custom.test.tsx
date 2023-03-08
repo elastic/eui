@@ -76,11 +76,20 @@ describe('EuiDataGridBodyCustomRender', () => {
   it('allows passing props to the wrapping div via `setCustomGridBodyProps`', () => {
     const onScroll = jest.fn();
 
+    let bodyRef: HTMLDivElement | null = null;
+    const setBodyRef = (el: HTMLDivElement) => {
+      bodyRef = el;
+    };
+
     const CustomGridBody: EuiDataGridProps['renderCustomGridBody'] = ({
       setCustomGridBodyProps,
     }) => {
       useEffect(() => {
-        setCustomGridBodyProps({ className: 'hello-world', onScroll });
+        setCustomGridBodyProps({
+          className: 'hello-world',
+          onScroll,
+          ref: setBodyRef,
+        });
       }, [setCustomGridBodyProps]);
 
       return <>hello world</>;
@@ -98,8 +107,12 @@ describe('EuiDataGridBodyCustomRender', () => {
       '.euiDataGrid__customRenderBody.hello-world'
     );
     expect(gridBody).toBeTruthy();
+
     fireEvent.scroll(gridBody!);
     expect(onScroll).toHaveBeenCalledTimes(1);
+
+    bodyRef!.setAttribute('style', 'pointer-events: none;');
+    expect(gridBody!.getAttribute('style')).toEqual('pointer-events: none;');
   });
 
   // More complex test cases involving pagination, auto height, etc can be found in Cypress .spec tests

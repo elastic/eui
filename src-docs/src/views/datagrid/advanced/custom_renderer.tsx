@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from 'react';
+import React, { useEffect, useCallback, useState, useRef } from 'react';
 import { css } from '@emotion/react';
 import { faker } from '@faker-js/faker';
 
@@ -212,9 +212,12 @@ export default () => {
       };
 
       // Set custom props onto the grid body wrapper
+      const bodyRef = useRef<HTMLDivElement | null>(null);
       useEffect(() => {
         setCustomGridBodyProps({
-          onScroll: () => console.debug('scroll event occurred'),
+          ref: bodyRef,
+          onScroll: () =>
+            console.debug('scrollTop:', bodyRef.current?.scrollTop),
         });
       }, [setCustomGridBodyProps]);
 
