@@ -6,12 +6,21 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useMemo, useCallback } from 'react';
+import React, {
+  FunctionComponent,
+  useState,
+  useMemo,
+  useCallback,
+} from 'react';
+import classNames from 'classnames';
 
 import { useDefaultColumnWidth, useColumnWidths } from '../utils/col_widths';
 import { useRowHeightUtils, useDefaultRowHeight } from '../utils/row_heights';
 
-import { EuiDataGridBodyProps } from '../data_grid_types';
+import {
+  EuiDataGridBodyProps,
+  EuiDataGridSetCustomGridBodyProps,
+} from '../data_grid_types';
 import { useDataGridHeader } from './header';
 import { useDataGridFooter } from './footer';
 import { Cell } from './data_grid_cell_wrapper';
@@ -147,13 +156,25 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<EuiDataGridBodyProps
     [...Object.values(cellProps), getRowHeight] // eslint-disable-line react-hooks/exhaustive-deps
   );
 
+  // Allow consumers to pass custom props/attributes/listeners etc. to the wrapping div
+  const [customGridBodyProps, setCustomGridBodyProps] = useState<
+    EuiDataGridSetCustomGridBodyProps
+  >({});
+
   return (
-    <div className="euiDataGrid__customRenderBody">
+    <div
+      {...customGridBodyProps}
+      className={classNames(
+        'euiDataGrid__customRenderBody',
+        customGridBodyProps?.className
+      )}
+    >
       {headerRow}
       {renderCustomGridBody!({
         visibleColumns,
         visibleRowData: visibleRows,
         Cell: _Cell,
+        setCustomGridBodyProps,
       })}
       {footerRow}
     </div>

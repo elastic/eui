@@ -6,7 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
+import { fireEvent } from '@testing-library/dom';
 import { render } from '../../../test/rtl';
 
 import { EuiDataGridProps } from '../data_grid_types';
@@ -70,6 +71,35 @@ describe('EuiDataGridBodyCustomRender', () => {
     expect(getByText('world')).toBeTruthy();
     expect(getByText('lorem')).toBeTruthy();
     expect(getByText('ipsum')).toBeTruthy();
+  });
+
+  it('allows passing props to the wrapping div via `setCustomGridBodyProps`', () => {
+    const onScroll = jest.fn();
+
+    const CustomGridBody: EuiDataGridProps['renderCustomGridBody'] = ({
+      setCustomGridBodyProps,
+    }) => {
+      useEffect(() => {
+        setCustomGridBodyProps({ className: 'hello-world', onScroll });
+      }, [setCustomGridBodyProps]);
+
+      return <>hello world</>;
+    };
+
+    const { container, getByText } = render(
+      <EuiDataGridBodyCustomRender
+        {...bodyProps}
+        renderCustomGridBody={CustomGridBody}
+      />
+    );
+    expect(getByText('hello world')).toBeTruthy();
+
+    const gridBody = container.querySelector(
+      '.euiDataGrid__customRenderBody.hello-world'
+    );
+    expect(gridBody).toBeTruthy();
+    fireEvent.scroll(gridBody!);
+    expect(onScroll).toHaveBeenCalledTimes(1);
   });
 
   // More complex test cases involving pagination, auto height, etc can be found in Cypress .spec tests

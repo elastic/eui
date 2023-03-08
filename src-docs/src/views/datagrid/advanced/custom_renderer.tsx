@@ -183,12 +183,19 @@ export default () => {
 
   // Custom grid body renderer
   const RenderCustomGridBody = useCallback(
-    ({ Cell, visibleColumns, visibleRowData }: EuiDataGridCustomBodyProps) => {
+    ({
+      Cell,
+      visibleColumns,
+      visibleRowData,
+      setCustomGridBodyProps,
+    }: EuiDataGridCustomBodyProps) => {
+      // Ensure we're displaying correctly-paginated rows
       const visibleRows = raw_data.slice(
         visibleRowData.startRow,
         visibleRowData.endRow
       );
 
+      // Add styling needed for custom grid body rows
       const styles = {
         row: css`
           ${logicalCSS('width', 'fit-content')};
@@ -203,6 +210,13 @@ export default () => {
           background-color: ${euiTheme.colors.body};
         `,
       };
+
+      // Set custom props onto the grid body wrapper
+      useEffect(() => {
+        setCustomGridBodyProps({
+          onScroll: () => console.debug('scroll event occurred'),
+        });
+      }, [setCustomGridBodyProps]);
 
       return (
         <>

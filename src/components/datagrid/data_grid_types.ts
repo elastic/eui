@@ -470,7 +470,14 @@ export interface EuiDataGridCustomBodyProps {
     endRow: number;
     visibleRowCount: number;
   };
+  /**
+   * Callback function to set custom props & attributes on the custom grid body's wrapping `div` element.
+   * It's best to wrap calls to `setCustomGridBodyProps` in a `useEffect` hook
+   */
+  setCustomGridBodyProps: (props: EuiDataGridSetCustomGridBodyProps) => void;
 }
+export type EuiDataGridSetCustomGridBodyProps = CommonProps &
+  HTMLAttributes<HTMLDivElement>;
 
 /**
  * Props shared between renderCellValue and renderCellPopover

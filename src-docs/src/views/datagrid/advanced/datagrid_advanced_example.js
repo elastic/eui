@@ -10,7 +10,10 @@ import {
   EuiLink,
 } from '../../../../../src/components';
 
-import { EuiDataGridRefProps } from '!!prop-loader!../../../../../src/components/datagrid/data_grid_types';
+import {
+  EuiDataGridRefProps,
+  EuiDataGridCustomBodyProps,
+} from '!!prop-loader!../../../../../src/components/datagrid/data_grid_types';
 
 import { DataGridMemoryExample } from './datagrid_memory_example';
 
@@ -248,6 +251,7 @@ export const DataGridAdvancedExample = {
       ),
       demo: <CustomRenderer />,
       snippet: customRendererSnippet,
+      props: { EuiDataGridCustomBodyProps },
     },
   ],
 };
