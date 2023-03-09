@@ -415,6 +415,7 @@ export const typeToPathMap = {
   visVisualBuilder: 'vis_visual_builder',
   visualizeApp: 'app_visualize',
   warning: 'warning',
+  alert: 'warning', // NOTE: This is an undocumented alias for `warning`, added for legacy compatability with Elastic Charts
   watchesApp: 'app_watches',
   wordWrap: 'wordWrap',
   wordWrapDisabled: 'wordWrapDisabled',
