@@ -30,8 +30,6 @@ export default () => {
     setValue(value);
   };
 
-  const testId = '12345';
-
   return (
     /* DisplayToggles wrapper for Docs only */
     <DisplayToggles canPrepend={false} canAppend={false}>

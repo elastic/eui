@@ -1,5 +1,221 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiSuperSelectControl accessible prepend and append appended label is accessible 1`] = `
+Array [
+  <input
+    type="hidden"
+    value=""
+  />,
+  <div
+    class="euiFormControlLayout euiFormControlLayout--group"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <span
+        class="emotion-euiScreenReaderOnly"
+      >
+        Select an option: , is selected
+      </span>
+      <button
+        aria-haspopup="listbox"
+        aria-labelledby="eui-super-select-1 append-0-eui-super-select-1"
+        class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--inGroup"
+        id="eui-super-select-1"
+        type="button"
+      />
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+      >
+        <span
+          class="euiFormControlLayoutCustomIcon"
+        >
+          <span
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
+      </div>
+    </div>
+    <span
+      class="euiFormControlLayout__append euiFormLabel"
+      id="append-0-eui-super-select-1"
+    >
+      Append
+    </span>
+  </div>,
+]
+`;
+
+exports[`EuiSuperSelectControl accessible prepend and append multiple labels are accessible 1`] = `
+Array [
+  <input
+    type="hidden"
+    value=""
+  />,
+  <div
+    class="euiFormControlLayout euiFormControlLayout--group"
+  >
+    <span
+      class="euiFormControlLayout__prepend euiFormLabel"
+      id="prepend-0-eui-super-select-1"
+    >
+      Prepend 1
+    </span>
+    <span
+      class="euiFormControlLayout__prepend euiFormLabel"
+      id="prepend-1-eui-super-select-1"
+    >
+      Prepend 2
+    </span>
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <span
+        class="emotion-euiScreenReaderOnly"
+      >
+        Select an option: , is selected
+      </span>
+      <button
+        aria-haspopup="listbox"
+        aria-labelledby="prepend-0-eui-super-select-1 prepend-1-eui-super-select-1 eui-super-select-1 append-0-eui-super-select-1 append-1-eui-super-select-1"
+        class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--inGroup"
+        id="eui-super-select-1"
+        type="button"
+      />
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+      >
+        <span
+          class="euiFormControlLayoutCustomIcon"
+        >
+          <span
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
+      </div>
+    </div>
+    <span
+      class="euiFormControlLayout__append euiFormLabel"
+      id="append-0-eui-super-select-1"
+    >
+      Append 1
+    </span>
+    <span
+      class="euiFormControlLayout__append euiFormLabel"
+      id="append-1-eui-super-select-1"
+    >
+      Append 2
+    </span>
+  </div>,
+]
+`;
+
+exports[`EuiSuperSelectControl accessible prepend and append prepended and appended labels are accessible 1`] = `
+Array [
+  <input
+    type="hidden"
+    value=""
+  />,
+  <div
+    class="euiFormControlLayout euiFormControlLayout--group"
+  >
+    <span
+      class="euiFormControlLayout__prepend euiFormLabel"
+      id="prepend-0-eui-super-select-1"
+    >
+      Prepend
+    </span>
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <span
+        class="emotion-euiScreenReaderOnly"
+      >
+        Select an option: , is selected
+      </span>
+      <button
+        aria-haspopup="listbox"
+        aria-labelledby="prepend-0-eui-super-select-1 eui-super-select-1 append-0-eui-super-select-1"
+        class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--inGroup"
+        id="eui-super-select-1"
+        type="button"
+      />
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+      >
+        <span
+          class="euiFormControlLayoutCustomIcon"
+        >
+          <span
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
+      </div>
+    </div>
+    <span
+      class="euiFormControlLayout__append euiFormLabel"
+      id="append-0-eui-super-select-1"
+    >
+      Append
+    </span>
+  </div>,
+]
+`;
+
+exports[`EuiSuperSelectControl accessible prepend and append prepended label is accessible 1`] = `
+Array [
+  <input
+    type="hidden"
+    value=""
+  />,
+  <div
+    class="euiFormControlLayout euiFormControlLayout--group"
+  >
+    <span
+      class="euiFormControlLayout__prepend euiFormLabel"
+      id="prepend-0-eui-super-select-1"
+    >
+      Prepend
+    </span>
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <span
+        class="emotion-euiScreenReaderOnly"
+      >
+        Select an option: , is selected
+      </span>
+      <button
+        aria-haspopup="listbox"
+        aria-labelledby="prepend-0-eui-super-select-1 eui-super-select-1"
+        class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--inGroup"
+        id="eui-super-select-1"
+        type="button"
+      />
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+      >
+        <span
+          class="euiFormControlLayoutCustomIcon"
+        >
+          <span
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
 exports[`EuiSuperSelectControl is rendered 1`] = `
 Array [
   <input

@@ -109,4 +109,114 @@ describe('EuiSuperSelectControl', () => {
       }
     });
   });
+
+  describe('accessible prepend and append', () => {
+    test('prepended label is accessible', () => {
+      const component = render(
+        <EuiSuperSelectControl
+          id="eui-super-select-1"
+          options={[
+            { value: '1', inputDisplay: 'Option #1' },
+            { value: '2', inputDisplay: 'Option #2' },
+          ]}
+          prepend={<span className="euiFormLabel">Prepend</span>}
+        />
+      );
+
+      const button = component.find('button#eui-super-select-1');
+      const prepend = component.find('span#prepend-0-eui-super-select-1');
+
+      expect(button).toHaveLength(1);
+      expect(prepend).toHaveLength(1);
+
+      expect(button.prop('aria-labelledby')).toEqual(
+        'prepend-0-eui-super-select-1 eui-super-select-1'
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('appended label is accessible', () => {
+      const component = render(
+        <EuiSuperSelectControl
+          id="eui-super-select-1"
+          options={[
+            { value: '1', inputDisplay: 'Option #1' },
+            { value: '2', inputDisplay: 'Option #2' },
+          ]}
+          append={<span className="euiFormLabel">Append</span>}
+        />
+      );
+
+      const button = component.find('button#eui-super-select-1');
+      const append = component.find('span#append-0-eui-super-select-1');
+
+      expect(button).toHaveLength(1);
+      expect(append).toHaveLength(1);
+
+      expect(button.prop('aria-labelledby')).toEqual(
+        'eui-super-select-1 append-0-eui-super-select-1'
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('prepended and appended labels are accessible', () => {
+      const component = render(
+        <EuiSuperSelectControl
+          id="eui-super-select-1"
+          options={[
+            { value: '1', inputDisplay: 'Option #1' },
+            { value: '2', inputDisplay: 'Option #2' },
+          ]}
+          append={<span className="euiFormLabel">Append</span>}
+          prepend={<span className="euiFormLabel">Prepend</span>}
+        />
+      );
+
+      const button = component.find('button#eui-super-select-1');
+      const append = component.find('span#append-0-eui-super-select-1');
+      const prepend = component.find('span#prepend-0-eui-super-select-1');
+
+      expect(button).toHaveLength(1);
+      expect(append).toHaveLength(1);
+      expect(prepend).toHaveLength(1);
+
+      expect(button.prop('aria-labelledby')).toEqual(
+        'prepend-0-eui-super-select-1 eui-super-select-1 append-0-eui-super-select-1'
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('multiple labels are accessible', () => {
+      const component = render(
+        <EuiSuperSelectControl
+          id="eui-super-select-1"
+          options={[
+            { value: '1', inputDisplay: 'Option #1' },
+            { value: '2', inputDisplay: 'Option #2' },
+          ]}
+          append={[
+            <span className="euiFormLabel">Append 1</span>,
+            <span className="euiFormLabel">Append 2</span>,
+          ]}
+          prepend={[
+            <span className="euiFormLabel">Prepend 1</span>,
+            <span className="euiFormLabel">Prepend 2</span>,
+          ]}
+        />
+      );
+
+      const button = component.find('button#eui-super-select-1');
+
+      expect(button).toHaveLength(1);
+
+      expect(button.prop('aria-labelledby')).toEqual(
+        'prepend-0-eui-super-select-1 prepend-1-eui-super-select-1 eui-super-select-1 append-0-eui-super-select-1 append-1-eui-super-select-1'
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+  });
 });

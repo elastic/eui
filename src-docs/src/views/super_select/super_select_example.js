@@ -155,7 +155,7 @@ export const SuperSelectExample = {
       demo: <SuperSelectStates />,
     },
     {
-      title: 'Append and Prepend',
+      title: 'Append and prepend',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -166,9 +166,9 @@ export const SuperSelectExample = {
         <>
           <EuiText>
             <p>
-              <EuiCode>EuiSuperSelect</EuiCode> allows you to create custom
-              labels by passing <EuiCode>append</EuiCode> or{' '}
-              <EuiCode>prepend</EuiCode> props.
+              You can create custom labels by passing <EuiCode>append</EuiCode>{' '}
+              or <EuiCode>prepend</EuiCode> props to{' '}
+              <strong>EuiSuperSelect</strong>.
             </p>
           </EuiText>
           <EuiSpacer />
@@ -177,7 +177,7 @@ export const SuperSelectExample = {
             title={
               <>
                 Make your <EuiCode>append</EuiCode> and{' '}
-                <EuiCode>prepend</EuiCode> label accessible
+                <EuiCode>prepend</EuiCode> labels accessible
               </>
             }
           >

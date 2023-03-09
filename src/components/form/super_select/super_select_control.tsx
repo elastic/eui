@@ -135,8 +135,8 @@ export const EuiSuperSelectControl: <T extends string>(
       : selectedValue;
   }
 
-  // Build a string of unique IDs to create an
-  // accessible button label with `aria-labelledby`
+  // Build a string of unique IDs to create an accessible
+  // button label using the `aria-labelledby` attribute
   let accessibleLabelId: string | null = null;
   const accessibleLabelIdSet: Set<string> = new Set();
 
@@ -158,7 +158,7 @@ export const EuiSuperSelectControl: <T extends string>(
     });
   }
 
-  // Iterate the set of label IDs and concatenate
+  // Concatenate set IDs into `accessibleLabelId`
   if (accessibleLabelIdSet.size > 0) {
     const labelPointers = accessibleLabelIdSet.entries();
 
