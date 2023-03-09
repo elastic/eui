@@ -46,7 +46,6 @@ exports[`EuiDataGridCell renders 1`] = `
   data-gridcell-visible-row-index="0"
   data-test-subj="dataGridRowCell"
   role="gridcell"
-  style="top:0"
   tabindex="-1"
 >
   <div

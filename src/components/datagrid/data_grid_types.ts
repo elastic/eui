@@ -15,6 +15,7 @@ import {
   ReactElement,
   AriaAttributes,
   MutableRefObject,
+  Ref,
   Component,
 } from 'react';
 import {
@@ -25,9 +26,10 @@ import {
 import { EuiListGroupItemProps } from '../list_group';
 import { EuiButtonEmpty, EuiButtonIcon } from '../button';
 import { ExclusiveUnion, CommonProps, OneOf } from '../common';
-import { RowHeightUtils } from './utils/row_heights';
+import { RowHeightUtilsType } from './utils/row_heights';
 import { IconType } from '../icon';
 import { EuiTokenProps } from '../token';
+import { EuiPopoverProps } from '../popover';
 
 // since react-window doesn't export a type with the imperative api only we can
 // use this to omit the react-specific class component methods
@@ -206,6 +208,7 @@ export interface DataGridCellPopoverContextShape {
   closeCellPopover(): void;
   setPopoverAnchor(anchor: HTMLElement): void;
   setPopoverContent(content: ReactNode): void;
+  setCellPopoverProps: EuiDataGridCellPopoverElementProps['setCellPopoverProps'];
 }
 
 export type CommonGridProps = CommonProps &
@@ -263,6 +266,18 @@ export type CommonGridProps = CommonProps &
      * as its only argument.
      */
     renderFooterCellValue?: EuiDataGridCellProps['renderCellValue'];
+    /**
+     * An optional function called to completely customize and control the rendering of
+     * EuiDataGrid's body and cell placement.  This can be used to, e.g. remove EuiDataGrid's
+     * virtualization library, or roll your own.
+     *
+     * This component is **only** meant as an escape hatch for extremely custom use cases.
+     *
+     * Behind the scenes, this function is treated as a React component,
+     * allowing hooks, context, and other React concepts to be used.
+     * It receives #EuiDataGridCustomBodyProps as its only argument.
+     */
+    renderCustomGridBody?: (args: EuiDataGridCustomBodyProps) => ReactNode;
     /**
      * Defines the initial style of the grid. Accepts a partial #EuiDataGridStyle object.
      * Settings provided may be overwritten or merged with user defined preferences if `toolbarVisibility.showDisplaySelector.allowDensity = true` (which is the default).
@@ -410,6 +425,7 @@ export interface EuiDataGridBodyProps {
   renderCellValue: EuiDataGridCellProps['renderCellValue'];
   renderCellPopover?: EuiDataGridCellProps['renderCellPopover'];
   renderFooterCellValue?: EuiDataGridCellProps['renderCellValue'];
+  renderCustomGridBody?: EuiDataGridProps['renderCustomGridBody'];
   interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
   pagination?: EuiDataGridPaginationProps;
   headerIsInteractive: boolean;
@@ -426,6 +442,47 @@ export interface EuiDataGridBodyProps {
   gridItemsRendered: MutableRefObject<GridOnItemsRenderedProps | null>;
   wrapperRef: MutableRefObject<HTMLDivElement | null>;
 }
+
+export interface EuiDataGridCustomBodyProps {
+  /**
+   * When taking control of data grid rendering, the underlying `EuiDataGridCell`
+   * is passed as a prop for usage. You **must** pass in a valid `colIndex`
+   * and `visibleRowIndex` to this cell component.
+   *
+   * You may also pass in any other optional cell prop overrides
+   * that `EuiDataGridCell` accepts, such as `isExpandable` or `renderCellValue`.
+   */
+  Cell: JSXElementConstructor<
+    { colIndex: number; visibleRowIndex: number } & Partial<
+      EuiDataGridCellProps
+    >
+  >;
+  /**
+   * The currently visible columns are passed to your data grid renderer so that your
+   * custom grid can automatically adjust to column hiding & reordering.
+   */
+  visibleColumns: EuiDataGridColumn[];
+  /**
+   * The currently visible rows are passed to your data grid renderer so that your
+   * custom grid can automatically adjust to sorting and pagination.
+   *
+   * You will need  to manually slice your data with `startRow` and `endRow` in order to simulate pagination.
+   */
+  visibleRowData: {
+    startRow: number;
+    endRow: number;
+    visibleRowCount: number;
+  };
+  /**
+   * Callback function to set custom props & attributes on the custom grid body's wrapping `div` element.
+   * It's best to wrap calls to `setCustomGridBodyProps` in a `useEffect` hook
+   */
+  setCustomGridBodyProps: (props: EuiDataGridSetCustomGridBodyProps) => void;
+}
+export type EuiDataGridSetCustomGridBodyProps = CommonProps &
+  HTMLAttributes<HTMLDivElement> & {
+    ref?: MutableRefObject<HTMLDivElement> | Ref<HTMLDivElement>;
+  };
 
 /**
  * Props shared between renderCellValue and renderCellPopover
@@ -501,6 +558,13 @@ export interface EuiDataGridCellPopoverElementProps
    * If so, that component is provided here as a passed React function component for your usage.
    */
   DefaultCellPopover: JSXElementConstructor<EuiDataGridCellPopoverElementProps>;
+  /**
+   * Allows passing props to the wrapping cell expansion popover and panel.
+   * Accepts any props that `EuiPopover` accepts, except for `button` and `closePopover`.
+   */
+  setCellPopoverProps: (
+    props: Omit<EuiPopoverProps, 'button' | 'closePopover'>
+  ) => void;
 }
 
 export interface EuiDataGridCellProps {
@@ -525,7 +589,7 @@ export interface EuiDataGridCellProps {
   getRowHeight?: (rowIndex: number) => number;
   style?: React.CSSProperties;
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
-  rowHeightUtils?: RowHeightUtils;
+  rowHeightUtils?: RowHeightUtilsType;
   rowManager?: EuiDataGridRowManager;
   pagination?: EuiDataGridPaginationProps;
 }
@@ -542,6 +606,7 @@ export type EuiDataGridCellValueProps = Omit<
   EuiDataGridCellProps,
   'width' | 'interactiveCellId' | 'popoverContext' | 'rowManager'
 >;
+
 export interface EuiDataGridControlColumn {
   /**
    * Used as the React `key` when rendering content
@@ -572,6 +637,9 @@ export interface EuiDataGridControlColumn {
    */
   footerCellProps?: HTMLAttributes<HTMLDivElement>;
 }
+// The empty control column array fallbacks need to be cached, or
+// they'll cause rerendering/remount issues in memoized dependencies
+export const emptyControlColumns: EuiDataGridControlColumn[] = [];
 
 export interface EuiDataGridColumn {
   /**

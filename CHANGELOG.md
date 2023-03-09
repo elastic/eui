@@ -1,3 +1,40 @@
+## [`76.1.0`](https://github.com/elastic/eui/tree/v76.1.0)
+
+- Added more detailed screen reader instructions to `EuiSelectable`, `EuiSuggest`, `EuiSelectableTemplateSitewide`, `EuiRange`, and `EuiDualRange`. ([#6589](https://github.com/elastic/eui/pull/6589))
+- Added new `placeholder` prop to `EuiSuperSelect` ([#6630](https://github.com/elastic/eui/pull/6630))
+- Added new `setCellPopoverProps` parameter callback to `EuiDataGrid`'s `renderCellPopover` prop ([#6632](https://github.com/elastic/eui/pull/6632))
+
+**Bug fixes**
+
+- Fixed an ARIA attribute in `EuiSelectableList` ([#6589](https://github.com/elastic/eui/pull/6589))
+- Fixed `EuiSelectable` to no longer show active selection state or respond to the Up/Down arrow keys when focus is inside the selectable container, but not on the searchbox or listbox. ([#6631](https://github.com/elastic/eui/pull/6631))
+
+## [`76.0.1`](https://github.com/elastic/eui/tree/v76.0.1)
+
+**Bug fixes**
+
+- Fixed broken icons on all `isInvalid` form controls ([#6629](https://github.com/elastic/eui/pull/6629))
+
+## [`76.0.0`](https://github.com/elastic/eui/tree/v76.0.0)
+
+- Added `pivot` glyph to `EuiIcon` ([#6605](https://github.com/elastic/eui/pull/6605))
+- Added the `displayHeaderCellProps` API to `EuiDataGrid`'s columns, which allows passing custom props directly to column header cells ([#6609](https://github.com/elastic/eui/pull/6609))
+- Added the new `headerCellProps`/`footerCellProps` APIs to `EuiDataGrid`'s control columns, which allows passing custom props directly to control column header or footer cells ([#6609](https://github.com/elastic/eui/pull/6609))
+- Added a new `footerCellRender` API to `EuiDataGrid`'s control columns, which allows completely customizing control column rendering (previously rendered an empty cell) ([#6609](https://github.com/elastic/eui/pull/6609))
+- Updated the styling of nested ordered lists in `EuiText` to align with GitHub's list style, which is a popular format used in Markdown or MDX formatting ([#6615](https://github.com/elastic/eui/pull/6615))
+- Added a margin-bottom property exclusively to the direct child `ul` and `ol` elements of the `EuiText` component ([#6615](https://github.com/elastic/eui/pull/6615))
+- Fix issue with badges appearing within an `EuiBadgeGroup`, where the CSS rule to override the `margin-inline-start` was not being applied correctly due to the order of appearance in the CSS rules ([#6618](https://github.com/elastic/eui/pull/6618))
+
+**Bug fixes**
+
+- Fixed `EuiDataGrid` footer control columns rendering with cell expansion popovers when they should not have been ([#6609](https://github.com/elastic/eui/pull/6609))
+- Fixed an `EuiSkipLink` bug where main content loading in progressively/dynamically after the skip link rendered was not being correctly focused ([#6613](https://github.com/elastic/eui/pull/6613))
+
+**Breaking changes**
+
+- Renamed `EuiIcon`'s `alert` to `warning` ([#6608](https://github.com/elastic/eui/pull/6608))
+- Removed `EuiIcon`'s `crossInACircleFilled` in favor of `error` ([#6608](https://github.com/elastic/eui/pull/6608))
+
 ## [`75.1.2`](https://github.com/elastic/eui/tree/v75.1.2)
 
 **Bug fixes**

@@ -93,7 +93,7 @@ describe('EuiSelectable', () => {
     it('can clear the input', () => {
       cy.realMount(<EuiSelectableWithSearchInput />);
 
-      // Focus the second option
+      // Search/filter down to the second option
       cy.get('input')
         .realClick()
         .realType('enc')
@@ -103,7 +103,7 @@ describe('EuiSelectable', () => {
             .should('have.attr', 'title', 'Enceladus');
         });
 
-      // Using ENTER
+      // Clear search using ENTER
       cy.get('[data-test-subj="clearSearchButton"]')
         .focus()
         .realPress('{enter}')
@@ -113,7 +113,7 @@ describe('EuiSelectable', () => {
             .should('have.attr', 'title', 'Titan');
         });
 
-      // Focus the second option
+      // Search/filter again
       cy.get('input')
         .realClick()
         .realType('enc')
@@ -123,10 +123,34 @@ describe('EuiSelectable', () => {
             .should('have.attr', 'title', 'Enceladus');
         });
 
-      // Using SPACE
+      // Clear search using SPACE
       cy.get('[data-test-subj="clearSearchButton"]')
         .focus()
         .realPress('Space')
+        .then(() => {
+          cy.get('li[role=option]')
+            .first()
+            .should('have.attr', 'title', 'Titan');
+        });
+
+      // Ensure the clear button does not respond to up/down arrow keys
+      cy.get('input')
+        .realClick()
+        .realType('titan')
+        .then(() => {
+          cy.get('li[role=option]')
+            .first()
+            .should('have.attr', 'title', 'Titan');
+        });
+      cy.get('[data-test-subj="clearSearchButton"]')
+        .focus()
+        .realPress('ArrowDown')
+        .then(() => {
+          cy.get('li[role=option]')
+            .first()
+            .should('have.attr', 'title', 'Titan');
+        })
+        .realPress('ArrowUp')
         .then(() => {
           cy.get('li[role=option]')
             .first()

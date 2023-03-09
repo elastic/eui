@@ -11,7 +11,7 @@ import { IS_JEST_ENVIRONMENT } from '../../../utils';
 import { useUpdateEffect, useForceRender } from '../../../services';
 import { useResizeObserver } from '../../observer/resize_observer';
 import { EuiDataGridRowHeightsOptions } from '../data_grid_types';
-import { RowHeightUtils } from './row_heights';
+import { RowHeightUtilsType } from './row_heights';
 import { DataGridSortingContext } from './sorting';
 
 export const useFinalGridDimensions = ({
@@ -87,7 +87,7 @@ export const useUnconstrainedHeight = ({
   scrollBarHeight,
   innerGridRef,
 }: {
-  rowHeightUtils: RowHeightUtils;
+  rowHeightUtils: RowHeightUtilsType;
   startRow: number;
   endRow: number;
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;

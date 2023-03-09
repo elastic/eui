@@ -73,7 +73,7 @@ export const SuggestExample = {
     {
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: suggestSource,
         },
       ],
