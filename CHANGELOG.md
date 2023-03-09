@@ -1,3 +1,9 @@
+## [`76.0.2`](https://github.com/elastic/eui/tree/v76.0.2)
+
+**Bug fixes**
+
+- Added a legacy `alert` alias for the `warning` `EuiIcon` type ([#6640](https://github.com/elastic/eui/pull/6640))
+
 ## [`76.0.1`](https://github.com/elastic/eui/tree/v76.0.1)
 
 **Bug fixes**
