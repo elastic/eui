@@ -37,7 +37,7 @@ export type EuiPageContentProps = CommonProps &
      * There should only be one EuiPageContent per page and should contain the main contents.
      * If this is untrue, set role = `null`, or change it to match your needed aria role
      */
-    role?: HTMLAttributes['role'] | null;
+    role?: HTMLAttributes<HTMLElement>['role'] | null;
   };
 
 /**
