@@ -6,12 +6,11 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
 import { EuiPanel, _EuiPanelProps, _EuiPanelDivlike } from '../../panel/panel';
-import { HTMLAttributes } from 'enzyme';
 
 export type EuiPageContentVerticalPositions = 'center';
 export type EuiPageContentHorizontalPositions = 'center';
