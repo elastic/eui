@@ -1,3 +1,13 @@
+## [`76.2.0`](https://github.com/elastic/eui/tree/v76.2.0)
+
+- Added new `renderCustomGridBody` escape hatch rendering prop to `EuiDataGrid` ([#6624](https://github.com/elastic/eui/pull/6624))
+
+**Bug fixes**
+
+- Fixed visual listbox focus ring bug on non-searchable `EuiSelectable`s ([#6637](https://github.com/elastic/eui/pull/6637))
+- Added a legacy `alert` alias for the `warning` `EuiIcon` type ([#6640](https://github.com/elastic/eui/pull/6640))
+- Fixed a type definition incorrectly coming from a dev dependency, which was causing issues for some consuming projects ([#6643](https://github.com/elastic/eui/pull/6643))
+
 ## [`76.1.0`](https://github.com/elastic/eui/tree/v76.1.0)
 
 - Added more detailed screen reader instructions to `EuiSelectable`, `EuiSuggest`, `EuiSelectableTemplateSitewide`, `EuiRange`, and `EuiDualRange`. ([#6589](https://github.com/elastic/eui/pull/6589))
