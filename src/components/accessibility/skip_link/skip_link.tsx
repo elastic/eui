@@ -30,11 +30,15 @@ interface EuiSkipLinkInterface extends EuiButtonProps {
    */
   destinationId: string;
   /**
-   * If no destination ID element exists or can be found, you may provide a string of
-   * query selectors to fall back to (e.g. a `main` or `role="main"` element)
+   * If no destination ID element exists or can be found, you may provide a query selector
+   * string to fall back to.
+   *
+   * For complex applications with potentially variable layouts per page, an array of
+   * query selectors can be passed, e.g. `['main', '[role=main]', '.appWrapper']`, which
+   * prioritizes looking for multiple fallbacks based on array order.
    * @default main
    */
-  fallbackDestination?: string;
+  fallbackDestination?: string | string[];
   /**
    * If default HTML anchor link behavior is not desired (e.g. for SPAs with hash routing),
    * setting this flag to true will manually scroll to and focus the destination element
@@ -83,7 +87,14 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
       const hasValidId = !!destinationEl;
       // Check the fallback destination if not
       if (!destinationEl && fallbackDestination) {
-        destinationEl = document.querySelector(fallbackDestination);
+        if (Array.isArray(fallbackDestination)) {
+          for (let i = 0; i < fallbackDestination.length; i++) {
+            destinationEl = document.querySelector(fallbackDestination[i]);
+            if (destinationEl) break; // Stop once the first fallback has been found
+          }
+        } else {
+          destinationEl = document.querySelector(fallbackDestination);
+        }
       }
 
       if ((overrideLinkBehavior || !hasValidId) && destinationEl) {
