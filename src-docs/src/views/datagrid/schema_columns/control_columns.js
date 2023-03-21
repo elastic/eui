@@ -314,12 +314,18 @@ export default function DataGrid() {
     pageSize: 15,
   });
   const setPageIndex = useCallback(
-    (pageIndex) => setPagination({ ...pagination, pageIndex }),
-    [pagination, setPagination]
+    (pageIndex) =>
+      setPagination((pagination) => ({ ...pagination, pageIndex })),
+    [setPagination]
   );
   const setPageSize = useCallback(
-    (pageSize) => setPagination({ ...pagination, pageSize, pageIndex: 0 }),
-    [pagination, setPagination]
+    (pageSize) =>
+      setPagination((pagination) => ({
+        ...pagination,
+        pageSize,
+        pageIndex: 0,
+      })),
+    [setPagination]
   );
 
   const [visibleColumns, setVisibleColumns] = useState(

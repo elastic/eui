@@ -69,16 +69,20 @@ const DataGridStyle = ({
 
   const setPageIndex = useCallback(
     (pageIndex) => {
-      setPagination({ ...pagination, pageIndex });
+      setPagination((pagination) => ({ ...pagination, pageIndex }));
     },
-    [pagination, setPagination]
+    [setPagination]
   );
 
   const setPageSize = useCallback(
     (pageSize) => {
-      setPagination({ ...pagination, pageSize, pageIndex: 0 });
+      setPagination((pagination) => ({
+        ...pagination,
+        pageSize,
+        pageIndex: 0,
+      }));
     },
-    [pagination, setPagination]
+    [setPagination]
   );
 
   const handleVisibleColumns = (visibleColumns) =>
