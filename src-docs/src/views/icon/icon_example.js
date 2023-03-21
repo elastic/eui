@@ -252,11 +252,34 @@ export const IconExample = {
             the CSS helpers if you have complex logos that need to work with
             theming.
           </p>
+          <EuiCallOut
+            iconType="accessibility"
+            title={
+              <>Important considerations when importing SVGs as Components</>
+            }
+            color="warning"
+          >
+            <p>
+              When importing an SVG as a component like{' '}
+              <EuiCode language="js">
+                {"import {ReactComponent as ReactLogo} from './logo.svg';"}
+              </EuiCode>
+              , keep in mind that the component will not support the{' '}
+              <EuiCode language="js">title</EuiCode> prop. The{' '}
+              <EuiCode language="js">title</EuiCode> prop is designed to only
+              work with our icons or SVGs imported as images or passed as a Data
+              URL. So, if you&apos;re importing your SVG as a component, be sure
+              to use an
+              <EuiCode language="js">aria-label</EuiCode> instead of a{' '}
+              <EuiCode language="js">title</EuiCode> prop to enhance
+              accessibility and avoid potential issues.
+            </p>
+          </EuiCallOut>
         </>
       ),
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: iconTypesSource,
         },
       ],
