@@ -1,3 +1,13 @@
+## [`76.3.0`](https://github.com/elastic/eui/tree/v76.3.0)
+
+- Updated `EuiSkipLink`'s `fallbackDestination` prop to support an array of query selector strings ([#6646](https://github.com/elastic/eui/pull/6646))
+
+**Bug fixes**
+
+- Fixed `EuiFlyout` to preserve body scrollbar width on open ([#6645](https://github.com/elastic/eui/pull/6645))
+- Fixed `EuiImage`'s full screen mode to not scroll jump & to preserve body scrollbar width on open ([#6645](https://github.com/elastic/eui/pull/6645))
+- Fixed `EuiCodeBlock`'s full screen mode to not scroll jump & to preserve body scrollbar width on open ([#6645](https://github.com/elastic/eui/pull/6645))
+
 ## [`76.2.0`](https://github.com/elastic/eui/tree/v76.2.0)
 
 - Added new `renderCustomGridBody` escape hatch rendering prop to `EuiDataGrid` ([#6624](https://github.com/elastic/eui/pull/6624))
