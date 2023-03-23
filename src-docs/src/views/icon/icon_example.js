@@ -262,7 +262,7 @@ export const IconExample = {
             <p>
               When importing an SVG as a component like{' '}
               <EuiCode language="js">
-                {"import {ReactComponent as ReactLogo} from './logo.svg';"}
+                {"import { ReactComponent as ReactLogo } from './logo.svg';"}
               </EuiCode>
               , keep in mind that the component will not support the{' '}
               <EuiCode language="js">title</EuiCode> prop. The{' '}
