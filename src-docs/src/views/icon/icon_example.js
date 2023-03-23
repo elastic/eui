@@ -255,7 +255,7 @@ export const IconExample = {
           <EuiCallOut
             iconType="accessibility"
             title={
-              <>Important considerations when importing SVGs as Components</>
+              <>Important considerations when importing SVGs as components</>
             }
             color="warning"
           >
