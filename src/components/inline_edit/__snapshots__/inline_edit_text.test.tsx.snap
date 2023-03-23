@@ -6,28 +6,32 @@ exports[`EuiInlineEditText props renders as text 1`] = `
   class="euiInlineEditText testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <button
-    class="euiButtonEmpty euiButtonEmpty--flushBoth css-wvaqcf-empty-text"
-    type="button"
+  <div
+    class="euiInlineEditForm"
   >
-    <span
-      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    <button
+      class="euiButtonEmpty euiButtonEmpty--flushBoth css-wvaqcf-empty-text"
+      type="button"
     >
       <span
-        class="euiButtonContent__icon"
-        color="inherit"
-        data-euiicon-type="pencil"
-      />
-      <span
-        class="euiButtonEmpty__text"
+        class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
       >
-        <div
-          class="euiText emotion-euiText-m"
+        <span
+          class="euiButtonContent__icon"
+          color="inherit"
+          data-euiicon-type="pencil"
+        />
+        <span
+          class="euiButtonEmpty__text"
         >
-          hello world
-        </div>
+          <div
+            class="euiText emotion-euiText-m"
+          >
+            hello world
+          </div>
+        </span>
       </span>
-    </span>
-  </button>
+    </button>
+  </div>
 </div>
 `;

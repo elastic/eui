@@ -8,14 +8,12 @@
 
 import React, { FunctionComponent } from 'react';
 import { CommonProps } from '../common';
-//import classNames from 'classnames';
+import classNames from 'classnames';
 import { EuiButtonIcon } from '../button';
 import { EuiFormRow } from '../form';
 import { EuiTextProps } from '../text';
 import { EuiTitleSize } from '../title';
 import { EuiFlexItem } from '../flex';
-// import { useEuiTheme } from '../../services';
-// import { euiInlineEditStyles } from './inline_edit.styles';
 import { useEuiI18n } from '../i18n';
 import { getInlineEditIconButtonSettings } from './inline_edit_utils';
 
@@ -28,20 +26,14 @@ export type EuiInlineEditButtonsProps = CommonProps & {
 };
 
 export const EuiInlineEditButtons: FunctionComponent<EuiInlineEditButtonsProps> = ({
-  //children,
-  //className,
+  className,
   size = 'm',
   saveButtonAriaLabel,
   cancelButtonAriaLabel,
   saveFunction,
   cancelFunction,
 }) => {
-  //const classes = classNames('euiInlineEditButtons', className);
-
-  // Styles to come later
-  /*const theme = useEuiTheme();
-    const styles = euiInlineEditStyles(theme);
-    const cssStyles = [styles.euiInlineEdit];*/
+  const classes = classNames('euiInlineEditButtons', className);
 
   const defaultSaveButtonAriaLabel = useEuiI18n(
     'euiInlineEditButtons.saveButtonAriaLabel',
@@ -57,7 +49,7 @@ export const EuiInlineEditButtons: FunctionComponent<EuiInlineEditButtonsProps> 
 
   return (
     <>
-      <EuiFlexItem grow={false}>
+      <EuiFlexItem grow={false} className={classes}>
         <EuiFormRow>
           <EuiButtonIcon
             iconType="check"

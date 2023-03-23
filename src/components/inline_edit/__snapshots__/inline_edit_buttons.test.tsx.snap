@@ -2,7 +2,7 @@
 
 exports[`EuiInlineEditButtons props renders InlineEdit buttons 1`] = `
 <div
-  class="euiFlexItem emotion-euiFlexItem-growZero"
+  class="euiFlexItem euiInlineEditButtons testClass1 testClass2 emotion-euiFlexItem-growZero"
 >
   <div
     class="euiFormRow"

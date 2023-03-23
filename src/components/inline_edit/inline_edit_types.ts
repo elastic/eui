@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { EuiButtonEmptyPropsForButton } from '../button/button_empty';
+import { EuiButtonEmptyPropsForButton } from '../button/button_empty/button_empty';
 import { EuiFieldTextProps } from '../form';
 
 type _ButtonPropsWithoutOnClick = Omit<EuiButtonEmptyPropsForButton, 'onClick'>;
