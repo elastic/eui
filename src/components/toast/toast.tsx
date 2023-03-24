@@ -129,10 +129,17 @@ export const EuiToast: FunctionComponent<EuiToastProps> = ({
     >
       <EuiScreenReaderOnly>
         <p>
-          <EuiI18n
-            token="euiToast.newNotification"
-            default="A new notification appears"
-          />
+          {isAutoFocused ? (
+            <EuiI18n
+              token="euiToast.newFocusableNotification"
+              default="A new notification appears and has keyboard focus"
+            />
+          ) : (
+            <EuiI18n
+              token="euiToast.newNotification"
+              default="A new notification appears"
+            />
+          )}
         </p>
       </EuiScreenReaderOnly>
 
