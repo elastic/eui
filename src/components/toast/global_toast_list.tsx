@@ -168,11 +168,16 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
 
   const scheduleToastForDismissal = useCallback(
     (toast: Toast) => {
-      // Start fading the toast out once its lifetime elapses.
-      toastIdToTimerMap.current[toast.id] = new Timer(
-        () => dismissToast(toast),
-        toast.toastLifeTimeMs != null ? toast.toastLifeTimeMs : toastLifeTimeMs
-      );
+      // If the toast is not autoFocused, start fading it out once its lifetime elapses.
+      // TODO: Check with team to make sure this is the best approach.
+      if (!toast.isAutoFocused) {
+        toastIdToTimerMap.current[toast.id] = new Timer(
+          () => dismissToast(toast),
+          toast.toastLifeTimeMs != null
+            ? toast.toastLifeTimeMs
+            : toastLifeTimeMs
+        );
+      }
     },
     [dismissToast, toastLifeTimeMs]
   );

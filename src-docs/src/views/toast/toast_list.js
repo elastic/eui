@@ -65,6 +65,7 @@ export default () => {
         title: 'Logging you out soon, due to inactivity',
         color: 'warning',
         iconType: 'user',
+        isAutoFocused: true,
         text: (
           <Fragment>
             <p>This is a security measure.</p>
@@ -72,6 +73,7 @@ export default () => {
               Please move your mouse to show that you&rsquo;re still using
               Kibana.
             </p>
+            <EuiButton>Extend my session</EuiButton>
           </Fragment>
         ),
       },

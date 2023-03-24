@@ -75,6 +75,12 @@ and space to read it properly. Alternatively just link to a full page.
           They are a popular design choice because they don&apos;t need to fit
           in a layout and don&apos;t disrupt the user.
         </p>
+
+        <p>
+          Default toast messages appear, give users time to read or listen to
+          the announcement, and fade out. They communicate passive information
+          that does not require the user to take action.
+        </p>
       </EuiText>
 
       <EuiSpacer size="xl" />
@@ -168,6 +174,51 @@ and space to read it properly. Alternatively just link to a full page.
             </EuiText>
           </EuiFlexItem>
         </EuiFlexGroup>
+
+        <EuiSpacer />
+
+        <div className="euiTitle guideRule__title">
+          <EuiText grow={false}>
+            <p>
+              Focusable toast messages should be used when users need to take an
+              action. An example is asking users to press a button to prevent a
+              session timeout.
+            </p>
+          </EuiText>
+
+          <EuiSpacer size="xl" />
+
+          <EuiFlexGroup alignItems="center">
+            <EuiFlexItem grow={false} style={{ minWidth: 120 }}>
+              <EuiToast
+                style={{ width: 300 }}
+                title="Focusable toast"
+                color="warning"
+              >
+                <>
+                  <p>This is a security measure.</p>
+                  <p>
+                    Please click the button below or move your mouse to show
+                    that you&rsquo;re still using Kibana.
+                  </p>
+                  <EuiButton>Extend my session</EuiButton>
+                </>
+              </EuiToast>
+            </EuiFlexItem>
+
+            <EuiFlexItem>
+              <EuiText>
+                <dt>Focusable toast messages do not fade away</dt>
+                <dd>
+                  These toast messages will not disappear until users press a
+                  close button or take a required action. Focusable toast
+                  messages have specific accessibility requirements, outlined
+                  below.
+                </dd>
+              </EuiText>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </div>
       </dl>
 
       <EuiSpacer />
@@ -491,6 +542,51 @@ and space to read it properly. Alternatively just link to a full page.
             >
               <p>An extremely long error trace.</p>
             </EuiCallOut>
+          </EuiToast>
+        </GuideRuleExample>
+      </GuideRule>
+
+      <GuideRuleTitle>
+        Manage keyboard focus when you use focusable toast messages
+      </GuideRuleTitle>
+
+      <GuideRule description="Focusable toast messages will receive keyboard focus automatically when they appear on the screen. Consuming applications need to reset keyboard focus when users close the toast message or take the appropriate action.">
+        <GuideRuleExample
+          type="do"
+          text="Include at least one clickable element to close the toast message. Know where focus should go when the toast message is closed."
+        >
+          <EuiToast
+            style={{ width: 300 }}
+            title="Focusable toast"
+            color="warning"
+          >
+            <>
+              <p>This is a security measure.</p>
+              <p>
+                Please click the button below or move your mouse to show that
+                you&rsquo;re still using Kibana.
+              </p>
+              <EuiButton>Extend my session</EuiButton>
+            </>
+          </EuiToast>
+        </GuideRuleExample>
+
+        <GuideRuleExample
+          type="dont"
+          text="Use a focusable toast message without one or more clickable elements. Don&rsquo;t assume browsers will set focus correctly."
+        >
+          <EuiToast
+            style={{ width: 300 }}
+            title="Focusable toast"
+            color="warning"
+          >
+            <>
+              <p>This is a security measure.</p>
+              <p>
+                Please click the button below or move your mouse to show that
+                you&rsquo;re still using Kibana.
+              </p>
+            </>
           </EuiToast>
         </GuideRuleExample>
       </GuideRule>
