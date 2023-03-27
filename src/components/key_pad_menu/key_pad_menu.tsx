@@ -14,6 +14,8 @@ import {
   EuiFormLabel,
   _EuiFormLegendProps,
 } from '../form/form_label/form_label';
+import { useEuiTheme } from '../../services';
+import { euiKeyPadMenuStyles } from './key_pad_menu.styles';
 
 export type _EuiKeyPadMenuCheckableProps = ExclusiveUnion<
   {
@@ -53,15 +55,24 @@ export const EuiKeyPadMenu: FunctionComponent<EuiKeyPadMenuProps> = ({
 }) => {
   const classes = classNames('euiKeyPadMenu', className);
 
+  const theme = useEuiTheme();
+  const styles = euiKeyPadMenuStyles(theme);
+  const cssStyles = [styles.euiKeyPadMenu];
+
   const legend =
     typeof checkable === 'object' && checkable.legend ? (
-      <EuiFormLabel {...checkable.legendProps} type="legend">
+      <EuiFormLabel
+        css={styles.euiKeyPadMenu__legend}
+        {...checkable.legendProps}
+        type="legend"
+      >
         {checkable.legend}
       </EuiFormLabel>
     ) : undefined;
 
   return checkable ? (
     <fieldset
+      css={cssStyles}
       className={classes}
       aria-label={
         typeof checkable === 'object' ? checkable.ariaLegend : undefined
@@ -72,7 +83,7 @@ export const EuiKeyPadMenu: FunctionComponent<EuiKeyPadMenuProps> = ({
       {children}
     </fieldset>
   ) : (
-    <ul className={classes} {...rest}>
+    <ul css={cssStyles} className={classes} {...rest}>
       {React.Children.map(children, (child) => (
         <li>{child}</li>
       ))}
