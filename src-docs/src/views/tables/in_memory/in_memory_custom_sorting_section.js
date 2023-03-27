@@ -2,7 +2,7 @@ import React from 'react';
 import { EuiCode } from '../../../../../src/components';
 import { GuideSectionTypes } from '../../../components';
 
-import { Table } from './in_memory_custom_sorting';
+import Table from './in_memory_custom_sorting';
 
 import { EuiInMemoryTable } from '../../../../../src/components/basic_table/in_memory_table';
 import {
@@ -32,7 +32,7 @@ export const customSortingSection = {
   title: 'In-memory table with custom sort values',
   source: [
     {
-      type: GuideSectionTypes.JS,
+      type: GuideSectionTypes.TSX,
       code: source,
     },
   ],

@@ -30,6 +30,7 @@ import { EuiRangeWrapper } from './range_wrapper';
 import type { EuiRangeProps } from './types';
 
 import { euiRangeStyles } from './range.styles';
+import { EuiI18n } from '../../i18n';
 
 export class EuiRangeClass extends Component<
   EuiRangeProps & WithEuiThemeProps
@@ -179,6 +180,13 @@ export class EuiRangeClass extends Component<
     const cssStyles = [styles.euiRange, showInput && styles.hasInput];
     const thumbColor = levels && getLevelColor(levels, Number(value));
 
+    const sliderScreenReaderInstructions = (
+      <EuiI18n
+        token="euiRange.sliderScreenReaderInstructions"
+        default="You are in a custom range slider. Use the Up and Down arrow keys to change the value."
+      />
+    );
+
     const theRange = (
       <EuiRangeWrapper
         className={classes}
@@ -203,7 +211,7 @@ export class EuiRangeClass extends Component<
           levels={levels}
           onChange={this.handleOnChange}
           value={value}
-          aria-hidden={showInput === true}
+          aria-hidden={!!showInput}
           showRange={showRange}
         >
           {(trackWidth) => (
@@ -227,7 +235,7 @@ export class EuiRangeClass extends Component<
                 }
                 onFocus={showInput === true ? undefined : onFocus}
                 onBlur={showInputOnly ? this.onInputBlur : onBlur}
-                aria-hidden={showInput === true ? true : false}
+                aria-hidden={!!showInput}
                 thumbColor={thumbColor}
                 {...rest}
               />
@@ -291,6 +299,7 @@ export class EuiRangeClass extends Component<
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover}
         disableFocusTrap={true}
+        popoverScreenReaderText={sliderScreenReaderInstructions}
       >
         {theRange}
       </EuiInputPopover>

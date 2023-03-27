@@ -9,10 +9,13 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { STATUS, EuiStepNumber } from './step_number';
 
 describe('EuiStepNumber', () => {
+  shouldRenderCustomStyles(<EuiStepNumber {...requiredProps} />);
+
   test('is rendered', () => {
     const component = render(<EuiStepNumber {...requiredProps} />);
 

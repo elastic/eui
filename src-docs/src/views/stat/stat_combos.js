@@ -73,7 +73,7 @@ export default () => {
                   description={
                     <EuiTextColor color="accent">
                       <span>
-                        <EuiIcon type="alert" color="danger" /> 12,20%
+                        <EuiIcon type="error" color="danger" /> 12,20%
                       </span>
                     </EuiTextColor>
                   }
@@ -113,7 +113,7 @@ export default () => {
                 >
                   <EuiTextColor color="accent">
                     <span>
-                      <EuiIcon type="alert" color="danger" /> 66,55%
+                      <EuiIcon type="error" color="danger" /> 66,55%
                     </span>
                   </EuiTextColor>
                 </EuiStat>

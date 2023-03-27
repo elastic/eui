@@ -26,6 +26,10 @@
     padding-bottom: 0; /* 1 */
   }
 
+  &__placeholder {
+    @include euiFormControlDisabledTextStyle;
+  }
+
   &.euiSuperSelect--isOpen__button { // since this is a button, we also want the visual indicator of active when options are shown
     @include euiFormControlFocusStyle;
   }

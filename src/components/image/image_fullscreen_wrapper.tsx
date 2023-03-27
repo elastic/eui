@@ -68,7 +68,11 @@ export const EuiImageFullScreenWrapper: FunctionComponent<EuiImageWrapperProps> 
 
   return (
     <EuiOverlayMask data-test-subj="fullScreenOverlayMask">
-      <EuiFocusTrap onClickOutside={closeFullScreen}>
+      <EuiFocusTrap
+        scrollLock
+        preventScrollOnFocus
+        onClickOutside={closeFullScreen}
+      >
         <>
           <figure
             aria-label={optionalCaptionText}

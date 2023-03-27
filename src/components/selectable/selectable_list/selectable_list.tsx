@@ -197,7 +197,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
       }
 
       if (typeof ariaDescribedby === 'string') {
-        ref.setAttribute('aria-labelledby', ariaDescribedby);
+        ref.setAttribute('aria-describedby', ariaDescribedby);
       }
     }
   };
@@ -220,6 +220,23 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
   constructor(props: EuiSelectableListProps<T>) {
     super(props);
   }
+
+  ariaSetSize = 0;
+  ariaPosInSetMap: Record<number, number> = {};
+
+  calculateAriaSetAttrs = (optionArray: Array<EuiSelectableOption<T>>) => {
+    this.ariaPosInSetMap = {};
+    let latestAriaPosIndex = 0;
+
+    optionArray.forEach((option, index) => {
+      if (!option.isGroupLabel) {
+        latestAriaPosIndex++;
+        this.ariaPosInSetMap[index] = latestAriaPosIndex;
+      }
+    });
+
+    this.ariaSetSize = latestAriaPosIndex;
+  };
 
   ListRow = memo(({ data, index, style }: ListChildComponentProps<T>) => {
     const option = data[index];
@@ -268,7 +285,6 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
       );
     }
 
-    const labelCount = data.filter((option) => option.isGroupLabel).length;
     const id = makeOptionId(index);
 
     return (
@@ -290,8 +306,8 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
         disabled={disabled}
         prepend={prepend}
         append={append}
-        aria-posinset={index + 1 - labelCount}
-        aria-setsize={data.length - labelCount}
+        aria-posinset={this.ariaPosInSetMap[index]}
+        aria-setsize={this.ariaSetSize}
         onFocusBadge={onFocusBadge}
         allowExclusions={allowExclusions}
         showIcons={showIcons}
@@ -345,6 +361,8 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
     } = this.props;
 
     const optionArray = visibleOptions || options;
+
+    this.calculateAriaSetAttrs(optionArray);
 
     const heightIsFull = forcedHeight === 'full';
 

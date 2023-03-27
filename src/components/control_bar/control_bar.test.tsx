@@ -52,7 +52,7 @@ const controls: Control[] = [
   {
     controlType: 'icon',
     id: 'sample_icon',
-    iconType: 'alert',
+    iconType: 'error',
     color: 'danger',
     'aria-label': 'Sample Icon',
   },

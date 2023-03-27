@@ -18,12 +18,6 @@ exports[`EuiSuperSelect is rendered 1`] = `
         <div
           class="euiFormControlLayout__childrenWrapper"
         >
-          <span
-            class="emotion-euiScreenReaderOnly"
-            id="euiSuperSelect__generated-id__screenreaderLabelId"
-          >
-            Select an option: , is selected
-          </span>
           <button
             aria-haspopup="listbox"
             aria-label="aria-label"
@@ -69,12 +63,6 @@ exports[`EuiSuperSelect props compressed is rendered 1`] = `
         <div
           class="euiFormControlLayout__childrenWrapper"
         >
-          <span
-            class="emotion-euiScreenReaderOnly"
-            id="euiSuperSelect__generated-id__screenreaderLabelId"
-          >
-            Select an option: , is selected
-          </span>
           <button
             aria-haspopup="listbox"
             aria-label="aria-label"
@@ -120,12 +108,6 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
         <div
           class="euiFormControlLayout__childrenWrapper"
         >
-          <span
-            class="emotion-euiScreenReaderOnly"
-            id="euiSuperSelect__generated-id__screenreaderLabelId"
-          >
-            Select an option: , is selected
-          </span>
           <button
             aria-haspopup="listbox"
             class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelect--isOpen__button"
@@ -179,11 +161,11 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
               class="emotion-euiScreenReaderOnly"
               id="euiSuperSelect__generated-id__screenreaderDescribeId"
             >
-              You are in a form selector and must select a single option. Use the up and down keys to navigate or escape to close.
+              You are in a form selector and must select a single option. Use the Up and Down arrow keys to navigate or Escape to close.
             </p>
             <div
               aria-describedby="euiSuperSelect__generated-id__screenreaderDescribeId"
-              aria-labelledby="euiSuperSelect__generated-id__screenreaderLabelId"
+              aria-label="Select listbox"
               class="euiSuperSelect__listbox"
               role="listbox"
               tabindex="0"
@@ -269,12 +251,6 @@ exports[`EuiSuperSelect props fullWidth is rendered 1`] = `
         <div
           class="euiFormControlLayout__childrenWrapper"
         >
-          <span
-            class="emotion-euiScreenReaderOnly"
-            id="euiSuperSelect__generated-id__screenreaderLabelId"
-          >
-            Select an option: , is selected
-          </span>
           <button
             aria-haspopup="listbox"
             aria-label="aria-label"
@@ -325,12 +301,6 @@ exports[`EuiSuperSelect props is rendered with a prepend and append 1`] = `
         <div
           class="euiFormControlLayout__childrenWrapper"
         >
-          <span
-            class="emotion-euiScreenReaderOnly"
-            id="euiSuperSelect__generated-id__screenreaderLabelId"
-          >
-            Select an option: , is selected
-          </span>
           <button
             aria-haspopup="listbox"
             aria-label="aria-label"
@@ -381,12 +351,6 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
         <div
           class="euiFormControlLayout__childrenWrapper"
         >
-          <span
-            class="emotion-euiScreenReaderOnly"
-            id="euiSuperSelect__generated-id__screenreaderLabelId"
-          >
-            Select an option: Option #1, is selected
-          </span>
           <button
             aria-haspopup="listbox"
             class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelect--isOpen__button"
@@ -442,12 +406,12 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
               class="emotion-euiScreenReaderOnly"
               id="euiSuperSelect__generated-id__screenreaderDescribeId"
             >
-              You are in a form selector and must select a single option. Use the up and down keys to navigate or escape to close.
+              You are in a form selector and must select a single option. Use the Up and Down arrow keys to navigate or Escape to close.
             </p>
             <div
               aria-activedescendant="1"
               aria-describedby="euiSuperSelect__generated-id__screenreaderDescribeId"
-              aria-labelledby="euiSuperSelect__generated-id__screenreaderLabelId"
+              aria-label="Select listbox"
               class="euiSuperSelect__listbox"
               role="listbox"
               tabindex="0"
@@ -535,12 +499,6 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
         <div
           class="euiFormControlLayout__childrenWrapper"
         >
-          <span
-            class="emotion-euiScreenReaderOnly"
-            id="euiSuperSelect__generated-id__screenreaderLabelId"
-          >
-            Select an option: , is selected
-          </span>
           <button
             aria-haspopup="listbox"
             class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelect--isOpen__button"
@@ -594,11 +552,11 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
               class="emotion-euiScreenReaderOnly"
               id="euiSuperSelect__generated-id__screenreaderDescribeId"
             >
-              You are in a form selector and must select a single option. Use the up and down keys to navigate or escape to close.
+              You are in a form selector and must select a single option. Use the Up and Down arrow keys to navigate or Escape to close.
             </p>
             <div
               aria-describedby="euiSuperSelect__generated-id__screenreaderDescribeId"
-              aria-labelledby="euiSuperSelect__generated-id__screenreaderLabelId"
+              aria-label="Select listbox"
               class="euiSuperSelect__listbox"
               role="listbox"
               tabindex="0"
@@ -684,12 +642,6 @@ exports[`EuiSuperSelect props renders popoverProps on the underlying EuiPopover 
         <div
           class="euiFormControlLayout__childrenWrapper"
         >
-          <span
-            class="emotion-euiScreenReaderOnly"
-            id="euiSuperSelect__generated-id__screenreaderLabelId"
-          >
-            Select an option: Option #2, is selected
-          </span>
           <button
             aria-haspopup="listbox"
             class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelect--isOpen__button"
@@ -745,12 +697,12 @@ exports[`EuiSuperSelect props renders popoverProps on the underlying EuiPopover 
               class="emotion-euiScreenReaderOnly"
               id="euiSuperSelect__generated-id__screenreaderDescribeId"
             >
-              You are in a form selector and must select a single option. Use the up and down keys to navigate or escape to close.
+              You are in a form selector and must select a single option. Use the Up and Down arrow keys to navigate or Escape to close.
             </p>
             <div
               aria-activedescendant="2"
               aria-describedby="euiSuperSelect__generated-id__screenreaderDescribeId"
-              aria-labelledby="euiSuperSelect__generated-id__screenreaderLabelId"
+              aria-label="Select listbox"
               class="euiSuperSelect__listbox"
               role="listbox"
               tabindex="0"
@@ -836,12 +788,6 @@ exports[`EuiSuperSelect props select component is rendered 1`] = `
         <div
           class="euiFormControlLayout__childrenWrapper"
         >
-          <span
-            class="emotion-euiScreenReaderOnly"
-            id="euiSuperSelect__generated-id__screenreaderLabelId"
-          >
-            Select an option: , is selected
-          </span>
           <button
             aria-haspopup="listbox"
             class="euiSuperSelectControl euiFormControlLayout--1icons"
@@ -885,12 +831,6 @@ exports[`EuiSuperSelect props valueSelected is rendered 1`] = `
         <div
           class="euiFormControlLayout__childrenWrapper"
         >
-          <span
-            class="emotion-euiScreenReaderOnly"
-            id="euiSuperSelect__generated-id__screenreaderLabelId"
-          >
-            Select an option: Option #2, is selected
-          </span>
           <button
             aria-haspopup="listbox"
             class="euiSuperSelectControl euiFormControlLayout--1icons"

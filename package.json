@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "73.0.0",
+  "version": "76.3.0",
   "license": "SEE LICENSE IN LICENSE.txt",
   "main": "lib",
   "module": "es",
@@ -113,7 +113,7 @@
     "@cypress/code-coverage": "^3.10.0",
     "@cypress/react": "^5.10.3",
     "@cypress/webpack-dev-server": "^1.7.0",
-    "@elastic/charts": "^51.3.0",
+    "@elastic/charts": "^53.1.1",
     "@elastic/datemath": "^5.0.3",
     "@elastic/eslint-config-kibana": "^0.15.0",
     "@emotion/babel-preset-css-prop": "^11.10.0",
@@ -246,7 +246,7 @@
     "webpack-dev-server": "^4.10.0",
     "yargs": "^17.2.1",
     "yeoman-generator": "^4.12.0",
-    "yo": "^3.1.1"
+    "yo": "^4.3.1"
   },
   "peerDependencies": {
     "@elastic/datemath": "^5.0.2",

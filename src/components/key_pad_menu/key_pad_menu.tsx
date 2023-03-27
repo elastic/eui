@@ -85,7 +85,7 @@ export const EuiKeyPadMenu: FunctionComponent<EuiKeyPadMenuProps> = ({
   ) : (
     <ul className={classes} css={cssStyles} {...rest}>
       {React.Children.map(children, (child) => (
-        <li css={styles['euiKeyPadMenu--list']}>{child}</li>
+        <li>{child}</li>
       ))}
     </ul>
   );

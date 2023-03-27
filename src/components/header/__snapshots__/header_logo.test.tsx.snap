@@ -54,7 +54,7 @@ exports[`EuiHeaderLogo renders optional props 1`] = `
 >
   <span
     class="euiHeaderLogo__icon"
-    data-euiicon-type="alert"
+    data-euiicon-type="error"
   >
     Moby Dick
   </span>

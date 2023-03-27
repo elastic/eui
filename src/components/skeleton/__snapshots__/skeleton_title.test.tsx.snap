@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiSkeletonTitle is rendered 1`] = `
+<div
+  aria-busy="true"
+  data-test-subj="euiSkeletonLoadingAriaWrapper"
+>
+  <span
+    aria-label="Loading "
+    class="euiSkeletonTitle testClass1 testClass2 emotion-euiSkeletonGradientAnimation-euiSkeletonTitle-m"
+    data-test-subj="test subject string"
+    role="progressbar"
+  />
+</div>
+`;
+
+exports[`EuiSkeletonTitle size l 1`] = `
+<div
+  aria-busy="true"
+  data-test-subj="euiSkeletonLoadingAriaWrapper"
+>
+  <span
+    aria-label="Loading "
+    class="euiSkeletonTitle emotion-euiSkeletonGradientAnimation-euiSkeletonTitle-l"
+    role="progressbar"
+  />
+</div>
+`;
+
+exports[`EuiSkeletonTitle size m 1`] = `
+<div
+  aria-busy="true"
+  data-test-subj="euiSkeletonLoadingAriaWrapper"
+>
+  <span
+    aria-label="Loading "
+    class="euiSkeletonTitle emotion-euiSkeletonGradientAnimation-euiSkeletonTitle-m"
+    role="progressbar"
+  />
+</div>
+`;
+
+exports[`EuiSkeletonTitle size s 1`] = `
+<div
+  aria-busy="true"
+  data-test-subj="euiSkeletonLoadingAriaWrapper"
+>
+  <span
+    aria-label="Loading "
+    class="euiSkeletonTitle emotion-euiSkeletonGradientAnimation-euiSkeletonTitle-s"
+    role="progressbar"
+  />
+</div>
+`;
+
+exports[`EuiSkeletonTitle size xs 1`] = `
+<div
+  aria-busy="true"
+  data-test-subj="euiSkeletonLoadingAriaWrapper"
+>
+  <span
+    aria-label="Loading "
+    class="euiSkeletonTitle emotion-euiSkeletonGradientAnimation-euiSkeletonTitle-xs"
+    role="progressbar"
+  />
+</div>
+`;
+
+exports[`EuiSkeletonTitle size xxs 1`] = `
+<div
+  aria-busy="true"
+  data-test-subj="euiSkeletonLoadingAriaWrapper"
+>
+  <span
+    aria-label="Loading "
+    class="euiSkeletonTitle emotion-euiSkeletonGradientAnimation-euiSkeletonTitle-xxs"
+    role="progressbar"
+  />
+</div>
+`;
+
+exports[`EuiSkeletonTitle size xxxs 1`] = `
+<div
+  aria-busy="true"
+  data-test-subj="euiSkeletonLoadingAriaWrapper"
+>
+  <span
+    aria-label="Loading "
+    class="euiSkeletonTitle emotion-euiSkeletonGradientAnimation-euiSkeletonTitle-xxxs"
+    role="progressbar"
+  />
+</div>
+`;

@@ -79,18 +79,33 @@ exports[`euiTextStyles sizes m 1`] = `
     }
 
     p,
-    ul,
-    ol,
     dl,
     blockquote,
     img,
-    pre {
+    pre,
+    > ul,
+    > ol {
       margin-block-end: 1.7143rem;
     }
 
     ul,
     ol {
       margin-inline-start: 1.7143rem;
+    }
+
+    // The styles of the nested ordered lists follow the style of GitHub
+    // which is commonly used in Markdown or MDX formatting.
+
+    ol ol,
+    ul ol {
+      list-style-type: lower-roman;
+    }
+
+    ul ul ol,
+    ul ol ol,
+    ol ul ol,
+    ol ol ol {
+      list-style-type: lower-alpha;
     }
   
     blockquote {
@@ -227,18 +242,33 @@ exports[`euiTextStyles sizes relative 1`] = `
     }
 
     p,
-    ul,
-    ol,
     dl,
     blockquote,
     img,
-    pre {
+    pre,
+    > ul,
+    > ol {
       margin-block-end: 1.5000em;
     }
 
     ul,
     ol {
       margin-inline-start: 1.5000em;
+    }
+
+    // The styles of the nested ordered lists follow the style of GitHub
+    // which is commonly used in Markdown or MDX formatting.
+
+    ol ol,
+    ul ol {
+      list-style-type: lower-roman;
+    }
+
+    ul ul ol,
+    ul ol ol,
+    ol ul ol,
+    ol ol ol {
+      list-style-type: lower-alpha;
     }
   
     blockquote {
@@ -360,18 +390,33 @@ exports[`euiTextStyles sizes s 1`] = `
     }
 
     p,
-    ul,
-    ol,
     dl,
     blockquote,
     img,
-    pre {
+    pre,
+    > ul,
+    > ol {
       margin-block-end: 1.4286rem;
     }
 
     ul,
     ol {
       margin-inline-start: 1.4286rem;
+    }
+
+    // The styles of the nested ordered lists follow the style of GitHub
+    // which is commonly used in Markdown or MDX formatting.
+
+    ol ol,
+    ul ol {
+      list-style-type: lower-roman;
+    }
+
+    ul ul ol,
+    ul ol ol,
+    ol ul ol,
+    ol ol ol {
+      list-style-type: lower-alpha;
     }
   
     blockquote {
@@ -493,18 +538,33 @@ exports[`euiTextStyles sizes xs 1`] = `
     }
 
     p,
-    ul,
-    ol,
     dl,
     blockquote,
     img,
-    pre {
+    pre,
+    > ul,
+    > ol {
       margin-block-end: 1.1429rem;
     }
 
     ul,
     ol {
       margin-inline-start: 1.1429rem;
+    }
+
+    // The styles of the nested ordered lists follow the style of GitHub
+    // which is commonly used in Markdown or MDX formatting.
+
+    ol ol,
+    ul ol {
+      list-style-type: lower-roman;
+    }
+
+    ul ul ol,
+    ul ol ol,
+    ol ul ol,
+    ol ol ol {
+      list-style-type: lower-alpha;
     }
   
     blockquote {

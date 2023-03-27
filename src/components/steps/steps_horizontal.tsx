@@ -10,6 +10,7 @@ import classNames from 'classnames';
 import React, { FunctionComponent, OlHTMLAttributes } from 'react';
 import { CommonProps } from '../common';
 import { EuiStepHorizontal, EuiStepHorizontalProps } from './step_horizontal';
+import { euiStepsHorizontalStyles } from './steps_horizontal.styles';
 
 export interface EuiStepsHorizontalProps
   extends OlHTMLAttributes<HTMLOListElement>,
@@ -26,17 +27,20 @@ export const EuiStepsHorizontal: FunctionComponent<EuiStepsHorizontalProps> = ({
   ...rest
 }) => {
   const classes = classNames('euiStepsHorizontal', className);
+  const styles = euiStepsHorizontalStyles();
+  const cssStyles = styles.euiStepsHorizontal;
+  const cssItemStyles = styles.euiStepsHorizontal__item;
 
   return (
-    <ol className={classes} {...rest}>
+    <ol className={classes} css={cssStyles} {...rest}>
       {steps.map((stepProps, index) => {
-        const isCurrent =
-          stepProps.status === 'current'
-            ? { 'aria-current': 'step' as const }
-            : {};
-
         return (
-          <li key={index} className="euiStepHorizontal__item" {...isCurrent}>
+          <li
+            key={index}
+            className="euiStepsHorizontal__item"
+            css={cssItemStyles}
+            aria-current={stepProps.status === 'current' ? 'step' : undefined}
+          >
             <EuiStepHorizontal step={index + 1} {...stepProps} />
           </li>
         );

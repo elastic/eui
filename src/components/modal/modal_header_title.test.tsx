@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { render } from '../../test/rtl';
 import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
@@ -17,9 +17,25 @@ describe('EuiModalHeaderTitle', () => {
   shouldRenderCustomStyles(<EuiModalHeaderTitle>children</EuiModalHeaderTitle>);
 
   test('is rendered', () => {
-    const component = (
+    const { container } = render(
       <EuiModalHeaderTitle {...requiredProps}>children</EuiModalHeaderTitle>
     );
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  test('component', () => {
+    const { container } = render(
+      <EuiModalHeaderTitle component="div">children</EuiModalHeaderTitle>
+    );
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  it('allows passing any props that EuiTitle accepts', () => {
+    const { container } = render(
+      <EuiModalHeaderTitle size="s" textTransform="uppercase">
+        children
+      </EuiModalHeaderTitle>
+    );
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

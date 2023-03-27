@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, FocusEvent } from 'react';
+import React, { Component, FocusEvent, ReactNode } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
@@ -45,6 +45,11 @@ export type EuiSuperSelectProps<T extends string> = CommonProps &
     options: Array<EuiSuperSelectOption<T>>;
 
     valueOfSelected?: T;
+
+    /**
+     * Placeholder to display when the current selected value is empty.
+     */
+    placeholder?: ReactNode;
 
     /**
      * Classes for the context menu item
@@ -101,7 +106,6 @@ export class EuiSuperSelect<T extends string> extends Component<
   private _isMounted: boolean = false;
 
   describedById = htmlIdGenerator('euiSuperSelect_')('_screenreaderDescribeId');
-  labelledById = htmlIdGenerator('euiSuperSelect_')('_screenreaderLabelId');
 
   state = {
     isPopoverOpen: this.props.isOpen || false,
@@ -253,6 +257,7 @@ export class EuiSuperSelect<T extends string> extends Component<
       className,
       options,
       valueOfSelected,
+      placeholder,
       onChange,
       isOpen,
       isInvalid,
@@ -287,9 +292,9 @@ export class EuiSuperSelect<T extends string> extends Component<
 
     const button = (
       <EuiSuperSelectControl
-        screenReaderId={this.labelledById}
         options={options}
         value={valueOfSelected}
+        placeholder={placeholder}
         onClick={
           this.state.isPopoverOpen ? this.closePopover : this.openPopover
         }
@@ -339,20 +344,24 @@ export class EuiSuperSelect<T extends string> extends Component<
             <EuiI18n
               token="euiSuperSelect.screenReaderAnnouncement"
               default="You are in a form selector and must select a single option.
-              Use the up and down keys to navigate or escape to close."
+              Use the Up and Down arrow keys to navigate or Escape to close."
             />
           </p>
         </EuiScreenReaderOnly>
-        <div
-          aria-labelledby={this.labelledById}
-          aria-describedby={this.describedById}
-          className="euiSuperSelect__listbox"
-          role="listbox"
-          aria-activedescendant={valueOfSelected}
-          tabIndex={0}
-        >
-          {items}
-        </div>
+        <EuiI18n token="euiSuperSelect.ariaLabel" default="Select listbox">
+          {(ariaLabel: string) => (
+            <div
+              aria-label={ariaLabel}
+              aria-describedby={this.describedById}
+              className="euiSuperSelect__listbox"
+              role="listbox"
+              aria-activedescendant={valueOfSelected}
+              tabIndex={0}
+            >
+              {items}
+            </div>
+          )}
+        </EuiI18n>
       </EuiInputPopover>
     );
   }

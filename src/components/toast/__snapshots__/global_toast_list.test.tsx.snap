@@ -81,7 +81,7 @@ exports[`EuiGlobalToastList props side can be changed to left 1`] = `
       <span
         aria-hidden="true"
         class="emotion-euiToastHeader__icon"
-        data-euiicon-type="alert"
+        data-euiicon-type="warning"
       />
       <span
         class="emotion-euiToastHeader__title"
@@ -184,7 +184,7 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
       <span
         aria-hidden="true"
         class="emotion-euiToastHeader__icon"
-        data-euiicon-type="alert"
+        data-euiicon-type="warning"
       />
       <span
         class="emotion-euiToastHeader__title"

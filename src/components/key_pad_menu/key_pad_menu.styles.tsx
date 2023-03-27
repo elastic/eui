@@ -10,8 +10,18 @@ import { css } from '@emotion/react';
 import { logicalCSS, mathWithUnits } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
-export const euiKeyPadMenuStyles = ({ euiTheme }: UseEuiTheme) => {
-  const euiKeyPadMenuSize = mathWithUnits(euiTheme.size.base, (x) => x * 6);
+export const euiKeyPadMenuVariables = ({ euiTheme }: UseEuiTheme) => {
+  return {
+    euiKeyPadMenuSize: mathWithUnits(euiTheme.size.base, (x) => x * 6),
+    euiKeyPadMenuMarginSize: euiTheme.size.xs,
+  };
+};
+
+export const euiKeyPadMenuStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  const { euiKeyPadMenuSize, euiKeyPadMenuMarginSize } = euiKeyPadMenuVariables(
+    euiThemeContext
+  );
 
   return {
     euiKeyPadMenu: css`
@@ -21,32 +31,17 @@ export const euiKeyPadMenuStyles = ({ euiTheme }: UseEuiTheme) => {
       ${logicalCSS(
         'width',
         mathWithUnits(
-          [euiKeyPadMenuSize, euiTheme.size.xs],
+          [euiKeyPadMenuSize, euiKeyPadMenuMarginSize],
           (x, y) => x * 3 + y * 3
         )
       )}
       ${logicalCSS('max-width', '100%')}
-
-      // Using negative margins on the whole menu negates the ones on the (last) items no matter how many exist per row
-      ${logicalCSS(
-        'margin-bottom',
-        mathWithUnits(euiTheme.size.xs, (x) => x * -1)
-      )}
-      ${logicalCSS(
-        'margin-right',
-        mathWithUnits(euiTheme.size.xs, (x) => x * -1)
-      )}
+      gap: ${euiKeyPadMenuMarginSize};
     `,
 
     // Checkable = Fieldset and Legend
     'euiKeyPadMenu--checkable': css`
       ${logicalCSS('margin-bottom', euiTheme.size.s)}
-    `,
-
-    // Not Checkable = List
-    'euiKeyPadMenu--list': css`
-      ${logicalCSS('margin-bottom', euiTheme.size.xs)}
-      ${logicalCSS('margin-right', euiTheme.size.xs)}
     `,
   };
 };

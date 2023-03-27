@@ -2,14 +2,14 @@ import React from 'react';
 import { EuiBasicTable, EuiCode } from '../../../../../src/components';
 import { GuideSectionTypes } from '../../../components';
 
-import { Table } from './paginated';
+import Table from './paginated';
 const source = require('!!raw-loader!./paginated');
 
 export const section = {
   title: 'Adding pagination to a table',
   source: [
     {
-      type: GuideSectionTypes.JS,
+      type: GuideSectionTypes.TSX,
       code: source,
     },
   ],

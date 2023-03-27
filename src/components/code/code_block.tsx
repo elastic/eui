@@ -18,6 +18,7 @@ import {
   getHtmlContent,
   highlightByLine,
 } from './utils';
+import { LineAnnotationMap } from './code_block_annotations';
 import { useOverflow } from './code_block_overflow';
 import { useCopy } from './code_block_copy';
 import {
@@ -62,6 +63,7 @@ type VirtualizedOptionProps = ExclusiveUnion<
 interface LineNumbersConfig {
   start?: number;
   highlight?: string;
+  annotations?: LineAnnotationMap;
 }
 
 export type EuiCodeBlockProps = EuiCodeSharedProps & {
@@ -82,8 +84,9 @@ export type EuiCodeBlockProps = EuiCodeSharedProps & {
 
   /**
    * Displays line numbers.
-   * Optionally accepts a configuration object for setting the starting number and visual highlighting ranges:
-   * `{ start: 100, highlight: '1, 5-10, 20-30, 40' }`
+   * Optionally accepts a configuration object for setting the starting number,
+   * visually highlighting ranges, or annotating specific lines:
+   * `{ start: 100, highlight: '1, 5-10, 20-30, 40', annotations: { 6: 'A special note about this line' } }`
    */
   lineNumbers?: boolean | LineNumbersConfig;
 

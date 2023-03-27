@@ -7,9 +7,10 @@
  */
 
 import React, { createContext, useState, useCallback, ReactNode } from 'react';
+import classNames from 'classnames';
 
 import { keys } from '../../../services';
-import { EuiWrappingPopover } from '../../popover';
+import { EuiWrappingPopover, EuiPopoverProps } from '../../popover';
 import {
   DataGridCellPopoverContextShape,
   EuiDataGridCellPopoverElementProps,
@@ -24,6 +25,7 @@ export const DataGridCellPopoverContext = createContext<
   closeCellPopover: () => {},
   setPopoverAnchor: () => {},
   setPopoverContent: () => {},
+  setCellPopoverProps: () => {},
 });
 
 export const useCellPopover = (): {
@@ -39,6 +41,10 @@ export const useCellPopover = (): {
   // Popover anchor & content are passed by individual `EuiDataGridCell`s
   const [popoverAnchor, setPopoverAnchor] = useState<HTMLElement | null>(null);
   const [popoverContent, setPopoverContent] = useState<ReactNode>();
+  // Allow customization of most (not all) popover props by consumers
+  const [cellPopoverProps, setCellPopoverProps] = useState<
+    Partial<EuiPopoverProps>
+  >({});
 
   const closeCellPopover = useCallback(() => setPopoverIsOpen(false), []);
   const openCellPopover = useCallback(
@@ -68,21 +74,26 @@ export const useCellPopover = (): {
     cellLocation,
     setPopoverAnchor,
     setPopoverContent,
+    setCellPopoverProps,
   };
 
   // Note that this popover is rendered once at the top grid level, rather than one popover per cell
   const cellPopover = popoverIsOpen && popoverAnchor && (
     <EuiWrappingPopover
       isOpen={popoverIsOpen}
-      button={popoverAnchor}
       display="block"
       hasArrow={false}
       panelPaddingSize="s"
-      panelClassName="euiDataGridRowCell__popover"
+      {...cellPopoverProps}
       panelProps={{
         'data-test-subj': 'euiDataGridExpansionPopover',
+        ...(cellPopoverProps.panelProps || {}),
       }}
-      closePopover={closeCellPopover}
+      panelClassName={classNames(
+        'euiDataGridRowCell__popover',
+        cellPopoverProps.panelClassName,
+        cellPopoverProps.panelProps?.className
+      )}
       onKeyDown={(event) => {
         if (event.key === keys.F2 || event.key === keys.ESCAPE) {
           event.preventDefault();
@@ -92,6 +103,8 @@ export const useCellPopover = (): {
           requestAnimationFrame(() => popoverAnchor.parentElement!.focus());
         }
       }}
+      button={popoverAnchor}
+      closePopover={closeCellPopover}
     >
       {popoverContent}
     </EuiWrappingPopover>

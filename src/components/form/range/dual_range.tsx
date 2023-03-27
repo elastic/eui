@@ -35,6 +35,7 @@ import type { EuiDualRangeProps, _SingleRangeValue } from './types';
 
 import { euiRangeStyles } from './range.styles';
 import { euiDualRangeStyles } from './dual_range.styles';
+import { EuiI18n } from '../../i18n';
 
 type ValueMember = _SingleRangeValue['value'];
 
@@ -566,6 +567,13 @@ export class EuiDualRangeClass extends Component<
         }
       : rightThumbPosition;
 
+    const dualSliderScreenReaderInstructions = (
+      <EuiI18n
+        token="euiDualRange.sliderScreenReaderInstructions"
+        default="You are in a custom range slider. Use the Up and Down arrow keys to change the minimum value. Press Tab to interact with the maximum value."
+      />
+    );
+
     const theRange = (
       <EuiRangeWrapper
         css={cssStyles}
@@ -647,8 +655,14 @@ export class EuiDualRangeClass extends Component<
                       onFocus={this.onThumbFocus}
                       onBlur={this.onThumbBlur}
                       onKeyDown={this.handleDraggableKeyDown}
-                      aria-describedby={this.props['aria-describedby']}
-                      aria-label={this.props['aria-label']}
+                      aria-describedby={
+                        showInputOnly
+                          ? undefined
+                          : this.props['aria-describedby']
+                      }
+                      aria-label={
+                        showInputOnly ? undefined : this.props['aria-label']
+                      }
                     />
                   )}
 
@@ -663,8 +677,12 @@ export class EuiDualRangeClass extends Component<
                     onFocus={this.onThumbFocus}
                     onBlur={this.onThumbBlur}
                     style={logicalStyles(leftThumbStyles)}
-                    aria-describedby={this.props['aria-describedby']}
-                    aria-label={this.props['aria-label']}
+                    aria-describedby={
+                      showInputOnly ? undefined : this.props['aria-describedby']
+                    }
+                    aria-label={
+                      showInputOnly ? undefined : this.props['aria-label']
+                    }
                   />
 
                   <EuiRangeThumb
@@ -678,8 +696,12 @@ export class EuiDualRangeClass extends Component<
                     onFocus={this.onThumbFocus}
                     onBlur={this.onThumbBlur}
                     style={logicalStyles(rightThumbStyles)}
-                    aria-describedby={this.props['aria-describedby']}
-                    aria-label={this.props['aria-label']}
+                    aria-describedby={
+                      showInputOnly ? undefined : this.props['aria-describedby']
+                    }
+                    aria-label={
+                      showInputOnly ? undefined : this.props['aria-label']
+                    }
                   />
                 </React.Fragment>
               )}
@@ -740,6 +762,7 @@ export class EuiDualRangeClass extends Component<
         closePopover={this.closePopover}
         disableFocusTrap={true}
         onPanelResize={this.onResize}
+        popoverScreenReaderText={dualSliderScreenReaderInstructions}
       >
         {theRange}
       </EuiInputPopover>

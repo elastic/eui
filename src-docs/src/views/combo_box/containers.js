@@ -125,9 +125,7 @@ export default () => {
     modal = (
       <EuiModal onClose={closeModal} style={{ width: '800px' }}>
         <EuiModalHeader>
-          <EuiModalHeaderTitle>
-            <h1>Combo box in a modal</h1>
-          </EuiModalHeaderTitle>
+          <EuiModalHeaderTitle>Combo box in a modal</EuiModalHeaderTitle>
         </EuiModalHeader>
 
         <EuiModalBody>{comboBox}</EuiModalBody>

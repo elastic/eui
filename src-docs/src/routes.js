@@ -207,6 +207,8 @@ import { SelectableExample } from './views/selectable/selectable_example';
 
 import { SideNavExample } from './views/side_nav/side_nav_example';
 
+import { SkeletonExample } from './views/skeleton/skeleton_example';
+
 import { SpacerExample } from './views/spacer/spacer_example';
 
 import { StatExample } from './views/stat/stat_example';
@@ -284,6 +286,8 @@ import { ElasticChartsSparklinesExample } from './views/elastic_charts/sparkline
 import { ElasticChartsPieExample } from './views/elastic_charts/pie_example';
 
 import { ElasticChartsAccessibilityExample } from './views/elastic_charts/accessibility_example';
+
+import { MetricChartExample } from './views/elastic_charts/metric/metric_chart_example';
 
 const createExample = (example, customTitle) => {
   if (!example) {
@@ -561,6 +565,7 @@ const navigation = [
       LoadingExample,
       NotificationEventExample,
       ProgressExample,
+      SkeletonExample,
       StatExample,
       TextExample,
       TimelineExample,
@@ -621,6 +626,7 @@ const navigation = [
       ElasticChartsTimeExample,
       ElasticChartsCategoryExample,
       ElasticChartsPieExample,
+      MetricChartExample,
       ElasticChartsAccessibilityExample,
     ].map((example) => createExample(example)),
   },
@@ -690,21 +696,5 @@ export default {
 
   getAppRoutes: function getAppRoutes() {
     return allRoutes;
-  },
-
-  getPreviousRoute: function getPreviousRoute(routeName) {
-    const index = allRoutes.findIndex((item) => {
-      return item.name === routeName;
-    });
-
-    return index >= 0 ? allRoutes[index - 1] : undefined;
-  },
-
-  getNextRoute: function getNextRoute(routeName) {
-    const index = allRoutes.findIndex((item) => {
-      return item.name === routeName;
-    });
-
-    return index < allRoutes.length - 1 ? allRoutes[index + 1] : undefined;
   },
 };

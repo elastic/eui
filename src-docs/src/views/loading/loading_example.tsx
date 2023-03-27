@@ -4,13 +4,12 @@ import { Link } from 'react-router-dom';
 import { GuideSectionTypes } from '../../components';
 
 import {
-  EuiCode,
   EuiText,
   EuiLoadingLogo,
   EuiLoadingElastic,
   EuiLoadingSpinner,
   EuiLoadingChart,
-  EuiLoadingContent,
+  EuiCallOut,
 } from '../../../../src/components';
 
 import {
@@ -18,7 +17,6 @@ import {
   loadingChartConfig,
   loadingLogoConfig,
   loadingSpinnerConfig,
-  loadingContentConfig,
   // @ts-ignore Importing from JS
 } from './playground';
 
@@ -39,9 +37,6 @@ const loadingChartSource = require('!!raw-loader!./loading_chart');
 
 import LoadingSpinner from './loading_spinner';
 const loadingSpinnerSource = require('!!raw-loader!./loading_spinner');
-
-import LoadingContent from './loading_content';
-const loadingContentSource = require('!!raw-loader!./loading_content');
 
 export const LoadingExample = {
   title: 'Loading',
@@ -144,23 +139,19 @@ export const LoadingExample = {
     },
     {
       title: 'Text content',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: loadingContentSource,
-        },
-      ],
       text: (
-        <p>
-          <strong>EuiLoadingContent</strong> is a simple loading animation for
-          displaying placeholder text content. You can pass in a number of{' '}
-          <EuiCode>lines</EuiCode> between 1 and 10.
-        </p>
+        <EuiCallOut
+          title="EuiLoadingContent has been deprecated"
+          iconType="symlink"
+        >
+          <p>
+            <strong>EuiLoadingContent</strong> has been deprecated in favor of{' '}
+            <strong>EuiSkeletonText</strong>. Head on over to the{' '}
+            <Link to="/display/skeleton">Skeleton documentation page</Link> to
+            see more loading skeleton usages.
+          </p>
+        </EuiCallOut>
       ),
-      props: { EuiLoadingContent },
-      demo: <LoadingContent />,
-      snippet: '<EuiLoadingContent lines={3} />',
-      playground: loadingContentConfig,
     },
   ],
 };

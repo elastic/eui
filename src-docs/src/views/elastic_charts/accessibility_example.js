@@ -143,7 +143,7 @@ export const ElasticChartsAccessibilityExample = {
               </>
             }
             color="warning"
-            iconType="alert"
+            iconType="warning"
           />
           <EuiSpacer />
           <p>

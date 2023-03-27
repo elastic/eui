@@ -100,7 +100,12 @@ export default () => {
 
               <EuiResizableButton />
 
-              <EuiResizablePanel mode="main" initialSize={60} minSize="50px">
+              <EuiResizablePanel
+                mode="main"
+                initialSize={60}
+                minSize="50px"
+                tabIndex={0}
+              >
                 <EuiPanel paddingSize="l" style={{ minHeight: '100%' }}>
                   <EuiTitle>
                     <p>{itemSelected.label}</p>

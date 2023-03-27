@@ -1,5 +1,89 @@
 [
   {
+    "version": "76.1.0",
+    "changes": [
+      {
+        "token": "euiSuperSelectControl.selectAnOption",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiSelectable.screenReaderInstructions",
+        "changeType": "modified",
+        "value": "Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options."
+      },
+      {
+        "token": "euiDualRange.sliderScreenReaderInstructions",
+        "changeType": "added",
+        "value": "You are in a custom range slider. Use the Up and Down arrow keys to change the minimum value. Press Tab to interact with the maximum value."
+      },
+      {
+        "token": "euiRange.sliderScreenReaderInstructions",
+        "changeType": "added",
+        "value": "You are in a custom range slider. Use the Up and Down arrow keys to change the value."
+      },
+      {
+        "token": "euiSuperSelect.ariaLabel",
+        "changeType": "added",
+        "value": "Select listbox"
+      }
+    ]
+  },
+  {
+    "version": "75.1.0",
+    "changes": [
+      {
+        "token": "euiCodeBlockAnnotations.ariaLabel",
+        "changeType": "added",
+        "value": "Click to view a code annotation for line {lineNumber}"
+      }
+    ]
+  },
+  {
+    "version": "75.0.0",
+    "changes": [
+      {
+        "token": "euiFlyout.screenReaderModalDialog",
+        "changeType": "added",
+        "value": "You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close."
+      },
+      {
+        "token": "euiFlyout.screenReaderNonModalDialog",
+        "changeType": "added",
+        "value": "You are in a non-modal dialog. To close the dialog, press Escape."
+      },
+      {
+        "token": "euiFlyout.screenReaderFixedHeaders",
+        "changeType": "added",
+        "value": "You can still continue tabbing through the page headers in addition to the dialog."
+      }
+    ]
+  },
+  {
+    "version": "74.1.0",
+    "changes": [
+      {
+        "token": "euiSuperSelect.screenReaderAnnouncement",
+        "changeType": "modified",
+        "value": "You are in a form selector and must select a single option.\n              Use the Up and Down arrow keys to navigate or Escape to close."
+      },
+      {
+        "token": "euiPopover.screenReaderAnnouncement",
+        "changeType": "modified",
+        "value": "You are in a dialog. Press Escape, or tap/click outside the dialog to close."
+      },
+      {
+        "token": "euiSkeletonLoading.loadingAriaText",
+        "changeType": "added",
+        "value": "Loading {contentAriaLabel}"
+      },
+      {
+        "token": "euiSkeletonLoading.loadedAriaText",
+        "changeType": "added",
+        "value": "Loaded {contentAriaLabel}"
+      }
+    ]
+  },
+  {
     "version": "73.0.0",
     "changes": [
       {

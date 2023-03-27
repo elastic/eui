@@ -1,7 +1,7 @@
 import React from 'react';
 import { GuideSectionTypes } from '../../../components';
 import { EuiCode } from '../../../../../src/components';
-import { Table } from './basic';
+import Table from './basic';
 import { EuiBasicTable } from '../../../../../src/components/basic_table';
 import {
   Criteria,
@@ -24,12 +24,12 @@ export const section = {
   title: 'A basic table',
   source: [
     {
-      type: GuideSectionTypes.JS,
+      type: GuideSectionTypes.TSX,
       code: source,
     },
   ],
   text: (
-    <div>
+    <>
       <p>
         <strong>EuiBasicTable</strong> is an opinionated high level component
         that standardizes both display and injection. At its most simple it only
@@ -86,7 +86,7 @@ export const section = {
           properly.
         </li>
       </ul>
-    </div>
+    </>
   ),
   props: {
     EuiBasicTable,
