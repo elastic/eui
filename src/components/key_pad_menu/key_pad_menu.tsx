@@ -62,7 +62,7 @@ export const EuiKeyPadMenu: FunctionComponent<EuiKeyPadMenuProps> = ({
   const legend =
     typeof checkable === 'object' && checkable.legend ? (
       <EuiFormLabel
-        css={styles['euiKeyPadMenu--checkable']}
+        css={styles.euiKeyPadMenu__legend}
         {...checkable.legendProps}
         type="legend"
       >
@@ -72,18 +72,18 @@ export const EuiKeyPadMenu: FunctionComponent<EuiKeyPadMenuProps> = ({
 
   return checkable ? (
     <fieldset
+      css={cssStyles}
       className={classes}
       aria-label={
         typeof checkable === 'object' ? checkable.ariaLegend : undefined
       }
-      css={cssStyles}
       {...rest}
     >
       {legend}
       {children}
     </fieldset>
   ) : (
-    <ul className={classes} css={cssStyles} {...rest}>
+    <ul css={cssStyles} className={classes} {...rest}>
       {React.Children.map(children, (child) => (
         <li>{child}</li>
       ))}

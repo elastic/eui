@@ -40,7 +40,7 @@ export const euiKeyPadMenuStyles = (euiThemeContext: UseEuiTheme) => {
     `,
 
     // Checkable = Fieldset and Legend
-    'euiKeyPadMenu--checkable': css`
+    euiKeyPadMenu__legend: css`
       ${logicalCSS('margin-bottom', euiTheme.size.s)}
     `,
   };
