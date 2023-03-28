@@ -7,21 +7,18 @@
  */
 
 import React, { FunctionComponent, useState } from 'react';
-import { CommonProps } from '../common';
 import classNames from 'classnames';
 import { EuiText, EuiTextProps } from '../text';
-import { EuiInlineEditCommonProps } from './inline_edit_types';
-import { EuiInlineEditForm } from './inline_edit_form';
+import { EuiInlineEditForm, EuiInlineEditFormProps } from './inline_edit_form';
 
 export type EuiInlineEditTextSizes = Exclude<EuiTextProps['size'], 'relative'>;
 
-export type EuiInlineEditTextProps = CommonProps &
-  EuiInlineEditCommonProps & {
-    /**
-     * Text size level
-     */
-    size?: EuiInlineEditTextSizes;
-  };
+export type EuiInlineEditTextProps = EuiInlineEditFormProps & {
+  /**
+   * Text size level
+   */
+  size?: EuiInlineEditTextSizes;
+};
 
 export const EuiInlineEditText: FunctionComponent<EuiInlineEditTextProps> = ({
   children,

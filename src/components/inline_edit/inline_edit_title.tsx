@@ -7,26 +7,23 @@
  */
 
 import React, { FunctionComponent, useState } from 'react';
-import { CommonProps } from '../common';
 import classNames from 'classnames';
 import { EuiTitle, EuiTitleSize } from '../title';
-import { EuiInlineEditCommonProps } from './inline_edit_types';
-import { EuiInlineEditForm } from './inline_edit_form';
+import { EuiInlineEditForm, EuiInlineEditFormProps } from './inline_edit_form';
 
 export const HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const;
 type Heading = typeof HEADINGS[number];
 
-export type EuiInlineEditTitleProps = CommonProps &
-  EuiInlineEditCommonProps & {
-    /**
-     * Title size level
-     */
-    size?: EuiTitleSize;
-    /**
-     * Level of heading to be used for the title
-     */
-    heading: Heading;
-  };
+export type EuiInlineEditTitleProps = EuiInlineEditFormProps & {
+  /**
+   * Title size level
+   */
+  size?: EuiTitleSize;
+  /**
+   * Level of heading to be used for the title
+   */
+  heading: Heading;
+};
 
 export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
   children,
