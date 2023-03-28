@@ -8,20 +8,16 @@
 
 import React, { ReactNode, FunctionComponent, useState } from 'react';
 import classNames from 'classnames';
+
 import { CommonProps } from '../common';
-import { EuiFieldTextProps } from '../form';
-import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
+import { EuiFormRow, EuiFieldText, EuiForm, EuiFieldTextProps } from '../form';
+import { EuiButtonIcon, EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
 import { EuiButtonEmptyPropsForButton } from '../button/button_empty/button_empty';
 import { EuiTextProps } from '../text';
 import { EuiTitleProps } from '../title';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
+import { useEuiI18n } from '../i18n';
 import { useGeneratedHtmlId } from '../../services/accessibility';
-import { EuiInlineEditButtons } from './inline_edit_buttons';
-import { getInlineEditIconButtonSettings } from './inline_edit_utils';
-import { EuiInlineEditTitleProps } from './inline_edit_title';
-import { EuiInlineEditTextProps } from './inline_edit_text';
-// import { useEuiTheme } from '../../services';
-// import { euiInlineEditStyles } from './inline_edit.styles';
 
 type _ButtonPropsWithoutOnClick = Omit<EuiButtonEmptyPropsForButton, 'onClick'>;
 
@@ -84,6 +80,15 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   const styles = euiInlineEditStyles(theme);
   const cssStyles = [styles.euiInlineEdit];*/
 
+  const defaultSaveButtonAriaLabel = useEuiI18n(
+    'euiInlineEditForm.saveButtonAriaLabel',
+    'Save edit'
+  );
+  const defaultCancelButtonAriaLabel = useEuiI18n(
+    'euiInlineEditForm.cancelButtonAriaLabel',
+    'Cancel edit'
+  );
+
   const [isEditing, setIsEditing] = useState(false || startWithEditOpen);
   const inlineEditInputId = useGeneratedHtmlId({ prefix: '__inlineEditInput' });
 
@@ -127,13 +132,33 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
           />
         </EuiFlexItem>
 
-        <EuiInlineEditButtons
-          size={size}
-          saveFunction={saveInlineEditValue}
-          cancelFunction={cancelInlineEdit}
-          saveButtonAriaLabel={saveButtonAriaLabel}
-          cancelButtonAriaLabel={cancelButtonAriaLabel}
-        />
+        <EuiFlexItem grow={false} className={classes}>
+          <EuiFormRow>
+            <EuiButtonIcon
+              iconType="check"
+              aria-label={saveButtonAriaLabel || defaultSaveButtonAriaLabel}
+              onClick={saveInlineEditValue}
+              color="success"
+              display="base"
+              size={buttonSettings.compressed ? 's' : 'm'}
+              iconSize={buttonSettings.iconSize}
+            />
+          </EuiFormRow>
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiFormRow>
+            <EuiButtonIcon
+              iconType="cross"
+              aria-label={cancelButtonAriaLabel || defaultCancelButtonAriaLabel}
+              onClick={cancelInlineEdit}
+              color="danger"
+              display="base"
+              size={buttonSettings.compressed ? 's' : 'm'}
+              iconSize={buttonSettings.iconSize}
+            />
+          </EuiFormRow>
+        </EuiFlexItem>
       </EuiFlexGroup>
     </EuiForm>
   );
