@@ -17,8 +17,6 @@ import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { useEuiI18n } from '../i18n';
 import { useGeneratedHtmlId } from '../../services/accessibility';
 
-type _ButtonPropsWithoutOnClick = Omit<EuiButtonEmptyPropsForButton, 'onClick'>;
-
 // Props shared between the internal form component as well as consumer-facing components
 export type EuiInlineEditCommonProps = CommonProps & {
   defaultValue: string;
@@ -49,7 +47,7 @@ export type EuiInlineEditCommonProps = CommonProps & {
   /**
    * Props that will be applied directly to the EuiEmptyButton displayed in readMode
    */
-  readModeProps?: _ButtonPropsWithoutOnClick;
+  readModeProps?: Omit<EuiButtonEmptyPropsForButton, 'onClick'>;
   /**
    * Props that will be applied directly to the EuiFieldText displayed in editMode
    */
