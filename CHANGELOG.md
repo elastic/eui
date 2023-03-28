@@ -1,3 +1,9 @@
+## [`76.4.0`](https://github.com/elastic/eui/tree/v76.4.0)
+
+**CSS-in-JS conversions**
+
+- Converted `EuiKeyPadMenu` (Menu component only) to Emotion ([#6636](https://github.com/elastic/eui/pull/6636))
+
 ## [`76.3.0`](https://github.com/elastic/eui/tree/v76.3.0)
 
 - Updated `EuiSkipLink`'s `fallbackDestination` prop to support an array of query selector strings ([#6646](https://github.com/elastic/eui/pull/6646))
