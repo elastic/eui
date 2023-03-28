@@ -21,7 +21,6 @@ import { CommonProps, ExclusiveUnion, PropsOf } from '../common';
 import {
   useEuiTheme,
   UseEuiTheme,
-  euiPaletteColorBlindBehindText,
   getSecureRelForTarget,
   isColorDark,
   wcagContrastMin,
@@ -46,11 +45,6 @@ export const COLORS = [
   'danger',
 ] as const;
 type BadgeColor = typeof COLORS[number];
-
-// The color blind palette has some stricter accessibility needs with regards to
-// charts and contrast. We use the euiPaletteColorBlindBehindText variant here since our
-// accessibility concerns pertain to foreground (text) and background contrast
-const visColors = euiPaletteColorBlindBehindText();
 
 type WithButtonProps = {
   /**
@@ -138,15 +132,18 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   const isHrefValid = !href || validateHref(href);
   const isDisabled = _isDisabled || !isHrefValid;
 
+  // We moved away from euiPaletteColorBlindBehindText() helper so users
+  // could override named colors in custom themes. The minimum color
+  // contrast ratio for each badge (light or dark) is listed inline.
   const optionalCustomStyles = useMemo(() => {
     const colorToHexMap: { [color in BadgeColor]: string } = {
-      default: euiTheme.euiTheme.colors.lightShade,
-      hollow: '',
-      primary: visColors[1],
-      success: visColors[0],
-      accent: visColors[2],
-      warning: visColors[5],
-      danger: visColors[9],
+      default: euiTheme.euiTheme.colors.lightShade, // 11.87:1
+      hollow: '', // 11.87:1
+      primary: euiTheme.euiTheme.colors.primary, // 4.65:1
+      success: euiTheme.euiTheme.colors.success, // 9.1:1
+      accent: euiTheme.euiTheme.colors.accent, // 6.24:1
+      warning: euiTheme.euiTheme.colors.warning, // 13.21:1
+      danger: euiTheme.euiTheme.colors.danger, // 6.04:1
     };
 
     let textColor = null;
