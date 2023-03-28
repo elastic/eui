@@ -9,7 +9,12 @@
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { EuiTitle, EuiTitleSize } from '../title';
-import { EuiInlineEditForm, EuiInlineEditFormProps } from './inline_edit_form';
+import {
+  EuiInlineEditForm,
+  EuiInlineEditFormProps,
+  SMALL_SIZE_FORM,
+  MEDIUM_SIZE_FORM,
+} from './inline_edit_form';
 
 export const HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const;
 type Heading = typeof HEADINGS[number];
@@ -44,7 +49,11 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
 
   const H: Heading = heading;
 
+  const isSmallSize = ['xxxs', 'xxs', 'xs', 's'].includes(size);
+  const sizes = isSmallSize ? SMALL_SIZE_FORM : MEDIUM_SIZE_FORM;
+
   const formProps = {
+    sizes,
     defaultValue,
     onConfirm,
     inputAriaLabel,

@@ -9,7 +9,12 @@
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { EuiText, EuiTextProps } from '../text';
-import { EuiInlineEditForm, EuiInlineEditFormProps } from './inline_edit_form';
+import {
+  EuiInlineEditForm,
+  EuiInlineEditFormProps,
+  SMALL_SIZE_FORM,
+  MEDIUM_SIZE_FORM,
+} from './inline_edit_form';
 
 export type EuiInlineEditTextSizes = Exclude<EuiTextProps['size'], 'relative'>;
 
@@ -36,8 +41,11 @@ export const EuiInlineEditText: FunctionComponent<EuiInlineEditTextProps> = ({
 }) => {
   const classes = classNames('euiInlineEditText', className);
 
+  const isSmallSize = ['xs', 's'].includes(size);
+  const sizes = isSmallSize ? SMALL_SIZE_FORM : MEDIUM_SIZE_FORM;
+
   const formProps = {
-    size,
+    sizes,
     defaultValue,
     onConfirm,
     inputAriaLabel,

@@ -13,8 +13,6 @@ import { CommonProps } from '../common';
 import { EuiFormRow, EuiFieldText, EuiForm, EuiFieldTextProps } from '../form';
 import { EuiButtonIcon, EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
 import { EuiButtonEmptyPropsForButton } from '../button/button_empty/button_empty';
-import { EuiTextProps } from '../text';
-import { EuiTitleProps } from '../title';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { useEuiI18n } from '../i18n';
 import { useGeneratedHtmlId } from '../../services/accessibility';
@@ -23,6 +21,11 @@ type _ButtonPropsWithoutOnClick = Omit<EuiButtonEmptyPropsForButton, 'onClick'>;
 
 export type EuiInlineEditFormProps = CommonProps & {
   defaultValue: string;
+  sizes: {
+    compressed: boolean;
+    buttonSize: EuiButtonEmptyProps['size'];
+    iconSize: EuiButtonEmptyProps['iconSize'];
+  };
   /**
    * Render prop that returns the read mode value as an arg
    */
@@ -61,9 +64,22 @@ export type EuiInlineEditFormProps = CommonProps & {
   editModeProps?: EuiFieldTextProps;
 };
 
+export const SMALL_SIZE_FORM = {
+  iconSize: 's',
+  compressed: true,
+  buttonSize: 's',
+} as const;
+
+export const MEDIUM_SIZE_FORM = {
+  iconSize: 'm',
+  compressed: false,
+  buttonSize: 'm',
+} as const;
+
 export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   className,
   children,
+  sizes,
   defaultValue,
   onConfirm,
   inputAriaLabel,
@@ -113,8 +129,6 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
     }
   };
 
-  const buttonSettings = getInlineEditIconButtonSettings(size);
-
   const editModeForm = (
     <EuiForm fullWidth>
       <EuiFlexGroup gutterSize="s">
@@ -127,7 +141,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
             }}
             aria-label={inputAriaLabel}
             autoFocus
-            compressed={buttonSettings.compressed}
+            compressed={sizes.compressed}
             {...editModeProps}
           />
         </EuiFlexItem>
@@ -140,8 +154,8 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
               onClick={saveInlineEditValue}
               color="success"
               display="base"
-              size={buttonSettings.compressed ? 's' : 'm'}
-              iconSize={buttonSettings.iconSize}
+              size={sizes.buttonSize}
+              iconSize={sizes.iconSize}
             />
           </EuiFormRow>
         </EuiFlexItem>
@@ -154,8 +168,8 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
               onClick={cancelInlineEdit}
               color="danger"
               display="base"
-              size={buttonSettings.compressed ? 's' : 'm'}
-              iconSize={buttonSettings.iconSize}
+              size={sizes.buttonSize}
+              iconSize={sizes.iconSize}
             />
           </EuiFormRow>
         </EuiFlexItem>
@@ -170,8 +184,8 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
       iconSide="right"
       autoFocus
       flush="both"
-      iconSize={buttonSettings.iconSize}
-      size={buttonSettings.compressed ? 's' : 'm'}
+      iconSize={sizes.iconSize}
+      size={sizes.buttonSize}
       onClick={() => {
         setIsEditing(!isEditing);
       }}
