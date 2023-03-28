@@ -10,8 +10,8 @@ import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { EuiTitle, EuiTitleSize } from '../title';
 import {
+  EuiInlineEditCommonProps,
   EuiInlineEditForm,
-  EuiInlineEditFormProps,
   SMALL_SIZE_FORM,
   MEDIUM_SIZE_FORM,
 } from './inline_edit_form';
@@ -19,7 +19,7 @@ import {
 export const HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const;
 type Heading = typeof HEADINGS[number];
 
-export type EuiInlineEditTitleProps = EuiInlineEditFormProps & {
+export type EuiInlineEditTitleProps = EuiInlineEditCommonProps & {
   /**
    * Title size level
    */

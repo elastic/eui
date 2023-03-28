@@ -10,15 +10,15 @@ import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { EuiText, EuiTextProps } from '../text';
 import {
+  EuiInlineEditCommonProps,
   EuiInlineEditForm,
-  EuiInlineEditFormProps,
   SMALL_SIZE_FORM,
   MEDIUM_SIZE_FORM,
 } from './inline_edit_form';
 
 export type EuiInlineEditTextSizes = Exclude<EuiTextProps['size'], 'relative'>;
 
-export type EuiInlineEditTextProps = EuiInlineEditFormProps & {
+export type EuiInlineEditTextProps = EuiInlineEditCommonProps & {
   /**
    * Text size level
    */

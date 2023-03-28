@@ -19,17 +19,9 @@ import { useGeneratedHtmlId } from '../../services/accessibility';
 
 type _ButtonPropsWithoutOnClick = Omit<EuiButtonEmptyPropsForButton, 'onClick'>;
 
-export type EuiInlineEditFormProps = CommonProps & {
+// Props shared between the internal form component as well as consumer-facing components
+export type EuiInlineEditCommonProps = CommonProps & {
   defaultValue: string;
-  sizes: {
-    compressed: boolean;
-    buttonSize: EuiButtonEmptyProps['size'];
-    iconSize: EuiButtonEmptyProps['iconSize'];
-  };
-  /**
-   * Render prop that returns the read mode value as an arg
-   */
-  children: (readModeValue: ReactNode) => ReactNode;
   /**
    * Allow users to pass in a function that is called when the confirm button is clicked
    * The function should return a boolean flag that will determine if the value will be saved.
@@ -62,6 +54,22 @@ export type EuiInlineEditFormProps = CommonProps & {
    * Props that will be applied directly to the EuiFieldText displayed in editMode
    */
   editModeProps?: EuiFieldTextProps;
+};
+
+// Internal-only props, passed by the consumer-facing components
+export type EuiInlineEditFormProps = EuiInlineEditCommonProps & {
+  /**
+   * Form sizes
+   */
+  sizes: {
+    compressed: boolean;
+    buttonSize: EuiButtonEmptyProps['size'];
+    iconSize: EuiButtonEmptyProps['iconSize'];
+  };
+  /**
+   * Render prop that returns the read mode value as an arg
+   */
+  children: (readModeValue: ReactNode) => ReactNode;
 };
 
 export const SMALL_SIZE_FORM = {
