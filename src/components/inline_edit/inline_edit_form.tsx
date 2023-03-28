@@ -63,7 +63,14 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   className,
   children,
   updateReadModeValue,
-  props,
+  defaultValue,
+  onConfirm,
+  inputAriaLabel,
+  saveButtonAriaLabel,
+  cancelButtonAriaLabel,
+  startWithEditOpen,
+  readModeProps,
+  editModeProps,
 }) => {
   const classes = classNames('euiInlineEditForm', className);
 
@@ -71,18 +78,6 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   /*const theme = useEuiTheme();
   const styles = euiInlineEditStyles(theme);
   const cssStyles = [styles.euiInlineEdit];*/
-
-  const {
-    startWithEditOpen,
-    size,
-    defaultValue,
-    onConfirm,
-    inputAriaLabel,
-    saveButtonAriaLabel,
-    cancelButtonAriaLabel,
-    readModeProps,
-    editModeProps,
-  } = props;
 
   const [isEditing, setIsEditing] = useState(false || startWithEditOpen);
   const inlineEditInputId = useGeneratedHtmlId({ prefix: '__inlineEditInput' });

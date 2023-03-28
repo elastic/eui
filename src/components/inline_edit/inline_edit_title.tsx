@@ -46,11 +46,7 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
 
   const H: Heading = heading;
 
-  const props = {
-    children,
-    className,
-    size,
-    heading,
+  const formProps = {
     defaultValue,
     onConfirm,
     inputAriaLabel,
@@ -59,13 +55,12 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
     startWithEditOpen,
     readModeProps,
     editModeProps,
-    ...rest,
   };
 
   return (
     <div className={classes} {...rest}>
       <EuiInlineEditForm
-        props={props}
+        {...formProps}
         updateReadModeValue={setTitleReadModeValue}
       >
         <EuiTitle size={size}>

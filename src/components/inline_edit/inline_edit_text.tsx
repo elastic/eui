@@ -38,9 +38,7 @@ export const EuiInlineEditText: FunctionComponent<EuiInlineEditTextProps> = ({
 
   const [textReadModeValue, setTextReadModeValue] = useState(defaultValue);
 
-  const props = {
-    children,
-    className,
+  const formProps = {
     size,
     defaultValue,
     onConfirm,
@@ -50,13 +48,12 @@ export const EuiInlineEditText: FunctionComponent<EuiInlineEditTextProps> = ({
     startWithEditOpen,
     readModeProps,
     editModeProps,
-    ...rest,
   };
 
   return (
     <div className={classes} {...rest}>
       <EuiInlineEditForm
-        props={props}
+        {...formProps}
         updateReadModeValue={setTextReadModeValue}
       >
         <EuiText size={size}>{textReadModeValue}</EuiText>
