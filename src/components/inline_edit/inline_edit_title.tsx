@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { EuiTitle, EuiTitleSize } from '../title';
 import { EuiInlineEditForm, EuiInlineEditFormProps } from './inline_edit_form';
@@ -42,8 +42,6 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
 }) => {
   const classes = classNames('euiInlineEditTitle', className);
 
-  const [titleReadModeValue, setTitleReadModeValue] = useState(defaultValue);
-
   const H: Heading = heading;
 
   const formProps = {
@@ -58,15 +56,12 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
   };
 
   return (
-    <div className={classes} {...rest}>
-      <EuiInlineEditForm
-        {...formProps}
-        updateReadModeValue={setTitleReadModeValue}
-      >
+    <EuiInlineEditForm className={classes} {...rest} {...formProps}>
+      {(titleReadModeValue) => (
         <EuiTitle size={size}>
           <H>{titleReadModeValue}</H>
         </EuiTitle>
-      </EuiInlineEditForm>
-    </div>
+      )}
+    </EuiInlineEditForm>
   );
 };

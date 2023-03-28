@@ -6,12 +6,14 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useState } from 'react';
+import React, { ReactNode, FunctionComponent, useState } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { EuiFieldTextProps } from '../form';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
 import { EuiButtonEmptyPropsForButton } from '../button/button_empty/button_empty';
+import { EuiTextProps } from '../text';
+import { EuiTitleProps } from '../title';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { useGeneratedHtmlId } from '../../services/accessibility';
 import { EuiInlineEditButtons } from './inline_edit_buttons';
@@ -25,6 +27,10 @@ type _ButtonPropsWithoutOnClick = Omit<EuiButtonEmptyPropsForButton, 'onClick'>;
 
 export type EuiInlineEditFormProps = CommonProps & {
   defaultValue: string;
+  /**
+   * Render prop that returns the read mode value as an arg
+   */
+  children: (readModeValue: ReactNode) => ReactNode;
   /**
    * Allow users to pass in a function that is called when the confirm button is clicked
    * The function should return a boolean flag that will determine if the value will be saved.
@@ -62,7 +68,6 @@ export type EuiInlineEditFormProps = CommonProps & {
 export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   className,
   children,
-  updateReadModeValue,
   defaultValue,
   onConfirm,
   inputAriaLabel,
@@ -72,7 +77,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   readModeProps,
   editModeProps,
 }) => {
-  const classes = classNames('euiInlineEditForm', className);
+  const classes = classNames('euiInlineEdit', className);
 
   // Styles to come later! (Styling editMode text to match the size of its readMode counterpart)
   /*const theme = useEuiTheme();
@@ -96,7 +101,6 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
       return;
     } else if (editModeValue) {
       setReadModeValue(editModeValue);
-      updateReadModeValue(editModeValue);
       setIsEditing(!isEditing);
     } else {
       // If there's no text, cancel the action, reset the input text, and return to readMode
@@ -148,7 +152,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
       }}
       {...readModeProps}
     >
-      {children}
+      {children(readModeValue)}
     </EuiButtonEmpty>
   );
 
