@@ -33,10 +33,6 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
           opacity: 1;
         }
       }
-
-      :focus:not(:focus-visible) {
-        outline: auto;
-      }
     `,
     // Elements
     euiToast__closeButton: css`

@@ -85,17 +85,6 @@ const dangerToastSnippet = [
   </EuiToast>`,
 ];
 
-import Focusable from './focusable';
-const focusableSource = require('!!raw-loader!./focusable');
-const focusableToastSnippet = [
-  `<EuiToast
-  title="Focusable toast"
-  color="warning"
-  isAutoFocused>
-  <!-- Raw HTML content -->
-  </EuiToast>`,
-];
-
 export const ToastExample = {
   title: 'Toast',
   guidelines: <Guidelines />,
@@ -256,28 +245,6 @@ export const ToastExample = {
         </div>
       ),
       snippet: dangerToastSnippet,
-    },
-    {
-      title: 'Focusable',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: focusableSource,
-        },
-      ],
-      text: (
-        <p>
-          Use this callout to prompt users to take an action. This toast message
-          will not fade out until users click the close button or take an
-          action.
-        </p>
-      ),
-      demo: (
-        <div style={{ maxWidth: 320 }}>
-          <Focusable />
-        </div>
-      ),
-      snippet: focusableToastSnippet,
     },
   ],
 };

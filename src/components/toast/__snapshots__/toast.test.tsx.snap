@@ -125,29 +125,6 @@ exports[`EuiToast Props iconType is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiToast Props isAutoFocused is rendered 1`] = `
-<div
-  class="euiToast emotion-euiToast"
-  tabindex="-1"
->
-  <p
-    class="emotion-euiScreenReaderOnly"
-  >
-    A new notification appears and has keyboard focus
-  </p>
-  <div
-    aria-label="Notification"
-    class="emotion-euiToastHeader"
-    data-test-subj="euiToastHeader"
-  >
-    <span
-      class="emotion-euiToastHeader__title"
-      data-test-subj="euiToastHeader__title"
-    />
-  </div>
-</div>
-`;
-
 exports[`EuiToast Props title is rendered 1`] = `
 <div
   class="euiToast emotion-euiToast"

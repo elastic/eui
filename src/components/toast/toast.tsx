@@ -11,8 +11,6 @@ import React, {
   HTMLAttributes,
   ReactElement,
   ReactNode,
-  useEffect,
-  useRef,
 } from 'react';
 import classNames from 'classnames';
 
@@ -41,7 +39,6 @@ export interface EuiToastProps
   color?: ToastColor;
   iconType?: IconType;
   onClose?: () => void;
-  isAutoFocused?: boolean;
 }
 
 export const EuiToast: FunctionComponent<EuiToastProps> = ({
@@ -51,7 +48,6 @@ export const EuiToast: FunctionComponent<EuiToastProps> = ({
   onClose,
   children,
   className,
-  isAutoFocused = false,
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
@@ -65,7 +61,6 @@ export const EuiToast: FunctionComponent<EuiToastProps> = ({
   ];
 
   const classes = classNames('euiToast', className);
-  const focusableToast = useRef<HTMLDivElement>(null);
   let headerIcon: ReactElement;
 
   if (iconType) {
@@ -113,33 +108,14 @@ export const EuiToast: FunctionComponent<EuiToastProps> = ({
     );
   }
 
-  useEffect(() => {
-    if (isAutoFocused && focusableToast.current) {
-      focusableToast.current.focus();
-    }
-  }, [isAutoFocused]);
-
   return (
-    <div
-      css={baseCss}
-      className={classes}
-      ref={isAutoFocused ? focusableToast : undefined}
-      tabIndex={isAutoFocused ? -1 : undefined}
-      {...rest}
-    >
+    <div css={baseCss} className={classes} {...rest}>
       <EuiScreenReaderOnly>
         <p>
-          {isAutoFocused ? (
-            <EuiI18n
-              token="euiToast.newFocusableNotification"
-              default="A new notification appears and has keyboard focus"
-            />
-          ) : (
-            <EuiI18n
-              token="euiToast.newNotification"
-              default="A new notification appears"
-            />
-          )}
+          <EuiI18n
+            token="euiToast.newNotification"
+            default="A new notification appears"
+          />
         </p>
       </EuiScreenReaderOnly>
 

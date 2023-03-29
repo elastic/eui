@@ -10,12 +10,7 @@
 
 import React from 'react';
 import { EuiButton } from '../button';
-import { EuiToast, EuiToastProps } from './toast';
-
-const baseToastProps: EuiToastProps = {
-  title: 'Focusable toast',
-  isAutoFocused: true,
-};
+import { EuiToast } from './toast';
 
 describe('EuiToast', () => {
   beforeEach(() => {
@@ -26,19 +21,30 @@ describe('EuiToast', () => {
     it('renders with default props', () => {
       cy.mount(
         <div style={{ maxWidth: '60ch', marginInline: 'auto' }}>
-          <EuiToast {...baseToastProps}>
+          <EuiToast title="Generic toast">
+            <p>This is a generic toast message. It is read-only.</p>
+          </EuiToast>
+        </div>
+      );
+      cy.checkAxe();
+    });
+
+    it('renders with default props', () => {
+      cy.mount(
+        <div style={{ maxWidth: '60ch', marginInline: 'auto' }}>
+          <EuiToast title="Actionable toast">
             <>
               <p>This is a security measure.</p>
               <p>
                 Please click the button below or move your mouse to show that
                 you&rsquo;re still using Kibana.
               </p>
-              <EuiButton>Extend my session</EuiButton>
+              <EuiButton autoFocus>Extend my session</EuiButton>
             </>
           </EuiToast>
         </div>
       );
-      cy.focused().invoke('attr', 'tabindex').should('equal', '-1');
+      cy.focused().contains('Extend my session');
       cy.checkAxe();
     });
   });
