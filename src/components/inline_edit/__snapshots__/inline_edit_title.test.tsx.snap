@@ -2,7 +2,7 @@
 
 exports[`EuiInlineEditTitle props renders as title 1`] = `
 <div
-  class="euiInlineEdit euiInlineEditTitle testClass1 testClass2 css-1p10it1-m-m"
+  class="euiInlineEdit euiInlineEditTitle testClass1 testClass2 emotion-euiInlineEditTitle-m-m"
 >
   <button
     class="euiButtonEmpty euiButtonEmpty--flushBoth css-wvaqcf-empty-text"
