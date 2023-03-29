@@ -31,6 +31,7 @@ import { chromaValid, parseColor } from '../color_picker/utils';
 import { validateHref } from '../../services/security/href_validator';
 
 import { euiBadgeStyles } from './badge.styles';
+import { euiButtonFillColor } from '../../themes/amsterdam/global_styling/mixins';
 
 export const ICON_SIDES = ['left', 'right'] as const;
 type IconSide = typeof ICON_SIDES[number];
@@ -139,11 +140,11 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     const colorToHexMap: { [color in BadgeColor]: string } = {
       default: euiTheme.euiTheme.colors.lightShade, // 11.87:1
       hollow: '', // 11.87:1
-      primary: euiTheme.euiTheme.colors.primary, // 4.65:1
-      success: euiTheme.euiTheme.colors.success, // 9.1:1
-      accent: euiTheme.euiTheme.colors.accent, // 6.24:1
-      warning: euiTheme.euiTheme.colors.warning, // 13.21:1
-      danger: euiTheme.euiTheme.colors.danger, // 6.04:1
+      primary: euiButtonFillColor(euiTheme, 'primary').backgroundColor,
+      success: euiButtonFillColor(euiTheme, 'success').backgroundColor,
+      accent: euiButtonFillColor(euiTheme, 'accent').backgroundColor,
+      warning: euiButtonFillColor(euiTheme, 'warning').backgroundColor,
+      danger: euiButtonFillColor(euiTheme, 'danger').backgroundColor,
     };
 
     let textColor = null;
