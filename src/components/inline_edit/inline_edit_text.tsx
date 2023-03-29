@@ -45,7 +45,7 @@ export const EuiInlineEditText: FunctionComponent<EuiInlineEditTextProps> = ({
 
   const theme = useEuiTheme();
   const styles = euiInlineEditTextStyles(theme);
-  const cssStyles = styles.fontSize[size];
+  const cssStyles = [styles.euiInlineEditText, styles.fontSize[size]];
 
   const isSmallSize = ['xs', 's'].includes(size);
   const sizes = isSmallSize ? SMALL_SIZE_FORM : MEDIUM_SIZE_FORM;
