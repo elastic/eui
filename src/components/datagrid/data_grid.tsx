@@ -52,6 +52,7 @@ import {
 } from './utils/data_grid_schema';
 import { useImperativeGridRef } from './utils/ref';
 import {
+  emptyControlColumns,
   EuiDataGridColumn,
   EuiDataGridProps,
   EuiDataGridRefProps,
@@ -105,8 +106,8 @@ const cellPaddingsToClassMap: {
 export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
   (props, ref) => {
     const {
-      leadingControlColumns = [],
-      trailingControlColumns = [],
+      leadingControlColumns = emptyControlColumns,
+      trailingControlColumns = emptyControlColumns,
       columns,
       columnVisibility,
       schemaDetectors,
@@ -126,6 +127,7 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
       width,
       rowHeightsOptions: _rowHeightsOptions,
       virtualizationOptions,
+      renderCustomGridBody,
       ...rest
     } = props;
 
@@ -457,6 +459,7 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
                     gridRef={gridRef}
                     gridItemsRendered={gridItemsRendered}
                     wrapperRef={contentRef}
+                    renderCustomGridBody={renderCustomGridBody}
                   />
                 </div>
                 {pagination && props['aria-labelledby'] && (

@@ -35,7 +35,7 @@ export const euiCodeBlockLineStyles = (euiThemeContext: UseEuiTheme) => {
       euiCodeBlock__lineText: css`
         flex-grow: 1;
         display: inline-block;
-        padding-inline-start: ${euiTheme.size.s};
+        padding-inline-start: ${euiTheme.size.m};
         border-inline-start: ${euiTheme.border.thin};
         user-select: text;
       `,
@@ -46,19 +46,18 @@ export const euiCodeBlockLineStyles = (euiThemeContext: UseEuiTheme) => {
       `,
     },
     lineNumber: {
-      euiCodeBlock__lineNumber: css`
+      euiCodeBlock__lineNumberWrapper: css`
+        position: relative;
         flex-grow: 0;
         flex-shrink: 0;
         user-select: none;
-        padding-inline-end: ${euiTheme.size.s};
+        padding-inline-end: ${euiTheme.size.m};
         box-sizing: content-box; // Width is calculated in JS and padding needs to be added on to that value.
-
-        &:before {
-          content: attr(data-line-number);
-          color: ${euiTheme.colors.subduedText};
-          text-align: end;
-          display: block;
-        }
+      `,
+      euiCodeBlock__lineNumber: css`
+        color: ${euiTheme.colors.subduedText};
+        text-align: end;
+        display: block;
       `,
     },
   };

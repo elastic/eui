@@ -140,7 +140,7 @@ export const PageTemplateInfo = {
   intro: (
     <>
       <EuiCallOut
-        iconType="alert"
+        iconType="warning"
         color="warning"
         title={
           <>
@@ -289,7 +289,7 @@ export const PageTemplateExample = () => (
           </EuiText>
           <EuiSpacer />
           <EuiCallOut
-            iconType="alert"
+            iconType="warning"
             color="warning"
             title="Sidebars must be direct children declared in the same component."
           >
@@ -353,7 +353,7 @@ export const PageTemplateExample = () => (
           <EuiSpacer />
 
           <EuiCallOut
-            iconType="alert"
+            iconType="warning"
             color="warning"
             title={
               <>

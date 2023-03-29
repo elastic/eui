@@ -12,11 +12,6 @@ Array [
     <div
       class="euiFormControlLayout__childrenWrapper"
     >
-      <span
-        class="emotion-euiScreenReaderOnly"
-      >
-        Select an option: , is selected
-      </span>
       <button
         aria-haspopup="listbox"
         aria-label="aria-label"
@@ -54,11 +49,6 @@ Array [
     <div
       class="euiFormControlLayout__childrenWrapper"
     >
-      <span
-        class="emotion-euiScreenReaderOnly"
-      >
-        Select an option: , is selected
-      </span>
       <button
         aria-haspopup="listbox"
         class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--compressed"
@@ -94,11 +84,6 @@ Array [
     <div
       class="euiFormControlLayout__childrenWrapper"
     >
-      <span
-        class="emotion-euiScreenReaderOnly"
-      >
-        Select an option: , is selected
-      </span>
       <button
         aria-haspopup="listbox"
         class="euiSuperSelectControl euiFormControlLayout--1icons"
@@ -134,11 +119,6 @@ Array [
     <div
       class="euiFormControlLayout__childrenWrapper"
     >
-      <span
-        class="emotion-euiScreenReaderOnly"
-      >
-        Select an option: , is selected
-      </span>
       <button
         aria-haspopup="listbox"
         class="euiSuperSelectControl euiFormControlLayout--1icons"
@@ -174,11 +154,6 @@ Array [
     <div
       class="euiFormControlLayout__childrenWrapper"
     >
-      <span
-        class="emotion-euiScreenReaderOnly"
-      >
-        Select an option: , is selected
-      </span>
       <button
         aria-haspopup="listbox"
         class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--fullWidth"
@@ -214,11 +189,6 @@ Array [
     <div
       class="euiFormControlLayout__childrenWrapper"
     >
-      <span
-        class="emotion-euiScreenReaderOnly"
-      >
-        Select an option: , is selected
-      </span>
       <button
         aria-haspopup="listbox"
         class="euiSuperSelectControl euiFormControlLayout--2icons euiSuperSelectControl-isInvalid"
@@ -229,7 +199,7 @@ Array [
       >
         <span
           color="danger"
-          data-euiicon-type="alert"
+          data-euiicon-type="warning"
         />
         <span
           class="euiFormControlLayoutCustomIcon"
@@ -258,11 +228,6 @@ Array [
     <div
       class="euiFormControlLayout__childrenWrapper"
     >
-      <span
-        class="emotion-euiScreenReaderOnly"
-      >
-        Select an option: , is selected
-      </span>
       <button
         aria-haspopup="listbox"
         class="euiSuperSelectControl euiFormControlLayout--2icons euiSuperSelectControl-isLoading"
@@ -291,6 +256,47 @@ Array [
 ]
 `;
 
+exports[`EuiSuperSelectControl props placeholder is rendered 1`] = `
+Array [
+  <input
+    type="hidden"
+    value=""
+  />,
+  <div
+    class="euiFormControlLayout"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <button
+        aria-haspopup="listbox"
+        class="euiSuperSelectControl euiFormControlLayout--1icons"
+        type="button"
+      >
+        <span
+          class="euiSuperSelectControl__placeholder"
+        >
+          Select an option
+        </span>
+      </button>
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+      >
+        <span
+          class="euiFormControlLayoutCustomIcon"
+        >
+          <span
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
 exports[`EuiSuperSelectControl props value option is rendered 1`] = `
 Array [
   <input
@@ -303,11 +309,6 @@ Array [
     <div
       class="euiFormControlLayout__childrenWrapper"
     >
-      <span
-        class="emotion-euiScreenReaderOnly"
-      >
-        Select an option: Option #1, is selected
-      </span>
       <button
         aria-haspopup="listbox"
         class="euiSuperSelectControl euiFormControlLayout--1icons"

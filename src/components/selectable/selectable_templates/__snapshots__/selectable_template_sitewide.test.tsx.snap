@@ -19,6 +19,7 @@ exports[`EuiSelectableTemplateSitewide is rendered 1`] = `
         >
           <input
             aria-activedescendant=""
+            aria-describedby="generated-id_instructions"
             aria-haspopup="listbox"
             aria-label="aria-label"
             autocomplete="off"
@@ -42,6 +43,12 @@ exports[`EuiSelectableTemplateSitewide is rendered 1`] = `
           </div>
         </div>
       </div>
+      <p
+        class="emotion-euiScreenReaderOnly"
+        id="generated-id_instructions"
+      >
+         Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+      </p>
     </div>
   </div>
 </div>
@@ -65,6 +72,7 @@ exports[`EuiSelectableTemplateSitewide props popoverButton is not rendered with 
         >
           <input
             aria-activedescendant=""
+            aria-describedby="generated-id_instructions"
             aria-haspopup="listbox"
             aria-label="Filter options"
             autocomplete="off"
@@ -88,6 +96,12 @@ exports[`EuiSelectableTemplateSitewide props popoverButton is not rendered with 
           </div>
         </div>
       </div>
+      <p
+        class="emotion-euiScreenReaderOnly"
+        id="generated-id_instructions"
+      >
+         Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+      </p>
     </div>
   </div>
 </div>
@@ -147,6 +161,7 @@ exports[`EuiSelectableTemplateSitewide props popoverFooter is rendered 1`] = `
         >
           <input
             aria-activedescendant=""
+            aria-describedby="generated-id_instructions"
             aria-haspopup="listbox"
             aria-label="Filter options"
             autocomplete="off"
@@ -170,6 +185,12 @@ exports[`EuiSelectableTemplateSitewide props popoverFooter is rendered 1`] = `
           </div>
         </div>
       </div>
+      <p
+        class="emotion-euiScreenReaderOnly"
+        id="generated-id_instructions"
+      >
+         Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+      </p>
     </div>
   </div>
 </div>
@@ -193,6 +214,7 @@ exports[`EuiSelectableTemplateSitewide props popoverProps is rendered 1`] = `
         >
           <input
             aria-activedescendant=""
+            aria-describedby="generated-id_instructions"
             aria-haspopup="listbox"
             aria-label="Filter options"
             autocomplete="off"
@@ -216,6 +238,12 @@ exports[`EuiSelectableTemplateSitewide props popoverProps is rendered 1`] = `
           </div>
         </div>
       </div>
+      <p
+        class="emotion-euiScreenReaderOnly"
+        id="generated-id_instructions"
+      >
+         Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+      </p>
     </div>
   </div>
 </div>
@@ -239,6 +267,7 @@ exports[`EuiSelectableTemplateSitewide props popoverTitle is rendered 1`] = `
         >
           <input
             aria-activedescendant=""
+            aria-describedby="generated-id_instructions"
             aria-haspopup="listbox"
             aria-label="Filter options"
             autocomplete="off"
@@ -262,6 +291,12 @@ exports[`EuiSelectableTemplateSitewide props popoverTitle is rendered 1`] = `
           </div>
         </div>
       </div>
+      <p
+        class="emotion-euiScreenReaderOnly"
+        id="generated-id_instructions"
+      >
+         Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+      </p>
     </div>
   </div>
 </div>

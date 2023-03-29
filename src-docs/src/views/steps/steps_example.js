@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import { GuideSectionTypes } from '../../components';
 
@@ -129,7 +129,7 @@ export const StepsExample = {
     {
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: stepsSource,
         },
       ],
@@ -152,7 +152,7 @@ export const StepsExample = {
       title: 'Complex steps',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: stepsComplexSource,
         },
       ],
@@ -171,7 +171,7 @@ export const StepsExample = {
       title: 'Heading elements',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: headingElementStepsSource,
         },
       ],
@@ -198,7 +198,7 @@ export const StepsExample = {
       title: 'Steps status',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: statusSource,
         },
       ],
@@ -220,21 +220,19 @@ export const StepsExample = {
       title: 'Custom title sizes',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: stepsTitleSizesSource,
         },
       ],
       text: (
-        <Fragment>
-          <p>
-            You can set a different title size using{' '}
-            <EuiCode>titleSize</EuiCode>. If <EuiCode>titleSize</EuiCode> is set
-            in both <strong>EuiSteps</strong> and <strong>EuiStep</strong>, the
-            latter value will override the former. Additionally, the title size{' '}
-            <EuiCode>xs</EuiCode> will automatically generate smaller steps
-            circles.
-          </p>
-        </Fragment>
+        <p>
+          You can set a different title size using <EuiCode>titleSize</EuiCode>.
+          If <EuiCode>titleSize</EuiCode> is set in both{' '}
+          <strong>EuiSteps</strong> and <strong>EuiStep</strong>, the latter
+          value will override the former. Additionally, the title size{' '}
+          <EuiCode>xs</EuiCode> will automatically generate smaller steps
+          circles.
+        </p>
       ),
       demo: <StepsTitleSizes />,
       snippet: stepsTitleSizesSnippet,
@@ -243,12 +241,12 @@ export const StepsExample = {
       title: 'Horizontal steps',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: stepsHorizontalSource,
         },
       ],
       text: (
-        <Fragment>
+        <>
           <p>
             For use when forms/setup instructions can and should be split into
             multiple pages. Each step should correspond to an individual page of
@@ -262,7 +260,7 @@ export const StepsExample = {
             filled styling is reserved for indicating{' '}
             <EuiCode>{'"current"'}</EuiCode> status.
           </p>
-        </Fragment>
+        </>
       ),
       demo: <StepsHorizontal />,
       snippet: stepsHorizontalSnippet,

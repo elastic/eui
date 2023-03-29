@@ -7,13 +7,13 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiStep"
+    class="euiStep emotion-euiStep-s"
   >
     <div
-      class="euiStep__titleWrapper"
+      class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
     >
       <span
-        class="euiStepNumber euiStep__circle"
+        class="euiStepNumber emotion-euiStepNumber-s"
       >
         <span
           class="emotion-euiScreenReaderOnly"
@@ -22,19 +22,19 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
         </span>
         <span
           aria-hidden="true"
-          class="euiStepNumber__number"
+          class="euiStepNumber__number emotion-euiStepNumber__number"
         >
           1
         </span>
       </span>
       <h2
-        class="euiTitle euiStep__title emotion-euiTitle-s"
+        class="euiTitle euiStep__title emotion-euiTitle-s-euiStep__title-s"
       >
         first title
       </h2>
     </div>
     <div
-      class="euiStep__content"
+      class="euiStep__content emotion-euiStep__content-m"
     >
       <p>
         Do this first
@@ -42,13 +42,13 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
     </div>
   </div>
   <div
-    class="euiStep"
+    class="euiStep emotion-euiStep-s"
   >
     <div
-      class="euiStep__titleWrapper"
+      class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
     >
       <span
-        class="euiStepNumber euiStep__circle"
+        class="euiStepNumber emotion-euiStepNumber-s"
       >
         <span
           class="emotion-euiScreenReaderOnly"
@@ -57,19 +57,19 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
         </span>
         <span
           aria-hidden="true"
-          class="euiStepNumber__number"
+          class="euiStepNumber__number emotion-euiStepNumber__number"
         >
           2
         </span>
       </span>
       <h2
-        class="euiTitle euiStep__title emotion-euiTitle-s"
+        class="euiTitle euiStep__title emotion-euiTitle-s-euiStep__title-s"
       >
         second title
       </h2>
     </div>
     <div
-      class="euiStep__content"
+      class="euiStep__content emotion-euiStep__content-m"
     >
       <p>
         Then this
@@ -77,13 +77,13 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
     </div>
   </div>
   <div
-    class="euiStep"
+    class="euiStep emotion-euiStep-s"
   >
     <div
-      class="euiStep__titleWrapper"
+      class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
     >
       <span
-        class="euiStepNumber euiStepNumber--incomplete euiStep__circle"
+        class="euiStepNumber emotion-euiStepNumber-s-incomplete"
       >
         <span
           class="emotion-euiScreenReaderOnly"
@@ -92,19 +92,19 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
         </span>
         <span
           aria-hidden="true"
-          class="euiStepNumber__number"
+          class="euiStepNumber__number emotion-euiStepNumber__number-incomplete"
         >
           3
         </span>
       </span>
       <h2
-        class="euiTitle euiStep__title emotion-euiTitle-s"
+        class="euiTitle euiStep__title emotion-euiTitle-s-euiStep__title-s"
       >
         third title
       </h2>
     </div>
     <div
-      class="euiStep__content"
+      class="euiStep__content emotion-euiStep__content-m"
     >
       <p>
         And finally, do this
@@ -121,13 +121,13 @@ exports[`EuiSteps renders steps 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiStep"
+    class="euiStep emotion-euiStep-s"
   >
     <div
-      class="euiStep__titleWrapper"
+      class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
     >
       <span
-        class="euiStepNumber euiStep__circle"
+        class="euiStepNumber emotion-euiStepNumber-s"
       >
         <span
           class="emotion-euiScreenReaderOnly"
@@ -136,19 +136,19 @@ exports[`EuiSteps renders steps 1`] = `
         </span>
         <span
           aria-hidden="true"
-          class="euiStepNumber__number"
+          class="euiStepNumber__number emotion-euiStepNumber__number"
         >
           1
         </span>
       </span>
       <p
-        class="euiTitle euiStep__title emotion-euiTitle-s"
+        class="euiTitle euiStep__title emotion-euiTitle-s-euiStep__title-s"
       >
         first title
       </p>
     </div>
     <div
-      class="euiStep__content"
+      class="euiStep__content emotion-euiStep__content-m"
     >
       <p>
         Do this first
@@ -156,13 +156,13 @@ exports[`EuiSteps renders steps 1`] = `
     </div>
   </div>
   <div
-    class="euiStep"
+    class="euiStep emotion-euiStep-s"
   >
     <div
-      class="euiStep__titleWrapper"
+      class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
     >
       <span
-        class="euiStepNumber euiStep__circle"
+        class="euiStepNumber emotion-euiStepNumber-s"
       >
         <span
           class="emotion-euiScreenReaderOnly"
@@ -171,19 +171,19 @@ exports[`EuiSteps renders steps 1`] = `
         </span>
         <span
           aria-hidden="true"
-          class="euiStepNumber__number"
+          class="euiStepNumber__number emotion-euiStepNumber__number"
         >
           2
         </span>
       </span>
       <p
-        class="euiTitle euiStep__title emotion-euiTitle-s"
+        class="euiTitle euiStep__title emotion-euiTitle-s-euiStep__title-s"
       >
         second title
       </p>
     </div>
     <div
-      class="euiStep__content"
+      class="euiStep__content emotion-euiStep__content-m"
     >
       <p>
         Then this
@@ -191,13 +191,13 @@ exports[`EuiSteps renders steps 1`] = `
     </div>
   </div>
   <div
-    class="euiStep"
+    class="euiStep emotion-euiStep-s"
   >
     <div
-      class="euiStep__titleWrapper"
+      class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
     >
       <span
-        class="euiStepNumber euiStepNumber--incomplete euiStep__circle"
+        class="euiStepNumber emotion-euiStepNumber-s-incomplete"
       >
         <span
           class="emotion-euiScreenReaderOnly"
@@ -206,19 +206,19 @@ exports[`EuiSteps renders steps 1`] = `
         </span>
         <span
           aria-hidden="true"
-          class="euiStepNumber__number"
+          class="euiStepNumber__number emotion-euiStepNumber__number-incomplete"
         >
           3
         </span>
       </span>
       <p
-        class="euiTitle euiStep__title emotion-euiTitle-s"
+        class="euiTitle euiStep__title emotion-euiTitle-s-euiStep__title-s"
       >
         third title
       </p>
     </div>
     <div
-      class="euiStep__content"
+      class="euiStep__content emotion-euiStep__content-m"
     >
       <p>
         And finally, do this
@@ -235,13 +235,13 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiStep"
+    class="euiStep emotion-euiStep-s"
   >
     <div
-      class="euiStep__titleWrapper"
+      class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
     >
       <span
-        class="euiStepNumber euiStep__circle"
+        class="euiStepNumber emotion-euiStepNumber-s"
       >
         <span
           class="emotion-euiScreenReaderOnly"
@@ -250,19 +250,19 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
         </span>
         <span
           aria-hidden="true"
-          class="euiStepNumber__number"
+          class="euiStepNumber__number emotion-euiStepNumber__number"
         >
           10
         </span>
       </span>
       <p
-        class="euiTitle euiStep__title emotion-euiTitle-s"
+        class="euiTitle euiStep__title emotion-euiTitle-s-euiStep__title-s"
       >
         first title
       </p>
     </div>
     <div
-      class="euiStep__content"
+      class="euiStep__content emotion-euiStep__content-m"
     >
       <p>
         Do this first
@@ -270,13 +270,13 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
     </div>
   </div>
   <div
-    class="euiStep"
+    class="euiStep emotion-euiStep-s"
   >
     <div
-      class="euiStep__titleWrapper"
+      class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
     >
       <span
-        class="euiStepNumber euiStep__circle"
+        class="euiStepNumber emotion-euiStepNumber-s"
       >
         <span
           class="emotion-euiScreenReaderOnly"
@@ -285,19 +285,19 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
         </span>
         <span
           aria-hidden="true"
-          class="euiStepNumber__number"
+          class="euiStepNumber__number emotion-euiStepNumber__number"
         >
           11
         </span>
       </span>
       <p
-        class="euiTitle euiStep__title emotion-euiTitle-s"
+        class="euiTitle euiStep__title emotion-euiTitle-s-euiStep__title-s"
       >
         second title
       </p>
     </div>
     <div
-      class="euiStep__content"
+      class="euiStep__content emotion-euiStep__content-m"
     >
       <p>
         Then this
@@ -305,13 +305,13 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
     </div>
   </div>
   <div
-    class="euiStep"
+    class="euiStep emotion-euiStep-s"
   >
     <div
-      class="euiStep__titleWrapper"
+      class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
     >
       <span
-        class="euiStepNumber euiStepNumber--incomplete euiStep__circle"
+        class="euiStepNumber emotion-euiStepNumber-s-incomplete"
       >
         <span
           class="emotion-euiScreenReaderOnly"
@@ -320,19 +320,19 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
         </span>
         <span
           aria-hidden="true"
-          class="euiStepNumber__number"
+          class="euiStepNumber__number emotion-euiStepNumber__number-incomplete"
         >
           12
         </span>
       </span>
       <p
-        class="euiTitle euiStep__title emotion-euiTitle-s"
+        class="euiTitle euiStep__title emotion-euiTitle-s-euiStep__title-s"
       >
         third title
       </p>
     </div>
     <div
-      class="euiStep__content"
+      class="euiStep__content emotion-euiStep__content-m"
     >
       <p>
         And finally, do this
@@ -349,13 +349,13 @@ exports[`EuiSteps renders steps with titleSize 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiStep euiStep--small"
+    class="euiStep emotion-euiStep-xs"
   >
     <div
-      class="euiStep__titleWrapper"
+      class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
     >
       <span
-        class="euiStepNumber euiStep__circle euiStepNumber--small"
+        class="euiStepNumber emotion-euiStepNumber-xs"
       >
         <span
           class="emotion-euiScreenReaderOnly"
@@ -364,19 +364,19 @@ exports[`EuiSteps renders steps with titleSize 1`] = `
         </span>
         <span
           aria-hidden="true"
-          class="euiStepNumber__number"
+          class="euiStepNumber__number emotion-euiStepNumber__number"
         >
           1
         </span>
       </span>
       <p
-        class="euiTitle euiStep__title emotion-euiTitle-xs"
+        class="euiTitle euiStep__title emotion-euiTitle-xs-euiStep__title-xs"
       >
         first title
       </p>
     </div>
     <div
-      class="euiStep__content"
+      class="euiStep__content emotion-euiStep__content-xs"
     >
       <p>
         Do this first
@@ -384,13 +384,13 @@ exports[`EuiSteps renders steps with titleSize 1`] = `
     </div>
   </div>
   <div
-    class="euiStep euiStep--small"
+    class="euiStep emotion-euiStep-xs"
   >
     <div
-      class="euiStep__titleWrapper"
+      class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
     >
       <span
-        class="euiStepNumber euiStep__circle euiStepNumber--small"
+        class="euiStepNumber emotion-euiStepNumber-xs"
       >
         <span
           class="emotion-euiScreenReaderOnly"
@@ -399,19 +399,19 @@ exports[`EuiSteps renders steps with titleSize 1`] = `
         </span>
         <span
           aria-hidden="true"
-          class="euiStepNumber__number"
+          class="euiStepNumber__number emotion-euiStepNumber__number"
         >
           2
         </span>
       </span>
       <p
-        class="euiTitle euiStep__title emotion-euiTitle-xs"
+        class="euiTitle euiStep__title emotion-euiTitle-xs-euiStep__title-xs"
       >
         second title
       </p>
     </div>
     <div
-      class="euiStep__content"
+      class="euiStep__content emotion-euiStep__content-xs"
     >
       <p>
         Then this
@@ -419,13 +419,13 @@ exports[`EuiSteps renders steps with titleSize 1`] = `
     </div>
   </div>
   <div
-    class="euiStep euiStep--small"
+    class="euiStep emotion-euiStep-xs"
   >
     <div
-      class="euiStep__titleWrapper"
+      class="euiStep__titleWrapper emotion-euiStep__titleWrapper"
     >
       <span
-        class="euiStepNumber euiStepNumber--incomplete euiStep__circle euiStepNumber--small"
+        class="euiStepNumber emotion-euiStepNumber-xs-incomplete"
       >
         <span
           class="emotion-euiScreenReaderOnly"
@@ -434,19 +434,19 @@ exports[`EuiSteps renders steps with titleSize 1`] = `
         </span>
         <span
           aria-hidden="true"
-          class="euiStepNumber__number"
+          class="euiStepNumber__number emotion-euiStepNumber__number-incomplete"
         >
           3
         </span>
       </span>
       <p
-        class="euiTitle euiStep__title emotion-euiTitle-xs"
+        class="euiTitle euiStep__title emotion-euiTitle-xs-euiStep__title-xs"
       >
         third title
       </p>
     </div>
     <div
-      class="euiStep__content"
+      class="euiStep__content emotion-euiStep__content-xs"
     >
       <p>
         And finally, do this

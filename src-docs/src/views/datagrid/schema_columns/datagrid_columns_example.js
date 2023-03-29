@@ -293,8 +293,7 @@ schemaDetectors={[
           <p>
             The footer row is defined by passing{' '}
             <EuiCode>renderFooterCellValue</EuiCode> function prop into{' '}
-            <strong>EuiDataGrid</strong>.{' '}
-            <EuiCode>renderFooterCellValue</EuiCode> acts like a React
+            <strong>EuiDataGrid</strong>. This function acts like a React
             component, receiving{' '}
             <EuiCode>EuiDataGridCellValueElementProps</EuiCode> and returning a
             React node.
@@ -303,6 +302,10 @@ schemaDetectors={[
             When rendering footer cell values, we encourage turning off cell
             expansion on cells without content with{' '}
             <EuiCode>setCellProps({'{ isExpandable: false }'})</EuiCode>.
+          </p>
+          <p>
+            Control columns will render empty footer cells by default, unless a
+            custom <EuiCode>footerCellRender</EuiCode> function is passed.
           </p>
         </Fragment>
       ),

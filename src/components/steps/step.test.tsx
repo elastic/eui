@@ -9,11 +9,18 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiStep } from './step';
 import { STATUS } from './step_number';
 
 describe('EuiStep', () => {
+  shouldRenderCustomStyles(
+    <EuiStep {...requiredProps} title={'First step'}>
+      <p>Do this</p>
+    </EuiStep>
+  );
+
   test('is rendered', () => {
     const component = render(
       <EuiStep {...requiredProps} title={'First step'}>

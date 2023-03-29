@@ -7,7 +7,6 @@ exports[`EuiTourStepIndicator can be complete 1`] = `
   data-test-subj="test subject string"
 >
   <span
-    class="euiStepNumber__icon"
     color="subdued"
     data-euiicon-type="dot"
   >
@@ -23,7 +22,6 @@ exports[`EuiTourStepIndicator can be incomplete 1`] = `
   data-test-subj="test subject string"
 >
   <span
-    class="euiStepNumber__icon"
     color="subdued"
     data-euiicon-type="dot"
   >
@@ -40,7 +38,6 @@ exports[`EuiTourStepIndicator is rendered 1`] = `
 >
   <span
     aria-current="step"
-    class="euiStepNumber__icon"
     color="success"
     data-euiicon-type="dot"
   >

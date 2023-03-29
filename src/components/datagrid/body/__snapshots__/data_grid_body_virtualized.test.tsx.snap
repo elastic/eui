@@ -1,0 +1,191 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiDataGridBodyVirtualized renders 1`] = `
+<div
+  class="euiDataGrid__virtualized"
+  style="position:relative;height:9007199254740991px;width:9007199254740991px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
+>
+  <div
+    style="height:34px;width:200px"
+  >
+    <div
+      class="euiDataGridHeader"
+      data-test-subj="dataGridHeader"
+      role="row"
+    >
+      <div
+        class="euiDataGridHeaderCell euiDataGridHeaderCell--boolean"
+        data-gridcell-column-id="columnA"
+        data-gridcell-column-index="0"
+        data-gridcell-row-index="-1"
+        data-gridcell-visible-row-index="-1"
+        data-test-subj="dataGridHeaderCell-columnA"
+        role="columnheader"
+        style="width:100px"
+        tabindex="-1"
+      >
+        <div
+          class="euiDataGridColumnResizer"
+          data-test-subj="dataGridColumnResizer"
+          style="margin-right:0px"
+        />
+        <div
+          class="euiPopover eui-fullWidth emotion-euiPopover"
+        >
+          <div
+            class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
+          >
+            <button
+              aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
+              class="euiDataGridHeaderCell__button"
+            >
+              <div
+                class="euiDataGridHeaderCell__content"
+                title="columnA"
+              >
+                columnA
+              </div>
+              <span
+                class="euiDataGridHeaderCell__icon"
+                color="text"
+                data-euiicon-type="arrowDown"
+                data-test-subj="dataGridHeaderCellActionButton-columnA"
+              />
+            </button>
+          </div>
+        </div>
+        <p
+          hidden=""
+          id="euiDataGridCellHeader_generated-id_sorting"
+        />
+        <p
+          hidden=""
+          id="euiDataGridCellHeader_generated-id_actions"
+        >
+          Click to view column header actions
+        </p>
+      </div>
+      <div
+        class="euiDataGridHeaderCell euiDataGridHeaderCell--string"
+        data-gridcell-column-id="columnB"
+        data-gridcell-column-index="1"
+        data-gridcell-row-index="-1"
+        data-gridcell-visible-row-index="-1"
+        data-test-subj="dataGridHeaderCell-columnB"
+        role="columnheader"
+        style="width:100px"
+        tabindex="-1"
+      >
+        <div
+          class="euiDataGridColumnResizer"
+          data-test-subj="dataGridColumnResizer"
+          style="margin-right:0px"
+        />
+        <div
+          class="euiPopover eui-fullWidth emotion-euiPopover"
+        >
+          <div
+            class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
+          >
+            <button
+              aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
+              class="euiDataGridHeaderCell__button"
+            >
+              <div
+                class="euiDataGridHeaderCell__content"
+                title="columnB"
+              >
+                columnB
+              </div>
+              <span
+                class="euiDataGridHeaderCell__icon"
+                color="text"
+                data-euiicon-type="arrowDown"
+                data-test-subj="dataGridHeaderCellActionButton-columnB"
+              />
+            </button>
+          </div>
+        </div>
+        <p
+          hidden=""
+          id="euiDataGridCellHeader_generated-id_sorting"
+        />
+        <p
+          hidden=""
+          id="euiDataGridCellHeader_generated-id_actions"
+        >
+          Click to view column header actions
+        </p>
+      </div>
+    </div>
+    <div
+      aria-rowindex="1"
+      class="euiDataGridRowCell euiDataGridRowCell--boolean euiDataGridRowCell--firstColumn"
+      data-gridcell-column-id="columnA"
+      data-gridcell-column-index="0"
+      data-gridcell-row-index="0"
+      data-gridcell-visible-row-index="0"
+      data-test-subj="dataGridRowCell"
+      role="gridcell"
+      style="position:absolute;left:0;top:0;height:34px;width:100px"
+      tabindex="-1"
+    >
+      <div
+        class="euiDataGridRowCell__expandFlex"
+      >
+        <div
+          class="euiDataGridRowCell__expandContent"
+        >
+          <div
+            class="euiDataGridRowCell__truncate"
+            data-datagrid-cellcontent="true"
+          >
+            <span>
+              cell content
+            </span>
+          </div>
+          <p
+            class="emotion-euiScreenReaderOnly"
+          >
+            - columnA, column 1, row 1
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      aria-rowindex="1"
+      class="euiDataGridRowCell euiDataGridRowCell--string euiDataGridRowCell--lastColumn"
+      data-gridcell-column-id="columnB"
+      data-gridcell-column-index="1"
+      data-gridcell-row-index="0"
+      data-gridcell-visible-row-index="0"
+      data-test-subj="dataGridRowCell"
+      role="gridcell"
+      style="position:absolute;left:100px;top:0;height:34px;width:100px"
+      tabindex="-1"
+    >
+      <div
+        class="euiDataGridRowCell__expandFlex"
+      >
+        <div
+          class="euiDataGridRowCell__expandContent"
+        >
+          <div
+            class="euiDataGridRowCell__truncate"
+            data-datagrid-cellcontent="true"
+          >
+            <span>
+              cell content
+            </span>
+          </div>
+          <p
+            class="emotion-euiScreenReaderOnly"
+          >
+            - columnB, column 2, row 1
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

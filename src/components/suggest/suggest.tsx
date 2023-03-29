@@ -15,9 +15,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../common';
-import { useGeneratedHtmlId } from '../../services';
 
-import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiIcon } from '../icon';
 import { useEuiI18n } from '../i18n';
 import { EuiInputPopover } from '../popover';
@@ -182,8 +180,6 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
     onSearch?.(value);
   };
 
-  const inputDescribedbyId = useGeneratedHtmlId({ prefix: id });
-
   /**
    * Status
    */
@@ -290,6 +286,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
   return (
     <>
       <EuiSelectable<EuiSuggestionProps>
+        selectableScreenReaderText={stateMessage}
         singleSelection={true}
         height={isVirtualized ? undefined : 'full'}
         options={suggestionList}
@@ -314,7 +311,6 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
           onBlur: searchOnBlur,
           onInput: searchOnInput,
           onChange: searchOnChange,
-          'aria-describedby': inputDescribedbyId,
           'aria-label': ariaLabel,
           'aria-labelledby': labelId,
           ...rest,
@@ -341,9 +337,6 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
           </EuiInputPopover>
         )}
       </EuiSelectable>
-      <EuiScreenReaderOnly>
-        <p id={inputDescribedbyId}>{stateMessage}</p>
-      </EuiScreenReaderOnly>
     </>
   );
 };

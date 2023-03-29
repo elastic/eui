@@ -79,7 +79,7 @@ const dangerToastSnippet = [
   `<EuiToast
   title="Danger toast"
   color="danger"
-  iconType="alert"
+  iconType="error"
   onClose={closeToast}>
   <!-- Raw HTML content -->
   </EuiToast>`,
@@ -159,7 +159,8 @@ export const ToastExample = {
       ],
       text: (
         <p>
-          Setting <EuiCode language="js">type=&quot;info&quot;</EuiCode>.
+          For informative messages use{' '}
+          <EuiCode language="js">type=&quot;info&quot;</EuiCode>.
         </p>
       ),
       demo: (
@@ -179,7 +180,8 @@ export const ToastExample = {
       ],
       text: (
         <p>
-          Setting <EuiCode language="js">color=&quot;success&quot;</EuiCode>.
+          For success messages use{' '}
+          <EuiCode language="js">color=&quot;success&quot;</EuiCode>.
         </p>
       ),
       demo: (
@@ -199,7 +201,14 @@ export const ToastExample = {
       ],
       text: (
         <p>
-          Setting <EuiCode language="js">color=&quot;warning&quot;</EuiCode>.
+          Use this callout to warn the user against decisions they might regret.
+          Show a warning message when the program detects that{' '}
+          <b>
+            something is not behaving right, but it didn&apos;t cause any
+            termination.
+          </b>{' '}
+          For warning messages use{' '}
+          <EuiCode language="js">color=&quot;warning&quot;</EuiCode>.
         </p>
       ),
       demo: (
@@ -219,7 +228,15 @@ export const ToastExample = {
       ],
       text: (
         <p>
-          Setting <EuiCode language="js">color=&quot;danger&quot;</EuiCode>.
+          Use this callout to let the user know that something went wrong. For
+          example if you want to communicate an error. You should show an error
+          message when the issue is{' '}
+          <b>
+            terminal, this doesn&apos;t always mean that the operation stops
+            completely, but the task is not complete
+          </b>
+          . For errors messages use{' '}
+          <EuiCode language="js">color=&quot;danger&quot;</EuiCode>.
         </p>
       ),
       demo: (
