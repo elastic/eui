@@ -51,7 +51,7 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
 
   const theme = useEuiTheme();
   const styles = euiInlineEditTitleStyles(theme);
-  const cssStyles = styles.fontSize[size];
+  const cssStyles = [styles.euiInlineEditTitle, styles.fontSize[size]];
 
   const H: Heading = heading;
 
