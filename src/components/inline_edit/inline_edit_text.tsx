@@ -15,6 +15,8 @@ import {
   SMALL_SIZE_FORM,
   MEDIUM_SIZE_FORM,
 } from './inline_edit_form';
+import { useEuiTheme } from '../../services';
+import { euiInlineEditTextStyles } from './inline_edit_text.styles';
 
 export type EuiInlineEditTextSizes = Exclude<EuiTextProps['size'], 'relative'>;
 
@@ -41,6 +43,10 @@ export const EuiInlineEditText: FunctionComponent<EuiInlineEditTextProps> = ({
 }) => {
   const classes = classNames('euiInlineEditText', className);
 
+  const theme = useEuiTheme();
+  const styles = euiInlineEditTextStyles(theme);
+  const cssStyles = styles.fontSize[size];
+
   const isSmallSize = ['xs', 's'].includes(size);
   const sizes = isSmallSize ? SMALL_SIZE_FORM : MEDIUM_SIZE_FORM;
 
@@ -57,9 +63,16 @@ export const EuiInlineEditText: FunctionComponent<EuiInlineEditTextProps> = ({
   };
 
   return (
-    <EuiInlineEditForm className={classes} {...rest} {...formProps}>
+    <EuiInlineEditForm
+      className={classes}
+      css={cssStyles}
+      {...rest}
+      {...formProps}
+    >
       {(textReadModeValue) => (
-        <EuiText size={size}>{textReadModeValue}</EuiText>
+        <EuiText size={size} className="eui-textTruncate">
+          {textReadModeValue}
+        </EuiText>
       )}
     </EuiInlineEditForm>
   );
