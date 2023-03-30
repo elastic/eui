@@ -15,6 +15,8 @@ import {
   SMALL_SIZE_FORM,
   MEDIUM_SIZE_FORM,
 } from './inline_edit_form';
+import { useEuiTheme } from '../../services';
+import { euiInlineEditTitleStyles } from './inline_edit_title.styles';
 
 export const HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const;
 type Heading = typeof HEADINGS[number];
@@ -47,6 +49,10 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
 }) => {
   const classes = classNames('euiInlineEditTitle', className);
 
+  const theme = useEuiTheme();
+  const styles = euiInlineEditTitleStyles(theme);
+  const cssStyles = [styles.euiInlineEditTitle, styles.fontSize[size]];
+
   const H: Heading = heading;
 
   const isSmallSize = ['xxxs', 'xxs', 'xs', 's'].includes(size);
@@ -65,9 +71,14 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
   };
 
   return (
-    <EuiInlineEditForm className={classes} {...rest} {...formProps}>
+    <EuiInlineEditForm
+      css={cssStyles}
+      className={classes}
+      {...rest}
+      {...formProps}
+    >
       {(titleReadModeValue) => (
-        <EuiTitle size={size}>
+        <EuiTitle size={size} className="eui-textTruncate">
           <H>{titleReadModeValue}</H>
         </EuiTitle>
       )}

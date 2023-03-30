@@ -2,7 +2,7 @@
 
 exports[`EuiInlineEditText props renders as text 1`] = `
 <div
-  class="euiInlineEdit euiInlineEditText testClass1 testClass2"
+  class="euiInlineEdit euiInlineEditText testClass1 testClass2 emotion-euiInlineEditText-m-m"
 >
   <button
     class="euiButtonEmpty euiButtonEmpty--flushBoth css-wvaqcf-empty-text"
@@ -20,7 +20,7 @@ exports[`EuiInlineEditText props renders as text 1`] = `
         class="euiButtonEmpty__text"
       >
         <div
-          class="euiText emotion-euiText-m"
+          class="euiText eui-textTruncate emotion-euiText-m"
         >
           hello world
         </div>
