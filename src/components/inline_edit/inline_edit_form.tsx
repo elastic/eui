@@ -52,6 +52,15 @@ export type EuiInlineEditCommonProps = CommonProps & {
    * Props that will be applied directly to the EuiFieldText displayed in editMode
    */
   editModeProps?: EuiFieldTextProps;
+  /**
+   * Loading state when changes are saved in editMode
+   */
+  isLoading?: boolean;
+
+  /**
+   * Validation for the form control used to edit text in editMode
+   */
+  isInvalid?: boolean;
 };
 
 // Internal-only props, passed by the consumer-facing components
@@ -94,13 +103,10 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   startWithEditOpen,
   readModeProps,
   editModeProps,
+  isLoading,
+  isInvalid,
 }) => {
   const classes = classNames('euiInlineEdit', className);
-
-  // Styles to come later! (Styling editMode text to match the size of its readMode counterpart)
-  /*const theme = useEuiTheme();
-  const styles = euiInlineEditStyles(theme);
-  const cssStyles = [styles.euiInlineEdit];*/
 
   const defaultSaveButtonAriaLabel = useEuiI18n(
     'euiInlineEditForm.saveButtonAriaLabel',
@@ -148,6 +154,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
             aria-label={inputAriaLabel}
             autoFocus
             compressed={sizes.compressed}
+            isInvalid={isInvalid}
             {...editModeProps}
           />
         </EuiFlexItem>
@@ -162,6 +169,8 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
               display="base"
               size={sizes.buttonSize}
               iconSize={sizes.iconSize}
+              disabled={isInvalid}
+              isLoading={isLoading}
             />
           </EuiFormRow>
         </EuiFlexItem>
@@ -176,6 +185,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
               display="base"
               size={sizes.buttonSize}
               iconSize={sizes.iconSize}
+              isLoading={isLoading}
             />
           </EuiFormRow>
         </EuiFlexItem>
