@@ -16,8 +16,8 @@ $euiFontSizeXXL:  floor($euiFontSize * 2.43); // 34px // h1
 
 $euiBodyLineHeight: 1.142857143 !default; // 16px from a 14px base font size to ensure it aligns to our 16px grid
 
-$euiCodeFontWeightRegular: 400 !default;
-$euiCodeFontWeightBold: 700 !default;
+$euiCodeFontWeightRegular: 400;
+$euiCodeFontWeightBold: 700;
 
 // Normally functions are imported before variables in `_index.scss` files
 // But because they need to consume some typography variables they need to live here
