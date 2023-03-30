@@ -13,13 +13,12 @@ import { EuiBasicTable } from '../basic_table';
 import { EuiCallOut } from '../call_out';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiHealth } from '../health';
-import { EuiSwitch } from '../form';
 import { EuiSearchBar } from './search_bar';
 import { EuiSpacer } from '../spacer';
 import { times } from '../../services/utils';
 import { Random } from '../../services';
 
-const initialQuery = 'status:open';
+const initialQuery = '';
 const random = new Random();
 const types = ['dashboard', 'visualization', 'watch'];
 const users = ['dewey', 'wanda', 'carrie', 'jmack', 'gabic'];
@@ -51,14 +50,12 @@ const items = times(5, (id) => {
 
 const loadTags = () => {
   return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(
-        tags.map((tag) => ({
-          value: tag.name,
-          view: <EuiHealth color={tag.color}>{tag.name}</EuiHealth>,
-        }))
-      );
-    }, 2000);
+    resolve(
+      tags.map((tag) => ({
+        value: tag.name,
+        view: <EuiHealth color={tag.color}>{tag.name}</EuiHealth>,
+      }))
+    );
   });
 };
 
@@ -238,6 +235,56 @@ describe('EuiSearchBar', () => {
   });
 
   describe('Automated accessibility check', () => {
-    it('has zero violations when rendered', () => {});
+    it('has zero violations when rendered', () => {
+      cy.get('table.euiTable tbody').find('tr').should('have.length', 5);
+      cy.checkAxe();
+    });
+  });
+
+  describe('Keyboard accessibility', () => {
+    it('has zero violations after a full-text search', () => {
+      cy.realPress('Tab');
+      cy.get('input[type="search"]').should('have.focus');
+      cy.get('input[type="search"]').type('watch');
+      cy.realPress('Enter');
+      cy.get('table.euiTable tbody').find('tr').should('have.lengthOf.lte', 5);
+      cy.checkAxe();
+      cy.realPress('Tab');
+      cy.get('button[data-test-subj="clearSearchButton"]').should('have.focus');
+      cy.realPress('Enter');
+      cy.get('table.euiTable tbody').find('tr').should('have.length', 5);
+      cy.checkAxe();
+    });
+
+    it('has zero violations after filtering on Open items', () => {
+      cy.repeatRealPress('Tab');
+      cy.get('button.euiButtonEmpty').first().should('have.focus');
+      cy.realPress('Enter');
+      cy.get('table.euiTable tbody').find('tr').should('have.lengthOf.lte', 5);
+      cy.checkAxe();
+      cy.realPress(['Shift', 'Tab']);
+      cy.get('button[data-test-subj="clearSearchButton"]').should('have.focus');
+      cy.realPress('Enter');
+      cy.get('table.euiTable tbody').find('tr').should('have.length', 5);
+      cy.checkAxe();
+    });
+
+    it('has zero violations after filtering by Tags', () => {
+      cy.repeatRealPress('Tab', 4);
+      cy.get('button.euiButtonEmpty').last().should('have.focus');
+      cy.realPress('Enter');
+      cy.realPress('Tab');
+      cy.realPress('ArrowDown');
+      cy.realPress('Enter');
+      cy.realPress('Escape');
+      cy.get('button.euiButtonEmpty').last().should('have.focus');
+      cy.get('table.euiTable tbody').find('tr').should('have.lengthOf.lte', 5);
+      cy.checkAxe();
+      cy.repeatRealPress(['Shift', 'Tab'], 3);
+      cy.get('button[data-test-subj="clearSearchButton"]').should('have.focus');
+      cy.realPress('Enter');
+      cy.get('table.euiTable tbody').find('tr').should('have.length', 5);
+      cy.checkAxe();
+    });
   });
 });
