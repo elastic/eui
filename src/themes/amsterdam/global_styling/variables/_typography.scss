@@ -1,9 +1,9 @@
 // Finally start using the non-beta version of Inter
-$euiFontFamily: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+$euiFontFamily: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol' !default;
 
 // Font sizes -- scale is loosely based on Major Third (1.250) with a base of 14px
 // Base list is an altered scale based on 16px to match the resulted values below
-$euiTextScale:    2.125, 1.6875, 1.375, 1.125, 1, .875, .75;
+$euiTextScale:    2.125, 1.6875, 1.375, 1.125, 1, .875, .75 !default;
 
 $euiFontSize:     $euiSize - 2; // 14px
 
@@ -14,7 +14,7 @@ $euiFontSizeL:     ceil($euiFontSize * 1.57); // 22px // h3
 $euiFontSizeXL:   floor($euiFontSize * 1.93); // 27px // h2
 $euiFontSizeXXL:  floor($euiFontSize * 2.43); // 34px // h1
 
-$euiBodyLineHeight: 1.142857143; // 16px from a 14px base font size to ensure it aligns to our 16px grid
+$euiBodyLineHeight: 1.142857143 !default; // 16px from a 14px base font size to ensure it aligns to our 16px grid
 
 $euiCodeFontWeightRegular: 400;
 $euiCodeFontWeightBold: 700;
