@@ -79,8 +79,10 @@ and space to read it properly. Alternatively just link to a full page.
 
         <p>
           Default toast messages appear, give users time to read or listen to
-          the announcement, and fade out. They communicate passive information
-          that does not require the user to take action.
+          the announcement, and fade out. They generally communicate passive
+          information that does not require the user to take action. If user
+          action is required, focus state must be manually managed in order for
+          keyboard users to have immediate access to the action.
         </p>
       </EuiText>
 
@@ -175,54 +177,6 @@ and space to read it properly. Alternatively just link to a full page.
             </EuiText>
           </EuiFlexItem>
         </EuiFlexGroup>
-
-        <EuiSpacer />
-
-        <div className="euiTitle guideRule__title">
-          <EuiText grow={false}>
-            <p>
-              Toast messages that require the user to take an action should
-              include an autofocused button. An example is prompting a user to
-              download their report.
-            </p>
-          </EuiText>
-
-          <EuiSpacer size="xl" />
-
-          <EuiFlexGroup alignItems="center">
-            <EuiFlexItem grow={false} style={{ minWidth: 120 }}>
-              <EuiToast
-                style={{ width: 300 }}
-                title="Focusable toast"
-                color="warning"
-              >
-                <>
-                  <p>This is a security measure.</p>
-                  <p>
-                    Please click the button below or move your mouse to show
-                    that you&rsquo;re still using Kibana.
-                  </p>
-                  <EuiButton>Extend my session</EuiButton>
-                </>
-              </EuiToast>
-            </EuiFlexItem>
-
-            <EuiFlexItem>
-              <EuiText>
-                <dt>
-                  Include an <EuiCode>EuiButton</EuiCode> with an{' '}
-                  <EuiCode>autoFocus</EuiCode> prop
-                </dt>
-                <dd>
-                  The button will receive keyboard focus when the toast message
-                  appears. This gives screen reader users a chance to listen to
-                  the toast message announcement, and take action without having
-                  to navigate the entire view.
-                </dd>
-              </EuiText>
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        </div>
       </dl>
 
       <EuiSpacer />
@@ -231,7 +185,8 @@ and space to read it properly. Alternatively just link to a full page.
 
       <GuideRule
         description="Toasts are appropriate for short feedback related to a user action.
-          A toast should contain a message about a current action, not a historical action."
+          A toast should contain a message about a current action, not a historical action. 
+          Ensure users have enough time to read and understand the message."
       >
         <GuideRuleExample
           type="do"
@@ -352,6 +307,46 @@ and space to read it properly. Alternatively just link to a full page.
                 </EuiButton>
               </EuiFlexItem>
             </EuiFlexGroup>
+          </EuiToast>
+        </GuideRuleExample>
+      </GuideRule>
+
+      <GuideRuleTitle>
+        Manage keyboard focus when prompting users to take action
+      </GuideRuleTitle>
+
+      <GuideRule
+        description="Toast messages that require the user to take an action should include a button and use the isAutoFocused prop. An example is prompting a user to
+        download their report. Auto-focusing toast messages will reset focus when the button is clicked or pressed."
+      >
+        <GuideRuleExample
+          type="do"
+          text="Include at least one clickable element to close the toast message."
+        >
+          <EuiToast
+            style={{ width: 300 }}
+            title="Proper focus management"
+            color="success"
+          >
+            <>
+              <p>Please click the button below to download your report.</p>
+              <EuiButton>Download report</EuiButton>
+            </>
+          </EuiToast>
+        </GuideRuleExample>
+
+        <GuideRuleExample
+          type="dont"
+          text="Trap user focus for messages that do not require user action."
+        >
+          <EuiToast
+            style={{ width: 300 }}
+            title="Improper focus management"
+            color="danger"
+          >
+            <>
+              <p>Please be advised you are using Kibana.</p>
+            </>
           </EuiToast>
         </GuideRuleExample>
       </GuideRule>
@@ -546,47 +541,6 @@ and space to read it properly. Alternatively just link to a full page.
             >
               <p>An extremely long error trace.</p>
             </EuiCallOut>
-          </EuiToast>
-        </GuideRuleExample>
-      </GuideRule>
-
-      <GuideRuleTitle>
-        Manage keyboard focus when you ask users to take an action
-      </GuideRuleTitle>
-
-      <GuideRule description="Toast messages that require the user to take an action (download a report for instance) should include a button with an autoFocus prop. Consuming applications need to reset focus when the button is clicked or pressed.">
-        <GuideRuleExample
-          type="do"
-          text="Include at least one clickable element to close the toast message. Be sure to manage keyboard focus."
-        >
-          <EuiToast
-            style={{ width: 300 }}
-            title="Proper focus management"
-            color="success"
-          >
-            <>
-              <p>Please click the button below to download your report.</p>
-              <EuiButton>Download report</EuiButton>
-            </>
-          </EuiToast>
-        </GuideRuleExample>
-
-        <GuideRuleExample
-          type="dont"
-          text="Use a link or other element. They will not receive keyboard focus using an autoFocus prop."
-        >
-          <EuiToast
-            style={{ width: 300 }}
-            title="Improper focus management"
-            color="danger"
-          >
-            <>
-              <p>
-                Please click the link below to show that you&rsquo;re still
-                using Kibana.
-              </p>
-              <a href="#">Download report</a>
-            </>
           </EuiToast>
         </GuideRuleExample>
       </GuideRule>

@@ -65,14 +65,18 @@ export default () => {
         title: 'Logging you out soon, due to inactivity',
         color: 'warning',
         iconType: 'user',
+        isAutoFocused: true,
+        toastLifeTimeMs: 15000,
         text: (
           <Fragment>
             <p>This is a security measure.</p>
             <p>
-              Please move your mouse to show that you&rsquo;re still using
+              Please click the button to show that you&rsquo;re still using
               Kibana.
             </p>
-            <EuiButton autoFocus>Extend my session</EuiButton>
+            <EuiButton onClick={(toast) => removeToast(toast)}>
+              Extend my session
+            </EuiButton>
           </Fragment>
         ),
       },

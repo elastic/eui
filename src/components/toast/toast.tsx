@@ -27,6 +27,7 @@ import {
   euiToastBodyStyles,
   euiToastHeaderStyles,
 } from './toast.styles';
+import { EuiFocusTrap } from '../focus_trap';
 
 export const COLORS = ['primary', 'success', 'warning', 'danger'] as const;
 
@@ -39,6 +40,11 @@ export interface EuiToastProps
   color?: ToastColor;
   iconType?: IconType;
   onClose?: () => void;
+  /**
+   * Adds an `EuiFocusTrap` around the toast message and sets focus automatically.
+   * Returns focus to the triggering element when the toast message is unmounted.
+   */
+  isAutoFocused?: boolean;
 }
 
 export const EuiToast: FunctionComponent<EuiToastProps> = ({
@@ -48,6 +54,7 @@ export const EuiToast: FunctionComponent<EuiToastProps> = ({
   onClose,
   children,
   className,
+  isAutoFocused = false,
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
@@ -61,6 +68,7 @@ export const EuiToast: FunctionComponent<EuiToastProps> = ({
   ];
 
   const classes = classNames('euiToast', className);
+
   let headerIcon: ReactElement;
 
   if (iconType) {
@@ -73,6 +81,38 @@ export const EuiToast: FunctionComponent<EuiToastProps> = ({
       />
     );
   }
+
+  const toastTitle = (
+    <>
+      <EuiScreenReaderOnly>
+        <p>
+          <EuiI18n
+            token="euiToast.newNotification"
+            default="A new notification appears"
+          />
+        </p>
+      </EuiScreenReaderOnly>
+
+      <EuiI18n token="euiToast.notification" default="Notification">
+        {(notification: string) => (
+          <div
+            css={headerCss}
+            aria-label={notification}
+            data-test-subj="euiToastHeader"
+          >
+            {headerIcon}
+
+            <span
+              css={headerStyles.euiToastHeader__title}
+              data-test-subj="euiToastHeader__title"
+            >
+              {title}
+            </span>
+          </div>
+        )}
+      </EuiI18n>
+    </>
+  );
 
   let closeButton;
 
@@ -108,36 +148,17 @@ export const EuiToast: FunctionComponent<EuiToastProps> = ({
     );
   }
 
-  return (
+  return isAutoFocused ? (
     <div css={baseCss} className={classes} {...rest}>
-      <EuiScreenReaderOnly>
-        <p>
-          <EuiI18n
-            token="euiToast.newNotification"
-            default="A new notification appears"
-          />
-        </p>
-      </EuiScreenReaderOnly>
-
-      <EuiI18n token="euiToast.notification" default="Notification">
-        {(notification: string) => (
-          <div
-            css={headerCss}
-            aria-label={notification}
-            data-test-subj="euiToastHeader"
-          >
-            {headerIcon}
-
-            <span
-              css={headerStyles.euiToastHeader__title}
-              data-test-subj="euiToastHeader__title"
-            >
-              {title}
-            </span>
-          </div>
-        )}
-      </EuiI18n>
-
+      <EuiFocusTrap>
+        {toastTitle}
+        {closeButton}
+        {optionalBody}
+      </EuiFocusTrap>
+    </div>
+  ) : (
+    <div css={baseCss} className={classes} {...rest}>
+      {toastTitle}
       {closeButton}
       {optionalBody}
     </div>

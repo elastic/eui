@@ -47,6 +47,15 @@ describe('EuiToast', () => {
       });
     });
 
+    describe('isAutoFocused', () => {
+      test('is rendered', () => {
+        const component = (
+          <EuiToast iconType="user" title="test title" isAutoFocused />
+        );
+        expect(render(component)).toMatchSnapshot();
+      });
+    });
+
     describe('onClose', () => {
       test('is called when the close button is clicked', () => {
         const onCloseHandler = jest.fn();

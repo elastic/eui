@@ -290,7 +290,7 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
   return (
     <div
       aria-live="polite"
-      role="region" // TODO: Test this as "status"
+      role="region"
       ref={listElement}
       css={cssStyles}
       className={classes}
