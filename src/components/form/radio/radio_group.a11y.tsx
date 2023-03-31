@@ -12,9 +12,10 @@ import React, { useState } from 'react';
 import { EuiRadioGroup } from './radio_group';
 
 const RadioGroup = () => {
-  const radioGroupItemId__1 = 'cy-radio-1';
-  const radioGroupItemId__2 = 'cy-radio-2';
-  const radioGroupItemId__3 = 'cy-radio-3';
+  const radioGroupItemId__1 = 'cy-radio-id-1';
+  const radioGroupItemId__2 = 'cy-radio-id-2';
+  const radioGroupItemId__3 = 'cy-radio-id-3';
+  const radioGroupItemId__4 = 'cy-radio-id-4';
 
   const radios = [
     {
@@ -27,7 +28,12 @@ const RadioGroup = () => {
     },
     {
       id: radioGroupItemId__3,
-      label: 'Option three',
+      label: 'Option three is disabled',
+      disabled: true,
+    },
+    {
+      id: radioGroupItemId__4,
+      label: 'Option four',
     },
   ];
 
@@ -50,7 +56,7 @@ const RadioGroup = () => {
   );
 };
 
-describe('EuiCheckBox', () => {
+describe('EuiRadioGroup', () => {
   beforeEach(() => {
     cy.realMount(<RadioGroup />);
   });
@@ -62,15 +68,24 @@ describe('EuiCheckBox', () => {
   });
 
   describe('Keyboard accessibility', () => {
-    it('Has zero violations after traversing radio group', () => {
+    it('has zero violations after traversing radio group', () => {
       cy.realPress('Tab');
-      cy.get('#cy-radio-1').should('have.focus');
+      cy.get('#cy-radio-id-1').should('have.focus');
       cy.realPress('Space');
-      cy.get('#cy-radio-1').should('be.checked');
+      cy.get('#cy-radio-id-1').should('be.checked');
       cy.realPress('ArrowDown');
-      cy.get('#cy-radio-2').should('be.checked');
+      cy.get('#cy-radio-id-2').should('be.checked');
       cy.realPress('ArrowRight');
-      cy.get('#cy-radio-3').should('be.checked');
+      cy.get('#cy-radio-id-3').should('not.be.checked');
+      cy.get('#cy-radio-id-4').should('be.checked');
+      cy.checkAxe();
+    });
+  });
+
+  describe('Disabled radio button accessibility', () => {
+    it('affects no change after clicking the disabled radio button', () => {
+      cy.get('#cy-radio-id-3').realClick();
+      cy.get('#cy-radio-id-3').should('not.be.checked');
       cy.checkAxe();
     });
   });

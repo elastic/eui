@@ -15,13 +15,6 @@ import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiHealth } from '../health';
 import { EuiSearchBar } from './search_bar';
 import { EuiSpacer } from '../spacer';
-import { times } from '../../services/utils';
-import { Random } from '../../services';
-
-const initialQuery = '';
-const random = new Random();
-const types = ['dashboard', 'visualization', 'watch'];
-const users = ['dewey', 'wanda', 'carrie', 'jmack', 'gabic'];
 
 const tags = [
   { name: 'marketing', color: 'danger' },
@@ -31,36 +24,51 @@ const tags = [
   { name: 'ga', color: 'success' },
 ];
 
-const items = times(5, (id) => {
-  return {
-    id,
-    status: random.oneOf(['open', 'closed']),
-    type: random.oneOf(types),
-    tag: random.setOf(
-      tags.map((tag) => tag.name),
-      { min: 0, max: 3 }
-    ),
-    active: random.boolean(),
-    owner: random.oneOf(users),
-    followers: random.integer({ min: 0, max: 20 }),
-    comments: random.integer({ min: 0, max: 10 }),
-    stars: random.integer({ min: 0, max: 5 }),
-  };
-});
+const tagsMap = tags.map((tag) => ({
+  value: tag.name,
+  view: <EuiHealth color={tag.color}>{tag.name}</EuiHealth>,
+}));
 
-const loadTags = () => {
-  return new Promise((resolve) => {
-    resolve(
-      tags.map((tag) => ({
-        value: tag.name,
-        view: <EuiHealth color={tag.color}>{tag.name}</EuiHealth>,
-      }))
-    );
-  });
-};
+const items = [
+  {
+    type: 'Dashboard',
+    id: 1,
+    status: 'Open',
+    tag: ['finance', 'sales', 'marketing'],
+    owner: 'Dewey',
+  },
+  {
+    type: 'Visualization',
+    id: 2,
+    status: 'Open',
+    tag: ['finance'],
+    owner: 'Wanda',
+  },
+  {
+    type: 'Dashboard',
+    id: 3,
+    status: 'Closed',
+    tag: ['eng'],
+    owner: 'Carrie',
+  },
+  {
+    type: 'Watch',
+    id: 4,
+    status: 'Open',
+    tag: ['sales', 'ga'],
+    owner: 'Dewey',
+  },
+  {
+    type: 'Dashboard',
+    id: 5,
+    status: 'Closed',
+    tag: ['finance'],
+    owner: 'Carrie',
+  },
+];
 
 export const SearchBar = () => {
-  const [query, setQuery] = useState(initialQuery);
+  const [query, setQuery] = useState('');
   const [error, setError] = useState(null);
 
   const onChange = ({ query, error }) => {
@@ -93,8 +101,7 @@ export const SearchBar = () => {
         field: 'tag',
         name: 'Tag',
         multiSelect: 'or',
-        cache: 10000, // will cache the loaded tags for 10 sec
-        options: () => loadTags(),
+        options: tagsMap,
       },
     ];
 
@@ -104,20 +111,8 @@ export const SearchBar = () => {
         type: {
           type: 'string',
         },
-        active: {
-          type: 'boolean',
-        },
         status: {
           type: 'string',
-        },
-        followers: {
-          type: 'number',
-        },
-        comments: {
-          type: 'number',
-        },
-        stars: {
-          type: 'number',
         },
         created: {
           type: 'date',
@@ -144,7 +139,7 @@ export const SearchBar = () => {
       <EuiSearchBar
         query={query}
         box={{
-          placeholder: 'type:visualization -is:active joe',
+          placeholder: 'type:visualization',
           schema,
         }}
         filters={filters}
@@ -172,35 +167,16 @@ export const SearchBar = () => {
         field: 'type',
       },
       {
-        name: 'Open',
-        field: 'status',
-        render: (status) => (status === 'open' ? 'Yes' : 'No'),
-      },
-      {
-        name: 'Active',
-        field: 'active',
-        dataType: 'boolean',
-      },
-      {
-        name: 'Tags',
-        field: 'tag',
-      },
-      {
         name: 'Owner',
         field: 'owner',
       },
       {
-        name: 'Stats',
-        width: '150px',
-        render: (item) => {
-          return (
-            <div>
-              <div>{`${item.stars} Stars`}</div>
-              <div>{`${item.followers} Followers`}</div>
-              <div>{`${item.comments} Comments`}</div>
-            </div>
-          );
-        },
+        name: 'Open',
+        field: 'status',
+      },
+      {
+        name: 'Tags',
+        field: 'tag',
       },
     ];
 
@@ -247,7 +223,7 @@ describe('EuiSearchBar', () => {
       cy.get('input[type="search"]').should('have.focus');
       cy.get('input[type="search"]').type('watch');
       cy.realPress('Enter');
-      cy.get('table.euiTable tbody').find('tr').should('have.lengthOf.lte', 5);
+      cy.get('table.euiTable tbody').find('tr').should('have.length', 1);
       cy.checkAxe();
       cy.realPress('Tab');
       cy.get('button[data-test-subj="clearSearchButton"]').should('have.focus');
@@ -260,7 +236,7 @@ describe('EuiSearchBar', () => {
       cy.repeatRealPress('Tab');
       cy.get('button.euiButtonEmpty').first().should('have.focus');
       cy.realPress('Enter');
-      cy.get('table.euiTable tbody').find('tr').should('have.lengthOf.lte', 5);
+      cy.get('table.euiTable tbody').find('tr').should('have.length', 3);
       cy.checkAxe();
       cy.realPress(['Shift', 'Tab']);
       cy.get('button[data-test-subj="clearSearchButton"]').should('have.focus');
@@ -278,7 +254,7 @@ describe('EuiSearchBar', () => {
       cy.realPress('Enter');
       cy.realPress('Escape');
       cy.get('button.euiButtonEmpty').last().should('have.focus');
-      cy.get('table.euiTable tbody').find('tr').should('have.lengthOf.lte', 5);
+      cy.get('table.euiTable tbody').find('tr').should('have.length', 3);
       cy.checkAxe();
       cy.repeatRealPress(['Shift', 'Tab'], 3);
       cy.get('button[data-test-subj="clearSearchButton"]').should('have.focus');

@@ -11,7 +11,7 @@
 import React, { useState } from 'react';
 import { EuiCheckboxGroup } from './checkbox_group';
 
-const CheckBox = () => {
+const CheckBoxGroup = () => {
   const checkboxGroupItemId__1 = 'cy-group-id-1';
   const checkboxGroupItemId__2 = 'cy-group-id-2';
   const checkboxGroupItemId__3 = 'cy-group-id-3';
@@ -64,9 +64,9 @@ const CheckBox = () => {
   );
 };
 
-describe('EuiCheckBox', () => {
+describe('EuiCheckBoxGroup', () => {
   beforeEach(() => {
-    cy.realMount(<CheckBox />);
+    cy.realMount(<CheckBoxGroup />);
   });
 
   describe('Automated accessibility check', () => {
@@ -76,7 +76,7 @@ describe('EuiCheckBox', () => {
   });
 
   describe('Keyboard accessibility', () => {
-    it('Has zero violations after traversing checkboxes', () => {
+    it('has zero violations after traversing checkboxes', () => {
       cy.realPress('Tab');
       cy.get('[data-test-subj="cy-checkbox-1"]').should('have.focus');
       cy.realPress('Space');
@@ -87,6 +87,14 @@ describe('EuiCheckBox', () => {
       cy.get('[data-test-subj="cy-checkbox-2"]').should('not.be.checked');
       cy.realPress('Tab');
       cy.get('[data-test-subj="cy-checkbox-4"]').should('have.focus');
+      cy.checkAxe();
+    });
+  });
+
+  describe('Disabled checkbox accessibility', () => {
+    it('affects no change after clicking the disabled checkbox', () => {
+      cy.get('[data-test-subj="cy-checkbox-3"]').realClick();
+      cy.get('[data-test-subj="cy-checkbox-3"]').should('not.be.checked');
       cy.checkAxe();
     });
   });
