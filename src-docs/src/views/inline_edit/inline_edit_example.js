@@ -3,6 +3,7 @@ import React from 'react';
 import { GuideSectionTypes } from '../../components';
 
 import {
+  EuiCode,
   EuiText,
   EuiInlineEditText,
   EuiInlineEditTitle,
@@ -16,6 +17,9 @@ const inlineEditTitleSource = require('!!raw-loader!./inline_edit_title');
 
 import InlineEditConfirm from './inline_edit_confirm';
 const inlineEditConfirmSource = require('!!raw-loader!././inline_edit_confirm');
+
+import InlineEditLoading from './inline_edit_loading';
+const inlineEditLoadingSource = require('!!raw-loader!././inline_edit_loading');
 
 export const InlineEditExample = {
   title: 'Inline edit',
@@ -80,6 +84,26 @@ export const InlineEditExample = {
         },
       ],
       demo: <InlineEditConfirm />,
+      props: { EuiInlineEditText },
+    },
+    {
+      title: 'Loading state',
+      text: (
+        <>
+          <p>
+            Setting the <EuiCode>isLoading</EuiCode> prop to true will add a
+            spinner to the input element in <EuiCode>editMode</EuiCode> and add
+            the loading state to the confirm and cancel input buttons.
+          </p>
+        </>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: inlineEditLoadingSource,
+        },
+      ],
+      demo: <InlineEditLoading />,
       props: { EuiInlineEditText },
     },
   ],
