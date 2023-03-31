@@ -14,6 +14,7 @@ import { EuiFormRow, EuiFieldText, EuiForm, EuiFieldTextProps } from '../form';
 import { EuiButtonIcon, EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
 import { EuiButtonEmptyPropsForButton } from '../button/button_empty/button_empty';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
+import { EuiSkeletonRectangle } from '../skeleton';
 import { useEuiI18n } from '../i18n';
 import { useGeneratedHtmlId } from '../../services/accessibility';
 
@@ -155,38 +156,53 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
             autoFocus
             compressed={sizes.compressed}
             isInvalid={isInvalid}
+            isLoading={isLoading}
             {...editModeProps}
           />
         </EuiFlexItem>
 
         <EuiFlexItem grow={false} className={classes}>
           <EuiFormRow>
-            <EuiButtonIcon
-              iconType="check"
-              aria-label={saveButtonAriaLabel || defaultSaveButtonAriaLabel}
-              onClick={saveInlineEditValue}
-              color="success"
-              display="base"
-              size={sizes.buttonSize}
-              iconSize={sizes.iconSize}
-              disabled={isInvalid}
+            <EuiSkeletonRectangle
               isLoading={isLoading}
-            />
+              height={40}
+              width={40}
+              borderRadius="m"
+            >
+              <EuiButtonIcon
+                iconType="check"
+                aria-label={saveButtonAriaLabel || defaultSaveButtonAriaLabel}
+                onClick={saveInlineEditValue}
+                color="success"
+                display="base"
+                size={sizes.buttonSize}
+                iconSize={sizes.iconSize}
+                disabled={isInvalid}
+              />
+            </EuiSkeletonRectangle>
           </EuiFormRow>
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
           <EuiFormRow>
-            <EuiButtonIcon
-              iconType="cross"
-              aria-label={cancelButtonAriaLabel || defaultCancelButtonAriaLabel}
-              onClick={cancelInlineEdit}
-              color="danger"
-              display="base"
-              size={sizes.buttonSize}
-              iconSize={sizes.iconSize}
+            <EuiSkeletonRectangle
               isLoading={isLoading}
-            />
+              height={40}
+              width={40}
+              borderRadius="m"
+            >
+              <EuiButtonIcon
+                iconType="cross"
+                aria-label={
+                  cancelButtonAriaLabel || defaultCancelButtonAriaLabel
+                }
+                onClick={cancelInlineEdit}
+                color="danger"
+                display="base"
+                size={sizes.buttonSize}
+                iconSize={sizes.iconSize}
+              />
+            </EuiSkeletonRectangle>
           </EuiFormRow>
         </EuiFlexItem>
       </EuiFlexGroup>
