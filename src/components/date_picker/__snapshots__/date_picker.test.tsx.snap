@@ -7,7 +7,6 @@ exports[`EuiDatePicker is rendered 1`] = `
   <EuiFormControlLayout
     fullWidth={false}
     icon="calendar"
-    isLoading={false}
   >
     <EuiValidatableControl>
       <ContextConsumer>
@@ -869,20 +868,10 @@ exports[`EuiDatePicker localization inherits locale from context 1`] = `
 
 exports[`EuiDatePicker popoverPlacement upRight is rendered 1`] = `
 <EuiDatePicker
-  adjustDateOnChange={true}
   aria-label="aria-label"
   className="testClass1 testClass2"
   data-test-subj="test subject string"
-  dateFormat="MM/DD/YYYY"
-  fullWidth={false}
-  inputRef={[Function]}
-  isLoading={false}
   popoverPlacement="upRight"
-  shadow={true}
-  shouldCloseOnSelect={true}
-  showIcon={true}
-  showTimeSelect={false}
-  timeFormat="hh:mm A"
 >
   <span
     className="euiDatePicker euiDatePicker--shadow"
@@ -890,7 +879,6 @@ exports[`EuiDatePicker popoverPlacement upRight is rendered 1`] = `
     <EuiFormControlLayout
       fullWidth={false}
       icon="calendar"
-      isLoading={false}
     >
       <div
         className="euiFormControlLayout"
@@ -1155,7 +1143,6 @@ exports[`EuiDatePicker popoverPlacement upRight is rendered 1`] = `
           </EuiValidatableControl>
           <EuiFormControlLayoutIcons
             icon="calendar"
-            isLoading={false}
           >
             <div
               className="euiFormControlLayoutIcons"
