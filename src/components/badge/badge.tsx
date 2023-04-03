@@ -141,13 +141,10 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     try {
       // Check if a valid color name was provided
       if (COLORS.includes(color as BadgeColor)) {
-        if (color === 'hollow') return style; // hollow uses its own CSS class
-
         // Get the hex equivalent for the provided color name
         switch (color) {
           case 'hollow':
-            colorHex = '';
-            break;
+            return style; // hollow uses its own Emotion class
           case 'default':
             colorHex = euiTheme.euiTheme.colors.lightShade;
             break;
