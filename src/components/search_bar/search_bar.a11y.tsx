@@ -10,7 +10,6 @@
 
 import React, { useState } from 'react';
 import { EuiBasicTable } from '../basic_table';
-import { EuiCallOut } from '../call_out';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiHealth } from '../health';
 import { EuiSearchBar } from './search_bar';
@@ -69,16 +68,8 @@ const items = [
 
 export const SearchBar = () => {
   const [query, setQuery] = useState('');
-  const [error, setError] = useState(null);
 
-  const onChange = ({ query, error }) => {
-    if (error) {
-      setError(error);
-    } else {
-      setError(null);
-      setQuery(query);
-    }
-  };
+  const onChange = ({ query }) => setQuery(query);
 
   const renderSearch = () => {
     const filters: any = [
@@ -122,15 +113,6 @@ export const SearchBar = () => {
         },
         tag: {
           type: 'string',
-          validate: (value) => {
-            if (!tags.some((tag) => tag.name === value)) {
-              throw new Error(
-                `unknown tag (possible values: ${tags
-                  .map((tag) => tag.name)
-                  .join(',')})`
-              );
-            }
-          },
         },
       },
     };
@@ -145,18 +127,6 @@ export const SearchBar = () => {
         filters={filters}
         onChange={onChange}
       />
-    );
-  };
-
-  const renderError = () => {
-    if (!error) {
-      return;
-    }
-    return (
-      <>
-        <EuiCallOut iconType="faceSad" color="danger" title="Invalid search" />
-        <EuiSpacer size="l" />
-      </>
     );
   };
 
@@ -187,19 +157,15 @@ export const SearchBar = () => {
     return <EuiBasicTable items={queriedItems} columns={columns} />;
   };
 
-  const content = renderError() || (
-    <EuiFlexGroup>
-      <EuiFlexItem grow={6}>{renderTable()}</EuiFlexItem>
-    </EuiFlexGroup>
-  );
-
   return (
     <>
       <EuiFlexGroup alignItems="center">
         <EuiFlexItem>{renderSearch()}</EuiFlexItem>
       </EuiFlexGroup>
       <EuiSpacer size="l" />
-      {content}
+      <EuiFlexGroup>
+        <EuiFlexItem grow={6}>{renderTable()}</EuiFlexItem>
+      </EuiFlexGroup>
     </>
   );
 };
