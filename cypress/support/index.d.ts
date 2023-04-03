@@ -30,6 +30,11 @@ declare global {
       }): void;
 
       /**
+       * Creates a basic `EuiContainer` to render components.
+       */
+      mount(children: React.ReactNode): void;
+
+      /**
        * This ensures the correct testing window has focus when using Cypress Real Events.
        * @see https://github.com/dmtrKovalenko/cypress-real-events/issues/196
        */
