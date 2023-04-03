@@ -48,7 +48,7 @@ export type EuiDatePickerRangeProps = CommonProps & {
   isCustom?: boolean;
 
   /**
-   * Will turn the range delimeter into an alert icon and pass through to each control
+   * Will color the range delimiter the `danger` color and pass through to each control
    */
   isInvalid?: boolean;
 
@@ -159,10 +159,7 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
 
   const delimiter = (
     <span className="euiDatePickerRange__delimeter">
-      <EuiIcon
-        color={isInvalid ? 'danger' : 'subdued'}
-        type={isInvalid ? 'warning' : 'sortRight'}
-      />
+      <EuiIcon color={isInvalid ? 'danger' : 'subdued'} type="sortRight" />
     </span>
   );
 
