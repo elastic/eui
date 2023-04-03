@@ -13,6 +13,7 @@ import { Moment } from 'moment'; // eslint-disable-line import/named
 
 import { EuiFormControlLayout, EuiValidatableControl } from '../form';
 import { EuiFormControlLayoutIconsProps } from '../form/form_control_layout/form_control_layout_icons';
+import { getFormControlClassNameForIconCount } from '../form/form_control_layout/_num_icons';
 
 import { EuiI18nConsumer } from '../context';
 import { ApplyClassComponentDefaults, CommonProps } from '../common';
@@ -185,9 +186,15 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
       'euiDatePicker--inline': inline,
     });
 
+    const numIconsClass = getFormControlClassNameForIconCount({
+      isInvalid,
+      isLoading,
+    });
+
     const datePickerClasses = classNames(
       'euiDatePicker',
       'euiFieldText',
+      numIconsClass,
       {
         'euiFieldText--fullWidth': fullWidth,
         'euiFieldText-isLoading': isLoading,
@@ -223,6 +230,7 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
           fullWidth={fullWidth}
           clear={selected && onClear ? { onClick: onClear } : undefined}
           isLoading={isLoading}
+          isInvalid={isInvalid}
         >
           <EuiValidatableControl isInvalid={isInvalid}>
             <EuiI18nConsumer>
