@@ -11,15 +11,18 @@ import React, {
   Component,
   MouseEventHandler,
   Ref,
+  useState,
+  useCallback,
 } from 'react';
 import classNames from 'classnames';
 
 import { Moment } from 'moment'; // eslint-disable-line import/named
 
-import { EuiFormControlLayout, EuiValidatableControl } from '../form';
+import { EuiFormControlLayout, useEuiValidatableControl } from '../form';
 import { EuiFormControlLayoutIconsProps } from '../form/form_control_layout/form_control_layout_icons';
 import { getFormControlClassNameForIconCount } from '../form/form_control_layout/_num_icons';
 
+import { useCombinedRefs } from '../../services';
 import { EuiI18nConsumer } from '../context';
 import { CommonProps } from '../common';
 
@@ -184,7 +187,6 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
       'euiFieldText-isLoading': isLoading,
       'euiFieldText--withIcon': !inline && showIcon,
       'euiFieldText--isClearable': !inline && selected && onClear,
-      'euiFieldText-isInvalid': isInvalid,
     },
     className
   );
@@ -207,6 +209,14 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
     fullDateFormat = `${dateFormat} ${timeFormat}`;
   }
 
+  // Set an internal ref on ReactDatePicker's `input` so we can set its :invalid state via useEuiValidatableControl
+  const [inputValidityRef, _setInputValidityRef] = useState(null);
+  const setInputValidityRef = useCallback((ref) => {
+    _setInputValidityRef(ref?.input);
+  }, []);
+  useEuiValidatableControl({ isInvalid, controlEl: inputValidityRef });
+  const inputRefs = useCombinedRefs([inputRef, setInputValidityRef]);
+
   return (
     <span className={classes}>
       <EuiFormControlLayout
@@ -216,49 +226,47 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
         isLoading={isLoading}
         isInvalid={isInvalid}
       >
-        <EuiValidatableControl isInvalid={isInvalid}>
-          <EuiI18nConsumer>
-            {({ locale: contextLocale }) => {
-              return (
-                <ReactDatePicker
-                  adjustDateOnChange={adjustDateOnChange}
-                  calendarClassName={calendarClassName}
-                  className={datePickerClasses}
-                  customInput={customInput}
-                  dateFormat={fullDateFormat}
-                  dayClassName={dayClassName}
-                  disabled={disabled}
-                  excludeDates={excludeDates}
-                  filterDate={filterDate}
-                  injectTimes={injectTimes}
-                  inline={inline}
-                  locale={locale || contextLocale}
-                  maxDate={maxDate}
-                  maxTime={maxTime}
-                  minDate={minDate}
-                  minTime={minTime}
-                  onChange={onChange}
-                  openToDate={openToDate}
-                  placeholderText={placeholder}
-                  popperClassName={popperClassName}
-                  ref={inputRef}
-                  selected={selected}
-                  shouldCloseOnSelect={shouldCloseOnSelect}
-                  showMonthDropdown
-                  showTimeSelect={showTimeSelectOnly ? true : showTimeSelect}
-                  showTimeSelectOnly={showTimeSelectOnly}
-                  showYearDropdown
-                  timeFormat={timeFormat}
-                  utcOffset={utcOffset}
-                  yearDropdownItemNumber={7}
-                  accessibleMode
-                  popperPlacement={popoverPlacement}
-                  {...rest}
-                />
-              );
-            }}
-          </EuiI18nConsumer>
-        </EuiValidatableControl>
+        <EuiI18nConsumer>
+          {({ locale: contextLocale }) => {
+            return (
+              <ReactDatePicker
+                adjustDateOnChange={adjustDateOnChange}
+                calendarClassName={calendarClassName}
+                className={datePickerClasses}
+                customInput={customInput}
+                dateFormat={fullDateFormat}
+                dayClassName={dayClassName}
+                disabled={disabled}
+                excludeDates={excludeDates}
+                filterDate={filterDate}
+                injectTimes={injectTimes}
+                inline={inline}
+                locale={locale || contextLocale}
+                maxDate={maxDate}
+                maxTime={maxTime}
+                minDate={minDate}
+                minTime={minTime}
+                onChange={onChange}
+                openToDate={openToDate}
+                placeholderText={placeholder}
+                popperClassName={popperClassName}
+                ref={inputRefs}
+                selected={selected}
+                shouldCloseOnSelect={shouldCloseOnSelect}
+                showMonthDropdown
+                showTimeSelect={showTimeSelectOnly ? true : showTimeSelect}
+                showTimeSelectOnly={showTimeSelectOnly}
+                showYearDropdown
+                timeFormat={timeFormat}
+                utcOffset={utcOffset}
+                yearDropdownItemNumber={7}
+                accessibleMode
+                popperPlacement={popoverPlacement}
+                {...rest}
+              />
+            );
+          }}
+        </EuiI18nConsumer>
       </EuiFormControlLayout>
     </span>
   );
