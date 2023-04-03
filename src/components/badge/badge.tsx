@@ -133,20 +133,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   const isHrefValid = !href || validateHref(href);
   const isDisabled = _isDisabled || !isHrefValid;
 
-  // We moved away from euiPaletteColorBlindBehindText() helper so users
-  // could override named colors in custom themes. The minimum color
-  // contrast ratio for each badge (light or dark) is listed inline.
   const optionalCustomStyles = useMemo(() => {
-    const colorToHexMap: { [color in BadgeColor]: string } = {
-      default: euiTheme.euiTheme.colors.lightShade, // 11.87:1
-      hollow: '', // 11.87:1
-      primary: euiButtonFillColor(euiTheme, 'primary').backgroundColor,
-      success: euiButtonFillColor(euiTheme, 'success').backgroundColor,
-      accent: euiButtonFillColor(euiTheme, 'accent').backgroundColor,
-      warning: euiButtonFillColor(euiTheme, 'warning').backgroundColor,
-      danger: euiButtonFillColor(euiTheme, 'danger').backgroundColor,
-    };
-
     let textColor = null;
     let contrastRatio = null;
     let colorHex = null;
@@ -157,7 +144,24 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
         if (color === 'hollow') return style; // hollow uses its own CSS class
 
         // Get the hex equivalent for the provided color name
-        colorHex = colorToHexMap[color as BadgeColor];
+        switch (color) {
+          case 'hollow':
+            colorHex = '';
+            break;
+          case 'default':
+            colorHex = euiTheme.euiTheme.colors.lightShade;
+            break;
+          default:
+            type RemainingColors =
+              | 'primary'
+              | 'success'
+              | 'accent'
+              | 'warning'
+              | 'danger';
+            colorHex = euiButtonFillColor(euiTheme, color as RemainingColors)
+              .backgroundColor;
+            break;
+        }
 
         // Set dark or light text color based upon best contrast
         textColor = setTextColor(euiTheme, colorHex);
