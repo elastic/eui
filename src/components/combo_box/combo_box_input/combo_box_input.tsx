@@ -23,6 +23,7 @@ import {
   EuiFormControlLayoutProps,
 } from '../../form/form_control_layout';
 import { EuiFormControlLayoutIconsProps } from '../../form/form_control_layout/form_control_layout_icons';
+import { getFormControlClassNameForIconCount } from '../../form/form_control_layout/_num_icons';
 
 import { EuiComboBoxPill } from './combo_box_pill';
 import {
@@ -259,12 +260,17 @@ export class EuiComboBoxInput<T> extends Component<
       };
     }
 
-    const wrapClasses = classNames('euiComboBox__inputWrap', {
+    const numIconsClass = getFormControlClassNameForIconCount({
+      isDropdown: !noIcon,
+      clear: !!clickProps.clear,
+      isInvalid,
+      isLoading,
+    });
+
+    const wrapClasses = classNames('euiComboBox__inputWrap', numIconsClass, {
       'euiComboBox__inputWrap--compressed': compressed,
       'euiComboBox__inputWrap--fullWidth': fullWidth,
       'euiComboBox__inputWrap--noWrap': singleSelection,
-      'euiComboBox__inputWrap-isLoading': isLoading,
-      'euiComboBox__inputWrap-isClearable': onClear,
       'euiComboBox__inputWrap--inGroup': prepend || append,
     });
 
