@@ -301,6 +301,7 @@ export class EuiComboBoxInput<T> extends Component<
             aria-expanded={isListOpen}
             aria-label={ariaLabel}
             aria-labelledby={ariaLabelledby}
+            aria-invalid={isInvalid}
             className="euiComboBox__input"
             data-test-subj="comboBoxSearchInput"
             disabled={isDisabled}
