@@ -971,9 +971,10 @@ export class EuiComboBox<T> extends Component<
     // Visually indicate the combobox is in an invalid state if it has lost focus but there is text entered in the input.
     // When custom options are disabled and the user leaves the combo box after entering text that does not match any
     // options, this tells the user that they've entered invalid input.
-    const markAsInvalid =
+    const markAsInvalid = !!(
       isInvalid ||
-      ((hasFocus === false || isListOpen === false) && searchValue);
+      ((hasFocus === false || isListOpen === false) && searchValue)
+    );
 
     const classes = classNames('euiComboBox', className, {
       'euiComboBox--compressed': compressed,
@@ -1094,6 +1095,7 @@ export class EuiComboBox<T> extends Component<
           append={singleSelection ? append : undefined}
           prepend={singleSelection ? prepend : undefined}
           isLoading={isLoading}
+          isInvalid={markAsInvalid}
           autoFocus={autoFocus}
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledby}

@@ -61,6 +61,7 @@ export interface EuiComboBoxInputProps<T> extends CommonProps {
   prepend?: EuiFormControlLayoutProps['prepend'];
   append?: EuiFormControlLayoutProps['append'];
   isLoading?: boolean;
+  isInvalid?: boolean;
   autoFocus?: boolean;
   'aria-label'?: string;
   'aria-labelledby'?: string;
@@ -151,6 +152,7 @@ export class EuiComboBoxInput<T> extends Component<
       prepend,
       append,
       isLoading,
+      isInvalid,
       autoFocus,
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledby,
@@ -271,6 +273,7 @@ export class EuiComboBoxInput<T> extends Component<
         {...clickProps}
         inputId={id}
         isLoading={isLoading}
+        isInvalid={isInvalid}
         compressed={compressed}
         fullWidth={fullWidth}
         prepend={prepend}
