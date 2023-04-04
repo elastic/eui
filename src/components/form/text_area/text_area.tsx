@@ -16,6 +16,7 @@ import { useFormContext } from '../eui_form_context';
 
 export type EuiTextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
   CommonProps & {
+    isLoading?: boolean;
     isInvalid?: boolean;
     /**
      * Expand to fill 100% of the parent.
@@ -52,6 +53,7 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = (props) => {
     fullWidth = defaultFullWidth,
     id,
     inputRef,
+    isLoading,
     isInvalid,
     name,
     placeholder,
@@ -83,6 +85,7 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = (props) => {
   return (
     <EuiFormControlLayout
       fullWidth={fullWidth}
+      isLoading={isLoading}
       isInvalid={isInvalid}
       className="euiFormControlLayout--euiTextArea"
     >
