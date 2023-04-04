@@ -52,7 +52,7 @@ export const EuiFormControlLayoutDelimited: FunctionComponent<EuiFormControlLayo
     <EuiFormControlLayout className={classes} {...rest}>
       {addClassesToControl(startControl)}
       <EuiText
-        className="euiFormControlLayoutDelimited__delimeter"
+        className="euiFormControlLayoutDelimited__delimiter"
         size="s"
         color="subdued"
       >

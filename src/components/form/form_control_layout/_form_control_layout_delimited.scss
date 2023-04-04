@@ -5,7 +5,7 @@
   align-items: stretch;
   padding: 1px; /* 1 */
 
-  .euiFormControlLayoutDelimited__delimeter {
+  .euiFormControlLayoutDelimited__delimiter {
     background-color: $euiFormBackgroundColor;
   }
 
@@ -44,7 +44,7 @@
   &[class*='-isDisabled'] {
     @include euiFormControlDisabledStyle;
 
-    .euiFormControlLayoutDelimited__delimeter {
+    .euiFormControlLayoutDelimited__delimiter {
       background-color: $euiFormBackgroundDisabledColor;
     }
   }
@@ -54,7 +54,7 @@
     @include euiFormControlReadOnlyStyle;
 
     input,
-    .euiFormControlLayoutDelimited__delimeter {
+    .euiFormControlLayoutDelimited__delimiter {
       background-color: $euiFormBackgroundReadOnlyColor;
     }
   }
@@ -82,7 +82,7 @@
   min-width: 0; // Fixes FF
 }
 
-.euiFormControlLayoutDelimited__delimeter {
+.euiFormControlLayoutDelimited__delimiter {
   // stylelint-disable-next-line declaration-no-important
   line-height: 1 !important; // Override EuiText line-height
   flex: 0 0 auto;
