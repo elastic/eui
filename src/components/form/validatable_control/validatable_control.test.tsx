@@ -8,8 +8,12 @@
 
 import React from 'react';
 import { render, mount } from 'enzyme';
+import { renderHook } from '@testing-library/react-hooks';
 
-import { EuiValidatableControl } from './validatable_control';
+import {
+  EuiValidatableControl,
+  useEuiValidatableControl,
+} from './validatable_control';
 
 describe('EuiValidatableControl', () => {
   test('is rendered', () => {
@@ -152,5 +156,29 @@ describe('EuiValidatableControl', () => {
       // Ensure that the child element has changed
       expect(ref.current).not.toBe(prevRef);
     });
+  });
+});
+
+describe('useEuiValidatableControl', () => {
+  const controlEl = document.createElement('input');
+
+  it('sets the validity of the passed control element', () => {
+    const { rerender } = renderHook(useEuiValidatableControl, {
+      initialProps: { isInvalid: true, controlEl },
+    });
+    expect(controlEl.validity.valid).toEqual(false);
+
+    rerender({ isInvalid: false, controlEl });
+    expect(controlEl.validity.valid).toEqual(true);
+  });
+
+  it('sets the `aria-invalid` of the passed control element', () => {
+    const { rerender } = renderHook(useEuiValidatableControl, {
+      initialProps: { isInvalid: true, controlEl },
+    });
+    expect(controlEl.getAttribute('aria-invalid')).toEqual('true');
+
+    rerender({ isInvalid: false, controlEl });
+    expect(controlEl.getAttribute('aria-invalid')).toEqual('false');
   });
 });

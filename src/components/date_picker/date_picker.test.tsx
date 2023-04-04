@@ -16,9 +16,7 @@ import { EuiContext } from '../context';
 
 describe('EuiDatePicker', () => {
   test('is rendered', () => {
-    const component = shallow<EuiDatePicker>(
-      <EuiDatePicker {...requiredProps} />
-    );
+    const component = shallow(<EuiDatePicker {...requiredProps} />);
 
     expect(component).toMatchSnapshot(); // snapshot of wrapping dom
     expect(component.find('ContextConsumer').shallow()).toMatchSnapshot(); // snapshot of DatePicker usage
