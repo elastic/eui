@@ -17,10 +17,12 @@ import {
   EuiForm,
   EuiFieldTextProps,
 } from '../form';
+import { euiFormVariables } from '../form/form.styles';
 import { EuiButtonIcon, EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
 import { EuiButtonEmptyPropsForButton } from '../button/button_empty/button_empty';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiSkeletonRectangle } from '../skeleton';
+import { useEuiTheme } from '../../services';
 import { useEuiI18n } from '../i18n';
 import { useGeneratedHtmlId } from '../../services/accessibility';
 
@@ -82,7 +84,6 @@ export type EuiInlineEditFormProps = EuiInlineEditCommonProps & {
     compressed: boolean;
     buttonSize: EuiButtonEmptyProps['size'];
     iconSize: EuiButtonEmptyProps['iconSize'];
-    skeletonHeight: number;
   };
   /**
    * Render prop that returns the read mode value as an arg
@@ -94,14 +95,12 @@ export const SMALL_SIZE_FORM = {
   iconSize: 's',
   compressed: true,
   buttonSize: 's',
-  skeletonHeight: 32,
 } as const;
 
 export const MEDIUM_SIZE_FORM = {
   iconSize: 'm',
   compressed: false,
   buttonSize: 'm',
-  skeletonHeight: 40,
 } as const;
 
 export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
@@ -120,6 +119,12 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   isInvalid,
 }) => {
   const classes = classNames('euiInlineEdit', className);
+
+  const euiTheme = useEuiTheme();
+  const { controlHeight, controlCompressedHeight } = euiFormVariables(euiTheme);
+  const loadingSkeletonSize = sizes.compressed
+    ? controlCompressedHeight
+    : controlHeight;
 
   const defaultSaveButtonAriaLabel = useEuiI18n(
     'euiInlineEditForm.saveButtonAriaLabel',
@@ -188,8 +193,8 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
           <EuiFormRow>
             <EuiSkeletonRectangle
               isLoading={isLoading}
-              height={sizes.skeletonHeight}
-              width={sizes.skeletonHeight}
+              height={loadingSkeletonSize}
+              width={loadingSkeletonSize}
               borderRadius="m"
             >
               <EuiButtonIcon
@@ -210,8 +215,8 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
           <EuiFormRow>
             <EuiSkeletonRectangle
               isLoading={isLoading}
-              height={sizes.skeletonHeight}
-              width={sizes.skeletonHeight}
+              height={loadingSkeletonSize}
+              width={loadingSkeletonSize}
               borderRadius="m"
             >
               <EuiButtonIcon
