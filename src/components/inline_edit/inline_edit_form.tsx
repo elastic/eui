@@ -79,6 +79,7 @@ export type EuiInlineEditFormProps = EuiInlineEditCommonProps & {
     compressed: boolean;
     buttonSize: EuiButtonEmptyProps['size'];
     iconSize: EuiButtonEmptyProps['iconSize'];
+    skeletonHeight: number;
   };
   /**
    * Render prop that returns the read mode value as an arg
@@ -90,12 +91,14 @@ export const SMALL_SIZE_FORM = {
   iconSize: 's',
   compressed: true,
   buttonSize: 's',
+  skeletonHeight: 32,
 } as const;
 
 export const MEDIUM_SIZE_FORM = {
   iconSize: 'm',
   compressed: false,
   buttonSize: 'm',
+  skeletonHeight: 40,
 } as const;
 
 export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
@@ -176,8 +179,8 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
           <EuiFormRow>
             <EuiSkeletonRectangle
               isLoading={isLoading}
-              height={40}
-              width={40}
+              height={sizes.skeletonHeight}
+              width={sizes.skeletonHeight}
               borderRadius="m"
             >
               <EuiButtonIcon
@@ -198,8 +201,8 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
           <EuiFormRow>
             <EuiSkeletonRectangle
               isLoading={isLoading}
-              height={40}
-              width={40}
+              height={sizes.skeletonHeight}
+              width={sizes.skeletonHeight}
               borderRadius="m"
             >
               <EuiButtonIcon
