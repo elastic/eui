@@ -755,6 +755,7 @@ export class EuiDualRangeClass extends Component<
             append={append}
             prepend={prepend}
             isLoading={isLoading}
+            isInvalid={isInvalid}
           />
         }
         fullWidth={fullWidth}

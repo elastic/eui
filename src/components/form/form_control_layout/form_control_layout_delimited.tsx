@@ -49,12 +49,20 @@ export const EuiFormControlLayoutDelimited: FunctionComponent<EuiFormControlLayo
   className,
   ...rest
 }) => {
-  const classes = classNames('euiFormControlLayoutDelimited', className);
+  const { isInvalid, isDisabled, readOnly } = rest;
+  const showInvalidState = isInvalid && !isDisabled && !readOnly;
+
+  const classes = classNames('euiFormControlLayoutDelimited', className, {
+    'euiFormControlLayoutDelimited--isInvalid': showInvalidState,
+  });
 
   return (
     <EuiFormControlLayout className={classes} {...rest}>
       {addClassesToControl(startControl)}
-      <EuiFormControlDelimiter delimiter={delimiter} />
+      <EuiFormControlDelimiter
+        delimiter={delimiter}
+        isInvalid={showInvalidState}
+      />
       {addClassesToControl(endControl)}
     </EuiFormControlLayout>
   );
@@ -69,9 +77,17 @@ const addClassesToControl = (control: ReactElement) => {
   });
 };
 
-const EuiFormControlDelimiter = ({ delimiter }: { delimiter?: ReactNode }) => {
-  const classes = classNames('euiFormControlLayoutDelimited__delimiter');
-  const color = 'subdued';
+const EuiFormControlDelimiter = ({
+  delimiter,
+  isInvalid,
+}: {
+  delimiter?: ReactNode;
+  isInvalid?: boolean;
+}) => {
+  const classes = classNames('euiFormControlLayoutDelimited__delimiter', {
+    'euiFormControlLayoutDelimited__delimiter--isInvalid': isInvalid,
+  });
+  const color = isInvalid ? 'danger' : 'subdued';
 
   const defaultAriaLabel = useEuiI18n(
     'euiFormControlLayoutDelimited.delimiterLabel',
