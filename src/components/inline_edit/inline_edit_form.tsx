@@ -10,7 +10,13 @@ import React, { ReactNode, FunctionComponent, useState } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
-import { EuiFormRow, EuiFieldText, EuiForm, EuiFieldTextProps } from '../form';
+import {
+  EuiFormRow,
+  EuiFormRowProps,
+  EuiFieldText,
+  EuiForm,
+  EuiFieldTextProps,
+} from '../form';
 import { EuiButtonIcon, EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
 import { EuiButtonEmptyPropsForButton } from '../button/button_empty/button_empty';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
@@ -52,7 +58,7 @@ export type EuiInlineEditCommonProps = CommonProps & {
   /**
    * Props that will be applied directly to the EuiFieldText displayed in editMode
    */
-  editModeProps?: EuiFieldTextProps;
+  editModeProps?: EuiFieldTextProps & Pick<EuiFormRowProps, 'error'>;
   /**
    * Loading state when changes are saved in editMode
    */
@@ -62,6 +68,10 @@ export type EuiInlineEditCommonProps = CommonProps & {
    * Validation for the form control used to edit text in editMode
    */
   isInvalid?: boolean;
+  /**
+   * Error message placed on EuiForm when isInvalid is true
+   */
+  error?: string;
 };
 
 // Internal-only props, passed by the consumer-facing components
@@ -146,19 +156,24 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
     <EuiForm fullWidth>
       <EuiFlexGroup gutterSize="s">
         <EuiFlexItem>
-          <EuiFieldText
-            id={inlineEditInputId}
-            value={editModeValue}
-            onChange={(e) => {
-              setEditModeValue(e.target.value);
-            }}
-            aria-label={inputAriaLabel}
-            autoFocus
-            compressed={sizes.compressed}
+          <EuiFormRow
             isInvalid={isInvalid}
-            isLoading={isLoading}
-            {...editModeProps}
-          />
+            error={isInvalid && editModeProps?.error}
+          >
+            <EuiFieldText
+              id={inlineEditInputId}
+              value={editModeValue}
+              onChange={(e) => {
+                setEditModeValue(e.target.value);
+              }}
+              aria-label={inputAriaLabel}
+              autoFocus
+              compressed={sizes.compressed}
+              isInvalid={isInvalid}
+              isLoading={isLoading}
+              {...editModeProps}
+            />
+          </EuiFormRow>
         </EuiFlexItem>
 
         <EuiFlexItem grow={false} className={classes}>
