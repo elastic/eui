@@ -1,3 +1,15 @@
+## [`77.0.0`](https://github.com/elastic/eui/tree/v77.0.0)
+
+**Bug fixes**
+
+- Fixed named `EuiBadge` colors to reflect custom theme overrides ([#6659](https://github.com/elastic/eui/pull/6659))
+- Fixed user-defined SCSS variables failing to override variables defined in Amsterdam typography overrides. ([#6665](https://github.com/elastic/eui/pull/6665))
+- Fixed bold `EuiCode` tokens to actually be bold ([#6666](https://github.com/elastic/eui/pull/6666))
+
+**Breaking changes**
+
+- Success- and accent-colored `EuiBadge`s and `EuiButton`s have had their fill colors tinted slightly on light mode to be more readable ([#6659](https://github.com/elastic/eui/pull/6659))
+
 ## [`76.4.0`](https://github.com/elastic/eui/tree/v76.4.0)
 
 **CSS-in-JS conversions**
