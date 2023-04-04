@@ -83,9 +83,10 @@
 }
 
 .euiFormControlLayoutDelimited__delimiter {
-  // stylelint-disable-next-line declaration-no-important
-  line-height: 1 !important; // Override EuiText line-height
-  flex: 0 0 auto;
-  padding-left: $euiFormControlPadding / 2;
-  padding-right: $euiFormControlPadding / 2;
+  align-self: stretch;
+  height: auto;
+  flex-grow: 0;
+  display: flex;
+  align-items: center;
+  line-height: 1; // Override EuiText line-height
 }

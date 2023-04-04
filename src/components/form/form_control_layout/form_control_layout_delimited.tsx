@@ -14,7 +14,10 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
+import { useEuiI18n } from '../../i18n';
+import { EuiIcon } from '../../icon';
 import { EuiText } from '../../text';
+
 import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
@@ -42,7 +45,7 @@ export type EuiFormControlLayoutDelimitedProps = Partial<
 export const EuiFormControlLayoutDelimited: FunctionComponent<EuiFormControlLayoutDelimitedProps> = ({
   startControl,
   endControl,
-  delimiter = '→',
+  delimiter,
   className,
   ...rest
 }) => {
@@ -51,23 +54,35 @@ export const EuiFormControlLayoutDelimited: FunctionComponent<EuiFormControlLayo
   return (
     <EuiFormControlLayout className={classes} {...rest}>
       {addClassesToControl(startControl)}
-      <EuiText
-        className="euiFormControlLayoutDelimited__delimiter"
-        size="s"
-        color="subdued"
-      >
-        {delimiter}
-      </EuiText>
+      <EuiFormControlDelimiter delimiter={delimiter} />
       {addClassesToControl(endControl)}
     </EuiFormControlLayout>
   );
 };
 
-function addClassesToControl(control: ReactElement) {
+const addClassesToControl = (control: ReactElement) => {
   return cloneElement(control, {
     className: classNames(
       control.props.className,
       'euiFormControlLayoutDelimited__input'
     ),
   });
-}
+};
+
+const EuiFormControlDelimiter = ({ delimiter }: { delimiter?: ReactNode }) => {
+  const classes = classNames('euiFormControlLayoutDelimited__delimiter');
+  const color = 'subdued';
+
+  const defaultAriaLabel = useEuiI18n(
+    'euiFormControlLayoutDelimited.delimiterLabel',
+    'to'
+  );
+
+  return (
+    <EuiText className={classes} size="s" color={color}>
+      {delimiter ?? (
+        <EuiIcon color={color} type="sortRight" aria-label={defaultAriaLabel} />
+      )}
+    </EuiText>
+  );
+};
