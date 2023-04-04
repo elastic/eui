@@ -58,7 +58,10 @@ export type EuiInlineEditCommonProps = CommonProps & {
   /**
    * Props that will be applied directly to the EuiFieldText displayed in editMode
    */
-  editModeProps?: EuiFieldTextProps & Pick<EuiFormRowProps, 'error'>;
+  editModeProps?: {
+    formRowProps?: Partial<EuiFormRowProps>;
+    inputProps?: EuiFieldTextProps;
+  };
   /**
    * Loading state when changes are saved in editMode
    */
@@ -151,13 +154,19 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
     }
   };
 
+  let errorMessage;
+  if (isInvalid && editModeProps?.formRowProps?.error) {
+    errorMessage = editModeProps.formRowProps.error;
+  }
+
   const editModeForm = (
     <EuiForm fullWidth>
       <EuiFlexGroup gutterSize="s">
         <EuiFlexItem>
           <EuiFormRow
             isInvalid={isInvalid}
-            error={isInvalid && editModeProps?.error}
+            error={errorMessage}
+            {...editModeProps?.formRowProps}
           >
             <EuiFieldText
               id={inlineEditInputId}
@@ -170,7 +179,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
               compressed={sizes.compressed}
               isInvalid={isInvalid}
               isLoading={isLoading}
-              {...editModeProps}
+              {...editModeProps?.inputProps}
             />
           </EuiFormRow>
         </EuiFlexItem>
