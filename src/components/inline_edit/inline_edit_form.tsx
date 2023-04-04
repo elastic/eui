@@ -68,10 +68,6 @@ export type EuiInlineEditCommonProps = CommonProps & {
    * Validation for the form control used to edit text in editMode
    */
   isInvalid?: boolean;
-  /**
-   * Error message placed on EuiForm when isInvalid is true
-   */
-  error?: string;
 };
 
 // Internal-only props, passed by the consumer-facing components
