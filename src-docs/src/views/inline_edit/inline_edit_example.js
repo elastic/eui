@@ -21,6 +21,9 @@ const inlineEditConfirmSource = require('!!raw-loader!././inline_edit_confirm');
 import InlineEditLoading from './inline_edit_loading';
 const inlineEditLoadingSource = require('!!raw-loader!././inline_edit_loading');
 
+import InlineEditValidation from './inline_edit_validation';
+const inlineEditValidationSource = require('!!raw-loader!././inline_edit_validation');
+
 export const InlineEditExample = {
   title: 'Inline edit',
   intro: (
@@ -41,7 +44,7 @@ export const InlineEditExample = {
       ),
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: inlineEditTextSource,
         },
       ],
@@ -60,7 +63,7 @@ export const InlineEditExample = {
       ),
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: inlineEditTitleSource,
         },
       ],
@@ -87,7 +90,7 @@ export const InlineEditExample = {
       props: { EuiInlineEditText },
     },
     {
-      title: 'Loading state',
+      title: 'Loading and invalid states',
       text: (
         <>
           <p>
@@ -99,12 +102,30 @@ export const InlineEditExample = {
       ),
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: inlineEditLoadingSource,
         },
       ],
       demo: <InlineEditLoading />,
-      props: { EuiInlineEditText },
+    },
+    {
+      text: (
+        <>
+          <p>
+            Setting the <EuiCode>isInvalid</EuiCode> prop to true will display{' '}
+            <strong>EuiInlineEdit</strong>&apos;s error state. Optionally, use
+            <EuiCode>editModeProps</EuiCode> to pass an error message that will
+            be displayed on the form control.
+          </p>
+        </>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: inlineEditValidationSource,
+        },
+      ],
+      demo: <InlineEditValidation />,
     },
   ],
 };
