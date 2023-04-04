@@ -18,11 +18,8 @@ const inlineEditTitleSource = require('!!raw-loader!./inline_edit_title');
 import InlineEditConfirm from './inline_edit_confirm';
 const inlineEditConfirmSource = require('!!raw-loader!././inline_edit_confirm');
 
-import InlineEditLoading from './inline_edit_loading';
-const inlineEditLoadingSource = require('!!raw-loader!././inline_edit_loading');
-
-import InlineEditValidation from './inline_edit_validation';
-const inlineEditValidationSource = require('!!raw-loader!././inline_edit_validation');
+import InlineEditStates from './inline_edit_states';
+const inlineEditStatesSource = require('!!raw-loader!././inline_edit_states');
 
 export const InlineEditExample = {
   title: 'Inline edit',
@@ -82,7 +79,7 @@ export const InlineEditExample = {
       ),
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: inlineEditConfirmSource,
         },
       ],
@@ -98,22 +95,9 @@ export const InlineEditExample = {
             spinner to the input element in <EuiCode>editMode</EuiCode> and add
             the loading state to the confirm and cancel input buttons.
           </p>
-        </>
-      ),
-      source: [
-        {
-          type: GuideSectionTypes.TSX,
-          code: inlineEditLoadingSource,
-        },
-      ],
-      demo: <InlineEditLoading />,
-    },
-    {
-      text: (
-        <>
           <p>
             Setting the <EuiCode>isInvalid</EuiCode> prop to true will display{' '}
-            <strong>EuiInlineEdit</strong>&apos;s error state. Optionally, use
+            <strong>EuiInlineEdit</strong>&apos;s error state. Optionally, use{' '}
             <EuiCode>editModeProps</EuiCode> to pass an error message that will
             be displayed on the form control.
           </p>
@@ -122,10 +106,10 @@ export const InlineEditExample = {
       source: [
         {
           type: GuideSectionTypes.TSX,
-          code: inlineEditValidationSource,
+          code: inlineEditStatesSource,
         },
       ],
-      demo: <InlineEditValidation />,
+      demo: <InlineEditStates />,
     },
   ],
 };
