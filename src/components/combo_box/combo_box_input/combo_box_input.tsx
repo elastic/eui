@@ -15,21 +15,22 @@ import React, {
 import classNames from 'classnames';
 import AutosizeInput from 'react-input-autosize';
 
+import { CommonProps } from '../../common';
+import { htmlIdGenerator } from '../../../services';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
 } from '../../form/form_control_layout';
-import { EuiComboBoxPill } from './combo_box_pill';
-import { htmlIdGenerator } from '../../../services';
 import { EuiFormControlLayoutIconsProps } from '../../form/form_control_layout/form_control_layout_icons';
+
+import { EuiComboBoxPill } from './combo_box_pill';
 import {
   EuiComboBoxOptionOption,
   EuiComboBoxSingleSelectionShape,
   OptionHandler,
   UpdatePositionHandler,
 } from '../types';
-import { CommonProps } from '../../common';
 
 export interface EuiComboBoxInputProps<T> extends CommonProps {
   autoSizeInputRef?: RefCallback<AutosizeInput & HTMLInputElement>;
