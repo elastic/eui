@@ -59,9 +59,6 @@ export default () => {
         defaultValue="Hello World (but as a title)!"
         size={toggleTitleButtonSize}
         heading="h3"
-        editModeProps={{
-          icon: 'cross',
-        }}
         readModeProps={{
           color: 'success',
         }}
