@@ -39,6 +39,8 @@ export const EuiInlineEditText: FunctionComponent<EuiInlineEditTextProps> = ({
   startWithEditOpen,
   readModeProps,
   editModeProps,
+  isLoading = false,
+  isInvalid = false,
   ...rest
 }) => {
   const classes = classNames('euiInlineEditText', className);
@@ -60,6 +62,8 @@ export const EuiInlineEditText: FunctionComponent<EuiInlineEditTextProps> = ({
     startWithEditOpen,
     readModeProps,
     editModeProps,
+    isLoading,
+    isInvalid,
   };
 
   return (

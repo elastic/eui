@@ -10,10 +10,19 @@ import React, { ReactNode, FunctionComponent, useState } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
-import { EuiFormRow, EuiFieldText, EuiForm, EuiFieldTextProps } from '../form';
+import {
+  EuiFormRow,
+  EuiFormRowProps,
+  EuiFieldText,
+  EuiForm,
+  EuiFieldTextProps,
+} from '../form';
+import { euiFormVariables } from '../form/form.styles';
 import { EuiButtonIcon, EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
 import { EuiButtonEmptyPropsForButton } from '../button/button_empty/button_empty';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
+import { EuiSkeletonRectangle } from '../skeleton';
+import { useEuiTheme } from '../../services';
 import { useEuiI18n } from '../i18n';
 import { useGeneratedHtmlId } from '../../services/accessibility';
 
@@ -49,9 +58,21 @@ export type EuiInlineEditCommonProps = CommonProps & {
    */
   readModeProps?: Omit<EuiButtonEmptyPropsForButton, 'onClick'>;
   /**
-   * Props that will be applied directly to the EuiFieldText displayed in editMode
+   * Props that will be applied directly to the `EuiFormRow` and `EuiFieldText` input displayed in editMode
    */
-  editModeProps?: EuiFieldTextProps;
+  editModeProps?: {
+    formRowProps?: Partial<EuiFormRowProps>;
+    inputProps?: Partial<EuiFieldTextProps>;
+  };
+  /**
+   * Loading state when changes are saved in editMode
+   */
+  isLoading?: boolean;
+
+  /**
+   * Validation for the form control used to edit text in editMode
+   */
+  isInvalid?: boolean;
 };
 
 // Internal-only props, passed by the consumer-facing components
@@ -94,13 +115,16 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   startWithEditOpen,
   readModeProps,
   editModeProps,
+  isLoading,
+  isInvalid,
 }) => {
   const classes = classNames('euiInlineEdit', className);
 
-  // Styles to come later! (Styling editMode text to match the size of its readMode counterpart)
-  /*const theme = useEuiTheme();
-  const styles = euiInlineEditStyles(theme);
-  const cssStyles = [styles.euiInlineEdit];*/
+  const euiTheme = useEuiTheme();
+  const { controlHeight, controlCompressedHeight } = euiFormVariables(euiTheme);
+  const loadingSkeletonSize = sizes.compressed
+    ? controlCompressedHeight
+    : controlHeight;
 
   const defaultSaveButtonAriaLabel = useEuiI18n(
     'euiInlineEditForm.saveButtonAriaLabel',
@@ -139,44 +163,69 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
     <EuiForm fullWidth>
       <EuiFlexGroup gutterSize="s">
         <EuiFlexItem>
-          <EuiFieldText
-            id={inlineEditInputId}
-            value={editModeValue}
-            onChange={(e) => {
-              setEditModeValue(e.target.value);
-            }}
-            aria-label={inputAriaLabel}
-            autoFocus
-            compressed={sizes.compressed}
-            {...editModeProps}
-          />
+          <EuiFormRow
+            isInvalid={isInvalid}
+            error={isInvalid && editModeProps?.formRowProps?.error}
+            {...editModeProps?.formRowProps}
+          >
+            <EuiFieldText
+              id={inlineEditInputId}
+              value={editModeValue}
+              onChange={(e) => {
+                setEditModeValue(e.target.value);
+              }}
+              aria-label={inputAriaLabel}
+              autoFocus
+              compressed={sizes.compressed}
+              isInvalid={isInvalid}
+              isLoading={isLoading}
+              {...editModeProps?.inputProps}
+            />
+          </EuiFormRow>
         </EuiFlexItem>
 
         <EuiFlexItem grow={false} className={classes}>
           <EuiFormRow>
-            <EuiButtonIcon
-              iconType="check"
-              aria-label={saveButtonAriaLabel || defaultSaveButtonAriaLabel}
-              onClick={saveInlineEditValue}
-              color="success"
-              display="base"
-              size={sizes.buttonSize}
-              iconSize={sizes.iconSize}
-            />
+            <EuiSkeletonRectangle
+              isLoading={isLoading}
+              height={loadingSkeletonSize}
+              width={loadingSkeletonSize}
+              borderRadius="m"
+            >
+              <EuiButtonIcon
+                iconType="check"
+                aria-label={saveButtonAriaLabel || defaultSaveButtonAriaLabel}
+                onClick={saveInlineEditValue}
+                color="success"
+                display="base"
+                size={sizes.buttonSize}
+                iconSize={sizes.iconSize}
+                disabled={isInvalid}
+              />
+            </EuiSkeletonRectangle>
           </EuiFormRow>
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
           <EuiFormRow>
-            <EuiButtonIcon
-              iconType="cross"
-              aria-label={cancelButtonAriaLabel || defaultCancelButtonAriaLabel}
-              onClick={cancelInlineEdit}
-              color="danger"
-              display="base"
-              size={sizes.buttonSize}
-              iconSize={sizes.iconSize}
-            />
+            <EuiSkeletonRectangle
+              isLoading={isLoading}
+              height={loadingSkeletonSize}
+              width={loadingSkeletonSize}
+              borderRadius="m"
+            >
+              <EuiButtonIcon
+                iconType="cross"
+                aria-label={
+                  cancelButtonAriaLabel || defaultCancelButtonAriaLabel
+                }
+                onClick={cancelInlineEdit}
+                color="danger"
+                display="base"
+                size={sizes.buttonSize}
+                iconSize={sizes.iconSize}
+              />
+            </EuiSkeletonRectangle>
           </EuiFormRow>
         </EuiFlexItem>
       </EuiFlexGroup>

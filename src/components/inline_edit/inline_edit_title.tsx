@@ -45,6 +45,8 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
   startWithEditOpen = false,
   readModeProps,
   editModeProps,
+  isLoading = false,
+  isInvalid = false,
   ...rest
 }) => {
   const classes = classNames('euiInlineEditTitle', className);
@@ -68,6 +70,8 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
     startWithEditOpen,
     readModeProps,
     editModeProps,
+    isLoading,
+    isInvalid,
   };
 
   return (

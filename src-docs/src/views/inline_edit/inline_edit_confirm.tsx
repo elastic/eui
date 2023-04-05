@@ -17,7 +17,7 @@ export default () => {
         defaultValue="Hello World!"
         size="m"
         editModeProps={{
-          icon: 'cross',
+          inputProps: { icon: 'cross' },
         }}
         readModeProps={{
           color: 'success',
