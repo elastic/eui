@@ -507,7 +507,6 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
         >
           <button
             aria-controls="euiNotificationEventMessagesAccordion_generated-id"
-            aria-expanded="false"
             aria-label="+ 2 messages for title"
             class="euiAccordion__button euiNotificationEventMessages__accordionButton emotion-euiAccordion__button"
             id="generated-id"

@@ -367,6 +367,11 @@ export class EuiAccordionClass extends Component<
       childrenContent = children;
     }
 
+    // We want to omit the aria-expanded attribute when the second
+    // button includes interactive content or is changed to a DIV.
+    // Otherwise axe-core throws a critical violation.
+    const isExpandableButton = ButtonElement === 'button' && isOpen;
+
     const button = (
       <ButtonElement
         css={cssButtonStyles}
@@ -374,7 +379,7 @@ export class EuiAccordionClass extends Component<
         id={buttonId}
         className={buttonClasses}
         aria-controls={id}
-        aria-expanded={isOpen}
+        aria-expanded={isExpandableButton ? 'true' : undefined}
         onClick={isDisabled ? undefined : this.onToggle}
         type={ButtonElement === 'button' ? 'button' : undefined}
         disabled={ButtonElement === 'button' ? isDisabled : undefined}
