@@ -62,7 +62,7 @@ export type EuiInlineEditCommonProps = CommonProps & {
    */
   editModeProps?: {
     formRowProps?: Partial<EuiFormRowProps>;
-    inputProps?: EuiFieldTextProps;
+    inputProps?: Partial<EuiFieldTextProps>;
   };
   /**
    * Loading state when changes are saved in editMode
