@@ -159,11 +159,6 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
     }
   };
 
-  let errorMessage;
-  if (isInvalid && editModeProps?.formRowProps?.error) {
-    errorMessage = editModeProps.formRowProps.error;
-  }
-
   const editModeForm = (
     <EuiForm fullWidth>
       <EuiFlexGroup gutterSize="s">
