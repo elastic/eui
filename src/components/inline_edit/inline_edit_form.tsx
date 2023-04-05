@@ -170,7 +170,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
         <EuiFlexItem>
           <EuiFormRow
             isInvalid={isInvalid}
-            error={errorMessage}
+            error={isInvalid && editModeProps?.formRowProps?.error}
             {...editModeProps?.formRowProps}
           >
             <EuiFieldText
