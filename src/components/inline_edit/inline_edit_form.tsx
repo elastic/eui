@@ -58,7 +58,7 @@ export type EuiInlineEditCommonProps = CommonProps & {
    */
   readModeProps?: Omit<EuiButtonEmptyPropsForButton, 'onClick'>;
   /**
-   * Props that will be applied directly to the EuiFieldText displayed in editMode
+   * Props that will be applied directly to the `EuiFormRow` and `EuiFieldText` input displayed in editMode
    */
   editModeProps?: {
     formRowProps?: Partial<EuiFormRowProps>;
