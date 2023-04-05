@@ -9,8 +9,7 @@
 /// <reference types="../../../cypress/support"/>
 
 import React, { ReactNode, useState } from 'react';
-import { EuiBasicTable } from './';
-import { EuiBasicTableColumn } from './';
+import { EuiBasicTable, EuiBasicTableColumn } from './';
 import { EuiButtonIcon } from '../button';
 import { EuiScreenReaderOnly } from '../accessibility';
 
@@ -42,7 +41,7 @@ const users: User[] = [
   },
 ];
 
-const columns: EuiBasicTableColumn<User>[] = [
+const columns: Array<EuiBasicTableColumn<User>> = [
   {
     field: 'id',
     name: 'ID',
@@ -82,7 +81,7 @@ const ExpandableRowTable = () => {
     setItemIdToExpandedRowMap(itemIdToExpandedRowMapValues);
   };
 
-  const columnsWithExpandingRowToggle: EuiBasicTableColumn<User>[] = [
+  const columnsWithExpandingRowToggle: Array<EuiBasicTableColumn<User>> = [
     ...columns,
     {
       align: 'right',
