@@ -367,10 +367,6 @@ export class EuiAccordionClass extends Component<
       childrenContent = children;
     }
 
-    // We want to omit the aria-expanded attribute when the second
-    // element is not a button. Otherwise axe-core throws a violation.
-    const isExpandableButton = ButtonElement === 'button';
-
     const button = (
       <ButtonElement
         css={cssButtonStyles}
