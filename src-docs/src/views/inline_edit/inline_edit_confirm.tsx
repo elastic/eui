@@ -3,7 +3,6 @@ import React from 'react';
 import { EuiInlineEditText } from '../../../../src';
 
 export default () => {
-  // TO DO: Convert this example to use something like a modal
   const confirmInlineEditChanges = () => {
     // eslint-disable-next-line no-restricted-globals
     const flag = confirm('Are you sure you want to save?') ? true : false;
@@ -14,14 +13,8 @@ export default () => {
     <>
       <EuiInlineEditText
         inputAriaLabel="Edit text inline"
-        defaultValue="Hello World!"
+        defaultValue="Hello! I will need to confirm my changes."
         size="m"
-        editModeProps={{
-          inputProps: { icon: 'cross' },
-        }}
-        readModeProps={{
-          color: 'success',
-        }}
         onConfirm={confirmInlineEditChanges}
       />
     </>

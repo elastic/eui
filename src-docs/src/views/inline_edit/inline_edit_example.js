@@ -15,6 +15,9 @@ const inlineEditTextSource = require('!!raw-loader!./inline_edit_text');
 import InlineEditTitle from './inline_edit_title';
 const inlineEditTitleSource = require('!!raw-loader!./inline_edit_title');
 
+import InlineEditModeProps from './inline_edit_mode_props';
+const inlineEditModePropsSource = require('!!raw-loader!./inline_edit_mode_props');
+
 import InlineEditConfirm from './inline_edit_confirm';
 const inlineEditConfirmSource = require('!!raw-loader!././inline_edit_confirm');
 
@@ -25,17 +28,24 @@ export const InlineEditExample = {
   title: 'Inline edit',
   intro: (
     <>
-      <EuiText>This is where the description will go</EuiText>
+      <EuiText>
+        The <strong>EuiInlineEdit</strong> component is useful for updating
+        single-line text outside of a form. The component has two states:{' '}
+        <EuiCode>readMode</EuiCode> shows editable text inside of a button and{' '}
+        <EuiCode>editMode</EuiCode> displays a form control to update the text.
+      </EuiText>
     </>
   ),
   sections: [
     {
-      title: 'InlineEditText',
+      title: 'Display and edit basic text',
       text: (
         <>
           <p>
-            Description needed: how to use the <strong>EuiInlineEdit</strong>{' '}
-            component.
+            Use <strong>EuiInlineEditText</strong> to display and edit basic
+            text. Adjust the <EuiCode>size</EuiCode> property to change the font
+            size in both <EuiCode>readMode</EuiCode> and{' '}
+            <EuiCode>editMode</EuiCode>.
           </p>
         </>
       ),
@@ -49,12 +59,13 @@ export const InlineEditExample = {
       props: { EuiInlineEditText },
     },
     {
-      title: 'InlineEditTitle',
+      title: 'Display and edit headers and titles',
       text: (
         <>
           <p>
-            Description needed: how to use the <strong>EuiInlineEdit</strong>{' '}
-            component.
+            Use <strong>EuiInlineEditTitle</strong> to display and edit titles.
+            Use the <EuiCode>heading</EuiCode> property to select the level of
+            heading to be used for the title in <EuiCode>readMode</EuiCode>.
           </p>
         </>
       ),
@@ -68,12 +79,41 @@ export const InlineEditExample = {
       props: { EuiInlineEditTitle },
     },
     {
+      title: 'Customizing read and edit modes',
+      text: (
+        <>
+          <p>
+            Customize the <EuiCode>readMode</EuiCode> empty button by passing{' '}
+            <strong>EuiInlineEdit</strong> the <EuiCode>readModeProps</EuiCode>{' '}
+            property. <EuiCode>readMode</EuiCode> accepts{' '}
+            <EuiCode>EuiButtonEmpty</EuiCode> properties with the exception of{' '}
+            <EuiCode>onClick</EuiCode>.
+          </p>
+
+          <p>
+            Customize the <EuiCode>editMode</EuiCode> state by passing{' '}
+            <strong>EuiInlineEdit</strong> the <EuiCode>editModeProps</EuiCode>{' '}
+            property. These properties are applied directly to the{' '}
+            <EuiCode>EuiFormRow</EuiCode> and
+            <EuiCode>EuiFieldText</EuiCode> components.
+          </p>
+        </>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: inlineEditModePropsSource,
+        },
+      ],
+      demo: <InlineEditModeProps />,
+    },
+    {
       title: 'Confirm inline edit',
       text: (
         <>
           <p>
-            Description needed: how to use the <strong>EuiInlineEdit</strong>{' '}
-            component.
+            Use the <EuiCode>onConfirm</EuiCode> property to pass a function
+            that will prompt users to confirm their changes.
           </p>
         </>
       ),
@@ -84,7 +124,6 @@ export const InlineEditExample = {
         },
       ],
       demo: <InlineEditConfirm />,
-      props: { EuiInlineEditText },
     },
     {
       title: 'Loading and invalid states',
