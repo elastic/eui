@@ -12,6 +12,14 @@ import React from 'react';
 import { faker } from '@faker-js/faker';
 
 import { EuiInMemoryTable, EuiBasicTableColumn } from './index';
+import {
+  EuiTable,
+  EuiTableHeader,
+  EuiTableHeaderCell,
+  EuiTableBody,
+  EuiTableRow,
+  EuiTableRowCell,
+} from '../table';
 import { EuiHealth } from '../health';
 import { EuiLink } from '../link';
 import { formatDate } from '../../services';
@@ -207,6 +215,45 @@ describe('EuiInMemoryTable', () => {
       it('has zero violations on render', () => {
         cy.checkAxe();
       });
+    });
+  });
+});
+
+const userRows = users.map((user, i) => {
+  const { firstName, lastName, github, location } = user;
+
+  return (
+    <EuiTableRow key={i}>
+      <EuiTableRowCell>{`${firstName} ${lastName}`}</EuiTableRowCell>
+      <EuiTableRowCell>{github}</EuiTableRowCell>
+      <EuiTableRowCell>{`${location.city}, ${location.country}`}</EuiTableRowCell>
+    </EuiTableRow>
+  );
+});
+
+const customColumns: String[] = ['Name', 'Github', 'Location'];
+const columnHeaders = customColumns.map((column, i) => (
+  <EuiTableHeaderCell key={i}>{column}</EuiTableHeaderCell>
+));
+
+const CustomTable = () => {
+  return (
+    <EuiTable>
+      <EuiTableHeader>{columnHeaders}</EuiTableHeader>
+      <EuiTableBody>{userRows}</EuiTableBody>
+    </EuiTable>
+  );
+};
+
+describe('EuiCustomTable', () => {
+  beforeEach(() => {
+    cy.viewport(1024, 768); // medium breakpoint
+    cy.realMount(<CustomTable />);
+  });
+
+  describe('Automated accessibility check', () => {
+    it('has zero violations when rendered', () => {
+      cy.checkAxe();
     });
   });
 });

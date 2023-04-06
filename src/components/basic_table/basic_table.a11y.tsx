@@ -9,7 +9,7 @@
 /// <reference types="../../../cypress/support"/>
 
 import React, { ReactNode, useState } from 'react';
-import { EuiBasicTable, EuiBasicTableColumn } from './';
+import { EuiBasicTable, EuiBasicTableColumn } from '.';
 import { EuiButtonIcon } from '../button';
 import { EuiScreenReaderOnly } from '../accessibility';
 
@@ -59,6 +59,16 @@ const columns: Array<EuiBasicTableColumn<User>> = [
     name: 'City',
   },
 ];
+
+const BasicTable = () => {
+  return (
+    <EuiBasicTable
+      tableCaption="Demo of EuiBasicTable with expanding rows"
+      columns={columns}
+      items={users}
+    />
+  );
+};
 
 const ExpandableRowTable = () => {
   const [itemIdToExpandedRowMap, setItemIdToExpandedRowMap] = useState<
@@ -122,27 +132,42 @@ const ExpandableRowTable = () => {
   );
 };
 
-describe('EuiExpandableRowTable', () => {
-  beforeEach(() => {
-    cy.viewport(1024, 768); // medium breakpoint
-    cy.realMount(<ExpandableRowTable />);
-  });
+describe('EuiTable', () => {
+  describe('basic table', () => {
+    beforeEach(() => {
+      cy.viewport(1024, 768); // medium breakpoint
+      cy.realMount(<BasicTable />);
+    });
 
-  describe('Automated accessibility check', () => {
-    it('has zero violations when rendered', () => {
-      cy.checkAxe();
+    describe('Automated accessibility check', () => {
+      it('has zero violations when rendered', () => {
+        cy.checkAxe();
+      });
     });
   });
 
-  describe('Keyboard accessibility', () => {
-    it('has zero violations after expanding a row', () => {
-      cy.realPress('Tab');
-      cy.get('button.euiButtonIcon').first().should('have.focus');
-      cy.realPress('Enter');
-      cy.get('tr.euiTableRow-isExpandedRow div.euiTableCellContent').should(
-        'exist'
-      );
-      cy.checkAxe();
+  describe('expandable rows', () => {
+    beforeEach(() => {
+      cy.viewport(1024, 768); // medium breakpoint
+      cy.realMount(<ExpandableRowTable />);
+    });
+
+    describe('Automated accessibility check', () => {
+      it('has zero violations when rendered', () => {
+        cy.checkAxe();
+      });
+    });
+
+    describe('Keyboard accessibility', () => {
+      it('has zero violations after expanding a row', () => {
+        cy.realPress('Tab');
+        cy.get('button.euiButtonIcon').first().should('have.focus');
+        cy.realPress('Enter');
+        cy.get('tr.euiTableRow-isExpandedRow div.euiTableCellContent').should(
+          'exist'
+        );
+        cy.checkAxe();
+      });
     });
   });
 });
