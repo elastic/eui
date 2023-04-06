@@ -6,8 +6,8 @@
  * Side Public License, v 1.
  */
 
-import { mount as cypressMount } from '@cypress/react';
-import { React } from 'react';
+import React from 'react';
+import { mount as cypressMount } from 'cypress/react';
 import { EuiProvider } from '../../../src';
 
 Cypress.Commands.add('mount', (children) => {

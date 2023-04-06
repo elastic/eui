@@ -1,3 +1,4 @@
+import { mount } from 'cypress/react';
 import { ContextObject, Result, RunOptions } from 'axe-core';
 import { realPress } from 'cypress-real-events/commands/realPress';
 
@@ -27,15 +28,15 @@ declare global {
       }): void;
 
       /**
-       * Creates a basic `EuiContainer` to render components.
+       * Mounts components with a basic `EuiProvider` wrapper
        */
-      mount(children: React.ReactNode): void;
+      mount: typeof mount;
 
       /**
        * This ensures the correct testing window has focus when using Cypress Real Events.
        * @see https://github.com/dmtrKovalenko/cypress-real-events/issues/196
        */
-      realMount(children: React.ReactNode): void;
+      realMount: typeof mount;
 
       /**
        * Repeat the Real Events `realPress()` method 2 or more times
