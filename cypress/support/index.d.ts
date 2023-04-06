@@ -7,9 +7,6 @@ type RealPressOptions = Parameters<typeof realPress>[1];
 declare global {
   namespace Cypress {
     interface Chainable<Subject> {
-      // We are adding `/// <reference types="../../../cypress/support"/>` to
-      // Cypress specs so VSCode will recognize custom command types.
-
       /**
        * Convenience method to run the axe-core accessibility scanner without having to establish
        * `cy.injectAxe()` in a `beforeEach` block. This method also reports axe violations in the

@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../../cypress/support" />
 
 import React, { useState } from 'react';
 import { EuiSwitch } from './switch';
@@ -14,15 +16,11 @@ import { EuiSwitch } from './switch';
 const Switch = () => {
   const [checked, setChecked] = useState(false);
 
-  const onChange = (e) => {
-    setChecked(e.target.checked);
-  };
-
   return (
     <EuiSwitch
       label="Malware protection"
       checked={checked}
-      onChange={(e) => onChange(e)}
+      onChange={(e) => setChecked(e.target.checked)}
     />
   );
 };

@@ -6,20 +6,27 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
-import React, { useState } from 'react';
+import React, { useState, FC, MouseEventHandler } from 'react';
 
 import { EuiButton, EuiConfirmModal } from '../../components';
-import { EuiPopover } from './popover';
+import { EuiPopover, EuiPopoverProps } from './popover';
 
-const PopoverToggle = ({ onClick }) => (
+const PopoverToggle: FC<{ onClick: MouseEventHandler<HTMLButtonElement> }> = ({
+  onClick,
+}) => (
   <EuiButton onClick={onClick} data-test-subj="togglePopover">
     Show popover
   </EuiButton>
 );
 
-const PopoverComponent = ({ children, ...rest }) => {
+const PopoverComponent: FC<Partial<EuiPopoverProps>> = ({
+  children,
+  ...rest
+}) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const closePopover = () => setIsPopoverOpen(false);
   const togglePopover = () =>
@@ -78,7 +85,7 @@ describe('EuiPopover', () => {
       it('focuses functions returning DOM Nodes', () => {
         cy.mount(
           <PopoverComponent
-            initialFocus={() => document.getElementById('test')}
+            initialFocus={() => document.getElementById('test')!}
           >
             <button id="test">Test</button>
           </PopoverComponent>

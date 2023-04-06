@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../../cypress/support" />
 
 import React, { useState } from 'react';
 import { EuiRadioGroup } from './radio_group';
@@ -39,15 +41,11 @@ const RadioGroup = () => {
 
   const [radioIdSelected, setRadioIdSelected] = useState(radioGroupItemId__1);
 
-  const onChange = (optionId) => {
-    setRadioIdSelected(optionId);
-  };
-
   return (
     <EuiRadioGroup
       options={radios}
       idSelected={radioIdSelected}
-      onChange={(id) => onChange(id)}
+      onChange={(id) => setRadioIdSelected(id)}
       name="radio group"
       legend={{
         children: <span>This is a legend for a radio group</span>,
