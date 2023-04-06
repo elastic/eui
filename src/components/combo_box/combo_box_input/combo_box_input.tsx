@@ -7,16 +7,17 @@
  */
 
 import React, {
-  ChangeEventHandler,
   Component,
+  ChangeEventHandler,
   FocusEventHandler,
+  KeyboardEventHandler,
   RefCallback,
 } from 'react';
 import classNames from 'classnames';
 import AutosizeInput from 'react-input-autosize';
 
 import { CommonProps } from '../../common';
-import { htmlIdGenerator } from '../../../services';
+import { htmlIdGenerator, keys } from '../../../services';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import {
   EuiFormControlLayout,
@@ -51,11 +52,11 @@ export interface EuiComboBoxInputProps<T> extends CommonProps {
   onCloseListClick: () => void;
   onFocus: FocusEventHandler<HTMLInputElement>;
   onOpenListClick: () => void;
-  onRemoveOption?: OptionHandler<T>;
+  onRemoveOption: OptionHandler<T>;
   placeholder?: string;
   rootId: ReturnType<typeof htmlIdGenerator>;
   searchValue: string;
-  selectedOptions?: Array<EuiComboBoxOptionOption<T>>;
+  selectedOptions: Array<EuiComboBoxOptionOption<T>>;
   singleSelection?: boolean | EuiComboBoxSingleSelectionShape;
   toggleButtonRef?: RefCallback<HTMLButtonElement | HTMLSpanElement>;
   updatePosition: UpdatePositionHandler;
@@ -102,6 +103,29 @@ export class EuiComboBoxInput<T> extends Component<
     this.setState({
       hasFocus: false,
     });
+  };
+
+  onKeyDown: KeyboardEventHandler<HTMLInputElement> = (event) => {
+    const {
+      searchValue,
+      selectedOptions,
+      onRemoveOption,
+      singleSelection,
+      isListOpen,
+      onOpenListClick,
+    } = this.props;
+
+    // When backspacing from an empty input, delete the last pill option in the list
+    const searchIsEmpty = !searchValue.length;
+    const hasPills = selectedOptions.length;
+
+    if (event.key === keys.BACKSPACE && searchIsEmpty && hasPills) {
+      onRemoveOption(selectedOptions[selectedOptions.length - 1]);
+
+      if (!!singleSelection && !isListOpen) {
+        onOpenListClick();
+      }
+    }
   };
 
   componentDidUpdate(prevProps: EuiComboBoxInputProps<T>) {
@@ -310,6 +334,7 @@ export class EuiComboBoxInput<T> extends Component<
             onBlur={this.onBlur}
             onChange={this.inputOnChange}
             onFocus={this.onFocus}
+            onKeyDown={this.onKeyDown}
             ref={this.inputRefCallback}
             role="combobox"
             style={{ fontSize: 14 }}
