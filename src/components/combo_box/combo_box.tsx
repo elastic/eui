@@ -418,26 +418,6 @@ export class EuiComboBox<T> extends Component<
     this.onSearchChange('');
   };
 
-  removeLastOption = () => {
-    if (!this.props.selectedOptions.length) {
-      return;
-    }
-
-    // Backspace will be used to delete the input, not a pill.
-    if (this.state.searchValue.length) {
-      return;
-    }
-
-    // Delete last pill.
-    this.onRemoveOption(
-      this.props.selectedOptions[this.props.selectedOptions.length - 1]
-    );
-
-    if (Boolean(this.props.singleSelection) && !this.state.isListOpen) {
-      this.openList();
-    }
-  };
-
   addCustomOption = (isContainerBlur: boolean, searchValue: string) => {
     const {
       isCaseSensitive,
@@ -623,11 +603,6 @@ export class EuiComboBox<T> extends Component<
         } else {
           this.openList();
         }
-        break;
-
-      case keys.BACKSPACE:
-        event.stopPropagation();
-        this.removeLastOption();
         break;
 
       case keys.ESCAPE:
