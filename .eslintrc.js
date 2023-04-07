@@ -46,6 +46,7 @@ module.exports = {
     'local/forward-ref': 'error',
     'local/css-logical-properties': 'error',
     'local/css_before_spread_props': 'error',
+    'local/require-cypress-references': 'error',
     'local/require-license-header': [
       'warn',
       {
