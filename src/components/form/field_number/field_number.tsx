@@ -99,10 +99,12 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
     ...rest
   } = props;
 
-  const numIconsClass = getFormControlClassNameForIconCount({
-    isInvalid,
-    isLoading,
-  });
+  const numIconsClass = controlOnly
+    ? false
+    : getFormControlClassNameForIconCount({
+        isInvalid,
+        isLoading,
+      });
 
   const classes = classNames('euiFieldNumber', className, numIconsClass, {
     'euiFieldNumber--withIcon': icon,
