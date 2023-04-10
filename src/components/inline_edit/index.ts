@@ -11,5 +11,3 @@ export type { EuiInlineEditTextProps } from './inline_edit_text';
 
 export { EuiInlineEditTitle } from './inline_edit_title';
 export type { EuiInlineEditTitleProps } from './inline_edit_title';
-
-export type { EuiInlineEditTextSizes } from './inline_edit_text';
