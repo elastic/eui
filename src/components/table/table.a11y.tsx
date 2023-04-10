@@ -11,7 +11,7 @@
 import React from 'react';
 import { faker } from '@faker-js/faker';
 
-import { EuiInMemoryTable, EuiBasicTableColumn } from './index';
+import { EuiInMemoryTable, EuiBasicTableColumn } from '../basic_table/index';
 import {
   EuiTable,
   EuiTableHeader,
@@ -19,7 +19,7 @@ import {
   EuiTableBody,
   EuiTableRow,
   EuiTableRowCell,
-} from '../table';
+} from '.';
 import { EuiHealth } from '../health';
 import { EuiLink } from '../link';
 import { formatDate } from '../../services';
@@ -245,7 +245,7 @@ const CustomTable = () => {
   );
 };
 
-describe('EuiCustomTable', () => {
+describe('EuiTable', () => {
   beforeEach(() => {
     cy.viewport(1024, 768); // medium breakpoint
     cy.realMount(<CustomTable />);

@@ -60,79 +60,17 @@ const columns: Array<EuiBasicTableColumn<User>> = [
   },
 ];
 
-const BasicTable = () => {
-  return (
-    <EuiBasicTable
-      tableCaption="Demo of EuiBasicTable with expanding rows"
-      columns={columns}
-      items={users}
-    />
-  );
-};
-
-const ExpandableRowTable = () => {
-  const [itemIdToExpandedRowMap, setItemIdToExpandedRowMap] = useState<
-    Record<string, ReactNode>
-  >({});
-
-  const toggleDetails = (user: User) => {
-    const itemIdToExpandedRowMapValues = { ...itemIdToExpandedRowMap };
-
-    if (itemIdToExpandedRowMapValues[user.id]) {
-      delete itemIdToExpandedRowMapValues[user.id];
-    } else {
-      itemIdToExpandedRowMapValues[user.id] = (
-        <div>
-          <p>{`Location: ${user.city}`}</p>
-          <p>This person is online.</p>
-        </div>
-      );
-    }
-    setItemIdToExpandedRowMap(itemIdToExpandedRowMapValues);
+describe('EuiTable', () => {
+  const BasicTable = () => {
+    return (
+      <EuiBasicTable
+        tableCaption="Demo of EuiBasicTable with expanding rows"
+        columns={columns}
+        items={users}
+      />
+    );
   };
 
-  const columnsWithExpandingRowToggle: Array<EuiBasicTableColumn<User>> = [
-    ...columns,
-    {
-      align: 'right',
-      width: '40px',
-      isExpander: true,
-      name: (
-        <EuiScreenReaderOnly>
-          <span>Expand rows</span>
-        </EuiScreenReaderOnly>
-      ),
-      render: (user: User) => {
-        const itemIdToExpandedRowMapValues = { ...itemIdToExpandedRowMap };
-
-        return (
-          <EuiButtonIcon
-            onClick={() => toggleDetails(user)}
-            aria-label={
-              itemIdToExpandedRowMapValues[user.id] ? 'Collapse' : 'Expand'
-            }
-            iconType={
-              itemIdToExpandedRowMapValues[user.id] ? 'arrowDown' : 'arrowRight'
-            }
-          />
-        );
-      },
-    },
-  ];
-
-  return (
-    <EuiBasicTable
-      tableCaption="Demo of EuiBasicTable with expanding rows"
-      itemIdToExpandedRowMap={itemIdToExpandedRowMap}
-      isExpandable={true}
-      columns={columnsWithExpandingRowToggle}
-      items={users}
-      itemId="id"
-    />
-  );
-};
-
-describe('EuiTable', () => {
   describe('basic table', () => {
     beforeEach(() => {
       cy.viewport(1024, 768); // medium breakpoint
@@ -147,6 +85,70 @@ describe('EuiTable', () => {
   });
 
   describe('expandable rows', () => {
+    const ExpandableRowTable = () => {
+      const [itemIdToExpandedRowMap, setItemIdToExpandedRowMap] = useState<
+        Record<string, ReactNode>
+      >({});
+
+      const toggleDetails = (user: User) => {
+        const itemIdToExpandedRowMapValues = { ...itemIdToExpandedRowMap };
+
+        if (itemIdToExpandedRowMapValues[user.id]) {
+          delete itemIdToExpandedRowMapValues[user.id];
+        } else {
+          itemIdToExpandedRowMapValues[user.id] = (
+            <div>
+              <p>{`Location: ${user.city}`}</p>
+              <p>This person is online.</p>
+            </div>
+          );
+        }
+        setItemIdToExpandedRowMap(itemIdToExpandedRowMapValues);
+      };
+
+      const columnsWithExpandingRowToggle: Array<EuiBasicTableColumn<User>> = [
+        ...columns,
+        {
+          align: 'right',
+          width: '40px',
+          isExpander: true,
+          name: (
+            <EuiScreenReaderOnly>
+              <span>Expand rows</span>
+            </EuiScreenReaderOnly>
+          ),
+          render: (user: User) => {
+            const itemIdToExpandedRowMapValues = { ...itemIdToExpandedRowMap };
+
+            return (
+              <EuiButtonIcon
+                onClick={() => toggleDetails(user)}
+                aria-label={
+                  itemIdToExpandedRowMapValues[user.id] ? 'Collapse' : 'Expand'
+                }
+                iconType={
+                  itemIdToExpandedRowMapValues[user.id]
+                    ? 'arrowDown'
+                    : 'arrowRight'
+                }
+              />
+            );
+          },
+        },
+      ];
+
+      return (
+        <EuiBasicTable
+          tableCaption="Demo of EuiBasicTable with expanding rows"
+          itemIdToExpandedRowMap={itemIdToExpandedRowMap}
+          isExpandable={true}
+          columns={columnsWithExpandingRowToggle}
+          items={users}
+          itemId="id"
+        />
+      );
+    };
+
     beforeEach(() => {
       cy.viewport(1024, 768); // medium breakpoint
       cy.realMount(<ExpandableRowTable />);
