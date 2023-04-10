@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -29,7 +31,7 @@ export const InlineEditExample = {
   intro: (
     <>
       <EuiText>
-        The <strong>EuiInlineEdit</strong> component is useful for updating
+        The <strong>EuiInlineEdit</strong> components are useful for updating
         single-line text outside of a form. The component has two states:{' '}
         <EuiCode>readMode</EuiCode> shows editable text inside of a button and{' '}
         <EuiCode>editMode</EuiCode> displays a form control to update the text.
@@ -59,13 +61,13 @@ export const InlineEditExample = {
       props: { EuiInlineEditText },
     },
     {
-      title: 'Display and edit headers and titles',
+      title: 'Display and edit headings and titles',
       text: (
         <>
           <p>
             Use <strong>EuiInlineEditTitle</strong> to display and edit titles.
-            Use the <EuiCode>heading</EuiCode> property to select the level of
-            heading to be used for the title in <EuiCode>readMode</EuiCode>.
+            Use the <EuiCode>heading</EuiCode> property to set the heading level
+            in <EuiCode>readMode</EuiCode>.
           </p>
         </>
       ),
@@ -77,53 +79,6 @@ export const InlineEditExample = {
       ],
       demo: <InlineEditTitle />,
       props: { EuiInlineEditTitle },
-    },
-    {
-      title: 'Customizing read and edit modes',
-      text: (
-        <>
-          <p>
-            Customize the <EuiCode>readMode</EuiCode> empty button by passing{' '}
-            <strong>EuiInlineEdit</strong> the <EuiCode>readModeProps</EuiCode>{' '}
-            property. <EuiCode>readMode</EuiCode> accepts{' '}
-            <EuiCode>EuiButtonEmpty</EuiCode> properties with the exception of{' '}
-            <EuiCode>onClick</EuiCode>.
-          </p>
-
-          <p>
-            Customize the <EuiCode>editMode</EuiCode> state by passing{' '}
-            <strong>EuiInlineEdit</strong> the <EuiCode>editModeProps</EuiCode>{' '}
-            property. These properties are applied directly to the{' '}
-            <EuiCode>EuiFormRow</EuiCode> and
-            <EuiCode>EuiFieldText</EuiCode> components.
-          </p>
-        </>
-      ),
-      source: [
-        {
-          type: GuideSectionTypes.TSX,
-          code: inlineEditModePropsSource,
-        },
-      ],
-      demo: <InlineEditModeProps />,
-    },
-    {
-      title: 'Confirm inline edit',
-      text: (
-        <>
-          <p>
-            Use the <EuiCode>onConfirm</EuiCode> property to pass a function
-            that will prompt users to confirm their changes.
-          </p>
-        </>
-      ),
-      source: [
-        {
-          type: GuideSectionTypes.TSX,
-          code: inlineEditConfirmSource,
-        },
-      ],
-      demo: <InlineEditConfirm />,
     },
     {
       title: 'Loading and invalid states',
@@ -149,6 +104,61 @@ export const InlineEditExample = {
         },
       ],
       demo: <InlineEditStates />,
+    },
+    {
+      title: 'Confirm inline edit',
+      text: (
+        <>
+          <p>
+            Use the <EuiCode>onConfirm</EuiCode> property to pass a function
+            that will prompt users to confirm their changes.
+          </p>
+        </>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: inlineEditConfirmSource,
+        },
+      ],
+      demo: <InlineEditConfirm />,
+    },
+    {
+      title: 'Customizing read and edit modes',
+      text: (
+        <>
+          <p>
+            Customize the <EuiCode>readMode</EuiCode> state by passing{' '}
+            <EuiCode>readModeProps</EuiCode>. <EuiCode>readMode</EuiCode>{' '}
+            accepts{' '}
+            <Link to="/navigation/button#empty-button">
+              <strong>EuiButtonEmpty</strong>
+            </Link>{' '}
+            properties with the exception of <EuiCode>onClick</EuiCode>.
+          </p>
+
+          <p>
+            Customize the <EuiCode>editMode</EuiCode> state by passing{' '}
+            <EuiCode>editModeProps</EuiCode> . These properties are applied
+            directly to the{' '}
+            <Link to="/forms/form-layouts#form-and-form-rows">
+              <strong>EuiFormRow</strong>
+            </Link>{' '}
+            and{' '}
+            <Link to="/forms/form-controls#text-field">
+              <strong>EuiFieldText</strong>
+            </Link>{' '}
+            components.
+          </p>
+        </>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: inlineEditModePropsSource,
+        },
+      ],
+      demo: <InlineEditModeProps />,
     },
   ],
 };
