@@ -6,10 +6,12 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../../cypress/support" />
 
 import React, { useState } from 'react';
-import { EuiCheckboxGroup } from './checkbox_group';
+import { EuiCheckboxGroup, EuiCheckboxGroupProps } from './checkbox_group';
 
 const CheckBoxGroup = () => {
   const checkboxGroupItemId__1 = 'cy-group-id-1';
@@ -17,7 +19,7 @@ const CheckBoxGroup = () => {
   const checkboxGroupItemId__3 = 'cy-group-id-3';
   const checkboxGroupItemId__4 = 'cy-group-id-4';
 
-  const checkboxes = [
+  const checkboxes: EuiCheckboxGroupProps['options'] = [
     {
       id: checkboxGroupItemId__1,
       label: 'Option one',
@@ -41,11 +43,13 @@ const CheckBoxGroup = () => {
       'data-test-subj': 'cy-checkbox-4',
     },
   ];
-  const [checkboxIdToSelectedMap, setCheckboxIdToSelectedMap] = useState({
+  const [checkboxIdToSelectedMap, setCheckboxIdToSelectedMap] = useState<
+    EuiCheckboxGroupProps['idToSelectedMap']
+  >({
     [checkboxGroupItemId__2]: true,
   });
 
-  const onChange = (optionId) => {
+  const onChange: EuiCheckboxGroupProps['onChange'] = (optionId) => {
     const newCheckboxIdToSelectedMap = {
       ...checkboxIdToSelectedMap,
       ...{

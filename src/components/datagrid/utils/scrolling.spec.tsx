@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../../cypress/support" />
 
 import React, { createRef } from 'react';
 import { EuiDataGrid, EuiDataGridProps } from '../';
@@ -67,7 +69,7 @@ describe('useScroll', () => {
 
       // Wait for the grid to finish rendering and pass back the ref
       cy.get('[data-test-subj="euiDataGridBody"]').then(() => {
-        ref.current.setFocusedCell({ rowIndex: 14, colIndex: 5 });
+        ref.current!.setFocusedCell({ rowIndex: 14, colIndex: 5 });
         cy.focused()
           .should('have.attr', 'data-gridcell-visible-row-index', '14')
           .should('have.attr', 'data-gridcell-column-index', '5');
@@ -82,7 +84,7 @@ describe('useScroll', () => {
 
       // Wait for the grid to finish rendering and pass back the ref
       cy.get('[data-test-subj="euiDataGridBody"]').then(() => {
-        ref.current.openCellPopover({ rowIndex: 14, colIndex: 5 });
+        ref.current!.openCellPopover({ rowIndex: 14, colIndex: 5 });
         cy.focused().should(
           'have.attr',
           'data-test-subj',

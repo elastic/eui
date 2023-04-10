@@ -6,14 +6,18 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
 import React, { useState } from 'react';
+
 import { EuiBasicTable } from '../basic_table';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiHealth } from '../health';
-import { EuiSearchBar } from './search_bar';
 import { EuiSpacer } from '../spacer';
+
+import { EuiSearchBar, Query } from './search_bar';
 
 const tags = [
   { name: 'marketing', color: 'danger' },
@@ -67,9 +71,7 @@ const items = [
 ];
 
 export const SearchBar = () => {
-  const [query, setQuery] = useState('');
-
-  const onChange = ({ query }) => setQuery(query);
+  const [query, setQuery] = useState<Query | string>('');
 
   const renderSearch = () => {
     const filters: any = [
@@ -125,7 +127,9 @@ export const SearchBar = () => {
           schema,
         }}
         filters={filters}
-        onChange={onChange}
+        onChange={({ query }) => {
+          if (query) setQuery(query);
+        }}
       />
     );
   };
