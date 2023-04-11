@@ -1,3 +1,17 @@
+## [`77.1.0`](https://github.com/elastic/eui/tree/v77.1.0)
+
+- Updated `EuiDatePicker` to display a warning icon and correctly set `aria-invalid` when `isInvalid` is passed ([#6677](https://github.com/elastic/eui/pull/6677))
+- Updated `EuiFilePicker` to display an alert icon when `isInvalid` ([#6678](https://github.com/elastic/eui/pull/6678))
+- Updated `EuiTextArea` to display an alert icon when `isInvalid` ([#6679](https://github.com/elastic/eui/pull/6679))
+- Updated `EuiTextArea` to support the `isLoading` prop ([#6679](https://github.com/elastic/eui/pull/6679))
+- Updated `EuiDatePicker` to display a warning icon and correctly set `aria-invalid` when `isInvalid` is passed ([#6680](https://github.com/elastic/eui/pull/6680))
+
+**Bug fixes**
+
+- Fixed `EuiAccordion` to not set an `aria-expanded` attribute on non-interactive `buttonElement`s ([#6694](https://github.com/elastic/eui/pull/6694))
+- Fixed an `EuiPopoverFooter` bug causing nested popovers within popovers (note: not a recommended use-case) to unintentionally override its panel padding size inherited from context ([#6698](https://github.com/elastic/eui/pull/6698))
+- Fixed `EuiComboBox` to only delete the last selected item on backspace if the input caret is present ([#6699](https://github.com/elastic/eui/pull/6699))
+
 ## [`77.0.0`](https://github.com/elastic/eui/tree/v77.0.0)
 
 **Bug fixes**
