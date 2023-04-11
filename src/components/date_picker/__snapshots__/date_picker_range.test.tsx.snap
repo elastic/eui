@@ -204,7 +204,7 @@ exports[`EuiDatePickerRange isInvalid is rendered 1`] = `
             >
               <input
                 aria-label="Press the down key to open a popover containing a calendar."
-                class="euiDatePicker euiFieldText euiFieldText--withIcon euiFieldText-isInvalid euiDatePickerRange__start"
+                class="euiDatePicker euiFieldText euiFormControlLayout--1icons euiFieldText--withIcon euiDatePickerRange__start"
                 type="text"
                 value=""
               />
@@ -224,6 +224,14 @@ exports[`EuiDatePickerRange isInvalid is rendered 1`] = `
             />
           </span>
         </div>
+        <div
+          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+        >
+          <span
+            color="danger"
+            data-euiicon-type="warning"
+          />
+        </div>
       </div>
     </div>
   </span>
@@ -232,7 +240,7 @@ exports[`EuiDatePickerRange isInvalid is rendered 1`] = `
   >
     <span
       color="danger"
-      data-euiicon-type="warning"
+      data-euiicon-type="sortRight"
     />
   </span>
   <span
@@ -255,12 +263,20 @@ exports[`EuiDatePickerRange isInvalid is rendered 1`] = `
             >
               <input
                 aria-label="Press the down key to open a popover containing a calendar."
-                class="euiDatePicker euiFieldText euiFieldText-isInvalid euiDatePickerRange__end"
+                class="euiDatePicker euiFieldText euiFormControlLayout--1icons euiDatePickerRange__end"
                 type="text"
                 value=""
               />
             </div>
           </div>
+        </div>
+        <div
+          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+        >
+          <span
+            color="danger"
+            data-euiicon-type="warning"
+          />
         </div>
       </div>
     </div>

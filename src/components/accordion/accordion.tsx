@@ -374,7 +374,8 @@ export class EuiAccordionClass extends Component<
         id={buttonId}
         className={buttonClasses}
         aria-controls={id}
-        aria-expanded={isOpen}
+        // `aria-expanded` is only a valid attribute on interactive controls - axe-core throws a violation otherwise
+        aria-expanded={ButtonElement === 'button' ? isOpen : undefined}
         onClick={isDisabled ? undefined : this.onToggle}
         type={ButtonElement === 'button' ? 'button' : undefined}
         disabled={ButtonElement === 'button' ? isDisabled : undefined}

@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../../cypress/support" />
 
 import React, { useEffect } from 'react';
 import { EuiDataGrid, EuiDataGridProps } from '../';
@@ -102,11 +104,11 @@ describe('EuiDataGridCellPopover', () => {
   });
 
   it('allows consumers to use setCellPopoverProps, passed from renderCellPopover, to customize popover props', () => {
-    const RenderCellPopover = ({
-      DefaultCellPopover,
-      setCellPopoverProps,
-      ...props
-    }) => {
+    const RenderCellPopover: EuiDataGridProps['renderCellPopover'] = (
+      props
+    ) => {
+      const { DefaultCellPopover, setCellPopoverProps } = props;
+
       useEffect(() => {
         setCellPopoverProps({
           panelClassName: 'hello',

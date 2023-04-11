@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
 import React, { useRef } from 'react';
 import { EuiFocusTrap } from './focus_trap';
@@ -168,7 +170,7 @@ describe('EuiFocusTrap', () => {
       shards?: boolean;
       closeOnMouseup?: boolean;
     }) => {
-      const buttonRef = useRef();
+      const buttonRef = useRef(null);
       return (
         <div>
           <EuiFocusTrap

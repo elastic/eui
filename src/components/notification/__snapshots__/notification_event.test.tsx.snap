@@ -78,7 +78,7 @@ exports[`EuiNotificationEvent props badgeColor is rendered 1`] = `
       >
         <span
           class="euiBadge euiNotificationEventMeta__badge emotion-euiBadge"
-          style="background-color:#f1d86f;color:#000"
+          style="background-color:#FEC514;color:#000"
         >
           <span
             class="euiBadge__content emotion-euiBadge__content"

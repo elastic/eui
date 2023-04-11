@@ -12,7 +12,7 @@ export default () => {
 
   return (
     /* DisplayToggles wrapper for Docs only */
-    <DisplayToggles canLoading={false}>
+    <DisplayToggles>
       <EuiTextArea
         placeholder="Placeholder text"
         aria-label="Use aria labels when no actual label is in use"

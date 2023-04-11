@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
 import React, { useState } from 'react';
 import { EuiContextMenuItem } from '../context_menu';
@@ -16,11 +18,11 @@ import { EuiPanel } from '../panel';
 const NotificationEvent = () => {
   const [isRead, setIsRead] = useState(false);
 
-  const onRead = (id, isRead) => {
+  const onRead = (id: string, isRead: boolean) => {
     setIsRead(!isRead);
   };
 
-  const onOpenContextMenu = (id) => {
+  const onOpenContextMenu = (id: string) => {
     return [
       <EuiContextMenuItem
         key="contextMenuItemA"

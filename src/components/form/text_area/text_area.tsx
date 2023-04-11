@@ -9,11 +9,14 @@
 import React, { TextareaHTMLAttributes, Ref, FunctionComponent } from 'react';
 import { CommonProps } from '../../common';
 import classNames from 'classnames';
+
+import { EuiFormControlLayout } from '../form_control_layout';
 import { EuiValidatableControl } from '../validatable_control';
 import { useFormContext } from '../eui_form_context';
 
 export type EuiTextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
   CommonProps & {
+    isLoading?: boolean;
     isInvalid?: boolean;
     /**
      * Expand to fill 100% of the parent.
@@ -50,6 +53,7 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = (props) => {
     fullWidth = defaultFullWidth,
     id,
     inputRef,
+    isLoading,
     isInvalid,
     name,
     placeholder,
@@ -79,18 +83,25 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = (props) => {
   }
 
   return (
-    <EuiValidatableControl isInvalid={isInvalid}>
-      <textarea
-        className={classes}
-        {...rest}
-        rows={definedRows}
-        name={name}
-        id={id}
-        ref={inputRef}
-        placeholder={placeholder}
-      >
-        {children}
-      </textarea>
-    </EuiValidatableControl>
+    <EuiFormControlLayout
+      fullWidth={fullWidth}
+      isLoading={isLoading}
+      isInvalid={isInvalid}
+      className="euiFormControlLayout--euiTextArea"
+    >
+      <EuiValidatableControl isInvalid={isInvalid}>
+        <textarea
+          className={classes}
+          {...rest}
+          rows={definedRows}
+          name={name}
+          id={id}
+          ref={inputRef}
+          placeholder={placeholder}
+        >
+          {children}
+        </textarea>
+      </EuiValidatableControl>
+    </EuiFormControlLayout>
   );
 };

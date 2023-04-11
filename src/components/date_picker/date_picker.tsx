@@ -6,16 +6,25 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, MouseEventHandler, Ref } from 'react';
+import React, {
+  FunctionComponent,
+  Component,
+  MouseEventHandler,
+  Ref,
+  useState,
+  useCallback,
+} from 'react';
 import classNames from 'classnames';
 
 import { Moment } from 'moment'; // eslint-disable-line import/named
 
-import { EuiFormControlLayout, EuiValidatableControl } from '../form';
+import { EuiFormControlLayout, useEuiValidatableControl } from '../form';
 import { EuiFormControlLayoutIconsProps } from '../form/form_control_layout/form_control_layout_icons';
+import { getFormControlClassNameForIconCount } from '../form/form_control_layout/_num_icons';
 
+import { useCombinedRefs } from '../../services';
 import { EuiI18nConsumer } from '../context';
-import { ApplyClassComponentDefaults, CommonProps } from '../common';
+import { CommonProps } from '../common';
 
 import { PopoverAnchorPosition } from '../popover';
 
@@ -69,7 +78,7 @@ interface EuiExtendedDatePickerProps
   /**
    * ref for the ReactDatePicker instance
    */
-  inputRef: Ref<Component<ReactDatePickerProps, any, any>>;
+  inputRef?: Ref<Component<ReactDatePickerProps, any, any>>;
 
   /**
    * Provides styling to the input when invalid
@@ -119,156 +128,146 @@ interface EuiExtendedDatePickerProps
   popoverPlacement?: PopoverAnchorPosition;
 }
 
-type _EuiDatePickerProps = CommonProps & EuiExtendedDatePickerProps;
+export type EuiDatePickerProps = CommonProps & EuiExtendedDatePickerProps;
 
-export type EuiDatePickerProps = ApplyClassComponentDefaults<
-  typeof EuiDatePicker
->;
+export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
+  adjustDateOnChange = true,
+  calendarClassName,
+  className,
+  customInput,
+  dateFormat = euiDatePickerDefaultDateFormat,
+  dayClassName,
+  disabled,
+  excludeDates,
+  filterDate,
+  fullWidth = false,
+  iconType,
+  injectTimes,
+  inline,
+  inputRef,
+  isInvalid,
+  isLoading,
+  locale,
+  maxDate,
+  maxTime,
+  minDate,
+  minTime,
+  onChange,
+  onClear,
+  openToDate,
+  placeholder,
+  popperClassName,
+  popoverPlacement = 'downLeft',
+  selected,
+  shadow = true,
+  shouldCloseOnSelect = true,
+  showIcon = true,
+  showTimeSelect = false,
+  showTimeSelectOnly,
+  timeFormat = euiDatePickerDefaultTimeFormat,
+  utcOffset,
+  ...rest
+}) => {
+  const classes = classNames('euiDatePicker', {
+    'euiDatePicker--shadow': shadow,
+    'euiDatePicker--inline': inline,
+  });
 
-export class EuiDatePicker extends Component<_EuiDatePickerProps> {
-  static defaultProps = {
-    adjustDateOnChange: true,
-    dateFormat: euiDatePickerDefaultDateFormat,
-    fullWidth: false,
-    inputRef: () => {},
-    isLoading: false,
-    shadow: true,
-    shouldCloseOnSelect: true,
-    showIcon: true,
-    showTimeSelect: false,
-    timeFormat: euiDatePickerDefaultTimeFormat,
-    popoverPlacement: 'downLeft',
-  };
+  const numIconsClass = getFormControlClassNameForIconCount({
+    isInvalid,
+    isLoading,
+  });
 
-  render() {
-    const {
-      adjustDateOnChange,
-      calendarClassName,
-      className,
-      customInput,
-      dateFormat,
-      dayClassName,
-      disabled,
-      excludeDates,
-      filterDate,
-      fullWidth,
-      iconType,
-      injectTimes,
-      inline,
-      inputRef,
-      isInvalid,
-      isLoading,
-      locale,
-      maxDate,
-      maxTime,
-      minDate,
-      minTime,
-      onChange,
-      onClear,
-      openToDate,
-      placeholder,
-      popperClassName,
-      popoverPlacement,
-      selected,
-      shadow,
-      shouldCloseOnSelect,
-      showIcon,
-      showTimeSelect,
-      showTimeSelectOnly,
-      timeFormat,
-      utcOffset,
-      ...rest
-    } = this.props;
+  const datePickerClasses = classNames(
+    'euiDatePicker',
+    'euiFieldText',
+    numIconsClass,
+    {
+      'euiFieldText--fullWidth': fullWidth,
+      'euiFieldText-isLoading': isLoading,
+      'euiFieldText--withIcon': !inline && showIcon,
+      'euiFieldText--isClearable': !inline && selected && onClear,
+    },
+    className
+  );
 
-    const classes = classNames('euiDatePicker', {
-      'euiDatePicker--shadow': shadow,
-      'euiDatePicker--inline': inline,
-    });
-
-    const datePickerClasses = classNames(
-      'euiDatePicker',
-      'euiFieldText',
-      {
-        'euiFieldText--fullWidth': fullWidth,
-        'euiFieldText-isLoading': isLoading,
-        'euiFieldText--withIcon': !inline && showIcon,
-        'euiFieldText--isClearable': !inline && selected && onClear,
-        'euiFieldText-isInvalid': isInvalid,
-      },
-      className
-    );
-
-    let optionalIcon: EuiFormControlLayoutIconsProps['icon'];
-    if (inline || customInput || !showIcon) {
-      optionalIcon = undefined;
-    } else if (iconType) {
-      optionalIcon = iconType;
-    } else if (showTimeSelectOnly) {
-      optionalIcon = 'clock';
-    } else {
-      optionalIcon = 'calendar';
-    }
-
-    // In case the consumer did not alter the default date format but wants
-    // to add the time select, we append the default time format
-    let fullDateFormat = dateFormat;
-    if (showTimeSelect && dateFormat === euiDatePickerDefaultDateFormat) {
-      fullDateFormat = `${dateFormat} ${timeFormat}`;
-    }
-
-    return (
-      <span className={classes}>
-        <EuiFormControlLayout
-          icon={optionalIcon}
-          fullWidth={fullWidth}
-          clear={selected && onClear ? { onClick: onClear } : undefined}
-          isLoading={isLoading}
-        >
-          <EuiValidatableControl isInvalid={isInvalid}>
-            <EuiI18nConsumer>
-              {({ locale: contextLocale }) => {
-                return (
-                  <ReactDatePicker
-                    adjustDateOnChange={adjustDateOnChange}
-                    calendarClassName={calendarClassName}
-                    className={datePickerClasses}
-                    customInput={customInput}
-                    dateFormat={fullDateFormat}
-                    dayClassName={dayClassName}
-                    disabled={disabled}
-                    excludeDates={excludeDates}
-                    filterDate={filterDate}
-                    injectTimes={injectTimes}
-                    inline={inline}
-                    locale={locale || contextLocale}
-                    maxDate={maxDate}
-                    maxTime={maxTime}
-                    minDate={minDate}
-                    minTime={minTime}
-                    onChange={onChange}
-                    openToDate={openToDate}
-                    placeholderText={placeholder}
-                    popperClassName={popperClassName}
-                    ref={inputRef}
-                    selected={selected}
-                    shouldCloseOnSelect={shouldCloseOnSelect}
-                    showMonthDropdown
-                    showTimeSelect={showTimeSelectOnly ? true : showTimeSelect}
-                    showTimeSelectOnly={showTimeSelectOnly}
-                    showYearDropdown
-                    timeFormat={timeFormat}
-                    utcOffset={utcOffset}
-                    yearDropdownItemNumber={7}
-                    accessibleMode
-                    popperPlacement={popoverPlacement}
-                    {...rest}
-                  />
-                );
-              }}
-            </EuiI18nConsumer>
-          </EuiValidatableControl>
-        </EuiFormControlLayout>
-      </span>
-    );
+  let optionalIcon: EuiFormControlLayoutIconsProps['icon'];
+  if (inline || customInput || !showIcon) {
+    optionalIcon = undefined;
+  } else if (iconType) {
+    optionalIcon = iconType;
+  } else if (showTimeSelectOnly) {
+    optionalIcon = 'clock';
+  } else {
+    optionalIcon = 'calendar';
   }
-}
+
+  // In case the consumer did not alter the default date format but wants
+  // to add the time select, we append the default time format
+  let fullDateFormat = dateFormat;
+  if (showTimeSelect && dateFormat === euiDatePickerDefaultDateFormat) {
+    fullDateFormat = `${dateFormat} ${timeFormat}`;
+  }
+
+  // Set an internal ref on ReactDatePicker's `input` so we can set its :invalid state via useEuiValidatableControl
+  const [inputValidityRef, _setInputValidityRef] = useState(null);
+  const setInputValidityRef = useCallback((ref) => {
+    _setInputValidityRef(ref?.input);
+  }, []);
+  useEuiValidatableControl({ isInvalid, controlEl: inputValidityRef });
+  const inputRefs = useCombinedRefs([inputRef, setInputValidityRef]);
+
+  return (
+    <span className={classes}>
+      <EuiFormControlLayout
+        icon={optionalIcon}
+        fullWidth={fullWidth}
+        clear={selected && onClear ? { onClick: onClear } : undefined}
+        isLoading={isLoading}
+        isInvalid={isInvalid}
+      >
+        <EuiI18nConsumer>
+          {({ locale: contextLocale }) => {
+            return (
+              <ReactDatePicker
+                adjustDateOnChange={adjustDateOnChange}
+                calendarClassName={calendarClassName}
+                className={datePickerClasses}
+                customInput={customInput}
+                dateFormat={fullDateFormat}
+                dayClassName={dayClassName}
+                disabled={disabled}
+                excludeDates={excludeDates}
+                filterDate={filterDate}
+                injectTimes={injectTimes}
+                inline={inline}
+                locale={locale || contextLocale}
+                maxDate={maxDate}
+                maxTime={maxTime}
+                minDate={minDate}
+                minTime={minTime}
+                onChange={onChange}
+                openToDate={openToDate}
+                placeholderText={placeholder}
+                popperClassName={popperClassName}
+                ref={inputRefs}
+                selected={selected}
+                shouldCloseOnSelect={shouldCloseOnSelect}
+                showMonthDropdown
+                showTimeSelect={showTimeSelectOnly ? true : showTimeSelect}
+                showTimeSelectOnly={showTimeSelectOnly}
+                showYearDropdown
+                timeFormat={timeFormat}
+                utcOffset={utcOffset}
+                yearDropdownItemNumber={7}
+                accessibleMode
+                popperPlacement={popoverPlacement}
+                {...rest}
+              />
+            );
+          }}
+        </EuiI18nConsumer>
+      </EuiFormControlLayout>
+    </span>
+  );
+};

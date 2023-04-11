@@ -6,11 +6,13 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
 import React, { useState } from 'react';
 import { EuiButton } from '../button';
-import { EuiControlBar } from './control_bar';
+import { EuiControlBar, Control } from './control_bar';
 import { EuiPanel } from '../panel';
 import { EuiText } from '../text';
 
@@ -27,7 +29,7 @@ const ControlBar = () => {
     setVisibility(false);
   };
 
-  const codeControls = [
+  const codeControls: Control[] = [
     {
       controlType: 'icon',
       id: 'root_icon',

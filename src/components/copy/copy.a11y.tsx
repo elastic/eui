@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
 import React, { useState } from 'react';
 import { EuiButton } from '../button';
@@ -17,14 +19,13 @@ import { EuiSpacer } from '../spacer';
 const Copy = () => {
   const [copyText, setCopyText] = useState('I am the text that will be copied');
 
-  const onChange = (e) => {
-    setCopyText(e.target.value);
-  };
-
   return (
     <div>
       <EuiFormRow label="Enter text that will be copied to clipboard">
-        <EuiFieldText value={copyText} onChange={onChange} />
+        <EuiFieldText
+          value={copyText}
+          onChange={(e) => setCopyText(e.target.value)}
+        />
       </EuiFormRow>
 
       <EuiSpacer size="m" />
