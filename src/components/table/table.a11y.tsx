@@ -65,7 +65,7 @@ const users: User[] = [
   },
 ];
 
-const userRows = users.map((user, i) => {
+const userRows = users.map((user) => {
   const {
     id,
     firstName,
