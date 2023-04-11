@@ -6,20 +6,27 @@
  * Side Public License, v 1.
  */
 
-import React, { InputHTMLAttributes, Ref, FunctionComponent } from 'react';
+import React, {
+  InputHTMLAttributes,
+  Ref,
+  FunctionComponent,
+  useState,
+  useRef,
+  useCallback,
+} from 'react';
 import { CommonProps } from '../../common';
 import classNames from 'classnames';
 
+import { useCombinedRefs } from '../../../services';
+import { IconType } from '../../icon';
+
+import { EuiValidatableControl } from '../validatable_control';
 import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
 } from '../form_control_layout';
-
-import { EuiValidatableControl } from '../validatable_control';
-
-import { IconType } from '../../icon';
-import { useFormContext } from '../eui_form_context';
 import { getFormControlClassNameForIconCount } from '../form_control_layout/_num_icons';
+import { useFormContext } from '../eui_form_context';
 
 export type EuiFieldNumberProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -96,13 +103,37 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
     inputRef,
     readOnly,
     controlOnly,
+    onKeyDown: _onKeyDown,
     ...rest
   } = props;
 
-  const numIconsClass = getFormControlClassNameForIconCount({
-    isInvalid,
-    isLoading,
-  });
+  // Attempt to determine additional invalid state. The native number input
+  // will set :invalid state automatically, but we need to also set
+  // `aria-invalid` as well as display an icon. We also want to *not* set this on
+  // EuiValidatableControl, in order to not override custom validity messages
+  const [isNativelyInvalid, setIsNativelyInvalid] = useState(false);
+  const validityRef = useRef<HTMLInputElement | null>(null);
+  const setRefs = useCombinedRefs([validityRef, inputRef]);
+
+  // Note that we can't use hook into `onChange` because browsers don't emit change events
+  // for invalid values - see https://github.com/facebook/react/issues/16554
+  const onKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+      _onKeyDown?.(e);
+      // Wait a beat before checking validity - we can't use `e.target` as it's stale
+      requestAnimationFrame(() => {
+        setIsNativelyInvalid(!validityRef.current!.validity.valid);
+      });
+    },
+    [_onKeyDown]
+  );
+
+  const numIconsClass = controlOnly
+    ? false
+    : getFormControlClassNameForIconCount({
+        isInvalid: isInvalid || isNativelyInvalid,
+        isLoading,
+      });
 
   const classes = classNames('euiFieldNumber', className, numIconsClass, {
     'euiFieldNumber--withIcon': icon,
@@ -124,7 +155,9 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
         placeholder={placeholder}
         readOnly={readOnly}
         className={classes}
-        ref={inputRef}
+        ref={setRefs}
+        onKeyDown={onKeyDown}
+        aria-invalid={isInvalid || isNativelyInvalid}
         {...rest}
       />
     </EuiValidatableControl>
@@ -139,7 +172,7 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
       icon={icon}
       fullWidth={fullWidth}
       isLoading={isLoading}
-      isInvalid={isInvalid}
+      isInvalid={isInvalid || isNativelyInvalid}
       compressed={compressed}
       readOnly={readOnly}
       prepend={prepend}

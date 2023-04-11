@@ -15,9 +15,14 @@ exports[`EuiFormControlLayoutDelimited is rendered 1`] = `
       start
     </span>
     <div
-      class="euiText euiFormControlLayoutDelimited__delimeter emotion-euiText-s-euiTextColor-subdued"
+      class="euiText euiFormControlLayoutDelimited__delimiter emotion-euiText-s-euiTextColor-subdued"
     >
-      →
+      <span
+        color="subdued"
+        data-euiicon-type="sortRight"
+      >
+        to
+      </span>
     </div>
     <span
       class="euiFormControlLayoutDelimited__input"
@@ -41,7 +46,7 @@ exports[`EuiFormControlLayoutDelimited props delimiter is rendered as a node 1`]
       start
     </span>
     <div
-      class="euiText euiFormControlLayoutDelimited__delimeter emotion-euiText-s-euiTextColor-subdued"
+      class="euiText euiFormControlLayoutDelimited__delimiter emotion-euiText-s-euiTextColor-subdued"
     >
       <span
         data-euiicon-type="error"
@@ -69,7 +74,7 @@ exports[`EuiFormControlLayoutDelimited props delimiter is rendered as a string 1
       start
     </span>
     <div
-      class="euiText euiFormControlLayoutDelimited__delimeter emotion-euiText-s-euiTextColor-subdued"
+      class="euiText euiFormControlLayoutDelimited__delimiter emotion-euiText-s-euiTextColor-subdued"
     >
       +
     </div>

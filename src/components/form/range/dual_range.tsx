@@ -466,7 +466,6 @@ export class EuiDualRangeClass extends Component<
 
     const { id } = this.state;
 
-    const digitTolerance = Math.max(String(min).length, String(max).length);
     const showInputOnly = showInput === 'inputWithPopover';
     const canShowDropdown = showInputOnly && !readOnly && !disabled;
 
@@ -479,7 +478,6 @@ export class EuiDualRangeClass extends Component<
         aria-label={this.props['aria-label']}
         {...minInputProps}
         // Non-overridable props
-        digitTolerance={digitTolerance}
         side="min"
         min={min}
         max={Number(this.upperValue)}
@@ -510,7 +508,6 @@ export class EuiDualRangeClass extends Component<
         aria-label={this.props['aria-label']}
         {...maxInputProps}
         // Non-overridable props
-        digitTolerance={digitTolerance}
         side="max"
         min={Number(this.lowerValue)}
         max={max}
@@ -755,6 +752,7 @@ export class EuiDualRangeClass extends Component<
             append={append}
             prepend={prepend}
             isLoading={isLoading}
+            isInvalid={isInvalid}
           />
         }
         fullWidth={fullWidth}
