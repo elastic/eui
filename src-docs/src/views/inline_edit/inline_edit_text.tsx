@@ -4,7 +4,7 @@ import {
   EuiInlineEditText,
   EuiSpacer,
   EuiButtonGroup,
-  EuiInlineEditTextSizes,
+  EuiInlineEditTextProps,
 } from '../../../../src';
 
 export default () => {
@@ -24,10 +24,10 @@ export default () => {
   ];
 
   const [toggleTextButtonSize, setToggleTextButtonSize] = useState<
-    EuiInlineEditTextSizes
+    EuiInlineEditTextProps['size']
   >('m');
 
-  const textSizeOnChange = (optionId: EuiInlineEditTextSizes) => {
+  const textSizeOnChange = (optionId: EuiInlineEditTextProps['size']) => {
     setToggleTextButtonSize(optionId);
   };
 
@@ -37,7 +37,9 @@ export default () => {
         legend="Text size"
         options={textSizeButtons}
         idSelected={toggleTextButtonSize as string}
-        onChange={(id) => textSizeOnChange(id as EuiInlineEditTextSizes)}
+        onChange={(id) =>
+          textSizeOnChange(id as EuiInlineEditTextProps['size'])
+        }
       />
 
       <EuiSpacer />
