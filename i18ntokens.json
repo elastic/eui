@@ -887,14 +887,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1001,
+        "line": 977,
         "column": 10,
-        "index": 28502
+        "index": 27944
       },
       "end": {
-        "line": 1004,
+        "line": 980,
         "column": 11,
-        "index": 28627
+        "index": 28069
       }
     },
     "filepath": "src/components/combo_box/combo_box.tsx"
@@ -4966,6 +4966,42 @@
       }
     },
     "filepath": "src/components/image/image_button.tsx"
+  },
+  {
+    "token": "euiInlineEditForm.saveButtonAriaLabel",
+    "defString": "Save edit",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 105,
+        "column": 37,
+        "index": 3359
+      },
+      "end": {
+        "line": 108,
+        "column": 3,
+        "index": 3435
+      }
+    },
+    "filepath": "src/components/inline_edit/inline_edit_form.tsx"
+  },
+  {
+    "token": "euiInlineEditForm.cancelButtonAriaLabel",
+    "defString": "Cancel edit",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 109,
+        "column": 39,
+        "index": 3476
+      },
+      "end": {
+        "line": 112,
+        "column": 3,
+        "index": 3556
+      }
+    },
+    "filepath": "src/components/inline_edit/inline_edit_form.tsx"
   },
   {
     "token": "euiLink.newTarget.screenReaderOnlyText",
