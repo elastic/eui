@@ -6,18 +6,25 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../../../cypress/support" />
 
 import React, { useState, useEffect } from 'react';
-import { EuiDataGrid } from '../../';
+import { EuiDataGrid, EuiDataGridProps } from '../../';
 
 describe('EuiDataGridFooterRow', () => {
   const mockData = [10, 15, 20];
 
-  const RenderCellValue = ({ rowIndex, columnId }) =>
-    columnId === 'b' ? mockData[rowIndex] : null;
+  const RenderCellValue: EuiDataGridProps['renderCellValue'] = ({
+    rowIndex,
+    columnId,
+  }) => (columnId === 'b' ? mockData[rowIndex] : null);
 
-  const RenderFooterCellValue = ({ columnId, setCellProps }) => {
+  const RenderFooterCellValue: EuiDataGridProps['renderFooterCellValue'] = ({
+    columnId,
+    setCellProps,
+  }) => {
     const value = columnId === 'b' ? mockData.reduce((a, b) => a + b, 0) : null;
 
     useEffect(() => {

@@ -90,6 +90,12 @@ export const euiButtonFillColor = (
 ) => {
   const { euiTheme, colorMode } = euiThemeContext;
 
+  const getForegroundColor = (background: string) => {
+    return isColorDark(...hexToRgb(background))
+      ? euiTheme.colors.ghost
+      : euiTheme.colors.ink;
+  };
+
   let background;
   let foreground;
 
@@ -101,15 +107,22 @@ export const euiButtonFillColor = (
     case 'text':
       background =
         colorMode === 'DARK' ? euiTheme.colors.text : euiTheme.colors.darkShade;
-      foreground = isColorDark(...hexToRgb(background))
-        ? euiTheme.colors.ghost
-        : euiTheme.colors.ink;
+      foreground = getForegroundColor(background);
+      break;
+    case 'success':
+    case 'accent':
+      // Success / accent fills are hard to read on light mode even though they pass color contrast ratios
+      // TODO: If WCAG 3 gets adopted (which would calculates luminosity & would allow us to use white text instead),
+      // we can get rid of this case (https://blog.datawrapper.de/color-contrast-check-data-vis-wcag-apca/)
+      background =
+        colorMode === 'LIGHT'
+          ? tint(euiTheme.colors[color], 0.3)
+          : euiTheme.colors[color];
+      foreground = getForegroundColor(background);
       break;
     default:
       background = euiTheme.colors[color];
-      foreground = isColorDark(...hexToRgb(euiTheme.colors[color]))
-        ? euiTheme.colors.ghost
-        : euiTheme.colors.ink;
+      foreground = getForegroundColor(background);
       break;
   }
 

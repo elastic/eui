@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../../cypress/support" />
 
 import React, { useState } from 'react';
 import { requiredProps } from '../../../test';
@@ -144,7 +146,7 @@ describe('FieldValueSelectionFilter', () => {
       multiSelect: 'or' | boolean;
     }) => {
       const [query, setQuery] = useState(Query.parse(''));
-      const onChange = (newQuery) => setQuery(newQuery);
+      const onChange = (newQuery: Query) => setQuery(newQuery);
 
       const props: FieldValueSelectionFilterProps = {
         ...requiredProps,

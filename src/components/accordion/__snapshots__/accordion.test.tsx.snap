@@ -587,7 +587,6 @@ exports[`EuiAccordion props buttonElement is rendered 1`] = `
     </button>
     <div
       aria-controls="5"
-      aria-expanded="false"
       class="euiAccordion__button emotion-euiAccordion__button"
       id="generated-id"
     >
@@ -688,7 +687,6 @@ exports[`EuiAccordion props element is rendered 1`] = `
     </button>
     <legend
       aria-controls="1"
-      aria-expanded="false"
       class="euiAccordion__button emotion-euiAccordion__button"
       id="generated-id"
     >

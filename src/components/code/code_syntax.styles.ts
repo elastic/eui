@@ -171,7 +171,7 @@ export const euiCodeSyntaxTokens = (euiThemeContext: UseEuiTheme) => {
   
     .token.important,
     .token.bold {
-      font-weight: $euiCodeFontWeightBold;
+      font-weight: ${euiTheme.font.weight.bold};
     }
   
     .token.url-reference,

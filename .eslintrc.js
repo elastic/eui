@@ -11,7 +11,7 @@ const SSPL_ELASTIC_2_0_LICENSE_HEADER = `
 module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: ['./tsconfig.json', './tsconfig-cypress.json'],
+    project: ['./tsconfig.json', './cypress/tsconfig.json'],
     ecmaFeatures: {
       jsx: true,
     },
@@ -46,6 +46,7 @@ module.exports = {
     'local/forward-ref': 'error',
     'local/css-logical-properties': 'error',
     'local/css_before_spread_props': 'error',
+    'local/require-cypress-references': 'error',
     'local/require-license-header': [
       'warn',
       {
@@ -129,12 +130,6 @@ module.exports = {
         'react/prefer-es6-class': 'off',
         'react/prefer-stateless-function': 'off',
       },
-    },
-    {
-      globals: {
-        cy: true,
-      },
-      files: ['*.spec.js'],
     },
   ],
 };

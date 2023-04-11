@@ -60,6 +60,6 @@
   align-items: center;
 }
 
-.euiDatePickerRange--isInvalid .euiDatePickerRange__delimeter {
+.euiDatePickerRange--isInvalid:not(.euiDatePickerRange--isDisabled):not(.euiDatePickerRange--readOnly) .euiDatePickerRange__delimeter {
   @include euiFormControlInvalidStyle;
 }

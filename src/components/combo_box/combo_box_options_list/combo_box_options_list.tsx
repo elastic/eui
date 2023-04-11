@@ -479,7 +479,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
         hasShadow={false}
         className={classes}
         panelRef={this.listRefCallback}
-        data-test-subj={`comboBoxOptionsList ${dataTestSubj}`}
+        data-test-subj={classNames('comboBoxOptionsList', dataTestSubj)}
         style={{ ...style, zIndex: zIndex }}
         isOpen
         isAttached

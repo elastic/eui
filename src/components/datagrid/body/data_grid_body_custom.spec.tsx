@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../../cypress/support" />
 
 import React, { useState, useCallback } from 'react';
 
@@ -75,7 +77,7 @@ describe('EuiDataGridBodyCustomRender', () => {
         rowCount={raw_data.length}
         columns={columns}
         renderCellValue={({ rowIndex, columnId }) =>
-          `${columnId},${raw_data[rowIndex][columnId]}`
+          `${columnId},${raw_data[rowIndex][columnId as 'A' | 'B']}`
         }
         renderCustomGridBody={CustomGridBody}
         columnVisibility={{ visibleColumns, setVisibleColumns }}
