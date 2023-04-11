@@ -26,6 +26,20 @@ describe('EuiValidatableControl', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('aria-invalid allows falling back to prop set on the child input', () => {
+    const component = render(
+      <EuiValidatableControl>
+        <input aria-invalid={true} />
+      </EuiValidatableControl>
+    );
+
+    expect(component).toMatchInlineSnapshot(`
+      <input
+        aria-invalid="true"
+      />
+    `);
+  });
+
   describe('ref management', () => {
     it('calls a ref function', () => {
       const ref = jest.fn();

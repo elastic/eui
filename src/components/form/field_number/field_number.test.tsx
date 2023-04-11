@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { render } from '../../../test/rtl';
 import { requiredProps } from '../../../test/required_props';
 
 import { EuiForm } from '../form';
@@ -26,7 +26,7 @@ jest.mock('../validatable_control', () => ({
 
 describe('EuiFieldNumber', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiFieldNumber
         id="1"
         name="elastic"
@@ -40,68 +40,77 @@ describe('EuiFieldNumber', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
-    test('isInvalid is rendered', () => {
-      const component = render(<EuiFieldNumber isInvalid />);
+    test('isInvalid is rendered from a prop', () => {
+      const { container } = render(<EuiFieldNumber isInvalid />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('fullWidth is rendered', () => {
-      const component = render(<EuiFieldNumber fullWidth />);
+      const { container } = render(<EuiFieldNumber fullWidth />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('isLoading is rendered', () => {
-      const component = render(<EuiFieldNumber isLoading />);
+      const { container } = render(<EuiFieldNumber isLoading />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('readOnly is rendered', () => {
-      const component = render(<EuiFieldNumber readOnly />);
+      const { container } = render(<EuiFieldNumber readOnly />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('controlOnly is rendered', () => {
-      const component = render(<EuiFieldNumber controlOnly />);
+      const { container } = render(<EuiFieldNumber controlOnly />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
+    test('inputRef', () => {
+      const inputRef = jest.fn();
+      const { container } = render(<EuiFieldNumber inputRef={inputRef} />);
+
+      expect(inputRef).toHaveBeenCalledTimes(1);
+      expect(container.querySelector('input[type="number"]')).toBe(
+        inputRef.mock.calls[0][0]
+      );
     });
 
     describe('value', () => {
       test('value is number', () => {
-        const component = render(
+        const { container } = render(
           <EuiFieldNumber value={0} onChange={() => {}} />
         );
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('no initial value', () => {
-        const component = render(
+        const { container } = render(
           <EuiFieldNumber value={''} onChange={() => {}} />
         );
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });
 
   describe('inherits', () => {
     test('fullWidth from <EuiForm />', () => {
-      const component = render(
+      const { container } = render(
         <EuiForm fullWidth>
           <EuiFieldNumber />
         </EuiForm>
       );
+      const control = container.querySelector('.euiFieldNumber')!;
 
-      if (
-        !component.find('.euiFieldNumber').hasClass('euiFieldNumber--fullWidth')
-      ) {
+      if (!control.classList.contains('euiFieldNumber--fullWidth')) {
         throw new Error(
           'expected EuiFieldNumber to inherit fullWidth from EuiForm'
         );
