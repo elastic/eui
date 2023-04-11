@@ -139,7 +139,7 @@ export const InlineEditExample = {
 
           <p>
             Customize the <EuiCode>editMode</EuiCode> state by passing{' '}
-            <EuiCode>editModeProps</EuiCode> . These properties are applied
+            <EuiCode>editModeProps</EuiCode>. These properties are applied
             directly to the{' '}
             <Link to="/forms/form-layouts#form-and-form-rows">
               <strong>EuiFormRow</strong>
