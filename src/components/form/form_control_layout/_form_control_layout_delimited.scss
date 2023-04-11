@@ -29,7 +29,7 @@
     }
 
     .euiFormControlLayoutIcons {
-      padding-right: $euiFormControlCompressedPadding;
+      padding-inline: $euiFormControlCompressedPadding;
     }
   }
 
@@ -65,7 +65,7 @@
     // Absolutely positioning the icons doesn't work because they
     // overlay only one of controls making the layout unbalanced
     position: static; // Overrider absolute
-    padding-right: $euiFormControlPadding;
+    padding-inline: $euiFormControlPadding;
     align-self: stretch;
     flex-grow: 0;
 
