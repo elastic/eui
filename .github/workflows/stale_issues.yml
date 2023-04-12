@@ -27,7 +27,6 @@ jobs:
           exempt-issue-labels: 'bug,meta'
           stale-pr-label: 'stale-pr'
           close-pr-label: 'stale-pr-closed'
-          exempt-all-assignees: true
           operations-per-run: 1000
           remove-stale-when-updated: true
           enable-statistics: true
