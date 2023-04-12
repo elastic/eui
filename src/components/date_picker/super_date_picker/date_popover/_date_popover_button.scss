@@ -13,11 +13,8 @@
   }
 
   &-needsUpdating {
-    $backgroundColor: tintOrShade($euiColorSuccess, 90%, 70%);
-    $textColor: makeHighContrastColor($euiColorSuccess, $backgroundColor);
-
-    background-color: $backgroundColor;
-    color: $textColor;
+    background-color: $euiSuperDatePickerNeedsUpdatingBackgroundColor;
+    color: $euiSuperDatePickerNeedsUpdatingTextColor;
 
     &:focus,
     &.euiDatePopoverButton-isSelected {

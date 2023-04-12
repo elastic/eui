@@ -70,3 +70,22 @@
     cursor: not-allowed;
   }
 }
+
+/**
+* Make the arrow delimiter match the colors of `.euiDatePopoverButton-needsUpdating`
+*/
+.euiSuperDatePicker--needsUpdating.euiFormControlLayoutDelimited { // Extra specificity needed to override default delimited styles
+  .euiFormControlLayoutDelimited__delimiter {
+    background-color: $euiSuperDatePickerNeedsUpdatingBackgroundColor;
+    color: $euiSuperDatePickerNeedsUpdatingTextColor;
+
+    .euiIcon {
+      color: currentcolor;
+    }
+  }
+}
+
+.euiSuperDatePicker .euiFormControlLayoutDelimited__delimiter,
+.euiSuperDatePicker .euiFormControlLayoutIcons {
+  transition: background $euiAnimSpeedFast ease-in; // Match @mixin euiSuperDatePickerText / .euiDatePopoverButton
+}

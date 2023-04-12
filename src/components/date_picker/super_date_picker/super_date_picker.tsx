@@ -524,6 +524,10 @@ export class EuiSuperDatePickerInternal extends Component<
         {({ locale: contextLocale }) => (
           <EuiDatePickerRange
             {...formControlLayoutProps}
+            className={classNames(formControlLayoutProps.className, {
+              'euiSuperDatePicker--needsUpdating':
+                hasChanged && !isDisabled && !isInvalid,
+            })}
             isCustom={true}
             iconType={false}
             startDateControl={
