@@ -27,10 +27,6 @@
       padding-left: $euiFormControlCompressedPadding;
       padding-right: $euiFormControlCompressedPadding;
     }
-
-    .euiFormControlLayoutIcons {
-      padding-inline: $euiFormControlCompressedPadding;
-    }
   }
 
   // Target when the euiFormControlLayout is fullWidth without specifying the full class name in case it ever changes
@@ -58,19 +54,6 @@
     .euiFormControlLayoutDelimited__delimiter,
     .euiFormControlLayoutIcons {
       background-color: $euiFormBackgroundReadOnlyColor;
-    }
-  }
-
-  .euiFormControlLayoutIcons {
-    // Absolutely positioning the icons doesn't work because they
-    // overlay only one of controls making the layout unbalanced
-    position: static; // Overrider absolute
-    padding-inline: $euiFormControlPadding;
-    align-self: stretch;
-    flex-grow: 0;
-
-    &:not(.euiFormControlLayoutIcons--right) {
-      order: -1;
     }
   }
 
