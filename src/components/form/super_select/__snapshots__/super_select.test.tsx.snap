@@ -26,7 +26,7 @@ exports[`EuiSuperSelect is rendered 1`] = `
             type="button"
           />
           <div
-            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
           >
             <span
               class="euiFormControlLayoutCustomIcon"
@@ -71,7 +71,7 @@ exports[`EuiSuperSelect props compressed is rendered 1`] = `
             type="button"
           />
           <div
-            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
           >
             <span
               class="euiFormControlLayoutCustomIcon"
@@ -115,7 +115,7 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
             type="button"
           />
           <div
-            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
           >
             <span
               class="euiFormControlLayoutCustomIcon"
@@ -259,7 +259,7 @@ exports[`EuiSuperSelect props fullWidth is rendered 1`] = `
             type="button"
           />
           <div
-            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
           >
             <span
               class="euiFormControlLayoutCustomIcon"
@@ -309,7 +309,7 @@ exports[`EuiSuperSelect props is rendered with a prepend and append 1`] = `
             type="button"
           />
           <div
-            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
           >
             <span
               class="euiFormControlLayoutCustomIcon"
@@ -360,7 +360,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
             Option #1
           </button>
           <div
-            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
           >
             <span
               class="euiFormControlLayoutCustomIcon"
@@ -506,7 +506,7 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
             type="button"
           />
           <div
-            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
           >
             <span
               class="euiFormControlLayoutCustomIcon"
@@ -651,7 +651,7 @@ exports[`EuiSuperSelect props renders popoverProps on the underlying EuiPopover 
             Option #2
           </button>
           <div
-            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
           >
             <span
               class="euiFormControlLayoutCustomIcon"
@@ -794,7 +794,7 @@ exports[`EuiSuperSelect props select component is rendered 1`] = `
             type="button"
           />
           <div
-            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
           >
             <span
               class="euiFormControlLayoutCustomIcon"
@@ -839,7 +839,7 @@ exports[`EuiSuperSelect props valueSelected is rendered 1`] = `
             Option #2
           </button>
           <div
-            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
           >
             <span
               class="euiFormControlLayoutCustomIcon"

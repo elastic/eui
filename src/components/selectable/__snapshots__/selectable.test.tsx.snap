@@ -2586,35 +2586,13 @@ exports[`EuiSelectable screen reader instructions sets custom accessibility inst
               <div
                 className="euiFormControlLayout__childrenWrapper"
               >
-                <EuiValidatableControl>
-                  <input
-                    aria-activedescendant=""
-                    aria-describedby="generated-id_instructions"
-                    aria-haspopup="listbox"
-                    aria-label="Filter options"
-                    autoComplete="off"
-                    className="euiFieldSearch euiFormControlLayout--1icons euiFieldSearch--fullWidth euiFieldSearch-isClearable euiSelectableSearch"
-                    data-test-subj="searchInput"
-                    onChange={[Function]}
-                    onKeyUp={[Function]}
-                    placeholder="Filter options"
-                    type="search"
-                    value="Enceladus"
-                  />
-                </EuiValidatableControl>
                 <EuiFormControlLayoutIcons
-                  clear={
-                    Object {
-                      "data-test-subj": "clearSearchButton",
-                      "onClick": [Function],
-                    }
-                  }
                   compressed={false}
                   icon="search"
-                  isLoading={false}
+                  side="left"
                 >
                   <div
-                    className="euiFormControlLayoutIcons"
+                    className="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
                   >
                     <EuiFormControlLayoutCustomIcon
                       size="m"
@@ -2639,8 +2617,36 @@ exports[`EuiSelectable screen reader instructions sets custom accessibility inst
                       </span>
                     </EuiFormControlLayoutCustomIcon>
                   </div>
+                </EuiFormControlLayoutIcons>
+                <EuiValidatableControl>
+                  <input
+                    aria-activedescendant=""
+                    aria-describedby="generated-id_instructions"
+                    aria-haspopup="listbox"
+                    aria-label="Filter options"
+                    autoComplete="off"
+                    className="euiFieldSearch euiFormControlLayout--1icons euiFieldSearch--fullWidth euiFieldSearch-isClearable euiSelectableSearch"
+                    data-test-subj="searchInput"
+                    onChange={[Function]}
+                    onKeyUp={[Function]}
+                    placeholder="Filter options"
+                    type="search"
+                    value="Enceladus"
+                  />
+                </EuiValidatableControl>
+                <EuiFormControlLayoutIcons
+                  clear={
+                    Object {
+                      "data-test-subj": "clearSearchButton",
+                      "onClick": [Function],
+                    }
+                  }
+                  compressed={false}
+                  isLoading={false}
+                  side="right"
+                >
                   <div
-                    className="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+                    className="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
                   >
                     <EuiFormControlLayoutClearButton
                       data-test-subj="clearSearchButton"
@@ -3702,6 +3708,19 @@ exports[`EuiSelectable search value supports inheriting initialSearchValue from 
     <div
       class="euiFormControlLayout__childrenWrapper"
     >
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+      >
+        <span
+          class="euiFormControlLayoutCustomIcon"
+        >
+          <span
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="search"
+          />
+        </span>
+      </div>
       <input
         aria-activedescendant=""
         aria-describedby="generated-id_instructions"
@@ -3715,20 +3734,7 @@ exports[`EuiSelectable search value supports inheriting initialSearchValue from 
         value="default value"
       />
       <div
-        class="euiFormControlLayoutIcons"
-      >
-        <span
-          class="euiFormControlLayoutCustomIcon"
-        >
-          <span
-            aria-hidden="true"
-            class="euiFormControlLayoutCustomIcon__icon"
-            data-euiicon-type="search"
-          />
-        </span>
-      </div>
-      <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
       >
         <button
           aria-label="Clear input"

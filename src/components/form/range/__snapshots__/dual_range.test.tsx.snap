@@ -562,7 +562,7 @@ exports[`EuiDualRange props loading should display when showInput="inputWithPopo
             value="8"
           />
           <div
-            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--static"
           >
             <span
               aria-label="Loading"

@@ -17,6 +17,19 @@ exports[`EuiSuggest is rendered 1`] = `
           <div
             class="euiFormControlLayout__childrenWrapper"
           >
+            <div
+              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+            >
+              <span
+                class="euiFormControlLayoutCustomIcon"
+              >
+                <span
+                  aria-hidden="true"
+                  class="euiFormControlLayoutCustomIcon__icon"
+                  data-euiicon-type="search"
+                />
+              </span>
+            </div>
             <input
               aria-activedescendant=""
               aria-describedby="generated-id_instructions"
@@ -29,19 +42,6 @@ exports[`EuiSuggest is rendered 1`] = `
               type="search"
               value=""
             />
-            <div
-              class="euiFormControlLayoutIcons"
-            >
-              <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
           </div>
         </div>
         <p
@@ -73,6 +73,19 @@ exports[`EuiSuggest props append 1`] = `
           <div
             class="euiFormControlLayout__childrenWrapper"
           >
+            <div
+              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+            >
+              <span
+                class="euiFormControlLayoutCustomIcon"
+              >
+                <span
+                  aria-hidden="true"
+                  class="euiFormControlLayoutCustomIcon__icon"
+                  data-euiicon-type="search"
+                />
+              </span>
+            </div>
             <input
               aria-activedescendant=""
               aria-describedby="generated-id_instructions"
@@ -85,19 +98,6 @@ exports[`EuiSuggest props append 1`] = `
               type="search"
               value=""
             />
-            <div
-              class="euiFormControlLayoutIcons"
-            >
-              <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
           </div>
           <span
             class="euiFormControlLayout__append"
@@ -134,6 +134,19 @@ exports[`EuiSuggest props isVirtualized 1`] = `
           <div
             class="euiFormControlLayout__childrenWrapper"
           >
+            <div
+              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+            >
+              <span
+                class="euiFormControlLayoutCustomIcon"
+              >
+                <span
+                  aria-hidden="true"
+                  class="euiFormControlLayoutCustomIcon__icon"
+                  data-euiicon-type="search"
+                />
+              </span>
+            </div>
             <input
               aria-activedescendant=""
               aria-describedby="generated-id_instructions"
@@ -146,19 +159,6 @@ exports[`EuiSuggest props isVirtualized 1`] = `
               type="search"
               value=""
             />
-            <div
-              class="euiFormControlLayoutIcons"
-            >
-              <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
           </div>
         </div>
         <p
@@ -190,6 +190,19 @@ exports[`EuiSuggest props maxHeight 1`] = `
           <div
             class="euiFormControlLayout__childrenWrapper"
           >
+            <div
+              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+            >
+              <span
+                class="euiFormControlLayoutCustomIcon"
+              >
+                <span
+                  aria-hidden="true"
+                  class="euiFormControlLayoutCustomIcon__icon"
+                  data-euiicon-type="search"
+                />
+              </span>
+            </div>
             <input
               aria-activedescendant=""
               aria-describedby="generated-id_instructions"
@@ -202,19 +215,6 @@ exports[`EuiSuggest props maxHeight 1`] = `
               type="search"
               value=""
             />
-            <div
-              class="euiFormControlLayoutIcons"
-            >
-              <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
           </div>
         </div>
         <p
@@ -246,6 +246,19 @@ exports[`EuiSuggest props options common 1`] = `
           <div
             class="euiFormControlLayout__childrenWrapper"
           >
+            <div
+              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+            >
+              <span
+                class="euiFormControlLayoutCustomIcon"
+              >
+                <span
+                  aria-hidden="true"
+                  class="euiFormControlLayoutCustomIcon__icon"
+                  data-euiicon-type="search"
+                />
+              </span>
+            </div>
             <input
               aria-activedescendant=""
               aria-describedby="generated-id_instructions"
@@ -258,19 +271,6 @@ exports[`EuiSuggest props options common 1`] = `
               type="search"
               value=""
             />
-            <div
-              class="euiFormControlLayoutIcons"
-            >
-              <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
           </div>
         </div>
         <p
@@ -302,6 +302,19 @@ exports[`EuiSuggest props options standard 1`] = `
           <div
             class="euiFormControlLayout__childrenWrapper"
           >
+            <div
+              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+            >
+              <span
+                class="euiFormControlLayoutCustomIcon"
+              >
+                <span
+                  aria-hidden="true"
+                  class="euiFormControlLayoutCustomIcon__icon"
+                  data-euiicon-type="search"
+                />
+              </span>
+            </div>
             <input
               aria-activedescendant=""
               aria-describedby="generated-id_instructions"
@@ -314,19 +327,6 @@ exports[`EuiSuggest props options standard 1`] = `
               type="search"
               value=""
             />
-            <div
-              class="euiFormControlLayoutIcons"
-            >
-              <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
           </div>
         </div>
         <p
@@ -358,6 +358,19 @@ exports[`EuiSuggest props remaining EuiFieldSearch props are spread to the searc
           <div
             class="euiFormControlLayout__childrenWrapper"
           >
+            <div
+              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+            >
+              <span
+                class="euiFormControlLayoutCustomIcon"
+              >
+                <span
+                  aria-hidden="true"
+                  class="euiFormControlLayoutCustomIcon__icon"
+                  data-euiicon-type="search"
+                />
+              </span>
+            </div>
             <input
               aria-activedescendant=""
               aria-describedby="generated-id_instructions"
@@ -374,20 +387,7 @@ exports[`EuiSuggest props remaining EuiFieldSearch props are spread to the searc
               value="Controlled value"
             />
             <div
-              class="euiFormControlLayoutIcons"
-            >
-              <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
-            <div
-              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
             >
               <button
                 aria-label="Clear input"
@@ -436,6 +436,19 @@ exports[`EuiSuggest props status status: loading is rendered 1`] = `
           <div
             class="euiFormControlLayout__childrenWrapper"
           >
+            <div
+              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+            >
+              <span
+                class="euiFormControlLayoutCustomIcon"
+              >
+                <span
+                  aria-hidden="true"
+                  class="euiFormControlLayoutCustomIcon__icon"
+                  data-euiicon-type="search"
+                />
+              </span>
+            </div>
             <input
               aria-activedescendant=""
               aria-describedby="generated-id_instructions"
@@ -449,20 +462,7 @@ exports[`EuiSuggest props status status: loading is rendered 1`] = `
               value=""
             />
             <div
-              class="euiFormControlLayoutIcons"
-            >
-              <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
-            <div
-              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
             >
               <span
                 aria-label="Loading"
@@ -501,6 +501,19 @@ exports[`EuiSuggest props status status: saved is rendered 1`] = `
           <div
             class="euiFormControlLayout__childrenWrapper"
           >
+            <div
+              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+            >
+              <span
+                class="euiFormControlLayoutCustomIcon"
+              >
+                <span
+                  aria-hidden="true"
+                  class="euiFormControlLayoutCustomIcon__icon"
+                  data-euiicon-type="search"
+                />
+              </span>
+            </div>
             <input
               aria-activedescendant=""
               aria-describedby="generated-id_instructions"
@@ -513,19 +526,6 @@ exports[`EuiSuggest props status status: saved is rendered 1`] = `
               type="search"
               value=""
             />
-            <div
-              class="euiFormControlLayoutIcons"
-            >
-              <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
           </div>
           <span
             class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
@@ -566,6 +566,19 @@ exports[`EuiSuggest props status status: unchanged is rendered 1`] = `
           <div
             class="euiFormControlLayout__childrenWrapper"
           >
+            <div
+              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+            >
+              <span
+                class="euiFormControlLayoutCustomIcon"
+              >
+                <span
+                  aria-hidden="true"
+                  class="euiFormControlLayoutCustomIcon__icon"
+                  data-euiicon-type="search"
+                />
+              </span>
+            </div>
             <input
               aria-activedescendant=""
               aria-describedby="generated-id_instructions"
@@ -578,19 +591,6 @@ exports[`EuiSuggest props status status: unchanged is rendered 1`] = `
               type="search"
               value=""
             />
-            <div
-              class="euiFormControlLayoutIcons"
-            >
-              <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
           </div>
         </div>
         <p
@@ -622,6 +622,19 @@ exports[`EuiSuggest props status status: unsaved is rendered 1`] = `
           <div
             class="euiFormControlLayout__childrenWrapper"
           >
+            <div
+              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+            >
+              <span
+                class="euiFormControlLayoutCustomIcon"
+              >
+                <span
+                  aria-hidden="true"
+                  class="euiFormControlLayoutCustomIcon__icon"
+                  data-euiicon-type="search"
+                />
+              </span>
+            </div>
             <input
               aria-activedescendant=""
               aria-describedby="generated-id_instructions"
@@ -634,19 +647,6 @@ exports[`EuiSuggest props status status: unsaved is rendered 1`] = `
               type="search"
               value=""
             />
-            <div
-              class="euiFormControlLayoutIcons"
-            >
-              <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
           </div>
           <span
             class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
@@ -687,6 +687,19 @@ exports[`EuiSuggest props tooltipContent tooltipContent for status: loading is r
           <div
             class="euiFormControlLayout__childrenWrapper"
           >
+            <div
+              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+            >
+              <span
+                class="euiFormControlLayoutCustomIcon"
+              >
+                <span
+                  aria-hidden="true"
+                  class="euiFormControlLayoutCustomIcon__icon"
+                  data-euiicon-type="search"
+                />
+              </span>
+            </div>
             <input
               aria-activedescendant=""
               aria-describedby="generated-id_instructions"
@@ -700,20 +713,7 @@ exports[`EuiSuggest props tooltipContent tooltipContent for status: loading is r
               value=""
             />
             <div
-              class="euiFormControlLayoutIcons"
-            >
-              <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
-            <div
-              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
             >
               <span
                 aria-label="Loading"
@@ -752,6 +752,19 @@ exports[`EuiSuggest props tooltipContent tooltipContent for status: saved is ren
           <div
             class="euiFormControlLayout__childrenWrapper"
           >
+            <div
+              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+            >
+              <span
+                class="euiFormControlLayoutCustomIcon"
+              >
+                <span
+                  aria-hidden="true"
+                  class="euiFormControlLayoutCustomIcon__icon"
+                  data-euiicon-type="search"
+                />
+              </span>
+            </div>
             <input
               aria-activedescendant=""
               aria-describedby="generated-id_instructions"
@@ -764,19 +777,6 @@ exports[`EuiSuggest props tooltipContent tooltipContent for status: saved is ren
               type="search"
               value=""
             />
-            <div
-              class="euiFormControlLayoutIcons"
-            >
-              <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
           </div>
           <span
             class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
@@ -817,6 +817,19 @@ exports[`EuiSuggest props tooltipContent tooltipContent for status: unchanged is
           <div
             class="euiFormControlLayout__childrenWrapper"
           >
+            <div
+              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+            >
+              <span
+                class="euiFormControlLayoutCustomIcon"
+              >
+                <span
+                  aria-hidden="true"
+                  class="euiFormControlLayoutCustomIcon__icon"
+                  data-euiicon-type="search"
+                />
+              </span>
+            </div>
             <input
               aria-activedescendant=""
               aria-describedby="generated-id_instructions"
@@ -829,19 +842,6 @@ exports[`EuiSuggest props tooltipContent tooltipContent for status: unchanged is
               type="search"
               value=""
             />
-            <div
-              class="euiFormControlLayoutIcons"
-            >
-              <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
           </div>
         </div>
         <p
@@ -873,6 +873,19 @@ exports[`EuiSuggest props tooltipContent tooltipContent for status: unsaved is r
           <div
             class="euiFormControlLayout__childrenWrapper"
           >
+            <div
+              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+            >
+              <span
+                class="euiFormControlLayoutCustomIcon"
+              >
+                <span
+                  aria-hidden="true"
+                  class="euiFormControlLayoutCustomIcon__icon"
+                  data-euiicon-type="search"
+                />
+              </span>
+            </div>
             <input
               aria-activedescendant=""
               aria-describedby="generated-id_instructions"
@@ -885,19 +898,6 @@ exports[`EuiSuggest props tooltipContent tooltipContent for status: unsaved is r
               type="search"
               value=""
             />
-            <div
-              class="euiFormControlLayoutIcons"
-            >
-              <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
           </div>
           <span
             class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
