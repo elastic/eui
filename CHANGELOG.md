@@ -1,3 +1,7 @@
+## [`77.1.1`](https://github.com/elastic/eui/tree/v77.1.1)
+
+- Reverted an accidental merge not intended to be in the prior release
+
 ## [`77.1.0`](https://github.com/elastic/eui/tree/v77.1.0)
 
 - Updated `EuiDatePicker` to display a warning icon and correctly set `aria-invalid` when `isInvalid` is passed ([#6677](https://github.com/elastic/eui/pull/6677))
