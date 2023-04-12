@@ -24,7 +24,7 @@
 
   // Target when the euiFormControlLayout is fullWidth without specifying the full class name in case it ever changes
   &[class*='--fullWidth'] .euiFormControlLayout__childrenWrapper,
-  &[class*='--fullWidth'] input {
+  &[class*='--fullWidth'] .euiFormControlLayout__childrenWrapper > *:not(.euiFormControlLayoutDelimited__delimiter):not(.euiFormControlLayoutIcons) {
     width: 100%;
     max-width: none;
   }
@@ -50,7 +50,8 @@
     }
   }
 
-  &--isInvalid .euiFormControlLayoutIcons {
+  &--isInvalid .euiFormControlLayoutIcons,
+  &--isInvalid .euiFormControlLayoutDelimited__delimiter {
     @include euiFormControlInvalidStyle;
   }
 }
@@ -71,8 +72,4 @@
   display: flex;
   align-items: center;
   line-height: 1; // Override EuiText line-height
-
-  &--isInvalid {
-    @include euiFormControlInvalidStyle;
-  }
 }

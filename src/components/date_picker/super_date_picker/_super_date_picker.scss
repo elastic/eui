@@ -38,8 +38,10 @@
   max-width: 100% !important;
 
   > .euiFormControlLayout__childrenWrapper {
-    flex: 1 1 100%;
+    display: flex;
+    align-items: center;
     overflow: hidden;
+    background-color: $euiFormBackgroundColor;
 
     > .euiDatePickerRange {
       max-width: none;
@@ -54,6 +56,10 @@
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
       }
+    }
+
+    & > .euiFormControlLayoutDelimited__input {
+      flex-grow: 1;
     }
   }
 }
