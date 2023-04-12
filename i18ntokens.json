@@ -4968,42 +4968,6 @@
     "filepath": "src/components/image/image_button.tsx"
   },
   {
-    "token": "euiInlineEditForm.saveButtonAriaLabel",
-    "defString": "Save edit",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 105,
-        "column": 37,
-        "index": 3359
-      },
-      "end": {
-        "line": 108,
-        "column": 3,
-        "index": 3435
-      }
-    },
-    "filepath": "src/components/inline_edit/inline_edit_form.tsx"
-  },
-  {
-    "token": "euiInlineEditForm.cancelButtonAriaLabel",
-    "defString": "Cancel edit",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 109,
-        "column": 39,
-        "index": 3476
-      },
-      "end": {
-        "line": 112,
-        "column": 3,
-        "index": 3556
-      }
-    },
-    "filepath": "src/components/inline_edit/inline_edit_form.tsx"
-  },
-  {
     "token": "euiLink.newTarget.screenReaderOnlyText",
     "defString": "(opens in a new tab or window)",
     "highlighting": "string",
