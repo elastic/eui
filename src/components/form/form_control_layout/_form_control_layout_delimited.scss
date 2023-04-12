@@ -20,13 +20,6 @@
   &[class*='--compressed'] {
     @include euiFormControlDefaultShadow($borderOnly: true);
     border-radius: $euiBorderRadius / 2;
-
-    .euiFormControlLayoutDelimited__input {
-      height: 100%;
-      max-width: none;
-      padding-left: $euiFormControlCompressedPadding;
-      padding-right: $euiFormControlCompressedPadding;
-    }
   }
 
   // Target when the euiFormControlLayout is fullWidth without specifying the full class name in case it ever changes
