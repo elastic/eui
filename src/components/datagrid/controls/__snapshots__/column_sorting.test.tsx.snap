@@ -231,7 +231,7 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
       </div>
     </div>
     <div
-      class="euiPopoverFooter emotion-euiPopoverFooter-s"
+      class="euiPopoverFooter emotion-euiPopoverFooter-s-s"
     >
       <div
         class="euiFlexGroup emotion-euiFlexGroup-m-spaceBetween-stretch-row"

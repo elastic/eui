@@ -147,7 +147,6 @@ export class EuiRangeClass extends Component<
 
     const { id } = this.state;
 
-    const digitTolerance = Math.max(String(min).length, String(max).length);
     const showInputOnly = showInput === 'inputWithPopover';
     const canShowDropdown = showInputOnly && !readOnly && !disabled;
 
@@ -156,7 +155,6 @@ export class EuiRangeClass extends Component<
         id={id}
         min={min}
         max={max}
-        digitTolerance={digitTolerance}
         step={step}
         value={value}
         readOnly={readOnly}

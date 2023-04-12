@@ -1,3 +1,35 @@
+## [`77.1.0`](https://github.com/elastic/eui/tree/v77.1.0)
+
+- Updated `EuiDatePicker` to display a warning icon and correctly set `aria-invalid` when `isInvalid` is passed ([#6677](https://github.com/elastic/eui/pull/6677))
+- Updated `EuiFilePicker` to display an alert icon when `isInvalid` ([#6678](https://github.com/elastic/eui/pull/6678))
+- Updated `EuiTextArea` to display an alert icon when `isInvalid` ([#6679](https://github.com/elastic/eui/pull/6679))
+- Updated `EuiTextArea` to support the `isLoading` prop ([#6679](https://github.com/elastic/eui/pull/6679))
+- Updated `EuiDatePicker` to display a warning icon and correctly set `aria-invalid` when `isInvalid` is passed ([#6680](https://github.com/elastic/eui/pull/6680))
+
+**Bug fixes**
+
+- Fixed `EuiAccordion` to not set an `aria-expanded` attribute on non-interactive `buttonElement`s ([#6694](https://github.com/elastic/eui/pull/6694))
+- Fixed an `EuiPopoverFooter` bug causing nested popovers within popovers (note: not a recommended use-case) to unintentionally override its panel padding size inherited from context ([#6698](https://github.com/elastic/eui/pull/6698))
+- Fixed `EuiComboBox` to only delete the last selected item on backspace if the input caret is present ([#6699](https://github.com/elastic/eui/pull/6699))
+
+## [`77.0.0`](https://github.com/elastic/eui/tree/v77.0.0)
+
+**Bug fixes**
+
+- Fixed named `EuiBadge` colors to reflect custom theme overrides ([#6659](https://github.com/elastic/eui/pull/6659))
+- Fixed user-defined SCSS variables failing to override variables defined in Amsterdam typography overrides. ([#6665](https://github.com/elastic/eui/pull/6665))
+- Fixed bold `EuiCode` tokens to actually be bold ([#6666](https://github.com/elastic/eui/pull/6666))
+
+**Breaking changes**
+
+- Success- and accent-colored `EuiBadge`s and `EuiButton`s have had their fill colors tinted slightly on light mode to be more readable ([#6659](https://github.com/elastic/eui/pull/6659))
+
+## [`76.4.0`](https://github.com/elastic/eui/tree/v76.4.0)
+
+**CSS-in-JS conversions**
+
+- Converted `EuiKeyPadMenu` (Menu component only) to Emotion ([#6636](https://github.com/elastic/eui/pull/6636))
+
 ## [`76.3.0`](https://github.com/elastic/eui/tree/v76.3.0)
 
 - Updated `EuiSkipLink`'s `fallbackDestination` prop to support an array of query selector strings ([#6646](https://github.com/elastic/eui/pull/6646))

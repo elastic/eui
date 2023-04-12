@@ -17,18 +17,12 @@ npm login # Will prompt for credentials and 2FA token
 npm whoami # Should return your NPM username
 ```
 
-Ensure you have both the latest code and dependencies by running the following commands:
+Ensure you are on the `main` branch, and then start the release process by running the following command:
 ```sh
-git checkout main && git pull && yarn
+git checkout main && npm run release
 ```
 
-The release process is started by running the following command:
-
-```sh
-npm run release
-```
-
-This command runs all tests and then builds the `lib` and `dist` distributions formats. Next the recent changes are read from `upcoming_changelogs/` and you will be asked to choose what part of the version to bump.
+This command ensures that you have the latest `upstream/main` and dependencies, as well as running all tests and then building the `lib` and `dist` distributions formats. Next the recent changes are read from `upcoming_changelogs/` and you will be asked to choose what part of the version to bump.
 
 ![bumping a version](https://camo.githubusercontent.com/439b41058aa56f167867c4e118ef5e80c02c962f/68747470733a2f2f642e70722f692f51624b36614a2e676966)
 

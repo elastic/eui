@@ -6,10 +6,17 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
 import React, { ReactNode } from 'react';
-import { EuiDataGrid, EuiDataGridColumn, EuiDataGridProps } from './index';
+import {
+  EuiDataGrid,
+  EuiDataGridColumn,
+  EuiDataGridColumnCellAction,
+  EuiDataGridProps,
+} from './index';
 import { EuiLink } from '../link';
 import { EuiButtonEmpty } from '../button';
 
@@ -111,14 +118,14 @@ describe('EuiDataGrid', () => {
         .first();
 
       // make sure the horizontal scrollbar is present
-      virtualizedContainer.then(([outerContainer]: JQuery<HTMLElement>) => {
+      virtualizedContainer.then(([outerContainer]) => {
         expect(outerContainer.offsetHeight).to.be.greaterThan(
           outerContainer.clientHeight
         );
       });
 
       // make sure the vertical scrollbar is gone
-      virtualizedContainer.then(([outerContainer]: JQuery<HTMLElement>) => {
+      virtualizedContainer.then(([outerContainer]) => {
         expect(outerContainer.offsetWidth).to.equal(outerContainer.clientWidth);
       });
     });
@@ -443,7 +450,7 @@ describe('EuiDataGrid', () => {
 
   describe('cell popovers', () => {
     // Props
-    const cellActions = [
+    const cellActions: EuiDataGridColumnCellAction[] = [
       ({ Component }) => (
         <Component iconType="plusInCircle" aria-label="Filter in">
           Filter in

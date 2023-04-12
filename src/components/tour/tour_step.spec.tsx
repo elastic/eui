@@ -6,6 +6,10 @@
  * Side Public License, v 1.
  */
 
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
+
 import React from 'react';
 
 import { EuiTourStep } from './tour_step';

@@ -5,7 +5,8 @@
   align-items: stretch;
   padding: 1px; /* 1 */
 
-  .euiFormControlLayoutDelimited__delimeter {
+  .euiFormControlLayoutDelimited__delimiter,
+  .euiFormControlLayoutIcons {
     background-color: $euiFormBackgroundColor;
   }
 
@@ -28,8 +29,7 @@
     }
 
     .euiFormControlLayoutIcons {
-      padding-left: $euiFormControlCompressedPadding;
-      padding-right: $euiFormControlCompressedPadding;
+      padding-inline: $euiFormControlCompressedPadding;
     }
   }
 
@@ -44,7 +44,8 @@
   &[class*='-isDisabled'] {
     @include euiFormControlDisabledStyle;
 
-    .euiFormControlLayoutDelimited__delimeter {
+    .euiFormControlLayoutDelimited__delimiter,
+    .euiFormControlLayoutIcons {
       background-color: $euiFormBackgroundDisabledColor;
     }
   }
@@ -54,7 +55,8 @@
     @include euiFormControlReadOnlyStyle;
 
     input,
-    .euiFormControlLayoutDelimited__delimeter {
+    .euiFormControlLayoutDelimited__delimiter,
+    .euiFormControlLayoutIcons {
       background-color: $euiFormBackgroundReadOnlyColor;
     }
   }
@@ -63,12 +65,17 @@
     // Absolutely positioning the icons doesn't work because they
     // overlay only one of controls making the layout unbalanced
     position: static; // Overrider absolute
-    padding-left: $euiFormControlPadding;
-    padding-right: $euiFormControlPadding;
+    padding-inline: $euiFormControlPadding;
+    align-self: stretch;
+    flex-grow: 0;
 
     &:not(.euiFormControlLayoutIcons--right) {
       order: -1;
     }
+  }
+
+  &--isInvalid .euiFormControlLayoutIcons {
+    @include euiFormControlInvalidStyle;
   }
 }
 
@@ -82,10 +89,14 @@
   min-width: 0; // Fixes FF
 }
 
-.euiFormControlLayoutDelimited__delimeter {
-  // stylelint-disable-next-line declaration-no-important
-  line-height: 1 !important; // Override EuiText line-height
-  flex: 0 0 auto;
-  padding-left: $euiFormControlPadding / 2;
-  padding-right: $euiFormControlPadding / 2;
+.euiFormControlLayoutDelimited__delimiter {
+  align-self: stretch;
+  flex-grow: 0;
+  display: flex;
+  align-items: center;
+  line-height: 1; // Override EuiText line-height
+
+  &--isInvalid {
+    @include euiFormControlInvalidStyle;
+  }
 }

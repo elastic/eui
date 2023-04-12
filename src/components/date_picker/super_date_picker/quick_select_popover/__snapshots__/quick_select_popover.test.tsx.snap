@@ -134,6 +134,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
           >
             <input
               aria-describedby="generated-id generated-id"
+              aria-invalid="false"
               aria-label="Time value"
               class="euiFieldNumber euiFieldNumber--compressed"
               type="number"

@@ -7,7 +7,8 @@
  */
 
 /// <reference types="cypress" />
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
 import React, { useState } from 'react';
 
@@ -29,7 +30,7 @@ const options: EuiSelectableProps['options'] = [
   },
 ];
 
-const EuiSelectableListboxOnly = (args) => {
+const EuiSelectableListboxOnly = (args: Partial<EuiSelectableProps>) => {
   return (
     <EuiSelectable options={options} {...args}>
       {(list) => <>{list}</>}
@@ -37,7 +38,7 @@ const EuiSelectableListboxOnly = (args) => {
   );
 };
 
-const EuiSelectableWithSearchInput = (args) => {
+const EuiSelectableWithSearchInput = (args: Partial<EuiSelectableProps>) => {
   return (
     <EuiSelectable searchable options={options} {...args}>
       {(list, search) => (

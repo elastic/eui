@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-/// <reference types="../../../cypress/support"/>
+/// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
+/// <reference types="../../../cypress/support" />
 
 import React, { useState } from 'react';
 import { EuiDelayRender } from './delay_render';
@@ -18,14 +20,6 @@ const DelayRender = () => {
   const [minimumDelay, setDelay] = useState(1000);
   const [render, setRender] = useState(false);
 
-  const onChangeMinimumDelay = (event) => {
-    setDelay(parseInt(event.target.value, 10));
-  };
-
-  const onChangeHide = (event) => {
-    setRender(event.target.checked);
-  };
-
   const status = render ? 'showing' : 'hidden';
   const label = `Child (${status})`;
   return (
@@ -35,14 +29,14 @@ const DelayRender = () => {
           <EuiCheckbox
             id="dummy-id"
             checked={render}
-            onChange={onChangeHide}
+            onChange={(event) => setRender(event.target.checked)}
             label="Show child"
           />
         </EuiFormRow>
         <EuiFormRow label="Minimum delay">
           <EuiFieldNumber
             value={minimumDelay}
-            onChange={onChangeMinimumDelay}
+            onChange={(event) => setDelay(parseInt(event.target.value, 10))}
           />
         </EuiFormRow>
 

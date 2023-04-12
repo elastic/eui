@@ -467,11 +467,11 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-var Foo;
-(function (Foo) {
+var Foo = /*#__PURE__*/function (Foo) {
   Foo["bar"] = "BAR";
   Foo["baz"] = "BAZ";
-})(Foo || (Foo = {}));
+  return Foo;
+}(Foo || {});
 ;
 const FooComponent = () => {
   return <div>Hello World</div>;
@@ -498,11 +498,11 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-var Foo;
-(function (Foo) {
+var Foo = /*#__PURE__*/function (Foo) {
   Foo[Foo["bar"] = 3] = "bar";
   Foo[Foo["baz"] = 54] = "baz";
-})(Foo || (Foo = {}));
+  return Foo;
+}(Foo || {});
 ;
 const FooComponent = () => {
   return <div>Hello World</div>;
@@ -530,12 +530,12 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-var Foo;
-(function (Foo) {
+var Foo = /*#__PURE__*/function (Foo) {
   Foo["bar"] = "BAR";
   Foo[Foo["baz"] = 5] = "baz";
   Foo[Foo["buzz"] = false] = "buzz";
-})(Foo || (Foo = {}));
+  return Foo;
+}(Foo || {});
 ;
 const FooComponent = () => {
   return <div>Hello World</div>;
@@ -562,11 +562,11 @@ const FooComponent: React.SFC<IFooProps> = () => {
 
           expect(result.code).toBe(`import React from 'react';
 import PropTypes from "prop-types";
-var Foo;
-(function (Foo) {
+var Foo = /*#__PURE__*/function (Foo) {
   Foo["bar"] = "BAR";
   Foo["baz"] = "BAZ";
-})(Foo || (Foo = {}));
+  return Foo;
+}(Foo || {});
 ;
 const FooComponent = () => {
   return <div>Hello World</div>;

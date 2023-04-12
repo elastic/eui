@@ -101,8 +101,9 @@
     height: $euiFilePickerTallHeight - $euiSizeL; /* 4 */
   }
 
-  .euiFilePicker-isInvalid & {
-    border: $euiBorderWidthThick dashed $euiColorDanger;
+  // To match other EUI form controls, do not color the border red if focused or disabled
+  .euiFilePicker-isInvalid:not(.euiFilePicker__showDrop) .euiFilePicker__input:not(:disabled):not(:focus) + & {
+    border-color: $euiColorDanger;
   }
 }
 
