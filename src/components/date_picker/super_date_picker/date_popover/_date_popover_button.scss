@@ -35,6 +35,7 @@
 
   &:disabled {
     background-color: $euiFormBackgroundDisabledColor;
+    background-image: none;
     color: $euiColorDarkShade;
     cursor: default;
   }
