@@ -126,6 +126,12 @@ interface EuiExtendedDatePickerProps
    * **Use [EuiPopover](/#/layout/popover) values**: 'upCenter', 'upLeft', 'upRight', downCenter', 'downLeft', 'downRight', 'leftCenter', 'leftUp', 'leftDown', 'rightCenter', 'rightUp', 'rightDown'.
    */
   popoverPlacement?: PopoverAnchorPosition;
+
+  /**
+   * Completely removes form control layout wrapper and ignores
+   * iconType. Best used inside EuiFormControlLayoutDelimited.
+   */
+  controlOnly?: boolean;
 }
 
 export type EuiDatePickerProps = CommonProps & EuiExtendedDatePickerProps;
@@ -134,6 +140,7 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
   adjustDateOnChange = true,
   calendarClassName,
   className,
+  controlOnly,
   customInput,
   dateFormat = euiDatePickerDefaultDateFormat,
   dayClassName,
@@ -173,10 +180,12 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
     'euiDatePicker--inline': inline,
   });
 
-  const numIconsClass = getFormControlClassNameForIconCount({
-    isInvalid,
-    isLoading,
-  });
+  const numIconsClass = controlOnly
+    ? false
+    : getFormControlClassNameForIconCount({
+        isInvalid,
+        isLoading,
+      });
 
   const datePickerClasses = classNames(
     'euiDatePicker',
@@ -217,6 +226,52 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
   useEuiValidatableControl({ isInvalid, controlEl: inputValidityRef });
   const inputRefs = useCombinedRefs([inputRef, setInputValidityRef]);
 
+  const control = (
+    <EuiI18nConsumer>
+      {({ locale: contextLocale }) => {
+        return (
+          <ReactDatePicker
+            adjustDateOnChange={adjustDateOnChange}
+            calendarClassName={calendarClassName}
+            className={datePickerClasses}
+            customInput={customInput}
+            dateFormat={fullDateFormat}
+            dayClassName={dayClassName}
+            disabled={disabled}
+            excludeDates={excludeDates}
+            filterDate={filterDate}
+            injectTimes={injectTimes}
+            inline={inline}
+            locale={locale || contextLocale}
+            maxDate={maxDate}
+            maxTime={maxTime}
+            minDate={minDate}
+            minTime={minTime}
+            onChange={onChange}
+            openToDate={openToDate}
+            placeholderText={placeholder}
+            popperClassName={popperClassName}
+            ref={inputRefs}
+            selected={selected}
+            shouldCloseOnSelect={shouldCloseOnSelect}
+            showMonthDropdown
+            showTimeSelect={showTimeSelectOnly ? true : showTimeSelect}
+            showTimeSelectOnly={showTimeSelectOnly}
+            showYearDropdown
+            timeFormat={timeFormat}
+            utcOffset={utcOffset}
+            yearDropdownItemNumber={7}
+            accessibleMode
+            popperPlacement={popoverPlacement}
+            {...rest}
+          />
+        );
+      }}
+    </EuiI18nConsumer>
+  );
+
+  if (controlOnly) return control;
+
   return (
     <span className={classes}>
       <EuiFormControlLayout
@@ -226,47 +281,7 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
         isLoading={isLoading}
         isInvalid={isInvalid}
       >
-        <EuiI18nConsumer>
-          {({ locale: contextLocale }) => {
-            return (
-              <ReactDatePicker
-                adjustDateOnChange={adjustDateOnChange}
-                calendarClassName={calendarClassName}
-                className={datePickerClasses}
-                customInput={customInput}
-                dateFormat={fullDateFormat}
-                dayClassName={dayClassName}
-                disabled={disabled}
-                excludeDates={excludeDates}
-                filterDate={filterDate}
-                injectTimes={injectTimes}
-                inline={inline}
-                locale={locale || contextLocale}
-                maxDate={maxDate}
-                maxTime={maxTime}
-                minDate={minDate}
-                minTime={minTime}
-                onChange={onChange}
-                openToDate={openToDate}
-                placeholderText={placeholder}
-                popperClassName={popperClassName}
-                ref={inputRefs}
-                selected={selected}
-                shouldCloseOnSelect={shouldCloseOnSelect}
-                showMonthDropdown
-                showTimeSelect={showTimeSelectOnly ? true : showTimeSelect}
-                showTimeSelectOnly={showTimeSelectOnly}
-                showYearDropdown
-                timeFormat={timeFormat}
-                utcOffset={utcOffset}
-                yearDropdownItemNumber={7}
-                accessibleMode
-                popperPlacement={popoverPlacement}
-                {...rest}
-              />
-            );
-          }}
-        </EuiI18nConsumer>
+        {control}
       </EuiFormControlLayout>
     </span>
   );
