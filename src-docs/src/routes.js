@@ -151,8 +151,6 @@ import { ImageExample } from './views/image/image_example';
 
 import { InnerTextExample } from './views/inner_text/inner_text_example';
 
-import { InlineEditExample } from './views/inline_edit/inline_edit_example';
-
 import { KeyPadMenuExample } from './views/key_pad_menu/key_pad_menu_example';
 
 import { LinkExample } from './views/link/link_example';
@@ -563,7 +561,6 @@ const navigation = [
       HealthExample,
       IconExample,
       ImageExample,
-      InlineEditExample,
       ListGroupExample,
       LoadingExample,
       NotificationEventExample,
