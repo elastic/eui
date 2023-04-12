@@ -4806,6 +4806,24 @@
     "filepath": "src/components/form/form_control_layout/form_control_layout_clear_button.tsx"
   },
   {
+    "token": "euiFormControlLayoutDelimited.delimiterLabel",
+    "defString": "to",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 92,
+        "column": 27,
+        "index": 2394
+      },
+      "end": {
+        "line": 95,
+        "column": 3,
+        "index": 2470
+      }
+    },
+    "filepath": "src/components/form/form_control_layout/form_control_layout_delimited.tsx"
+  },
+  {
     "token": "euiForm.addressFormErrors",
     "defString": "Please address the highlighted errors.",
     "highlighting": "string",
@@ -4829,14 +4847,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 571,
+        "line": 568,
         "column": 6,
-        "index": 17705
+        "index": 17548
       },
       "end": {
-        "line": 574,
+        "line": 571,
         "column": 8,
-        "index": 17940
+        "index": 17783
       }
     },
     "filepath": "src/components/form/range/dual_range.tsx"
@@ -4847,14 +4865,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 184,
+        "line": 182,
         "column": 6,
-        "index": 4950
+        "index": 4833
       },
       "end": {
-        "line": 187,
+        "line": 185,
         "column": 8,
-        "index": 5127
+        "index": 5010
       }
     },
     "filepath": "src/components/form/range/range.tsx"
@@ -4966,42 +4984,6 @@
       }
     },
     "filepath": "src/components/image/image_button.tsx"
-  },
-  {
-    "token": "euiInlineEditForm.saveButtonAriaLabel",
-    "defString": "Save edit",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 105,
-        "column": 37,
-        "index": 3359
-      },
-      "end": {
-        "line": 108,
-        "column": 3,
-        "index": 3435
-      }
-    },
-    "filepath": "src/components/inline_edit/inline_edit_form.tsx"
-  },
-  {
-    "token": "euiInlineEditForm.cancelButtonAriaLabel",
-    "defString": "Cancel edit",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 109,
-        "column": 39,
-        "index": 3476
-      },
-      "end": {
-        "line": 112,
-        "column": 3,
-        "index": 3556
-      }
-    },
-    "filepath": "src/components/inline_edit/inline_edit_form.tsx"
   },
   {
     "token": "euiLink.newTarget.screenReaderOnlyText",
