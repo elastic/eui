@@ -11,7 +11,6 @@
 /// <reference types="../../../cypress/support" />
 
 import React from 'react';
-
 import {
   EuiTable,
   EuiTableHeader,
@@ -104,7 +103,7 @@ describe('EuiTable', () => {
   });
 
   describe('Automated accessibility check', () => {
-    it('has zero violations when rendered', () => {
+    it('has zero violations on render', () => {
       cy.checkAxe();
     });
   });

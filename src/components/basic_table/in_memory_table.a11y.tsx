@@ -10,15 +10,12 @@
 /// <reference types="cypress-real-events" />
 /// <reference types="../../../cypress/support" />
 
-import React, { ReactNode, useState } from 'react';
+import React from 'react';
 import { faker } from '@faker-js/faker';
 
-import { EuiBasicTable, EuiInMemoryTable, EuiBasicTableColumn } from '.';
-import { EuiButtonIcon } from '../button';
+import { EuiInMemoryTable, EuiBasicTableColumn } from '.';
 import { EuiHealth } from '../health';
 import { EuiLink } from '../link';
-import { EuiScreenReaderOnly } from '../accessibility';
-
 import { formatDate } from '../../services';
 
 type User = {
@@ -210,117 +207,6 @@ describe('EuiInMemoryTable', () => {
       });
 
       it('has zero violations on render', () => {
-        cy.checkAxe();
-      });
-    });
-  });
-});
-
-describe('EuiTable', () => {
-  describe('Basic table', () => {
-    beforeEach(() => {
-      cy.viewport(1024, 768); // medium breakpoint
-      cy.realMount(
-        <EuiBasicTable
-          tableCaption="Demo of EuiBasicTable"
-          columns={columns}
-          items={users}
-        />
-      );
-    });
-
-    describe('Automated accessibility check', () => {
-      it('has zero violations when rendered', () => {
-        cy.checkAxe();
-      });
-    });
-  });
-
-  describe('Expandable rows', () => {
-    const ExpandableRowTable = () => {
-      const [itemIdToExpandedRowMap, setItemIdToExpandedRowMap] = useState<
-        Record<string, ReactNode>
-      >({});
-
-      const toggleDetails = (user: User) => {
-        const itemIdToExpandedRowMapValues = { ...itemIdToExpandedRowMap };
-
-        if (itemIdToExpandedRowMapValues[user.id]) {
-          delete itemIdToExpandedRowMapValues[user.id];
-        } else {
-          itemIdToExpandedRowMapValues[user.id] = (
-            <div>
-              <p>{`Location: ${user.location.city}`}</p>
-              <p>This person is online.</p>
-            </div>
-          );
-        }
-        setItemIdToExpandedRowMap(itemIdToExpandedRowMapValues);
-      };
-
-      const columnsWithExpandingRowToggle: Array<EuiBasicTableColumn<User>> = [
-        ...columns,
-        {
-          align: 'right',
-          width: '40px',
-          isExpander: true,
-          name: (
-            <EuiScreenReaderOnly>
-              <span>Expand rows</span>
-            </EuiScreenReaderOnly>
-          ),
-          render: (user: User) => {
-            const itemIdToExpandedRowMapValues = { ...itemIdToExpandedRowMap };
-
-            return (
-              <EuiButtonIcon
-                id={user.id.toString()}
-                onClick={() => toggleDetails(user)}
-                aria-label={
-                  itemIdToExpandedRowMapValues[user.id] ? 'Collapse' : 'Expand'
-                }
-                iconType={
-                  itemIdToExpandedRowMapValues[user.id]
-                    ? 'arrowDown'
-                    : 'arrowRight'
-                }
-              />
-            );
-          },
-        },
-      ];
-
-      return (
-        <EuiBasicTable
-          tableCaption="Demo of EuiBasicTable with expanding rows"
-          itemIdToExpandedRowMap={itemIdToExpandedRowMap}
-          isExpandable={true}
-          columns={columnsWithExpandingRowToggle}
-          items={users}
-          itemId="id"
-        />
-      );
-    };
-
-    beforeEach(() => {
-      cy.viewport(1024, 768); // medium breakpoint
-      cy.realMount(<ExpandableRowTable />);
-    });
-
-    describe('Automated accessibility check', () => {
-      it('has zero violations when rendered', () => {
-        cy.checkAxe();
-      });
-    });
-
-    describe('Keyboard accessibility', () => {
-      it('has zero violations after expanding a row', () => {
-        cy.repeatRealPress('Tab');
-        cy.get('button#1').should('have.focus');
-        cy.realPress('Enter');
-        cy.get('tr.euiTableRow-isExpandedRow div.euiTableCellContent').should(
-          'exist'
-        );
         cy.checkAxe();
       });
     });
