@@ -18,7 +18,6 @@ exports[`EuiFormControlLayoutDelimited is rendered 1`] = `
       class="euiText euiFormControlLayoutDelimited__delimiter emotion-euiText-s-euiTextColor-subdued"
     >
       <span
-        color="subdued"
         data-euiicon-type="sortRight"
       >
         to

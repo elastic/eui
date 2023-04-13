@@ -9,7 +9,6 @@
 import React, {
   FocusEvent,
   FocusEventHandler,
-  Fragment,
   FunctionComponent,
   ReactNode,
   cloneElement,
@@ -17,66 +16,59 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { IconType, EuiIcon } from '../icon';
+import {
+  EuiFormControlLayoutDelimited,
+  EuiFormControlLayoutDelimitedProps,
+} from '../form';
+import { IconType } from '../icon';
 import { CommonProps } from '../common';
 import { EuiDatePickerProps } from './date_picker';
 
-export type EuiDatePickerRangeProps = CommonProps & {
-  /**
-   * Including any children will replace all innards with the provided children
-   */
-  children?: ReactNode;
+export type EuiDatePickerRangeProps = CommonProps &
+  Pick<
+    EuiFormControlLayoutDelimitedProps,
+    'isInvalid' | 'readOnly' | 'fullWidth' | 'prepend' | 'append'
+  > & {
+    /**
+     * Including any children will replace all innards with the provided children
+     */
+    children?: ReactNode;
 
-  /**
-   * The end date `EuiDatePicker` element
-   */
-  endDateControl: ReactElement;
+    /**
+     * The end date `EuiDatePicker` element
+     */
+    endDateControl: ReactElement;
 
-  /**
-   * The start date `EuiDatePicker` element
-   */
-  startDateControl: ReactElement;
+    /**
+     * The start date `EuiDatePicker` element
+     */
+    startDateControl: ReactElement;
 
-  /**
-   * Pass either an icon type or set to `false` to remove icon entirely
-   */
-  iconType?: boolean | IconType;
+    /**
+     * Pass either an icon type or set to `false` to remove icon entirely
+     */
+    iconType?: boolean | IconType;
 
-  /**
-   * Won't apply any additional props to start and end date components
-   */
-  isCustom?: boolean;
+    /**
+     * Won't apply any additional props to start and end date components
+     */
+    isCustom?: boolean;
 
-  /**
-   * Will color the range delimiter the `danger` color and pass through to each control
-   */
-  isInvalid?: boolean;
+    /**
+     * Passes through to each control
+     */
+    disabled?: boolean;
 
-  /**
-   * Passes through to each control
-   */
-  disabled?: boolean;
+    /**
+     * Triggered whenever the start or end controls are blurred
+     */
+    onBlur?: FocusEventHandler<HTMLInputElement>;
 
-  /**
-   * Passes through to each control
-   */
-  readOnly?: boolean;
-
-  /**
-   * Passes through to each control
-   */
-  fullWidth?: boolean;
-
-  /**
-   * Triggered whenever the start or end controls are blurred
-   */
-  onBlur?: FocusEventHandler<HTMLInputElement>;
-
-  /**
-   * Triggered whenever the start or end controls are focused
-   */
-  onFocus?: FocusEventHandler<HTMLInputElement>;
-};
+    /**
+     * Triggered whenever the start or end controls are focused
+     */
+    onFocus?: FocusEventHandler<HTMLInputElement>;
+  };
 
 export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
   children,
@@ -91,6 +83,8 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
   disabled,
   onFocus,
   onBlur,
+  append,
+  prepend,
   ...rest
 }) => {
   const classes = classNames(
@@ -111,8 +105,8 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
     startControl = cloneElement(
       startDateControl as ReactElement<EuiDatePickerProps>,
       {
-        iconType: typeof iconType === 'boolean' ? undefined : iconType,
-        showIcon: !!iconType,
+        controlOnly: true,
+        showIcon: false,
         fullWidth: fullWidth,
         readOnly: readOnly,
         disabled: disabled || startDateControl.props.disabled,
@@ -135,6 +129,7 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
     endControl = cloneElement(
       endDateControl as ReactElement<EuiDatePickerProps>,
       {
+        controlOnly: true,
         showIcon: false,
         fullWidth: fullWidth,
         readOnly: readOnly,
@@ -157,23 +152,19 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
     );
   }
 
-  const delimiter = (
-    <span className="euiDatePickerRange__delimeter">
-      <EuiIcon color={isInvalid ? 'danger' : 'subdued'} type="sortRight" />
-    </span>
-  );
-
   return (
-    <div className={classes} {...rest}>
-      {children ? (
-        children
-      ) : (
-        <Fragment>
-          {startControl}
-          {delimiter}
-          {endControl}
-        </Fragment>
-      )}
-    </div>
+    <EuiFormControlLayoutDelimited
+      icon={iconType === true ? 'calendar' : iconType || undefined}
+      className={classes}
+      startControl={startControl}
+      endControl={endControl}
+      fullWidth={fullWidth}
+      readOnly={readOnly}
+      isDisabled={disabled}
+      isInvalid={isInvalid}
+      append={append}
+      prepend={prepend}
+      {...rest}
+    />
   );
 };

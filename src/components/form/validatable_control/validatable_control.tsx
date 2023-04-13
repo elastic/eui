@@ -13,7 +13,7 @@ import {
   ReactElement,
   Ref,
   FunctionComponent,
-  useRef,
+  useState,
   useEffect,
   useCallback,
 } from 'react';
@@ -45,14 +45,17 @@ export interface EuiValidatableControlProps {
 export const EuiValidatableControl: FunctionComponent<
   CommonProps & EuiValidatableControlProps
 > = ({ isInvalid, children }) => {
-  const control = useRef<HTMLConstraintValidityElement | null>(null);
+  // Note that this must be state and not a ref to cause a rerender/set invalid state on initial mount
+  const [control, setControl] = useState<HTMLConstraintValidityElement | null>(
+    null
+  );
 
   const child = Children.only(children);
   const childRef = child.ref;
 
   const replacedRef = useCallback(
     (element: HTMLConstraintValidityElement) => {
-      control.current = element;
+      setControl(element);
 
       // Call the original ref, if any
       if (typeof childRef === 'function') {
@@ -64,7 +67,7 @@ export const EuiValidatableControl: FunctionComponent<
     [childRef]
   );
 
-  useSetControlValidity({ controlEl: control.current, isInvalid });
+  useSetControlValidity({ controlEl: control, isInvalid });
 
   return cloneElement(child, {
     ref: replacedRef,

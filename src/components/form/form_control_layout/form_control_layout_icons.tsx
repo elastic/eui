@@ -6,7 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React, { Fragment, Component } from 'react';
+import React, { Component } from 'react';
+import classNames from 'classnames';
 
 import { EuiLoadingSpinner } from '../../loading';
 import {
@@ -20,9 +21,9 @@ import {
 import { EuiIcon, IconColor, IconType } from '../../icon';
 import { DistributiveOmit } from '../../common';
 
-export const ICON_SIDES: ['left', 'right'] = ['left', 'right'];
+export const ICON_SIDES = ['left', 'right'] as const;
 
-type IconShape = DistributiveOmit<
+export type IconShape = DistributiveOmit<
   EuiFormControlLayoutCustomIconProps,
   'type' | 'iconRef'
 > & {
@@ -40,6 +41,8 @@ function isIconShape(
 
 export interface EuiFormControlLayoutIconsProps {
   icon?: IconType | IconShape;
+  side?: typeof ICON_SIDES[number];
+  iconsPosition?: 'absolute' | 'static';
   clear?: EuiFormControlLayoutClearButtonProps;
   isLoading?: boolean;
   isInvalid?: boolean;
@@ -51,46 +54,28 @@ export class EuiFormControlLayoutIcons extends Component<
   EuiFormControlLayoutIconsProps
 > {
   render() {
-    const { icon, isInvalid, isDropdown } = this.props;
-    const iconSide = isIconShape(icon) && icon.side ? icon.side : 'left';
+    const { side = 'left', iconsPosition = 'absolute' } = this.props;
+
     const customIcon = this.renderCustomIcon();
     const loadingSpinner = this.renderLoadingSpinner();
     const clearButton = this.renderClearButton();
     const invalidIcon = this.renderInvalidIcon();
     const dropdownIcon = this.renderDropdownIcon();
 
-    let leftIcons;
-
-    if (customIcon && iconSide === 'left') {
-      leftIcons = <div className="euiFormControlLayoutIcons">{customIcon}</div>;
-    }
-
-    let rightIcons;
-
-    // If the icon is on the right, it should be placed after the clear button in the DOM.
-    if (
-      clearButton ||
-      loadingSpinner ||
-      isInvalid ||
-      isDropdown ||
-      (customIcon && iconSide === 'right')
-    ) {
-      rightIcons = (
-        <div className="euiFormControlLayoutIcons euiFormControlLayoutIcons--right">
-          {clearButton}
-          {loadingSpinner}
-          {invalidIcon}
-          {iconSide === 'right' ? customIcon : undefined}
-          {dropdownIcon}
-        </div>
-      );
-    }
+    const classes = classNames(
+      'euiFormControlLayoutIcons',
+      `euiFormControlLayoutIcons--${side}`,
+      `euiFormControlLayoutIcons--${iconsPosition}`
+    );
 
     return (
-      <Fragment>
-        {leftIcons}
-        {rightIcons}
-      </Fragment>
+      <div className={classes}>
+        {clearButton}
+        {loadingSpinner}
+        {invalidIcon}
+        {customIcon}
+        {dropdownIcon}
+      </div>
     );
   }
 

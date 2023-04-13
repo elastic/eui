@@ -20,7 +20,7 @@ Array [
         type="button"
       />
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
       >
         <span
           class="euiFormControlLayoutCustomIcon"
@@ -55,7 +55,7 @@ Array [
         type="button"
       />
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
       >
         <span
           class="euiFormControlLayoutCustomIcon"
@@ -90,7 +90,7 @@ Array [
         type="button"
       />
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
       >
         <span
           class="euiFormControlLayoutCustomIcon"
@@ -125,7 +125,7 @@ Array [
         type="button"
       />
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
       >
         <span
           class="euiFormControlLayoutCustomIcon"
@@ -160,7 +160,7 @@ Array [
         type="button"
       />
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
       >
         <span
           class="euiFormControlLayoutCustomIcon"
@@ -195,7 +195,7 @@ Array [
         type="button"
       />
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
       >
         <span
           color="danger"
@@ -234,7 +234,7 @@ Array [
         type="button"
       />
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
       >
         <span
           aria-label="Loading"
@@ -280,7 +280,7 @@ Array [
         </span>
       </button>
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
       >
         <span
           class="euiFormControlLayoutCustomIcon"
@@ -317,7 +317,7 @@ Array [
         Option #1
       </button>
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
       >
         <span
           class="euiFormControlLayoutCustomIcon"

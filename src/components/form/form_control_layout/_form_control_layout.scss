@@ -128,7 +128,7 @@
   // TEXT
 
   .euiFormLabel,
-  .euiText {
+  .euiText:not(.euiFormControlLayoutDelimited__delimiter) {
     background-color: $euiFormInputGroupLabelBackground;
     padding: $euiFormControlPadding;
     line-height: $euiSize !important;
@@ -171,7 +171,7 @@
 
     // Padding
     .euiFormLabel,
-    .euiText {
+    .euiText:not(.euiFormControlLayoutDelimited__delimiter) {
       padding: $euiFormControlCompressedPadding;
 
       // If the next sibling is not the input, pull it closer to the text to reduce space

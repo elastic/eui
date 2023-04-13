@@ -10,7 +10,8 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
     <EuiFormControlLayout
       className="euiSuperDatePicker testClass1 testClass2"
       data-test-subj="test subject string"
-      isDisabled={false}
+      disabled={false}
+      isInvalid={false}
       prepend={
         <EuiQuickSelectPopover
           applyTime={[Function]}
@@ -235,70 +236,62 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
         />
       }
     >
-      <EuiDatePickerRange
-        className="euiDatePickerRange--inGroup"
-        endDateControl={<div />}
-        iconType={false}
-        isCustom={true}
-        startDateControl={<div />}
+      <button
+        className="euiSuperDatePicker__prettyFormat"
+        data-test-subj="superDatePickerShowDatesButton"
+        disabled={false}
+        onClick={[Function]}
       >
-        <button
-          className="euiSuperDatePicker__prettyFormat"
-          data-test-subj="superDatePickerShowDatesButton"
-          disabled={false}
-          onClick={[Function]}
-        >
-          <PrettyDuration
-            dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
-            quickRanges={
-              Array [
-                Object {
-                  "end": "now/d",
-                  "label": "Today",
-                  "start": "now/d",
-                },
-                Object {
-                  "end": "now/w",
-                  "label": "This week",
-                  "start": "now/w",
-                },
-                Object {
-                  "end": "now/M",
-                  "label": "This month",
-                  "start": "now/M",
-                },
-                Object {
-                  "end": "now/y",
-                  "label": "This year",
-                  "start": "now/y",
-                },
-                Object {
-                  "end": "now-1d/d",
-                  "label": "Yesterday",
-                  "start": "now-1d/d",
-                },
-                Object {
-                  "end": "now",
-                  "label": "Week to date",
-                  "start": "now/w",
-                },
-                Object {
-                  "end": "now",
-                  "label": "Month to date",
-                  "start": "now/M",
-                },
-                Object {
-                  "end": "now",
-                  "label": "Year to date",
-                  "start": "now/y",
-                },
-              ]
-            }
-            timeFrom="now-15m"
-            timeTo="now"
-          />
-        </button>
-      </EuiDatePickerRange>
+        <PrettyDuration
+          dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
+          quickRanges={
+            Array [
+              Object {
+                "end": "now/d",
+                "label": "Today",
+                "start": "now/d",
+              },
+              Object {
+                "end": "now/w",
+                "label": "This week",
+                "start": "now/w",
+              },
+              Object {
+                "end": "now/M",
+                "label": "This month",
+                "start": "now/M",
+              },
+              Object {
+                "end": "now/y",
+                "label": "This year",
+                "start": "now/y",
+              },
+              Object {
+                "end": "now-1d/d",
+                "label": "Yesterday",
+                "start": "now-1d/d",
+              },
+              Object {
+                "end": "now",
+                "label": "Week to date",
+                "start": "now/w",
+              },
+              Object {
+                "end": "now",
+                "label": "Month to date",
+                "start": "now/M",
+              },
+              Object {
+                "end": "now",
+                "label": "Year to date",
+                "start": "now/y",
+              },
+            ]
+          }
+          timeFrom="now-15m"
+          timeTo="now"
+        />
+      </button>
     </EuiFormControlLayout>
   </EuiFlexItem>
   <EuiFlexItem
@@ -335,7 +328,8 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
     <EuiFormControlLayout
       className="euiSuperDatePicker"
       data-test-subj="mySuperDatePicker"
-      isDisabled={false}
+      disabled={false}
+      isInvalid={false}
       prepend={
         <EuiQuickSelectPopover
           applyTime={[Function]}
@@ -560,70 +554,62 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
         />
       }
     >
-      <EuiDatePickerRange
-        className="euiDatePickerRange--inGroup"
-        endDateControl={<div />}
-        iconType={false}
-        isCustom={true}
-        startDateControl={<div />}
+      <button
+        className="euiSuperDatePicker__prettyFormat"
+        data-test-subj="superDatePickerShowDatesButton"
+        disabled={false}
+        onClick={[Function]}
       >
-        <button
-          className="euiSuperDatePicker__prettyFormat"
-          data-test-subj="superDatePickerShowDatesButton"
-          disabled={false}
-          onClick={[Function]}
-        >
-          <PrettyDuration
-            dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
-            quickRanges={
-              Array [
-                Object {
-                  "end": "now/d",
-                  "label": "Today",
-                  "start": "now/d",
-                },
-                Object {
-                  "end": "now/w",
-                  "label": "This week",
-                  "start": "now/w",
-                },
-                Object {
-                  "end": "now/M",
-                  "label": "This month",
-                  "start": "now/M",
-                },
-                Object {
-                  "end": "now/y",
-                  "label": "This year",
-                  "start": "now/y",
-                },
-                Object {
-                  "end": "now-1d/d",
-                  "label": "Yesterday",
-                  "start": "now-1d/d",
-                },
-                Object {
-                  "end": "now",
-                  "label": "Week to date",
-                  "start": "now/w",
-                },
-                Object {
-                  "end": "now",
-                  "label": "Month to date",
-                  "start": "now/M",
-                },
-                Object {
-                  "end": "now",
-                  "label": "Year to date",
-                  "start": "now/y",
-                },
-              ]
-            }
-            timeFrom="now-15m"
-            timeTo="now"
-          />
-        </button>
-      </EuiDatePickerRange>
+        <PrettyDuration
+          dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
+          quickRanges={
+            Array [
+              Object {
+                "end": "now/d",
+                "label": "Today",
+                "start": "now/d",
+              },
+              Object {
+                "end": "now/w",
+                "label": "This week",
+                "start": "now/w",
+              },
+              Object {
+                "end": "now/M",
+                "label": "This month",
+                "start": "now/M",
+              },
+              Object {
+                "end": "now/y",
+                "label": "This year",
+                "start": "now/y",
+              },
+              Object {
+                "end": "now-1d/d",
+                "label": "Yesterday",
+                "start": "now-1d/d",
+              },
+              Object {
+                "end": "now",
+                "label": "Week to date",
+                "start": "now/w",
+              },
+              Object {
+                "end": "now",
+                "label": "Month to date",
+                "start": "now/M",
+              },
+              Object {
+                "end": "now",
+                "label": "Year to date",
+                "start": "now/y",
+              },
+            ]
+          }
+          timeFrom="now-15m"
+          timeTo="now"
+        />
+      </button>
     </EuiFormControlLayout>
   </EuiFlexItem>
   <EuiFlexItem
@@ -660,7 +646,8 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
     <EuiFormControlLayout
       className="euiSuperDatePicker"
       compressed={true}
-      isDisabled={false}
+      disabled={false}
+      isInvalid={false}
       prepend={
         <EuiQuickSelectPopover
           applyTime={[Function]}
@@ -885,70 +872,62 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
         />
       }
     >
-      <EuiDatePickerRange
-        className="euiDatePickerRange--inGroup"
-        endDateControl={<div />}
-        iconType={false}
-        isCustom={true}
-        startDateControl={<div />}
+      <button
+        className="euiSuperDatePicker__prettyFormat"
+        data-test-subj="superDatePickerShowDatesButton"
+        disabled={false}
+        onClick={[Function]}
       >
-        <button
-          className="euiSuperDatePicker__prettyFormat"
-          data-test-subj="superDatePickerShowDatesButton"
-          disabled={false}
-          onClick={[Function]}
-        >
-          <PrettyDuration
-            dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
-            quickRanges={
-              Array [
-                Object {
-                  "end": "now/d",
-                  "label": "Today",
-                  "start": "now/d",
-                },
-                Object {
-                  "end": "now/w",
-                  "label": "This week",
-                  "start": "now/w",
-                },
-                Object {
-                  "end": "now/M",
-                  "label": "This month",
-                  "start": "now/M",
-                },
-                Object {
-                  "end": "now/y",
-                  "label": "This year",
-                  "start": "now/y",
-                },
-                Object {
-                  "end": "now-1d/d",
-                  "label": "Yesterday",
-                  "start": "now-1d/d",
-                },
-                Object {
-                  "end": "now",
-                  "label": "Week to date",
-                  "start": "now/w",
-                },
-                Object {
-                  "end": "now",
-                  "label": "Month to date",
-                  "start": "now/M",
-                },
-                Object {
-                  "end": "now",
-                  "label": "Year to date",
-                  "start": "now/y",
-                },
-              ]
-            }
-            timeFrom="now-15m"
-            timeTo="now"
-          />
-        </button>
-      </EuiDatePickerRange>
+        <PrettyDuration
+          dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
+          quickRanges={
+            Array [
+              Object {
+                "end": "now/d",
+                "label": "Today",
+                "start": "now/d",
+              },
+              Object {
+                "end": "now/w",
+                "label": "This week",
+                "start": "now/w",
+              },
+              Object {
+                "end": "now/M",
+                "label": "This month",
+                "start": "now/M",
+              },
+              Object {
+                "end": "now/y",
+                "label": "This year",
+                "start": "now/y",
+              },
+              Object {
+                "end": "now-1d/d",
+                "label": "Yesterday",
+                "start": "now-1d/d",
+              },
+              Object {
+                "end": "now",
+                "label": "Week to date",
+                "start": "now/w",
+              },
+              Object {
+                "end": "now",
+                "label": "Month to date",
+                "start": "now/M",
+              },
+              Object {
+                "end": "now",
+                "label": "Year to date",
+                "start": "now/y",
+              },
+            ]
+          }
+          timeFrom="now-15m"
+          timeTo="now"
+        />
+      </button>
     </EuiFormControlLayout>
   </EuiFlexItem>
   <EuiFlexItem
@@ -1021,7 +1000,9 @@ exports[`EuiSuperDatePicker props isQuickSelectOnly is rendered 1`] = `
   <EuiFlexItem>
     <EuiFormControlLayout
       className="euiSuperDatePicker"
-      isDisabled={false}
+      disabled={false}
+      iconsPosition="static"
+      isInvalid={false}
       prepend={
         <EuiQuickSelectPopover
           applyTime={[Function]}
@@ -1280,7 +1261,8 @@ exports[`EuiSuperDatePicker props showUpdateButton can be false 1`] = `
   <EuiFlexItem>
     <EuiFormControlLayout
       className="euiSuperDatePicker"
-      isDisabled={false}
+      disabled={false}
+      isInvalid={false}
       prepend={
         <EuiQuickSelectPopover
           applyTime={[Function]}
@@ -1505,70 +1487,62 @@ exports[`EuiSuperDatePicker props showUpdateButton can be false 1`] = `
         />
       }
     >
-      <EuiDatePickerRange
-        className="euiDatePickerRange--inGroup"
-        endDateControl={<div />}
-        iconType={false}
-        isCustom={true}
-        startDateControl={<div />}
+      <button
+        className="euiSuperDatePicker__prettyFormat"
+        data-test-subj="superDatePickerShowDatesButton"
+        disabled={false}
+        onClick={[Function]}
       >
-        <button
-          className="euiSuperDatePicker__prettyFormat"
-          data-test-subj="superDatePickerShowDatesButton"
-          disabled={false}
-          onClick={[Function]}
-        >
-          <PrettyDuration
-            dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
-            quickRanges={
-              Array [
-                Object {
-                  "end": "now/d",
-                  "label": "Today",
-                  "start": "now/d",
-                },
-                Object {
-                  "end": "now/w",
-                  "label": "This week",
-                  "start": "now/w",
-                },
-                Object {
-                  "end": "now/M",
-                  "label": "This month",
-                  "start": "now/M",
-                },
-                Object {
-                  "end": "now/y",
-                  "label": "This year",
-                  "start": "now/y",
-                },
-                Object {
-                  "end": "now-1d/d",
-                  "label": "Yesterday",
-                  "start": "now-1d/d",
-                },
-                Object {
-                  "end": "now",
-                  "label": "Week to date",
-                  "start": "now/w",
-                },
-                Object {
-                  "end": "now",
-                  "label": "Month to date",
-                  "start": "now/M",
-                },
-                Object {
-                  "end": "now",
-                  "label": "Year to date",
-                  "start": "now/y",
-                },
-              ]
-            }
-            timeFrom="now-15m"
-            timeTo="now"
-          />
-        </button>
-      </EuiDatePickerRange>
+        <PrettyDuration
+          dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
+          quickRanges={
+            Array [
+              Object {
+                "end": "now/d",
+                "label": "Today",
+                "start": "now/d",
+              },
+              Object {
+                "end": "now/w",
+                "label": "This week",
+                "start": "now/w",
+              },
+              Object {
+                "end": "now/M",
+                "label": "This month",
+                "start": "now/M",
+              },
+              Object {
+                "end": "now/y",
+                "label": "This year",
+                "start": "now/y",
+              },
+              Object {
+                "end": "now-1d/d",
+                "label": "Yesterday",
+                "start": "now-1d/d",
+              },
+              Object {
+                "end": "now",
+                "label": "Week to date",
+                "start": "now/w",
+              },
+              Object {
+                "end": "now",
+                "label": "Month to date",
+                "start": "now/M",
+              },
+              Object {
+                "end": "now",
+                "label": "Year to date",
+                "start": "now/y",
+              },
+            ]
+          }
+          timeFrom="now-15m"
+          timeTo="now"
+        />
+      </button>
     </EuiFormControlLayout>
   </EuiFlexItem>
 </EuiFlexGroup>
@@ -1583,7 +1557,8 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
   <EuiFlexItem>
     <EuiFormControlLayout
       className="euiSuperDatePicker"
-      isDisabled={false}
+      disabled={false}
+      isInvalid={false}
       prepend={
         <EuiQuickSelectPopover
           applyTime={[Function]}
@@ -1808,70 +1783,62 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
         />
       }
     >
-      <EuiDatePickerRange
-        className="euiDatePickerRange--inGroup"
-        endDateControl={<div />}
-        iconType={false}
-        isCustom={true}
-        startDateControl={<div />}
+      <button
+        className="euiSuperDatePicker__prettyFormat"
+        data-test-subj="superDatePickerShowDatesButton"
+        disabled={false}
+        onClick={[Function]}
       >
-        <button
-          className="euiSuperDatePicker__prettyFormat"
-          data-test-subj="superDatePickerShowDatesButton"
-          disabled={false}
-          onClick={[Function]}
-        >
-          <PrettyDuration
-            dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
-            quickRanges={
-              Array [
-                Object {
-                  "end": "now/d",
-                  "label": "Today",
-                  "start": "now/d",
-                },
-                Object {
-                  "end": "now/w",
-                  "label": "This week",
-                  "start": "now/w",
-                },
-                Object {
-                  "end": "now/M",
-                  "label": "This month",
-                  "start": "now/M",
-                },
-                Object {
-                  "end": "now/y",
-                  "label": "This year",
-                  "start": "now/y",
-                },
-                Object {
-                  "end": "now-1d/d",
-                  "label": "Yesterday",
-                  "start": "now-1d/d",
-                },
-                Object {
-                  "end": "now",
-                  "label": "Week to date",
-                  "start": "now/w",
-                },
-                Object {
-                  "end": "now",
-                  "label": "Month to date",
-                  "start": "now/M",
-                },
-                Object {
-                  "end": "now",
-                  "label": "Year to date",
-                  "start": "now/y",
-                },
-              ]
-            }
-            timeFrom="now-15m"
-            timeTo="now"
-          />
-        </button>
-      </EuiDatePickerRange>
+        <PrettyDuration
+          dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
+          quickRanges={
+            Array [
+              Object {
+                "end": "now/d",
+                "label": "Today",
+                "start": "now/d",
+              },
+              Object {
+                "end": "now/w",
+                "label": "This week",
+                "start": "now/w",
+              },
+              Object {
+                "end": "now/M",
+                "label": "This month",
+                "start": "now/M",
+              },
+              Object {
+                "end": "now/y",
+                "label": "This year",
+                "start": "now/y",
+              },
+              Object {
+                "end": "now-1d/d",
+                "label": "Yesterday",
+                "start": "now-1d/d",
+              },
+              Object {
+                "end": "now",
+                "label": "Week to date",
+                "start": "now/w",
+              },
+              Object {
+                "end": "now",
+                "label": "Month to date",
+                "start": "now/M",
+              },
+              Object {
+                "end": "now",
+                "label": "Year to date",
+                "start": "now/y",
+              },
+            ]
+          }
+          timeFrom="now-15m"
+          timeTo="now"
+        />
+      </button>
     </EuiFormControlLayout>
   </EuiFlexItem>
   <EuiFlexItem
@@ -1907,7 +1874,8 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
   <EuiFlexItem>
     <EuiFormControlLayout
       className="euiSuperDatePicker"
-      isDisabled={false}
+      disabled={false}
+      isInvalid={false}
       prepend={
         <EuiQuickSelectPopover
           applyTime={[Function]}
@@ -2132,70 +2100,62 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
         />
       }
     >
-      <EuiDatePickerRange
-        className="euiDatePickerRange--inGroup"
-        endDateControl={<div />}
-        iconType={false}
-        isCustom={true}
-        startDateControl={<div />}
+      <button
+        className="euiSuperDatePicker__prettyFormat"
+        data-test-subj="superDatePickerShowDatesButton"
+        disabled={false}
+        onClick={[Function]}
       >
-        <button
-          className="euiSuperDatePicker__prettyFormat"
-          data-test-subj="superDatePickerShowDatesButton"
-          disabled={false}
-          onClick={[Function]}
-        >
-          <PrettyDuration
-            dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
-            quickRanges={
-              Array [
-                Object {
-                  "end": "now/d",
-                  "label": "Today",
-                  "start": "now/d",
-                },
-                Object {
-                  "end": "now/w",
-                  "label": "This week",
-                  "start": "now/w",
-                },
-                Object {
-                  "end": "now/M",
-                  "label": "This month",
-                  "start": "now/M",
-                },
-                Object {
-                  "end": "now/y",
-                  "label": "This year",
-                  "start": "now/y",
-                },
-                Object {
-                  "end": "now-1d/d",
-                  "label": "Yesterday",
-                  "start": "now-1d/d",
-                },
-                Object {
-                  "end": "now",
-                  "label": "Week to date",
-                  "start": "now/w",
-                },
-                Object {
-                  "end": "now",
-                  "label": "Month to date",
-                  "start": "now/M",
-                },
-                Object {
-                  "end": "now",
-                  "label": "Year to date",
-                  "start": "now/y",
-                },
-              ]
-            }
-            timeFrom="now-15m"
-            timeTo="now"
-          />
-        </button>
-      </EuiDatePickerRange>
+        <PrettyDuration
+          dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
+          quickRanges={
+            Array [
+              Object {
+                "end": "now/d",
+                "label": "Today",
+                "start": "now/d",
+              },
+              Object {
+                "end": "now/w",
+                "label": "This week",
+                "start": "now/w",
+              },
+              Object {
+                "end": "now/M",
+                "label": "This month",
+                "start": "now/M",
+              },
+              Object {
+                "end": "now/y",
+                "label": "This year",
+                "start": "now/y",
+              },
+              Object {
+                "end": "now-1d/d",
+                "label": "Yesterday",
+                "start": "now-1d/d",
+              },
+              Object {
+                "end": "now",
+                "label": "Week to date",
+                "start": "now/w",
+              },
+              Object {
+                "end": "now",
+                "label": "Month to date",
+                "start": "now/M",
+              },
+              Object {
+                "end": "now",
+                "label": "Year to date",
+                "start": "now/y",
+              },
+            ]
+          }
+          timeFrom="now-15m"
+          timeTo="now"
+        />
+      </button>
     </EuiFormControlLayout>
   </EuiFlexItem>
   <EuiFlexItem
@@ -2231,7 +2191,8 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
   <EuiFlexItem>
     <EuiFormControlLayout
       className="euiSuperDatePicker"
-      isDisabled={false}
+      disabled={false}
+      isInvalid={false}
       prepend={
         <EuiQuickSelectPopover
           applyTime={[Function]}
@@ -2456,70 +2417,62 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
         />
       }
     >
-      <EuiDatePickerRange
-        className="euiDatePickerRange--inGroup"
-        endDateControl={<div />}
-        iconType={false}
-        isCustom={true}
-        startDateControl={<div />}
+      <button
+        className="euiSuperDatePicker__prettyFormat"
+        data-test-subj="superDatePickerShowDatesButton"
+        disabled={false}
+        onClick={[Function]}
       >
-        <button
-          className="euiSuperDatePicker__prettyFormat"
-          data-test-subj="superDatePickerShowDatesButton"
-          disabled={false}
-          onClick={[Function]}
-        >
-          <PrettyDuration
-            dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
-            quickRanges={
-              Array [
-                Object {
-                  "end": "now/d",
-                  "label": "Today",
-                  "start": "now/d",
-                },
-                Object {
-                  "end": "now/w",
-                  "label": "This week",
-                  "start": "now/w",
-                },
-                Object {
-                  "end": "now/M",
-                  "label": "This month",
-                  "start": "now/M",
-                },
-                Object {
-                  "end": "now/y",
-                  "label": "This year",
-                  "start": "now/y",
-                },
-                Object {
-                  "end": "now-1d/d",
-                  "label": "Yesterday",
-                  "start": "now-1d/d",
-                },
-                Object {
-                  "end": "now",
-                  "label": "Week to date",
-                  "start": "now/w",
-                },
-                Object {
-                  "end": "now",
-                  "label": "Month to date",
-                  "start": "now/M",
-                },
-                Object {
-                  "end": "now",
-                  "label": "Year to date",
-                  "start": "now/y",
-                },
-              ]
-            }
-            timeFrom="now-15m"
-            timeTo="now"
-          />
-        </button>
-      </EuiDatePickerRange>
+        <PrettyDuration
+          dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
+          quickRanges={
+            Array [
+              Object {
+                "end": "now/d",
+                "label": "Today",
+                "start": "now/d",
+              },
+              Object {
+                "end": "now/w",
+                "label": "This week",
+                "start": "now/w",
+              },
+              Object {
+                "end": "now/M",
+                "label": "This month",
+                "start": "now/M",
+              },
+              Object {
+                "end": "now/y",
+                "label": "This year",
+                "start": "now/y",
+              },
+              Object {
+                "end": "now-1d/d",
+                "label": "Yesterday",
+                "start": "now-1d/d",
+              },
+              Object {
+                "end": "now",
+                "label": "Week to date",
+                "start": "now/w",
+              },
+              Object {
+                "end": "now",
+                "label": "Month to date",
+                "start": "now/M",
+              },
+              Object {
+                "end": "now",
+                "label": "Year to date",
+                "start": "now/y",
+              },
+            ]
+          }
+          timeFrom="now-15m"
+          timeTo="now"
+        />
+      </button>
     </EuiFormControlLayout>
   </EuiFlexItem>
   <EuiFlexItem

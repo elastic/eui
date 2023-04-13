@@ -884,6 +884,37 @@ exports[`EuiDatePicker popoverPlacement upRight is rendered 1`] = `
         <div
           className="euiFormControlLayout__childrenWrapper"
         >
+          <EuiFormControlLayoutIcons
+            icon="calendar"
+            side="left"
+          >
+            <div
+              className="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+            >
+              <EuiFormControlLayoutCustomIcon
+                size="m"
+                type="calendar"
+              >
+                <span
+                  className="euiFormControlLayoutCustomIcon"
+                >
+                  <EuiIcon
+                    aria-hidden="true"
+                    className="euiFormControlLayoutCustomIcon__icon"
+                    size="m"
+                    type="calendar"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="euiFormControlLayoutCustomIcon__icon"
+                      data-euiicon-type="calendar"
+                      size="m"
+                    />
+                  </EuiIcon>
+                </span>
+              </EuiFormControlLayoutCustomIcon>
+            </div>
+          </EuiFormControlLayoutIcons>
           <DatePicker
             accessibleMode={true}
             adjustDateOnChange={true}
@@ -1137,36 +1168,6 @@ exports[`EuiDatePicker popoverPlacement upRight is rendered 1`] = `
               </EuiOutsideClickDetector>
             </EuiPopover>
           </DatePicker>
-          <EuiFormControlLayoutIcons
-            icon="calendar"
-          >
-            <div
-              className="euiFormControlLayoutIcons"
-            >
-              <EuiFormControlLayoutCustomIcon
-                size="m"
-                type="calendar"
-              >
-                <span
-                  className="euiFormControlLayoutCustomIcon"
-                >
-                  <EuiIcon
-                    aria-hidden="true"
-                    className="euiFormControlLayoutCustomIcon__icon"
-                    size="m"
-                    type="calendar"
-                  >
-                    <span
-                      aria-hidden="true"
-                      className="euiFormControlLayoutCustomIcon__icon"
-                      data-euiicon-type="calendar"
-                      size="m"
-                    />
-                  </EuiIcon>
-                </span>
-              </EuiFormControlLayoutCustomIcon>
-            </div>
-          </EuiFormControlLayoutIcons>
         </div>
       </div>
     </EuiFormControlLayout>

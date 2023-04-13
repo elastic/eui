@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { render, mount } from 'enzyme';
+import { render } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 
 import {
@@ -17,23 +17,33 @@ import {
 
 describe('EuiValidatableControl', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container, rerender } = render(
+      <EuiValidatableControl isInvalid>
+        <input />
+      </EuiValidatableControl>
+    );
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      <input
+        aria-invalid="true"
+      />
+    `);
+
+    rerender(
       <EuiValidatableControl>
         <input />
       </EuiValidatableControl>
     );
-
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchInlineSnapshot('<input />');
   });
 
   test('aria-invalid allows falling back to prop set on the child input', () => {
-    const component = render(
+    const { container } = render(
       <EuiValidatableControl>
         <input aria-invalid={true} />
       </EuiValidatableControl>
     );
 
-    expect(component).toMatchInlineSnapshot(`
+    expect(container.firstChild).toMatchInlineSnapshot(`
       <input
         aria-invalid="true"
       />
@@ -44,7 +54,7 @@ describe('EuiValidatableControl', () => {
     it('calls a ref function', () => {
       const ref = jest.fn();
 
-      mount(
+      render(
         <EuiValidatableControl>
           <input id="testInput" ref={ref} />
         </EuiValidatableControl>
@@ -59,7 +69,7 @@ describe('EuiValidatableControl', () => {
     it('sets a ref object\'s "current" property', () => {
       const ref = React.createRef<HTMLInputElement>();
 
-      mount(
+      render(
         <EuiValidatableControl>
           <input id="testInput" ref={ref} />
         </EuiValidatableControl>
@@ -78,13 +88,13 @@ describe('EuiValidatableControl', () => {
         </EuiValidatableControl>
       );
 
-      const wrapper = mount(<Component />);
+      const { rerender } = render(<Component />);
 
       expect(ref).toHaveBeenCalledTimes(1);
       expect(ref.mock.calls[0][0].getAttribute('id')).toBe('testInput');
 
       // Force re-render
-      wrapper.setProps({});
+      rerender(<Component />);
 
       expect(ref).toHaveBeenCalledTimes(1);
       expect(ref.mock.calls[0][0].getAttribute('id')).toBe('testInput');
@@ -99,13 +109,13 @@ describe('EuiValidatableControl', () => {
         </EuiValidatableControl>
       );
 
-      const wrapper = mount(<Component />);
+      const { rerender } = render(<Component />);
 
       expect(ref).toHaveBeenCalledTimes(1);
       expect(ref.mock.calls[0][0].getAttribute('id')).toBe('testInput');
 
       // Force re-render
-      wrapper.setProps({});
+      rerender(<Component />);
 
       expect(ref).toHaveBeenCalledTimes(3);
 
@@ -126,12 +136,12 @@ describe('EuiValidatableControl', () => {
         </EuiValidatableControl>
       );
 
-      const wrapper = mount(<Component change={false} />);
+      const { rerender } = render(<Component change={false} />);
 
       expect(ref).toHaveBeenCalledTimes(1);
       expect(ref.mock.calls[0][0].getAttribute('id')).toBe('testInput');
 
-      wrapper.setProps({ change: true });
+      rerender(<Component change={true} />);
 
       expect(ref).toHaveBeenCalledTimes(3);
 
@@ -155,14 +165,14 @@ describe('EuiValidatableControl', () => {
         </EuiValidatableControl>
       );
 
-      const wrapper = mount(<Component change={false} />);
+      const { rerender } = render(<Component change={false} />);
 
       expect(ref.current).not.toBeNull();
       expect(ref.current!.getAttribute('id')).toBe('testInput');
 
       const prevRef = ref.current;
 
-      wrapper.setProps({ change: true });
+      rerender(<Component change={true} />);
 
       expect(ref.current).not.toBeNull();
       expect(ref.current!.getAttribute('id')).toBe('testInput2');

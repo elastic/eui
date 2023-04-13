@@ -12,7 +12,8 @@ import { render, mount } from 'enzyme';
 import { findTestSubject, requiredProps } from '../../../test';
 
 import { EuiForm } from '../form';
-import { EuiFormControlLayout, ICON_SIDES } from './form_control_layout';
+import { EuiFormControlLayout } from './form_control_layout';
+import { ICON_SIDES } from './form_control_layout_icons';
 
 jest.mock('../../', () => ({
   EuiIcon: 'eui_icon',
@@ -127,6 +128,20 @@ describe('EuiFormControlLayout', () => {
 
     test('isDropdown is rendered', () => {
       const component = render(<EuiFormControlLayout isDropdown />);
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('iconsPosition', () => {
+      const component = render(
+        <EuiFormControlLayout
+          iconsPosition="static"
+          icon="calendar"
+          isLoading
+          isInvalid
+          {...requiredProps}
+        />
+      );
 
       expect(component).toMatchSnapshot();
     });
