@@ -13,7 +13,7 @@
 import React from 'react';
 import { faker } from '@faker-js/faker';
 
-import { EuiInMemoryTable, EuiBasicTableColumn } from './index';
+import { EuiInMemoryTable, EuiBasicTableColumn } from '.';
 import { EuiHealth } from '../health';
 import { EuiLink } from '../link';
 import { formatDate } from '../../services';
