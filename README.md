@@ -10,7 +10,7 @@ Check out our [full documentation site][docs] which contains many examples of co
 
 ### What is the Elastic UI Framework?
 
-The Elastic UI Framework (EUI) is a design library in use at Elastic to build React applications that need to share our branding and aesthetics. It distributes UI React components and static assets for use in building web layouts. Alongside the React components is a SASS/CSS layer that can be used independently on its own.
+The Elastic UI Framework (EUI) is a design library in use at Elastic to build React applications that need to share our branding and aesthetics. It distributes typed UI React components and static assets for use in building web layouts. Alongside the React components, we ship theme & style utilities that can be used independently on their own.
 
 The primary goal of this library is to provide reusable UI components that can be used throughout Elastic's web products. As React components, they remove CSS from the process of building UIs. As a single source of truth, the framework allows our designers to make changes to our aesthetic directly in the code. And unit test coverage for the UI components allows us to deliver a stable "API for user interfaces".
 
@@ -24,12 +24,6 @@ We use [semver](https://semver.org/) for versioning and use that to denote break
 
 Traditionally releases are made weekly against whatever is in the `main` branch and you can upgrade from NPM as you see fit.
 
-## How do you handle Typescript, Sass and theming?
-
-EUI started as a JS and Sass library that outputs separate CSS and JS bundles. Over time we introduced TypeScript and started adding types, writing new components in TS, and migrating old components over. The goal is to actively convert everything over into a full TS system while retaining our build targets of ES5+commonjs, ES5+ES Modules, and a consolidated bundle file.
-
-For styling we use Sass and generate a final CSS blob for the entire library, with some JSON theming files extracted from the Sass. You can find more information in [consuming EUI](wiki/consuming.md) and [theming](wiki/theming.md).
-
 ## Can I contribute to EUI?
 
 Yes! We welcome community-contributed PRs, especially around feature requests that the EUI team may not have bandwidth to carry out alone. You can find documentation around creating and submitting new components in [CONTRIBUTING.md](CONTRIBUTING.md).
@@ -42,6 +36,10 @@ Many of our products themselves are open source and rely upon this library to fu
 
 Bug reports and feature requests are most welcome, but our roadmap and prioritization is driven primarily by internal Elastic usage.
 
+<!-- TODO: Delete this question once the Emotion migration is complete -->
+## What is the status of EUI's theming?
+
+The EUI library was previously built upon Sass and is in the process of migrating to CSS-in-JS (specifically Emotion). While this work is in progress, we ask for your patience with our in-between state in areas such as documentation and setup.
 
 
 ## Running Locally
