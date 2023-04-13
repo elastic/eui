@@ -2,7 +2,7 @@
 
 🙌 Thanks for your interest in contributing to EUI! 🙌
 
-If there isn't an associated feature request or bug report in EUI's backlog yet, [please create an issue](https://github.com/elastic/eui/issues/new) so that you get a chance to discuss the changes you have in mind with the EUI team so we can scope out your work and provide guidance and recommendations.
+If there isn't an associated feature request or bug report in EUI's backlog yet, [please create an issue](https://github.com/elastic/eui/issues/new) so that you get a chance to discuss the changes you have in mind with the EUI team. This helps the team scope out your work and provide guidance & recommendations.
 
 ## New components, features, and bug fixes
 
