@@ -34,7 +34,13 @@ Yes! We welcome community-contributed PRs, especially around feature requests th
 
 ## What about reporting bugs and feature requests?
 
-Bug reports and feature requests are most welcome, but our roadmap and prioritization is driven primarily by internal Elastic usage.
+Bug reports and feature requests are most welcome, but our roadmap and prioritization are driven primarily by [internal Elastic usage](./CONTRIBUTING.md#how-we-assign-work-and-define-our-roadmap).
+
+Please note that in order to keep our backlog manageable and focused on tasks we actually intend to complete, feature requests & tech debt issues that are inactive for a year will be auto-closed (bugs will remain open if determined to be reproducible and valid).
+
+This activity counter can be soft reset by commenting on the issue directly, but please do so mindfully. We would ask that you proactively let the EUI team know why this request matters to you or how it impacts you or your users, in order to help us prioritize accordingly.
+
+The EUI team, like everyone else, has a finite amount of time and resources, and it is not humanly possible for us to implement every task or feature requested of us. However, that's where the beauty of open source comes in - if your request is important to you, we strongly encourage you to [contribute code directly to EUI](CONTRIBUTING.md) that addresses your issue or request!
 
 <!-- TODO: Delete this question once the Emotion migration is complete -->
 ## What is the status of EUI's theming?
