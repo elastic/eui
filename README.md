@@ -18,21 +18,21 @@ The primary goal of this library is to provide reusable UI components that can b
 
 Please see Elastic's licensing FAQ: [I’m using EUI or Elastic Charts in my application outside of Kibana, how does this affect me?][licensing-faq]
 
-## Why is EUI open source?
+### Why is EUI open source?
 
 Many of Elastic's products are open source and rely upon this library to function. The Elastic UI Framework began as a folder of code in Kibana and we decided it could be used beyond that codebase. It exists as an independent library so that patterns can be shared across teams and design standards can be scaled across our organization. Since most of our products are open source, we treat this one similarly as far as public publishing and conversation even if its usage tends to focus more inward towards Elastic itself.
 
-## What is the versioning, releases and upgrade strategy?
+### What is the versioning, releases and upgrade strategy?
 
 We use [semver](https://semver.org/) for versioning and use that to denote breaking changes in EUI upgrades. Traditionally we consider API changes in our prop names or existing component functionality to be a reason for a breaking change, but do not track the renaming of CSS selectors, mixins or other style changes under this same rigor.
 
 Traditionally releases are made weekly against whatever is in the `main` branch and you can upgrade from NPM as you see fit.
 
-## Can I contribute to EUI?
+### Can I contribute to EUI?
 
 Yes! We welcome community-contributed PRs, especially around feature requests that the EUI team may not have bandwidth to carry out alone. You can find documentation around creating and submitting new components in [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## What about reporting bugs and feature requests?
+### What about reporting bugs and feature requests?
 
 Bug reports and feature requests are most welcome, but our roadmap and prioritization are driven primarily by [internal Elastic usage](./CONTRIBUTING.md#how-we-assign-work-and-define-our-roadmap).
 
@@ -43,7 +43,7 @@ This activity counter can be soft reset by commenting on the issue directly, but
 The EUI team, like everyone else, has a finite amount of time and resources, and it is not humanly possible for us to implement every task or feature requested of us. However, that's where the beauty of open source comes in - if your request is important to you, we strongly encourage you to [contribute code directly to EUI](CONTRIBUTING.md) that addresses your issue or request!
 
 <!-- TODO: Delete this question once the Emotion migration is complete -->
-## What is the status of EUI's theming?
+### What is the status of EUI's theming?
 
 The EUI library was previously built upon Sass and is in the process of migrating to CSS-in-JS (specifically Emotion). While this work is in progress, we ask for your patience with our in-between state in areas such as documentation and setup.
 
