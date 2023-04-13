@@ -31,7 +31,7 @@ jobs:
     steps:
       - uses: actions/stale@v3
         with:
-          stale-issue-message: '👋 Hi there - this issue hasn''t had any activity in 6 months. If the EUI team has not explicitly expressed that this is something on our immediate roadmap, it''s unlikely that we''ll pick this issue up. We would sincerely appreciate a PR/community contribution if this is something that matters to you! If not, and there is no further activity on this issue for another 6 months (i.e. it''s stale for over a year), the issue will be auto-closed.'
+          stale-issue-message: '👋 Hi there - this issue hasn''t had any activity in 6 months. If the EUI team has not explicitly expressed that this is something on our roadmap, it''s unlikely that we''ll pick this issue up. We would sincerely appreciate a PR/community contribution if this is something that matters to you! If not, and there is no further activity on this issue for another 6 months (i.e. it''s stale for over a year), the issue will be auto-closed.'
           close-issue-message: '❌ Per our previous message, this issue is auto-closing after having been open and inactive for a year. If you still feel strongly about it and are interested in contributing, please let us know with a comment.'
           days-before-issue-stale: 180
           days-before-close: 180
