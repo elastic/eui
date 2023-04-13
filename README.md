@@ -41,36 +41,6 @@ Bug reports and feature requests are most welcome, but our roadmap and prioritiz
 
 The EUI library was previously built upon Sass and is in the process of migrating to CSS-in-JS (specifically Emotion). While this work is in progress, we ask for your patience with our in-between state in areas such as documentation and setup.
 
-
-## Running Locally
-
-### Node
-
-We depend upon the version of node defined in [.nvmrc](.nvmrc).
-
-You will probably want to install a node version manager. [nvm](https://github.com/creationix/nvm) is recommended.
-
-To install and use the correct node version with `nvm`:
-
-```bash
-nvm install
-```
-
-### Documentation
-
-You can run the documentation locally at [http://localhost:8030/](http://localhost:8030/) by running the following.
-
-```bash
-yarn
-yarn start
-```
-
-If another process is already listening on port 8030, the next free port will be used. Alternatively, you can specify a port:
-
-```bash
-yarn start --port 9000
-```
-
 ## Wiki
 
 ### Consumption

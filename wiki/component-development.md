@@ -6,14 +6,34 @@ Before working with EUI components or creating new ones, you may want to run a l
 
 ## Launching the documentation server
 
-To view interactive documentation, start the development server using the command below.
+### Node
+
+We depend upon the version of node defined in [.nvmrc](.nvmrc).
+
+You will probably want to install a node version manager. [nvm](https://github.com/creationix/nvm) is recommended.
+
+To install and use the correct node version with `nvm`:
+
+```bash
+nvm install
+```
+
+### Running locally
+
+To run the documentation locally at [http://localhost:8030/](http://localhost:8030/), start the development server using the command below:
 
 ```shell
 yarn
 yarn start
 ```
 
-Once the server boots up, you can visit it on your browser at: [http://localhost:8030/](http://localhost:8030/). The development server watches for changes to the source code files and will automatically recompile the components for you when you make changes.
+If another process is already listening on port 8030, the next free port will be used. Alternatively, you can specify a port:
+
+```bash
+yarn start --port 9000
+```
+
+The development server watches for changes to the source code files and will automatically recompile the components for you when you make changes.
 
 ## Creating components
 
