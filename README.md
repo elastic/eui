@@ -4,7 +4,7 @@
 
 **The Elastic UI Framework is a collection of React UI components for quickly building user interfaces at Elastic.**
 
-Check out our [full documentation site][docs] which contains many examples of components in the EUI framework aesthetic, and how to use them in your products. We also have a [FAQ][faq] that covers common usage questions. For other general questions regarding EUI, check out the [Discussions tab](https://github.com/elastic/eui/discussions).
+Check out our [full documentation site][docs] which contains many examples of components in the EUI framework aesthetic, and how to use them in your products. Our FAQ below covers common usage questions - for other general questions regarding EUI, check out the [Discussions tab](https://github.com/elastic/eui/discussions).
 
 ## Frequently Asked Questions
 
@@ -16,7 +16,7 @@ The primary goal of this library is to provide reusable UI components that can b
 
 ### Can I use EUI?
 
-Please see Elastic's licensing FAQ: [I’m using EUI or Elastic Charts in my application outside of Kibana, how does this affect me?](https://www.elastic.co/pricing/faq/licensing#im-using-eui-or-elastic-charts-in-my-application-outside-of-kibana-how-does-this-affect-me)
+Please see Elastic's licensing FAQ: [I’m using EUI or Elastic Charts in my application outside of Kibana, how does this affect me?][licensing-faq]
 
 ## Why is EUI open source?
 
@@ -70,9 +70,9 @@ The EUI library was previously built upon Sass and is in the process of migratin
 
 ## License
 
-[Dual-licensed under Elastic v2 and Server Side Public License, v 1][license]. Read the [FAQ][faq] for details.
+[Dual-licensed under Elastic v2 and Server Side Public License, v1][license]. See Elastic's [licensing FAQ][licensing-faq] for details.
 
 [license]: LICENSE.txt
-[faq]: #frequently-asked-questions
+[licensing-faq]: https://www.elastic.co/pricing/faq/licensing#im-using-eui-or-elastic-charts-in-my-application-outside-of-kibana-how-does-this-affect-me
 [consuming]: wiki/consuming.md
 [docs]: https://elastic.github.io/eui/
