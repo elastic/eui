@@ -12,6 +12,8 @@ Check out our [full documentation site][docs] which contains many examples of co
 
 The Elastic UI Framework (EUI) is a design library in use at Elastic to build React applications that need to share our branding and aesthetics. It distributes UI React components and static assets for use in building web layouts. Alongside the React components is a SASS/CSS layer that can be used independently on its own.
 
+The primary goal of this library is to provide reusable UI components that can be used throughout Elastic's web products. As React components, they remove CSS from the process of building UIs. As a single source of truth, the framework allows our designers to make changes to our aesthetic directly in the code. And unit test coverage for the UI components allows us to deliver a stable "API for user interfaces".
+
 ### Can I use EUI?
 
 See Elastic's licensing FAQ: [I’m using EUI or Elastic Charts in my application outside of Kibana, how does this affect me?](https://www.elastic.co/pricing/faq/licensing#im-using-eui-or-elastic-charts-in-my-application-outside-of-kibana-how-does-this-affect-me)
@@ -70,15 +72,6 @@ If another process is already listening on port 8030, the next free port will be
 ```bash
 yarn start --port 9000
 ```
-
-## Goals
-
-The primary goal of this library is to provide reusable UI components that can be used throughout
-Elastic's web products. As React components, they remove CSS from the process of building UIs.
-As a single source of truth, the framework allows our designers to make changes to our aesthetic
-directly in the code. And unit test coverage for the UI components allows us to deliver a stable
-"API for user interfaces".
-
 
 ## Wiki
 
