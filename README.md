@@ -16,7 +16,7 @@ The primary goal of this library is to provide reusable UI components that can b
 
 ### Can I use EUI?
 
-See Elastic's licensing FAQ: [I’m using EUI or Elastic Charts in my application outside of Kibana, how does this affect me?](https://www.elastic.co/pricing/faq/licensing#im-using-eui-or-elastic-charts-in-my-application-outside-of-kibana-how-does-this-affect-me)
+Please see Elastic's licensing FAQ: [I’m using EUI or Elastic Charts in my application outside of Kibana, how does this affect me?](https://www.elastic.co/pricing/faq/licensing#im-using-eui-or-elastic-charts-in-my-application-outside-of-kibana-how-does-this-affect-me)
 
 ## What is the versioning, releases and upgrade strategy?
 
@@ -30,9 +30,9 @@ EUI started as a JS and Sass library that outputs separate CSS and JS bundles. O
 
 For styling we use Sass and generate a final CSS blob for the entire library, with some JSON theming files extracted from the Sass. You can find more information in [consuming EUI](wiki/consuming.md) and [theming](wiki/theming.md).
 
-## Can I contribute to EUI
+## Can I contribute to EUI?
 
-Yes! We accept PRs regularly similar to our other Elastic repos. You can find documentation around creating and submitting new components in [CONTRIBUTING.md](CONTRIBUTING.md).
+Yes! We welcome community-contributed PRs, especially around feature requests that the EUI team may not have bandwidth to carry out alone. You can find documentation around creating and submitting new components in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Why is EUI open source?
 
@@ -40,7 +40,7 @@ Many of our products themselves are open source and rely upon this library to fu
 
 ## What about reporting bugs and feature requests?
 
-Bug reports and feature requests are most welcome, but our roadmap is driven primarily by internal usage.
+Bug reports and feature requests are most welcome, but our roadmap and prioritization is driven primarily by internal Elastic usage.
 
 
 
