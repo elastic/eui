@@ -16,7 +16,6 @@ import {
   EuiModalHeader,
   EuiModalHeaderTitle,
   EuiCodeBlock,
-  EuiCode,
 } from '../../../../src/components';
 
 export default () => {
