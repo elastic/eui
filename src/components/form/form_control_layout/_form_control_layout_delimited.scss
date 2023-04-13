@@ -5,15 +5,11 @@
   align-items: stretch;
   padding: 1px; /* 1 */
 
-  .euiFormControlLayoutDelimited__delimiter,
-  .euiFormControlLayoutIcons {
-    background-color: $euiFormBackgroundColor;
-  }
-
   > .euiFormControlLayout__childrenWrapper {
     display: flex;
     align-items: center;
     width: 100%;
+    background-color: $euiFormBackgroundColor;
   }
 
   // Target when the euiFormControlLayout is compressed without specifying the full class name in case it ever changes
@@ -33,8 +29,7 @@
   &[class*='-isDisabled'] {
     @include euiFormControlDisabledStyle;
 
-    .euiFormControlLayoutDelimited__delimiter,
-    .euiFormControlLayoutIcons {
+    .euiFormControlLayout__childrenWrapper {
       background-color: $euiFormBackgroundDisabledColor;
     }
   }
@@ -43,15 +38,12 @@
   &[class*='--readOnly'] {
     @include euiFormControlReadOnlyStyle;
 
-    input,
-    .euiFormControlLayoutDelimited__delimiter,
-    .euiFormControlLayoutIcons {
+    .euiFormControlLayout__childrenWrapper {
       background-color: $euiFormBackgroundReadOnlyColor;
     }
   }
 
-  &--isInvalid .euiFormControlLayoutIcons,
-  &--isInvalid .euiFormControlLayoutDelimited__delimiter {
+  &--isInvalid .euiFormControlLayout__childrenWrapper {
     @include euiFormControlInvalidStyle;
   }
 }

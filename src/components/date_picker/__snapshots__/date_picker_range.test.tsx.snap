@@ -43,7 +43,6 @@ exports[`EuiDatePickerRange disabled is rendered 1`] = `
       class="euiText euiFormControlLayoutDelimited__delimiter emotion-euiText-s-euiTextColor-subdued"
     >
       <span
-        color="subdued"
         data-euiicon-type="sortRight"
       >
         to
@@ -116,7 +115,6 @@ exports[`EuiDatePickerRange is rendered 1`] = `
       class="euiText euiFormControlLayoutDelimited__delimiter emotion-euiText-s-euiTextColor-subdued"
     >
       <span
-        color="subdued"
         data-euiicon-type="sortRight"
       >
         to
@@ -183,10 +181,9 @@ exports[`EuiDatePickerRange isInvalid is rendered 1`] = `
       </div>
     </div>
     <div
-      class="euiText euiFormControlLayoutDelimited__delimiter euiFormControlLayoutDelimited__delimiter--isInvalid emotion-euiText-s-euiTextColor-danger"
+      class="euiText euiFormControlLayoutDelimited__delimiter emotion-euiText-s-euiTextColor-danger"
     >
       <span
-        color="danger"
         data-euiicon-type="sortRight"
       >
         to
@@ -265,7 +262,6 @@ exports[`EuiDatePickerRange readOnly is rendered 1`] = `
       class="euiText euiFormControlLayoutDelimited__delimiter emotion-euiText-s-euiTextColor-subdued"
     >
       <span
-        color="subdued"
         data-euiicon-type="sortRight"
       >
         to
@@ -338,7 +334,6 @@ exports[`EuiDatePickerRange uses individual EuiDatePicker props 1`] = `
       class="euiText euiFormControlLayoutDelimited__delimiter emotion-euiText-s-euiTextColor-subdued"
     >
       <span
-        color="subdued"
         data-euiicon-type="sortRight"
       >
         to

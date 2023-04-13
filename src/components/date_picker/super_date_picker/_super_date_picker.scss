@@ -75,17 +75,15 @@
 * Make the arrow delimiter match the colors of `.euiDatePopoverButton-needsUpdating`
 */
 .euiSuperDatePicker--needsUpdating.euiFormControlLayoutDelimited { // Extra specificity needed to override default delimited styles
-  .euiFormControlLayoutDelimited__delimiter {
+  .euiFormControlLayout__childrenWrapper {
     background-color: $euiSuperDatePickerNeedsUpdatingBackgroundColor;
-    color: $euiSuperDatePickerNeedsUpdatingTextColor;
+  }
 
-    .euiIcon {
-      color: currentcolor;
-    }
+  .euiFormControlLayoutDelimited__delimiter {
+    color: $euiSuperDatePickerNeedsUpdatingTextColor;
   }
 }
 
-.euiSuperDatePicker .euiFormControlLayoutDelimited__delimiter,
-.euiSuperDatePicker .euiFormControlLayoutIcons {
+.euiSuperDatePicker .euiFormControlLayout__childrenWrapper {
   transition: background $euiAnimSpeedFast ease-in; // Match @mixin euiSuperDatePickerText / .euiDatePopoverButton
 }

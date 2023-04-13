@@ -84,21 +84,18 @@ const EuiFormControlDelimiter = ({
   delimiter?: ReactNode;
   isInvalid?: boolean;
 }) => {
-  const classes = classNames('euiFormControlLayoutDelimited__delimiter', {
-    'euiFormControlLayoutDelimited__delimiter--isInvalid': isInvalid,
-  });
-  const color = isInvalid ? 'danger' : 'subdued';
-
   const defaultAriaLabel = useEuiI18n(
     'euiFormControlLayoutDelimited.delimiterLabel',
     'to'
   );
 
   return (
-    <EuiText className={classes} size="s" color={color}>
-      {delimiter ?? (
-        <EuiIcon color={color} type="sortRight" aria-label={defaultAriaLabel} />
-      )}
+    <EuiText
+      className="euiFormControlLayoutDelimited__delimiter"
+      size="s"
+      color={isInvalid ? 'danger' : 'subdued'}
+    >
+      {delimiter ?? <EuiIcon type="sortRight" aria-label={defaultAriaLabel} />}
     </EuiText>
   );
 };
