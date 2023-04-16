@@ -201,6 +201,9 @@ const emitTermClause = (clause: TermClause, isGroupMember: boolean): string => {
   }
 
   const matchOp = emitMatch(match);
+  if (isString(value) && value.match(/\s/)) {
+    return `${matchOp}"${escapeValue(value)}"`;
+  }
   return `${matchOp}${escapeValue(value)}`;
 };
 
