@@ -6,4 +6,4 @@ labels:
   - name: help wanted
     labeled:
       issue:
-        body: 👋 Thank you for your suggestion or request! While the EUI team agrees that it's valid, it's unlikely that we will prioritize this issue on our roadmap. We'll leave the issue open if you or anyone else in the community wants to own it or implement it by contributing to EUI. If not, this issue will auto close in a year.
+        body: 👋 Thank you for your suggestion or request! While the EUI team agrees that it's valid, it's unlikely that we will prioritize this issue on our roadmap. We'll leave the issue open if you or anyone else in the community wants to implement it by contributing to EUI. If not, this issue will auto close in one year.
