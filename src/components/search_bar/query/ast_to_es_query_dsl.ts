@@ -100,7 +100,14 @@ const processDateOperation = (value: DateValue, operator?: OperatorType) => {
 
 export const _termValuesToQuery = (values: Value[], options: Options) => {
   const body: { query: string; fields?: string[] } = {
-    query: values.join(' '),
+    query: values
+      .map((value: Value) => {
+        if (isString(value) && value.match(/\s/)) {
+          return `"${value}"`;
+        }
+        return value;
+      })
+      .join(' '),
   };
   if (body.query === '') {
     return;
