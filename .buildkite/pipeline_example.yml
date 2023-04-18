@@ -1,0 +1,5 @@
+## 🏠/.buildkite/pipeline_example.yml
+
+steps:
+  - label: ":wave: Greetings!"
+    command: "echo 'My first EUI pipeline!'"

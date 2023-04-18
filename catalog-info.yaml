@@ -28,10 +28,10 @@ apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
   name: buildkite-pipeline-eui
-  description: Buildkite Pipeline for eui
+  description: EUI example pipeline that echoes a greeting
   links: [
     {
-      title: "Pipeline",
+      title: "EUI - example pipeline",
       url: "https://buildkite.com/elastic/eui",
     }
   ]
@@ -47,7 +47,7 @@ spec:
       name: eui
     spec:
       repository: elastic/eui
-      pipeline_file: ".buildkite/pipeline.yml"
+      pipeline_file: ".buildkite/pipeline_example.yml"
       teams:
         eui-team:
          access_level: MANAGE_BUILD_AND_READ
