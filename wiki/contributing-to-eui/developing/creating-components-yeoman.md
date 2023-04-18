@@ -5,7 +5,7 @@
 From the command line, run the following command:
 
 ```shell
-npm run yo-component
+yarn yo-component
 ```
 
 First, you'll be prompted for what kind of component to create:
@@ -35,26 +35,8 @@ This will automatically generate a directory with the same name as the file, but
 
 Yeoman will generate the files you need in your project's folder system.
 
-For your convenience, it will also output some snippets you can tweak to import and re-export the generated JS and SCSS files.
+For your convenience, it will also output some snippets you can tweak to import and re-export the generated JS and style files.
 
-## Documenting the component with examples
+## Generating documentation
 
-From the command line, run the following command:
-
-```shell
-npm run yo-doc
-```
-
-First, you'll be prompted for what kind of documentation to create:
-
-| Choice             | Description                                               |
-|--------------------|-----------------------------------------------------------|
-| Component documentation page               | A new page for documenting a component |
-| Add example to an existing page         | A new subsection of an existing documentation page   |
-| Sandbox            | An empty document where you can do pretty much anything   |
-
-Follow the prompts and your documentation files will be created. You can use the snippets that are printed to the terminal to integrate these files into the EUI documentation site.
-
-The script will ask you for the name of the component you'd like to document, then create some files in `src-docs/src/views/`. If the name you provide isn't the exact name of a component, you might need to adjust the `import` in the generated files. Otherwise simply add the document to the `src-docs/src/routes.js` file to make it available in the browser.
-
-### 👉 Refer to the [Documentation Guidelines](documentation-guidelines.md) for more instruction on writing docs.
+To use Yeoman to generate component documentation, see [creating documentation pages with Yeoman](../documenting/creating-documentation-pages#creating-documentation-pages-with-yeoman)

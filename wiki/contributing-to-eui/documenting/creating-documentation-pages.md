@@ -4,7 +4,27 @@ Code for the Elastic UI [documentation site](https://elastic.github.io/eui/#/) c
 
 ## Documenting new components
 
-There are two ways to document components. To create automated documentation for components with `Yeoman`, refer to [Creating components with Yeoman](./creating-components-yeoman.md#documenting-the-component-with-examples). To document components manually, see the documentation checklist below.
+### Creating documentation pages with Yeoman
+
+From the command line, run the following command:
+
+```shell
+yarn yo-doc
+```
+
+First, you'll be prompted for what kind of documentation to create:
+
+| Choice             | Description                                               |
+|--------------------|-----------------------------------------------------------|
+| Component documentation page    | A new page for documenting a component |
+| Add example to an existing page | A new subsection of an existing documentation page |
+| Sandbox                         | An empty document where you can do pretty much anything |
+
+Follow the prompts and your documentation files will be created. You can use the snippets that are printed to the terminal to integrate these files into the EUI documentation site.
+
+The script will ask you for the name of the component you'd like to document, then create some files in `src-docs/src/views/`. If the name you provide isn't the exact name of a component, you might need to adjust the `import` in the generated files. Otherwise simply add the document to the `src-docs/src/routes.js` file to make it available in the browser.
+
+### Creating documentation pages manually 
 
 - [ ] In `src-docs/src/views`, create a directory with the [snake_case](https://en.wikipedia.org/wiki/Snake_case) name of the component being documented.
 - [ ] Define examples which demonstrate the component and describe its role from a UI perspective. File names should follow the `{component}_{example name}.tsx` naming structure (i.e. `accordion_isLoading.tsx`).
@@ -18,7 +38,7 @@ There are two ways to document components. To create automated documentation for
 
 ## Creating the component `example` file
 
-Each component documented in `src-docs/src/views` should have one `{component}_example.js` file. This file is responsible for combining all code snippets and documentation copy, then renders the examples and copy together on one page. 
+Each component documented in `src-docs/src/views` should have one `{component}_example.js` file. This file is responsible for combining all code snippets and documentation copy, then renders the examples and copy together on one page.
 
 ### Required imports and variables
 
@@ -92,5 +112,3 @@ export const AccordionExample = {
 | playground | function | (Optional) The function used to configure the playground testing area for the component.
 | props | React component | The EUI component being documented (the original component, not examples of the component)
 | snippet | string | A simplified code sample without to highlight specific component props and functionality as explained in [required imports and variables](#required-imports-and-variables)
-
-### 👉 Refer to the [Documentation Guidelines](documentation-guidelines.md) for more instruction on writing docs.
