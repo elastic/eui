@@ -6,17 +6,17 @@ kind: Component
 metadata:
   name: eui
   description: Elastic design system library
-  links:
-    - url: https://eui.elastic.co/#/
-    - title: EUI documentation
-  tags:
-    - EUI
-    - kibana
-    - typescript
+  links: [
+    {
+      url: "https://eui.elastic.co/#/",
+      title: "EUI documentation",
+    }
+  ]
+  tags: ["eui", "kibana", "typescript"]
 
 spec:
   type: library
-  owner: group:eui-design
+  owner: group:eui-team
   system: ci-systems
   lifecycle: production
 
@@ -29,13 +29,16 @@ kind: Resource
 metadata:
   name: buildkite-pipeline-eui
   description: Buildkite Pipeline for eui
-  links:
-    - title: Pipeline
-      url: https://buildkite.com/elastic/eui
-
+  links: [
+    {
+      title: "Pipeline",
+      url: "https://buildkite.com/elastic/eui",
+    }
+  ]
+      
 spec:
   type: buildkite-pipeline
-  owner: group:eui-design
+  owner: group:eui-team
   system: buildkite
   implementation:
     apiVersion: buildkite.elastic.dev/v1
@@ -46,7 +49,7 @@ spec:
       repository: elastic/eui
       pipeline_file: ".buildkite/pipeline.yml"
       teams:
-        eui-design:
+        eui-team:
          access_level: MANAGE_BUILD_AND_READ
         everyone:
           access_level: READ_ONLY
