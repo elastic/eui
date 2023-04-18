@@ -1,6 +1,22 @@
-# Testing
+# Unit testing
 
 > This wiki doc applies to Jest unit tests. For Cypress integration tests, see [cypress-testing.md](cypress-testing.md).
+
+## Running tests
+
+`yarn test-unit` runs **all** Jest unit tests at once.
+
+`yarn test-unit button` will run tests with "button" in the spec name.
+
+You can pass other [Jest CLI arguments](https://jestjs.io/docs/cli). For example:
+
+`yarn test-unit -u` will update your snapshots.
+Note: if you are experiencing failed builds in Jenkins related to snapshots, then try clearing the cache first `yarn test-unit --clearCache`.
+
+`yarn test-unit --watch` watches for changes and runs the tests as you code.
+
+`yarn test-unit --coverage` generates a code coverage report showing you how
+fully-tested the code is, located at `reports/jest-coverage`.
 
 ## Naming your test files
 

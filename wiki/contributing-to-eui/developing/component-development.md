@@ -31,29 +31,9 @@ You can do this using Yeoman, or you can do it manually if you prefer.
 
 ## Testing the component
 
-### Running tests
+All components should have at minimum [unit tests](./testing/unit-testing.md). [E2E Cypress testing guide](./testing/cypress-testing.md) are optional and typically only written for more complex components.
 
-`yarn test-unit` runs the Jest unit tests once.
-
-`yarn test-unit button` will run tests with "button" in the spec name.
-
-You can pass other [Jest CLI arguments](https://jestjs.io/docs/cli). For example:
-
-`yarn test-unit -u` will update your snapshots.
-Note: if you are experiencing failed builds in Jenkins related to snapshots, then try clearing the cache first `yarn test-unit --clearCache`.
-
-`yarn test-unit --watch` watches for changes and runs the tests as you code.
-
-`yarn test-unit --coverage` generates a code coverage report showing you how
-fully-tested the code is, located at `reports/jest-coverage`.
-
-### Writing tests
-
-Refer to the [testing directory](./testing) for guidelines on writing tests (e.g. unit tests, Cypress end-to-end tests, and accessibility testing).
-
-Refer to the [Cypress testing guide](cypress-testing.md) for guidelines on when and how to write Cypress tests.
-
-Refer to the [automated accessibility testing guide](automated-accessibility-testing.md) for more info on those.
+Refer to the [testing directory](./testing) for in-depth guides to different types of tests.
 
 ### Testing dev features in local Kibana
 
