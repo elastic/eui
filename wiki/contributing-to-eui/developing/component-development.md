@@ -35,30 +35,6 @@ All components should have at minimum [unit tests](./testing/unit-testing.md). [
 
 Refer to the [testing directory](./testing) for in-depth guides to different types of tests.
 
-### Testing dev features in local Kibana
-
-Note that `yarn link` currently does not work with Kibana. You'll need to manually pack and insert it into Kibana to test locally.
-
-#### In EUI run:
-
-```bash
-yarn build-pack
-```
-
-This will create a `.tgz` file with the changes in your EUI directory. At this point you can move it anywhere.
-
-#### In Kibana:
-
-Point the `package.json` file in Kibana to that file: `"@elastic/eui": "/path/to/elastic-eui-xx.x.x.tgz"`. Then run the following commands at Kibana's root folder:
-
-```bash
-yarn kbn bootstrap --no-validate && yarn start
-```
-
-* The `--no-validate` flag is required when bootstrapping with a `.tgz`.
-  * Change the name of the `.tgz` after subsequent `yarn build && yarn pack` steps (e.g., `elastic-eui-xx.x.x-1.tgz`, `elastic-eui-xx.x.x-2.tgz`). This is required for `yarn` to recognize new changes to the package.
-* Running Kibana with `yarn start` ensures it starts in dev mode and doesn't use a previously cached version of EUI.
-
 ## Principles
 
 ### Logically-grouped components

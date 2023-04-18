@@ -134,7 +134,7 @@ A change in EUI is having broader impact than expected or introduced a breaking 
 * _Medium impact_: If EUI has a clean changelog and the fix can be achieved with a PR and patch release, do so. Bump all files mentioned in [Upgrading](#upgrading) to the new target version.
 * _Higher impact_: Typically reserved for when time is short (e.g., feature freeze deadline), the option is available to reduce the scope of the upgrade by creating a [backport release](https://github.com/elastic/eui/blob/main/wiki/releasing-versions.md#backport-process) that omits the offending commit. Update all files mentioned in [Upgrading](#upgrading) to the new target version. This approach is absolutely valid, just be sure to fix the root issue before the next upgrade.
 
-If the upgrade includes a large number of commits or has known breaking changes, consider performing a commit-less dry run prior to release using the process described below and a [pre-release build of EUI](https://github.com/elastic/eui/blob/main/wiki/component-development.md#testing-dev-features-in-local-kibana).
+If the upgrade includes a large number of commits or has known breaking changes, consider performing a commit-less dry run prior to release using the process described below and a [pre-release build of EUI](../contributing-to-eui/testing/testing-in-kibana.md).
 
 ## Merging the PR
 
