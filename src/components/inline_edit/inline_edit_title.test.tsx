@@ -10,70 +10,64 @@ import React from 'react';
 import { render } from '../../test/rtl';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiInlineEditTitle } from './inline_edit_title';
+import {
+  EuiInlineEditTitle,
+  EuiInlineEditTitleProps,
+} from './inline_edit_title';
 import { TITLE_SIZES } from '../title/title';
 
 describe('EuiInlineEditTitle', () => {
-  test('renders as title in readMode', () => {
-    const { container } = render(
-      <EuiInlineEditTitle
-        inputAriaLabel={'textInputReadModeTest'}
-        defaultValue="hello world"
-        heading="h1"
-        {...requiredProps}
-      />
+  const inlineEditTitleProps: EuiInlineEditTitleProps = {
+    ...requiredProps,
+    inputAriaLabel: 'Edit title inline',
+    defaultValue: 'Hello World!',
+    heading: 'h1',
+  };
+
+  it('renders in readMode', () => {
+    const { container, getByTestSubject, getByText } = render(
+      <EuiInlineEditTitle {...inlineEditTitleProps} />
     );
 
     expect(container.firstChild).toMatchSnapshot();
+
+    expect(getByTestSubject('euiInlineReadModeButton')).toBeTruthy();
+    expect(getByText('Hello World!')).toBeTruthy();
   });
 
-  test('renders as title in editMode', () => {
-    const { container } = render(
-      <EuiInlineEditTitle
-        inputAriaLabel={'textInputEditModeTest'}
-        defaultValue="hello world"
-        heading="h1"
-        startWithEditOpen={true}
-        {...requiredProps}
-      />
+  it('renders in editMode', () => {
+    const { container, getByTestSubject, queryByTestSubject } = render(
+      <EuiInlineEditTitle {...inlineEditTitleProps} startWithEditOpen={true} />
     );
 
     expect(container.firstChild).toMatchSnapshot();
+
+    expect(getByTestSubject('euiInlineEditModeInput')).toBeTruthy();
+    expect(queryByTestSubject('euiInlineReadModeButton')).toBeFalsy();
   });
 
-  describe('props', () => {
-    describe('sizes', () => {
-      TITLE_SIZES.forEach((size) => {
-        test(`${size} is rendered in readMode`, () => {
-          const { container } = render(
-            <EuiInlineEditTitle
-              size={size}
-              defaultValue="Hello World!"
-              inputAriaLabel="inlineEditLabel"
-              saveButtonAriaLabel="saveEditButton"
-              heading="h1"
-            />
-          );
+  describe('Title Sizes', () => {
+    TITLE_SIZES.forEach((size) => {
+      it(`renders in size ${size} in readMode`, () => {
+        const { container } = render(
+          <EuiInlineEditTitle {...inlineEditTitleProps} size={size} />
+        );
 
-          expect(container.firstChild).toMatchSnapshot();
-        });
+        expect(container.firstChild).toMatchSnapshot();
       });
+    });
 
-      TITLE_SIZES.forEach((size) => {
-        test(`${size} is rendered in editMode`, () => {
-          const { container } = render(
-            <EuiInlineEditTitle
-              size={size}
-              defaultValue="Hello World!"
-              inputAriaLabel="inlineEditLabel"
-              saveButtonAriaLabel="saveEditButton"
-              startWithEditOpen={true}
-              heading="h1"
-            />
-          );
+    TITLE_SIZES.forEach((size) => {
+      it(`renders in size ${size} in readMode`, () => {
+        const { container } = render(
+          <EuiInlineEditTitle
+            {...inlineEditTitleProps}
+            startWithEditOpen={true}
+            size={size}
+          />
+        );
 
-          expect(container.firstChild).toMatchSnapshot();
-        });
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });
