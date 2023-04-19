@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { ReactNode, FunctionComponent, useState } from 'react';
+import React, {
+  ReactNode,
+  FunctionComponent,
+  useState,
+  HTMLAttributes,
+} from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
@@ -27,53 +32,54 @@ import { useEuiI18n } from '../i18n';
 import { useGeneratedHtmlId } from '../../services/accessibility';
 
 // Props shared between the internal form component as well as consumer-facing components
-export type EuiInlineEditCommonProps = CommonProps & {
-  defaultValue: string;
-  /**
-   * Allow users to pass in a function that is called when the confirm button is clicked
-   * The function should return a boolean flag that will determine if the value will be saved.
-   * When the flag is true, the value will be saved. When the flag is false, the user will be
-   * returned to editMode.
-   */
-  onConfirm?: () => boolean;
-  /**
-   * Form label that appears above the form control
-   * This is required for accessibility because there is no visual label on the input
-   */
-  inputAriaLabel: string;
-  /**
-   * Aria-label for save button in editMode
-   */
-  saveButtonAriaLabel?: string;
-  /**
-   * Aria-label for cancel button in editMode
-   */
-  cancelButtonAriaLabel?: string;
-  /**
-   * Start in editMode
-   */
-  startWithEditOpen?: boolean;
-  /**
-   * Props that will be applied directly to the EuiEmptyButton displayed in readMode
-   */
-  readModeProps?: Omit<EuiButtonEmptyPropsForButton, 'onClick'>;
-  /**
-   * Props that will be applied directly to the `EuiFormRow` and `EuiFieldText` input displayed in editMode
-   */
-  editModeProps?: {
-    formRowProps?: Partial<EuiFormRowProps>;
-    inputProps?: Partial<EuiFieldTextProps>;
-  };
-  /**
-   * Loading state when changes are saved in editMode
-   */
-  isLoading?: boolean;
+export type EuiInlineEditCommonProps = HTMLAttributes<HTMLDivElement> &
+  CommonProps & {
+    defaultValue: string;
+    /**
+     * Allow users to pass in a function that is called when the confirm button is clicked
+     * The function should return a boolean flag that will determine if the value will be saved.
+     * When the flag is true, the value will be saved. When the flag is false, the user will be
+     * returned to editMode.
+     */
+    onConfirm?: (editModeValue: string) => boolean;
+    /**
+     * Form label that appears above the form control
+     * This is required for accessibility because there is no visual label on the input
+     */
+    inputAriaLabel: string;
+    /**
+     * Aria-label for save button in editMode
+     */
+    saveButtonAriaLabel?: string;
+    /**
+     * Aria-label for cancel button in editMode
+     */
+    cancelButtonAriaLabel?: string;
+    /**
+     * Start in editMode
+     */
+    startWithEditOpen?: boolean;
+    /**
+     * Props that will be applied directly to the EuiEmptyButton displayed in readMode
+     */
+    readModeProps?: Omit<EuiButtonEmptyPropsForButton, 'onClick'>;
+    /**
+     * Props that will be applied directly to the `EuiFormRow` and `EuiFieldText` input displayed in editMode
+     */
+    editModeProps?: {
+      formRowProps?: Partial<EuiFormRowProps>;
+      inputProps?: Partial<EuiFieldTextProps>;
+    };
+    /**
+     * Loading state when changes are saved in editMode
+     */
+    isLoading?: boolean;
 
-  /**
-   * Validation for the form control used to edit text in editMode
-   */
-  isInvalid?: boolean;
-};
+    /**
+     * Validation for the form control used to edit text in editMode
+     */
+    isInvalid?: boolean;
+  };
 
 // Internal-only props, passed by the consumer-facing components
 export type EuiInlineEditFormProps = EuiInlineEditCommonProps & {
@@ -147,15 +153,12 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   };
 
   const saveInlineEditValue = () => {
-    if (editModeValue && onConfirm && !onConfirm()) {
-      // If there is text, an onConfirm method is present, and it has returned false, cancel the action
+    if (onConfirm && !onConfirm(editModeValue)) {
+      // If an onConfirm method is present, and it has returned false, cancel the action
       return;
-    } else if (editModeValue) {
+    } else {
       setReadModeValue(editModeValue);
       setIsEditing(!isEditing);
-    } else {
-      // If there's no text, cancel the action, reset the input text, and return to readMode
-      cancelInlineEdit();
     }
   };
 
@@ -179,6 +182,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
               compressed={sizes.compressed}
               isInvalid={isInvalid}
               isLoading={isLoading}
+              data-test-subj="euiInlineEditModeInput"
               {...editModeProps?.inputProps}
             />
           </EuiFormRow>
@@ -191,6 +195,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
               height={loadingSkeletonSize}
               width={loadingSkeletonSize}
               borderRadius="m"
+              data-test-subj="euiInlineEditModeSaveLoading"
             >
               <EuiButtonIcon
                 iconType="check"
@@ -201,6 +206,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
                 size={sizes.buttonSize}
                 iconSize={sizes.iconSize}
                 disabled={isInvalid}
+                data-test-subj="euiInlineEditModeSaveButton"
               />
             </EuiSkeletonRectangle>
           </EuiFormRow>
@@ -213,6 +219,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
               height={loadingSkeletonSize}
               width={loadingSkeletonSize}
               borderRadius="m"
+              data-test-subj="euiInlineEditModeCancelLoading"
             >
               <EuiButtonIcon
                 iconType="cross"
@@ -224,6 +231,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
                 display="base"
                 size={sizes.buttonSize}
                 iconSize={sizes.iconSize}
+                data-test-subj="euiInlineEditModeCancelButton"
               />
             </EuiSkeletonRectangle>
           </EuiFormRow>
@@ -244,6 +252,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
       onClick={() => {
         setIsEditing(!isEditing);
       }}
+      data-test-subj="euiInlineReadModeButton"
       {...readModeProps}
     >
       {children(readModeValue)}
