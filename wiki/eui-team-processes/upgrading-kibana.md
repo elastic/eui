@@ -22,7 +22,7 @@ Check whether the target version upgrade range [contains i18n token changes](htt
 
 If changes exist:
 
-1. Manually update [`i18n_eui_mapping.tsx`](https://github.com/elastic/kibana/blob/main/src/core/public/i18n/i18n_eui_mapping.tsx) to match the changes
+1. Manually update [`i18n_eui_mapping.tsx`](https://github.com/elastic/kibana/blob/main/packages/core/i18n/core-i18n-browser-internal/src/i18n_eui_mapping.tsx) to match the changes
 	* This file is strongly typed will surface missing or outdated token entries
 	* Provide descriptions for new entries
 	* New lines and additional whitespace will need to be stripped out of strings, or `i18n_eui_mapping.test.ts` will fail
@@ -90,7 +90,7 @@ Tips:
 * For failures where you need to dig into the DOM or more closely debug what's happening, Kibana recommends running two separate scripts, `node scripts/functional_tests_server` and `node scripts/functional_test_runner` instead (see the above linked Kibana docs). This will allow you to inspect a local Kibana test environment outside of tests running, and make test debug logs easier to parse.
     * Note: if you are debugging failing `x-pack` tests, you will want to use `node x-pack/scripts/functional_tests_server` but you will still want to use `node scripts/functional_test_runner` from Kibana root (with `--config` pointed at the relevant x-pack file).
 * To only run a specific suite of tests you want, you can add `describe.only` or `it.only` to the failing test file, or use the `--grep` flag in the CLI command.
-* If a test passes for you locally but is flaky on CI, consider using the [async retry service](https://github.com/elastic/kibana/blob/main/test/common/services/retry/retry.ts).
+* If a test passes for you locally but is flaky on CI, consider using the [async retry service](https://github.com/elastic/kibana/blob/main/packages/kbn-ftr-common-functional-services/services/retry/retry.ts).
 * When updating baseline screenshots that are reporting too large a diff, you can either increase the expected diff number or update the baseline screenshots.
     * To update the baseline screenshots, start a separate `functional_tests_server` and wait for it to be ready
     * In a separate test runner tab, run the following commands:
@@ -132,7 +132,7 @@ A change in EUI is having broader impact than expected or introduced a breaking 
 
 * _Low impact_: Skip the failing test(s) or `@ts-expect-error` the line with a "TODO" comment stating the intended action and linking to an issue in the EUI repo. Strive to resolve the TODO in the next upgrade.
 * _Medium impact_: If EUI has a clean changelog and the fix can be achieved with a PR and patch release, do so. Bump all files mentioned in [Upgrading](#upgrading) to the new target version.
-* _Higher impact_: Typically reserved for when time is short (e.g., feature freeze deadline), the option is available to reduce the scope of the upgrade by creating a [backport release](https://github.com/elastic/eui/blob/main/wiki/releasing-versions.md#backport-process) that omits the offending commit. Update all files mentioned in [Upgrading](#upgrading) to the new target version. This approach is absolutely valid, just be sure to fix the root issue before the next upgrade.
+* _Higher impact_: Typically reserved for when time is short (e.g., feature freeze deadline), the option is available to reduce the scope of the upgrade by creating a [backport release](./releasing-versions.md#backport-process) that omits the offending commit. Update all files mentioned in [Upgrading](#upgrading) to the new target version. This approach is absolutely valid, just be sure to fix the root issue before the next upgrade.
 
 If the upgrade includes a large number of commits or has known breaking changes, consider performing a commit-less dry run prior to release using the process described below and a [pre-release build of EUI](../contributing-to-eui/testing/testing-in-kibana.md).
 
