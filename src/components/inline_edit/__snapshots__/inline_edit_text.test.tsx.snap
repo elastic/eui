@@ -1,1389 +1,507 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiInlineEditTitle props sizes m is rendered in editMode 1`] = `
-Object {
-  "asFragment": [Function],
-  "baseElement": <body>
-    <div>
-      <div
-        class="euiInlineEdit euiInlineEditText emotion-euiInlineEditText-m-m"
-      >
-        <div
-          class="euiForm"
-        >
-          <div
-            class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
-          >
-            <div
-              class="euiFlexItem emotion-euiFlexItem-grow-1"
-            >
-              <div
-                class="euiFormRow euiFormRow--fullWidth"
-                id="generated-id-row"
-              >
-                <div
-                  class="euiFormRow__fieldWrapper"
-                >
-                  <div
-                    class="euiFormControlLayout euiFormControlLayout--fullWidth"
-                  >
-                    <div
-                      class="euiFormControlLayout__childrenWrapper"
-                    >
-                      <input
-                        aria-invalid="false"
-                        aria-label="inlineEditLabel"
-                        class="euiFieldText euiFieldText--fullWidth"
-                        id="generated-id"
-                        type="text"
-                        value="Hello World!"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="euiFlexItem euiInlineEdit euiInlineEditText emotion-euiFlexItem-growZero-euiInlineEditText-m-m"
-            >
-              <div
-                class="euiFormRow euiFormRow--fullWidth"
-                id="generated-id-row"
-              >
-                <div
-                  class="euiFormRow__fieldWrapper"
-                >
-                  <div
-                    aria-busy="false"
-                    data-test-subj="euiSkeletonLoadingAriaWrapper"
-                  >
-                    <div
-                      class="emotion-euiScreenReaderOnly"
-                    >
-                      <div
-                        aria-atomic="true"
-                        aria-live="polite"
-                        role="status"
-                      >
-                        Loaded 
-                      </div>
-                      <div
-                        aria-atomic="true"
-                        aria-hidden="true"
-                        aria-live="off"
-                        role="status"
-                      />
-                    </div>
-                    <button
-                      aria-label="saveEditButton"
-                      class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-success"
-                      type="button"
-                    >
-                      <span
-                        aria-hidden="true"
-                        class="euiButtonIcon__icon"
-                        color="inherit"
-                        data-euiicon-type="check"
-                      />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="euiFlexItem emotion-euiFlexItem-growZero"
-            >
-              <div
-                class="euiFormRow euiFormRow--fullWidth"
-                id="generated-id-row"
-              >
-                <div
-                  class="euiFormRow__fieldWrapper"
-                >
-                  <div
-                    aria-busy="false"
-                    data-test-subj="euiSkeletonLoadingAriaWrapper"
-                  >
-                    <div
-                      class="emotion-euiScreenReaderOnly"
-                    >
-                      <div
-                        aria-atomic="true"
-                        aria-live="polite"
-                        role="status"
-                      >
-                        Loaded 
-                      </div>
-                      <div
-                        aria-atomic="true"
-                        aria-hidden="true"
-                        aria-live="off"
-                        role="status"
-                      />
-                    </div>
-                    <button
-                      aria-label="Cancel edit"
-                      class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-danger"
-                      type="button"
-                    >
-                      <span
-                        aria-hidden="true"
-                        class="euiButtonIcon__icon"
-                        color="inherit"
-                        data-euiicon-type="cross"
-                      />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
+<div
+  class="euiInlineEdit euiInlineEditText emotion-euiInlineEditText-m-m"
+>
+  <div
+    class="euiForm"
+  >
     <div
-      class="euiInlineEdit euiInlineEditText emotion-euiInlineEditText-m-m"
+      class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
     >
       <div
-        class="euiForm"
+        class="euiFlexItem emotion-euiFlexItem-grow-1"
       >
         <div
-          class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
+          class="euiFormRow euiFormRow--fullWidth"
+          id="generated-id-row"
         >
           <div
-            class="euiFlexItem emotion-euiFlexItem-grow-1"
+            class="euiFormRow__fieldWrapper"
           >
             <div
-              class="euiFormRow euiFormRow--fullWidth"
-              id="generated-id-row"
+              class="euiFormControlLayout euiFormControlLayout--fullWidth"
             >
               <div
-                class="euiFormRow__fieldWrapper"
+                class="euiFormControlLayout__childrenWrapper"
               >
-                <div
-                  class="euiFormControlLayout euiFormControlLayout--fullWidth"
-                >
-                  <div
-                    class="euiFormControlLayout__childrenWrapper"
-                  >
-                    <input
-                      aria-invalid="false"
-                      aria-label="inlineEditLabel"
-                      class="euiFieldText euiFieldText--fullWidth"
-                      id="generated-id"
-                      type="text"
-                      value="Hello World!"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="euiFlexItem euiInlineEdit euiInlineEditText emotion-euiFlexItem-growZero-euiInlineEditText-m-m"
-          >
-            <div
-              class="euiFormRow euiFormRow--fullWidth"
-              id="generated-id-row"
-            >
-              <div
-                class="euiFormRow__fieldWrapper"
-              >
-                <div
-                  aria-busy="false"
-                  data-test-subj="euiSkeletonLoadingAriaWrapper"
-                >
-                  <div
-                    class="emotion-euiScreenReaderOnly"
-                  >
-                    <div
-                      aria-atomic="true"
-                      aria-live="polite"
-                      role="status"
-                    >
-                      Loaded 
-                    </div>
-                    <div
-                      aria-atomic="true"
-                      aria-hidden="true"
-                      aria-live="off"
-                      role="status"
-                    />
-                  </div>
-                  <button
-                    aria-label="saveEditButton"
-                    class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-success"
-                    type="button"
-                  >
-                    <span
-                      aria-hidden="true"
-                      class="euiButtonIcon__icon"
-                      color="inherit"
-                      data-euiicon-type="check"
-                    />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="euiFlexItem emotion-euiFlexItem-growZero"
-          >
-            <div
-              class="euiFormRow euiFormRow--fullWidth"
-              id="generated-id-row"
-            >
-              <div
-                class="euiFormRow__fieldWrapper"
-              >
-                <div
-                  aria-busy="false"
-                  data-test-subj="euiSkeletonLoadingAriaWrapper"
-                >
-                  <div
-                    class="emotion-euiScreenReaderOnly"
-                  >
-                    <div
-                      aria-atomic="true"
-                      aria-live="polite"
-                      role="status"
-                    >
-                      Loaded 
-                    </div>
-                    <div
-                      aria-atomic="true"
-                      aria-hidden="true"
-                      aria-live="off"
-                      role="status"
-                    />
-                  </div>
-                  <button
-                    aria-label="Cancel edit"
-                    class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-danger"
-                    type="button"
-                  >
-                    <span
-                      aria-hidden="true"
-                      class="euiButtonIcon__icon"
-                      color="inherit"
-                      data-euiicon-type="cross"
-                    />
-                  </button>
-                </div>
+                <input
+                  aria-invalid="false"
+                  aria-label="inlineEditLabel"
+                  class="euiFieldText euiFieldText--fullWidth"
+                  id="generated-id"
+                  type="text"
+                  value="Hello World!"
+                />
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div
+        class="euiFlexItem euiInlineEdit euiInlineEditText emotion-euiFlexItem-growZero-euiInlineEditText-m-m"
+      >
+        <div
+          class="euiFormRow euiFormRow--fullWidth"
+          id="generated-id-row"
+        >
+          <div
+            class="euiFormRow__fieldWrapper"
+          >
+            <div
+              aria-busy="false"
+              data-test-subj="euiSkeletonLoadingAriaWrapper"
+            >
+              <div
+                class="emotion-euiScreenReaderOnly"
+              >
+                <div
+                  aria-atomic="true"
+                  aria-live="polite"
+                  role="status"
+                >
+                  Loaded 
+                </div>
+                <div
+                  aria-atomic="true"
+                  aria-hidden="true"
+                  aria-live="off"
+                  role="status"
+                />
+              </div>
+              <button
+                aria-label="saveEditButton"
+                class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-success"
+                type="button"
+              >
+                <span
+                  aria-hidden="true"
+                  class="euiButtonIcon__icon"
+                  color="inherit"
+                  data-euiicon-type="check"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="euiFlexItem emotion-euiFlexItem-growZero"
+      >
+        <div
+          class="euiFormRow euiFormRow--fullWidth"
+          id="generated-id-row"
+        >
+          <div
+            class="euiFormRow__fieldWrapper"
+          >
+            <div
+              aria-busy="false"
+              data-test-subj="euiSkeletonLoadingAriaWrapper"
+            >
+              <div
+                class="emotion-euiScreenReaderOnly"
+              >
+                <div
+                  aria-atomic="true"
+                  aria-live="polite"
+                  role="status"
+                >
+                  Loaded 
+                </div>
+                <div
+                  aria-atomic="true"
+                  aria-hidden="true"
+                  aria-live="off"
+                  role="status"
+                />
+              </div>
+              <button
+                aria-label="Cancel edit"
+                class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-danger"
+                type="button"
+              >
+                <span
+                  aria-hidden="true"
+                  class="euiButtonIcon__icon"
+                  color="inherit"
+                  data-euiicon-type="cross"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>,
-  "debug": [Function],
-  "findAllByAltText": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByTestSubject": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByAltText": [Function],
-  "findByDisplayValue": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByTestSubject": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByAltText": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByTestSubject": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByAltText": [Function],
-  "getByDisplayValue": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByTestSubject": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByAltText": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByTestSubject": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByAltText": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByTestSubject": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
+  </div>
+</div>
 `;
 
 exports[`EuiInlineEditTitle props sizes m is rendered in readMode 1`] = `
-Object {
-  "asFragment": [Function],
-  "baseElement": <body>
-    <div>
-      <div
-        class="euiInlineEdit euiInlineEditText emotion-euiInlineEditText-m-m"
-      >
-        <button
-          class="euiButtonEmpty euiButtonEmpty--flushBoth css-wvaqcf-empty-text"
-          type="button"
-        >
-          <span
-            class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
-          >
-            <span
-              class="euiButtonContent__icon"
-              color="inherit"
-              data-euiicon-type="pencil"
-            />
-            <span
-              class="euiButtonEmpty__text"
-            >
-              <div
-                class="euiText eui-textTruncate emotion-euiText-m"
-              >
-                Hello World!
-              </div>
-            </span>
-          </span>
-        </button>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div
-      class="euiInlineEdit euiInlineEditText emotion-euiInlineEditText-m-m"
+<div
+  class="euiInlineEdit euiInlineEditText emotion-euiInlineEditText-m-m"
+>
+  <button
+    class="euiButtonEmpty euiButtonEmpty--flushBoth css-wvaqcf-empty-text"
+    type="button"
+  >
+    <span
+      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
     >
-      <button
-        class="euiButtonEmpty euiButtonEmpty--flushBoth css-wvaqcf-empty-text"
-        type="button"
+      <span
+        class="euiButtonContent__icon"
+        color="inherit"
+        data-euiicon-type="pencil"
+      />
+      <span
+        class="euiButtonEmpty__text"
       >
-        <span
-          class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+        <div
+          class="euiText eui-textTruncate emotion-euiText-m"
         >
-          <span
-            class="euiButtonContent__icon"
-            color="inherit"
-            data-euiicon-type="pencil"
-          />
-          <span
-            class="euiButtonEmpty__text"
-          >
-            <div
-              class="euiText eui-textTruncate emotion-euiText-m"
-            >
-              Hello World!
-            </div>
-          </span>
-        </span>
-      </button>
-    </div>
-  </div>,
-  "debug": [Function],
-  "findAllByAltText": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByTestSubject": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByAltText": [Function],
-  "findByDisplayValue": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByTestSubject": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByAltText": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByTestSubject": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByAltText": [Function],
-  "getByDisplayValue": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByTestSubject": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByAltText": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByTestSubject": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByAltText": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByTestSubject": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
+          Hello World!
+        </div>
+      </span>
+    </span>
+  </button>
+</div>
 `;
 
 exports[`EuiInlineEditTitle props sizes s is rendered in editMode 1`] = `
-Object {
-  "asFragment": [Function],
-  "baseElement": <body>
-    <div>
-      <div
-        class="euiInlineEdit euiInlineEditText emotion-euiInlineEditText-s-s"
-      >
-        <div
-          class="euiForm"
-        >
-          <div
-            class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
-          >
-            <div
-              class="euiFlexItem emotion-euiFlexItem-grow-1"
-            >
-              <div
-                class="euiFormRow euiFormRow--fullWidth"
-                id="generated-id-row"
-              >
-                <div
-                  class="euiFormRow__fieldWrapper"
-                >
-                  <div
-                    class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--compressed"
-                  >
-                    <div
-                      class="euiFormControlLayout__childrenWrapper"
-                    >
-                      <input
-                        aria-invalid="false"
-                        aria-label="inlineEditLabel"
-                        class="euiFieldText euiFieldText--fullWidth euiFieldText--compressed"
-                        id="generated-id"
-                        type="text"
-                        value="Hello World!"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="euiFlexItem euiInlineEdit euiInlineEditText emotion-euiFlexItem-growZero-euiInlineEditText-s-s"
-            >
-              <div
-                class="euiFormRow euiFormRow--fullWidth"
-                id="generated-id-row"
-              >
-                <div
-                  class="euiFormRow__fieldWrapper"
-                >
-                  <div
-                    aria-busy="false"
-                    data-test-subj="euiSkeletonLoadingAriaWrapper"
-                  >
-                    <div
-                      class="emotion-euiScreenReaderOnly"
-                    >
-                      <div
-                        aria-atomic="true"
-                        aria-live="polite"
-                        role="status"
-                      >
-                        Loaded 
-                      </div>
-                      <div
-                        aria-atomic="true"
-                        aria-hidden="true"
-                        aria-live="off"
-                        role="status"
-                      />
-                    </div>
-                    <button
-                      aria-label="saveEditButton"
-                      class="euiButtonIcon euiButtonIcon--small emotion-euiButtonIcon-base-success"
-                      type="button"
-                    >
-                      <span
-                        aria-hidden="true"
-                        class="euiButtonIcon__icon"
-                        color="inherit"
-                        data-euiicon-type="check"
-                      />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="euiFlexItem emotion-euiFlexItem-growZero"
-            >
-              <div
-                class="euiFormRow euiFormRow--fullWidth"
-                id="generated-id-row"
-              >
-                <div
-                  class="euiFormRow__fieldWrapper"
-                >
-                  <div
-                    aria-busy="false"
-                    data-test-subj="euiSkeletonLoadingAriaWrapper"
-                  >
-                    <div
-                      class="emotion-euiScreenReaderOnly"
-                    >
-                      <div
-                        aria-atomic="true"
-                        aria-live="polite"
-                        role="status"
-                      >
-                        Loaded 
-                      </div>
-                      <div
-                        aria-atomic="true"
-                        aria-hidden="true"
-                        aria-live="off"
-                        role="status"
-                      />
-                    </div>
-                    <button
-                      aria-label="Cancel edit"
-                      class="euiButtonIcon euiButtonIcon--small emotion-euiButtonIcon-base-danger"
-                      type="button"
-                    >
-                      <span
-                        aria-hidden="true"
-                        class="euiButtonIcon__icon"
-                        color="inherit"
-                        data-euiicon-type="cross"
-                      />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
+<div
+  class="euiInlineEdit euiInlineEditText emotion-euiInlineEditText-s-s"
+>
+  <div
+    class="euiForm"
+  >
     <div
-      class="euiInlineEdit euiInlineEditText emotion-euiInlineEditText-s-s"
+      class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
     >
       <div
-        class="euiForm"
+        class="euiFlexItem emotion-euiFlexItem-grow-1"
       >
         <div
-          class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
+          class="euiFormRow euiFormRow--fullWidth"
+          id="generated-id-row"
         >
           <div
-            class="euiFlexItem emotion-euiFlexItem-grow-1"
+            class="euiFormRow__fieldWrapper"
           >
             <div
-              class="euiFormRow euiFormRow--fullWidth"
-              id="generated-id-row"
+              class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--compressed"
             >
               <div
-                class="euiFormRow__fieldWrapper"
+                class="euiFormControlLayout__childrenWrapper"
               >
-                <div
-                  class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--compressed"
-                >
-                  <div
-                    class="euiFormControlLayout__childrenWrapper"
-                  >
-                    <input
-                      aria-invalid="false"
-                      aria-label="inlineEditLabel"
-                      class="euiFieldText euiFieldText--fullWidth euiFieldText--compressed"
-                      id="generated-id"
-                      type="text"
-                      value="Hello World!"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="euiFlexItem euiInlineEdit euiInlineEditText emotion-euiFlexItem-growZero-euiInlineEditText-s-s"
-          >
-            <div
-              class="euiFormRow euiFormRow--fullWidth"
-              id="generated-id-row"
-            >
-              <div
-                class="euiFormRow__fieldWrapper"
-              >
-                <div
-                  aria-busy="false"
-                  data-test-subj="euiSkeletonLoadingAriaWrapper"
-                >
-                  <div
-                    class="emotion-euiScreenReaderOnly"
-                  >
-                    <div
-                      aria-atomic="true"
-                      aria-live="polite"
-                      role="status"
-                    >
-                      Loaded 
-                    </div>
-                    <div
-                      aria-atomic="true"
-                      aria-hidden="true"
-                      aria-live="off"
-                      role="status"
-                    />
-                  </div>
-                  <button
-                    aria-label="saveEditButton"
-                    class="euiButtonIcon euiButtonIcon--small emotion-euiButtonIcon-base-success"
-                    type="button"
-                  >
-                    <span
-                      aria-hidden="true"
-                      class="euiButtonIcon__icon"
-                      color="inherit"
-                      data-euiicon-type="check"
-                    />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="euiFlexItem emotion-euiFlexItem-growZero"
-          >
-            <div
-              class="euiFormRow euiFormRow--fullWidth"
-              id="generated-id-row"
-            >
-              <div
-                class="euiFormRow__fieldWrapper"
-              >
-                <div
-                  aria-busy="false"
-                  data-test-subj="euiSkeletonLoadingAriaWrapper"
-                >
-                  <div
-                    class="emotion-euiScreenReaderOnly"
-                  >
-                    <div
-                      aria-atomic="true"
-                      aria-live="polite"
-                      role="status"
-                    >
-                      Loaded 
-                    </div>
-                    <div
-                      aria-atomic="true"
-                      aria-hidden="true"
-                      aria-live="off"
-                      role="status"
-                    />
-                  </div>
-                  <button
-                    aria-label="Cancel edit"
-                    class="euiButtonIcon euiButtonIcon--small emotion-euiButtonIcon-base-danger"
-                    type="button"
-                  >
-                    <span
-                      aria-hidden="true"
-                      class="euiButtonIcon__icon"
-                      color="inherit"
-                      data-euiicon-type="cross"
-                    />
-                  </button>
-                </div>
+                <input
+                  aria-invalid="false"
+                  aria-label="inlineEditLabel"
+                  class="euiFieldText euiFieldText--fullWidth euiFieldText--compressed"
+                  id="generated-id"
+                  type="text"
+                  value="Hello World!"
+                />
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div
+        class="euiFlexItem euiInlineEdit euiInlineEditText emotion-euiFlexItem-growZero-euiInlineEditText-s-s"
+      >
+        <div
+          class="euiFormRow euiFormRow--fullWidth"
+          id="generated-id-row"
+        >
+          <div
+            class="euiFormRow__fieldWrapper"
+          >
+            <div
+              aria-busy="false"
+              data-test-subj="euiSkeletonLoadingAriaWrapper"
+            >
+              <div
+                class="emotion-euiScreenReaderOnly"
+              >
+                <div
+                  aria-atomic="true"
+                  aria-live="polite"
+                  role="status"
+                >
+                  Loaded 
+                </div>
+                <div
+                  aria-atomic="true"
+                  aria-hidden="true"
+                  aria-live="off"
+                  role="status"
+                />
+              </div>
+              <button
+                aria-label="saveEditButton"
+                class="euiButtonIcon euiButtonIcon--small emotion-euiButtonIcon-base-success"
+                type="button"
+              >
+                <span
+                  aria-hidden="true"
+                  class="euiButtonIcon__icon"
+                  color="inherit"
+                  data-euiicon-type="check"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="euiFlexItem emotion-euiFlexItem-growZero"
+      >
+        <div
+          class="euiFormRow euiFormRow--fullWidth"
+          id="generated-id-row"
+        >
+          <div
+            class="euiFormRow__fieldWrapper"
+          >
+            <div
+              aria-busy="false"
+              data-test-subj="euiSkeletonLoadingAriaWrapper"
+            >
+              <div
+                class="emotion-euiScreenReaderOnly"
+              >
+                <div
+                  aria-atomic="true"
+                  aria-live="polite"
+                  role="status"
+                >
+                  Loaded 
+                </div>
+                <div
+                  aria-atomic="true"
+                  aria-hidden="true"
+                  aria-live="off"
+                  role="status"
+                />
+              </div>
+              <button
+                aria-label="Cancel edit"
+                class="euiButtonIcon euiButtonIcon--small emotion-euiButtonIcon-base-danger"
+                type="button"
+              >
+                <span
+                  aria-hidden="true"
+                  class="euiButtonIcon__icon"
+                  color="inherit"
+                  data-euiicon-type="cross"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>,
-  "debug": [Function],
-  "findAllByAltText": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByTestSubject": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByAltText": [Function],
-  "findByDisplayValue": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByTestSubject": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByAltText": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByTestSubject": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByAltText": [Function],
-  "getByDisplayValue": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByTestSubject": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByAltText": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByTestSubject": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByAltText": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByTestSubject": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
+  </div>
+</div>
 `;
 
 exports[`EuiInlineEditTitle props sizes s is rendered in readMode 1`] = `
-Object {
-  "asFragment": [Function],
-  "baseElement": <body>
-    <div>
-      <div
-        class="euiInlineEdit euiInlineEditText emotion-euiInlineEditText-s-s"
-      >
-        <button
-          class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-wvaqcf-empty-text"
-          type="button"
-        >
-          <span
-            class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
-          >
-            <span
-              class="euiButtonContent__icon"
-              color="inherit"
-              data-euiicon-type="pencil"
-            />
-            <span
-              class="euiButtonEmpty__text"
-            >
-              <div
-                class="euiText eui-textTruncate emotion-euiText-s"
-              >
-                Hello World!
-              </div>
-            </span>
-          </span>
-        </button>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div
-      class="euiInlineEdit euiInlineEditText emotion-euiInlineEditText-s-s"
+<div
+  class="euiInlineEdit euiInlineEditText emotion-euiInlineEditText-s-s"
+>
+  <button
+    class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-wvaqcf-empty-text"
+    type="button"
+  >
+    <span
+      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
     >
-      <button
-        class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-wvaqcf-empty-text"
-        type="button"
+      <span
+        class="euiButtonContent__icon"
+        color="inherit"
+        data-euiicon-type="pencil"
+      />
+      <span
+        class="euiButtonEmpty__text"
       >
-        <span
-          class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+        <div
+          class="euiText eui-textTruncate emotion-euiText-s"
         >
-          <span
-            class="euiButtonContent__icon"
-            color="inherit"
-            data-euiicon-type="pencil"
-          />
-          <span
-            class="euiButtonEmpty__text"
-          >
-            <div
-              class="euiText eui-textTruncate emotion-euiText-s"
-            >
-              Hello World!
-            </div>
-          </span>
-        </span>
-      </button>
-    </div>
-  </div>,
-  "debug": [Function],
-  "findAllByAltText": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByTestSubject": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByAltText": [Function],
-  "findByDisplayValue": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByTestSubject": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByAltText": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByTestSubject": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByAltText": [Function],
-  "getByDisplayValue": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByTestSubject": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByAltText": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByTestSubject": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByAltText": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByTestSubject": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
+          Hello World!
+        </div>
+      </span>
+    </span>
+  </button>
+</div>
 `;
 
 exports[`EuiInlineEditTitle props sizes xs is rendered in editMode 1`] = `
-Object {
-  "asFragment": [Function],
-  "baseElement": <body>
-    <div>
-      <div
-        class="euiInlineEdit euiInlineEditText emotion-euiInlineEditText-xs-xs"
-      >
-        <div
-          class="euiForm"
-        >
-          <div
-            class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
-          >
-            <div
-              class="euiFlexItem emotion-euiFlexItem-grow-1"
-            >
-              <div
-                class="euiFormRow euiFormRow--fullWidth"
-                id="generated-id-row"
-              >
-                <div
-                  class="euiFormRow__fieldWrapper"
-                >
-                  <div
-                    class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--compressed"
-                  >
-                    <div
-                      class="euiFormControlLayout__childrenWrapper"
-                    >
-                      <input
-                        aria-invalid="false"
-                        aria-label="inlineEditLabel"
-                        class="euiFieldText euiFieldText--fullWidth euiFieldText--compressed"
-                        id="generated-id"
-                        type="text"
-                        value="Hello World!"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="euiFlexItem euiInlineEdit euiInlineEditText emotion-euiFlexItem-growZero-euiInlineEditText-xs-xs"
-            >
-              <div
-                class="euiFormRow euiFormRow--fullWidth"
-                id="generated-id-row"
-              >
-                <div
-                  class="euiFormRow__fieldWrapper"
-                >
-                  <div
-                    aria-busy="false"
-                    data-test-subj="euiSkeletonLoadingAriaWrapper"
-                  >
-                    <div
-                      class="emotion-euiScreenReaderOnly"
-                    >
-                      <div
-                        aria-atomic="true"
-                        aria-live="polite"
-                        role="status"
-                      >
-                        Loaded 
-                      </div>
-                      <div
-                        aria-atomic="true"
-                        aria-hidden="true"
-                        aria-live="off"
-                        role="status"
-                      />
-                    </div>
-                    <button
-                      aria-label="saveEditButton"
-                      class="euiButtonIcon euiButtonIcon--small emotion-euiButtonIcon-base-success"
-                      type="button"
-                    >
-                      <span
-                        aria-hidden="true"
-                        class="euiButtonIcon__icon"
-                        color="inherit"
-                        data-euiicon-type="check"
-                      />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="euiFlexItem emotion-euiFlexItem-growZero"
-            >
-              <div
-                class="euiFormRow euiFormRow--fullWidth"
-                id="generated-id-row"
-              >
-                <div
-                  class="euiFormRow__fieldWrapper"
-                >
-                  <div
-                    aria-busy="false"
-                    data-test-subj="euiSkeletonLoadingAriaWrapper"
-                  >
-                    <div
-                      class="emotion-euiScreenReaderOnly"
-                    >
-                      <div
-                        aria-atomic="true"
-                        aria-live="polite"
-                        role="status"
-                      >
-                        Loaded 
-                      </div>
-                      <div
-                        aria-atomic="true"
-                        aria-hidden="true"
-                        aria-live="off"
-                        role="status"
-                      />
-                    </div>
-                    <button
-                      aria-label="Cancel edit"
-                      class="euiButtonIcon euiButtonIcon--small emotion-euiButtonIcon-base-danger"
-                      type="button"
-                    >
-                      <span
-                        aria-hidden="true"
-                        class="euiButtonIcon__icon"
-                        color="inherit"
-                        data-euiicon-type="cross"
-                      />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
+<div
+  class="euiInlineEdit euiInlineEditText emotion-euiInlineEditText-xs-xs"
+>
+  <div
+    class="euiForm"
+  >
     <div
-      class="euiInlineEdit euiInlineEditText emotion-euiInlineEditText-xs-xs"
+      class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
     >
       <div
-        class="euiForm"
+        class="euiFlexItem emotion-euiFlexItem-grow-1"
       >
         <div
-          class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
+          class="euiFormRow euiFormRow--fullWidth"
+          id="generated-id-row"
         >
           <div
-            class="euiFlexItem emotion-euiFlexItem-grow-1"
+            class="euiFormRow__fieldWrapper"
           >
             <div
-              class="euiFormRow euiFormRow--fullWidth"
-              id="generated-id-row"
+              class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--compressed"
             >
               <div
-                class="euiFormRow__fieldWrapper"
+                class="euiFormControlLayout__childrenWrapper"
               >
-                <div
-                  class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--compressed"
-                >
-                  <div
-                    class="euiFormControlLayout__childrenWrapper"
-                  >
-                    <input
-                      aria-invalid="false"
-                      aria-label="inlineEditLabel"
-                      class="euiFieldText euiFieldText--fullWidth euiFieldText--compressed"
-                      id="generated-id"
-                      type="text"
-                      value="Hello World!"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="euiFlexItem euiInlineEdit euiInlineEditText emotion-euiFlexItem-growZero-euiInlineEditText-xs-xs"
-          >
-            <div
-              class="euiFormRow euiFormRow--fullWidth"
-              id="generated-id-row"
-            >
-              <div
-                class="euiFormRow__fieldWrapper"
-              >
-                <div
-                  aria-busy="false"
-                  data-test-subj="euiSkeletonLoadingAriaWrapper"
-                >
-                  <div
-                    class="emotion-euiScreenReaderOnly"
-                  >
-                    <div
-                      aria-atomic="true"
-                      aria-live="polite"
-                      role="status"
-                    >
-                      Loaded 
-                    </div>
-                    <div
-                      aria-atomic="true"
-                      aria-hidden="true"
-                      aria-live="off"
-                      role="status"
-                    />
-                  </div>
-                  <button
-                    aria-label="saveEditButton"
-                    class="euiButtonIcon euiButtonIcon--small emotion-euiButtonIcon-base-success"
-                    type="button"
-                  >
-                    <span
-                      aria-hidden="true"
-                      class="euiButtonIcon__icon"
-                      color="inherit"
-                      data-euiicon-type="check"
-                    />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="euiFlexItem emotion-euiFlexItem-growZero"
-          >
-            <div
-              class="euiFormRow euiFormRow--fullWidth"
-              id="generated-id-row"
-            >
-              <div
-                class="euiFormRow__fieldWrapper"
-              >
-                <div
-                  aria-busy="false"
-                  data-test-subj="euiSkeletonLoadingAriaWrapper"
-                >
-                  <div
-                    class="emotion-euiScreenReaderOnly"
-                  >
-                    <div
-                      aria-atomic="true"
-                      aria-live="polite"
-                      role="status"
-                    >
-                      Loaded 
-                    </div>
-                    <div
-                      aria-atomic="true"
-                      aria-hidden="true"
-                      aria-live="off"
-                      role="status"
-                    />
-                  </div>
-                  <button
-                    aria-label="Cancel edit"
-                    class="euiButtonIcon euiButtonIcon--small emotion-euiButtonIcon-base-danger"
-                    type="button"
-                  >
-                    <span
-                      aria-hidden="true"
-                      class="euiButtonIcon__icon"
-                      color="inherit"
-                      data-euiicon-type="cross"
-                    />
-                  </button>
-                </div>
+                <input
+                  aria-invalid="false"
+                  aria-label="inlineEditLabel"
+                  class="euiFieldText euiFieldText--fullWidth euiFieldText--compressed"
+                  id="generated-id"
+                  type="text"
+                  value="Hello World!"
+                />
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div
+        class="euiFlexItem euiInlineEdit euiInlineEditText emotion-euiFlexItem-growZero-euiInlineEditText-xs-xs"
+      >
+        <div
+          class="euiFormRow euiFormRow--fullWidth"
+          id="generated-id-row"
+        >
+          <div
+            class="euiFormRow__fieldWrapper"
+          >
+            <div
+              aria-busy="false"
+              data-test-subj="euiSkeletonLoadingAriaWrapper"
+            >
+              <div
+                class="emotion-euiScreenReaderOnly"
+              >
+                <div
+                  aria-atomic="true"
+                  aria-live="polite"
+                  role="status"
+                >
+                  Loaded 
+                </div>
+                <div
+                  aria-atomic="true"
+                  aria-hidden="true"
+                  aria-live="off"
+                  role="status"
+                />
+              </div>
+              <button
+                aria-label="saveEditButton"
+                class="euiButtonIcon euiButtonIcon--small emotion-euiButtonIcon-base-success"
+                type="button"
+              >
+                <span
+                  aria-hidden="true"
+                  class="euiButtonIcon__icon"
+                  color="inherit"
+                  data-euiicon-type="check"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="euiFlexItem emotion-euiFlexItem-growZero"
+      >
+        <div
+          class="euiFormRow euiFormRow--fullWidth"
+          id="generated-id-row"
+        >
+          <div
+            class="euiFormRow__fieldWrapper"
+          >
+            <div
+              aria-busy="false"
+              data-test-subj="euiSkeletonLoadingAriaWrapper"
+            >
+              <div
+                class="emotion-euiScreenReaderOnly"
+              >
+                <div
+                  aria-atomic="true"
+                  aria-live="polite"
+                  role="status"
+                >
+                  Loaded 
+                </div>
+                <div
+                  aria-atomic="true"
+                  aria-hidden="true"
+                  aria-live="off"
+                  role="status"
+                />
+              </div>
+              <button
+                aria-label="Cancel edit"
+                class="euiButtonIcon euiButtonIcon--small emotion-euiButtonIcon-base-danger"
+                type="button"
+              >
+                <span
+                  aria-hidden="true"
+                  class="euiButtonIcon__icon"
+                  color="inherit"
+                  data-euiicon-type="cross"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>,
-  "debug": [Function],
-  "findAllByAltText": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByTestSubject": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByAltText": [Function],
-  "findByDisplayValue": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByTestSubject": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByAltText": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByTestSubject": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByAltText": [Function],
-  "getByDisplayValue": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByTestSubject": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByAltText": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByTestSubject": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByAltText": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByTestSubject": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
+  </div>
+</div>
 `;
 
 exports[`EuiInlineEditTitle props sizes xs is rendered in readMode 1`] = `
-Object {
-  "asFragment": [Function],
-  "baseElement": <body>
-    <div>
-      <div
-        class="euiInlineEdit euiInlineEditText emotion-euiInlineEditText-xs-xs"
-      >
-        <button
-          class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-wvaqcf-empty-text"
-          type="button"
-        >
-          <span
-            class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
-          >
-            <span
-              class="euiButtonContent__icon"
-              color="inherit"
-              data-euiicon-type="pencil"
-            />
-            <span
-              class="euiButtonEmpty__text"
-            >
-              <div
-                class="euiText eui-textTruncate emotion-euiText-xs"
-              >
-                Hello World!
-              </div>
-            </span>
-          </span>
-        </button>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div
-      class="euiInlineEdit euiInlineEditText emotion-euiInlineEditText-xs-xs"
+<div
+  class="euiInlineEdit euiInlineEditText emotion-euiInlineEditText-xs-xs"
+>
+  <button
+    class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-wvaqcf-empty-text"
+    type="button"
+  >
+    <span
+      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
     >
-      <button
-        class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-wvaqcf-empty-text"
-        type="button"
+      <span
+        class="euiButtonContent__icon"
+        color="inherit"
+        data-euiicon-type="pencil"
+      />
+      <span
+        class="euiButtonEmpty__text"
       >
-        <span
-          class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+        <div
+          class="euiText eui-textTruncate emotion-euiText-xs"
         >
-          <span
-            class="euiButtonContent__icon"
-            color="inherit"
-            data-euiicon-type="pencil"
-          />
-          <span
-            class="euiButtonEmpty__text"
-          >
-            <div
-              class="euiText eui-textTruncate emotion-euiText-xs"
-            >
-              Hello World!
-            </div>
-          </span>
-        </span>
-      </button>
-    </div>
-  </div>,
-  "debug": [Function],
-  "findAllByAltText": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByTestSubject": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByAltText": [Function],
-  "findByDisplayValue": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByTestSubject": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByAltText": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByTestSubject": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByAltText": [Function],
-  "getByDisplayValue": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByTestSubject": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByAltText": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByTestSubject": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByAltText": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByTestSubject": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
+          Hello World!
+        </div>
+      </span>
+    </span>
+  </button>
+</div>
 `;
 
 exports[`EuiInlineEditTitle renders as title in editMode 1`] = `

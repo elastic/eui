@@ -45,7 +45,7 @@ describe('EuiInlineEditTitle', () => {
     describe('sizes', () => {
       TITLE_SIZES.forEach((size) => {
         test(`${size} is rendered in readMode`, () => {
-          const component = render(
+          const { container } = render(
             <EuiInlineEditTitle
               size={size}
               defaultValue="Hello World!"
@@ -55,13 +55,13 @@ describe('EuiInlineEditTitle', () => {
             />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
 
       TITLE_SIZES.forEach((size) => {
         test(`${size} is rendered in editMode`, () => {
-          const component = render(
+          const { container } = render(
             <EuiInlineEditTitle
               size={size}
               defaultValue="Hello World!"
@@ -72,7 +72,7 @@ describe('EuiInlineEditTitle', () => {
             />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
