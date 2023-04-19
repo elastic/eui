@@ -163,6 +163,29 @@ describe('EuiInlineEditForm', () => {
       expect(getByTestSubject('euiInlineEditModeSaveButton')).toBeDisabled();
       expect(getByTestSubject('euiInlineEditModeCancelButton')).toBeTruthy();
     });
+
+    it('returns the latest value within EuiFieldText upon saving', () => {
+      let newSaveValue = '';
+
+      const { getByTestSubject } = render(
+        <EuiInlineEditForm
+          {...commonInlineEditFormProps}
+          startWithEditOpen={true}
+          onSave={(onSaveValue) => {
+            newSaveValue = onSaveValue;
+          }}
+        />
+      );
+
+      expect(newSaveValue).toEqual('');
+
+      fireEvent.change(getByTestSubject('euiInlineEditModeInput'), {
+        target: { value: 'New message!' },
+      });
+      fireEvent.click(getByTestSubject('euiInlineEditModeSaveButton'));
+
+      expect(newSaveValue).toEqual('New message!');
+    });
   });
 
   describe('Toggling between readMode and editMode', () => {

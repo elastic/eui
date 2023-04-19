@@ -79,6 +79,10 @@ export type EuiInlineEditCommonProps = HTMLAttributes<HTMLDivElement> &
      * Validation for the form control used to edit text in editMode
      */
     isInvalid?: boolean;
+    /**
+     * Returns the value of the EuiFieldText when the editMode save button is clicked
+     */
+    onSave?: (onSaveValue: string) => void;
   };
 
 // Internal-only props, passed by the consumer-facing components
@@ -123,6 +127,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   editModeProps,
   isLoading,
   isInvalid,
+  onSave,
 }) => {
   const classes = classNames('euiInlineEdit', className);
 
@@ -159,6 +164,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
     } else {
       setReadModeValue(editModeValue);
       setIsEditing(!isEditing);
+      onSave && onSave(editModeValue);
     }
   };
 
