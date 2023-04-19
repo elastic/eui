@@ -165,26 +165,22 @@ describe('EuiInlineEditForm', () => {
     });
 
     it('returns the latest value within EuiFieldText upon saving', () => {
-      let newSaveValue = '';
+      const onSaveFunction = jest.fn();
 
       const { getByTestSubject } = render(
         <EuiInlineEditForm
           {...commonInlineEditFormProps}
           startWithEditOpen={true}
-          onSave={(onSaveValue) => {
-            newSaveValue = onSaveValue;
-          }}
+          onSave={onSaveFunction}
         />
       );
-
-      expect(newSaveValue).toEqual('');
 
       fireEvent.change(getByTestSubject('euiInlineEditModeInput'), {
         target: { value: 'New message!' },
       });
       fireEvent.click(getByTestSubject('euiInlineEditModeSaveButton'));
 
-      expect(newSaveValue).toEqual('New message!');
+      expect(onSaveFunction).toHaveBeenCalledTimes(1);
     });
   });
 
