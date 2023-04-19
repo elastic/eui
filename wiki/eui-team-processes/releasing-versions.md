@@ -57,7 +57,7 @@ We also update the [release's tag in github](https://github.com/elastic/eui/tags
 
 ## `@elastic/eslint-plugin-eui`
 
-For information on releasing the eslint plugin checkout the readme in [packages/eslint-plugin/README.md](../packages/eslint-plugin/README.md)
+For information on releasing the eslint plugin checkout the readme in [packages/eslint-plugin/README.md](../../packages/eslint-plugin/README.md)
 
 [docs]: https://elastic.github.io/eui/
 
