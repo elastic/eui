@@ -4,7 +4,7 @@ Provide a detailed summary of your PR. Explain how you arrived at your solution.
 
 ## QA
 
-Remove or strikethrough items that do not apply to your PR.
+Remove items that do not apply to your PR.
 
 ```[tasklist]
 ### General checklist
