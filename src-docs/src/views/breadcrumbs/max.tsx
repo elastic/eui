@@ -1,12 +1,35 @@
 import React from 'react';
 
-import { EuiBreadcrumbs } from '../../../../src/components';
+import { EuiBreadcrumbs, EuiInlineEditText } from '../../../../src/components';
 
 export default () => {
+  const editableBreadcrumbNotUsable = (
+    <EuiInlineEditText
+      inputAriaLabel="Edit breadcrumb text"
+      defaultValue="Boa constrictor"
+      size="s"
+    />
+  );
+
+  const editableBreadcrumbUsable = (
+    <EuiInlineEditText
+      inputAriaLabel="Edit breadcrumb text"
+      defaultValue="Nebulosa subspecies"
+      size="s"
+    />
+  );
+
+  const editableBreadcrumbTest = (
+    <EuiInlineEditText
+      inputAriaLabel="Edit breadcrumb text"
+      defaultValue="For hoots and laughs"
+      size="s"
+    />
+  );
   const breadcrumbs = [
     {
-      text: 'Animals',
-      href: '#',
+      text: editableBreadcrumbNotUsable,
+      //href: '#',
     },
     {
       text: 'Metazoans',
@@ -17,8 +40,8 @@ export default () => {
       href: '#',
     },
     {
-      text: 'Vertebrates',
-      href: '#',
+      text: editableBreadcrumbTest,
+      //href: '#',
     },
     {
       text: 'Tetrapods',
@@ -29,11 +52,11 @@ export default () => {
       href: '#',
     },
     {
-      text: 'Boa constrictor',
+      text: 'Alligator',
       href: '#',
     },
     {
-      text: 'Nebulosa subspecies',
+      text: editableBreadcrumbUsable,
     },
   ];
 
