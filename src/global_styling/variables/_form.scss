@@ -39,7 +39,7 @@ $euiFormControlBoxShadow: 0 0 transparent !default;
 $euiFormControlPlaceholderText: makeHighContrastColor($euiTextSubduedColor, $euiFormBackgroundColor) !default;
 $euiFormInputGroupLabelBackground: tintOrShade($euiColorLightShade, 50%, 15%) !default;
 $euiFormInputGroupBorder: none !default;
-$euiSwitchOffColor: lightOrDarkTheme(transparentize($euiColorMediumShade, .8), transparentize($euiColorMediumShade, .3)) !default;
+$euiSwitchOffColor: lightOrDarkTheme(transparentize($euiColorDarkShade, .25), transparentize($euiColorDarkShade, .4)) !default;
 
 // Icons sizes
 $euiFormControlIconSizes: (
