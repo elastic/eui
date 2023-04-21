@@ -31,8 +31,6 @@ export default () => {
     setToggleTextButtonSize(optionId);
   };
 
-  const [testForOnSaveProp, setTestForOnSaveProp] = useState('');
-
   return (
     <>
       <EuiButtonGroup
@@ -50,15 +48,7 @@ export default () => {
         inputAriaLabel="Edit text inline"
         defaultValue="Hello World!"
         size={toggleTextButtonSize}
-        onSave={(onSaveVal) => {
-          setTestForOnSaveProp(onSaveVal);
-        }}
       />
-
-      <EuiSpacer />
-
-      <p>Test for onSave Prop below:</p>
-      <p>{testForOnSaveProp}</p>
     </>
   );
 };
