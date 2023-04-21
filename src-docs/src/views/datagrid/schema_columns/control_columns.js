@@ -316,7 +316,7 @@ export default function DataGrid() {
   const setPageIndex = useCallback(
     (pageIndex) =>
       setPagination((pagination) => ({ ...pagination, pageIndex })),
-    [setPagination]
+    []
   );
   const setPageSize = useCallback(
     (pageSize) =>
@@ -325,7 +325,7 @@ export default function DataGrid() {
         pageSize,
         pageIndex: 0,
       })),
-    [setPagination]
+    []
   );
 
   const [visibleColumns, setVisibleColumns] = useState(
@@ -353,7 +353,6 @@ export default function DataGrid() {
     ({ rowIndex, columnId }) => data[rowIndex][columnId],
     []
   );
-
   return (
     <SelectionContext.Provider value={rowSelection}>
       <div>

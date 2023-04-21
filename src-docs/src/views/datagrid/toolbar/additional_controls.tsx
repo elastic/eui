@@ -97,7 +97,7 @@ export default () => {
   const setPageIndex = useCallback(
     (pageIndex) =>
       setPagination((pagination) => ({ ...pagination, pageIndex })),
-    [setPagination]
+    []
   );
   const setPageSize = useCallback(
     (pageSize) =>
@@ -106,7 +106,7 @@ export default () => {
         pageSize,
         pageIndex: 0,
       })),
-    [setPagination]
+    []
   );
 
   return (
