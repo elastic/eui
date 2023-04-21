@@ -36,10 +36,13 @@ export type EuiInlineEditCommonProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
     defaultValue: string;
     /**
-     * Allow users to pass in a function that is called when the confirm button is clicked
-     * The function should return a boolean flag that will determine if the value will be saved.
-     * When the flag is true, the value will be saved. When the flag is false, the user will be
-     * returned to editMode.
+     * Callback that passes the updated value of the edited text when the save button is pressed,
+     * and the `onConfirm` callback (if passed) returns true
+     */
+    onSave?: (onSaveValue: string) => void;
+    /**
+     * Callback that fires when users click the save button, but before the text actually saves. Passes the current edited
+     * text value as an argument.
      */
     onConfirm?: (editModeValue: string) => boolean;
     /**
@@ -74,15 +77,10 @@ export type EuiInlineEditCommonProps = HTMLAttributes<HTMLDivElement> &
      * Loading state when changes are saved in editMode
      */
     isLoading?: boolean;
-
     /**
      * Validation for the form control used to edit text in editMode
      */
     isInvalid?: boolean;
-    /**
-     * Returns the value of the EuiFieldText when the editMode save button is clicked
-     */
-    onSave?: (onSaveValue: string) => void;
   };
 
 // Internal-only props, passed by the consumer-facing components
@@ -125,7 +123,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   startWithEditOpen,
   readModeProps,
   editModeProps,
-  isLoading,
+  isLoading = false,
   isInvalid,
   onSave,
 }) => {
@@ -164,7 +162,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
     } else {
       setReadModeValue(editModeValue);
       setIsEditing(!isEditing);
-      onSave && onSave(editModeValue);
+      onSave?.(editModeValue);
     }
   };
 
@@ -201,7 +199,6 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
               height={loadingSkeletonSize}
               width={loadingSkeletonSize}
               borderRadius="m"
-              data-test-subj="euiInlineEditModeSaveLoading"
             >
               <EuiButtonIcon
                 iconType="check"
@@ -212,7 +209,6 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
                 size={sizes.buttonSize}
                 iconSize={sizes.iconSize}
                 disabled={isInvalid}
-                data-test-subj="euiInlineEditModeSaveButton"
               />
             </EuiSkeletonRectangle>
           </EuiFormRow>
