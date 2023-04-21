@@ -59,7 +59,7 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
       ? shade(euiTheme.colors.mediumShade, 0.38)
       : tint(euiTheme.colors.mediumShade, 0.485),
     customControlBorderColor: isColorDark
-      ? shade(euiTheme.colors.lightestShade, 0.18)
+      ? shade(euiTheme.colors.lightestShade, 0.4)
       : tint(euiTheme.colors.lightestShade, 0.3),
   };
 
