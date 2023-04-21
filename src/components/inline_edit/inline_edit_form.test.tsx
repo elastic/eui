@@ -24,7 +24,6 @@ describe('EuiInlineEditForm', () => {
     defaultValue: 'Hello World!',
     inputAriaLabel: 'Edit inline',
     sizes: MEDIUM_SIZE_FORM,
-    isLoading: false, // TODO: Remove once EUI loading components are fixed
     children: (readModeValue) => readModeValue,
   };
 
@@ -128,7 +127,7 @@ describe('EuiInlineEditForm', () => {
     });
 
     it('renders EuiSkeletonRectangles in place of editMode buttons when loading', () => {
-      const { container, getByTestSubject, queryByTestSubject } = render(
+      const { container, queryByTestSubject } = render(
         <EuiInlineEditForm
           {...commonInlineEditFormProps}
           startWithEditOpen={true}
@@ -138,8 +137,9 @@ describe('EuiInlineEditForm', () => {
 
       expect(container.firstChild).toMatchSnapshot();
 
-      expect(getByTestSubject('euiInlineEditModeSaveLoading')).toBeTruthy();
-      expect(getByTestSubject('euiInlineEditModeCancelLoading')).toBeTruthy();
+      expect(container.querySelectorAll('.euiSkeletonRectangle')).toHaveLength(
+        2
+      );
 
       expect(queryByTestSubject('euiInlineEditModeSaveButton')).toBeFalsy();
       expect(queryByTestSubject('euiInlineEditModeCancelButton')).toBeFalsy();
@@ -161,7 +161,9 @@ describe('EuiInlineEditForm', () => {
       ).toBeTruthy();
 
       expect(getByTestSubject('euiInlineEditModeSaveButton')).toBeDisabled();
-      expect(getByTestSubject('euiInlineEditModeCancelButton')).toBeTruthy();
+      expect(
+        getByTestSubject('euiInlineEditModeCancelButton')
+      ).not.toBeDisabled();
     });
 
     it('returns the latest value within EuiFieldText upon saving', () => {
@@ -180,7 +182,7 @@ describe('EuiInlineEditForm', () => {
       });
       fireEvent.click(getByTestSubject('euiInlineEditModeSaveButton'));
 
-      expect(onSaveFunction).toHaveBeenCalledTimes(1);
+      expect(onSaveFunction).toHaveBeenCalledWith('New message!');
     });
   });
 
@@ -216,10 +218,13 @@ describe('EuiInlineEditForm', () => {
     });
 
     it('cancels text and returns to readMode', () => {
+      const onSave = jest.fn();
+
       const { getByTestSubject, getByText } = render(
         <EuiInlineEditForm
           {...commonInlineEditFormProps}
           startWithEditOpen={true}
+          onSave={onSave}
         />
       );
 
@@ -233,6 +238,7 @@ describe('EuiInlineEditForm', () => {
 
       expect(getByTestSubject('euiInlineReadModeButton')).toBeTruthy();
       expect(getByText('Hello World!')).toBeTruthy();
+      expect(onSave).not.toHaveBeenCalled();
     });
 
     describe('onConfirm behavior on save', () => {
@@ -255,10 +261,13 @@ describe('EuiInlineEditForm', () => {
       });
 
       it('stays in editMode when onConfirm returns false', () => {
+        const onSave = jest.fn();
+
         const { getByTestSubject, queryByTestSubject } = render(
           <EuiInlineEditForm
             {...commonInlineEditFormProps}
             startWithEditOpen={true}
+            onSave={onSave}
             onConfirm={() => false}
           />
         );
@@ -270,6 +279,7 @@ describe('EuiInlineEditForm', () => {
 
         expect(queryByTestSubject('euiInlineReadModeButton')).toBeFalsy();
         expect(getByTestSubject('euiInlineEditModeInput')).toBeTruthy();
+        expect(onSave).not.toHaveBeenCalled();
       });
 
       it('sends the editMode text to the onConfirm callback', () => {

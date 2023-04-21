@@ -209,6 +209,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
                 size={sizes.buttonSize}
                 iconSize={sizes.iconSize}
                 disabled={isInvalid}
+                data-test-subj="euiInlineEditModeSaveButton"
               />
             </EuiSkeletonRectangle>
           </EuiFormRow>
@@ -221,7 +222,6 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
               height={loadingSkeletonSize}
               width={loadingSkeletonSize}
               borderRadius="m"
-              data-test-subj="euiInlineEditModeCancelLoading"
             >
               <EuiButtonIcon
                 iconType="cross"

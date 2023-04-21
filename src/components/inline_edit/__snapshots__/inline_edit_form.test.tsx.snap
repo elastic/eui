@@ -355,7 +355,6 @@ exports[`EuiInlineEditForm Edit Mode renders EuiSkeletonRectangles in place of e
               <div
                 aria-label="Loading "
                 class="euiSkeletonRectangle emotion-euiSkeletonGradientAnimation-euiSkeletonRectangle-m"
-                data-test-subj="euiInlineEditModeSaveLoading"
                 id="generated-id"
                 role="progressbar"
                 style="inline-size: 40px; block-size: 40px;"
@@ -381,7 +380,6 @@ exports[`EuiInlineEditForm Edit Mode renders EuiSkeletonRectangles in place of e
               <div
                 aria-label="Loading "
                 class="euiSkeletonRectangle emotion-euiSkeletonGradientAnimation-euiSkeletonRectangle-m"
-                data-test-subj="euiInlineEditModeCancelLoading"
                 id="generated-id"
                 role="progressbar"
                 style="inline-size: 40px; block-size: 40px;"
