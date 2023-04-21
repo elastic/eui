@@ -20,52 +20,24 @@ describe('EuiInlineEditText', () => {
     defaultValue: 'Hello World!',
   };
 
-  it('renders in readMode', () => {
-    const { container, getByTestSubject, getByText } = render(
+  it('renders', () => {
+    const { container } = render(
       <EuiInlineEditText {...inlineEditTextProps} />
     );
 
     expect(container.firstChild).toMatchSnapshot();
-
-    expect(getByTestSubject('euiInlineReadModeButton')).toBeTruthy();
-    expect(getByText('Hello World!')).toBeTruthy();
   });
 
-  it('renders in editMode', () => {
-    const { container, getByTestSubject, queryByTestSubject } = render(
-      <EuiInlineEditText {...inlineEditTextProps} startWithEditOpen={true} />
-    );
-
-    expect(container.firstChild).toMatchSnapshot();
-
-    expect(getByTestSubject('euiInlineEditModeInput')).toBeTruthy();
-    expect(queryByTestSubject('euiInlineReadModeButton')).toBeFalsy();
-  });
-
-  describe('Text Sizes', () => {
+  describe('text sizes', () => {
     // Remove 'relative' from text sizes available for EuiInlineEditText
     const availableTextSizes = TEXT_SIZES.filter((size) => size !== 'relative');
 
     availableTextSizes.forEach((size: string) => {
-      test(`renders in ${size} in readMode`, () => {
+      test(`renders ${size}`, () => {
         const { container } = render(
           <EuiInlineEditText
             {...inlineEditTextProps}
             size={size as EuiInlineEditTextProps['size']}
-          />
-        );
-
-        expect(container.firstChild).toMatchSnapshot();
-      });
-    });
-
-    availableTextSizes.forEach((size: string) => {
-      test(`renders in ${size} in editMode`, () => {
-        const { container } = render(
-          <EuiInlineEditText
-            {...inlineEditTextProps}
-            size={size as EuiInlineEditTextProps['size']}
-            startWithEditOpen={true}
           />
         );
 

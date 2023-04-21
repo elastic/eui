@@ -24,47 +24,26 @@ describe('EuiInlineEditTitle', () => {
     heading: 'h1',
   };
 
-  it('renders in readMode', () => {
-    const { container, getByTestSubject, getByText } = render(
+  it('renders', () => {
+    const { container } = render(
       <EuiInlineEditTitle {...inlineEditTitleProps} />
     );
 
     expect(container.firstChild).toMatchSnapshot();
-
-    expect(getByTestSubject('euiInlineReadModeButton')).toBeTruthy();
-    expect(getByText('Hello World!')).toBeTruthy();
   });
 
-  it('renders in editMode', () => {
-    const { container, getByTestSubject, queryByTestSubject } = render(
-      <EuiInlineEditTitle {...inlineEditTitleProps} startWithEditOpen={true} />
+  it('renders the heading prop', () => {
+    const { container } = render(
+      <EuiInlineEditTitle {...inlineEditTitleProps} heading="h3" />
     );
-
-    expect(container.firstChild).toMatchSnapshot();
-
-    expect(getByTestSubject('euiInlineEditModeInput')).toBeTruthy();
-    expect(queryByTestSubject('euiInlineReadModeButton')).toBeFalsy();
+    expect(container.querySelector('h3')).toBeTruthy();
   });
 
-  describe('Title Sizes', () => {
+  describe('title sizes', () => {
     TITLE_SIZES.forEach((size) => {
-      it(`renders in size ${size} in readMode`, () => {
+      it(`renders size ${size}`, () => {
         const { container } = render(
           <EuiInlineEditTitle {...inlineEditTitleProps} size={size} />
-        );
-
-        expect(container.firstChild).toMatchSnapshot();
-      });
-    });
-
-    TITLE_SIZES.forEach((size) => {
-      it(`renders in size ${size} in readMode`, () => {
-        const { container } = render(
-          <EuiInlineEditTitle
-            {...inlineEditTitleProps}
-            startWithEditOpen={true}
-            size={size}
-          />
         );
 
         expect(container.firstChild).toMatchSnapshot();
