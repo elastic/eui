@@ -47,7 +47,7 @@ spec:
       name: eui
     spec:
       repository: elastic/eui
-      pipeline_file: ".buildkite/pipeline_example.yml"
+      pipeline_file: ".buildkite/pipeline.yml"
       teams:
         eui-team:
          access_level: MANAGE_BUILD_AND_READ
