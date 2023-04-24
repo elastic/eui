@@ -53,7 +53,7 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
     inputGroupBorder: 'none',
   };
 
-  // Colors - specific for checkboxes and radios
+  // Colors - specific to checkboxes, radios, switches, and range thumbs
   const customControlColors = {
     customControlDisabledIconColor: isColorDark
       ? shade(euiTheme.colors.mediumShade, 0.38)

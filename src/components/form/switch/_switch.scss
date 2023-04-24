@@ -51,12 +51,12 @@
       }
 
       .euiSwitch__body {
-        background-color: $euiSwitchOffDisabledColor;
+        background-color: lightOrDarkTheme(transparentize($euiColorLightShade, .5), transparentize($euiColorDarkShade, .4));
       }
 
       .euiSwitch__thumb {
-        background-color: $euiSwitchOffThumbDisabledColor;
-        border-color: $euiSwitchOffThumbDisabledBorderColor;
+        background-color: rgba(0,0,0,0);
+        border-color: lightOrDarkTheme(transparentize($euiColorDarkShade, .5), $euiColorDarkShade);
         box-shadow: none;
       }
 
@@ -108,7 +108,7 @@
     width: $euiSwitchWidth - ($euiSwitchThumbSize / 2) + $euiSizeS;
     height: $euiSwitchIconHeight;
     transition: left $euiAnimSpeedNormal $euiAnimSlightBounce, right $euiAnimSpeedNormal $euiAnimSlightBounce;
-    fill: $euiTextColor;
+    fill: $euiColorEmptyShade;
   }
 
   .euiSwitch__icon--checked {
