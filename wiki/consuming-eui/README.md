@@ -8,7 +8,7 @@ To install the Elastic UI Framework into an existing project, use the `yarn` CLI
 yarn add @elastic/eui
 ```
 
-Note that EUI has [several `peerDependencies` requirements](package.json) that will also need to be installed if starting with a blank project.
+Note that EUI has [several `peerDependencies` requirements](../../package.json) that will also need to be installed if starting with a blank project.
 
 ```bash
 yarn add @elastic/eui @elastic/datemath @emotion/react @emotion/css moment prop-types
@@ -145,7 +145,7 @@ This eliminates the need to polyfill or transform the EUI build for an environme
 
 ### Mocked component files
 
-Besides babel transforms, the test environment build consumes mocked component files of the type `src/**/[name].testenv.*`. During the build, files of the type `src/**/[name].*` will be replaced by those with the `testenv` namespace. The purpose of this mocking is to further mitigate the impacts of time- and import-dependent rendering, and simplify environment output such as test snapshots. Information on creating mock component files can be found with [testing documentation](testing.md).
+Besides babel transforms, the test environment build consumes mocked component files of the type `src/**/[name].testenv.*`. During the build, files of the type `src/**/[name].*` will be replaced by those with the `testenv` namespace. The purpose of this mocking is to further mitigate the impacts of time- and import-dependent rendering, and simplify environment output such as test snapshots. Information on creating mock component files can be found with [testing documentation](../contributing-to-eui/testing/unit-testing.md#writing-mock-component-files).
 
 ## Using the `optimize` build (Beta)
 

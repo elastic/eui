@@ -14,4 +14,4 @@ jobs:
       with:
         changeLogPath: "upcoming_changelogs/${{ github.event.pull_request.number }}.md"
         skipLabels: 'skip-changelog'
-        missingUpdateErrorMessage: 'You need to add a changelog to this PR before it can be merged. @see https://github.com/elastic/eui/blob/main/wiki/documentation-guidelines.md#changelog'
+        missingUpdateErrorMessage: 'You need to add a changelog to this PR before it can be merged. @see https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/documenting/changelogs.md'

@@ -1,3 +1,17 @@
+## [`77.2.0`](https://github.com/elastic/eui/tree/v77.2.0)
+
+- Updated `EuiFieldNumber` to detect native browser invalid state and show an invalid icon ([#6704](https://github.com/elastic/eui/pull/6704))
+- Improved the input widths of `EuiRange` and `EuiDualRange` when `showInput={true}` to account for invalid icons ([#6704](https://github.com/elastic/eui/pull/6704))
+- Improved the `isInvalid` styling of `EuiDualRange` when `showInput="inputWithPopover"` ([#6704](https://github.com/elastic/eui/pull/6704))
+- Updated `EuiFormControlLayoutIcons` to render left icons in expected DOM order ([#6705](https://github.com/elastic/eui/pull/6705))
+- Updated `EuiDatePickerRange`'s `isInvalid` state to match other range inputs ([#6705](https://github.com/elastic/eui/pull/6705))
+- Updated `EuiSuperDatePicker`'s `isInvalid` state to match other range inputs ([#6705](https://github.com/elastic/eui/pull/6705))
+
+**Bug fixes**
+
+- Fixed `EuiValidatableControl` to correctly display `isInvalid` states on mount ([#6705](https://github.com/elastic/eui/pull/6705))
+- Fixed an issue with `EuiSearchBar` where quoted phrases were not quoted when generating an Elasticsearch query. ([#6714](https://github.com/elastic/eui/pull/6714))
+
 ## [`77.1.1`](https://github.com/elastic/eui/tree/v77.1.1)
 
 - Reverted an accidental merge not intended to be in the prior release

@@ -1,5 +1,23 @@
 [
   {
+    "version": "77.2.0",
+    "changes": [
+      {
+        "token": "euiInlineEditForm.saveButtonAriaLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiInlineEditForm.cancelButtonAriaLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiFormControlLayoutDelimited.delimiterLabel",
+        "changeType": "added",
+        "value": "to"
+      }
+    ]
+  },
+  {
     "version": "77.1.0",
     "changes": [
       {
