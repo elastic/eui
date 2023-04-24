@@ -24,30 +24,6 @@
       @include euiCustomControlFocused;
     }
 
-    &:disabled {
-      &:hover,
-      ~ .euiSwitch__label:hover {
-        cursor: not-allowed;
-      }
-
-      .euiSwitch__body {
-        background-color: $euiSwitchOffColor;
-      }
-
-      .euiSwitch__thumb {
-        @include euiCustomControlDisabled;
-        background-color: $euiSwitchOffColor;
-      }
-
-      .euiSwitch__icon {
-        fill: $euiFormCustomControlDisabledIconColor;
-      }
-
-      + .euiSwitch__label {
-        color: $euiFormControlDisabledColor;
-      }
-    }
-
     &[aria-checked='false'] {
       .euiSwitch__body {
         background-color: $euiSwitchOffColor;
@@ -65,6 +41,31 @@
           right: auto;
           left: -($euiSwitchWidth - ($euiSwitchThumbSize / 2));
         }
+      }
+    }
+
+    &:disabled {
+      &:hover,
+      ~ .euiSwitch__label:hover {
+        cursor: not-allowed;
+      }
+
+      .euiSwitch__body {
+        background-color: $euiSwitchOffDisabledColor;
+      }
+
+      .euiSwitch__thumb {
+        background-color: $euiSwitchOffThumbDisabledColor;
+        border-color: $euiSwitchOffThumbDisabledBorderColor;
+        box-shadow: none;
+      }
+
+      .euiSwitch__icon {
+        fill: $euiColorDarkShade;
+      }
+
+      + .euiSwitch__label {
+        color: $euiFormControlDisabledColor;
       }
     }
   }

@@ -40,6 +40,9 @@ $euiFormControlPlaceholderText: makeHighContrastColor($euiTextSubduedColor, $eui
 $euiFormInputGroupLabelBackground: tintOrShade($euiColorLightShade, 50%, 15%) !default;
 $euiFormInputGroupBorder: none !default;
 $euiSwitchOffColor: lightOrDarkTheme(transparentize($euiColorDarkShade, .25), transparentize($euiColorDarkShade, .4)) !default;
+$euiSwitchOffDisabledColor: lightOrDarkTheme(transparentize($euiColorLightShade, .5), transparentize($euiColorDarkShade, .4)) !default;
+$euiSwitchOffThumbDisabledColor: rgba(0,0,0,0) !default;
+$euiSwitchOffThumbDisabledBorderColor: lightOrDarkTheme(transparentize($euiColorDarkShade, .5), $euiColorDarkShade) !default;
 
 // Icons sizes
 $euiFormControlIconSizes: (
