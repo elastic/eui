@@ -20,7 +20,7 @@ Steps to reproduce the behavior:
 **Expected behavior**
 A clear and concise description of what you expected to happen.
 
-**Code sandbox**
+**Minimum reproducible code sandbox**
 It is extremely helpful for us if you are able to reproduce your issue in a [code sandbox](https://codesandbox.io/) example.
 
 The easiest way to do this is using a component example from [the EUI documentation site](https://elastic.github.io/eui/#/) as a starting point. You can find "Try out this demo on Code Sandbox" links on all of our component demos.
