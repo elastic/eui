@@ -48,13 +48,14 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
   switchColumnPos,
   headerIsInteractive,
 }) => {
-  const { id, display, displayAsText } = column;
+  const { id, display, displayAsText, displayHeaderCellProps } = column;
   const width = columnWidths[id] || defaultColumnWidth;
 
   const columnType = schema[id] ? schema[id].columnType : null;
-  const classes = classnames({
-    [`euiDataGridHeaderCell--${columnType}`]: columnType,
-  });
+  const classes = classnames(
+    { [`euiDataGridHeaderCell--${columnType}`]: columnType },
+    displayHeaderCellProps?.className
+  );
 
   const { setFocusedCell, focusFirstVisibleInteractiveCell } = useContext(
     DataGridFocusContext
@@ -95,11 +96,12 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
 
   return (
     <EuiDataGridHeaderCellWrapper
+      {...displayHeaderCellProps}
+      className={classes}
       id={id}
       index={index}
       width={width}
       headerIsInteractive={headerIsInteractive}
-      className={classes}
       aria-sort={ariaSort}
     >
       {column.isResizable !== false && width != null ? (

@@ -9,6 +9,7 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import {
   EuiStepsHorizontal,
@@ -38,6 +39,10 @@ const steps: EuiStepsHorizontalProps['steps'] = [
 ];
 
 describe('EuiStepsHorizontal', () => {
+  shouldRenderCustomStyles(
+    <EuiStepsHorizontal {...requiredProps} steps={steps} />
+  );
+
   test('is rendered', () => {
     const component = render(
       <EuiStepsHorizontal {...requiredProps} steps={steps} />

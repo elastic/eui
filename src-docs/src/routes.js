@@ -700,20 +700,4 @@ export default {
   getAppRoutes: function getAppRoutes() {
     return allRoutes;
   },
-
-  getPreviousRoute: function getPreviousRoute(routeName) {
-    const index = allRoutes.findIndex((item) => {
-      return item.name === routeName;
-    });
-
-    return index >= 0 ? allRoutes[index - 1] : undefined;
-  },
-
-  getNextRoute: function getNextRoute(routeName) {
-    const index = allRoutes.findIndex((item) => {
-      return item.name === routeName;
-    });
-
-    return index < allRoutes.length - 1 ? allRoutes[index + 1] : undefined;
-  },
 };

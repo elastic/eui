@@ -19,6 +19,8 @@ const gridLinks = {
   schemaDetectors: '/tabular-content/data-grid-schema-columns#schemas',
   toolbarVisibility: '/tabular-content/data-grid-toolbar#toolbar-visibility',
   ref: '/tabular-content/data-grid-advanced#ref-methods',
+  renderCustomGridBody:
+    '/tabular-content/data-grid-advanced#custom-body-renderer',
 };
 
 export const DataGridTopProps = () => {
@@ -27,6 +29,7 @@ export const DataGridTopProps = () => {
       component={EuiDataGrid}
       exclude={[
         'className',
+        'css',
         'data-test-subj',
         'aria-label',
         'width',

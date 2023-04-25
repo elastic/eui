@@ -6,12 +6,11 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
 import { EuiPanel, _EuiPanelProps, _EuiPanelDivlike } from '../../panel/panel';
-import { HTMLAttributes } from 'enzyme';
 
 export type EuiPageContentVerticalPositions = 'center';
 export type EuiPageContentHorizontalPositions = 'center';
@@ -38,7 +37,7 @@ export type EuiPageContentProps = CommonProps &
      * There should only be one EuiPageContent per page and should contain the main contents.
      * If this is untrue, set role = `null`, or change it to match your needed aria role
      */
-    role?: HTMLAttributes['role'] | null;
+    role?: HTMLAttributes<HTMLElement>['role'] | null;
   };
 
 /**

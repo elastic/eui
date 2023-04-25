@@ -35,6 +35,7 @@ import type { EuiDualRangeProps, _SingleRangeValue } from './types';
 
 import { euiRangeStyles } from './range.styles';
 import { euiDualRangeStyles } from './dual_range.styles';
+import { EuiI18n } from '../../i18n';
 
 type ValueMember = _SingleRangeValue['value'];
 
@@ -465,7 +466,6 @@ export class EuiDualRangeClass extends Component<
 
     const { id } = this.state;
 
-    const digitTolerance = Math.max(String(min).length, String(max).length);
     const showInputOnly = showInput === 'inputWithPopover';
     const canShowDropdown = showInputOnly && !readOnly && !disabled;
 
@@ -478,7 +478,6 @@ export class EuiDualRangeClass extends Component<
         aria-label={this.props['aria-label']}
         {...minInputProps}
         // Non-overridable props
-        digitTolerance={digitTolerance}
         side="min"
         min={min}
         max={Number(this.upperValue)}
@@ -509,7 +508,6 @@ export class EuiDualRangeClass extends Component<
         aria-label={this.props['aria-label']}
         {...maxInputProps}
         // Non-overridable props
-        digitTolerance={digitTolerance}
         side="max"
         min={Number(this.lowerValue)}
         max={max}
@@ -565,6 +563,13 @@ export class EuiDualRangeClass extends Component<
           backgroundColor: euiRangeLevelColor(rightThumbColor, theme.euiTheme),
         }
       : rightThumbPosition;
+
+    const dualSliderScreenReaderInstructions = (
+      <EuiI18n
+        token="euiDualRange.sliderScreenReaderInstructions"
+        default="You are in a custom range slider. Use the Up and Down arrow keys to change the minimum value. Press Tab to interact with the maximum value."
+      />
+    );
 
     const theRange = (
       <EuiRangeWrapper
@@ -647,8 +652,14 @@ export class EuiDualRangeClass extends Component<
                       onFocus={this.onThumbFocus}
                       onBlur={this.onThumbBlur}
                       onKeyDown={this.handleDraggableKeyDown}
-                      aria-describedby={this.props['aria-describedby']}
-                      aria-label={this.props['aria-label']}
+                      aria-describedby={
+                        showInputOnly
+                          ? undefined
+                          : this.props['aria-describedby']
+                      }
+                      aria-label={
+                        showInputOnly ? undefined : this.props['aria-label']
+                      }
                     />
                   )}
 
@@ -663,8 +674,12 @@ export class EuiDualRangeClass extends Component<
                     onFocus={this.onThumbFocus}
                     onBlur={this.onThumbBlur}
                     style={logicalStyles(leftThumbStyles)}
-                    aria-describedby={this.props['aria-describedby']}
-                    aria-label={this.props['aria-label']}
+                    aria-describedby={
+                      showInputOnly ? undefined : this.props['aria-describedby']
+                    }
+                    aria-label={
+                      showInputOnly ? undefined : this.props['aria-label']
+                    }
                   />
 
                   <EuiRangeThumb
@@ -678,8 +693,12 @@ export class EuiDualRangeClass extends Component<
                     onFocus={this.onThumbFocus}
                     onBlur={this.onThumbBlur}
                     style={logicalStyles(rightThumbStyles)}
-                    aria-describedby={this.props['aria-describedby']}
-                    aria-label={this.props['aria-label']}
+                    aria-describedby={
+                      showInputOnly ? undefined : this.props['aria-describedby']
+                    }
+                    aria-label={
+                      showInputOnly ? undefined : this.props['aria-label']
+                    }
                   />
                 </React.Fragment>
               )}
@@ -733,6 +752,7 @@ export class EuiDualRangeClass extends Component<
             append={append}
             prepend={prepend}
             isLoading={isLoading}
+            isInvalid={isInvalid}
           />
         }
         fullWidth={fullWidth}
@@ -740,6 +760,7 @@ export class EuiDualRangeClass extends Component<
         closePopover={this.closePopover}
         disableFocusTrap={true}
         onPanelResize={this.onResize}
+        popoverScreenReaderText={dualSliderScreenReaderInstructions}
       >
         {theRange}
       </EuiInputPopover>

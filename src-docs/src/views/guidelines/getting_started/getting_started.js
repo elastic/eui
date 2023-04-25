@@ -50,7 +50,7 @@ export const GettingStarted = {
           <EuiText grow={false}>
             <p>
               You can read more about other ways to{' '}
-              <a href="https://github.com/elastic/eui/blob/main/wiki/consuming.md">
+              <a href="https://github.com/elastic/eui/blob/main/wiki/consuming-eui/">
                 consume EUI
               </a>{' '}
               in our wiki.
@@ -75,7 +75,7 @@ export const GettingStarted = {
               functions, and mixins, you will need to consume them through one
               of the <Link to="/theming/sass">Sass</Link>,{' '}
               <Link to="/theming/theme-provider">Emotion</Link>, or{' '}
-              <a href="https://github.com/elastic/eui/blob/main/wiki/consuming.md#reusing-the-variables-in-javascript">
+              <a href="https://github.com/elastic/eui/blob/main/wiki/consuming-eui/README.md#a-not-recommended-legacy-method-to-consume-theming-variables-from-sass">
                 JSON import
               </a>{' '}
               methods.

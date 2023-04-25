@@ -367,7 +367,7 @@ export const FormControlsExample = {
       playground: TextAreaConfig,
     },
     {
-      title: 'File Picker',
+      title: 'File picker',
       source: [
         {
           type: GuideSectionTypes.JS,

@@ -61,7 +61,7 @@ exports[`EuiTourStep accepts an array of buttons in the footerAction prop 1`] = 
             You are here
           </div>
           <div
-            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-euiTourFooter"
+            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-m-euiTourFooter"
           >
             <div
               class="euiFlexGroup emotion-euiFlexGroup-l-flexEnd-center-row"
@@ -174,7 +174,7 @@ exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
             You are here
           </div>
           <div
-            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-euiTourFooter"
+            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-m-euiTourFooter"
           >
             <div
               class="euiFlexGroup emotion-euiFlexGroup-l-flexEnd-center-row"
@@ -277,7 +277,7 @@ exports[`EuiTourStep can have subtitle 1`] = `
             You are here
           </div>
           <div
-            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-euiTourFooter"
+            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-m-euiTourFooter"
           >
             <div
               class="euiFlexGroup emotion-euiFlexGroup-l-flexEnd-center-row"
@@ -375,7 +375,7 @@ exports[`EuiTourStep can override the footer action 1`] = `
             You are here
           </div>
           <div
-            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-euiTourFooter"
+            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-m-euiTourFooter"
           >
             <div
               class="euiFlexGroup emotion-euiFlexGroup-l-flexEnd-center-row"
@@ -457,7 +457,7 @@ exports[`EuiTourStep can turn off the beacon 1`] = `
             You are here
           </div>
           <div
-            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-euiTourFooter"
+            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-m-euiTourFooter"
           >
             <div
               class="euiFlexGroup emotion-euiFlexGroup-l-flexEnd-center-row"
@@ -555,7 +555,7 @@ exports[`EuiTourStep is rendered 1`] = `
             You are here
           </div>
           <div
-            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-euiTourFooter"
+            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-m-euiTourFooter"
           >
             <div
               class="euiFlexGroup emotion-euiFlexGroup-l-flexEnd-center-row"

@@ -39,7 +39,6 @@ export const EuiTourStepIndicator: FunctionComponent<EuiTourStepIndicatorProps> 
         {(isActive: string) => (
           <EuiIcon
             type="dot"
-            className="euiStepNumber__icon"
             aria-label={isActive}
             color="success"
             aria-current="step"
@@ -51,12 +50,7 @@ export const EuiTourStepIndicator: FunctionComponent<EuiTourStepIndicatorProps> 
     indicatorIcon = (
       <EuiI18n token="euiTourStepIndicator.isComplete" default="complete">
         {(isComplete: string) => (
-          <EuiIcon
-            type="dot"
-            className="euiStepNumber__icon"
-            aria-label={isComplete}
-            color="subdued"
-          />
+          <EuiIcon type="dot" aria-label={isComplete} color="subdued" />
         )}
       </EuiI18n>
     );
@@ -64,12 +58,7 @@ export const EuiTourStepIndicator: FunctionComponent<EuiTourStepIndicatorProps> 
     indicatorIcon = (
       <EuiI18n token="euiTourStepIndicator.isIncomplete" default="incomplete">
         {(isIncomplete: string) => (
-          <EuiIcon
-            type="dot"
-            className="euiStepNumber__icon"
-            aria-label={isIncomplete}
-            color="subdued"
-          />
+          <EuiIcon type="dot" aria-label={isIncomplete} color="subdued" />
         )}
       </EuiI18n>
     );

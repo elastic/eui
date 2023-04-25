@@ -255,6 +255,7 @@ exports[`EuiRange props input should render 1`] = `
       class="euiFormControlLayout__childrenWrapper"
     >
       <input
+        aria-invalid="false"
         aria-label="aria-label"
         class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiRangeInput"
         data-test-subj="test subject string"
@@ -263,7 +264,7 @@ exports[`EuiRange props input should render 1`] = `
         min="0"
         name="name"
         step="1"
-        style="inline-size:4.4em"
+        style="inline-size:calc(12px + 1ch + 2em + 0px)"
         type="number"
         value="8"
       />
@@ -354,6 +355,7 @@ exports[`EuiRange props loading should display when showInput="inputWithPopover"
           class="euiFormControlLayout__childrenWrapper"
         >
           <input
+            aria-invalid="false"
             aria-label="aria-label"
             class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiRangeInput euiFormControlLayout--1icons euiFieldNumber-isLoading"
             data-test-subj="test subject string"
@@ -366,7 +368,7 @@ exports[`EuiRange props loading should display when showInput="inputWithPopover"
             value="8"
           />
           <div
-            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
           >
             <span
               aria-label="Loading"
@@ -426,6 +428,7 @@ exports[`EuiRange props slider should display in popover 1`] = `
           class="euiFormControlLayout__childrenWrapper"
         >
           <input
+            aria-invalid="false"
             aria-label="aria-label"
             class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiRangeInput"
             data-test-subj="test subject string"

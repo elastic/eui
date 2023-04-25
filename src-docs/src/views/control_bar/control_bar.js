@@ -45,7 +45,7 @@ export default () => {
     {
       controlType: 'icon',
       id: 'status_icon',
-      iconType: 'alert',
+      iconType: 'warning',
       color: 'warning',
       'aria-label': 'Repo Status',
     },

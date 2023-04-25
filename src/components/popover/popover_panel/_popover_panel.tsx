@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { createContext, FunctionComponent, useContext } from 'react';
+import React, { createContext, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { useEuiTheme } from '../../../services';
 import { EuiPaddingSize } from '../../../global_styling';
@@ -14,12 +14,12 @@ import { EuiPanel, _EuiPanelDivlike } from '../../panel/panel';
 import { EuiPopoverArrowPositions } from '../popover_arrow';
 import { euiPopoverPanelStyles } from './_popover_panel.styles';
 
-interface ContextShape {
-  paddingSize: EuiPaddingSize;
-}
+const DEFAULT_PANEL_PADDING_SIZE = 'l';
 
-export const EuiPopoverPanelContext = createContext<ContextShape>({
-  paddingSize: 'l',
+export const EuiPopoverPanelContext = createContext<{
+  paddingSize: EuiPaddingSize;
+}>({
+  paddingSize: DEFAULT_PANEL_PADDING_SIZE,
 });
 
 export type EuiPopoverPanelProps = _EuiPanelDivlike;
@@ -46,8 +46,7 @@ export const EuiPopoverPanel: FunctionComponent<
   position,
   ...rest
 }) => {
-  const panelContext = useContext(EuiPopoverPanelContext);
-  if (rest.paddingSize) panelContext.paddingSize = rest.paddingSize;
+  const { paddingSize = DEFAULT_PANEL_PADDING_SIZE } = rest;
 
   const euiThemeContext = useEuiTheme();
   // Using BEM child class for BWC
@@ -77,7 +76,7 @@ export const EuiPopoverPanel: FunctionComponent<
   }
 
   return (
-    <EuiPopoverPanelContext.Provider value={panelContext}>
+    <EuiPopoverPanelContext.Provider value={{ paddingSize }}>
       <EuiPanel
         className={classes}
         css={panelCSS}

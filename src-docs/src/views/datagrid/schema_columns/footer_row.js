@@ -3,6 +3,8 @@ import { faker } from '@faker-js/faker';
 
 import {
   EuiDataGrid,
+  EuiCheckbox,
+  EuiButtonIcon,
   EuiSwitch,
   EuiFlexGroup,
   EuiFlexItem,
@@ -14,7 +16,7 @@ for (let i = 1; i < 20; i++) {
   raw_data.push({
     name: `${faker.name.lastName()}, ${faker.name.firstName()} ${faker.name.suffix()}`,
     date: `${faker.date.past()}`,
-    amount: faker.commerce.price(),
+    amount: `$${faker.commerce.price()}`,
     phone: faker.phone.number(),
     version: faker.system.semver(),
   });
@@ -62,6 +64,47 @@ const columns = [
   {
     id: 'version',
     defaultSortDirection: 'desc',
+  },
+];
+
+const leadingControlColumns = [
+  {
+    id: 'selection',
+    width: 32,
+    // Check state doesn't actually work - this is just a static example
+    headerCellRender: () => (
+      <EuiCheckbox
+        id="selectAllHeader"
+        aria-label="Select all rows"
+        onChange={() => {}}
+      />
+    ),
+    rowCellRender: ({ rowIndex }) => (
+      <EuiCheckbox
+        id={`selectRow${rowIndex}`}
+        aria-label="Select this row"
+        onChange={() => {}}
+      />
+    ),
+    footerCellRender: () => (
+      <EuiCheckbox
+        id="selectAllFooter"
+        aria-label="Select all rows"
+        onChange={() => {}}
+      />
+    ),
+  },
+];
+const trailingControlColumns = [
+  {
+    id: 'actions',
+    width: 36,
+    headerCellRender: () => (
+      <span className="euiScreenReaderOnly">Actions</span>
+    ),
+    rowCellRender: () => (
+      <EuiButtonIcon aria-label="Show actions" iconType="boxesHorizontal" />
+    ),
   },
 ];
 
@@ -125,6 +168,8 @@ export default () => {
           aria-label="Data grid footer row demo"
           columns={columns}
           columnVisibility={{ visibleColumns, setVisibleColumns }}
+          leadingControlColumns={leadingControlColumns}
+          trailingControlColumns={trailingControlColumns}
           rowCount={raw_data.length}
           renderCellValue={RenderCellValue}
           renderFooterCellValue={

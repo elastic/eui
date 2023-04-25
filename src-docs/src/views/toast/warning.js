@@ -6,6 +6,6 @@ export default () => (
   <EuiToast
     title="Sometimes a title is enough!"
     color="warning"
-    iconType="help"
+    iconType="warning"
   />
 );

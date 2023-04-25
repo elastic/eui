@@ -67,19 +67,17 @@ const DataGridStyle = ({
     columns.map(({ id }) => id)
   );
 
-  const setPageIndex = useCallback(
-    (pageIndex) => {
-      setPagination({ ...pagination, pageIndex });
-    },
-    [pagination, setPagination]
-  );
+  const setPageIndex = useCallback((pageIndex) => {
+    setPagination((pagination) => ({ ...pagination, pageIndex }));
+  }, []);
 
-  const setPageSize = useCallback(
-    (pageSize) => {
-      setPagination({ ...pagination, pageSize, pageIndex: 0 });
-    },
-    [pagination, setPagination]
-  );
+  const setPageSize = useCallback((pageSize) => {
+    setPagination((pagination) => ({
+      ...pagination,
+      pageSize,
+      pageIndex: 0,
+    }));
+  }, []);
 
   const handleVisibleColumns = (visibleColumns) =>
     setVisibleColumns(visibleColumns);

@@ -42,7 +42,7 @@ describe('EuiFormControlLayoutDelimited', () => {
         });
 
         test('as a node', () => {
-          const icon = <EuiIcon type="alert" />;
+          const icon = <EuiIcon type="error" />;
 
           const component = render(
             <EuiFormControlLayoutDelimited

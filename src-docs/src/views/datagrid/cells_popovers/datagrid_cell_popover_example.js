@@ -92,7 +92,7 @@ export const DataGridCellPopoverExample = {
               custom popover content but default cell actions.
               <EuiCallOut
                 color="warning"
-                iconType="alert"
+                iconType="warning"
                 title="Using custom cell actions"
               >
                 If deliberately leaving out the default{' '}
@@ -110,6 +110,15 @@ export const DataGridCellPopoverExample = {
                 component. Use this component if you only want custom popover
                 content for certain schemas or columns and default popover
                 rendering for other cells.
+              </p>
+            </li>
+            <li>
+              <p>
+                <EuiCode>setCellPopoverProps</EuiCode> - this callback is passed
+                to allow customizing the cell expansion popover. Accepts any
+                prop that <EuiCode>EuiPopover</EuiCode> accepts, except for{' '}
+                <EuiCode>button</EuiCode> & <EuiCode>closePopover</EuiCode>,
+                which is controlled by the data grid.
               </p>
             </li>
           </ul>
@@ -150,7 +159,7 @@ export const DataGridCellPopoverExample = {
           </p>
           <EuiCallOut
             color="warning"
-            iconType="alert"
+            iconType="warning"
             title="Cells with actions are always expandable"
           >
             If <EuiCode>columns.cellActions</EuiCode> is defined,{' '}

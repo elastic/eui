@@ -39,7 +39,7 @@ describe('EuiIconTip', () => {
     describe('type', () => {
       test('is rendered as the icon', () => {
         const component = render(
-          <EuiIconTip type="alert" id="id" content="content" />
+          <EuiIconTip type="warning" id="id" content="content" />
         );
 
         expect(component).toMatchSnapshot();

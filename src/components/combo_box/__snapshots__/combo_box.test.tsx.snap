@@ -12,7 +12,7 @@ exports[`EuiComboBox is rendered 1`] = `
       class="euiFormControlLayout__childrenWrapper"
     >
       <div
-        class="euiComboBox__inputWrap euiComboBox__inputWrap-isClearable"
+        class="euiComboBox__inputWrap euiFormControlLayout--1icons"
         data-test-subj="comboBoxInput"
         tabindex="-1"
       >
@@ -24,6 +24,7 @@ exports[`EuiComboBox is rendered 1`] = `
             aria-autocomplete="list"
             aria-controls=""
             aria-expanded="false"
+            aria-invalid="false"
             aria-label="aria-label"
             data-test-subj="comboBoxSearchInput"
             id="generated-id__eui-combobox-id"
@@ -37,7 +38,7 @@ exports[`EuiComboBox is rendered 1`] = `
         </div>
       </div>
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
       >
         <button
           aria-label="Open list of options"
@@ -72,6 +73,7 @@ exports[`props aria-label attribute is rendered 1`] = `
     hasSelectedOptions={false}
     id="generated-id__eui-combobox-id"
     inputRef={[Function]}
+    isInvalid={false}
     isListOpen={false}
     noIcon={false}
     onChange={[Function]}
@@ -106,6 +108,7 @@ exports[`props aria-labelledby attribute is rendered 1`] = `
     hasSelectedOptions={false}
     id="generated-id__eui-combobox-id"
     inputRef={[Function]}
+    isInvalid={false}
     isListOpen={false}
     noIcon={false}
     onChange={[Function]}
@@ -139,6 +142,7 @@ exports[`props autoFocus is rendered 1`] = `
     hasSelectedOptions={true}
     id="generated-id__eui-combobox-id"
     inputRef={[Function]}
+    isInvalid={false}
     isListOpen={false}
     noIcon={false}
     onChange={[Function]}
@@ -181,6 +185,7 @@ exports[`props custom ID is rendered 1`] = `
     hasSelectedOptions={true}
     id="test-id-1"
     inputRef={[Function]}
+    isInvalid={false}
     isListOpen={false}
     noIcon={false}
     onChange={[Function]}
@@ -223,6 +228,7 @@ exports[`props delimiter is rendered 1`] = `
     hasSelectedOptions={true}
     id="generated-id__eui-combobox-id"
     inputRef={[Function]}
+    isInvalid={false}
     isListOpen={false}
     noIcon={false}
     onChange={[Function]}
@@ -265,6 +271,7 @@ exports[`props full width is rendered 1`] = `
     hasSelectedOptions={true}
     id="generated-id__eui-combobox-id"
     inputRef={[Function]}
+    isInvalid={false}
     isListOpen={false}
     noIcon={false}
     onChange={[Function]}
@@ -304,6 +311,7 @@ exports[`props isClearable=false disallows user from clearing input when no opti
     hasSelectedOptions={false}
     id="generated-id__eui-combobox-id"
     inputRef={[Function]}
+    isInvalid={false}
     isListOpen={false}
     noIcon={false}
     onChange={[Function]}
@@ -336,6 +344,7 @@ exports[`props isClearable=false disallows user from clearing input when options
     hasSelectedOptions={true}
     id="generated-id__eui-combobox-id"
     inputRef={[Function]}
+    isInvalid={false}
     isListOpen={false}
     noIcon={false}
     onChange={[Function]}
@@ -378,6 +387,7 @@ exports[`props isDisabled is rendered 1`] = `
     id="generated-id__eui-combobox-id"
     inputRef={[Function]}
     isDisabled={true}
+    isInvalid={false}
     isListOpen={false}
     noIcon={false}
     onChange={[Function]}
@@ -415,7 +425,7 @@ exports[`props options list is rendered 1`] = `
       class="euiFormControlLayout__childrenWrapper"
     >
       <div
-        class="euiComboBox__inputWrap euiComboBox__inputWrap-isClearable"
+        class="euiComboBox__inputWrap euiFormControlLayout--1icons"
         data-test-subj="comboBoxInput"
         tabindex="-1"
       >
@@ -427,6 +437,7 @@ exports[`props options list is rendered 1`] = `
             aria-autocomplete="list"
             aria-controls="generated-id_listbox"
             aria-expanded="true"
+            aria-invalid="false"
             data-test-subj="comboBoxSearchInput"
             id="generated-id__eui-combobox-id"
             role="combobox"
@@ -439,7 +450,7 @@ exports[`props options list is rendered 1`] = `
         </div>
       </div>
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
       >
         <button
           aria-label="Close list of options"
@@ -458,7 +469,7 @@ exports[`props options list is rendered 1`] = `
     </div>
   </div>
   <div
-    class="euiPanel euiPanel--plain euiPopover__panel euiComboBoxOptionsList css-s8iu-euiPanel-grow-m-plain-euiPopover__panel-isOpen-bottom-isOpen-bottom"
+    class="euiPanel euiPanel--plain euiPopover__panel euiComboBoxOptionsList emotion-euiPanel-grow-m-plain-euiPopover__panel-isOpen-bottom-isOpen-bottom"
     data-popover-open="true"
     data-popover-panel="true"
     data-test-subj="comboBoxOptionsList alsoGetsAppliedToOptionsList-optionsList"
@@ -741,6 +752,7 @@ exports[`props selectedOptions are rendered 1`] = `
     hasSelectedOptions={true}
     id="generated-id__eui-combobox-id"
     inputRef={[Function]}
+    isInvalid={false}
     isListOpen={false}
     noIcon={false}
     onChange={[Function]}
@@ -783,6 +795,7 @@ exports[`props singleSelection is rendered 1`] = `
     hasSelectedOptions={true}
     id="generated-id__eui-combobox-id"
     inputRef={[Function]}
+    isInvalid={false}
     isListOpen={false}
     noIcon={false}
     onChange={[Function]}
@@ -823,6 +836,7 @@ exports[`props singleSelection prepend and append is rendered 1`] = `
     hasSelectedOptions={false}
     id="generated-id__eui-combobox-id"
     inputRef={[Function]}
+    isInvalid={false}
     isListOpen={true}
     noIcon={false}
     onChange={[Function]}
@@ -865,6 +879,7 @@ exports[`props singleSelection selects existing option when opened 1`] = `
     hasSelectedOptions={true}
     id="generated-id__eui-combobox-id"
     inputRef={[Function]}
+    isInvalid={false}
     isListOpen={true}
     noIcon={false}
     onChange={[Function]}

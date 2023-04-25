@@ -14,13 +14,18 @@
   // we use a form control layout class on all form controls.
   @for $i from 1 through 5 {
     &--#{$i}icons {
-      padding-right: $iconPadding + ($iconSize + $marginBetweenIcons) * $i;
+      $paddingOffset: $iconPadding + ($iconSize + $marginBetweenIcons) * $i;
+
+      --eui-form-control-layout-icons-padding: #{$paddingOffset}; // Set this for flexible usage, e.g. components that need extra specificity
+      padding-right: $paddingOffset;
 
       &[class*='compressed'] {
         $iconSizeCompressed: map-get($euiFormControlIconSizes, 'small');
         $iconPaddingCompressed: $euiFormControlCompressedPadding;
+        $paddingOffset: $iconPaddingCompressed + ($iconSizeCompressed + $marginBetweenIcons) * $i;
 
-        padding-right: $iconPaddingCompressed + ($iconSizeCompressed + $marginBetweenIcons) * $i;
+        --eui-form-control-layout-icons-padding: #{$paddingOffset};
+        padding-right: $paddingOffset;
       }
     }
   }
@@ -123,7 +128,7 @@
   // TEXT
 
   .euiFormLabel,
-  .euiText {
+  .euiText:not(.euiFormControlLayoutDelimited__delimiter) {
     background-color: $euiFormInputGroupLabelBackground;
     padding: $euiFormControlPadding;
     line-height: $euiSize !important;
@@ -166,7 +171,7 @@
 
     // Padding
     .euiFormLabel,
-    .euiText {
+    .euiText:not(.euiFormControlLayoutDelimited__delimiter) {
       padding: $euiFormControlCompressedPadding;
 
       // If the next sibling is not the input, pull it closer to the text to reduce space

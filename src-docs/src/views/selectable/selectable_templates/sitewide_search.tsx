@@ -336,7 +336,7 @@ const searchData: EuiSelectableTemplateSitewideOption[] = [
     label: 'Totally custom',
     searchableLabel: 'Totally custom with pink metadata',
     icon: {
-      type: 'alert',
+      type: 'warning',
       color: 'accent',
     },
     meta: [

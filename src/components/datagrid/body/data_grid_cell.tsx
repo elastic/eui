@@ -25,6 +25,7 @@ import { EuiFocusTrap } from '../../focus_trap';
 import { EuiI18n } from '../../i18n';
 import { hasResizeObserver } from '../../observer/resize_observer/resize_observer';
 import { DataGridFocusContext } from '../utils/focus';
+import { RowHeightVirtualizationUtils } from '../utils/row_heights';
 import {
   EuiDataGridCellProps,
   EuiDataGridCellState,
@@ -299,6 +300,8 @@ export class EuiDataGridCell extends Component<
     }
 
     if (
+      (this.props.rowHeightUtils as RowHeightVirtualizationUtils)
+        ?.compensateForLayoutShift &&
       this.props.rowHeightsOptions?.scrollAnchorRow &&
       this.props.colIndex === 0 && // once per row
       this.props.columnId === prevProps.columnId && // if this is still the same column
@@ -307,7 +310,9 @@ export class EuiDataGridCell extends Component<
     ) {
       const previousTop = parseFloat(prevProps.style?.top as string);
       const currentTop = parseFloat(this.props.style?.top as string);
-      this.props.rowHeightUtils?.compensateForLayoutShift(
+
+      // @ts-ignore We've already checked that this virtualization util is available above
+      this.props.rowHeightUtils.compensateForLayoutShift(
         this.props.rowIndex,
         currentTop - previousTop,
         this.props.rowHeightsOptions?.scrollAnchorRow
@@ -478,7 +483,11 @@ export class EuiDataGridCell extends Component<
 
   handleCellPopover = () => {
     if (this.isPopoverOpen()) {
-      const { setPopoverAnchor, setPopoverContent } = this.props.popoverContext;
+      const {
+        setPopoverAnchor,
+        setPopoverContent,
+        setCellPopoverProps,
+      } = this.props.popoverContext;
 
       // Set popover anchor
       const cellAnchorEl = this.popoverAnchorRef.current!;
@@ -515,6 +524,7 @@ export class EuiDataGridCell extends Component<
             <EuiDataGridCellPopoverActions {...sharedProps} column={column} />
           }
           DefaultCellPopover={DefaultCellPopover}
+          setCellPopoverProps={setCellPopoverProps}
         >
           <CellElement
             {...sharedProps}
@@ -582,8 +592,8 @@ export class EuiDataGridCell extends Component<
     };
 
     cellProps.style = {
-      ...style, // from react-window
-      top: 0, // The cell's row will handle top positioning
+      ...style, // set by react-window or the custom renderer
+      top: style?.top ? 0 : undefined, // The cell's row will handle top positioning
       width, // column width, can be undefined
       lineHeight: rowHeightsOptions?.lineHeight ?? undefined, // lineHeight configuration
       ...cellPropsStyle, // apply anything from setCellProps({ style })

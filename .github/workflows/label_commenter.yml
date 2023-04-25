@@ -1,0 +1,20 @@
+name: Auto-respond to issues with comments based on labels
+
+on:
+  issues:
+    types: [labeled, unlabeled]
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Label Commenter
+        uses: peaceiris/actions-label-commenter@v1
+        with:
+          config_file: .github/workflows/label_commenter_config.yml

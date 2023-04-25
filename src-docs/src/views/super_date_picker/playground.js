@@ -18,6 +18,20 @@ export const superDatePickerConfig = () => {
   propsToUse.onTimeChange = simulateFunction(propsToUse.onTimeChange, true);
   propsToUse.onRefreshChange = simulateFunction(propsToUse.onRefreshChange);
 
+  propsToUse.isPaused = {
+    ...propsToUse.isPaused,
+    type: PropTypes.Boolean,
+    defaultValue: true,
+    value: true,
+  };
+
+  propsToUse.showUpdateButton = {
+    ...propsToUse.showUpdateButton,
+    type: PropTypes.Boolean,
+    defaultValue: true,
+    value: true,
+  };
+
   propsToUse.locale = {
     ...propsToUse.locale,
     type: PropTypes.String,

@@ -63,13 +63,14 @@ exports[`EuiDualRange input props can be applied to min and max inputs 1`] = `
       class="euiFormControlLayout__childrenWrapper"
     >
       <input
+        aria-invalid="false"
         aria-label="Min value"
         class="euiFieldNumber euiRangeInput euiRangeInput--min emotion-euiRangeInput"
         max="8"
         min="1"
         name="name-minValue"
         step="1"
-        style="inline-size:3.6em"
+        style="inline-size:calc(12px + 1ch + 2em + 0px)"
         type="number"
         value="1"
       />
@@ -112,13 +113,14 @@ exports[`EuiDualRange input props can be applied to min and max inputs 1`] = `
       class="euiFormControlLayout__childrenWrapper"
     >
       <input
+        aria-invalid="false"
         aria-label="Max value"
         class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiRangeInput"
         max="10"
         min="1"
         name="name-maxValue"
         step="1"
-        style="inline-size:3.6em"
+        style="inline-size:calc(12px + 1ch + 2em + 0px)"
         type="number"
         value="8"
       />
@@ -321,13 +323,14 @@ exports[`EuiDualRange props inputs should render 1`] = `
       class="euiFormControlLayout__childrenWrapper"
     >
       <input
+        aria-invalid="false"
         aria-label="aria-label"
         class="euiFieldNumber euiRangeInput euiRangeInput--min emotion-euiRangeInput"
         max="8"
         min="0"
         name="name-minValue"
         step="1"
-        style="inline-size:4.4em"
+        style="inline-size:calc(12px + 1ch + 2em + 0px)"
         type="number"
         value="1"
       />
@@ -372,13 +375,14 @@ exports[`EuiDualRange props inputs should render 1`] = `
       class="euiFormControlLayout__childrenWrapper"
     >
       <input
+        aria-invalid="false"
         aria-label="aria-label"
         class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiRangeInput"
         max="100"
         min="1"
         name="name-maxValue"
         step="1"
-        style="inline-size:4.4em"
+        style="inline-size:calc(12px + 1ch + 2em + 0px)"
         type="number"
         value="8"
       />
@@ -528,6 +532,7 @@ exports[`EuiDualRange props loading should display when showInput="inputWithPopo
           class="euiFormControlLayout__childrenWrapper"
         >
           <input
+            aria-invalid="false"
             class="euiFieldNumber euiFormControlLayoutDelimited__input emotion-euiRangeInput"
             max="8"
             min="0"
@@ -537,11 +542,16 @@ exports[`EuiDualRange props loading should display when showInput="inputWithPopo
             value="1"
           />
           <div
-            class="euiText euiFormControlLayoutDelimited__delimeter emotion-euiText-s-euiTextColor-subdued"
+            class="euiText euiFormControlLayoutDelimited__delimiter emotion-euiText-s-euiTextColor-subdued"
           >
-            →
+            <span
+              data-euiicon-type="sortRight"
+            >
+              to
+            </span>
           </div>
           <input
+            aria-invalid="false"
             class="euiFieldNumber euiFormControlLayoutDelimited__input emotion-euiRangeInput"
             max="100"
             min="1"
@@ -551,7 +561,7 @@ exports[`EuiDualRange props loading should display when showInput="inputWithPopo
             value="8"
           />
           <div
-            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--static"
           >
             <span
               aria-label="Loading"
@@ -611,6 +621,7 @@ exports[`EuiDualRange props slider should display in popover 1`] = `
           class="euiFormControlLayout__childrenWrapper"
         >
           <input
+            aria-invalid="false"
             class="euiFieldNumber euiFormControlLayoutDelimited__input emotion-euiRangeInput"
             max="8"
             min="0"
@@ -620,11 +631,16 @@ exports[`EuiDualRange props slider should display in popover 1`] = `
             value="1"
           />
           <div
-            class="euiText euiFormControlLayoutDelimited__delimeter emotion-euiText-s-euiTextColor-subdued"
+            class="euiText euiFormControlLayoutDelimited__delimiter emotion-euiText-s-euiTextColor-subdued"
           >
-            →
+            <span
+              data-euiicon-type="sortRight"
+            >
+              to
+            </span>
           </div>
           <input
+            aria-invalid="false"
             class="euiFieldNumber euiFormControlLayoutDelimited__input emotion-euiRangeInput"
             max="100"
             min="1"

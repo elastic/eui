@@ -4,6 +4,7 @@
   background: $euiColorEmptyShade;
   position: sticky;
   top: 0;
+  width: fit-content;
 }
 
 @include euiDataGridHeaderCell {

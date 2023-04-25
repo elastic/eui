@@ -44,6 +44,10 @@ export const SearchBarExample = {
               terms in them but do not have the word &quot;production&quot;
             </li>
             <li>
+              Phrases can be matched by surrounding multiple words with quotes -
+              Example, <EuiCode>&quot;website url&quot;</EuiCode>.
+            </li>
+            <li>
               Field/value search - one can search for terms within specific
               fields - Example,
               <EuiCode>tag:bug -severity:high</EuiCode>. In this example the

@@ -4,7 +4,7 @@ import { EuiEmptyPrompt } from '../../../../src/components';
 
 export default () => (
   <EuiEmptyPrompt
-    iconType="alert"
+    iconType="error"
     color="danger"
     title={<h2>Unable to load your dashboards</h2>}
     body={

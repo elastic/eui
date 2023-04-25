@@ -101,7 +101,7 @@ export const EuiCodeBlockFullScreenWrapper: FunctionComponent = ({
 
   return (
     <EuiOverlayMask>
-      <EuiFocusTrap clickOutsideDisables={true}>
+      <EuiFocusTrap scrollLock preventScrollOnFocus clickOutsideDisables={true}>
         <div className="euiCodeBlockFullScreen" css={cssStyles}>
           {children}
         </div>

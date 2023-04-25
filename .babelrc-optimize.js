@@ -1,4 +1,4 @@
-// See `wiki/consuming.md` for rationale and consumer requirements.
+// See `wiki/consuming-eui/README.md` for rationale and consumer requirements.
 
 const baseConfig = require('./.babelrc.js');
 // Skip `propType` generation.

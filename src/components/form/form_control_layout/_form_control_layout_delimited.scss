@@ -5,37 +5,22 @@
   align-items: stretch;
   padding: 1px; /* 1 */
 
-  .euiFormControlLayoutDelimited__delimeter {
-    background-color: $euiFormBackgroundColor;
-  }
-
   > .euiFormControlLayout__childrenWrapper {
     display: flex;
     align-items: center;
     width: 100%;
+    background-color: $euiFormBackgroundColor;
   }
 
   // Target when the euiFormControlLayout is compressed without specifying the full class name in case it ever changes
   &[class*='--compressed'] {
     @include euiFormControlDefaultShadow($borderOnly: true);
     border-radius: $euiBorderRadius / 2;
-
-    .euiFormControlLayoutDelimited__input {
-      height: 100%;
-      max-width: none;
-      padding-left: $euiFormControlCompressedPadding;
-      padding-right: $euiFormControlCompressedPadding;
-    }
-
-    .euiFormControlLayoutIcons {
-      padding-left: $euiFormControlCompressedPadding;
-      padding-right: $euiFormControlCompressedPadding;
-    }
   }
 
   // Target when the euiFormControlLayout is fullWidth without specifying the full class name in case it ever changes
   &[class*='--fullWidth'] .euiFormControlLayout__childrenWrapper,
-  &[class*='--fullWidth'] input {
+  &[class*='--fullWidth'] .euiFormControlLayout__childrenWrapper > *:not(.euiFormControlLayoutDelimited__delimiter):not(.euiFormControlLayoutIcons) {
     width: 100%;
     max-width: none;
   }
@@ -44,7 +29,7 @@
   &[class*='-isDisabled'] {
     @include euiFormControlDisabledStyle;
 
-    .euiFormControlLayoutDelimited__delimeter {
+    .euiFormControlLayout__childrenWrapper {
       background-color: $euiFormBackgroundDisabledColor;
     }
   }
@@ -53,22 +38,13 @@
   &[class*='--readOnly'] {
     @include euiFormControlReadOnlyStyle;
 
-    input,
-    .euiFormControlLayoutDelimited__delimeter {
+    .euiFormControlLayout__childrenWrapper {
       background-color: $euiFormBackgroundReadOnlyColor;
     }
   }
 
-  .euiFormControlLayoutIcons {
-    // Absolutely positioning the icons doesn't work because they
-    // overlay only one of controls making the layout unbalanced
-    position: static; // Overrider absolute
-    padding-left: $euiFormControlPadding;
-    padding-right: $euiFormControlPadding;
-
-    &:not(.euiFormControlLayoutIcons--right) {
-      order: -1;
-    }
+  &--isInvalid .euiFormControlLayout__childrenWrapper {
+    @include euiFormControlInvalidStyle;
   }
 }
 
@@ -82,10 +58,10 @@
   min-width: 0; // Fixes FF
 }
 
-.euiFormControlLayoutDelimited__delimeter {
-  // stylelint-disable-next-line declaration-no-important
-  line-height: 1 !important; // Override EuiText line-height
-  flex: 0 0 auto;
-  padding-left: $euiFormControlPadding / 2;
-  padding-right: $euiFormControlPadding / 2;
+.euiFormControlLayoutDelimited__delimiter {
+  align-self: stretch;
+  flex-grow: 0;
+  display: flex;
+  align-items: center;
+  line-height: 1; // Override EuiText line-height
 }

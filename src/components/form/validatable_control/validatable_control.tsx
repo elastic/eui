@@ -13,7 +13,7 @@ import {
   ReactElement,
   Ref,
   FunctionComponent,
-  useRef,
+  useState,
   useEffect,
   useCallback,
 } from 'react';
@@ -33,25 +33,29 @@ function isMutableRef(
   return ref != null && ref.hasOwnProperty('current');
 }
 
+/**
+ * The `EuiValidatableControl` component should be used in scenarios where
+ * we can render the validated `<input>` as its direct child.
+ */
 export interface EuiValidatableControlProps {
   isInvalid?: boolean;
-  /**
-   * ReactNode to render as this component's content
-   */
   children: ReactElementWithRef;
 }
 
 export const EuiValidatableControl: FunctionComponent<
   CommonProps & EuiValidatableControlProps
 > = ({ isInvalid, children }) => {
-  const control = useRef<HTMLConstraintValidityElement | null>(null);
+  // Note that this must be state and not a ref to cause a rerender/set invalid state on initial mount
+  const [control, setControl] = useState<HTMLConstraintValidityElement | null>(
+    null
+  );
 
   const child = Children.only(children);
   const childRef = child.ref;
 
   const replacedRef = useCallback(
     (element: HTMLConstraintValidityElement) => {
-      control.current = element;
+      setControl(element);
 
       // Call the original ref, if any
       if (typeof childRef === 'function') {
@@ -63,23 +67,60 @@ export const EuiValidatableControl: FunctionComponent<
     [childRef]
   );
 
-  useEffect(() => {
-    if (
-      control.current === null ||
-      typeof control.current.setCustomValidity !== 'function'
-    ) {
-      return; // jsdom doesn't polyfill this for the server-side
-    }
-
-    if (isInvalid) {
-      control.current.setCustomValidity('Invalid');
-    } else {
-      control.current.setCustomValidity('');
-    }
-  });
+  useSetControlValidity({ controlEl: control, isInvalid });
 
   return cloneElement(child, {
     ref: replacedRef,
-    'aria-invalid': isInvalid,
+    'aria-invalid': isInvalid || child.props['aria-invalid'],
   });
+};
+
+/**
+ * The `UseEuiValidatableControl` hook should be used in scenarios where
+ * we *cannot* control where the validated `<input>` is rendered (e.g., ReactDatePicker)
+ * and instead need to access the input via a ref and pass the element in directly
+ */
+export interface UseEuiValidatableControlProps {
+  isInvalid?: boolean;
+  controlEl: HTMLInputElement | HTMLConstraintValidityElement | null;
+}
+
+export const useEuiValidatableControl = ({
+  isInvalid,
+  controlEl,
+}: UseEuiValidatableControlProps) => {
+  useSetControlValidity({ controlEl, isInvalid });
+
+  useEffect(() => {
+    if (!controlEl) return;
+
+    if (typeof isInvalid === 'boolean') {
+      controlEl.setAttribute('aria-invalid', String(isInvalid));
+    } else {
+      controlEl.removeAttribute('aria-invalid');
+    }
+  }, [isInvalid, controlEl]);
+};
+
+/**
+ * Internal `setCustomValidity` helper
+ */
+const useSetControlValidity = ({
+  controlEl,
+  isInvalid,
+}: UseEuiValidatableControlProps) => {
+  useEffect(() => {
+    if (
+      controlEl == null ||
+      typeof controlEl.setCustomValidity !== 'function'
+    ) {
+      return;
+    }
+
+    if (isInvalid) {
+      controlEl.setCustomValidity('Invalid');
+    } else {
+      controlEl.setCustomValidity('');
+    }
+  }, [isInvalid, controlEl]);
 };

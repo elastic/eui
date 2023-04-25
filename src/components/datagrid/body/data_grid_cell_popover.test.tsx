@@ -7,10 +7,10 @@
  */
 
 import React from 'react';
-import { act } from 'react-dom/test-utils';
+import { renderHook, act } from '@testing-library/react-hooks';
 import { shallow } from 'enzyme';
+
 import { keys } from '../../../services';
-import { testCustomHook } from '../../../test/internal';
 
 import { DataGridCellPopoverContextShape } from '../data_grid_types';
 import { useCellPopover, DefaultCellPopover } from './data_grid_cell_popover';
@@ -18,55 +18,57 @@ import { useCellPopover, DefaultCellPopover } from './data_grid_cell_popover';
 describe('useCellPopover', () => {
   describe('openCellPopover', () => {
     it('sets popoverIsOpen state to true', () => {
-      const {
-        return: { cellPopoverContext },
-        getUpdatedState,
-      } = testCustomHook(() => useCellPopover());
-      expect(cellPopoverContext.popoverIsOpen).toEqual(false);
+      const { result } = renderHook(useCellPopover);
+      expect(result.current.cellPopoverContext.popoverIsOpen).toEqual(false);
 
       act(() =>
-        cellPopoverContext.openCellPopover({ rowIndex: 0, colIndex: 0 })
+        result.current.cellPopoverContext.openCellPopover({
+          rowIndex: 0,
+          colIndex: 0,
+        })
       );
-      expect(getUpdatedState().cellPopoverContext.popoverIsOpen).toEqual(true);
+      expect(result.current.cellPopoverContext.popoverIsOpen).toEqual(true);
     });
 
     it('does nothing if called again on a popover that is already open', () => {
-      const {
-        return: { cellPopoverContext, cellPopover },
-        getUpdatedState,
-      } = testCustomHook(() => useCellPopover());
-      expect(cellPopover).toBeFalsy();
+      const { result } = renderHook(useCellPopover);
+      expect(result.current.cellPopover).toBeFalsy();
 
       act(() => {
-        cellPopoverContext.openCellPopover({ rowIndex: 0, colIndex: 0 });
-        cellPopoverContext.setPopoverAnchor(document.createElement('div'));
+        result.current.cellPopoverContext.openCellPopover({
+          rowIndex: 0,
+          colIndex: 0,
+        });
+        result.current.cellPopoverContext.setPopoverAnchor(
+          document.createElement('div')
+        );
       });
-      expect(getUpdatedState().cellPopover).not.toBeFalsy();
+      expect(result.current.cellPopover).not.toBeFalsy();
 
       act(() => {
-        getUpdatedState().cellPopoverContext.openCellPopover({
+        result.current.cellPopoverContext.openCellPopover({
           rowIndex: 0,
           colIndex: 0,
         });
       });
-      expect(getUpdatedState().cellPopover).not.toBeFalsy();
+      expect(result.current.cellPopover).not.toBeFalsy();
     });
   });
 
   describe('closeCellPopover', () => {
     it('sets popoverIsOpen state to false', () => {
-      const {
-        return: { cellPopoverContext },
-        getUpdatedState,
-      } = testCustomHook(() => useCellPopover());
+      const { result } = renderHook(useCellPopover);
 
       act(() =>
-        cellPopoverContext.openCellPopover({ rowIndex: 0, colIndex: 0 })
+        result.current.cellPopoverContext.openCellPopover({
+          rowIndex: 0,
+          colIndex: 0,
+        })
       );
-      expect(getUpdatedState().cellPopoverContext.popoverIsOpen).toEqual(true);
+      expect(result.current.cellPopoverContext.popoverIsOpen).toEqual(true);
 
-      act(() => cellPopoverContext.closeCellPopover());
-      expect(getUpdatedState().cellPopoverContext.popoverIsOpen).toEqual(false);
+      act(() => result.current.cellPopoverContext.closeCellPopover());
+      expect(result.current.cellPopoverContext.popoverIsOpen).toEqual(false);
     });
   });
 
@@ -86,14 +88,11 @@ describe('useCellPopover', () => {
     };
 
     it('renders', () => {
-      const {
-        return: { cellPopoverContext, cellPopover },
-        getUpdatedState,
-      } = testCustomHook(() => useCellPopover());
-      expect(cellPopover).toBeFalsy(); // Should be empty on init
+      const { result } = renderHook(useCellPopover);
+      expect(result.current.cellPopover).toBeFalsy(); // Should be empty on init
 
-      populateCellPopover(cellPopoverContext);
-      expect(getUpdatedState().cellPopover).toMatchInlineSnapshot(`
+      populateCellPopover(result.current.cellPopoverContext);
+      expect(result.current.cellPopover).toMatchInlineSnapshot(`
         <EuiWrappingPopover
           button={<div />}
           closePopover={[Function]}
@@ -134,25 +133,16 @@ describe('useCellPopover', () => {
       mockCell.appendChild(mockPopoverAnchor);
 
       const renderCellPopover = () => {
-        const {
-          return: { cellPopoverContext },
-          getUpdatedState,
-        } = testCustomHook<ReturnType<typeof useCellPopover>>(() =>
-          useCellPopover()
-        );
-        populateCellPopover(cellPopoverContext);
+        const { result } = renderHook(useCellPopover);
+        populateCellPopover(result.current.cellPopoverContext);
+        const component = shallow(<div>{result.current.cellPopover}</div>);
 
-        const { cellPopover } = getUpdatedState();
-        const component = shallow(<div>{cellPopover}</div>);
-
-        return { component, getUpdatedState };
+        return { result, component };
       };
 
       it('closes the popover and refocuses the cell when the Escape key is pressed', () => {
-        const { component, getUpdatedState } = renderCellPopover();
-        expect(getUpdatedState().cellPopoverContext.popoverIsOpen).toEqual(
-          true
-        );
+        const { result, component } = renderCellPopover();
+        expect(result.current.cellPopoverContext.popoverIsOpen).toEqual(true);
 
         const event = {
           key: keys.ESCAPE,
@@ -165,17 +155,13 @@ describe('useCellPopover', () => {
         expect(event.preventDefault).toHaveBeenCalled();
         expect(event.stopPropagation).toHaveBeenCalled();
 
-        expect(getUpdatedState().cellPopoverContext.popoverIsOpen).toEqual(
-          false
-        );
+        expect(result.current.cellPopoverContext.popoverIsOpen).toEqual(false);
         expect(document.activeElement).toEqual(mockCell);
       });
 
       it('closes the popover when the F2 key is pressed', () => {
-        const { component, getUpdatedState } = renderCellPopover();
-        expect(getUpdatedState().cellPopoverContext.popoverIsOpen).toEqual(
-          true
-        );
+        const { result, component } = renderCellPopover();
+        expect(result.current.cellPopoverContext.popoverIsOpen).toEqual(true);
 
         const event = {
           key: keys.F2,
@@ -188,17 +174,13 @@ describe('useCellPopover', () => {
         expect(event.preventDefault).toHaveBeenCalled();
         expect(event.stopPropagation).toHaveBeenCalled();
 
-        expect(getUpdatedState().cellPopoverContext.popoverIsOpen).toEqual(
-          false
-        );
+        expect(result.current.cellPopoverContext.popoverIsOpen).toEqual(false);
         expect(document.activeElement).toEqual(mockCell);
       });
 
       it('does nothing when other keys are pressed', () => {
-        const { component, getUpdatedState } = renderCellPopover();
-        expect(getUpdatedState().cellPopoverContext.popoverIsOpen).toEqual(
-          true
-        );
+        const { result, component } = renderCellPopover();
+        expect(result.current.cellPopoverContext.popoverIsOpen).toEqual(true);
 
         const event = {
           key: keys.ENTER,
@@ -212,12 +194,12 @@ describe('useCellPopover', () => {
         expect(event.stopPropagation).not.toHaveBeenCalled();
         expect(rafSpy).not.toHaveBeenCalled();
 
-        expect(getUpdatedState().cellPopoverContext.popoverIsOpen).toEqual(
-          true
-        );
+        expect(result.current.cellPopoverContext.popoverIsOpen).toEqual(true);
       });
     });
   });
+
+  // setCellPopoverProps is tested in the Cypress .spec file
 });
 
 describe('popover content renderers', () => {
@@ -232,6 +214,7 @@ describe('popover content renderers', () => {
     cellActions: <div data-test-subj="mockCellActions">Action</div>,
     cellContentsElement,
     DefaultCellPopover,
+    setCellPopoverProps: () => {},
   };
 
   test('default cell popover', () => {

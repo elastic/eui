@@ -79,10 +79,40 @@ export default () => (
 
       <h4>This is Heading Four</h4>
 
-      <p>
-        So it thought the dog was making a poor life choice by focusing so much
-        on mindfulness. What if its car broke down?
-      </p>
+      <ol>
+        <li>
+          C
+          <ol>
+            <li>Procedural</li>
+            <li>Structured</li>
+            <li>Low-level</li>
+          </ol>
+        </li>
+        <li>
+          Java
+          <ol>
+            <li>Object-oriented</li>
+            <li>Class-based</li>
+            <li>Compiled</li>
+          </ol>
+        </li>
+        <li>
+          Python
+          <ol>
+            <li>Interpreted</li>
+            <li>High-level</li>
+            <li>Scripting</li>
+            <li>
+              Object-oriented
+              <ol>
+                <li>Dynamic typing</li>
+                <li>Garbage collection</li>
+              </ol>
+            </li>
+            <li>Functional</li>
+          </ol>
+        </li>
+      </ol>
 
       <h5>This is Heading Five</h5>
 
@@ -94,6 +124,43 @@ export default () => (
       </p>
 
       <h6>This is Heading Six</h6>
+
+      <ul>
+        <li>
+          Programming Languages
+          <ul>
+            <li>
+              Backend
+              <ul>
+                <li>Java</li>
+                <li>Python</li>
+                <li>PHP</li>
+              </ul>
+            </li>
+            <li>
+              Frontend
+              <ul>
+                <li>
+                  JavaScript
+                  <ul>
+                    <li>React.js</li>
+                    <li>Angular.js</li>
+                    <li>Vue.js</li>
+                  </ul>
+                </li>
+                <li>
+                  CSS
+                  <ul>
+                    <li>SASS</li>
+                    <li>Less</li>
+                    <li>Stylus</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
 
       <EuiHorizontalRule />
 

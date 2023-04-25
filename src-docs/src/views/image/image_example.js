@@ -38,6 +38,16 @@ const imageZoomSnippet = `<EuiImage
 />
 `;
 
+import ImageSvg from './image_svg';
+const imageSvgSource = require('!!raw-loader!./image_svg');
+const imageSvgSnippet = `<EuiImage
+  allowFullScreen
+  alt={description}
+  url={someUrl}
+  size="l"
+  width={400}
+/>
+`;
 import ImageFloat from './float';
 const imageFloatSource = require('!!raw-loader!./float');
 const imageFloatSnippet = `<EuiImage
@@ -139,6 +149,33 @@ export const ImageExample = {
       ),
       demo: <ImageSizes />,
       snippet: imageSizesSnippet,
+    },
+    {
+      title: 'Supporting SVG images',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: imageSvgSource,
+        },
+      ],
+      text: (
+        <Fragment>
+          <p>
+            If you are using an SVG source within <EuiCode>EuiImage</EuiCode>,
+            the SVG image may not show up! While this is surprising to the user,
+            if your image doesn&apos;t have a width or viewbox set, it is
+            behaving in accordance with the SVG spec.
+          </p>
+          <p>
+            In order to work with an SVG image that lacks a defined size,
+            you&apos;ll want to set a <EuiCode>size</EuiCode> prop. If you are
+            using the <EuiCode>allowFullScreen</EuiCode> prop as well, you will
+            also want to add a <EuiCode>width</EuiCode> prop.
+          </p>
+        </Fragment>
+      ),
+      demo: <ImageSvg />,
+      snippet: imageSvgSnippet,
     },
     {
       title: 'Float images within text',

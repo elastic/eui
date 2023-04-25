@@ -14,7 +14,10 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
+import { useEuiI18n } from '../../i18n';
+import { EuiIcon } from '../../icon';
 import { EuiText } from '../../text';
+
 import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
@@ -42,32 +45,57 @@ export type EuiFormControlLayoutDelimitedProps = Partial<
 export const EuiFormControlLayoutDelimited: FunctionComponent<EuiFormControlLayoutDelimitedProps> = ({
   startControl,
   endControl,
-  delimiter = '→',
+  delimiter,
   className,
   ...rest
 }) => {
-  const classes = classNames('euiFormControlLayoutDelimited', className);
+  const { isInvalid, isDisabled, readOnly } = rest;
+  const showInvalidState = isInvalid && !isDisabled && !readOnly;
+
+  const classes = classNames('euiFormControlLayoutDelimited', className, {
+    'euiFormControlLayoutDelimited--isInvalid': showInvalidState,
+  });
 
   return (
-    <EuiFormControlLayout className={classes} {...rest}>
+    <EuiFormControlLayout className={classes} iconsPosition="static" {...rest}>
       {addClassesToControl(startControl)}
-      <EuiText
-        className="euiFormControlLayoutDelimited__delimeter"
-        size="s"
-        color="subdued"
-      >
-        {delimiter}
-      </EuiText>
+      <EuiFormControlDelimiter
+        delimiter={delimiter}
+        isInvalid={showInvalidState}
+      />
       {addClassesToControl(endControl)}
     </EuiFormControlLayout>
   );
 };
 
-function addClassesToControl(control: ReactElement) {
+const addClassesToControl = (control: ReactElement) => {
   return cloneElement(control, {
     className: classNames(
       control.props.className,
       'euiFormControlLayoutDelimited__input'
     ),
   });
-}
+};
+
+const EuiFormControlDelimiter = ({
+  delimiter,
+  isInvalid,
+}: {
+  delimiter?: ReactNode;
+  isInvalid?: boolean;
+}) => {
+  const defaultAriaLabel = useEuiI18n(
+    'euiFormControlLayoutDelimited.delimiterLabel',
+    'to'
+  );
+
+  return (
+    <EuiText
+      className="euiFormControlLayoutDelimited__delimiter"
+      size="s"
+      color={isInvalid ? 'danger' : 'subdued'}
+    >
+      {delimiter ?? <EuiIcon type="sortRight" aria-label={defaultAriaLabel} />}
+    </EuiText>
+  );
+};

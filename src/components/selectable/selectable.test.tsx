@@ -49,7 +49,7 @@ describe('EuiSelectable', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test('should not reset the activeOptionIndex nor isFocused when EuiSelectable is blurred in favour of its popover', () => {
+  test('should not reset the activeOptionIndex nor isFocused when EuiSelectable is blurred in favour of its search/listbox', () => {
     const component = mount(
       <EuiSelectable options={options} searchable>
         {(list, search) => (
@@ -67,9 +67,10 @@ describe('EuiSelectable', () => {
     });
     expect(component.state()).toMatchSnapshot();
 
-    component.find('.euiSelectable').simulate('blur', {
-      relatedTarget: { firstChild: { id: 'generated-id_listbox' } },
-    });
+    const listBox = component.find('div.euiSelectableList__list').getDOMNode();
+    component
+      .find('.euiSelectable')
+      .simulate('blur', { relatedTarget: listBox });
     component.update();
     expect(component.state()).toMatchSnapshot();
   });
@@ -383,6 +384,7 @@ describe('EuiSelectable', () => {
           {(list) => list}
         </EuiSelectable>
       );
+      const target = component.find('div.euiSelectableList__list').getDOMNode();
 
       component.find('[role="option"]').first().simulate('click');
       expect(onChange).toHaveBeenCalledTimes(1);
@@ -393,7 +395,7 @@ describe('EuiSelectable', () => {
         checked: 'on',
       });
 
-      component.simulate('keydown', { key: 'Enter', shiftKey: true });
+      component.simulate('keydown', { key: 'Enter', target });
       expect(onChange).toHaveBeenCalledTimes(2);
       expect(onChange.mock.calls[1][0][0].checked).toEqual('on');
       expect(onChange.mock.calls[1][1].type).toEqual('keydown');
@@ -401,6 +403,24 @@ describe('EuiSelectable', () => {
         ...options[0],
         checked: 'on',
       });
+    });
+
+    it('does not call onChange on keydown when focus is not on the search/listbox', () => {
+      const onChange = jest.fn();
+      const component = mount(
+        <EuiSelectable options={options} onChange={onChange}>
+          {(list) => (
+            <>
+              <button id="test">test</button>
+              {list}
+            </>
+          )}
+        </EuiSelectable>
+      );
+      const target = component.find('#test').getDOMNode();
+
+      component.simulate('keydown', { key: 'Enter', target });
+      expect(onChange).toHaveBeenCalledTimes(0);
     });
   });
 
@@ -412,12 +432,32 @@ describe('EuiSelectable', () => {
           {(list) => list}
         </EuiSelectable>
       );
+      const target = component.find('div.euiSelectableList__list').getDOMNode();
 
-      component.simulate('keydown', { key: 'ArrowDown' });
+      component.simulate('keydown', { key: 'ArrowDown', target });
       expect(callback).toHaveBeenCalledWith(options[0]);
 
-      component.simulate('keydown', { key: 'ArrowUp' });
+      component.simulate('keydown', { key: 'ArrowUp', target });
       expect(callback).toHaveBeenCalledWith(options[2]);
+    });
+
+    it('does not change internal activeOptionIndex state on keydown when focus is not on the search/listbox', () => {
+      const callback = jest.fn();
+      const component = mount(
+        <EuiSelectable options={options} onActiveOptionChange={callback}>
+          {(list) => (
+            <>
+              <button id="test">test</button>
+              {list}
+            </>
+          )}
+        </EuiSelectable>
+      );
+      const target = component.find('#test').getDOMNode();
+
+      component.simulate('keydown', { key: 'ArrowDown', target });
+      component.simulate('keydown', { key: 'ArrowUp', target });
+      expect(callback).toHaveBeenCalledTimes(0);
     });
 
     it('handles the active option changing due to searching', () => {
@@ -437,8 +477,9 @@ describe('EuiSelectable', () => {
           )}
         </EuiSelectable>
       );
+      const target = component.find('input[type="search"]').getDOMNode();
 
-      component.simulate('keydown', { key: 'ArrowDown' });
+      component.simulate('keydown', { key: 'ArrowDown', target });
       expect(callback).toHaveBeenCalledWith(options[2]); // Pandora
     });
   });
@@ -475,6 +516,56 @@ describe('EuiSelectable', () => {
       );
 
       expect(component).toMatchSnapshot();
+    });
+  });
+
+  describe('screen reader instructions', () => {
+    it('sets default accessibility instructions correctly', () => {
+      const searchProps = {
+        value: 'Enceladus',
+        'data-test-subj': 'searchInput',
+      };
+      const component = mount(
+        <EuiSelectable options={options} searchable searchProps={searchProps}>
+          {(list, search) => (
+            <>
+              {list}
+              {search}
+            </>
+          )}
+        </EuiSelectable>
+      );
+
+      expect(component.find('p#generated-id_instructions').text()).toEqual(
+        ' Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.'
+      );
+    });
+
+    it('sets custom accessibility instructions correctly', () => {
+      const searchProps = {
+        value: 'Enceladus',
+        'data-test-subj': 'searchInput',
+      };
+      const component = mount(
+        <EuiSelectable
+          selectableScreenReaderText="Custom screenreader instructions."
+          options={options}
+          searchable
+          searchProps={searchProps}
+        >
+          {(list, search) => (
+            <>
+              {list}
+              {search}
+            </>
+          )}
+        </EuiSelectable>
+      );
+
+      expect(component).toMatchSnapshot();
+      expect(component.find('p#generated-id_instructions').text()).toEqual(
+        'Custom screenreader instructions. Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.'
+      );
     });
   });
 });

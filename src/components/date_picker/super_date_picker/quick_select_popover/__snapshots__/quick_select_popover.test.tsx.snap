@@ -108,7 +108,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
               </option>
             </select>
             <div
-              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
             >
               <span
                 class="euiFormControlLayoutCustomIcon"
@@ -134,6 +134,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
           >
             <input
               aria-describedby="generated-id generated-id"
+              aria-invalid="false"
               aria-label="Time value"
               class="euiFieldNumber euiFieldNumber--compressed"
               type="number"
@@ -193,7 +194,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
               </option>
             </select>
             <div
-              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
             >
               <span
                 class="euiFormControlLayoutCustomIcon"

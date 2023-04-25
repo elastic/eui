@@ -19,7 +19,7 @@ Array [
     </div>
   </div>,
   <div
-    class="euiPopoverFooter emotion-euiPopoverFooter-l"
+    class="euiPopoverFooter emotion-euiPopoverFooter-l-l"
   >
     <div
       class="euiFlexGroup emotion-euiFlexGroup-wrap-s-flexStart-stretch-row"
@@ -46,7 +46,6 @@ exports[`EuiDataGridCell renders 1`] = `
   data-gridcell-visible-row-index="0"
   data-test-subj="dataGridRowCell"
   role="gridcell"
-  style="top:0"
   tabindex="-1"
 >
   <div

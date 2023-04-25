@@ -21,7 +21,6 @@ import { CommonProps, ExclusiveUnion, PropsOf } from '../common';
 import {
   useEuiTheme,
   UseEuiTheme,
-  euiPaletteColorBlindBehindText,
   getSecureRelForTarget,
   isColorDark,
   wcagContrastMin,
@@ -32,6 +31,7 @@ import { chromaValid, parseColor } from '../color_picker/utils';
 import { validateHref } from '../../services/security/href_validator';
 
 import { euiBadgeStyles } from './badge.styles';
+import { euiButtonFillColor } from '../../themes/amsterdam/global_styling/mixins';
 
 export const ICON_SIDES = ['left', 'right'] as const;
 type IconSide = typeof ICON_SIDES[number];
@@ -46,11 +46,6 @@ export const COLORS = [
   'danger',
 ] as const;
 type BadgeColor = typeof COLORS[number];
-
-// The color blind palette has some stricter accessibility needs with regards to
-// charts and contrast. We use the euiPaletteColorBlindBehindText variant here since our
-// accessibility concerns pertain to foreground (text) and background contrast
-const visColors = euiPaletteColorBlindBehindText();
 
 type WithButtonProps = {
   /**
@@ -139,16 +134,6 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   const isDisabled = _isDisabled || !isHrefValid;
 
   const optionalCustomStyles = useMemo(() => {
-    const colorToHexMap: { [color in BadgeColor]: string } = {
-      default: euiTheme.euiTheme.colors.lightShade,
-      hollow: '',
-      primary: visColors[1],
-      success: visColors[0],
-      accent: visColors[2],
-      warning: visColors[5],
-      danger: visColors[9],
-    };
-
     let textColor = null;
     let contrastRatio = null;
     let colorHex = null;
@@ -156,10 +141,24 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     try {
       // Check if a valid color name was provided
       if (COLORS.includes(color as BadgeColor)) {
-        if (color === 'hollow') return style; // hollow uses its own CSS class
-
         // Get the hex equivalent for the provided color name
-        colorHex = colorToHexMap[color as BadgeColor];
+        switch (color) {
+          case 'hollow':
+            return style; // hollow uses its own Emotion class
+          case 'default':
+            colorHex = euiTheme.euiTheme.colors.lightShade;
+            break;
+          default:
+            type RemainingColors =
+              | 'primary'
+              | 'success'
+              | 'accent'
+              | 'warning'
+              | 'danger';
+            colorHex = euiButtonFillColor(euiTheme, color as RemainingColors)
+              .backgroundColor;
+            break;
+        }
 
         // Set dark or light text color based upon best contrast
         textColor = setTextColor(euiTheme, colorHex);

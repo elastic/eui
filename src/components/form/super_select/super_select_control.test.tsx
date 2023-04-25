@@ -88,6 +88,24 @@ describe('EuiSuperSelectControl', () => {
 
       expect(component).toMatchSnapshot();
     });
+
+    test('placeholder is rendered', () => {
+      const component = render(
+        <EuiSuperSelectControl
+          options={[
+            { value: '1', inputDisplay: 'Option #1' },
+            { value: '2', inputDisplay: 'Option #2' },
+          ]}
+          placeholder="Select an option"
+          onChange={() => {}}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+      expect(
+        component.find('.euiSuperSelectControl__placeholder')
+      ).toBeTruthy();
+    });
   });
 
   describe('inherits', () => {

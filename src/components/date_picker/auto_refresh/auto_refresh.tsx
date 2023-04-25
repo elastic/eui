@@ -146,6 +146,9 @@ export const EuiAutoRefreshButton: FunctionComponent<EuiAutoRefreshButtonProps> 
       closePopover={() => {
         setIsPopoverOpen(false);
       }}
+      popoverScreenReaderText={
+        isPaused ? autoRefeshLabelOff : autoRefeshLabelOn
+      }
     >
       <EuiRefreshInterval
         onRefreshChange={onRefreshChange}

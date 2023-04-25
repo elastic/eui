@@ -12,7 +12,8 @@ import { render, mount } from 'enzyme';
 import { findTestSubject, requiredProps } from '../../../test';
 
 import { EuiForm } from '../form';
-import { EuiFormControlLayout, ICON_SIDES } from './form_control_layout';
+import { EuiFormControlLayout } from './form_control_layout';
+import { ICON_SIDES } from './form_control_layout_icons';
 
 jest.mock('../../', () => ({
   EuiIcon: 'eui_icon',
@@ -34,14 +35,14 @@ describe('EuiFormControlLayout', () => {
     describe('icon', () => {
       describe('is rendered', () => {
         test('as a string', () => {
-          const component = render(<EuiFormControlLayout icon="alert" />);
+          const component = render(<EuiFormControlLayout icon="error" />);
 
           expect(component).toMatchSnapshot();
         });
 
         test('as an object', () => {
           const icon = {
-            type: 'alert',
+            type: 'error',
             className: 'customClass',
             'data-test-subj': 'myIcon',
           };
@@ -56,7 +57,7 @@ describe('EuiFormControlLayout', () => {
         ICON_SIDES.forEach((side) => {
           test(`${side} is rendered`, () => {
             const icon = {
-              type: 'alert',
+              type: 'error',
               side,
             };
 
@@ -70,7 +71,7 @@ describe('EuiFormControlLayout', () => {
       describe('onClick', () => {
         test('is called when clicked', () => {
           const icon = {
-            type: 'alert',
+            type: 'error',
             onClick: jest.fn(),
             'data-test-subj': 'myIcon',
           };
@@ -131,12 +132,26 @@ describe('EuiFormControlLayout', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('iconsPosition', () => {
+      const component = render(
+        <EuiFormControlLayout
+          iconsPosition="static"
+          icon="calendar"
+          isLoading
+          isInvalid
+          {...requiredProps}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     describe('compressed', () => {
       it('renders small-sized icon, clear button, and loading spinner', () => {
         const component = render(
           <EuiFormControlLayout
             compressed
-            icon={{ type: 'alert' }}
+            icon={{ type: 'error' }}
             clear={{ onClick: jest.fn() }}
             isLoading
           />

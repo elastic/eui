@@ -33,12 +33,12 @@ export const EuiPopoverFooter: EuiPopoverFooterProps = ({
 }) => {
   const { paddingSize: panelPadding } = useContext(EuiPopoverPanelContext);
   const euiTheme = useEuiTheme();
-  const styles = euiPopoverFooterStyles(euiTheme, panelPadding);
+  const styles = euiPopoverFooterStyles(euiTheme);
   const paddingStyles = useEuiPaddingCSS();
   const cssStyles = [
     styles.euiPopoverFooter,
-    // If a paddingSize is not directly provided, inherit from the EuiPopoverPanel
-    paddingStyles[paddingSize || panelPadding],
+    styles.panelPaddingSizes[panelPadding],
+    paddingStyles[paddingSize || panelPadding], // If a paddingSize is not directly provided, inherit from the EuiPopoverPanel
   ];
 
   const classes = classNames('euiPopoverFooter', className);

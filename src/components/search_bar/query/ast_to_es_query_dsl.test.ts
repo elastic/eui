@@ -25,6 +25,13 @@ describe('astToEsQueryDsl', () => {
     expect(query).toMatchSnapshot();
   });
 
+  test('ast·-·\'"john·smith"·-"sales team"\'', () => {
+    const query = astToEsQueryDsl(
+      AST.create([AST.Term.must('john smith'), AST.Term.mustNot('sales team')])
+    );
+    expect(query).toMatchSnapshot();
+  });
+
   test("ast - '-group:es group:kibana -group:beats group:logstash'", () => {
     const query = astToEsQueryDsl(
       AST.create([
