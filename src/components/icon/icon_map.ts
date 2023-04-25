@@ -379,6 +379,7 @@ export const typeToPathMap = {
   tear: 'tear',
   temperature: 'temperature',
   timeline: 'timeline',
+  timelineArrow: 'timeline_arrow',
   timelionApp: 'app_timelion',
   timeRefresh: 'timeRefresh',
   timeslider: 'timeslider',
