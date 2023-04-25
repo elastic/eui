@@ -85,7 +85,7 @@ export const InlineEditExample = {
       props: { EuiInlineEditTitle },
     },
     {
-      title: 'Retrieving edited text',
+      title: 'Saving edited text',
       text: (
         <>
           <p>
