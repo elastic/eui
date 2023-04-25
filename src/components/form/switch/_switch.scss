@@ -2,6 +2,9 @@
 // stylelint-disable max-nesting-depth
 
 .euiSwitch {
+  $euiSwitchOffDisabledColor: lightOrDarkTheme(transparentize($euiColorLightShade, .5), transparentize($euiColorDarkShade, .4));
+  $euiSwitchDisabledThumbColor: lightOrDarkTheme(transparentize($euiColorDarkShade, .5), $euiColorDarkShade);
+
   position: relative;
   display: inline-flex;
   align-items: flex-start;
@@ -51,12 +54,12 @@
       }
 
       .euiSwitch__body {
-        background-color: lightOrDarkTheme(transparentize($euiColorLightShade, .5), transparentize($euiColorDarkShade, .4));
+        background-color: $euiSwitchOffDisabledColor;
       }
 
       .euiSwitch__thumb {
         background-color: rgba(0,0,0,0);
-        border-color: lightOrDarkTheme(transparentize($euiColorDarkShade, .5), $euiColorDarkShade);
+        border-color: $euiSwitchDisabledThumbColor;
         box-shadow: none;
       }
 
@@ -195,7 +198,7 @@
     .euiSwitch__button[aria-checked='false'],
     .euiSwitch__button[aria-checked='true']:disabled {
       .euiSwitch__thumb {
-        border-color: $euiFormCustomControlBorderColor;
+        border-color: $euiSwitchDisabledThumbColor;
       }
     }
 
