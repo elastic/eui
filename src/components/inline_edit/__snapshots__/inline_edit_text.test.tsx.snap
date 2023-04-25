@@ -1,11 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiInlineEditText props renders as text 1`] = `
+exports[`EuiInlineEditText renders 1`] = `
 <div
   class="euiInlineEdit euiInlineEditText testClass1 testClass2 emotion-euiInlineEditText-m-m"
 >
   <button
     class="euiButtonEmpty euiButtonEmpty--flushBoth css-wvaqcf-empty-text"
+    data-test-subj="euiInlineReadModeButton"
     type="button"
   >
     <span
@@ -22,7 +23,100 @@ exports[`EuiInlineEditText props renders as text 1`] = `
         <div
           class="euiText eui-textTruncate emotion-euiText-m"
         >
-          hello world
+          Hello World!
+        </div>
+      </span>
+    </span>
+  </button>
+</div>
+`;
+
+exports[`EuiInlineEditText text sizes renders m 1`] = `
+<div
+  class="euiInlineEdit euiInlineEditText testClass1 testClass2 emotion-euiInlineEditText-m-m"
+>
+  <button
+    class="euiButtonEmpty euiButtonEmpty--flushBoth css-wvaqcf-empty-text"
+    data-test-subj="euiInlineReadModeButton"
+    type="button"
+  >
+    <span
+      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    >
+      <span
+        class="euiButtonContent__icon"
+        color="inherit"
+        data-euiicon-type="pencil"
+      />
+      <span
+        class="euiButtonEmpty__text"
+      >
+        <div
+          class="euiText eui-textTruncate emotion-euiText-m"
+        >
+          Hello World!
+        </div>
+      </span>
+    </span>
+  </button>
+</div>
+`;
+
+exports[`EuiInlineEditText text sizes renders s 1`] = `
+<div
+  class="euiInlineEdit euiInlineEditText testClass1 testClass2 emotion-euiInlineEditText-s-s"
+>
+  <button
+    class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-wvaqcf-empty-text"
+    data-test-subj="euiInlineReadModeButton"
+    type="button"
+  >
+    <span
+      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    >
+      <span
+        class="euiButtonContent__icon"
+        color="inherit"
+        data-euiicon-type="pencil"
+      />
+      <span
+        class="euiButtonEmpty__text"
+      >
+        <div
+          class="euiText eui-textTruncate emotion-euiText-s"
+        >
+          Hello World!
+        </div>
+      </span>
+    </span>
+  </button>
+</div>
+`;
+
+exports[`EuiInlineEditText text sizes renders xs 1`] = `
+<div
+  class="euiInlineEdit euiInlineEditText testClass1 testClass2 emotion-euiInlineEditText-xs-xs"
+>
+  <button
+    class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-wvaqcf-empty-text"
+    data-test-subj="euiInlineReadModeButton"
+    type="button"
+  >
+    <span
+      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    >
+      <span
+        class="euiButtonContent__icon"
+        color="inherit"
+        data-euiicon-type="pencil"
+      />
+      <span
+        class="euiButtonEmpty__text"
+      >
+        <div
+          class="euiText eui-textTruncate emotion-euiText-xs"
+        >
+          Hello World!
         </div>
       </span>
     </span>

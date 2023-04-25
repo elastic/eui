@@ -10,20 +10,39 @@ import React from 'react';
 import { render } from '../../test/rtl';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiInlineEditText } from './inline_edit_text';
+import { EuiInlineEditText, EuiInlineEditTextProps } from './inline_edit_text';
+import { TEXT_SIZES } from '../text/text';
 
 describe('EuiInlineEditText', () => {
-  describe('props', () => {
-    test('renders as text', () => {
-      const { container } = render(
-        <EuiInlineEditText
-          inputAriaLabel={'textInput'}
-          defaultValue="hello world"
-          {...requiredProps}
-        />
-      );
+  const inlineEditTextProps: EuiInlineEditTextProps = {
+    ...requiredProps,
+    inputAriaLabel: 'Edit text inline',
+    defaultValue: 'Hello World!',
+  };
 
-      expect(container.firstChild).toMatchSnapshot();
+  it('renders', () => {
+    const { container } = render(
+      <EuiInlineEditText {...inlineEditTextProps} />
+    );
+
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  describe('text sizes', () => {
+    // Remove 'relative' from text sizes available for EuiInlineEditText
+    const availableTextSizes = TEXT_SIZES.filter((size) => size !== 'relative');
+
+    availableTextSizes.forEach((size: string) => {
+      test(`renders ${size}`, () => {
+        const { container } = render(
+          <EuiInlineEditText
+            {...inlineEditTextProps}
+            size={size as EuiInlineEditTextProps['size']}
+          />
+        );
+
+        expect(container.firstChild).toMatchSnapshot();
+      });
     });
   });
 });

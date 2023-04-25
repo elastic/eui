@@ -39,7 +39,7 @@ export const EuiInlineEditText: FunctionComponent<EuiInlineEditTextProps> = ({
   startWithEditOpen,
   readModeProps,
   editModeProps,
-  isLoading = false,
+  isLoading,
   isInvalid = false,
   ...rest
 }) => {

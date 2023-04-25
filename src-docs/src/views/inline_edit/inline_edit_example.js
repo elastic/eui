@@ -20,6 +20,9 @@ const inlineEditTitleSource = require('!!raw-loader!./inline_edit_title');
 import InlineEditModeProps from './inline_edit_mode_props';
 const inlineEditModePropsSource = require('!!raw-loader!./inline_edit_mode_props');
 
+import InlineEditSave from './inline_edit_save';
+const inlineEditSaveSource = require('!!raw-loader!././inline_edit_save');
+
 import InlineEditConfirm from './inline_edit_confirm';
 const inlineEditConfirmSource = require('!!raw-loader!././inline_edit_confirm');
 
@@ -38,6 +41,7 @@ export const InlineEditExample = {
       </EuiText>
     </>
   ),
+  isNew: true,
   sections: [
     {
       title: 'Display and edit basic text',
@@ -79,6 +83,26 @@ export const InlineEditExample = {
       ],
       demo: <InlineEditTitle />,
       props: { EuiInlineEditTitle },
+    },
+    {
+      title: 'Saving edited text',
+      text: (
+        <>
+          <p>
+            Use the <EuiCode>onSave</EuiCode> property to retrieve the value of
+            the edited text when the save button is pressed, and the{' '}
+            <EuiCode>onConfirm</EuiCode> callback (if passed) returns{' '}
+            <EuiCode>true</EuiCode> .{' '}
+          </p>
+        </>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: inlineEditSaveSource,
+        },
+      ],
+      demo: <InlineEditSave />,
     },
     {
       title: 'Loading and invalid states',
