@@ -68,7 +68,7 @@ describe('euiFormVariables', () => {
     expect(result.current.controlPlaceholderText).toEqual('#878b95');
     expect(result.current.inputGroupLabelBackground).toEqual('#2c2f37');
     expect(result.current.customControlDisabledIconColor).toEqual('#33373f');
-    expect(result.current.customControlBorderColor).toEqual('#1e1f26');
+    expect(result.current.customControlBorderColor).toEqual('#16171c');
   });
 });
 
