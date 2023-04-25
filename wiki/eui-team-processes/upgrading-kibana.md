@@ -116,6 +116,10 @@ node x-pack/plugins/observability/scripts/e2e.js --server
 node scripts/functional_test_runner/ --config x-pack/plugins/observability/e2e/synthetics_run.ts --bail --no-headless
 ```
 
+### Debugging Kibana plugins
+
+Some EUI component usages are in `src/plugins/` as opposed to Kibana's `src/` or `x-pack/` folders (which hot reload automatically on page refresh). Kibana plugins **do not** update automatically unless you start a `yarn kbn watch` process in a new terminal alongside `yarn start`.
+
 ### Other
 
 Most other issues reported by CI (e.g., Check Doc API Changes) will contain resolution instructions. Some failures (e.g.  Build API Docs) may be intermittent failures and can be resolved by re-starting CI by leaving a comment of `@elasticmachine merge upstream`.
