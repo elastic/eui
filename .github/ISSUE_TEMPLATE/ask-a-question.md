@@ -1,5 +1,5 @@
 ---
-name: Ask a question
+name: ❓ Usage question
 about: Ask for help with usage
 title: ''
 labels: question
