@@ -87,14 +87,12 @@ export const InlineEditExample = {
     {
       title: 'Saving edited text',
       text: (
-        <>
-          <p>
-            Use the <EuiCode>onSave</EuiCode> property to retrieve the value of
-            the edited text when the save button is pressed, and the{' '}
-            <EuiCode>onConfirm</EuiCode> callback (if passed) returns{' '}
-            <EuiCode>true</EuiCode> .{' '}
-          </p>
-        </>
+        <p>
+          Use the <EuiCode>onSave</EuiCode> property to retrieve the value of
+          the edited text when the save button is pressed.{' '}
+          <EuiCode>onSave</EuiCode> does not fire if the user cancels their
+          edit.
+        </p>
       ),
       source: [
         {
