@@ -11,6 +11,7 @@ import React, {
   FunctionComponent,
   useState,
   HTMLAttributes,
+  MouseEvent,
 } from 'react';
 import classNames from 'classnames';
 
@@ -57,7 +58,7 @@ export type EuiInlineEditCommonProps = HTMLAttributes<HTMLDivElement> &
     /**
      * Props that will be applied directly to the EuiEmptyButton displayed in readMode
      */
-    readModeProps?: Omit<EuiButtonEmptyPropsForButton, 'onClick'>;
+    readModeProps?: Partial<EuiButtonEmptyPropsForButton>;
     /**
      * Props that will be applied directly to the `EuiFormRow`, `EuiFieldText` input, and save/cancel buttons displayed in editMode
      */
@@ -202,6 +203,10 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
                 iconSize={sizes.iconSize}
                 data-test-subj="euiInlineEditModeSaveButton"
                 {...editModeProps?.saveButtonProps}
+                onClick={(e: MouseEvent<HTMLButtonElement>) => {
+                  saveInlineEditValue();
+                  editModeProps?.saveButtonProps?.onClick?.(e);
+                }}
               />
             </EuiSkeletonRectangle>
           </EuiFormRow>
@@ -224,6 +229,10 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
                 iconSize={sizes.iconSize}
                 data-test-subj="euiInlineEditModeCancelButton"
                 {...editModeProps?.cancelButtonProps}
+                onClick={(e: MouseEvent<HTMLButtonElement>) => {
+                  cancelInlineEdit();
+                  editModeProps?.cancelButtonProps?.onClick?.(e);
+                }}
               />
             </EuiSkeletonRectangle>
           </EuiFormRow>
@@ -241,11 +250,12 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
       flush="both"
       iconSize={sizes.iconSize}
       size={sizes.buttonSize}
-      onClick={() => {
-        setIsEditing(!isEditing);
-      }}
       data-test-subj="euiInlineReadModeButton"
       {...readModeProps}
+      onClick={(e) => {
+        setIsEditing(!isEditing);
+        readModeProps?.onClick?.(e);
+      }}
     >
       {children(readModeValue)}
     </EuiButtonEmpty>

@@ -183,17 +183,22 @@ describe('EuiInlineEditForm', () => {
   });
 
   describe('Toggling between readMode and editMode', () => {
+    const onClick = jest.fn();
     const onSave = jest.fn();
-    beforeEach(() => onSave.mockReset());
+    beforeEach(() => jest.resetAllMocks());
 
     it('clicking on the readModeButton takes us to editMode', () => {
       const { getByTestSubject, queryByTestSubject } = render(
-        <EuiInlineEditForm {...commonInlineEditFormProps} />
+        <EuiInlineEditForm
+          {...commonInlineEditFormProps}
+          readModeProps={{ onClick }}
+        />
       );
 
       fireEvent.click(getByTestSubject('euiInlineReadModeButton'));
       expect(getByTestSubject('euiInlineEditModeInput')).toBeTruthy();
       expect(queryByTestSubject('euiInlineReadModeButton')).toBeFalsy();
+      expect(onClick).toHaveBeenCalledTimes(1);
     });
 
     it('saves text and returns to readMode', () => {
@@ -202,6 +207,7 @@ describe('EuiInlineEditForm', () => {
           {...commonInlineEditFormProps}
           startWithEditOpen={true}
           onSave={onSave}
+          editModeProps={{ saveButtonProps: { onClick } }} // Consumers might call this over onSave for, e.g. tracking invalid vs valid saves
         />
       );
 
@@ -216,6 +222,7 @@ describe('EuiInlineEditForm', () => {
       expect(getByTestSubject('euiInlineReadModeButton')).toBeTruthy();
       expect(getByText('New message!')).toBeTruthy();
       expect(onSave).toHaveBeenCalledWith('New message!');
+      expect(onClick).toHaveBeenCalledTimes(1);
     });
 
     it('cancels text and returns to readMode', () => {
@@ -224,6 +231,7 @@ describe('EuiInlineEditForm', () => {
           {...commonInlineEditFormProps}
           startWithEditOpen={true}
           onSave={onSave}
+          editModeProps={{ cancelButtonProps: { onClick } }}
         />
       );
 
@@ -238,6 +246,7 @@ describe('EuiInlineEditForm', () => {
       expect(getByTestSubject('euiInlineReadModeButton')).toBeTruthy();
       expect(getByText('Hello World!')).toBeTruthy();
       expect(onSave).not.toHaveBeenCalled();
+      expect(onClick).toHaveBeenCalledTimes(1);
     });
 
     describe('onSave validation', () => {
