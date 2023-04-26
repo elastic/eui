@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import find from 'lodash/find';
 import findIndex from 'lodash/findIndex';
 
+import { css } from '@emotion/react';
+import { logicalCSSWithFallback } from '../../../../src/global_styling';
+
 import {
   EuiCollapsibleNav,
   EuiCollapsibleNavGroup,
@@ -148,6 +151,11 @@ const CollapsibleNavAll = () => {
         </EuiHeaderSectionItemButton>
       }
       onClose={() => setNavIsOpen(false)}
+      css={css`
+        @media (max-height: 15em) {
+          ${logicalCSSWithFallback('overflow-y', 'auto')}
+        }
+      `} // Accessibility - Add scroll to nav on very small screens
     >
       {/* Dark deployments section */}
       <EuiFlexItem grow={false} style={{ flexShrink: 0 }}>
@@ -176,7 +184,6 @@ const CollapsibleNavAll = () => {
       <EuiFlexItem grow={false} style={{ flexShrink: 0 }}>
         <EuiCollapsibleNavGroup
           background="light"
-          className="eui-yScroll"
           style={{ maxHeight: '40vh' }}
         >
           <EuiPinnableListGroup
@@ -197,7 +204,16 @@ const CollapsibleNavAll = () => {
       <EuiHorizontalRule margin="none" />
 
       {/* BOTTOM */}
-      <EuiFlexItem className="eui-yScroll">
+      <EuiFlexItem
+        className="eui-yScroll"
+        css={css`
+          @media (max-height: 15em) {
+            flex-shrink: 0 !important;
+            flex-grow: 1 !important;
+            flex-basis: auto !important;
+          }
+        `} // Accessibility - Allows nav items to be seen and interacted with on very small screen sizes
+      >
         {/* Kibana section */}
         <EuiCollapsibleNavGroup
           title={
