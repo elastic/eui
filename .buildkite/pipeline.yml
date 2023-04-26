@@ -1,4 +1,4 @@
-## 🏠/.buildkite/pipeline_example.yml
+## 🏠/.buildkite/pipeline.yml
 
 steps:
   - label: ":wave: Greetings!"
