@@ -36,15 +36,14 @@ export type EuiInlineEditCommonProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
     defaultValue: string;
     /**
-     * Callback that passes the updated value of the edited text when the save button is pressed,
-     * and the `onConfirm` callback (if passed) returns true
+     * Callback that fires when a user clicks the save button.
+     * Passes the current edited text value as an argument.
+     *
+     * To validate the value of the edited text, pass back a boolean flag.
+     * If `false`, EuiInlineEdit will remain in edit mode, where loading or invalid states can be set.
+     * If `true`, EuiInlineEdit will return to read mode.
      */
-    onSave?: (onSaveValue: string) => void;
-    /**
-     * Callback that fires when users click the save button, but before the text actually saves. Passes the current edited
-     * text value as an argument.
-     */
-    onConfirm?: (editModeValue: string) => boolean;
+    onSave?: (value: string) => void | boolean | Promise<boolean | void>;
     /**
      * Form label that appears above the form control
      * This is required for accessibility because there is no visual label on the input
@@ -116,7 +115,6 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   children,
   sizes,
   defaultValue,
-  onConfirm,
   inputAriaLabel,
   saveButtonAriaLabel,
   cancelButtonAriaLabel,
@@ -155,15 +153,17 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
     setIsEditing(!isEditing);
   };
 
-  const saveInlineEditValue = () => {
-    if (onConfirm && !onConfirm(editModeValue)) {
-      // If an onConfirm method is present, and it has returned false, cancel the action
-      return;
-    } else {
-      setReadModeValue(editModeValue);
-      setIsEditing(!isEditing);
-      onSave?.(editModeValue);
+  const saveInlineEditValue = async () => {
+    // If an onSave callback is present, and returns false, stay in edit mode
+    if (onSave) {
+      const onSaveReturn = onSave(editModeValue);
+      const awaitedReturn =
+        onSaveReturn instanceof Promise ? await onSaveReturn : onSaveReturn;
+      if (awaitedReturn === false) return;
     }
+
+    setReadModeValue(editModeValue);
+    setIsEditing(!isEditing);
   };
 
   const editModeForm = (

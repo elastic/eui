@@ -9,7 +9,7 @@
 import React from 'react';
 import { render } from '../../test/rtl';
 import { requiredProps } from '../../test/required_props';
-import { fireEvent } from '@testing-library/dom';
+import { fireEvent, act, waitFor } from '@testing-library/react';
 
 import {
   EuiInlineEditForm,
@@ -165,28 +165,12 @@ describe('EuiInlineEditForm', () => {
         getByTestSubject('euiInlineEditModeCancelButton')
       ).not.toBeDisabled();
     });
-
-    it('returns the latest value within EuiFieldText upon saving', () => {
-      const onSaveFunction = jest.fn();
-
-      const { getByTestSubject } = render(
-        <EuiInlineEditForm
-          {...commonInlineEditFormProps}
-          startWithEditOpen={true}
-          onSave={onSaveFunction}
-        />
-      );
-
-      fireEvent.change(getByTestSubject('euiInlineEditModeInput'), {
-        target: { value: 'New message!' },
-      });
-      fireEvent.click(getByTestSubject('euiInlineEditModeSaveButton'));
-
-      expect(onSaveFunction).toHaveBeenCalledWith('New message!');
-    });
   });
 
   describe('Toggling between readMode and editMode', () => {
+    const onSave = jest.fn();
+    beforeEach(() => onSave.mockReset());
+
     it('clicking on the readModeButton takes us to editMode', () => {
       const { getByTestSubject, queryByTestSubject } = render(
         <EuiInlineEditForm {...commonInlineEditFormProps} />
@@ -202,6 +186,7 @@ describe('EuiInlineEditForm', () => {
         <EuiInlineEditForm
           {...commonInlineEditFormProps}
           startWithEditOpen={true}
+          onSave={onSave}
         />
       );
 
@@ -215,11 +200,10 @@ describe('EuiInlineEditForm', () => {
 
       expect(getByTestSubject('euiInlineReadModeButton')).toBeTruthy();
       expect(getByText('New message!')).toBeTruthy();
+      expect(onSave).toHaveBeenCalledWith('New message!');
     });
 
     it('cancels text and returns to readMode', () => {
-      const onSave = jest.fn();
-
       const { getByTestSubject, getByText } = render(
         <EuiInlineEditForm
           {...commonInlineEditFormProps}
@@ -241,72 +225,90 @@ describe('EuiInlineEditForm', () => {
       expect(onSave).not.toHaveBeenCalled();
     });
 
-    describe('onConfirm behavior on save', () => {
-      it('returns to readMode with updated text when onConfirm returns true', () => {
+    describe('onSave validation', () => {
+      it('returns to readMode with updated text when onSave returns true', () => {
+        onSave.mockReturnValueOnce(true);
+
         const { getByTestSubject, getByText } = render(
           <EuiInlineEditForm
             {...commonInlineEditFormProps}
             startWithEditOpen={true}
-            onConfirm={() => true}
+            onSave={onSave}
           />
         );
 
         fireEvent.change(getByTestSubject('euiInlineEditModeInput'), {
           target: { value: 'New message!' },
         });
-        fireEvent.click(getByTestSubject('euiInlineEditModeSaveButton'));
+        act(() => {
+          fireEvent.click(getByTestSubject('euiInlineEditModeSaveButton'));
+        });
 
         expect(getByTestSubject('euiInlineReadModeButton')).toBeTruthy();
         expect(getByText('New message!')).toBeTruthy();
       });
 
-      it('stays in editMode when onConfirm returns false', () => {
-        const onSave = jest.fn();
+      it('stays in editMode when onSave returns false', () => {
+        onSave.mockReturnValueOnce(false);
 
         const { getByTestSubject, queryByTestSubject } = render(
           <EuiInlineEditForm
             {...commonInlineEditFormProps}
             startWithEditOpen={true}
             onSave={onSave}
-            onConfirm={() => false}
           />
         );
 
         fireEvent.change(getByTestSubject('euiInlineEditModeInput'), {
           target: { value: 'New message!' },
         });
-        fireEvent.click(getByTestSubject('euiInlineEditModeSaveButton'));
+        act(() => {
+          fireEvent.click(getByTestSubject('euiInlineEditModeSaveButton'));
+        });
 
         expect(queryByTestSubject('euiInlineReadModeButton')).toBeFalsy();
         expect(getByTestSubject('euiInlineEditModeInput')).toBeTruthy();
-        expect(onSave).not.toHaveBeenCalled();
       });
 
-      it('sends the editMode text to the onConfirm callback', () => {
-        const { getByText, getByTestSubject } = render(
+      it('handles async promises', async () => {
+        onSave.mockImplementation(
+          (value) =>
+            new Promise((resolve) => {
+              setTimeout(resolve, 100);
+              return !!value; // returns false if empty string, true if not
+            })
+        );
+
+        const { getByTestSubject, queryByTestSubject, getByText } = render(
           <EuiInlineEditForm
             {...commonInlineEditFormProps}
             startWithEditOpen={true}
-            onConfirm={(editModeValue) => {
-              return editModeValue === '' ? false : true;
-            }}
+            onSave={onSave}
           />
         );
 
+        // Should still be in edit mode after an empty string is submitted
         fireEvent.change(getByTestSubject('euiInlineEditModeInput'), {
           target: { value: '' },
         });
-        fireEvent.click(getByTestSubject('euiInlineEditModeSaveButton'));
-
+        await act(async () => {
+          fireEvent.click(getByTestSubject('euiInlineEditModeSaveButton'));
+          waitFor(() => setTimeout(() => {}, 100)); // Let the promise finish resolving
+        });
+        expect(queryByTestSubject('euiInlineReadModeButton')).toBeFalsy();
         expect(getByTestSubject('euiInlineEditModeInput')).toBeTruthy();
 
+        // Should successfully save into read mode
         fireEvent.change(getByTestSubject('euiInlineEditModeInput'), {
           target: { value: 'hey there' },
         });
-        fireEvent.click(getByTestSubject('euiInlineEditModeSaveButton'));
-
-        expect(getByTestSubject('euiInlineReadModeButton')).toBeTruthy();
-        expect(getByText('hey there')).toBeTruthy();
+        await act(async () => {
+          fireEvent.click(getByTestSubject('euiInlineEditModeSaveButton'));
+        });
+        waitFor(() => {
+          expect(getByTestSubject('euiInlineReadModeButton')).toBeTruthy();
+          expect(getByText('hey there')).toBeTruthy();
+        });
       });
     });
   });
