@@ -32,15 +32,12 @@ export const EuiInlineEditText: FunctionComponent<EuiInlineEditTextProps> = ({
   className,
   size = 'm',
   defaultValue,
-  onConfirm,
   inputAriaLabel,
-  saveButtonAriaLabel,
-  cancelButtonAriaLabel,
   startWithEditOpen,
   readModeProps,
   editModeProps,
   isLoading,
-  isInvalid = false,
+  isInvalid,
   ...rest
 }) => {
   const classes = classNames('euiInlineEditText', className);
@@ -55,10 +52,7 @@ export const EuiInlineEditText: FunctionComponent<EuiInlineEditTextProps> = ({
   const formProps = {
     sizes,
     defaultValue,
-    onConfirm,
     inputAriaLabel,
-    saveButtonAriaLabel,
-    cancelButtonAriaLabel,
     startWithEditOpen,
     readModeProps,
     editModeProps,

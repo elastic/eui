@@ -23,11 +23,8 @@ const inlineEditModePropsSource = require('!!raw-loader!./inline_edit_mode_props
 import InlineEditSave from './inline_edit_save';
 const inlineEditSaveSource = require('!!raw-loader!././inline_edit_save');
 
-import InlineEditConfirm from './inline_edit_confirm';
-const inlineEditConfirmSource = require('!!raw-loader!././inline_edit_confirm');
-
-import InlineEditStates from './inline_edit_states';
-const inlineEditStatesSource = require('!!raw-loader!././inline_edit_states');
+import InlineEditValidation from './inline_edit_validation';
+const inlineEditValidationSource = require('!!raw-loader!././inline_edit_validation');
 
 export const InlineEditExample = {
   title: 'Inline edit',
@@ -87,14 +84,12 @@ export const InlineEditExample = {
     {
       title: 'Saving edited text',
       text: (
-        <>
-          <p>
-            Use the <EuiCode>onSave</EuiCode> property to retrieve the value of
-            the edited text when the save button is pressed, and the{' '}
-            <EuiCode>onConfirm</EuiCode> callback (if passed) returns{' '}
-            <EuiCode>true</EuiCode> .{' '}
-          </p>
-        </>
+        <p>
+          Use the <EuiCode>onSave</EuiCode> property to retrieve the value of
+          the edited text when the save button is pressed.{' '}
+          <EuiCode>onSave</EuiCode> does not fire if the user cancels their
+          edit.
+        </p>
       ),
       source: [
         {
@@ -105,75 +100,84 @@ export const InlineEditExample = {
       demo: <InlineEditSave />,
     },
     {
-      title: 'Loading and invalid states',
+      title: 'Validating edited text',
       text: (
         <>
           <p>
-            Setting the <EuiCode>isLoading</EuiCode> prop to true will add a
-            spinner to the input element in <EuiCode>editMode</EuiCode> and add
-            the loading state to the confirm and cancel input buttons.
+            Validation states (<EuiCode>isLoading</EuiCode> and{' '}
+            <EuiCode>isInvalid</EuiCode>) only display while the user is in edit
+            mode.
           </p>
           <p>
-            Setting the <EuiCode>isInvalid</EuiCode> prop to true will display{' '}
-            <strong>EuiInlineEdit</strong>&apos;s error state. Optionally, use{' '}
-            <EuiCode>editModeProps.formRowProps.error</EuiCode> to pass an error
-            message that will be displayed on the form control.
+            To validate text when the user presses the save button but before
+            the user is returned to read mode, return a boolean (or an async
+            promise returning a boolean) from your <EuiCode>onSave</EuiCode>{' '}
+            callback.
+          </p>
+          <p>
+            Returning <EuiCode>false</EuiCode> from <EuiCode>onSave</EuiCode>{' '}
+            will keep the user in edit mode, where you can then display
+            validation state and messages. Returning <EuiCode>true</EuiCode> or{' '}
+            <EuiCode>undefined</EuiCode> will return the user to read mode.
           </p>
         </>
       ),
       source: [
         {
           type: GuideSectionTypes.TSX,
-          code: inlineEditStatesSource,
+          code: inlineEditValidationSource,
         },
       ],
-      demo: <InlineEditStates />,
-    },
-    {
-      title: 'Confirm inline edit',
-      text: (
-        <>
-          <p>
-            Use the <EuiCode>onConfirm</EuiCode> property to pass a function
-            that will prompt users to confirm their changes.
-          </p>
-        </>
-      ),
-      source: [
-        {
-          type: GuideSectionTypes.TSX,
-          code: inlineEditConfirmSource,
-        },
-      ],
-      demo: <InlineEditConfirm />,
+      demo: <InlineEditValidation />,
     },
     {
       title: 'Customizing read and edit modes',
       text: (
         <>
           <p>
-            Customize the <EuiCode>readMode</EuiCode> state by passing{' '}
-            <EuiCode>readModeProps</EuiCode>. <EuiCode>readMode</EuiCode>{' '}
-            accepts{' '}
+            Customize the read mode by passing <EuiCode>readModeProps</EuiCode>,
+            which accepts any{' '}
             <Link to="/navigation/button#empty-button">
               <strong>EuiButtonEmpty</strong>
             </Link>{' '}
-            properties with the exception of <EuiCode>onClick</EuiCode>.
+            properties.
           </p>
 
           <p>
-            Customize the <EuiCode>editMode</EuiCode> state by passing{' '}
-            <EuiCode>editModeProps</EuiCode>. These properties are applied
-            directly to the{' '}
-            <Link to="/forms/form-layouts#form-and-form-rows">
-              <strong>EuiFormRow</strong>
-            </Link>{' '}
-            and{' '}
-            <Link to="/forms/form-controls#text-field">
-              <strong>EuiFieldText</strong>
-            </Link>{' '}
-            components.
+            Customize the edit mode by passing <EuiCode>editModeProps</EuiCode>.
+            This prop contains nested object properties that are applied to
+            various child components in edit mode:
           </p>
+          <ul>
+            <li>
+              <EuiCode>editMode.formRowProps</EuiCode> accepts any{' '}
+              <Link to="/forms/form-layouts#form-and-form-rows">
+                <strong>EuiFormRow</strong>
+              </Link>{' '}
+              properties
+            </li>
+            <li>
+              <EuiCode>editMode.inputRowProps</EuiCode> accepts any{' '}
+              <Link to="/forms/form-controls#text-field">
+                <strong>EuiFieldText</strong>
+              </Link>{' '}
+              properties
+            </li>
+            <li>
+              <EuiCode>editMode.saveButtonProps</EuiCode> accepts any{' '}
+              <Link to="/navigation/button#icon-buttons">
+                <strong>EuiIconButton</strong>
+              </Link>{' '}
+              properties
+            </li>
+            <li>
+              <EuiCode>editMode.cancelButtonProps</EuiCode> accepts any{' '}
+              <Link to="/navigation/button#icon-buttons">
+                <strong>EuiIconButton</strong>
+              </Link>{' '}
+              properties
+            </li>
+          </ul>
         </>
       ),
       source: [

@@ -8,10 +8,22 @@ export default () => {
       inputAriaLabel="Edit text inline for readMode and editMode props"
       defaultValue="This inline edit component has been customized!"
       size="m"
-      readModeProps={{ color: 'primary', iconSide: 'left' }}
+      readModeProps={{
+        color: 'primary',
+        iconSide: 'left',
+      }}
       editModeProps={{
         inputProps: {
-          prepend: 'Prepend Example',
+          prepend: 'Prepend example',
+        },
+        formRowProps: {
+          helpText: 'Example help text',
+        },
+        saveButtonProps: {
+          color: 'primary',
+        },
+        cancelButtonProps: {
+          display: 'empty',
         },
       }}
     />

@@ -38,15 +38,12 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
   size = 'm',
   heading,
   defaultValue,
-  onConfirm,
   inputAriaLabel,
-  saveButtonAriaLabel,
-  cancelButtonAriaLabel,
-  startWithEditOpen = false,
+  startWithEditOpen,
   readModeProps,
   editModeProps,
   isLoading,
-  isInvalid = false,
+  isInvalid,
   ...rest
 }) => {
   const classes = classNames('euiInlineEditTitle', className);
@@ -63,10 +60,7 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
   const formProps = {
     sizes,
     defaultValue,
-    onConfirm,
     inputAriaLabel,
-    saveButtonAriaLabel,
-    cancelButtonAriaLabel,
     startWithEditOpen,
     readModeProps,
     editModeProps,
