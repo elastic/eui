@@ -1,5 +1,5 @@
 ---
-name: ❓ Report an accessibility issue
+name: Report an accessibility issue
 about: Report an accessibility issue
 title: ''
 labels: accessibility
