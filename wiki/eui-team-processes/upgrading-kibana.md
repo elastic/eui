@@ -118,7 +118,7 @@ node scripts/functional_test_runner/ --config x-pack/plugins/observability/e2e/s
 
 ### Debugging Kibana plugins
 
-Some EUI component usages are in `src/plugins/` as opposed to Kibana's `src/` or `x-pack/` folders (which hot reload automatically on page refresh). Kibana plugins **do not** update automatically unless you start a `yarn kbn watch` process in a new terminal alongside `yarn start`.
+Some EUI component usages are in `src/plugins/`. Kibana plugins **do not** hot reload automatically. You must start a `yarn kbn watch` process in a new terminal, alongside `yarn start`.
 
 ### Other
 
