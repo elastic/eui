@@ -47,20 +47,20 @@ export type EuiInlineEditCommonProps = HTMLAttributes<HTMLDivElement> &
      */
     onSave?: (value: string) => void | boolean | Promise<boolean | void>;
     /**
-     * Form label that appears above the form control
-     * This is required for accessibility because there is no visual label on the input
+     * Form label that appears above the form control.
+     * This is required for accessibility because there is no visual label on the input.
      */
     inputAriaLabel: string;
     /**
-     * Start in editMode
+     * Starts the component in edit mode
      */
     startWithEditOpen?: boolean;
     /**
-     * Props that will be applied directly to the EuiEmptyButton displayed in readMode
+     * Props that will be applied directly to the `EuiEmptyButton` displayed in read mode
      */
     readModeProps?: Partial<EuiButtonEmptyPropsForButton>;
     /**
-     * Props that will be applied directly to the `EuiFormRow`, `EuiFieldText` input, and save/cancel buttons displayed in editMode
+     * Props that will be applied directly to the `EuiFormRow`, `EuiFieldText` input, and save/cancel buttons displayed in edit mode
      */
     editModeProps?: {
       formRowProps?: Partial<EuiFormRowProps>;
@@ -69,11 +69,11 @@ export type EuiInlineEditCommonProps = HTMLAttributes<HTMLDivElement> &
       cancelButtonProps?: Partial<EuiButtonIconPropsForButton>;
     };
     /**
-     * Loading state when changes are saved in editMode
+     * Loading state - only displayed in edit mode
      */
     isLoading?: boolean;
     /**
-     * Validation for the form control used to edit text in editMode
+     * Invalid state - only displayed edit mode
      */
     isInvalid?: boolean;
   };
@@ -144,7 +144,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
 
   const cancelInlineEdit = () => {
     setEditModeValue(readModeValue);
-    setIsEditing(!isEditing);
+    setIsEditing(false);
   };
 
   const saveInlineEditValue = async () => {
@@ -157,7 +157,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
     }
 
     setReadModeValue(editModeValue);
-    setIsEditing(!isEditing);
+    setIsEditing(false);
   };
 
   const editModeForm = (
@@ -253,7 +253,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
       data-test-subj="euiInlineReadModeButton"
       {...readModeProps}
       onClick={(e) => {
-        setIsEditing(!isEditing);
+        setIsEditing(true);
         readModeProps?.onClick?.(e);
       }}
     >

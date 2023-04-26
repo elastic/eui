@@ -37,7 +37,7 @@ export const EuiInlineEditText: FunctionComponent<EuiInlineEditTextProps> = ({
   readModeProps,
   editModeProps,
   isLoading,
-  isInvalid = false,
+  isInvalid,
   ...rest
 }) => {
   const classes = classNames('euiInlineEditText', className);
@@ -53,8 +53,6 @@ export const EuiInlineEditText: FunctionComponent<EuiInlineEditTextProps> = ({
     sizes,
     defaultValue,
     inputAriaLabel,
-    saveButtonAriaLabel,
-    cancelButtonAriaLabel,
     startWithEditOpen,
     readModeProps,
     editModeProps,

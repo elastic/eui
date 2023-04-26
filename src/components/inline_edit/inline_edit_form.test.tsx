@@ -36,7 +36,7 @@ describe('EuiInlineEditForm', () => {
       expect(container.firstChild).toMatchSnapshot();
     });
 
-    it('renders readModeProps onto the button', () => {
+    test('readModeProps', () => {
       const { container, getByTestSubject } = render(
         <EuiInlineEditForm
           {...commonInlineEditFormProps}
@@ -51,7 +51,7 @@ describe('EuiInlineEditForm', () => {
       expect(getByTestSubject('euiInlineReadModeButton')).toBeTruthy();
     });
 
-    it('renders small size', () => {
+    test('sizes', () => {
       const { container } = render(
         <EuiInlineEditForm
           {...commonInlineEditFormProps}
@@ -75,7 +75,7 @@ describe('EuiInlineEditForm', () => {
       expect(container.firstChild).toMatchSnapshot();
     });
 
-    it('renders editModeProps.inputProps', () => {
+    test('editModeProps.inputProps', () => {
       const { container, getByTestSubject } = render(
         <EuiInlineEditForm
           {...commonInlineEditFormProps}
@@ -93,7 +93,7 @@ describe('EuiInlineEditForm', () => {
       expect(getByTestSubject('customInput')).toBeTruthy();
     });
 
-    it('renders editModeProps.formRowProps', () => {
+    test('editModeProps.formRowProps', () => {
       const { container, getByTestSubject } = render(
         <EuiInlineEditForm
           {...commonInlineEditFormProps}
@@ -111,7 +111,7 @@ describe('EuiInlineEditForm', () => {
       expect(getByTestSubject('customErrorText')).toBeTruthy();
     });
 
-    it('renders editModeProps.saveButtonProps', () => {
+    test('editModeProps.saveButtonProps', () => {
       const { container, getByLabelText } = render(
         <EuiInlineEditForm
           {...commonInlineEditFormProps}
@@ -129,7 +129,7 @@ describe('EuiInlineEditForm', () => {
       expect(getByLabelText("Yes! Let's save.")).toBeTruthy();
     });
 
-    it('renders editModeProps.cancelButtonProps', () => {
+    test('editModeProps.cancelButtonProps', () => {
       const { container, getByLabelText } = render(
         <EuiInlineEditForm
           {...commonInlineEditFormProps}
@@ -147,7 +147,7 @@ describe('EuiInlineEditForm', () => {
       expect(getByLabelText('Uh no. Do not save.')).toBeDisabled();
     });
 
-    it('renders EuiSkeletonRectangles in place of editMode buttons when loading', () => {
+    test('isLoading', () => {
       const { container, queryByTestSubject } = render(
         <EuiInlineEditForm
           {...commonInlineEditFormProps}
@@ -157,16 +157,14 @@ describe('EuiInlineEditForm', () => {
       );
 
       expect(container.firstChild).toMatchSnapshot();
-
       expect(container.querySelectorAll('.euiSkeletonRectangle')).toHaveLength(
         2
       );
-
       expect(queryByTestSubject('euiInlineEditModeSaveButton')).toBeFalsy();
       expect(queryByTestSubject('euiInlineEditModeCancelButton')).toBeFalsy();
     });
 
-    it('disables the save button when input is invalid ', () => {
+    test('isInvalid', () => {
       const { container, getByTestSubject } = render(
         <EuiInlineEditForm
           {...commonInlineEditFormProps}
@@ -187,7 +185,7 @@ describe('EuiInlineEditForm', () => {
     const onSave = jest.fn();
     beforeEach(() => jest.resetAllMocks());
 
-    it('clicking on the readModeButton takes us to editMode', () => {
+    it('toggles to editMode when the readModeButton is clicked', () => {
       const { getByTestSubject, queryByTestSubject } = render(
         <EuiInlineEditForm
           {...commonInlineEditFormProps}

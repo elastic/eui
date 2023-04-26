@@ -39,11 +39,11 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
   heading,
   defaultValue,
   inputAriaLabel,
-  startWithEditOpen = false,
+  startWithEditOpen,
   readModeProps,
   editModeProps,
   isLoading,
-  isInvalid = false,
+  isInvalid,
   ...rest
 }) => {
   const classes = classNames('euiInlineEditTitle', className);
@@ -61,8 +61,6 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
     sizes,
     defaultValue,
     inputAriaLabel,
-    saveButtonAriaLabel,
-    cancelButtonAriaLabel,
     startWithEditOpen,
     readModeProps,
     editModeProps,
