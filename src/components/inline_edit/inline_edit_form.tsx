@@ -60,7 +60,10 @@ export type EuiInlineEditCommonProps = HTMLAttributes<HTMLDivElement> &
      */
     readModeProps?: Partial<EuiButtonEmptyPropsForButton>;
     /**
-     * Props that will be applied directly to the `EuiFormRow`, `EuiFieldText` input, and save/cancel buttons displayed in edit mode
+     * Multiple props objecs that can be applied directly to various child components displayed in edit mode.
+     * - `formRowProps` will be passed to `EuiFormRow`
+     * - `inputProps` will be passed to `EuiFieldText`
+     * - `saveButtonProps` & `cancelButtonProps` will be passed to their respective `EuiIconButton`s
      */
     editModeProps?: {
       formRowProps?: Partial<EuiFormRowProps>;

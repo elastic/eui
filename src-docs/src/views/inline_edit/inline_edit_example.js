@@ -135,28 +135,49 @@ export const InlineEditExample = {
       text: (
         <>
           <p>
-            Customize the <EuiCode>readMode</EuiCode> state by passing{' '}
-            <EuiCode>readModeProps</EuiCode>. <EuiCode>readMode</EuiCode>{' '}
-            accepts{' '}
+            Customize the read mode by passing <EuiCode>readModeProps</EuiCode>,
+            which accepts any{' '}
             <Link to="/navigation/button#empty-button">
               <strong>EuiButtonEmpty</strong>
             </Link>{' '}
-            properties with the exception of <EuiCode>onClick</EuiCode>.
+            properties.
           </p>
 
           <p>
-            Customize the <EuiCode>editMode</EuiCode> state by passing{' '}
-            <EuiCode>editModeProps</EuiCode>. These properties are applied
-            directly to the{' '}
-            <Link to="/forms/form-layouts#form-and-form-rows">
-              <strong>EuiFormRow</strong>
-            </Link>{' '}
-            and{' '}
-            <Link to="/forms/form-controls#text-field">
-              <strong>EuiFieldText</strong>
-            </Link>{' '}
-            components.
+            Customize the edit mode by passing <EuiCode>editModeProps</EuiCode>.
+            This prop contains nested object properties that are applied to
+            various child components in edit mode:
           </p>
+          <ul>
+            <li>
+              <EuiCode>editMode.formRowProps</EuiCode> accepts any{' '}
+              <Link to="/forms/form-layouts#form-and-form-rows">
+                <strong>EuiFormRow</strong>
+              </Link>{' '}
+              properties
+            </li>
+            <li>
+              <EuiCode>editMode.inputRowProps</EuiCode> accepts any{' '}
+              <Link to="/forms/form-controls#text-field">
+                <strong>EuiFieldText</strong>
+              </Link>{' '}
+              properties
+            </li>
+            <li>
+              <EuiCode>editMode.saveButtonProps</EuiCode> accepts any{' '}
+              <Link to="/navigation/button#icon-buttons">
+                <strong>EuiIconButton</strong>
+              </Link>{' '}
+              properties
+            </li>
+            <li>
+              <EuiCode>editMode.cancelButtonProps</EuiCode> accepts any{' '}
+              <Link to="/navigation/button#icon-buttons">
+                <strong>EuiIconButton</strong>
+              </Link>{' '}
+              properties
+            </li>
+          </ul>
         </>
       ),
       source: [
