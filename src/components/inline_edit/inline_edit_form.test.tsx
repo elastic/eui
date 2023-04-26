@@ -111,19 +111,40 @@ describe('EuiInlineEditForm', () => {
       expect(getByTestSubject('customErrorText')).toBeTruthy();
     });
 
-    it('renders save button and cancel button aria-labels', () => {
+    it('renders editModeProps.saveButtonProps', () => {
       const { container, getByLabelText } = render(
         <EuiInlineEditForm
           {...commonInlineEditFormProps}
           startWithEditOpen={true}
-          saveButtonAriaLabel="Yes! Let's save."
-          cancelButtonAriaLabel="Uh no. Do not save."
+          editModeProps={{
+            saveButtonProps: {
+              'aria-label': "Yes! Let's save.",
+              color: 'primary',
+            },
+          }}
         />
       );
 
       expect(container.firstChild).toMatchSnapshot();
       expect(getByLabelText("Yes! Let's save.")).toBeTruthy();
-      expect(getByLabelText('Uh no. Do not save.')).toBeTruthy();
+    });
+
+    it('renders editModeProps.cancelButtonProps', () => {
+      const { container, getByLabelText } = render(
+        <EuiInlineEditForm
+          {...commonInlineEditFormProps}
+          startWithEditOpen={true}
+          editModeProps={{
+            cancelButtonProps: {
+              'aria-label': 'Uh no. Do not save.',
+              disabled: true,
+            },
+          }}
+        />
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+      expect(getByLabelText('Uh no. Do not save.')).toBeDisabled();
     });
 
     it('renders EuiSkeletonRectangles in place of editMode buttons when loading', () => {
@@ -155,15 +176,9 @@ describe('EuiInlineEditForm', () => {
       );
 
       expect(container.firstChild).toMatchSnapshot();
-
       expect(
         getByTestSubject('euiInlineEditModeInput').hasAttribute('aria-invalid')
       ).toBeTruthy();
-
-      expect(getByTestSubject('euiInlineEditModeSaveButton')).toBeDisabled();
-      expect(
-        getByTestSubject('euiInlineEditModeCancelButton')
-      ).not.toBeDisabled();
     });
   });
 

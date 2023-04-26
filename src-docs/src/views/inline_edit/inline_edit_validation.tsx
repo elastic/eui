@@ -22,7 +22,10 @@ export default () => {
       <EuiInlineEditText
         inputAriaLabel="This input will validate on save"
         defaultValue={defaultInlineEditValue}
-        editModeProps={{ formRowProps: { error: errors } }}
+        editModeProps={{
+          formRowProps: { error: errors },
+          cancelButtonProps: { onClick: () => setErrors([]) },
+        }}
         isInvalid={isInvalid}
         isLoading={isLoading}
         onSave={async (value) => {

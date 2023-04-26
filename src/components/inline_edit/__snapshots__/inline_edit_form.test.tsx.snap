@@ -81,9 +81,8 @@ exports[`EuiInlineEditForm Edit Mode disables the save button when input is inva
               </div>
               <button
                 aria-label="Save edit"
-                class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-disabled"
+                class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-success"
                 data-test-subj="euiInlineEditModeSaveButton"
-                disabled=""
                 type="button"
               >
                 <span
@@ -393,6 +392,147 @@ exports[`EuiInlineEditForm Edit Mode renders EuiSkeletonRectangles in place of e
 </div>
 `;
 
+exports[`EuiInlineEditForm Edit Mode renders editModeProps.cancelButtonProps 1`] = `
+<div
+  class="euiInlineEdit testClass1 testClass2"
+>
+  <div
+    class="euiForm"
+  >
+    <div
+      class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
+    >
+      <div
+        class="euiFlexItem emotion-euiFlexItem-grow-1"
+      >
+        <div
+          class="euiFormRow euiFormRow--fullWidth"
+          id="generated-id-row"
+        >
+          <div
+            class="euiFormRow__fieldWrapper"
+          >
+            <div
+              class="euiFormControlLayout euiFormControlLayout--fullWidth"
+            >
+              <div
+                class="euiFormControlLayout__childrenWrapper"
+              >
+                <input
+                  aria-label="Edit inline"
+                  class="euiFieldText euiFieldText--fullWidth"
+                  data-test-subj="euiInlineEditModeInput"
+                  id="generated-id"
+                  type="text"
+                  value="Hello World!"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="euiFlexItem euiInlineEdit testClass1 testClass2 emotion-euiFlexItem-growZero"
+      >
+        <div
+          class="euiFormRow euiFormRow--fullWidth"
+          id="generated-id-row"
+        >
+          <div
+            class="euiFormRow__fieldWrapper"
+          >
+            <div
+              aria-busy="false"
+              data-test-subj="euiSkeletonLoadingAriaWrapper"
+            >
+              <div
+                class="emotion-euiScreenReaderOnly"
+              >
+                <div
+                  aria-atomic="true"
+                  aria-live="polite"
+                  role="status"
+                >
+                  Loaded 
+                </div>
+                <div
+                  aria-atomic="true"
+                  aria-hidden="true"
+                  aria-live="off"
+                  role="status"
+                />
+              </div>
+              <button
+                aria-label="Save edit"
+                class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-success"
+                data-test-subj="euiInlineEditModeSaveButton"
+                type="button"
+              >
+                <span
+                  aria-hidden="true"
+                  class="euiButtonIcon__icon"
+                  color="inherit"
+                  data-euiicon-type="check"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="euiFlexItem emotion-euiFlexItem-growZero"
+      >
+        <div
+          class="euiFormRow euiFormRow--fullWidth"
+          id="generated-id-row"
+        >
+          <div
+            class="euiFormRow__fieldWrapper"
+          >
+            <div
+              aria-busy="false"
+              data-test-subj="euiSkeletonLoadingAriaWrapper"
+            >
+              <div
+                class="emotion-euiScreenReaderOnly"
+              >
+                <div
+                  aria-atomic="true"
+                  aria-live="polite"
+                  role="status"
+                >
+                  Loaded 
+                </div>
+                <div
+                  aria-atomic="true"
+                  aria-hidden="true"
+                  aria-live="off"
+                  role="status"
+                />
+              </div>
+              <button
+                aria-label="Uh no. Do not save."
+                class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-disabled"
+                data-test-subj="euiInlineEditModeCancelButton"
+                disabled=""
+                type="button"
+              >
+                <span
+                  aria-hidden="true"
+                  class="euiButtonIcon__icon"
+                  color="inherit"
+                  data-euiicon-type="cross"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiInlineEditForm Edit Mode renders editModeProps.formRowProps 1`] = `
 <div
   class="euiInlineEdit testClass1 testClass2"
@@ -680,7 +820,7 @@ exports[`EuiInlineEditForm Edit Mode renders editModeProps.inputProps 1`] = `
 </div>
 `;
 
-exports[`EuiInlineEditForm Edit Mode renders save button and cancel button aria-labels 1`] = `
+exports[`EuiInlineEditForm Edit Mode renders editModeProps.saveButtonProps 1`] = `
 <div
   class="euiInlineEdit testClass1 testClass2"
 >
@@ -752,7 +892,7 @@ exports[`EuiInlineEditForm Edit Mode renders save button and cancel button aria-
               </div>
               <button
                 aria-label="Yes! Let's save."
-                class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-success"
+                class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-primary"
                 data-test-subj="euiInlineEditModeSaveButton"
                 type="button"
               >
@@ -799,7 +939,7 @@ exports[`EuiInlineEditForm Edit Mode renders save button and cancel button aria-
                 />
               </div>
               <button
-                aria-label="Uh no. Do not save."
+                aria-label="Cancel edit"
                 class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-danger"
                 data-test-subj="euiInlineEditModeCancelButton"
                 type="button"

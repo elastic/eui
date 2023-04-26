@@ -39,8 +39,6 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
   heading,
   defaultValue,
   inputAriaLabel,
-  saveButtonAriaLabel,
-  cancelButtonAriaLabel,
   startWithEditOpen = false,
   readModeProps,
   editModeProps,

@@ -23,7 +23,8 @@ import {
   EuiFieldTextProps,
 } from '../form';
 import { euiFormVariables } from '../form/form.styles';
-import { EuiButtonIcon, EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
+import { EuiButtonIcon, EuiButtonEmpty } from '../button';
+import { EuiButtonIconPropsForButton } from '../button/button_icon';
 import { EuiButtonEmptyPropsForButton } from '../button/button_empty/button_empty';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiSkeletonRectangle } from '../skeleton';
@@ -50,14 +51,6 @@ export type EuiInlineEditCommonProps = HTMLAttributes<HTMLDivElement> &
      */
     inputAriaLabel: string;
     /**
-     * Aria-label for save button in editMode
-     */
-    saveButtonAriaLabel?: string;
-    /**
-     * Aria-label for cancel button in editMode
-     */
-    cancelButtonAriaLabel?: string;
-    /**
      * Start in editMode
      */
     startWithEditOpen?: boolean;
@@ -66,11 +59,13 @@ export type EuiInlineEditCommonProps = HTMLAttributes<HTMLDivElement> &
      */
     readModeProps?: Omit<EuiButtonEmptyPropsForButton, 'onClick'>;
     /**
-     * Props that will be applied directly to the `EuiFormRow` and `EuiFieldText` input displayed in editMode
+     * Props that will be applied directly to the `EuiFormRow`, `EuiFieldText` input, and save/cancel buttons displayed in editMode
      */
     editModeProps?: {
       formRowProps?: Partial<EuiFormRowProps>;
       inputProps?: Partial<EuiFieldTextProps>;
+      saveButtonProps?: Partial<EuiButtonIconPropsForButton>;
+      cancelButtonProps?: Partial<EuiButtonIconPropsForButton>;
     };
     /**
      * Loading state when changes are saved in editMode
@@ -89,8 +84,8 @@ export type EuiInlineEditFormProps = EuiInlineEditCommonProps & {
    */
   sizes: {
     compressed: boolean;
-    buttonSize: EuiButtonEmptyProps['size'];
-    iconSize: EuiButtonEmptyProps['iconSize'];
+    buttonSize: EuiButtonEmptyPropsForButton['size'];
+    iconSize: EuiButtonEmptyPropsForButton['iconSize'];
   };
   /**
    * Render prop that returns the read mode value as an arg
@@ -116,8 +111,6 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   sizes,
   defaultValue,
   inputAriaLabel,
-  saveButtonAriaLabel,
-  cancelButtonAriaLabel,
   startWithEditOpen,
   readModeProps,
   editModeProps,
@@ -202,14 +195,13 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
             >
               <EuiButtonIcon
                 iconType="check"
-                aria-label={saveButtonAriaLabel || defaultSaveButtonAriaLabel}
-                onClick={saveInlineEditValue}
+                aria-label={defaultSaveButtonAriaLabel}
                 color="success"
                 display="base"
                 size={sizes.buttonSize}
                 iconSize={sizes.iconSize}
-                disabled={isInvalid}
                 data-test-subj="euiInlineEditModeSaveButton"
+                {...editModeProps?.saveButtonProps}
               />
             </EuiSkeletonRectangle>
           </EuiFormRow>
@@ -225,15 +217,13 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
             >
               <EuiButtonIcon
                 iconType="cross"
-                aria-label={
-                  cancelButtonAriaLabel || defaultCancelButtonAriaLabel
-                }
-                onClick={cancelInlineEdit}
+                aria-label={defaultCancelButtonAriaLabel}
                 color="danger"
                 display="base"
                 size={sizes.buttonSize}
                 iconSize={sizes.iconSize}
                 data-test-subj="euiInlineEditModeCancelButton"
+                {...editModeProps?.cancelButtonProps}
               />
             </EuiSkeletonRectangle>
           </EuiFormRow>

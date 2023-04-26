@@ -33,8 +33,6 @@ export const EuiInlineEditText: FunctionComponent<EuiInlineEditTextProps> = ({
   size = 'm',
   defaultValue,
   inputAriaLabel,
-  saveButtonAriaLabel,
-  cancelButtonAriaLabel,
   startWithEditOpen,
   readModeProps,
   editModeProps,
