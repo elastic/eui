@@ -23,11 +23,8 @@ const inlineEditModePropsSource = require('!!raw-loader!./inline_edit_mode_props
 import InlineEditSave from './inline_edit_save';
 const inlineEditSaveSource = require('!!raw-loader!././inline_edit_save');
 
-import InlineEditConfirm from './inline_edit_confirm';
-const inlineEditConfirmSource = require('!!raw-loader!././inline_edit_confirm');
-
-import InlineEditStates from './inline_edit_states';
-const inlineEditStatesSource = require('!!raw-loader!././inline_edit_states');
+import InlineEditValidation from './inline_edit_validation';
+const inlineEditValidationSource = require('!!raw-loader!././inline_edit_validation');
 
 export const InlineEditExample = {
   title: 'Inline edit',
@@ -103,47 +100,35 @@ export const InlineEditExample = {
       demo: <InlineEditSave />,
     },
     {
-      title: 'Loading and invalid states',
+      title: 'Validating edited text',
       text: (
         <>
           <p>
-            Setting the <EuiCode>isLoading</EuiCode> prop to true will add a
-            spinner to the input element in <EuiCode>editMode</EuiCode> and add
-            the loading state to the confirm and cancel input buttons.
+            Validation states (<EuiCode>isLoading</EuiCode> and{' '}
+            <EuiCode>isInvalid</EuiCode>) only display while the user is in edit
+            mode.
           </p>
           <p>
-            Setting the <EuiCode>isInvalid</EuiCode> prop to true will display{' '}
-            <strong>EuiInlineEdit</strong>&apos;s error state. Optionally, use{' '}
-            <EuiCode>editModeProps.formRowProps.error</EuiCode> to pass an error
-            message that will be displayed on the form control.
+            To validate text when the user presses the save button but before
+            the user is returned to read mode, return a boolean (or an async
+            promise returning a boolean) from your <EuiCode>onSave</EuiCode>{' '}
+            callback.
+          </p>
+          <p>
+            Returning <EuiCode>false</EuiCode> from <EuiCode>onSave</EuiCode>{' '}
+            will keep the user in edit mode, where you can then display
+            validation state and messages. Returning <EuiCode>true</EuiCode> or{' '}
+            <EuiCode>undefined</EuiCode> will return the user to read mode.
           </p>
         </>
       ),
       source: [
         {
           type: GuideSectionTypes.TSX,
-          code: inlineEditStatesSource,
+          code: inlineEditValidationSource,
         },
       ],
-      demo: <InlineEditStates />,
-    },
-    {
-      title: 'Confirm inline edit',
-      text: (
-        <>
-          <p>
-            Use the <EuiCode>onConfirm</EuiCode> property to pass a function
-            that will prompt users to confirm their changes.
-          </p>
-        </>
-      ),
-      source: [
-        {
-          type: GuideSectionTypes.TSX,
-          code: inlineEditConfirmSource,
-        },
-      ],
-      demo: <InlineEditConfirm />,
+      demo: <InlineEditValidation />,
     },
     {
       title: 'Customizing read and edit modes',
