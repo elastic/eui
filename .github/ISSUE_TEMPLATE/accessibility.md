@@ -1,6 +1,6 @@
 ---
-name: ❓ Report an Accessibility issue
-about: Report an Accessibility issue
+name: ❓ Report an accessibility issue
+about: Report an accessibility issue
 title: ''
 labels: accessibility
 assignees: ''
@@ -25,9 +25,8 @@ assignees: ''
 ## Proposed solution
 
 <!-- Include code snippets if that might help fixing the issue. -->
-<!-- Remove the \ before and after the diff backticks. -->
 
-\```diff
+```diff
 ! https://github.com/github/linguist/blob/master/vendor/README.md
 
 ! Adding an SR-only span to make the setting more
@@ -41,7 +40,7 @@ assignees: ''
 + {' '}
 + <span class="cd-u-visibility--sr-only">on Expert setting</span>
 </button>
-\```
+```
 
 ## WCAG or Vendor Guidance (optional)
 
