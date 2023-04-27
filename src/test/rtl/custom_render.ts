@@ -55,3 +55,16 @@ const customScreen: Screen<typeof queries & typeof dataTestSubjQueries> = {
 };
 
 export { customScreen as screen };
+
+/**
+ * Custom within util with EUI query helpers
+ *
+ * @see https://testing-library.com/docs/dom-testing-library/api-within/
+ */
+const customWithin = (element: HTMLElement) =>
+  within<typeof queries & typeof dataTestSubjQueries>(element, {
+    ...queries,
+    ...dataTestSubjQueries,
+  });
+
+export { customWithin as within };
