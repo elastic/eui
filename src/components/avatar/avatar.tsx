@@ -26,6 +26,9 @@ export type EuiAvatarSize = typeof SIZES[number];
 export const TYPES = ['space', 'user'] as const;
 export type EuiAvatarType = typeof TYPES[number];
 
+export const CASING = ['capitalize', 'uppercase', 'lowercase', 'none'] as const;
+export type EuiAvatarCasing = typeof CASING[number];
+
 /**
  * The avatar can only display one type of content,
  * initials, or image, or iconType
@@ -91,6 +94,14 @@ export type EuiAvatarProps = Omit<HTMLAttributes<HTMLDivElement>, 'color'> &
     size?: EuiAvatarSize;
 
     /**
+     * Sets the letter casing of the displayed initials.
+     *
+     * Defaults to `capitalize` (first letter will be capitalized, but not subsequent letters).
+     * Set to `none` to use the existing casing of the passed `name` or `initials`.
+     */
+    casing?: EuiAvatarCasing;
+
+    /**
      * Grays out the avatar to simulate being disabled
      */
     isDisabled?: boolean;
@@ -108,6 +119,7 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
   name,
   size = 'm',
   type = 'user',
+  casing = 'capitalize',
   isDisabled = false,
   style,
   ...rest
@@ -132,8 +144,9 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
 
   const cssStyles = [
     styles.euiAvatar,
-    styles[size],
     styles[type],
+    styles[size],
+    styles[casing],
     isPlain && styles.plain,
     isSubdued && styles.subdued,
     isDisabled && styles.isDisabled,
