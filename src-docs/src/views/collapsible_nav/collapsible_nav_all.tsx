@@ -207,7 +207,7 @@ const CollapsibleNavAll = () => {
       {/* BOTTOM */}
       <EuiFlexItem
         className="eui-yScroll"
-         // Accessibility - Allows nav items to be seen and interacted with on very small screen sizes
+        // Accessibility - Allows nav items to be seen and interacted with on very small screen sizes
         css={css`
           @media (max-height: 15em) {
             flex: 1 0 auto;
