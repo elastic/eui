@@ -11,13 +11,11 @@ import React, {
   Ref,
   FunctionComponent,
   useState,
-  useRef,
   useCallback,
 } from 'react';
 import { CommonProps } from '../../common';
 import classNames from 'classnames';
 
-import { useCombinedRefs } from '../../../services';
 import { IconType } from '../../icon';
 
 import { EuiValidatableControl } from '../validatable_control';
@@ -103,7 +101,7 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
     inputRef,
     readOnly,
     controlOnly,
-    onKeyDown: _onKeyDown,
+    onKeyUp: _onKeyUp,
     ...rest
   } = props;
 
@@ -112,20 +110,17 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
   // `aria-invalid` as well as display an icon. We also want to *not* set this on
   // EuiValidatableControl, in order to not override custom validity messages
   const [isNativelyInvalid, setIsNativelyInvalid] = useState(false);
-  const validityRef = useRef<HTMLInputElement | null>(null);
-  const setRefs = useCombinedRefs([validityRef, inputRef]);
 
   // Note that we can't use hook into `onChange` because browsers don't emit change events
   // for invalid values - see https://github.com/facebook/react/issues/16554
-  const onKeyDown = useCallback(
+  const onKeyUp = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
-      _onKeyDown?.(e);
-      // Wait a beat before checking validity - we can't use `e.target` as it's stale
-      requestAnimationFrame(() => {
-        setIsNativelyInvalid(!validityRef.current!.validity.valid);
-      });
+      _onKeyUp?.(e);
+
+      const { validity } = e.target as HTMLInputElement;
+      setIsNativelyInvalid(!validity.valid);
     },
-    [_onKeyDown]
+    [_onKeyUp]
   );
 
   const numIconsClass = controlOnly
@@ -155,8 +150,8 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
         placeholder={placeholder}
         readOnly={readOnly}
         className={classes}
-        ref={setRefs}
-        onKeyDown={onKeyDown}
+        ref={inputRef}
+        onKeyUp={onKeyUp}
         aria-invalid={isInvalid || isNativelyInvalid}
         {...rest}
       />
