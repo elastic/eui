@@ -63,7 +63,6 @@ exports[`EuiDualRange input props can be applied to min and max inputs 1`] = `
       class="euiFormControlLayout__childrenWrapper"
     >
       <input
-        aria-invalid="false"
         aria-label="Min value"
         class="euiFieldNumber euiRangeInput euiRangeInput--min emotion-euiRangeInput"
         max="8"
@@ -113,7 +112,6 @@ exports[`EuiDualRange input props can be applied to min and max inputs 1`] = `
       class="euiFormControlLayout__childrenWrapper"
     >
       <input
-        aria-invalid="false"
         aria-label="Max value"
         class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiRangeInput"
         max="10"
@@ -323,7 +321,6 @@ exports[`EuiDualRange props inputs should render 1`] = `
       class="euiFormControlLayout__childrenWrapper"
     >
       <input
-        aria-invalid="false"
         aria-label="aria-label"
         class="euiFieldNumber euiRangeInput euiRangeInput--min emotion-euiRangeInput"
         max="8"
@@ -375,7 +372,6 @@ exports[`EuiDualRange props inputs should render 1`] = `
       class="euiFormControlLayout__childrenWrapper"
     >
       <input
-        aria-invalid="false"
         aria-label="aria-label"
         class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiRangeInput"
         max="100"
@@ -532,7 +528,6 @@ exports[`EuiDualRange props loading should display when showInput="inputWithPopo
           class="euiFormControlLayout__childrenWrapper"
         >
           <input
-            aria-invalid="false"
             class="euiFieldNumber euiFormControlLayoutDelimited__input emotion-euiRangeInput"
             max="8"
             min="0"
@@ -551,7 +546,6 @@ exports[`EuiDualRange props loading should display when showInput="inputWithPopo
             </span>
           </div>
           <input
-            aria-invalid="false"
             class="euiFieldNumber euiFormControlLayoutDelimited__input emotion-euiRangeInput"
             max="100"
             min="1"
@@ -621,7 +615,6 @@ exports[`EuiDualRange props slider should display in popover 1`] = `
           class="euiFormControlLayout__childrenWrapper"
         >
           <input
-            aria-invalid="false"
             class="euiFieldNumber euiFormControlLayoutDelimited__input emotion-euiRangeInput"
             max="8"
             min="0"
@@ -640,7 +633,6 @@ exports[`EuiDualRange props slider should display in popover 1`] = `
             </span>
           </div>
           <input
-            aria-invalid="false"
             class="euiFieldNumber euiFormControlLayoutDelimited__input emotion-euiRangeInput"
             max="100"
             min="1"
