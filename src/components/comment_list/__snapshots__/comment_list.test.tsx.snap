@@ -18,7 +18,7 @@ exports[`EuiCommentList is rendered 1`] = `
       >
         <div
           aria-label=""
-          class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
+          class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-capitalize-subdued"
           role="img"
           title=""
         >
@@ -57,7 +57,7 @@ exports[`EuiCommentList props gutterSize l is rendered 1`] = `
       >
         <div
           aria-label=""
-          class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
+          class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-capitalize-subdued"
           role="img"
           title=""
         >
@@ -96,7 +96,7 @@ exports[`EuiCommentList props gutterSize m is rendered 1`] = `
       >
         <div
           aria-label=""
-          class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
+          class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-capitalize-subdued"
           role="img"
           title=""
         >
@@ -135,7 +135,7 @@ exports[`EuiCommentList props gutterSize xl is rendered 1`] = `
       >
         <div
           aria-label=""
-          class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
+          class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-capitalize-subdued"
           role="img"
           title=""
         >

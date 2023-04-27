@@ -209,7 +209,7 @@ exports[`EuiCard props an avatar icon 1`] = `
     >
       <div
         aria-label="test"
-        class="euiAvatar euiAvatar--xl euiAvatar--user euiCard__icon emotion-euiAvatar-xl-user-plain-euiCard__icon-vertical"
+        class="euiAvatar euiAvatar--xl euiAvatar--user euiCard__icon emotion-euiAvatar-user-xl-capitalize-plain-euiCard__icon-vertical"
         role="img"
         title="test"
       >
