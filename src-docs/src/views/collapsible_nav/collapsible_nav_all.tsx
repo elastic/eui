@@ -151,11 +151,12 @@ const CollapsibleNavAll = () => {
         </EuiHeaderSectionItemButton>
       }
       onClose={() => setNavIsOpen(false)}
+      // Accessibility - Add scroll to nav on very small screens
       css={css`
         @media (max-height: 15em) {
           ${logicalCSSWithFallback('overflow-y', 'auto')}
         }
-      `} // Accessibility - Add scroll to nav on very small screens
+      `}
     >
       {/* Dark deployments section */}
       <EuiFlexItem grow={false} style={{ flexShrink: 0 }}>
