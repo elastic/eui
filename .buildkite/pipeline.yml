@@ -1,7 +1,7 @@
 ## 🏠/.buildkite/pipeline.yml
 
 agents:
-  memory: 4G 
+  memory: "4G" 
 
 steps:
   - label: ":wave: Greetings!"
