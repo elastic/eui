@@ -206,13 +206,12 @@ const CollapsibleNavAll = () => {
       {/* BOTTOM */}
       <EuiFlexItem
         className="eui-yScroll"
+         // Accessibility - Allows nav items to be seen and interacted with on very small screen sizes
         css={css`
           @media (max-height: 15em) {
-            flex-shrink: 0 !important;
-            flex-grow: 1 !important;
-            flex-basis: auto !important;
+            flex: 1 0 auto;
           }
-        `} // Accessibility - Allows nav items to be seen and interacted with on very small screen sizes
+        `}
       >
         {/* Kibana section */}
         <EuiCollapsibleNavGroup
