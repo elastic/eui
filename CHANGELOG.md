@@ -1,3 +1,9 @@
+## [`77.2.1`](https://github.com/elastic/eui/tree/v77.2.1)
+
+**Bug fixes**
+
+- Fixed `EuiFieldNumber`'s native browser validity detection causing extra unnecessary rerenders ([#6741](https://github.com/elastic/eui/pull/6741))
+
 ## [`77.2.0`](https://github.com/elastic/eui/tree/v77.2.0)
 
 - Updated `EuiFieldNumber` to detect native browser invalid state and show an invalid icon ([#6704](https://github.com/elastic/eui/pull/6704))
