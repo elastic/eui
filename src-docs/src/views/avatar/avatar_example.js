@@ -24,6 +24,8 @@ const avatarInitialsSnippet = [
 `,
   `<EuiAvatar name="Engineering User" initials="En" initialsLength={2} />
 `,
+  `<EuiAvatar name="lower case" casing="uppercase" />
+`,
 ];
 
 import AvatarTypes from './avatar_type';
