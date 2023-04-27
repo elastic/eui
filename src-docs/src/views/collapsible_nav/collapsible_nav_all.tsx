@@ -186,6 +186,7 @@ const CollapsibleNavAll = () => {
         <EuiCollapsibleNavGroup
           background="light"
           style={{ maxHeight: '40vh' }}
+          className="eui-yScroll"
         >
           <EuiPinnableListGroup
             aria-label="Pinned links" // A11y : Since this group doesn't have a visible `title` it should be provided an accessible description
