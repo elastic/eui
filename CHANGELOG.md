@@ -1,3 +1,11 @@
+## [`77.1.2`](https://github.com/elastic/eui/tree/v77.1.2)
+
+- Updated `EuiFocusTrap` to support the `gapMode` prop configuration (now defaults to `padding`) ([#6744](https://github.com/elastic/eui/pull/6744))
+
+**Bug fixes**
+
+- Fixed the `scrollLock` property on `EuiFocusTrap` (and other components using `EuiFocusTrap`, such as `EuiFlyout` and `EuiModal`) to no longer block scrolling on nested portalled content, such as combobox dropdowns ([#6744](https://github.com/elastic/eui/pull/6744))
+
 ## [`77.1.1`](https://github.com/elastic/eui/tree/v77.1.1)
 
 - Reverted an accidental merge not intended to be in the prior release
