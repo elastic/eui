@@ -43,8 +43,8 @@ The typical EUI upgrade PR in Kibana looks something like [#109157](https://gith
 
 Labels to use:
 
-* Add the `EUI`, `ci:cloud-deploy`, `release_note:skip`, and relevant version tag(s) (the next minor version that has not yet entered feature freeze)
-* We typically only merge into the main branch (the next minor version), but if an upgrade is specifically targeting a previous version, you can use the `auto-backport` tag to have Kibana automatically create a backport PR to an existing version branch.
+* Add the `EUI`, `release_note:skip`, and relevant version tag(s) (the next minor version that has not yet entered feature freeze)
+* We typically only merge into the main branch (the next minor version), but if an upgrade is specifically targeting a previous version, add that version tag as a label as well. Kibana will attempt to automatically backport the PR to all tagged version branches.
 
 ## Resolving errors
 
