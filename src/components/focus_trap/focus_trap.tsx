@@ -31,6 +31,12 @@ interface EuiFocusTrapInterface {
    */
   initialFocus?: FocusTarget;
   style?: CSSProperties;
+  /**
+   * if `scrollLock` is set to true, the body's scrollbar width will be preserved on lock
+   * via the `gapMode` CSS property. Depending on your custom CSS, you may prefer to use
+   * `margin` instead of `padding`.
+   */
+  gapMode?: 'padding' | 'margin';
   disabled?: boolean;
 }
 
@@ -50,6 +56,7 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
     returnFocus: true,
     noIsolation: true,
     scrollLock: false,
+    gapMode: 'padding', // EUI defaults to padding because Kibana's body/layout CSS ignores `margin`
   };
 
   state: State = {
@@ -119,6 +126,7 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
       returnFocus,
       noIsolation,
       scrollLock,
+      gapMode,
       ...rest
     } = this.props;
     const isDisabled = disabled || this.state.hasBeenDisabledByClick;
@@ -138,7 +146,7 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
     return (
       <FocusOn {...focusOnProps}>
         {children}
-        {scrollLock && <RemoveScrollBar />}
+        {scrollLock && <RemoveScrollBar gapMode={gapMode} />}
       </FocusOn>
     );
   }
