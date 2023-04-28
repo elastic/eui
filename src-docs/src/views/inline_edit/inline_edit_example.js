@@ -11,20 +11,72 @@ import {
   EuiInlineEditTitle,
 } from '../../../../src';
 
+import { inlineEditTextConfig, inlineEditTitleConfig } from './playground';
+
 import InlineEditText from './inline_edit_text';
 const inlineEditTextSource = require('!!raw-loader!./inline_edit_text');
+const inlineEditTextSnippet = `<EuiInlineEditText
+  inputAriaLabel="Edit text inline"
+  defaultValue="Hello World!"
+/>`;
 
 import InlineEditTitle from './inline_edit_title';
 const inlineEditTitleSource = require('!!raw-loader!./inline_edit_title');
+const inlineEditTitleSnippet = `<EuiInlineEditTitle
+  inputAriaLabel="Edit title inline"
+  defaultValue="Hello World (but as a title)!"
+  heading="h3"
+/>`;
 
 import InlineEditModeProps from './inline_edit_mode_props';
 const inlineEditModePropsSource = require('!!raw-loader!./inline_edit_mode_props');
+const inlineEditModePropsSnippet = `<EuiInlineEditText
+  inputAriaLabel="Edit text inline for readMode and editMode props"
+  defaultValue="This inline edit component has been customized!"
+  size="m"
+  readModeProps={{
+    color: 'primary',
+    iconSide: 'left',
+  }}
+  editModeProps={{
+    inputProps: {
+      prepend: 'Prepend example',
+    },
+    formRowProps: {
+      helpText: 'Example help text',
+    },
+    saveButtonProps: {
+      color: 'primary',
+    },
+    cancelButtonProps: {
+      display: 'empty',
+    },
+  }}
+/>`;
 
 import InlineEditSave from './inline_edit_save';
 const inlineEditSaveSource = require('!!raw-loader!././inline_edit_save');
+const inlineEditModeSaveSnippet = `<EuiInlineEditText
+  inputAriaLabel="Edit text inline"
+  defaultValue={defaultInlineEditValue}
+  onSave={(newInlineEditValue: string) => {
+    localStorage.setItem('inlineEditValue', newInlineEditValue);
+  }}
+/>`;
 
 import InlineEditValidation from './inline_edit_validation';
 const inlineEditValidationSource = require('!!raw-loader!././inline_edit_validation');
+const inlineEditValidationSnippet = `<EuiInlineEditText
+  inputAriaLabel="This input will validate on save"
+  defaultValue={defaultInlineEditValue}
+  editModeProps={{
+    formRowProps: { error: errors },
+    cancelButtonProps: { onClick: () => setErrors([]) },
+  }}
+  isInvalid={isInvalid}
+  isLoading={isLoading}
+  onSave={onSave}
+/>`;
 
 export const InlineEditExample = {
   title: 'Inline edit',
@@ -60,6 +112,8 @@ export const InlineEditExample = {
       ],
       demo: <InlineEditText />,
       props: { EuiInlineEditText },
+      snippet: inlineEditTextSnippet,
+      playground: inlineEditTextConfig,
     },
     {
       title: 'Display and edit headings and titles',
@@ -80,6 +134,8 @@ export const InlineEditExample = {
       ],
       demo: <InlineEditTitle />,
       props: { EuiInlineEditTitle },
+      snippet: inlineEditTitleSnippet,
+      playground: inlineEditTitleConfig,
     },
     {
       title: 'Saving edited text',
@@ -98,6 +154,7 @@ export const InlineEditExample = {
         },
       ],
       demo: <InlineEditSave />,
+      snippet: inlineEditModeSaveSnippet,
     },
     {
       title: 'Validating edited text',
@@ -129,6 +186,7 @@ export const InlineEditExample = {
         },
       ],
       demo: <InlineEditValidation />,
+      snippet: inlineEditValidationSnippet,
     },
     {
       title: 'Customizing read and edit modes',
@@ -187,6 +245,7 @@ export const InlineEditExample = {
         },
       ],
       demo: <InlineEditModeProps />,
+      snippet: inlineEditModePropsSnippet,
     },
   ],
 };
