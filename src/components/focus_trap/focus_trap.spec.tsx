@@ -235,4 +235,58 @@ describe('EuiFocusTrap', () => {
         });
     });
   });
+
+  describe('scrollLock', () => {
+    // TODO: Use cypress-real-event's `realMouseWheel` API, whenever they release it 🥲
+    const scrollSelector = (selector: string) => {
+      cy.get(selector).realClick({ position: 'topRight' }).realPress('End');
+      cy.wait(500); // Wait a tick to let scroll position update
+    };
+
+    // Control test to ensure Cypress isn't just giving us false positives for actual scrollLock tests
+    it('does not prevent scrolling on the body if not present', () => {
+      cy.realMount(
+        <div style={{ height: 2000 }}>
+          <EuiFocusTrap>Test</EuiFocusTrap>
+        </div>
+      );
+
+      scrollSelector('body');
+      cy.window().its('scrollY').should('not.equal', 0);
+    });
+
+    it('prevents scrolling on the page body', () => {
+      cy.realMount(
+        <div style={{ height: 2000 }}>
+          <EuiFocusTrap scrollLock>Test</EuiFocusTrap>
+        </div>
+      );
+
+      scrollSelector('body');
+      cy.window().its('scrollY').should('equal', 0);
+    });
+
+    it('allows nested portals to be scrolled', () => {
+      cy.realMount(
+        <div>
+          <EuiFocusTrap scrollLock>
+            Test
+            <EuiPortal>
+              <div
+                data-test-subj="scroll"
+                style={{ height: 100, overflow: 'auto' }}
+              >
+                <div style={{ height: 500 }}>Test</div>
+              </div>
+            </EuiPortal>
+          </EuiFocusTrap>
+        </div>
+      );
+
+      scrollSelector('[data-test-subj="scroll"]');
+      cy.get('[data-test-subj="scroll"]').then(($el) => {
+        expect($el[0].scrollTop).not.to.equal(0);
+      });
+    });
+  });
 });
