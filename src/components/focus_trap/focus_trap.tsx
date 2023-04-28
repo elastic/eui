@@ -9,6 +9,7 @@
 import React, { Component, CSSProperties } from 'react';
 import { FocusOn } from 'react-focus-on';
 import { ReactFocusOnProps } from 'react-focus-on/dist/es5/types';
+import { RemoveScrollBar } from 'react-remove-scroll-bar';
 
 import { CommonProps } from '../common';
 import { findElementBySelectorOrRef, ElementTarget } from '../../services';
@@ -124,11 +125,21 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
     const focusOnProps = {
       returnFocus,
       noIsolation,
-      scrollLock,
       enabled: !isDisabled,
       ...rest,
       onClickOutside: this.handleOutsideClick,
+      /**
+       * `scrollLock` should always be unset on FocusOn, as it can prevent scrolling on
+       * portals (i.e. popovers, comboboxes, dropdown menus, etc.) within modals & flyouts
+       * @see https://github.com/theKashey/react-focus-on/issues/49
+       */
+      scrollLock: false,
     };
-    return <FocusOn {...focusOnProps}>{children}</FocusOn>;
+    return (
+      <FocusOn {...focusOnProps}>
+        {children}
+        {scrollLock && <RemoveScrollBar />}
+      </FocusOn>
+    );
   }
 }
