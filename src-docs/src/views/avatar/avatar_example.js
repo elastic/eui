@@ -24,7 +24,7 @@ const avatarInitialsSnippet = [
 `,
   `<EuiAvatar name="Engineering User" initials="En" initialsLength={2} />
 `,
-  `<EuiAvatar name="lower case" casing="uppercase" />
+  `<EuiAvatar name="lower case" casing="capitalize" />
 `,
 ];
 

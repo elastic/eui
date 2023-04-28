@@ -17,29 +17,23 @@ export default () => (
       <EuiAvatar name="Single" />
       <EuiAvatar name="Two Words" />
       <EuiAvatar name="More Than Two Words" />
-      <EuiAvatar name="lower_case_single" />
+      <EuiAvatar name="lower case" casing="lowercase" />
     </EuiFlexGroup>
     <EuiSpacer />
     <EuiTitle size="xs">
-      <h3>Letter casing</h3>
+      <h3>Custom</h3>
     </EuiTitle>
     <EuiSpacer />
     <EuiFlexGroup responsive={false} gutterSize="xs">
-      <EuiAvatar name="capitalized - default" />
-      <EuiAvatar name="upper case" casing="uppercase" />
-      <EuiAvatar name="LOWER CASE" casing="lowercase" />
-      <EuiAvatar name="weird Casing but Okay" casing="none" />
-    </EuiFlexGroup>
-    <EuiSpacer />
-    <EuiTitle size="xs">
-      <h4>Custom</h4>
-    </EuiTitle>
-    <EuiSpacer />
-    <EuiFlexGroup responsive={false} gutterSize="xs">
-      <EuiAvatar name="Kibana" initialsLength={2} />
+      <EuiAvatar name="Kibana" initialsLength={2} casing="capitalize" />
       <EuiAvatar name="Leonardo Dude" initialsLength={1} />
       <EuiAvatar name="Not provided" initials="?" />
-      <EuiAvatar name="Engineering User" initials="En" initialsLength={2} />
+      <EuiAvatar
+        name="Engineering User"
+        initials="En"
+        casing="none"
+        initialsLength={2}
+      />
     </EuiFlexGroup>
   </>
 );

@@ -95,9 +95,9 @@ export type EuiAvatarProps = Omit<HTMLAttributes<HTMLDivElement>, 'color'> &
 
     /**
      * Sets the letter casing of the displayed initials.
-     *
-     * Defaults to `capitalize` (first letter will be capitalized, but not subsequent letters).
-     * Set to `none` to use the existing casing of the passed `name` or `initials`.
+     * Defaults to `uppercase` for `type="user"` avatars.
+     * Defaults to `none` (uses the existing casing of the passed `name` or `initials`) for `type="space"` avatars.
+     * @default uppercase
      */
     casing?: EuiAvatarCasing;
 
@@ -119,11 +119,12 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
   name,
   size = 'm',
   type = 'user',
-  casing = 'capitalize',
   isDisabled = false,
   style,
-  ...rest
+  ...props
 }) => {
+  const { casing = type === 'space' ? 'none' : 'uppercase', ...rest } = props;
+
   const euiTheme = useEuiTheme();
   const styles = euiAvatarStyles(euiTheme);
 
