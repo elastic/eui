@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, KeyboardEvent } from 'react';
 
 import {
   EuiInlineEditText,
@@ -31,6 +31,14 @@ export default () => {
     setToggleTextButtonSize(optionId);
   };
 
+  const customKeyDown = (event: KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      alert('Hey this is a custom keydown message!');
+    } else {
+      return;
+    }
+  };
+
   return (
     <>
       <EuiButtonGroup
@@ -48,6 +56,11 @@ export default () => {
         inputAriaLabel="Edit text inline"
         defaultValue="Hello World!"
         size={toggleTextButtonSize}
+        editModeProps={{
+          inputProps: {
+            onKeyDown: customKeyDown,
+          },
+        }}
       />
     </>
   );
