@@ -333,5 +333,91 @@ describe('EuiInlineEditForm', () => {
         });
       });
     });
+
+    describe('keyboard events', () => {
+      test('hitting enter saves saves text and returns to readMode', () => {
+        const { getByTestSubject, getByText } = render(
+          <EuiInlineEditForm
+            {...commonInlineEditFormProps}
+            onSave={onSave}
+            startWithEditOpen={true}
+          />
+        );
+
+        fireEvent.change(getByTestSubject('euiInlineEditModeInput'), {
+          target: { value: 'New message!' },
+        });
+        fireEvent.keyDown(getByTestSubject('euiInlineEditModeInput'), {
+          key: 'Enter',
+        });
+
+        expect(getByTestSubject('euiInlineReadModeButton')).toBeTruthy();
+        expect(getByText('New message!')).toBeTruthy();
+        expect(onSave).toHaveBeenCalledWith('New message!');
+      });
+
+      test('hitting escape cancels text and returns to readMode', () => {
+        const { getByTestSubject, getByText } = render(
+          <EuiInlineEditForm
+            {...commonInlineEditFormProps}
+            onSave={onSave}
+            startWithEditOpen={true}
+          />
+        );
+
+        fireEvent.change(getByTestSubject('euiInlineEditModeInput'), {
+          target: { value: 'New message!' },
+        });
+        fireEvent.keyDown(getByTestSubject('euiInlineEditModeInput'), {
+          key: 'Escape',
+        });
+
+        expect(getByTestSubject('euiInlineReadModeButton')).toBeTruthy();
+        expect(getByText('Hello World!')).toBeTruthy();
+        expect(onSave).not.toHaveBeenCalled();
+      });
+
+      test('hitting unmapped keys like shift and delete do not change the state of the component', () => {
+        const { getByTestSubject, queryByTestSubject } = render(
+          <EuiInlineEditForm
+            {...commonInlineEditFormProps}
+            onSave={onSave}
+            startWithEditOpen={true}
+          />
+        );
+
+        fireEvent.keyDown(getByTestSubject('euiInlineEditModeInput'), {
+          key: 'Shift',
+        });
+        fireEvent.keyDown(getByTestSubject('euiInlineEditModeInput'), {
+          key: 'Delete',
+        });
+
+        expect(queryByTestSubject('euiInlineReadModeButton')).toBeFalsy();
+        expect(getByTestSubject('euiInlineEditModeInput')).toBeTruthy();
+        expect(onSave).not.toHaveBeenCalled();
+      });
+
+      test('calls a custom keyDown function passed in with editModeProps overrides the default event', () => {
+        const onKeyDown = jest.fn();
+
+        const { getByTestSubject } = render(
+          <EuiInlineEditForm
+            {...commonInlineEditFormProps}
+            onSave={onSave}
+            startWithEditOpen={true}
+            editModeProps={{ inputProps: { onKeyDown: onKeyDown } }}
+          />
+        );
+
+        fireEvent.keyDown(getByTestSubject('euiInlineEditModeInput'), {
+          key: 'Enter',
+        });
+
+        // If a keyDown event is mapped to Enter/Escape, it should override the default save/cancel event
+        expect(onKeyDown).toHaveBeenCalled();
+        expect(onSave).not.toHaveBeenCalled();
+      });
+    });
   });
 });

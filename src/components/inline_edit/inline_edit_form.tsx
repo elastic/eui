@@ -12,6 +12,8 @@ import React, {
   useState,
   HTMLAttributes,
   MouseEvent,
+  KeyboardEvent,
+  KeyboardEventHandler,
 } from 'react';
 import classNames from 'classnames';
 
@@ -29,7 +31,7 @@ import { EuiButtonIconPropsForButton } from '../button/button_icon';
 import { EuiButtonEmptyPropsForButton } from '../button/button_empty/button_empty';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiSkeletonRectangle } from '../skeleton';
-import { useEuiTheme } from '../../services';
+import { useEuiTheme, keys } from '../../services';
 import { useEuiI18n } from '../i18n';
 import { useGeneratedHtmlId } from '../../services/accessibility';
 
@@ -163,6 +165,22 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
     setIsEditing(false);
   };
 
+  const editModeInputOnKeyDown: KeyboardEventHandler = (
+    event: KeyboardEvent<HTMLElement>
+  ) => {
+    if (event.key === keys.ENTER) {
+      event.preventDefault();
+      event.stopPropagation();
+      saveInlineEditValue();
+    } else if (event.key === keys.ESCAPE) {
+      event.preventDefault();
+      event.stopPropagation();
+      cancelInlineEdit();
+    } else {
+      return;
+    }
+  };
+
   const editModeForm = (
     <EuiForm fullWidth>
       <EuiFlexGroup gutterSize="s">
@@ -184,6 +202,10 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
               isInvalid={isInvalid}
               isLoading={isLoading}
               data-test-subj="euiInlineEditModeInput"
+              onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => {
+                editModeInputOnKeyDown(e);
+                editModeProps?.inputProps?.onKeyDown?.(e);
+              }}
               {...editModeProps?.inputProps}
             />
           </EuiFormRow>
