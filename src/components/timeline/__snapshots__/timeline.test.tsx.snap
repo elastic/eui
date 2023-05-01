@@ -16,7 +16,7 @@ exports[`EuiTimeline is rendered with items 1`] = `
       >
         <div
           aria-label="email"
-          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-m-user-subdued"
+          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
           role="img"
           title="email"
         >
@@ -49,7 +49,7 @@ exports[`EuiTimeline is rendered with items 1`] = `
       >
         <div
           aria-label=""
-          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-m-user-subdued"
+          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
           role="img"
           title=""
         >
@@ -90,7 +90,7 @@ exports[`EuiTimeline props gutterSize l is rendered 1`] = `
       >
         <div
           aria-label="email"
-          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-m-user-subdued"
+          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
           role="img"
           title="email"
         >
@@ -123,7 +123,7 @@ exports[`EuiTimeline props gutterSize l is rendered 1`] = `
       >
         <div
           aria-label=""
-          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-m-user-subdued"
+          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
           role="img"
           title=""
         >
@@ -164,7 +164,7 @@ exports[`EuiTimeline props gutterSize m is rendered 1`] = `
       >
         <div
           aria-label="email"
-          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-m-user-subdued"
+          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
           role="img"
           title="email"
         >
@@ -197,7 +197,7 @@ exports[`EuiTimeline props gutterSize m is rendered 1`] = `
       >
         <div
           aria-label=""
-          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-m-user-subdued"
+          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
           role="img"
           title=""
         >
@@ -238,7 +238,7 @@ exports[`EuiTimeline props gutterSize xl is rendered 1`] = `
       >
         <div
           aria-label="email"
-          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-m-user-subdued"
+          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
           role="img"
           title="email"
         >
@@ -271,7 +271,7 @@ exports[`EuiTimeline props gutterSize xl is rendered 1`] = `
       >
         <div
           aria-label=""
-          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-m-user-subdued"
+          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
           role="img"
           title=""
         >

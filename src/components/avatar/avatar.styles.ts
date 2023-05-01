@@ -83,4 +83,17 @@ export const euiAvatarStyles = ({ euiTheme }: UseEuiTheme) => ({
       fontSize: `calc(${euiTheme.size.xl} * 0.8)`,
     })
   ),
+  // Casing
+  capitalize: css`
+    text-transform: capitalize;
+  `,
+  uppercase: css`
+    text-transform: uppercase;
+  `,
+  lowercase: css`
+    text-transform: lowercase;
+  `,
+  none: css`
+    text-transform: none;
+  `,
 });

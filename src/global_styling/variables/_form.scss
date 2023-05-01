@@ -33,13 +33,13 @@ $euiFormBorderOpaqueColor: shadeOrTint(desaturate(adjust-hue($euiColorPrimary, 2
 $euiFormBorderColor: transparentize($euiFormBorderOpaqueColor, .9) !default;
 $euiFormBorderDisabledColor: transparentize($euiFormBorderOpaqueColor, .9) !default;
 $euiFormCustomControlDisabledIconColor: shadeOrTint($euiColorMediumShade, 38%, 48.5%) !default; // exact 508c foreground for $euiColorLightShade
-$euiFormCustomControlBorderColor: shadeOrTint($euiColorLightestShade, 18%, 30%) !default;
+$euiFormCustomControlBorderColor: shadeOrTint($euiColorLightestShade, 40%, 31%) !default;
 $euiFormControlDisabledColor: $euiColorMediumShade !default;
 $euiFormControlBoxShadow: 0 0 transparent !default;
 $euiFormControlPlaceholderText: makeHighContrastColor($euiTextSubduedColor, $euiFormBackgroundColor) !default;
 $euiFormInputGroupLabelBackground: tintOrShade($euiColorLightShade, 50%, 15%) !default;
 $euiFormInputGroupBorder: none !default;
-$euiSwitchOffColor: lightOrDarkTheme(transparentize($euiColorMediumShade, .8), transparentize($euiColorMediumShade, .3)) !default;
+$euiSwitchOffColor: lightOrDarkTheme(transparentize($euiColorDarkShade, .25), transparentize($euiColorDarkShade, .4)) !default;
 
 // Icons sizes
 $euiFormControlIconSizes: (

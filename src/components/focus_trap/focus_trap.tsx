@@ -9,6 +9,7 @@
 import React, { Component, CSSProperties } from 'react';
 import { FocusOn } from 'react-focus-on';
 import { ReactFocusOnProps } from 'react-focus-on/dist/es5/types';
+import { RemoveScrollBar } from 'react-remove-scroll-bar';
 
 import { CommonProps } from '../common';
 import { findElementBySelectorOrRef, ElementTarget } from '../../services';
@@ -30,6 +31,12 @@ interface EuiFocusTrapInterface {
    */
   initialFocus?: FocusTarget;
   style?: CSSProperties;
+  /**
+   * if `scrollLock` is set to true, the body's scrollbar width will be preserved on lock
+   * via the `gapMode` CSS property. Depending on your custom CSS, you may prefer to use
+   * `margin` instead of `padding`.
+   */
+  gapMode?: 'padding' | 'margin';
   disabled?: boolean;
 }
 
@@ -49,6 +56,7 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
     returnFocus: true,
     noIsolation: true,
     scrollLock: false,
+    gapMode: 'padding', // EUI defaults to padding because Kibana's body/layout CSS ignores `margin`
   };
 
   state: State = {
@@ -118,17 +126,28 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
       returnFocus,
       noIsolation,
       scrollLock,
+      gapMode,
       ...rest
     } = this.props;
     const isDisabled = disabled || this.state.hasBeenDisabledByClick;
     const focusOnProps = {
       returnFocus,
       noIsolation,
-      scrollLock,
       enabled: !isDisabled,
       ...rest,
       onClickOutside: this.handleOutsideClick,
+      /**
+       * `scrollLock` should always be unset on FocusOn, as it can prevent scrolling on
+       * portals (i.e. popovers, comboboxes, dropdown menus, etc.) within modals & flyouts
+       * @see https://github.com/theKashey/react-focus-on/issues/49
+       */
+      scrollLock: false,
     };
-    return <FocusOn {...focusOnProps}>{children}</FocusOn>;
+    return (
+      <FocusOn {...focusOnProps}>
+        {children}
+        {scrollLock && <RemoveScrollBar gapMode={gapMode} />}
+      </FocusOn>
+    );
   }
 }

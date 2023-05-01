@@ -1,0 +1,8 @@
+## 🏠/.buildkite/pipeline.yml
+
+agents:
+  memory: "4G"
+
+steps:
+  - label: ":wave: Greetings!"
+    command: "echo 'My first EUI pipeline!'"

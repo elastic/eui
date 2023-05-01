@@ -76,7 +76,7 @@ exports[`EuiCommentEvent props eventIcon and eventIconAriaLabel are rendered 1`]
           <div
             aria-hidden="false"
             aria-label="edit"
-            class="euiAvatar euiAvatar--s euiAvatar--user euiCommentEvent__headerEventIcon emotion-euiAvatar-s-user-subdued-euiCommentEvent__headerEventIcon"
+            class="euiAvatar euiAvatar--s euiAvatar--user euiCommentEvent__headerEventIcon emotion-euiAvatar-user-s-uppercase-subdued-euiCommentEvent__headerEventIcon"
             role="img"
             title="edit"
           >

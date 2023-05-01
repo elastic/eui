@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import find from 'lodash/find';
 import findIndex from 'lodash/findIndex';
 
+import { css } from '@emotion/react';
+import { logicalCSSWithFallback } from '../../../../src/global_styling';
+
 import {
   EuiCollapsibleNav,
   EuiCollapsibleNavGroup,
@@ -148,6 +151,12 @@ const CollapsibleNavAll = () => {
         </EuiHeaderSectionItemButton>
       }
       onClose={() => setNavIsOpen(false)}
+      // Accessibility - Add scroll to nav on very small screens
+      css={css`
+        @media (max-height: 15em) {
+          ${logicalCSSWithFallback('overflow-y', 'auto')}
+        }
+      `}
     >
       {/* Dark deployments section */}
       <EuiFlexItem grow={false} style={{ flexShrink: 0 }}>
@@ -176,8 +185,8 @@ const CollapsibleNavAll = () => {
       <EuiFlexItem grow={false} style={{ flexShrink: 0 }}>
         <EuiCollapsibleNavGroup
           background="light"
-          className="eui-yScroll"
           style={{ maxHeight: '40vh' }}
+          className="eui-yScroll"
         >
           <EuiPinnableListGroup
             aria-label="Pinned links" // A11y : Since this group doesn't have a visible `title` it should be provided an accessible description
@@ -197,7 +206,15 @@ const CollapsibleNavAll = () => {
       <EuiHorizontalRule margin="none" />
 
       {/* BOTTOM */}
-      <EuiFlexItem className="eui-yScroll">
+      <EuiFlexItem
+        className="eui-yScroll"
+        // Accessibility - Allows nav items to be seen and interacted with on very small screen sizes
+        css={css`
+          @media (max-height: 15em) {
+            flex: 1 0 auto;
+          }
+        `}
+      >
         {/* Kibana section */}
         <EuiCollapsibleNavGroup
           title={

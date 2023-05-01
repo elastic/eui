@@ -14,7 +14,7 @@ exports[`EuiComment is rendered 1`] = `
     >
       <div
         aria-label=""
-        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
+        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
         role="img"
         title=""
       >
@@ -48,7 +48,7 @@ exports[`EuiComment props event is rendered 1`] = `
     >
       <div
         aria-label=""
-        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
+        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
         role="img"
         title=""
       >
@@ -109,7 +109,7 @@ exports[`EuiComment props timestamp is rendered 1`] = `
     >
       <div
         aria-label=""
-        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
+        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
         role="img"
         title=""
       >
@@ -172,7 +172,7 @@ exports[`EuiComment renders a body 1`] = `
     >
       <div
         aria-label=""
-        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
+        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
         role="img"
         title=""
       >
@@ -214,7 +214,7 @@ exports[`EuiComment renders a timeline icon 1`] = `
     >
       <div
         aria-label=""
-        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
+        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
         role="img"
         title=""
       >
