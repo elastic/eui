@@ -220,6 +220,8 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
       <EuiFlexItem grow={false}>
         <EuiSkeletonLoading
           isLoading={isLoading}
+          announceLoadingStatus={true}
+          announceLoadedStatus={false}
           loadingContent={
             <EuiFlexGroup gutterSize="s">
               <EuiSkeletonRectangle

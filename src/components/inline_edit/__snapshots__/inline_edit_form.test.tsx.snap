@@ -51,23 +51,6 @@ exports[`EuiInlineEditForm Edit Mode editModeProps.cancelButtonProps 1`] = `
         data-test-subj="euiSkeletonLoadingAriaWrapper"
       >
         <div
-          class="emotion-euiScreenReaderOnly"
-        >
-          <div
-            aria-atomic="true"
-            aria-live="polite"
-            role="status"
-          >
-            Loaded 
-          </div>
-          <div
-            aria-atomic="true"
-            aria-hidden="true"
-            aria-live="off"
-            role="status"
-          />
-        </div>
-        <div
           class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
         >
           <button
@@ -155,23 +138,6 @@ exports[`EuiInlineEditForm Edit Mode editModeProps.formRowProps 1`] = `
         aria-busy="false"
         data-test-subj="euiSkeletonLoadingAriaWrapper"
       >
-        <div
-          class="emotion-euiScreenReaderOnly"
-        >
-          <div
-            aria-atomic="true"
-            aria-live="polite"
-            role="status"
-          >
-            Loaded 
-          </div>
-          <div
-            aria-atomic="true"
-            aria-hidden="true"
-            aria-live="off"
-            role="status"
-          />
-        </div>
         <div
           class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
         >
@@ -265,23 +231,6 @@ exports[`EuiInlineEditForm Edit Mode editModeProps.inputProps 1`] = `
         data-test-subj="euiSkeletonLoadingAriaWrapper"
       >
         <div
-          class="emotion-euiScreenReaderOnly"
-        >
-          <div
-            aria-atomic="true"
-            aria-live="polite"
-            role="status"
-          >
-            Loaded 
-          </div>
-          <div
-            aria-atomic="true"
-            aria-hidden="true"
-            aria-live="off"
-            role="status"
-          />
-        </div>
-        <div
           class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
         >
           <button
@@ -367,23 +316,6 @@ exports[`EuiInlineEditForm Edit Mode editModeProps.saveButtonProps 1`] = `
         aria-busy="false"
         data-test-subj="euiSkeletonLoadingAriaWrapper"
       >
-        <div
-          class="emotion-euiScreenReaderOnly"
-        >
-          <div
-            aria-atomic="true"
-            aria-live="polite"
-            role="status"
-          >
-            Loaded 
-          </div>
-          <div
-            aria-atomic="true"
-            aria-hidden="true"
-            aria-live="off"
-            role="status"
-          />
-        </div>
         <div
           class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
         >
@@ -480,23 +412,6 @@ exports[`EuiInlineEditForm Edit Mode isInvalid 1`] = `
         data-test-subj="euiSkeletonLoadingAriaWrapper"
       >
         <div
-          class="emotion-euiScreenReaderOnly"
-        >
-          <div
-            aria-atomic="true"
-            aria-live="polite"
-            role="status"
-          >
-            Loaded 
-          </div>
-          <div
-            aria-atomic="true"
-            aria-hidden="true"
-            aria-live="off"
-            role="status"
-          />
-        </div>
-        <div
           class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
         >
           <button
@@ -592,6 +507,23 @@ exports[`EuiInlineEditForm Edit Mode isLoading 1`] = `
         data-test-subj="euiSkeletonLoadingAriaWrapper"
       >
         <div
+          class="emotion-euiScreenReaderOnly"
+        >
+          <div
+            aria-atomic="true"
+            aria-live="polite"
+            role="status"
+          >
+            Loading 
+          </div>
+          <div
+            aria-atomic="true"
+            aria-hidden="true"
+            aria-live="off"
+            role="status"
+          />
+        </div>
+        <div
           aria-label="Loading "
           class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
           role="progressbar"
@@ -675,23 +607,6 @@ exports[`EuiInlineEditForm Edit Mode renders 1`] = `
         aria-busy="false"
         data-test-subj="euiSkeletonLoadingAriaWrapper"
       >
-        <div
-          class="emotion-euiScreenReaderOnly"
-        >
-          <div
-            aria-atomic="true"
-            aria-live="polite"
-            role="status"
-          >
-            Loaded 
-          </div>
-          <div
-            aria-atomic="true"
-            aria-hidden="true"
-            aria-live="off"
-            role="status"
-          />
-        </div>
         <div
           class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
         >
