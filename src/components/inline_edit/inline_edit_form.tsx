@@ -21,7 +21,6 @@ import {
   EuiFormRow,
   EuiFormRowProps,
   EuiFieldText,
-  EuiForm,
   EuiFieldTextProps,
 } from '../form';
 import { euiFormVariables } from '../form/form.styles';
@@ -178,98 +177,94 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   };
 
   const editModeForm = (
-    <EuiForm fullWidth>
-      <EuiFlexGroup gutterSize="s">
-        <EuiFlexItem>
-          <EuiFormRow
+    <EuiFlexGroup gutterSize="s">
+      <EuiFlexItem>
+        <EuiFormRow
+          fullWidth
+          isInvalid={isInvalid}
+          error={isInvalid && editModeProps?.formRowProps?.error}
+          {...editModeProps?.formRowProps}
+        >
+          <EuiFieldText
+            fullWidth
+            id={inlineEditInputId}
+            value={editModeValue}
+            onChange={(e) => {
+              setEditModeValue(e.target.value);
+            }}
+            aria-label={inputAriaLabel}
+            autoFocus
+            compressed={sizes.compressed}
             isInvalid={isInvalid}
-            error={isInvalid && editModeProps?.formRowProps?.error}
-            {...editModeProps?.formRowProps}
-          >
-            <EuiFieldText
-              id={inlineEditInputId}
-              value={editModeValue}
-              onChange={(e) => {
-                setEditModeValue(e.target.value);
-              }}
-              aria-label={inputAriaLabel}
-              autoFocus
-              compressed={sizes.compressed}
-              isInvalid={isInvalid}
-              isLoading={isLoading}
-              data-test-subj="euiInlineEditModeInput"
-              {...editModeProps?.inputProps}
-              aria-describedby={classNames(
-                editModeDescribedById,
-                editModeProps?.inputProps?.['aria-describedby']
-              )}
-              onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => {
-                editModeInputOnKeyDown(e);
-                editModeProps?.inputProps?.onKeyDown?.(e);
-              }}
-            />
-          </EuiFormRow>
-          <span id={editModeDescribedById} hidden>
-            <EuiI18n
-              token="euiInlineEditForm.inputKeyboardInstructions"
-              default="Press Enter to save your edited text. Press Escape to cancel your edit."
-            />
-          </span>
-        </EuiFlexItem>
+            isLoading={isLoading}
+            data-test-subj="euiInlineEditModeInput"
+            {...editModeProps?.inputProps}
+            aria-describedby={classNames(
+              editModeDescribedById,
+              editModeProps?.inputProps?.['aria-describedby']
+            )}
+            onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => {
+              editModeInputOnKeyDown(e);
+              editModeProps?.inputProps?.onKeyDown?.(e);
+            }}
+          />
+        </EuiFormRow>
+        <span id={editModeDescribedById} hidden>
+          <EuiI18n
+            token="euiInlineEditForm.inputKeyboardInstructions"
+            default="Press Enter to save your edited text. Press Escape to cancel your edit."
+          />
+        </span>
+      </EuiFlexItem>
 
-        <EuiFlexItem grow={false} className={classes}>
-          <EuiFormRow>
-            <EuiSkeletonRectangle
-              isLoading={isLoading}
-              height={loadingSkeletonSize}
-              width={loadingSkeletonSize}
-              borderRadius="m"
-            >
-              <EuiButtonIcon
-                iconType="check"
-                aria-label={defaultSaveButtonAriaLabel}
-                color="success"
-                display="base"
-                size={sizes.buttonSize}
-                iconSize={sizes.iconSize}
-                data-test-subj="euiInlineEditModeSaveButton"
-                {...editModeProps?.saveButtonProps}
-                onClick={(e: MouseEvent<HTMLButtonElement>) => {
-                  saveInlineEditValue();
-                  editModeProps?.saveButtonProps?.onClick?.(e);
-                }}
-              />
-            </EuiSkeletonRectangle>
-          </EuiFormRow>
-        </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiSkeletonRectangle
+          isLoading={isLoading}
+          height={loadingSkeletonSize}
+          width={loadingSkeletonSize}
+          borderRadius="m"
+        >
+          <EuiButtonIcon
+            iconType="check"
+            aria-label={defaultSaveButtonAriaLabel}
+            color="success"
+            display="base"
+            size={sizes.buttonSize}
+            iconSize={sizes.iconSize}
+            data-test-subj="euiInlineEditModeSaveButton"
+            {...editModeProps?.saveButtonProps}
+            onClick={(e: MouseEvent<HTMLButtonElement>) => {
+              saveInlineEditValue();
+              editModeProps?.saveButtonProps?.onClick?.(e);
+            }}
+          />
+        </EuiSkeletonRectangle>
+      </EuiFlexItem>
 
-        <EuiFlexItem grow={false}>
-          <EuiFormRow>
-            <EuiSkeletonRectangle
-              isLoading={isLoading}
-              height={loadingSkeletonSize}
-              width={loadingSkeletonSize}
-              borderRadius="m"
-            >
-              <EuiButtonIcon
-                iconType="cross"
-                aria-label={defaultCancelButtonAriaLabel}
-                color="danger"
-                display="base"
-                size={sizes.buttonSize}
-                iconSize={sizes.iconSize}
-                data-test-subj="euiInlineEditModeCancelButton"
-                {...editModeProps?.cancelButtonProps}
-                onClick={(e: MouseEvent<HTMLButtonElement>) => {
-                  cancelInlineEdit();
-                  editModeProps?.cancelButtonProps?.onClick?.(e);
-                }}
-              />
-            </EuiSkeletonRectangle>
-          </EuiFormRow>
-        </EuiFlexItem>
-      </EuiFlexGroup>
-    </EuiForm>
+      <EuiFlexItem grow={false}>
+        <EuiSkeletonRectangle
+          isLoading={isLoading}
+          height={loadingSkeletonSize}
+          width={loadingSkeletonSize}
+          borderRadius="m"
+        >
+          <EuiButtonIcon
+            iconType="cross"
+            aria-label={defaultCancelButtonAriaLabel}
+            color="danger"
+            display="base"
+            size={sizes.buttonSize}
+            iconSize={sizes.iconSize}
+            data-test-subj="euiInlineEditModeCancelButton"
+            {...editModeProps?.cancelButtonProps}
+            onClick={(e: MouseEvent<HTMLButtonElement>) => {
+              cancelInlineEdit();
+              editModeProps?.cancelButtonProps?.onClick?.(e);
+            }}
+          />
+        </EuiSkeletonRectangle>
+      </EuiFlexItem>
+    </EuiFlexGroup>
   );
 
   const readModeElement = (

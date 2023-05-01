@@ -5,143 +5,121 @@ exports[`EuiInlineEditForm Edit Mode editModeProps.cancelButtonProps 1`] = `
   class="euiInlineEdit testClass1 testClass2"
 >
   <div
-    class="euiForm"
+    class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
   >
     <div
-      class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
+      class="euiFlexItem emotion-euiFlexItem-grow-1"
     >
       <div
-        class="euiFlexItem emotion-euiFlexItem-grow-1"
+        class="euiFormRow euiFormRow--fullWidth"
+        id="generated-id-row"
       >
         <div
-          class="euiFormRow euiFormRow--fullWidth"
-          id="generated-id-row"
+          class="euiFormRow__fieldWrapper"
         >
           <div
-            class="euiFormRow__fieldWrapper"
+            class="euiFormControlLayout euiFormControlLayout--fullWidth"
           >
             <div
-              class="euiFormControlLayout euiFormControlLayout--fullWidth"
+              class="euiFormControlLayout__childrenWrapper"
             >
-              <div
-                class="euiFormControlLayout__childrenWrapper"
-              >
-                <input
-                  aria-describedby="inlineEdit_generated-id"
-                  aria-label="Edit inline"
-                  class="euiFieldText euiFieldText--fullWidth"
-                  data-test-subj="euiInlineEditModeInput"
-                  id="generated-id"
-                  type="text"
-                  value="Hello World!"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <span
-          hidden=""
-          id="inlineEdit_generated-id"
-        >
-          Press Enter to save your edited text. Press Escape to cancel your edit.
-        </span>
-      </div>
-      <div
-        class="euiFlexItem euiInlineEdit testClass1 testClass2 emotion-euiFlexItem-growZero"
-      >
-        <div
-          class="euiFormRow euiFormRow--fullWidth"
-          id="generated-id-row"
-        >
-          <div
-            class="euiFormRow__fieldWrapper"
-          >
-            <div
-              aria-busy="false"
-              data-test-subj="euiSkeletonLoadingAriaWrapper"
-            >
-              <div
-                class="emotion-euiScreenReaderOnly"
-              >
-                <div
-                  aria-atomic="true"
-                  aria-live="polite"
-                  role="status"
-                >
-                  Loaded 
-                </div>
-                <div
-                  aria-atomic="true"
-                  aria-hidden="true"
-                  aria-live="off"
-                  role="status"
-                />
-              </div>
-              <button
-                aria-label="Save edit"
-                class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-success"
-                data-test-subj="euiInlineEditModeSaveButton"
-                type="button"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiButtonIcon__icon"
-                  color="inherit"
-                  data-euiicon-type="check"
-                />
-              </button>
+              <input
+                aria-describedby="inlineEdit_generated-id"
+                aria-label="Edit inline"
+                class="euiFieldText euiFieldText--fullWidth"
+                data-test-subj="euiInlineEditModeInput"
+                id="generated-id"
+                type="text"
+                value="Hello World!"
+              />
             </div>
           </div>
         </div>
       </div>
+      <span
+        hidden=""
+        id="inlineEdit_generated-id"
+      >
+        Press Enter to save your edited text. Press Escape to cancel your edit.
+      </span>
+    </div>
+    <div
+      class="euiFlexItem emotion-euiFlexItem-growZero"
+    >
       <div
-        class="euiFlexItem emotion-euiFlexItem-growZero"
+        aria-busy="false"
+        data-test-subj="euiSkeletonLoadingAriaWrapper"
       >
         <div
-          class="euiFormRow euiFormRow--fullWidth"
-          id="generated-id-row"
+          class="emotion-euiScreenReaderOnly"
         >
           <div
-            class="euiFormRow__fieldWrapper"
+            aria-atomic="true"
+            aria-live="polite"
+            role="status"
           >
-            <div
-              aria-busy="false"
-              data-test-subj="euiSkeletonLoadingAriaWrapper"
-            >
-              <div
-                class="emotion-euiScreenReaderOnly"
-              >
-                <div
-                  aria-atomic="true"
-                  aria-live="polite"
-                  role="status"
-                >
-                  Loaded 
-                </div>
-                <div
-                  aria-atomic="true"
-                  aria-hidden="true"
-                  aria-live="off"
-                  role="status"
-                />
-              </div>
-              <button
-                aria-label="Uh no. Do not save."
-                class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-disabled"
-                data-test-subj="euiInlineEditModeCancelButton"
-                disabled=""
-                type="button"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiButtonIcon__icon"
-                  color="inherit"
-                  data-euiicon-type="cross"
-                />
-              </button>
-            </div>
+            Loaded 
           </div>
+          <div
+            aria-atomic="true"
+            aria-hidden="true"
+            aria-live="off"
+            role="status"
+          />
         </div>
+        <button
+          aria-label="Save edit"
+          class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-success"
+          data-test-subj="euiInlineEditModeSaveButton"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="check"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="euiFlexItem emotion-euiFlexItem-growZero"
+    >
+      <div
+        aria-busy="false"
+        data-test-subj="euiSkeletonLoadingAriaWrapper"
+      >
+        <div
+          class="emotion-euiScreenReaderOnly"
+        >
+          <div
+            aria-atomic="true"
+            aria-live="polite"
+            role="status"
+          >
+            Loaded 
+          </div>
+          <div
+            aria-atomic="true"
+            aria-hidden="true"
+            aria-live="off"
+            role="status"
+          />
+        </div>
+        <button
+          aria-label="Uh no. Do not save."
+          class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-disabled"
+          data-test-subj="euiInlineEditModeCancelButton"
+          disabled=""
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="cross"
+          />
+        </button>
       </div>
     </div>
   </div>
@@ -153,143 +131,121 @@ exports[`EuiInlineEditForm Edit Mode editModeProps.formRowProps 1`] = `
   class="euiInlineEdit testClass1 testClass2"
 >
   <div
-    class="euiForm"
+    class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
   >
     <div
-      class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
+      class="euiFlexItem emotion-euiFlexItem-grow-1"
     >
       <div
-        class="euiFlexItem emotion-euiFlexItem-grow-1"
+        class="euiFormRow euiFormRow--fullWidth"
+        data-test-subj="customErrorText"
+        id="generated-id-row"
       >
         <div
-          class="euiFormRow euiFormRow--fullWidth"
-          data-test-subj="customErrorText"
-          id="generated-id-row"
+          class="euiFormRow__fieldWrapper"
         >
           <div
-            class="euiFormRow__fieldWrapper"
+            class="euiFormControlLayout euiFormControlLayout--fullWidth"
           >
             <div
-              class="euiFormControlLayout euiFormControlLayout--fullWidth"
+              class="euiFormControlLayout__childrenWrapper"
             >
-              <div
-                class="euiFormControlLayout__childrenWrapper"
-              >
-                <input
-                  aria-describedby="inlineEdit_generated-id"
-                  aria-label="Edit inline"
-                  class="euiFieldText euiFieldText--fullWidth"
-                  data-test-subj="euiInlineEditModeInput"
-                  id="generated-id"
-                  type="text"
-                  value="Hello World!"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <span
-          hidden=""
-          id="inlineEdit_generated-id"
-        >
-          Press Enter to save your edited text. Press Escape to cancel your edit.
-        </span>
-      </div>
-      <div
-        class="euiFlexItem euiInlineEdit testClass1 testClass2 emotion-euiFlexItem-growZero"
-      >
-        <div
-          class="euiFormRow euiFormRow--fullWidth"
-          id="generated-id-row"
-        >
-          <div
-            class="euiFormRow__fieldWrapper"
-          >
-            <div
-              aria-busy="false"
-              data-test-subj="euiSkeletonLoadingAriaWrapper"
-            >
-              <div
-                class="emotion-euiScreenReaderOnly"
-              >
-                <div
-                  aria-atomic="true"
-                  aria-live="polite"
-                  role="status"
-                >
-                  Loaded 
-                </div>
-                <div
-                  aria-atomic="true"
-                  aria-hidden="true"
-                  aria-live="off"
-                  role="status"
-                />
-              </div>
-              <button
-                aria-label="Save edit"
-                class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-success"
-                data-test-subj="euiInlineEditModeSaveButton"
-                type="button"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiButtonIcon__icon"
-                  color="inherit"
-                  data-euiicon-type="check"
-                />
-              </button>
+              <input
+                aria-describedby="inlineEdit_generated-id"
+                aria-label="Edit inline"
+                class="euiFieldText euiFieldText--fullWidth"
+                data-test-subj="euiInlineEditModeInput"
+                id="generated-id"
+                type="text"
+                value="Hello World!"
+              />
             </div>
           </div>
         </div>
       </div>
+      <span
+        hidden=""
+        id="inlineEdit_generated-id"
+      >
+        Press Enter to save your edited text. Press Escape to cancel your edit.
+      </span>
+    </div>
+    <div
+      class="euiFlexItem emotion-euiFlexItem-growZero"
+    >
       <div
-        class="euiFlexItem emotion-euiFlexItem-growZero"
+        aria-busy="false"
+        data-test-subj="euiSkeletonLoadingAriaWrapper"
       >
         <div
-          class="euiFormRow euiFormRow--fullWidth"
-          id="generated-id-row"
+          class="emotion-euiScreenReaderOnly"
         >
           <div
-            class="euiFormRow__fieldWrapper"
+            aria-atomic="true"
+            aria-live="polite"
+            role="status"
           >
-            <div
-              aria-busy="false"
-              data-test-subj="euiSkeletonLoadingAriaWrapper"
-            >
-              <div
-                class="emotion-euiScreenReaderOnly"
-              >
-                <div
-                  aria-atomic="true"
-                  aria-live="polite"
-                  role="status"
-                >
-                  Loaded 
-                </div>
-                <div
-                  aria-atomic="true"
-                  aria-hidden="true"
-                  aria-live="off"
-                  role="status"
-                />
-              </div>
-              <button
-                aria-label="Cancel edit"
-                class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-danger"
-                data-test-subj="euiInlineEditModeCancelButton"
-                type="button"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiButtonIcon__icon"
-                  color="inherit"
-                  data-euiicon-type="cross"
-                />
-              </button>
-            </div>
+            Loaded 
           </div>
+          <div
+            aria-atomic="true"
+            aria-hidden="true"
+            aria-live="off"
+            role="status"
+          />
         </div>
+        <button
+          aria-label="Save edit"
+          class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-success"
+          data-test-subj="euiInlineEditModeSaveButton"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="check"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="euiFlexItem emotion-euiFlexItem-growZero"
+    >
+      <div
+        aria-busy="false"
+        data-test-subj="euiSkeletonLoadingAriaWrapper"
+      >
+        <div
+          class="emotion-euiScreenReaderOnly"
+        >
+          <div
+            aria-atomic="true"
+            aria-live="polite"
+            role="status"
+          >
+            Loaded 
+          </div>
+          <div
+            aria-atomic="true"
+            aria-hidden="true"
+            aria-live="off"
+            role="status"
+          />
+        </div>
+        <button
+          aria-label="Cancel edit"
+          class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-danger"
+          data-test-subj="euiInlineEditModeCancelButton"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="cross"
+          />
+        </button>
       </div>
     </div>
   </div>
@@ -301,148 +257,126 @@ exports[`EuiInlineEditForm Edit Mode editModeProps.inputProps 1`] = `
   class="euiInlineEdit testClass1 testClass2"
 >
   <div
-    class="euiForm"
+    class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
   >
     <div
-      class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
+      class="euiFlexItem emotion-euiFlexItem-grow-1"
     >
       <div
-        class="euiFlexItem emotion-euiFlexItem-grow-1"
+        class="euiFormRow euiFormRow--fullWidth"
+        id="generated-id-row"
       >
         <div
-          class="euiFormRow euiFormRow--fullWidth"
-          id="generated-id-row"
+          class="euiFormRow__fieldWrapper"
         >
           <div
-            class="euiFormRow__fieldWrapper"
+            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
           >
-            <div
-              class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+            <label
+              class="euiFormLabel euiFormControlLayout__prepend"
+              for="generated-id"
             >
-              <label
-                class="euiFormLabel euiFormControlLayout__prepend"
-                for="generated-id"
-              >
-                Prepend Example
-              </label>
-              <div
-                class="euiFormControlLayout__childrenWrapper"
-              >
-                <input
-                  aria-describedby="inlineEdit_generated-id"
-                  aria-label="Edit inline"
-                  class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
-                  data-test-subj="customInput"
-                  id="generated-id"
-                  type="text"
-                  value="Hello World!"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <span
-          hidden=""
-          id="inlineEdit_generated-id"
-        >
-          Press Enter to save your edited text. Press Escape to cancel your edit.
-        </span>
-      </div>
-      <div
-        class="euiFlexItem euiInlineEdit testClass1 testClass2 emotion-euiFlexItem-growZero"
-      >
-        <div
-          class="euiFormRow euiFormRow--fullWidth"
-          id="generated-id-row"
-        >
-          <div
-            class="euiFormRow__fieldWrapper"
-          >
+              Prepend Example
+            </label>
             <div
-              aria-busy="false"
-              data-test-subj="euiSkeletonLoadingAriaWrapper"
+              class="euiFormControlLayout__childrenWrapper"
             >
-              <div
-                class="emotion-euiScreenReaderOnly"
-              >
-                <div
-                  aria-atomic="true"
-                  aria-live="polite"
-                  role="status"
-                >
-                  Loaded 
-                </div>
-                <div
-                  aria-atomic="true"
-                  aria-hidden="true"
-                  aria-live="off"
-                  role="status"
-                />
-              </div>
-              <button
-                aria-label="Save edit"
-                class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-success"
-                data-test-subj="euiInlineEditModeSaveButton"
-                type="button"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiButtonIcon__icon"
-                  color="inherit"
-                  data-euiicon-type="check"
-                />
-              </button>
+              <input
+                aria-describedby="inlineEdit_generated-id"
+                aria-label="Edit inline"
+                class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
+                data-test-subj="customInput"
+                id="generated-id"
+                type="text"
+                value="Hello World!"
+              />
             </div>
           </div>
         </div>
       </div>
+      <span
+        hidden=""
+        id="inlineEdit_generated-id"
+      >
+        Press Enter to save your edited text. Press Escape to cancel your edit.
+      </span>
+    </div>
+    <div
+      class="euiFlexItem emotion-euiFlexItem-growZero"
+    >
       <div
-        class="euiFlexItem emotion-euiFlexItem-growZero"
+        aria-busy="false"
+        data-test-subj="euiSkeletonLoadingAriaWrapper"
       >
         <div
-          class="euiFormRow euiFormRow--fullWidth"
-          id="generated-id-row"
+          class="emotion-euiScreenReaderOnly"
         >
           <div
-            class="euiFormRow__fieldWrapper"
+            aria-atomic="true"
+            aria-live="polite"
+            role="status"
           >
-            <div
-              aria-busy="false"
-              data-test-subj="euiSkeletonLoadingAriaWrapper"
-            >
-              <div
-                class="emotion-euiScreenReaderOnly"
-              >
-                <div
-                  aria-atomic="true"
-                  aria-live="polite"
-                  role="status"
-                >
-                  Loaded 
-                </div>
-                <div
-                  aria-atomic="true"
-                  aria-hidden="true"
-                  aria-live="off"
-                  role="status"
-                />
-              </div>
-              <button
-                aria-label="Cancel edit"
-                class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-danger"
-                data-test-subj="euiInlineEditModeCancelButton"
-                type="button"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiButtonIcon__icon"
-                  color="inherit"
-                  data-euiicon-type="cross"
-                />
-              </button>
-            </div>
+            Loaded 
           </div>
+          <div
+            aria-atomic="true"
+            aria-hidden="true"
+            aria-live="off"
+            role="status"
+          />
         </div>
+        <button
+          aria-label="Save edit"
+          class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-success"
+          data-test-subj="euiInlineEditModeSaveButton"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="check"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="euiFlexItem emotion-euiFlexItem-growZero"
+    >
+      <div
+        aria-busy="false"
+        data-test-subj="euiSkeletonLoadingAriaWrapper"
+      >
+        <div
+          class="emotion-euiScreenReaderOnly"
+        >
+          <div
+            aria-atomic="true"
+            aria-live="polite"
+            role="status"
+          >
+            Loaded 
+          </div>
+          <div
+            aria-atomic="true"
+            aria-hidden="true"
+            aria-live="off"
+            role="status"
+          />
+        </div>
+        <button
+          aria-label="Cancel edit"
+          class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-danger"
+          data-test-subj="euiInlineEditModeCancelButton"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="cross"
+          />
+        </button>
       </div>
     </div>
   </div>
@@ -454,142 +388,120 @@ exports[`EuiInlineEditForm Edit Mode editModeProps.saveButtonProps 1`] = `
   class="euiInlineEdit testClass1 testClass2"
 >
   <div
-    class="euiForm"
+    class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
   >
     <div
-      class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
+      class="euiFlexItem emotion-euiFlexItem-grow-1"
     >
       <div
-        class="euiFlexItem emotion-euiFlexItem-grow-1"
+        class="euiFormRow euiFormRow--fullWidth"
+        id="generated-id-row"
       >
         <div
-          class="euiFormRow euiFormRow--fullWidth"
-          id="generated-id-row"
+          class="euiFormRow__fieldWrapper"
         >
           <div
-            class="euiFormRow__fieldWrapper"
+            class="euiFormControlLayout euiFormControlLayout--fullWidth"
           >
             <div
-              class="euiFormControlLayout euiFormControlLayout--fullWidth"
+              class="euiFormControlLayout__childrenWrapper"
             >
-              <div
-                class="euiFormControlLayout__childrenWrapper"
-              >
-                <input
-                  aria-describedby="inlineEdit_generated-id"
-                  aria-label="Edit inline"
-                  class="euiFieldText euiFieldText--fullWidth"
-                  data-test-subj="euiInlineEditModeInput"
-                  id="generated-id"
-                  type="text"
-                  value="Hello World!"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <span
-          hidden=""
-          id="inlineEdit_generated-id"
-        >
-          Press Enter to save your edited text. Press Escape to cancel your edit.
-        </span>
-      </div>
-      <div
-        class="euiFlexItem euiInlineEdit testClass1 testClass2 emotion-euiFlexItem-growZero"
-      >
-        <div
-          class="euiFormRow euiFormRow--fullWidth"
-          id="generated-id-row"
-        >
-          <div
-            class="euiFormRow__fieldWrapper"
-          >
-            <div
-              aria-busy="false"
-              data-test-subj="euiSkeletonLoadingAriaWrapper"
-            >
-              <div
-                class="emotion-euiScreenReaderOnly"
-              >
-                <div
-                  aria-atomic="true"
-                  aria-live="polite"
-                  role="status"
-                >
-                  Loaded 
-                </div>
-                <div
-                  aria-atomic="true"
-                  aria-hidden="true"
-                  aria-live="off"
-                  role="status"
-                />
-              </div>
-              <button
-                aria-label="Yes! Let's save."
-                class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-primary"
-                data-test-subj="euiInlineEditModeSaveButton"
-                type="button"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiButtonIcon__icon"
-                  color="inherit"
-                  data-euiicon-type="check"
-                />
-              </button>
+              <input
+                aria-describedby="inlineEdit_generated-id"
+                aria-label="Edit inline"
+                class="euiFieldText euiFieldText--fullWidth"
+                data-test-subj="euiInlineEditModeInput"
+                id="generated-id"
+                type="text"
+                value="Hello World!"
+              />
             </div>
           </div>
         </div>
       </div>
+      <span
+        hidden=""
+        id="inlineEdit_generated-id"
+      >
+        Press Enter to save your edited text. Press Escape to cancel your edit.
+      </span>
+    </div>
+    <div
+      class="euiFlexItem emotion-euiFlexItem-growZero"
+    >
       <div
-        class="euiFlexItem emotion-euiFlexItem-growZero"
+        aria-busy="false"
+        data-test-subj="euiSkeletonLoadingAriaWrapper"
       >
         <div
-          class="euiFormRow euiFormRow--fullWidth"
-          id="generated-id-row"
+          class="emotion-euiScreenReaderOnly"
         >
           <div
-            class="euiFormRow__fieldWrapper"
+            aria-atomic="true"
+            aria-live="polite"
+            role="status"
           >
-            <div
-              aria-busy="false"
-              data-test-subj="euiSkeletonLoadingAriaWrapper"
-            >
-              <div
-                class="emotion-euiScreenReaderOnly"
-              >
-                <div
-                  aria-atomic="true"
-                  aria-live="polite"
-                  role="status"
-                >
-                  Loaded 
-                </div>
-                <div
-                  aria-atomic="true"
-                  aria-hidden="true"
-                  aria-live="off"
-                  role="status"
-                />
-              </div>
-              <button
-                aria-label="Cancel edit"
-                class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-danger"
-                data-test-subj="euiInlineEditModeCancelButton"
-                type="button"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiButtonIcon__icon"
-                  color="inherit"
-                  data-euiicon-type="cross"
-                />
-              </button>
-            </div>
+            Loaded 
           </div>
+          <div
+            aria-atomic="true"
+            aria-hidden="true"
+            aria-live="off"
+            role="status"
+          />
         </div>
+        <button
+          aria-label="Yes! Let's save."
+          class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-primary"
+          data-test-subj="euiInlineEditModeSaveButton"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="check"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="euiFlexItem emotion-euiFlexItem-growZero"
+    >
+      <div
+        aria-busy="false"
+        data-test-subj="euiSkeletonLoadingAriaWrapper"
+      >
+        <div
+          class="emotion-euiScreenReaderOnly"
+        >
+          <div
+            aria-atomic="true"
+            aria-live="polite"
+            role="status"
+          >
+            Loaded 
+          </div>
+          <div
+            aria-atomic="true"
+            aria-hidden="true"
+            aria-live="off"
+            role="status"
+          />
+        </div>
+        <button
+          aria-label="Cancel edit"
+          class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-danger"
+          data-test-subj="euiInlineEditModeCancelButton"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="cross"
+          />
+        </button>
       </div>
     </div>
   </div>
@@ -601,151 +513,129 @@ exports[`EuiInlineEditForm Edit Mode isInvalid 1`] = `
   class="euiInlineEdit testClass1 testClass2"
 >
   <div
-    class="euiForm"
+    class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
   >
     <div
-      class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
+      class="euiFlexItem emotion-euiFlexItem-grow-1"
     >
       <div
-        class="euiFlexItem emotion-euiFlexItem-grow-1"
+        class="euiFormRow euiFormRow--fullWidth"
+        id="generated-id-row"
       >
         <div
-          class="euiFormRow euiFormRow--fullWidth"
-          id="generated-id-row"
+          class="euiFormRow__fieldWrapper"
         >
           <div
-            class="euiFormRow__fieldWrapper"
+            class="euiFormControlLayout euiFormControlLayout--fullWidth"
           >
             <div
-              class="euiFormControlLayout euiFormControlLayout--fullWidth"
+              class="euiFormControlLayout__childrenWrapper"
             >
+              <input
+                aria-describedby="inlineEdit_generated-id"
+                aria-invalid="true"
+                aria-label="Edit inline"
+                class="euiFieldText euiFormControlLayout--1icons euiFieldText--fullWidth"
+                data-test-subj="euiInlineEditModeInput"
+                id="generated-id"
+                type="text"
+                value="Hello World!"
+              />
               <div
-                class="euiFormControlLayout__childrenWrapper"
-              >
-                <input
-                  aria-describedby="inlineEdit_generated-id"
-                  aria-invalid="true"
-                  aria-label="Edit inline"
-                  class="euiFieldText euiFormControlLayout--1icons euiFieldText--fullWidth"
-                  data-test-subj="euiInlineEditModeInput"
-                  id="generated-id"
-                  type="text"
-                  value="Hello World!"
-                />
-                <div
-                  class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
-                >
-                  <span
-                    color="danger"
-                    data-euiicon-type="warning"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <span
-          hidden=""
-          id="inlineEdit_generated-id"
-        >
-          Press Enter to save your edited text. Press Escape to cancel your edit.
-        </span>
-      </div>
-      <div
-        class="euiFlexItem euiInlineEdit testClass1 testClass2 emotion-euiFlexItem-growZero"
-      >
-        <div
-          class="euiFormRow euiFormRow--fullWidth"
-          id="generated-id-row"
-        >
-          <div
-            class="euiFormRow__fieldWrapper"
-          >
-            <div
-              aria-busy="false"
-              data-test-subj="euiSkeletonLoadingAriaWrapper"
-            >
-              <div
-                class="emotion-euiScreenReaderOnly"
-              >
-                <div
-                  aria-atomic="true"
-                  aria-live="polite"
-                  role="status"
-                >
-                  Loaded 
-                </div>
-                <div
-                  aria-atomic="true"
-                  aria-hidden="true"
-                  aria-live="off"
-                  role="status"
-                />
-              </div>
-              <button
-                aria-label="Save edit"
-                class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-success"
-                data-test-subj="euiInlineEditModeSaveButton"
-                type="button"
+                class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
               >
                 <span
-                  aria-hidden="true"
-                  class="euiButtonIcon__icon"
-                  color="inherit"
-                  data-euiicon-type="check"
+                  color="danger"
+                  data-euiicon-type="warning"
                 />
-              </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <span
+        hidden=""
+        id="inlineEdit_generated-id"
+      >
+        Press Enter to save your edited text. Press Escape to cancel your edit.
+      </span>
+    </div>
+    <div
+      class="euiFlexItem emotion-euiFlexItem-growZero"
+    >
       <div
-        class="euiFlexItem emotion-euiFlexItem-growZero"
+        aria-busy="false"
+        data-test-subj="euiSkeletonLoadingAriaWrapper"
       >
         <div
-          class="euiFormRow euiFormRow--fullWidth"
-          id="generated-id-row"
+          class="emotion-euiScreenReaderOnly"
         >
           <div
-            class="euiFormRow__fieldWrapper"
+            aria-atomic="true"
+            aria-live="polite"
+            role="status"
           >
-            <div
-              aria-busy="false"
-              data-test-subj="euiSkeletonLoadingAriaWrapper"
-            >
-              <div
-                class="emotion-euiScreenReaderOnly"
-              >
-                <div
-                  aria-atomic="true"
-                  aria-live="polite"
-                  role="status"
-                >
-                  Loaded 
-                </div>
-                <div
-                  aria-atomic="true"
-                  aria-hidden="true"
-                  aria-live="off"
-                  role="status"
-                />
-              </div>
-              <button
-                aria-label="Cancel edit"
-                class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-danger"
-                data-test-subj="euiInlineEditModeCancelButton"
-                type="button"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiButtonIcon__icon"
-                  color="inherit"
-                  data-euiicon-type="cross"
-                />
-              </button>
-            </div>
+            Loaded 
           </div>
+          <div
+            aria-atomic="true"
+            aria-hidden="true"
+            aria-live="off"
+            role="status"
+          />
         </div>
+        <button
+          aria-label="Save edit"
+          class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-success"
+          data-test-subj="euiInlineEditModeSaveButton"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="check"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="euiFlexItem emotion-euiFlexItem-growZero"
+    >
+      <div
+        aria-busy="false"
+        data-test-subj="euiSkeletonLoadingAriaWrapper"
+      >
+        <div
+          class="emotion-euiScreenReaderOnly"
+        >
+          <div
+            aria-atomic="true"
+            aria-live="polite"
+            role="status"
+          >
+            Loaded 
+          </div>
+          <div
+            aria-atomic="true"
+            aria-hidden="true"
+            aria-live="off"
+            role="status"
+          />
+        </div>
+        <button
+          aria-label="Cancel edit"
+          class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-danger"
+          data-test-subj="euiInlineEditModeCancelButton"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="cross"
+          />
+        </button>
       </div>
     </div>
   </div>
@@ -757,105 +647,81 @@ exports[`EuiInlineEditForm Edit Mode isLoading 1`] = `
   class="euiInlineEdit testClass1 testClass2"
 >
   <div
-    class="euiForm"
+    class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
   >
     <div
-      class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
+      class="euiFlexItem emotion-euiFlexItem-grow-1"
     >
       <div
-        class="euiFlexItem emotion-euiFlexItem-grow-1"
+        class="euiFormRow euiFormRow--fullWidth"
+        id="generated-id-row"
       >
         <div
-          class="euiFormRow euiFormRow--fullWidth"
-          id="generated-id-row"
+          class="euiFormRow__fieldWrapper"
         >
           <div
-            class="euiFormRow__fieldWrapper"
+            class="euiFormControlLayout euiFormControlLayout--fullWidth"
           >
             <div
-              class="euiFormControlLayout euiFormControlLayout--fullWidth"
+              class="euiFormControlLayout__childrenWrapper"
             >
+              <input
+                aria-describedby="inlineEdit_generated-id"
+                aria-label="Edit inline"
+                class="euiFieldText euiFormControlLayout--1icons euiFieldText--fullWidth euiFieldText-isLoading"
+                data-test-subj="euiInlineEditModeInput"
+                id="generated-id"
+                type="text"
+                value="Hello World!"
+              />
               <div
-                class="euiFormControlLayout__childrenWrapper"
+                class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
               >
-                <input
-                  aria-describedby="inlineEdit_generated-id"
-                  aria-label="Edit inline"
-                  class="euiFieldText euiFormControlLayout--1icons euiFieldText--fullWidth euiFieldText-isLoading"
-                  data-test-subj="euiInlineEditModeInput"
-                  id="generated-id"
-                  type="text"
-                  value="Hello World!"
+                <span
+                  aria-label="Loading"
+                  class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
+                  role="progressbar"
                 />
-                <div
-                  class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
-                >
-                  <span
-                    aria-label="Loading"
-                    class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
-                    role="progressbar"
-                  />
-                </div>
               </div>
             </div>
           </div>
         </div>
-        <span
-          hidden=""
-          id="inlineEdit_generated-id"
-        >
-          Press Enter to save your edited text. Press Escape to cancel your edit.
-        </span>
       </div>
+      <span
+        hidden=""
+        id="inlineEdit_generated-id"
+      >
+        Press Enter to save your edited text. Press Escape to cancel your edit.
+      </span>
+    </div>
+    <div
+      class="euiFlexItem emotion-euiFlexItem-growZero"
+    >
       <div
-        class="euiFlexItem euiInlineEdit testClass1 testClass2 emotion-euiFlexItem-growZero"
+        aria-busy="true"
+        data-test-subj="euiSkeletonLoadingAriaWrapper"
       >
         <div
-          class="euiFormRow euiFormRow--fullWidth"
-          id="generated-id-row"
-        >
-          <div
-            class="euiFormRow__fieldWrapper"
-          >
-            <div
-              aria-busy="true"
-              data-test-subj="euiSkeletonLoadingAriaWrapper"
-            >
-              <div
-                aria-label="Loading "
-                class="euiSkeletonRectangle emotion-euiSkeletonGradientAnimation-euiSkeletonRectangle-m"
-                id="generated-id"
-                role="progressbar"
-                style="inline-size: 40px; block-size: 40px;"
-              />
-            </div>
-          </div>
-        </div>
+          aria-label="Loading "
+          class="euiSkeletonRectangle emotion-euiSkeletonGradientAnimation-euiSkeletonRectangle-m"
+          role="progressbar"
+          style="inline-size: 40px; block-size: 40px;"
+        />
       </div>
+    </div>
+    <div
+      class="euiFlexItem emotion-euiFlexItem-growZero"
+    >
       <div
-        class="euiFlexItem emotion-euiFlexItem-growZero"
+        aria-busy="true"
+        data-test-subj="euiSkeletonLoadingAriaWrapper"
       >
         <div
-          class="euiFormRow euiFormRow--fullWidth"
-          id="generated-id-row"
-        >
-          <div
-            class="euiFormRow__fieldWrapper"
-          >
-            <div
-              aria-busy="true"
-              data-test-subj="euiSkeletonLoadingAriaWrapper"
-            >
-              <div
-                aria-label="Loading "
-                class="euiSkeletonRectangle emotion-euiSkeletonGradientAnimation-euiSkeletonRectangle-m"
-                id="generated-id"
-                role="progressbar"
-                style="inline-size: 40px; block-size: 40px;"
-              />
-            </div>
-          </div>
-        </div>
+          aria-label="Loading "
+          class="euiSkeletonRectangle emotion-euiSkeletonGradientAnimation-euiSkeletonRectangle-m"
+          role="progressbar"
+          style="inline-size: 40px; block-size: 40px;"
+        />
       </div>
     </div>
   </div>
@@ -867,142 +733,120 @@ exports[`EuiInlineEditForm Edit Mode renders 1`] = `
   class="euiInlineEdit testClass1 testClass2"
 >
   <div
-    class="euiForm"
+    class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
   >
     <div
-      class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
+      class="euiFlexItem emotion-euiFlexItem-grow-1"
     >
       <div
-        class="euiFlexItem emotion-euiFlexItem-grow-1"
+        class="euiFormRow euiFormRow--fullWidth"
+        id="generated-id-row"
       >
         <div
-          class="euiFormRow euiFormRow--fullWidth"
-          id="generated-id-row"
+          class="euiFormRow__fieldWrapper"
         >
           <div
-            class="euiFormRow__fieldWrapper"
+            class="euiFormControlLayout euiFormControlLayout--fullWidth"
           >
             <div
-              class="euiFormControlLayout euiFormControlLayout--fullWidth"
+              class="euiFormControlLayout__childrenWrapper"
             >
-              <div
-                class="euiFormControlLayout__childrenWrapper"
-              >
-                <input
-                  aria-describedby="inlineEdit_generated-id"
-                  aria-label="Edit inline"
-                  class="euiFieldText euiFieldText--fullWidth"
-                  data-test-subj="euiInlineEditModeInput"
-                  id="generated-id"
-                  type="text"
-                  value="Hello World!"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <span
-          hidden=""
-          id="inlineEdit_generated-id"
-        >
-          Press Enter to save your edited text. Press Escape to cancel your edit.
-        </span>
-      </div>
-      <div
-        class="euiFlexItem euiInlineEdit testClass1 testClass2 emotion-euiFlexItem-growZero"
-      >
-        <div
-          class="euiFormRow euiFormRow--fullWidth"
-          id="generated-id-row"
-        >
-          <div
-            class="euiFormRow__fieldWrapper"
-          >
-            <div
-              aria-busy="false"
-              data-test-subj="euiSkeletonLoadingAriaWrapper"
-            >
-              <div
-                class="emotion-euiScreenReaderOnly"
-              >
-                <div
-                  aria-atomic="true"
-                  aria-live="polite"
-                  role="status"
-                >
-                  Loaded 
-                </div>
-                <div
-                  aria-atomic="true"
-                  aria-hidden="true"
-                  aria-live="off"
-                  role="status"
-                />
-              </div>
-              <button
-                aria-label="Save edit"
-                class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-success"
-                data-test-subj="euiInlineEditModeSaveButton"
-                type="button"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiButtonIcon__icon"
-                  color="inherit"
-                  data-euiicon-type="check"
-                />
-              </button>
+              <input
+                aria-describedby="inlineEdit_generated-id"
+                aria-label="Edit inline"
+                class="euiFieldText euiFieldText--fullWidth"
+                data-test-subj="euiInlineEditModeInput"
+                id="generated-id"
+                type="text"
+                value="Hello World!"
+              />
             </div>
           </div>
         </div>
       </div>
+      <span
+        hidden=""
+        id="inlineEdit_generated-id"
+      >
+        Press Enter to save your edited text. Press Escape to cancel your edit.
+      </span>
+    </div>
+    <div
+      class="euiFlexItem emotion-euiFlexItem-growZero"
+    >
       <div
-        class="euiFlexItem emotion-euiFlexItem-growZero"
+        aria-busy="false"
+        data-test-subj="euiSkeletonLoadingAriaWrapper"
       >
         <div
-          class="euiFormRow euiFormRow--fullWidth"
-          id="generated-id-row"
+          class="emotion-euiScreenReaderOnly"
         >
           <div
-            class="euiFormRow__fieldWrapper"
+            aria-atomic="true"
+            aria-live="polite"
+            role="status"
           >
-            <div
-              aria-busy="false"
-              data-test-subj="euiSkeletonLoadingAriaWrapper"
-            >
-              <div
-                class="emotion-euiScreenReaderOnly"
-              >
-                <div
-                  aria-atomic="true"
-                  aria-live="polite"
-                  role="status"
-                >
-                  Loaded 
-                </div>
-                <div
-                  aria-atomic="true"
-                  aria-hidden="true"
-                  aria-live="off"
-                  role="status"
-                />
-              </div>
-              <button
-                aria-label="Cancel edit"
-                class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-danger"
-                data-test-subj="euiInlineEditModeCancelButton"
-                type="button"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiButtonIcon__icon"
-                  color="inherit"
-                  data-euiicon-type="cross"
-                />
-              </button>
-            </div>
+            Loaded 
           </div>
+          <div
+            aria-atomic="true"
+            aria-hidden="true"
+            aria-live="off"
+            role="status"
+          />
         </div>
+        <button
+          aria-label="Save edit"
+          class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-success"
+          data-test-subj="euiInlineEditModeSaveButton"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="check"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="euiFlexItem emotion-euiFlexItem-growZero"
+    >
+      <div
+        aria-busy="false"
+        data-test-subj="euiSkeletonLoadingAriaWrapper"
+      >
+        <div
+          class="emotion-euiScreenReaderOnly"
+        >
+          <div
+            aria-atomic="true"
+            aria-live="polite"
+            role="status"
+          >
+            Loaded 
+          </div>
+          <div
+            aria-atomic="true"
+            aria-hidden="true"
+            aria-live="off"
+            role="status"
+          />
+        </div>
+        <button
+          aria-label="Cancel edit"
+          class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-danger"
+          data-test-subj="euiInlineEditModeCancelButton"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="cross"
+          />
+        </button>
       </div>
     </div>
   </div>
