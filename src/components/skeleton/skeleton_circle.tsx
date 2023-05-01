@@ -29,6 +29,9 @@ export const EuiSkeletonCircle: FunctionComponent<EuiSkeletonCircleProps> = ({
   size = 'm',
   className,
   contentAriaLabel,
+  announceLoadingStatus,
+  announceLoadedStatus,
+  ariaLiveProps,
   ariaWrapperProps,
   children,
   ...rest
@@ -49,6 +52,9 @@ export const EuiSkeletonCircle: FunctionComponent<EuiSkeletonCircleProps> = ({
       }
       loadedContent={children || ''}
       contentAriaLabel={contentAriaLabel}
+      announceLoadingStatus={announceLoadingStatus}
+      announceLoadedStatus={announceLoadedStatus}
+      ariaLiveProps={ariaLiveProps}
       {...ariaWrapperProps}
     />
   );

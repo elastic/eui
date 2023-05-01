@@ -43,4 +43,41 @@ describe('EuiSkeletonLoading', () => {
     expect(queryByTestSubject('loaded')).toBeTruthy();
     expect(container.firstChild).toMatchSnapshot();
   });
+
+  describe('aria-live behavior', () => {
+    test('announceLoadingStatus - allows enabling live announcements', () => {
+      const { container, getByText } = render(
+        <EuiSkeletonLoading {...contentProps} announceLoadingStatus={true} />
+      );
+
+      expect(getByText('Loading Sample user data')).toBeTruthy();
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
+    test('announceLoadedStatus - allows turning off live announcements', () => {
+      const { container, queryByText } = render(
+        <EuiSkeletonLoading
+          {...contentProps}
+          isLoading={false}
+          announceLoadedStatus={false}
+        />
+      );
+
+      expect(queryByText('Loaded Sample user data')).toBeFalsy();
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
+    test('ariaLiveProps', () => {
+      const { container, getByRole } = render(
+        <EuiSkeletonLoading
+          {...contentProps}
+          isLoading={false}
+          ariaLiveProps={{ role: 'alert' }}
+        />
+      );
+
+      expect(getByRole('alert')).toBeTruthy();
+      expect(container.firstChild).toMatchSnapshot();
+    });
+  });
 });

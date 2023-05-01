@@ -35,6 +35,9 @@ export const EuiSkeletonRectangle: FunctionComponent<EuiSkeletonRectangleProps> 
   style,
   className,
   contentAriaLabel,
+  announceLoadingStatus,
+  announceLoadedStatus,
+  ariaLiveProps,
   ariaWrapperProps,
   children,
   ...rest
@@ -56,6 +59,9 @@ export const EuiSkeletonRectangle: FunctionComponent<EuiSkeletonRectangleProps> 
       }
       loadedContent={children || ''}
       contentAriaLabel={contentAriaLabel}
+      announceLoadingStatus={announceLoadingStatus}
+      announceLoadedStatus={announceLoadedStatus}
+      ariaLiveProps={ariaLiveProps}
       {...ariaWrapperProps}
     />
   );
