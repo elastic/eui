@@ -28,7 +28,7 @@ import { EuiButtonIcon, EuiButtonEmpty } from '../button';
 import { EuiButtonIconPropsForButton } from '../button/button_icon';
 import { EuiButtonEmptyPropsForButton } from '../button/button_empty/button_empty';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
-import { EuiSkeletonRectangle } from '../skeleton';
+import { EuiSkeletonLoading, EuiSkeletonRectangle } from '../skeleton';
 import { useEuiTheme, keys } from '../../services';
 import { EuiI18n, useEuiI18n } from '../i18n';
 import { useGeneratedHtmlId } from '../../services/accessibility';
@@ -218,51 +218,55 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        <EuiSkeletonRectangle
+        <EuiSkeletonLoading
           isLoading={isLoading}
-          height={loadingSkeletonSize}
-          width={loadingSkeletonSize}
-          borderRadius="m"
-        >
-          <EuiButtonIcon
-            iconType="check"
-            aria-label={defaultSaveButtonAriaLabel}
-            color="success"
-            display="base"
-            size={sizes.buttonSize}
-            iconSize={sizes.iconSize}
-            data-test-subj="euiInlineEditModeSaveButton"
-            {...editModeProps?.saveButtonProps}
-            onClick={(e: MouseEvent<HTMLButtonElement>) => {
-              saveInlineEditValue();
-              editModeProps?.saveButtonProps?.onClick?.(e);
-            }}
-          />
-        </EuiSkeletonRectangle>
-      </EuiFlexItem>
-
-      <EuiFlexItem grow={false}>
-        <EuiSkeletonRectangle
-          isLoading={isLoading}
-          height={loadingSkeletonSize}
-          width={loadingSkeletonSize}
-          borderRadius="m"
-        >
-          <EuiButtonIcon
-            iconType="cross"
-            aria-label={defaultCancelButtonAriaLabel}
-            color="danger"
-            display="base"
-            size={sizes.buttonSize}
-            iconSize={sizes.iconSize}
-            data-test-subj="euiInlineEditModeCancelButton"
-            {...editModeProps?.cancelButtonProps}
-            onClick={(e: MouseEvent<HTMLButtonElement>) => {
-              cancelInlineEdit();
-              editModeProps?.cancelButtonProps?.onClick?.(e);
-            }}
-          />
-        </EuiSkeletonRectangle>
+          loadingContent={
+            <EuiFlexGroup gutterSize="s">
+              <EuiSkeletonRectangle
+                height={loadingSkeletonSize}
+                width={loadingSkeletonSize}
+                borderRadius="m"
+              />
+              <EuiSkeletonRectangle
+                height={loadingSkeletonSize}
+                width={loadingSkeletonSize}
+                borderRadius="m"
+              />
+            </EuiFlexGroup>
+          }
+          loadedContent={
+            <EuiFlexGroup gutterSize="s">
+              <EuiButtonIcon
+                iconType="check"
+                aria-label={defaultSaveButtonAriaLabel}
+                color="success"
+                display="base"
+                size={sizes.buttonSize}
+                iconSize={sizes.iconSize}
+                data-test-subj="euiInlineEditModeSaveButton"
+                {...editModeProps?.saveButtonProps}
+                onClick={(e: MouseEvent<HTMLButtonElement>) => {
+                  saveInlineEditValue();
+                  editModeProps?.saveButtonProps?.onClick?.(e);
+                }}
+              />
+              <EuiButtonIcon
+                iconType="cross"
+                aria-label={defaultCancelButtonAriaLabel}
+                color="danger"
+                display="base"
+                size={sizes.buttonSize}
+                iconSize={sizes.iconSize}
+                data-test-subj="euiInlineEditModeCancelButton"
+                {...editModeProps?.cancelButtonProps}
+                onClick={(e: MouseEvent<HTMLButtonElement>) => {
+                  cancelInlineEdit();
+                  editModeProps?.cancelButtonProps?.onClick?.(e);
+                }}
+              />
+            </EuiFlexGroup>
+          }
+        />
       </EuiFlexItem>
     </EuiFlexGroup>
   );
