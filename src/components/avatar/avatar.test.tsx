@@ -11,7 +11,7 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
-import { EuiAvatar, SIZES } from './avatar';
+import { EuiAvatar, SIZES, CASING } from './avatar';
 
 describe('EuiAvatar', () => {
   shouldRenderCustomStyles(<EuiAvatar name="name" />);
@@ -75,6 +75,16 @@ describe('EuiAvatar', () => {
       SIZES.forEach((size) => {
         it(`${size} is rendered`, () => {
           const component = render(<EuiAvatar name="name" size={size} />);
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('casing', () => {
+      CASING.forEach((casing) => {
+        it(`${casing} is rendered`, () => {
+          const component = render(<EuiAvatar name="name" casing={casing} />);
 
           expect(component).toMatchSnapshot();
         });

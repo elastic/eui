@@ -3,7 +3,7 @@
 exports[`EuiCommentTimeline props timelineAvatar defaults to an avatar with a \`userAvatar\` icon 1`] = `
 <div
   aria-label=""
-  class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
+  class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
   role="img"
   title=""
 >
@@ -17,7 +17,7 @@ exports[`EuiCommentTimeline props timelineAvatar defaults to an avatar with a \`
 exports[`EuiCommentTimeline props timelineAvatar is rendered with a ReactNode 1`] = `
 <div
   aria-label="username"
-  class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-m-user-subdued"
+  class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
   role="img"
   title="username"
 >
@@ -31,7 +31,7 @@ exports[`EuiCommentTimeline props timelineAvatar is rendered with a ReactNode 1`
 exports[`EuiCommentTimeline props timelineAvatar is rendered with a string 1`] = `
 <div
   aria-label=""
-  class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
+  class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
   role="img"
   title=""
 >
@@ -45,7 +45,7 @@ exports[`EuiCommentTimeline props timelineAvatar is rendered with a string 1`] =
 exports[`EuiCommentTimeline props timelineAvatar is rendered with timelineAvatarAriaLabel 1`] = `
 <div
   aria-label="timelineAvatarAriaLabel"
-  class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
+  class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-user-m-uppercase-subdued"
   role="img"
   title="timelineAvatarAriaLabel"
 >
