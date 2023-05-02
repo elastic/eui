@@ -191,9 +191,16 @@ describe('EuiInlineEditForm', () => {
   });
 
   describe('Toggling between readMode and editMode', () => {
+    jest
+      .spyOn(window, 'requestAnimationFrame')
+      .mockImplementation((cb: Function) => cb());
+
     const onClick = jest.fn();
     const onSave = jest.fn();
-    beforeEach(() => jest.resetAllMocks());
+    beforeEach(() => {
+      onClick.mockReset();
+      onSave.mockReset();
+    });
 
     it('toggles to editMode when the readModeButton is clicked', () => {
       const { getByTestSubject, queryByTestSubject } = render(
@@ -204,8 +211,13 @@ describe('EuiInlineEditForm', () => {
       );
 
       fireEvent.click(getByTestSubject('euiInlineReadModeButton'));
-      expect(getByTestSubject('euiInlineEditModeInput')).toBeTruthy();
+
       expect(queryByTestSubject('euiInlineReadModeButton')).toBeFalsy();
+      waitFor(() => {
+        expect(document.activeElement).toEqual(
+          getByTestSubject('euiInlineEditModeInput')
+        );
+      });
       expect(onClick).toHaveBeenCalledTimes(1);
     });
 
@@ -227,7 +239,11 @@ describe('EuiInlineEditForm', () => {
       ).toEqual('New message!');
       fireEvent.click(getByTestSubject('euiInlineEditModeSaveButton'));
 
-      expect(getByTestSubject('euiInlineReadModeButton')).toBeTruthy();
+      waitFor(() => {
+        expect(document.activeElement).toEqual(
+          getByTestSubject('euiInlineReadModeButton')
+        );
+      });
       expect(getByText('New message!')).toBeTruthy();
       expect(onSave).toHaveBeenCalledWith('New message!');
       expect(onClick).toHaveBeenCalledTimes(1);
@@ -251,7 +267,11 @@ describe('EuiInlineEditForm', () => {
       ).toEqual('New message!');
       fireEvent.click(getByTestSubject('euiInlineEditModeCancelButton'));
 
-      expect(getByTestSubject('euiInlineReadModeButton')).toBeTruthy();
+      waitFor(() => {
+        expect(document.activeElement).toEqual(
+          getByTestSubject('euiInlineReadModeButton')
+        );
+      });
       expect(getByText('Hello World!')).toBeTruthy();
       expect(onSave).not.toHaveBeenCalled();
       expect(onClick).toHaveBeenCalledTimes(1);
@@ -360,7 +380,11 @@ describe('EuiInlineEditForm', () => {
           key: 'Enter',
         });
 
-        expect(getByTestSubject('euiInlineReadModeButton')).toBeTruthy();
+        waitFor(() => {
+          expect(document.activeElement).toEqual(
+            getByTestSubject('euiInlineReadModeButton')
+          );
+        });
         expect(getByText('New message!')).toBeTruthy();
       });
 
@@ -379,7 +403,11 @@ describe('EuiInlineEditForm', () => {
           key: 'Escape',
         });
 
-        expect(getByTestSubject('euiInlineReadModeButton')).toBeTruthy();
+        waitFor(() => {
+          expect(document.activeElement).toEqual(
+            getByTestSubject('euiInlineReadModeButton')
+          );
+        });
         expect(getByText('Hello World!')).toBeTruthy();
       });
 

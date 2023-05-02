@@ -10,6 +10,7 @@ import React, {
   ReactNode,
   FunctionComponent,
   useState,
+  useRef,
   HTMLAttributes,
   MouseEvent,
   KeyboardEvent,
@@ -29,7 +30,7 @@ import { EuiButtonIconPropsForButton } from '../button/button_icon';
 import { EuiButtonEmptyPropsForButton } from '../button/button_empty/button_empty';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiSkeletonLoading, EuiSkeletonRectangle } from '../skeleton';
-import { useEuiTheme, keys } from '../../services';
+import { useEuiTheme, useCombinedRefs, keys } from '../../services';
 import { EuiI18n, useEuiI18n } from '../i18n';
 import { useGeneratedHtmlId } from '../../services/accessibility';
 
@@ -142,13 +143,31 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   const readModeDescribedById = useGeneratedHtmlId({ prefix: 'inlineEdit' });
   const editModeDescribedById = useGeneratedHtmlId({ prefix: 'inlineEdit' });
 
+  const readModeFocusRef = useRef<HTMLButtonElement | null>(null);
+  const editModeFocusRef = useRef<HTMLInputElement | null>(null);
+  const setReadModeRefs = useCombinedRefs([
+    readModeFocusRef,
+    readModeProps?.buttonRef,
+  ]);
+  const setEditModeRefs = useCombinedRefs([
+    editModeFocusRef,
+    editModeProps?.inputProps?.inputRef,
+  ]);
+
   const [isEditing, setIsEditing] = useState(false || startWithEditOpen);
   const [editModeValue, setEditModeValue] = useState(defaultValue);
   const [readModeValue, setReadModeValue] = useState(defaultValue);
 
+  const toggleEditMode = () => {
+    setIsEditing(true);
+    // Waits a tick for state to settle and the focus target to render
+    requestAnimationFrame(() => editModeFocusRef.current?.focus());
+  };
+
   const cancelInlineEdit = () => {
     setEditModeValue(readModeValue);
     setIsEditing(false);
+    requestAnimationFrame(() => readModeFocusRef.current?.focus());
   };
 
   const saveInlineEditValue = async () => {
@@ -162,6 +181,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
 
     setReadModeValue(editModeValue);
     setIsEditing(false);
+    requestAnimationFrame(() => readModeFocusRef.current?.focus());
   };
 
   const editModeInputOnKeyDown = (event: KeyboardEvent<HTMLElement>) => {
@@ -188,12 +208,12 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
             fullWidth
             value={editModeValue}
             aria-label={inputAriaLabel}
-            autoFocus
             compressed={sizes.compressed}
             isInvalid={isInvalid}
             isLoading={isLoading}
             data-test-subj="euiInlineEditModeInput"
             {...editModeProps?.inputProps}
+            inputRef={setEditModeRefs}
             onChange={(e) => {
               setEditModeValue(e.target.value);
               editModeProps?.inputProps?.onChange?.(e);
@@ -278,18 +298,18 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
         color="text"
         iconType="pencil"
         iconSide="right"
-        autoFocus
         flush="both"
         iconSize={sizes.iconSize}
         size={sizes.buttonSize}
         data-test-subj="euiInlineReadModeButton"
         {...readModeProps}
+        buttonRef={setReadModeRefs}
         aria-describedby={classNames(
           readModeDescribedById,
           readModeProps?.['aria-describedby']
         )}
-        onClick={(e) => {
-          setIsEditing(true);
+        onClick={(e: MouseEvent<HTMLButtonElement>) => {
+          toggleEditMode();
           readModeProps?.onClick?.(e);
         }}
       >
