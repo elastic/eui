@@ -13,8 +13,6 @@ import React, {
   HTMLAttributes,
   MouseEvent,
   KeyboardEvent,
-  useRef,
-  useEffect,
 } from 'react';
 import classNames from 'classnames';
 
@@ -150,14 +148,6 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   const [editModeValue, setEditModeValue] = useState(defaultValue);
   const [readModeValue, setReadModeValue] = useState(defaultValue);
 
-  const editModeInputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (isEditing) {
-      editModeInputRef.current?.focus();
-    }
-  }, [isEditing]);
-
   const cancelInlineEdit = () => {
     setEditModeValue(readModeValue);
     setIsEditing(false);
@@ -199,12 +189,12 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
             <>
               <EuiFieldText
                 id={inlineEditInputId}
-                inputRef={editModeInputRef}
                 value={editModeValue}
                 onChange={(e) => {
                   setEditModeValue(e.target.value);
                 }}
                 aria-label={inputAriaLabel}
+                autoFocus
                 compressed={sizes.compressed}
                 isInvalid={isInvalid}
                 isLoading={isLoading}
@@ -289,12 +279,13 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
       color="text"
       iconType="pencil"
       iconSide="right"
+      autoFocus
       flush="both"
       iconSize={sizes.iconSize}
       size={sizes.buttonSize}
       data-test-subj="euiInlineReadModeButton"
       {...readModeProps}
-      onClick={(e: MouseEvent<HTMLButtonElement>) => {
+      onClick={(e) => {
         setIsEditing(true);
         readModeProps?.onClick?.(e);
       }}
