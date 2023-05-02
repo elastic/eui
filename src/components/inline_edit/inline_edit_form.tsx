@@ -186,37 +186,35 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
             error={isInvalid && editModeProps?.formRowProps?.error}
             {...editModeProps?.formRowProps}
           >
-            <>
-              <EuiFieldText
-                id={inlineEditInputId}
-                value={editModeValue}
-                onChange={(e) => {
-                  setEditModeValue(e.target.value);
-                }}
-                aria-label={inputAriaLabel}
-                autoFocus
-                compressed={sizes.compressed}
-                isInvalid={isInvalid}
-                isLoading={isLoading}
-                data-test-subj="euiInlineEditModeInput"
-                {...editModeProps?.inputProps}
-                aria-describedby={classNames(
-                  editModeDescribedById,
-                  editModeProps?.inputProps?.['aria-describedby']
-                )}
-                onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => {
-                  editModeInputOnKeyDown(e);
-                  editModeProps?.inputProps?.onKeyDown?.(e);
-                }}
-              />
-              <span id={editModeDescribedById} hidden>
-                <EuiI18n
-                  token="euiInlineEditForm.inputKeyboardInstructions"
-                  default="Press Enter to save your edited text. Press Escape to cancel your edit."
-                />
-              </span>
-            </>
+            <EuiFieldText
+              id={inlineEditInputId}
+              value={editModeValue}
+              onChange={(e) => {
+                setEditModeValue(e.target.value);
+              }}
+              aria-label={inputAriaLabel}
+              autoFocus
+              compressed={sizes.compressed}
+              isInvalid={isInvalid}
+              isLoading={isLoading}
+              data-test-subj="euiInlineEditModeInput"
+              {...editModeProps?.inputProps}
+              aria-describedby={classNames(
+                editModeDescribedById,
+                editModeProps?.inputProps?.['aria-describedby']
+              )}
+              onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => {
+                editModeInputOnKeyDown(e);
+                editModeProps?.inputProps?.onKeyDown?.(e);
+              }}
+            />
           </EuiFormRow>
+          <span id={editModeDescribedById} hidden>
+            <EuiI18n
+              token="euiInlineEditForm.inputKeyboardInstructions"
+              default="Press Enter to save your edited text. Press Escape to cancel your edit."
+            />
+          </span>
         </EuiFlexItem>
 
         <EuiFlexItem grow={false} className={classes}>
