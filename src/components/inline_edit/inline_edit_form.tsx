@@ -12,6 +12,7 @@ import React, {
   useState,
   HTMLAttributes,
   MouseEvent,
+  KeyboardEvent,
 } from 'react';
 import classNames from 'classnames';
 
@@ -29,8 +30,8 @@ import { EuiButtonIconPropsForButton } from '../button/button_icon';
 import { EuiButtonEmptyPropsForButton } from '../button/button_empty/button_empty';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiSkeletonRectangle } from '../skeleton';
-import { useEuiTheme } from '../../services';
-import { useEuiI18n } from '../i18n';
+import { useEuiTheme, keys } from '../../services';
+import { EuiI18n, useEuiI18n } from '../i18n';
 import { useGeneratedHtmlId } from '../../services/accessibility';
 
 // Props shared between the internal form component as well as consumer-facing components
@@ -139,6 +140,8 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
     'Cancel edit'
   );
 
+  const editModeDescribedById = useGeneratedHtmlId({ prefix: 'inlineEdit' });
+
   const [isEditing, setIsEditing] = useState(false || startWithEditOpen);
   const inlineEditInputId = useGeneratedHtmlId({ prefix: '__inlineEditInput' });
 
@@ -163,6 +166,17 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
     setIsEditing(false);
   };
 
+  const editModeInputOnKeyDown = (event: KeyboardEvent<HTMLElement>) => {
+    switch (event.key) {
+      case keys.ENTER:
+        saveInlineEditValue();
+        break;
+      case keys.ESCAPE:
+        cancelInlineEdit();
+        break;
+    }
+  };
+
   const editModeForm = (
     <EuiForm fullWidth>
       <EuiFlexGroup gutterSize="s">
@@ -185,8 +199,22 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
               isLoading={isLoading}
               data-test-subj="euiInlineEditModeInput"
               {...editModeProps?.inputProps}
+              aria-describedby={classNames(
+                editModeDescribedById,
+                editModeProps?.inputProps?.['aria-describedby']
+              )}
+              onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => {
+                editModeInputOnKeyDown(e);
+                editModeProps?.inputProps?.onKeyDown?.(e);
+              }}
             />
           </EuiFormRow>
+          <span id={editModeDescribedById} hidden>
+            <EuiI18n
+              token="euiInlineEditForm.inputKeyboardInstructions"
+              default="Press Enter to save your edited text. Press Escape to cancel your edit."
+            />
+          </span>
         </EuiFlexItem>
 
         <EuiFlexItem grow={false} className={classes}>

@@ -27,6 +27,7 @@ exports[`EuiInlineEditForm Edit Mode editModeProps.cancelButtonProps 1`] = `
                 class="euiFormControlLayout__childrenWrapper"
               >
                 <input
+                  aria-describedby="inlineEdit_generated-id"
                   aria-label="Edit inline"
                   class="euiFieldText euiFieldText--fullWidth"
                   data-test-subj="euiInlineEditModeInput"
@@ -38,6 +39,12 @@ exports[`EuiInlineEditForm Edit Mode editModeProps.cancelButtonProps 1`] = `
             </div>
           </div>
         </div>
+        <span
+          hidden=""
+          id="inlineEdit_generated-id"
+        >
+          Press Enter to save your edited text. Press Escape to cancel your edit.
+        </span>
       </div>
       <div
         class="euiFlexItem euiInlineEdit testClass1 testClass2 emotion-euiFlexItem-growZero"
@@ -169,6 +176,7 @@ exports[`EuiInlineEditForm Edit Mode editModeProps.formRowProps 1`] = `
                 class="euiFormControlLayout__childrenWrapper"
               >
                 <input
+                  aria-describedby="inlineEdit_generated-id"
                   aria-label="Edit inline"
                   class="euiFieldText euiFieldText--fullWidth"
                   data-test-subj="euiInlineEditModeInput"
@@ -180,6 +188,12 @@ exports[`EuiInlineEditForm Edit Mode editModeProps.formRowProps 1`] = `
             </div>
           </div>
         </div>
+        <span
+          hidden=""
+          id="inlineEdit_generated-id"
+        >
+          Press Enter to save your edited text. Press Escape to cancel your edit.
+        </span>
       </div>
       <div
         class="euiFlexItem euiInlineEdit testClass1 testClass2 emotion-euiFlexItem-growZero"
@@ -315,6 +329,7 @@ exports[`EuiInlineEditForm Edit Mode editModeProps.inputProps 1`] = `
                 class="euiFormControlLayout__childrenWrapper"
               >
                 <input
+                  aria-describedby="inlineEdit_generated-id"
                   aria-label="Edit inline"
                   class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
                   data-test-subj="customInput"
@@ -326,6 +341,12 @@ exports[`EuiInlineEditForm Edit Mode editModeProps.inputProps 1`] = `
             </div>
           </div>
         </div>
+        <span
+          hidden=""
+          id="inlineEdit_generated-id"
+        >
+          Press Enter to save your edited text. Press Escape to cancel your edit.
+        </span>
       </div>
       <div
         class="euiFlexItem euiInlineEdit testClass1 testClass2 emotion-euiFlexItem-growZero"
@@ -455,6 +476,7 @@ exports[`EuiInlineEditForm Edit Mode editModeProps.saveButtonProps 1`] = `
                 class="euiFormControlLayout__childrenWrapper"
               >
                 <input
+                  aria-describedby="inlineEdit_generated-id"
                   aria-label="Edit inline"
                   class="euiFieldText euiFieldText--fullWidth"
                   data-test-subj="euiInlineEditModeInput"
@@ -466,6 +488,12 @@ exports[`EuiInlineEditForm Edit Mode editModeProps.saveButtonProps 1`] = `
             </div>
           </div>
         </div>
+        <span
+          hidden=""
+          id="inlineEdit_generated-id"
+        >
+          Press Enter to save your edited text. Press Escape to cancel your edit.
+        </span>
       </div>
       <div
         class="euiFlexItem euiInlineEdit testClass1 testClass2 emotion-euiFlexItem-growZero"
@@ -595,6 +623,7 @@ exports[`EuiInlineEditForm Edit Mode isInvalid 1`] = `
                 class="euiFormControlLayout__childrenWrapper"
               >
                 <input
+                  aria-describedby="inlineEdit_generated-id"
                   aria-invalid="true"
                   aria-label="Edit inline"
                   class="euiFieldText euiFormControlLayout--1icons euiFieldText--fullWidth"
@@ -615,6 +644,12 @@ exports[`EuiInlineEditForm Edit Mode isInvalid 1`] = `
             </div>
           </div>
         </div>
+        <span
+          hidden=""
+          id="inlineEdit_generated-id"
+        >
+          Press Enter to save your edited text. Press Escape to cancel your edit.
+        </span>
       </div>
       <div
         class="euiFlexItem euiInlineEdit testClass1 testClass2 emotion-euiFlexItem-growZero"
@@ -744,6 +779,7 @@ exports[`EuiInlineEditForm Edit Mode isLoading 1`] = `
                 class="euiFormControlLayout__childrenWrapper"
               >
                 <input
+                  aria-describedby="inlineEdit_generated-id"
                   aria-label="Edit inline"
                   class="euiFieldText euiFormControlLayout--1icons euiFieldText--fullWidth euiFieldText-isLoading"
                   data-test-subj="euiInlineEditModeInput"
@@ -764,6 +800,12 @@ exports[`EuiInlineEditForm Edit Mode isLoading 1`] = `
             </div>
           </div>
         </div>
+        <span
+          hidden=""
+          id="inlineEdit_generated-id"
+        >
+          Press Enter to save your edited text. Press Escape to cancel your edit.
+        </span>
       </div>
       <div
         class="euiFlexItem euiInlineEdit testClass1 testClass2 emotion-euiFlexItem-growZero"
@@ -847,6 +889,7 @@ exports[`EuiInlineEditForm Edit Mode renders 1`] = `
                 class="euiFormControlLayout__childrenWrapper"
               >
                 <input
+                  aria-describedby="inlineEdit_generated-id"
                   aria-label="Edit inline"
                   class="euiFieldText euiFieldText--fullWidth"
                   data-test-subj="euiInlineEditModeInput"
@@ -858,6 +901,12 @@ exports[`EuiInlineEditForm Edit Mode renders 1`] = `
             </div>
           </div>
         </div>
+        <span
+          hidden=""
+          id="inlineEdit_generated-id"
+        >
+          Press Enter to save your edited text. Press Escape to cancel your edit.
+        </span>
       </div>
       <div
         class="euiFlexItem euiInlineEdit testClass1 testClass2 emotion-euiFlexItem-growZero"

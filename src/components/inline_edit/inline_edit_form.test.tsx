@@ -333,5 +333,69 @@ describe('EuiInlineEditForm', () => {
         });
       });
     });
+
+    describe('keyboard events', () => {
+      test('pressing the Enter key saves text and returns to readMode', () => {
+        const { getByTestSubject, getByText } = render(
+          <EuiInlineEditForm
+            {...commonInlineEditFormProps}
+            startWithEditOpen={true}
+          />
+        );
+
+        fireEvent.change(getByTestSubject('euiInlineEditModeInput'), {
+          target: { value: 'New message!' },
+        });
+        fireEvent.keyDown(getByTestSubject('euiInlineEditModeInput'), {
+          key: 'Enter',
+        });
+
+        expect(getByTestSubject('euiInlineReadModeButton')).toBeTruthy();
+        expect(getByText('New message!')).toBeTruthy();
+      });
+
+      test('pressing the Escape key cancels text changes and returns to readMode', () => {
+        const { getByTestSubject, getByText } = render(
+          <EuiInlineEditForm
+            {...commonInlineEditFormProps}
+            startWithEditOpen={true}
+          />
+        );
+
+        fireEvent.change(getByTestSubject('euiInlineEditModeInput'), {
+          target: { value: 'New message!' },
+        });
+        fireEvent.keyDown(getByTestSubject('euiInlineEditModeInput'), {
+          key: 'Escape',
+        });
+
+        expect(getByTestSubject('euiInlineReadModeButton')).toBeTruthy();
+        expect(getByText('Hello World!')).toBeTruthy();
+      });
+
+      it('calls passed `inputModeProps.onKeyDown` callbacks', () => {
+        const onKeyDown = jest.fn();
+
+        const { getByTestSubject, getByText } = render(
+          <EuiInlineEditForm
+            {...commonInlineEditFormProps}
+            startWithEditOpen={true}
+            editModeProps={{ inputProps: { onKeyDown } }}
+          />
+        );
+
+        fireEvent.change(getByTestSubject('euiInlineEditModeInput'), {
+          target: { value: 'New message!' },
+        });
+        fireEvent.keyDown(getByTestSubject('euiInlineEditModeInput'), {
+          key: 'Enter',
+        });
+
+        // Both EUI and consumer `onKeyDown` events should have run
+        expect(onKeyDown).toHaveBeenCalled();
+        expect(getByTestSubject('euiInlineReadModeButton')).toBeTruthy();
+        expect(getByText('New message!')).toBeTruthy();
+      });
+    });
   });
 });
