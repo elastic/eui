@@ -13,7 +13,6 @@ import React, {
   HTMLAttributes,
   MouseEvent,
   KeyboardEvent,
-  KeyboardEventHandler,
 } from 'react';
 import classNames from 'classnames';
 
@@ -165,19 +164,14 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
     setIsEditing(false);
   };
 
-  const editModeInputOnKeyDown: KeyboardEventHandler = (
-    event: KeyboardEvent<HTMLElement>
-  ) => {
-    if (event.key === keys.ENTER) {
-      event.preventDefault();
-      event.stopPropagation();
-      saveInlineEditValue();
-    } else if (event.key === keys.ESCAPE) {
-      event.preventDefault();
-      event.stopPropagation();
-      cancelInlineEdit();
-    } else {
-      return;
+  const editModeInputOnKeyDown = (event: KeyboardEvent<HTMLElement>) => {
+    switch (event.key) {
+      case keys.ENTER:
+        saveInlineEditValue();
+        break;
+      case keys.ESCAPE:
+        cancelInlineEdit();
+        break;
     }
   };
 
@@ -202,11 +196,11 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
               isInvalid={isInvalid}
               isLoading={isLoading}
               data-test-subj="euiInlineEditModeInput"
+              {...editModeProps?.inputProps}
               onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => {
                 editModeInputOnKeyDown(e);
                 editModeProps?.inputProps?.onKeyDown?.(e);
               }}
-              {...editModeProps?.inputProps}
             />
           </EuiFormRow>
         </EuiFlexItem>

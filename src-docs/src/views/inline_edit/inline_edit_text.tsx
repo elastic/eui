@@ -32,10 +32,15 @@ export default () => {
   };
 
   const customKeyDown = (event: KeyboardEvent) => {
-    if (event.key === 'Enter') {
-      alert('Hey this is a custom keydown message!');
-    } else {
-      return;
+    // if (event.key === 'Enter') {
+    //   alert('Hey this is a custom keydown message!');
+    // } else {
+    //   return;
+    // }
+    switch (event.key) {
+      case 'Enter':
+        alert('Hey this is a custom keydown message!');
+        break;
     }
   };
 

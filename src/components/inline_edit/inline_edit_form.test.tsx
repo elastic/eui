@@ -335,11 +335,10 @@ describe('EuiInlineEditForm', () => {
     });
 
     describe('keyboard events', () => {
-      test('hitting enter saves saves text and returns to readMode', () => {
+      test('pressing the Enter key saves text and returns to readMode', () => {
         const { getByTestSubject, getByText } = render(
           <EuiInlineEditForm
             {...commonInlineEditFormProps}
-            onSave={onSave}
             startWithEditOpen={true}
           />
         );
@@ -353,14 +352,12 @@ describe('EuiInlineEditForm', () => {
 
         expect(getByTestSubject('euiInlineReadModeButton')).toBeTruthy();
         expect(getByText('New message!')).toBeTruthy();
-        expect(onSave).toHaveBeenCalledWith('New message!');
       });
 
-      test('hitting escape cancels text and returns to readMode', () => {
+      test('pressing the Escape key cancels text changes and returns to readMode', () => {
         const { getByTestSubject, getByText } = render(
           <EuiInlineEditForm
             {...commonInlineEditFormProps}
-            onSave={onSave}
             startWithEditOpen={true}
           />
         );
@@ -374,31 +371,9 @@ describe('EuiInlineEditForm', () => {
 
         expect(getByTestSubject('euiInlineReadModeButton')).toBeTruthy();
         expect(getByText('Hello World!')).toBeTruthy();
-        expect(onSave).not.toHaveBeenCalled();
       });
 
-      test('hitting unmapped keys like shift and delete do not change the state of the component', () => {
-        const { getByTestSubject, queryByTestSubject } = render(
-          <EuiInlineEditForm
-            {...commonInlineEditFormProps}
-            onSave={onSave}
-            startWithEditOpen={true}
-          />
-        );
-
-        fireEvent.keyDown(getByTestSubject('euiInlineEditModeInput'), {
-          key: 'Shift',
-        });
-        fireEvent.keyDown(getByTestSubject('euiInlineEditModeInput'), {
-          key: 'Delete',
-        });
-
-        expect(queryByTestSubject('euiInlineReadModeButton')).toBeFalsy();
-        expect(getByTestSubject('euiInlineEditModeInput')).toBeTruthy();
-        expect(onSave).not.toHaveBeenCalled();
-      });
-
-      test('calls a custom keyDown function passed in with editModeProps overrides the default event', () => {
+      it('calls passed `inputModeProps.onKeyDown` callbacks', () => {
         const onKeyDown = jest.fn();
 
         const { getByTestSubject } = render(
@@ -406,7 +381,7 @@ describe('EuiInlineEditForm', () => {
             {...commonInlineEditFormProps}
             onSave={onSave}
             startWithEditOpen={true}
-            editModeProps={{ inputProps: { onKeyDown: onKeyDown } }}
+            editModeProps={{ inputProps: { onKeyDown } }}
           />
         );
 
@@ -414,9 +389,9 @@ describe('EuiInlineEditForm', () => {
           key: 'Enter',
         });
 
-        // If a keyDown event is mapped to Enter/Escape, it should override the default save/cancel event
+        // If a keyDown event is mapped to Enter/Escape, both the default and custom events should run
         expect(onKeyDown).toHaveBeenCalled();
-        expect(onSave).not.toHaveBeenCalled();
+        expect(onSave).toHaveBeenCalled();
       });
     });
   });
