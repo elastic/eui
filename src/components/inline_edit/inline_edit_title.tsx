@@ -27,7 +27,7 @@ export type EuiInlineEditTitleProps = EuiInlineEditCommonProps & {
    */
   size?: EuiTitleSize;
   /**
-   * Level of heading to be used for the title
+   * Level of heading to be used for the title.
    * Use `span` for text that is not semantically a heading, but should still visually appear as a title.
    */
   heading: Heading;
