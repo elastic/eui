@@ -78,7 +78,7 @@ export const inlineEditTitleConfig = () => {
 
   propsToUse.heading = {
     ...propsToUse.heading,
-    value: 'h2',
+    value: 'h4',
   };
 
   setCommonPropsToUse(propsToUse);

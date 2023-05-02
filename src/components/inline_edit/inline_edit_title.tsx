@@ -18,7 +18,7 @@ import {
 import { useEuiTheme } from '../../services';
 import { euiInlineEditTitleStyles } from './inline_edit_title.styles';
 
-export const HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const;
+export const HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'span'] as const;
 type Heading = typeof HEADINGS[number];
 
 export type EuiInlineEditTitleProps = EuiInlineEditCommonProps & {
