@@ -27,14 +27,14 @@ Incoming support items will primarily come from Elastic's internal Slack `#eui` 
 Usage issues can run the gamut of incorrect usage or setup (e.g. missing styles due a missing `<EuiProvider>` wrapper), to recommending implementation alternatives or workarounds on top of existing EUI functionality.
 
 1. **Incorrect usage of EUI:**
-  If the problem that the consumer is facing is due to incorrect usage of EUI, the fix will need to be implemented on their end. We should recommend an approach (potentially with CodeSandbox examples for specific technical issues) that the consumer can take instead.
+    - If the problem that the consumer is facing is due to incorrect usage of EUI, the fix will need to be implemented on their end. We should recommend an approach (potentially with CodeSandbox examples for specific technical issues) that the consumer can take instead.
 
 2. **Consumer-level workarounds:**
-  For scenarios where the consumer is trying to achieve a certain behavior that EUI does not support or intend to support OOTB, we can suggest that they implement their desired behavior on their end on top of EUI. [Here is an example issue response](https://github.com/elastic/eui/issues/6747#issuecomment-1531835506) where a consumer workaround was suggested instead of an EUI-level implementation.
-  *Note:* In general, EUI's components should be flexible enough to support custom usage, styling, or overriding default functionality. If this is not the case, EUI may need to be modified to be more flexibility and support more usage.
+    - For scenarios where the consumer is trying to achieve a certain behavior that EUI does not support or intend to support OOTB, we can suggest that they implement their desired behavior on their end on top of EUI. [Here is an example issue response](https://github.com/elastic/eui/issues/6747#issuecomment-1531835506) where a consumer workaround was suggested instead of an EUI-level implementation.
+    - *Note:* In general, EUI's components should be flexible enough to support custom usage, styling, or overriding default functionality. If this is not the case, EUI may need to be updated with more flexibility.
 
 3. **Providing examples:**
-  In some scenarios, the consumer may be trying to achieve behavior that EUI *does* support (in which case, we should link them to our docs site), or a behavior that EUI *can* support with some extra configuration on the consumer's end (in which case, we should provide an example CodeSandbox link of a basic implementation example).
+    - In some scenarios, the consumer may be trying to achieve behavior that EUI *does* support (in which case, we should link them to our docs site), or a behavior that EUI *can* support with some extra configuration on the consumer's end (in which case, we should provide an example CodeSandbox link of a basic implementation example).
 
 For usage questions that do not require any changes on EUI's end, apply the `answered` label to the issue (which will auto-close the issue as resolved in 3 days, if the opener does not follow up with more questions).
 
@@ -47,7 +47,7 @@ If the issue being reported is reproducible and a valid problem that needs to be
 1. If it's a small or quick fix, we should ideally implement a fix as part of our support responsibilities.
 
 2. If it's a larger fix that would take more than (e.g.) a sprint, the issue should be filed with the `bug` label and triaged with an appropriate sizing and prioritization.
-  If possible, we should give consumer an idea of when they can expect a fix if we have a specific timeline. If the bug is edge case enough that it impacts very few end-users, we should let them know it is low priority but that we would be open to a community contribution for it.
+    - If possible, we should give consumer an idea of when they can expect a fix if we have a specific timeline. If the bug is edge case enough that it impacts very few end-users, we should let them know it is low priority but that we would be open to a community contribution for it.
 
 ### Feature request
 
