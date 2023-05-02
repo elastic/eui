@@ -9,7 +9,7 @@ import {
   simulateFunction,
 } from '../../services/playground';
 
-const commonPropsToUse = (propsToUse) => {
+const setCommonPropsToUse = (propsToUse) => {
   propsToUse.inputAriaLabel = {
     ...propsToUse.inputAriaLabel,
     value: 'Edit text inline',
@@ -29,15 +29,13 @@ const commonPropsToUse = (propsToUse) => {
   };
 
   propsToUse.onSave = simulateFunction(propsToUse.onSave);
-
-  return propsToUse;
 };
 
 export const inlineEditTextConfig = () => {
   const docgenInfo = Array.isArray(EuiInlineEditText.__docgenInfo)
     ? EuiInlineEditText.__docgenInfo[0]
     : EuiInlineEditText.__docgenInfo;
-  let propsToUse = propUtilityForPlayground(docgenInfo.props);
+  const propsToUse = propUtilityForPlayground(docgenInfo.props);
 
   propsToUse.defaultValue = {
     ...propsToUse.defaultValue,
@@ -45,7 +43,7 @@ export const inlineEditTextConfig = () => {
     type: PropTypes.String,
   };
 
-  propsToUse = commonPropsToUse(propsToUse);
+  setCommonPropsToUse(propsToUse);
 
   return {
     config: {
@@ -70,7 +68,7 @@ export const inlineEditTitleConfig = () => {
   const docgenInfo = Array.isArray(EuiInlineEditTitle.__docgenInfo)
     ? EuiInlineEditTitle.__docgenInfo[0]
     : EuiInlineEditTitle.__docgenInfo;
-  let propsToUse = propUtilityForPlayground(docgenInfo.props);
+  const propsToUse = propUtilityForPlayground(docgenInfo.props);
 
   propsToUse.defaultValue = {
     ...propsToUse.defaultValue,
@@ -83,7 +81,7 @@ export const inlineEditTitleConfig = () => {
     value: 'h2',
   };
 
-  propsToUse = commonPropsToUse(propsToUse);
+  setCommonPropsToUse(propsToUse);
 
   return {
     config: {
