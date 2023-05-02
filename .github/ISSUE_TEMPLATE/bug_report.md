@@ -12,7 +12,7 @@ A clear and concise description of what the bug is.
 
 **Environment and versions**
 - EUI version: 
-- Kibana version:
+- Kibana version (if applicable):
 - Browser:
 - Operating System:
 
