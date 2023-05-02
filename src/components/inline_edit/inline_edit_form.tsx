@@ -187,9 +187,6 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
           <EuiFieldText
             fullWidth
             value={editModeValue}
-            onChange={(e) => {
-              setEditModeValue(e.target.value);
-            }}
             aria-label={inputAriaLabel}
             autoFocus
             compressed={sizes.compressed}
@@ -197,14 +194,18 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
             isLoading={isLoading}
             data-test-subj="euiInlineEditModeInput"
             {...editModeProps?.inputProps}
+            onChange={(e) => {
+              setEditModeValue(e.target.value);
+              editModeProps?.inputProps?.onChange?.(e);
+            }}
+            onKeyDown={(e) => {
+              editModeInputOnKeyDown(e);
+              editModeProps?.inputProps?.onKeyDown?.(e);
+            }}
             aria-describedby={classNames(
               editModeDescribedById,
               editModeProps?.inputProps?.['aria-describedby']
             )}
-            onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => {
-              editModeInputOnKeyDown(e);
-              editModeProps?.inputProps?.onKeyDown?.(e);
-            }}
           />
         </EuiFormRow>
         <span id={editModeDescribedById} hidden>

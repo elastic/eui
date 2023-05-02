@@ -76,6 +76,8 @@ describe('EuiInlineEditForm', () => {
     });
 
     test('editModeProps.inputProps', () => {
+      const onChange = jest.fn();
+
       const { container, getByTestSubject } = render(
         <EuiInlineEditForm
           {...commonInlineEditFormProps}
@@ -84,13 +86,21 @@ describe('EuiInlineEditForm', () => {
             inputProps: {
               prepend: 'Prepend Example',
               'data-test-subj': 'customInput',
+              onChange,
             },
           }}
         />
       );
-
       expect(container.firstChild).toMatchSnapshot();
-      expect(getByTestSubject('customInput')).toBeTruthy();
+
+      const mockChangeEvent = { target: { value: 'changed' } };
+      fireEvent.change(getByTestSubject('customInput'), mockChangeEvent);
+      expect(onChange).toHaveBeenCalled();
+
+      // Consumer `onChange` callbacks should not override EUI's
+      expect(
+        (getByTestSubject('customInput') as HTMLInputElement).value
+      ).toEqual('changed');
     });
 
     test('editModeProps.formRowProps', () => {
