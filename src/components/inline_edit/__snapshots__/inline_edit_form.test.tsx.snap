@@ -648,6 +648,7 @@ exports[`EuiInlineEditForm Read Mode readModeProps 1`] = `
   class="euiInlineEdit testClass1 testClass2"
 >
   <button
+    aria-describedby="inlineEdit_generated-id"
     class="euiButtonEmpty euiButtonEmpty--flushBoth css-9t7nyf-empty-primary"
     data-test-subj="euiInlineReadModeButton"
     type="button"
@@ -667,6 +668,12 @@ exports[`EuiInlineEditForm Read Mode readModeProps 1`] = `
       </span>
     </span>
   </button>
+  <span
+    hidden=""
+    id="inlineEdit_generated-id"
+  >
+    Click this button to edit this text inline.
+  </span>
 </div>
 `;
 
@@ -675,6 +682,7 @@ exports[`EuiInlineEditForm Read Mode renders 1`] = `
   class="euiInlineEdit testClass1 testClass2"
 >
   <button
+    aria-describedby="inlineEdit_generated-id"
     class="euiButtonEmpty euiButtonEmpty--flushBoth css-wvaqcf-empty-text"
     data-test-subj="euiInlineReadModeButton"
     type="button"
@@ -694,6 +702,12 @@ exports[`EuiInlineEditForm Read Mode renders 1`] = `
       </span>
     </span>
   </button>
+  <span
+    hidden=""
+    id="inlineEdit_generated-id"
+  >
+    Click this button to edit this text inline.
+  </span>
 </div>
 `;
 
@@ -702,6 +716,7 @@ exports[`EuiInlineEditForm Read Mode sizes 1`] = `
   class="euiInlineEdit testClass1 testClass2"
 >
   <button
+    aria-describedby="inlineEdit_generated-id"
     class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-wvaqcf-empty-text"
     data-test-subj="euiInlineReadModeButton"
     type="button"
@@ -721,5 +736,11 @@ exports[`EuiInlineEditForm Read Mode sizes 1`] = `
       </span>
     </span>
   </button>
+  <span
+    hidden=""
+    id="inlineEdit_generated-id"
+  >
+    Click this button to edit this text inline.
+  </span>
 </div>
 `;

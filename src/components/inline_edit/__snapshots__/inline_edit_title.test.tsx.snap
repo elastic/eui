@@ -5,6 +5,7 @@ exports[`EuiInlineEditTitle renders 1`] = `
   class="euiInlineEdit euiInlineEditTitle testClass1 testClass2 emotion-euiInlineEditTitle-m-m"
 >
   <button
+    aria-describedby="inlineEdit_generated-id"
     class="euiButtonEmpty euiButtonEmpty--flushBoth css-wvaqcf-empty-text"
     data-test-subj="euiInlineReadModeButton"
     type="button"
@@ -28,6 +29,12 @@ exports[`EuiInlineEditTitle renders 1`] = `
       </span>
     </span>
   </button>
+  <span
+    hidden=""
+    id="inlineEdit_generated-id"
+  >
+    Click this button to edit this text inline.
+  </span>
 </div>
 `;
 
@@ -36,6 +43,7 @@ exports[`EuiInlineEditTitle title sizes renders size l 1`] = `
   class="euiInlineEdit euiInlineEditTitle testClass1 testClass2 emotion-euiInlineEditTitle-l-l"
 >
   <button
+    aria-describedby="inlineEdit_generated-id"
     class="euiButtonEmpty euiButtonEmpty--flushBoth css-wvaqcf-empty-text"
     data-test-subj="euiInlineReadModeButton"
     type="button"
@@ -59,6 +67,12 @@ exports[`EuiInlineEditTitle title sizes renders size l 1`] = `
       </span>
     </span>
   </button>
+  <span
+    hidden=""
+    id="inlineEdit_generated-id"
+  >
+    Click this button to edit this text inline.
+  </span>
 </div>
 `;
 
@@ -67,6 +81,7 @@ exports[`EuiInlineEditTitle title sizes renders size m 1`] = `
   class="euiInlineEdit euiInlineEditTitle testClass1 testClass2 emotion-euiInlineEditTitle-m-m"
 >
   <button
+    aria-describedby="inlineEdit_generated-id"
     class="euiButtonEmpty euiButtonEmpty--flushBoth css-wvaqcf-empty-text"
     data-test-subj="euiInlineReadModeButton"
     type="button"
@@ -90,6 +105,12 @@ exports[`EuiInlineEditTitle title sizes renders size m 1`] = `
       </span>
     </span>
   </button>
+  <span
+    hidden=""
+    id="inlineEdit_generated-id"
+  >
+    Click this button to edit this text inline.
+  </span>
 </div>
 `;
 
@@ -98,6 +119,7 @@ exports[`EuiInlineEditTitle title sizes renders size s 1`] = `
   class="euiInlineEdit euiInlineEditTitle testClass1 testClass2 emotion-euiInlineEditTitle-s-s"
 >
   <button
+    aria-describedby="inlineEdit_generated-id"
     class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-wvaqcf-empty-text"
     data-test-subj="euiInlineReadModeButton"
     type="button"
@@ -121,6 +143,12 @@ exports[`EuiInlineEditTitle title sizes renders size s 1`] = `
       </span>
     </span>
   </button>
+  <span
+    hidden=""
+    id="inlineEdit_generated-id"
+  >
+    Click this button to edit this text inline.
+  </span>
 </div>
 `;
 
@@ -129,6 +157,7 @@ exports[`EuiInlineEditTitle title sizes renders size xs 1`] = `
   class="euiInlineEdit euiInlineEditTitle testClass1 testClass2 emotion-euiInlineEditTitle-xs-xs"
 >
   <button
+    aria-describedby="inlineEdit_generated-id"
     class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-wvaqcf-empty-text"
     data-test-subj="euiInlineReadModeButton"
     type="button"
@@ -152,6 +181,12 @@ exports[`EuiInlineEditTitle title sizes renders size xs 1`] = `
       </span>
     </span>
   </button>
+  <span
+    hidden=""
+    id="inlineEdit_generated-id"
+  >
+    Click this button to edit this text inline.
+  </span>
 </div>
 `;
 
@@ -160,6 +195,7 @@ exports[`EuiInlineEditTitle title sizes renders size xxs 1`] = `
   class="euiInlineEdit euiInlineEditTitle testClass1 testClass2 emotion-euiInlineEditTitle-xxs-xxs"
 >
   <button
+    aria-describedby="inlineEdit_generated-id"
     class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-wvaqcf-empty-text"
     data-test-subj="euiInlineReadModeButton"
     type="button"
@@ -183,6 +219,12 @@ exports[`EuiInlineEditTitle title sizes renders size xxs 1`] = `
       </span>
     </span>
   </button>
+  <span
+    hidden=""
+    id="inlineEdit_generated-id"
+  >
+    Click this button to edit this text inline.
+  </span>
 </div>
 `;
 
@@ -191,6 +233,7 @@ exports[`EuiInlineEditTitle title sizes renders size xxxs 1`] = `
   class="euiInlineEdit euiInlineEditTitle testClass1 testClass2 emotion-euiInlineEditTitle-xxxs-xxxs"
 >
   <button
+    aria-describedby="inlineEdit_generated-id"
     class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-wvaqcf-empty-text"
     data-test-subj="euiInlineReadModeButton"
     type="button"
@@ -214,5 +257,11 @@ exports[`EuiInlineEditTitle title sizes renders size xxxs 1`] = `
       </span>
     </span>
   </button>
+  <span
+    hidden=""
+    id="inlineEdit_generated-id"
+  >
+    Click this button to edit this text inline.
+  </span>
 </div>
 `;

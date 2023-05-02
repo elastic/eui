@@ -139,11 +139,10 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
     'Cancel edit'
   );
 
+  const readModeDescribedById = useGeneratedHtmlId({ prefix: 'inlineEdit' });
   const editModeDescribedById = useGeneratedHtmlId({ prefix: 'inlineEdit' });
 
   const [isEditing, setIsEditing] = useState(false || startWithEditOpen);
-  const inlineEditInputId = useGeneratedHtmlId({ prefix: '__inlineEditInput' });
-
   const [editModeValue, setEditModeValue] = useState(defaultValue);
   const [readModeValue, setReadModeValue] = useState(defaultValue);
 
@@ -187,7 +186,6 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
         >
           <EuiFieldText
             fullWidth
-            id={inlineEditInputId}
             value={editModeValue}
             onChange={(e) => {
               setEditModeValue(e.target.value);
@@ -274,23 +272,35 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   );
 
   const readModeElement = (
-    <EuiButtonEmpty
-      color="text"
-      iconType="pencil"
-      iconSide="right"
-      autoFocus
-      flush="both"
-      iconSize={sizes.iconSize}
-      size={sizes.buttonSize}
-      data-test-subj="euiInlineReadModeButton"
-      {...readModeProps}
-      onClick={(e) => {
-        setIsEditing(true);
-        readModeProps?.onClick?.(e);
-      }}
-    >
-      {children(readModeValue)}
-    </EuiButtonEmpty>
+    <>
+      <EuiButtonEmpty
+        color="text"
+        iconType="pencil"
+        iconSide="right"
+        autoFocus
+        flush="both"
+        iconSize={sizes.iconSize}
+        size={sizes.buttonSize}
+        data-test-subj="euiInlineReadModeButton"
+        {...readModeProps}
+        aria-describedby={classNames(
+          readModeDescribedById,
+          readModeProps?.['aria-describedby']
+        )}
+        onClick={(e) => {
+          setIsEditing(true);
+          readModeProps?.onClick?.(e);
+        }}
+      >
+        {children(readModeValue)}
+      </EuiButtonEmpty>
+      <span id={readModeDescribedById} hidden>
+        <EuiI18n
+          token="euiInlineEditForm.toggleEditModeDescription"
+          default="Click this button to edit this text inline."
+        />
+      </span>
+    </>
   );
 
   return (
