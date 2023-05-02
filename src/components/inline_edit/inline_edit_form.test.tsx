@@ -376,22 +376,25 @@ describe('EuiInlineEditForm', () => {
       it('calls passed `inputModeProps.onKeyDown` callbacks', () => {
         const onKeyDown = jest.fn();
 
-        const { getByTestSubject } = render(
+        const { getByTestSubject, getByText } = render(
           <EuiInlineEditForm
             {...commonInlineEditFormProps}
-            onSave={onSave}
             startWithEditOpen={true}
             editModeProps={{ inputProps: { onKeyDown } }}
           />
         );
 
+        fireEvent.change(getByTestSubject('euiInlineEditModeInput'), {
+          target: { value: 'New message!' },
+        });
         fireEvent.keyDown(getByTestSubject('euiInlineEditModeInput'), {
           key: 'Enter',
         });
 
-        // If a keyDown event is mapped to Enter/Escape, both the default and custom events should run
+        // Both EUI and consumer `onKeyDown` events should have run
         expect(onKeyDown).toHaveBeenCalled();
-        expect(onSave).toHaveBeenCalled();
+        expect(getByTestSubject('euiInlineReadModeButton')).toBeTruthy();
+        expect(getByText('New message!')).toBeTruthy();
       });
     });
   });
