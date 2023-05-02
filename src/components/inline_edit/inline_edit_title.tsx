@@ -18,7 +18,7 @@ import {
 import { useEuiTheme } from '../../services';
 import { euiInlineEditTitleStyles } from './inline_edit_title.styles';
 
-export const HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const;
+export const HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'span'] as const;
 type Heading = typeof HEADINGS[number];
 
 export type EuiInlineEditTitleProps = EuiInlineEditCommonProps & {
@@ -27,7 +27,8 @@ export type EuiInlineEditTitleProps = EuiInlineEditCommonProps & {
    */
   size?: EuiTitleSize;
   /**
-   * Level of heading to be used for the title
+   * Level of heading to be used for the title.
+   * Use `span` for text that is not semantically a heading, but should still visually appear as a title.
    */
   heading: Heading;
 };
