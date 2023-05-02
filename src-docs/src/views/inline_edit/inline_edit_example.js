@@ -66,17 +66,6 @@ const inlineEditModeSaveSnippet = `<EuiInlineEditText
 
 import InlineEditValidation from './inline_edit_validation';
 const inlineEditValidationSource = require('!!raw-loader!././inline_edit_validation');
-const inlineEditValidationSnippet = `<EuiInlineEditText
-  inputAriaLabel="This input will validate on save"
-  defaultValue={defaultInlineEditValue}
-  editModeProps={{
-    formRowProps: { error: errors },
-    cancelButtonProps: { onClick: () => setErrors([]) },
-  }}
-  isInvalid={isInvalid}
-  isLoading={isLoading}
-  onSave={onSave}
-/>`;
 
 export const InlineEditExample = {
   title: 'Inline edit',
@@ -186,7 +175,6 @@ export const InlineEditExample = {
         },
       ],
       demo: <InlineEditValidation />,
-      snippet: inlineEditValidationSnippet,
     },
     {
       title: 'Customizing read and edit modes',
