@@ -158,7 +158,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   const [editModeValue, setEditModeValue] = useState(defaultValue);
   const [readModeValue, setReadModeValue] = useState(defaultValue);
 
-  const toggleEditMode = () => {
+  const activateEditMode = () => {
     setIsEditing(true);
     // Waits a tick for state to settle and the focus target to render
     requestAnimationFrame(() => editModeFocusRef.current?.focus());
@@ -309,7 +309,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
           readModeProps?.['aria-describedby']
         )}
         onClick={(e: MouseEvent<HTMLButtonElement>) => {
-          toggleEditMode();
+          activateEditMode();
           readModeProps?.onClick?.(e);
         }}
       >
@@ -317,7 +317,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
       </EuiButtonEmpty>
       <span id={readModeDescribedById} hidden>
         <EuiI18n
-          token="euiInlineEditForm.toggleEditModeDescription"
+          token="euiInlineEditForm.activateEditModeDescription"
           default="Click this button to edit this text inline."
         />
       </span>

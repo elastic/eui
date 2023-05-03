@@ -202,7 +202,7 @@ describe('EuiInlineEditForm', () => {
       onSave.mockReset();
     });
 
-    it('toggles to editMode when the readModeButton is clicked', () => {
+    it('activates editMode when the readModeButton is clicked', () => {
       const { getByTestSubject, queryByTestSubject } = render(
         <EuiInlineEditForm
           {...commonInlineEditFormProps}
