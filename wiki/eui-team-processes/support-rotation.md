@@ -6,6 +6,16 @@ To ensure that developer support is evenly spread out amongst team members, EUI 
 
 Incoming support items will primarily come from Elastic's internal Slack `#eui` chat channel, and publicly from [opened GitHub issues](https://github.com/elastic/eui/issues) (which can be tracked via the `#eui-github-notifications` Slack channel).
 
+
+**Guidelines for support**
+
+- *Expect detail* -- we have issue templates for a reason, the more context and pre-work a user provides in their issue, the easier it is for us to help. It is not just a nice-to-have, it is a requirement. Push the work back to a user to provide more detail if they haven't done their due diligence.
+- *Responding is best-effort* -- We do not provide an SLA. We like to help people, but we need to be protective of our own time. We are first and foremost a development team. However, we should generally try to make sure most issues have a timely response.
+- *Consider implementing things immediately* -- If something is small, actionable, and important, like an easy bug fix, consider fixing it immediately while the context is fresh in your mind, rather than letting it go into the backlog.
+- *Help future users* -- During your support time, if you think a question could have been answered with better docs, clearer APIs, or a better types, then take the time to make that change. Think about how we can avoid a question coming up again. How do we help folks self-service? It will save ourselves time in the long run.
+- *Time-box your efforts* -- Support is a great time to learn more about EUI. Try to work issues on your own and learn in the process, but be conscious of the time you're spending. Don't get stuck in a hole, pull in a knowledgable team member to help if you've gone past your chosen time-box.
+- *Prioritize* -- Not all issues and questions are created equal, some issues will warrant more time then others. There's no exact formula, but as you could imagine, bugs would take priority over feature requests; internal users would take precedence of external; high-quality questions with good context would take precedence over low-quality, low-effort questions.
+
 ## Common questions and answers 
 
 - _I'm trying to implement X and it's not working - why?_
