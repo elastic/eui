@@ -6,8 +6,7 @@ To ensure that developer support is evenly spread out amongst team members, EUI 
 
 Incoming support items will primarily come from Elastic's internal Slack `#eui` chat channel, and publicly from [opened GitHub issues](https://github.com/elastic/eui/issues) (which can be tracked via the `#eui-github-notifications` Slack channel).
 
-
-**Guidelines for support**
+### Guidelines for support
 
 - *Expect detail* -- we have issue templates for a reason, the more context and pre-work a user provides in their issue, the easier it is for us to help. It is not just a nice-to-have, it is a requirement. Push the work back to a user to provide more detail if they haven't done their due diligence.
 - *Responding is best-effort* -- We do not provide an SLA. We like to help people, but we need to be protective of our own time. We are first and foremost a development team. However, we should generally try to make sure most issues have a timely response.
