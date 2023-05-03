@@ -344,25 +344,34 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
 
   let rightSideFlexItem;
   if (rightSideItems && rightSideItems.length) {
-    const wrapWithFlex = () => {
-      return rightSideItems.map((item, index) => {
-        return (
-          <EuiFlexItem grow={false} key={index}>
-            {item}
-          </EuiFlexItem>
-        );
-      });
+    const wrapWithFlex = (reverse: boolean) => {
+      const reverseRightSideItems = reverse
+        ? rightSideItems.reverse()
+        : undefined;
+
+      if (reverseRightSideItems) {
+        return reverseRightSideItems.map((item, index) => {
+          return (
+            <EuiFlexItem grow={false} key={index}>
+              {item}
+            </EuiFlexItem>
+          );
+        });
+      } else {
+        return rightSideItems.map((item, index) => {
+          return (
+            <EuiFlexItem grow={false} key={index}>
+              {item}
+            </EuiFlexItem>
+          );
+        });
+      }
     };
 
     rightSideFlexItem = (
       <EuiFlexItem grow={false}>
-        <EuiFlexGroup
-          wrap
-          responsive={false}
-          direction={isResponsiveBreakpoint ? undefined : 'rowReverse'}
-          {...rightSideGroupProps}
-        >
-          {wrapWithFlex()}
+        <EuiFlexGroup wrap responsive={false} {...rightSideGroupProps}>
+          {wrapWithFlex(isResponsiveBreakpoint ? false : true)}
         </EuiFlexGroup>
       </EuiFlexItem>
     );
