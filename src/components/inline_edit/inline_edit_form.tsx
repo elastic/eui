@@ -10,6 +10,7 @@ import React, {
   ReactNode,
   FunctionComponent,
   useState,
+  useRef,
   HTMLAttributes,
   MouseEvent,
   KeyboardEvent,
@@ -21,7 +22,6 @@ import {
   EuiFormRow,
   EuiFormRowProps,
   EuiFieldText,
-  EuiForm,
   EuiFieldTextProps,
 } from '../form';
 import { euiFormVariables } from '../form/form.styles';
@@ -29,8 +29,8 @@ import { EuiButtonIcon, EuiButtonEmpty } from '../button';
 import { EuiButtonIconPropsForButton } from '../button/button_icon';
 import { EuiButtonEmptyPropsForButton } from '../button/button_empty/button_empty';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
-import { EuiSkeletonRectangle } from '../skeleton';
-import { useEuiTheme, keys } from '../../services';
+import { EuiSkeletonLoading, EuiSkeletonRectangle } from '../skeleton';
+import { useEuiTheme, useCombinedRefs, keys } from '../../services';
 import { EuiI18n, useEuiI18n } from '../i18n';
 import { useGeneratedHtmlId } from '../../services/accessibility';
 
@@ -140,17 +140,34 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
     'Cancel edit'
   );
 
+  const readModeDescribedById = useGeneratedHtmlId({ prefix: 'inlineEdit' });
   const editModeDescribedById = useGeneratedHtmlId({ prefix: 'inlineEdit' });
 
-  const [isEditing, setIsEditing] = useState(false || startWithEditOpen);
-  const inlineEditInputId = useGeneratedHtmlId({ prefix: '__inlineEditInput' });
+  const readModeFocusRef = useRef<HTMLButtonElement | null>(null);
+  const editModeFocusRef = useRef<HTMLInputElement | null>(null);
+  const setReadModeRefs = useCombinedRefs([
+    readModeFocusRef,
+    readModeProps?.buttonRef,
+  ]);
+  const setEditModeRefs = useCombinedRefs([
+    editModeFocusRef,
+    editModeProps?.inputProps?.inputRef,
+  ]);
 
+  const [isEditing, setIsEditing] = useState(false || startWithEditOpen);
   const [editModeValue, setEditModeValue] = useState(defaultValue);
   const [readModeValue, setReadModeValue] = useState(defaultValue);
+
+  const activateEditMode = () => {
+    setIsEditing(true);
+    // Waits a tick for state to settle and the focus target to render
+    requestAnimationFrame(() => editModeFocusRef.current?.focus());
+  };
 
   const cancelInlineEdit = () => {
     setEditModeValue(readModeValue);
     setIsEditing(false);
+    requestAnimationFrame(() => readModeFocusRef.current?.focus());
   };
 
   const saveInlineEditValue = async () => {
@@ -164,6 +181,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
 
     setReadModeValue(editModeValue);
     setIsEditing(false);
+    requestAnimationFrame(() => readModeFocusRef.current?.focus());
   };
 
   const editModeInputOnKeyDown = (event: KeyboardEvent<HTMLElement>) => {
@@ -178,53 +196,67 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   };
 
   const editModeForm = (
-    <EuiForm fullWidth>
-      <EuiFlexGroup gutterSize="s">
-        <EuiFlexItem>
-          <EuiFormRow
+    <EuiFlexGroup gutterSize="s">
+      <EuiFlexItem>
+        <EuiFormRow
+          fullWidth
+          isInvalid={isInvalid}
+          error={isInvalid && editModeProps?.formRowProps?.error}
+          {...editModeProps?.formRowProps}
+        >
+          <EuiFieldText
+            fullWidth
+            value={editModeValue}
+            aria-label={inputAriaLabel}
+            compressed={sizes.compressed}
             isInvalid={isInvalid}
-            error={isInvalid && editModeProps?.formRowProps?.error}
-            {...editModeProps?.formRowProps}
-          >
-            <EuiFieldText
-              id={inlineEditInputId}
-              value={editModeValue}
-              onChange={(e) => {
-                setEditModeValue(e.target.value);
-              }}
-              aria-label={inputAriaLabel}
-              autoFocus
-              compressed={sizes.compressed}
-              isInvalid={isInvalid}
-              isLoading={isLoading}
-              data-test-subj="euiInlineEditModeInput"
-              {...editModeProps?.inputProps}
-              aria-describedby={classNames(
-                editModeDescribedById,
-                editModeProps?.inputProps?.['aria-describedby']
-              )}
-              onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => {
-                editModeInputOnKeyDown(e);
-                editModeProps?.inputProps?.onKeyDown?.(e);
-              }}
-            />
-          </EuiFormRow>
-          <span id={editModeDescribedById} hidden>
-            <EuiI18n
-              token="euiInlineEditForm.inputKeyboardInstructions"
-              default="Press Enter to save your edited text. Press Escape to cancel your edit."
-            />
-          </span>
-        </EuiFlexItem>
+            isLoading={isLoading}
+            data-test-subj="euiInlineEditModeInput"
+            {...editModeProps?.inputProps}
+            inputRef={setEditModeRefs}
+            onChange={(e) => {
+              setEditModeValue(e.target.value);
+              editModeProps?.inputProps?.onChange?.(e);
+            }}
+            onKeyDown={(e) => {
+              editModeInputOnKeyDown(e);
+              editModeProps?.inputProps?.onKeyDown?.(e);
+            }}
+            aria-describedby={classNames(
+              editModeDescribedById,
+              editModeProps?.inputProps?.['aria-describedby']
+            )}
+          />
+        </EuiFormRow>
+        <span id={editModeDescribedById} hidden>
+          <EuiI18n
+            token="euiInlineEditForm.inputKeyboardInstructions"
+            default="Press Enter to save your edited text. Press Escape to cancel your edit."
+          />
+        </span>
+      </EuiFlexItem>
 
-        <EuiFlexItem grow={false} className={classes}>
-          <EuiFormRow>
-            <EuiSkeletonRectangle
-              isLoading={isLoading}
-              height={loadingSkeletonSize}
-              width={loadingSkeletonSize}
-              borderRadius="m"
-            >
+      <EuiFlexItem grow={false}>
+        <EuiSkeletonLoading
+          isLoading={isLoading}
+          announceLoadingStatus={true}
+          announceLoadedStatus={false}
+          loadingContent={
+            <EuiFlexGroup gutterSize="s">
+              <EuiSkeletonRectangle
+                height={loadingSkeletonSize}
+                width={loadingSkeletonSize}
+                borderRadius="m"
+              />
+              <EuiSkeletonRectangle
+                height={loadingSkeletonSize}
+                width={loadingSkeletonSize}
+                borderRadius="m"
+              />
+            </EuiFlexGroup>
+          }
+          loadedContent={
+            <EuiFlexGroup gutterSize="s">
               <EuiButtonIcon
                 iconType="check"
                 aria-label={defaultSaveButtonAriaLabel}
@@ -239,18 +271,6 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
                   editModeProps?.saveButtonProps?.onClick?.(e);
                 }}
               />
-            </EuiSkeletonRectangle>
-          </EuiFormRow>
-        </EuiFlexItem>
-
-        <EuiFlexItem grow={false}>
-          <EuiFormRow>
-            <EuiSkeletonRectangle
-              isLoading={isLoading}
-              height={loadingSkeletonSize}
-              width={loadingSkeletonSize}
-              borderRadius="m"
-            >
               <EuiButtonIcon
                 iconType="cross"
                 aria-label={defaultCancelButtonAriaLabel}
@@ -265,31 +285,43 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
                   editModeProps?.cancelButtonProps?.onClick?.(e);
                 }}
               />
-            </EuiSkeletonRectangle>
-          </EuiFormRow>
-        </EuiFlexItem>
-      </EuiFlexGroup>
-    </EuiForm>
+            </EuiFlexGroup>
+          }
+        />
+      </EuiFlexItem>
+    </EuiFlexGroup>
   );
 
   const readModeElement = (
-    <EuiButtonEmpty
-      color="text"
-      iconType="pencil"
-      iconSide="right"
-      autoFocus
-      flush="both"
-      iconSize={sizes.iconSize}
-      size={sizes.buttonSize}
-      data-test-subj="euiInlineReadModeButton"
-      {...readModeProps}
-      onClick={(e) => {
-        setIsEditing(true);
-        readModeProps?.onClick?.(e);
-      }}
-    >
-      {children(readModeValue)}
-    </EuiButtonEmpty>
+    <>
+      <EuiButtonEmpty
+        color="text"
+        iconType="pencil"
+        iconSide="right"
+        flush="both"
+        iconSize={sizes.iconSize}
+        size={sizes.buttonSize}
+        data-test-subj="euiInlineReadModeButton"
+        {...readModeProps}
+        buttonRef={setReadModeRefs}
+        aria-describedby={classNames(
+          readModeDescribedById,
+          readModeProps?.['aria-describedby']
+        )}
+        onClick={(e: MouseEvent<HTMLButtonElement>) => {
+          activateEditMode();
+          readModeProps?.onClick?.(e);
+        }}
+      >
+        {children(readModeValue)}
+      </EuiButtonEmpty>
+      <span id={readModeDescribedById} hidden>
+        <EuiI18n
+          token="euiInlineEditForm.activateEditModeDescription"
+          default="Click this button to edit this text inline."
+        />
+      </span>
+    </>
   );
 
   return (
