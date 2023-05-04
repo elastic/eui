@@ -30,6 +30,9 @@ export const EuiSkeletonTitle: FunctionComponent<EuiSkeletonTitleProps> = ({
   size = 'm',
   className,
   contentAriaLabel,
+  announceLoadingStatus,
+  announceLoadedStatus,
+  ariaLiveProps,
   ariaWrapperProps,
   children,
   ...rest
@@ -50,6 +53,9 @@ export const EuiSkeletonTitle: FunctionComponent<EuiSkeletonTitleProps> = ({
       }
       loadedContent={children || ''}
       contentAriaLabel={contentAriaLabel}
+      announceLoadingStatus={announceLoadingStatus}
+      announceLoadedStatus={announceLoadedStatus}
+      ariaLiveProps={ariaLiveProps}
       {...ariaWrapperProps}
     />
   );

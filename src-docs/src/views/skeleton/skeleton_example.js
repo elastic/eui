@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
 import {
@@ -7,6 +8,7 @@ import {
   EuiSkeletonRectangle,
   EuiSkeletonCircle,
   EuiSkeletonLoading,
+  EuiScreenReaderLive,
   EuiText,
   EuiSpacer,
   EuiCallOut,
@@ -68,6 +70,15 @@ const skeletonLoadingSnippet = `<EuiSkeletonLoading
       {/* Equivalent loaded content */}
     </>
   }
+/>`;
+
+import SkeletonLiveProps from './skeleton_live_props';
+const skeletonLivePropsSource = require('!!raw-loader!./skeleton_live_props');
+const skeletonLivePropsSnippet = `<EuiSkeletonText
+  announceLoadingStatus={true}
+  announceLoadedStatus={false}
+  ariaLiveProps={ariaLiveProps}
+  contentAriaLabel="Example text"
 />`;
 
 export const SkeletonExample = {
@@ -221,6 +232,43 @@ export const SkeletonExample = {
       props: { EuiSkeletonLoading },
       snippet: skeletonLoadingSnippet,
       demo: <SkeletonLoading />,
+    },
+    {
+      title: 'Customizing screen reader announcements',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: skeletonLivePropsSource,
+        },
+      ],
+      text: (
+        <EuiText>
+          <p>
+            <strong>EuiSkeleton</strong> components assume that the page starts
+            as loading and transitions to loaded, and the default screen reader
+            experience is set up accordingly (
+            <EuiCode>announceLoadedStatus={'{true}'}</EuiCode>).
+          </p>
+          <p>
+            In scenarios where that is not the case (i.e., transitioning to
+            loading), you can customize what statuses are announced to screen
+            readers by setting <EuiCode>announceLoadingStatus</EuiCode> to true,
+            or <EuiCode>announceLoadedStatus</EuiCode> to false. Submitting the
+            below example announces a loading status, but not a loaded status.
+          </p>
+          <p>
+            As an optional escape hatch, <EuiCode>ariaLiveProps</EuiCode> is
+            also available and accepts any{' '}
+            <Link to="/utilities/accessibility#screen-reader-live-region">
+              <strong>EuiScreenReaderLive</strong>
+            </Link>{' '}
+            props.
+          </p>
+        </EuiText>
+      ),
+      props: { EuiSkeletonLoading, EuiScreenReaderLive },
+      snippet: skeletonLivePropsSnippet,
+      demo: <SkeletonLiveProps />,
     },
   ],
 };
