@@ -357,7 +357,7 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
     rightSideFlexItem = (
       <EuiFlexItem grow={false}>
         <EuiFlexGroup wrap responsive={false} {...rightSideGroupProps}>
-          {wrapWithFlex(isResponsiveBreakpoint ? false : true)}
+          {rightSideFlexItems}
         </EuiFlexGroup>
       </EuiFlexItem>
     );
