@@ -11,5 +11,6 @@ export default () => (
       <EuiButton fill>Add something</EuiButton>,
       <EuiButton>Do something</EuiButton>,
     ]}
+    responsive="reverse"
   />
 );
