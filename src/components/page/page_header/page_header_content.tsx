@@ -345,27 +345,15 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
   let rightSideFlexItem;
   if (rightSideItems && rightSideItems.length) {
     const wrapWithFlex = (reverse: boolean) => {
-      const reverseRightSideItems = reverse
-        ? rightSideItems.reverse()
-        : undefined;
+      const itemsToRender = reverse
+        ? [...rightSideItems].reverse()
+        : rightSideItems;
 
-      if (reverseRightSideItems) {
-        return reverseRightSideItems.map((item, index) => {
-          return (
-            <EuiFlexItem grow={false} key={index}>
-              {item}
-            </EuiFlexItem>
-          );
-        });
-      } else {
-        return rightSideItems.map((item, index) => {
-          return (
-            <EuiFlexItem grow={false} key={index}>
-              {item}
-            </EuiFlexItem>
-          );
-        });
-      }
+      return itemsToRender.map((item, index) => (
+        <EuiFlexItem grow={false} key={index}>
+          {item}
+        </EuiFlexItem>
+      ));
     };
 
     rightSideFlexItem = (
