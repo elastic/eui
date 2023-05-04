@@ -1,3 +1,20 @@
+## [`78.0.0`](https://github.com/elastic/eui/tree/v78.0.0)
+
+- Improved the contrast ratio of `EuiCheckbox`, `EuiRadio`, and `EuiSwitch` in their unchecked states to meet WCAG AA guidelines. ([#6729](https://github.com/elastic/eui/pull/6729))
+- Added React Testing Library `*ByTestSubject` custom commands to `within()`. RTL utilities can be imported from `@elastic/eui/lib/test/rtl`. ([#6737](https://github.com/elastic/eui/pull/6737))
+- Updated `EuiAvatar` to support a new letter `casing` prop that allow customizing text capitalization ([#6739](https://github.com/elastic/eui/pull/6739))
+- Updated `EuiFocusTrap` to support the `gapMode` prop configuration (now defaults to `padding`) ([#6744](https://github.com/elastic/eui/pull/6744))
+
+**Bug fixes**
+
+- Fixed inconsistency in `EuiSearchBar`'s AND/OR semantics between DSL and query string generation ([#6717](https://github.com/elastic/eui/pull/6717))
+- Fixed `EuiFieldNumber`'s native browser validity detection causing extra unnecessary rerenders ([#6741](https://github.com/elastic/eui/pull/6741))
+- Fixed the `scrollLock` property on `EuiFocusTrap` (and other components using `EuiFocusTrap`, such as `EuiFlyout` and `EuiModal`) to no longer block scrolling on nested portalled content, such as combobox dropdowns ([#6744](https://github.com/elastic/eui/pull/6744))
+
+**Breaking changes**
+
+- `EuiAvatar`s with the default `user` type will now default to capitalizing all initials in uppercase ([#6739](https://github.com/elastic/eui/pull/6739))
+
 ## [`77.2.0`](https://github.com/elastic/eui/tree/v77.2.0)
 
 - Updated `EuiFieldNumber` to detect native browser invalid state and show an invalid icon ([#6704](https://github.com/elastic/eui/pull/6704))

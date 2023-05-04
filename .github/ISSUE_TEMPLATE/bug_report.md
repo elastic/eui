@@ -10,6 +10,12 @@ assignees: ''
 **Describe the bug**
 A clear and concise description of what the bug is.
 
+**Environment and versions**
+- EUI version: 
+- Kibana version (if applicable):
+- Browser:
+- Operating System:
+
 **To Reproduce**
 Steps to reproduce the behavior:
 1. Go to '...'

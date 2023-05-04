@@ -9,7 +9,10 @@
 import React, { FunctionComponent, HTMLAttributes, ReactElement } from 'react';
 
 import { CommonProps } from '../common';
-import { EuiScreenReaderLive } from '../accessibility/screen_reader_live';
+import {
+  EuiScreenReaderLive,
+  EuiScreenReaderLiveProps,
+} from '../accessibility/screen_reader_live';
 import { useEuiI18n } from '../i18n';
 
 export type _EuiSkeletonAriaProps = {
@@ -24,14 +27,29 @@ export type _EuiSkeletonAriaProps = {
    */
   contentAriaLabel?: string;
   /**
-   * Any optional props to pass to the `aria-busy` wrapper around the skeleton content
+   * Makes a live screen reader announcement when `isLoading` is true
+   * @default false
+   */
+  announceLoadingStatus?: boolean;
+  /**
+   * Makes a live screen reader announcement when `isLoading` is false
+   * @default true
+   */
+  announceLoadedStatus?: boolean;
+  /**
+   * Optional props to pass to the `aria-live` region that announces the loading status to screen readers.
+   * Accepts any `EuiScreenReaderLive` props.
+   */
+  ariaLiveProps?: Partial<EuiScreenReaderLiveProps>;
+  /**
+   * Optional props to pass to the `aria-busy` wrapper around the skeleton content
    */
   ariaWrapperProps?: HTMLAttributes<HTMLDivElement>;
 };
 
 export type EuiSkeletonLoadingProps = CommonProps &
   _EuiSkeletonAriaProps['ariaWrapperProps'] &
-  Pick<_EuiSkeletonAriaProps, 'isLoading' | 'contentAriaLabel'> & {
+  Omit<_EuiSkeletonAriaProps, 'ariaWrapperProps'> & {
     /**
      * Content to display when loading
      */
@@ -45,24 +63,29 @@ export type EuiSkeletonLoadingProps = CommonProps &
 export const EuiSkeletonLoading: FunctionComponent<EuiSkeletonLoadingProps> = ({
   isLoading = true,
   contentAriaLabel,
-  loadingContent,
+  loadingContent: _loadingContent,
   loadedContent,
+  announceLoadingStatus = false,
+  announceLoadedStatus = true,
+  ariaLiveProps,
   ...rest
 }) => {
-  const loadingAriaLabel = useEuiI18n(
-    'euiSkeletonLoading.loadingAriaText',
-    'Loading {contentAriaLabel}',
-    { contentAriaLabel }
-  );
   const loadedAriaLive = useEuiI18n(
     'euiSkeletonLoading.loadedAriaText',
     'Loaded {contentAriaLabel}',
+    { contentAriaLabel }
+  );
+
+  const loadingAriaLabel = useEuiI18n(
+    'euiSkeletonLoading.loadingAriaText',
+    'Loading {contentAriaLabel}',
     { contentAriaLabel }
   );
   const loadingProps = {
     'aria-label': loadingAriaLabel,
     role: 'progressbar',
   };
+  const loadingContent = React.cloneElement(_loadingContent, loadingProps);
 
   return (
     <div
@@ -71,10 +94,21 @@ export const EuiSkeletonLoading: FunctionComponent<EuiSkeletonLoadingProps> = ({
       {...rest}
     >
       {isLoading ? (
-        React.cloneElement(loadingContent, loadingProps)
+        <>
+          {announceLoadingStatus && (
+            <EuiScreenReaderLive {...ariaLiveProps}>
+              {loadingAriaLabel}
+            </EuiScreenReaderLive>
+          )}
+          {loadingContent}
+        </>
       ) : (
         <>
-          <EuiScreenReaderLive>{loadedAriaLive}</EuiScreenReaderLive>
+          {announceLoadedStatus && (
+            <EuiScreenReaderLive {...ariaLiveProps}>
+              {loadedAriaLive}
+            </EuiScreenReaderLive>
+          )}
           {loadedContent}
         </>
       )}
