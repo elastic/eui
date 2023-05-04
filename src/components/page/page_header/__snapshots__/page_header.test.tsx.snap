@@ -93,14 +93,14 @@ exports[`EuiPageHeader props alignItems center is rendered 1`] = `
             class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             <button>
-              Button 1
+              Button 2
             </button>
           </div>
           <div
             class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             <button>
-              Button 2
+              Button 1
             </button>
           </div>
         </div>
@@ -185,14 +185,14 @@ exports[`EuiPageHeader props alignItems top is rendered 1`] = `
             class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             <button>
-              Button 1
+              Button 2
             </button>
           </div>
           <div
             class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             <button>
-              Button 2
+              Button 1
             </button>
           </div>
         </div>
