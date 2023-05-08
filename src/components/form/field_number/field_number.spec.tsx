@@ -52,6 +52,14 @@ describe('EuiFieldNumber', () => {
       checkIsInvalid();
     });
 
+    it('shows invalid state on blur', () => {
+      cy.mount(<EuiFieldNumber max={1} value={2} />);
+      checkIsValid();
+      cy.get('input').click();
+      cy.get('body').click('bottomRight');
+      checkIsInvalid();
+    });
+
     // TODO: Consider adding a Cypress visual snapshot/diff plugin here
     // to confirm that the native browser validity report displays as expected
   });

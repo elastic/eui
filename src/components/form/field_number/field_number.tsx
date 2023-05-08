@@ -111,7 +111,8 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
     inputRef,
     readOnly,
     controlOnly,
-    onKeyUp: _onKeyUp,
+    onKeyUp,
+    onBlur,
     reportNativeInvalidity = true,
     ...rest
   } = props;
@@ -124,23 +125,19 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
     true | undefined
   >();
 
-  // Note that we can't use hook into `onChange` because browsers don't emit change events
-  // for invalid values - see https://github.com/facebook/react/issues/16554
-  const onKeyUp = useCallback(
-    (e: React.KeyboardEvent<HTMLInputElement>) => {
-      _onKeyUp?.(e);
-
+  const checkNativeValidity = useCallback(
+    (inputEl: HTMLInputElement) => {
       // Prefer `undefined` over `false` so that the `aria-invalid` prop unsets completely
-      const isInvalid = !e.currentTarget.validity.valid || undefined;
+      const isInvalid = !inputEl.validity.valid || undefined;
       setIsNativelyInvalid(isInvalid);
 
       // Some browser (i.e. Safari) don't make their native error messages visible -
       // the `reportValidity` API more clearly surfaces these messages
       if (isInvalid && reportNativeInvalidity) {
-        e.currentTarget.reportValidity();
+        inputEl.reportValidity();
       }
     },
-    [_onKeyUp, reportNativeInvalidity]
+    [reportNativeInvalidity]
   );
 
   const numIconsClass = controlOnly
@@ -171,8 +168,17 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
         readOnly={readOnly}
         className={classes}
         ref={inputRef}
-        onKeyUp={onKeyUp}
         aria-invalid={isInvalid == null ? isNativelyInvalid : isInvalid}
+        onKeyUp={(e) => {
+          // Note that we can't use `onChange` because browsers don't emit change events
+          // for invalid text - see https://github.com/facebook/react/issues/16554
+          onKeyUp?.(e);
+          checkNativeValidity(e.currentTarget);
+        }}
+        onBlur={(e) => {
+          onBlur?.(e);
+          checkNativeValidity(e.currentTarget);
+        }}
         {...rest}
       />
     </EuiValidatableControl>
