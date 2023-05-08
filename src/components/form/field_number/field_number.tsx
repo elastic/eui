@@ -77,6 +77,16 @@ export type EuiFieldNumberProps = Omit<
      * @default false
      */
     compressed?: boolean;
+
+    /**
+     * By default, native browser invalidity messages will be reported on user input
+     * (e.g., if consumers exceed the set `min` or `max` range, or do not match `step` increments).
+     * These messages are displayed via the browser `reportValidity` API.
+     *
+     * If you would prefer to use your own error messaging, set this flag to `false`.
+     * @default true
+     */
+    reportNativeInvalidity?: boolean;
   };
 
 export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
@@ -102,6 +112,7 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
     readOnly,
     controlOnly,
     onKeyUp: _onKeyUp,
+    reportNativeInvalidity = true,
     ...rest
   } = props;
 
@@ -119,12 +130,17 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
     (e: React.KeyboardEvent<HTMLInputElement>) => {
       _onKeyUp?.(e);
 
-      const { validity } = e.target as HTMLInputElement;
       // Prefer `undefined` over `false` so that the `aria-invalid` prop unsets completely
-      const isInvalid = !validity.valid || undefined;
+      const isInvalid = !e.currentTarget.validity.valid || undefined;
       setIsNativelyInvalid(isInvalid);
+
+      // Some browser (i.e. Safari) don't make their native error messages visible -
+      // the `reportValidity` API more clearly surfaces these messages
+      if (isInvalid && reportNativeInvalidity) {
+        e.currentTarget.reportValidity();
+      }
     },
-    [_onKeyUp]
+    [_onKeyUp, reportNativeInvalidity]
   );
 
   const numIconsClass = controlOnly

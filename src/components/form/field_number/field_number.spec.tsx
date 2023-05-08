@@ -51,5 +51,8 @@ describe('EuiFieldNumber', () => {
       cy.get('input').click().type('2');
       checkIsInvalid();
     });
+
+    // TODO: Consider adding a Cypress visual snapshot/diff plugin here
+    // to confirm that the native browser validity report displays as expected
   });
 });
