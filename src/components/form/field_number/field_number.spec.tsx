@@ -59,5 +59,12 @@ describe('EuiFieldNumber', () => {
       cy.get('body').click('bottomRight');
       checkIsInvalid();
     });
+
+    it('does not show invalid state on decimal values by default', () => {
+      cy.mount(<EuiFieldNumber />);
+      checkIsValid();
+      cy.get('input').click().type('1.5');
+      checkIsValid();
+    });
   });
 });

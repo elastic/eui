@@ -48,8 +48,9 @@ export type EuiFieldNumberProps = Omit<
     max?: number;
     /**
      * Specifies the granularity that the value must adhere to.
-     * Accepts a `number` or the string `'any'` for no stepping to allow for any value.
-     * Defaults to `1`
+     * Accepts a `number`, e.g. `1` for integers, or `0.5` for decimal steps.
+     * Defaults to `"any"` for no stepping, which allows any decimal value(s).
+     * @default "any"
      */
     step?: number | 'any';
     inputRef?: Ref<HTMLInputElement>;
@@ -91,6 +92,7 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
     name,
     min,
     max,
+    step = 'any',
     value,
     isInvalid,
     fullWidth = defaultFullWidth,
@@ -140,9 +142,10 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
       <input
         type="number"
         id={id}
+        name={name}
         min={min}
         max={max}
-        name={name}
+        step={step}
         value={value}
         placeholder={placeholder}
         readOnly={readOnly}

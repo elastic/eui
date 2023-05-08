@@ -136,6 +136,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
               aria-describedby="generated-id generated-id"
               aria-label="Time value"
               class="euiFieldNumber euiFieldNumber--compressed"
+              step="any"
               type="number"
               value="15"
             />
@@ -350,6 +351,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
               class="euiFieldNumber euiFieldNumber--fullWidth euiFieldNumber--compressed"
               data-test-subj="superDatePickerRefreshIntervalInput"
               disabled=""
+              step="any"
               type="number"
               value="0"
             />
