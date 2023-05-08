@@ -51,5 +51,13 @@ describe('EuiFieldNumber', () => {
       cy.get('input').click().type('2');
       checkIsInvalid();
     });
+
+    it('shows invalid state on blur', () => {
+      cy.mount(<EuiFieldNumber max={1} value={2} />);
+      checkIsValid();
+      cy.get('input').click();
+      cy.get('body').click('bottomRight');
+      checkIsInvalid();
+    });
   });
 });

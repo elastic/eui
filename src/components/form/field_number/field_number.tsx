@@ -101,7 +101,8 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
     inputRef,
     readOnly,
     controlOnly,
-    onKeyUp: _onKeyUp,
+    onKeyUp,
+    onBlur,
     ...rest
   } = props;
 
@@ -113,19 +114,11 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
     true | undefined
   >();
 
-  // Note that we can't use hook into `onChange` because browsers don't emit change events
-  // for invalid values - see https://github.com/facebook/react/issues/16554
-  const onKeyUp = useCallback(
-    (e: React.KeyboardEvent<HTMLInputElement>) => {
-      _onKeyUp?.(e);
-
-      const { validity } = e.target as HTMLInputElement;
-      // Prefer `undefined` over `false` so that the `aria-invalid` prop unsets completely
-      const isInvalid = !validity.valid || undefined;
-      setIsNativelyInvalid(isInvalid);
-    },
-    [_onKeyUp]
-  );
+  const checkNativeValidity = useCallback((inputEl: HTMLInputElement) => {
+    // Prefer `undefined` over `false` so that the `aria-invalid` prop unsets completely
+    const isInvalid = !inputEl.validity.valid || undefined;
+    setIsNativelyInvalid(isInvalid);
+  }, []);
 
   const numIconsClass = controlOnly
     ? false
@@ -155,8 +148,18 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
         readOnly={readOnly}
         className={classes}
         ref={inputRef}
-        onKeyUp={onKeyUp}
         aria-invalid={isInvalid == null ? isNativelyInvalid : isInvalid}
+        onKeyUp={(e) => {
+          // Note that we can't use `onChange` because browsers don't emit change events
+          // for invalid text - see https://github.com/facebook/react/issues/16554
+          onKeyUp?.(e);
+          checkNativeValidity(e.currentTarget);
+        }}
+        onBlur={(e) => {
+          // Browsers can also set/determine validity (e.g. when `step` is undefined) on focus blur
+          onBlur?.(e);
+          checkNativeValidity(e.currentTarget);
+        }}
         {...rest}
       />
     </EuiValidatableControl>
