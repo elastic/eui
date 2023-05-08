@@ -10,8 +10,6 @@ export type { EuiLoadingElasticProps } from './loading_elastic';
 export { EuiLoadingElastic } from './loading_elastic';
 export type { EuiLoadingChartProps } from './loading_chart';
 export { EuiLoadingChart } from './loading_chart';
-export type { EuiLoadingContentProps } from './loading_content';
-export { EuiLoadingContent } from './loading_content';
 export type { EuiLoadingSpinnerProps } from './loading_spinner';
 export { EuiLoadingSpinner } from './loading_spinner';
 export type { EuiLoadingLogoProps } from './loading_logo';
