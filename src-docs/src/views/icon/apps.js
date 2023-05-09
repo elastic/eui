@@ -59,6 +59,7 @@ const iconTypes = [
   'usersRolesApp',
   'visualizeApp',
   'watchesApp',
+  'vulnerabilityManagementApp',
   'workplaceSearchApp',
 ];
 

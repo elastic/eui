@@ -414,6 +414,7 @@ export const typeToPathMap = {
   visVega: 'vis_vega',
   visVisualBuilder: 'vis_visual_builder',
   visualizeApp: 'app_visualize',
+  vulnerabilityManagementApp: 'app_vulnerability_management',
   warning: 'warning',
   alert: 'warning', // NOTE: This is an undocumented alias for `warning`, added for legacy compatability with Elastic Charts
   watchesApp: 'app_watches',
