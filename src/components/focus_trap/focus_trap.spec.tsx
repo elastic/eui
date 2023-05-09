@@ -255,6 +255,19 @@ describe('EuiFocusTrap', () => {
       cy.window().its('scrollY').should('not.equal', 0);
     });
 
+    it('does not scrollLock if the focus trap is disabled', () => {
+      cy.realMount(
+        <div style={{ height: 2000 }}>
+          <EuiFocusTrap disabled={true} scrollLock={true}>
+            Test
+          </EuiFocusTrap>
+        </div>
+      );
+
+      scrollSelector('body');
+      cy.window().its('scrollY').should('not.equal', 0);
+    });
+
     it('prevents scrolling on the page body', () => {
       cy.realMount(
         <div style={{ height: 2000 }}>
