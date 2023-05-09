@@ -6300,37 +6300,37 @@
     "filepath": "src/components/selectable/selectable.tsx"
   },
   {
-    "token": "euiSkeletonLoading.loadingAriaText",
-    "defString": "Loading {contentAriaLabel}",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 52,
-        "column": 27,
-        "index": 1743
-      },
-      "end": {
-        "line": 56,
-        "column": 3,
-        "index": 1859
-      }
-    },
-    "filepath": "src/components/skeleton/skeleton_loading.tsx"
-  },
-  {
     "token": "euiSkeletonLoading.loadedAriaText",
     "defString": "Loaded {contentAriaLabel}",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 57,
+        "line": 73,
         "column": 25,
-        "index": 1886
+        "index": 2343
       },
       "end": {
-        "line": 61,
+        "line": 77,
         "column": 3,
-        "index": 2000
+        "index": 2457
+      }
+    },
+    "filepath": "src/components/skeleton/skeleton_loading.tsx"
+  },
+  {
+    "token": "euiSkeletonLoading.loadingAriaText",
+    "defString": "Loading {contentAriaLabel}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 79,
+        "column": 27,
+        "index": 2487
+      },
+      "end": {
+        "line": 83,
+        "column": 3,
+        "index": 2603
       }
     },
     "filepath": "src/components/skeleton/skeleton_loading.tsx"
