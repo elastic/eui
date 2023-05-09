@@ -1,3 +1,12 @@
+## [`79.0.0`](https://github.com/elastic/eui/tree/v79.0.0)
+
+- Updated all `EuiSkeleton` components with new props that allow for more control over screen reader live announcements: `announceLoadingStatus`, `announceLoadedStatus`, and `ariaLiveProps` ([#6752](https://github.com/elastic/eui/pull/6752))
+- Improved keyboard accessibility in `EuiPageHeader` by ensuring the right side menu items come into focus from left to right. ([#6753](https://github.com/elastic/eui/pull/6753))
+
+**Breaking changes**
+
+- Removed deprecated `EuiLoadingContent`. Use the `EuiSkeleton` components instead. ([#6754](https://github.com/elastic/eui/pull/6754))
+
 ## [`78.0.0`](https://github.com/elastic/eui/tree/v78.0.0)
 
 - Improved the contrast ratio of `EuiCheckbox`, `EuiRadio`, and `EuiSwitch` in their unchecked states to meet WCAG AA guidelines. ([#6729](https://github.com/elastic/eui/pull/6729))
