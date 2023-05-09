@@ -146,7 +146,7 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
     return (
       <FocusOn {...focusOnProps}>
         {children}
-        {scrollLock && <RemoveScrollBar gapMode={gapMode} />}
+        {!isDisabled && scrollLock && <RemoveScrollBar gapMode={gapMode} />}
       </FocusOn>
     );
   }
