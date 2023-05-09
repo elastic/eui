@@ -62,6 +62,19 @@ describe('EuiFlyout', () => {
         'euiFlyoutCloseButton'
       );
     });
+
+    it('does not focus trap or scrollLock for push flyouts', () => {
+      cy.mount(
+        <>
+          <div style={{ height: 2000 }}>Body scroll</div>
+          <Flyout type="push" pushMinBreakpoint="xs" size="100px" />
+        </>
+      );
+
+      cy.get('body').realClick({ position: 'topLeft' }).realPress('End'); // TODO: Use cypress-real-event's `realMouseWheel` API, whenever they release it
+      cy.wait(500); // Wait a tick to let scroll position update
+      cy.window().its('scrollY').should('not.equal', 0);
+    });
   });
 
   describe('Close behavior: standard', () => {
