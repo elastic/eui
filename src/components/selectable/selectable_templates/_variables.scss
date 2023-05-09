@@ -1,22 +1,25 @@
+// The $euiFocusBackgroundColor without the alpha channel
+$euiSelectableTemplateFocusBackground: rgb(232, 241, 250);
+
 $euiSelectableTemplateSitewideTypes: (
   'application': (
-    'color': makeHighContrastColor($euiColorVis1),
+    'color': makeHighContrastColor($euiColorVis1, $euiSelectableTemplateFocusBackground),
     'font-weight': $euiFontWeightMedium,
   ),
   'deployment': (
-    'color': makeHighContrastColor($euiColorVis0),
+    'color': makeHighContrastColor($euiColorVis0, $euiSelectableTemplateFocusBackground),
     'font-weight': $euiFontWeightMedium,
   ),
   'article': (
-    'color': makeHighContrastColor($euiColorVis3),
+    'color': makeHighContrastColor($euiColorVis3, $euiSelectableTemplateFocusBackground),
     'font-weight': $euiFontWeightMedium,
   ),
   'case': (
-    'color': makeHighContrastColor($euiColorVis9),
+    'color': makeHighContrastColor($euiColorVis9, $euiSelectableTemplateFocusBackground),
     'font-weight': $euiFontWeightMedium,
   ),
   'platform': (
-    'color': makeHighContrastColor($euiColorVis5),
+    'color': makeHighContrastColor($euiColorVis5, $euiSelectableTemplateFocusBackground),
     'font-weight': $euiFontWeightMedium,
   ),
 );
