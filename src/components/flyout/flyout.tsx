@@ -405,7 +405,7 @@ export const EuiFlyout = forwardRef(
     let flyout = (
       <EuiFocusTrap
         disabled={isPushed}
-        scrollLock={ownFocus}
+        scrollLock={hasOverlayMask}
         clickOutsideDisables={!ownFocus}
         onClickOutside={onClickOutside}
         {...focusTrapProps}
