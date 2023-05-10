@@ -119,11 +119,4 @@
       padding-bottom: 0;
     }
   }
-
-  // Overrides the euiFormControlLayout prepend and append height that is 100%
-  .euiFormControlLayout__prepend,
-  .euiFormControlLayout__append {
-    // stylelint-disable-next-line declaration-no-important
-    height: auto !important;
-  }
 }
