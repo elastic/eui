@@ -1,3 +1,9 @@
+## [`79.0.1`](https://github.com/elastic/eui/tree/v79.0.1)
+
+**Bug fixes**
+
+- Fixed broken push `EuiFlyout` behavior ([#6764](https://github.com/elastic/eui/pull/6764))
+
 ## [`79.0.0`](https://github.com/elastic/eui/tree/v79.0.0)
 
 - Updated all `EuiSkeleton` components with new props that allow for more control over screen reader live announcements: `announceLoadingStatus`, `announceLoadedStatus`, and `ariaLiveProps` ([#6752](https://github.com/elastic/eui/pull/6752))
