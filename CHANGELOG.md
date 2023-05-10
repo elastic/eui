@@ -1,3 +1,9 @@
+## [`77.1.3`](https://github.com/elastic/eui/tree/v77.1.3)
+
+**Bug fixes**
+
+- Fixed broken push `EuiFlyout` behavior ([#6764](https://github.com/elastic/eui/pull/6764))
+
 ## [`77.1.2`](https://github.com/elastic/eui/tree/v77.1.2)
 
 - Updated `EuiFocusTrap` to support the `gapMode` prop configuration (now defaults to `padding`) ([#6744](https://github.com/elastic/eui/pull/6744))
