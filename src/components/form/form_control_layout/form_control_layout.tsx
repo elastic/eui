@@ -63,6 +63,10 @@ export type EuiFormControlLayoutProps = CommonProps &
      * Connects the prepend and append labels to the input
      */
     inputId?: string;
+    /**
+     * Show dropdown icon when the form control is disabled
+     */
+    showDropdownIconWhenDisabled?: boolean;
   };
 
 export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
@@ -86,6 +90,7 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
       isInvalid,
       isDropdown,
       inputId,
+      showDropdownIconWhenDisabled,
       ...rest
     } = this.props;
 
@@ -144,8 +149,10 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
       isDisabled,
       readOnly,
       isDropdown,
+      showDropdownIconWhenDisabled,
     } = this.props;
-    const hasDropdownIcon = !readOnly && !isDisabled && isDropdown;
+    const hasDropdownIcon =
+      !readOnly && (!isDisabled || showDropdownIconWhenDisabled) && isDropdown;
 
     const rightCustomIcon =
       icon && (icon as IconShape)?.side === 'right' ? icon : undefined;
