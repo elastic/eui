@@ -32,6 +32,7 @@ export const iconTypes = [
   'logoSecurity',
   'logoSiteSearch',
   'logoUptime',
+  'logoVulnerabilityManagement',
   'logoWorkplaceSearch',
 ];
 

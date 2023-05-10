@@ -260,6 +260,7 @@ export const typeToPathMap = {
   logoSketch: 'logo_sketch',
   logoSlack: 'logo_slack',
   logoUptime: 'logo_uptime',
+  logoVulnerabilityManagement: 'logo_vulnerability_management',
   logoWebhook: 'logo_webhook',
   logoWindows: 'logo_windows',
   logoWorkplaceSearch: 'logo_workplace_search',
