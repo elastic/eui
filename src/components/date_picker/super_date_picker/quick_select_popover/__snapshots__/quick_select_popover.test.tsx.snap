@@ -346,7 +346,6 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
           >
             <input
               aria-describedby="generated-id generated-id"
-              aria-invalid="false"
               aria-label="Refresh interval value"
               class="euiFieldNumber euiFieldNumber--fullWidth euiFieldNumber--compressed"
               data-test-subj="superDatePickerRefreshIntervalInput"

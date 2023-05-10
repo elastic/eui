@@ -151,7 +151,7 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
         readOnly={readOnly}
         className={classes}
         ref={inputRef}
-        aria-invalid={isInvalid == null ? isNativelyInvalid : isInvalid}
+        aria-invalid={isInvalid || isNativelyInvalid}
         onKeyUp={(e) => {
           // Note that we can't use `onChange` because browsers don't emit change events
           // for invalid text - see https://github.com/facebook/react/issues/16554
