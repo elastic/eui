@@ -14,6 +14,8 @@ import { shouldRenderCustomStyles } from '../../../test/internal';
 import { EuiCardSelect } from './card_select';
 
 describe('EuiCardSelect', () => {
+  shouldRenderCustomStyles(<EuiCardSelect />);
+
   test('is rendered', () => {
     const component = render(
       <EuiCardSelect onClick={() => {}} {...requiredProps} />
@@ -21,8 +23,6 @@ describe('EuiCardSelect', () => {
 
     expect(component).toMatchSnapshot();
   });
-
-  shouldRenderCustomStyles(<EuiCardSelect />);
 
   describe('props', () => {
     test('isSelected', () => {

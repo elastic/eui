@@ -11,7 +11,7 @@
  * into portals.
  */
 
-import { Component, ReactNode } from 'react';
+import { Component, ContextType, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 
 import { EuiNestedThemeContext } from '../../services';
@@ -29,8 +29,9 @@ export const insertPositions: InsertPositionsMap = {
 
 type EuiPortalInsertPosition = keyof typeof insertPositions;
 
-export const INSERT_POSITIONS: EuiPortalInsertPosition[] =
-  keysOf(insertPositions);
+export const INSERT_POSITIONS: EuiPortalInsertPosition[] = keysOf(
+  insertPositions
+);
 
 export interface EuiPortalProps {
   /**
@@ -43,15 +44,18 @@ export interface EuiPortalProps {
 
 export class EuiPortal extends Component<EuiPortalProps> {
   static contextType = EuiNestedThemeContext;
+  // TODO: Uncomment when prototypes-from-ts-props babel config can accept declare keywords
+  // declare context: ContextType<typeof EuiNestedThemeContext>;
 
   portalNode: HTMLDivElement | null = null;
 
-  constructor(props: EuiPortalProps) {
-    super(props);
+  componentDidMount() {
     if (typeof window === 'undefined') return; // Prevent SSR errors
 
     const { insert } = this.props;
 
+    // React 18 mounts the component twice in development mode,
+    // so the element needs to be created here
     this.portalNode = document.createElement('div');
     this.portalNode.dataset.euiportal = 'true';
 
@@ -63,9 +67,7 @@ export class EuiPortal extends Component<EuiPortalProps> {
       const { sibling, position } = insert;
       sibling.insertAdjacentElement(insertPositions[position], this.portalNode);
     }
-  }
 
-  componentDidMount() {
     this.setThemeColor();
     this.updatePortalRef(this.portalNode);
   }
@@ -80,7 +82,8 @@ export class EuiPortal extends Component<EuiPortalProps> {
   // Set the inherited color of the portal based on the wrapping EuiThemeProvider
   setThemeColor() {
     if (this.portalNode && this.context) {
-      const { hasDifferentColorFromGlobalTheme, colorClassName } = this.context;
+      const { hasDifferentColorFromGlobalTheme, colorClassName } = this
+        .context as ContextType<typeof EuiNestedThemeContext>;
 
       if (hasDifferentColorFromGlobalTheme && this.props.insert == null) {
         this.portalNode.classList.add(colorClassName);

@@ -647,7 +647,7 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
             <span
               class="euiSelectableListItem__append"
             >
-               
+
               <span
                 aria-hidden="true"
                 class="euiBadge euiSelectableListItem__onFocusBadge emotion-euiBadge-hollow"
@@ -801,7 +801,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <div
                 class="emotion-euiScreenReaderOnly"
               >
-                . 
+                .
                 To check this option, press Enter.
               </div>
             </span>
@@ -834,7 +834,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <div
                 class="emotion-euiScreenReaderOnly"
               >
-                . 
+                .
                 To check this option, press Enter.
               </div>
             </span>
@@ -867,7 +867,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <div
                 class="emotion-euiScreenReaderOnly"
               >
-                . 
+                .
                 To check this option, press Enter.
               </div>
             </span>
@@ -900,7 +900,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <div
                 class="emotion-euiScreenReaderOnly"
               >
-                . 
+                .
                 To check this option, press Enter.
               </div>
             </span>
@@ -933,7 +933,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <div
                 class="emotion-euiScreenReaderOnly"
               >
-                . 
+                .
                 To check this option, press Enter.
               </div>
             </span>
@@ -966,7 +966,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <div
                 class="emotion-euiScreenReaderOnly"
               >
-                . 
+                .
                 To check this option, press Enter.
               </div>
             </span>
@@ -2150,8 +2150,8 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
               <span>
-                
-                 =&gt; 
+
+                 =&gt;
                 Titan
               </span>
             </span>
@@ -2179,8 +2179,8 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
               <span>
-                
-                 =&gt; 
+
+                 =&gt;
                 Enceladus
               </span>
             </span>
@@ -2208,8 +2208,8 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
               <span>
-                
-                 =&gt; 
+
+                 =&gt;
                 Mimas
               </span>
             </span>
@@ -2237,8 +2237,8 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
               <span>
-                
-                 =&gt; 
+
+                 =&gt;
                 Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
               </span>
             </span>
@@ -2266,8 +2266,8 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
               <span>
-                
-                 =&gt; 
+
+                 =&gt;
                 Tethys
               </span>
             </span>
@@ -2295,8 +2295,8 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
               <span>
-                
-                 =&gt; 
+
+                 =&gt;
                 Hyperion
               </span>
             </span>
@@ -2596,7 +2596,7 @@ exports[`EuiSelectableListItem props searchValue 1`] = `
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
               <span>
-                
+
                 <mark
                   class="euiMark emotion-euiMarkStyles-EuiMark"
                 >
@@ -2792,7 +2792,7 @@ exports[`EuiSelectableListItem props searchValue 2`] = `
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
               <span>
-                
+
                 <mark
                   class="euiMark emotion-euiMarkStyles-EuiMark"
                 >
@@ -2937,7 +2937,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
               <div
                 class="emotion-euiScreenReaderOnly"
               >
-                . 
+                .
                 To check this option, press Enter.
               </div>
             </span>
@@ -2970,7 +2970,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
               <div
                 class="emotion-euiScreenReaderOnly"
               >
-                . 
+                .
                 To check this option, press Enter.
               </div>
             </span>
@@ -3003,7 +3003,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
               <div
                 class="emotion-euiScreenReaderOnly"
               >
-                . 
+                .
                 To check this option, press Enter.
               </div>
             </span>
@@ -3036,7 +3036,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
               <div
                 class="emotion-euiScreenReaderOnly"
               >
-                . 
+                .
                 To check this option, press Enter.
               </div>
             </span>
@@ -3069,7 +3069,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
               <div
                 class="emotion-euiScreenReaderOnly"
               >
-                . 
+                .
                 To check this option, press Enter.
               </div>
             </span>
@@ -3102,7 +3102,7 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
               <div
                 class="emotion-euiScreenReaderOnly"
               >
-                . 
+                .
                 To check this option, press Enter.
               </div>
             </span>

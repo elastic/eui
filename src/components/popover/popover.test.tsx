@@ -7,6 +7,7 @@
  */
 
 import React, { ReactNode } from 'react';
+import { act } from 'react-dom/test-utils';
 import { render, mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
@@ -190,8 +191,6 @@ describe('EuiPopover', () => {
             />
           </div>
         );
-
-        // console.log(component.debug());
 
         expect(component.render()).toMatchSnapshot();
       });
@@ -507,7 +506,7 @@ describe('EuiPopover', () => {
       );
       component.find(EuiFocusTrap).invoke('onEscapeKey')!(mockEvent);
       component.setProps({ isOpen: false });
-      jest.advanceTimersByTime(closingTransitionTime);
+      act(() => jest.advanceTimersByTime(closingTransitionTime));
 
       expect(closePopover).toHaveBeenCalled();
       expect(document.activeElement).toEqual(toggleButtonEl.current);
@@ -532,7 +531,7 @@ describe('EuiPopover', () => {
       );
       component.find(EuiFocusTrap).invoke('onEscapeKey')!(mockEvent);
       component.setProps({ isOpen: false });
-      jest.advanceTimersByTime(closingTransitionTime);
+      act(() => jest.advanceTimersByTime(closingTransitionTime));
 
       expect(closePopover).toHaveBeenCalled();
       expect(document.activeElement).toEqual(toggleButtonEl.current);
@@ -552,7 +551,8 @@ describe('EuiPopover', () => {
       );
       component.find(EuiFocusTrap).invoke('onEscapeKey')!(mockEvent);
       component.setProps({ isOpen: false });
-      jest.advanceTimersByTime(closingTransitionTime);
+
+      act(() => jest.advanceTimersByTime(closingTransitionTime));
 
       expect(closePopover).toHaveBeenCalled();
       expect(document.activeElement).not.toEqual(toggleDivEl.current);

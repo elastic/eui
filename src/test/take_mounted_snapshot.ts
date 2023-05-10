@@ -28,7 +28,15 @@ export const takeMountedSnapshot = (
     ...options,
   };
   const html = mountedComponent.html();
-  const template = document.createElement('template');
+
+  let template: HTMLTemplateElement;
+  try {
+    template = document.createElement('template');
+  } catch (e) {
+    // Test environment is torn down
+    return null;
+  }
+
   template.innerHTML = html;
   const snapshot = template.content.firstChild;
   if (opts.hasArrayOutput) {

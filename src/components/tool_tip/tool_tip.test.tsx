@@ -7,6 +7,7 @@
  */
 
 import React, { useRef } from 'react';
+import { act } from 'react-dom/test-utils';
 import { mount } from 'enzyme';
 import { fireEvent } from '@testing-library/react';
 import {
@@ -18,6 +19,15 @@ import { requiredProps, findTestSubject } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiToolTip } from './tool_tip';
+
+jest.mock('react-dom', () => ({
+  ...jest.requireActual('react-dom'),
+  createPortal: (node: any) => node,
+}));
+
+jest.mock('../portal', () => ({
+  EuiPortal: ({ children }: { children: any }) => children,
+}));
 
 describe('EuiToolTip', () => {
   shouldRenderCustomStyles(
@@ -97,8 +107,8 @@ describe('EuiToolTip', () => {
     );
 
     const trigger = findTestSubject(component, 'trigger');
-    trigger.simulate('focus');
-    jest.runAllTimers(); // wait for showToolTip setTimeout
+    act(() => trigger.simulate('focus'));
+    act(() => jest.runAllTimers()); // wait for showToolTip setTimeout
 
     expect(
       document.querySelectorAll('[data-test-subj="tooltip"]')[1]
@@ -178,7 +188,8 @@ describe('EuiToolTip', () => {
       };
       const { getByTestSubject } = render(<ConsumerToolTip />);
 
-      fireEvent.click(getByTestSubject('trigger'));
+      act(() => fireEvent.click(getByTestSubject('trigger')));
+
       await waitForEuiToolTipVisible();
     });
 

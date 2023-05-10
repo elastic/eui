@@ -18,6 +18,10 @@ import { requiredProps } from '../../test';
 
 import { EuiPopover } from './';
 
+jest.mock('../portal', () => ({
+  EuiPortal: ({ children }: { children: any }) => children,
+}));
+
 describe('EuiPopover', () => {
   describe('snapshot testing', () => {
     it('renders', () => {

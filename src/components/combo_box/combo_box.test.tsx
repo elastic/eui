@@ -8,6 +8,7 @@
 
 import React, { ReactNode } from 'react';
 import { shallow, render, mount } from 'enzyme';
+import { act } from 'react-dom/test-utils';
 import {
   requiredProps,
   findTestSubject,
@@ -89,7 +90,7 @@ describe('props', () => {
       />
     );
 
-    component.setState({ isListOpen: true });
+    act(() => component.setState({ isListOpen: true }));
     expect(takeMountedSnapshot(component)).toMatchSnapshot();
   });
 
@@ -282,10 +283,14 @@ describe('behavior', () => {
         />
       );
 
-      component.setState({ searchValue: 'foo' });
-      const searchInput = findTestSubject(component, 'comboBoxSearchInput');
-      searchInput.simulate('focus');
-      searchInput.simulate('keyDown', { key: comboBoxKeys.ENTER });
+      act(() => component.setState({ searchValue: 'foo' }));
+
+      act(() => {
+        const searchInput = findTestSubject(component, 'comboBoxSearchInput');
+        searchInput.simulate('focus');
+        searchInput.simulate('keyDown', { key: comboBoxKeys.ENTER });
+      });
+
       expect(onCreateOptionHandler).toHaveBeenCalledTimes(1);
       expect(onCreateOptionHandler).toHaveBeenNthCalledWith(1, 'foo', options);
     });
@@ -344,15 +349,20 @@ describe('behavior', () => {
         />
       );
 
-      component.setState({ searchValue: 'foo' });
       const searchInput = findTestSubject(component, 'comboBoxSearchInput');
-      searchInput.simulate('focus');
 
-      const searchInputNode = searchInput.getDOMNode();
-      // React doesn't support `focusout` so we have to manually trigger it
-      searchInputNode.dispatchEvent(
-        new FocusEvent('focusout', { bubbles: true })
-      );
+      act(() => {
+        component.setState({ searchValue: 'foo' });
+        searchInput.simulate('focus');
+      });
+
+      act(() => {
+        const searchInputNode = searchInput.getDOMNode();
+        // React doesn't support `focusout` so we have to manually trigger it
+        searchInputNode.dispatchEvent(
+          new FocusEvent('focusout', { bubbles: true })
+        );
+      });
 
       expect(onCreateOptionHandler).toHaveBeenCalledTimes(1);
       expect(onCreateOptionHandler).toHaveBeenNthCalledWith(1, 'foo', options);

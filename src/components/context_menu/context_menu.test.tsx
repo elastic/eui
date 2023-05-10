@@ -7,11 +7,12 @@
  */
 
 import React from 'react';
+import { act } from 'react-dom/test-utils';
 import { render, mount } from 'enzyme';
+import { setTimeout } from 'timers';
 import { requiredProps, takeMountedSnapshot } from '../../test';
 
 import { EuiContextMenu, SIZES } from './context_menu';
-import { setTimeout } from 'timers';
 
 const panel3 = {
   id: 3,
@@ -64,9 +65,7 @@ const panel0 = {
 const panels = [panel0, panel1, panel2, panel3];
 
 export const tick = (ms = 0) =>
-  new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
+  act(() => new Promise((resolve) => setTimeout(resolve, ms)));
 
 describe('EuiContextMenu', () => {
   test('is rendered', () => {

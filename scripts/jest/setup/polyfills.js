@@ -1,4 +1,5 @@
 import { MutationObserver, MutationNotifier } from '../polyfills/mutation_observer';
+import { TextEncoder } from 'util';
 
 // polyfill window.MutationObserver and intersect jsdom's relevant methods
 // from https://github.com/aurelia/pal-nodejs
@@ -16,6 +17,10 @@ beforeAll(() => {
 
   Object.defineProperty(window, 'MutationObserver', { value: MutationObserver });
   patchNotifyChange(window);
+
+  Object.defineProperty(global, 'TextEncoder', {
+    value: TextEncoder,
+  });
 
   function patchNotifyChange(window) {
     const notifyInstance = MutationNotifier.getInstance();

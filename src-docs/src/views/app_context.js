@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { useSelector } from 'react-redux';
 import createCache from '@emotion/cache';
 import { ThemeContext } from '../components';

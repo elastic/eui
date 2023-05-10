@@ -47,7 +47,7 @@
     "^.+\\.(js|tsx?)$": "babel-jest"
   },
   "snapshotSerializers": [
-    "<rootDir>/node_modules/enzyme-to-json/serializer",
+    "enzyme-to-json/serializer",
     "<rootDir>/scripts/jest/setup/emotion"
   ]
 }
