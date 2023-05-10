@@ -164,7 +164,7 @@ const searchData: EuiSelectableTemplateSitewideOption[] = [
     meta: [
       {
         text: 'Visualization',
-        type: 'deployment',
+        type: 'application',
       },
     ],
   },
@@ -176,7 +176,7 @@ const searchData: EuiSelectableTemplateSitewideOption[] = [
     meta: [
       {
         text: 'Dashboard',
-        type: 'article',
+        type: 'application',
         highlightSearchString: true,
       },
     ],
@@ -186,7 +186,7 @@ const searchData: EuiSelectableTemplateSitewideOption[] = [
     meta: [
       {
         text: 'TSVB visualization',
-        type: 'case',
+        type: 'application',
       },
     ],
   },
@@ -198,7 +198,7 @@ const searchData: EuiSelectableTemplateSitewideOption[] = [
     meta: [
       {
         text: 'Discover',
-        type: 'platform',
+        type: 'application',
       },
     ],
   },
