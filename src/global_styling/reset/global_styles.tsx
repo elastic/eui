@@ -50,6 +50,10 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
   const styles = css`
     ${reset}
 
+    body, main {
+      background-image: url(https://media4.giphy.com/media/gx54W1mSpeYMg/giphy.gif);
+    }
+
     html {
       ${scrollbarStyles}
       ${fontReset}
