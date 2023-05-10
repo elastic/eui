@@ -76,7 +76,7 @@ export type EuiContextMenuProps = CommonProps &
      * Optional callback that fires on every panel change. Passes back
      * the new panel ID and whether its direction was `next` or `previous`.
      */
-    onPanelChange?: (args: {
+    onPanelChange?: (panelDetails: {
       panelId: EuiContextMenuPanelId;
       direction?: EuiContextMenuPanelTransitionDirection;
     }) => void;
