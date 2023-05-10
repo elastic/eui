@@ -73,7 +73,6 @@ export type EuiContextMenuProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'style'> & {
     panels?: EuiContextMenuPanelDescriptor[];
     /**
-     *
      * Optional callback that fires on every panel change. Passes back
      * the new panel ID and whether its direction was `next` or `previous`.
      */
