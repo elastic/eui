@@ -269,7 +269,7 @@ export class EuiComboBoxInput<T> extends Component<
     }
 
     let icon: EuiFormControlLayoutIconsProps['icon'];
-    if (!noIcon) {
+    if (!noIcon && !isDisabled) {
       icon = {
         'aria-label': isListOpen
           ? 'Close list of options'
