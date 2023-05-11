@@ -160,7 +160,10 @@ describe('EuiContextMenu', () => {
         await tick(20);
 
         expect(takeMountedSnapshot(component)).toMatchSnapshot();
-        expect(onPanelChange).toHaveBeenCalledTimes(1);
+        expect(onPanelChange).toHaveBeenCalledWith({
+          panelId: 1,
+          direction: 'previous',
+        });
       });
     });
 
