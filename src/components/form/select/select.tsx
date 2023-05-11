@@ -150,7 +150,6 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = (props) => {
       prepend={prepend}
       append={append}
       inputId={id}
-      showDropdownIconWhenDisabled={true}
     >
       <EuiValidatableControl isInvalid={isInvalid}>
         <select
