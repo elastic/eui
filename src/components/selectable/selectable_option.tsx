@@ -9,7 +9,7 @@
 import React, { HTMLAttributes } from 'react';
 import { CommonProps, ExclusiveUnion } from '../common';
 
-export type EuiSelectableOptionCheckedType = 'on' | 'off' | undefined;
+export type EuiSelectableOptionCheckedType = 'on' | 'off' | 'mixed' | undefined;
 
 export type EuiSelectableOptionBase = CommonProps & {
   /**

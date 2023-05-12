@@ -18,12 +18,25 @@ import { EuiBadge, EuiBadgeProps } from '../../badge';
 function resolveIconAndColor(
   checked: EuiSelectableOptionCheckedType
 ): { icon: IconType; color?: IconColor } {
-  if (!checked) {
-    return { icon: 'empty' };
+  // if (!checked) {
+  //   return { icon: 'empty' };
+  // }
+  // return checked === 'on'
+  //   ? { icon: 'check', color: 'text' }
+  //   : { icon: 'cross', color: 'text' };
+
+  switch (checked) {
+    case undefined:
+      return { icon: 'empty' };
+    case 'on':
+      return { icon: 'check', color: 'text' };
+    case 'off':
+      return { icon: 'cross', color: 'text' };
+    case 'mixed':
+      return { icon: 'partial', color: 'text' };
+    default:
+      throw new Error('Icon must be enum "on" | "off" | "mixed" | undefined.');
   }
-  return checked === 'on'
-    ? { icon: 'check', color: 'text' }
-    : { icon: 'cross', color: 'text' };
 }
 
 const paddingSizeToClassNameMap = {
