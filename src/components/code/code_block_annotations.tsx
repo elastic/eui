@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ReactNode, useState } from 'react';
+import React, {
+  FunctionComponent,
+  PropsWithChildren,
+  ReactNode,
+  useState,
+} from 'react';
 
 import { useEuiTheme } from '../../services';
 import { useEuiI18n } from '../i18n';
@@ -18,9 +23,9 @@ import { euiCodeBlockAnnotationsStyles } from './code_block_annotations.style';
 
 export type LineAnnotationMap = Record<number, ReactNode>;
 
-export const EuiCodeBlockAnnotation: FunctionComponent<{
+export const EuiCodeBlockAnnotation: FunctionComponent<PropsWithChildren<{
   lineNumber: number;
-}> = ({ lineNumber, children }) => {
+}>> = ({ lineNumber, children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const ariaLabel = useEuiI18n(

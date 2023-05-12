@@ -6,16 +6,16 @@
  * Side Public License, v 1.
  */
 
-/**
- * NOTE: We can't test this component because Enzyme doesn't support rendering
- * into portals.
- */
-
-import { Component, ContextType, ReactNode } from 'react';
+import {
+  FunctionComponent,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { createPortal } from 'react-dom';
-
-import { EuiNestedThemeContext } from '../../services';
 import { keysOf } from '../common';
+import { EuiNestedThemeContext } from '../../services';
 
 interface InsertPositionsMap {
   after: InsertPosition;
@@ -42,64 +42,44 @@ export interface EuiPortalProps {
   portalRef?: (ref: HTMLDivElement | null) => void;
 }
 
-export class EuiPortal extends Component<EuiPortalProps> {
-  static contextType = EuiNestedThemeContext;
-  // TODO: Uncomment when prototypes-from-ts-props babel config can accept declare keywords
-  // declare context: ContextType<typeof EuiNestedThemeContext>;
+export const EuiPortal: FunctionComponent<EuiPortalProps> = ({
+  children,
+  insert,
+  portalRef,
+}) => {
+  const themeContext = useContext(EuiNestedThemeContext);
 
-  portalNode: HTMLDivElement | null = null;
+  const [container] = useState(() => {
+    const element = document.createElement('div');
+    element.dataset.euiportal = 'true';
+    return element;
+  });
+  const [portalRefCache] = useState(() => portalRef);
 
-  componentDidMount() {
-    if (typeof window === 'undefined') return; // Prevent SSR errors
-
-    const { insert } = this.props;
-
-    // React 18 mounts the component twice in development mode,
-    // so the element needs to be created here
-    this.portalNode = document.createElement('div');
-    this.portalNode.dataset.euiportal = 'true';
-
-    if (insert == null) {
-      // no insertion defined, append to body
-      document.body.appendChild(this.portalNode);
-    } else {
-      // inserting before or after an element
+  useEffect(() => {
+    if (insert) {
       const { sibling, position } = insert;
-      sibling.insertAdjacentElement(insertPositions[position], this.portalNode);
-    }
+      sibling.insertAdjacentElement(insertPositions[position], container);
+    } else {
+      document.body.appendChild(container);
 
-    this.setThemeColor();
-    this.updatePortalRef(this.portalNode);
-  }
-
-  componentWillUnmount() {
-    if (this.portalNode?.parentNode) {
-      this.portalNode.parentNode.removeChild(this.portalNode);
-    }
-    this.updatePortalRef(null);
-  }
-
-  // Set the inherited color of the portal based on the wrapping EuiThemeProvider
-  setThemeColor() {
-    if (this.portalNode && this.context) {
-      const { hasDifferentColorFromGlobalTheme, colorClassName } = this
-        .context as ContextType<typeof EuiNestedThemeContext>;
-
-      if (hasDifferentColorFromGlobalTheme && this.props.insert == null) {
-        this.portalNode.classList.add(colorClassName);
+      if (themeContext?.hasDifferentColorFromGlobalTheme) {
+        container.classList.add(themeContext.colorClassName)
       }
     }
-  }
 
-  updatePortalRef(ref: HTMLDivElement | null) {
-    if (this.props.portalRef) {
-      this.props.portalRef(ref);
+    if (portalRefCache) {
+      portalRefCache(container);
     }
-  }
 
-  render() {
-    return this.portalNode
-      ? createPortal(this.props.children, this.portalNode)
-      : null;
-  }
-}
+    return () => {
+      container.parentNode?.removeChild(container);
+
+      if (portalRefCache) {
+        portalRefCache(null);
+      }
+    };
+  }, [container, insert, portalRefCache]);
+
+  return createPortal(children, container);
+};

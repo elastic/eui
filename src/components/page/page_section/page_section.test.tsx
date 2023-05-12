@@ -131,6 +131,6 @@ describe('EuiPageSection', () => {
       />
     `);
     expect(content.attr('class')).toContain('euiPageSection__content'); // Preserves our CSS
-    expect(content.attr('class').endsWith('-css')).toBeTruthy(); // Concatenates custom CSS
+    expect(content.attr('class')!.endsWith('-css')).toBeTruthy(); // Concatenates custom CSS
   });
 });

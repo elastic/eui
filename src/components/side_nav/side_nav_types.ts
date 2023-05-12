@@ -18,7 +18,7 @@ export interface EuiSideNavItemType<T>
   extends Omit<_EuiSideNavItemButtonProps, 'children'>,
     Omit<
       _EuiSideNavItemProps,
-      'isParent' | 'depth' | 'isOpen' | 'childrenOnly'
+      'isParent' | 'depth' | 'isOpen' | 'childrenOnly' | 'items'
     > {
   /**
    * A value that is passed to React as the `key` for this item

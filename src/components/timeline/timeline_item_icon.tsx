@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ReactNode } from 'react';
+import React, { FunctionComponent, isValidElement, ReactNode } from 'react';
 import { IconType } from '../icon';
 import { EuiAvatar } from '../avatar';
 import { useEuiTheme } from '../../services';
@@ -37,12 +37,11 @@ export const EuiTimelineItemIcon: FunctionComponent<
 
   const ariaLabel = iconAriaLabel ? iconAriaLabel : '';
 
-  const iconRender =
-    typeof icon === 'string' ? (
-      <EuiAvatar color="subdued" name={ariaLabel} iconType={icon} />
-    ) : (
-      icon
-    );
+  const iconRender = isValidElement(icon) ? (
+    icon
+  ) : (
+    <EuiAvatar color="subdued" name={ariaLabel} iconType={icon as IconType} />
+  );
 
   return (
     <div css={cssStyles}>

@@ -20,15 +20,6 @@ import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiToolTip } from './tool_tip';
 
-jest.mock('react-dom', () => ({
-  ...jest.requireActual('react-dom'),
-  createPortal: (node: any) => node,
-}));
-
-jest.mock('../portal', () => ({
-  EuiPortal: ({ children }: { children: any }) => children,
-}));
-
 describe('EuiToolTip', () => {
   shouldRenderCustomStyles(
     <EuiToolTip content="test">

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, PropsWithChildren } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
@@ -29,9 +29,9 @@ export interface EuiTableSortMobileItemProps extends CommonProps {
   ariaLabel?: string;
 }
 
-export const EuiTableSortMobileItem: FunctionComponent<
+export const EuiTableSortMobileItem: FunctionComponent<PropsWithChildren<
   EuiTableSortMobileItemProps
-> = ({
+>> = ({
   children,
   onSort,
   isSorted,

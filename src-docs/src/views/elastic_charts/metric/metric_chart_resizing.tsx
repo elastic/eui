@@ -41,6 +41,7 @@ export default () => {
           paddingSize="none"
           style={{ overflow: 'hidden', height: '100%', width: '100%' }}
         >
+          {/* @ts-ignore Elastic Charts doesn't provide children prop type definition */}
           <Chart size={['100%', '100%']}>
             <Settings baseTheme={chartBaseTheme} theme={euiChartTheme.theme} />
             <Metric

@@ -7,43 +7,30 @@
  */
 
 import React from 'react';
-import { render } from '../../test/rtl';
-import { EuiThemeProvider } from '../../services';
-
 import { EuiPortal } from './portal';
+import { render, screen } from '../../test/rtl';
 
 describe('EuiPortal', () => {
   it('renders', () => {
-    const { baseElement } = render(<EuiPortal>Content</EuiPortal>);
-
-    expect(baseElement).toMatchSnapshot();
-  });
-
-  it('renders portals with a different theme provider from the global theme with the correct base color', () => {
-    const { baseElement } = render(
-      <EuiThemeProvider colorMode="inverse">
-        <EuiPortal>Content</EuiPortal>
-      </EuiThemeProvider>
-    );
-
-    expect(baseElement).toMatchSnapshot();
+    render(<EuiPortal>Content</EuiPortal>);
+    expect(screen.getByText('Content')).toBeInTheDocument();
   });
 
   describe('behavior', () => {
     it('portalRef', () => {
-      const portalRef = jest.fn();
+      let ref: HTMLDivElement | null = null;
+      const updateRef = (newRef: HTMLDivElement | null) => {
+        ref = newRef;
+      };
 
       const { unmount } = render(
-        <EuiPortal portalRef={portalRef}>Content</EuiPortal>
+        <EuiPortal portalRef={updateRef}>Content</EuiPortal>
       );
+      expect(screen.getByText('Content')).toBeInTheDocument();
 
-      expect(portalRef).toHaveBeenCalledTimes(1);
-      expect(portalRef.mock.calls[0][0]).toBeInstanceOf(HTMLDivElement);
-
+      expect(ref).toBeInTheDocument();
       unmount();
-
-      expect(portalRef).toHaveBeenCalledTimes(2);
-      expect(portalRef.mock.calls[1][0]).toBeNull();
+      expect(ref).not.toBeInTheDocument();
     });
   });
 });

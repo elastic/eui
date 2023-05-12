@@ -226,10 +226,16 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
   }
 
   // Set an internal ref on ReactDatePicker's `input` so we can set its :invalid state via useEuiValidatableControl
-  const [inputValidityRef, _setInputValidityRef] = useState(null);
-  const setInputValidityRef = useCallback((ref) => {
-    _setInputValidityRef(ref?.input);
-  }, []);
+  const [
+    inputValidityRef,
+    _setInputValidityRef,
+  ] = useState<HTMLInputElement | null>(null);
+  const setInputValidityRef = useCallback(
+    (ref: Component<ReactDatePickerProps> & { input: HTMLInputElement }) => {
+      _setInputValidityRef(ref?.input);
+    },
+    []
+  );
   useEuiValidatableControl({ isInvalid, controlEl: inputValidityRef });
   const inputRefs = useCombinedRefs([inputRef, setInputValidityRef]);
 

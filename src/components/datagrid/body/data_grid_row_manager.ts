@@ -19,7 +19,17 @@ export const useRowManager = ({
   const rowIdToElements = useRef(new Map<number, HTMLDivElement>());
 
   const getRow = useCallback(
-    ({ rowIndex, visibleRowIndex, top, height }) => {
+    ({
+      rowIndex,
+      visibleRowIndex,
+      top,
+      height,
+    }: {
+      rowIndex: number;
+      visibleRowIndex: number;
+      top: string;
+      height: number;
+    }) => {
       let rowElement = rowIdToElements.current.get(rowIndex);
 
       if (rowElement == null) {

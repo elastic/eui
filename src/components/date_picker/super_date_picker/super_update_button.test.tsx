@@ -25,7 +25,11 @@ describe('EuiSuperUpdateButton', () => {
       data-test-subj="trigger"
       showTooltip
       needsUpdate
-      toolTipProps={{ children: <>Test</>, delay: 'regular', position: 'top' }} // React throws a `Failed prop type` error without this
+      toolTipProps={{
+        children: <>Test</>,
+        delay: 'regular',
+        position: 'top',
+      }} // React throws a `Failed prop type` error without this
     />,
     {
       childProps: ['toolTipProps'],

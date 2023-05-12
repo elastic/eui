@@ -11,6 +11,11 @@ import { mount, render } from 'enzyme';
 import { EuiNotificationEventMeta } from './notification_event_meta';
 import { EuiContextMenuPanel, EuiContextMenuItem } from '../context_menu';
 import { findTestSubject, takeMountedSnapshot } from '../../test';
+import { act } from 'react-dom/test-utils';
+
+jest.mock('../portal', () => ({
+  EuiPortal: ({ children }: { children: any }) => children,
+}));
 
 describe('EuiNotificationEventMeta', () => {
   test('is rendered', () => {
@@ -94,9 +99,15 @@ describe('EuiNotificationEventMeta', () => {
       );
 
       expect(component.find(EuiContextMenuPanel)).toHaveLength(0);
-      findTestSubject(component, 'id-notificationEventMetaButton').simulate(
-        'click'
-      );
+      act(() => {
+        findTestSubject(component, 'id-notificationEventMetaButton').simulate(
+          'click'
+        );
+      });
+
+      // for some reason act() isn't enough to trigger portal content update
+      component.update();
+
       expect(component.find(EuiContextMenuPanel)).toHaveLength(1);
 
       expect(

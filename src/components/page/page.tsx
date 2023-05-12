@@ -19,7 +19,7 @@ import { useEuiTheme } from '../../services';
 
 export interface EuiPageProps
   extends CommonProps,
-    HTMLAttributes<HTMLDivElement>,
+    Omit<HTMLAttributes<HTMLDivElement>, 'content'>,
     _EuiPageRestrictWidth {
   /**
    * Adjust the padding.

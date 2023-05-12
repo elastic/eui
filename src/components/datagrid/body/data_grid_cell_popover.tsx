@@ -47,7 +47,7 @@ export const useCellPopover = (): {
 
   const closeCellPopover = useCallback(() => setPopoverIsOpen(false), []);
   const openCellPopover = useCallback(
-    ({ rowIndex, colIndex }) => {
+    ({ rowIndex, colIndex }: { rowIndex: number; colIndex: number }) => {
       // Prevent popover DOM issues when re-opening the same popover
       if (
         popoverIsOpen &&

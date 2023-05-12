@@ -291,12 +291,14 @@ export default class extends Component<{}, State> {
       },
       render: (title: DataItem['title'], item: DataItem) => (
         <span>
-          <EuiIcon
-            type={item.type}
-            size="m"
-            style={{ verticalAlign: 'text-top' }}
-          />{' '}
-          {title}
+          <>
+            <EuiIcon
+              type={item.type}
+              size="m"
+              style={{ verticalAlign: 'text-top' }}
+            />{' '}
+            {title}
+          </>
         </span>
       ),
     },
@@ -671,6 +673,7 @@ export default class extends Component<{}, State> {
             align={column.alignment}
             truncateText={(cell as DataTitle)?.truncateText}
             textOnly={column.textOnly || false}
+            // @ts-ignore types of ReactNode and (item) => ReactNode are incompatible
             mobileOptions={{
               header: column.label,
               ...column.mobileOptions,

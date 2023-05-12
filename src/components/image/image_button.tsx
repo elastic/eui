@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, PropsWithChildren } from 'react';
 
 import { useEuiTheme } from '../../services';
 import { useEuiI18n } from '../i18n';
@@ -29,7 +29,9 @@ const fullScreenIconColorMap: {
   dark: 'default',
 };
 
-export const EuiImageButton: FunctionComponent<EuiImageButtonProps> = ({
+export const EuiImageButton: FunctionComponent<PropsWithChildren<
+  EuiImageButtonProps
+>> = ({
   hasAlt,
   hasShadow,
   children,

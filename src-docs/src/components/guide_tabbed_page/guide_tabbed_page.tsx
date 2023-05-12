@@ -1,4 +1,9 @@
-import React, { FunctionComponent, ReactNode, useContext } from 'react';
+import React, {
+  FunctionComponent,
+  PropsWithChildren,
+  ReactNode,
+  useContext,
+} from 'react';
 import {
   Switch,
   Route,
@@ -31,7 +36,9 @@ export type GuideTabbedPageProps = CommonProps & {
   title: string;
 };
 
-export const GuideTabbedPage: FunctionComponent<GuideTabbedPageProps> = ({
+export const GuideTabbedPage: FunctionComponent<PropsWithChildren<
+  GuideTabbedPageProps
+>> = ({
   description,
   guidelines,
   intro,

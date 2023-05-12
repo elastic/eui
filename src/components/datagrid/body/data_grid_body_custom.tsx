@@ -19,6 +19,7 @@ import { useRowHeightUtils, useDefaultRowHeight } from '../utils/row_heights';
 
 import {
   EuiDataGridBodyProps,
+  EuiDataGridCustomBodyProps,
   EuiDataGridSetCustomGridBodyProps,
 } from '../data_grid_types';
 import { useDataGridHeader } from './header';
@@ -140,7 +141,7 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
     rowHeightUtils,
   };
 
-  const _Cell = useCallback(
+  const _Cell = useCallback<EuiDataGridCustomBodyProps['Cell']>(
     ({ colIndex, visibleRowIndex, ...rest }) => {
       const style = {
         height: rowHeightUtils.isAutoHeight(visibleRowIndex, rowHeightsOptions)

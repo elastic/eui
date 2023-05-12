@@ -14,6 +14,7 @@ import React, {
   useContext,
   useEffect,
   useRef,
+  PropsWithChildren,
 } from 'react';
 import {
   GridChildComponentProps,
@@ -70,7 +71,7 @@ export const DataGridWrapperRowsContext =
 
 const InnerElement: VariableSizeGridProps['innerElementType'] = forwardRef<
   HTMLDivElement,
-  { style: { height: number } }
+  PropsWithChildren<{ style: { height: number } }>
 >(({ children, style, ...rest }, ref) => {
   const { headerRowHeight, headerRow, footerRow } = useContext(
     DataGridWrapperRowsContext

@@ -259,7 +259,7 @@ export const EuiMarkdownEditor = forwardRef<
     const isPreviewing = viewMode === MODE_VIEWING;
     const isEditing = viewMode === MODE_EDITING;
 
-    const replaceNode = useCallback(
+    const replaceNode = useCallback<ContextShape['replaceNode']>(
       (position, next) => {
         const leading = value.substr(0, position.start.offset);
         const trailing = value.substr(position.end.offset);

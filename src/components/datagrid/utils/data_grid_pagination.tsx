@@ -35,7 +35,7 @@ export const EuiDataGridPaginationRenderer = ({
   // Focus the first data cell & scroll back to the top of the grid whenever paginating to a new page
   const { setFocusedCell } = useContext(DataGridFocusContext);
   const onChangePage = useCallback(
-    (pageIndex) => {
+    (pageIndex: number) => {
       _onChangePage(pageIndex);
       setFocusedCell([0, 0]);
     },

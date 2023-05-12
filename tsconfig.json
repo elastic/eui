@@ -28,8 +28,7 @@
     "allowSyntheticDefaultImports": true,
 
     // Support .tsx files and transform JSX into calls to React.createElement
-    "jsx": "react-jsx",
-    "jsxImportSource": "@emotion/react",
+    "jsx": "react",
 
     // Emits __importStar and __importDefault helpers for runtime babel ecosystem compatibility.
     "esModuleInterop": true,

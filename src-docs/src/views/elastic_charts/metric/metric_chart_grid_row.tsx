@@ -22,6 +22,7 @@ export default () => {
   const chartBaseTheme = isDarkTheme ? DARK_THEME : LIGHT_THEME;
   return (
     <EuiPanel paddingSize="none" style={{ overflow: 'hidden', width: 600 }}>
+      {/* @ts-ignore Elastic Charts doesn't provide children prop type definition */}
       <Chart size={[600, 200]}>
         <Settings baseTheme={chartBaseTheme} theme={euiChartTheme.theme} />
         <Metric

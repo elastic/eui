@@ -28,6 +28,7 @@ export default () => {
 
   return (
     <EuiPanel paddingSize="none" style={{ overflow: 'hidden', width: 200 }}>
+      {/* @ts-ignore Elastic Charts doesn't provide children prop type definition */}
       <Chart size={[200, 200]}>
         <Settings baseTheme={chartBaseTheme} theme={euiChartTheme.theme} />
         <Metric

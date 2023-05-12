@@ -14,7 +14,7 @@ import { Primitive } from '../../services/sort/comparators';
 import { CommonProps } from '../common';
 import { EuiTableRowCellMobileOptionsShape } from '../table/table_row_cell';
 
-export type ItemId<T> = string | number | ((item: T) => string);
+export type ItemId<T extends object> = string | number | ((item: T) => string);
 export type ItemIdResolved = string | number;
 
 export type EuiTableDataType =

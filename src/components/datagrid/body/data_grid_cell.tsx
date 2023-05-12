@@ -9,6 +9,7 @@
 import classNames from 'classnames';
 import React, {
   Component,
+  ContextType,
   createRef,
   FocusEvent,
   FunctionComponent,
@@ -143,6 +144,8 @@ export class EuiDataGridCell extends Component<
   style = null;
 
   static contextType = DataGridFocusContext;
+  // TODO: Uncomment when prototypes-from-ts-props babel config can accept declare keywords
+  // declare context: ContextType<typeof DataGridFocusContext>;
 
   getInteractables = () => {
     const tabbingRef = this.cellContentsRef;
@@ -241,10 +244,9 @@ export class EuiDataGridCell extends Component<
   componentDidMount() {
     const { colIndex, visibleRowIndex } = this.props;
 
-    this.unsubscribeCell = this.context.onFocusUpdate(
-      [colIndex, visibleRowIndex],
-      this.onFocusUpdate
-    );
+    this.unsubscribeCell = (this.context as ContextType<
+      typeof DataGridFocusContext
+    >).onFocusUpdate([colIndex, visibleRowIndex], this.onFocusUpdate);
 
     // Account for virtualization - when a cell unmounts when scrolled out of view
     // and then remounts when scrolled back into view, it should retain focus state
@@ -252,7 +254,9 @@ export class EuiDataGridCell extends Component<
       // The second flag sets preventScroll: true as a focus option, which prevents
       // hijacking the user's scroll behavior when the cell re-mounts on scroll
       this.onFocusUpdate(true, true);
-      this.context.setIsFocusedCellInView(true);
+      (this.context as ContextType<
+        typeof DataGridFocusContext
+      >).setIsFocusedCellInView(true);
     }
 
     // Check if popover should be open on mount (typically only occurs if
@@ -262,8 +266,10 @@ export class EuiDataGridCell extends Component<
 
   isFocusedCell = () => {
     return (
-      this.context.focusedCell?.[0] === this.props.colIndex &&
-      this.context.focusedCell?.[1] === this.props.visibleRowIndex
+      (this.context as ContextType<typeof DataGridFocusContext>)
+        .focusedCell?.[0] === this.props.colIndex &&
+      (this.context as ContextType<typeof DataGridFocusContext>)
+        .focusedCell?.[1] === this.props.visibleRowIndex
     );
   };
 
@@ -282,7 +288,9 @@ export class EuiDataGridCell extends Component<
     }
 
     if (this.isFocusedCell()) {
-      this.context.setIsFocusedCellInView(false);
+      (this.context as ContextType<
+        typeof DataGridFocusContext
+      >).setIsFocusedCellInView(false);
     }
 
     if (this.isPopoverOpen()) {
@@ -419,7 +427,9 @@ export class EuiDataGridCell extends Component<
       }
       EuiDataGridCell.activeFocusTimeoutId = this.focusTimeout =
         window.setTimeout(() => {
-          this.context.setFocusedCell([colIndex, visibleRowIndex]);
+          (this.context as ContextType<
+            typeof DataGridFocusContext
+          >).setFocusedCell([colIndex, visibleRowIndex]);
 
           const interactables = this.getInteractables();
           if (interactables.length === 1 && this.isExpandable() === false) {

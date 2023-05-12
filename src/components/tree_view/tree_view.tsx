@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, HTMLAttributes, createContext } from 'react';
+import React, {
+  Component,
+  HTMLAttributes,
+  createContext,
+  ContextType,
+} from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { EuiI18n } from '../i18n';
@@ -111,6 +116,8 @@ export type EuiTreeViewProps = Omit<
 export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
   treeIdGenerator = htmlIdGenerator('euiTreeView');
   static contextType = EuiTreeViewContext;
+  // TODO: Uncomment when prototypes-from-ts-props babel config can accept declare keywords
+  // declare context: ContextType<typeof EuiTreeViewContext>;
   isNested: boolean = !!this.context;
   state: EuiTreeViewState = {
     openItems: this.props.expandByDefault
@@ -125,14 +132,22 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
           )
           .filter((x) => x != null),
     activeItem: '',
-    treeID: getTreeId(this.props.id, this.context, this.treeIdGenerator),
+    treeID: getTreeId(
+      this.props.id,
+      this.context as ContextType<typeof EuiTreeViewContext>,
+      this.treeIdGenerator
+    ),
     expandChildNodes: this.props.expandByDefault || false,
   };
 
   componentDidUpdate(prevProps: EuiTreeViewProps) {
     if (this.props.id !== prevProps.id) {
       this.setState({
-        treeID: getTreeId(this.props.id, this.context, this.treeIdGenerator),
+        treeID: getTreeId(
+          this.props.id,
+          this.context as ContextType<typeof EuiTreeViewContext>,
+          this.treeIdGenerator
+        ),
       });
     }
   }

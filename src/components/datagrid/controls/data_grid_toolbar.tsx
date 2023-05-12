@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { isValidElement } from 'react';
 import {
   EuiDataGridProps,
   EuiDataGridToolbarProps,
@@ -115,6 +115,34 @@ export function checkOrDefaultToolBarDisplayOptions<
   }
 }
 
+function isAdditionalControlsOptionsObject(
+  obj: unknown
+): obj is EuiDataGridToolBarAdditionalControlsOptions {
+  if (!obj || typeof obj !== 'object') {
+    return false;
+  }
+
+  const options = obj as EuiDataGridToolBarAdditionalControlsOptions;
+  return (
+    Object.prototype.hasOwnProperty.call(options, 'left') ||
+    Object.prototype.hasOwnProperty.call(options, 'right')
+  );
+}
+
+function isAdditionalControlsLeftOptionsObject(
+  obj: unknown
+): obj is EuiDataGridToolBarAdditionalControlsLeftOptions {
+  if (!obj || typeof obj !== 'object') {
+    return false;
+  }
+
+  const leftOptions = obj as EuiDataGridToolBarAdditionalControlsLeftOptions;
+  return (
+    Object.prototype.hasOwnProperty.call(leftOptions, 'prepend') ||
+    Object.prototype.hasOwnProperty.call(leftOptions, 'append')
+  );
+}
+
 export function renderAdditionalControls(
   toolbarVisibility: EuiDataGridProps['toolbarVisibility'],
   position: 'left.prepend' | 'left.append' | 'right'
@@ -123,14 +151,17 @@ export function renderAdditionalControls(
   const { additionalControls } = toolbarVisibility || {};
   if (!additionalControls) return null;
 
-  // Typescript is having obj issues, so we need to force cast to EuiDataGridToolBarAdditionalControlsOptions here
-  const additionalControlsObj: EuiDataGridToolBarAdditionalControlsOptions =
-    additionalControls?.constructor === Object ? additionalControls : {};
-  // Typescript workarounds continued
-  const leftPositionObj: EuiDataGridToolBarAdditionalControlsLeftOptions =
-    additionalControlsObj.left?.constructor === Object
-      ? additionalControlsObj.left
-      : {};
+  const additionalControlsObj: EuiDataGridToolBarAdditionalControlsOptions = isAdditionalControlsOptionsObject(
+    additionalControls
+  )
+    ? additionalControls
+    : {};
+
+  const leftPositionObj: EuiDataGridToolBarAdditionalControlsLeftOptions = isAdditionalControlsLeftOptionsObject(
+    additionalControlsObj.left
+  )
+    ? additionalControlsObj.left
+    : {};
 
   if (position === 'right') {
     if (additionalControlsObj?.right) {
@@ -144,11 +175,11 @@ export function renderAdditionalControls(
     if (leftPositionObj?.append) {
       return leftPositionObj.append;
     }
-    if (React.isValidElement(additionalControlsObj?.left)) {
+    if (isValidElement(additionalControlsObj?.left)) {
       // If the consumer passed a single ReactNode to `additionalControls.left`, default to the left append position
       return additionalControlsObj.left;
     }
-    if (React.isValidElement(additionalControls)) {
+    if (isValidElement(additionalControls)) {
       // API backwards compatability: if the consumer passed a single ReactNode to `additionalControls`, default to the the left append position
       return additionalControls;
     }

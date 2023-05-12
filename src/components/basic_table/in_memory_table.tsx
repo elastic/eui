@@ -39,7 +39,7 @@ interface onChangeArgument {
   error: Error | null;
 }
 
-function isEuiSearchBarProps<T>(
+function isEuiSearchBarProps<T extends object>(
   x: EuiInMemoryTableProps<T>['search']
 ): x is EuiSearchBarProps {
   return typeof x !== 'boolean';
@@ -63,7 +63,7 @@ interface SortingOptions {
 
 type Sorting = boolean | SortingOptions;
 
-type InMemoryTableProps<T> = Omit<
+type InMemoryTableProps<T extends object> = Omit<
   EuiBasicTableProps<T>,
   'pagination' | 'sorting' | 'noItemsMessage' | 'onChange'
 > & {
@@ -104,7 +104,7 @@ type InMemoryTableProps<T> = Omit<
   childrenBetween?: ReactNode;
 };
 
-type InMemoryTablePropsWithPagination<T> = Omit<
+type InMemoryTablePropsWithPagination<T extends object> = Omit<
   InMemoryTableProps<T>,
   'pagination' | 'onTableChange'
 > & {
@@ -112,7 +112,7 @@ type InMemoryTablePropsWithPagination<T> = Omit<
   onTableChange?: (nextValues: CriteriaWithPagination<T>) => void;
 };
 
-export type EuiInMemoryTableProps<T> = CommonProps &
+export type EuiInMemoryTableProps<T extends object> = CommonProps &
   (InMemoryTableProps<T> | InMemoryTablePropsWithPagination<T>);
 
 interface State<T> {
@@ -258,7 +258,7 @@ function getInitialSorting<T>(
   };
 }
 
-export class EuiInMemoryTable<T> extends Component<
+export class EuiInMemoryTable<T extends object> extends Component<
   EuiInMemoryTableProps<T>,
   State<T>
 > {
@@ -266,9 +266,9 @@ export class EuiInMemoryTable<T> extends Component<
     responsive: true,
     tableLayout: 'fixed',
   };
-  tableRef: React.RefObject<EuiBasicTable>;
+  tableRef: React.RefObject<EuiBasicTable<T>>;
 
-  static getDerivedStateFromProps<T>(
+  static getDerivedStateFromProps<T extends object>(
     nextProps: EuiInMemoryTableProps<T>,
     prevState: State<T>
   ) {
@@ -388,7 +388,7 @@ export class EuiInMemoryTable<T> extends Component<
       showPerPageOptions,
     };
 
-    this.tableRef = React.createRef<EuiBasicTable>();
+    this.tableRef = React.createRef<EuiBasicTable<T>>();
   }
 
   setSelection(newSelection: T[]) {
@@ -423,7 +423,10 @@ export class EuiInMemoryTable<T> extends Component<
     // EuiBasicTable returns the column's `field` instead of `name` on sort
     // and the column's `name` instead of `field` on pagination
     if (sortName) {
-      const sortColumn = findColumnByFieldOrName(this.props.columns, sortName);
+      const sortColumn = findColumnByFieldOrName(
+        this.props.columns,
+        sortName as string
+      );
       if (sortColumn) {
         // Ensure sortName uses `name`
         sortName = sortColumn.name as keyof T;
@@ -460,7 +463,7 @@ export class EuiInMemoryTable<T> extends Component<
     this.setState({
       pageIndex,
       pageSize,
-      sortName,
+      sortName: sortName as string,
       sortDirection,
     });
   };

@@ -110,7 +110,7 @@ interface ItemIdToExpandedRowMap {
   [id: string]: ReactNode;
 }
 
-export function getItemId<T>(item: T, itemId?: ItemId<T>) {
+export function getItemId<T extends object>(item: T, itemId?: ItemId<T>) {
   if (itemId) {
     if (isFunction(itemId)) {
       return itemId(item);
@@ -196,7 +196,8 @@ export interface CriteriaWithPagination<T> extends Criteria<T> {
 type CellPropsCallback<T> = (item: T, column: EuiBasicTableColumn<T>) => object;
 type RowPropsCallback<T> = (item: T) => object;
 
-interface BasicTableProps<T> extends Omit<EuiTableProps, 'onChange'> {
+interface BasicTableProps<T extends object>
+  extends Omit<EuiTableProps, 'onChange'> {
   /**
    * Describes how to extract a unique ID from each item, used for selections & expanded rows
    */
@@ -277,7 +278,7 @@ interface BasicTableProps<T> extends Omit<EuiTableProps, 'onChange'> {
   textOnly?: boolean;
 }
 
-type BasicTableWithPaginationProps<T> = Omit<
+type BasicTableWithPaginationProps<T extends object> = Omit<
   BasicTableProps<T>,
   'pagination' | 'onChange'
 > & {
@@ -285,7 +286,7 @@ type BasicTableWithPaginationProps<T> = Omit<
   onChange?: (criteria: CriteriaWithPagination<T>) => void;
 };
 
-export type EuiBasicTableProps<T> = CommonProps &
+export type EuiBasicTableProps<T extends object> = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> &
   (BasicTableProps<T> | BasicTableWithPaginationProps<T>);
 
@@ -302,13 +303,13 @@ interface SortOptions {
   readOnly?: boolean;
 }
 
-function hasPagination<T>(
+function hasPagination<T extends object>(
   x: EuiBasicTableProps<T>
 ): x is BasicTableWithPaginationProps<T> {
   return x.hasOwnProperty('pagination') && !!x.pagination;
 }
 
-export class EuiBasicTable<T = any> extends Component<
+export class EuiBasicTable<T extends object = any> extends Component<
   EuiBasicTableProps<T>,
   State<T>
 > {
@@ -320,7 +321,7 @@ export class EuiBasicTable<T = any> extends Component<
     ),
   };
 
-  static getDerivedStateFromProps<T>(
+  static getDerivedStateFromProps<T extends object>(
     nextProps: EuiBasicTableProps<T>,
     prevState: State<T>
   ) {

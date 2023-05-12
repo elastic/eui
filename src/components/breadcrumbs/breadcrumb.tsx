@@ -13,6 +13,7 @@ import React, {
   MouseEventHandler,
   ReactNode,
   useState,
+  PropsWithChildren,
 } from 'react';
 import classNames from 'classnames';
 
@@ -64,7 +65,8 @@ type _EuiBreadcrumbProps = {
   isOnlyBreadcrumb?: boolean;
   highlightLastBreadcrumb?: boolean;
   truncateLastBreadcrumb?: boolean;
-} & Pick<EuiBreadcrumbProps, 'truncate'>;
+} & Pick<EuiBreadcrumbProps, 'truncate'> &
+  PropsWithChildren;
 
 export const EuiBreadcrumb: FunctionComponent<
   HTMLAttributes<HTMLLIElement> & _EuiBreadcrumbProps

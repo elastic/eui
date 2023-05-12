@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiToolTip anchor props are rendered 1`] = `
-<body>
+<body
+  class=""
+>
   <div>
     <span
       class="euiToolTipAnchor customAnchorClass1 emotion-euiToolTipAnchor-inlineBlock"
@@ -28,7 +30,9 @@ exports[`EuiToolTip display prop renders block 1`] = `
 `;
 
 exports[`EuiToolTip is rendered 1`] = `
-<body>
+<body
+  class=""
+>
   <div>
     <span
       class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { renderHook } from '@testing-library/react-hooks';
 import { useEuiTheme } from '../../services';
 import { EuiProvider } from '../provider';
@@ -17,7 +17,7 @@ import {
   euiCustomControl,
 } from './form.styles';
 
-const darkModeWrapper: React.FC = ({ children }) => (
+const darkModeWrapper: React.FC<PropsWithChildren> = ({ children }) => (
   <EuiProvider colorMode="DARK">{children}</EuiProvider>
 );
 
@@ -181,7 +181,7 @@ describe('euiCustomControl', () => {
     expect(result.current).toMatchInlineSnapshot(`
       "
           padding: 7px;
-          
+
           border: 1px solid #f5f7fc;
           background: #FFF no-repeat center;
 
@@ -200,7 +200,7 @@ describe('euiCustomControl', () => {
     expect(result.current).toMatchInlineSnapshot(`
       "
           padding: 15px;
-          
+
           border: 1px solid #f5f7fc;
           background: #FFF no-repeat center;
 

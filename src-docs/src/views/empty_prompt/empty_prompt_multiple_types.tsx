@@ -1,4 +1,5 @@
-import React, { ReactNode, useState } from 'react';
+/* eslint-disable import/no-unresolved */
+import React, { ComponentType, useState } from 'react';
 
 import { EuiSpacer, EuiSelect } from '../../../../src/components';
 import { GuideSection } from '../../components/guide_section/guide_section';
@@ -16,7 +17,7 @@ export default () => {
   const options: Array<{
     value: string;
     text: string;
-    component: ReactNode;
+    component: ComponentType;
     source: any;
     demoBackground?: PanelColor;
   }> = [
@@ -41,7 +42,9 @@ export default () => {
   ];
 
   const [value, setValue] = useState(options[0].value);
-  const [emptyState, setEmptyState] = useState(options[0].component);
+  const [EmptyState, setEmptyState] = useState<ComponentType>(
+    options[0].component
+  );
   const [emptyStateSource, setEmptyStateSource] = useState(options[0].source);
   const [demoPanelColor, setDemoPanelColor] = useState(
     options[0].demoBackground
@@ -75,7 +78,7 @@ export default () => {
       <EuiSpacer size="l" />
 
       <GuideSection
-        demo={emptyState}
+        demo={<EmptyState />}
         demoPanelProps={{
           color: demoPanelColor,
         }}

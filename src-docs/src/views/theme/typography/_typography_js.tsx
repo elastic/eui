@@ -18,6 +18,7 @@ import {
   EuiThemeFontScales,
   EuiThemeFontSizeMeasurements,
   _EuiThemeFontSizeMeasurement,
+  _EuiThemeFontScale,
 } from '../../../../../src/global_styling';
 
 import { EuiThemeFontBase, EuiThemeFontWeight, ThemeRowType } from '../_props';
@@ -290,7 +291,7 @@ export const FontScaleValuesJS = () => {
             name: 'Sample',
             valign: 'baseline',
             width: '50%',
-            render: (sample, item) => (
+            render: (sample, item: { id: _EuiThemeFontScale }) => (
               <div
                 css={css`
                   ${euiFontSize(euiThemeContext, item.id, {

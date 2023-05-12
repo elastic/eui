@@ -8,7 +8,12 @@ import React, {
 } from 'react';
 import githubData from '../_row_auto_height_data.json';
 
-import { EuiDataGrid, EuiDataGridProps, formatDate } from '../../../../../src';
+import {
+  EuiDataGrid,
+  EuiDataGridProps,
+  EuiDataGridSorting,
+  formatDate,
+} from '../../../../../src';
 
 interface DataShape {
   html_url: string;
@@ -96,16 +101,18 @@ export default () => {
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 50 });
 
   // Sorting
-  const [sortingColumns, setSortingColumns] = useState([]);
+  const [sortingColumns, setSortingColumns] = useState<
+    EuiDataGridSorting['columns']
+  >([]);
   const onSort = useCallback(
-    (sortingColumns) => {
+    (sortingColumns: EuiDataGridSorting['columns']) => {
       setSortingColumns(sortingColumns);
     },
     [setSortingColumns]
   );
 
   const onChangeItemsPerPage = useCallback(
-    (pageSize) =>
+    (pageSize: number) =>
       setPagination((pagination) => ({
         ...pagination,
         pageSize,
@@ -115,7 +122,7 @@ export default () => {
   );
 
   const onChangePage = useCallback(
-    (pageIndex) =>
+    (pageIndex: number) =>
       setPagination((pagination) => ({ ...pagination, pageIndex })),
     [setPagination]
   );

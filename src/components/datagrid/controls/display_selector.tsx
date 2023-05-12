@@ -12,6 +12,7 @@ import React, {
   useMemo,
   useCallback,
   useEffect,
+  ChangeEvent,
 } from 'react';
 
 import { useUpdateEffect } from '../../../services';
@@ -28,6 +29,7 @@ import {
   EuiDataGridRowHeightsOptions,
 } from '../data_grid_types';
 import { getNestedObjectOptions } from './data_grid_toolbar';
+import { _SingleRangeChangeEvent } from '../../form/range/types';
 
 export const startingStyles: EuiDataGridStyle = {
   cellPadding: 'm',
@@ -137,8 +139,10 @@ export const useDataGridDisplaySelector = (
     },
     [lineCount]
   );
-  const setLineCountHeight = useCallback((event) => {
-    const newLineCount = Number(event.target.value);
+  const setLineCountHeight = useCallback((event: _SingleRangeChangeEvent) => {
+    const newLineCount = Number(
+      (event as ChangeEvent<HTMLInputElement>).target?.value // Is this correct?
+    );
     if (newLineCount < 1) return; // Don't let users set a 0 or negative line count
 
     setLineCount(newLineCount);
