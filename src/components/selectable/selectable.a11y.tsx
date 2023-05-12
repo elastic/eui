@@ -30,9 +30,34 @@ const options: EuiSelectableProps['options'] = [
   },
 ];
 
+const excludedOptions: EuiSelectableProps['options'] = [
+  {
+    label: 'Titan',
+    'data-test-subj': 'titanOption',
+    checked: 'on',
+  },
+  {
+    label: 'Enceladus',
+    checked: 'off',
+  },
+  {
+    label:
+      "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+    checked: 'mixed',
+  },
+];
+
 const EuiSelectableListboxOnly = (args: Partial<EuiSelectableProps>) => {
   return (
     <EuiSelectable options={options} {...args}>
+      {(list) => <>{list}</>}
+    </EuiSelectable>
+  );
+};
+
+const EuiSelectableWithExclusions = (args: Partial<EuiSelectableProps>) => {
+  return (
+    <EuiSelectable options={excludedOptions} {...args}>
       {(list) => <>{list}</>}
     </EuiSelectable>
   );
@@ -65,6 +90,19 @@ describe('EuiSelectable', () => {
       const onChange = cy.stub();
       cy.realMount(
         <EuiSelectableListboxOnly
+          aria-label="No search box"
+          onChange={onChange}
+        />
+      );
+      cy.checkAxe();
+    });
+  });
+
+  describe('with excluded options configuration', () => {
+    it('has no accessibility errors', () => {
+      const onChange = cy.stub();
+      cy.realMount(
+        <EuiSelectableWithExclusions
           aria-label="No search box"
           onChange={onChange}
         />

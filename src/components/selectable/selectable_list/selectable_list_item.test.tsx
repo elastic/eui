@@ -32,6 +32,12 @@ describe('EuiSelectableListItem', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('checked is mixed', () => {
+      const component = render(<EuiSelectableListItem checked="mixed" />);
+
+      expect(component).toMatchSnapshot();
+    });
+
     test('showIcons can be turned off', () => {
       const component = render(<EuiSelectableListItem showIcons={false} />);
 

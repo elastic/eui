@@ -18,13 +18,15 @@ export default () => {
     },
     {
       label: 'Dione',
+      checked: 'mixed',
     },
     {
       label: 'Iapetus',
-      checked: 'on',
+      checked: 'off',
     },
     {
       label: 'Phoebe',
+      checked: 'mixed',
     },
     {
       label: 'Rhea',

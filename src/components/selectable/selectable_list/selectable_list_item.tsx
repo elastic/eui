@@ -151,7 +151,7 @@ export class EuiSelectableListItem extends Component<
       state = (
         <EuiI18n
           token="euiSelectableListItem.includedOption"
-          default="Selected option."
+          default="Checked option."
         />
       );
       instruction = (
@@ -183,14 +183,14 @@ export class EuiSelectableListItem extends Component<
       instruction = (
         <EuiI18n
           token="euiSelectableListItem.unckeckedOptionInstructions"
-          default="To select this option, press Enter once. To exclude this option, press Enter twice."
+          default="To check this option for all, press Enter once. To exclude this option for all, press Enter twice."
         />
       );
     } else if (allowExclusions && !checked) {
       instruction = (
         <EuiI18n
           token="euiSelectableListItem.unckeckedOptionInstructions"
-          default="To select this option, press Enter."
+          default="To check this option, press Enter."
         />
       );
     }
@@ -198,7 +198,7 @@ export class EuiSelectableListItem extends Component<
     let isChecked: boolean | EuiSelectableOptionCheckedType =
       !disabled && typeof checked === 'string';
     // 'Mixed' has its own logic because it is the only aria-checked
-    // state we can't derive with a boolean.
+    // state we can't derive with the `isChecked` boolean alone.
     if (isChecked && checked === 'mixed') {
       isChecked = 'mixed';
     }
