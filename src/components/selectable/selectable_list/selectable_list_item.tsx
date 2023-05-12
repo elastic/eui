@@ -18,13 +18,6 @@ import { EuiBadge, EuiBadgeProps } from '../../badge';
 function resolveIconAndColor(
   checked: EuiSelectableOptionCheckedType
 ): { icon: IconType; color?: IconColor } {
-  // if (!checked) {
-  //   return { icon: 'empty' };
-  // }
-  // return checked === 'on'
-  //   ? { icon: 'check', color: 'text' }
-  //   : { icon: 'cross', color: 'text' };
-
   switch (checked) {
     case undefined:
       return { icon: 'empty' };
@@ -164,7 +157,7 @@ export class EuiSelectableListItem extends Component<
       instruction = (
         <EuiI18n
           token="euiSelectableListItem.includedOptionInstructions"
-          default="To exclude this option, press enter."
+          default="To exclude this option, press Enter."
         />
       );
     } else if (allowExclusions && checked === 'off') {
@@ -177,19 +170,38 @@ export class EuiSelectableListItem extends Component<
       instruction = (
         <EuiI18n
           token="euiSelectableListItem.excludedOptionInstructions"
-          default="To uncheck this option, press enter."
+          default="To uncheck this option, press Enter."
+        />
+      );
+    } else if (allowExclusions && checked === 'mixed') {
+      state = (
+        <EuiI18n
+          token="euiSelectableListItem.excludedOption"
+          default="Mixed (indeterminate) option."
+        />
+      );
+      instruction = (
+        <EuiI18n
+          token="euiSelectableListItem.unckeckedOptionInstructions"
+          default="To select this option, press Enter once. To exclude this option, press Enter twice."
         />
       );
     } else if (allowExclusions && !checked) {
       instruction = (
         <EuiI18n
           token="euiSelectableListItem.unckeckedOptionInstructions"
-          default="To select this option, press enter."
+          default="To select this option, press Enter."
         />
       );
     }
 
-    const isChecked = !disabled && typeof checked === 'string';
+    let isChecked: boolean | EuiSelectableOptionCheckedType =
+      !disabled && typeof checked === 'string';
+    // 'Mixed' has its own logic because it is the only aria-checked
+    // state we can't derive with a boolean.
+    if (isChecked && checked === 'mixed') {
+      isChecked = 'mixed';
+    }
     if (!allowExclusions && isChecked) {
       state = (
         <EuiI18n
@@ -200,7 +212,7 @@ export class EuiSelectableListItem extends Component<
       instruction = searchable ? (
         <EuiI18n
           token="euiSelectableListItem.checkedOptionInstructions"
-          default="To uncheck this option, press enter."
+          default="To uncheck this option, press Enter."
         />
       ) : undefined;
     }
