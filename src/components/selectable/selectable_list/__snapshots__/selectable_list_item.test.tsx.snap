@@ -50,6 +50,34 @@ exports[`EuiSelectableListItem props append 1`] = `
 </li>
 `;
 
+exports[`EuiSelectableListItem props checked is mixed 1`] = `
+<li
+  aria-checked="mixed"
+  class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+  data-test-selected="mixed"
+  role="option"
+>
+  <span
+    class="euiSelectableListItem__content"
+  >
+    <span
+      class="euiSelectableListItem__icon"
+      color="text"
+      data-euiicon-type="partial"
+    />
+    <span
+      class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+    >
+      <div
+        class="emotion-euiScreenReaderOnly"
+      >
+         - Checked option.
+      </div>
+    </span>
+  </span>
+</li>
+`;
+
 exports[`EuiSelectableListItem props checked is off 1`] = `
 <li
   aria-checked="true"
