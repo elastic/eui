@@ -224,10 +224,11 @@ export const SelectableExample = {
             checked options (on {'-> off ->'} undefined).
           </p>
           <p>
-            Setting one or more options to <EuiCode>checked: 'mixed'</EuiCode>{' '}
-            allows cycling through the checked options (mixed{' '}
-            {'-> on -> off ->'} undefined). The "mixed" value is only allowed to
-            be set by the consuming application, not users.
+            Setting one or more options to{' '}
+            <EuiCode>checked: &ldquo;mixed&rdquo;</EuiCode> allows cycling
+            through the checked options (mixed {'-> on -> off ->'} undefined).
+            The mixed string value is only allowed to be set by the consuming
+            application, not users.
           </p>
         </>
       ),
