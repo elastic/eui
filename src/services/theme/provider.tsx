@@ -13,10 +13,13 @@ import React, {
   useMemo,
   useState,
   PropsWithChildren,
+  HTMLAttributes,
 } from 'react';
 import classNames from 'classnames';
 import { css } from '@emotion/css';
 import isEqual from 'lodash/isEqual';
+
+import type { CommonProps } from '../../components/common';
 
 import {
   EuiSystemContext,
@@ -44,6 +47,14 @@ export interface EuiThemeProviderProps<T> {
   colorMode?: EuiThemeColorMode;
   modify?: EuiThemeModifications<T>;
   children: any;
+  /**
+   * Nested theme providers will receive a wrapping `span` tag in order to correctly
+   * set the default text `color` that all nested children will inherit.
+   *
+   * The parent level `EuiProvider`/`EuiThemeProvider` will **not** render a wrapper element, as
+   * the default inherited text color will be set on the page `body`.
+   */
+  wrapperProps?: HTMLAttributes<HTMLElement> & CommonProps;
 }
 
 export const EuiThemeProvider = <T extends {} = {}>({
@@ -51,6 +62,7 @@ export const EuiThemeProvider = <T extends {} = {}>({
   colorMode: _colorMode,
   modify: _modifications,
   children,
+  wrapperProps,
 }: PropsWithChildren<EuiThemeProviderProps<T>>) => {
   const { isGlobalTheme } = useContext(EuiNestedThemeContext);
   const parentSystem = useContext(EuiSystemContext);
@@ -141,17 +153,21 @@ export const EuiThemeProvider = <T extends {} = {}>({
       return children; // No wrapper
     }
 
+    const { className, ...rest } = wrapperProps || {};
+    const props = {
+      ...rest,
+      className: classNames(className, nestedThemeContext.colorClassName),
+    };
+
     return (
       <span
-        className={classNames(
-          'euiThemeProvider',
-          nestedThemeContext.colorClassName
-        )}
+        {...props}
+        className={classNames('euiThemeProvider', props.className)}
       >
         {children}
       </span>
     );
-  }, [isGlobalTheme, nestedThemeContext, children]);
+  }, [isGlobalTheme, nestedThemeContext, wrapperProps, children]);
 
   return (
     <EuiColorModeContext.Provider value={colorMode}>

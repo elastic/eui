@@ -44,7 +44,9 @@ export const ColorModeExample = {
             When nesting or overriding <strong>EuiThemeProvider</strong>, a
             wrapping <EuiCode>{'<span>'}</EuiCode> element that sets the correct
             default text color (normally set at the global{' '}
-            <EuiCode>{'<body>'}</EuiCode> level) will be rendered.
+            <EuiCode>{'<body>'}</EuiCode> level) will be rendered. You can
+            customize the display of this wrapping element by passing{' '}
+            <EuiCode>wrapperProps</EuiCode>.
           </p>
         </>
       ),

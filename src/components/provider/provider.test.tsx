@@ -9,6 +9,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { render } from '@testing-library/react'; // Note - don't use the EUI custom RTL `render`, as it auto-wraps an `EuiProvider`
+import { css } from '@emotion/react';
 import createCache from '@emotion/cache';
 
 import { EuiThemeProvider } from '../../services';
@@ -119,6 +120,31 @@ describe('EuiProvider', () => {
       );
 
       expect(container).toMatchSnapshot();
+    });
+
+    it('allows customizing the span wrapper with `wrapperProps`', () => {
+      const customCss = css`
+        display: flex;
+      `;
+
+      const { container } = render(
+        <EuiProvider>
+          Top-level provider{' '}
+          <EuiThemeProvider
+            colorMode="dark"
+            wrapperProps={{
+              className: 'test',
+              'data-test-subj': 'nested',
+              css: customCss,
+            }}
+          >
+            Nested
+          </EuiThemeProvider>
+        </EuiProvider>
+      );
+
+      expect(container).toMatchSnapshot();
+      expect(container.querySelector('.test')).toBeTruthy();
     });
   });
 });
