@@ -238,7 +238,10 @@ export const EuiBottomBar = forwardRef<HTMLElement, EuiBottomBarProps>(
   (props, ref) => {
     const BottomBar = _EuiBottomBar;
     return (
-      <EuiThemeProvider colorMode={'dark'}>
+      <EuiThemeProvider
+        colorMode={'dark'}
+        wrapperProps={{ cloneElement: true }}
+      >
         <BottomBar ref={ref} {...props} />
       </EuiThemeProvider>
     );
