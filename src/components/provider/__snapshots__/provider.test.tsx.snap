@@ -1057,6 +1057,18 @@ exports[`EuiProvider is rendered 1`] = `
 </EuiCacheProvider>
 `;
 
+exports[`EuiProvider nested EuiThemeProviders allows avoiding the extra span wrapper with \`wrapperProps.cloneElement\` 1`] = `
+<div>
+  Top-level provider
+   
+  <div
+    class="world hello emotion-euiColorMode-dark-colorClassName"
+  >
+    clone provider color onto div
+  </div>
+</div>
+`;
+
 exports[`EuiProvider nested EuiThemeProviders allows customizing the span wrapper with \`wrapperProps\` 1`] = `
 <div>
   Top-level provider

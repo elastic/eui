@@ -51,10 +51,14 @@ export interface EuiThemeProviderProps<T> {
    * Nested theme providers will receive a wrapping `span` tag in order to correctly
    * set the default text `color` that all nested children will inherit.
    *
+   * If an extra wrapper is not desired, pass `{ cloneElement: true }`.
+   * This requires a **single** child component that the correct color class can be passed to.
+   *
    * The parent level `EuiProvider`/`EuiThemeProvider` will **not** render a wrapper element, as
    * the default inherited text color will be set on the page `body`.
    */
-  wrapperProps?: HTMLAttributes<HTMLElement> & CommonProps;
+  wrapperProps?: HTMLAttributes<HTMLElement> &
+    CommonProps & { cloneElement?: boolean };
 }
 
 export const EuiThemeProvider = <T extends {} = {}>({
@@ -153,20 +157,27 @@ export const EuiThemeProvider = <T extends {} = {}>({
       return children; // No wrapper
     }
 
-    const { className, ...rest } = wrapperProps || {};
+    const { cloneElement, className, ...rest } = wrapperProps || {};
     const props = {
       ...rest,
       className: classNames(className, nestedThemeContext.colorClassName),
     };
 
-    return (
-      <span
-        {...props}
-        className={classNames('euiThemeProvider', props.className)}
-      >
-        {children}
-      </span>
-    );
+    if (cloneElement) {
+      return React.cloneElement(children, {
+        ...props,
+        className: classNames(children.props.className, props.className),
+      });
+    } else {
+      return (
+        <span
+          {...props}
+          className={classNames('euiThemeProvider', props.className)}
+        >
+          {children}
+        </span>
+      );
+    }
   }, [isGlobalTheme, nestedThemeContext, wrapperProps, children]);
 
   return (

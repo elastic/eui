@@ -146,5 +146,22 @@ describe('EuiProvider', () => {
       expect(container).toMatchSnapshot();
       expect(container.querySelector('.test')).toBeTruthy();
     });
+
+    it('allows avoiding the extra span wrapper with `wrapperProps.cloneElement`', () => {
+      const { container } = render(
+        <EuiProvider>
+          Top-level provider{' '}
+          <EuiThemeProvider
+            colorMode="dark"
+            wrapperProps={{ cloneElement: true, className: 'hello' }}
+          >
+            <div className="world">clone provider color onto div</div>
+          </EuiThemeProvider>
+        </EuiProvider>
+      );
+
+      expect(container).toMatchSnapshot();
+      expect(container.querySelector('.hello.world')).toBeTruthy();
+    });
   });
 });

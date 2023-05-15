@@ -48,6 +48,14 @@ export const ColorModeExample = {
             customize the display of this wrapping element by passing{' '}
             <EuiCode>wrapperProps</EuiCode>.
           </p>
+          <p>
+            Alternatively, if a wrapper will significantly impact the DOM
+            layout/flow of your content, and if your child is a single React
+            component, you may pass{' '}
+            <EuiCode>{'wrapperProps={{ cloneElement: true }}'}</EuiCode> to
+            avoid rendering an extra wrapper and to clone the correct color
+            classes onto your child content.
+          </p>
         </>
       ),
       demo: <Inverse />,
