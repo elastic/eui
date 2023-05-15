@@ -26,7 +26,7 @@ function resolveIconAndColor(
     case 'off':
       return { icon: 'cross', color: 'text' };
     case 'mixed':
-      return { icon: 'partial', color: 'text' };
+      return { icon: 'minus', color: 'text' };
     default:
       throw new Error('Icon must be enum "on" | "off" | "mixed" | undefined.');
   }

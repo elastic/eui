@@ -95,9 +95,10 @@ export const SelectableExample = {
           >
             <p>
               <strong>EuiSelectable</strong> offers the ability to{' '}
-              <strong>exclude</strong> selections. Therefore, the{' '}
-              <EuiCode>checked</EuiCode> property is one of{' '}
-              <EuiCode>{"undefined | 'on' | 'off'"}</EuiCode>,{' '}
+              <strong>exclude</strong> selections or{' '}
+              <strong>include selections for some</strong> (mixed). Therefore,
+              the <EuiCode>checked</EuiCode> property is one of{' '}
+              <EuiCode>{"undefined | 'on' | 'off' | 'mixed'"}</EuiCode>,{' '}
               <EuiCode>{"'on'"}</EuiCode> being the default for selected options
               when <EuiCode>allowExclusions = false</EuiCode>.
             </p>
@@ -219,8 +220,14 @@ export const SelectableExample = {
       text: (
         <>
           <p>
-            Currently, adding <EuiCode>allowExclusions</EuiCode> simply allows
-            cycling through the checked options (on {'-> off ->'} undefined).
+            Adding <EuiCode>allowExclusions</EuiCode> allows cycling through the
+            checked options (on {'-> off ->'} undefined).
+          </p>
+          <p>
+            Setting one or more options to <EuiCode>checked: 'mixed'</EuiCode>{' '}
+            allows cycling through the checked options (mixed{' '}
+            {'-> on -> off ->'} undefined). The "mixed" value is only allowed to
+            be set by the consuming application, not users.
           </p>
         </>
       ),
