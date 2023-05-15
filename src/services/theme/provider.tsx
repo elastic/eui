@@ -68,7 +68,7 @@ export const EuiThemeProvider = <T extends {} = {}>({
   children,
   wrapperProps,
 }: PropsWithChildren<EuiThemeProviderProps<T>>) => {
-  const { isGlobalTheme } = useContext(EuiNestedThemeContext);
+  const { isGlobalTheme, bodyColor } = useContext(EuiNestedThemeContext);
   const parentSystem = useContext(EuiSystemContext);
   const parentModifications = useContext(EuiModificationsContext);
   const parentColorMode = useContext(EuiColorModeContext);
@@ -145,12 +145,16 @@ export const EuiThemeProvider = <T extends {} = {}>({
   const nestedThemeContext = useMemo(() => {
     return {
       isGlobalTheme: false, // The theme that determines the global body styles
+      bodyColor: isGlobalTheme ? theme.colors.text : bodyColor,
+      hasDifferentColorFromGlobalTheme: isGlobalTheme
+        ? false
+        : bodyColor !== theme.colors.text,
       colorClassName: css`
         label: euiColorMode-${_colorMode};
         color: ${theme.colors.text};
       `,
     };
-  }, [theme, _colorMode]);
+  }, [theme, isGlobalTheme, bodyColor, _colorMode]);
 
   const renderedChildren = useMemo(() => {
     if (isGlobalTheme) {

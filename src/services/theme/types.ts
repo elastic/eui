@@ -92,5 +92,7 @@ export type EuiThemeComputed<T = {}> = ComputedThemeShape<EuiThemeShape & T> & {
 
 export type EuiThemeNested = {
   isGlobalTheme: boolean;
+  hasDifferentColorFromGlobalTheme: boolean;
+  bodyColor: string;
   colorClassName: string;
 };

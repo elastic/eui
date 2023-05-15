@@ -13,6 +13,8 @@
 
 import { Component, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
+
+import { EuiNestedThemeContext } from '../../services';
 import { keysOf } from '../common';
 
 interface InsertPositionsMap {
@@ -41,6 +43,8 @@ export interface EuiPortalProps {
 }
 
 export class EuiPortal extends Component<EuiPortalProps> {
+  static contextType = EuiNestedThemeContext;
+
   portalNode: HTMLDivElement | null = null;
 
   constructor(props: EuiPortalProps) {
@@ -63,6 +67,7 @@ export class EuiPortal extends Component<EuiPortalProps> {
   }
 
   componentDidMount() {
+    this.setThemeColor();
     this.updatePortalRef(this.portalNode);
   }
 
@@ -71,6 +76,17 @@ export class EuiPortal extends Component<EuiPortalProps> {
       this.portalNode.parentNode.removeChild(this.portalNode);
     }
     this.updatePortalRef(null);
+  }
+
+  // Set the inherited color of the portal based on the wrapping EuiThemeProvider
+  setThemeColor() {
+    if (this.portalNode && this.context) {
+      const { hasDifferentColorFromGlobalTheme, colorClassName } = this.context;
+
+      if (hasDifferentColorFromGlobalTheme && this.props.insert == null) {
+        this.portalNode.classList.add(colorClassName);
+      }
+    }
   }
 
   updatePortalRef(ref: HTMLDivElement | null) {

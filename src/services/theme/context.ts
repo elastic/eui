@@ -34,5 +34,7 @@ export const EuiThemeContext = createContext<EuiThemeComputed>(
 );
 export const EuiNestedThemeContext = createContext<EuiThemeNested>({
   isGlobalTheme: true,
+  hasDifferentColorFromGlobalTheme: false,
+  bodyColor: '',
   colorClassName: '',
 });
