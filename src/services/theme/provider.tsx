@@ -10,14 +10,18 @@ import React, {
   useContext,
   useEffect,
   useRef,
+  useMemo,
   useState,
   PropsWithChildren,
 } from 'react';
+import classNames from 'classnames';
+import { css } from '@emotion/css';
 import isEqual from 'lodash/isEqual';
 
 import {
   EuiSystemContext,
   EuiThemeContext,
+  EuiNestedThemeContext,
   EuiModificationsContext,
   EuiColorModeContext,
 } from './context';
@@ -48,6 +52,7 @@ export const EuiThemeProvider = <T extends {} = {}>({
   modify: _modifications,
   children,
 }: PropsWithChildren<EuiThemeProviderProps<T>>) => {
+  const { isGlobalTheme } = useContext(EuiNestedThemeContext);
   const parentSystem = useContext(EuiSystemContext);
   const parentModifications = useContext(EuiModificationsContext);
   const parentColorMode = useContext(EuiColorModeContext);
@@ -121,12 +126,41 @@ export const EuiThemeProvider = <T extends {} = {}>({
     }
   }, [colorMode, system, modifications]);
 
+  const nestedThemeContext = useMemo(() => {
+    return {
+      isGlobalTheme: false, // The theme that determines the global body styles
+      colorClassName: css`
+        label: euiColorMode-${_colorMode};
+        color: ${theme.colors.text};
+      `,
+    };
+  }, [theme, _colorMode]);
+
+  const renderedChildren = useMemo(() => {
+    if (isGlobalTheme) {
+      return children; // No wrapper
+    }
+
+    return (
+      <span
+        className={classNames(
+          'euiThemeProvider',
+          nestedThemeContext.colorClassName
+        )}
+      >
+        {children}
+      </span>
+    );
+  }, [isGlobalTheme, nestedThemeContext, children]);
+
   return (
     <EuiColorModeContext.Provider value={colorMode}>
       <EuiSystemContext.Provider value={system}>
         <EuiModificationsContext.Provider value={modifications}>
           <EuiThemeContext.Provider value={theme}>
-            {children}
+            <EuiNestedThemeContext.Provider value={nestedThemeContext}>
+              {renderedChildren}
+            </EuiNestedThemeContext.Provider>
           </EuiThemeContext.Provider>
         </EuiModificationsContext.Provider>
       </EuiSystemContext.Provider>

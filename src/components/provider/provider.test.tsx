@@ -8,8 +8,10 @@
 
 import React from 'react';
 import { shallow } from 'enzyme';
+import { render } from '@testing-library/react'; // Note - don't use the EUI custom RTL `render`, as it auto-wraps an `EuiProvider`
 import createCache from '@emotion/cache';
 
+import { EuiThemeProvider } from '../../services';
 import { EuiProvider } from './provider';
 
 describe('EuiProvider', () => {
@@ -104,6 +106,19 @@ describe('EuiProvider', () => {
       );
 
       expect(component).toMatchSnapshot();
+    });
+  });
+
+  describe('nested EuiThemeProviders', () => {
+    it('renders with a span wrapper that sets the inherited text color', () => {
+      const { container } = render(
+        <EuiProvider>
+          Top-level provider{' '}
+          <EuiThemeProvider colorMode="inverse">Nested</EuiThemeProvider>
+        </EuiProvider>
+      );
+
+      expect(container).toMatchSnapshot();
     });
   });
 });
