@@ -63,7 +63,7 @@ exports[`EuiSelectableListItem props checked is mixed 1`] = `
     <span
       class="euiSelectableListItem__icon"
       color="text"
-      data-euiicon-type="partial"
+      data-euiicon-type="minus"
     />
     <span
       class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
