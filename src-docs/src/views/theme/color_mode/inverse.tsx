@@ -12,7 +12,7 @@ export default () => {
     <>
       <EuiThemeProvider colorMode="light">
         <EuiPanel>
-          <EuiText color="default">
+          <EuiText>
             <p>
               <EuiIcon type="faceHappy" /> The colors of this panel will always
               be in <strong>light</strong> mode
@@ -23,7 +23,7 @@ export default () => {
       <EuiSpacer />
       <EuiThemeProvider colorMode="dark">
         <EuiPanel>
-          <EuiText color="default">
+          <EuiText>
             <p>
               <EuiIcon type="faceHappy" /> The colors of this panel will always
               be in <strong>dark</strong> mode
@@ -34,7 +34,7 @@ export default () => {
       <EuiSpacer />
       <EuiThemeProvider colorMode="inverse">
         <EuiPanel>
-          <EuiText color="default">
+          <EuiText>
             <p>
               <EuiIcon type="faceHappy" /> The colors of this panel are the
               opposite (<strong>inverse</strong>) of the current color mode
