@@ -86,7 +86,6 @@ export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
     textWrap?: 'truncate' | 'wrap';
   };
 
-// eslint-disable-next-line react/prefer-stateless-function
 export class EuiSelectableListItem extends Component<
   EuiSelectableListItemProps
 > {

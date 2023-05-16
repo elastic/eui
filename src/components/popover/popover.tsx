@@ -439,7 +439,6 @@ export class EuiPopover extends Component<Props, State> {
     if (this.state.suppressingPopover) {
       // component was created with isOpen=true; now that it's mounted
       // stop suppressing and start opening
-      // eslint-disable-next-line react/no-did-mount-set-state
       this.setState({ suppressingPopover: false, isOpening: true }, () => {
         this.onOpenPopover();
       });

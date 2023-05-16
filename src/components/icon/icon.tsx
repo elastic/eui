@@ -153,7 +153,6 @@ export class EuiIconClass extends PureComponent<
     const { type } = this.props;
 
     if (isEuiIconType(type) && this.state.icon == null) {
-      //eslint-disable-next-line react/no-did-mount-set-state
       this.setState({
         neededLoading: true,
         isLoading: true,
@@ -169,14 +168,12 @@ export class EuiIconClass extends PureComponent<
     const { type } = this.props;
     if (type !== prevProps.type) {
       if (isEuiIconType(type)) {
-        // eslint-disable-next-line react/no-did-update-set-state
         this.setState({
           neededLoading: iconComponentCache.hasOwnProperty(type),
           isLoading: true,
         });
         this.loadIconComponent(type);
       } else {
-        // eslint-disable-next-line react/no-did-update-set-state
         this.setState({
           icon: type,
           neededLoading: true,

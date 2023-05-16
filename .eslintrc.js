@@ -43,6 +43,7 @@ module.exports = {
     'prettier',
     'local',
     'import',
+    'react',
     'react-hooks',
     '@emotion',
   ],
@@ -121,6 +122,11 @@ module.exports = {
     'jsx-a11y/tabindex-no-positive': 'error',
     'jsx-a11y/label-has-associated-control': 'error',
 
+    'react/jsx-uses-react': 'error',
+    'react/jsx-uses-vars': 'error',
+    'react/jsx-no-undef': 'error',
+    'react/jsx-pascal-case': 'error',
+
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
 
@@ -162,9 +168,7 @@ module.exports = {
     {
       files: ['*.d.ts'],
       rules: {
-        'react/no-multi-comp': 'off',
         'react/prefer-es6-class': 'off',
-        'react/prefer-stateless-function': 'off',
       },
     },
   ],
