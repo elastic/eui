@@ -19,16 +19,15 @@ function resolveIconAndColor(
   checked: EuiSelectableOptionCheckedType
 ): { icon: IconType; color?: IconColor } {
   switch (checked) {
-    case undefined:
-      return { icon: 'empty' };
     case 'on':
       return { icon: 'check', color: 'text' };
     case 'off':
       return { icon: 'cross', color: 'text' };
     case 'mixed':
       return { icon: 'minus', color: 'text' };
+    case undefined:
     default:
-      throw new Error('Icon must be enum "on" | "off" | "mixed" | undefined.');
+      return { icon: 'empty' };
   }
 }
 
@@ -147,52 +146,59 @@ export class EuiSelectableListItem extends Component<
 
     let state: React.ReactNode;
     let instruction: React.ReactNode;
-    if (allowExclusions && checked === 'on') {
-      state = (
-        <EuiI18n
-          token="euiSelectableListItem.includedOption"
-          default="Checked option."
-        />
-      );
-      instruction = (
-        <EuiI18n
-          token="euiSelectableListItem.includedOptionInstructions"
-          default="To exclude this option, press Enter."
-        />
-      );
-    } else if (allowExclusions && checked === 'off') {
-      state = (
-        <EuiI18n
-          token="euiSelectableListItem.excludedOption"
-          default="Excluded option."
-        />
-      );
-      instruction = (
-        <EuiI18n
-          token="euiSelectableListItem.excludedOptionInstructions"
-          default="To uncheck this option, press Enter."
-        />
-      );
-    } else if (allowExclusions && checked === 'mixed') {
-      state = (
-        <EuiI18n
-          token="euiSelectableListItem.excludedOption"
-          default="Mixed (indeterminate) option."
-        />
-      );
-      instruction = (
-        <EuiI18n
-          token="euiSelectableListItem.unckeckedOptionInstructions"
-          default="To check this option for all, press Enter once. To exclude this option for all, press Enter twice."
-        />
-      );
-    } else if (allowExclusions && !checked) {
-      instruction = (
-        <EuiI18n
-          token="euiSelectableListItem.unckeckedOptionInstructions"
-          default="To check this option, press Enter."
-        />
-      );
+    if (allowExclusions) {
+      switch (checked) {
+        case 'on':
+          state = (
+            <EuiI18n
+              token="euiSelectableListItem.includedOption"
+              default="Checked option."
+            />
+          );
+          instruction = (
+            <EuiI18n
+              token="euiSelectableListItem.includedOptionInstructions"
+              default="To exclude this option, press Enter."
+            />
+          );
+          break;
+        case 'off':
+          state = (
+            <EuiI18n
+              token="euiSelectableListItem.excludedOption"
+              default="Excluded option."
+            />
+          );
+          instruction = (
+            <EuiI18n
+              token="euiSelectableListItem.excludedOptionInstructions"
+              default="To uncheck this option, press Enter."
+            />
+          );
+          break;
+        case 'mixed':
+          state = (
+            <EuiI18n
+              token="euiSelectableListItem.mixedOption"
+              default="Mixed (indeterminate) option."
+            />
+          );
+          instruction = (
+            <EuiI18n
+              token="euiSelectableListItem.mixedOptionInstructions"
+              default="To check this option for all, press Enter once. To exclude this option for all, press Enter twice."
+            />
+          );
+          break;
+        case undefined:
+        default:
+          instruction = (
+            <EuiI18n
+              token="euiSelectableListItem.uncheckedOptionInstructions"
+              default="To check this option, press Enter."
+            />
+          );
+      }
     }
 
     let isChecked: boolean | EuiSelectableOptionCheckedType =
