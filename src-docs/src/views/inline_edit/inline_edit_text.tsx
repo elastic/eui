@@ -5,6 +5,7 @@ import {
   EuiSpacer,
   EuiButtonGroup,
   EuiInlineEditTextProps,
+  EuiSwitch,
 } from '../../../../src';
 
 export default () => {
@@ -31,6 +32,13 @@ export default () => {
     setToggleTextButtonSize(optionId);
   };
 
+  /* isReadOnly toggle */
+  const [isReadOnly, setIsReadOnly] = useState(false);
+
+  const onChange = (e: any) => {
+    setIsReadOnly(e.target.checked);
+  };
+
   return (
     <>
       <EuiButtonGroup
@@ -44,10 +52,19 @@ export default () => {
 
       <EuiSpacer />
 
+      <EuiSwitch
+        label="isReadOnly"
+        checked={isReadOnly}
+        onChange={(e) => onChange(e)}
+      />
+
+      <EuiSpacer />
+
       <EuiInlineEditText
         inputAriaLabel="Edit text inline"
         defaultValue="Hello World!"
         size={toggleTextButtonSize}
+        isReadOnly={isReadOnly}
       />
     </>
   );
