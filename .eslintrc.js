@@ -30,7 +30,6 @@ module.exports = {
     },
   },
   extends: [
-    '@elastic/eslint-config-kibana',
     'plugin:@typescript-eslint/recommended',
     // Prettier options need to come last, in order to override other style
     // rules.
