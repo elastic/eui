@@ -134,7 +134,10 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   const euiTheme = useEuiTheme();
 
   const styles = euiInlineEditFormStyles(euiTheme);
-  const readOnlyStyles = [styles.euiInlineEditForm, styles.isReadOnly];
+  const readOnlyStyles = [
+    styles.euiInlineEditForm,
+    isReadOnly && styles.isReadOnly,
+  ];
 
   const { controlHeight, controlCompressedHeight } = euiFormVariables(euiTheme);
   const loadingSkeletonSize = sizes.compressed
