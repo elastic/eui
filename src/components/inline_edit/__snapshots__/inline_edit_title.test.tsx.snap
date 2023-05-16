@@ -1,12 +1,48 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiInlineEditTitle isReadOnly 1`] = `
+<div
+  class="euiInlineEdit euiInlineEditTitle testClass1 testClass2 emotion-euiInlineEditTitle-m-m"
+>
+  <button
+    aria-describedby="inlineEdit_generated-id"
+    aria-level="1"
+    class="euiButtonEmpty euiButtonEmpty--flushBoth css-wxssql-empty-disabled-euiInlineEditButton-isReadOnly"
+    data-test-subj="euiInlineReadModeButton"
+    disabled=""
+    role="heading"
+    type="button"
+  >
+    <span
+      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    >
+      <span
+        class="euiButtonEmpty__text"
+      >
+        <h1
+          class="euiTitle eui-textTruncate emotion-euiTitle-m"
+        >
+          Hello World!
+        </h1>
+      </span>
+    </span>
+  </button>
+  <span
+    hidden=""
+    id="inlineEdit_generated-id"
+  >
+    Click this button to edit this text inline.
+  </span>
+</div>
+`;
+
 exports[`EuiInlineEditTitle renders 1`] = `
 <div
   class="euiInlineEdit euiInlineEditTitle testClass1 testClass2 emotion-euiInlineEditTitle-m-m"
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--flushBoth css-2otmvb-empty-text-euiInlineEditForm"
+    class="euiButtonEmpty euiButtonEmpty--flushBoth css-gj4z04-empty-text-euiInlineEditButton"
     data-test-subj="euiInlineReadModeButton"
     type="button"
   >
@@ -44,7 +80,7 @@ exports[`EuiInlineEditTitle title sizes renders size l 1`] = `
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--flushBoth css-2otmvb-empty-text-euiInlineEditForm"
+    class="euiButtonEmpty euiButtonEmpty--flushBoth css-gj4z04-empty-text-euiInlineEditButton"
     data-test-subj="euiInlineReadModeButton"
     type="button"
   >
@@ -82,7 +118,7 @@ exports[`EuiInlineEditTitle title sizes renders size m 1`] = `
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--flushBoth css-2otmvb-empty-text-euiInlineEditForm"
+    class="euiButtonEmpty euiButtonEmpty--flushBoth css-gj4z04-empty-text-euiInlineEditButton"
     data-test-subj="euiInlineReadModeButton"
     type="button"
   >
@@ -120,7 +156,7 @@ exports[`EuiInlineEditTitle title sizes renders size s 1`] = `
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-2otmvb-empty-text-euiInlineEditForm"
+    class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-gj4z04-empty-text-euiInlineEditButton"
     data-test-subj="euiInlineReadModeButton"
     type="button"
   >
@@ -158,7 +194,7 @@ exports[`EuiInlineEditTitle title sizes renders size xs 1`] = `
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-2otmvb-empty-text-euiInlineEditForm"
+    class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-gj4z04-empty-text-euiInlineEditButton"
     data-test-subj="euiInlineReadModeButton"
     type="button"
   >
@@ -196,7 +232,7 @@ exports[`EuiInlineEditTitle title sizes renders size xxs 1`] = `
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-2otmvb-empty-text-euiInlineEditForm"
+    class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-gj4z04-empty-text-euiInlineEditButton"
     data-test-subj="euiInlineReadModeButton"
     type="button"
   >
@@ -234,7 +270,7 @@ exports[`EuiInlineEditTitle title sizes renders size xxxs 1`] = `
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-2otmvb-empty-text-euiInlineEditForm"
+    class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-gj4z04-empty-text-euiInlineEditButton"
     data-test-subj="euiInlineReadModeButton"
     type="button"
   >

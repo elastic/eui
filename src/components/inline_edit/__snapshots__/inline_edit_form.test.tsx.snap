@@ -649,7 +649,7 @@ exports[`EuiInlineEditForm Read Mode isReadOnly 1`] = `
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--flushBoth css-tnjw7o-empty-disabled-euiInlineEditForm-isReadOnly"
+    class="euiButtonEmpty euiButtonEmpty--flushBoth css-wxssql-empty-disabled-euiInlineEditButton-isReadOnly"
     data-test-subj="euiInlineReadModeButton"
     disabled=""
     type="button"
@@ -679,7 +679,7 @@ exports[`EuiInlineEditForm Read Mode readModeProps 1`] = `
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--flushBoth css-6n5oyg-empty-primary-euiInlineEditForm"
+    class="euiButtonEmpty euiButtonEmpty--flushBoth css-ioyorl-empty-primary-euiInlineEditButton"
     data-test-subj="euiInlineReadModeButton"
     type="button"
   >
@@ -713,7 +713,7 @@ exports[`EuiInlineEditForm Read Mode renders 1`] = `
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--flushBoth css-2otmvb-empty-text-euiInlineEditForm"
+    class="euiButtonEmpty euiButtonEmpty--flushBoth css-gj4z04-empty-text-euiInlineEditButton"
     data-test-subj="euiInlineReadModeButton"
     type="button"
   >
@@ -747,7 +747,7 @@ exports[`EuiInlineEditForm Read Mode sizes 1`] = `
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-2otmvb-empty-text-euiInlineEditForm"
+    class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-gj4z04-empty-text-euiInlineEditButton"
     data-test-subj="euiInlineReadModeButton"
     type="button"
   >

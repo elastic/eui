@@ -39,6 +39,23 @@ describe('EuiInlineEditTitle', () => {
     expect(container.querySelector('h3')).toBeTruthy();
   });
 
+  test('isReadOnly', () => {
+    const { container, getByTestSubject } = render(
+      <EuiInlineEditTitle isReadOnly={true} {...inlineEditTitleProps} />
+    );
+
+    expect(container.firstChild).toMatchSnapshot();
+
+    expect(getByTestSubject('euiInlineReadModeButton')).toHaveAttribute(
+      'role',
+      'heading'
+    );
+    expect(getByTestSubject('euiInlineReadModeButton')).toHaveAttribute(
+      'aria-level',
+      '1'
+    );
+  });
+
   describe('title sizes', () => {
     TITLE_SIZES.forEach((size) => {
       it(`renders size ${size}`, () => {
