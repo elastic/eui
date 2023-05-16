@@ -37,7 +37,14 @@ module.exports = {
     'prettier/standard',
     'plugin:prettier/recommended',
   ],
-  plugins: ['jsx-a11y', 'prettier', 'local', 'react-hooks', '@emotion'],
+  plugins: [
+    'mocha',
+    'jsx-a11y',
+    'prettier',
+    'local',
+    'react-hooks',
+    '@emotion',
+  ],
   rules: {
     'block-scoped-var': 'error',
     camelcase: 'off',
@@ -75,6 +82,9 @@ module.exports = {
         license: SSPL_ELASTIC_2_0_LICENSE_HEADER,
       },
     ],
+
+    'mocha/handle-done-callback': 'error',
+    'mocha/no-exclusive-tests': 'error',
 
     'jsx-a11y/accessible-emoji': 'error',
     'jsx-a11y/alt-text': 'error',
