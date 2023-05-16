@@ -30,7 +30,7 @@ export type EuiSelectableOptionBase = CommonProps & {
   /**
    * Leave `undefined` to indicate not selected. Pass a string of
    * 'on' to indicate inclusion, 'off' to indicate exclusion,
-   * and 'mixed' to indicate inclusion for some.
+   * or 'mixed' to indicate inclusion for some.
    */
   checked?: EuiSelectableOptionCheckedType;
   disabled?: boolean;
