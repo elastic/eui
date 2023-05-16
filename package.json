@@ -154,7 +154,6 @@
     "babel-jest": "^24.1.0",
     "babel-loader": "^8.1.0",
     "babel-plugin-add-module-exports": "^1.0.2",
-    "babel-plugin-dynamic-import-node": "^2.3.3",
     "babel-plugin-inline-react-svg": "^1.1.1",
     "babel-plugin-istanbul": "^6.0.0",
     "babel-plugin-pegjs-inline-precompile": "^0.1.1",

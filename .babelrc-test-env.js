@@ -3,6 +3,5 @@ module.exports = {
   plugins: [
     '@babel/plugin-transform-runtime',
     '@babel/plugin-transform-async-to-generator',
-    'dynamic-import-node',
   ],
 };
