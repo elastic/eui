@@ -100,6 +100,10 @@ export class EuiSelectableListItem extends Component<
     super(props);
   }
 
+  // aria-checked is intended to be used with role="checkbox" but
+  // the MDN documentation lists it as a possibility for role="option".
+  // See https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-checked
+  // and https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/option_role
   isChecked = (checked: EuiSelectableOptionCheckedType) => {
     if (this.props.disabled) return undefined;
     switch (checked) {
