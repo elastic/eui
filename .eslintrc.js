@@ -122,7 +122,6 @@ module.exports = {
     'jsx-a11y/tabindex-no-positive': 'error',
     'jsx-a11y/label-has-associated-control': 'error',
 
-    'react/jsx-uses-react': 'error',
     'react/jsx-uses-vars': 'error',
     'react/jsx-no-undef': 'error',
     'react/jsx-pascal-case': 'error',
