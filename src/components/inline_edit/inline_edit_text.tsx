@@ -38,6 +38,7 @@ export const EuiInlineEditText: FunctionComponent<EuiInlineEditTextProps> = ({
   editModeProps,
   isLoading,
   isInvalid,
+  isReadOnly,
   ...rest
 }) => {
   const classes = classNames('euiInlineEditText', className);
@@ -49,6 +50,12 @@ export const EuiInlineEditText: FunctionComponent<EuiInlineEditTextProps> = ({
   const isSmallSize = ['xs', 's'].includes(size);
   const sizes = isSmallSize ? SMALL_SIZE_FORM : MEDIUM_SIZE_FORM;
 
+  if (isReadOnly) {
+    readModeProps
+      ? (readModeProps.role = 'paragraph')
+      : (readModeProps = { role: 'paragraph' });
+  }
+
   const formProps = {
     sizes,
     defaultValue,
@@ -58,6 +65,7 @@ export const EuiInlineEditText: FunctionComponent<EuiInlineEditTextProps> = ({
     editModeProps,
     isLoading,
     isInvalid,
+    isReadOnly,
   };
 
   return (

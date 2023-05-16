@@ -45,6 +45,7 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
   editModeProps,
   isLoading,
   isInvalid,
+  isReadOnly,
   ...rest
 }) => {
   const classes = classNames('euiInlineEditTitle', className);
@@ -58,6 +59,22 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
   const isSmallSize = ['xxxs', 'xxs', 'xs', 's'].includes(size);
   const sizes = isSmallSize ? SMALL_SIZE_FORM : MEDIUM_SIZE_FORM;
 
+  // When the heading level is h1-h6, apply a role and aria-level
+  if (isReadOnly && heading !== 'span') {
+    const headingNumber = Number(heading.substring(1));
+    readModeProps
+      ? Object.assign(readModeProps, {
+          role: 'heading',
+          'aria-level': headingNumber,
+        })
+      : (readModeProps = { role: 'heading', 'aria-level': headingNumber });
+    // Span elements should not be assigned an aria-level
+  } else if (isReadOnly) {
+    readModeProps
+      ? (readModeProps.role = 'paragraph')
+      : (readModeProps = { role: 'paragraph' });
+  }
+
   const formProps = {
     sizes,
     defaultValue,
@@ -67,6 +84,7 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
     editModeProps,
     isLoading,
     isInvalid,
+    isReadOnly,
   };
 
   return (

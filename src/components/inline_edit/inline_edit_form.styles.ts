@@ -11,7 +11,7 @@ import { UseEuiTheme } from '../../services';
 
 export const euiInlineEditFormStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
-    euiInlineEditForm: css``,
+    euiInlineEditButton: css``,
 
     // Override the cursor and allow users to highlight text when read mode is in the read only state
     isReadOnly: css`
