@@ -42,6 +42,7 @@ module.exports = {
     'jsx-a11y',
     'prettier',
     'local',
+    'import',
     'react-hooks',
     '@emotion',
   ],
@@ -82,6 +83,14 @@ module.exports = {
         license: SSPL_ELASTIC_2_0_LICENSE_HEADER,
       },
     ],
+
+    'import/no-unresolved': ['error', { amd: true, commonjs: true }],
+    'import/namespace': 'error',
+    'import/default': 'error',
+    'import/export': 'error',
+    'import/no-named-as-default': 'error',
+    'import/no-named-as-default-member': 'error',
+    'import/no-duplicates': 'error',
 
     'mocha/handle-done-callback': 'error',
     'mocha/no-exclusive-tests': 'error',

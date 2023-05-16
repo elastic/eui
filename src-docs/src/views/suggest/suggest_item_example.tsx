@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import React, { useState } from 'react';
 
 import { EuiSwitch, EuiSuggestItem } from '../../../../src/components';
