@@ -100,6 +100,19 @@ export class EuiSelectableListItem extends Component<
     super(props);
   }
 
+  isChecked = (checked: EuiSelectableOptionCheckedType) => {
+    if (this.props.disabled) return undefined;
+    switch (checked) {
+      case 'on':
+      case 'off':
+        return true;
+      case 'mixed':
+        return 'mixed';
+      default:
+        return false;
+    }
+  };
+
   render() {
     const {
       children,
@@ -199,28 +212,21 @@ export class EuiSelectableListItem extends Component<
             />
           );
       }
-    }
-
-    let isChecked: boolean | EuiSelectableOptionCheckedType =
-      !disabled && typeof checked === 'string';
-    // 'Mixed' has its own logic because it is the only aria-checked
-    // state we can't derive with the `isChecked` boolean alone.
-    if (isChecked && checked === 'mixed') {
-      isChecked = 'mixed';
-    }
-    if (!allowExclusions && isChecked) {
-      state = (
-        <EuiI18n
-          token="euiSelectableListItem.checkedOption"
-          default="Checked option."
-        />
-      );
-      instruction = searchable ? (
-        <EuiI18n
-          token="euiSelectableListItem.checkedOptionInstructions"
-          default="To uncheck this option, press Enter."
-        />
-      ) : undefined;
+    } else {
+      if (this.isChecked(checked)) {
+        state = (
+          <EuiI18n
+            token="euiSelectableListItem.checkedOption"
+            default="Checked option."
+          />
+        );
+        instruction = searchable ? (
+          <EuiI18n
+            token="euiSelectableListItem.checkedOptionInstructions"
+            default="To uncheck this option, press Enter."
+          />
+        ) : undefined;
+      }
     }
 
     let prependNode: React.ReactNode;
@@ -287,8 +293,7 @@ export class EuiSelectableListItem extends Component<
     return (
       <li
         role={role}
-        data-test-selected={isChecked} // Whether the item is checked/selected
-        aria-checked={role === 'option' ? isChecked : undefined} // Whether the item is "checked"
+        aria-checked={role === 'option' ? this.isChecked(checked) : undefined} // Whether the item is "checked"
         aria-selected={!disabled && isFocused} // Whether the item has keyboard focus per W3 spec
         className={classes}
         aria-disabled={disabled}

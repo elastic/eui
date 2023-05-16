@@ -47,40 +47,20 @@ const excludedOptions: EuiSelectableProps['options'] = [
   },
 ];
 
-const EuiSelectableListboxOnly = (args: Partial<EuiSelectableProps>) => {
-  return (
-    <EuiSelectable options={options} {...args}>
-      {(list) => <>{list}</>}
-    </EuiSelectable>
-  );
-};
-
-const EuiSelectableWithExclusions = (args: Partial<EuiSelectableProps>) => {
-  return (
-    <EuiSelectable options={excludedOptions} {...args}>
-      {(list) => <>{list}</>}
-    </EuiSelectable>
-  );
-};
-
-const EuiSelectableWithSearchInput = (args: Partial<EuiSelectableProps>) => {
-  return (
-    <EuiSelectable searchable options={options} {...args}>
-      {(list, search) => (
-        <>
-          {search}
-          {list}
-        </>
-      )}
-    </EuiSelectable>
-  );
-};
-
 describe('EuiSelectable', () => {
   describe('with a `searchable` configuration', () => {
     it('has no accessibility errors', () => {
       const onChange = cy.stub();
-      cy.realMount(<EuiSelectableWithSearchInput onChange={onChange} />);
+      cy.realMount(
+        <EuiSelectable options={options} onChange={onChange} searchable>
+          {(list, search) => (
+            <>
+              {search}
+              {list}
+            </>
+          )}
+        </EuiSelectable>
+      );
       cy.checkAxe();
     });
   });
@@ -89,23 +69,29 @@ describe('EuiSelectable', () => {
     it('has no accessibility errors', () => {
       const onChange = cy.stub();
       cy.realMount(
-        <EuiSelectableListboxOnly
+        <EuiSelectable
           aria-label="No search box"
+          options={options}
           onChange={onChange}
-        />
+        >
+          {(list) => <>{list}</>}
+        </EuiSelectable>
       );
       cy.checkAxe();
     });
   });
 
-  describe('with excluded options configuration', () => {
+  describe('with excluded and mixed options configuration', () => {
     it('has no accessibility errors', () => {
       const onChange = cy.stub();
       cy.realMount(
-        <EuiSelectableWithExclusions
-          aria-label="No search box"
+        <EuiSelectable
+          aria-label="Excluded and mixed options"
+          options={excludedOptions}
           onChange={onChange}
-        />
+        >
+          {(list) => <>{list}</>}
+        </EuiSelectable>
       );
       cy.checkAxe();
     });
@@ -139,13 +125,19 @@ describe('EuiSelectable', () => {
           isOpen={isPopoverOpen}
           closePopover={onClosePopover}
         >
-          <EuiSelectableWithSearchInput
+          <EuiSelectable
             aria-label="With popover"
             options={options}
             onChange={onChange}
+            searchable
           >
-            {(list) => <>{list}</>}
-          </EuiSelectableWithSearchInput>
+            {(list, search) => (
+              <>
+                {search}
+                {list}
+              </>
+            )}
+          </EuiSelectable>
         </EuiPopover>
       );
     };

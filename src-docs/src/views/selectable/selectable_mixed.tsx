@@ -18,7 +18,7 @@ export default () => {
     },
     {
       label: 'Dione',
-      checked: 'off',
+      checked: 'mixed',
     },
     {
       label: 'Iapetus',
@@ -26,7 +26,7 @@ export default () => {
     },
     {
       label: 'Phoebe',
-      checked: 'on',
+      checked: 'mixed',
     },
     {
       label: 'Rhea',
@@ -45,7 +45,7 @@ export default () => {
 
   return (
     <EuiSelectable
-      aria-label="Example of Selectable supporting exclusions"
+      aria-label="Example of Selectable supporting mixed state"
       allowExclusions
       options={options}
       onChange={(newOptions) => setOptions(newOptions)}

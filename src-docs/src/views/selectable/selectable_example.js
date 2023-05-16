@@ -28,6 +28,9 @@ const selectableSingleSource = require('!!raw-loader!./selectable_single');
 import SelectableExclusion from './selectable_exclusion';
 const selectableExclusionSource = require('!!raw-loader!./selectable_exclusion');
 
+import SelectableMixed from './selectable_mixed';
+const selectableMixedSource = require('!!raw-loader!./selectable_mixed');
+
 import SelectableMessages from './selectable_messages';
 const selectableMessagesSource = require('!!raw-loader!./selectable_messages');
 
@@ -218,22 +221,42 @@ export const SelectableExample = {
         },
       ],
       text: (
-        <>
-          <p>
-            Adding <EuiCode>allowExclusions</EuiCode> allows cycling through the
-            checked options (on {'-> off ->'} undefined).
-          </p>
-          <p>
-            Setting one or more options to{' '}
-            <EuiCode>checked: &ldquo;mixed&rdquo;</EuiCode> allows cycling
-            through the checked options (mixed {'-> on -> off ->'} undefined).
-            The mixed string value is only allowed to be set by the consuming
-            application, not users.
-          </p>
-        </>
+        <p>
+          Adding <EuiCode>allowExclusions</EuiCode> allows cycling through the
+          checked options (on {'-> off ->'} undefined).
+        </p>
       ),
       props,
       demo: <SelectableExclusion />,
+      snippet: `<EuiSelectable
+  aria-label="Example supporting mixed (indeterminate) options"
+  options={[]}
+  onChange={newOptions => setOptions(newOptions)}
+  allowExclusions
+>
+  {list => list}
+</EuiSelectable>`,
+    },
+
+    {
+      title: 'Options can be mixed (indeterminate)',
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: selectableMixedSource,
+        },
+      ],
+      text: (
+        <p>
+          Adding <EuiCode>allowExclusions</EuiCode> and setting one or more
+          options to <EuiCode>checked: &ldquo;mixed&rdquo;</EuiCode> allows
+          cycling through the checked options (mixed {'-> on -> off ->'}{' '}
+          undefined). The mixed string value is only allowed to be set by the
+          consuming application, not users.
+        </p>
+      ),
+      props,
+      demo: <SelectableMixed />,
       snippet: `<EuiSelectable
   aria-label="Example supporting exclusions"
   options={[]}
@@ -243,6 +266,7 @@ export const SelectableExample = {
   {list => list}
 </EuiSelectable>`,
     },
+
     {
       title: 'Messages and loading',
       source: [

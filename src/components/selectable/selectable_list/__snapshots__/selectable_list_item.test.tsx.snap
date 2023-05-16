@@ -5,7 +5,6 @@ exports[`EuiSelectableListItem is rendered 1`] = `
   aria-checked="false"
   aria-label="aria-label"
   class="euiSelectableListItem euiSelectableListItem--paddingSmall testClass1 testClass2"
-  data-test-selected="false"
   data-test-subj="test subject string"
   role="option"
 >
@@ -27,7 +26,6 @@ exports[`EuiSelectableListItem props append 1`] = `
 <li
   aria-checked="false"
   class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-  data-test-selected="false"
   role="option"
 >
   <span
@@ -54,7 +52,6 @@ exports[`EuiSelectableListItem props checked is mixed 1`] = `
 <li
   aria-checked="mixed"
   class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-  data-test-selected="mixed"
   role="option"
 >
   <span
@@ -82,7 +79,6 @@ exports[`EuiSelectableListItem props checked is off 1`] = `
 <li
   aria-checked="true"
   class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-  data-test-selected="true"
   role="option"
 >
   <span
@@ -110,7 +106,6 @@ exports[`EuiSelectableListItem props checked is on 1`] = `
 <li
   aria-checked="true"
   class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-  data-test-selected="true"
   role="option"
 >
   <span
@@ -136,11 +131,9 @@ exports[`EuiSelectableListItem props checked is on 1`] = `
 
 exports[`EuiSelectableListItem props disabled 1`] = `
 <li
-  aria-checked="false"
   aria-disabled="true"
   aria-selected="false"
   class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-  data-test-selected="false"
   role="option"
 >
   <span
@@ -162,7 +155,6 @@ exports[`EuiSelectableListItem props isFocused 1`] = `
   aria-checked="false"
   aria-selected="true"
   class="euiSelectableListItem euiSelectableListItem-isFocused euiSelectableListItem--paddingSmall"
-  data-test-selected="false"
   role="option"
 >
   <span
@@ -202,7 +194,6 @@ exports[`EuiSelectableListItem props onFocusBadge can be custom 1`] = `
 <li
   aria-checked="false"
   class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-  data-test-selected="false"
   role="option"
 >
   <span
@@ -223,7 +214,6 @@ exports[`EuiSelectableListItem props onFocusBadge can be true 1`] = `
 <li
   aria-checked="false"
   class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-  data-test-selected="false"
   role="option"
 >
   <span
@@ -244,7 +234,6 @@ exports[`EuiSelectableListItem props paddingSize none is rendered 1`] = `
 <li
   aria-checked="false"
   class="euiSelectableListItem"
-  data-test-selected="false"
   role="option"
 >
   <span
@@ -265,7 +254,6 @@ exports[`EuiSelectableListItem props paddingSize s is rendered 1`] = `
 <li
   aria-checked="false"
   class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-  data-test-selected="false"
   role="option"
 >
   <span
@@ -286,7 +274,6 @@ exports[`EuiSelectableListItem props prepend 1`] = `
 <li
   aria-checked="false"
   class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-  data-test-selected="false"
   role="option"
 >
   <span
@@ -312,7 +299,6 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
 <li
   aria-checked="false"
   class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-  data-test-selected="false"
   role="option"
 >
   <span
@@ -329,7 +315,6 @@ exports[`EuiSelectableListItem props textWrap can be "wrap" 1`] = `
 <li
   aria-checked="false"
   class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-  data-test-selected="false"
   role="option"
 >
   <span
