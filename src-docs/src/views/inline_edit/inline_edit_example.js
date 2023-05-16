@@ -67,6 +67,22 @@ const inlineEditModeSaveSnippet = `<EuiInlineEditText
 import InlineEditValidation from './inline_edit_validation';
 const inlineEditValidationSource = require('!!raw-loader!././inline_edit_validation');
 
+import InlineEditReadOnly from './inline_edit_read_only';
+const InlineEditReadOnlySource = require('!!raw-loader!././inline_edit_read_only');
+const inlineEditReadOnlySnippet = `<EuiInlineEditText
+  inputAriaLabel="Edit text inline"
+  defaultValue="This is read only text!"
+  isReadOnly={isReadOnly}
+/>
+
+<EuiInlineEditTitle
+  inputAriaLabel="Edit title inline"
+  defaultValue="This is a read only title!"
+  heading="h3"
+  isReadOnly={isReadOnly}
+/>
+`;
+
 export const InlineEditExample = {
   title: 'Inline edit',
   intro: (
@@ -203,7 +219,7 @@ export const InlineEditExample = {
               properties
             </li>
             <li>
-              <EuiCode>editMode.inputRowProps</EuiCode> accepts any{' '}
+              <EuiCode>editMode.inputProps</EuiCode> accepts any{' '}
               <Link to="/forms/form-controls#text-field">
                 <strong>EuiFieldText</strong>
               </Link>{' '}
@@ -234,6 +250,26 @@ export const InlineEditExample = {
       ],
       demo: <InlineEditModeProps />,
       snippet: inlineEditModePropsSnippet,
+    },
+    {
+      title: 'Read only',
+      text: (
+        <>
+          <p>
+            Use the <EuiCode>isReadOnly</EuiCode> prop to lock{' '}
+            <EuiCode>EuiInlineEdit</EuiCode> in read mode and display the text
+            value. This does not affect the input form control in edit mode.
+          </p>
+        </>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: InlineEditReadOnlySource,
+        },
+      ],
+      demo: <InlineEditReadOnly />,
+      snippet: inlineEditReadOnlySnippet,
     },
   ],
 };
