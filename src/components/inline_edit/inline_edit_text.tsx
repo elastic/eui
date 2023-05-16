@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { useMemo, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { EuiText, EuiTextProps } from '../text';
 import {
@@ -34,7 +34,7 @@ export const EuiInlineEditText: FunctionComponent<EuiInlineEditTextProps> = ({
   defaultValue,
   inputAriaLabel,
   startWithEditOpen,
-  readModeProps,
+  readModeProps: _readModeProps,
   editModeProps,
   isLoading,
   isInvalid,
@@ -50,11 +50,14 @@ export const EuiInlineEditText: FunctionComponent<EuiInlineEditTextProps> = ({
   const isSmallSize = ['xs', 's'].includes(size);
   const sizes = isSmallSize ? SMALL_SIZE_FORM : MEDIUM_SIZE_FORM;
 
-  if (isReadOnly) {
-    readModeProps
-      ? (readModeProps.role = 'paragraph')
-      : (readModeProps = { role: 'paragraph' });
-  }
+  const readModeProps = useMemo(() => {
+    if (!isReadOnly) return _readModeProps;
+
+    return {
+      ..._readModeProps,
+      role: 'paragraph',
+    };
+  }, [_readModeProps, isReadOnly]);
 
   const formProps = {
     sizes,

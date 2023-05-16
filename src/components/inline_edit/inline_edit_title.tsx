@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { useMemo, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { EuiTitle, EuiTitleSize } from '../title';
 import {
@@ -41,7 +41,7 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
   defaultValue,
   inputAriaLabel,
   startWithEditOpen,
-  readModeProps,
+  readModeProps: _readModeProps,
   editModeProps,
   isLoading,
   isInvalid,
@@ -59,21 +59,21 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
   const isSmallSize = ['xxxs', 'xxs', 'xs', 's'].includes(size);
   const sizes = isSmallSize ? SMALL_SIZE_FORM : MEDIUM_SIZE_FORM;
 
-  // When the heading level is h1-h6, apply a role and aria-level
-  if (isReadOnly && heading !== 'span') {
+  const readModeProps = useMemo(() => {
+    if (!isReadOnly) return _readModeProps;
+
     const headingNumber = Number(heading.substring(1));
-    readModeProps
-      ? Object.assign(readModeProps, {
+    return headingNumber
+      ? {
+          ..._readModeProps,
           role: 'heading',
           'aria-level': headingNumber,
-        })
-      : (readModeProps = { role: 'heading', 'aria-level': headingNumber });
-    // Span elements should not be assigned an aria-level
-  } else if (isReadOnly) {
-    readModeProps
-      ? (readModeProps.role = 'paragraph')
-      : (readModeProps = { role: 'paragraph' });
-  }
+        }
+      : {
+          ..._readModeProps,
+          role: 'paragraph',
+        };
+  }, [_readModeProps, isReadOnly, heading]);
 
   const formProps = {
     sizes,
