@@ -209,7 +209,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
     }
   };
 
-  // If the state of isReadOnly changes while in edit mode, switch b
+  // If the state of isReadOnly changes while in edit mode, switch back to read mode
   useEffect(() => {
     if (isReadOnly) {
       setIsEditing(false);
