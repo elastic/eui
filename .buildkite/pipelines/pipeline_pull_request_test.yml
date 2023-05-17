@@ -4,4 +4,4 @@ steps:
   - label: ":hammer: EUI pull request test"
     agents:
       provider: "gcp"
-    command: scripts/pipeline_pull_request_test.sh
+    command: .buildkite/scripts/pipeline_pull_request_test.sh
