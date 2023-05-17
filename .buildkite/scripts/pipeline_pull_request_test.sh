@@ -11,5 +11,4 @@ docker run \
   && /opt/yarn*/bin/yarn \
   && yarn cypress install \
   && NODE_OPTIONS=\"--max-old-space-size=2048\" npm run test-ci \
-  && npm run build
-  EOF"
+  && npm run build"
