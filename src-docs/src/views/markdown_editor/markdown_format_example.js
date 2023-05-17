@@ -25,7 +25,6 @@ const markdownFormatSinkSource = require('!!raw-loader!./markdown_format_sink');
 
 export const MarkdownFormatExample = {
   title: 'Markdown format',
-  beta: true,
   intro: (
     <Fragment>
       <EuiText>

@@ -37,7 +37,6 @@ const dragAndDropComplexSource = require('!!raw-loader!./drag_and_drop_complex')
 
 export const DragAndDropExample = {
   title: 'Drag and drop',
-  beta: true,
   intro: (
     <React.Fragment>
       <EuiText>
