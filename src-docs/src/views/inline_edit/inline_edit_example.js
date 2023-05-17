@@ -73,15 +73,7 @@ const inlineEditReadOnlySnippet = `<EuiInlineEditText
   inputAriaLabel="Edit text inline"
   defaultValue="This is read only text!"
   isReadOnly={isReadOnly}
-/>
-
-<EuiInlineEditTitle
-  inputAriaLabel="Edit title inline"
-  defaultValue="This is a read only title!"
-  heading="h3"
-  isReadOnly={isReadOnly}
-/>
-`;
+/>`;
 
 export const InlineEditExample = {
   title: 'Inline edit',
