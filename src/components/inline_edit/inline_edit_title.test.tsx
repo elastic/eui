@@ -40,7 +40,7 @@ describe('EuiInlineEditTitle', () => {
   });
 
   test('isReadOnly', () => {
-    const { container, getByTestSubject, getByRole } = render(
+    const { container, getByTestSubject } = render(
       <EuiInlineEditTitle isReadOnly={true} {...inlineEditTitleProps} />
     );
 
@@ -50,7 +50,10 @@ describe('EuiInlineEditTitle', () => {
       'role',
       'heading'
     );
-    expect(getByRole('heading')).toHaveAttribute('aria-level', '1');
+    expect(getByTestSubject('euiInlineReadModeButton')).toHaveAttribute(
+      'aria-level',
+      '1'
+    );
   });
 
   describe('title sizes', () => {
