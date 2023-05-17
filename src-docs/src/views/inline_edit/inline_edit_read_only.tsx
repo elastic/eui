@@ -13,7 +13,7 @@ export default () => {
   return (
     <>
       <EuiSwitch
-        label="Toggle isReadOnly"
+        label="Toggle read only"
         checked={isReadOnly}
         onChange={(e) => setIsReadOnly(e.target.checked)}
       />
