@@ -115,7 +115,7 @@ export const EuiButton: FunctionComponent<Props> = (props) => {
   if (_color === 'ghost') {
     // INCEPTION: If `ghost`, re-implement with a wrapping dark mode theme provider
     return (
-      <EuiThemeProvider colorMode="dark">
+      <EuiThemeProvider colorMode="dark" wrapperProps={{ cloneElement: true }}>
         <EuiButton {...props} color="text" />
       </EuiThemeProvider>
     );

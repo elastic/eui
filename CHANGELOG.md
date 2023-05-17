@@ -1,3 +1,20 @@
+## [`80.0.0`](https://github.com/elastic/eui/tree/v80.0.0)
+
+- Improved the contrast ratio of meta labels within `EuiSelectableTemplateSitewide` to meet WCAG AA guidelines. ([#6761](https://github.com/elastic/eui/pull/6761))
+- Added `vulnerabilityManagementApp` glyph to `EuiIcon` ([#6762](https://github.com/elastic/eui/pull/6762))
+- Added `logoVulnerabilityManagement` icon to `EuiIcon` ([#6763](https://github.com/elastic/eui/pull/6763))
+- Added `onPanelChange` callback to `EuiContextMenu` to provide consumer access to `panelId` and `direction`. ([#6767](https://github.com/elastic/eui/pull/6767))
+
+**Bug fixes**
+
+- Fixed `EuiComboBox` so `append` and `prepend` icon buttons are full height and vertically centered. ([#6766](https://github.com/elastic/eui/pull/6766))
+- Improved the uniformity of dropdown components by hiding the dropdown icon of disabled `EuiComboBox`s. ([#6768](https://github.com/elastic/eui/pull/6768))
+
+**Breaking changes**
+
+- `EuiFieldNumber` now defaults the `step` prop to `"any"` ([#6760](https://github.com/elastic/eui/pull/6760))
+- EUI now globally resets a default Chromium browser style that was decreasing the opacity of disabled `select` items. ([#6768](https://github.com/elastic/eui/pull/6768))
+
 ## [`79.0.1`](https://github.com/elastic/eui/tree/v79.0.1)
 
 **Bug fixes**

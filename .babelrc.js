@@ -23,7 +23,6 @@ module.exports = {
     ],
   ],
   "plugins": [
-    "@babel/plugin-syntax-dynamic-import",
     `${__dirname}/scripts/babel/proptypes-from-ts-props`,
     "add-module-exports",
     // stage 3
