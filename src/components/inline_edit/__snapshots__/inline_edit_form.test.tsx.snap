@@ -649,7 +649,7 @@ exports[`EuiInlineEditForm Read Mode isReadOnly 1`] = `
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--flushBoth css-wxssql-empty-disabled-euiInlineEditButton-isReadOnly"
+    class="euiButtonEmpty euiButtonEmpty--flushBoth css-19hs4ci-empty-disabled-euiInlineEditButton-isReadOnly"
     data-test-subj="euiInlineReadModeButton"
     disabled=""
     type="button"

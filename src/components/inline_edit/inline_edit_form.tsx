@@ -343,6 +343,8 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   );
 
   return (
-    <div className={classes}>{isEditing ? editModeForm : readModeElement}</div>
+    <div className={classes}>
+      {isEditing && !isReadOnly ? editModeForm : readModeElement}
+    </div>
   );
 };

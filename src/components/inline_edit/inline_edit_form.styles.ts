@@ -14,6 +14,7 @@ export const euiInlineEditFormStyles = ({ euiTheme }: UseEuiTheme) => {
     euiInlineEditButton: css``,
 
     // Override the cursor and allow users to highlight text when read mode is in the read only state
+    // Once EuiEmptyButton has been converted to Emotion, remove this extra selector
     isReadOnly: css`
       &.euiButtonEmpty:disabled {
         cursor: text;

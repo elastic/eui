@@ -38,7 +38,11 @@ describe('EuiInlineEditForm', () => {
 
     test('isReadOnly', () => {
       const { container, getByTestSubject } = render(
-        <EuiInlineEditForm isReadOnly={true} {...commonInlineEditFormProps} />
+        <EuiInlineEditForm
+          isReadOnly={true}
+          startWithEditOpen={true}
+          {...commonInlineEditFormProps}
+        />
       );
 
       expect(container.firstChild).toMatchSnapshot();
