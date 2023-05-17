@@ -11,6 +11,7 @@ import React, {
   FunctionComponent,
   useState,
   useRef,
+  useEffect,
   HTMLAttributes,
   MouseEvent,
   KeyboardEvent,
@@ -208,6 +209,13 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
     }
   };
 
+  // If the state of isReadOnly changes while in edit mode, switch b
+  useEffect(() => {
+    if (isReadOnly) {
+      setIsEditing(false);
+    }
+  }, [isReadOnly]);
+
   const editModeForm = (
     <EuiFlexGroup gutterSize="s">
       <EuiFlexItem>
@@ -343,8 +351,6 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   );
 
   return (
-    <div className={classes}>
-      {isEditing && !isReadOnly ? editModeForm : readModeElement}
-    </div>
+    <div className={classes}>{isEditing ? editModeForm : readModeElement}</div>
   );
 };
