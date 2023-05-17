@@ -1,19 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiPortal is rendered 1`] = `
-<div>
-  <EuiPortal>
-    <Portal
-      containerInfo={
-        <div
-          data-euiportal="true"
-        >
-          Content
-        </div>
-      }
-    >
-      Content
-    </Portal>
-  </EuiPortal>
-</div>
+exports[`EuiPortal renders 1`] = `
+<body>
+  <div />
+  <div
+    data-euiportal="true"
+  >
+    Content
+  </div>
+</body>
+`;
+
+exports[`EuiPortal renders portals with a different theme provider from the global theme with the correct base color 1`] = `
+<body>
+  <div>
+    <span
+      class="euiThemeProvider emotion-euiColorMode-inverse-colorClassName"
+    />
+  </div>
+  <div
+    class="emotion-euiColorMode-inverse-colorClassName"
+    data-euiportal="true"
+  >
+    Content
+  </div>
+</body>
 `;
