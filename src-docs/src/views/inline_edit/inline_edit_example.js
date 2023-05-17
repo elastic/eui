@@ -193,6 +193,26 @@ export const InlineEditExample = {
       demo: <InlineEditValidation />,
     },
     {
+      title: 'Read only',
+      text: (
+        <>
+          <p>
+            Use the <EuiCode>isReadOnly</EuiCode> prop to lock{' '}
+            <EuiCode>EuiInlineEdit</EuiCode> in read mode and display the text
+            value. This does not affect the input form control in edit mode.
+          </p>
+        </>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: InlineEditReadOnlySource,
+        },
+      ],
+      demo: <InlineEditReadOnly />,
+      snippet: inlineEditReadOnlySnippet,
+    },
+    {
       title: 'Customizing read and edit modes',
       text: (
         <>
@@ -250,26 +270,6 @@ export const InlineEditExample = {
       ],
       demo: <InlineEditModeProps />,
       snippet: inlineEditModePropsSnippet,
-    },
-    {
-      title: 'Read only',
-      text: (
-        <>
-          <p>
-            Use the <EuiCode>isReadOnly</EuiCode> prop to lock{' '}
-            <EuiCode>EuiInlineEdit</EuiCode> in read mode and display the text
-            value. This does not affect the input form control in edit mode.
-          </p>
-        </>
-      ),
-      source: [
-        {
-          type: GuideSectionTypes.TSX,
-          code: InlineEditReadOnlySource,
-        },
-      ],
-      demo: <InlineEditReadOnly />,
-      snippet: inlineEditReadOnlySnippet,
     },
   ],
 };
