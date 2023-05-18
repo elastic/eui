@@ -73,10 +73,13 @@ metadata:
       url: "https://buildkite.com/elastic/eui-pull-request-test",
     }
   ]
+  # Pull request test - only run when code is pushed to feature/buildkite-migration branch. For now.
   provider_settings: {
-    build_pull_requests: false,
-    filter_enabled: true,
-    filter_condition: build.pull_request.base_branch == "feature/buildkite-migration"
+    build_branches                            = false
+    build_tags                                = false
+    build_pull_requests                       = true
+    pull_request_branch_filter_enabled        = true
+    pull_request_branch_filter_configuration  = build.pull_request.base_branch == "feature/buildkite-migration"
   }
       
 spec:
