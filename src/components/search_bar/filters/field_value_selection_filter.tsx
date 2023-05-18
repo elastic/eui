@@ -247,7 +247,7 @@ export class FieldValueSelectionFilter extends Component<
   onOptionClick(
     field: string,
     value: Value,
-    checked: Omit<EuiSelectableOptionCheckedType, 'mixed'> | undefined
+    checked?: Omit<EuiSelectableOptionCheckedType, 'mixed'>
   ) {
     const multiSelect = this.resolveMultiSelect();
     const {
