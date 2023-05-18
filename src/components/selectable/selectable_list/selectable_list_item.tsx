@@ -174,75 +174,104 @@ export class EuiSelectableListItem extends Component<
     }
 
     let state: React.ReactNode;
-    let instruction: React.ReactNode;
-    if (allowExclusions) {
-      switch (checked) {
-        case 'on':
-          state = (
-            <EuiI18n
-              token="euiSelectableListItem.includedOption"
-              default="Checked option."
-            />
-          );
-          instruction = (
-            <EuiI18n
-              token="euiSelectableListItem.includedOptionInstructions"
-              default="To exclude this option, press Enter."
-            />
-          );
-          break;
-        case 'off':
-          state = (
-            <EuiI18n
-              token="euiSelectableListItem.excludedOption"
-              default="Excluded option."
-            />
-          );
-          instruction = (
-            <EuiI18n
-              token="euiSelectableListItem.excludedOptionInstructions"
-              default="To uncheck this option, press Enter."
-            />
-          );
-          break;
-        case 'mixed':
-          state = (
-            <EuiI18n
-              token="euiSelectableListItem.mixedOption"
-              default="Mixed (indeterminate) option."
-            />
-          );
-          instruction = (
-            <EuiI18n
-              token="euiSelectableListItem.mixedOptionInstructions"
-              default="To check this option for all, press Enter once. To exclude this option for all, press Enter twice."
-            />
-          );
-          break;
-        case undefined:
-        default:
-          instruction = (
-            <EuiI18n
-              token="euiSelectableListItem.uncheckedOptionInstructions"
-              default="To check this option, press Enter."
-            />
-          );
-      }
-    } else {
-      if (this.isChecked(checked)) {
-        state = (
+    let instructions: React.ReactNode;
+    const screenReaderStrings = {
+      checked: {
+        state: (
           <EuiI18n
             token="euiSelectableListItem.checkedOption"
             default="Checked option."
           />
-        );
-        instruction = searchable ? (
+        ),
+        instructions: (
           <EuiI18n
-            token="euiSelectableListItem.checkedOptionInstructions"
+            token="euiSelectableListItem.checkOptionInstructions"
+            default="To check this option, press Enter."
+          />
+        ),
+      },
+      unchecked: {
+        instructions: (
+          <EuiI18n
+            token="euiSelectableListItem.uncheckOptionInstructions"
             default="To uncheck this option, press Enter."
           />
-        ) : undefined;
-      }
+        ),
+      },
+      excluded: {
+        state: (
+          <EuiI18n
+            token="euiSelectableListItem.excludedOption"
+            default="Excluded option."
+          />
+        ),
+        instructions: (
+          <EuiI18n
+            token="euiSelectableListItem.excludeOptionInstructions"
+            default="To exclude this option, press Enter."
+          />
+        ),
+      },
+      mixed: {
+        state: (
+          <EuiI18n
+            token="euiSelectableListItem.mixedOption"
+            default="Mixed (indeterminate) option."
+          />
+        ),
+        instructions: (
+          <EuiI18n
+            token="euiSelectableListItem.mixedOptionInstructions"
+            default="To check this option for all, press Enter once."
+          />
+        ),
+        uncheckInstructions: (
+          <EuiI18n
+            token="euiSelectableListItem.mixedOptionUncheckInstructions"
+            default="To uncheck this option for all, press Enter twice."
+          />
+        ),
+        excludeInstructions: (
+          <EuiI18n
+            token="euiSelectableListItem.mixedOptionExcludeInstructions"
+            default="To exclude this option for all, press Enter twice."
+          />
+        ),
+      },
+    };
+
+    switch (checked) {
+      case 'on':
+        state = screenReaderStrings.checked.state;
+        // eslint-disable-next-line no-nested-ternary
+        instructions = allowExclusions
+          ? screenReaderStrings.excluded.instructions
+          : searchable
+          ? screenReaderStrings.unchecked.instructions
+          : undefined;
+        break;
+      case 'off':
+        state = screenReaderStrings.excluded.state;
+        instructions = screenReaderStrings.unchecked.instructions;
+        break;
+      case 'mixed':
+        state = screenReaderStrings.mixed.state;
+        instructions = (
+          <>
+            {screenReaderStrings.mixed.instructions}{' '}
+            {allowExclusions
+              ? screenReaderStrings.mixed.excludeInstructions
+              : screenReaderStrings.mixed.uncheckInstructions}
+          </>
+        );
+        break;
+      case undefined:
+      default:
+        instructions =
+          allowExclusions || searchable
+            ? screenReaderStrings.checked.instructions
+            : undefined;
+        break;
     }
 
     let prependNode: React.ReactNode;
@@ -295,13 +324,13 @@ export class EuiSelectableListItem extends Component<
       }
     }
 
-    const instructions = (instruction || state) && (
+    const screenReaderText = (state || instructions) && (
       <EuiScreenReaderOnly>
         <div>
-          {state || instruction ? ' - ' : null}
+          {state || instructions ? '. ' : null}
           {state}
-          {state && instruction ? ' ' : null}
-          {instruction}
+          {state && instructions ? ' ' : null}
+          {instructions}
         </div>
       </EuiScreenReaderOnly>
     );
@@ -320,7 +349,7 @@ export class EuiSelectableListItem extends Component<
           {prependNode}
           <span className={textClasses}>
             {children}
-            {instructions}
+            {screenReaderText}
           </span>
           {appendNode}
         </span>

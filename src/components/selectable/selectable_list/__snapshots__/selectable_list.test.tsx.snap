@@ -801,7 +801,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <div
                 class="emotion-euiScreenReaderOnly"
               >
-                 - 
+                . 
                 To check this option, press Enter.
               </div>
             </span>
@@ -834,7 +834,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <div
                 class="emotion-euiScreenReaderOnly"
               >
-                 - 
+                . 
                 To check this option, press Enter.
               </div>
             </span>
@@ -867,7 +867,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <div
                 class="emotion-euiScreenReaderOnly"
               >
-                 - 
+                . 
                 To check this option, press Enter.
               </div>
             </span>
@@ -900,7 +900,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <div
                 class="emotion-euiScreenReaderOnly"
               >
-                 - 
+                . 
                 To check this option, press Enter.
               </div>
             </span>
@@ -933,7 +933,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <div
                 class="emotion-euiScreenReaderOnly"
               >
-                 - 
+                . 
                 To check this option, press Enter.
               </div>
             </span>
@@ -966,7 +966,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <div
                 class="emotion-euiScreenReaderOnly"
               >
-                 - 
+                . 
                 To check this option, press Enter.
               </div>
             </span>
@@ -2934,6 +2934,12 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
               <span>
                 Titan
               </span>
+              <div
+                class="emotion-euiScreenReaderOnly"
+              >
+                . 
+                To check this option, press Enter.
+              </div>
             </span>
           </span>
         </li>
@@ -2961,6 +2967,12 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
               <span>
                 Enceladus
               </span>
+              <div
+                class="emotion-euiScreenReaderOnly"
+              >
+                . 
+                To check this option, press Enter.
+              </div>
             </span>
           </span>
         </li>
@@ -2988,6 +3000,12 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
               <span>
                 Mimas
               </span>
+              <div
+                class="emotion-euiScreenReaderOnly"
+              >
+                . 
+                To check this option, press Enter.
+              </div>
             </span>
           </span>
         </li>
@@ -3015,6 +3033,12 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
               <span>
                 Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
               </span>
+              <div
+                class="emotion-euiScreenReaderOnly"
+              >
+                . 
+                To check this option, press Enter.
+              </div>
             </span>
           </span>
         </li>
@@ -3042,6 +3066,12 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
               <span>
                 Tethys
               </span>
+              <div
+                class="emotion-euiScreenReaderOnly"
+              >
+                . 
+                To check this option, press Enter.
+              </div>
             </span>
           </span>
         </li>
@@ -3069,6 +3099,12 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
               <span>
                 Hyperion
               </span>
+              <div
+                class="emotion-euiScreenReaderOnly"
+              >
+                . 
+                To check this option, press Enter.
+              </div>
             </span>
           </span>
         </li>

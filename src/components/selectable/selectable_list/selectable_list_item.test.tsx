@@ -21,22 +21,41 @@ describe('EuiSelectableListItem', () => {
 
   describe('props', () => {
     describe('checked', () => {
-      test('on', () => {
-        const { container } = render(<EuiSelectableListItem checked="on" />);
+      const checkedValues = ['on', 'mixed', undefined] as const;
 
-        expect(container.firstChild).toMatchSnapshot();
+      checkedValues.forEach((value) => {
+        test(`${value}`, () => {
+          const { container } = render(
+            <EuiSelectableListItem checked={value} />
+          );
+          expect(container.firstChild).toMatchSnapshot();
+        });
       });
 
-      test('off', () => {
-        const { container } = render(<EuiSelectableListItem checked="off" />);
+      const exclusionCheckedValues = ['on', 'off', 'mixed', undefined] as const;
 
-        expect(container.firstChild).toMatchSnapshot();
+      describe('& allowExclusions', () => {
+        exclusionCheckedValues.forEach((value) => {
+          test(`${value}`, () => {
+            const { container } = render(
+              <EuiSelectableListItem allowExclusions checked={value} />
+            );
+            expect(container.firstChild).toMatchSnapshot();
+          });
+        });
       });
 
-      test('mixed', () => {
-        const { container } = render(<EuiSelectableListItem checked="mixed" />);
+      const searchableCheckedValues = ['on', undefined] as const;
 
-        expect(container.firstChild).toMatchSnapshot();
+      describe('& searchable', () => {
+        searchableCheckedValues.forEach((value) => {
+          test(`${value}`, () => {
+            const { container } = render(
+              <EuiSelectableListItem searchable checked={value} />
+            );
+            expect(container.firstChild).toMatchSnapshot();
+          });
+        });
       });
     });
 
