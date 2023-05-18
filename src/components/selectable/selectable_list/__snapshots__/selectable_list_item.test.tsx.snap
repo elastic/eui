@@ -131,6 +131,7 @@ exports[`EuiSelectableListItem props checked is on 1`] = `
 
 exports[`EuiSelectableListItem props disabled 1`] = `
 <li
+  aria-checked="false"
   aria-disabled="true"
   aria-selected="false"
   class="euiSelectableListItem euiSelectableListItem--paddingSmall"

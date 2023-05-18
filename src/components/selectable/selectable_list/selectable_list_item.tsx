@@ -75,8 +75,8 @@ export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
     searchable?: boolean;
     /**
      * Attribute applied the option `<li>`.
-     * If configured to something besides the default value of `option`,
-     * other ARIA attributes such as `aria-checked` will not be automatically configured.
+     * If set to a role that allows [aria-checked](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-checked),
+     * `aria-checked` will be automatically configured.
      */
     role?: LiHTMLAttributes<HTMLLIElement>['role'];
     /**
@@ -104,14 +104,26 @@ export class EuiSelectableListItem extends Component<
   // the MDN documentation lists it as a possibility for role="option".
   // See https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-checked
   // and https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/option_role
-  isChecked = (checked: EuiSelectableOptionCheckedType) => {
-    if (this.props.disabled) return undefined;
+  isChecked = (role: string, checked: EuiSelectableOptionCheckedType) => {
+    const rolesThatCanBeMixed = ['option', 'checkbox', 'menuitemcheckbox'];
+    const rolesThatCanBeChecked = [
+      ...rolesThatCanBeMixed,
+      'radio',
+      'menuitemradio',
+      'switch',
+    ];
+    if (!rolesThatCanBeChecked.includes(role)) return undefined;
+
     switch (checked) {
       case 'on':
       case 'off':
         return true;
       case 'mixed':
-        return 'mixed';
+        if (rolesThatCanBeMixed.includes(role)) {
+          return 'mixed';
+        } else {
+          return false;
+        }
       default:
         return false;
     }
@@ -297,10 +309,10 @@ export class EuiSelectableListItem extends Component<
     return (
       <li
         role={role}
-        aria-checked={role === 'option' ? this.isChecked(checked) : undefined} // Whether the item is "checked"
+        aria-disabled={disabled}
+        aria-checked={this.isChecked(role, checked)} // Whether the item is "checked"
         aria-selected={!disabled && isFocused} // Whether the item has keyboard focus per W3 spec
         className={classes}
-        aria-disabled={disabled}
         {...rest}
       >
         <span className="euiSelectableListItem__content">
