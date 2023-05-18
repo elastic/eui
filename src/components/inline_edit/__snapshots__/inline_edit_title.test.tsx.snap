@@ -33,7 +33,7 @@ exports[`EuiInlineEditTitle renders 1`] = `
     hidden=""
     id="inlineEdit_generated-id"
   >
-    Click this button to edit this text inline.
+    Click to edit this text inline.
   </span>
 </div>
 `;
@@ -71,7 +71,7 @@ exports[`EuiInlineEditTitle title sizes renders size l 1`] = `
     hidden=""
     id="inlineEdit_generated-id"
   >
-    Click this button to edit this text inline.
+    Click to edit this text inline.
   </span>
 </div>
 `;
@@ -109,7 +109,7 @@ exports[`EuiInlineEditTitle title sizes renders size m 1`] = `
     hidden=""
     id="inlineEdit_generated-id"
   >
-    Click this button to edit this text inline.
+    Click to edit this text inline.
   </span>
 </div>
 `;
@@ -147,7 +147,7 @@ exports[`EuiInlineEditTitle title sizes renders size s 1`] = `
     hidden=""
     id="inlineEdit_generated-id"
   >
-    Click this button to edit this text inline.
+    Click to edit this text inline.
   </span>
 </div>
 `;
@@ -185,7 +185,7 @@ exports[`EuiInlineEditTitle title sizes renders size xs 1`] = `
     hidden=""
     id="inlineEdit_generated-id"
   >
-    Click this button to edit this text inline.
+    Click to edit this text inline.
   </span>
 </div>
 `;
@@ -223,7 +223,7 @@ exports[`EuiInlineEditTitle title sizes renders size xxs 1`] = `
     hidden=""
     id="inlineEdit_generated-id"
   >
-    Click this button to edit this text inline.
+    Click to edit this text inline.
   </span>
 </div>
 `;
@@ -261,7 +261,7 @@ exports[`EuiInlineEditTitle title sizes renders size xxxs 1`] = `
     hidden=""
     id="inlineEdit_generated-id"
   >
-    Click this button to edit this text inline.
+    Click to edit this text inline.
   </span>
 </div>
 `;
