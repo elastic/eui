@@ -11,6 +11,7 @@ import React, {
   FunctionComponent,
   useState,
   useRef,
+  useEffect,
   HTMLAttributes,
   MouseEvent,
   KeyboardEvent,
@@ -33,6 +34,7 @@ import { EuiSkeletonLoading, EuiSkeletonRectangle } from '../skeleton';
 import { useEuiTheme, useCombinedRefs, keys } from '../../services';
 import { EuiI18n, useEuiI18n } from '../i18n';
 import { useGeneratedHtmlId } from '../../services/accessibility';
+import { euiInlineEditFormStyles } from './inline_edit_form.styles';
 
 // Props shared between the internal form component as well as consumer-facing components
 export type EuiInlineEditCommonProps = HTMLAttributes<HTMLDivElement> &
@@ -80,6 +82,10 @@ export type EuiInlineEditCommonProps = HTMLAttributes<HTMLDivElement> &
      * Invalid state - only displayed edit mode
      */
     isInvalid?: boolean;
+    /**
+     * Locks inline edit in read mode and displays the text value
+     */
+    isReadOnly?: boolean;
   };
 
 // Internal-only props, passed by the consumer-facing components
@@ -122,10 +128,18 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   isLoading = false,
   isInvalid,
   onSave,
+  isReadOnly,
 }) => {
   const classes = classNames('euiInlineEdit', className);
 
   const euiTheme = useEuiTheme();
+
+  const styles = euiInlineEditFormStyles(euiTheme);
+  const readOnlyStyles = [
+    styles.euiInlineEditButton,
+    isReadOnly && styles.isReadOnly,
+  ];
+
   const { controlHeight, controlCompressedHeight } = euiFormVariables(euiTheme);
   const loadingSkeletonSize = sizes.compressed
     ? controlCompressedHeight
@@ -195,6 +209,13 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
     }
   };
 
+  // If the state of isReadOnly changes while in edit mode, switch back to read mode
+  useEffect(() => {
+    if (isReadOnly) {
+      setIsEditing(false);
+    }
+  }, [isReadOnly]);
+
   const editModeForm = (
     <EuiFlexGroup gutterSize="s">
       <EuiFlexItem>
@@ -228,11 +249,14 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
             )}
           />
         </EuiFormRow>
+
         <span id={editModeDescribedById} hidden>
-          <EuiI18n
-            token="euiInlineEditForm.inputKeyboardInstructions"
-            default="Press Enter to save your edited text. Press Escape to cancel your edit."
-          />
+          {!isReadOnly && (
+            <EuiI18n
+              token="euiInlineEditForm.inputKeyboardInstructions"
+              default="Press Enter to save your edited text. Press Escape to cancel your edit."
+            />
+          )}
         </span>
       </EuiFlexItem>
 
@@ -296,12 +320,14 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
     <>
       <EuiButtonEmpty
         color="text"
-        iconType="pencil"
+        iconType={isReadOnly ? undefined : 'pencil'}
         iconSide="right"
         flush="both"
         iconSize={sizes.iconSize}
         size={sizes.buttonSize}
         data-test-subj="euiInlineReadModeButton"
+        disabled={isReadOnly}
+        css={readOnlyStyles}
         {...readModeProps}
         buttonRef={setReadModeRefs}
         aria-describedby={classNames(

@@ -36,6 +36,20 @@ describe('EuiInlineEditForm', () => {
       expect(container.firstChild).toMatchSnapshot();
     });
 
+    test('isReadOnly', () => {
+      const { container, getByTestSubject } = render(
+        <EuiInlineEditForm
+          isReadOnly={true}
+          startWithEditOpen={true}
+          {...commonInlineEditFormProps}
+        />
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+
+      expect(getByTestSubject('euiInlineReadModeButton')).toBeDisabled();
+    });
+
     test('readModeProps', () => {
       const { container, getByTestSubject } = render(
         <EuiInlineEditForm

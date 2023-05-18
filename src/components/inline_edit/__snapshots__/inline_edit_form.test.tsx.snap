@@ -643,13 +643,43 @@ exports[`EuiInlineEditForm Edit Mode renders 1`] = `
 </div>
 `;
 
+exports[`EuiInlineEditForm Read Mode isReadOnly 1`] = `
+<div
+  class="euiInlineEdit testClass1 testClass2"
+>
+  <button
+    aria-describedby="inlineEdit_generated-id"
+    class="euiButtonEmpty euiButtonEmpty--flushBoth css-19hs4ci-empty-disabled-euiInlineEditButton-isReadOnly"
+    data-test-subj="euiInlineReadModeButton"
+    disabled=""
+    type="button"
+  >
+    <span
+      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    >
+      <span
+        class="euiButtonEmpty__text"
+      >
+        Hello World!
+      </span>
+    </span>
+  </button>
+  <span
+    hidden=""
+    id="inlineEdit_generated-id"
+  >
+    Click this button to edit this text inline.
+  </span>
+</div>
+`;
+
 exports[`EuiInlineEditForm Read Mode readModeProps 1`] = `
 <div
   class="euiInlineEdit testClass1 testClass2"
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--flushBoth css-9t7nyf-empty-primary"
+    class="euiButtonEmpty euiButtonEmpty--flushBoth css-ioyorl-empty-primary-euiInlineEditButton"
     data-test-subj="euiInlineReadModeButton"
     type="button"
   >
@@ -683,7 +713,7 @@ exports[`EuiInlineEditForm Read Mode renders 1`] = `
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--flushBoth css-wvaqcf-empty-text"
+    class="euiButtonEmpty euiButtonEmpty--flushBoth css-gj4z04-empty-text-euiInlineEditButton"
     data-test-subj="euiInlineReadModeButton"
     type="button"
   >
@@ -717,7 +747,7 @@ exports[`EuiInlineEditForm Read Mode sizes 1`] = `
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-wvaqcf-empty-text"
+    class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-gj4z04-empty-text-euiInlineEditButton"
     data-test-subj="euiInlineReadModeButton"
     type="button"
   >

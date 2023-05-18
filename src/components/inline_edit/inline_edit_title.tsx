@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { useMemo, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { EuiTitle, EuiTitleSize } from '../title';
 import {
@@ -41,10 +41,11 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
   defaultValue,
   inputAriaLabel,
   startWithEditOpen,
-  readModeProps,
+  readModeProps: _readModeProps,
   editModeProps,
   isLoading,
   isInvalid,
+  isReadOnly,
   ...rest
 }) => {
   const classes = classNames('euiInlineEditTitle', className);
@@ -58,6 +59,22 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
   const isSmallSize = ['xxxs', 'xxs', 'xs', 's'].includes(size);
   const sizes = isSmallSize ? SMALL_SIZE_FORM : MEDIUM_SIZE_FORM;
 
+  const readModeProps = useMemo(() => {
+    if (!isReadOnly) return _readModeProps;
+
+    const headingNumber = Number(heading.substring(1));
+    return headingNumber
+      ? {
+          ..._readModeProps,
+          role: 'heading',
+          'aria-level': headingNumber,
+        }
+      : {
+          ..._readModeProps,
+          role: 'paragraph',
+        };
+  }, [_readModeProps, isReadOnly, heading]);
+
   const formProps = {
     sizes,
     defaultValue,
@@ -67,6 +84,7 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
     editModeProps,
     isLoading,
     isInvalid,
+    isReadOnly,
   };
 
   return (

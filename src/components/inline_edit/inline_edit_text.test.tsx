@@ -28,6 +28,19 @@ describe('EuiInlineEditText', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
+  test('isReadOnly', () => {
+    const { container, getByTestSubject } = render(
+      <EuiInlineEditText isReadOnly={true} {...inlineEditTextProps} />
+    );
+
+    expect(container.firstChild).toMatchSnapshot();
+
+    expect(getByTestSubject('euiInlineReadModeButton')).toHaveAttribute(
+      'role',
+      'paragraph'
+    );
+  });
+
   describe('text sizes', () => {
     // Remove 'relative' from text sizes available for EuiInlineEditText
     const availableTextSizes = TEXT_SIZES.filter((size) => size !== 'relative');
