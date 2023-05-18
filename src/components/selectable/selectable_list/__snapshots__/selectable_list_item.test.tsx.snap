@@ -48,7 +48,7 @@ exports[`EuiSelectableListItem props append 1`] = `
 </li>
 `;
 
-exports[`EuiSelectableListItem props checked is mixed 1`] = `
+exports[`EuiSelectableListItem props checked mixed 1`] = `
 <li
   aria-checked="mixed"
   class="euiSelectableListItem euiSelectableListItem--paddingSmall"
@@ -75,7 +75,7 @@ exports[`EuiSelectableListItem props checked is mixed 1`] = `
 </li>
 `;
 
-exports[`EuiSelectableListItem props checked is off 1`] = `
+exports[`EuiSelectableListItem props checked off 1`] = `
 <li
   aria-checked="true"
   class="euiSelectableListItem euiSelectableListItem--paddingSmall"
@@ -102,7 +102,7 @@ exports[`EuiSelectableListItem props checked is off 1`] = `
 </li>
 `;
 
-exports[`EuiSelectableListItem props checked is on 1`] = `
+exports[`EuiSelectableListItem props checked on 1`] = `
 <li
   aria-checked="true"
   class="euiSelectableListItem euiSelectableListItem--paddingSmall"

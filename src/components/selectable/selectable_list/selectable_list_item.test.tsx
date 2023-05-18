@@ -7,96 +7,131 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { render } from '../../../test/rtl';
 import { requiredProps } from '../../../test/required_props';
 
 import { EuiSelectableListItem, PADDING_SIZES } from './selectable_list_item';
 
 describe('EuiSelectableListItem', () => {
   test('is rendered', () => {
-    const component = render(<EuiSelectableListItem {...requiredProps} />);
+    const { container } = render(<EuiSelectableListItem {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
-    test('checked is on', () => {
-      const component = render(<EuiSelectableListItem checked="on" />);
+    describe('checked', () => {
+      test('on', () => {
+        const { container } = render(<EuiSelectableListItem checked="on" />);
 
-      expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
+      });
+
+      test('off', () => {
+        const { container } = render(<EuiSelectableListItem checked="off" />);
+
+        expect(container.firstChild).toMatchSnapshot();
+      });
+
+      test('mixed', () => {
+        const { container } = render(<EuiSelectableListItem checked="mixed" />);
+
+        expect(container.firstChild).toMatchSnapshot();
+      });
     });
 
-    test('checked is off', () => {
-      const component = render(<EuiSelectableListItem checked="off" />);
+    describe('role and aria-checked behavior', () => {
+      it('automatically handles `aria-checked` state for valid roles', () => {
+        const { getByRole } = render(
+          <EuiSelectableListItem role="menuitemcheckbox" checked="on" />
+        );
 
-      expect(component).toMatchSnapshot();
-    });
+        expect(getByRole('menuitemcheckbox')).toHaveAttribute(
+          'aria-checked',
+          'true'
+        );
+      });
 
-    test('checked is mixed', () => {
-      const component = render(<EuiSelectableListItem checked="mixed" />);
+      it('does not render `aria-checked` for roles that cannot be checked', () => {
+        const { getByRole } = render(
+          <EuiSelectableListItem role="button" checked="on" />
+        );
 
-      expect(component).toMatchSnapshot();
+        expect(getByRole('button')).not.toHaveAttribute('aria-checked');
+      });
+
+      it('does not set `aria-checked="mixed"` for roles that cannot be mixed', () => {
+        const { getByRole } = render(
+          <EuiSelectableListItem role="radio" checked="mixed" />
+        );
+
+        expect(getByRole('radio')).toHaveAttribute('aria-checked', 'false');
+      });
     });
 
     test('showIcons can be turned off', () => {
-      const component = render(<EuiSelectableListItem showIcons={false} />);
+      const { container } = render(<EuiSelectableListItem showIcons={false} />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('isFocused', () => {
-      const component = render(<EuiSelectableListItem isFocused />);
+      const { container } = render(<EuiSelectableListItem isFocused />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('disabled', () => {
-      const component = render(<EuiSelectableListItem disabled />);
+      const { container } = render(<EuiSelectableListItem disabled />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('prepend', () => {
-      const component = render(<EuiSelectableListItem prepend={<span />} />);
+      const { container } = render(
+        <EuiSelectableListItem prepend={<span />} />
+      );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('append', () => {
-      const component = render(<EuiSelectableListItem append={<span />} />);
+      const { container } = render(<EuiSelectableListItem append={<span />} />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     describe('paddingSize', () => {
       PADDING_SIZES.forEach((size) => {
         test(`${size} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiSelectableListItem paddingSize={size} />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
 
     describe('textWrap', () => {
       test('can be "wrap"', () => {
-        const component = render(<EuiSelectableListItem textWrap="wrap" />);
+        const { container } = render(<EuiSelectableListItem textWrap="wrap" />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('onFocusBadge', () => {
       test('can be true', () => {
-        const component = render(<EuiSelectableListItem onFocusBadge={true} />);
+        const { container } = render(
+          <EuiSelectableListItem onFocusBadge={true} />
+        );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('can be custom', () => {
-        const component = render(
+        const { container } = render(
           <EuiSelectableListItem
             onFocusBadge={{
               children: 'Custom',
@@ -105,7 +140,7 @@ describe('EuiSelectableListItem', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });
