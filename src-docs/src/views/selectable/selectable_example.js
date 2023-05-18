@@ -229,7 +229,7 @@ export const SelectableExample = {
       props,
       demo: <SelectableExclusion />,
       snippet: `<EuiSelectable
-  aria-label="Example supporting mixed (indeterminate) options"
+  aria-label="Example supporting exclusions"
   options={[]}
   onChange={newOptions => setOptions(newOptions)}
   allowExclusions
@@ -266,7 +266,7 @@ export const SelectableExample = {
       props,
       demo: <SelectableMixed />,
       snippet: `<EuiSelectable
-  aria-label="Example with mixed option"
+  aria-label="Example supporting mixed (indeterminate) options"
   options={[{ label: '', checked: 'mixed' }]}
   onChange={newOptions => setOptions(newOptions)}
 >
