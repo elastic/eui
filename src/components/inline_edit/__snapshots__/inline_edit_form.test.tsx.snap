@@ -672,7 +672,7 @@ exports[`EuiInlineEditForm Read Mode readModeProps 1`] = `
     hidden=""
     id="inlineEdit_generated-id"
   >
-    Click this button to edit this text inline.
+    Click to edit this text inline.
   </span>
 </div>
 `;
@@ -706,7 +706,7 @@ exports[`EuiInlineEditForm Read Mode renders 1`] = `
     hidden=""
     id="inlineEdit_generated-id"
   >
-    Click this button to edit this text inline.
+    Click to edit this text inline.
   </span>
 </div>
 `;
@@ -740,7 +740,7 @@ exports[`EuiInlineEditForm Read Mode sizes 1`] = `
     hidden=""
     id="inlineEdit_generated-id"
   >
-    Click this button to edit this text inline.
+    Click to edit this text inline.
   </span>
 </div>
 `;

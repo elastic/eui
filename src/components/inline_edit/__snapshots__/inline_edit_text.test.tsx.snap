@@ -33,7 +33,7 @@ exports[`EuiInlineEditText renders 1`] = `
     hidden=""
     id="inlineEdit_generated-id"
   >
-    Click this button to edit this text inline.
+    Click to edit this text inline.
   </span>
 </div>
 `;
@@ -71,7 +71,7 @@ exports[`EuiInlineEditText text sizes renders m 1`] = `
     hidden=""
     id="inlineEdit_generated-id"
   >
-    Click this button to edit this text inline.
+    Click to edit this text inline.
   </span>
 </div>
 `;
@@ -109,7 +109,7 @@ exports[`EuiInlineEditText text sizes renders s 1`] = `
     hidden=""
     id="inlineEdit_generated-id"
   >
-    Click this button to edit this text inline.
+    Click to edit this text inline.
   </span>
 </div>
 `;
@@ -147,7 +147,7 @@ exports[`EuiInlineEditText text sizes renders xs 1`] = `
     hidden=""
     id="inlineEdit_generated-id"
   >
-    Click this button to edit this text inline.
+    Click to edit this text inline.
   </span>
 </div>
 `;

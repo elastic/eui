@@ -155,9 +155,10 @@ export const InlineEditExample = {
             mode.
           </p>
           <p>
-            Return a boolean from your <EuiCode>onSave</EuiCode> callback to 
-            validate text after pressing Save. You can also return a boolean from a 
-            promise. Validation happens before the user returns to read mode.
+            Return a boolean from your <EuiCode>onSave</EuiCode> callback to
+            validate text after pressing Save. You can also return a boolean
+            from a promise. Validation happens before the user returns to read
+            mode.
           </p>
           <p>
             Returning <EuiCode>false</EuiCode> from <EuiCode>onSave</EuiCode>{' '}
