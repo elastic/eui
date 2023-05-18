@@ -73,7 +73,7 @@ export const InlineEditExample = {
     <>
       <EuiText>
         The <strong>EuiInlineEdit</strong> components are useful for updating
-        single-line text outside of a form. The component has two states:{' '}
+        single lines of text outside a form. The component has two states:{' '}
         <EuiCode>readMode</EuiCode> shows editable text inside of a button and{' '}
         <EuiCode>editMode</EuiCode> displays a form control to update the text.
       </EuiText>
