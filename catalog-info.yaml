@@ -73,13 +73,6 @@ metadata:
       url: "https://buildkite.com/elastic/eui-pull-request-test",
     }
   ]
-  # Pull request test - only run when code is pushed to feature/buildkite-migration branch. For now.
-  provider_settings:
-    build_branches: true
-    build_tags: false
-    build_pull_requests: false
-    filter_enabled: true
-    filter_condition: build.branch == "feature/buildkite-migration"
       
 spec:
   type: buildkite-pipeline
@@ -93,6 +86,13 @@ spec:
     spec:
       repository: elastic/eui
       pipeline_file: ".buildkite/pipelines/pipeline_pull_request_test.yml"
+      # Pull request test - only run when code is pushed to feature/buildkite-migration branch. For now.
+      provider_settings:
+        build_branches: true
+        build_tags: false
+        build_pull_requests: false
+        filter_enabled: true
+        filter_condition: build.branch == "feature/buildkite-migration"
       teams:
         eui-team:
          access_level: MANAGE_BUILD_AND_READ
