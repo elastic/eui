@@ -258,7 +258,7 @@ export const SelectableExample = {
           </p>
           <p>
             When clicking a mixed option, the option will cycle to
-            &ldquo;on&rdquo;, and after that cycle between {'on -> off'} (if{' '}
+            &quot;on&quot;, and after that cycle between {'on -> off'} (if{' '}
             <EuiCode>allowExclusions</EuiCode> is true) {'-> undefined'}). Users
             cannot manually cycle back to mixed.
           </p>
