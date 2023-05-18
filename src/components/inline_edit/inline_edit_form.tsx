@@ -318,7 +318,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
       <span id={readModeDescribedById} hidden>
         <EuiI18n
           token="euiInlineEditForm.activateEditModeDescription"
-          default="Click this button to edit this text inline."
+          default="Click to edit this text inline."
         />
       </span>
     </>
