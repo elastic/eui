@@ -74,13 +74,12 @@ metadata:
     }
   ]
   # Pull request test - only run when code is pushed to feature/buildkite-migration branch. For now.
-  provider_settings: {
-    build_branches          = true
-    build_tags              = false
-    build_pull_requests     = false
-    filter_enabled          = true
-    filter_condition        = build.branch == "feature/buildkite-migration"
-  }
+  provider_settings:
+    build_branches: true
+    build_tags: false
+    build_pull_requests: false
+    filter_enabled: true
+    filter_condition: build.branch == "feature/buildkite-migration"
       
 spec:
   type: buildkite-pipeline
