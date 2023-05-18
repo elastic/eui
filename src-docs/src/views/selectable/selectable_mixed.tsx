@@ -1,56 +1,68 @@
 import React, { useState } from 'react';
 
-import { EuiSelectable, EuiSelectableOption } from '../../../../src';
+import {
+  EuiSelectable,
+  EuiSelectableOption,
+  EuiButton,
+  EuiSpacer,
+} from '../../../../src';
+
+const initialOptions: EuiSelectableOption[] = [
+  {
+    label: 'Titan',
+    'data-test-subj': 'titanOption',
+    checked: 'mixed',
+  },
+  {
+    label: 'Enceladus is disabled',
+    disabled: true,
+  },
+  {
+    label: 'Mimas',
+    checked: 'on',
+  },
+  {
+    label: 'Dione',
+    checked: 'mixed',
+  },
+  {
+    label: 'Iapetus',
+  },
+  {
+    label: 'Phoebe',
+    checked: 'mixed',
+  },
+  {
+    label: 'Rhea',
+  },
+  {
+    label:
+      "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+  },
+  {
+    label: 'Tethys',
+  },
+  {
+    label: 'Hyperion',
+  },
+];
 
 export default () => {
-  const [options, setOptions] = useState<EuiSelectableOption[]>([
-    {
-      label: 'Titan',
-      'data-test-subj': 'titanOption',
-    },
-    {
-      label: 'Enceladus is disabled',
-      disabled: true,
-    },
-    {
-      label: 'Mimas',
-      checked: 'on',
-    },
-    {
-      label: 'Dione',
-      checked: 'mixed',
-    },
-    {
-      label: 'Iapetus',
-      checked: 'off',
-    },
-    {
-      label: 'Phoebe',
-      checked: 'mixed',
-    },
-    {
-      label: 'Rhea',
-    },
-    {
-      label:
-        "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
-    },
-    {
-      label: 'Tethys',
-    },
-    {
-      label: 'Hyperion',
-    },
-  ]);
+  const [options, setOptions] = useState(initialOptions);
 
   return (
-    <EuiSelectable
-      aria-label="Example of Selectable supporting mixed state"
-      allowExclusions
-      options={options}
-      onChange={(newOptions) => setOptions(newOptions)}
-    >
-      {(list) => list}
-    </EuiSelectable>
+    <>
+      <EuiSelectable
+        aria-label="Example of Selectable supporting mixed state"
+        options={options}
+        onChange={(newOptions) => setOptions(newOptions)}
+      >
+        {(list) => list}
+      </EuiSelectable>
+      <EuiSpacer size="s" />
+      <EuiButton onClick={() => setOptions(initialOptions)}>
+        Reset mixed options
+      </EuiButton>
+    </>
   );
 };
