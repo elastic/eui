@@ -73,6 +73,11 @@ metadata:
       url: "https://buildkite.com/elastic/eui-pull-request-test",
     }
   ]
+  provider_settings: {
+    build_pull_requests: false,
+    filter_enabled: true,
+    filter_condition: build.pull_request.base_branch == "feature/buildkite-migration"
+  }
       
 spec:
   type: buildkite-pipeline
