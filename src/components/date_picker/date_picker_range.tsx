@@ -152,19 +152,18 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
   }
 
   return (
-    <EuiFormControlLayoutDelimited
-      icon={iconType === true ? 'calendar' : iconType || undefined}
-      className={classes}
-      css={cssStyles}
-      startControl={startControl}
-      endControl={endControl}
-      fullWidth={fullWidth}
-      readOnly={readOnly}
-      isDisabled={disabled}
-      isInvalid={isInvalid}
-      append={append}
-      prepend={prepend}
-      {...rest}
-    />
+    <span className={classes} css={cssStyles} {...rest}>
+      <EuiFormControlLayoutDelimited
+        icon={iconType === true ? 'calendar' : iconType || undefined}
+        startControl={startControl}
+        endControl={endControl}
+        fullWidth={fullWidth}
+        readOnly={readOnly}
+        isDisabled={disabled}
+        isInvalid={isInvalid}
+        append={append}
+        prepend={prepend}
+      />
+    </span>
   );
 };
