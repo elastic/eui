@@ -22,6 +22,10 @@ import {
 } from '../form';
 import { IconType } from '../icon';
 import { CommonProps } from '../common';
+
+import { useEuiTheme } from '../../services';
+import { euiDatePickerRangeStyles } from './date_picker_range.styles';
+
 import { EuiDatePickerProps } from './date_picker';
 
 export type EuiDatePickerRangeProps = CommonProps &
@@ -87,6 +91,10 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
   prepend,
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
+  const styles = euiDatePickerRangeStyles(euiTheme);
+  const cssStyles = [styles.euiDatePickerRange];
+
   const classes = classNames(
     'euiDatePickerRange',
     {
@@ -156,6 +164,7 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
     <EuiFormControlLayoutDelimited
       icon={iconType === true ? 'calendar' : iconType || undefined}
       className={classes}
+      css={cssStyles}
       startControl={startControl}
       endControl={endControl}
       fullWidth={fullWidth}

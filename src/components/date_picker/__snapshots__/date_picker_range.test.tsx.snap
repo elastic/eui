@@ -2,7 +2,7 @@
 
 exports[`EuiDatePickerRange disabled is rendered 1`] = `
 <div
-  class="euiFormControlLayout euiFormControlLayout-isDisabled euiFormControlLayoutDelimited euiDatePickerRange euiDatePickerRange--isDisabled"
+  class="euiFormControlLayout euiFormControlLayout-isDisabled euiFormControlLayoutDelimited euiDatePickerRange euiDatePickerRange--isDisabled emotion-euiDatePickerRange"
 >
   <div
     class="euiFormControlLayout__childrenWrapper"
@@ -74,7 +74,7 @@ exports[`EuiDatePickerRange disabled is rendered 1`] = `
 exports[`EuiDatePickerRange is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiFormControlLayout euiFormControlLayoutDelimited euiDatePickerRange testClass1 testClass2"
+  class="euiFormControlLayout euiFormControlLayoutDelimited euiDatePickerRange testClass1 testClass2 emotion-euiDatePickerRange"
   data-test-subj="test subject string"
 >
   <div
@@ -144,7 +144,7 @@ exports[`EuiDatePickerRange is rendered 1`] = `
 
 exports[`EuiDatePickerRange isInvalid is rendered 1`] = `
 <div
-  class="euiFormControlLayout euiFormControlLayoutDelimited euiDatePickerRange euiDatePickerRange--isInvalid euiFormControlLayoutDelimited--isInvalid"
+  class="euiFormControlLayout euiFormControlLayoutDelimited euiDatePickerRange euiDatePickerRange--isInvalid emotion-euiDatePickerRange euiFormControlLayoutDelimited--isInvalid"
 >
   <div
     class="euiFormControlLayout__childrenWrapper"
@@ -221,7 +221,7 @@ exports[`EuiDatePickerRange isInvalid is rendered 1`] = `
 
 exports[`EuiDatePickerRange readOnly is rendered 1`] = `
 <div
-  class="euiFormControlLayout euiFormControlLayout--readOnly euiFormControlLayoutDelimited euiDatePickerRange euiDatePickerRange--readOnly"
+  class="euiFormControlLayout euiFormControlLayout--readOnly euiFormControlLayoutDelimited euiDatePickerRange euiDatePickerRange--readOnly emotion-euiDatePickerRange"
 >
   <div
     class="euiFormControlLayout__childrenWrapper"
@@ -293,7 +293,7 @@ exports[`EuiDatePickerRange readOnly is rendered 1`] = `
 exports[`EuiDatePickerRange uses individual EuiDatePicker props 1`] = `
 <div
   aria-label="aria-label"
-  class="euiFormControlLayout euiFormControlLayoutDelimited euiDatePickerRange testClass1 testClass2"
+  class="euiFormControlLayout euiFormControlLayoutDelimited euiDatePickerRange testClass1 testClass2 emotion-euiDatePickerRange"
   data-test-subj="test subject string"
 >
   <div
