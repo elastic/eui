@@ -2,7 +2,7 @@
 
 exports[`EuiDatePickerRange disabled is rendered 1`] = `
 <div
-  class="euiFormControlLayout euiFormControlLayout-isDisabled euiFormControlLayoutDelimited euiDatePickerRange euiDatePickerRange--isDisabled emotion-euiDatePickerRange"
+  class="euiFormControlLayout euiFormControlLayout-isDisabled euiFormControlLayoutDelimited euiDatePickerRange emotion-euiDatePickerRange"
 >
   <div
     class="euiFormControlLayout__childrenWrapper"
@@ -144,7 +144,7 @@ exports[`EuiDatePickerRange is rendered 1`] = `
 
 exports[`EuiDatePickerRange isInvalid is rendered 1`] = `
 <div
-  class="euiFormControlLayout euiFormControlLayoutDelimited euiDatePickerRange euiDatePickerRange--isInvalid emotion-euiDatePickerRange euiFormControlLayoutDelimited--isInvalid"
+  class="euiFormControlLayout euiFormControlLayoutDelimited euiDatePickerRange emotion-euiDatePickerRange euiFormControlLayoutDelimited--isInvalid"
 >
   <div
     class="euiFormControlLayout__childrenWrapper"
@@ -221,7 +221,7 @@ exports[`EuiDatePickerRange isInvalid is rendered 1`] = `
 
 exports[`EuiDatePickerRange readOnly is rendered 1`] = `
 <div
-  class="euiFormControlLayout euiFormControlLayout--readOnly euiFormControlLayoutDelimited euiDatePickerRange euiDatePickerRange--readOnly emotion-euiDatePickerRange"
+  class="euiFormControlLayout euiFormControlLayout--readOnly euiFormControlLayoutDelimited euiDatePickerRange emotion-euiDatePickerRange"
 >
   <div
     class="euiFormControlLayout__childrenWrapper"

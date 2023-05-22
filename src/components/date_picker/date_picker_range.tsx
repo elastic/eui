@@ -91,20 +91,11 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
   prepend,
   ...rest
 }) => {
+  const classes = classNames('euiDatePickerRange', className);
+
   const euiTheme = useEuiTheme();
   const styles = euiDatePickerRangeStyles(euiTheme);
   const cssStyles = [styles.euiDatePickerRange];
-
-  const classes = classNames(
-    'euiDatePickerRange',
-    {
-      'euiDatePickerRange--fullWidth': fullWidth,
-      'euiDatePickerRange--readOnly': readOnly,
-      'euiDatePickerRange--isInvalid': isInvalid,
-      'euiDatePickerRange--isDisabled': disabled,
-    },
-    className
-  );
 
   let startControl = startDateControl;
   let endControl = endDateControl;
@@ -115,8 +106,8 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
       {
         controlOnly: true,
         showIcon: false,
-        fullWidth: fullWidth,
-        readOnly: readOnly,
+        fullWidth,
+        readOnly,
         disabled: disabled || startDateControl.props.disabled,
         isInvalid: isInvalid || startDateControl.props.isInvalid,
         className: classNames(
@@ -139,8 +130,8 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
       {
         controlOnly: true,
         showIcon: false,
-        fullWidth: fullWidth,
-        readOnly: readOnly,
+        fullWidth,
+        readOnly,
         disabled: disabled || endDateControl.props.disabled,
         isInvalid: isInvalid || endDateControl.props.isInvalid,
         popoverPlacement: 'downRight',
