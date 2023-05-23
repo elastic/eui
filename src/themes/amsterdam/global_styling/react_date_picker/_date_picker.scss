@@ -46,24 +46,6 @@
   justify-content: center;
 }
 
-.euiDatePicker.euiDatePicker--shadow .react-datepicker-popper {
-  z-index: $euiZContentMenu;
-  animation: euiAnimFadeIn $euiAnimSpeedFast ease-in;
-
-  &[data-placement^='top'] {
-    @include euiBottomShadowFlat;
-    border-radius: $euiBorderRadius $euiBorderRadius 0 0;
-  }
-
-  &[data-placement^='right'] {
-    margin-left: 0;
-  }
-
-  &[data-placement^='left'] {
-    margin-right: 0;
-  }
-}
-
 // Hidden things that we don't want to show/use, ever
 .react-datepicker__current-month,
 .react-datepicker-time__header {
