@@ -49,4 +49,14 @@ describe('EuiScreenReaderOnly', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('preventCopy', () => {
+    const component = render(
+      <EuiScreenReaderOnly preventCopy>
+        <span>Text</span>
+      </EuiScreenReaderOnly>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
 });

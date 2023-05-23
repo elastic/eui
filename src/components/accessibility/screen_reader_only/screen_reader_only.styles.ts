@@ -45,4 +45,7 @@ export const euiScreenReaderOnlyStyles = () => ({
       ${euiScreenReaderOnly()}
     }
   `,
+  preventCopy: css`
+    user-select: none;
+  `,
 });

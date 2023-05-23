@@ -16,6 +16,14 @@ exports[`EuiScreenReaderOnly adds an accessibility class to a child element when
 </p>
 `;
 
+exports[`EuiScreenReaderOnly preventCopy 1`] = `
+<span
+  class="emotion-euiScreenReaderOnly-preventCopy"
+>
+  Text
+</span>
+`;
+
 exports[`EuiScreenReaderOnly showOnFocus 1`] = `
 <a
   class="emotion-euiScreenReaderOnly-showOnFocus"
