@@ -86,6 +86,38 @@ describe('EuiDatePickerRange', () => {
 
       expect(component).toMatchSnapshot();
     });
+
+    describe('inline', () => {
+      it('renders', () => {
+        const component = render(
+          <EuiDatePickerRange
+            startDateControl={<EuiDatePicker />}
+            endDateControl={<EuiDatePicker />}
+            inline
+            // All of the below props should be ignored/not render when `inline`
+            iconType={true}
+            fullWidth
+            prepend="test"
+            append="test"
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('allows turning off the default shadow', () => {
+        const component = render(
+          <EuiDatePickerRange
+            startDateControl={<EuiDatePicker />}
+            endDateControl={<EuiDatePicker />}
+            inline
+            shadow={false}
+          />
+        );
+
+        expect(component.attr('class')).not.toContain('shadow');
+      });
+    });
   });
 
   it('uses individual EuiDatePicker props', () => {

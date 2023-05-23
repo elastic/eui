@@ -24,7 +24,10 @@ import { IconType } from '../icon';
 import { CommonProps } from '../common';
 
 import { useEuiTheme } from '../../services';
-import { euiDatePickerRangeStyles } from './date_picker_range.styles';
+import {
+  euiDatePickerRangeStyles,
+  euiDatePickerRangeInlineStyles,
+} from './date_picker_range.styles';
 
 import { EuiDatePickerProps } from './date_picker';
 
@@ -64,6 +67,17 @@ export type EuiDatePickerRangeProps = CommonProps &
     disabled?: boolean;
 
     /**
+     * Displays both date picker calendars directly on the page.
+     * Passes through to each control if `isCustom` is not set.
+     */
+    inline?: EuiDatePickerProps['inline'];
+
+    /**
+     * Allows turning the shadow off if using the `inline` prop
+     */
+    shadow?: EuiDatePickerProps['shadow'];
+
+    /**
      * Triggered whenever the start or end controls are blurred
      */
     onBlur?: FocusEventHandler<HTMLInputElement>;
@@ -80,6 +94,8 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
   startDateControl,
   endDateControl,
   iconType = true,
+  inline,
+  shadow = true,
   fullWidth,
   isCustom,
   readOnly,
@@ -98,6 +114,12 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
   const styles = euiDatePickerRangeStyles(euiTheme);
   const cssStyles = [styles.euiDatePickerRange];
 
+  if (inline) {
+    const inlineStyles = euiDatePickerRangeInlineStyles(euiTheme);
+    cssStyles.push(inlineStyles.inline);
+    if (shadow) cssStyles.push(inlineStyles.shadow);
+  }
+
   let startControl = startDateControl;
   let endControl = endDateControl;
 
@@ -107,6 +129,7 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
       {
         controlOnly: true,
         showIcon: false,
+        inline,
         fullWidth,
         readOnly,
         disabled: disabled || startDateControl.props.disabled,
@@ -131,6 +154,7 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
       {
         controlOnly: true,
         showIcon: false,
+        inline,
         fullWidth,
         readOnly,
         disabled: disabled || endDateControl.props.disabled,

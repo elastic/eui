@@ -4,6 +4,7 @@ import moment from 'moment';
 
 import {
   EuiDatePicker,
+  EuiDatePickerRange,
   EuiFlexGroup,
   EuiSwitch,
   EuiSpacer,
@@ -16,6 +17,7 @@ export default () => {
   const [showTimeSelect, setShowTimeSelect] = useState(true);
 
   const [startDate, setStartDate] = useState(moment());
+  const [endDate, setEndDate] = useState(moment().add(11, 'd'));
 
   return (
     <>
@@ -39,6 +41,33 @@ export default () => {
           inline
           showTimeSelect={showTimeSelect}
           shadow={shadow}
+        />
+      </DisplayToggles>
+      <EuiSpacer />
+      <DisplayToggles spacerSize="s" canCompressed={false} canFullWidth={false}>
+        <EuiDatePickerRange
+          inline
+          shadow={shadow}
+          startDateControl={
+            <EuiDatePicker
+              aria-label="Start date"
+              selected={startDate}
+              onChange={(date) => date && setStartDate(date)}
+              startDate={startDate}
+              endDate={endDate}
+              showTimeSelect={showTimeSelect}
+            />
+          }
+          endDateControl={
+            <EuiDatePicker
+              aria-label="End date"
+              selected={endDate}
+              onChange={(date) => date && setEndDate(date)}
+              startDate={startDate}
+              endDate={endDate}
+              showTimeSelect={showTimeSelect}
+            />
+          }
         />
       </DisplayToggles>
     </>
