@@ -121,8 +121,18 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
   const cssStyles = [styles.euiDatePickerRange];
 
   if (inline) {
+    // Determine the inline container query to use based on the width of the react-datepicker
+    const hasTimeSelect =
+      startDateControl.props.showTimeSelect ||
+      endDateControl.props.showTimeSelect;
+
     const inlineStyles = euiDatePickerRangeInlineStyles(euiTheme);
     cssStyles.push(inlineStyles.inline);
+    cssStyles.push(
+      hasTimeSelect
+        ? inlineStyles.responsiveWithTimeSelect
+        : inlineStyles.responsive
+    );
     if (shadow) cssStyles.push(inlineStyles.shadow);
   }
 
