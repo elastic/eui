@@ -9,6 +9,7 @@
 import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps } from '../../test';
+import moment from 'moment';
 
 import { EuiDatePickerRange } from './date_picker_range';
 import { EuiDatePicker } from './date_picker';
@@ -89,10 +90,13 @@ describe('EuiDatePickerRange', () => {
 
     describe('inline', () => {
       it('renders', () => {
+        const selectedStartDate = moment('2000-01-01T00:00:00-0800');
+        const selectedEndDate = moment(selectedStartDate).add(1, 'd');
+
         const component = render(
           <EuiDatePickerRange
-            startDateControl={<EuiDatePicker />}
-            endDateControl={<EuiDatePicker />}
+            startDateControl={<EuiDatePicker selected={selectedStartDate} />}
+            endDateControl={<EuiDatePicker selected={selectedEndDate} />}
             inline
             // All of the below props should be ignored/not render when `inline`
             iconType={true}
