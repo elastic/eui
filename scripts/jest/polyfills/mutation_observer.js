@@ -524,7 +524,7 @@ var MutationNotifier = /** @class */ (function (_super) {
   __extends(MutationNotifier, _super);
   function MutationNotifier() {
     var _this = _super.call(this) || this;
-    _this.setMaxListeners(30); // bump this as needed, it's mostly dependant on test parallelization
+    _this.setMaxListeners(45); // bump this as needed, it's mostly dependent on test parallelization
     return _this;
   }
   MutationNotifier.getInstance = function () {
