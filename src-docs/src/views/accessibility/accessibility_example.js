@@ -15,6 +15,7 @@ import {
 import ScreenReaderLive from './screen_reader_live';
 import ScreenReaderLiveFocus from './screen_reader_live_focus';
 import ScreenReaderOnly from './screen_reader';
+import ScreenReaderPreventCopy from './screen_reader_prevent_copy';
 import ScreenReaderFocus from './screen_reader_focus';
 import SkipLink from './skip_link';
 import StylesHelpers from './styles_helpers';
@@ -22,6 +23,7 @@ import StylesHelpers from './styles_helpers';
 const screenReaderLiveSource = require('!!raw-loader!./screen_reader_live');
 const screenReaderLiveFocusSource = require('!!raw-loader!./screen_reader_live_focus');
 const screenReaderOnlySource = require('!!raw-loader!./screen_reader');
+const screenReaderPreventCopySource = require('!!raw-loader!./screen_reader_prevent_copy');
 const screenReaderFocusSource = require('!!raw-loader!./screen_reader_focus');
 
 const skipLinkSource = require('!!raw-loader!./skip_link');
@@ -74,7 +76,8 @@ export const AccessibilityExample = {
           <EuiSpacer />
           <p>
             <em>
-              Using a screen reader, verify that there is a second paragraph.
+              Use a screen reader, or select and copy both lines in the below
+              demo, to verify that there is a second paragraph.
             </em>
           </p>
         </>
@@ -91,12 +94,44 @@ export const AccessibilityExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
+          code: screenReaderPreventCopySource,
+        },
+      ],
+      text: (
+        <>
+          <h3 id="preventCopy">Preventing users from copying hidden text</h3>
+          <p>
+            As you may have noticed in the previous demo, screen reader only
+            text is still selectable and copyable. If for any reason you do not
+            want this behavior, simply use the <EuiCode>preventCopy</EuiCode>{' '}
+            prop.
+          </p>
+          <p>
+            <em>
+              Select and copy both lines in the below demo and confirm only the
+              visible lines are copied.
+            </em>
+          </p>
+        </>
+      ),
+      props: {
+        EuiScreenReaderOnly,
+      },
+      snippet: `<EuiScreenReaderOnly preventCopy>
+  <!-- visually hidden content, cannot be selected or copied -->
+</EuiScreenReaderOnly>`,
+      demo: <ScreenReaderPreventCopy />,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
           code: screenReaderFocusSource,
         },
       ],
       text: (
         <>
-          <h3>Showing on focus</h3>
+          <h3 id="showOnFocus">Showing on focus</h3>
           <p>
             If the wrapped element <strong>is focusable</strong>, you must use
             the <EuiCode>showOnFocus</EuiCode> prop to visibly show the element
