@@ -86,13 +86,11 @@ spec:
     spec:
       repository: elastic/eui
       pipeline_file: ".buildkite/pipelines/pipeline_pull_request_test.yml"
-      # Not running this job individually. Part of build and deploy job now.
+      # Job runs as a step in pull request combined job
       provider_settings:
         build_branches: false
         build_tags: false
         build_pull_requests: false
-        # filter_enabled: true
-        # filter_condition: build.branch == "feature/buildkite-migration"
       teams:
         eui-team:
          access_level: MANAGE_BUILD_AND_READ
@@ -127,13 +125,11 @@ spec:
     spec:
       repository: elastic/eui
       pipeline_file: ".buildkite/pipelines/pipeline_pull_request_deploy_docs.yml"
-      # Not running this job individually. Part of build and deploy job now.
+      # Job runs as a step in pull request combined job
       provider_settings:
         build_branches: false
         build_tags: false
         build_pull_requests: false
-        # filter_enabled: true
-        # filter_condition: build.branch == "feature/buildkite-migration"
       teams:
         eui-team:
          access_level: MANAGE_BUILD_AND_READ
@@ -169,7 +165,6 @@ spec:
     spec:
       repository: elastic/eui
       pipeline_file: ".buildkite/pipelines/pipeline_pull_request_deploy_docs.yml"
-      # Pull request deploy docs - only run when code is pushed to feature/buildkite-migration branch. For now.
       provider_settings:
         build_branches: false
         build_tags: false
