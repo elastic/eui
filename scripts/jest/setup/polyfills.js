@@ -18,10 +18,6 @@ beforeAll(() => {
   Object.defineProperty(window, 'MutationObserver', { value: MutationObserver });
   patchNotifyChange(window);
 
-  Object.defineProperty(global, 'TextEncoder', {
-    value: TextEncoder,
-  });
-
   function patchNotifyChange(window) {
     const notifyInstance = MutationNotifier.getInstance();
     const notify = function(node) {
