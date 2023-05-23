@@ -91,7 +91,7 @@ const EuiDataGridCellContent: FunctionComponent<
             {...rest}
           />
         </div>
-        <EuiScreenReaderOnly>
+        <EuiScreenReaderOnly preventCopy>
           <p>
             {'- '}
             <EuiI18n

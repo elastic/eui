@@ -145,7 +145,7 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
             </span>
           </div>
           <p
-            class="emotion-euiScreenReaderOnly"
+            class="emotion-euiScreenReaderOnly-preventCopy"
           >
             - columnA, column 1, row 1
           </p>
@@ -179,7 +179,7 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
             </span>
           </div>
           <p
-            class="emotion-euiScreenReaderOnly"
+            class="emotion-euiScreenReaderOnly-preventCopy"
           >
             - columnB, column 2, row 1
           </p>
