@@ -28,11 +28,8 @@ export const useCopy = ({
   const [innerTextRef, _innerText] = useInnerText('');
   const innerText = useMemo(
     () =>
-      _innerText
-        // Normalize line terminations to match native JS format
-        ?.replace(NEW_LINE_REGEX_GLOBAL, '\n')
-        // Reduce two or more consecutive new line characters to a single one
-        .replace(/\n{2,}/g, '\n') || '',
+      // Normalize line terminations to match native JS format
+      _innerText?.replace(NEW_LINE_REGEX_GLOBAL, '\n') || '',
     [_innerText]
   );
   const textToCopy = isVirtualized ? `${children}` : innerText; // Virtualized code blocks do not have inner text
