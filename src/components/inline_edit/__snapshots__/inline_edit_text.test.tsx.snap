@@ -30,7 +30,7 @@ exports[`EuiInlineEditText isReadOnly 1`] = `
     hidden=""
     id="inlineEdit_generated-id"
   >
-    Click this button to edit this text inline.
+    Click to edit this text inline.
   </span>
 </div>
 `;
