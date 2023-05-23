@@ -249,14 +249,11 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
             )}
           />
         </EuiFormRow>
-
         <span id={editModeDescribedById} hidden>
-          {!isReadOnly && (
-            <EuiI18n
-              token="euiInlineEditForm.inputKeyboardInstructions"
-              default="Press Enter to save your edited text. Press Escape to cancel your edit."
-            />
-          )}
+          <EuiI18n
+            token="euiInlineEditForm.inputKeyboardInstructions"
+            default="Press Enter to save your edited text. Press Escape to cancel your edit."
+          />
         </span>
       </EuiFlexItem>
 
@@ -342,10 +339,12 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
         {children(readModeValue)}
       </EuiButtonEmpty>
       <span id={readModeDescribedById} hidden>
-        <EuiI18n
-          token="euiInlineEditForm.activateEditModeDescription"
-          default="Click to edit this text inline."
-        />
+        {!isReadOnly && (
+          <EuiI18n
+            token="euiInlineEditForm.activateEditModeDescription"
+            default="Click to edit this text inline."
+          />
+        )}
       </span>
     </>
   );
