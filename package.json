@@ -58,7 +58,7 @@
     "test-staged"
   ],
   "dependencies": {
-    "@types/chroma-js": "^2.0.0",
+    "@types/chroma-js": "^2.4.0",
     "@types/lodash": "^4.14.160",
     "@types/numeral": "^0.0.28",
     "@types/react-beautiful-dnd": "^13.1.2",
