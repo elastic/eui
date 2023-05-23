@@ -12,6 +12,7 @@ import {
   EuiThemeSystem,
   EuiThemeModifications,
   EuiThemeComputed,
+  EuiThemeNested,
 } from './types';
 import { EuiThemeAmsterdam } from '../../themes/amsterdam/theme';
 import { DEFAULT_COLOR_MODE, getComputed } from './utils';
@@ -31,3 +32,9 @@ export const defaultComputedTheme = getComputed(
 export const EuiThemeContext = createContext<EuiThemeComputed>(
   defaultComputedTheme
 );
+export const EuiNestedThemeContext = createContext<EuiThemeNested>({
+  isGlobalTheme: true,
+  hasDifferentColorFromGlobalTheme: false,
+  bodyColor: '',
+  colorClassName: '',
+});

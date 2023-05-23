@@ -41,20 +41,20 @@ exports[`EuiPageHeader props alignItems bottom is rendered 1`] = `
         class="euiFlexItem emotion-euiFlexItem-growZero"
       >
         <div
-          class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-rowReverse"
+          class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-row"
         >
           <div
             class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             <button>
-              Button 1
+              Button 2
             </button>
           </div>
           <div
             class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             <button>
-              Button 2
+              Button 1
             </button>
           </div>
         </div>
@@ -87,20 +87,20 @@ exports[`EuiPageHeader props alignItems center is rendered 1`] = `
         class="euiFlexItem emotion-euiFlexItem-growZero"
       >
         <div
-          class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-rowReverse"
+          class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-row"
         >
           <div
             class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             <button>
-              Button 1
+              Button 2
             </button>
           </div>
           <div
             class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             <button>
-              Button 2
+              Button 1
             </button>
           </div>
         </div>
@@ -133,20 +133,20 @@ exports[`EuiPageHeader props alignItems stretch is rendered 1`] = `
         class="euiFlexItem emotion-euiFlexItem-growZero"
       >
         <div
-          class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-rowReverse"
+          class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-row"
         >
           <div
             class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             <button>
-              Button 1
+              Button 2
             </button>
           </div>
           <div
             class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             <button>
-              Button 2
+              Button 1
             </button>
           </div>
         </div>
@@ -179,20 +179,20 @@ exports[`EuiPageHeader props alignItems top is rendered 1`] = `
         class="euiFlexItem emotion-euiFlexItem-growZero"
       >
         <div
-          class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-rowReverse"
+          class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-row"
         >
           <div
             class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             <button>
-              Button 1
+              Button 2
             </button>
           </div>
           <div
             class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             <button>
-              Button 2
+              Button 1
             </button>
           </div>
         </div>
@@ -362,21 +362,21 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
       >
         <div
           aria-label="aria-label"
-          class="euiFlexGroup testClass1 testClass2 emotion-euiFlexGroup-responsive-wrap-l-flexStart-stretch-rowReverse"
+          class="euiFlexGroup testClass1 testClass2 emotion-euiFlexGroup-responsive-wrap-l-flexStart-stretch-row"
           data-test-subj="test subject string"
         >
           <div
             class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             <button>
-              Button 1
+              Button 2
             </button>
           </div>
           <div
             class="euiFlexItem emotion-euiFlexItem-growZero"
           >
             <button>
-              Button 2
+              Button 1
             </button>
           </div>
         </div>

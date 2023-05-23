@@ -6879,6 +6879,36 @@ exports[`EuiIcon props type logoUptime is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type logoVulnerabilityManagement is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="logoVulnerabilityManagement"
+  data-is-loaded="true"
+  height="32"
+  role="img"
+  viewBox="0 0 32 32"
+  width="32"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <g>
+    <path
+      d="M11.0503 1.94977L6.80762 6.19241L16 15.3848L25.1924 6.19241L20.9498 1.94977L16 6.89952L11.0503 1.94977Z"
+      fill="#00BFB3"
+    />
+    <path
+      d="M4.68592 19.6273C1.56172 16.5031 1.56173 11.4378 4.68592 8.3136L15.9996 19.6273V30.941L4.68592 19.6273Z"
+      fill="#FA744E"
+    />
+    <path
+      class="euiIcon__fillNegative"
+      d="M27.3137 8.31372C30.4379 11.4379 30.4379 16.5032 27.3137 19.6274L16 30.9411L16 19.6274L27.3137 8.31372Z"
+      fill="#343741"
+    />
+  </g>
+</svg>
+`;
+
 exports[`EuiIcon props type logoWebhook is rendered 1`] = `
 <svg
   aria-hidden="true"
@@ -10947,6 +10977,28 @@ exports[`EuiIcon props type visualizeApp is rendered 1`] = `
   />
   <path
     d="M27 6a3 3 0 00-2.08.84L20 4.36A2.2 2.2 0 0020 4a3 3 0 00-6 0c.001.341.062.68.18 1l-5.6 4.46A3 3 0 007 9a3 3 0 103 3 2.93 2.93 0 00-.18-1l5.6-4.48A3 3 0 0017 7a3 3 0 002.08-.84l5 2.48A2.2 2.2 0 0024 9a3 3 0 103-3zM7 13a1 1 0 110-2 1 1 0 010 2zm10-8a1 1 0 110-2 1 1 0 010 2zm10 5a1 1 0 110-2 1 1 0 010 2z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type vulnerabilityManagementApp is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-app-isLoaded"
+  data-icon-type="vulnerabilityManagementApp"
+  data-is-loaded="true"
+  height="32"
+  role="img"
+  viewBox="0 0 32 32"
+  width="32"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    class="euiIcon__fillSecondary"
+    d="M5.394 6.192L11.05.536 16 5.486l4.95-4.95 5.657 5.656L16 16.8 5.394 6.192zm2.828 0L16 13.971l7.778-7.779-2.828-2.828L16 8.314l-4.95-4.95-2.828 2.828z"
+  />
+  <path
+    d="M16 30.941L4.686 19.627A8.004 8.004 0 013.45 9.905a8.011 8.011 0 011.236-1.591L16 19.539 27.313 8.314l.045.045a8.003 8.003 0 01-.045 11.268L16 30.942zm0-2.828l9.899-9.9a6.002 6.002 0 001.169-6.838L16 22.357 4.932 11.375A6.003 6.003 0 006.1 18.213l9.9 9.9z"
   />
 </svg>
 `;

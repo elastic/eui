@@ -96,7 +96,6 @@ module.exports = {
     ],
 
     // TODO: It may be worth investigating and updating these rules to their more modern counterparts
-    'selector-not-notation': 'simple',
     'color-function-notation': 'legacy',
     'alpha-value-notation': 'number',
 
@@ -109,6 +108,7 @@ module.exports = {
     'scss/at-rule-conditional-no-parentheses': null,
     'scss/double-slash-comment-empty-line-before': null,
     'scss/at-if-no-null': null,
+    'selector-not-notation': null,
   },
   ignoreFiles: [
     'generator-eui/**/*.scss',

@@ -1,3 +1,48 @@
+## [`81.0.0`](https://github.com/elastic/eui/tree/v81.0.0)
+
+- Added ability to set `options.checked` to "mixed" in `EuiSelectable` ([#6774](https://github.com/elastic/eui/pull/6774))
+
+**Bug fixes**
+
+- Portalled components (e.g. `EuiPopover`, `EuiModal`, `EuiFlyout`) will correctly inherit text color from its nearest `EuiThemeProvider` parent. `<EuiText color="default">` is no longer needed. ([#6775](https://github.com/elastic/eui/pull/6775))
+
+**Breaking changes**
+
+- `EuiSelectable` no longer renders a `data-test-selected` attribute on its list items. Use the `aria-checked` property instead ([#6774](https://github.com/elastic/eui/pull/6774))
+- Nested `EuiThemeProvider`s now render a wrapping `<span>` element in order to correctly set the inherited text `color` of all descendants. `<EuiText color="default">` is no longer needed. ([#6775](https://github.com/elastic/eui/pull/6775))
+
+## [`80.0.0`](https://github.com/elastic/eui/tree/v80.0.0)
+
+- Improved the contrast ratio of meta labels within `EuiSelectableTemplateSitewide` to meet WCAG AA guidelines. ([#6761](https://github.com/elastic/eui/pull/6761))
+- Added `vulnerabilityManagementApp` glyph to `EuiIcon` ([#6762](https://github.com/elastic/eui/pull/6762))
+- Added `logoVulnerabilityManagement` icon to `EuiIcon` ([#6763](https://github.com/elastic/eui/pull/6763))
+- Added `onPanelChange` callback to `EuiContextMenu` to provide consumer access to `panelId` and `direction`. ([#6767](https://github.com/elastic/eui/pull/6767))
+
+**Bug fixes**
+
+- Fixed `EuiComboBox` so `append` and `prepend` icon buttons are full height and vertically centered. ([#6766](https://github.com/elastic/eui/pull/6766))
+- Improved the uniformity of dropdown components by hiding the dropdown icon of disabled `EuiComboBox`s. ([#6768](https://github.com/elastic/eui/pull/6768))
+
+**Breaking changes**
+
+- `EuiFieldNumber` now defaults the `step` prop to `"any"` ([#6760](https://github.com/elastic/eui/pull/6760))
+- EUI now globally resets a default Chromium browser style that was decreasing the opacity of disabled `select` items. ([#6768](https://github.com/elastic/eui/pull/6768))
+
+## [`79.0.1`](https://github.com/elastic/eui/tree/v79.0.1)
+
+**Bug fixes**
+
+- Fixed broken push `EuiFlyout` behavior ([#6764](https://github.com/elastic/eui/pull/6764))
+
+## [`79.0.0`](https://github.com/elastic/eui/tree/v79.0.0)
+
+- Updated all `EuiSkeleton` components with new props that allow for more control over screen reader live announcements: `announceLoadingStatus`, `announceLoadedStatus`, and `ariaLiveProps` ([#6752](https://github.com/elastic/eui/pull/6752))
+- Improved keyboard accessibility in `EuiPageHeader` by ensuring the right side menu items come into focus from left to right. ([#6753](https://github.com/elastic/eui/pull/6753))
+
+**Breaking changes**
+
+- Removed deprecated `EuiLoadingContent`. Use the `EuiSkeleton` components instead. ([#6754](https://github.com/elastic/eui/pull/6754))
+
 ## [`78.0.0`](https://github.com/elastic/eui/tree/v78.0.0)
 
 - Improved the contrast ratio of `EuiCheckbox`, `EuiRadio`, and `EuiSwitch` in their unchecked states to meet WCAG AA guidelines. ([#6729](https://github.com/elastic/eui/pull/6729))

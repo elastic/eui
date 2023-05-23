@@ -5976,37 +5976,55 @@
     "filepath": "src/components/resizable_container/resizable_panel.tsx"
   },
   {
-    "token": "euiSelectableListItem.includedOption",
-    "defString": "Selected option.",
+    "token": "euiSelectableListItem.checkedOption",
+    "defString": "Checked option.",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 146,
-        "column": 8,
-        "index": 4547
+        "line": 181,
+        "column": 10,
+        "index": 5657
       },
       "end": {
-        "line": 149,
-        "column": 10,
-        "index": 4658
+        "line": 184,
+        "column": 12,
+        "index": 5772
       }
     },
     "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
   },
   {
-    "token": "euiSelectableListItem.includedOptionInstructions",
-    "defString": "To exclude this option, press enter.",
+    "token": "euiSelectableListItem.checkOptionInstructions",
+    "defString": "To check this option, press Enter.",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 152,
-        "column": 8,
-        "index": 4698
+        "line": 187,
+        "column": 10,
+        "index": 5818
       },
       "end": {
-        "line": 155,
+        "line": 190,
+        "column": 12,
+        "index": 5962
+      }
+    },
+    "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
+  },
+  {
+    "token": "euiSelectableListItem.uncheckOptionInstructions",
+    "defString": "To uncheck this option, press Enter.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 195,
         "column": 10,
-        "index": 4841
+        "index": 6036
+      },
+      "end": {
+        "line": 198,
+        "column": 12,
+        "index": 6184
       }
     },
     "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
@@ -6017,86 +6035,104 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 159,
-        "column": 8,
-        "index": 4930
+        "line": 203,
+        "column": 10,
+        "index": 6250
       },
       "end": {
-        "line": 162,
-        "column": 10,
-        "index": 5041
+        "line": 206,
+        "column": 12,
+        "index": 6367
       }
     },
     "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
   },
   {
-    "token": "euiSelectableListItem.excludedOptionInstructions",
-    "defString": "To uncheck this option, press enter.",
+    "token": "euiSelectableListItem.excludeOptionInstructions",
+    "defString": "To exclude this option, press Enter.",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 165,
-        "column": 8,
-        "index": 5081
+        "line": 209,
+        "column": 10,
+        "index": 6413
       },
       "end": {
-        "line": 168,
-        "column": 10,
-        "index": 5224
+        "line": 212,
+        "column": 12,
+        "index": 6561
       }
     },
     "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
   },
   {
-    "token": "euiSelectableListItem.unckeckedOptionInstructions",
-    "defString": "To select this option, press enter.",
+    "token": "euiSelectableListItem.mixedOption",
+    "defString": "Mixed (indeterminate) option.",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 172,
-        "column": 8,
-        "index": 5310
+        "line": 217,
+        "column": 10,
+        "index": 6624
       },
       "end": {
-        "line": 175,
-        "column": 10,
-        "index": 5453
+        "line": 220,
+        "column": 12,
+        "index": 6751
       }
     },
     "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
   },
   {
-    "token": "euiSelectableListItem.checkedOption",
-    "defString": "Checked option.",
+    "token": "euiSelectableListItem.mixedOptionInstructions",
+    "defString": "To check this option for all, press Enter once.",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 182,
-        "column": 8,
-        "index": 5599
+        "line": 223,
+        "column": 10,
+        "index": 6797
       },
       "end": {
-        "line": 185,
-        "column": 10,
-        "index": 5708
+        "line": 226,
+        "column": 12,
+        "index": 6954
       }
     },
     "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
   },
   {
-    "token": "euiSelectableListItem.checkedOptionInstructions",
-    "defString": "To uncheck this option, press enter.",
+    "token": "euiSelectableListItem.mixedOptionUncheckInstructions",
+    "defString": "To uncheck this option for all, press Enter twice.",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 188,
-        "column": 8,
-        "index": 5761
+        "line": 229,
+        "column": 10,
+        "index": 7007
       },
       "end": {
-        "line": 191,
+        "line": 232,
+        "column": 12,
+        "index": 7174
+      }
+    },
+    "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
+  },
+  {
+    "token": "euiSelectableListItem.mixedOptionExcludeInstructions",
+    "defString": "To exclude this option for all, press Enter twice.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 235,
         "column": 10,
-        "index": 5903
+        "index": 7227
+      },
+      "end": {
+        "line": 238,
+        "column": 12,
+        "index": 7394
       }
     },
     "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
@@ -6300,37 +6336,37 @@
     "filepath": "src/components/selectable/selectable.tsx"
   },
   {
-    "token": "euiSkeletonLoading.loadingAriaText",
-    "defString": "Loading {contentAriaLabel}",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 52,
-        "column": 27,
-        "index": 1743
-      },
-      "end": {
-        "line": 56,
-        "column": 3,
-        "index": 1859
-      }
-    },
-    "filepath": "src/components/skeleton/skeleton_loading.tsx"
-  },
-  {
     "token": "euiSkeletonLoading.loadedAriaText",
     "defString": "Loaded {contentAriaLabel}",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 57,
+        "line": 73,
         "column": 25,
-        "index": 1886
+        "index": 2343
       },
       "end": {
-        "line": 61,
+        "line": 77,
         "column": 3,
-        "index": 2000
+        "index": 2457
+      }
+    },
+    "filepath": "src/components/skeleton/skeleton_loading.tsx"
+  },
+  {
+    "token": "euiSkeletonLoading.loadingAriaText",
+    "defString": "Loading {contentAriaLabel}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 79,
+        "column": 27,
+        "index": 2487
+      },
+      "end": {
+        "line": 83,
+        "column": 3,
+        "index": 2603
       }
     },
     "filepath": "src/components/skeleton/skeleton_loading.tsx"

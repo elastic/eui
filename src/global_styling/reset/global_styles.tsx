@@ -73,6 +73,11 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
       ${fontReset}
     }
 
+    // Chrome has opinionated select:disabled opacity styles that need to be overridden
+    select:disabled {
+      opacity: 1;
+    }
+
     button {
       font-family: ${font.family};
     }

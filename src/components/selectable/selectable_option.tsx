@@ -9,7 +9,7 @@
 import React, { HTMLAttributes } from 'react';
 import { CommonProps, ExclusiveUnion } from '../common';
 
-export type EuiSelectableOptionCheckedType = 'on' | 'off' | undefined;
+export type EuiSelectableOptionCheckedType = 'on' | 'off' | 'mixed' | undefined;
 
 export type EuiSelectableOptionBase = CommonProps & {
   /**
@@ -28,9 +28,9 @@ export type EuiSelectableOptionBase = CommonProps & {
    */
   key?: string;
   /**
-   * Leave `undefined` to indicate not selected,
-   * 'on' to indicate inclusion and
-   * 'off' to indicate exclusion
+   * Leave `undefined` to indicate not selected. Pass a string of
+   * 'on' to indicate inclusion, 'off' to indicate exclusion,
+   * or 'mixed' to indicate inclusion for some.
    */
   checked?: EuiSelectableOptionCheckedType;
   disabled?: boolean;

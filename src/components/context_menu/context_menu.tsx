@@ -72,6 +72,14 @@ export const SIZES = keysOf(sizeToClassNameMap);
 export type EuiContextMenuProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'style'> & {
     panels?: EuiContextMenuPanelDescriptor[];
+    /**
+     * Optional callback that fires on every panel change. Passes back
+     * the new panel ID and whether its direction was `next` or `previous`.
+     */
+    onPanelChange?: (panelDetails: {
+      panelId: EuiContextMenuPanelId;
+      direction?: EuiContextMenuPanelTransitionDirection;
+    }) => void;
     initialPanelId?: EuiContextMenuPanelId;
     /**
      * Alters the size of the items and the title
@@ -221,6 +229,8 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
       transitionDirection: direction,
       isOutgoingPanelVisible: true,
     });
+
+    this.props.onPanelChange?.({ panelId, direction });
   }
 
   showNextPanel = (itemIndex?: number) => {
@@ -407,7 +417,14 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
   }
 
   render() {
-    const { panels, className, initialPanelId, size, ...rest } = this.props;
+    const {
+      panels,
+      onPanelChange,
+      className,
+      initialPanelId,
+      size,
+      ...rest
+    } = this.props;
 
     const incomingPanel = this.renderPanel(this.state.incomingPanelId!, 'in');
     let outgoingPanel;

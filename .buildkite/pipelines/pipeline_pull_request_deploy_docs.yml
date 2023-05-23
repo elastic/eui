@@ -1,0 +1,6 @@
+# 🏠/.buildkite/pipelines/pipeline_pull_request_test.yml
+
+steps:
+  - label: ":hammer: EUI pull request deploy docs"
+    command: "echo 'This will deploy our EUI docs!'"
+

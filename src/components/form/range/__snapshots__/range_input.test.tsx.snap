@@ -11,6 +11,7 @@ exports[`EuiRangeInput renders 1`] = `
       class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiRangeInput"
       max="100"
       min="0"
+      step="any"
       style="inline-size: calc(12px + 1ch + 2em + 0px);"
       type="number"
       value="0"

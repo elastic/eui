@@ -14,7 +14,6 @@ function stripTypeScript(filename, ast) {
     filename: filename,
     babelrc: false,
     presets: ['@babel/typescript'],
-    plugins: ['@babel/plugin-syntax-dynamic-import'],
   }).code;
 }
 
@@ -107,10 +106,10 @@ function resolveOmitToPropTypes(node, state) {
   // extract the string values of keys to remove
   const keysToRemove = new Set(
     toRemovePropTypes.arguments[0].elements
-      .map(keyToRemove =>
+      .map((keyToRemove) =>
         types.isStringLiteral(keyToRemove) ? keyToRemove.value : null
       )
-      .filter(x => x !== null)
+      .filter((x) => x !== null)
   );
 
   // filter out omitted properties
@@ -305,7 +304,7 @@ function resolveIdentifierToPropTypes(node, state) {
       const propertyName = property.key.name;
       const isOptional = !isPropTypeRequired(types, property.value);
       const existsOnB =
-        propsOnB.find(property => property.key.name === propertyName) != null;
+        propsOnB.find((property) => property.key.name === propertyName) != null;
       if (isOptional || !existsOnB) {
         optionalProps.add(propertyName);
       }
@@ -315,7 +314,7 @@ function resolveIdentifierToPropTypes(node, state) {
       const propertyName = property.key.name;
       const isOptional = !isPropTypeRequired(types, property.value);
       const existsOnA =
-        propsOnA.find(property => property.key.name === propertyName) != null;
+        propsOnA.find((property) => property.key.name === propertyName) != null;
       if (isOptional || !existsOnA) {
         optionalProps.add(propertyName);
       }
@@ -510,7 +509,7 @@ function getPropTypesForNode(node, optional, state) {
 
     // translates intersections (Foo & Bar & Baz) to a shape with the types' members (Foo, Bar, Baz) merged together
     case 'TSIntersectionType':
-      const usableNodes = [...node.types].filter(node => {
+      const usableNodes = [...node.types].filter((node) => {
         const nodePropTypes = getPropTypesForNode(node, true, state);
 
         if (
@@ -547,7 +546,7 @@ function getPropTypesForNode(node, optional, state) {
           nodePropTypes.callee.property.name === 'oneOfType'
         ) {
           const properties = nodePropTypes.arguments[0].elements
-            .map(propType => {
+            .map((propType) => {
               // This exists on a oneOfType which must be expressed as an optional proptype
               propType = makePropTypeOptional(types, propType);
 
@@ -562,12 +561,12 @@ function getPropTypesForNode(node, optional, state) {
               }
 
               // extract all of the properties from this group and make them optional
-              return propType.arguments[0].properties.map(property => {
+              return propType.arguments[0].properties.map((property) => {
                 property.value = makePropTypeOptional(types, property.value);
                 return property;
               });
             })
-            .filter(x => x !== null)
+            .filter((x) => x !== null)
             .reduce((allProperties, properties) => {
               return [...allProperties, ...properties];
             }, []);
@@ -608,7 +607,9 @@ function getPropTypesForNode(node, optional, state) {
           if (mergedProperties.hasOwnProperty(typeProperty.key.name)) {
             const existing = mergedProperties[typeProperty.key.name];
             if (!areExpressionsIdentical(existing, typeProperty.value)) {
-              mergedProperties[typeProperty.key.name] = types.callExpression(
+              mergedProperties[
+                typeProperty.key.name
+              ] = types.callExpression(
                 types.memberExpression(
                   types.identifier('PropTypes'),
                   types.identifier('oneOfType')
@@ -651,7 +652,7 @@ function getPropTypesForNode(node, optional, state) {
           ),
           [
             types.objectExpression(
-              propertyKeys.map(propKey => {
+              propertyKeys.map((propKey) => {
                 const objectProperty = types.objectProperty(
                   types.identifier(propKey),
                   mergedProperties[propKey]
@@ -688,13 +689,13 @@ function getPropTypesForNode(node, optional, state) {
               // This helps filter out index signatures from interfaces,
               // which don't translate to prop types.
               .filter(
-                property =>
+                (property) =>
                   property.key != null &&
                   !types.isTSNeverKeyword(
                     property.typeAnnotation.typeAnnotation
                   )
               )
-              .map(property => {
+              .map((property) => {
                 let propertyPropType =
                   property.type === 'TSMethodSignature'
                     ? getPropTypesForNode(
@@ -768,9 +769,11 @@ function getPropTypesForNode(node, optional, state) {
         ),
         [
           types.arrayExpression(
-            node.properties.map(property =>
+            node.properties.map((property) =>
               types.stringLiteral(
-                property.key ? property.key.name || property.key.value : property.argument.name
+                property.key
+                  ? property.key.name || property.key.value
+                  : property.argument.name
               )
             )
           ),
@@ -788,7 +791,7 @@ function getPropTypesForNode(node, optional, state) {
         [
           types.objectExpression(
             node.members
-              .map(property => {
+              .map((property) => {
                 // skip never keyword
                 if (
                   types.isTSNeverKeyword(property.typeAnnotation.typeAnnotation)
@@ -823,7 +826,7 @@ function getPropTypesForNode(node, optional, state) {
                 }
                 return objectProperty;
               })
-              .filter(x => x != null)
+              .filter((x) => x != null)
           ),
         ]
       );
@@ -834,7 +837,7 @@ function getPropTypesForNode(node, optional, state) {
     // literal values are extracted into a `oneOf`, if all members are literals this oneOf is used
     // otherwise `oneOfType` is used - if there are any literal values it contains the literals' `oneOf`
     case 'TSUnionType':
-      const tsUnionTypes = node.types.map(node =>
+      const tsUnionTypes = node.types.map((node) =>
         getPropTypesForNode(node, false, state)
       );
 
@@ -904,7 +907,7 @@ function getPropTypesForNode(node, optional, state) {
 
     // translate enum to PropTypes.oneOf
     case 'TSEnumDeclaration':
-      const memberTypes = node.members.map(member =>
+      const memberTypes = node.members.map((member) =>
         getPropTypesForNode(member, true, state)
       );
       propType = types.callExpression(
@@ -1062,7 +1065,7 @@ const typeDefinitionExtractors = {
     // only process relative imports for typescript definitions (avoid node_modules)
     if (isPathRelative && isImportTypecript) {
       // find the variable names being imported
-      const importedTypeNames = node.specifiers.map(specifier => {
+      const importedTypeNames = node.specifiers.map((specifier) => {
         switch (specifier.type) {
           case 'ImportSpecifier':
             return specifier.imported.name;
@@ -1161,14 +1164,12 @@ const typeDefinitionExtractors = {
    * @param node
    * @returns Array
    */
-  TSInterfaceDeclaration: node => {
+  TSInterfaceDeclaration: (node) => {
     const { id } = node;
 
     if (id.type !== 'Identifier') {
       throw new Error(
-        `TSInterfaceDeclaration typeDefinitionExtract could not understand id type ${
-          id.type
-        }`
+        `TSInterfaceDeclaration typeDefinitionExtract could not understand id type ${id.type}`
       );
     }
 
@@ -1180,14 +1181,12 @@ const typeDefinitionExtractors = {
    * @param node
    * @returns Array
    */
-  TSTypeAliasDeclaration: node => {
+  TSTypeAliasDeclaration: (node) => {
     const { id, typeAnnotation } = node;
 
     if (id.type !== 'Identifier') {
       throw new Error(
-        `TSTypeAliasDeclaraction typeDefinitionExtract could not understand id type ${
-          id.type
-        }`
+        `TSTypeAliasDeclaraction typeDefinitionExtract could not understand id type ${id.type}`
       );
     }
     return [{ name: id.name, definition: typeAnnotation }];
@@ -1198,14 +1197,12 @@ const typeDefinitionExtractors = {
    * @param node
    * @returns Array
    */
-  TSEnumDeclaration: node => {
+  TSEnumDeclaration: (node) => {
     const { id } = node;
 
     if (id.type !== 'Identifier') {
       throw new Error(
-        `TSEnumDeclaration typeDefinitionExtract could not understand id type ${
-          id.type
-        }`
+        `TSEnumDeclaration typeDefinitionExtract could not understand id type ${id.type}`
       );
     }
 
@@ -1217,7 +1214,7 @@ const typeDefinitionExtractors = {
    * @param node
    * @returns Array
    */
-  VariableDeclaration: node => {
+  VariableDeclaration: (node) => {
     return node.declarations.reduce((declarations, declaration) => {
       if (
         declaration.init != null &&
@@ -1389,7 +1386,7 @@ module.exports = function propTypesFromTypeScript({ types }) {
             {
               ImportDeclaration: ({ node }) => {
                 if (node.source.value === 'react') {
-                  node.specifiers.forEach(specifier => {
+                  node.specifiers.forEach((specifier) => {
                     if (specifier.type === 'ImportSpecifier') {
                       importsFromReact.add(specifier.local.name);
                     }
@@ -1414,7 +1411,7 @@ module.exports = function propTypesFromTypeScript({ types }) {
               this.file.opts.filename
             ),
             fs: opts.fs || fs,
-            parse: code => babelCore.parse(code, state.file.opts),
+            parse: (code) => babelCore.parse(code, state.file.opts),
           };
 
           // collect named TS type definitions for later reference
@@ -1505,7 +1502,7 @@ module.exports = function propTypesFromTypeScript({ types }) {
         )
           return;
 
-        const resolveVariableDeclarator = variableDeclarator => {
+        const resolveVariableDeclarator = (variableDeclarator) => {
           const { id } = variableDeclarator;
           const idTypeAnnotation = id.typeAnnotation;
           let fileCodeNeedsUpdating = false;

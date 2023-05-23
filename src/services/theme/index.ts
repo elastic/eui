@@ -9,6 +9,7 @@
 export {
   EuiSystemContext,
   EuiThemeContext,
+  EuiNestedThemeContext,
   EuiModificationsContext,
   EuiColorModeContext,
 } from './context';

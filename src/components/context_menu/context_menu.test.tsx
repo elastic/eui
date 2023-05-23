@@ -139,8 +139,13 @@ describe('EuiContextMenu', () => {
       });
 
       it('allows you to click the title button to go back to the previous panel', async () => {
+        const onPanelChange = jest.fn();
         const component = mount(
-          <EuiContextMenu panels={panels} initialPanelId={2} />
+          <EuiContextMenu
+            panels={panels}
+            initialPanelId={2}
+            onPanelChange={onPanelChange}
+          />
         );
 
         await tick(20);
@@ -155,6 +160,10 @@ describe('EuiContextMenu', () => {
         await tick(20);
 
         expect(takeMountedSnapshot(component)).toMatchSnapshot();
+        expect(onPanelChange).toHaveBeenCalledWith({
+          panelId: 1,
+          direction: 'previous',
+        });
       });
     });
 
