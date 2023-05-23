@@ -39,7 +39,7 @@ describe('EuiScreenReaderOnly', () => {
     });
   });
 
-  test('will show on focus', () => {
+  test('showOnFocus', () => {
     const component = render(
       <EuiScreenReaderOnly showOnFocus>
         <a href="#">Link</a>
