@@ -18,11 +18,12 @@ export interface EuiScreenReaderOnlyProps {
    */
   children: ReactElement;
 
+  className?: string;
+
   /**
    * For keyboard navigation, force content to display visually upon focus/focus-within.
    */
   showOnFocus?: boolean;
-  className?: string;
 }
 
 export const EuiScreenReaderOnly: FunctionComponent<
