@@ -173,7 +173,6 @@ const utcSnippet = `<EuiDatePicker
 const inlineSnippet = `<EuiDatePicker
   selected={startDate}
   onChange={handleChange}
-  showTimeSelect
   inline
   shadow={false}
 />`;
@@ -408,10 +407,9 @@ export const DatePickerExample = {
       text: (
         <p>
           Use the <EuiCode>inline</EuiCode> prop to display the date picker
-          directly in the page. If you do not need the shadows / popover effect
-          to the date picker then also apply the{' '}
-          <EuiCode language="js">shadow=false</EuiCode> prop as shown in the
-          second example.
+          directly in the page instead of inside a popover. If you do not need
+          the default inline shadow effect, apply the{' '}
+          <EuiCode language="js">{'shadow={false}'}</EuiCode> prop.
         </p>
       ),
       snippet: inlineSnippet,
