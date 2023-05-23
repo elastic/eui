@@ -28,6 +28,9 @@ const selectableSingleSource = require('!!raw-loader!./selectable_single');
 import SelectableExclusion from './selectable_exclusion';
 const selectableExclusionSource = require('!!raw-loader!./selectable_exclusion');
 
+import SelectableMixed from './selectable_mixed';
+const selectableMixedSource = require('!!raw-loader!./selectable_mixed');
+
 import SelectableMessages from './selectable_messages';
 const selectableMessagesSource = require('!!raw-loader!./selectable_messages');
 
@@ -95,9 +98,10 @@ export const SelectableExample = {
           >
             <p>
               <strong>EuiSelectable</strong> offers the ability to{' '}
-              <strong>exclude</strong> selections. Therefore, the{' '}
-              <EuiCode>checked</EuiCode> property is one of{' '}
-              <EuiCode>{"undefined | 'on' | 'off'"}</EuiCode>,{' '}
+              <strong>exclude</strong> selections or{' '}
+              <strong>include selections for some</strong> (mixed). Therefore,
+              the <EuiCode>checked</EuiCode> property is one of{' '}
+              <EuiCode>{"undefined | 'on' | 'off' | 'mixed'"}</EuiCode>,{' '}
               <EuiCode>{"'on'"}</EuiCode> being the default for selected options
               when <EuiCode>allowExclusions = false</EuiCode>.
             </p>
@@ -217,12 +221,10 @@ export const SelectableExample = {
         },
       ],
       text: (
-        <>
-          <p>
-            Currently, adding <EuiCode>allowExclusions</EuiCode> simply allows
-            cycling through the checked options (on {'-> off ->'} undefined).
-          </p>
-        </>
+        <p>
+          Adding <EuiCode>allowExclusions</EuiCode> allows cycling through the
+          checked options (on {'-> off ->'} undefined).
+        </p>
       ),
       props,
       demo: <SelectableExclusion />,
@@ -235,6 +237,44 @@ export const SelectableExample = {
   {list => list}
 </EuiSelectable>`,
     },
+
+    {
+      title: 'Options can be mixed (indeterminate)',
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: selectableMixedSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            Setting an option to <EuiCode>checked: &ldquo;mixed&rdquo;</EuiCode>{' '}
+            allows showing an indeterminate/mixed state. This state can only be
+            set by the consuming application, and should typically be used to
+            show that another state being controlled by the{' '}
+            <strong>EuiSelectable</strong> has some, but not all, items
+            selected.
+          </p>
+          <p>
+            When clicking a mixed option, the option will cycle to
+            &quot;on&quot;, and after that cycle between {'on -> off'} (if{' '}
+            <EuiCode>allowExclusions</EuiCode> is true) {'-> undefined'}). Users
+            cannot manually cycle back to mixed.
+          </p>
+        </>
+      ),
+      props,
+      demo: <SelectableMixed />,
+      snippet: `<EuiSelectable
+  aria-label="Example supporting mixed (indeterminate) options"
+  options={[{ label: '', checked: 'mixed' }]}
+  onChange={newOptions => setOptions(newOptions)}
+>
+  {list => list}
+</EuiSelectable>`,
+    },
+
     {
       title: 'Messages and loading',
       source: [

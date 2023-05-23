@@ -1,5 +1,358 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiSelectableListItem group labels handles updating aria attrs correctly when options are changed/updated 1`] = `
+<div
+  class="euiSelectableList testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiSelectableList__list"
+    tabindex="-1"
+  >
+    <ul
+      aria-activedescendant="option_undefined"
+      aria-label="aria-label"
+      aria-multiselectable="true"
+      id="list"
+      role="listbox"
+      tabindex="0"
+    >
+      <li
+        class="euiSelectableList__groupLabel"
+        role="presentation"
+      >
+        Moons
+      </li>
+      <li
+        aria-checked="false"
+        aria-posinset="1"
+        aria-selected="false"
+        aria-setsize="5"
+        class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+        id="option_1"
+        role="option"
+        title="Titan"
+      >
+        <span
+          class="euiSelectableListItem__content"
+        >
+          <span
+            class="euiSelectableListItem__icon"
+            data-euiicon-type="empty"
+          />
+          <span
+            class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+          >
+            <span>
+              Titan
+            </span>
+          </span>
+        </span>
+      </li>
+      <li
+        aria-checked="false"
+        aria-posinset="2"
+        aria-selected="false"
+        aria-setsize="5"
+        class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+        id="option_2"
+        role="option"
+        title="Io"
+      >
+        <span
+          class="euiSelectableListItem__content"
+        >
+          <span
+            class="euiSelectableListItem__icon"
+            data-euiicon-type="empty"
+          />
+          <span
+            class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+          >
+            <span>
+              Io
+            </span>
+          </span>
+        </span>
+      </li>
+      <li
+        class="euiSelectableList__groupLabel"
+        role="presentation"
+      >
+        Planets
+      </li>
+      <li
+        aria-checked="false"
+        aria-posinset="3"
+        aria-selected="false"
+        aria-setsize="5"
+        class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+        id="option_4"
+        role="option"
+        title="Mercury"
+      >
+        <span
+          class="euiSelectableListItem__content"
+        >
+          <span
+            class="euiSelectableListItem__icon"
+            data-euiicon-type="empty"
+          />
+          <span
+            class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+          >
+            <span>
+              Mercury
+            </span>
+          </span>
+        </span>
+      </li>
+      <li
+        aria-checked="false"
+        aria-posinset="4"
+        aria-selected="false"
+        aria-setsize="5"
+        class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+        id="option_5"
+        role="option"
+        title="Mars"
+      >
+        <span
+          class="euiSelectableListItem__content"
+        >
+          <span
+            class="euiSelectableListItem__icon"
+            data-euiicon-type="empty"
+          />
+          <span
+            class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+          >
+            <span>
+              Mars
+            </span>
+          </span>
+        </span>
+      </li>
+      <li
+        class="euiSelectableList__groupLabel"
+        role="presentation"
+      >
+        Suns
+      </li>
+      <li
+        aria-checked="false"
+        aria-posinset="5"
+        aria-selected="false"
+        aria-setsize="5"
+        class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+        id="option_7"
+        role="option"
+        title="Sol"
+      >
+        <span
+          class="euiSelectableListItem__content"
+        >
+          <span
+            class="euiSelectableListItem__icon"
+            data-euiicon-type="empty"
+          />
+          <span
+            class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+          >
+            <span>
+              Sol
+            </span>
+          </span>
+        </span>
+      </li>
+    </ul>
+  </div>
+</div>
+`;
+
+exports[`EuiSelectableListItem group labels renders with correct aria-setsize and aria-posinset offsets on non-group-labels 1`] = `
+<div
+  class="euiSelectableList testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    data-eui="EuiAutoSizer"
+  >
+    <div
+      class="euiSelectableList__list"
+      style="position: relative; height: 208px; width: 600px; overflow: auto; will-change: transform; direction: ltr;"
+      tabindex="-1"
+    >
+      <ul
+        aria-label="aria-label"
+        aria-multiselectable="true"
+        id="list"
+        role="listbox"
+        style="height: 256px; width: 100%;"
+        tabindex="0"
+      >
+        <li
+          aria-checked="false"
+          aria-posinset="1"
+          aria-selected="false"
+          aria-setsize="5"
+          class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+          id="option_0"
+          role="option"
+          style="position: absolute; left: 0px; top: 0px; height: 32px; width: 100%;"
+          title="Spaaaace"
+        >
+          <span
+            class="euiSelectableListItem__content"
+          >
+            <span
+              class="euiSelectableListItem__icon"
+              data-euiicon-type="empty"
+            />
+            <span
+              class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+            >
+              <span>
+                Spaaaace
+              </span>
+            </span>
+          </span>
+        </li>
+        <li
+          class="euiSelectableList__groupLabel"
+          role="presentation"
+          style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
+        >
+          Moons
+        </li>
+        <li
+          aria-checked="false"
+          aria-posinset="2"
+          aria-selected="false"
+          aria-setsize="5"
+          class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+          id="option_2"
+          role="option"
+          style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
+          title="Titan"
+        >
+          <span
+            class="euiSelectableListItem__content"
+          >
+            <span
+              class="euiSelectableListItem__icon"
+              data-euiicon-type="empty"
+            />
+            <span
+              class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+            >
+              <span>
+                Titan
+              </span>
+            </span>
+          </span>
+        </li>
+        <li
+          aria-checked="false"
+          aria-posinset="3"
+          aria-selected="false"
+          aria-setsize="5"
+          class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+          id="option_3"
+          role="option"
+          style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
+          title="Io"
+        >
+          <span
+            class="euiSelectableListItem__content"
+          >
+            <span
+              class="euiSelectableListItem__icon"
+              data-euiicon-type="empty"
+            />
+            <span
+              class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+            >
+              <span>
+                Io
+              </span>
+            </span>
+          </span>
+        </li>
+        <li
+          class="euiSelectableList__groupLabel"
+          role="presentation"
+          style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
+        >
+          Planets
+        </li>
+        <li
+          aria-checked="false"
+          aria-posinset="4"
+          aria-selected="false"
+          aria-setsize="5"
+          class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+          id="option_5"
+          role="option"
+          style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
+          title="Mercury"
+        >
+          <span
+            class="euiSelectableListItem__content"
+          >
+            <span
+              class="euiSelectableListItem__icon"
+              data-euiicon-type="empty"
+            />
+            <span
+              class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+            >
+              <span>
+                Mercury
+              </span>
+            </span>
+          </span>
+        </li>
+        <li
+          aria-checked="false"
+          aria-posinset="5"
+          aria-selected="false"
+          aria-setsize="5"
+          class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+          id="option_6"
+          role="option"
+          style="position: absolute; left: 0px; top: 192px; height: 32px; width: 100%;"
+          title="Mars"
+        >
+          <span
+            class="euiSelectableListItem__content"
+          >
+            <span
+              class="euiSelectableListItem__icon"
+              data-euiicon-type="empty"
+            />
+            <span
+              class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
+            >
+              <span>
+                Mars
+              </span>
+            </span>
+          </span>
+        </li>
+        <li
+          class="euiSelectableList__groupLabel"
+          role="presentation"
+          style="position: absolute; left: 0px; top: 224px; height: 32px; width: 100%;"
+        >
+          Suns
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiSelectableListItem is rendered 1`] = `
 <div
   class="euiSelectableList testClass1 testClass2"
@@ -27,7 +380,6 @@ exports[`EuiSelectableListItem is rendered 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -56,7 +408,6 @@ exports[`EuiSelectableListItem is rendered 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
@@ -84,7 +435,6 @@ exports[`EuiSelectableListItem is rendered 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
@@ -112,7 +462,6 @@ exports[`EuiSelectableListItem is rendered 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
@@ -140,7 +489,6 @@ exports[`EuiSelectableListItem is rendered 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
@@ -168,7 +516,6 @@ exports[`EuiSelectableListItem is rendered 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
@@ -223,7 +570,6 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -252,7 +598,6 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
@@ -280,7 +625,6 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
           aria-selected="true"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem-isFocused euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
@@ -327,7 +671,6 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
@@ -355,7 +698,6 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
@@ -383,7 +725,6 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
@@ -438,7 +779,6 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -461,8 +801,8 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <div
                 class="emotion-euiScreenReaderOnly"
               >
-                 - 
-                To select this option, press enter.
+                . 
+                To check this option, press Enter.
               </div>
             </span>
           </span>
@@ -473,7 +813,6 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
@@ -495,8 +834,8 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <div
                 class="emotion-euiScreenReaderOnly"
               >
-                 - 
-                To select this option, press enter.
+                . 
+                To check this option, press Enter.
               </div>
             </span>
           </span>
@@ -507,7 +846,6 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
@@ -529,8 +867,8 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <div
                 class="emotion-euiScreenReaderOnly"
               >
-                 - 
-                To select this option, press enter.
+                . 
+                To check this option, press Enter.
               </div>
             </span>
           </span>
@@ -541,7 +879,6 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
@@ -563,8 +900,8 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <div
                 class="emotion-euiScreenReaderOnly"
               >
-                 - 
-                To select this option, press enter.
+                . 
+                To check this option, press Enter.
               </div>
             </span>
           </span>
@@ -575,7 +912,6 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
@@ -597,8 +933,8 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <div
                 class="emotion-euiScreenReaderOnly"
               >
-                 - 
-                To select this option, press enter.
+                . 
+                To check this option, press Enter.
               </div>
             </span>
           </span>
@@ -609,7 +945,6 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
@@ -631,8 +966,8 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <div
                 class="emotion-euiScreenReaderOnly"
               >
-                 - 
-                To select this option, press enter.
+                . 
+                To check this option, press Enter.
               </div>
             </span>
           </span>
@@ -670,7 +1005,6 @@ exports[`EuiSelectableListItem props bordered 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -699,7 +1033,6 @@ exports[`EuiSelectableListItem props bordered 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
@@ -727,7 +1060,6 @@ exports[`EuiSelectableListItem props bordered 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
@@ -755,7 +1087,6 @@ exports[`EuiSelectableListItem props bordered 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
@@ -783,7 +1114,6 @@ exports[`EuiSelectableListItem props bordered 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
@@ -811,7 +1141,6 @@ exports[`EuiSelectableListItem props bordered 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
@@ -866,7 +1195,6 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -895,7 +1223,6 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
@@ -923,7 +1250,6 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
@@ -951,7 +1277,6 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
@@ -979,7 +1304,6 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
@@ -1007,7 +1331,6 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
@@ -1062,7 +1385,6 @@ exports[`EuiSelectableListItem props height is full 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -1091,7 +1413,6 @@ exports[`EuiSelectableListItem props height is full 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
@@ -1119,7 +1440,6 @@ exports[`EuiSelectableListItem props height is full 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
@@ -1147,7 +1467,6 @@ exports[`EuiSelectableListItem props height is full 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
@@ -1175,7 +1494,6 @@ exports[`EuiSelectableListItem props height is full 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
@@ -1203,7 +1521,6 @@ exports[`EuiSelectableListItem props height is full 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
@@ -1253,7 +1570,6 @@ exports[`EuiSelectableListItem props isVirtualized can be false 1`] = `
         aria-selected="false"
         aria-setsize="6"
         class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-        data-test-selected="false"
         data-test-subj="titanOption"
         id="option_0"
         role="option"
@@ -1281,7 +1597,6 @@ exports[`EuiSelectableListItem props isVirtualized can be false 1`] = `
         aria-selected="false"
         aria-setsize="6"
         class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-        data-test-selected="false"
         id="option_1"
         role="option"
         title="Enceladus"
@@ -1308,7 +1623,6 @@ exports[`EuiSelectableListItem props isVirtualized can be false 1`] = `
         aria-selected="false"
         aria-setsize="6"
         class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-        data-test-selected="false"
         id="option_2"
         role="option"
         title="Mimas"
@@ -1335,7 +1649,6 @@ exports[`EuiSelectableListItem props isVirtualized can be false 1`] = `
         aria-selected="false"
         aria-setsize="6"
         class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-        data-test-selected="false"
         id="option_3"
         role="option"
         title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
@@ -1362,7 +1675,6 @@ exports[`EuiSelectableListItem props isVirtualized can be false 1`] = `
         aria-selected="false"
         aria-setsize="6"
         class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-        data-test-selected="false"
         id="option_4"
         role="option"
         title="Tethys"
@@ -1389,7 +1701,6 @@ exports[`EuiSelectableListItem props isVirtualized can be false 1`] = `
         aria-selected="false"
         aria-setsize="6"
         class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-        data-test-selected="false"
         id="option_5"
         role="option"
         title="Hyperion"
@@ -1442,7 +1753,6 @@ exports[`EuiSelectableListItem props paddingSize none is rendered 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem"
-          data-test-selected="false"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -1471,7 +1781,6 @@ exports[`EuiSelectableListItem props paddingSize none is rendered 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem"
-          data-test-selected="false"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
@@ -1499,7 +1808,6 @@ exports[`EuiSelectableListItem props paddingSize none is rendered 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem"
-          data-test-selected="false"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
@@ -1527,7 +1835,6 @@ exports[`EuiSelectableListItem props paddingSize none is rendered 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem"
-          data-test-selected="false"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
@@ -1555,7 +1862,6 @@ exports[`EuiSelectableListItem props paddingSize none is rendered 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem"
-          data-test-selected="false"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
@@ -1583,7 +1889,6 @@ exports[`EuiSelectableListItem props paddingSize none is rendered 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem"
-          data-test-selected="false"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
@@ -1638,7 +1943,6 @@ exports[`EuiSelectableListItem props paddingSize s is rendered 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -1667,7 +1971,6 @@ exports[`EuiSelectableListItem props paddingSize s is rendered 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
@@ -1695,7 +1998,6 @@ exports[`EuiSelectableListItem props paddingSize s is rendered 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
@@ -1723,7 +2025,6 @@ exports[`EuiSelectableListItem props paddingSize s is rendered 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
@@ -1751,7 +2052,6 @@ exports[`EuiSelectableListItem props paddingSize s is rendered 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
@@ -1779,7 +2079,6 @@ exports[`EuiSelectableListItem props paddingSize s is rendered 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
@@ -1834,7 +2133,6 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -1865,7 +2163,6 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
@@ -1895,7 +2192,6 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
@@ -1925,7 +2221,6 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
@@ -1955,7 +2250,6 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
@@ -1985,7 +2279,6 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
@@ -2042,7 +2335,6 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -2071,7 +2363,6 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 20px; height: 20px; width: 100%;"
@@ -2099,7 +2390,6 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 40px; height: 20px; width: 100%;"
@@ -2127,7 +2417,6 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 60px; height: 20px; width: 100%;"
@@ -2155,7 +2444,6 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 80px; height: 20px; width: 100%;"
@@ -2183,7 +2471,6 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 100px; height: 20px; width: 100%;"
@@ -2238,7 +2525,6 @@ exports[`EuiSelectableListItem props searchValue 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -2267,7 +2553,6 @@ exports[`EuiSelectableListItem props searchValue 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
@@ -2295,7 +2580,6 @@ exports[`EuiSelectableListItem props searchValue 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
@@ -2329,7 +2613,6 @@ exports[`EuiSelectableListItem props searchValue 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
@@ -2357,7 +2640,6 @@ exports[`EuiSelectableListItem props searchValue 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
@@ -2385,7 +2667,6 @@ exports[`EuiSelectableListItem props searchValue 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
@@ -2440,7 +2721,6 @@ exports[`EuiSelectableListItem props searchValue 2`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -2469,7 +2749,6 @@ exports[`EuiSelectableListItem props searchValue 2`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
@@ -2497,7 +2776,6 @@ exports[`EuiSelectableListItem props searchValue 2`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
@@ -2531,7 +2809,6 @@ exports[`EuiSelectableListItem props searchValue 2`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
@@ -2559,7 +2836,6 @@ exports[`EuiSelectableListItem props searchValue 2`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
@@ -2587,7 +2863,6 @@ exports[`EuiSelectableListItem props searchValue 2`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
@@ -2640,7 +2915,6 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -2660,6 +2934,12 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
               <span>
                 Titan
               </span>
+              <div
+                class="emotion-euiScreenReaderOnly"
+              >
+                . 
+                To check this option, press Enter.
+              </div>
             </span>
           </span>
         </li>
@@ -2669,7 +2949,6 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
@@ -2688,6 +2967,12 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
               <span>
                 Enceladus
               </span>
+              <div
+                class="emotion-euiScreenReaderOnly"
+              >
+                . 
+                To check this option, press Enter.
+              </div>
             </span>
           </span>
         </li>
@@ -2697,7 +2982,6 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
@@ -2716,6 +3000,12 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
               <span>
                 Mimas
               </span>
+              <div
+                class="emotion-euiScreenReaderOnly"
+              >
+                . 
+                To check this option, press Enter.
+              </div>
             </span>
           </span>
         </li>
@@ -2725,7 +3015,6 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
@@ -2744,6 +3033,12 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
               <span>
                 Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
               </span>
+              <div
+                class="emotion-euiScreenReaderOnly"
+              >
+                . 
+                To check this option, press Enter.
+              </div>
             </span>
           </span>
         </li>
@@ -2753,7 +3048,6 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
@@ -2772,6 +3066,12 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
               <span>
                 Tethys
               </span>
+              <div
+                class="emotion-euiScreenReaderOnly"
+              >
+                . 
+                To check this option, press Enter.
+              </div>
             </span>
           </span>
         </li>
@@ -2781,7 +3081,6 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
@@ -2800,6 +3099,12 @@ exports[`EuiSelectableListItem props searchable enables correct screen reader in
               <span>
                 Hyperion
               </span>
+              <div
+                class="emotion-euiScreenReaderOnly"
+              >
+                . 
+                To check this option, press Enter.
+              </div>
             </span>
           </span>
         </li>
@@ -2836,7 +3141,6 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -2861,7 +3165,6 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
@@ -2885,7 +3188,6 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
@@ -2909,7 +3211,6 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
@@ -2933,7 +3234,6 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
@@ -2957,7 +3257,6 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
@@ -3007,7 +3306,6 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -3036,7 +3334,6 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
@@ -3064,7 +3361,6 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
@@ -3092,7 +3388,6 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
@@ -3120,7 +3415,6 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
@@ -3148,7 +3442,6 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
@@ -3202,7 +3495,6 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -3231,7 +3523,6 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
@@ -3259,7 +3550,6 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
@@ -3287,7 +3577,6 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
@@ -3315,7 +3604,6 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
@@ -3343,7 +3631,6 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
@@ -3398,7 +3685,6 @@ exports[`EuiSelectableListItem props textWrap can be "wrap" 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           data-test-subj="titanOption"
           id="option_0"
           role="option"
@@ -3427,7 +3713,6 @@ exports[`EuiSelectableListItem props textWrap can be "wrap" 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
@@ -3455,7 +3740,6 @@ exports[`EuiSelectableListItem props textWrap can be "wrap" 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
@@ -3483,7 +3767,6 @@ exports[`EuiSelectableListItem props textWrap can be "wrap" 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
@@ -3511,7 +3794,6 @@ exports[`EuiSelectableListItem props textWrap can be "wrap" 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_4"
           role="option"
           style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
@@ -3539,7 +3821,6 @@ exports[`EuiSelectableListItem props textWrap can be "wrap" 1`] = `
           aria-selected="false"
           aria-setsize="6"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_5"
           role="option"
           style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
@@ -3594,7 +3875,6 @@ exports[`EuiSelectableListItem props visibleOptions 1`] = `
           aria-selected="false"
           aria-setsize="4"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_0"
           role="option"
           style="position: absolute; left: 0px; top: 0px; height: 32px; width: 100%;"
@@ -3622,7 +3902,6 @@ exports[`EuiSelectableListItem props visibleOptions 1`] = `
           aria-selected="false"
           aria-setsize="4"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_1"
           role="option"
           style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
@@ -3650,7 +3929,6 @@ exports[`EuiSelectableListItem props visibleOptions 1`] = `
           aria-selected="false"
           aria-setsize="4"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_2"
           role="option"
           style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
@@ -3678,7 +3956,6 @@ exports[`EuiSelectableListItem props visibleOptions 1`] = `
           aria-selected="false"
           aria-setsize="4"
           class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
           id="option_3"
           role="option"
           style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
@@ -3699,369 +3976,6 @@ exports[`EuiSelectableListItem props visibleOptions 1`] = `
               </span>
             </span>
           </span>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`EuiSelectableListItem group labels handles updating aria attrs correctly when options are changed/updated 1`] = `
-<div
-  class="euiSelectableList testClass1 testClass2"
-  data-test-subj="test subject string"
->
-  <div
-    class="euiSelectableList__list"
-    tabindex="-1"
-  >
-    <ul
-      aria-activedescendant="option_undefined"
-      aria-label="aria-label"
-      aria-multiselectable="true"
-      id="list"
-      role="listbox"
-      tabindex="0"
-    >
-      <li
-        class="euiSelectableList__groupLabel"
-        role="presentation"
-      >
-        Moons
-      </li>
-      <li
-        aria-checked="false"
-        aria-posinset="1"
-        aria-selected="false"
-        aria-setsize="5"
-        class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-        data-test-selected="false"
-        id="option_1"
-        role="option"
-        title="Titan"
-      >
-        <span
-          class="euiSelectableListItem__content"
-        >
-          <span
-            class="euiSelectableListItem__icon"
-            data-euiicon-type="empty"
-          />
-          <span
-            class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
-          >
-            <span>
-              Titan
-            </span>
-          </span>
-        </span>
-      </li>
-      <li
-        aria-checked="false"
-        aria-posinset="2"
-        aria-selected="false"
-        aria-setsize="5"
-        class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-        data-test-selected="false"
-        id="option_2"
-        role="option"
-        title="Io"
-      >
-        <span
-          class="euiSelectableListItem__content"
-        >
-          <span
-            class="euiSelectableListItem__icon"
-            data-euiicon-type="empty"
-          />
-          <span
-            class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
-          >
-            <span>
-              Io
-            </span>
-          </span>
-        </span>
-      </li>
-      <li
-        class="euiSelectableList__groupLabel"
-        role="presentation"
-      >
-        Planets
-      </li>
-      <li
-        aria-checked="false"
-        aria-posinset="3"
-        aria-selected="false"
-        aria-setsize="5"
-        class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-        data-test-selected="false"
-        id="option_4"
-        role="option"
-        title="Mercury"
-      >
-        <span
-          class="euiSelectableListItem__content"
-        >
-          <span
-            class="euiSelectableListItem__icon"
-            data-euiicon-type="empty"
-          />
-          <span
-            class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
-          >
-            <span>
-              Mercury
-            </span>
-          </span>
-        </span>
-      </li>
-      <li
-        aria-checked="false"
-        aria-posinset="4"
-        aria-selected="false"
-        aria-setsize="5"
-        class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-        data-test-selected="false"
-        id="option_5"
-        role="option"
-        title="Mars"
-      >
-        <span
-          class="euiSelectableListItem__content"
-        >
-          <span
-            class="euiSelectableListItem__icon"
-            data-euiicon-type="empty"
-          />
-          <span
-            class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
-          >
-            <span>
-              Mars
-            </span>
-          </span>
-        </span>
-      </li>
-      <li
-        class="euiSelectableList__groupLabel"
-        role="presentation"
-      >
-        Suns
-      </li>
-      <li
-        aria-checked="false"
-        aria-posinset="5"
-        aria-selected="false"
-        aria-setsize="5"
-        class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-        data-test-selected="false"
-        id="option_7"
-        role="option"
-        title="Sol"
-      >
-        <span
-          class="euiSelectableListItem__content"
-        >
-          <span
-            class="euiSelectableListItem__icon"
-            data-euiicon-type="empty"
-          />
-          <span
-            class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
-          >
-            <span>
-              Sol
-            </span>
-          </span>
-        </span>
-      </li>
-    </ul>
-  </div>
-</div>
-`;
-
-exports[`EuiSelectableListItem group labels renders with correct aria-setsize and aria-posinset offsets on non-group-labels 1`] = `
-<div
-  class="euiSelectableList testClass1 testClass2"
-  data-test-subj="test subject string"
->
-  <div
-    data-eui="EuiAutoSizer"
-  >
-    <div
-      class="euiSelectableList__list"
-      style="position: relative; height: 208px; width: 600px; overflow: auto; will-change: transform; direction: ltr;"
-      tabindex="-1"
-    >
-      <ul
-        aria-label="aria-label"
-        aria-multiselectable="true"
-        id="list"
-        role="listbox"
-        style="height: 256px; width: 100%;"
-        tabindex="0"
-      >
-        <li
-          aria-checked="false"
-          aria-posinset="1"
-          aria-selected="false"
-          aria-setsize="5"
-          class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
-          id="option_0"
-          role="option"
-          style="position: absolute; left: 0px; top: 0px; height: 32px; width: 100%;"
-          title="Spaaaace"
-        >
-          <span
-            class="euiSelectableListItem__content"
-          >
-            <span
-              class="euiSelectableListItem__icon"
-              data-euiicon-type="empty"
-            />
-            <span
-              class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
-            >
-              <span>
-                Spaaaace
-              </span>
-            </span>
-          </span>
-        </li>
-        <li
-          class="euiSelectableList__groupLabel"
-          role="presentation"
-          style="position: absolute; left: 0px; top: 32px; height: 32px; width: 100%;"
-        >
-          Moons
-        </li>
-        <li
-          aria-checked="false"
-          aria-posinset="2"
-          aria-selected="false"
-          aria-setsize="5"
-          class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
-          id="option_2"
-          role="option"
-          style="position: absolute; left: 0px; top: 64px; height: 32px; width: 100%;"
-          title="Titan"
-        >
-          <span
-            class="euiSelectableListItem__content"
-          >
-            <span
-              class="euiSelectableListItem__icon"
-              data-euiicon-type="empty"
-            />
-            <span
-              class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
-            >
-              <span>
-                Titan
-              </span>
-            </span>
-          </span>
-        </li>
-        <li
-          aria-checked="false"
-          aria-posinset="3"
-          aria-selected="false"
-          aria-setsize="5"
-          class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
-          id="option_3"
-          role="option"
-          style="position: absolute; left: 0px; top: 96px; height: 32px; width: 100%;"
-          title="Io"
-        >
-          <span
-            class="euiSelectableListItem__content"
-          >
-            <span
-              class="euiSelectableListItem__icon"
-              data-euiicon-type="empty"
-            />
-            <span
-              class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
-            >
-              <span>
-                Io
-              </span>
-            </span>
-          </span>
-        </li>
-        <li
-          class="euiSelectableList__groupLabel"
-          role="presentation"
-          style="position: absolute; left: 0px; top: 128px; height: 32px; width: 100%;"
-        >
-          Planets
-        </li>
-        <li
-          aria-checked="false"
-          aria-posinset="4"
-          aria-selected="false"
-          aria-setsize="5"
-          class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
-          id="option_5"
-          role="option"
-          style="position: absolute; left: 0px; top: 160px; height: 32px; width: 100%;"
-          title="Mercury"
-        >
-          <span
-            class="euiSelectableListItem__content"
-          >
-            <span
-              class="euiSelectableListItem__icon"
-              data-euiicon-type="empty"
-            />
-            <span
-              class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
-            >
-              <span>
-                Mercury
-              </span>
-            </span>
-          </span>
-        </li>
-        <li
-          aria-checked="false"
-          aria-posinset="5"
-          aria-selected="false"
-          aria-setsize="5"
-          class="euiSelectableListItem euiSelectableListItem--paddingSmall"
-          data-test-selected="false"
-          id="option_6"
-          role="option"
-          style="position: absolute; left: 0px; top: 192px; height: 32px; width: 100%;"
-          title="Mars"
-        >
-          <span
-            class="euiSelectableListItem__content"
-          >
-            <span
-              class="euiSelectableListItem__icon"
-              data-euiicon-type="empty"
-            />
-            <span
-              class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
-            >
-              <span>
-                Mars
-              </span>
-            </span>
-          </span>
-        </li>
-        <li
-          class="euiSelectableList__groupLabel"
-          role="presentation"
-          style="position: absolute; left: 0px; top: 224px; height: 32px; width: 100%;"
-        >
-          Suns
         </li>
       </ul>
     </div>
