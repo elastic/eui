@@ -1,5 +1,65 @@
 [
   {
+    "version": "81.0.0",
+    "changes": [
+      {
+        "token": "euiSelectableListItem.includedOption",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiSelectableListItem.includedOptionInstructions",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiSelectableListItem.excludedOptionInstructions",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiSelectableListItem.unckeckedOptionInstructions",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiSelectableListItem.checkedOptionInstructions",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiSelectableListItem.checkOptionInstructions",
+        "changeType": "added",
+        "value": "To check this option, press Enter."
+      },
+      {
+        "token": "euiSelectableListItem.uncheckOptionInstructions",
+        "changeType": "added",
+        "value": "To uncheck this option, press Enter."
+      },
+      {
+        "token": "euiSelectableListItem.excludeOptionInstructions",
+        "changeType": "added",
+        "value": "To exclude this option, press Enter."
+      },
+      {
+        "token": "euiSelectableListItem.mixedOption",
+        "changeType": "added",
+        "value": "Mixed (indeterminate) option."
+      },
+      {
+        "token": "euiSelectableListItem.mixedOptionInstructions",
+        "changeType": "added",
+        "value": "To check this option for all, press Enter once."
+      },
+      {
+        "token": "euiSelectableListItem.mixedOptionUncheckInstructions",
+        "changeType": "added",
+        "value": "To uncheck this option for all, press Enter twice."
+      },
+      {
+        "token": "euiSelectableListItem.mixedOptionExcludeInstructions",
+        "changeType": "added",
+        "value": "To exclude this option for all, press Enter twice."
+      }
+    ]
+  },
+  {
     "version": "77.2.0",
     "changes": [
       {
