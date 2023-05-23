@@ -21,6 +21,7 @@ exports[`EuiInlineEditTitle isReadOnly 1`] = `
       >
         <h1
           class="euiTitle eui-textTruncate emotion-euiTitle-m"
+          role="presentation"
         >
           Hello World!
         </h1>
