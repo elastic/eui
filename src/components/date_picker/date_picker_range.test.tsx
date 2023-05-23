@@ -26,8 +26,20 @@ describe('EuiDatePickerRange', () => {
     expect(component).toMatchSnapshot();
   });
 
-  describe('readOnly', () => {
-    it('is rendered', () => {
+  describe('props', () => {
+    test('fullWidth', () => {
+      const component = render(
+        <EuiDatePickerRange
+          startDateControl={<EuiDatePicker />}
+          endDateControl={<EuiDatePicker />}
+          fullWidth
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('readOnly', () => {
       const component = render(
         <EuiDatePickerRange
           startDateControl={<EuiDatePicker />}
@@ -38,10 +50,8 @@ describe('EuiDatePickerRange', () => {
 
       expect(component).toMatchSnapshot();
     });
-  });
 
-  describe('disabled', () => {
-    it('is rendered', () => {
+    test('disabled', () => {
       const component = render(
         <EuiDatePickerRange
           startDateControl={<EuiDatePicker />}
@@ -52,15 +62,25 @@ describe('EuiDatePickerRange', () => {
 
       expect(component).toMatchSnapshot();
     });
-  });
 
-  describe('isInvalid', () => {
-    it('is rendered', () => {
+    test('isInvalid', () => {
       const component = render(
         <EuiDatePickerRange
           startDateControl={<EuiDatePicker />}
           endDateControl={<EuiDatePicker />}
           isInvalid
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('isLoading', () => {
+      const component = render(
+        <EuiDatePickerRange
+          startDateControl={<EuiDatePicker />}
+          endDateControl={<EuiDatePicker />}
+          isLoading
         />
       );
 

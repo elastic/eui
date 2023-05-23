@@ -31,7 +31,7 @@ import { EuiDatePickerProps } from './date_picker';
 export type EuiDatePickerRangeProps = CommonProps &
   Pick<
     EuiFormControlLayoutDelimitedProps,
-    'isInvalid' | 'readOnly' | 'fullWidth' | 'prepend' | 'append'
+    'isLoading' | 'isInvalid' | 'readOnly' | 'fullWidth' | 'prepend' | 'append'
   > & {
     /**
      * Including any children will replace all innards with the provided children
@@ -83,6 +83,7 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
   fullWidth,
   isCustom,
   readOnly,
+  isLoading,
   isInvalid,
   disabled,
   onFocus,
@@ -161,6 +162,7 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
         readOnly={readOnly}
         isDisabled={disabled}
         isInvalid={isInvalid}
+        isLoading={isLoading}
         append={append}
         prepend={prepend}
       />
