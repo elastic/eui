@@ -201,6 +201,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   const editModeInputOnKeyDown = (event: KeyboardEvent<HTMLElement>) => {
     switch (event.key) {
       case keys.ENTER:
+        event.preventDefault(); // Enter keypresses will not proceed otherwise on webkit browsers & screen readers
         saveInlineEditValue();
         break;
       case keys.ESCAPE:
