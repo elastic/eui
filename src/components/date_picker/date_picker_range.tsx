@@ -7,6 +7,7 @@
  */
 
 import React, {
+  useMemo,
   FocusEvent,
   FocusEventHandler,
   FunctionComponent,
@@ -68,6 +69,8 @@ export type EuiDatePickerRangeProps = CommonProps &
 
     /**
      * Displays both date picker calendars directly on the page.
+     * Will not render `iconType`, `fullWidth`, `prepend`, or `append`.
+     *
      * Passes through to each control if `isCustom` is not set.
      */
     inline?: EuiDatePickerProps['inline'];
@@ -96,7 +99,7 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
   iconType = true,
   inline,
   shadow = true,
-  fullWidth,
+  fullWidth: _fullWidth,
   isCustom,
   readOnly,
   isLoading,
@@ -108,6 +111,9 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
   prepend,
   ...rest
 }) => {
+  // `fullWidth` should not affect inline datepickers (matches non-range behavior)
+  const fullWidth = _fullWidth && !inline;
+
   const classes = classNames('euiDatePickerRange', className);
 
   const euiTheme = useEuiTheme();
@@ -176,10 +182,17 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
     );
   }
 
+  const icon = useMemo(() => {
+    if (inline) return undefined;
+    if (iconType === false) return undefined;
+    if (iconType === true) return 'calendar';
+    return iconType;
+  }, [iconType, inline]);
+
   return (
     <span className={classes} css={cssStyles} {...rest}>
       <EuiFormControlLayoutDelimited
-        icon={iconType === true ? 'calendar' : iconType || undefined}
+        icon={icon}
         startControl={startControl}
         endControl={endControl}
         fullWidth={fullWidth}
@@ -187,8 +200,8 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
         isDisabled={disabled}
         isInvalid={isInvalid}
         isLoading={isLoading}
-        append={append}
-        prepend={prepend}
+        append={inline ? undefined : append}
+        prepend={inline ? undefined : prepend}
       />
     </span>
   );

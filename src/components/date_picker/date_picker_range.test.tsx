@@ -117,6 +117,9 @@ describe('EuiDatePickerRange', () => {
 
         expect(component.attr('class')).not.toContain('shadow');
       });
+
+      // TODO: Use storybook to test inline invalid, loading, disabled, & readOnly
+      // visually instead of via DOM
     });
   });
 
