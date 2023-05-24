@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { mount as cypressMount } from 'cypress/react';
+import { mount as cypressMount } from 'cypress/react18';
 import { EuiProvider } from '../../../src';
 
 Cypress.Commands.add('mount', (children) => {

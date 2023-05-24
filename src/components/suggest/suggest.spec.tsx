@@ -86,6 +86,7 @@ describe('EuiSuggest', () => {
       );
 
       cy.get('input')
+        .click()
         .type('search')
         .type('{backspace}')
         .then(() => {
@@ -106,6 +107,7 @@ describe('EuiSuggest', () => {
       );
 
       cy.get('input')
+        .click()
         .type('search')
         .type('{backspace}')
         .then(() => {
@@ -119,6 +121,7 @@ describe('EuiSuggest', () => {
       cy.mount(<EuiSuggest aria-label="filtering" suggestions={sampleItems} />);
 
       cy.get('input')
+        .click()
         .type('v')
         .then(() => {
           cy.get('li[role=option]')

@@ -53,6 +53,10 @@ describe('EuiFlyout', () => {
 
     it('traps focus and cycles tabbable items', () => {
       cy.mount(<Flyout />);
+
+      // wait for the portal to be inserted into DOM
+      cy.focused().should('have.attr', 'data-test-subj', 'flyoutSpec');
+
       cy.repeatRealPress('Tab', 4);
       cy.focused().should('have.attr', 'data-test-subj', 'itemC');
       cy.repeatRealPress('Tab', 3);

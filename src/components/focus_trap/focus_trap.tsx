@@ -81,10 +81,19 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
   }
 
   // Programmatically sets focus on a nested DOM node; optional
-  setInitialFocus = (initialFocus?: FocusTarget) => {
+  setInitialFocus = (initialFocus?: FocusTarget, retry: boolean = true) => {
     if (!initialFocus) return;
     const node = findElementBySelectorOrRef(initialFocus);
-    if (!node) return;
+    if (!node) {
+      // TODO: Remove when all react 18 tests are fixed
+      // Might be needed to force initial focus on elements inside portals
+      if (retry) {
+        setTimeout(() => {
+          this.setInitialFocus(initialFocus, false);
+        }, 500);
+      }
+      return;
+    }
     // `data-autofocus` is part of the 'react-focus-on' API
     node.setAttribute('data-autofocus', 'true');
   };

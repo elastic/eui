@@ -303,6 +303,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
         searchable
         isPreFiltered={isPreFiltered}
         searchProps={{
+          ...rest,
           id,
           append: appendArray.length ? appendArray : undefined,
           fullWidth,
@@ -313,7 +314,6 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
           onChange: searchOnChange,
           'aria-label': ariaLabel,
           'aria-labelledby': labelId,
-          ...rest,
         }}
       >
         {(list, search) => (

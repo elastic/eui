@@ -472,6 +472,9 @@ export class EuiPopover extends Component<Props, State> {
         this.setState({
           isClosing: false,
         });
+
+        // Ensure toggle button gets its focus back
+        // this.handleStrandedFocus();
       }, closingTransitionTime);
     }
   }

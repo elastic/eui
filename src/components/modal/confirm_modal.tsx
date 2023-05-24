@@ -6,13 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  FunctionComponent,
-  ComponentProps,
-  ReactNode,
-  useEffect,
-  useState,
-} from 'react';
+import React, { FunctionComponent, ComponentProps, ReactNode } from 'react';
 import classnames from 'classnames';
 
 import { EuiModal, EuiModalProps } from './modal';
@@ -88,31 +82,6 @@ export const EuiConfirmModal: FunctionComponent<EuiConfirmModalProps> = ({
   isLoading,
   ...rest
 }) => {
-  const [cancelButton, setCancelButton] = useState<
-    HTMLButtonElement | HTMLAnchorElement | null
-  >(null);
-  const [confirmButton, setConfirmButton] = useState<HTMLButtonElement | null>(
-    null
-  );
-
-  useEffect(() => {
-    // We have to do this instead of using `autoFocus` because React's polyfill for auto-focusing
-    // elements conflicts with the focus-trap logic we have on EuiModal.
-    // Wait a beat for the focus-trap to complete, and then set focus to the right button. Check that
-    // the buttons exist first, because it's possible the modal has been closed already.
-    requestAnimationFrame(() => {
-      if (defaultFocusedButton === CANCEL_BUTTON && cancelButton) {
-        cancelButton.focus();
-      } else if (defaultFocusedButton === CONFIRM_BUTTON && confirmButton) {
-        confirmButton.focus();
-      }
-    });
-  });
-
-  const confirmRef = (node: HTMLButtonElement | null) => setConfirmButton(node);
-  const cancelRef = (node: HTMLButtonElement | HTMLAnchorElement | null) =>
-    setCancelButton(node);
-
   const classes = classnames('euiModal--confirmation', className);
 
   const euiTheme = useEuiTheme();
@@ -154,19 +123,19 @@ export const EuiConfirmModal: FunctionComponent<EuiConfirmModalProps> = ({
 
       <EuiModalFooter>
         <EuiButtonEmpty
+          data-autofocus={defaultFocusedButton === CANCEL_BUTTON}
           data-test-subj="confirmModalCancelButton"
           onClick={onCancel}
-          buttonRef={cancelRef}
         >
           {cancelButtonText}
         </EuiButtonEmpty>
 
         <EuiButton
+          data-autofocus={defaultFocusedButton === CONFIRM_BUTTON}
           data-test-subj="confirmModalConfirmButton"
           onClick={onConfirm}
           isLoading={isLoading}
           fill
-          buttonRef={confirmRef}
           color={buttonColor}
           isDisabled={confirmButtonDisabled}
         >

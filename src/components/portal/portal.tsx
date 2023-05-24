@@ -11,6 +11,7 @@ import {
   ReactNode,
   useContext,
   useEffect,
+  useRef,
   useState,
 } from 'react';
 import { createPortal } from 'react-dom';
@@ -44,6 +45,12 @@ export interface EuiPortalProps {
 
 const isClient = typeof window !== 'undefined';
 
+function createContainerElement(): HTMLDivElement {
+  const element = document.createElement('div');
+  element.dataset.euiportal = 'true';
+  return element;
+}
+
 export const EuiPortal: FunctionComponent<EuiPortalProps> = ({
   children,
   insert,
@@ -51,49 +58,47 @@ export const EuiPortal: FunctionComponent<EuiPortalProps> = ({
 }) => {
   const themeContext = useContext(EuiNestedThemeContext);
 
-  const [container] = useState(() => {
-    if (!isClient) {
-      return null;
-    }
-
-    const element = document.createElement('div');
-    element.dataset.euiportal = 'true';
-    return element;
-  });
-  const [portalRefCache] = useState(() => portalRef);
+  const [container] = useState<HTMLDivElement>(() => createContainerElement());
+  const portalRefCached = useRef(portalRef);
 
   useEffect(() => {
-    if (!container) {
+    if (!isClient) {
       return;
     }
 
-    if (insert) {
-      const { sibling, position } = insert;
-      sibling.insertAdjacentElement(insertPositions[position], container);
-    } else {
-      document.body.appendChild(container);
+    // TODO: set container to a new element only when insert actually changes
+    // /\ I don't think it's necessary anymore
+    // setContainer(createContainerElement());
+  }, [insert]);
 
-      if (themeContext?.hasDifferentColorFromGlobalTheme) {
-        container.classList.add(themeContext.colorClassName)
+  useEffect(() => {
+    const portalRefFunc = portalRefCached.current;
+
+    if (container) {
+      if (insert) {
+        const { sibling, position } = insert;
+        sibling.insertAdjacentElement(insertPositions[position], container);
+      } else {
+        document.body.appendChild(container);
+
+        if (themeContext?.hasDifferentColorFromGlobalTheme) {
+          container.classList.add(themeContext.colorClassName)
+        }
       }
     }
 
-    if (portalRefCache) {
-      portalRefCache(container);
+    if (portalRefFunc) {
+      portalRefFunc(container);
     }
 
     return () => {
-      container.parentNode?.removeChild(container);
+      container?.parentNode?.removeChild(container);
 
-      if (portalRefCache) {
-        portalRefCache(null);
+      if (portalRefFunc) {
+        portalRefFunc(null);
       }
     };
-  }, [container, insert, portalRefCache]);
-
-  if (!container) {
-    return null;
-  }
+  }, [container, insert]);
 
   return createPortal(children, container);
 };
