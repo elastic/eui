@@ -1,4 +1,3 @@
-/* eslint-disable react/no-multi-comp */
 import React, { useState, useEffect } from 'react';
 
 import { render, unmountComponentAtNode } from 'react-dom';

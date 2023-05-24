@@ -131,7 +131,6 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
 
   componentDidUpdate(prevProps: EuiTreeViewProps) {
     if (this.props.id !== prevProps.id) {
-      // eslint-disable-next-line react/no-did-update-set-state
       this.setState({
         treeID: getTreeId(this.props.id, this.context, this.treeIdGenerator),
       });

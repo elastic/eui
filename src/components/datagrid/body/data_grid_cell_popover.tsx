@@ -147,7 +147,7 @@ export const JsonPopoverContent = ({ cellText }: { cellText: string }) => {
   let formattedText = cellText;
   try {
     formattedText = JSON.stringify(JSON.parse(formattedText), null, 2);
-  } catch (e) {} // eslint-disable-line no-empty
+  } catch (e) {}
 
   return (
     <EuiCodeBlock

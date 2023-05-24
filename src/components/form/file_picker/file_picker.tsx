@@ -245,7 +245,7 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
                   <EuiIcon
                     className="euiFilePicker__icon"
                     color={
-                      isInvalid ? 'danger' : disabled ? 'subdued' : 'primary' // eslint-disable-line no-nested-ternary
+                      isInvalid ? 'danger' : disabled ? 'subdued' : 'primary'
                     }
                     type={isInvalid ? 'alert' : 'importAction'}
                     size={normalFormControl ? 'm' : 'l'}
