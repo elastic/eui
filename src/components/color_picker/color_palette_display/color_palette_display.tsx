@@ -58,13 +58,9 @@ export type EuiColorPaletteDisplayProps = {
   size?: EuiColorPaletteDisplaySize;
 } & ExclusiveUnion<DisplayFixed, DisplayGradient>;
 
-export const EuiColorPaletteDisplay: FunctionComponent<EuiColorPaletteDisplayProps> = ({
-  type = 'fixed',
-  palette,
-  className,
-  size = 's',
-  ...rest
-}) => {
+export const EuiColorPaletteDisplay: FunctionComponent<
+  EuiColorPaletteDisplayProps
+> = ({ type = 'fixed', palette, className, size = 's', ...rest }) => {
   const classes = classnames(
     'euiColorPaletteDisplay',
     className,

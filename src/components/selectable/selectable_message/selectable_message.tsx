@@ -22,12 +22,9 @@ export type EuiSelectableMessageProps = Omit<
     bordered?: boolean;
   };
 
-export const EuiSelectableMessage: FunctionComponent<EuiSelectableMessageProps> = ({
-  children,
-  className,
-  bordered = false,
-  ...rest
-}) => {
+export const EuiSelectableMessage: FunctionComponent<
+  EuiSelectableMessageProps
+> = ({ children, className, bordered = false, ...rest }) => {
   const classes = classNames(
     'euiSelectableMessage',
     {

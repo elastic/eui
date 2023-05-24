@@ -11,9 +11,9 @@ import {
   TextControl,
 } from '../../../../src/components/control_bar/control_bar';
 
-export const BreadcrumbControlProps: FunctionComponent<BreadcrumbControl> = () => (
-  <div />
-);
+export const BreadcrumbControlProps: FunctionComponent<
+  BreadcrumbControl
+> = () => <div />;
 
 export const ButtonControlProps: FunctionComponent<ButtonControl> = () => (
   <div />
@@ -26,9 +26,9 @@ export const DividerControlProps: FunctionComponent<DividerControl> = () => (
 export const IconControlTypeProps: FunctionComponent<IconControlType> = () => (
   <div />
 );
-export const IconButtonControlTypeProps: FunctionComponent<IconButtonControlType> = () => (
-  <div />
-);
+export const IconButtonControlTypeProps: FunctionComponent<
+  IconButtonControlType
+> = () => <div />;
 
 export const SpacerControlProps: FunctionComponent<SpacerControl> = () => (
   <div />

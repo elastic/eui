@@ -18,32 +18,31 @@ import { euiPageInnerStyles } from './page_inner.styles';
 
 export type ComponentTypes = keyof JSX.IntrinsicElements | ComponentType;
 
-export type _EuiPageInnerProps<
-  T extends ComponentTypes = 'main'
-> = CommonProps &
-  ComponentProps<T> & {
-    /**
-     * Sets which HTML element to render.
-     */
-    component?: T;
-    /**
-     * Adds a white background and shadow to define the area.
-     */
-    panelled?: boolean;
-    /**
-     * Adds a single side border, based on the `responsive` state.
-     * Typically added when a side bar exists.
-     */
-    border?: boolean;
-    /**
-     * Adjust the overall padding.
-     */
-    paddingSize?: EuiPaddingSize;
-    /**
-     * Decides at which point the main content wrapper will be 100vw.
-     */
-    responsive?: _EuiThemeBreakpoint[];
-  };
+export type _EuiPageInnerProps<T extends ComponentTypes = 'main'> =
+  CommonProps &
+    ComponentProps<T> & {
+      /**
+       * Sets which HTML element to render.
+       */
+      component?: T;
+      /**
+       * Adds a white background and shadow to define the area.
+       */
+      panelled?: boolean;
+      /**
+       * Adds a single side border, based on the `responsive` state.
+       * Typically added when a side bar exists.
+       */
+      border?: boolean;
+      /**
+       * Adjust the overall padding.
+       */
+      paddingSize?: EuiPaddingSize;
+      /**
+       * Decides at which point the main content wrapper will be 100vw.
+       */
+      responsive?: _EuiThemeBreakpoint[];
+    };
 
 export const _EuiPageInner = <T extends ComponentTypes>({
   children,

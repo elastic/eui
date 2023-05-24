@@ -41,10 +41,12 @@ describe('useDataGridDisplaySelector', () => {
     };
     const closePopover = (component: ReactWrapper) => {
       act(() => {
-        (component
-          .find('[data-test-subj="dataGridDisplaySelectorPopover"]')
-          .first()
-          .prop('closePopover') as Function)();
+        (
+          component
+            .find('[data-test-subj="dataGridDisplaySelectorPopover"]')
+            .first()
+            .prop('closePopover') as Function
+        )();
       });
     };
 
@@ -461,10 +463,9 @@ describe('useDataGridDisplaySelector', () => {
       );
     };
     const diveIntoEuiI18n = (component: ShallowWrapper) => {
-      return (component
-        .find('EuiI18n')
-        .last()
-        .renderProp('children') as Function)(['', '', '', '']);
+      return (
+        component.find('EuiI18n').last().renderProp('children') as Function
+      )(['', '', '', '']);
     };
     const setRowHeight = (component: ShallowWrapper, selection = '') => {
       diveIntoEuiI18n(component)

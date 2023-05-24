@@ -9,8 +9,7 @@ export const propsInfo = {
             'the callback ill receive the query text and an error object (holding the error message)',
           required: true,
           type: {
-            name:
-              '({ query?: #Query, queryText: string, error?: { message: string } }) => void',
+            name: '({ query?: #Query, queryText: string, error?: { message: string } }) => void',
           },
         },
         query: {
@@ -57,16 +56,14 @@ export const propsInfo = {
           description:
             'Executes the given query over an array if objects and returns the an array of objects that match it',
           type: {
-            name:
-              'static (query: #Query | string, items: Object[], options?: #ExecuteQueryOptions) => Object[]',
+            name: 'static (query: #Query | string, items: Object[], options?: #ExecuteQueryOptions) => Object[]',
           },
         },
         toESQuery: {
           description:
             'Builds and returns an Elasticsearch query object out of the given query',
           type: {
-            name:
-              'static (query: #Query | string, options?: #ToESQueryOptions) => ESQuery',
+            name: 'static (query: #Query | string, options?: #ToESQueryOptions) => ESQuery',
           },
         },
       },

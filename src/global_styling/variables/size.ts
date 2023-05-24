@@ -21,6 +21,6 @@ export const EuiThemeSizes = [
   'xxxxl',
 ] as const;
 
-export type _EuiThemeSize = typeof EuiThemeSizes[number];
+export type _EuiThemeSize = (typeof EuiThemeSizes)[number];
 
 export type _EuiThemeSizes = Record<_EuiThemeSize, string>;

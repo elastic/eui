@@ -453,9 +453,10 @@ export interface EuiDataGridCustomBodyProps {
    * that `EuiDataGridCell` accepts, such as `isExpandable` or `renderCellValue`.
    */
   Cell: JSXElementConstructor<
-    { colIndex: number; visibleRowIndex: number } & Partial<
-      EuiDataGridCellProps
-    >
+    {
+      colIndex: number;
+      visibleRowIndex: number;
+    } & Partial<EuiDataGridCellProps>
   >;
   /**
    * The currently visible columns are passed to your data grid renderer so that your

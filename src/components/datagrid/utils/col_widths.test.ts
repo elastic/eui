@@ -99,9 +99,8 @@ describe('useColumnWidths', () => {
     });
 
     it('recomputes column widths on columns change', () => {
-      const { updateHookArgs, getUpdatedState } = testCustomHook<
-        ReturnedValues
-      >(useColumnWidths, args);
+      const { updateHookArgs, getUpdatedState } =
+        testCustomHook<ReturnedValues>(useColumnWidths, args);
 
       updateHookArgs({
         columns: [{ id: 'c', initialWidth: 125 }],

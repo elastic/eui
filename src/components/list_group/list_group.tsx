@@ -18,7 +18,7 @@ import { logicalStyle } from '../../global_styling';
 import { euiListGroupStyles } from './list_group.styles';
 
 export const GUTTER_SIZES = ['none', 's', 'm'] as const;
-export type EuiListGroupGutterSize = typeof GUTTER_SIZES[number];
+export type EuiListGroupGutterSize = (typeof GUTTER_SIZES)[number];
 
 export type EuiListGroupProps = CommonProps &
   Omit<HTMLAttributes<HTMLUListElement>, 'color'> & {

@@ -41,7 +41,7 @@ export const COLORS = [...BUTTON_COLORS, 'ghost'] as const;
 export type EuiButtonColor = _EuiButtonColor | 'ghost';
 
 export const SIZES = ['s', 'm'] as const;
-export type EuiButtonSize = typeof SIZES[number];
+export type EuiButtonSize = (typeof SIZES)[number];
 
 interface BaseProps {
   children?: ReactNode;

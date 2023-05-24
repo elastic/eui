@@ -26,7 +26,7 @@ const typeToIconTypeMap = {
 };
 
 export const TYPES = keysOf(typeToIconTypeMap);
-export type EuiPaginationButtonArrowType = typeof TYPES[number];
+export type EuiPaginationButtonArrowType = (typeof TYPES)[number];
 
 export type Props = Partial<Omit<EuiButtonIconPropsForAnchor, 'type'>> & {
   type: EuiPaginationButtonArrowType;

@@ -296,15 +296,8 @@ const createExample = (example, customTitle) => {
     );
   }
 
-  const {
-    title,
-    sections,
-    beta,
-    isNew,
-    playground,
-    guidelines,
-    ...rest
-  } = example;
+  const { title, sections, beta, isNew, playground, guidelines, ...rest } =
+    example;
   const filteredSections = sections.filter((section) => section !== undefined);
 
   filteredSections.forEach((section) => {

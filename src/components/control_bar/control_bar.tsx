@@ -380,14 +380,8 @@ export class EuiControlBar extends Component<
           );
         }
         case 'tab': {
-          const {
-            controlType,
-            id,
-            label,
-            onClick,
-            className,
-            ...rest
-          } = control;
+          const { controlType, id, label, onClick, className, ...rest } =
+            control;
 
           const tabClasses = classNames(
             'euiControlBar__tab',

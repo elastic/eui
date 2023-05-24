@@ -239,10 +239,10 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     const parsed = parseColor(color);
     return parsed != null && typeof parsed === 'object' ? 'rgba' : 'hex';
   }, [color, format]);
-  const chromaColor = useMemo(() => getChromaColor(color, showAlpha), [
-    color,
-    showAlpha,
-  ]);
+  const chromaColor = useMemo(
+    () => getChromaColor(color, showAlpha),
+    [color, showAlpha]
+  );
   const [alphaRangeValue, setAlphaRangeValue] = useState('100');
   const alphaChannel = useMemo(() => {
     return chromaColor ? chromaColor.alpha() : 1;

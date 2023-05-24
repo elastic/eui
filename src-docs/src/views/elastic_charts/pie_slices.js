@@ -88,8 +88,9 @@ export default () => {
   };
 
   const onSliceOrderChange = (optionId) => {
-    const sliceOrderLabel = sliceOrderRadios.find(({ id }) => id === optionId)
-      .label;
+    const sliceOrderLabel = sliceOrderRadios.find(
+      ({ id }) => id === optionId
+    ).label;
     if (sliceOrderLabel.includes('Counter')) {
       setSliceOrderConfig({ clockwiseSectors: false });
       setSliceOrderConfigText('clockwiseSectors={false}');

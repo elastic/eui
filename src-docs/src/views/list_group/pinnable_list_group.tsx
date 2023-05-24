@@ -48,9 +48,8 @@ const someListItems: EuiPinnableListGroupItemProps[] = [
 ];
 
 export default () => {
-  const [itemList, setItemList] = useState<EuiPinnableListGroupItemProps[]>(
-    someListItems
-  );
+  const [itemList, setItemList] =
+    useState<EuiPinnableListGroupItemProps[]>(someListItems);
 
   return (
     <>

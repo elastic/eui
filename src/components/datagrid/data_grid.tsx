@@ -191,18 +191,15 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
       );
     }, [columns]);
 
-    const [
-      displaySelector,
-      gridStyles,
-      rowHeightsOptions,
-    ] = useDataGridDisplaySelector(
-      checkOrDefaultToolBarDisplayOptions(
-        toolbarVisibility,
-        'showDisplaySelector'
-      ),
-      gridStyleWithDefaults,
-      _rowHeightsOptions
-    );
+    const [displaySelector, gridStyles, rowHeightsOptions] =
+      useDataGridDisplaySelector(
+        checkOrDefaultToolBarDisplayOptions(
+          toolbarVisibility,
+          'showDisplaySelector'
+        ),
+        gridStyleWithDefaults,
+        _rowHeightsOptions
+      );
 
     /**
      * Column order & visibility
@@ -259,10 +256,8 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
     /**
      * Focus
      */
-    const {
-      headerIsInteractive,
-      handleHeaderMutation,
-    } = useHeaderIsInteractive(contentRef.current);
+    const { headerIsInteractive, handleHeaderMutation } =
+      useHeaderIsInteractive(contentRef.current);
     const { focusProps: wrappingDivFocusProps, ...focusContext } = useFocus({
       headerIsInteractive,
       gridItemsRendered,

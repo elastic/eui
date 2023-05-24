@@ -26,7 +26,7 @@ export const BACKGROUND_COLORS = [
   'danger',
 ] as const;
 
-export type _EuiBackgroundColor = typeof BACKGROUND_COLORS[number];
+export type _EuiBackgroundColor = (typeof BACKGROUND_COLORS)[number];
 export interface _EuiBackgroundColorOptions {
   /**
    * Use `opaque` for containers of unknown content.

@@ -46,14 +46,8 @@ function lookupToken<
   DEFAULT extends Renderable<T>,
   RESOLVED extends ResolvedType<DEFAULT>
 >(options: lookupTokenOptions<T, DEFAULT>): RESOLVED {
-  const {
-    token,
-    i18nMapping,
-    valueDefault,
-    i18nMappingFunc,
-    values,
-    render,
-  } = options;
+  const { token, i18nMapping, valueDefault, i18nMappingFunc, values, render } =
+    options;
   let renderable = (i18nMapping && i18nMapping[token]) || valueDefault;
 
   if (typeof renderable === 'function') {
@@ -62,9 +56,11 @@ function lookupToken<
     }
     // @ts-ignore TypeScript complains that `DEFAULT` doesn't have a call signature but we verified `renderable` is a function
     const rendered = renderable(values);
-    return (i18nMappingFunc && typeof rendered === 'string'
-      ? i18nMappingFunc(rendered)
-      : rendered) as RESOLVED;
+    return (
+      i18nMappingFunc && typeof rendered === 'string'
+        ? i18nMappingFunc(rendered)
+        : rendered
+    ) as RESOLVED;
   } else if (values === undefined || typeof renderable !== 'string') {
     if (i18nMappingFunc && typeof valueDefault === 'string') {
       renderable = i18nMappingFunc(valueDefault);
@@ -169,9 +165,8 @@ type DefaultRenderType<T, K extends Renderable<T>> = K extends ReactChild
   : never;
 
 // An array with multiple defaults can only be an array of strings or elements
-type DefaultsRenderType<
-  K extends Array<string | ReactElement>
-> = K extends Array<infer Item> ? Item : never;
+type DefaultsRenderType<K extends Array<string | ReactElement>> =
+  K extends Array<infer Item> ? Item : never;
 
 function useEuiI18n<T extends {}, DEFAULT extends Renderable<T>>(
   token: string,

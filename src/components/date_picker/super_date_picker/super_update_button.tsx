@@ -78,9 +78,9 @@ export class EuiSuperUpdateButton extends Component<
       !this.props.isLoading
     ) {
       this.showTooltip();
-      this.tooltipTimeout = (setTimeout(() => {
+      this.tooltipTimeout = setTimeout(() => {
         this.hideTooltip();
-      }, 2000) as unknown) as number | undefined;
+      }, 2000) as unknown as number | undefined;
     }
   }
 

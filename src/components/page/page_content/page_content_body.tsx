@@ -31,13 +31,15 @@ export interface EuiPageContentBodyProps
    * Adjust the padding.
    * When using this setting it's best to be consistent throughout all similar usages
    */
-  paddingSize?: typeof PADDING_SIZES[number];
+  paddingSize?: (typeof PADDING_SIZES)[number];
 }
 
 /**
  * @deprecated Use EuiPageSection instead
  */
-export const EuiPageContentBody_Deprecated: FunctionComponent<EuiPageContentBodyProps> = ({
+export const EuiPageContentBody_Deprecated: FunctionComponent<
+  EuiPageContentBodyProps
+> = ({
   children,
   restrictWidth = false,
   paddingSize = 'none',

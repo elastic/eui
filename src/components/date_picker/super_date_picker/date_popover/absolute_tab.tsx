@@ -93,13 +93,8 @@ export class EuiAbsoluteTab extends Component<
   };
 
   render() {
-    const {
-      dateFormat,
-      timeFormat,
-      locale,
-      utcOffset,
-      labelPrefix,
-    } = this.props;
+    const { dateFormat, timeFormat, locale, utcOffset, labelPrefix } =
+      this.props;
     const { valueAsMoment, isTextInvalid, textInputValue } = this.state;
 
     return (

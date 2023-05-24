@@ -31,7 +31,7 @@ export function useRenderToText(node: ReactNode, placeholder = ''): string {
   );
 
   useEffect(() => {
-    hostNode.current = (document.createDocumentFragment() as unknown) as Element;
+    hostNode.current = document.createDocumentFragment() as unknown as Element;
     render(<div ref={setRef}>{node}</div>, hostNode.current);
     return () => {
       onUnmount();

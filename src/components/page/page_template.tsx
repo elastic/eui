@@ -45,7 +45,7 @@ export type EuiPageTemplateProps_Deprecated = Omit<
    * `centeredContent`: The content inside the panel is centered
    * `empty`: Removes the panneling of the page content
    */
-  template?: typeof TEMPLATES[number];
+  template?: (typeof TEMPLATES)[number];
   /**
    * Padding size will not get applied to the over-arching #EuiPage,
    * but will propogate through all the components to keep them in sync
@@ -105,7 +105,9 @@ export type EuiPageTemplateProps_Deprecated = Omit<
  *
  * @deprecated use EuiPageTemplate from page_template/page_template instead
  */
-export const EuiPageTemplate_Deprecated: FunctionComponent<EuiPageTemplateProps_Deprecated> = ({
+export const EuiPageTemplate_Deprecated: FunctionComponent<
+  EuiPageTemplateProps_Deprecated
+> = ({
   template = 'default',
   restrictWidth = true,
   grow = true,

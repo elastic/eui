@@ -25,7 +25,9 @@ export const defaultSortDescLabel = (
   <EuiI18n token="euiColumnSortingDraggable.defaultSortDesc" default="Z-A" />
 );
 
-export const EuiDataGridColumnSortingDraggable: FunctionComponent<EuiDataGridColumnSortingDraggableProps> = ({
+export const EuiDataGridColumnSortingDraggable: FunctionComponent<
+  EuiDataGridColumnSortingDraggableProps
+> = ({
   id,
   display,
   direction,

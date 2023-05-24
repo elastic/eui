@@ -28,7 +28,7 @@ export const BUTTON_COLORS = [
   'danger',
 ] as const;
 
-export type _EuiButtonColor = typeof BUTTON_COLORS[number];
+export type _EuiButtonColor = (typeof BUTTON_COLORS)[number];
 export type _EuiButtonDisplay = 'base' | 'fill' | 'empty';
 
 export interface _EuiButtonOptions {

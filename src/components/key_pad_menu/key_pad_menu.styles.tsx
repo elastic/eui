@@ -19,9 +19,8 @@ export const euiKeyPadMenuVariables = ({ euiTheme }: UseEuiTheme) => {
 
 export const euiKeyPadMenuStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-  const { euiKeyPadMenuSize, euiKeyPadMenuMarginSize } = euiKeyPadMenuVariables(
-    euiThemeContext
-  );
+  const { euiKeyPadMenuSize, euiKeyPadMenuMarginSize } =
+    euiKeyPadMenuVariables(euiThemeContext);
 
   return {
     euiKeyPadMenu: css`

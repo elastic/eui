@@ -29,7 +29,7 @@ import {
 } from './progress.styles';
 
 export const SIZES = ['xs', 's', 'm', 'l'] as const;
-export type EuiProgressSize = typeof SIZES[number];
+export type EuiProgressSize = (typeof SIZES)[number];
 
 export const COLORS = [
   'primary',
@@ -49,10 +49,10 @@ export const COLORS = [
   'vis8',
   'vis9',
 ] as const;
-export type EuiProgressColor = typeof COLORS[number];
+export type EuiProgressColor = (typeof COLORS)[number];
 
 export const POSITIONS = ['fixed', 'absolute', 'static'] as const;
-export type EuiProgressPosition = typeof POSITIONS[number];
+export type EuiProgressPosition = (typeof POSITIONS)[number];
 
 export type EuiProgressProps = CommonProps & {
   size?: EuiProgressSize;
@@ -79,10 +79,9 @@ type Determinate = EuiProgressProps &
     labelProps?: CommonProps & HTMLAttributes<HTMLSpanElement>;
   };
 
-export const EuiProgress: FunctionComponent<ExclusiveUnion<
-  Determinate,
-  Indeterminate
->> = ({
+export const EuiProgress: FunctionComponent<
+  ExclusiveUnion<Determinate, Indeterminate>
+> = ({
   className,
   color = 'success',
   size = 'm',

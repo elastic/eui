@@ -97,9 +97,8 @@ export class EuiTabbedContent extends Component<
   }
 
   focusTab = () => {
-    const targetTab: HTMLDivElement | null = this.tabsRef.current!.querySelector(
-      `#${this.state.selectedTabId}`
-    );
+    const targetTab: HTMLDivElement | null =
+      this.tabsRef.current!.querySelector(`#${this.state.selectedTabId}`);
     targetTab!.focus();
   };
 

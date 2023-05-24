@@ -37,7 +37,9 @@ export interface EuiDatePopoverContentProps {
   timeOptions: TimeOptions;
 }
 
-export const EuiDatePopoverContent: FunctionComponent<EuiDatePopoverContentProps> = ({
+export const EuiDatePopoverContent: FunctionComponent<
+  EuiDatePopoverContentProps
+> = ({
   value,
   roundUp = false,
   onChange,

@@ -84,9 +84,8 @@ describe('EuiPortal', () => {
     it.skip('insert value can be changed', () => {
       const Wrapper = () => {
         const [siblingRef, setSiblingRef] = useState<HTMLElement | null>(null);
-        const [insert, setInsert] = useState<EuiPortalProps['insert']>(
-          undefined
-        );
+        const [insert, setInsert] =
+          useState<EuiPortalProps['insert']>(undefined);
 
         return (
           <>

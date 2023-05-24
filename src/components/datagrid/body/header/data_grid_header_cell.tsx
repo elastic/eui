@@ -35,7 +35,9 @@ import { getColumnActions } from './column_actions';
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
 import { EuiDataGridHeaderCellWrapper } from './data_grid_header_cell_wrapper';
 
-export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps> = ({
+export const EuiDataGridHeaderCell: FunctionComponent<
+  EuiDataGridHeaderCellProps
+> = ({
   column,
   index,
   columns,
@@ -57,9 +59,8 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
     displayHeaderCellProps?.className
   );
 
-  const { setFocusedCell, focusFirstVisibleInteractiveCell } = useContext(
-    DataGridFocusContext
-  );
+  const { setFocusedCell, focusFirstVisibleInteractiveCell } =
+    useContext(DataGridFocusContext);
   const { sorting } = useContext(DataGridSortingContext);
 
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);

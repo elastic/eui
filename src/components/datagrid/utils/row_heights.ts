@@ -360,11 +360,8 @@ export const useRowHeightUtils = ({
   const forceRenderRef = useLatest(useForceRender());
   const [rowHeightUtils] = useState(() => {
     if (virtualization) {
-      const {
-        gridRef,
-        outerGridElementRef,
-        gridItemsRenderedRef,
-      } = virtualization;
+      const { gridRef, outerGridElementRef, gridItemsRenderedRef } =
+        virtualization;
       return new RowHeightVirtualizationUtils(
         gridRef,
         outerGridElementRef,

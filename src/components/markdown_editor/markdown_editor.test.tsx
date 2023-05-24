@@ -159,11 +159,8 @@ describe('EuiMarkdownEditor', () => {
   });
 
   test('custom plugins are excluded and popover is rendered', () => {
-    const {
-      parsingPlugins,
-      processingPlugins,
-      uiPlugins,
-    } = getDefaultEuiMarkdownPlugins({ exclude: ['tooltip'] });
+    const { parsingPlugins, processingPlugins, uiPlugins } =
+      getDefaultEuiMarkdownPlugins({ exclude: ['tooltip'] });
 
     const component = mount(
       <EuiMarkdownEditor

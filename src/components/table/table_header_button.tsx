@@ -18,12 +18,9 @@ export type EuiTableHeaderButtonProps = CommonProps &
     iconType?: IconType;
   };
 
-export const EuiTableHeaderButton: FunctionComponent<EuiTableHeaderButtonProps> = ({
-  children,
-  className,
-  iconType,
-  ...rest
-}) => {
+export const EuiTableHeaderButton: FunctionComponent<
+  EuiTableHeaderButtonProps
+> = ({ children, className, iconType, ...rest }) => {
   const classes = classNames('euiTableHeaderButton', className);
 
   // Add an icon to the button if one exists.

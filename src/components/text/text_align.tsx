@@ -17,7 +17,7 @@ import { cloneElementWithCss } from '../../services/theme/clone_element';
 import { euiTextAlignStyles } from './text_align.styles';
 
 export const ALIGNMENTS = ['left', 'right', 'center'] as const;
-export type TextAlignment = typeof ALIGNMENTS[number];
+export type TextAlignment = (typeof ALIGNMENTS)[number];
 
 export type EuiTextAlignProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {

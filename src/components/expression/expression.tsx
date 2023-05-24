@@ -34,7 +34,7 @@ export const COLORS = [
   'danger',
 ] as const;
 
-export type ExpressionColor = typeof COLORS[number];
+export type ExpressionColor = (typeof COLORS)[number];
 
 export type EuiExpressionProps = CommonProps & {
   /**
@@ -92,10 +92,9 @@ type Buttonlike = EuiExpressionProps &
 type Spanlike = EuiExpressionProps &
   Omit<HTMLAttributes<HTMLSpanElement>, 'value'>;
 
-export const EuiExpression: FunctionComponent<ExclusiveUnion<
-  Buttonlike,
-  Spanlike
->> = ({
+export const EuiExpression: FunctionComponent<
+  ExclusiveUnion<Buttonlike, Spanlike>
+> = ({
   className,
   description,
   descriptionProps,

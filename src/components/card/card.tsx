@@ -34,7 +34,7 @@ import {
 } from './card.styles';
 
 export const ALIGNMENTS = ['left', 'center', 'right'] as const;
-type CardAlignment = typeof ALIGNMENTS[number];
+type CardAlignment = (typeof ALIGNMENTS)[number];
 
 /**
  * Certain props are only allowed when the layout is vertical

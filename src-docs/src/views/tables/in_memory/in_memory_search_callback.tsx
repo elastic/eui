@@ -124,7 +124,8 @@ export default () => {
 
       requestTimeoutId = setTimeout(() => {
         const items = users.filter((user) => {
-          const normalizedName = `${user.firstName} ${user.lastName}`.toLowerCase();
+          const normalizedName =
+            `${user.firstName} ${user.lastName}`.toLowerCase();
           const normalizedQuery = query?.text.toLowerCase() || '';
           return normalizedName.indexOf(normalizedQuery) !== -1;
         });

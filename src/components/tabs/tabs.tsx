@@ -19,7 +19,7 @@ import { euiTabsStyles } from './tabs.styles';
 import { EuiTabsContext } from './tabs_context';
 
 export const SIZES = ['s', 'm', 'l', 'xl'] as const;
-export type EuiTabsSizes = typeof SIZES[number];
+export type EuiTabsSizes = (typeof SIZES)[number];
 
 export type EuiTabsProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {

@@ -25,9 +25,9 @@ type GuideThemeSelectorProps = {
   context?: any;
 };
 
-export const GuideThemeSelector: React.FunctionComponent<GuideThemeSelectorProps> = ({
-  ...rest
-}) => {
+export const GuideThemeSelector: React.FunctionComponent<
+  GuideThemeSelectorProps
+> = ({ ...rest }) => {
   return (
     <ThemeContext.Consumer>
       {(context) => <GuideThemeSelectorComponent context={context} {...rest} />}
@@ -37,11 +37,9 @@ export const GuideThemeSelector: React.FunctionComponent<GuideThemeSelectorProps
 
 const STORAGE_KEY = 'legacy_theme_notification';
 
-const GuideThemeSelectorComponent: React.FunctionComponent<GuideThemeSelectorProps> = ({
-  context,
-  onToggleLocale,
-  selectedLocale,
-}) => {
+const GuideThemeSelectorComponent: React.FunctionComponent<
+  GuideThemeSelectorProps
+> = ({ context, onToggleLocale, selectedLocale }) => {
   const isMobileSize = useIsWithinBreakpoints(['xs', 's']);
   const [isPopoverOpen, setPopover] = useState(false);
   const [isOpen, setIsOpen] = useState(

@@ -170,6 +170,6 @@ export const euiToolTipAnchorStyles = () => ({
     display: block;
   `,
   inlineBlock: css`
-    display: inline-block; ;
+    display: inline-block;
   `,
 });

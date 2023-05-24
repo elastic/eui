@@ -31,16 +31,12 @@ module.exports = {
   },
   extends: [
     'plugin:@typescript-eslint/recommended',
-    // Prettier options need to come last, in order to override other style
-    // rules.
-    'prettier/react',
-    'prettier/standard',
+    // Prettier options need to come last, in order to override other style rules
     'plugin:prettier/recommended',
   ],
   plugins: [
     'mocha',
     'jsx-a11y',
-    'prettier',
     'local',
     'import',
     'react',

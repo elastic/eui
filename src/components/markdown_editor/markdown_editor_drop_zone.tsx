@@ -55,9 +55,9 @@ const getUnacceptedItems = (
   return unacceptedItems;
 };
 
-export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZoneProps> = (
-  props
-) => {
+export const EuiMarkdownEditorDropZone: FunctionComponent<
+  EuiMarkdownEditorDropZoneProps
+> = (props) => {
   const [isDragging, toggleDragging] = React.useState(false);
   const [isUploadingFiles, toggleUploadingFiles] = React.useState(false);
   const [isDraggingError, toggleDraggingError] = React.useState(false);
@@ -80,10 +80,8 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZ
     'euiMarkdownEditorDropZone--isDraggingError': isDraggingError,
   });
 
-  const [
-    editorFooterRef,
-    setEditorFooterRef,
-  ] = React.useState<HTMLDivElement | null>(null);
+  const [editorFooterRef, setEditorFooterRef] =
+    React.useState<HTMLDivElement | null>(null);
 
   const { height: editorFooterHeight } = useResizeObserver(
     editorFooterRef,

@@ -11,7 +11,7 @@ import { useEuiTheme, UseEuiTheme } from '../../services/theme';
 import { logicalSide, LogicalSides } from '../functions';
 
 export const PADDING_SIZES = ['none', 'xs', 's', 'm', 'l', 'xl'] as const;
-export type EuiPaddingSize = typeof PADDING_SIZES[number];
+export type EuiPaddingSize = (typeof PADDING_SIZES)[number];
 
 export const euiPaddingSize = (
   { euiTheme }: UseEuiTheme,

@@ -28,7 +28,7 @@ export type IconShape = DistributiveOmit<
   'type' | 'iconRef'
 > & {
   type: IconType;
-  side?: typeof ICON_SIDES[number];
+  side?: (typeof ICON_SIDES)[number];
   color?: IconColor;
   ref?: EuiFormControlLayoutCustomIconProps['iconRef'];
 };
@@ -41,7 +41,7 @@ function isIconShape(
 
 export interface EuiFormControlLayoutIconsProps {
   icon?: IconType | IconShape;
-  side?: typeof ICON_SIDES[number];
+  side?: (typeof ICON_SIDES)[number];
   iconsPosition?: 'absolute' | 'static';
   clear?: EuiFormControlLayoutClearButtonProps;
   isLoading?: boolean;
@@ -50,9 +50,7 @@ export interface EuiFormControlLayoutIconsProps {
   compressed?: boolean;
 }
 
-export class EuiFormControlLayoutIcons extends Component<
-  EuiFormControlLayoutIconsProps
-> {
+export class EuiFormControlLayoutIcons extends Component<EuiFormControlLayoutIconsProps> {
   render() {
     const { side = 'left', iconsPosition = 'absolute' } = this.props;
 

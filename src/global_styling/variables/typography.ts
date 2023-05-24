@@ -14,7 +14,8 @@ import { CSSProperties } from 'react';
 
 export const EuiThemeFontSizeMeasurements = ['rem', 'px', 'em'] as const;
 
-export type _EuiThemeFontSizeMeasurement = typeof EuiThemeFontSizeMeasurements[number];
+export type _EuiThemeFontSizeMeasurement =
+  (typeof EuiThemeFontSizeMeasurements)[number];
 
 /*
  * Font scale
@@ -31,7 +32,7 @@ export const EuiThemeFontScales = [
   'xxl',
 ] as const;
 
-export type _EuiThemeFontScale = typeof EuiThemeFontScales[number];
+export type _EuiThemeFontScale = (typeof EuiThemeFontScales)[number];
 
 export type _EuiThemeFontScales = Record<_EuiThemeFontScale, number>;
 
@@ -80,7 +81,7 @@ export const EuiThemeFontWeights = [
   'bold',
 ] as const;
 
-export type _EuiThemeFontWeight = typeof EuiThemeFontWeights[number];
+export type _EuiThemeFontWeight = (typeof EuiThemeFontWeights)[number];
 
 export type _EuiThemeFontWeights = Record<
   _EuiThemeFontWeight,

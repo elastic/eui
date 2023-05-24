@@ -15,9 +15,10 @@ import { EuiSelectableOptionCheckedType } from '../selectable_option';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiBadge, EuiBadgeProps } from '../../badge';
 
-function resolveIconAndColor(
-  checked: EuiSelectableOptionCheckedType
-): { icon: IconType; color?: IconColor } {
+function resolveIconAndColor(checked: EuiSelectableOptionCheckedType): {
+  icon: IconType;
+  color?: IconColor;
+} {
   switch (checked) {
     case 'on':
       return { icon: 'check', color: 'text' };
@@ -36,7 +37,7 @@ const paddingSizeToClassNameMap = {
   s: 'euiSelectableListItem--paddingSmall',
 };
 export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
-export type EuiSelectablePaddingSize = typeof PADDING_SIZES[number];
+export type EuiSelectablePaddingSize = (typeof PADDING_SIZES)[number];
 
 export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
   CommonProps & {
@@ -86,9 +87,7 @@ export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
     textWrap?: 'truncate' | 'wrap';
   };
 
-export class EuiSelectableListItem extends Component<
-  EuiSelectableListItemProps
-> {
+export class EuiSelectableListItem extends Component<EuiSelectableListItemProps> {
   static defaultProps = {
     showIcons: true,
     onFocusBadge: true,

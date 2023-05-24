@@ -84,11 +84,12 @@ export default () => {
     mapping: mappings[language],
     formatNumber: (value) => new Intl.NumberFormat(language).format(value),
     render: useDiv
-      ? (children) => () => (
-          <EuiMark>
-            <div className="eui-displayInline">{children}</div>
-          </EuiMark>
-        )
+      ? (children) => () =>
+          (
+            <EuiMark>
+              <div className="eui-displayInline">{children}</div>
+            </EuiMark>
+          )
       : undefined,
   };
 

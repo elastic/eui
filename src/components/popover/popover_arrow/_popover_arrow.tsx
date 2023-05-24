@@ -12,7 +12,7 @@ import { euiPopoverArrowStyles } from './_popover_arrow.styles';
 import { useEuiTheme } from '../../../services';
 
 export const POSITIONS = ['top', 'left', 'right', 'bottom'] as const;
-export type EuiPopoverArrowPositions = typeof POSITIONS[number];
+export type EuiPopoverArrowPositions = (typeof POSITIONS)[number];
 
 export type EuiPopoverArrowProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {

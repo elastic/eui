@@ -13,8 +13,7 @@ import {
 export default () => {
   const [value, setValue] = useState<EuiRangeProps['value']>('20');
   const [dualValue, setDualValue] = useState<EuiDualRangeProps['value']>([
-    20,
-    100,
+    20, 100,
   ]);
   const [noLinearValue, setNoLinearValue] = useState('28');
 

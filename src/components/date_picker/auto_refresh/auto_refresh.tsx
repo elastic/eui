@@ -102,7 +102,9 @@ export type EuiAutoRefreshButtonProps = EuiAutoRefreshSharedProps & {
     'isSelected' | 'iconType' | 'iconSide' | 'iconSize' | 'onClick' | 'type'
   >;
 
-export const EuiAutoRefreshButton: FunctionComponent<EuiAutoRefreshButtonProps> = ({
+export const EuiAutoRefreshButton: FunctionComponent<
+  EuiAutoRefreshButtonProps
+> = ({
   className,
   onRefreshChange,
   isDisabled,

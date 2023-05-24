@@ -19,7 +19,7 @@ import {
 import { useEuiI18n } from '../i18n';
 
 export const SIZES = ['m', 'l', 'xl'] as const;
-export type EuiLoadingChartSize = typeof SIZES[number];
+export type EuiLoadingChartSize = (typeof SIZES)[number];
 
 export type EuiLoadingChartProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {

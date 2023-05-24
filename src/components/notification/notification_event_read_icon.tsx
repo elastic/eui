@@ -26,12 +26,9 @@ export type EuiNotificationEventReadIconProps = Omit<
   eventName: string;
 };
 
-export const EuiNotificationEventReadIcon: FunctionComponent<EuiNotificationEventReadIconProps> = ({
-  id,
-  isRead,
-  eventName,
-  ...rest
-}) => {
+export const EuiNotificationEventReadIcon: FunctionComponent<
+  EuiNotificationEventReadIconProps
+> = ({ id, isRead, eventName, ...rest }) => {
   const classesReadState = classNames('euiNotificationEventReadIcon', {
     'euiNotificationEventReadIcon--isRead': isRead,
   });
