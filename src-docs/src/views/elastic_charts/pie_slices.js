@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import React, { useState } from 'react';
 import { Chart, Partition, Settings, PartitionLayout } from '@elastic/charts';
 

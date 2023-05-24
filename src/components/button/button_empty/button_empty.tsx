@@ -130,7 +130,6 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = (
     isLoading,
   });
 
-  // eslint-disable-next-line no-nested-ternary
   const color = isDisabled ? 'disabled' : _color === 'ghost' ? 'text' : _color;
   const buttonColorStyles = useEuiButtonColorCSS({
     display: 'empty',

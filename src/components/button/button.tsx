@@ -101,7 +101,6 @@ export const EuiButton: FunctionComponent<Props> = (props) => {
     isLoading: rest.isLoading,
   });
 
-  // eslint-disable-next-line no-nested-ternary
   const color = buttonIsDisabled ? 'disabled' : _color;
 
   const buttonColorStyles = useEuiButtonColorCSS({

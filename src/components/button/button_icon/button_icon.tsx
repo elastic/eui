@@ -156,7 +156,6 @@ export const EuiButtonIcon: FunctionComponent<Props> = (props) => {
     );
   }
 
-  // eslint-disable-next-line no-nested-ternary
   const color = isDisabled ? 'disabled' : _color === 'ghost' ? 'text' : _color;
 
   const styles = {

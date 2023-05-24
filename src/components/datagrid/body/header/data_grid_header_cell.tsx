@@ -223,7 +223,6 @@ export const useSortingUtils = ({
    * @see https://github.com/w3c/aria/issues/283 for potential future multi-column usage
    */
   const ariaSort: AriaAttributes['aria-sort'] =
-    // eslint-disable-next-line no-nested-ternary
     isColumnSorted && hasOnlyOneSort
       ? sorting.columns[0].direction === 'asc'
         ? 'ascending'

@@ -243,7 +243,6 @@ export class EuiSelectableListItem extends Component<
     switch (checked) {
       case 'on':
         state = screenReaderStrings.checked.state;
-        // eslint-disable-next-line no-nested-ternary
         instructions = allowExclusions
           ? screenReaderStrings.excluded.instructions
           : searchable
