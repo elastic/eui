@@ -164,7 +164,7 @@ spec:
       name: eui-pull-request-test-and-deploy
     spec:
       repository: elastic/eui
-      pipeline_file: ".buildkite/pipelines/pipeline_pull_request_deploy_docs.yml"
+      pipeline_file: ".buildkite/pipelines/pipeline_pull_request_test_and_deploy.yml"
       provider_settings:
         build_branches: false
         build_tags: false
