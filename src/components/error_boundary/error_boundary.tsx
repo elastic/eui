@@ -24,7 +24,7 @@ import { euiErrorBoundaryStyles } from './error_boundary.styles';
 
 interface EuiErrorBoundaryState {
   hasError: boolean;
-  error?: string;
+  errorMessage?: string;
 }
 
 export type EuiErrorBoundaryProps = CommonProps &
@@ -44,7 +44,7 @@ export class EuiErrorBoundary extends Component<
 
     const errorState: EuiErrorBoundaryState = {
       hasError: false,
-      error: undefined,
+      errorMessage: undefined,
     };
 
     this.state = errorState;
@@ -56,20 +56,21 @@ export class EuiErrorBoundary extends Component<
     // For consistency, rebuild the full error text from the Error subparts.
     const idx = stack?.indexOf(message) || -1;
     const stackStr = idx > -1 ? stack?.substr(idx + message.length + 1) : stack;
-    const error = `Error: ${message}
+    const errorMessage = `Error: ${message}
 ${stackStr}`;
     this.setState({
       hasError: true,
-      error,
+      errorMessage,
     });
   }
 
   render() {
     const { children, ...rest } = this.props;
+    const { hasError, errorMessage } = this.state;
 
-    if (this.state.hasError) {
+    if (hasError) {
       // You can render any custom fallback UI
-      return <EuiErrorMessage {...rest} errorMessage={this.state.error} />;
+      return <EuiErrorMessage {...rest} errorMessage={errorMessage} />;
     }
 
     return children;
