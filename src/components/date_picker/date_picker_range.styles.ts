@@ -33,13 +33,16 @@ export const euiDatePickerRangeInlineStyles = (
   // Use a container query to stack date pickers vertically if the container is
   // not wide enough to fit both. We need a fn for this to render two width queries,
   // depending on whether time selection is being rendered or not
-  const containerQuery = (containerMaxWidth: number) => `
+  const containerQuery = (
+    datePickerWidth: number,
+    delimiterWidth: number = 16
+  ) => `
     display: block;
     container-type: inline-size;
 
     .euiFormControlLayout__childrenWrapper {
       // Use static px widths for now, since render behavior comes from a third party library
-      @container (max-width: ${containerMaxWidth * 2}px) {
+      @container (max-width: ${datePickerWidth * 2 + delimiterWidth}px) {
         // Unset grid display
         display: block !important;
 
@@ -98,7 +101,7 @@ export const euiDatePickerRangeInlineStyles = (
       }
     `,
     responsive: css`
-      ${containerQuery(275)}
+      ${containerQuery(268)}
     `,
     responsiveWithTimeSelect: css`
       ${containerQuery(350)}
