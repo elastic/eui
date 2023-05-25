@@ -35,9 +35,8 @@ export default () => {
     },
   ];
 
-  const [toggleTitleButtonSize, setToggleTitleButtonSize] = useState<
-    EuiTitleSize
-  >('m');
+  const [toggleTitleButtonSize, setToggleTitleButtonSize] =
+    useState<EuiTitleSize>('m');
 
   const titleSizeOnChange = (optionId: EuiTitleSize) => {
     setToggleTitleButtonSize(optionId);
