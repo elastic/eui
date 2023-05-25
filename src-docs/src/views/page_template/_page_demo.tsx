@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import React, { useState, FunctionComponent } from 'react';
 import { useRouteMatch } from 'react-router';
 import {

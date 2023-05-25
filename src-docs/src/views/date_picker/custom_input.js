@@ -21,7 +21,6 @@ ExampleCustomInput.propTypes = {
   value: PropTypes.string,
 };
 
-// eslint-disable-next-line react/no-multi-comp
 export default () => {
   const [startDate, setStartDate] = useState(moment());
 

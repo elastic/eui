@@ -72,7 +72,6 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
 
   componentDidUpdate(prevProps: EuiFocusTrapProps) {
     if (prevProps.disabled === true && this.props.disabled === false) {
-      // eslint-disable-next-line react/no-did-update-set-state
       this.setState({ hasBeenDisabledByClick: false });
     }
   }

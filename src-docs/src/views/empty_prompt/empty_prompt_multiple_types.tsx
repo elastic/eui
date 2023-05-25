@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import React, { ReactNode, useState } from 'react';
 
 import { EuiSpacer, EuiSelect } from '../../../../src/components';

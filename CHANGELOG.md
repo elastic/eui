@@ -1,3 +1,16 @@
+## [`81.0.0`](https://github.com/elastic/eui/tree/v81.0.0)
+
+- Added ability to set `options.checked` to "mixed" in `EuiSelectable` ([#6774](https://github.com/elastic/eui/pull/6774))
+
+**Bug fixes**
+
+- Portalled components (e.g. `EuiPopover`, `EuiModal`, `EuiFlyout`) will correctly inherit text color from its nearest `EuiThemeProvider` parent. `<EuiText color="default">` is no longer needed. ([#6775](https://github.com/elastic/eui/pull/6775))
+
+**Breaking changes**
+
+- `EuiSelectable` no longer renders a `data-test-selected` attribute on its list items. Use the `aria-checked` property instead ([#6774](https://github.com/elastic/eui/pull/6774))
+- Nested `EuiThemeProvider`s now render a wrapping `<span>` element in order to correctly set the inherited text `color` of all descendants. `<EuiText color="default">` is no longer needed. ([#6775](https://github.com/elastic/eui/pull/6775))
+
 ## [`80.0.0`](https://github.com/elastic/eui/tree/v80.0.0)
 
 - Improved the contrast ratio of meta labels within `EuiSelectableTemplateSitewide` to meet WCAG AA guidelines. ([#6761](https://github.com/elastic/eui/pull/6761))

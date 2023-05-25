@@ -207,7 +207,6 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
 
   componentDidUpdate(prevProps: EuiContextMenuProps) {
     if (prevProps.panels !== this.props.panels) {
-      // eslint-disable-next-line react/no-did-update-set-state
       this.setState({
         idToRenderedItemsMap: this.mapIdsToRenderedItems(this.props.panels),
       });

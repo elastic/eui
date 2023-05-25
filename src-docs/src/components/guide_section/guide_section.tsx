@@ -230,7 +230,6 @@ export const GuideSection: FunctionComponent<GuideSectionProps> = ({
           <GuideSectionExample
             example={
               <EuiErrorBoundary>
-                {/* eslint-disable-next-line no-nested-ternary */}
                 {fullScreen == null ? (
                   <div>{demo}</div>
                 ) : demo == null ? (
