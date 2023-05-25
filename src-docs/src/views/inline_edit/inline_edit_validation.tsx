@@ -25,6 +25,7 @@ export default () => {
         editModeProps={{
           formRowProps: { error: errors },
           cancelButtonProps: { onClick: () => setErrors([]) },
+          inputProps: { readOnly: isLoading },
         }}
         isInvalid={isInvalid}
         isLoading={isLoading}
