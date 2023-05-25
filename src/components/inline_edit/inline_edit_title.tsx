@@ -96,7 +96,9 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
     >
       {(titleReadModeValue) => (
         <EuiTitle size={size} className="eui-textTruncate">
-          <H>{titleReadModeValue}</H>
+          <H role={isReadOnly ? 'presentation' : undefined}>
+            {titleReadModeValue}
+          </H>
         </EuiTitle>
       )}
     </EuiInlineEditForm>

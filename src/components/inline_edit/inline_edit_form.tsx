@@ -201,9 +201,11 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   const editModeInputOnKeyDown = (event: KeyboardEvent<HTMLElement>) => {
     switch (event.key) {
       case keys.ENTER:
+        event.preventDefault(); // Enter keypresses will not proceed otherwise on webkit browsers & screen readers
         saveInlineEditValue();
         break;
       case keys.ESCAPE:
+        event.preventDefault(); // NVDA will trigger Browse mode otherwise
         cancelInlineEdit();
         break;
     }
@@ -249,14 +251,11 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
             )}
           />
         </EuiFormRow>
-
         <span id={editModeDescribedById} hidden>
-          {!isReadOnly && (
-            <EuiI18n
-              token="euiInlineEditForm.inputKeyboardInstructions"
-              default="Press Enter to save your edited text. Press Escape to cancel your edit."
-            />
-          )}
+          <EuiI18n
+            token="euiInlineEditForm.inputKeyboardInstructions"
+            default="Press Enter to save your edited text. Press Escape to cancel your edit."
+          />
         </span>
       </EuiFlexItem>
 
@@ -342,10 +341,12 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
         {children(readModeValue)}
       </EuiButtonEmpty>
       <span id={readModeDescribedById} hidden>
-        <EuiI18n
-          token="euiInlineEditForm.activateEditModeDescription"
-          default="Click to edit this text inline."
-        />
+        {!isReadOnly && (
+          <EuiI18n
+            token="euiInlineEditForm.activateEditModeDescription"
+            default="Click to edit this text inline."
+          />
+        )}
       </span>
     </>
   );
