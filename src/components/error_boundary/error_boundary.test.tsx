@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
-import { requiredProps, takeMountedSnapshot } from '../../test';
+import { render } from '../../test/rtl';
+import { requiredProps } from '../../test';
 
 import { EuiErrorBoundary } from './error_boundary';
 
@@ -55,6 +55,17 @@ describe('EuiErrorBoundary', () => {
       );
 
       expect(getByTestSubject('euiErrorBoundary test')).toBeTruthy();
+    });
+
+    it('calls onError', () => {
+      const onError = jest.fn();
+      render(
+        <EuiErrorBoundary onError={onError}>
+          <BadComponent />
+        </EuiErrorBoundary>
+      );
+
+      expect(onError).toHaveBeenCalledWith(expect.any(Error));
     });
   });
 });
