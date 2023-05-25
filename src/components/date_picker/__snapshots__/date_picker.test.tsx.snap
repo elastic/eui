@@ -2,7 +2,7 @@
 
 exports[`EuiDatePicker is rendered 1`] = `
 <span
-  className="euiDatePicker euiDatePicker--shadow"
+  className="euiDatePicker"
 >
   <EuiFormControlLayout
     fullWidth={false}
@@ -60,10 +60,10 @@ exports[`EuiDatePicker is rendered 2`] = `
 
 exports[`EuiDatePicker localization accepts the locale prop 1`] = `
 <span
-  class="euiDatePicker euiDatePicker--shadow euiDatePicker--inline"
+  class="euiDatePicker euiDatePicker--inline euiDatePicker--shadow"
 >
   <div
-    class="euiFormControlLayout"
+    class="euiFormControlLayout euiFormControlLayoutDelimited"
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
@@ -463,10 +463,10 @@ exports[`EuiDatePicker localization accepts the locale prop 1`] = `
 
 exports[`EuiDatePicker localization inherits locale from context 1`] = `
 <span
-  class="euiDatePicker euiDatePicker--shadow euiDatePicker--inline"
+  class="euiDatePicker euiDatePicker--inline euiDatePicker--shadow"
 >
   <div
-    class="euiFormControlLayout"
+    class="euiFormControlLayout euiFormControlLayoutDelimited"
   >
     <div
       class="euiFormControlLayout__childrenWrapper"
@@ -872,7 +872,7 @@ exports[`EuiDatePicker popoverPlacement upRight is rendered 1`] = `
   popoverPlacement="upRight"
 >
   <span
-    className="euiDatePicker euiDatePicker--shadow"
+    className="euiDatePicker"
   >
     <EuiFormControlLayout
       fullWidth={false}

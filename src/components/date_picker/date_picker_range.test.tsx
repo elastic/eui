@@ -9,6 +9,7 @@
 import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps } from '../../test';
+import moment from 'moment';
 
 import { EuiDatePickerRange } from './date_picker_range';
 import { EuiDatePicker } from './date_picker';
@@ -26,8 +27,20 @@ describe('EuiDatePickerRange', () => {
     expect(component).toMatchSnapshot();
   });
 
-  describe('readOnly', () => {
-    it('is rendered', () => {
+  describe('props', () => {
+    test('fullWidth', () => {
+      const component = render(
+        <EuiDatePickerRange
+          startDateControl={<EuiDatePicker />}
+          endDateControl={<EuiDatePicker />}
+          fullWidth
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('readOnly', () => {
       const component = render(
         <EuiDatePickerRange
           startDateControl={<EuiDatePicker />}
@@ -38,10 +51,8 @@ describe('EuiDatePickerRange', () => {
 
       expect(component).toMatchSnapshot();
     });
-  });
 
-  describe('disabled', () => {
-    it('is rendered', () => {
+    test('disabled', () => {
       const component = render(
         <EuiDatePickerRange
           startDateControl={<EuiDatePicker />}
@@ -52,10 +63,8 @@ describe('EuiDatePickerRange', () => {
 
       expect(component).toMatchSnapshot();
     });
-  });
 
-  describe('isInvalid', () => {
-    it('is rendered', () => {
+    test('isInvalid', () => {
       const component = render(
         <EuiDatePickerRange
           startDateControl={<EuiDatePicker />}
@@ -65,6 +74,56 @@ describe('EuiDatePickerRange', () => {
       );
 
       expect(component).toMatchSnapshot();
+    });
+
+    test('isLoading', () => {
+      const component = render(
+        <EuiDatePickerRange
+          startDateControl={<EuiDatePicker />}
+          endDateControl={<EuiDatePicker />}
+          isLoading
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    describe('inline', () => {
+      it('renders', () => {
+        const selectedStartDate = moment('2000-01-01T00:00:00-0800');
+        const selectedEndDate = moment(selectedStartDate).add(1, 'd');
+
+        const component = render(
+          <EuiDatePickerRange
+            startDateControl={<EuiDatePicker selected={selectedStartDate} />}
+            endDateControl={<EuiDatePicker selected={selectedEndDate} />}
+            inline
+            // All of the below props should be ignored/not render when `inline`
+            iconType={true}
+            fullWidth
+            prepend="test"
+            append="test"
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('allows turning off the default shadow', () => {
+        const component = render(
+          <EuiDatePickerRange
+            startDateControl={<EuiDatePicker />}
+            endDateControl={<EuiDatePicker />}
+            inline
+            shadow={false}
+          />
+        );
+
+        expect(component.attr('class')).not.toContain('shadow');
+      });
+
+      // TODO: Use storybook to test inline invalid, loading, disabled, & readOnly
+      // visually instead of via DOM
     });
   });
 
