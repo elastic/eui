@@ -31,6 +31,7 @@ module.exports = {
   },
   extends: [
     'plugin:@typescript-eslint/recommended',
+    'plugin:storybook/recommended',
     // Prettier options need to come last, in order to override other style rules
     'plugin:prettier/recommended',
   ],
