@@ -60,6 +60,7 @@ export const euiDatePickerRangeInlineStyles = (
         ${logicalCSS('max-width', '100%')}
         background-color: transparent;
         box-shadow: none;
+        padding: 0;
 
         .euiFormControlLayout__childrenWrapper {
           display: grid;

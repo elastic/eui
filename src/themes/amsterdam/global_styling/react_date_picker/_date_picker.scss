@@ -19,6 +19,7 @@
       width: fit-content;
       background-color: transparent;
       box-shadow: none;
+      padding: 0;
     }
     // Extra specificity required to override .euiFormControlLayoutDelimited styles
     .euiFormControlLayoutDelimited .euiFormControlLayout__childrenWrapper {
