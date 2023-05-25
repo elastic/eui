@@ -2,7 +2,8 @@ import rule from './css_before_spread_props.js';
 const RuleTester = require('eslint').RuleTester;
 
 const ruleTester = new RuleTester({
-  parser: require.resolve('babel-eslint'),
+  parser: require.resolve('@typescript-eslint/parser'),
+  parserOptions: { ecmaFeatures: { jsx: true } },
 });
 
 const valid = [
@@ -190,7 +191,8 @@ const invalid = [
     `,
     errors: [
       {
-        message: 'restTextColor: CSS props must be declared before spread props.',
+        message:
+          'restTextColor: CSS props must be declared before spread props.',
       },
       {
         message: 'restLink: CSS props must be declared before spread props.',
@@ -233,11 +235,12 @@ const invalid = [
     `,
     errors: [
       {
-        message: 'restSpanProps: CSS props must be declared before spread props.',
+        message:
+          'restSpanProps: CSS props must be declared before spread props.',
       },
     ],
   },
-]
+];
 
 ruleTester.run('css_before_spread_props', rule, {
   valid,

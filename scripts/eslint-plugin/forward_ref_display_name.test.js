@@ -2,7 +2,7 @@ import rule from './forward_ref_display_name.js';
 const RuleTester = require('eslint').RuleTester;
 
 const ruleTester = new RuleTester({
-  parser: 'babel-eslint',
+  parser: require.resolve('@typescript-eslint/parser'),
 });
 
 const valid = [
