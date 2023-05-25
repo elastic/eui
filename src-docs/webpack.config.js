@@ -66,8 +66,8 @@ const webpackConfig = new Promise(async (resolve, reject) => {
         fallback: {
           fs: false,
           os: false,
+          assert: false,
           process: require.resolve('process/browser'),
-
           // provide requirements for playground
           path: require.resolve('path'),
           buffer: require.resolve('buffer/'),
