@@ -7,7 +7,6 @@ export default () => {
     <EuiInlineEditText
       inputAriaLabel="Edit text inline for readMode and editMode props"
       defaultValue="This inline edit component has been customized!"
-      size="m"
       readModeProps={{
         color: 'primary',
         iconSide: 'left',

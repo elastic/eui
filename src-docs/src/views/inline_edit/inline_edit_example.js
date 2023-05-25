@@ -18,6 +18,7 @@ const inlineEditTextSource = require('!!raw-loader!./inline_edit_text');
 const inlineEditTextSnippet = `<EuiInlineEditText
   inputAriaLabel="Edit text inline"
   defaultValue="Hello World!"
+  size="m"
 />`;
 
 import InlineEditTitle from './inline_edit_title';
@@ -26,6 +27,28 @@ const inlineEditTitleSnippet = `<EuiInlineEditTitle
   inputAriaLabel="Edit title inline"
   defaultValue="Hello World (but as a title)!"
   heading="h3"
+  size="m"
+/>`;
+
+import InlineEditSave from './inline_edit_save';
+const inlineEditSaveSource = require('!!raw-loader!././inline_edit_save');
+const inlineEditModeSaveSnippet = `<EuiInlineEditText
+  inputAriaLabel="Edit text inline"
+  defaultValue={defaultInlineEditValue}
+  onSave={(newInlineEditValue: string) => {
+    localStorage.setItem('inlineEditValue', newInlineEditValue);
+  }}
+/>`;
+
+import InlineEditValidation from './inline_edit_validation';
+const inlineEditValidationSource = require('!!raw-loader!././inline_edit_validation');
+
+import InlineEditReadOnly from './inline_edit_read_only';
+const InlineEditReadOnlySource = require('!!raw-loader!././inline_edit_read_only');
+const inlineEditReadOnlySnippet = `<EuiInlineEditText
+  inputAriaLabel="Edit text inline"
+  defaultValue="This is read only text!"
+  isReadOnly={isReadOnly}
 />`;
 
 import InlineEditModeProps from './inline_edit_mode_props';
@@ -52,27 +75,6 @@ const inlineEditModePropsSnippet = `<EuiInlineEditText
       display: 'empty',
     },
   }}
-/>`;
-
-import InlineEditSave from './inline_edit_save';
-const inlineEditSaveSource = require('!!raw-loader!././inline_edit_save');
-const inlineEditModeSaveSnippet = `<EuiInlineEditText
-  inputAriaLabel="Edit text inline"
-  defaultValue={defaultInlineEditValue}
-  onSave={(newInlineEditValue: string) => {
-    localStorage.setItem('inlineEditValue', newInlineEditValue);
-  }}
-/>`;
-
-import InlineEditValidation from './inline_edit_validation';
-const inlineEditValidationSource = require('!!raw-loader!././inline_edit_validation');
-
-import InlineEditReadOnly from './inline_edit_read_only';
-const InlineEditReadOnlySource = require('!!raw-loader!././inline_edit_read_only');
-const inlineEditReadOnlySnippet = `<EuiInlineEditText
-  inputAriaLabel="Edit text inline"
-  defaultValue="This is read only text!"
-  isReadOnly={isReadOnly}
 />`;
 
 export const InlineEditExample = {

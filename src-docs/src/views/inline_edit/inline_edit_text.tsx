@@ -45,9 +45,9 @@ export default () => {
       <EuiSpacer />
 
       <EuiInlineEditText
+        size={toggleTextButtonSize}
         inputAriaLabel="Edit text inline"
         defaultValue="Hello World!"
-        size={toggleTextButtonSize}
       />
     </>
   );

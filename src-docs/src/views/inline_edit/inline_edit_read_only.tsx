@@ -29,9 +29,9 @@ export default () => {
       <EuiSpacer />
 
       <EuiInlineEditTitle
+        heading="h3"
         inputAriaLabel="Edit title inline"
         defaultValue="This is a read only title!"
-        heading="h3"
         isReadOnly={isReadOnly}
       />
     </>
