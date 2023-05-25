@@ -15,11 +15,8 @@ import { useColorStopsState } from '../../../../src/services';
 
 export default () => {
   const [standardColorStops, setStandardColorStops] = useColorStopsState(true);
-  const [
-    randomColorStops,
-    setRandomColorStops,
-    addRandomColor,
-  ] = useColorStopsState(true);
+  const [randomColorStops, setRandomColorStops, addRandomColor] =
+    useColorStopsState(true);
   const [fixedColorStops, setFixedColorStops] = useColorStopsState(true);
   const [steppedColorStops, setSteppedColorStops] = useColorStopsState(true);
   const [value, setValue] = useState(10);

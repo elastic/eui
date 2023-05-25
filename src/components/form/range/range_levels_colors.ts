@@ -16,7 +16,7 @@ export const LEVEL_COLORS = [
   'warning',
   'danger',
 ] as const;
-export type EuiRangeLevelColor = typeof LEVEL_COLORS[number];
+export type EuiRangeLevelColor = (typeof LEVEL_COLORS)[number];
 
 export const isNamedLevelColor = (color?: EuiRangeLevelColor | string) =>
   LEVEL_COLORS.includes(color as EuiRangeLevelColor);

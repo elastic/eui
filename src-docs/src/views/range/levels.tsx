@@ -13,8 +13,7 @@ export default () => {
   const [value, setValue] = useState('20');
   const [customColorsValue, setCustomColorsValue] = useState('15');
   const [dualValue, setDualValue] = useState<EuiDualRangeProps['value']>([
-    20,
-    100,
+    20, 100,
   ]);
 
   const levels = [

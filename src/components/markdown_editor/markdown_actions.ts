@@ -532,10 +532,8 @@ function multilineStyle(textarea: HTMLTextAreaElement, arg: StyleArgs) {
   } else {
     text = lines.map((line) => prefix + line + suffix).join('\n');
     if (surroundWithNewlines) {
-      const {
-        newlinesToAppend,
-        newlinesToPrepend,
-      } = newlinesToSurroundSelectedText(textarea);
+      const { newlinesToAppend, newlinesToPrepend } =
+        newlinesToSurroundSelectedText(textarea);
       selectionStart += newlinesToAppend.length;
       selectionEnd = selectionStart + text.length;
       text = newlinesToAppend + text + newlinesToPrepend;
@@ -594,10 +592,8 @@ function orderedList(textarea: HTMLTextAreaElement): SelectionRange {
       return results;
     })();
     text = lines.join('\n');
-    const {
-      newlinesToAppend,
-      newlinesToPrepend,
-    } = newlinesToSurroundSelectedText(textarea);
+    const { newlinesToAppend, newlinesToPrepend } =
+      newlinesToSurroundSelectedText(textarea);
     selectionStart = textarea.selectionStart + newlinesToAppend.length;
     selectionEnd = selectionStart + text.length;
     if (noInitialSelection) selectionStart = selectionEnd;

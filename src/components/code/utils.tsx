@@ -259,11 +259,11 @@ function wrapLines(
       // Annotation element
       const hasAnnotation = options.annotations?.hasOwnProperty(lineNumber);
       if (hasAnnotation) {
-        const annotationElement = ({
+        const annotationElement = {
           type: 'annotation',
           annotation: options.annotations[lineNumber],
           lineNumber,
-        } as unknown) as RefractorNode;
+        } as unknown as RefractorNode;
         lineNumberWrapperElement.children.push(annotationElement);
       }
 

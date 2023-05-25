@@ -167,7 +167,7 @@ export interface _EuiComboBoxProps<T>
  * - export (Props - Defaults) & Partial<Defaults>
  */
 type DefaultProps<T> = Omit<
-  typeof EuiComboBox['defaultProps'],
+  (typeof EuiComboBox)['defaultProps'],
   'options' | 'selectedOptions'
 > & {
   options: Array<EuiComboBoxOptionOption<T>>;
@@ -271,9 +271,8 @@ export class EuiComboBox<T> extends Component<
     this.listRefInstance = ref;
   };
 
-  toggleButtonRefInstance: RefInstance<
-    HTMLButtonElement | HTMLSpanElement
-  > = null;
+  toggleButtonRefInstance: RefInstance<HTMLButtonElement | HTMLSpanElement> =
+    null;
   toggleButtonRefCallback: RefCallback<HTMLButtonElement | HTMLSpanElement> = (
     ref
   ) => {
@@ -867,12 +866,8 @@ export class EuiComboBox<T> extends Component<
   };
 
   componentDidUpdate() {
-    const {
-      options,
-      selectedOptions,
-      singleSelection,
-      sortMatchesBy,
-    } = this.props;
+    const { options, selectedOptions, singleSelection, sortMatchesBy } =
+      this.props;
     const { searchValue } = this.state;
 
     // React 16.3 has a bug (fixed in 16.4) where getDerivedStateFromProps

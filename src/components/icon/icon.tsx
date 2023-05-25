@@ -47,7 +47,7 @@ export type IconType = EuiIconType | string | ComponentType;
 export type IconColor = string | NamedColor;
 
 export const SIZES = ['original', 's', 'm', 'l', 'xl', 'xxl'] as const;
-export type IconSize = typeof SIZES[number];
+export type IconSize = (typeof SIZES)[number];
 
 export type EuiIconProps = CommonProps &
   Omit<SVGAttributes<SVGElement>, 'type' | 'color' | 'size'> & {

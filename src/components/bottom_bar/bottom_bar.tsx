@@ -36,7 +36,7 @@ export const paddingSizeToClassNameMap: {
 };
 
 export const POSITIONS = ['static', 'fixed', 'sticky'] as const;
-export type _BottomBarPosition = typeof POSITIONS[number];
+export type _BottomBarPosition = (typeof POSITIONS)[number];
 
 type _BottomBarExclusivePositions = ExclusiveUnion<
   {

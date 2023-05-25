@@ -36,7 +36,7 @@ export const EuiThemeLevels = [
   'content',
 ] as const;
 
-export type _EuiThemeLevel = typeof EuiThemeLevels[number];
+export type _EuiThemeLevel = (typeof EuiThemeLevels)[number];
 
 export type _EuiThemeLevels = Record<
   _EuiThemeLevel,

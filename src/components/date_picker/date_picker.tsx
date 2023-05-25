@@ -61,7 +61,7 @@ const unsupportedProps = [
   'popperPlacement',
 ] as const;
 
-type UnsupportedProps = typeof unsupportedProps[number];
+type UnsupportedProps = (typeof unsupportedProps)[number];
 
 interface EuiExtendedDatePickerProps
   extends Omit<ReactDatePickerProps, UnsupportedProps> {

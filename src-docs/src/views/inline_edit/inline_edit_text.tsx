@@ -23,9 +23,8 @@ export default () => {
     },
   ];
 
-  const [toggleTextButtonSize, setToggleTextButtonSize] = useState<
-    EuiInlineEditTextProps['size']
-  >('m');
+  const [toggleTextButtonSize, setToggleTextButtonSize] =
+    useState<EuiInlineEditTextProps['size']>('m');
 
   const textSizeOnChange = (optionId: EuiInlineEditTextProps['size']) => {
     setToggleTextButtonSize(optionId);

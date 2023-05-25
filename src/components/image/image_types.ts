@@ -10,13 +10,13 @@ import { HTMLAttributes, ReactNode, ImgHTMLAttributes } from 'react';
 import { CommonProps, ExclusiveUnion } from '../common';
 
 export const SIZES = ['s', 'm', 'l', 'xl', 'fullWidth', 'original'] as const;
-export type EuiImageSize = typeof SIZES[number];
+export type EuiImageSize = (typeof SIZES)[number];
 
 const FLOATS = ['left', 'right'] as const;
-export type EuiImageWrapperFloat = typeof FLOATS[number];
+export type EuiImageWrapperFloat = (typeof FLOATS)[number];
 
 const MARGINS = ['s', 'm', 'l', 'xl'] as const;
-export type EuiImageWrapperMargin = typeof MARGINS[number];
+export type EuiImageWrapperMargin = (typeof MARGINS)[number];
 
 export type EuiImageButtonIconColor = 'light' | 'dark';
 

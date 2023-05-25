@@ -34,7 +34,7 @@ import { euiBadgeStyles } from './badge.styles';
 import { euiButtonFillColor } from '../../themes/amsterdam/global_styling/mixins';
 
 export const ICON_SIDES = ['left', 'right'] as const;
-type IconSide = typeof ICON_SIDES[number];
+type IconSide = (typeof ICON_SIDES)[number];
 
 export const COLORS = [
   'default',
@@ -45,7 +45,7 @@ export const COLORS = [
   'warning',
   'danger',
 ] as const;
-type BadgeColor = typeof COLORS[number];
+type BadgeColor = (typeof COLORS)[number];
 
 type WithButtonProps = {
   /**
@@ -155,8 +155,10 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
               | 'accent'
               | 'warning'
               | 'danger';
-            colorHex = euiButtonFillColor(euiTheme, color as RemainingColors)
-              .backgroundColor;
+            colorHex = euiButtonFillColor(
+              euiTheme,
+              color as RemainingColors
+            ).backgroundColor;
             break;
         }
 

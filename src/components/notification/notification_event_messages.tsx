@@ -23,10 +23,9 @@ export type EuiNotificationEventMessagesProps = {
   eventName: string;
 };
 
-export const EuiNotificationEventMessages: FunctionComponent<EuiNotificationEventMessagesProps> = ({
-  messages,
-  eventName,
-}) => {
+export const EuiNotificationEventMessages: FunctionComponent<
+  EuiNotificationEventMessagesProps
+> = ({ messages, eventName }) => {
   const [isOpen, setIsOpen] = useState(false);
   const messagesLength = messages.length;
 

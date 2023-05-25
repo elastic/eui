@@ -60,10 +60,8 @@ export const useImperativeGridRef = ({
   );
 
   // Popover APIs
-  const {
-    openCellPopover: _openCellPopover,
-    closeCellPopover,
-  } = cellPopoverContext;
+  const { openCellPopover: _openCellPopover, closeCellPopover } =
+    cellPopoverContext;
 
   // When we pass this API to the consumer, we can't know for sure that
   // the targeted cell is valid or in view (unlike our internal state, where

@@ -35,7 +35,7 @@ import { validateHref } from '../../../services/security/href_validator';
 import { useEuiButtonRadiusCSS } from '../../../themes/amsterdam/global_styling/mixins';
 
 const SIZES = ['xs', 's', 'm'] as const;
-export type EuiButtonDisplaySizes = typeof SIZES[number];
+export type EuiButtonDisplaySizes = (typeof SIZES)[number];
 
 /**
  * Extends EuiButtonDisplayContentProps which provides

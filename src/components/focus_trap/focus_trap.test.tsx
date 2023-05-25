@@ -117,7 +117,9 @@ describe('EuiFocusTrap', () => {
         e: React.MouseEvent
       ) => {
         const event = new Event('mousedown') as EuiEvent;
-        event.euiGeneratedBy = ((e.nativeEvent as unknown) as EuiEvent).euiGeneratedBy;
+        event.euiGeneratedBy = (
+          e.nativeEvent as unknown as EuiEvent
+        ).euiGeneratedBy;
         document.dispatchEvent(event);
       };
 
@@ -125,7 +127,9 @@ describe('EuiFocusTrap', () => {
         e: React.MouseEvent
       ) => {
         const event = new Event('mousedown') as EuiEvent;
-        event.euiGeneratedBy = ((e.nativeEvent as unknown) as EuiEvent).euiGeneratedBy;
+        event.euiGeneratedBy = (
+          e.nativeEvent as unknown as EuiEvent
+        ).euiGeneratedBy;
         document.dispatchEvent(event);
       };
 

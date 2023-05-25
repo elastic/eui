@@ -91,9 +91,7 @@ export type ApplyClassComponentDefaults<
   P = ExtractProps<C>
 > =
   // definition of Props that are not defaulted
-  Omit<P, keyof D> &
-    // definition of Props, made optional, that are have keys in defaultProps
-    { [K in keyof D]?: K extends keyof P ? P[K] : never };
+  Omit<P, keyof D> & { [K in keyof D]?: K extends keyof P ? P[K] : never }; // definition of Props, made optional, that are have keys in defaultProps
 
 /*
 https://github.com/Microsoft/TypeScript/issues/28339

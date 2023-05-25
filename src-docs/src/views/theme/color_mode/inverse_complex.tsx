@@ -40,9 +40,8 @@ export default () => {
     },
   ];
 
-  const [boxColorModeSelected, setBoxColorMode] = useState<EuiThemeColorMode>(
-    'light'
-  );
+  const [boxColorModeSelected, setBoxColorMode] =
+    useState<EuiThemeColorMode>('light');
 
   const onChange = (colorMode: EuiThemeColorMode) => {
     setBoxColorMode(colorMode);

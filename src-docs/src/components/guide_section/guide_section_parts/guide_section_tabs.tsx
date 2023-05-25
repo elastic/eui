@@ -37,10 +37,9 @@ export type GuideSectionExampleTabsProps = {
   rightSideControl?: ReactNode;
 };
 
-export const GuideSectionExampleTabs: FunctionComponent<GuideSectionExampleTabsProps> = ({
-  tabs,
-  rightSideControl,
-}) => {
+export const GuideSectionExampleTabs: FunctionComponent<
+  GuideSectionExampleTabsProps
+> = ({ tabs, rightSideControl }) => {
   const [selectedTabId, setSelectedTabId] = useState('');
 
   const onSelectedTabChanged = (id: string) => {
@@ -59,15 +58,8 @@ export const GuideSectionExampleTabs: FunctionComponent<GuideSectionExampleTabsP
     return (
       <EuiTabs size="s" bottomBorder={false}>
         {tabs.map((tab, index) => {
-          const {
-            displayName,
-            code,
-            type,
-            name,
-            props,
-            snippets,
-            ...rest
-          } = tab;
+          const { displayName, code, type, name, props, snippets, ...rest } =
+            tab;
 
           return (
             <EuiTab

@@ -3,10 +3,7 @@ const rule = require('./require_license_header');
 const dedent = require('dedent');
 
 const ruleTester = new RuleTester({
-  parser: require.resolve('babel-eslint'),
-  parserOptions: {
-    ecmaVersion: 2018,
-  },
+  parser: require.resolve('@typescript-eslint/parser'),
 });
 
 ruleTester.run('@kbn/eslint/require-license-header', rule, {

@@ -108,15 +108,13 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
       listElement.current.scrollTop = position + distanceToDestination * 0.25;
 
       if (isScrollingToBottom) {
-        isScrollingAnimationFrame.current = window.requestAnimationFrame(
-          scrollToBottom
-        );
+        isScrollingAnimationFrame.current =
+          window.requestAnimationFrame(scrollToBottom);
       }
     };
 
-    startScrollingAnimationFrame.current = window.requestAnimationFrame(
-      scrollToBottom
-    );
+    startScrollingAnimationFrame.current =
+      window.requestAnimationFrame(scrollToBottom);
   };
 
   const onMouseEnter = () => {

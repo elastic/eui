@@ -25,13 +25,13 @@ import { EuiIcon, IconType } from '../../icon';
 import { euiBetaBadgeStyles } from './beta_badge.styles';
 
 export const COLORS = ['accent', 'subdued', 'hollow'] as const;
-export type BetaBadgeColor = typeof COLORS[number];
+export type BetaBadgeColor = (typeof COLORS)[number];
 
 export const SIZES = ['s', 'm'] as const;
-export type BetaBadgeSize = typeof SIZES[number];
+export type BetaBadgeSize = (typeof SIZES)[number];
 
 export const ALIGNMENTS = ['baseline', 'middle'] as const;
-export type BetaBadgeAlignment = typeof ALIGNMENTS[number];
+export type BetaBadgeAlignment = (typeof ALIGNMENTS)[number];
 
 type WithButtonProps = {
   /**

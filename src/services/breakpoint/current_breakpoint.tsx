@@ -26,9 +26,8 @@ import { sortMapByLargeToSmallValues } from './_sorting';
 
 type CurrentEuiBreakpoint = _EuiThemeBreakpoint | undefined;
 
-export const CurrentEuiBreakpointContext = createContext<CurrentEuiBreakpoint>(
-  undefined
-);
+export const CurrentEuiBreakpointContext =
+  createContext<CurrentEuiBreakpoint>(undefined);
 
 /**
  * Top level provider (nested within EuiProvider) which provides a single
@@ -55,11 +54,12 @@ export const CurrentEuiBreakpointProvider: FunctionComponent = ({
     [sortedBreakpoints]
   );
 
-  const [currentBreakpoint, setCurrentBreakpoint] = useState<
-    CurrentEuiBreakpoint
-  >(
-    typeof window !== 'undefined' ? getBreakpoint(window.innerWidth) : undefined
-  );
+  const [currentBreakpoint, setCurrentBreakpoint] =
+    useState<CurrentEuiBreakpoint>(
+      typeof window !== 'undefined'
+        ? getBreakpoint(window.innerWidth)
+        : undefined
+    );
 
   useEffect(() => {
     const onWindowResize = throttle(() => {

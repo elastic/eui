@@ -1,7 +1,8 @@
 const CYPRESS_TYPES = '/// <reference types="cypress" />';
 const CYPRESS_REAL_EVENT_TYPES =
   '/// <reference types="cypress-real-events" />';
-const CYPRESS_CUSTOM_TYPES_REGEX = /^\/ <reference types="(\.\.?\/?)+\/cypress\/support" \/>$/;
+const CYPRESS_CUSTOM_TYPES_REGEX =
+  /^\/ <reference types="(\.\.?\/?)+\/cypress\/support" \/>$/;
 
 module.exports = {
   meta: {
@@ -17,7 +18,8 @@ module.exports = {
       const fileName = context.getFilename();
       const isCypressTestFile =
         fileName.endsWith('.spec.tsx') || fileName.endsWith('.a11y.tsx');
-      if (!isCypressTestFile) return; // Note: this must be commented out for Jest tests to run correctly
+      const isJestTest = typeof jest !== 'undefined';
+      if (!isCypressTestFile && !isJestTest) return;
 
       const sourceCode = context.getSourceCode();
       const comments = sourceCode.getAllComments();

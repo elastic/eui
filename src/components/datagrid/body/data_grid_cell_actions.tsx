@@ -75,9 +75,8 @@ export const EuiDataGridCellActions = ({
     return visibleCellActions.map(
       (Action: EuiDataGridColumnCellAction, idx: number) => {
         // React is more permissible than the TS types indicate
-        const ActionButtonElement = Action as JSXElementConstructor<
-          EuiDataGridColumnCellActionProps
-        >;
+        const ActionButtonElement =
+          Action as JSXElementConstructor<EuiDataGridColumnCellActionProps>;
         return (
           <ActionButtonElement
             key={idx}
@@ -115,9 +114,8 @@ export const EuiDataGridCellPopoverActions = ({
 
   const renderActions = useCallback(
     (Action: EuiDataGridColumnCellAction, idx: number) => {
-      const ActionButtonElement = Action as JSXElementConstructor<
-        EuiDataGridColumnCellActionProps
-      >;
+      const ActionButtonElement =
+        Action as JSXElementConstructor<EuiDataGridColumnCellActionProps>;
       return (
         <EuiFlexItem key={idx}>
           <div>

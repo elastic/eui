@@ -25,13 +25,11 @@ export type EuiPaginationButtonProps = EuiButtonEmptyProps & {
   totalPages?: number;
 };
 
-type EuiPaginationButtonPropsForAnchor = PropsForAnchor<
-  EuiPaginationButtonProps
->;
+type EuiPaginationButtonPropsForAnchor =
+  PropsForAnchor<EuiPaginationButtonProps>;
 
-type EuiPaginationButtonPropsForButton = PropsForButton<
-  EuiPaginationButtonProps
->;
+type EuiPaginationButtonPropsForButton =
+  PropsForButton<EuiPaginationButtonProps>;
 
 type Props = ExclusiveUnion<
   EuiPaginationButtonPropsForAnchor,

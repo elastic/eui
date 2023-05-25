@@ -218,8 +218,7 @@ const searchData: EuiSelectableTemplateSitewideOption[] = [
         type: 'article',
       },
       {
-        text:
-          'https://discuss.elastic.co/t/generate-har-archive-of-network-timings',
+        text: 'https://discuss.elastic.co/t/generate-har-archive-of-network-timings',
         highlightSearchString: true,
       },
     ],

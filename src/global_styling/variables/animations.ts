@@ -33,7 +33,7 @@ export const EuiThemeAnimationSpeeds = [
   'extraSlow',
 ] as const;
 
-export type _EuiThemeAnimationSpeed = typeof EuiThemeAnimationSpeeds[number];
+export type _EuiThemeAnimationSpeed = (typeof EuiThemeAnimationSpeeds)[number];
 
 export type _EuiThemeAnimationSpeeds = Record<
   _EuiThemeAnimationSpeed,
@@ -46,7 +46,8 @@ export type _EuiThemeAnimationSpeeds = Record<
 
 export const EuiThemeAnimationEasings = ['bounce', 'resistance'] as const;
 
-export type _EuiThemeAnimationEasing = typeof EuiThemeAnimationEasings[number];
+export type _EuiThemeAnimationEasing =
+  (typeof EuiThemeAnimationEasings)[number];
 
 export type _EuiThemeAnimationEasings = Record<
   _EuiThemeAnimationEasing,

@@ -27,7 +27,7 @@ const paddingSizeToClassNameMap = {
 
 export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
 
-export type PaddingSize = typeof PADDING_SIZES[number];
+export type PaddingSize = (typeof PADDING_SIZES)[number];
 
 export type EuiEmptyPromptProps = CommonProps &
   Omit<

@@ -5,7 +5,7 @@
     "<rootDir>/src-docs/src/components",
     "<rootDir>/scripts/babel",
     "<rootDir>/scripts/tests",
-    "<rootDir>/packages/eslint-plugin"
+    "<rootDir>/scripts/eslint-plugin"
   ],
   "collectCoverageFrom": [
     "src/{components,services,global_styling}/**/*.{ts,tsx,js,jsx}",

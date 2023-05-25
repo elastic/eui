@@ -18,7 +18,7 @@ import { TextColor, EuiTextColor } from './text_color';
 import { EuiTextAlign, TextAlignment } from './text_align';
 
 export const TEXT_SIZES = ['xs', 's', 'm', 'relative'] as const;
-export type TextSize = typeof TEXT_SIZES[number];
+export type TextSize = (typeof TEXT_SIZES)[number];
 
 export type EuiTextProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'color'> & {

@@ -34,7 +34,7 @@ export const COLORS = [
   'ghost',
 ] as const;
 
-export type EuiLinkColor = typeof COLORS[number];
+export type EuiLinkColor = (typeof COLORS)[number];
 
 export interface LinkButtonProps {
   type?: EuiLinkType;

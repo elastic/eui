@@ -32,19 +32,15 @@ export interface EuiPageSideBarProps_Deprecated
   /**
    * Adds padding around the children
    */
-  paddingSize?: typeof PADDING_SIZES[number];
+  paddingSize?: (typeof PADDING_SIZES)[number];
 }
 
 /**
  * @deprecated Use the new EuiPageSidebar in page/page_sidebar instead
  */
-export const EuiPageSideBar_Deprecated: FunctionComponent<EuiPageSideBarProps_Deprecated> = ({
-  children,
-  className,
-  sticky,
-  paddingSize = 'none',
-  ...rest
-}) => {
+export const EuiPageSideBar_Deprecated: FunctionComponent<
+  EuiPageSideBarProps_Deprecated
+> = ({ children, className, sticky, paddingSize = 'none', ...rest }) => {
   const classes = classNames(
     'euiPageSideBar',
     paddingSizeToClassNameMap[paddingSize],

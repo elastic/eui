@@ -13,8 +13,7 @@ import { useGeneratedHtmlId } from '../../../../src/services';
 export default () => {
   const [value, setValue] = useState('20');
   const [dualValue, setDualValue] = useState<EuiDualRangeProps['value']>([
-    20,
-    100,
+    20, 100,
   ]);
 
   const levels = [

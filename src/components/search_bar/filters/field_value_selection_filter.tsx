@@ -386,7 +386,7 @@ export class FieldValueSelectionFilter extends Component<
         anchorPosition="downCenter"
         panelClassName="euiFilterGroup__popoverPanel"
       >
-        <EuiSelectable<Partial<typeof items[number]['data']>>
+        <EuiSelectable<Partial<(typeof items)[number]['data']>>
           singleSelection={!multiSelect}
           aria-label={config.name}
           options={items}

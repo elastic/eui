@@ -18,7 +18,7 @@ import {
 } from './loading_logo.styles';
 
 export const SIZES = ['m', 'l', 'xl'] as const;
-export type EuiLoadingLogoSize = typeof SIZES[number];
+export type EuiLoadingLogoSize = (typeof SIZES)[number];
 
 export type EuiLoadingLogoProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {

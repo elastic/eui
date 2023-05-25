@@ -30,8 +30,8 @@ const getVersion = (packageName) => {
  * 7. We pass the files, dependencies, and queries as params to CS through a POST call.
  * */
 
-const displayTogglesRawCode = require('!!raw-loader!../../views/form_controls/display_toggles')
-  .default;
+const displayTogglesRawCode =
+  require('!!raw-loader!../../views/form_controls/display_toggles').default;
 
 export const CodeSandboxLink = ({ ...rest }) => {
   return (

@@ -30,13 +30,9 @@ export type EuiNotificationEventReadButtonProps = Omit<
   eventName: string;
 };
 
-export const EuiNotificationEventReadButton: FunctionComponent<EuiNotificationEventReadButtonProps> = ({
-  id,
-  isRead,
-  onClick,
-  eventName,
-  ...rest
-}) => {
+export const EuiNotificationEventReadButton: FunctionComponent<
+  EuiNotificationEventReadButtonProps
+> = ({ id, isRead, onClick, eventName, ...rest }) => {
   const classesReadState = classNames('euiNotificationEventReadButton', {
     'euiNotificationEventReadButton--isRead': isRead,
   });

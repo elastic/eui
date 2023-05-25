@@ -46,13 +46,13 @@ export interface EuiDescriptionListProps {
 }
 
 export const TYPES = ['row', 'inline', 'column', 'responsiveColumn'] as const;
-export type EuiDescriptionListType = typeof TYPES[number];
+export type EuiDescriptionListType = (typeof TYPES)[number];
 
 export const ALIGNMENTS = ['center', 'left'] as const;
-export type EuiDescriptionListAlignment = typeof ALIGNMENTS[number];
+export type EuiDescriptionListAlignment = (typeof ALIGNMENTS)[number];
 
 export const TEXT_STYLES = ['normal', 'reverse'] as const;
-export type EuiDescriptionListTextStyle = typeof TEXT_STYLES[number];
+export type EuiDescriptionListTextStyle = (typeof TEXT_STYLES)[number];
 
 export const GUTTER_SIZES = ['s', 'm'] as const;
-export type EuiDescriptionListGutterSizes = typeof GUTTER_SIZES[number];
+export type EuiDescriptionListGutterSizes = (typeof GUTTER_SIZES)[number];

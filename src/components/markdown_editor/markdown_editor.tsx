@@ -463,8 +463,8 @@ export const EuiMarkdownEditor = forwardRef<
                   text = padWithNewlinesIfNeeded(textareaRef.current!, text);
                 }
 
-                const originalSelectionStart = textareaRef.current!
-                  .selectionStart;
+                const originalSelectionStart =
+                  textareaRef.current!.selectionStart;
                 const newSelectionPoint = originalSelectionStart + text.length;
 
                 insertText(textareaRef.current!, {

@@ -32,8 +32,7 @@ const breadcrumbs: EuiBreadcrumb[] = [
     text: 'Chordates',
   },
   {
-    text:
-      'Nebulosa subspecies is also a real mouthful, especially for creatures without mouths',
+    text: 'Nebulosa subspecies is also a real mouthful, especially for creatures without mouths',
     truncate: true,
   },
   {

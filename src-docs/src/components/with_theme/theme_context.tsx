@@ -77,9 +77,9 @@ export class ThemeProvider extends React.Component<object, State> {
     // Otherwise, obtain it from localStorage
     const fromLocalStorage = localStorage.getItem(STYLE_STORAGE_KEY);
 
-    let themeLanguage = (fromUrlParam
-      ? `language--${fromUrlParam}`
-      : fromLocalStorage) as THEME_LANGUAGES['id'];
+    let themeLanguage = (
+      fromUrlParam ? `language--${fromUrlParam}` : fromLocalStorage
+    ) as THEME_LANGUAGES['id'];
 
     // If not set by either param or storage, or an invalid value, use the default
     if (!themeLanguage || !THEME_LANGS.includes(themeLanguage))

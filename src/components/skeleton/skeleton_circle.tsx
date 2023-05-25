@@ -16,7 +16,7 @@ import { EuiSkeletonLoading, _EuiSkeletonAriaProps } from './skeleton_loading';
 import { euiSkeletonCircleStyles } from './skeleton_circle.styles';
 
 export const SIZES = ['s', 'm', 'l', 'xl'] as const;
-export type SkeletonCircleSize = typeof SIZES[number];
+export type SkeletonCircleSize = (typeof SIZES)[number];
 
 export type EuiSkeletonCircleProps = HTMLAttributes<HTMLDivElement> &
   CommonProps &

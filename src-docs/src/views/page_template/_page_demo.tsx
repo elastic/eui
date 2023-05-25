@@ -97,12 +97,10 @@ export const PageDemo: FunctionComponent<
   );
 
   // Restrict width combos
-  const [restrictWidth, setRestrictWidth] = useState<
-    EuiPageTemplateProps['restrictWidth']
-  >(true);
-  const [bottomBorder, setBottomBorder] = useState<
-    EuiPageTemplateProps['bottomBorder']
-  >(undefined);
+  const [restrictWidth, setRestrictWidth] =
+    useState<EuiPageTemplateProps['restrictWidth']>(true);
+  const [bottomBorder, setBottomBorder] =
+    useState<EuiPageTemplateProps['bottomBorder']>(undefined);
 
   const button = fullscreen ? (
     <ExitFullscreenDemoButton />

@@ -16,17 +16,16 @@ import {
   EuiDataGridCellPopoverElementProps,
 } from '../data_grid_types';
 
-export const DataGridCellPopoverContext = createContext<
-  DataGridCellPopoverContextShape
->({
-  popoverIsOpen: false,
-  cellLocation: { rowIndex: 0, colIndex: 0 },
-  openCellPopover: () => {},
-  closeCellPopover: () => {},
-  setPopoverAnchor: () => {},
-  setPopoverContent: () => {},
-  setCellPopoverProps: () => {},
-});
+export const DataGridCellPopoverContext =
+  createContext<DataGridCellPopoverContextShape>({
+    popoverIsOpen: false,
+    cellLocation: { rowIndex: 0, colIndex: 0 },
+    openCellPopover: () => {},
+    closeCellPopover: () => {},
+    setPopoverAnchor: () => {},
+    setPopoverContent: () => {},
+    setCellPopoverProps: () => {},
+  });
 
 export const useCellPopover = (): {
   cellPopoverContext: DataGridCellPopoverContextShape;

@@ -25,20 +25,23 @@ export async function waitforResizeObserver(period = 30) {
 describe.skip('testResizeObservers', () => {
   // refactor the tests structure to make sure that `EuiResizeObserver` test can get
   // the proper size of the dom element.
-  type GetBoundingClientRect = typeof HTMLElement['prototype']['getBoundingClientRect'];
+  type GetBoundingClientRect =
+    (typeof HTMLElement)['prototype']['getBoundingClientRect'];
   let _originalgetBoundingClientRect: undefined | GetBoundingClientRect;
   beforeAll(() => {
     _originalgetBoundingClientRect =
       HTMLElement.prototype.getBoundingClientRect;
     HTMLElement.prototype.getBoundingClientRect = function () {
       // use the length of the element's HTML to represent its height
-      return { width: 100, height: this.innerHTML.length } as ReturnType<
-        GetBoundingClientRect
-      >;
+      return {
+        width: 100,
+        height: this.innerHTML.length,
+      } as ReturnType<GetBoundingClientRect>;
     };
   });
   afterAll(() => {
-    HTMLElement.prototype.getBoundingClientRect = _originalgetBoundingClientRect!;
+    HTMLElement.prototype.getBoundingClientRect =
+      _originalgetBoundingClientRect!;
   });
 
   describe('EuiResizeObserver', () => {

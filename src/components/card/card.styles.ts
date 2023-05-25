@@ -45,7 +45,9 @@ export const euiCardStyles = (
         flex-direction: column;
 
         // Apply the outline to the whole card when the internal text button has focus
-        &:has([class*='euiCard__text'][class*='-interactive']:focus:focus-visible) {
+        &:has(
+            [class*='euiCard__text'][class*='-interactive']:focus:focus-visible
+          ) {
           outline: ${euiTheme.focus.width} solid currentColor;
         }
       `,

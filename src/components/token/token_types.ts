@@ -10,13 +10,13 @@ import { CommonProps } from '../common';
 import { IconType } from '../icon';
 
 export const SIZES = ['xs', 's', 'm', 'l'] as const;
-export type TokenSize = typeof SIZES[number];
+export type TokenSize = (typeof SIZES)[number];
 
 export const SHAPES = ['circle', 'square', 'rectangle'] as const;
-export type TokenShape = typeof SHAPES[number];
+export type TokenShape = (typeof SHAPES)[number];
 
 export const FILLS = ['light', 'dark', 'none'] as const;
-export type TokenFill = typeof FILLS[number];
+export type TokenFill = (typeof FILLS)[number];
 
 export const COLORS = [
   'euiColorVis0',
@@ -31,7 +31,7 @@ export const COLORS = [
   'euiColorVis9',
   'gray',
 ] as const;
-export type TokenColor = typeof COLORS[number];
+export type TokenColor = (typeof COLORS)[number];
 
 export interface TokenProps {
   /**

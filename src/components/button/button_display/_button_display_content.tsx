@@ -15,10 +15,10 @@ import { euiButtonDisplayContentStyles } from './_button_display_content.styles'
 import classNames from 'classnames';
 
 export const ICON_SIZES = ['s', 'm'] as const;
-export type ButtonContentIconSize = typeof ICON_SIZES[number];
+export type ButtonContentIconSize = (typeof ICON_SIZES)[number];
 
 export const ICON_SIDES = ['left', 'right'] as const;
-export type ButtonContentIconSide = typeof ICON_SIDES[number] | undefined;
+export type ButtonContentIconSide = (typeof ICON_SIDES)[number] | undefined;
 
 export type EuiButtonDisplayContentType = HTMLAttributes<HTMLSpanElement>;
 

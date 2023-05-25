@@ -105,10 +105,8 @@ export const useFocus = ({
       // The header (rowIndex -1) is sticky and will always be in view
       setFocusedCell([0, -1]);
     } else if (gridItemsRendered.current) {
-      const {
-        visibleColumnStartIndex,
-        visibleRowStartIndex,
-      } = gridItemsRendered.current;
+      const { visibleColumnStartIndex, visibleRowStartIndex } =
+        gridItemsRendered.current;
 
       setFocusedCell([visibleColumnStartIndex, visibleRowStartIndex]);
     } else {

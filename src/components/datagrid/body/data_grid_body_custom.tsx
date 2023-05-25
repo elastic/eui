@@ -25,7 +25,9 @@ import { useDataGridHeader } from './header';
 import { useDataGridFooter } from './footer';
 import { Cell } from './data_grid_cell_wrapper';
 
-export const EuiDataGridBodyCustomRender: FunctionComponent<EuiDataGridBodyProps> = ({
+export const EuiDataGridBodyCustomRender: FunctionComponent<
+  EuiDataGridBodyProps
+> = ({
   renderCustomGridBody,
   leadingControlColumns,
   trailingControlColumns,
@@ -157,9 +159,8 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<EuiDataGridBodyProps
   );
 
   // Allow consumers to pass custom props/attributes/listeners etc. to the wrapping div
-  const [customGridBodyProps, setCustomGridBodyProps] = useState<
-    EuiDataGridSetCustomGridBodyProps
-  >({});
+  const [customGridBodyProps, setCustomGridBodyProps] =
+    useState<EuiDataGridSetCustomGridBodyProps>({});
 
   return (
     <div

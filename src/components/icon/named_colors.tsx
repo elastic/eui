@@ -19,7 +19,7 @@ export const COLORS = [
   'inherit',
 ] as const;
 
-export type NamedColor = typeof COLORS[number];
+export type NamedColor = (typeof COLORS)[number];
 
 export function isNamedColor(name: string): boolean {
   return COLORS.includes(name as NamedColor);

@@ -14,8 +14,7 @@ import { DisplayToggles } from '../form_controls/display_toggles';
 export default () => {
   const [value, setValue] = useState<EuiRangeProps['value']>('20');
   const [dualValue, setDualValue] = useState<EuiDualRangeProps['value']>([
-    20,
-    100,
+    20, 100,
   ]);
 
   const inputRangeSliderId = useGeneratedHtmlId({ prefix: 'inputRangeSlider' });

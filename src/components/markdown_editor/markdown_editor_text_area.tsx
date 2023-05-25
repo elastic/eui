@@ -11,16 +11,15 @@ import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { EuiMarkdownContext } from './markdown_context';
 
-export type EuiMarkdownEditorTextAreaProps = TextareaHTMLAttributes<
-  HTMLTextAreaElement
-> &
-  CommonProps & {
-    isInvalid?: boolean;
-    fullWidth?: boolean;
-    compressed?: boolean;
-    height: string;
-    maxHeight: string;
-  };
+export type EuiMarkdownEditorTextAreaProps =
+  TextareaHTMLAttributes<HTMLTextAreaElement> &
+    CommonProps & {
+      isInvalid?: boolean;
+      fullWidth?: boolean;
+      compressed?: boolean;
+      height: string;
+      maxHeight: string;
+    };
 
 export const EuiMarkdownEditorTextArea = forwardRef<
   HTMLTextAreaElement,

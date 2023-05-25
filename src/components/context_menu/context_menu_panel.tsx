@@ -54,7 +54,7 @@ export interface EuiContextMenuPanelProps {
   /**
    * Alters the size of the items and the title
    */
-  size?: typeof SIZES[number];
+  size?: (typeof SIZES)[number];
 }
 
 type Props = CommonProps &
