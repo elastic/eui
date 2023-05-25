@@ -28,7 +28,7 @@ interface EuiErrorBoundaryState {
 }
 
 export type EuiErrorBoundaryProps = CommonProps &
-  HTMLAttributes<HTMLDivElement> & {
+  Omit<HTMLAttributes<HTMLDivElement>, 'onError'> & {
     /**
      * ReactNode to render as this component's content
      */
