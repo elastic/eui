@@ -34,7 +34,7 @@ import { EuiSkeletonLoading, EuiSkeletonRectangle } from '../skeleton';
 import { useEuiTheme, useCombinedRefs, keys } from '../../services';
 import { EuiI18n, useEuiI18n } from '../i18n';
 import { useGeneratedHtmlId } from '../../services/accessibility';
-import { euiInlineEditFormStyles } from './inline_edit_form.styles';
+import { euiInlineEditReadModeStyles } from './inline_edit_form.styles';
 
 // Props shared between the internal form component as well as consumer-facing components
 export type EuiInlineEditCommonProps = HTMLAttributes<HTMLDivElement> &
@@ -134,10 +134,10 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
 
   const euiTheme = useEuiTheme();
 
-  const styles = euiInlineEditFormStyles(euiTheme);
-  const readOnlyStyles = [
-    styles.euiInlineEditButton,
-    isReadOnly && styles.isReadOnly,
+  const readModeStyles = euiInlineEditReadModeStyles(euiTheme);
+  const readModeCssStyles = [
+    readModeStyles.euiInlineEditReadMode,
+    isReadOnly && readModeStyles.isReadOnly,
   ];
 
   const { controlHeight, controlCompressedHeight } = euiFormVariables(euiTheme);
@@ -325,7 +325,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
         size={sizes.buttonSize}
         data-test-subj="euiInlineReadModeButton"
         disabled={isReadOnly}
-        css={readOnlyStyles}
+        css={readModeCssStyles}
         {...readModeProps}
         buttonRef={setReadModeRefs}
         aria-describedby={classNames(

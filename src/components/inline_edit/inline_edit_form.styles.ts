@@ -9,9 +9,9 @@
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 
-export const euiInlineEditFormStyles = ({ euiTheme }: UseEuiTheme) => {
+export const euiInlineEditReadModeStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
-    euiInlineEditButton: css``,
+    euiInlineEditReadMode: css``,
 
     // Override the cursor and allow users to highlight text when read mode is in the read only state
     // Once EuiEmptyButton has been converted to Emotion, remove this extra selector

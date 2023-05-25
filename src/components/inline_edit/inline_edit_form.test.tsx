@@ -27,7 +27,7 @@ describe('EuiInlineEditForm', () => {
     children: (readModeValue) => readModeValue,
   };
 
-  describe('Read Mode', () => {
+  describe('read mode', () => {
     it('renders', () => {
       const { container } = render(
         <EuiInlineEditForm {...commonInlineEditFormProps} />
@@ -77,7 +77,7 @@ describe('EuiInlineEditForm', () => {
     });
   });
 
-  describe('Edit Mode', () => {
+  describe('edit mode', () => {
     it('renders', () => {
       const { container } = render(
         <EuiInlineEditForm
@@ -204,7 +204,7 @@ describe('EuiInlineEditForm', () => {
     });
   });
 
-  describe('Toggling between readMode and editMode', () => {
+  describe('toggling between read mode and edit mode', () => {
     jest
       .spyOn(window, 'requestAnimationFrame')
       .mockImplementation((cb: Function) => cb());
@@ -216,7 +216,7 @@ describe('EuiInlineEditForm', () => {
       onSave.mockReset();
     });
 
-    it('activates editMode when the readModeButton is clicked', () => {
+    it('activates edit mode when the read mode button is clicked', () => {
       const { getByTestSubject, queryByTestSubject } = render(
         <EuiInlineEditForm
           {...commonInlineEditFormProps}
@@ -235,7 +235,7 @@ describe('EuiInlineEditForm', () => {
       expect(onClick).toHaveBeenCalledTimes(1);
     });
 
-    it('saves text and returns to readMode', () => {
+    it('saves text and returns to read mode', () => {
       const { getByTestSubject, getByText } = render(
         <EuiInlineEditForm
           {...commonInlineEditFormProps}
@@ -263,7 +263,7 @@ describe('EuiInlineEditForm', () => {
       expect(onClick).toHaveBeenCalledTimes(1);
     });
 
-    it('cancels text and returns to readMode', () => {
+    it('cancels text and returns to read mode', () => {
       const { getByTestSubject, getByText } = render(
         <EuiInlineEditForm
           {...commonInlineEditFormProps}
@@ -292,7 +292,7 @@ describe('EuiInlineEditForm', () => {
     });
 
     describe('onSave validation', () => {
-      it('returns to readMode with updated text when onSave returns true', () => {
+      it('returns to read mode with updated text when onSave returns true', () => {
         onSave.mockReturnValueOnce(true);
 
         const { getByTestSubject, getByText } = render(
@@ -314,7 +314,7 @@ describe('EuiInlineEditForm', () => {
         expect(getByText('New message!')).toBeTruthy();
       });
 
-      it('stays in editMode when onSave returns false', () => {
+      it('stays in edit mode when onSave returns false', () => {
         onSave.mockReturnValueOnce(false);
 
         const { getByTestSubject, queryByTestSubject } = render(
@@ -379,7 +379,7 @@ describe('EuiInlineEditForm', () => {
     });
 
     describe('keyboard events', () => {
-      test('pressing the Enter key saves text and returns to readMode', () => {
+      test('pressing the Enter key saves text and returns to read mode', () => {
         const { getByTestSubject, getByText } = render(
           <EuiInlineEditForm
             {...commonInlineEditFormProps}
@@ -402,7 +402,7 @@ describe('EuiInlineEditForm', () => {
         expect(getByText('New message!')).toBeTruthy();
       });
 
-      test('pressing the Escape key cancels text changes and returns to readMode', () => {
+      test('pressing the Escape key cancels text changes and returns to read mode', () => {
         const { getByTestSubject, getByText } = render(
           <EuiInlineEditForm
             {...commonInlineEditFormProps}

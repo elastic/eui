@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiInlineEditForm Edit Mode editModeProps.cancelButtonProps 1`] = `
+exports[`EuiInlineEditForm edit mode editModeProps.cancelButtonProps 1`] = `
 <div
   class="euiInlineEdit testClass1 testClass2"
 >
@@ -87,7 +87,7 @@ exports[`EuiInlineEditForm Edit Mode editModeProps.cancelButtonProps 1`] = `
 </div>
 `;
 
-exports[`EuiInlineEditForm Edit Mode editModeProps.formRowProps 1`] = `
+exports[`EuiInlineEditForm edit mode editModeProps.formRowProps 1`] = `
 <div
   class="euiInlineEdit testClass1 testClass2"
 >
@@ -174,7 +174,7 @@ exports[`EuiInlineEditForm Edit Mode editModeProps.formRowProps 1`] = `
 </div>
 `;
 
-exports[`EuiInlineEditForm Edit Mode editModeProps.inputProps 1`] = `
+exports[`EuiInlineEditForm edit mode editModeProps.inputProps 1`] = `
 <div
   class="euiInlineEdit testClass1 testClass2"
 >
@@ -266,7 +266,7 @@ exports[`EuiInlineEditForm Edit Mode editModeProps.inputProps 1`] = `
 </div>
 `;
 
-exports[`EuiInlineEditForm Edit Mode editModeProps.saveButtonProps 1`] = `
+exports[`EuiInlineEditForm edit mode editModeProps.saveButtonProps 1`] = `
 <div
   class="euiInlineEdit testClass1 testClass2"
 >
@@ -352,7 +352,7 @@ exports[`EuiInlineEditForm Edit Mode editModeProps.saveButtonProps 1`] = `
 </div>
 `;
 
-exports[`EuiInlineEditForm Edit Mode isInvalid 1`] = `
+exports[`EuiInlineEditForm edit mode isInvalid 1`] = `
 <div
   class="euiInlineEdit testClass1 testClass2"
 >
@@ -447,7 +447,7 @@ exports[`EuiInlineEditForm Edit Mode isInvalid 1`] = `
 </div>
 `;
 
-exports[`EuiInlineEditForm Edit Mode isLoading 1`] = `
+exports[`EuiInlineEditForm edit mode isLoading 1`] = `
 <div
   class="euiInlineEdit testClass1 testClass2"
 >
@@ -557,7 +557,7 @@ exports[`EuiInlineEditForm Edit Mode isLoading 1`] = `
 </div>
 `;
 
-exports[`EuiInlineEditForm Edit Mode renders 1`] = `
+exports[`EuiInlineEditForm edit mode renders 1`] = `
 <div
   class="euiInlineEdit testClass1 testClass2"
 >
@@ -643,13 +643,13 @@ exports[`EuiInlineEditForm Edit Mode renders 1`] = `
 </div>
 `;
 
-exports[`EuiInlineEditForm Read Mode isReadOnly 1`] = `
+exports[`EuiInlineEditForm read mode isReadOnly 1`] = `
 <div
   class="euiInlineEdit testClass1 testClass2"
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--flushBoth css-19hs4ci-empty-disabled-euiInlineEditButton-isReadOnly"
+    class="euiButtonEmpty euiButtonEmpty--flushBoth css-1xic7s3-empty-disabled-euiInlineEditReadMode-isReadOnly"
     data-test-subj="euiInlineReadModeButton"
     disabled=""
     type="button"
@@ -671,13 +671,13 @@ exports[`EuiInlineEditForm Read Mode isReadOnly 1`] = `
 </div>
 `;
 
-exports[`EuiInlineEditForm Read Mode readModeProps 1`] = `
+exports[`EuiInlineEditForm read mode readModeProps 1`] = `
 <div
   class="euiInlineEdit testClass1 testClass2"
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--flushBoth css-ioyorl-empty-primary-euiInlineEditButton"
+    class="euiButtonEmpty euiButtonEmpty--flushBoth css-1e81xrj-empty-primary-euiInlineEditReadMode"
     data-test-subj="euiInlineReadModeButton"
     type="button"
   >
@@ -705,13 +705,13 @@ exports[`EuiInlineEditForm Read Mode readModeProps 1`] = `
 </div>
 `;
 
-exports[`EuiInlineEditForm Read Mode renders 1`] = `
+exports[`EuiInlineEditForm read mode renders 1`] = `
 <div
   class="euiInlineEdit testClass1 testClass2"
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--flushBoth css-gj4z04-empty-text-euiInlineEditButton"
+    class="euiButtonEmpty euiButtonEmpty--flushBoth css-i2vcrr-empty-text-euiInlineEditReadMode"
     data-test-subj="euiInlineReadModeButton"
     type="button"
   >
@@ -739,13 +739,13 @@ exports[`EuiInlineEditForm Read Mode renders 1`] = `
 </div>
 `;
 
-exports[`EuiInlineEditForm Read Mode sizes 1`] = `
+exports[`EuiInlineEditForm read mode sizes 1`] = `
 <div
   class="euiInlineEdit testClass1 testClass2"
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-gj4z04-empty-text-euiInlineEditButton"
+    class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-i2vcrr-empty-text-euiInlineEditReadMode"
     data-test-subj="euiInlineReadModeButton"
     type="button"
   >
