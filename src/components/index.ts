@@ -91,6 +91,8 @@ export * from './image';
 
 export * from './inner_text';
 
+export * from './inline_edit';
+
 export * from './i18n';
 
 export * from './loading';

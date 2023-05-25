@@ -91,7 +91,9 @@ export interface CommonEuiButtonEmptyProps
 
 type EuiButtonEmptyPropsForAnchor = PropsForAnchor<CommonEuiButtonEmptyProps>;
 
-type EuiButtonEmptyPropsForButton = PropsForButton<CommonEuiButtonEmptyProps>;
+export type EuiButtonEmptyPropsForButton = PropsForButton<
+  CommonEuiButtonEmptyProps
+>;
 
 export type EuiButtonEmptyProps = ExclusiveUnion<
   EuiButtonEmptyPropsForAnchor,
