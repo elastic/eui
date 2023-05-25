@@ -7,6 +7,7 @@
  */
 
 import React, {
+  useMemo,
   FocusEvent,
   FocusEventHandler,
   FunctionComponent,
@@ -22,12 +23,19 @@ import {
 } from '../form';
 import { IconType } from '../icon';
 import { CommonProps } from '../common';
+
+import { useEuiTheme } from '../../services';
+import {
+  euiDatePickerRangeStyles,
+  euiDatePickerRangeInlineStyles,
+} from './date_picker_range.styles';
+
 import { EuiDatePickerProps } from './date_picker';
 
 export type EuiDatePickerRangeProps = CommonProps &
   Pick<
     EuiFormControlLayoutDelimitedProps,
-    'isInvalid' | 'readOnly' | 'fullWidth' | 'prepend' | 'append'
+    'isLoading' | 'isInvalid' | 'readOnly' | 'fullWidth' | 'prepend' | 'append'
   > & {
     /**
      * Including any children will replace all innards with the provided children
@@ -60,6 +68,19 @@ export type EuiDatePickerRangeProps = CommonProps &
     disabled?: boolean;
 
     /**
+     * Displays both date picker calendars directly on the page.
+     * Will not render `iconType`, `fullWidth`, `prepend`, or `append`.
+     *
+     * Passes through to each control if `isCustom` is not set.
+     */
+    inline?: EuiDatePickerProps['inline'];
+
+    /**
+     * Allows turning the shadow off if using the `inline` prop
+     */
+    shadow?: EuiDatePickerProps['shadow'];
+
+    /**
      * Triggered whenever the start or end controls are blurred
      */
     onBlur?: FocusEventHandler<HTMLInputElement>;
@@ -76,9 +97,12 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
   startDateControl,
   endDateControl,
   iconType = true,
-  fullWidth,
+  inline,
+  shadow = true,
+  fullWidth: _fullWidth,
   isCustom,
   readOnly,
+  isLoading,
   isInvalid,
   disabled,
   onFocus,
@@ -87,16 +111,30 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
   prepend,
   ...rest
 }) => {
-  const classes = classNames(
-    'euiDatePickerRange',
-    {
-      'euiDatePickerRange--fullWidth': fullWidth,
-      'euiDatePickerRange--readOnly': readOnly,
-      'euiDatePickerRange--isInvalid': isInvalid,
-      'euiDatePickerRange--isDisabled': disabled,
-    },
-    className
-  );
+  // `fullWidth` should not affect inline datepickers (matches non-range behavior)
+  const fullWidth = _fullWidth && !inline;
+
+  const classes = classNames('euiDatePickerRange', className);
+
+  const euiTheme = useEuiTheme();
+  const styles = euiDatePickerRangeStyles(euiTheme);
+  const cssStyles = [styles.euiDatePickerRange];
+
+  if (inline) {
+    // Determine the inline container query to use based on the width of the react-datepicker
+    const hasTimeSelect =
+      startDateControl.props.showTimeSelect ||
+      endDateControl.props.showTimeSelect;
+
+    const inlineStyles = euiDatePickerRangeInlineStyles(euiTheme);
+    cssStyles.push(inlineStyles.inline);
+    cssStyles.push(
+      hasTimeSelect
+        ? inlineStyles.responsiveWithTimeSelect
+        : inlineStyles.responsive
+    );
+    if (shadow) cssStyles.push(inlineStyles.shadow);
+  }
 
   let startControl = startDateControl;
   let endControl = endDateControl;
@@ -107,8 +145,9 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
       {
         controlOnly: true,
         showIcon: false,
-        fullWidth: fullWidth,
-        readOnly: readOnly,
+        inline,
+        fullWidth,
+        readOnly,
         disabled: disabled || startDateControl.props.disabled,
         isInvalid: isInvalid || startDateControl.props.isInvalid,
         className: classNames(
@@ -131,8 +170,9 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
       {
         controlOnly: true,
         showIcon: false,
-        fullWidth: fullWidth,
-        readOnly: readOnly,
+        inline,
+        fullWidth,
+        readOnly,
         disabled: disabled || endDateControl.props.disabled,
         isInvalid: isInvalid || endDateControl.props.isInvalid,
         popoverPlacement: 'downRight',
@@ -152,19 +192,27 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
     );
   }
 
+  const icon = useMemo(() => {
+    if (inline) return undefined;
+    if (iconType === false) return undefined;
+    if (iconType === true) return 'calendar';
+    return iconType;
+  }, [iconType, inline]);
+
   return (
-    <EuiFormControlLayoutDelimited
-      icon={iconType === true ? 'calendar' : iconType || undefined}
-      className={classes}
-      startControl={startControl}
-      endControl={endControl}
-      fullWidth={fullWidth}
-      readOnly={readOnly}
-      isDisabled={disabled}
-      isInvalid={isInvalid}
-      append={append}
-      prepend={prepend}
-      {...rest}
-    />
+    <span className={classes} css={cssStyles} {...rest}>
+      <EuiFormControlLayoutDelimited
+        icon={icon}
+        startControl={startControl}
+        endControl={endControl}
+        fullWidth={fullWidth}
+        readOnly={readOnly}
+        isDisabled={disabled}
+        isInvalid={isInvalid}
+        isLoading={isLoading}
+        append={inline ? undefined : append}
+        prepend={inline ? undefined : prepend}
+      />
+    </span>
   );
 };

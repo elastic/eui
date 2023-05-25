@@ -417,6 +417,7 @@ export default class Calendar extends React.Component {
         type="button"
         className={classes.join(" ")}
         onClick={clickHandler}
+        disabled={!this.props.accessibleMode}
       >
         {this.props.previousMonthButtonLabel}
       </button>
@@ -466,6 +467,7 @@ export default class Calendar extends React.Component {
         type="button"
         className={classes.join(" ")}
         onClick={clickHandler}
+        disabled={!this.props.accessibleMode}
       >
         {this.props.nextMonthButtonLabel}
       </button>
@@ -717,6 +719,11 @@ export default class Calendar extends React.Component {
   render() {
     const Container = this.props.container || CalendarContainer;
 
+    const classes = classnames("react-datepicker", this.props.className, {
+      "react-datepicker--time-only": this.props.showTimeSelectOnly,
+      "react-datepicker--non-interactive": !this.props.isCalendarInteractive,
+    });
+
     const trapFocus = this.props.accessibleMode && !this.props.inline;
     const initialFocusTarget = this.props.showTimeSelectOnly
       ? ".react-datepicker__time-box--accessible"
@@ -724,11 +731,7 @@ export default class Calendar extends React.Component {
 
     if (trapFocus) {
       return (
-        <Container
-          className={classnames("react-datepicker", this.props.className, {
-            "react-datepicker--time-only": this.props.showTimeSelectOnly
-          })}
-        >
+        <Container className={classes}>
           <EuiFocusTrap
             disabled={this.state.pauseFocusTrap || !this.props.enableFocusTrap}
             className="react-datepicker__focusTrap"
@@ -746,11 +749,7 @@ export default class Calendar extends React.Component {
       );
     } else {
       return (
-        <Container
-          className={classnames("react-datepicker", this.props.className, {
-            "react-datepicker--time-only": this.props.showTimeSelectOnly
-          })}
-        >
+        <Container className={classes}>
           {this.renderPreviousMonthButton()}
           {this.renderNextMonthButton()}
           {this.renderMonths()}

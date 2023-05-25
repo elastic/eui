@@ -15,15 +15,15 @@ export default () => {
 
   return (
     <EuiDatePickerRange
+      isInvalid={isInvalid}
       startDateControl={
         <EuiDatePicker
           selected={startDate}
-          onChange={setStartDate}
+          onChange={(date) => date && setStartDate(date)}
           startDate={startDate}
           endDate={endDate}
           minDate={minDate}
           maxDate={endDate}
-          isInvalid={isInvalid}
           aria-label="Start date"
           showTimeSelect
         />
@@ -31,12 +31,11 @@ export default () => {
       endDateControl={
         <EuiDatePicker
           selected={endDate}
-          onChange={setEndDate}
+          onChange={(date) => date && setEndDate(date)}
           startDate={startDate}
           endDate={endDate}
           minDate={startDate}
           maxDate={maxDate}
-          isInvalid={isInvalid}
           aria-label="End date"
           showTimeSelect
         />
