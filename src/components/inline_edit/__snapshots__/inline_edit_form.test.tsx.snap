@@ -5,7 +5,7 @@ exports[`EuiInlineEditForm Edit Mode editModeProps.cancelButtonProps 1`] = `
   class="euiInlineEdit testClass1 testClass2"
 >
   <div
-    class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
+    class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-stretch-row"
   >
     <div
       class="euiFlexItem emotion-euiFlexItem-grow-1"
@@ -92,7 +92,7 @@ exports[`EuiInlineEditForm Edit Mode editModeProps.formRowProps 1`] = `
   class="euiInlineEdit testClass1 testClass2"
 >
   <div
-    class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
+    class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-stretch-row"
   >
     <div
       class="euiFlexItem emotion-euiFlexItem-grow-1"
@@ -179,7 +179,7 @@ exports[`EuiInlineEditForm Edit Mode editModeProps.inputProps 1`] = `
   class="euiInlineEdit testClass1 testClass2"
 >
   <div
-    class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
+    class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-stretch-row"
   >
     <div
       class="euiFlexItem emotion-euiFlexItem-grow-1"
@@ -271,7 +271,7 @@ exports[`EuiInlineEditForm Edit Mode editModeProps.saveButtonProps 1`] = `
   class="euiInlineEdit testClass1 testClass2"
 >
   <div
-    class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
+    class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-stretch-row"
   >
     <div
       class="euiFlexItem emotion-euiFlexItem-grow-1"
@@ -357,7 +357,7 @@ exports[`EuiInlineEditForm Edit Mode isInvalid 1`] = `
   class="euiInlineEdit testClass1 testClass2"
 >
   <div
-    class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
+    class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-stretch-row"
   >
     <div
       class="euiFlexItem emotion-euiFlexItem-grow-1"
@@ -452,7 +452,7 @@ exports[`EuiInlineEditForm Edit Mode isLoading 1`] = `
   class="euiInlineEdit testClass1 testClass2"
 >
   <div
-    class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
+    class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-stretch-row"
   >
     <div
       class="euiFlexItem emotion-euiFlexItem-grow-1"
@@ -562,7 +562,7 @@ exports[`EuiInlineEditForm Edit Mode renders 1`] = `
   class="euiInlineEdit testClass1 testClass2"
 >
   <div
-    class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
+    class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-stretch-row"
   >
     <div
       class="euiFlexItem emotion-euiFlexItem-grow-1"

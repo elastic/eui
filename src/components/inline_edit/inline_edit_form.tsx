@@ -218,7 +218,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   }, [isReadOnly]);
 
   const editModeForm = (
-    <EuiFlexGroup gutterSize="s">
+    <EuiFlexGroup gutterSize="s" responsive={false}>
       <EuiFlexItem>
         <EuiFormRow
           fullWidth
