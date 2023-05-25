@@ -43,6 +43,14 @@ const inlineEditModeSaveSnippet = `<EuiInlineEditText
 import InlineEditValidation from './inline_edit_validation';
 const inlineEditValidationSource = require('!!raw-loader!././inline_edit_validation');
 
+import InlineEditStartInEdit from './inline_edit_start_in_edit';
+const inlineEditStartInEditSource = require('!!raw-loader!././inline_edit_start_in_edit');
+const inlineEditStartInEditSnippet = `<EuiInlineEditText
+  inputAriaLabel="Edit text inline"
+  defaultValue="This text starts in edit mode"
+  startsInEditOpen={true}
+/>`;
+
 import InlineEditReadOnly from './inline_edit_read_only';
 const InlineEditReadOnlySource = require('!!raw-loader!././inline_edit_read_only');
 const inlineEditReadOnlySnippet = `<EuiInlineEditText
@@ -187,15 +195,30 @@ export const InlineEditExample = {
       demo: <InlineEditValidation />,
     },
     {
+      title: 'Start in edit mode',
+      text: (
+        <p>
+          Use the <EuiCode>startWithEditOpen</EuiCode> prop to default to
+          opening in edit mode.
+        </p>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: inlineEditStartInEditSource,
+        },
+      ],
+      demo: <InlineEditStartInEdit />,
+      snippet: inlineEditStartInEditSnippet,
+    },
+    {
       title: 'Read only',
       text: (
-        <>
-          <p>
-            Use the <EuiCode>isReadOnly</EuiCode> prop to lock{' '}
-            <EuiCode>EuiInlineEdit</EuiCode> in read mode and display the text
-            value. This does not affect the input form control in edit mode.
-          </p>
-        </>
+        <p>
+          Use the <EuiCode>isReadOnly</EuiCode> prop to lock{' '}
+          <EuiCode>EuiInlineEdit</EuiCode> in read mode and display the text
+          value. This does not affect the input form control in edit mode.
+        </p>
       ),
       source: [
         {
