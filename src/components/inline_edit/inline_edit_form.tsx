@@ -332,15 +332,10 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
           readModeDescribedById,
           readModeProps?.['aria-describedby']
         )}
-        onClick={
-          // `undefined` prevents screen readers from announcing "clickable" when the button is readonly
-          !isReadOnly
-            ? (e: MouseEvent<HTMLButtonElement>) => {
-                activateEditMode();
-                readModeProps?.onClick?.(e);
-              }
-            : undefined
-        }
+        onClick={(e: MouseEvent<HTMLButtonElement>) => {
+          activateEditMode();
+          readModeProps?.onClick?.(e);
+        }}
       >
         {children(readModeValue)}
       </EuiButtonEmpty>
