@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
-import { requiredProps, takeMountedSnapshot } from '../../test';
+import { render } from '../../test/rtl';
+import { requiredProps } from '../../test';
 
 import { EuiErrorBoundary } from './error_boundary';
 
@@ -24,15 +24,13 @@ const BadComponent = () => {
 describe('EuiErrorBoundary', () => {
   describe('without an error thrown', () => {
     it('does not render the UI', () => {
-      const component = takeMountedSnapshot(
-        mount(
-          <EuiErrorBoundary {...requiredProps}>
-            <GoodComponent />
-          </EuiErrorBoundary>
-        )
+      const { container } = render(
+        <EuiErrorBoundary {...requiredProps}>
+          <GoodComponent />
+        </EuiErrorBoundary>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
@@ -40,24 +38,34 @@ describe('EuiErrorBoundary', () => {
     it('renders UI', () => {
       // Because the error contains the stack trace, it's non-deterministic. So we'll just check that
       // it contains our error message.
-      const errorText = mount(
+      const { container } = render(
         <EuiErrorBoundary {...requiredProps}>
           <BadComponent />
         </EuiErrorBoundary>
-      ).text();
+      );
 
-      expect(errorText).toContain(errorMessage);
+      expect(container.textContent).toContain(errorMessage);
     });
 
     it('renders data-test-subj', () => {
-      const errorHtml = mount(
-        <EuiErrorBoundary {...requiredProps}>
+      const { getByTestSubject } = render(
+        <EuiErrorBoundary data-test-subj="test">
           <BadComponent />
         </EuiErrorBoundary>
-      ).html();
+      );
 
-      expect(errorHtml).toContain('euiErrorBoundary');
-      expect(errorHtml).toContain('test subject string');
+      expect(getByTestSubject('euiErrorBoundary test')).toBeTruthy();
+    });
+
+    it('calls onError', () => {
+      const onError = jest.fn();
+      render(
+        <EuiErrorBoundary onError={onError}>
+          <BadComponent />
+        </EuiErrorBoundary>
+      );
+
+      expect(onError).toHaveBeenCalledWith(expect.any(Error));
     });
   });
 });
