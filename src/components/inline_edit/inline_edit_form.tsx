@@ -205,7 +205,6 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
         saveInlineEditValue();
         break;
       case keys.ESCAPE:
-        event.preventDefault(); // NVDA will trigger Browse mode otherwise
         cancelInlineEdit();
         break;
     }
