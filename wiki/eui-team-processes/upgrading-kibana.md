@@ -79,16 +79,19 @@ Some teams also use Jest to run longer integration tests. These tests have a dif
 
 1. In the test failures reported by `kibana-ci`, Click the `[logs]` link next to the test failure
 2. Integration test failures will have a two-line heading. The first line confirms these are Jest integration test failures. The second line is the relative path you will need to re-run the test.
+    <img width="1325" alt="Screen Shot 2023-05-26 at 10 34 47 AM" src="https://github.com/elastic/eui/assets/934879/cd7d7b0b-f532-43ea-84bc-2f05d927a20a">
 3. Grab and copy the test path from the `kibana-ci` output log. This will usually be a long relative path that ends with `TEST_NAME.test.tsx`. Open this file and look for selectors, screen reader text, or other things that might have changed in EUI to cause a failure.
 4. Look for a `jest.config.js` file near the failing test. This file may be in the same directory, or up 1-3 parent directories.
 5. In your terminal, paste the following command, substituting the `RELATIVE_TEST_PATH` from step 2 and the `JEST_CONFIG` with the appropriate paths. Some IDE’s like VSCode have a command [“Copy relative path”](https://www.youtube.com/watch?v=b678IZ1O1pM) that make this process easier.
 
     ```shell
-    # Example command to run Jest integration testyarn test:jest_integration --config=JEST_CONFIG RELATIVE_TEST_PATH
+    # Example command to run Jest integration test
+    yarn test:jest_integration --config=JEST_CONFIG RELATIVE_TEST_PATH
     ```
 
     ```shell
-    # Invoke an actual Jest integration testyarn test:jest_integration --config=x-pack/plugins/security_solution/jest.integration.config.js x-pack/plugins/security_solution/public/management/pages/host_isolation_exceptions/view/components/integration_tests
+    # Invoke an actual Jest integration test
+    yarn test:jest_integration --config=x-pack/plugins/security_solution/jest.integration.config.js x-pack/plugins/security_solution/public/management/pages/host_isolation_exceptions/view/components/integration_tests
     ```
 
 ### E2E test errors
