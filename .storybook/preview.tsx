@@ -10,12 +10,21 @@ import React from 'react';
 import type { Preview } from '@storybook/react';
 
 import { EuiProvider } from '../src/components/provider';
+import { writingModeStyles } from './writing_mode.styles';
 
 const preview: Preview = {
   decorators: [
     (Story, context) => (
       <EuiProvider colorMode={context.globals.colorMode}>
-        <Story />
+        <div
+          css={[
+            writingModeStyles.writingMode,
+            // @ts-ignore - we're manually ensuring `writingMode` globals match our Emotion style keys
+            writingModeStyles[context.globals.writingMode],
+          ]}
+        >
+          <Story />
+        </div>
       </EuiProvider>
     ),
   ],
@@ -25,10 +34,24 @@ const preview: Preview = {
       defaultValue: 'light',
       toolbar: {
         title: 'Color mode',
-        icon: 'circlehollow',
         items: [
           { value: 'light', title: 'Light mode', icon: 'circlehollow' },
           { value: 'dark', title: 'Dark mode', icon: 'circle' },
+        ],
+        dynamicTitle: true,
+      },
+    },
+    writingMode: {
+      description: 'Writing mode for testing logical property directions',
+      defaultValue: 'ltr',
+      toolbar: {
+        title: 'Writing mode',
+        items: [
+          { value: 'ltr', title: 'LTR', icon: 'arrowleft' },
+          { value: 'rtl', title: 'RTL', icon: 'arrowright' },
+          { value: 'vertical-lr', title: 'Vertical LTR', icon: 'arrowup' },
+          { value: 'vertical-rl', title: 'Vertical RTL', icon: 'arrowdown' },
+          { value: 'sideways', title: 'Sideways LTR', icon: 'collapse' },
         ],
         dynamicTitle: true,
       },
