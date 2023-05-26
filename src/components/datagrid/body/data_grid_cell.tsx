@@ -47,6 +47,7 @@ const EuiDataGridCellContent: FunctionComponent<
     setCellContentsRef: EuiDataGridCell['setCellContentsRef'];
     isExpanded: boolean;
     isDefinedHeight: boolean;
+    isFocused: boolean;
     ariaRowIndex: number;
   }
 > = memo(
@@ -60,6 +61,7 @@ const EuiDataGridCellContent: FunctionComponent<
     ariaRowIndex,
     rowHeightUtils,
     isDefinedHeight,
+    isFocused,
     ...rest
   }) => {
     // React is more permissible than the TS types indicate
@@ -92,7 +94,7 @@ const EuiDataGridCellContent: FunctionComponent<
           />
         </div>
         <EuiScreenReaderOnly>
-          <p>
+          <p hidden={!isFocused}>
             {'- '}
             <EuiI18n
               token="euiDataGridCell.position"
@@ -660,6 +662,7 @@ export class EuiDataGridCell extends Component<
       isExpandable,
       isExpanded: popoverIsOpen,
       isDetails: false,
+      isFocused: this.state.isFocused,
       setCellContentsRef: this.setCellContentsRef,
       rowHeightsOptions,
       rowHeightUtils,
