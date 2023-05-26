@@ -83,9 +83,13 @@ Some teams also use Jest to run longer integration tests. These tests have a dif
 4. Look for a `jest.config.js` file near the failing test. This file may be in the same directory, or up 1-3 parent directories.
 5. In your terminal, paste the following command, substituting the `RELATIVE_TEST_PATH` from step 2 and the `JEST_CONFIG` with the appropriate paths. Some IDE’s like VSCode have a command [“Copy relative path”](https://www.youtube.com/watch?v=b678IZ1O1pM) that make this process easier.
 
-    ```shell# Example command to run Jest integration testyarn test:jest_integration --config=JEST_CONFIG RELATIVE_TEST_PATH```
+    ```shell
+    # Example command to run Jest integration testyarn test:jest_integration --config=JEST_CONFIG RELATIVE_TEST_PATH
+    ```
 
-    ```shell# Invoke an actual Jest integration testyarn test:jest_integration --config=x-pack/plugins/security_solution/jest.integration.config.js x-pack/plugins/security_solution/public/management/pages/host_isolation_exceptions/view/components/integration_tests```
+    ```shell
+    # Invoke an actual Jest integration testyarn test:jest_integration --config=x-pack/plugins/security_solution/jest.integration.config.js x-pack/plugins/security_solution/public/management/pages/host_isolation_exceptions/view/components/integration_tests
+    ```
 
 ### E2E test errors
 
