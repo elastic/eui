@@ -79,7 +79,7 @@ Some teams also use Jest to run longer integration tests. These tests have a dif
 
 1. In the test failures reported by `kibana-ci`, Click the `[logs]` link next to the test failure
 2. Integration test failures will have a two-line heading. The first line confirms these are Jest integration test failures. The second line is the relative path you will need to re-run the test.
-    <img width="1325" alt="" src="https://github.com/elastic/eui/assets/934879/cd7d7b0b-f532-43ea-84bc-2f05d927a20a">
+    <img width="1325" alt="Screenshot of Kibana buildkite test failure" src="https://github.com/elastic/eui/assets/934879/cd7d7b0b-f532-43ea-84bc-2f05d927a20a">
 3. Look for a `jest.integration.config.js` file near the failing test. This file may be in the same directory, or up 1-3 parent directories. It is usually at least within the same plugin directory (if an `x-pack` plugin).
 4. In your terminal, paste the following command, substituting the `RELATIVE_TEST_PATH` from step 2 and the `JEST_CONFIG` with the appropriate paths. Some IDE’s like VSCode have a `Copy relative path` command that make this process easier.
 
