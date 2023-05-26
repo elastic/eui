@@ -6,6 +6,8 @@
  * Side Public License, v 1.
  */
 
+/// <reference types="@emotion/react/types/css-prop" />
+
 import React from 'react';
 import type { Preview } from '@storybook/react';
 

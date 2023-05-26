@@ -56,7 +56,6 @@
     "typeRoots": ["node_modules/@types", "src/custom_typings"]
   },
   "include": [
-    "./.storybook/*",
     "./src/**/*",
     "./src-docs/**/*"
   ],
