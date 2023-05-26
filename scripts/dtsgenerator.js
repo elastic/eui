@@ -40,7 +40,7 @@ const generator = dtsGenerator({
     'src/themes/charts/*', // A separate d.ts file is generated for the charts theme file
     'src/test/**/*', // Separate d.ts files are generated for test utils
     'src-docs/**/*', // Don't include src-docs
-    '**/*.mdx', // Don't storybook mdx files
+    '**/*.mdx', // Don't include storybook mdx files
   ],
   resolveModuleId(params) {
     if (
