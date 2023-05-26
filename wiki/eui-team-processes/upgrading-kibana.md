@@ -69,7 +69,7 @@ It's likely that Jest test failures will be snapshot failures due to changing pr
 1. In the test failures reported by `kibana-ci`, Click the `[logs]` link next to the test failure
 2. If a snapshot failure, verify that the "expected" output is in line with changes mentioned in the changelog
 3. Grab and copy the test path from the second line on the page, e.g.
-    <img src="https://user-images.githubusercontent.com/549407/211683858-1604a414-41fc-4e23-8e5f-5841f549c5d1.png" width="600" height="219" alt="">
+    <img src="https://user-images.githubusercontent.com/549407/211683858-1604a414-41fc-4e23-8e5f-5841f549c5d1.png" width="600" height="219" alt="Screenshot of Kibana buildkite test failure">
 4. Update snapshots using the `-u` flag, e.g. `yarn test:jest x-pack/plugins/security/server -u`
 
 Other unit test failures will require narrowing the root cause to a commit in the changelog and triaging various DOM, style, or React possibilities.
