@@ -69,7 +69,7 @@ It's likely that Jest test failures will be snapshot failures due to changing pr
 1. In the test failures reported by `kibana-ci`, Click the `[logs]` link next to the test failure
 2. If a snapshot failure, verify that the "expected" output is in line with changes mentioned in the changelog
 3. Grab and copy the test path from the second line on the page, e.g.
-    <img src="https://user-images.githubusercontent.com/549407/211683858-1604a414-41fc-4e23-8e5f-5841f549c5d1.png" width="600" height="219" alt="Screenshot of Kibana buildkite test failure">
+    <img src="https://user-images.githubusercontent.com/549407/211683858-1604a414-41fc-4e23-8e5f-5841f549c5d1.png" width="600" height="219" alt="Relative path is the second heading level 5 underneath the Jest Tests heading">
 4. Update snapshots using the `-u` flag, e.g. `yarn test:jest x-pack/plugins/security/server -u`
 
 Other unit test failures will require narrowing the root cause to a commit in the changelog and triaging various DOM, style, or React possibilities.
@@ -79,20 +79,20 @@ Some teams also use Jest to run longer integration tests. These tests have a dif
 
 1. In the test failures reported by `kibana-ci`, Click the `[logs]` link next to the test failure
 2. Integration test failures will have a two-line heading. The first line confirms these are Jest integration test failures. The second line is the relative path you will need to re-run the test.
-    <img width="1325" alt="Screen Shot 2023-05-26 at 10 34 47 AM" src="https://github.com/elastic/eui/assets/934879/cd7d7b0b-f532-43ea-84bc-2f05d927a20a">
-3. Grab and copy the test path from the `kibana-ci` output log. This will usually be a long relative path that ends with `TEST_NAME.test.tsx`. Open this file and look for selectors, screen reader text, or other things that might have changed in EUI to cause a failure.
-4. Look for a `jest.integration.config.js` file near the failing test. This file may be in the same directory, or up 1-3 parent directories. It is usually at least within the same plugin directory (if an `x-pack` plugin).
-5. In your terminal, paste the following command, substituting the `RELATIVE_TEST_PATH` from step 2 and the `JEST_CONFIG` with the appropriate paths. Some IDE’s like VSCode have a command [“Copy relative path”](https://www.youtube.com/watch?v=b678IZ1O1pM) that make this process easier.
+    <img width="1325" alt="Relative path is the second heading level 5 underneath the Jest Integration Tests heading" src="https://github.com/elastic/eui/assets/934879/cd7d7b0b-f532-43ea-84bc-2f05d927a20a">
+3. Look for a `jest.integration.config.js` file near the failing test. This file may be in the same directory, or up 1-3 parent directories. It is usually at least within the same plugin directory (if an `x-pack` plugin).
+4. In your terminal, paste the following command, substituting the `RELATIVE_TEST_PATH` from step 2 and the `JEST_CONFIG` with the appropriate paths. Some IDE’s like VSCode have a `Copy relative path` command that make this process easier.
 
     ```shell
-    # Example command to run Jest integration test
+    # Command to run Jest integration test
     yarn test:jest_integration --config=JEST_CONFIG RELATIVE_TEST_PATH
     ```
 
     ```shell
-    # Invoke an actual Jest integration test
+    # Example with full config and relative path
     yarn test:jest_integration --config=x-pack/plugins/security_solution/jest.integration.config.js x-pack/plugins/security_solution/public/management/pages/host_isolation_exceptions/view/components/integration_tests
     ```
+5. After running a Jest integration test locally, you'll be able to determine whether or not you can reproduce the error. If yes, your terminal should have output the specific test file throwing the error. You can then examine it for selectors, screen reader text, or other things that might have changed in EUI to cause a failure.
 
 ### E2E test errors
 
