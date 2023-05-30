@@ -342,12 +342,13 @@ const createExample = (example, customTitle) => {
     name: customTitle || title,
     component,
     sections: filteredSections,
+    isBeta,
     isNew,
     hasGuidelines: typeof guidelines !== 'undefined',
   };
 };
 
-const createTabbedPage = ({ title, pages, isNew, ...rest }) => {
+const createTabbedPage = ({ title, pages, isBeta, isNew, ...rest }) => {
   const component = () => (
     <GuideTabbedPage title={title} pages={pages} {...rest} />
   );
@@ -364,6 +365,7 @@ const createTabbedPage = ({ title, pages, isNew, ...rest }) => {
     name: title,
     component,
     sections: pagesSections,
+    isBeta,
     isNew,
   };
 };
