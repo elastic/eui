@@ -16,7 +16,6 @@ const InverseComplexSource = require('!!raw-loader!./inverse_complex');
 export const ColorModeExample = {
   title: 'Color mode',
   notice: <ThemeNotice />,
-  beta: true,
   intro: <Intro />,
   sections: [
     {
