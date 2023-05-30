@@ -1,3 +1,19 @@
+## [`81.1.0`](https://github.com/elastic/eui/tree/v81.1.0)
+
+- Added `EuiInlineEditText` and `EuiInlineEditTitle` components ([#6757](https://github.com/elastic/eui/pull/6757))
+- Updated `EuiDatePickerRange` to support `inline` display ([#6795](https://github.com/elastic/eui/pull/6795))
+- Added an `onError` callback prop to `EuiErrorBoundary` ([#6810](https://github.com/elastic/eui/pull/6810))
+- Updated `EuiDataGrid` to only render screen reader text announcing cell position if the cell is currently focused. This should improve the ability to copy and paste multiple cells without SR text. ([#6817](https://github.com/elastic/eui/pull/6817))
+
+**Bug fixes**
+
+- Fixed `EuiDatePicker`'s `inline` display to correctly render and prevent user interaction when `disabled` or `readOnly` ([#6795](https://github.com/elastic/eui/pull/6795))
+- Fixed `EuiDatePicker`'s `inline` display to correctly render `isInvalid` and `isLoading` icons ([#6795](https://github.com/elastic/eui/pull/6795))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiDatePickerRange` to Emotion ([#6795](https://github.com/elastic/eui/pull/6795))
+
 ## [`81.0.0`](https://github.com/elastic/eui/tree/v81.0.0)
 
 - Added ability to set `options.checked` to "mixed" in `EuiSelectable` ([#6774](https://github.com/elastic/eui/pull/6774))
