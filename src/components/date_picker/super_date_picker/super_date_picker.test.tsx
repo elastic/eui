@@ -76,20 +76,16 @@ describe('EuiSuperDatePicker', () => {
 
     // If we update the prop `isPaused` we expect the interval to be stopped too.
     component.setProps({ isPaused: true });
-    const [
-      instanceUpdatedPaused,
-      componentUpdatedPaused,
-    ] = findInternalInstance(component);
+    const [instanceUpdatedPaused, componentUpdatedPaused] =
+      findInternalInstance(component);
     expect(typeof instanceUpdatedPaused.asyncInterval).toBe('object');
     expect(instanceUpdatedPaused.asyncInterval!.isStopped).toBe(true);
     expect(componentUpdatedPaused.prop('isPaused')).toBe(true);
 
     // Let's start refresh again for a final sanity check.
     component.setProps({ isPaused: false });
-    const [
-      instanceUpdatedRefresh,
-      componentUpdatedRefresh,
-    ] = findInternalInstance(component);
+    const [instanceUpdatedRefresh, componentUpdatedRefresh] =
+      findInternalInstance(component);
     expect(typeof instanceUpdatedRefresh.asyncInterval).toBe('object');
     expect(instanceUpdatedRefresh.asyncInterval!.isStopped).toBe(false);
     expect(componentUpdatedRefresh.prop('isPaused')).toBe(false);

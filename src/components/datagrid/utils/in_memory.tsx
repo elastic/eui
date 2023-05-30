@@ -47,10 +47,10 @@ export const useInMemoryValues = (
   const _inMemoryValues = useRef<EuiDataGridInMemoryValues>({});
   const [inMemoryValuesVersion, setInMemoryValuesVersion] = useState(0);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const inMemoryValues = useMemo(() => ({ ..._inMemoryValues.current }), [
-    inMemoryValuesVersion,
-  ]);
+  const inMemoryValues = useMemo(
+    () => ({ ..._inMemoryValues.current }),
+    [inMemoryValuesVersion] // eslint-disable-line react-hooks/exhaustive-deps
+  );
 
   const onCellRender = useCallback((rowIndex, columnId, value) => {
     const nextInMemoryValues = _inMemoryValues.current;
@@ -83,19 +83,14 @@ export const useInMemoryValues = (
 /**
  * InMemory renderer
  */
-export const EuiDataGridInMemoryRenderer: FunctionComponent<EuiDataGridInMemoryRendererProps> = ({
-  inMemory,
-  columns,
-  rowCount,
-  renderCellValue,
-  onCellRender,
-}) => {
+export const EuiDataGridInMemoryRenderer: FunctionComponent<
+  EuiDataGridInMemoryRendererProps
+> = ({ inMemory, columns, rowCount, renderCellValue, onCellRender }) => {
   const [documentFragment] = useState(() => document.createDocumentFragment());
 
   const cells = useMemo(() => {
-    const CellElement = renderCellValue as JSXElementConstructor<
-      EuiDataGridCellValueElementProps
-    >;
+    const CellElement =
+      renderCellValue as JSXElementConstructor<EuiDataGridCellValueElementProps>;
 
     const cells = [];
 
@@ -193,7 +188,7 @@ export const EuiDataGridInMemoryRenderer: FunctionComponent<EuiDataGridInMemoryR
     >
       {(ref) => <div ref={ref}>{cells}</div>}
     </EuiMutationObserver>,
-    (documentFragment as unknown) as Element
+    documentFragment as unknown as Element
   );
 };
 

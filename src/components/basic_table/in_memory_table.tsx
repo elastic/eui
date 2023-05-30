@@ -237,10 +237,9 @@ function getInitialSorting<T>(
     };
   }
 
-  const {
-    field: sortable,
-    direction: sortDirection,
-  } = (sorting as SortingOptions).sort;
+  const { field: sortable, direction: sortDirection } = (
+    sorting as SortingOptions
+  ).sort;
 
   const sortColumn = findColumnByFieldOrName(columns, sortable);
 
@@ -367,12 +366,8 @@ export class EuiInMemoryTable<T> extends Component<
     super(props);
 
     const { columns, search, pagination, sorting, allowNeutralSort } = props;
-    const {
-      pageIndex,
-      pageSize,
-      pageSizeOptions,
-      showPerPageOptions,
-    } = getInitialPagination(pagination);
+    const { pageIndex, pageSize, pageSizeOptions, showPerPageOptions } =
+      getInitialPagination(pagination);
     const { sortName, sortDirection } = getInitialSorting(columns, sorting);
 
     this.state = {

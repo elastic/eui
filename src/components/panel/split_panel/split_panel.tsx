@@ -21,11 +21,9 @@ export type _EuiSplitPanelInnerProps = HTMLAttributes<HTMLDivElement> &
  * Consumed via `EuiSplitPanel.Inner`.
  * Extends most `EuiPanelProps`.
  */
-export const _EuiSplitPanelInner: FunctionComponent<_EuiSplitPanelInnerProps> = ({
-  children,
-  className,
-  ...rest
-}) => {
+export const _EuiSplitPanelInner: FunctionComponent<
+  _EuiSplitPanelInnerProps
+> = ({ children, className, ...rest }) => {
   const classes = classNames('euiSplitPanel__inner', className);
 
   const panelProps: _EuiPanelProps = {
@@ -67,7 +65,9 @@ export type _EuiSplitPanelOuterProps = HTMLAttributes<HTMLDivElement> & {
  * Consumed via `EuiSplitPanel.Outer`.
  * Extends most `EuiPanelProps`.
  */
-export const _EuiSplitPanelOuter: FunctionComponent<_EuiSplitPanelOuterProps> = ({
+export const _EuiSplitPanelOuter: FunctionComponent<
+  _EuiSplitPanelOuterProps
+> = ({
   children,
   className,
   direction = 'column',

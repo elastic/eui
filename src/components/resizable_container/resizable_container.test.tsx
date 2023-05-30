@@ -216,12 +216,8 @@ describe('EuiResizableContainer', () => {
     };
 
     test('onResizeStart and onResizeEnd are called for pointer events', () => {
-      const {
-        container,
-        button,
-        onResizeStart,
-        onResizeEnd,
-      } = mountWithCallbacks();
+      const { container, button, onResizeStart, onResizeEnd } =
+        mountWithCallbacks();
       button.simulate('mousedown', {
         pageX: 0,
         pageY: 0,
@@ -315,12 +311,8 @@ describe('EuiResizableContainer', () => {
     });
 
     test('onResizeEnd is called before starting a new resize if a keyboard resize is triggered while a pointer resize is in progress', () => {
-      const {
-        container,
-        button,
-        onResizeStart,
-        onResizeEnd,
-      } = mountWithCallbacks();
+      const { container, button, onResizeStart, onResizeEnd } =
+        mountWithCallbacks();
       button.simulate('mousedown', {
         pageX: 0,
         pageY: 0,

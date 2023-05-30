@@ -156,7 +156,6 @@ export const EuiButtonIcon: FunctionComponent<Props> = (props) => {
     );
   }
 
-  // eslint-disable-next-line no-nested-ternary
   const color = isDisabled ? 'disabled' : _color === 'ghost' ? 'text' : _color;
 
   const styles = {
@@ -185,7 +184,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = (props) => {
   if (_color === 'ghost') {
     // INCEPTION: If `ghost`, re-implement with a wrapping dark mode theme provider
     return (
-      <EuiThemeProvider colorMode="dark">
+      <EuiThemeProvider colorMode="dark" wrapperProps={{ cloneElement: true }}>
         <EuiButtonIcon {...props} color="text" />
       </EuiThemeProvider>
     );

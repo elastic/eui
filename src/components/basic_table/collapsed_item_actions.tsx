@@ -89,14 +89,8 @@ export class CollapsedItemActions<T> extends Component<
   };
 
   render() {
-    const {
-      actions,
-      itemId,
-      item,
-      actionEnabled,
-      onFocus,
-      className,
-    } = this.props;
+    const { actions, itemId, item, actionEnabled, onFocus, className } =
+      this.props;
 
     const isOpen = this.state.popoverOpen;
 

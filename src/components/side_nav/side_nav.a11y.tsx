@@ -252,8 +252,7 @@ describe('EuiSideNav', () => {
               isSelected: false,
             },
             {
-              name:
-                'Extremely long title will become truncated when the browser is narrow enough',
+              name: 'Extremely long title will become truncated when the browser is narrow enough',
               id: 'extremely-long-title-1',
               isSelected: false,
             },

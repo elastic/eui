@@ -15,15 +15,21 @@ import { EuiSelectableOptionCheckedType } from '../selectable_option';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiBadge, EuiBadgeProps } from '../../badge';
 
-function resolveIconAndColor(
-  checked: EuiSelectableOptionCheckedType
-): { icon: IconType; color?: IconColor } {
-  if (!checked) {
-    return { icon: 'empty' };
+function resolveIconAndColor(checked: EuiSelectableOptionCheckedType): {
+  icon: IconType;
+  color?: IconColor;
+} {
+  switch (checked) {
+    case 'on':
+      return { icon: 'check', color: 'text' };
+    case 'off':
+      return { icon: 'cross', color: 'text' };
+    case 'mixed':
+      return { icon: 'minus', color: 'text' };
+    case undefined:
+    default:
+      return { icon: 'empty' };
   }
-  return checked === 'on'
-    ? { icon: 'check', color: 'text' }
-    : { icon: 'cross', color: 'text' };
 }
 
 const paddingSizeToClassNameMap = {
@@ -31,7 +37,7 @@ const paddingSizeToClassNameMap = {
   s: 'euiSelectableListItem--paddingSmall',
 };
 export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
-export type EuiSelectablePaddingSize = typeof PADDING_SIZES[number];
+export type EuiSelectablePaddingSize = (typeof PADDING_SIZES)[number];
 
 export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
   CommonProps & {
@@ -70,8 +76,8 @@ export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
     searchable?: boolean;
     /**
      * Attribute applied the option `<li>`.
-     * If configured to something besides the default value of `option`,
-     * other ARIA attributes such as `aria-checked` will not be automatically configured.
+     * If set to a role that allows [aria-checked](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-checked),
+     * `aria-checked` will be automatically configured.
      */
     role?: LiHTMLAttributes<HTMLLIElement>['role'];
     /**
@@ -81,10 +87,7 @@ export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
     textWrap?: 'truncate' | 'wrap';
   };
 
-// eslint-disable-next-line react/prefer-stateless-function
-export class EuiSelectableListItem extends Component<
-  EuiSelectableListItemProps
-> {
+export class EuiSelectableListItem extends Component<EuiSelectableListItemProps> {
   static defaultProps = {
     showIcons: true,
     onFocusBadge: true,
@@ -94,6 +97,35 @@ export class EuiSelectableListItem extends Component<
   constructor(props: EuiSelectableListItemProps) {
     super(props);
   }
+
+  // aria-checked is intended to be used with role="checkbox" but
+  // the MDN documentation lists it as a possibility for role="option".
+  // See https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-checked
+  // and https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/option_role
+  isChecked = (role: string, checked: EuiSelectableOptionCheckedType) => {
+    const rolesThatCanBeMixed = ['option', 'checkbox', 'menuitemcheckbox'];
+    const rolesThatCanBeChecked = [
+      ...rolesThatCanBeMixed,
+      'radio',
+      'menuitemradio',
+      'switch',
+    ];
+    if (!rolesThatCanBeChecked.includes(role)) return undefined;
+
+    switch (checked) {
+      case 'on':
+      case 'off':
+        return true;
+      case 'mixed':
+        if (rolesThatCanBeMixed.includes(role)) {
+          return 'mixed';
+        } else {
+          return false;
+        }
+      default:
+        return false;
+    }
+  };
 
   render() {
     const {
@@ -140,56 +172,103 @@ export class EuiSelectableListItem extends Component<
     }
 
     let state: React.ReactNode;
-    let instruction: React.ReactNode;
-    if (allowExclusions && checked === 'on') {
-      state = (
-        <EuiI18n
-          token="euiSelectableListItem.includedOption"
-          default="Selected option."
-        />
-      );
-      instruction = (
-        <EuiI18n
-          token="euiSelectableListItem.includedOptionInstructions"
-          default="To exclude this option, press enter."
-        />
-      );
-    } else if (allowExclusions && checked === 'off') {
-      state = (
-        <EuiI18n
-          token="euiSelectableListItem.excludedOption"
-          default="Excluded option."
-        />
-      );
-      instruction = (
-        <EuiI18n
-          token="euiSelectableListItem.excludedOptionInstructions"
-          default="To uncheck this option, press enter."
-        />
-      );
-    } else if (allowExclusions && !checked) {
-      instruction = (
-        <EuiI18n
-          token="euiSelectableListItem.unckeckedOptionInstructions"
-          default="To select this option, press enter."
-        />
-      );
-    }
+    let instructions: React.ReactNode;
+    const screenReaderStrings = {
+      checked: {
+        state: (
+          <EuiI18n
+            token="euiSelectableListItem.checkedOption"
+            default="Checked option."
+          />
+        ),
+        instructions: (
+          <EuiI18n
+            token="euiSelectableListItem.checkOptionInstructions"
+            default="To check this option, press Enter."
+          />
+        ),
+      },
+      unchecked: {
+        instructions: (
+          <EuiI18n
+            token="euiSelectableListItem.uncheckOptionInstructions"
+            default="To uncheck this option, press Enter."
+          />
+        ),
+      },
+      excluded: {
+        state: (
+          <EuiI18n
+            token="euiSelectableListItem.excludedOption"
+            default="Excluded option."
+          />
+        ),
+        instructions: (
+          <EuiI18n
+            token="euiSelectableListItem.excludeOptionInstructions"
+            default="To exclude this option, press Enter."
+          />
+        ),
+      },
+      mixed: {
+        state: (
+          <EuiI18n
+            token="euiSelectableListItem.mixedOption"
+            default="Mixed (indeterminate) option."
+          />
+        ),
+        instructions: (
+          <EuiI18n
+            token="euiSelectableListItem.mixedOptionInstructions"
+            default="To check this option for all, press Enter once."
+          />
+        ),
+        uncheckInstructions: (
+          <EuiI18n
+            token="euiSelectableListItem.mixedOptionUncheckInstructions"
+            default="To uncheck this option for all, press Enter twice."
+          />
+        ),
+        excludeInstructions: (
+          <EuiI18n
+            token="euiSelectableListItem.mixedOptionExcludeInstructions"
+            default="To exclude this option for all, press Enter twice."
+          />
+        ),
+      },
+    };
 
-    const isChecked = !disabled && typeof checked === 'string';
-    if (!allowExclusions && isChecked) {
-      state = (
-        <EuiI18n
-          token="euiSelectableListItem.checkedOption"
-          default="Checked option."
-        />
-      );
-      instruction = searchable ? (
-        <EuiI18n
-          token="euiSelectableListItem.checkedOptionInstructions"
-          default="To uncheck this option, press enter."
-        />
-      ) : undefined;
+    switch (checked) {
+      case 'on':
+        state = screenReaderStrings.checked.state;
+        instructions = allowExclusions
+          ? screenReaderStrings.excluded.instructions
+          : searchable
+          ? screenReaderStrings.unchecked.instructions
+          : undefined;
+        break;
+      case 'off':
+        state = screenReaderStrings.excluded.state;
+        instructions = screenReaderStrings.unchecked.instructions;
+        break;
+      case 'mixed':
+        state = screenReaderStrings.mixed.state;
+        instructions = (
+          <>
+            {screenReaderStrings.mixed.instructions}{' '}
+            {allowExclusions
+              ? screenReaderStrings.mixed.excludeInstructions
+              : screenReaderStrings.mixed.uncheckInstructions}
+          </>
+        );
+        break;
+      case undefined:
+      default:
+        instructions =
+          allowExclusions || searchable
+            ? screenReaderStrings.checked.instructions
+            : undefined;
+        break;
     }
 
     let prependNode: React.ReactNode;
@@ -242,13 +321,13 @@ export class EuiSelectableListItem extends Component<
       }
     }
 
-    const instructions = (instruction || state) && (
+    const screenReaderText = (state || instructions) && (
       <EuiScreenReaderOnly>
         <div>
-          {state || instruction ? ' - ' : null}
+          {state || instructions ? '. ' : null}
           {state}
-          {state && instruction ? ' ' : null}
-          {instruction}
+          {state && instructions ? ' ' : null}
+          {instructions}
         </div>
       </EuiScreenReaderOnly>
     );
@@ -256,11 +335,10 @@ export class EuiSelectableListItem extends Component<
     return (
       <li
         role={role}
-        data-test-selected={isChecked} // Whether the item is checked/selected
-        aria-checked={role === 'option' ? isChecked : undefined} // Whether the item is "checked"
+        aria-disabled={disabled}
+        aria-checked={this.isChecked(role, checked)} // Whether the item is "checked"
         aria-selected={!disabled && isFocused} // Whether the item has keyboard focus per W3 spec
         className={classes}
-        aria-disabled={disabled}
         {...rest}
       >
         <span className="euiSelectableListItem__content">
@@ -268,7 +346,7 @@ export class EuiSelectableListItem extends Component<
           {prependNode}
           <span className={textClasses}>
             {children}
-            {instructions}
+            {screenReaderText}
           </span>
           {appendNode}
         </span>

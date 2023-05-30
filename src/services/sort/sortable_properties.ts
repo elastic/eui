@@ -128,7 +128,7 @@ export class SortableProperties<T> {
    * Flips the current sorted property sort order.
    */
   flipCurrentSortOrder() {
-    this.currentSortedProperty.isAscending = !this.currentSortedProperty
-      .isAscending;
+    this.currentSortedProperty.isAscending =
+      !this.currentSortedProperty.isAscending;
   }
 }

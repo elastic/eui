@@ -67,10 +67,10 @@ const webpackConfig = new Promise(async (resolve, reject) => {
           fs: false,
           os: false,
           process: require.resolve('process/browser'),
-
           // provide requirements for playground
           path: require.resolve('path'),
           buffer: require.resolve('buffer/'),
+          assert: require.resolve('assert'),
         },
       },
 

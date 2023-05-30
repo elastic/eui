@@ -44,7 +44,7 @@ export type EuiPageSectionProps = CommonProps &
     /**
      * Horizontal and/or vertical alignment of the section contents
      */
-    alignment?: typeof ALIGNMENTS[number];
+    alignment?: (typeof ALIGNMENTS)[number];
     /**
      * When true the panel will grow in height to fill container if parent is a flex group
      */

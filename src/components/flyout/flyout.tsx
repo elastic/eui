@@ -43,13 +43,13 @@ import { EuiScreenReaderOnly } from '../accessibility';
 import { euiFlyoutStyles, euiFlyoutCloseButtonStyles } from './flyout.styles';
 
 export const TYPES = ['push', 'overlay'] as const;
-type _EuiFlyoutType = typeof TYPES[number];
+type _EuiFlyoutType = (typeof TYPES)[number];
 
 export const SIDES = ['left', 'right'] as const;
-type _EuiFlyoutSide = typeof SIDES[number];
+type _EuiFlyoutSide = (typeof SIDES)[number];
 
 export const SIZES = ['s', 'm', 'l'] as const;
-export type EuiFlyoutSize = typeof SIZES[number];
+export type EuiFlyoutSize = (typeof SIZES)[number];
 
 /**
  * Custom type checker for named flyout sizes since the prop
@@ -60,7 +60,7 @@ function isEuiFlyoutSizeNamed(value: any): value is EuiFlyoutSize {
 }
 
 export const PADDING_SIZES = ['none', 's', 'm', 'l'] as const;
-export type _EuiFlyoutPaddingSize = typeof PADDING_SIZES[number];
+export type _EuiFlyoutPaddingSize = (typeof PADDING_SIZES)[number];
 
 interface _EuiFlyoutProps {
   onClose: (event: MouseEvent | TouchEvent | KeyboardEvent) => void;
@@ -158,9 +158,8 @@ type Props<T extends ElementType> = CommonProps & {
 } & _EuiFlyoutProps &
   Omit<PropsOfElement<T>, keyof _EuiFlyoutProps>;
 
-export type EuiFlyoutProps<
-  T extends ElementType = typeof defaultElement
-> = Props<T> & Omit<ComponentPropsWithRef<T>, keyof Props<T>>;
+export type EuiFlyoutProps<T extends ElementType = typeof defaultElement> =
+  Props<T> & Omit<ComponentPropsWithRef<T>, keyof Props<T>>;
 
 export const EuiFlyout = forwardRef(
   <T extends ElementType = typeof defaultElement>(
@@ -194,9 +193,8 @@ export const EuiFlyout = forwardRef(
     const Element = as || defaultElement;
     const maskRef = useRef<HTMLDivElement>(null);
 
-    const windowIsLargeEnoughToPush = useIsWithinMinBreakpoint(
-      pushMinBreakpoint
-    );
+    const windowIsLargeEnoughToPush =
+      useIsWithinMinBreakpoint(pushMinBreakpoint);
     const isPushed = type === 'push' && windowIsLargeEnoughToPush;
 
     /**

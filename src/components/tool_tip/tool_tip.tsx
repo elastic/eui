@@ -322,13 +322,8 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
       ...rest
     } = this.props;
 
-    const {
-      arrowStyles,
-      id,
-      toolTipStyles,
-      visible,
-      calculatedPosition,
-    } = this.state;
+    const { arrowStyles, id, toolTipStyles, visible, calculatedPosition } =
+      this.state;
 
     const classes = classNames('euiToolTip', className);
     const anchorClasses = classNames(anchorClassName, anchorProps?.className);

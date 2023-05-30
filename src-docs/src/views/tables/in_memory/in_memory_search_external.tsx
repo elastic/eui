@@ -49,7 +49,7 @@ type User = {
   dateOfBirth: Date;
   online: boolean;
   location: string;
-  locationData: typeof countries[number];
+  locationData: (typeof countries)[number];
 };
 
 const users: User[] = [];

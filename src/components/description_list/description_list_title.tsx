@@ -18,11 +18,9 @@ export interface EuiDescriptionListTitleProps
   extends CommonProps,
     HTMLAttributes<HTMLElement> {}
 
-export const EuiDescriptionListTitle: FunctionComponent<EuiDescriptionListTitleProps> = ({
-  children,
-  className,
-  ...rest
-}) => {
+export const EuiDescriptionListTitle: FunctionComponent<
+  EuiDescriptionListTitleProps
+> = ({ children, className, ...rest }) => {
   const { type, textStyle, compressed, align, gutterSize } = useContext(
     EuiDescriptionListContext
   );

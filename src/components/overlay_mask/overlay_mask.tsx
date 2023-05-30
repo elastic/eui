@@ -6,11 +6,6 @@
  * Side Public License, v 1.
  */
 
-/**
- * NOTE: We can't test this component because Enzyme doesn't support rendering
- * into portals.
- */
-
 import React, {
   FunctionComponent,
   HTMLAttributes,
@@ -85,11 +80,23 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
     });
   }, [overlayMaskNode]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  // Note: Use `classList.add/remove` instead of setting the entire `className`
+  // so as not to override any existing classes set by `EuiPortal`
   useEffect(() => {
-    if (!overlayMaskNode) return;
-    overlayMaskNode.className = cx('euiOverlayMask', cssStyles, className);
-    overlayMaskNode.dataset.relativeToHeader = headerZindexLocation;
-  }, [overlayMaskNode, className, cssStyles, headerZindexLocation]);
+    if (overlayMaskNode) {
+      overlayMaskNode.classList.add('euiOverlayMask', cssStyles);
+      overlayMaskNode.dataset.relativeToHeader = headerZindexLocation;
+      return () => overlayMaskNode.classList.remove(cssStyles);
+    }
+  }, [overlayMaskNode, cssStyles, headerZindexLocation]);
+
+  useEffect(() => {
+    if (className && overlayMaskNode) {
+      const classNameArgs = className.split(' '); // The `classList` API doesn't support multiple classes in the same string
+      overlayMaskNode.classList.add(...classNameArgs);
+      return () => overlayMaskNode.classList.remove(...classNameArgs);
+    }
+  }, [overlayMaskNode, className]);
 
   return (
     <EuiPortal portalRef={combinedMaskRef}>

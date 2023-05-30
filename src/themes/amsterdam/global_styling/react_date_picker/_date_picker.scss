@@ -10,29 +10,35 @@
     height: auto;
   }
 
-  &.euiDatePicker--inline {
+  /**
+   * Inline datepickers
+   */
+
+  &--inline {
     .euiFormControlLayout {
-      width: auto;
+      width: fit-content;
+      background-color: transparent;
+      box-shadow: none;
+      padding: 0;
+    }
+    // Extra specificity required to override .euiFormControlLayoutDelimited styles
+    .euiFormControlLayoutDelimited .euiFormControlLayout__childrenWrapper {
+      background-color: transparent;
+      flex-direction: column; // Render form control icons below date picker
+    }
+    .euiFormControlLayoutIcons {
+      justify-content: center;
+      padding-block-end: $euiSizeS;
     }
   }
 
-  &.euiDatePicker--shadow {
-    .react-datepicker-popper {
+  &--shadow {
+    .euiFormControlLayout {
       @include euiBottomShadowMedium;
-      border: $euiBorderThin;
-      background-color: $euiColorEmptyShade;
-      border-radius: 0 0 $euiBorderRadius $euiBorderRadius;
     }
-
-    // If the shadow is on, and it is inline, we need to put the shadow on the datepicker
-    // itself rather than the popper.
-    &.euiDatePicker--inline {
-      .react-datepicker {
-        @include euiBottomShadowMedium;
-        border: $euiBorderThin;
-        background-color: $euiColorEmptyShade;
-        border-radius: $euiBorderRadius;
-      }
+    // Extra specificity required to override .euiFormControlLayoutDelimited styles
+    .euiFormControlLayoutDelimited .euiFormControlLayout__childrenWrapper {
+      background-color: $euiColorEmptyShade;
     }
   }
 }
@@ -46,22 +52,8 @@
   justify-content: center;
 }
 
-.euiDatePicker.euiDatePicker--shadow .react-datepicker-popper {
-  z-index: $euiZContentMenu;
-  animation: euiAnimFadeIn $euiAnimSpeedFast ease-in;
-
-  &[data-placement^='top'] {
-    @include euiBottomShadowFlat;
-    border-radius: $euiBorderRadius $euiBorderRadius 0 0;
-  }
-
-  &[data-placement^='right'] {
-    margin-left: 0;
-  }
-
-  &[data-placement^='left'] {
-    margin-right: 0;
-  }
+.react-datepicker--non-interactive {
+  pointer-events: none;
 }
 
 // Hidden things that we don't want to show/use, ever

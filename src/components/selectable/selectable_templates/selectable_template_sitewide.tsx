@@ -63,7 +63,9 @@ export type EuiSelectableTemplateSitewideProps = Partial<
   popoverButtonBreakpoints?: EuiBreakpointSize[];
 };
 
-export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTemplateSitewideProps> = ({
+export const EuiSelectableTemplateSitewide: FunctionComponent<
+  EuiSelectableTemplateSitewideProps
+> = ({
   children,
   className,
   options,
@@ -90,7 +92,12 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
    */
   const [popoverRef, setPopoverRef] = useState<HTMLElement | null>(null);
   const [popoverIsOpen, setPopoverIsOpen] = useState(false);
-  const { closePopover: _closePopover, panelRef, width, ...popoverRest } = {
+  const {
+    closePopover: _closePopover,
+    panelRef,
+    width,
+    ...popoverRest
+  } = {
     ...popoverProps,
   };
 

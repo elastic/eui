@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-/* eslint-disable react/no-multi-comp */
 import React, { useState } from 'react';
 import { act } from 'react-dom/test-utils';
 

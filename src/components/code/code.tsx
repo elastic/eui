@@ -27,9 +27,10 @@ export const EuiCode: FunctionComponent<EuiCodeProps> = ({
   className,
   ...rest
 }) => {
-  const language = useMemo(() => checkSupportedLanguage(_language), [
-    _language,
-  ]);
+  const language = useMemo(
+    () => checkSupportedLanguage(_language),
+    [_language]
+  );
 
   const data: RefractorNode[] = useMemo(() => {
     if (typeof children !== 'string') {
@@ -38,10 +39,10 @@ export const EuiCode: FunctionComponent<EuiCodeProps> = ({
     return highlight(children, language);
   }, [children, language]);
 
-  const content = useMemo(() => getHtmlContent(data, children), [
-    data,
-    children,
-  ]);
+  const content = useMemo(
+    () => getHtmlContent(data, children),
+    [data, children]
+  );
 
   const classes = classNames('euiCode', className);
 

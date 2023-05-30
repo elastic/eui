@@ -9,7 +9,7 @@
 import LOGICALS from './logicals.json';
 
 export const { _shorthands: LOGICAL_SHORTHANDS } = LOGICALS;
-export type LogicalShorthands = typeof LOGICAL_SHORTHANDS[number];
+export type LogicalShorthands = (typeof LOGICAL_SHORTHANDS)[number];
 
 /**
  * Unfortunately, shorthand properties that describe boxes

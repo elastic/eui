@@ -38,7 +38,6 @@ export const AppView = ({ children, currentRoute }) => {
         {`${hash ? '— ' : ''}${currentRoute.name} — Elastic UI Framework`}
       </EuiScreenReaderLive>
       <EuiSkipLink
-        color="ghost"
         destinationId="start-of-content"
         position="fixed"
         overrideLinkBehavior

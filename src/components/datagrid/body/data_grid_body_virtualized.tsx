@@ -61,9 +61,12 @@ export const _Cell: FunctionComponent<GridChildComponentProps> = ({
 
 // Context is required to pass props to react-window's innerElementType
 // @see https://github.com/bvaughn/react-window/issues/404
-export const DataGridWrapperRowsContext = createContext<
-  DataGridWrapperRowsContentsShape
->({ headerRow: <div />, headerRowHeight: 0, footerRow: null });
+export const DataGridWrapperRowsContext =
+  createContext<DataGridWrapperRowsContentsShape>({
+    headerRow: <div />,
+    headerRowHeight: 0,
+    footerRow: null,
+  });
 
 const InnerElement: VariableSizeGridProps['innerElementType'] = forwardRef<
   HTMLDivElement,
@@ -91,7 +94,9 @@ const InnerElement: VariableSizeGridProps['innerElementType'] = forwardRef<
 });
 InnerElement.displayName = 'EuiDataGridInnerElement';
 
-export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps> = ({
+export const EuiDataGridBodyVirtualized: FunctionComponent<
+  EuiDataGridBodyProps
+> = ({
   leadingControlColumns,
   trailingControlColumns,
   columns,

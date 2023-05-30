@@ -14,9 +14,8 @@ import euiPackage from '../../../../package';
 
 const { devDependencies } = euiPackage;
 
-export const chartsVersion = devDependencies['@elastic/charts'].match(
-  /\d+\.\d+\.\d+/
-)[0];
+export const chartsVersion =
+  devDependencies['@elastic/charts'].match(/\d+\.\d+\.\d+/)[0];
 
 export const CHART_COMPONENTS = {
   BarSeries: BarSeries,
@@ -80,8 +79,9 @@ export const ChartTypeCard = (props) => {
   const onChartTypeChange = (optionId) => {
     setToggleIdSelectd(optionId);
 
-    const chartType = toggleButtonsIcons.find(({ id }) => id === optionId)
-      .label;
+    const chartType = toggleButtonsIcons.find(
+      ({ id }) => id === optionId
+    ).label;
     props.onChange(chartType);
   };
 

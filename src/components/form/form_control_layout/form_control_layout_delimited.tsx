@@ -23,32 +23,27 @@ import {
   EuiFormControlLayoutProps,
 } from './form_control_layout';
 
-export type EuiFormControlLayoutDelimitedProps = Partial<
-  EuiFormControlLayoutProps
-> & {
-  /**
-   * Left side control
-   */
-  startControl: ReactElement;
-  /**
-   * Right side control
-   */
-  endControl: ReactElement;
-  /**
-   * The center content. Accepts a string to be wrapped in a subdued EuiText
-   * or a single ReactElement
-   */
-  delimiter?: ReactNode;
-  className?: string;
-};
+export type EuiFormControlLayoutDelimitedProps =
+  Partial<EuiFormControlLayoutProps> & {
+    /**
+     * Left side control
+     */
+    startControl: ReactElement;
+    /**
+     * Right side control
+     */
+    endControl: ReactElement;
+    /**
+     * The center content. Accepts a string to be wrapped in a subdued EuiText
+     * or a single ReactElement
+     */
+    delimiter?: ReactNode;
+    className?: string;
+  };
 
-export const EuiFormControlLayoutDelimited: FunctionComponent<EuiFormControlLayoutDelimitedProps> = ({
-  startControl,
-  endControl,
-  delimiter,
-  className,
-  ...rest
-}) => {
+export const EuiFormControlLayoutDelimited: FunctionComponent<
+  EuiFormControlLayoutDelimitedProps
+> = ({ startControl, endControl, delimiter, className, ...rest }) => {
   const { isInvalid, isDisabled, readOnly } = rest;
   const showInvalidState = isInvalid && !isDisabled && !readOnly;
 

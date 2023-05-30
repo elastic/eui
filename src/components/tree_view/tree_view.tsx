@@ -116,12 +116,12 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
     openItems: this.props.expandByDefault
       ? this.props.items
           .map<string>(({ id, children }) =>
-            children ? id : ((null as unknown) as string)
+            children ? id : (null as unknown as string)
           )
           .filter((x) => x != null)
       : this.props.items
           .map<string>(({ id, children, isExpanded }) =>
-            children && isExpanded ? id : ((null as unknown) as string)
+            children && isExpanded ? id : (null as unknown as string)
           )
           .filter((x) => x != null),
     activeItem: '',
@@ -131,7 +131,6 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
 
   componentDidUpdate(prevProps: EuiTreeViewProps) {
     if (this.props.id !== prevProps.id) {
-      // eslint-disable-next-line react/no-did-update-set-state
       this.setState({
         treeID: getTreeId(this.props.id, this.context, this.treeIdGenerator),
       });
@@ -323,9 +322,8 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
                           'euiTreeView__node',
                           display ? displayToClassNameMap[display] : null,
                           {
-                            'euiTreeView__node--expanded': this.isNodeOpen(
-                              node
-                            ),
+                            'euiTreeView__node--expanded':
+                              this.isNodeOpen(node),
                           }
                         );
 

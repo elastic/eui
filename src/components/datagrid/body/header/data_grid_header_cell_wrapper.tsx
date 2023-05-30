@@ -24,7 +24,9 @@ import { EuiDataGridHeaderCellWrapperProps } from '../../data_grid_types';
  * standard header cells. Most of its shared logic is around focus state/UX,
  * but it also DRY's out certain class/data-test-subj/style attributes
  */
-export const EuiDataGridHeaderCellWrapper: FunctionComponent<EuiDataGridHeaderCellWrapperProps> = ({
+export const EuiDataGridHeaderCellWrapper: FunctionComponent<
+  EuiDataGridHeaderCellWrapperProps
+> = ({
   id,
   index,
   headerIsInteractive,

@@ -12,9 +12,9 @@ import { EuiThemeLevelsProps } from '../_props';
 export default () => {
   const { euiTheme } = useEuiTheme();
 
-  const levelsTypes = (getPropsFromComponent(
+  const levelsTypes = getPropsFromComponent(
     EuiThemeLevelsProps
-  ) as unknown) as _EuiThemeLevels;
+  ) as unknown as _EuiThemeLevels;
 
   return (
     <>

@@ -75,7 +75,7 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
         return;
       }
 
-      const event = (e as unknown) as EuiSwitchEvent;
+      const event = e as unknown as EuiSwitchEvent;
       event.target.checked = !checked;
       onChange(event);
     },

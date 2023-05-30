@@ -30,7 +30,7 @@ const MATCHERS = [
 type FindTestSubject<T extends ShallowWrapper | ReactWrapper> = (
   mountedComponent: T,
   testSubjectSelector: string,
-  matcher?: typeof MATCHERS[number]
+  matcher?: (typeof MATCHERS)[number]
 ) => ReturnType<T['find']>;
 
 export const findTestSubject: FindTestSubject<

@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import React, { useState, FunctionComponent } from 'react';
 import { useRouteMatch } from 'react-router';
 import {
@@ -98,12 +97,10 @@ export const PageDemo: FunctionComponent<
   );
 
   // Restrict width combos
-  const [restrictWidth, setRestrictWidth] = useState<
-    EuiPageTemplateProps['restrictWidth']
-  >(true);
-  const [bottomBorder, setBottomBorder] = useState<
-    EuiPageTemplateProps['bottomBorder']
-  >(undefined);
+  const [restrictWidth, setRestrictWidth] =
+    useState<EuiPageTemplateProps['restrictWidth']>(true);
+  const [bottomBorder, setBottomBorder] =
+    useState<EuiPageTemplateProps['bottomBorder']>(undefined);
 
   const button = fullscreen ? (
     <ExitFullscreenDemoButton />

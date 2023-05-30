@@ -20,6 +20,5 @@ export const contextDefaults: EuiDescriptionListContextValues = {
   gutterSize: 'm',
 };
 
-export const EuiDescriptionListContext = createContext<
-  EuiDescriptionListContextValues
->(contextDefaults);
+export const EuiDescriptionListContext =
+  createContext<EuiDescriptionListContextValues>(contextDefaults);

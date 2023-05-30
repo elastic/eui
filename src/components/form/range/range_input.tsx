@@ -70,9 +70,8 @@ export const EuiRangeInput: FunctionComponent<EuiRangeInputProps> = ({
     const inputCharWidth = Math.min(String(value).length, maxChars);
 
     // Calculate the form padding based on `compressed` state
-    const { controlPadding, controlCompressedPadding } = euiFormVariables(
-      euiTheme
-    );
+    const { controlPadding, controlCompressedPadding } =
+      euiFormVariables(euiTheme);
     const inputPadding = compressed ? controlCompressedPadding : controlPadding;
 
     // Calculate the invalid icon (if being displayed), also based on `compressed` state

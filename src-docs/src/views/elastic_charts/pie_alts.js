@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import React, { useState } from 'react';
 import groupBy from 'lodash/groupBy';
 import mapValues from 'lodash/mapValues';

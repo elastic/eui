@@ -388,7 +388,8 @@ export const UtilsValuesJS = () => {
                 ? `useEuiBackgroundColor('${color}', 'transparent')`
                 : `useEuiBackgroundColor('${color}')`,
             value: euiBackgroundColor(euiTheme, color, {
-              method: backgroundSelected as _EuiBackgroundColorOptions['method'],
+              method:
+                backgroundSelected as _EuiBackgroundColorOptions['method'],
             }),
           };
         })}

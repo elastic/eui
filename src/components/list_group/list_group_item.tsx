@@ -40,10 +40,10 @@ import {
 } from './list_group_item.styles';
 
 export const SIZES = ['xs', 's', 'm', 'l'] as const;
-export type EuiListGroupItemSize = typeof SIZES[number];
+export type EuiListGroupItemSize = (typeof SIZES)[number];
 
 export const COLORS = ['primary', 'text', 'subdued'] as const;
-export type EuiListGroupItemColor = typeof COLORS[number];
+export type EuiListGroupItemColor = (typeof COLORS)[number];
 
 export type EuiListGroupItemProps = CommonProps &
   Omit<

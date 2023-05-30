@@ -91,9 +91,8 @@ export class GuidePageChrome extends Component {
         ? this.renderSubSections(sectionHref, sections, searchTerm)
         : undefined;
 
-      const isCurrentlyOpenSubSection = window.location.hash.includes(
-        subSectionHref
-      );
+      const isCurrentlyOpenSubSection =
+        window.location.hash.includes(subSectionHref);
 
       let name = title;
       if (searchTerm) {

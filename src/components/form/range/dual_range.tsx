@@ -95,18 +95,12 @@ export class EuiDualRangeClass extends Component<
 
   componentDidMount() {
     if (this.rangeSliderRef && this.rangeSliderRef.clientWidth === 0) {
-      // Safe to call `setState` inside conditional
-      // https://reactjs.org/docs/react-component.html#componentdidmount
-      // eslint-disable-next-line react/no-did-mount-set-state
       this.setState({ isVisible: false });
     }
   }
 
   componentDidUpdate() {
     if (this.rangeSliderRef?.clientWidth && !this.state.isVisible) {
-      // Safe to call `setState` inside conditional
-      // https://reactjs.org/docs/react-component.html#componentdidupdate
-      // eslint-disable-next-line  react/no-did-update-set-state
       this.setState({ isVisible: true });
     }
   }

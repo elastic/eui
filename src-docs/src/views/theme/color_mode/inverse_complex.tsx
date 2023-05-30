@@ -17,7 +17,6 @@ const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
       css={{
         background: euiTheme.colors.lightShade,
         padding: euiTheme.size.xl,
-        color: euiTheme.colors.text,
       }}
     >
       <p>{children}</p>
@@ -41,9 +40,8 @@ export default () => {
     },
   ];
 
-  const [boxColorModeSelected, setBoxColorMode] = useState<EuiThemeColorMode>(
-    'light'
-  );
+  const [boxColorModeSelected, setBoxColorMode] =
+    useState<EuiThemeColorMode>('light');
 
   const onChange = (colorMode: EuiThemeColorMode) => {
     setBoxColorMode(colorMode);

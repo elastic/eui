@@ -28,7 +28,7 @@ export const COLORS = [
   'ghost',
   'inherit',
 ] as const;
-export type TextColor = typeof COLORS[number];
+export type TextColor = (typeof COLORS)[number];
 
 export type EuiTextColorProps = CommonProps &
   Omit<

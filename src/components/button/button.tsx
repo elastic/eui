@@ -41,7 +41,7 @@ export const COLORS = [...BUTTON_COLORS, 'ghost'] as const;
 export type EuiButtonColor = _EuiButtonColor | 'ghost';
 
 export const SIZES = ['s', 'm'] as const;
-export type EuiButtonSize = typeof SIZES[number];
+export type EuiButtonSize = (typeof SIZES)[number];
 
 interface BaseProps {
   children?: ReactNode;
@@ -101,7 +101,6 @@ export const EuiButton: FunctionComponent<Props> = (props) => {
     isLoading: rest.isLoading,
   });
 
-  // eslint-disable-next-line no-nested-ternary
   const color = buttonIsDisabled ? 'disabled' : _color;
 
   const buttonColorStyles = useEuiButtonColorCSS({
@@ -115,7 +114,7 @@ export const EuiButton: FunctionComponent<Props> = (props) => {
   if (_color === 'ghost') {
     // INCEPTION: If `ghost`, re-implement with a wrapping dark mode theme provider
     return (
-      <EuiThemeProvider colorMode="dark">
+      <EuiThemeProvider colorMode="dark" wrapperProps={{ cloneElement: true }}>
         <EuiButton {...props} color="text" />
       </EuiThemeProvider>
     );

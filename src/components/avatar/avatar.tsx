@@ -21,13 +21,13 @@ import { IconType, EuiIcon, IconSize, IconColor } from '../icon';
 import { euiAvatarStyles } from './avatar.styles';
 
 export const SIZES = ['s', 'm', 'l', 'xl'] as const;
-export type EuiAvatarSize = typeof SIZES[number];
+export type EuiAvatarSize = (typeof SIZES)[number];
 
 export const TYPES = ['space', 'user'] as const;
-export type EuiAvatarType = typeof TYPES[number];
+export type EuiAvatarType = (typeof TYPES)[number];
 
 export const CASING = ['capitalize', 'uppercase', 'lowercase', 'none'] as const;
-export type EuiAvatarCasing = typeof CASING[number];
+export type EuiAvatarCasing = (typeof CASING)[number];
 
 /**
  * The avatar can only display one type of content,

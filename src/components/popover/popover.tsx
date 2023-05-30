@@ -65,7 +65,7 @@ export const popoverAnchorPosition = [
   'rightDown',
 ] as const;
 
-export type PopoverAnchorPosition = typeof popoverAnchorPosition[number];
+export type PopoverAnchorPosition = (typeof popoverAnchorPosition)[number];
 type AnchorPosition = 'up' | 'right' | 'down' | 'left';
 
 export interface EuiPopoverProps extends CommonProps {
@@ -383,7 +383,7 @@ export class EuiPopover extends Component<Props, State> {
 
   onKeyDown = (event: KeyboardEvent) => {
     if (event.key === cascadingMenuKeys.ESCAPE) {
-      this.onEscapeKey((event as unknown) as Event);
+      this.onEscapeKey(event as unknown as Event);
     }
   };
 
@@ -439,7 +439,6 @@ export class EuiPopover extends Component<Props, State> {
     if (this.state.suppressingPopover) {
       // component was created with isOpen=true; now that it's mounted
       // stop suppressing and start opening
-      // eslint-disable-next-line react/no-did-mount-set-state
       this.setState({ suppressingPopover: false, isOpening: true }, () => {
         this.onOpenPopover();
       });

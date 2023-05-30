@@ -109,4 +109,5 @@ export const getDefaultEuiMarkdownProcessingPlugins = ({
   return plugins;
 };
 
-export const defaultProcessingPlugins = getDefaultEuiMarkdownProcessingPlugins();
+export const defaultProcessingPlugins =
+  getDefaultEuiMarkdownProcessingPlugins();

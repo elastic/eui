@@ -12,11 +12,9 @@ import classNames from 'classnames';
 import { EuiDataGridControlHeaderCellProps } from '../../data_grid_types';
 import { EuiDataGridHeaderCellWrapper } from './data_grid_header_cell_wrapper';
 
-export const EuiDataGridControlHeaderCell: FunctionComponent<EuiDataGridControlHeaderCellProps> = ({
-  controlColumn,
-  index,
-  headerIsInteractive,
-}) => {
+export const EuiDataGridControlHeaderCell: FunctionComponent<
+  EuiDataGridControlHeaderCellProps
+> = ({ controlColumn, index, headerIsInteractive }) => {
   const {
     headerCellRender: HeaderCellRender,
     headerCellProps,

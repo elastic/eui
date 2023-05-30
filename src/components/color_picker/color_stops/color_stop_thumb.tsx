@@ -224,9 +224,8 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
     }
   };
 
-  const [handleMouseDown, handleInteraction] = useMouseMove<HTMLButtonElement>(
-    handlePointerChange
-  );
+  const [handleMouseDown, handleInteraction] =
+    useMouseMove<HTMLButtonElement>(handlePointerChange);
 
   const handleOnMouseDown = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!readOnly) {

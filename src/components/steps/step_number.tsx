@@ -40,7 +40,7 @@ export const STATUS = [
   'current',
 ] as const;
 
-export type EuiStepStatus = typeof STATUS[number];
+export type EuiStepStatus = (typeof STATUS)[number];
 
 export interface EuiStepNumberProps
   extends CommonProps,

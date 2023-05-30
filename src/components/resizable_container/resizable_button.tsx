@@ -62,9 +62,8 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
     prefix: 'resizable-button',
     conditionalId: id,
   });
-  const {
-    registry: { resizers } = { resizers: {} },
-  } = useEuiResizableContainerContext();
+  const { registry: { resizers } = { resizers: {} } } =
+    useEuiResizableContainerContext();
   const isDisabled = useMemo(
     () => disabled || (resizers[resizerId] && resizers[resizerId].isDisabled),
     [resizers, resizerId, disabled]

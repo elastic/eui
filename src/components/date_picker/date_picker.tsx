@@ -61,7 +61,7 @@ const unsupportedProps = [
   'popperPlacement',
 ] as const;
 
-type UnsupportedProps = typeof unsupportedProps[number];
+type UnsupportedProps = (typeof unsupportedProps)[number];
 
 interface EuiExtendedDatePickerProps
   extends Omit<ReactDatePickerProps, UnsupportedProps> {
@@ -106,7 +106,13 @@ interface EuiExtendedDatePickerProps
   placeholder?: string;
 
   /**
-   * Can turn the shadow off if using the inline prop
+   * Displays the date picker calendar on directly on the page.
+   * Will not render `iconType` or `fullWidth`.
+   */
+  inline?: boolean;
+
+  /**
+   * Allows turning the shadow off if using the `inline` prop
    */
   shadow?: boolean;
 
@@ -165,6 +171,7 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
   placeholder,
   popperClassName,
   popoverPlacement = 'downLeft',
+  readOnly,
   selected,
   shadow = true,
   shouldCloseOnSelect = true,
@@ -176,8 +183,8 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
   ...rest
 }) => {
   const classes = classNames('euiDatePicker', {
-    'euiDatePicker--shadow': shadow,
     'euiDatePicker--inline': inline,
+    'euiDatePicker--shadow': inline && shadow,
   });
 
   const numIconsClass = controlOnly
@@ -238,6 +245,7 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
             dateFormat={fullDateFormat}
             dayClassName={dayClassName}
             disabled={disabled}
+            readOnly={readOnly}
             excludeDates={excludeDates}
             filterDate={filterDate}
             injectTimes={injectTimes}
@@ -261,7 +269,7 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
             timeFormat={timeFormat}
             utcOffset={utcOffset}
             yearDropdownItemNumber={7}
-            accessibleMode
+            accessibleMode={!(disabled || readOnly)}
             popperPlacement={popoverPlacement}
             {...rest}
           />
@@ -280,6 +288,15 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
         clear={selected && onClear ? { onClick: onClear } : undefined}
         isLoading={isLoading}
         isInvalid={isInvalid}
+        isDisabled={disabled}
+        readOnly={readOnly}
+        className={classNames({
+          // Take advantage of `euiFormControlLayoutDelimited`'s replacement input styling
+          euiFormControlLayoutDelimited: inline,
+          'euiFormControlLayoutDelimited--isInvalid':
+            inline && isInvalid && !disabled && !readOnly,
+        })}
+        iconsPosition={inline ? 'static' : undefined}
       >
         {control}
       </EuiFormControlLayout>

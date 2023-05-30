@@ -35,7 +35,9 @@ import { getColumnActions } from './column_actions';
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
 import { EuiDataGridHeaderCellWrapper } from './data_grid_header_cell_wrapper';
 
-export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps> = ({
+export const EuiDataGridHeaderCell: FunctionComponent<
+  EuiDataGridHeaderCellProps
+> = ({
   column,
   index,
   columns,
@@ -57,9 +59,8 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
     displayHeaderCellProps?.className
   );
 
-  const { setFocusedCell, focusFirstVisibleInteractiveCell } = useContext(
-    DataGridFocusContext
-  );
+  const { setFocusedCell, focusFirstVisibleInteractiveCell } =
+    useContext(DataGridFocusContext);
   const { sorting } = useContext(DataGridSortingContext);
 
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -223,7 +224,6 @@ export const useSortingUtils = ({
    * @see https://github.com/w3c/aria/issues/283 for potential future multi-column usage
    */
   const ariaSort: AriaAttributes['aria-sort'] =
-    // eslint-disable-next-line no-nested-ternary
     isColumnSorted && hasOnlyOneSort
       ? sorting.columns[0].direction === 'asc'
         ? 'ascending'

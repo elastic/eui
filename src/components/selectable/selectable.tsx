@@ -39,14 +39,15 @@ export type EuiSelectableOnChangeEvent = KeyboardEvent | MouseEvent;
 
 type RequiredEuiSelectableOptionsListProps = Omit<
   EuiSelectableOptionsListProps,
-  keyof typeof EuiSelectableList['defaultProps']
+  keyof (typeof EuiSelectableList)['defaultProps']
 >;
 type OptionalEuiSelectableOptionsListProps = Omit<
   EuiSelectableOptionsListProps,
   keyof RequiredEuiSelectableOptionsListProps
 >;
-type EuiSelectableOptionsListPropsWithDefaults = RequiredEuiSelectableOptionsListProps &
-  Partial<OptionalEuiSelectableOptionsListProps>;
+type EuiSelectableOptionsListPropsWithDefaults =
+  RequiredEuiSelectableOptionsListProps &
+    Partial<OptionalEuiSelectableOptionsListProps>;
 
 // The `searchable` prop has significant implications for a11y.
 // When present, we effectively change from adhering
@@ -732,8 +733,9 @@ export class EuiSelectable<T = {}> extends Component<
       </EuiI18n>
     ) : undefined;
 
-    const resultsLength = visibleOptions.filter((option) => !option.disabled)
-      .length;
+    const resultsLength = visibleOptions.filter(
+      (option) => !option.disabled
+    ).length;
     const listScreenReaderStatus = searchable && (
       <EuiI18n
         token="euiSelectable.searchResults"

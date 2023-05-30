@@ -17,13 +17,12 @@ import {
 } from '../data_grid_types';
 import { defaultComparator } from './data_grid_schema';
 
-export const DataGridSortingContext = createContext<
-  DataGridSortingContextShape
->({
-  sorting: undefined,
-  sortedRowMap: [],
-  getCorrectRowIndex: (number) => number,
-});
+export const DataGridSortingContext =
+  createContext<DataGridSortingContextShape>({
+    sorting: undefined,
+    sortedRowMap: [],
+    getCorrectRowIndex: (number) => number,
+  });
 
 export const useSorting = ({
   sorting,

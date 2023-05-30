@@ -43,5 +43,5 @@ export const RowHeightUtils = jest.fn().mockImplementation(() => {
     compensateForLayoutShift: jest.fn(),
   };
 
-  return (rowHeightUtilsMock as unknown) as RowHeightUtilsType;
+  return rowHeightUtilsMock as unknown as RowHeightUtilsType;
 });

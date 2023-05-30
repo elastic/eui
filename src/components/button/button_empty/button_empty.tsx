@@ -91,7 +91,8 @@ export interface CommonEuiButtonEmptyProps
 
 type EuiButtonEmptyPropsForAnchor = PropsForAnchor<CommonEuiButtonEmptyProps>;
 
-type EuiButtonEmptyPropsForButton = PropsForButton<CommonEuiButtonEmptyProps>;
+export type EuiButtonEmptyPropsForButton =
+  PropsForButton<CommonEuiButtonEmptyProps>;
 
 export type EuiButtonEmptyProps = ExclusiveUnion<
   EuiButtonEmptyPropsForAnchor,
@@ -130,7 +131,6 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = (
     isLoading,
   });
 
-  // eslint-disable-next-line no-nested-ternary
   const color = isDisabled ? 'disabled' : _color === 'ghost' ? 'text' : _color;
   const buttonColorStyles = useEuiButtonColorCSS({
     display: 'empty',
@@ -139,7 +139,7 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = (
   if (_color === 'ghost') {
     // INCEPTION: If `ghost`, re-implement with a wrapping dark mode theme provider
     return (
-      <EuiThemeProvider colorMode="dark">
+      <EuiThemeProvider colorMode="dark" wrapperProps={{ cloneElement: true }}>
         <EuiButtonEmpty {...props} color="text" />
       </EuiThemeProvider>
     );

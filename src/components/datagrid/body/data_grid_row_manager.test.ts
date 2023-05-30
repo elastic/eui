@@ -116,9 +116,11 @@ describe('row manager', () => {
     let row1: HTMLDivElement;
     const mockRowArgs = { visibleRowIndex: 99, top: '15px', height: 30 };
 
-    const { return: rowManager, updateHookArgs } = testCustomHook<
-      EuiDataGridRowManager
-    >(useRowManager, { innerGridRef: mockGridRef, rowClasses });
+    const { return: rowManager, updateHookArgs } =
+      testCustomHook<EuiDataGridRowManager>(useRowManager, {
+        innerGridRef: mockGridRef,
+        rowClasses,
+      });
 
     beforeAll(() => {
       row0 = rowManager.getRow({ ...mockRowArgs, rowIndex: 0 });

@@ -21,10 +21,10 @@ import { EuiTitle } from '../title';
 import { euiCallOutStyles, euiCallOutHeadingStyles } from './call_out.styles';
 
 export const COLORS = ['primary', 'success', 'warning', 'danger'] as const;
-export type Color = typeof COLORS[number];
+export type Color = (typeof COLORS)[number];
 
 export const HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p'] as const;
-type Heading = typeof HEADINGS[number];
+type Heading = (typeof HEADINGS)[number];
 
 type Size = 's' | 'm';
 

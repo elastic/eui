@@ -12,6 +12,7 @@ import { ExclusiveUnion } from '../../common';
 import { EuiPopover, EuiPopoverTitle } from '../../popover';
 import { EuiFilterButton } from '../../filter_group';
 import { EuiSelectable, EuiSelectableProps } from '../../selectable';
+import { EuiSelectableOptionCheckedType } from '../../../components/selectable/selectable_option';
 import { Query } from '../query';
 import { Clause, Operator, OperatorType, Value } from '../query/ast';
 
@@ -246,7 +247,7 @@ export class FieldValueSelectionFilter extends Component<
   onOptionClick(
     field: string,
     value: Value,
-    checked: 'on' | 'off' | undefined
+    checked?: Omit<EuiSelectableOptionCheckedType, 'mixed'>
   ) {
     const multiSelect = this.resolveMultiSelect();
     const {
@@ -385,7 +386,7 @@ export class FieldValueSelectionFilter extends Component<
         anchorPosition="downCenter"
         panelClassName="euiFilterGroup__popoverPanel"
       >
-        <EuiSelectable<Partial<typeof items[number]['data']>>
+        <EuiSelectable<Partial<(typeof items)[number]['data']>>
           singleSelection={!multiSelect}
           aria-label={config.name}
           options={items}

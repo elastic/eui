@@ -25,11 +25,9 @@ export interface EuiScreenReaderOnlyProps {
   className?: string;
 }
 
-export const EuiScreenReaderOnly: FunctionComponent<EuiScreenReaderOnlyProps> = ({
-  children,
-  className,
-  showOnFocus,
-}) => {
+export const EuiScreenReaderOnly: FunctionComponent<
+  EuiScreenReaderOnlyProps
+> = ({ children, className, showOnFocus }) => {
   const classes = classNames(className, children.props.className);
 
   const styles = euiScreenReaderOnlyStyles(showOnFocus);

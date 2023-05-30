@@ -65,9 +65,8 @@ export default () => {
     };
   });
 
-  const [backgroundColors, setBackgroundColors] = useState<any>(
-    background_colors
-  );
+  const [backgroundColors, setBackgroundColors] =
+    useState<any>(background_colors);
   const [backgroundFunction, setBackgroundFunction] = useState<any>(
     'useEuiBackgroundColor'
   );

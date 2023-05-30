@@ -22,7 +22,7 @@ export const COLORS = [
   'warning',
 ] as const;
 
-export type EuiBeaconColor = typeof COLORS[number];
+export type EuiBeaconColor = (typeof COLORS)[number];
 
 export type EuiBeaconProps = Omit<
   HTMLAttributes<HTMLDivElement>,

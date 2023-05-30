@@ -227,8 +227,7 @@ export const typesOfUseCases: {
       iconLight2x: pageNotFoundLight2x,
       iconDark2x: pageNotFoundDark2x,
       title: <h2>Page not found</h2>,
-      alt:
-        "An outer space illustration. In the background is a large moon and two planets. In the foreground is an astronaut floating in space and the numbers '404'.",
+      alt: "An outer space illustration. In the background is a large moon and two planets. In the foreground is an astronaut floating in space and the numbers '404'.",
       body: (
         <p>
           Sorry, we can&apos;t find the page you&apos;re looking for. It might

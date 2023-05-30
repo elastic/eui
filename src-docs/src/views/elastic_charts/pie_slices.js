@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import React, { useState } from 'react';
 import { Chart, Partition, Settings, PartitionLayout } from '@elastic/charts';
 
@@ -89,8 +88,9 @@ export default () => {
   };
 
   const onSliceOrderChange = (optionId) => {
-    const sliceOrderLabel = sliceOrderRadios.find(({ id }) => id === optionId)
-      .label;
+    const sliceOrderLabel = sliceOrderRadios.find(
+      ({ id }) => id === optionId
+    ).label;
     if (sliceOrderLabel.includes('Counter')) {
       setSliceOrderConfig({ clockwiseSectors: false });
       setSliceOrderConfigText('clockwiseSectors={false}');

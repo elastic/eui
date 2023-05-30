@@ -100,9 +100,7 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
     };
   }
 
-  // eslint-disable-next-line no-nested-ternary
   const color = isDisabled ? 'disabled' : _color;
-  // eslint-disable-next-line no-nested-ternary
   const display = isSelected
     ? 'fill'
     : size === 'compressed'

@@ -61,10 +61,9 @@ export interface EuiQuickSelectPopoverProps {
   timeOptions: TimeOptions;
 }
 
-export const EuiQuickSelectPopover: FunctionComponent<EuiQuickSelectPopoverProps> = ({
-  applyTime: _applyTime,
-  ...props
-}) => {
+export const EuiQuickSelectPopover: FunctionComponent<
+  EuiQuickSelectPopoverProps
+> = ({ applyTime: _applyTime, ...props }) => {
   const [prevQuickSelect, setQuickSelect] = useState<QuickSelect>();
   const [isOpen, setIsOpen] = useState(false);
   const closePopover = useCallback(() => setIsOpen(false), []);
