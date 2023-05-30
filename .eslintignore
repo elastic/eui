@@ -13,3 +13,4 @@ generator-eui
 cypress
 react-datepicker
 .eslintrc.js
+!.storybook

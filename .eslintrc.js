@@ -11,7 +11,11 @@ const SSPL_ELASTIC_2_0_LICENSE_HEADER = `
 module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: ['./tsconfig.json', './cypress/tsconfig.json'],
+    project: [
+      './tsconfig.json',
+      './cypress/tsconfig.json',
+      './.storybook/tsconfig.json',
+    ],
     ecmaFeatures: {
       jsx: true,
     },
@@ -31,6 +35,7 @@ module.exports = {
   },
   extends: [
     'plugin:@typescript-eslint/recommended',
+    'plugin:storybook/recommended',
     // Prettier options need to come last, in order to override other style rules
     'plugin:prettier/recommended',
   ],
