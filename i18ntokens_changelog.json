@@ -1,5 +1,30 @@
 [
   {
+    "version": "81.1.0",
+    "changes": [
+      {
+        "token": "euiInlineEditForm.saveButtonAriaLabel",
+        "changeType": "added",
+        "value": "Save edit"
+      },
+      {
+        "token": "euiInlineEditForm.cancelButtonAriaLabel",
+        "changeType": "added",
+        "value": "Cancel edit"
+      },
+      {
+        "token": "euiInlineEditForm.inputKeyboardInstructions",
+        "changeType": "added",
+        "value": "Press Enter to save your edited text. Press Escape to cancel your edit."
+      },
+      {
+        "token": "euiInlineEditForm.activateEditModeDescription",
+        "changeType": "added",
+        "value": "Click to edit this text inline."
+      }
+    ]
+  },
+  {
     "version": "81.0.0",
     "changes": [
       {
