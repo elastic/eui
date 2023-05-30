@@ -298,7 +298,7 @@ const createExample = (example, customTitle) => {
     );
   }
 
-  const { title, sections, beta, isNew, playground, guidelines, ...rest } =
+  const { title, sections, isBeta, isNew, playground, guidelines, ...rest } =
     example;
   const filteredSections = sections.filter((section) => section !== undefined);
 
@@ -327,7 +327,8 @@ const createExample = (example, customTitle) => {
     <EuiErrorBoundary>
       <GuideTabbedPage
         title={title}
-        isBeta={beta}
+        isBeta={isBeta}
+        isNew={isNew}
         playground={playgroundComponent}
         guidelines={guidelines}
         {...rest}
