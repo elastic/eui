@@ -735,7 +735,6 @@ Array [
                   </div>
                   <p
                     class="emotion-euiScreenReaderOnly"
-                    hidden=""
                   >
                     - A, column 1, row 1
                   </p>
@@ -768,7 +767,6 @@ Array [
                   </div>
                   <p
                     class="emotion-euiScreenReaderOnly"
-                    hidden=""
                   >
                     - B, column 2, row 1
                   </p>
@@ -801,7 +799,6 @@ Array [
                   </div>
                   <p
                     class="emotion-euiScreenReaderOnly"
-                    hidden=""
                   >
                     - A, column 1, row 2
                   </p>
@@ -834,7 +831,6 @@ Array [
                   </div>
                   <p
                     class="emotion-euiScreenReaderOnly"
-                    hidden=""
                   >
                     - B, column 2, row 2
                   </p>
@@ -867,7 +863,6 @@ Array [
                   </div>
                   <p
                     class="emotion-euiScreenReaderOnly"
-                    hidden=""
                   >
                     - A, column 1, row 3
                   </p>
@@ -900,7 +895,6 @@ Array [
                   </div>
                   <p
                     class="emotion-euiScreenReaderOnly"
-                    hidden=""
                   >
                     - B, column 2, row 3
                   </p>
@@ -1253,7 +1247,6 @@ Array [
                     </div>
                     <p
                       class="emotion-euiScreenReaderOnly"
-                      hidden=""
                     >
                       - leading, column 1, row 1
                     </p>
@@ -1292,7 +1285,6 @@ Array [
                   </div>
                   <p
                     class="emotion-euiScreenReaderOnly"
-                    hidden=""
                   >
                     - A, column 2, row 1
                   </p>
@@ -1325,7 +1317,6 @@ Array [
                   </div>
                   <p
                     class="emotion-euiScreenReaderOnly"
-                    hidden=""
                   >
                     - B, column 3, row 1
                   </p>
@@ -1366,7 +1357,6 @@ Array [
                     </div>
                     <p
                       class="emotion-euiScreenReaderOnly"
-                      hidden=""
                     >
                       - trailing, column 4, row 1
                     </p>
@@ -1413,7 +1403,6 @@ Array [
                     </div>
                     <p
                       class="emotion-euiScreenReaderOnly"
-                      hidden=""
                     >
                       - leading, column 1, row 2
                     </p>
@@ -1452,7 +1441,6 @@ Array [
                   </div>
                   <p
                     class="emotion-euiScreenReaderOnly"
-                    hidden=""
                   >
                     - A, column 2, row 2
                   </p>
@@ -1485,7 +1473,6 @@ Array [
                   </div>
                   <p
                     class="emotion-euiScreenReaderOnly"
-                    hidden=""
                   >
                     - B, column 3, row 2
                   </p>
@@ -1526,7 +1513,6 @@ Array [
                     </div>
                     <p
                       class="emotion-euiScreenReaderOnly"
-                      hidden=""
                     >
                       - trailing, column 4, row 2
                     </p>
@@ -1573,7 +1559,6 @@ Array [
                     </div>
                     <p
                       class="emotion-euiScreenReaderOnly"
-                      hidden=""
                     >
                       - leading, column 1, row 3
                     </p>
@@ -1612,7 +1597,6 @@ Array [
                   </div>
                   <p
                     class="emotion-euiScreenReaderOnly"
-                    hidden=""
                   >
                     - A, column 2, row 3
                   </p>
@@ -1645,7 +1629,6 @@ Array [
                   </div>
                   <p
                     class="emotion-euiScreenReaderOnly"
-                    hidden=""
                   >
                     - B, column 3, row 3
                   </p>
@@ -1686,7 +1669,6 @@ Array [
                     </div>
                     <p
                       class="emotion-euiScreenReaderOnly"
-                      hidden=""
                     >
                       - trailing, column 4, row 3
                     </p>
@@ -1998,7 +1980,6 @@ Array [
                   </div>
                   <p
                     class="emotion-euiScreenReaderOnly"
-                    hidden=""
                   >
                     - A, column 1, row 1
                   </p>
@@ -2031,7 +2012,6 @@ Array [
                   </div>
                   <p
                     class="emotion-euiScreenReaderOnly"
-                    hidden=""
                   >
                     - B, column 2, row 1
                   </p>
@@ -2064,7 +2044,6 @@ Array [
                   </div>
                   <p
                     class="emotion-euiScreenReaderOnly"
-                    hidden=""
                   >
                     - A, column 1, row 2
                   </p>
@@ -2097,7 +2076,6 @@ Array [
                   </div>
                   <p
                     class="emotion-euiScreenReaderOnly"
-                    hidden=""
                   >
                     - B, column 2, row 2
                   </p>
@@ -2130,7 +2108,6 @@ Array [
                   </div>
                   <p
                     class="emotion-euiScreenReaderOnly"
-                    hidden=""
                   >
                     - A, column 1, row 3
                   </p>
@@ -2163,7 +2140,6 @@ Array [
                   </div>
                   <p
                     class="emotion-euiScreenReaderOnly"
-                    hidden=""
                   >
                     - B, column 2, row 3
                   </p>
@@ -2467,7 +2443,6 @@ Array [
                   </div>
                   <p
                     class="emotion-euiScreenReaderOnly"
-                    hidden=""
                   >
                     - A, column 1, row 1
                   </p>
@@ -2500,7 +2475,6 @@ Array [
                   </div>
                   <p
                     class="emotion-euiScreenReaderOnly"
-                    hidden=""
                   >
                     - B, column 2, row 1
                   </p>
@@ -2533,7 +2507,6 @@ Array [
                   </div>
                   <p
                     class="emotion-euiScreenReaderOnly"
-                    hidden=""
                   >
                     - A, column 1, row 2
                   </p>
@@ -2566,7 +2539,6 @@ Array [
                   </div>
                   <p
                     class="emotion-euiScreenReaderOnly"
-                    hidden=""
                   >
                     - B, column 2, row 2
                   </p>
@@ -2599,7 +2571,6 @@ Array [
                   </div>
                   <p
                     class="emotion-euiScreenReaderOnly"
-                    hidden=""
                   >
                     - A, column 1, row 3
                   </p>
@@ -2632,7 +2603,6 @@ Array [
                   </div>
                   <p
                     class="emotion-euiScreenReaderOnly"
-                    hidden=""
                   >
                     - B, column 2, row 3
                   </p>
