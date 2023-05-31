@@ -1,3 +1,11 @@
+## [`81.2.0`](https://github.com/elastic/eui/tree/v81.2.0)
+
+- Updated `EuiSuperDatePicker` to accept an object configuration for `isDisabled` ([#6821](https://github.com/elastic/eui/pull/6821))
+
+**Bug fixes**
+
+- Fixed broken `EuiSuperDatePicker` styles ([#6821](https://github.com/elastic/eui/pull/6821))
+
 ## [`81.1.0`](https://github.com/elastic/eui/tree/v81.1.0)
 
 - Added `EuiInlineEditText` and `EuiInlineEditTitle` components ([#6757](https://github.com/elastic/eui/pull/6757))
