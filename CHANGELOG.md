@@ -1,3 +1,7 @@
+## [`77.1.4`](https://github.com/elastic/eui/tree/v77.1.4)
+
+- Updated `EuiDataGrid` to only render screen reader text announcing cell position if the cell is currently focused. This should improve the ability to copy and paste multiple cells without SR text. ([#6817](https://github.com/elastic/eui/pull/6817))
+
 ## [`77.1.3`](https://github.com/elastic/eui/tree/v77.1.3)
 
 **Bug fixes**
