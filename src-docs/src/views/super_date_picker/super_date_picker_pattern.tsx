@@ -108,6 +108,7 @@ export default () => {
               recentlyUsedRanges={recentlyUsedRanges}
               width="auto"
               isQuickSelectOnly={showQuickSelectOnly}
+              isDisabled={{ display: 'All time' }}
             />
           </div>
         </EuiFlexItem>
