@@ -977,14 +977,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 98,
+        "line": 100,
         "column": 12,
-        "index": 2913
+        "index": 2972
       },
       "end": {
-        "line": 106,
+        "line": 108,
         "column": 14,
-        "index": 3220
+        "index": 3279
       }
     },
     "filepath": "src/components/datagrid/body/data_grid_cell.tsx"
