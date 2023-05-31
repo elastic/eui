@@ -249,6 +249,7 @@ describe('EuiIcons', () => {
       'tear',
       'temperature',
       'timeline',
+      'timelineWithArrow',
       'timeRefresh',
       'timeslider',
       'training',

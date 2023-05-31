@@ -380,6 +380,7 @@ export const typeToPathMap = {
   tear: 'tear',
   temperature: 'temperature',
   timeline: 'timeline',
+  timelineWithArrow: 'timelineWithArrow',
   timelionApp: 'app_timelion',
   timeRefresh: 'timeRefresh',
   timeslider: 'timeslider',
