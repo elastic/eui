@@ -259,6 +259,35 @@ describe('EuiSuperDatePicker', () => {
       });
     });
 
+    describe('isDisabled', () => {
+      test('true', () => {
+        const { container } = render(
+          <EuiSuperDatePicker onTimeChange={noop} isDisabled={true} />
+        );
+        expect(container.firstChild).toMatchSnapshot();
+      });
+
+      // TODO: Convert to storybook once EuiSuperDatePicker is on Emotion
+      test('config object', () => {
+        const { getByTestSubject } = render(
+          <EuiSuperDatePicker
+            onTimeChange={noop}
+            isDisabled={{
+              display: (
+                <span data-test-subj="customDisabledDisplay">All time</span>
+              ),
+            }}
+          />
+        );
+        expect(getByTestSubject('customDisabledDisplay').textContent).toEqual(
+          'All time'
+        );
+        expect(
+          getByTestSubject('superDatePickerShowDatesButton')
+        ).toMatchSnapshot();
+      });
+    });
+
     describe('isAutoRefreshOnly', () => {
       it('is rendered', () => {
         const { container } = render(

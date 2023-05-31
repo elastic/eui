@@ -16,6 +16,7 @@ import classNames from 'classnames';
 import moment, { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 import dateMath from '@elastic/datemath';
 
+import { isObject } from '../../../services/predicate';
 import { EuiI18nConsumer } from '../../context';
 import { CommonProps } from '../../common';
 import { EuiDatePickerRange } from '../date_picker_range';
@@ -81,7 +82,15 @@ export type EuiSuperDatePickerProps = CommonProps & {
    * Set isAutoRefreshOnly to true to limit the component to only display auto refresh content.
    */
   isAutoRefreshOnly?: boolean;
-  isDisabled?: boolean;
+
+  /**
+   * Accepts either a true/false boolean or an object configuration.
+   *
+   * The configuration will render the component as disabled, and allow you to
+   * customize the displayed disabled text.
+   */
+  isDisabled?: boolean | { display: ReactNode };
+
   isLoading?: boolean;
   isPaused?: boolean;
 
@@ -169,7 +178,6 @@ type EuiSuperDatePickerInternalProps = EuiSuperDatePickerProps & {
   dateFormat: string;
   timeFormat: string;
   isPaused: boolean;
-  isDisabled: boolean;
 };
 
 interface EuiSuperDatePickerState {
@@ -422,7 +430,7 @@ export class EuiSuperDatePickerInternal extends Component<
         customQuickSelectRender={customQuickSelectRender}
         dateFormat={dateFormat}
         end={end}
-        isDisabled={isDisabled}
+        isDisabled={!!isDisabled}
         isPaused={isPaused}
         recentlyUsedRanges={recentlyUsedRanges}
         refreshInterval={refreshInterval}
@@ -462,7 +470,7 @@ export class EuiSuperDatePickerInternal extends Component<
     const autoRefreshAppend: EuiFormControlLayoutProps['append'] = !isPaused ? (
       <EuiAutoRefreshButton
         refreshInterval={refreshInterval}
-        isDisabled={isDisabled}
+        isDisabled={!!isDisabled}
         isPaused={isPaused}
         onRefreshChange={this.onRefreshChange}
         shortHand
@@ -473,7 +481,7 @@ export class EuiSuperDatePickerInternal extends Component<
       compressed,
       isInvalid,
       isLoading: isLoading && !showUpdateButton,
-      disabled: isDisabled,
+      disabled: !!isDisabled,
       prepend: this.renderQuickSelect(),
       append: autoRefreshAppend,
     };
@@ -487,10 +495,11 @@ export class EuiSuperDatePickerInternal extends Component<
       );
     }
 
+    const isDisabledDisplay = isObject(isDisabled) && isDisabled?.display;
+
     if (
-      showPrettyDuration &&
-      !isStartDatePopoverOpen &&
-      !isEndDatePopoverOpen
+      isDisabledDisplay ||
+      (showPrettyDuration && !isStartDatePopoverOpen && !isEndDatePopoverOpen)
     ) {
       return (
         <EuiFormControlLayout {...formControlLayoutProps}>
@@ -499,16 +508,20 @@ export class EuiSuperDatePickerInternal extends Component<
               'euiSuperDatePicker__prettyFormat--disabled': isDisabled,
             })}
             data-test-subj="superDatePickerShowDatesButton"
-            disabled={isDisabled}
+            disabled={!!isDisabled}
             onClick={this.hidePrettyDuration}
             onFocus={onFocus}
           >
-            <PrettyDuration
-              timeFrom={start}
-              timeTo={end}
-              quickRanges={commonlyUsedRanges}
-              dateFormat={dateFormat}
-            />
+            {isDisabledDisplay ? (
+              isDisabled.display
+            ) : (
+              <PrettyDuration
+                timeFrom={start}
+                timeTo={end}
+                quickRanges={commonlyUsedRanges}
+                dateFormat={dateFormat}
+              />
+            )}
           </button>
         </EuiFormControlLayout>
       );
@@ -528,7 +541,7 @@ export class EuiSuperDatePickerInternal extends Component<
                 position="start"
                 needsUpdating={hasChanged}
                 isInvalid={isInvalid}
-                isDisabled={isDisabled}
+                isDisabled={!!isDisabled}
                 onChange={this.setStart}
                 value={start}
                 dateFormat={dateFormat}
@@ -548,7 +561,7 @@ export class EuiSuperDatePickerInternal extends Component<
                 compressed={compressed}
                 needsUpdating={hasChanged}
                 isInvalid={isInvalid}
-                isDisabled={isDisabled}
+                isDisabled={!!isDisabled}
                 onChange={this.setEnd}
                 value={end}
                 dateFormat={dateFormat}
@@ -596,7 +609,7 @@ export class EuiSuperDatePickerInternal extends Component<
           !this.state.isStartDatePopoverOpen && !this.state.isEndDatePopoverOpen
         }
         isLoading={isLoading}
-        isDisabled={isDisabled || this.state.isInvalid}
+        isDisabled={!!isDisabled || this.state.isInvalid}
         onClick={this.handleClickUpdateButton}
         data-test-subj="superDatePickerApplyTimeButton"
         size={compressed ? 's' : 'm'}
@@ -644,7 +657,7 @@ export class EuiSuperDatePickerInternal extends Component<
             onRefreshChange={onRefreshChange}
             fullWidth={width === 'full'}
             compressed={compressed}
-            isDisabled={isDisabled}
+            isDisabled={!!isDisabled}
             className={className}
           />
         ) : (
