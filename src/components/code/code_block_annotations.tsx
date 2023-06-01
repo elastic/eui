@@ -9,6 +9,7 @@
 import React, { FunctionComponent, ReactNode, useState } from 'react';
 
 import { useEuiTheme } from '../../services';
+import { CommonProps } from '../common';
 import { useEuiI18n } from '../i18n';
 import { EuiPopover } from '../popover';
 import { EuiIcon } from '../icon';
@@ -18,9 +19,13 @@ import { euiCodeBlockAnnotationsStyles } from './code_block_annotations.style';
 
 export type LineAnnotationMap = Record<number, ReactNode>;
 
-export const EuiCodeBlockAnnotation: FunctionComponent<{
+type EuiCodeBlockAnnotationProps = CommonProps & {
   lineNumber: number;
-}> = ({ lineNumber, children }) => {
+};
+
+export const EuiCodeBlockAnnotation: FunctionComponent<
+  EuiCodeBlockAnnotationProps
+> = ({ lineNumber, children, ...rest }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const ariaLabel = useEuiI18n(
@@ -41,6 +46,8 @@ export const EuiCodeBlockAnnotation: FunctionComponent<{
 
   return (
     <EuiPopover
+      css={styles.euiCodeBlockAnnotation}
+      {...rest}
       isOpen={isOpen}
       closePopover={() => setIsOpen(false)}
       button={
@@ -57,7 +64,6 @@ export const EuiCodeBlockAnnotation: FunctionComponent<{
           />
         </button>
       }
-      css={styles.euiCodeBlockAnnotation}
       zIndex={Number(euiTheme.levels.mask) + 1} // Ensure fullscreen annotation popovers sit above the mask
       anchorPosition="downLeft"
       panelProps={{ 'data-test-subj': 'euiCodeBlockAnnotationPopover' }}

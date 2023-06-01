@@ -11,6 +11,7 @@ Array [
             "properties": Object {
               "aria-hidden": true,
               "className": Array [
+                "euiCodeBlock__lineNumber",
                 "css-19pu25o-euiCodeBlock__lineNumber",
               ],
               "data-line-number": 1,
@@ -21,7 +22,7 @@ Array [
         ],
         "properties": Object {
           "className": Array [
-            "euiCodeBlock__lineNumber",
+            "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
           "style": Object {
@@ -89,6 +90,7 @@ Array [
             "properties": Object {
               "aria-hidden": true,
               "className": Array [
+                "euiCodeBlock__lineNumber",
                 "css-19pu25o-euiCodeBlock__lineNumber",
               ],
               "data-line-number": 2,
@@ -99,7 +101,7 @@ Array [
         ],
         "properties": Object {
           "className": Array [
-            "euiCodeBlock__lineNumber",
+            "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
           "style": Object {
@@ -239,6 +241,7 @@ Array [
             "properties": Object {
               "aria-hidden": true,
               "className": Array [
+                "euiCodeBlock__lineNumber",
                 "css-19pu25o-euiCodeBlock__lineNumber",
               ],
               "data-line-number": 3,
@@ -249,7 +252,7 @@ Array [
         ],
         "properties": Object {
           "className": Array [
-            "euiCodeBlock__lineNumber",
+            "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
           "style": Object {
@@ -321,6 +324,7 @@ Array [
             "properties": Object {
               "aria-hidden": true,
               "className": Array [
+                "euiCodeBlock__lineNumber",
                 "css-19pu25o-euiCodeBlock__lineNumber",
               ],
               "data-line-number": 10,
@@ -331,7 +335,7 @@ Array [
         ],
         "properties": Object {
           "className": Array [
-            "euiCodeBlock__lineNumber",
+            "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
           "style": Object {
@@ -399,6 +403,7 @@ Array [
             "properties": Object {
               "aria-hidden": true,
               "className": Array [
+                "euiCodeBlock__lineNumber",
                 "css-19pu25o-euiCodeBlock__lineNumber",
               ],
               "data-line-number": 11,
@@ -409,7 +414,7 @@ Array [
         ],
         "properties": Object {
           "className": Array [
-            "euiCodeBlock__lineNumber",
+            "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
           "style": Object {
@@ -549,6 +554,7 @@ Array [
             "properties": Object {
               "aria-hidden": true,
               "className": Array [
+                "euiCodeBlock__lineNumber",
                 "css-19pu25o-euiCodeBlock__lineNumber",
               ],
               "data-line-number": 12,
@@ -559,7 +565,7 @@ Array [
         ],
         "properties": Object {
           "className": Array [
-            "euiCodeBlock__lineNumber",
+            "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
           "style": Object {
@@ -631,6 +637,7 @@ Array [
             "properties": Object {
               "aria-hidden": true,
               "className": Array [
+                "euiCodeBlock__lineNumber",
                 "css-19pu25o-euiCodeBlock__lineNumber",
               ],
               "data-line-number": 1,
@@ -646,7 +653,7 @@ Array [
         ],
         "properties": Object {
           "className": Array [
-            "euiCodeBlock__lineNumber",
+            "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
           "style": Object {
@@ -714,6 +721,7 @@ Array [
             "properties": Object {
               "aria-hidden": true,
               "className": Array [
+                "euiCodeBlock__lineNumber",
                 "css-19pu25o-euiCodeBlock__lineNumber",
               ],
               "data-line-number": 2,
@@ -724,7 +732,7 @@ Array [
         ],
         "properties": Object {
           "className": Array [
-            "euiCodeBlock__lineNumber",
+            "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
           "style": Object {
@@ -864,6 +872,7 @@ Array [
             "properties": Object {
               "aria-hidden": true,
               "className": Array [
+                "euiCodeBlock__lineNumber",
                 "css-19pu25o-euiCodeBlock__lineNumber",
               ],
               "data-line-number": 3,
@@ -874,7 +883,7 @@ Array [
         ],
         "properties": Object {
           "className": Array [
-            "euiCodeBlock__lineNumber",
+            "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
           "style": Object {
@@ -946,6 +955,7 @@ Array [
             "properties": Object {
               "aria-hidden": true,
               "className": Array [
+                "euiCodeBlock__lineNumber",
                 "css-19pu25o-euiCodeBlock__lineNumber",
               ],
               "data-line-number": 1,
@@ -956,7 +966,7 @@ Array [
         ],
         "properties": Object {
           "className": Array [
-            "euiCodeBlock__lineNumber",
+            "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
           "style": Object {
@@ -1024,6 +1034,7 @@ Array [
             "properties": Object {
               "aria-hidden": true,
               "className": Array [
+                "euiCodeBlock__lineNumber",
                 "css-19pu25o-euiCodeBlock__lineNumber",
               ],
               "data-line-number": 2,
@@ -1034,7 +1045,7 @@ Array [
         ],
         "properties": Object {
           "className": Array [
-            "euiCodeBlock__lineNumber",
+            "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
           "style": Object {
@@ -1174,6 +1185,7 @@ Array [
             "properties": Object {
               "aria-hidden": true,
               "className": Array [
+                "euiCodeBlock__lineNumber",
                 "css-19pu25o-euiCodeBlock__lineNumber",
               ],
               "data-line-number": 3,
@@ -1184,7 +1196,7 @@ Array [
         ],
         "properties": Object {
           "className": Array [
-            "euiCodeBlock__lineNumber",
+            "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
           "style": Object {
@@ -1445,6 +1457,7 @@ exports[`shared utils nodeToHtml handles rendering custom annotation types 1`] =
     key="node-0-0"
   >
     <EuiCodeBlockAnnotation
+      className="euiCodeBlock__lineAnnotation"
       key="0"
       lineNumber={3}
     >

@@ -80,8 +80,12 @@ export const nodeToHtml = (
         children.map((el, i) =>
           // @ts-ignore - using a custom type here to handle JSX annotations
           el.type === 'annotation' ? (
-            // @ts-ignore - custom keys are passed by annotationElement below
-            <EuiCodeBlockAnnotation lineNumber={el.lineNumber} children={el.annotation} key={i} /> // prettier-ignore
+            <EuiCodeBlockAnnotation
+              className="euiCodeBlock__lineAnnotation"
+              lineNumber={(el as any).lineNumber}
+              children={(el as any).annotation}
+              key={i}
+            />
           ) : (
             nodeToHtml(el, i, nodes, depth + 1)
           )
@@ -237,7 +241,10 @@ function wrapLines(
         tagName: 'span',
         properties: {
           style: { inlineSize: width },
-          className: ['euiCodeBlock__lineNumber', lineNumberWrapperStyles],
+          className: [
+            'euiCodeBlock__lineNumberWrapper',
+            lineNumberWrapperStyles,
+          ],
         },
         children: [],
       };
@@ -248,7 +255,7 @@ function wrapLines(
         type: 'element',
         tagName: 'span',
         properties: {
-          className: [lineNumberStyles],
+          className: ['euiCodeBlock__lineNumber', lineNumberStyles],
           ['data-line-number']: lineNumber,
           ['aria-hidden']: true,
         },
