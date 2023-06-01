@@ -32,6 +32,8 @@ export const useCopy = ({
         // Normalize line terminations to match native JS format
         ?.replace(NEW_LINE_REGEX_GLOBAL, '\n')
         // Reduce two or more consecutive new line characters to a single one
+        // This is needed primarily because of how syntax highlighting
+        // generated DOM elements affect `innerText` output.
         .replace(/\n{2,}/g, '\n') || '',
     [_innerText]
   );
