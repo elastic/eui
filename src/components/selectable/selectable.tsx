@@ -691,33 +691,46 @@ export class EuiSelectable<T = {}> extends Component<
       Object.keys(searchAccessibleName).length
     );
     const search = searchable ? (
-      <>
-        <EuiSelectableSearch<T>
-          aria-describedby="aaa"
-          key="listSearch"
-          options={options}
-          value={searchValue}
-          onChange={this.onSearchChange}
-          listId={this.optionsListRef.current ? this.listId : undefined} // Only pass the listId if it exists on the page
-          aria-activedescendant={this.makeOptionId(activeOptionIndex)} // the current faux-focused option
-          placeholder={'aaaa'}
-          isPreFiltered={isPreFiltered ?? false}
-          inputRef={(node) => {
-            this.inputRef = node;
-            searchProps?.inputRef?.(node);
-          }}
-          {...(searchHasAccessibleName
-            ? searchAccessibleName
-            : { 'aria-label': 'aaaa' })}
-          {...cleanedSearchProps}
-        />
+      <EuiI18n
+        tokens={[
+          'euiSelectable.screenReaderInstructions',
+          'euiSelectable.placeholderName',
+        ]}
+        defaults={[
+          'Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.',
+          'Filter options',
+        ]}
+      >
+        {([screenReaderInstructions, placeholderName]: string[]) => (
+          <>
+            <EuiSelectableSearch<T>
+              aria-describedby={listAriaDescribedbyId}
+              key="listSearch"
+              options={options}
+              value={searchValue}
+              onChange={this.onSearchChange}
+              listId={this.optionsListRef.current ? this.listId : undefined} // Only pass the listId if it exists on the page
+              aria-activedescendant={this.makeOptionId(activeOptionIndex)} // the current faux-focused option
+              placeholder={placeholderName}
+              isPreFiltered={isPreFiltered ?? false}
+              inputRef={(node) => {
+                this.inputRef = node;
+                searchProps?.inputRef?.(node);
+              }}
+              {...(searchHasAccessibleName
+                ? searchAccessibleName
+                : { 'aria-label': placeholderName })}
+              {...cleanedSearchProps}
+            />
 
-        <EuiScreenReaderOnly>
-          <p id="aaa">
-            {selectableScreenReaderText} aaaaaaa
-          </p>
-        </EuiScreenReaderOnly>
-      </>
+            <EuiScreenReaderOnly>
+              <p id={listAriaDescribedbyId}>
+                {selectableScreenReaderText} {screenReaderInstructions}
+              </p>
+            </EuiScreenReaderOnly>
+          </>
+        )}
+      </EuiI18n>
     ) : undefined;
 
     const resultsLength = visibleOptions.filter(
