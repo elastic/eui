@@ -21,16 +21,6 @@ import React from 'react';
 
 import { EuiCodeBlock } from './code_block';
 
-const codeBlockContent = `"OriginLocation": [
-  {
-    "coordinates": [
-      -97.43309784,
-      37.64989853
-    ],
-    "type": "Point"
-  }
-],`;
-
 describe('EuiCodeBlock copy UX', () => {
   beforeEach(() => {
     // Clipboard permissions are required for copy behavior to work in non-Electron browsers
@@ -46,6 +36,17 @@ describe('EuiCodeBlock copy UX', () => {
     );
   });
 
+  // NOTE: Clipboard content is naturally preserved between tests. Use this utility
+  // or custom content to generate different text per test & ensure no false positives
+  const generateCodeBlockContent = () =>
+    Cypress.currentTest.title
+      .split(' ')
+      .map((text, i) => {
+        const indentation = ' '.repeat(i * 2);
+        return `${indentation}${text}`;
+      })
+      .join('\n');
+
   const assertClipboardContentEquals = (expectedText: string) => {
     cy.window()
       .its('navigator.clipboard')
@@ -56,15 +57,18 @@ describe('EuiCodeBlock copy UX', () => {
   };
 
   it('correctly copies content', () => {
-    cy.realMount(<EuiCodeBlock isCopyable>{codeBlockContent}</EuiCodeBlock>);
+    cy.realMount(
+      <EuiCodeBlock isCopyable>{Cypress.currentTest.title}</EuiCodeBlock>
+    );
 
     cy.get('[data-test-subj="euiCodeBlockCopy"]').realClick();
-    assertClipboardContentEquals(codeBlockContent);
+    assertClipboardContentEquals(Cypress.currentTest.title);
   });
 
   it('correctly copies virtualized content', () => {
+    const codeBlockContent = generateCodeBlockContent();
     cy.realMount(
-      <EuiCodeBlock isCopyable isVirtualized={true} overflowHeight="50%">
+      <EuiCodeBlock isCopyable isVirtualized={true} overflowHeight="10px">
         {codeBlockContent}
       </EuiCodeBlock>
     );
@@ -74,6 +78,7 @@ describe('EuiCodeBlock copy UX', () => {
   });
 
   it('correctly copies content with line numbers and annotations', () => {
+    const codeBlockContent = generateCodeBlockContent();
     cy.realMount(
       <EuiCodeBlock
         isCopyable
@@ -92,5 +97,16 @@ describe('EuiCodeBlock copy UX', () => {
 
     cy.get('[data-test-subj="euiCodeBlockCopy"]').realClick();
     assertClipboardContentEquals(codeBlockContent);
+  });
+
+  // Regression test for https://github.com/elastic/eui/issues/6585
+  it('correctly copies lines ending in question marks', () => {
+    const questionContent = 'hello?\nworld??';
+    cy.realMount(<EuiCodeBlock isCopyable>{questionContent}</EuiCodeBlock>);
+
+    cy.get('[data-test-subj="euiCodeBlockCopy"]').realClick();
+    // TODO: Remove incorrect assertion and uncomment correct assertion once bug is fixed
+    assertClipboardContentEquals('hello\n\nworld');
+    // assertClipboardContentEquals(questionContent);
   });
 });
