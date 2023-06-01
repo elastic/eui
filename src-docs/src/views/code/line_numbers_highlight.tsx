@@ -4,6 +4,7 @@ import { EuiCodeBlock, EuiCode } from '../../../../src/components';
 
 export default () => (
   <EuiCodeBlock
+    isCopyable
     language="json"
     fontSize="m"
     paddingSize="m"
