@@ -58,6 +58,12 @@ export const euiCodeBlockLineStyles = (euiThemeContext: UseEuiTheme) => {
         color: ${euiTheme.colors.subduedText};
         text-align: end;
         display: block;
+
+        // Note: This must use a CSS pseudo element to print the line number
+        // to prevent line numbers from being copied as text
+        &::before {
+          content: attr(data-line-number);
+        }
       `,
     },
   };

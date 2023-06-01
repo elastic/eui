@@ -237,7 +237,6 @@ function wrapLines(
         tagName: 'span',
         properties: {
           style: { inlineSize: width },
-          ['data-line-number']: lineNumber,
           className: ['euiCodeBlock__lineNumber', lineNumberWrapperStyles],
         },
         children: [],
@@ -250,9 +249,10 @@ function wrapLines(
         tagName: 'span',
         properties: {
           className: [lineNumberStyles],
+          ['data-line-number']: lineNumber,
           ['aria-hidden']: true,
         },
-        children: [{ type: 'text', value: String(lineNumber) }],
+        children: [],
       };
       lineNumberWrapperElement.children.push(lineNumberElement);
 
