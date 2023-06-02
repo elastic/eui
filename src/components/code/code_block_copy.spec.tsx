@@ -105,8 +105,6 @@ describe('EuiCodeBlock copy UX', () => {
     cy.realMount(<EuiCodeBlock isCopyable>{questionContent}</EuiCodeBlock>);
 
     cy.get('[data-test-subj="euiCodeBlockCopy"]').realClick();
-    // TODO: Remove incorrect assertion and uncomment correct assertion once bug is fixed
-    assertClipboardContentEquals('hello\n\nworld');
-    // assertClipboardContentEquals(questionContent);
+    assertClipboardContentEquals(questionContent);
   });
 });
