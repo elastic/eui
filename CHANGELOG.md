@@ -1,3 +1,11 @@
+## [`77.1.5`](https://github.com/elastic/eui/tree/v77.1.5)
+
+**Bug fixes**
+
+- Fixed `EuiCodeBlock` potentially incorrectly ignoring lines ending with a question mark when using the Copy button. ([#6794](https://github.com/elastic/eui/pull/6794))
+- Fixed `EuiCodeBlock` to not include line numbers when copying content ([#6824](https://github.com/elastic/eui/pull/6824))
+- Fixed the expanded row animation on `EuiBasicTable` causing cross-browser Safari issues ([#6826](https://github.com/elastic/eui/pull/6826))
+
 ## [`77.1.4`](https://github.com/elastic/eui/tree/v77.1.4)
 
 - Updated `EuiDataGrid` to only render screen reader text announcing cell position if the cell is currently focused. This should improve the ability to copy and paste multiple cells without SR text. ([#6817](https://github.com/elastic/eui/pull/6817))
