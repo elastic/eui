@@ -12,6 +12,7 @@ import {
   EuiHealth,
   EuiDescriptionList,
   EuiScreenReaderOnly,
+  EuiCodeBlock,
 } from '../../../../../src/components';
 
 type User = {
@@ -119,9 +120,12 @@ export default () => {
           description: <EuiHealth color={color}>{label}</EuiHealth>,
         },
       ];
-      itemIdToExpandedRowMapValues[user.id] = (
-        <EuiDescriptionList listItems={listItems} />
-      );
+      itemIdToExpandedRowMapValues[user.id] =
+        user.id % 2 === 0 ? (
+          <EuiCodeBlock isCopyable>Test 1 2 3</EuiCodeBlock>
+        ) : (
+          <EuiDescriptionList listItems={listItems} />
+        );
     }
     setItemIdToExpandedRowMap(itemIdToExpandedRowMapValues);
   };
