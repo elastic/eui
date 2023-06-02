@@ -230,7 +230,7 @@
 // This adds a quick pop in animation, but does not attempt to animate to height auto
 // - down that road dragons lie. @see https://github.com/elastic/eui/issues/6770
 .euiTableRow-isExpandedRow .euiTableCellContent {
-  animation: $euiAnimSpeedFast $euiAnimSlightBounce 1 normal none growExpandedRow;
+  animation: $euiAnimSpeedFast $euiAnimSlightResistance 1 normal none growExpandedRow;
 }
 
 @keyframes growExpandedRow {
