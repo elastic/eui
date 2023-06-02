@@ -45,6 +45,7 @@ export const useCopy = ({
               iconType="copyClipboard"
               color="text"
               aria-label={copyAriaLabel}
+              data-test-subj="euiCodeBlockCopy"
             />
           )}
         </EuiCopy>

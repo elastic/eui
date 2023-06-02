@@ -114,18 +114,16 @@ exports[`EuiCodeBlock line numbers renders annotated line numbers 1`] = `
         class="euiCodeBlock__line emotion-euiCodeBlock__line-hasLineNumbers"
       >
         <span
-          class="euiCodeBlock__lineNumber emotion-euiCodeBlock__lineNumberWrapper"
-          data-line-number="1"
+          class="euiCodeBlock__lineNumberWrapper emotion-euiCodeBlock__lineNumberWrapper"
           style="inline-size:8px"
         >
           <span
             aria-hidden="true"
-            class="emotion-euiCodeBlock__lineNumber"
-          >
-            1
-          </span>
+            class="euiCodeBlock__lineNumber emotion-euiCodeBlock__lineNumber"
+            data-line-number="1"
+          />
           <div
-            class="euiPopover emotion-euiPopover-euiCodeBlockAnnotation"
+            class="euiPopover euiCodeBlock__lineAnnotation emotion-euiPopover-euiCodeBlockAnnotation"
           >
             <div
               class="euiPopover__anchor css-16vtueo-render"
@@ -154,16 +152,14 @@ exports[`EuiCodeBlock line numbers renders annotated line numbers 1`] = `
         class="euiCodeBlock__line emotion-euiCodeBlock__line-hasLineNumbers"
       >
         <span
-          class="euiCodeBlock__lineNumber emotion-euiCodeBlock__lineNumberWrapper"
-          data-line-number="2"
+          class="euiCodeBlock__lineNumberWrapper emotion-euiCodeBlock__lineNumberWrapper"
           style="inline-size:8px"
         >
           <span
             aria-hidden="true"
-            class="emotion-euiCodeBlock__lineNumber"
-          >
-            2
-          </span>
+            class="euiCodeBlock__lineNumber emotion-euiCodeBlock__lineNumber"
+            data-line-number="2"
+          />
         </span>
         <span
           class="euiCodeBlock__lineText emotion-euiCodeBlock__lineText"
@@ -194,16 +190,14 @@ exports[`EuiCodeBlock line numbers renders highlighted line numbers 1`] = `
         class="euiCodeBlock__line emotion-euiCodeBlock__line-hasLineNumbers"
       >
         <span
-          class="euiCodeBlock__lineNumber emotion-euiCodeBlock__lineNumberWrapper"
-          data-line-number="1"
+          class="euiCodeBlock__lineNumberWrapper emotion-euiCodeBlock__lineNumberWrapper"
           style="inline-size:8px"
         >
           <span
             aria-hidden="true"
-            class="emotion-euiCodeBlock__lineNumber"
-          >
-            1
-          </span>
+            class="euiCodeBlock__lineNumber emotion-euiCodeBlock__lineNumber"
+            data-line-number="1"
+          />
         </span>
         <span
           class="euiCodeBlock__lineText emotion-euiCodeBlock__lineText-isHighlighted"
@@ -216,16 +210,14 @@ exports[`EuiCodeBlock line numbers renders highlighted line numbers 1`] = `
         class="euiCodeBlock__line emotion-euiCodeBlock__line-hasLineNumbers"
       >
         <span
-          class="euiCodeBlock__lineNumber emotion-euiCodeBlock__lineNumberWrapper"
-          data-line-number="2"
+          class="euiCodeBlock__lineNumberWrapper emotion-euiCodeBlock__lineNumberWrapper"
           style="inline-size:8px"
         >
           <span
             aria-hidden="true"
-            class="emotion-euiCodeBlock__lineNumber"
-          >
-            2
-          </span>
+            class="euiCodeBlock__lineNumber emotion-euiCodeBlock__lineNumber"
+            data-line-number="2"
+          />
         </span>
         <span
           class="euiCodeBlock__lineText emotion-euiCodeBlock__lineText"
@@ -256,16 +248,14 @@ exports[`EuiCodeBlock line numbers renders line numbers 1`] = `
         class="euiCodeBlock__line emotion-euiCodeBlock__line-hasLineNumbers"
       >
         <span
-          class="euiCodeBlock__lineNumber emotion-euiCodeBlock__lineNumberWrapper"
-          data-line-number="1"
+          class="euiCodeBlock__lineNumberWrapper emotion-euiCodeBlock__lineNumberWrapper"
           style="inline-size:8px"
         >
           <span
             aria-hidden="true"
-            class="emotion-euiCodeBlock__lineNumber"
-          >
-            1
-          </span>
+            class="euiCodeBlock__lineNumber emotion-euiCodeBlock__lineNumber"
+            data-line-number="1"
+          />
         </span>
         <span
           class="euiCodeBlock__lineText emotion-euiCodeBlock__lineText"
@@ -278,16 +268,14 @@ exports[`EuiCodeBlock line numbers renders line numbers 1`] = `
         class="euiCodeBlock__line emotion-euiCodeBlock__line-hasLineNumbers"
       >
         <span
-          class="euiCodeBlock__lineNumber emotion-euiCodeBlock__lineNumberWrapper"
-          data-line-number="2"
+          class="euiCodeBlock__lineNumberWrapper emotion-euiCodeBlock__lineNumberWrapper"
           style="inline-size:8px"
         >
           <span
             aria-hidden="true"
-            class="emotion-euiCodeBlock__lineNumber"
-          >
-            2
-          </span>
+            class="euiCodeBlock__lineNumber emotion-euiCodeBlock__lineNumber"
+            data-line-number="2"
+          />
         </span>
         <span
           class="euiCodeBlock__lineText emotion-euiCodeBlock__lineText"
@@ -318,16 +306,14 @@ exports[`EuiCodeBlock line numbers renders line numbers with a start value 1`] =
         class="euiCodeBlock__line emotion-euiCodeBlock__line-hasLineNumbers"
       >
         <span
-          class="euiCodeBlock__lineNumber emotion-euiCodeBlock__lineNumberWrapper"
-          data-line-number="10"
+          class="euiCodeBlock__lineNumberWrapper emotion-euiCodeBlock__lineNumberWrapper"
           style="inline-size:16px"
         >
           <span
             aria-hidden="true"
-            class="emotion-euiCodeBlock__lineNumber"
-          >
-            10
-          </span>
+            class="euiCodeBlock__lineNumber emotion-euiCodeBlock__lineNumber"
+            data-line-number="10"
+          />
         </span>
         <span
           class="euiCodeBlock__lineText emotion-euiCodeBlock__lineText"
@@ -340,16 +326,14 @@ exports[`EuiCodeBlock line numbers renders line numbers with a start value 1`] =
         class="euiCodeBlock__line emotion-euiCodeBlock__line-hasLineNumbers"
       >
         <span
-          class="euiCodeBlock__lineNumber emotion-euiCodeBlock__lineNumberWrapper"
-          data-line-number="11"
+          class="euiCodeBlock__lineNumberWrapper emotion-euiCodeBlock__lineNumberWrapper"
           style="inline-size:16px"
         >
           <span
             aria-hidden="true"
-            class="emotion-euiCodeBlock__lineNumber"
-          >
-            11
-          </span>
+            class="euiCodeBlock__lineNumber emotion-euiCodeBlock__lineNumber"
+            data-line-number="11"
+          />
         </span>
         <span
           class="euiCodeBlock__lineText emotion-euiCodeBlock__lineText"
