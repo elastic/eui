@@ -7,17 +7,14 @@ Array [
       Object {
         "children": Array [
           Object {
-            "children": Array [
-              Object {
-                "type": "text",
-                "value": "1",
-              },
-            ],
+            "children": Array [],
             "properties": Object {
               "aria-hidden": true,
               "className": Array [
-                "css-5u6z3m-euiCodeBlock__lineNumber",
+                "euiCodeBlock__lineNumber",
+                "css-19pu25o-euiCodeBlock__lineNumber",
               ],
+              "data-line-number": 1,
             },
             "tagName": "span",
             "type": "element",
@@ -25,10 +22,9 @@ Array [
         ],
         "properties": Object {
           "className": Array [
-            "euiCodeBlock__lineNumber",
+            "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
-          "data-line-number": 1,
           "style": Object {
             "inlineSize": 8,
           },
@@ -90,17 +86,14 @@ Array [
       Object {
         "children": Array [
           Object {
-            "children": Array [
-              Object {
-                "type": "text",
-                "value": "2",
-              },
-            ],
+            "children": Array [],
             "properties": Object {
               "aria-hidden": true,
               "className": Array [
-                "css-5u6z3m-euiCodeBlock__lineNumber",
+                "euiCodeBlock__lineNumber",
+                "css-19pu25o-euiCodeBlock__lineNumber",
               ],
+              "data-line-number": 2,
             },
             "tagName": "span",
             "type": "element",
@@ -108,10 +101,9 @@ Array [
         ],
         "properties": Object {
           "className": Array [
-            "euiCodeBlock__lineNumber",
+            "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
-          "data-line-number": 2,
           "style": Object {
             "inlineSize": 8,
           },
@@ -245,17 +237,14 @@ Array [
       Object {
         "children": Array [
           Object {
-            "children": Array [
-              Object {
-                "type": "text",
-                "value": "3",
-              },
-            ],
+            "children": Array [],
             "properties": Object {
               "aria-hidden": true,
               "className": Array [
-                "css-5u6z3m-euiCodeBlock__lineNumber",
+                "euiCodeBlock__lineNumber",
+                "css-19pu25o-euiCodeBlock__lineNumber",
               ],
+              "data-line-number": 3,
             },
             "tagName": "span",
             "type": "element",
@@ -263,10 +252,9 @@ Array [
         ],
         "properties": Object {
           "className": Array [
-            "euiCodeBlock__lineNumber",
+            "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
-          "data-line-number": 3,
           "style": Object {
             "inlineSize": 8,
           },
@@ -332,17 +320,14 @@ Array [
       Object {
         "children": Array [
           Object {
-            "children": Array [
-              Object {
-                "type": "text",
-                "value": "10",
-              },
-            ],
+            "children": Array [],
             "properties": Object {
               "aria-hidden": true,
               "className": Array [
-                "css-5u6z3m-euiCodeBlock__lineNumber",
+                "euiCodeBlock__lineNumber",
+                "css-19pu25o-euiCodeBlock__lineNumber",
               ],
+              "data-line-number": 10,
             },
             "tagName": "span",
             "type": "element",
@@ -350,10 +335,9 @@ Array [
         ],
         "properties": Object {
           "className": Array [
-            "euiCodeBlock__lineNumber",
+            "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
-          "data-line-number": 10,
           "style": Object {
             "inlineSize": 16,
           },
@@ -415,17 +399,14 @@ Array [
       Object {
         "children": Array [
           Object {
-            "children": Array [
-              Object {
-                "type": "text",
-                "value": "11",
-              },
-            ],
+            "children": Array [],
             "properties": Object {
               "aria-hidden": true,
               "className": Array [
-                "css-5u6z3m-euiCodeBlock__lineNumber",
+                "euiCodeBlock__lineNumber",
+                "css-19pu25o-euiCodeBlock__lineNumber",
               ],
+              "data-line-number": 11,
             },
             "tagName": "span",
             "type": "element",
@@ -433,10 +414,9 @@ Array [
         ],
         "properties": Object {
           "className": Array [
-            "euiCodeBlock__lineNumber",
+            "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
-          "data-line-number": 11,
           "style": Object {
             "inlineSize": 16,
           },
@@ -570,17 +550,14 @@ Array [
       Object {
         "children": Array [
           Object {
-            "children": Array [
-              Object {
-                "type": "text",
-                "value": "12",
-              },
-            ],
+            "children": Array [],
             "properties": Object {
               "aria-hidden": true,
               "className": Array [
-                "css-5u6z3m-euiCodeBlock__lineNumber",
+                "euiCodeBlock__lineNumber",
+                "css-19pu25o-euiCodeBlock__lineNumber",
               ],
+              "data-line-number": 12,
             },
             "tagName": "span",
             "type": "element",
@@ -588,10 +565,9 @@ Array [
         ],
         "properties": Object {
           "className": Array [
-            "euiCodeBlock__lineNumber",
+            "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
-          "data-line-number": 12,
           "style": Object {
             "inlineSize": 16,
           },
@@ -657,17 +633,14 @@ Array [
       Object {
         "children": Array [
           Object {
-            "children": Array [
-              Object {
-                "type": "text",
-                "value": "1",
-              },
-            ],
+            "children": Array [],
             "properties": Object {
               "aria-hidden": true,
               "className": Array [
-                "css-5u6z3m-euiCodeBlock__lineNumber",
+                "euiCodeBlock__lineNumber",
+                "css-19pu25o-euiCodeBlock__lineNumber",
               ],
+              "data-line-number": 1,
             },
             "tagName": "span",
             "type": "element",
@@ -680,10 +653,9 @@ Array [
         ],
         "properties": Object {
           "className": Array [
-            "euiCodeBlock__lineNumber",
+            "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
-          "data-line-number": 1,
           "style": Object {
             "inlineSize": 8,
           },
@@ -745,17 +717,14 @@ Array [
       Object {
         "children": Array [
           Object {
-            "children": Array [
-              Object {
-                "type": "text",
-                "value": "2",
-              },
-            ],
+            "children": Array [],
             "properties": Object {
               "aria-hidden": true,
               "className": Array [
-                "css-5u6z3m-euiCodeBlock__lineNumber",
+                "euiCodeBlock__lineNumber",
+                "css-19pu25o-euiCodeBlock__lineNumber",
               ],
+              "data-line-number": 2,
             },
             "tagName": "span",
             "type": "element",
@@ -763,10 +732,9 @@ Array [
         ],
         "properties": Object {
           "className": Array [
-            "euiCodeBlock__lineNumber",
+            "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
-          "data-line-number": 2,
           "style": Object {
             "inlineSize": 8,
           },
@@ -900,17 +868,14 @@ Array [
       Object {
         "children": Array [
           Object {
-            "children": Array [
-              Object {
-                "type": "text",
-                "value": "3",
-              },
-            ],
+            "children": Array [],
             "properties": Object {
               "aria-hidden": true,
               "className": Array [
-                "css-5u6z3m-euiCodeBlock__lineNumber",
+                "euiCodeBlock__lineNumber",
+                "css-19pu25o-euiCodeBlock__lineNumber",
               ],
+              "data-line-number": 3,
             },
             "tagName": "span",
             "type": "element",
@@ -918,10 +883,9 @@ Array [
         ],
         "properties": Object {
           "className": Array [
-            "euiCodeBlock__lineNumber",
+            "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
-          "data-line-number": 3,
           "style": Object {
             "inlineSize": 8,
           },
@@ -987,17 +951,14 @@ Array [
       Object {
         "children": Array [
           Object {
-            "children": Array [
-              Object {
-                "type": "text",
-                "value": "1",
-              },
-            ],
+            "children": Array [],
             "properties": Object {
               "aria-hidden": true,
               "className": Array [
-                "css-5u6z3m-euiCodeBlock__lineNumber",
+                "euiCodeBlock__lineNumber",
+                "css-19pu25o-euiCodeBlock__lineNumber",
               ],
+              "data-line-number": 1,
             },
             "tagName": "span",
             "type": "element",
@@ -1005,10 +966,9 @@ Array [
         ],
         "properties": Object {
           "className": Array [
-            "euiCodeBlock__lineNumber",
+            "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
-          "data-line-number": 1,
           "style": Object {
             "inlineSize": 8,
           },
@@ -1070,17 +1030,14 @@ Array [
       Object {
         "children": Array [
           Object {
-            "children": Array [
-              Object {
-                "type": "text",
-                "value": "2",
-              },
-            ],
+            "children": Array [],
             "properties": Object {
               "aria-hidden": true,
               "className": Array [
-                "css-5u6z3m-euiCodeBlock__lineNumber",
+                "euiCodeBlock__lineNumber",
+                "css-19pu25o-euiCodeBlock__lineNumber",
               ],
+              "data-line-number": 2,
             },
             "tagName": "span",
             "type": "element",
@@ -1088,10 +1045,9 @@ Array [
         ],
         "properties": Object {
           "className": Array [
-            "euiCodeBlock__lineNumber",
+            "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
-          "data-line-number": 2,
           "style": Object {
             "inlineSize": 8,
           },
@@ -1225,17 +1181,14 @@ Array [
       Object {
         "children": Array [
           Object {
-            "children": Array [
-              Object {
-                "type": "text",
-                "value": "3",
-              },
-            ],
+            "children": Array [],
             "properties": Object {
               "aria-hidden": true,
               "className": Array [
-                "css-5u6z3m-euiCodeBlock__lineNumber",
+                "euiCodeBlock__lineNumber",
+                "css-19pu25o-euiCodeBlock__lineNumber",
               ],
+              "data-line-number": 3,
             },
             "tagName": "span",
             "type": "element",
@@ -1243,10 +1196,9 @@ Array [
         ],
         "properties": Object {
           "className": Array [
-            "euiCodeBlock__lineNumber",
+            "euiCodeBlock__lineNumberWrapper",
             "css-wlfghs-euiCodeBlock__lineNumberWrapper",
           ],
-          "data-line-number": 3,
           "style": Object {
             "inlineSize": 8,
           },
@@ -1505,6 +1457,7 @@ exports[`shared utils nodeToHtml handles rendering custom annotation types 1`] =
     key="node-0-0"
   >
     <EuiCodeBlockAnnotation
+      className="euiCodeBlock__lineAnnotation"
       key="0"
       lineNumber={3}
     >
