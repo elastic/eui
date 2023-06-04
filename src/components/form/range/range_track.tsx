@@ -93,9 +93,7 @@ export const EuiRangeTrack: FunctionComponent<EuiRangeTrackProps> = ({
 
     // Error out if there are too many ticks to render
     if (sequence.length > 20) {
-      throw new Error(
-        `The number of ticks to render is too high (${sequence.length}), reduce the interval.`
-      );
+      console.warn(`The number of ticks to render is too high (${sequence.length}), reduce the interval.`)
     }
 
     return sequence;
