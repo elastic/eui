@@ -145,12 +145,12 @@ export interface EuiTableActionsColumnType<T> {
   width?: string;
 }
 
-export interface EuiTableSortingType<T> {
+export interface EuiTableSortingType<T, K extends keyof any = keyof T> {
   /**
    * Indicates the property/field to sort on
    */
   sort?: {
-    field: keyof T;
+    field: K;
     direction: 'asc' | 'desc';
   };
   /**
