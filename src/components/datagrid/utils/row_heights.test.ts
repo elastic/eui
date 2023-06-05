@@ -97,6 +97,10 @@ describe('RowHeightUtils', () => {
           34
         );
       });
+
+      it('should use default height for rowIndex 0 and autoHeight', () => {
+        expect(rowHeightUtils.getCalculatedHeight('auto', 34, 0)).toEqual(34);
+      });
     });
 
     describe('lineCounts', () => {
@@ -139,7 +143,7 @@ describe('RowHeightUtils', () => {
       });
 
       it('gets the max height for the current row from the heights cache', () => {
-        expect(rowHeightUtils.getCalculatedHeight('auto', 34, 1)).toEqual(0); // 0 is expected since the cache is empty
+        expect(rowHeightUtils.getCalculatedHeight('auto', 34, 1)).toEqual(34); // 0 is expected since the cache is empty
         expect(getRowHeightSpy).toHaveBeenCalled();
       });
 

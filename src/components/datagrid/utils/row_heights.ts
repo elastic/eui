@@ -81,8 +81,8 @@ export class RowHeightUtils {
       }
     }
 
-    if (heightOption === AUTO_HEIGHT && rowIndex != null) {
-      return this.getRowHeight(rowIndex);
+    if (heightOption === AUTO_HEIGHT && isNumber(rowIndex)) {
+      return this.getRowHeight(rowIndex) || defaultHeight;
     }
 
     return defaultHeight;
