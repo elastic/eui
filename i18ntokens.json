@@ -347,14 +347,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 26,
+        "line": 31,
         "column": 20,
-        "index": 1005
+        "index": 1138
       },
       "end": {
-        "line": 30,
+        "line": 35,
         "column": 3,
-        "index": 1141
+        "index": 1274
       }
     },
     "filepath": "src/components/code/code_block_annotations.tsx"
@@ -365,14 +365,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 36,
+        "line": 44,
         "column": 24,
-        "index": 1143
+        "index": 1519
       },
       "end": {
-        "line": 36,
+        "line": 44,
         "column": 67,
-        "index": 1186
+        "index": 1562
       }
     },
     "filepath": "src/components/code/code_block_copy.tsx"
