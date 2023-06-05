@@ -46,7 +46,7 @@ if (args.dry_run) {
 
   // run lint, unit, and e2e tests
   if (args.steps.indexOf('test') > -1) {
-    execSync('npm test-ci', execOptions);
+    execSync('npm run test-ci', execOptions);
   }
 
   // (trans|com)pile `src` into `lib` and `dist`
