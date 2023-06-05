@@ -1,3 +1,13 @@
+## [`81.3.0`](https://github.com/elastic/eui/tree/v81.3.0)
+
+- Added `timelineWithArrow` glyph to `EuiIcon` ([#6822](https://github.com/elastic/eui/pull/6822))
+
+**Bug fixes**
+
+- Fixed `EuiCodeBlock` potentially incorrectly ignoring lines ending with a question mark when using the Copy button. ([#6794](https://github.com/elastic/eui/pull/6794))
+- Fixed `EuiCodeBlock` to not include line numbers when copying content ([#6824](https://github.com/elastic/eui/pull/6824))
+- Fixed the expanded row animation on `EuiBasicTable` causing cross-browser Safari issues ([#6826](https://github.com/elastic/eui/pull/6826))
+
 ## [`81.2.0`](https://github.com/elastic/eui/tree/v81.2.0)
 
 - Updated `EuiSuperDatePicker` to accept an object configuration for `isDisabled` ([#6821](https://github.com/elastic/eui/pull/6821))
