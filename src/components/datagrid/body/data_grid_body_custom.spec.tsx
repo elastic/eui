@@ -146,7 +146,7 @@ describe('EuiDataGridBodyCustomRender', () => {
     ).contains('A,0');
 
     cy.get('[data-test-subj="dataGridHeaderCell-B"] button').click();
-    cy.contains('Hide column').click();
+    cy.contains('Hide column').click({ force: true });
 
     cy.get(
       '[data-gridcell-row-index="0"][data-gridcell-column-index="0"]'
