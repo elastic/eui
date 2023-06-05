@@ -155,7 +155,7 @@ export interface EuiPopoverProps extends CommonProps {
   /**
    * Object of props passed to EuiPanel. See #EuiPopoverPanelProps
    */
-  panelProps?: Omit<EuiPopoverPanelProps, 'style'>;
+  panelProps?: Omit<EuiPopoverPanelProps, 'style' | 'hasShadow' | 'hasBorder'>;
   panelRef?: RefCallback<HTMLElement | null>;
   /**
    * Optional screen reader instructions to announce upon popover open,
