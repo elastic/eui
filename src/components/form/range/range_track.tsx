@@ -63,6 +63,8 @@ export const EuiRangeTrack: FunctionComponent<EuiRangeTrackProps> = ({
     validateValueIsInStep(max, { min, max, step });
   }, [value, min, max, step]);
 
+  const [trackWidth, setTrackWidth] = useState(0);
+
   const tickSequence: number[] | undefined = useMemo(() => {
     if (showTicks !== true) return;
 
@@ -92,14 +94,12 @@ export const EuiRangeTrack: FunctionComponent<EuiRangeTrackProps> = ({
     }
 
     // Error out if there are too many ticks to render
-    if (sequence.length > 20) {
-      console.warn(
-        `The number of ticks to render (${sequence.length}) is potentially too high. Please ensure all ticks are visible on the page at multiple screen widths, and reduce the interval if not.`
-      );
+    if (trackWidth && sequence.length) {
+      validateTickRenderCount(trackWidth, sequence.length);
     }
 
     return sequence;
-  }, [showTicks, ticks, min, max, tickInterval, step]);
+  }, [showTicks, ticks, min, max, tickInterval, step, trackWidth]);
 
   const euiTheme = useEuiTheme();
   const styles = euiRangeTrackStyles(euiTheme);
@@ -109,8 +109,6 @@ export const EuiRangeTrack: FunctionComponent<EuiRangeTrackProps> = ({
     levels && !!levels.length && styles.hasLevels,
     showTicks && (tickSequence || ticks) && styles.hasTicks,
   ];
-
-  const [trackWidth, setTrackWidth] = useState(0);
 
   const classes = classNames('euiRangeTrack', className);
 
@@ -174,4 +172,20 @@ const validateValueIsInStep = (
   }
   // Return the value if nothing fails
   return value;
+};
+
+const validateTickRenderCount = (trackWidth: number, tickCount: number) => {
+  const tickWidth = trackWidth / tickCount;
+
+  // These widths are guesstimations - it's possible we should use actual label content/widths instead
+  const COMFORTABLE_TICK_WIDTH = 20; // Set a warning threshold before throwing
+  const MIN_TICK_WIDTH = 5; // If ticks are smaller than this, something's gone seriously wrong and we should throw
+
+  const message = `The number of ticks to render (${tickCount}) is too high for the range width. Ensure all ticks are visible on the page at multiple screen widths, or use EUI's breakpoint hook utilities to reduce the tick interval responsively.`;
+
+  if (tickWidth <= MIN_TICK_WIDTH) {
+    throw new Error(message);
+  } else if (tickWidth < COMFORTABLE_TICK_WIDTH) {
+    console.warn(message);
+  }
 };
