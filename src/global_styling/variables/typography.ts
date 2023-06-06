@@ -128,8 +128,7 @@ export interface _EuiThemeTitle {
 export type _EuiThemeFont = _EuiThemeFontBase & {
   scale: _EuiThemeFontScales;
   /**
-   * Reference:
-   * https://eui.elastic.co/#/theming/typography/values%23font-weight
+   * @see {@link https://eui.elastic.co/#/theming/typography/values%23font-weight | Reference} for more information
    */
   weight: _EuiThemeFontWeights;
   body: _EuiThemeBody;
