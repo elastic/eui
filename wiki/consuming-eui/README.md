@@ -57,13 +57,15 @@ As of April 2022 EUI is in the process of [migrating to Emotion JS for the CSS a
 import React from 'react';
 import '@elastic/eui/dist/eui_theme_light.css';
 
-import { EuiProvider } from '@elastic/eui';
+import { EuiProvider, EuiText } from '@elastic/eui';
 
-const MyApp = ({ Page }) => (
-  <EuiProvider colorMode="light">
-    <Page />
+const MyApp = () => (
+  <EuiProvider colorMode="${colorMode.toLowerCase()}">
+    <EuiText><p>Hello World!</p></EuiText>
   </EuiProvider>
 );
+
+export default MyApp;
 ```
 
 #### The recommended method to consume theming variables using Emotion
