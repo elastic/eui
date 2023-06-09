@@ -6,6 +6,9 @@
  * Side Public License, v 1.
  */
 
+/**
+ * - Default value: 16
+ */
 export type _EuiThemeBase = number;
 
 export const EuiThemeSizes = [
@@ -21,27 +24,27 @@ export const EuiThemeSizes = [
   'xxxxl',
 ] as const;
 
-export type _EuiThemeSize = typeof EuiThemeSizes[number];
+export type _EuiThemeSize = (typeof EuiThemeSizes)[number];
 
 export type _EuiThemeSizes = {
-  /** value: 2px */
+  /** - Default value: 2px */
   xxs: string;
-  /** value: 4px */
+  /** - Default value: 4px */
   xs: string;
-  /** value: 8px */
+  /** - Default value: 8px */
   s: string;
-  /** value: 12px */
+  /** - Default value: 12px */
   m: string;
-  /** value: 16px */
+  /** - Default value: 16px */
   base: string;
-  /** value: 24px */
+  /** - Default value: 24px */
   l: string;
-  /** value: 32px */
+  /** - Default value: 32px */
   xl: string;
-  /** value: 40px */
+  /** - Default value: 40px */
   xxl: string;
-  /** value: 48px */
+  /** - Default value: 48px */
   xxxl: string;
-  /** value: 64px */
+  /** - Default value: 64px */
   xxxxl: string;
 };
