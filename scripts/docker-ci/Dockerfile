@@ -5,7 +5,7 @@
 FROM node:16.19.1
 
 # See https://crbug.com/795759
-RUN apt-get update && apt-get install -yq libgconf-2-4
+RUN apt-get update && apt-get install -yq libgconf-2-4 && apt-get upgrade -y
 
 ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
 
@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y wget xvfb --no-install-recommends \
     && apt-get update \
     && apt-get install -y google-chrome-stable \
     --no-install-recommends \
+    && apt-get upgrade -y \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get purge --auto-remove -y curl \
     && rm -rf /src/*.deb
