@@ -3,13 +3,14 @@
 set -euo pipefail
 set +x
 
-VAULT_ACCOUNT=secret/gce/$GPROJECT/service-account/kibana
+VAULT_ACCOUNT=secret/ci/elastic-eui/bekitzur-kibana-service-account
+GITHUB_ACCOUNT=secret/ci/elastic-eui/kibanamachine
 
-export VAULT_TOKEN=$(vault write -field=token auth/approle/login role_id="$VAULT_ROLE_ID" secret_id="$VAULT_SECRET_ID")
+export GPROJECT=elastic-bekitzur
 export GCE_ACCOUNT=$(vault read -field=value $VAULT_ACCOUNT)
-export GITHUB_TOKEN=$(vault read -field=github_token secret/kibana-issues/dev/kibanamachine)
+export GITHUB_TOKEN=$(vault read -field=github_token $GITHUB_ACCOUNT)
 
-unset VAULT_ROLE_ID VAULT_SECRET_ID VAULT_ADDR VAULT_TOKEN VAULT_ACCOUNT
+unset VAULT_ACCOUNT GITHUB_ACCOUNT
 
 # Run EUI build/deploy script, set in the template parameter
 # Expects env: GPROJECT, GCE_ACCOUNT, GIT_BRANCH, GITHUB_TOKEN

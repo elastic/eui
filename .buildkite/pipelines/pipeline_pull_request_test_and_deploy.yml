@@ -2,9 +2,15 @@
 
 steps:
   - group: ":hammer_and_pick: Run tests and deploy docs on pull request"
-    key: "pull-request-test"
+    key: "EUI-job-pull-request"
     steps:
-      - command: ".buildkite/pipelines/pipeline_pull_request_test.yml"
-      - wait
-      - command: ".buildkite/pipelines/pipeline_pull_request_deploy.yml"
+      - trigger: "eui-pull-request-test"
+        label: ":hammer: EUI pull request test"
+        async: false
+      - trigger: "eui-pull-request-deploy-docs"
+        label: ":hammer: EUI pull request deploy docs"
+        async: false
+        build:
+          env:
+            GITHUB_BRANCH: "${BUILDKITE_REFSPEC}"
 
