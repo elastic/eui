@@ -17,7 +17,7 @@ export const EuiThemeFontSizeMeasurements = ['rem', 'px', 'em'] as const;
 export type _EuiThemeFontSizeMeasurement =
   (typeof EuiThemeFontSizeMeasurements)[number];
 
-  /*
+/*
  * Font scale
  */
 
