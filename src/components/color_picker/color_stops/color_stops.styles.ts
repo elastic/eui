@@ -42,6 +42,7 @@ export const euiColorStopsStyles = (euiThemeContext: UseEuiTheme) => {
       &:focus {
         outline: none;
       }
+
       &:focus-visible {
         .euiColorStops__track::after {
           box-shadow: 0 0 0 1px

@@ -85,6 +85,7 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
       &:is(a):focus {
         ${euiFocusRing(euiThemeContext, 'inset')}
       }
+
       &:is(button):focus {
         ${euiFocusRing(euiThemeContext, 'center')}
       }
