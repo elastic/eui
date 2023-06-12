@@ -2,10 +2,10 @@
 # https://github.com/zenato/docker-puppeteer/blob/master/Dockerfile
 
 # >=12.0 required (for cypress), but latest right now is 16.19.1
-FROM node:16.19.1
+FROM node:16.19.1-bullseye
 
 # See https://crbug.com/795759
-RUN apt-get update && apt-get install -yq libgconf-2-4 && apt-get upgrade -y
+RUN apt-get update && apt-get install -yq libgconf-2-4
 
 ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
 
