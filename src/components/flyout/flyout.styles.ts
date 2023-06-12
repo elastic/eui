@@ -59,12 +59,13 @@ export const euiFlyoutCloseButtonStyles = (euiThemeContext: UseEuiTheme) => {
       /* Match dropshadow */
       ${euiShadowXLarge(euiThemeContext)};
       /* Override the hover and focus transitions of buttons */
-      animation: none !important;
+      animation: none !important; /* stylelint-disable-line declaration-no-important */
     `,
     outsideSide: {
       // `transforms` pull in close buttons a little
       // `!important` is necessary here to override the hover/focus transitions of buttons
       right: css`
+        /* stylelint-disable declaration-no-important */
         ${logicalCSS('left', 0)}
 
         ${euiMaxBreakpoint(euiThemeContext, 'm')} {
@@ -73,8 +74,10 @@ export const euiFlyoutCloseButtonStyles = (euiThemeContext: UseEuiTheme) => {
         ${euiMinBreakpoint(euiThemeContext, 'm')} {
           transform: translateX(calc(-100% - ${euiTheme.size.l})) !important;
         }
+        /* stylelint-enable declaration-no-important */
       `,
       left: css`
+        /* stylelint-disable declaration-no-important */
         ${logicalCSS('right', 0)}
 
         ${euiMaxBreakpoint(euiThemeContext, 'm')} {
@@ -83,6 +86,7 @@ export const euiFlyoutCloseButtonStyles = (euiThemeContext: UseEuiTheme) => {
         ${euiMinBreakpoint(euiThemeContext, 'm')} {
           transform: translateX(calc(100% + ${euiTheme.size.l})) !important;
         }
+        /* stylelint-enable declaration-no-important */
       `,
     },
   };
@@ -157,7 +161,7 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
     push: css`
       clip-path: none;
       /* Don't animate on loading a docked nav */
-      animation-duration: 0s !important;
+      animation-duration: 0s !important; /* stylelint-disable-line declaration-no-important */
       /* Make sure the header shadows are above */
       z-index: ${Number(euiTheme.levels.flyout) - 1};
     `,

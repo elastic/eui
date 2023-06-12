@@ -73,10 +73,14 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     disabled: css`
+      /* stylelint-disable declaration-no-important */
+
       /* Using !important to override inline styles */
       color: ${euiButtonColor(euiThemeContext, 'disabled').color} !important;
       background-color: ${euiButtonColor(euiThemeContext, 'disabled')
         .backgroundColor} !important;
+
+      /* stylelint-enable declaration-no-important */
     `,
     // Hollow has a border and is mostly used for autocompleters.
     hollow: css`
@@ -148,7 +152,7 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
 
         .euiBadge__icon {
           /* Remove margins from icon itself so that focus state doesn't include that space */
-          margin: 0 !important;
+          margin: 0 !important; /* stylelint-disable-line declaration-no-important */
         }
       }`,
       right: css`

@@ -12,6 +12,7 @@ import { UseEuiTheme } from '../../../services';
 export const euiSkipLinkStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     euiSkipLink: css`
+      /* stylelint-disable declaration-no-important */
       transition: none !important;
 
       &:focus {

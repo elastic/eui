@@ -59,7 +59,7 @@ export const euiIconStyles = ({ euiTheme }: UseEuiTheme) => ({
     /* Really force all paths to inherit (specifically for logos) */
     *[fill],
     .euiIcon__fillNegative {
-      fill: currentColor !important;
+      fill: currentColor !important; /* stylelint-disable-line declaration-no-important */
     }
   `,
   primary: css`
@@ -77,7 +77,7 @@ export const euiIconStyles = ({ euiTheme }: UseEuiTheme) => ({
     /* Really force all paths to inherit (specifically for logos) */
     *[fill],
     .euiIcon__fillNegative {
-      fill: currentColor !important;
+      fill: currentColor !important; /* stylelint-disable-line declaration-no-important */
     }
   `,
   warning: css`
@@ -91,11 +91,11 @@ export const euiIconStyles = ({ euiTheme }: UseEuiTheme) => ({
   logoElasticOutline: css`
     /* Elastic logo specific colors */
     *[fill] {
-      fill: none !important;
+      fill: none !important; /* stylelint-disable-line declaration-no-important */
     }
 
     .outline {
-      fill: currentColor !important;
+      fill: currentColor !important; /* stylelint-disable-line declaration-no-important */
     }
   `,
   // Sizes

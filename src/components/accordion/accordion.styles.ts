@@ -95,10 +95,14 @@ export const euiAccordionIconButtonStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiAccordion__iconButton: css`
     flex-shrink: 0;
     ${logicalCSS('margin-right', euiTheme.size.xs)}
-    transform: rotate(0deg) !important;
+    transform: rotate(
+      0deg
+    ) !important; /* stylelint-disable-line declaration-no-important */
   `,
   isOpen: css`
-    transform: rotate(90deg) !important;
+    transform: rotate(
+      90deg
+    ) !important; /* stylelint-disable-line declaration-no-important */
   `,
   arrowRight: css`
     ${logicalCSS('margin-left', euiTheme.size.xs)}

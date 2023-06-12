@@ -181,7 +181,10 @@ export const euiCardStyles = (
         ${logicalCSS('top', '50%')};
         ${logicalCSS('left', '50%')};
         /* Important needed to override current Sass styles on .euiIcon */
-        transform: translate(-50%, calc(-50% + -${paddingAmount})) !important;
+        transform: translate(
+          -50%,
+          calc(-50% + -${paddingAmount})
+        ) !important; /* stylelint-disable-line declaration-no-important */
       `,
 
       layout: {
@@ -218,7 +221,7 @@ export const euiCardTextStyles = (euiThemeContext: UseEuiTheme) => {
       /* Progressive enhancement where we remove focus from text as
          it will be applied to the whole card instead */
       ${euiSupportsHas} {
-        outline: none !important;
+        outline: none !important; /* stylelint-disable-line declaration-no-important */
       }
     `,
 

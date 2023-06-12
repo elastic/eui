@@ -73,7 +73,8 @@ export const euiColorStopThumbPopoverStyles = (
       }
     `,
     isLoadingPanel: css`
-      visibility: hidden !important; /* Overrides a stateful class on EuiPopover -> EuiPanel */
+      /* Overrides a stateful class on EuiPopover -> EuiPanel */
+      visibility: hidden !important; /* stylelint-disable-line declaration-no-important */
     `,
     hasFocus: css`
       z-index: ${range.thumbZIndex};

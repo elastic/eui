@@ -46,10 +46,12 @@ export const euiModalStyles = (euiThemeContext: UseEuiTheme) => {
 
         /* The below importants are required to override any
            inline width/heights that consumers set via {style} */
+        /* stylelint-disable declaration-no-important */
         inline-size: 100vw !important;
         min-inline-size: 0 !important;
         max-inline-size: none !important;
         max-block-size: 100vh !important;
+        /* stylelint-enable declaration-no-important */
       }
 
       /* Remove the outline from the focusable container */
