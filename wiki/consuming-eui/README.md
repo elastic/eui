@@ -60,7 +60,7 @@ import '@elastic/eui/dist/eui_theme_light.css';
 import { EuiProvider, EuiText } from '@elastic/eui';
 
 const MyApp = () => (
-  <EuiProvider colorMode="${colorMode.toLowerCase()}">
+  <EuiProvider colorMode="light">
     <EuiText><p>Hello World!</p></EuiText>
   </EuiProvider>
 );
