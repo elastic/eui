@@ -44,9 +44,11 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       /* Resets */
+      /* stylelint-disable property-no-vendor-prefix */
       &::-webkit-slider-thumb {
         -webkit-appearance: none;
       }
+      /* stylelint-enable property-no-vendor-prefix */
 
       &:focus {
         outline: none;
