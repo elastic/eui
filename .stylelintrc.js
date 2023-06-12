@@ -128,6 +128,7 @@ module.exports = {
         'scss/at-rule-conditional-no-parentheses': null,
         'scss/double-slash-comment-empty-line-before': null,
         'scss/at-if-no-null': null,
+        'selector-not-notation': null, // Enforce comma notation for CSS-in-JS moving forward
       },
     },
     {

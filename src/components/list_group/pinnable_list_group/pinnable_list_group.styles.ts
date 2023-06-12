@@ -21,7 +21,7 @@ export const euiPinnableListGroupItemExtraActionStyles = ({
     `,
     // Variants
     pinned: css`
-      &:not(:hover):not(:focus) {
+      &:not(:hover, :focus) {
         color: ${makeHighContrastColor(euiTheme.colors.lightShade)(euiTheme)};
       }
     `,

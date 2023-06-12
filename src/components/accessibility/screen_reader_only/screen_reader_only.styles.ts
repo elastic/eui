@@ -38,7 +38,7 @@ export const euiScreenReaderOnlyStyles = (showOnFocus?: boolean) => ({
   euiScreenReaderOnly: showOnFocus
     ? css`
         /* The :active selector is necessary for Safari which removes :focus when a button is pressed */
-        &:not(:focus):not(:active):not(:focus-within) {
+        &:not(:focus, :active, :focus-within) {
           ${euiScreenReaderOnly()}
         }
       `
