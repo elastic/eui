@@ -33,7 +33,7 @@ const crossBrowserProgressValue = (cssProperties: string) => `
   }
 `;
 const indeterminateProgressValue = (cssProperties: string) => `
-  &:before {
+  &::before {
     ${cssProperties}
   }
 `;
@@ -113,7 +113,7 @@ export const euiProgressStyles = (
   // we apply this style to a <div> instead of a <progress> element.
   // See https://css-tricks.com/html5-progress-element/ for more info.
   indeterminate: css`
-    &:before {
+    &::before {
       position: absolute;
       content: '';
       ${logicalCSS('width', '100%')}

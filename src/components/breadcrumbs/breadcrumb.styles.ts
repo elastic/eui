@@ -41,7 +41,7 @@ export const euiBreadcrumbStyles = (euiThemeContext: UseEuiTheme) => {
     // Types
     page: css`
       &:not(:last-of-type) {
-        &:after {
+        &::after {
           background: ${euiTheme.colors.lightShade};
           content: '';
           flex-shrink: 0;
