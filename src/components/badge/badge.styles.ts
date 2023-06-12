@@ -29,7 +29,11 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalShorthandCSS('padding', `0 ${euiTheme.size.s}`)}
       ${logicalCSS('max-width', '100%')}
       font-size: ${euiFontSize(euiThemeContext, 'xs').fontSize};
-      line-height: ${euiTheme.base + 2}px; // Accounts for the border
+      line-height: ${mathWithUnits(
+        // Account for the border
+        [euiTheme.size.base, euiTheme.border.width.thin],
+        (x, y) => x + y * 2
+      )};
       font-weight: ${euiTheme.font.weight.medium};
       white-space: nowrap;
       text-decoration: none;
