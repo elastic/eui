@@ -4,7 +4,7 @@ exports[`EuiScreenReaderOnly adds an accessibility class to a child element and 
 <p
   class="foo bar emotion-euiScreenReaderOnly"
 >
-  This paragraph is not visibile to sighted users but will be read by screenreaders.
+  This paragraph is not visible to sighted users but will be read by screenreaders.
 </p>
 `;
 
@@ -12,13 +12,21 @@ exports[`EuiScreenReaderOnly adds an accessibility class to a child element when
 <p
   class="emotion-euiScreenReaderOnly"
 >
-  This paragraph is not visibile to sighted users but will be read by screenreaders.
+  This paragraph is not visible to sighted users but will be read by screenreaders.
 </p>
 `;
 
-exports[`EuiScreenReaderOnly will show on focus 1`] = `
+exports[`EuiScreenReaderOnly preventCopy 1`] = `
+<span
+  class="emotion-euiScreenReaderOnly-preventCopy"
+>
+  Text
+</span>
+`;
+
+exports[`EuiScreenReaderOnly showOnFocus 1`] = `
 <a
-  class="emotion-euiScreenReaderOnly"
+  class="emotion-euiScreenReaderOnly-showOnFocus"
   href="#"
 >
   Link

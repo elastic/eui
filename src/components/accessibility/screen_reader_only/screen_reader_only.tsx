@@ -18,20 +18,33 @@ export interface EuiScreenReaderOnlyProps {
    */
   children: ReactElement;
 
+  className?: string;
+
   /**
    * For keyboard navigation, force content to display visually upon focus/focus-within.
    */
   showOnFocus?: boolean;
-  className?: string;
+
+  /**
+   * Despite being visually hidden, text within `EuiScreenReaderOnly` will still
+   * be selectable and copyable. Set this to `true` if you do not want your
+   * screen reader text to be copied.
+   */
+  preventCopy?: boolean;
 }
 
 export const EuiScreenReaderOnly: FunctionComponent<
   EuiScreenReaderOnlyProps
-> = ({ children, className, showOnFocus }) => {
+> = ({ children, className, showOnFocus, preventCopy }) => {
   const classes = classNames(className, children.props.className);
 
-  const styles = euiScreenReaderOnlyStyles(showOnFocus);
-  const cssStyles = [styles.euiScreenReaderOnly];
+  const styles = euiScreenReaderOnlyStyles();
+  const cssStyles = [
+    showOnFocus
+      ? styles['euiScreenReaderOnly-showOnFocus']
+      : styles.euiScreenReaderOnly,
+    preventCopy && styles.preventCopy,
+  ];
 
   const props = {
     className: classes.length ? classes : undefined,

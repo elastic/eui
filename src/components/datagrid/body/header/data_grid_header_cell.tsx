@@ -123,7 +123,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<
             {display || displayAsText || id}
           </div>
           {sortingScreenReaderText && (
-            <EuiScreenReaderOnly>
+            <EuiScreenReaderOnly preventCopy>
               <p>{sortingScreenReaderText}</p>
             </EuiScreenReaderOnly>
           )}

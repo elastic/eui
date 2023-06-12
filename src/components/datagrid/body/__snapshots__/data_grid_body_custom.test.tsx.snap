@@ -146,8 +146,7 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
             hello
           </div>
           <p
-            class="emotion-euiScreenReaderOnly"
-            hidden=""
+            class="emotion-euiScreenReaderOnly-preventCopy"
           >
             - 
             columnA, column 1, row 1
@@ -180,8 +179,7 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
             world
           </div>
           <p
-            class="emotion-euiScreenReaderOnly"
-            hidden=""
+            class="emotion-euiScreenReaderOnly-preventCopy"
           >
             - 
             columnB, column 2, row 1
@@ -218,8 +216,7 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
             lorem
           </div>
           <p
-            class="emotion-euiScreenReaderOnly"
-            hidden=""
+            class="emotion-euiScreenReaderOnly-preventCopy"
           >
             - 
             columnA, column 1, row 2
@@ -252,8 +249,7 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
             ipsum
           </div>
           <p
-            class="emotion-euiScreenReaderOnly"
-            hidden=""
+            class="emotion-euiScreenReaderOnly-preventCopy"
           >
             - 
             columnB, column 2, row 2
