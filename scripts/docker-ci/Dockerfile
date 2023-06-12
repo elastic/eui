@@ -2,7 +2,7 @@
 # https://github.com/zenato/docker-puppeteer/blob/master/Dockerfile
 
 # >=12.0 required (for cypress), but latest right now is 16.19.1
-FROM node:16.19.1
+FROM node:16.19.1-bullseye
 
 # See https://crbug.com/795759
 RUN apt-get update && apt-get install -yq libgconf-2-4
@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y wget xvfb --no-install-recommends \
     && apt-get update \
     && apt-get install -y google-chrome-stable \
     --no-install-recommends \
+    && apt-get upgrade -y \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get purge --auto-remove -y curl \
     && rm -rf /src/*.deb
