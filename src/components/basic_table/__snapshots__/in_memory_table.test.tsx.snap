@@ -185,7 +185,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
               <a
                 aria-controls="__table_generated-id"
                 aria-label="Page 1 of 2"
-                class="euiButtonEmpty euiButtonEmpty--small euiPaginationButton css-23ziaw-empty-text-euiPaginationButton"
+                class="euiButtonEmpty euiButtonEmpty--small euiPaginationButton css-2bs0sf-empty-text-euiPaginationButton"
                 data-test-subj="pagination-button-0"
                 href="#__table_generated-id"
                 rel="noreferrer"
@@ -208,7 +208,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                 aria-controls="__table_generated-id"
                 aria-current="true"
                 aria-label="Page 2 of 2"
-                class="euiButtonEmpty euiButtonEmpty--small euiPaginationButton css-7ubx5w-empty-disabled-euiPaginationButton-isActive"
+                class="euiButtonEmpty euiButtonEmpty--small euiPaginationButton css-57pcyl-empty-disabled-euiPaginationButton-isActive"
                 data-test-subj="pagination-button-1"
                 disabled=""
                 type="button"
