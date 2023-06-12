@@ -1,4 +1,6 @@
 const camelCaseRegex = '^[a-z][\\w-]*$'; // Note: also allows `_` as part of BEM naming
+const camelCaseValueRegex = '/^[a-z][\\w.]*$/'; // Note: also allows `.` for JS objects
+const cssInJsVarRegex = '/\\${[a-zA-Z]+/';
 
 module.exports = {
   // @see https://stylelint.io/user-guide/rules
@@ -126,6 +128,25 @@ module.exports = {
         'scss/at-rule-conditional-no-parentheses': null,
         'scss/double-slash-comment-empty-line-before': null,
         'scss/at-if-no-null': null,
+      },
+    },
+    {
+      files: ['**/*.styles.ts', '**/*.ts', '**/*.tsx'],
+      extends: ['stylelint-config-standard'],
+      customSyntax: 'postcss-styled-syntax',
+      rules: {
+        // Empty style keys should be allowed, as Emotion still uses them for generating classNames
+        'no-empty-source': null,
+        // Don't lint casing on interpolated JS vars
+        'function-name-case': ['lower', { ignoreFunctions: [cssInJsVarRegex] }],
+        'function-no-unknown': [true, { ignoreFunctions: [cssInJsVarRegex] }],
+        'value-keyword-case': [
+          'lower',
+          {
+            ignoreProperties: ['font-family'],
+            ignoreKeywords: [camelCaseValueRegex],
+          },
+        ],
       },
     },
   ],
