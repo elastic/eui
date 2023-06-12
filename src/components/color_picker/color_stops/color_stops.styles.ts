@@ -63,8 +63,8 @@ export const euiColorStopsStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     euiColorStops__addTarget: css`
-      ${euiCustomControl(euiThemeContext, { type: 'round' })};
-      ${euiRangeThumbStyle(euiThemeContext)};
+      ${euiCustomControl(euiThemeContext, { type: 'round' })}
+      ${euiRangeThumbStyle(euiThemeContext)}
       position: absolute;
       inset-block-start: 0;
       block-size: ${range.thumbHeight};

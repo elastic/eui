@@ -22,6 +22,6 @@ export const euiPageBodyStyles = () => ({
 
   // Max widths
   restrictWidth: css`
-    ${logicalCSS('margin-horizontal', 'auto')};
+    ${logicalCSS('margin-horizontal', 'auto')}
   `,
 });

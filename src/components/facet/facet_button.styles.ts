@@ -19,7 +19,7 @@ import { euiLinkFocusCSS } from '../link/link.styles';
 export const euiFacetButtonStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Base
   euiFacetButton: css`
-    ${logicalTextAlignCSS('left')};
+    ${logicalTextAlignCSS('left')}
 
     &:hover,
     &:focus {

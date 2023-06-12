@@ -38,13 +38,13 @@ export const euiCodeBlockStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // Font size
     s: css`
-      ${euiFontSize(euiThemeContext, 'xs')};
+      ${euiFontSize(euiThemeContext, 'xs')}
     `,
     m: css`
-      ${euiFontSize(euiThemeContext, 's')};
+      ${euiFontSize(euiThemeContext, 's')}
     `,
     l: css`
-      ${euiFontSize(euiThemeContext, 'm')};
+      ${euiFontSize(euiThemeContext, 'm')}
     `,
     // Variants
     transparentBackground: css`

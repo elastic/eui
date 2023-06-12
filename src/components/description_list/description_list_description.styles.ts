@@ -51,7 +51,7 @@ export const euiDescriptionListDescriptionStyles = (
     // This nested block handles just the font styling based on compressed and reverse
     fontStyles: {
       normal: css`
-        ${euiFontSize(euiThemeContext, 's')};
+        ${euiFontSize(euiThemeContext, 's')}
       `,
       reverse: css`
         ${euiTitle(euiThemeContext, 'xs')}
@@ -64,16 +64,16 @@ export const euiDescriptionListDescriptionStyles = (
     // Nested inline styles for type and font
     inlineStyles: {
       compressed: css`
-        ${euiFontSize(euiThemeContext, 'xs')};
+        ${euiFontSize(euiThemeContext, 'xs')}
       `,
       normal: css`
-        ${euiFontSize(euiThemeContext, 's')};
+        ${euiFontSize(euiThemeContext, 's')}
       `,
     },
 
     // Column types should align description text to the left when EuiDecriptionList is centered
     left: css`
-      ${logicalTextAlignCSS('left')};
+      ${logicalTextAlignCSS('left')}
     `,
 
     // Gutter

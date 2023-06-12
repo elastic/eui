@@ -113,7 +113,7 @@ export const euiStepHorizontalTitleStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiStepHorizontal__title: css`
-      ${euiTitle(euiThemeContext, 'xs')};
+      ${euiTitle(euiThemeContext, 'xs')}
       margin-block-start: ${euiTheme.size.s};
       font-weight: ${euiTheme.font.weight.bold};
       text-align: center;

@@ -67,7 +67,7 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     // Base
     euiToolTip: css`
-      ${euiShadow(euiThemeContext)};
+      ${euiShadow(euiThemeContext)}
       border-radius: ${euiTheme.border.radius.medium};
       background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};
       color: ${euiTheme.colors.ghost};
@@ -75,7 +75,7 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('max-width', '256px')}
       overflow-wrap: break-word;
       padding: ${euiTheme.size.s};
-      ${euiFontSize(euiThemeContext, 's')};
+      ${euiFontSize(euiThemeContext, 's')}
 
       position: absolute;
 
@@ -85,7 +85,7 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // Sizes
     s: css`
-      ${euiFontSize(euiThemeContext, 'xs')};
+      ${euiFontSize(euiThemeContext, 'xs')}
     `,
     // Positions
     top: css`
@@ -122,7 +122,7 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
         (x) => x / 2
       )};
       background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};
-      ${logicalSizeCSS(arrowSize, arrowSize)};
+      ${logicalSizeCSS(arrowSize, arrowSize)}
     `,
     arrowPositions: {
       top: css`
@@ -147,9 +147,9 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
           euiTheme,
           colorMode
         )}`
-      )};
-      ${logicalCSS('padding-bottom', euiTheme.size.xs)};
-      ${logicalCSS('margin-bottom', euiTheme.size.xs)};
+      )}
+      ${logicalCSS('padding-bottom', euiTheme.size.xs)}
+      ${logicalCSS('margin-bottom', euiTheme.size.xs)}
     `,
   };
 };

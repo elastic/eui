@@ -42,7 +42,7 @@ export const euiButtonDisplayStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     // Base
     euiButtonDisplay: css`
-      ${euiButtonBaseCSS()};
+      ${euiButtonBaseCSS()}
       font-weight: ${euiTheme.font.weight.medium};
       ${logicalShorthandCSS('padding', `0 ${euiTheme.size.m}`)}
 

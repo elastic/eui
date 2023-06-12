@@ -36,7 +36,7 @@ export const euiListGroupStyles = (euiThemeContext: UseEuiTheme) => {
       border: ${euiTheme.border.thin};
     `,
     maxWidthDefault: css`
-      ${logicalCSS('max-width', form.maxWidth)};
+      ${logicalCSS('max-width', form.maxWidth)}
     `,
     // Gutter sizes
     none: css``,

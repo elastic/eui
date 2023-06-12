@@ -106,7 +106,7 @@ export const euiProgressStyles = (
     }
 
     ${crossBrowserProgressValue(
-      `transition: width ${euiTheme.animation.normal} linear;`
+      'transition: width ${euiTheme.animation.normal} linear;'
     )}
   `,
   // An indeterminate bar has an unreliable end time. Because of a Firefox animation issue,
@@ -147,7 +147,7 @@ export const euiProgressStyles = (
   fixed: css`
     position: fixed;
     z-index: ${Number(euiTheme.levels.header) + 1};
-    ${nonStaticPositioning(isNative)}}
+    ${nonStaticPositioning(isNative)}
   `,
   absolute: css`
     position: absolute;

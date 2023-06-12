@@ -30,7 +30,7 @@ export const euiTourStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
       ${logicalCSS(
         'border-top-color',
         backgroundColor(euiTheme.colors.lightestShade, colorMode)
-      )};
+      )}
     }
   `,
 });
@@ -57,20 +57,20 @@ export const euiTourBeaconStyles = ({ euiTheme }: UseEuiTheme) => {
     `,
     // Positions
     right: css`
-      ${logicalCSS('top', arrowHalfSize)};
-      ${logicalCSS('left', arrowOffset)};
+      ${logicalCSS('top', arrowHalfSize)}
+      ${logicalCSS('left', arrowOffset)}
     `,
     left: css`
-      ${logicalCSS('top', arrowHalfSize)};
-      ${logicalCSS('left', arrowSize)};
+      ${logicalCSS('top', arrowHalfSize)}
+      ${logicalCSS('left', arrowSize)}
     `,
     top: css`
-      ${logicalCSS('top', arrowSize)};
-      ${logicalCSS('left', arrowHalfSize)};
+      ${logicalCSS('top', arrowSize)}
+      ${logicalCSS('left', arrowHalfSize)}
     `,
     bottom: css`
-      ${logicalCSS('top', arrowOffset)};
-      ${logicalCSS('left', arrowHalfSize)};
+      ${logicalCSS('top', arrowOffset)}
+      ${logicalCSS('left', arrowHalfSize)}
     `,
   };
 };
@@ -78,14 +78,14 @@ export const euiTourBeaconStyles = ({ euiTheme }: UseEuiTheme) => {
 export const euiTourHeaderStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Base
   euiTourHeader: css`
-    ${logicalCSS('border-bottom', 'none')};
+    ${logicalCSS('border-bottom', 'none')}
     /* Overriding default EuiPopoverTitle styles */
-    ${logicalCSS('margin-bottom', euiTheme.size.s)};
+    ${logicalCSS('margin-bottom', euiTheme.size.s)}
   `,
   // Elements
   euiTourHeader__title: css`
     /* Removes extra margin applied to sibling EuiTitle's */
-    ${logicalCSS('margin-top', 0)};
+    ${logicalCSS('margin-top', 0)}
   `,
   euiTourHeader__subtitle: css`
     color: ${euiTheme.colors.subduedText};
@@ -100,7 +100,7 @@ export const euiTourFooterStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
       euiTheme.colors.lightestShade,
       colorMode
     )};
-    ${logicalCSS('border-bottom-left-radius', euiTheme.border.radius.medium)};
-    ${logicalCSS('border-bottom-right-radius', euiTheme.border.radius.medium)};
+    ${logicalCSS('border-bottom-left-radius', euiTheme.border.radius.medium)}
+    ${logicalCSS('border-bottom-right-radius', euiTheme.border.radius.medium)}
   `,
 });

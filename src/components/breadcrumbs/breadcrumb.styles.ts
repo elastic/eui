@@ -83,14 +83,14 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
     // Types
     page: css`
       &:is(a):focus {
-        ${euiFocusRing(euiThemeContext, 'inset')};
+        ${euiFocusRing(euiThemeContext, 'inset')}
       }
       &:is(button):focus {
-        ${euiFocusRing(euiThemeContext, 'center')};
+        ${euiFocusRing(euiThemeContext, 'center')}
       }
     `,
     application: css`
-      ${euiFontSize(euiThemeContext, 'xs')};
+      ${euiFontSize(euiThemeContext, 'xs')}
       background-color: ${transparentize(euiTheme.colors.darkestShade, 0.2)};
       clip-path: polygon(
         0 0,
@@ -111,7 +111,7 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
         color: ${euiTheme.colors.link};
 
         :focus {
-          ${euiFocusRing(euiThemeContext, 'inset')};
+          ${euiFocusRing(euiThemeContext, 'inset')}
 
           :focus-visible {
             border-radius: ${euiTheme.border.radius.medium};
@@ -124,7 +124,7 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
       onlyChild: css`
         border-radius: ${euiTheme.border.radius.medium};
         clip-path: none;
-        ${logicalCSS('padding-horizontal', euiTheme.size.m)},
+        ${logicalCSS('padding-horizontal', euiTheme.size.m)}
       `,
       firstChild: css`
         ${logicalBorderRadiusCSS(
@@ -138,7 +138,7 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
           calc(100% - ${euiTheme.size.s}) 100%,
           0 100%
         );
-        ${logicalCSS('padding-left', euiTheme.size.m)},
+        ${logicalCSS('padding-left', euiTheme.size.m)}
       `,
       lastChild: css`
         ${logicalBorderRadiusCSS(
@@ -152,7 +152,7 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
           0 100%,
           ${euiTheme.size.s} 50%
         );
-        ${logicalCSS('padding-right', euiTheme.size.m)},
+        ${logicalCSS('padding-right', euiTheme.size.m)}
       `,
     },
   };

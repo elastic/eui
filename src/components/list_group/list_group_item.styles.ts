@@ -111,23 +111,23 @@ export const euiListGroupItemInnerStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // Sizes
     xs: css`
-      ${euiFontSize(euiThemeContext, 'xs')};
+      ${euiFontSize(euiThemeContext, 'xs')}
       font-weight: ${euiTheme.font.weight.medium};
       letter-spacing: 0;
       ${logicalCSS('min-height', euiTheme.size.l)}
     `,
     s: css`
-      ${euiFontSize(euiThemeContext, 's')};
+      ${euiFontSize(euiThemeContext, 's')}
       font-weight: ${euiTheme.font.weight.medium};
       letter-spacing: 0;
       ${logicalCSS('min-height', euiTheme.size.xl)}
     `,
     m: css`
-      ${euiFontSize(euiThemeContext, 'm')};
+      ${euiFontSize(euiThemeContext, 'm')}
       ${logicalCSS('min-height', euiTheme.size.xl)}
     `,
     l: css`
-      ${euiFontSize(euiThemeContext, 'l')};
+      ${euiFontSize(euiThemeContext, 'l')}
       ${logicalCSS('min-height', euiTheme.size.xxl)}
     `,
     // Colors
@@ -183,7 +183,7 @@ export const euiListGroupItemIconStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     // Base
     euiListGroupItem__icon: css`
-      ${logicalCSS('margin-right', euiTheme.size.m)};
+      ${logicalCSS('margin-right', euiTheme.size.m)}
       flex-grow: 0;
       flex-shrink: 0;
     `,
@@ -195,7 +195,7 @@ export const euiListGroupItemTooltipStyles = () => {
     // Base
     euiListGroupItem__tooltip: css`
       display: inline-flex; /* Allows the wrapped button/text to grow */
-      ${logicalCSS('width', '100%')};
+      ${logicalCSS('width', '100%')}
     `,
   };
 };

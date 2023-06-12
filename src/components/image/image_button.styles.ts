@@ -71,8 +71,8 @@ export const euiImageButtonIconStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Base
   euiImageButton__icon: css`
     position: absolute;
-    ${logicalCSS('top', euiTheme.size.base)};
-    ${logicalCSS('right', euiTheme.size.base)};
+    ${logicalCSS('top', euiTheme.size.base)}
+    ${logicalCSS('right', euiTheme.size.base)}
   `,
   openFullScreen: css`
     opacity: 0;

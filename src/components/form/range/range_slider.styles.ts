@@ -34,8 +34,8 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
       z-index: ${range.thumbZIndex};
 
       ${euiRangeThumbPerBrowser(`
-        ${euiCustomControl(euiThemeContext, { type: 'round' })};
-        ${euiRangeThumbStyle(euiThemeContext)};
+        ${euiCustomControl(euiThemeContext, { type: 'round' })}
+        ${euiRangeThumbStyle(euiThemeContext)}
       `)}
 
       &:disabled {
@@ -65,9 +65,10 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
       block-size: ${range.thumbHeight}; /* the track has the same height as the thumb */
     `,
     hasRange: css`
+      /* stylelint-disable no-extra-semicolons */
       ${euiRangeTrackPerBrowser(`
         background-color: transparent;
-        border-color: ${transparentize(range.trackBorderColor, 0.6)};
+        border-color: ${transparentize(range.trackBorderColor, 0.6)}
       `)}
     `,
     hasLevels: css`

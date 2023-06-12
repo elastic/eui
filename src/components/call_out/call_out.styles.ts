@@ -15,12 +15,12 @@ export const euiCallOutStyles = ({ euiTheme }: UseEuiTheme) => {
     euiCallOut: css``,
     euiCallOut__icon: css`
       position: relative;
-      ${logicalCSS('top', '-1px')};
-      ${logicalCSS('margin-right', euiTheme.size.s)};
+      ${logicalCSS('top', '-1px')}
+      ${logicalCSS('margin-right', euiTheme.size.s)}
     `,
     euiCallOut__description: css`
       :not(:only-child) {
-        ${logicalCSS('margin-top', euiTheme.size.s)};
+        ${logicalCSS('margin-top', euiTheme.size.s)}
       }
     `,
   };

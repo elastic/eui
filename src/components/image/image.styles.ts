@@ -14,22 +14,22 @@ import { euiShadow } from '../../themes/amsterdam/global_styling/mixins';
 export const euiImageStyles = (euiThemeContext: UseEuiTheme) => ({
   euiImage: css`
     vertical-align: middle;
-    ${logicalCSS('max-width', '100%')};
+    ${logicalCSS('max-width', '100%')}
 
     &,
     /* Required for common usage of nesting within EuiText */
     [class*='euiText'] & {
-      ${logicalCSS('margin-bottom', 0)};
+      ${logicalCSS('margin-bottom', 0)}
     }
   `,
   // Variations
   isFullScreen: css`
     position: relative;
-    ${logicalCSS('max-height', '80vh')};
-    ${logicalCSS('max-width', '80vw')};
+    ${logicalCSS('max-height', '80vh')}
+    ${logicalCSS('max-width', '80vw')}
   `,
   hasShadow: css`
-    ${euiShadow(euiThemeContext, 's')};
+    ${euiShadow(euiThemeContext, 's')}
   `,
   // Sizes
   // These sizes are mostly suggestions. Don't look too hard for meaning in their values.

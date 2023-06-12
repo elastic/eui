@@ -32,7 +32,7 @@ export const euiColorStopThumbStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     isPopoverOpen: css`
-      ${euiRangeThumbFocus(euiThemeContext)};
+      ${euiRangeThumbFocus(euiThemeContext)}
     `,
   };
 };

@@ -150,6 +150,9 @@ module.exports = {
             ignoreKeywords: [camelCaseValueRegex],
           },
         ],
+        // This is set to deprecate after stylelint v16, but in the meanwhile, is helpful
+        // for finding extraneous semicolons after utils that already output semicolons (e.g. logicalCSS())
+        'no-extra-semicolons': true,
       },
     },
   ],

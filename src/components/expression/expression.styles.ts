@@ -31,14 +31,14 @@ export const euiExpressionStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   return {
     euiExpression: css`
-      ${euiTextBreakWord()};
+      ${euiTextBreakWord()}
       display: inline-block;
       font-family: ${euiTheme.font.familyCode};
       ${logicalCSS(
         'border-bottom',
         `${euiTheme.border.width.thick} solid transparent`
       )}
-      ${euiFontSize(euiThemeContext, 's')};
+      ${euiFontSize(euiThemeContext, 's')}
       ${logicalTextAlignCSS('left')}
       ${logicalShorthandCSS(
         'padding',
@@ -155,7 +155,7 @@ export const euiExpressionDescriptionStyles = ({ euiTheme }: UseEuiTheme) => {
     `,
     columns: css`
       ${logicalTextAlignCSS('right')}
-      ${logicalCSS('margin-right', euiTheme.size.s)};
+      ${logicalCSS('margin-right', euiTheme.size.s)}
       flex-shrink: 0; /* Ensures it doesn't get smaller in case the value is really long */
     `,
   };
@@ -178,10 +178,10 @@ export const euiExpressionValueStyles = ({}: UseEuiTheme) => {
 export const euiExpressionIconStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     euiExpression__icon: css`
-      ${logicalCSS('margin-left', euiTheme.size.xs)};
+      ${logicalCSS('margin-left', euiTheme.size.xs)}
     `,
     columns: css`
-      ${logicalCSS('margin-top', euiTheme.size.xs)};
+      ${logicalCSS('margin-top', euiTheme.size.xs)}
     `,
   };
 };

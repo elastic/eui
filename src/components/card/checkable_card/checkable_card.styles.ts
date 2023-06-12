@@ -47,7 +47,7 @@ export const euiCheckableCardStyles = (euiThemeContext: UseEuiTheme) => {
     },
 
     euiCheckableCard__children: css`
-      ${logicalCSS('margin-top', euiTheme.size.base)};
+      ${logicalCSS('margin-top', euiTheme.size.base)}
     `,
   };
 };

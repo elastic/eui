@@ -32,8 +32,8 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
     // Base
     euiPopover__panel: css`
       position: absolute;
-      ${logicalCSS('min-width', `${euiTheme.base * 7}px`)}; /* 1 */
-      ${logicalCSS('max-width', `calc(100vw - ${euiTheme.size.xl})`)}; /* 3 */
+      ${logicalCSS('min-width', `${euiTheme.base * 7}px`)} /* 1 */
+      ${logicalCSS('max-width', `calc(100vw - ${euiTheme.size.xl})`)} /* 3 */
       backface-visibility: hidden;
       pointer-events: none;
       opacity: 0; /* 2 */
@@ -101,7 +101,7 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
         /* Filter also causes a stacking context that interferes with the positioned children,
            so we disable it and recreate the shadow via box-shadow instead */
         filter: none;
-        ${euiShadowMedium(euiThemeContext, { property: 'box-shadow' })};
+        ${euiShadowMedium(euiThemeContext, { property: 'box-shadow' })}
       `,
       // The offset transforms must be recreated in margins
       top: css`

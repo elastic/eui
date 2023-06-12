@@ -27,7 +27,7 @@ export const euiModalBodyStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     euiModalBody__overflow: css`
-      ${euiYScrollWithShadows(euiThemeContext)};
+      ${euiYScrollWithShadows(euiThemeContext)}
       padding-inline: ${euiTheme.size.l};
       padding-block: ${euiTheme.size.s};
 

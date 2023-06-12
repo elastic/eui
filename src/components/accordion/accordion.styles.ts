@@ -19,7 +19,7 @@ export const euiAccordionButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   return {
     euiAccordion__button: css`
-      ${euiFontSize(euiThemeContext, 's')};
+      ${euiFontSize(euiThemeContext, 's')}
       align-items: center;
       display: flex;
       flex-grow: 1;

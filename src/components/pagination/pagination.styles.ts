@@ -20,11 +20,11 @@ export const euiPaginationStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     // Base
     euiPagination: css`
-      ${euiScrollBarStyles(euiThemeContext)};
+      ${euiScrollBarStyles(euiThemeContext)}
       display: flex;
       align-items: center;
-      ${logicalCSSWithFallback('overflow-y', 'hidden')};
-      ${logicalCSSWithFallback('overflow-x', 'auto')};
+      ${logicalCSSWithFallback('overflow-y', 'hidden')}
+      ${logicalCSSWithFallback('overflow-x', 'auto')}
     `,
     // Elements
     euiPagination__compressedText: css`
@@ -34,7 +34,7 @@ export const euiPaginationStyles = (euiThemeContext: UseEuiTheme) => {
       line-height: 1 !important; /* stylelint-disable-line declaration-no-important */
 
       > span {
-        ${logicalCSS('margin-horizontal', euiTheme.size.s)};
+        ${logicalCSS('margin-horizontal', euiTheme.size.s)}
         font-weight: ${euiTheme.font.weight.semiBold};
 
         &:first-of-type {

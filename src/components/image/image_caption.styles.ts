@@ -16,8 +16,8 @@ export const euiImageCaptionStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     // Base
     euiImageCaption: css`
-      ${euiFontSize(euiThemeContext, 's')};
-      ${logicalCSS('margin-top', euiTheme.size.xs)};
+      ${euiFontSize(euiThemeContext, 's')}
+      ${logicalCSS('margin-top', euiTheme.size.xs)}
     `,
     isOnOverlayMask: css`
       color: ${euiTheme.colors.ghost};

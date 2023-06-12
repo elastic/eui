@@ -36,15 +36,15 @@ export const euiLoadingChartBarStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
   m: css`
     ${logicalCSS('width', euiTheme.size.xxs)}
-    ${logicalCSS('margin-bottom', euiTheme.size.s)};
+    ${logicalCSS('margin-bottom', euiTheme.size.s)}
   `,
   l: css`
     ${logicalCSS('width', euiTheme.size.xs)}
-    ${logicalCSS('margin-bottom', euiTheme.size.m)};
+    ${logicalCSS('margin-bottom', euiTheme.size.m)}
   `,
   xl: css`
     ${logicalCSS('width', euiTheme.size.s)}
-    ${logicalCSS('margin-bottom', euiTheme.size.base)};
+    ${logicalCSS('margin-bottom', euiTheme.size.base)}
   `,
 });
 

@@ -35,7 +35,7 @@ export const euiAvatarStyles = ({ euiTheme }: UseEuiTheme) => ({
     align-items: center;
     vertical-align: middle;
     background-size: cover;
-    ${logicalTextAlignCSS('center')};
+    ${logicalTextAlignCSS('center')}
     ${logicalCSS('overflow-x', 'hidden')}
     /* Explicitly state weight so it doesn't get overridden by inheritance */
     font-weight: ${euiTheme.font.weight.medium};

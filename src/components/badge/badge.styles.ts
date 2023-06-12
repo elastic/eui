@@ -154,7 +154,7 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
           /* Remove margins from icon itself so that focus state doesn't include that space */
           margin: 0 !important; /* stylelint-disable-line declaration-no-important */
         }
-      }`,
+      `,
       right: css`
         ${logicalCSS('margin-left', euiTheme.size.xs)}
       `,

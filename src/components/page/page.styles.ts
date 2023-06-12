@@ -20,7 +20,7 @@ export const euiPageStyles = (euiThemeContext: UseEuiTheme) => {
       /* Ensure Safari doesn't shrink height beyond contents */
       flex-shrink: 0;
       /* Ensure Firefox doesn't expand width beyond bounds */
-      ${logicalCSS('max-width', '100%')};
+      ${logicalCSS('max-width', '100%')}
     `,
 
     // Grow
@@ -43,7 +43,7 @@ export const euiPageStyles = (euiThemeContext: UseEuiTheme) => {
 
     // Max widths
     restrictWidth: css`
-      ${logicalCSS('margin-horizontal', 'auto')};
+      ${logicalCSS('margin-horizontal', 'auto')}
     `,
   };
 };

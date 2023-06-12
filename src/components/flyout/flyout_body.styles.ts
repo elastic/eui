@@ -22,10 +22,10 @@ export const euiFlyoutBodyStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     euiFlyoutBody__overflow: {
       noBanner: css`
-        ${euiYScrollWithShadows(euiThemeContext)};
+        ${euiYScrollWithShadows(euiThemeContext)}
       `,
       hasBanner: css`
-        ${euiYScrollWithShadows(euiThemeContext, { side: 'end' })};
+        ${euiYScrollWithShadows(euiThemeContext, { side: 'end' })}
       `,
     },
     euiFlyoutBody__banner: css`
