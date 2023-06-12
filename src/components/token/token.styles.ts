@@ -116,10 +116,8 @@ export const euiTokenStyles = (
     }
 
     &[class*='-rectangle'] {
-      ${logicalCSS(
-        'padding-vertical',
-        '1px'
-      )}; // adds a small padding so that the icon is not touching the border
+      /* adds a small padding so that the icon is not touching the border */
+      ${logicalCSS('padding-vertical', '1px')};
       ${logicalCSS('padding-horizontal', euiTheme.size.xs)};
     }
   `,

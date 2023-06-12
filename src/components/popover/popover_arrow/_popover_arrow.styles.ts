@@ -29,7 +29,7 @@ export const euiPopoverArrowStyles = (euiThemeContext: UseEuiTheme) => {
       position: absolute;
       ${logicalSizeCSS(0, 0)}
 
-      // This part of the arrow matches the panel.
+      /* This part of the arrow matches the panel. */
       &:before {
         content: '';
         position: absolute;

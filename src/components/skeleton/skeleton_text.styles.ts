@@ -39,7 +39,7 @@ export const euiSkeletonTextStyles = (euiThemeContext: UseEuiTheme) => {
       border-radius: ${euiTheme.border.radius.small};
       ${euiSkeletonGradientAnimation(euiThemeContext)}
 
-      // Offset via transform to more closely match placement of text
+      /* Offset via transform to more closely match placement of text */
       transform: translateY(-25%);
 
       &:last-child:not(:only-child) {

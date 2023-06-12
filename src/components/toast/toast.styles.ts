@@ -61,16 +61,14 @@ export const euiToastHeaderStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     // Base
     euiToastHeader: css`
-      // Account for close button.
+      display: flex;
+      /* Align icon with first line of title text if it wraps */
+      align-items: baseline;
+      /* Account for close button */
       ${logicalCSS('padding-right', euiTheme.size.l)};
 
-      display: flex;
-
-      // Align icon with first line of title text if it wraps.
-      align-items: baseline;
-
       > * + * {
-        // Apply margin to all but last item in the flex.
+        /* Apply margin to all but last item in the flex */
         ${logicalCSS('margin-left', euiTheme.size.s)};
       }
     `,
@@ -79,7 +77,7 @@ export const euiToastHeaderStyles = (euiThemeContext: UseEuiTheme) => {
       flex: 0 0 auto;
       fill: ${euiTheme.colors.title};
 
-      // Vertically center icon with first line of title.
+      /* Vertically center icon with first line of title */
       transform: translateY(2px);
     `,
     euiToastHeader__title: css`
@@ -96,6 +94,6 @@ export const euiToastHeaderStyles = (euiThemeContext: UseEuiTheme) => {
 export const euiToastBodyStyles = () => ({
   // Base
   euiToastBody: css`
-    word-wrap: break-word; // Prevent long lines from overflowing
+    word-wrap: break-word; /* Prevent long lines from overflowing */
   `,
 });

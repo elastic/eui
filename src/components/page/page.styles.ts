@@ -17,9 +17,9 @@ export const euiPageStyles = (euiThemeContext: UseEuiTheme) => {
     euiPage: css`
       display: flex;
       background-color: ${euiTheme.colors.body};
-      // Ensure Safari doesn't shrink height beyond contents
+      /* Ensure Safari doesn't shrink height beyond contents */
       flex-shrink: 0;
-      // Ensure Firefox doesn't expand width beyond bounds
+      /* Ensure Firefox doesn't expand width beyond bounds */
       ${logicalCSS('max-width', '100%')};
     `,
 

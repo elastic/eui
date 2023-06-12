@@ -25,7 +25,11 @@ export const euiBreadcrumbsListStyles = (euiThemeContext: UseEuiTheme) => {
         'margin-bottom',
         `-${euiTheme.size.xs}`
       )}
-      ${logicalCSS('min-width', 0)} // Ensure it shrinks if the window is narrow
+      ${logicalCSS(
+        // Ensure it shrinks if the window is narrow
+        'min-width',
+        0
+      )}
     `,
     isTruncated: css`
       flex-wrap: nowrap;

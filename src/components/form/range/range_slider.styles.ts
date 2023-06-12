@@ -26,11 +26,11 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
     // Base
     euiRangeSlider: css`
       appearance: none;
-      background: transparent; // Otherwise white in Chrome
-      inline-size: 100%; // Ensures the slider expands to fill flex display
-      block-size: 100%; // Inherits both regular and compressed heights from the range wrapper
+      background: transparent; /* Otherwise white in Chrome */
+      inline-size: 100%; /* Ensures the slider expands to fill flex display */
+      block-size: 100%; /* Inherits both regular and compressed heights from the range wrapper */
       position: relative;
-      cursor: pointer; // Keep cursor to full range bounds
+      cursor: pointer; /* Keep cursor to full range bounds */
       z-index: ${range.thumbZIndex};
 
       ${euiRangeThumbPerBrowser(`
@@ -43,7 +43,7 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
         ${euiRangeThumbPerBrowser('cursor: not-allowed')}
       }
 
-      // Resets
+      /* Resets */
       &::-webkit-slider-thumb {
         -webkit-appearance: none;
       }
@@ -52,7 +52,7 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
         outline: none;
       }
 
-      // Styles that should appear only on keyboard focus, not click
+      /* Styles that should appear only on keyboard focus, not click */
       &:focus-visible {
         ${euiRangeThumbPerBrowser(euiRangeThumbFocus(euiThemeContext))}
 
@@ -62,7 +62,7 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     hasTicks: css`
-      block-size: ${range.thumbHeight}; // the track has the same height as the thumb
+      block-size: ${range.thumbHeight}; /* the track has the same height as the thumb */
     `,
     hasRange: css`
       ${euiRangeTrackPerBrowser(`

@@ -38,16 +38,16 @@ export const euiGlobalToastListStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('max-height', '100vh')}; /* 1 */
       ${logicalCSSWithFallback('overflow-y', 'auto')};
 
-      // Hide the scrollbar entirely
+      /* Hide the scrollbar entirely */
       scrollbar-width: none;
 
       &::-webkit-scrollbar {
         ${logicalSizeCSS(0, 0)};
       }
 
-      // The top and bottom padding give height to the list creating a dead-zone effect
-      // when there's no toasts in the list, meaning you can't click anything beneath it.
-      // Only add the padding if there's content.
+      /* The top and bottom padding give height to the list creating a dead-zone effect
+         when there's no toasts in the list, meaning you can't click anything beneath it.
+         Only add the padding if there's content. */
       &:not(:empty) {
         ${logicalCSS('padding-left', euiTheme.size.base)};
         ${logicalCSS('padding-right', euiTheme.size.base)};
@@ -104,8 +104,8 @@ export const euiGlobalToastListItemStyles = ({ euiTheme }: UseEuiTheme) => {
       opacity: 1;
 
       &:first-child {
-        // justify-content: flex-end interferes with overflowing content,
-        // so we'll use this to push items to the bottom instead.
+        /* justify-content: flex-end interferes with overflowing content,
+           so we'll use this to push items to the bottom instead. */
         ${logicalCSS('margin-top', 'auto')};
       }
 

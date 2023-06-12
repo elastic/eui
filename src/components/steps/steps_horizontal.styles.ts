@@ -8,7 +8,6 @@
 
 import { css } from '@emotion/react';
 
-//  1. Make each step the same width
 export const euiStepsHorizontalStyles = () => {
   return {
     euiStepsHorizontal: css`
@@ -16,10 +15,11 @@ export const euiStepsHorizontalStyles = () => {
       align-items: stretch;
     `,
     euiStepsHorizontal__item: css`
-      flex-grow: 1; /* 1 */
-      flex-basis: 0%; /* 1 */
+      /* Make each step the same width */
+      flex-grow: 1;
+      flex-basis: 0%;
 
-      // Remove the respective lines if the first or last child
+      /* Remove the respective lines if the first or last child */
       &:first-of-type > .euiStepHorizontal::before,
       &:last-of-type > .euiStepHorizontal::after {
         display: none;

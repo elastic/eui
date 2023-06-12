@@ -38,7 +38,7 @@ export const euiColorStopsStyles = (euiThemeContext: UseEuiTheme) => {
     // Base
     euiColorStops: css``,
     isEnabled: css`
-      // Show focus ring on keyboard focus only and not mouse click/drag
+      /* Show focus ring on keyboard focus only and not mouse click/drag */
       &:focus {
         outline: none;
       }
@@ -59,7 +59,7 @@ export const euiColorStopsStyles = (euiThemeContext: UseEuiTheme) => {
     euiColorStops__track: css`
       &::after {
         background: ${stripesBackground};
-        background-size: ${euiTheme.size.xs} ${euiTheme.size.xs}; // Percentage stops and background-size are both needed for Safari to render the gradient at fullWidth correctly
+        background-size: ${euiTheme.size.xs} ${euiTheme.size.xs}; /* Percentage stops and background-size are both needed for Safari to render the gradient at fullWidth correctly */
       }
     `,
     euiColorStops__addTarget: css`

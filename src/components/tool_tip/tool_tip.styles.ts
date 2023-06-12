@@ -157,10 +157,10 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
 export const euiToolTipAnchorStyles = () => ({
   // Elements
   euiToolTipAnchor: css`
-    // disabled elements don't fire mouse events which means leaving a disabled element
-    // wouldn't trigger the onMouseOut and hide the tooltip; disabling pointer events
-    // on disabled elements means any mouse events remain handled by parent elements
-    // https://jakearchibald.com/2017/events-and-disabled-form-fields/
+    /* Disabled elements don't fire mouse events, which means leaving a disabled element
+       wouldn't trigger the onMouseOut and hide the tooltip. Disabling pointer events
+       on disabled elements means any mouse events remain handled by parent elements
+       https://jakearchibald.com/2017/events-and-disabled-form-fields/ */
     *[disabled] {
       pointer-events: none;
     }

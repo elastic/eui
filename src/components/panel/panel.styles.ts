@@ -52,8 +52,8 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       &:enabled {
-        // This is a good selector for buttons since it doesn't exist on divs
-        // in case of button wrapper which inherently is inline-block and no width
+        /* This is a good selector for buttons since it doesn't exist on divs
+           in case of button wrapper which inherently is inline-block and no width */
         display: block;
         ${logicalCSS('width', '100%')}
         ${logicalTextAlignCSS('left')}

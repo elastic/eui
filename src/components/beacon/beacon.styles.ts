@@ -73,8 +73,8 @@ export const euiBeaconStyles = ({ euiTheme }: UseEuiTheme) => ({
       border-radius: 50%;
     }
 
-    // Without the animation, we only display one ring around the circle
-    // If the animation is allowed the transform and opacity are overriden
+    /* Without the animation, we only display one ring around the circle
+       If the animation is allowed the transform and opacity are overriden */
     &:before {
       transform: scale(1.6);
       opacity: 0.4;

@@ -40,8 +40,8 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
         euiTheme.border.radius.medium,
         (x) => x / 2
       )};
-      // The badge will only ever be as wide as its content
-      // So, make the text left aligned to ensure all badges line up the same
+      /* The badge will only ever be as wide as its content
+         So, make the text left aligned to ensure all badges line up the same */
       ${logicalTextAlignCSS('left')}
 
       &:focus-within {
@@ -69,7 +69,7 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     disabled: css`
-      // Using !important to override inline styles
+      /* Using !important to override inline styles */
       color: ${euiButtonColor(euiThemeContext, 'disabled').color} !important;
       background-color: ${euiButtonColor(euiThemeContext, 'disabled')
         .backgroundColor} !important;
@@ -127,7 +127,7 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     // Clickable icons (iconOnClick)
     iconButton: {
       euiBadge__iconButton: css`
-        font-size: 0; // Makes the button only as large as the icon so it aligns vertically better
+        font-size: 0; /* Makes the button only as large as the icon so it aligns vertically better */
 
         &:focus {
           background-color: ${transparentize(euiTheme.colors.ghost, 0.8)};
@@ -143,7 +143,7 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
         }
 
         .euiBadge__icon {
-          // Remove margins from icon itself so that focus state doesn't include that space
+          /* Remove margins from icon itself so that focus state doesn't include that space */
           margin: 0 !important;
         }
       }`,

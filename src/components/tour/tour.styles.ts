@@ -52,7 +52,7 @@ export const euiTourBeaconStyles = ({ euiTheme }: UseEuiTheme) => {
     `,
     isOpen: css`
       ${euiCanAnimate} {
-        opacity: 1; // Must alter here otherwise the transition does not occur
+        opacity: 1; /* Must alter here otherwise the transition does not occur */
       }
     `,
     // Positions
@@ -79,12 +79,12 @@ export const euiTourHeaderStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Base
   euiTourHeader: css`
     ${logicalCSS('border-bottom', 'none')};
-    // Overriding default EuiPopoverTitle styles
+    /* Overriding default EuiPopoverTitle styles */
     ${logicalCSS('margin-bottom', euiTheme.size.s)};
   `,
   // Elements
   euiTourHeader__title: css`
-    // Removes extra margin applied to sibling EuiTitle's
+    /* Removes extra margin applied to sibling EuiTitle's */
     ${logicalCSS('margin-top', 0)};
   `,
   euiTourHeader__subtitle: css`

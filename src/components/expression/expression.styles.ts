@@ -58,7 +58,7 @@ export const euiExpressionStyles = (euiThemeContext: UseEuiTheme) => {
     // Variants
     columns: css`
       border-color: transparent;
-      // Ensures there's no flash of the dashed style before turning solid for the active state
+      /* Ensures there's no flash of the dashed style before turning solid for the active state */
       ${logicalCSS('border-bottom-style', 'solid')}
       ${logicalCSS('margin-bottom', euiTheme.size.xs)}
 
@@ -84,7 +84,7 @@ export const euiExpressionStyles = (euiThemeContext: UseEuiTheme) => {
         &:hover:not(:disabled) {
           [class*='euiExpression__description'],
           [class*='euiExpression__value'] {
-            // inner child specificity so it inherits underline color from text color
+            /* Inner child specificity so it inherits underline color from text color */
             text-decoration: underline;
           }
         }
@@ -156,7 +156,7 @@ export const euiExpressionDescriptionStyles = ({ euiTheme }: UseEuiTheme) => {
     columns: css`
       ${logicalTextAlignCSS('right')}
       ${logicalCSS('margin-right', euiTheme.size.s)};
-      flex-shrink: 0; // Ensures it doesn't get smaller in case the value is really long
+      flex-shrink: 0; /* Ensures it doesn't get smaller in case the value is really long */
     `,
   };
 };

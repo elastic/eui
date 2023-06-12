@@ -56,9 +56,9 @@ export const euiFlyoutCloseButtonStyles = (euiThemeContext: UseEuiTheme) => {
       background-color: ${transparentize(euiTheme.colors.emptyShade, 0.9)};
     `,
     outside: css`
-      // Match dropshadow
+      /* Match dropshadow */
       ${euiShadowXLarge(euiThemeContext)};
-      // Override the hover and focus transitions of buttons
+      /* Override the hover and focus transitions of buttons */
       animation: none !important;
     `,
     outsideSide: {
@@ -104,13 +104,13 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       align-items: stretch;
 
       &:focus {
-        // Remove focus ring because of tabindex=0
+        /* Remove focus ring because of tabindex=0 */
         outline: none;
       }
 
       ${euiMaxBreakpoint(euiThemeContext, 'm')} {
-        // 1. Leave only a small sliver exposed on small screens so users understand that this is not a new page
-        // 2. If a custom maxWidth is set, we need to override it.
+        /* 1. Leave only a small sliver exposed on small screens so users understand that this is not a new page
+           2. If a custom maxWidth is set, we need to override it. */
         ${logicalCSS('max-width', '90vw !important')}
       }
     `,
@@ -156,9 +156,9 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     push: css`
       clip-path: none;
-      // Don't animate on loading a docked nav
+      /* Don't animate on loading a docked nav */
       animation-duration: 0s !important;
-      // Make sure the header shadows are above
+      /* Make sure the header shadows are above */
       z-index: ${Number(euiTheme.levels.flyout) - 1};
     `,
     pushSide: {

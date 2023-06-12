@@ -24,7 +24,8 @@ export const euiImageCaptionStyles = (euiThemeContext: UseEuiTheme) => {
       text-shadow: 0 1px 2px ${transparentize(euiTheme.colors.ink, 0.6)};
 
       [class*='euiLink'] {
-        color: ${euiTheme.colors.ghost}; // Override link color for visibility
+        /* Override link color for visibility */
+        color: ${euiTheme.colors.ghost};
       }
     `,
   };

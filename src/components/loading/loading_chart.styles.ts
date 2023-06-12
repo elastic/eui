@@ -73,8 +73,8 @@ export const _barIndex = (
 
   return css`
     background-color: ${backgroundColor};
-    // Without the animation, the bars are all the same height,
-    // so we apply transforms which are overridden by the animation if animations are allowed
+    /* Without the animation, the bars are all the same height,
+       so we apply transforms which are overridden by the animation if animations are allowed */
     transform: translateY(${22 * index}%);
 
     ${euiCanAnimate} {

@@ -81,7 +81,7 @@ export const euiAccordionChildWrapperStyles = ({ euiTheme }: UseEuiTheme) => ({
     visibility: hidden;
 
     &:focus {
-      outline: none; // Hide focus ring because of tabindex=-1 on Safari
+      outline: none; /* Hide focus ring because of tabindex=-1 on Safari */
     }
   `,
   isOpen: css`

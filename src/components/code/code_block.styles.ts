@@ -143,7 +143,7 @@ export const euiCodeBlockCodeStyles = (euiThemeContext: UseEuiTheme) => {
       display: block;
     `,
     isVirtualized: css`
-      // Necessary for virtualized code blocks to have appropriate padding
+      /* Necessary for virtualized code blocks to have appropriate padding */
       position: relative;
     `,
   };

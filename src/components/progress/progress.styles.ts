@@ -238,7 +238,7 @@ export const euiProgressValueTextStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiProgress__valueText: css`
     flex-grow: 1;
     flex-shrink: 0;
-    font-feature-settings: 'tnum' 1; // Tabular numbers ensure the line up nicely when right-aligned
+    font-feature-settings: 'tnum' 1; /* Tabular numbers ensure the line up nicely when right-aligned */
     ${logicalTextAlignCSS('right')}
     ${euiTextTruncate()}
   `,

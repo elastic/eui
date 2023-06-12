@@ -18,7 +18,7 @@ export const euiDatePickerRangeStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     euiDatePickerRange: css`
       .euiFieldText.euiDatePicker {
-        // Needed for correct focus/invalid box-shadow styles
+        /* Needed for correct focus/invalid box-shadow styles */
         ${logicalCSS('height', controlLayoutGroupInputHeight)}
       }
     `,
@@ -41,12 +41,12 @@ export const euiDatePickerRangeInlineStyles = (
     container-type: inline-size;
 
     .euiFormControlLayout__childrenWrapper {
-      // Use static px widths for now, since render behavior comes from a third party library
+      /* Use static px widths for now, since render behavior comes from a third party library */
       @container (max-width: ${datePickerWidth * 2 + delimiterWidth}px) {
-        // Unset grid display
+        /* Unset grid display */
         display: block !important;
 
-        // Center and point the default delimiter arrow downwards
+        /* Center and point the default delimiter arrow downwards */
         & > .euiText > [data-icon-type='sortRight'] {
           transform: rotate(90deg);
           margin-inline: auto;
@@ -57,7 +57,7 @@ export const euiDatePickerRangeInlineStyles = (
   return {
     inline: css`
       .euiFormControlLayoutDelimited {
-        // Reset form control styling
+        /* Reset form control styling */
         ${logicalCSS('height', 'auto')}
         ${logicalCSS('width', 'fit-content')}
         ${logicalCSS('max-width', '100%')}
@@ -73,7 +73,7 @@ export const euiDatePickerRangeInlineStyles = (
           background-color: transparent;
         }
 
-        // Fix --group height when append/prepend are present
+        /* Fix --group height when append/prepend are present */
         &.euiFormControlLayout--group {
           & > *,
           .euiFormControlLayoutDelimited__delimiter {
@@ -81,7 +81,7 @@ export const euiDatePickerRangeInlineStyles = (
           }
         }
 
-        // Display form control icons below both date pickers
+        /* Display form control icons below both date pickers */
         .euiFormControlLayoutIcons {
           justify-content: center;
           grid-column: 1 / span 3;
@@ -90,12 +90,12 @@ export const euiDatePickerRangeInlineStyles = (
         }
       }
 
-      // Make sure the inline date picker sets is absolute positioning based off the correct parent
+      /* Make sure the inline date picker sets is absolute positioning based off the correct parent */
       .react-datepicker {
         position: relative;
       }
 
-      // The time list creates some weird spacing when inline. Remove its padding to make it less horizontally unbalanced
+      /* The time list creates some weird spacing when inline. Remove its padding to make it less horizontally unbalanced */
       .react-datepicker__time-list {
         padding: 0;
       }

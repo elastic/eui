@@ -93,9 +93,8 @@ exports[`euiTextStyles sizes m 1`] = `
       margin-inline-start: 1.7143rem;
     }
 
-    // The styles of the nested ordered lists follow the style of GitHub
-    // which is commonly used in Markdown or MDX formatting.
-
+    /* The styles of the nested ordered lists follow the style of GitHub
+       which is commonly used in Markdown or MDX formatting. */
     ol ol,
     ul ol {
       list-style-type: lower-roman;
@@ -142,12 +141,12 @@ exports[`euiTextStyles sizes m 1`] = `
     }
 
     code:not(.euiCode):not(.euiCodeBlock__code)  {
-      font-size: .9em; // 90% of parent font size
+      font-size: .9em; /* 90% of parent font size */
     }
     
     kbd {
       padding-block-end: 4px;
-      // ensures when only one character the shape looks like a square
+      /* Ensures the shape still looks like a square when only one character */
       min-inline-size: 24px;
       text-align: center;
     }
@@ -256,9 +255,8 @@ exports[`euiTextStyles sizes relative 1`] = `
       margin-inline-start: 1.5000em;
     }
 
-    // The styles of the nested ordered lists follow the style of GitHub
-    // which is commonly used in Markdown or MDX formatting.
-
+    /* The styles of the nested ordered lists follow the style of GitHub
+       which is commonly used in Markdown or MDX formatting. */
     ol ol,
     ul ol {
       list-style-type: lower-roman;
@@ -305,7 +303,7 @@ exports[`euiTextStyles sizes relative 1`] = `
     }
 
     code:not(.euiCode):not(.euiCodeBlock__code)  {
-      font-size: .9em; // 90% of parent font size
+      font-size: .9em; /* 90% of parent font size */
     }
     
   ;;label:relative;"
@@ -404,9 +402,8 @@ exports[`euiTextStyles sizes s 1`] = `
       margin-inline-start: 1.4286rem;
     }
 
-    // The styles of the nested ordered lists follow the style of GitHub
-    // which is commonly used in Markdown or MDX formatting.
-
+    /* The styles of the nested ordered lists follow the style of GitHub
+       which is commonly used in Markdown or MDX formatting. */
     ol ol,
     ul ol {
       list-style-type: lower-roman;
@@ -453,7 +450,7 @@ exports[`euiTextStyles sizes s 1`] = `
     }
 
     code:not(.euiCode):not(.euiCodeBlock__code)  {
-      font-size: .9em; // 90% of parent font size
+      font-size: .9em; /* 90% of parent font size */
     }
     
   ;;label:s;"
@@ -552,9 +549,8 @@ exports[`euiTextStyles sizes xs 1`] = `
       margin-inline-start: 1.1429rem;
     }
 
-    // The styles of the nested ordered lists follow the style of GitHub
-    // which is commonly used in Markdown or MDX formatting.
-
+    /* The styles of the nested ordered lists follow the style of GitHub
+       which is commonly used in Markdown or MDX formatting. */
     ol ol,
     ul ol {
       list-style-type: lower-roman;
@@ -601,7 +597,7 @@ exports[`euiTextStyles sizes xs 1`] = `
     }
 
     code:not(.euiCode):not(.euiCodeBlock__code)  {
-      font-size: .9em; // 90% of parent font size
+      font-size: .9em; /* 90% of parent font size */
     }
     
   ;;label:xs;"

@@ -75,8 +75,8 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiTextTruncate(mathWithUnits(euiTheme.size.base, (x) => x * 10))}
     `,
     isTruncatedLast: css`
-      // This removes the default breadcrumb max-width while ensuring that the last breadcrumb
-      // still cuts off with a '...' if it's overflowing outside the parent breadcrumbs container
+      /* This removes the default breadcrumb max-width while ensuring that the last breadcrumb
+         still cuts off with a '...' if it's overflowing outside the parent breadcrumbs container */
       ${euiTextTruncate('none')}
     `,
 

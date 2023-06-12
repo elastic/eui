@@ -135,6 +135,9 @@ module.exports = {
       extends: ['stylelint-config-standard'],
       customSyntax: 'postcss-styled-syntax',
       rules: {
+        // Unfortunately, double slash comments must be replaced with standard CSS /* */ comments
+        // Otherwise we get a parsing error - see https://github.com/hudochenkov/postcss-styled-syntax#known-issues
+        'no-invalid-double-slash-comments': true,
         // Empty style keys should be allowed, as Emotion still uses them for generating classNames
         'no-empty-source': null,
         // Don't lint casing on interpolated JS vars

@@ -75,7 +75,7 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
     // Attached version overrides
     attached: {
       isOpen: css`
-        filter: none; // Necessary to remove the base shadow
+        filter: none; /* Necessary to remove the base shadow */
         ${euiCanAnimate} {
           /* 2 */
           transition: opacity ${euiTheme.animation.bounce}
@@ -98,15 +98,15 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
     hasDragDrop: {
       hasDragDrop: css`
         transform: none;
-        // Filter also causes a stacking context that interferes with the positioned children,
-        // so we disable it and recreate the shadow via box-shadow instead
+        /* Filter also causes a stacking context that interferes with the positioned children,
+           so we disable it and recreate the shadow via box-shadow instead */
         filter: none;
         ${euiShadowMedium(euiThemeContext, { property: 'box-shadow' })};
       `,
       // The offset transforms must be recreated in margins
       top: css`
         margin-block-start: ${euiTheme.size[translateDistance]};
-        // Existing box-shadow of the popover is sufficient to see the arrow
+        /* Existing box-shadow of the popover is sufficient to see the arrow */
       `,
       bottom: css`
         margin-block-start: -${euiTheme.size[translateDistance]};

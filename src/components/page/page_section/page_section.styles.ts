@@ -15,7 +15,7 @@ export const euiPageSectionStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     euiPageSection: css`
       ${logicalCSS('width', '100%')};
-      // Make sure that inner flex layouts don't get larger than this container
+      /* Make sure that inner flex layouts don't get larger than this container */
       ${logicalCSS('min-width', '0')};
       display: flex;
       flex-direction: column;

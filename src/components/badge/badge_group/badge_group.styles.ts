@@ -17,7 +17,7 @@ export const euiBadgeGroupStyles = ({ euiTheme }: UseEuiTheme) => {
       flex-wrap: wrap;
       ${logicalCSS('max-width', '100%')}
 
-      // Override the .euiBadge + .euiBadge CSS in badge.styles.ts
+      /* Override the .euiBadge + .euiBadge CSS in badge.styles.ts */
       .euiBadge + .euiBadge {
         ${logicalCSS('margin-left', 0)}
       }
