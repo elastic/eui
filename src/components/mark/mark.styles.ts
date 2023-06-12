@@ -10,46 +10,42 @@ import { css } from '@emotion/react';
 import { UseEuiTheme, transparentize } from '../../services';
 import { euiScreenReaderOnly } from '../accessibility';
 
-export const euiMarkStyles = (
-  { euiTheme, colorMode }: UseEuiTheme,
-  {
-    hasScreenReaderHelpText,
-    highlightStart,
-    highlightEnd,
-  }: {
-    hasScreenReaderHelpText: boolean;
-    highlightStart: string;
-    highlightEnd: string;
-  }
-) => {
+export const euiMarkStyles = ({ euiTheme, colorMode }: UseEuiTheme) => {
   // TODO: Was $euiFocusBackgroundColor
   const transparency = { LIGHT: 0.1, DARK: 0.3 };
 
-  return css`
-    background-color: ${transparentize(
-      euiTheme.colors.primary,
-      transparency[colorMode]
-    )};
-    font-weight: ${euiTheme.font.weight.bold};
-    // Override the browser's black color.
-    // Can't use 'inherit' because the text to background color contrast may not be sufficient
-    color: ${euiTheme.colors.text};
+  return {
+    euiMark: css`
+      background-color: ${transparentize(
+        euiTheme.colors.primary,
+        transparency[colorMode]
+      )};
+      font-weight: ${euiTheme.font.weight.bold};
+      /* Override the browser's black color.
+         Can't use 'inherit' because the text to background color contrast may not be sufficient */
+      color: ${euiTheme.colors.text};
+    `,
+  };
+};
 
-    // https://seanconnolly.dev/emotion-conditionals
-    ${hasScreenReaderHelpText === true &&
-    `
-      &:before,
-      &:after {
+export const euiMarkScreenReaderStyles = (
+  highlightStart: string,
+  highlightEnd: string
+) => {
+  return {
+    hasScreenReaderHelpText: css`
+      &::before,
+      &::after {
         ${euiScreenReaderOnly()}
       }
 
-      &:before {
+      &::before {
         content: ' [${highlightStart}] ';
       }
 
-      &:after {
+      &::after {
         content: ' [${highlightEnd}] ';
       }
-    `}
-  `;
+    `,
+  };
 };

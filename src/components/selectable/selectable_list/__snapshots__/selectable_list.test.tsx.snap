@@ -2598,7 +2598,7 @@ exports[`EuiSelectableListItem props searchValue 1`] = `
               <span>
                 
                 <mark
-                  class="euiMark emotion-euiMarkStyles-EuiMark"
+                  class="euiMark emotion-euiMark-hasScreenReaderHelpText"
                 >
                   Mi
                 </mark>
@@ -2794,7 +2794,7 @@ exports[`EuiSelectableListItem props searchValue 2`] = `
               <span>
                 
                 <mark
-                  class="euiMark emotion-euiMarkStyles-EuiMark"
+                  class="euiMark emotion-euiMark-hasScreenReaderHelpText"
                 >
                   Mi
                 </mark>
