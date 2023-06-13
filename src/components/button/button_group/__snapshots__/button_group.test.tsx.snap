@@ -17,7 +17,6 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for multi
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--small testClass1 testClass2 css-dbzl5z-empty-text-EuiButtonGroupButton"
       data-test-subj="test subject string"
-      id="generated-id"
       type="button"
     >
       <span
@@ -39,7 +38,6 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for multi
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--small  css-dbzl5z-empty-text-EuiButtonGroupButton"
       data-test-subj="button01"
-      id="generated-id"
       type="button"
     >
       <span
@@ -62,7 +60,6 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for multi
       class="euiButtonGroupButton euiButtonGroupButton--small  css-1ra7a0c-empty-disabled-EuiButtonGroupButton"
       data-test-subj="button02"
       disabled=""
-      id="generated-id"
       type="submit"
     >
       <span
@@ -100,7 +97,6 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for singl
       aria-label="aria-label"
       class="euiButtonGroupButton euiButtonGroupButton--small testClass1 testClass2 css-dbzl5z-empty-text-EuiButtonGroupButton"
       data-test-subj="test subject string"
-      for="generated-id"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -116,7 +112,6 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for singl
           <input
             class="euiScreenReaderOnly"
             data-test-subj="button00"
-            id="generated-id"
             name="test"
             type="radio"
           />
@@ -126,7 +121,6 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for singl
     </label>
     <label
       class="euiButtonGroupButton euiButtonGroupButton--small  css-dbzl5z-empty-text-EuiButtonGroupButton"
-      for="generated-id"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -142,7 +136,6 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for singl
           <input
             class="euiScreenReaderOnly"
             data-test-subj="button01"
-            id="generated-id"
             name="test"
             type="radio"
           />
@@ -155,7 +148,6 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for singl
       class="euiButtonGroupButton euiButtonGroupButton--small  css-1ra7a0c-empty-disabled-EuiButtonGroupButton"
       data-test-subj="button02"
       disabled=""
-      id="generated-id"
       type="submit"
     >
       <span
@@ -194,7 +186,6 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for multi 1`] = `
       aria-pressed="false"
       class="euiButtonGroupButton testClass1 testClass2 css-1m5p0sb-base-text-EuiButtonGroupButton"
       data-test-subj="test subject string"
-      id="generated-id"
       type="button"
     >
       <span
@@ -216,7 +207,6 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for multi 1`] = `
       aria-pressed="false"
       class="euiButtonGroupButton  css-1m5p0sb-base-text-EuiButtonGroupButton"
       data-test-subj="button01"
-      id="generated-id"
       type="button"
     >
       <span
@@ -239,7 +229,6 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for multi 1`] = `
       class="euiButtonGroupButton  css-10kqeyc-base-disabled-EuiButtonGroupButton"
       data-test-subj="button02"
       disabled=""
-      id="generated-id"
       type="submit"
     >
       <span
@@ -277,7 +266,6 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for single 1`] = `
       aria-label="aria-label"
       class="euiButtonGroupButton testClass1 testClass2 css-1m5p0sb-base-text-EuiButtonGroupButton"
       data-test-subj="test subject string"
-      for="generated-id"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -293,7 +281,6 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for single 1`] = `
           <input
             class="euiScreenReaderOnly"
             data-test-subj="button00"
-            id="generated-id"
             name="test"
             type="radio"
           />
@@ -303,7 +290,6 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for single 1`] = `
     </label>
     <label
       class="euiButtonGroupButton  css-1m5p0sb-base-text-EuiButtonGroupButton"
-      for="generated-id"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -319,7 +305,6 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for single 1`] = `
           <input
             class="euiScreenReaderOnly"
             data-test-subj="button01"
-            id="generated-id"
             name="test"
             type="radio"
           />
@@ -332,7 +317,6 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for single 1`] = `
       class="euiButtonGroupButton  css-10kqeyc-base-disabled-EuiButtonGroupButton"
       data-test-subj="button02"
       disabled=""
-      id="generated-id"
       type="submit"
     >
       <span
@@ -371,7 +355,6 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for multi 1`] = `
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--small testClass1 testClass2 css-1m5p0sb-base-text-EuiButtonGroupButton"
       data-test-subj="test subject string"
-      id="generated-id"
       type="button"
     >
       <span
@@ -393,7 +376,6 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for multi 1`] = `
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--small  css-1m5p0sb-base-text-EuiButtonGroupButton"
       data-test-subj="button01"
-      id="generated-id"
       type="button"
     >
       <span
@@ -416,7 +398,6 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for multi 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--small  css-10kqeyc-base-disabled-EuiButtonGroupButton"
       data-test-subj="button02"
       disabled=""
-      id="generated-id"
       type="submit"
     >
       <span
@@ -454,7 +435,6 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for single 1`] = `
       aria-label="aria-label"
       class="euiButtonGroupButton euiButtonGroupButton--small testClass1 testClass2 css-1m5p0sb-base-text-EuiButtonGroupButton"
       data-test-subj="test subject string"
-      for="generated-id"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -470,7 +450,6 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for single 1`] = `
           <input
             class="euiScreenReaderOnly"
             data-test-subj="button00"
-            id="generated-id"
             name="test"
             type="radio"
           />
@@ -480,7 +459,6 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for single 1`] = `
     </label>
     <label
       class="euiButtonGroupButton euiButtonGroupButton--small  css-1m5p0sb-base-text-EuiButtonGroupButton"
-      for="generated-id"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -496,7 +474,6 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for single 1`] = `
           <input
             class="euiScreenReaderOnly"
             data-test-subj="button01"
-            id="generated-id"
             name="test"
             type="radio"
           />
@@ -509,7 +486,6 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for single 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--small  css-10kqeyc-base-disabled-EuiButtonGroupButton"
       data-test-subj="button02"
       disabled=""
-      id="generated-id"
       type="submit"
     >
       <span
@@ -548,7 +524,6 @@ exports[`EuiButtonGroup button props color accent is rendered for multi 1`] = `
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--small testClass1 testClass2 css-11dmnaa-base-accent-EuiButtonGroupButton"
       data-test-subj="test subject string"
-      id="generated-id"
       type="button"
     >
       <span
@@ -570,7 +545,6 @@ exports[`EuiButtonGroup button props color accent is rendered for multi 1`] = `
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--small  css-11dmnaa-base-accent-EuiButtonGroupButton"
       data-test-subj="button01"
-      id="generated-id"
       type="button"
     >
       <span
@@ -593,7 +567,6 @@ exports[`EuiButtonGroup button props color accent is rendered for multi 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--small  css-10kqeyc-base-disabled-EuiButtonGroupButton"
       data-test-subj="button02"
       disabled=""
-      id="generated-id"
       type="submit"
     >
       <span
@@ -631,7 +604,6 @@ exports[`EuiButtonGroup button props color accent is rendered for single 1`] = `
       aria-label="aria-label"
       class="euiButtonGroupButton euiButtonGroupButton--small testClass1 testClass2 css-11dmnaa-base-accent-EuiButtonGroupButton"
       data-test-subj="test subject string"
-      for="generated-id"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -647,7 +619,6 @@ exports[`EuiButtonGroup button props color accent is rendered for single 1`] = `
           <input
             class="euiScreenReaderOnly"
             data-test-subj="button00"
-            id="generated-id"
             name="test"
             type="radio"
           />
@@ -657,7 +628,6 @@ exports[`EuiButtonGroup button props color accent is rendered for single 1`] = `
     </label>
     <label
       class="euiButtonGroupButton euiButtonGroupButton--small  css-11dmnaa-base-accent-EuiButtonGroupButton"
-      for="generated-id"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -673,7 +643,6 @@ exports[`EuiButtonGroup button props color accent is rendered for single 1`] = `
           <input
             class="euiScreenReaderOnly"
             data-test-subj="button01"
-            id="generated-id"
             name="test"
             type="radio"
           />
@@ -686,7 +655,6 @@ exports[`EuiButtonGroup button props color accent is rendered for single 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--small  css-10kqeyc-base-disabled-EuiButtonGroupButton"
       data-test-subj="button02"
       disabled=""
-      id="generated-id"
       type="submit"
     >
       <span
@@ -725,7 +693,6 @@ exports[`EuiButtonGroup button props color danger is rendered for multi 1`] = `
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--small testClass1 testClass2 css-1old2bv-base-danger-EuiButtonGroupButton"
       data-test-subj="test subject string"
-      id="generated-id"
       type="button"
     >
       <span
@@ -747,7 +714,6 @@ exports[`EuiButtonGroup button props color danger is rendered for multi 1`] = `
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--small  css-1old2bv-base-danger-EuiButtonGroupButton"
       data-test-subj="button01"
-      id="generated-id"
       type="button"
     >
       <span
@@ -770,7 +736,6 @@ exports[`EuiButtonGroup button props color danger is rendered for multi 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--small  css-10kqeyc-base-disabled-EuiButtonGroupButton"
       data-test-subj="button02"
       disabled=""
-      id="generated-id"
       type="submit"
     >
       <span
@@ -808,7 +773,6 @@ exports[`EuiButtonGroup button props color danger is rendered for single 1`] = `
       aria-label="aria-label"
       class="euiButtonGroupButton euiButtonGroupButton--small testClass1 testClass2 css-1old2bv-base-danger-EuiButtonGroupButton"
       data-test-subj="test subject string"
-      for="generated-id"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -824,7 +788,6 @@ exports[`EuiButtonGroup button props color danger is rendered for single 1`] = `
           <input
             class="euiScreenReaderOnly"
             data-test-subj="button00"
-            id="generated-id"
             name="test"
             type="radio"
           />
@@ -834,7 +797,6 @@ exports[`EuiButtonGroup button props color danger is rendered for single 1`] = `
     </label>
     <label
       class="euiButtonGroupButton euiButtonGroupButton--small  css-1old2bv-base-danger-EuiButtonGroupButton"
-      for="generated-id"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -850,7 +812,6 @@ exports[`EuiButtonGroup button props color danger is rendered for single 1`] = `
           <input
             class="euiScreenReaderOnly"
             data-test-subj="button01"
-            id="generated-id"
             name="test"
             type="radio"
           />
@@ -863,7 +824,6 @@ exports[`EuiButtonGroup button props color danger is rendered for single 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--small  css-10kqeyc-base-disabled-EuiButtonGroupButton"
       data-test-subj="button02"
       disabled=""
-      id="generated-id"
       type="submit"
     >
       <span
@@ -902,7 +862,6 @@ exports[`EuiButtonGroup button props color primary is rendered for multi 1`] = `
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--small testClass1 testClass2 css-c1t84v-base-primary-EuiButtonGroupButton"
       data-test-subj="test subject string"
-      id="generated-id"
       type="button"
     >
       <span
@@ -924,7 +883,6 @@ exports[`EuiButtonGroup button props color primary is rendered for multi 1`] = `
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--small  css-c1t84v-base-primary-EuiButtonGroupButton"
       data-test-subj="button01"
-      id="generated-id"
       type="button"
     >
       <span
@@ -947,7 +905,6 @@ exports[`EuiButtonGroup button props color primary is rendered for multi 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--small  css-10kqeyc-base-disabled-EuiButtonGroupButton"
       data-test-subj="button02"
       disabled=""
-      id="generated-id"
       type="submit"
     >
       <span
@@ -985,7 +942,6 @@ exports[`EuiButtonGroup button props color primary is rendered for single 1`] = 
       aria-label="aria-label"
       class="euiButtonGroupButton euiButtonGroupButton--small testClass1 testClass2 css-c1t84v-base-primary-EuiButtonGroupButton"
       data-test-subj="test subject string"
-      for="generated-id"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1001,7 +957,6 @@ exports[`EuiButtonGroup button props color primary is rendered for single 1`] = 
           <input
             class="euiScreenReaderOnly"
             data-test-subj="button00"
-            id="generated-id"
             name="test"
             type="radio"
           />
@@ -1011,7 +966,6 @@ exports[`EuiButtonGroup button props color primary is rendered for single 1`] = 
     </label>
     <label
       class="euiButtonGroupButton euiButtonGroupButton--small  css-c1t84v-base-primary-EuiButtonGroupButton"
-      for="generated-id"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1027,7 +981,6 @@ exports[`EuiButtonGroup button props color primary is rendered for single 1`] = 
           <input
             class="euiScreenReaderOnly"
             data-test-subj="button01"
-            id="generated-id"
             name="test"
             type="radio"
           />
@@ -1040,7 +993,6 @@ exports[`EuiButtonGroup button props color primary is rendered for single 1`] = 
       class="euiButtonGroupButton euiButtonGroupButton--small  css-10kqeyc-base-disabled-EuiButtonGroupButton"
       data-test-subj="button02"
       disabled=""
-      id="generated-id"
       type="submit"
     >
       <span
@@ -1079,7 +1031,6 @@ exports[`EuiButtonGroup button props color success is rendered for multi 1`] = `
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--small testClass1 testClass2 css-vufpcj-base-success-EuiButtonGroupButton"
       data-test-subj="test subject string"
-      id="generated-id"
       type="button"
     >
       <span
@@ -1101,7 +1052,6 @@ exports[`EuiButtonGroup button props color success is rendered for multi 1`] = `
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--small  css-vufpcj-base-success-EuiButtonGroupButton"
       data-test-subj="button01"
-      id="generated-id"
       type="button"
     >
       <span
@@ -1124,7 +1074,6 @@ exports[`EuiButtonGroup button props color success is rendered for multi 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--small  css-10kqeyc-base-disabled-EuiButtonGroupButton"
       data-test-subj="button02"
       disabled=""
-      id="generated-id"
       type="submit"
     >
       <span
@@ -1162,7 +1111,6 @@ exports[`EuiButtonGroup button props color success is rendered for single 1`] = 
       aria-label="aria-label"
       class="euiButtonGroupButton euiButtonGroupButton--small testClass1 testClass2 css-vufpcj-base-success-EuiButtonGroupButton"
       data-test-subj="test subject string"
-      for="generated-id"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1178,7 +1126,6 @@ exports[`EuiButtonGroup button props color success is rendered for single 1`] = 
           <input
             class="euiScreenReaderOnly"
             data-test-subj="button00"
-            id="generated-id"
             name="test"
             type="radio"
           />
@@ -1188,7 +1135,6 @@ exports[`EuiButtonGroup button props color success is rendered for single 1`] = 
     </label>
     <label
       class="euiButtonGroupButton euiButtonGroupButton--small  css-vufpcj-base-success-EuiButtonGroupButton"
-      for="generated-id"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1204,7 +1150,6 @@ exports[`EuiButtonGroup button props color success is rendered for single 1`] = 
           <input
             class="euiScreenReaderOnly"
             data-test-subj="button01"
-            id="generated-id"
             name="test"
             type="radio"
           />
@@ -1217,7 +1162,6 @@ exports[`EuiButtonGroup button props color success is rendered for single 1`] = 
       class="euiButtonGroupButton euiButtonGroupButton--small  css-10kqeyc-base-disabled-EuiButtonGroupButton"
       data-test-subj="button02"
       disabled=""
-      id="generated-id"
       type="submit"
     >
       <span
@@ -1256,7 +1200,6 @@ exports[`EuiButtonGroup button props color text is rendered for multi 1`] = `
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--small testClass1 testClass2 css-1m5p0sb-base-text-EuiButtonGroupButton"
       data-test-subj="test subject string"
-      id="generated-id"
       type="button"
     >
       <span
@@ -1278,7 +1221,6 @@ exports[`EuiButtonGroup button props color text is rendered for multi 1`] = `
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--small  css-1m5p0sb-base-text-EuiButtonGroupButton"
       data-test-subj="button01"
-      id="generated-id"
       type="button"
     >
       <span
@@ -1301,7 +1243,6 @@ exports[`EuiButtonGroup button props color text is rendered for multi 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--small  css-10kqeyc-base-disabled-EuiButtonGroupButton"
       data-test-subj="button02"
       disabled=""
-      id="generated-id"
       type="submit"
     >
       <span
@@ -1339,7 +1280,6 @@ exports[`EuiButtonGroup button props color text is rendered for single 1`] = `
       aria-label="aria-label"
       class="euiButtonGroupButton euiButtonGroupButton--small testClass1 testClass2 css-1m5p0sb-base-text-EuiButtonGroupButton"
       data-test-subj="test subject string"
-      for="generated-id"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1355,7 +1295,6 @@ exports[`EuiButtonGroup button props color text is rendered for single 1`] = `
           <input
             class="euiScreenReaderOnly"
             data-test-subj="button00"
-            id="generated-id"
             name="test"
             type="radio"
           />
@@ -1365,7 +1304,6 @@ exports[`EuiButtonGroup button props color text is rendered for single 1`] = `
     </label>
     <label
       class="euiButtonGroupButton euiButtonGroupButton--small  css-1m5p0sb-base-text-EuiButtonGroupButton"
-      for="generated-id"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1381,7 +1319,6 @@ exports[`EuiButtonGroup button props color text is rendered for single 1`] = `
           <input
             class="euiScreenReaderOnly"
             data-test-subj="button01"
-            id="generated-id"
             name="test"
             type="radio"
           />
@@ -1394,7 +1331,6 @@ exports[`EuiButtonGroup button props color text is rendered for single 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--small  css-10kqeyc-base-disabled-EuiButtonGroupButton"
       data-test-subj="button02"
       disabled=""
-      id="generated-id"
       type="submit"
     >
       <span
@@ -1433,7 +1369,6 @@ exports[`EuiButtonGroup button props color warning is rendered for multi 1`] = `
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--small testClass1 testClass2 css-fhqo9b-base-warning-EuiButtonGroupButton"
       data-test-subj="test subject string"
-      id="generated-id"
       type="button"
     >
       <span
@@ -1455,7 +1390,6 @@ exports[`EuiButtonGroup button props color warning is rendered for multi 1`] = `
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--small  css-fhqo9b-base-warning-EuiButtonGroupButton"
       data-test-subj="button01"
-      id="generated-id"
       type="button"
     >
       <span
@@ -1478,7 +1412,6 @@ exports[`EuiButtonGroup button props color warning is rendered for multi 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--small  css-10kqeyc-base-disabled-EuiButtonGroupButton"
       data-test-subj="button02"
       disabled=""
-      id="generated-id"
       type="submit"
     >
       <span
@@ -1516,7 +1449,6 @@ exports[`EuiButtonGroup button props color warning is rendered for single 1`] = 
       aria-label="aria-label"
       class="euiButtonGroupButton euiButtonGroupButton--small testClass1 testClass2 css-fhqo9b-base-warning-EuiButtonGroupButton"
       data-test-subj="test subject string"
-      for="generated-id"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1532,7 +1464,6 @@ exports[`EuiButtonGroup button props color warning is rendered for single 1`] = 
           <input
             class="euiScreenReaderOnly"
             data-test-subj="button00"
-            id="generated-id"
             name="test"
             type="radio"
           />
@@ -1542,7 +1473,6 @@ exports[`EuiButtonGroup button props color warning is rendered for single 1`] = 
     </label>
     <label
       class="euiButtonGroupButton euiButtonGroupButton--small  css-fhqo9b-base-warning-EuiButtonGroupButton"
-      for="generated-id"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1558,7 +1488,6 @@ exports[`EuiButtonGroup button props color warning is rendered for single 1`] = 
           <input
             class="euiScreenReaderOnly"
             data-test-subj="button01"
-            id="generated-id"
             name="test"
             type="radio"
           />
@@ -1571,7 +1500,6 @@ exports[`EuiButtonGroup button props color warning is rendered for single 1`] = 
       class="euiButtonGroupButton euiButtonGroupButton--small  css-10kqeyc-base-disabled-EuiButtonGroupButton"
       data-test-subj="button02"
       disabled=""
-      id="generated-id"
       type="submit"
     >
       <span
@@ -1612,7 +1540,6 @@ exports[`EuiButtonGroup button props isDisabled is rendered for multi 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--small testClass1 testClass2 css-10kqeyc-base-disabled-EuiButtonGroupButton"
       data-test-subj="test subject string"
       disabled=""
-      id="generated-id"
       type="button"
     >
       <span
@@ -1635,7 +1562,6 @@ exports[`EuiButtonGroup button props isDisabled is rendered for multi 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--small  css-10kqeyc-base-disabled-EuiButtonGroupButton"
       data-test-subj="button01"
       disabled=""
-      id="generated-id"
       type="button"
     >
       <span
@@ -1658,7 +1584,6 @@ exports[`EuiButtonGroup button props isDisabled is rendered for multi 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--small  css-10kqeyc-base-disabled-EuiButtonGroupButton"
       data-test-subj="button02"
       disabled=""
-      id="generated-id"
       type="submit"
     >
       <span
@@ -1699,7 +1624,6 @@ exports[`EuiButtonGroup button props isDisabled is rendered for single 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--small testClass1 testClass2 css-10kqeyc-base-disabled-EuiButtonGroupButton"
       data-test-subj="test subject string"
       disabled=""
-      id="generated-id"
       type="button"
     >
       <span
@@ -1722,7 +1646,6 @@ exports[`EuiButtonGroup button props isDisabled is rendered for single 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--small  css-10kqeyc-base-disabled-EuiButtonGroupButton"
       data-test-subj="button01"
       disabled=""
-      id="generated-id"
       type="button"
     >
       <span
@@ -1745,7 +1668,6 @@ exports[`EuiButtonGroup button props isDisabled is rendered for single 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--small  css-10kqeyc-base-disabled-EuiButtonGroupButton"
       data-test-subj="button02"
       disabled=""
-      id="generated-id"
       type="submit"
     >
       <span
@@ -1784,7 +1706,6 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for multi 1`] = `
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--small testClass1 testClass2 css-1m5p0sb-base-text-EuiButtonGroupButton"
       data-test-subj="test subject string"
-      id="generated-id"
       type="button"
     >
       <span
@@ -1806,7 +1727,6 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for multi 1`] = `
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--small  css-1m5p0sb-base-text-EuiButtonGroupButton"
       data-test-subj="button01"
-      id="generated-id"
       type="button"
     >
       <span
@@ -1829,7 +1749,6 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for multi 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--small  css-10kqeyc-base-disabled-EuiButtonGroupButton"
       data-test-subj="button02"
       disabled=""
-      id="generated-id"
       type="submit"
     >
       <span
@@ -1867,7 +1786,6 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for single 1`] = `
       aria-label="aria-label"
       class="euiButtonGroupButton euiButtonGroupButton--small testClass1 testClass2 css-1m5p0sb-base-text-EuiButtonGroupButton"
       data-test-subj="test subject string"
-      for="generated-id"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1883,7 +1801,6 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for single 1`] = `
           <input
             class="euiScreenReaderOnly"
             data-test-subj="button00"
-            id="generated-id"
             name="test"
             type="radio"
           />
@@ -1893,7 +1810,6 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for single 1`] = `
     </label>
     <label
       class="euiButtonGroupButton euiButtonGroupButton--small  css-1m5p0sb-base-text-EuiButtonGroupButton"
-      for="generated-id"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -1909,7 +1825,6 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for single 1`] = `
           <input
             class="euiScreenReaderOnly"
             data-test-subj="button01"
-            id="generated-id"
             name="test"
             type="radio"
           />
@@ -1922,7 +1837,6 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for single 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--small  css-10kqeyc-base-disabled-EuiButtonGroupButton"
       data-test-subj="button02"
       disabled=""
-      id="generated-id"
       type="submit"
     >
       <span
@@ -1961,7 +1875,6 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for multi 1`] = `
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--small euiButtonGroupButton-isIconOnly testClass1 testClass2 css-1m5p0sb-base-text-EuiButtonGroupButton"
       data-test-subj="test subject string"
-      id="generated-id"
       type="button"
     >
       <span
@@ -1983,7 +1896,6 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for multi 1`] = `
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--small euiButtonGroupButton-isIconOnly css-1m5p0sb-base-text-EuiButtonGroupButton"
       data-test-subj="button01"
-      id="generated-id"
       type="button"
     >
       <span
@@ -2006,7 +1918,6 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for multi 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--small euiButtonGroupButton-isIconOnly css-10kqeyc-base-disabled-EuiButtonGroupButton"
       data-test-subj="button02"
       disabled=""
-      id="generated-id"
       type="submit"
     >
       <span
@@ -2044,7 +1955,6 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for single 1`] = `
       aria-label="aria-label"
       class="euiButtonGroupButton euiButtonGroupButton--small euiButtonGroupButton-isIconOnly testClass1 testClass2 css-1m5p0sb-base-text-EuiButtonGroupButton"
       data-test-subj="test subject string"
-      for="generated-id"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -2060,7 +1970,6 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for single 1`] = `
           <input
             class="euiScreenReaderOnly"
             data-test-subj="button00"
-            id="generated-id"
             name="test"
             type="radio"
           />
@@ -2070,7 +1979,6 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for single 1`] = `
     </label>
     <label
       class="euiButtonGroupButton euiButtonGroupButton--small euiButtonGroupButton-isIconOnly css-1m5p0sb-base-text-EuiButtonGroupButton"
-      for="generated-id"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -2086,7 +1994,6 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for single 1`] = `
           <input
             class="euiScreenReaderOnly"
             data-test-subj="button01"
-            id="generated-id"
             name="test"
             type="radio"
           />
@@ -2099,7 +2006,6 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for single 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--small euiButtonGroupButton-isIconOnly css-10kqeyc-base-disabled-EuiButtonGroupButton"
       data-test-subj="button02"
       disabled=""
-      id="generated-id"
       type="submit"
     >
       <span
@@ -2137,7 +2043,6 @@ exports[`EuiButtonGroup button props selection idSelected is rendered for single
       aria-label="aria-label"
       class="euiButtonGroupButton euiButtonGroupButton--small euiButtonGroupButton-isSelected testClass1 testClass2 css-qmwmig-fill-text-EuiButtonGroupButton"
       data-test-subj="test subject string"
-      for="generated-id"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -2154,7 +2059,6 @@ exports[`EuiButtonGroup button props selection idSelected is rendered for single
             checked=""
             class="euiScreenReaderOnly"
             data-test-subj="button00"
-            id="generated-id"
             name="test"
             type="radio"
           />
@@ -2164,7 +2068,6 @@ exports[`EuiButtonGroup button props selection idSelected is rendered for single
     </label>
     <label
       class="euiButtonGroupButton euiButtonGroupButton--small  css-1m5p0sb-base-text-EuiButtonGroupButton"
-      for="generated-id"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -2180,7 +2083,6 @@ exports[`EuiButtonGroup button props selection idSelected is rendered for single
           <input
             class="euiScreenReaderOnly"
             data-test-subj="button01"
-            id="generated-id"
             name="test"
             type="radio"
           />
@@ -2193,7 +2095,6 @@ exports[`EuiButtonGroup button props selection idSelected is rendered for single
       class="euiButtonGroupButton euiButtonGroupButton--small  css-10kqeyc-base-disabled-EuiButtonGroupButton"
       data-test-subj="button02"
       disabled=""
-      id="generated-id"
       type="submit"
     >
       <span
@@ -2232,7 +2133,6 @@ exports[`EuiButtonGroup button props selection idToSelectedMap is rendered for m
       aria-pressed="true"
       class="euiButtonGroupButton euiButtonGroupButton--small euiButtonGroupButton-isSelected testClass1 testClass2 css-qmwmig-fill-text-EuiButtonGroupButton"
       data-test-subj="test subject string"
-      id="generated-id"
       type="button"
     >
       <span
@@ -2254,7 +2154,6 @@ exports[`EuiButtonGroup button props selection idToSelectedMap is rendered for m
       aria-pressed="true"
       class="euiButtonGroupButton euiButtonGroupButton--small euiButtonGroupButton-isSelected css-qmwmig-fill-text-EuiButtonGroupButton"
       data-test-subj="button01"
-      id="generated-id"
       type="button"
     >
       <span
@@ -2277,7 +2176,6 @@ exports[`EuiButtonGroup button props selection idToSelectedMap is rendered for m
       class="euiButtonGroupButton euiButtonGroupButton--small  css-10kqeyc-base-disabled-EuiButtonGroupButton"
       data-test-subj="button02"
       disabled=""
-      id="generated-id"
       type="submit"
     >
       <span
@@ -2318,7 +2216,6 @@ exports[`EuiButtonGroup type multi is rendered 1`] = `
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--small testClass1 testClass2 css-1m5p0sb-base-text-EuiButtonGroupButton"
       data-test-subj="test subject string"
-      id="generated-id"
       type="button"
     >
       <span
@@ -2340,7 +2237,6 @@ exports[`EuiButtonGroup type multi is rendered 1`] = `
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--small  css-1m5p0sb-base-text-EuiButtonGroupButton"
       data-test-subj="button01"
-      id="generated-id"
       type="button"
     >
       <span
@@ -2363,7 +2259,6 @@ exports[`EuiButtonGroup type multi is rendered 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--small  css-10kqeyc-base-disabled-EuiButtonGroupButton"
       data-test-subj="button02"
       disabled=""
-      id="generated-id"
       type="submit"
     >
       <span
@@ -2403,7 +2298,6 @@ exports[`EuiButtonGroup type single is rendered 1`] = `
       aria-label="aria-label"
       class="euiButtonGroupButton euiButtonGroupButton--small testClass1 testClass2 css-1m5p0sb-base-text-EuiButtonGroupButton"
       data-test-subj="test subject string"
-      for="generated-id"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -2419,7 +2313,6 @@ exports[`EuiButtonGroup type single is rendered 1`] = `
           <input
             class="euiScreenReaderOnly"
             data-test-subj="button00"
-            id="generated-id"
             name="test"
             type="radio"
           />
@@ -2429,7 +2322,6 @@ exports[`EuiButtonGroup type single is rendered 1`] = `
     </label>
     <label
       class="euiButtonGroupButton euiButtonGroupButton--small  css-1m5p0sb-base-text-EuiButtonGroupButton"
-      for="generated-id"
     >
       <span
         class="euiButtonContent euiButton__content"
@@ -2445,7 +2337,6 @@ exports[`EuiButtonGroup type single is rendered 1`] = `
           <input
             class="euiScreenReaderOnly"
             data-test-subj="button01"
-            id="generated-id"
             name="test"
             type="radio"
           />
@@ -2458,7 +2349,6 @@ exports[`EuiButtonGroup type single is rendered 1`] = `
       class="euiButtonGroupButton euiButtonGroupButton--small  css-10kqeyc-base-disabled-EuiButtonGroupButton"
       data-test-subj="button02"
       disabled=""
-      id="generated-id"
       type="submit"
     >
       <span

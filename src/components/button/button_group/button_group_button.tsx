@@ -11,7 +11,6 @@ import React, { FunctionComponent } from 'react';
 import { EuiButtonDisplayDeprecated as EuiButtonDisplay } from '../button';
 import { EuiButtonGroupOptionProps, EuiButtonGroupProps } from './button_group';
 import { useInnerText } from '../../inner_text';
-import { useGeneratedHtmlId } from '../../../services';
 import { useEuiButtonColorCSS } from '../../../themes/amsterdam/global_styling/mixins/button';
 
 type Props = EuiButtonGroupOptionProps & {
@@ -67,18 +66,12 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
 }) => {
   // Force element to be a button if disabled
   const element = isDisabled ? 'button' : _element;
-  const newId = useGeneratedHtmlId();
 
   let elementProps = {};
   let singleInput;
   if (element === 'label') {
-    elementProps = {
-      ...elementProps,
-      htmlFor: newId,
-    };
     singleInput = (
       <input
-        id={newId}
         className="euiScreenReaderOnly"
         name={name}
         checked={isSelected}
@@ -91,8 +84,6 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
     );
   } else {
     elementProps = {
-      ...elementProps,
-      id: newId,
       'data-test-subj': id,
       isSelected,
       type,
