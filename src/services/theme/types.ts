@@ -46,6 +46,7 @@ export type StrictColorModeSwitch<T = string> = {
 
 export type EuiThemeShape = {
   colors: _EuiThemeColors;
+  /** - Default value: 16 */
   base: _EuiThemeBase;
   /**
    * @see {@link https://eui.elastic.co/#/theming/sizing | Reference} for more information

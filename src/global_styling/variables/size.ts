@@ -6,9 +6,6 @@
  * Side Public License, v 1.
  */
 
-/**
- * - Default value: 16
- */
 export type _EuiThemeBase = number;
 
 export const EuiThemeSizes = [
