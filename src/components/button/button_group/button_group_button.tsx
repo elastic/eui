@@ -61,17 +61,17 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
   size,
   value,
   color: _color = 'primary',
-  element = 'button',
+  element: _element = 'button',
   type = 'button',
   ...rest
 }) => {
   // Force element to be a button if disabled
-  const el = isDisabled ? 'button' : element;
+  const element = isDisabled ? 'button' : _element;
   const newId = useGeneratedHtmlId();
 
   let elementProps = {};
   let singleInput;
-  if (el === 'label') {
+  if (element === 'label') {
     elementProps = {
       ...elementProps,
       htmlFor: newId,
@@ -128,7 +128,7 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
       css={[buttonColorStyles]}
       baseClassName="euiButtonGroupButton"
       className={buttonClasses}
-      element={el}
+      element={element}
       isDisabled={isDisabled}
       size={size === 'compressed' ? 's' : size}
       textProps={{
