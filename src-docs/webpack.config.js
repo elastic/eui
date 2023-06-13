@@ -120,7 +120,7 @@ const webpackConfig = new Promise(async (resolve, reject) => {
             test: /\.(png|jp(e*)g|svg|gif)$/,
             type: 'asset',
             generator: {
-              filename: 'images/[hash]-[name].[ext]',
+              filename: 'images/[hash]-[name][ext]',
             },
             parser: {
               dataUrlCondition: {

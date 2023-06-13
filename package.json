@@ -7,7 +7,7 @@
   "module": "es",
   "types": "eui.d.ts",
   "engines": {
-    "node": ">=18.0.0 < 19.0.0" 
+    "node": ">=18.0.0 < 19.0.0"
   },
   "sideEffects": [
     "*.css",
