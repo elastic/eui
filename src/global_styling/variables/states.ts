@@ -24,10 +24,12 @@ export interface _EuiThemeFocusOutline {
 export interface _EuiThemeFocus {
   /**
    * Default color of the focus ring, some components may override this property
+   * - Default value: currentColor
    */
   color: ColorModeSwitch;
   /**
    * Thickness of the outline
+   * - Default value: 2px
    */
   width: CSSProperties['borderWidth'];
   /**
