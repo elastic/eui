@@ -1,3 +1,13 @@
+## [`82.0.0`](https://github.com/elastic/eui/tree/v82.0.0)
+
+**Bug fixes**
+
+- Fixed `EuiPopover`'s types to omit `panelProps.hasBorder` and `panelProps.hasShadow` - these props are not customizable on popovers for visual consistency ([#6836](https://github.com/elastic/eui/pull/6836))
+
+**Breaking changes**
+
+- `EuiRange` & `EuiDualRange` no longer have a hard limit of 20 displayed ticks. The component now instead detects the width available, and throws an error if each tick has less than 5 pixels of width. We recommend testing your tick usage at smaller screens to ensure they always display legibly to users. ([#6829](https://github.com/elastic/eui/pull/6829))
+
 ## [`81.3.0`](https://github.com/elastic/eui/tree/v81.3.0)
 
 - Added `timelineWithArrow` glyph to `EuiIcon` ([#6822](https://github.com/elastic/eui/pull/6822))
