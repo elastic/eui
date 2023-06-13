@@ -83,10 +83,18 @@ export const EuiThemeFontWeights = [
 
 export type _EuiThemeFontWeight = (typeof EuiThemeFontWeights)[number];
 
-export type _EuiThemeFontWeights = Record<
-  _EuiThemeFontWeight,
-  CSSProperties['fontWeight']
->;
+export type _EuiThemeFontWeights = {
+  /** - Default value: 300 */
+  light: CSSProperties['fontWeight'];
+  /** - Default value: 400 */
+  regular: CSSProperties['fontWeight'];
+  /** - Default value: 500 */
+  medium: CSSProperties['fontWeight'];
+  /** - Default value: 600 */
+  semiBold: CSSProperties['fontWeight'];
+  /** - Default value: 700 */
+  bold: CSSProperties['fontWeight'];
+};
 
 /**
  * Body / Base styles
@@ -120,6 +128,9 @@ export interface _EuiThemeTitle {
 
 export type _EuiThemeFont = _EuiThemeFontBase & {
   scale: _EuiThemeFontScales;
+  /**
+   * @see {@link https://eui.elastic.co/#/theming/typography/values%23font-weight | Reference} for more information
+   */
   weight: _EuiThemeFontWeights;
   body: _EuiThemeBody;
   title: _EuiThemeTitle;

@@ -12,5 +12,17 @@ export const EuiThemeBreakpoints = ['xs', 's', 'm', 'l', 'xl'] as const;
 // in case consumers add custom breakpoint sizes, such as xxl or xxs
 export type _EuiThemeBreakpoint = string;
 
-// Set the minimum window width at which to start to the breakpoint
-export type _EuiThemeBreakpoints = Record<_EuiThemeBreakpoint, number>;
+// Explicitly list out each key so we can document default values
+// via JSDoc (which is available to devs in IDE via intellisense)
+export type _EuiThemeBreakpoints = Record<_EuiThemeBreakpoint, number> & {
+  /** - Default value: 0 */
+  xs: number;
+  /** - Default value: 575 */
+  s: number;
+  /** - Default value: 768 */
+  m: number;
+  /** - Default value: 992 */
+  l: number;
+  /** - Default value: 1200 */
+  xl: number;
+};
