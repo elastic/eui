@@ -216,26 +216,6 @@ export const useEuiButtonColorCSS = (options: _EuiButtonOptions = {}) => {
 };
 
 /**
- * Based on the button size, creates the style properties.
- * @returns An object of button size keys with Emption styles for `border-radius`
- */
-export const useEuiButtonRadiusCSS = () => {
-  const { euiTheme } = useEuiTheme();
-
-  return {
-    xs: css`
-      border-radius: ${euiTheme.border.radius.small};
-    `,
-    s: css`
-      border-radius: ${euiTheme.border.radius.small};
-    `,
-    m: css`
-      border-radius: ${euiTheme.border.radius.medium};
-    `,
-  };
-};
-
-/**
  * Creates the translate animation when button is in focus.
  * @returns string
  */
@@ -262,3 +242,25 @@ export const useEuiButtonFocusCSS = () => {
     }
   `;
 };
+
+/**
+ * Map of `size` props to various sizings/scales
+ * that should remain consistent across all buttons
+ */
+export const euiButtonSizeMap = ({ euiTheme }: UseEuiTheme) => ({
+  xs: {
+    height: euiTheme.size.l,
+    radius: euiTheme.border.radius.small,
+    fontScale: 'xs' as const,
+  },
+  s: {
+    height: euiTheme.size.xl,
+    radius: euiTheme.border.radius.small,
+    fontScale: 's' as const,
+  },
+  m: {
+    height: euiTheme.size.xxl,
+    radius: euiTheme.border.radius.medium,
+    fontScale: 's' as const,
+  },
+});
