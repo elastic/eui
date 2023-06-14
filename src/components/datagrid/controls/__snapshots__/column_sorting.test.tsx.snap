@@ -143,7 +143,7 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                 class="euiFlexItem emotion-euiFlexItem-grow-1"
               >
                 <fieldset
-                  class="euiButtonGroup euiButtonGroup--compressed euiButtonGroup--text euiButtonGroup--fullWidth euiDataGridColumnSorting__order"
+                  class="euiButtonGroup euiDataGridColumnSorting__order emotion-euiButtonGroup-fullWidth"
                 >
                   <legend
                     class="emotion-euiScreenReaderOnly"
@@ -151,26 +151,25 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                     Select sorting method for Column A
                   </legend>
                   <div
-                    class="euiButtonGroup__buttons"
+                    class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-fullWidth-compressed"
                   >
                     <label
-                      class="euiButtonGroupButton euiButtonGroupButton--small euiButtonGroupButton-isSelected css-qmwmig-fill-text-EuiButtonGroupButton"
+                      class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-compressed-fill-text"
                       data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
-                      for="generated-id"
                       title="Low-High"
+                      type="button"
                     >
                       <span
-                        class="euiButtonContent euiButton__content"
+                        class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
                       >
                         <span
-                          class="euiButton__text euiButtonGroupButton__textShift"
+                          class="eui-textTruncate emotion-euiButtonGroupButton__text"
                           data-text="Low-High"
                         >
                           <input
                             checked=""
                             class="euiScreenReaderOnly"
                             data-test-subj="columnAAsc"
-                            id="generated-id"
                             name="columnA"
                             type="radio"
                             value="asc"
@@ -180,22 +179,21 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                       </span>
                     </label>
                     <label
-                      class="euiButtonGroupButton euiButtonGroupButton--small  css-dbzl5z-empty-text-EuiButtonGroupButton"
+                      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-compressed-empty-text"
                       data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
-                      for="generated-id"
                       title="High-Low"
+                      type="button"
                     >
                       <span
-                        class="euiButtonContent euiButton__content"
+                        class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
                       >
                         <span
-                          class="euiButton__text euiButtonGroupButton__textShift"
+                          class="eui-textTruncate emotion-euiButtonGroupButton__text"
                           data-text="High-Low"
                         >
                           <input
                             class="euiScreenReaderOnly"
                             data-test-subj="columnADesc"
-                            id="generated-id"
                             name="columnA"
                             type="radio"
                             value="desc"

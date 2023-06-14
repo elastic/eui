@@ -44,6 +44,7 @@ export type EuiButtonDisplaySizes = (typeof SIZES)[number];
 export interface EuiButtonDisplayCommonProps
   extends EuiButtonDisplayContentProps,
     CommonProps {
+  element?: 'a' | 'button' | 'span' | 'label';
   children?: ReactNode;
   size?: EuiButtonDisplaySizes;
   /**
@@ -109,6 +110,8 @@ export function isButtonDisabled({
 export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
   (
     {
+      element: _element = 'button',
+      type = 'button',
       children,
       iconType,
       iconSide = 'left',
@@ -125,7 +128,6 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
       href,
       target,
       rel,
-      type = 'button',
       style,
       ...rest
     },
@@ -164,7 +166,7 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
       </EuiButtonDisplayContent>
     );
 
-    const element = href && !buttonIsDisabled ? 'a' : 'button';
+    const element = buttonIsDisabled ? 'button' : href ? 'a' : _element;
     let elementProps = {};
     // Element-specific attributes
     if (element === 'button') {
