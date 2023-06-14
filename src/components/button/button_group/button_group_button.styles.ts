@@ -7,12 +7,17 @@
  */
 
 import { css } from '@emotion/react';
+import { CSSProperties } from 'react';
+
 import {
   UseEuiTheme,
   makeDisabledContrastColor,
+  transparentize,
 } from '../../../services';
 import {
+  mathWithUnits,
   logicalCSS,
+  logicalShorthandCSS,
   euiTextShift,
   euiOutline,
   euiCanAnimate,
@@ -22,9 +27,31 @@ import {
   _EuiButtonColor,
 } from '../../../themes/amsterdam/global_styling/mixins/button';
 import { euiScreenReaderOnly } from '../../accessibility';
+import { euiFormVariables } from '../../form/form.styles';
 
 export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+
+  const { controlCompressedHeight, controlCompressedBorderRadius } =
+    euiFormVariables(euiThemeContext);
+  const compressedButtonHeight = mathWithUnits(
+    [controlCompressedHeight, euiTheme.border.width.thin],
+    (x, y) => x - y * 2
+  );
+
+  const uncompressedBorderRadii = (
+    radiusSize: CSSProperties['borderRadius']
+  ) => `
+    border-radius: 0;
+
+    &:first-child {
+      ${logicalShorthandCSS('border-radius', `${radiusSize} 0 0 ${radiusSize}`)}
+    }
+
+    &:last-child {
+      ${logicalShorthandCSS('border-radius', `0 ${radiusSize} ${radiusSize} 0`)}
+    }
+  `;
 
   return {
     // Base
@@ -38,6 +65,40 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
         transition: background-color ${euiTheme.animation.normal} ease-in-out,
           color ${euiTheme.animation.normal} ease-in-out;
       }
+    `,
+    // Sizes
+    s: css`
+      ${uncompressedBorderRadii(euiTheme.border.radius.small)}
+    `,
+    m: css`
+      ${uncompressedBorderRadii(euiTheme.border.radius.medium)}
+    `,
+    uncompressed: css`
+      /* "Borders" between buttons - should be present between two of the same colored buttons,
+         and absent between selected vs non-selected buttons (different colors) */
+
+      &:not(.euiButtonGroupButton-isSelected)
+        + .euiButtonGroupButton:not(.euiButtonGroupButton-isSelected) {
+        box-shadow: -${euiTheme.border.width.thin} 0 0 0 ${transparentize(euiTheme.colors.fullShade, 0.1)};
+      }
+
+      &:is(.euiButtonGroupButton-isSelected)
+        + .euiButtonGroupButton-isSelected {
+        box-shadow: -${euiTheme.border.width.thin} 0 0 0 ${transparentize(euiTheme.colors.emptyShade, 0.2)};
+      }
+    `,
+    compressed: css`
+      ${logicalCSS('height', compressedButtonHeight)}
+      line-height: ${compressedButtonHeight};
+
+      /* Offset the background color from the border by clipping background to before the padding starts */
+      padding: ${mathWithUnits(euiTheme.border.width.thin, (x) => x * 2)};
+      background-clip: content-box;
+      /* Tweak border radius to account for the padding & background-clip */
+      border-radius: ${mathWithUnits(
+        [controlCompressedBorderRadius, euiTheme.border.width.thin],
+        (x, y) => x + y
+      )};
     `,
     // States
     selected: css`
