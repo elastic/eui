@@ -66,6 +66,9 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
           color ${euiTheme.animation.normal} ease-in-out;
       }
     `,
+    iconOnly: css`
+      padding-inline: ${euiTheme.size.s};
+    `,
     // Sizes
     s: css`
       ${uncompressedBorderRadii(euiTheme.border.radius.small)}
@@ -74,6 +77,10 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
       ${uncompressedBorderRadii(euiTheme.border.radius.medium)}
     `,
     uncompressed: css`
+      &:is(.euiButtonGroupButton-isSelected) {
+        font-weight: ${euiTheme.font.weight.bold};
+      }
+
       /* "Borders" between buttons - should be present between two of the same colored buttons,
          and absent between selected vs non-selected buttons (different colors) */
 
@@ -99,11 +106,14 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
         [controlCompressedBorderRadius, euiTheme.border.width.thin],
         (x, y) => x + y
       )};
+
+      font-weight: ${euiTheme.font.weight.regular};
+
+      &:is(.euiButtonGroupButton-isSelected) {
+        font-weight: ${euiTheme.font.weight.semiBold};
+      }
     `,
     // States
-    selected: css`
-      font-weight: ${euiTheme.font.weight.semiBold};
-    `,
     disabledAndSelected: css`
       color: ${makeDisabledContrastColor(euiTheme.colors.disabledText)(
         euiTheme.colors.disabled

@@ -112,9 +112,9 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
   const styles = euiButtonGroupButtonStyles(euiTheme);
   const cssStyles = [
     styles.euiButtonGroupButton,
+    isIconOnly && styles.iconOnly,
     styles[size!],
     !isCompressed && styles.uncompressed,
-    isSelected && styles.selected,
     isDisabled && isSelected ? styles.disabledAndSelected : buttonColorStyles,
     !isDisabled && focusColorStyles,
   ];
