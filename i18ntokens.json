@@ -5441,14 +5441,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 229,
+        "line": 232,
         "column": 12,
-        "index": 6466
+        "index": 6571
       },
       "end": {
-        "line": 229,
+        "line": 232,
         "column": 80,
-        "index": 6534
+        "index": 6639
       }
     },
     "filepath": "src/components/markdown_editor/markdown_editor_toolbar.tsx"
@@ -5459,14 +5459,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 240,
+        "line": 243,
         "column": 12,
-        "index": 6831
+        "index": 6936
       },
       "end": {
-        "line": 243,
+        "line": 246,
         "column": 14,
-        "index": 6949
+        "index": 7054
       }
     },
     "filepath": "src/components/markdown_editor/markdown_editor_toolbar.tsx"
@@ -5965,12 +5965,12 @@
       "start": {
         "line": 688,
         "column": 16,
-        "index": 20062
+        "index": 20090
       },
       "end": {
         "line": 691,
         "column": 18,
-        "index": 20256
+        "index": 20284
       }
     },
     "filepath": "src/components/popover/popover.tsx"

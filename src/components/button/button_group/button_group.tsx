@@ -8,13 +8,18 @@
 
 import classNames from 'classnames';
 import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
+
+import { useEuiTheme, useGeneratedHtmlId } from '../../../services';
 import { EuiScreenReaderOnly } from '../../accessibility';
-import { EuiButtonGroupButton } from './button_group_button';
-import { colorToClassNameMap } from '../button';
-import { EuiButtonContentProps } from '../_button_content_deprecated';
 import { CommonProps } from '../../common';
-import { useGeneratedHtmlId } from '../../../services';
+
 import { _EuiButtonColor } from '../../../themes/amsterdam/global_styling/mixins';
+import { EuiButtonContentProps } from '../_button_content_deprecated';
+import { EuiButtonGroupButton } from './button_group_button';
+import {
+  euiButtonGroupStyles,
+  euiButtonGroupButtonsStyles,
+} from './button_group.styles';
 
 export interface EuiButtonGroupOptionProps
   extends EuiButtonContentProps,
@@ -114,12 +119,6 @@ export type EuiButtonGroupProps = CommonProps & {
 type Props = Omit<HTMLAttributes<HTMLFieldSetElement>, 'onChange' | 'color'> &
   EuiButtonGroupProps;
 
-const groupSizeToClassNameMap = {
-  s: '--small',
-  m: '--medium',
-  compressed: '--compressed',
-};
-
 export const EuiButtonGroup: FunctionComponent<Props> = ({
   className,
   buttonSize = 's',
@@ -136,14 +135,24 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
   type = 'single',
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
+
+  const wrapperStyles = euiButtonGroupStyles();
+  const wrapperCssStyles = [
+    wrapperStyles.euiButtonGroup,
+    isFullWidth && wrapperStyles.fullWidth,
+  ];
+
+  const styles = euiButtonGroupButtonsStyles(euiTheme);
+  const cssStyles = [
+    styles.euiButtonGroup__buttons,
+    isFullWidth && styles.fullWidth,
+    styles[buttonSize],
+  ];
+
   const classes = classNames(
     'euiButtonGroup',
-    `euiButtonGroup${groupSizeToClassNameMap[buttonSize]}`,
-    `euiButtonGroup${colorToClassNameMap[color]}`,
-    {
-      'euiButtonGroup--fullWidth': isFullWidth,
-      'euiButtonGroup--isDisabled': isDisabled,
-    },
+    { 'euiButtonGroup-isDisabled': isDisabled },
     className
   );
 
@@ -151,12 +160,17 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
   const nameIfSingle = useGeneratedHtmlId({ conditionalId: name });
 
   return (
-    <fieldset className={classes} {...rest} disabled={isDisabled}>
+    <fieldset
+      css={wrapperCssStyles}
+      className={classes}
+      {...rest}
+      disabled={isDisabled}
+    >
       <EuiScreenReaderOnly>
         <legend>{legend}</legend>
       </EuiScreenReaderOnly>
 
-      <div className="euiButtonGroup__buttons">
+      <div css={cssStyles} className="euiButtonGroup__buttons">
         {options.map((option, index) => {
           return (
             <EuiButtonGroupButton

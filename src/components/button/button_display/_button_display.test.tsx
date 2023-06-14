@@ -15,7 +15,7 @@ import { EuiButtonDisplay } from './_button_display';
 
 describe('EuiButtonDisplay', () => {
   shouldRenderCustomStyles(<EuiButtonDisplay>Text</EuiButtonDisplay>, {
-    childProps: ['textProps'],
+    childProps: ['contentProps', 'textProps'],
   });
 
   it('renders', () => {
@@ -51,6 +51,45 @@ describe('EuiButtonDisplay', () => {
 
       expect(container.innerHTML).not.toContain('defaultMinWidth');
       expect(container.innerHTML).not.toContain('style');
+    });
+  });
+
+  describe('element', () => {
+    const elements = ['a', 'button', 'span', 'label'] as const;
+
+    const getButtonElement = (container: HTMLElement) =>
+      container.firstChild!.nodeName.toLowerCase();
+
+    elements.forEach((element) => {
+      test(element, () => {
+        const { container } = render(
+          <EuiButtonDisplay element={element} className="testing">
+            Content
+          </EuiButtonDisplay>
+        );
+
+        expect(getButtonElement(container)).toEqual(element);
+      });
+    });
+
+    it('always renders a `button` element if disabled', () => {
+      const { container } = render(
+        <EuiButtonDisplay element="label" isDisabled>
+          Content
+        </EuiButtonDisplay>
+      );
+
+      expect(getButtonElement(container)).toEqual('button');
+    });
+
+    it('always renders an `a` element if a href is passed', () => {
+      const { container } = render(
+        <EuiButtonDisplay element="span" href="#">
+          Content
+        </EuiButtonDisplay>
+      );
+
+      expect(getButtonElement(container)).toEqual('a');
     });
   });
 

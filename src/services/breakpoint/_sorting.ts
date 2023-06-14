@@ -13,11 +13,11 @@ export const sortMapByLargeToSmallValues = (
 ) =>
   Object.fromEntries(
     Object.entries(breakpointsMap).sort(([, a], [, b]) => b - a)
-  );
+  ) as _EuiThemeBreakpoints;
 
 export const sortMapBySmallToLargeValues = (
   breakpointsMap: _EuiThemeBreakpoints
 ) =>
   Object.fromEntries(
     Object.entries(breakpointsMap).sort(([, a], [, b]) => a - b)
-  );
+  ) as _EuiThemeBreakpoints;
