@@ -8,10 +8,17 @@
 
 import classNames from 'classnames';
 import React, { FunctionComponent } from 'react';
+
+import { useEuiTheme } from '../../../services';
+import { useEuiButtonColorCSS } from '../../../themes/amsterdam/global_styling/mixins/button';
+import { useInnerText } from '../../inner_text';
+
 import { EuiButtonDisplayDeprecated as EuiButtonDisplay } from '../button';
 import { EuiButtonGroupOptionProps, EuiButtonGroupProps } from './button_group';
-import { useInnerText } from '../../inner_text';
-import { useEuiButtonColorCSS } from '../../../themes/amsterdam/global_styling/mixins/button';
+import {
+  _compressedButtonFocusColor,
+  _uncompressedButtonFocus,
+} from './button_group_button.styles';
 
 type Props = EuiButtonGroupOptionProps & {
   /**
@@ -91,13 +98,20 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
     };
   }
 
+  const isCompressed = size === 'compressed';
   const color = isDisabled ? 'disabled' : _color;
-  const display = isSelected
-    ? 'fill'
-    : size === 'compressed'
-    ? 'empty'
-    : 'base';
+  const display = isSelected ? 'fill' : isCompressed ? 'empty' : 'base';
+
+  const euiTheme = useEuiTheme();
   const buttonColorStyles = useEuiButtonColorCSS({ display })[color];
+  const focusColorStyles = isCompressed
+    ? _compressedButtonFocusColor(euiTheme, color)
+    : _uncompressedButtonFocus(euiTheme);
+
+  const cssStyles = [
+    buttonColorStyles,
+    !isDisabled && focusColorStyles,
+  ];
 
   const buttonClasses = classNames(
     {
@@ -116,7 +130,7 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
 
   return (
     <EuiButtonDisplay
-      css={[buttonColorStyles]}
+      css={cssStyles}
       baseClassName="euiButtonGroupButton"
       className={buttonClasses}
       element={element}

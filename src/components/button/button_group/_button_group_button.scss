@@ -60,21 +60,6 @@
     border-radius: 0 !important; // stylelint-disable-line declaration-no-important
     font-weight: $euiButtonFontWeight;
 
-    &:focus,
-    &:focus-within {
-      outline-style: solid;
-      outline-color: lightOrDarkTheme($euiColorInk, $euiColorGhost);
-      outline-offset: -2px;
-
-      &:focus-visible {
-        outline-style: auto; // For chrome only
-      }
-    }
-
-    &:focus:not(:focus-visible) {
-      outline: none;
-    }
-
     &:not(:first-child):not(.euiButtonGroupButton-isSelected):not(:disabled) {
       box-shadow: -1px 0 0 0 transparentize($euiShadowColor, .95);
     }
@@ -127,33 +112,6 @@
 
     &.euiButtonGroupButton-isSelected {
       font-weight: $euiFontWeightSemiBold;
-    }
-
-    &:not(:disabled) {
-      &:focus,
-      &:focus-within {
-        outline: $euiFocusRingSize solid currentColor;
-      }
-    }
-
-    @each $name, $color in $euiButtonTypes {
-      &[class*='-fill-#{$name}'] {
-        // Complicated set of focus states depending on whether it's a button and can receive :focus,
-        // or an input and uses focus-within, and browser support for :focus-visible,
-        // and override nature of default theme
-        &:not(:disabled):focus,
-        &:not(:disabled):focus-within {
-          outline-color: $color;
-
-          &:focus-visible {
-            outline-style: auto; // For chrome only
-          }
-        }
-
-        &:not(:disabled):focus:not(:focus-visible) {
-          outline: none;
-        }
-      }
     }
   }
 }
