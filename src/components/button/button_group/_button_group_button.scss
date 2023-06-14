@@ -1,10 +1,6 @@
 // This file has lots of modifiers and is somewhat nesty by nature
 // stylelint-disable max-nesting-depth
 
-.euiButtonGroupButton__textShift {
-  @include euiTextShift;
-}
-
 /**
  * Medium and Small sizing (regular button style)
  */
@@ -55,10 +51,5 @@
     // by clipping background to before the padding starts
     padding: 2px;
     background-clip: content-box;
-
-    .euiButton__content {
-      padding-left: $euiSizeS;
-      padding-right: $euiSizeS;
-    }
   }
 }

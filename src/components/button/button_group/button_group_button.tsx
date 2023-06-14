@@ -116,6 +116,15 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
     isDisabled && isSelected ? styles.disabledAndSelected : buttonColorStyles,
     !isDisabled && focusColorStyles,
   ];
+  const contentStyles = [
+    styles.content.euiButtonGroupButton__content,
+    isCompressed && styles.content.compressed,
+  ];
+  const textStyles = [
+    isIconOnly
+      ? styles.text.euiButtonGroupButton__iconOnly
+      : styles.text.euiButtonGroupButton__text,
+  ];
 
   const buttonClasses = classNames(
     'euiButtonGroupButton',
@@ -140,10 +149,9 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
       element={element}
       isDisabled={isDisabled}
       size={size === 'compressed' ? 's' : size}
+      contentProps={{ css: contentStyles }}
       textProps={{
-        className: isIconOnly
-          ? 'euiScreenReaderOnly'
-          : 'euiButtonGroupButton__textShift',
+        css: textStyles,
         ref: buttonTextRef,
         'data-text': innerText,
       }}

@@ -13,6 +13,7 @@ import {
 } from '../../../services';
 import {
   logicalCSS,
+  euiTextShift,
   euiOutline,
   euiCanAnimate,
 } from '../../../global_styling';
@@ -20,6 +21,7 @@ import {
   euiButtonFillColor,
   _EuiButtonColor,
 } from '../../../themes/amsterdam/global_styling/mixins/button';
+import { euiScreenReaderOnly } from '../../accessibility';
 
 export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -47,6 +49,22 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
       )};
       background-color: ${euiTheme.colors.disabled};
     `,
+    // Content wrapper
+    content: {
+      euiButtonGroupButton__content: css``,
+      compressed: css`
+        padding-inline: ${euiTheme.size.s};
+      `,
+    },
+    // Text wrapper
+    text: {
+      euiButtonGroupButton__text: css`
+        ${euiTextShift('bold', 'data-text', euiTheme)}
+      `,
+      euiButtonGroupButton__iconOnly: css`
+        ${euiScreenReaderOnly()}
+      `,
+    },
   };
 };
 
