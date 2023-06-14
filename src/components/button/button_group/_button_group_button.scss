@@ -2,42 +2,7 @@
 // stylelint-disable max-nesting-depth
 
 .euiButtonGroupButton {
-  @include euiButtonBase;
-  @include euiFont;
-  @include euiFontSize;
-
-  transition: background-color $euiAnimSpeedNormal ease-in-out,
-              color $euiAnimSpeedNormal ease-in-out; // stylelint-disable-line indentation
-
-  // Allow button to shrink and truncate
-  min-width: 0;
-  flex-shrink: 1;
-  flex-grow: 0;
-
-  .euiButton__content {
-    padding: 0 $euiSizeM;
-  }
-
-  &-isIconOnly .euiButton__content {
-    padding: 0 $euiSizeS;
-  }
-
-  &.euiButtonGroupButton--small {
-    height: $euiButtonHeightSmall;
-    line-height: $euiButtonHeightSmall; // prevents descenders from getting cut off
-  }
-
-  &:not(:disabled) {
-    &:hover,
-    &:focus,
-    &:focus-within {
-      text-decoration: underline;
-    }
-  }
-
   &:disabled {
-    @include euiButtonContentDisabled;
-
     &.euiButtonGroupButton-isSelected {
       color: makeDisabledContrastColor($euiButtonColorDisabled, $euiButtonColorDisabled);
       background-color: $euiButtonColorDisabled;

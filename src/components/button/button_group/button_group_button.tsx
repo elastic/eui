@@ -13,9 +13,10 @@ import { useEuiTheme } from '../../../services';
 import { useEuiButtonColorCSS } from '../../../themes/amsterdam/global_styling/mixins/button';
 import { useInnerText } from '../../inner_text';
 
-import { EuiButtonDisplayDeprecated as EuiButtonDisplay } from '../button';
+import { EuiButtonDisplay } from '../button_display/_button_display';
 import { EuiButtonGroupOptionProps, EuiButtonGroupProps } from './button_group';
 import {
+  euiButtonGroupButtonStyles,
   _compressedButtonFocusColor,
   _uncompressedButtonFocus,
 } from './button_group_button.styles';
@@ -108,12 +109,15 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
     ? _compressedButtonFocusColor(euiTheme, color)
     : _uncompressedButtonFocus(euiTheme);
 
+  const styles = euiButtonGroupButtonStyles(euiTheme);
   const cssStyles = [
+    styles.euiButtonGroupButton,
     buttonColorStyles,
     !isDisabled && focusColorStyles,
   ];
 
   const buttonClasses = classNames(
+    'euiButtonGroupButton',
     {
       'euiButtonGroupButton-isSelected': isSelected,
       'euiButtonGroupButton-isIconOnly': isIconOnly,
@@ -131,7 +135,6 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
   return (
     <EuiButtonDisplay
       css={cssStyles}
-      baseClassName="euiButtonGroupButton"
       className={buttonClasses}
       element={element}
       isDisabled={isDisabled}

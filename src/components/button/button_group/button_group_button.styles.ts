@@ -11,12 +11,33 @@ import {
   UseEuiTheme,
 } from '../../../services';
 import {
+  logicalCSS,
   euiOutline,
+  euiCanAnimate,
 } from '../../../global_styling';
 import {
   euiButtonFillColor,
   _EuiButtonColor,
 } from '../../../themes/amsterdam/global_styling/mixins/button';
+
+export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+
+  return {
+    // Base
+    euiButtonGroupButton: css`
+      /* Allow button to shrink and truncate */
+      ${logicalCSS('min-width', 0)}
+      flex-shrink: 1;
+      flex-grow: 0;
+
+      ${euiCanAnimate} {
+        transition: background-color ${euiTheme.animation.normal} ease-in-out,
+          color ${euiTheme.animation.normal} ease-in-out;
+      }
+    `,
+  };
+};
 
 /**
  * Focus utilities - made complex by the two different button styles
