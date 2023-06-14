@@ -9,6 +9,7 @@
 import { css } from '@emotion/react';
 import {
   UseEuiTheme,
+  makeDisabledContrastColor,
 } from '../../../services';
 import {
   logicalCSS,
@@ -35,6 +36,16 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
         transition: background-color ${euiTheme.animation.normal} ease-in-out,
           color ${euiTheme.animation.normal} ease-in-out;
       }
+    `,
+    // States
+    selected: css`
+      font-weight: ${euiTheme.font.weight.semiBold};
+    `,
+    disabledAndSelected: css`
+      color: ${makeDisabledContrastColor(euiTheme.colors.disabledText)(
+        euiTheme.colors.disabled
+      )};
+      background-color: ${euiTheme.colors.disabled};
     `,
   };
 };

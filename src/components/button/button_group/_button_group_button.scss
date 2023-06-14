@@ -1,16 +1,6 @@
 // This file has lots of modifiers and is somewhat nesty by nature
 // stylelint-disable max-nesting-depth
 
-.euiButtonGroupButton {
-  &:disabled {
-    &.euiButtonGroupButton-isSelected {
-      color: makeDisabledContrastColor($euiButtonColorDisabled, $euiButtonColorDisabled);
-      background-color: $euiButtonColorDisabled;
-      border-color: $euiButtonColorDisabled;
-    }
-  }
-}
-
 .euiButtonGroupButton__textShift {
   @include euiTextShift;
 }
@@ -36,10 +26,6 @@
     &:last-child {
       border-radius: 0 $euiBorderRadius $euiBorderRadius 0;
     }
-  }
-
-  .euiButtonGroupButton-isSelected {
-    z-index: 0;
   }
 
   // Faux border for separation of selected buttons
@@ -73,10 +59,6 @@
     .euiButton__content {
       padding-left: $euiSizeS;
       padding-right: $euiSizeS;
-    }
-
-    &.euiButtonGroupButton-isSelected {
-      font-weight: $euiFontWeightSemiBold;
     }
   }
 }
