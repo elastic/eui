@@ -1,3 +1,7 @@
+## [`82.1.0`](https://github.com/elastic/eui/tree/v82.1.0)
+
+- Added ability for `EuiMarkdownEditor` plugins to disable toolbar buttons ([#6840](https://github.com/elastic/eui/pull/6840))
+
 ## [`82.0.0`](https://github.com/elastic/eui/tree/v82.0.0)
 
 **Bug fixes**
