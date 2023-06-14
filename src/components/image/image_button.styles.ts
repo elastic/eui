@@ -22,11 +22,11 @@ export const euiImageButtonStyles = (euiThemeContext: UseEuiTheme) => {
       text-align: match-parent;
       line-height: 0;
 
-      // Shadow on hover - use a pseudo element & opacity for maximum animation performance
+      /* Shadow on hover - use a pseudo element & opacity for maximum animation performance */
       &::before {
         opacity: 0;
         content: '';
-        pointer-events: none; // Prevent interacting with this element, it's for visual effect only
+        pointer-events: none; /* Prevent interacting with this element, it's for visual effect only */
         position: absolute;
         inset: 0;
 
@@ -71,8 +71,8 @@ export const euiImageButtonIconStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Base
   euiImageButton__icon: css`
     position: absolute;
-    ${logicalCSS('top', euiTheme.size.base)};
-    ${logicalCSS('right', euiTheme.size.base)};
+    ${logicalCSS('top', euiTheme.size.base)}
+    ${logicalCSS('right', euiTheme.size.base)}
   `,
   openFullScreen: css`
     opacity: 0;
@@ -84,7 +84,7 @@ export const euiImageButtonIconStyles = ({ euiTheme }: UseEuiTheme) => ({
     }
   `,
   closeFullScreen: css`
-    // Fullscreen close event handled by EuiOverlayMask
+    /* Fullscreen close event handled by EuiOverlayMask */
     pointer-events: none;
   `,
 });

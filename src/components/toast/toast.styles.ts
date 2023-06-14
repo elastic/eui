@@ -19,13 +19,13 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
     // Base
     euiToast: css`
       border-radius: ${euiTheme.border.radius.medium};
-      ${euiShadowLarge(euiThemeContext)};
+      ${euiShadowLarge(euiThemeContext)}
 
       position: relative;
-      ${logicalCSS('padding-horizontal', euiTheme.size.base)};
-      ${logicalCSS('padding-vertical', euiTheme.size.base)};
+      ${logicalCSS('padding-horizontal', euiTheme.size.base)}
+      ${logicalCSS('padding-vertical', euiTheme.size.base)}
       background-color: ${euiTheme.colors.emptyShade};
-      ${logicalCSS('width', '100%')};
+      ${logicalCSS('width', '100%')}
 
       &:hover,
       &:focus {
@@ -37,8 +37,8 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
     // Elements
     euiToast__closeButton: css`
       position: absolute;
-      ${logicalCSS('top', euiTheme.size.base)};
-      ${logicalCSS('right', euiTheme.size.base)};
+      ${logicalCSS('top', euiTheme.size.base)}
+      ${logicalCSS('right', euiTheme.size.base)}
     `,
     // Variants
     primary: css`
@@ -61,17 +61,15 @@ export const euiToastHeaderStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     // Base
     euiToastHeader: css`
-      // Account for close button.
-      ${logicalCSS('padding-right', euiTheme.size.l)};
-
       display: flex;
-
-      // Align icon with first line of title text if it wraps.
+      /* Align icon with first line of title text if it wraps */
       align-items: baseline;
+      /* Account for close button */
+      ${logicalCSS('padding-right', euiTheme.size.l)}
 
       > * + * {
-        // Apply margin to all but last item in the flex.
-        ${logicalCSS('margin-left', euiTheme.size.s)};
+        /* Apply margin to all but last item in the flex */
+        ${logicalCSS('margin-left', euiTheme.size.s)}
       }
     `,
     // Elements
@@ -79,16 +77,16 @@ export const euiToastHeaderStyles = (euiThemeContext: UseEuiTheme) => {
       flex: 0 0 auto;
       fill: ${euiTheme.colors.title};
 
-      // Vertically center icon with first line of title.
+      /* Vertically center icon with first line of title */
       transform: translateY(2px);
     `,
     euiToastHeader__title: css`
-      ${euiTitle(euiThemeContext, 'xs')};
+      ${euiTitle(euiThemeContext, 'xs')}
       font-weight: ${euiTheme.font.weight.bold};
     `,
     // Variants
     withBody: css`
-      ${logicalCSS('margin-bottom', euiTheme.size.s)};
+      ${logicalCSS('margin-bottom', euiTheme.size.s)}
     `,
   };
 };
@@ -96,6 +94,6 @@ export const euiToastHeaderStyles = (euiThemeContext: UseEuiTheme) => {
 export const euiToastBodyStyles = () => ({
   // Base
   euiToastBody: css`
-    word-wrap: break-word; // Prevent long lines from overflowing
+    word-wrap: break-word; /* Prevent long lines from overflowing */
   `,
 });

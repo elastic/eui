@@ -26,16 +26,16 @@ export const euiSkeletonCircleStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // Sizes
     s: css`
-      ${logicalSizeCSS(euiTheme.size.l)};
+      ${logicalSizeCSS(euiTheme.size.l)}
     `,
     m: css`
-      ${logicalSizeCSS(euiTheme.size.xl)};
+      ${logicalSizeCSS(euiTheme.size.xl)}
     `,
     l: css`
-      ${logicalSizeCSS(euiTheme.size.xxl)};
+      ${logicalSizeCSS(euiTheme.size.xxl)}
     `,
     xl: css`
-      ${logicalSizeCSS(mathWithUnits(euiTheme.size.base, (x) => x * 4))};
+      ${logicalSizeCSS(mathWithUnits(euiTheme.size.base, (x) => x * 4))}
     `,
   };
 };

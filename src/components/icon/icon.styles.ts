@@ -32,17 +32,17 @@ const iconLoading = keyframes`
 export const euiIconStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Base
   euiIcon: css`
-    flex-shrink: 0; // Ensures it never scales down below its intended size
+    flex-shrink: 0; /* Ensures it never scales down below its intended size */
     display: inline-block;
     vertical-align: middle;
     fill: currentColor;
-    transform: translate(0, 0); // Hack to fix Firefox "softness"
+    transform: translate(0, 0); /* Hack to fix Firefox "softness" */
 
-    // Note: This className is hard-coded into our SVGs and cannot be converted to Emotion
+    /* Note: This className is hard-coded into our SVGs and cannot be converted to Emotion */
     .euiIcon__fillNegative {
-      // Use the negative fill on SVG elements that need to flip portions
-      // of the icon to light and dark compatible modes. You can see this
-      // in use on the Elastic logo icons.
+      /* Use the negative fill on SVG elements that need to flip portions
+         of the icon to light and dark compatible modes. You can see this
+         in use on the Elastic logo icons. */
       fill: ${euiTheme.colors.darkestShade};
     }
   `,
@@ -56,10 +56,10 @@ export const euiIconStyles = ({ euiTheme }: UseEuiTheme) => ({
   ghost: css`
     color: ${euiTheme.colors.ghost};
 
-    // Really force all paths to inherit (specifically for logos)
+    /* Really force all paths to inherit (specifically for logos) */
     *[fill],
     .euiIcon__fillNegative {
-      fill: currentColor !important;
+      fill: currentColor !important; /* stylelint-disable-line declaration-no-important */
     }
   `,
   primary: css`
@@ -74,10 +74,10 @@ export const euiIconStyles = ({ euiTheme }: UseEuiTheme) => ({
   text: css`
     color: ${euiTheme.colors.title};
 
-    // Really force all paths to inherit (specifically for logos)
+    /* Really force all paths to inherit (specifically for logos) */
     *[fill],
     .euiIcon__fillNegative {
-      fill: currentColor !important;
+      fill: currentColor !important; /* stylelint-disable-line declaration-no-important */
     }
   `,
   warning: css`
@@ -89,13 +89,13 @@ export const euiIconStyles = ({ euiTheme }: UseEuiTheme) => ({
   default: css``,
   customColor: css``,
   logoElasticOutline: css`
-    // Elastic logo specific colors
+    /* Elastic logo specific colors */
     *[fill] {
-      fill: none !important;
+      fill: none !important; /* stylelint-disable-line declaration-no-important */
     }
 
     .outline {
-      fill: currentColor !important;
+      fill: currentColor !important; /* stylelint-disable-line declaration-no-important */
     }
   `,
   // Sizes
@@ -110,9 +110,9 @@ export const euiIconStyles = ({ euiTheme }: UseEuiTheme) => ({
   app: css`
     fill: ${euiTheme.colors.text};
 
-    // Note: This className is hard-coded into our SVGs and cannot be converted to Emotion
+    /* Note: This className is hard-coded into our SVGs and cannot be converted to Emotion */
     .euiIcon__fillSecondary {
-      // This provides the default secondary color
+      /* This provides the default secondary color */
       fill: ${euiTheme.colors.successText};
     }
   `,

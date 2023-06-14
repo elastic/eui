@@ -43,7 +43,7 @@ export const euiStepStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiStep: css`
-      // Create border on all but the last step
+      /* Create border on all but the last step */
       &:not(:last-of-type) {
         background-image: ${lineGradient};
         background-repeat: no-repeat;
@@ -62,7 +62,7 @@ export const euiStepStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     xs: css`
       &:not(:last-of-type) {
-        // Adjust the line to be centered on the smaller number
+        /* Adjust the line to be centered on the smaller number */
         background-position: -${euiTheme.size.xs} ${euiTheme.size.l};
       }
     `,
@@ -85,7 +85,7 @@ export const euiStepContentStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // Sizes
     m: css`
-      // Align the content's contents with the title
+      /* Align the content's contents with the title */
       ${logicalCSS(
         'padding-left',
         mathWithUnits(
@@ -93,7 +93,7 @@ export const euiStepContentStyles = (euiThemeContext: UseEuiTheme) => {
           (x, y) => x / 2 + y
         )
       )}
-      // Align content border to horizontal center of step number
+      /* Align content border to horizontal center of step number */
       ${logicalCSS(
         'margin-left',
         mathWithUnits(euiStep.numberSize, (x) => x / 2)
@@ -101,7 +101,7 @@ export const euiStepContentStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     s: css``, // s is the same as m, so we'll programmatically duplicate it below
     xs: css`
-      // Align the content's contents with the title
+      /* Align the content's contents with the title */
       ${logicalCSS(
         'padding-left',
         mathWithUnits(
@@ -109,7 +109,7 @@ export const euiStepContentStyles = (euiThemeContext: UseEuiTheme) => {
           (x, y) => x / 2 + y
         )
       )}
-      // Align content border to horizontal center of step number
+      /* Align content border to horizontal center of step number */
       ${logicalCSS(
         'margin-left',
         mathWithUnits(euiStep.numberXSSize, (x) => x / 2)

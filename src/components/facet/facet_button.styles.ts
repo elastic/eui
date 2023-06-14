@@ -19,11 +19,11 @@ import { euiLinkFocusCSS } from '../link/link.styles';
 export const euiFacetButtonStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Base
   euiFacetButton: css`
-    ${logicalTextAlignCSS('left')};
+    ${logicalTextAlignCSS('left')}
 
     &:hover,
     &:focus {
-      // Make sure the quantity doesn't get an underline on hover
+      /* Make sure the quantity doesn't get an underline on hover */
       &:not(:disabled) [class*='euiFacetButton__text'] {
         text-decoration: underline;
       }

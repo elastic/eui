@@ -22,8 +22,8 @@ export const euiRangeThumbStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     // Base
     euiRangeThumb: css`
-      ${euiCustomControl(euiThemeContext, { type: 'round' })};
-      ${euiRangeThumbStyle(euiThemeContext)};
+      ${euiCustomControl(euiThemeContext, { type: 'round' })}
+      ${euiRangeThumbStyle(euiThemeContext)}
       content: '';
       position: absolute;
       inset-inline-start: 0;
@@ -36,7 +36,7 @@ export const euiRangeThumbStyles = (euiThemeContext: UseEuiTheme) => {
       z-index: ${range.thumbZIndex};
 
       &:focus {
-        ${euiRangeThumbFocus(euiThemeContext)};
+        ${euiRangeThumbFocus(euiThemeContext)}
         outline: none;
       }
     `,

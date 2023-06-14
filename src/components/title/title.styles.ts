@@ -73,7 +73,7 @@ export const euiTitleStyles = (euiThemeContext: UseEuiTheme) => ({
     ${euiTextBreakWord()}
 
     & + & {
-      ${logicalCSS('margin-top', euiThemeContext.euiTheme.size.l)};
+      ${logicalCSS('margin-top', euiThemeContext.euiTheme.size.l)}
     }
   `,
   uppercase: css`

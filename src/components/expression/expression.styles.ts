@@ -31,14 +31,14 @@ export const euiExpressionStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   return {
     euiExpression: css`
-      ${euiTextBreakWord()};
+      ${euiTextBreakWord()}
       display: inline-block;
       font-family: ${euiTheme.font.familyCode};
       ${logicalCSS(
         'border-bottom',
         `${euiTheme.border.width.thick} solid transparent`
       )}
-      ${euiFontSize(euiThemeContext, 's')};
+      ${euiFontSize(euiThemeContext, 's')}
       ${logicalTextAlignCSS('left')}
       ${logicalShorthandCSS(
         'padding',
@@ -58,7 +58,7 @@ export const euiExpressionStyles = (euiThemeContext: UseEuiTheme) => {
     // Variants
     columns: css`
       border-color: transparent;
-      // Ensures there's no flash of the dashed style before turning solid for the active state
+      /* Ensures there's no flash of the dashed style before turning solid for the active state */
       ${logicalCSS('border-bottom-style', 'solid')}
       ${logicalCSS('margin-bottom', euiTheme.size.xs)}
 
@@ -84,7 +84,7 @@ export const euiExpressionStyles = (euiThemeContext: UseEuiTheme) => {
         &:hover:not(:disabled) {
           [class*='euiExpression__description'],
           [class*='euiExpression__value'] {
-            // inner child specificity so it inherits underline color from text color
+            /* Inner child specificity so it inherits underline color from text color */
             text-decoration: underline;
           }
         }
@@ -155,8 +155,8 @@ export const euiExpressionDescriptionStyles = ({ euiTheme }: UseEuiTheme) => {
     `,
     columns: css`
       ${logicalTextAlignCSS('right')}
-      ${logicalCSS('margin-right', euiTheme.size.s)};
-      flex-shrink: 0; // Ensures it doesn't get smaller in case the value is really long
+      ${logicalCSS('margin-right', euiTheme.size.s)}
+      flex-shrink: 0; /* Ensures it doesn't get smaller in case the value is really long */
     `,
   };
 };
@@ -178,10 +178,10 @@ export const euiExpressionValueStyles = ({}: UseEuiTheme) => {
 export const euiExpressionIconStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     euiExpression__icon: css`
-      ${logicalCSS('margin-left', euiTheme.size.xs)};
+      ${logicalCSS('margin-left', euiTheme.size.xs)}
     `,
     columns: css`
-      ${logicalCSS('margin-top', euiTheme.size.xs)};
+      ${logicalCSS('margin-top', euiTheme.size.xs)}
     `,
   };
 };

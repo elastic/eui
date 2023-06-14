@@ -20,7 +20,7 @@ export const euiOverlayMaskStyles = ({ euiTheme }: UseEuiTheme) => ({
     display: flex;
     align-items: center;
     justify-content: center;
-    ${logicalCSS('padding-bottom', '10vh')};
+    ${logicalCSS('padding-bottom', '10vh')}
     animation: ${euiAnimFadeIn} ${euiTheme.animation.fast} ease-in;
     background: ${transparentize(euiTheme.colors.ink, 0.5)};
   `,
@@ -29,7 +29,7 @@ export const euiOverlayMaskStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
   belowHeader: css`
     z-index: ${euiTheme.levels.maskBelowHeader};
-    // TODO: use size variable when EuiHeader is converted
-    ${logicalCSS('top', `${euiTheme.base * 3}px`)};
+    /* TODO: use size variable when EuiHeader is converted */
+    ${logicalCSS('top', `${euiTheme.base * 3}px`)}
   `,
 });

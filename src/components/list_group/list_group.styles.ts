@@ -26,7 +26,7 @@ export const euiListGroupStyles = (euiThemeContext: UseEuiTheme) => {
       padding: 0;
       border: none;
 
-      // override the default border radius
+      /* Override the default border radius */
       .euiListGroupItem {
         border-radius: 0;
       }
@@ -36,7 +36,7 @@ export const euiListGroupStyles = (euiThemeContext: UseEuiTheme) => {
       border: ${euiTheme.border.thin};
     `,
     maxWidthDefault: css`
-      ${logicalCSS('max-width', form.maxWidth)};
+      ${logicalCSS('max-width', form.maxWidth)}
     `,
     // Gutter sizes
     none: css``,

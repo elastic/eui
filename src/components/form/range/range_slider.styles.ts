@@ -26,16 +26,16 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
     // Base
     euiRangeSlider: css`
       appearance: none;
-      background: transparent; // Otherwise white in Chrome
-      inline-size: 100%; // Ensures the slider expands to fill flex display
-      block-size: 100%; // Inherits both regular and compressed heights from the range wrapper
+      background: transparent; /* Otherwise white in Chrome */
+      inline-size: 100%; /* Ensures the slider expands to fill flex display */
+      block-size: 100%; /* Inherits both regular and compressed heights from the range wrapper */
       position: relative;
-      cursor: pointer; // Keep cursor to full range bounds
+      cursor: pointer; /* Keep cursor to full range bounds */
       z-index: ${range.thumbZIndex};
 
       ${euiRangeThumbPerBrowser(`
-        ${euiCustomControl(euiThemeContext, { type: 'round' })};
-        ${euiRangeThumbStyle(euiThemeContext)};
+        ${euiCustomControl(euiThemeContext, { type: 'round' })}
+        ${euiRangeThumbStyle(euiThemeContext)}
       `)}
 
       &:disabled {
@@ -43,16 +43,18 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
         ${euiRangeThumbPerBrowser('cursor: not-allowed')}
       }
 
-      // Resets
+      /* Resets */
+      /* stylelint-disable property-no-vendor-prefix */
       &::-webkit-slider-thumb {
         -webkit-appearance: none;
       }
+      /* stylelint-enable property-no-vendor-prefix */
 
       &:focus {
         outline: none;
       }
 
-      // Styles that should appear only on keyboard focus, not click
+      /* Styles that should appear only on keyboard focus, not click */
       &:focus-visible {
         ${euiRangeThumbPerBrowser(euiRangeThumbFocus(euiThemeContext))}
 
@@ -62,12 +64,13 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     hasTicks: css`
-      block-size: ${range.thumbHeight}; // the track has the same height as the thumb
+      block-size: ${range.thumbHeight}; /* the track has the same height as the thumb */
     `,
     hasRange: css`
+      /* stylelint-disable no-extra-semicolons */
       ${euiRangeTrackPerBrowser(`
         background-color: transparent;
-        border-color: ${transparentize(range.trackBorderColor, 0.6)};
+        border-color: ${transparentize(range.trackBorderColor, 0.6)}
       `)}
     `,
     hasLevels: css`

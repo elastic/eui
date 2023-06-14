@@ -19,7 +19,7 @@ export const euiAccordionButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   return {
     euiAccordion__button: css`
-      ${euiFontSize(euiThemeContext, 's')};
+      ${euiFontSize(euiThemeContext, 's')}
       align-items: center;
       display: flex;
       flex-grow: 1;
@@ -81,7 +81,7 @@ export const euiAccordionChildWrapperStyles = ({ euiTheme }: UseEuiTheme) => ({
     visibility: hidden;
 
     &:focus {
-      outline: none; // Hide focus ring because of tabindex=-1 on Safari
+      outline: none; /* Hide focus ring because of tabindex=-1 on Safari */
     }
   `,
   isOpen: css`
@@ -95,10 +95,14 @@ export const euiAccordionIconButtonStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiAccordion__iconButton: css`
     flex-shrink: 0;
     ${logicalCSS('margin-right', euiTheme.size.xs)}
-    transform: rotate(0deg) !important;
+    transform: rotate(
+      0deg
+    ) !important; /* stylelint-disable-line declaration-no-important */
   `,
   isOpen: css`
-    transform: rotate(90deg) !important;
+    transform: rotate(
+      90deg
+    ) !important; /* stylelint-disable-line declaration-no-important */
   `,
   arrowRight: css`
     ${logicalCSS('margin-left', euiTheme.size.xs)}

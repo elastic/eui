@@ -22,8 +22,8 @@ export const euiPopoverFooterStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     // Base
     euiPopoverFooter: css`
-      ${euiFontSize(euiThemeContext, 's')};
-      ${logicalCSS('border-top', euiTheme.border.thin)};
+      ${euiFontSize(euiThemeContext, 's')}
+      ${logicalCSS('border-top', euiTheme.border.thin)}
     `,
     // If the popover's containing panel has padding applied,
     // ensure the title expands to cover that padding via negative margins

@@ -15,13 +15,13 @@ export const euiPageBodyStyles = () => ({
     flex-direction: column;
     align-items: stretch;
     flex: 1 1 100%;
-    // Make sure that inner flex layouts don't get larger than this container
+    /* Make sure that inner flex layouts don't get larger than this container */
     ${logicalCSS('max-width', '100%')}
     ${logicalCSS('min-width', '0')}
   `,
 
   // Max widths
   restrictWidth: css`
-    ${logicalCSS('margin-horizontal', 'auto')};
+    ${logicalCSS('margin-horizontal', 'auto')}
   `,
 });

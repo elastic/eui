@@ -44,7 +44,7 @@ export const euiCardStyles = (
         justify-content: space-between;
         flex-direction: column;
 
-        // Apply the outline to the whole card when the internal text button has focus
+        /* Apply the outline to the whole card when the internal text button has focus */
         &:has(
             [class*='euiCard__text'][class*='-interactive']:focus:focus-visible
           ) {
@@ -53,20 +53,20 @@ export const euiCardStyles = (
       `,
       aligned: {
         center: css`
-          ${logicalTextAlignCSS('center')};
+          ${logicalTextAlignCSS('center')}
           align-items: center;
         `,
         left: css`
-          ${logicalTextAlignCSS('left')};
+          ${logicalTextAlignCSS('left')}
           align-items: flex-start;
         `,
         right: css`
-          ${logicalTextAlignCSS('right')};
+          ${logicalTextAlignCSS('right')}
           align-items: flex-end;
         `,
       },
       disabled: css`
-        cursor: not-allowed; // duplicate property due to Chrome bug
+        cursor: not-allowed; /* Duplicate property due to Chrome bug */
         background-color: ${euiButtonColor(euiThemeContext, 'disabled')};
         color: ${euiTheme.colors.disabledText};
       `,
@@ -96,29 +96,28 @@ export const euiCardStyles = (
 
       layout: {
         vertical: css`
-          ${logicalCSS('width', '100%')}; /* 4 */
+          /* 4 */
+          ${logicalCSS('width', '100%')}
         `,
         horizontal: css`
-          ${logicalCSS(
-            'width',
-            'auto'
-          )}; // Makes sure the top shrinks and the content grows
+          /* Makes sure the top shrinks and the content grows */
+          ${logicalCSS('width', 'auto')}
         `,
       },
     },
 
     euiCard__children: css`
-      ${logicalCSS('margin-top', halfSpacing)};
+      ${logicalCSS('margin-top', halfSpacing)}
     `,
 
     euiCard__description: css`
-      ${logicalCSS('margin-top', halfSpacing)};
+      ${logicalCSS('margin-top', halfSpacing)}
     `,
 
     euiCard__footer: css`
       flex-grow: 0; /* 1 */
-      ${logicalCSS('width', '100%')}; /* 4 */
-      ${logicalCSS('margin-top', spacing)};
+      ${logicalCSS('width', '100%')} /* 4 */
+      ${logicalCSS('margin-top', spacing)}
     `,
 
     top: {
@@ -126,18 +125,17 @@ export const euiCardStyles = (
         flex-grow: 0; /* 1 */
         font-size: 0;
         position: relative;
-        ${logicalCSS('margin-bottom', spacing)};
+        ${logicalCSS('margin-bottom', spacing)}
       `,
 
       layout: {
         vertical: css`
-          ${logicalCSS('width', '100%')}; /* 4 */
+          /* 4 */
+          ${logicalCSS('width', '100%')}
         `,
         horizontal: css`
-          ${logicalCSS(
-            'width',
-            'auto'
-          )}; // Makes sure the top shrinks and the content grows
+          /* Makes sure the top shrinks and the content grows */
+          ${logicalCSS('width', 'auto')}
         `,
       },
 
@@ -151,14 +149,14 @@ export const euiCardStyles = (
         position: relative;
         overflow: hidden;
 
-        // Padding based sizing & negative margins
-        ${logicalCSS('width', `calc(100% + (${paddingAmount} * 2))`)};
-        ${logicalCSS('left', `-${paddingAmount}`)};
-        ${logicalCSS('top', `-${paddingAmount}`)};
-        // ensure the parent is only as tall as the image
-        ${logicalCSS('margin-bottom', `-${paddingAmount}`)};
+        /* Padding based sizing & negative margins */
+        ${logicalCSS('width', `calc(100% + (${paddingAmount} * 2))`)}
+        ${logicalCSS('left', `-${paddingAmount}`)}
+        ${logicalCSS('top', `-${paddingAmount}`)}
+        /* Ensure the parent is only as tall as the image */
+        ${logicalCSS('margin-bottom', `-${paddingAmount}`)}
 
-        // match border radius, minus border width
+        /* Match border radius, minus border width */
         ${logicalCSS(
           'border-top-left-radius',
           `calc(${euiTheme.border.radius.medium} - ${euiTheme.border.width.thin})`
@@ -167,7 +165,7 @@ export const euiCardStyles = (
           .medium} - ${euiTheme.border.width.thin});
 
         img {
-          ${logicalCSS('width', '100%')}; /* 4 */
+          ${logicalCSS('width', '100%')}/* 4 */
         }
       `,
       transparent: css`
@@ -180,18 +178,21 @@ export const euiCardStyles = (
 
       withImage: css`
         position: absolute;
-        ${logicalCSS('top', '50%')};
-        ${logicalCSS('left', '50%')};
-        // Important needed to override current Sass styles on .euiIcon
-        transform: translate(-50%, calc(-50% + -${paddingAmount})) !important;
+        ${logicalCSS('top', '50%')}
+        ${logicalCSS('left', '50%')}
+        /* Important needed to override current Sass styles on .euiIcon */
+        transform: translate(
+          -50%,
+          calc(-50% + -${paddingAmount})
+        ) !important; /* stylelint-disable-line declaration-no-important */
       `,
 
       layout: {
         vertical: css`
-          ${logicalCSS('margin-top', halfSpacing)};
+          ${logicalCSS('margin-top', halfSpacing)}
         `,
         horizontal: css`
-          ${logicalCSS('margin-right', spacing)};
+          ${logicalCSS('margin-right', spacing)}
         `,
       },
     },
@@ -217,22 +218,22 @@ export const euiCardTextStyles = (euiThemeContext: UseEuiTheme) => {
         text-decoration: underline;
       }
 
-      // Progressive enhancement where we remove focus from text as
-      // it will be applied to the whole card instead
+      /* Progressive enhancement where we remove focus from text as
+         it will be applied to the whole card instead */
       ${euiSupportsHas} {
-        outline: none !important;
+        outline: none !important; /* stylelint-disable-line declaration-no-important */
       }
     `,
 
     aligned: {
       center: css`
-        ${logicalTextAlignCSS('center')};
+        ${logicalTextAlignCSS('center')}
       `,
       left: css`
-        ${logicalTextAlignCSS('left')};
+        ${logicalTextAlignCSS('left')}
       `,
       right: css`
-        ${logicalTextAlignCSS('right')};
+        ${logicalTextAlignCSS('right')}
       `,
     },
 
@@ -252,29 +253,29 @@ export const euiCardBetaBadgeStyles = (
   return {
     hasBetaBadge: css`
       position: relative;
-      // Ensure badges are visible outside of the whole card
+      /* Ensure badges are visible outside of the whole card */
       overflow: visible;
-      // Increase top padding to make room
-      ${logicalCSS('padding-top', `calc(${padding} + ${euiTheme.size.s})`)};
+      /* Increase top padding to make room */
+      ${logicalCSS('padding-top', `calc(${padding} + ${euiTheme.size.s})`)}
     `,
 
     euiCard__betaBadgeAnchor: css`
-      // Ensure there's no extra inherited height for proper translate value
+      /* Ensure there's no extra inherited height for proper translate value */
       line-height: 0;
       position: absolute;
-      ${logicalCSS('top', '0')};
-      ${logicalCSS('left', '50%')};
+      ${logicalCSS('top', '0')}
+      ${logicalCSS('left', '50%')}
       transform: translateX(-50%) translateY(-50%);
-      // Get above abs positioned image
+      /* Get above absolutely positioned image */
       z-index: 3;
-      // Todo: $euiButtonMinWidth
-      // Extend beta badges to at least 30% of the container's width or 112px (whichever is smaller)
-      ${logicalCSS('min-width', 'min(30%, 112px)')};
-      ${logicalCSS('max-width', `calc(100% - (${padding} * 2))`)};
+      /* TODO: $euiButtonMinWidth */
+      /* Extend beta badges to at least 30% of the container's width or 112px (whichever is smaller) */
+      ${logicalCSS('min-width', 'min(30%, 112px)')}
+      ${logicalCSS('max-width', `calc(100% - (${padding} * 2))`)}
     `,
 
     euiCard__betaBadge: css`
-      ${logicalCSS('width', '100%')};
+      ${logicalCSS('width', '100%')}
     `,
   };
 };

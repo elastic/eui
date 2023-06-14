@@ -32,7 +32,7 @@ export const euiColorStopThumbStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     isPopoverOpen: css`
-      ${euiRangeThumbFocus(euiThemeContext)};
+      ${euiRangeThumbFocus(euiThemeContext)}
     `,
   };
 };
@@ -57,8 +57,8 @@ export const euiColorStopThumbPopoverStyles = (
         inline-size: 100%;
         block-size: 100%;
 
-        // Background color can potentially have opacity
-        // Pseudo element placed below the thumb to prevent the track from showing through
+        /* Background color can potentially have opacity
+           Pseudo element placed below the thumb to prevent the track from showing through */
         &::before {
           content: '';
           display: block;
@@ -73,7 +73,8 @@ export const euiColorStopThumbPopoverStyles = (
       }
     `,
     isLoadingPanel: css`
-      visibility: hidden !important; // Overrides a stateful class on EuiPopover -> EuiPanel
+      /* Overrides a stateful class on EuiPopover -> EuiPanel */
+      visibility: hidden !important; /* stylelint-disable-line declaration-no-important */
     `,
     hasFocus: css`
       z-index: ${range.thumbZIndex};

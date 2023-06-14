@@ -20,7 +20,7 @@ export const euiSubStepsStyles = ({ euiTheme }: UseEuiTheme) => {
         margin-block-end: 0;
       }
 
-      // change ordered list from numbers to lowercase letters
+      /* Change ordered list from numbers to lowercase letters */
       & ol,
       .euiText & ol {
         list-style-type: lower-alpha;

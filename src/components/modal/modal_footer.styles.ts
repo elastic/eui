@@ -20,7 +20,7 @@ export const euiModalFooterStyles = (euiThemeContext: UseEuiTheme) => {
       padding-block: ${euiTheme.size.base} ${euiTheme.size.l};
       padding-inline: ${euiTheme.size.l};
       flex-grow: 0;
-      flex-shrink: 0; // ensure the height of the footer is based off its contents and doesn't squish
+      flex-shrink: 0; /* Ensure the height of the footer is based off its contents and doesn't squish */
       gap: ${euiTheme.size.base};
 
       ${euiMaxBreakpoint(euiThemeContext, 'm')} {

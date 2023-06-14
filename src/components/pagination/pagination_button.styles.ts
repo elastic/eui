@@ -28,7 +28,7 @@ export const euiPaginationButtonStyles = (euiThemeContext: UseEuiTheme) => {
     // Base
     euiPaginationButton: css`
       && {
-        ${fontSizeS};
+        ${fontSizeS}
         padding: 0;
         ${logicalTextAlignCSS('center')}
         border-radius: ${euiTheme.border.radius.medium};
@@ -55,11 +55,11 @@ export const euiPaginationButtonStyles = (euiThemeContext: UseEuiTheme) => {
       && {
         align-items: baseline;
         color: ${disabled.color};
-        ${fontSizeS};
-        ${logicalCSS('padding-top', halfSizeM)};
-        ${logicalCSS('padding-bottom', 0)};
-        ${logicalCSS('padding-horizontal', euiTheme.size.s)};
-        ${logicalCSS('height', euiTheme.size.l)};
+        ${fontSizeS}
+        ${logicalCSS('padding-top', halfSizeM)}
+        ${logicalCSS('padding-bottom', 0)}
+        ${logicalCSS('padding-horizontal', euiTheme.size.s)}
+        ${logicalCSS('height', euiTheme.size.l)}
       }
     `,
   };
