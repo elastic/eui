@@ -9,16 +9,16 @@
 // THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY. @see scripts/compile-icons.js
 
 import * as React from 'react';
+import type { SVGProps } from 'react';
 interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-
 const EuiIconSwatchInput = ({
   title,
   titleId,
   ...props
-}: React.SVGProps<SVGSVGElement> & SVGRProps) => (
+}: SVGProps<SVGSVGElement> & SVGRProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={16}
@@ -28,16 +28,15 @@ const EuiIconSwatchInput = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <rect x={2} y={2} width={12} height={12} rx={3} />
+    <rect width={12} height={12} x={2} y={2} rx={3} />
     <rect
-      className="euiSwatchInput__stroke"
-      x={2.5}
-      y={2.5}
       width={11}
       height={11}
+      x={2.5}
+      y={2.5}
+      className="euiSwatchInput__stroke"
       rx={2}
     />
   </svg>
 );
-
 export const icon = EuiIconSwatchInput;

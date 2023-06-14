@@ -9,21 +9,21 @@
 // THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY. @see scripts/compile-icons.js
 
 import * as React from 'react';
+import type { SVGProps } from 'react';
 interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-
 const EuiIconTableOfContents = ({
   title,
   titleId,
   ...props
-}: React.SVGProps<SVGSVGElement> & SVGRProps) => (
+}: SVGProps<SVGSVGElement> & SVGRProps) => (
   <svg
+    xmlns="http://www.w3.org/2000/svg"
     width={16}
     height={16}
     viewBox="0 0 16 16"
-    xmlns="http://www.w3.org/2000/svg"
     aria-labelledby={titleId}
     {...props}
   >
@@ -31,5 +31,4 @@ const EuiIconTableOfContents = ({
     <path d="M1 1v14h14V1H1zM0 0h16v16H0V0zm9 1v14h1V1H9zM3 3.5h4v-1H3v1zm0 3h4v-1H3v1zm0 3h4v-1H3v1z" />
   </svg>
 );
-
 export const icon = EuiIconTableOfContents;
