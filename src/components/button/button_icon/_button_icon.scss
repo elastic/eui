@@ -1,8 +1,6 @@
 .euiButtonIcon {
   @include euiButton;
 
-  border-radius: $euiBorderRadius;
-  width: $euiButtonHeight;
 
   // Ensures center alignment of any sized icon inside buttons and anchors
   display: inline-flex;
@@ -18,16 +16,4 @@
   &:disabled {
     @include euiButtonContentDisabled;
   }
-}
-
-.euiButtonIcon--xSmall {
-  height: $euiButtonHeightXSmall;
-  width: $euiButtonHeightXSmall;
-  border-radius: $euiBorderRadius * (2 / 3);
-}
-
-.euiButtonIcon--small {
-  height: $euiButtonHeightSmall;
-  width: $euiButtonHeightSmall;
-  border-radius: $euiBorderRadius * (2 / 3);
 }

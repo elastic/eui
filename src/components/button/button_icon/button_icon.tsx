@@ -32,11 +32,11 @@ import { IconType, IconSize, EuiIcon } from '../../icon';
 import { EuiLoadingSpinner } from '../../loading';
 
 import {
-  euiButtonEmptyColor,
   useEuiButtonColorCSS,
   _EuiButtonColor,
 } from '../../../themes/amsterdam/global_styling/mixins/button';
 import { isButtonDisabled } from '../button_display/_button_display';
+import { euiButtonIconStyles, _emptyHoverStyles } from './button_icon.styles';
 import { css } from '@emotion/react';
 
 const displayToClassNameMap = {
@@ -157,22 +157,16 @@ export const EuiButtonIcon: FunctionComponent<Props> = (props) => {
   }
 
   const color = isDisabled ? 'disabled' : _color === 'ghost' ? 'text' : _color;
+  const buttonColorStyles = useEuiButtonColorCSS({ display });
 
-  const styles = {
-    euiButtonIcon: css``,
-    colors: useEuiButtonColorCSS({ display }),
-    // Temporary extra style for empty `:hover` state until we decide how to handle universally
-    hoverStyles: css`
-      &:hover {
-        background-color: ${euiButtonEmptyColor(euiThemeContext, color)
-          .backgroundColor};
-      }
-    `,
-  };
+  const styles = euiButtonIconStyles(euiThemeContext);
+  const emptyHoverStyles = _emptyHoverStyles(euiThemeContext, color);
+
   const cssStyles = [
     styles.euiButtonIcon,
-    styles.colors[color],
-    display === 'empty' && styles.hoverStyles,
+    styles[size],
+    buttonColorStyles[color],
+    display === 'empty' && emptyHoverStyles,
   ];
 
   const classes = classNames(
