@@ -51,7 +51,7 @@ exports[`EuiButtonEmpty props color danger is rendered 1`] = `
 
 exports[`EuiButtonEmpty props color ghost is rendered 1`] = `
 <button
-  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
+  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiColorMode-dark-colorClassName"
   type="button"
 >
   <span
@@ -327,7 +327,7 @@ exports[`EuiButtonEmpty props isLoading is rendered 1`] = `
       aria-label="Loading"
       class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
       role="progressbar"
-      style="border-color:#07C currentcolor currentcolor currentcolor"
+      style="border-color: #07c currentcolor currentcolor currentcolor;"
     />
     <span
       class="eui-textTruncate euiButtonEmpty__text"
