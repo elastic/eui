@@ -145,7 +145,7 @@ exports[`EuiButtonEmpty props contentProps is rendered 1`] = `
 
 exports[`EuiButtonEmpty props flush both is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiButtonEmpty--flushBoth emotion-euiButtonDisplay-euiButtonEmpty-m-empty-primary-flush-both"
+  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-primary-flush-both"
   type="button"
 >
   <span
@@ -160,7 +160,7 @@ exports[`EuiButtonEmpty props flush both is rendered 1`] = `
 
 exports[`EuiButtonEmpty props flush left is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiButtonEmpty--flushLeft emotion-euiButtonDisplay-euiButtonEmpty-m-empty-primary-flush-left"
+  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-primary-flush-left"
   type="button"
 >
   <span
@@ -175,7 +175,7 @@ exports[`EuiButtonEmpty props flush left is rendered 1`] = `
 
 exports[`EuiButtonEmpty props flush right is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiButtonEmpty--flushRight emotion-euiButtonDisplay-euiButtonEmpty-m-empty-primary-flush-right"
+  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-primary-flush-right"
   type="button"
 >
   <span
@@ -385,7 +385,7 @@ exports[`EuiButtonEmpty props size m is rendered 1`] = `
 
 exports[`EuiButtonEmpty props size s is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiButtonEmpty--small emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary"
+  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary"
   type="button"
 >
   <span
@@ -400,7 +400,7 @@ exports[`EuiButtonEmpty props size s is rendered 1`] = `
 
 exports[`EuiButtonEmpty props size xs is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiButtonEmpty--xSmall emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
+  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
   type="button"
 >
   <span

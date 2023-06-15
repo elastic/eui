@@ -14,7 +14,6 @@ import {
   ExclusiveUnion,
   PropsForAnchor,
   PropsForButton,
-  keysOf,
 } from '../../common';
 import {
   useEuiTheme,
@@ -36,23 +35,11 @@ import { isButtonDisabled } from '../button_display/_button_display';
 
 import { euiButtonEmptyStyles } from './button_empty.styles';
 
-const sizeToClassNameMap = {
-  xs: 'euiButtonEmpty--xSmall',
-  s: 'euiButtonEmpty--small',
-  m: null,
-};
+export const SIZES = ['xs', 's', 'm'] as const;
+export type EuiButtonEmptySizes = (typeof SIZES)[number];
 
-export const SIZES = keysOf(sizeToClassNameMap);
-
-export type EuiButtonEmptySizes = keyof typeof sizeToClassNameMap;
-
-const flushTypeToClassNameMap = {
-  left: 'euiButtonEmpty--flushLeft',
-  right: 'euiButtonEmpty--flushRight',
-  both: 'euiButtonEmpty--flushBoth',
-};
-
-export const FLUSH_TYPES = keysOf(flushTypeToClassNameMap);
+export const FLUSH_TYPES = ['left', 'right', 'both'] as const;
+export type EuiButtonEmptyFlush = (typeof FLUSH_TYPES)[number];
 
 /**
  * Extends EuiButtonContentProps which provides
@@ -70,7 +57,7 @@ export interface CommonEuiButtonEmptyProps
   /**
    * Ensure the text of the button sits flush to the left, right, or both sides of its container
    */
-  flush?: keyof typeof flushTypeToClassNameMap;
+  flush?: EuiButtonEmptyFlush;
   /**
    * `disabled` is also allowed
    */
@@ -162,12 +149,7 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = (
     );
   }
 
-  const classes = classNames(
-    'euiButtonEmpty',
-    size ? sizeToClassNameMap[size] : null,
-    flush ? flushTypeToClassNameMap[flush] : null,
-    className
-  );
+  const classes = classNames('euiButtonEmpty', className);
 
   const contentClassNames = classNames(
     'euiButtonEmpty__content',
