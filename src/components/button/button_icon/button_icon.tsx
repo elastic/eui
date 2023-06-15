@@ -24,7 +24,6 @@ import {
   ExclusiveUnion,
   PropsForAnchor,
   PropsForButton,
-  keysOf,
 } from '../../common';
 
 import { IconType, IconSize, EuiIcon } from '../../icon';
@@ -38,16 +37,12 @@ import {
 } from '../../../themes/amsterdam/global_styling/mixins/button';
 import { isButtonDisabled } from '../button_display/_button_display';
 import { euiButtonIconStyles, _emptyHoverStyles } from './button_icon.styles';
-import { css } from '@emotion/react';
 
-const displayToClassNameMap = {
-  base: null,
-  empty: 'euiButtonIcon--empty',
-  fill: 'euiButtonIcon--fill',
-};
+export const SIZES = ['xs', 's', 'm'] as const;
+export type EuiButtonIconSizes = (typeof SIZES)[number];
 
-export const DISPLAYS = keysOf(displayToClassNameMap);
-type EuiButtonIconDisplay = keyof typeof displayToClassNameMap;
+export const DISPLAYS = ['base', 'empty', 'fill'] as const;
+type EuiButtonIconDisplay = (typeof DISPLAYS)[number];
 
 export interface EuiButtonIconProps extends CommonProps {
   iconType: IconType;
@@ -110,16 +105,6 @@ type Props = ExclusiveUnion<
   EuiButtonIconPropsForButton
 >;
 
-const sizeToClassNameMap = {
-  xs: 'euiButtonIcon--xSmall',
-  s: 'euiButtonIcon--small',
-  m: 'euiButtonIcon--medium',
-};
-
-export type EuiButtonIconSizes = keyof typeof sizeToClassNameMap;
-
-export const SIZES = keysOf(sizeToClassNameMap);
-
 export const EuiButtonIcon: FunctionComponent<Props> = (props) => {
   const {
     className,
@@ -173,11 +158,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = (props) => {
     isDisabled && styles.isDisabled,
   ];
 
-  const classes = classNames(
-    'euiButtonIcon',
-    size && sizeToClassNameMap[size],
-    className
-  );
+  const classes = classNames('euiButtonIcon', className);
 
   if (_color === 'ghost') {
     // INCEPTION: If `ghost`, re-implement with a wrapping dark mode theme provider
