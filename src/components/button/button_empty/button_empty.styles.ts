@@ -9,7 +9,11 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../../services';
-import { logicalShorthandCSS } from '../../../global_styling';
+import {
+  logicalCSS,
+  logicalShorthandCSS,
+  euiCanAnimate,
+} from '../../../global_styling';
 import { euiButtonDisplayStyles } from '../button_display/_button_display.styles';
 
 export const euiButtonEmptyStyles = (euiThemeContext: UseEuiTheme) => {
@@ -24,11 +28,28 @@ export const euiButtonEmptyStyles = (euiThemeContext: UseEuiTheme) => {
     euiButtonEmpty: css`
       ${displayStyles.euiButtonDisplay}
       ${logicalShorthandCSS('padding', `0 ${euiTheme.size.s}`)}
+      
+      /* Change the easing, quickness to not bounce so lighter backgrounds don't flash */
+      ${euiCanAnimate} {
+        transition-timing-function: ease-in;
+        transition-duration: ${euiTheme.animation.fast};
+      }
     `,
     isDisabled: displayStyles.isDisabled,
     // Sizes
     xs: displayStyles.xs,
     s: displayStyles.s,
     m: displayStyles.m,
+    // Flush sides
+    flush: css`
+      padding-inline: 0;
+    `,
+    left: css`
+      ${logicalCSS('margin-right', euiTheme.size.s)}
+    `,
+    right: css`
+      ${logicalCSS('margin-left', euiTheme.size.s)}
+    `,
+    both: css``,
   };
 };

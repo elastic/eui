@@ -148,6 +148,8 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = (
     styles.euiButtonEmpty,
     styles[size],
     buttonColorStyles[color],
+    flush && styles.flush,
+    flush && styles[flush],
     isDisabled && styles.isDisabled,
   ];
 
