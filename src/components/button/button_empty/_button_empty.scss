@@ -12,15 +12,6 @@
   transition-timing-function: ease-in; /* 2 */
   transition-duration: $euiAnimSpeedFast; /* 2 */
 
-  .euiButtonEmpty__content {
-    padding: 0 $euiSizeS;
-  }
-
-  .euiButtonEmpty__text {
-    text-overflow: ellipsis;
-    overflow: hidden;
-  }
-
   &.euiButtonEmpty--small {
     height: $euiButtonHeightSmall;
     border-radius: $euiBorderRadius * .667;

@@ -16,7 +16,11 @@ import {
   PropsForButton,
   keysOf,
 } from '../../common';
-import { EuiThemeProvider, getSecureRelForTarget } from '../../../services';
+import {
+  useEuiTheme,
+  EuiThemeProvider,
+  getSecureRelForTarget,
+} from '../../../services';
 
 import {
   EuiButtonDisplayContent,
@@ -29,6 +33,8 @@ import {
   _EuiButtonColor,
 } from '../../../themes/amsterdam/global_styling/mixins/button';
 import { isButtonDisabled } from '../button_display/_button_display';
+
+import { euiButtonEmptyStyles } from './button_empty.styles';
 
 const sizeToClassNameMap = {
   xs: 'euiButtonEmpty--xSmall',
@@ -134,7 +140,11 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = (
   const color = isDisabled ? 'disabled' : _color === 'ghost' ? 'text' : _color;
   const buttonColorStyles = useEuiButtonColorCSS({
     display: 'empty',
-  })[color];
+  });
+
+  const euiTheme = useEuiTheme();
+  const styles = euiButtonEmptyStyles(euiTheme);
+  const cssStyles = [styles.euiButtonEmpty, buttonColorStyles[color]];
 
   if (_color === 'ghost') {
     // INCEPTION: If `ghost`, re-implement with a wrapping dark mode theme provider
@@ -154,15 +164,13 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = (
 
   const contentClassNames = classNames(
     'euiButtonEmpty__content',
-    contentProps && contentProps.className
+    contentProps?.className
   );
 
   const textClassNames = classNames(
     'euiButtonEmpty__text',
-    textProps && textProps.className
+    textProps?.className
   );
-
-  const cssStyles = [buttonColorStyles];
 
   const innerNode = (
     <EuiButtonDisplayContent
@@ -172,9 +180,7 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = (
       iconSide={iconSide}
       iconSize={size === 'xs' ? 's' : iconSize}
       textProps={{ ...textProps, className: textClassNames }}
-      {...contentProps}
-      // className has to come last to override contentProps.className
-      className={contentClassNames}
+      {...{ ...contentProps, className: contentClassNames }}
     >
       {children}
     </EuiButtonDisplayContent>
