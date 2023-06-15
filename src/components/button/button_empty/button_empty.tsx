@@ -19,10 +19,10 @@ import {
 import { EuiThemeProvider, getSecureRelForTarget } from '../../../services';
 
 import {
-  EuiButtonContentDeprecated as EuiButtonContent,
-  EuiButtonContentProps,
-  EuiButtonContentType,
-} from '../_button_content_deprecated';
+  EuiButtonDisplayContent,
+  EuiButtonDisplayContentProps,
+  EuiButtonDisplayContentType,
+} from '../button_display/_button_display_content';
 
 import {
   useEuiButtonColorCSS,
@@ -53,7 +53,7 @@ export const FLUSH_TYPES = keysOf(flushTypeToClassNameMap);
  * `iconType`, `iconSide`, and `textProps`
  */
 export interface CommonEuiButtonEmptyProps
-  extends EuiButtonContentProps,
+  extends EuiButtonDisplayContentProps,
     CommonProps {
   /**
    * Any of the named color palette options.
@@ -86,7 +86,7 @@ export interface CommonEuiButtonEmptyProps
   /**
    * Object of props passed to the <span/> wrapping the button's content
    */
-  contentProps?: CommonProps & EuiButtonContentType;
+  contentProps?: CommonProps & EuiButtonDisplayContentType;
 }
 
 type EuiButtonEmptyPropsForAnchor = PropsForAnchor<CommonEuiButtonEmptyProps>;
@@ -165,7 +165,8 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = (
   const cssStyles = [buttonColorStyles];
 
   const innerNode = (
-    <EuiButtonContent
+    <EuiButtonDisplayContent
+      isDisabled={isDisabled}
       isLoading={isLoading}
       iconType={iconType}
       iconSide={iconSide}
@@ -176,7 +177,7 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = (
       className={contentClassNames}
     >
       {children}
-    </EuiButtonContent>
+    </EuiButtonDisplayContent>
   );
 
   // <a> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend
