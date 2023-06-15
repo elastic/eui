@@ -33,6 +33,7 @@ import { EuiLoadingSpinner } from '../../loading';
 
 import {
   useEuiButtonColorCSS,
+  useEuiButtonFocusCSS,
   _EuiButtonColor,
 } from '../../../themes/amsterdam/global_styling/mixins/button';
 import { isButtonDisabled } from '../button_display/_button_display';
@@ -158,6 +159,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = (props) => {
 
   const color = isDisabled ? 'disabled' : _color === 'ghost' ? 'text' : _color;
   const buttonColorStyles = useEuiButtonColorCSS({ display });
+  const buttonFocusStyle = useEuiButtonFocusCSS();
 
   const styles = euiButtonIconStyles(euiThemeContext);
   const emptyHoverStyles = _emptyHoverStyles(euiThemeContext, color);
@@ -166,6 +168,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = (props) => {
     styles.euiButtonIcon,
     styles[size],
     buttonColorStyles[color],
+    buttonFocusStyle,
     display === 'empty' && emptyHoverStyles,
   ];
 

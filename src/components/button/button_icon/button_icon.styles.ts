@@ -16,11 +16,26 @@ import {
   euiButtonSizeMap,
 } from '../../../themes/amsterdam/global_styling/mixins/button';
 
+import { euiButtonBaseCSS } from '../button_display/_button_display.styles';
+
 export const euiButtonIconStyles = (euiThemeContext: UseEuiTheme) => {
   const sizes = euiButtonSizeMap(euiThemeContext);
 
   return {
-    euiButtonIcon: css``,
+    euiButtonIcon: css`
+      ${euiButtonBaseCSS()}
+
+      /* Ensures center alignment of any sized icon inside buttons and anchors */
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-around;
+
+      /* Prevents the element and its children from receiving any pointer events to fix not bubbling click event in Safari
+         https://stackoverflow.com/questions/24078524/svg-click-events-not-firing-bubbling-when-using-use-element */
+      & > svg {
+        pointer-events: none;
+      }
+    `,
     // Sizes
     xs: css`
       ${logicalSizeCSS(sizes.xs.height)}

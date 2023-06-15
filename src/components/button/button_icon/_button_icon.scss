@@ -1,18 +1,4 @@
 .euiButtonIcon {
-  @include euiButton;
-
-
-  // Ensures center alignment of any sized icon inside buttons and anchors
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-around;
-
-  & > svg {
-    // prevents the element and its children from receiving any pointer events to fix not bubbling click event in Safari
-    // https://stackoverflow.com/questions/24078524/svg-click-events-not-firing-bubbling-when-using-use-element
-    pointer-events: none;
-  }
-
   &:disabled {
     @include euiButtonContentDisabled;
   }
