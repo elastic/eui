@@ -10,13 +10,25 @@ import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../../services';
 import { logicalShorthandCSS } from '../../../global_styling';
+import { euiButtonDisplayStyles } from '../button_display/_button_display.styles';
 
 export const euiButtonEmptyStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
+  // EuiButtonEmpty uses the same size/font styling as EuiButtonDisplay,
+  // but does not share enough of the same same colors/props to the point
+  // of using the actual component - so we'll reuse its styles instead
+  const displayStyles = euiButtonDisplayStyles(euiThemeContext);
+
   return {
     euiButtonEmpty: css`
+      ${displayStyles.euiButtonDisplay}
       ${logicalShorthandCSS('padding', `0 ${euiTheme.size.s}`)}
     `,
+    isDisabled: displayStyles.isDisabled,
+    // Sizes
+    xs: displayStyles.xs,
+    s: displayStyles.s,
+    m: displayStyles.m,
   };
 };

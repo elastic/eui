@@ -4,33 +4,10 @@
  * 2. Change the easing, quickness to not bounce so lighter backgrounds don't flash
  */
 .euiButtonEmpty {
-  @include euiButton;
-  border-radius: $euiBorderRadius;
-
   transform: none !important; /* 1 */ // stylelint-disable-line declaration-no-important
   animation: none !important; /* 1 */ // stylelint-disable-line declaration-no-important
   transition-timing-function: ease-in; /* 2 */
   transition-duration: $euiAnimSpeedFast; /* 2 */
-
-  &.euiButtonEmpty--small {
-    height: $euiButtonHeightSmall;
-    border-radius: $euiBorderRadius * .667;
-  }
-
-  &.euiButtonEmpty--xSmall {
-    height: $euiButtonHeightXSmall;
-    border-radius: $euiBorderRadius * .667;
-    font-size: $euiFontSizeXS;
-  }
-
-  &:disabled {
-    @include euiButtonContentDisabled;
-
-    &:hover,
-    &:focus {
-      text-decoration: none;
-    }
-  }
 }
 
 .euiButtonEmpty--flushLeft,

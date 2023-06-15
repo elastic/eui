@@ -144,7 +144,12 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = (
 
   const euiTheme = useEuiTheme();
   const styles = euiButtonEmptyStyles(euiTheme);
-  const cssStyles = [styles.euiButtonEmpty, buttonColorStyles[color]];
+  const cssStyles = [
+    styles.euiButtonEmpty,
+    styles[size],
+    buttonColorStyles[color],
+    isDisabled && styles.isDisabled,
+  ];
 
   if (_color === 'ghost') {
     // INCEPTION: If `ghost`, re-implement with a wrapping dark mode theme provider
