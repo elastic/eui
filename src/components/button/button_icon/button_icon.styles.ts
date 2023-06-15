@@ -36,6 +36,9 @@ export const euiButtonIconStyles = (euiThemeContext: UseEuiTheme) => {
         pointer-events: none;
       }
     `,
+    isDisabled: css`
+      cursor: not-allowed;
+    `,
     // Sizes
     xs: css`
       ${logicalSizeCSS(sizes.xs.height)}

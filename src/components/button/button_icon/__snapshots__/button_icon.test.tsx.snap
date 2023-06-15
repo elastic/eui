@@ -201,7 +201,7 @@ exports[`EuiButtonIcon props iconType is rendered 1`] = `
 exports[`EuiButtonIcon props isDisabled is rendered 1`] = `
 <button
   aria-label="button"
-  class="euiButtonIcon euiButtonIcon--xSmall emotion-euiButtonIcon-xs-empty-disabled"
+  class="euiButtonIcon euiButtonIcon--xSmall emotion-euiButtonIcon-xs-empty-disabled-isDisabled"
   disabled=""
   type="button"
 >
@@ -217,7 +217,7 @@ exports[`EuiButtonIcon props isDisabled is rendered 1`] = `
 exports[`EuiButtonIcon props isDisabled or disabled is rendered 1`] = `
 <button
   aria-label="button"
-  class="euiButtonIcon euiButtonIcon--xSmall emotion-euiButtonIcon-xs-empty-disabled"
+  class="euiButtonIcon euiButtonIcon--xSmall emotion-euiButtonIcon-xs-empty-disabled-isDisabled"
   disabled=""
   type="button"
 >
@@ -233,7 +233,7 @@ exports[`EuiButtonIcon props isDisabled or disabled is rendered 1`] = `
 exports[`EuiButtonIcon props isDisabled renders a button even when href is defined 1`] = `
 <button
   aria-label="button"
-  class="euiButtonIcon euiButtonIcon--xSmall emotion-euiButtonIcon-xs-empty-disabled"
+  class="euiButtonIcon euiButtonIcon--xSmall emotion-euiButtonIcon-xs-empty-disabled-isDisabled"
   disabled=""
   type="button"
 >
@@ -249,7 +249,7 @@ exports[`EuiButtonIcon props isDisabled renders a button even when href is defin
 exports[`EuiButtonIcon props isLoading is rendered 1`] = `
 <button
   aria-label="button"
-  class="euiButtonIcon euiButtonIcon--xSmall emotion-euiButtonIcon-xs-empty-disabled"
+  class="euiButtonIcon euiButtonIcon--xSmall emotion-euiButtonIcon-xs-empty-disabled-isDisabled"
   disabled=""
   type="button"
 >
@@ -257,6 +257,7 @@ exports[`EuiButtonIcon props isLoading is rendered 1`] = `
     aria-label="Loading"
     class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
     role="progressbar"
+    style="border-color:#07C currentcolor currentcolor currentcolor"
   />
 </button>
 `;

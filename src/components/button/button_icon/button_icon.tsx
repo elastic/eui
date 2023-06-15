@@ -170,6 +170,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = (props) => {
     buttonColorStyles[color],
     buttonFocusStyle,
     display === 'empty' && emptyHoverStyles,
+    isDisabled && styles.isDisabled,
   ];
 
   const classes = classNames(
@@ -202,13 +203,24 @@ export const EuiButtonIcon: FunctionComponent<Props> = (props) => {
     );
   }
 
-  // `original` size doesn't exist in `EuiLoadingSpinner`
-  // when the `iconSize` is `original` we don't pass any size to the `EuiLoadingSpinner`
-  // so it gets the default size
-  const loadingSize = iconSize === 'original' ? undefined : iconSize;
-
   if (iconType && isLoading) {
-    buttonIcon = <EuiLoadingSpinner size={loadingSize} />;
+    // `original` size doesn't exist in `EuiLoadingSpinner`
+    // when the `iconSize` is `original` we don't pass any size to the `EuiLoadingSpinner`
+    // so it gets the default size
+    const loadingSize = iconSize === 'original' ? undefined : iconSize;
+
+    // When the button is disabled the text gets gray
+    // and in some buttons the background gets a light gray
+    // for better contrast we want to change the border of the spinner
+    // to have the same color of the text. This way we ensure the borders
+    // are always visible. The default spinner color could be very light.
+    const loadingSpinnerColor = isDisabled
+      ? { border: 'currentcolor' }
+      : undefined;
+
+    buttonIcon = (
+      <EuiLoadingSpinner size={loadingSize} color={loadingSpinnerColor} />
+    );
   }
 
   // <a> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend
