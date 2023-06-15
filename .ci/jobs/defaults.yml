@@ -19,7 +19,7 @@
             CI=true
             HOME=$JENKINS_HOME
     concurrent: true
-    node: ubuntu-20.04
+    node: ubuntu
     scm:
       - git:
           name: origin
