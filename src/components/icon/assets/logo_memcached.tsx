@@ -54,7 +54,13 @@ const EuiIconLogoMemcached = ({
           <stop offset="0%" stopColor="#DB7C7C" />
           <stop offset="100%" stopColor="#C83737" />
         </radialGradient>
-        <linearGradient id={generateId('a')} x1="50%" x2="50%" y1="100%" y2="0%">
+        <linearGradient
+          id={generateId('a')}
+          x1="50%"
+          x2="50%"
+          y1="100%"
+          y2="0%"
+        >
           <stop offset="0%" stopColor="#574C4A" />
           <stop offset="100%" stopColor="#80716D" />
         </linearGradient>

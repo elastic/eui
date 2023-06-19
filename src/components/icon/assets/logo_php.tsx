@@ -63,7 +63,11 @@ const EuiIconLogoPhp = ({
           <mask id={generateId('c')} fill="#fff">
             <use xlinkHref={`#${generateId('a')}`} />
           </mask>
-          <g fill={`url(#${generateId('b')})`} fillRule="nonzero" mask={`url(#${generateId('c')})`}>
+          <g
+            fill={`url(#${generateId('b')})`}
+            fillRule="nonzero"
+            mask={`url(#${generateId('c')})`}
+          >
             <path d="M.028 7.854C.028 3.534 6.688.03 14.902.03s14.874 3.503 14.874 7.824c0 4.322-6.66 7.825-14.874 7.825-8.215 0-14.874-3.503-14.874-7.825" />
           </g>
         </g>
