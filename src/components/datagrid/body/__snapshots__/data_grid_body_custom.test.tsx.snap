@@ -147,6 +147,7 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
           </div>
           <p
             class="emotion-euiScreenReaderOnly"
+            hidden=""
           >
             - 
             columnA, column 1, row 1
@@ -180,6 +181,7 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
           </div>
           <p
             class="emotion-euiScreenReaderOnly"
+            hidden=""
           >
             - 
             columnB, column 2, row 1
@@ -217,6 +219,7 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
           </div>
           <p
             class="emotion-euiScreenReaderOnly"
+            hidden=""
           >
             - 
             columnA, column 1, row 2
@@ -250,6 +253,7 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
           </div>
           <p
             class="emotion-euiScreenReaderOnly"
+            hidden=""
           >
             - 
             columnB, column 2, row 2

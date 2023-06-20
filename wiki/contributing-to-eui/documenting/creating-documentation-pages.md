@@ -100,7 +100,8 @@ export const AccordionExample = {
 | Key | Type | Description |
 | --- | ---- | ----------- |
 | title | string | The name of the component and the title that will be used as the header of the documentation page
-| isNew | boolean | (Optional) A flag that adds a badge titled "new" next to the component name in the documentation site navigation 
+| isNew | boolean | (Optional) A flag that adds a badge titled "NEW" next to the component name in the side nav and page header. See [marking components in the new and beta phases](#marking-components-in-the-new-and-beta-phases)
+| isBeta | boolean | (Optional) A flag that adds a badge titled "BETA" next to the component name in the side nav and page header. See [marking components in the new and beta phases](#marking-components-in-the-new-and-beta-phases)
 | intro | `jsx` element | (Optional) A quick intro about the component. Must be wrapped in an `EuiText` block.
 | sections | object array | An array of all examples and code snippets relevant to this component. There should be one object per component example
 | title | string | Title for the component example
@@ -112,3 +113,27 @@ export const AccordionExample = {
 | playground | function | (Optional) The function used to configure the playground testing area for the component.
 | props | React component | The EUI component being documented (the original component, not examples of the component)
 | snippet | string | A simplified code sample without to highlight specific component props and functionality as explained in [required imports and variables](#required-imports-and-variables)
+
+### Marking components in the `Beta` and `New` phases
+
+The `Beta` and `New` flags are ways to indicate that a component is new or ready for user testing. These flags are added as badges next to the component name in the documentation site navigation.
+
+#### When to use the flags
+
+##### Beta
+The `Beta` badge should be used when a component is first added to EUI. This badge signifies that the component may change frequently or without notice as a result of user testing and improvements.
+
+*Exception*: Self-evident and less complex components may skip the beta phase.
+
+The criteria for the beta phase should be determined as a team. Examples may include:
+- Implementing the component in X areas
+- Completing X rounds of user testing
+
+##### New
+The `New` badge should be used after a component has completed the beta period or if there has been a significant change in functionality for a component. This also signifies that the component is no longer in a stage of user testing.
+
+#### Badge maintenance
+
+When a tag is added to a component, an entry for its tentative removal date should be added to the [EUI Deprecations Schedule](https://github.com/elastic/eui/issues/1469). This helps to ensure that the badges are up to date and do not become stale.
+
+Badges should typically stay up for 1-3 months at most.

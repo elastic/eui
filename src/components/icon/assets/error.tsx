@@ -9,16 +9,16 @@
 // THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY. @see scripts/compile-icons.js
 
 import * as React from 'react';
+import type { SVGProps } from 'react';
 interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-
 const EuiIconError = ({
   title,
   titleId,
   ...props
-}: React.SVGProps<SVGSVGElement> & SVGRProps) => (
+}: SVGProps<SVGSVGElement> & SVGRProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={16}
@@ -30,9 +30,8 @@ const EuiIconError = ({
     {title ? <title id={titleId}>{title}</title> : null}
     <path
       fillRule="evenodd"
-      d="M10 1a1 1 0 01.707.293l4 4A1 1 0 0115 6v5a1 1 0 01-.293.707l-4 4A1 1 0 0110 16H5a1 1 0 01-.707-.293l-4-4A1 1 0 010 11V6a1 1 0 01.293-.707l4-4A1 1 0 015 1h5zM4.146 5.146a.5.5 0 01.708 0L7.5 7.793l2.646-2.647a.5.5 0 01.708.708L8.207 8.5l2.647 2.646a.5.5 0 01-.708.708L7.5 9.207l-2.646 2.647a.5.5 0 01-.708-.708L6.793 8.5 4.146 5.854a.5.5 0 010-.708z"
+      d="M10 1a1 1 0 0 1 .707.293l4 4A1 1 0 0 1 15 6v5a1 1 0 0 1-.293.707l-4 4A1 1 0 0 1 10 16H5a1 1 0 0 1-.707-.293l-4-4A1 1 0 0 1 0 11V6a1 1 0 0 1 .293-.707l4-4A1 1 0 0 1 5 1h5ZM4.146 5.146a.5.5 0 0 1 .708 0L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708.708L8.207 8.5l2.647 2.646a.5.5 0 0 1-.708.708L7.5 9.207l-2.646 2.647a.5.5 0 0 1-.708-.708L6.793 8.5 4.146 5.854a.5.5 0 0 1 0-.708Z"
     />
   </svg>
 );
-
 export const icon = EuiIconError;

@@ -33,7 +33,7 @@ export const euiCheckableCardStyles = (euiThemeContext: UseEuiTheme) => {
     label: {
       euiCheckableCard__label: css`
         cursor: pointer;
-        // Expand the label to cover the whole panel for easier click target
+        /* Expand the label to cover the whole panel for easier click target */
         display: block;
         ${logicals.width}: calc(100% + (${padding} * 2));
         padding: ${padding};
@@ -47,7 +47,7 @@ export const euiCheckableCardStyles = (euiThemeContext: UseEuiTheme) => {
     },
 
     euiCheckableCard__children: css`
-      ${logicalCSS('margin-top', euiTheme.size.base)};
+      ${logicalCSS('margin-top', euiTheme.size.base)}
     `,
   };
 };

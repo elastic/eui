@@ -71,6 +71,7 @@ export type EuiMarkdownEditorUiPlugin<NodeShape = any> = {
   button: {
     label: string;
     iconType: IconType;
+    isDisabled?: boolean;
   };
   helpText?: ReactNode;
 } & (PluginWithImmediateFormatting | PluginWithDelayedFormatting<NodeShape>);

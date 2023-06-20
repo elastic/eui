@@ -30,7 +30,7 @@ export const euiBottomBarStyles = (euiThemeContext: UseEuiTheme) => {
     // Base
     // `color` is inherited from the wrapping `EuiThemeProvider colorMode="dark"`
     euiBottomBar: css`
-      ${euiShadowFlat(euiThemeContext)};
+      ${euiShadowFlat(euiThemeContext)}
       background: ${shade(euiTheme.colors.lightestShade, 0.5)};
       ${euiCanAnimate} {
         animation: ${euiBottomBarAppear} ${euiTheme.animation.slow}

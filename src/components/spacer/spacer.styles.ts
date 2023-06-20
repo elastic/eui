@@ -12,7 +12,7 @@ import { UseEuiTheme } from '../../services';
 
 export const euiSpacerStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiSpacer: css`
-    flex-shrink: 0; // don't ever let this shrink in height if direct descendent of flex;
+    flex-shrink: 0; /* Don't ever let this shrink in height if direct descendent of flex */
   `,
   // Sizes
   xs: css`

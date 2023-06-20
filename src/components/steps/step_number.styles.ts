@@ -117,23 +117,23 @@ export const euiStepNumberContentStyles = ({ euiTheme }: UseEuiTheme) => {
       inset-block-start: -${euiTheme.border.width.thin};
     `,
     complete: css`
-      // Thicken the checkmark by adding a slight stroke.
+      /* Thicken the checkmark by adding a slight stroke */
       stroke: currentColor;
       stroke-width: ${mathWithUnits(euiTheme.border.width.thin, (x) => x / 2)};
     `,
     danger: css`
-      // Thicken the cross by adding a slight stroke.
+      /* Thicken the cross by adding a slight stroke */
       stroke: currentColor;
       stroke-width: ${mathWithUnits(euiTheme.border.width.thin, (x) => x / 2)};
     `,
     warning: css`
-      // Slight extra visual offset
+      /* Slight extra visual offset */
       inset-block-start: -${euiTheme.border.width.thick};
     `,
     // Statuses with number content
     euiStepNumber__number: css``,
     incomplete: css`
-      // adjusts position because of thicker border
+      /* Adjusts position because of thicker border */
       display: unset;
       position: relative;
       inset-block-start: -${euiTheme.border.width.thick};

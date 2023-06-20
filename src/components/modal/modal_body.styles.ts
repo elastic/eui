@@ -17,17 +17,17 @@ export const euiModalBodyStyles = (euiThemeContext: UseEuiTheme) => {
     euiModalBody: css`
       flex-grow: 1;
       overflow: hidden;
-      // The below fixes scroll on Chrome and Safari
+      /* The below fixes scroll on Chrome and Safari */
       display: flex;
       flex-direction: column;
 
-      // If a footer doesn't exist (body is the last element) add padding to the bottom
+      /* If a footer doesn't exist (body is the last element) add padding to the bottom */
       &:last-of-type .euiModalBody__overflow {
         padding-block-end: ${euiTheme.size.l};
       }
     `,
     euiModalBody__overflow: css`
-      ${euiYScrollWithShadows(euiThemeContext)};
+      ${euiYScrollWithShadows(euiThemeContext)}
       padding-inline: ${euiTheme.size.l};
       padding-block: ${euiTheme.size.s};
 

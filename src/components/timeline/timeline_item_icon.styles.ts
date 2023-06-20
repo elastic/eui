@@ -16,7 +16,7 @@ export const euiTimelineItemIconStyles = ({ euiTheme }: UseEuiTheme) => ({
     position: relative;
     flex-grow: 0;
     justify-content: center;
-    ${logicalCSS('margin-right', euiTheme.size.base)};
+    ${logicalCSS('margin-right', euiTheme.size.base)}
   `,
   euiTimelineItemIcon__content: css`
     display: flex;

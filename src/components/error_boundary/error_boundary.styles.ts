@@ -23,9 +23,9 @@ export const euiErrorBoundaryStyles = ({ euiTheme }: UseEuiTheme) => {
         ${color2} 1px,
         ${color2} 19px
       );
-      background-size: 54px 54px; // Fix for Safari 15.4+
-      ${logicalCSS('padding-horizontal', euiTheme.size.base)};
-      ${logicalCSS('padding-vertical', euiTheme.size.base)};
+      background-size: 54px 54px; /* Fix for Safari 15.4+ */
+      ${logicalCSS('padding-horizontal', euiTheme.size.base)}
+      ${logicalCSS('padding-vertical', euiTheme.size.base)}
     `,
   };
 };

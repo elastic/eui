@@ -60,22 +60,22 @@ export const euiTabContentStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // sizes
     s: css`
-      ${euiTitle(euiThemeContext, 'xxxs')};
+      ${euiTitle(euiThemeContext, 'xxxs')}
       line-height: ${euiTheme.size.xl};
     `,
     m: css`
-      ${euiTitle(euiThemeContext, 'xxs')};
+      ${euiTitle(euiThemeContext, 'xxs')}
       line-height: ${euiTheme.size.xxl};
     `,
     l: css`
-      ${euiTitle(euiThemeContext, 'xs')};
+      ${euiTitle(euiThemeContext, 'xs')}
       line-height: ${mathWithUnits(
         [euiTheme.size.xl, euiTheme.size.s],
         (x, y) => x + y
       )};
     `,
     xl: css`
-      ${euiTitle(euiThemeContext, 's')};
+      ${euiTitle(euiThemeContext, 's')}
       line-height: ${mathWithUnits(
         [euiTheme.size.xxxl, euiTheme.size.s],
         (x, y) => x + y

@@ -9,16 +9,16 @@
 // THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY. @see scripts/compile-icons.js
 
 import * as React from 'react';
+import type { SVGProps } from 'react';
 interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-
 const EuiIconVisBarVertical = ({
   title,
   titleId,
   ...props
-}: React.SVGProps<SVGSVGElement> & SVGRProps) => (
+}: SVGProps<SVGSVGElement> & SVGRProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={16}
@@ -28,8 +28,7 @@ const EuiIconVisBarVertical = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M10 7.5v6a.5.5 0 11-1 0V8H6v5.5a.5.5 0 11-1 0V3H2v10.5a.5.5 0 11-1 0v-11a.5.5 0 01.5-.5h4a.5.5 0 01.5.5V7h3V4.5a.5.5 0 01.5-.5h4a.5.5 0 01.5.5v9a.5.5 0 11-1 0V5h-3v2.5zM.5 16a.5.5 0 110-1h14a.5.5 0 110 1H.5z" />
+    <path d="M10 7.5v6a.5.5 0 1 1-1 0V8H6v5.5a.5.5 0 1 1-1 0V3H2v10.5a.5.5 0 1 1-1 0v-11a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5V7h3V4.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v9a.5.5 0 1 1-1 0V5h-3v2.5ZM.5 16a.5.5 0 1 1 0-1h14a.5.5 0 1 1 0 1H.5Z" />
   </svg>
 );
-
 export const icon = EuiIconVisBarVertical;

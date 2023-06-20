@@ -12,12 +12,12 @@ import { UseEuiTheme } from '../../../services';
 
 export const euiPageSidebarStyles = (euiThemeContext: UseEuiTheme) => ({
   euiPageSidebar: css`
-    // Prevent side bar width from changing when content width changes
+    /* Prevent side bar width from changing when content width changes */
     flex: 0 1 0%;
   `,
 
   sticky: css`
-    ${euiYScroll(euiThemeContext, { height: 'auto' })};
+    ${euiYScroll(euiThemeContext, { height: 'auto' })}
     flex-grow: 1;
     position: sticky;
   `,

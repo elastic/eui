@@ -42,7 +42,7 @@ export const euiStepHorizontalStyles = (euiThemeContext: UseEuiTheme) => {
       position: relative;
       inline-size: 100%;
 
-      // create the connecting lines
+      /* Create the connecting lines */
       &::before,
       &::after {
         content: '';
@@ -113,12 +113,12 @@ export const euiStepHorizontalTitleStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiStepHorizontal__title: css`
-      ${euiTitle(euiThemeContext, 'xs')};
+      ${euiTitle(euiThemeContext, 'xs')}
       margin-block-start: ${euiTheme.size.s};
       font-weight: ${euiTheme.font.weight.bold};
       text-align: center;
 
-      // hide titles on small screens
+      /* Hide titles on small screens */
       ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
         display: none;
       }

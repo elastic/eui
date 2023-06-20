@@ -54,7 +54,7 @@ export const euiLoadingSpinnerStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   return {
     euiLoadingSpinner: css`
-      flex-shrink: 0; // Ensures it never scales down below its intended size
+      flex-shrink: 0; /* Ensures it never scales down below its intended size */
       display: inline-block;
       border-radius: 50%;
       border: ${euiTheme.border.thick};

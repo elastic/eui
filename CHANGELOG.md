@@ -1,3 +1,51 @@
+## [`82.1.0`](https://github.com/elastic/eui/tree/v82.1.0)
+
+- Added ability for `EuiMarkdownEditor` plugins to disable toolbar buttons ([#6840](https://github.com/elastic/eui/pull/6840))
+
+## [`82.0.0`](https://github.com/elastic/eui/tree/v82.0.0)
+
+**Bug fixes**
+
+- Fixed `EuiPopover`'s types to omit `panelProps.hasBorder` and `panelProps.hasShadow` - these props are not customizable on popovers for visual consistency ([#6836](https://github.com/elastic/eui/pull/6836))
+
+**Breaking changes**
+
+- `EuiRange` & `EuiDualRange` no longer have a hard limit of 20 displayed ticks. The component now instead detects the width available, and throws an error if each tick has less than 5 pixels of width. We recommend testing your tick usage at smaller screens to ensure they always display legibly to users. ([#6829](https://github.com/elastic/eui/pull/6829))
+
+## [`81.3.0`](https://github.com/elastic/eui/tree/v81.3.0)
+
+- Added `timelineWithArrow` glyph to `EuiIcon` ([#6822](https://github.com/elastic/eui/pull/6822))
+
+**Bug fixes**
+
+- Fixed `EuiCodeBlock` potentially incorrectly ignoring lines ending with a question mark when using the Copy button. ([#6794](https://github.com/elastic/eui/pull/6794))
+- Fixed `EuiCodeBlock` to not include line numbers when copying content ([#6824](https://github.com/elastic/eui/pull/6824))
+- Fixed the expanded row animation on `EuiBasicTable` causing cross-browser Safari issues ([#6826](https://github.com/elastic/eui/pull/6826))
+
+## [`81.2.0`](https://github.com/elastic/eui/tree/v81.2.0)
+
+- Updated `EuiSuperDatePicker` to accept an object configuration for `isDisabled` ([#6821](https://github.com/elastic/eui/pull/6821))
+
+**Bug fixes**
+
+- Fixed broken `EuiSuperDatePicker` styles ([#6821](https://github.com/elastic/eui/pull/6821))
+
+## [`81.1.0`](https://github.com/elastic/eui/tree/v81.1.0)
+
+- Added `EuiInlineEditText` and `EuiInlineEditTitle` components ([#6757](https://github.com/elastic/eui/pull/6757))
+- Updated `EuiDatePickerRange` to support `inline` display ([#6795](https://github.com/elastic/eui/pull/6795))
+- Added an `onError` callback prop to `EuiErrorBoundary` ([#6810](https://github.com/elastic/eui/pull/6810))
+- Updated `EuiDataGrid` to only render screen reader text announcing cell position if the cell is currently focused. This should improve the ability to copy and paste multiple cells without SR text. ([#6817](https://github.com/elastic/eui/pull/6817))
+
+**Bug fixes**
+
+- Fixed `EuiDatePicker`'s `inline` display to correctly render and prevent user interaction when `disabled` or `readOnly` ([#6795](https://github.com/elastic/eui/pull/6795))
+- Fixed `EuiDatePicker`'s `inline` display to correctly render `isInvalid` and `isLoading` icons ([#6795](https://github.com/elastic/eui/pull/6795))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiDatePickerRange` to Emotion ([#6795](https://github.com/elastic/eui/pull/6795))
+
 ## [`81.0.0`](https://github.com/elastic/eui/tree/v81.0.0)
 
 - Added ability to set `options.checked` to "mixed" in `EuiSelectable` ([#6774](https://github.com/elastic/eui/pull/6774))

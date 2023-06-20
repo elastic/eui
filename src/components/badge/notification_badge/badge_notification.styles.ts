@@ -23,7 +23,7 @@ export const euiNotificationBadgeStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiNotificationBadge: css`
-      flex-shrink: 0; // Ensures it never scales down below its intended size
+      flex-shrink: 0; /* Ensures it never scales down below its intended size */
       display: inline-block;
       vertical-align: middle;
       ${logicalCSS('padding-horizontal', euiTheme.size.xs)}

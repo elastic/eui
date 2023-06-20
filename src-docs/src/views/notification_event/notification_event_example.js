@@ -66,7 +66,6 @@ const notificationEvents = events.map((event) => (
 
 export const NotificationEventExample = {
   title: 'Notification event',
-  beta: true,
   intro: (
     <EuiText>
       <p>

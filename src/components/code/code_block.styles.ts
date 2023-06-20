@@ -38,13 +38,13 @@ export const euiCodeBlockStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // Font size
     s: css`
-      ${euiFontSize(euiThemeContext, 'xs')};
+      ${euiFontSize(euiThemeContext, 'xs')}
     `,
     m: css`
-      ${euiFontSize(euiThemeContext, 's')};
+      ${euiFontSize(euiThemeContext, 's')}
     `,
     l: css`
-      ${euiFontSize(euiThemeContext, 'm')};
+      ${euiFontSize(euiThemeContext, 'm')}
     `,
     // Variants
     transparentBackground: css`
@@ -143,7 +143,7 @@ export const euiCodeBlockCodeStyles = (euiThemeContext: UseEuiTheme) => {
       display: block;
     `,
     isVirtualized: css`
-      // Necessary for virtualized code blocks to have appropriate padding
+      /* Necessary for virtualized code blocks to have appropriate padding */
       position: relative;
     `,
   };

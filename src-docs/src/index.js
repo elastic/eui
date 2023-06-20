@@ -47,7 +47,16 @@ ReactDOM.render(
         <Router history={history}>
           <Switch>
             {routes.map(
-              ({ name, path, sections, isNew, component, from, to }) => {
+              ({
+                name,
+                path,
+                sections,
+                isBeta,
+                isNew,
+                component,
+                from,
+                to,
+              }) => {
                 const meta = (
                   <Helmet>
                     <title>{`${name} - Elastic UI Framework`}</title>
@@ -66,7 +75,13 @@ ReactDOM.render(
                       } else {
                         return (
                           <AppView
-                            currentRoute={{ name, path, sections, isNew }}
+                            currentRoute={{
+                              name,
+                              path,
+                              sections,
+                              isBeta,
+                              isNew,
+                            }}
                           >
                             {({ theme }) => (
                               <>

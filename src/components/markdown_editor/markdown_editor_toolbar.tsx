@@ -93,6 +93,7 @@ interface EuiMarkdownEditorToolbarButtonProps {
   selectedNode: null | any;
   handleMdButtonClick: (mdButtonId: string) => void;
   isEditable: boolean;
+  isDisabled?: boolean;
   id: string;
   nodeId: string;
   label: string;
@@ -102,6 +103,7 @@ const EuiMarkdownEditorToolbarButton = ({
   selectedNode,
   handleMdButtonClick,
   isEditable,
+  isDisabled,
   id,
   nodeId,
   label,
@@ -122,7 +124,7 @@ const EuiMarkdownEditorToolbarButton = ({
       onClick={() => handleMdButtonClick(id)}
       iconType={icon}
       aria-label={label}
-      isDisabled={!isEditable}
+      isDisabled={!isEditable || isDisabled}
     />
   );
 };
@@ -205,6 +207,7 @@ export const EuiMarkdownEditorToolbar = forwardRef<
                       selectedNode={selectedNode}
                       handleMdButtonClick={handleMdButtonClick}
                       isEditable={isEditable}
+                      isDisabled={button.isDisabled}
                       id={name}
                       nodeId={name}
                       label={button.label}

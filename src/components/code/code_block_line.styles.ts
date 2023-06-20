@@ -52,12 +52,18 @@ export const euiCodeBlockLineStyles = (euiThemeContext: UseEuiTheme) => {
         flex-shrink: 0;
         user-select: none;
         padding-inline-end: ${euiTheme.size.m};
-        box-sizing: content-box; // Width is calculated in JS and padding needs to be added on to that value.
+        box-sizing: content-box; /* Width is calculated in JS and padding needs to be added on to that value */
       `,
       euiCodeBlock__lineNumber: css`
         color: ${euiTheme.colors.subduedText};
         text-align: end;
         display: block;
+
+        /* Note: This must use a CSS pseudo element to print the line number
+           to prevent line numbers from being copied as text */
+        &::before {
+          content: attr(data-line-number);
+        }
       `,
     },
   };

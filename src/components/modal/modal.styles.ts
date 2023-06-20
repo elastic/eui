@@ -24,15 +24,15 @@ export const euiModalStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiShadowXLarge(euiThemeContext)}
       display: flex;
       flex-direction: column;
-      max-block-size: 75vh; // We overflow the modal body based off this
+      max-block-size: 75vh; /* We overflow the modal body based off this */
       position: relative;
       background-color: ${euiTheme.colors.emptyShade};
       border-radius: ${euiTheme.border.radius.medium};
       z-index: ${euiTheme.levels.modal};
       min-inline-size: ${euiFormVariables(euiThemeContext).maxWidth};
       max-inline-size: calc(100vw - ${euiTheme.size.base});
-      // TODO: Consider restoring this once https://bugs.chromium.org/p/chromium/issues/detail?id=1229700 is resolved
-      // overflow: hidden; Ensure long, non-breaking text doesn't expand beyond the modal bounds
+      /* TODO: Consider restoring this once https://bugs.chromium.org/p/chromium/issues/detail?id=1229700 is resolved */
+      /* overflow: hidden; Ensure long, non-breaking text doesn't expand beyond the modal bounds */
 
       ${euiCanAnimate} {
         animation: ${euiAnimSlideInUp(euiTheme.size.xxl)}
@@ -43,15 +43,18 @@ export const euiModalStyles = (euiThemeContext: UseEuiTheme) => {
         position: fixed;
         inset: 0;
         border-radius: 0;
-        // The below importants are required to override any
-        // inline width/heights that consumers set via {style}
+
+        /* The below importants are required to override any
+           inline width/heights that consumers set via {style} */
+        /* stylelint-disable declaration-no-important */
         inline-size: 100vw !important;
         min-inline-size: 0 !important;
         max-inline-size: none !important;
         max-block-size: 100vh !important;
+        /* stylelint-enable declaration-no-important */
       }
 
-      // Remove the outline from the focusable container
+      /* Remove the outline from the focusable container */
       &:focus {
         outline: none;
       }
