@@ -9,16 +9,16 @@
 // THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY. @see scripts/compile-icons.js
 
 import * as React from 'react';
+import type { SVGProps } from 'react';
 interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-
 const EuiIconShard = ({
   title,
   titleId,
   ...props
-}: React.SVGProps<SVGSVGElement> & SVGRProps) => (
+}: SVGProps<SVGSVGElement> & SVGRProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={16}
@@ -28,8 +28,7 @@ const EuiIconShard = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M5.134 7.031L8 12.764l2.866-5.733L8 2.016 5.134 7.03zM8 0l4 7-4 8-4-8 4-7z" />
+    <path d="M5.134 7.031 8 12.764l2.866-5.733L8 2.016 5.134 7.03ZM8 0l4 7-4 8-4-8 4-7Z" />
   </svg>
 );
-
 export const icon = EuiIconShard;

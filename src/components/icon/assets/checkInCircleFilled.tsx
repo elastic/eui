@@ -9,16 +9,16 @@
 // THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY. @see scripts/compile-icons.js
 
 import * as React from 'react';
+import type { SVGProps } from 'react';
 interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-
 const EuiIconCheckInCircleFilled = ({
   title,
   titleId,
   ...props
-}: React.SVGProps<SVGSVGElement> & SVGRProps) => (
+}: SVGProps<SVGSVGElement> & SVGRProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={16}
@@ -30,9 +30,8 @@ const EuiIconCheckInCircleFilled = ({
     {title ? <title id={titleId}>{title}</title> : null}
     <path
       fillRule="evenodd"
-      d="M8 16A8 8 0 118 0a8 8 0 010 16zm3.65-10.857L6.91 9.8 4.35 7.286a.5.5 0 00-.7.714l2.909 2.857a.5.5 0 00.7 0l5.091-5a.5.5 0 10-.7-.714z"
+      d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16Zm3.65-10.857L6.91 9.8 4.35 7.286a.5.5 0 0 0-.7.714l2.909 2.857a.5.5 0 0 0 .7 0l5.091-5a.5.5 0 1 0-.7-.714Z"
     />
   </svg>
 );
-
 export const icon = EuiIconCheckInCircleFilled;

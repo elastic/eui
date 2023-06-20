@@ -9,16 +9,16 @@
 // THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY. @see scripts/compile-icons.js
 
 import * as React from 'react';
+import type { SVGProps } from 'react';
 interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-
 const EuiIconTokenMetricGauge = ({
   title,
   titleId,
   ...props
-}: React.SVGProps<SVGSVGElement> & SVGRProps) => (
+}: SVGProps<SVGSVGElement> & SVGRProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={16}
@@ -28,8 +28,7 @@ const EuiIconTokenMetricGauge = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M5 4h-.5a.5.5 0 010-1h1a.5.5 0 01.5.5v9a.5.5 0 01-.5.5h-1a.5.5 0 010-1H5v-2h-.5a.5.5 0 010-1H5V7h-.5a.5.5 0 010-1H5V4zm3 1a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1V6a1 1 0 00-1-1H8z" />
+    <path d="M5 4h-.5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1 0-1H5v-2h-.5a.5.5 0 0 1 0-1H5V7h-.5a.5.5 0 0 1 0-1H5V4Zm3 1a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H8Z" />
   </svg>
 );
-
 export const icon = EuiIconTokenMetricGauge;

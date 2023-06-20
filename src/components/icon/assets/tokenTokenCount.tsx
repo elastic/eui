@@ -9,16 +9,16 @@
 // THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY. @see scripts/compile-icons.js
 
 import * as React from 'react';
+import type { SVGProps } from 'react';
 interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-
 const EuiIconTokenTokenCount = ({
   title,
   titleId,
   ...props
-}: React.SVGProps<SVGSVGElement> & SVGRProps) => (
+}: SVGProps<SVGSVGElement> & SVGRProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={16}
@@ -28,8 +28,7 @@ const EuiIconTokenTokenCount = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M8 4H3v3h5V4zM13 9H8v3h5V9zM10 4h3v3h-3V4zM6 9H3v3h3V9z" />
+    <path d="M8 4H3v3h5V4ZM13 9H8v3h5V9ZM10 4h3v3h-3V4ZM6 9H3v3h3V9Z" />
   </svg>
 );
-
 export const icon = EuiIconTokenTokenCount;

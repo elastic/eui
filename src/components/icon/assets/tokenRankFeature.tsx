@@ -9,16 +9,16 @@
 // THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY. @see scripts/compile-icons.js
 
 import * as React from 'react';
+import type { SVGProps } from 'react';
 interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-
 const EuiIconTokenRankFeature = ({
   title,
   titleId,
   ...props
-}: React.SVGProps<SVGSVGElement> & SVGRProps) => (
+}: SVGProps<SVGSVGElement> & SVGRProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={16}
@@ -28,8 +28,7 @@ const EuiIconTokenRankFeature = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M13 4v8h-2V6H9v4H5v2H3V8h4V4h6z" />
+    <path d="M13 4v8h-2V6H9v4H5v2H3V8h4V4h6Z" />
   </svg>
 );
-
 export const icon = EuiIconTokenRankFeature;

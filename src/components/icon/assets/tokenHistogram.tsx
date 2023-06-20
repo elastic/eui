@@ -9,16 +9,16 @@
 // THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY. @see scripts/compile-icons.js
 
 import * as React from 'react';
+import type { SVGProps } from 'react';
 interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-
 const EuiIconTokenHistogram = ({
   title,
   titleId,
   ...props
-}: React.SVGProps<SVGSVGElement> & SVGRProps) => (
+}: SVGProps<SVGSVGElement> & SVGRProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={16}
@@ -31,5 +31,4 @@ const EuiIconTokenHistogram = ({
     <path d="M3 3h4v5h2V5.5h4V13H3.001v-1H3V3zm1 9h2V4H4v8zm3 0h2V9H7v3zm3 0h2V6.5h-2V12z" />
   </svg>
 );
-
 export const icon = EuiIconTokenHistogram;

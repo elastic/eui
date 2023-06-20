@@ -1,10 +1,9 @@
 const glob = require('glob');
-const svgr = require('@svgr/core').default;
+const svgr = require('@svgr/core').transform;
 const path = require('path');
 const fs = require('fs');
-const license = require('../.eslintrc.js').rules[
-  'local/require-license-header'
-][1].license;
+const license =
+  require('../.eslintrc.js').rules['local/require-license-header'][1].license;
 
 const rootDir = path.resolve(__dirname, '..');
 const srcDir = path.resolve(rootDir, 'src');
@@ -37,10 +36,15 @@ iconFiles.forEach((filePath) => {
         plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx'],
         svgoConfig: {
           plugins: [
-            { cleanupIDs: true },
-            { prefixIds: false },
-            { removeViewBox: false },
-            { removeUselessStrokeAndFill: false },
+            {
+              name: 'preset-default',
+              params: {
+                overrides: {
+                  removeViewBox: false,
+                  removeUselessStrokeAndFill: false,
+                },
+              },
+            },
           ],
         },
         svgProps: {
@@ -49,12 +53,11 @@ iconFiles.forEach((filePath) => {
         titleProp: true,
         typescript: true,
         template: (
-          { template },
-          opts,
-          { imports, interfaces, componentName, props, jsx }
+          { imports, interfaces, componentName, props, jsx },
+          { tpl }
         ) =>
           hasIds
-            ? template.ast`
+            ? tpl`
 ${imports}
 import { htmlIdGenerator } from '../../../services';
 ${interfaces}
@@ -66,7 +69,7 @@ const ${componentName} = (${props}) => {
 };
 export const icon = ${componentName};
 `
-            : template.ast`
+            : tpl`
 ${imports}
 ${interfaces}
 const ${componentName} = (${props}) => ${jsx}
