@@ -1,6 +1,8 @@
 ## 🏠/.buildkite/pipelines/pipeline_pull_request_test_and_deploy.yml
 
 steps:
+  - agents:
+      provider: "gcp"
   - group: ":hammer_and_pick: Run tests and deploy docs on pull request"
     key: "EUI-job-pull-request"
   - trigger: "eui-pull-request-test"
