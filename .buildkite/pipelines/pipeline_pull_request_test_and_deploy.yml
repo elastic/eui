@@ -6,10 +6,10 @@ steps:
     steps:
       - trigger: "eui-pull-request-test"
         label: ":hammer: EUI pull request test"
-        async: false
+        async: true
       - trigger: "eui-pull-request-deploy-docs"
         label: ":hammer: EUI pull request deploy docs"
-        async: false
+        async: true
         build:
           env:
             GITHUB_BRANCH: "${BUILDKITE_REFSPEC}"
