@@ -45,7 +45,7 @@ exports[`EuiGlobalToastList props side can be changed to left 1`] = `
     </div>
     <button
       aria-label="Dismiss toast"
-      class="euiButtonIcon euiButtonIcon--xSmall emotion-euiButtonIcon-empty-text-hoverStyles-euiToast__closeButton"
+      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text-euiToast__closeButton"
       data-test-subj="toastCloseButton"
       type="button"
     >
@@ -92,7 +92,7 @@ exports[`EuiGlobalToastList props side can be changed to left 1`] = `
     </div>
     <button
       aria-label="Dismiss toast"
-      class="euiButtonIcon euiButtonIcon--xSmall emotion-euiButtonIcon-empty-text-hoverStyles-euiToast__closeButton"
+      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text-euiToast__closeButton"
       data-test-subj="toastCloseButton"
       type="button"
     >
@@ -148,7 +148,7 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
     </div>
     <button
       aria-label="Dismiss toast"
-      class="euiButtonIcon euiButtonIcon--xSmall emotion-euiButtonIcon-empty-text-hoverStyles-euiToast__closeButton"
+      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text-euiToast__closeButton"
       data-test-subj="toastCloseButton"
       type="button"
     >
@@ -195,7 +195,7 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
     </div>
     <button
       aria-label="Dismiss toast"
-      class="euiButtonIcon euiButtonIcon--xSmall emotion-euiButtonIcon-empty-text-hoverStyles-euiToast__closeButton"
+      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text-euiToast__closeButton"
       data-test-subj="toastCloseButton"
       type="button"
     >

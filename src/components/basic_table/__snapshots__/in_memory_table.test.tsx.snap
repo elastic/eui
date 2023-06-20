@@ -162,7 +162,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
           <a
             aria-controls="__table_generated-id"
             aria-label="Previous page"
-            class="euiButtonIcon euiButtonIcon--xSmall euiPaginationArrowButton emotion-euiButtonIcon-empty-text-hoverStyles-euiPaginationArrowButton"
+            class="euiButtonIcon euiPaginationArrowButton emotion-euiButtonIcon-xs-empty-text-euiPaginationArrowButton"
             data-test-subj="pagination-button-previous"
             href="#__table_generated-id"
             rel="noreferrer"
@@ -227,7 +227,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
           </ul>
           <button
             aria-label="Next page"
-            class="euiButtonIcon euiButtonIcon--xSmall euiPaginationArrowButton emotion-euiButtonIcon-empty-disabled-hoverStyles-euiPaginationArrowButton"
+            class="euiButtonIcon euiPaginationArrowButton emotion-euiButtonIcon-xs-empty-disabled-isDisabled-euiPaginationArrowButton"
             data-test-subj="pagination-button-next"
             disabled=""
             type="button"

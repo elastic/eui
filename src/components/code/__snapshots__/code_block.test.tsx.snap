@@ -82,7 +82,7 @@ exports[`EuiCodeBlock fullscreen displays content in fullscreen mode 1`] = `
   >
     <button
       aria-label="Collapse"
-      class="euiButtonIcon euiButtonIcon--xSmall euiCodeBlock__fullScreenButton emotion-euiButtonIcon-empty-text-hoverStyles"
+      class="euiButtonIcon euiCodeBlock__fullScreenButton emotion-euiButtonIcon-xs-empty-text"
       type="button"
     >
       <span
@@ -518,7 +518,7 @@ exports[`EuiCodeBlock props overflowHeight is rendered 1`] = `
   >
     <button
       aria-label="Expand"
-      class="euiButtonIcon euiButtonIcon--xSmall euiCodeBlock__fullScreenButton emotion-euiButtonIcon-empty-text-hoverStyles"
+      class="euiButtonIcon euiCodeBlock__fullScreenButton emotion-euiButtonIcon-xs-empty-text"
       type="button"
     >
       <span
@@ -773,7 +773,7 @@ exports[`EuiCodeBlock virtualization renders a virtualized code block 1`] = `
   >
     <button
       aria-label="Expand"
-      class="euiButtonIcon euiButtonIcon--xSmall euiCodeBlock__fullScreenButton emotion-euiButtonIcon-empty-text-hoverStyles"
+      class="euiButtonIcon euiCodeBlock__fullScreenButton emotion-euiButtonIcon-xs-empty-text"
       type="button"
     >
       <span

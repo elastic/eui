@@ -28,7 +28,7 @@ Array [
         </p>
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-fill-text-euiFlyout__closeButton-outside-left"
+          class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-fill-text-euiFlyout__closeButton-outside-left"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -82,7 +82,7 @@ Array [
         </p>
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-fill-text-euiFlyout__closeButton-outside-left"
+          class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-fill-text-euiFlyout__closeButton-outside-left"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -131,7 +131,7 @@ Array [
       </p>
       <button
         aria-label="Close this dialog"
-        class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-fill-text-euiFlyout__closeButton-outside-left"
+        class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-fill-text-euiFlyout__closeButton-outside-left"
         data-test-subj="euiFlyoutCloseButton"
         type="button"
       >
@@ -185,7 +185,7 @@ Array [
         </p>
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-fill-text-euiFlyout__closeButton-outside-left"
+          class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-fill-text-euiFlyout__closeButton-outside-left"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -235,7 +235,7 @@ Array [
         </p>
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-fill-text-euiFlyout__closeButton-outside-left"
+          class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-fill-text-euiFlyout__closeButton-outside-left"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -312,7 +312,7 @@ Array [
         </p>
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-fill-text-euiFlyout__closeButton-outside-left"
+          class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-fill-text-euiFlyout__closeButton-outside-left"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -394,7 +394,7 @@ Array [
         </p>
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-fill-text-euiFlyout__closeButton-outside-left"
+          class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-fill-text-euiFlyout__closeButton-outside-left"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >

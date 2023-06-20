@@ -28,7 +28,7 @@ Array [
         </p>
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
+          class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-empty-text-euiFlyout__closeButton-inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -77,7 +77,7 @@ Array [
         </p>
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
+          class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-empty-text-euiFlyout__closeButton-inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -125,7 +125,7 @@ Array [
         </p>
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-fill-text-euiFlyout__closeButton-outside-right"
+          class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-fill-text-euiFlyout__closeButton-outside-right"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -173,7 +173,7 @@ Array [
         </p>
         <button
           aria-label="aria-label"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton testClass1 testClass2 emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
+          class="euiButtonIcon euiFlyout__closeButton testClass1 testClass2 emotion-euiButtonIcon-xs-empty-text-euiFlyout__closeButton-inside"
           data-test-subj="test subject string"
           type="button"
         >
@@ -256,7 +256,7 @@ Array [
         </p>
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
+          class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-empty-text-euiFlyout__closeButton-inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -305,7 +305,7 @@ Array [
         </p>
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
+          class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-empty-text-euiFlyout__closeButton-inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -354,7 +354,7 @@ Array [
         </p>
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
+          class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-empty-text-euiFlyout__closeButton-inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -402,7 +402,7 @@ Array [
         </p>
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
+          class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-empty-text-euiFlyout__closeButton-inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -450,7 +450,7 @@ Array [
         </p>
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
+          class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-empty-text-euiFlyout__closeButton-inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -498,7 +498,7 @@ Array [
         </p>
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
+          class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-empty-text-euiFlyout__closeButton-inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -545,7 +545,7 @@ Array [
       </p>
       <button
         aria-label="Close this dialog"
-        class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
+        class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-empty-text-euiFlyout__closeButton-inside"
         data-test-subj="euiFlyoutCloseButton"
         type="button"
       >
@@ -592,7 +592,7 @@ Array [
         </p>
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
+          class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-empty-text-euiFlyout__closeButton-inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -640,7 +640,7 @@ Array [
         </p>
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
+          class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-empty-text-euiFlyout__closeButton-inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -688,7 +688,7 @@ Array [
         </p>
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
+          class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-empty-text-euiFlyout__closeButton-inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -736,7 +736,7 @@ Array [
         </p>
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
+          class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-empty-text-euiFlyout__closeButton-inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -784,7 +784,7 @@ Array [
         </p>
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
+          class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-empty-text-euiFlyout__closeButton-inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -832,7 +832,7 @@ Array [
         </p>
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
+          class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-empty-text-euiFlyout__closeButton-inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -881,7 +881,7 @@ Array [
         </p>
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
+          class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-empty-text-euiFlyout__closeButton-inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -929,7 +929,7 @@ Array [
         </p>
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
+          class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-empty-text-euiFlyout__closeButton-inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -977,7 +977,7 @@ Array [
         </p>
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
+          class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-empty-text-euiFlyout__closeButton-inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -1025,7 +1025,7 @@ Array [
         </p>
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
+          class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-empty-text-euiFlyout__closeButton-inside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -1065,7 +1065,7 @@ Array [
     >
       <button
         aria-label="Close this dialog"
-        class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
+        class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-empty-text-euiFlyout__closeButton-inside"
         data-test-subj="euiFlyoutCloseButton"
         type="button"
       >
@@ -1124,7 +1124,7 @@ exports[`EuiFlyout renders extra screen reader instructions when fixed EuiHeader
           </p>
           <button
             aria-label="Close this dialog"
-            class="euiButtonIcon euiButtonIcon--xSmall euiFlyout__closeButton emotion-euiButtonIcon-empty-text-hoverStyles-euiFlyout__closeButton-inside"
+            class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-empty-text-euiFlyout__closeButton-inside"
             data-test-subj="euiFlyoutCloseButton"
             type="button"
           >

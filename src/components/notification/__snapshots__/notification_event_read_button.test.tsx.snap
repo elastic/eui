@@ -3,7 +3,7 @@
 exports[`EuiNotificationEventReadButton is rendered 1`] = `
 <button
   aria-label="Mark eventName as unread"
-  class="euiButtonIcon euiButtonIcon--xSmall euiNotificationEventReadButton euiNotificationEventReadButton--isRead emotion-euiButtonIcon-empty-primary-hoverStyles"
+  class="euiButtonIcon euiNotificationEventReadButton euiNotificationEventReadButton--isRead emotion-euiButtonIcon-xs-empty-primary"
   data-test-subj="id-notificationEventReadButton"
   title="Mark as unread"
   type="button"
@@ -20,7 +20,7 @@ exports[`EuiNotificationEventReadButton is rendered 1`] = `
 exports[`EuiNotificationEventReadButton renders isRead to false 1`] = `
 <button
   aria-label="Mark eventName as read"
-  class="euiButtonIcon euiButtonIcon--xSmall euiNotificationEventReadButton emotion-euiButtonIcon-empty-primary-hoverStyles"
+  class="euiButtonIcon euiNotificationEventReadButton emotion-euiButtonIcon-xs-empty-primary"
   data-test-subj="id-notificationEventReadButton"
   title="Mark as read"
   type="button"
