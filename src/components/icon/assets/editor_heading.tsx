@@ -9,16 +9,16 @@
 // THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY. @see scripts/compile-icons.js
 
 import * as React from 'react';
+import type { SVGProps } from 'react';
 interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-
 const EuiIconEditorHeading = ({
   title,
   titleId,
   ...props
-}: React.SVGProps<SVGSVGElement> & SVGRProps) => (
+}: SVGProps<SVGSVGElement> & SVGRProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={16}
@@ -28,8 +28,7 @@ const EuiIconEditorHeading = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M6 11a1 1 0 010 2H4a1 1 0 010-2V5a1 1 0 110-2h2a1 1 0 110 2v2h4V5a1 1 0 110-2h2a1 1 0 010 2v6a1 1 0 010 2h-2a1 1 0 010-2V9H6v2z" />
+    <path d="M6 11a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2V5a1 1 0 1 1 0-2h2a1 1 0 1 1 0 2v2h4V5a1 1 0 1 1 0-2h2a1 1 0 0 1 0 2v6a1 1 0 0 1 0 2h-2a1 1 0 0 1 0-2V9H6v2Z" />
   </svg>
 );
-
 export const icon = EuiIconEditorHeading;

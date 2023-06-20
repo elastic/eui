@@ -9,25 +9,25 @@
 // THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY. @see scripts/compile-icons.js
 
 import * as React from 'react';
+import type { SVGProps } from 'react';
 import { htmlIdGenerator } from '../../../services';
 interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-
 const EuiIconLogoGoogleG = ({
   title,
   titleId,
   ...props
-}: React.SVGProps<SVGSVGElement> & SVGRProps) => {
+}: SVGProps<SVGSVGElement> & SVGRProps) => {
   const generateId = htmlIdGenerator('logo_google_g');
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
-      viewBox="0 0 32 32"
       width={32}
       height={32}
+      viewBox="0 0 32 32"
       aria-labelledby={titleId}
       {...props}
     >
@@ -43,7 +43,7 @@ const EuiIconLogoGoogleG = ({
         />
         <path
           id={generateId('e')}
-          d="M7.028 10.25a9.59 9.59 0 01-.5-3.032 9.59 9.59 0 01.5-3.032V.052h-5.33A15.95 15.95 0 000 7.218c0 2.575.617 5.012 1.697 7.166l5.331-4.134z"
+          d="M7.028 10.25a9.59 9.59 0 0 1-.5-3.032 9.59 9.59 0 0 1 .5-3.032V.052h-5.33A15.95 15.95 0 0 0 0 7.218c0 2.575.617 5.012 1.697 7.166l5.331-4.134z"
         />
         <path
           id={generateId('g')}
@@ -58,8 +58,8 @@ const EuiIconLogoGoogleG = ({
           <path
             fill="#4285F4"
             fillRule="nonzero"
-            mask={`url(#${generateId('b')})`}
             d="M.001 15.006h15.318V.014H.001z"
+            mask={`url(#${generateId('b')})`}
           />
         </g>
         <g transform="translate(1.613 19.003)">
@@ -69,8 +69,8 @@ const EuiIconLogoGoogleG = ({
           <path
             fill="#34A853"
             fillRule="nonzero"
-            mask={`url(#${generateId('d')})`}
             d="M.084 12.956h24.819V.031H.084z"
+            mask={`url(#${generateId('d')})`}
           />
         </g>
         <g transform="translate(0 8.784)">
@@ -80,8 +80,8 @@ const EuiIconLogoGoogleG = ({
           <path
             fill="#FBBC04"
             fillRule="nonzero"
-            mask={`url(#${generateId('f')})`}
             d="M0 14.384h7.028V.052H0z"
+            mask={`url(#${generateId('f')})`}
           />
         </g>
         <g transform="translate(1.613)">
@@ -91,13 +91,12 @@ const EuiIconLogoGoogleG = ({
           <path
             fill="#EA4335"
             fillRule="nonzero"
-            mask={`url(#${generateId('h')})`}
             d="M.084 12.97h24.935V.046H.084z"
+            mask={`url(#${generateId('h')})`}
           />
         </g>
       </g>
     </svg>
   );
 };
-
 export const icon = EuiIconLogoGoogleG;

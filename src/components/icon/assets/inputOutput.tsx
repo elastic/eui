@@ -9,16 +9,16 @@
 // THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY. @see scripts/compile-icons.js
 
 import * as React from 'react';
+import type { SVGProps } from 'react';
 interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-
 const EuiIconInputOutput = ({
   title,
   titleId,
   ...props
-}: React.SVGProps<SVGSVGElement> & SVGRProps) => (
+}: SVGProps<SVGSVGElement> & SVGRProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={16}
@@ -33,5 +33,4 @@ const EuiIconInputOutput = ({
     <path d="M5.5 6.5v6l-3-3zM7 7V6h6.5v1z" />
   </svg>
 );
-
 export const icon = EuiIconInputOutput;

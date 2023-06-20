@@ -9,16 +9,16 @@
 // THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY. @see scripts/compile-icons.js
 
 import * as React from 'react';
+import type { SVGProps } from 'react';
 interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-
 const EuiIconLineDotted = ({
   title,
   titleId,
   ...props
-}: React.SVGProps<SVGSVGElement> & SVGRProps) => (
+}: SVGProps<SVGSVGElement> & SVGRProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={16}
@@ -28,8 +28,7 @@ const EuiIconLineDotted = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M13.5 3a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM11 5.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM5.5 11a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm-4 4a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+    <path d="M13.5 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM11 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM5.5 11a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm-4 4a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
   </svg>
 );
-
 export const icon = EuiIconLineDotted;
