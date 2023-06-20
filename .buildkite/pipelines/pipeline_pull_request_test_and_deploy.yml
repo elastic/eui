@@ -8,7 +8,7 @@ steps:
         label: ":hammer: EUI pull request test"
         async: true
       - trigger: "eui-pull-request-deploy-docs"
-        label: ":roll_of_paper: EUI pull request deploy docs"
+        label: ":newspaper: EUI pull request deploy docs"
         async: true
         build:
           env:
