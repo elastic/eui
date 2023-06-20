@@ -49,7 +49,7 @@ exports[`EuiButtonIcon props color danger is rendered 1`] = `
 exports[`EuiButtonIcon props color ghost is rendered 1`] = `
 <button
   aria-label="button"
-  class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
+  class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text-euiColorMode-dark-colorClassName"
   type="button"
 >
   <span
@@ -257,7 +257,7 @@ exports[`EuiButtonIcon props isLoading is rendered 1`] = `
     aria-label="Loading"
     class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
     role="progressbar"
-    style="border-color:#07C currentcolor currentcolor currentcolor"
+    style="border-color: #07c currentcolor currentcolor currentcolor;"
   />
 </button>
 `;
