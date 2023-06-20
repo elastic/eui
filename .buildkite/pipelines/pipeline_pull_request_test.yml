@@ -1,7 +1,8 @@
 ## 🏠/.buildkite/pipelines/pipeline_pull_request_test.yml
 
-- agents:
-    provider: "gcp"
-- command: .buildkite/scripts/pipeline_pull_request_test.sh
-- artifact_paths:
-  - "cypress/screenshots/**/*.png"
+steps:
+  - agents:
+      provider: "gcp"
+    command: .buildkite/scripts/pipeline_pull_request_test.sh
+    artifact_paths:
+      - "cypress/screenshots/**/*.png"
