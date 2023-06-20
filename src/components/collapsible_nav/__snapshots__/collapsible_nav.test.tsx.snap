@@ -13,7 +13,7 @@ Array [
     >
       <nav
         aria-describedby="generated-id"
-        class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left"
+        class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left-euiCollapsibleNav-overlay"
         data-autofocus="true"
         id="id"
         role="dialog"
@@ -66,7 +66,7 @@ Array [
       <nav
         aria-describedby="generated-id"
         aria-label="aria-label"
-        class="euiFlyout euiCollapsibleNav testClass1 testClass2 emotion-euiFlyout-none-noMaxWidth-overlay-left"
+        class="euiFlyout euiCollapsibleNav testClass1 testClass2 emotion-euiFlyout-none-noMaxWidth-overlay-left-euiCollapsibleNav-overlay"
         data-autofocus="true"
         data-test-subj="test subject string"
         id="id"
@@ -116,7 +116,7 @@ Array [
   >
     <nav
       aria-describedby="generated-id"
-      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left"
+      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left-euiCollapsibleNav-overlay"
       data-autofocus="true"
       id="id"
       role="dialog"
@@ -170,7 +170,7 @@ Array [
     >
       <nav
         aria-describedby="generated-id"
-        class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left"
+        class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left-euiCollapsibleNav-overlay"
         data-autofocus="true"
         id="id"
         role="dialog"
@@ -220,7 +220,7 @@ Array [
     >
       <nav
         aria-describedby="generated-id"
-        class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left"
+        class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left-euiCollapsibleNav-overlay"
         data-autofocus="true"
         id="id"
         role="dialog"
@@ -268,7 +268,7 @@ Array [
     data-focus-lock-disabled="disabled"
   >
     <nav
-      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-push-left-left"
+      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-push-left-left-euiCollapsibleNav-push"
       data-autofocus="true"
       id="id"
       role="dialog"
@@ -297,7 +297,7 @@ Array [
     >
       <nav
         aria-describedby="generated-id"
-        class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left"
+        class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left-euiCollapsibleNav-overlay"
         data-autofocus="true"
         id="id"
         role="dialog"
@@ -350,7 +350,7 @@ Array [
     data-focus-lock-disabled="disabled"
   >
     <nav
-      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-push-left-left"
+      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-push-left-left-euiCollapsibleNav-push"
       data-autofocus="true"
       id="id"
       role="dialog"
@@ -379,7 +379,7 @@ Array [
     >
       <nav
         aria-describedby="generated-id"
-        class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left"
+        class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left-euiCollapsibleNav-overlay"
         data-autofocus="true"
         id="id"
         role="dialog"
