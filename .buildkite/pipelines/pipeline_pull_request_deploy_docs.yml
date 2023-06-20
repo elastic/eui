@@ -1,6 +1,5 @@
 ## 🏠/.buildkite/pipelines/pipeline_pull_request_deploy_docs.yml
 
-steps:
-  - agents:
-      provider: "gcp"
-  - command: .buildkite/scripts/pipeline_pull_request_deploy_docs.sh
+- agents:
+    provider: "gcp"
+- command: .buildkite/scripts/pipeline_pull_request_deploy_docs.sh
