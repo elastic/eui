@@ -16,7 +16,7 @@ set +x
 # * GIT_BRANCH - current Git branch or tag (e.g. "refs/heads/main", "v18.2.1")
 
 # Docker images
-NODE_IMAGE=node:16.19.1-slim
+NODE_IMAGE=node:18.16.0-slim
 GCE_IMAGE=google/cloud-sdk:slim
 
 if [[ -z "${GPROJECT}" ]]; then

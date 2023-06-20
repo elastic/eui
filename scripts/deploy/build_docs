@@ -2,7 +2,7 @@
 
 set -e
 
-NODE_IMG="docker.elastic.co/ci-agent-images/eui-buildkite-ci:1.0"
+NODE_IMG="docker.elastic.co/eui/ci:5.0"
 
 # Compile using node image
 echo "Building docs using ${NODE_IMG} Docker image"
