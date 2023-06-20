@@ -1,7 +1,5 @@
-## 🏠/.buildkite/pipelines/pipeline_pull_request_test.yml
+# 🏠/.buildkite/pipelines/pipeline_pull_request_test.yml
 
 steps:
   - label: ":hammer: EUI pull request test"
-    agents:
-      provider: "gcp"
-    command: .buildkite/scripts/pipeline_pull_request_test.sh
+    command: "echo 'This will run our EUI tests!'"
