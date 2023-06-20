@@ -1,8 +1,4 @@
 .euiCollapsibleNavGroup {
-  &:not(:first-child) {
-    border-top: $euiBorderThin;
-  }
-
   // This class does not accept a custom classname
   .euiAccordion__triggerWrapper {
     // Add padding to the trigger wrapper in case an `extraAction` is passed

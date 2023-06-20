@@ -9,12 +9,17 @@
 import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../../common';
-import { useGeneratedHtmlId } from '../../../services';
+import {
+  useEuiTheme,
+  useGeneratedHtmlId,
+} from '../../../services';
 
 import { EuiAccordion, EuiAccordionProps } from '../../accordion';
 import { EuiIcon, IconType, IconSize, EuiIconProps } from '../../icon';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiTitle, EuiTitleProps, EuiTitleSize } from '../../title';
+
+import { euiCollapsibleNavGroupStyles } from './collapsible_nav_group.styles';
 
 type Background = 'none' | 'light' | 'dark';
 const backgroundToClassNameMap: { [color in Background]: string } = {
@@ -116,6 +121,12 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
   const groupID = useGeneratedHtmlId({ conditionalId: id });
   const titleID = `${groupID}__title`;
 
+  const euiTheme = useEuiTheme();
+  const styles = euiCollapsibleNavGroupStyles(euiTheme);
+  const cssStyles = [
+    styles.euiCollapsibleNavGroup,
+  ];
+
   const classes = classNames(
     'euiCollapsibleNavGroup',
     backgroundToClassNameMap[background],
@@ -161,6 +172,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
     return (
       <EuiAccordion
         id={groupID}
+        css={cssStyles}
         className={classes}
         buttonClassName={headingClasses}
         buttonContent={titleContent}
@@ -174,7 +186,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
     );
   } else {
     return (
-      <div id={groupID} className={classes} {...rest}>
+      <div id={groupID} css={cssStyles} className={classes} {...rest}>
         {titleContent && <div className={headingClasses}>{titleContent}</div>}
         {content}
       </div>
