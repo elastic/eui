@@ -3,14 +3,13 @@
 steps:
   - group: ":hammer_and_pick: Run tests and deploy docs on pull request"
     key: "EUI-job-pull-request"
-    steps:
-      - trigger: "eui-pull-request-test"
-        label: ":hammer: EUI pull request test"
-        async: true
-      - trigger: "eui-pull-request-deploy-docs"
-        label: ":hammer: EUI pull request deploy docs"
-        async: true
-        build:
-          env:
-            GITHUB_BRANCH: "${BUILDKITE_REFSPEC}"
+  - trigger: "eui-pull-request-test"
+    label: ":hammer: EUI pull request test"
+    async: true
+  - trigger: "eui-pull-request-deploy-docs"
+    label: ":roll_of_paper: EUI pull request deploy docs"
+    async: true
+    build:
+      env:
+        GITHUB_BRANCH: "${BUILDKITE_REFSPEC}"
 
