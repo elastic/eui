@@ -10,6 +10,7 @@ import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../../common';
 import {
+  EuiThemeProvider,
   useEuiTheme,
   useGeneratedHtmlId,
 } from '../../../services';
@@ -21,15 +22,8 @@ import { EuiTitle, EuiTitleProps, EuiTitleSize } from '../../title';
 
 import { euiCollapsibleNavGroupStyles } from './collapsible_nav_group.styles';
 
-type Background = 'none' | 'light' | 'dark';
-const backgroundToClassNameMap: { [color in Background]: string } = {
-  none: '',
-  light: 'euiCollapsibleNavGroup--light',
-  dark: 'euiCollapsibleNavGroup--dark',
-};
-export const BACKGROUNDS = Object.keys(
-  backgroundToClassNameMap
-) as Background[];
+export const BACKGROUNDS = ['none', 'light', 'dark'] as const;
+type Background = (typeof BACKGROUNDS)[number];
 
 export interface EuiCollapsibleNavGroupInterface extends CommonProps {
   /**
@@ -125,11 +119,11 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
   const styles = euiCollapsibleNavGroupStyles(euiTheme);
   const cssStyles = [
     styles.euiCollapsibleNavGroup,
+    background && styles[background],
   ];
 
   const classes = classNames(
     'euiCollapsibleNavGroup',
-    backgroundToClassNameMap[background],
     {
       'euiCollapsibleNavGroup--withHeading': title,
     },
@@ -168,8 +162,9 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
     </EuiFlexGroup>
   ) : undefined;
 
+  let render;
   if (isCollapsible && title) {
-    return (
+    render = (
       <EuiAccordion
         id={groupID}
         css={cssStyles}
@@ -178,18 +173,25 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
         buttonContent={titleContent}
         initialIsOpen={true}
         arrowDisplay="right"
-        arrowProps={{ color: background === 'dark' ? 'ghost' : 'text' }}
         {...rest}
       >
         {content}
       </EuiAccordion>
     );
   } else {
-    return (
+    render = (
       <div id={groupID} css={cssStyles} className={classes} {...rest}>
         {titleContent && <div className={headingClasses}>{titleContent}</div>}
         {content}
       </div>
     );
   }
+
+  return background === 'dark' ? (
+    <EuiThemeProvider colorMode="dark" wrapperProps={{ cloneElement: true }}>
+      {render}
+    </EuiThemeProvider>
+  ) : (
+    render
+  );
 };

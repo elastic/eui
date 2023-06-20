@@ -7,16 +7,33 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme } from '../../../services';
+import { UseEuiTheme, shade } from '../../../services';
 import { logicalCSS } from '../../../global_styling';
 
 export const euiCollapsibleNavGroupStyles = ({
   euiTheme,
+  colorMode,
 }: UseEuiTheme) => {
   return {
     euiCollapsibleNavGroup: css`
       &:not(:first-child) {
         ${logicalCSS('border-top', euiTheme.border.thin)}
+      }
+    `,
+    // Background colors
+    none: css``,
+    light: css`
+      background-color: ${euiTheme.colors.body};
+    `,
+    dark: css`
+      background-color: ${colorMode === 'DARK'
+        ? shade(euiTheme.colors.lightestShade, 0.5)
+        : shade(euiTheme.colors.darkestShade, 0.2)};
+
+      .euiCollapsibleNavGroup__title,
+      .euiCollapsibleNavGroup__heading,
+      .euiAccordion__iconButton {
+        color: ${euiTheme.colors.ghost};
       }
     `,
   };
