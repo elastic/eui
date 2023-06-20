@@ -298,7 +298,7 @@ const createExample = (example, customTitle) => {
     );
   }
 
-  const { title, sections, beta, isNew, playground, guidelines, ...rest } =
+  const { title, sections, isBeta, isNew, playground, guidelines, ...rest } =
     example;
   const filteredSections = sections.filter((section) => section !== undefined);
 
@@ -327,7 +327,8 @@ const createExample = (example, customTitle) => {
     <EuiErrorBoundary>
       <GuideTabbedPage
         title={title}
-        isBeta={beta}
+        isBeta={isBeta}
+        isNew={isNew}
         playground={playgroundComponent}
         guidelines={guidelines}
         {...rest}
@@ -341,12 +342,13 @@ const createExample = (example, customTitle) => {
     name: customTitle || title,
     component,
     sections: filteredSections,
+    isBeta,
     isNew,
     hasGuidelines: typeof guidelines !== 'undefined',
   };
 };
 
-const createTabbedPage = ({ title, pages, isNew, ...rest }) => {
+const createTabbedPage = ({ title, pages, isBeta, isNew, ...rest }) => {
   const component = () => (
     <GuideTabbedPage title={title} pages={pages} {...rest} />
   );
@@ -363,6 +365,7 @@ const createTabbedPage = ({ title, pages, isNew, ...rest }) => {
     name: title,
     component,
     sections: pagesSections,
+    isBeta,
     isNew,
   };
 };
@@ -556,7 +559,6 @@ const navigation = [
       HealthExample,
       IconExample,
       ImageExample,
-      InlineEditExample,
       ListGroupExample,
       LoadingExample,
       NotificationEventExample,
@@ -585,6 +587,7 @@ const navigation = [
       DatePickerExample,
       ExpressionExample,
       FilterGroupExample,
+      InlineEditExample,
       RangeControlExample,
       SearchBarExample,
       SelectableExample,

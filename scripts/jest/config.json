@@ -9,8 +9,7 @@
   ],
   "collectCoverageFrom": [
     "src/{components,services,global_styling}/**/*.{ts,tsx,js,jsx}",
-    "!src/{components,services,global_styling}/**/*.spec.{ts,tsx,js,jsx}",
-    "!src/{components,services,global_styling}/**/*.testenv.{ts,tsx,js,jsx}",
+    "!src/{components,services,global_styling}/**/*.{testenv,spec,a11y,stories}.{ts,tsx,js,jsx}",
     "!src/{components,services,global_styling}/index.ts",
     "!src/{components,services,global_styling}/**/*/index.ts",
     "!src/components/date_picker/react-datepicker/**/*.{js,jsx}"

@@ -41,7 +41,7 @@ export const euiBreadcrumbStyles = (euiThemeContext: UseEuiTheme) => {
     // Types
     page: css`
       &:not(:last-of-type) {
-        &:after {
+        &::after {
           background: ${euiTheme.colors.lightShade};
           content: '';
           flex-shrink: 0;
@@ -75,22 +75,23 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiTextTruncate(mathWithUnits(euiTheme.size.base, (x) => x * 10))}
     `,
     isTruncatedLast: css`
-      // This removes the default breadcrumb max-width while ensuring that the last breadcrumb
-      // still cuts off with a '...' if it's overflowing outside the parent breadcrumbs container
+      /* This removes the default breadcrumb max-width while ensuring that the last breadcrumb
+         still cuts off with a '...' if it's overflowing outside the parent breadcrumbs container */
       ${euiTextTruncate('none')}
     `,
 
     // Types
     page: css`
       &:is(a):focus {
-        ${euiFocusRing(euiThemeContext, 'inset')};
+        ${euiFocusRing(euiThemeContext, 'inset')}
       }
+
       &:is(button):focus {
-        ${euiFocusRing(euiThemeContext, 'center')};
+        ${euiFocusRing(euiThemeContext, 'center')}
       }
     `,
     application: css`
-      ${euiFontSize(euiThemeContext, 'xs')};
+      ${euiFontSize(euiThemeContext, 'xs')}
       background-color: ${transparentize(euiTheme.colors.darkestShade, 0.2)};
       clip-path: polygon(
         0 0,
@@ -111,7 +112,7 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
         color: ${euiTheme.colors.link};
 
         :focus {
-          ${euiFocusRing(euiThemeContext, 'inset')};
+          ${euiFocusRing(euiThemeContext, 'inset')}
 
           :focus-visible {
             border-radius: ${euiTheme.border.radius.medium};
@@ -124,7 +125,7 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
       onlyChild: css`
         border-radius: ${euiTheme.border.radius.medium};
         clip-path: none;
-        ${logicalCSS('padding-horizontal', euiTheme.size.m)},
+        ${logicalCSS('padding-horizontal', euiTheme.size.m)}
       `,
       firstChild: css`
         ${logicalBorderRadiusCSS(
@@ -138,7 +139,7 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
           calc(100% - ${euiTheme.size.s}) 100%,
           0 100%
         );
-        ${logicalCSS('padding-left', euiTheme.size.m)},
+        ${logicalCSS('padding-left', euiTheme.size.m)}
       `,
       lastChild: css`
         ${logicalBorderRadiusCSS(
@@ -152,7 +153,7 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
           0 100%,
           ${euiTheme.size.s} 50%
         );
-        ${logicalCSS('padding-right', euiTheme.size.m)},
+        ${logicalCSS('padding-right', euiTheme.size.m)}
       `,
     },
   };

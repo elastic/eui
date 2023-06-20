@@ -15,7 +15,7 @@ export const euiPopoverStyles = () => {
     euiPopover: css`
       position: relative;
       vertical-align: middle;
-      ${logicalCSS('max-width', '100%')};
+      ${logicalCSS('max-width', '100%')}
     `,
   };
 };

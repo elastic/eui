@@ -6,15 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  forwardRef,
-  FunctionComponent,
-  Ref,
-  CSSProperties,
-  HTMLAttributes,
-  ReactNode,
-} from 'react';
-import classNames from 'classnames';
+import React, { FunctionComponent, Ref, ReactNode } from 'react';
 
 import {
   CommonProps,
@@ -23,7 +15,6 @@ import {
   PropsForButton,
 } from '../common';
 
-import { EuiButtonContentDeprecated as EuiButtonContent } from './_button_content_deprecated';
 import {
   BUTTON_COLORS,
   useEuiButtonColorCSS,
@@ -137,135 +128,3 @@ EuiButton.defaultProps = {
   size: 'm',
   color: 'primary',
 };
-
-export type EuiButtonDisplayProps = EuiButtonProps &
-  HTMLAttributes<HTMLElement> & {
-    /**
-     * Provide a valid element to render the element as
-     */
-    element: 'a' | 'button' | 'span' | 'label';
-    /**
-     * Provide the component's base class name to build the class list on
-     */
-    baseClassName: string;
-  };
-
-export const sizeToClassNameMap: { [size in EuiButtonSize]: string | null } = {
-  s: '--small',
-  m: null,
-};
-
-export const colorToClassNameMap: {
-  [color in EuiButtonColor]: string | null;
-} = {
-  primary: '--primary',
-  accent: '--accent',
-  success: '--success',
-  warning: '--warning',
-  danger: '--danger',
-  ghost: '--ghost',
-  text: '--text',
-};
-
-/**
- * *DEPRECATED*
- * EuiButtonDisplay is an internal-only component used for displaying
- * any element as a button.
- * NOTE: This component *must* be below EuiButton in the file and
- * EuiButton must also set a displayName for react-docgen-typescript
- * to correctly set EuiButton's docgenInfo and display a props table.
- * This component has been deprecated in favor of the new EuiButtonDisplay
- * that can be found in `src/components/button/button_display/_button_display.tsx`
- */
-export const EuiButtonDisplayDeprecated = forwardRef<
-  HTMLElement,
-  EuiButtonDisplayProps
->(
-  (
-    {
-      element = 'button',
-      baseClassName,
-      children,
-      className,
-      iconType,
-      iconSide = 'left',
-      color,
-      size = 'm',
-      isDisabled,
-      isLoading,
-      isSelected,
-      contentProps,
-      textProps,
-      fullWidth,
-      minWidth,
-      style,
-      ...rest
-    },
-    ref
-  ) => {
-    const buttonIsDisabled = isButtonDisabled({ isLoading, isDisabled });
-
-    const classes = classNames(
-      baseClassName,
-      color && colorToClassNameMap[color]
-        ? `${baseClassName}${colorToClassNameMap[color]}`
-        : undefined,
-      size && sizeToClassNameMap[size]
-        ? `${baseClassName}${sizeToClassNameMap[size]}`
-        : null,
-      fullWidth && `${baseClassName}--fullWidth`,
-      className
-    );
-
-    /**
-     * Not changing the content or text class names to match baseClassName yet,
-     * as it is a major breaking change.
-     */
-    const contentClassNames = classNames(
-      'euiButton__content',
-      contentProps && contentProps.className
-    );
-
-    const textClassNames = classNames(
-      'euiButton__text',
-      textProps && textProps.className
-    );
-
-    const innerNode = (
-      <EuiButtonContent
-        isLoading={isLoading}
-        iconType={iconType}
-        iconSide={iconSide}
-        textProps={{ ...textProps, className: textClassNames }}
-        {...contentProps}
-        // className has to come last to override contentProps.className
-        className={contentClassNames}
-      >
-        {children}
-      </EuiButtonContent>
-    );
-
-    let calculatedStyle: CSSProperties | undefined = style;
-    if (minWidth !== undefined || minWidth !== null) {
-      calculatedStyle = {
-        ...calculatedStyle,
-        // @ts-ignore - deprecated component
-        minWidth,
-      };
-    }
-
-    return React.createElement(
-      element,
-      {
-        className: classes,
-        style: calculatedStyle,
-        disabled: element === 'button' && buttonIsDisabled,
-        'aria-pressed': element === 'button' ? isSelected : undefined,
-        ref,
-        ...rest,
-      },
-      innerNode
-    );
-  }
-);
-EuiButtonDisplayDeprecated.displayName = 'EuiButtonDisplay';

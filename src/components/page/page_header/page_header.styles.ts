@@ -13,15 +13,15 @@ import { UseEuiTheme } from '../../../services';
 export const euiPageHeaderStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     euiPageHeader: css`
-      ${logicalCSS('width', '100%')};
-      // Make sure that inner flex layouts don't get larger than this container
-      ${logicalCSS('min-width', '0')};
+      ${logicalCSS('width', '100%')}
+      /* Make sure that inner flex layouts don't get larger than this container */
+      ${logicalCSS('min-width', '0')}
       display: flex;
       flex-direction: column;
-      flex-shrink: 0; // Ensures Safari doesn't shrink beyond contents
+      flex-shrink: 0; /* Ensures Safari doesn't shrink beyond contents */
     `,
     border: css`
-      ${logicalCSS('border-bottom', euiTheme.border.thin)};
+      ${logicalCSS('border-bottom', euiTheme.border.thin)}
     `,
   };
 };

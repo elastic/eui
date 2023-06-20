@@ -88,14 +88,14 @@ export const euiRangeTickStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // compressed and non-compressed styles
     compressed: css`
-      ${logicalCSS('padding-top', euiTheme.size.s)};
+      ${logicalCSS('padding-top', euiTheme.size.s)}
 
       &::before {
-        ${logicalCSS('margin-top', euiTheme.size.xxs)};
+        ${logicalCSS('margin-top', euiTheme.size.xxs)}
       }
     `,
     regular: css`
-      ${logicalCSS('padding-top', euiTheme.size.m)};
+      ${logicalCSS('padding-top', euiTheme.size.m)}
     `,
     selected: css`
       font-weight: ${euiTheme.font.weight.medium};
@@ -113,7 +113,7 @@ export const euiRangeTickStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     euiRangeTick__pseudo: css`
-      ${tickStyles(euiThemeContext, range)};
+      ${tickStyles(euiThemeContext, range)}
     `,
     isMin: css`
       transform: translateX(0);

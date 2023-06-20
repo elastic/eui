@@ -54,7 +54,7 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('margin-vertical', '0')}
       ${logicalCSS('margin-horizontal', euiTheme.size.xs)}
 
-      // Make sure the first <dt> doesn't get a margin.
+      /* Make sure the first <dt> doesn't get a margin */
       &:first-of-type {
         ${logicalCSS('margin-left', '0')}
       }
@@ -63,10 +63,10 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
     // This nested block handles just the font styling based on compressed and reverse
     fontStyles: {
       normal: css`
-        ${euiTitle(euiThemeContext, 'xs')};
+        ${euiTitle(euiThemeContext, 'xs')}
       `,
       reverse: css`
-        ${euiFontSize(euiThemeContext, 's')};
+        ${euiFontSize(euiThemeContext, 's')}
       `,
       compressed: css`
         ${euiTitle(euiThemeContext, 'xxs')}
@@ -76,12 +76,12 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
     // Inline types
     inlineStyles: {
       normal: css`
-        ${euiFontSize(euiThemeContext, 's')};
+        ${euiFontSize(euiThemeContext, 's')}
         ${logicalCSS('padding-vertical', '1px')}
         ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
       `,
       compressed: css`
-        ${euiFontSize(euiThemeContext, 'xs')};
+        ${euiFontSize(euiThemeContext, 'xs')}
         ${logicalCSS('padding-vertical', '0')}
         ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
       `,
@@ -89,7 +89,7 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
 
     // Alignment
     right: css`
-      ${logicalTextAlignCSS('right')};
+      ${logicalTextAlignCSS('right')}
     `,
 
     // Gutter

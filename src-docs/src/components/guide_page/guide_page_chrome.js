@@ -142,18 +142,19 @@ export class GuidePageChrome extends Component {
       });
 
       const items = matchingItems.map((item) => {
-        const { name, path, sections, isNew } = item;
+        const { name, path, sections, isBeta, isNew } = item;
 
         const href = `#/${path}`;
 
-        let newBadge;
-        if (isNew) {
-          newBadge = (
-            <EuiBadge color="accent" className="guideSideNav__newBadge">
-              NEW
-            </EuiBadge>
-          );
-        }
+        const badge = isBeta ? (
+          <EuiBadge color="warning" className="guideSideNav__itemBadge">
+            BETA
+          </EuiBadge>
+        ) : isNew ? (
+          <EuiBadge color="accent" className="guideSideNav__itemBadge">
+            NEW
+          </EuiBadge>
+        ) : undefined;
 
         let visibleName = name;
         if (searchTerm) {
@@ -175,7 +176,7 @@ export class GuidePageChrome extends Component {
           isSelected: item.path === this.props.currentRoute.path,
           forceOpen: !!(searchTerm && hasMatchingSubItem),
           className: 'guideSideNav__item',
-          icon: newBadge,
+          icon: badge,
         };
       });
 

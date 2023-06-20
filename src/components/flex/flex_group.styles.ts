@@ -16,7 +16,7 @@ export const euiFlexGroupStyles = (euiThemeContext: UseEuiTheme) => {
     euiFlexGroup: css`
       display: flex;
       align-items: stretch;
-      flex-grow: 1; // Grow nested flex-groups by default
+      flex-grow: 1; /* Grow nested flex-groups by default */
     `,
     responsive: css`
       ${euiMaxBreakpoint(euiThemeContext, 'm')} {

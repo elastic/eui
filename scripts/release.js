@@ -44,9 +44,9 @@ if (args.dry_run) {
   // ensure git and local setup is at latest
   await ensureCorrectSetup();
 
-  // run linting and unit tests
+  // run lint, unit, and e2e tests
   if (args.steps.indexOf('test') > -1) {
-    execSync('npm test', execOptions);
+    execSync('npm run test-ci', execOptions);
   }
 
   // (trans|com)pile `src` into `lib` and `dist`
@@ -115,8 +115,7 @@ function parseArguments() {
 
   const allSteps = ['test', 'build', 'version', 'tag', 'publish', 'docs'];
   parser.add_argument('--steps', {
-    help:
-      'Which release steps to run; a comma-separated list of values that can include "test", "build", "version", "tag", "publish" and "docs". If no value is given, all steps are run. Example: --steps=test,build,version,tag',
+    help: 'Which release steps to run; a comma-separated list of values that can include "test", "build", "version", "tag", "publish" and "docs". If no value is given, all steps are run. Example: --steps=test,build,version,tag',
     default: allSteps.join(','),
   });
 

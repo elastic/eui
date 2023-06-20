@@ -33,31 +33,31 @@ export const euiGlobalToastListStyles = (euiThemeContext: UseEuiTheme) => {
       align-items: stretch;
       position: fixed;
       z-index: ${euiTheme.levels.toast};
-      ${logicalCSS('bottom', 0)};
-      ${logicalCSS('width', `${euiToastWidth}px`)}; /* 2 */
-      ${logicalCSS('max-height', '100vh')}; /* 1 */
-      ${logicalCSSWithFallback('overflow-y', 'auto')};
+      ${logicalCSS('bottom', 0)}
+      ${logicalCSS('width', `${euiToastWidth}px`)} /* 2 */
+      ${logicalCSS('max-height', '100vh')} /* 1 */
+      ${logicalCSSWithFallback('overflow-y', 'auto')}
 
-      // Hide the scrollbar entirely
+      /* Hide the scrollbar entirely */
       scrollbar-width: none;
 
       &::-webkit-scrollbar {
-        ${logicalSizeCSS(0, 0)};
+        ${logicalSizeCSS(0, 0)}
       }
 
-      // The top and bottom padding give height to the list creating a dead-zone effect
-      // when there's no toasts in the list, meaning you can't click anything beneath it.
-      // Only add the padding if there's content.
+      /* The top and bottom padding give height to the list creating a dead-zone effect
+         when there's no toasts in the list, meaning you can't click anything beneath it.
+         Only add the padding if there's content. */
       &:not(:empty) {
-        ${logicalCSS('padding-left', euiTheme.size.base)};
-        ${logicalCSS('padding-right', euiTheme.size.base)};
-        ${logicalCSS('padding-vertical', euiTheme.size.base)};
+        ${logicalCSS('padding-left', euiTheme.size.base)}
+        ${logicalCSS('padding-right', euiTheme.size.base)}
+        ${logicalCSS('padding-vertical', euiTheme.size.base)}
       }
 
       ${euiMaxBreakpoint(euiThemeContext, 'm')} {
         &:not(:empty) {
-          ${logicalCSS('left', 0)};
-          ${logicalCSS('width', '100%')}; /* 1 */
+          ${logicalCSS('left', 0)}
+          ${logicalCSS('width', '100%')} /* 1 */
         }
       }
     `,
@@ -67,7 +67,7 @@ export const euiGlobalToastListStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('right', 0)};
 
         ${euiMinBreakpoint(euiThemeContext, 'm')} {
-          ${logicalCSS('padding-left', `${euiTheme.base * 4}px`)}; /* 2 */
+          ${logicalCSS('padding-left', `${euiTheme.base * 4}px`)}/* 2 */
         }
       }
     `,
@@ -76,7 +76,7 @@ export const euiGlobalToastListStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('left', 0)};
 
         ${euiMinBreakpoint(euiThemeContext, 'm')} {
-          ${logicalCSS('padding-right', `${euiTheme.base * 4}px`)}; /* 2 */
+          ${logicalCSS('padding-right', `${euiTheme.base * 4}px`)}/* 2 */
         }
       }
     `,
@@ -98,19 +98,19 @@ export const euiGlobalToastListItemStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     // Base
     euiGlobalToastListItem: css`
-      ${logicalCSS('margin-bottom', euiTheme.size.base)};
+      ${logicalCSS('margin-bottom', euiTheme.size.base)}
       animation: ${euiTheme.animation.normal} ${euiShowToast}
         ${euiTheme.animation.resistance};
       opacity: 1;
 
       &:first-child {
-        // justify-content: flex-end interferes with overflowing content,
-        // so we'll use this to push items to the bottom instead.
-        ${logicalCSS('margin-top', 'auto')};
+        /* justify-content: flex-end interferes with overflowing content,
+           so we'll use this to push items to the bottom instead. */
+        ${logicalCSS('margin-top', 'auto')}
       }
 
       &:last-child {
-        ${logicalCSS('margin-bottom', 0)};
+        ${logicalCSS('margin-bottom', 0)}
       }
     `,
     // States

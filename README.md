@@ -47,6 +47,8 @@ The EUI team, like everyone else, has a finite amount of time and resources, and
 
 The EUI library was previously built upon Sass and is in the process of migrating to CSS-in-JS (specifically [Emotion](https://emotion.sh)). While this work is in progress, we ask for your patience with our in-between state in areas such as documentation and setup.
 
+If you're a Kibana developer with questions around CSS-in-JS usage in Kibana, please check out our [FAQ discussion](https://github.com/elastic/eui/discussions/6828)!
+
 ## Wiki
 
 Our wiki docs contain instructions and guidelines on multiple areas of EUI usage and development that are too detailed for an initial README. For more information, see:

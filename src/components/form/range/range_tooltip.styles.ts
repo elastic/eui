@@ -22,7 +22,7 @@ export const euiRangeTooltipStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     // Base
     euiRangeTooltip: css`
-      // Keeps tooltip (value) aligned to percentage of actual slider
+      /* Keeps tooltip (value) aligned to percentage of actual slider */
       display: block;
       position: absolute;
       inset-inline-start: 0;

@@ -14,9 +14,9 @@ export const ALIGNMENTS = ['top', 'center', 'horizontalCenter'] as const;
 export const euiPageSectionStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     euiPageSection: css`
-      ${logicalCSS('width', '100%')};
-      // Make sure that inner flex layouts don't get larger than this container
-      ${logicalCSS('min-width', '0')};
+      ${logicalCSS('width', '100%')}
+      /* Make sure that inner flex layouts don't get larger than this container */
+      ${logicalCSS('min-width', '0')}
       display: flex;
       flex-direction: column;
     `,
@@ -24,17 +24,17 @@ export const euiPageSectionStyles = ({ euiTheme }: UseEuiTheme) => {
       flex-grow: 1;
     `,
     border: css`
-      ${logicalCSS('border-bottom', euiTheme.border.thin)};
+      ${logicalCSS('border-bottom', euiTheme.border.thin)}
     `,
     // Alignments
     top: css``,
     center: css`
-      ${logicalCSS('width', 'auto')};
+      ${logicalCSS('width', 'auto')}
       align-items: center;
       justify-content: center;
     `,
     horizontalCenter: css`
-      ${logicalCSS('width', 'auto')};
+      ${logicalCSS('width', 'auto')}
       align-items: center;
     `,
   };
@@ -43,18 +43,18 @@ export const euiPageSectionStyles = ({ euiTheme }: UseEuiTheme) => {
 export const euiPageSectionContentStyles = () => {
   return {
     euiPageSection__content: css`
-      ${logicalCSS('width', '100%')};
+      ${logicalCSS('width', '100%')}
     `,
 
     // Alignments
     center: css`
-      ${logicalCSS('width', 'auto')};
-      ${logicalCSS('margin-horizontal', 'auto')};
+      ${logicalCSS('width', 'auto')}
+      ${logicalCSS('margin-horizontal', 'auto')}
     `,
 
     // Max widths
     restrictWidth: css`
-      ${logicalCSS('margin-horizontal', 'auto')};
+      ${logicalCSS('margin-horizontal', 'auto')}
     `,
   };
 };

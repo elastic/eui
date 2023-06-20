@@ -16,15 +16,16 @@ export const euiImageCaptionStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     // Base
     euiImageCaption: css`
-      ${euiFontSize(euiThemeContext, 's')};
-      ${logicalCSS('margin-top', euiTheme.size.xs)};
+      ${euiFontSize(euiThemeContext, 's')}
+      ${logicalCSS('margin-top', euiTheme.size.xs)}
     `,
     isOnOverlayMask: css`
       color: ${euiTheme.colors.ghost};
       text-shadow: 0 1px 2px ${transparentize(euiTheme.colors.ink, 0.6)};
 
       [class*='euiLink'] {
-        color: ${euiTheme.colors.ghost}; // Override link color for visibility
+        /* Override link color for visibility */
+        color: ${euiTheme.colors.ghost};
       }
     `,
   };

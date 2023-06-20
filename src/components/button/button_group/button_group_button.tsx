@@ -8,11 +8,18 @@
 
 import classNames from 'classnames';
 import React, { FunctionComponent } from 'react';
-import { EuiButtonDisplayDeprecated as EuiButtonDisplay } from '../button';
-import { EuiButtonGroupOptionProps, EuiButtonGroupProps } from './button_group';
-import { useInnerText } from '../../inner_text';
-import { useGeneratedHtmlId } from '../../../services';
+
+import { useEuiTheme } from '../../../services';
 import { useEuiButtonColorCSS } from '../../../themes/amsterdam/global_styling/mixins/button';
+import { useInnerText } from '../../inner_text';
+
+import { EuiButtonDisplay } from '../button_display/_button_display';
+import { EuiButtonGroupOptionProps, EuiButtonGroupProps } from './button_group';
+import {
+  euiButtonGroupButtonStyles,
+  _compressedButtonFocusColor,
+  _uncompressedButtonFocus,
+} from './button_group_button.styles';
 
 type Props = EuiButtonGroupOptionProps & {
   /**
@@ -61,24 +68,18 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
   size,
   value,
   color: _color = 'primary',
-  element = 'button',
+  element: _element = 'button',
   type = 'button',
   ...rest
 }) => {
   // Force element to be a button if disabled
-  const el = isDisabled ? 'button' : element;
-  const newId = useGeneratedHtmlId();
+  const element = isDisabled ? 'button' : _element;
 
   let elementProps = {};
   let singleInput;
-  if (el === 'label') {
-    elementProps = {
-      ...elementProps,
-      htmlFor: newId,
-    };
+  if (element === 'label') {
     singleInput = (
       <input
-        id={newId}
         className="euiScreenReaderOnly"
         name={name}
         checked={isSelected}
@@ -91,8 +92,6 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
     );
   } else {
     elementProps = {
-      ...elementProps,
-      id: newId,
       'data-test-subj': id,
       isSelected,
       type,
@@ -100,15 +99,37 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
     };
   }
 
+  const isCompressed = size === 'compressed';
   const color = isDisabled ? 'disabled' : _color;
-  const display = isSelected
-    ? 'fill'
-    : size === 'compressed'
-    ? 'empty'
-    : 'base';
+  const display = isSelected ? 'fill' : isCompressed ? 'empty' : 'base';
+
+  const euiTheme = useEuiTheme();
   const buttonColorStyles = useEuiButtonColorCSS({ display })[color];
+  const focusColorStyles = isCompressed
+    ? _compressedButtonFocusColor(euiTheme, color)
+    : _uncompressedButtonFocus(euiTheme);
+
+  const styles = euiButtonGroupButtonStyles(euiTheme);
+  const cssStyles = [
+    styles.euiButtonGroupButton,
+    isIconOnly && styles.iconOnly,
+    styles[size!],
+    !isCompressed && styles.uncompressed,
+    isDisabled && isSelected ? styles.disabledAndSelected : buttonColorStyles,
+    !isDisabled && focusColorStyles,
+  ];
+  const contentStyles = [
+    styles.content.euiButtonGroupButton__content,
+    isCompressed && styles.content.compressed,
+  ];
+  const textStyles = [
+    isIconOnly
+      ? styles.text.euiButtonGroupButton__iconOnly
+      : styles.text.euiButtonGroupButton__text,
+  ];
 
   const buttonClasses = classNames(
+    'euiButtonGroupButton',
     {
       'euiButtonGroupButton-isSelected': isSelected,
       'euiButtonGroupButton-isIconOnly': isIconOnly,
@@ -125,16 +146,14 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
 
   return (
     <EuiButtonDisplay
-      css={[buttonColorStyles]}
-      baseClassName="euiButtonGroupButton"
+      css={cssStyles}
       className={buttonClasses}
-      element={el}
+      element={element}
       isDisabled={isDisabled}
       size={size === 'compressed' ? 's' : size}
+      contentProps={{ css: contentStyles }}
       textProps={{
-        className: isIconOnly
-          ? 'euiScreenReaderOnly'
-          : 'euiButtonGroupButton__textShift',
+        css: textStyles,
         ref: buttonTextRef,
         'data-text': innerText,
       }}

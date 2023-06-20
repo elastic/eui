@@ -29,7 +29,11 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalShorthandCSS('padding', `0 ${euiTheme.size.s}`)}
       ${logicalCSS('max-width', '100%')}
       font-size: ${euiFontSize(euiThemeContext, 'xs').fontSize};
-      line-height: ${euiTheme.base + 2}px; // Accounts for the border
+      line-height: ${mathWithUnits(
+        // Account for the border
+        [euiTheme.size.base, euiTheme.border.width.thin],
+        (x, y) => x + y * 2
+      )};
       font-weight: ${euiTheme.font.weight.medium};
       white-space: nowrap;
       text-decoration: none;
@@ -40,8 +44,8 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
         euiTheme.border.radius.medium,
         (x) => x / 2
       )};
-      // The badge will only ever be as wide as its content
-      // So, make the text left aligned to ensure all badges line up the same
+      /* The badge will only ever be as wide as its content
+         So, make the text left aligned to ensure all badges line up the same */
       ${logicalTextAlignCSS('left')}
 
       &:focus-within {
@@ -69,10 +73,14 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     disabled: css`
-      // Using !important to override inline styles
+      /* stylelint-disable declaration-no-important */
+
+      /* Using !important to override inline styles */
       color: ${euiButtonColor(euiThemeContext, 'disabled').color} !important;
       background-color: ${euiButtonColor(euiThemeContext, 'disabled')
         .backgroundColor} !important;
+
+      /* stylelint-enable declaration-no-important */
     `,
     // Hollow has a border and is mostly used for autocompleters.
     hollow: css`
@@ -127,7 +135,7 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     // Clickable icons (iconOnClick)
     iconButton: {
       euiBadge__iconButton: css`
-        font-size: 0; // Makes the button only as large as the icon so it aligns vertically better
+        font-size: 0; /* Makes the button only as large as the icon so it aligns vertically better */
 
         &:focus {
           background-color: ${transparentize(euiTheme.colors.ghost, 0.8)};
@@ -143,10 +151,10 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
         }
 
         .euiBadge__icon {
-          // Remove margins from icon itself so that focus state doesn't include that space
-          margin: 0 !important;
+          /* Remove margins from icon itself so that focus state doesn't include that space */
+          margin: 0 !important; /* stylelint-disable-line declaration-no-important */
         }
-      }`,
+      `,
       right: css`
         ${logicalCSS('margin-left', euiTheme.size.xs)}
       `,

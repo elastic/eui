@@ -186,7 +186,7 @@ export const useEuiButtonColorCSS = (options: _EuiButtonOptions = {}) => {
       fill: css`
         ${euiButtonFillColor(euiThemeContext, color)}
 
-        // Use full shade for outline-color except for dark mode text buttons which need to stay currentColor
+        /* Use full shade for outline-color except for dark mode text buttons which need to stay currentColor */
         outline-color: ${euiThemeContext.colorMode === 'DARK' &&
         color === 'text'
           ? 'currentColor'

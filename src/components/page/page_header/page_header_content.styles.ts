@@ -12,8 +12,8 @@ import { UseEuiTheme } from '../../../services';
 
 export const euiPageHeaderContentStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiPageHeaderContent: css`
-    ${logicalCSS('width', '100%')};
-    ${logicalCSS('margin-horizontal', 'auto')};
+    ${logicalCSS('width', '100%')}
+    ${logicalCSS('margin-horizontal', 'auto')}
   `,
 
   // alignItems
@@ -51,7 +51,7 @@ export const euiPageHeaderContentStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Content
   euiPageHeaderContent__titleIcon: css`
     position: relative;
-    ${logicalCSS('top', `-${euiTheme.size.xs}`)};
-    ${logicalCSS('margin-right', euiTheme.size.base)};
+    ${logicalCSS('top', `-${euiTheme.size.xs}`)}
+    ${logicalCSS('margin-right', euiTheme.size.base)}
   `,
 });

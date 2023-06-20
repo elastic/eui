@@ -135,8 +135,6 @@ export const pageTemplateExamplesSections = [
 
 export const PageTemplateInfo = {
   title: 'Page template',
-  isBeta: true,
-  isNew: true,
   intro: (
     <>
       <EuiCallOut

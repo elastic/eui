@@ -28,16 +28,16 @@ const _avatarSize = ({
 export const euiAvatarStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Base
   euiAvatar: css`
-    // Ensures it never scales down below its intended size
+    /* Ensures it never scales down below its intended size */
     flex-shrink: 0;
     display: inline-flex;
     justify-content: center;
     align-items: center;
     vertical-align: middle;
     background-size: cover;
-    ${logicalTextAlignCSS('center')};
+    ${logicalTextAlignCSS('center')}
     ${logicalCSS('overflow-x', 'hidden')}
-    // Explicitly state weight so it doesn't get overridden by inheritance
+    /* Explicitly state weight so it doesn't get overridden by inheritance */
     font-weight: ${euiTheme.font.weight.medium};
   `,
   // Variants

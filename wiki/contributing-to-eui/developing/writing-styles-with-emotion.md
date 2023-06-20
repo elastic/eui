@@ -463,3 +463,9 @@ Same as the above answer, whichever element is given the generated `className` i
 ### How should `createElement` usages be converted?
 
 Emotion provides its own `createElement` function; existing uses of `import {createElement} from 'react'` can be converted to `import {createElement} from '@emotion/react'`
+
+### Why is stylelint / `yarn lint-css-in-js` giving me an `Unknown word (CssSyntaxError)` error?
+
+Unfortunately, a limitation of the CSS-in-JS syntax parser we're using is that `//` comments throw this error (see https://github.com/hudochenkov/postcss-styled-syntax#known-issues).
+
+You must convert all `//` comments to standard CSS `/* */` comments instead.

@@ -16,9 +16,9 @@ export const euiTabsStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     euiTabs: css`
       display: flex;
-      ${logicalCSS('max-width', '100%')};
-      ${logicalCSSWithFallback('overflow-x', 'auto')};
-      ${logicalCSSWithFallback('overflow-y', 'hidden')};
+      ${logicalCSS('max-width', '100%')}
+      ${logicalCSSWithFallback('overflow-x', 'auto')}
+      ${logicalCSSWithFallback('overflow-y', 'hidden')}
       position: relative;
       flex-shrink: 0;
     `,

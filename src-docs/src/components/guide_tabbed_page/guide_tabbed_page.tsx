@@ -16,6 +16,7 @@ export type GuideTabbedPageProps = CommonProps & {
   history: any;
   intro?: ReactNode;
   isBeta?: boolean;
+  isNew?: boolean;
   location: any;
   match: any;
   notice?: ReactNode;
@@ -32,6 +33,7 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
   history,
   intro,
   isBeta,
+  isNew,
   location,
   match,
   notice,
@@ -46,12 +48,15 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
   const currentLanguage = themeContext.themeLanguage;
   const showSass = currentLanguage.includes('sass');
 
-  const betaBadge =
+  const headerBadge =
     isBeta || (showThemeLanguageToggle && !showSass) ? (
       <EuiBetaBadge
         label="Beta"
+        color="accent"
         tooltipContent="This component is still under development and may contain breaking changes in the nearby future."
       />
+    ) : isNew ? (
+      <EuiBetaBadge label="New" color="accent" />
     ) : undefined;
 
   let tabs:
@@ -186,7 +191,7 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
         paddingSize="l"
         pageTitle={
           <>
-            {title} {betaBadge}
+            {title} {headerBadge}
           </>
         }
         tabs={renderTabs()}
