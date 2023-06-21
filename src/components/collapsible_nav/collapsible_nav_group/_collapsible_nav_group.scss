@@ -11,11 +11,6 @@
 }
 
 .euiCollapsibleNavGroup--dark {
-  // Forcing better contrast of focus state on EuiAccordion toggle icon
-  .euiCollapsibleNavGroup__heading:focus .euiAccordion__iconWrapper {
-    color: $euiCollapsibleNavGroupDarkHighContrastColor;
-    animation-name: euiCollapsibleNavGroupDarkFocusRingAnimate !important; // stylelint-disable-line declaration-no-important
-  }
 }
 
 .euiCollapsibleNavGroup__heading {
@@ -33,14 +28,4 @@
 
 .euiCollapsibleNavGroup--withHeading .euiCollapsibleNavGroup__children {
   padding-top: 0;
-}
-
-@keyframes euiCollapsibleNavGroupDarkFocusRingAnimate {
-  0% {
-    box-shadow: 0 0 0 $euiFocusRingAnimStartSize $euiFocusRingAnimStartColor;
-  }
-
-  100% {
-    box-shadow: 0 0 0 $euiFocusRingSize $euiCollapsibleNavGroupDarkHighContrastColor;
-  }
 }
