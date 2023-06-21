@@ -47,7 +47,7 @@ Array [
         </ol>
       </nav>
       <button
-        class="euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-s-base-text"
+        class="euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-base-text"
         data-test-subj="dts"
         type="button"
       >
@@ -143,7 +143,7 @@ Array [
         </ol>
       </nav>
       <button
-        class="euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-s-base-text"
+        class="euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-base-text"
         data-test-subj="dts"
         type="button"
       >
@@ -239,7 +239,7 @@ Array [
         </ol>
       </nav>
       <button
-        class="euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-s-base-text"
+        class="euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-base-text"
         data-test-subj="dts"
         type="button"
       >
@@ -335,7 +335,7 @@ Array [
         </ol>
       </nav>
       <button
-        class="euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-s-base-text"
+        class="euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-base-text"
         data-test-subj="dts"
         type="button"
       >
@@ -430,7 +430,7 @@ exports[`EuiControlBar props position is rendered 1`] = `
       </ol>
     </nav>
     <button
-      class="euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-s-base-text"
+      class="euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-base-text"
       data-test-subj="dts"
       type="button"
     >
@@ -519,7 +519,7 @@ Array [
         </ol>
       </nav>
       <button
-        class="euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-s-base-text"
+        class="euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-base-text"
         data-test-subj="dts"
         type="button"
       >
@@ -615,7 +615,7 @@ Array [
         </ol>
       </nav>
       <button
-        class="euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-s-base-text"
+        class="euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-base-text"
         data-test-subj="dts"
         type="button"
       >
@@ -716,7 +716,7 @@ Array [
         </ol>
       </nav>
       <button
-        class="euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-s-base-text"
+        class="euiControlBar__button emotion-euiButtonDisplay-s-defaultMinWidth-base-text"
         data-test-subj="dts"
         type="button"
       >

@@ -55,7 +55,7 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
   >
     <button
-      class="euiSuperUpdateButton emotion-euiButtonDisplay-m-m-fill-primary"
+      class="euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
       data-test-subj="superDatePickerApplyTimeButton"
       style="min-inline-size: 118px;"
       type="button"
@@ -128,7 +128,7 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
   >
     <button
-      class="euiSuperUpdateButton emotion-euiButtonDisplay-s-s-fill-primary"
+      class="euiSuperUpdateButton emotion-euiButtonDisplay-s-fill-primary"
       data-test-subj="superDatePickerApplyTimeButton"
       style="min-inline-size: 118px;"
       type="button"
@@ -331,7 +331,7 @@ exports[`EuiSuperDatePicker props isDisabled true 1`] = `
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
   >
     <button
-      class="euiSuperUpdateButton emotion-euiButtonDisplay-m-isDisabled-m-fill-disabled"
+      class="euiSuperUpdateButton emotion-euiButtonDisplay-m-isDisabled-fill-disabled"
       data-test-subj="superDatePickerApplyTimeButton"
       disabled=""
       style="min-inline-size: 118px;"
@@ -398,7 +398,7 @@ exports[`EuiSuperDatePicker props isQuickSelectOnly is rendered 1`] = `
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
   >
     <button
-      class="euiSuperUpdateButton emotion-euiButtonDisplay-m-m-fill-primary"
+      class="euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
       data-test-subj="superDatePickerApplyTimeButton"
       style="min-inline-size: 118px;"
       type="button"
@@ -524,7 +524,7 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
   >
     <button
-      class="euiSuperUpdateButton emotion-euiButtonDisplay-m-m-fill-primary"
+      class="euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
       data-test-subj="superDatePickerApplyTimeButton"
       type="button"
     >
@@ -600,7 +600,7 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
   >
     <button
-      class="euiSuperUpdateButton emotion-euiButtonDisplay-m-m-fill-primary"
+      class="euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
       data-test-subj="superDatePickerApplyTimeButton"
       style="min-inline-size: 118px;"
       type="button"
@@ -673,7 +673,7 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
   >
     <button
-      class="euiSuperUpdateButton emotion-euiButtonDisplay-m-m-fill-primary"
+      class="euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
       data-test-subj="superDatePickerApplyTimeButton"
       style="min-inline-size: 118px;"
       type="button"
@@ -747,7 +747,7 @@ exports[`EuiSuperDatePicker renders 1`] = `
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
   >
     <button
-      class="euiSuperUpdateButton emotion-euiButtonDisplay-m-m-fill-primary"
+      class="euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
       data-test-subj="superDatePickerApplyTimeButton"
       style="min-inline-size: 118px;"
       type="button"
@@ -858,7 +858,7 @@ exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
   >
     <button
-      class="euiSuperUpdateButton emotion-euiButtonDisplay-m-m-fill-primary"
+      class="euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
       data-test-subj="superDatePickerApplyTimeButton"
       style="min-inline-size: 118px;"
       type="button"

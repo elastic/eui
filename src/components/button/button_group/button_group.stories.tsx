@@ -21,7 +21,6 @@ const meta: Meta<EuiButtonGroupProps> = {
   component: EuiButtonGroup,
   parameters: {
     controls: {
-      sort: 'requiredFirst',
       exclude: ['data-test-subj'],
     },
   },

@@ -24,7 +24,6 @@ import {
   ExclusiveUnion,
   PropsForAnchor,
   PropsForButton,
-  keysOf,
 } from '../../common';
 
 import { IconType, IconSize, EuiIcon } from '../../icon';
@@ -32,21 +31,18 @@ import { IconType, IconSize, EuiIcon } from '../../icon';
 import { EuiLoadingSpinner } from '../../loading';
 
 import {
-  euiButtonEmptyColor,
   useEuiButtonColorCSS,
+  useEuiButtonFocusCSS,
   _EuiButtonColor,
 } from '../../../themes/amsterdam/global_styling/mixins/button';
 import { isButtonDisabled } from '../button_display/_button_display';
-import { css } from '@emotion/react';
+import { euiButtonIconStyles, _emptyHoverStyles } from './button_icon.styles';
 
-const displayToClassNameMap = {
-  base: null,
-  empty: 'euiButtonIcon--empty',
-  fill: 'euiButtonIcon--fill',
-};
+export const SIZES = ['xs', 's', 'm'] as const;
+export type EuiButtonIconSizes = (typeof SIZES)[number];
 
-export const DISPLAYS = keysOf(displayToClassNameMap);
-type EuiButtonIconDisplay = keyof typeof displayToClassNameMap;
+export const DISPLAYS = ['base', 'empty', 'fill'] as const;
+type EuiButtonIconDisplay = (typeof DISPLAYS)[number];
 
 export interface EuiButtonIconProps extends CommonProps {
   iconType: IconType;
@@ -109,16 +105,6 @@ type Props = ExclusiveUnion<
   EuiButtonIconPropsForButton
 >;
 
-const sizeToClassNameMap = {
-  xs: 'euiButtonIcon--xSmall',
-  s: 'euiButtonIcon--small',
-  m: 'euiButtonIcon--medium',
-};
-
-export type EuiButtonIconSizes = keyof typeof sizeToClassNameMap;
-
-export const SIZES = keysOf(sizeToClassNameMap);
-
 export const EuiButtonIcon: FunctionComponent<Props> = (props) => {
   const {
     className,
@@ -157,29 +143,22 @@ export const EuiButtonIcon: FunctionComponent<Props> = (props) => {
   }
 
   const color = isDisabled ? 'disabled' : _color === 'ghost' ? 'text' : _color;
+  const buttonColorStyles = useEuiButtonColorCSS({ display });
+  const buttonFocusStyle = useEuiButtonFocusCSS();
 
-  const styles = {
-    euiButtonIcon: css``,
-    colors: useEuiButtonColorCSS({ display }),
-    // Temporary extra style for empty `:hover` state until we decide how to handle universally
-    hoverStyles: css`
-      &:hover {
-        background-color: ${euiButtonEmptyColor(euiThemeContext, color)
-          .backgroundColor};
-      }
-    `,
-  };
+  const styles = euiButtonIconStyles(euiThemeContext);
+  const emptyHoverStyles = _emptyHoverStyles(euiThemeContext, color);
+
   const cssStyles = [
     styles.euiButtonIcon,
-    styles.colors[color],
-    display === 'empty' && styles.hoverStyles,
+    styles[size],
+    buttonColorStyles[color],
+    buttonFocusStyle,
+    display === 'empty' && emptyHoverStyles,
+    isDisabled && styles.isDisabled,
   ];
 
-  const classes = classNames(
-    'euiButtonIcon',
-    size && sizeToClassNameMap[size],
-    className
-  );
+  const classes = classNames('euiButtonIcon', className);
 
   if (_color === 'ghost') {
     // INCEPTION: If `ghost`, re-implement with a wrapping dark mode theme provider
@@ -205,13 +184,24 @@ export const EuiButtonIcon: FunctionComponent<Props> = (props) => {
     );
   }
 
-  // `original` size doesn't exist in `EuiLoadingSpinner`
-  // when the `iconSize` is `original` we don't pass any size to the `EuiLoadingSpinner`
-  // so it gets the default size
-  const loadingSize = iconSize === 'original' ? undefined : iconSize;
-
   if (iconType && isLoading) {
-    buttonIcon = <EuiLoadingSpinner size={loadingSize} />;
+    // `original` size doesn't exist in `EuiLoadingSpinner`
+    // when the `iconSize` is `original` we don't pass any size to the `EuiLoadingSpinner`
+    // so it gets the default size
+    const loadingSize = iconSize === 'original' ? undefined : iconSize;
+
+    // When the button is disabled the text gets gray
+    // and in some buttons the background gets a light gray
+    // for better contrast we want to change the border of the spinner
+    // to have the same color of the text. This way we ensure the borders
+    // are always visible. The default spinner color could be very light.
+    const loadingSpinnerColor = isDisabled
+      ? { border: 'currentcolor' }
+      : undefined;
+
+    buttonIcon = (
+      <EuiLoadingSpinner size={loadingSize} color={loadingSpinnerColor} />
+    );
   }
 
   // <a> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend

@@ -11,6 +11,24 @@
 import React from 'react';
 import type { Preview } from '@storybook/react';
 
+/*
+ * Preload all EuiIcons - Storybook does not support dynamic icon loading
+ * TODO: https://github.com/elastic/eui/issues/5463
+ */
+import { typeToPathMap } from '../src/components/icon/icon_map';
+import { appendIconComponentCache } from '../src/components/icon/icon';
+const iconCache: Record<string, React.FC> = {};
+
+Object.entries(typeToPathMap).forEach(async ([iconType, iconFileName]) => {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const iconExport = require(`../src/components/icon/assets/${iconFileName}`);
+  iconCache[iconType] = iconExport.icon;
+});
+appendIconComponentCache(iconCache);
+
+/*
+ * Theming
+ */
 import { EuiProvider } from '../src/components/provider';
 import { writingModeStyles } from './writing_mode.styles';
 
@@ -63,6 +81,7 @@ const preview: Preview = {
     actions: { argTypesRegex: '^on[A-Z].*' },
     backgrounds: { disable: true }, // Use colorMode instead
     controls: {
+      sort: 'requiredFirst',
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/,

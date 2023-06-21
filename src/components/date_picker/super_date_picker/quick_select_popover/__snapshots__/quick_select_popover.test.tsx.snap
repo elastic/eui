@@ -41,7 +41,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
             >
               <button
                 aria-label="Previous time window"
-                class="euiButtonIcon euiButtonIcon--xSmall emotion-euiButtonIcon-empty-primary-hoverStyles"
+                class="euiButtonIcon emotion-euiButtonIcon-xs-empty-primary"
                 type="button"
               >
                 <span
@@ -61,7 +61,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
             >
               <button
                 aria-label="Next time window"
-                class="euiButtonIcon euiButtonIcon--xSmall emotion-euiButtonIcon-empty-primary-hoverStyles"
+                class="euiButtonIcon emotion-euiButtonIcon-xs-empty-primary"
                 type="button"
               >
                 <span
@@ -214,7 +214,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
       >
         <button
           aria-describedby="generated-id generated-id"
-          class="euiQuickSelect__applyButton emotion-euiButtonDisplay-s-defaultMinWidth-s-base-primary"
+          class="euiQuickSelect__applyButton emotion-euiButtonDisplay-s-defaultMinWidth-base-primary"
           type="button"
         >
           <span

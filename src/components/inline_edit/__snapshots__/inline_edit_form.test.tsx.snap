@@ -55,7 +55,7 @@ exports[`EuiInlineEditForm edit mode editModeProps.cancelButtonProps 1`] = `
         >
           <button
             aria-label="Save edit"
-            class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-success"
+            class="euiButtonIcon emotion-euiButtonIcon-m-base-success"
             data-test-subj="euiInlineEditModeSaveButton"
             type="button"
           >
@@ -68,7 +68,7 @@ exports[`EuiInlineEditForm edit mode editModeProps.cancelButtonProps 1`] = `
           </button>
           <button
             aria-label="Uh no. Do not save."
-            class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-disabled"
+            class="euiButtonIcon emotion-euiButtonIcon-m-base-disabled-isDisabled"
             data-test-subj="euiInlineEditModeCancelButton"
             disabled=""
             type="button"
@@ -143,7 +143,7 @@ exports[`EuiInlineEditForm edit mode editModeProps.formRowProps 1`] = `
         >
           <button
             aria-label="Save edit"
-            class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-success"
+            class="euiButtonIcon emotion-euiButtonIcon-m-base-success"
             data-test-subj="euiInlineEditModeSaveButton"
             type="button"
           >
@@ -156,7 +156,7 @@ exports[`EuiInlineEditForm edit mode editModeProps.formRowProps 1`] = `
           </button>
           <button
             aria-label="Cancel edit"
-            class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-danger"
+            class="euiButtonIcon emotion-euiButtonIcon-m-base-danger"
             data-test-subj="euiInlineEditModeCancelButton"
             type="button"
           >
@@ -235,7 +235,7 @@ exports[`EuiInlineEditForm edit mode editModeProps.inputProps 1`] = `
         >
           <button
             aria-label="Save edit"
-            class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-success"
+            class="euiButtonIcon emotion-euiButtonIcon-m-base-success"
             data-test-subj="euiInlineEditModeSaveButton"
             type="button"
           >
@@ -248,7 +248,7 @@ exports[`EuiInlineEditForm edit mode editModeProps.inputProps 1`] = `
           </button>
           <button
             aria-label="Cancel edit"
-            class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-danger"
+            class="euiButtonIcon emotion-euiButtonIcon-m-base-danger"
             data-test-subj="euiInlineEditModeCancelButton"
             type="button"
           >
@@ -321,7 +321,7 @@ exports[`EuiInlineEditForm edit mode editModeProps.saveButtonProps 1`] = `
         >
           <button
             aria-label="Yes! Let's save."
-            class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-primary"
+            class="euiButtonIcon emotion-euiButtonIcon-m-base-primary"
             data-test-subj="euiInlineEditModeSaveButton"
             type="button"
           >
@@ -334,7 +334,7 @@ exports[`EuiInlineEditForm edit mode editModeProps.saveButtonProps 1`] = `
           </button>
           <button
             aria-label="Cancel edit"
-            class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-danger"
+            class="euiButtonIcon emotion-euiButtonIcon-m-base-danger"
             data-test-subj="euiInlineEditModeCancelButton"
             type="button"
           >
@@ -416,7 +416,7 @@ exports[`EuiInlineEditForm edit mode isInvalid 1`] = `
         >
           <button
             aria-label="Save edit"
-            class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-success"
+            class="euiButtonIcon emotion-euiButtonIcon-m-base-success"
             data-test-subj="euiInlineEditModeSaveButton"
             type="button"
           >
@@ -429,7 +429,7 @@ exports[`EuiInlineEditForm edit mode isInvalid 1`] = `
           </button>
           <button
             aria-label="Cancel edit"
-            class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-danger"
+            class="euiButtonIcon emotion-euiButtonIcon-m-base-danger"
             data-test-subj="euiInlineEditModeCancelButton"
             type="button"
           >
@@ -612,7 +612,7 @@ exports[`EuiInlineEditForm edit mode renders 1`] = `
         >
           <button
             aria-label="Save edit"
-            class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-success"
+            class="euiButtonIcon emotion-euiButtonIcon-m-base-success"
             data-test-subj="euiInlineEditModeSaveButton"
             type="button"
           >
@@ -625,7 +625,7 @@ exports[`EuiInlineEditForm edit mode renders 1`] = `
           </button>
           <button
             aria-label="Cancel edit"
-            class="euiButtonIcon euiButtonIcon--medium emotion-euiButtonIcon-base-danger"
+            class="euiButtonIcon emotion-euiButtonIcon-m-base-danger"
             data-test-subj="euiInlineEditModeCancelButton"
             type="button"
           >

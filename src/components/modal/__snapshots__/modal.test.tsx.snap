@@ -24,7 +24,7 @@ exports[`EuiModal renders 1`] = `
       >
         <button
           aria-label="Closes this modal window"
-          class="euiButtonIcon euiButtonIcon--xSmall euiModal__closeIcon emotion-euiButtonIcon-empty-text-hoverStyles-euiModal__closeIcon"
+          class="euiButtonIcon euiModal__closeIcon emotion-euiButtonIcon-xs-empty-text-euiModal__closeIcon"
           type="button"
         >
           <span

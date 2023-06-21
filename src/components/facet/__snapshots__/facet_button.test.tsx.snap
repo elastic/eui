@@ -3,7 +3,7 @@
 exports[`EuiFacetButton is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiFacetButton testClass1 testClass2 emotion-euiButtonDisplay-s-defaultMinWidth-s-euiFacetButton"
+  class="euiFacetButton testClass1 testClass2 emotion-euiButtonDisplay-s-defaultMinWidth-euiFacetButton"
   data-test-subj="test subject string"
   title="aria-label"
   type="button"
@@ -22,7 +22,7 @@ exports[`EuiFacetButton is rendered 1`] = `
 
 exports[`EuiFacetButton props icon is rendered 1`] = `
 <button
-  class="euiFacetButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiFacetButton"
+  class="euiFacetButton emotion-euiButtonDisplay-s-defaultMinWidth-euiFacetButton"
   type="button"
 >
   <span
@@ -43,7 +43,7 @@ exports[`EuiFacetButton props icon is rendered 1`] = `
 
 exports[`EuiFacetButton props isDisabled is rendered 1`] = `
 <button
-  class="euiFacetButton emotion-euiButtonDisplay-s-defaultMinWidth-isDisabled-s-euiFacetButton"
+  class="euiFacetButton emotion-euiButtonDisplay-s-defaultMinWidth-isDisabled-euiFacetButton"
   disabled=""
   type="button"
 >
@@ -71,7 +71,7 @@ exports[`EuiFacetButton props isDisabled is rendered 1`] = `
 
 exports[`EuiFacetButton props isLoading is rendered 1`] = `
 <button
-  class="euiFacetButton emotion-euiButtonDisplay-s-defaultMinWidth-isDisabled-s-euiFacetButton"
+  class="euiFacetButton emotion-euiButtonDisplay-s-defaultMinWidth-isDisabled-euiFacetButton"
   disabled=""
   type="button"
 >
@@ -94,7 +94,7 @@ exports[`EuiFacetButton props isLoading is rendered 1`] = `
 
 exports[`EuiFacetButton props isSelected is rendered 1`] = `
 <button
-  class="euiFacetButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiFacetButton"
+  class="euiFacetButton emotion-euiButtonDisplay-s-defaultMinWidth-euiFacetButton"
   type="button"
 >
   <span
@@ -111,7 +111,7 @@ exports[`EuiFacetButton props isSelected is rendered 1`] = `
 
 exports[`EuiFacetButton props quantity is rendered 1`] = `
 <button
-  class="euiFacetButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiFacetButton"
+  class="euiFacetButton emotion-euiButtonDisplay-s-defaultMinWidth-euiFacetButton"
   type="button"
 >
   <span

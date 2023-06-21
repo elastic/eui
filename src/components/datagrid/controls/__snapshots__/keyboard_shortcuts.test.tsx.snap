@@ -15,7 +15,7 @@ exports[`useDataGridKeyboardShortcuts returns a popover containing a list of key
         >
           <button
             aria-label="Keyboard shortcuts"
-            class="euiButtonIcon euiButtonIcon--xSmall emotion-euiButtonIcon-empty-text-hoverStyles"
+            class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
             data-test-subj="dataGridKeyboardShortcutsButton"
             type="button"
           >
