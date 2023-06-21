@@ -1,6 +1,6 @@
-# 🏠/.buildkite/pipelines/pipeline_pull_request_test.yml
+## 🏠/.buildkite/pipelines/pipeline_pull_request_deploy_docs.yml
 
 steps:
-  - label: ":hammer: EUI pull request deploy docs"
-    command: "echo 'This will deploy our EUI docs!'"
-
+  - agents:
+      provider: "gcp"
+    command: .buildkite/scripts/pipeline_pull_request_deploy_docs.sh

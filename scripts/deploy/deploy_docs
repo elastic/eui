@@ -15,6 +15,10 @@ set +x
 # * GCE_ACCOUNT - credentials for the google service account (JSON blob)
 # * GIT_BRANCH - current Git branch or tag (e.g. "refs/heads/main", "v18.2.1")
 
+# Docker images
+NODE_IMAGE=node:18.16.0-slim
+GCE_IMAGE=google/cloud-sdk:slim
+
 if [[ -z "${GPROJECT}" ]]; then
     echo "GPROJECT is not set, e.g. 'GPROJECT=elastic-bekitzur'"
     exit 1
@@ -68,9 +72,9 @@ if [[ "$1" != "nodocker" ]]; then
   echo "Looking up most-current release info"
   CURRENT_RELEASE=$(docker run \
     --rm -i \
-    --volume $PWD:/app \
+    --volume "$PWD":/app \
     --workdir /app \
-    node:18.16.0 \
+    "$NODE_IMAGE" \
     bash -c 'git tag | xargs npx semver' | tail -n 1)
 
   # Run this script from inside the docker container, using google/cloud-sdk image
@@ -83,10 +87,10 @@ if [[ "$1" != "nodocker" ]]; then
     --env pull_request_id \
     --env CURRENT_RELEASE="$CURRENT_RELEASE" \
     --env HOME=/tmp \
-    --volume $PWD:/app \
-    --user=$(id -u):$(id -g) \
+    --volume "$PWD":/app \
+    --user="$(id -u)":"$(id -g)" \
     --workdir /app \
-    'google/cloud-sdk:slim' \
+    "$GCE_IMAGE" \
     /app/scripts/deploy/deploy_docs nodocker "$@"
   unset GCE_ACCOUNT
 
