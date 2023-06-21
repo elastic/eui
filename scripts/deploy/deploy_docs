@@ -72,7 +72,7 @@ if [[ "$1" != "nodocker" ]]; then
   echo "Looking up most-current release info"
   CURRENT_RELEASE=$(docker run \
     --rm -i \
-    --volume $PWD:/app \
+    --volume "$PWD":/app \
     --workdir /app \
     "$NODE_IMAGE" \
     bash -c 'git tag | xargs npx semver' | tail -n 1)
@@ -87,8 +87,8 @@ if [[ "$1" != "nodocker" ]]; then
     --env pull_request_id \
     --env CURRENT_RELEASE="$CURRENT_RELEASE" \
     --env HOME=/tmp \
-    --volume $PWD:/app \
-    --user=$(id -u):$(id -g) \
+    --volume "$PWD":/app \
+    --user="$(id -u)":"$(id -g)" \
     --workdir /app \
     "$GCE_IMAGE" \
     /app/scripts/deploy/deploy_docs nodocker "$@"
