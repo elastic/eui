@@ -36,5 +36,27 @@ export const euiCollapsibleNavGroupStyles = ({
         color: ${euiTheme.colors.ghost};
       }
     `,
+    // Header padding
+    isCollapsible: css`
+      /* This class does not accept a custom className */
+      .euiAccordion__triggerWrapper {
+        padding: ${euiTheme.size.base};
+      }
+    `,
+    notCollapsible: css`
+      /* If the heading is not in an accordion, it needs the padding */
+      .euiCollapsibleNavGroup__heading {
+        padding: ${euiTheme.size.base};
+      }
+    `,
+    // Children padding
+    childrenWrapper: {
+      euiCollapsibleNavGroup__children: css`
+        padding: ${euiTheme.size.s};
+      `,
+      withHeading: css`
+        ${logicalCSS('padding-top', 0)}
+      `,
+    },
   };
 };

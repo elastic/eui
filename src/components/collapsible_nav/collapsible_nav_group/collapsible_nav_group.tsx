@@ -119,16 +119,11 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
   const styles = euiCollapsibleNavGroupStyles(euiTheme);
   const cssStyles = [
     styles.euiCollapsibleNavGroup,
+    isCollapsible ? styles.isCollapsible : styles.notCollapsible,
     background && styles[background],
   ];
 
-  const classes = classNames(
-    'euiCollapsibleNavGroup',
-    {
-      'euiCollapsibleNavGroup--withHeading': title,
-    },
-    className
-  );
+  const classes = classNames('euiCollapsibleNavGroup', className);
 
   // Warn if consumer passes an iconType without a title
   if (iconType && !title) {
@@ -137,8 +132,14 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
     );
   }
 
+  const childrenStyles = [
+    styles.childrenWrapper.euiCollapsibleNavGroup__children,
+    title && styles.childrenWrapper.withHeading,
+  ];
   const content = children && (
-    <div className="euiCollapsibleNavGroup__children">{children}</div>
+    <div css={childrenStyles} className="euiCollapsibleNavGroup__children">
+      {children}
+    </div>
   );
 
   const headingClasses = 'euiCollapsibleNavGroup__heading';

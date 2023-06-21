@@ -3,7 +3,7 @@
 exports[`EuiCollapsibleNavGroup is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiCollapsibleNavGroup testClass1 testClass2 emotion-euiCollapsibleNavGroup-none"
+  class="euiCollapsibleNavGroup testClass1 testClass2 emotion-euiCollapsibleNavGroup-notCollapsible-none"
   data-test-subj="test subject string"
   id="id"
 />
@@ -11,28 +11,28 @@ exports[`EuiCollapsibleNavGroup is rendered 1`] = `
 
 exports[`EuiCollapsibleNavGroup props background dark is rendered 1`] = `
 <div
-  class="euiCollapsibleNavGroup emotion-euiCollapsibleNavGroup-dark"
+  class="euiCollapsibleNavGroup emotion-euiCollapsibleNavGroup-notCollapsible-dark"
   id="id"
 />
 `;
 
 exports[`EuiCollapsibleNavGroup props background light is rendered 1`] = `
 <div
-  class="euiCollapsibleNavGroup emotion-euiCollapsibleNavGroup-light"
+  class="euiCollapsibleNavGroup emotion-euiCollapsibleNavGroup-notCollapsible-light"
   id="id"
 />
 `;
 
 exports[`EuiCollapsibleNavGroup props background none is rendered 1`] = `
 <div
-  class="euiCollapsibleNavGroup emotion-euiCollapsibleNavGroup-none"
+  class="euiCollapsibleNavGroup emotion-euiCollapsibleNavGroup-notCollapsible-none"
   id="id"
 />
 `;
 
 exports[`EuiCollapsibleNavGroup props iconProps renders data-test-subj 1`] = `
 <div
-  class="euiCollapsibleNavGroup euiCollapsibleNavGroup--withHeading emotion-euiCollapsibleNavGroup-none"
+  class="euiCollapsibleNavGroup emotion-euiCollapsibleNavGroup-notCollapsible-none"
   id="id"
 >
   <div
@@ -66,7 +66,7 @@ exports[`EuiCollapsibleNavGroup props iconProps renders data-test-subj 1`] = `
 
 exports[`EuiCollapsibleNavGroup props iconSize is rendered 1`] = `
 <div
-  class="euiCollapsibleNavGroup euiCollapsibleNavGroup--withHeading emotion-euiCollapsibleNavGroup-none"
+  class="euiCollapsibleNavGroup emotion-euiCollapsibleNavGroup-notCollapsible-none"
   id="id"
 >
   <div
@@ -99,7 +99,7 @@ exports[`EuiCollapsibleNavGroup props iconSize is rendered 1`] = `
 
 exports[`EuiCollapsibleNavGroup props iconType is rendered 1`] = `
 <div
-  class="euiCollapsibleNavGroup euiCollapsibleNavGroup--withHeading emotion-euiCollapsibleNavGroup-none"
+  class="euiCollapsibleNavGroup emotion-euiCollapsibleNavGroup-notCollapsible-none"
   id="id"
 >
   <div
@@ -132,7 +132,7 @@ exports[`EuiCollapsibleNavGroup props iconType is rendered 1`] = `
 
 exports[`EuiCollapsibleNavGroup props title is rendered 1`] = `
 <div
-  class="euiCollapsibleNavGroup euiCollapsibleNavGroup--withHeading emotion-euiCollapsibleNavGroup-none"
+  class="euiCollapsibleNavGroup emotion-euiCollapsibleNavGroup-notCollapsible-none"
   id="id"
 >
   <div
@@ -158,7 +158,7 @@ exports[`EuiCollapsibleNavGroup props title is rendered 1`] = `
 
 exports[`EuiCollapsibleNavGroup props titleElement can change the rendered element to h2 1`] = `
 <div
-  class="euiCollapsibleNavGroup euiCollapsibleNavGroup--withHeading emotion-euiCollapsibleNavGroup-none"
+  class="euiCollapsibleNavGroup emotion-euiCollapsibleNavGroup-notCollapsible-none"
   id="id"
 >
   <div
@@ -184,14 +184,14 @@ exports[`EuiCollapsibleNavGroup props titleElement can change the rendered eleme
 
 exports[`EuiCollapsibleNavGroup props titleSize can be larger 1`] = `
 <div
-  class="euiCollapsibleNavGroup emotion-euiCollapsibleNavGroup-none"
+  class="euiCollapsibleNavGroup emotion-euiCollapsibleNavGroup-notCollapsible-none"
   id="id"
 />
 `;
 
 exports[`EuiCollapsibleNavGroup throws a warning if iconType is passed without a title 1`] = `
 <div
-  class="euiCollapsibleNavGroup emotion-euiCollapsibleNavGroup-none"
+  class="euiCollapsibleNavGroup emotion-euiCollapsibleNavGroup-notCollapsible-none"
   id="id"
 />
 `;
@@ -199,7 +199,7 @@ exports[`EuiCollapsibleNavGroup throws a warning if iconType is passed without a
 exports[`EuiCollapsibleNavGroup when isCollapsible is true accepts accordion props 1`] = `
 <div
   aria-label="aria-label"
-  class="euiAccordion euiCollapsibleNavGroup euiCollapsibleNavGroup--withHeading testClass1 testClass2 emotion-euiCollapsibleNavGroup-none"
+  class="euiAccordion euiCollapsibleNavGroup testClass1 testClass2 emotion-euiCollapsibleNavGroup-isCollapsible-none"
   data-test-subj="test subject string"
 >
   <div
@@ -267,7 +267,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true accepts accordion pro
 
 exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accordion 1`] = `
 <div
-  class="euiAccordion euiCollapsibleNavGroup euiCollapsibleNavGroup--withHeading emotion-euiCollapsibleNavGroup-none"
+  class="euiAccordion euiCollapsibleNavGroup emotion-euiCollapsibleNavGroup-isCollapsible-none"
 >
   <div
     class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
