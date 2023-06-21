@@ -8,7 +8,7 @@ The below instructions run EUI's [documentation site](https://elastic.github.io/
 
 We depend upon the version of node defined in [.nvmrc](../../.nvmrc).
 
-You will probably want to install a node version manager. [nvm](https://github.com/creationix/nvm) is recommended.
+You will probably want to install a node version manager. [nvm](https://github.com/nvm-sh/nvm) is recommended.
 
 To install and use the correct node version with `nvm`:
 
@@ -18,13 +18,13 @@ nvm install
 
 ### Dependencies
 
-To install all dependencies:
+EUI currently uses only `yarn` for dependency management. We use `npm` for release purposes only.
+
+EUI also uses [yarn@v1 (classic)](https://classic.yarnpkg.com/en/docs/install), and not yarn v2 or above. Ensure you are on the correct version via `yarn -v` before installing all dependencies:
 
 ```bash
 yarn
 ```
-
-EUI currently uses only `yarn` for dependency management. We use `npm` for release purposes only.
 
 ## Running
 
