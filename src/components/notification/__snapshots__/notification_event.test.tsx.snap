@@ -376,7 +376,7 @@ exports[`EuiNotificationEvent props isRead  is rendered 1`] = `
   >
     <button
       aria-label="Mark title as unread"
-      class="euiButtonIcon euiButtonIcon--xSmall euiNotificationEventReadButton euiNotificationEventReadButton--isRead emotion-euiButtonIcon-empty-primary-hoverStyles"
+      class="euiButtonIcon euiNotificationEventReadButton euiNotificationEventReadButton--isRead emotion-euiButtonIcon-xs-empty-primary"
       data-test-subj="id-notificationEventReadButton"
       title="Mark as unread"
       type="button"

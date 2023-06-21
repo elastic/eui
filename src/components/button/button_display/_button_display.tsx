@@ -32,7 +32,6 @@ import {
   EuiButtonDisplayContentType,
 } from './_button_display_content';
 import { validateHref } from '../../../services/security/href_validator';
-import { useEuiButtonRadiusCSS } from '../../../themes/amsterdam/global_styling/mixins';
 
 const SIZES = ['xs', 's', 'm'] as const;
 export type EuiButtonDisplaySizes = (typeof SIZES)[number];
@@ -142,14 +141,12 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
     const theme = useEuiTheme();
 
     const styles = euiButtonDisplayStyles(theme);
-    const buttonRadiusStyle = useEuiButtonRadiusCSS()[size];
     const cssStyles = [
       styles.euiButtonDisplay,
       styles[size],
       fullWidth && styles.fullWidth,
       minWidth == null && styles.defaultMinWidth,
       buttonIsDisabled && styles.isDisabled,
-      buttonRadiusStyle,
     ];
 
     const innerNode = (

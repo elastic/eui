@@ -821,7 +821,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           </span>
           <button
             aria-label="Previous page"
-            class="euiButtonIcon euiButtonIcon--xSmall euiPaginationArrowButton emotion-euiButtonIcon-empty-disabled-hoverStyles-euiPaginationArrowButton"
+            class="euiButtonIcon euiPaginationArrowButton emotion-euiButtonIcon-xs-empty-disabled-isDisabled-euiPaginationArrowButton"
             data-test-subj="pagination-button-previous"
             disabled=""
             type="button"
@@ -886,7 +886,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           <a
             aria-controls="__table_generated-id"
             aria-label="Next page"
-            class="euiButtonIcon euiButtonIcon--xSmall euiPaginationArrowButton emotion-euiButtonIcon-empty-text-hoverStyles-euiPaginationArrowButton"
+            class="euiButtonIcon euiPaginationArrowButton emotion-euiButtonIcon-xs-empty-text-euiPaginationArrowButton"
             data-test-subj="pagination-button-next"
             href="#__table_generated-id"
             rel="noreferrer"

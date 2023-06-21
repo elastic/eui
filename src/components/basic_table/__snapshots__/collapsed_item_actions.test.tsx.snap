@@ -13,7 +13,7 @@ exports[`CollapsedItemActions render 1`] = `
     >
       <button
         aria-label="All actions"
-        class="euiButtonIcon euiButtonIcon--xSmall emotion-euiButtonIcon-empty-text-hoverStyles"
+        class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
         data-test-subj="euiCollapsedItemActionsButton"
         type="button"
       >

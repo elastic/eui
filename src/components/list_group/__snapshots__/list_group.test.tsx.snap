@@ -46,7 +46,7 @@ exports[`EuiListGroup listItems is rendered 1`] = `
     </span>
     <button
       aria-label="bell"
-      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction emotion-euiButtonIcon-empty-text-hoverStyles-euiListGroupItemExtraAction-alwaysShow"
+      class="euiButtonIcon euiListGroupItemExtraAction emotion-euiButtonIcon-xs-empty-text-euiListGroupItemExtraAction-alwaysShow"
       type="button"
     >
       <span
@@ -145,7 +145,7 @@ exports[`EuiListGroup listItems is rendered with color 1`] = `
     </span>
     <button
       aria-label="bell"
-      class="euiButtonIcon euiButtonIcon--xSmall euiListGroupItemExtraAction emotion-euiButtonIcon-empty-primary-hoverStyles-euiListGroupItemExtraAction-alwaysShow"
+      class="euiButtonIcon euiListGroupItemExtraAction emotion-euiButtonIcon-xs-empty-primary-euiListGroupItemExtraAction-alwaysShow"
       type="button"
     >
       <span
