@@ -618,15 +618,15 @@ exports[`EuiNotificationEvent props primaryAction is rendered 1`] = `
       class="euiNotificationEvent__primaryAction"
     >
       <button
-        class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushLeft css-9t7nyf-empty-primary"
+        class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-left"
         data-test-subj="id-notificationEventPrimaryAction"
         type="button"
       >
         <span
-          class="euiButtonContent euiButtonEmpty__content"
+          class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="euiButtonEmpty__text"
+            class="eui-textTruncate euiButtonEmpty__text"
           >
             primaryAction label
           </span>
@@ -697,20 +697,19 @@ exports[`EuiNotificationEvent props primaryActionProps is rendered 1`] = `
       class="euiNotificationEvent__primaryAction"
     >
       <button
-        class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushLeft css-9t7nyf-empty-primary"
+        class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-left"
         data-test-subj="id-notificationEventPrimaryAction"
         type="button"
       >
         <span
-          class="euiButtonContent euiButtonEmpty__content"
+          class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="euiButtonContent__icon"
             color="inherit"
             data-euiicon-type="download"
           />
           <span
-            class="euiButtonEmpty__text"
+            class="eui-textTruncate euiButtonEmpty__text"
           >
             primaryAction
           </span>

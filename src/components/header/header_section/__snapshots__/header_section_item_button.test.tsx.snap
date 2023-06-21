@@ -3,15 +3,15 @@
 exports[`EuiHeaderSectionItemButton is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiButtonEmpty euiHeaderSectionItemButton testClass1 testClass2 css-wvaqcf-empty-text"
+  class="euiButtonEmpty euiHeaderSectionItemButton testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
   data-test-subj="test subject string"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonEmpty__content"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text"
     >
       <span
         class="euiHeaderSectionItemButton__content"
@@ -23,15 +23,15 @@ exports[`EuiHeaderSectionItemButton is rendered 1`] = `
 
 exports[`EuiHeaderSectionItemButton renders a link 1`] = `
 <a
-  class="euiButtonEmpty euiHeaderSectionItemButton css-wvaqcf-empty-text"
+  class="euiButtonEmpty euiHeaderSectionItemButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
   href="#"
   rel="noreferrer"
 >
   <span
-    class="euiButtonContent euiButtonEmpty__content"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text"
     >
       <span
         class="euiHeaderSectionItemButton__content"
@@ -43,14 +43,14 @@ exports[`EuiHeaderSectionItemButton renders a link 1`] = `
 
 exports[`EuiHeaderSectionItemButton renders children 1`] = `
 <button
-  class="euiButtonEmpty euiHeaderSectionItemButton css-wvaqcf-empty-text"
+  class="euiButtonEmpty euiHeaderSectionItemButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonEmpty__content"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text"
     >
       <span
         class="euiHeaderSectionItemButton__content"
@@ -66,14 +66,14 @@ exports[`EuiHeaderSectionItemButton renders children 1`] = `
 
 exports[`EuiHeaderSectionItemButton renders notification as a badge 1`] = `
 <button
-  class="euiButtonEmpty euiHeaderSectionItemButton css-wvaqcf-empty-text"
+  class="euiButtonEmpty euiHeaderSectionItemButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonEmpty__content"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text"
     >
       <span
         class="euiHeaderSectionItemButton__content"
@@ -90,14 +90,14 @@ exports[`EuiHeaderSectionItemButton renders notification as a badge 1`] = `
 
 exports[`EuiHeaderSectionItemButton renders notification as a dot 1`] = `
 <button
-  class="euiButtonEmpty euiHeaderSectionItemButton css-wvaqcf-empty-text"
+  class="euiButtonEmpty euiHeaderSectionItemButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonEmpty__content"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text"
     >
       <span
         class="euiHeaderSectionItemButton__content"
@@ -114,14 +114,14 @@ exports[`EuiHeaderSectionItemButton renders notification as a dot 1`] = `
 
 exports[`EuiHeaderSectionItemButton renders notification color 1`] = `
 <button
-  class="euiButtonEmpty euiHeaderSectionItemButton css-wvaqcf-empty-text"
+  class="euiButtonEmpty euiHeaderSectionItemButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonEmpty__content"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text"
     >
       <span
         class="euiHeaderSectionItemButton__content"

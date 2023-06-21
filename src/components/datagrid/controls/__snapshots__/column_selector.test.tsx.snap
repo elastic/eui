@@ -9,20 +9,19 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
     class="euiPopover__anchor css-16vtueo-render"
   >
     <button
-      class="euiButtonEmpty euiButtonEmpty--xSmall euiDataGrid__controlBtn css-wvaqcf-empty-text"
+      class="euiButtonEmpty euiDataGrid__controlBtn emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
       data-test-subj="dataGridColumnSelectorButton"
       type="button"
     >
       <span
-        class="euiButtonContent euiButtonEmpty__content"
+        class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
       >
         <span
-          class="euiButtonContent__icon"
           color="inherit"
           data-euiicon-type="listAdd"
         />
         <span
-          class="euiButtonEmpty__text"
+          class="eui-textTruncate euiButtonEmpty__text"
         >
           Columns
         </span>
@@ -256,15 +255,15 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
           class="euiFlexItem emotion-euiFlexItem-growZero"
         >
           <button
-            class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushLeft css-9t7nyf-empty-primary"
+            class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-flush-left"
             data-test-subj="dataGridColumnSelectorShowAllButton"
             type="button"
           >
             <span
-              class="euiButtonContent euiButtonEmpty__content"
+              class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
             >
               <span
-                class="euiButtonEmpty__text"
+                class="eui-textTruncate euiButtonEmpty__text"
               >
                 Show all
               </span>
@@ -275,15 +274,15 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
           class="euiFlexItem emotion-euiFlexItem-growZero"
         >
           <button
-            class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushRight css-9t7nyf-empty-primary"
+            class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-flush-right"
             data-test-subj="dataGridColumnSelectorHideAllButton"
             type="button"
           >
             <span
-              class="euiButtonContent euiButtonEmpty__content"
+              class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
             >
               <span
-                class="euiButtonEmpty__text"
+                class="eui-textTruncate euiButtonEmpty__text"
               >
                 Hide all
               </span>

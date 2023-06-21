@@ -122,23 +122,22 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
             class="euiPopover__anchor css-16vtueo-render"
           >
             <button
-              class="euiButtonEmpty euiButtonEmpty--xSmall css-wvaqcf-empty-text"
+              class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
               data-test-subj="tablePaginationPopoverButton"
               type="button"
             >
               <span
-                class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+                class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
               >
                 <span
-                  class="euiButtonContent__icon"
-                  color="inherit"
-                  data-euiicon-type="arrowDown"
-                />
-                <span
-                  class="euiButtonEmpty__text"
+                  class="eui-textTruncate euiButtonEmpty__text"
                 >
                   Rows per page: 2
                 </span>
+                <span
+                  color="inherit"
+                  data-euiicon-type="arrowDown"
+                />
               </span>
             </button>
           </div>
@@ -185,16 +184,16 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
               <a
                 aria-controls="__table_generated-id"
                 aria-label="Page 1 of 2"
-                class="euiButtonEmpty euiButtonEmpty--small euiPaginationButton css-2bs0sf-empty-text-euiPaginationButton"
+                class="euiButtonEmpty euiPaginationButton emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text-euiPaginationButton"
                 data-test-subj="pagination-button-0"
                 href="#__table_generated-id"
                 rel="noreferrer"
               >
                 <span
-                  class="euiButtonContent euiButtonEmpty__content"
+                  class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                 >
                   <span
-                    class="euiButtonEmpty__text"
+                    class="eui-textTruncate euiButtonEmpty__text"
                   >
                     1
                   </span>
@@ -208,16 +207,16 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                 aria-controls="__table_generated-id"
                 aria-current="true"
                 aria-label="Page 2 of 2"
-                class="euiButtonEmpty euiButtonEmpty--small euiPaginationButton css-57pcyl-empty-disabled-euiPaginationButton-isActive"
+                class="euiButtonEmpty euiPaginationButton emotion-euiButtonDisplay-euiButtonEmpty-s-empty-disabled-isDisabled-euiPaginationButton-isActive"
                 data-test-subj="pagination-button-1"
                 disabled=""
                 type="button"
               >
                 <span
-                  class="euiButtonContent euiButtonEmpty__content"
+                  class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                 >
                   <span
-                    class="euiButtonEmpty__text"
+                    class="eui-textTruncate euiButtonEmpty__text"
                   >
                     2
                   </span>
@@ -775,23 +774,22 @@ exports[`EuiInMemoryTable with pagination and "show all" page size 1`] = `
             class="euiPopover__anchor css-16vtueo-render"
           >
             <button
-              class="euiButtonEmpty euiButtonEmpty--xSmall css-wvaqcf-empty-text"
+              class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
               data-test-subj="tablePaginationPopoverButton"
               type="button"
             >
               <span
-                class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+                class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
               >
                 <span
-                  class="euiButtonContent__icon"
-                  color="inherit"
-                  data-euiicon-type="arrowDown"
-                />
-                <span
-                  class="euiButtonEmpty__text"
+                  class="eui-textTruncate euiButtonEmpty__text"
                 >
                   Showing all rows
                 </span>
+                <span
+                  color="inherit"
+                  data-euiicon-type="arrowDown"
+                />
               </span>
             </button>
           </div>
