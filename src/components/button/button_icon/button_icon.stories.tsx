@@ -8,19 +8,11 @@
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { icon } from '../../icon/assets/face_happy'; // TODO: Remove this once icons can be loaded by strings
 import { EuiButtonIcon, EuiButtonIconProps } from './button_icon';
 
 const meta: Meta<EuiButtonIconProps> = {
   title: 'EuiButtonIcon',
   component: EuiButtonIcon,
-  argTypes: {
-    iconType: {
-      // TODO: Storybook can't load icons dynamically
-      // Disable user `iconType` input/controls for now
-      control: 'function',
-    },
-  },
 };
 
 export default meta;
@@ -28,7 +20,7 @@ type Story = StoryObj<EuiButtonIconProps>;
 
 export const Playground: Story = {
   args: {
-    iconType: icon, // TODO: Storybook can't load icons dynamically
+    iconType: 'faceHappy',
     color: 'primary',
     display: 'empty',
     size: 'xs',
