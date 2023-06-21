@@ -7,7 +7,7 @@ import {
 } from '../../../../src/components';
 
 export default () => (
-  <EuiFlexGroup gutterSize="s">
+  <EuiFlexGroup responsive={false} gutterSize="s">
     <EuiFlexItem grow={false}>
       <EuiNotificationBadge>3</EuiNotificationBadge>
     </EuiFlexItem>
