@@ -18,9 +18,9 @@ nvm install
 
 ### Dependencies
 
-EUI currently uses only `yarn` for dependency management. We use `npm` for release purposes only.
+EUI uses `yarn` for dependency management. We use `npm` for release purposes only.
 
-EUI also uses [yarn@v1 (classic)](https://classic.yarnpkg.com/en/docs/install), and not yarn v2 or above. Ensure you are on the correct version via `yarn -v` before installing all dependencies:
+EUI only uses [yarn@v1 (classic)](https://classic.yarnpkg.com/en/docs/install), and not yarn v2 or above. Ensure you are on the correct version via `yarn -v` before installing all dependencies:
 
 ```bash
 yarn
