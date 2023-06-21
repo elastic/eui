@@ -15,7 +15,7 @@ import {
   mathWithUnits,
 } from '../../../global_styling';
 import { UseEuiTheme, tint } from '../../../services';
-
+import { euiButtonFillColor } from '../../../themes/amsterdam/global_styling/mixins';
 import { getBadgeColors } from '../beta_badge/beta_badge.styles';
 
 export const euiNotificationBadgeStyles = (euiThemeContext: UseEuiTheme) => {
@@ -56,6 +56,11 @@ export const euiNotificationBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     // Colors
     accent: css`
       ${getBadgeColors(euiTheme.colors.accentText, euiThemeContext)}
+    `,
+    success: css`
+      background-color: ${euiButtonFillColor(euiThemeContext, 'success')
+        .backgroundColor};
+      color: ${euiTheme.colors.ink};
     `,
     subdued: css`
       ${getBadgeColors(tint(euiTheme.colors.lightShade, 0.3), euiThemeContext)}

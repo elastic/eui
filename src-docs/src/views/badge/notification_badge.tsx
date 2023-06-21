@@ -1,5 +1,18 @@
 import React from 'react';
 
-import { EuiNotificationBadge } from '../../../../src/components/badge/notification_badge';
+import {
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiNotificationBadge,
+} from '../../../../src/components';
 
-export default () => <EuiNotificationBadge>3</EuiNotificationBadge>;
+export default () => (
+  <EuiFlexGroup gutterSize="s">
+    <EuiFlexItem grow={false}>
+      <EuiNotificationBadge>3</EuiNotificationBadge>
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiNotificationBadge color="success">3</EuiNotificationBadge>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+);
