@@ -28,7 +28,7 @@ export const euiBadgeColors = (euiThemeContext: UseEuiTheme) => {
     disabled: euiButtonColor(euiThemeContext, 'disabled'),
     // Colors unique to badges
     default: getBadgeColors(euiThemeContext, euiTheme.colors.lightShade),
-    // Hollow has a border and is mostly used for autocompleters
+    // Hollow has a border and is used for autocompleters and beta badges
     hollow: {
       ...getBadgeColors(euiThemeContext, euiTheme.colors.emptyShade),
       borderColor:
@@ -36,6 +36,12 @@ export const euiBadgeColors = (euiThemeContext: UseEuiTheme) => {
           ? tint(euiTheme.border.color, 0.15)
           : euiTheme.border.color,
     },
+    // Colors used by beta and notification badges
+    subdued: getBadgeColors(
+      euiThemeContext,
+      tint(euiTheme.colors.lightShade, 0.3)
+    ),
+    accentText: getBadgeColors(euiThemeContext, euiTheme.colors.accentText),
   };
 };
 

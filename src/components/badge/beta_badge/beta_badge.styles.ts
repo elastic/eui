@@ -14,10 +14,12 @@ import {
   euiTextTruncate,
   mathWithUnits,
 } from '../../../global_styling';
-import { UseEuiTheme, tint, isColorDark, hexToRgb } from '../../../services';
+import { UseEuiTheme } from '../../../services';
+import { euiBadgeColors } from '../color_utils';
 
 export const euiBetaBadgeStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
+  const badgeColors = euiBadgeColors(euiThemeContext);
 
   return {
     euiBetaBadge: css`
@@ -39,16 +41,13 @@ export const euiBetaBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     // Colors
-    accent: css`
-      ${getBadgeColors(euiTheme.colors.accentText, euiThemeContext)}
-    `,
-    subdued: css`
-      ${getBadgeColors(tint(euiTheme.colors.lightShade, 0.3), euiThemeContext)}
-    `,
+    accent: css(badgeColors.accentText),
+    subdued: css(badgeColors.subdued),
     hollow: css`
-      ${getBadgeColors(euiTheme.colors.emptyShade, euiThemeContext)}
+      color: ${badgeColors.hollow.color};
+      background-color: ${badgeColors.hollow.backgroundColor};
       box-shadow: inset 0 0 0 ${euiTheme.border.width.thin}
-        ${euiTheme.border.color};
+        ${badgeColors.hollow.borderColor};
     `,
     // Font sizes
     m: css`
@@ -92,19 +91,4 @@ export const euiBetaBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       vertical-align: middle;
     `,
   };
-};
-
-// Util for detecting text color based on badge bg color
-export const getBadgeColors = (
-  backgroundColor: string,
-  { euiTheme }: UseEuiTheme
-) => {
-  const textColor = isColorDark(...hexToRgb(backgroundColor))
-    ? euiTheme.colors.ghost
-    : euiTheme.colors.ink;
-
-  return `
-    background-color: ${backgroundColor};
-    color: ${textColor};
-  `;
 };
