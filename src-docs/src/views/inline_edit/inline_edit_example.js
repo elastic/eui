@@ -30,6 +30,14 @@ const inlineEditTitleSnippet = `<EuiInlineEditTitle
   size="m"
 />`;
 
+import InlineEditPlaceholder from './inline_edit_placeholder';
+const inlineEditPlaceholderSource = require('!!raw-loader!./inline_edit_placeholder');
+const inlineEditPlaceholderSnippet = `<EuiInlineEditText
+  inputAriaLabel="Edit text inline"
+  defaultValue="This is placeholder text"
+  displayDefaultValueAsPlaceholder={true}
+/>`;
+
 import InlineEditSave from './inline_edit_save';
 const inlineEditSaveSource = require('!!raw-loader!././inline_edit_save');
 const inlineEditModeSaveSnippet = `<EuiInlineEditText
@@ -143,6 +151,26 @@ export const InlineEditExample = {
       props: { EuiInlineEditTitle },
       snippet: inlineEditTitleSnippet,
       playground: inlineEditTitleConfig,
+    },
+    {
+      title: 'Setting a placeholder',
+      text: (
+        <>
+          <p>
+            Use the <EuiCode>displayDefaultValueAsPlaceholder</EuiCode> property
+            to add a placeholder to the input form control in edit mode. When a
+            value has successfully been saved, the placeholder will be removed.
+          </p>
+        </>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: inlineEditPlaceholderSource,
+        },
+      ],
+      demo: <InlineEditPlaceholder />,
+      snippet: inlineEditPlaceholderSnippet,
     },
     {
       title: 'Saving edited text',
