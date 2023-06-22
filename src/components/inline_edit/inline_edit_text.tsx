@@ -32,6 +32,7 @@ export const EuiInlineEditText: FunctionComponent<EuiInlineEditTextProps> = ({
   className,
   size = 'm',
   defaultValue,
+  displayDefaultValueAsPlaceholder,
   inputAriaLabel,
   startWithEditOpen,
   readModeProps: _readModeProps,
@@ -62,6 +63,7 @@ export const EuiInlineEditText: FunctionComponent<EuiInlineEditTextProps> = ({
   const formProps = {
     sizes,
     defaultValue,
+    displayDefaultValueAsPlaceholder,
     inputAriaLabel,
     startWithEditOpen,
     readModeProps,
