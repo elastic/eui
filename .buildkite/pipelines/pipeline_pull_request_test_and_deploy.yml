@@ -10,5 +10,4 @@ steps:
         label: ":newspaper: EUI pull request deploy docs"
         build:
           env:
-            GIT_BRANCH: +refs/pull/*:refs/remotes/origin/pr/*
-
+            GIT_BRANCH: "${BUILDKITE_BRANCH}"
