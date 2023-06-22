@@ -10,14 +10,12 @@ import React, { Fragment, FunctionComponent } from 'react';
 import classNames from 'classnames';
 
 import { useEuiI18n } from '../i18n';
-import { EuiNotificationBadge } from '../badge/notification_badge';
+import { EuiNotificationBadge } from '../badge';
+import { BadgeNotificationColor } from '../badge/notification_badge/badge_notification';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button/button_empty';
 
 import { useInnerText } from '../inner_text';
 import { DistributiveOmit } from '../common';
-
-export const COLORS = ['accent', 'success'] as const;
-export type BadgeNotificationColor = (typeof COLORS)[number];
 
 export type EuiFilterButtonProps = {
   /**
