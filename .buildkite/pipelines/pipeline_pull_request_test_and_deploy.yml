@@ -10,5 +10,4 @@ steps:
         label: ":newspaper: EUI pull request deploy docs"
         build:
           env:
-            GITHUB_BRANCH: "${BUILDKITE_REFSPEC}"
-
+            GIT_BRANCH: "${BUILDKITE_BRANCH}"
