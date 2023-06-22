@@ -25,8 +25,7 @@ exports[`EuiBadgeGroup is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <span
-    class="euiBadge emotion-euiBadge"
-    style="background-color:#D3DAE6;color:#000"
+    class="euiBadge emotion-euiBadge-default"
   >
     <span
       class="euiBadge__content emotion-euiBadge__content"

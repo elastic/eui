@@ -16,22 +16,18 @@ import React, {
   useMemo,
 } from 'react';
 import classNames from 'classnames';
-import chroma from 'chroma-js';
 import { CommonProps, ExclusiveUnion, PropsOf } from '../common';
 import {
   useEuiTheme,
-  UseEuiTheme,
   getSecureRelForTarget,
-  isColorDark,
   wcagContrastMin,
 } from '../../services';
 import { EuiInnerText } from '../inner_text';
 import { EuiIcon, IconType } from '../icon';
-import { chromaValid, parseColor } from '../color_picker/utils';
 import { validateHref } from '../../services/security/href_validator';
 
+import { getTextColor, getColorContrast, getIsValidColor } from './color_utils';
 import { euiBadgeStyles } from './badge.styles';
-import { euiButtonFillColor } from '../../themes/amsterdam/global_styling/mixins';
 
 export const ICON_SIDES = ['left', 'right'] as const;
 type IconSide = (typeof ICON_SIDES)[number];
@@ -132,83 +128,49 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
 
   const isHrefValid = !href || validateHref(href);
   const isDisabled = _isDisabled || !isHrefValid;
+  const isNamedColor = COLORS.includes(color as BadgeColor);
 
-  const optionalCustomStyles = useMemo(() => {
-    let textColor = null;
-    let contrastRatio = null;
-    let colorHex = null;
+  const customColorStyles = useMemo(() => {
+    // Named colors set their styles via Emotion CSS and not inline styles
+    if (isNamedColor) return style;
 
+    // Do our best to ensure custom colors provide sufficient contrast
     try {
-      // Check if a valid color name was provided
-      if (COLORS.includes(color as BadgeColor)) {
-        // Get the hex equivalent for the provided color name
-        switch (color) {
-          case 'hollow':
-            return style; // hollow uses its own Emotion class
-          case 'default':
-            colorHex = euiTheme.euiTheme.colors.lightShade;
-            break;
-          default:
-            type RemainingColors =
-              | 'primary'
-              | 'success'
-              | 'accent'
-              | 'warning'
-              | 'danger';
-            colorHex = euiButtonFillColor(
-              euiTheme,
-              color as RemainingColors
-            ).backgroundColor;
-            break;
-        }
+      // Set dark or light text color based upon best contrast
+      const textColor = getTextColor(euiTheme, color);
 
-        // Set dark or light text color based upon best contrast
-        textColor = setTextColor(euiTheme, colorHex);
-
-        return {
-          backgroundColor: colorHex,
-          color: textColor,
-          ...style,
-        };
-      } else {
-        // This is a custom color- let's do our best to ensure that it provides sufficient contrast
-
-        // Set dark or light text color based upon best contrast
-        textColor = setTextColor(euiTheme, color);
-
-        // Check the contrast
-        contrastRatio = getColorContrast(textColor, color);
-
-        if (contrastRatio < wcagContrastMin) {
-          // It's low contrast, so lets show a warning in the console
-          console.warn(
-            'Warning: ',
-            color,
-            ' badge has low contrast of ',
-            contrastRatio.toFixed(2),
-            '. Should be above ',
-            wcagContrastMin,
-            '.'
-          );
-        }
-
-        return {
-          backgroundColor: color,
-          color: textColor,
-          ...style,
-        };
+      // Check the contrast ratio. If it's low contrast, emit a console awrning
+      const contrastRatio = getColorContrast(textColor, color);
+      if (contrastRatio < wcagContrastMin) {
+        console.warn(
+          `Warning: ${color} badge has a low contrast of ${contrastRatio.toFixed(
+            2
+          )}. Should be above ${wcagContrastMin}.`
+        );
       }
+
+      return {
+        backgroundColor: color,
+        color: textColor,
+        ...style,
+      };
     } catch (err) {
-      handleInvalidColor(color);
+      if (!getIsValidColor(color)) {
+        console.warn(
+          'EuiBadge expects a valid color. This can either be a three or six ' +
+            `character hex value, rgb(a) value, hsv value, hollow, or one of the following: ${COLORS}. ` +
+            `Instead got ${color}.`
+        );
+      }
     }
-  }, [color, style, euiTheme]);
+  }, [color, isNamedColor, style, euiTheme]);
 
   const styles = euiBadgeStyles(euiTheme);
   const cssStyles = [
     styles.euiBadge,
+    isNamedColor && styles[color as BadgeColor],
     (onClick || href) && !iconOnClick && styles.clickable,
     isDisabled && styles.disabled,
-    color === 'hollow' && styles.hollow,
   ];
   const textCssStyles = [
     styles.text.euiBadge__text,
@@ -307,7 +269,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
 
   if (iconOnClick) {
     return onClick || href ? (
-      <span className={classes} css={cssStyles} style={optionalCustomStyles}>
+      <span className={classes} css={cssStyles} style={customColorStyles}>
         <span className="euiBadge__content" css={styles.euiBadge__content}>
           {iconSide === 'left' && optionalIcon}
           <EuiInnerText>
@@ -335,7 +297,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
           <span
             className={classes}
             css={cssStyles}
-            style={optionalCustomStyles}
+            style={customColorStyles}
             ref={ref}
             title={innerText}
             {...rest}
@@ -354,7 +316,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
             aria-label={onClickAriaLabel}
             className={classes}
             css={cssStyles}
-            style={optionalCustomStyles}
+            style={customColorStyles}
             ref={ref as Ref<HTMLButtonElement & HTMLAnchorElement>}
             title={innerText}
             {...(relObj as HTMLAttributes<HTMLElement>)}
@@ -372,7 +334,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
           <span
             className={classes}
             css={cssStyles}
-            style={optionalCustomStyles}
+            style={customColorStyles}
             ref={ref}
             title={innerText}
             {...rest}
@@ -384,28 +346,3 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     );
   }
 };
-
-function getColorContrast(textColor: string, color: string) {
-  const contrastValue = chroma.contrast(textColor, color);
-  return contrastValue;
-}
-
-function setTextColor({ euiTheme }: UseEuiTheme, bgColor: string) {
-  const textColor = isColorDark(...chroma(bgColor).rgb())
-    ? euiTheme.colors.ghost
-    : euiTheme.colors.ink;
-
-  return textColor;
-}
-
-function handleInvalidColor(color: null | BadgeColor | string) {
-  const isNamedColor = COLORS.includes(color as BadgeColor);
-  const isValidColorString = color && chromaValid(parseColor(color) || '');
-  if (!isNamedColor && !isValidColorString) {
-    console.warn(
-      'EuiBadge expects a valid color. This can either be a three or six ' +
-        `character hex value, rgb(a) value, hsv value, hollow, or one of the following: ${COLORS}. ` +
-        `Instead got ${color}.`
-    );
-  }
-}
