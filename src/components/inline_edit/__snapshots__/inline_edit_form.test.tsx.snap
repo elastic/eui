@@ -1,5 +1,92 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiInlineEditForm edit mode displayDefaultValueAsPlaceholder 1`] = `
+<div
+  class="euiInlineEdit testClass1 testClass2"
+>
+  <div
+    class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-stretch-row"
+  >
+    <div
+      class="euiFlexItem emotion-euiFlexItem-grow-1"
+    >
+      <div
+        class="euiFormRow euiFormRow--fullWidth"
+        id="generated-id-row"
+      >
+        <div
+          class="euiFormRow__fieldWrapper"
+        >
+          <div
+            class="euiFormControlLayout euiFormControlLayout--fullWidth"
+          >
+            <div
+              class="euiFormControlLayout__childrenWrapper"
+            >
+              <input
+                aria-describedby="inlineEdit_generated-id"
+                aria-label="Edit inline"
+                class="euiFieldText euiFieldText--fullWidth"
+                data-test-subj="euiInlineEditModeInput"
+                id="generated-id"
+                placeholder="Hello World!"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <span
+        hidden=""
+        id="inlineEdit_generated-id"
+      >
+        Press Enter to save your edited text. Press Escape to cancel your edit.
+      </span>
+    </div>
+    <div
+      class="euiFlexItem emotion-euiFlexItem-growZero"
+    >
+      <div
+        aria-busy="false"
+        data-test-subj="euiSkeletonLoadingAriaWrapper"
+      >
+        <div
+          class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-stretch-row"
+        >
+          <button
+            aria-label="Save edit"
+            class="euiButtonIcon emotion-euiButtonIcon-m-base-success"
+            data-test-subj="euiInlineEditModeSaveButton"
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+              class="euiButtonIcon__icon"
+              color="inherit"
+              data-euiicon-type="check"
+            />
+          </button>
+          <button
+            aria-label="Cancel edit"
+            class="euiButtonIcon emotion-euiButtonIcon-m-base-danger"
+            data-test-subj="euiInlineEditModeCancelButton"
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+              class="euiButtonIcon__icon"
+              color="inherit"
+              data-euiicon-type="cross"
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiInlineEditForm edit mode editModeProps.cancelButtonProps 1`] = `
 <div
   class="euiInlineEdit testClass1 testClass2"
@@ -649,7 +736,7 @@ exports[`EuiInlineEditForm read mode isReadOnly 1`] = `
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--flushBoth css-1xic7s3-empty-disabled-euiInlineEditReadMode-isReadOnly"
+    class="euiButtonEmpty euiButtonEmpty--flushBoth css-1xkbuye-empty-disabled-euiInlineEditReadMode-isReadOnly"
     data-test-subj="euiInlineReadModeButton"
     disabled=""
     type="button"
@@ -677,7 +764,7 @@ exports[`EuiInlineEditForm read mode readModeProps 1`] = `
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--flushBoth css-1e81xrj-empty-primary-euiInlineEditReadMode"
+    class="euiButtonEmpty euiButtonEmpty--flushBoth css-qy41x6-empty-primary-euiInlineEditReadMode"
     data-test-subj="euiInlineReadModeButton"
     type="button"
   >
@@ -711,7 +798,7 @@ exports[`EuiInlineEditForm read mode renders 1`] = `
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--flushBoth css-i2vcrr-empty-text-euiInlineEditReadMode"
+    class="euiButtonEmpty euiButtonEmpty--flushBoth css-1j2im8v-empty-text-euiInlineEditReadMode"
     data-test-subj="euiInlineReadModeButton"
     type="button"
   >
@@ -745,7 +832,7 @@ exports[`EuiInlineEditForm read mode sizes 1`] = `
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-i2vcrr-empty-text-euiInlineEditReadMode"
+    class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-1j2im8v-empty-text-euiInlineEditReadMode"
     data-test-subj="euiInlineReadModeButton"
     type="button"
   >

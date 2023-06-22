@@ -41,6 +41,17 @@ describe('EuiInlineEditText', () => {
     );
   });
 
+  test('displayDefaultValueAsPlaceholder', () => {
+    const { container } = render(
+      <EuiInlineEditText
+        displayDefaultValueAsPlaceholder={true}
+        {...inlineEditTextProps}
+      />
+    );
+
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
   describe('text sizes', () => {
     // Remove 'relative' from text sizes available for EuiInlineEditText
     const availableTextSizes = TEXT_SIZES.filter((size) => size !== 'relative');

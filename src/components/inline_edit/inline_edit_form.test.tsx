@@ -202,6 +202,24 @@ describe('EuiInlineEditForm', () => {
         getByTestSubject('euiInlineEditModeInput').hasAttribute('aria-invalid')
       ).toBeTruthy();
     });
+
+    test('displayDefaultValueAsPlaceholder', () => {
+      const { container, getByTestSubject } = render(
+        <EuiInlineEditForm
+          {...commonInlineEditFormProps}
+          startWithEditOpen={true}
+          displayDefaultValueAsPlaceholder={true}
+        />
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+      expect(
+        getByTestSubject('euiInlineEditModeInput').getAttribute('placeholder')
+      ).toBeTruthy();
+      expect(
+        getByTestSubject('euiInlineEditModeInput').getAttribute('value')
+      ).toBeFalsy();
+    });
   });
 
   describe('toggling between read mode and edit mode', () => {
@@ -447,6 +465,77 @@ describe('EuiInlineEditForm', () => {
         expect(onKeyDown).toHaveBeenCalled();
         expect(getByTestSubject('euiInlineReadModeButton')).toBeTruthy();
         expect(getByText('New message!')).toBeTruthy();
+      });
+
+      it('the placeholder remains on the editMode from control if the text edit is cancelled', () => {
+        const { getByTestSubject } = render(
+          <EuiInlineEditForm
+            {...commonInlineEditFormProps}
+            startWithEditOpen={true}
+            displayDefaultValueAsPlaceholder={true}
+          />
+        );
+
+        expect(
+          getByTestSubject('euiInlineEditModeInput').getAttribute('placeholder')
+        ).toBeTruthy();
+        expect(
+          getByTestSubject('euiInlineEditModeInput').getAttribute('value')
+        ).toBeFalsy();
+
+        fireEvent.click(getByTestSubject('euiInlineEditModeCancelButton'));
+
+        waitFor(() => {
+          expect(document.activeElement).toEqual(
+            getByTestSubject('euiInlineReadModeButton')
+          );
+        });
+
+        fireEvent.click(getByTestSubject('euiInlineReadModeButton'));
+
+        expect(
+          getByTestSubject('euiInlineEditModeInput').getAttribute('placeholder')
+        ).toBeTruthy();
+        expect(
+          getByTestSubject('euiInlineEditModeInput').getAttribute('value')
+        ).toBeFalsy();
+      });
+
+      it('removes the placeholder from the editMode form control after the first successful save', () => {
+        const { getByTestSubject } = render(
+          <EuiInlineEditForm
+            {...commonInlineEditFormProps}
+            startWithEditOpen={true}
+            displayDefaultValueAsPlaceholder={true}
+          />
+        );
+
+        expect(
+          getByTestSubject('euiInlineEditModeInput').getAttribute('placeholder')
+        ).toBeTruthy();
+        expect(
+          getByTestSubject('euiInlineEditModeInput').getAttribute('value')
+        ).toBeFalsy();
+
+        fireEvent.change(getByTestSubject('euiInlineEditModeInput'), {
+          target: { value: 'New message!' },
+        });
+        fireEvent.click(getByTestSubject('euiInlineEditModeSaveButton'));
+
+        waitFor(() => {
+          expect(document.activeElement).toEqual(
+            getByTestSubject('euiInlineReadModeButton')
+          );
+        });
+
+        fireEvent.click(getByTestSubject('euiInlineReadModeButton'));
+
+        expect(
+          getByTestSubject('euiInlineEditModeInput').getAttribute('placeholder')
+        ).toBeFalsy();
+        expect(
+          getByTestSubject('euiInlineEditModeInput').getAttribute('value')
+        ).toBeTruthy();
       });
     });
   });

@@ -56,6 +56,17 @@ describe('EuiInlineEditTitle', () => {
     );
   });
 
+  test('displayDefaultValueAsPlaceholder', () => {
+    const { container } = render(
+      <EuiInlineEditTitle
+        displayDefaultValueAsPlaceholder={true}
+        {...inlineEditTitleProps}
+      />
+    );
+
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
   describe('title sizes', () => {
     TITLE_SIZES.forEach((size) => {
       it(`renders size ${size}`, () => {
