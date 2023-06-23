@@ -16,7 +16,3 @@
 .euiHeaderLogo__text {
   @include euiTitle('xxs');
 }
-
-.euiHeader--default + .euiHeader--default {
-  border-top: $euiBorderThin;
-}

@@ -33,5 +33,21 @@ export const euiHeaderStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('padding-horizontal', euiTheme.size.s)}
       ${euiShadowSmall(euiThemeContext)}
     `,
+    // Position
+    static: css`
+      /* Ensure the shadow shows above content */
+      z-index: ${Number(euiTheme.levels.header!) - 1};
+      position: relative;
+    `,
+    fixed: css`
+      z-index: ${euiTheme.levels.header};
+      position: fixed;
+      ${logicalCSS('top', 0)}
+      ${logicalCSS('horizontal', 0)}
+
+      & + [data-fixed-header] {
+        ${logicalCSS('top', height)}
+      }
+    `,
   };
 };

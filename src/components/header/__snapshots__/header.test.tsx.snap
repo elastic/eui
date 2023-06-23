@@ -3,14 +3,14 @@
 exports[`EuiHeader is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiHeader euiHeader--default euiHeader--static testClass1 testClass2 emotion-euiHeader"
+  class="euiHeader euiHeader--default testClass1 testClass2 emotion-euiHeader-static"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`EuiHeader renders children 1`] = `
 <div
-  class="euiHeader euiHeader--default euiHeader--static emotion-euiHeader"
+  class="euiHeader euiHeader--default emotion-euiHeader-static"
 >
   <span>
     Hello!
@@ -20,13 +20,13 @@ exports[`EuiHeader renders children 1`] = `
 
 exports[`EuiHeader renders dark theme 1`] = `
 <div
-  class="euiHeader euiHeader--dark euiHeader--static emotion-euiHeader"
+  class="euiHeader euiHeader--dark emotion-euiHeader-static"
 />
 `;
 
 exports[`EuiHeader renders in fixed position 1`] = `
 <div
-  class="euiHeader euiHeader--default euiHeader--fixed emotion-euiHeader"
+  class="euiHeader euiHeader--default emotion-euiHeader-fixed"
   data-fixed-header="true"
 >
   <span>
@@ -37,7 +37,7 @@ exports[`EuiHeader renders in fixed position 1`] = `
 
 exports[`EuiHeader sections render breadcrumbs and props 1`] = `
 <div
-  class="euiHeader euiHeader--default euiHeader--static emotion-euiHeader"
+  class="euiHeader euiHeader--default emotion-euiHeader-static"
 >
   <nav
     aria-label="Breadcrumbs"
@@ -64,7 +64,7 @@ exports[`EuiHeader sections render breadcrumbs and props 1`] = `
 
 exports[`EuiHeader sections render simple items and borders 1`] = `
 <div
-  class="euiHeader euiHeader--default euiHeader--static emotion-euiHeader"
+  class="euiHeader euiHeader--default emotion-euiHeader-static"
 >
   <div
     class="euiHeaderSection euiHeaderSection--dontGrow euiHeaderSection--left"
@@ -99,7 +99,7 @@ exports[`EuiHeader sections render simple items and borders 1`] = `
 
 exports[`EuiHeader throws a warning if both children and sections were passed 1`] = `
 <div
-  class="euiHeader euiHeader--default euiHeader--static emotion-euiHeader"
+  class="euiHeader euiHeader--default emotion-euiHeader-static"
 >
   <div
     class="euiHeaderSection euiHeaderSection--dontGrow euiHeaderSection--left"

@@ -1,22 +1,8 @@
 // Header. Includes breadcrumbs of nav buttons.
 
 .euiHeader {
-  position: relative;
-  z-index: $euiZHeader - 1; // ensure the shadow shows above content
   background: $euiHeaderBackgroundColor;
   border-bottom: 1px solid $euiHeaderBorderColor;
-
-  &--fixed {
-    z-index: $euiZHeader;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-}
-
-.euiHeader--fixed + .euiHeader--fixed {
-  top: $euiHeaderHeightCompensation;
 }
 
 .euiHeader--dark {
