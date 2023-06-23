@@ -8,11 +8,11 @@
 
 import { css } from '@emotion/react';
 
-import { logicalCSS, euiBreakpoint } from '../../global_styling';
-import { UseEuiTheme } from '../../services';
+import { logicalCSS, euiBreakpoint } from '../../../global_styling';
+import { UseEuiTheme } from '../../../services';
 
-import { euiTitle } from '../title/title.styles';
-import { euiHeaderVariables } from './header.styles';
+import { euiTitle } from '../../title/title.styles';
+import { euiHeaderVariables } from '../header.styles';
 
 export const euiHeaderLogoStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;

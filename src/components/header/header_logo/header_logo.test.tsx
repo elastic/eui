@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { render } from '../../test/rtl';
-import { requiredProps } from '../../test';
-import { shouldRenderCustomStyles } from '../../test/internal';
+import { render } from '../../../test/rtl';
+import { requiredProps } from '../../../test';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiHeaderLogo } from './header_logo';
 
