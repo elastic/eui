@@ -42,10 +42,14 @@ export const DragAndDropExample = {
       <EuiText>
         <p>
           An extension of{' '}
+          <EuiLink href="https://github.com/hello-pangea/dnd">
+            @hello-pangea/dnd
+          </EuiLink>{' '}
+          (which is an actively maintained fork of{' '}
           <EuiLink href="https://github.com/atlassian/react-beautiful-dnd">
             react-beautiful-dnd
-          </EuiLink>{' '}
-          with a compatible API and built-in style opinions. Functionality
+          </EuiLink>
+          ) with a compatible API and built-in style opinions. Functionality
           results from 3 components working together:
         </p>
         <ul>
@@ -72,14 +76,15 @@ export const DragAndDropExample = {
           Drag and drop interfaces are not well-adapted to many cases, and may
           be less suitable than other form types for data operations. For
           instance, drag and drop interaction relies heavily on spatial
-          orientation that may not be entirelty valid to all users (e.g., screen
+          orientation that may not be entirely valid to all users (e.g., screen
           readers as the sole source of information). Similarly, users
           navigating by keyboard may not be afforded nuanced, dual-axis drag
           item manipulation.
         </p>
         <p>
-          {`EUI (largely due to the great work already in react-beautiful-dnd) has and will continue to ensure accessibility where possible.
-          With that in mind, keep your users' working context in mind.`}
+          EUI (largely due to the great work already in @hello-pangea/dnd) has
+          and will continue to ensure accessibility where possible. With that in
+          mind, keep your users&apos; working context in mind.
         </p>
       </EuiCallOut>
     </React.Fragment>

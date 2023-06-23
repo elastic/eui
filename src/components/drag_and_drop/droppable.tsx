@@ -12,7 +12,7 @@ import React, {
   ReactElement,
   useContext,
 } from 'react';
-import { Droppable, DroppableProps } from 'react-beautiful-dnd';
+import { Droppable, DroppableProps } from '@hello-pangea/dnd';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { EuiDragDropContextContext } from './drag_drop_context';
