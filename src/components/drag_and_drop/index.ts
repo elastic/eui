@@ -18,8 +18,9 @@ export {
   euiDragDropReorder,
 } from './services';
 
-// Interfaces in react-beautiful-dnd that EUI abstracts over
-// allows consumers to pull these from EUI instead of react-beautiful-dnd
+// Interfaces in @hello-pangea/dnd (a fork of react-beautiful-dnd) that EUI
+// abstracts over allows consumers to pull these from EUI
+// instead of @hello-pangea/dnd
 export type {
   DraggableLocation,
   DraggableProps,
@@ -29,4 +30,4 @@ export type {
   DroppableProps,
   DropResult,
   ResponderProvided,
-} from 'react-beautiful-dnd';
+} from '@hello-pangea/dnd';

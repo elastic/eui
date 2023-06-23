@@ -13,7 +13,7 @@ import {
   DropResult,
   DragStart,
   ResponderProvided,
-} from 'react-beautiful-dnd';
+} from '@hello-pangea/dnd';
 
 // export interface EuiDragDropContextProps extends DragDropContextProps {}
 
