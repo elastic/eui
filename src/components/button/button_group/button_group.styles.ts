@@ -39,6 +39,9 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
     euiButtonGroup__buttons: css`
       ${logicalCSS('max-width', '100%')}
       display: flex;
+      /* Account for pseudo borders between buttons */
+      /* TODO: Do the borders even make sense anymore? */
+      gap: ${euiTheme.border.width.thin};
     `,
     fullWidth: css`
       ${logicalCSS('width', '100%')}

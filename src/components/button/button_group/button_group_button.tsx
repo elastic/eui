@@ -112,15 +112,17 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
   const styles = euiButtonGroupButtonStyles(euiTheme);
   const cssStyles = [
     styles.euiButtonGroupButton,
-    isIconOnly && styles.iconOnly,
     styles[size!],
     !isCompressed && styles.uncompressed,
-    isDisabled && isSelected ? styles.disabledAndSelected : buttonColorStyles,
+    (isDisabled || isSelected) && buttonColorStyles, // TODO: This doesn't work well when the parent group is not disabled but an individual button is disabled, and vice versa
+    isDisabled && isSelected && styles.disabledAndSelected,
     !isDisabled && focusColorStyles,
   ];
   const contentStyles = [
     styles.content.euiButtonGroupButton__content,
-    isCompressed && styles.content.compressed,
+    isCompressed || isIconOnly
+      ? styles.content.compressed
+      : styles.content.uncompressed,
   ];
   const textStyles = [
     isIconOnly

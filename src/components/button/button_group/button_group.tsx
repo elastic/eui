@@ -13,8 +13,11 @@ import { useEuiTheme, useGeneratedHtmlId } from '../../../services';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { CommonProps } from '../../common';
 
-import { _EuiButtonColor } from '../../../themes/amsterdam/global_styling/mixins';
-import { EuiButtonContentProps } from '../_button_content_deprecated';
+import {
+  _EuiButtonColor,
+  euiButtonColor,
+} from '../../../themes/amsterdam/global_styling/mixins/button';
+import { EuiButtonDisplayContentProps } from '../button_display/_button_display_content';
 import { EuiButtonGroupButton } from './button_group_button';
 import {
   euiButtonGroupStyles,
@@ -22,7 +25,7 @@ import {
 } from './button_group.styles';
 
 export interface EuiButtonGroupOptionProps
-  extends EuiButtonContentProps,
+  extends EuiButtonDisplayContentProps,
     CommonProps {
   /**
    * Each option must have a unique `id` for maintaining selection
@@ -144,10 +147,15 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
   ];
 
   const styles = euiButtonGroupButtonsStyles(euiTheme);
+  const backgroundColor = euiButtonColor(
+    euiTheme,
+    isDisabled ? 'disabled' : color
+  );
   const cssStyles = [
     styles.euiButtonGroup__buttons,
     isFullWidth && styles.fullWidth,
     styles[buttonSize],
+    buttonSize !== 'compressed' && backgroundColor,
   ];
 
   const classes = classNames(

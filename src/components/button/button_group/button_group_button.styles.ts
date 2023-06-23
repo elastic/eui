@@ -17,7 +17,6 @@ import {
 import {
   mathWithUnits,
   logicalCSS,
-  logicalShorthandCSS,
   euiTextShift,
   euiOutline,
   euiCanAnimate,
@@ -39,75 +38,64 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
     (x, y) => x - y * 2
   );
 
-  const uncompressedBorderRadii = (
-    radiusSize: CSSProperties['borderRadius']
-  ) => `
-    border-radius: 0;
-
-    &:first-child {
-      ${logicalShorthandCSS('border-radius', `${radiusSize} 0 0 ${radiusSize}`)}
-    }
-
-    &:last-child {
-      ${logicalShorthandCSS('border-radius', `0 ${radiusSize} ${radiusSize} 0`)}
-    }
+  // Util that tweaks the border-radius to account for padding & background-clip
+  const calculateBorderRadius = (radiusSize: CSSProperties['borderRadius']) => `
+    border-radius: ${mathWithUnits(
+      [radiusSize, euiTheme.border.width.thin],
+      (x, y) => x + y
+    )};
   `;
 
   return {
     // Base
     euiButtonGroupButton: css`
+      /* Needed for pseudo borders */
+      position: relative;
+
       /* Allow button to shrink and truncate */
       ${logicalCSS('min-width', 0)}
       flex-shrink: 1;
       flex-grow: 0;
+
+      /* Offset the background color from the border by clipping background to before the padding starts */
+      padding: ${mathWithUnits(euiTheme.border.width.thin, (x) => x * 2)};
+      background-clip: content-box;
 
       ${euiCanAnimate} {
         transition: background-color ${euiTheme.animation.normal} ease-in-out,
           color ${euiTheme.animation.normal} ease-in-out;
       }
     `,
-    iconOnly: css`
-      padding-inline: ${euiTheme.size.s};
-    `,
     // Sizes
     s: css`
-      ${uncompressedBorderRadii(euiTheme.border.radius.small)}
+      ${calculateBorderRadius(euiTheme.border.radius.small)}
     `,
     m: css`
-      ${uncompressedBorderRadii(euiTheme.border.radius.medium)}
+      ${calculateBorderRadius(euiTheme.border.radius.medium)}
     `,
     uncompressed: css`
       &:is(.euiButtonGroupButton-isSelected) {
         font-weight: ${euiTheme.font.weight.bold};
       }
 
-      /* "Borders" between buttons - should be present between two of the same colored buttons,
+      /* "Borders" between buttons - should be present between two unselected buttons,
          and absent between selected vs non-selected buttons (different colors) */
 
       &:not(.euiButtonGroupButton-isSelected)
-        + .euiButtonGroupButton:not(.euiButtonGroupButton-isSelected) {
-        box-shadow: -${euiTheme.border.width.thin} 0 0 0 ${transparentize(euiTheme.colors.fullShade, 0.1)};
-      }
-
-      &:is(.euiButtonGroupButton-isSelected)
-        + .euiButtonGroupButton-isSelected {
-        box-shadow: -${euiTheme.border.width.thin} 0 0 0 ${transparentize(euiTheme.colors.emptyShade, 0.2)};
+        + .euiButtonGroupButton:not(.euiButtonGroupButton-isSelected)::before {
+        content: '';
+        position: absolute;
+        inset-block: 0;
+        inset-inline-start: -${euiTheme.border.width.thin};
+        inline-size: ${euiTheme.border.width.thin};
+        background-color: ${transparentize(euiTheme.colors.fullShade, 0.1)};
       }
     `,
     compressed: css`
       ${logicalCSS('height', compressedButtonHeight)}
       line-height: ${compressedButtonHeight};
-
-      /* Offset the background color from the border by clipping background to before the padding starts */
-      padding: ${mathWithUnits(euiTheme.border.width.thin, (x) => x * 2)};
-      background-clip: content-box;
-      /* Tweak border radius to account for the padding & background-clip */
-      border-radius: ${mathWithUnits(
-        [controlCompressedBorderRadius, euiTheme.border.width.thin],
-        (x, y) => x + y
-      )};
-
       font-weight: ${euiTheme.font.weight.regular};
+      ${calculateBorderRadius(controlCompressedBorderRadius)}
 
       &:is(.euiButtonGroupButton-isSelected) {
         font-weight: ${euiTheme.font.weight.semiBold};
@@ -123,6 +111,9 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
     // Content wrapper
     content: {
       euiButtonGroupButton__content: css``,
+      uncompressed: css`
+        padding-inline: ${euiTheme.size.m};
+      `,
       compressed: css`
         padding-inline: ${euiTheme.size.s};
       `,
