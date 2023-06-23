@@ -8,7 +8,6 @@
 
 import React from 'react';
 import { mount, ReactWrapper } from 'enzyme';
-import { resetServerContext } from 'react-beautiful-dnd';
 
 import { findTestSubject } from '../../test';
 import { requiredProps } from '../../test/required_props';
@@ -25,10 +24,6 @@ function snapshotDragDropContext(component: ReactWrapper) {
 }
 
 describe('EuiDroppable', () => {
-  afterEach(() => {
-    resetServerContext();
-  });
-
   test('is rendered', () => {
     const handler = jest.fn();
     jest.mock('react', () => {
