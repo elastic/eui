@@ -26,6 +26,14 @@ exports[`EuiNotificationBadge props color subdued is rendered 1`] = `
 </span>
 `;
 
+exports[`EuiNotificationBadge props color success is rendered 1`] = `
+<span
+  class="euiNotificationBadge emotion-euiNotificationBadge-s-success"
+>
+  5
+</span>
+`;
+
 exports[`EuiNotificationBadge props size m is rendered 1`] = `
 <span
   class="euiNotificationBadge emotion-euiNotificationBadge-m-accent"

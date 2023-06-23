@@ -16,11 +16,12 @@ import {
   logicalTextAlignCSS,
   mathWithUnits,
 } from '../../global_styling';
-import { euiButtonColor } from '../../themes/amsterdam/global_styling/mixins';
-import { UseEuiTheme, tint, transparentize } from '../../services';
+import { UseEuiTheme, transparentize } from '../../services';
+import { euiBadgeColors } from './color_utils';
 
 export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, colorMode } = euiThemeContext;
+  const { euiTheme } = euiThemeContext;
+  const badgeColors = euiBadgeColors(euiThemeContext);
 
   return {
     euiBadge: css`
@@ -72,23 +73,27 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
         cursor: not-allowed;
       }
     `,
+
+    // Colors
+    default: css(badgeColors.default),
+    hollow: css`
+      color: ${badgeColors.hollow.color};
+      background-color: ${badgeColors.hollow.backgroundColor};
+      border-color: ${badgeColors.hollow.borderColor};
+    `,
+    primary: css(badgeColors.primary),
+    accent: css(badgeColors.accent),
+    warning: css(badgeColors.warning),
+    danger: css(badgeColors.danger),
+    success: css(badgeColors.success),
     disabled: css`
       /* stylelint-disable declaration-no-important */
 
       /* Using !important to override inline styles */
-      color: ${euiButtonColor(euiThemeContext, 'disabled').color} !important;
-      background-color: ${euiButtonColor(euiThemeContext, 'disabled')
-        .backgroundColor} !important;
+      color: ${badgeColors.disabled.color} !important;
+      background-color: ${badgeColors.disabled.backgroundColor} !important;
 
       /* stylelint-enable declaration-no-important */
-    `,
-    // Hollow has a border and is mostly used for autocompleters.
-    hollow: css`
-      background-color: ${euiTheme.colors.emptyShade};
-      border-color: ${colorMode === 'DARK'
-        ? tint(euiTheme.border.color, 0.15)
-        : euiTheme.border.color};
-      color: ${euiTheme.colors.text};
     `,
 
     // Content wrapper
