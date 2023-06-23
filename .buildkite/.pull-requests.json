@@ -10,7 +10,8 @@
       "trigger_comment_regex": "^(?:(?:buildkite\\W+)?(?:build|test)\\W+(?:this|it))",
       "always_trigger_comment_regex": "^(?:(?:buildkite\\W+)?(?:build|test)\\W+(?:this|it))",
       "set_commit_status": true,
-      "skip_ci_labels": ["skip-ci"]
+      "skip_ci_labels": ["skip-ci"],
+      "target_branch": "feature/buildkite-migration"
     }
   ]
 }
