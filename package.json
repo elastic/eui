@@ -63,10 +63,10 @@
     "test-staged"
   ],
   "dependencies": {
+    "@hello-pangea/dnd": "^16.2.0",
     "@types/chroma-js": "^2.0.0",
     "@types/lodash": "^4.14.194",
     "@types/numeral": "^0.0.28",
-    "@types/react-beautiful-dnd": "^13.1.2",
     "@types/react-input-autosize": "^2.2.1",
     "@types/react-virtualized-auto-sizer": "^1.0.1",
     "@types/react-window": "^1.8.5",
@@ -79,7 +79,6 @@
     "mdast-util-to-hast": "^10.0.0",
     "numeral": "^2.0.6",
     "prop-types": "^15.6.0",
-    "react-beautiful-dnd": "^13.1.0",
     "react-dropzone": "^11.5.3",
     "react-element-to-jsx-string": "^14.3.4",
     "react-focus-on": "^3.9.1",

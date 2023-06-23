@@ -81,14 +81,14 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
       >
         <div
           class="euiDroppable euiDroppable--noGrow"
-          data-rbd-droppable-context-id="0"
-          data-rbd-droppable-id="columnOrder"
+          data-rfd-droppable-context-id="0"
+          data-rfd-droppable-id="columnOrder"
           data-test-subj="droppable"
         >
           <div
             class="euiDraggable euiDraggable--hasCustomDragHandle"
-            data-rbd-draggable-context-id="0"
-            data-rbd-draggable-id="columnA"
+            data-rfd-draggable-context-id="0"
+            data-rfd-draggable-id="columnA"
             data-test-subj="draggable"
             role="group"
           >
@@ -129,11 +129,11 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                   </div>
                 </div>
                 <div
-                  aria-describedby="rbd-hidden-text-0-hidden-text-0"
+                  aria-describedby="rfd-hidden-text-0-hidden-text-0"
                   aria-hidden="true"
                   class="euiFlexItem emotion-euiFlexItem-grow-1"
-                  data-rbd-drag-handle-context-id="0"
-                  data-rbd-drag-handle-draggable-id="columnA"
+                  data-rfd-drag-handle-context-id="0"
+                  data-rfd-drag-handle-draggable-id="columnA"
                   draggable="false"
                   role="button"
                   tabindex="-1"
@@ -145,11 +145,11 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                   </span>
                 </div>
                 <div
-                  aria-describedby="rbd-hidden-text-0-hidden-text-0"
+                  aria-describedby="rfd-hidden-text-0-hidden-text-0"
                   aria-label="Drag handle"
                   class="euiFlexItem emotion-euiFlexItem-growZero"
-                  data-rbd-drag-handle-context-id="0"
-                  data-rbd-drag-handle-draggable-id="columnA"
+                  data-rfd-drag-handle-context-id="0"
+                  data-rfd-drag-handle-draggable-id="columnA"
                   draggable="false"
                   role="button"
                   tabindex="0"
@@ -164,8 +164,8 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
           </div>
           <div
             class="euiDraggable euiDraggable--hasCustomDragHandle"
-            data-rbd-draggable-context-id="0"
-            data-rbd-draggable-id="columnB"
+            data-rfd-draggable-context-id="0"
+            data-rfd-draggable-id="columnB"
             data-test-subj="draggable"
             role="group"
           >
@@ -206,11 +206,11 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                   </div>
                 </div>
                 <div
-                  aria-describedby="rbd-hidden-text-0-hidden-text-0"
+                  aria-describedby="rfd-hidden-text-0-hidden-text-0"
                   aria-hidden="true"
                   class="euiFlexItem emotion-euiFlexItem-grow-1"
-                  data-rbd-drag-handle-context-id="0"
-                  data-rbd-drag-handle-draggable-id="columnB"
+                  data-rfd-drag-handle-context-id="0"
+                  data-rfd-drag-handle-draggable-id="columnB"
                   draggable="false"
                   role="button"
                   tabindex="-1"
@@ -222,11 +222,11 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                   </span>
                 </div>
                 <div
-                  aria-describedby="rbd-hidden-text-0-hidden-text-0"
+                  aria-describedby="rfd-hidden-text-0-hidden-text-0"
                   aria-label="Drag handle"
                   class="euiFlexItem emotion-euiFlexItem-growZero"
-                  data-rbd-drag-handle-context-id="0"
-                  data-rbd-drag-handle-draggable-id="columnB"
+                  data-rfd-drag-handle-context-id="0"
+                  data-rfd-drag-handle-draggable-id="columnB"
                   draggable="false"
                   role="button"
                   tabindex="0"
