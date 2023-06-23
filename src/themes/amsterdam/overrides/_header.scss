@@ -1,9 +1,3 @@
-.euiHeader {
-  height: $euiHeaderHeight;
-  padding-left: $euiSizeS;
-  padding-right: $euiSizeS;
-}
-
 // Remove borders without deleting the prop just yet
 .euiHeaderSectionItem::after {
   display: none !important; // stylelint-disable-line declaration-no-important
