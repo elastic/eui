@@ -12,10 +12,10 @@ import { requiredProps } from '../../test/required_props';
 import { EuiDragDropContext, EuiDraggable, EuiDroppable } from './';
 
 describe('EuiDraggable', () => {
-  it('is rendered', () => {
+  it('renders', () => {
     const handler = jest.fn();
 
-    render(
+    const { container } = render(
       <EuiDragDropContext onDragEnd={handler} {...requiredProps}>
         <EuiDroppable droppableId="testDroppable">
           <EuiDraggable draggableId="testDraggable" index={0}>
@@ -26,9 +26,10 @@ describe('EuiDraggable', () => {
     );
 
     expect(screen.getByTestSubject('draggable')).toBeVisible();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  it('should render with render prop children', () => {
+  it('renders with render prop children', () => {
     const handler = jest.fn();
 
     render(
@@ -41,12 +42,10 @@ describe('EuiDraggable', () => {
       </EuiDragDropContext>
     );
 
-    screen.debug();
-
     expect(screen.getByText('Hello')).toBeVisible();
   });
 
-  it('should render with react element children', () => {
+  it('renders with react element children', () => {
     const handler = jest.fn();
 
     render(
