@@ -3,14 +3,14 @@
 exports[`EuiHeader is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiHeader euiHeader--default testClass1 testClass2 emotion-euiHeader-static"
+  class="euiHeader testClass1 testClass2 emotion-euiHeader-static-default"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`EuiHeader renders children 1`] = `
 <div
-  class="euiHeader euiHeader--default emotion-euiHeader-static"
+  class="euiHeader emotion-euiHeader-static-default"
 >
   <span>
     Hello!
@@ -20,13 +20,13 @@ exports[`EuiHeader renders children 1`] = `
 
 exports[`EuiHeader renders dark theme 1`] = `
 <div
-  class="euiHeader euiHeader--dark emotion-euiHeader-static"
+  class="euiHeader emotion-euiHeader-static-dark"
 />
 `;
 
 exports[`EuiHeader renders in fixed position 1`] = `
 <div
-  class="euiHeader euiHeader--default emotion-euiHeader-fixed"
+  class="euiHeader emotion-euiHeader-fixed-default"
   data-fixed-header="true"
 >
   <span>
@@ -37,7 +37,7 @@ exports[`EuiHeader renders in fixed position 1`] = `
 
 exports[`EuiHeader sections render breadcrumbs and props 1`] = `
 <div
-  class="euiHeader euiHeader--default emotion-euiHeader-static"
+  class="euiHeader emotion-euiHeader-static-default"
 >
   <nav
     aria-label="Breadcrumbs"
@@ -64,7 +64,7 @@ exports[`EuiHeader sections render breadcrumbs and props 1`] = `
 
 exports[`EuiHeader sections render simple items and borders 1`] = `
 <div
-  class="euiHeader euiHeader--default emotion-euiHeader-static"
+  class="euiHeader emotion-euiHeader-static-default"
 >
   <div
     class="euiHeaderSection euiHeaderSection--dontGrow euiHeaderSection--left"
@@ -99,7 +99,7 @@ exports[`EuiHeader sections render simple items and borders 1`] = `
 
 exports[`EuiHeader throws a warning if both children and sections were passed 1`] = `
 <div
-  class="euiHeader euiHeader--default emotion-euiHeader-static"
+  class="euiHeader emotion-euiHeader-static-default"
 >
   <div
     class="euiHeaderSection euiHeaderSection--dontGrow euiHeaderSection--left"

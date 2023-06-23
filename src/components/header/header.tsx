@@ -89,11 +89,11 @@ export const EuiHeader: FunctionComponent<EuiHeaderProps> = ({
   theme = 'default',
   ...rest
 }) => {
-  const classes = classNames('euiHeader', `euiHeader--${theme}`, className);
+  const classes = classNames('euiHeader', className);
 
   const euiTheme = useEuiTheme();
   const styles = euiHeaderStyles(euiTheme);
-  const cssStyles = [styles.euiHeader, styles[position]];
+  const cssStyles = [styles.euiHeader, styles[position], styles[theme]];
 
   useEffect(() => {
     if (position === 'fixed') {

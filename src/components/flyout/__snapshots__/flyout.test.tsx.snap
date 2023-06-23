@@ -1093,7 +1093,7 @@ exports[`EuiFlyout renders extra screen reader instructions when fixed EuiHeader
 >
   <div>
     <div
-      class="euiHeader euiHeader--default emotion-euiHeader-fixed"
+      class="euiHeader emotion-euiHeader-fixed-default"
       data-fixed-header="true"
     />
     <div>
