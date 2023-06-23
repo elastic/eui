@@ -1,10 +1,5 @@
 // Themeable colors
 $euiHeaderBackgroundColor: $euiColorEmptyShade !default;
-$euiHeaderDarkBackgroundColor: lightOrDarkTheme(shade($euiColorDarkestShade, 28%), shade($euiColorLightestShade, 50%)) !default;
-// Curated border color to fade into the shadow without looking too much like a border
-// It adds separation between the header and flyout
-$euiHeaderBorderColor: lightOrDarkTheme(shade($euiBorderColor, 3%), shade($euiColorEmptyShade, 35%));
-$euiHeaderBreadcrumbColor: $euiColorDarkestShade !default;
 
 // Layout vars
 $euiHeaderHeight: $euiSizeXXL + $euiSizeS !default;
