@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiHeaderLogo is rendered 1`] = `
+exports[`EuiHeaderLogo renders 1`] = `
 <a
   aria-label="aria-label"
-  class="euiHeaderLogo testClass1 testClass2"
+  class="euiHeaderLogo testClass1 testClass2 emotion-euiHeaderLogo"
   data-test-subj="test subject string"
   rel="noreferrer"
 >
@@ -18,7 +18,7 @@ exports[`EuiHeaderLogo is rendered 1`] = `
 
 exports[`EuiHeaderLogo renders href 1`] = `
 <a
-  class="euiHeaderLogo"
+  class="euiHeaderLogo emotion-euiHeaderLogo"
   href="#"
   rel="noreferrer"
 >
@@ -33,7 +33,7 @@ exports[`EuiHeaderLogo renders href 1`] = `
 
 exports[`EuiHeaderLogo renders href with rel 1`] = `
 <a
-  class="euiHeaderLogo"
+  class="euiHeaderLogo emotion-euiHeaderLogo"
   href="#"
   rel="noreferrer"
 >
@@ -48,15 +48,34 @@ exports[`EuiHeaderLogo renders href with rel 1`] = `
 
 exports[`EuiHeaderLogo renders optional props 1`] = `
 <a
-  class="euiHeaderLogo"
+  class="euiHeaderLogo emotion-euiHeaderLogo"
   rel="noreferrer"
-  style="color:red"
+  style="color: red;"
 >
   <span
     class="euiHeaderLogo__icon"
     data-euiicon-type="error"
   >
     Moby Dick
+  </span>
+</a>
+`;
+
+exports[`EuiHeaderLogo renders text 1`] = `
+<a
+  class="euiHeaderLogo emotion-euiHeaderLogo"
+  rel="noreferrer"
+>
+  <span
+    class="euiHeaderLogo__icon"
+    data-euiicon-type="logoElastic"
+  >
+    Elastic
+  </span>
+  <span
+    class="euiHeaderLogo__text emotion-euiHeaderLogo__text"
+  >
+    Elastic
   </span>
 </a>
 `;

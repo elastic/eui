@@ -7,32 +7,41 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { render } from '../../test/rtl';
 import { requiredProps } from '../../test';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiHeaderLogo } from './header_logo';
 
 describe('EuiHeaderLogo', () => {
-  test('is rendered', () => {
-    const component = render(<EuiHeaderLogo {...requiredProps} />);
+  shouldRenderCustomStyles(<EuiHeaderLogo />);
 
-    expect(component).toMatchSnapshot();
+  it('renders', () => {
+    const { container } = render(<EuiHeaderLogo {...requiredProps} />);
+
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('renders href', () => {
-    const component = render(<EuiHeaderLogo href="#" />);
+  it('renders href', () => {
+    const { container } = render(<EuiHeaderLogo href="#" />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('renders href with rel', () => {
-    const component = render(<EuiHeaderLogo href="#" rel="noreferrer" />);
+  it('renders href with rel', () => {
+    const { container } = render(<EuiHeaderLogo href="#" rel="noreferrer" />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('renders optional props', () => {
-    const component = render(
+  it('renders text', () => {
+    const { container } = render(<EuiHeaderLogo>Elastic</EuiHeaderLogo>);
+
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  it('renders optional props', () => {
+    const { container } = render(
       <EuiHeaderLogo
         iconType="error"
         iconTitle="Moby Dick"
@@ -40,6 +49,6 @@ describe('EuiHeaderLogo', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });
