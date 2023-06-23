@@ -1,8 +1,6 @@
 // Header. Includes breadcrumbs of nav buttons.
 
 .euiHeader {
-  @include euiBottomShadowSmall;
-
   height: $euiHeaderHeight + 1; // Add one for the border
   position: relative;
   z-index: $euiZHeader - 1; // ensure the shadow shows above content
