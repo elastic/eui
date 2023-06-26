@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiCollapsibleNav close button can be hidden 1`] = `
-Array [
+<div>
   <div>
     <div
       data-focus-guard="true"
@@ -13,7 +13,7 @@ Array [
     >
       <nav
         aria-describedby="generated-id"
-        class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left"
+        class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left-euiCollapsibleNav-overlay"
         data-autofocus="true"
         id="id"
         role="dialog"
@@ -24,7 +24,8 @@ Array [
           class="emotion-euiScreenReaderOnly"
           id="generated-id"
         >
-          You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close. 
+          You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
+           
         </p>
         <button
           aria-label="Close this dialog"
@@ -46,14 +47,14 @@ Array [
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
-  </div>,
-]
+  </div>
+</div>
 `;
 
-exports[`EuiCollapsibleNav does not render if isOpen is false 1`] = `null`;
+exports[`EuiCollapsibleNav does not render if isOpen is false 1`] = `<div />`;
 
 exports[`EuiCollapsibleNav is rendered 1`] = `
-Array [
+<div>
   <div>
     <div
       data-focus-guard="true"
@@ -66,7 +67,7 @@ Array [
       <nav
         aria-describedby="generated-id"
         aria-label="aria-label"
-        class="euiFlyout euiCollapsibleNav testClass1 testClass2 emotion-euiFlyout-none-noMaxWidth-overlay-left"
+        class="euiFlyout euiCollapsibleNav testClass1 testClass2 emotion-euiFlyout-none-noMaxWidth-overlay-left-euiCollapsibleNav-overlay"
         data-autofocus="true"
         data-test-subj="test subject string"
         id="id"
@@ -78,7 +79,8 @@ Array [
           class="emotion-euiScreenReaderOnly"
           id="generated-id"
         >
-          You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close. 
+          You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
+           
         </p>
         <button
           aria-label="Close this dialog"
@@ -100,23 +102,23 @@ Array [
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
-  </div>,
-]
+  </div>
+</div>
 `;
 
 exports[`EuiCollapsibleNav props accepts EuiFlyout props 1`] = `
-Array [
+<div>
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="0"
-  />,
+  />
   <div
     data-focus-lock-disabled="false"
   >
     <nav
       aria-describedby="generated-id"
-      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left"
+      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left-euiCollapsibleNav-overlay"
       data-autofocus="true"
       id="id"
       role="dialog"
@@ -127,7 +129,8 @@ Array [
         class="emotion-euiScreenReaderOnly"
         id="generated-id"
       >
-        You are in a non-modal dialog. To close the dialog, press Escape. 
+        You are in a non-modal dialog. To close the dialog, press Escape.
+         
       </p>
       <button
         aria-label="Close this dialog"
@@ -143,22 +146,22 @@ Array [
         />
       </button>
     </nav>
-  </div>,
+  </div>
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="0"
-  />,
-]
+  />
+</div>
 `;
 
 exports[`EuiCollapsibleNav props button 1`] = `
-Array [
+<div>
   <button
     aria-controls="id"
     aria-expanded="true"
     aria-pressed="true"
-  />,
+  />
   <div>
     <div
       data-focus-guard="true"
@@ -170,7 +173,7 @@ Array [
     >
       <nav
         aria-describedby="generated-id"
-        class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left"
+        class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left-euiCollapsibleNav-overlay"
         data-autofocus="true"
         id="id"
         role="dialog"
@@ -181,7 +184,8 @@ Array [
           class="emotion-euiScreenReaderOnly"
           id="generated-id"
         >
-          You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close. 
+          You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
+           
         </p>
         <button
           aria-label="Close this dialog"
@@ -203,12 +207,12 @@ Array [
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
-  </div>,
-]
+  </div>
+</div>
 `;
 
 exports[`EuiCollapsibleNav props dockedBreakpoint 1`] = `
-Array [
+<div>
   <div>
     <div
       data-focus-guard="true"
@@ -220,7 +224,7 @@ Array [
     >
       <nav
         aria-describedby="generated-id"
-        class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left"
+        class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left-euiCollapsibleNav-overlay"
         data-autofocus="true"
         id="id"
         role="dialog"
@@ -231,7 +235,8 @@ Array [
           class="emotion-euiScreenReaderOnly"
           id="generated-id"
         >
-          You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close. 
+          You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
+           
         </p>
         <button
           aria-label="Close this dialog"
@@ -253,121 +258,39 @@ Array [
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
-  </div>,
-]
+  </div>
+</div>
 `;
 
 exports[`EuiCollapsibleNav props isDocked 1`] = `
-Array [
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
-  <div
-    data-focus-lock-disabled="disabled"
-  >
-    <nav
-      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-push-left-left"
-      data-autofocus="true"
-      id="id"
-      role="dialog"
-      style="inline-size:320px"
-      tabindex="0"
-    />
-  </div>,
-  <div
-    data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-    tabindex="-1"
-  />,
-]
-`;
-
-exports[`EuiCollapsibleNav props onClose 1`] = `
-Array [
-  <div>
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
-    <div
-      data-focus-lock-disabled="false"
-    >
-      <nav
-        aria-describedby="generated-id"
-        class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left"
-        data-autofocus="true"
-        id="id"
-        role="dialog"
-        style="inline-size: 320px;"
-        tabindex="0"
-      >
-        <p
-          class="emotion-euiScreenReaderOnly"
-          id="generated-id"
-        >
-          You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close. 
-        </p>
-        <button
-          aria-label="Close this dialog"
-          class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-fill-text-euiFlyout__closeButton-outside-left"
-          data-test-subj="euiFlyoutCloseButton"
-          type="button"
-        >
-          <span
-            aria-hidden="true"
-            class="euiButtonIcon__icon"
-            color="inherit"
-            data-euiicon-type="cross"
-          />
-        </button>
-      </nav>
-    </div>
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
-  </div>,
-]
-`;
-
-exports[`EuiCollapsibleNav props showButtonIfDocked 1`] = `
-Array [
-  <button
-    aria-controls="id"
-    aria-expanded="true"
-    aria-pressed="true"
-  />,
+<div>
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="-1"
-  />,
+  />
   <div
     data-focus-lock-disabled="disabled"
   >
     <nav
-      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-push-left-left"
+      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-push-left-left-euiCollapsibleNav-push"
       data-autofocus="true"
       id="id"
       role="dialog"
       style="inline-size: 320px;"
       tabindex="0"
     />
-  </div>,
+  </div>
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="-1"
-  />,
-]
+  />
+</div>
 `;
 
-exports[`EuiCollapsibleNav props size 1`] = `
-Array [
+exports[`EuiCollapsibleNav props onClose 1`] = `
+<div>
   <div>
     <div
       data-focus-guard="true"
@@ -379,7 +302,90 @@ Array [
     >
       <nav
         aria-describedby="generated-id"
-        class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left"
+        class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left-euiCollapsibleNav-overlay"
+        data-autofocus="true"
+        id="id"
+        role="dialog"
+        style="inline-size: 320px;"
+        tabindex="0"
+      >
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
+           
+        </p>
+        <button
+          aria-label="Close this dialog"
+          class="euiButtonIcon euiFlyout__closeButton emotion-euiButtonIcon-xs-fill-text-euiFlyout__closeButton-outside-left"
+          data-test-subj="euiFlyoutCloseButton"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="cross"
+          />
+        </button>
+      </nav>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiCollapsibleNav props showButtonIfDocked 1`] = `
+<div>
+  <button
+    aria-controls="id"
+    aria-expanded="true"
+    aria-pressed="true"
+  />
+  <div
+    data-focus-guard="true"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+    tabindex="-1"
+  />
+  <div
+    data-focus-lock-disabled="disabled"
+  >
+    <nav
+      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-push-left-left-euiCollapsibleNav-push"
+      data-autofocus="true"
+      id="id"
+      role="dialog"
+      style="inline-size: 320px;"
+      tabindex="0"
+    />
+  </div>
+  <div
+    data-focus-guard="true"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+    tabindex="-1"
+  />
+</div>
+`;
+
+exports[`EuiCollapsibleNav props size 1`] = `
+<div>
+  <div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+    <div
+      data-focus-lock-disabled="false"
+    >
+      <nav
+        aria-describedby="generated-id"
+        class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left-euiCollapsibleNav-overlay"
         data-autofocus="true"
         id="id"
         role="dialog"
@@ -390,7 +396,8 @@ Array [
           class="emotion-euiScreenReaderOnly"
           id="generated-id"
         >
-          You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close. 
+          You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
+           
         </p>
         <button
           aria-label="Close this dialog"
@@ -412,6 +419,6 @@ Array [
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
     />
-  </div>,
-]
+  </div>
+</div>
 `;

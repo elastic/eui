@@ -10,7 +10,8 @@ import React, { Fragment, FunctionComponent } from 'react';
 import classNames from 'classnames';
 
 import { useEuiI18n } from '../i18n';
-import { EuiNotificationBadge } from '../badge/notification_badge';
+import { EuiNotificationBadge } from '../badge';
+import { BadgeNotificationColor } from '../badge/notification_badge/badge_notification';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button/button_empty';
 
 import { useInnerText } from '../inner_text';
@@ -43,6 +44,10 @@ export type EuiFilterButtonProps = {
    * Remove border after button, good for opposite filters
    */
   withNext?: boolean;
+  /**
+   * Change color of the counter badge
+   */
+  badgeColor?: BadgeNotificationColor;
 } & DistributiveOmit<EuiButtonEmptyProps, 'flush' | 'size'>;
 
 export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
@@ -51,6 +56,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   iconType,
   iconSide = 'right',
   color = 'text',
+  badgeColor = 'accent',
   hasActiveFilters,
   numFilters,
   numActiveFilters,
@@ -103,7 +109,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
     <EuiNotificationBadge
       className="euiFilterButton__notification"
       aria-label={hasActiveFilters ? activeBadgeLabel : availableBadgeLabel}
-      color={isDisabled || !hasActiveFilters ? 'subdued' : 'accent'}
+      color={isDisabled || !hasActiveFilters ? 'subdued' : badgeColor}
       role="marquee" // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/marquee_role
     >
       {badgeCount}

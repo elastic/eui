@@ -103,5 +103,13 @@ describe('EuiFilterButton', () => {
         expect(component).toMatchSnapshot();
       });
     });
+
+    describe('badgeColor', () => {
+      it('is rendered', () => {
+        const component = render(<EuiFilterButton badgeColor="success" />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 });

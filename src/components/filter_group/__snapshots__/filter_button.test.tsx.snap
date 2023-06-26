@@ -42,6 +42,25 @@ exports[`EuiFilterButton is rendered 1`] = `
 </button>
 `;
 
+exports[`EuiFilterButton props badgeColor is rendered 1`] = `
+<button
+  class="euiButtonEmpty euiFilterButton css-wvaqcf-empty-text"
+  type="button"
+>
+  <span
+    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+  >
+    <span
+      class="euiButtonEmpty__text"
+    >
+      <span
+        class="euiFilterButton__textShift"
+      />
+    </span>
+  </span>
+</button>
+`;
+
 exports[`EuiFilterButton props grow can be turned off 1`] = `
 <button
   class="euiButtonEmpty euiFilterButton euiFilterButton--noGrow emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
