@@ -44,14 +44,14 @@ exports[`EuiFilterButton is rendered 1`] = `
 
 exports[`EuiFilterButton props badgeColor is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiFilterButton css-wvaqcf-empty-text"
+  class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text"
     >
       <span
         class="euiFilterButton__textShift"
