@@ -22,13 +22,5 @@ export const euiInlineEditReadModeStyles = ({ euiTheme }: UseEuiTheme) => {
         user-select: text;
       }
     `,
-
-    hasPlaceholder: css`
-      &.euiButtonEmpty .euiText,
-      &.euiButtonEmpty .euiTitle {
-        font-style: italic;
-        color: ${euiTheme.colors.subduedText};
-      }
-    `,
   };
 };

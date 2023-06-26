@@ -39,7 +39,6 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
   size = 'm',
   heading,
   defaultValue,
-  displayDefaultValueAsPlaceholder,
   inputAriaLabel,
   startWithEditOpen,
   readModeProps: _readModeProps,
@@ -79,7 +78,6 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
   const formProps = {
     sizes,
     defaultValue,
-    displayDefaultValueAsPlaceholder,
     inputAriaLabel,
     startWithEditOpen,
     readModeProps,

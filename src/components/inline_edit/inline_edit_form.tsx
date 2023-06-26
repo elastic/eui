@@ -41,11 +41,6 @@ export type EuiInlineEditCommonProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
     defaultValue: string;
     /**
-     * Adds styling to display defaultValue as a placeholder in `readMode`.
-     * Adds defaultValue as a placeholder on the `editMode` form control and does not populate the value.
-     */
-    displayDefaultValueAsPlaceholder?: boolean;
-    /**
      * Callback that fires when a user clicks the save button.
      * Passes the current edited text value as an argument.
      *
@@ -126,7 +121,6 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   children,
   sizes,
   defaultValue,
-  displayDefaultValueAsPlaceholder,
   inputAriaLabel,
   startWithEditOpen,
   readModeProps,
@@ -138,17 +132,12 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
 }) => {
   const classes = classNames('euiInlineEdit', className);
 
-  const [renderPlaceholder, setRenderPlaceholder] = useState(
-    displayDefaultValueAsPlaceholder
-  );
-
   const euiTheme = useEuiTheme();
 
   const readModeStyles = euiInlineEditReadModeStyles(euiTheme);
   const readModeCssStyles = [
     readModeStyles.euiInlineEditReadMode,
     isReadOnly && readModeStyles.isReadOnly,
-    renderPlaceholder && readModeStyles.hasPlaceholder,
   ];
 
   const { controlHeight, controlCompressedHeight } = euiFormVariables(euiTheme);
@@ -180,9 +169,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   ]);
 
   const [isEditing, setIsEditing] = useState(false || startWithEditOpen);
-  const [editModeValue, setEditModeValue] = useState(
-    renderPlaceholder ? '' : defaultValue
-  );
+  const [editModeValue, setEditModeValue] = useState(defaultValue);
   const [readModeValue, setReadModeValue] = useState(defaultValue);
 
   const activateEditMode = () => {
@@ -192,8 +179,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   };
 
   const cancelInlineEdit = () => {
-    // When a placeholder is set, but the save is cancelled, do not change `editModeValue`
-    renderPlaceholder ? setEditModeValue('') : setEditModeValue(readModeValue);
+    setEditModeValue(readModeValue);
     setIsEditing(false);
     requestAnimationFrame(() => readModeFocusRef.current?.focus());
   };
@@ -207,9 +193,6 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
       if (awaitedReturn === false) return;
     }
 
-    // If a placeholder is present the first time that a text value is saved,
-    // remove placeholder related settings
-    renderPlaceholder && setRenderPlaceholder(false);
     setReadModeValue(editModeValue);
     setIsEditing(false);
     requestAnimationFrame(() => readModeFocusRef.current?.focus());
@@ -265,7 +248,6 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
               editModeDescribedById,
               editModeProps?.inputProps?.['aria-describedby']
             )}
-            placeholder={renderPlaceholder ? defaultValue : undefined}
           />
         </EuiFormRow>
         <span id={editModeDescribedById} hidden>
