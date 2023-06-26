@@ -39,11 +39,12 @@
       animation-fill-mode: forwards;
     }
     /*
-     * TODO: Super annoying Safari workaround
      * For some incredibly bizarre reason, Safari doesn't correctly update the flex
      * width of the content (when rows are an undefined height/single flex row),
      * which causes the action icons to overlap & makes the content less readable.
      * This workaround "animation" forces a rerender of the flex content width
+     *
+     * TODO: Remove this workaround once https://bugs.webkit.org/show_bug.cgi?id=258539 is resolved
      */
     .euiDataGridRowCell__expandContent {
       animation-name: euiDataGridCellActionsSafariWorkaround;
