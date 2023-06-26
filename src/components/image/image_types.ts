@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import { HTMLAttributes, ReactNode, ImgHTMLAttributes } from 'react';
+import {
+  HTMLAttributes,
+  ReactNode,
+  ImgHTMLAttributes,
+  PropsWithChildren,
+} from 'react';
 import { CommonProps, ExclusiveUnion } from '../common';
 
 export const SIZES = ['s', 'm', 'l', 'xl', 'fullWidth', 'original'] as const;
@@ -96,21 +101,23 @@ export type EuiImageWrapperProps = Pick<
   | 'fullScreenIconColor'
   | 'allowFullScreen'
   | 'onFullScreen'
-> & {
-  isFullWidth: boolean;
-  setIsFullScreen: (isFullScreen: boolean) => void;
-};
+> &
+  PropsWithChildren & {
+    isFullWidth: boolean;
+    setIsFullScreen: (isFullScreen: boolean) => void;
+  };
 
 export type EuiImageButtonProps = Pick<
   EuiImageProps,
   'hasShadow' | 'fullScreenIconColor'
-> & {
-  hasAlt: boolean;
-  onClick: () => void;
-  onKeyDown?: (e: React.KeyboardEvent) => void;
-  isFullWidth: boolean;
-  isFullScreen?: boolean;
-};
+> &
+  PropsWithChildren & {
+    hasAlt: boolean;
+    onClick: () => void;
+    onKeyDown?: (e: React.KeyboardEvent) => void;
+    isFullWidth: boolean;
+    isFullScreen?: boolean;
+  };
 
 export type EuiImageCaptionProps = Pick<EuiImageProps, 'caption'> & {
   isOnOverlayMask?: boolean;

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { renderHook } from '@testing-library/react-hooks';
 import { useEuiTheme } from '../../services';
 import { EuiProvider } from '../provider';
@@ -17,7 +17,7 @@ import {
   euiCustomControl,
 } from './form.styles';
 
-const darkModeWrapper: React.FC = ({ children }) => (
+const darkModeWrapper: React.FC<PropsWithChildren> = ({ children }) => (
   <EuiProvider colorMode="DARK">{children}</EuiProvider>
 );
 

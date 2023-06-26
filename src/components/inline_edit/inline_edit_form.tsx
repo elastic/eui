@@ -89,7 +89,10 @@ export type EuiInlineEditCommonProps = HTMLAttributes<HTMLDivElement> &
   };
 
 // Internal-only props, passed by the consumer-facing components
-export type EuiInlineEditFormProps = EuiInlineEditCommonProps & {
+export type EuiInlineEditFormProps = Omit<
+  EuiInlineEditCommonProps,
+  'children'
+> & {
   /**
    * Form sizes
    */

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useState, PropsWithChildren } from 'react';
 import { mount } from 'enzyme';
 import { EuiMutationObserver, useMutationObserver } from './mutation_observer';
 import { sleep } from '../../../test';
@@ -51,14 +51,16 @@ describe('useMutationObserver', () => {
     expect.assertions(2);
 
     const mutationCallback = jest.fn();
-    const Wrapper: FunctionComponent<{}> = jest.fn(({ children }) => {
-      const [ref, setRef] = useState<Element | null>(null);
-      useMutationObserver(ref, mutationCallback, {
-        childList: true,
-        subtree: true,
-      });
-      return <div ref={setRef}>{children}</div>;
-    });
+    const Wrapper: FunctionComponent<PropsWithChildren> = jest.fn(
+      ({ children }) => {
+        const [ref, setRef] = useState<Element | null>(null);
+        useMutationObserver(ref, mutationCallback, {
+          childList: true,
+          subtree: true,
+        });
+        return <div ref={setRef}>{children}</div>;
+      }
+    );
 
     const component = mount(<Wrapper children={<div>Hello World</div>} />);
 

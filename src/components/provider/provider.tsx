@@ -29,7 +29,8 @@ const isEmotionCacheObject = (
 
 export interface EuiProviderProps<T>
   extends Omit<EuiThemeProviderProps<T>, 'children' | 'theme'>,
-    EuiGlobalStylesProps {
+    EuiGlobalStylesProps,
+    PropsWithChildren {
   /**
    * Provide a specific EuiTheme; Defaults to EuiThemeAmsterdam;
    * Pass `null` to remove all theming including global reset
@@ -71,7 +72,7 @@ export const EuiProvider = <T extends {} = {}>({
   colorMode,
   modify,
   children,
-}: PropsWithChildren<EuiProviderProps<T>>) => {
+}: EuiProviderProps<T>) => {
   let defaultCache;
   let globalCache;
   let utilityCache;

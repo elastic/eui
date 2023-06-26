@@ -22,6 +22,7 @@ export const SIZES = ['s', 'm', 'l', 'xl'] as const;
 export type EuiTabsSizes = (typeof SIZES)[number];
 
 export type EuiTabsProps = CommonProps &
+  PropsWithChildren &
   HTMLAttributes<HTMLDivElement> & {
     /**
      * ReactNode to render as this component's content
@@ -45,7 +46,7 @@ export type EuiTabsProps = CommonProps &
 
 export type EuiTabRef = HTMLDivElement;
 
-export const EuiTabs = forwardRef<EuiTabRef, PropsWithChildren<EuiTabsProps>>(
+export const EuiTabs = forwardRef<EuiTabRef, EuiTabsProps>(
   (
     {
       children,
@@ -54,7 +55,7 @@ export const EuiTabs = forwardRef<EuiTabRef, PropsWithChildren<EuiTabsProps>>(
       expand = false,
       size = 'm',
       ...rest
-    }: PropsWithChildren<EuiTabsProps>,
+    }: EuiTabsProps,
     ref
   ) => {
     const euiTheme = useEuiTheme();

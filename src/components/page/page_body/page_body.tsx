@@ -21,7 +21,8 @@ type ComponentTypes = keyof JSX.IntrinsicElements | ComponentType<any>;
 
 export type EuiPageBodyProps<T extends ComponentTypes = 'main'> = CommonProps &
   ComponentProps<T> &
-  _EuiPageRestrictWidth & {
+  _EuiPageRestrictWidth &
+  PropsWithChildren & {
     /**
      * Sets the HTML element for `EuiPageBody`.
      */
@@ -50,7 +51,7 @@ export const EuiPageBody = <T extends ComponentTypes>({
   paddingSize = 'none',
   borderRadius = 'none',
   ...rest
-}: PropsWithChildren<EuiPageBodyProps<T>>) => {
+}: EuiPageBodyProps<T>) => {
   // Set max-width as a style prop
   const widthStyles = setStyleForRestrictedPageWidth(
     restrictWidth,

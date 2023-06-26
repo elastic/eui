@@ -6,13 +6,15 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, PropsWithChildren } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
 import { EuiContextMenuItem } from '../../context_menu';
 
-export interface EuiTableSortMobileItemProps extends CommonProps {
+export interface EuiTableSortMobileItemProps
+  extends CommonProps,
+    PropsWithChildren {
   /**
    * Callback to know when an item has been clicked
    */
