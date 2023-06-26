@@ -20,7 +20,7 @@ export const euiButtonEmptyStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
   // EuiButtonEmpty uses the same size/font styling as EuiButtonDisplay,
-  // but does not share enough of the same same colors/props to the point
+  // but does not share enough of the same colors/props to the point
   // of using the actual component - so we'll reuse its styles instead
   const displayStyles = euiButtonDisplayStyles(euiThemeContext);
 
