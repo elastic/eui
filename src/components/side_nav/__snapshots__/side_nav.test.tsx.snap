@@ -526,19 +526,18 @@ exports[`EuiSideNav props mobileBreakpoints can be adjusted is rendered 1`] = `
   >
     <button
       aria-controls="euiSideNav_generated-id_content"
-      class="euiButtonEmpty euiSideNav__mobileToggle css-9t7nyf-empty-primary"
+      class="euiButtonEmpty euiSideNav__mobileToggle emotion-euiButtonDisplay-euiButtonEmpty-m-empty-primary"
       type="button"
     >
       <span
-        class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content euiSideNav__mobileToggleContent"
+        class="euiButtonEmpty__content euiSideNav__mobileToggleContent emotion-euiButtonDisplayContent"
       >
         <span
-          class="euiButtonContent__icon"
-          color="inherit"
-          data-euiicon-type="apps"
+          class="eui-textTruncate euiButtonEmpty__text euiSideNav__mobileToggleText"
         />
         <span
-          class="euiButtonEmpty__text euiSideNav__mobileToggleText"
+          color="inherit"
+          data-euiicon-type="apps"
         />
       </span>
     </button>

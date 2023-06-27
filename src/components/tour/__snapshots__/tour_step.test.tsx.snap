@@ -183,14 +183,14 @@ exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
                 class="euiFlexItem emotion-euiFlexItem-growZero"
               >
                 <button
-                  class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushRight css-wvaqcf-empty-text"
+                  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-flush-right"
                   type="button"
                 >
                   <span
-                    class="euiButtonContent euiButtonEmpty__content"
+                    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                   >
                     <span
-                      class="euiButtonEmpty__text"
+                      class="eui-textTruncate euiButtonEmpty__text"
                     >
                       Close tour
                     </span>
@@ -286,14 +286,14 @@ exports[`EuiTourStep can have subtitle 1`] = `
                 class="euiFlexItem emotion-euiFlexItem-growZero"
               >
                 <button
-                  class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushRight css-wvaqcf-empty-text"
+                  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-flush-right"
                   type="button"
                 >
                   <span
-                    class="euiButtonContent euiButtonEmpty__content"
+                    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                   >
                     <span
-                      class="euiButtonEmpty__text"
+                      class="eui-textTruncate euiButtonEmpty__text"
                     >
                       Close tour
                     </span>
@@ -466,14 +466,14 @@ exports[`EuiTourStep can turn off the beacon 1`] = `
                 class="euiFlexItem emotion-euiFlexItem-growZero"
               >
                 <button
-                  class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushRight css-wvaqcf-empty-text"
+                  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-flush-right"
                   type="button"
                 >
                   <span
-                    class="euiButtonContent euiButtonEmpty__content"
+                    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                   >
                     <span
-                      class="euiButtonEmpty__text"
+                      class="eui-textTruncate euiButtonEmpty__text"
                     >
                       Close tour
                     </span>
@@ -564,14 +564,14 @@ exports[`EuiTourStep is rendered 1`] = `
                 class="euiFlexItem emotion-euiFlexItem-growZero"
               >
                 <button
-                  class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushRight css-wvaqcf-empty-text"
+                  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-flush-right"
                   type="button"
                 >
                   <span
-                    class="euiButtonContent euiButtonEmpty__content"
+                    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                   >
                     <span
-                      class="euiButtonEmpty__text"
+                      class="eui-textTruncate euiButtonEmpty__text"
                     >
                       Close tour
                     </span>

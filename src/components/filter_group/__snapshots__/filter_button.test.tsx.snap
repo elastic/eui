@@ -3,15 +3,15 @@
 exports[`EuiFilterButton does not render a badge or count if numFilters is not passed 1`] = `
 <button
   aria-label="aria-label"
-  class="euiButtonEmpty euiFilterButton testClass1 testClass2 css-wvaqcf-empty-text"
+  class="euiButtonEmpty euiFilterButton testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
   data-test-subj="test subject string"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text"
     >
       <span
         class="euiFilterButton__textShift"
@@ -24,15 +24,15 @@ exports[`EuiFilterButton does not render a badge or count if numFilters is not p
 exports[`EuiFilterButton is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiButtonEmpty euiFilterButton testClass1 testClass2 css-wvaqcf-empty-text"
+  class="euiButtonEmpty euiFilterButton testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
   data-test-subj="test subject string"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text"
     >
       <span
         class="euiFilterButton__textShift"
@@ -44,14 +44,14 @@ exports[`EuiFilterButton is rendered 1`] = `
 
 exports[`EuiFilterButton props badgeColor is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiFilterButton css-wvaqcf-empty-text"
+  class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text"
     >
       <span
         class="euiFilterButton__textShift"
@@ -63,14 +63,14 @@ exports[`EuiFilterButton props badgeColor is rendered 1`] = `
 
 exports[`EuiFilterButton props grow can be turned off 1`] = `
 <button
-  class="euiButtonEmpty euiFilterButton euiFilterButton--noGrow css-wvaqcf-empty-text"
+  class="euiButtonEmpty euiFilterButton euiFilterButton--noGrow emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text"
     >
       <span
         class="euiFilterButton__textShift"
@@ -82,39 +82,38 @@ exports[`EuiFilterButton props grow can be turned off 1`] = `
 
 exports[`EuiFilterButton props iconType and iconSide is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiFilterButton euiFilterButton--hasIcon css-wvaqcf-empty-text"
+  class="euiButtonEmpty euiFilterButton euiFilterButton--hasIcon emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiButtonContent__icon"
-      color="inherit"
-      data-euiicon-type="user"
-    />
-    <span
-      class="euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text"
     >
       <span
         class="euiFilterButton__textShift"
       />
     </span>
+    <span
+      color="inherit"
+      data-euiicon-type="user"
+    />
   </span>
 </button>
 `;
 
 exports[`EuiFilterButton props isDisabled is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiFilterButton css-1at5a38-empty-disabled"
+  class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-disabled-isDisabled"
   disabled=""
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text"
     >
       <span
         class="euiFilterButton__textShift"
@@ -126,14 +125,14 @@ exports[`EuiFilterButton props isDisabled is rendered 1`] = `
 
 exports[`EuiFilterButton props isSelected is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiFilterButton euiFilterButton-isSelected css-wvaqcf-empty-text"
+  class="euiButtonEmpty euiFilterButton euiFilterButton-isSelected emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text"
     >
       <span
         class="euiFilterButton__textShift"
@@ -145,14 +144,14 @@ exports[`EuiFilterButton props isSelected is rendered 1`] = `
 
 exports[`EuiFilterButton props numActiveFilters and hasActiveFilters is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiFilterButton euiFilterButton-hasActiveFilters css-wvaqcf-empty-text"
+  class="euiButtonEmpty euiFilterButton euiFilterButton-hasActiveFilters emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiButtonEmpty__text euiFilterButton__text-hasNotification"
+      class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text-hasNotification"
     >
       <span
         class="euiFilterButton__textShift"
@@ -171,14 +170,14 @@ exports[`EuiFilterButton props numActiveFilters and hasActiveFilters is rendered
 
 exports[`EuiFilterButton props numFilters is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiFilterButton euiFilterButton-hasNotification css-wvaqcf-empty-text"
+  class="euiButtonEmpty euiFilterButton euiFilterButton-hasNotification emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiButtonEmpty__text euiFilterButton__text-hasNotification"
+      class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text-hasNotification"
     >
       <span
         class="euiFilterButton__textShift"
@@ -197,14 +196,14 @@ exports[`EuiFilterButton props numFilters is rendered 1`] = `
 
 exports[`EuiFilterButton props type is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiFilterButton css-wvaqcf-empty-text"
+  class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text"
     >
       <span
         class="euiFilterButton__textShift"
@@ -216,14 +215,14 @@ exports[`EuiFilterButton props type is rendered 1`] = `
 
 exports[`EuiFilterButton props withNext is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiFilterButton euiFilterButton--withNext css-wvaqcf-empty-text"
+  class="euiButtonEmpty euiFilterButton euiFilterButton--withNext emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text"
     >
       <span
         class="euiFilterButton__textShift"
@@ -236,15 +235,15 @@ exports[`EuiFilterButton props withNext is rendered 1`] = `
 exports[`EuiFilterButton renders zero properly 1`] = `
 <button
   aria-label="aria-label"
-  class="euiButtonEmpty euiFilterButton euiFilterButton-hasNotification testClass1 testClass2 css-wvaqcf-empty-text"
+  class="euiButtonEmpty euiFilterButton euiFilterButton-hasNotification testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
   data-test-subj="test subject string"
   type="button"
 >
   <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
   >
     <span
-      class="euiButtonEmpty__text euiFilterButton__text-hasNotification"
+      class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text-hasNotification"
     >
       <span
         class="euiFilterButton__textShift"

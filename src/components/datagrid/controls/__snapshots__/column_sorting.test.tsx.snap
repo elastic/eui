@@ -9,20 +9,19 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
     class="euiPopover__anchor css-16vtueo-render"
   >
     <button
-      class="euiButtonEmpty euiButtonEmpty--xSmall euiDataGrid__controlBtn euiDataGrid__controlBtn--active css-wvaqcf-empty-text"
+      class="euiButtonEmpty euiDataGrid__controlBtn euiDataGrid__controlBtn--active emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
       data-test-subj="dataGridColumnSortingButton"
       type="button"
     >
       <span
-        class="euiButtonContent euiButtonEmpty__content"
+        class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
       >
         <span
-          class="euiButtonContent__icon"
           color="inherit"
           data-euiicon-type="sortable"
         />
         <span
-          class="euiButtonEmpty__text"
+          class="eui-textTruncate euiButtonEmpty__text"
         >
           1 field sorted
         </span>
@@ -245,23 +244,22 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
               class="euiPopover__anchor css-16vtueo-render"
             >
               <button
-                class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushLeft css-9t7nyf-empty-primary"
+                class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-flush-left"
                 data-test-subj="dataGridColumnSortingSelectionButton"
                 type="button"
               >
                 <span
-                  class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+                  class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                 >
                   <span
-                    class="euiButtonContent__icon"
-                    color="inherit"
-                    data-euiicon-type="arrowDown"
-                  />
-                  <span
-                    class="euiButtonEmpty__text"
+                    class="eui-textTruncate euiButtonEmpty__text"
                   >
                     Pick fields to sort by
                   </span>
+                  <span
+                    color="inherit"
+                    data-euiicon-type="arrowDown"
+                  />
                 </span>
               </button>
             </div>
@@ -271,15 +269,15 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
           class="euiFlexItem emotion-euiFlexItem-growZero"
         >
           <button
-            class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushRight css-9t7nyf-empty-primary"
+            class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-flush-right"
             data-test-subj="dataGridColumnSortingClearButton"
             type="button"
           >
             <span
-              class="euiButtonContent euiButtonEmpty__content"
+              class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
             >
               <span
-                class="euiButtonEmpty__text"
+                class="eui-textTruncate euiButtonEmpty__text"
               >
                 Clear sorting
               </span>

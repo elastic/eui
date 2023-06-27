@@ -649,16 +649,16 @@ exports[`EuiInlineEditForm read mode isReadOnly 1`] = `
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--flushBoth css-1xic7s3-empty-disabled-euiInlineEditReadMode-isReadOnly"
+    class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-disabled-flush-both-isDisabled-euiInlineEditReadMode-isReadOnly"
     data-test-subj="euiInlineReadModeButton"
     disabled=""
     type="button"
   >
     <span
-      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
     >
       <span
-        class="euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text"
       >
         Hello World!
       </span>
@@ -677,20 +677,19 @@ exports[`EuiInlineEditForm read mode readModeProps 1`] = `
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--flushBoth css-1e81xrj-empty-primary-euiInlineEditReadMode"
+    class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-primary-flush-both-euiInlineEditReadMode"
     data-test-subj="euiInlineReadModeButton"
     type="button"
   >
     <span
-      class="euiButtonContent euiButtonEmpty__content"
+      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
     >
       <span
-        class="euiButtonContent__icon"
         color="inherit"
         data-euiicon-type="pencil"
       />
       <span
-        class="euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text"
       >
         Hello World!
       </span>
@@ -711,23 +710,22 @@ exports[`EuiInlineEditForm read mode renders 1`] = `
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--flushBoth css-i2vcrr-empty-text-euiInlineEditReadMode"
+    class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-flush-both-euiInlineEditReadMode"
     data-test-subj="euiInlineReadModeButton"
     type="button"
   >
     <span
-      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
     >
       <span
-        class="euiButtonContent__icon"
-        color="inherit"
-        data-euiicon-type="pencil"
-      />
-      <span
-        class="euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text"
       >
         Hello World!
       </span>
+      <span
+        color="inherit"
+        data-euiicon-type="pencil"
+      />
     </span>
   </button>
   <span
@@ -745,23 +743,22 @@ exports[`EuiInlineEditForm read mode sizes 1`] = `
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushBoth css-i2vcrr-empty-text-euiInlineEditReadMode"
+    class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text-flush-both-euiInlineEditReadMode"
     data-test-subj="euiInlineReadModeButton"
     type="button"
   >
     <span
-      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
     >
       <span
-        class="euiButtonContent__icon"
-        color="inherit"
-        data-euiicon-type="pencil"
-      />
-      <span
-        class="euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text"
       >
         Hello World!
       </span>
+      <span
+        color="inherit"
+        data-euiicon-type="pencil"
+      />
     </span>
   </button>
   <span
