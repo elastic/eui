@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme } from '../../services';
+import { UseEuiTheme, tint } from '../../services';
 
 export const euiInlineEditReadModeStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
@@ -25,8 +25,7 @@ export const euiInlineEditReadModeStyles = ({ euiTheme }: UseEuiTheme) => {
     hasPlaceholder: css`
       .euiText,
       .euiTitle {
-        font-style: italic;
-        color: ${euiTheme.colors.subduedText};
+        color: ${tint(euiTheme.colors.subduedText, 0.15)};
       }
     `,
   };
