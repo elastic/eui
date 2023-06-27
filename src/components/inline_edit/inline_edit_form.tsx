@@ -40,6 +40,7 @@ import { euiInlineEditReadModeStyles } from './inline_edit_form.styles';
 export type EuiInlineEditCommonProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
     defaultValue: string;
+    placeholder?: string;
     /**
      * Callback that fires when a user clicks the save button.
      * Passes the current edited text value as an argument.
@@ -121,6 +122,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   children,
   sizes,
   defaultValue,
+  placeholder,
   inputAriaLabel,
   startWithEditOpen,
   readModeProps,
@@ -133,12 +135,6 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   const classes = classNames('euiInlineEdit', className);
 
   const euiTheme = useEuiTheme();
-
-  const readModeStyles = euiInlineEditReadModeStyles(euiTheme);
-  const readModeCssStyles = [
-    readModeStyles.euiInlineEditReadMode,
-    isReadOnly && readModeStyles.isReadOnly,
-  ];
 
   const { controlHeight, controlCompressedHeight } = euiFormVariables(euiTheme);
   const loadingSkeletonSize = sizes.compressed
@@ -168,9 +164,21 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
     editModeProps?.inputProps?.inputRef,
   ]);
 
+  const [showPlaceholder, setShowPlaceholder] = useState(
+    placeholder && !defaultValue
+  );
   const [isEditing, setIsEditing] = useState(false || startWithEditOpen);
   const [editModeValue, setEditModeValue] = useState(defaultValue);
-  const [readModeValue, setReadModeValue] = useState(defaultValue);
+  const [readModeValue, setReadModeValue] = useState(
+    showPlaceholder ? placeholder : defaultValue
+  );
+
+  const readModeStyles = euiInlineEditReadModeStyles(euiTheme);
+  const readModeCssStyles = [
+    readModeStyles.euiInlineEditReadMode,
+    isReadOnly && readModeStyles.isReadOnly,
+    showPlaceholder && readModeStyles.hasPlaceholder,
+  ];
 
   const activateEditMode = () => {
     setIsEditing(true);
@@ -179,7 +187,10 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   };
 
   const cancelInlineEdit = () => {
-    setEditModeValue(readModeValue);
+    // If placeholder is active and a save is cancelled, return edit mode value to an empty string
+    readModeValue && !showPlaceholder
+      ? setEditModeValue(readModeValue)
+      : setEditModeValue('');
     setIsEditing(false);
     requestAnimationFrame(() => readModeFocusRef.current?.focus());
   };
@@ -193,6 +204,8 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
       if (awaitedReturn === false) return;
     }
 
+    // If placeholder is active and a value is saved, stop displaying placeholder styles
+    showPlaceholder && setShowPlaceholder(false);
     setReadModeValue(editModeValue);
     setIsEditing(false);
     requestAnimationFrame(() => readModeFocusRef.current?.focus());
@@ -234,6 +247,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
             isInvalid={isInvalid}
             isLoading={isLoading}
             data-test-subj="euiInlineEditModeInput"
+            placeholder={placeholder}
             {...editModeProps?.inputProps}
             inputRef={setEditModeRefs}
             onChange={(e) => {

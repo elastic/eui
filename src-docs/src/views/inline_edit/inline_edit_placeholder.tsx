@@ -11,8 +11,8 @@ export default () => {
     <>
       <EuiInlineEditText
         inputAriaLabel="Edit text inline"
-        defaultValue="This is placeholder text"
-        displayDefaultValueAsPlaceholder={true}
+        defaultValue=""
+        placeholder="Hello!"
       />
 
       <EuiSpacer />
@@ -20,8 +20,8 @@ export default () => {
       <EuiInlineEditTitle
         heading="h3"
         inputAriaLabel="Edit title inline"
-        defaultValue="This is a placeholder title"
-        displayDefaultValueAsPlaceholder={true}
+        defaultValue=""
+        placeholder="hey!"
       />
     </>
   );
