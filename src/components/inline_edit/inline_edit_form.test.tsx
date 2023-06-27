@@ -75,6 +75,19 @@ describe('EuiInlineEditForm', () => {
 
       expect(container.firstChild).toMatchSnapshot();
     });
+
+    test('placeholder', () => {
+      const { container, getByText } = render(
+        <EuiInlineEditForm
+          {...commonInlineEditFormProps}
+          defaultValue=""
+          placeholder="This is a placeholder."
+        />
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+      expect(getByText('This is a placeholder.')).toBeTruthy();
+    });
   });
 
   describe('edit mode', () => {
@@ -201,6 +214,25 @@ describe('EuiInlineEditForm', () => {
       expect(
         getByTestSubject('euiInlineEditModeInput').hasAttribute('aria-invalid')
       ).toBeTruthy();
+    });
+
+    test('placeholder', () => {
+      const { container, getByTestSubject } = render(
+        <EuiInlineEditForm
+          {...commonInlineEditFormProps}
+          startWithEditOpen={true}
+          defaultValue=""
+          placeholder="This is a placeholder."
+        />
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+      expect(
+        getByTestSubject('euiInlineEditModeInput').getAttribute('placeholder')
+      ).toBeTruthy();
+      expect(
+        getByTestSubject('euiInlineEditModeInput').getAttribute('value')
+      ).toBeFalsy();
     });
   });
 
@@ -447,6 +479,26 @@ describe('EuiInlineEditForm', () => {
         expect(onKeyDown).toHaveBeenCalled();
         expect(getByTestSubject('euiInlineReadModeButton')).toBeTruthy();
         expect(getByText('New message!')).toBeTruthy();
+      });
+
+      it('correctly applies `inputModeProps.placeholder`', () => {
+        const { getByTestSubject } = render(
+          <EuiInlineEditForm
+            {...commonInlineEditFormProps}
+            startWithEditOpen={true}
+            defaultValue=""
+            placeholder="This is A!"
+            editModeProps={{
+              inputProps: {
+                placeholder: 'The real placeholder!',
+              },
+            }}
+          />
+        );
+
+        expect(
+          getByTestSubject('euiInlineEditModeInput').getAttribute('placeholder')
+        ).toEqual('The real placeholder!');
       });
     });
   });
