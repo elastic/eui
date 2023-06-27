@@ -12,8 +12,8 @@ import { EuiToolTip } from '../../../tool_tip';
 import { EuiIcon } from '../../../icon';
 import { TooltipNodeDetails } from './types';
 
-type TooltipMarkdownRendererProps = TooltipNodeDetails &
-  PropsWithChildren & {
+type TooltipMarkdownRendererProps = PropsWithChildren &
+  TooltipNodeDetails & {
     position: EuiMarkdownAstNodePosition;
   };
 

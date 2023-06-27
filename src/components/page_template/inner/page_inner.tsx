@@ -19,9 +19,9 @@ import { euiPageInnerStyles } from './page_inner.styles';
 export type ComponentTypes = keyof JSX.IntrinsicElements | ComponentType;
 
 export type _EuiPageInnerProps<T extends ComponentTypes = 'main'> =
-  CommonProps &
-    ComponentProps<T> &
-    PropsWithChildren & {
+  PropsWithChildren &
+    CommonProps &
+    ComponentProps<T> & {
       /**
        * Sets which HTML element to render.
        */

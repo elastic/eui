@@ -90,28 +90,25 @@ export type EuiImageProps = CommonProps &
     wrapperProps?: CommonProps & HTMLAttributes<HTMLDivElement>;
   };
 
-export type EuiImageWrapperProps = Pick<
-  EuiImageProps,
-  | 'alt'
-  | 'caption'
-  | 'float'
-  | 'margin'
-  | 'hasShadow'
-  | 'wrapperProps'
-  | 'fullScreenIconColor'
-  | 'allowFullScreen'
-  | 'onFullScreen'
-> &
-  PropsWithChildren & {
+export type EuiImageWrapperProps = PropsWithChildren &
+  Pick<
+    EuiImageProps,
+    | 'alt'
+    | 'caption'
+    | 'float'
+    | 'margin'
+    | 'hasShadow'
+    | 'wrapperProps'
+    | 'fullScreenIconColor'
+    | 'allowFullScreen'
+    | 'onFullScreen'
+  > & {
     isFullWidth: boolean;
     setIsFullScreen: (isFullScreen: boolean) => void;
   };
 
-export type EuiImageButtonProps = Pick<
-  EuiImageProps,
-  'hasShadow' | 'fullScreenIconColor'
-> &
-  PropsWithChildren & {
+export type EuiImageButtonProps = PropsWithChildren &
+  Pick<EuiImageProps, 'hasShadow' | 'fullScreenIconColor'> & {
     hasAlt: boolean;
     onClick: () => void;
     onKeyDown?: (e: React.KeyboardEvent) => void;

@@ -88,9 +88,9 @@ export const useFullScreen = ({
 /**
  * Portalled full screen wrapper
  */
-export const EuiCodeBlockFullScreenWrapper: FunctionComponent<PropsWithChildren> = ({
-  children,
-}) => {
+export const EuiCodeBlockFullScreenWrapper: FunctionComponent<
+  PropsWithChildren
+> = ({ children }) => {
   const euiThemeContext = useEuiTheme();
 
   const styles = euiCodeBlockStyles(euiThemeContext);

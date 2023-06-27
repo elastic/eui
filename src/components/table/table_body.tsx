@@ -9,8 +9,8 @@
 import React, { FunctionComponent, PropsWithChildren, Ref } from 'react';
 import { CommonProps } from '../common';
 
-export type EuiTableBodyProps = CommonProps &
-  PropsWithChildren & {
+export type EuiTableBodyProps = PropsWithChildren &
+  CommonProps & {
     bodyRef?: Ref<HTMLTableSectionElement>;
   };
 

@@ -21,9 +21,9 @@ import { EuiTabsContext } from './tabs_context';
 export const SIZES = ['s', 'm', 'l', 'xl'] as const;
 export type EuiTabsSizes = (typeof SIZES)[number];
 
-export type EuiTabsProps = CommonProps &
+export type EuiTabsProps = HTMLAttributes<HTMLDivElement> &
   PropsWithChildren &
-  HTMLAttributes<HTMLDivElement> & {
+  CommonProps & {
     /**
      * ReactNode to render as this component's content
      */

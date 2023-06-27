@@ -13,8 +13,8 @@ import { CommonProps } from '../../common';
 import { EuiContextMenuItem } from '../../context_menu';
 
 export interface EuiTableSortMobileItemProps
-  extends CommonProps,
-    PropsWithChildren {
+  extends PropsWithChildren,
+    CommonProps {
   /**
    * Callback to know when an item has been clicked
    */
