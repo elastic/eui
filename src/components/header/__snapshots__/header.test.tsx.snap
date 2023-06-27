@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiHeader is rendered 1`] = `
+exports[`EuiHeader renders 1`] = `
 <div
   aria-label="aria-label"
   class="euiHeader testClass1 testClass2 emotion-euiHeader-static-default"
@@ -53,6 +53,7 @@ exports[`EuiHeader sections render breadcrumbs and props 1`] = `
         <span
           aria-current="page"
           class="euiBreadcrumb__content emotion-euiBreadcrumb__content-application-isTruncatedLast-onlyChild-euiTextColor-default"
+          title="Breadcrumb"
         >
           Breadcrumb
         </span>
