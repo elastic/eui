@@ -66,11 +66,8 @@ export const shouldRenderCustomStyles = (
   // to run the base parent test multiple times. If so, allow skipping this test
   if (!(options.skipParentTest === true && options.childProps)) {
     it(`should render custom ${testCases}`, async () => {
-      const result = render(
-        <div>{React.cloneElement(component, testProps)}</div>
-      );
-      await options.renderCallback?.(result);
-      assertOutputStyles(result.baseElement);
+      const { baseElement } = await renderWith(testProps);
+      assertOutputStyles(baseElement);
     });
   }
 
@@ -81,11 +78,10 @@ export const shouldRenderCustomStyles = (
           ...get(component.props, childProps),
           ...testProps,
         });
-        const result = render(
-          <div>{React.cloneElement(component, mergedChildProps)}</div>
-        );
-        await options.renderCallback?.(result);
-        assertOutputStyles(result.baseElement);
+
+        const { baseElement } = await renderWith(mergedChildProps);
+
+        assertOutputStyles(baseElement);
       });
     });
   }
@@ -111,5 +107,14 @@ export const shouldRenderCustomStyles = (
         "content: 'world';"
       );
     }
+  };
+
+  // Render element with specified props (merging CSS correctly as Emotion does)
+  // and DRYing out `options` handling
+  const renderWith = async (props: unknown) => {
+    const result = render(<div>{React.cloneElement(component, props)}</div>);
+    await options.renderCallback?.(result);
+
+    return result;
   };
 };
