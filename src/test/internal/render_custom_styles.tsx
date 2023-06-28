@@ -9,7 +9,9 @@
 import React, { ReactElement } from 'react';
 import { css } from '@emotion/react';
 import { get, set } from 'lodash';
+
 import { render } from '../rtl';
+import { cloneElementWithCss } from '../../services/theme/clone_element';
 
 export const customStyles = {
   className: 'hello',
@@ -141,7 +143,7 @@ export const shouldRenderCustomStyles = (
   // Render element with specified props (merging CSS correctly as Emotion does)
   // and DRYing out `options` handling
   const renderWith = async (props: unknown) => {
-    const result = render(<div>{React.cloneElement(component, props)}</div>);
+    const result = render(<div>{cloneElementWithCss(component, props)}</div>);
     await options.renderCallback?.(result);
 
     return result;
