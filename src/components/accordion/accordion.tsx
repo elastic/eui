@@ -276,6 +276,7 @@ export class EuiAccordionClass extends Component<
     const cssButtonStyles = [
       buttonStyles.euiAccordion__button,
       isDisabled && buttonStyles.disabled,
+      buttonProps?.css,
     ];
 
     const childrenStyles = euiAccordionChildrenStyles(theme);
@@ -296,6 +297,7 @@ export class EuiAccordionClass extends Component<
       iconButtonStyles.euiAccordion__iconButton,
       isOpen && iconButtonStyles.isOpen,
       _arrowDisplay === 'right' && iconButtonStyles.arrowRight,
+      arrowProps?.css,
     ];
 
     const optionalActionStyles = euiAccordionOptionalActionStyles();
@@ -317,9 +319,9 @@ export class EuiAccordionClass extends Component<
       iconButton = (
         <EuiButtonIcon
           color="text"
-          css={cssIconButtonStyles}
           {...arrowProps}
           className={iconButtonClasses}
+          css={cssIconButtonStyles}
           iconType="arrowRight"
           onClick={this.onToggle}
           aria-controls={id}
@@ -369,10 +371,10 @@ export class EuiAccordionClass extends Component<
 
     const button = (
       <ButtonElement
-        css={cssButtonStyles}
         {...buttonProps}
         id={buttonId}
         className={buttonClasses}
+        css={cssButtonStyles}
         aria-controls={id}
         // `aria-expanded` is only a valid attribute on interactive controls - axe-core throws a violation otherwise
         aria-expanded={ButtonElement === 'button' ? isOpen : undefined}
