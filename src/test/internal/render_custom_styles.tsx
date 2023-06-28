@@ -66,14 +66,17 @@ export const shouldRenderCustomStyles = (
   // to run the base parent test multiple times. If so, allow skipping this test
   if (!(options.skipParentTest === true && options.childProps)) {
     it(`should render custom ${testCases}`, async () => {
+      const euiCss = await getEuiEmotionCss();
       const { baseElement } = await renderWith(testProps);
-      assertOutputStyles(baseElement);
+      assertOutputStyles(baseElement, euiCss);
     });
   }
 
   if (options.childProps) {
     options.childProps.forEach((childProps) => {
       it(`should render custom ${testCases} on ${childProps}`, async () => {
+        const euiCss = await getEuiEmotionCss(childProps);
+
         const mergedChildProps = mergeChildProps(
           component.props,
           childProps,
@@ -81,7 +84,7 @@ export const shouldRenderCustomStyles = (
         );
         const { baseElement } = await renderWith(mergedChildProps);
 
-        assertOutputStyles(baseElement);
+        assertOutputStyles(baseElement, euiCss);
       });
     });
   }
@@ -90,14 +93,14 @@ export const shouldRenderCustomStyles = (
    * Internal utils
    */
 
-  const assertOutputStyles = (rendered: HTMLElement) => {
+  const assertOutputStyles = (rendered: HTMLElement, euiCss: string = '') => {
     // className
     const componentNode = rendered.querySelector('.hello');
     expect(componentNode).not.toBeNull();
 
     // css
-    expect(componentNode!.getAttribute('class')).toEqual(
-      expect.stringMatching(/css-[\d\w-]{6,}-css/) // should have generated an emotion class ending with -css
+    expect(componentNode!.getAttribute('class')).toContain(
+      `${euiCss}-css` // should have generated an Emotion class ending with -css while still maintaining any EUI Emotion CSS already set on the component
     );
 
     // style
@@ -107,6 +110,32 @@ export const shouldRenderCustomStyles = (
         "content: 'world';"
       );
     }
+  };
+
+  // In order to check that consumer css`` is being merged correctly with EUI css``
+  // instead of overriding it, we need to grab the baseline component's classes
+  const getEuiEmotionCss = async (childProps?: string) => {
+    const testProps = childProps
+      ? mergeChildProps(component.props, childProps, {
+          className: customStyles.className,
+        })
+      : { className: customStyles.className };
+
+    const { baseElement, unmount } = await renderWith(testProps);
+    const target = baseElement.querySelector(`.${customStyles.className}`)!;
+    const classes = target.getAttribute('class')?.split(' ');
+    unmount(); // Ensure this baseline render doesn't pollute following renders
+
+    let euiCss = '';
+    classes?.forEach((classString: string) => {
+      if (!classString.startsWith('css-')) return;
+
+      const matches = classString.match(/css-[\d\w-]{4,12}-(?<euiCss>eui.+)/);
+      if (matches?.groups?.euiCss) {
+        euiCss = matches.groups.euiCss;
+      }
+    });
+    return euiCss;
   };
 
   // Render element with specified props (merging CSS correctly as Emotion does)
