@@ -19,24 +19,6 @@ export const customStyles = {
   style: { content: "'world'" },
 };
 
-const assertOutputStyles = (
-  rendered: HTMLElement,
-  { skipStyles }: { skipStyles?: boolean }
-) => {
-  // className
-  const componentNode = rendered.querySelector('.hello');
-  expect(componentNode).not.toBeNull();
-  // css
-  expect(componentNode!.getAttribute('class')).toEqual(
-    expect.stringMatching(/css-[\d\w-]{6,}-css/) // should have generated an emotion class ending with -css
-  );
-  // style
-  // skippable as some components explicitly do not accept custom inline styles
-  if (!skipStyles) {
-    expect(componentNode!.getAttribute('style')).toContain("content: 'world';");
-  }
-};
-
 /**
  * Use this test helper to quickly check that the component supports custom
  * `className`, `css`, and `style` properties.
@@ -88,7 +70,7 @@ export const shouldRenderCustomStyles = (
         <div>{React.cloneElement(component, testProps)}</div>
       );
       await options.renderCallback?.(result);
-      assertOutputStyles(result.baseElement, options);
+      assertOutputStyles(result.baseElement);
     });
   }
 
@@ -103,8 +85,31 @@ export const shouldRenderCustomStyles = (
           <div>{React.cloneElement(component, mergedChildProps)}</div>
         );
         await options.renderCallback?.(result);
-        assertOutputStyles(result.baseElement, options);
+        assertOutputStyles(result.baseElement);
       });
     });
   }
+
+  /**
+   * Internal utils
+   */
+
+  const assertOutputStyles = (rendered: HTMLElement) => {
+    // className
+    const componentNode = rendered.querySelector('.hello');
+    expect(componentNode).not.toBeNull();
+
+    // css
+    expect(componentNode!.getAttribute('class')).toEqual(
+      expect.stringMatching(/css-[\d\w-]{6,}-css/) // should have generated an emotion class ending with -css
+    );
+
+    // style
+    // skippable as some components explicitly do not accept custom inline styles
+    if (!options.skipStyles) {
+      expect(componentNode!.getAttribute('style')).toContain(
+        "content: 'world';"
+      );
+    }
+  };
 };
