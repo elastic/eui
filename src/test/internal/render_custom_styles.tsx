@@ -74,11 +74,11 @@ export const shouldRenderCustomStyles = (
   if (options.childProps) {
     options.childProps.forEach((childProps) => {
       it(`should render custom ${testCases} on ${childProps}`, async () => {
-        const mergedChildProps = set({ ...component.props }, childProps, {
-          ...get(component.props, childProps),
-          ...testProps,
-        });
-
+        const mergedChildProps = mergeChildProps(
+          component.props,
+          childProps,
+          testProps
+        );
         const { baseElement } = await renderWith(mergedChildProps);
 
         assertOutputStyles(baseElement);
@@ -116,5 +116,12 @@ export const shouldRenderCustomStyles = (
     await options.renderCallback?.(result);
 
     return result;
+  };
+
+  const mergeChildProps = (props: any, key: string, nestedProps: any) => {
+    return set({ ...props }, key, {
+      ...get(props, key),
+      ...nestedProps,
+    });
   };
 };
