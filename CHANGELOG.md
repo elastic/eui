@@ -1,3 +1,7 @@
+## [`82.2.1`](https://github.com/elastic/eui/tree/v82.2.1)
+
+- Updated supported Node engine versions to allow Node 16, 18 and >=20 ([#6884](https://github.com/elastic/eui/pull/6884))
+
 ## [`82.2.0`](https://github.com/elastic/eui/tree/v82.2.0)
 
 - Updated EUI's SVG icons library to use latest SVGO v3 optimization ([#6843](https://github.com/elastic/eui/pull/6843))
