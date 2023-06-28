@@ -41,26 +41,37 @@ const assertOutputStyles = (
  * Use this test helper to quickly check that the component supports custom
  * `className`, `css`, and `style` properties.
  *
- * Use options.childProps to ensure that any child component props
- * also correctly accept custom css/classes/styles.
- *
- * Use options.skipStyles for components that specifically
- * do not allow custom inline styles.
- *
  * Example usage:
  *
  * shouldRenderCustomStyles(<EuiMark {...requiredProps} />Marked</EuiMark>);
  * shouldRenderCustomStyles(<EuiPageSection />, { childProps: ['contentProps'] });
  * shouldRenderCustomStyles(<EuiPopover />, { childProps: ['panelProps'], skipStyles: true });
  */
+type ShouldRenderCustomStylesOptions = {
+  /**
+   * Used to test that child component props correctly accept custom styles
+   * e.g., `iconProps`, `wrapperProps`, `labelProps`, etc.
+   */
+  childProps?: string[];
+  /**
+   * Used for components that do not allow custom inline styles, or
+   * components where `style` isn't on the same DOM node as `className`
+   */
+  skipStyles?: boolean;
+  /**
+   * Useful for running separate parent and `childProps` tests/setups
+   */
+  skipParentTest?: boolean;
+  /**
+   * Optional callback to fire after component renders
+   * Used for components that only render certain elements on, e.g. hover or click
+   */
+  renderCallback?: (result: ReturnType<typeof render>) => void;
+};
+
 export const shouldRenderCustomStyles = (
   component: ReactElement,
-  options: {
-    childProps?: string[];
-    skipStyles?: boolean;
-    skipParentTest?: boolean;
-    renderCallback?: (result: ReturnType<typeof render>) => void;
-  } = {}
+  options: ShouldRenderCustomStylesOptions = {}
 ) => {
   const testCases = options.skipStyles
     ? 'classNames and css'
