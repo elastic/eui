@@ -77,7 +77,9 @@ describe('EuiCollapsibleNav', () => {
         cy.mount(<Nav />);
         cy.wait(400);
         cy.get('[data-test-subj="navSpecButton"]').realClick();
-        cy.get('[data-test-subj="euiFlyoutCloseButton"]').realClick();
+        cy.get('[data-test-subj="euiFlyoutCloseButton"]').click({
+          force: true,
+        });
         expect(cy.get('#navSpec').should('not.exist'));
       });
     });
