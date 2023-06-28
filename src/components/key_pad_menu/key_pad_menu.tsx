@@ -53,17 +53,23 @@ export const EuiKeyPadMenu: FunctionComponent<EuiKeyPadMenuProps> = ({
   checkable,
   ...rest
 }) => {
+  const hasCheckableConfig = typeof checkable === 'object';
+
   const classes = classNames('euiKeyPadMenu', className);
 
   const theme = useEuiTheme();
   const styles = euiKeyPadMenuStyles(theme);
   const cssStyles = [styles.euiKeyPadMenu];
+  const legendCssStyles = [
+    styles.euiKeyPadMenu__legend,
+    hasCheckableConfig && checkable?.legendProps?.css,
+  ];
 
   const legend =
-    typeof checkable === 'object' && checkable.legend ? (
+    hasCheckableConfig && checkable.legend ? (
       <EuiFormLabel
-        css={styles.euiKeyPadMenu__legend}
         {...checkable.legendProps}
+        css={legendCssStyles}
         type="legend"
       >
         {checkable.legend}
@@ -74,9 +80,7 @@ export const EuiKeyPadMenu: FunctionComponent<EuiKeyPadMenuProps> = ({
     <fieldset
       css={cssStyles}
       className={classes}
-      aria-label={
-        typeof checkable === 'object' ? checkable.ariaLegend : undefined
-      }
+      aria-label={hasCheckableConfig ? checkable.ariaLegend : undefined}
       {...rest}
     >
       {legend}
