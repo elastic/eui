@@ -1,37 +1,65 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiSearchBox render - custom placeholder and incremental 1`] = `
-<EuiFieldSearch
-  aria-label="aria-label"
-  className="testClass1 testClass2"
-  compressed={false}
-  data-test-subj="test subject string"
-  defaultValue=""
-  fullWidth={true}
-  incremental={true}
-  inputRef={[Function]}
-  isClearable={true}
-  isLoading={false}
-  onFocus={[Function]}
-  onSearch={[Function]}
-  placeholder="..."
-/>
+<div
+  class="euiFormControlLayout euiFormControlLayout--fullWidth"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <div
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+    >
+      <span
+        class="euiFormControlLayoutCustomIcon"
+      >
+        <span
+          aria-hidden="true"
+          class="euiFormControlLayoutCustomIcon__icon"
+          data-euiicon-type="search"
+        />
+      </span>
+    </div>
+    <input
+      aria-label="aria-label"
+      class="euiFieldSearch euiFieldSearch--fullWidth testClass1 testClass2 emotion-euiTestCss"
+      data-test-subj="test subject string"
+      placeholder="..."
+      type="search"
+      value=""
+    />
+  </div>
+</div>
 `;
 
 exports[`EuiSearchBox render - no config 1`] = `
-<EuiFieldSearch
-  aria-label="aria-label"
-  className="testClass1 testClass2"
-  compressed={false}
-  data-test-subj="test subject string"
-  defaultValue=""
-  fullWidth={true}
-  incremental={false}
-  inputRef={[Function]}
-  isClearable={true}
-  isLoading={false}
-  onFocus={[Function]}
-  onSearch={[Function]}
-  placeholder="Search..."
-/>
+<div
+  class="euiFormControlLayout euiFormControlLayout--fullWidth"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <div
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+    >
+      <span
+        class="euiFormControlLayoutCustomIcon"
+      >
+        <span
+          aria-hidden="true"
+          class="euiFormControlLayoutCustomIcon__icon"
+          data-euiicon-type="search"
+        />
+      </span>
+    </div>
+    <input
+      aria-label="aria-label"
+      class="euiFieldSearch euiFieldSearch--fullWidth testClass1 testClass2 emotion-euiTestCss"
+      data-test-subj="test subject string"
+      placeholder="Search..."
+      type="search"
+      value=""
+    />
+  </div>
+</div>
 `;

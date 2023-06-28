@@ -7,8 +7,9 @@
  */
 
 import React from 'react';
+import { render } from '../../test/rtl';
 import { requiredProps } from '../../test';
-import { shallow } from 'enzyme';
+
 import { EuiSearchBox } from './search_box';
 
 describe('EuiSearchBox', () => {
@@ -19,9 +20,9 @@ describe('EuiSearchBox', () => {
       onSearch: () => {},
     };
 
-    const component = shallow(<EuiSearchBox {...props} />);
+    const { container } = render(<EuiSearchBox {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('render - custom placeholder and incremental', () => {
@@ -33,8 +34,8 @@ describe('EuiSearchBox', () => {
       incremental: true,
     };
 
-    const component = shallow(<EuiSearchBox {...props} />);
+    const { container } = render(<EuiSearchBox {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

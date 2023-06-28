@@ -7,8 +7,9 @@
  */
 
 import React from 'react';
+import { render } from '../../../test/rtl';
 import { requiredProps } from '../../../test';
-import { shallow } from 'enzyme';
+
 import { Query } from '../query';
 import {
   FieldValueToggleFilter,
@@ -16,7 +17,7 @@ import {
 } from './field_value_toggle_filter';
 
 describe('FieldValueToggleFilter', () => {
-  test('render', () => {
+  it('renders', () => {
     const props: FieldValueToggleFilterProps = {
       ...requiredProps,
       index: 0,
@@ -30,8 +31,8 @@ describe('FieldValueToggleFilter', () => {
       },
     };
 
-    const component = shallow(<FieldValueToggleFilter {...props} />);
-    expect(component).toMatchSnapshot();
+    const { container } = render(<FieldValueToggleFilter {...props} />);
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('render - active', () => {
@@ -48,8 +49,8 @@ describe('FieldValueToggleFilter', () => {
       },
     };
 
-    const component = shallow(<FieldValueToggleFilter {...props} />);
-    expect(component).toMatchSnapshot();
+    const { container } = render(<FieldValueToggleFilter {...props} />);
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('render - active negated', () => {
@@ -66,8 +67,8 @@ describe('FieldValueToggleFilter', () => {
       },
     };
 
-    const component = shallow(<FieldValueToggleFilter {...props} />);
-    expect(component).toMatchSnapshot();
+    const { container } = render(<FieldValueToggleFilter {...props} />);
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('render - active negated - custom negated name', () => {
@@ -85,7 +86,7 @@ describe('FieldValueToggleFilter', () => {
       },
     };
 
-    const component = shallow(<FieldValueToggleFilter {...props} />);
-    expect(component).toMatchSnapshot();
+    const { container } = render(<FieldValueToggleFilter {...props} />);
+    expect(container.firstChild).toMatchSnapshot();
   });
 });
