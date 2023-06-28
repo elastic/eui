@@ -186,7 +186,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
 
   const closeClassNames = classNames(
     'euiBadge__icon',
-    closeButtonProps && closeButtonProps.className
+    closeButtonProps?.className
   );
 
   const Element = href && !isDisabled ? 'a' : 'button';
@@ -230,9 +230,9 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
             type={iconType}
             size="s"
             color="inherit" // forces the icon to inherit its parent color
-            css={iconCssStyles}
             {...closeButtonProps}
             className={closeClassNames}
+            css={[...iconCssStyles, closeButtonProps?.css]}
           />
         </button>
       );
