@@ -173,7 +173,7 @@ Array [
         </p>
         <button
           aria-label="aria-label"
-          class="euiButtonIcon euiFlyout__closeButton testClass1 testClass2 emotion-euiButtonIcon-xs-empty-text-euiTestCss"
+          class="euiButtonIcon euiFlyout__closeButton testClass1 testClass2 emotion-euiButtonIcon-xs-empty-text-euiFlyout__closeButton-inside-euiTestCss"
           data-test-subj="test subject string"
           type="button"
         >
