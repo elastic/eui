@@ -142,13 +142,14 @@ describe('EuiSuggest', () => {
     describe('onItemClick', () => {
       it('passes an onChange callback to the underlying EuiSelectable, which will fire on list item clicks and enter keypresses', () => {
         const onItemClick = jest.fn();
-        const component = shallow(
+        const _component = shallow(
           <EuiSuggest
             {...requiredProps}
             suggestions={sampleItems}
             onItemClick={onItemClick}
           />
         );
+        const component = _component.find(EuiSuggest).dive(); // Shallow workaround for Emotion wrapper
 
         const options = component.find(EuiSelectable).prop('options');
         options[1].checked = 'on';
