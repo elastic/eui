@@ -10,9 +10,9 @@ export default () => {
   return (
     <>
       <EuiInlineEditText
-        inputAriaLabel="Edit text inline"
+        inputAriaLabel="Placeholder text example"
         defaultValue=""
-        placeholder="This is placeholder text!"
+        placeholder="Add a description"
       />
 
       <EuiSpacer />
