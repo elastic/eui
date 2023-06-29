@@ -481,7 +481,7 @@ describe('EuiInlineEditForm', () => {
         expect(getByText('New message!')).toBeTruthy();
       });
 
-      it('correctly applies `inputModeProps.placeholder`', () => {
+      it('allows overriding `placeholder` with `inputModeProps.placeholder`', () => {
         const { getByTestSubject } = render(
           <EuiInlineEditForm
             {...commonInlineEditFormProps}
