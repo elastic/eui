@@ -19,7 +19,9 @@ export const euiPaginationButtonStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     // Base
-    euiPaginationButton: css``,
+    euiPaginationButton: css`
+      outline-offset: -${euiTheme.focus.width};
+    `,
     // States
     isActive: css`
       && {
