@@ -51,9 +51,3 @@ export const euiPaginationButtonStyles = (euiThemeContext: UseEuiTheme) => {
     `,
   };
 };
-
-export const euiPaginationButtonArrowStyles = ({ euiTheme }: UseEuiTheme) => ({
-  euiPaginationArrowButton: css`
-    outline-offset: -${euiTheme.focus.width};
-  `,
-});
