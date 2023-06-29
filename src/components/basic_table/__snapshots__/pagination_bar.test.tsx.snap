@@ -113,7 +113,7 @@ exports[`PaginationBar renders 1`] = `
     >
       <nav
         aria-label="aria-label"
-        class="euiPagination emotion-euiPagination-EuiPagination"
+        class="euiPagination emotion-euiPagination"
       >
         <span
           aria-atomic="true"
@@ -125,7 +125,7 @@ exports[`PaginationBar renders 1`] = `
         </span>
         <button
           aria-label="First page"
-          class="euiButtonIcon euiPaginationArrowButton emotion-euiButtonIcon-xs-empty-disabled-isDisabled-euiPaginationArrowButton"
+          class="euiButtonIcon euiPaginationArrowButton emotion-euiButtonIcon-xs-empty-disabled-isDisabled-euiPaginationButton"
           data-test-subj="pagination-button-first"
           disabled=""
           type="button"
@@ -139,7 +139,7 @@ exports[`PaginationBar renders 1`] = `
         </button>
         <button
           aria-label="Previous page"
-          class="euiButtonIcon euiPaginationArrowButton emotion-euiButtonIcon-xs-empty-disabled-isDisabled-euiPaginationArrowButton"
+          class="euiButtonIcon euiPaginationArrowButton emotion-euiButtonIcon-xs-empty-disabled-isDisabled-euiPaginationButton"
           data-test-subj="pagination-button-previous"
           disabled=""
           type="button"
@@ -153,7 +153,7 @@ exports[`PaginationBar renders 1`] = `
         </button>
         <button
           aria-label="Next page"
-          class="euiButtonIcon euiPaginationArrowButton emotion-euiButtonIcon-xs-empty-text-euiPaginationArrowButton"
+          class="euiButtonIcon euiPaginationArrowButton emotion-euiButtonIcon-xs-empty-text-euiPaginationButton"
           data-test-subj="pagination-button-next"
           title="Next page"
           type="button"
@@ -167,7 +167,7 @@ exports[`PaginationBar renders 1`] = `
         </button>
         <button
           aria-label="Last page"
-          class="euiButtonIcon euiPaginationArrowButton emotion-euiButtonIcon-xs-empty-text-euiPaginationArrowButton"
+          class="euiButtonIcon euiPaginationArrowButton emotion-euiButtonIcon-xs-empty-text-euiPaginationButton"
           data-test-subj="pagination-button-last"
           title="Last page"
           type="button"
