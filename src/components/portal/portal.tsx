@@ -11,26 +11,12 @@
  * into portals.
  */
 
-import { Component, ReactNode } from 'react';
+import React, { Component, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 
 import { EuiNestedThemeContext } from '../../services';
-import { keysOf } from '../common';
-
-interface InsertPositionsMap {
-  after: InsertPosition;
-  before: InsertPosition;
-}
-
-export const insertPositions: InsertPositionsMap = {
-  after: 'afterend',
-  before: 'beforebegin',
-};
-
-type EuiPortalInsertPosition = keyof typeof insertPositions;
-
-export const INSERT_POSITIONS: EuiPortalInsertPosition[] =
-  keysOf(insertPositions);
+import { usePortalInsertion } from './portal.provider';
+import { insertPositions } from './portal.types';
 
 export interface EuiPortalProps {
   /**
@@ -48,7 +34,16 @@ export interface EuiPortalProps {
   portalRef?: (ref: HTMLDivElement | null) => void;
 }
 
-export class EuiPortal extends Component<EuiPortalProps> {
+export function EuiPortal(props: EuiPortalProps) {
+  const ctxInsertion = usePortalInsertion();
+  return (
+    <EuiPortalClassComponent {...props} insert={props.insert || ctxInsertion}>
+      {props.children}
+    </EuiPortalClassComponent>
+  );
+}
+
+export class EuiPortalClassComponent extends Component<EuiPortalProps> {
   static contextType = EuiNestedThemeContext;
 
   portalNode: HTMLDivElement | null = null;
@@ -85,7 +80,7 @@ export class EuiPortal extends Component<EuiPortalProps> {
   }
 
   // Set the inherited color of the portal based on the wrapping EuiThemeProvider
-  setThemeColor() {
+  private setThemeColor() {
     if (this.portalNode && this.context) {
       const { hasDifferentColorFromGlobalTheme, colorClassName } = this.context;
 
@@ -95,7 +90,7 @@ export class EuiPortal extends Component<EuiPortalProps> {
     }
   }
 
-  updatePortalRef(ref: HTMLDivElement | null) {
+  private updatePortalRef(ref: HTMLDivElement | null) {
     if (this.props.portalRef) {
       this.props.portalRef(ref);
     }
