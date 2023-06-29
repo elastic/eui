@@ -1,5 +1,5 @@
-import React, { createElement } from 'react';
-import ReactDOM from 'react-dom';
+import React, { createElement, StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
@@ -40,130 +40,133 @@ const routes = [
   ...childRoutes,
 ];
 
-ReactDOM.render(
-  <Provider store={store}>
-    <ThemeProvider>
-      <AppContext>
-        <HashRouter>
-          <Switch>
-            {routes.map(
-              ({
-                name,
-                path,
-                sections,
-                isBeta,
-                isNew,
-                component,
-                from,
-                to,
-              }) => {
-                const meta = (
-                  <Helmet>
-                    <title>{`${name} - Elastic UI Framework`}</title>
-                  </Helmet>
-                );
-                const mainComponent = (
-                  <Route
-                    key={path}
-                    path={`/${path}`}
-                    render={(props) => {
-                      const { location } = props;
-                      // prevents encoded urls with a section id to fail
-                      if (location.pathname.includes('%23')) {
-                        const url = decodeURIComponent(location.pathname);
-                        return <Redirect push to={url} />;
-                      } else {
-                        return (
-                          <AppView
-                            currentRoute={{
-                              name,
-                              path,
-                              sections,
-                              isBeta,
-                              isNew,
-                            }}
-                          >
-                            {({ theme }) => (
-                              <>
-                                {meta}
-                                {createElement(component, {
-                                  selectedTheme: theme,
-                                  title: name,
-                                })}
-                              </>
-                            )}
-                          </AppView>
-                        );
-                      }
-                    }}
-                  />
-                );
+const root = createRoot(document.getElementById('guide'));
 
-                const standaloneSections = [];
-                (sections || []).forEach(
-                  ({ id, fullScreen, sections: subSections }) => {
-                    if (fullScreen) {
-                      const { slug, demo } = fullScreen;
-                      standaloneSections.push(
-                        <Route
-                          key={`/${path}/${slug}`}
-                          path={`/${path}/${slug}`}
-                          render={() => (
-                            <ExampleContext.Provider
-                              value={{ parentPath: `/${path}#${id}` }}
+root.render(
+  <StrictMode>
+    <Provider store={store}>
+      <ThemeProvider>
+        <AppContext>
+          <HashRouter>
+            <Switch>
+              {routes.map(
+                ({
+                  name,
+                  path,
+                  sections,
+                  isBeta,
+                  isNew,
+                  component,
+                  from,
+                  to,
+                }) => {
+                  const meta = (
+                    <Helmet>
+                      <title>{`${name} - Elastic UI Framework`}</title>
+                    </Helmet>
+                  );
+                  const mainComponent = (
+                    <Route
+                      key={path}
+                      path={`/${path}`}
+                      render={(props) => {
+                        const { location } = props;
+                        // prevents encoded urls with a section id to fail
+                        if (location.pathname.includes('%23')) {
+                          const url = decodeURIComponent(location.pathname);
+                          return <Redirect push to={url} />;
+                        } else {
+                          return (
+                            <AppView
+                              currentRoute={{
+                                name,
+                                path,
+                                sections,
+                                isBeta,
+                                isNew,
+                              }}
                             >
-                              {meta}
-                              {demo}
-                            </ExampleContext.Provider>
-                          )}
-                        />
-                      );
-                    }
-                    if (subSections) {
-                      subSections.forEach(({ fullScreen, id: sectionId }) => {
-                        if (fullScreen) {
-                          const { slug, demo } = fullScreen;
-                          standaloneSections.push(
-                            <Route
-                              key={`/${path}/${id}/${slug}`}
-                              path={`/${path}/${id}/${slug}`}
-                              render={() => (
-                                <ExampleContext.Provider
-                                  value={{
-                                    parentPath: `/${path}/${id}#${sectionId}`,
-                                  }}
-                                >
+                              {({ theme }) => (
+                                <>
                                   {meta}
-                                  {demo}
-                                </ExampleContext.Provider>
+                                  {createElement(component, {
+                                    selectedTheme: theme,
+                                    title: name,
+                                  })}
+                                </>
                               )}
-                            />
+                            </AppView>
                           );
                         }
-                      });
+                      }}
+                    />
+                  );
+
+                  const standaloneSections = [];
+                  (sections || []).forEach(
+                    ({ id, fullScreen, sections: subSections }) => {
+                      if (fullScreen) {
+                        const { slug, demo } = fullScreen;
+                        standaloneSections.push(
+                          <Route
+                            key={`/${path}/${slug}`}
+                            path={`/${path}/${slug}`}
+                            render={() => (
+                              <ExampleContext.Provider
+                                value={{ parentPath: `/${path}#${id}` }}
+                              >
+                                {meta}
+                                {demo}
+                              </ExampleContext.Provider>
+                            )}
+                          />
+                        );
+                      }
+                      if (subSections) {
+                        subSections.forEach(({ fullScreen, id: sectionId }) => {
+                          if (fullScreen) {
+                            const { slug, demo } = fullScreen;
+                            standaloneSections.push(
+                              <Route
+                                key={`/${path}/${id}/${slug}`}
+                                path={`/${path}/${id}/${slug}`}
+                                render={() => (
+                                  <ExampleContext.Provider
+                                    value={{
+                                      parentPath: `/${path}/${id}#${sectionId}`,
+                                    }}
+                                  >
+                                    {meta}
+                                    {demo}
+                                  </ExampleContext.Provider>
+                                )}
+                              />
+                            );
+                          }
+                        });
+                      }
                     }
-                  }
-                );
-                standaloneSections.filter((x) => !!x);
+                  );
+                  standaloneSections.filter((x) => !!x);
 
-                // place standaloneSections before mainComponent so their routes take precedent
-                const routes = [...standaloneSections, mainComponent];
+                  // place standaloneSections before mainComponent so their routes take precedent
+                  const routes = [...standaloneSections, mainComponent];
 
-                if (from)
-                  return [
-                    ...routes,
-                    <Route exact path={`/${from}`}>
-                      <Redirect to={`/${to}`} />
-                    </Route>,
-                  ];
-                else if (component) return routes;
-                return null;
-              }
-            )}
-          </Switch>
-        </HashRouter>
-      </AppContext>
-    </ThemeProvider>
-  </Provider>,
-  document.getElementById('guide')
+                  if (from)
+                    return [
+                      ...routes,
+                      <Route exact path={`/${from}`}>
+                        <Redirect to={`/${to}`} />
+                      </Route>,
+                    ];
+                  else if (component) return routes;
+                  return null;
+                }
+              )}
+            </Switch>
+          </HashRouter>
+        </AppContext>
+      </ThemeProvider>
+    </Provider>
+  </StrictMode>
 );

@@ -17,6 +17,7 @@ import {
   MutableRefObject,
   Ref,
   Component,
+  PropsWithChildren,
 } from 'react';
 import {
   VariableSizeGridProps,
@@ -151,7 +152,7 @@ export interface EuiDataGridControlHeaderCellProps {
   headerIsInteractive: boolean;
 }
 
-export interface EuiDataGridHeaderCellWrapperProps {
+export interface EuiDataGridHeaderCellWrapperProps extends PropsWithChildren {
   id: string;
   index: number;
   headerIsInteractive: boolean;

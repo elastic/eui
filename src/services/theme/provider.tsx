@@ -37,7 +37,13 @@ import {
   EuiThemeModifications,
 } from './types';
 
-export interface EuiThemeProviderProps<T> {
+type LEVELS = 'log' | 'warn' | 'error';
+let providerWarning: LEVELS | undefined = undefined;
+export const setEuiDevProviderWarning = (level: LEVELS | undefined) =>
+  (providerWarning = level);
+export const getEuiDevProviderWarning = () => providerWarning;
+
+export interface EuiThemeProviderProps<T> extends PropsWithChildren {
   theme?: EuiThemeSystem<T>;
   colorMode?: EuiThemeColorMode;
   modify?: EuiThemeModifications<T>;
@@ -62,7 +68,7 @@ export const EuiThemeProvider = <T extends {} = {}>({
   modify: _modifications,
   children,
   wrapperProps,
-}: PropsWithChildren<EuiThemeProviderProps<T>>) => {
+}: EuiThemeProviderProps<T>) => {
   const { isGlobalTheme, bodyColor } = useContext(EuiNestedThemeContext);
   const parentSystem = useContext(EuiSystemContext);
   const parentModifications = useContext(EuiModificationsContext);

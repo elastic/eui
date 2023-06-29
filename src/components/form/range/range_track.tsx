@@ -33,7 +33,7 @@ import type {
 import { euiRangeTrackStyles } from './range_track.styles';
 
 export interface EuiRangeTrackProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>,
+  extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange' | 'children'>,
     _SharedRangesValues,
     _SharedRangeDataStructures,
     Pick<_SharedRangeVisualConfiguration, 'showTicks' | 'showRange'>,
