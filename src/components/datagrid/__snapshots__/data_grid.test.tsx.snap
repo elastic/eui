@@ -40,7 +40,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
   >
     <nav
       aria-label="Pagination for preceding grid: test grid"
-      class="euiPagination emotion-euiPagination-EuiPagination"
+      class="euiPagination emotion-euiPagination"
     >
       <span
         aria-atomic="true"

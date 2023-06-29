@@ -807,7 +807,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
       >
         <nav
           aria-label="Pagination for table: "
-          class="euiPagination emotion-euiPagination-EuiPagination"
+          class="euiPagination emotion-euiPagination"
         >
           <span
             aria-atomic="true"

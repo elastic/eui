@@ -3,7 +3,7 @@
 exports[`EuiPagination is rendered 1`] = `
 <nav
   aria-label="aria-label"
-  class="euiPagination testClass1 testClass2 emotion-euiPagination-EuiPagination"
+  class="euiPagination testClass1 testClass2 emotion-euiPagination"
   data-test-subj="test subject string"
 >
   <span
@@ -74,7 +74,7 @@ exports[`EuiPagination is rendered 1`] = `
 
 exports[`EuiPagination props activePage can be -1 1`] = `
 <nav
-  class="euiPagination emotion-euiPagination-EuiPagination"
+  class="euiPagination emotion-euiPagination"
 >
   <span
     aria-atomic="true"
@@ -145,7 +145,7 @@ exports[`EuiPagination props activePage can be -1 1`] = `
 
 exports[`EuiPagination props activePage is rendered 1`] = `
 <nav
-  class="euiPagination emotion-euiPagination-EuiPagination"
+  class="euiPagination emotion-euiPagination"
 >
   <span
     aria-atomic="true"
@@ -194,7 +194,7 @@ exports[`EuiPagination props activePage is rendered 1`] = `
     </li>
     <li
       aria-label="Skipping pages 2 to 3"
-      class="euiPagination__item css-1fxcamg-isPlaceholder"
+      class="euiPagination__item emotion-euiPagination__ellipsis"
     >
       …
     </li>
@@ -360,7 +360,7 @@ exports[`EuiPagination props activePage is rendered 1`] = `
 
 exports[`EuiPagination props aria-controls is rendered 1`] = `
 <nav
-  class="euiPagination emotion-euiPagination-EuiPagination"
+  class="euiPagination emotion-euiPagination"
 >
   <span
     aria-atomic="true"
@@ -430,7 +430,7 @@ exports[`EuiPagination props aria-controls is rendered 1`] = `
 
 exports[`EuiPagination props compressed is rendered 1`] = `
 <nav
-  class="euiPagination emotion-euiPagination-EuiPagination"
+  class="euiPagination emotion-euiPagination"
 >
   <span
     aria-atomic="true"
@@ -512,7 +512,7 @@ exports[`EuiPagination props compressed is rendered 1`] = `
 
 exports[`EuiPagination props pageCount can be 0 1`] = `
 <nav
-  class="euiPagination emotion-euiPagination-EuiPagination"
+  class="euiPagination emotion-euiPagination"
 >
   <span
     aria-atomic="true"
@@ -583,7 +583,7 @@ exports[`EuiPagination props pageCount can be 0 1`] = `
 
 exports[`EuiPagination props pageCount is rendered 1`] = `
 <nav
-  class="euiPagination emotion-euiPagination-EuiPagination"
+  class="euiPagination emotion-euiPagination"
 >
   <span
     aria-atomic="true"
@@ -714,7 +714,7 @@ exports[`EuiPagination props pageCount is rendered 1`] = `
     </li>
     <li
       aria-label="Skipping pages 6 to 9"
-      class="euiPagination__item css-1fxcamg-isPlaceholder"
+      class="euiPagination__item emotion-euiPagination__ellipsis"
     >
       …
     </li>
@@ -758,7 +758,7 @@ exports[`EuiPagination props pageCount is rendered 1`] = `
 
 exports[`EuiPagination props responsive can be customized 1`] = `
 <nav
-  class="euiPagination emotion-euiPagination-EuiPagination"
+  class="euiPagination emotion-euiPagination"
 >
   <span
     aria-atomic="true"
@@ -827,7 +827,7 @@ exports[`EuiPagination props responsive can be customized 1`] = `
 
 exports[`EuiPagination props responsive can be false 1`] = `
 <nav
-  class="euiPagination emotion-euiPagination-EuiPagination"
+  class="euiPagination emotion-euiPagination"
 >
   <span
     aria-atomic="true"

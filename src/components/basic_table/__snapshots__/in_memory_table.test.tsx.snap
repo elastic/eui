@@ -148,7 +148,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
       >
         <nav
           aria-label="Pagination for table: "
-          class="euiPagination emotion-euiPagination-EuiPagination"
+          class="euiPagination emotion-euiPagination"
         >
           <span
             aria-atomic="true"
