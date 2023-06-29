@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { ReactElement } from 'react';
+import React, { JSXElementConstructor, ReactElement } from 'react';
 import { css } from '@emotion/react';
 import { get, set } from 'lodash';
 
@@ -46,6 +46,11 @@ type ShouldRenderCustomStylesOptions = {
    * Useful for running separate parent and `childProps` tests/setups
    */
   skipParentTest?: boolean;
+  /**
+   * Passed directly to RTL's `options.wrapper
+   * Used for components that need (e.g.) a context wrapper
+   */
+  wrapper?: JSXElementConstructor<any>;
   /**
    * Optional callback to fire after component renders
    * Used for components that only render certain elements on, e.g. hover or click
@@ -143,7 +148,9 @@ export const shouldRenderCustomStyles = (
   // Render element with specified props (merging CSS correctly as Emotion does)
   // and DRYing out `options` handling
   const renderWith = async (props: unknown) => {
-    const result = render(<div>{cloneElementWithCss(component, props)}</div>);
+    const result = render(<div>{cloneElementWithCss(component, props)}</div>, {
+      wrapper: options.wrapper,
+    });
     await options.renderCallback?.(result);
 
     return result;
