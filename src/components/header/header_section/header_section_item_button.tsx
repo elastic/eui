@@ -21,17 +21,18 @@ import { EuiIcon } from '../../icon';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../../button';
 import { EuiHideFor, EuiShowFor } from '../../responsive';
 
-export type EuiHeaderSectionItemButtonProps = EuiButtonEmptyProps & {
-  /**
-   * Inserts the node into a EuiBadgeNotification and places it appropriately against the button.
-   * Or pass `true` to render a simple dot
-   */
-  notification?: EuiNotificationBadgeProps['children'] | boolean;
-  /**
-   * Changes the color of the notification background
-   */
-  notificationColor?: EuiNotificationBadgeProps['color'];
-};
+export type EuiHeaderSectionItemButtonProps = PropsWithChildren &
+  EuiButtonEmptyProps & {
+    /**
+     * Inserts the node into a EuiBadgeNotification and places it appropriately against the button.
+     * Or pass `true` to render a simple dot
+     */
+    notification?: EuiNotificationBadgeProps['children'] | boolean;
+    /**
+     * Changes the color of the notification background
+     */
+    notificationColor?: EuiNotificationBadgeProps['color'];
+  };
 
 export type EuiHeaderSectionItemButtonRef =
   | (HTMLButtonElement & { euiAnimate: () => void })
@@ -39,7 +40,7 @@ export type EuiHeaderSectionItemButtonRef =
 
 export const EuiHeaderSectionItemButton = forwardRef<
   EuiHeaderSectionItemButtonRef,
-  PropsWithChildren<EuiHeaderSectionItemButtonProps>
+  EuiHeaderSectionItemButtonProps
 >(
   (
     {
