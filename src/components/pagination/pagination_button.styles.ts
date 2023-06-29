@@ -24,30 +24,23 @@ export const euiPaginationButtonStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // States
     isActive: css`
-      && {
-        font-weight: ${euiTheme.font.weight.bold};
-        color: ${euiTheme.colors.primary};
+      font-weight: ${euiTheme.font.weight.bold};
+      color: ${euiTheme.colors.primary};
 
-        .euiButtonEmpty__content {
-          cursor: default;
-        }
-
-        &&,
-        &&:hover {
-          text-decoration: underline;
-        }
+      &,
+      &:hover {
+        cursor: default;
+        text-decoration: underline;
       }
     `,
     isPlaceholder: css`
-      && {
-        align-items: baseline;
-        color: ${disabled.color};
-        ${fontSizeS}
-        ${logicalCSS('padding-top', halfSizeM)}
-        ${logicalCSS('padding-bottom', 0)}
-        ${logicalCSS('padding-horizontal', euiTheme.size.s)}
-        ${logicalCSS('height', euiTheme.size.l)}
-      }
+      align-items: baseline;
+      color: ${disabled.color};
+      ${fontSizeS}
+      ${logicalCSS('padding-top', halfSizeM)}
+      ${logicalCSS('padding-bottom', 0)}
+      ${logicalCSS('padding-horizontal', euiTheme.size.s)}
+      ${logicalCSS('height', euiTheme.size.l)}
     `,
   };
 };
