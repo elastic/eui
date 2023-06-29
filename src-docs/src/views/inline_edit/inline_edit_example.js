@@ -153,7 +153,7 @@ export const InlineEditExample = {
       playground: inlineEditTitleConfig,
     },
     {
-      title: 'Setting a placeholder',
+      title: 'Setting placeholder instructions',
       text: (
         <>
           <p>
