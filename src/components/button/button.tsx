@@ -7,6 +7,7 @@
  */
 
 import React, { FunctionComponent, Ref, ReactNode } from 'react';
+import classNames from 'classnames';
 
 import {
   CommonProps,
@@ -84,7 +85,13 @@ export type Props = ExclusiveUnion<
  * and the logic for element-specific attributes
  */
 export const EuiButton: FunctionComponent<Props> = (props) => {
-  const { buttonRef, color: _color = 'primary', fill, ...rest } = props;
+  const {
+    className,
+    buttonRef,
+    color: _color = 'primary',
+    fill,
+    ...rest
+  } = props;
 
   const buttonIsDisabled = isButtonDisabled({
     href: rest.href,
@@ -100,6 +107,7 @@ export const EuiButton: FunctionComponent<Props> = (props) => {
 
   const buttonFocusStyle = useEuiButtonFocusCSS();
 
+  const classes = classNames('euiButton', className);
   const cssStyles = [buttonColorStyles, buttonFocusStyle];
 
   if (_color === 'ghost') {
@@ -113,9 +121,9 @@ export const EuiButton: FunctionComponent<Props> = (props) => {
 
   return (
     <EuiButtonDisplay
-      className="euiButton"
-      ref={buttonRef}
+      className={classes}
       css={cssStyles}
+      ref={buttonRef}
       {...rest}
     />
   );
