@@ -19,3 +19,4 @@ Remove or strikethrough items that do not apply to your PR.
 - [ ] Checked for **accessibility** including keyboard-only and screenreader modes
 - [ ] Updated the **[Figma](https://www.figma.com/community/file/964536385682658129)** library counterpart
 - [ ] A **[changelog](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/documenting/changelogs.md)** entry exists and is marked appropriately
+- [ ] For reporting, please add any of the following relevant labels if they pertain to this PR: accessibility
