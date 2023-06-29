@@ -3,7 +3,7 @@
 exports[`EuiTextColor is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="testClass1 testClass2 emotion-euiTextColor-default"
+  class="testClass1 testClass2 emotion-euiTextColor-default-euiTestCss"
   data-test-subj="test subject string"
 />
 `;

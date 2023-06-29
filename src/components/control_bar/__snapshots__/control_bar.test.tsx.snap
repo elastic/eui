@@ -4,7 +4,7 @@ exports[`EuiControlBar is rendered 1`] = `
 Array [
   <section
     aria-label="aria-label"
-    class="euiControlBar testClass1 testClass2 euiControlBar--large euiControlBar--fixed"
+    class="euiControlBar testClass1 testClass2 emotion-euiTestCss euiControlBar--large euiControlBar--fixed"
     data-test-subj="test subject string"
     style="left:0;right:0"
   >

@@ -9,7 +9,7 @@ exports[`EuiTextArea is rendered 1`] = `
   >
     <textarea
       aria-label="aria-label"
-      class="euiTextArea euiTextArea--resizeVertical testClass1 testClass2"
+      class="euiTextArea euiTextArea--resizeVertical testClass1 testClass2 emotion-euiTestCss"
       data-test-subj="test subject string"
       rows="6"
     />

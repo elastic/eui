@@ -1,19 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiCopy is rendered 1`] = `
-<EuiToolTip
-  aria-label="aria-label"
-  className="testClass1 testClass2"
-  data-test-subj="test subject string"
-  delay="regular"
-  display="inlineBlock"
-  onMouseOut={[Function]}
-  position="top"
+exports[`EuiCopy renders 1`] = `
+<span
+  class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
 >
-  <button
-    onClick={[Function]}
-  >
+  <button>
     Click to copy input text
   </button>
-</EuiToolTip>
+</span>
 `;

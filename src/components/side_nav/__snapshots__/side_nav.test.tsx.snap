@@ -3,7 +3,7 @@
 exports[`EuiSideNav is rendered 1`] = `
 <nav
   aria-label="aria-label"
-  class="euiSideNav testClass1 testClass2"
+  class="euiSideNav testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -20,7 +20,7 @@ exports[`EuiSideNav props heading accepts more headingProps 1`] = `
 >
   <h3
     aria-label="aria-label"
-    class="euiTitle euiSideNav__heading testClass1 testClass2 testClass1 testClass2 emotion-euiTitle-xs"
+    class="euiTitle euiSideNav__heading testClass1 testClass2 testClass1 testClass2 emotion-euiTitle-xs-euiTestCss"
     data-test-subj="test subject string"
     id="testID"
   >

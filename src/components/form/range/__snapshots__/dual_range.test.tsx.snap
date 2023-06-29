@@ -129,7 +129,7 @@ exports[`EuiDualRange input props can be applied to min and max inputs 1`] = `
 
 exports[`EuiDualRange is rendered 1`] = `
 <div
-  class="euiRangeWrapper euiDualRange testClass1 testClass2 emotion-euiRangeWrapper-regular-euiDualRange"
+  class="euiRangeWrapper euiDualRange testClass1 testClass2 emotion-euiRangeWrapper-regular-euiDualRange-euiTestCss"
 >
   <div
     aria-hidden="false"
@@ -312,7 +312,7 @@ exports[`EuiDualRange props fullWidth should render 1`] = `
 
 exports[`EuiDualRange props inputs should render 1`] = `
 <div
-  class="euiRangeWrapper euiDualRange testClass1 testClass2 emotion-euiRangeWrapper-regular-euiDualRange"
+  class="euiRangeWrapper euiDualRange testClass1 testClass2 emotion-euiRangeWrapper-regular-euiDualRange-euiTestCss"
 >
   <div
     class="euiFormControlLayout"

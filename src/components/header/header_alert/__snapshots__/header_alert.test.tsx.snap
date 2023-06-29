@@ -4,7 +4,7 @@ exports[`EuiHeaderAlert is rendered 1`] = `
 <article
   aria-label="aria-label"
   aria-labelledby="generated-id-title"
-  class="euiHeaderAlert testClass1 testClass2"
+  class="euiHeaderAlert testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -36,7 +36,7 @@ exports[`EuiHeaderAlert renders action 1`] = `
 <article
   aria-label="aria-label"
   aria-labelledby="generated-id-title"
-  class="euiHeaderAlert testClass1 testClass2"
+  class="euiHeaderAlert testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -75,7 +75,7 @@ exports[`EuiHeaderAlert renders date as an element 1`] = `
 <article
   aria-label="aria-label"
   aria-labelledby="generated-id-title"
-  class="euiHeaderAlert testClass1 testClass2"
+  class="euiHeaderAlert testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -109,7 +109,7 @@ exports[`EuiHeaderAlert renders title as an element 1`] = `
 <article
   aria-label="aria-label"
   aria-labelledby="generated-id-title"
-  class="euiHeaderAlert testClass1 testClass2"
+  class="euiHeaderAlert testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div

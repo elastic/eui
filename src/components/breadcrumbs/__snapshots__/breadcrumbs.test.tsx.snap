@@ -3,7 +3,7 @@
 exports[`EuiBreadcrumbs is rendered 1`] = `
 <nav
   aria-label="aria-label"
-  class="euiBreadcrumbs testClass1 testClass2"
+  class="euiBreadcrumbs testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <ol
@@ -98,7 +98,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
 exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
 <nav
   aria-label="aria-label"
-  class="euiBreadcrumbs testClass1 testClass2"
+  class="euiBreadcrumbs testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <ol

@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { mount, shallow, render } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { requiredProps } from '../../test';
 
 import { EuiInMemoryTable, EuiInMemoryTableProps } from './in_memory_table';
@@ -32,6 +32,9 @@ interface ComplexItem {
   };
 }
 
+// Shallow snapshots were converted to `dive()` to match output before Emotion wrappers were added
+// TODO: Convert to RTL render, or even better, use specific assertions instead of snapshots
+
 describe('EuiInMemoryTable', () => {
   test('empty array', () => {
     const props: EuiInMemoryTableProps<BasicItem> = {
@@ -47,7 +50,7 @@ describe('EuiInMemoryTable', () => {
     };
     const component = shallow(<EuiInMemoryTable {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(component.find(EuiInMemoryTable).dive()).toMatchSnapshot();
   });
 
   test('with message', () => {
@@ -65,7 +68,7 @@ describe('EuiInMemoryTable', () => {
     };
     const component = shallow(<EuiInMemoryTable {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(component.find(EuiInMemoryTable).dive()).toMatchSnapshot();
   });
 
   test('with message and loading', () => {
@@ -84,7 +87,7 @@ describe('EuiInMemoryTable', () => {
     };
     const component = shallow(<EuiInMemoryTable {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(component.find(EuiInMemoryTable).dive()).toMatchSnapshot();
   });
 
   test('with executeQueryOptions', () => {
@@ -104,7 +107,7 @@ describe('EuiInMemoryTable', () => {
     };
     const component = shallow(<EuiInMemoryTable {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(component.find(EuiInMemoryTable).dive()).toMatchSnapshot();
   });
 
   test('with items', () => {
@@ -125,7 +128,7 @@ describe('EuiInMemoryTable', () => {
     };
     const component = shallow(<EuiInMemoryTable {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(component.find(EuiInMemoryTable).dive()).toMatchSnapshot();
   });
 
   test('with items and expanded item', () => {
@@ -150,7 +153,7 @@ describe('EuiInMemoryTable', () => {
     };
     const component = shallow(<EuiInMemoryTable {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(component.find(EuiInMemoryTable).dive()).toMatchSnapshot();
   });
 
   test('with items and message - expecting to show the items', () => {
@@ -172,7 +175,7 @@ describe('EuiInMemoryTable', () => {
     };
     const component = shallow(<EuiInMemoryTable {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(component.find(EuiInMemoryTable).dive()).toMatchSnapshot();
   });
 
   test('with pagination', () => {
@@ -196,7 +199,7 @@ describe('EuiInMemoryTable', () => {
     };
     const component = shallow(<EuiInMemoryTable {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(component.find(EuiInMemoryTable).dive()).toMatchSnapshot();
   });
 
   test('with pagination and default page size and index', () => {
@@ -222,7 +225,7 @@ describe('EuiInMemoryTable', () => {
     };
     const component = shallow(<EuiInMemoryTable {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(component.find(EuiInMemoryTable).dive()).toMatchSnapshot();
   });
 
   test('with pagination and "show all" page size', () => {
@@ -245,9 +248,9 @@ describe('EuiInMemoryTable', () => {
         pageSizeOptions: [1, 2, 3, 0],
       },
     };
-    const component = render(<EuiInMemoryTable {...props} />);
+    const component = shallow(<EuiInMemoryTable {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(component.find(EuiInMemoryTable).dive()).toMatchSnapshot();
   });
 
   test('with pagination, default page size and error', () => {
@@ -269,7 +272,7 @@ describe('EuiInMemoryTable', () => {
     };
     const component = shallow(<EuiInMemoryTable {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(component.find(EuiInMemoryTable).dive()).toMatchSnapshot();
   });
 
   test('with pagination, hiding the per page options', () => {
@@ -293,7 +296,7 @@ describe('EuiInMemoryTable', () => {
     };
     const component = shallow(<EuiInMemoryTable {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(component.find(EuiInMemoryTable).dive()).toMatchSnapshot();
   });
 
   describe('sorting', () => {
@@ -565,7 +568,7 @@ describe('EuiInMemoryTable', () => {
     };
     const component = shallow(<EuiInMemoryTable {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(component.find(EuiInMemoryTable).dive()).toMatchSnapshot();
     expect(itemsProp).toEqual(items);
   });
 
@@ -592,7 +595,7 @@ describe('EuiInMemoryTable', () => {
     };
     const component = shallow(<EuiInMemoryTable {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(component.find(EuiInMemoryTable).dive()).toMatchSnapshot();
   });
 
   test('with pagination and selection', () => {
@@ -618,7 +621,7 @@ describe('EuiInMemoryTable', () => {
     };
     const component = shallow(<EuiInMemoryTable {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(component.find(EuiInMemoryTable).dive()).toMatchSnapshot();
   });
 
   test('with pagination, selection and sorting', () => {
@@ -646,7 +649,7 @@ describe('EuiInMemoryTable', () => {
     };
     const component = shallow(<EuiInMemoryTable {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(component.find(EuiInMemoryTable).dive()).toMatchSnapshot();
   });
 
   test('with pagination, selection, sorting and column renderer', () => {
@@ -677,7 +680,7 @@ describe('EuiInMemoryTable', () => {
     };
     const component = shallow(<EuiInMemoryTable {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(component.find(EuiInMemoryTable).dive()).toMatchSnapshot();
   });
 
   test('with pagination, selection, sorting and a single record action', () => {
@@ -715,7 +718,7 @@ describe('EuiInMemoryTable', () => {
     };
     const component = shallow(<EuiInMemoryTable {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(component.find(EuiInMemoryTable).dive()).toMatchSnapshot();
   });
 
   test('with pagination, selection, sorting  and simple search', () => {
@@ -754,7 +757,7 @@ describe('EuiInMemoryTable', () => {
     };
     const component = shallow(<EuiInMemoryTable {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(component.find(EuiInMemoryTable).dive()).toMatchSnapshot();
   });
 
   test('with search and component between search and table', () => {
@@ -789,7 +792,7 @@ describe('EuiInMemoryTable', () => {
     };
     const component = shallow(<EuiInMemoryTable {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(component.find(EuiInMemoryTable).dive()).toMatchSnapshot();
   });
 
   test('with pagination, selection, sorting and configured search', () => {
@@ -843,7 +846,7 @@ describe('EuiInMemoryTable', () => {
     };
     const component = shallow(<EuiInMemoryTable {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(component.find(EuiInMemoryTable).dive()).toMatchSnapshot();
   });
 
   describe('search interaction & functionality', () => {

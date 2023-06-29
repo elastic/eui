@@ -3,7 +3,7 @@
 exports[`EuiSuggestItem is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiSuggestItem euiSuggestItem--truncate testClass1 testClass2"
+  class="euiSuggestItem euiSuggestItem--truncate testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <span

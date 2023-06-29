@@ -11,7 +11,7 @@ exports[`EuiBottomBar is rendered 1`] = `
   >
     <section
       aria-label="aria-label"
-      class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium testClass1 testClass2 emotion-euiBottomBar-fixed-m-euiColorMode-dark-colorClassName"
+      class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium testClass1 testClass2 emotion-euiBottomBar-fixed-m-euiTestCss-euiColorMode-dark-colorClassName"
       data-test-subj="test subject string"
       style="left: 0px; right: 0px; bottom: 0px;"
     >

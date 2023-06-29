@@ -81,7 +81,7 @@ describe('EuiTreeView', () => {
 
   test('length of open items', () => {
     const component = shallow<EuiTreeView>(
-      <EuiTreeView items={items} {...requiredProps} />
+      <EuiTreeView items={items} aria-label="Tree" />
     );
     const instance = component.instance();
 
@@ -93,7 +93,7 @@ describe('EuiTreeView', () => {
 
   test('activeItem changes', () => {
     const component = shallow<EuiTreeView>(
-      <EuiTreeView items={items} {...requiredProps} />
+      <EuiTreeView items={items} aria-label="Tree" />
     );
     const instance = component.instance();
 
@@ -105,7 +105,7 @@ describe('EuiTreeView', () => {
 
   test('open node changes', () => {
     const component = shallow<EuiTreeView>(
-      <EuiTreeView items={items} {...requiredProps} />
+      <EuiTreeView items={items} aria-label="Tree" />
     );
     const instance = component.instance();
 

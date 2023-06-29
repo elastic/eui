@@ -2,7 +2,7 @@
 
 exports[`EuiTableSortMobile is rendered 1`] = `
 <div
-  class="euiTableSortMobile testClass1 testClass2"
+  class="euiTableSortMobile testClass1 testClass2 emotion-euiTestCss"
 >
   <div
     class="euiPopover emotion-euiPopover"

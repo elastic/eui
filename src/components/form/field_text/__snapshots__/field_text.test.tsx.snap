@@ -9,7 +9,7 @@ exports[`EuiFieldText is rendered 1`] = `
   <eui-validatable-control>
     <input
       aria-label="aria-label"
-      class="euiFieldText testClass1 testClass2 euiFieldText--withIcon"
+      class="euiFieldText testClass1 testClass2 emotion-euiTestCss euiFieldText--withIcon"
       data-test-subj="test subject string"
       id="1"
       name="elastic"

@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { shallow, render } from 'enzyme';
+import { render } from '../../../test/rtl';
 import { requiredProps } from '../../../test';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 
@@ -25,8 +25,8 @@ describe('EuiDescribedFormGroup', () => {
     childProps: ['descriptionFlexItemProps', 'fieldFlexItemProps'],
   });
 
-  test('is rendered', () => {
-    const component = shallow(
+  it('renders', () => {
+    const { container } = render(
       <EuiDescribedFormGroup {...requiredProps} {...props}>
         <EuiFormRow>
           <input />
@@ -34,7 +34,7 @@ describe('EuiDescribedFormGroup', () => {
       </EuiDescribedFormGroup>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('ties together parts for accessibility', () => {
@@ -45,7 +45,7 @@ describe('EuiDescribedFormGroup', () => {
       error: ['Error one', 'Error two'],
     };
 
-    const tree = shallow(
+    const { container } = render(
       <EuiDescribedFormGroup {...props}>
         <EuiFormRow {...formRowProps}>
           <input />
@@ -53,12 +53,12 @@ describe('EuiDescribedFormGroup', () => {
       </EuiDescribedFormGroup>
     );
 
-    expect(tree).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     test('fullWidth is rendered', () => {
-      const component = shallow(
+      const { container } = render(
         <EuiDescribedFormGroup fullWidth {...props}>
           <EuiFormRow fullWidth>
             <input />
@@ -66,11 +66,11 @@ describe('EuiDescribedFormGroup', () => {
         </EuiDescribedFormGroup>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('third is rendered', () => {
-      const component = shallow(
+      const { container } = render(
         <EuiDescribedFormGroup ratio="third" {...props}>
           <EuiFormRow fullWidth>
             <input />
@@ -78,11 +78,11 @@ describe('EuiDescribedFormGroup', () => {
         </EuiDescribedFormGroup>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('gutterSize is rendered', () => {
-      const component = shallow(
+      const { container } = render(
         <EuiDescribedFormGroup gutterSize="s" {...props}>
           <EuiFormRow>
             <input />
@@ -90,11 +90,11 @@ describe('EuiDescribedFormGroup', () => {
         </EuiDescribedFormGroup>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('titleSize is rendered', () => {
-      const component = shallow(
+      const { container } = render(
         <EuiDescribedFormGroup titleSize="l" {...props}>
           <EuiFormRow>
             <input />
@@ -102,11 +102,11 @@ describe('EuiDescribedFormGroup', () => {
         </EuiDescribedFormGroup>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test("description is not rendered when it's not provided", () => {
-      const component = shallow(
+      const { container } = render(
         <EuiDescribedFormGroup title={<h3>Title</h3>}>
           <EuiFormRow>
             <input />
@@ -114,11 +114,11 @@ describe('EuiDescribedFormGroup', () => {
         </EuiDescribedFormGroup>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('props for the flex item containers are passed down', () => {
-      const component = shallow(
+      const { container } = render(
         <EuiDescribedFormGroup
           {...props}
           descriptionFlexItemProps={{ grow: 2 }}
@@ -130,22 +130,22 @@ describe('EuiDescribedFormGroup', () => {
         </EuiDescribedFormGroup>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
   describe('inherits', () => {
     test('fullWidth from <EuiForm />', () => {
-      const component = render(
+      const { container } = render(
         <EuiForm fullWidth>
           <EuiDescribedFormGroup {...props} />
         </EuiForm>
       );
 
       if (
-        !component
-          .find('.euiDescribedFormGroup')
-          .hasClass('euiDescribedFormGroup--fullWidth')
+        !container
+          .querySelector('.euiDescribedFormGroup')
+          ?.classList.contains('euiDescribedFormGroup--fullWidth')
       ) {
         throw new Error(
           'expected EuiDescribedFormGroup to inherit fullWidth from EuiForm'

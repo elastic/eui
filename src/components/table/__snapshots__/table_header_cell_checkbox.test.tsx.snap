@@ -3,7 +3,7 @@
 exports[`EuiTableHeaderCellCheckbox is rendered 1`] = `
 <th
   aria-label="aria-label"
-  class="euiTableHeaderCellCheckbox testClass1 testClass2"
+  class="euiTableHeaderCellCheckbox testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
   scope="col"
 >

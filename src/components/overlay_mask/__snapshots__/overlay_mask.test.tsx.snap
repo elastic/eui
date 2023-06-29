@@ -18,7 +18,7 @@ exports[`EuiOverlayMask renders 1`] = `
   <div />
   <div
     aria-label="aria-label"
-    class="euiOverlayMask emotion-euiOverlayMask-aboveHeader testClass1 testClass2"
+    class="euiOverlayMask emotion-euiOverlayMask-aboveHeader testClass1 testClass2 emotion-euiTestCss"
     data-euiportal="true"
     data-relative-to-header="above"
     data-test-subj="test subject string"

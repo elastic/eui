@@ -63,7 +63,7 @@ exports[`EuiSkeletonRectangle is rendered 1`] = `
 >
   <div
     aria-label="Loading "
-    class="euiSkeletonRectangle testClass1 testClass2 emotion-euiSkeletonGradientAnimation-euiSkeletonRectangle-s"
+    class="euiSkeletonRectangle testClass1 testClass2 emotion-euiSkeletonGradientAnimation-euiSkeletonRectangle-s-euiTestCss"
     data-test-subj="test subject string"
     role="progressbar"
     style="inline-size: 24px; block-size: 24px;"

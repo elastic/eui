@@ -3,7 +3,7 @@
 exports[`EuiLoadingElastic is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiLoadingElastic testClass1 testClass2 emotion-euiLoadingElastic"
+  class="euiLoadingElastic testClass1 testClass2 emotion-euiLoadingElastic-euiTestCss"
   data-test-subj="test subject string"
   role="progressbar"
 >

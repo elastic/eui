@@ -3,7 +3,7 @@
 exports[`EuiComment is rendered 1`] = `
 <li
   aria-label="aria-label"
-  class="euiComment testClass1 testClass2 emotion-euiTimelineItem-center"
+  class="euiComment testClass1 testClass2 emotion-euiTimelineItem-center-euiTestCss"
   data-test-subj="test subject string"
 >
   <div

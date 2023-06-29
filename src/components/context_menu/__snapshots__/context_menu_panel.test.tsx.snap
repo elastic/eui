@@ -3,7 +3,7 @@
 exports[`EuiContextMenuPanel is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiContextMenuPanel testClass1 testClass2"
+  class="euiContextMenuPanel testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
   tabindex="-1"
 >

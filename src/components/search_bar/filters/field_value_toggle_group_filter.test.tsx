@@ -7,8 +7,9 @@
  */
 
 import React from 'react';
+import { render } from '../../../test/rtl';
 import { requiredProps } from '../../../test';
-import { shallow } from 'enzyme';
+
 import { Query } from '../query';
 import {
   FieldValueToggleGroupFilter,
@@ -16,7 +17,7 @@ import {
 } from './field_value_toggle_group_filter';
 
 describe('TermToggleGroupFilter', () => {
-  test('render', () => {
+  it('renders', () => {
     const props: FieldValueToggleGroupFilterProps = {
       ...requiredProps,
       index: 0,
@@ -38,8 +39,8 @@ describe('TermToggleGroupFilter', () => {
       },
     };
 
-    const component = shallow(<FieldValueToggleGroupFilter {...props} />);
-    expect(component).toMatchSnapshot();
+    const { container } = render(<FieldValueToggleGroupFilter {...props} />);
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('render - active', () => {
@@ -64,8 +65,8 @@ describe('TermToggleGroupFilter', () => {
       },
     };
 
-    const component = shallow(<FieldValueToggleGroupFilter {...props} />);
-    expect(component).toMatchSnapshot();
+    const { container } = render(<FieldValueToggleGroupFilter {...props} />);
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('render - active negated', () => {
@@ -90,8 +91,8 @@ describe('TermToggleGroupFilter', () => {
       },
     };
 
-    const component = shallow(<FieldValueToggleGroupFilter {...props} />);
-    expect(component).toMatchSnapshot();
+    const { container } = render(<FieldValueToggleGroupFilter {...props} />);
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('render - active negated - custom negated name', () => {
@@ -117,7 +118,7 @@ describe('TermToggleGroupFilter', () => {
       },
     };
 
-    const component = shallow(<FieldValueToggleGroupFilter {...props} />);
-    expect(component).toMatchSnapshot();
+    const { container } = render(<FieldValueToggleGroupFilter {...props} />);
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

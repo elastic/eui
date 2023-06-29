@@ -7,10 +7,11 @@
  */
 
 import React from 'react';
+import { render } from '../../../test/rtl';
 import { requiredProps } from '../../../test';
-import { shallow } from 'enzyme';
-import { IsFilter, IsFilterProps } from './is_filter';
+
 import { Query } from '../query';
+import { IsFilter, IsFilterProps } from './is_filter';
 
 describe('IsFilter', () => {
   test('render', () => {
@@ -26,8 +27,8 @@ describe('IsFilter', () => {
       },
     };
 
-    const component = shallow(<IsFilter {...props} />);
+    const { container } = render(<IsFilter {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

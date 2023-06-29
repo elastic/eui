@@ -45,7 +45,7 @@ exports[`EuiDescriptionListDescription EuiDescriptionListDescription prop variat
 exports[`EuiDescriptionListDescription is rendered 1`] = `
 <dd
   aria-label="aria-label"
-  class="euiDescriptionList__description testClass1 testClass2 emotion-euiDescriptionList__description-row-normal"
+  class="euiDescriptionList__description testClass1 testClass2 emotion-euiDescriptionList__description-row-normal-euiTestCss"
   data-test-subj="test subject string"
 >
   Content

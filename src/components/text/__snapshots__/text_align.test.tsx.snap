@@ -3,7 +3,7 @@
 exports[`EuiTextAlign is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="testClass1 testClass2 emotion-euiTextAlign-left"
+  class="testClass1 testClass2 emotion-euiTextAlign-left-euiTestCss"
   data-test-subj="test subject string"
 />
 `;

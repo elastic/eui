@@ -3,7 +3,7 @@
 exports[`EuiFormControlLayout is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiFormControlLayout testClass1 testClass2"
+  class="euiFormControlLayout testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -193,7 +193,7 @@ exports[`EuiFormControlLayout props icon side right is rendered 1`] = `
 exports[`EuiFormControlLayout props iconsPosition 1`] = `
 <div
   aria-label="aria-label"
-  class="euiFormControlLayout testClass1 testClass2"
+  class="euiFormControlLayout testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div

@@ -3,7 +3,7 @@
 exports[`EuiStat is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiStat testClass1 testClass2 emotion-euiStat-left"
+  class="euiStat testClass1 testClass2 emotion-euiStat-left-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -222,7 +222,7 @@ exports[`EuiStat props left is rendered 1`] = `
 exports[`EuiStat props loading is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiStat testClass1 testClass2 emotion-euiStat-left"
+  class="euiStat testClass1 testClass2 emotion-euiStat-left-euiTestCss"
   data-test-subj="test subject string"
 >
   <div

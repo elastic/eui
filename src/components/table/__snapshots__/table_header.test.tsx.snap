@@ -3,7 +3,7 @@
 exports[`EuiTableHeader is rendered 1`] = `
 <thead
   aria-label="aria-label"
-  class="testClass1 testClass2"
+  class="testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <tr>

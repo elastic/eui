@@ -3,7 +3,7 @@
 exports[`EuiForm is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiForm testClass1 testClass2"
+  class="euiForm testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 />
 `;
@@ -11,7 +11,7 @@ exports[`EuiForm is rendered 1`] = `
 exports[`EuiForm renders a form element 1`] = `
 <form
   aria-label="aria-label"
-  class="euiForm testClass1 testClass2"
+  class="euiForm testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 />
 `;
@@ -19,7 +19,7 @@ exports[`EuiForm renders a form element 1`] = `
 exports[`EuiForm renders with error callout when isInvalid is "true" 1`] = `
 <div
   aria-label="aria-label"
-  class="euiForm testClass1 testClass2"
+  class="euiForm testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -40,7 +40,7 @@ exports[`EuiForm renders with error callout when isInvalid is "true" 1`] = `
 exports[`EuiForm renders with error callout when isInvalid is "true" and has multiple errors 1`] = `
 <div
   aria-label="aria-label"
-  class="euiForm testClass1 testClass2"
+  class="euiForm testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -81,7 +81,7 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has mul
 exports[`EuiForm renders with error callout when isInvalid is "true" and has one error 1`] = `
 <div
   aria-label="aria-label"
-  class="euiForm testClass1 testClass2"
+  class="euiForm testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -115,7 +115,7 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has one
 exports[`EuiForm renders without error callout when invalidCallout is "none" 1`] = `
 <div
   aria-label="aria-label"
-  class="euiForm testClass1 testClass2"
+  class="euiForm testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 />
 `;

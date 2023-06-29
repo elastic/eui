@@ -2,7 +2,7 @@
 
 exports[`EuiSelectableTemplateSitewide is rendered 1`] = `
 <div
-  class="euiSelectable euiSelectableTemplateSitewide testClass1 testClass2"
+  class="euiSelectable euiSelectableTemplateSitewide testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div

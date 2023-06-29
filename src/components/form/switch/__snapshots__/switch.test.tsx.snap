@@ -43,7 +43,7 @@ exports[`EuiSwitch assigns automatically generated ID to label 1`] = `
 
 exports[`EuiSwitch is rendered 1`] = `
 <div
-  class="euiSwitch testClass1 testClass2 emotion-euiSwitch"
+  class="euiSwitch testClass1 testClass2 emotion-euiSwitch-euiTestCss"
 >
   <button
     aria-checked="false"
@@ -118,7 +118,7 @@ exports[`EuiSwitch labelProps is rendered 1`] = `
   </button>
   <span
     aria-label="aria-label"
-    class="euiSwitch__label testClass1 testClass2"
+    class="euiSwitch__label testClass1 testClass2 emotion-euiTestCss"
     data-test-subj="test subject string"
     id="generated-id"
   >
