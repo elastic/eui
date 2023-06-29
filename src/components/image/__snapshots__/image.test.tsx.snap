@@ -205,7 +205,7 @@ exports[`EuiImage props wrapperProps 1`] = `
 <figure
   alt=""
   aria-label="aria-label"
-  class="euiImageWrapper testClass1 testClass2 emotion-euiTestCss"
+  class="euiImageWrapper testClass1 testClass2 emotion-euiImageWrapper-euiTestCss"
   data-test-subj="test subject string"
   src="/cat.jpg"
   style="border:2px solid red"
