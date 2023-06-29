@@ -1,10 +1,10 @@
 import React, { createElement } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Switch, Route, Redirect } from 'react-router-dom';
+import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
-import configureStore, { history } from './store/configure_store';
+import configureStore from './store/configure_store';
 
 import { AppContext } from './views/app_context';
 import { AppView } from './views/app_view';
@@ -44,7 +44,7 @@ ReactDOM.render(
   <Provider store={store}>
     <ThemeProvider>
       <AppContext>
-        <Router history={history}>
+        <HashRouter>
           <Switch>
             {routes.map(
               ({
@@ -161,7 +161,7 @@ ReactDOM.render(
               }
             )}
           </Switch>
-        </Router>
+        </HashRouter>
       </AppContext>
     </ThemeProvider>
   </Provider>,

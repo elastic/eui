@@ -1,13 +1,10 @@
 import { applyMiddleware, createStore, compose } from 'redux';
 import thunk from 'redux-thunk';
-import { createHashHistory } from 'history';
 
 import Routes from '../routes';
 
 import localeReducer from './reducers/locale_reducer';
 import themeReducer from './reducers/theme_reducer';
-
-export const history = createHashHistory();
 
 /**
  * @param {Object} initialState An object defining the application's initial
