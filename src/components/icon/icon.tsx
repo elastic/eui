@@ -288,6 +288,7 @@ export class EuiIconClass extends PureComponent<
           src={icon}
           className={classes}
           css={cssStyles}
+          style={style}
           tabIndex={tabIndex}
           {...(rest as ImgHTMLAttributes<HTMLImageElement>)}
         />

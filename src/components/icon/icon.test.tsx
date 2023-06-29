@@ -47,6 +47,7 @@ function testIcon(props: PropsOf<typeof EuiIcon>) {
 describe('EuiIcon', () => {
   test('is rendered', testIcon({ type: 'search', ...requiredProps }));
 
+  shouldRenderCustomStyles(<EuiIcon type="customImg" />);
   shouldRenderCustomStyles(<EuiIcon type="videoPlayer" />);
 
   describe('props', () => {
