@@ -167,13 +167,12 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   const [isEditing, setIsEditing] = useState(false || startWithEditOpen);
   const [editModeValue, setEditModeValue] = useState(defaultValue);
   const [readModeValue, setReadModeValue] = useState(defaultValue);
-  const showPlaceholder = placeholder && !readModeValue;
 
   const readModeStyles = euiInlineEditReadModeStyles(euiTheme);
   const readModeCssStyles = [
     readModeStyles.euiInlineEditReadMode,
     isReadOnly && readModeStyles.isReadOnly,
-    showPlaceholder && readModeStyles.hasPlaceholder,
+    placeholder && !readModeValue && readModeStyles.hasPlaceholder,
   ];
 
   const activateEditMode = () => {
