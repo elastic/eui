@@ -3,7 +3,7 @@
 exports[`EuiPageHeaderContent is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageHeaderContent testClass1 testClass2 emotion-euiPageHeaderContent"
+  class="euiPageHeaderContent testClass1 testClass2 emotion-euiPageHeaderContent-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -190,7 +190,7 @@ exports[`EuiPageHeaderContent props breadcrumbs is rendered 1`] = `
 >
   <nav
     aria-label="aria-label"
-    class="euiBreadcrumbs testClass1 testClass2"
+    class="euiBreadcrumbs testClass1 testClass2 emotion-euiTestCss"
     data-test-subj="test subject string"
   >
     <ol
@@ -423,7 +423,7 @@ exports[`EuiPageHeaderContent props pageTitle is rendered with icon and iconProp
         class="euiTitle emotion-euiTitle-l"
       >
         <span
-          class="testClass1 testClass2 emotion-euiPageHeaderContent__titleIcon"
+          class="testClass1 testClass2 emotion-euiTestCss"
           data-euiicon-type="logoKibana"
           data-test-subj="test subject string"
         >
@@ -448,7 +448,7 @@ exports[`EuiPageHeaderContent props pageTitle is rendered with pageTitleProps 1`
     >
       <h1
         aria-label="aria-label"
-        class="euiTitle testClass1 testClass2 emotion-euiTitle-l"
+        class="euiTitle testClass1 testClass2 emotion-euiTitle-l-euiTestCss"
         data-test-subj="test subject string"
       >
         Page title
@@ -537,7 +537,7 @@ exports[`EuiPageHeaderContent props rightSideItems is rendered with rightSideGro
     >
       <div
         aria-label="aria-label"
-        class="euiFlexGroup testClass1 testClass2 emotion-euiFlexGroup-wrap-l-flexStart-stretch-column"
+        class="euiFlexGroup testClass1 testClass2 emotion-euiFlexGroup-wrap-l-flexStart-stretch-column-euiTestCss"
         data-test-subj="test subject string"
       >
         <div
@@ -626,7 +626,7 @@ exports[`EuiPageHeaderContent props tabs is rendered with tabsProps 1`] = `
       </h1>
       <div
         aria-label="aria-label"
-        class="euiTabs testClass1 testClass2 emotion-euiTabs-xl"
+        class="euiTabs testClass1 testClass2 emotion-euiTabs-xl-euiTestCss"
         data-test-subj="test subject string"
         role="tablist"
       >

@@ -3,7 +3,7 @@
 exports[`EuiStepHorizontal is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiStepHorizontal testClass1 testClass2 emotion-euiStepHorizontal-enabled"
+  class="euiStepHorizontal testClass1 testClass2 emotion-euiStepHorizontal-enabled-euiTestCss"
   data-step-status="incomplete"
   data-test-subj="test subject string"
   title="Step 1 is incomplete"

@@ -207,7 +207,7 @@ exports[`EuiFormRow behavior onFocus works in parent even if not in child 1`] = 
 exports[`EuiFormRow is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiFormRow testClass1 testClass2"
+  class="euiFormRow testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
   id="generated-id-row"
 >

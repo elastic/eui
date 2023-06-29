@@ -2,7 +2,7 @@
 
 exports[`EuiCheckableCard is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiSplitPanel euiSplitPanel--row euiCheckableCard testClass1 testClass2 emotion-euiPanel-m-plain-hasBorder-euiCheckableCard"
+  class="euiPanel euiPanel--plain euiSplitPanel euiSplitPanel--row euiCheckableCard testClass1 testClass2 emotion-euiPanel-m-plain-hasBorder-euiCheckableCard-euiTestCss"
 >
   <div
     class="euiPanel euiPanel--subdued euiPanel--paddingMedium euiSplitPanel__inner emotion-euiPanel-none-m-subdued-isClickable"
@@ -37,7 +37,7 @@ exports[`EuiCheckableCard is rendered 1`] = `
 
 exports[`EuiCheckableCard renders a checkbox when specified 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiSplitPanel euiSplitPanel--row euiCheckableCard testClass1 testClass2 emotion-euiPanel-m-plain-hasBorder-euiCheckableCard"
+  class="euiPanel euiPanel--plain euiSplitPanel euiSplitPanel--row euiCheckableCard testClass1 testClass2 emotion-euiPanel-m-plain-hasBorder-euiCheckableCard-euiTestCss"
 >
   <div
     class="euiPanel euiPanel--subdued euiPanel--paddingMedium euiSplitPanel__inner emotion-euiPanel-none-m-subdued-isClickable"

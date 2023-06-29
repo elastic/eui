@@ -2,7 +2,7 @@
 
 exports[`EuiInlineEditForm edit mode editModeProps.cancelButtonProps 1`] = `
 <div
-  class="euiInlineEdit testClass1 testClass2"
+  class="euiInlineEdit testClass1 testClass2 emotion-euiTestCss"
 >
   <div
     class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-stretch-row"
@@ -89,7 +89,7 @@ exports[`EuiInlineEditForm edit mode editModeProps.cancelButtonProps 1`] = `
 
 exports[`EuiInlineEditForm edit mode editModeProps.formRowProps 1`] = `
 <div
-  class="euiInlineEdit testClass1 testClass2"
+  class="euiInlineEdit testClass1 testClass2 emotion-euiTestCss"
 >
   <div
     class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-stretch-row"
@@ -176,7 +176,7 @@ exports[`EuiInlineEditForm edit mode editModeProps.formRowProps 1`] = `
 
 exports[`EuiInlineEditForm edit mode editModeProps.inputProps 1`] = `
 <div
-  class="euiInlineEdit testClass1 testClass2"
+  class="euiInlineEdit testClass1 testClass2 emotion-euiTestCss"
 >
   <div
     class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-stretch-row"
@@ -268,7 +268,7 @@ exports[`EuiInlineEditForm edit mode editModeProps.inputProps 1`] = `
 
 exports[`EuiInlineEditForm edit mode editModeProps.saveButtonProps 1`] = `
 <div
-  class="euiInlineEdit testClass1 testClass2"
+  class="euiInlineEdit testClass1 testClass2 emotion-euiTestCss"
 >
   <div
     class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-stretch-row"
@@ -354,7 +354,7 @@ exports[`EuiInlineEditForm edit mode editModeProps.saveButtonProps 1`] = `
 
 exports[`EuiInlineEditForm edit mode isInvalid 1`] = `
 <div
-  class="euiInlineEdit testClass1 testClass2"
+  class="euiInlineEdit testClass1 testClass2 emotion-euiTestCss"
 >
   <div
     class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-stretch-row"
@@ -449,7 +449,7 @@ exports[`EuiInlineEditForm edit mode isInvalid 1`] = `
 
 exports[`EuiInlineEditForm edit mode isLoading 1`] = `
 <div
-  class="euiInlineEdit testClass1 testClass2"
+  class="euiInlineEdit testClass1 testClass2 emotion-euiTestCss"
 >
   <div
     class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-stretch-row"
@@ -559,7 +559,7 @@ exports[`EuiInlineEditForm edit mode isLoading 1`] = `
 
 exports[`EuiInlineEditForm edit mode renders 1`] = `
 <div
-  class="euiInlineEdit testClass1 testClass2"
+  class="euiInlineEdit testClass1 testClass2 emotion-euiTestCss"
 >
   <div
     class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-stretch-row"
@@ -645,7 +645,7 @@ exports[`EuiInlineEditForm edit mode renders 1`] = `
 
 exports[`EuiInlineEditForm read mode isReadOnly 1`] = `
 <div
-  class="euiInlineEdit testClass1 testClass2"
+  class="euiInlineEdit testClass1 testClass2 emotion-euiTestCss"
 >
   <button
     aria-describedby="inlineEdit_generated-id"
@@ -673,7 +673,7 @@ exports[`EuiInlineEditForm read mode isReadOnly 1`] = `
 
 exports[`EuiInlineEditForm read mode readModeProps 1`] = `
 <div
-  class="euiInlineEdit testClass1 testClass2"
+  class="euiInlineEdit testClass1 testClass2 emotion-euiTestCss"
 >
   <button
     aria-describedby="inlineEdit_generated-id"
@@ -706,7 +706,7 @@ exports[`EuiInlineEditForm read mode readModeProps 1`] = `
 
 exports[`EuiInlineEditForm read mode renders 1`] = `
 <div
-  class="euiInlineEdit testClass1 testClass2"
+  class="euiInlineEdit testClass1 testClass2 emotion-euiTestCss"
 >
   <button
     aria-describedby="inlineEdit_generated-id"
@@ -739,7 +739,7 @@ exports[`EuiInlineEditForm read mode renders 1`] = `
 
 exports[`EuiInlineEditForm read mode sizes 1`] = `
 <div
-  class="euiInlineEdit testClass1 testClass2"
+  class="euiInlineEdit testClass1 testClass2 emotion-euiTestCss"
 >
   <button
     aria-describedby="inlineEdit_generated-id"

@@ -45,7 +45,7 @@ exports[` 1`] = `
 exports[`EuiDescriptionList is rendered 1`] = `
 <dl
   aria-label="aria-label"
-  class="euiDescriptionList testClass1 testClass2 emotion-euiDescriptionList-row-left"
+  class="euiDescriptionList testClass1 testClass2 emotion-euiDescriptionList-row-left-euiTestCss"
   data-test-subj="test subject string"
   data-type="row"
 >
@@ -100,7 +100,7 @@ exports[`EuiDescriptionList props listItems descriptionProps is rendered 1`] = `
   </dt>
   <dd
     aria-label="aria-label"
-    class="euiDescriptionList__description testClass1 testClass2 emotion-euiDescriptionList__description-row-normal"
+    class="euiDescriptionList__description testClass1 testClass2 emotion-euiDescriptionList__description-row-normal-euiTestCss"
     data-test-subj="test subject string"
   >
     Description 1
@@ -114,7 +114,7 @@ exports[`EuiDescriptionList props listItems descriptionProps is rendered 1`] = `
   </dt>
   <dd
     aria-label="aria-label"
-    class="euiDescriptionList__description testClass1 testClass2 emotion-euiDescriptionList__description-row-normal"
+    class="euiDescriptionList__description testClass1 testClass2 emotion-euiDescriptionList__description-row-normal-euiTestCss"
     data-test-subj="test subject string"
   >
     <code>
@@ -128,7 +128,7 @@ exports[`EuiDescriptionList props listItems descriptionProps is rendered 1`] = `
   </dt>
   <dd
     aria-label="aria-label"
-    class="euiDescriptionList__description testClass1 testClass2 emotion-euiDescriptionList__description-row-normal"
+    class="euiDescriptionList__description testClass1 testClass2 emotion-euiDescriptionList__description-row-normal-euiTestCss"
     data-test-subj="test subject string"
   >
     Description 3
@@ -143,7 +143,7 @@ exports[`EuiDescriptionList props listItems titleProps is rendered 1`] = `
 >
   <dt
     aria-label="aria-label"
-    class="euiDescriptionList__title testClass1 testClass2 emotion-euiDescriptionList__title-row-m-normal"
+    class="euiDescriptionList__title testClass1 testClass2 emotion-euiDescriptionList__title-row-m-normal-euiTestCss"
     data-test-subj="test subject string"
   >
     Title 1
@@ -155,7 +155,7 @@ exports[`EuiDescriptionList props listItems titleProps is rendered 1`] = `
   </dd>
   <dt
     aria-label="aria-label"
-    class="euiDescriptionList__title testClass1 testClass2 emotion-euiDescriptionList__title-row-m-normal"
+    class="euiDescriptionList__title testClass1 testClass2 emotion-euiDescriptionList__title-row-m-normal-euiTestCss"
     data-test-subj="test subject string"
   >
     <em>
@@ -171,7 +171,7 @@ exports[`EuiDescriptionList props listItems titleProps is rendered 1`] = `
   </dd>
   <dt
     aria-label="aria-label"
-    class="euiDescriptionList__title testClass1 testClass2 emotion-euiDescriptionList__title-row-m-normal"
+    class="euiDescriptionList__title testClass1 testClass2 emotion-euiDescriptionList__title-row-m-normal-euiTestCss"
     data-test-subj="test subject string"
   >
     Title 3

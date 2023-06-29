@@ -76,7 +76,7 @@ exports[`EuiHighlight behavior strict matching doesn't match strings with differ
 exports[`EuiHighlight is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="testClass1 testClass2"
+  class="testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   value

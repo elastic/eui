@@ -2,7 +2,7 @@
 
 exports[`EuiAutoRefresh is rendered 1`] = `
 <div
-  class="euiPopover euiInputPopover euiAutoRefresh testClass1 testClass2 emotion-euiPopover-EuiInputPopover"
+  class="euiPopover euiInputPopover euiAutoRefresh testClass1 testClass2 emotion-euiPopover-EuiInputPopover-euiTestCss"
 >
   <div
     class="euiPopover__anchor css-zih94u-render"
@@ -160,7 +160,7 @@ exports[`EuiAutoRefreshButton is rendered 1`] = `
   >
     <button
       aria-label="aria-label"
-      class="euiButtonEmpty euiAutoRefreshButton testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
+      class="euiButtonEmpty euiAutoRefreshButton testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text-euiTestCss"
       data-test-subj="test subject string"
       title="Auto refresh is off"
       type="button"

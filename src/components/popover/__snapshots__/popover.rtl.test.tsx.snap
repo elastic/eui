@@ -4,7 +4,7 @@ exports[`EuiPopover snapshot testing renders 1`] = `
 <body>
   <div>
     <div
-      class="euiPopover testClass1 testClass2 emotion-euiPopover"
+      class="euiPopover testClass1 testClass2 emotion-euiPopover-euiTestCss"
       data-test-subj="test subject string"
     >
       <div
@@ -21,7 +21,7 @@ exports[`EuiPopover snapshot testing renders with popover contents 1`] = `
 <body>
   <div>
     <div
-      class="euiPopover euiPopover-isOpen testClass1 testClass2 emotion-euiPopover"
+      class="euiPopover euiPopover-isOpen testClass1 testClass2 emotion-euiPopover-euiTestCss"
       data-test-subj="test subject string"
     >
       <div

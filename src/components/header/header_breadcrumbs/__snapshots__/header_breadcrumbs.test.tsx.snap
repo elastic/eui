@@ -3,7 +3,7 @@
 exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
 <nav
   aria-label="aria-label"
-  class="euiBreadcrumbs euiHeaderBreadcrumbs testClass1 testClass2 emotion-euiHeaderBreadcrumbs"
+  class="euiBreadcrumbs euiHeaderBreadcrumbs testClass1 testClass2 emotion-euiHeaderBreadcrumbs-euiTestCss"
   data-test-subj="test subject string"
 >
   <ol
@@ -67,7 +67,7 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
 exports[`EuiHeaderBreadcrumbs renders only one breadcrumb with all rounded corners 1`] = `
 <nav
   aria-label="aria-label"
-  class="euiBreadcrumbs euiHeaderBreadcrumbs testClass1 testClass2 emotion-euiHeaderBreadcrumbs"
+  class="euiBreadcrumbs euiHeaderBreadcrumbs testClass1 testClass2 emotion-euiHeaderBreadcrumbs-euiTestCss"
   data-test-subj="test subject string"
 >
   <ol

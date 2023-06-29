@@ -13,6 +13,11 @@ Array [
       "name": "Default Space",
     },
     "className": "euiSelectableTemplateSitewide__listItem testClass1 testClass2",
+    "css": Object {
+      "name": "hzx95w-euiTestCss",
+      "styles": "color:red;label:euiTestCss;",
+      "toString": [Function],
+    },
     "data-test-subj": "test-this",
     "key": "Basic data application",
     "label": "Basic data application",

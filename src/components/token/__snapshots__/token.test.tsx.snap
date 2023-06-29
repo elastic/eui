@@ -2,7 +2,7 @@
 
 exports[`EuiToken is rendered 1`] = `
 <span
-  class="euiToken testClass1 testClass2 emotion-euiToken-circle-light-s-gray"
+  class="euiToken testClass1 testClass2 emotion-euiToken-circle-light-s-gray-euiTestCss"
   data-test-subj="test subject string"
 >
   <span

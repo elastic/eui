@@ -98,7 +98,7 @@ exports[`EuiCard horizontal selectable 1`] = `
 exports[`EuiCard is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center-euiTestCss"
   data-test-subj="test subject string"
 >
   <div

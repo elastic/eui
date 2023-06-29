@@ -40,7 +40,7 @@ exports[`EuiTablePagination is rendered 1`] = `
   >
     <nav
       aria-label="aria-label"
-      class="euiPagination testClass1 testClass2 emotion-euiPagination-EuiPagination"
+      class="euiPagination testClass1 testClass2 emotion-euiPagination-EuiPagination-euiTestCss"
       data-test-subj="test subject string"
     >
       <span
@@ -203,7 +203,7 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
   >
     <nav
       aria-label="aria-label"
-      class="euiPagination testClass1 testClass2 emotion-euiPagination-EuiPagination"
+      class="euiPagination testClass1 testClass2 emotion-euiPagination-EuiPagination-euiTestCss"
       data-test-subj="test subject string"
     >
       <span

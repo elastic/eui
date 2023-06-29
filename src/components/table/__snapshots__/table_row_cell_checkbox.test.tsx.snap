@@ -3,7 +3,7 @@
 exports[`EuiTableRowCellCheckbox is rendered 1`] = `
 <td
   aria-label="aria-label"
-  class="euiTableRowCellCheckbox testClass1 testClass2"
+  class="euiTableRowCellCheckbox testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div

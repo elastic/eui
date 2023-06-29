@@ -607,7 +607,7 @@ exports[`renders fullWidth EuiColorPicker 1`] = `
 
 exports[`renders inline EuiColorPicker 1`] = `
 <div
-  class="euiColorPicker testClass1 testClass2"
+  class="euiColorPicker testClass1 testClass2 emotion-euiTestCss"
 >
   <div>
     <div

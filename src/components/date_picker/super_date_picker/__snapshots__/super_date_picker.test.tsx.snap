@@ -684,7 +684,7 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
 
 exports[`EuiSuperDatePicker renders 1`] = `
 <div
-  class="euiSuperDatePicker testClass1 testClass2"
+  class="euiSuperDatePicker testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -757,7 +757,7 @@ exports[`EuiSuperDatePicker renders 1`] = `
 
 exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
 <div
-  class="euiSuperDatePicker testClass1 testClass2"
+  class="euiSuperDatePicker testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <span

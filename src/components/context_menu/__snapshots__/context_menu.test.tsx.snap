@@ -29,7 +29,7 @@ exports[`EuiContextMenu can pass-through horizontal rule props 1`] = `
 exports[`EuiContextMenu is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiContextMenu testClass1 testClass2"
+  class="euiContextMenu testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 />
 `;

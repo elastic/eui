@@ -7,7 +7,7 @@ exports[`EuiImage is rendered 1`] = `
   <img
     alt=""
     aria-label="aria-label"
-    class="euiImage testClass1 testClass2 emotion-euiImage-original"
+    class="euiImage testClass1 testClass2 emotion-euiImage-original-euiTestCss"
     data-test-subj="test subject string"
     src="/cat.jpg"
   />
@@ -26,7 +26,7 @@ exports[`EuiImage props allowFullScreen 1`] = `
     <img
       alt=""
       aria-label="aria-label"
-      class="euiImage testClass1 testClass2 emotion-euiImage-original"
+      class="euiImage testClass1 testClass2 emotion-euiImage-original-euiTestCss"
       data-test-subj="test subject string"
       src="/cat.jpg"
     />
@@ -54,7 +54,7 @@ exports[`EuiImage props caption 1`] = `
   <img
     alt=""
     aria-label="aria-label"
-    class="euiImage testClass1 testClass2 emotion-euiImage-original"
+    class="euiImage testClass1 testClass2 emotion-euiImage-original-euiTestCss"
     data-test-subj="test subject string"
     src="/cat.jpg"
   />
@@ -75,7 +75,7 @@ exports[`EuiImage props float 1`] = `
   <img
     alt=""
     aria-label="aria-label"
-    class="euiImage testClass1 testClass2 emotion-euiImage-original"
+    class="euiImage testClass1 testClass2 emotion-euiImage-original-euiTestCss"
     data-test-subj="test subject string"
     src="/cat.jpg"
   />
@@ -94,7 +94,7 @@ exports[`EuiImage props fullScreenIconColor 1`] = `
     <img
       alt=""
       aria-label="aria-label"
-      class="euiImage testClass1 testClass2 emotion-euiImage-original"
+      class="euiImage testClass1 testClass2 emotion-euiImage-original-euiTestCss"
       data-test-subj="test subject string"
       src="/cat.jpg"
     />
@@ -127,7 +127,7 @@ exports[`EuiImage props hasShadow 1`] = `
     <img
       alt=""
       aria-label="aria-label"
-      class="euiImage testClass1 testClass2 emotion-euiImage-fullWidth-hasShadow"
+      class="euiImage testClass1 testClass2 emotion-euiImage-fullWidth-hasShadow-euiTestCss"
       data-test-subj="test subject string"
       src="/cat.jpg"
     />
@@ -155,7 +155,7 @@ exports[`EuiImage props margin 1`] = `
   <img
     alt=""
     aria-label="aria-label"
-    class="euiImage testClass1 testClass2 emotion-euiImage-original"
+    class="euiImage testClass1 testClass2 emotion-euiImage-original-euiTestCss"
     data-test-subj="test subject string"
     src="/cat.jpg"
   />
@@ -169,7 +169,7 @@ exports[`EuiImage props size 1`] = `
   <img
     alt=""
     aria-label="aria-label"
-    class="euiImage testClass1 testClass2 emotion-euiImage-customSize"
+    class="euiImage testClass1 testClass2 emotion-euiImage-customSize-euiTestCss"
     data-test-subj="test subject string"
     src="/cat.jpg"
     style="max-width:50px;max-height:50px"
@@ -205,7 +205,7 @@ exports[`EuiImage props wrapperProps 1`] = `
 <figure
   alt=""
   aria-label="aria-label"
-  class="euiImageWrapper testClass1 testClass2 emotion-euiImageWrapper"
+  class="euiImageWrapper testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
   src="/cat.jpg"
   style="border:2px solid red"

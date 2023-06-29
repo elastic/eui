@@ -117,7 +117,7 @@ Array [
   <progress
     aria-hidden="false"
     aria-label="aria-label"
-    class="euiProgress testClass1 testClass2 emotion-euiProgress-native-m-static-success"
+    class="euiProgress testClass1 testClass2 emotion-euiProgress-native-m-static-success-euiTestCss"
     data-test-subj="test subject string"
     max="100"
     value="50"
@@ -129,7 +129,7 @@ exports[`EuiProgress has max 1`] = `
 <progress
   aria-hidden="false"
   aria-label="aria-label"
-  class="euiProgress testClass1 testClass2 emotion-euiProgress-native-m-static-success"
+  class="euiProgress testClass1 testClass2 emotion-euiProgress-native-m-static-success-euiTestCss"
   data-test-subj="test subject string"
   max="100"
 />
@@ -138,7 +138,7 @@ exports[`EuiProgress has max 1`] = `
 exports[`EuiProgress has value 1`] = `
 <div
   aria-label="aria-label"
-  class="euiProgress testClass1 testClass2 emotion-euiProgress-indeterminate-m-static-success"
+  class="euiProgress testClass1 testClass2 emotion-euiProgress-indeterminate-m-static-success-euiTestCss"
   data-test-subj="test subject string"
 />
 `;
@@ -162,7 +162,7 @@ Array [
   <progress
     aria-hidden="true"
     aria-label="aria-label"
-    class="euiProgress testClass1 testClass2 emotion-euiProgress-native-m-static-success"
+    class="euiProgress testClass1 testClass2 emotion-euiProgress-native-m-static-success-euiTestCss"
     data-test-subj="test subject string"
     max="100"
     value="50"
@@ -174,7 +174,7 @@ exports[`EuiProgress is determinate 1`] = `
 <progress
   aria-hidden="false"
   aria-label="aria-label"
-  class="euiProgress testClass1 testClass2 emotion-euiProgress-native-m-static-success"
+  class="euiProgress testClass1 testClass2 emotion-euiProgress-native-m-static-success-euiTestCss"
   data-test-subj="test subject string"
   max="100"
   value="50"
@@ -184,7 +184,7 @@ exports[`EuiProgress is determinate 1`] = `
 exports[`EuiProgress is indeterminate 1`] = `
 <div
   aria-label="aria-label"
-  class="euiProgress testClass1 testClass2 emotion-euiProgress-indeterminate-m-static-success"
+  class="euiProgress testClass1 testClass2 emotion-euiProgress-indeterminate-m-static-success-euiTestCss"
   data-test-subj="test subject string"
 />
 `;
@@ -192,7 +192,7 @@ exports[`EuiProgress is indeterminate 1`] = `
 exports[`EuiProgress is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiProgress testClass1 testClass2 emotion-euiProgress-indeterminate-m-static-success"
+  class="euiProgress testClass1 testClass2 emotion-euiProgress-indeterminate-m-static-success-euiTestCss"
   data-test-subj="test subject string"
 />
 `;
@@ -235,7 +235,7 @@ Array [
   <progress
     aria-hidden="false"
     aria-label="aria-label"
-    class="euiProgress testClass1 testClass2 emotion-euiProgress-native-m-static-success"
+    class="euiProgress testClass1 testClass2 emotion-euiProgress-native-m-static-success-euiTestCss"
     data-test-subj="test subject string"
     max="100"
     value="50"

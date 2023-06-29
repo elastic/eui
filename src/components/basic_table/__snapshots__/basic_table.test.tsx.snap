@@ -3,7 +3,7 @@
 exports[`EuiBasicTable renders (bare-bones) 1`] = `
 <div
   aria-label="aria-label"
-  class="euiBasicTable testClass1 testClass2"
+  class="euiBasicTable testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div>

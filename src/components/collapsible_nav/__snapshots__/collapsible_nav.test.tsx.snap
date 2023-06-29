@@ -67,7 +67,7 @@ exports[`EuiCollapsibleNav is rendered 1`] = `
       <nav
         aria-describedby="generated-id"
         aria-label="aria-label"
-        class="euiFlyout euiCollapsibleNav testClass1 testClass2 emotion-euiFlyout-none-noMaxWidth-overlay-left-euiCollapsibleNav-overlay"
+        class="euiFlyout euiCollapsibleNav testClass1 testClass2 emotion-euiFlyout-none-noMaxWidth-overlay-left-euiCollapsibleNav-overlay-euiTestCss"
         data-autofocus="true"
         data-test-subj="test subject string"
         id="id"

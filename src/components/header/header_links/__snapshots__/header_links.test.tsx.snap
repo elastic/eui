@@ -47,7 +47,7 @@ exports[`EuiHeaderLinks gutterSize xs is rendered 1`] = `
 exports[`EuiHeaderLinks is rendered 1`] = `
 <nav
   aria-label="aria-label"
-  class="euiHeaderLinks testClass1 testClass2"
+  class="euiHeaderLinks testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div

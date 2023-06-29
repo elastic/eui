@@ -3,7 +3,7 @@
 exports[`EuiToolTipPopover is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiToolTipPopover testClass1 testClass2 emotion-euiToolTip"
+  class="euiToolTipPopover testClass1 testClass2 emotion-euiToolTip-euiTestCss"
   data-test-subj="test subject string"
 />
 `;

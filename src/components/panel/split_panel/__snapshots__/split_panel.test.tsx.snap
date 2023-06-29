@@ -6,7 +6,7 @@ exports[`EuiSplitPanel accepts panel props 1`] = `
 >
   <div
     aria-label="aria-label"
-    class="euiPanel euiPanel--success euiPanel--paddingMedium euiSplitPanel__inner testClass1 testClass2 emotion-euiPanel-grow-none-m-success"
+    class="euiPanel euiPanel--success euiPanel--paddingMedium euiSplitPanel__inner testClass1 testClass2 emotion-euiPanel-grow-none-m-success-euiTestCss"
     data-test-subj="test subject string"
   />
 </div>
@@ -25,7 +25,7 @@ exports[`EuiSplitPanel inner children are rendered 1`] = `
 exports[`EuiSplitPanel is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPanel euiPanel--plain euiSplitPanel testClass1 testClass2 emotion-euiPanel-m-plain-hasShadow"
+  class="euiPanel euiPanel--plain euiSplitPanel testClass1 testClass2 emotion-euiPanel-m-plain-hasShadow-euiTestCss"
   data-test-subj="test subject string"
 />
 `;

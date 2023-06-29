@@ -68,7 +68,7 @@ exports[`EuiLink it is an external link 1`] = `
 exports[`EuiLink it passes the default props through 1`] = `
 <button
   aria-label="aria-label"
-  class="euiLink testClass1 testClass2 emotion-euiLink-primary"
+  class="euiLink testClass1 testClass2 emotion-euiLink-primary-euiTestCss"
   data-test-subj="test subject string"
   type="button"
 />
