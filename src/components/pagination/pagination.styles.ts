@@ -11,6 +11,7 @@ import {
   logicalCSS,
   logicalCSSWithFallback,
   euiScrollBarStyles,
+  euiFontSize,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
@@ -30,8 +31,7 @@ export const euiPaginationStyles = (euiThemeContext: UseEuiTheme) => {
     euiPagination__compressedText: css`
       display: inline-flex;
       align-items: center;
-      /* Override EuiText line-height */
-      line-height: 1 !important; /* stylelint-disable-line declaration-no-important */
+      line-height: 1; /* Overrides EuiText line-height */
 
       > span {
         ${logicalCSS('margin-horizontal', euiTheme.size.s)}
@@ -45,6 +45,12 @@ export const euiPaginationStyles = (euiThemeContext: UseEuiTheme) => {
     euiPagination__list: css`
       display: flex;
       align-items: baseline;
+    `,
+    euiPagination__ellipsis: css`
+      color: ${euiTheme.colors.disabledText};
+      font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
+      ${logicalCSS('padding-horizontal', euiTheme.size.s)}
+      ${logicalCSS('height', euiTheme.size.l)}
     `,
   };
 };
