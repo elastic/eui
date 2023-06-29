@@ -38,6 +38,11 @@ type ShouldRenderCustomStylesOptions = {
    */
   childProps?: string[];
   /**
+   * If a more specific selector needs to be passed for any reason,
+   * e.g. if there are multiple copies of the element on the page
+   */
+  targetSelector?: string;
+  /**
    * Used for components that do not allow custom inline styles, or
    * components where `style` isn't on the same DOM node as `className`
    */
@@ -102,8 +107,14 @@ export const shouldRenderCustomStyles = (
 
   const assertOutputStyles = (rendered: HTMLElement, euiCss: string = '') => {
     // className
-    const componentNode = rendered.querySelector('.hello');
-    expect(componentNode).not.toBeNull();
+    const renderedClassName = rendered.querySelector('.hello');
+    expect(renderedClassName).not.toBeNull();
+
+    // Set remaining assertions to use `options.targetSelector` if it exists,
+    // or fall back to the className selector if not
+    const componentNode = options.targetSelector
+      ? rendered.querySelector(options.targetSelector)
+      : renderedClassName;
 
     // css
     expect(componentNode!.getAttribute('class')).toContain(
@@ -129,7 +140,9 @@ export const shouldRenderCustomStyles = (
       : { className: customStyles.className };
 
     const { baseElement, unmount } = await renderWith(testProps);
-    const target = baseElement.querySelector(`.${customStyles.className}`)!;
+    const target = baseElement.querySelector(
+      options.targetSelector || `.${customStyles.className}`
+    )!;
     const classes = target.getAttribute('class')?.split(' ');
     unmount(); // Ensure this baseline render doesn't pollute following renders
 

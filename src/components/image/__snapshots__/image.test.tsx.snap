@@ -49,6 +49,7 @@ exports[`EuiImage props allowFullScreen 1`] = `
 
 exports[`EuiImage props caption 1`] = `
 <figure
+  aria-label="caption"
   class="euiImageWrapper emotion-euiImageWrapper"
 >
   <img
@@ -172,7 +173,7 @@ exports[`EuiImage props size 1`] = `
     class="euiImage testClass1 testClass2 emotion-euiImage-customSize-euiTestCss"
     data-test-subj="test subject string"
     src="/cat.jpg"
-    style="max-width:50px;max-height:50px"
+    style="max-width: 50px; max-height: 50px;"
   />
 </figure>
 `;
@@ -208,7 +209,7 @@ exports[`EuiImage props wrapperProps 1`] = `
   class="euiImageWrapper testClass1 testClass2 emotion-euiImageWrapper-euiTestCss"
   data-test-subj="test subject string"
   src="/cat.jpg"
-  style="border:2px solid red"
+  style="border: 2px solid red;"
 >
   <img
     alt="alt"
