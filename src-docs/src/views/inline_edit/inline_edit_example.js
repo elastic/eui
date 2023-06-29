@@ -153,25 +153,6 @@ export const InlineEditExample = {
       playground: inlineEditTitleConfig,
     },
     {
-      title: 'Setting placeholder instructions',
-      text: (
-        <>
-          <p>
-            The <EuiCode>placeholder</EuiCode> property will display in both read and edit mode whenever the <strong>EuiInlineEdit</strong>'s value is empty.
-            Use placeholder text to provide guidance or instructions to consumers as to what they're editing.
-          </p>
-        </>
-      ),
-      source: [
-        {
-          type: GuideSectionTypes.TSX,
-          code: inlineEditPlaceholderSource,
-        },
-      ],
-      demo: <InlineEditPlaceholder />,
-      snippet: inlineEditPlaceholderSnippet,
-    },
-    {
       title: 'Saving edited text',
       text: (
         <p>
@@ -220,6 +201,27 @@ export const InlineEditExample = {
         },
       ],
       demo: <InlineEditValidation />,
+    },
+    {
+      title: 'Setting placeholder instructions',
+      text: (
+        <>
+          <p>
+            The <EuiCode>placeholder</EuiCode> property will display in both
+            read and edit mode whenever the <strong>EuiInlineEdit</strong>'s
+            value is empty. Use placeholder text to provide guidance or
+            instructions to consumers as to what they're editing.
+          </p>
+        </>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: inlineEditPlaceholderSource,
+        },
+      ],
+      demo: <InlineEditPlaceholder />,
+      snippet: inlineEditPlaceholderSnippet,
     },
     {
       title: 'Start in edit mode',

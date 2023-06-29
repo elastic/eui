@@ -25,7 +25,7 @@ export const euiInlineEditReadModeStyles = ({ euiTheme }: UseEuiTheme) => {
     hasPlaceholder: css`
       .euiText,
       .euiTitle {
-        color: ${tint(euiTheme.colors.subduedText, 0.15)};
+        color: ${tint(euiTheme.colors.subduedText, 0.08)};
       }
     `,
   };
