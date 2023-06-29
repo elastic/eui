@@ -7,14 +7,13 @@
  */
 
 import { css } from '@emotion/react';
-import { logicalCSS, mathWithUnits, euiFontSize } from '../../global_styling';
+import { logicalCSS, euiFontSize } from '../../global_styling';
 import { euiButtonEmptyColor } from '../../themes/amsterdam/global_styling/mixins';
 import { UseEuiTheme } from '../../services';
 
 export const euiPaginationButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-  const fontSizeS = euiFontSize(euiThemeContext, 's');
-  const halfSizeM = mathWithUnits(euiTheme.size.m, (x) => x / 2);
+  const fontSizeS = euiFontSize(euiThemeContext, 's').fontSize;
   const disabled = euiButtonEmptyColor(euiThemeContext, 'disabled');
 
   return {
@@ -34,11 +33,9 @@ export const euiPaginationButtonStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     isPlaceholder: css`
-      align-items: baseline;
+      align-self: baseline;
       color: ${disabled.color};
-      ${fontSizeS}
-      ${logicalCSS('padding-top', halfSizeM)}
-      ${logicalCSS('padding-bottom', 0)}
+      font-size: ${fontSizeS};
       ${logicalCSS('padding-horizontal', euiTheme.size.s)}
       ${logicalCSS('height', euiTheme.size.l)}
     `,

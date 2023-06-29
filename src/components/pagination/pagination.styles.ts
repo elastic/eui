@@ -30,8 +30,7 @@ export const euiPaginationStyles = (euiThemeContext: UseEuiTheme) => {
     euiPagination__compressedText: css`
       display: inline-flex;
       align-items: center;
-      /* Override EuiText line-height */
-      line-height: 1 !important; /* stylelint-disable-line declaration-no-important */
+      line-height: 1; /* Overrides EuiText line-height */
 
       > span {
         ${logicalCSS('margin-horizontal', euiTheme.size.s)}
