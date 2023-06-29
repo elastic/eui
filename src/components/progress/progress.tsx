@@ -117,7 +117,10 @@ export const EuiProgress: FunctionComponent<
     dataStyles.euiProgress__data,
     size === 'l' && dataStyles[size],
   ];
-  const labelCssStyles = [euiProgressLabelStyles.euiProgress__label];
+  const labelCssStyles = [
+    euiProgressLabelStyles.euiProgress__label,
+    labelProps?.css,
+  ];
   const valueTextStyles = euiProgressValueTextStyles(euiTheme);
   const valueTextCssStyles = [
     valueTextStyles.euiProgress__valueText,
@@ -160,9 +163,9 @@ export const EuiProgress: FunctionComponent<
                   <span
                     title={innerText}
                     ref={ref}
-                    css={labelCssStyles}
                     {...labelProps}
                     className={labelClasses}
+                    css={labelCssStyles}
                   >
                     {label}
                   </span>
