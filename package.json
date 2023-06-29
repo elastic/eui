@@ -231,7 +231,6 @@
     "react-redux": "^7.2.1",
     "react-refresh": "^0.11.0",
     "react-router-dom": "^5.3.4",
-    "react-router-redux": "^4.0.8",
     "react-view": "^2.3.2",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",

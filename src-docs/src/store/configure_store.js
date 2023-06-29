@@ -1,6 +1,5 @@
 import { applyMiddleware, createStore, compose } from 'redux';
 import thunk from 'redux-thunk';
-import { routerMiddleware, routerReducer } from 'react-router-redux';
 import { createHashHistory } from 'history';
 
 import Routes from '../routes';
@@ -17,16 +16,14 @@ export const history = createHashHistory();
 export default function configureStore(initialState) {
   function rootReducer(state = {}, action) {
     return {
-      routing: routerReducer(state.routing, action),
       theme: themeReducer(state.theme, action),
       locale: localeReducer(state.locale, action),
       routes: Routes,
     };
   }
 
-  const finalStore = compose(applyMiddleware(thunk, routerMiddleware(history)))(
-    createStore
-  )(rootReducer, initialState);
-
-  return finalStore;
+  return compose(applyMiddleware(thunk))(createStore)(
+    rootReducer,
+    initialState
+  );
 }
