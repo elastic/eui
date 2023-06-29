@@ -19,9 +19,9 @@ export default () => {
 
       <EuiInlineEditTitle
         heading="h3"
-        inputAriaLabel="Edit title inline"
+        inputAriaLabel="Placeholder title example"
         defaultValue=""
-        placeholder="This is a placeholder title!"
+        placeholder="Set your username"
       />
     </>
   );
