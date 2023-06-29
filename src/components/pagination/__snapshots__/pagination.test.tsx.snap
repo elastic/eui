@@ -194,7 +194,7 @@ exports[`EuiPagination props activePage is rendered 1`] = `
     </li>
     <li
       aria-label="Skipping pages 2 to 3"
-      class="euiPagination__item css-izv4uh-isPlaceholder"
+      class="euiPagination__item css-1fxcamg-isPlaceholder"
     >
       …
     </li>
@@ -714,7 +714,7 @@ exports[`EuiPagination props pageCount is rendered 1`] = `
     </li>
     <li
       aria-label="Skipping pages 6 to 9"
-      class="euiPagination__item css-izv4uh-isPlaceholder"
+      class="euiPagination__item css-1fxcamg-isPlaceholder"
     >
       …
     </li>
