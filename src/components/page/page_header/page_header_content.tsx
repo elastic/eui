@@ -248,13 +248,12 @@ export const EuiPageHeaderContent: FunctionComponent<
 
   let pageTitleNode;
   if (pageTitle) {
+    const iconCssStyles = [
+      contentStyles.euiPageHeaderContent__titleIcon,
+      iconProps?.css,
+    ];
     const icon = iconType ? (
-      <EuiIcon
-        size="xl"
-        css={contentStyles.euiPageHeaderContent__titleIcon}
-        {...iconProps}
-        type={iconType}
-      />
+      <EuiIcon size="xl" {...iconProps} css={iconCssStyles} type={iconType} />
     ) : undefined;
 
     pageTitleNode = (
