@@ -157,10 +157,8 @@ export const InlineEditExample = {
       text: (
         <>
           <p>
-            Use the <EuiCode>placeholder</EuiCode> property to add a placeholder
-            to the input form control in edit mode. When{' '}
-            <EuiCode>defaultValue</EuiCode> is empty or any empty string is
-            saved, the placeholder value will display in read mode.
+            The <EuiCode>placeholder</EuiCode> property will display in both read and edit mode whenever the <strong>EuiInlineEdit</strong>'s value is empty.
+            Use placeholder text to provide guidance or instructions to consumers as to what they're editing.
           </p>
         </>
       ),
