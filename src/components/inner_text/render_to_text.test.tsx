@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, PropsWithChildren } from 'react';
 import { mount } from 'enzyme';
 import { useRenderToText } from './render_to_text';
 
@@ -14,7 +14,7 @@ describe('useRenderToText', () => {
   it("Returns a ReactNode's rendered string content", () => {
     const renderedTexts: string[] = [];
 
-    const Component: FunctionComponent = ({ children }) => {
+    const Component: FunctionComponent<PropsWithChildren> = ({ children }) => {
       const text = useRenderToText(children);
       renderedTexts.push(text);
       return <div>{text}</div>;

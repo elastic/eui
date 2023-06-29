@@ -13,6 +13,7 @@ import React, {
   MouseEventHandler,
   ReactNode,
   useState,
+  PropsWithChildren,
 } from 'react';
 import classNames from 'classnames';
 
@@ -57,14 +58,14 @@ export type EuiBreadcrumbProps = Omit<
   };
 
 // Used internally only by the parent EuiBreadcrumbs
-type _EuiBreadcrumbProps = {
-  type: 'page' | 'application';
-  isFirstBreadcrumb?: boolean;
-  isLastBreadcrumb?: boolean;
-  isOnlyBreadcrumb?: boolean;
-  highlightLastBreadcrumb?: boolean;
-  truncateLastBreadcrumb?: boolean;
-} & Pick<EuiBreadcrumbProps, 'truncate'>;
+type _EuiBreadcrumbProps = PropsWithChildren & Pick<EuiBreadcrumbProps, 'truncate'> & {
+    type: 'page' | 'application';
+    isFirstBreadcrumb?: boolean;
+    isLastBreadcrumb?: boolean;
+    isOnlyBreadcrumb?: boolean;
+    highlightLastBreadcrumb?: boolean;
+    truncateLastBreadcrumb?: boolean;
+  };
 
 export const EuiBreadcrumb: FunctionComponent<
   HTMLAttributes<HTMLLIElement> & _EuiBreadcrumbProps

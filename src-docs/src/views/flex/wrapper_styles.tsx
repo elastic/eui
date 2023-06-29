@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { css } from '@emotion/react';
 import {
   useEuiTheme,
@@ -18,7 +18,9 @@ export const flexItemHiglightStyles = ({ euiTheme }: UseEuiTheme) => {
   `;
 };
 
-export const FlexItemHighlightWrapper: React.FC = ({ children }) => {
+export const FlexItemHighlightWrapper: React.FC<PropsWithChildren> = ({
+  children,
+}) => {
   const euiTheme = useEuiTheme();
   return <div css={flexItemHiglightStyles(euiTheme)}>{children}</div>;
 };

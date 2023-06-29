@@ -11,7 +11,7 @@
  * into portals.
  */
 
-import { Component, ReactNode } from 'react';
+import React, { Component, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 
 import { EuiNestedThemeContext } from '../../services';
@@ -95,8 +95,8 @@ export class EuiPortal extends Component<EuiPortalProps> {
   }
 
   render() {
-    return this.portalNode
-      ? createPortal(this.props.children, this.portalNode)
-      : null;
+    return this.portalNode ? (
+      <>{createPortal(this.props.children, this.portalNode)}</>
+    ) : null;
   }
 }

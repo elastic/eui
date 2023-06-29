@@ -13,6 +13,7 @@ import React, {
   useMemo,
   useCallback,
   FunctionComponent,
+  PropsWithChildren,
 } from 'react';
 
 import { keysOf } from '../../components/common';
@@ -33,9 +34,9 @@ export const CurrentEuiBreakpointContext =
  * Top level provider (nested within EuiProvider) which provides a single
  * resize listener that returns the current breakpoint based on window width
  */
-export const CurrentEuiBreakpointProvider: FunctionComponent = ({
-  children,
-}) => {
+export const CurrentEuiBreakpointProvider: FunctionComponent<
+  PropsWithChildren
+> = ({ children }) => {
   // Obtain the breakpoints map from the EUI theme
   const {
     euiTheme: { breakpoint: breakpoints },
