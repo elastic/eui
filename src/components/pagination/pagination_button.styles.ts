@@ -7,12 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import {
-  logicalCSS,
-  logicalTextAlignCSS,
-  mathWithUnits,
-  euiFontSize,
-} from '../../global_styling';
+import { logicalCSS, mathWithUnits, euiFontSize } from '../../global_styling';
 import { euiButtonEmptyColor } from '../../themes/amsterdam/global_styling/mixins';
 import { UseEuiTheme } from '../../services';
 
@@ -22,19 +17,9 @@ export const euiPaginationButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const halfSizeM = mathWithUnits(euiTheme.size.m, (x) => x / 2);
   const disabled = euiButtonEmptyColor(euiThemeContext, 'disabled');
 
-  // && to increase specificity. Can likely be removed once EuiButtonEmpty has been converted.
-
   return {
     // Base
-    euiPaginationButton: css`
-      && {
-        ${fontSizeS}
-        padding: 0;
-        ${logicalTextAlignCSS('center')}
-        border-radius: ${euiTheme.border.radius.medium};
-        outline-offset: -${euiTheme.focus.width};
-      }
-    `,
+    euiPaginationButton: css``,
     // States
     isActive: css`
       && {
