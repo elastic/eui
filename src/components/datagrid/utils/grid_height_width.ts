@@ -38,16 +38,18 @@ export const useFinalGridDimensions = ({
   // Set the wrapper height on load, whenever the grid wrapper resizes, and whenever rowCount changes
   useEffect(() => {
     const boundingRect = wrapperRef.current!.getBoundingClientRect();
+    const wrapperHeight = wrapperRef.current?.offsetHeight;
+    const wrapperWidth = wrapperRef.current?.offsetWidth;
 
     if (isFullScreen) {
       setFullScreenHeight(boundingRect.height);
     } else {
-      if (boundingRect.height !== unconstrainedHeight) {
-        setHeight(boundingRect.height);
+      if (wrapperHeight !== unconstrainedHeight) {
+        setHeight(wrapperHeight);
       }
     }
-    if (boundingRect.width !== unconstrainedWidth) {
-      setWidth(boundingRect.width);
+    if (wrapperWidth !== unconstrainedWidth) {
+      setWidth(wrapperWidth);
     }
   }, [
     // Effects that should cause recalculations
