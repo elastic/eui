@@ -1,3 +1,13 @@
+## [`83.0.0`](https://github.com/elastic/eui/tree/v83.0.0)
+
+**Bug fixes**
+
+- Fixed `EuiPaginationButton` styling affected by `EuiButtonEmpty`'s Emotion conversion ([#6893](https://github.com/elastic/eui/pull/6893))
+
+**Breaking changes**
+
+- Removed `isPlaceholder` prop from `EuiPaginationButton` ([#6893](https://github.com/elastic/eui/pull/6893))
+
 ## [`82.2.1`](https://github.com/elastic/eui/tree/v82.2.1)
 
 - Updated supported Node engine versions to allow Node 16, 18 and >=20 ([#6884](https://github.com/elastic/eui/pull/6884))
