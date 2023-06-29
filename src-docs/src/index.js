@@ -1,7 +1,7 @@
 import React, { createElement } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Switch, Route, Redirect } from 'react-router';
+import { Router, Switch, Route, Redirect } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
 import configureStore, { history } from './store/configure_store';
