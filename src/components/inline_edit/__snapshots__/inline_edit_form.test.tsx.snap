@@ -559,7 +559,7 @@ exports[`EuiInlineEditForm edit mode isLoading 1`] = `
 
 exports[`EuiInlineEditForm edit mode placeholder 1`] = `
 <div
-  class="euiInlineEdit testClass1 testClass2"
+  class="euiInlineEdit testClass1 testClass2 emotion-euiTestCss"
 >
   <div
     class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-stretch-row"
@@ -760,7 +760,7 @@ exports[`EuiInlineEditForm read mode isReadOnly 1`] = `
 
 exports[`EuiInlineEditForm read mode placeholder 1`] = `
 <div
-  class="euiInlineEdit testClass1 testClass2"
+  class="euiInlineEdit testClass1 testClass2 emotion-euiTestCss"
 >
   <button
     aria-describedby="inlineEdit_generated-id"

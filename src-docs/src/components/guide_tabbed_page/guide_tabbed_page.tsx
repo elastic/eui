@@ -1,5 +1,12 @@
 import React, { FunctionComponent, ReactNode, useContext } from 'react';
-import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
+import {
+  Switch,
+  Route,
+  Redirect,
+  useHistory,
+  useLocation,
+  useRouteMatch,
+} from 'react-router-dom';
 import { slugify } from '../../../../src/services/string/slugify';
 import {
   EuiPageHeader,
@@ -13,12 +20,9 @@ import { GuideSection } from '../guide_section/guide_section';
 export type GuideTabbedPageProps = CommonProps & {
   description?: ReactNode;
   guidelines?: ReactNode;
-  history: any;
   intro?: ReactNode;
   isBeta?: boolean;
   isNew?: boolean;
-  location: any;
-  match: any;
   notice?: ReactNode;
   pages?: any;
   rightSideItems?: ReactNode[];
@@ -27,15 +31,12 @@ export type GuideTabbedPageProps = CommonProps & {
   title: string;
 };
 
-const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
+export const GuideTabbedPage: FunctionComponent<GuideTabbedPageProps> = ({
   description,
   guidelines,
-  history,
   intro,
   isBeta,
   isNew,
-  location,
-  match,
   notice,
   pages,
   rightSideItems: _rightSideItems,
@@ -44,6 +45,10 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
   title,
   children,
 }) => {
+  const history = useHistory();
+  const location = useLocation();
+  const match = useRouteMatch();
+
   const themeContext = useContext(ThemeContext);
   const currentLanguage = themeContext.themeLanguage;
   const showSass = currentLanguage.includes('sass');
@@ -206,5 +211,3 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
     </>
   );
 };
-
-export const GuideTabbedPage = withRouter(GuideTabbedPageComponent);
