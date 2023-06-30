@@ -14,7 +14,7 @@ interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-const EuiIconStardust = ({
+const EuiIconSparkles = ({
   title,
   titleId,
   ...props
@@ -34,4 +34,4 @@ const EuiIconStardust = ({
     />
   </svg>
 );
-export const icon = EuiIconStardust;
+export const icon = EuiIconSparkles;
