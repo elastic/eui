@@ -224,6 +224,7 @@ describe('EuiIcons', () => {
       'sortRight',
       'sortUp',
       'spaces',
+      'stardust',
       'starEmpty',
       'starEmptySpace',
       'starFilled',

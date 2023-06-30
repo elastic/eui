@@ -354,6 +354,7 @@ export const typeToPathMap = {
   spaces: 'spaces',
   spacesApp: 'app_spaces',
   sqlApp: 'app_sql',
+  stardust: 'stardust',
   starEmpty: 'star_empty',
   starEmptySpace: 'star_empty_space',
   starFilled: 'star_filled',
