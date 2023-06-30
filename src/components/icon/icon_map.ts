@@ -353,6 +353,7 @@ export const typeToPathMap = {
   sortable: 'sortable',
   spaces: 'spaces',
   spacesApp: 'app_spaces',
+  sparkles: 'sparkles',
   sqlApp: 'app_sql',
   starEmpty: 'star_empty',
   starEmptySpace: 'star_empty_space',
