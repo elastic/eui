@@ -13,10 +13,12 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { EuiIcon, IconType } from '../icon';
-import { CommonProps } from '../common';
-import { getSecureRelForTarget } from '../../services';
-import { validateHref } from '../../services/security/href_validator';
+import { useEuiTheme, getSecureRelForTarget } from '../../../services';
+import { validateHref } from '../../../services/security/href_validator';
+import { EuiIcon, IconType } from '../../icon';
+import { CommonProps } from '../../common';
+
+import { euiHeaderLogoStyles } from './header_logo.styles';
 
 export type EuiHeaderLogoProps = CommonProps &
   AnchorHTMLAttributes<HTMLAnchorElement> & {
@@ -42,13 +44,18 @@ export const EuiHeaderLogo: FunctionComponent<EuiHeaderLogoProps> = ({
   ...rest
 }) => {
   const classes = classNames('euiHeaderLogo', className);
+  const euiTheme = useEuiTheme();
+  const styles = euiHeaderLogoStyles(euiTheme);
+
   const secureRel = getSecureRelForTarget({ href, rel, target });
   const isHrefValid = !href || validateHref(href);
+
   return (
     <a
       href={isHrefValid ? href : ''}
       rel={secureRel}
       target={target}
+      css={styles.euiHeaderLogo}
       className={classes}
       {...rest}
     >
@@ -59,7 +66,11 @@ export const EuiHeaderLogo: FunctionComponent<EuiHeaderLogoProps> = ({
         type={iconType}
       />
 
-      {children && <span className="euiHeaderLogo__text">{children}</span>}
+      {children && (
+        <span css={styles.euiHeaderLogo__text} className="euiHeaderLogo__text">
+          {children}
+        </span>
+      )}
     </a>
   );
 };
