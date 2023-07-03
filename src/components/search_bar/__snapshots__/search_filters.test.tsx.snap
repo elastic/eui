@@ -38,7 +38,7 @@ exports[`EuiSearchFilters render - with filters 1`] = `
       class="euiPopover__anchor css-16vtueo-render"
     >
       <button
-        class="euiButtonEmpty euiFilterButton euiFilterButton--hasIcon emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
+        class="euiButtonEmpty euiFilterButton euiFilterButton--hasDropdownArrow emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
         type="button"
       >
         <span

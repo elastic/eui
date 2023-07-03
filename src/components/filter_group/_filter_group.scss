@@ -18,6 +18,10 @@
     min-width: $euiSize * 6;
   }
 
+  > .euiFilterButton--hasDropdownArrow {
+    min-width: $euiSize * 8;
+  }
+
   // Force popover anchors to expand for now
   .euiPopover__anchor {
     display: block;

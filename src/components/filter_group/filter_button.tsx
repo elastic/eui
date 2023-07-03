@@ -78,7 +78,8 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
       'euiFilterButton-isSelected': isSelected,
       'euiFilterButton-hasActiveFilters': hasActiveFilters,
       'euiFilterButton-hasNotification': numFiltersDefined,
-      'euiFilterButton--hasIcon': iconType,
+      'euiFilterButton--hasDropdownArrow':
+        iconType === 'arrowDown' && iconSide === 'right',
       'euiFilterButton--noGrow': !grow,
       'euiFilterButton--withNext': withNext,
     },

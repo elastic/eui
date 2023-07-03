@@ -82,7 +82,7 @@ exports[`EuiFilterButton props grow can be turned off 1`] = `
 
 exports[`EuiFilterButton props iconType and iconSide is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiFilterButton euiFilterButton--hasIcon emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
+  class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
   type="button"
 >
   <span
