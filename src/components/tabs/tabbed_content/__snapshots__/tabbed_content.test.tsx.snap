@@ -123,7 +123,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
 exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
 <div
   aria-label="aria-label"
-  class="testClass1 testClass2"
+  class="testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div

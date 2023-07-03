@@ -82,7 +82,7 @@ exports[`EuiCard horizontal selectable 1`] = `
   <button
     aria-checked="false"
     aria-describedby="generated-idTitle generated-idDescription"
-    class="emotion-euiButtonDisplay-m-fullWidth-defaultMinWidth-base-text-euiCardSelect"
+    class="euiButton emotion-euiButtonDisplay-m-fullWidth-defaultMinWidth-base-text-euiCardSelect"
     role="switch"
     type="button"
   >
@@ -98,7 +98,7 @@ exports[`EuiCard horizontal selectable 1`] = `
 exports[`EuiCard is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -1077,7 +1077,7 @@ exports[`EuiCard props selectable 1`] = `
   <button
     aria-checked="false"
     aria-describedby="generated-idTitle generated-idDescription"
-    class="emotion-euiButtonDisplay-m-fullWidth-defaultMinWidth-base-text-euiCardSelect"
+    class="euiButton emotion-euiButtonDisplay-m-fullWidth-defaultMinWidth-base-text-euiCardSelect"
     role="switch"
     type="button"
   >

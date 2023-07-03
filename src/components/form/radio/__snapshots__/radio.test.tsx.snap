@@ -3,7 +3,7 @@
 exports[`EuiRadio is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiRadio euiRadio--noLabel testClass1 testClass2"
+  class="euiRadio euiRadio--noLabel testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <input
@@ -86,7 +86,7 @@ exports[`EuiRadio props labelProps is rendered 1`] = `
   />
   <label
     aria-label="aria-label"
-    class="euiRadio__label testClass1 testClass2"
+    class="euiRadio__label testClass1 testClass2 emotion-euiTestCss"
     data-test-subj="test subject string"
     for="id"
   >

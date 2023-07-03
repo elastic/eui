@@ -3,7 +3,7 @@
 exports[`EuiRangeLevels is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="testClass1 testClass2 emotion-euiRangeLevels"
+  class="testClass1 testClass2 emotion-euiRangeLevels-euiTestCss"
   data-test-subj="test subject string"
 >
   <span

@@ -3,7 +3,7 @@
 exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
 <div
   aria-label="aria-label"
-  class="euiSteps testClass1 testClass2"
+  class="euiSteps testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -117,7 +117,7 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
 exports[`EuiSteps renders steps 1`] = `
 <div
   aria-label="aria-label"
-  class="euiSteps testClass1 testClass2"
+  class="euiSteps testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -231,7 +231,7 @@ exports[`EuiSteps renders steps 1`] = `
 exports[`EuiSteps renders steps with firstStepNumber 1`] = `
 <div
   aria-label="aria-label"
-  class="euiSteps testClass1 testClass2"
+  class="euiSteps testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -345,7 +345,7 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
 exports[`EuiSteps renders steps with titleSize 1`] = `
 <div
   aria-label="aria-label"
-  class="euiSteps testClass1 testClass2"
+  class="euiSteps testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div

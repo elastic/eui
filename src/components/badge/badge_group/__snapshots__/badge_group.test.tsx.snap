@@ -21,7 +21,7 @@ exports[`EuiBadgeGroup gutterSize xs is rendered 1`] = `
 exports[`EuiBadgeGroup is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiBadgeGroup testClass1 testClass2 emotion-euiBadgeGroup-xs"
+  class="euiBadgeGroup testClass1 testClass2 emotion-euiBadgeGroup-xs-euiTestCss"
   data-test-subj="test subject string"
 >
   <span

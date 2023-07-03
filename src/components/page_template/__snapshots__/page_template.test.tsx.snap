@@ -51,7 +51,7 @@ exports[`EuiPageTemplate bottomBorder is rendered as true 1`] = `
 exports[`EuiPageTemplate children detects sidebars and does not place them in the main EuiPageInner 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageTemplate testClass1 testClass2 emotion-euiPageOuter-row-grow"
+  class="euiPageTemplate testClass1 testClass2 emotion-euiPageOuter-row-grow-euiTestCss"
   data-test-subj="test subject string"
   style="min-block-size:max(460px, 100vh)"
 >
@@ -73,7 +73,7 @@ exports[`EuiPageTemplate children detects sidebars and does not place them in th
 exports[`EuiPageTemplate children renders all other types within the main EuiPageInner 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageTemplate testClass1 testClass2 emotion-euiPageOuter-row-grow"
+  class="euiPageTemplate testClass1 testClass2 emotion-euiPageOuter-row-grow-euiTestCss"
   data-test-subj="test subject string"
   style="min-block-size:max(460px, 100vh)"
 >
@@ -114,7 +114,7 @@ exports[`EuiPageTemplate children renders all other types within the main EuiPag
 exports[`EuiPageTemplate is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageTemplate testClass1 testClass2 emotion-euiPageOuter-row-grow"
+  class="euiPageTemplate testClass1 testClass2 emotion-euiPageOuter-row-grow-euiTestCss"
   data-test-subj="test subject string"
   style="min-block-size:max(460px, 100vh)"
 >

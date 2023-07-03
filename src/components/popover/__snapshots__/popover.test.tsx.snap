@@ -15,7 +15,7 @@ exports[`EuiPopover children is rendered 1`] = `
 
 exports[`EuiPopover is rendered 1`] = `
 <div
-  class="euiPopover testClass1 testClass2 emotion-euiPopover"
+  class="euiPopover testClass1 testClass2 emotion-euiPopover-euiTestCss"
   data-test-subj="test subject string"
   id="0"
 >
@@ -710,7 +710,7 @@ exports[`EuiPopover props panelProps is rendered 1`] = `
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-bottom"
+        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-bottom-euiTestCss"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"

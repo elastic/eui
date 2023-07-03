@@ -3,7 +3,7 @@
 exports[`EuiRangeTrack is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiRangeTrack testClass1 testClass2 emotion-euiRangeTrack-hasTicks"
+  class="euiRangeTrack testClass1 testClass2 emotion-euiRangeTrack-hasTicks-euiTestCss"
   data-test-subj="test subject string"
 >
   <div

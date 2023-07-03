@@ -3,7 +3,7 @@
 exports[`EuiFormControlLayoutCustomIcon is rendered as button 1`] = `
 <button
   aria-label="aria-label"
-  class="euiFormControlLayoutCustomIcon testClass1 testClass2 euiFormControlLayoutCustomIcon--clickable"
+  class="euiFormControlLayoutCustomIcon testClass1 testClass2 emotion-euiTestCss euiFormControlLayoutCustomIcon--clickable"
   data-test-subj="test subject string"
   type="button"
 >
@@ -19,7 +19,7 @@ exports[`EuiFormControlLayoutCustomIcon is rendered as button 1`] = `
 exports[`EuiFormControlLayoutCustomIcon is rendered as span 1`] = `
 <span
   aria-label="aria-label"
-  class="euiFormControlLayoutCustomIcon testClass1 testClass2"
+  class="euiFormControlLayoutCustomIcon testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <span

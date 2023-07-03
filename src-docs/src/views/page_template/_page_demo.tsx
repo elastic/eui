@@ -1,5 +1,5 @@
 import React, { useState, FunctionComponent } from 'react';
-import { useRouteMatch } from 'react-router';
+import { useRouteMatch } from 'react-router-dom';
 import {
   EuiImage,
   EuiButton,

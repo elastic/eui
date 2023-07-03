@@ -3,7 +3,7 @@
 exports[`EuiButtonEmpty is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiButtonEmpty testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-m-empty-primary"
+  class="euiButtonEmpty testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-m-empty-primary-euiTestCss"
   data-test-subj="test subject string"
   type="button"
 >
@@ -131,7 +131,7 @@ exports[`EuiButtonEmpty props contentProps is rendered 1`] = `
 >
   <span
     aria-label="aria-label"
-    class="euiButtonEmpty__content testClass1 testClass2 emotion-euiButtonDisplayContent"
+    class="euiButtonEmpty__content testClass1 testClass2 emotion-euiButtonDisplayContent-euiTestCss"
     data-test-subj="test subject string"
   >
     <span
@@ -423,7 +423,7 @@ exports[`EuiButtonEmpty props textProps is rendered 1`] = `
   >
     <span
       aria-label="aria-label"
-      class="eui-textTruncate euiButtonEmpty__text testClass1 testClass2"
+      class="eui-textTruncate euiButtonEmpty__text testClass1 testClass2 emotion-euiTestCss"
       data-test-subj="test subject string"
     >
       Content

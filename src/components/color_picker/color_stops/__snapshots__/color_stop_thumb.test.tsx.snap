@@ -2,7 +2,7 @@
 
 exports[`renders EuiColorStopThumb 1`] = `
 <div
-  class="euiPopover euiColorStopPopover testClass1 testClass2 emotion-euiPopover-euiColorStopThumbPopover"
+  class="euiPopover euiColorStopPopover testClass1 testClass2 emotion-euiPopover-euiColorStopThumbPopover-euiTestCss"
   data-test-subj="test subject string"
   style="left:0%"
 >
@@ -29,7 +29,7 @@ exports[`renders EuiColorStopThumb 1`] = `
 
 exports[`renders disabled EuiColorStopThumb 1`] = `
 <div
-  class="euiPopover euiColorStopPopover testClass1 testClass2 emotion-euiPopover-euiColorStopThumbPopover"
+  class="euiPopover euiColorStopPopover testClass1 testClass2 emotion-euiPopover-euiColorStopThumbPopover-euiTestCss"
   data-test-subj="test subject string"
   style="left:0%"
 >
@@ -57,7 +57,7 @@ exports[`renders disabled EuiColorStopThumb 1`] = `
 
 exports[`renders picker-only EuiColorStopThumb 1`] = `
 <div
-  class="euiPopover euiColorStopPopover testClass1 testClass2 emotion-euiPopover-euiColorStopThumbPopover"
+  class="euiPopover euiColorStopPopover testClass1 testClass2 emotion-euiPopover-euiColorStopThumbPopover-euiTestCss"
   data-test-subj="test subject string"
   style="left:0%"
 >
@@ -84,7 +84,7 @@ exports[`renders picker-only EuiColorStopThumb 1`] = `
 
 exports[`renders readOnly EuiColorStopThumb 1`] = `
 <div
-  class="euiPopover euiColorStopPopover testClass1 testClass2 emotion-euiPopover-euiColorStopThumbPopover"
+  class="euiPopover euiColorStopPopover testClass1 testClass2 emotion-euiPopover-euiColorStopThumbPopover-euiTestCss"
   data-test-subj="test subject string"
   style="left:0%"
 >
@@ -111,7 +111,7 @@ exports[`renders readOnly EuiColorStopThumb 1`] = `
 
 exports[`renders swatch-only EuiColorStopThumb 1`] = `
 <div
-  class="euiPopover euiColorStopPopover testClass1 testClass2 emotion-euiPopover-euiColorStopThumbPopover"
+  class="euiPopover euiColorStopPopover testClass1 testClass2 emotion-euiPopover-euiColorStopThumbPopover-euiTestCss"
   data-test-subj="test subject string"
   style="left:0%"
 >

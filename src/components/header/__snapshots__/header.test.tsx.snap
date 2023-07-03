@@ -3,7 +3,7 @@
 exports[`EuiHeader renders 1`] = `
 <div
   aria-label="aria-label"
-  class="euiHeader testClass1 testClass2 emotion-euiHeader-static-default"
+  class="euiHeader testClass1 testClass2 emotion-euiHeader-static-default-euiTestCss"
   data-test-subj="test subject string"
 />
 `;

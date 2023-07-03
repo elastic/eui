@@ -19,7 +19,7 @@ exports[`EuiModalHeaderTitle component 1`] = `
 exports[`EuiModalHeaderTitle is rendered 1`] = `
 <h1
   aria-label="aria-label"
-  class="euiTitle euiModalHeader__title testClass1 testClass2 emotion-euiTitle-m"
+  class="euiTitle euiModalHeader__title testClass1 testClass2 emotion-euiTitle-m-euiTestCss"
   data-test-subj="test subject string"
 >
   children

@@ -3,7 +3,7 @@
 exports[`EuiSuperUpdateButton renders 1`] = `
 <div>
   <div
-    class="euiPopover testClass1 testClass2 emotion-euiPopover"
+    class="euiPopover testClass1 testClass2 emotion-euiPopover-euiTestCss"
     data-test-subj="test subject string"
   >
     <div

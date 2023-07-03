@@ -3,7 +3,7 @@
 exports[`EuiFormControlLayoutClearButton is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiFormControlLayoutClearButton testClass1 testClass2"
+  class="euiFormControlLayoutClearButton testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
   type="button"
 >

@@ -3,7 +3,7 @@
 exports[`EuiPageSidebar is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="testClass1 testClass2 emotion-euiPageSidebar"
+  class="testClass1 testClass2 emotion-euiPageSidebar-euiTestCss"
   data-test-subj="test subject string"
   style="min-inline-size:248px"
 />

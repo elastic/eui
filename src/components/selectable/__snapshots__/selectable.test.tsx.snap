@@ -247,7 +247,7 @@ exports[`EuiSelectable errorMessage prop does renders the message when defined 1
 
 exports[`EuiSelectable is rendered 1`] = `
 <div
-  class="euiSelectable testClass1 testClass2"
+  class="euiSelectable testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
   id="testId"
 />

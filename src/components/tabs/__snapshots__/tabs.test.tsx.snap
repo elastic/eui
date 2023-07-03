@@ -103,7 +103,7 @@ exports[`EuiTabs props size xl renders and passes down to EuiTab children 1`] = 
 exports[`EuiTabs renders 1`] = `
 <div
   aria-label="aria-label"
-  class="euiTabs testClass1 testClass2 emotion-euiTabs-m-bottomBorder"
+  class="euiTabs testClass1 testClass2 emotion-euiTabs-m-bottomBorder-euiTestCss"
   data-test-subj="test subject string"
   role="tablist"
 >

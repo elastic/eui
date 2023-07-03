@@ -15,7 +15,7 @@ exports[`EuiHeaderSection grow renders true 1`] = `
 exports[`EuiHeaderSection is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiHeaderSection euiHeaderSection--dontGrow euiHeaderSection--left testClass1 testClass2"
+  class="euiHeaderSection euiHeaderSection--dontGrow euiHeaderSection--left testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 />
 `;

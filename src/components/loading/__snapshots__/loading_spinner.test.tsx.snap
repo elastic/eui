@@ -26,7 +26,7 @@ Array [
 exports[`EuiLoadingSpinner is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiLoadingSpinner testClass1 testClass2 emotion-euiLoadingSpinner-m"
+  class="euiLoadingSpinner testClass1 testClass2 emotion-euiLoadingSpinner-m-euiTestCss"
   data-test-subj="test subject string"
   role="progressbar"
 />

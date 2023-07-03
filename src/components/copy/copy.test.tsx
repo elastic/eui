@@ -8,17 +8,19 @@
 
 import React from 'react';
 import { shallow } from 'enzyme';
-import { EuiCopy } from './copy';
+import { render } from '../../test/rtl';
 import { requiredProps } from '../../test';
 
+import { EuiCopy } from './copy';
+
 describe('EuiCopy', () => {
-  test('is rendered', () => {
-    const component = shallow(
+  it('renders', () => {
+    const { container } = render(
       <EuiCopy textToCopy="some text" {...requiredProps}>
         {(copy) => <button onClick={copy}>Click to copy input text</button>}
       </EuiCopy>
     );
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {

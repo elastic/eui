@@ -3,7 +3,7 @@
 exports[`EuiFlyoutBody is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiFlyoutBody testClass1 testClass2 emotion-euiFlyoutBody"
+  class="euiFlyoutBody testClass1 testClass2 emotion-euiFlyoutBody-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
