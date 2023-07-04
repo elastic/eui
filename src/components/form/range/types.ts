@@ -10,6 +10,7 @@ import type { ReactNode, CSSProperties, InputHTMLAttributes } from 'react';
 import type { CommonProps } from '../../common';
 import type { EuiFormControlLayoutProps } from '../form_control_layout';
 import type { EuiRangeLevelColor } from './range_levels_colors';
+import { EuiRangeInputProps } from './range_input';
 
 /**
  * Internal type atoms split up both for easier categorization
@@ -201,21 +202,7 @@ export interface EuiDualRangeProps
   /**
    * Intended to be used with aria attributes. Some attributes may be overwritten.
    */
-  minInputProps?: Omit<
-    InputHTMLAttributes<HTMLInputElement>,
-    | 'max'
-    | 'min'
-    | 'value'
-    | 'step'
-    | 'disabled'
-    | 'readonly'
-    | 'name'
-    | 'onChange'
-    | 'onFocus'
-    | 'onBlur'
-    | 'onKeyDown'
-    | 'onMouseDown'
-  >;
+  minInputProps?: Partial<Omit<EuiRangeInputProps, 'max' | 'min' | 'step'>>;
   /**
    *  Intended to be used with aria attributes. Some attributes may be overwritten.
    */

@@ -470,28 +470,54 @@ export class EuiDualRangeClass extends Component<
         // Overridable props
         aria-describedby={this.props['aria-describedby']}
         aria-label={this.props['aria-label']}
+        disabled={disabled}
+        isInvalid={isInvalid}
+        name={`${name}-minValue`}
+        value={this.lowerValue}
+        readOnly={readOnly}
         {...minInputProps}
         // Non-overridable props
         side="min"
         min={min}
         max={Number(this.upperValue)}
         step={step}
-        value={this.lowerValue}
-        disabled={disabled}
         compressed={compressed}
-        onChange={this.handleLowerInputChange}
-        onKeyDown={this.handleInputKeyDown}
-        name={`${name}-minValue`}
-        onFocus={canShowDropdown ? this.onInputFocus : onFocus}
-        onBlur={canShowDropdown ? this.onInputBlur : onBlur}
-        readOnly={readOnly}
         autoSize={!showInputOnly}
         fullWidth={!!showInputOnly && fullWidth}
-        isInvalid={isInvalid}
         controlOnly={showInputOnly}
-        onMouseDown={
-          showInputOnly ? () => (this.preventPopoverClose = true) : undefined
-        }
+        onChange={(event) => {
+          this.handleLowerInputChange(event);
+          minInputProps?.onChange?.(event);
+        }}
+        onKeyDown={(event) => {
+          this.handleInputKeyDown(event);
+          minInputProps?.onKeyDown?.(event);
+        }}
+        onFocus={(event) => {
+          if (canShowDropdown) {
+            this.onInputFocus(event);
+          } else {
+            onFocus?.(event);
+          }
+
+          minInputProps?.onFocus?.(event);
+        }}
+        onBlur={(event) => {
+          if (canShowDropdown) {
+            this.onInputBlur(event);
+          } else {
+            onBlur?.(event);
+          }
+
+          minInputProps?.onBlur?.(event);
+        }}
+        onMouseDown={(event) => {
+          if (showInputOnly) {
+            this.preventPopoverClose = true;
+          }
+
+          minInputProps?.onMouseDown?.(event);
+        }}
       />
     ) : undefined;
 
@@ -500,28 +526,54 @@ export class EuiDualRangeClass extends Component<
         // Overridable props
         aria-describedby={this.props['aria-describedby']}
         aria-label={this.props['aria-label']}
+        disabled={disabled}
+        isInvalid={isInvalid}
+        name={`${name}-maxValue`}
+        value={this.upperValue}
+        readOnly={readOnly}
         {...maxInputProps}
         // Non-overridable props
         side="max"
         min={Number(this.lowerValue)}
         max={max}
         step={step}
-        value={this.upperValue}
-        disabled={disabled}
         compressed={compressed}
-        onChange={this.handleUpperInputChange}
-        onKeyDown={this.handleInputKeyDown}
-        name={`${name}-maxValue`}
-        onFocus={canShowDropdown ? this.onInputFocus : onFocus}
-        onBlur={canShowDropdown ? this.onInputBlur : onBlur}
-        readOnly={readOnly}
         autoSize={!showInputOnly}
         fullWidth={!!showInputOnly && fullWidth}
         controlOnly={showInputOnly}
-        isInvalid={isInvalid}
-        onMouseDown={
-          showInputOnly ? () => (this.preventPopoverClose = true) : undefined
-        }
+        onChange={(event) => {
+          this.handleUpperInputChange(event);
+          maxInputProps?.onChange?.(event);
+        }}
+        onKeyDown={(event) => {
+          this.handleInputKeyDown(event);
+          maxInputProps?.onKeyDown?.(event);
+        }}
+        onFocus={(event) => {
+          if (canShowDropdown) {
+            this.onInputFocus(event);
+          } else {
+            onFocus?.(event);
+          }
+
+          maxInputProps?.onFocus?.(event);
+        }}
+        onBlur={(event) => {
+          if (canShowDropdown) {
+            this.onInputBlur(event);
+          } else {
+            onBlur?.(event);
+          }
+
+          maxInputProps?.onBlur?.(event);
+        }}
+        onMouseDown={(event) => {
+          if (showInputOnly) {
+            this.preventPopoverClose = true;
+          }
+
+          maxInputProps?.onMouseDown?.(event);
+        }}
       />
     ) : undefined;
 
