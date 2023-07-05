@@ -528,7 +528,7 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
         >
           <div>
             <div
-              class=" emotion-euiAccordion__children"
+              class="euiAccordion__children emotion-euiAccordion__children"
             >
               <div
                 class="euiNotificationEventMessages__accordionContent"

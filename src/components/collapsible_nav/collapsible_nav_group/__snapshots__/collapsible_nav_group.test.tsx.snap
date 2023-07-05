@@ -258,7 +258,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true accepts accordion pro
   >
     <div>
       <div
-        class=" emotion-euiAccordion__children"
+        class="euiAccordion__children emotion-euiAccordion__children"
       />
     </div>
   </div>
@@ -323,7 +323,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accord
   >
     <div>
       <div
-        class=" emotion-euiAccordion__children"
+        class="euiAccordion__children emotion-euiAccordion__children"
       />
     </div>
   </div>
