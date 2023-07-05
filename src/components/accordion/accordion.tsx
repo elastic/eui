@@ -234,7 +234,7 @@ export class EuiAccordionClass extends Component<
       className
     );
 
-    const childrenClasses = classNames({
+    const childrenClasses = classNames('euiAccordion__children', {
       'euiAccordion__children-isLoading': isLoading,
     });
 
