@@ -18,12 +18,6 @@ const _colorCSS = (color: string) => {
   return `
     color: ${color};
 
-    &:hover,
-    &:focus,
-    &:target {
-      text-decoration: underline;
-    }
-
     &:target {
       color: darken(${color}, 10%);
     }
@@ -39,7 +33,7 @@ export const euiLinkHoverCSS = () => {
 export const euiLinkFocusCSS = (euiTheme: UseEuiTheme['euiTheme']) => {
   return `
     text-decoration: underline;
-    text-decoration-thickness: ${euiTheme.border.width.thick} !important;
+    text-decoration-thickness: ${euiTheme.border.width.thick};
   `;
 };
 
