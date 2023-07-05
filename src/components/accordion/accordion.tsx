@@ -9,7 +9,7 @@
 import React, { Component, HTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, keysOf } from '../common';
+import { CommonProps } from '../common';
 
 import { EuiLoadingSpinner } from '../loading';
 import { EuiResizeObserver } from '../observer/resize_observer';
@@ -32,17 +32,8 @@ import {
 } from './accordion.styles';
 import { logicalCSS } from '../../global_styling';
 
-const paddingSizeToClassNameMap = {
-  none: '',
-  xs: 'euiAccordion__padding--xs',
-  s: 'euiAccordion__padding--s',
-  m: 'euiAccordion__padding--m',
-  l: 'euiAccordion__padding--l',
-  xl: 'euiAccordion__padding--xl',
-};
-
-export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
-export type EuiAccordionSize = keyof typeof paddingSizeToClassNameMap;
+export const PADDING_SIZES = ['none', 'xs', 's', 'm', 'l', 'xl'] as const;
+export type EuiAccordionSize = (typeof PADDING_SIZES)[number];
 
 export type EuiAccordionProps = CommonProps &
   Omit<HTMLAttributes<HTMLElement>, 'id'> & {
@@ -243,11 +234,7 @@ export class EuiAccordionClass extends Component<
       className
     );
 
-    const paddingClass = paddingSize
-      ? classNames(paddingSizeToClassNameMap[paddingSize])
-      : undefined;
-
-    const childrenClasses = classNames(paddingClass, {
+    const childrenClasses = classNames({
       'euiAccordion__children-isLoading': isLoading,
     });
 
@@ -282,7 +269,7 @@ export class EuiAccordionClass extends Component<
     const cssChildrenStyles = [
       childrenStyles.euiAccordion__children,
       isLoading && childrenStyles.isLoading,
-      paddingSize === 'none' ? undefined : childrenStyles[paddingSize!],
+      paddingSize && paddingSize !== 'none' && childrenStyles[paddingSize],
     ];
 
     const childWrapperStyles = euiAccordionChildWrapperStyles(theme);
