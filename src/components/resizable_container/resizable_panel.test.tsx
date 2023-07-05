@@ -6,40 +6,34 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { render } from '@testing-library/react';
 import { requiredProps } from '../../test/required_props';
-import { shouldRenderCustomStyles, customStyles } from '../../test/internal';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiResizableContainerContextProvider } from './context';
 import { EuiResizablePanel } from './resizable_panel';
 
 describe('EuiResizablePanel', () => {
   const mockRegistry = { panels: {}, resizers: {} };
-
-  // Note: We have to pass `customStyles` manually to the custom style tests due to the required context wrapper
-  shouldRenderCustomStyles(
+  const wrapper: FunctionComponent = ({ children }) => (
     <EuiResizableContainerContextProvider registry={mockRegistry}>
-      <EuiResizablePanel {...customStyles}>Test</EuiResizablePanel>
+      {children}
     </EuiResizableContainerContextProvider>
   );
+
+  shouldRenderCustomStyles(<EuiResizablePanel>Test</EuiResizablePanel>, {
+    wrapper,
+  });
   shouldRenderCustomStyles(
-    <EuiResizableContainerContextProvider registry={mockRegistry}>
-      <EuiResizablePanel wrapperPadding="s" wrapperProps={customStyles}>
-        Test
-      </EuiResizablePanel>
-    </EuiResizableContainerContextProvider>,
-    {
-      childProps: ['wrapperProps'], // See above note - this isn't doing anything but triggering a test
-      skipParentTest: true,
-    }
+    <EuiResizablePanel wrapperPadding="s">Test</EuiResizablePanel>,
+    { wrapper, childProps: ['wrapperProps'], skipParentTest: true }
   );
 
   it('renders', () => {
     const { container } = render(
-      <EuiResizableContainerContextProvider registry={mockRegistry}>
-        <EuiResizablePanel {...requiredProps}>Content</EuiResizablePanel>
-      </EuiResizableContainerContextProvider>
+      <EuiResizablePanel {...requiredProps}>Content</EuiResizablePanel>,
+      { wrapper }
     );
 
     expect(container).toMatchSnapshot();
@@ -48,11 +42,10 @@ describe('EuiResizablePanel', () => {
   describe('props', () => {
     test('wrapperPadding', () => {
       const { container } = render(
-        <EuiResizableContainerContextProvider registry={mockRegistry}>
-          <EuiResizablePanel {...requiredProps} wrapperPadding="l">
-            Content
-          </EuiResizablePanel>
-        </EuiResizableContainerContextProvider>
+        <EuiResizablePanel {...requiredProps} wrapperPadding="l">
+          Content
+        </EuiResizablePanel>,
+        { wrapper }
       );
 
       expect(container).toMatchSnapshot();
@@ -60,11 +53,10 @@ describe('EuiResizablePanel', () => {
 
     test('tabIndex', () => {
       const { container } = render(
-        <EuiResizableContainerContextProvider registry={mockRegistry}>
-          <EuiResizablePanel {...requiredProps} wrapperPadding="l" tabIndex={0}>
-            Content
-          </EuiResizablePanel>
-        </EuiResizableContainerContextProvider>
+        <EuiResizablePanel {...requiredProps} wrapperPadding="l" tabIndex={0}>
+          Content
+        </EuiResizablePanel>,
+        { wrapper }
       );
 
       expect(container).toMatchSnapshot();

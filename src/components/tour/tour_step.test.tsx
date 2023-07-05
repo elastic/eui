@@ -39,7 +39,7 @@ describe('EuiTourStep', () => {
     </EuiTourStep>
   );
   shouldRenderCustomStyles(
-    <EuiTourStep {...props} isStepOpen panelProps={requiredProps}>
+    <EuiTourStep {...config} {...steps[0]} isStepOpen>
       <span>Test</span>
     </EuiTourStep>,
     { childProps: ['panelProps'], skipStyles: true, skipParentTest: true }

@@ -44,6 +44,7 @@ export const EuiPageBody = <T extends ComponentTypes>({
   children,
   restrictWidth = false,
   className,
+  css,
   component: Component = 'div' as T,
   panelled,
   panelProps,
@@ -57,30 +58,35 @@ export const EuiPageBody = <T extends ComponentTypes>({
     rest?.style
   );
 
-  const styles = euiPageBodyStyles();
-  const padding = useEuiPaddingCSS()[paddingSize as EuiPaddingSize];
-
+  // Shared
   const classes = classNames('euiPageBody', className);
+  const styles = euiPageBodyStyles();
+  const cssStyles = [styles.euiPageBody, restrictWidth && styles.restrictWidth];
 
-  const panelCSS = [styles.euiPageBody, restrictWidth && styles.restrictWidth];
-  const componentCSS = [...panelCSS, padding];
+  // Panelled
+  const panelClasses = classNames(classes, panelProps?.className);
+  const panelCssStyles = [...cssStyles, panelProps?.css, css];
+
+  // Non-panelled
+  const padding = useEuiPaddingCSS()[paddingSize as EuiPaddingSize];
+  const componentCssStyles = [...cssStyles, padding, css];
 
   return panelled ? (
     <EuiPanel
-      className={classes}
-      css={panelCSS}
       borderRadius={borderRadius}
       paddingSize={paddingSize}
       {...panelProps}
       {...rest}
+      className={panelClasses}
+      css={panelCssStyles}
     >
       {children}
     </EuiPanel>
   ) : (
     <Component
-      className={classes}
-      css={componentCSS}
       {...rest}
+      className={classes}
+      css={componentCssStyles}
       style={widthStyles}
     >
       {children}

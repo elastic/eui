@@ -40,7 +40,7 @@ export const EuiImageFullScreenWrapper: FunctionComponent<
 
   const styles = euiImageFullscreenWrapperStyles(euiTheme);
 
-  const cssStyles = [styles.euiImageFullscreenWrapper];
+  const cssStyles = [styles.euiImageFullscreenWrapper, wrapperProps?.css];
 
   const classes = classNames(
     'euiImageFullScreenWrapper',
@@ -78,9 +78,9 @@ export const EuiImageFullScreenWrapper: FunctionComponent<
         <>
           <figure
             aria-label={optionalCaptionText}
-            css={cssStyles}
             {...wrapperProps}
             className={classes}
+            css={cssStyles}
           >
             <EuiImageButton
               hasAlt={!!alt}

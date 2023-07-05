@@ -271,21 +271,22 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   if (betaBadgeProps?.label) {
     const betaStyles = euiCardBetaBadgeStyles(euiThemeContext, paddingSize);
     optionalBetaCSS = betaStyles.hasBetaBadge;
-    const anchorCSS = [betaStyles.euiCard__betaBadgeAnchor];
-    const badgeCSS = [betaStyles.euiCard__betaBadge];
+
     const { anchorProps, ...cleanedBetaBadgeProps } = betaBadgeProps;
+    const anchorCSS = [betaStyles.euiCard__betaBadgeAnchor, anchorProps?.css];
+    const badgeCSS = [betaStyles.euiCard__betaBadge, betaBadgeProps?.css];
 
     optionalBetaBadgeID = `${ariaId}BetaBadge`;
     optionalBetaBadge = (
       <EuiBetaBadge
-        css={badgeCSS}
         color={
           isDisabled && !betaBadgeProps.onClick && !betaBadgeProps.href
             ? 'subdued'
             : 'hollow'
         }
         {...cleanedBetaBadgeProps}
-        anchorProps={{ css: anchorCSS, ...anchorProps }}
+        css={badgeCSS}
+        anchorProps={{ ...anchorProps, css: anchorCSS }}
         id={optionalBetaBadgeID}
       />
     );
