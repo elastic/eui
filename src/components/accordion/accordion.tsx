@@ -33,7 +33,7 @@ import {
 import { logicalCSS } from '../../global_styling';
 
 export const PADDING_SIZES = ['none', 'xs', 's', 'm', 'l', 'xl'] as const;
-export type EuiAccordionSize = (typeof PADDING_SIZES)[number];
+export type EuiAccordionPaddingSize = (typeof PADDING_SIZES)[number];
 
 export type EuiAccordionProps = CommonProps &
   Omit<HTMLAttributes<HTMLElement>, 'id'> & {
@@ -85,7 +85,7 @@ export type EuiAccordionProps = CommonProps &
     /**
      * The padding around the exposed accordion content.
      */
-    paddingSize?: EuiAccordionSize;
+    paddingSize?: EuiAccordionPaddingSize;
     /**
      * Placement of the arrow indicator, or 'none' to hide it.
      */
