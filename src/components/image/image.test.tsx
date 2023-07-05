@@ -26,7 +26,7 @@ describe('EuiImage', () => {
     childProps: ['wrapperProps'],
   });
   shouldRenderCustomStyles(<EuiImage allowFullScreen {...requiredProps} />, {
-    skipParentTest: true,
+    skip: { parentTest: true },
     childProps: ['wrapperProps'],
     targetSelector: '.euiImageFullScreenWrapper',
     renderCallback: ({ getByTestSubject }) => {

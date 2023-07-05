@@ -25,7 +25,7 @@ describe('EuiSwitch', () => {
   });
   shouldRenderCustomStyles(<EuiSwitch {...props} />, {
     childProps: ['labelProps'],
-    skipParentTest: true,
+    skip: { parentTest: true },
   });
 
   test('is rendered', () => {

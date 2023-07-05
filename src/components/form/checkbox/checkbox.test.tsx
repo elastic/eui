@@ -32,7 +32,10 @@ describe('EuiCheckbox', () => {
   );
   shouldRenderCustomStyles(
     <EuiCheckbox {...checkboxRequiredProps} label="test" />,
-    { childProps: ['labelProps'], skipParentTest: true }
+    {
+      childProps: ['labelProps'],
+      skip: { parentTest: true },
+    }
   );
 
   test('is rendered', () => {

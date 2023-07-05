@@ -25,7 +25,7 @@ describe('EuiListGroupItem', () => {
     />,
     {
       childProps: ['iconProps', 'extraAction'],
-      skipParentTest: true,
+      skip: { parentTest: true },
     }
   );
 
