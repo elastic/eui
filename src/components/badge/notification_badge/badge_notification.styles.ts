@@ -14,12 +14,12 @@ import {
   euiNumberFormat,
   mathWithUnits,
 } from '../../../global_styling';
-import { UseEuiTheme, tint } from '../../../services';
-
-import { getBadgeColors } from '../beta_badge/beta_badge.styles';
+import { UseEuiTheme } from '../../../services';
+import { euiBadgeColors } from '../color_utils';
 
 export const euiNotificationBadgeStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const badgeColors = euiBadgeColors(euiThemeContext);
 
   return {
     euiNotificationBadge: css`
@@ -54,11 +54,8 @@ export const euiNotificationBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('min-width', euiTheme.size.l)}
     `,
     // Colors
-    accent: css`
-      ${getBadgeColors(euiTheme.colors.accentText, euiThemeContext)}
-    `,
-    subdued: css`
-      ${getBadgeColors(tint(euiTheme.colors.lightShade, 0.3), euiThemeContext)}
-    `,
+    accent: css(badgeColors.accentText),
+    success: css(badgeColors.success),
+    subdued: css(badgeColors.subdued),
   };
 };

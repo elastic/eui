@@ -14,7 +14,7 @@ Array [
       <div
         aria-describedby="generated-id"
         aria-label="aria-label"
-        class="euiFlyout testClass1 testClass2 emotion-euiFlyout-l-m-noMaxWidth-overlay-right"
+        class="euiFlyout testClass1 testClass2 emotion-euiFlyout-l-m-noMaxWidth-overlay-right-euiTestCss"
         data-autofocus="true"
         data-test-subj="test subject string"
         role="dialog"
@@ -173,7 +173,7 @@ Array [
         </p>
         <button
           aria-label="aria-label"
-          class="euiButtonIcon euiFlyout__closeButton testClass1 testClass2 emotion-euiButtonIcon-xs-empty-text-euiFlyout__closeButton-inside"
+          class="euiButtonIcon euiFlyout__closeButton testClass1 testClass2 emotion-euiButtonIcon-xs-empty-text-euiTestCss"
           data-test-subj="test subject string"
           type="button"
         >
@@ -1093,7 +1093,7 @@ exports[`EuiFlyout renders extra screen reader instructions when fixed EuiHeader
 >
   <div>
     <div
-      class="euiHeader euiHeader--default euiHeader--fixed"
+      class="euiHeader emotion-euiHeader-fixed-default"
       data-fixed-header="true"
     />
     <div>
@@ -1108,7 +1108,7 @@ exports[`EuiFlyout renders extra screen reader instructions when fixed EuiHeader
         <div
           aria-describedby="generated-id"
           aria-label="aria-label"
-          class="euiFlyout testClass1 testClass2 emotion-euiFlyout-l-m-noMaxWidth-overlay-right"
+          class="euiFlyout testClass1 testClass2 emotion-euiFlyout-l-m-noMaxWidth-overlay-right-euiTestCss"
           data-autofocus="true"
           data-test-subj="test subject string"
           role="dialog"

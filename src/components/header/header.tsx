@@ -8,15 +8,18 @@
 
 import React, { FunctionComponent, HTMLAttributes, useEffect } from 'react';
 import classNames from 'classnames';
-import { CommonProps } from '../common';
 
+import { useEuiTheme } from '../../services';
+import { CommonProps } from '../common';
+import { EuiBreadcrumb, EuiBreadcrumbsProps } from '../breadcrumbs';
+
+import { EuiHeaderBreadcrumbs } from './header_breadcrumbs';
 import {
   EuiHeaderSectionItem,
   EuiHeaderSectionItemProps,
   EuiHeaderSection,
 } from './header_section';
-import { EuiHeaderBreadcrumbs } from './header_breadcrumbs';
-import { EuiBreadcrumb, EuiBreadcrumbsProps } from '../breadcrumbs';
+import { euiHeaderStyles } from './header.styles';
 
 type EuiHeaderSectionItemType = EuiHeaderSectionItemProps['children'];
 type EuiHeaderSectionBorderType = EuiHeaderSectionItemProps['border'];
@@ -86,12 +89,11 @@ export const EuiHeader: FunctionComponent<EuiHeaderProps> = ({
   theme = 'default',
   ...rest
 }) => {
-  const classes = classNames(
-    'euiHeader',
-    `euiHeader--${theme}`,
-    `euiHeader--${position}`,
-    className
-  );
+  const classes = classNames('euiHeader', className);
+
+  const euiTheme = useEuiTheme();
+  const styles = euiHeaderStyles(euiTheme);
+  const cssStyles = [styles.euiHeader, styles[position], styles[theme]];
 
   useEffect(() => {
     if (position === 'fixed') {
@@ -149,6 +151,7 @@ export const EuiHeader: FunctionComponent<EuiHeaderProps> = ({
 
   return (
     <div
+      css={cssStyles}
       className={classes}
       data-fixed-header={position === 'fixed' || undefined} // Used by EuiFlyouts as a query selector
       {...rest}

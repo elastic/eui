@@ -3,7 +3,7 @@
 exports[`EuiTableHeaderButton is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiTableHeaderButton testClass1 testClass2"
+  class="euiTableHeaderButton testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
   type="button"
 >

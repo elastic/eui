@@ -10,7 +10,7 @@ exports[`EuiResizablePanel props tabIndex 1`] = `
   >
     <div
       aria-label="aria-label"
-      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content testClass1 testClass2 emotion-euiPanel-grow-none-m-transparent-euiResizablePanel__content-scrollable"
+      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content testClass1 testClass2 emotion-euiPanel-grow-none-m-transparent-euiResizablePanel__content-scrollable-euiTestCss"
       data-test-subj="test subject string"
       tabindex="0"
     >
@@ -30,7 +30,7 @@ exports[`EuiResizablePanel props wrapperPadding 1`] = `
   >
     <div
       aria-label="aria-label"
-      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content testClass1 testClass2 emotion-euiPanel-grow-none-m-transparent-euiResizablePanel__content-scrollable"
+      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content testClass1 testClass2 emotion-euiPanel-grow-none-m-transparent-euiResizablePanel__content-scrollable-euiTestCss"
       data-test-subj="test subject string"
     >
       Content
@@ -49,7 +49,7 @@ exports[`EuiResizablePanel renders 1`] = `
   >
     <div
       aria-label="aria-label"
-      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content testClass1 testClass2 emotion-euiPanel-grow-none-m-transparent-euiResizablePanel__content-scrollable"
+      class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiResizablePanel__content testClass1 testClass2 emotion-euiPanel-grow-none-m-transparent-euiResizablePanel__content-scrollable-euiTestCss"
       data-test-subj="test subject string"
     >
       Content

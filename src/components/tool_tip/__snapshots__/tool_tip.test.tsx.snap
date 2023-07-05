@@ -66,7 +66,7 @@ exports[`EuiToolTip shows tooltip on mouseover and focus 1`] = `
   >
     <div
       aria-label="aria-label"
-      class="euiToolTipPopover euiToolTip testClass1 testClass2 emotion-euiToolTip-top"
+      class="euiToolTipPopover euiToolTip testClass1 testClass2 emotion-euiToolTip-top-euiTestCss"
       data-position="top"
       data-test-subj="test subject string"
       id="id"

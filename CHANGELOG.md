@@ -1,3 +1,32 @@
+## [`83.0.0`](https://github.com/elastic/eui/tree/v83.0.0)
+
+**Bug fixes**
+
+- Fixed `EuiPaginationButton` styling affected by `EuiButtonEmpty`'s Emotion conversion ([#6893](https://github.com/elastic/eui/pull/6893))
+
+**Breaking changes**
+
+- Removed `isPlaceholder` prop from `EuiPaginationButton` ([#6893](https://github.com/elastic/eui/pull/6893))
+
+## [`82.2.1`](https://github.com/elastic/eui/tree/v82.2.1)
+
+- Updated supported Node engine versions to allow Node 16, 18 and >=20 ([#6884](https://github.com/elastic/eui/pull/6884))
+
+## [`82.2.0`](https://github.com/elastic/eui/tree/v82.2.0)
+
+- Updated EUI's SVG icons library to use latest SVGO v3 optimization ([#6843](https://github.com/elastic/eui/pull/6843))
+- Added success color `EuiNotificationBadge` ([#6864](https://github.com/elastic/eui/pull/6864))
+- Added `badgeColor` prop to `EuiFilterButton` ([#6864](https://github.com/elastic/eui/pull/6864))
+- Updated `EuiBadge` to use CSS-in-JS for named colors instead of inline styles. Custom colors will still use inline styles. ([#6864](https://github.com/elastic/eui/pull/6864))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiButtonGroup` and `EuiButtonGroupButton` to Emotion ([#6841](https://github.com/elastic/eui/pull/6841))
+- Converted `EuiButtonIcon` to Emotion ([#6844](https://github.com/elastic/eui/pull/6844))
+- Converted `EuiButtonEmpty` to Emotion ([#6863](https://github.com/elastic/eui/pull/6863))
+- Converted `EuiCollapsibleNav` and `EuiCollapsibleNavGroup` to Emotion ([#6865](https://github.com/elastic/eui/pull/6865))
+- Removed Sass variables `$euiCollapsibleNavGroupLightBackgroundColor`, `$euiCollapsibleNavGroupDarkBackgroundColor`, and `$euiCollapsibleNavGroupDarkHighContrastColor` ([#6865](https://github.com/elastic/eui/pull/6865))
+
 ## [`82.1.0`](https://github.com/elastic/eui/tree/v82.1.0)
 
 - Added ability for `EuiMarkdownEditor` plugins to disable toolbar buttons ([#6840](https://github.com/elastic/eui/pull/6840))

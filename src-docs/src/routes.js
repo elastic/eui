@@ -2,8 +2,6 @@ import React, { createElement, Fragment } from 'react';
 
 import { slugify } from '../../src/services';
 
-import { createHashHistory } from 'history';
-
 import { GuideSection, GuideMarkdownFormat } from './components';
 
 import { GuideTabbedPage } from './components/guide_tabbed_page';
@@ -690,7 +688,6 @@ const allRoutes = navigation.reduce((accummulatedRoutes, section) => {
 }, []);
 
 export default {
-  history: createHashHistory(),
   navigation,
 
   getAppRoutes: function getAppRoutes() {

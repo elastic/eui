@@ -4,7 +4,7 @@ exports[`EuiSelectableListItem is rendered 1`] = `
 <li
   aria-checked="false"
   aria-label="aria-label"
-  class="euiSelectableListItem euiSelectableListItem--paddingSmall testClass1 testClass2"
+  class="euiSelectableListItem euiSelectableListItem--paddingSmall testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
   role="option"
 >

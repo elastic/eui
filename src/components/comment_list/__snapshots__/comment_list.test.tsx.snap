@@ -3,7 +3,7 @@
 exports[`EuiCommentList is rendered 1`] = `
 <ol
   aria-label="aria-label"
-  class="euiTimeline euiCommentList testClass1 testClass2 emotion-euiTimeline-l"
+  class="euiTimeline euiCommentList testClass1 testClass2 emotion-euiTimeline-l-euiTestCss"
   data-test-subj="test subject string"
   role="list"
 >

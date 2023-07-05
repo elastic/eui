@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { render } from '../../test/rtl';
 import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
@@ -23,41 +23,41 @@ describe('EuiHeader', () => {
     }
   );
 
-  test('is rendered', () => {
-    const component = render(<EuiHeader {...requiredProps} />);
+  it('renders', () => {
+    const { container } = render(<EuiHeader {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('renders children', () => {
-    const component = render(
+  it('renders children', () => {
+    const { container } = render(
       <EuiHeader>
         <span>Hello!</span>
       </EuiHeader>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('renders in fixed position', () => {
-    const component = render(
+  it('renders in fixed position', () => {
+    const { container } = render(
       <EuiHeader position="fixed">
         <span>Hello!</span>
       </EuiHeader>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('renders dark theme', () => {
-    const component = render(<EuiHeader theme="dark" />);
+  it('renders dark theme', () => {
+    const { container } = render(<EuiHeader theme="dark" />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('sections', () => {
-    test('render simple items and borders', () => {
-      const component = render(
+    it('render simple items and borders', () => {
+      const { container } = render(
         <EuiHeader
           sections={[
             {
@@ -71,11 +71,11 @@ describe('EuiHeader', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
-    test('render breadcrumbs and props', () => {
-      const component = render(
+    it('render breadcrumbs and props', () => {
+      const { container } = render(
         <EuiHeader
           sections={[
             {
@@ -86,7 +86,7 @@ describe('EuiHeader', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
@@ -106,7 +106,7 @@ describe('EuiHeader', () => {
     });
 
     test('if both children and sections were passed', () => {
-      const component = render(
+      const { container } = render(
         <EuiHeader
           sections={[
             {
@@ -122,7 +122,7 @@ describe('EuiHeader', () => {
       expect(consoleStub.mock.calls[0][0]).toMatch(
         'cannot accept both `children` and `sections`'
       );
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });

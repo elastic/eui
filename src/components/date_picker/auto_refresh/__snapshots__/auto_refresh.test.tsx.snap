@@ -2,7 +2,7 @@
 
 exports[`EuiAutoRefresh is rendered 1`] = `
 <div
-  class="euiPopover euiInputPopover euiAutoRefresh testClass1 testClass2 emotion-euiPopover-EuiInputPopover"
+  class="euiPopover euiInputPopover euiAutoRefresh testClass1 testClass2 emotion-euiPopover-EuiInputPopover-euiTestCss"
 >
   <div
     class="euiPopover__anchor css-zih94u-render"
@@ -12,19 +12,18 @@ exports[`EuiAutoRefresh is rendered 1`] = `
         class="euiFormControlLayout euiFormControlLayout--readOnly euiFormControlLayout--group"
       >
         <button
-          class="euiButtonEmpty euiButtonEmpty--small euiFormControlLayout__prepend euiFormControlLayout__prepend css-wvaqcf-empty-text"
+          class="euiButtonEmpty euiFormControlLayout__prepend euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
           type="button"
         >
           <span
-            class="euiButtonContent euiButtonEmpty__content"
+            class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
           >
             <span
-              class="euiButtonContent__icon"
               color="inherit"
               data-euiicon-type="timeRefresh"
             />
             <span
-              class="euiButtonEmpty__text"
+              class="eui-textTruncate euiButtonEmpty__text"
             >
               <strong>
                 <small>
@@ -64,19 +63,18 @@ exports[`EuiAutoRefresh isPaused is false 1`] = `
         class="euiFormControlLayout euiFormControlLayout--readOnly euiFormControlLayout--group"
       >
         <button
-          class="euiButtonEmpty euiButtonEmpty--small euiFormControlLayout__prepend euiFormControlLayout__prepend css-wvaqcf-empty-text"
+          class="euiButtonEmpty euiFormControlLayout__prepend euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
           type="button"
         >
           <span
-            class="euiButtonContent euiButtonEmpty__content"
+            class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
           >
             <span
-              class="euiButtonContent__icon"
               color="inherit"
               data-euiicon-type="timeRefresh"
             />
             <span
-              class="euiButtonEmpty__text"
+              class="eui-textTruncate euiButtonEmpty__text"
             >
               <strong>
                 <small>
@@ -115,19 +113,18 @@ exports[`EuiAutoRefresh refreshInterval is rendered 1`] = `
         class="euiFormControlLayout euiFormControlLayout--readOnly euiFormControlLayout--group"
       >
         <button
-          class="euiButtonEmpty euiButtonEmpty--small euiFormControlLayout__prepend euiFormControlLayout__prepend css-wvaqcf-empty-text"
+          class="euiButtonEmpty euiFormControlLayout__prepend euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
           type="button"
         >
           <span
-            class="euiButtonContent euiButtonEmpty__content"
+            class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
           >
             <span
-              class="euiButtonContent__icon"
               color="inherit"
               data-euiicon-type="timeRefresh"
             />
             <span
-              class="euiButtonEmpty__text"
+              class="eui-textTruncate euiButtonEmpty__text"
             >
               <strong>
                 <small>
@@ -163,21 +160,20 @@ exports[`EuiAutoRefreshButton is rendered 1`] = `
   >
     <button
       aria-label="aria-label"
-      class="euiButtonEmpty euiButtonEmpty--small euiAutoRefreshButton testClass1 testClass2 css-wvaqcf-empty-text"
+      class="euiButtonEmpty euiAutoRefreshButton testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text-euiTestCss"
       data-test-subj="test subject string"
       title="Auto refresh is off"
       type="button"
     >
       <span
-        class="euiButtonContent euiButtonEmpty__content"
+        class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
       >
         <span
-          class="euiButtonContent__icon"
           color="inherit"
           data-euiicon-type="timeRefresh"
         />
         <span
-          class="euiButtonEmpty__text"
+          class="eui-textTruncate euiButtonEmpty__text"
         >
           Off
         </span>
@@ -195,20 +191,19 @@ exports[`EuiAutoRefreshButton isPaused is false 1`] = `
     class="euiPopover__anchor css-16vtueo-render"
   >
     <button
-      class="euiButtonEmpty euiButtonEmpty--small euiAutoRefreshButton css-wvaqcf-empty-text"
+      class="euiButtonEmpty euiAutoRefreshButton emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
       title="Auto refresh is on and set to 1 second"
       type="button"
     >
       <span
-        class="euiButtonContent euiButtonEmpty__content"
+        class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
       >
         <span
-          class="euiButtonContent__icon"
           color="inherit"
           data-euiicon-type="timeRefresh"
         />
         <span
-          class="euiButtonEmpty__text"
+          class="eui-textTruncate euiButtonEmpty__text"
         >
           1 second
         </span>
@@ -226,20 +221,19 @@ exports[`EuiAutoRefreshButton refreshInterval is rendered 1`] = `
     class="euiPopover__anchor css-16vtueo-render"
   >
     <button
-      class="euiButtonEmpty euiButtonEmpty--small euiAutoRefreshButton css-wvaqcf-empty-text"
+      class="euiButtonEmpty euiAutoRefreshButton emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
       title="Auto refresh is on and set to 2 seconds"
       type="button"
     >
       <span
-        class="euiButtonContent euiButtonEmpty__content"
+        class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
       >
         <span
-          class="euiButtonContent__icon"
           color="inherit"
           data-euiicon-type="timeRefresh"
         />
         <span
-          class="euiButtonEmpty__text"
+          class="eui-textTruncate euiButtonEmpty__text"
         >
           2 seconds
         </span>

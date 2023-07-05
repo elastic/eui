@@ -3,7 +3,7 @@
 exports[`EuiListGroup is rendered 1`] = `
 <ul
   aria-label="aria-label"
-  class="euiListGroup testClass1 testClass2 emotion-euiListGroup-s-maxWidthDefault"
+  class="euiListGroup testClass1 testClass2 emotion-euiListGroup-s-maxWidthDefault-euiTestCss"
   data-test-subj="test subject string"
 />
 `;

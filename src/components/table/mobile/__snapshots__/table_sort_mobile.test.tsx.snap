@@ -2,7 +2,7 @@
 
 exports[`EuiTableSortMobile is rendered 1`] = `
 <div
-  class="euiTableSortMobile testClass1 testClass2"
+  class="euiTableSortMobile testClass1 testClass2 emotion-euiTestCss"
 >
   <div
     class="euiPopover emotion-euiPopover"
@@ -12,22 +12,21 @@ exports[`EuiTableSortMobile is rendered 1`] = `
       class="euiPopover__anchor css-16vtueo-render"
     >
       <button
-        class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushRight css-9t7nyf-empty-primary"
+        class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-flush-right"
         type="button"
       >
         <span
-          class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+          class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="euiButtonContent__icon"
-            color="inherit"
-            data-euiicon-type="arrowDown"
-          />
-          <span
-            class="euiButtonEmpty__text"
+            class="eui-textTruncate euiButtonEmpty__text"
           >
             Sorting
           </span>
+          <span
+            color="inherit"
+            data-euiicon-type="arrowDown"
+          />
         </span>
       </button>
     </div>

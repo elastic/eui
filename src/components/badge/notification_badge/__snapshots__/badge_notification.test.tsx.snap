@@ -3,7 +3,7 @@
 exports[`EuiNotificationBadge is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiNotificationBadge testClass1 testClass2 emotion-euiNotificationBadge-s-accent"
+  class="euiNotificationBadge testClass1 testClass2 emotion-euiNotificationBadge-s-accent-euiTestCss"
   data-test-subj="test subject string"
 >
   5
@@ -21,6 +21,14 @@ exports[`EuiNotificationBadge props color accent is rendered 1`] = `
 exports[`EuiNotificationBadge props color subdued is rendered 1`] = `
 <span
   class="euiNotificationBadge emotion-euiNotificationBadge-s-subdued"
+>
+  5
+</span>
+`;
+
+exports[`EuiNotificationBadge props color success is rendered 1`] = `
+<span
+  class="euiNotificationBadge emotion-euiNotificationBadge-s-success"
 >
   5
 </span>

@@ -3,7 +3,7 @@
 exports[`EuiInMemoryTable behavior pagination 1`] = `
 <div
   aria-label="aria-label"
-  class="euiBasicTable testClass1 testClass2"
+  class="euiBasicTable testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div>
@@ -122,23 +122,22 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
             class="euiPopover__anchor css-16vtueo-render"
           >
             <button
-              class="euiButtonEmpty euiButtonEmpty--xSmall css-wvaqcf-empty-text"
+              class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
               data-test-subj="tablePaginationPopoverButton"
               type="button"
             >
               <span
-                class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+                class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
               >
                 <span
-                  class="euiButtonContent__icon"
-                  color="inherit"
-                  data-euiicon-type="arrowDown"
-                />
-                <span
-                  class="euiButtonEmpty__text"
+                  class="eui-textTruncate euiButtonEmpty__text"
                 >
                   Rows per page: 2
                 </span>
+                <span
+                  color="inherit"
+                  data-euiicon-type="arrowDown"
+                />
               </span>
             </button>
           </div>
@@ -149,7 +148,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
       >
         <nav
           aria-label="Pagination for table: "
-          class="euiPagination emotion-euiPagination-EuiPagination"
+          class="euiPagination emotion-euiPagination"
         >
           <span
             aria-atomic="true"
@@ -162,7 +161,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
           <a
             aria-controls="__table_generated-id"
             aria-label="Previous page"
-            class="euiButtonIcon euiPaginationArrowButton emotion-euiButtonIcon-xs-empty-text-euiPaginationArrowButton"
+            class="euiButtonIcon euiPaginationArrowButton emotion-euiButtonIcon-xs-empty-text-euiPaginationButton"
             data-test-subj="pagination-button-previous"
             href="#__table_generated-id"
             rel="noreferrer"
@@ -185,16 +184,16 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
               <a
                 aria-controls="__table_generated-id"
                 aria-label="Page 1 of 2"
-                class="euiButtonEmpty euiButtonEmpty--small euiPaginationButton css-2bs0sf-empty-text-euiPaginationButton"
+                class="euiButtonEmpty euiPaginationButton emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text-euiPaginationButton"
                 data-test-subj="pagination-button-0"
                 href="#__table_generated-id"
                 rel="noreferrer"
               >
                 <span
-                  class="euiButtonContent euiButtonEmpty__content"
+                  class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                 >
                   <span
-                    class="euiButtonEmpty__text"
+                    class="eui-textTruncate euiButtonEmpty__text"
                   >
                     1
                   </span>
@@ -208,16 +207,16 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                 aria-controls="__table_generated-id"
                 aria-current="true"
                 aria-label="Page 2 of 2"
-                class="euiButtonEmpty euiButtonEmpty--small euiPaginationButton css-57pcyl-empty-disabled-euiPaginationButton-isActive"
+                class="euiButtonEmpty euiPaginationButton emotion-euiButtonDisplay-euiButtonEmpty-s-empty-disabled-isDisabled-euiPaginationButton-isActive"
                 data-test-subj="pagination-button-1"
                 disabled=""
                 type="button"
               >
                 <span
-                  class="euiButtonContent euiButtonEmpty__content"
+                  class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                 >
                   <span
-                    class="euiButtonEmpty__text"
+                    class="eui-textTruncate euiButtonEmpty__text"
                   >
                     2
                   </span>
@@ -227,7 +226,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
           </ul>
           <button
             aria-label="Next page"
-            class="euiButtonIcon euiPaginationArrowButton emotion-euiButtonIcon-xs-empty-disabled-isDisabled-euiPaginationArrowButton"
+            class="euiButtonIcon euiPaginationArrowButton emotion-euiButtonIcon-xs-empty-disabled-isDisabled-euiPaginationButton"
             data-test-subj="pagination-button-next"
             disabled=""
             type="button"
@@ -249,7 +248,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
 exports[`EuiInMemoryTable empty array 1`] = `
 <EuiBasicTable
   aria-label="aria-label"
-  className="testClass1 testClass2"
+  className="testClass1 testClass2 css-hzx95w-euiTestCss"
   columns={
     Array [
       Object {
@@ -276,7 +275,7 @@ exports[`EuiInMemoryTable empty array 1`] = `
 exports[`EuiInMemoryTable with executeQueryOptions 1`] = `
 <EuiBasicTable
   aria-label="aria-label"
-  className="testClass1 testClass2"
+  className="testClass1 testClass2 css-hzx95w-euiTestCss"
   columns={
     Array [
       Object {
@@ -303,7 +302,7 @@ exports[`EuiInMemoryTable with executeQueryOptions 1`] = `
 exports[`EuiInMemoryTable with initial selection 1`] = `
 <EuiBasicTable
   aria-label="aria-label"
-  className="testClass1 testClass2"
+  className="testClass1 testClass2 emotion-euiTestCss"
   columns={
     Array [
       Object {
@@ -357,7 +356,7 @@ exports[`EuiInMemoryTable with initial selection 1`] = `
 exports[`EuiInMemoryTable with initial sorting 1`] = `
 <EuiBasicTable
   aria-label="aria-label"
-  className="testClass1 testClass2"
+  className="testClass1 testClass2 emotion-euiTestCss"
   columns={
     Array [
       Object {
@@ -409,7 +408,7 @@ exports[`EuiInMemoryTable with initial sorting 1`] = `
 exports[`EuiInMemoryTable with items 1`] = `
 <EuiBasicTable
   aria-label="aria-label"
-  className="testClass1 testClass2"
+  className="testClass1 testClass2 css-hzx95w-euiTestCss"
   columns={
     Array [
       Object {
@@ -451,7 +450,7 @@ exports[`EuiInMemoryTable with items 1`] = `
 exports[`EuiInMemoryTable with items and expanded item 1`] = `
 <EuiBasicTable
   aria-label="aria-label"
-  className="testClass1 testClass2"
+  className="testClass1 testClass2 css-hzx95w-euiTestCss"
   columns={
     Array [
       Object {
@@ -501,7 +500,7 @@ exports[`EuiInMemoryTable with items and expanded item 1`] = `
 exports[`EuiInMemoryTable with items and message - expecting to show the items 1`] = `
 <EuiBasicTable
   aria-label="aria-label"
-  className="testClass1 testClass2"
+  className="testClass1 testClass2 css-hzx95w-euiTestCss"
   columns={
     Array [
       Object {
@@ -538,7 +537,7 @@ exports[`EuiInMemoryTable with items and message - expecting to show the items 1
 exports[`EuiInMemoryTable with message 1`] = `
 <EuiBasicTable
   aria-label="aria-label"
-  className="testClass1 testClass2"
+  className="testClass1 testClass2 css-hzx95w-euiTestCss"
   columns={
     Array [
       Object {
@@ -560,7 +559,7 @@ exports[`EuiInMemoryTable with message 1`] = `
 exports[`EuiInMemoryTable with message and loading 1`] = `
 <EuiBasicTable
   aria-label="aria-label"
-  className="testClass1 testClass2"
+  className="testClass1 testClass2 css-hzx95w-euiTestCss"
   columns={
     Array [
       Object {
@@ -583,7 +582,7 @@ exports[`EuiInMemoryTable with message and loading 1`] = `
 exports[`EuiInMemoryTable with pagination 1`] = `
 <EuiBasicTable
   aria-label="aria-label"
-  className="testClass1 testClass2"
+  className="testClass1 testClass2 css-hzx95w-euiTestCss"
   columns={
     Array [
       Object {
@@ -632,183 +631,65 @@ exports[`EuiInMemoryTable with pagination 1`] = `
 `;
 
 exports[`EuiInMemoryTable with pagination and "show all" page size 1`] = `
-<div
+<EuiBasicTable
   aria-label="aria-label"
-  class="euiBasicTable testClass1 testClass2"
+  className="testClass1 testClass2 css-hzx95w-euiTestCss"
+  columns={
+    Array [
+      Object {
+        "description": "description",
+        "field": "name",
+        "name": "Name",
+      },
+    ]
+  }
   data-test-subj="test subject string"
->
-  <div>
-    <div
-      class="euiTableHeaderMobile"
-    >
-      <div
-        class="euiFlexGroup emotion-euiFlexGroup-l-spaceBetween-baseline-row"
-      >
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
-        />
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
-        />
-      </div>
-    </div>
-    <table
-      class="euiTable css-0 euiTable--responsive"
-      id="__table_generated-id"
-      tabindex="-1"
-    >
-      <caption
-        class="euiTableCaption emotion-euiScreenReaderOnly"
-      />
-      <thead>
-        <tr>
-          <th
-            class="euiTableHeaderCell"
-            data-test-subj="tableHeaderCell_name_0"
-            role="columnheader"
-            scope="col"
-          >
-            <span
-              class="euiTableCellContent"
-            >
-              <span
-                class="euiTableCellContent__text"
-                title="; description"
-              >
-                Name
-              </span>
-              <span
-                class="emotion-euiScreenReaderOnly"
-              >
-                description
-              </span>
-            </span>
-          </th>
-        </tr>
-      </thead>
-      <tbody
-        class="css-0"
-      >
-        <tr
-          class="euiTableRow"
-        >
-          <td
-            class="euiTableRowCell euiTableRowCell--middle"
-          >
-            <div
-              class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
-            >
-              Name
-            </div>
-            <div
-              class="euiTableCellContent"
-            >
-              <span
-                class="euiTableCellContent__text"
-              >
-                name1
-              </span>
-            </div>
-          </td>
-        </tr>
-        <tr
-          class="euiTableRow"
-        >
-          <td
-            class="euiTableRowCell euiTableRowCell--middle"
-          >
-            <div
-              class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
-            >
-              Name
-            </div>
-            <div
-              class="euiTableCellContent"
-            >
-              <span
-                class="euiTableCellContent__text"
-              >
-                name2
-              </span>
-            </div>
-          </td>
-        </tr>
-        <tr
-          class="euiTableRow"
-        >
-          <td
-            class="euiTableRowCell euiTableRowCell--middle"
-          >
-            <div
-              class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
-            >
-              Name
-            </div>
-            <div
-              class="euiTableCellContent"
-            >
-              <span
-                class="euiTableCellContent__text"
-              >
-                name3
-              </span>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div>
-    <div
-      class="euiSpacer euiSpacer--m emotion-euiSpacer-m"
+  items={
+    Array [
+      Object {
+        "id": "1",
+        "name": "name1",
+      },
+      Object {
+        "id": "2",
+        "name": "name2",
+      },
+      Object {
+        "id": "3",
+        "name": "name3",
+      },
+    ]
+  }
+  noItemsMessage={
+    <EuiI18n
+      default="No items found"
+      token="euiBasicTable.noItemsMessage"
     />
-    <div
-      class="euiFlexGroup eui-xScroll emotion-euiFlexGroup-wrap-s-spaceBetween-center-row"
-    >
-      <div
-        class="euiFlexItem emotion-euiFlexItem-growZero"
-      >
-        <div
-          class="euiPopover emotion-euiPopover"
-        >
-          <div
-            class="euiPopover__anchor css-16vtueo-render"
-          >
-            <button
-              class="euiButtonEmpty euiButtonEmpty--xSmall css-wvaqcf-empty-text"
-              data-test-subj="tablePaginationPopoverButton"
-              type="button"
-            >
-              <span
-                class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
-              >
-                <span
-                  class="euiButtonContent__icon"
-                  color="inherit"
-                  data-euiicon-type="arrowDown"
-                />
-                <span
-                  class="euiButtonEmpty__text"
-                >
-                  Showing all rows
-                </span>
-              </span>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div
-        class="euiFlexItem emotion-euiFlexItem-growZero"
-      />
-    </div>
-  </div>
-</div>
+  }
+  onChange={[Function]}
+  pagination={
+    Object {
+      "pageIndex": 0,
+      "pageSize": 0,
+      "pageSizeOptions": Array [
+        1,
+        2,
+        3,
+        0,
+      ],
+      "showPerPageOptions": undefined,
+      "totalItemCount": 3,
+    }
+  }
+  responsive={true}
+  tableLayout="fixed"
+/>
 `;
 
 exports[`EuiInMemoryTable with pagination and default page size and index 1`] = `
 <EuiBasicTable
   aria-label="aria-label"
-  className="testClass1 testClass2"
+  className="testClass1 testClass2 css-hzx95w-euiTestCss"
   columns={
     Array [
       Object {
@@ -855,7 +736,7 @@ exports[`EuiInMemoryTable with pagination and default page size and index 1`] = 
 exports[`EuiInMemoryTable with pagination and selection 1`] = `
 <EuiBasicTable
   aria-label="aria-label"
-  className="testClass1 testClass2"
+  className="testClass1 testClass2 emotion-euiTestCss"
   columns={
     Array [
       Object {
@@ -916,7 +797,7 @@ exports[`EuiInMemoryTable with pagination and selection 1`] = `
 exports[`EuiInMemoryTable with pagination, default page size and error 1`] = `
 <EuiBasicTable
   aria-label="aria-label"
-  className="testClass1 testClass2"
+  className="testClass1 testClass2 css-hzx95w-euiTestCss"
   columns={
     Array [
       Object {
@@ -964,7 +845,7 @@ exports[`EuiInMemoryTable with pagination, default page size and error 1`] = `
 exports[`EuiInMemoryTable with pagination, hiding the per page options 1`] = `
 <EuiBasicTable
   aria-label="aria-label"
-  className="testClass1 testClass2"
+  className="testClass1 testClass2 css-hzx95w-euiTestCss"
   columns={
     Array [
       Object {
@@ -1019,7 +900,7 @@ exports[`EuiInMemoryTable with pagination, hiding the per page options 1`] = `
 exports[`EuiInMemoryTable with pagination, selection and sorting 1`] = `
 <EuiBasicTable
   aria-label="aria-label"
-  className="testClass1 testClass2"
+  className="testClass1 testClass2 emotion-euiTestCss"
   columns={
     Array [
       Object {
@@ -1094,7 +975,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting  and simple search
   />
   <EuiBasicTable
     aria-label="aria-label"
-    className="testClass1 testClass2"
+    className="testClass1 testClass2 emotion-euiTestCss"
     columns={
       Array [
         Object {
@@ -1173,7 +1054,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting  and simple search
 exports[`EuiInMemoryTable with pagination, selection, sorting and a single record action 1`] = `
 <EuiBasicTable
   aria-label="aria-label"
-  className="testClass1 testClass2"
+  className="testClass1 testClass2 emotion-euiTestCss"
   columns={
     Array [
       Object {
@@ -1251,7 +1132,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and a single recor
 exports[`EuiInMemoryTable with pagination, selection, sorting and column renderer 1`] = `
 <EuiBasicTable
   aria-label="aria-label"
-  className="testClass1 testClass2"
+  className="testClass1 testClass2 emotion-euiTestCss"
   columns={
     Array [
       Object {
@@ -1340,7 +1221,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and configured sea
   />
   <EuiBasicTable
     aria-label="aria-label"
-    className="testClass1 testClass2"
+    className="testClass1 testClass2 emotion-euiTestCss"
     columns={
       Array [
         Object {
@@ -1421,7 +1302,7 @@ exports[`EuiInMemoryTable with search and component between search and table 1`]
   </div>
   <EuiBasicTable
     aria-label="aria-label"
-    className="testClass1 testClass2"
+    className="testClass1 testClass2 emotion-euiTestCss"
     columns={
       Array [
         Object {

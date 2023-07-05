@@ -9,7 +9,7 @@ exports[`EuiSelectableMessage bordered is rendered 1`] = `
 exports[`EuiSelectableMessage is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiText euiSelectableMessage testClass1 testClass2 emotion-euiText-xs-euiTextColor-subdued"
+  class="euiText euiSelectableMessage testClass1 testClass2 emotion-euiText-xs-euiTextColor-subdued-euiTestCss"
   data-test-subj="test subject string"
 />
 `;

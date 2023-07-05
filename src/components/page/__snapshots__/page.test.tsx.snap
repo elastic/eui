@@ -15,7 +15,7 @@ exports[`EuiPage grow can be false 1`] = `
 exports[`EuiPage is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPage testClass1 testClass2 emotion-euiPage-row-grow"
+  class="euiPage testClass1 testClass2 emotion-euiPage-row-grow-euiTestCss"
   data-test-subj="test subject string"
 />
 `;

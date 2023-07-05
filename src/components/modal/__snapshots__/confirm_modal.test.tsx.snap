@@ -12,7 +12,7 @@ Array [
   >
     <div
       aria-label="aria-label"
-      class="euiModal euiModal--confirmation testClass1 testClass2 emotion-euiModal-defaultMaxWidth-confirmation"
+      class="euiModal euiModal--confirmation testClass1 testClass2 emotion-euiModal-defaultMaxWidth-confirmation-euiTestCss"
       data-test-subj="test subject string"
       tabindex="0"
     >
@@ -58,15 +58,15 @@ Array [
         class="euiModalFooter emotion-euiModalFooter"
       >
         <button
-          class="euiButtonEmpty css-9t7nyf-empty-primary"
+          class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-primary"
           data-test-subj="confirmModalCancelButton"
           type="button"
         >
           <span
-            class="euiButtonContent euiButtonEmpty__content"
+            class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
           >
             <span
-              class="euiButtonEmpty__text"
+              class="eui-textTruncate euiButtonEmpty__text"
             >
               Cancel Button Text
             </span>
@@ -110,7 +110,7 @@ Array [
   >
     <div
       aria-label="aria-label"
-      class="euiModal euiModal--confirmation testClass1 testClass2 emotion-euiModal-defaultMaxWidth-confirmation"
+      class="euiModal euiModal--confirmation testClass1 testClass2 emotion-euiModal-defaultMaxWidth-confirmation-euiTestCss"
       data-test-subj="test subject string"
       tabindex="0"
     >
@@ -140,15 +140,15 @@ Array [
         class="euiModalFooter emotion-euiModalFooter"
       >
         <button
-          class="euiButtonEmpty css-9t7nyf-empty-primary"
+          class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-primary"
           data-test-subj="confirmModalCancelButton"
           type="button"
         >
           <span
-            class="euiButtonContent euiButtonEmpty__content"
+            class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
           >
             <span
-              class="euiButtonEmpty__text"
+              class="eui-textTruncate euiButtonEmpty__text"
             >
               Cancel Button Text
             </span>

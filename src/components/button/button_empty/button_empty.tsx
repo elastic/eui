@@ -14,15 +14,18 @@ import {
   ExclusiveUnion,
   PropsForAnchor,
   PropsForButton,
-  keysOf,
 } from '../../common';
-import { EuiThemeProvider, getSecureRelForTarget } from '../../../services';
+import {
+  useEuiTheme,
+  EuiThemeProvider,
+  getSecureRelForTarget,
+} from '../../../services';
 
 import {
-  EuiButtonContentDeprecated as EuiButtonContent,
-  EuiButtonContentProps,
-  EuiButtonContentType,
-} from '../_button_content_deprecated';
+  EuiButtonDisplayContent,
+  EuiButtonDisplayContentProps,
+  EuiButtonDisplayContentType,
+} from '../button_display/_button_display_content';
 
 import {
   useEuiButtonColorCSS,
@@ -30,30 +33,20 @@ import {
 } from '../../../themes/amsterdam/global_styling/mixins/button';
 import { isButtonDisabled } from '../button_display/_button_display';
 
-const sizeToClassNameMap = {
-  xs: 'euiButtonEmpty--xSmall',
-  s: 'euiButtonEmpty--small',
-  m: null,
-};
+import { euiButtonEmptyStyles } from './button_empty.styles';
 
-export const SIZES = keysOf(sizeToClassNameMap);
+export const SIZES = ['xs', 's', 'm'] as const;
+export type EuiButtonEmptySizes = (typeof SIZES)[number];
 
-export type EuiButtonEmptySizes = keyof typeof sizeToClassNameMap;
-
-const flushTypeToClassNameMap = {
-  left: 'euiButtonEmpty--flushLeft',
-  right: 'euiButtonEmpty--flushRight',
-  both: 'euiButtonEmpty--flushBoth',
-};
-
-export const FLUSH_TYPES = keysOf(flushTypeToClassNameMap);
+export const FLUSH_TYPES = ['left', 'right', 'both'] as const;
+export type EuiButtonEmptyFlush = (typeof FLUSH_TYPES)[number];
 
 /**
  * Extends EuiButtonContentProps which provides
  * `iconType`, `iconSide`, and `textProps`
  */
 export interface CommonEuiButtonEmptyProps
-  extends EuiButtonContentProps,
+  extends EuiButtonDisplayContentProps,
     CommonProps {
   /**
    * Any of the named color palette options.
@@ -64,7 +57,7 @@ export interface CommonEuiButtonEmptyProps
   /**
    * Ensure the text of the button sits flush to the left, right, or both sides of its container
    */
-  flush?: keyof typeof flushTypeToClassNameMap;
+  flush?: EuiButtonEmptyFlush;
   /**
    * `disabled` is also allowed
    */
@@ -86,7 +79,7 @@ export interface CommonEuiButtonEmptyProps
   /**
    * Object of props passed to the <span/> wrapping the button's content
    */
-  contentProps?: CommonProps & EuiButtonContentType;
+  contentProps?: CommonProps & EuiButtonDisplayContentType;
 }
 
 type EuiButtonEmptyPropsForAnchor = PropsForAnchor<CommonEuiButtonEmptyProps>;
@@ -134,7 +127,18 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = (
   const color = isDisabled ? 'disabled' : _color === 'ghost' ? 'text' : _color;
   const buttonColorStyles = useEuiButtonColorCSS({
     display: 'empty',
-  })[color];
+  });
+
+  const euiTheme = useEuiTheme();
+  const styles = euiButtonEmptyStyles(euiTheme);
+  const cssStyles = [
+    styles.euiButtonEmpty,
+    styles[size],
+    buttonColorStyles[color],
+    flush && styles.flush,
+    flush && styles[flush],
+    isDisabled && styles.isDisabled,
+  ];
 
   if (_color === 'ghost') {
     // INCEPTION: If `ghost`, re-implement with a wrapping dark mode theme provider
@@ -145,38 +149,30 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = (
     );
   }
 
-  const classes = classNames(
-    'euiButtonEmpty',
-    size ? sizeToClassNameMap[size] : null,
-    flush ? flushTypeToClassNameMap[flush] : null,
-    className
-  );
+  const classes = classNames('euiButtonEmpty', className);
 
   const contentClassNames = classNames(
     'euiButtonEmpty__content',
-    contentProps && contentProps.className
+    contentProps?.className
   );
 
   const textClassNames = classNames(
     'euiButtonEmpty__text',
-    textProps && textProps.className
+    textProps?.className
   );
 
-  const cssStyles = [buttonColorStyles];
-
   const innerNode = (
-    <EuiButtonContent
+    <EuiButtonDisplayContent
+      isDisabled={isDisabled}
       isLoading={isLoading}
       iconType={iconType}
       iconSide={iconSide}
       iconSize={size === 'xs' ? 's' : iconSize}
       textProps={{ ...textProps, className: textClassNames }}
-      {...contentProps}
-      // className has to come last to override contentProps.className
-      className={contentClassNames}
+      {...{ ...contentProps, className: contentClassNames }}
     >
       {children}
-    </EuiButtonContent>
+    </EuiButtonDisplayContent>
   );
 
   // <a> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend

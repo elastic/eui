@@ -98,7 +98,7 @@ exports[`EuiCodeBlock fullscreen displays content in fullscreen mode 1`] = `
 
 exports[`EuiCodeBlock line numbers renders annotated line numbers 1`] = `
 <div
-  class="euiCodeBlock testClass1 testClass2 emotion-euiCodeBlock-s"
+  class="euiCodeBlock testClass1 testClass2 emotion-euiCodeBlock-s-euiTestCss"
 >
   <pre
     class="euiCodeBlock__pre emotion-euiCodeBlock__pre-preWrap-padding"
@@ -174,7 +174,7 @@ exports[`EuiCodeBlock line numbers renders annotated line numbers 1`] = `
 
 exports[`EuiCodeBlock line numbers renders highlighted line numbers 1`] = `
 <div
-  class="euiCodeBlock testClass1 testClass2 emotion-euiCodeBlock-s"
+  class="euiCodeBlock testClass1 testClass2 emotion-euiCodeBlock-s-euiTestCss"
 >
   <pre
     class="euiCodeBlock__pre emotion-euiCodeBlock__pre-preWrap-padding"
@@ -232,7 +232,7 @@ exports[`EuiCodeBlock line numbers renders highlighted line numbers 1`] = `
 
 exports[`EuiCodeBlock line numbers renders line numbers 1`] = `
 <div
-  class="euiCodeBlock testClass1 testClass2 emotion-euiCodeBlock-s"
+  class="euiCodeBlock testClass1 testClass2 emotion-euiCodeBlock-s-euiTestCss"
 >
   <pre
     class="euiCodeBlock__pre emotion-euiCodeBlock__pre-preWrap-padding"
@@ -290,7 +290,7 @@ exports[`EuiCodeBlock line numbers renders line numbers 1`] = `
 
 exports[`EuiCodeBlock line numbers renders line numbers with a start value 1`] = `
 <div
-  class="euiCodeBlock testClass1 testClass2 emotion-euiCodeBlock-s"
+  class="euiCodeBlock testClass1 testClass2 emotion-euiCodeBlock-s-euiTestCss"
 >
   <pre
     class="euiCodeBlock__pre emotion-euiCodeBlock__pre-preWrap-padding"
@@ -674,7 +674,7 @@ exports[`EuiCodeBlock props transparentBackground is rendered 1`] = `
 
 exports[`EuiCodeBlock props whiteSpace renders a pre block tag with a css class modifier 1`] = `
 <div
-  class="euiCodeBlock testClass1 testClass2 emotion-euiCodeBlock-s"
+  class="euiCodeBlock testClass1 testClass2 emotion-euiCodeBlock-s-euiTestCss"
 >
   <pre
     class="euiCodeBlock__pre emotion-euiCodeBlock__pre-pre-padding"
@@ -704,7 +704,7 @@ exports[`EuiCodeBlock props whiteSpace renders a pre block tag with a css class 
 
 exports[`EuiCodeBlock renders a code block 1`] = `
 <div
-  class="euiCodeBlock testClass1 testClass2 emotion-euiCodeBlock-s"
+  class="euiCodeBlock testClass1 testClass2 emotion-euiCodeBlock-s-euiTestCss"
 >
   <pre
     class="euiCodeBlock__pre emotion-euiCodeBlock__pre-preWrap-padding"
@@ -734,7 +734,7 @@ exports[`EuiCodeBlock renders a code block 1`] = `
 
 exports[`EuiCodeBlock virtualization renders a virtualized code block 1`] = `
 <div
-  class="euiCodeBlock testClass1 testClass2 emotion-euiCodeBlock-s-hasControls"
+  class="euiCodeBlock testClass1 testClass2 emotion-euiCodeBlock-s-hasControls-euiTestCss"
   style="block-size:50%"
 >
   <div

@@ -3,7 +3,7 @@
 exports[`EuiSideNav is rendered 1`] = `
 <nav
   aria-label="aria-label"
-  class="euiSideNav testClass1 testClass2"
+  class="euiSideNav testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -20,7 +20,7 @@ exports[`EuiSideNav props heading accepts more headingProps 1`] = `
 >
   <h3
     aria-label="aria-label"
-    class="euiTitle euiSideNav__heading testClass1 testClass2 testClass1 testClass2 emotion-euiTitle-xs"
+    class="euiTitle euiSideNav__heading testClass1 testClass2 testClass1 testClass2 emotion-euiTitle-xs-euiTestCss"
     data-test-subj="test subject string"
     id="testID"
   >
@@ -526,19 +526,18 @@ exports[`EuiSideNav props mobileBreakpoints can be adjusted is rendered 1`] = `
   >
     <button
       aria-controls="euiSideNav_generated-id_content"
-      class="euiButtonEmpty euiSideNav__mobileToggle css-9t7nyf-empty-primary"
+      class="euiButtonEmpty euiSideNav__mobileToggle emotion-euiButtonDisplay-euiButtonEmpty-m-empty-primary"
       type="button"
     >
       <span
-        class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content euiSideNav__mobileToggleContent"
+        class="euiButtonEmpty__content euiSideNav__mobileToggleContent emotion-euiButtonDisplayContent"
       >
         <span
-          class="euiButtonContent__icon"
-          color="inherit"
-          data-euiicon-type="apps"
+          class="eui-textTruncate euiButtonEmpty__text euiSideNav__mobileToggleText"
         />
         <span
-          class="euiButtonEmpty__text euiSideNav__mobileToggleText"
+          color="inherit"
+          data-euiicon-type="apps"
         />
       </span>
     </button>

@@ -3,7 +3,7 @@
 exports[`EuiLoadingChart is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiLoadingChart testClass1 testClass2 emotion-euiLoadingChart-m"
+  class="euiLoadingChart testClass1 testClass2 emotion-euiLoadingChart-m-euiTestCss"
   data-test-subj="test subject string"
   role="progressbar"
 >

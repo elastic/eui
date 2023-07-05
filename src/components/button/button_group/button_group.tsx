@@ -14,7 +14,7 @@ import { EuiScreenReaderOnly } from '../../accessibility';
 import { CommonProps } from '../../common';
 
 import { _EuiButtonColor } from '../../../themes/amsterdam/global_styling/mixins';
-import { EuiButtonContentProps } from '../_button_content_deprecated';
+import { EuiButtonDisplayContentProps } from '../button_display/_button_display_content';
 import { EuiButtonGroupButton } from './button_group_button';
 import {
   euiButtonGroupStyles,
@@ -22,7 +22,7 @@ import {
 } from './button_group.styles';
 
 export interface EuiButtonGroupOptionProps
-  extends EuiButtonContentProps,
+  extends EuiButtonDisplayContentProps,
     CommonProps {
   /**
    * Each option must have a unique `id` for maintaining selection

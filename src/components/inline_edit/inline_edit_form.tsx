@@ -40,6 +40,7 @@ import { euiInlineEditReadModeStyles } from './inline_edit_form.styles';
 export type EuiInlineEditCommonProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
     defaultValue: string;
+    placeholder?: string;
     /**
      * Callback that fires when a user clicks the save button.
      * Passes the current edited text value as an argument.
@@ -121,6 +122,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   children,
   sizes,
   defaultValue,
+  placeholder,
   inputAriaLabel,
   startWithEditOpen,
   readModeProps,
@@ -133,12 +135,6 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   const classes = classNames('euiInlineEdit', className);
 
   const euiTheme = useEuiTheme();
-
-  const readModeStyles = euiInlineEditReadModeStyles(euiTheme);
-  const readModeCssStyles = [
-    readModeStyles.euiInlineEditReadMode,
-    isReadOnly && readModeStyles.isReadOnly,
-  ];
 
   const { controlHeight, controlCompressedHeight } = euiFormVariables(euiTheme);
   const loadingSkeletonSize = sizes.compressed
@@ -171,6 +167,13 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   const [isEditing, setIsEditing] = useState(false || startWithEditOpen);
   const [editModeValue, setEditModeValue] = useState(defaultValue);
   const [readModeValue, setReadModeValue] = useState(defaultValue);
+
+  const readModeStyles = euiInlineEditReadModeStyles(euiTheme);
+  const readModeCssStyles = [
+    readModeStyles.euiInlineEditReadMode,
+    isReadOnly && readModeStyles.isReadOnly,
+    placeholder && !readModeValue && readModeStyles.hasPlaceholder,
+  ];
 
   const activateEditMode = () => {
     setIsEditing(true);
@@ -234,6 +237,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
             isInvalid={isInvalid}
             isLoading={isLoading}
             data-test-subj="euiInlineEditModeInput"
+            placeholder={placeholder}
             {...editModeProps?.inputProps}
             inputRef={setEditModeRefs}
             onChange={(e) => {
@@ -337,7 +341,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
           readModeProps?.onClick?.(e);
         }}
       >
-        {children(readModeValue)}
+        {children(readModeValue || placeholder)}
       </EuiButtonEmpty>
       <span id={readModeDescribedById} hidden>
         {!isReadOnly && (

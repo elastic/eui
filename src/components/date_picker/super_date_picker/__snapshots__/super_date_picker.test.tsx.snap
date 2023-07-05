@@ -16,26 +16,25 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
       >
         <button
           aria-label="Date quick select"
-          class="euiButtonEmpty euiButtonEmpty--xSmall euiFormControlLayout__prepend css-9t7nyf-empty-primary"
+          class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
           data-test-subj="superDatePickerToggleQuickMenuButton"
           title="Date quick select"
           type="button"
         >
           <span
-            class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+            class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
           >
             <span
-              class="euiButtonContent__icon"
-              color="inherit"
-              data-euiicon-type="arrowDown"
-            />
-            <span
-              class="euiButtonEmpty__text euiQuickSelectPopover__buttonText"
+              class="eui-textTruncate euiButtonEmpty__text euiQuickSelectPopover__buttonText"
             >
               <span
                 data-euiicon-type="calendar"
               />
             </span>
+            <span
+              color="inherit"
+              data-euiicon-type="arrowDown"
+            />
           </span>
         </button>
       </div>
@@ -55,7 +54,7 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
   >
     <button
-      class="euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
+      class="euiButton euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
       data-test-subj="superDatePickerApplyTimeButton"
       style="min-inline-size: 118px;"
       type="button"
@@ -89,26 +88,25 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
       >
         <button
           aria-label="Date quick select"
-          class="euiButtonEmpty euiButtonEmpty--xSmall euiFormControlLayout__prepend css-9t7nyf-empty-primary"
+          class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
           data-test-subj="superDatePickerToggleQuickMenuButton"
           title="Date quick select"
           type="button"
         >
           <span
-            class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+            class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
           >
             <span
-              class="euiButtonContent__icon"
-              color="inherit"
-              data-euiicon-type="arrowDown"
-            />
-            <span
-              class="euiButtonEmpty__text euiQuickSelectPopover__buttonText"
+              class="eui-textTruncate euiButtonEmpty__text euiQuickSelectPopover__buttonText"
             >
               <span
                 data-euiicon-type="calendar"
               />
             </span>
+            <span
+              color="inherit"
+              data-euiicon-type="arrowDown"
+            />
           </span>
         </button>
       </div>
@@ -128,7 +126,7 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
   >
     <button
-      class="euiSuperUpdateButton emotion-euiButtonDisplay-s-fill-primary"
+      class="euiButton euiSuperUpdateButton emotion-euiButtonDisplay-s-fill-primary"
       data-test-subj="superDatePickerApplyTimeButton"
       style="min-inline-size: 118px;"
       type="button"
@@ -162,19 +160,18 @@ exports[`EuiSuperDatePicker props isAutoRefreshOnly is rendered 1`] = `
           class="euiFormControlLayout euiFormControlLayout--readOnly euiFormControlLayout--group"
         >
           <button
-            class="euiButtonEmpty euiButtonEmpty--small euiFormControlLayout__prepend euiFormControlLayout__prepend css-wvaqcf-empty-text"
+            class="euiButtonEmpty euiFormControlLayout__prepend euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
             type="button"
           >
             <span
-              class="euiButtonContent euiButtonEmpty__content"
+              class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
             >
               <span
-                class="euiButtonContent__icon"
                 color="inherit"
                 data-euiicon-type="timeRefresh"
               />
               <span
-                class="euiButtonEmpty__text"
+                class="eui-textTruncate euiButtonEmpty__text"
               >
                 <strong>
                   <small>
@@ -218,20 +215,19 @@ exports[`EuiSuperDatePicker props isAutoRefreshOnly passes required props 1`] = 
           class="euiFormControlLayout euiFormControlLayout--readOnly euiFormControlLayout--group"
         >
           <button
-            class="euiButtonEmpty euiButtonEmpty--small euiFormControlLayout__prepend euiFormControlLayout__prepend css-1at5a38-empty-disabled"
+            class="euiButtonEmpty euiFormControlLayout__prepend euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-s-empty-disabled-isDisabled"
             disabled=""
             type="button"
           >
             <span
-              class="euiButtonContent euiButtonEmpty__content"
+              class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
             >
               <span
-                class="euiButtonContent__icon"
                 color="inherit"
                 data-euiicon-type="timeRefresh"
               />
               <span
-                class="euiButtonEmpty__text"
+                class="eui-textTruncate euiButtonEmpty__text"
               >
                 <strong>
                   <small>
@@ -290,27 +286,26 @@ exports[`EuiSuperDatePicker props isDisabled true 1`] = `
       >
         <button
           aria-label="Date quick select"
-          class="euiButtonEmpty euiButtonEmpty--xSmall euiFormControlLayout__prepend css-1at5a38-empty-disabled"
+          class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-disabled-isDisabled"
           data-test-subj="superDatePickerToggleQuickMenuButton"
           disabled=""
           title="Date quick select"
           type="button"
         >
           <span
-            class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+            class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
           >
             <span
-              class="euiButtonContent__icon"
-              color="inherit"
-              data-euiicon-type="arrowDown"
-            />
-            <span
-              class="euiButtonEmpty__text euiQuickSelectPopover__buttonText"
+              class="eui-textTruncate euiButtonEmpty__text euiQuickSelectPopover__buttonText"
             >
               <span
                 data-euiicon-type="calendar"
               />
             </span>
+            <span
+              color="inherit"
+              data-euiicon-type="arrowDown"
+            />
           </span>
         </button>
       </div>
@@ -331,7 +326,7 @@ exports[`EuiSuperDatePicker props isDisabled true 1`] = `
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
   >
     <button
-      class="euiSuperUpdateButton emotion-euiButtonDisplay-m-isDisabled-fill-disabled"
+      class="euiButton euiSuperUpdateButton emotion-euiButtonDisplay-m-isDisabled-fill-disabled"
       data-test-subj="superDatePickerApplyTimeButton"
       disabled=""
       style="min-inline-size: 118px;"
@@ -366,26 +361,25 @@ exports[`EuiSuperDatePicker props isQuickSelectOnly is rendered 1`] = `
       >
         <button
           aria-label="Date quick select"
-          class="euiButtonEmpty euiButtonEmpty--xSmall euiFormControlLayout__prepend css-9t7nyf-empty-primary"
+          class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
           data-test-subj="superDatePickerToggleQuickMenuButton"
           title="Date quick select"
           type="button"
         >
           <span
-            class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+            class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
           >
             <span
-              class="euiButtonContent__icon"
-              color="inherit"
-              data-euiicon-type="arrowDown"
-            />
-            <span
-              class="euiButtonEmpty__text euiQuickSelectPopover__buttonText"
+              class="eui-textTruncate euiButtonEmpty__text euiQuickSelectPopover__buttonText"
             >
               <span
                 data-euiicon-type="calendar"
               />
             </span>
+            <span
+              color="inherit"
+              data-euiicon-type="arrowDown"
+            />
           </span>
         </button>
       </div>
@@ -398,7 +392,7 @@ exports[`EuiSuperDatePicker props isQuickSelectOnly is rendered 1`] = `
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
   >
     <button
-      class="euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
+      class="euiButton euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
       data-test-subj="superDatePickerApplyTimeButton"
       style="min-inline-size: 118px;"
       type="button"
@@ -432,26 +426,25 @@ exports[`EuiSuperDatePicker props showUpdateButton can be false 1`] = `
       >
         <button
           aria-label="Date quick select"
-          class="euiButtonEmpty euiButtonEmpty--xSmall euiFormControlLayout__prepend css-9t7nyf-empty-primary"
+          class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
           data-test-subj="superDatePickerToggleQuickMenuButton"
           title="Date quick select"
           type="button"
         >
           <span
-            class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+            class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
           >
             <span
-              class="euiButtonContent__icon"
-              color="inherit"
-              data-euiicon-type="arrowDown"
-            />
-            <span
-              class="euiButtonEmpty__text euiQuickSelectPopover__buttonText"
+              class="eui-textTruncate euiButtonEmpty__text euiQuickSelectPopover__buttonText"
             >
               <span
                 data-euiicon-type="calendar"
               />
             </span>
+            <span
+              color="inherit"
+              data-euiicon-type="arrowDown"
+            />
           </span>
         </button>
       </div>
@@ -485,26 +478,25 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
       >
         <button
           aria-label="Date quick select"
-          class="euiButtonEmpty euiButtonEmpty--xSmall euiFormControlLayout__prepend css-9t7nyf-empty-primary"
+          class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
           data-test-subj="superDatePickerToggleQuickMenuButton"
           title="Date quick select"
           type="button"
         >
           <span
-            class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+            class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
           >
             <span
-              class="euiButtonContent__icon"
-              color="inherit"
-              data-euiicon-type="arrowDown"
-            />
-            <span
-              class="euiButtonEmpty__text euiQuickSelectPopover__buttonText"
+              class="eui-textTruncate euiButtonEmpty__text euiQuickSelectPopover__buttonText"
             >
               <span
                 data-euiicon-type="calendar"
               />
             </span>
+            <span
+              color="inherit"
+              data-euiicon-type="arrowDown"
+            />
           </span>
         </button>
       </div>
@@ -524,7 +516,7 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
   >
     <button
-      class="euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
+      class="euiButton euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
       data-test-subj="superDatePickerApplyTimeButton"
       type="button"
     >
@@ -561,26 +553,25 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
       >
         <button
           aria-label="Date quick select"
-          class="euiButtonEmpty euiButtonEmpty--xSmall euiFormControlLayout__prepend css-9t7nyf-empty-primary"
+          class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
           data-test-subj="superDatePickerToggleQuickMenuButton"
           title="Date quick select"
           type="button"
         >
           <span
-            class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+            class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
           >
             <span
-              class="euiButtonContent__icon"
-              color="inherit"
-              data-euiicon-type="arrowDown"
-            />
-            <span
-              class="euiButtonEmpty__text euiQuickSelectPopover__buttonText"
+              class="eui-textTruncate euiButtonEmpty__text euiQuickSelectPopover__buttonText"
             >
               <span
                 data-euiicon-type="calendar"
               />
             </span>
+            <span
+              color="inherit"
+              data-euiicon-type="arrowDown"
+            />
           </span>
         </button>
       </div>
@@ -600,7 +591,7 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
   >
     <button
-      class="euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
+      class="euiButton euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
       data-test-subj="superDatePickerApplyTimeButton"
       style="min-inline-size: 118px;"
       type="button"
@@ -634,26 +625,25 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
       >
         <button
           aria-label="Date quick select"
-          class="euiButtonEmpty euiButtonEmpty--xSmall euiFormControlLayout__prepend css-9t7nyf-empty-primary"
+          class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
           data-test-subj="superDatePickerToggleQuickMenuButton"
           title="Date quick select"
           type="button"
         >
           <span
-            class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+            class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
           >
             <span
-              class="euiButtonContent__icon"
-              color="inherit"
-              data-euiicon-type="arrowDown"
-            />
-            <span
-              class="euiButtonEmpty__text euiQuickSelectPopover__buttonText"
+              class="eui-textTruncate euiButtonEmpty__text euiQuickSelectPopover__buttonText"
             >
               <span
                 data-euiicon-type="calendar"
               />
             </span>
+            <span
+              color="inherit"
+              data-euiicon-type="arrowDown"
+            />
           </span>
         </button>
       </div>
@@ -673,7 +663,7 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
   >
     <button
-      class="euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
+      class="euiButton euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
       data-test-subj="superDatePickerApplyTimeButton"
       style="min-inline-size: 118px;"
       type="button"
@@ -694,7 +684,7 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
 
 exports[`EuiSuperDatePicker renders 1`] = `
 <div
-  class="euiSuperDatePicker testClass1 testClass2"
+  class="euiSuperDatePicker testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -708,26 +698,25 @@ exports[`EuiSuperDatePicker renders 1`] = `
       >
         <button
           aria-label="Date quick select"
-          class="euiButtonEmpty euiButtonEmpty--xSmall euiFormControlLayout__prepend css-9t7nyf-empty-primary"
+          class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
           data-test-subj="superDatePickerToggleQuickMenuButton"
           title="Date quick select"
           type="button"
         >
           <span
-            class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+            class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
           >
             <span
-              class="euiButtonContent__icon"
-              color="inherit"
-              data-euiicon-type="arrowDown"
-            />
-            <span
-              class="euiButtonEmpty__text euiQuickSelectPopover__buttonText"
+              class="eui-textTruncate euiButtonEmpty__text euiQuickSelectPopover__buttonText"
             >
               <span
                 data-euiicon-type="calendar"
               />
             </span>
+            <span
+              color="inherit"
+              data-euiicon-type="arrowDown"
+            />
           </span>
         </button>
       </div>
@@ -747,7 +736,7 @@ exports[`EuiSuperDatePicker renders 1`] = `
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
   >
     <button
-      class="euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
+      class="euiButton euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
       data-test-subj="superDatePickerApplyTimeButton"
       style="min-inline-size: 118px;"
       type="button"
@@ -768,7 +757,7 @@ exports[`EuiSuperDatePicker renders 1`] = `
 
 exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
 <div
-  class="euiSuperDatePicker testClass1 testClass2"
+  class="euiSuperDatePicker testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <span
@@ -785,26 +774,25 @@ exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
         >
           <button
             aria-label="Date quick select"
-            class="euiButtonEmpty euiButtonEmpty--xSmall euiFormControlLayout__prepend css-9t7nyf-empty-primary"
+            class="euiButtonEmpty euiFormControlLayout__prepend emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary"
             data-test-subj="superDatePickerToggleQuickMenuButton"
             title="Date quick select"
             type="button"
           >
             <span
-              class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+              class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
             >
               <span
-                class="euiButtonContent__icon"
-                color="inherit"
-                data-euiicon-type="arrowDown"
-              />
-              <span
-                class="euiButtonEmpty__text euiQuickSelectPopover__buttonText"
+                class="eui-textTruncate euiButtonEmpty__text euiQuickSelectPopover__buttonText"
               >
                 <span
                   data-euiicon-type="calendar"
                 />
               </span>
+              <span
+                color="inherit"
+                data-euiicon-type="arrowDown"
+              />
             </span>
           </button>
         </div>
@@ -858,7 +846,7 @@ exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
   >
     <button
-      class="euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
+      class="euiButton euiSuperUpdateButton emotion-euiButtonDisplay-m-fill-primary"
       data-test-subj="superDatePickerApplyTimeButton"
       style="min-inline-size: 118px;"
       type="button"

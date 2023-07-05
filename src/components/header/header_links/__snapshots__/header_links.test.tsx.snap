@@ -47,7 +47,7 @@ exports[`EuiHeaderLinks gutterSize xs is rendered 1`] = `
 exports[`EuiHeaderLinks is rendered 1`] = `
 <nav
   aria-label="aria-label"
-  class="euiHeaderLinks testClass1 testClass2"
+  class="euiHeaderLinks testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -80,14 +80,14 @@ exports[`EuiHeaderLinks popover props is rendered 1`] = `
     >
       <button
         aria-label="Open menu"
-        class="euiButtonEmpty euiHeaderSectionItemButton customButtonClass css-wvaqcf-empty-text"
+        class="euiButtonEmpty euiHeaderSectionItemButton customButtonClass emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
         type="button"
       >
         <span
-          class="euiButtonContent euiButtonEmpty__content"
+          class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
           <span
-            class="euiButtonEmpty__text"
+            class="eui-textTruncate euiButtonEmpty__text"
           >
             <span
               class="euiHeaderSectionItemButton__content"

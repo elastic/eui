@@ -11,7 +11,8 @@ assignees: ''
 A clear and concise description of what the bug is.
 
 **Environment and versions**
-- EUI version: 
+- EUI version:
+- React version:
 - Kibana version (if applicable):
 - Browser:
 - Operating System:

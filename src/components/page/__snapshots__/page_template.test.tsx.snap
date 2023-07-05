@@ -59,7 +59,7 @@ exports[`EuiPageTemplate_Deprecated fullHeight is rendered with true 1`] = `
 exports[`EuiPageTemplate_Deprecated is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPage euiPageTemplate testClass1 testClass2 emotion-euiPage-row-grow"
+  class="euiPage euiPageTemplate testClass1 testClass2 emotion-euiPage-row-grow-euiTestCss"
   data-test-subj="test subject string"
   style="min-height:460px"
 >
@@ -151,7 +151,7 @@ exports[`EuiPageTemplate_Deprecated template centeredBody is rendered with pageB
 >
   <div
     aria-label="aria-label"
-    class="euiPageBody testClass1 testClass2 emotion-euiPageBody-restrictWidth"
+    class="euiPageBody testClass1 testClass2 emotion-euiPageBody-restrictWidth-euiTestCss"
     data-test-subj="test subject string"
     style="max-width:1200px"
   >
@@ -189,7 +189,7 @@ exports[`EuiPageTemplate_Deprecated template centeredBody is rendered with pageC
       >
         <div
           aria-label="aria-label"
-          class="euiPageContentBody euiPageContentBody--restrictWidth-default testClass1 testClass2"
+          class="euiPageContentBody euiPageContentBody--restrictWidth-default testClass1 testClass2 emotion-euiTestCss"
           data-test-subj="test subject string"
         />
       </div>
@@ -212,7 +212,7 @@ exports[`EuiPageTemplate_Deprecated template centeredBody is rendered with pageC
     >
       <div
         aria-label="aria-label"
-        class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter testClass1 testClass2 emotion-euiPanel-grow-m-l-plain-hasShadow"
+        class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter testClass1 testClass2 emotion-euiPanel-grow-m-l-plain-hasShadow-euiTestCss"
         data-test-subj="test subject string"
         role="main"
       >
@@ -236,7 +236,7 @@ exports[`EuiPageTemplate_Deprecated template centeredBody is rendered with pageH
   >
     <header
       aria-label="aria-label"
-      class="euiPageHeader testClass1 testClass2 emotion-euiPageHeader-headerMargin"
+      class="euiPageHeader testClass1 testClass2 emotion-euiPageHeader-euiTestCss"
       data-test-subj="test subject string"
       title="Page title"
     >
@@ -375,7 +375,7 @@ exports[`EuiPageTemplate_Deprecated template centeredBody with pageSideBar is re
 >
   <div
     aria-label="aria-label"
-    class="euiPageSideBar euiPageSideBar--paddingLarge euiPageSideBar--sticky testClass1 testClass2"
+    class="euiPageSideBar euiPageSideBar--paddingLarge euiPageSideBar--sticky testClass1 testClass2 emotion-euiTestCss"
     data-test-subj="test subject string"
   >
     Side Bar
@@ -427,7 +427,7 @@ exports[`EuiPageTemplate_Deprecated template centeredContent is rendered with pa
 >
   <div
     aria-label="aria-label"
-    class="euiPageBody testClass1 testClass2 emotion-euiPageBody"
+    class="euiPageBody testClass1 testClass2 emotion-euiPageBody-euiTestCss"
     data-test-subj="test subject string"
   >
     <div
@@ -465,7 +465,7 @@ exports[`EuiPageTemplate_Deprecated template centeredContent is rendered with pa
       >
         <div
           aria-label="aria-label"
-          class="euiPageContentBody euiPageContentBody--restrictWidth-default testClass1 testClass2"
+          class="euiPageContentBody euiPageContentBody--restrictWidth-default testClass1 testClass2 emotion-euiTestCss"
           data-test-subj="test subject string"
         />
       </div>
@@ -488,7 +488,7 @@ exports[`EuiPageTemplate_Deprecated template centeredContent is rendered with pa
     >
       <div
         aria-label="aria-label"
-        class="euiPanel euiPanel--subdued euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter testClass1 testClass2 emotion-euiPanel-grow-m-l-subdued"
+        class="euiPanel euiPanel--subdued euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter testClass1 testClass2 emotion-euiPanel-grow-m-l-subdued-euiTestCss"
         data-test-subj="test subject string"
         role="main"
       >
@@ -511,7 +511,7 @@ exports[`EuiPageTemplate_Deprecated template centeredContent is rendered with pa
   >
     <header
       aria-label="aria-label"
-      class="euiPageHeader testClass1 testClass2 emotion-euiPageHeader-l-border"
+      class="euiPageHeader testClass1 testClass2 emotion-euiPageHeader-l-border-euiTestCss"
       data-test-subj="test subject string"
       title="Page title"
     >
@@ -652,7 +652,7 @@ exports[`EuiPageTemplate_Deprecated template centeredContent with pageSideBar is
 >
   <div
     aria-label="aria-label"
-    class="euiPageSideBar euiPageSideBar--paddingLarge euiPageSideBar--sticky testClass1 testClass2"
+    class="euiPageSideBar euiPageSideBar--paddingLarge euiPageSideBar--sticky testClass1 testClass2 emotion-euiTestCss"
     data-test-subj="test subject string"
   >
     Side Bar
@@ -699,7 +699,7 @@ exports[`EuiPageTemplate_Deprecated template default is rendered with pageBodyPr
 >
   <div
     aria-label="aria-label"
-    class="euiPageBody testClass1 testClass2 emotion-euiPageBody"
+    class="euiPageBody testClass1 testClass2 emotion-euiPageBody-euiTestCss"
     data-test-subj="test subject string"
   >
     <div
@@ -728,7 +728,7 @@ exports[`EuiPageTemplate_Deprecated template default is rendered with pageConten
     >
       <div
         aria-label="aria-label"
-        class="euiPageContentBody euiPageContentBody--paddingLarge euiPageContentBody--restrictWidth-default testClass1 testClass2"
+        class="euiPageContentBody euiPageContentBody--paddingLarge euiPageContentBody--restrictWidth-default testClass1 testClass2 emotion-euiTestCss"
         data-test-subj="test subject string"
       />
     </div>
@@ -746,7 +746,7 @@ exports[`EuiPageTemplate_Deprecated template default is rendered with pageConten
   >
     <div
       aria-label="aria-label"
-      class="euiPanel euiPanel--plain euiPageContent euiPageContent--borderRadiusNone testClass1 testClass2 emotion-euiPanel-grow-none-plain"
+      class="euiPanel euiPanel--plain euiPageContent euiPageContent--borderRadiusNone testClass1 testClass2 emotion-euiPanel-grow-none-plain-euiTestCss"
       data-test-subj="test subject string"
       role="main"
     >
@@ -768,7 +768,7 @@ exports[`EuiPageTemplate_Deprecated template default is rendered with pageHeader
   >
     <header
       aria-label="aria-label"
-      class="euiPageHeader testClass1 testClass2 emotion-euiPageHeader-l-border"
+      class="euiPageHeader testClass1 testClass2 emotion-euiPageHeader-l-border-euiTestCss"
       data-test-subj="test subject string"
       title="Page title"
     >
@@ -893,7 +893,7 @@ exports[`EuiPageTemplate_Deprecated template default with pageSideBar is rendere
 >
   <div
     aria-label="aria-label"
-    class="euiPageSideBar euiPageSideBar--paddingLarge euiPageSideBar--sticky testClass1 testClass2"
+    class="euiPageSideBar euiPageSideBar--paddingLarge euiPageSideBar--sticky testClass1 testClass2 emotion-euiTestCss"
     data-test-subj="test subject string"
   >
     Side Bar
@@ -945,7 +945,7 @@ exports[`EuiPageTemplate_Deprecated template empty is rendered with pageBodyProp
 >
   <div
     aria-label="aria-label"
-    class="euiPageBody testClass1 testClass2 emotion-euiPageBody-restrictWidth"
+    class="euiPageBody testClass1 testClass2 emotion-euiPageBody-restrictWidth-euiTestCss"
     data-test-subj="test subject string"
     style="max-width:1200px"
   >
@@ -976,7 +976,7 @@ exports[`EuiPageTemplate_Deprecated template empty is rendered with pageContentB
     >
       <div
         aria-label="aria-label"
-        class="euiPageContentBody testClass1 testClass2"
+        class="euiPageContentBody testClass1 testClass2 emotion-euiTestCss"
         data-test-subj="test subject string"
       />
     </div>
@@ -995,7 +995,7 @@ exports[`EuiPageTemplate_Deprecated template empty is rendered with pageContentP
   >
     <div
       aria-label="aria-label"
-      class="euiPanel euiPanel--transparent euiPageContent euiPageContent--borderRadiusNone testClass1 testClass2 emotion-euiPanel-grow-none-transparent"
+      class="euiPanel euiPanel--transparent euiPageContent euiPageContent--borderRadiusNone testClass1 testClass2 emotion-euiPanel-grow-none-transparent-euiTestCss"
       data-test-subj="test subject string"
       role="main"
     >
@@ -1018,7 +1018,7 @@ exports[`EuiPageTemplate_Deprecated template empty is rendered with pageHeader 1
   >
     <header
       aria-label="aria-label"
-      class="euiPageHeader testClass1 testClass2 emotion-euiPageHeader-headerMargin"
+      class="euiPageHeader testClass1 testClass2 emotion-euiPageHeader-euiTestCss"
       data-test-subj="test subject string"
       title="Page title"
     >
@@ -1141,7 +1141,7 @@ exports[`EuiPageTemplate_Deprecated template empty with pageSideBar is rendered 
 >
   <div
     aria-label="aria-label"
-    class="euiPageSideBar euiPageSideBar--paddingLarge euiPageSideBar--sticky testClass1 testClass2"
+    class="euiPageSideBar euiPageSideBar--paddingLarge euiPageSideBar--sticky testClass1 testClass2 emotion-euiTestCss"
     data-test-subj="test subject string"
   >
     Side Bar

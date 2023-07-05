@@ -3,7 +3,7 @@
 exports[`EuiStepsHorizontal is rendered 1`] = `
 <ol
   aria-label="aria-label"
-  class="euiStepsHorizontal testClass1 testClass2 emotion-euiStepsHorizontal"
+  class="euiStepsHorizontal testClass1 testClass2 emotion-euiStepsHorizontal-euiTestCss"
   data-test-subj="test subject string"
 >
   <li

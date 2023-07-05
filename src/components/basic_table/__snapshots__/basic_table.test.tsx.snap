@@ -3,7 +3,7 @@
 exports[`EuiBasicTable renders (bare-bones) 1`] = `
 <div
   aria-label="aria-label"
-  class="euiBasicTable testClass1 testClass2"
+  class="euiBasicTable testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div>
@@ -177,22 +177,21 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                 class="euiPopover__anchor css-16vtueo-render"
               >
                 <button
-                  class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushRight css-9t7nyf-empty-primary"
+                  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-primary-flush-right"
                   type="button"
                 >
                   <span
-                    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+                    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                   >
                     <span
-                      class="euiButtonContent__icon"
-                      color="inherit"
-                      data-euiicon-type="arrowDown"
-                    />
-                    <span
-                      class="euiButtonEmpty__text"
+                      class="eui-textTruncate euiButtonEmpty__text"
                     >
                       Sorting
                     </span>
+                    <span
+                      color="inherit"
+                      data-euiicon-type="arrowDown"
+                    />
                   </span>
                 </button>
               </div>
@@ -419,14 +418,14 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                 class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
               >
                 <button
-                  class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushRight euiTableCellContent__hoverItem css-9t7nyf-empty-primary"
+                  class="euiButtonEmpty euiTableCellContent__hoverItem emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
                   type="button"
                 >
                   <span
-                    class="euiButtonContent euiButtonEmpty__content"
+                    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                   >
                     <span
-                      class="euiButtonEmpty__text"
+                      class="eui-textTruncate euiButtonEmpty__text"
                     >
                       Edit
                     </span>
@@ -437,14 +436,14 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                 class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
               >
                 <button
-                  class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushRight euiTableCellContent__hoverItem css-9t7nyf-empty-primary"
+                  class="euiButtonEmpty euiTableCellContent__hoverItem emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
                   type="button"
                 >
                   <span
-                    class="euiButtonContent euiButtonEmpty__content"
+                    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                   >
                     <span
-                      class="euiButtonEmpty__text"
+                      class="eui-textTruncate euiButtonEmpty__text"
                     >
                       Delete
                     </span>
@@ -540,14 +539,14 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                 class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
               >
                 <button
-                  class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushRight euiTableCellContent__hoverItem css-9t7nyf-empty-primary"
+                  class="euiButtonEmpty euiTableCellContent__hoverItem emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
                   type="button"
                 >
                   <span
-                    class="euiButtonContent euiButtonEmpty__content"
+                    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                   >
                     <span
-                      class="euiButtonEmpty__text"
+                      class="eui-textTruncate euiButtonEmpty__text"
                     >
                       Edit
                     </span>
@@ -558,14 +557,14 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                 class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
               >
                 <button
-                  class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushRight euiTableCellContent__hoverItem css-9t7nyf-empty-primary"
+                  class="euiButtonEmpty euiTableCellContent__hoverItem emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
                   type="button"
                 >
                   <span
-                    class="euiButtonContent euiButtonEmpty__content"
+                    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                   >
                     <span
-                      class="euiButtonEmpty__text"
+                      class="eui-textTruncate euiButtonEmpty__text"
                     >
                       Delete
                     </span>
@@ -661,14 +660,14 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                 class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
               >
                 <button
-                  class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushRight euiTableCellContent__hoverItem css-9t7nyf-empty-primary"
+                  class="euiButtonEmpty euiTableCellContent__hoverItem emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
                   type="button"
                 >
                   <span
-                    class="euiButtonContent euiButtonEmpty__content"
+                    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                   >
                     <span
-                      class="euiButtonEmpty__text"
+                      class="eui-textTruncate euiButtonEmpty__text"
                     >
                       Edit
                     </span>
@@ -679,14 +678,14 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                 class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
               >
                 <button
-                  class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushRight euiTableCellContent__hoverItem css-9t7nyf-empty-primary"
+                  class="euiButtonEmpty euiTableCellContent__hoverItem emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
                   type="button"
                 >
                   <span
-                    class="euiButtonContent euiButtonEmpty__content"
+                    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                   >
                     <span
-                      class="euiButtonEmpty__text"
+                      class="eui-textTruncate euiButtonEmpty__text"
                     >
                       Delete
                     </span>
@@ -780,25 +779,24 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
             class="euiPopover__anchor css-16vtueo-render"
           >
             <button
-              class="euiButtonEmpty euiButtonEmpty--xSmall css-wvaqcf-empty-text"
+              class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
               data-test-subj="tablePaginationPopoverButton"
               type="button"
             >
               <span
-                class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+                class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
               >
                 <span
-                  class="euiButtonContent__icon"
-                  color="inherit"
-                  data-euiicon-type="arrowDown"
-                />
-                <span
-                  class="euiButtonEmpty__text"
+                  class="eui-textTruncate euiButtonEmpty__text"
                 >
                   Rows per page
                   : 
                   3
                 </span>
+                <span
+                  color="inherit"
+                  data-euiicon-type="arrowDown"
+                />
               </span>
             </button>
           </div>
@@ -809,7 +807,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
       >
         <nav
           aria-label="Pagination for table: "
-          class="euiPagination emotion-euiPagination-EuiPagination"
+          class="euiPagination emotion-euiPagination"
         >
           <span
             aria-atomic="true"
@@ -821,7 +819,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           </span>
           <button
             aria-label="Previous page"
-            class="euiButtonIcon euiPaginationArrowButton emotion-euiButtonIcon-xs-empty-disabled-isDisabled-euiPaginationArrowButton"
+            class="euiButtonIcon euiPaginationArrowButton emotion-euiButtonIcon-xs-empty-disabled-isDisabled-euiPaginationButton"
             data-test-subj="pagination-button-previous"
             disabled=""
             type="button"
@@ -844,16 +842,16 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                 aria-controls="__table_generated-id"
                 aria-current="true"
                 aria-label="Page 1 of 2"
-                class="euiButtonEmpty euiButtonEmpty--small euiPaginationButton css-57pcyl-empty-disabled-euiPaginationButton-isActive"
+                class="euiButtonEmpty euiPaginationButton emotion-euiButtonDisplay-euiButtonEmpty-s-empty-disabled-isDisabled-euiPaginationButton-isActive"
                 data-test-subj="pagination-button-0"
                 disabled=""
                 type="button"
               >
                 <span
-                  class="euiButtonContent euiButtonEmpty__content"
+                  class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                 >
                   <span
-                    class="euiButtonEmpty__text"
+                    class="eui-textTruncate euiButtonEmpty__text"
                   >
                     1
                   </span>
@@ -866,16 +864,16 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
               <a
                 aria-controls="__table_generated-id"
                 aria-label="Page 2 of 2"
-                class="euiButtonEmpty euiButtonEmpty--small euiPaginationButton css-2bs0sf-empty-text-euiPaginationButton"
+                class="euiButtonEmpty euiPaginationButton emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text-euiPaginationButton"
                 data-test-subj="pagination-button-1"
                 href="#__table_generated-id"
                 rel="noreferrer"
               >
                 <span
-                  class="euiButtonContent euiButtonEmpty__content"
+                  class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                 >
                   <span
-                    class="euiButtonEmpty__text"
+                    class="eui-textTruncate euiButtonEmpty__text"
                   >
                     2
                   </span>
@@ -886,7 +884,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           <a
             aria-controls="__table_generated-id"
             aria-label="Next page"
-            class="euiButtonIcon euiPaginationArrowButton emotion-euiButtonIcon-xs-empty-text-euiPaginationArrowButton"
+            class="euiButtonIcon euiPaginationArrowButton emotion-euiButtonIcon-xs-empty-text-euiPaginationButton"
             data-test-subj="pagination-button-next"
             href="#__table_generated-id"
             rel="noreferrer"
