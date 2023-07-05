@@ -1,3 +1,21 @@
+## [`83.1.0`](https://github.com/elastic/eui/tree/v83.1.0)
+
+- Added `placeholder` prop to `EuiInlineEdit` ([#6883](https://github.com/elastic/eui/pull/6883))
+- Added `sparkles` glyph to `EuiIcon` ([#6898](https://github.com/elastic/eui/pull/6898))
+
+**Bug fixes**
+
+- Fixed Safari-only bug for single-line row `EuiDataGrid`s, where cell actions on hover would overlap instead of pushing content to the left ([#6881](https://github.com/elastic/eui/pull/6881))
+- Fixed `EuiButton` not correctly merging in passed `className`s with its base `.euiButton` class ([#6887](https://github.com/elastic/eui/pull/6887))
+- Fixed `EuiIcon` not correctly passing the `style` prop custom `img` icons ([#6888](https://github.com/elastic/eui/pull/6888))
+- Fixed multiple components with child props (e.g. `buttonProps`, `iconProps`, etc.) unsetting EUI's Emotion styling if custom `css` was passed to the child props object ([#6896](https://github.com/elastic/eui/pull/6896))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiHeader` and `EuiHeaderLogo` to Emotion ([#6878](https://github.com/elastic/eui/pull/6878))
+- Removed Sass variables `$euiHeaderDarkBackgroundColor`, `$euiHeaderBorderColor`, and `$euiHeaderBreadcrumbColor` ([#6878](https://github.com/elastic/eui/pull/6878))
+- Removed Sass mixin `@euiHeaderDarkTheme` ([#6878](https://github.com/elastic/eui/pull/6878))
+
 ## [`83.0.0`](https://github.com/elastic/eui/tree/v83.0.0)
 
 **Bug fixes**
