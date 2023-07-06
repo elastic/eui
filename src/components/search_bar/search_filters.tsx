@@ -13,15 +13,15 @@ import { EuiFilterGroup } from '../filter_group';
 
 export type { SearchFilterConfig } from './filters';
 
-interface EuiSearchFiltersProps {
+interface EuiSearchBarFiltersProps {
   query: Query;
   onChange: (query: Query) => void;
   filters: SearchFilterConfig[];
 }
 
-type DefaultProps = Pick<EuiSearchFiltersProps, 'filters'>;
+type DefaultProps = Pick<EuiSearchBarFiltersProps, 'filters'>;
 
-export class EuiSearchFilters extends Component<EuiSearchFiltersProps> {
+export class EuiSearchBarFilters extends Component<EuiSearchBarFiltersProps> {
   static defaultProps: DefaultProps = {
     filters: [],
   };
