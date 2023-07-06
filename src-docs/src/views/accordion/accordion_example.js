@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
@@ -94,20 +94,6 @@ const accordionDisabledSource = require('!!raw-loader!./accordion_disabled');
 
 export const AccordionExample = {
   title: 'Accordion',
-  intro: (
-    <Fragment>
-      <EuiCallOut title="Take care when including flex group content within accordions">
-        <p>
-          <strong>EuiFlexGroup</strong>&apos;s negative margins can sometimes
-          create scrollbars within <strong>EuiAccordion</strong> because of the
-          overflow tricks used to hide content. If you run into this issue make
-          sure your <EuiCode>paddingSize</EuiCode> prop is large enough to
-          account for the <EuiCode>gutterSize</EuiCode> of any nested flex
-          groups.
-        </p>
-      </EuiCallOut>
-    </Fragment>
-  ),
   sections: [
     {
       title: 'Simple and unstyled',
