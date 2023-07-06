@@ -17,6 +17,10 @@
     margin: ($euiSizeXS + 1px) $euiSizeXS 0 0;
   }
 
+  .euiComboBox--compressed &--plainText {
+    margin: $euiSizeXS $euiSizeXS 0 0;
+  }
+
   &--plainText {
     @include euiFont;
     @include euiTextTruncate;
