@@ -5,4 +5,4 @@ agents:
 
 steps:
   - label: ":wave: Greetings!"
-    command: "echo 'My first EUI pipeline!'"
+    command: "echo 'The official EUI pipeline.'"
