@@ -33,11 +33,11 @@ const findInternalInstance = (
 
 describe('EuiSuperDatePicker', () => {
   shouldRenderCustomStyles(<EuiSuperDatePicker onTimeChange={noop} />, {
-    skipStyles: true,
+    skip: { style: true },
   });
   shouldRenderCustomStyles(<EuiSuperDatePicker onTimeChange={noop} />, {
     childProps: ['updateButtonProps'],
-    skipParentTest: true,
+    skip: { parentTest: true },
   });
 
   it('renders', () => {

@@ -423,7 +423,7 @@ exports[`EuiPageHeaderContent props pageTitle is rendered with icon and iconProp
         class="euiTitle emotion-euiTitle-l"
       >
         <span
-          class="testClass1 testClass2 emotion-euiTestCss"
+          class="testClass1 testClass2 emotion-euiPageHeaderContent__titleIcon-euiTestCss"
           data-euiicon-type="logoKibana"
           data-test-subj="test subject string"
         >

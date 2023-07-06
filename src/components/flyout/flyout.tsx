@@ -282,19 +282,18 @@ export const EuiFlyout = forwardRef(
       );
 
       const closeButtonStyles = euiFlyoutCloseButtonStyles(euiTheme);
-
       const closeButtonCssStyles = [
         closeButtonStyles.euiFlyout__closeButton,
         closeButtonStyles[closeButtonPosition],
         closeButtonPosition === 'outside' &&
           closeButtonStyles.outsideSide[side],
+        closeButtonProps?.css,
       ];
 
       closeButton = (
         <EuiI18n token="euiFlyout.closeAriaLabel" default="Close this dialog">
           {(closeAriaLabel: string) => (
             <EuiButtonIcon
-              css={closeButtonCssStyles}
               display={closeButtonPosition === 'outside' ? 'fill' : 'empty'}
               iconType="cross"
               color="text"
@@ -302,6 +301,7 @@ export const EuiFlyout = forwardRef(
               data-test-subj="euiFlyoutCloseButton"
               {...closeButtonProps}
               className={closeButtonClasses}
+              css={closeButtonCssStyles}
               onClick={(e: ReactMouseEvent<HTMLButtonElement>) => {
                 onClose(e.nativeEvent);
                 closeButtonProps?.onClick?.(e);

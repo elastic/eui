@@ -294,7 +294,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
           data-test-subj="test subject string"
         >
           <span
-            class="testClass1 testClass2 emotion-euiTestCss"
+            class="testClass1 testClass2 emotion-euiPageHeaderContent__titleIcon-euiTestCss"
             data-euiicon-type="logoKibana"
             data-test-subj="test subject string"
           >

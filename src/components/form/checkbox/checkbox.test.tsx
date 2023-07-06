@@ -26,13 +26,20 @@ const checkboxRequiredProps = {
 };
 
 describe('EuiCheckbox', () => {
-  shouldRenderCustomStyles(
-    <EuiCheckbox {...checkboxRequiredProps} />,
-    { skipStyles: true } // styles get applied to the nested input, not to the className wrapper
-  );
+  shouldRenderCustomStyles(<EuiCheckbox {...checkboxRequiredProps} />, {
+    skip: { style: true },
+  });
+  // styles get applied to the nested input, not to the className wrapper
+  shouldRenderCustomStyles(<EuiCheckbox {...checkboxRequiredProps} />, {
+    targetSelector: '.euiCheckbox__input',
+    skip: { className: true, css: true },
+  });
   shouldRenderCustomStyles(
     <EuiCheckbox {...checkboxRequiredProps} label="test" />,
-    { childProps: ['labelProps'], skipParentTest: true }
+    {
+      childProps: ['labelProps'],
+      skip: { parentTest: true },
+    }
   );
 
   test('is rendered', () => {
