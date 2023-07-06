@@ -12,7 +12,7 @@ import { htmlIdGenerator } from '../../services/accessibility';
 import { isString } from '../../services/predicate';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiSearchBox, SchemaType } from './search_box';
-import { EuiSearchFilters, SearchFilterConfig } from './search_filters';
+import { EuiSearchBarFilters, SearchFilterConfig } from './search_filters';
 import { Query } from './query';
 import { CommonProps } from '../common';
 import { EuiFieldSearchProps } from '../form/field_search';
@@ -255,7 +255,7 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
 
     const filtersBar = !filters ? undefined : (
       <EuiFlexItem className="euiSearchBar__filtersHolder" grow={false}>
-        <EuiSearchFilters
+        <EuiSearchBarFilters
           filters={filters}
           query={query}
           onChange={this.onFiltersChange}

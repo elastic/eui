@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiSearchFilters render - no filters 1`] = `
+exports[`EuiSearchBarFilters render - no filters 1`] = `
 <div
   class="euiFilterGroup"
 />
 `;
 
-exports[`EuiSearchFilters render - with filters 1`] = `
+exports[`EuiSearchBarFilters render - with filters 1`] = `
 <div
   class="euiFilterGroup"
 >

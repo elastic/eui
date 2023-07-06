@@ -12,5 +12,6 @@ export type {
   QueryType,
 } from './search_bar';
 export { EuiSearchBar, Query, Ast } from './search_bar';
+export { EuiSearchBarFilters } from './search_filters';
 export type { SearchFilterConfig } from './search_filters';
 export type { FieldValueOptionType } from './filters/field_value_selection_filter';
