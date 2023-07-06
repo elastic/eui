@@ -28,6 +28,7 @@ import {
   EuiModificationsContext,
   EuiColorModeContext,
 } from './context';
+import { EuiEmotionThemeProvider } from './emotion';
 import { buildTheme, getColorMode, getComputed, mergeDeep } from './utils';
 import {
   EuiThemeColorMode,
@@ -184,7 +185,9 @@ export const EuiThemeProvider = <T extends {} = {}>({
         <EuiModificationsContext.Provider value={modifications}>
           <EuiThemeContext.Provider value={theme}>
             <EuiNestedThemeContext.Provider value={nestedThemeContext}>
-              {renderedChildren}
+              <EuiEmotionThemeProvider>
+                {renderedChildren}
+              </EuiEmotionThemeProvider>
             </EuiNestedThemeContext.Provider>
           </EuiThemeContext.Provider>
         </EuiModificationsContext.Provider>
