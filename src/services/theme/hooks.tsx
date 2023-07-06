@@ -14,7 +14,7 @@ import {
   EuiColorModeContext,
   defaultComputedTheme,
 } from './context';
-import { getEuiDevProviderWarning } from './provider';
+import { getEuiDevProviderWarning } from './warning';
 import {
   EuiThemeColorModeStandard,
   EuiThemeModifications,

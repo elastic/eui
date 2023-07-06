@@ -36,12 +36,6 @@ import {
   EuiThemeModifications,
 } from './types';
 
-type LEVELS = 'log' | 'warn' | 'error';
-let providerWarning: LEVELS | undefined = undefined;
-export const setEuiDevProviderWarning = (level: LEVELS | undefined) =>
-  (providerWarning = level);
-export const getEuiDevProviderWarning = () => providerWarning;
-
 export interface EuiThemeProviderProps<T> {
   theme?: EuiThemeSystem<T>;
   colorMode?: EuiThemeColorMode;

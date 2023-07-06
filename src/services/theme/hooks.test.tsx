@@ -10,7 +10,7 @@ import React from 'react';
 import { renderHook } from '@testing-library/react-hooks';
 import { render } from '@testing-library/react';
 
-import { setEuiDevProviderWarning } from './provider';
+import { setEuiDevProviderWarning } from './warning';
 import {
   useEuiTheme,
   UseEuiTheme,
