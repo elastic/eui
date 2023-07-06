@@ -1,6 +1,8 @@
 # 🏠/.buildkite/pipelines/pipeline_pull_request_test.yml
 
 steps:
-  - label: ":hammer: EUI pull request test"
-    command: "echo 'This will run our EUI tests!'"
-
+  - agents:
+      provider: "gcp"
+    command: .buildkite/scripts/pipeline_pull_request_test.sh
+    artifact_paths:
+      - "cypress/screenshots/**/*.png"
