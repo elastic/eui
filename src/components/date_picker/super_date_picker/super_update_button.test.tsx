@@ -29,7 +29,7 @@ describe('EuiSuperUpdateButton', () => {
     />,
     {
       childProps: ['toolTipProps'],
-      skipParentTest: true,
+      skip: { parentTest: true },
       renderCallback: async ({ getByTestSubject }) => {
         fireEvent.mouseOver(getByTestSubject('trigger'));
         await waitForEuiToolTipVisible();

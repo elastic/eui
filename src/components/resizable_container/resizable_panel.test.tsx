@@ -27,7 +27,11 @@ describe('EuiResizablePanel', () => {
   });
   shouldRenderCustomStyles(
     <EuiResizablePanel wrapperPadding="s">Test</EuiResizablePanel>,
-    { wrapper, childProps: ['wrapperProps'], skipParentTest: true }
+    {
+      wrapper,
+      childProps: ['wrapperProps'],
+      skip: { parentTest: true },
+    }
   );
 
   it('renders', () => {

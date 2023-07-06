@@ -21,16 +21,14 @@ const props = {
 };
 
 describe('EuiRange', () => {
-  shouldRenderCustomStyles(
-    <EuiRange
-      name="name"
-      id="id"
-      onChange={() => {}}
-      {...props}
-      {...requiredProps}
-    />,
-    { skipStyles: true } // style is in ...rest and is spread to a different location than className/css
-  );
+  shouldRenderCustomStyles(<EuiRange {...props} {...requiredProps} />, {
+    skip: { style: true },
+  });
+  // style is in ...rest and is spread to a different location than className/css
+  shouldRenderCustomStyles(<EuiRange {...props} {...requiredProps} />, {
+    targetSelector: '.euiRangeSlider',
+    skip: { className: true, css: true },
+  });
 
   test('is rendered', () => {
     const component = render(

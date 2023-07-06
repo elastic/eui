@@ -12,6 +12,7 @@ import { get, set } from 'lodash';
 
 import { render } from '../rtl';
 import { cloneElementWithCss } from '../../services/theme/clone_element';
+import { keysOf } from '../../components';
 
 export const customStyles = {
   className: 'hello',
@@ -29,7 +30,6 @@ export const customStyles = {
  *
  * shouldRenderCustomStyles(<EuiMark {...requiredProps} />Marked</EuiMark>);
  * shouldRenderCustomStyles(<EuiPageSection />, { childProps: ['contentProps'] });
- * shouldRenderCustomStyles(<EuiPopover />, { childProps: ['panelProps'], skipStyles: true });
  */
 type ShouldRenderCustomStylesOptions = {
   /**
@@ -39,18 +39,26 @@ type ShouldRenderCustomStylesOptions = {
   childProps?: string[];
   /**
    * If a more specific selector needs to be passed for any reason,
-   * e.g. if there are multiple copies of the element on the page
+   * e.g. if there are multiple copies of the element on the page, or
+   * if the node to examine isn't the same one that `className` is applied to
    */
   targetSelector?: string;
   /**
-   * Used for components that do not allow custom inline styles, or
-   * components where `style` isn't on the same DOM node as `className`
+   * Allows configuring specific assertions skips
    */
-  skipStyles?: boolean;
-  /**
-   * Useful for running separate parent and `childProps` tests/setups
-   */
-  skipParentTest?: boolean;
+  skip?: {
+    /**
+     * Useful for, e.g. components that do not allow custom inline styles
+     * or components where `style` isn't on the same DOM node as `className`
+     */
+    style?: boolean;
+    className?: boolean;
+    css?: boolean;
+    /**
+     * Useful for running separate parent and `childProps` tests/setups
+     */
+    parentTest?: boolean;
+  };
   /**
    * Passed directly to RTL's `options.wrapper
    * Used for components that need (e.g.) a context wrapper
@@ -67,17 +75,33 @@ export const shouldRenderCustomStyles = (
   component: ReactElement,
   options: ShouldRenderCustomStylesOptions = {}
 ) => {
-  const testCases = options.skipStyles
-    ? 'classNames and css'
-    : 'classNames, css, and styles';
-  const testProps = options.skipStyles
-    ? { className: customStyles.className, css: customStyles.css }
-    : customStyles;
+  // Account for any skipped props
+  const testProps = keysOf(customStyles).reduce((map, key) => {
+    return options.skip?.[key] ? map : { ...map, [key]: customStyles[key] };
+  }, {} as Partial<typeof customStyles>);
+
+  // Generate a grammatically excellent list of props being tested
+  let propsToTest = '';
+  const propsToTestArr = Object.keys(testProps);
+  switch (propsToTestArr.length) {
+    case 1:
+      propsToTest = propsToTestArr[0];
+      break;
+    case 2:
+      propsToTest = `${propsToTestArr[0]} and ${propsToTestArr[1]}`;
+      break;
+    // You'll pry the oxford comma from my cold dead hands
+    default:
+      propsToTest = `${propsToTestArr
+        .slice(0, -1)
+        .join(', ')}, and ${propsToTestArr.slice(-1)}`;
+      break;
+  }
 
   // Some tests run separate child props tests with different settings & don't need
   // to run the base parent test multiple times. If so, allow skipping this test
-  if (!(options.skipParentTest === true && options.childProps)) {
-    it(`should render custom ${testCases}`, async () => {
+  if (!(options.skip?.parentTest && options.childProps)) {
+    it(`should render custom ${propsToTest}`, async () => {
       const euiCss = await getEuiEmotionCss();
       const { baseElement } = await renderWith(testProps);
       assertOutputStyles(baseElement, euiCss);
@@ -86,7 +110,7 @@ export const shouldRenderCustomStyles = (
 
   if (options.childProps) {
     options.childProps.forEach((childProps) => {
-      it(`should render custom ${testCases} on ${childProps}`, async () => {
+      it(`should render custom ${propsToTest} on ${childProps}`, async () => {
         const euiCss = await getEuiEmotionCss(childProps);
 
         const mergedChildProps = mergeChildProps(
@@ -108,7 +132,9 @@ export const shouldRenderCustomStyles = (
   const assertOutputStyles = (rendered: HTMLElement, euiCss: string = '') => {
     // className
     const renderedClassName = rendered.querySelector('.hello');
-    expect(renderedClassName).not.toBeNull();
+    if (!options?.skip?.className) {
+      expect(renderedClassName).not.toBeNull();
+    }
 
     // Set remaining assertions to use `options.targetSelector` if it exists,
     // or fall back to the className selector if not
@@ -117,13 +143,14 @@ export const shouldRenderCustomStyles = (
       : renderedClassName;
 
     // css
-    expect(componentNode!.getAttribute('class')).toContain(
-      `${euiCss}-css` // should have generated an Emotion class ending with -css while still maintaining any EUI Emotion CSS already set on the component
-    );
+    if (!options?.skip?.css) {
+      expect(componentNode!.getAttribute('class')).toContain(
+        `${euiCss}-css` // should have generated an Emotion class ending with -css while still maintaining any EUI Emotion CSS already set on the component
+      );
+    }
 
     // style
-    // skippable as some components explicitly do not accept custom inline styles
-    if (!options.skipStyles) {
+    if (!options.skip?.style) {
       expect(componentNode!.getAttribute('style')).toContain(
         "content: 'world';"
       );
@@ -133,6 +160,8 @@ export const shouldRenderCustomStyles = (
   // In order to check that consumer css`` is being merged correctly with EUI css``
   // instead of overriding it, we need to grab the baseline component's classes
   const getEuiEmotionCss = async (childProps?: string) => {
+    if (options.skip?.css) return;
+
     const testProps = childProps
       ? mergeChildProps(component.props, childProps, {
           className: customStyles.className,

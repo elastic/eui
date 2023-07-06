@@ -21,11 +21,16 @@ const props = {
 
 describe('EuiSwitch', () => {
   shouldRenderCustomStyles(<EuiSwitch {...props} />, {
-    skipStyles: true, // styles are applied to the nested button instead of the className wrapper
+    skip: { style: true },
+  });
+  // styles are applied to the nested button instead of the className wrapper
+  shouldRenderCustomStyles(<EuiSwitch {...props} />, {
+    targetSelector: '.euiSwitch__button',
+    skip: { className: true, css: true },
   });
   shouldRenderCustomStyles(<EuiSwitch {...props} />, {
     childProps: ['labelProps'],
-    skipParentTest: true,
+    skip: { parentTest: true },
   });
 
   test('is rendered', () => {

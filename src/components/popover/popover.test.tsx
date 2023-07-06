@@ -34,7 +34,13 @@ describe('EuiPopover', () => {
   );
   shouldRenderCustomStyles(
     <EuiPopover button={<button />} closePopover={() => {}} isOpen />,
-    { childProps: ['panelProps'], skipStyles: true, skipParentTest: true }
+    {
+      childProps: ['panelProps'],
+      skip: {
+        parentTest: true,
+        style: true, // EuiPopoverPanel does not allow custom `style`s
+      },
+    }
   );
 
   test('is rendered', () => {
