@@ -94,7 +94,7 @@ This provides a walkthrough of the patching & backport release process; examples
       * Remember to continue cherry picking with `git cherry-pick --continue` until all commits have been applied
 * Start the dev server and check that the intended changes have been properly applied, you don't want to repeat this process to patch the patch - `yarn start`
 * Once everything looks correct, it's time to release; the `yarn release` script only works when releasing from `main`, so we'll run [a subset of those steps](https://github.com/elastic/eui/blob/06fc9a6880766168aec1a622873e7f6fe1b3d42b/scripts/release.js#L34-L57) manually
-  * Run the unit tests again - `npm test-ci`
+  * Run the unit tests again - `npm run test-ci`
   * Create the release builds - `npm run build`
   * Update the I18n tokens - `npm run update-token-changelog -- patch`
   * Update the changelog - `npm run update-changelog-manual --release=patch`
