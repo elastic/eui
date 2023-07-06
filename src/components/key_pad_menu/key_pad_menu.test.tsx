@@ -17,7 +17,7 @@ describe('EuiKeyPadMenu', () => {
   shouldRenderCustomStyles(<EuiKeyPadMenu />);
   shouldRenderCustomStyles(<EuiKeyPadMenu checkable={{ legend: 'test' }} />, {
     childProps: ['checkable.legendProps'],
-    skipParentTest: true,
+    skip: { parentTest: true },
   });
 
   test('is rendered', () => {

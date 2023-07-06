@@ -28,7 +28,7 @@ describe('EuiKeyPadMenuItem', () => {
       Test
     </EuiKeyPadMenuItem>,
     {
-      skipParentTest: true,
+      skip: { parentTest: true },
       childProps: ['betaBadgeTooltipProps'],
       renderCallback: async ({ getByTestSubject }) => {
         fireEvent.mouseOver(getByTestSubject('trigger'));

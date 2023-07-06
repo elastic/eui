@@ -48,7 +48,13 @@ describe('EuiIcon', () => {
   test('is rendered', testIcon({ type: 'search', ...requiredProps }));
 
   shouldRenderCustomStyles(<EuiIcon type="customImg" />);
-  shouldRenderCustomStyles(<EuiIcon type="videoPlayer" />);
+  shouldRenderCustomStyles(<EuiIcon type="videoPlayer" />, {
+    wrapper: ({ children }) => {
+      // Need to preload the icon so we don't run into Emotion CSS `isLoading`/`isLoaded` race conditions
+      appendIconComponentCache({ videoPlayer: EuiIconVideoPlayer });
+      return children;
+    },
+  });
 
   describe('props', () => {
     describe('other props', () => {

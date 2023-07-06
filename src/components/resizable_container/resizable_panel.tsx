@@ -156,6 +156,7 @@ const getPosition = (ref: HTMLDivElement) => {
 export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   children,
   className,
+  css,
   id,
   isHorizontal,
   size,
@@ -239,6 +240,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     styles.euiResizablePanel,
     isCollapsed && styles.collapsed,
     styles.paddingSizes[wrapperPadding],
+    wrapperProps?.css,
   ];
   const contentStyles = euiResizablePanelContentStyles(euiTheme);
   const contentCssStyles = [
@@ -369,8 +371,8 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
 
   return (
     <div
-      css={cssStyles}
       {...wrapperProps}
+      css={cssStyles}
       id={panelId}
       ref={divRef}
       style={inlineStyles}

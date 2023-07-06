@@ -10,10 +10,10 @@ import React from 'react';
 import { render } from '../../test/rtl';
 import { requiredProps } from '../../test';
 
-import { EuiSearchFilters, SearchFilterConfig } from './search_filters';
+import { EuiSearchBarFilters, SearchFilterConfig } from './search_filters';
 import { Query } from './query';
 
-describe('EuiSearchFilters', () => {
+describe('EuiSearchBarFilters', () => {
   test('render - no filters', () => {
     const props = {
       ...requiredProps,
@@ -22,7 +22,7 @@ describe('EuiSearchFilters', () => {
       filters: [],
     };
 
-    const { container } = render(<EuiSearchFilters {...props} />);
+    const { container } = render(<EuiSearchBarFilters {...props} />);
 
     expect(container.firstChild).toMatchSnapshot();
   });
@@ -49,7 +49,7 @@ describe('EuiSearchFilters', () => {
       filters,
     };
 
-    const { container } = render(<EuiSearchFilters {...props} />);
+    const { container } = render(<EuiSearchBarFilters {...props} />);
 
     expect(container.firstChild).toMatchSnapshot();
   });

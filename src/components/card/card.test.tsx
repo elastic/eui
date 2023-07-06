@@ -31,7 +31,7 @@ describe('EuiCard', () => {
 
   shouldRenderCustomStyles(
     <EuiCard title="Card title" betaBadgeProps={{ label: 'beta' }} />,
-    { childProps: ['betaBadgeProps'] }
+    { childProps: ['betaBadgeProps', 'betaBadgeProps.anchorProps'] }
   );
 
   describe('props', () => {

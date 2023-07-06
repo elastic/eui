@@ -334,6 +334,82 @@ export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({...}
 }
 ```
 
+### Merging child element css with spread operators
+
+Please keep in mind that while Emotion will automatically merge `css` props for **top** level components, it will **not** do so for any child elements. Take for example the following component:
+
+```tsx
+// This example is incorrect!
+export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({ iconProps, ...rest }) => {
+  const euiTheme = useEuiTheme();
+
+  const styles = euiComponentNameStyles(euiTheme);
+  const cssStyles = [styles.euiComponentName];
+  const cssIconStyles = [styles.euiComponentName__icon];
+
+  return (
+    // This will merge Emotion CSS as expected
+    <div css={cssStyles} {...rest}>
+      <EuiIcon
+        // This will not!
+        css={cssIconStyles}
+        {...iconProps}
+      />
+    </div>
+  )
+}
+```
+
+If a consumer passes `<EuiComponentName css={{ color: 'red' }}>`, Emotion will automatically correctly combine EUI's component styles and the passed custom styles.
+
+**However**, if a consumer passes `<EuiComponentName iconProps={{ css: { color: red } }}>`, Emotion will **not** handle merging in the child `css` props and will simply override/ignore whichever `css` prop came first in the prop order.
+
+To ensure consumers do not either accidentally wipe our EUI's default styling, or are unable to pass in child `css` props, always check that you're manually merging in any `childProps.css` like so:
+
+```tsx
+// This example will correctly merge child CSS
+export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({ iconProps, ...rest }) => {
+  const euiTheme = useEuiTheme();
+
+  const styles = euiComponentNameStyles(euiTheme);
+  const cssStyles = [styles.euiComponentName];
+
+   // Include `childProps?.css` in the css array
+  const cssIconStyles = [styles.euiComponentName__icon, iconProps?.css];
+
+  return (
+    <div css={cssStyles} {...rest}>
+      <EuiIcon
+        // Ensure that your merged `css` array comes after the props spread
+        {...iconProps}
+        css={cssIconStyles}
+      />
+    </div>
+  )
+}
+```
+
+You can confirm that this behavior correctly merges Emotion CSS by using the `shouldRenderCustomStyles` test utility. Example usage:
+
+```tsx
+import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test/';
+
+describe('EuiComponentName', () => {
+  shouldRenderCustomStyles(<EuiComponentName />, {
+    childProps: ['iconProps']
+  });
+
+  it('renders', () => {
+    // ...
+  })
+
+  it('renders `iconProps`', () => {
+    render(<EuiComponentName iconProps={requiredProps} />)
+  });
+});
+```
+
 ## Nested selectors
 
 For the most part, nested selectors should not be necessary. If a child element requires styling based on the parent's variant, pass the same variant type to the child element.

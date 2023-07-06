@@ -23,10 +23,14 @@ const props = {
 };
 
 describe('EuiDualRange', () => {
-  shouldRenderCustomStyles(
-    <EuiDualRange name="name" id="id" {...props} {...requiredProps} />,
-    { skipStyles: true } // style is in ...rest and is spread to a different location than className/css
-  );
+  shouldRenderCustomStyles(<EuiDualRange {...props} {...requiredProps} />, {
+    skip: { style: true },
+  });
+  // style is in ...rest and is spread to a different location than className/css
+  shouldRenderCustomStyles(<EuiDualRange {...props} {...requiredProps} />, {
+    targetSelector: '.euiRangeSlider',
+    skip: { className: true, css: true },
+  });
 
   test('is rendered', () => {
     const component = render(

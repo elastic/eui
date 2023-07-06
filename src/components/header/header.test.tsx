@@ -19,7 +19,7 @@ describe('EuiHeader', () => {
     <EuiHeader sections={[{ breadcrumbs: [{ text: 'test' }] }]} />,
     {
       childProps: ['sections[0].breadcrumbProps'],
-      skipParentTest: true,
+      skip: { parentTest: true },
     }
   );
 
