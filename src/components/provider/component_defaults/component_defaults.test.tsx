@@ -47,4 +47,5 @@ describe('EuiComponentDefaultsProvider', () => {
   // NOTE: Components are in charge of their own testing to ensure that the props
   // coming from `useEuiComponentDefaults()` were properly applied. This file
   // is simply a very light wrapper that carries prop data.
+  // @see `src/components/portal/portal.spec.tsx` as an example
 });
