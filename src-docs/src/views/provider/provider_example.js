@@ -139,6 +139,7 @@ export const ProviderExample = {
     },
     {
       title: 'Component defaults',
+      isBeta: true,
       text: (
         <EuiText>
           <EuiCallOut title="Beta status" iconType="beta">
