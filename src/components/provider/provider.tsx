@@ -22,6 +22,10 @@ import {
 } from '../../services';
 import { EuiThemeAmsterdam } from '../../themes';
 import { EuiCacheProvider } from './cache';
+import {
+  EuiComponentDefaults,
+  EuiComponentDefaultsProvider,
+} from './component_defaults';
 
 const isEmotionCacheObject = (
   obj: EmotionCache | Object
@@ -61,6 +65,16 @@ export interface EuiProviderProps<T>
         global?: EmotionCache;
         utility?: EmotionCache;
       };
+  /**
+   * Allows configuring specified component defaults across all usages, overriding
+   * baseline EUI component defaults.
+   *
+   * Not all components will be supported, and configurable component defaults
+   * will be considered on a case-by-case basis.
+   *
+   * Individual component prop usages will always override these defaults.
+   */
+  componentDefaults?: EuiComponentDefaults;
 }
 
 export const EuiProvider = <T extends {} = {}>({
@@ -70,6 +84,7 @@ export const EuiProvider = <T extends {} = {}>({
   utilityClasses: Utilities = EuiUtilityClasses,
   colorMode,
   modify,
+  componentDefaults,
   children,
 }: PropsWithChildren<EuiProviderProps<T>>) => {
   let defaultCache;
@@ -113,7 +128,11 @@ export const EuiProvider = <T extends {} = {}>({
             />
           </>
         )}
-        <CurrentEuiBreakpointProvider>{children}</CurrentEuiBreakpointProvider>
+        <EuiComponentDefaultsProvider componentDefaults={componentDefaults}>
+          <CurrentEuiBreakpointProvider>
+            {children}
+          </CurrentEuiBreakpointProvider>
+        </EuiComponentDefaultsProvider>
       </EuiThemeProvider>
     </EuiCacheProvider>
   );
