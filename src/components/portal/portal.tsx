@@ -11,11 +11,12 @@
  * into portals.
  */
 
-import React, { Component, ReactNode } from 'react';
+import React, { Component, FunctionComponent, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 
 import { EuiNestedThemeContext } from '../../services';
-import { usePortalInsertion } from './portal.provider';
+import { useEuiComponentDefaults } from '../provider/component_defaults';
+
 import { insertPositions } from './portal.types';
 
 export interface EuiPortalProps {
@@ -34,16 +35,19 @@ export interface EuiPortalProps {
   portalRef?: (ref: HTMLDivElement | null) => void;
 }
 
-export function EuiPortal(props: EuiPortalProps) {
-  const ctxInsertion = usePortalInsertion();
+export const EuiPortal: FunctionComponent<EuiPortalProps> = ({
+  children,
+  ...props
+}) => {
+  const { EuiPortal: defaults } = useEuiComponentDefaults();
   return (
-    <EuiPortalClassComponent {...props} insert={props.insert || ctxInsertion}>
-      {props.children}
-    </EuiPortalClassComponent>
+    <EuiPortalClass {...defaults} {...props}>
+      {children}
+    </EuiPortalClass>
   );
-}
+};
 
-export class EuiPortalClassComponent extends Component<EuiPortalProps> {
+export class EuiPortalClass extends Component<EuiPortalProps> {
   static contextType = EuiNestedThemeContext;
 
   portalNode: HTMLDivElement | null = null;
