@@ -143,6 +143,99 @@ exports[`EuiDualRange props levels renders levels when levels prop is set 1`] = 
 </div>
 `;
 
+exports[`EuiDualRange props maxInputProps allows overriding default props 1`] = `
+<div
+  class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-regular-euiDualRange"
+>
+  <div
+    class="euiFormControlLayout"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <input
+        class="euiFieldNumber euiRangeInput euiRangeInput--min emotion-euiRangeInput"
+        max="8"
+        min="0"
+        name="undefined-minValue"
+        step="1"
+        style="inline-size: calc(12px + 1ch + 2em + 0px);"
+        type="number"
+        value="1"
+      />
+    </div>
+  </div>
+  <div
+    class="euiRange__horizontalSpacer emotion-euiRange__horizontalSpacer"
+  />
+  <div
+    aria-hidden="true"
+    class="euiRangeTrack emotion-euiRangeTrack"
+  >
+    <input
+      aria-hidden="true"
+      class="euiRangeSlider euiDualRange__slider emotion-euiRangeSlider-hasRange-euiDualRange__slider"
+      id="generated-id"
+      max="100"
+      min="0"
+      step="1"
+      tabindex="-1"
+      type="range"
+      value=""
+    />
+    <div
+      aria-disabled="false"
+      aria-valuemax="8"
+      aria-valuemin="0"
+      aria-valuenow="1"
+      class="euiRangeThumb emotion-euiRangeThumb"
+      role="slider"
+      style="inset-inline-start: -Infinity%;"
+      tabindex="-1"
+    />
+    <div
+      aria-disabled="false"
+      aria-valuemax="100"
+      aria-valuemin="1"
+      aria-valuenow="8"
+      class="euiRangeThumb emotion-euiRangeThumb"
+      role="slider"
+      style="inset-inline-start: -Infinity%;"
+      tabindex="-1"
+    />
+    <div
+      class="euiRangeHighlight emotion-euiRangeHighlight"
+    >
+      <div
+        class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        style="margin-inline-start: 1%; inline-size: 7.000000000000001%;"
+      />
+    </div>
+  </div>
+  <div
+    class="euiRange__horizontalSpacer emotion-euiRange__horizontalSpacer"
+  />
+  <div
+    class="euiFormControlLayout"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <input
+        class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiRangeInput"
+        max="100"
+        min="1"
+        name="undefined-maxValue"
+        step="1"
+        style="inline-size: calc(12px + 3ch + 2em + 22px);"
+        type="number"
+        value="123"
+      />
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiDualRange props maxInputProps applies passed props to max input 1`] = `
 <div
   class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-regular-euiDualRange"
@@ -223,6 +316,99 @@ exports[`EuiDualRange props maxInputProps applies passed props to max input 1`] 
     >
       <input
         aria-label="Max value"
+        class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiRangeInput"
+        max="100"
+        min="1"
+        name="undefined-maxValue"
+        step="1"
+        style="inline-size: calc(12px + 1ch + 2em + 22px);"
+        type="number"
+        value="8"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiDualRange props minInputProps allows overriding default props 1`] = `
+<div
+  class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-regular-euiDualRange"
+>
+  <div
+    class="euiFormControlLayout"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <input
+        class="euiFieldNumber euiRangeInput euiRangeInput--min emotion-euiRangeInput"
+        max="8"
+        min="0"
+        name="undefined-minValue"
+        step="1"
+        style="inline-size: calc(12px + 2ch + 2em + 22px);"
+        type="number"
+        value="123"
+      />
+    </div>
+  </div>
+  <div
+    class="euiRange__horizontalSpacer emotion-euiRange__horizontalSpacer"
+  />
+  <div
+    aria-hidden="true"
+    class="euiRangeTrack emotion-euiRangeTrack"
+  >
+    <input
+      aria-hidden="true"
+      class="euiRangeSlider euiDualRange__slider emotion-euiRangeSlider-hasRange-euiDualRange__slider"
+      id="generated-id"
+      max="100"
+      min="0"
+      step="1"
+      tabindex="-1"
+      type="range"
+      value=""
+    />
+    <div
+      aria-disabled="false"
+      aria-valuemax="8"
+      aria-valuemin="0"
+      aria-valuenow="1"
+      class="euiRangeThumb emotion-euiRangeThumb"
+      role="slider"
+      style="inset-inline-start: -Infinity%;"
+      tabindex="-1"
+    />
+    <div
+      aria-disabled="false"
+      aria-valuemax="100"
+      aria-valuemin="1"
+      aria-valuenow="8"
+      class="euiRangeThumb emotion-euiRangeThumb"
+      role="slider"
+      style="inset-inline-start: -Infinity%;"
+      tabindex="-1"
+    />
+    <div
+      class="euiRangeHighlight emotion-euiRangeHighlight"
+    >
+      <div
+        class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        style="margin-inline-start: 1%; inline-size: 7.000000000000001%;"
+      />
+    </div>
+  </div>
+  <div
+    class="euiRange__horizontalSpacer emotion-euiRange__horizontalSpacer"
+  />
+  <div
+    class="euiFormControlLayout"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <input
         class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiRangeInput"
         max="100"
         min="1"

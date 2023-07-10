@@ -276,6 +276,14 @@ describe('EuiDualRange', () => {
 
         expect(container.firstChild).toMatchSnapshot();
       });
+
+      it('allows overriding default props', () => {
+        const { container } = render(
+          <EuiDualRange {...props} showInput minInputProps={{ value: '123' }} />
+        );
+
+        expect(container.firstChild).toMatchSnapshot();
+      });
     });
 
     describe('maxInputProps', () => {
@@ -286,6 +294,14 @@ describe('EuiDualRange', () => {
             showInput
             maxInputProps={{ 'aria-label': 'Max value' }}
           />
+        );
+
+        expect(container.firstChild).toMatchSnapshot();
+      });
+
+      it('allows overriding default props', () => {
+        const { container } = render(
+          <EuiDualRange {...props} showInput maxInputProps={{ value: '123' }} />
         );
 
         expect(container.firstChild).toMatchSnapshot();
