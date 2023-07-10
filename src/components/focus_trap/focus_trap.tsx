@@ -56,6 +56,7 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
     returnFocus: true,
     noIsolation: true,
     scrollLock: false,
+    crossFrame: false,
     gapMode: 'padding', // EUI defaults to padding because Kibana's body/layout CSS ignores `margin`
   };
 

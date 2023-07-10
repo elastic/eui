@@ -18,7 +18,7 @@ export const FocusTrapExample = {
         },
       ],
       text: (
-        <React.Fragment>
+        <>
           <p>
             Use <strong>EuiFocusTrap</strong> to prevent keyboard-initiated
             focus from leaving a defined area. Temporary flows and UX escapes
@@ -37,15 +37,21 @@ export const FocusTrapExample = {
             <strong>EuiFocusTrap</strong> will maintain the tab order expected
             by users.
           </p>
-          <p>
-            Use <EuiCode>clickOutsideDisables</EuiCode> to disable the focus
-            trap when the user clicks outside the trap.
-          </p>
-          <p>
-            Use <EuiCode>noIsolation=false</EuiCode> when pointer events on
-            outside elements should be disallowed.
-          </p>
-        </React.Fragment>
+          <ul>
+            <li>
+              Use <EuiCode>clickOutsideDisables</EuiCode> to disable the focus
+              trap when the user clicks outside the trap.
+            </li>
+            <li>
+              Use <EuiCode>noIsolation=false</EuiCode> when pointer events on
+              outside elements should be disallowed.
+            </li>
+            <li>
+              Use <EuiCode>crossFrame=true</EuiCode> when focus should not be
+              allowed on other iframes on the page.
+            </li>
+          </ul>
+        </>
       ),
       props: { EuiFocusTrap },
       demo: <FocusTrap />,
