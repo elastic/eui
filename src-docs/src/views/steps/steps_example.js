@@ -260,6 +260,10 @@ export const StepsExample = {
             filled styling is reserved for indicating{' '}
             <EuiCode>{'"current"'}</EuiCode> status.
           </p>
+          <p>
+            Use the <EuiCode>size</EuiCode> property to generate smaller step
+            circles.
+          </p>
         </>
       ),
       demo: <StepsHorizontal />,
