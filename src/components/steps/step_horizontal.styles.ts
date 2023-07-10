@@ -17,6 +17,7 @@ import {
 } from '../../global_styling/';
 import { euiTitle } from '../title/title.styles';
 import { euiStepVariables } from './step.styles';
+import { EuiStepsHorizontalSizes } from './steps_horizontal';
 
 export const euiStepHorizontalStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -27,6 +28,22 @@ export const euiStepHorizontalStyles = (euiThemeContext: UseEuiTheme) => {
    * 2. Make the content of each step align to the top, even if the steps are of varying heights,
    *    e.g. due to some of their titles wrapping to multiple lines
    */
+
+  const _generateStepSizeAndInset = (size: EuiStepsHorizontalSizes) => {
+    const stepNumberSize =
+      size === 's' ? euiStep.numberXSSize : euiStep.numberSize;
+
+    return css`
+      &::before,
+      &::after {
+        inline-size: calc(50% - (${stepNumberSize} / 2));
+        inset-block-start: ${mathWithUnits(
+          [euiTheme.size.l, stepNumberSize],
+          (x, y) => x + y / 2
+        )};
+      } /* 1 */
+    `;
+  };
 
   return {
     euiStepHorizontal: css`
@@ -49,11 +66,6 @@ export const euiStepHorizontalStyles = (euiThemeContext: UseEuiTheme) => {
         position: absolute;
         background-color: ${euiTheme.border.color};
         block-size: ${euiTheme.border.width.thick};
-        inline-size: calc(50% - (${euiStep.numberSize} / 2));
-        inset-block-start: ${mathWithUnits(
-          [euiTheme.size.l, euiStep.numberSize],
-          (x, y) => x + y / 2
-        )};
         z-index: ${euiTheme.levels.content}; /* 1 */
       }
 
@@ -65,6 +77,9 @@ export const euiStepHorizontalStyles = (euiThemeContext: UseEuiTheme) => {
         inset-inline-end: 0;
       }
     `,
+    // Adjust the size of the step number and connecting lines based on size
+    m: _generateStepSizeAndInset('m'),
+    s: _generateStepSizeAndInset('s'),
     // Note: these selectors must be nested because focus/hover state
     // is on the parent container, but affects specific children
     enabled: css`

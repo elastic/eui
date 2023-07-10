@@ -15,6 +15,7 @@ import React, {
 } from 'react';
 import { CommonProps } from '../common';
 import { EuiStepNumber, EuiStepStatus } from './step_number';
+import { EuiStepsHorizontalSizes } from './steps_horizontal';
 import {
   useI18nCompleteStep,
   useI18nCurrentStep,
@@ -51,6 +52,7 @@ export interface EuiStepHorizontalProps
    * The `disabled` prop will override this.
    */
   status?: EuiStepStatus;
+  size?: EuiStepsHorizontalSizes;
 }
 
 export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
@@ -60,6 +62,7 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
   onClick,
   disabled,
   status = 'incomplete',
+  size = 'm',
   ...rest
 }) => {
   if (disabled) status = 'disabled';
@@ -70,6 +73,7 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
   const styles = euiStepHorizontalStyles(euiTheme);
   const cssStyles = [
     styles.euiStepHorizontal,
+    styles[size],
     status === 'disabled' ? styles.disabled : styles.enabled,
   ];
 
@@ -114,6 +118,7 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
         className="euiStepHorizontal__number"
         status={status}
         number={step}
+        titleSize={size === 's' ? 'xs' : 'm'} // The titleSize map is not 1 to 1; small == xs on the titleSize map
         css={cssNumberStyles}
       />
 
