@@ -99,9 +99,11 @@ describe('EuiDualRange', () => {
     });
 
     describe('showLabels', () => {
-      const { container } = render(<EuiDualRange {...props} showLabels />);
+      it('renders labels when showLabels=true', () => {
+        const { container } = render(<EuiDualRange {...props} showLabels />);
 
-      expect(container.firstChild).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
+      });
     });
 
     describe('showTicks', () => {

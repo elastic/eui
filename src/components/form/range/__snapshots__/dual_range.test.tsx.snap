@@ -1,66 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[` 1`] = `
-<div
-  class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-regular-euiDualRange"
->
-  <label
-    class="euiRangeLabel emotion-euiRangeLabel-min"
-  >
-    0
-  </label>
-  <div
-    aria-hidden="false"
-    class="euiRangeTrack emotion-euiRangeTrack"
-  >
-    <input
-      aria-hidden="true"
-      class="euiRangeSlider euiDualRange__slider emotion-euiRangeSlider-hasRange-euiDualRange__slider"
-      id="generated-id"
-      max="100"
-      min="0"
-      step="1"
-      tabindex="-1"
-      type="range"
-      value=""
-    />
-    <div
-      aria-disabled="false"
-      aria-valuemax="8"
-      aria-valuemin="0"
-      aria-valuenow="1"
-      class="euiRangeThumb emotion-euiRangeThumb"
-      role="slider"
-      style="inset-inline-start: -Infinity%;"
-      tabindex="0"
-    />
-    <div
-      aria-disabled="false"
-      aria-valuemax="100"
-      aria-valuemin="1"
-      aria-valuenow="8"
-      class="euiRangeThumb emotion-euiRangeThumb"
-      role="slider"
-      style="inset-inline-start: -Infinity%;"
-      tabindex="0"
-    />
-    <div
-      class="euiRangeHighlight emotion-euiRangeHighlight"
-    >
-      <div
-        class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="margin-inline-start: 1%; inline-size: 7.000000000000001%;"
-      />
-    </div>
-  </div>
-  <label
-    class="euiRangeLabel emotion-euiRangeLabel-max"
-  >
-    100
-  </label>
-</div>
-`;
-
 exports[`EuiDualRange props isDraggable renders draggable track when isDraggable=true 1`] = `
 <div
   class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-regular-euiDualRange"
@@ -389,6 +328,67 @@ exports[`EuiDualRange props minInputProps applies passed props to min input 1`] 
       />
     </div>
   </div>
+</div>
+`;
+
+exports[`EuiDualRange props showLabels renders labels when showLabels=true 1`] = `
+<div
+  class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-regular-euiDualRange"
+>
+  <label
+    class="euiRangeLabel emotion-euiRangeLabel-min"
+  >
+    0
+  </label>
+  <div
+    aria-hidden="false"
+    class="euiRangeTrack emotion-euiRangeTrack"
+  >
+    <input
+      aria-hidden="true"
+      class="euiRangeSlider euiDualRange__slider emotion-euiRangeSlider-hasRange-euiDualRange__slider"
+      id="generated-id"
+      max="100"
+      min="0"
+      step="1"
+      tabindex="-1"
+      type="range"
+      value=""
+    />
+    <div
+      aria-disabled="false"
+      aria-valuemax="8"
+      aria-valuemin="0"
+      aria-valuenow="1"
+      class="euiRangeThumb emotion-euiRangeThumb"
+      role="slider"
+      style="inset-inline-start: -Infinity%;"
+      tabindex="0"
+    />
+    <div
+      aria-disabled="false"
+      aria-valuemax="100"
+      aria-valuemin="1"
+      aria-valuenow="8"
+      class="euiRangeThumb emotion-euiRangeThumb"
+      role="slider"
+      style="inset-inline-start: -Infinity%;"
+      tabindex="0"
+    />
+    <div
+      class="euiRangeHighlight emotion-euiRangeHighlight"
+    >
+      <div
+        class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        style="margin-inline-start: 1%; inline-size: 7.000000000000001%;"
+      />
+    </div>
+  </div>
+  <label
+    class="euiRangeLabel emotion-euiRangeLabel-max"
+  >
+    100
+  </label>
 </div>
 `;
 
