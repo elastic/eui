@@ -202,7 +202,18 @@ export interface EuiDualRangeProps
   /**
    * Intended to be used with aria attributes. Some attributes may be overwritten.
    */
-  minInputProps?: Partial<Omit<EuiRangeInputProps, 'max' | 'min' | 'step' | 'compressed' | 'autoSize' | 'fullWidth' | 'controlOnly'>>;
+  minInputProps?: Partial<
+    Omit<
+      EuiRangeInputProps,
+      | 'max'
+      | 'min'
+      | 'step'
+      | 'compressed'
+      | 'autoSize'
+      | 'fullWidth'
+      | 'controlOnly'
+    >
+  >;
   /**
    *  Intended to be used with aria attributes. Some attributes may be overwritten.
    */
