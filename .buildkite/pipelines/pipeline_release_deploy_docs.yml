@@ -1,4 +1,4 @@
-## 🏠/.buildkite/pipelines/pipeline_pull_request_deploy_docs.yml
+## 🏠/.buildkite/pipelines/pipeline_release_deploy_docs.yml
 
 steps:
   - agents:

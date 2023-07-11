@@ -3,6 +3,6 @@
 steps:
   - agents:
       provider: "gcp"
-    command: .buildkite/scripts/pipeline_pull_request_test.sh
+    command: .buildkite/scripts/pipeline_test.sh
     artifact_paths:
       - "cypress/screenshots/**/*.png"

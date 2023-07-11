@@ -1,13 +1,11 @@
 ## 🏠/.buildkite/pipelines/pipeline_pull_request_test_and_deploy.yml
 
 steps:
-  - group: ":hammer_and_pick: Run tests and deploy docs on pull request"
-    key: "EUI-job-pull-request"
-    steps:
-      - trigger: "eui-pull-request-test"
-        label: ":hammer: EUI pull request test"
-      - trigger: "eui-pull-request-deploy-docs"
-        label: ":newspaper: EUI pull request deploy docs"
-        build:
-          env:
-            GIT_BRANCH: "${BUILDKITE_BRANCH}"
+  - trigger: "eui-pull-request-test"
+    label: ":hammer: EUI pull request test"
+  - trigger: "eui-pull-request-deploy-docs"
+    label: ":newspaper: EUI pull request deploy docs"
+    build:
+      env:
+        GIT_BRANCH: "${BUILDKITE_BRANCH}"
+        BUILDKITE_CHECK: ${BUILDKITE}

@@ -16,7 +16,6 @@ set +x
 # * GIT_BRANCH - current Git branch or tag (e.g. "refs/heads/main", "v18.2.1")
 
 # Docker images
-NODE_IMAGE=node:18.16.0-slim
 GCE_IMAGE=google/cloud-sdk:slim
 
 if [[ -z "${GPROJECT}" ]]; then
@@ -89,7 +88,7 @@ if [[ "$1" != "nodocker" ]]; then
     /app/scripts/deploy/deploy_docs nodocker "$@"
   unset GCE_ACCOUNT
 
-  if [[ ! -z "${pull_request_id}" ]]; then
+  if [[ -n "${pull_request_id}" ]]; then
     post_comment_to_gh
   fi
   unset GITHUB_TOKEN
@@ -110,9 +109,19 @@ else
 
   max_age="1800"
 
-  if [[ ! -z "${pull_request_id}" ]]; then
-    full_bucket_path="gs://$BUCKET/pr_$pull_request_id/"
-    publish_to_bucket
+  if [[ -n "${pull_request_id}" ]]; then
+    # Add a prefix/suffix for Buildkite
+    # Add statement to check same for main releases
+    # Then PR to remove those when we turn off Jenkins
+    # Future listen for PR closes and remove the PR bucket
+    if [[ -n "${BUILDKITE_CHECK}" ]]; then
+      echo "Buildkite environment: ${BUILDKITE_CHECK}"
+      full_bucket_path="gs://$BUCKET/buildkite/pr_$pull_request_id/"
+      publish_to_bucket
+    else
+      full_bucket_path="gs://$BUCKET/pr_$pull_request_id/"
+      publish_to_bucket
+    fi
   else
     full_bucket_path="gs://$BUCKET/$BRANCH/"
     max_age="604800"
@@ -121,9 +130,15 @@ else
     # if this is the highest release number to date, also publish the docs to the
     # root directory
     if [[ "$CURRENT_RELEASE" == "$GIT_BRANCH" ]]; then
-      echo "This is the current release."
-      full_bucket_path="gs://$BUCKET/"
-      publish_to_bucket
+      if [[ -n "${BUILDKITE_CHECK}" ]]; then
+        echo "Buildkite environment: ${BUILDKITE_CHECK}"
+        full_bucket_path="gs://$BUCKET/buildkite/"
+        publish_to_bucket
+      else
+        echo "This is the current release."
+        full_bucket_path="gs://$BUCKET/"
+        publish_to_bucket
+      fi
     fi
   fi
 fi
