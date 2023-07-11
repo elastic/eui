@@ -41,7 +41,7 @@ export const euiStepHorizontalStyles = (euiThemeContext: UseEuiTheme) => {
           [euiTheme.size.l, stepNumberSize],
           (x, y) => x + y / 2
         )};
-      } /* 1 */
+      }
     `;
   };
 
