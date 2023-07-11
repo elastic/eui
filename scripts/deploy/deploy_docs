@@ -71,7 +71,7 @@ if [[ "$1" != "nodocker" ]]; then
     --volume $PWD:/app \
     --workdir /app \
     node:18.16.1 \
-    bash -c 'git tag | xargs npx semver' | tail -n 1)
+    git describe --tags $(git rev-list --tags --max-count=1))
 
   # Run this script from inside the docker container, using google/cloud-sdk image
   echo "Deploying to bucket"
