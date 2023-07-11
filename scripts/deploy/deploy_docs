@@ -65,13 +65,8 @@ if [[ "$1" != "nodocker" ]]; then
 
   # we look this up to inject into the next docker run so it can decide whether
   # we need to overwrite the root /index.html file with a new one.
-  echo "Looking up most-current release info"
-  CURRENT_RELEASE=$(docker run \
-    --rm -i \
-    --volume $PWD:/app \
-    --workdir /app \
-    node:18.16.1 \
-    bash -c 'git tag | xargs npx semver' | tail -n 1)
+  CURRENT_RELEASE=$(git describe --tags "$(git rev-list --tags --max-count=1)")
+  echo "Current release: $CURRENT_RELEASE"
 
   # Run this script from inside the docker container, using google/cloud-sdk image
   echo "Deploying to bucket"
@@ -103,6 +98,7 @@ else
   # All branches go into correspondingly named dirs.
   # remove remote "origin/", leaving just the branch name
   BRANCH="${GIT_BRANCH#*/}"
+  echo "Git branch: $GIT_BRANCH"
 
   # Copy files
   EUI_DOCS_PROJECT=eui-docs-live
@@ -118,12 +114,9 @@ else
     max_age="604800"
     publish_to_bucket
 
-    echo "Current release: $CURRENT_RELEASE"
-    echo "Git branch: $GIT_BRANCH"
-
     # if this is the highest release number to date, also publish the docs to the
     # root directory
-    if [[ "v$CURRENT_RELEASE" == "$GIT_BRANCH" ]]; then
+    if [[ "$CURRENT_RELEASE" == "$GIT_BRANCH" ]]; then
       echo "This is the current release."
       full_bucket_path="gs://$BUCKET/"
       publish_to_bucket
