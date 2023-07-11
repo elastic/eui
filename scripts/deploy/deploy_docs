@@ -116,7 +116,7 @@ else
 
     # if this is the highest release number to date, also publish the docs to the
     # root directory
-    if [[ $CURRENT_RELEASE == $GIT_BRANCH ]]; then
+    if [[ "$CURRENT_RELEASE" == "$GIT_BRANCH" ]]; then
       echo "This is the current release."
       full_bucket_path="gs://$BUCKET/"
       publish_to_bucket
