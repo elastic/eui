@@ -43,7 +43,11 @@ export const useFinalGridDimensions = ({
     if (isFullScreen) {
       setFullScreenHeight(wrapperHeight);
     } else {
-      if (wrapperHeight !== unconstrainedHeight) {
+      // NOTE: Math.round() is necessary here to account for browser zoom level
+      // Otherwise, both `wrapperHeight` and `unconstrainedHeight` can return values
+      // that are slightly off by small decimal rounding, which are essentially
+      // equivalent but causes the wrapper height to get set when it shouldn't
+      if (Math.round(wrapperHeight) !== Math.round(unconstrainedHeight)) {
         setHeight(wrapperHeight);
       }
     }
