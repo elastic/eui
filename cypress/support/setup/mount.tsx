@@ -7,10 +7,20 @@
  */
 
 import React, { ReactNode } from 'react';
-import { mount as cypressMount } from 'cypress/react';
 import { EuiProvider } from '../../../src';
+import type { mount } from '@cypress/react18';
 
-const mountCommand = (children: ReactNode): ReturnType<typeof cypressMount> => {
+// Pick cypress mount function based on which React version is currently being
+// tested. It has to be directly compared against process.env.REACT_VERSION
+// for tree-shaking to work and not throw an error because of a missing import.
+let cypressMount: typeof mount;
+if (process.env.REACT_VERSION === '18') {
+  cypressMount = require('@cypress/react18').mount;
+} else {
+  cypressMount = require('@cypress/react').mount;
+}
+
+const mountCommand = (children: ReactNode): ReturnType<typeof mount> => {
   return cypressMount(<EuiProvider>{children}</EuiProvider>);
 };
 
