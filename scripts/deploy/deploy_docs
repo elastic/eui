@@ -65,13 +65,7 @@ if [[ "$1" != "nodocker" ]]; then
 
   # we look this up to inject into the next docker run so it can decide whether
   # we need to overwrite the root /index.html file with a new one.
-  echo "Looking up most-current release info"
-  CURRENT_RELEASE=$(docker run \
-    --rm -i \
-    --volume $PWD:/app \
-    --workdir /app \
-    node:18.16.1 \
-    git describe --tags $(git rev-list --tags --max-count=1))
+  CURRENT_RELEASE=$(git describe --tags $(git rev-list --tags --max-count=1))
   echo "Current release: $CURRENT_RELEASE"
 
   # Run this script from inside the docker container, using google/cloud-sdk image
