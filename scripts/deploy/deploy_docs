@@ -118,6 +118,9 @@ else
     max_age="604800"
     publish_to_bucket
 
+    echo "Current release: $CURRENT_RELEASE"
+    echo "Git branch: $GIT_BRANCH"
+
     # if this is the highest release number to date, also publish the docs to the
     # root directory
     if [[ "v$CURRENT_RELEASE" == "$GIT_BRANCH" ]]; then
