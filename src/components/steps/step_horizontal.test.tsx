@@ -13,6 +13,7 @@ import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { STATUS } from './step_number';
 import { EuiStepHorizontal } from './step_horizontal';
+import { SIZES } from './steps_horizontal';
 
 describe('EuiStepHorizontal', () => {
   shouldRenderCustomStyles(
@@ -61,6 +62,18 @@ describe('EuiStepHorizontal', () => {
         );
 
         expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('size', () => {
+      SIZES.forEach((size) => {
+        test(`${size} is rendered`, () => {
+          const component = render(
+            <EuiStepHorizontal size={size} onClick={() => {}} />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
       });
     });
 

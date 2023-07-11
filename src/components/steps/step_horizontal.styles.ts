@@ -28,6 +28,19 @@ export const euiStepHorizontalStyles = (euiThemeContext: UseEuiTheme) => {
    *    e.g. due to some of their titles wrapping to multiple lines
    */
 
+  const _generateStepSizeAndInset = (stepNumberSize: string) => {
+    return css`
+      &::before,
+      &::after {
+        inline-size: calc(50% - (${stepNumberSize} / 2));
+        inset-block-start: ${mathWithUnits(
+          [euiTheme.size.l, stepNumberSize],
+          (x, y) => x + y / 2
+        )};
+      }
+    `;
+  };
+
   return {
     euiStepHorizontal: css`
       ${logicalShorthandCSS(
@@ -49,11 +62,6 @@ export const euiStepHorizontalStyles = (euiThemeContext: UseEuiTheme) => {
         position: absolute;
         background-color: ${euiTheme.border.color};
         block-size: ${euiTheme.border.width.thick};
-        inline-size: calc(50% - (${euiStep.numberSize} / 2));
-        inset-block-start: ${mathWithUnits(
-          [euiTheme.size.l, euiStep.numberSize],
-          (x, y) => x + y / 2
-        )};
         z-index: ${euiTheme.levels.content}; /* 1 */
       }
 
@@ -65,6 +73,9 @@ export const euiStepHorizontalStyles = (euiThemeContext: UseEuiTheme) => {
         inset-inline-end: 0;
       }
     `,
+    // Adjust the size of the step number and connecting lines based on size
+    m: _generateStepSizeAndInset(euiStep.numberSize),
+    s: _generateStepSizeAndInset(euiStep.numberXSSize),
     // Note: these selectors must be nested because focus/hover state
     // is on the parent container, but affects specific children
     enabled: css`

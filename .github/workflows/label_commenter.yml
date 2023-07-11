@@ -2,7 +2,7 @@ name: Auto-respond to issues with comments based on labels
 
 on:
   issues:
-    types: [labeled, unlabeled]
+    types: [labeled]
 
 permissions:
   contents: read
@@ -17,4 +17,4 @@ jobs:
       - name: Label Commenter
         uses: peaceiris/actions-label-commenter@v1
         with:
-          config_file: .github/workflows/label_commenter_config.yml
+          config_file: .github/config/label_commenter_config.yml

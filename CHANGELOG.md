@@ -1,3 +1,18 @@
+## [`84.0.0`](https://github.com/elastic/eui/tree/v84.0.0)
+
+- Updated `EuiDualRange`'s `minInputProps` and `maxInputProps` to support passing more props to underlying inputs ([#6902](https://github.com/elastic/eui/pull/6902))
+- `EuiFocusTrap` now supports configuring cross-iframe focus trapping via the `crossFrame` prop ([#6908](https://github.com/elastic/eui/pull/6908))
+
+**Bug fixes**
+
+- Fixed `EuiFilterButton` icon display ([#6900](https://github.com/elastic/eui/pull/6900))
+- Fixed `EuiCombobox` compressed plain text display ([#6910](https://github.com/elastic/eui/pull/6910))
+- Fixed visual appearance of collapse buttons on collapsible `EuiResizablePanel`s ([#6926](https://github.com/elastic/eui/pull/6926))
+
+**Breaking changes**
+
+- `EuiFocusTrap` now defaults to *not* trapping focus across iframes ([#6908](https://github.com/elastic/eui/pull/6908))
+
 ## [`83.1.0`](https://github.com/elastic/eui/tree/v83.1.0)
 
 - Added `placeholder` prop to `EuiInlineEdit` ([#6883](https://github.com/elastic/eui/pull/6883))

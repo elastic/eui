@@ -7,9 +7,10 @@
  */
 
 import React, { useEffect, useRef } from 'react';
-import { render, mount } from 'enzyme';
-import { requiredProps } from '../../../test/required_props';
+import { fireEvent } from '@testing-library/dom';
+import { requiredProps } from '../../../test';
 import { shouldRenderCustomStyles } from '../../../test/internal';
+import { render, screen } from '../../../test/rtl';
 
 import { EuiForm } from '../form';
 import type { EuiDualRangeProps } from './types';
@@ -32,185 +33,279 @@ describe('EuiDualRange', () => {
     skip: { className: true, css: true },
   });
 
-  test('is rendered', () => {
-    const component = render(
+  it('renders', () => {
+    const { container } = render(
       <EuiDualRange name="name" id="id" {...props} {...requiredProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
-    test('disabled should render', () => {
-      const component = render(<EuiDualRange {...props} disabled />);
+    describe('disabled', () => {
+      it('renders slider role elements as interactive when disabled=false', () => {
+        render(<EuiDualRange {...props} disabled={false} />);
 
-      expect(component).toMatchSnapshot();
+        screen.getAllByRole('slider', { hidden: true }).forEach((element) => {
+          if (element.tagName.toLowerCase() === 'input') {
+            expect(element).not.toBeDisabled();
+          } else {
+            expect(element).toHaveAttribute('aria-disabled', 'false');
+          }
+        });
+      });
+
+      it('renders slider role elements as disabled when disabled=true', () => {
+        render(<EuiDualRange {...props} disabled />);
+
+        screen.getAllByRole('slider', { hidden: true }).forEach((element) => {
+          if (element.tagName.toLowerCase() === 'input') {
+            expect(element).toBeDisabled();
+          } else {
+            expect(element).toHaveAttribute('aria-disabled', 'true');
+          }
+        });
+      });
     });
 
-    test('fullWidth should render', () => {
-      const component = render(<EuiDualRange {...props} fullWidth />);
+    describe('fullWidth', () => {
+      it('renders using full-width layout when fullWidth=true', () => {
+        const { container } = render(<EuiDualRange {...props} fullWidth />);
 
-      expect(component).toMatchSnapshot();
-    });
+        expect(container.firstChild).toHaveStyleRule('max-inline-size', '100%');
+      });
 
-    test('compressed should render', () => {
-      const component = render(<EuiDualRange {...props} compressed />);
-
-      expect(component).toMatchSnapshot();
-    });
-
-    test('labels should render', () => {
-      const component = render(<EuiDualRange {...props} showLabels />);
-
-      expect(component).toMatchSnapshot();
-    });
-
-    test('ticks should render', () => {
-      const component = render(
-        <EuiDualRange {...props} showTicks tickInterval={20} />
-      );
-
-      expect(component).toMatchSnapshot();
-    });
-
-    test('custom ticks should render', () => {
-      const component = render(
-        <EuiDualRange
-          {...props}
-          value={[20, 100]}
-          showTicks
-          ticks={[
-            { label: '20kb', value: 20 },
-            { label: '100kb', value: 100 },
-          ]}
-        />
-      );
-
-      expect(component).toMatchSnapshot();
-    });
-
-    test('range should render', () => {
-      const component = render(<EuiDualRange {...props} showRange />);
-
-      expect(component).toMatchSnapshot();
-    });
-
-    test('inputs should render', () => {
-      const component = render(
-        <EuiDualRange
-          {...props}
-          {...requiredProps}
-          name="name"
-          id="id"
-          showInput
-        />
-      );
-
-      expect(component).toMatchSnapshot();
-    });
-
-    test('slider should display in popover', () => {
-      const component = render(
-        <EuiDualRange
-          {...props}
-          name="name"
-          id="id"
-          showInput="inputWithPopover"
-        />
-      );
-
-      expect(component).toMatchSnapshot();
-    });
-
-    test('loading should display when showInput="inputWithPopover"', () => {
-      const component = render(
-        <EuiDualRange
-          {...props}
-          name="name"
-          id="id"
-          showInput="inputWithPopover"
-          isLoading
-        />
-      );
-
-      expect(component).toMatchSnapshot();
-    });
-
-    test('levels should render', () => {
-      const component = render(
-        <EuiDualRange
-          {...props}
-          levels={[
-            {
-              min: 0,
-              max: 20,
-              color: 'danger',
-            },
-            {
-              min: 20,
-              max: 100,
-              color: 'success',
-            },
-          ]}
-        />
-      );
-
-      expect(component).toMatchSnapshot();
-    });
-
-    test('isDraggable should render', () => {
-      const component = render(<EuiDualRange {...props} isDraggable />);
-
-      expect(component).toMatchSnapshot();
-    });
-  });
-
-  test('allows value prop to accept numbers', () => {
-    const component = render(<EuiDualRange {...props} value={[1, 8]} />);
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('allows value prop to accept empty strings', () => {
-    const component = render(<EuiDualRange {...props} value={['', '']} />);
-
-    expect(component).toMatchSnapshot();
-  });
-
-  describe('input props', () => {
-    test('can be applied to min and max inputs', () => {
-      const component = render(
-        <EuiDualRange
-          {...props}
-          name="name"
-          id="id"
-          min={1}
-          max={10}
-          showInput
-          minInputProps={{ 'aria-label': 'Min value' }}
-          maxInputProps={{ 'aria-label': 'Max value' }}
-        />
-      );
-
-      expect(component).toMatchSnapshot();
-    });
-  });
-
-  describe('inherits', () => {
-    test('fullWidth from <EuiForm />', () => {
-      const component = render(
-        <EuiForm fullWidth>
-          <EuiDualRange {...props} />
-        </EuiForm>
-      );
-
-      if (
-        !component.find('.euiRangeWrapper').attr('class').includes('-fullWidth')
-      ) {
-        throw new Error(
-          'expected EuiDualRange to inherit fullWidth from EuiForm'
+      it('inherits fullWidth from EuiForm', () => {
+        const { container } = render(
+          <EuiForm fullWidth>
+            <EuiDualRange {...props} />
+          </EuiForm>
         );
-      }
+
+        expect(container.firstChild!.firstChild).toHaveStyleRule(
+          'max-inline-size',
+          '100%'
+        );
+      });
+    });
+
+    describe('compressed', () => {
+      it('renders using compressed layout when compressed=true', () => {
+        const { container } = render(<EuiDualRange {...props} compressed />);
+
+        // TODO: Rule value should be extracted from the default theme
+        expect(container.firstChild).toHaveStyleRule('block-size', '32px');
+      });
+    });
+
+    describe('showLabels', () => {
+      it('renders labels when showLabels=true', () => {
+        const { container } = render(<EuiDualRange {...props} showLabels />);
+
+        expect(container.firstChild).toMatchSnapshot();
+      });
+    });
+
+    describe('showTicks', () => {
+      it('renders ticks configured by tickInterval prop when showTicks=true', () => {
+        render(<EuiDualRange {...props} showTicks tickInterval={20} />);
+
+        const expectedTicks = ['0', '20', '40', '60', '80', '100'];
+        const ticks = screen.getAllByRole('button');
+        expect(ticks).toHaveLength(expectedTicks.length);
+        ticks.forEach((element) => {
+          expect(expectedTicks).toContain((element as HTMLButtonElement).value);
+        });
+      });
+
+      it('renders ticks based the "ticks"s prop when showTicks=true', () => {
+        const ticks = [
+          { label: '20kb', value: 20 },
+          { label: '100kb', value: 100 },
+        ];
+
+        const tickValues = ticks.map((tick) => tick.value.toString());
+
+        render(
+          <EuiDualRange {...props} value={[20, 100]} showTicks ticks={ticks} />
+        );
+
+        const tickElements = screen.getAllByRole('button');
+        expect(tickElements).toHaveLength(ticks.length);
+        tickElements.forEach((element) => {
+          expect(tickValues).toContain((element as HTMLButtonElement).value);
+        });
+      });
+    });
+
+    describe('showRange', () => {
+      it('renders range when showRange=true', () => {
+        const { container } = render(<EuiDualRange {...props} showRange />);
+
+        expect(container.firstChild).toMatchSnapshot();
+      });
+
+      it('hides range when showRange=false', () => {
+        const { container } = render(
+          <EuiDualRange {...props} showRange={false} />
+        );
+
+        expect(container.firstChild).toMatchSnapshot();
+      });
+    });
+
+    describe('showInput', () => {
+      it('renders inputs when showInput=true', () => {
+        render(
+          <EuiDualRange
+            {...props}
+            {...requiredProps}
+            name="name"
+            id="id"
+            showInput
+            minInputProps={{ 'aria-label': 'Min value' }}
+            maxInputProps={{ 'aria-label': 'Max value' }}
+          />
+        );
+
+        expect(
+          screen.getByRole('spinbutton', { name: 'Min value' })
+        ).toHaveValue(1);
+        expect(
+          screen.getByRole('spinbutton', { name: 'Max value' })
+        ).toHaveValue(8);
+      });
+
+      it('renders inputs with popover slider when showInput="inputWithPopover"', () => {
+        render(
+          <EuiDualRange
+            {...props}
+            name="name"
+            id="id"
+            showInput="inputWithPopover"
+            minInputProps={{ 'aria-label': 'Min value' }}
+          />
+        );
+
+        expect(screen.getAllByRole('spinbutton')).toHaveLength(2);
+
+        fireEvent.focusIn(
+          screen.getByRole('spinbutton', { name: 'Min value' })
+        );
+
+        expect(screen.getByRole('dialog')).toBeDefined();
+        expect(screen.getAllByRole('slider')).toHaveLength(2);
+      });
+    });
+
+    describe('loading', () => {
+      it('renders loading state when showInput="inputWithPopover" and loading=true', () => {
+        render(
+          <EuiDualRange
+            {...props}
+            name="name"
+            id="id"
+            showInput="inputWithPopover"
+            isLoading
+          />
+        );
+
+        expect(screen.getByRole('progressbar')).toBeVisible();
+      });
+    });
+
+    describe('levels', () => {
+      it('renders levels when levels prop is set', () => {
+        const { container } = render(
+          <EuiDualRange
+            {...props}
+            levels={[
+              {
+                min: 0,
+                max: 20,
+                color: 'danger',
+              },
+              {
+                min: 20,
+                max: 100,
+                color: 'success',
+              },
+            ]}
+          />
+        );
+
+        expect(container.firstChild).toMatchSnapshot();
+      });
+    });
+
+    describe('isDraggable', () => {
+      it('renders draggable track when isDraggable=true', () => {
+        const { container } = render(<EuiDualRange {...props} isDraggable />);
+
+        expect(container.firstChild).toMatchSnapshot();
+      });
+    });
+
+    describe('value', () => {
+      it('accepts numbers', () => {
+        const { container } = render(
+          <EuiDualRange {...props} value={[1, 8]} />
+        );
+
+        expect(container.firstChild).toMatchSnapshot();
+      });
+
+      it('accepts empty strings', () => {
+        const { container } = render(
+          <EuiDualRange {...props} value={['', '']} />
+        );
+
+        expect(container.firstChild).toMatchSnapshot();
+      });
+    });
+
+    describe('minInputProps', () => {
+      it('applies passed props to min input', () => {
+        const { container } = render(
+          <EuiDualRange
+            {...props}
+            showInput
+            minInputProps={{ 'aria-label': 'Min value' }}
+          />
+        );
+
+        expect(container.firstChild).toMatchSnapshot();
+      });
+
+      it('allows overriding default props', () => {
+        const { container } = render(
+          <EuiDualRange {...props} showInput minInputProps={{ value: '123' }} />
+        );
+
+        expect(container.firstChild).toMatchSnapshot();
+      });
+    });
+
+    describe('maxInputProps', () => {
+      it('applies passed props to max input', () => {
+        const { container } = render(
+          <EuiDualRange
+            {...props}
+            showInput
+            maxInputProps={{ 'aria-label': 'Max value' }}
+          />
+        );
+
+        expect(container.firstChild).toMatchSnapshot();
+      });
+
+      it('allows overriding default props', () => {
+        const { container } = render(
+          <EuiDualRange {...props} showInput maxInputProps={{ value: '123' }} />
+        );
+
+        expect(container.firstChild).toMatchSnapshot();
+      });
     });
   });
 
@@ -219,29 +314,25 @@ describe('EuiDualRange', () => {
     // `ref`s to access the `onResize` instance method (search for `rangeRef.current?.onResize`)
     // If we switch EuiDualRange to a function component, we'll need to use `useImperativeHandle`
     // to allow Kibana to continue calling `onResize`
-    test('onResize', () => {
+    it('allows calling the internal onResize method', () => {
       // This super annoying type is now required to pass both the `ref` typing and account for instance methods
       type EuiDualRangeRef = React.ComponentProps<typeof EuiDualRange> &
         EuiDualRangeClass;
 
-      const ConsumerDualRange = ({ callResize }: { callResize?: boolean }) => {
+      const ConsumerDualRange = () => {
         const rangeRef = useRef<EuiDualRangeRef>(null);
 
         useEffect(() => {
-          if (callResize) rangeRef.current?.onResize(500);
-        }, [callResize]);
+          rangeRef.current?.onResize(500);
+        }, []);
 
         return <EuiDualRange {...props} ref={rangeRef} />;
       };
 
-      const component = mount(<ConsumerDualRange />);
-      const instance = component
-        .find(EuiDualRangeClass)
-        .instance() as EuiDualRangeClass;
+      render(<ConsumerDualRange />);
 
-      const onResizeSpy = jest.spyOn(instance, 'onResize');
-      component.setProps({ callResize: true }).update();
-      expect(onResizeSpy).toHaveBeenCalled();
+      // There isn't anything we can assert on here that isn't a huge headache,
+      // but the test should fail if `ref.current.onResize` is no longer available
     });
   });
 });
