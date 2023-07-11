@@ -37,30 +37,33 @@ export const useFinalGridDimensions = ({
 
   // Set the wrapper height on load, whenever the grid wrapper resizes, and whenever rowCount changes
   useEffect(() => {
-    const boundingRect = wrapperRef.current!.getBoundingClientRect();
-    const wrapperHeight = wrapperRef.current?.offsetHeight;
-    const wrapperWidth = wrapperRef.current?.offsetWidth;
+    if (!wrapperRef.current) return;
+    const wrapperHeight = wrapperRef.current.getBoundingClientRect().height;
 
     if (isFullScreen) {
-      setFullScreenHeight(boundingRect.height);
+      setFullScreenHeight(wrapperHeight);
     } else {
       if (wrapperHeight !== unconstrainedHeight) {
         setHeight(wrapperHeight);
       }
     }
+  }, [
+    rowCount,
+    isFullScreen,
+    wrapperDimensions.height,
+    unconstrainedHeight,
+    wrapperRef,
+  ]);
+
+  // Set the wrapper width on load and whenever the grid wrapper resizes
+  useEffect(() => {
+    if (!wrapperRef.current) return;
+    const wrapperWidth = wrapperRef.current.getBoundingClientRect().width;
+
     if (wrapperWidth !== unconstrainedWidth) {
       setWidth(wrapperWidth);
     }
-  }, [
-    // Effects that should cause recalculations
-    rowCount,
-    isFullScreen,
-    wrapperDimensions,
-    // Dependencies
-    wrapperRef,
-    unconstrainedHeight,
-    unconstrainedWidth,
-  ]);
+  }, [wrapperDimensions.width, unconstrainedWidth, wrapperRef]);
 
   const finalHeight = isFullScreen
     ? fullScreenHeight
