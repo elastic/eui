@@ -72,6 +72,7 @@ if [[ "$1" != "nodocker" ]]; then
     --workdir /app \
     node:18.16.1 \
     git describe --tags $(git rev-list --tags --max-count=1))
+  echo "Current release: $CURRENT_RELEASE"
 
   # Run this script from inside the docker container, using google/cloud-sdk image
   echo "Deploying to bucket"
@@ -103,6 +104,7 @@ else
   # All branches go into correspondingly named dirs.
   # remove remote "origin/", leaving just the branch name
   BRANCH="${GIT_BRANCH#*/}"
+  echo "Git branch: $GIT_BRANCH"
 
   # Copy files
   EUI_DOCS_PROJECT=eui-docs-live
@@ -117,9 +119,6 @@ else
     full_bucket_path="gs://$BUCKET/$BRANCH/"
     max_age="604800"
     publish_to_bucket
-
-    echo "Current release: $CURRENT_RELEASE"
-    echo "Git branch: $GIT_BRANCH"
 
     # if this is the highest release number to date, also publish the docs to the
     # root directory
