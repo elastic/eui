@@ -13,6 +13,12 @@ import { useEuiTheme } from './hooks';
 
 /**
  * @see https://emotion.sh/docs/theming
+ * This Emotion theme provider is added for *consumer usage* & convenience only.
+ *
+ * EUI itself should stick to using our own context/`useEuiTheme` internally
+ * instead of Emotion's shorthand `css={theme => {}}` API. This is in case
+ * consumers to set their own theme via <ThemeProvider>; EUI's styles should
+ * continue working as-is.
  */
 export const EuiEmotionThemeProvider: FunctionComponent<
   PropsWithChildren<{}>
