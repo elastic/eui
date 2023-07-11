@@ -3,7 +3,7 @@
 exports[`EuiBadge is disabled 1`] = `
 <span
   aria-label="aria-label"
-  class="euiBadge testClass1 testClass2 emotion-euiBadge-default-disabled"
+  class="euiBadge testClass1 testClass2 emotion-euiBadge-default-disabled-euiTestCss"
   data-test-subj="test subject string"
 >
   <span
@@ -21,7 +21,7 @@ exports[`EuiBadge is disabled 1`] = `
 exports[`EuiBadge is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiBadge testClass1 testClass2 emotion-euiBadge-default"
+  class="euiBadge testClass1 testClass2 emotion-euiBadge-default-euiTestCss"
   data-test-subj="test subject string"
 >
   <span
@@ -38,7 +38,7 @@ exports[`EuiBadge is rendered 1`] = `
 
 exports[`EuiBadge is rendered with href and rel provided 1`] = `
 <span
-  class="euiBadge testClass1 testClass2 emotion-euiBadge-default"
+  class="euiBadge testClass1 testClass2 emotion-euiBadge-default-euiTestCss"
 >
   <span
     class="euiBadge__content emotion-euiBadge__content"
@@ -59,7 +59,7 @@ exports[`EuiBadge is rendered with href and rel provided 1`] = `
 exports[`EuiBadge is rendered with href provided 1`] = `
 <a
   aria-label="aria-label"
-  class="euiBadge testClass1 testClass2 emotion-euiBadge-default-clickable"
+  class="euiBadge testClass1 testClass2 emotion-euiBadge-default-clickable-euiTestCss"
   data-test-subj="test subject string"
   href="/#/"
   rel="noreferrer"
@@ -78,7 +78,7 @@ exports[`EuiBadge is rendered with href provided 1`] = `
 
 exports[`EuiBadge is rendered with iconOnClick and href provided 1`] = `
 <span
-  class="euiBadge testClass1 testClass2 emotion-euiBadge-default"
+  class="euiBadge testClass1 testClass2 emotion-euiBadge-default-euiTestCss"
 >
   <span
     class="euiBadge__content emotion-euiBadge__content"
@@ -98,7 +98,7 @@ exports[`EuiBadge is rendered with iconOnClick and href provided 1`] = `
 
 exports[`EuiBadge is rendered with iconOnClick and onClick provided 1`] = `
 <span
-  class="euiBadge testClass1 testClass2 emotion-euiBadge-default"
+  class="euiBadge testClass1 testClass2 emotion-euiBadge-default-euiTestCss"
 >
   <span
     class="euiBadge__content emotion-euiBadge__content"
@@ -117,7 +117,7 @@ exports[`EuiBadge is rendered with iconOnClick and onClick provided 1`] = `
 exports[`EuiBadge is rendered with iconOnClick provided 1`] = `
 <span
   aria-label="aria-label"
-  class="euiBadge testClass1 testClass2 emotion-euiBadge-default"
+  class="euiBadge testClass1 testClass2 emotion-euiBadge-default-euiTestCss"
   data-test-subj="test subject string"
 >
   <span
@@ -135,7 +135,7 @@ exports[`EuiBadge is rendered with iconOnClick provided 1`] = `
 exports[`EuiBadge is rendered with onClick provided 1`] = `
 <button
   aria-label="aria-label"
-  class="euiBadge testClass1 testClass2 emotion-euiBadge-default-clickable"
+  class="euiBadge testClass1 testClass2 emotion-euiBadge-default-clickable-euiTestCss"
   data-test-subj="test subject string"
 >
   <span

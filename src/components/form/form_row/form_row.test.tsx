@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { shallow, render, mount } from 'enzyme';
+import { render, mount } from 'enzyme';
 import { requiredProps } from '../../../test';
 
 import { EuiForm } from '../form';
@@ -32,7 +32,7 @@ describe('EuiFormRow', () => {
       error: ['Error one', 'Error two'],
     };
 
-    const tree = shallow(
+    const tree = mount(
       <EuiFormRow {...requiredProps} {...props}>
         <input />
       </EuiFormRow>
@@ -59,7 +59,7 @@ describe('EuiFormRow', () => {
 
   describe('props', () => {
     test('label is rendered', () => {
-      const component = shallow(
+      const component = render(
         <EuiFormRow label="label">
           <input />
         </EuiFormRow>
@@ -69,7 +69,7 @@ describe('EuiFormRow', () => {
     });
 
     test('label append is rendered', () => {
-      const component = shallow(
+      const component = render(
         <EuiFormRow label="label" labelAppend="append">
           <input />
         </EuiFormRow>
@@ -79,7 +79,7 @@ describe('EuiFormRow', () => {
     });
 
     test('label renders as a legend and subsquently a fieldset wrapper', () => {
-      const component = shallow(
+      const component = render(
         <EuiFormRow label="label" labelType="legend">
           <input />
         </EuiFormRow>
@@ -89,7 +89,7 @@ describe('EuiFormRow', () => {
     });
 
     test('describedByIds is rendered', () => {
-      const component = shallow(
+      const component = render(
         <EuiFormRow describedByIds={['generated-id-additional']}>
           <input />
         </EuiFormRow>

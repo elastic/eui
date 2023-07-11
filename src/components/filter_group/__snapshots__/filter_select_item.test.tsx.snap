@@ -3,7 +3,7 @@
 exports[`EuiFilterSelectItem is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiFilterSelectItem testClass1 testClass2"
+  class="euiFilterSelectItem testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
   role="option"
   type="button"

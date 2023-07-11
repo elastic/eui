@@ -21,7 +21,7 @@ exports[`isSelected renders true when specified 1`] = `
 exports[`renders EuiTableRow 1`] = `
 <tr
   aria-label="aria-label"
-  class="euiTableRow testClass1 testClass2"
+  class="euiTableRow testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <td

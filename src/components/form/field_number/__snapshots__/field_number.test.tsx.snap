@@ -11,7 +11,7 @@ exports[`EuiFieldNumber is rendered 1`] = `
   <eui-validatable-control>
     <input
       aria-label="aria-label"
-      class="euiFieldNumber testClass1 testClass2 euiFieldNumber--withIcon"
+      class="euiFieldNumber testClass1 testClass2 emotion-euiTestCss euiFieldNumber--withIcon"
       data-test-subj="test subject string"
       id="1"
       max="8"

@@ -4,7 +4,7 @@ exports[`EuiNotificationEvent is rendered 1`] = `
 <article
   aria-label="aria-label"
   aria-labelledby="generated-id"
-  class="euiNotificationEvent testClass1 testClass2"
+  class="euiNotificationEvent testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -528,7 +528,7 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
         >
           <div>
             <div
-              class=" emotion-euiAccordion__children"
+              class="euiAccordion__children emotion-euiAccordion__children"
             >
               <div
                 class="euiNotificationEventMessages__accordionContent"

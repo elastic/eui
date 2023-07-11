@@ -3,7 +3,7 @@
 exports[`EuiFormFieldset is rendered 1`] = `
 <fieldset
   aria-label="aria-label"
-  class="testClass1 testClass2"
+  class="testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <input />

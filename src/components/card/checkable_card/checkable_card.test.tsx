@@ -30,7 +30,15 @@ describe('EuiCheckableCard', () => {
 
   shouldRenderCustomStyles(
     <EuiCheckableCard {...checkablePanelRequiredProps} />,
-    { skipStyles: true } // `style` goes with ...rest onto the child check/radio input
+    { skip: { style: true } }
+  );
+  // `style` goes with ...rest onto the child check/radio input, unlike className/css
+  shouldRenderCustomStyles(
+    <EuiCheckableCard {...checkablePanelRequiredProps} />,
+    {
+      targetSelector: '.euiRadio',
+      skip: { className: true, css: true },
+    }
   );
 
   test('renders panel props', () => {

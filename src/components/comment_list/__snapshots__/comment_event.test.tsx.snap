@@ -2,7 +2,7 @@
 
 exports[`EuiCommentEvent is rendered with custom content 1`] = `
 <div
-  class="euiCommentEvent testClass1 testClass2 emotion-euiCommentEvent-custom"
+  class="euiCommentEvent testClass1 testClass2 emotion-euiCommentEvent-custom-euiTestCss"
   data-type="custom"
 >
   <div

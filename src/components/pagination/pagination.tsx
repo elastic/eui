@@ -21,7 +21,6 @@ import {
 } from '../../services';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { euiPaginationStyles } from './pagination.styles';
-import { euiPaginationButtonStyles } from './pagination_button.styles';
 
 const MAX_VISIBLE_PAGES = 5;
 const NUMBER_SURROUNDING_PAGES = Math.floor(MAX_VISIBLE_PAGES * 0.5);
@@ -82,8 +81,7 @@ export const EuiPagination: FunctionComponent<Props> = ({
   );
 
   const euiTheme = useEuiTheme();
-  const paginationStyles = euiPaginationStyles(euiTheme);
-  const { isPlaceholder } = euiPaginationButtonStyles(euiTheme);
+  const styles = euiPaginationStyles(euiTheme);
 
   // Force to `compressed` version if specified or within the responsive breakpoints
   const compressed = _compressed || isResponsive;
@@ -154,7 +152,7 @@ export const EuiPagination: FunctionComponent<Props> = ({
       centerPageCount = (
         <EuiText
           size="s"
-          css={paginationStyles.euiPagination__compressedText}
+          css={styles.euiPagination__compressedText}
           className="euiPagination__compressedText"
         >
           <EuiI18n
@@ -219,7 +217,7 @@ export const EuiPagination: FunctionComponent<Props> = ({
                 <li
                   aria-label={firstRangeAriaLabel}
                   className="euiPagination__item"
-                  css={isPlaceholder}
+                  css={styles.euiPagination__ellipsis}
                 >
                   &hellip;
                 </li>
@@ -263,7 +261,7 @@ export const EuiPagination: FunctionComponent<Props> = ({
                 <li
                   aria-label={lastRangeAriaLabel}
                   className="euiPagination__item"
-                  css={isPlaceholder}
+                  css={styles.euiPagination__ellipsis}
                 >
                   &hellip;
                 </li>
@@ -293,7 +291,7 @@ export const EuiPagination: FunctionComponent<Props> = ({
       centerPageCount = (
         <ul
           className="euiPagination__list"
-          css={paginationStyles.euiPagination__list}
+          css={styles.euiPagination__list}
           {...accessibleName}
         >
           {firstPageButtons}
@@ -328,7 +326,7 @@ export const EuiPagination: FunctionComponent<Props> = ({
   const accessiblePageCount = `${accessiblePageString()} ${ofLabel} ${accessibleCollectionString}`;
 
   return (
-    <nav css={[paginationStyles.euiPagination]} className={classes} {...rest}>
+    <nav css={styles.euiPagination} className={classes} {...rest}>
       <EuiScreenReaderOnly>
         <span aria-atomic="true" aria-relevant="additions text" role="status">
           {accessiblePageCount}

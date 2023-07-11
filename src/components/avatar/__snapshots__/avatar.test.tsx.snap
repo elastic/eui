@@ -3,7 +3,7 @@
 exports[`EuiAvatar allows a name composed entirely of whitespace 1`] = `
 <div
   aria-label="aria-label"
-  class="euiAvatar euiAvatar--m euiAvatar--user testClass1 testClass2 emotion-euiAvatar-user-m-uppercase"
+  class="euiAvatar euiAvatar--m euiAvatar--user testClass1 testClass2 emotion-euiAvatar-user-m-uppercase-euiTestCss"
   data-test-subj="test subject string"
   role="img"
   style="background-color:#ee789d;color:#000000"
@@ -20,7 +20,7 @@ exports[`EuiAvatar allows a name composed entirely of whitespace 1`] = `
 exports[`EuiAvatar is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiAvatar euiAvatar--m euiAvatar--user testClass1 testClass2 emotion-euiAvatar-user-m-uppercase"
+  class="euiAvatar euiAvatar--m euiAvatar--user testClass1 testClass2 emotion-euiAvatar-user-m-uppercase-euiTestCss"
   data-test-subj="test subject string"
   role="img"
   style="background-color:#e4a6c7;color:#000000"

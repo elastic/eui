@@ -15,7 +15,7 @@ Array [
     #00FFFF
   </p>,
   <div
-    class="euiHue testClass1 testClass2"
+    class="euiHue testClass1 testClass2 emotion-euiTestCss"
   >
     <input
       aria-label="aria-label"
@@ -45,7 +45,7 @@ Array [
     class="emotion-euiScreenReaderOnly"
   />,
   <div
-    class="euiHue testClass1 testClass2"
+    class="euiHue testClass1 testClass2 emotion-euiTestCss"
   >
     <input
       aria-label="aria-label"
@@ -75,7 +75,7 @@ Array [
     class="emotion-euiScreenReaderOnly"
   />,
   <div
-    class="euiHue testClass1 testClass2"
+    class="euiHue testClass1 testClass2 emotion-euiTestCss"
   >
     <input
       aria-label="aria-label"

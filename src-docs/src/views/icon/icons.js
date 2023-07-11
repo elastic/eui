@@ -221,6 +221,7 @@ export const iconTypes = [
   'sortRight',
   'sortUp',
   'spaces',
+  'sparkles',
   'starEmpty',
   'starEmptySpace',
   'starFilled',

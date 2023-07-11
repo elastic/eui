@@ -2,7 +2,7 @@
 
 exports[`EuiComboBox is rendered 1`] = `
 <div
-  class="euiComboBox testClass1 testClass2"
+  class="euiComboBox testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div

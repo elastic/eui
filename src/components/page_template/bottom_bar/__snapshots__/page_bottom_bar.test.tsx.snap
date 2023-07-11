@@ -4,7 +4,7 @@ exports[`_EuiPageBottomBar is rendered 1`] = `
 Array [
   <section
     aria-label="aria-label"
-    class="euiBottomBar euiBottomBar--sticky testClass1 testClass2 emotion-euiBottomBar-sticky-bar"
+    class="euiBottomBar euiBottomBar--sticky testClass1 testClass2 emotion-euiBottomBar-sticky-bar-euiTestCss"
     data-test-subj="test subject string"
     style="left:0;right:0;bottom:0"
   >

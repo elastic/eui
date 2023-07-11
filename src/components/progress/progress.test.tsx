@@ -23,7 +23,7 @@ describe('EuiProgress', () => {
   shouldRenderCustomStyles(<EuiProgress />);
   shouldRenderCustomStyles(<EuiProgress max={100} label="Test" />, {
     childProps: ['labelProps'],
-    skipParentTest: true,
+    skip: { parentTest: true },
   });
 
   test('has max', () => {

@@ -4,7 +4,7 @@ exports[`EuiCodeBlockAnnotation renders 1`] = `
 <body>
   <div>
     <div
-      class="euiPopover euiPopover-isOpen testClass1 testClass2 emotion-euiPopover-euiCodeBlockAnnotation"
+      class="euiPopover euiPopover-isOpen testClass1 testClass2 emotion-euiPopover-euiCodeBlockAnnotation-euiTestCss"
       data-test-subj="test subject string"
     >
       <div

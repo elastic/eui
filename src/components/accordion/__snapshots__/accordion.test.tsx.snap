@@ -43,7 +43,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
   >
     <div>
       <div
-        class=" emotion-euiAccordion__children"
+        class="euiAccordion__children emotion-euiAccordion__children"
       >
         <p>
           You can not see me.
@@ -99,7 +99,7 @@ exports[`EuiAccordion behavior does not open when isDisabled 1`] = `
   >
     <div>
       <div
-        class=" emotion-euiAccordion__children"
+        class="euiAccordion__children emotion-euiAccordion__children"
       >
         <p>
           You cannot see me.
@@ -153,7 +153,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
   >
     <div>
       <div
-        class=" emotion-euiAccordion__children"
+        class="euiAccordion__children emotion-euiAccordion__children"
       >
         <p>
           You can see me.
@@ -207,7 +207,7 @@ exports[`EuiAccordion behavior opens when div is clicked if element is a div 1`]
   >
     <div>
       <div
-        class=" emotion-euiAccordion__children"
+        class="euiAccordion__children emotion-euiAccordion__children"
       >
         <p>
           You can see me.
@@ -221,7 +221,7 @@ exports[`EuiAccordion behavior opens when div is clicked if element is a div 1`]
 exports[`EuiAccordion is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiAccordion testClass1 testClass2"
+  class="euiAccordion testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -263,7 +263,7 @@ exports[`EuiAccordion is rendered 1`] = `
   >
     <div>
       <div
-        class=" emotion-euiAccordion__children"
+        class="euiAccordion__children emotion-euiAccordion__children"
       />
     </div>
   </div>
@@ -315,7 +315,7 @@ exports[`EuiAccordion isDisabled is rendered 1`] = `
   >
     <div>
       <div
-        class=" emotion-euiAccordion__children"
+        class="euiAccordion__children emotion-euiAccordion__children"
       />
     </div>
   </div>
@@ -350,7 +350,7 @@ exports[`EuiAccordion props arrowDisplay none is rendered 1`] = `
   >
     <div>
       <div
-        class=" emotion-euiAccordion__children"
+        class="euiAccordion__children emotion-euiAccordion__children"
       />
     </div>
   </div>
@@ -400,7 +400,7 @@ exports[`EuiAccordion props arrowDisplay right is rendered 1`] = `
   >
     <div>
       <div
-        class=" emotion-euiAccordion__children"
+        class="euiAccordion__children emotion-euiAccordion__children"
       />
     </div>
   </div>
@@ -419,7 +419,7 @@ exports[`EuiAccordion props arrowProps is rendered 1`] = `
       aria-expanded="false"
       aria-label="aria-label"
       aria-labelledby="generated-id"
-      class="euiButtonIcon euiAccordion__iconButton testClass1 testClass2 emotion-euiButtonIcon-xs-empty-text-euiAccordion__iconButton"
+      class="euiButtonIcon euiAccordion__iconButton testClass1 testClass2 emotion-euiButtonIcon-xs-empty-text-euiAccordion__iconButton-euiTestCss"
       data-test-subj="test subject string"
       tabindex="-1"
       type="button"
@@ -452,7 +452,7 @@ exports[`EuiAccordion props arrowProps is rendered 1`] = `
   >
     <div>
       <div
-        class=" emotion-euiAccordion__children"
+        class="euiAccordion__children emotion-euiAccordion__children"
       />
     </div>
   </div>
@@ -506,7 +506,7 @@ exports[`EuiAccordion props buttonContent is rendered 1`] = `
   >
     <div>
       <div
-        class=" emotion-euiAccordion__children"
+        class="euiAccordion__children emotion-euiAccordion__children"
       />
     </div>
   </div>
@@ -556,7 +556,7 @@ exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
   >
     <div>
       <div
-        class=" emotion-euiAccordion__children"
+        class="euiAccordion__children emotion-euiAccordion__children"
       />
     </div>
   </div>
@@ -604,7 +604,7 @@ exports[`EuiAccordion props buttonElement is rendered 1`] = `
   >
     <div>
       <div
-        class=" emotion-euiAccordion__children"
+        class="euiAccordion__children emotion-euiAccordion__children"
       />
     </div>
   </div>
@@ -637,7 +637,7 @@ exports[`EuiAccordion props buttonProps is rendered 1`] = `
       aria-controls="4"
       aria-expanded="false"
       aria-label="aria-label"
-      class="euiAccordion__button testClass1 testClass2 emotion-euiAccordion__button"
+      class="euiAccordion__button testClass1 testClass2 emotion-euiAccordion__button-euiTestCss"
       data-test-subj="test subject string"
       id="generated-id"
       type="button"
@@ -656,7 +656,7 @@ exports[`EuiAccordion props buttonProps is rendered 1`] = `
   >
     <div>
       <div
-        class=" emotion-euiAccordion__children"
+        class="euiAccordion__children emotion-euiAccordion__children"
       />
     </div>
   </div>
@@ -704,7 +704,7 @@ exports[`EuiAccordion props element is rendered 1`] = `
   >
     <div>
       <div
-        class=" emotion-euiAccordion__children"
+        class="euiAccordion__children emotion-euiAccordion__children"
       />
     </div>
   </div>
@@ -761,7 +761,7 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
   >
     <div>
       <div
-        class=" emotion-euiAccordion__children"
+        class="euiAccordion__children emotion-euiAccordion__children"
       />
     </div>
   </div>
@@ -811,7 +811,7 @@ exports[`EuiAccordion props forceState closed is rendered 1`] = `
   >
     <div>
       <div
-        class=" emotion-euiAccordion__children"
+        class="euiAccordion__children emotion-euiAccordion__children"
       >
         <p>
           You can not see me
@@ -865,7 +865,7 @@ exports[`EuiAccordion props forceState open is rendered 1`] = `
   >
     <div>
       <div
-        class=" emotion-euiAccordion__children"
+        class="euiAccordion__children emotion-euiAccordion__children"
       >
         <p>
           You can see me
@@ -919,7 +919,7 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
   >
     <div>
       <div
-        class=" emotion-euiAccordion__children"
+        class="euiAccordion__children emotion-euiAccordion__children"
       >
         <p>
           You can see me.
@@ -982,7 +982,7 @@ exports[`EuiAccordion props isLoading is rendered 1`] = `
   >
     <div>
       <div
-        class="euiAccordion__children-isLoading emotion-euiAccordion__children-isLoading"
+        class="euiAccordion__children euiAccordion__children-isLoading emotion-euiAccordion__children-isLoading"
       />
     </div>
   </div>
@@ -1041,7 +1041,7 @@ exports[`EuiAccordion props isLoadingMessage is rendered 1`] = `
   >
     <div>
       <div
-        class="euiAccordion__children-isLoading emotion-euiAccordion__children-isLoading"
+        class="euiAccordion__children euiAccordion__children-isLoading emotion-euiAccordion__children-isLoading"
       >
         <span
           aria-label="Loading"

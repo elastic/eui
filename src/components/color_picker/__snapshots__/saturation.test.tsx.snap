@@ -3,7 +3,7 @@
 exports[`EuiHue accepts a color 1`] = `
 <div
   aria-label="aria-label"
-  class="euiSaturation testClass1 testClass2"
+  class="euiSaturation testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
   style="background:hsl(180, 100%, 50%)"
   tabindex="-1"
@@ -38,7 +38,7 @@ exports[`EuiHue accepts a color 1`] = `
 exports[`EuiHue is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiSaturation testClass1 testClass2"
+  class="euiSaturation testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
   style="background:hsl(1, 100%, 50%)"
   tabindex="-1"

@@ -15,7 +15,7 @@ Array [
       <button
         aria-haspopup="listbox"
         aria-label="aria-label"
-        class="euiSuperSelectControl euiFormControlLayout--1icons testClass1 testClass2"
+        class="euiSuperSelectControl euiFormControlLayout--1icons testClass1 testClass2 emotion-euiTestCss"
         data-test-subj="test subject string"
         type="button"
       />

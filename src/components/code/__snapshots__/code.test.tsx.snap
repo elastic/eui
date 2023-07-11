@@ -3,7 +3,7 @@
 exports[`EuiCode renders a code snippet 1`] = `
 <code
   aria-label="aria-label"
-  class="euiCode testClass1 testClass2 emotion-euiCode"
+  class="euiCode testClass1 testClass2 emotion-euiCode-euiTestCss"
   data-code-language="text"
   data-test-subj="test subject string"
 >
@@ -15,7 +15,7 @@ console.log(some);
 exports[`EuiCode renders languages 1`] = `
 <code
   aria-label="aria-label"
-  class="euiCode testClass1 testClass2 emotion-euiCode"
+  class="euiCode testClass1 testClass2 emotion-euiCode-euiTestCss"
   data-code-language="js"
   data-test-subj="test subject string"
 >
@@ -80,7 +80,7 @@ exports[`EuiCode renders languages 1`] = `
 exports[`EuiCode renders transparent backgrounds 1`] = `
 <code
   aria-label="aria-label"
-  class="euiCode testClass1 testClass2 emotion-euiCode-transparentBackground"
+  class="euiCode testClass1 testClass2 emotion-euiCode-transparentBackground-euiTestCss"
   data-code-language="text"
   data-test-subj="test subject string"
 >

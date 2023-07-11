@@ -7,12 +7,13 @@
  */
 
 import React from 'react';
+import { render } from '../../test/rtl';
 import { requiredProps } from '../../test';
-import { shallow } from 'enzyme';
-import { EuiSearchFilters, SearchFilterConfig } from './search_filters';
+
+import { EuiSearchBarFilters, SearchFilterConfig } from './search_filters';
 import { Query } from './query';
 
-describe('EuiSearchFilters', () => {
+describe('EuiSearchBarFilters', () => {
   test('render - no filters', () => {
     const props = {
       ...requiredProps,
@@ -21,9 +22,9 @@ describe('EuiSearchFilters', () => {
       filters: [],
     };
 
-    const component = shallow(<EuiSearchFilters {...props} />);
+    const { container } = render(<EuiSearchBarFilters {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('render - with filters', () => {
@@ -48,8 +49,8 @@ describe('EuiSearchFilters', () => {
       filters,
     };
 
-    const component = shallow(<EuiSearchFilters {...props} />);
+    const { container } = render(<EuiSearchBarFilters {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

@@ -7,8 +7,9 @@
  */
 
 import React, { useEffect } from 'react';
+import { render } from '../../../test/rtl';
 import { requiredProps } from '../../../test';
-import { mount } from 'enzyme';
+
 import { Query } from '../query';
 import {
   CustomComponentFilter,
@@ -39,22 +40,18 @@ describe('CustomComponentFilter', () => {
     },
   };
 
-  test('render', () => {
-    const component = mount(<CustomComponentFilter {...props} />);
-    expect(component).toMatchSnapshot();
-  });
-
-  test('render the provided component', () => {
-    const component = mount(<CustomComponentFilter {...props} />);
-
-    expect(component.find('[data-test-subj="customComponent"]').text()).toEqual(
+  it('renders the provided component', () => {
+    const { container, getByTestSubject } = render(
+      <CustomComponentFilter {...props} />
+    );
+    expect(getByTestSubject('customComponent').textContent).toEqual(
       'Custom component'
     );
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('passes down the Query instance and the onChange handler', () => {
-    mount(<CustomComponentFilter {...props} />);
-    expect(props.onChange).toHaveBeenCalled();
+  it('passes down the Query instance and the onChange handler', () => {
+    render(<CustomComponentFilter {...props} />);
     expect(props.onChange).toHaveBeenCalledWith(props.query);
   });
 });

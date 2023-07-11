@@ -172,7 +172,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   const euiTheme = useEuiTheme();
 
   const iconStyles = euiListGroupItemIconStyles(euiTheme);
-  const cssIconStyles = [iconStyles.euiListGroupItem__icon];
+  const cssIconStyles = [iconStyles.euiListGroupItem__icon, iconProps?.css];
 
   let iconNode;
 
@@ -180,10 +180,10 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     iconNode = (
       <EuiIcon
         color="inherit" // forces the icon to inherit its parent color
-        css={cssIconStyles}
         {...iconProps}
         type={iconType}
         className={classNames('euiListGroupItem__icon', iconProps?.className)}
+        css={cssIconStyles}
       />
     );
 

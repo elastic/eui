@@ -12,7 +12,7 @@ Array [
   >
     <div
       aria-label="aria-label"
-      class="euiModal euiModal--confirmation testClass1 testClass2 emotion-euiModal-defaultMaxWidth-confirmation"
+      class="euiModal euiModal--confirmation testClass1 testClass2 emotion-euiModal-defaultMaxWidth-confirmation-euiTestCss"
       data-test-subj="test subject string"
       tabindex="0"
     >
@@ -110,7 +110,7 @@ Array [
   >
     <div
       aria-label="aria-label"
-      class="euiModal euiModal--confirmation testClass1 testClass2 emotion-euiModal-defaultMaxWidth-confirmation"
+      class="euiModal euiModal--confirmation testClass1 testClass2 emotion-euiModal-defaultMaxWidth-confirmation-euiTestCss"
       data-test-subj="test subject string"
       tabindex="0"
     >

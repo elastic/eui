@@ -3,7 +3,7 @@
 exports[`EuiPopoverArrow position bottom is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="testClass1 testClass2 emotion-euiPopoverArrow-bottom"
+  class="testClass1 testClass2 emotion-euiPopoverArrow-bottom-euiTestCss"
   data-popover-arrow="bottom"
   data-test-subj="test subject string"
 />
@@ -12,7 +12,7 @@ exports[`EuiPopoverArrow position bottom is rendered 1`] = `
 exports[`EuiPopoverArrow position left is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="testClass1 testClass2 emotion-euiPopoverArrow-left"
+  class="testClass1 testClass2 emotion-euiPopoverArrow-left-euiTestCss"
   data-popover-arrow="left"
   data-test-subj="test subject string"
 />
@@ -21,7 +21,7 @@ exports[`EuiPopoverArrow position left is rendered 1`] = `
 exports[`EuiPopoverArrow position right is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="testClass1 testClass2 emotion-euiPopoverArrow-right"
+  class="testClass1 testClass2 emotion-euiPopoverArrow-right-euiTestCss"
   data-popover-arrow="right"
   data-test-subj="test subject string"
 />
@@ -30,7 +30,7 @@ exports[`EuiPopoverArrow position right is rendered 1`] = `
 exports[`EuiPopoverArrow position top is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="testClass1 testClass2 emotion-euiPopoverArrow-top"
+  class="testClass1 testClass2 emotion-euiPopoverArrow-top-euiTestCss"
   data-popover-arrow="top"
   data-test-subj="test subject string"
 />

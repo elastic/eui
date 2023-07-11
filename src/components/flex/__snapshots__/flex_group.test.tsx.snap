@@ -3,7 +3,7 @@
 exports[`EuiFlexGroup is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiFlexGroup testClass1 testClass2 emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
+  class="euiFlexGroup testClass1 testClass2 emotion-euiFlexGroup-responsive-l-flexStart-stretch-row-euiTestCss"
   data-test-subj="test subject string"
 >
   <h2>

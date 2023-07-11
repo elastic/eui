@@ -82,7 +82,7 @@ exports[`EuiRange inherits fullWidth from <EuiForm /> 1`] = `
 
 exports[`EuiRange is rendered 1`] = `
 <div
-  class="euiRangeWrapper euiRange testClass1 testClass2 emotion-euiRangeWrapper-regular-euiRange"
+  class="euiRangeWrapper euiRange testClass1 testClass2 emotion-euiRangeWrapper-regular-euiRange-euiTestCss"
 >
   <div
     aria-hidden="false"
@@ -225,7 +225,7 @@ exports[`EuiRange props fullWidth should render 1`] = `
 
 exports[`EuiRange props input should render 1`] = `
 <div
-  class="euiRangeWrapper euiRange testClass1 testClass2 emotion-euiRangeWrapper-regular-euiRange-hasInput"
+  class="euiRangeWrapper euiRange testClass1 testClass2 emotion-euiRangeWrapper-regular-euiRange-hasInput-euiTestCss"
 >
   <div
     aria-hidden="true"

@@ -30,6 +30,14 @@ const inlineEditTitleSnippet = `<EuiInlineEditTitle
   size="m"
 />`;
 
+import InlineEditPlaceholder from './inline_edit_placeholder';
+const inlineEditPlaceholderSource = require('!!raw-loader!./inline_edit_placeholder');
+const inlineEditPlaceholderSnippet = `<EuiInlineEditText
+  inputAriaLabel="Edit text inline"
+  defaultValue=""
+  placeholder="This is placeholder text!"
+/>`;
+
 import InlineEditSave from './inline_edit_save';
 const inlineEditSaveSource = require('!!raw-loader!././inline_edit_save');
 const inlineEditModeSaveSnippet = `<EuiInlineEditText
@@ -193,6 +201,27 @@ export const InlineEditExample = {
         },
       ],
       demo: <InlineEditValidation />,
+    },
+    {
+      title: 'Setting placeholder instructions',
+      text: (
+        <>
+          <p>
+            The <EuiCode>placeholder</EuiCode> property will display in both
+            read and edit mode whenever the <strong>EuiInlineEdit</strong>'s
+            value is empty. Use placeholder text to provide guidance or
+            instructions to consumers as to what they're editing.
+          </p>
+        </>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: inlineEditPlaceholderSource,
+        },
+      ],
+      demo: <InlineEditPlaceholder />,
+      snippet: inlineEditPlaceholderSnippet,
     },
     {
       title: 'Start in edit mode',

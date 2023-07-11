@@ -3,7 +3,7 @@
 exports[`EuiCallOut is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary testClass1 testClass2 emotion-euiPanel-none-m-primary-euiCallOut"
+  class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary testClass1 testClass2 emotion-euiPanel-none-m-primary-euiCallOut-euiTestCss"
   data-test-subj="test subject string"
 >
   <div

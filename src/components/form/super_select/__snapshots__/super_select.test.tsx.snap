@@ -21,7 +21,7 @@ exports[`EuiSuperSelect is rendered 1`] = `
           <button
             aria-haspopup="listbox"
             aria-label="aria-label"
-            class="euiSuperSelectControl euiFormControlLayout--1icons testClass1 testClass2"
+            class="euiSuperSelectControl euiFormControlLayout--1icons testClass1 testClass2 emotion-euiTestCss"
             data-test-subj="test subject string"
             type="button"
           />
@@ -66,7 +66,7 @@ exports[`EuiSuperSelect props compressed is rendered 1`] = `
           <button
             aria-haspopup="listbox"
             aria-label="aria-label"
-            class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--compressed testClass1 testClass2"
+            class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--compressed testClass1 testClass2 emotion-euiTestCss"
             data-test-subj="test subject string"
             type="button"
           />
@@ -254,7 +254,7 @@ exports[`EuiSuperSelect props fullWidth is rendered 1`] = `
           <button
             aria-haspopup="listbox"
             aria-label="aria-label"
-            class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--fullWidth testClass1 testClass2"
+            class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--fullWidth testClass1 testClass2 emotion-euiTestCss"
             data-test-subj="test subject string"
             type="button"
           />
@@ -304,7 +304,7 @@ exports[`EuiSuperSelect props is rendered with a prepend and append 1`] = `
           <button
             aria-haspopup="listbox"
             aria-label="aria-label"
-            class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--inGroup testClass1 testClass2"
+            class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--inGroup testClass1 testClass2 emotion-euiTestCss"
             data-test-subj="test subject string"
             type="button"
           />

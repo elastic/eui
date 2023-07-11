@@ -7,12 +7,14 @@
  */
 
 import React from 'react';
-import { requiredProps } from '../../test';
 import { shallow } from 'enzyme';
+import { render } from '../../test/rtl';
+import { requiredProps } from '../../test';
+
 import { PaginationBar } from './pagination_bar';
 
 describe('PaginationBar', () => {
-  test('render', () => {
+  it('renders', () => {
     const props = {
       ...requiredProps,
       pagination: {
@@ -24,14 +26,13 @@ describe('PaginationBar', () => {
       onPageChange: () => {},
     };
 
-    const component = shallow(<PaginationBar {...props} />);
+    const { container } = render(<PaginationBar {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('render - custom page size options', () => {
     const props = {
-      ...requiredProps,
       pagination: {
         pageIndex: 0,
         pageSize: 5,
@@ -49,7 +50,6 @@ describe('PaginationBar', () => {
 
   test('render - hiding per page options', () => {
     const props = {
-      ...requiredProps,
       pagination: {
         pageIndex: 0,
         pageSize: 5,
@@ -67,7 +67,6 @@ describe('PaginationBar', () => {
 
   test('render - show all pageSize', () => {
     const props = {
-      ...requiredProps,
       pagination: {
         pageIndex: 0,
         pageSize: 0,

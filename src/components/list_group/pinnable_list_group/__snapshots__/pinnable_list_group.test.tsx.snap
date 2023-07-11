@@ -3,7 +3,7 @@
 exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
 <ul
   aria-label="aria-label"
-  class="euiListGroup euiPinnableListGroup testClass1 testClass2 emotion-euiListGroup-s-maxWidthDefault"
+  class="euiListGroup euiPinnableListGroup testClass1 testClass2 emotion-euiListGroup-s-maxWidthDefault-euiTestCss"
   data-test-subj="test subject string"
 >
   <li
@@ -172,7 +172,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
 exports[`EuiPinnableListGroup is rendered 1`] = `
 <ul
   aria-label="aria-label"
-  class="euiListGroup euiPinnableListGroup testClass1 testClass2 emotion-euiListGroup-s-maxWidthDefault"
+  class="euiListGroup euiPinnableListGroup testClass1 testClass2 emotion-euiListGroup-s-maxWidthDefault-euiTestCss"
   data-test-subj="test subject string"
 >
   <li
