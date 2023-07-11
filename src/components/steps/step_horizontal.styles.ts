@@ -17,7 +17,6 @@ import {
 } from '../../global_styling/';
 import { euiTitle } from '../title/title.styles';
 import { euiStepVariables } from './step.styles';
-import { EuiStepsHorizontalSizes } from './steps_horizontal';
 
 export const euiStepHorizontalStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -29,10 +28,7 @@ export const euiStepHorizontalStyles = (euiThemeContext: UseEuiTheme) => {
    *    e.g. due to some of their titles wrapping to multiple lines
    */
 
-  const _generateStepSizeAndInset = (size: EuiStepsHorizontalSizes) => {
-    const stepNumberSize =
-      size === 's' ? euiStep.numberXSSize : euiStep.numberSize;
-
+  const _generateStepSizeAndInset = (stepNumberSize: string) => {
     return css`
       &::before,
       &::after {
@@ -78,8 +74,8 @@ export const euiStepHorizontalStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     // Adjust the size of the step number and connecting lines based on size
-    m: _generateStepSizeAndInset('m'),
-    s: _generateStepSizeAndInset('s'),
+    m: _generateStepSizeAndInset(euiStep.numberSize),
+    s: _generateStepSizeAndInset(euiStep.numberXSSize),
     // Note: these selectors must be nested because focus/hover state
     // is on the parent container, but affects specific children
     enabled: css`
