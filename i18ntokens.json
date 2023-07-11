@@ -5,14 +5,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 362,
+        "line": 349,
         "column": 16,
-        "index": 10487
+        "index": 10174
       },
       "end": {
-        "line": 362,
+        "line": 349,
         "column": 76,
-        "index": 10547
+        "index": 10234
       }
     },
     "filepath": "src/components/accordion/accordion.tsx"
@@ -4847,14 +4847,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 562,
+        "line": 614,
         "column": 6,
-        "index": 17169
+        "index": 18263
       },
       "end": {
-        "line": 565,
+        "line": 617,
         "column": 8,
-        "index": 17404
+        "index": 18498
       }
     },
     "filepath": "src/components/form/range/dual_range.tsx"
