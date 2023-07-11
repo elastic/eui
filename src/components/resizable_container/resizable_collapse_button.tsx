@@ -80,8 +80,8 @@ export const EuiResizableCollapseButton: FunctionComponent<
 
   return (
     <EuiButtonIcon
-      display={isCollapsed ? 'empty' : 'fill'}
-      color={isCollapsed ? 'text' : 'ghost'}
+      display={isCollapsed ? 'empty' : 'base'}
+      color="text"
       {...rest}
       className={classes}
       iconType={isCollapsed ? COLLAPSED_ICON : NOT_COLLAPSED_ICON}
