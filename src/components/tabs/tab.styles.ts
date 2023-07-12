@@ -36,6 +36,7 @@ export const euiTabStyles = ({ euiTheme }: UseEuiTheme) => {
     `,
     selected: css`
       box-shadow: inset 0 -${euiTheme.border.width.thick} 0 ${euiTheme.colors.primary};
+      color: ${euiTheme.colors.primaryText};
     `,
     disabled: {
       disabled: css`
