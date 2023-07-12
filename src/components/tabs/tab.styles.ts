@@ -26,7 +26,6 @@ export const euiTabStyles = ({ euiTheme }: UseEuiTheme) => {
       color: ${euiTheme.colors.title};
 
       &:focus {
-        background-color: transparent;
         outline-offset: -${euiTheme.focus.width};
       }
     `,
@@ -58,10 +57,6 @@ export const euiTabContentStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     euiTab__content: css`
       font-weight: ${euiTheme.font.weight[euiTheme.font.title.weight]};
-
-      &:hover {
-        text-decoration: none;
-      }
     `,
     // sizes
     s: css`
