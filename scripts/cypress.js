@@ -37,8 +37,6 @@ const reactVersion = argv['react-version'];
 const info = chalk.white;
 const log = chalk.grey;
 
-console.log(info(`Running tests on React v${reactVersion}`));
-
 // compile scss -> css so tests can render correctly
 if (!skipScss) {
   console.log(info('Compiling SCSS'));
@@ -68,6 +66,7 @@ const cypressCommandParts = [
 ];
 const cypressCommand = cypressCommandParts.join(' ');
 
+console.log(info(`Running tests on React v${reactVersion}`));
 console.log(info(`${isDev ? 'Opening' : 'Running'} cypress`));
 console.log(log(cypressCommand));
 execSync(cypressCommand, {
