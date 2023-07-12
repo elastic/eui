@@ -6,21 +6,26 @@
  * Side Public License, v 1.
  */
 
-import { React, Fragment } from 'react';
+import React, { ReactNode } from 'react';
 import './mount';
 
-Cypress.Commands.add('realMount', (children) => {
+const realMountCommand = (children: ReactNode) => {
   cy.mount(
-    <Fragment>
+    <>
       <div
         data-test-subj="cypress-real-event-target"
         style={{ height: '1px', width: '1px' }}
       />
       {children}
-    </Fragment>
+    </>
   ).then(() => {
     cy.get('[data-test-subj="cypress-real-event-target"]').realClick({
       position: 'topLeft',
     });
   });
-});
+};
+
+// Export only the type to not confuse code-completion tools
+export type realMountCommand = typeof realMountCommand;
+
+Cypress.Commands.add('realMount', realMountCommand);
