@@ -17,7 +17,12 @@ import { createPortal } from 'react-dom';
 import { EuiNestedThemeContext } from '../../services';
 import { useEuiComponentDefaults } from '../provider/component_defaults';
 
-import { insertPositions } from './portal.types';
+const INSERT_POSITIONS = ['after', 'before'] as const;
+type EuiPortalInsertPosition = (typeof INSERT_POSITIONS)[number];
+const insertPositions: Record<EuiPortalInsertPosition, InsertPosition> = {
+  after: 'afterend',
+  before: 'beforebegin',
+};
 
 export interface EuiPortalProps {
   /**
@@ -28,7 +33,7 @@ export interface EuiPortalProps {
    * If not specified, `EuiPortal` will insert itself
    * into the end of the `document.body` by default
    */
-  insert?: { sibling: HTMLElement; position: 'before' | 'after' };
+  insert?: { sibling: HTMLElement; position: EuiPortalInsertPosition };
   /**
    * Optional ref callback
    */
