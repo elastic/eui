@@ -20,8 +20,7 @@ import { EuiNotificationBadge } from '../badge';
 import { EuiLoadingSpinner } from '../loading';
 import { EuiInnerText } from '../inner_text';
 
-import { cloneElementWithCss } from '../../services/theme/clone_element';
-import { useEuiTheme } from '../../services';
+import { useEuiTheme, cloneElementWithCss } from '../../services';
 import {
   euiFacetButtonStyles,
   euiFacetButtonTextStyles,

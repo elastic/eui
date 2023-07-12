@@ -11,7 +11,7 @@ import { css } from '@emotion/react';
 import { get, set } from 'lodash';
 
 import { render } from '../rtl';
-import { cloneElementWithCss } from '../../services/theme/clone_element';
+import { cloneElementWithCss } from '../../services';
 import { keysOf } from '../../components';
 
 export const customStyles = {
