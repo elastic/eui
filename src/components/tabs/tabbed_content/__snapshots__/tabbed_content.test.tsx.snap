@@ -15,7 +15,7 @@ exports[`EuiTabbedContent behavior when selected tab state isn't controlled by t
       type="button"
     >
       <span
-        class="euiTab__content emotion-euiTab__content-m-selected"
+        class="euiTab__content emotion-euiTab__content-m"
       >
         Elasticsearch
       </span>
@@ -95,7 +95,7 @@ exports[`EuiTabbedContent behavior when uncontrolled, the selected tab should up
         prepend
       </span>
       <span
-        class="euiTab__content emotion-euiTab__content-m-selected"
+        class="euiTab__content emotion-euiTab__content-m"
       >
         <strong>
           Kibana
@@ -139,7 +139,7 @@ exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
       type="button"
     >
       <span
-        class="euiTab__content emotion-euiTab__content-m-selected"
+        class="euiTab__content emotion-euiTab__content-m"
       >
         Elasticsearch
       </span>
@@ -199,7 +199,7 @@ exports[`EuiTabbedContent props autoFocus initial is rendered 1`] = `
       type="button"
     >
       <span
-        class="euiTab__content emotion-euiTab__content-m-selected"
+        class="euiTab__content emotion-euiTab__content-m"
       >
         Elasticsearch
       </span>
@@ -259,7 +259,7 @@ exports[`EuiTabbedContent props autoFocus selected is rendered 1`] = `
       type="button"
     >
       <span
-        class="euiTab__content emotion-euiTab__content-m-selected"
+        class="euiTab__content emotion-euiTab__content-m"
       >
         Elasticsearch
       </span>
@@ -339,7 +339,7 @@ exports[`EuiTabbedContent props initialSelectedTab renders a selected tab 1`] = 
         prepend
       </span>
       <span
-        class="euiTab__content emotion-euiTab__content-m-selected"
+        class="euiTab__content emotion-euiTab__content-m"
       >
         <strong>
           Kibana
@@ -399,7 +399,7 @@ exports[`EuiTabbedContent props selectedTab renders a selected tab 1`] = `
         prepend
       </span>
       <span
-        class="euiTab__content emotion-euiTab__content-m-selected"
+        class="euiTab__content emotion-euiTab__content-m"
       >
         <strong>
           Kibana
@@ -439,7 +439,7 @@ exports[`EuiTabbedContent props size can be small 1`] = `
       type="button"
     >
       <span
-        class="euiTab__content emotion-euiTab__content-s-selected"
+        class="euiTab__content emotion-euiTab__content-s"
       >
         Elasticsearch
       </span>

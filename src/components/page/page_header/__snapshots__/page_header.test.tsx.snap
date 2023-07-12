@@ -337,7 +337,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
               type="button"
             >
               <span
-                class="euiTab__content emotion-euiTab__content-l-selected"
+                class="euiTab__content emotion-euiTab__content-l"
               >
                 Tab 1
               </span>
