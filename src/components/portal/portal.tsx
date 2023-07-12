@@ -37,7 +37,14 @@ export interface EuiPortalProps {
    * ReactNode to render as this component's content
    */
   children: ReactNode;
+  /**
+   * If not specified, `EuiPortal` will insert itself
+   * into the end of the `document.body` by default
+   */
   insert?: { sibling: HTMLElement; position: 'before' | 'after' };
+  /**
+   * Optional ref callback
+   */
   portalRef?: (ref: HTMLDivElement | null) => void;
 }
 
