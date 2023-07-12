@@ -28,6 +28,7 @@ import {
   EuiModificationsContext,
   EuiColorModeContext,
 } from './context';
+import { EuiEmotionThemeProvider } from './emotion';
 import { buildTheme, getColorMode, getComputed, mergeDeep } from './utils';
 import {
   EuiThemeColorMode,
@@ -35,12 +36,6 @@ import {
   EuiThemeSystem,
   EuiThemeModifications,
 } from './types';
-
-type LEVELS = 'log' | 'warn' | 'error';
-let providerWarning: LEVELS | undefined = undefined;
-export const setEuiDevProviderWarning = (level: LEVELS | undefined) =>
-  (providerWarning = level);
-export const getEuiDevProviderWarning = () => providerWarning;
 
 export interface EuiThemeProviderProps<T> {
   theme?: EuiThemeSystem<T>;
@@ -190,7 +185,9 @@ export const EuiThemeProvider = <T extends {} = {}>({
         <EuiModificationsContext.Provider value={modifications}>
           <EuiThemeContext.Provider value={theme}>
             <EuiNestedThemeContext.Provider value={nestedThemeContext}>
-              {renderedChildren}
+              <EuiEmotionThemeProvider>
+                {renderedChildren}
+              </EuiEmotionThemeProvider>
             </EuiNestedThemeContext.Provider>
           </EuiThemeContext.Provider>
         </EuiModificationsContext.Provider>

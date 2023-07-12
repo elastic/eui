@@ -12,6 +12,9 @@ const consumingSource = require('!!raw-loader!./consuming');
 import { ConsumingHOC } from './consuming_hoc';
 const consumingHOCSource = require('!!raw-loader!./consuming_hoc');
 
+import ConsumingEmotionTheme from './consuming_emotion_theme';
+const consumingEmotionThemeSource = require('!!raw-loader!./consuming_emotion_theme');
+
 import OverrideSimple from './override_simple';
 const overrideSimpleSource = require('!!raw-loader!./override_simple');
 
@@ -153,6 +156,36 @@ export const ThemeExample = {
         </>
       ),
       demo: <ConsumingHOC />,
+    },
+    {
+      title: "Consuming with Emotion's theming",
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: consumingEmotionThemeSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            <strong>EuiThemeProvider</strong> by default sets an{' '}
+            <EuiLink href="https://emotion.sh/docs/theming" target="_blank">
+              Emotion theme context
+            </EuiLink>{' '}
+            with the results of <strong>useEuiTheme()</strong>. This is a
+            syntactical sugar convenience that allows you to take advantage of
+            Emotion's <EuiCode>styled</EuiCode> syntax, or use a function in the{' '}
+            <EuiCode>css</EuiCode> prop.
+          </p>
+          <p>
+            If you prefer to use or access your own custom Emotion theme, you
+            can completely override EUI's passed theme at any time with your own{' '}
+            <EuiCode>ThemeProvider</EuiCode> - see the second box below for an
+            example.
+          </p>
+        </>
+      ),
+      demo: <ConsumingEmotionTheme />,
     },
     {
       title: 'Simple instance overrides',
