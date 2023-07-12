@@ -8,12 +8,17 @@ import {
   EuiCodeBlock,
   EuiLink,
   EuiSpacer,
+  EuiCallOut,
 } from '../../../../src/components';
 
 import { GuideSectionPropsTable } from '../../components/guide_section/guide_section_parts/guide_section_props_table';
 
 import Setup from './provider_setup';
 import GlobalStyles from './provider_styles';
+import {
+  EuiComponentDefaultsProps,
+  euiProviderComponentDefaultsSnippet,
+} from './provider_component_defaults';
 
 export const ProviderExample = {
   title: 'Provider',
@@ -21,8 +26,7 @@ export const ProviderExample = {
     <EuiText>
       <p>
         <strong>EuiProvider</strong> contains all necessary context providers
-        required for full functionality and styling of EUI. It currently
-        includes the{' '}
+        required for full functionality and styling of EUI. It includes{' '}
         <Link to="/theming/theme-provider">
           <strong>EuiThemeProvider</strong>
         </Link>{' '}
@@ -130,6 +134,66 @@ export const ProviderExample = {
             library, so you will need to add it to your application
             dependencies.
           </p>
+        </EuiText>
+      ),
+    },
+    {
+      title: 'Component defaults',
+      isBeta: true,
+      text: (
+        <EuiText>
+          <EuiCallOut title="Beta status" iconType="beta">
+            <p>
+              This functionality is still currently in beta, and the list of
+              components as well as defaults that EUI will be supporting is
+              still under consideration. If you have a component you would like
+              to see added, feel free to{' '}
+              <EuiLink
+                href="https://github.com/elastic/eui/discussions/6922"
+                target="_blank"
+              >
+                discuss that request in EUI's GitHub repo
+              </EuiLink>
+              .
+            </p>
+          </EuiCallOut>
+          <EuiSpacer />
+
+          <p>
+            All EUI components ship with a set of baseline defaults that can
+            usually be configured via props. For example,{' '}
+            <Link to="/utilities/focus-trap">
+              <strong>EuiFocusTrap</strong>
+            </Link>{' '}
+            defaults to <EuiCode>crossFrame={'{false}'}</EuiCode> - i.e., it
+            does not trap focus between iframes. If you wanted to change that
+            behavior in your app across all instances of{' '}
+            <strong>EuiFocusTrap</strong>, you would be stuck manually passing
+            that prop over and over again, including in higher-level components
+            (like modals, popovers, and flyouts) that utilize focus traps.
+          </p>
+          <p>
+            <strong>EuiProvider</strong> allows overriding some component
+            defaults across all component usages globally via the{' '}
+            <EuiCode>componentDefaults</EuiCode> prop like so:
+          </p>
+
+          <EuiCodeBlock language="jsx" isCopyable fontSize="m">
+            {euiProviderComponentDefaultsSnippet}
+          </EuiCodeBlock>
+
+          <p>
+            The above example would override EUI's default table pagination size
+            (50) across all usages of EUI tables and data grids, all EUI focus
+            traps would trap focus even from iframes, and all EUI portals would
+            be inserted at a specified position (instead of the end of the
+            document body).
+          </p>
+          <p>
+            The current list of supported components and the prop defaults they
+            accept are:
+          </p>
+          <GuideSectionPropsTable component={EuiComponentDefaultsProps} />
         </EuiText>
       ),
     },
