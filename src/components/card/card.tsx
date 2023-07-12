@@ -16,8 +16,11 @@ import React, {
 import classNames from 'classnames';
 
 import { CommonProps, ExclusiveUnion } from '../common';
-import { getSecureRelForTarget, useEuiTheme } from '../../services';
-import { cloneElementWithCss } from '../../services/theme/clone_element';
+import {
+  getSecureRelForTarget,
+  useEuiTheme,
+  cloneElementWithCss,
+} from '../../services';
 import { EuiText } from '../text';
 import { EuiTitle } from '../title';
 import { EuiBetaBadge, EuiBetaBadgeProps } from '../badge/beta_badge';
