@@ -32,7 +32,7 @@
     "lint-sass": "yarn stylelint \"**/*.scss\" --quiet-deprecation-warnings",
     "test": "yarn lint && yarn test-unit",
     "test-ci": "yarn test && yarn test-cypress",
-    "test-unit": "cross-env NODE_ENV=test jest --config ./scripts/jest/config.json",
+    "test-unit": "cross-env NODE_ENV=test jest --config ./scripts/jest/config.js",
     "test-a11y": "node ./scripts/a11y-testing",
     "test-staged": "yarn lint && node scripts/test-staged.js",
     "test-cypress": "node ./scripts/cypress",
