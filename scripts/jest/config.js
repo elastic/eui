@@ -1,3 +1,15 @@
+const getCacheDirectory =
+  require('jest-config/build/getCacheDirectory').default;
+
+// Set REACT_VERSION env variable to latest if empty or invalid
+if (!['16', '17', '18'].includes(process.env.REACT_VERSION)) {
+  process.env.REACT_VERSION = '18';
+}
+
+const reactVersion = process.env.REACT_VERSION;
+
+console.log(`Running tests on React v${reactVersion}`);
+
 /** @type {import('jest').Config} */
 const config = {
   rootDir: '../../',
@@ -40,6 +52,15 @@ const config = {
     '<rootDir>/node_modules/enzyme-to-json/serializer',
     '<rootDir>/scripts/jest/setup/emotion',
   ],
+  // react version and user permissions aware cache directory
+  cacheDirectory: `${getCacheDirectory()}_react-${reactVersion}`,
 };
+
+if (['16', '17'].includes(reactVersion)) {
+  config.moduleNameMapper['^react((\\/.*)?)$'] = `react-${reactVersion}$1`;
+  config.moduleNameMapper[
+    '^react-dom((\\/.*)?)$'
+  ] = `react-dom-${reactVersion}$1`;
+}
 
 module.exports = config;
