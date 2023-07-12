@@ -106,9 +106,9 @@ This provides a walkthrough of the patching & backport release process; examples
 * Let people know the backport is released
 * Celebrate profusely
 
-# Prerelease process
+# Pre-release process
 
-Some changes may be particularly difficult to test in local EUI environments alone, or effects may be so wide-ranging that they should be tested against Kibana's expansive set of CI tests beforehand to catch as many regressions as possible. In those scenarios, we should utilize a prerelease RC that we can point other staging or CI environments for easier QA.
+Some changes may be particularly difficult to test in local EUI environments alone, or effects may be so wide-ranging that they should be tested against Kibana's expansive set of CI tests beforehand to catch as many regressions as possible. In those scenarios, we should utilize a release candidate (RC) that we can point to other staging or CI environments for easier testing.
 
 The prerelease process is very similar to the backport process above, with different arguments for the `npm version` and `npm publish` steps.
 
