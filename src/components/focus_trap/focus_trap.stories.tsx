@@ -21,9 +21,7 @@ const meta: Meta<EuiFocusTrapProps> = {
   // @ts-ignore This still works for Storybook controls, even though Typescript complains
   component: EuiFocusTrap,
   argTypes: {
-    crossFrame: {
-      control: { type: 'boolean' },
-    },
+    returnFocus: { type: 'boolean' },
   },
 };
 
@@ -39,7 +37,11 @@ const StatefulFocusTrap = (props: Partial<EuiFocusTrapProps>) => {
       </EuiButton>
       <EuiSpacer />
       <EuiPanel>
-        <EuiFocusTrap {...props} disabled={disabled}>
+        <EuiFocusTrap
+          {...props}
+          disabled={disabled}
+          onDeactivation={() => setDisabled(true)}
+        >
           Focus trap is currently {disabled ? 'disabled' : 'enabled'}
           <EuiFieldText />
           <EuiButton size="s">Button inside focus trap</EuiButton>
