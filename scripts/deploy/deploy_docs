@@ -88,7 +88,7 @@ if [[ "$1" != "nodocker" ]]; then
     /app/scripts/deploy/deploy_docs nodocker "$@"
   unset GCE_ACCOUNT
 
-  if [[ -n "${pull_request_id}" ]]; then
+  if [[ ! -z "${pull_request_id}" ]]; then
     post_comment_to_gh
   fi
   unset GITHUB_TOKEN
@@ -109,14 +109,12 @@ else
 
   max_age="1800"
 
-  if [[ -n "${pull_request_id}" ]]; then
+  if [[ ! -z "${pull_request_id}" ]]; then
     # Add a prefix/suffix for Buildkite
     # Add statement to check same for main releases
     # Then PR to remove those when we turn off Jenkins
     # Future listen for PR closes and remove the PR bucket
-    if [[ -n "${BUILDKITE_CHECK}" ]]; then
-      echo "Buildkite environment: ${BUILDKITE_CHECK}"
-    fi
+    echo "Buildkite environment: ${BUILDKITE_CHECK}"
     echo "This is the pull request."
     full_bucket_path="gs://$BUCKET/pr_$pull_request_id/"
     publish_to_bucket
@@ -128,9 +126,7 @@ else
     # if this is the highest release number to date, also publish the docs to the
     # root directory
     if [[ "$CURRENT_RELEASE" == "$GIT_BRANCH" ]]; then
-      if [[ -n "${BUILDKITE_CHECK}" ]]; then
-        echo "Buildkite environment: ${BUILDKITE_CHECK}"
-      fi
+      echo "Buildkite environment: ${BUILDKITE_CHECK}"
       echo "This is the current release."
       full_bucket_path="gs://$BUCKET/"
       publish_to_bucket
