@@ -22,6 +22,7 @@ import {
 } from '../../services';
 import { EuiThemeAmsterdam } from '../../themes';
 import { EuiCacheProvider } from './cache';
+import { EuiProviderNestedCheck } from './nested';
 
 const isEmotionCacheObject = (
   obj: EmotionCache | Object
@@ -94,27 +95,32 @@ export const EuiProvider = <T extends {} = {}>({
       utilityCache = cache.utility;
     }
   }
+
   return (
-    <EuiCacheProvider cache={defaultCache ?? fallbackCache}>
-      <EuiThemeProvider
-        theme={theme ?? undefined}
-        colorMode={colorMode}
-        modify={modify}
-      >
-        {theme && (
-          <>
-            <EuiCacheProvider
-              cache={globalCache}
-              children={Globals && <Globals />}
-            />
-            <EuiCacheProvider
-              cache={utilityCache}
-              children={Utilities && <Utilities />}
-            />
-          </>
-        )}
-        <CurrentEuiBreakpointProvider>{children}</CurrentEuiBreakpointProvider>
-      </EuiThemeProvider>
-    </EuiCacheProvider>
+    <EuiProviderNestedCheck>
+      <EuiCacheProvider cache={defaultCache ?? fallbackCache}>
+        <EuiThemeProvider
+          theme={theme ?? undefined}
+          colorMode={colorMode}
+          modify={modify}
+        >
+          {theme && (
+            <>
+              <EuiCacheProvider
+                cache={globalCache}
+                children={Globals && <Globals />}
+              />
+              <EuiCacheProvider
+                cache={utilityCache}
+                children={Utilities && <Utilities />}
+              />
+            </>
+          )}
+          <CurrentEuiBreakpointProvider>
+            {children}
+          </CurrentEuiBreakpointProvider>
+        </EuiThemeProvider>
+      </EuiCacheProvider>
+    </EuiProviderNestedCheck>
   );
 };
