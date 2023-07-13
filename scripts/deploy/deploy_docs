@@ -116,12 +116,10 @@ else
     # Future listen for PR closes and remove the PR bucket
     if [[ -n "${BUILDKITE_CHECK}" ]]; then
       echo "Buildkite environment: ${BUILDKITE_CHECK}"
-      full_bucket_path="gs://$BUCKET/buildkite/pr_$pull_request_id/"
-      publish_to_bucket
-    else
-      full_bucket_path="gs://$BUCKET/pr_$pull_request_id/"
-      publish_to_bucket
     fi
+    echo "This is the pull request."
+    full_bucket_path="gs://$BUCKET/pr_$pull_request_id/"
+    publish_to_bucket
   else
     full_bucket_path="gs://$BUCKET/$BRANCH/"
     max_age="604800"
@@ -132,13 +130,10 @@ else
     if [[ "$CURRENT_RELEASE" == "$GIT_BRANCH" ]]; then
       if [[ -n "${BUILDKITE_CHECK}" ]]; then
         echo "Buildkite environment: ${BUILDKITE_CHECK}"
-        full_bucket_path="gs://$BUCKET/buildkite/"
-        publish_to_bucket
-      else
-        echo "This is the current release."
-        full_bucket_path="gs://$BUCKET/"
-        publish_to_bucket
       fi
+      echo "This is the current release."
+      full_bucket_path="gs://$BUCKET/"
+      publish_to_bucket
     fi
   fi
 fi

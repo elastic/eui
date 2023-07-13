@@ -8,4 +8,4 @@ steps:
     build:
       env:
         GIT_BRANCH: "${BUILDKITE_BRANCH}"
-        BUILDKITE_CHECK: ${BUILDKITE}
+        BUILDKITE_CHECK: "${BUILDKITE}"
