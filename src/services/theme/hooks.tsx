@@ -14,7 +14,7 @@ import {
   EuiColorModeContext,
   defaultComputedTheme,
 } from './context';
-import { getEuiDevProviderWarning } from './warning';
+import { emitEuiProviderWarning } from './warning';
 import {
   EuiThemeColorModeStandard,
   EuiThemeModifications,
@@ -39,20 +39,8 @@ export const useEuiTheme = <T extends {} = {}>(): UseEuiTheme<T> => {
   const modifications = useContext(EuiModificationsContext);
 
   const isFallback = theme === defaultComputedTheme;
-  const warningLevel = getEuiDevProviderWarning();
-  if (isFallback && typeof warningLevel !== 'undefined') {
-    switch (warningLevel) {
-      case 'log':
-        console.log(providerMessage);
-        break;
-      case 'warn':
-        console.warn(providerMessage);
-        break;
-      case 'error':
-        throw new Error(providerMessage);
-      default:
-        break;
-    }
+  if (isFallback) {
+    emitEuiProviderWarning(providerMessage);
   }
 
   const assembledTheme = useMemo(
