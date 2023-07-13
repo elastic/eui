@@ -98,7 +98,7 @@ describe('EuiSelectableListItem', () => {
           renderOption={(option: EuiSelectableOption, searchValue?: string) => {
             return (
               <span>
-                {searchValue} =&gt; {option.label}
+                {searchValue || undefined} =&gt; {option.label}
               </span>
             );
           }}

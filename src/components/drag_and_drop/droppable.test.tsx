@@ -14,6 +14,7 @@ import {
   findTestSubject,
   requiredProps,
   invokeOnReactVersion,
+  describeByReactVersion,
 } from '../../test';
 
 import { EuiDragDropContext, EuiDroppable } from './';
@@ -27,7 +28,7 @@ function snapshotDragDropContext(component: ReactWrapper) {
   return container.firstChild;
 }
 
-describe('EuiDroppable', () => {
+describeByReactVersion('EuiDroppable', () => {
   afterEach(() => {
     // Resetting DND server context is only required in older versions of React
     invokeOnReactVersion(['16', '17'], resetServerContext);

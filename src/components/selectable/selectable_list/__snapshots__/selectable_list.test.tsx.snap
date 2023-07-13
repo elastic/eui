@@ -2150,7 +2150,6 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
               <span>
-                
                  =&gt; 
                 Titan
               </span>
@@ -2179,7 +2178,6 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
               <span>
-                
                  =&gt; 
                 Enceladus
               </span>
@@ -2208,7 +2206,6 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
               <span>
-                
                  =&gt; 
                 Mimas
               </span>
@@ -2237,7 +2234,6 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
               <span>
-                
                  =&gt; 
                 Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
               </span>
@@ -2266,7 +2262,6 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
               <span>
-                
                  =&gt; 
                 Tethys
               </span>
@@ -2295,7 +2290,6 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
               <span>
-                
                  =&gt; 
                 Hyperion
               </span>
@@ -2596,7 +2590,6 @@ exports[`EuiSelectableListItem props searchValue 1`] = `
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
               <span>
-                
                 <mark
                   class="euiMark emotion-euiMark-hasScreenReaderHelpText"
                 >
@@ -2792,7 +2785,6 @@ exports[`EuiSelectableListItem props searchValue 2`] = `
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
               <span>
-                
                 <mark
                   class="euiMark emotion-euiMark-hasScreenReaderHelpText"
                 >
