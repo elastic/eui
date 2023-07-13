@@ -66,6 +66,14 @@ export const describeByReactVersion = (name: string, func: () => void) => {
   });
 };
 
+/**
+ * Jest test wrapper calling test() for every supported React version
+ * and prefixing the name with version numbers. Only the currently running
+ * version isn't skipped.
+ *
+ * It's primary use is to separate snapshots by React version in case there
+ * are differences with, for example, unique ID generation.
+ */
 export const testByReactVersion = (name: string, func: () => void) => {
   const currentVersion = getReactVersion();
 
