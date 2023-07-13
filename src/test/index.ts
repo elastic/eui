@@ -15,3 +15,4 @@ export {
 } from './react_warnings';
 export { sleep } from './sleep';
 export * from './emotion-prefix';
+export * from './react_version';
