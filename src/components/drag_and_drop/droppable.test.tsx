@@ -8,9 +8,13 @@
 
 import React from 'react';
 import { mount, ReactWrapper } from 'enzyme';
+import { resetServerContext } from '@hello-pangea/dnd';
 
-import { findTestSubject } from '../../test';
-import { requiredProps } from '../../test/required_props';
+import {
+  findTestSubject,
+  requiredProps,
+  invokeOnReactVersion,
+} from '../../test';
 
 import { EuiDragDropContext, EuiDroppable } from './';
 import { EuiDroppableContext } from './droppable';
@@ -24,6 +28,11 @@ function snapshotDragDropContext(component: ReactWrapper) {
 }
 
 describe('EuiDroppable', () => {
+  afterEach(() => {
+    // Resetting DND server context is only required in older versions of React
+    invokeOnReactVersion(['16', '17'], resetServerContext);
+  });
+
   test('is rendered', () => {
     const handler = jest.fn();
     jest.mock('react', () => {
