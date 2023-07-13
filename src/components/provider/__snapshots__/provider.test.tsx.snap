@@ -1057,43 +1057,6 @@ exports[`EuiProvider is rendered 1`] = `
 </EuiCacheProvider>
 `;
 
-exports[`EuiProvider nested EuiThemeProviders allows avoiding the extra span wrapper with \`wrapperProps.cloneElement\` 1`] = `
-<div>
-  Top-level provider
-   
-  <div
-    class="world hello emotion-euiColorMode-dark-colorClassName"
-  >
-    clone provider color onto div
-  </div>
-</div>
-`;
-
-exports[`EuiProvider nested EuiThemeProviders allows customizing the span wrapper with \`wrapperProps\` 1`] = `
-<div>
-  Top-level provider
-   
-  <span
-    class="euiThemeProvider test css-1mg4zk6-customCss-euiColorMode-dark-colorClassName"
-    data-test-subj="nested"
-  >
-    Nested
-  </span>
-</div>
-`;
-
-exports[`EuiProvider nested EuiThemeProviders renders with a span wrapper that sets the inherited text color 1`] = `
-<div>
-  Top-level provider
-   
-  <span
-    class="euiThemeProvider emotion-euiColorMode-inverse-colorClassName"
-  >
-    Nested
-  </span>
-</div>
-`;
-
 exports[`EuiProvider providing an @emotion cache config applies the cache to all styles 1`] = `
 <EuiCacheProvider
   cache={
