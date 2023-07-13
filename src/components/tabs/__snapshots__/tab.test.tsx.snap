@@ -29,7 +29,7 @@ exports[`EuiTab props disabled and selected 1`] = `
   type="button"
 >
   <span
-    class="euiTab__content emotion-euiTab__content-m-selected-disabled"
+    class="euiTab__content emotion-euiTab__content-m"
   >
     Click Me
   </span>
@@ -45,7 +45,7 @@ exports[`EuiTab props disabled is rendered 1`] = `
   type="button"
 >
   <span
-    class="euiTab__content emotion-euiTab__content-m-disabled"
+    class="euiTab__content emotion-euiTab__content-m"
   >
     Click Me
   </span>
@@ -78,7 +78,7 @@ exports[`EuiTab props isSelected is rendered 1`] = `
   type="button"
 >
   <span
-    class="euiTab__content emotion-euiTab__content-m-selected"
+    class="euiTab__content emotion-euiTab__content-m"
   >
     children
   </span>

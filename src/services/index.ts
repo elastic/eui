@@ -72,6 +72,7 @@ export { useColorPickerState, useColorStopsState } from './color_picker';
 export type { EuiSetColorMethod } from './color_picker';
 export * from './console';
 export { copyToClipboard } from './copy_to_clipboard';
+export * from './emotion';
 export * from './findElement';
 export {
   dateFormatAliases,

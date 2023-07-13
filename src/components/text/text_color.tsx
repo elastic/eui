@@ -12,10 +12,10 @@ import React, {
   CSSProperties,
   isValidElement,
 } from 'react';
-import { CommonProps } from '../common';
-import { cloneElementWithCss } from '../../services/theme/clone_element';
 
-import { useEuiTheme } from '../../services';
+import { CommonProps } from '../common';
+import { useEuiTheme, cloneElementWithCss } from '../../services';
+
 import { euiTextColorStyles } from './text_color.styles';
 
 export const COLORS = [

@@ -93,7 +93,7 @@ This provides a walkthrough of the patching & backport release process; examples
       * You may need to re-run yarn in order to commit changes, if the commit modified dependencies
       * Remember to continue cherry picking with `git cherry-pick --continue` until all commits have been applied
 * Start the dev server and check that the intended changes have been properly applied, you don't want to repeat this process to patch the patch - `yarn start`
-* Once everything looks correct, it's time to release; the `yarn release` script only works when releasing from `main`, so we'll run [a subset of those steps](https://github.com/elastic/eui/blob/06fc9a6880766168aec1a622873e7f6fe1b3d42b/scripts/release.js#L34-L57) manually
+* Once everything looks correct, it's time to release; the `yarn release` script only works when releasing from `main`, so we'll run [a subset of those steps](https://github.com/elastic/eui/blob/main/scripts/release.js) manually
   * Run the unit tests again - `npm run test-ci`
   * Create the release builds - `npm run build`
   * Update the I18n tokens - `npm run update-token-changelog -- patch`
@@ -105,3 +105,29 @@ This provides a walkthrough of the patching & backport release process; examples
     * Publish with your OPT and the new version as the tag - `npm publish --tag=backport --otp=your-one-time-password`
 * Let people know the backport is released
 * Celebrate profusely
+
+# Pre-release process
+
+Some changes may be particularly difficult to test in local EUI environments alone, or effects may be so wide-ranging that they should be tested against Kibana's expansive set of CI tests beforehand to catch as many regressions as possible. In those scenarios, we should utilize a release candidate (RC) that we can point to other staging or CI environments for easier testing.
+
+The prerelease process is very similar to the backport process above, with different arguments for the `npm version` and `npm publish` steps.
+
+- Check out the latest release:
+  - If testing against Kibana specifically, [use the latest EUI version specified in Kibana main's package.json](https://github.com/elastic/kibana/blob/main/package.json#L101) and check out that release, e.g. `git checkout v80.0.0`
+  - Otherwise, simply check out the [latest EUI release](https://github.com/elastic/eui/releases), e.g. `git checkout v83.0.0`
+  - The purpose of this step (instead of releasing from latest `main`) is to reduce as much noise as possible and ensure you're *only* testing the changes you want to test. This is particularly necessary for Kibana CI testing.
+- Apply the commit(s) with the desired changes, e.g. `git cherry-pick [commit-id]`
+- We cannot run the full [release script](https://github.com/elastic/eui/blob/main/scripts/release.js), so run a subset of the script's steps instead:
+    ```sh
+    yarn && yarn test-ci && yarn build
+    ```
+    The i18n token and changelog steps are skippable as prereleases are not officially documented releases.
+- Run npm version/publish steps specific to a prerelease build:
+    ```sh
+    npm version prerelease --preid rc1 # the `1` can be incremented as necessary for additional RC builds
+    npm publish --tag=prerelease # will require an OTP
+    ```
+    The step for pushing git tags can/should be skipped, as prereleases are not officially documented releases and are primarily for testing purposes.
+- Go to https://www.npmjs.com/package/@elastic/eui?activeTab=versions and confirm that your pre-release has been pushed up with the correct version and tag, e.g. `83.1.1-rc1.0`
+- Update Kibana or CodeSandbox (or whatever other environment you are using to test) to point at that version
+- QA away!

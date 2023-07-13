@@ -545,3 +545,11 @@ Emotion provides its own `createElement` function; existing uses of `import {cre
 Unfortunately, a limitation of the CSS-in-JS syntax parser we're using is that `//` comments throw this error (see https://github.com/hudochenkov/postcss-styled-syntax#known-issues).
 
 You must convert all `//` comments to standard CSS `/* */` comments instead.
+
+### Should I use Emotion's `css={theme => {}}` API?
+
+No. The [Emotion theme context](https://emotion.sh/docs/theming) that we include by default in `EuiThemeProvider` is intended for **consumer usage** and convenience, particularly with the goal of making adoption by Kibana devs easier.
+
+It is not intended for internal EUI usage, primarily because it can be too easily overridden by consumers who want to use their own custom Emotion theme vars and set their own `<ThemeProvider>`. If this happens, and we're relying on Emotion's theme context, all of EUI's styles will break.
+
+When you're styling EUI components internally, you should use only EUI's theme context/`useEuiTheme()`, and not on Emotion's theme context (i.e., do not use the `css={theme => {}}` API).

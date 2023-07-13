@@ -27,8 +27,11 @@ import {
   EuiListGroupItemExtraActionProps,
 } from './list_group_item_extra_action';
 
-import { getSecureRelForTarget, useEuiTheme } from '../../services';
-import { cloneElementWithCss } from '../../services/theme/clone_element';
+import {
+  getSecureRelForTarget,
+  useEuiTheme,
+  cloneElementWithCss,
+} from '../../services';
 import { validateHref } from '../../services/security/href_validator';
 
 import {
