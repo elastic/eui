@@ -928,7 +928,7 @@ exports[`EuiMarkdownEditor props height is rendered in full mode 1`] = `
         data-test-subj="euiMarkdownEditorTextArea"
         id="editorId"
         rows="6"
-        style="height:100%;max-height:"
+        style="height:100%"
       />
       <div
         class="euiMarkdownEditorFooter"
