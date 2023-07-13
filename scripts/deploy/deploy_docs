@@ -14,6 +14,7 @@ set +x
 # * GPROJECT - GCE project name, e.g. elastic-bekitzur
 # * GCE_ACCOUNT - credentials for the google service account (JSON blob)
 # * GIT_BRANCH - current Git branch or tag (e.g. "refs/heads/main", "v18.2.1")
+# * GIT_PULL_REQUEST_ID - current Git PR (Ex. 6999)
 
 # Docker images
 GCE_IMAGE=google/cloud-sdk:slim
@@ -102,6 +103,7 @@ else
   # remove remote "origin/", leaving just the branch name
   BRANCH="${GIT_BRANCH#*/}"
   echo "Git branch: $GIT_BRANCH"
+  echo "Git PR: $GIT_PULL_REQUEST_ID"
 
   # Copy files
   EUI_DOCS_PROJECT=eui-docs-live

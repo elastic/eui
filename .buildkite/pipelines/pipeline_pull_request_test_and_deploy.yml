@@ -8,4 +8,5 @@ steps:
     build:
       env:
         GIT_BRANCH: "${BUILDKITE_BRANCH}"
+        GIT_PULL_REQUEST_ID: "${GITHUB_PR_NUMBER}"
         BUILDKITE_CHECK: "${BUILDKITE}"
