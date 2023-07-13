@@ -11,6 +11,7 @@ import { render } from '@testing-library/react'; // Note - don't use the EUI cus
 import { cache as emotionCache } from '@emotion/css';
 import createCache from '@emotion/cache';
 
+import { setEuiDevProviderWarning } from '../../services';
 import { EuiProvider } from './provider';
 
 describe('EuiProvider', () => {
@@ -153,6 +154,62 @@ describe('EuiProvider', () => {
       );
 
       expect(getByText('Dark mode')).toHaveStyleRule('color', '#333');
+    });
+  });
+
+  describe('nested EuiProviders', () => {
+    it('emits a log/error/warning per `euiDevProviderWarning` levels', () => {
+      const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {}); // Silence warning
+      setEuiDevProviderWarning('warn');
+
+      render(
+        <EuiProvider>
+          Top-level provider
+          <EuiProvider>Nested</EuiProvider>
+        </EuiProvider>
+      );
+
+      expect(warnSpy).toHaveBeenCalledWith(
+        expect.stringContaining(
+          '`EuiProvider` should not be nested or used more than once'
+        )
+      );
+
+      setEuiDevProviderWarning(undefined);
+      warnSpy.mockRestore();
+    });
+
+    it('returns children as-is without rendering any nested contexts', () => {
+      const { container } = render(
+        <EuiProvider>
+          Top-level provider
+          <EuiProvider>
+            Nested
+            <EuiProvider>Nested again</EuiProvider>
+          </EuiProvider>
+        </EuiProvider>
+      );
+
+      expect(container).toMatchInlineSnapshot(`
+        <div>
+          Top-level provider
+          Nested
+          Nested again
+        </div>
+      `);
+    });
+
+    it('does not instantiate any extra logic, including setting cache behavior', () => {
+      const ignoredCache = createCache({ key: 'ignore' });
+
+      render(
+        <EuiProvider>
+          Top-level provider
+          <EuiProvider cache={ignoredCache}>Nested</EuiProvider>
+        </EuiProvider>
+      );
+
+      expect(ignoredCache.compat).not.toEqual(true);
     });
   });
 });

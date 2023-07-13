@@ -20,9 +20,10 @@ import {
   EuiThemeSystem,
   CurrentEuiBreakpointProvider,
 } from '../../services';
+import { emitEuiProviderWarning } from '../../services/theme/warning';
 import { EuiThemeAmsterdam } from '../../themes';
 import { EuiCacheProvider } from './cache';
-import { EuiProviderNestedCheck } from './nested';
+import { EuiProviderNestedCheck, useIsNestedEuiProvider } from './nested';
 
 const isEmotionCacheObject = (
   obj: EmotionCache | Object
@@ -73,6 +74,15 @@ export const EuiProvider = <T extends {} = {}>({
   modify,
   children,
 }: PropsWithChildren<EuiProviderProps<T>>) => {
+  const isNested = useIsNestedEuiProvider();
+  if (isNested) {
+    const providerMessage = `\`EuiProvider\` should not be nested or used more than once, other than at the top level of your app.
+    Use \`EuiThemeProvider\` instead for nested component-level theming: https://ela.st/euiprovider.`;
+
+    emitEuiProviderWarning(providerMessage);
+    return children as any;
+  }
+
   let defaultCache;
   let globalCache;
   let utilityCache;
