@@ -14,17 +14,37 @@ import createCache from '@emotion/cache';
 import { EuiProvider } from './provider';
 
 describe('EuiProvider', () => {
-  it('is rendered', () => {
-    const component = shallow(<EuiProvider />);
+  it('renders children', () => {
+    const { container } = render(
+      <EuiProvider>
+        <main>Hello world</main>
+      </EuiProvider>
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      <main>
+        Hello world
+      </main>
+    `);
   });
 
-  describe('using `null` theme option', () => {
-    it('does not add global styles', () => {
-      const component = shallow(<EuiProvider theme={null} />);
+  describe('global styles and reset CSS', () => {
+    it('renders by default', () => {
+      render(<EuiProvider />);
 
-      expect(component).toMatchSnapshot();
+      const globalStyleElement = document.querySelector(
+        'style[data-emotion="css-global"]'
+      );
+      expect(globalStyleElement).not.toEqual(null);
+    });
+
+    it('does not render when `theme` is null', () => {
+      render(<EuiProvider theme={null} />);
+
+      const globalStyleElement = document.querySelector(
+        'style[data-emotion="css-global"]'
+      );
+      expect(globalStyleElement).toEqual(null);
     });
   });
 
