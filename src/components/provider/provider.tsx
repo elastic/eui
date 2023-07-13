@@ -30,7 +30,7 @@ const isEmotionCacheObject = (
 ): obj is EmotionCache => obj.hasOwnProperty('key');
 
 export interface EuiProviderProps<T>
-  extends Omit<EuiThemeProviderProps<T>, 'children' | 'theme'>,
+  extends Pick<EuiThemeProviderProps<T>, 'colorMode' | 'modify'>,
     EuiGlobalStylesProps {
   /**
    * Provide a specific EuiTheme; Defaults to EuiThemeAmsterdam;
