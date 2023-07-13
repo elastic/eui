@@ -11,8 +11,11 @@
 /// <reference types="../../../cypress/support" />
 
 import React, { useRef, useState } from 'react';
-import { EuiFocusTrap } from './focus_trap';
+
+import { EuiProvider } from '../provider';
 import { EuiPortal } from '../portal';
+
+import { EuiFocusTrap } from './focus_trap';
 
 describe('EuiFocusTrap', () => {
   describe('focus', () => {
@@ -355,6 +358,27 @@ describe('EuiFocusTrap', () => {
 
       it('allows customizing gapMode', () => {
         cy.realMount(<ToggledFocusTrap gapMode="margin" />);
+        skipIfNoScrollbars();
+        cy.get('[data-test-subj="openFocusTrap"]').click();
+
+        cy.get('body').then(($body) => {
+          const styles = window.getComputedStyle($body[0]);
+
+          const margin = parseFloat(styles.getPropertyValue('margin-right'));
+          expect(margin).to.be.gt(0);
+
+          expect(styles.getPropertyValue('padding-right')).to.equal('0px');
+        });
+      });
+
+      it('allows customizing gapMode via EuiProvider.componentDefaults', () => {
+        cy.realMount(
+          <EuiProvider
+            componentDefaults={{ EuiFocusTrap: { gapMode: 'margin' } }}
+          >
+            <ToggledFocusTrap />
+          </EuiProvider>
+        );
         skipIfNoScrollbars();
         cy.get('[data-test-subj="openFocusTrap"]').click();
 
