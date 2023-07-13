@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import { shallow } from 'enzyme';
 import { render } from '@testing-library/react'; // Note - don't use the EUI custom RTL `render`, as it auto-wraps an `EuiProvider`
+import { cache as emotionCache } from '@emotion/css';
 import createCache from '@emotion/cache';
 
 import { EuiProvider } from './provider';
@@ -59,47 +59,67 @@ describe('EuiProvider', () => {
       key: 'utility',
     });
 
-    it('provides a default cache from Emotion when configured without a cache', () => {
-      const component = shallow(<EuiProvider />);
+    const getStyleByCss = (content: string) => {
+      return Array.from(document.querySelectorAll('style[data-emotion]')).find(
+        (el) => el?.textContent?.includes(content)
+      ) as HTMLStyleElement;
+    };
 
-      expect(component).toMatchSnapshot();
-      expect(component.prop('cache').key).toEqual('css');
-      expect(component.prop('cache').compat).toEqual(true);
+    it('uses a default cache from Emotion when configured without a cache', () => {
+      render(<EuiProvider />);
+
+      expect(emotionCache.key).toEqual('css');
+      expect(getStyleByCss('html').dataset.emotion).toEqual('css-global');
+      expect(getStyleByCss('.eui-displayBlock').dataset.emotion).toEqual(
+        'css-global'
+      );
     });
-    it('applies the cache to all styles', () => {
-      const component = shallow(<EuiProvider cache={defaultCache} />);
 
-      expect(component).toMatchSnapshot();
+    it('applies the cache to all styles', () => {
+      render(<EuiProvider cache={defaultCache} />);
+
+      expect(getStyleByCss('html').dataset.emotion).toEqual('default-global');
+      expect(getStyleByCss('.eui-displayBlock').dataset.emotion).toEqual(
+        'default-global'
+      );
     });
 
     it('applies the cache to global styles', () => {
-      const component = shallow(
-        <EuiProvider cache={{ global: globalCache }} />
-      );
+      render(<EuiProvider cache={{ global: globalCache }} />);
 
-      expect(component).toMatchSnapshot();
+      expect(getStyleByCss('html').dataset.emotion).toEqual('global-global');
+      expect(getStyleByCss('.eui-displayBlock').dataset.emotion).toEqual(
+        'css-global'
+      );
     });
 
     it('applies the cache to utility styles', () => {
-      const component = shallow(
-        <EuiProvider cache={{ utility: utilityCache }} />
-      );
+      render(<EuiProvider cache={{ utility: utilityCache }} />);
 
-      expect(component).toMatchSnapshot();
+      expect(getStyleByCss('html').dataset.emotion).toEqual('css-global');
+      expect(getStyleByCss('.eui-displayBlock').dataset.emotion).toEqual(
+        'utility-global'
+      );
     });
 
     it('applies the cache to each location separately', () => {
-      const component = shallow(
+      render(
         <EuiProvider
           cache={{
             default: defaultCache,
             global: globalCache,
             utility: utilityCache,
           }}
-        />
+        >
+          <div css={{ color: 'red', label: 'test' }} />
+        </EuiProvider>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(getStyleByCss('.default-').dataset.emotion).toEqual('default');
+      expect(getStyleByCss('html').dataset.emotion).toEqual('global-global');
+      expect(getStyleByCss('.eui-displayBlock').dataset.emotion).toEqual(
+        'utility-global'
+      );
     });
   });
 
