@@ -181,7 +181,7 @@ describe('euiCustomControl', () => {
     expect(result.current).toMatchInlineSnapshot(`
       "
           padding: 7px;
-
+          
           border: 1px solid #f5f7fc;
           background: #FFF no-repeat center;
 
@@ -200,7 +200,7 @@ describe('euiCustomControl', () => {
     expect(result.current).toMatchInlineSnapshot(`
       "
           padding: 15px;
-
+          
           border: 1px solid #f5f7fc;
           background: #FFF no-repeat center;
 
