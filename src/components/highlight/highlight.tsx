@@ -111,11 +111,11 @@ const highlight = (
 
   return (
     <Fragment>
-      {preMatch}
+      {preMatch || undefined}
       <EuiMark hasScreenReaderHelpText={hasScreenReaderHelpText}>
         {match}
       </EuiMark>
-      {postMatch}
+      {postMatch || undefined}
     </Fragment>
   );
 };
