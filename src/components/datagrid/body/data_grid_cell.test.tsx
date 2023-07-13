@@ -7,6 +7,7 @@
  */
 
 import React, { useEffect } from 'react';
+import { act } from '@testing-library/react';
 import { mount, render, ReactWrapper } from 'enzyme';
 import { keys } from '../../../services';
 import { RowHeightUtils } from '../utils/__mocks__/row_heights';
@@ -79,7 +80,9 @@ describe('EuiDataGridCell', () => {
         }}
       />
     );
-    component.setState({ enableInteractions: true });
+    act(() => {
+      component.setState({ enableInteractions: true });
+    });
 
     const getCellActions = () => component.find('EuiDataGridCellActions');
     expect(getCellActions()).toHaveLength(1);
@@ -174,19 +177,29 @@ describe('EuiDataGridCell', () => {
 
       describe('when state changes:', () => {
         it('cellProps', () => {
-          component.setState({ cellProps: {} });
+          act(() => {
+            component.setState({ cellProps: {} });
+          });
         });
         it('isEntered', () => {
-          component.setState({ isEntered: true });
+          act(() => {
+            component.setState({ isEntered: true });
+          });
         });
         it('isFocused', () => {
-          component.setState({ isFocused: true });
+          act(() => {
+            component.setState({ isFocused: true });
+          });
         });
         it('enableInteractions', () => {
-          component.setState({ enableInteractions: true });
+          act(() => {
+            component.setState({ enableInteractions: true });
+          });
         });
         it('disableCellTabIndex', () => {
-          component.setState({ disableCellTabIndex: true });
+          act(() => {
+            component.setState({ disableCellTabIndex: true });
+          });
         });
       });
     });

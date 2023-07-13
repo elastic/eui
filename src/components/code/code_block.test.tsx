@@ -9,7 +9,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { mount, render, shallow } from 'enzyme';
-import { act } from 'react-dom/test-utils';
+import { act } from '@testing-library/react';
 import { requiredProps } from '../../test/required_props';
 
 import { EuiCodeBlock, FONT_SIZES, PADDING_SIZES } from './code_block';

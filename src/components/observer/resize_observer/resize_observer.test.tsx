@@ -10,7 +10,7 @@ import React, { FunctionComponent, PropsWithChildren, useState } from 'react';
 import { mount } from 'enzyme';
 import { EuiResizeObserver, useResizeObserver } from './resize_observer';
 import { sleep } from '../../../test';
-import { act } from 'react-dom/test-utils';
+import { act } from '@testing-library/react';
 
 export async function waitforResizeObserver(period = 30) {
   // `period` defaults to 30 because its the delay used by the ResizeObserver polyfill

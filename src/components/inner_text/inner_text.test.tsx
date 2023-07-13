@@ -7,7 +7,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { act } from 'react-dom/test-utils';
+import { act } from '@testing-library/react';
 import { render, mount } from 'enzyme';
 import { findTestSubject, requiredProps } from '../../test';
 
