@@ -16,7 +16,29 @@ import { findElementBySelectorOrRef, ElementTarget } from '../../services';
 
 export type FocusTarget = ElementTarget;
 
-interface EuiFocusTrapInterface {
+export type EuiFocusTrapProps = Omit<
+  ReactFocusOnProps,
+  // Inverted `disabled` prop used instead
+  | 'enabled'
+  // Omitted so that our props table & storybook actually register these props
+  | 'style'
+  | 'className'
+  | 'css'
+  // Props that differ from react-focus-on's default settings
+  | 'gapMode'
+  | 'crossFrame'
+  | 'scrollLock'
+  | 'noIsolation'
+  | 'returnFocus'
+> & {
+  // For some reason, Storybook doesn't register these props if they're Pick<>'d
+  className?: CommonProps['className'];
+  css?: CommonProps['css'];
+  style?: CSSProperties;
+  /**
+   * @default false
+   */
+  disabled?: boolean;
   /**
    * Whether `onClickOutside` should be called on mouseup instead of mousedown.
    * This flag can be used to prevent conflicts with outside toggle buttons by delaying the closing click callback.
@@ -24,21 +46,40 @@ interface EuiFocusTrapInterface {
   closeOnMouseup?: boolean;
   /**
    * Clicking outside the trap area will disable the trap
+   * @default false
    */
   clickOutsideDisables?: boolean;
   /**
    * Reference to element that will get focus when the trap is initiated
    */
   initialFocus?: FocusTarget;
-  style?: CSSProperties;
   /**
    * if `scrollLock` is set to true, the body's scrollbar width will be preserved on lock
    * via the `gapMode` CSS property. Depending on your custom CSS, you may prefer to use
    * `margin` instead of `padding`.
+   * @default padding
    */
   gapMode?: 'padding' | 'margin';
-  disabled?: boolean;
-}
+  /**
+   * Configures focus trapping between iframes.
+   * By default, EuiFocusTrap allows focus to leave iframes and move to elements outside of it.
+   * Set to `true` if you want focus to remain trapped within the iframe.
+   * @default false
+   */
+  crossFrame?: ReactFocusOnProps['crossFrame'];
+  /**
+   * @default false
+   */
+  scrollLock?: ReactFocusOnProps['scrollLock'];
+  /**
+   * @default true
+   */
+  noIsolation?: ReactFocusOnProps['noIsolation'];
+  /**
+   * @default true
+   */
+  returnFocus?: ReactFocusOnProps['returnFocus'];
+};
 
 export interface EuiFocusTrapProps
   extends CommonProps,
