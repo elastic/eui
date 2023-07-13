@@ -65,3 +65,13 @@ export const describeByReactVersion = (name: string, func: () => void) => {
     describeFunc(`[React ${version}] ${name}`, func);
   });
 };
+
+export const testByReactVersion = (name: string, func: () => void) => {
+  const currentVersion = getReactVersion();
+
+  SUPPORTED_REACT_VERSIONS.forEach((version) => {
+    const testFunc = version === currentVersion ? test : test.skip;
+
+    testFunc(`[React ${version}] ${name}`, func);
+  });
+};

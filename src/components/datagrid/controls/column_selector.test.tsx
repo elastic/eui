@@ -9,7 +9,7 @@
 import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { shallow, mount, ReactWrapper } from 'enzyme';
-import { findTestSubject } from '../../../test';
+import { findTestSubject, testByReactVersion } from '../../../test';
 
 import { EuiDataGridToolBarVisibilityOptions } from '../data_grid_types';
 
@@ -76,15 +76,18 @@ describe('useDataGridColumnSelector', () => {
       component.setProps({});
     };
 
-    it('renders a toolbar button/popover allowing users to set column visibility and order', () => {
-      const component = mount(<MockComponent showColumnSelector={true} />);
-      openPopover(component);
-      expect(component.render()).toMatchSnapshot();
-      expect(
-        component.find('[data-popover-panel]').first().render()
-      ).toMatchSnapshot();
-      closePopover(component);
-    });
+    testByReactVersion(
+      'renders a toolbar button/popover allowing users to set column visibility and order',
+      () => {
+        const component = mount(<MockComponent showColumnSelector={true} />);
+        openPopover(component);
+        expect(component.render()).toMatchSnapshot();
+        expect(
+          component.find('[data-popover-panel]').first().render()
+        ).toMatchSnapshot();
+        closePopover(component);
+      }
+    );
 
     it('does not render if all valid sub-options are disabled', () => {
       const component = shallow(
