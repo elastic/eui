@@ -14,6 +14,7 @@ import { EuiFieldText } from '../form';
 import { EuiSpacer } from '../spacer';
 import { EuiPanel } from '../panel';
 
+import { EuiProvider } from '../provider';
 import { EuiFocusTrap, EuiFocusTrapProps } from './focus_trap';
 
 const meta: Meta<EuiFocusTrapProps> = {
@@ -75,4 +76,17 @@ export const Iframe: Story = {
     </>
   ),
   args: { disabled: true, crossFrame: false },
+};
+
+export const EuiProviderComponentDefaults: Story = {
+  render: ({ ...args }) => (
+    <EuiProvider componentDefaults={{ EuiFocusTrap: { ...args } }}>
+      <StatefulFocusTrap disabled={true} />
+      <EuiSpacer />
+      This story is passing all controls and their arguments to EuiProvider's
+      `componentDefaults` instead of to EuiFocusTrap directly. It's primarily
+      useful for testing that configured defaults behave the same way as
+      individual props.
+    </EuiProvider>
+  ),
 };
