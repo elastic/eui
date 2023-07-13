@@ -6,52 +6,49 @@
  * Side Public License, v 1.
  */
 
-import React, { EventHandler } from 'react';
-import { render, mount } from 'enzyme';
+import React from 'react';
+import { render } from '../../test/rtl';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
-import { findTestSubject, takeMountedSnapshot } from '../../test';
-
-import { EuiEvent } from '../outside_click_detector/outside_click_detector';
 import { EuiFocusTrap } from './focus_trap';
-import { EuiPortal } from '../portal';
 
 describe('EuiFocusTrap', () => {
-  test('is rendered', () => {
-    const component = mount(
+  shouldRenderCustomStyles(<EuiFocusTrap>Test</EuiFocusTrap>);
+
+  it('renders', () => {
+    const { container } = render(
       <EuiFocusTrap>
         <div />
       </EuiFocusTrap>
     );
 
-    expect(
-      takeMountedSnapshot(component, { hasArrayOutput: true })
-    ).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
-  test('can be disabled', () => {
-    const component = render(
+  it('can be disabled', () => {
+    const { container } = render(
       <EuiFocusTrap disabled>
         <div />
       </EuiFocusTrap>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
-  test('accepts className and style', () => {
-    const component = render(
+  it('accepts className and style', () => {
+    const { container } = render(
       <EuiFocusTrap className="testing" style={{ height: '100%' }}>
         <div />
       </EuiFocusTrap>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   describe('behavior', () => {
     describe('focus', () => {
-      test('is set on the first focusable element by default', () => {
-        const component = mount(
+      it('is set on the first focusable element by default', () => {
+        const { getByTestSubject } = render(
           <div>
             <input data-test-subj="outside" />
             <EuiFocusTrap>
@@ -63,13 +60,11 @@ describe('EuiFocusTrap', () => {
           </div>
         );
 
-        expect(findTestSubject(component, 'input').getDOMNode()).toBe(
-          document.activeElement
-        );
+        expect(getByTestSubject('input')).toBe(document.activeElement);
       });
 
-      test('will blur focus when negating `autoFocus`', () => {
-        mount(
+      it('will blur focus when negating `autoFocus`', () => {
+        render(
           <div>
             <input data-test-subj="outside" />
             <EuiFocusTrap autoFocus={false}>
@@ -84,8 +79,8 @@ describe('EuiFocusTrap', () => {
         expect(document.body).toBe(document.activeElement);
       });
 
-      test('is set on the element identified by `data-autofocus`', () => {
-        const component = mount(
+      it('is set on the element identified by `data-autofocus`', () => {
+        const { getByTestSubject } = render(
           <div>
             <input data-test-subj="outside" />
             <EuiFocusTrap>
@@ -97,9 +92,7 @@ describe('EuiFocusTrap', () => {
           </div>
         );
 
-        expect(findTestSubject(component, 'input2').getDOMNode()).toBe(
-          document.activeElement
-        );
+        expect(getByTestSubject('input2')).toBe(document.activeElement);
       });
     });
   });
