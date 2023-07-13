@@ -6,13 +6,14 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, CSSProperties } from 'react';
+import React, { Component, FunctionComponent, CSSProperties } from 'react';
 import { FocusOn } from 'react-focus-on';
 import { ReactFocusOnProps } from 'react-focus-on/dist/es5/types';
 import { RemoveScrollBar } from 'react-remove-scroll-bar';
 
 import { CommonProps } from '../common';
 import { findElementBySelectorOrRef, ElementTarget } from '../../services';
+import { useEuiComponentDefaults } from '../provider/component_defaults';
 
 export type FocusTarget = ElementTarget;
 
@@ -81,16 +82,23 @@ export type EuiFocusTrapProps = Omit<
   returnFocus?: ReactFocusOnProps['returnFocus'];
 };
 
-export interface EuiFocusTrapProps
-  extends CommonProps,
-    Omit<ReactFocusOnProps, 'enabled'>, // Inverted `disabled` prop used instead
-    EuiFocusTrapInterface {}
+export const EuiFocusTrap: FunctionComponent<EuiFocusTrapProps> = ({
+  children,
+  ...props
+}) => {
+  const { EuiFocusTrap: defaults } = useEuiComponentDefaults();
+  return (
+    <EuiFocusTrapClass {...defaults} {...props}>
+      {children}
+    </EuiFocusTrapClass>
+  );
+};
 
 interface State {
   hasBeenDisabledByClick: boolean;
 }
 
-export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
+class EuiFocusTrapClass extends Component<EuiFocusTrapProps, State> {
   static defaultProps = {
     clickOutsideDisables: false,
     disabled: false,
