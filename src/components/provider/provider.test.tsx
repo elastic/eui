@@ -83,28 +83,36 @@ describe('EuiProvider', () => {
     });
   });
 
-  describe('changing color modes', () => {
-    it('propagates `colorMode`', () => {
-      const component = shallow(<EuiProvider colorMode="dark" />);
+  describe('EuiThemeProvider prop passing', () => {
+    const modify = {
+      colors: {
+        LIGHT: { lightShade: '#aaa' },
+        DARK: { lightShade: '#333' },
+      },
+    };
 
-      expect(component).toMatchSnapshot();
-    });
-  });
-
-  describe('applying modifications', () => {
-    it('propagates `modify`', () => {
-      const component = shallow(
-        <EuiProvider
-          modify={{
-            colors: {
-              LIGHT: { lightShade: '#d3e6df' },
-              DARK: { lightShade: '#394c4b' },
-            },
-          }}
-        />
+    it('passes `modify`', () => {
+      const { getByText } = render(
+        <EuiProvider modify={modify}>
+          <div css={({ euiTheme }) => ({ color: euiTheme.colors.lightShade })}>
+            Modified
+          </div>
+        </EuiProvider>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(getByText('Modified')).toHaveStyleRule('color', '#aaa');
+    });
+
+    it('passes `colorMode`', () => {
+      const { getByText } = render(
+        <EuiProvider modify={modify} colorMode="dark">
+          <div css={({ euiTheme }) => ({ color: euiTheme.colors.lightShade })}>
+            Dark mode
+          </div>
+        </EuiProvider>
+      );
+
+      expect(getByText('Dark mode')).toHaveStyleRule('color', '#333');
     });
   });
 });

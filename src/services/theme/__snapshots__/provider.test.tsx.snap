@@ -30,9 +30,19 @@ exports[`EuiThemeProvider nested EuiThemeProviders renders with a span wrapper t
   Top-level provider
    
   <span
-    class="euiThemeProvider emotion-euiColorMode-inverse-colorClassName"
+    class="euiThemeProvider emotion-euiColorMode-dark-colorClassName"
   >
     Nested
+    <span
+      class="euiThemeProvider emotion-euiColorMode-light-colorClassName"
+    >
+      Double nested
+      <span
+        class="euiThemeProvider emotion-euiColorMode-inverse-colorClassName"
+      >
+        Triple nested
+      </span>
+    </span>
   </span>
 </div>
 `;

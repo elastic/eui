@@ -14,12 +14,80 @@ import { EuiProvider } from '../../components/provider';
 import { EuiThemeProvider } from './provider';
 
 describe('EuiThemeProvider', () => {
+  describe('colorMode', () => {
+    it('sets `colorMode`', () => {
+      const { getByText } = render(
+        <>
+          <EuiThemeProvider colorMode="light">
+            <div css={({ euiTheme }) => ({ color: euiTheme.colors.fullShade })}>
+              Light mode
+            </div>
+            <EuiThemeProvider colorMode="inverse">
+              <div
+                css={({ euiTheme }) => ({ color: euiTheme.colors.fullShade })}
+              >
+                Inverse of light mode
+              </div>
+            </EuiThemeProvider>
+          </EuiThemeProvider>
+          <EuiThemeProvider colorMode="dark">
+            <div css={({ euiTheme }) => ({ color: euiTheme.colors.fullShade })}>
+              Dark mode
+            </div>
+            <EuiThemeProvider colorMode="inverse">
+              <div
+                css={({ euiTheme }) => ({ color: euiTheme.colors.fullShade })}
+              >
+                Inverse of dark mode
+              </div>
+            </EuiThemeProvider>
+          </EuiThemeProvider>
+        </>
+      );
+
+      expect(getByText('Light mode')).toHaveStyleRule('color', '#000');
+      expect(getByText('Dark mode')).toHaveStyleRule('color', '#FFF');
+      expect(getByText('Inverse of light mode')).toHaveStyleRule(
+        'color',
+        '#FFF'
+      );
+      expect(getByText('Inverse of dark mode')).toHaveStyleRule(
+        'color',
+        '#000'
+      );
+    });
+  });
+
+  describe('modify', () => {
+    it('allows overriding theme tokens', () => {
+      const { getByText } = render(
+        <EuiThemeProvider
+          modify={{ colors: { LIGHT: { primary: 'hotpink' } } }}
+        >
+          <div css={({ euiTheme }) => ({ color: euiTheme.colors.primary })}>
+            Modified
+          </div>
+        </EuiThemeProvider>
+      );
+
+      expect(getByText('Modified')).toHaveStyleRule('color', 'hotpink');
+    });
+  });
+
   describe('nested EuiThemeProviders', () => {
     it('renders with a span wrapper that sets the inherited text color', () => {
       const { container } = render(
         <EuiProvider>
           Top-level provider{' '}
-          <EuiThemeProvider colorMode="inverse">Nested</EuiThemeProvider>
+          <EuiThemeProvider colorMode="dark">
+            Nested
+            <EuiThemeProvider colorMode="light">
+              Double nested
+              <EuiThemeProvider colorMode="inverse">
+                Triple nested
+              </EuiThemeProvider>
+            </EuiThemeProvider>
+          </EuiThemeProvider>
         </EuiProvider>
       );
 
