@@ -8,10 +8,10 @@
 
 import React from 'react';
 import { render, screen } from '../../test/rtl';
-import { requiredProps } from '../../test/required_props';
+import { requiredProps, describeByReactVersion } from '../../test';
 import { EuiDragDropContext, EuiDraggable, EuiDroppable } from './';
 
-describe('EuiDraggable', () => {
+describeByReactVersion('EuiDraggable', () => {
   it('renders', () => {
     const handler = jest.fn();
 
