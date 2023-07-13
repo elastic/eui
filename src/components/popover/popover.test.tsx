@@ -8,6 +8,7 @@
 
 import React, { ReactNode } from 'react';
 import { render, mount } from 'enzyme';
+import { act } from '@testing-library/react';
 import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { EuiFocusTrap } from '../';
@@ -20,6 +21,9 @@ import {
 } from './popover';
 
 import { keys } from '../../services';
+
+const actAdvanceTimersByTime = (time: number) =>
+  act(() => jest.advanceTimersByTime(time));
 
 jest.mock('../portal', () => ({
   EuiPortal: ({ children }: { children: ReactNode }) => children,
@@ -479,7 +483,7 @@ describe('EuiPopover', () => {
 
       // execute any pending timeouts or animation frame callbacks
       // and validate the timeout/rAF clearing done by EuiPopover
-      jest.advanceTimersByTime(300);
+      actAdvanceTimersByTime(300);
     });
   });
 
@@ -513,7 +517,7 @@ describe('EuiPopover', () => {
       );
       component.find(EuiFocusTrap).invoke('onEscapeKey')!(mockEvent);
       component.setProps({ isOpen: false });
-      jest.advanceTimersByTime(closingTransitionTime);
+      actAdvanceTimersByTime(closingTransitionTime);
 
       expect(closePopover).toHaveBeenCalled();
       expect(document.activeElement).toEqual(toggleButtonEl.current);
@@ -538,7 +542,7 @@ describe('EuiPopover', () => {
       );
       component.find(EuiFocusTrap).invoke('onEscapeKey')!(mockEvent);
       component.setProps({ isOpen: false });
-      jest.advanceTimersByTime(closingTransitionTime);
+      actAdvanceTimersByTime(closingTransitionTime);
 
       expect(closePopover).toHaveBeenCalled();
       expect(document.activeElement).toEqual(toggleButtonEl.current);
@@ -558,7 +562,8 @@ describe('EuiPopover', () => {
       );
       component.find(EuiFocusTrap).invoke('onEscapeKey')!(mockEvent);
       component.setProps({ isOpen: false });
-      jest.advanceTimersByTime(closingTransitionTime);
+
+      actAdvanceTimersByTime(closingTransitionTime);
 
       expect(closePopover).toHaveBeenCalled();
       expect(document.activeElement).not.toEqual(toggleDivEl.current);
