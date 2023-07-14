@@ -27,7 +27,7 @@ export interface Pagination {
    * The maximum number of items that can be shown in a single page.
    * Pass `0` to display the selected "Show all" option and hide the pagination.
    *
-   * @default 50
+   * @default 10
    */
   pageSize?: number;
   /**
@@ -38,7 +38,7 @@ export interface Pagination {
    * Configures the page size dropdown options.
    * Pass `0` as one of the options to create a "Show all" option.
    *
-   * @default [10, 20, 50, 100]
+   * @default [10, 25, 50]
    */
   pageSizeOptions?: number[];
   /**
@@ -59,10 +59,6 @@ export interface PaginationBarProps {
   'aria-controls'?: string;
   'aria-label'?: string;
 }
-
-export const defaults = {
-  pageSizeOptions: [10, 25, 50],
-};
 
 export const PaginationBar = ({
   pagination,

@@ -59,12 +59,11 @@ describe('PaginationBar', () => {
         />
       );
 
-      expect(getByText('Rows per page: 50')).toBeTruthy();
+      expect(getByText('Rows per page: 10')).toBeTruthy();
       fireEvent.click(getByTestSubject('tablePaginationPopoverButton'));
       expect(getByTestSubject('tablePagination-10-rows')).toBeTruthy();
-      expect(getByTestSubject('tablePagination-20-rows')).toBeTruthy();
+      expect(getByTestSubject('tablePagination-25-rows')).toBeTruthy();
       expect(getByTestSubject('tablePagination-50-rows')).toBeTruthy();
-      expect(getByTestSubject('tablePagination-100-rows')).toBeTruthy();
     });
 
     it('correctly uses configured EuiTablePagination defaults', () => {

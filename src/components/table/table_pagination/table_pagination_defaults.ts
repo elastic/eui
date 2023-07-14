@@ -22,8 +22,8 @@ export const euiTablePaginationDefaults: Required<
     'itemsPerPage' | 'itemsPerPageOptions' | 'showPerPageOptions'
   >
 > = {
-  itemsPerPage: 50,
-  itemsPerPageOptions: [10, 20, 50, 100],
+  itemsPerPage: 10,
+  itemsPerPageOptions: [10, 25, 50],
   showPerPageOptions: true,
 };
 
