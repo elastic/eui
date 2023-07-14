@@ -9,6 +9,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { render } from '../../test/rtl';
+import { act } from '@testing-library/react';
 
 import { EuiColorPicker } from './color_picker';
 import { VISUALIZATION_COLORS, keys } from '../../services';
@@ -191,15 +192,29 @@ test('popover color selector is hidden when the ESC key pressed', async () => {
     />
   );
 
-  findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate('click');
-  await sleep();
-  findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate('keydown', {
-    key: keys.ENTER,
+  await act(
+    async () =>
+      await findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate(
+        'click'
+      )
+  );
+
+  await act(() => sleep());
+
+  act(() => {
+    findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate('keydown', {
+      key: keys.ENTER,
+    });
   });
-  await sleep();
-  findTestSubject(colorPicker, 'euiColorPickerPopover').simulate('keydown', {
-    key: keys.ESCAPE,
+
+  await act(() => sleep());
+
+  act(() => {
+    findTestSubject(colorPicker, 'euiColorPickerPopover').simulate('keydown', {
+      key: keys.ESCAPE,
+    });
   });
+
   // Portal removal not working with Jest. The blur handler is called just before the portal would be removed.
   expect(onBlurHandler).toBeCalled();
 });

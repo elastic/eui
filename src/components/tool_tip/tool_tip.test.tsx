@@ -8,7 +8,7 @@
 
 import React, { useRef } from 'react';
 import { mount } from 'enzyme';
-import { fireEvent } from '@testing-library/react';
+import { act, fireEvent } from '@testing-library/react';
 import {
   render,
   waitForEuiToolTipVisible,
@@ -97,8 +97,10 @@ describe('EuiToolTip', () => {
     );
 
     const trigger = findTestSubject(component, 'trigger');
-    trigger.simulate('focus');
-    jest.runAllTimers(); // wait for showToolTip setTimeout
+    act(() => {
+      trigger.simulate('focus');
+      jest.runAllTimers(); // wait for showToolTip setTimeout
+    });
 
     expect(
       document.querySelectorAll('[data-test-subj="tooltip"]')[1]
