@@ -114,6 +114,8 @@ if [[ "$1" != "nodocker" ]]; then
     --env GPROJECT \
     --env pull_request_id \
     --env GIT_PULL_REQUEST_ID \
+    --env CI \
+    --env BUILDKITE \
     --env CURRENT_RELEASE="$CURRENT_RELEASE" \
     --env HOME=/tmp \
     --volume "$PWD":/app \
