@@ -7,8 +7,11 @@
  */
 
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import { render } from '../../../test/rtl';
 import { requiredProps } from '../../../test/required_props';
+
+import { EuiProvider } from '../../provider';
 
 import { EuiTablePagination } from './table_pagination';
 
@@ -50,5 +53,53 @@ describe('EuiTablePagination', () => {
     );
 
     expect(container.firstChild).toMatchSnapshot();
+  });
+
+  describe('configurable defaults', () => {
+    test('itemsPerPage', () => {
+      const { getByText } = render(
+        <EuiProvider
+          componentDefaults={{ EuiTablePagination: { itemsPerPage: 20 } }}
+        >
+          <EuiTablePagination {...paginationProps} />
+        </EuiProvider>,
+        { wrapper: undefined }
+      );
+
+      expect(getByText('Rows per page: 20')).toBeTruthy();
+    });
+
+    test('itemsPerPageOptions', () => {
+      const { getByTestSubject } = render(
+        <EuiProvider
+          componentDefaults={{
+            EuiTablePagination: { itemsPerPageOptions: [5, 10, 15] },
+          }}
+        >
+          <EuiTablePagination {...paginationProps} />
+        </EuiProvider>,
+        { wrapper: undefined }
+      );
+
+      fireEvent.click(getByTestSubject('tablePaginationPopoverButton'));
+      expect(getByTestSubject('tablePaginationRowOptions').textContent).toEqual(
+        '5 rows10 rows15 rows'
+      );
+    });
+
+    test('showPerPageOptions', () => {
+      const { queryByTestSubject } = render(
+        <EuiProvider
+          componentDefaults={{
+            EuiTablePagination: { showPerPageOptions: false },
+          }}
+        >
+          <EuiTablePagination {...paginationProps} />
+        </EuiProvider>,
+        { wrapper: undefined }
+      );
+
+      expect(queryByTestSubject('tablePaginationPopoverButton')).toBe(null);
+    });
   });
 });

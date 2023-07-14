@@ -96,5 +96,7 @@ describe('EuiComponentDefaultsProvider', () => {
 
   // NOTE: Components are in charge of their own testing to ensure that the props
   // coming from `useEuiComponentDefaults()` were properly applied.
-  // @see `src/components/portal/portal.spec.tsx` as an example
+  // Examples:
+  // @see src/components/portal/portal.spec.tsx
+  // @see src/components/table/table_pagination/table_pagination.test.tsx
 });
