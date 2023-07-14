@@ -7,78 +7,44 @@
  */
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import { fireEvent } from '@testing-library/react';
 import { render } from '../../test/rtl';
 import { requiredProps } from '../../test';
 
 import { PaginationBar } from './pagination_bar';
 
 describe('PaginationBar', () => {
-  it('renders', () => {
-    const props = {
-      ...requiredProps,
-      pagination: {
-        pageIndex: 0,
-        pageSize: 5,
-        totalItemCount: 0,
-      },
-      onPageSizeChange: () => {},
-      onPageChange: () => {},
-    };
+  const props = {
+    ...requiredProps,
+    pagination: {
+      pageIndex: 0,
+      pageSize: 5,
+      totalItemCount: 0,
+    },
+    onPageSizeChange: () => {},
+    onPageChange: () => {},
+  };
 
+  it('renders', () => {
     const { container } = render(<PaginationBar {...props} />);
 
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('render - custom page size options', () => {
-    const props = {
-      pagination: {
-        pageIndex: 0,
-        pageSize: 5,
-        totalItemCount: 0,
-        pageSizeOptions: [1, 2, 3],
-      },
-      onPageSizeChange: () => {},
-      onPageChange: () => {},
-    };
+  it('calls onPageChange with the correct off-by-one offset', () => {
+    const onPageChange = jest.fn();
+    const { getByLabelText } = render(
+      <PaginationBar
+        {...props}
+        pagination={{
+          ...props.pagination,
+          totalItemCount: 10,
+        }}
+        onPageChange={onPageChange}
+      />
+    );
 
-    const component = shallow(<PaginationBar {...props} />);
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('render - hiding per page options', () => {
-    const props = {
-      pagination: {
-        pageIndex: 0,
-        pageSize: 5,
-        totalItemCount: 0,
-        showPerPageOptions: false,
-      },
-      onPageSizeChange: () => {},
-      onPageChange: () => {},
-    };
-
-    const component = shallow(<PaginationBar {...props} />);
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('render - show all pageSize', () => {
-    const props = {
-      pagination: {
-        pageIndex: 0,
-        pageSize: 0,
-        pageSizeOptions: [1, 5, 0],
-        totalItemCount: 5,
-      },
-      onPageSizeChange: () => {},
-      onPageChange: () => {},
-    };
-
-    const component = shallow(<PaginationBar {...props} />);
-
-    expect(component).toMatchSnapshot();
+    fireEvent.click(getByLabelText('Page 2 of 2'));
+    expect(onPageChange).toHaveBeenCalledWith(1);
   });
 });

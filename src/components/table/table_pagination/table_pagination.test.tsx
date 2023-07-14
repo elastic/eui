@@ -23,15 +23,43 @@ describe('EuiTablePagination', () => {
   };
 
   it('renders', () => {
-    const { container } = render(
+    const { getByTestSubject, baseElement } = render(
       <EuiTablePagination {...requiredProps} {...paginationProps} />
     );
 
-    expect(container.firstChild).toMatchSnapshot();
+    fireEvent.click(getByTestSubject('tablePaginationPopoverButton'));
+    expect(baseElement).toMatchSnapshot();
+  });
+
+  it('renders custom items per page / page sizes', () => {
+    const { getByText } = render(
+      <EuiTablePagination
+        {...requiredProps}
+        {...paginationProps}
+        itemsPerPage={10}
+      />
+    );
+
+    expect(getByText('Rows per page: 10')).toBeTruthy();
+  });
+
+  it('renders custom items per page size options', () => {
+    const { getByTestSubject } = render(
+      <EuiTablePagination
+        {...requiredProps}
+        {...paginationProps}
+        itemsPerPageOptions={[1, 2, 3]}
+      />
+    );
+
+    fireEvent.click(getByTestSubject('tablePaginationPopoverButton'));
+    expect(getByTestSubject('tablePagination-1-rows')).toBeTruthy();
+    expect(getByTestSubject('tablePagination-2-rows')).toBeTruthy();
+    expect(getByTestSubject('tablePagination-3-rows')).toBeTruthy();
   });
 
   it('hides the per page options', () => {
-    const { container } = render(
+    const { queryByTestSubject } = render(
       <EuiTablePagination
         {...requiredProps}
         {...paginationProps}
@@ -39,11 +67,11 @@ describe('EuiTablePagination', () => {
       />
     );
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(queryByTestSubject('tablePaginationPopoverButton')).toBe(null);
   });
 
   it('renders a "show all" itemsPerPage option', () => {
-    const { container } = render(
+    const { getByText, getByTestSubject } = render(
       <EuiTablePagination
         {...requiredProps}
         {...paginationProps}
@@ -52,7 +80,9 @@ describe('EuiTablePagination', () => {
       />
     );
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(getByText('Showing all rows')).toBeTruthy();
+    fireEvent.click(getByTestSubject('tablePaginationPopoverButton'));
+    expect(getByText('Show all rows')).toBeTruthy();
   });
 
   describe('configurable defaults', () => {
