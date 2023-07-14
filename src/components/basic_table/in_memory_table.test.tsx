@@ -8,7 +8,11 @@
 
 import React from 'react';
 import { mount, shallow } from 'enzyme';
+import { fireEvent } from '@testing-library/react';
+import { render } from '../../test/rtl';
 import { requiredProps } from '../../test';
+
+import { EuiProvider } from '../provider';
 
 import { EuiInMemoryTable, EuiInMemoryTableProps } from './in_memory_table';
 import { keys, SortDirection } from '../../services';
@@ -1069,6 +1073,36 @@ describe('EuiInMemoryTable', () => {
       component.setProps({});
 
       expect(component.render()).toMatchSnapshot();
+    });
+
+    // Other pagination tests already check default pagination sizes
+    // and individual pagination setting, so we'll just check here that
+    // `componentDefaults` is respected
+    test('pagination inherited from EuiProvider componentDefaults', () => {
+      const props = {
+        items: [{ title: 'foo' }, { title: 'bar' }, { title: 'baz' }],
+        columns: [{ field: 'title', name: 'Title' }],
+      };
+      const { getByText, getByTestSubject } = render(
+        <EuiProvider
+          componentDefaults={{
+            EuiTablePagination: {
+              itemsPerPage: 50,
+              itemsPerPageOptions: [25, 50, 100],
+            },
+          }}
+        >
+          <EuiInMemoryTable {...props} pagination={true} />
+        </EuiProvider>,
+        { wrapper: undefined }
+      );
+
+      expect(getByText('Rows per page: 50')).toBeTruthy();
+
+      fireEvent.click(getByTestSubject('tablePaginationPopoverButton'));
+      expect(getByTestSubject('tablePagination-25-rows')).toBeTruthy();
+      expect(getByTestSubject('tablePagination-50-rows')).toBeTruthy();
+      expect(getByTestSubject('tablePagination-100-rows')).toBeTruthy();
     });
 
     test('pagination with actions column and sorting set to true', async () => {
