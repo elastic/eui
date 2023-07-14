@@ -15,8 +15,8 @@ set +x
 # * GCE_ACCOUNT - credentials for the google service account (JSON blob)
 # * GIT_BRANCH - current Git branch or tag (e.g. "refs/heads/main", "v18.2.1")
 # * GIT_PULL_REQUEST_ID - current Git PR (Ex. 6999) from Buildkite env
-# * BUILDKITE - Buildkite CI agent
-# * CI - Jenkins CI agent
+# * BUILDKITE_CI - Buildkite CI agent
+# * JENINKS_CI - Jenkins CI agent
 
 # Docker images
 GCE_IMAGE=google/cloud-sdk:slim
@@ -114,8 +114,8 @@ if [[ "$1" != "nodocker" ]]; then
     --env GPROJECT \
     --env pull_request_id \
     --env GIT_PULL_REQUEST_ID \
-    --env CI \
-    --env BUILDKITE \
+    --env JENKINS_CI \
+    --env BUILDKITE_CI \
     --env CURRENT_RELEASE="$CURRENT_RELEASE" \
     --env HOME=/tmp \
     --volume "$PWD":/app \
@@ -151,7 +151,7 @@ else
   # ==================================================
   # TODO: Remove Jenkins block
   # ==================================================
-  if [[ ! -z "${CI}" ]]; then
+  if [[ ! -z "${JENKINS_CI}" ]]; then
     echo "Jenkins CI agent".
 
     if [[ ! -z "${pull_request_id}" ]]; then
@@ -177,7 +177,7 @@ else
   # ==================================================
   # Buildkite block
   # ==================================================
-  if [[ ! -z "${BUILDKITE}" ]]; then
+  if [[ ! -z "${BUILDKITE_CI}" ]]; then
     echo "Buildkite CI agent."
 
     if [[ ! -z "${GIT_PULL_REQUEST_ID}" ]]; then

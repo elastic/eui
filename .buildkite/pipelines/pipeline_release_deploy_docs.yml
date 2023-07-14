@@ -4,3 +4,8 @@ steps:
   - agents:
       provider: "gcp"
     command: .buildkite/scripts/pipeline_deploy_docs.sh
+  - build:
+      env:
+        GIT_BRANCH: "${BUILDKITE_BRANCH}"
+        GIT_PULL_REQUEST_ID: "${GITHUB_PR_NUMBER}"
+        BUILDKITE_CI: "${BUILDKITE}"
