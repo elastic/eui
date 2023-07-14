@@ -12,10 +12,22 @@ import { renderHook } from '@testing-library/react-hooks';
 import {
   EuiComponentDefaultsProvider,
   useEuiComponentDefaults,
+  EUI_COMPONENT_DEFAULTS,
 } from './component_defaults';
 
 describe('EuiComponentDefaultsProvider', () => {
-  it('sets up context that allows accessing the passed `componentDefaults` from anywhere', () => {
+  it('returns baseline EUI defaults if no consumer configurations are passed', () => {
+    const wrapper = ({ children }: PropsWithChildren<{}>) => (
+      <EuiComponentDefaultsProvider componentDefaults={undefined}>
+        {children}
+      </EuiComponentDefaultsProvider>
+    );
+    const { result } = renderHook(useEuiComponentDefaults, { wrapper });
+
+    expect(result.current).toEqual(EUI_COMPONENT_DEFAULTS);
+  });
+
+  it('overrides undefined EUI defaults with consumer defaults', () => {
     const wrapper = ({ children }: PropsWithChildren<{}>) => (
       <EuiComponentDefaultsProvider
         componentDefaults={{

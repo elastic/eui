@@ -10,6 +10,7 @@ import React, { createContext, useContext, FunctionComponent } from 'react';
 
 import type { EuiPortalProps } from '../../portal';
 import type { EuiFocusTrapProps } from '../../focus_trap';
+import type { EuiTablePaginationProps } from '../../table';
 
 export type EuiComponentDefaults = {
   /**
@@ -21,26 +22,49 @@ export type EuiComponentDefaults = {
    */
   EuiFocusTrap?: Pick<EuiFocusTrapProps, 'gapMode' | 'crossFrame'>;
   /**
-   * TODO
+   * Provide global settings for EuiTablePagination's props that affect page size
+   * / the rows per page selection.
+   *
+   * These defaults will be inherited all table and grid components that utilize EuiTablePagination.
    */
-  EuiPagination?: unknown;
+  EuiTablePagination?: Pick<
+    EuiTablePaginationProps,
+    'itemsPerPage' | 'itemsPerPageOptions' | 'showPerPageOptions'
+  >;
 };
 
-// Declaring as a static const for reference integrity/reducing rerenders
-const emptyDefaults = {};
+/**
+ * The above types are external/consumer facing and have many optional props
+ * The below types reflect props EUI provides defaults for and should always
+ * be present within the internal context
+ */
+type _EuiComponentDefaults = Required<EuiComponentDefaults> & {
+  EuiTablePagination: Required<EuiComponentDefaults['EuiTablePagination']>;
+};
+
+export const EUI_COMPONENT_DEFAULTS: _EuiComponentDefaults = {
+  EuiPortal: {},
+  EuiFocusTrap: {},
+  EuiTablePagination: {
+    itemsPerPage: 50,
+    itemsPerPageOptions: [10, 20, 50, 100],
+    showPerPageOptions: true,
+  },
+};
 
 /*
  * Context
  */
-export const EuiComponentDefaultsContext =
-  createContext<EuiComponentDefaults>(emptyDefaults);
+export const EuiComponentDefaultsContext = createContext<_EuiComponentDefaults>(
+  EUI_COMPONENT_DEFAULTS
+);
 
 /*
  * Component
  */
 export const EuiComponentDefaultsProvider: FunctionComponent<{
   componentDefaults?: EuiComponentDefaults;
-}> = ({ componentDefaults = emptyDefaults, children }) => {
+}> = ({ componentDefaults = EUI_COMPONENT_DEFAULTS, children }) => {
   return (
     <EuiComponentDefaultsContext.Provider value={componentDefaults}>
       {children}
