@@ -32,13 +32,11 @@ describe('EuiComponentDefaultsProvider', () => {
     );
     const { result } = renderHook(useEuiComponentDefaults, { wrapper });
 
-    expect(result.current).toMatchInlineSnapshot(`
+    expect(result.current.EuiPortal).toMatchInlineSnapshot(`
       Object {
-        "EuiPortal": Object {
-          "insert": Object {
-            "position": "before",
-            "sibling": <div />,
-          },
+        "insert": Object {
+          "position": "before",
+          "sibling": <div />,
         },
       }
     `);
