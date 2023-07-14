@@ -9,16 +9,17 @@
 import React, { createContext, useContext, FunctionComponent } from 'react';
 
 import { EuiPortalProps } from '../../portal';
+import { EuiFocusTrapProps } from '../../focus_trap';
 
 export type EuiComponentDefaults = {
   /**
-   * Provide a global setting for EuiPortal's default insertion position.
+   * Provide a global configuration for EuiPortal's default insertion position.
    */
   EuiPortal?: { insert: EuiPortalProps['insert'] };
   /**
-   * TODO
+   * Provide a global configuration for EuiFocusTrap's `gapMode` and `crossFrame` props
    */
-  EuiFocusTrap?: unknown;
+  EuiFocusTrap?: Pick<EuiFocusTrapProps, 'gapMode' | 'crossFrame'>;
   /**
    * TODO
    */
