@@ -1,40 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiTablePagination is rendered 1`] = `
+exports[`EuiTablePagination hides the per page options 1`] = `
 <div
   class="euiFlexGroup eui-xScroll emotion-euiFlexGroup-wrap-s-spaceBetween-center-row"
 >
   <div
     class="euiFlexItem emotion-euiFlexItem-growZero"
-  >
-    <div
-      class="euiPopover emotion-euiPopover"
-    >
-      <div
-        class="euiPopover__anchor css-16vtueo-render"
-      >
-        <button
-          class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
-          data-test-subj="tablePaginationPopoverButton"
-          type="button"
-        >
-          <span
-            class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
-          >
-            <span
-              class="eui-textTruncate euiButtonEmpty__text"
-            >
-              Rows per page: 50
-            </span>
-            <span
-              color="inherit"
-              data-euiicon-type="arrowDown"
-            />
-          </span>
-        </button>
-      </div>
-    </div>
-  </div>
+  />
   <div
     class="euiFlexItem emotion-euiFlexItem-growZero"
   >
@@ -191,13 +163,43 @@ exports[`EuiTablePagination is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
+exports[`EuiTablePagination renders 1`] = `
 <div
   class="euiFlexGroup eui-xScroll emotion-euiFlexGroup-wrap-s-spaceBetween-center-row"
 >
   <div
     class="euiFlexItem emotion-euiFlexItem-growZero"
-  />
+  >
+    <div
+      class="euiPopover emotion-euiPopover"
+    >
+      <div
+        class="euiPopover__anchor css-16vtueo-render"
+      >
+        <button
+          class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text"
+          data-test-subj="tablePaginationPopoverButton"
+          type="button"
+        >
+          <span
+            class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+          >
+            <span
+              class="eui-textTruncate euiButtonEmpty__text"
+            >
+              Rows per page
+              : 
+              50
+            </span>
+            <span
+              color="inherit"
+              data-euiicon-type="arrowDown"
+            />
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
   <div
     class="euiFlexItem emotion-euiFlexItem-growZero"
   >

@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { render } from '../../../test/rtl';
 import { requiredProps } from '../../../test/required_props';
 
 import { EuiTablePagination } from './table_pagination';
@@ -18,16 +18,17 @@ describe('EuiTablePagination', () => {
     pageCount: 5,
     onChangePage: jest.fn(),
   };
-  test('is rendered', () => {
-    const component = render(
+
+  it('renders', () => {
+    const { container } = render(
       <EuiTablePagination {...requiredProps} {...paginationProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('is rendered when hiding the per page options', () => {
-    const component = render(
+  it('hides the per page options', () => {
+    const { container } = render(
       <EuiTablePagination
         {...requiredProps}
         {...paginationProps}
@@ -35,11 +36,11 @@ describe('EuiTablePagination', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('renders a "show all" itemsPerPage option', () => {
-    const component = render(
+  it('renders a "show all" itemsPerPage option', () => {
+    const { container } = render(
       <EuiTablePagination
         {...requiredProps}
         {...paginationProps}
@@ -48,6 +49,6 @@ describe('EuiTablePagination', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

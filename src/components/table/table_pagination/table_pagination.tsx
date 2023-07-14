@@ -56,7 +56,7 @@ export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = ({
   itemsPerPage = 50,
   itemsPerPageOptions = [10, 20, 50, 100],
   showPerPageOptions = true,
-  onChangeItemsPerPage = () => {},
+  onChangeItemsPerPage,
   onChangePage,
   pageCount,
   ...rest
@@ -105,7 +105,7 @@ export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = ({
           icon={itemsPerPageOption === itemsPerPage ? 'check' : 'empty'}
           onClick={() => {
             closePopover();
-            onChangeItemsPerPage(itemsPerPageOption);
+            onChangeItemsPerPage?.(itemsPerPageOption);
           }}
           data-test-subj={`tablePagination-${itemsPerPageOption}-rows`}
         >
