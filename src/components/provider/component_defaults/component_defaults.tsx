@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { createContext, useContext, FunctionComponent } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useMemo,
+  FunctionComponent,
+} from 'react';
 
 import type { EuiPortalProps } from '../../portal';
 import type { EuiFocusTrapProps } from '../../focus_trap';
@@ -64,7 +69,29 @@ export const EuiComponentDefaultsContext = createContext<_EuiComponentDefaults>(
  */
 export const EuiComponentDefaultsProvider: FunctionComponent<{
   componentDefaults?: EuiComponentDefaults;
-}> = ({ componentDefaults = EUI_COMPONENT_DEFAULTS, children }) => {
+}> = ({ componentDefaults: configuredDefaults, children }) => {
+  // Merge consumer configured component props with baseline EUI component props
+  const componentDefaults: _EuiComponentDefaults = useMemo(() => {
+    if (!configuredDefaults) return EUI_COMPONENT_DEFAULTS;
+
+    const mergedDefaults: _EuiComponentDefaults = { ...EUI_COMPONENT_DEFAULTS };
+
+    Object.entries(configuredDefaults).forEach(
+      ([componentName, componentProps]) => {
+        Object.entries(componentProps as any).forEach(
+          ([propName, propValue]) => {
+            if (propValue !== undefined) {
+              // @ts-ignore Object.entries is inherently untyped, but we don't need it to be here
+              mergedDefaults[componentName][propName] = propValue;
+            }
+          }
+        );
+      }
+    );
+
+    return mergedDefaults;
+  }, [configuredDefaults]);
+
   return (
     <EuiComponentDefaultsContext.Provider value={componentDefaults}>
       {children}
