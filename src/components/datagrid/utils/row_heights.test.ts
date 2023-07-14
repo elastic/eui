@@ -7,7 +7,7 @@
  */
 
 import type { MutableRefObject } from 'react';
-import { act } from 'react-dom/test-utils';
+import { act } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 import { startingStyles } from '../controls';
 import type { ImperativeGridApi } from '../data_grid_types';
