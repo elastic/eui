@@ -8,6 +8,8 @@
 
 import React from 'react';
 import { shallow, mount } from 'enzyme';
+import { fireEvent } from '@testing-library/react';
+import { render } from '../../../test/rtl';
 
 import { DataGridFocusContext } from './focus';
 import { mockFocusContext } from './__mocks__/focus_context';
@@ -156,5 +158,21 @@ describe('EuiDataGridPaginationRenderer', () => {
       .prop('onChangePage');
     onChangePage(3);
     expect(mockFocusContext.setFocusedCell).toHaveBeenCalledWith([0, 0]);
+  });
+
+  describe('EuiProvider component defaults', () => {
+    it('falls back to EuiTablePagination defaults if pageSize and pageSizeOptions are undefined', () => {
+      const { getByText } = render(
+        <EuiDataGridPaginationRenderer
+          {...props}
+          pageSize={undefined}
+          pageSizeOptions={undefined}
+        />
+      );
+      fireEvent.click(getByText('Rows per page: 10'));
+      expect(getByText('10 rows')).toBeTruthy();
+      expect(getByText('25 rows')).toBeTruthy();
+      expect(getByText('50 rows')).toBeTruthy();
+    });
   });
 });

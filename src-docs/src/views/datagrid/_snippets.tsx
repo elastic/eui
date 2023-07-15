@@ -69,8 +69,8 @@ renderCustomDataGridBody={({ visibleColumns, visibleRowData, Cell }) => (
 )}`,
   pagination: `pagination={{
   pageIndex: 1,
-  pageSize: 100,
-  pageSizeOptions: [50, 100, 200],
+  pageSize: 100, // If not specified, defaults to EuiTablePagination.itemsPerPage
+  pageSizeOptions: [50, 100, 200], // If not specified, defaults to EuiTablePagination.itemsPerPageOptions
   onChangePage: () => {},
   onChangeItemsPerPage: () => {},
 }}`,
