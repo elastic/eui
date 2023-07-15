@@ -11,6 +11,7 @@
 /// <reference types="../../../cypress/support" />
 
 import React from 'react';
+import { mount } from 'cypress/react'; // cy.mount is configured to automatically wrap <EuiProvider>, which we're already using manually here
 
 import { EuiProvider } from '../../components/provider';
 import { useCurrentEuiBreakpoint } from './';
@@ -28,7 +29,7 @@ describe('useCurrentEuiBreakpoint', () => {
   describe('with default EUI theme breakpoints', () => {
     beforeEach(() => {
       cy.viewport(1600, 600);
-      cy.mount(
+      mount(
         <EuiProvider>
           <MockComponent />
         </EuiProvider>
@@ -70,7 +71,7 @@ describe('useCurrentEuiBreakpoint', () => {
 
   describe('with custom breakpoints', () => {
     beforeEach(() => {
-      cy.mount(
+      mount(
         <EuiProvider
           modify={{
             breakpoint: {

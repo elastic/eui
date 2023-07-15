@@ -11,6 +11,7 @@
 /// <reference types="../../../cypress/support" />
 
 import React, { FunctionComponent } from 'react';
+import { mount } from 'cypress/react'; // mount is configured to automatically wrap <EuiProvider>, which we're already using manually here
 
 import { EuiProvider } from '../../components/provider';
 import { _EuiThemeBreakpoint } from '../../global_styling/variables/breakpoint';
@@ -31,7 +32,7 @@ describe('useIsWithinBreakpoints', () => {
 
   it('returns true if the current breakpoint size is in the passed sizes array', () => {
     cy.viewport(300, 600);
-    cy.mount(
+    mount(
       <EuiProvider>
         <MockComponent sizes={['xs', 's', 'm']} />
       </EuiProvider>
@@ -41,7 +42,7 @@ describe('useIsWithinBreakpoints', () => {
 
   it('returns false if the current breakpoint size is outside the passed sizes array', () => {
     cy.viewport(1400, 600);
-    cy.mount(
+    mount(
       <EuiProvider>
         <MockComponent sizes={['xs', 's', 'm']} />
       </EuiProvider>
@@ -51,7 +52,7 @@ describe('useIsWithinBreakpoints', () => {
 
   it('returns false always if isResponsive is passed as false', () => {
     cy.viewport(300, 600);
-    cy.mount(
+    mount(
       <EuiProvider>
         <MockComponent sizes={['xs', 's', 'm']} isResponsive={false} />
       </EuiProvider>
@@ -61,7 +62,7 @@ describe('useIsWithinBreakpoints', () => {
 
   it('correctly handles custom breakpoint sizes', () => {
     cy.viewport(1500, 600);
-    cy.mount(
+    mount(
       <EuiProvider
         modify={{
           breakpoint: {
@@ -90,7 +91,7 @@ describe('useIsWithinMaxBreakpoint', () => {
 
   it('returns true if the current breakpoint size is smaller than the passed max size', () => {
     cy.viewport(300, 600);
-    cy.mount(
+    mount(
       <EuiProvider>
         <MockComponent size="m" />
       </EuiProvider>
@@ -100,7 +101,7 @@ describe('useIsWithinMaxBreakpoint', () => {
 
   it('returns false if the current breakpoint size is larger than the passed max size', () => {
     cy.viewport(1400, 600);
-    cy.mount(
+    mount(
       <EuiProvider>
         <MockComponent size="m" />
       </EuiProvider>
@@ -110,7 +111,7 @@ describe('useIsWithinMaxBreakpoint', () => {
 
   it('correctly handles custom breakpoint sizes', () => {
     cy.viewport(1400, 600);
-    cy.mount(
+    mount(
       <EuiProvider
         modify={{
           breakpoint: {
@@ -137,7 +138,7 @@ describe('useIsWithinMinBreakpoint', () => {
 
   it('returns true if the current breakpoint size is larger than the passed min size', () => {
     cy.viewport(800, 600);
-    cy.mount(
+    mount(
       <EuiProvider>
         <MockComponent size="m" />
       </EuiProvider>
@@ -147,7 +148,7 @@ describe('useIsWithinMinBreakpoint', () => {
 
   it('returns false if the current breakpoint size is smaller than the passed min size', () => {
     cy.viewport(600, 600);
-    cy.mount(
+    mount(
       <EuiProvider>
         <MockComponent size="m" />
       </EuiProvider>
@@ -157,7 +158,7 @@ describe('useIsWithinMinBreakpoint', () => {
 
   it('correctly handles custom breakpoint sizes', () => {
     cy.viewport(600, 600);
-    cy.mount(
+    mount(
       <EuiProvider
         modify={{
           breakpoint: {
