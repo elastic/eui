@@ -387,6 +387,7 @@ describe('createKeyDownHandler', () => {
       const pagination = {
         pageIndex: 0,
         pageSize: 5,
+        pageSizeOptions: [5],
         onChangePage: jest.fn(),
         onChangeItemsPerPage: () => {},
       };
@@ -433,6 +434,7 @@ describe('createKeyDownHandler', () => {
       const pagination = {
         pageIndex: 1,
         pageSize: 5,
+        pageSizeOptions: [5],
         onChangePage: jest.fn(),
         onChangeItemsPerPage: () => {},
       };

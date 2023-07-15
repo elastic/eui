@@ -429,7 +429,7 @@ export interface EuiDataGridBodyProps {
   renderFooterCellValue?: EuiDataGridCellProps['renderCellValue'];
   renderCustomGridBody?: EuiDataGridProps['renderCustomGridBody'];
   interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
-  pagination?: EuiDataGridPaginationProps;
+  pagination?: Required<EuiDataGridPaginationProps>;
   headerIsInteractive: boolean;
   handleHeaderMutation: MutationCallback;
   setVisibleColumns: EuiDataGridHeaderRowProps['setVisibleColumns'];
@@ -594,7 +594,7 @@ export interface EuiDataGridCellProps {
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
   rowHeightUtils?: RowHeightUtilsType;
   rowManager?: EuiDataGridRowManager;
-  pagination?: EuiDataGridPaginationProps;
+  pagination?: Required<EuiDataGridPaginationProps>;
 }
 
 export interface EuiDataGridCellState {
