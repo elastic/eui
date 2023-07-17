@@ -20,7 +20,6 @@ import { focusable } from 'tabbable';
 
 import { CommonProps, NoArgCallback } from '../common';
 import { FocusTarget, EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
-import { ReactFocusOnProps } from 'react-focus-on/dist/es5/types';
 
 import {
   cascadingMenuKeys,
@@ -174,10 +173,6 @@ export interface EuiPopoverProps extends CommonProps {
    * component; pass `zIndex` to override
    */
   zIndex?: number;
-  /**
-   * Function callback for when the focus trap is deactivated
-   */
-  onTrapDeactivation?: ReactFocusOnProps['onDeactivation'];
   /**
    * Distance away from the anchor that the popover will render
    */
@@ -620,7 +615,6 @@ export class EuiPopover extends Component<Props, State> {
       display,
       offset,
       onPositionChange,
-      onTrapDeactivation,
       buffer,
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledBy,
@@ -698,7 +692,6 @@ export class EuiPopover extends Component<Props, State> {
             onClickOutside={this.onClickOutside}
             returnFocus={returnFocus} // Ignore temporary state of indecisive focus
             initialFocus={initialFocus}
-            onDeactivation={onTrapDeactivation}
             onEscapeKey={this.onEscapeKey}
             disabled={
               !ownFocus || !this.state.isOpenStable || this.state.isClosing
