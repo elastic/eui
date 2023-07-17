@@ -103,14 +103,7 @@ export interface EuiPopoverProps extends CommonProps {
   /**
    * Object of props passed to EuiFocusTrap
    */
-  focusTrapProps?: Pick<
-    EuiFocusTrapProps,
-    | 'clickOutsideDisables'
-    | 'onClickOutside'
-    | 'noIsolation'
-    | 'scrollLock'
-    | 'shards'
-  >;
+  focusTrapProps?: Partial<EuiFocusTrapProps>;
   /**
    * Show arrow indicating to originating button
    */
@@ -703,7 +696,6 @@ export class EuiPopover extends Component<Props, State> {
           <EuiFocusTrap
             clickOutsideDisables={true}
             onClickOutside={this.onClickOutside}
-            {...focusTrapProps}
             returnFocus={returnFocus} // Ignore temporary state of indecisive focus
             initialFocus={initialFocus}
             onDeactivation={onTrapDeactivation}
@@ -711,6 +703,7 @@ export class EuiPopover extends Component<Props, State> {
             disabled={
               !ownFocus || !this.state.isOpenStable || this.state.isClosing
             }
+            {...focusTrapProps}
           >
             <EuiPopoverPanel
               {...(panelProps as EuiPopoverPanelProps)}
