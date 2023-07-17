@@ -1,6 +1,8 @@
+import type { ReactNode } from 'react';
 import { mount } from 'cypress/react';
 import { ContextObject, Result, RunOptions } from 'axe-core';
 import { realPress } from 'cypress-real-events/commands/realPress';
+import type { EuiProviderProps } from '../../src/components/provider';
 
 type KeyOrShortcut = Parameters<typeof realPress>[0];
 type RealPressOptions = Parameters<typeof realPress>[1];
@@ -30,7 +32,10 @@ declare global {
       /**
        * Mounts components with a basic `EuiProvider` wrapper
        */
-      mount: typeof mount;
+      mount: <T = {}>(
+        children: ReactNode,
+        options?: { providerProps?: Partial<EuiProviderProps<T>> }
+      ) => ReturnType<typeof mount>;
 
       /**
        * This ensures the correct testing window has focus when using Cypress Real Events.

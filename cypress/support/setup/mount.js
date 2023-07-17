@@ -10,6 +10,7 @@ import React from 'react';
 import { mount as cypressMount } from 'cypress/react';
 import { EuiProvider } from '../../../src';
 
-Cypress.Commands.add('mount', (children) => {
-  return cypressMount(<EuiProvider>{children}</EuiProvider>);
+Cypress.Commands.add('mount', (children, options = {}) => {
+  const { providerProps } = options;
+  return cypressMount(<EuiProvider {...providerProps}>{children}</EuiProvider>);
 });
