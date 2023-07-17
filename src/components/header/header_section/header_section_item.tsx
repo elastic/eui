@@ -9,7 +9,10 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
 
+import { useEuiTheme } from '../../../services';
 import { CommonProps } from '../../common';
+
+import { euiHeaderSectionItemStyles } from './header_section_item.styles';
 
 export type EuiHeaderSectionItemProps = CommonProps & {
   /**
@@ -18,14 +21,20 @@ export type EuiHeaderSectionItemProps = CommonProps & {
   children?: ReactNode;
 };
 
+/**
+ * Header items are small icon links that pop up menus
+ */
 export const EuiHeaderSectionItem: FunctionComponent<
   EuiHeaderSectionItemProps
 > = ({ children, className, ...rest }) => {
+  const euiTheme = useEuiTheme();
+  const styles = euiHeaderSectionItemStyles(euiTheme);
+
   const classes = classNames('euiHeaderSectionItem', className);
 
   // we check if there is any children and if not, we don't render anything
   return children ? (
-    <div className={classes} {...rest}>
+    <div className={classes} css={styles.euiHeaderSectionItem} {...rest}>
       {children}
     </div>
   ) : null;
