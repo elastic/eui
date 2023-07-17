@@ -12,7 +12,6 @@
 
 import React from 'react';
 
-import { EuiProvider } from '../../components/provider';
 import { useCurrentEuiBreakpoint } from './';
 
 describe('useCurrentEuiBreakpoint', () => {
@@ -28,11 +27,7 @@ describe('useCurrentEuiBreakpoint', () => {
   describe('with default EUI theme breakpoints', () => {
     beforeEach(() => {
       cy.viewport(1600, 600);
-      cy.mount(
-        <EuiProvider>
-          <MockComponent />
-        </EuiProvider>
-      );
+      cy.mount(<MockComponent />);
       cy.wait(50); // Throttle race conditions - won't typically happen in production, but Cypress does everything extremely fast
     });
 
@@ -70,23 +65,18 @@ describe('useCurrentEuiBreakpoint', () => {
 
   describe('with custom breakpoints', () => {
     beforeEach(() => {
-      cy.mount(
-        <EuiProvider
-          modify={{
-            breakpoint: {
-              xxs: 0,
-              xs: 250,
-              s: 500,
-              m: 1000,
-              l: 1500,
-              xl: 2000,
-              xxl: 2500,
-            },
-          }}
-        >
-          <MockComponent />
-        </EuiProvider>
-      );
+      const customBreakpoints = {
+        xxs: 0,
+        xs: 250,
+        s: 500,
+        m: 1000,
+        l: 1500,
+        xl: 2000,
+        xxl: 2500,
+      };
+      cy.mount(<MockComponent />, {
+        providerProps: { modify: { breakpoint: customBreakpoints } },
+      });
       cy.wait(50); // Throttle race conditions - won't typically happen in production, but Cypress does everything extremely fast
     });
 

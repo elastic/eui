@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiThemeProvider nested EuiThemeProviders allows avoiding the extra span wrapper with \`wrapperProps.cloneElement\` 1`] = `
+<div>
+  Top-level provider
+   
+  <div
+    class="world hello emotion-euiColorMode-dark-colorClassName"
+  >
+    clone provider color onto div
+  </div>
+</div>
+`;
+
+exports[`EuiThemeProvider nested EuiThemeProviders allows customizing the span wrapper with \`wrapperProps\` 1`] = `
+<div>
+  Top-level provider
+   
+  <span
+    class="euiThemeProvider test css-1mg4zk6-customCss-euiColorMode-dark-colorClassName"
+    data-test-subj="nested"
+  >
+    Nested
+  </span>
+</div>
+`;
+
+exports[`EuiThemeProvider nested EuiThemeProviders renders with a span wrapper that sets the inherited text color 1`] = `
+<div>
+  Top-level provider
+   
+  <span
+    class="euiThemeProvider emotion-euiColorMode-dark-colorClassName"
+  >
+    Nested
+    <span
+      class="euiThemeProvider emotion-euiColorMode-light-colorClassName"
+    >
+      Double nested
+      <span
+        class="euiThemeProvider emotion-euiColorMode-inverse-colorClassName"
+      >
+        Triple nested
+      </span>
+    </span>
+  </span>
+</div>
+`;
