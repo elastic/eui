@@ -61,7 +61,8 @@ export class EuiErrorBoundary extends Component<
     // For consistency, rebuild the full error text from the Error subparts.
     const { message, stack } = error;
     const idx = stack?.indexOf(message) || -1;
-    const stackStr = idx > -1 ? stack?.substr(idx + message.length + 1) : stack;
+    const stackStr =
+      idx > -1 ? stack?.substring(idx + message.length + 1) : stack;
     const errorMessage = `Error: ${message}
 ${stackStr}`;
     this.setState({
