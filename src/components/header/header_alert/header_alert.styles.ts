@@ -15,13 +15,15 @@ export const euiHeaderAlertStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiHeaderAlert: css`
-      ${logicalCSS('min-width', '300px')}
       position: relative;
-      ${logicalCSS('margin-bottom', euiTheme.size.l)}
-      padding-block: 0 ${euiTheme.size.l};
-      padding-inline: ${euiTheme.size.s};
-      ${logicalCSS('border-bottom', euiTheme.border.thin)}
-      ${logicalCSS('border-top', 'none')}
+      ${logicalCSS('min-width', '300px')}
+      ${logicalCSS('padding-horizontal', euiTheme.size.s)}
+
+      &:not(:last-child) {
+        ${logicalCSS('margin-bottom', euiTheme.size.l)}
+        ${logicalCSS('padding-bottom', euiTheme.size.l)}
+        ${logicalCSS('border-bottom', euiTheme.border.thin)}
+      }
     `,
   };
 };
