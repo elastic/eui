@@ -32,4 +32,7 @@
     vertical-align: middle;
     display: inline-block;
   }
+  &--icon{
+    margin-right: $euiSizeXS;
+  }
 }

@@ -8,6 +8,7 @@
 
 import { ButtonHTMLAttributes } from 'react';
 import { CommonProps } from '../common';
+import { IconType } from '../icon';
 
 // note similarity to `Option` in `components/selectable/types.tsx`
 export interface EuiComboBoxOptionOption<
@@ -19,6 +20,7 @@ export interface EuiComboBoxOptionOption<
   key?: string;
   options?: Array<EuiComboBoxOptionOption<T>>;
   value?: T;
+  icon?: IconType;
 }
 
 export type UpdatePositionHandler = (

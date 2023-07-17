@@ -13,6 +13,7 @@ import { EuiBadge } from '../../badge';
 import { EuiI18n } from '../../i18n';
 import { EuiComboBoxOptionOption, OptionHandler } from '../types';
 import { CommonProps } from '../../common';
+import { EuiIcon } from '../../icon';
 
 export interface EuiComboBoxPillProps<T> extends CommonProps {
   asPlainText?: boolean;
@@ -79,6 +80,7 @@ export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
               iconOnClickAriaLabel={removeSelection}
               iconSide="right"
               iconType="cross"
+              extraIcon={option.icon}
               title={children}
               {...onClickProps}
               {...rest}
@@ -93,6 +95,13 @@ export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
     if (asPlainText) {
       return (
         <span className={classes} {...rest}>
+          {option.icon && (
+            <EuiIcon
+              className="euiComboBoxPill--icon"
+              type={option.icon}
+              size="s"
+            />
+          )}
           {children}
         </span>
       );

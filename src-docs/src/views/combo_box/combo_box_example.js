@@ -33,7 +33,9 @@ import Containers from './containers';
 const containersSource = require('!!raw-loader!./containers');
 
 import Colors from './colors';
+import WithIcons from './with_icons';
 const colorsSource = require('!!raw-loader!./colors');
+const withIconsSource = require('!!raw-loader!./with_icons');
 const colorsSnippet = `<EuiComboBox
   aria-label="Accessible screen reader label"
   placeholder="Select or create options"
@@ -103,6 +105,9 @@ const singleSelectionCustomOptionsSnippet = `<EuiComboBox
   onCreateOption={onCreateOption}
   onChange={onChange}
 />`;
+
+import SingleSelectionWithIcon from './single_selection_with_icon';
+const singleSelectionWithIconSource = require('!!raw-loader!./single_selection_with_icon');
 
 import DisallowCustomOptions from './disallow_custom_options';
 const disallowCustomOptionsSource = require('!!raw-loader!./disallow_custom_options');
@@ -363,6 +368,23 @@ export const ComboBoxExample = {
       demo: <Colors />,
     },
     {
+      title: 'With icons',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: withIconsSource,
+        },
+      ],
+      text: (
+        <p>
+          Useful for showing icon alongside label. Passed icon as part of option will be displayed in options and selected item.
+        </p>
+      ),
+      props: { EuiComboBox, EuiComboBoxOptionOption },
+      snippet: colorsSnippet,
+      demo: <WithIcons />,
+    },
+    {
       title: 'Option rendering',
       source: [
         {
@@ -485,6 +507,34 @@ export const ComboBoxExample = {
       props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: singleSelectionCustomOptionsSnippet,
       demo: <SingleSelectionCustomOptions />,
+    },
+    {
+      title: 'Single selection with icon',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: singleSelectionWithIconSource,
+        },
+      ],
+      text: (
+        <Fragment>
+          <p>
+            You can allow the user to select a single option and also allow the
+            creation of custom options. To do that, use the{' '}
+            <EuiCode>singleSelection</EuiCode> in conjunction with the{' '}
+            <EuiCode>onCreateOption</EuiCode> prop.
+          </p>
+          <p>
+            <strong>Note:</strong> Creating custom options might not be obvious
+            to the user, so provide help text explaining that this option is
+            available. You can also customize the custom option text by passing
+            a text to <EuiCode>customOptionText</EuiCode> prop.
+          </p>
+        </Fragment>
+      ),
+      props: { EuiComboBox, EuiComboBoxOptionOption },
+      snippet: singleSelectionCustomOptionsSnippet,
+      demo: <SingleSelectionWithIcon />,
     },
     {
       title: 'Disallowing custom options',

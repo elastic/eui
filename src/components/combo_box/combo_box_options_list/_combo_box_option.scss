@@ -26,6 +26,7 @@
       text-decoration: none;
     }
   }
+
 }
 
 .euiComboBoxOption__contentWrapper {
@@ -40,6 +41,11 @@
   .euiComboBoxOption__enterBadge {
     align-self: center;
     margin-left: $euiSizeXS;
+  }
+
+  .euiComboBoxOption__icon {
+    align-self: center;
+    margin-right: $euiSizeXS;
   }
 }
 

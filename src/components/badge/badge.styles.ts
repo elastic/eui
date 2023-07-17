@@ -127,6 +127,21 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       euiBadge__icon: css``,
       right: css`
         &:not(:only-child) {
+          ${logicalCSS('margin-right', euiTheme.size.xs)}
+        }
+      `,
+      left: css`
+        &:not(:only-child) {
+          ${logicalCSS('margin-left', euiTheme.size.xs)}
+        }
+      `,
+    },
+
+    // extra Icon
+    extraIcon: {
+      euiBadge__iconExtra: css``,
+      right: css`
+        &:not(:only-child) {
           ${logicalCSS('margin-left', euiTheme.size.xs)}
         }
       `,

@@ -41,6 +41,7 @@ import {
 import { CommonProps } from '../../common';
 import { EuiBadge } from '../../badge';
 import { EuiPopoverPanel } from '../../popover/popover_panel';
+import { EuiIcon } from '../../icon';
 
 const OPTION_CONTENT_CLASSNAME = 'euiComboBoxOption__content';
 
@@ -84,6 +85,7 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps &
       searchValue: string,
       OPTION_CONTENT_CLASSNAME: string
     ) => ReactNode;
+    renderPill?: (option: EuiComboBoxOptionOption<T>) => ReactNode;
     rootId: ReturnType<typeof htmlIdGenerator>;
     rowHeight: number;
     scrollToIndex?: number;
@@ -268,13 +270,22 @@ export class EuiComboBoxOptionsList<T> extends Component<
               )}
             </span>
           ) : (
-            <EuiHighlight
-              search={searchValue}
-              strict={this.props.isCaseSensitive}
-              className={OPTION_CONTENT_CLASSNAME}
-            >
-              {label}
-            </EuiHighlight>
+            <>
+              {option.icon && (
+                <EuiIcon
+                  className="euiComboBoxOption__icon"
+                  type={option.icon}
+                  size="s"
+                />
+              )}
+              <EuiHighlight
+                search={searchValue}
+                strict={this.props.isCaseSensitive}
+                className={OPTION_CONTENT_CLASSNAME}
+              >
+                {label}
+              </EuiHighlight>
+            </>
           )}
           {optionIsFocused && !optionIsDisabled ? hitEnterBadge : null}
         </span>
