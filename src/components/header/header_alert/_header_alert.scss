@@ -1,11 +1,4 @@
 .euiHeaderAlert {
-  min-width: 300px;
-  position: relative;
-  margin-bottom: $euiSizeL;
-  padding: 0 $euiSizeS $euiSizeL;
-  border-bottom: $euiBorderThin;
-  border-top: none;
-
   .euiHeaderAlert__title {
     @include euiTitle('xs');
     margin-bottom: $euiSizeS;

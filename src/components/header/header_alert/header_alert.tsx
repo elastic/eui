@@ -12,7 +12,9 @@ import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
-import { useGeneratedHtmlId } from '../../../services';
+import { useEuiTheme, useGeneratedHtmlId } from '../../../services';
+
+import { euiHeaderAlertStyles } from './header_alert.styles';
 
 export type EuiHeaderAlertProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'title'> & {
@@ -38,12 +40,20 @@ export const EuiHeaderAlert: FunctionComponent<EuiHeaderAlertProps> = ({
   badge,
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
+  const styles = euiHeaderAlertStyles(euiTheme);
+
   const classes = classNames('euiHeaderAlert', className);
 
   const ariaId = useGeneratedHtmlId();
 
   return (
-    <article aria-labelledby={`${ariaId}-title`} className={classes} {...rest}>
+    <article
+      aria-labelledby={`${ariaId}-title`}
+      className={classes}
+      css={styles.euiHeaderAlert}
+      {...rest}
+    >
       <EuiFlexGroup justifyContent="spaceBetween">
         <EuiFlexItem>
           <div className="euiHeaderAlert__date">{date}</div>
