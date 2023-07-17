@@ -112,16 +112,6 @@ const euiHeaderDarkStyles = (
       color: ${makeHighContrastColor(euiTheme.colors.primary)(backgroundColor)};
     }
 
-    .euiHeaderSectionItem {
-      &::after {
-        background-color: ${
-          colorMode === 'DARK'
-            ? euiTheme.colors.lightestShade
-            : euiTheme.colors.darkShade
-        };
-      }
-    }
-
     .euiHeaderLogo,
     .euiHeaderLink,
     .euiHeaderSectionItemButton {

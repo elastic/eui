@@ -350,7 +350,7 @@ export default () => {
 
       <EuiHeader position={position} theme={theme}>
         <EuiHeaderSection>
-          <EuiHeaderSectionItem border="right">
+          <EuiHeaderSectionItem>
             <EuiHeaderLogo>Elastic</EuiHeaderLogo>
           </EuiHeaderSectionItem>
         </EuiHeaderSection>

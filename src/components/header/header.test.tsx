@@ -56,13 +56,12 @@ describe('EuiHeader', () => {
   });
 
   describe('sections', () => {
-    it('render simple items and borders', () => {
+    it('render simple items', () => {
       const { container } = render(
         <EuiHeader
           sections={[
             {
               items: ['Item 1', 'Item 2'],
-              borders: 'right',
             },
             {
               items: ['Item A', 'Item B'],

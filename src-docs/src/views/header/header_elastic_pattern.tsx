@@ -307,11 +307,9 @@ export default () => {
               </EuiHeaderLogo>,
               deploymentMenu,
             ],
-            borders: 'none',
           },
           {
             items: [<EuiShowFor sizes={['m', 'l', 'xl']}>{search}</EuiShowFor>],
-            borders: 'none',
           },
           {
             items: [
@@ -325,7 +323,6 @@ export default () => {
               </EuiHeaderSectionItemButton>,
               userMenu,
             ],
-            borders: 'none',
           },
         ]}
       />
@@ -343,7 +340,6 @@ export default () => {
                 text: 'Users',
               },
             ],
-            borders: 'right',
           },
           {
             items: [

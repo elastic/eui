@@ -147,14 +147,8 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
         position="fixed"
         theme="dark"
         sections={[
-          {
-            items: [renderLogo(), renderVersion()],
-            borders: 'none',
-          },
-          {
-            items: rightSideItems,
-            borders: 'none',
-          },
+          { items: [renderLogo(), renderVersion()] },
+          { items: rightSideItems },
         ]}
       />
     </header>

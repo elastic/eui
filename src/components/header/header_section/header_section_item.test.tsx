@@ -28,26 +28,4 @@ describe('EuiHeaderSectionItem', () => {
 
     expect(container.firstChild).toMatchSnapshot();
   });
-
-  describe('border', () => {
-    test('defaults to left', () => {
-      const { container } = render(
-        <EuiHeaderSectionItem>
-          <span>Left is default</span>
-        </EuiHeaderSectionItem>
-      );
-
-      expect(container.firstChild).toMatchSnapshot();
-    });
-
-    test('renders right', () => {
-      const { container } = render(
-        <EuiHeaderSectionItem border="right">
-          <span>Right section</span>
-        </EuiHeaderSectionItem>
-      );
-
-      expect(container.firstChild).toMatchSnapshot();
-    });
-  });
 });

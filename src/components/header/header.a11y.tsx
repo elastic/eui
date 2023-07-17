@@ -122,10 +122,8 @@ const Header = () => {
   return (
     <EuiHeader>
       <EuiHeaderSection grow={false}>
-        <EuiHeaderSectionItem border="right">
-          {renderLogo()}
-        </EuiHeaderSectionItem>
-        <EuiHeaderSectionItem border="right">
+        <EuiHeaderSectionItem>{renderLogo()}</EuiHeaderSectionItem>
+        <EuiHeaderSectionItem>
           <HeaderSpacesMenu />
         </EuiHeaderSectionItem>
       </EuiHeaderSection>

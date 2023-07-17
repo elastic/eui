@@ -11,20 +11,7 @@ import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
 
-type Border = 'left' | 'right' | 'none';
-
-const borderToClassNameMap: { [border in Border]: string | undefined } = {
-  left: 'euiHeaderSectionItem--borderLeft',
-  right: 'euiHeaderSectionItem--borderRight',
-  none: undefined,
-};
-
 export type EuiHeaderSectionItemProps = CommonProps & {
-  /**
-   * Side to display a short border on.
-   * Not supported in Amsterdam theme.
-   */
-  border?: Border;
   /**
    * ReactNode to render as this component's content
    */
@@ -33,12 +20,8 @@ export type EuiHeaderSectionItemProps = CommonProps & {
 
 export const EuiHeaderSectionItem: FunctionComponent<
   EuiHeaderSectionItemProps
-> = ({ border = 'left', children, className, ...rest }) => {
-  const classes = classNames(
-    'euiHeaderSectionItem',
-    borderToClassNameMap[border],
-    className
-  );
+> = ({ children, className, ...rest }) => {
+  const classes = classNames('euiHeaderSectionItem', className);
 
   // we check if there is any children and if not, we don't render anything
   return children ? (
