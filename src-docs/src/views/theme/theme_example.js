@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
 
@@ -35,11 +36,17 @@ export const ThemeExample = {
           EUI is in the progress of switching it&apos;s core styles processor
           from Sass to <EuiLink href="https://emotion.sh">Emotion</EuiLink>. To
           take full advantage of this context layer, wrap the root of your
-          application with{' '}
+          application with a single{' '}
           <EuiLink href="#utilities/provider">
             <strong>EuiProvider</strong>
           </EuiLink>
-          .
+          . While <strong>EuiProvider</strong> should not be included more than
+          once, you may use multiple nested <strong>EuiThemeProviders</strong>{' '}
+          to customize section-specific or component-specific{' '}
+          <Link to="/theming/color-mode#rendering-a-specific-color-mode">
+            color modes
+          </Link>{' '}
+          or theme overrides.
         </p>
       </EuiText>
     </>
@@ -51,23 +58,7 @@ export const ThemeExample = {
         <>
           <p>
             The context layer that enables theming (including the default theme
-            styles) comes from <EuiCode>EuiThemeProvider</EuiCode>. It is a thin
-            wrapper around and caching layer built onto{' '}
-            <EuiCode>React.Context.Provider</EuiCode>.
-          </p>
-          <p>
-            Typically your app will only need a single instance at the top level
-            and the functionality will flow down the component tree. We
-            recommend using{' '}
-            <EuiLink href="#utilities/provider">
-              <strong>EuiProvider</strong>
-            </EuiLink>{' '}
-            at this level as it includes reset styles and future configuration
-            options. It is also possible to use several nested theme providers.
-            In this case each nested provider will inherit from its closest
-            ancestor provider.
-          </p>
-          <p>
+            styles) comes from <EuiCode>EuiThemeProvider</EuiCode>.{' '}
             <EuiCode>EuiThemeProvider</EuiCode> accepts three props, all of
             which have default values and are therefore optional. To use the
             default EUI theme, no configuration is required.

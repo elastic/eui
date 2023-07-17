@@ -20,15 +20,17 @@ import {
   EuiThemeSystem,
   CurrentEuiBreakpointProvider,
 } from '../../services';
+import { emitEuiProviderWarning } from '../../services/theme/warning';
 import { EuiThemeAmsterdam } from '../../themes';
 import { EuiCacheProvider } from './cache';
+import { EuiProviderNestedCheck, useIsNestedEuiProvider } from './nested';
 
 const isEmotionCacheObject = (
   obj: EmotionCache | Object
 ): obj is EmotionCache => obj.hasOwnProperty('key');
 
 export interface EuiProviderProps<T>
-  extends Omit<EuiThemeProviderProps<T>, 'children' | 'theme'>,
+  extends Pick<EuiThemeProviderProps<T>, 'colorMode' | 'modify'>,
     EuiGlobalStylesProps {
   /**
    * Provide a specific EuiTheme; Defaults to EuiThemeAmsterdam;
@@ -72,6 +74,15 @@ export const EuiProvider = <T extends {} = {}>({
   modify,
   children,
 }: PropsWithChildren<EuiProviderProps<T>>) => {
+  const isNested = useIsNestedEuiProvider();
+  if (isNested) {
+    const providerMessage = `\`EuiProvider\` should not be nested or used more than once, other than at the top level of your app.
+    Use \`EuiThemeProvider\` instead for nested component-level theming: https://ela.st/euiprovider.`;
+
+    emitEuiProviderWarning(providerMessage);
+    return children as any;
+  }
+
   let defaultCache;
   let globalCache;
   let utilityCache;
@@ -94,27 +105,32 @@ export const EuiProvider = <T extends {} = {}>({
       utilityCache = cache.utility;
     }
   }
+
   return (
-    <EuiCacheProvider cache={defaultCache ?? fallbackCache}>
-      <EuiThemeProvider
-        theme={theme ?? undefined}
-        colorMode={colorMode}
-        modify={modify}
-      >
-        {theme && (
-          <>
-            <EuiCacheProvider
-              cache={globalCache}
-              children={Globals && <Globals />}
-            />
-            <EuiCacheProvider
-              cache={utilityCache}
-              children={Utilities && <Utilities />}
-            />
-          </>
-        )}
-        <CurrentEuiBreakpointProvider>{children}</CurrentEuiBreakpointProvider>
-      </EuiThemeProvider>
-    </EuiCacheProvider>
+    <EuiProviderNestedCheck>
+      <EuiCacheProvider cache={defaultCache ?? fallbackCache}>
+        <EuiThemeProvider
+          theme={theme ?? undefined}
+          colorMode={colorMode}
+          modify={modify}
+        >
+          {theme && (
+            <>
+              <EuiCacheProvider
+                cache={globalCache}
+                children={Globals && <Globals />}
+              />
+              <EuiCacheProvider
+                cache={utilityCache}
+                children={Utilities && <Utilities />}
+              />
+            </>
+          )}
+          <CurrentEuiBreakpointProvider>
+            {children}
+          </CurrentEuiBreakpointProvider>
+        </EuiThemeProvider>
+      </EuiCacheProvider>
+    </EuiProviderNestedCheck>
   );
 };

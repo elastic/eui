@@ -35,9 +35,7 @@ const euiCache = createCache({
 });
 cache.compat = true;
 
-<EuiProvider${
-          colorMode === 'DARK' ? ' colorMode="dark"' : ''
-        } cache={euiCache}'>
+<EuiProvider${colorMode === 'DARK' ? ' colorMode="dark"' : ''} cache={euiCache}>
   {/* Content */}
 </EuiProvider>
   `}
