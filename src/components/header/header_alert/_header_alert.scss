@@ -1,20 +1,2 @@
 .euiHeaderAlert {
-  .euiHeaderAlert__title {
-    @include euiTitle('xs');
-    margin-bottom: $euiSizeS;
-  }
-
-  .euiHeaderAlert__text {
-    @include euiFontSizeS;
-    margin-bottom: $euiSize;
-  }
-
-  .euiHeaderAlert__action {
-    @include euiFontSizeS;
-  }
-
-  .euiHeaderAlert__date {
-    @include euiFontSizeXS;
-    color: $euiColorDarkShade;
-  }
 }

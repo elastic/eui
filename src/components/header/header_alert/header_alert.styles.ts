@@ -8,7 +8,8 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
-import { logicalCSS } from '../../../global_styling';
+import { logicalCSS, euiFontSize } from '../../../global_styling';
+import { euiTitle } from '../../title/title.styles';
 
 export const euiHeaderAlertStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -24,6 +25,21 @@ export const euiHeaderAlertStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('padding-bottom', euiTheme.size.l)}
         ${logicalCSS('border-bottom', euiTheme.border.thin)}
       }
+    `,
+    euiHeaderAlert__title: css`
+      ${euiTitle(euiThemeContext, 'xs')}
+      ${logicalCSS('margin-bottom', euiTheme.size.s)}
+    `,
+    euiHeaderAlert__text: css`
+      ${euiFontSize(euiThemeContext, 's')}
+      ${logicalCSS('margin-bottom', euiTheme.size.base)}
+    `,
+    euiHeaderAlert__action: css`
+      ${euiFontSize(euiThemeContext, 's')}
+    `,
+    euiHeaderAlert__date: css`
+      ${euiFontSize(euiThemeContext, 'xs')}
+      color: ${euiTheme.colors.darkShade};
     `,
   };
 };

@@ -56,16 +56,34 @@ export const EuiHeaderAlert: FunctionComponent<EuiHeaderAlertProps> = ({
     >
       <EuiFlexGroup justifyContent="spaceBetween">
         <EuiFlexItem>
-          <div className="euiHeaderAlert__date">{date}</div>
+          <div
+            className="euiHeaderAlert__date"
+            css={styles.euiHeaderAlert__date}
+          >
+            {date}
+          </div>
         </EuiFlexItem>
         {badge && <EuiFlexItem grow={false}>{badge}</EuiFlexItem>}
       </EuiFlexGroup>
 
-      <h3 id={`${ariaId}-title`} className="euiHeaderAlert__title">
+      <h3
+        id={`${ariaId}-title`}
+        className="euiHeaderAlert__title"
+        css={styles.euiHeaderAlert__title}
+      >
         {title}
       </h3>
-      <div className="euiHeaderAlert__text">{text}</div>
-      {action && <div className="euiHeaderAlert__action euiLink">{action}</div>}
+      <div className="euiHeaderAlert__text" css={styles.euiHeaderAlert__text}>
+        {text}
+      </div>
+      {action && (
+        <div
+          className="euiHeaderAlert__action"
+          css={styles.euiHeaderAlert__action}
+        >
+          {action}
+        </div>
+      )}
     </article>
   );
 };
