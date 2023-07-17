@@ -63,7 +63,7 @@ exports[`EuiHeader sections render breadcrumbs and props 1`] = `
 </div>
 `;
 
-exports[`EuiHeader sections render simple items and borders 1`] = `
+exports[`EuiHeader sections render simple items 1`] = `
 <div
   class="euiHeader emotion-euiHeader-static-default"
 >
@@ -71,12 +71,12 @@ exports[`EuiHeader sections render simple items and borders 1`] = `
     class="euiHeaderSection emotion-euiHeaderSection"
   >
     <div
-      class="euiHeaderSectionItem euiHeaderSectionItem--borderRight"
+      class="euiHeaderSectionItem emotion-euiHeaderSectionItem"
     >
       Item 1
     </div>
     <div
-      class="euiHeaderSectionItem euiHeaderSectionItem--borderRight"
+      class="euiHeaderSectionItem emotion-euiHeaderSectionItem"
     >
       Item 2
     </div>
@@ -85,12 +85,12 @@ exports[`EuiHeader sections render simple items and borders 1`] = `
     class="euiHeaderSection emotion-euiHeaderSection"
   >
     <div
-      class="euiHeaderSectionItem euiHeaderSectionItem--borderLeft"
+      class="euiHeaderSectionItem emotion-euiHeaderSectionItem"
     >
       Item A
     </div>
     <div
-      class="euiHeaderSectionItem euiHeaderSectionItem--borderLeft"
+      class="euiHeaderSectionItem emotion-euiHeaderSectionItem"
     >
       Item B
     </div>
@@ -106,12 +106,12 @@ exports[`EuiHeader throws a warning if both children and sections were passed 1`
     class="euiHeaderSection emotion-euiHeaderSection"
   >
     <div
-      class="euiHeaderSectionItem euiHeaderSectionItem--borderLeft"
+      class="euiHeaderSectionItem emotion-euiHeaderSectionItem"
     >
       Item 1
     </div>
     <div
-      class="euiHeaderSectionItem euiHeaderSectionItem--borderLeft"
+      class="euiHeaderSectionItem emotion-euiHeaderSectionItem"
     >
       Item 2
     </div>
