@@ -377,7 +377,8 @@ export const ComboBoxExample = {
       ],
       text: (
         <p>
-          Useful for showing icon alongside label. Passed icon as part of option will be displayed in options and selected item.
+          Useful for showing icon alongside label. Passed icon as part of option
+          will be displayed in options and selected item.
         </p>
       ),
       props: { EuiComboBox, EuiComboBoxOptionOption },

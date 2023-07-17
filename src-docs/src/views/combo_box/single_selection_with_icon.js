@@ -6,19 +6,19 @@ const options = [
   {
     label: 'Software Developer',
     'data-test-subj': 'softDevOption',
-    icon: 'logoSlack'
+    icon: 'logoSlack',
   },
   {
     label: 'Mobile Developer',
-    icon: 'logoElastic'
+    icon: 'logoElastic',
   },
   {
     label: 'Javascript Engineer',
-    icon: 'logoElastic'
+    icon: 'logoElastic',
   },
   {
     label: 'UX Designer',
-    icon: 'logoElastic'
+    icon: 'logoElastic',
   },
 ];
 

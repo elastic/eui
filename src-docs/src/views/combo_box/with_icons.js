@@ -7,27 +7,27 @@ const optionsStatic = [
   {
     label: 'Titan',
     'data-test-subj': 'titanOption',
-    icon: 'logoSlack'
+    icon: 'logoSlack',
   },
   {
     label: 'Enceladus',
-    icon: 'logoElastic'
+    icon: 'logoElastic',
   },
   {
     label: 'Mimas',
-    icon: 'logoElastic'
+    icon: 'logoElastic',
   },
   {
     label: 'Dione',
-    icon: 'logoElastic'
+    icon: 'logoElastic',
   },
   {
     label: 'Iapetus',
-    icon: 'logoElastic'
+    icon: 'logoElastic',
   },
   {
     label: 'Phoebe',
-    icon: 'logoSlack'
+    icon: 'logoSlack',
   },
 ];
 
