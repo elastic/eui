@@ -213,7 +213,7 @@ spec:
       pipeline_file: ".buildkite/pipelines/pipeline_release_deploy_docs.yml"
       default_branch: feature/buildkite-migration # TODO: Set to main when the feature is merged
       provider_settings:
-        build_branches: false
+        build_branches: false # TODO: Add a conditional to also build on push to main
         build_tags: false # TODO: Set to true when the feature is merged
         build_pull_requests: false
       teams:

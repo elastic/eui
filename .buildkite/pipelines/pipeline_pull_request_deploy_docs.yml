@@ -3,4 +3,4 @@
 steps:
   - agents:
       provider: "gcp"
-    command: .buildkite/scripts/pipeline_pull_request_deploy_docs.sh
+    command: .buildkite/scripts/pipeline_deploy_docs.sh
