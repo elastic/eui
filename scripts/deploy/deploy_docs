@@ -25,7 +25,7 @@ GCE_IMAGE=google/cloud-sdk:slim
 # TODO: Remove echo tests
 # ==================================================
 echo "The Jenkins PR number is: ${pull_request_id}."
-echo "The Buildkite PR number is ${GITHUB_PULL_REQUEST_ID}."
+echo "The Buildkite PR number is ${GIT_PULL_REQUEST_ID}."
 
 if [[ -z "${GPROJECT}" ]]; then
     echo "GPROJECT is not set, e.g. 'GPROJECT=elastic-bekitzur'"
