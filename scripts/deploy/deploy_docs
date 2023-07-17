@@ -106,7 +106,7 @@ if [[ "$1" != "nodocker" ]]; then
   # ==================================================
   # TODO: Remove --env pull_request_id
   # ==================================================
-  echo "Deploying to bucket"
+  echo "Deploying to bucket using ${GCE_IMAGE} Docker image"
   docker run \
     --rm -i \
     --env GCE_ACCOUNT \
