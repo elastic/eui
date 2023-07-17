@@ -349,7 +349,7 @@ export default () => {
       <EuiSpacer />
 
       <EuiHeader position={position} theme={theme}>
-        <EuiHeaderSection grow={false}>
+        <EuiHeaderSection>
           <EuiHeaderSectionItem border="right">
             <EuiHeaderLogo>Elastic</EuiHeaderLogo>
           </EuiHeaderSectionItem>

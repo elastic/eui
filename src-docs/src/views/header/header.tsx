@@ -112,7 +112,7 @@ export default () => {
 
   return (
     <EuiHeader>
-      <EuiHeaderSection grow={false}>
+      <EuiHeaderSection>
         <EuiHeaderSectionItem border="right">
           {renderLogo()}
         </EuiHeaderSectionItem>

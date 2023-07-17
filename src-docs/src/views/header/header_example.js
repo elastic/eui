@@ -46,7 +46,7 @@ import HeaderElasticPattern from './header_elastic_pattern';
 const headerElasticPatternSource = require('!!raw-loader!./header_elastic_pattern');
 
 const headerSnippet = `<EuiHeader>
-  <EuiHeaderSection grow={false}>
+  <EuiHeaderSection>
     <EuiHeaderSectionItem border="right">
       <!-- HeaderSectionItem content -->
     </EuiHeaderSectionItem>
@@ -99,7 +99,7 @@ const headerLinksSnippet = `<EuiHeader>
 </EuiHeader>`;
 
 const headerAlertSnippet = `<EuiHeader>
-  <EuiHeaderSection grow={false}>
+  <EuiHeaderSection>
     <EuiHeaderSectionItem>
       <!-- HeaderSectionItem content -->
     </EuiHeaderSectionItem>

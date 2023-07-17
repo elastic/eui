@@ -68,7 +68,7 @@ exports[`EuiHeader sections render simple items and borders 1`] = `
   class="euiHeader emotion-euiHeader-static-default"
 >
   <div
-    class="euiHeaderSection euiHeaderSection--dontGrow euiHeaderSection--left"
+    class="euiHeaderSection emotion-euiHeaderSection"
   >
     <div
       class="euiHeaderSectionItem euiHeaderSectionItem--borderRight"
@@ -82,7 +82,7 @@ exports[`EuiHeader sections render simple items and borders 1`] = `
     </div>
   </div>
   <div
-    class="euiHeaderSection euiHeaderSection--dontGrow euiHeaderSection--left"
+    class="euiHeaderSection emotion-euiHeaderSection"
   >
     <div
       class="euiHeaderSectionItem euiHeaderSectionItem--borderLeft"
@@ -103,7 +103,7 @@ exports[`EuiHeader throws a warning if both children and sections were passed 1`
   class="euiHeader emotion-euiHeader-static-default"
 >
   <div
-    class="euiHeaderSection euiHeaderSection--dontGrow euiHeaderSection--left"
+    class="euiHeaderSection emotion-euiHeaderSection"
   >
     <div
       class="euiHeaderSectionItem euiHeaderSectionItem--borderLeft"
