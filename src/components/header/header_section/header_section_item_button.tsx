@@ -13,6 +13,8 @@ import React, {
   useRef,
 } from 'react';
 import classNames from 'classnames';
+
+import { useEuiTheme } from '../../../services';
 import {
   EuiNotificationBadgeProps,
   EuiNotificationBadge,
@@ -20,6 +22,8 @@ import {
 import { EuiIcon } from '../../icon';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../../button';
 import { EuiHideFor, EuiShowFor } from '../../responsive';
+
+import { euiHeaderSectionItemButtonStyles } from './header_section_item_button.styles';
 
 export type EuiHeaderSectionItemButtonProps = EuiButtonEmptyProps & {
   /**
@@ -185,14 +189,18 @@ export const EuiHeaderSectionItemButton = forwardRef<
       []
     );
 
+    const euiTheme = useEuiTheme();
+    const styles = euiHeaderSectionItemButtonStyles(euiTheme);
+
     const classes = classNames('euiHeaderSectionItemButton', className);
-    const animationClasses = classNames([
-      'euiHeaderSectionItemButton__content',
-    ]);
 
     const notificationDot = (
       <EuiIcon
         className="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--dot"
+        css={[
+          styles.notification.euiHeaderSectionItemButton__notification,
+          styles.notification.dot,
+        ]}
         color={notificationColor}
         type="dot"
         size="l"
@@ -208,6 +216,10 @@ export const EuiHeaderSectionItemButton = forwardRef<
           <EuiHideFor sizes={['xs']}>
             <EuiNotificationBadge
               className="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--badge"
+              css={[
+                styles.notification.euiHeaderSectionItemButton__notification,
+                styles.notification.badge,
+              ]}
               color={notificationColor}
             >
               {notification}
@@ -221,11 +233,16 @@ export const EuiHeaderSectionItemButton = forwardRef<
     return (
       <EuiButtonEmpty
         className={classes}
+        css={styles.euiHeaderSectionItemButton}
         color="text"
         buttonRef={buttonRef}
         {...rest}
       >
-        <span ref={animationTargetRef} className={animationClasses}>
+        <span
+          ref={animationTargetRef}
+          className="euiHeaderSectionItemButton__content"
+          css={styles.euiHeaderSectionItemButton__content}
+        >
           {children}
         </span>
         {buttonNotification}

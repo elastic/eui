@@ -3,7 +3,7 @@
 exports[`EuiHeaderSectionItemButton is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiButtonEmpty euiHeaderSectionItemButton testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiTestCss"
+  class="euiButtonEmpty euiHeaderSectionItemButton testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiHeaderSectionItemButton-euiTestCss"
   data-test-subj="test subject string"
   type="button"
 >
@@ -14,7 +14,7 @@ exports[`EuiHeaderSectionItemButton is rendered 1`] = `
       class="eui-textTruncate euiButtonEmpty__text"
     >
       <span
-        class="euiHeaderSectionItemButton__content"
+        class="euiHeaderSectionItemButton__content emotion-euiHeaderSectionItemButton__content"
       />
     </span>
   </span>
@@ -23,7 +23,7 @@ exports[`EuiHeaderSectionItemButton is rendered 1`] = `
 
 exports[`EuiHeaderSectionItemButton renders a link 1`] = `
 <a
-  class="euiButtonEmpty euiHeaderSectionItemButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
+  class="euiButtonEmpty euiHeaderSectionItemButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiHeaderSectionItemButton"
   href="#"
   rel="noreferrer"
 >
@@ -34,7 +34,7 @@ exports[`EuiHeaderSectionItemButton renders a link 1`] = `
       class="eui-textTruncate euiButtonEmpty__text"
     >
       <span
-        class="euiHeaderSectionItemButton__content"
+        class="euiHeaderSectionItemButton__content emotion-euiHeaderSectionItemButton__content"
       />
     </span>
   </span>
@@ -43,7 +43,7 @@ exports[`EuiHeaderSectionItemButton renders a link 1`] = `
 
 exports[`EuiHeaderSectionItemButton renders children 1`] = `
 <button
-  class="euiButtonEmpty euiHeaderSectionItemButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
+  class="euiButtonEmpty euiHeaderSectionItemButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiHeaderSectionItemButton"
   type="button"
 >
   <span
@@ -53,7 +53,7 @@ exports[`EuiHeaderSectionItemButton renders children 1`] = `
       class="eui-textTruncate euiButtonEmpty__text"
     >
       <span
-        class="euiHeaderSectionItemButton__content"
+        class="euiHeaderSectionItemButton__content emotion-euiHeaderSectionItemButton__content"
       >
         <span>
           Ahoy!
@@ -66,7 +66,7 @@ exports[`EuiHeaderSectionItemButton renders children 1`] = `
 
 exports[`EuiHeaderSectionItemButton renders notification as a badge 1`] = `
 <button
-  class="euiButtonEmpty euiHeaderSectionItemButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
+  class="euiButtonEmpty euiHeaderSectionItemButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiHeaderSectionItemButton"
   type="button"
 >
   <span
@@ -76,10 +76,10 @@ exports[`EuiHeaderSectionItemButton renders notification as a badge 1`] = `
       class="eui-textTruncate euiButtonEmpty__text"
     >
       <span
-        class="euiHeaderSectionItemButton__content"
+        class="euiHeaderSectionItemButton__content emotion-euiHeaderSectionItemButton__content"
       />
       <span
-        class="euiNotificationBadge euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--badge emotion-euiNotificationBadge-s-accent"
+        class="euiNotificationBadge euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--badge emotion-euiNotificationBadge-s-accent-euiHeaderSectionItemButton__notification-badge-buttonNotification"
       >
         1
       </span>
@@ -90,7 +90,7 @@ exports[`EuiHeaderSectionItemButton renders notification as a badge 1`] = `
 
 exports[`EuiHeaderSectionItemButton renders notification as a dot 1`] = `
 <button
-  class="euiButtonEmpty euiHeaderSectionItemButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
+  class="euiButtonEmpty euiHeaderSectionItemButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiHeaderSectionItemButton"
   type="button"
 >
   <span
@@ -100,10 +100,10 @@ exports[`EuiHeaderSectionItemButton renders notification as a dot 1`] = `
       class="eui-textTruncate euiButtonEmpty__text"
     >
       <span
-        class="euiHeaderSectionItemButton__content"
+        class="euiHeaderSectionItemButton__content emotion-euiHeaderSectionItemButton__content"
       />
       <span
-        class="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--dot"
+        class="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--dot emotion-euiHeaderSectionItemButton__notification-dot-notificationDot"
         color="accent"
         data-euiicon-type="dot"
       />
@@ -114,7 +114,7 @@ exports[`EuiHeaderSectionItemButton renders notification as a dot 1`] = `
 
 exports[`EuiHeaderSectionItemButton renders notification color 1`] = `
 <button
-  class="euiButtonEmpty euiHeaderSectionItemButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
+  class="euiButtonEmpty euiHeaderSectionItemButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiHeaderSectionItemButton"
   type="button"
 >
   <span
@@ -124,10 +124,10 @@ exports[`EuiHeaderSectionItemButton renders notification color 1`] = `
       class="eui-textTruncate euiButtonEmpty__text"
     >
       <span
-        class="euiHeaderSectionItemButton__content"
+        class="euiHeaderSectionItemButton__content emotion-euiHeaderSectionItemButton__content"
       />
       <span
-        class="euiNotificationBadge euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--badge emotion-euiNotificationBadge-s-subdued"
+        class="euiNotificationBadge euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--badge emotion-euiNotificationBadge-s-subdued-euiHeaderSectionItemButton__notification-badge-buttonNotification"
       >
         1
       </span>
