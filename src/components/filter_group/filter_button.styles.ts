@@ -34,6 +34,18 @@ export const euiFilterButtonStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('height', controlHeight)}
       border-radius: 0;
       box-shadow: ${leftBoxShadow}, ${bottomBoxShadow};
+
+      /* :not(:disabled) specificity needed to override EuiButtonEmpty styles */
+      &:hover:not(:disabled),
+      &:focus:not(:disabled) {
+        /* Remove underline from whole button so notifications don't get the underline */
+        text-decoration: none;
+
+        .euiFilterButton__textShift {
+          /* And put it only on the actual text part */
+          text-decoration: underline;
+        }
+      }
     `,
     withNext: css`
       & + .euiFilterButton {

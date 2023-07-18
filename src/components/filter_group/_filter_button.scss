@@ -1,21 +1,7 @@
 .euiFilterButton {
   &:disabled {
-    color: $euiButtonColorDisabledText;
-    pointer-events: none;
-
     .euiFilterButton__notification {
       opacity: .5;
-    }
-  }
-
-  &:hover:not(:disabled),
-  &:focus:not(:disabled) {
-    // Remove underline from whole button so notifications don't get the underline
-    text-decoration: none;
-
-    .euiFilterButton__textShift {
-      // Add put it only on the actual text part
-      text-decoration: underline;
     }
   }
 }
