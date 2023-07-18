@@ -215,7 +215,7 @@ exports[`EuiFilterButton props type is rendered 1`] = `
 
 exports[`EuiFilterButton props withNext is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiFilterButton euiFilterButton--withNext emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton"
+  class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-withNext"
   type="button"
 >
   <span

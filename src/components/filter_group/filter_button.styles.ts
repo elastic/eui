@@ -10,6 +10,7 @@ import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../services';
 import { logicalCSS, mathWithUnits } from '../../global_styling';
+import { euiFormVariables } from '../form/form.styles';
 
 export const euiFilterButtonDisplay = ({ euiTheme }: UseEuiTheme) => {
   return {
@@ -20,10 +21,26 @@ export const euiFilterButtonDisplay = ({ euiTheme }: UseEuiTheme) => {
 
 export const euiFilterButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const { controlHeight, borderColor } = euiFormVariables(euiThemeContext);
+
+  // Box shadow simulates borders without affecting width
+  const leftBoxShadow = `-${euiTheme.border.width.thin} 0 0 0 ${borderColor}`;
+  // Bottom borders are needed for responsive flex-wrap behavior
+  const bottomBoxShadow = `0 ${euiTheme.border.width.thin} 0 0 ${borderColor}`;
 
   return {
     euiFilterButton: css`
       ${euiFilterButtonDisplay(euiThemeContext)}
+      ${logicalCSS('height', controlHeight)}
+      border-radius: 0;
+      box-shadow: ${leftBoxShadow}, ${bottomBoxShadow};
+    `,
+    withNext: css`
+      & + .euiFilterButton {
+        ${logicalCSS('margin-left', `-${euiTheme.size.xs}`)}
+        /* Remove just the left faux border */
+        box-shadow: ${bottomBoxShadow};
+      }
     `,
     noGrow: css`
       flex-grow: 0;
