@@ -18,6 +18,7 @@ import {
   Ref,
   Component,
   PropsWithChildren,
+  ComponentClass,
 } from 'react';
 import {
   VariableSizeGridProps,
@@ -582,8 +583,8 @@ export interface EuiDataGridCellProps {
   className?: string;
   popoverContext: DataGridCellPopoverContextShape;
   renderCellValue:
-    | JSXElementConstructor<EuiDataGridCellValueElementProps>
-    | ((props: EuiDataGridCellValueElementProps) => ReactNode);
+    | ((props: EuiDataGridCellValueElementProps) => ReactNode)
+    | ComponentClass<EuiDataGridCellValueElementProps>;
   renderCellPopover?:
     | JSXElementConstructor<EuiDataGridCellPopoverElementProps>
     | ((props: EuiDataGridCellPopoverElementProps) => ReactNode);
