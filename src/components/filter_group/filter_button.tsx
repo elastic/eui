@@ -80,7 +80,9 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
     styles.euiFilterButton,
     withNext && styles.withNext,
     !grow && styles.noGrow,
+    hasActiveFilters && styles.hasActiveFilters,
     numFiltersDefined && styles.hasNotification,
+    iconType && styles.hasIcon,
   ];
 
   const classes = classNames(
@@ -89,7 +91,6 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
       'euiFilterButton-isSelected': isSelected,
       'euiFilterButton-hasActiveFilters': hasActiveFilters,
       'euiFilterButton-hasNotification': numFiltersDefined,
-      'euiFilterButton--hasIcon': iconType,
     },
     className
   );

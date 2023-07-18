@@ -82,7 +82,7 @@ exports[`EuiFilterButton props grow can be turned off 1`] = `
 
 exports[`EuiFilterButton props iconType and iconSide is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiFilterButton euiFilterButton--hasIcon emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton"
+  class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-hasIcon"
   type="button"
 >
   <span
@@ -144,7 +144,7 @@ exports[`EuiFilterButton props isSelected is rendered 1`] = `
 
 exports[`EuiFilterButton props numActiveFilters and hasActiveFilters is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiFilterButton euiFilterButton-hasActiveFilters emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton"
+  class="euiButtonEmpty euiFilterButton euiFilterButton-hasActiveFilters emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-hasActiveFilters"
   type="button"
 >
   <span

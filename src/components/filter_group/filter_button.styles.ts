@@ -51,5 +51,13 @@ export const euiFilterButtonStyles = (euiThemeContext: UseEuiTheme) => {
         mathWithUnits(euiTheme.size.base, (x) => x * 6)
       )}
     `,
+    hasActiveFilters: css`
+      font-weight: ${euiTheme.font.weight.bold};
+    `,
+    hasIcon: css`
+      .euiButtonEmpty__content {
+        justify-content: space-between;
+      }
+    `,
   };
 };
