@@ -47,7 +47,7 @@ export const useInMemoryValues = (
   const _inMemoryValues = useRef<EuiDataGridInMemoryValues>({});
   const [inMemoryValuesVersion, setInMemoryValuesVersion] = useState(0);
 
-  const inMemoryValues = useMemo(
+  const inMemoryValues = useMemo<EuiDataGridInMemoryValues>(
     () => ({ ..._inMemoryValues.current }),
     [inMemoryValuesVersion] // eslint-disable-line react-hooks/exhaustive-deps
   );

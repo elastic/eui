@@ -114,7 +114,7 @@ export const useImperativeGridRef = ({
  */
 export const useCellLocationCheck = (rowCount: number, colCount: number) => {
   const checkCellExists = useCallback(
-    ({ rowIndex, colIndex }) => {
+    ({ rowIndex, colIndex }: { rowIndex: number; colIndex: number }) => {
       if (rowIndex >= rowCount || rowIndex < 0) {
         throw new Error(
           `Row ${rowIndex} is not a valid row. The maximum visible row index is ${
