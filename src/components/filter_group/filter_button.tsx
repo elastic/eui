@@ -6,16 +6,21 @@
  * Side Public License, v 1.
  */
 
-import React, { Fragment, FunctionComponent } from 'react';
+import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
+import { useEuiTheme } from '../../services';
 import { useEuiI18n } from '../i18n';
+import { useInnerText } from '../inner_text';
+import { DistributiveOmit } from '../common';
 import { EuiNotificationBadge } from '../badge';
 import { BadgeNotificationColor } from '../badge/notification_badge/badge_notification';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button/button_empty';
 
-import { useInnerText } from '../inner_text';
-import { DistributiveOmit } from '../common';
+import {
+  euiFilterButtonStyles,
+  euiFilterButtonChildStyles,
+} from './filter_button.styles';
 
 export type EuiFilterButtonProps = {
   /**
@@ -66,11 +71,27 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   grow = true,
   withNext,
   textProps,
+  contentProps,
   ...rest
 }) => {
   const numFiltersDefined = numFilters != null; // != instead of !== to allow for null and undefined
   const numActiveFiltersDefined =
     numActiveFilters != null && numActiveFilters > 0;
+
+  const euiTheme = useEuiTheme();
+  const styles = euiFilterButtonStyles(euiTheme);
+  const cssStyles = [
+    styles.euiFilterButton,
+    withNext && styles.withNext,
+    !grow && styles.noGrow,
+    hasActiveFilters && styles.hasActiveFilters,
+    numFiltersDefined && styles.hasNotification,
+  ];
+  const {
+    content: contentStyles,
+    text: textStyles,
+    notification: notificationStyles,
+  } = euiFilterButtonChildStyles(euiTheme);
 
   const classes = classNames(
     'euiFilterButton',
@@ -78,19 +99,8 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
       'euiFilterButton-isSelected': isSelected,
       'euiFilterButton-hasActiveFilters': hasActiveFilters,
       'euiFilterButton-hasNotification': numFiltersDefined,
-      'euiFilterButton--hasIcon': iconType,
-      'euiFilterButton--noGrow': !grow,
-      'euiFilterButton--withNext': withNext,
     },
     className
-  );
-
-  const buttonTextClassNames = classNames(
-    {
-      'euiFilterButton__text-hasNotification':
-        numFiltersDefined || numActiveFilters,
-    },
-    textProps && textProps.className
   );
 
   const showBadge = numFiltersDefined || numActiveFiltersDefined;
@@ -105,9 +115,20 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
     '{count} available filters',
     { count: badgeCount }
   );
+
+  const buttonTextClassNames = classNames(
+    'euiFilterButton__text',
+    { 'euiFilterButton__text-hasNotification': showBadge },
+    textProps?.className
+  );
+
   const badgeContent = showBadge && (
     <EuiNotificationBadge
       className="euiFilterButton__notification"
+      css={[
+        notificationStyles.euiFilterButton__notification,
+        isDisabled && notificationStyles.disabled,
+      ]}
       aria-label={hasActiveFilters ? activeBadgeLabel : availableBadgeLabel}
       color={isDisabled || !hasActiveFilters ? 'subdued' : badgeColor}
       role="marquee" // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/marquee_role
@@ -116,36 +137,51 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
     </EuiNotificationBadge>
   );
 
-  let dataText;
-  if (typeof children === 'string') {
-    dataText = children;
-  }
-
   const [ref, innerText] = useInnerText();
+  const dataText =
+    children && typeof children === 'string' ? children : innerText;
   const buttonContents = (
-    <Fragment>
+    <>
       <span
         ref={ref}
         className="euiFilterButton__textShift"
-        data-text={dataText || innerText}
-        title={dataText || innerText}
+        css={textStyles.euiFilterButton__textShift}
+        data-text={dataText}
+        title={dataText}
       >
         {children}
       </span>
 
       {badgeContent}
-    </Fragment>
+    </>
   );
 
   return (
     <EuiButtonEmpty
       className={classes}
+      css={cssStyles}
       color={color}
       isDisabled={isDisabled}
       iconSide={iconSide}
       iconType={iconType}
       type={type}
-      textProps={{ ...textProps, className: buttonTextClassNames }}
+      textProps={{
+        ...textProps,
+        className: buttonTextClassNames,
+        css: [
+          textStyles.euiFilterButton__text,
+          showBadge && textStyles.hasNotification,
+          textProps?.css,
+        ],
+      }}
+      contentProps={{
+        ...contentProps,
+        css: [
+          contentStyles.euiFilterButton__content,
+          iconType && contentStyles.hasIcon,
+          contentProps?.css,
+        ],
+      }}
       {...rest}
     >
       {buttonContents}

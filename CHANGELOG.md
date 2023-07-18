@@ -1,3 +1,27 @@
+## [`85.0.0`](https://github.com/elastic/eui/tree/v85.0.0)
+
+- Updated `EuiThemeProvider` to set an Emotion theme context that returns the values of `useEuiTheme()` ([#6913](https://github.com/elastic/eui/pull/6913))
+- Added `size` prop to `EuiStepsHorizontal`, defaulting to the previous size of `m` ([#6928](https://github.com/elastic/eui/pull/6928))
+- Added new `s` sizing to `EuiStepsHorizontal` ([#6928](https://github.com/elastic/eui/pull/6928))
+- Added `at` and `key` icon glyphs. ([#6934](https://github.com/elastic/eui/pull/6934))
+- Added a new `cloneElementWithCss` Emotion utility ([#6939](https://github.com/elastic/eui/pull/6939))
+- Updated `EuiPopover` to allow consumer control of all `focusTrapProps` ([#6955](https://github.com/elastic/eui/pull/6955))
+
+**Bug fixes**
+
+- Fixed `EuiDataGrid` height calculation bug when browser zoom levels are not 100% ([#6895](https://github.com/elastic/eui/pull/6895))
+- Fixed `EuiTab` not correctly passing selection color state to `prepend` and `append` children ([#6938](https://github.com/elastic/eui/pull/6938))
+- Fixed `EuiInputPopover` to allow consumer control of its focus trap via `focusTrapProps` ([#6955](https://github.com/elastic/eui/pull/6955))
+
+**Breaking changes**
+
+- `EuiProvider` will no longer render multiple or duplicate nested instances of itself. If a nested `EuiProvider` is detected, that instance will return early without further processing, and will warn if configured to do so via `setEuiDevProviderWarning`. For nested theming, use `EuiThemeProvider` instead. ([#6949](https://github.com/elastic/eui/pull/6949))
+- Removed `onTrapDeactivation` prop from `EuiPopover`. Use `focusTrapProps.onDeactivation` instead ([#6955](https://github.com/elastic/eui/pull/6955))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiFilterGroup` and `EuiFilterButton` to Emotion; Removed styles attached to `.euiFilterGroup__popoverPanel` ([#6957](https://github.com/elastic/eui/pull/6957))
+
 ## [`84.0.0`](https://github.com/elastic/eui/tree/v84.0.0)
 
 - Updated `EuiDualRange`'s `minInputProps` and `maxInputProps` to support passing more props to underlying inputs ([#6902](https://github.com/elastic/eui/pull/6902))
