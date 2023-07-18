@@ -1,11 +1,4 @@
 .euiFilterGroup {
-  display: inline-flex;
-  max-width: 100%;
-  overflow: hidden;
-  border-radius: $euiFormControlBorderRadius;
-  background-color: $euiFormBackgroundColor;
-  box-shadow: inset 0 0 0 1px $euiFormBorderColor;
-
   > * {
     flex: 1 1 auto;
     min-width: $euiSize * 3;

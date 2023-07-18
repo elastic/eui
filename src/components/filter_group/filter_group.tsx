@@ -8,7 +8,11 @@
 
 import React, { HTMLAttributes, ReactNode, FunctionComponent } from 'react';
 import classNames from 'classnames';
+
+import { useEuiTheme } from '../../services';
 import { CommonProps } from '../common';
+
+import { euiFilterGroupStyles } from './filter_group.styles';
 
 export type EuiFilterGroupProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
@@ -30,6 +34,10 @@ export const EuiFilterGroup: FunctionComponent<EuiFilterGroupProps> = ({
   compressed,
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
+  const styles = euiFilterGroupStyles(euiTheme);
+  const cssStyles = [styles.euiFilterGroup];
+
   const classes = classNames(
     'euiFilterGroup',
     {
@@ -40,7 +48,7 @@ export const EuiFilterGroup: FunctionComponent<EuiFilterGroupProps> = ({
   );
 
   return (
-    <div className={classes} {...rest}>
+    <div className={classes} css={cssStyles} {...rest}>
       {children}
     </div>
   );

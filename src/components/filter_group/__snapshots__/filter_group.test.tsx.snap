@@ -3,19 +3,19 @@
 exports[`EuiFilterGroup is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiFilterGroup testClass1 testClass2 emotion-euiTestCss"
+  class="euiFilterGroup testClass1 testClass2 emotion-euiFilterGroup-euiTestCss"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`EuiFilterGroup props compressed is rendered 1`] = `
 <div
-  class="euiFilterGroup euiFilterGroup--compressed"
+  class="euiFilterGroup euiFilterGroup--compressed emotion-euiFilterGroup"
 />
 `;
 
 exports[`EuiFilterGroup props fullWidth is rendered 1`] = `
 <div
-  class="euiFilterGroup euiFilterGroup--fullWidth"
+  class="euiFilterGroup euiFilterGroup--fullWidth emotion-euiFilterGroup"
 />
 `;
