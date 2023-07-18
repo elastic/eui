@@ -215,10 +215,10 @@ spec:
     spec:
       repository: elastic/eui
       pipeline_file: ".buildkite/pipelines/pipeline_release_deploy_docs.yml"
-      default_branch: main
+      default_branch: feature/buildkite-migration # TODO: Set to main when the feature is merged
       provider_settings:
         build_branches: false
-        build_tags: true
+        build_tags: false # TODO: Set to true when the feature is merged
         build_pull_requests: false
       teams:
         eui-team:
