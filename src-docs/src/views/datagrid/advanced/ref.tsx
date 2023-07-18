@@ -48,13 +48,16 @@ export default () => {
     dataGridRef.current!.setFocusedCell(lastFocusedCell); // Set the data grid focus back to the cell that opened the modal
   }, [lastFocusedCell]);
 
-  const showModal = useCallback(({ rowIndex, colIndex }) => {
-    setIsModalVisible(true);
-    dataGridRef.current!.closeCellPopover(); // Close any open cell popovers
-    setLastFocusedCell({ rowIndex, colIndex }); // Store the cell that opened this modal
-  }, []);
+  const showModal = useCallback(
+    ({ rowIndex, colIndex }: { rowIndex: number; colIndex: number }) => {
+      setIsModalVisible(true);
+      dataGridRef.current!.closeCellPopover(); // Close any open cell popovers
+      setLastFocusedCell({ rowIndex, colIndex }); // Store the cell that opened this modal
+    },
+    []
+  );
 
-  const openModalAction = useCallback(
+  const openModalAction = useCallback<EuiDataGridColumnCellAction>(
     ({ Component, rowIndex, colIndex }) => {
       return (
         <Component

@@ -705,9 +705,9 @@ export interface EuiDataGridColumn {
   visibleCellActions?: number;
 }
 
-export type EuiDataGridColumnCellAction =
-  | JSXElementConstructor<EuiDataGridColumnCellActionProps>
-  | ((props: EuiDataGridColumnCellActionProps) => ReactNode);
+export type EuiDataGridColumnCellAction = (
+  props: EuiDataGridColumnCellActionProps
+) => ReactNode;
 
 export interface EuiDataGridColumnActions {
   /**

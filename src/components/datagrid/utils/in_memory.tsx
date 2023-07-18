@@ -33,7 +33,7 @@ export const useInMemoryValues = (
   rowCount: number
 ): [
   EuiDataGridInMemoryValues,
-  (rowIndex: number, columnId: string, value: string) => void
+  EuiDataGridInMemoryRendererProps['onCellRender']
 ] => {
   /**
    * For performance, `onCellRender` below mutates the inMemoryValues object
@@ -52,7 +52,9 @@ export const useInMemoryValues = (
     [inMemoryValuesVersion] // eslint-disable-line react-hooks/exhaustive-deps
   );
 
-  const onCellRender = useCallback((rowIndex, columnId, value) => {
+  const onCellRender = useCallback<
+    EuiDataGridInMemoryRendererProps['onCellRender']
+  >((rowIndex, columnId, value) => {
     const nextInMemoryValues = _inMemoryValues.current;
     nextInMemoryValues[rowIndex] = nextInMemoryValues[rowIndex] || {};
     if (nextInMemoryValues[rowIndex][columnId] !== value) {

@@ -50,7 +50,7 @@ export const useImperativeGridRef = ({
   // the targeted cell is valid or in view (unlike our internal state, where
   // both of those states can be guaranteed), so we need to do some extra
   // checks here to make sure the grid automatically handles all cells
-  const setFocusedCell = useCallback(
+  const setFocusedCell = useCallback<EuiDataGridRefProps['setFocusedCell']>(
     ({ rowIndex, colIndex }) => {
       checkCellExists({ rowIndex, colIndex });
       const visibleRowIndex = findVisibleRowIndex(rowIndex);
@@ -67,7 +67,7 @@ export const useImperativeGridRef = ({
   // the targeted cell is valid or in view (unlike our internal state, where
   // both of those states can be guaranteed), so we need to do some extra
   // checks here to make sure the grid automatically handles all cells
-  const openCellPopover = useCallback(
+  const openCellPopover = useCallback<EuiDataGridRefProps['openCellPopover']>(
     ({ rowIndex, colIndex }) => {
       checkCellExists({ rowIndex, colIndex });
       const visibleRowIndex = findVisibleRowIndex(rowIndex);
