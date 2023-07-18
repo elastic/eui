@@ -2,7 +2,7 @@
 
 exports[`EuiKeyPadMenuItem checkable renders as checkbox 1`] = `
 <label
-  class="euiKeyPadMenuItem euiKeyPadMenuItem--checkable"
+  class="euiKeyPadMenuItem euiKeyPadMenuItem--checkable emotion-euiKeyPadMenuItem"
   for="generated-id"
 >
   <span
@@ -36,7 +36,7 @@ exports[`EuiKeyPadMenuItem checkable renders as checkbox 1`] = `
 
 exports[`EuiKeyPadMenuItem checkable renders as radio 1`] = `
 <label
-  class="euiKeyPadMenuItem euiKeyPadMenuItem--checkable"
+  class="euiKeyPadMenuItem euiKeyPadMenuItem--checkable emotion-euiKeyPadMenuItem"
   for="generated-id"
 >
   <span
@@ -73,7 +73,7 @@ exports[`EuiKeyPadMenuItem checkable renders as radio 1`] = `
 exports[`EuiKeyPadMenuItem is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiKeyPadMenuItem testClass1 testClass2 emotion-euiTestCss"
+  class="euiKeyPadMenuItem testClass1 testClass2 emotion-euiKeyPadMenuItem-euiTestCss"
   data-test-subj="test subject string"
   type="button"
 >
@@ -99,7 +99,7 @@ exports[`EuiKeyPadMenuItem props betaBadge renders 1`] = `
   class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
 >
   <button
-    class="euiKeyPadMenuItem euiKeyPadMenuItem--hasBetaBadge"
+    class="euiKeyPadMenuItem euiKeyPadMenuItem--hasBetaBadge emotion-euiKeyPadMenuItem"
     type="button"
   >
     <span
@@ -134,7 +134,7 @@ exports[`EuiKeyPadMenuItem props betaBadge renders extra betaBadgeTooltipProps 1
   class="euiToolTipAnchor customTooltipClass emotion-euiToolTipAnchor-inlineBlock"
 >
   <button
-    class="euiKeyPadMenuItem euiKeyPadMenuItem--hasBetaBadge"
+    class="euiKeyPadMenuItem euiKeyPadMenuItem--hasBetaBadge emotion-euiKeyPadMenuItem"
     type="button"
   >
     <span
@@ -169,7 +169,7 @@ exports[`EuiKeyPadMenuItem props betaBadge renders with betaBadgeIconType 1`] = 
   class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
 >
   <button
-    class="euiKeyPadMenuItem euiKeyPadMenuItem--hasBetaBadge"
+    class="euiKeyPadMenuItem euiKeyPadMenuItem--hasBetaBadge emotion-euiKeyPadMenuItem"
     type="button"
   >
     <span
@@ -209,7 +209,7 @@ exports[`EuiKeyPadMenuItem props betaBadge renders with betaBadgeTooltipContent 
   class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
 >
   <button
-    class="euiKeyPadMenuItem euiKeyPadMenuItem--hasBetaBadge"
+    class="euiKeyPadMenuItem euiKeyPadMenuItem--hasBetaBadge emotion-euiKeyPadMenuItem"
     type="button"
   >
     <span
@@ -241,7 +241,7 @@ exports[`EuiKeyPadMenuItem props betaBadge renders with betaBadgeTooltipContent 
 
 exports[`EuiKeyPadMenuItem props isDisabled renders with href 1`] = `
 <button
-  class="euiKeyPadMenuItem euiKeyPadMenuItem-isDisabled"
+  class="euiKeyPadMenuItem euiKeyPadMenuItem-isDisabled emotion-euiKeyPadMenuItem"
   disabled=""
   type="button"
 >
@@ -264,7 +264,7 @@ exports[`EuiKeyPadMenuItem props isDisabled renders with href 1`] = `
 
 exports[`EuiKeyPadMenuItem props isDisabled renders with onClick 1`] = `
 <button
-  class="euiKeyPadMenuItem euiKeyPadMenuItem-isDisabled"
+  class="euiKeyPadMenuItem euiKeyPadMenuItem-isDisabled emotion-euiKeyPadMenuItem"
   disabled=""
   type="button"
 >
@@ -288,7 +288,7 @@ exports[`EuiKeyPadMenuItem props isDisabled renders with onClick 1`] = `
 exports[`EuiKeyPadMenuItem props isSelected renders with href 1`] = `
 <a
   aria-current="true"
-  class="euiKeyPadMenuItem euiKeyPadMenuItem-isSelected"
+  class="euiKeyPadMenuItem euiKeyPadMenuItem-isSelected emotion-euiKeyPadMenuItem"
   href="#"
   rel="noreferrer"
 >
@@ -312,7 +312,7 @@ exports[`EuiKeyPadMenuItem props isSelected renders with href 1`] = `
 exports[`EuiKeyPadMenuItem props isSelected renders with onClick 1`] = `
 <button
   aria-pressed="true"
-  class="euiKeyPadMenuItem euiKeyPadMenuItem-isSelected"
+  class="euiKeyPadMenuItem euiKeyPadMenuItem-isSelected emotion-euiKeyPadMenuItem"
   type="button"
 >
   <span
@@ -334,7 +334,7 @@ exports[`EuiKeyPadMenuItem props isSelected renders with onClick 1`] = `
 
 exports[`EuiKeyPadMenuItem renders button 1`] = `
 <button
-  class="euiKeyPadMenuItem"
+  class="euiKeyPadMenuItem emotion-euiKeyPadMenuItem"
   type="button"
 >
   <span
@@ -356,7 +356,7 @@ exports[`EuiKeyPadMenuItem renders button 1`] = `
 
 exports[`EuiKeyPadMenuItem renders href 1`] = `
 <a
-  class="euiKeyPadMenuItem"
+  class="euiKeyPadMenuItem emotion-euiKeyPadMenuItem"
   href="#"
   rel="noreferrer"
 >
@@ -379,7 +379,7 @@ exports[`EuiKeyPadMenuItem renders href 1`] = `
 
 exports[`EuiKeyPadMenuItem renders href with rel 1`] = `
 <a
-  class="euiKeyPadMenuItem"
+  class="euiKeyPadMenuItem emotion-euiKeyPadMenuItem"
   href="#"
   rel="noreferrer"
 >

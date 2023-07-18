@@ -1,17 +1,4 @@
 .euiKeyPadMenuItem {
-  display: block;
-  padding: $euiSizeXS;
-  height: $euiKeyPadMenuSize;
-  width: $euiKeyPadMenuSize;
-  border-radius: $euiBorderRadius;
-  color: $euiTextColor; // Override possible link color
-
-  @include euiCanAnimate {
-    transition:
-      background-color $euiAnimSpeedFast ease-in,
-      box-shadow $euiAnimSpeedFast ease-in;
-  }
-
   // Focus and Hover states (when not disabled)
   &:not(.euiKeyPadMenuItem-isDisabled) {
     &:hover,

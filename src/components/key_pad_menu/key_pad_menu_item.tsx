@@ -16,6 +16,12 @@ import React, {
 import classNames from 'classnames';
 
 import {
+  useEuiTheme,
+  getSecureRelForTarget,
+  useGeneratedHtmlId,
+} from '../../services';
+
+import {
   CommonProps,
   ExclusiveUnion,
   PropsForAnchor,
@@ -23,13 +29,12 @@ import {
 } from '../common';
 
 import { EuiBetaBadge } from '../badge/beta_badge';
-
-import { getSecureRelForTarget, useGeneratedHtmlId } from '../../services';
-
 import { IconType } from '../icon';
 import { EuiRadio, EuiCheckbox } from '../form';
 import { validateHref } from '../../services/security/href_validator';
 import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
+
+import { euiKeyPadMenuItemStyles } from './key_pad_menu_item.styles';
 
 export type EuiKeyPadMenuItemCheckableType = 'single' | 'multi';
 
@@ -176,6 +181,10 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
   const isHrefValid = !href || validateHref(href);
   const isDisabled = disabled || _isDisabled || !isHrefValid;
 
+  const euiTheme = useEuiTheme();
+  const styles = euiKeyPadMenuItemStyles(euiTheme);
+  const cssStyles = [styles.euiKeyPadMenuItem];
+
   const classes = classNames(
     'euiKeyPadMenuItem',
     {
@@ -272,6 +281,7 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
   const button = (
     <Element
       className={classes}
+      css={cssStyles}
       {...(relObj as ElementType)}
       {...(rest as ElementType)}
       // Unable to get past `LegacyRef` conflicts
