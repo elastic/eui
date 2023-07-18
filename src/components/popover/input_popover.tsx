@@ -46,6 +46,7 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
   children,
   className,
   disableFocusTrap = false,
+  focusTrapProps,
   input,
   fullWidth = false,
   onPanelResize,
@@ -123,7 +124,11 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
       className={classes}
       {...props}
     >
-      <EuiFocusTrap clickOutsideDisables={true} disabled={disableFocusTrap}>
+      <EuiFocusTrap
+        clickOutsideDisables={true}
+        disabled={disableFocusTrap}
+        {...focusTrapProps}
+      >
         <div onKeyDown={onKeyDown}>{children}</div>
       </EuiFocusTrap>
     </EuiPopover>
