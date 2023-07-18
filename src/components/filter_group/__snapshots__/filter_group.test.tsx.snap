@@ -10,7 +10,7 @@ exports[`EuiFilterGroup is rendered 1`] = `
 
 exports[`EuiFilterGroup props compressed is rendered 1`] = `
 <div
-  class="euiFilterGroup euiFilterGroup--compressed emotion-euiFilterGroup"
+  class="euiFilterGroup emotion-euiFilterGroup-compressed"
 />
 `;
 

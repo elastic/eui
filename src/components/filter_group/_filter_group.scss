@@ -22,14 +22,6 @@
   }
 }
 
-.euiFilterGroup--compressed {
-  border-radius: $euiFormControlCompressedBorderRadius;
-
-  & .euiFilterButton {
-    height: $euiFormControlCompressedHeight;
-  }
-}
-
 .euiFilterGroup--fullWidth {
   display: flex;
 }

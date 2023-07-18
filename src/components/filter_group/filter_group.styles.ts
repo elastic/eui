@@ -15,8 +15,13 @@ import { euiFormVariables } from '../form/form.styles';
 export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
-  const { backgroundColor, borderColor, controlBorderRadius } =
-    euiFormVariables(euiThemeContext);
+  const {
+    backgroundColor,
+    borderColor,
+    controlBorderRadius,
+    controlCompressedBorderRadius,
+    controlCompressedHeight,
+  } = euiFormVariables(euiThemeContext);
 
   return {
     euiFilterGroup: css`
@@ -27,6 +32,13 @@ export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
       border-radius: ${controlBorderRadius};
       background-color: ${backgroundColor};
       box-shadow: inset 0 0 0 ${euiTheme.border.width.thin} ${borderColor};
+    `,
+    compressed: css`
+      border-radius: ${controlCompressedBorderRadius};
+
+      .euiFilterButton {
+        ${logicalCSS('height', controlCompressedHeight)}
+      }
     `,
   };
 };
