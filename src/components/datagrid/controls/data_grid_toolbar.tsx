@@ -6,13 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { isValidElement, ReactNode } from 'react';
 import {
   EuiDataGridProps,
   EuiDataGridToolbarProps,
   EuiDataGridToolBarVisibilityOptions,
   EuiDataGridToolBarAdditionalControlsOptions,
-  EuiDataGridToolBarAdditionalControlsLeftOptions,
 } from '../data_grid_types';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { IS_JEST_ENVIRONMENT } from '../../../utils';
@@ -118,40 +117,42 @@ export function checkOrDefaultToolBarDisplayOptions<
 export function renderAdditionalControls(
   toolbarVisibility: EuiDataGridProps['toolbarVisibility'],
   position: 'left.prepend' | 'left.append' | 'right'
-) {
+): ReactNode {
   if (typeof toolbarVisibility === 'boolean') return null;
   const { additionalControls } = toolbarVisibility || {};
   if (!additionalControls) return null;
 
-  // Typescript is having obj issues, so we need to force cast to EuiDataGridToolBarAdditionalControlsOptions here
-  const additionalControlsObj: EuiDataGridToolBarAdditionalControlsOptions =
-    additionalControls?.constructor === Object ? additionalControls : {};
-  // Typescript workarounds continued
-  const leftPositionObj: EuiDataGridToolBarAdditionalControlsLeftOptions =
-    additionalControlsObj.left?.constructor === Object
-      ? additionalControlsObj.left
-      : {};
+  // API backwards compatability: if the consumer passed a single ReactNode to `additionalControls`,
+  // default to the left append position.
+  if (isValidElement(additionalControls)) {
+    if (position !== 'left.append') return null;
+
+    return additionalControls;
+  }
+
+  if (typeof additionalControls !== 'object') {
+    return null;
+  }
+
+  const additionalControlsObj =
+    additionalControls as EuiDataGridToolBarAdditionalControlsOptions;
 
   if (position === 'right') {
-    if (additionalControlsObj?.right) {
-      return additionalControlsObj.right;
-    }
-  } else if (position === 'left.prepend') {
-    if (leftPositionObj?.prepend) {
-      return leftPositionObj.prepend;
-    }
-  } else if (position === 'left.append') {
-    if (leftPositionObj?.append) {
-      return leftPositionObj.append;
-    }
-    if (React.isValidElement(additionalControlsObj?.left)) {
-      // If the consumer passed a single ReactNode to `additionalControls.left`, default to the left append position
-      return additionalControlsObj.left;
-    }
-    if (React.isValidElement(additionalControls)) {
-      // API backwards compatability: if the consumer passed a single ReactNode to `additionalControls`, default to the the left append position
-      return additionalControls;
-    }
+    return additionalControlsObj.right;
+  }
+
+  if (isValidElement(additionalControlsObj.left)) {
+    if (position !== 'left.append') return null;
+
+    return additionalControlsObj.left;
+  }
+
+  if (typeof additionalControlsObj.left !== 'object') {
+    return null;
+  }
+
+  if (position === 'left.prepend') {
+    return additionalControlsObj.left as ReactNode;
   }
 
   return null;
