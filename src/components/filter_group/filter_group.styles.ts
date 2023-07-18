@@ -10,7 +10,11 @@ import { CSSProperties } from 'react';
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../services';
-import { logicalCSS, mathWithUnits, euiBreakpoint } from '../../global_styling';
+import {
+  logicalCSS,
+  mathWithUnits,
+  euiMaxBreakpoint,
+} from '../../global_styling';
 import { euiFormVariables } from '../form/form.styles';
 import { euiFilterButtonDisplay } from './filter_button.styles';
 
@@ -47,10 +51,10 @@ export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
 
-      ${euiBreakpoint(euiThemeContext, ['s'])} {
+      ${euiMaxBreakpoint(euiThemeContext, 's')} {
         flex-wrap: wrap;
       }
-      ${euiBreakpoint(euiThemeContext, ['xs'])} {
+      ${euiMaxBreakpoint(euiThemeContext, 'xs')} {
         /* Force all tiny screens to take up the entire width */
         display: flex;
 
