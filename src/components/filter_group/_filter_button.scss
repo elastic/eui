@@ -1,23 +1,2 @@
 .euiFilterButton {
-  &:disabled {
-    .euiFilterButton__notification {
-      opacity: .5;
-    }
-  }
-}
-
-.euiFilterButton__text-hasNotification {
-  display: flex;
-  align-items: center;
-}
-
-.euiFilterButton__notification {
-  margin-left: $euiSizeS;
-  vertical-align: text-bottom;
-}
-
-.euiFilterButton__textShift {
-  @include euiTextShift;
-  @include euiTextTruncate;
-  min-width: $euiSize * 3;
 }

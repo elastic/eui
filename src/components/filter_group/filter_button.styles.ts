@@ -9,7 +9,12 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../services';
-import { logicalCSS, mathWithUnits } from '../../global_styling';
+import {
+  logicalCSS,
+  mathWithUnits,
+  euiTextShift,
+  euiTextTruncate,
+} from '../../global_styling';
 import { euiFormVariables } from '../form/form.styles';
 
 export const euiFilterButtonDisplay = ({ euiTheme }: UseEuiTheme) => {
@@ -66,10 +71,38 @@ export const euiFilterButtonStyles = (euiThemeContext: UseEuiTheme) => {
     hasActiveFilters: css`
       font-weight: ${euiTheme.font.weight.bold};
     `,
-    hasIcon: css`
-      .euiButtonEmpty__content {
+  };
+};
+
+export const euiFilterButtonChildStyles = ({ euiTheme }: UseEuiTheme) => {
+  return {
+    content: {
+      euiFilterButton__content: css``,
+      hasIcon: css`
         justify-content: space-between;
-      }
-    `,
+      `,
+    },
+    text: {
+      euiFilterButton__text: css``,
+      hasNotification: css`
+        display: flex;
+        align-items: center;
+        gap: ${euiTheme.size.s};
+      `,
+      euiFilterButton__textShift: css`
+        ${euiTextShift('bold', 'data-text', euiTheme)}
+        ${euiTextTruncate()}
+        ${logicalCSS(
+          'min-width',
+          mathWithUnits(euiTheme.size.base, (x) => x * 3)
+        )}
+      `,
+    },
+    notification: {
+      euiFilterButton__notification: css``,
+      disabled: css`
+        opacity: 0.5;
+      `,
+    },
   };
 };

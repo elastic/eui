@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Fragment, FunctionComponent } from 'react';
+import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
 import { useEuiTheme } from '../../services';
@@ -17,7 +17,10 @@ import { EuiNotificationBadge } from '../badge';
 import { BadgeNotificationColor } from '../badge/notification_badge/badge_notification';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button/button_empty';
 
-import { euiFilterButtonStyles } from './filter_button.styles';
+import {
+  euiFilterButtonStyles,
+  euiFilterButtonChildStyles,
+} from './filter_button.styles';
 
 export type EuiFilterButtonProps = {
   /**
@@ -68,6 +71,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   grow = true,
   withNext,
   textProps,
+  contentProps,
   ...rest
 }) => {
   const numFiltersDefined = numFilters != null; // != instead of !== to allow for null and undefined
@@ -82,8 +86,12 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
     !grow && styles.noGrow,
     hasActiveFilters && styles.hasActiveFilters,
     numFiltersDefined && styles.hasNotification,
-    iconType && styles.hasIcon,
   ];
+  const {
+    content: contentStyles,
+    text: textStyles,
+    notification: notificationStyles,
+  } = euiFilterButtonChildStyles(euiTheme);
 
   const classes = classNames(
     'euiFilterButton',
@@ -93,14 +101,6 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
       'euiFilterButton-hasNotification': numFiltersDefined,
     },
     className
-  );
-
-  const buttonTextClassNames = classNames(
-    {
-      'euiFilterButton__text-hasNotification':
-        numFiltersDefined || numActiveFilters,
-    },
-    textProps && textProps.className
   );
 
   const showBadge = numFiltersDefined || numActiveFiltersDefined;
@@ -115,9 +115,20 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
     '{count} available filters',
     { count: badgeCount }
   );
+
+  const buttonTextClassNames = classNames(
+    'euiFilterButton__text',
+    { 'euiFilterButton__text-hasNotification': showBadge },
+    textProps?.className
+  );
+
   const badgeContent = showBadge && (
     <EuiNotificationBadge
       className="euiFilterButton__notification"
+      css={[
+        notificationStyles.euiFilterButton__notification,
+        isDisabled && notificationStyles.disabled,
+      ]}
       aria-label={hasActiveFilters ? activeBadgeLabel : availableBadgeLabel}
       color={isDisabled || !hasActiveFilters ? 'subdued' : badgeColor}
       role="marquee" // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/marquee_role
@@ -133,10 +144,11 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
 
   const [ref, innerText] = useInnerText();
   const buttonContents = (
-    <Fragment>
+    <>
       <span
         ref={ref}
         className="euiFilterButton__textShift"
+        css={textStyles.euiFilterButton__textShift}
         data-text={dataText || innerText}
         title={dataText || innerText}
       >
@@ -144,7 +156,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
       </span>
 
       {badgeContent}
-    </Fragment>
+    </>
   );
 
   return (
@@ -156,7 +168,23 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
       iconSide={iconSide}
       iconType={iconType}
       type={type}
-      textProps={{ ...textProps, className: buttonTextClassNames }}
+      textProps={{
+        ...textProps,
+        className: buttonTextClassNames,
+        css: [
+          textStyles.euiFilterButton__text,
+          showBadge && textStyles.hasNotification,
+          textProps?.css,
+        ],
+      }}
+      contentProps={{
+        ...contentProps,
+        css: [
+          contentStyles.euiFilterButton__content,
+          iconType && contentStyles.hasIcon,
+          contentProps?.css,
+        ],
+      }}
       {...rest}
     >
       {buttonContents}
