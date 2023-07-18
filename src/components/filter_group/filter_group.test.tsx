@@ -7,29 +7,32 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { render } from '../../test/rtl';
 import { requiredProps } from '../../test';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiFilterGroup } from './filter_group';
 
 describe('EuiFilterGroup', () => {
-  test('is rendered', () => {
-    const component = render(<EuiFilterGroup {...requiredProps} />);
+  shouldRenderCustomStyles(<EuiFilterGroup />);
 
-    expect(component).toMatchSnapshot();
+  it('renders', () => {
+    const { container } = render(<EuiFilterGroup {...requiredProps} />);
+
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
-    test('fullWidth is rendered', () => {
-      const component = render(<EuiFilterGroup fullWidth />);
+    test('fullWidth', () => {
+      const { container } = render(<EuiFilterGroup fullWidth />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
-    test('compressed is rendered', () => {
-      const component = render(<EuiFilterGroup compressed />);
+    test('compressed', () => {
+      const { container } = render(<EuiFilterGroup compressed />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });
