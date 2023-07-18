@@ -11,6 +11,7 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 import { logicalCSS, euiBreakpoint } from '../../global_styling';
 import { euiFormVariables } from '../form/form.styles';
+import { euiFilterButtonDisplay } from './filter_button.styles';
 
 export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -32,6 +33,19 @@ export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
       border-radius: ${controlBorderRadius};
       background-color: ${backgroundColor};
       box-shadow: inset 0 0 0 ${euiTheme.border.width.thin} ${borderColor};
+
+      /* Account for popover or tooltip wrappers around EuiFilterButtons */
+      > *:not(.euiFilterButton) {
+        ${euiFilterButtonDisplay(euiThemeContext)}
+      }
+      /* Force popover anchors to expand */
+      .euiPopover__anchor {
+        display: block;
+
+        .euiFilterButton {
+          ${logicalCSS('width', '100%')}
+        }
+      }
 
       ${euiBreakpoint(euiThemeContext, ['s'])} {
         flex-wrap: wrap;

@@ -9,13 +9,15 @@
 import React, { Fragment, FunctionComponent } from 'react';
 import classNames from 'classnames';
 
+import { useEuiTheme } from '../../services';
 import { useEuiI18n } from '../i18n';
+import { useInnerText } from '../inner_text';
+import { DistributiveOmit } from '../common';
 import { EuiNotificationBadge } from '../badge';
 import { BadgeNotificationColor } from '../badge/notification_badge/badge_notification';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button/button_empty';
 
-import { useInnerText } from '../inner_text';
-import { DistributiveOmit } from '../common';
+import { euiFilterButtonStyles } from './filter_button.styles';
 
 export type EuiFilterButtonProps = {
   /**
@@ -72,6 +74,14 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   const numActiveFiltersDefined =
     numActiveFilters != null && numActiveFilters > 0;
 
+  const euiTheme = useEuiTheme();
+  const styles = euiFilterButtonStyles(euiTheme);
+  const cssStyles = [
+    styles.euiFilterButton,
+    !grow && styles.noGrow,
+    numFiltersDefined && styles.hasNotification,
+  ];
+
   const classes = classNames(
     'euiFilterButton',
     {
@@ -79,7 +89,6 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
       'euiFilterButton-hasActiveFilters': hasActiveFilters,
       'euiFilterButton-hasNotification': numFiltersDefined,
       'euiFilterButton--hasIcon': iconType,
-      'euiFilterButton--noGrow': !grow,
       'euiFilterButton--withNext': withNext,
     },
     className
@@ -140,6 +149,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   return (
     <EuiButtonEmpty
       className={classes}
+      css={cssStyles}
       color={color}
       isDisabled={isDisabled}
       iconSide={iconSide}

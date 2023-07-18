@@ -1,25 +1,4 @@
 .euiFilterGroup {
-  > * {
-    flex: 1 1 auto;
-    min-width: $euiSize * 3;
-  }
-
-  > .euiFilterButton--noGrow {
-    flex-grow: 0;
-  }
-
-  > .euiFilterButton-hasNotification {
-    min-width: $euiSize * 6;
-  }
-
-  // Force popover anchors to expand for now
-  .euiPopover__anchor {
-    display: block;
-
-    .euiFilterButton {
-      width: 100%;
-    }
-  }
 }
 
 // A fixed width is required because of the shift in widths that can be caused
