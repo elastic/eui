@@ -9,7 +9,7 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../services';
-import { logicalCSS } from '../../global_styling';
+import { logicalCSS, euiBreakpoint } from '../../global_styling';
 import { euiFormVariables } from '../form/form.styles';
 
 export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
@@ -32,6 +32,21 @@ export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
       border-radius: ${controlBorderRadius};
       background-color: ${backgroundColor};
       box-shadow: inset 0 0 0 ${euiTheme.border.width.thin} ${borderColor};
+
+      ${euiBreakpoint(euiThemeContext, ['s'])} {
+        flex-wrap: wrap;
+      }
+      ${euiBreakpoint(euiThemeContext, ['xs'])} {
+        /* Force all tiny screens to take up the entire width */
+        display: flex;
+
+        .euiFilterButton {
+          flex-grow: 1;
+        }
+      }
+    `,
+    fullWidth: css`
+      display: flex;
     `,
     compressed: css`
       border-radius: ${controlCompressedBorderRadius};

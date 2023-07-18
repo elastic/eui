@@ -22,32 +22,10 @@
   }
 }
 
-.euiFilterGroup--fullWidth {
-  display: flex;
-}
-
 // A fixed width is required because of the shift in widths that can be caused
 // by the loading animation that precedes the results.
 .euiFilterGroup__popoverPanel {
   // Note for Emotion conversion: there are unfortunately 5+ direct
   // usages of this className in Kibana that will need to be refactored
   width: $euiSize * 18;
-}
-
-@include euiBreakpoint('xs', 's') {
-  .euiFilterGroup {
-    flex-wrap: wrap;
-  }
-}
-
-@include euiBreakpoint('xs') {
-  // Force all tiny screens to take up the entire width
-  .euiFilterGroup {
-    display: flex;
-
-    .euiFilterButton {
-      // stylelint-disable-next-line declaration-no-important
-      flex-grow: 1 !important;
-    }
-  }
 }

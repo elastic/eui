@@ -36,15 +36,13 @@ export const EuiFilterGroup: FunctionComponent<EuiFilterGroupProps> = ({
 }) => {
   const euiTheme = useEuiTheme();
   const styles = euiFilterGroupStyles(euiTheme);
-  const cssStyles = [styles.euiFilterGroup, compressed && styles.compressed];
+  const cssStyles = [
+    styles.euiFilterGroup,
+    fullWidth && styles.fullWidth,
+    compressed && styles.compressed,
+  ];
 
-  const classes = classNames(
-    'euiFilterGroup',
-    {
-      'euiFilterGroup--fullWidth': fullWidth,
-    },
-    className
-  );
+  const classes = classNames('euiFilterGroup', className);
 
   return (
     <div className={classes} css={cssStyles} {...rest}>
