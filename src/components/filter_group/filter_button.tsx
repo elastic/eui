@@ -137,20 +137,17 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
     </EuiNotificationBadge>
   );
 
-  let dataText;
-  if (typeof children === 'string') {
-    dataText = children;
-  }
-
   const [ref, innerText] = useInnerText();
+  const dataText =
+    children && typeof children === 'string' ? children : innerText;
   const buttonContents = (
     <>
       <span
         ref={ref}
         className="euiFilterButton__textShift"
         css={textStyles.euiFilterButton__textShift}
-        data-text={dataText || innerText}
-        title={dataText || innerText}
+        data-text={dataText}
+        title={dataText}
       >
         {children}
       </span>
