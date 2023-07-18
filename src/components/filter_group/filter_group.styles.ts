@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import { CSSProperties } from 'react';
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../services';
@@ -30,7 +31,6 @@ export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('max-width', '100%')}
       overflow: hidden;
 
-      border-radius: ${controlBorderRadius};
       background-color: ${backgroundColor};
       box-shadow: inset 0 0 0 ${euiTheme.border.width.thin} ${borderColor};
 
@@ -62,8 +62,13 @@ export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
     fullWidth: css`
       display: flex;
     `,
+    uncompressed: css`
+      border-radius: ${controlBorderRadius};
+      ${buttonChildrenBorderRadii(controlBorderRadius)}
+    `,
     compressed: css`
       border-radius: ${controlCompressedBorderRadius};
+      ${buttonChildrenBorderRadii(controlCompressedBorderRadius)}
 
       .euiFilterButton {
         ${logicalCSS('height', controlCompressedHeight)}
@@ -82,3 +87,26 @@ export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
     `,
   };
 };
+
+/**
+ * Small util for manually rounding the borders of the first and last EuiFilterButtons
+ * - this makes their focus rings appear nicely instead of being cutt off.
+ * 2nd selector accounts for EuiFilterButtons nested within popover/tooltip wrappers.
+ *
+ * NOTE: Do not use `logicalShorthandCSS()` here, as that will cause single buttons to not be rounded
+ */
+const buttonChildrenBorderRadii = (
+  radiusSize: CSSProperties['borderRadius']
+) => `
+  > :first-child,
+  > :first-child .euiFilterButton {
+    ${logicalCSS('border-top-left-radius', radiusSize)}
+    ${logicalCSS('border-bottom-left-radius', radiusSize)}
+  }
+
+  > :last-child,
+  > :last-child .euiFilterButton {
+    ${logicalCSS('border-top-right-radius', radiusSize)}
+    ${logicalCSS('border-bottom-right-radius', radiusSize)}
+  }
+`;

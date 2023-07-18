@@ -39,7 +39,7 @@ export const EuiFilterGroup: FunctionComponent<EuiFilterGroupProps> = ({
   const cssStyles = [
     styles.euiFilterGroup,
     fullWidth && styles.fullWidth,
-    compressed && styles.compressed,
+    compressed ? styles.compressed : styles.uncompressed,
   ];
 
   const classes = classNames('euiFilterGroup', className);

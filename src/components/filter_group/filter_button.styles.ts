@@ -51,6 +51,10 @@ export const euiFilterButtonStyles = (euiThemeContext: UseEuiTheme) => {
           text-decoration: underline;
         }
       }
+
+      &:focus-visible {
+        outline-offset: -${euiTheme.focus.width};
+      }
     `,
     withNext: css`
       & + .euiFilterButton {
@@ -99,7 +103,9 @@ export const euiFilterButtonChildStyles = ({ euiTheme }: UseEuiTheme) => {
       `,
     },
     notification: {
-      euiFilterButton__notification: css``,
+      euiFilterButton__notification: css`
+        cursor: inherit;
+      `,
       disabled: css`
         opacity: 0.5;
       `,
