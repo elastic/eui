@@ -3,15 +3,12 @@
   padding: $euiSizeXS;
   height: $euiKeyPadMenuSize;
   width: $euiKeyPadMenuSize;
-  border: $euiBorderThin;
-  border-color: transparent;
   border-radius: $euiBorderRadius;
   color: $euiTextColor; // Override possible link color
 
   @include euiCanAnimate {
     transition:
       background-color $euiAnimSpeedFast ease-in,
-      border-color $euiAnimSpeedFast ease-in,
       box-shadow $euiAnimSpeedFast ease-in;
   }
 
@@ -21,8 +18,7 @@
     &:focus,
     &:focus-within {
       @include euiHoverState;
-      @include euiSlightShadow;
-      border-color: $euiBorderColor;
+      @include euiBottomShadowSmall;
 
       @include euiCanAnimate {
         .euiKeyPadMenuItem__icon {
@@ -33,6 +29,7 @@
 
     &:focus {
       @include euiFocusState;
+      box-shadow: none;
     }
   }
 
@@ -51,13 +48,29 @@
 
   // Selected state (when not disabled)
   &.euiKeyPadMenuItem-isSelected:not(.euiKeyPadMenuItem-isDisabled) {
-    @include euiSlightShadow;
     color: $euiTitleColor;
+
+    &,
+    &:hover,
+    &:focus,
+    &:focus-within {
+      @include euiFocusBackground;
+      // Calculate the right text contrast ratio based on focus transparency
+      $backgroundColorSimulated: mix($euiColorEmptyShade, $euiColorPrimary, $euiFocusTransparencyPercent);
+      color: makeHighContrastColor($euiColorPrimaryText, $backgroundColorSimulated);
+    }
   }
 
   // Selected (even if disabled)
   &.euiKeyPadMenuItem-isSelected {
     border-color: $euiBorderColor;
+  }
+
+  &.euiKeyPadMenuItem-isSelected.euiKeyPadMenuItem-isDisabled {
+    @include euiFocusBackground($euiColorDisabled);
+    // Calculate the right text contrast ratio based on focus transparency
+    $backgroundColorSimulated: mix($euiColorEmptyShade, $euiColorDisabled, $euiFocusTransparencyPercent);
+    color: makeDisabledContrastColor($euiColorDisabledText, $backgroundColorSimulated);
   }
 
   // Hide the input if not selected, or being interacted with
@@ -101,7 +114,7 @@
 
 .euiKeyPadMenuItem__label {
   font-size: $euiFontSizeXS;
-  font-weight: $euiFontWeightMedium;
+  font-weight: $euiFontWeightSemiBold;
   line-height: $euiSize;
   text-align: center;
 }
