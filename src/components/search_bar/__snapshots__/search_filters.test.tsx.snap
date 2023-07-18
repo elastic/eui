@@ -2,27 +2,27 @@
 
 exports[`EuiSearchBarFilters render - no filters 1`] = `
 <div
-  class="euiFilterGroup"
+  class="euiFilterGroup emotion-euiFilterGroup-uncompressed"
 />
 `;
 
 exports[`EuiSearchBarFilters render - with filters 1`] = `
 <div
-  class="euiFilterGroup"
+  class="euiFilterGroup emotion-euiFilterGroup-uncompressed"
 >
   <button
     aria-pressed="false"
-    class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
+    class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton"
     type="button"
   >
     <span
-      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+      class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
     >
       <span
-        class="eui-textTruncate euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text emotion-euiFilterButton__text"
       >
         <span
-          class="euiFilterButton__textShift"
+          class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
           data-text="Open"
           title="Open"
         >
@@ -38,17 +38,17 @@ exports[`EuiSearchBarFilters render - with filters 1`] = `
       class="euiPopover__anchor css-16vtueo-render"
     >
       <button
-        class="euiButtonEmpty euiFilterButton euiFilterButton--hasIcon emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
+        class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton"
         type="button"
       >
         <span
-          class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+          class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content-hasIcon"
         >
           <span
-            class="eui-textTruncate euiButtonEmpty__text"
+            class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text emotion-euiFilterButton__text"
           >
             <span
-              class="euiFilterButton__textShift"
+              class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
               data-text="Tag"
               title="Tag"
             >
