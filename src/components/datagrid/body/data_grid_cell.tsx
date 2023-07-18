@@ -9,6 +9,7 @@
 import classNames from 'classnames';
 import React, {
   Component,
+  ContextType,
   createRef,
   FocusEvent,
   FunctionComponent,
@@ -143,6 +144,7 @@ export class EuiDataGridCell extends Component<
   style = null;
 
   static contextType = DataGridFocusContext;
+  declare context: ContextType<typeof DataGridFocusContext>;
 
   getInteractables = () => {
     const tabbingRef = this.cellContentsRef;
