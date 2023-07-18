@@ -9,7 +9,7 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../services';
-import { logicalCSS, euiBreakpoint } from '../../global_styling';
+import { logicalCSS, mathWithUnits, euiBreakpoint } from '../../global_styling';
 import { euiFormVariables } from '../form/form.styles';
 import { euiFilterButtonDisplay } from './filter_button.styles';
 
@@ -68,6 +68,17 @@ export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
       .euiFilterButton {
         ${logicalCSS('height', controlCompressedHeight)}
       }
+    `,
+    /**
+     * Not used in EuiFilterGroup directly, but used by EuiSearchBar and consumers
+     * A fixed width is required because of the shift in widths that can be caused
+     * by the loading animation that precedes the results.
+     */
+    euiFilterGroup__popoverPanel: css`
+      ${logicalCSS(
+        'width',
+        mathWithUnits(euiTheme.size.base, (x) => x * 18)
+      )}
     `,
   };
 };
