@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiHeaderSectionItemButton is rendered 1`] = `
+exports[`EuiHeaderSectionItemButton renders 1`] = `
 <button
   aria-label="aria-label"
   class="euiButtonEmpty euiHeaderSectionItemButton testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiHeaderSectionItemButton-euiTestCss"
