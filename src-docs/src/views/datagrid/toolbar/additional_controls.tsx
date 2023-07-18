@@ -16,6 +16,7 @@ import {
   EuiContextMenuItem,
   EuiContextMenuPanel,
   EuiPopover,
+  EuiDataGridPaginationProps,
 } from '../../../../../src';
 
 const columns = [
@@ -94,12 +95,14 @@ export default () => {
     columns.map(({ id }) => id)
   );
 
-  const setPageIndex = useCallback(
+  const setPageIndex = useCallback<EuiDataGridPaginationProps['onChangePage']>(
     (pageIndex) =>
       setPagination((pagination) => ({ ...pagination, pageIndex })),
     []
   );
-  const setPageSize = useCallback(
+  const setPageSize = useCallback<
+    EuiDataGridPaginationProps['onChangeItemsPerPage']
+  >(
     (pageSize) =>
       setPagination((pagination) => ({
         ...pagination,

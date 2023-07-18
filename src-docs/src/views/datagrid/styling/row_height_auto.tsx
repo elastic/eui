@@ -18,6 +18,9 @@ import {
   EuiText,
   EuiSpacer,
   formatDate,
+  EuiDataGridSorting,
+  EuiDataGridColumnSortingConfig,
+  EuiDataGridPaginationProps,
 } from '../../../../../src';
 
 interface DataShape {
@@ -146,15 +149,19 @@ export default () => {
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 50 });
 
   // Sorting
-  const [sortingColumns, setSortingColumns] = useState([]);
-  const onSort = useCallback(
+  const [sortingColumns, setSortingColumns] = useState<
+    EuiDataGridColumnSortingConfig[]
+  >([]);
+  const onSort = useCallback<EuiDataGridSorting['onSort']>(
     (sortingColumns) => {
       setSortingColumns(sortingColumns);
     },
     [setSortingColumns]
   );
 
-  const onChangeItemsPerPage = useCallback(
+  const onChangeItemsPerPage = useCallback<
+    EuiDataGridPaginationProps['onChangeItemsPerPage']
+  >(
     (pageSize) =>
       setPagination((pagination) => ({
         ...pagination,
@@ -164,7 +171,7 @@ export default () => {
     [setPagination]
   );
 
-  const onChangePage = useCallback(
+  const onChangePage = useCallback<EuiDataGridPaginationProps['onChangePage']>(
     (pageIndex) =>
       setPagination((pagination) => ({ ...pagination, pageIndex })),
     [setPagination]

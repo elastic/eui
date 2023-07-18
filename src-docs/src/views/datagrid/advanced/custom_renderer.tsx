@@ -16,6 +16,9 @@ import {
   EuiSpacer,
   useEuiTheme,
   logicalCSS,
+  EuiDataGridPaginationProps,
+  EuiDataGridSorting,
+  EuiDataGridColumnSortingConfig,
 } from '../../../../../src';
 
 const raw_data: Array<{ [key: string]: string }> = [];
@@ -166,16 +169,16 @@ export default () => {
 
   // Pagination
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
-  const onChangePage = useCallback((pageIndex) => {
+  const onChangePage = useCallback<EuiDataGridPaginationProps['onChangePage']>((pageIndex) => {
     setPagination((pagination) => ({ ...pagination, pageIndex }));
   }, []);
-  const onChangePageSize = useCallback((pageSize) => {
+  const onChangePageSize = useCallback<EuiDataGridPaginationProps['onChangeItemsPerPage']>((pageSize) => {
     setPagination((pagination) => ({ ...pagination, pageSize }));
   }, []);
 
   // Sorting
-  const [sortingColumns, setSortingColumns] = useState([]);
-  const onSort = useCallback((sortingColumns) => {
+  const [sortingColumns, setSortingColumns] = useState<EuiDataGridColumnSortingConfig[]>([]);
+  const onSort = useCallback<EuiDataGridSorting['onSort']>((sortingColumns) => {
     setSortingColumns(sortingColumns);
   }, []);
 
