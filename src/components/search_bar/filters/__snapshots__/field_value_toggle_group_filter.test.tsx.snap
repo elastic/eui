@@ -3,17 +3,17 @@
 exports[`TermToggleGroupFilter render - active 1`] = `
 <button
   aria-pressed="true"
-  class="euiButtonEmpty euiFilterButton euiFilterButton-hasActiveFilters euiFilterButton--withNext emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
+  class="euiButtonEmpty euiFilterButton euiFilterButton-hasActiveFilters emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-withNext-hasActiveFilters"
   type="button"
 >
   <span
-    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text emotion-euiFilterButton__text"
     >
       <span
-        class="euiFilterButton__textShift"
+        class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
         data-text="Kibana"
         title="Kibana"
       >
@@ -27,17 +27,17 @@ exports[`TermToggleGroupFilter render - active 1`] = `
 exports[`TermToggleGroupFilter render - active negated - custom negated name 1`] = `
 <button
   aria-pressed="true"
-  class="euiButtonEmpty euiFilterButton euiFilterButton-hasActiveFilters euiFilterButton--withNext emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
+  class="euiButtonEmpty euiFilterButton euiFilterButton-hasActiveFilters emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-withNext-hasActiveFilters"
   type="button"
 >
   <span
-    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text emotion-euiFilterButton__text"
     >
       <span
-        class="euiFilterButton__textShift"
+        class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
         data-text="-Kibana"
         title="-Kibana"
       >
@@ -51,17 +51,17 @@ exports[`TermToggleGroupFilter render - active negated - custom negated name 1`]
 exports[`TermToggleGroupFilter render - active negated 1`] = `
 <button
   aria-pressed="true"
-  class="euiButtonEmpty euiFilterButton euiFilterButton-hasActiveFilters euiFilterButton--withNext emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
+  class="euiButtonEmpty euiFilterButton euiFilterButton-hasActiveFilters emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-withNext-hasActiveFilters"
   type="button"
 >
   <span
-    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text emotion-euiFilterButton__text"
     >
       <span
-        class="euiFilterButton__textShift"
+        class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
         data-text="Not Kibana"
         title="Not Kibana"
       >
@@ -75,17 +75,17 @@ exports[`TermToggleGroupFilter render - active negated 1`] = `
 exports[`TermToggleGroupFilter renders 1`] = `
 <button
   aria-pressed="false"
-  class="euiButtonEmpty euiFilterButton euiFilterButton--withNext emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
+  class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-withNext"
   type="button"
 >
   <span
-    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
   >
     <span
-      class="eui-textTruncate euiButtonEmpty__text"
+      class="eui-textTruncate euiButtonEmpty__text euiFilterButton__text emotion-euiFilterButton__text"
     >
       <span
-        class="euiFilterButton__textShift"
+        class="euiFilterButton__textShift emotion-euiFilterButton__textShift"
         data-text="Kibana"
         title="Kibana"
       >
