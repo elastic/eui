@@ -1,9 +1,10 @@
 .euiFilterGroup {
   display: inline-flex;
   max-width: 100%;
-  border-right: 1px solid $euiFormBorderColor;
-  box-shadow: 0 1px 2px -1px transparentize($euiShadowColor, .8), 0 3px 3px -2px transparentize($euiShadowColor, .8);
   overflow: hidden;
+  border-radius: $euiFormControlBorderRadius;
+  background-color: $euiFormBackgroundColor;
+  box-shadow: inset 0 0 0 1px $euiFormBorderColor;
 
   > * {
     flex: 1 1 auto;
@@ -25,6 +26,14 @@
     .euiFilterButton {
       width: 100%;
     }
+  }
+}
+
+.euiFilterGroup--compressed {
+  border-radius: $euiFormControlCompressedBorderRadius;
+
+  & .euiFilterButton {
+    height: $euiFormControlCompressedHeight;
   }
 }
 

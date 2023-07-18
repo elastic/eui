@@ -1,10 +1,11 @@
 .euiFilterButton {
-  background-color: $euiFormBackgroundColor;
   height: $euiFormControlHeight;
   width: auto;
-  border: 1px solid $euiFormBorderColor;
-  border-right: none;
   font-size: $euiFontSizeS;
+  border-radius: 0;
+  background-color: transparent;
+  // Box shadow simulates bottom and left borders
+  box-shadow: 0 1px 0 0 $euiFormBorderColor, -1px 0 0 0 $euiFormBorderColor;
 
   &:disabled {
     color: $euiButtonColorDisabledText;
@@ -37,11 +38,8 @@
 
 .euiFilterButton--withNext + .euiFilterButton {
   margin-left: $euiSizeXS * -1;
-  border-left: none;
-}
-
-.euiFilterButton-isSelected {
-  background-color: $euiColorLightestShade;
+  // Remove just the left faux border
+  box-shadow: 0 1px 0 0 $euiFormBorderColor;
 }
 
 .euiFilterButton__text-hasNotification {
