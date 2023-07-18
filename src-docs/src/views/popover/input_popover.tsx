@@ -39,7 +39,7 @@ export default () => {
           toggleIsPopoverOpen(false);
         }}
       >
-        Popover content
+        Popover content.
       </EuiInputPopover>
 
       <EuiSpacer />
@@ -53,7 +53,7 @@ export default () => {
           setInputWidth(200);
         }}
       >
-        Popover will adjust in size as the input does
+        Popover will adjust in size as the input does.
       </EuiInputPopover>
     </React.Fragment>
   );
