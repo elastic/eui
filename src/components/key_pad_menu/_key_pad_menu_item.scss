@@ -1,9 +1,4 @@
-/**
- * 1. If this class is applied to a button, we need to override the Chrome default font.
- * 2. If it has a BetaBadge, make sure only the first letter shows
- */
 .euiKeyPadMenuItem {
-  @include euiFont; /* 1 */
   display: block;
   padding: $euiSizeXS;
   height: $euiKeyPadMenuSize;
