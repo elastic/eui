@@ -90,14 +90,11 @@ describe('EuiInlineEditForm', () => {
     });
 
     test('title for defaultValue', () => {
-      const { container, getByTestSubject } = render(
+      const { getByTitle } = render(
         <EuiInlineEditForm {...commonInlineEditFormProps} />
       );
 
-      expect(container.firstChild).toMatchSnapshot();
-      expect(
-        getByTestSubject('euiInlineReadModeButton').getAttribute('title')
-      ).toEqual('Hello World!');
+      expect(getByTitle('Hello World!')).toBeTruthy();
     });
 
     test('title for placeholder', () => {
