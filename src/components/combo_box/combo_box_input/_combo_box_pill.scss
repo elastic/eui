@@ -30,10 +30,26 @@
     padding: 0;
     color: $euiTextColor;
     vertical-align: middle;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
   }
 
-  &--icon {
+  &__prepend {
     margin-right: $euiSizeXS;
+  }
+
+  &__append {
+    margin-left: $euiSizeXS;
+  }
+
+  /* Fix append/prepend vertical alignment */
+  &--plainText,
+  .euiBadge__text {
+    display: flex;
+    align-items: center;
+
+    .euiIcon {
+      display: block;
+    }
   }
 }
