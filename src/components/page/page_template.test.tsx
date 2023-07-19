@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import {
   EuiPageTemplate_Deprecated as EuiPageTemplate,
@@ -17,22 +17,22 @@ import {
 
 describe('EuiPageTemplate_Deprecated', () => {
   test('is rendered', () => {
-    const component = render(<EuiPageTemplate {...requiredProps} />);
+    const { container } = render(<EuiPageTemplate {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('restrict width', () => {
     test('can be turned off', () => {
-      const component = render(<EuiPageTemplate restrictWidth={false} />);
+      const { container } = render(<EuiPageTemplate restrictWidth={false} />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('can be set to a custom number', () => {
-      const component = render(<EuiPageTemplate restrictWidth={1024} />);
+      const { container } = render(<EuiPageTemplate restrictWidth={1024} />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
@@ -40,49 +40,49 @@ describe('EuiPageTemplate_Deprecated', () => {
     TEMPLATES.forEach((template) => {
       describe(`${template}`, () => {
         it('is rendered', () => {
-          const component = render(<EuiPageTemplate template={template} />);
+          const { container } = render(<EuiPageTemplate template={template} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
 
         it('paddingSize is rendered', () => {
-          const component = render(
+          const { container } = render(
             <EuiPageTemplate template={template} paddingSize="none" />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
 
         it('minHeight is rendered', () => {
-          const component = render(
+          const { container } = render(
             <EuiPageTemplate template={template} minHeight="40vh" />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
 
         it('style is rendered', () => {
-          const component = render(
+          const { container } = render(
             <EuiPageTemplate
               template={template}
               style={{ maxHeight: '100vh' }}
             />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
 
         describe('with pageSideBar', () => {
           test('is rendered', () => {
-            const component = render(
+            const { container } = render(
               <EuiPageTemplate template={template} pageSideBar="Side Bar" />
             );
 
-            expect(component).toMatchSnapshot();
+            expect(container.firstChild).toMatchSnapshot();
           });
 
           test('is rendered with pageSideBarProps', () => {
-            const component = render(
+            const { container } = render(
               <EuiPageTemplate
                 template={template}
                 pageSideBar="Side Bar"
@@ -90,12 +90,12 @@ describe('EuiPageTemplate_Deprecated', () => {
               />
             );
 
-            expect(component).toMatchSnapshot();
+            expect(container.firstChild).toMatchSnapshot();
           });
         });
 
         test('is rendered with pageHeader', () => {
-          const component = render(
+          const { container } = render(
             <EuiPageTemplate
               template={template}
               pageHeader={{
@@ -105,40 +105,40 @@ describe('EuiPageTemplate_Deprecated', () => {
             />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
 
         test('is rendered with pageBodyProps', () => {
-          const component = render(
+          const { container } = render(
             <EuiPageTemplate
               template={template}
               pageBodyProps={requiredProps}
             />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
 
         test('is rendered with pageContentProps', () => {
-          const component = render(
+          const { container } = render(
             <EuiPageTemplate
               template={template}
               pageContentProps={requiredProps}
             />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
 
         test('is rendered with pageContentBodyProps', () => {
-          const component = render(
+          const { container } = render(
             <EuiPageTemplate
               template={template}
               pageContentBodyProps={requiredProps}
             />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
@@ -146,28 +146,28 @@ describe('EuiPageTemplate_Deprecated', () => {
 
   describe('with bottomBar', () => {
     test('is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiPageTemplate
           bottomBar="Bottom Bar"
           bottomBarProps={{ paddingSize: 'none' }}
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
   describe('fullHeight', () => {
     test('is rendered with true', () => {
-      const component = render(<EuiPageTemplate fullHeight={true} />);
+      const { container } = render(<EuiPageTemplate fullHeight={true} />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('is rendered with noscroll', () => {
-      const component = render(<EuiPageTemplate fullHeight={'noscroll'} />);
+      const { container } = render(<EuiPageTemplate fullHeight={'noscroll'} />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });

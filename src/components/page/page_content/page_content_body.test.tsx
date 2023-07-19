@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
 
 import {
   EuiPageContentBody_Deprecated as EuiPageContentBody,
@@ -17,40 +17,40 @@ import {
 
 describe('EuiPageContentBody', () => {
   test('is rendered', () => {
-    const component = render(<EuiPageContentBody {...requiredProps} />);
+    const { container } = render(<EuiPageContentBody {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('paddingSize', () => {
     PADDING_SIZES.forEach((size) => {
       it(`${size} is rendered`, () => {
-        const component = render(<EuiPageContentBody paddingSize={size} />);
+        const { container } = render(<EuiPageContentBody paddingSize={size} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });
 
   describe('restrict width', () => {
     test('can be set to a default', () => {
-      const component = render(<EuiPageContentBody restrictWidth={true} />);
+      const { container } = render(<EuiPageContentBody restrictWidth={true} />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('can be set to a custom number', () => {
-      const component = render(<EuiPageContentBody restrictWidth={1024} />);
+      const { container } = render(<EuiPageContentBody restrictWidth={1024} />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('can be set to a custom value and does not override custom style', () => {
-      const component = render(
+      const { container } = render(
         <EuiPageContentBody restrictWidth="24rem" style={{ color: 'red ' }} />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });

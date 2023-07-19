@@ -35,14 +35,14 @@ exports[`EuiPageContentBody paddingSize s is rendered 1`] = `
 exports[`EuiPageContentBody restrict width can be set to a custom number 1`] = `
 <div
   class="euiPageContentBody euiPageContentBody--restrictWidth-custom"
-  style="max-width:1024px"
+  style="max-width: 1024px;"
 />
 `;
 
 exports[`EuiPageContentBody restrict width can be set to a custom value and does not override custom style 1`] = `
 <div
   class="euiPageContentBody euiPageContentBody--restrictWidth-custom"
-  style="color:red;max-width:24rem"
+  style="color: red; max-width: 24rem;"
 />
 `;
 
