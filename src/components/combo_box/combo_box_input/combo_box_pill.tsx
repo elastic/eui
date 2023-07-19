@@ -45,10 +45,11 @@ export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
       color,
       onClick,
       onClickAriaLabel,
-      onClose, // eslint-disable-line no-unused-vars
-      option, // eslint-disable-line no-unused-vars
+      onClose,
+      option,
       ...rest
     } = this.props;
+
     const classes = classNames(
       'euiComboBoxPill',
       {
@@ -56,6 +57,7 @@ export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
       },
       className
     );
+
     const onClickProps =
       onClick && onClickAriaLabel
         ? {
