@@ -7,14 +7,15 @@
  */
 
 import React from 'react';
-import { mount, render } from 'enzyme';
+import { mount } from 'enzyme';
 import { EuiNotificationEventMeta } from './notification_event_meta';
 import { EuiContextMenuPanel, EuiContextMenuItem } from '../context_menu';
 import { findTestSubject, takeMountedSnapshot } from '../../test';
+import { render } from '../../test/rtl';
 
 describe('EuiNotificationEventMeta', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiNotificationEventMeta
         id="id"
         type="Alert"
@@ -23,12 +24,12 @@ describe('EuiNotificationEventMeta', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     test('severity is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiNotificationEventMeta
           id="id"
           type="Alert"
@@ -38,11 +39,11 @@ describe('EuiNotificationEventMeta', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('badgeColor  is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiNotificationEventMeta
           id="id"
           type="Alert"
@@ -52,11 +53,11 @@ describe('EuiNotificationEventMeta', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('logoCloud  is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiNotificationEventMeta
           id="id"
           type="Alert"
@@ -66,7 +67,7 @@ describe('EuiNotificationEventMeta', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('contextMenuItems are rendered', () => {

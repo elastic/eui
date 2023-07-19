@@ -18,6 +18,7 @@ exports[`EuiNotificationEvent is rendered 1`] = `
       >
         <span
           class="euiBadge euiNotificationEventMeta__badge emotion-euiBadge-hollow"
+          title="Alert"
         >
           <span
             class="euiBadge__content emotion-euiBadge__content"
@@ -78,6 +79,7 @@ exports[`EuiNotificationEvent props badgeColor is rendered 1`] = `
       >
         <span
           class="euiBadge euiNotificationEventMeta__badge emotion-euiBadge-warning"
+          title="Alert"
         >
           <span
             class="euiBadge__content emotion-euiBadge__content"
@@ -190,6 +192,7 @@ exports[`EuiNotificationEvent props headingLevel is rendered 1`] = `
       >
         <span
           class="euiBadge euiNotificationEventMeta__badge emotion-euiBadge-hollow"
+          title="Alert"
         >
           <span
             class="euiBadge__content emotion-euiBadge__content"
@@ -256,6 +259,7 @@ exports[`EuiNotificationEvent props iconAriaLabel is rendered 1`] = `
         </span>
         <span
           class="euiBadge euiNotificationEventMeta__badge emotion-euiBadge-hollow"
+          title="Alert"
         >
           <span
             class="euiBadge__content emotion-euiBadge__content"
@@ -321,6 +325,7 @@ exports[`EuiNotificationEvent props iconType is rendered 1`] = `
         />
         <span
           class="euiBadge euiNotificationEventMeta__badge emotion-euiBadge-hollow"
+          title="Alert"
         >
           <span
             class="euiBadge__content emotion-euiBadge__content"
@@ -399,6 +404,7 @@ exports[`EuiNotificationEvent props isRead  is rendered 1`] = `
       >
         <span
           class="euiBadge euiNotificationEventMeta__badge emotion-euiBadge-hollow"
+          title="Alert"
         >
           <span
             class="euiBadge__content emotion-euiBadge__content"
@@ -459,6 +465,7 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
       >
         <span
           class="euiBadge euiNotificationEventMeta__badge emotion-euiBadge-hollow"
+          title="Alert"
         >
           <span
             class="euiBadge__content emotion-euiBadge__content"
@@ -573,6 +580,7 @@ exports[`EuiNotificationEvent props primaryAction is rendered 1`] = `
       >
         <span
           class="euiBadge euiNotificationEventMeta__badge emotion-euiBadge-hollow"
+          title="Alert"
         >
           <span
             class="euiBadge__content emotion-euiBadge__content"
@@ -652,6 +660,7 @@ exports[`EuiNotificationEvent props primaryActionProps is rendered 1`] = `
       >
         <span
           class="euiBadge euiNotificationEventMeta__badge emotion-euiBadge-hollow"
+          title="Alert"
         >
           <span
             class="euiBadge__content emotion-euiBadge__content"
@@ -735,6 +744,7 @@ exports[`EuiNotificationEvent props severity  is rendered 1`] = `
       >
         <span
           class="euiBadge euiNotificationEventMeta__badge emotion-euiBadge-hollow"
+          title="Alert: severity"
         >
           <span
             class="euiBadge__content emotion-euiBadge__content"
