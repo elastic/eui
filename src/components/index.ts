@@ -33,6 +33,7 @@ export * from './card';
 export * from './code';
 
 export * from './collapsible_nav';
+export * from './collapsible_nav_beta';
 
 export * from './color_picker';
 
