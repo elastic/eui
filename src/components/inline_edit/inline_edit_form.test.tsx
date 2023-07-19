@@ -88,6 +88,32 @@ describe('EuiInlineEditForm', () => {
       expect(container.firstChild).toMatchSnapshot();
       expect(getByText('This is a placeholder.')).toBeTruthy();
     });
+
+    test('title for defaultValue', () => {
+      const { container, getByTestSubject } = render(
+        <EuiInlineEditForm {...commonInlineEditFormProps} />
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+      expect(
+        getByTestSubject('euiInlineReadModeButton').getAttribute('title')
+      ).toEqual('Hello World!');
+    });
+
+    test('title for placeholder', () => {
+      const { container, getByTestSubject } = render(
+        <EuiInlineEditForm
+          {...commonInlineEditFormProps}
+          defaultValue=""
+          placeholder="This is a placeholder."
+        />
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+      expect(
+        getByTestSubject('euiInlineReadModeButton').getAttribute('title')
+      ).toEqual('This is a placeholder.');
+    });
   });
 
   describe('edit mode', () => {

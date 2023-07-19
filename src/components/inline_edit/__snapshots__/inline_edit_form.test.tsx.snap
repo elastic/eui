@@ -739,6 +739,7 @@ exports[`EuiInlineEditForm read mode isReadOnly 1`] = `
     class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-disabled-flush-both-isDisabled-euiInlineEditReadMode-isReadOnly"
     data-test-subj="euiInlineReadModeButton"
     disabled=""
+    title="Hello World!"
     type="button"
   >
     <span
@@ -766,6 +767,7 @@ exports[`EuiInlineEditForm read mode placeholder 1`] = `
     aria-describedby="inlineEdit_generated-id"
     class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-flush-both-euiInlineEditReadMode-hasPlaceholder"
     data-test-subj="euiInlineReadModeButton"
+    title="This is a placeholder."
     type="button"
   >
     <span
@@ -799,6 +801,7 @@ exports[`EuiInlineEditForm read mode readModeProps 1`] = `
     aria-describedby="inlineEdit_generated-id"
     class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-primary-flush-both-euiInlineEditReadMode"
     data-test-subj="euiInlineReadModeButton"
+    title="Hello World!"
     type="button"
   >
     <span
@@ -832,6 +835,7 @@ exports[`EuiInlineEditForm read mode renders 1`] = `
     aria-describedby="inlineEdit_generated-id"
     class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-flush-both-euiInlineEditReadMode"
     data-test-subj="euiInlineReadModeButton"
+    title="Hello World!"
     type="button"
   >
     <span
@@ -865,6 +869,7 @@ exports[`EuiInlineEditForm read mode sizes 1`] = `
     aria-describedby="inlineEdit_generated-id"
     class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text-flush-both-euiInlineEditReadMode"
     data-test-subj="euiInlineReadModeButton"
+    title="Hello World!"
     type="button"
   >
     <span
@@ -874,6 +879,74 @@ exports[`EuiInlineEditForm read mode sizes 1`] = `
         class="eui-textTruncate euiButtonEmpty__text"
       >
         Hello World!
+      </span>
+      <span
+        color="inherit"
+        data-euiicon-type="pencil"
+      />
+    </span>
+  </button>
+  <span
+    hidden=""
+    id="inlineEdit_generated-id"
+  >
+    Click to edit this text inline.
+  </span>
+</div>
+`;
+
+exports[`EuiInlineEditForm read mode title for defaultValue 1`] = `
+<div
+  class="euiInlineEdit testClass1 testClass2 emotion-euiTestCss"
+>
+  <button
+    aria-describedby="inlineEdit_generated-id"
+    class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-flush-both-euiInlineEditReadMode"
+    data-test-subj="euiInlineReadModeButton"
+    title="Hello World!"
+    type="button"
+  >
+    <span
+      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+    >
+      <span
+        class="eui-textTruncate euiButtonEmpty__text"
+      >
+        Hello World!
+      </span>
+      <span
+        color="inherit"
+        data-euiicon-type="pencil"
+      />
+    </span>
+  </button>
+  <span
+    hidden=""
+    id="inlineEdit_generated-id"
+  >
+    Click to edit this text inline.
+  </span>
+</div>
+`;
+
+exports[`EuiInlineEditForm read mode title for placeholder 1`] = `
+<div
+  class="euiInlineEdit testClass1 testClass2 emotion-euiTestCss"
+>
+  <button
+    aria-describedby="inlineEdit_generated-id"
+    class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-flush-both-euiInlineEditReadMode-hasPlaceholder"
+    data-test-subj="euiInlineReadModeButton"
+    title="This is a placeholder."
+    type="button"
+  >
+    <span
+      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+    >
+      <span
+        class="eui-textTruncate euiButtonEmpty__text"
+      >
+        This is a placeholder.
       </span>
       <span
         color="inherit"
