@@ -7,9 +7,10 @@
  */
 
 import React from 'react';
-import { mount, render } from 'enzyme';
+import { mount } from 'enzyme';
 import { findTestSubject, requiredProps } from '../../test';
-import { shouldRenderCustomStyles } from '../..//test/internal';
+import { shouldRenderCustomStyles } from '../../test/internal';
+import { render } from '../../test/rtl';
 
 import { EuiResizableContainer } from './resizable_container';
 import { keys } from '../../services';
@@ -28,7 +29,7 @@ describe('EuiResizableContainer', () => {
   );
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiResizableContainer {...requiredProps}>
         {(EuiResizablePanel, EuiResizableButton) => (
           <>
@@ -40,11 +41,11 @@ describe('EuiResizableContainer', () => {
       </EuiResizableContainer>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('can be vertical', () => {
-    const component = render(
+    const { container } = render(
       <EuiResizableContainer {...requiredProps} direction="vertical">
         {(EuiResizablePanel, EuiResizableButton) => (
           <>
@@ -56,13 +57,13 @@ describe('EuiResizableContainer', () => {
       </EuiResizableContainer>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('can be controlled externally', () => {
     const panel1 = 50;
     const panel2 = 50;
-    const component = render(
+    const { container } = render(
       <EuiResizableContainer {...requiredProps}>
         {(EuiResizablePanel, EuiResizableButton) => (
           <>
@@ -74,11 +75,11 @@ describe('EuiResizableContainer', () => {
       </EuiResizableContainer>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('can have scrollable panels', () => {
-    const component = render(
+    const { container } = render(
       <EuiResizableContainer {...requiredProps}>
         {(EuiResizablePanel, EuiResizableButton) => (
           <>
@@ -94,11 +95,11 @@ describe('EuiResizableContainer', () => {
       </EuiResizableContainer>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('can have more than two panels', () => {
-    const component = render(
+    const { container } = render(
       <EuiResizableContainer {...requiredProps}>
         {(EuiResizablePanel, EuiResizableButton) => (
           <>
@@ -112,11 +113,11 @@ describe('EuiResizableContainer', () => {
       </EuiResizableContainer>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('can adjust panel props', () => {
-    const component = render(
+    const { container } = render(
       <EuiResizableContainer {...requiredProps}>
         {(EuiResizablePanel, EuiResizableButton) => (
           <>
@@ -132,11 +133,11 @@ describe('EuiResizableContainer', () => {
       </EuiResizableContainer>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('can have toggleable panels', () => {
-    const component = render(
+    const { container } = render(
       <EuiResizableContainer {...requiredProps}>
         {(EuiResizablePanel, EuiResizableButton) => (
           <>
@@ -152,11 +153,11 @@ describe('EuiResizableContainer', () => {
       </EuiResizableContainer>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('toggleable panels can be configurable', () => {
-    const component = render(
+    const { container } = render(
       <EuiResizableContainer {...requiredProps}>
         {(EuiResizablePanel, EuiResizableButton) => (
           <>
@@ -182,7 +183,7 @@ describe('EuiResizableContainer', () => {
       </EuiResizableContainer>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('on resize callbacks', () => {
