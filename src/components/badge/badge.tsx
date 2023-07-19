@@ -87,11 +87,6 @@ export type EuiBadgeProps = {
   iconSide?: IconSide;
 
   /**
-   * Accepts any string from our icon library, if `iconSide` provided, will display opposite to the `iconSide`
-   */
-  extraIcon?: IconType;
-
-  /**
    * Accepts either our palette colors (primary, success ..etc) or a hex value `#FFFFFF`, `#000`.
    */
   color?: BadgeColor | string;
@@ -116,7 +111,6 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   color = 'default',
   iconType,
   iconSide = 'left',
-  extraIcon,
   className,
   isDisabled: _isDisabled,
   onClick,
@@ -255,19 +249,6 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     }
   }
 
-  let extraIconNode: ReactNode = null;
-  if (extraIcon) {
-    extraIconNode = (
-      <EuiIcon
-        type={extraIcon}
-        size={children ? 's' : 'm'}
-        className="euiBadge__iconExtra"
-        css={iconCssStyles}
-        color="inherit" // forces the icon to inherit its parent color
-      />
-    );
-  }
-
   if (onClick && !onClickAriaLabel) {
     console.warn(
       'When passing onClick to EuiBadge, you must also provide onClickAriaLabel'
@@ -277,14 +258,12 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
   const content = (
     <span className="euiBadge__content" css={styles.euiBadge__content}>
       {iconSide === 'left' && optionalIcon}
-      {(!iconSide || iconSide === 'right') && extraIconNode}
       {children && (
         <span className="euiBadge__text" css={textCssStyles}>
           {children}
         </span>
       )}
       {iconSide === 'right' && optionalIcon}
-      {iconSide === 'left' && extraIconNode}
     </span>
   );
 
@@ -293,7 +272,6 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
       <span className={classes} css={cssStyles} style={customColorStyles}>
         <span className="euiBadge__content" css={styles.euiBadge__content}>
           {iconSide === 'left' && optionalIcon}
-          {(!iconSide || iconSide === 'right') && extraIconNode}
           <EuiInnerText>
             {(ref, innerText) => (
               <Element
@@ -311,7 +289,6 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
             )}
           </EuiInnerText>
           {iconSide === 'right' && optionalIcon}
-          {iconSide === 'left' && extraIconNode}
         </span>
       </span>
     ) : (
