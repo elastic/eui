@@ -7,10 +7,11 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import { mount, ReactWrapper, render } from 'enzyme';
+import { mount, ReactWrapper } from 'enzyme';
 import { EuiDataGrid } from './';
 import { EuiDataGridProps } from './data_grid_types';
 import { findTestSubject, requiredProps } from '../../test';
+import { render } from '../../test/rtl';
 import { EuiDataGridColumnResizer } from './body/header/data_grid_column_resizer';
 import { keys } from '../../services';
 import { act } from 'react-dom/test-utils';
@@ -467,7 +468,7 @@ describe('EuiDataGrid', () => {
     });
 
     it('renders with common and div attributes', () => {
-      const component = render(
+      const { container } = render(
         <EuiDataGrid
           {...requiredProps}
           columns={[{ id: 'A' }, { id: 'B' }]}
@@ -482,11 +483,11 @@ describe('EuiDataGrid', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
     });
 
     it('renders custom column headers', () => {
-      const component = render(
+      const { container } = render(
         <EuiDataGrid
           {...requiredProps}
           columns={[
@@ -504,7 +505,7 @@ describe('EuiDataGrid', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
     });
 
     it('renders and applies custom props', () => {
@@ -648,7 +649,7 @@ describe('EuiDataGrid', () => {
     });
 
     it('renders additional toolbar controls', () => {
-      const component = render(
+      const { container } = render(
         <EuiDataGrid
           {...requiredProps}
           columns={[{ id: 'A' }, { id: 'B' }]}
@@ -664,11 +665,11 @@ describe('EuiDataGrid', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
     });
 
     it('renders control columns', () => {
-      const component = render(
+      const { container } = render(
         <EuiDataGrid
           {...requiredProps}
           columns={[{ id: 'A' }, { id: 'B' }]}
@@ -702,9 +703,9 @@ describe('EuiDataGrid', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
-      expect(component.find('.leadingControlCol')).toHaveLength(1);
-      expect(component.find('.trailingControlCol')).toHaveLength(1);
+      expect(container).toMatchSnapshot();
+      expect(container.querySelector('.leadingControlCol')).toBeDefined();
+      expect(container.querySelector('.trailingControlCol')).toBeDefined();
     });
 
     it('can hide the toolbar', () => {
@@ -1466,7 +1467,7 @@ describe('EuiDataGrid', () => {
     });
 
     test('column display, displayAsText, and displayHeaderCellProps', () => {
-      const component = render(
+      const { container, getByTitle, getByTestSubject } = render(
         <EuiDataGrid
           aria-labelledby="#test"
           columnVisibility={{
@@ -1487,12 +1488,12 @@ describe('EuiDataGrid', () => {
           }
         />
       );
-      const colHeaderCell = component.find(
-        '.euiDataGridHeaderCell.displayHeaderCellProps'
-      );
-      expect(colHeaderCell).toHaveLength(1);
-      expect(colHeaderCell.find('[data-test-subj="display"]')).toHaveLength(1);
-      expect(colHeaderCell.find('[title="displayAsText"]')).toHaveLength(1);
+
+      expect(
+        container.querySelector('.euiDataGridHeaderCell.displayHeaderCellProps')
+      ).toBeDefined();
+      expect(getByTestSubject('display')).toBeInTheDocument();
+      expect(getByTitle('displayAsText')).toBeInTheDocument();
     });
   });
 
