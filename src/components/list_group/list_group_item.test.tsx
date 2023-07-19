@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiListGroupItem, SIZES, COLORS } from './list_group_item';
 
@@ -35,22 +35,22 @@ describe('EuiListGroupItem', () => {
   );
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiListGroupItem label="Label" {...requiredProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('size', () => {
       SIZES.forEach((size) => {
         test(`${size} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiListGroupItem label="Label" size={size} />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
@@ -58,73 +58,79 @@ describe('EuiListGroupItem', () => {
     describe('color', () => {
       COLORS.forEach((color) => {
         test(`${color} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiListGroupItem label="Label" color={color} />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
 
     describe('isActive', () => {
       test('is rendered', () => {
-        const component = render(<EuiListGroupItem label="Label" isActive />);
+        const { container } = render(
+          <EuiListGroupItem label="Label" isActive />
+        );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('isDisabled', () => {
       test('is rendered', () => {
-        const component = render(<EuiListGroupItem label="Label" isDisabled />);
+        const { container } = render(
+          <EuiListGroupItem label="Label" isDisabled />
+        );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('iconType', () => {
       test('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiListGroupItem label="Label" iconType="empty" />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('icon', () => {
       test('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiListGroupItem label="Label" icon={<span />} />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     // TODO: This keeps re-rendering differently because of fake id creation
     // describe('showToolTip', () => {
     //   test('is rendered', () => {
-    //     const component = render(
+    //     const { container } = render(
     //       <EuiListGroupItem label="Label" showToolTip />
     //     );
 
-    //     expect(component).toMatchSnapshot();
+    //     expect(container.firstChild).toMatchSnapshot();
     //   });
     // });
 
     describe('wrapText', () => {
       test('is rendered', () => {
-        const component = render(<EuiListGroupItem label="Label" wrapText />);
+        const { container } = render(
+          <EuiListGroupItem label="Label" wrapText />
+        );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('extraAction', () => {
       test('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiListGroupItem
             label="Label"
             extraAction={{
@@ -135,11 +141,11 @@ describe('EuiListGroupItem', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('can be disabled', () => {
-        const component = render(
+        const { container } = render(
           <EuiListGroupItem
             label="Label"
             extraAction={{
@@ -150,71 +156,73 @@ describe('EuiListGroupItem', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('href', () => {
       test('is rendered', () => {
-        const component = render(<EuiListGroupItem label="Label" href="#" />);
+        const { container } = render(
+          <EuiListGroupItem label="Label" href="#" />
+        );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('is rendered with rel', () => {
-        const component = render(
+        const { container } = render(
           <EuiListGroupItem label="Label" href="#" rel="noreferrer" />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('onClick', () => {
       test('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiListGroupItem label="Label" onClick={() => {}} />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('href and onClick', () => {
       test('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiListGroupItem label="" onClick={() => {}} href="#" />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('style', () => {
       test('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiListGroupItem label="" style={{ color: 'red' }} />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });
 
   test('renders a disabled button even if provided an href', () => {
-    const component = render(
+    const { container } = render(
       <EuiListGroupItem label="Label" isDisabled href="#" />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('renders a disabled button even if provided an href', () => {
-    const component = render(
+    const { container } = render(
       <EuiListGroupItem label="Label" isDisabled href="#" />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('throws a warning', () => {
@@ -233,7 +241,7 @@ describe('EuiListGroupItem', () => {
     });
 
     test('if both iconType and icon are provided but still renders', () => {
-      const component = render(
+      const { container } = render(
         <EuiListGroupItem label="" iconType="empty" icon={<span />} />
       );
 
@@ -241,7 +249,7 @@ describe('EuiListGroupItem', () => {
       expect(consoleStub.mock.calls[0][0]).toMatch(
         '`iconType` and `icon` were passed'
       );
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });
