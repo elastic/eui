@@ -7,13 +7,13 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import {
   requiredProps,
   startThrowingReactWarnings,
   stopThrowingReactWarnings,
 } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { render } from '../../test/rtl';
 
 import { EuiFlexItem, VALID_GROW_VALUES } from './flex_item';
 
@@ -24,23 +24,23 @@ describe('EuiFlexItem', () => {
   shouldRenderCustomStyles(<EuiFlexItem />);
 
   test('is rendered', () => {
-    const component = render(<EuiFlexItem {...requiredProps} />);
+    const { container } = render(<EuiFlexItem {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('component', () => {
-    const component = render(<EuiFlexItem component="span" />);
+    const { container } = render(<EuiFlexItem component="span" />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('grow', () => {
     VALID_GROW_VALUES.forEach((value) => {
       test(`${value} is rendered`, () => {
-        const component = render(<EuiFlexItem grow={value} />);
+        const { container } = render(<EuiFlexItem grow={value} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });
