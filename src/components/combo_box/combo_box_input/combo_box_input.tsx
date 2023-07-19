@@ -12,7 +12,6 @@ import React, {
   FocusEventHandler,
   KeyboardEventHandler,
   RefCallback,
-  ReactNode,
 } from 'react';
 import classNames from 'classnames';
 import AutosizeInput from 'react-input-autosize';
@@ -58,7 +57,6 @@ export interface EuiComboBoxInputProps<T> extends CommonProps {
   rootId: ReturnType<typeof htmlIdGenerator>;
   searchValue: string;
   selectedOptions: Array<EuiComboBoxOptionOption<T>>;
-  renderPill?: (option: EuiComboBoxOptionOption<T>) => ReactNode;
   singleSelection?: boolean | EuiComboBoxSingleSelectionShape;
   toggleButtonRef?: RefCallback<HTMLButtonElement | HTMLSpanElement>;
   updatePosition: UpdatePositionHandler;

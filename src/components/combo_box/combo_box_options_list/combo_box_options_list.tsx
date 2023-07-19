@@ -85,7 +85,6 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps &
       searchValue: string,
       OPTION_CONTENT_CLASSNAME: string
     ) => ReactNode;
-    renderPill?: (option: EuiComboBoxOptionOption<T>) => ReactNode;
     rootId: ReturnType<typeof htmlIdGenerator>;
     rowHeight: number;
     scrollToIndex?: number;
