@@ -110,6 +110,9 @@ export const EuiCollapsibleNavAccordion: FunctionComponent<
       className="euiCollapsibleNavAccordion__children"
     >
       {items.map((item, index) => (
+        // This is an intentional circular dependency between the accordion & parent item display.
+        // EuiSideNavItem is purposely recursive to support any amount of nested sub items,
+        // and split up into separate files/components for better dev readability
         <EuiCollapsibleNavSubItem key={index} iconType={iconType} {...item} />
       ))}
     </div>
