@@ -340,6 +340,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
           activateEditMode();
           readModeProps?.onClick?.(e);
         }}
+        title={readModeValue || placeholder}
       >
         {children(readModeValue || placeholder)}
       </EuiButtonEmpty>
