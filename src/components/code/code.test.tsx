@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiCode } from './code';
 
@@ -20,28 +20,28 @@ describe('EuiCode', () => {
   shouldRenderCustomStyles(<EuiCode>{code}</EuiCode>);
 
   it('renders a code snippet', () => {
-    const component = render(<EuiCode {...requiredProps}>{code}</EuiCode>);
+    const { container } = render(<EuiCode {...requiredProps}>{code}</EuiCode>);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('renders transparent backgrounds', () => {
-    const component = render(
+    const { container } = render(
       <EuiCode {...requiredProps} transparentBackground>
         {code}
       </EuiCode>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('renders languages', () => {
-    const component = render(
+    const { container } = render(
       <EuiCode {...requiredProps} language="js">
         {code}
       </EuiCode>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });
