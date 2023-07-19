@@ -128,10 +128,11 @@ exports[`EuiHeaderAlert renders title as an element 1`] = `
   <h3
     class="euiHeaderAlert__title"
     id="generated-id-title"
-  />
-  <h2>
-    Circumambulate the city
-  </h2>
+  >
+    <span>
+      Circumambulate the city
+    </span>
+  </h3>
   <div
     class="euiHeaderAlert__text"
   />
