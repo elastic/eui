@@ -23,6 +23,8 @@ GCE_IMAGE=google/cloud-sdk:slim
 
 # ==================================================
 # TODO: Remove echo tests
+# These TODO items will be removed when EUI PR #6967
+# and EUI PR #6965 are merged successfully.
 # ==================================================
 echo "The Jenkins PR number is: ${pull_request_id}."
 echo "The Buildkite PR number is ${GIT_PULL_REQUEST_ID}."
