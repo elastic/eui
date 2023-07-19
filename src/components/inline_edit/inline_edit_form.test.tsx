@@ -77,7 +77,7 @@ describe('EuiInlineEditForm', () => {
     });
 
     test('placeholder', () => {
-      const { container, getByText } = render(
+      const { container, getByText, getByTitle } = render(
         <EuiInlineEditForm
           {...commonInlineEditFormProps}
           defaultValue=""
@@ -87,6 +87,7 @@ describe('EuiInlineEditForm', () => {
 
       expect(container.firstChild).toMatchSnapshot();
       expect(getByText('This is a placeholder.')).toBeTruthy();
+      expect(getByTitle('This is a placeholder.')).toBeTruthy();
     });
 
     it('renders the read mode value in a title tooltip', () => {
@@ -95,21 +96,6 @@ describe('EuiInlineEditForm', () => {
       );
 
       expect(getByTitle('Hello World!')).toBeTruthy();
-    });
-
-    test('title for placeholder', () => {
-      const { container, getByTestSubject } = render(
-        <EuiInlineEditForm
-          {...commonInlineEditFormProps}
-          defaultValue=""
-          placeholder="This is a placeholder."
-        />
-      );
-
-      expect(container.firstChild).toMatchSnapshot();
-      expect(
-        getByTestSubject('euiInlineReadModeButton').getAttribute('title')
-      ).toEqual('This is a placeholder.');
     });
   });
 
