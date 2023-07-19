@@ -7,30 +7,30 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
 
 import { EuiAutoRefresh, EuiAutoRefreshButton } from './auto_refresh';
 
 describe('EuiAutoRefresh', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiAutoRefresh onRefreshChange={() => {}} {...requiredProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('isPaused is false', () => {
-    const component = render(
+    const { container } = render(
       <EuiAutoRefresh isPaused={false} onRefreshChange={() => {}} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('refreshInterval is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiAutoRefresh
         isPaused={false}
         refreshInterval={2000}
@@ -38,29 +38,29 @@ describe('EuiAutoRefresh', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });
 
 describe('EuiAutoRefreshButton', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiAutoRefreshButton onRefreshChange={() => {}} {...requiredProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('isPaused is false', () => {
-    const component = render(
+    const { container } = render(
       <EuiAutoRefreshButton isPaused={false} onRefreshChange={() => {}} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('refreshInterval is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiAutoRefreshButton
         isPaused={false}
         refreshInterval={2000}
@@ -68,6 +68,6 @@ describe('EuiAutoRefreshButton', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });
