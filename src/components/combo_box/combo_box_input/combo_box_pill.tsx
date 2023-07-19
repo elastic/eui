@@ -13,7 +13,6 @@ import { EuiBadge } from '../../badge';
 import { EuiI18n } from '../../i18n';
 import { EuiComboBoxOptionOption, OptionHandler } from '../types';
 import { CommonProps } from '../../common';
-import { EuiIcon } from '../../icon';
 
 export interface EuiComboBoxPillProps<T> extends CommonProps {
   asPlainText?: boolean;
@@ -65,6 +64,18 @@ export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
           }
         : {};
 
+    const content = (
+      <>
+        {option.prepend && (
+          <span className="euiComboBoxPill__prepend">{option.prepend}</span>
+        )}
+        {children}
+        {option.append && (
+          <span className="euiComboBoxPill__append">{option.append}</span>
+        )}
+      </>
+    );
+
     if (onClose) {
       return (
         <EuiI18n
@@ -80,12 +91,11 @@ export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
               iconOnClickAriaLabel={removeSelection}
               iconSide="right"
               iconType="cross"
-              extraIcon={option.icon}
               title={children}
               {...onClickProps}
               {...rest}
             >
-              {children}
+              {content}
             </EuiBadge>
           )}
         </EuiI18n>
@@ -95,14 +105,7 @@ export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
     if (asPlainText) {
       return (
         <span className={classes} {...rest}>
-          {option.icon && (
-            <EuiIcon
-              className="euiComboBoxPill--icon"
-              type={option.icon}
-              size="s"
-            />
-          )}
-          {children}
+          {content}
         </span>
       );
     }
@@ -115,7 +118,7 @@ export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
         {...rest}
         {...onClickProps}
       >
-        {children}
+        {content}
       </EuiBadge>
     );
   }
