@@ -7,17 +7,17 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { COLORS } from '../icon/icon';
 import { EuiHealth, TEXT_SIZES } from './health';
 
 describe('EuiHealth', () => {
   test('is rendered', () => {
-    const component = render(<EuiHealth {...requiredProps} />);
+    const { container } = render(<EuiHealth {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   shouldRenderCustomStyles(<EuiHealth />);
@@ -26,11 +26,11 @@ describe('EuiHealth', () => {
     describe('textSize', () => {
       TEXT_SIZES.forEach((textSize: any) => {
         test(`${textSize} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiHealth textSize={textSize} color="success" />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
@@ -38,9 +38,9 @@ describe('EuiHealth', () => {
     describe('color', () => {
       [...COLORS, '#000000'].forEach((color) => {
         it(`${color} is rendered`, () => {
-          const component = render(<EuiHealth color={color} />);
+          const { container } = render(<EuiHealth color={color} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });

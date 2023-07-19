@@ -7,45 +7,45 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiCallOut, COLORS, HEADINGS } from './call_out';
 
 describe('EuiCallOut', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiCallOut {...requiredProps}>Content</EuiCallOut>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('title', () => {
       it('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiCallOut title="Title">Content</EuiCallOut>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('iconType', () => {
       it('is rendered', () => {
-        const component = render(<EuiCallOut iconType="user" />);
+        const { container } = render(<EuiCallOut iconType="user" />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('color', () => {
       COLORS.forEach((color) => {
         test(`${color} is rendered`, () => {
-          const component = render(<EuiCallOut color={color} />);
+          const { container } = render(<EuiCallOut color={color} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
@@ -53,9 +53,9 @@ describe('EuiCallOut', () => {
     describe('heading', () => {
       HEADINGS.forEach((heading) => {
         test(`${heading} is rendered`, () => {
-          const component = render(<EuiCallOut heading={heading} />);
+          const { container } = render(<EuiCallOut heading={heading} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });

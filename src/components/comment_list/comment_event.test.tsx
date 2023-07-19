@@ -7,46 +7,46 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiCommentEvent } from './comment_event';
 
 describe('EuiCommentEvent', () => {
   test('is rendered with custom content', () => {
-    const component = render(
+    const { container } = render(
       <EuiCommentEvent username="someuser" {...requiredProps}>
         <p>Some custom content</p>
       </EuiCommentEvent>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('timestamp', () => {
       it('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiCommentEvent timestamp="21 days ago" username="someuser" />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('event', () => {
       it('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiCommentEvent event="commented" username="someuser" />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('eventIcon and eventIconAriaLabel', () => {
       it('are rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiCommentEvent
             username="someuser"
             eventIcon="pencil"
@@ -54,17 +54,17 @@ describe('EuiCommentEvent', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('eventColor', () => {
       it('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiCommentEvent username="someuser" eventColor="danger" />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });

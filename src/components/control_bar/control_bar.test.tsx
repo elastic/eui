@@ -7,8 +7,9 @@
  */
 
 import React, { ReactNode } from 'react';
-import { mount, render } from 'enzyme';
+import { mount } from 'enzyme';
 import { requiredProps } from '../../test';
+import { render } from '../../test/rtl';
 
 import { EuiControlBar, Control } from './control_bar';
 
@@ -69,10 +70,10 @@ const controls: Control[] = [
 
 describe('EuiControlBar', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiControlBar controls={controls} {...requiredProps} />
     );
-    expect(component).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   describe('props', () => {

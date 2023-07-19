@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiMark } from './mark';
 
@@ -17,30 +17,36 @@ describe('EuiMark', () => {
   shouldRenderCustomStyles(<EuiMark>Marked</EuiMark>);
 
   test('is rendered', () => {
-    expect(
-      render(<EuiMark {...requiredProps}>Marked</EuiMark>)
-    ).toMatchSnapshot();
+    const { container } = render(<EuiMark {...requiredProps}>Marked</EuiMark>);
+
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('No screen reader helper text', () => {
     test('is rendered without CSS :before', () => {
-      expect(
-        render(
-          <EuiMark hasScreenReaderHelpText={false} {...requiredProps}>
-            Marked
-          </EuiMark>
-        )
-      ).not.toHaveStyleRule('content', "' [highlight start] '");
+      const { container } = render(
+        <EuiMark hasScreenReaderHelpText={false} {...requiredProps}>
+          Marked
+        </EuiMark>
+      );
+
+      expect(container.firstChild).not.toHaveStyleRule(
+        'content',
+        "' [highlight start] '"
+      );
     });
 
     test('is rendered without CSS :after', () => {
-      expect(
-        render(
-          <EuiMark hasScreenReaderHelpText={false} {...requiredProps}>
-            Marked
-          </EuiMark>
-        )
-      ).not.toHaveStyleRule('content', "' [highlight end] '");
+      const { container } = render(
+        <EuiMark hasScreenReaderHelpText={false} {...requiredProps}>
+          Marked
+        </EuiMark>
+      );
+
+      expect(container.firstChild).not.toHaveStyleRule(
+        'content',
+        "' [highlight end] '"
+      );
     });
   });
 });

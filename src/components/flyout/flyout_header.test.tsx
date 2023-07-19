@@ -7,23 +7,23 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiFlyoutHeader } from './flyout_header';
 
 describe('EuiFlyoutHeader', () => {
   test('is rendered', () => {
-    const component = render(<EuiFlyoutHeader {...requiredProps} />);
+    const { container } = render(<EuiFlyoutHeader {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     test('border is rendered', () => {
-      const component = render(<EuiFlyoutHeader hasBorder />);
+      const { container } = render(<EuiFlyoutHeader hasBorder />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });

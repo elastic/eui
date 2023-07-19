@@ -7,9 +7,10 @@
  */
 
 import React from 'react';
-import { act } from 'react-dom/test-utils';
-import { render, mount } from 'enzyme';
+import { act } from '@testing-library/react';
+import { mount } from 'enzyme';
 import { requiredProps, findTestSubject } from '../../test';
+import { render } from '../../test/rtl';
 
 import {
   EuiGlobalToastList,
@@ -21,7 +22,7 @@ jest.useFakeTimers();
 
 describe('EuiGlobalToastList', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiGlobalToastList
         {...requiredProps}
         dismissToast={() => {}}
@@ -29,7 +30,7 @@ describe('EuiGlobalToastList', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
@@ -54,7 +55,7 @@ describe('EuiGlobalToastList', () => {
           },
         ];
 
-        const component = render(
+        const { container } = render(
           <EuiGlobalToastList
             toasts={toasts}
             dismissToast={() => {}}
@@ -62,7 +63,7 @@ describe('EuiGlobalToastList', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
@@ -87,7 +88,7 @@ describe('EuiGlobalToastList', () => {
           },
         ];
 
-        const component = render(
+        const { container } = render(
           <EuiGlobalToastList
             toasts={toasts}
             dismissToast={() => {}}
@@ -95,7 +96,7 @@ describe('EuiGlobalToastList', () => {
             side="left"
           />
         );
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 

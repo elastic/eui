@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { render } from '../../test/rtl';
 import { EuiAvatar } from '../avatar';
 import { EuiTimeline, EuiTimelineProps, GUTTER_SIZES } from './timeline';
 
@@ -34,20 +34,20 @@ const items: EuiTimelineProps['items'] = [
 
 describe('EuiTimeline', () => {
   test('is rendered with items', () => {
-    const component = render(<EuiTimeline items={items} />);
+    const { container } = render(<EuiTimeline items={items} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('gutterSize', () => {
       GUTTER_SIZES.forEach((gutterSize) => {
         test(`${gutterSize} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiTimeline items={items} gutterSize={gutterSize} />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });

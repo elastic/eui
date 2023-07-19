@@ -7,7 +7,8 @@
  */
 
 import React, { EventHandler, MouseEvent as ReactMouseEvent } from 'react';
-import { render, mount } from 'enzyme';
+import { mount } from 'enzyme';
+import { render } from '../../test/rtl';
 
 import { EuiOutsideClickDetector, EuiEvent } from './outside_click_detector';
 
@@ -17,13 +18,13 @@ jest.mock('./../../services/accessibility', () => {
 
 describe('EuiOutsideClickDetector', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiOutsideClickDetector onOutsideClick={() => {}}>
         <div />
       </EuiOutsideClickDetector>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('behavior', () => {
