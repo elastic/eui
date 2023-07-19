@@ -89,7 +89,7 @@ describe('EuiInlineEditForm', () => {
       expect(getByText('This is a placeholder.')).toBeTruthy();
     });
 
-    test('title for defaultValue', () => {
+    it('renders the read mode value in a title tooltip', () => {
       const { getByTitle } = render(
         <EuiInlineEditForm {...commonInlineEditFormProps} />
       );
