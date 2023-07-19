@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { render } from '../../test/rtl';
 
 import { STATUS, EuiStepNumber } from './step_number';
 
@@ -17,28 +17,30 @@ describe('EuiStepNumber', () => {
   shouldRenderCustomStyles(<EuiStepNumber {...requiredProps} />);
 
   test('is rendered', () => {
-    const component = render(<EuiStepNumber {...requiredProps} />);
+    const { container } = render(<EuiStepNumber {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('has titleSize', () => {
       it('is rendered', () => {
-        const component = render(<EuiStepNumber titleSize="xs" number={1} />);
+        const { container } = render(
+          <EuiStepNumber titleSize="xs" number={1} />
+        );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('status', () => {
       STATUS.forEach((status) => {
         test(`${status} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiStepNumber number={1} status={status} />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
