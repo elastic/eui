@@ -166,7 +166,7 @@ exports[`EuiCard props a null icon 1`] = `
 exports[`EuiCard props accepts div props like style 1`] = `
 <div
   class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-hasShadow-euiCard-center"
-  style="min-width:0"
+  style="min-width: 0;"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"

@@ -7,9 +7,10 @@
  */
 
 import React from 'react';
-import { render, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { render } from '../../test/rtl';
 
 import { EuiCard, ALIGNMENTS } from './card';
 
@@ -18,7 +19,7 @@ import { COLORS, SIZES } from '../panel/panel';
 
 describe('EuiCard', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiCard
         title="Card title"
         description="Card description"
@@ -26,7 +27,7 @@ describe('EuiCard', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   shouldRenderCustomStyles(
@@ -36,7 +37,7 @@ describe('EuiCard', () => {
 
   describe('props', () => {
     test('icon', () => {
-      const component = render(
+      const { container } = render(
         <EuiCard
           title="Card title"
           description="Card description"
@@ -44,11 +45,11 @@ describe('EuiCard', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('an avatar icon', () => {
-      const component = render(
+      const { container } = render(
         <EuiCard
           title="Card title"
           description="Card description"
@@ -56,11 +57,11 @@ describe('EuiCard', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('a null icon', () => {
-      const component = render(
+      const { container } = render(
         <EuiCard
           title="Card title"
           description="Card description"
@@ -68,19 +69,19 @@ describe('EuiCard', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('hasBorder', () => {
-      const component = render(
+      const { container } = render(
         <EuiCard title="Card title" description="Card description" hasBorder />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('horizontal', () => {
-      const component = render(
+      const { container } = render(
         <EuiCard
           title="Card title"
           description="Card description"
@@ -88,11 +89,11 @@ describe('EuiCard', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('image', () => {
-      const component = render(
+      const { container } = render(
         <EuiCard
           title="Card title"
           description="Card description"
@@ -107,16 +108,16 @@ describe('EuiCard', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     describe('href', () => {
       it('supports href as a link', () => {
-        const component = render(
+        const { container } = render(
           <EuiCard title="Hoi" description="There" href="#" />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
@@ -154,7 +155,7 @@ describe('EuiCard', () => {
     });
 
     test('titleElement', () => {
-      const component = render(
+      const { container } = render(
         <EuiCard
           title="Card title"
           description="Card description"
@@ -162,11 +163,11 @@ describe('EuiCard', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('titleElement with nodes', () => {
-      const component = render(
+      const { container } = render(
         <EuiCard
           title={
             <EuiI18n token="euiCard.title" default="Card title" /> // eslint-disable-line
@@ -176,11 +177,11 @@ describe('EuiCard', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('titleSize', () => {
-      const component = render(
+      const { container } = render(
         <EuiCard
           title="Card title"
           description="Card description"
@@ -188,12 +189,12 @@ describe('EuiCard', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     describe('accepts div props', () => {
       test('like style', () => {
-        const component = render(
+        const { container } = render(
           <EuiCard
             title="Card title"
             description="Card description"
@@ -201,12 +202,12 @@ describe('EuiCard', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     test('footer', () => {
-      const component = render(
+      const { container } = render(
         <EuiCard
           title="Card title"
           description="Card description"
@@ -214,29 +215,29 @@ describe('EuiCard', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('children', () => {
-      const component = render(<EuiCard title="Card title">Child</EuiCard>);
+      const { container } = render(<EuiCard title="Card title">Child</EuiCard>);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('children with description', () => {
-      const component = render(
+      const { container } = render(
         <EuiCard title="Card title" description="Card description">
           Child
         </EuiCard>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     describe('textAlign', () => {
       ALIGNMENTS.forEach((textAlign) => {
         test(textAlign, () => {
-          const component = render(
+          const { container } = render(
             <EuiCard
               title="Card title"
               description="Card description"
@@ -244,23 +245,23 @@ describe('EuiCard', () => {
             />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
 
     test('isDisabled', () => {
-      const component = render(
+      const { container } = render(
         <EuiCard title="Card title" description="Card description" isDisabled />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     describe('paddingSize', () => {
       SIZES.forEach((size) => {
         test(`${size} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiCard
               title="Card title"
               description="Card description"
@@ -268,7 +269,7 @@ describe('EuiCard', () => {
             />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
@@ -276,7 +277,7 @@ describe('EuiCard', () => {
     describe('display', () => {
       COLORS.forEach((color) => {
         test(`${color} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiCard
               title="Card title"
               description="Card description"
@@ -284,13 +285,13 @@ describe('EuiCard', () => {
             />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
 
     test('selectable', () => {
-      const component = render(
+      const { container } = render(
         <EuiCard
           title="Card title"
           description="Card description"
@@ -300,12 +301,12 @@ describe('EuiCard', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
   test('horizontal selectable', () => {
-    const component = render(
+    const { container } = render(
       <EuiCard
         title="Card title"
         description="Card description"
@@ -316,11 +317,11 @@ describe('EuiCard', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('betaBadgeProps renders href', () => {
-    const component = render(
+    const { container } = render(
       <EuiCard
         title="Card title"
         description="Card description"
@@ -331,6 +332,6 @@ describe('EuiCard', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });
