@@ -53,7 +53,8 @@ spec:
       repository: elastic/eui
       pipeline_file: ".buildkite/pipeline.yml"
       default_branch: main
-      # Will keep this job available in case we need to smoke test
+      # Setting all triggers to false to prevent the default job from running.
+      # Keeping the job available if needed for smoke testing during the migration.
       provider_settings:
         build_branches: false
         build_tags: false
@@ -215,10 +216,10 @@ spec:
     spec:
       repository: elastic/eui
       pipeline_file: ".buildkite/pipelines/pipeline_release_deploy_docs.yml"
-      default_branch: feature/buildkite-migration # TODO: Set to main when the feature is merged
+      default_branch: main
       provider_settings:
         build_branches: false
-        build_tags: false # TODO: Set to true when the feature is merged
+        build_tags: true # Will trigger job when GitHub tags are created
         build_pull_requests: false
       teams:
         eui-team:
