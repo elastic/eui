@@ -7,12 +7,12 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 
 import { EuiColorStopThumb } from './color_stop_thumb';
 
 import { requiredProps } from '../../../test';
 import { shouldRenderCustomStyles } from '../../../test/internal';
+import { render } from '../../../test/rtl';
 
 jest.mock('../../portal', () => ({
   EuiPortal: ({ children }: { children: any }) => children,
@@ -41,7 +41,7 @@ shouldRenderCustomStyles(
 );
 
 test('renders EuiColorStopThumb', () => {
-  const thumb = render(
+  const { container } = render(
     <EuiColorStopThumb
       onChange={onChange}
       stop={0}
@@ -57,11 +57,11 @@ test('renders EuiColorStopThumb', () => {
       {...requiredProps}
     />
   );
-  expect(thumb).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
 
 test('renders swatch-only EuiColorStopThumb', () => {
-  const thumb = render(
+  const { container } = render(
     <EuiColorStopThumb
       onChange={onChange}
       stop={0}
@@ -77,11 +77,11 @@ test('renders swatch-only EuiColorStopThumb', () => {
       {...requiredProps}
     />
   );
-  expect(thumb).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
 
 test('renders picker-only EuiColorStopThumb', () => {
-  const thumb = render(
+  const { container } = render(
     <EuiColorStopThumb
       onChange={onChange}
       stop={0}
@@ -97,11 +97,11 @@ test('renders picker-only EuiColorStopThumb', () => {
       {...requiredProps}
     />
   );
-  expect(thumb).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
 
 test('renders disabled EuiColorStopThumb', () => {
-  const thumb = render(
+  const { container } = render(
     <EuiColorStopThumb
       onChange={onChange}
       stop={0}
@@ -118,11 +118,11 @@ test('renders disabled EuiColorStopThumb', () => {
       {...requiredProps}
     />
   );
-  expect(thumb).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
 
 test('renders readOnly EuiColorStopThumb', () => {
-  const thumb = render(
+  const { container } = render(
     <EuiColorStopThumb
       onChange={onChange}
       stop={0}
@@ -139,5 +139,5 @@ test('renders readOnly EuiColorStopThumb', () => {
       {...requiredProps}
     />
   );
-  expect(thumb).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
