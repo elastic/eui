@@ -7,21 +7,21 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { render } from '../../../test/rtl';
 import { requiredProps } from '../../../test/required_props';
 
 import { EuiSelectableMessage } from './selectable_message';
 
 describe('EuiSelectableMessage', () => {
   test('is rendered', () => {
-    const component = render(<EuiSelectableMessage {...requiredProps} />);
+    const { container } = render(<EuiSelectableMessage {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('bordered is rendered', () => {
-    const component = render(<EuiSelectableMessage bordered={true} />);
+    const { container } = render(<EuiSelectableMessage bordered={true} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });
