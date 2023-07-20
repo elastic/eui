@@ -205,6 +205,7 @@ exports[`EuiPageHeaderContent props breadcrumbs is rendered 1`] = `
           data-test-subj="breadcrumbsAnimals"
           href="#"
           rel="noreferrer"
+          title="Animals"
         >
           Animals
         </a>
@@ -216,6 +217,7 @@ exports[`EuiPageHeaderContent props breadcrumbs is rendered 1`] = `
         <span
           aria-current="page"
           class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
+          title="Edit"
         >
           Edit
         </span>

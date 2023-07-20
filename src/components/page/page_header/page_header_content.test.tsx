@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../../test/required_props';
 import { shouldRenderCustomStyles } from '../../../test/internal';
+import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
 
 import {
   ALIGN_ITEMS,
@@ -71,42 +71,42 @@ describe('EuiPageHeaderContent', () => {
   );
 
   test('is rendered', () => {
-    const component = render(<EuiPageHeaderContent {...requiredProps} />);
+    const { container } = render(<EuiPageHeaderContent {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('pageTitle', () => {
       test('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiPageHeaderContent pageTitle="Page title" />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('is rendered with pageTitleProps', () => {
-        const component = render(
+        const { container } = render(
           <EuiPageHeaderContent
             pageTitle="Page title"
             pageTitleProps={requiredProps}
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('is rendered with icon', () => {
-        const component = render(
+        const { container } = render(
           <EuiPageHeaderContent pageTitle="Page title" iconType="logoKibana" />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('is rendered with icon and iconProps', () => {
-        const component = render(
+        const { container } = render(
           <EuiPageHeaderContent
             pageTitle="Page title"
             iconType="logoKibana"
@@ -114,72 +114,72 @@ describe('EuiPageHeaderContent', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('tabs', () => {
       test('is rendered', () => {
-        const component = render(<EuiPageHeaderContent tabs={tabs} />);
+        const { container } = render(<EuiPageHeaderContent tabs={tabs} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('is rendered with tabsProps', () => {
-        const component = render(
+        const { container } = render(
           <EuiPageHeaderContent tabs={tabs} tabsProps={requiredProps} />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('breadcrumbs', () => {
       test('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiPageHeaderContent
             breadcrumbs={breadcrumbs}
             breadcrumbProps={requiredProps}
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('children', () => {
       test('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiPageHeaderContent>
             <p>Anything</p>
           </EuiPageHeaderContent>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('description', () => {
       test('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiPageHeaderContent description="Description" />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('rightSideItems', () => {
       test('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiPageHeaderContent rightSideItems={rightSideItems} />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('is rendered with rightSideGroupProps', () => {
-        const component = render(
+        const { container } = render(
           <EuiPageHeaderContent
             rightSideItems={rightSideItems}
             rightSideGroupProps={{
@@ -190,21 +190,21 @@ describe('EuiPageHeaderContent', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('children', () => {
       test('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiPageHeaderContent>Child</EuiPageHeaderContent>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('is rendered even if content props are passed', () => {
-        const component = render(
+        const { container } = render(
           <EuiPageHeaderContent
             pageTitle="Page title"
             tabs={tabs}
@@ -214,14 +214,14 @@ describe('EuiPageHeaderContent', () => {
           </EuiPageHeaderContent>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('alignItems', () => {
       ALIGN_ITEMS.forEach((alignment) => {
         it(`${alignment} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiPageHeaderContent
               pageTitle="Page title"
               rightSideItems={rightSideItems}
@@ -229,24 +229,26 @@ describe('EuiPageHeaderContent', () => {
             />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
 
     describe('responsive', () => {
       test('is rendered as false', () => {
-        const component = render(<EuiPageHeaderContent responsive={false} />);
+        const { container } = render(
+          <EuiPageHeaderContent responsive={false} />
+        );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('is rendered as reverse', () => {
-        const component = render(
+        const { container } = render(
           <EuiPageHeaderContent responsive={'reverse'} />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });

@@ -7,10 +7,10 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../../test/required_props';
-import { shouldRenderCustomStyles } from '../../../test/internal';
 import { PADDING_SIZES } from '../../../global_styling';
+import { shouldRenderCustomStyles } from '../../../test/internal';
+import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
 
 import { _EuiPageBottomBar as EuiPageBottomBar } from './page_bottom_bar';
 
@@ -18,37 +18,37 @@ describe('_EuiPageBottomBar', () => {
   shouldRenderCustomStyles(<EuiPageBottomBar />);
 
   test('is rendered', () => {
-    const component = render(<EuiPageBottomBar {...requiredProps} />);
+    const { container } = render(<EuiPageBottomBar {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   describe('restrict width', () => {
     test('can be set to a default', () => {
-      const component = render(<EuiPageBottomBar restrictWidth={true} />);
+      const { container } = render(<EuiPageBottomBar restrictWidth={true} />);
 
-      expect(component).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
     });
 
     test('can be set to a custom number', () => {
-      const component = render(<EuiPageBottomBar restrictWidth={1024} />);
+      const { container } = render(<EuiPageBottomBar restrictWidth={1024} />);
 
-      expect(component).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
     });
 
     test('can be set to a custom value and measurement', () => {
-      const component = render(<EuiPageBottomBar restrictWidth="24rem" />);
+      const { container } = render(<EuiPageBottomBar restrictWidth="24rem" />);
 
-      expect(component).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
     });
   });
 
   describe('paddingSize', () => {
     PADDING_SIZES.forEach((size) => {
       it(`${size} is rendered`, () => {
-        const component = render(<EuiPageBottomBar paddingSize={size} />);
+        const { container } = render(<EuiPageBottomBar paddingSize={size} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container).toMatchSnapshot();
       });
     });
   });
