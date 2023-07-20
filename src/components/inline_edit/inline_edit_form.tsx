@@ -330,6 +330,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
         data-test-subj="euiInlineReadModeButton"
         disabled={isReadOnly}
         css={readModeCssStyles}
+        title={readModeValue || placeholder}
         {...readModeProps}
         buttonRef={setReadModeRefs}
         aria-describedby={classNames(
