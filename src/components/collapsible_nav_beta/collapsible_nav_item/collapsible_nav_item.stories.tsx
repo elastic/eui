@@ -27,7 +27,7 @@ export const Playground: Story = {
   args: {
     title: 'Home',
     titleElement: 'span',
-    iconType: 'home',
+    icon: 'home',
     accordionProps: {
       initialIsOpen: true,
     },
@@ -54,12 +54,12 @@ export const EdgeCaseTesting: Story = {
           {...args}
           href="#"
           title="Link with icon"
-          iconType="home"
+          icon="home"
         />
         <EuiCollapsibleNavItem
           {...args}
           title="External link with icon"
-          iconType="link"
+          icon="link"
           href="#"
           linkProps={{ target: '_blank' }}
         />
@@ -72,23 +72,23 @@ export const EdgeCaseTesting: Story = {
           {...args}
           linkProps={{ onClick: () => {} }}
           title="Button with icon"
-          iconType="home"
+          icon="home"
         />
         <EuiCollapsibleNavItem
           {...args}
           title="Accordion with no icon"
           items={[
             { ...args, title: 'Link with no icon', href: '#' },
-            { ...args, title: 'Link with icon', href: '#', iconType: 'alert' },
+            { ...args, title: 'Link with icon', href: '#', icon: 'alert' },
           ]}
         />
         <EuiCollapsibleNavItem
           {...args}
           title="Accordion with icon"
-          iconType="clock"
+          icon="clock"
           items={[
             { ...args, title: 'Link with no icon', href: '#' },
-            { ...args, title: 'Link with icon', href: '#', iconType: 'alert' },
+            { ...args, title: 'Link with icon', href: '#', icon: 'alert' },
           ]}
         />
         <EuiCollapsibleNavItem
@@ -158,7 +158,7 @@ export const EdgeCaseTesting: Story = {
           href="#"
           items={[
             { ...args, title: 'Link with no icon', href: '#' },
-            { ...args, title: 'Link with icon', href: '#', iconType: 'alert' },
+            { ...args, title: 'Link with icon', href: '#', icon: 'alert' },
           ]}
         />
         <EuiCollapsibleNavItem
@@ -168,7 +168,7 @@ export const EdgeCaseTesting: Story = {
           linkProps={{ target: '_blank' }} // hmm
           items={[
             { ...args, title: 'Link with no icon', href: '#' },
-            { ...args, title: 'Link with icon', href: '#', iconType: 'alert' },
+            { ...args, title: 'Link with icon', href: '#', icon: 'alert' },
           ]}
         />
         <EuiCollapsibleNavItem
@@ -185,7 +185,7 @@ export const EdgeCaseTesting: Story = {
         <EuiCollapsibleNavItem
           {...args}
           title="No link or accordion, very very long truncated text"
-          iconType="home"
+          icon="home"
         />
         <EuiCollapsibleNavItem
           {...args}

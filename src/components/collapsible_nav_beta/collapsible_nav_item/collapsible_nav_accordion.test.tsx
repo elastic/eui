@@ -59,11 +59,11 @@ describe('EuiCollapsibleNavAccordion', () => {
         <EuiCollapsibleNavAccordion
           {...props}
           items={[
-            { title: '1', iconType: 'home' },
+            { title: '1', icon: 'home' },
             { title: '2' },
             { title: '3' },
             { title: '4' },
-            { title: '5', iconType: 'faceHappy' },
+            { title: '5', icon: 'faceHappy' },
           ]}
         />
       );

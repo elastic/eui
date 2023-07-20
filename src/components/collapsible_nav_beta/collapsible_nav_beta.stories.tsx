@@ -34,24 +34,19 @@ export const KibanaExample: Story = {
   render: () => (
     <OpenCollapsibleNav>
       <EuiFlyoutBody>
-        <EuiCollapsibleNavItem
-          title="Home"
-          iconType="home"
-          isSelected
-          href="#"
-        />
+        <EuiCollapsibleNavItem title="Home" icon="home" isSelected href="#" />
         <EuiCollapsibleNavItem
           title="Recent"
-          iconType="clock"
+          icon="clock"
           items={[
-            { title: 'Lorem ipsum', iconType: 'visMapRegion', href: '#' },
-            { title: 'Consectetur cursus', iconType: 'visPie', href: '#' },
-            { title: 'Ultricies tellus', iconType: 'visMetric', href: '#' },
+            { title: 'Lorem ipsum', icon: 'visMapRegion', href: '#' },
+            { title: 'Consectetur cursus', icon: 'visPie', href: '#' },
+            { title: 'Ultricies tellus', icon: 'visMetric', href: '#' },
           ]}
         />
         <EuiCollapsibleNavItem
           title="Elasticsearch"
-          iconType="logoElasticsearch"
+          icon="logoElasticsearch"
           href="#"
           items={[
             { title: 'Get started', href: '#' },
@@ -69,7 +64,7 @@ export const KibanaExample: Story = {
         />
         <EuiCollapsibleNavItem
           title="Enterprise Search"
-          iconType="logoEnterpriseSearch"
+          icon="logoEnterpriseSearch"
           href="#"
           items={[
             { title: 'ESRE', href: '#' },
@@ -85,7 +80,7 @@ export const KibanaExample: Story = {
         />
         <EuiCollapsibleNavItem
           title="Observability"
-          iconType="logoObservability"
+          icon="logoObservability"
           href="#"
           items={[
             { title: 'Get started', href: '#' },
@@ -121,7 +116,7 @@ export const KibanaExample: Story = {
         />
         <EuiCollapsibleNavItem
           title="Security"
-          iconType="logoSecurity"
+          icon="logoSecurity"
           href="#"
           items={[
             { title: 'Get started', href: '#' },
@@ -178,7 +173,7 @@ export const KibanaExample: Story = {
         />
         <EuiCollapsibleNavItem
           title="Analytics"
-          iconType="stats"
+          icon="stats"
           href="#"
           items={[
             { title: 'Discover', href: '#' },
@@ -188,7 +183,7 @@ export const KibanaExample: Story = {
         />
         <EuiCollapsibleNavItem
           title="Machine learning"
-          iconType="indexMapping"
+          icon="indexMapping"
           href="#"
           items={[
             { title: 'Overview', href: '#' },
@@ -214,7 +209,7 @@ export const KibanaExample: Story = {
       <EuiFlyoutFooter>
         <EuiCollapsibleNavItem
           title="Developer tools"
-          iconType="editorCodeBlock"
+          icon="editorCodeBlock"
           href="#"
           items={[
             { title: 'Console', href: '#' },
@@ -225,7 +220,7 @@ export const KibanaExample: Story = {
         />
         <EuiCollapsibleNavItem
           title="Management"
-          iconType="gear"
+          icon="gear"
           items={[
             { title: 'Integrations', href: '#' },
             { title: 'Fleet', href: '#' },
@@ -236,7 +231,7 @@ export const KibanaExample: Story = {
         />
         <EuiCollapsibleNavItem
           title="Project settings"
-          iconType="gear"
+          icon="gear"
           items={[
             { title: 'Management', href: '#' },
             {
@@ -268,17 +263,17 @@ export const SecurityExample: Story = {
       <EuiFlyoutBody>
         <EuiCollapsibleNavItem
           title="Recent"
-          iconType="clock"
+          icon="clock"
           items={[
-            { title: 'Lorem ipsum', iconType: 'visMapRegion', href: '#' },
-            { title: 'Consectetur cursus', iconType: 'visPie', href: '#' },
-            { title: 'Ultricies tellus', iconType: 'visMetric', href: '#' },
+            { title: 'Lorem ipsum', icon: 'visMapRegion', href: '#' },
+            { title: 'Consectetur cursus', icon: 'visPie', href: '#' },
+            { title: 'Ultricies tellus', icon: 'visMetric', href: '#' },
           ]}
         />
         <EuiCollapsibleNavItem
           isSelected
           title="Security"
-          iconType="logoSecurity"
+          icon="logoSecurity"
           href="#"
           // Workaround to always display this section as open and remove the accordion toggle
           // Rather than baking in a top-level prop to support this behavior, this is likely
@@ -344,12 +339,12 @@ export const SecurityExample: Story = {
       <EuiFlyoutFooter>
         <EuiCollapsibleNavItem
           title="Developer tools"
-          iconType="editorCodeBlock"
+          icon="editorCodeBlock"
           href="#"
         />
         <EuiCollapsibleNavItem
           title="Project settings"
-          iconType="gear"
+          icon="gear"
           items={[
             { title: 'Management', href: '#' },
             {

@@ -70,7 +70,7 @@ export type EuiCollapsibleNavItemProps = {
   /**
    * Optional icon to render to the left of title content
    */
-  iconType?: IconType;
+  icon?: IconType;
 } & _SharedEuiCollapsibleNavItemProps;
 
 export type EuiCollapsibleNavSubItemGroupTitle = Pick<
@@ -108,7 +108,7 @@ const EuiCollapsibleNavItemDisplay: FunctionComponent<
   isSubItem,
   title,
   titleElement,
-  iconType,
+  icon,
   className,
   items,
   children, // Ensure children isn't spread
@@ -124,7 +124,7 @@ const EuiCollapsibleNavItemDisplay: FunctionComponent<
     <EuiCollapsibleNavItemTitle
       title={title}
       titleElement={titleElement}
-      iconType={iconType}
+      icon={icon}
     />
   );
 
@@ -160,14 +160,14 @@ const EuiCollapsibleNavItemDisplay: FunctionComponent<
  * Internal subcomponent for title display
  */
 const EuiCollapsibleNavItemTitle: FunctionComponent<
-  Pick<EuiCollapsibleNavItemProps, 'title' | 'titleElement' | 'iconType'>
-> = ({ title, titleElement = 'span', iconType }) => {
+  Pick<EuiCollapsibleNavItemProps, 'title' | 'titleElement' | 'icon'>
+> = ({ title, titleElement = 'span', icon }) => {
   const styles = euiCollapsibleNavItemTitleStyles;
   const TitleElement = titleElement;
 
   return (
     <>
-      {iconType && <EuiIcon type={iconType} />}
+      {icon && <EuiIcon type={icon} />}
 
       <TitleElement
         className="euiCollapsibleNavItem__title eui-textTruncate"
