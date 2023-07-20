@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../../test/required_props';
 import { shouldRenderCustomStyles } from '../../../test/internal';
+import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
 
 import { EuiSwitch } from './switch';
 
@@ -34,25 +34,25 @@ describe('EuiSwitch', () => {
   });
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiSwitch id="test" {...props} {...requiredProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('assigns automatically generated ID to label', () => {
-    const component = render(<EuiSwitch {...props} />);
+    const { container } = render(<EuiSwitch {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
   describe('labelProps', () => {
     it('is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiSwitch {...props} labelProps={requiredProps} />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });

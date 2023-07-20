@@ -8,8 +8,9 @@
 /* eslint-disable no-irregular-whitespace */
 
 import React from 'react';
-import { render, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
 
 import { EuiForm } from '../form';
 import { EuiSelect } from './select';
@@ -23,16 +24,16 @@ jest.mock('../validatable_control', () => ({
 
 describe('EuiSelect', () => {
   it('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiSelect id="id" name="name" {...requiredProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     it('options are rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelect
           options={[
             { value: '1', text: 'Option #1' },
@@ -41,29 +42,29 @@ describe('EuiSelect', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('isInvalid is rendered', () => {
-      const component = render(<EuiSelect isInvalid />);
+      const { container } = render(<EuiSelect isInvalid />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('fullWidth is rendered', () => {
-      const component = render(<EuiSelect fullWidth />);
+      const { container } = render(<EuiSelect fullWidth />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('isLoading is rendered', () => {
-      const component = render(<EuiSelect isLoading />);
+      const { container } = render(<EuiSelect isLoading />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('disabled options are rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelect
           options={[
             { value: '1', text: 'Option #1', disabled: false },
@@ -72,11 +73,11 @@ describe('EuiSelect', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('value option is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelect
           options={[
             { value: '1', text: 'Option #1' },
@@ -87,7 +88,7 @@ describe('EuiSelect', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
@@ -157,15 +158,14 @@ describe('EuiSelect', () => {
 
   describe('inherits', () => {
     test('fullWidth from <EuiForm />', () => {
-      const component = render(
+      const { container } = render(
         <EuiForm fullWidth>
           <EuiSelect />
         </EuiForm>
       );
 
-      if (!component.find('.euiSelect').hasClass('euiSelect--fullWidth')) {
-        throw new Error('expected EuiSelect to inherit fullWidth from EuiForm');
-      }
+      const select = container.querySelector('.euiSelect');
+      expect(select).toHaveClass('euiSelect--fullWidth');
     });
   });
 });

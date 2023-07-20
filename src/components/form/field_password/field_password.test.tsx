@@ -7,9 +7,10 @@
  */
 
 import React from 'react';
-import { render, mount } from 'enzyme';
-import { requiredProps } from '../../../test/required_props';
+import { mount } from 'enzyme';
 import { shouldRenderCustomStyles } from '../../../test/internal';
+import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
 
 import { EuiForm } from '../form';
 import { EuiFieldPassword, EuiFieldPasswordProps } from './field_password';
@@ -30,7 +31,7 @@ describe('EuiFieldPassword', () => {
   });
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiFieldPassword
         name="elastic"
         id="1"
@@ -41,70 +42,70 @@ describe('EuiFieldPassword', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     test('isInvalid is rendered', () => {
-      const component = render(<EuiFieldPassword isInvalid />);
+      const { container } = render(<EuiFieldPassword isInvalid />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('fullWidth is rendered', () => {
-      const component = render(<EuiFieldPassword fullWidth />);
+      const { container } = render(<EuiFieldPassword fullWidth />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('isLoading is rendered', () => {
-      const component = render(<EuiFieldPassword isLoading />);
+      const { container } = render(<EuiFieldPassword isLoading />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('prepend and append is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiFieldPassword prepend="String" append="String" />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('compressed is rendered', () => {
-      const component = render(<EuiFieldPassword compressed />);
+      const { container } = render(<EuiFieldPassword compressed />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     describe('type', () => {
       TYPES.forEach((type) => {
         test(`${type} is rendered`, () => {
-          const component = render(<EuiFieldPassword type={type} />);
+          const { container } = render(<EuiFieldPassword type={type} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
 
     describe('dual', () => {
       test('dualToggleProps is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiFieldPassword type="dual" dualToggleProps={requiredProps} />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('dual type also renders append', () => {
-        const component = render(
+        const { container } = render(
           <EuiFieldPassword
             type="dual"
             append={['String', <span>Span</span>]}
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('dual does not mutate the append array prop', () => {
@@ -144,21 +145,14 @@ describe('EuiFieldPassword', () => {
 
   describe('inherits', () => {
     test('fullWidth from <EuiForm />', () => {
-      const component = render(
+      const { container } = render(
         <EuiForm fullWidth>
           <EuiFieldPassword />
         </EuiForm>
       );
 
-      if (
-        !component
-          .find('.euiFieldPassword')
-          .hasClass('euiFieldPassword--fullWidth')
-      ) {
-        throw new Error(
-          'expected EuiFieldPassword to inherit fullWidth from EuiForm'
-        );
-      }
+      const input = container.querySelector('.euiFieldPassword');
+      expect(input).toHaveClass('euiFieldPassword--fullWidth');
     });
   });
 });

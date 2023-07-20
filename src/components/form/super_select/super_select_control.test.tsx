@@ -7,46 +7,46 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../../test';
+import { render } from '../../../test/rtl';
 
 import { EuiForm } from '../form';
 import { EuiSuperSelectControl } from './super_select_control';
 
 describe('EuiSuperSelectControl', () => {
   test('is rendered', () => {
-    const component = render(<EuiSuperSelectControl {...requiredProps} />);
+    const { container } = render(<EuiSuperSelectControl {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   describe('props', () => {
     test('fullWidth is rendered', () => {
-      const component = render(<EuiSuperSelectControl fullWidth />);
+      const { container } = render(<EuiSuperSelectControl fullWidth />);
 
-      expect(component).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
     });
 
     test('compressed is rendered', () => {
-      const component = render(<EuiSuperSelectControl compressed />);
+      const { container } = render(<EuiSuperSelectControl compressed />);
 
-      expect(component).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
     });
 
     test('isLoading is rendered', () => {
-      const component = render(<EuiSuperSelectControl isLoading />);
+      const { container } = render(<EuiSuperSelectControl isLoading />);
 
-      expect(component).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
     });
 
     test('isInvalid is rendered', () => {
-      const component = render(<EuiSuperSelectControl isInvalid />);
+      const { container } = render(<EuiSuperSelectControl isInvalid />);
 
-      expect(component).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
     });
 
     test('disabled options are rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiSuperSelectControl
           options={[
             { value: '1', inputDisplay: 'Option #1', disabled: false },
@@ -55,11 +55,11 @@ describe('EuiSuperSelectControl', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
     });
 
     test('value option is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiSuperSelectControl
           options={[
             { value: '1', inputDisplay: 'Option #1' },
@@ -70,12 +70,12 @@ describe('EuiSuperSelectControl', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
     });
 
     test('empty value option is rendered', () => {
       const value = undefined;
-      const component = render(
+      const { container } = render(
         <EuiSuperSelectControl
           options={[
             { value: '1', inputDisplay: 'Option #1' },
@@ -86,11 +86,11 @@ describe('EuiSuperSelectControl', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
     });
 
     test('placeholder is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiSuperSelectControl
           options={[
             { value: '1', inputDisplay: 'Option #1' },
@@ -101,30 +101,25 @@ describe('EuiSuperSelectControl', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
-      expect(
-        component.find('.euiSuperSelectControl__placeholder')
-      ).toBeTruthy();
+      expect(container).toMatchSnapshot();
+      const placeholder = container.querySelector(
+        '.euiSuperSelectControl__placeholder'
+      );
+
+      expect(placeholder).toBeInTheDocument();
     });
   });
 
   describe('inherits', () => {
     test('fullWidth from <EuiForm />', () => {
-      const component = render(
+      const { container } = render(
         <EuiForm fullWidth>
           <EuiSuperSelectControl />
         </EuiForm>
       );
 
-      if (
-        !component
-          .find('.euiSuperSelectControl')
-          .hasClass('euiSuperSelectControl--fullWidth')
-      ) {
-        throw new Error(
-          'expected EuiSuperSelectControl to inherit fullWidth from EuiForm'
-        );
-      }
+      const control = container.querySelector('.euiSuperSelectControl');
+      expect(control).toHaveClass('euiSuperSelectControl--fullWidth');
     });
   });
 });
