@@ -87,12 +87,29 @@ describe('EuiCollapsibleNavItem', () => {
 
     it('allows rendering an icon', () => {
       const { container } = render(
-        <EuiCollapsibleNavItem title="Item" iconType="home" />
+        <EuiCollapsibleNavItem title="Item" icon="home" />
       );
 
       expect(
         container.querySelector('[data-euiicon-type="home"]')
       ).toBeTruthy();
+    });
+
+    it('allows passing custom props to the icon', () => {
+      const { container } = render(
+        <EuiCollapsibleNavItem
+          title="Item"
+          icon="home"
+          iconProps={{ size: 's', color: 'primary' }}
+        />
+      );
+
+      // NOTE: We stub out rendered EuiIcons, so this as useful an assertion as it gets.
+      // Converting this into a visual screenshot test would probably be more useful
+      expect(container.querySelector('[data-euiicon-type]')).toHaveAttribute(
+        'color',
+        'primary'
+      );
     });
   });
 
