@@ -16,6 +16,7 @@ exports[`EuiCheckableCard is rendered 1`] = `
         class="euiRadio__input"
         id="id"
         type="radio"
+        value=""
       />
       <div
         class="euiRadio__circle"
@@ -84,6 +85,7 @@ exports[`EuiCheckableCard renders children 1`] = `
         class="euiRadio__input"
         id="id"
         type="radio"
+        value=""
       />
       <div
         class="euiRadio__circle"
@@ -125,6 +127,7 @@ exports[`EuiCheckableCard renders disabled 1`] = `
         disabled=""
         id="id"
         type="radio"
+        value=""
       />
       <div
         class="euiRadio__circle"
@@ -158,6 +161,7 @@ exports[`EuiCheckableCard renders panel props 1`] = `
         class="euiRadio__input"
         id="id"
         type="radio"
+        value=""
       />
       <div
         class="euiRadio__circle"

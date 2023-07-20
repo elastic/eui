@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../../test/required_props';
 import { shouldRenderCustomStyles } from '../../../test/internal';
+import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
 
 import { EuiCheckableCard } from './checkable_card';
 
@@ -21,11 +21,11 @@ const checkablePanelRequiredProps = {
 
 describe('EuiCheckableCard', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiCheckableCard {...requiredProps} {...checkablePanelRequiredProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   shouldRenderCustomStyles(
@@ -42,7 +42,7 @@ describe('EuiCheckableCard', () => {
   );
 
   test('renders panel props', () => {
-    const component = render(
+    const { container } = render(
       <EuiCheckableCard
         hasBorder={false}
         hasShadow={true}
@@ -50,29 +50,29 @@ describe('EuiCheckableCard', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('renders disabled', () => {
-    const component = render(
+    const { container } = render(
       <EuiCheckableCard disabled={true} {...checkablePanelRequiredProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('renders children', () => {
-    const component = render(
+    const { container } = render(
       <EuiCheckableCard {...checkablePanelRequiredProps}>
         Child
       </EuiCheckableCard>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('renders a checkbox when specified', () => {
-    const component = render(
+    const { container } = render(
       <EuiCheckableCard
         {...requiredProps}
         {...checkablePanelRequiredProps}
@@ -80,6 +80,6 @@ describe('EuiCheckableCard', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

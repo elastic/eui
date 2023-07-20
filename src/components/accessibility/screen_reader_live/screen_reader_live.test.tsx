@@ -7,9 +7,10 @@
  */
 
 import React, { useState } from 'react';
-import { mount, render } from 'enzyme';
+import { mount } from 'enzyme';
 
 import { findTestSubject } from '../../../test';
+import { render } from '../../../test/rtl';
 
 import { EuiScreenReaderLive } from './screen_reader_live';
 
@@ -23,47 +24,47 @@ const content = (
 describe('EuiScreenReaderLive', () => {
   describe('with a static configuration', () => {
     it('renders screen reader content when active', () => {
-      const component = render(
+      const { container } = render(
         <EuiScreenReaderLive isActive={true}>{content}</EuiScreenReaderLive>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('does not render screen reader content when inactive', () => {
-      const component = render(
+      const { container } = render(
         <EuiScreenReaderLive isActive={false}>{content}</EuiScreenReaderLive>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('accepts `role`', () => {
-      const component = render(
+      const { container } = render(
         <EuiScreenReaderLive role="log">{content}</EuiScreenReaderLive>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('accepts `aria-live`', () => {
-      const component = render(
+      const { container } = render(
         <EuiScreenReaderLive aria-live="assertive">
           {content}
         </EuiScreenReaderLive>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('accepts `focusRegionOnTextChange`', () => {
-      const component = render(
+      const { container } = render(
         <EuiScreenReaderLive focusRegionOnTextChange>
           {content}
         </EuiScreenReaderLive>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
@@ -87,9 +88,9 @@ describe('EuiScreenReaderLive', () => {
     };
 
     it('initially renders screen reader content in the first live region', () => {
-      const component = render(<Component />);
+      const { container } = render(<Component />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('alternates rendering screen reader content into the second live region when changed/toggled', () => {

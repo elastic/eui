@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../../test/required_props';
 import { shouldRenderCustomStyles } from '../../../test/internal';
+import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
 
 import { EuiNotificationBadge, COLORS, SIZES } from './badge_notification';
 
@@ -17,22 +17,22 @@ describe('EuiNotificationBadge', () => {
   shouldRenderCustomStyles(<EuiNotificationBadge>1</EuiNotificationBadge>);
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiNotificationBadge {...requiredProps}>5</EuiNotificationBadge>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('color', () => {
       COLORS.forEach((color) => {
         test(`${color} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiNotificationBadge color={color}>5</EuiNotificationBadge>
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
@@ -40,11 +40,11 @@ describe('EuiNotificationBadge', () => {
     describe('size', () => {
       SIZES.forEach((size) => {
         test(`${size} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiNotificationBadge size={size}>5</EuiNotificationBadge>
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
