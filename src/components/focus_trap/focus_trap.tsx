@@ -13,7 +13,7 @@ import { RemoveScrollBar } from 'react-remove-scroll-bar';
 
 import { CommonProps } from '../common';
 import { findElementBySelectorOrRef, ElementTarget } from '../../services';
-import { useEuiComponentDefaults } from '../provider/component_defaults';
+import { usePropsWithComponentDefaults } from '../provider/component_defaults';
 
 export type FocusTarget = ElementTarget;
 
@@ -82,16 +82,15 @@ export type EuiFocusTrapProps = Omit<
   returnFocus?: ReactFocusOnProps['returnFocus'];
 };
 
-export const EuiFocusTrap: FunctionComponent<EuiFocusTrapProps> = ({
-  children,
-  ...props
-}) => {
-  const { EuiFocusTrap: defaults } = useEuiComponentDefaults();
-  return (
-    <EuiFocusTrapClass {...defaults} {...props}>
-      {children}
-    </EuiFocusTrapClass>
+export const EuiFocusTrap: FunctionComponent<EuiFocusTrapProps> = (
+  originalProps
+) => {
+  const { children, ...rest } = usePropsWithComponentDefaults(
+    'EuiFocusTrap',
+    originalProps
   );
+
+  return <EuiFocusTrapClass {...rest}>{children}</EuiFocusTrapClass>;
 };
 
 interface State {

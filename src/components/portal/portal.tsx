@@ -15,7 +15,7 @@ import React, { Component, FunctionComponent, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 
 import { EuiNestedThemeContext } from '../../services';
-import { useEuiComponentDefaults } from '../provider/component_defaults';
+import { usePropsWithComponentDefaults } from '../provider/component_defaults';
 
 const INSERT_POSITIONS = ['after', 'before'] as const;
 type EuiPortalInsertPosition = (typeof INSERT_POSITIONS)[number];
@@ -40,16 +40,13 @@ export interface EuiPortalProps {
   portalRef?: (ref: HTMLDivElement | null) => void;
 }
 
-export const EuiPortal: FunctionComponent<EuiPortalProps> = ({
-  children,
-  ...props
-}) => {
-  const { EuiPortal: defaults } = useEuiComponentDefaults();
-  return (
-    <EuiPortalClass {...defaults} {...props}>
-      {children}
-    </EuiPortalClass>
+export const EuiPortal: FunctionComponent<EuiPortalProps> = (originalProps) => {
+  const { children, ...rest } = usePropsWithComponentDefaults(
+    'EuiPortal',
+    originalProps
   );
+
+  return <EuiPortalClass {...rest}>{children}</EuiPortalClass>;
 };
 
 export class EuiPortalClass extends Component<EuiPortalProps> {

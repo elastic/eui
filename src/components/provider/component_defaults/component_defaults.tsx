@@ -17,6 +17,13 @@ import type { EuiPortalProps } from '../../portal';
 import type { EuiFocusTrapProps } from '../../focus_trap';
 import type { EuiTablePaginationProps } from '../../table';
 
+// This type should always be in sync with EuiComponentDefaults
+type EuiComponentDefaultsSupportedComponents = {
+  EuiPortal: EuiPortalProps;
+  EuiFocusTrap: EuiFocusTrapProps;
+  EuiTablePagination: EuiTablePaginationProps;
+};
+
 export type EuiComponentDefaults = {
   /**
    * Provide a global configuration for EuiPortal's default insertion position.
@@ -104,4 +111,25 @@ export const EuiComponentDefaultsProvider: FunctionComponent<{
  */
 export const useEuiComponentDefaults = () => {
   return useContext(EuiComponentDefaultsContext);
+};
+
+export const usePropsWithComponentDefaults = <
+  TComponentName extends keyof EuiComponentDefaults
+>(
+  componentName: TComponentName,
+  originalProps: EuiComponentDefaultsSupportedComponents[TComponentName]
+): EuiComponentDefaultsSupportedComponents[TComponentName] => {
+  const context = useEuiComponentDefaults();
+
+  const defaults = context?.[
+    componentName
+  ] as EuiComponentDefaultsSupportedComponents[TComponentName];
+
+  return useMemo(
+    () => ({
+      ...defaults,
+      ...originalProps,
+    }),
+    [originalProps, defaults]
+  );
 };
