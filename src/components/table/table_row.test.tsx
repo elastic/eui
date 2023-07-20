@@ -7,31 +7,31 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiTableRow } from './table_row';
 
 import { EuiTableRowCell } from './table_row_cell';
 
 test('renders EuiTableRow', () => {
-  const component = (
+  const { container } = render(
     <EuiTableRow {...requiredProps}>
       <EuiTableRowCell>hi</EuiTableRowCell>
     </EuiTableRow>
   );
 
-  expect(render(component)).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
 
 describe('isSelected', () => {
   test('renders true when specified', () => {
-    const component = (
+    const { container } = render(
       <EuiTableRow isSelected={true}>
         <EuiTableRowCell />
       </EuiTableRow>
     );
 
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

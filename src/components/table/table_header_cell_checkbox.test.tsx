@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test';
+import { render } from '../../test/rtl';
 
 import { EuiTableHeaderCellCheckbox } from './table_header_cell_checkbox';
 import { WARNING_MESSAGE } from './utils';
@@ -27,50 +27,52 @@ describe('EuiTableHeaderCellCheckbox', () => {
   });
 
   test('is rendered', () => {
-    const component = render(<EuiTableHeaderCellCheckbox {...requiredProps} />);
+    const { container } = render(
+      <EuiTableHeaderCellCheckbox {...requiredProps} />
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('width and style', () => {
     test('accepts style attribute', () => {
-      const component = (
+      const { container } = render(
         <EuiTableHeaderCellCheckbox style={{ width: '20%' }}>
           Test
         </EuiTableHeaderCellCheckbox>
       );
 
-      expect(render(component)).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('accepts width attribute', () => {
-      const component = (
+      const { container } = render(
         <EuiTableHeaderCellCheckbox width="10%">
           Test
         </EuiTableHeaderCellCheckbox>
       );
 
-      expect(render(component)).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('accepts width attribute as number', () => {
-      const component = (
+      const { container } = render(
         <EuiTableHeaderCellCheckbox width={100}>
           Test
         </EuiTableHeaderCellCheckbox>
       );
 
-      expect(render(component)).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('resolves style and width attribute', () => {
-      const component = (
+      const { container } = render(
         <EuiTableHeaderCellCheckbox width="10%" style={{ width: '20%' }}>
           Test
         </EuiTableHeaderCellCheckbox>
       );
 
-      expect(render(component)).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });
