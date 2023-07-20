@@ -153,7 +153,7 @@ exports[`EuiStat props hexcode colors are rendered 1`] = `
   <p
     aria-hidden="true"
     class="euiTitle euiStat__title emotion-euiTitle-l-euiStat__title"
-    style="color:#EB1919"
+    style="color: rgb(235, 25, 25);"
   >
     title
   </p>
@@ -320,7 +320,7 @@ exports[`EuiStat props render with custom description element 1`] = `
   <p
     aria-hidden="true"
     class="euiTitle euiStat__title emotion-euiTitle-l-euiStat__title"
-    style="color:#EB1919"
+    style="color: rgb(235, 25, 25);"
   >
     title
   </p>

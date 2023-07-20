@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiStep } from './step';
 import { STATUS } from './step_number';
@@ -22,56 +22,56 @@ describe('EuiStep', () => {
   );
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiStep {...requiredProps} title={'First step'}>
         <p>Do this</p>
       </EuiStep>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     test('headingElement', () => {
-      const component = render(
+      const { container } = render(
         <EuiStep headingElement={'h3'} title={'First step'}>
           <p>Do this</p>
         </EuiStep>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('step', () => {
-      const component = render(
+      const { container } = render(
         <EuiStep step={5} title={'First step'}>
           <p>Do this</p>
         </EuiStep>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('titleSize', () => {
-      const component = render(
+      const { container } = render(
         <EuiStep titleSize="xs" title={'First step'}>
           <p>Do this</p>
         </EuiStep>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     describe('status', () => {
       STATUS.forEach((status) => {
         test(`${status} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiStep status={status} title={'First step'}>
               <p>Do this</p>
             </EuiStep>
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });

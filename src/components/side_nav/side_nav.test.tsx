@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiSideNav } from './side_nav';
 import { RenderItem } from './side_nav_item';
@@ -20,69 +20,71 @@ describe('EuiSideNav', () => {
   });
 
   test('is rendered', () => {
-    const component = render(<EuiSideNav {...requiredProps} />);
+    const { container } = render(<EuiSideNav {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('isOpenOnMobile', () => {
       test('defaults to false', () => {
-        const component = render(<EuiSideNav />);
+        const { container } = render(<EuiSideNav />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('is rendered when specified as true', () => {
-        const component = render(<EuiSideNav isOpenOnMobile />);
+        const { container } = render(<EuiSideNav isOpenOnMobile />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('mobileBreakpoints can be adjusted', () => {
       test('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiSideNav mobileBreakpoints={['xs', 's', 'm', 'l', 'xl']} />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('null is rendered', () => {
-        const component = render(<EuiSideNav mobileBreakpoints={undefined} />);
+        const { container } = render(
+          <EuiSideNav mobileBreakpoints={undefined} />
+        );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('heading', () => {
       test('is rendered', () => {
-        const component = render(<EuiSideNav heading="Side Nav Heading" />);
+        const { container } = render(<EuiSideNav heading="Side Nav Heading" />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('is hidden with screenReaderOnly', () => {
-        const component = render(
+        const { container } = render(
           <EuiSideNav
             heading="Side Nav Heading"
             headingProps={{ screenReaderOnly: true }}
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('accepts more headingProps', () => {
-        const component = render(
+        const { container } = render(
           <EuiSideNav
             heading="Side Nav Heading"
             headingProps={{ ...requiredProps, id: 'testID', element: 'h3' }}
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
@@ -121,9 +123,9 @@ describe('EuiSideNav', () => {
           },
         ];
 
-        const component = render(<EuiSideNav items={sideNav} />);
+        const { container } = render(<EuiSideNav items={sideNav} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('renders items which are links', () => {
@@ -155,9 +157,9 @@ describe('EuiSideNav', () => {
           },
         ];
 
-        const component = render(<EuiSideNav items={sideNav} />);
+        const { container } = render(<EuiSideNav items={sideNav} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('renders items using a specified callback', () => {
@@ -182,11 +184,11 @@ describe('EuiSideNav', () => {
           </a>
         );
 
-        const component = render(
+        const { container } = render(
           <EuiSideNav items={sideNav} renderItem={renderItem} />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('renders selected item and automatically opens parent items', () => {
@@ -218,9 +220,9 @@ describe('EuiSideNav', () => {
           },
         ];
 
-        const component = render(<EuiSideNav items={sideNav} />);
+        const { container } = render(<EuiSideNav items={sideNav} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('renders items having { forceOpen: true } in open state, and automatically opens parent items', () => {
@@ -254,9 +256,9 @@ describe('EuiSideNav', () => {
           },
         ];
 
-        const component = render(<EuiSideNav items={sideNav} />);
+        const { container } = render(<EuiSideNav items={sideNav} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });

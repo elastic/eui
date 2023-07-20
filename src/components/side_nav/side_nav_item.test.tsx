@@ -7,97 +7,97 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiSideNavItem } from './side_nav_item';
 
 describe('EuiSideNavItem', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiSideNavItem>
         <button {...requiredProps} />
       </EuiSideNavItem>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test("preserves child's classes", () => {
-    const component = render(
+    const { container } = render(
       <EuiSideNavItem>
         <button className="test" />
       </EuiSideNavItem>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('can have truncation turned off', () => {
-    const component = render(
+    const { container } = render(
       <EuiSideNavItem truncate={false}>Children</EuiSideNavItem>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('can be emphasized', () => {
-    const component = render(
+    const { container } = render(
       <EuiSideNavItem emphasize>Children</EuiSideNavItem>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('can be disabled', () => {
-    const component = render(
+    const { container } = render(
       <EuiSideNavItem disabled>Children</EuiSideNavItem>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('isSelected', () => {
     test('defaults to false', () => {
-      const component = render(
+      const { container } = render(
         <EuiSideNavItem>
           <button />
         </EuiSideNavItem>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('is rendered when specified as true', () => {
-      const component = render(
+      const { container } = render(
         <EuiSideNavItem isSelected>
           <button />
         </EuiSideNavItem>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
   describe('href', () => {
     test('is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiSideNavItem href="#">
           <button />
         </EuiSideNavItem>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('is rendered with rel', () => {
-      const component = render(
+      const { container } = render(
         <EuiSideNavItem href="#" rel="noopener">
           <button />
         </EuiSideNavItem>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });
