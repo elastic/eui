@@ -3,8 +3,9 @@
  * that make sense in the input wrap.
  */
 .euiComboBoxPill {
-  height: $euiSizeL - 2px;
-  line-height: $euiSizeL - 2px;
+  $pillHeight: $euiSizeL - 2px;
+  height: $pillHeight;
+  line-height: $pillHeight - ($euiBorderWidthThin * 2);
   vertical-align: baseline;
 
   &,
