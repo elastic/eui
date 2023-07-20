@@ -7,15 +7,15 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiFlyoutFooter } from './flyout_footer';
 
 describe('EuiFlyoutFooter', () => {
   test('is rendered', () => {
-    const component = render(<EuiFlyoutFooter {...requiredProps} />);
+    const { container } = render(<EuiFlyoutFooter {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

@@ -7,8 +7,8 @@
  */
 
 import React, { EventHandler } from 'react';
-import { render, mount } from 'enzyme';
-
+import { mount } from 'enzyme';
+import { render } from '../../test/rtl';
 import { findTestSubject, takeMountedSnapshot } from '../../test';
 
 import { EuiEvent } from '../outside_click_detector/outside_click_detector';
@@ -29,23 +29,23 @@ describe('EuiFocusTrap', () => {
   });
 
   test('can be disabled', () => {
-    const component = render(
+    const { container } = render(
       <EuiFocusTrap disabled>
         <div />
       </EuiFocusTrap>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   test('accepts className and style', () => {
-    const component = render(
+    const { container } = render(
       <EuiFocusTrap className="testing" style={{ height: '100%' }}>
         <div />
       </EuiFocusTrap>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   describe('behavior', () => {

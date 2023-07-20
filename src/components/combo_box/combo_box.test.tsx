@@ -7,7 +7,8 @@
  */
 
 import React, { ReactNode } from 'react';
-import { shallow, render, mount } from 'enzyme';
+import { shallow, mount } from 'enzyme';
+import { render } from '../../test/rtl';
 import {
   requiredProps,
   findTestSubject,
@@ -63,9 +64,9 @@ const options: TitanOption[] = [
 
 describe('EuiComboBox', () => {
   test('is rendered', () => {
-    const component = render(<EuiComboBox {...requiredProps} />);
+    const { container } = render(<EuiComboBox {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('supports thousands of options in an options group', () => {

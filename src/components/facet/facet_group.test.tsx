@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test';
+import { render } from '../../test/rtl';
 
 import { EuiFacetGroup, LAYOUTS, GUTTER_SIZES } from './facet_group';
 import { shouldRenderCustomStyles } from '../../test/internal';
@@ -17,18 +17,18 @@ describe('EuiFacetGroup', () => {
   shouldRenderCustomStyles(<EuiFacetGroup>Content</EuiFacetGroup>);
 
   test('is rendered', () => {
-    const component = render(<EuiFacetGroup {...requiredProps} />);
+    const { container } = render(<EuiFacetGroup {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('layout', () => {
       LAYOUTS.forEach((layout) => {
         test(`${layout} is rendered`, () => {
-          const component = render(<EuiFacetGroup layout={layout} />);
+          const { container } = render(<EuiFacetGroup layout={layout} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
@@ -36,9 +36,9 @@ describe('EuiFacetGroup', () => {
     describe('gutterSize', () => {
       GUTTER_SIZES.forEach((size) => {
         test(`${size} is rendered`, () => {
-          const component = render(<EuiFacetGroup gutterSize={size} />);
+          const { container } = render(<EuiFacetGroup gutterSize={size} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });

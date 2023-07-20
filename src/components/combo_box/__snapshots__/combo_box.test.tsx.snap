@@ -18,7 +18,7 @@ exports[`EuiComboBox is rendered 1`] = `
       >
         <div
           class="euiComboBox__input"
-          style="font-size:14px;display:inline-block"
+          style="font-size: 14px; display: inline-block;"
         >
           <input
             aria-autocomplete="list"
@@ -29,11 +29,11 @@ exports[`EuiComboBox is rendered 1`] = `
             data-test-subj="comboBoxSearchInput"
             id="generated-id__eui-combobox-id"
             role="combobox"
-            style="box-sizing:content-box;width:1px"
+            style="box-sizing: content-box; width: 2px;"
             value=""
           />
           <div
-            style="position:absolute;top:0;left:0;visibility:hidden;height:0;overflow:scroll;white-space:pre"
+            style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-size: 14px; font-family: 'Inter',BlinkMacSystemFont,Helvetica,Arial,sans-serif; font-weight: 400; letter-spacing: normal; text-transform: none;"
           />
         </div>
       </div>
