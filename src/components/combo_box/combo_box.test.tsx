@@ -117,6 +117,46 @@ describe('props', () => {
     expect(component).toMatchSnapshot();
   });
 
+  describe('option.prepend & option.append', () => {
+    const options = [
+      { label: '1', prepend: 'Pre' },
+      { label: '2', append: 'Post' },
+    ];
+
+    test('renders in pills', () => {
+      const component = render(
+        <EuiComboBox options={options} selectedOptions={options} />
+      );
+
+      expect(component.find('.euiComboBoxPill__prepend')).toHaveLength(1);
+      expect(component.find('.euiComboBoxPill__append')).toHaveLength(1);
+      expect(component.find('.euiComboBoxPill')).toMatchSnapshot();
+    });
+
+    test('renders in the options dropdown', () => {
+      const component = mount(<EuiComboBox options={options} />);
+      component.setState({ isListOpen: true });
+
+      const dropdown = component.find(
+        'div[data-test-subj="comboBoxOptionsList"]'
+      );
+      expect(dropdown.find('.euiComboBoxOption__prepend')).toHaveLength(1);
+      expect(dropdown.find('.euiComboBoxOption__append')).toHaveLength(1);
+      expect(dropdown.render()).toMatchSnapshot();
+    });
+
+    test('renders in single selection', () => {
+      const component = render(
+        <EuiComboBox
+          options={options}
+          selectedOptions={[options[0]]}
+          singleSelection={{ asPlainText: true }}
+        />
+      );
+      expect(component.find('.euiComboBoxPill')).toMatchSnapshot();
+    });
+  });
+
   describe('isClearable=false disallows user from clearing input', () => {
     test('when no options are selected', () => {
       const component = shallow(
