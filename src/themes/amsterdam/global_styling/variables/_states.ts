@@ -19,10 +19,10 @@ export const focus: _EuiThemeFocus = {
   color: 'currentColor',
   width: computed(sizeToPixel(0.125)),
 
-  // transparency: { LIGHT: 0.9, DARK: 0.7 },
-  // backgroundColor: computed(({ colors, focus }) =>
-  //   transparentize(colors.primary, focus!.transparency)
-  // ),
+  transparency: { LIGHT: 0.1, DARK: 0.2 },
+  backgroundColor: computed(({ colors, focus }) =>
+    transparentize(colors.primary, focus.transparency)
+  ),
 
   // Outline
   // outline: {

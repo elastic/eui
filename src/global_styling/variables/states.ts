@@ -33,13 +33,15 @@ export interface _EuiThemeFocus {
    */
   width: CSSProperties['borderWidth'];
   /**
-   * Used to transparentize any color at certain values
+   * Used to transparentize the focus background color
+   * - Default value: { LIGHT: 0.1, DARK: 0.2 }
    */
-  // transparency: ColorModeSwitch<number>;
+  transparency: ColorModeSwitch<number>;
   /**
-   * Default color plus transparency
+   * Default focus background color. Not all components set a background color on focus
+   * - Default value: `colors.primary` computed with `focus.transparency`
    */
-  // backgroundColor: ColorModeSwitch;
+  backgroundColor: ColorModeSwitch;
   /**
    * Using `outline` is new for Amsterdam but is set to `none` in legacy theme
    */
