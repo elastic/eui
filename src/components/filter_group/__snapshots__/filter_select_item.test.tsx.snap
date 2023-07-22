@@ -19,7 +19,7 @@ exports[`EuiFilterSelectItem renders 1`] = `
       />
     </div>
     <span
-      class="euiFlexItem euiFilterSelectItem__content emotion-euiFlexItem-grow-1"
+      class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
     />
   </span>
 </button>

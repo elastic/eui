@@ -114,7 +114,7 @@ export class EuiFilterSelectItemClass extends Component<
         >
           {iconNode}
           <EuiFlexItem
-            className="euiFilterSelectItem__content"
+            className="euiFilterSelectItem__content eui-textTruncate"
             component="span"
           >
             {children}
