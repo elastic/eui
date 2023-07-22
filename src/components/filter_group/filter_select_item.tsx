@@ -9,11 +9,13 @@
 import React, { ButtonHTMLAttributes, Component } from 'react';
 import classNames from 'classnames';
 
+import { withEuiTheme, WithEuiThemeProps } from '../../services';
 import { CommonProps } from '../common';
 
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
-
 import { EuiIcon } from '../icon';
+
+import { euiFilterSelectItemStyles } from './filter_select_item.styles';
 
 export type FilterChecked = 'on' | 'off';
 export interface EuiFilterSelectItemProps
@@ -39,7 +41,9 @@ const resolveIconAndColor = (checked?: FilterChecked) => {
       };
 };
 
-export class EuiFilterSelectItem extends Component<EuiFilterSelectItemProps> {
+export class EuiFilterSelectItemClass extends Component<
+  WithEuiThemeProps & EuiFilterSelectItemProps
+> {
   static defaultProps = {
     showIcons: true,
   };
@@ -62,6 +66,7 @@ export class EuiFilterSelectItem extends Component<EuiFilterSelectItemProps> {
 
   render() {
     const {
+      theme,
       children,
       className,
       disabled,
@@ -70,6 +75,10 @@ export class EuiFilterSelectItem extends Component<EuiFilterSelectItemProps> {
       showIcons,
       ...rest
     } = this.props;
+
+    const styles = euiFilterSelectItemStyles(theme);
+    const cssStyles = [styles.euiFilterSelectItem];
+
     const classes = classNames(
       'euiFilterSelectItem',
       {
@@ -95,6 +104,7 @@ export class EuiFilterSelectItem extends Component<EuiFilterSelectItemProps> {
         type="button"
         aria-selected={isFocused}
         className={classes}
+        css={cssStyles}
         disabled={disabled}
         aria-disabled={disabled}
         {...rest}
@@ -117,3 +127,7 @@ export class EuiFilterSelectItem extends Component<EuiFilterSelectItemProps> {
     );
   }
 }
+
+export const EuiFilterSelectItem = withEuiTheme<EuiFilterSelectItemProps>(
+  EuiFilterSelectItemClass
+);
