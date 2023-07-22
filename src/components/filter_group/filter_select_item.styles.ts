@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme } from '../../services';
+import { UseEuiTheme, transparentize } from '../../services';
 import {
   logicalCSS,
   logicalShorthandCSS,
@@ -24,6 +24,10 @@ export const euiFilterSelectItemStyles = (euiThemeContext: UseEuiTheme) => {
     background-color: ${euiTheme.focus.backgroundColor};
     outline-offset: -${euiTheme.focus.width};
     text-decoration: underline;
+
+    &:disabled {
+      background-color: ${transparentize(euiTheme.colors.disabled, 0.1)};
+    }
   `;
 
   return {
