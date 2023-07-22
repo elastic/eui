@@ -18,6 +18,14 @@ import {
 
 export const euiFilterSelectItemStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+
+  const focusStyles = `
+    color: ${euiTheme.colors.primary};
+    background-color: ${euiTheme.focus.backgroundColor};
+    outline-offset: -${euiTheme.focus.width};
+    text-decoration: underline;
+  `;
+
   return {
     euiFilterSelectItem: css`
       display: block; /* Necessary to make sure it doesn't force the whole popover to be too wide */
@@ -35,6 +43,24 @@ export const euiFilterSelectItemStyles = (euiThemeContext: UseEuiTheme) => {
         'border-bottom',
         `${euiTheme.border.width.thin} solid ${euiTheme.colors.lightestShade}`
       )}
+
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+
+      &:focus {
+        ${focusStyles}
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+        text-decoration: none;
+        color: ${euiTheme.colors.disabledText};
+      }
+    `,
+    isFocused: css`
+      ${focusStyles}
     `,
   };
 };

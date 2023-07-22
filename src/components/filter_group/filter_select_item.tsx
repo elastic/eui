@@ -77,15 +77,12 @@ export class EuiFilterSelectItemClass extends Component<
     } = this.props;
 
     const styles = euiFilterSelectItemStyles(theme);
-    const cssStyles = [styles.euiFilterSelectItem];
+    const cssStyles = [
+      styles.euiFilterSelectItem,
+      isFocused && styles.isFocused,
+    ];
 
-    const classes = classNames(
-      'euiFilterSelectItem',
-      {
-        'euiFilterSelectItem-isFocused': isFocused,
-      },
-      className
-    );
+    const classes = classNames('euiFilterSelectItem', className);
 
     let iconNode;
     if (showIcons) {

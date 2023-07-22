@@ -1,14 +1,3 @@
-.euiFilterSelectItem {
-  @include euiInteractiveStates;
-  outline-offset: -$euiFocusRingSize;
-
-  &:focus,
-  &-isFocused {
-    @include euiFocusBackground;
-    color: $euiColorPrimary;
-  }
-}
-
 .euiFilterSelectItem__content {
   @include euiTextTruncate;
 }
