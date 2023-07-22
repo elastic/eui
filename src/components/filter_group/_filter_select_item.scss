@@ -4,16 +4,3 @@
   overflow-y: auto;
   max-height: $euiSize * 30;
 }
-
-.euiFilterSelect__note {
-  height: $euiSize * 4;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.euiFilterSelect__noteContent {
-  color: $euiColorDarkShade;
-  font-size: $euiFontSizeS;
-}
