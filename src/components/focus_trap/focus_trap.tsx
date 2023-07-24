@@ -82,15 +82,12 @@ export type EuiFocusTrapProps = Omit<
   returnFocus?: ReactFocusOnProps['returnFocus'];
 };
 
-export const EuiFocusTrap: FunctionComponent<EuiFocusTrapProps> = (
-  originalProps
-) => {
-  const { children, ...rest } = usePropsWithComponentDefaults(
+export const EuiFocusTrap: FunctionComponent<EuiFocusTrapProps> = (props) => {
+  const propsWithDefaults = usePropsWithComponentDefaults(
     'EuiFocusTrap',
-    originalProps
+    props
   );
-
-  return <EuiFocusTrapClass {...rest}>{children}</EuiFocusTrapClass>;
+  return <EuiFocusTrapClass {...propsWithDefaults} />;
 };
 
 interface State {

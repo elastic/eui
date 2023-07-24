@@ -60,7 +60,7 @@ export interface EuiTablePaginationProps
 }
 
 export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = (
-  originalProps
+  props
 ) => {
   const {
     activePage,
@@ -71,7 +71,7 @@ export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = (
     onChangePage,
     pageCount,
     ...rest
-  } = usePropsWithComponentDefaults('EuiTablePagination', originalProps);
+  } = usePropsWithComponentDefaults('EuiTablePagination', props);
 
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 

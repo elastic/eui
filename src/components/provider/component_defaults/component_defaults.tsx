@@ -17,13 +17,6 @@ import type { EuiPortalProps } from '../../portal';
 import type { EuiFocusTrapProps } from '../../focus_trap';
 import type { EuiTablePaginationProps } from '../../table';
 
-// This type should always be in sync with EuiComponentDefaults
-type EuiComponentDefaultsSupportedComponents = {
-  EuiPortal: EuiPortalProps;
-  EuiFocusTrap: EuiFocusTrapProps;
-  EuiTablePagination: EuiTablePaginationProps;
-};
-
 export type EuiComponentDefaults = {
   /**
    * Provide a global configuration for EuiPortal's default insertion position.
@@ -43,6 +36,15 @@ export type EuiComponentDefaults = {
     EuiTablePaginationProps,
     'itemsPerPage' | 'itemsPerPageOptions' | 'showPerPageOptions'
   >;
+};
+
+// This type must be manually kept in sync with EuiComponentDefaults, until we
+// decide to extend this architecture / extrapolate component defaults to *all*
+// props across *all* components
+type EuiComponentDefaultsSupportedComponents = {
+  EuiPortal: EuiPortalProps;
+  EuiFocusTrap: EuiFocusTrapProps;
+  EuiTablePagination: EuiTablePaginationProps;
 };
 
 /**
@@ -107,29 +109,28 @@ export const EuiComponentDefaultsProvider: FunctionComponent<{
 };
 
 /*
- * Hook
+ * Hooks
  */
 export const useEuiComponentDefaults = () => {
   return useContext(EuiComponentDefaultsContext);
 };
 
+// Merge individual component props with component defaults
 export const usePropsWithComponentDefaults = <
   TComponentName extends keyof EuiComponentDefaults
 >(
   componentName: TComponentName,
-  originalProps: EuiComponentDefaultsSupportedComponents[TComponentName]
+  props: EuiComponentDefaultsSupportedComponents[TComponentName]
 ): EuiComponentDefaultsSupportedComponents[TComponentName] => {
-  const context = useEuiComponentDefaults();
+  const context = useContext(EuiComponentDefaultsContext);
 
-  const defaults = context?.[
-    componentName
-  ] as EuiComponentDefaultsSupportedComponents[TComponentName];
+  const componentDefaults = context[componentName] ?? emptyDefaults;
 
   return useMemo(
     () => ({
-      ...defaults,
-      ...originalProps,
+      ...componentDefaults,
+      ...props,
     }),
-    [originalProps, defaults]
+    [componentDefaults, props]
   );
 };

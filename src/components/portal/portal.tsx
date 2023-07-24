@@ -40,13 +40,9 @@ export interface EuiPortalProps {
   portalRef?: (ref: HTMLDivElement | null) => void;
 }
 
-export const EuiPortal: FunctionComponent<EuiPortalProps> = (originalProps) => {
-  const { children, ...rest } = usePropsWithComponentDefaults(
-    'EuiPortal',
-    originalProps
-  );
-
-  return <EuiPortalClass {...rest}>{children}</EuiPortalClass>;
+export const EuiPortal: FunctionComponent<EuiPortalProps> = (props) => {
+  const propsWithDefaults = usePropsWithComponentDefaults('EuiPortal', props);
+  return <EuiPortalClass {...propsWithDefaults} />;
 };
 
 export class EuiPortalClass extends Component<EuiPortalProps> {
