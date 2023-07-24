@@ -1,6 +1,0 @@
-.euiFilterSelect__items {
-  @include euiScrollBar;
-
-  overflow-y: auto;
-  max-height: $euiSize * 30;
-}
