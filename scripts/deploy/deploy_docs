@@ -120,6 +120,7 @@ if [[ "$1" != "nodocker" ]]; then
     --env BUILDKITE_CI \
     --env CURRENT_RELEASE="$CURRENT_RELEASE" \
     --env HOME=/tmp \
+    --user="$(id -u):$(id -g)" \
     --volume "$PWD":/app:ro \
     --workdir /app \
     "$GCE_IMAGE" \
