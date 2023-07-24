@@ -1,3 +1,9 @@
+## [`85.0.1`](https://github.com/elastic/eui/tree/v85.0.1)
+
+**Bug fixes**
+
+- Fixed `EuiFilterGroup`'s responsive styles ([#6983](https://github.com/elastic/eui/pull/6983))
+
 ## [`85.0.0`](https://github.com/elastic/eui/tree/v85.0.0)
 
 - Updated `EuiThemeProvider` to set an Emotion theme context that returns the values of `useEuiTheme()` ([#6913](https://github.com/elastic/eui/pull/6913))
