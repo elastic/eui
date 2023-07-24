@@ -7,8 +7,9 @@
  */
 
 import React from 'react';
-import { mount, shallow, render } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { testCustomHook } from '../../../../test/internal';
+import { render } from '../../../../test/rtl';
 
 import { DataGridFocusContext } from '../../utils/focus';
 import { mockFocusContext } from '../../utils/__mocks__/focus_context';
@@ -50,7 +51,7 @@ describe('EuiDataGridHeaderCell', () => {
     };
 
     const getRenderedText = (text: React.ReactElement) =>
-      render(<p>{text}</p>).text();
+      render(<p>{text}</p>).container.textContent;
 
     describe('if the current column is being sorted', () => {
       it('renders an ascending sort arrow', () => {

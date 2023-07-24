@@ -7,7 +7,8 @@
  */
 
 import React from 'react';
-import { mount, render } from 'enzyme';
+import { mount } from 'enzyme';
+import { render } from '../../../test/rtl';
 
 import { dataGridBodyProps } from './data_grid_body.test';
 
@@ -24,13 +25,11 @@ describe('EuiDataGridBodyVirtualized', () => {
   it('renders', () => {
     // EuiDataGridBody should be `render`ed here over `mount` due to large
     // snapshot memory issues
-    const component = render(
+    const { container, getAllByTestSubject } = render(
       <EuiDataGridBodyVirtualized {...dataGridBodyProps} />
     );
-    expect(component).toMatchSnapshot();
-    expect(component.find('[data-test-subj="dataGridRowCell"]')).toHaveLength(
-      2
-    );
+    expect(container.firstChild).toMatchSnapshot();
+    expect(getAllByTestSubject('dataGridRowCell')).toHaveLength(2);
   });
 
   it('renders leading columns, trailing columns, and footer rows', () => {
