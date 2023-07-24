@@ -93,6 +93,7 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
     <div className={classes} css={cssStyles} onClick={onClick}>
       {((levels && levels.length === 0) || !levels) && (
         <div
+          data-test-subj="euiRangeHighlightProgress"
           className="euiRangeHighlight__progress"
           css={cssProgressStyles}
           style={progressStyle}

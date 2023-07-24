@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiSaturation } from './saturation';
 
@@ -18,15 +18,15 @@ const onChange = () => {
 
 describe('EuiHue', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiSaturation onChange={onChange} {...requiredProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('accepts a color', () => {
-    const component = render(
+    const { container } = render(
       <EuiSaturation
         color={[180, 1, 0.5]}
         onChange={onChange}
@@ -34,6 +34,6 @@ describe('EuiHue', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

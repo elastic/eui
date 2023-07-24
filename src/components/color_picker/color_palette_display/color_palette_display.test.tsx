@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { render } from '../../../test/rtl';
 
 import { EuiColorPaletteDisplay, SIZES } from './color_palette_display';
 import { requiredProps } from '../../../test';
@@ -35,17 +35,17 @@ const paletteWithStops = [
 
 describe('EuiColorPaletteDisplay', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiColorPaletteDisplay {...requiredProps} palette={palette} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('type and palette', () => {
       it('are rendered with type fixed and palette without stops', () => {
-        const component = render(
+        const { container } = render(
           <EuiColorPaletteDisplay
             {...requiredProps}
             palette={palette}
@@ -53,11 +53,11 @@ describe('EuiColorPaletteDisplay', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       it('are rendered with type gradient and palette without stops', () => {
-        const component = render(
+        const { container } = render(
           <EuiColorPaletteDisplay
             {...requiredProps}
             palette={palette}
@@ -65,11 +65,11 @@ describe('EuiColorPaletteDisplay', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       it('are rendered with type fixed and palette with stops', () => {
-        const component = render(
+        const { container } = render(
           <EuiColorPaletteDisplay
             {...requiredProps}
             palette={paletteWithStops}
@@ -77,11 +77,11 @@ describe('EuiColorPaletteDisplay', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       it('are rendered with type gradient and palette with stops', () => {
-        const component = render(
+        const { container } = render(
           <EuiColorPaletteDisplay
             {...requiredProps}
             palette={paletteWithStops}
@@ -89,14 +89,14 @@ describe('EuiColorPaletteDisplay', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('size', () => {
       SIZES.forEach((size) => {
         it(`${size} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiColorPaletteDisplay
               {...requiredProps}
               size={size}
@@ -104,14 +104,14 @@ describe('EuiColorPaletteDisplay', () => {
             />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
 
     describe('HTML attributes', () => {
       it('accepts span attributes', () => {
-        const component = render(
+        const { container } = render(
           <EuiColorPaletteDisplay
             {...requiredProps}
             palette={palette}
@@ -121,7 +121,7 @@ describe('EuiColorPaletteDisplay', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });

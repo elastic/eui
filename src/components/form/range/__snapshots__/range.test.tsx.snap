@@ -404,6 +404,7 @@ exports[`EuiRange props range should render 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        data-test-subj="euiRangeHighlightProgress"
         style="margin-inline-start: 0%; inline-size: 8%;"
       />
     </div>

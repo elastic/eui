@@ -7,7 +7,8 @@
  */
 
 import React from 'react';
-import { mount, render } from 'enzyme';
+import { mount } from 'enzyme';
+import { render } from '../../../test/rtl';
 
 import {
   EuiColorPalettePicker,
@@ -67,7 +68,7 @@ const palettes: EuiColorPalettePickerPaletteProps[] = [
 
 describe('EuiColorPalettePicker', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiColorPalettePicker
         {...requiredProps}
         palettes={palettes}
@@ -75,11 +76,11 @@ describe('EuiColorPalettePicker', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('is rendered with a selected fixed palette', () => {
-    const component = render(
+    const { container } = render(
       <EuiColorPalettePicker
         {...requiredProps}
         palettes={palettes}
@@ -88,11 +89,11 @@ describe('EuiColorPalettePicker', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('is rendered with a selected gradient palette', () => {
-    const component = render(
+    const { container } = render(
       <EuiColorPalettePicker
         {...requiredProps}
         palettes={palettes}
@@ -101,11 +102,11 @@ describe('EuiColorPalettePicker', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('is rendered with a selected gradient palette with stops', () => {
-    const component = render(
+    const { container } = render(
       <EuiColorPalettePicker
         {...requiredProps}
         palettes={palettes}
@@ -114,11 +115,11 @@ describe('EuiColorPalettePicker', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('is rendered with a selected custom text', () => {
-    const component = render(
+    const { container } = render(
       <EuiColorPalettePicker
         {...requiredProps}
         palettes={palettes}
@@ -127,11 +128,11 @@ describe('EuiColorPalettePicker', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('is rendered with the prop selectionDisplay set as title ', () => {
-    const component = render(
+    const { container } = render(
       <EuiColorPalettePicker
         {...requiredProps}
         palettes={palettes}
@@ -141,7 +142,7 @@ describe('EuiColorPalettePicker', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('more props are propagated to each option', () => {
