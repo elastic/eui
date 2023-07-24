@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { testCustomHook } from '../../../test/internal';
+import { render } from '../../../test/rtl';
 import { useScrollCellIntoView, useScrollBars } from './scrolling';
 
 // see scrolling.spec.tsx for E2E useScroll tests
@@ -499,9 +499,9 @@ describe('useScrollBars', () => {
             },
           })
         );
-        const component = render(<>{scrollBorderOverlay}</>);
+        const { container } = render(<>{scrollBorderOverlay}</>);
 
-        expect(component).toMatchInlineSnapshot(`
+        expect(container.firstChild).toMatchInlineSnapshot(`
           <div
             class="euiDataGrid__scrollOverlay"
             role="presentation"
@@ -527,16 +527,16 @@ describe('useScrollBars', () => {
             },
           })
         );
-        const component = render(<>{scrollBorderOverlay}</>);
+        const { container } = render(<>{scrollBorderOverlay}</>);
 
-        expect(component).toMatchInlineSnapshot(`
+        expect(container.firstChild).toMatchInlineSnapshot(`
           <div
             class="euiDataGrid__scrollOverlay"
             role="presentation"
           >
             <div
               class="euiDataGrid__scrollBarOverlayBottom"
-              style="bottom:10px;right:0"
+              style="bottom: 10px; right: 0px;"
             />
           </div>
         `);
@@ -558,16 +558,16 @@ describe('useScrollBars', () => {
             },
           })
         );
-        const component = render(<>{scrollBorderOverlay}</>);
+        const { container } = render(<>{scrollBorderOverlay}</>);
 
-        expect(component).toMatchInlineSnapshot(`
+        expect(container.firstChild).toMatchInlineSnapshot(`
           <div
             class="euiDataGrid__scrollOverlay"
             role="presentation"
           >
             <div
               class="euiDataGrid__scrollBarOverlayRight"
-              style="bottom:0;right:10px"
+              style="bottom: 0px; right: 10px;"
             />
           </div>
         `);

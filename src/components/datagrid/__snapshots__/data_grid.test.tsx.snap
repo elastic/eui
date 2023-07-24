@@ -454,12 +454,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
 `;
 
 exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
-Array [
+<div>
   <div
     data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="-1"
-  />,
+  />
   <div
     class="euiDataGrid__focusWrap"
     data-focus-lock-disabled="disabled"
@@ -592,10 +592,10 @@ Array [
       >
         <div
           class="euiDataGrid__virtualized"
-          style="position:relative;height:9007199254740991px;width:9007199254740991px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
+          style="position: relative; height: 9007199254740991px; width: 9007199254740991px; overflow: auto; will-change: transform; direction: ltr;"
         >
           <div
-            style="height:102px;width:200px"
+            style="height: 202px; width: 200px;"
           >
             <div
               class="euiDataGridHeader"
@@ -610,13 +610,13 @@ Array [
                 data-gridcell-visible-row-index="-1"
                 data-test-subj="dataGridHeaderCell-A"
                 role="columnheader"
-                style="width:100px"
+                style="width: 100px;"
                 tabindex="-1"
               >
                 <div
                   class="euiDataGridColumnResizer"
                   data-test-subj="dataGridColumnResizer"
-                  style="margin-right:0px"
+                  style="margin-right: 0px;"
                 />
                 <div
                   class="euiPopover eui-fullWidth emotion-euiPopover"
@@ -627,6 +627,8 @@ Array [
                     <button
                       aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                       class="euiDataGridHeaderCell__button"
+                      data-euigrid-tab-managed="true"
+                      tabindex="-1"
                     >
                       <div
                         class="euiDataGridHeaderCell__content"
@@ -662,13 +664,13 @@ Array [
                 data-gridcell-visible-row-index="-1"
                 data-test-subj="dataGridHeaderCell-B"
                 role="columnheader"
-                style="width:100px"
+                style="width: 100px;"
                 tabindex="-1"
               >
                 <div
                   class="euiDataGridColumnResizer"
                   data-test-subj="dataGridColumnResizer"
-                  style="margin-right:0px"
+                  style="margin-right: 0px;"
                 />
                 <div
                   class="euiPopover eui-fullWidth emotion-euiPopover"
@@ -679,6 +681,8 @@ Array [
                     <button
                       aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                       class="euiDataGridHeaderCell__button"
+                      data-euigrid-tab-managed="true"
+                      tabindex="-1"
                     >
                       <div
                         class="euiDataGridHeaderCell__content"
@@ -716,7 +720,7 @@ Array [
               data-gridcell-visible-row-index="0"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:0;top:0;height:34px;width:100px"
+              style="position: absolute; left: 0px; top: 0px; height: 34px; width: 100px;"
               tabindex="-1"
             >
               <div
@@ -735,7 +739,8 @@ Array [
                     class="emotion-euiScreenReaderOnly"
                     hidden=""
                   >
-                    - A, column 1, row 1
+                    - 
+                    A, column 1, row 1
                   </p>
                 </div>
               </div>
@@ -749,7 +754,7 @@ Array [
               data-gridcell-visible-row-index="0"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:100px;top:0;height:34px;width:100px"
+              style="position: absolute; left: 100px; top: 0px; height: 34px; width: 100px;"
               tabindex="-1"
             >
               <div
@@ -768,7 +773,8 @@ Array [
                     class="emotion-euiScreenReaderOnly"
                     hidden=""
                   >
-                    - B, column 2, row 1
+                    - 
+                    B, column 2, row 1
                   </p>
                 </div>
               </div>
@@ -782,7 +788,7 @@ Array [
               data-gridcell-visible-row-index="1"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:0;top:0;height:34px;width:100px"
+              style="position: absolute; left: 0px; top: 0px; height: 34px; width: 100px;"
               tabindex="-1"
             >
               <div
@@ -801,7 +807,8 @@ Array [
                     class="emotion-euiScreenReaderOnly"
                     hidden=""
                   >
-                    - A, column 1, row 2
+                    - 
+                    A, column 1, row 2
                   </p>
                 </div>
               </div>
@@ -815,7 +822,7 @@ Array [
               data-gridcell-visible-row-index="1"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:100px;top:0;height:34px;width:100px"
+              style="position: absolute; left: 100px; top: 0px; height: 34px; width: 100px;"
               tabindex="-1"
             >
               <div
@@ -834,7 +841,8 @@ Array [
                     class="emotion-euiScreenReaderOnly"
                     hidden=""
                   >
-                    - B, column 2, row 2
+                    - 
+                    B, column 2, row 2
                   </p>
                 </div>
               </div>
@@ -848,7 +856,7 @@ Array [
               data-gridcell-visible-row-index="2"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:0;top:0;height:34px;width:100px"
+              style="position: absolute; left: 0px; top: 0px; height: 34px; width: 100px;"
               tabindex="-1"
             >
               <div
@@ -867,7 +875,8 @@ Array [
                     class="emotion-euiScreenReaderOnly"
                     hidden=""
                   >
-                    - A, column 1, row 3
+                    - 
+                    A, column 1, row 3
                   </p>
                 </div>
               </div>
@@ -881,7 +890,7 @@ Array [
               data-gridcell-visible-row-index="2"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:100px;top:0;height:34px;width:100px"
+              style="position: absolute; left: 100px; top: 0px; height: 34px; width: 100px;"
               tabindex="-1"
             >
               <div
@@ -900,7 +909,8 @@ Array [
                     class="emotion-euiScreenReaderOnly"
                     hidden=""
                   >
-                    - B, column 2, row 3
+                    - 
+                    B, column 2, row 3
                   </p>
                 </div>
               </div>
@@ -915,22 +925,22 @@ Array [
         Cell contains interactive content.
       </p>
     </div>
-  </div>,
+  </div>
   <div
     data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="-1"
-  />,
-]
+  />
+</div>
 `;
 
 exports[`EuiDataGrid rendering renders control columns 1`] = `
-Array [
+<div>
   <div
     data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="-1"
-  />,
+  />
   <div
     class="euiDataGrid__focusWrap"
     data-focus-lock-disabled="disabled"
@@ -1063,10 +1073,10 @@ Array [
       >
         <div
           class="euiDataGrid__virtualized"
-          style="position:relative;height:9007199254740991px;width:9007199254740991px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
+          style="position: relative; height: 9007199254740991px; width: 9007199254740991px; overflow: auto; will-change: transform; direction: ltr;"
         >
           <div
-            style="height:102px;width:300px"
+            style="height: 202px; width: 300px;"
           >
             <div
               class="euiDataGridHeader"
@@ -1081,7 +1091,7 @@ Array [
                 data-gridcell-visible-row-index="-1"
                 data-test-subj="dataGridHeaderCell-leading"
                 role="columnheader"
-                style="width:50px"
+                style="width: 50px;"
                 tabindex="-1"
               >
                 <div
@@ -1100,13 +1110,13 @@ Array [
                 data-gridcell-visible-row-index="-1"
                 data-test-subj="dataGridHeaderCell-A"
                 role="columnheader"
-                style="width:100px"
+                style="width: 100px;"
                 tabindex="-1"
               >
                 <div
                   class="euiDataGridColumnResizer"
                   data-test-subj="dataGridColumnResizer"
-                  style="margin-right:0px"
+                  style="margin-right: 0px;"
                 />
                 <div
                   class="euiPopover eui-fullWidth emotion-euiPopover"
@@ -1117,6 +1127,8 @@ Array [
                     <button
                       aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                       class="euiDataGridHeaderCell__button"
+                      data-euigrid-tab-managed="true"
+                      tabindex="-1"
                     >
                       <div
                         class="euiDataGridHeaderCell__content"
@@ -1152,13 +1164,13 @@ Array [
                 data-gridcell-visible-row-index="-1"
                 data-test-subj="dataGridHeaderCell-B"
                 role="columnheader"
-                style="width:100px"
+                style="width: 100px;"
                 tabindex="-1"
               >
                 <div
                   class="euiDataGridColumnResizer"
                   data-test-subj="dataGridColumnResizer"
-                  style="margin-right:0px"
+                  style="margin-right: 0px;"
                 />
                 <div
                   class="euiPopover eui-fullWidth emotion-euiPopover"
@@ -1169,6 +1181,8 @@ Array [
                     <button
                       aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                       class="euiDataGridHeaderCell__button"
+                      data-euigrid-tab-managed="true"
+                      tabindex="-1"
                     >
                       <div
                         class="euiDataGridHeaderCell__content"
@@ -1204,7 +1218,7 @@ Array [
                 data-gridcell-visible-row-index="-1"
                 data-test-subj="dataGridHeaderCell-trailing"
                 role="columnheader"
-                style="width:50px"
+                style="width: 50px;"
                 tabindex="-1"
               >
                 <div
@@ -1225,12 +1239,12 @@ Array [
               data-gridcell-visible-row-index="0"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:0;top:0;height:34px;width:50px"
+              style="position: absolute; left: 0px; top: 0px; height: 34px; width: 50px;"
               tabindex="-1"
             >
               <div
                 data-focus-guard="true"
-                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
                 tabindex="-1"
               />
               <div
@@ -1252,14 +1266,15 @@ Array [
                       class="emotion-euiScreenReaderOnly"
                       hidden=""
                     >
-                      - leading, column 1, row 1
+                      - 
+                      leading, column 1, row 1
                     </p>
                   </div>
                 </div>
               </div>
               <div
                 data-focus-guard="true"
-                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
                 tabindex="-1"
               />
             </div>
@@ -1272,7 +1287,7 @@ Array [
               data-gridcell-visible-row-index="0"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:50px;top:0;height:34px;width:100px"
+              style="position: absolute; left: 50px; top: 0px; height: 34px; width: 100px;"
               tabindex="-1"
             >
               <div
@@ -1291,7 +1306,8 @@ Array [
                     class="emotion-euiScreenReaderOnly"
                     hidden=""
                   >
-                    - A, column 2, row 1
+                    - 
+                    A, column 2, row 1
                   </p>
                 </div>
               </div>
@@ -1305,7 +1321,7 @@ Array [
               data-gridcell-visible-row-index="0"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:150px;top:0;height:34px;width:100px"
+              style="position: absolute; left: 150px; top: 0px; height: 34px; width: 100px;"
               tabindex="-1"
             >
               <div
@@ -1324,7 +1340,8 @@ Array [
                     class="emotion-euiScreenReaderOnly"
                     hidden=""
                   >
-                    - B, column 3, row 1
+                    - 
+                    B, column 3, row 1
                   </p>
                 </div>
               </div>
@@ -1338,12 +1355,12 @@ Array [
               data-gridcell-visible-row-index="0"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:250px;top:0;height:34px;width:50px"
+              style="position: absolute; left: 250px; top: 0px; height: 34px; width: 50px;"
               tabindex="-1"
             >
               <div
                 data-focus-guard="true"
-                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
                 tabindex="-1"
               />
               <div
@@ -1365,14 +1382,15 @@ Array [
                       class="emotion-euiScreenReaderOnly"
                       hidden=""
                     >
-                      - trailing, column 4, row 1
+                      - 
+                      trailing, column 4, row 1
                     </p>
                   </div>
                 </div>
               </div>
               <div
                 data-focus-guard="true"
-                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
                 tabindex="-1"
               />
             </div>
@@ -1385,12 +1403,12 @@ Array [
               data-gridcell-visible-row-index="1"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:0;top:0;height:34px;width:50px"
+              style="position: absolute; left: 0px; top: 0px; height: 34px; width: 50px;"
               tabindex="-1"
             >
               <div
                 data-focus-guard="true"
-                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
                 tabindex="-1"
               />
               <div
@@ -1412,14 +1430,15 @@ Array [
                       class="emotion-euiScreenReaderOnly"
                       hidden=""
                     >
-                      - leading, column 1, row 2
+                      - 
+                      leading, column 1, row 2
                     </p>
                   </div>
                 </div>
               </div>
               <div
                 data-focus-guard="true"
-                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
                 tabindex="-1"
               />
             </div>
@@ -1432,7 +1451,7 @@ Array [
               data-gridcell-visible-row-index="1"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:50px;top:0;height:34px;width:100px"
+              style="position: absolute; left: 50px; top: 0px; height: 34px; width: 100px;"
               tabindex="-1"
             >
               <div
@@ -1451,7 +1470,8 @@ Array [
                     class="emotion-euiScreenReaderOnly"
                     hidden=""
                   >
-                    - A, column 2, row 2
+                    - 
+                    A, column 2, row 2
                   </p>
                 </div>
               </div>
@@ -1465,7 +1485,7 @@ Array [
               data-gridcell-visible-row-index="1"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:150px;top:0;height:34px;width:100px"
+              style="position: absolute; left: 150px; top: 0px; height: 34px; width: 100px;"
               tabindex="-1"
             >
               <div
@@ -1484,7 +1504,8 @@ Array [
                     class="emotion-euiScreenReaderOnly"
                     hidden=""
                   >
-                    - B, column 3, row 2
+                    - 
+                    B, column 3, row 2
                   </p>
                 </div>
               </div>
@@ -1498,12 +1519,12 @@ Array [
               data-gridcell-visible-row-index="1"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:250px;top:0;height:34px;width:50px"
+              style="position: absolute; left: 250px; top: 0px; height: 34px; width: 50px;"
               tabindex="-1"
             >
               <div
                 data-focus-guard="true"
-                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
                 tabindex="-1"
               />
               <div
@@ -1525,14 +1546,15 @@ Array [
                       class="emotion-euiScreenReaderOnly"
                       hidden=""
                     >
-                      - trailing, column 4, row 2
+                      - 
+                      trailing, column 4, row 2
                     </p>
                   </div>
                 </div>
               </div>
               <div
                 data-focus-guard="true"
-                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
                 tabindex="-1"
               />
             </div>
@@ -1545,12 +1567,12 @@ Array [
               data-gridcell-visible-row-index="2"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:0;top:0;height:34px;width:50px"
+              style="position: absolute; left: 0px; top: 0px; height: 34px; width: 50px;"
               tabindex="-1"
             >
               <div
                 data-focus-guard="true"
-                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
                 tabindex="-1"
               />
               <div
@@ -1572,14 +1594,15 @@ Array [
                       class="emotion-euiScreenReaderOnly"
                       hidden=""
                     >
-                      - leading, column 1, row 3
+                      - 
+                      leading, column 1, row 3
                     </p>
                   </div>
                 </div>
               </div>
               <div
                 data-focus-guard="true"
-                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
                 tabindex="-1"
               />
             </div>
@@ -1592,7 +1615,7 @@ Array [
               data-gridcell-visible-row-index="2"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:50px;top:0;height:34px;width:100px"
+              style="position: absolute; left: 50px; top: 0px; height: 34px; width: 100px;"
               tabindex="-1"
             >
               <div
@@ -1611,7 +1634,8 @@ Array [
                     class="emotion-euiScreenReaderOnly"
                     hidden=""
                   >
-                    - A, column 2, row 3
+                    - 
+                    A, column 2, row 3
                   </p>
                 </div>
               </div>
@@ -1625,7 +1649,7 @@ Array [
               data-gridcell-visible-row-index="2"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:150px;top:0;height:34px;width:100px"
+              style="position: absolute; left: 150px; top: 0px; height: 34px; width: 100px;"
               tabindex="-1"
             >
               <div
@@ -1644,7 +1668,8 @@ Array [
                     class="emotion-euiScreenReaderOnly"
                     hidden=""
                   >
-                    - B, column 3, row 3
+                    - 
+                    B, column 3, row 3
                   </p>
                 </div>
               </div>
@@ -1658,12 +1683,12 @@ Array [
               data-gridcell-visible-row-index="2"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:250px;top:0;height:34px;width:50px"
+              style="position: absolute; left: 250px; top: 0px; height: 34px; width: 50px;"
               tabindex="-1"
             >
               <div
                 data-focus-guard="true"
-                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
                 tabindex="-1"
               />
               <div
@@ -1685,14 +1710,15 @@ Array [
                       class="emotion-euiScreenReaderOnly"
                       hidden=""
                     >
-                      - trailing, column 4, row 3
+                      - 
+                      trailing, column 4, row 3
                     </p>
                   </div>
                 </div>
               </div>
               <div
                 data-focus-guard="true"
-                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
                 tabindex="-1"
               />
             </div>
@@ -1706,22 +1732,22 @@ Array [
         Cell contains interactive content.
       </p>
     </div>
-  </div>,
+  </div>
   <div
     data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="-1"
-  />,
-]
+  />
+</div>
 `;
 
 exports[`EuiDataGrid rendering renders custom column headers 1`] = `
-Array [
+<div>
   <div
     data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="-1"
-  />,
+  />
   <div
     class="euiDataGrid__focusWrap"
     data-focus-lock-disabled="disabled"
@@ -1851,10 +1877,10 @@ Array [
       >
         <div
           class="euiDataGrid__virtualized"
-          style="position:relative;height:9007199254740991px;width:9007199254740991px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
+          style="position: relative; height: 9007199254740991px; width: 9007199254740991px; overflow: auto; will-change: transform; direction: ltr;"
         >
           <div
-            style="height:102px;width:200px"
+            style="height: 202px; width: 200px;"
           >
             <div
               class="euiDataGridHeader"
@@ -1869,13 +1895,13 @@ Array [
                 data-gridcell-visible-row-index="-1"
                 data-test-subj="dataGridHeaderCell-A"
                 role="columnheader"
-                style="width:100px"
+                style="width: 100px;"
                 tabindex="-1"
               >
                 <div
                   class="euiDataGridColumnResizer"
                   data-test-subj="dataGridColumnResizer"
-                  style="margin-right:0px"
+                  style="margin-right: 0px;"
                 />
                 <div
                   class="euiPopover eui-fullWidth emotion-euiPopover"
@@ -1886,6 +1912,8 @@ Array [
                     <button
                       aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                       class="euiDataGridHeaderCell__button"
+                      data-euigrid-tab-managed="true"
+                      tabindex="-1"
                     >
                       <div
                         class="euiDataGridHeaderCell__content"
@@ -1921,13 +1949,13 @@ Array [
                 data-gridcell-visible-row-index="-1"
                 data-test-subj="dataGridHeaderCell-B"
                 role="columnheader"
-                style="width:100px"
+                style="width: 100px;"
                 tabindex="-1"
               >
                 <div
                   class="euiDataGridColumnResizer"
                   data-test-subj="dataGridColumnResizer"
-                  style="margin-right:0px"
+                  style="margin-right: 0px;"
                 />
                 <div
                   class="euiPopover eui-fullWidth emotion-euiPopover"
@@ -1938,6 +1966,8 @@ Array [
                     <button
                       aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                       class="euiDataGridHeaderCell__button"
+                      data-euigrid-tab-managed="true"
+                      tabindex="-1"
                     >
                       <div
                         class="euiDataGridHeaderCell__content"
@@ -1977,7 +2007,7 @@ Array [
               data-gridcell-visible-row-index="0"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:0;top:0;height:34px;width:100px"
+              style="position: absolute; left: 0px; top: 0px; height: 34px; width: 100px;"
               tabindex="-1"
             >
               <div
@@ -1996,7 +2026,8 @@ Array [
                     class="emotion-euiScreenReaderOnly"
                     hidden=""
                   >
-                    - A, column 1, row 1
+                    - 
+                    A, column 1, row 1
                   </p>
                 </div>
               </div>
@@ -2010,7 +2041,7 @@ Array [
               data-gridcell-visible-row-index="0"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:100px;top:0;height:34px;width:100px"
+              style="position: absolute; left: 100px; top: 0px; height: 34px; width: 100px;"
               tabindex="-1"
             >
               <div
@@ -2029,7 +2060,8 @@ Array [
                     class="emotion-euiScreenReaderOnly"
                     hidden=""
                   >
-                    - B, column 2, row 1
+                    - 
+                    B, column 2, row 1
                   </p>
                 </div>
               </div>
@@ -2043,7 +2075,7 @@ Array [
               data-gridcell-visible-row-index="1"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:0;top:0;height:34px;width:100px"
+              style="position: absolute; left: 0px; top: 0px; height: 34px; width: 100px;"
               tabindex="-1"
             >
               <div
@@ -2062,7 +2094,8 @@ Array [
                     class="emotion-euiScreenReaderOnly"
                     hidden=""
                   >
-                    - A, column 1, row 2
+                    - 
+                    A, column 1, row 2
                   </p>
                 </div>
               </div>
@@ -2076,7 +2109,7 @@ Array [
               data-gridcell-visible-row-index="1"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:100px;top:0;height:34px;width:100px"
+              style="position: absolute; left: 100px; top: 0px; height: 34px; width: 100px;"
               tabindex="-1"
             >
               <div
@@ -2095,7 +2128,8 @@ Array [
                     class="emotion-euiScreenReaderOnly"
                     hidden=""
                   >
-                    - B, column 2, row 2
+                    - 
+                    B, column 2, row 2
                   </p>
                 </div>
               </div>
@@ -2109,7 +2143,7 @@ Array [
               data-gridcell-visible-row-index="2"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:0;top:0;height:34px;width:100px"
+              style="position: absolute; left: 0px; top: 0px; height: 34px; width: 100px;"
               tabindex="-1"
             >
               <div
@@ -2128,7 +2162,8 @@ Array [
                     class="emotion-euiScreenReaderOnly"
                     hidden=""
                   >
-                    - A, column 1, row 3
+                    - 
+                    A, column 1, row 3
                   </p>
                 </div>
               </div>
@@ -2142,7 +2177,7 @@ Array [
               data-gridcell-visible-row-index="2"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:100px;top:0;height:34px;width:100px"
+              style="position: absolute; left: 100px; top: 0px; height: 34px; width: 100px;"
               tabindex="-1"
             >
               <div
@@ -2161,7 +2196,8 @@ Array [
                     class="emotion-euiScreenReaderOnly"
                     hidden=""
                   >
-                    - B, column 2, row 3
+                    - 
+                    B, column 2, row 3
                   </p>
                 </div>
               </div>
@@ -2176,22 +2212,22 @@ Array [
         Cell contains interactive content.
       </p>
     </div>
-  </div>,
+  </div>
   <div
     data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="-1"
-  />,
-]
+  />
+</div>
 `;
 
 exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
-Array [
+<div>
   <div
     data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="-1"
-  />,
+  />
   <div
     class="euiDataGrid__focusWrap"
     data-focus-lock-disabled="disabled"
@@ -2321,10 +2357,10 @@ Array [
       >
         <div
           class="euiDataGrid__virtualized"
-          style="position:relative;height:9007199254740991px;width:9007199254740991px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
+          style="position: relative; height: 9007199254740991px; width: 9007199254740991px; overflow: auto; will-change: transform; direction: ltr;"
         >
           <div
-            style="height:102px;width:200px"
+            style="height: 202px; width: 200px;"
           >
             <div
               class="euiDataGridHeader"
@@ -2339,13 +2375,13 @@ Array [
                 data-gridcell-visible-row-index="-1"
                 data-test-subj="dataGridHeaderCell-A"
                 role="columnheader"
-                style="width:100px"
+                style="width: 100px;"
                 tabindex="-1"
               >
                 <div
                   class="euiDataGridColumnResizer"
                   data-test-subj="dataGridColumnResizer"
-                  style="margin-right:0px"
+                  style="margin-right: 0px;"
                 />
                 <div
                   class="euiPopover eui-fullWidth emotion-euiPopover"
@@ -2356,6 +2392,8 @@ Array [
                     <button
                       aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                       class="euiDataGridHeaderCell__button"
+                      data-euigrid-tab-managed="true"
+                      tabindex="-1"
                     >
                       <div
                         class="euiDataGridHeaderCell__content"
@@ -2391,13 +2429,13 @@ Array [
                 data-gridcell-visible-row-index="-1"
                 data-test-subj="dataGridHeaderCell-B"
                 role="columnheader"
-                style="width:100px"
+                style="width: 100px;"
                 tabindex="-1"
               >
                 <div
                   class="euiDataGridColumnResizer"
                   data-test-subj="dataGridColumnResizer"
-                  style="margin-right:0px"
+                  style="margin-right: 0px;"
                 />
                 <div
                   class="euiPopover eui-fullWidth emotion-euiPopover"
@@ -2408,6 +2446,8 @@ Array [
                     <button
                       aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                       class="euiDataGridHeaderCell__button"
+                      data-euigrid-tab-managed="true"
+                      tabindex="-1"
                     >
                       <div
                         class="euiDataGridHeaderCell__content"
@@ -2445,7 +2485,7 @@ Array [
               data-gridcell-visible-row-index="0"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:0;top:0;height:34px;width:100px"
+              style="position: absolute; left: 0px; top: 0px; height: 34px; width: 100px;"
               tabindex="-1"
             >
               <div
@@ -2464,7 +2504,8 @@ Array [
                     class="emotion-euiScreenReaderOnly"
                     hidden=""
                   >
-                    - A, column 1, row 1
+                    - 
+                    A, column 1, row 1
                   </p>
                 </div>
               </div>
@@ -2478,7 +2519,7 @@ Array [
               data-gridcell-visible-row-index="0"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:100px;top:0;height:34px;width:100px"
+              style="position: absolute; left: 100px; top: 0px; height: 34px; width: 100px;"
               tabindex="-1"
             >
               <div
@@ -2497,7 +2538,8 @@ Array [
                     class="emotion-euiScreenReaderOnly"
                     hidden=""
                   >
-                    - B, column 2, row 1
+                    - 
+                    B, column 2, row 1
                   </p>
                 </div>
               </div>
@@ -2511,7 +2553,7 @@ Array [
               data-gridcell-visible-row-index="1"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:0;top:0;height:34px;width:100px"
+              style="position: absolute; left: 0px; top: 0px; height: 34px; width: 100px;"
               tabindex="-1"
             >
               <div
@@ -2530,7 +2572,8 @@ Array [
                     class="emotion-euiScreenReaderOnly"
                     hidden=""
                   >
-                    - A, column 1, row 2
+                    - 
+                    A, column 1, row 2
                   </p>
                 </div>
               </div>
@@ -2544,7 +2587,7 @@ Array [
               data-gridcell-visible-row-index="1"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:100px;top:0;height:34px;width:100px"
+              style="position: absolute; left: 100px; top: 0px; height: 34px; width: 100px;"
               tabindex="-1"
             >
               <div
@@ -2563,7 +2606,8 @@ Array [
                     class="emotion-euiScreenReaderOnly"
                     hidden=""
                   >
-                    - B, column 2, row 2
+                    - 
+                    B, column 2, row 2
                   </p>
                 </div>
               </div>
@@ -2577,7 +2621,7 @@ Array [
               data-gridcell-visible-row-index="2"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:0;top:0;height:34px;width:100px"
+              style="position: absolute; left: 0px; top: 0px; height: 34px; width: 100px;"
               tabindex="-1"
             >
               <div
@@ -2596,7 +2640,8 @@ Array [
                     class="emotion-euiScreenReaderOnly"
                     hidden=""
                   >
-                    - A, column 1, row 3
+                    - 
+                    A, column 1, row 3
                   </p>
                 </div>
               </div>
@@ -2610,7 +2655,7 @@ Array [
               data-gridcell-visible-row-index="2"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:100px;top:0;height:34px;width:100px"
+              style="position: absolute; left: 100px; top: 0px; height: 34px; width: 100px;"
               tabindex="-1"
             >
               <div
@@ -2629,7 +2674,8 @@ Array [
                     class="emotion-euiScreenReaderOnly"
                     hidden=""
                   >
-                    - B, column 2, row 3
+                    - 
+                    B, column 2, row 3
                   </p>
                 </div>
               </div>
@@ -2644,11 +2690,11 @@ Array [
         Cell contains interactive content.
       </p>
     </div>
-  </div>,
+  </div>
   <div
     data-focus-guard="true"
-    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="-1"
-  />,
-]
+  />
+</div>
 `;

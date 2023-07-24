@@ -7,8 +7,9 @@
  */
 
 import React, { useEffect } from 'react';
-import { mount, render, ReactWrapper } from 'enzyme';
+import { mount, ReactWrapper } from 'enzyme';
 import { keys } from '../../../services';
+import { render } from '../../../test/rtl';
 import { RowHeightUtils } from '../utils/__mocks__/row_heights';
 import { mockFocusContext } from '../utils/__mocks__/focus_context';
 import { DataGridFocusContext } from '../utils/focus';
@@ -47,8 +48,8 @@ describe('EuiDataGridCell', () => {
   beforeEach(() => jest.clearAllMocks());
 
   it('renders', () => {
-    const component = render(<EuiDataGridCell {...requiredProps} />);
-    expect(component).toMatchSnapshot();
+    const { container } = render(<EuiDataGridCell {...requiredProps} />);
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it("renders the cell's `aria-rowindex` correctly when paginated on a different page", () => {
@@ -228,10 +229,10 @@ describe('EuiDataGridCell', () => {
       expect(mockPopoverContext.setPopoverContent).toHaveBeenCalled();
 
       // Examine popover content which should contain popoverContent, renderCellValue, and cellActions
-      const popoverContent = render(
+      const { container } = render(
         <>{mockPopoverContext.setPopoverContent.mock.calls[0][0]}</>
       );
-      expect(popoverContent).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
     });
 
     describe('rowHeightsOptions.scrollAnchorRow', () => {
