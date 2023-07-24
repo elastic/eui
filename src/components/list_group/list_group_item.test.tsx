@@ -107,16 +107,15 @@ describe('EuiListGroupItem', () => {
       });
     });
 
-    // TODO: This keeps re-rendering differently because of fake id creation
-    // describe('showToolTip', () => {
-    //   test('is rendered', () => {
-    //     const { container } = render(
-    //       <EuiListGroupItem label="Label" showToolTip />
-    //     );
+    describe('showToolTip', () => {
+      test('is rendered', () => {
+        const { container } = render(
+          <EuiListGroupItem label="Label" showToolTip />
+        );
 
-    //     expect(container.firstChild).toMatchSnapshot();
-    //   });
-    // });
+        expect(container.firstChild).toMatchSnapshot();
+      });
+    });
 
     describe('wrapText', () => {
       test('is rendered', () => {
