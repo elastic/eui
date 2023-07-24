@@ -41,6 +41,12 @@ const resolveIconAndColor = (checked?: FilterChecked) => {
       };
 };
 
+/**
+ * TODO: This component should removed in favor of EuiSelectable usage
+ * once EuiComboBox has been converted to dogfood EuiSelectable.
+ *
+ * @deprecated - Use EuiSelectable instead
+ */
 export class EuiFilterSelectItemClass extends Component<
   WithEuiThemeProps & EuiFilterSelectItemProps
 > {
@@ -125,6 +131,9 @@ export class EuiFilterSelectItemClass extends Component<
   }
 }
 
+/**
+ * @deprecated - Use EuiSelectable instead
+ */
 export const EuiFilterSelectItem = withEuiTheme<EuiFilterSelectItemProps>(
   EuiFilterSelectItemClass
 );
