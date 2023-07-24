@@ -7,11 +7,11 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiCommentList } from './comment_list';
-import { shouldRenderCustomStyles } from '../../test/internal';
 import { GUTTER_SIZES } from '../timeline/timeline';
 
 const comments = [
@@ -26,22 +26,22 @@ describe('EuiCommentList', () => {
   );
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiCommentList comments={comments} {...requiredProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('gutterSize', () => {
       GUTTER_SIZES.forEach((gutterSize) => {
         test(`${gutterSize} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiCommentList comments={comments} gutterSize={gutterSize} />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });

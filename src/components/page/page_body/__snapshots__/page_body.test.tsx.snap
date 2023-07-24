@@ -61,7 +61,7 @@ exports[`EuiPageBody restrict width can be set to a custom number 1`] = `
   aria-label="aria-label"
   class="euiPageBody testClass1 testClass2 emotion-euiPageBody-restrictWidth-euiTestCss"
   data-test-subj="test subject string"
-  style="max-width:1024px"
+  style="max-width: 1024px;"
 />
 `;
 
@@ -70,7 +70,7 @@ exports[`EuiPageBody restrict width can be set to a custom value and measurement
   aria-label="aria-label"
   class="euiPageBody testClass1 testClass2 emotion-euiPageBody-restrictWidth-euiTestCss"
   data-test-subj="test subject string"
-  style="max-width:24rem"
+  style="max-width: 24rem;"
 />
 `;
 
@@ -79,6 +79,6 @@ exports[`EuiPageBody restrict width can be set to a default 1`] = `
   aria-label="aria-label"
   class="euiPageBody testClass1 testClass2 emotion-euiPageBody-restrictWidth-euiTestCss"
   data-test-subj="test subject string"
-  style="max-width:1200px"
+  style="max-width: 1200px;"
 />
 `;

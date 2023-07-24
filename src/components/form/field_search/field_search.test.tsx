@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
 
 import { EuiForm } from '../form';
 import { EuiFieldSearch } from './field_search';
@@ -22,7 +22,7 @@ jest.mock('../validatable_control', () => ({
 
 describe('EuiFieldSearch', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiFieldSearch
         name="elastic"
         id="1"
@@ -33,72 +33,67 @@ describe('EuiFieldSearch', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     test('isInvalid is rendered', () => {
-      const component = render(<EuiFieldSearch isInvalid />);
+      const { container } = render(<EuiFieldSearch isInvalid />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('fullWidth is rendered', () => {
-      const component = render(<EuiFieldSearch fullWidth />);
+      const { container } = render(<EuiFieldSearch fullWidth />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('isLoading is rendered', () => {
-      const component = render(<EuiFieldSearch isLoading />);
+      const { container } = render(<EuiFieldSearch isLoading />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     describe('isClearable', () => {
       test('is accepted', () => {
-        const component = render(<EuiFieldSearch isClearable />);
+        const { container } = render(<EuiFieldSearch isClearable />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('is rendered when a value exists', () => {
-        const component = render(
+        const { container } = render(
           <EuiFieldSearch isClearable defaultValue="Hello" />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     test('prepend is rendered', () => {
-      const component = render(<EuiFieldSearch prepend="Prepend" />);
+      const { container } = render(<EuiFieldSearch prepend="Prepend" />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('append is rendered', () => {
-      const component = render(<EuiFieldSearch prepend="Append" />);
+      const { container } = render(<EuiFieldSearch prepend="Append" />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
   describe('inherits', () => {
     test('fullWidth from <EuiForm />', () => {
-      const component = render(
+      const { container } = render(
         <EuiForm fullWidth>
           <EuiFieldSearch />
         </EuiForm>
       );
 
-      if (
-        !component.find('.euiFieldSearch').hasClass('euiFieldSearch--fullWidth')
-      ) {
-        throw new Error(
-          'expected EuiFieldSearch to inherit fullWidth from EuiForm'
-        );
-      }
+      const input = container.querySelector('.euiFieldSearch');
+      expect(input).toHaveClass('euiFieldSearch--fullWidth');
     });
   });
 });

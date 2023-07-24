@@ -7,16 +7,16 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test';
+import { render } from '../../test/rtl';
 
 import { EuiToolTipPopover } from './tool_tip_popover';
 
 describe('EuiToolTipPopover', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiToolTipPopover positionToolTip={() => {}} {...requiredProps} />
     );
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

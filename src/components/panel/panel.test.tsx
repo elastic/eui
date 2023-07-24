@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiPanel, SIZES, COLORS, BORDER_RADII } from './panel';
 
@@ -17,47 +17,47 @@ describe('EuiPanel', () => {
   shouldRenderCustomStyles(<EuiPanel />);
 
   test('is rendered', () => {
-    const component = render(<EuiPanel {...requiredProps} />);
+    const { container } = render(<EuiPanel {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('hasShadow', () => {
       test('can be false', () => {
-        const component = render(<EuiPanel hasShadow={false} />);
+        const { container } = render(<EuiPanel hasShadow={false} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('grow', () => {
       test('can be false', () => {
-        const component = render(<EuiPanel grow={false} />);
+        const { container } = render(<EuiPanel grow={false} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('hasBorder', () => {
       test('can be false', () => {
-        const component = render(<EuiPanel hasBorder={false} />);
+        const { container } = render(<EuiPanel hasBorder={false} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
       test('can be true', () => {
-        const component = render(<EuiPanel hasBorder={true} />);
+        const { container } = render(<EuiPanel hasBorder={true} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('paddingSize', () => {
       SIZES.forEach((size) => {
         test(`${size} is rendered`, () => {
-          const component = render(<EuiPanel paddingSize={size} />);
+          const { container } = render(<EuiPanel paddingSize={size} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
@@ -65,9 +65,9 @@ describe('EuiPanel', () => {
     describe('color', () => {
       COLORS.forEach((color) => {
         test(`${color} is rendered`, () => {
-          const component = render(<EuiPanel color={color} />);
+          const { container } = render(<EuiPanel color={color} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
@@ -75,19 +75,21 @@ describe('EuiPanel', () => {
     describe('borderRadius', () => {
       BORDER_RADII.forEach((borderRadius) => {
         test(`${borderRadius} is rendered`, () => {
-          const component = render(<EuiPanel borderRadius={borderRadius} />);
+          const { container } = render(
+            <EuiPanel borderRadius={borderRadius} />
+          );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
 
     describe('onClick', () => {
-      const component = render(
+      const { container } = render(
         <EuiPanel {...requiredProps} onClick={jest.fn()} />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });

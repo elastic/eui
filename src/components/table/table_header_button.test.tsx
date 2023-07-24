@@ -7,15 +7,15 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiTableHeaderButton } from './table_header_button';
 
 describe('EuiTableHeaderButton', () => {
   test('is rendered', () => {
-    const component = render(<EuiTableHeaderButton {...requiredProps} />);
+    const { container } = render(<EuiTableHeaderButton {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

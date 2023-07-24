@@ -6,12 +6,6 @@ exports[`EuiScreenReaderLive with a static configuration accepts \`aria-live\` 1
 >
   <div
     aria-atomic="true"
-    aria-hidden="true"
-    aria-live="off"
-    role="status"
-  />
-  <div
-    aria-atomic="true"
     aria-live="assertive"
     role="status"
   >
@@ -19,6 +13,12 @@ exports[`EuiScreenReaderLive with a static configuration accepts \`aria-live\` 1
       This paragraph is not visible to sighted users but will be read by screenreaders.
     </p>
   </div>
+  <div
+    aria-atomic="true"
+    aria-hidden="true"
+    aria-live="off"
+    role="status"
+  />
 </div>
 `;
 
@@ -29,12 +29,6 @@ exports[`EuiScreenReaderLive with a static configuration accepts \`focusRegionOn
 >
   <div
     aria-atomic="true"
-    aria-hidden="true"
-    aria-live="off"
-    role="status"
-  />
-  <div
-    aria-atomic="true"
     aria-live="off"
     role="status"
   >
@@ -42,6 +36,12 @@ exports[`EuiScreenReaderLive with a static configuration accepts \`focusRegionOn
       This paragraph is not visible to sighted users but will be read by screenreaders.
     </p>
   </div>
+  <div
+    aria-atomic="true"
+    aria-hidden="true"
+    aria-live="off"
+    role="status"
+  />
 </div>
 `;
 
@@ -51,12 +51,6 @@ exports[`EuiScreenReaderLive with a static configuration accepts \`role\` 1`] = 
 >
   <div
     aria-atomic="true"
-    aria-hidden="true"
-    aria-live="off"
-    role="log"
-  />
-  <div
-    aria-atomic="true"
     aria-live="polite"
     role="log"
   >
@@ -64,6 +58,12 @@ exports[`EuiScreenReaderLive with a static configuration accepts \`role\` 1`] = 
       This paragraph is not visible to sighted users but will be read by screenreaders.
     </p>
   </div>
+  <div
+    aria-atomic="true"
+    aria-hidden="true"
+    aria-live="off"
+    role="log"
+  />
 </div>
 `;
 
@@ -73,13 +73,13 @@ exports[`EuiScreenReaderLive with a static configuration does not render screen 
 >
   <div
     aria-atomic="true"
-    aria-hidden="true"
-    aria-live="off"
+    aria-live="polite"
     role="status"
   />
   <div
     aria-atomic="true"
-    aria-live="polite"
+    aria-hidden="true"
+    aria-live="off"
     role="status"
   />
 </div>
@@ -91,12 +91,6 @@ exports[`EuiScreenReaderLive with a static configuration renders screen reader c
 >
   <div
     aria-atomic="true"
-    aria-hidden="true"
-    aria-live="off"
-    role="status"
-  />
-  <div
-    aria-atomic="true"
     aria-live="polite"
     role="status"
   >
@@ -104,6 +98,12 @@ exports[`EuiScreenReaderLive with a static configuration renders screen reader c
       This paragraph is not visible to sighted users but will be read by screenreaders.
     </p>
   </div>
+  <div
+    aria-atomic="true"
+    aria-hidden="true"
+    aria-live="off"
+    role="status"
+  />
 </div>
 `;
 
@@ -148,19 +148,20 @@ exports[`EuiScreenReaderLive with dynamic properties initially renders screen re
   >
     <div
       aria-atomic="true"
-      aria-hidden="true"
-      aria-live="off"
-      role="status"
-    />
-    <div
-      aria-atomic="true"
       aria-live="polite"
       role="status"
     >
       <p>
-        Number of active options: 0
+        Number of active options: 
+        0
       </p>
     </div>
+    <div
+      aria-atomic="true"
+      aria-hidden="true"
+      aria-live="off"
+      role="status"
+    />
   </div>
 </div>
 `;

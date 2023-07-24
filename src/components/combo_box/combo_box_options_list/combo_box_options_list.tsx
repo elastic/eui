@@ -207,7 +207,8 @@ export class EuiComboBoxOptionsList<T> extends Component<
 
   ListRow = ({ data, index, style }: ListChildComponentProps) => {
     const option = data[index];
-    const { key, isGroupLabelOption, label, value, ...rest } = option;
+    const { key, isGroupLabelOption, label, value, prepend, append, ...rest } =
+      option;
     const {
       singleSelection,
       selectedOptions,
@@ -259,6 +260,9 @@ export class EuiComboBoxOptionsList<T> extends Component<
         {...rest}
       >
         <span className="euiComboBoxOption__contentWrapper">
+          {prepend && (
+            <span className="euiComboBoxOption__prepend">{prepend}</span>
+          )}
           {renderOption ? (
             <span className={OPTION_CONTENT_CLASSNAME}>
               {renderOption(
@@ -275,6 +279,9 @@ export class EuiComboBoxOptionsList<T> extends Component<
             >
               {label}
             </EuiHighlight>
+          )}
+          {append && (
+            <span className="euiComboBoxOption__append">{append}</span>
           )}
           {optionIsFocused && !optionIsDisabled ? hitEnterBadge : null}
         </span>

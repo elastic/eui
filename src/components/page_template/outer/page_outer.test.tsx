@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../../test/required_props';
 import { shouldRenderCustomStyles } from '../../../test/internal';
+import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
 
 import { _EuiPageOuter as EuiPageOuter } from './page_outer';
 
@@ -17,24 +17,24 @@ describe('_EuiPageOuter', () => {
   shouldRenderCustomStyles(<EuiPageOuter />);
 
   test('is rendered', () => {
-    const component = render(<EuiPageOuter {...requiredProps} />);
+    const { container } = render(<EuiPageOuter {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('grow', () => {
     test('can be false', () => {
-      const component = render(<EuiPageOuter grow={false} />);
+      const { container } = render(<EuiPageOuter grow={false} />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
   describe('direction', () => {
     test('can be row', () => {
-      const component = render(<EuiPageOuter direction="row" />);
+      const { container } = render(<EuiPageOuter direction="row" />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });

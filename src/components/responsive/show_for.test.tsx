@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { render } from '../../test/rtl';
 
 import { EuiShowForBreakpoints, EuiShowFor } from './show_for';
 
@@ -19,54 +19,54 @@ describe('EuiShowFor', () => {
   afterAll(() => 1024); // reset to jsdom's default
 
   test('renders', () => {
-    const component = render(
+    const { container } = render(
       <EuiShowFor sizes={['s']}>
         <span>Child</span>
       </EuiShowFor>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   BREAKPOINTS.forEach((size) => {
     test(`${size} is rendered`, () => {
-      const component = render(
+      const { container } = render(
         <EuiShowFor sizes={[size]}>
           <span>Child</span>
         </EuiShowFor>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
   test('renders for multiple breakpoints', () => {
-    const component = render(
+    const { container } = render(
       <EuiShowFor sizes={['s', 'l']}>
         <span>Child</span>
       </EuiShowFor>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('renders for "all"', () => {
-    const component = render(
+    const { container } = render(
       <EuiShowFor sizes={'all'}>
         <span>Child</span>
       </EuiShowFor>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('never renders for "none"', () => {
-    const component = render(
+    const { container } = render(
       <EuiShowFor sizes={'none'}>
         <span>Child</span>
       </EuiShowFor>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

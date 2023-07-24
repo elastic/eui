@@ -426,7 +426,6 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
   </div>
   <div
     class="euiMarkdownEditor__toggleContainer"
-    style="height:calc(100% - 0px)"
   >
     <div
       class="euiMarkdownEditorDropZone"
@@ -438,7 +437,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
         id="editorId"
         placeholder="placeholder"
         rows="6"
-        style="height:calc(250px);max-height:500px"
+        style="max-height: 500px;"
       />
       <div
         class="euiMarkdownEditorFooter"
@@ -466,7 +465,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
       <input
         autocomplete="off"
         multiple=""
-        style="display:none"
+        style="display: none;"
         tabindex="-1"
         type="file"
       />
@@ -672,7 +671,6 @@ exports[`EuiMarkdownEditor props autoExpandPreview is rendered with false 1`] = 
   </div>
   <div
     class="euiMarkdownEditor__toggleContainer"
-    style="height:calc(100% - 0px)"
   >
     <div
       class="euiMarkdownEditorDropZone"
@@ -683,7 +681,7 @@ exports[`EuiMarkdownEditor props autoExpandPreview is rendered with false 1`] = 
         data-test-subj="euiMarkdownEditorTextArea"
         id="editorId"
         rows="6"
-        style="height:calc(250px);max-height:500px"
+        style="max-height: 500px;"
       />
       <div
         class="euiMarkdownEditorFooter"
@@ -711,7 +709,7 @@ exports[`EuiMarkdownEditor props autoExpandPreview is rendered with false 1`] = 
       <input
         autocomplete="off"
         multiple=""
-        style="display:none"
+        style="display: none;"
         tabindex="-1"
         type="file"
       />
@@ -917,7 +915,6 @@ exports[`EuiMarkdownEditor props height is rendered in full mode 1`] = `
   </div>
   <div
     class="euiMarkdownEditor__toggleContainer"
-    style="height:calc(100% - 0px)"
   >
     <div
       class="euiMarkdownEditorDropZone"
@@ -928,7 +925,7 @@ exports[`EuiMarkdownEditor props height is rendered in full mode 1`] = `
         data-test-subj="euiMarkdownEditorTextArea"
         id="editorId"
         rows="6"
-        style="height:100%;max-height:"
+        style="height: 100%;"
       />
       <div
         class="euiMarkdownEditorFooter"
@@ -956,7 +953,7 @@ exports[`EuiMarkdownEditor props height is rendered in full mode 1`] = `
       <input
         autocomplete="off"
         multiple=""
-        style="display:none"
+        style="display: none;"
         tabindex="-1"
         type="file"
       />
@@ -1162,7 +1159,6 @@ exports[`EuiMarkdownEditor props height is rendered with a custom size 1`] = `
   </div>
   <div
     class="euiMarkdownEditor__toggleContainer"
-    style="height:calc(100% - 0px)"
   >
     <div
       class="euiMarkdownEditorDropZone"
@@ -1173,7 +1169,7 @@ exports[`EuiMarkdownEditor props height is rendered with a custom size 1`] = `
         data-test-subj="euiMarkdownEditorTextArea"
         id="editorId"
         rows="6"
-        style="height:calc(400px);max-height:500px"
+        style="max-height: 500px;"
       />
       <div
         class="euiMarkdownEditorFooter"
@@ -1201,7 +1197,7 @@ exports[`EuiMarkdownEditor props height is rendered with a custom size 1`] = `
       <input
         autocomplete="off"
         multiple=""
-        style="display:none"
+        style="display: none;"
         tabindex="-1"
         type="file"
       />
@@ -1407,7 +1403,6 @@ exports[`EuiMarkdownEditor props maxHeight is rendered with a custom size 1`] = 
   </div>
   <div
     class="euiMarkdownEditor__toggleContainer"
-    style="height:calc(100% - 0px)"
   >
     <div
       class="euiMarkdownEditorDropZone"
@@ -1418,7 +1413,7 @@ exports[`EuiMarkdownEditor props maxHeight is rendered with a custom size 1`] = 
         data-test-subj="euiMarkdownEditorTextArea"
         id="editorId"
         rows="6"
-        style="height:calc(250px);max-height:600px"
+        style="max-height: 600px;"
       />
       <div
         class="euiMarkdownEditorFooter"
@@ -1446,7 +1441,7 @@ exports[`EuiMarkdownEditor props maxHeight is rendered with a custom size 1`] = 
       <input
         autocomplete="off"
         multiple=""
-        style="display:none"
+        style="display: none;"
         tabindex="-1"
         type="file"
       />
@@ -1662,7 +1657,6 @@ exports[`EuiMarkdownEditor props readOnly is set to true 1`] = `
   </div>
   <div
     class="euiMarkdownEditor__toggleContainer"
-    style="height:calc(100% - 0px)"
   >
     <div
       class="euiMarkdownEditorDropZone"
@@ -1674,7 +1668,7 @@ exports[`EuiMarkdownEditor props readOnly is set to true 1`] = `
         id="editorId"
         readonly=""
         rows="6"
-        style="height:calc(250px);max-height:500px"
+        style="max-height: 500px;"
       />
       <div
         class="euiMarkdownEditorFooter"
@@ -1703,7 +1697,7 @@ exports[`EuiMarkdownEditor props readOnly is set to true 1`] = `
       <input
         autocomplete="off"
         multiple=""
-        style="display:none"
+        style="display: none;"
         tabindex="-1"
         type="file"
       />

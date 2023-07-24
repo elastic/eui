@@ -7,13 +7,13 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import {
   requiredProps,
   startThrowingReactWarnings,
   stopThrowingReactWarnings,
 } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { render } from '../../test/rtl';
 
 import {
   EuiFlexGroup,
@@ -30,22 +30,22 @@ describe('EuiFlexGroup', () => {
   shouldRenderCustomStyles(<EuiFlexGroup />);
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiFlexGroup {...requiredProps}>
         <h2>My Child</h2>
       </EuiFlexGroup>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('responsive', () => {
       [true, false].forEach((value) => {
         test(`${value} is rendered`, () => {
-          const component = render(<EuiFlexGroup responsive={value} />);
+          const { container } = render(<EuiFlexGroup responsive={value} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
@@ -53,9 +53,9 @@ describe('EuiFlexGroup', () => {
     describe('gutterSize', () => {
       GUTTER_SIZES.forEach((value) => {
         test(`${value} is rendered`, () => {
-          const component = render(<EuiFlexGroup gutterSize={value} />);
+          const { container } = render(<EuiFlexGroup gutterSize={value} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
@@ -63,9 +63,9 @@ describe('EuiFlexGroup', () => {
     describe('alignItems', () => {
       ALIGN_ITEMS.forEach((value) => {
         test(`${value} is rendered`, () => {
-          const component = render(<EuiFlexGroup alignItems={value} />);
+          const { container } = render(<EuiFlexGroup alignItems={value} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
@@ -73,9 +73,9 @@ describe('EuiFlexGroup', () => {
     describe('justifyContent', () => {
       JUSTIFY_CONTENTS.forEach((value) => {
         test(`${value} is rendered`, () => {
-          const component = render(<EuiFlexGroup justifyContent={value} />);
+          const { container } = render(<EuiFlexGroup justifyContent={value} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
@@ -83,9 +83,9 @@ describe('EuiFlexGroup', () => {
     describe('direction', () => {
       DIRECTIONS.forEach((value) => {
         test(`${value} is rendered`, () => {
-          const component = render(<EuiFlexGroup direction={value} />);
+          const { container } = render(<EuiFlexGroup direction={value} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
@@ -93,11 +93,11 @@ describe('EuiFlexGroup', () => {
     describe('component', () => {
       ['div', 'span'].forEach((value) => {
         test(`${value} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiFlexGroup component={value as 'div' | 'span'} />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
 
@@ -116,9 +116,9 @@ describe('EuiFlexGroup', () => {
     describe('wrap', () => {
       [true, false].forEach((value) => {
         test(`${value} is rendered`, () => {
-          const component = render(<EuiFlexGroup wrap={value} />);
+          const { container } = render(<EuiFlexGroup wrap={value} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });

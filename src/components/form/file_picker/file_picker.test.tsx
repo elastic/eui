@@ -7,34 +7,29 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../../test';
+import { render } from '../../../test/rtl';
 
 import { EuiForm } from '../form';
 import { EuiFilePicker } from './file_picker';
 
 describe('EuiFilePicker', () => {
   test('is rendered', () => {
-    const component = render(<EuiFilePicker {...requiredProps} />);
+    const { container } = render(<EuiFilePicker {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('inherits', () => {
     test('fullWidth from <EuiForm />', () => {
-      const component = render(
+      const { container } = render(
         <EuiForm fullWidth>
           <EuiFilePicker />
         </EuiForm>
       );
 
-      if (
-        !component.find('.euiFilePicker').hasClass('euiFilePicker--fullWidth')
-      ) {
-        throw new Error(
-          'expected EuiFilePicker to inherit fullWidth from EuiForm'
-        );
-      }
+      const filePicker = container.querySelector('.euiFilePicker');
+      expect(filePicker).toHaveClass('euiFilePicker--fullWidth');
     });
   });
 });

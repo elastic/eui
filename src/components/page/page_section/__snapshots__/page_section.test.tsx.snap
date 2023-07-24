@@ -246,7 +246,7 @@ exports[`EuiPageSection props restrictWidth can be custom 1`] = `
 >
   <div
     class="emotion-euiPageSection__content-l-restrictWidth"
-    style="max-width:1000px"
+    style="max-width: 1000px;"
   />
 </section>
 `;
@@ -257,7 +257,7 @@ exports[`EuiPageSection props restrictWidth can be true 1`] = `
 >
   <div
     class="emotion-euiPageSection__content-l-restrictWidth"
-    style="max-width:1200px"
+    style="max-width: 1200px;"
   />
 </section>
 `;

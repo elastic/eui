@@ -26,6 +26,7 @@ exports[`EuiBadgeGroup is rendered 1`] = `
 >
   <span
     class="euiBadge emotion-euiBadge-default"
+    title="Content"
   >
     <span
       class="euiBadge__content emotion-euiBadge__content"

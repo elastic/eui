@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiLoadingChart, SIZES } from './loading_chart';
 
@@ -17,23 +17,23 @@ describe('EuiLoadingChart', () => {
   shouldRenderCustomStyles(<EuiLoadingChart />);
 
   test('is rendered', () => {
-    const component = render(<EuiLoadingChart {...requiredProps} />);
+    const { container } = render(<EuiLoadingChart {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('mono is rendered', () => {
-    const component = render(<EuiLoadingChart mono />);
+    const { container } = render(<EuiLoadingChart mono />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('size', () => {
     SIZES.forEach((size) => {
       test(`${size} is rendered`, () => {
-        const component = render(<EuiLoadingChart size={size} />);
+        const { container } = render(<EuiLoadingChart size={size} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });

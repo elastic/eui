@@ -21,7 +21,8 @@ exports[`renders EuiColorStops 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,transparent, transparent undefined%, rgb(255,0,0) undefined%,rgb(0,255,0) undefined%,rgb(0,0,255) undefined%);margin-inline-start:0%;inline-size:100%"
+        data-test-subj="euiRangeHighlightProgress"
+        style="margin-inline-start: 0%; inline-size: 100%;"
       />
     </div>
     <div
@@ -30,12 +31,12 @@ exports[`renders EuiColorStops 1`] = `
     >
       <div
         class="euiColorStops__addTarget emotion-euiColorStops__addTarget"
-        style="left:0%"
+        style="left: 0%;"
       />
     </div>
     <div
       class="euiPopover euiColorStopPopover emotion-euiPopover-euiColorStopThumbPopover"
-      style="left:0%"
+      style="left: 0%;"
     >
       <div
         class="euiPopover__anchor euiColorStopThumbPopover__anchor css-16vtueo-render"
@@ -51,7 +52,7 @@ exports[`renders EuiColorStops 1`] = `
           data-index="euiColorStop_0"
           data-test-subj="euiColorStopThumb"
           role="slider"
-          style="background:rgb(255,0,0)"
+          style="background: rgb(255, 0, 0);"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -60,7 +61,7 @@ exports[`renders EuiColorStops 1`] = `
     </div>
     <div
       class="euiPopover euiColorStopPopover emotion-euiPopover-euiColorStopThumbPopover"
-      style="left:21%"
+      style="left: 21%;"
     >
       <div
         class="euiPopover__anchor euiColorStopThumbPopover__anchor css-16vtueo-render"
@@ -76,7 +77,7 @@ exports[`renders EuiColorStops 1`] = `
           data-index="euiColorStop_1"
           data-test-subj="euiColorStopThumb"
           role="slider"
-          style="background:rgb(0,255,0)"
+          style="background: rgb(0, 255, 0);"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -85,7 +86,7 @@ exports[`renders EuiColorStops 1`] = `
     </div>
     <div
       class="euiPopover euiColorStopPopover emotion-euiPopover-euiColorStopThumbPopover"
-      style="left:29.4%"
+      style="left: 29.4%;"
     >
       <div
         class="euiPopover__anchor euiColorStopThumbPopover__anchor css-16vtueo-render"
@@ -101,7 +102,7 @@ exports[`renders EuiColorStops 1`] = `
           data-index="euiColorStop_2"
           data-test-subj="euiColorStopThumb"
           role="slider"
-          style="background:rgb(0,0,255)"
+          style="background: rgb(0, 0, 255);"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -133,7 +134,8 @@ exports[`renders compressed EuiColorStops 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,transparent, transparent undefined%, rgb(255,0,0) undefined%,rgb(0,255,0) undefined%,rgb(0,0,255) undefined%);margin-inline-start:0%;inline-size:100%"
+        data-test-subj="euiRangeHighlightProgress"
+        style="margin-inline-start: 0%; inline-size: 100%;"
       />
     </div>
     <div
@@ -142,12 +144,12 @@ exports[`renders compressed EuiColorStops 1`] = `
     >
       <div
         class="euiColorStops__addTarget emotion-euiColorStops__addTarget"
-        style="left:0%"
+        style="left: 0%;"
       />
     </div>
     <div
       class="euiPopover euiColorStopPopover emotion-euiPopover-euiColorStopThumbPopover"
-      style="left:0%"
+      style="left: 0%;"
     >
       <div
         class="euiPopover__anchor euiColorStopThumbPopover__anchor css-16vtueo-render"
@@ -163,7 +165,7 @@ exports[`renders compressed EuiColorStops 1`] = `
           data-index="euiColorStop_0"
           data-test-subj="euiColorStopThumb"
           role="slider"
-          style="background:rgb(255,0,0)"
+          style="background: rgb(255, 0, 0);"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -172,7 +174,7 @@ exports[`renders compressed EuiColorStops 1`] = `
     </div>
     <div
       class="euiPopover euiColorStopPopover emotion-euiPopover-euiColorStopThumbPopover"
-      style="left:21%"
+      style="left: 21%;"
     >
       <div
         class="euiPopover__anchor euiColorStopThumbPopover__anchor css-16vtueo-render"
@@ -188,7 +190,7 @@ exports[`renders compressed EuiColorStops 1`] = `
           data-index="euiColorStop_1"
           data-test-subj="euiColorStopThumb"
           role="slider"
-          style="background:rgb(0,255,0)"
+          style="background: rgb(0, 255, 0);"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -197,7 +199,7 @@ exports[`renders compressed EuiColorStops 1`] = `
     </div>
     <div
       class="euiPopover euiColorStopPopover emotion-euiPopover-euiColorStopThumbPopover"
-      style="left:29.4%"
+      style="left: 29.4%;"
     >
       <div
         class="euiPopover__anchor euiColorStopThumbPopover__anchor css-16vtueo-render"
@@ -213,7 +215,7 @@ exports[`renders compressed EuiColorStops 1`] = `
           data-index="euiColorStop_2"
           data-test-subj="euiColorStopThumb"
           role="slider"
-          style="background:rgb(0,0,255)"
+          style="background: rgb(0, 0, 255);"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -245,7 +247,8 @@ exports[`renders disabled EuiColorStops 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,transparent, transparent undefined%, rgb(255,0,0) undefined%,rgb(0,255,0) undefined%,rgb(0,0,255) undefined%);margin-inline-start:0%;inline-size:100%"
+        data-test-subj="euiRangeHighlightProgress"
+        style="margin-inline-start: 0%; inline-size: 100%;"
       />
     </div>
     <div
@@ -254,12 +257,12 @@ exports[`renders disabled EuiColorStops 1`] = `
     >
       <div
         class="euiColorStops__addTarget emotion-euiColorStops__addTarget"
-        style="left:0%"
+        style="left: 0%;"
       />
     </div>
     <div
       class="euiPopover euiColorStopPopover emotion-euiPopover-euiColorStopThumbPopover"
-      style="left:0%"
+      style="left: 0%;"
     >
       <div
         class="euiPopover__anchor euiColorStopThumbPopover__anchor css-16vtueo-render"
@@ -276,7 +279,7 @@ exports[`renders disabled EuiColorStops 1`] = `
           data-test-subj="euiColorStopThumb"
           disabled=""
           role="slider"
-          style="background:rgb(255,0,0)"
+          style="background: rgb(255, 0, 0);"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -285,7 +288,7 @@ exports[`renders disabled EuiColorStops 1`] = `
     </div>
     <div
       class="euiPopover euiColorStopPopover emotion-euiPopover-euiColorStopThumbPopover"
-      style="left:21%"
+      style="left: 21%;"
     >
       <div
         class="euiPopover__anchor euiColorStopThumbPopover__anchor css-16vtueo-render"
@@ -302,7 +305,7 @@ exports[`renders disabled EuiColorStops 1`] = `
           data-test-subj="euiColorStopThumb"
           disabled=""
           role="slider"
-          style="background:rgb(0,255,0)"
+          style="background: rgb(0, 255, 0);"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -311,7 +314,7 @@ exports[`renders disabled EuiColorStops 1`] = `
     </div>
     <div
       class="euiPopover euiColorStopPopover emotion-euiPopover-euiColorStopThumbPopover"
-      style="left:29.4%"
+      style="left: 29.4%;"
     >
       <div
         class="euiPopover__anchor euiColorStopThumbPopover__anchor css-16vtueo-render"
@@ -328,7 +331,7 @@ exports[`renders disabled EuiColorStops 1`] = `
           data-test-subj="euiColorStopThumb"
           disabled=""
           role="slider"
-          style="background:rgb(0,0,255)"
+          style="background: rgb(0, 0, 255);"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -360,7 +363,8 @@ exports[`renders empty EuiColorStops 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,);margin-inline-start:0%;inline-size:100%"
+        data-test-subj="euiRangeHighlightProgress"
+        style="margin-inline-start: 0%; inline-size: 100%;"
       />
     </div>
     <div
@@ -369,7 +373,7 @@ exports[`renders empty EuiColorStops 1`] = `
     >
       <div
         class="euiColorStops__addTarget emotion-euiColorStops__addTarget"
-        style="left:0%"
+        style="left: 0%;"
       />
     </div>
   </div>
@@ -397,7 +401,8 @@ exports[`renders fixed stop EuiColorStops 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,transparent, transparent undefined%, rgb(255,0,0) undefined%, rgb(255,0,0) undefined%,rgb(0,255,0) undefined%, rgb(0,255,0) undefined%,rgb(0,0,255) undefined%);margin-inline-start:0%;inline-size:100%"
+        data-test-subj="euiRangeHighlightProgress"
+        style="margin-inline-start: 0%; inline-size: 100%;"
       />
     </div>
     <div
@@ -406,12 +411,12 @@ exports[`renders fixed stop EuiColorStops 1`] = `
     >
       <div
         class="euiColorStops__addTarget emotion-euiColorStops__addTarget"
-        style="left:0%"
+        style="left: 0%;"
       />
     </div>
     <div
       class="euiPopover euiColorStopPopover emotion-euiPopover-euiColorStopThumbPopover"
-      style="left:0%"
+      style="left: 0%;"
     >
       <div
         class="euiPopover__anchor euiColorStopThumbPopover__anchor css-16vtueo-render"
@@ -427,7 +432,7 @@ exports[`renders fixed stop EuiColorStops 1`] = `
           data-index="euiColorStop_0"
           data-test-subj="euiColorStopThumb"
           role="slider"
-          style="background:rgb(255,0,0)"
+          style="background: rgb(255, 0, 0);"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -436,7 +441,7 @@ exports[`renders fixed stop EuiColorStops 1`] = `
     </div>
     <div
       class="euiPopover euiColorStopPopover emotion-euiPopover-euiColorStopThumbPopover"
-      style="left:21%"
+      style="left: 21%;"
     >
       <div
         class="euiPopover__anchor euiColorStopThumbPopover__anchor css-16vtueo-render"
@@ -452,7 +457,7 @@ exports[`renders fixed stop EuiColorStops 1`] = `
           data-index="euiColorStop_1"
           data-test-subj="euiColorStopThumb"
           role="slider"
-          style="background:rgb(0,255,0)"
+          style="background: rgb(0, 255, 0);"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -461,7 +466,7 @@ exports[`renders fixed stop EuiColorStops 1`] = `
     </div>
     <div
       class="euiPopover euiColorStopPopover emotion-euiPopover-euiColorStopThumbPopover"
-      style="left:29.4%"
+      style="left: 29.4%;"
     >
       <div
         class="euiPopover__anchor euiColorStopThumbPopover__anchor css-16vtueo-render"
@@ -477,7 +482,7 @@ exports[`renders fixed stop EuiColorStops 1`] = `
           data-index="euiColorStop_2"
           data-test-subj="euiColorStopThumb"
           role="slider"
-          style="background:rgb(0,0,255)"
+          style="background: rgb(0, 0, 255);"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -509,7 +514,8 @@ exports[`renders free-range EuiColorStops 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,);margin-inline-start:0%;inline-size:100%"
+        data-test-subj="euiRangeHighlightProgress"
+        style="margin-inline-start: 0%; inline-size: 100%;"
       />
     </div>
     <div
@@ -518,7 +524,7 @@ exports[`renders free-range EuiColorStops 1`] = `
     >
       <div
         class="euiColorStops__addTarget emotion-euiColorStops__addTarget"
-        style="left:0%"
+        style="left: 0%;"
       />
     </div>
   </div>
@@ -546,7 +552,8 @@ exports[`renders fullWidth EuiColorStops 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,transparent, transparent undefined%, rgb(255,0,0) undefined%,rgb(0,255,0) undefined%,rgb(0,0,255) undefined%);margin-inline-start:0%;inline-size:100%"
+        data-test-subj="euiRangeHighlightProgress"
+        style="margin-inline-start: 0%; inline-size: 100%;"
       />
     </div>
     <div
@@ -555,12 +562,12 @@ exports[`renders fullWidth EuiColorStops 1`] = `
     >
       <div
         class="euiColorStops__addTarget emotion-euiColorStops__addTarget"
-        style="left:0%"
+        style="left: 0%;"
       />
     </div>
     <div
       class="euiPopover euiColorStopPopover emotion-euiPopover-euiColorStopThumbPopover"
-      style="left:0%"
+      style="left: 0%;"
     >
       <div
         class="euiPopover__anchor euiColorStopThumbPopover__anchor css-16vtueo-render"
@@ -576,7 +583,7 @@ exports[`renders fullWidth EuiColorStops 1`] = `
           data-index="euiColorStop_0"
           data-test-subj="euiColorStopThumb"
           role="slider"
-          style="background:rgb(255,0,0)"
+          style="background: rgb(255, 0, 0);"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -585,7 +592,7 @@ exports[`renders fullWidth EuiColorStops 1`] = `
     </div>
     <div
       class="euiPopover euiColorStopPopover emotion-euiPopover-euiColorStopThumbPopover"
-      style="left:21%"
+      style="left: 21%;"
     >
       <div
         class="euiPopover__anchor euiColorStopThumbPopover__anchor css-16vtueo-render"
@@ -601,7 +608,7 @@ exports[`renders fullWidth EuiColorStops 1`] = `
           data-index="euiColorStop_1"
           data-test-subj="euiColorStopThumb"
           role="slider"
-          style="background:rgb(0,255,0)"
+          style="background: rgb(0, 255, 0);"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -610,7 +617,7 @@ exports[`renders fullWidth EuiColorStops 1`] = `
     </div>
     <div
       class="euiPopover euiColorStopPopover emotion-euiPopover-euiColorStopThumbPopover"
-      style="left:29.4%"
+      style="left: 29.4%;"
     >
       <div
         class="euiPopover__anchor euiColorStopThumbPopover__anchor css-16vtueo-render"
@@ -626,7 +633,7 @@ exports[`renders fullWidth EuiColorStops 1`] = `
           data-index="euiColorStop_2"
           data-test-subj="euiColorStopThumb"
           role="slider"
-          style="background:rgb(0,0,255)"
+          style="background: rgb(0, 0, 255);"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -658,7 +665,8 @@ exports[`renders max-only EuiColorStops 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,);margin-inline-start:0%;inline-size:100%"
+        data-test-subj="euiRangeHighlightProgress"
+        style="margin-inline-start: 0%; inline-size: 100%;"
       />
     </div>
     <div
@@ -667,7 +675,7 @@ exports[`renders max-only EuiColorStops 1`] = `
     >
       <div
         class="euiColorStops__addTarget emotion-euiColorStops__addTarget"
-        style="left:0%"
+        style="left: 0%;"
       />
     </div>
   </div>
@@ -695,7 +703,8 @@ exports[`renders min-only EuiColorStops 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,);margin-inline-start:0%;inline-size:100%"
+        data-test-subj="euiRangeHighlightProgress"
+        style="margin-inline-start: 0%; inline-size: 100%;"
       />
     </div>
     <div
@@ -704,7 +713,7 @@ exports[`renders min-only EuiColorStops 1`] = `
     >
       <div
         class="euiColorStops__addTarget emotion-euiColorStops__addTarget"
-        style="left:0%"
+        style="left: 0%;"
       />
     </div>
   </div>
@@ -732,7 +741,8 @@ exports[`renders readOnly EuiColorStops 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
-        style="background:linear-gradient(to right,transparent, transparent undefined%, rgb(255,0,0) undefined%,rgb(0,255,0) undefined%,rgb(0,0,255) undefined%);margin-inline-start:0%;inline-size:100%"
+        data-test-subj="euiRangeHighlightProgress"
+        style="margin-inline-start: 0%; inline-size: 100%;"
       />
     </div>
     <div
@@ -741,12 +751,12 @@ exports[`renders readOnly EuiColorStops 1`] = `
     >
       <div
         class="euiColorStops__addTarget emotion-euiColorStops__addTarget"
-        style="left:0%"
+        style="left: 0%;"
       />
     </div>
     <div
       class="euiPopover euiColorStopPopover emotion-euiPopover-euiColorStopThumbPopover"
-      style="left:0%"
+      style="left: 0%;"
     >
       <div
         class="euiPopover__anchor euiColorStopThumbPopover__anchor css-16vtueo-render"
@@ -762,7 +772,7 @@ exports[`renders readOnly EuiColorStops 1`] = `
           data-index="euiColorStop_0"
           data-test-subj="euiColorStopThumb"
           role="slider"
-          style="background:rgb(255,0,0)"
+          style="background: rgb(255, 0, 0);"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -771,7 +781,7 @@ exports[`renders readOnly EuiColorStops 1`] = `
     </div>
     <div
       class="euiPopover euiColorStopPopover emotion-euiPopover-euiColorStopThumbPopover"
-      style="left:21%"
+      style="left: 21%;"
     >
       <div
         class="euiPopover__anchor euiColorStopThumbPopover__anchor css-16vtueo-render"
@@ -787,7 +797,7 @@ exports[`renders readOnly EuiColorStops 1`] = `
           data-index="euiColorStop_1"
           data-test-subj="euiColorStopThumb"
           role="slider"
-          style="background:rgb(0,255,0)"
+          style="background: rgb(0, 255, 0);"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -796,7 +806,7 @@ exports[`renders readOnly EuiColorStops 1`] = `
     </div>
     <div
       class="euiPopover euiColorStopPopover emotion-euiPopover-euiColorStopThumbPopover"
-      style="left:29.4%"
+      style="left: 29.4%;"
     >
       <div
         class="euiPopover__anchor euiColorStopThumbPopover__anchor css-16vtueo-render"
@@ -812,7 +822,7 @@ exports[`renders readOnly EuiColorStops 1`] = `
           data-index="euiColorStop_2"
           data-test-subj="euiColorStopThumb"
           role="slider"
-          style="background:rgb(0,0,255)"
+          style="background: rgb(0, 0, 255);"
           tabindex="-1"
           title="Click to edit, drag to reposition"
           type="button"
@@ -821,16 +831,4 @@ exports[`renders readOnly EuiColorStops 1`] = `
     </div>
   </div>
 </div>
-`;
-
-exports[`renders stepped stop EuiColorStops 1`] = `
-Object {
-  "0": "background",
-  "1": "margin-inline-start",
-  "2": "inline-size",
-  "background": "linear-gradient(to right,transparent, transparent undefined%, rgb(255,0,0) undefined%, rgb(255,0,0) undefined%,rgb(0,255,0) undefined%, rgb(0,255,0) undefined%,rgb(0,0,255) undefined%)",
-  "inline-size": "100%",
-  "length": 3,
-  "margin-inline-start": "0%",
-}
 `;

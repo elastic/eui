@@ -7,10 +7,9 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { fireEvent } from '@testing-library/react';
-import { waitForEuiToolTipVisible } from '../../test/rtl';
 import { requiredProps } from '../../test';
+import { render, waitForEuiToolTipVisible } from '../../test/rtl';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiIconTip } from './icon_tip';
@@ -28,41 +27,41 @@ describe('EuiIconTip', () => {
   );
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiIconTip title="title" id="id" content="content" {...requiredProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('type', () => {
       test('is rendered as the icon', () => {
-        const component = render(
+        const { container } = render(
           <EuiIconTip type="warning" id="id" content="content" />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('color', () => {
       test('is rendered as the icon color', () => {
-        const component = render(
+        const { container } = render(
           <EuiIconTip color="warning" id="id" content="content" />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('size', () => {
       test('is rendered as the icon size', () => {
-        const component = render(
+        const { container } = render(
           <EuiIconTip size="xl" id="id" content="content" />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });

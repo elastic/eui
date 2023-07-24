@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
 
 import {
   EuiPageSideBar_Deprecated as EuiPageSideBar,
@@ -17,23 +17,23 @@ import {
 
 describe('EuiPageSideBar', () => {
   test('is rendered', () => {
-    const component = render(<EuiPageSideBar {...requiredProps} />);
+    const { container } = render(<EuiPageSideBar {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('sticky is rendered', () => {
-    const component = render(<EuiPageSideBar sticky />);
+    const { container } = render(<EuiPageSideBar sticky />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('paddingSize', () => {
     PADDING_SIZES.forEach((size) => {
       it(`${size} is rendered`, () => {
-        const component = render(<EuiPageSideBar paddingSize={size} />);
+        const { container } = render(<EuiPageSideBar paddingSize={size} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });

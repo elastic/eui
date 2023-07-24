@@ -7,47 +7,47 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
 
 import { EuiHeaderSectionItem } from './header_section_item';
 
 describe('EuiHeaderSectionItem', () => {
   test('is rendered', () => {
-    const component = render(<EuiHeaderSectionItem {...requiredProps} />);
+    const { container } = render(<EuiHeaderSectionItem {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('renders children', () => {
-    const component = render(
+    const { container } = render(
       <EuiHeaderSectionItem>
         <span>Call me Ishmael.</span>
       </EuiHeaderSectionItem>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('border', () => {
     test('defaults to left', () => {
-      const component = render(
+      const { container } = render(
         <EuiHeaderSectionItem>
           <span>Left is default</span>
         </EuiHeaderSectionItem>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('renders right', () => {
-      const component = render(
+      const { container } = render(
         <EuiHeaderSectionItem border="right">
           <span>Right section</span>
         </EuiHeaderSectionItem>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });

@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiTableFooterCell } from './table_footer_cell';
 
@@ -29,66 +29,70 @@ describe('EuiTableFooterCell', () => {
   });
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiTableFooterCell {...requiredProps}>children</EuiTableFooterCell>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('align', () => {
     test('defaults to left', () => {
-      const component = <EuiTableFooterCell />;
+      const { container } = render(<EuiTableFooterCell />);
 
-      expect(render(component)).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('renders right when specified', () => {
-      const component = <EuiTableFooterCell align={RIGHT_ALIGNMENT} />;
+      const { container } = render(
+        <EuiTableFooterCell align={RIGHT_ALIGNMENT} />
+      );
 
-      expect(render(component)).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('renders center when specified', () => {
-      const component = <EuiTableFooterCell align={CENTER_ALIGNMENT} />;
+      const { container } = render(
+        <EuiTableFooterCell align={CENTER_ALIGNMENT} />
+      );
 
-      expect(render(component)).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
   describe('width and style', () => {
     test('accepts style attribute', () => {
-      const component = (
+      const { container } = render(
         <EuiTableFooterCell style={{ width: '20%' }}>Test</EuiTableFooterCell>
       );
 
-      expect(render(component)).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('accepts width attribute', () => {
-      const component = (
+      const { container } = render(
         <EuiTableFooterCell width="10%">Test</EuiTableFooterCell>
       );
 
-      expect(render(component)).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('accepts width attribute as number', () => {
-      const component = (
+      const { container } = render(
         <EuiTableFooterCell width={100}>Test</EuiTableFooterCell>
       );
 
-      expect(render(component)).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('resolves style and width attribute', () => {
-      const component = (
+      const { container } = render(
         <EuiTableFooterCell width="10%" style={{ width: '20%' }}>
           Test
         </EuiTableFooterCell>
       );
 
-      expect(render(component)).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });

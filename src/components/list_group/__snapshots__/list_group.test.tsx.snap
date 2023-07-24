@@ -245,14 +245,14 @@ exports[`EuiListGroup props gutter size s is rendered 1`] = `
 exports[`EuiListGroup props maxWidth as a number is rendered 1`] = `
 <ul
   class="euiListGroup emotion-euiListGroup-s"
-  style="max-inline-size:300px"
+  style="max-inline-size: 300px;"
 />
 `;
 
 exports[`EuiListGroup props maxWidth as a string is rendered 1`] = `
 <ul
   class="euiListGroup emotion-euiListGroup-s"
-  style="max-inline-size:20em"
+  style="max-inline-size: 20em;"
 />
 `;
 

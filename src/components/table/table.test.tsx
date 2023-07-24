@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiTable } from './table';
 import { EuiTableRow } from './table_row';
@@ -18,7 +18,7 @@ import { EuiTableHeader } from './table_header';
 import { EuiTableHeaderCell } from './table_header_cell';
 
 test('renders EuiTable', () => {
-  const component = (
+  const { container } = render(
     <EuiTable {...requiredProps}>
       <EuiTableHeader>
         <EuiTableHeaderCell>Hi Title</EuiTableHeaderCell>
@@ -34,5 +34,5 @@ test('renders EuiTable', () => {
       </EuiTableBody>
     </EuiTable>
   );
-  expect(render(component)).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });

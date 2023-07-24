@@ -7,7 +7,8 @@
  */
 
 import React from 'react';
-import { render, mount } from 'enzyme';
+import { mount } from 'enzyme';
+import { render } from '../../../test/rtl';
 
 import { EuiColorStops } from './color_stops';
 
@@ -48,7 +49,7 @@ shouldRenderCustomStyles(
 );
 
 test('renders EuiColorStops', () => {
-  const colorStops = render(
+  const { container } = render(
     <EuiColorStops
       label="Test"
       onChange={onChange}
@@ -58,11 +59,11 @@ test('renders EuiColorStops', () => {
       {...requiredProps}
     />
   );
-  expect(colorStops).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
 
 test('renders free-range EuiColorStops', () => {
-  const colorStops = render(
+  const { container } = render(
     <EuiColorStops
       label="Test"
       onChange={onChange}
@@ -70,11 +71,11 @@ test('renders free-range EuiColorStops', () => {
       {...requiredProps}
     />
   );
-  expect(colorStops).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
 
 test('renders min-only EuiColorStops', () => {
-  const colorStops = render(
+  const { container } = render(
     <EuiColorStops
       label="Test"
       onChange={onChange}
@@ -83,11 +84,11 @@ test('renders min-only EuiColorStops', () => {
       {...requiredProps}
     />
   );
-  expect(colorStops).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
 
 test('renders max-only EuiColorStops', () => {
-  const colorStops = render(
+  const { container } = render(
     <EuiColorStops
       label="Test"
       onChange={onChange}
@@ -96,11 +97,11 @@ test('renders max-only EuiColorStops', () => {
       {...requiredProps}
     />
   );
-  expect(colorStops).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
 
 test('renders compressed EuiColorStops', () => {
-  const colorStops = render(
+  const { container } = render(
     <EuiColorStops
       label="Test"
       onChange={onChange}
@@ -111,11 +112,11 @@ test('renders compressed EuiColorStops', () => {
       {...requiredProps}
     />
   );
-  expect(colorStops).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
 
 test('renders readOnly EuiColorStops', () => {
-  const colorStops = render(
+  const { container } = render(
     <EuiColorStops
       label="Test"
       onChange={onChange}
@@ -126,11 +127,11 @@ test('renders readOnly EuiColorStops', () => {
       {...requiredProps}
     />
   );
-  expect(colorStops).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
 
 test('renders fullWidth EuiColorStops', () => {
-  const colorStops = render(
+  const { container } = render(
     <EuiColorStops
       label="Test"
       onChange={onChange}
@@ -141,11 +142,11 @@ test('renders fullWidth EuiColorStops', () => {
       {...requiredProps}
     />
   );
-  expect(colorStops).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
 
 test('renders disabled EuiColorStops', () => {
-  const colorStops = render(
+  const { container } = render(
     <EuiColorStops
       label="Test"
       onChange={onChange}
@@ -156,11 +157,11 @@ test('renders disabled EuiColorStops', () => {
       {...requiredProps}
     />
   );
-  expect(colorStops).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
 
 test('renders fixed stop EuiColorStops', () => {
-  const colorStops = render(
+  const { container } = render(
     <EuiColorStops
       label="Test"
       onChange={onChange}
@@ -171,11 +172,11 @@ test('renders fixed stop EuiColorStops', () => {
       {...requiredProps}
     />
   );
-  expect(colorStops).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
 
 test('renders stepped stop EuiColorStops', () => {
-  const colorStops = render(
+  const { getByTestSubject } = render(
     <EuiColorStops
       label="Test"
       onChange={onChange}
@@ -187,13 +188,14 @@ test('renders stepped stop EuiColorStops', () => {
       {...requiredProps}
     />
   );
+
   expect(
-    colorStops.find('.euiRangeHighlight__progress').prop('style')
-  ).toMatchSnapshot();
+    getByTestSubject('euiRangeHighlightProgress').getAttribute('style')
+  ).toEqual('margin-inline-start: 0%; inline-size: 100%;');
 });
 
 test('renders empty EuiColorStops', () => {
-  const colorStops = render(
+  const { container } = render(
     <EuiColorStops
       label="Test"
       onChange={onChange}
@@ -203,7 +205,7 @@ test('renders empty EuiColorStops', () => {
       {...requiredProps}
     />
   );
-  expect(colorStops).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
 
 test('popover color selector is shown when the thumb is clicked', () => {

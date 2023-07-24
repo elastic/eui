@@ -7,27 +7,27 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { EuiFormControlLayoutClearButton } from './form_control_layout_clear_button';
 import { requiredProps } from '../../../test';
+import { render } from '../../../test/rtl';
+import { EuiFormControlLayoutClearButton } from './form_control_layout_clear_button';
 
 describe('EuiFormControlLayoutClearButton', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiFormControlLayoutClearButton
         onClick={() => null}
         {...requiredProps}
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('size is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiFormControlLayoutClearButton onClick={() => null} size="s" />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

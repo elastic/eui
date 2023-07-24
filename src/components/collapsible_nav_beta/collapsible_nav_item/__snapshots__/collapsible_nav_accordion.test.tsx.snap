@@ -1,0 +1,139 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiCollapsibleNavAccordion renders as a sub item 1`] = `
+<div
+  class="euiAccordion euiCollapsibleNavAccordion emotion-euiCollapsibleNavAccordion-isSubItem"
+>
+  <div
+    class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
+  >
+    <div
+      aria-controls="generated-id"
+      class="euiAccordion__button emotion-euiAccordion__button"
+      id="generated-id"
+    >
+      <span
+        class="euiAccordion__buttonContent"
+      >
+        <span
+          class="euiCollapsibleNavLink emotion-euiCollapsibleNavLink-isSubItem"
+        >
+          Accordion header
+        </span>
+      </span>
+    </div>
+    <button
+      aria-controls="generated-id"
+      aria-expanded="false"
+      aria-labelledby="generated-id"
+      class="euiButtonIcon euiAccordion__iconButton euiAccordion__iconButton--right emotion-euiButtonIcon-xs-empty-text-euiAccordion__iconButton-arrowRight-euiCollapsibleNavAccordion__arrow"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="arrowRight"
+      />
+    </button>
+  </div>
+  <div
+    aria-labelledby="generated-id"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    id="generated-id"
+    role="region"
+    tabindex="-1"
+  >
+    <div>
+      <div
+        class="euiAccordion__children emotion-euiAccordion__children"
+      >
+        <div
+          class="euiCollapsibleNavAccordion__children emotion-euiCollapsibleNavAccordion__children-isSubItem"
+        >
+          <span
+            class="euiCollapsibleNavLink euiCollapsibleNavItem euiCollapsibleNavSubItem emotion-euiCollapsibleNavLink-isSubItem"
+          >
+            <span
+              class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
+            >
+              sub item
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiCollapsibleNavAccordion renders as a top level item 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiAccordion euiCollapsibleNavAccordion testClass1 testClass2 emotion-euiCollapsibleNavAccordion-isTopItem-euiTestCss"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
+  >
+    <div
+      aria-controls="generated-id"
+      class="euiAccordion__button emotion-euiAccordion__button"
+      id="generated-id"
+    >
+      <span
+        class="euiAccordion__buttonContent"
+      >
+        <span
+          class="euiCollapsibleNavLink emotion-euiCollapsibleNavLink-isTopItem"
+        >
+          Accordion header
+        </span>
+      </span>
+    </div>
+    <button
+      aria-controls="generated-id"
+      aria-expanded="false"
+      aria-labelledby="generated-id"
+      class="euiButtonIcon euiAccordion__iconButton euiAccordion__iconButton--right emotion-euiButtonIcon-xs-empty-text-euiAccordion__iconButton-arrowRight-euiCollapsibleNavAccordion__arrow"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="arrowRight"
+      />
+    </button>
+  </div>
+  <div
+    aria-labelledby="generated-id"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    id="generated-id"
+    role="region"
+    tabindex="-1"
+  >
+    <div>
+      <div
+        class="euiAccordion__children emotion-euiAccordion__children"
+      >
+        <div
+          class="euiCollapsibleNavAccordion__children emotion-euiCollapsibleNavAccordion__children-isTopItem"
+        >
+          <span
+            class="euiCollapsibleNavLink euiCollapsibleNavItem euiCollapsibleNavSubItem emotion-euiCollapsibleNavLink-isSubItem"
+          >
+            <span
+              class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
+            >
+              sub item
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

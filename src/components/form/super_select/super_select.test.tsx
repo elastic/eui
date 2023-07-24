@@ -7,9 +7,10 @@
  */
 
 import React from 'react';
-import { mount, render } from 'enzyme';
+import { mount } from 'enzyme';
 import { requiredProps, takeMountedSnapshot } from '../../../test';
 import { shouldRenderCustomStyles } from '../../../test/internal';
+import { render } from '../../../test/rtl';
 
 import { EuiSuperSelect } from './super_select';
 
@@ -29,7 +30,7 @@ describe('EuiSuperSelect', () => {
   );
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiSuperSelect
         {...requiredProps}
         options={options}
@@ -37,12 +38,12 @@ describe('EuiSuperSelect', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     test('fullWidth is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiSuperSelect
           {...requiredProps}
           options={options}
@@ -51,11 +52,11 @@ describe('EuiSuperSelect', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('compressed is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiSuperSelect
           {...requiredProps}
           options={options}
@@ -64,11 +65,11 @@ describe('EuiSuperSelect', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('is rendered with a prepend and append', () => {
-      const component = render(
+      const { container } = render(
         <EuiSuperSelect
           {...requiredProps}
           options={options}
@@ -78,11 +79,11 @@ describe('EuiSuperSelect', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('select component is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiSuperSelect
           options={[
             { value: '1', inputDisplay: 'Option #1' },
@@ -92,7 +93,7 @@ describe('EuiSuperSelect', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('options are rendered when select is open', () => {
@@ -110,7 +111,7 @@ describe('EuiSuperSelect', () => {
     });
 
     test('valueSelected is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiSuperSelect
           options={options}
           valueOfSelected="2"
@@ -118,7 +119,7 @@ describe('EuiSuperSelect', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('custom display is propagated to dropdown', () => {
