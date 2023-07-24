@@ -12,6 +12,7 @@ import { renderHook } from '@testing-library/react-hooks';
 import {
   EuiComponentDefaultsProvider,
   useComponentDefaults,
+  usePropsWithComponentDefaults,
 } from './component_defaults';
 
 describe('EuiComponentDefaultsProvider', () => {
@@ -43,6 +44,99 @@ describe('EuiComponentDefaultsProvider', () => {
           },
         }
       `);
+    });
+  });
+
+  describe('usePropsWithComponentDefaults', () => {
+    const wrapper = ({ children }: PropsWithChildren<{}>) => (
+      <EuiComponentDefaultsProvider
+        componentDefaults={{
+          EuiTablePagination: {
+            itemsPerPage: 20,
+            itemsPerPageOptions: [20, 40, 80, 0],
+          },
+        }}
+      >
+        {children}
+      </EuiComponentDefaultsProvider>
+    );
+
+    it("returns a specific component's provided default props", () => {
+      const { result } = renderHook(
+        () => usePropsWithComponentDefaults('EuiTablePagination', {}),
+        { wrapper }
+      );
+
+      expect(result.current).toEqual({
+        itemsPerPage: 20,
+        itemsPerPageOptions: [20, 40, 80, 0],
+      });
+    });
+
+    it('correctly overrides defaults with actual props passed', () => {
+      const { result } = renderHook(
+        () =>
+          usePropsWithComponentDefaults('EuiTablePagination', {
+            itemsPerPageOptions: [5, 10, 20],
+          }),
+        { wrapper }
+      );
+
+      expect(result.current).toEqual({
+        itemsPerPage: 20,
+        itemsPerPageOptions: [5, 10, 20],
+      });
+    });
+
+    it('correctly handles props without a default defined', () => {
+      const { result } = renderHook(
+        () =>
+          usePropsWithComponentDefaults('EuiTablePagination', {
+            showPerPageOptions: false,
+          }),
+        { wrapper }
+      );
+
+      expect(result.current).toEqual({
+        itemsPerPage: 20,
+        itemsPerPageOptions: [20, 40, 80, 0],
+        showPerPageOptions: false,
+      });
+    });
+
+    it('correctly handles components with no defaults defined', () => {
+      const { result } = renderHook(
+        () =>
+          usePropsWithComponentDefaults('EuiFocusTrap', {
+            children: 'test',
+            crossFrame: true,
+          }),
+        { wrapper }
+      );
+
+      expect(result.current).toEqual({
+        children: 'test',
+        crossFrame: true,
+      });
+    });
+
+    it('correctly handles no component defaults defined at all', () => {
+      const wrapper = ({ children }: PropsWithChildren<{}>) => (
+        <EuiComponentDefaultsProvider>{children}</EuiComponentDefaultsProvider>
+      );
+      const { result } = renderHook(
+        () =>
+          usePropsWithComponentDefaults('EuiFocusTrap', {
+            children: 'test',
+            gapMode: 'margin',
+          }),
+        { wrapper }
+      );
+
+      expect(result.current).toEqual({
+        children: 'test',
+        gapMode: 'margin',
+      });
     });
   });
 
