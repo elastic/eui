@@ -50,6 +50,7 @@ exports[`EuiKeyPadMenuItem checkable renders as radio 1`] = `
         id="generated-id"
         name="single"
         type="radio"
+        value=""
       />
       <div
         class="euiRadio__circle"

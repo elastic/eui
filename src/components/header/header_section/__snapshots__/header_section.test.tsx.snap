@@ -23,7 +23,7 @@ exports[`EuiHeaderSection is rendered 1`] = `
 exports[`EuiHeaderSection renders optional params 1`] = `
 <div
   class="euiHeaderSection euiHeaderSection--dontGrow euiHeaderSection--left"
-  style="color:blue"
+  style="color: blue;"
 >
   <span>
     Some years ago never mind how long precisely...
