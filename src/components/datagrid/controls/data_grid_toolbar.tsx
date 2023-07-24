@@ -12,6 +12,7 @@ import {
   EuiDataGridToolbarProps,
   EuiDataGridToolBarVisibilityOptions,
   EuiDataGridToolBarAdditionalControlsOptions,
+  EuiDataGridToolBarAdditionalControlsLeftOptions,
 } from '../data_grid_types';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { IS_JEST_ENVIRONMENT } from '../../../utils';
@@ -114,49 +115,61 @@ export function checkOrDefaultToolBarDisplayOptions<
   }
 }
 
-export function renderAdditionalControls(
+export const renderAdditionalControls = (
   toolbarVisibility: EuiDataGridProps['toolbarVisibility'],
   position: 'left.prepend' | 'left.append' | 'right'
-): ReactNode {
+): ReactNode => {
   if (typeof toolbarVisibility === 'boolean') return null;
   const { additionalControls } = toolbarVisibility || {};
   if (!additionalControls) return null;
 
-  // API backwards compatability: if the consumer passed a single ReactNode to `additionalControls`,
-  // default to the left append position.
-  if (isValidElement(additionalControls)) {
-    if (position !== 'left.append') return null;
-
+  // API backwards compatability: if the consumer passed a single ReactNode
+  // to `additionalControls`, default to the left append position.
+  if (isValidElement(additionalControls) && position === 'left.append') {
     return additionalControls;
   }
-
   if (typeof additionalControls !== 'object') {
     return null;
   }
 
-  const additionalControlsObj =
-    additionalControls as EuiDataGridToolBarAdditionalControlsOptions;
+  const handleLeftObjectConfig = (
+    leftConfig: EuiDataGridToolBarAdditionalControlsLeftOptions
+  ) => {
+    if (position === 'left.prepend') {
+      return leftConfig.prepend;
+    }
+    if (position === 'left.append') {
+      return leftConfig.append;
+    }
+  };
 
-  if (position === 'right') {
-    return additionalControlsObj.right;
-  }
+  const handleObjectConfig = (
+    additionalControls: EuiDataGridToolBarAdditionalControlsOptions
+  ) => {
+    if (position === 'right') {
+      return additionalControls.right;
+    }
+    // API backwards compatability: If the consumer passed a single ReactNode
+    // to `additionalControls.left`, default to the left append position
+    if (isValidElement(additionalControls.left) && position === 'left.append') {
+      return additionalControls.left;
+    }
+    if (
+      additionalControls.left &&
+      typeof additionalControls.left === 'object'
+    ) {
+      return handleLeftObjectConfig(
+        additionalControls.left as EuiDataGridToolBarAdditionalControlsLeftOptions
+      );
+    }
+  };
 
-  if (isValidElement(additionalControlsObj.left)) {
-    if (position !== 'left.append') return null;
+  const rendered = handleObjectConfig(
+    additionalControls as EuiDataGridToolBarAdditionalControlsOptions
+  );
 
-    return additionalControlsObj.left;
-  }
-
-  if (typeof additionalControlsObj.left !== 'object') {
-    return null;
-  }
-
-  if (position === 'left.prepend') {
-    return additionalControlsObj.left as ReactNode;
-  }
-
-  return null;
-}
+  return rendered || null;
+};
 
 /**
  * Utility helper for selectors/controls that allow nested options
@@ -168,7 +181,7 @@ export function getNestedObjectOptions<T>(
   objectKey: keyof T
 ): boolean {
   // If the config is a boolean, nested options follow that boolean
-  if (controlOption === false || controlOption === true) return controlOption;
+  if (typeof controlOption === 'boolean') return controlOption;
   // If config is not defined, default to enabled
   if (controlOption == null) return true;
   // Otherwise, type should be an object of boolean values - dive into it and return the value
