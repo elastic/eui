@@ -47,60 +47,21 @@ type EuiComponentDefaultsSupportedComponents = {
   EuiTablePagination: EuiTablePaginationProps;
 };
 
-/**
- * The above types are external/consumer facing and have many optional props
- * The below types reflect props EUI provides defaults for and should always
- * be present within the internal context
- */
-type _EuiComponentDefaults = Required<EuiComponentDefaults> & {
-  EuiTablePagination: Required<EuiComponentDefaults['EuiTablePagination']>;
-};
-
-export const EUI_COMPONENT_DEFAULTS: _EuiComponentDefaults = {
-  EuiPortal: {},
-  EuiFocusTrap: {},
-  EuiTablePagination: {
-    itemsPerPage: 50,
-    itemsPerPageOptions: [10, 20, 50, 100],
-    showPerPageOptions: true,
-  },
-};
+// Declaring as a static const for reference integrity/reducing rerenders
+const emptyDefaults = {};
 
 /*
  * Context
  */
-export const EuiComponentDefaultsContext = createContext<_EuiComponentDefaults>(
-  EUI_COMPONENT_DEFAULTS
-);
+export const EuiComponentDefaultsContext =
+  createContext<EuiComponentDefaults>(emptyDefaults);
 
 /*
  * Component
  */
 export const EuiComponentDefaultsProvider: FunctionComponent<{
   componentDefaults?: EuiComponentDefaults;
-}> = ({ componentDefaults: configuredDefaults, children }) => {
-  // Merge consumer configured component props with baseline EUI component props
-  const componentDefaults: _EuiComponentDefaults = useMemo(() => {
-    if (!configuredDefaults) return EUI_COMPONENT_DEFAULTS;
-
-    const mergedDefaults: _EuiComponentDefaults = { ...EUI_COMPONENT_DEFAULTS };
-
-    Object.entries(configuredDefaults).forEach(
-      ([componentName, componentProps]) => {
-        Object.entries(componentProps as any).forEach(
-          ([propName, propValue]) => {
-            if (propValue !== undefined) {
-              // @ts-ignore Object.entries is inherently untyped, but we don't need it to be here
-              mergedDefaults[componentName][propName] = propValue;
-            }
-          }
-        );
-      }
-    );
-
-    return mergedDefaults;
-  }, [configuredDefaults]);
-
+}> = ({ componentDefaults = emptyDefaults, children }) => {
   return (
     <EuiComponentDefaultsContext.Provider value={componentDefaults}>
       {children}
