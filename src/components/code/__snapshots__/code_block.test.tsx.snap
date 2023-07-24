@@ -13,7 +13,27 @@ exports[`EuiCodeBlock dynamic content updates DOM when input changes 1`] = `
         class="euiCodeBlock__code emotion-euiCodeBlock__code"
         data-code-language="javascript"
       >
-        const value = 'State 1'
+        <span
+          class="euiCodeBlock__line emotion-euiCodeBlock__line"
+        >
+          <span
+            class="token keyword"
+          >
+            const
+          </span>
+           value 
+          <span
+            class="token operator"
+          >
+            =
+          </span>
+           
+          <span
+            class="token string"
+          >
+            'State 1'
+          </span>
+        </span>
       </code>
     </pre>
   </div>
@@ -33,7 +53,27 @@ exports[`EuiCodeBlock dynamic content updates DOM when input changes 2`] = `
         class="euiCodeBlock__code emotion-euiCodeBlock__code"
         data-code-language="javascript"
       >
-        const value = 'State 2'
+        <span
+          class="euiCodeBlock__line emotion-euiCodeBlock__line"
+        >
+          <span
+            class="token keyword"
+          >
+            const
+          </span>
+           value 
+          <span
+            class="token operator"
+          >
+            =
+          </span>
+           
+          <span
+            class="token string"
+          >
+            'State 2'
+          </span>
+        </span>
       </code>
     </pre>
   </div>
@@ -115,7 +155,7 @@ exports[`EuiCodeBlock line numbers renders annotated line numbers 1`] = `
       >
         <span
           class="euiCodeBlock__lineNumberWrapper emotion-euiCodeBlock__lineNumberWrapper"
-          style="inline-size:8px"
+          style="inline-size: 8px;"
         >
           <span
             aria-hidden="true"
@@ -153,7 +193,7 @@ exports[`EuiCodeBlock line numbers renders annotated line numbers 1`] = `
       >
         <span
           class="euiCodeBlock__lineNumberWrapper emotion-euiCodeBlock__lineNumberWrapper"
-          style="inline-size:8px"
+          style="inline-size: 8px;"
         >
           <span
             aria-hidden="true"
@@ -191,7 +231,7 @@ exports[`EuiCodeBlock line numbers renders highlighted line numbers 1`] = `
       >
         <span
           class="euiCodeBlock__lineNumberWrapper emotion-euiCodeBlock__lineNumberWrapper"
-          style="inline-size:8px"
+          style="inline-size: 8px;"
         >
           <span
             aria-hidden="true"
@@ -211,7 +251,7 @@ exports[`EuiCodeBlock line numbers renders highlighted line numbers 1`] = `
       >
         <span
           class="euiCodeBlock__lineNumberWrapper emotion-euiCodeBlock__lineNumberWrapper"
-          style="inline-size:8px"
+          style="inline-size: 8px;"
         >
           <span
             aria-hidden="true"
@@ -249,7 +289,7 @@ exports[`EuiCodeBlock line numbers renders line numbers 1`] = `
       >
         <span
           class="euiCodeBlock__lineNumberWrapper emotion-euiCodeBlock__lineNumberWrapper"
-          style="inline-size:8px"
+          style="inline-size: 8px;"
         >
           <span
             aria-hidden="true"
@@ -269,7 +309,7 @@ exports[`EuiCodeBlock line numbers renders line numbers 1`] = `
       >
         <span
           class="euiCodeBlock__lineNumberWrapper emotion-euiCodeBlock__lineNumberWrapper"
-          style="inline-size:8px"
+          style="inline-size: 8px;"
         >
           <span
             aria-hidden="true"
@@ -307,7 +347,7 @@ exports[`EuiCodeBlock line numbers renders line numbers with a start value 1`] =
       >
         <span
           class="euiCodeBlock__lineNumberWrapper emotion-euiCodeBlock__lineNumberWrapper"
-          style="inline-size:16px"
+          style="inline-size: 16px;"
         >
           <span
             aria-hidden="true"
@@ -327,7 +367,7 @@ exports[`EuiCodeBlock line numbers renders line numbers with a start value 1`] =
       >
         <span
           class="euiCodeBlock__lineNumberWrapper emotion-euiCodeBlock__lineNumberWrapper"
-          style="inline-size:16px"
+          style="inline-size: 16px;"
         >
           <span
             aria-hidden="true"
@@ -432,10 +472,10 @@ exports[`EuiCodeBlock props fontSize s is rendered 1`] = `
 
 exports[`EuiCodeBlock props isCopyable is rendered 1`] = `
 <div
-  class="euiCodeBlock emotion-euiCodeBlock-s"
+  class="euiCodeBlock emotion-euiCodeBlock-s-hasControls"
 >
   <pre
-    class="euiCodeBlock__pre emotion-euiCodeBlock__pre-preWrap-padding"
+    class="euiCodeBlock__pre emotion-euiCodeBlock__pre-preWrap-padding-controlsOffset"
     tabindex="-1"
   >
     <code
@@ -455,6 +495,31 @@ exports[`EuiCodeBlock props isCopyable is rendered 1`] = `
       </span>
     </code>
   </pre>
+  <div
+    class="euiCodeBlock__controls emotion-euiCodeBlock__controls-l"
+  >
+    <div
+      class="euiCodeBlock__copyButton"
+    >
+      <span
+        class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+      >
+        <button
+          aria-label="Copy"
+          class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
+          data-test-subj="euiCodeBlockCopy"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="copyClipboard"
+          />
+        </button>
+      </span>
+    </div>
+  </div>
 </div>
 `;
 
@@ -489,11 +554,11 @@ exports[`EuiCodeBlock props language is rendered 1`] = `
 exports[`EuiCodeBlock props overflowHeight is rendered 1`] = `
 <div
   class="euiCodeBlock emotion-euiCodeBlock-s-hasControls"
-  style="max-block-size:200px"
+  style="max-block-size: 200px;"
 >
   <pre
     class="euiCodeBlock__pre emotion-euiCodeBlock__pre-preWrap-padding-controlsOffset"
-    style="max-block-size:200px"
+    style="max-block-size: 200px;"
     tabindex="-1"
   >
     <code
@@ -735,14 +800,14 @@ exports[`EuiCodeBlock renders a code block 1`] = `
 exports[`EuiCodeBlock virtualization renders a virtualized code block 1`] = `
 <div
   class="euiCodeBlock testClass1 testClass2 emotion-euiCodeBlock-s-hasControls-euiTestCss"
-  style="block-size:50%"
+  style="block-size: 50%;"
 >
   <div
     data-eui="EuiAutoSizer"
   >
     <pre
       class="euiCodeBlock__pre emotion-euiCodeBlock__pre-pre-padding-controlsOffset"
-      style="position:relative;block-size:600px;inline-size:600px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
+      style="position: relative; block-size: 600px; inline-size: 600px; overflow: auto; will-change: transform; direction: ltr;"
       tabindex="0"
     >
       <code
@@ -750,18 +815,18 @@ exports[`EuiCodeBlock virtualization renders a virtualized code block 1`] = `
         class="euiCodeBlock__code emotion-euiCodeBlock__code-isVirtualized"
         data-code-language="text"
         data-test-subj="test subject string"
-        style="block-size:36px;inline-size:100%"
+        style="block-size: 36px; inline-size: 100%;"
       >
         <span
           class="euiCodeBlock__line emotion-euiCodeBlock__line"
-          style="position:absolute;inset-inline-start:0;inset-block-start:0;block-size:18px;inline-size:100%"
+          style="position: absolute; inset-inline-start: 0; inset-block-start: 0; block-size: 18px; inline-size: 100%;"
         >
           var some = 'code';
 
         </span>
         <span
           class="euiCodeBlock__line emotion-euiCodeBlock__line"
-          style="position:absolute;inset-inline-start:0;inset-block-start:18px;block-size:18px;inline-size:100%"
+          style="position: absolute; inset-inline-start: 0; inset-block-start: 18px; block-size: 18px; inline-size: 100%;"
         >
           console.log(some);
         </span>

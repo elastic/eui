@@ -7,9 +7,10 @@
  */
 
 import React from 'react';
-import { render, mount } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
+import { mount } from 'enzyme';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiExpression, COLORS } from './expression';
 
@@ -20,7 +21,7 @@ describe('EuiExpression', () => {
   );
 
   test('renders', () => {
-    const component = (
+    const { container } = render(
       <EuiExpression
         description="the answer is"
         value="42"
@@ -30,11 +31,11 @@ describe('EuiExpression', () => {
       />
     );
 
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('render with only description', () => {
-    const component = (
+    const { container } = render(
       <EuiExpression
         description="the answer is"
         isActive={false}
@@ -42,14 +43,14 @@ describe('EuiExpression', () => {
         {...requiredProps}
       />
     );
-    expect(render(component)).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('color', () => {
       COLORS.forEach((color) => {
         test(`${color} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiExpression
               description="the answer is"
               value="42"
@@ -58,14 +59,14 @@ describe('EuiExpression', () => {
             />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
 
     describe('uppercase', () => {
       test('true renders uppercase', () => {
-        const component = (
+        const { container } = render(
           <EuiExpression
             description="the answer is"
             value="42"
@@ -73,11 +74,11 @@ describe('EuiExpression', () => {
           />
         );
 
-        expect(render(component)).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('false renders inherited case', () => {
-        const component = (
+        const { container } = render(
           <EuiExpression
             description="the answer is"
             value="42"
@@ -85,13 +86,13 @@ describe('EuiExpression', () => {
           />
         );
 
-        expect(render(component)).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('display', () => {
       test('can be columns', () => {
-        const component = (
+        const { container } = render(
           <EuiExpression
             description="the answer is"
             value="42"
@@ -99,23 +100,23 @@ describe('EuiExpression', () => {
           />
         );
 
-        expect(render(component)).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('isInvalid', () => {
       test('renders error state', () => {
-        const component = (
+        const { container } = render(
           <EuiExpression description="the answer is" value="42" isInvalid />
         );
 
-        expect(render(component)).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('descriptionWidth', () => {
       test('changes the description&apos;s width when using columns', () => {
-        const component = (
+        const { container } = render(
           <EuiExpression
             description="the answer is"
             descriptionWidth={50}
@@ -125,13 +126,13 @@ describe('EuiExpression', () => {
           />
         );
 
-        expect(render(component)).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('textWrap', () => {
       test('can truncate text', () => {
-        const component = (
+        const { container } = render(
           <EuiExpression
             description="the answer is"
             value="42"
@@ -139,13 +140,13 @@ describe('EuiExpression', () => {
           />
         );
 
-        expect(render(component)).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('isActive', () => {
       test('true renders active', () => {
-        const component = (
+        const { container } = render(
           <EuiExpression
             description="the answer is"
             value="42"
@@ -153,11 +154,11 @@ describe('EuiExpression', () => {
           />
         );
 
-        expect(render(component)).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('false renders inactive', () => {
-        const component = (
+        const { container } = render(
           <EuiExpression
             description="the answer is"
             value="42"
@@ -165,7 +166,7 @@ describe('EuiExpression', () => {
           />
         );
 
-        expect(render(component)).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 

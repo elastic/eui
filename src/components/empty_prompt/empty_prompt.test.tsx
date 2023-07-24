@@ -7,14 +7,14 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test';
+import { render } from '../../test/rtl';
 import { EuiEmptyPrompt, PADDING_SIZES } from './empty_prompt';
 import { COLORS } from '../panel/panel';
 
 describe('EuiEmptyPrompt', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiEmptyPrompt
         iconType="arrowUp"
         title={<h2>Title</h2>}
@@ -24,81 +24,83 @@ describe('EuiEmptyPrompt', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('iconType', () => {
       test('renders alone', () => {
-        const component = render(<EuiEmptyPrompt iconType="arrowUp" />);
-        expect(component).toMatchSnapshot();
+        const { container } = render(<EuiEmptyPrompt iconType="arrowUp" />);
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('renders with iconColor', () => {
-        const component = render(
+        const { container } = render(
           <EuiEmptyPrompt iconType="arrowUp" iconColor="danger" />
         );
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('icon', () => {
       test('renders alone', () => {
-        const component = render(
+        const { container } = render(
           <EuiEmptyPrompt icon={<span>Custom icon</span>} />
         );
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('title', () => {
       test('renders alone', () => {
-        const component = render(<EuiEmptyPrompt title={<div>title</div>} />);
-        expect(component).toMatchSnapshot();
+        const { container } = render(
+          <EuiEmptyPrompt title={<div>title</div>} />
+        );
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('body', () => {
       test('renders alone', () => {
-        const component = render(<EuiEmptyPrompt body="body" />);
-        expect(component).toMatchSnapshot();
+        const { container } = render(<EuiEmptyPrompt body="body" />);
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('actions', () => {
       test('renders alone', () => {
-        const component = render(<EuiEmptyPrompt actions="actions" />);
-        expect(component).toMatchSnapshot();
+        const { container } = render(<EuiEmptyPrompt actions="actions" />);
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('renders an array', () => {
-        const component = render(
+        const { container } = render(
           <EuiEmptyPrompt actions={['action1', 'action2']} />
         );
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('footer', () => {
       test('renders alone', () => {
-        const component = render(<EuiEmptyPrompt footer="footer" />);
-        expect(component).toMatchSnapshot();
+        const { container } = render(<EuiEmptyPrompt footer="footer" />);
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('layout', () => {
       test('renders alone', () => {
-        const component = render(<EuiEmptyPrompt layout="horizontal" />);
-        expect(component).toMatchSnapshot();
+        const { container } = render(<EuiEmptyPrompt layout="horizontal" />);
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('paddingSize', () => {
       PADDING_SIZES.forEach((size) => {
         it(`${size} is rendered`, () => {
-          const component = render(<EuiEmptyPrompt paddingSize={size} />);
+          const { container } = render(<EuiEmptyPrompt paddingSize={size} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
@@ -106,16 +108,16 @@ describe('EuiEmptyPrompt', () => {
     describe('color', () => {
       COLORS.forEach((color) => {
         test(`${color} is rendered`, () => {
-          const component = render(<EuiEmptyPrompt color={color} />);
+          const { container } = render(<EuiEmptyPrompt color={color} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
 
     describe('styles', () => {
       test('are rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiEmptyPrompt
             style={{
               background: 'yellow',
@@ -125,7 +127,7 @@ describe('EuiEmptyPrompt', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });

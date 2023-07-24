@@ -7,11 +7,11 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiDescriptionListTitle } from './description_list_title';
-import { shouldRenderCustomStyles } from '../../test/internal';
 import { TYPES } from './description_list_types';
 import {
   EuiDescriptionListContext,
@@ -22,20 +22,20 @@ describe('EuiDescriptionListTitle', () => {
   shouldRenderCustomStyles(<EuiDescriptionListTitle />);
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiDescriptionListTitle {...requiredProps}>
         Content
       </EuiDescriptionListTitle>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('EuiDescriptionListTitle prop variations', () => {
     describe('type', () => {
       TYPES.forEach((type) => {
         test(`${type} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiDescriptionListContext.Provider
               value={{ ...contextDefaults, type }}
             >
@@ -43,14 +43,14 @@ describe('EuiDescriptionListTitle', () => {
             </EuiDescriptionListContext.Provider>
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
 
     describe('align', () => {
       test('center alignment is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiDescriptionListContext.Provider
             value={{ ...contextDefaults, align: 'center' }}
           >
@@ -58,13 +58,13 @@ describe('EuiDescriptionListTitle', () => {
           </EuiDescriptionListContext.Provider>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('text styles', () => {
       test('reversed text is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiDescriptionListContext.Provider
             value={{ ...contextDefaults, textStyle: 'reverse' }}
           >
@@ -72,13 +72,13 @@ describe('EuiDescriptionListTitle', () => {
           </EuiDescriptionListContext.Provider>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('compressed', () => {
       test('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiDescriptionListContext.Provider
             value={{ ...contextDefaults, compressed: true }}
           >
@@ -86,7 +86,7 @@ describe('EuiDescriptionListTitle', () => {
           </EuiDescriptionListContext.Provider>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });

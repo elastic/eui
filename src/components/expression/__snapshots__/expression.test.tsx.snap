@@ -126,7 +126,7 @@ exports[`EuiExpression props descriptionWidth changes the description&apos;s wid
 >
   <span
     class="euiExpression__description emotion-euiExpression__description-danger-isUppercase-columns"
-    style="flex-basis:50px"
+    style="flex-basis: 50px;"
   >
     the answer is
   </span>
@@ -150,7 +150,7 @@ exports[`EuiExpression props display can be columns 1`] = `
 >
   <span
     class="euiExpression__description emotion-euiExpression__description-success-isUppercase-columns"
-    style="flex-basis:20%"
+    style="flex-basis: 20%;"
   >
     the answer is
   </span>
