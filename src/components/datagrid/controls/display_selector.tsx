@@ -140,9 +140,9 @@ export const useDataGridDisplaySelector = (
   const setLineCountHeight = useCallback<
     NonNullable<EuiRangeProps['onChange']>
   >((event) => {
-    if (!event.target) return;
+    if (!event.currentTarget) return;
 
-    const newLineCount = Number((event.target as HTMLInputElement).value);
+    const newLineCount = Number(event.currentTarget.value);
     if (newLineCount < 1) return; // Don't let users set a 0 or negative line count
 
     setLineCount(newLineCount);
