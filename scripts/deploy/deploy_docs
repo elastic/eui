@@ -110,7 +110,7 @@ if [[ "$1" != "nodocker" ]]; then
   # ==================================================
   echo "Deploying to bucket using ${GCE_IMAGE} Docker image"
   docker run \
-    --rm -i \
+    -i --rm \
     --env GCE_ACCOUNT \
     --env GIT_BRANCH \
     --env GPROJECT \
@@ -120,8 +120,8 @@ if [[ "$1" != "nodocker" ]]; then
     --env BUILDKITE_CI \
     --env CURRENT_RELEASE="$CURRENT_RELEASE" \
     --env HOME=/tmp \
-    --volume "$PWD":/app \
-    --user="$(id -u)":"$(id -g)" \
+    --user="$(id -u):$(id -g)" \
+    --volume "$PWD":/app:ro \
     --workdir /app \
     "$GCE_IMAGE" \
     /app/scripts/deploy/deploy_docs nodocker "$@"
