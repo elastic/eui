@@ -176,7 +176,7 @@ test('renders fixed stop EuiColorStops', () => {
 });
 
 test('renders stepped stop EuiColorStops', () => {
-  const { container } = render(
+  const { getByTestSubject } = render(
     <EuiColorStops
       label="Test"
       onChange={onChange}
@@ -189,10 +189,9 @@ test('renders stepped stop EuiColorStops', () => {
     />
   );
 
-  const progress = container.querySelector('.euiRangeHighlight__progress');
-  expect(progress!.getAttribute('style')).toEqual(
-    'margin-inline-start: 0%; inline-size: 100%;'
-  );
+  expect(
+    getByTestSubject('euiRangeHighlightProgress').getAttribute('style')
+  ).toEqual('margin-inline-start: 0%; inline-size: 100%;');
 });
 
 test('renders empty EuiColorStops', () => {

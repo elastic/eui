@@ -21,6 +21,7 @@ exports[`renders EuiColorStops 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        data-test-subj="euiRangeHighlightProgress"
         style="margin-inline-start: 0%; inline-size: 100%;"
       />
     </div>
@@ -133,6 +134,7 @@ exports[`renders compressed EuiColorStops 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        data-test-subj="euiRangeHighlightProgress"
         style="margin-inline-start: 0%; inline-size: 100%;"
       />
     </div>
@@ -245,6 +247,7 @@ exports[`renders disabled EuiColorStops 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        data-test-subj="euiRangeHighlightProgress"
         style="margin-inline-start: 0%; inline-size: 100%;"
       />
     </div>
@@ -360,6 +363,7 @@ exports[`renders empty EuiColorStops 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        data-test-subj="euiRangeHighlightProgress"
         style="margin-inline-start: 0%; inline-size: 100%;"
       />
     </div>
@@ -397,6 +401,7 @@ exports[`renders fixed stop EuiColorStops 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        data-test-subj="euiRangeHighlightProgress"
         style="margin-inline-start: 0%; inline-size: 100%;"
       />
     </div>
@@ -509,6 +514,7 @@ exports[`renders free-range EuiColorStops 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        data-test-subj="euiRangeHighlightProgress"
         style="margin-inline-start: 0%; inline-size: 100%;"
       />
     </div>
@@ -546,6 +552,7 @@ exports[`renders fullWidth EuiColorStops 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        data-test-subj="euiRangeHighlightProgress"
         style="margin-inline-start: 0%; inline-size: 100%;"
       />
     </div>
@@ -658,6 +665,7 @@ exports[`renders max-only EuiColorStops 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        data-test-subj="euiRangeHighlightProgress"
         style="margin-inline-start: 0%; inline-size: 100%;"
       />
     </div>
@@ -695,6 +703,7 @@ exports[`renders min-only EuiColorStops 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        data-test-subj="euiRangeHighlightProgress"
         style="margin-inline-start: 0%; inline-size: 100%;"
       />
     </div>
@@ -732,6 +741,7 @@ exports[`renders readOnly EuiColorStops 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        data-test-subj="euiRangeHighlightProgress"
         style="margin-inline-start: 0%; inline-size: 100%;"
       />
     </div>
