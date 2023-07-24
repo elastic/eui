@@ -119,18 +119,18 @@ describe('props', () => {
 
   describe('option.prepend & option.append', () => {
     const options = [
-      { label: '1', prepend: 'Pre' },
-      { label: '2', append: 'Post' },
+      { label: '1', prepend: <span data-test-subj="prepend">Pre</span> },
+      { label: '2', append: <span data-test-subj="append">Post</span> },
     ];
 
     test('renders in pills', () => {
-      const component = render(
+      const { getByTestSubject, getAllByTestSubject } = render(
         <EuiComboBox options={options} selectedOptions={options} />
       );
 
-      expect(component.find('.euiComboBoxPill__prepend')).toHaveLength(1);
-      expect(component.find('.euiComboBoxPill__append')).toHaveLength(1);
-      expect(component.find('.euiComboBoxPill')).toMatchSnapshot();
+      expect(getByTestSubject('prepend')).toBeInTheDocument();
+      expect(getByTestSubject('append')).toBeInTheDocument();
+      expect(getAllByTestSubject('euiComboBoxPill')).toMatchSnapshot();
     });
 
     test('renders in the options dropdown', () => {
@@ -146,14 +146,15 @@ describe('props', () => {
     });
 
     test('renders in single selection', () => {
-      const component = render(
+      const { getByTestSubject } = render(
         <EuiComboBox
           options={options}
           selectedOptions={[options[0]]}
           singleSelection={{ asPlainText: true }}
         />
       );
-      expect(component.find('.euiComboBoxPill')).toMatchSnapshot();
+
+      expect(getByTestSubject('euiComboBoxPill')).toMatchSnapshot();
     });
   });
 

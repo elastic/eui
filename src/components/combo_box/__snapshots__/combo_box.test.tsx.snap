@@ -417,6 +417,7 @@ exports[`props option.prepend & option.append renders in pills 1`] = `
 Array [
   <span
     class="euiBadge euiComboBoxPill emotion-euiBadge-hollow"
+    data-test-subj="euiComboBoxPill"
     title="1"
   >
     <span
@@ -428,7 +429,11 @@ Array [
         <span
           class="euiComboBoxPill__prepend"
         >
-          Pre
+          <span
+            data-test-subj="prepend"
+          >
+            Pre
+          </span>
         </span>
         1
       </span>
@@ -448,6 +453,7 @@ Array [
   </span>,
   <span
     class="euiBadge euiComboBoxPill emotion-euiBadge-hollow"
+    data-test-subj="euiComboBoxPill"
     title="2"
   >
     <span
@@ -460,7 +466,11 @@ Array [
         <span
           class="euiComboBoxPill__append"
         >
-          Post
+          <span
+            data-test-subj="append"
+          >
+            Post
+          </span>
         </span>
       </span>
       <button
@@ -483,11 +493,16 @@ Array [
 exports[`props option.prepend & option.append renders in single selection 1`] = `
 <span
   class="euiComboBoxPill euiComboBoxPill--plainText"
+  data-test-subj="euiComboBoxPill"
 >
   <span
     class="euiComboBoxPill__prepend"
   >
-    Pre
+    <span
+      data-test-subj="prepend"
+    >
+      Pre
+    </span>
   </span>
   1
 </span>
@@ -535,7 +550,11 @@ exports[`props option.prepend & option.append renders in the options dropdown 1`
                 <span
                   class="euiComboBoxOption__prepend"
                 >
-                  Pre
+                  <span
+                    data-test-subj="prepend"
+                  >
+                    Pre
+                  </span>
                 </span>
                 <span
                   class="euiComboBoxOption__content"
@@ -572,7 +591,11 @@ exports[`props option.prepend & option.append renders in the options dropdown 1`
                 <span
                   class="euiComboBoxOption__append"
                 >
-                  Post
+                  <span
+                    data-test-subj="append"
+                  >
+                    Post
+                  </span>
                 </span>
               </span>
             </span>
