@@ -72,7 +72,7 @@ export const EuiComponentDefaultsProvider: FunctionComponent<{
 /*
  * Hooks
  */
-export const useEuiComponentDefaults = () => {
+export const useComponentDefaults = () => {
   return useContext(EuiComponentDefaultsContext);
 };
 

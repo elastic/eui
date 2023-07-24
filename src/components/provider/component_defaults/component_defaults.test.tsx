@@ -11,11 +11,11 @@ import { renderHook } from '@testing-library/react-hooks';
 
 import {
   EuiComponentDefaultsProvider,
-  useEuiComponentDefaults,
+  useComponentDefaults,
 } from './component_defaults';
 
 describe('EuiComponentDefaultsProvider', () => {
-  describe('useEuiComponentDefaults', () => {
+  describe('useComponentDefaults', () => {
     it('allows accessing provided `componentDefaults` from anywhere', () => {
       const wrapper = ({ children }: PropsWithChildren<{}>) => (
         <EuiComponentDefaultsProvider
@@ -31,7 +31,7 @@ describe('EuiComponentDefaultsProvider', () => {
           {children}
         </EuiComponentDefaultsProvider>
       );
-      const { result } = renderHook(useEuiComponentDefaults, { wrapper });
+      const { result } = renderHook(useComponentDefaults, { wrapper });
 
       expect(result.current).toMatchInlineSnapshot(`
         Object {
@@ -47,7 +47,7 @@ describe('EuiComponentDefaultsProvider', () => {
   });
 
   // NOTE: Components are in charge of their own testing to ensure that the props
-  // coming from `useEuiComponentDefaults()` were properly applied.
+  // coming from the `componentDefaults` configuration were properly applied.
   // Examples:
   // @see src/components/portal/portal.spec.tsx
   // @see src/components/table/table_pagination/table_pagination.test.tsx
