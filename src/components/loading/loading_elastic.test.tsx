@@ -7,24 +7,24 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiLoadingElastic, SIZES } from './loading_elastic';
 
 describe('EuiLoadingElastic', () => {
   test('is rendered', () => {
-    const component = render(<EuiLoadingElastic {...requiredProps} />);
+    const { container } = render(<EuiLoadingElastic {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('size', () => {
     SIZES.forEach((size) => {
       test(`${size} is rendered`, () => {
-        const component = render(<EuiLoadingElastic size={size} />);
+        const { container } = render(<EuiLoadingElastic size={size} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });

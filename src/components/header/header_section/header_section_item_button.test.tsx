@@ -7,8 +7,9 @@
  */
 
 import React from 'react';
-import { mount, render, shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
 
 import {
   EuiHeaderSectionItemButton,
@@ -17,51 +18,55 @@ import {
 
 describe('EuiHeaderSectionItemButton', () => {
   test('is rendered', () => {
-    const component = render(<EuiHeaderSectionItemButton {...requiredProps} />);
+    const { container } = render(
+      <EuiHeaderSectionItemButton {...requiredProps} />
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('renders children', () => {
-    const component = render(
+    const { container } = render(
       <EuiHeaderSectionItemButton>
         <span>Ahoy!</span>
       </EuiHeaderSectionItemButton>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('renders a link', () => {
-    const component = render(<EuiHeaderSectionItemButton href="#" />);
+    const { container } = render(<EuiHeaderSectionItemButton href="#" />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('renders notification', () => {
     test('as a badge', () => {
-      const component = render(<EuiHeaderSectionItemButton notification="1" />);
+      const { container } = render(
+        <EuiHeaderSectionItemButton notification="1" />
+      );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('as a dot', () => {
-      const component = render(
+      const { container } = render(
         <EuiHeaderSectionItemButton notification={true} />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('color', () => {
-      const component = render(
+      const { container } = render(
         <EuiHeaderSectionItemButton
           notification="1"
           notificationColor="subdued"
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 

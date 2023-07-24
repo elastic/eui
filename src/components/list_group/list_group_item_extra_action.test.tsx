@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiListGroupItemExtraAction } from './list_group_item_extra_action';
 
@@ -22,44 +22,44 @@ describe('EuiListGroupItem', () => {
   shouldRenderCustomStyles(<EuiListGroupItemExtraAction iconType="star" />);
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiListGroupItemExtraAction {...requiredProps} iconType="star" />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     test('alwaysShow', () => {
-      const component = render(
+      const { container } = render(
         <EuiListGroupItemExtraAction {...props} alwaysShow />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('color', () => {
-      const component = render(
+      const { container } = render(
         <EuiListGroupItemExtraAction {...props} color="accent" />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('isDisabled', () => {
-      const component = render(
+      const { container } = render(
         <EuiListGroupItemExtraAction {...props} isDisabled />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('parentIsDisabled', () => {
-      const component = render(
+      const { container } = render(
         <EuiListGroupItemExtraAction {...props} parentIsDisabled />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });

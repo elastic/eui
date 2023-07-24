@@ -7,32 +7,32 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiLoadingLogo, SIZES } from './loading_logo';
 
 describe('EuiLoadingLogo', () => {
   test('is rendered', () => {
-    const component = render(<EuiLoadingLogo {...requiredProps} />);
+    const { container } = render(<EuiLoadingLogo {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('logo is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiLoadingLogo logo="logoElastic" {...requiredProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('size', () => {
     SIZES.forEach((size) => {
       test(`${size} is rendered`, () => {
-        const component = render(<EuiLoadingLogo size={size} />);
+        const { container } = render(<EuiLoadingLogo size={size} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });

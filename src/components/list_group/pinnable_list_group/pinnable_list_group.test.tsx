@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../../test/required_props';
 import { shouldRenderCustomStyles } from '../../../test/internal';
+import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
 
 import {
   EuiPinnableListGroup,
@@ -62,7 +62,7 @@ describe('EuiPinnableListGroup', () => {
   );
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiPinnableListGroup
         {...requiredProps}
         listItems={someListItems}
@@ -70,11 +70,11 @@ describe('EuiPinnableListGroup', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('can have custom pin icon titles', () => {
-    const component = render(
+    const { container } = render(
       <EuiPinnableListGroup
         {...requiredProps}
         listItems={someListItems}
@@ -88,6 +88,6 @@ describe('EuiPinnableListGroup', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

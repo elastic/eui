@@ -3,10 +3,10 @@
 exports[`EuiDataGridBodyVirtualized renders 1`] = `
 <div
   class="euiDataGrid__virtualized"
-  style="position:relative;height:9007199254740991px;width:9007199254740991px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
+  style="position: relative; height: 9007199254740991px; width: 9007199254740991px; overflow: auto; will-change: transform; direction: ltr;"
 >
   <div
-    style="height:34px;width:200px"
+    style="height: 34px; width: 200px;"
   >
     <div
       class="euiDataGridHeader"
@@ -21,13 +21,13 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
         data-gridcell-visible-row-index="-1"
         data-test-subj="dataGridHeaderCell-columnA"
         role="columnheader"
-        style="width:100px"
+        style="width: 100px;"
         tabindex="-1"
       >
         <div
           class="euiDataGridColumnResizer"
           data-test-subj="dataGridColumnResizer"
-          style="margin-right:0px"
+          style="margin-right: 0px;"
         />
         <div
           class="euiPopover eui-fullWidth emotion-euiPopover"
@@ -38,6 +38,8 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
             <button
               aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
               class="euiDataGridHeaderCell__button"
+              data-euigrid-tab-managed="true"
+              tabindex="-1"
             >
               <div
                 class="euiDataGridHeaderCell__content"
@@ -73,13 +75,13 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
         data-gridcell-visible-row-index="-1"
         data-test-subj="dataGridHeaderCell-columnB"
         role="columnheader"
-        style="width:100px"
+        style="width: 100px;"
         tabindex="-1"
       >
         <div
           class="euiDataGridColumnResizer"
           data-test-subj="dataGridColumnResizer"
-          style="margin-right:0px"
+          style="margin-right: 0px;"
         />
         <div
           class="euiPopover eui-fullWidth emotion-euiPopover"
@@ -90,6 +92,8 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
             <button
               aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
               class="euiDataGridHeaderCell__button"
+              data-euigrid-tab-managed="true"
+              tabindex="-1"
             >
               <div
                 class="euiDataGridHeaderCell__content"
@@ -127,7 +131,7 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
       data-gridcell-visible-row-index="0"
       data-test-subj="dataGridRowCell"
       role="gridcell"
-      style="position:absolute;left:0;top:0;height:34px;width:100px"
+      style="position: absolute; left: 0px; top: 0px; height: 34px; width: 100px;"
       tabindex="-1"
     >
       <div
@@ -148,7 +152,8 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
             class="emotion-euiScreenReaderOnly"
             hidden=""
           >
-            - columnA, column 1, row 1
+            - 
+            columnA, column 1, row 1
           </p>
         </div>
       </div>
@@ -162,7 +167,7 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
       data-gridcell-visible-row-index="0"
       data-test-subj="dataGridRowCell"
       role="gridcell"
-      style="position:absolute;left:100px;top:0;height:34px;width:100px"
+      style="position: absolute; left: 100px; top: 0px; height: 34px; width: 100px;"
       tabindex="-1"
     >
       <div
@@ -183,7 +188,8 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
             class="emotion-euiScreenReaderOnly"
             hidden=""
           >
-            - columnB, column 2, row 1
+            - 
+            columnB, column 2, row 1
           </p>
         </div>
       </div>

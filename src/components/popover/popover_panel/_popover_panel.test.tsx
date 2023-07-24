@@ -7,47 +7,47 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../../test/required_props';
 import { shouldRenderCustomStyles } from '../../../test/internal';
+import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
 
 import { EuiPopoverPanel } from './_popover_panel';
 import { POSITIONS } from '../popover_arrow/_popover_arrow';
 
 describe('EuiPopoverPanel', () => {
   test('is rendered', () => {
-    const component = render(<EuiPopoverPanel {...requiredProps} />);
+    const { container } = render(<EuiPopoverPanel {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   shouldRenderCustomStyles(<EuiPopoverPanel />);
 
   describe('props', () => {
     test('isOpen is rendered', () => {
-      const component = render(<EuiPopoverPanel isOpen />);
+      const { container } = render(<EuiPopoverPanel isOpen />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('isAttached is rendered', () => {
-      const component = render(<EuiPopoverPanel isOpen />);
+      const { container } = render(<EuiPopoverPanel isOpen />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('hasDragDrop is rendered', () => {
-      const component = render(<EuiPopoverPanel hasDragDrop />);
+      const { container } = render(<EuiPopoverPanel hasDragDrop />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     describe('position', () => {
       POSITIONS.forEach((position) => {
         test(`${position} is rendered`, () => {
-          const component = render(<EuiPopoverPanel position={position} />);
+          const { container } = render(<EuiPopoverPanel position={position} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });

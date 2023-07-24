@@ -7,53 +7,53 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
 
 import { EuiHeaderSection } from './header_section';
 
 describe('EuiHeaderSection', () => {
   test('is rendered', () => {
-    const component = render(<EuiHeaderSection {...requiredProps} />);
+    const { container } = render(<EuiHeaderSection {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('renders optional params', () => {
-    const component = render(
+    const { container } = render(
       <EuiHeaderSection style={{ color: 'blue' }}>
         <span>Some years ago never mind how long precisely...</span>
       </EuiHeaderSection>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('grow', () => {
     test('defaults to false', () => {
-      const component = render(<EuiHeaderSection />);
+      const { container } = render(<EuiHeaderSection />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('renders true', () => {
-      const component = render(<EuiHeaderSection grow />);
+      const { container } = render(<EuiHeaderSection grow />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
   describe('side', () => {
     test('defaults to left', () => {
-      const component = render(<EuiHeaderSection />);
+      const { container } = render(<EuiHeaderSection />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('renders right', () => {
-      const component = render(<EuiHeaderSection side="right" />);
+      const { container } = render(<EuiHeaderSection side="right" />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });
