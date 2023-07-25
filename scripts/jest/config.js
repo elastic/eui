@@ -61,6 +61,14 @@ if (['16', '17'].includes(reactVersion)) {
     '^@testing-library/react((\\\\/.*)?)$'
   ] = `@testing-library/react-16-17$1`;
   config.moduleNameMapper['^react((\\/.*)?)$'] = `react-${reactVersion}$1`;
+
+  // Resolve react-dom renderer for React 18 when directly importing from this path
+  // This exists to make jest happy when running conditional react-dom imports
+  // in src/components/inner_text/render_to_text.tsx
+  config.moduleNameMapper[
+    '^react-dom/client$'
+    ] = `react-dom/client`;
+
   config.moduleNameMapper[
     '^react-dom((\\/.*)?)$'
   ] = `react-dom-${reactVersion}$1`;
