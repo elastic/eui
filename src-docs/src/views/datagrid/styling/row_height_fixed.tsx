@@ -149,7 +149,9 @@ export default () => {
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 50 });
 
   // Sorting
-  const [sortingColumns, setSortingColumns] = useState<EuiDataGridColumnSortingConfig[]>([]);
+  const [sortingColumns, setSortingColumns] = useState<
+    EuiDataGridColumnSortingConfig[]
+  >([]);
   const onSort = useCallback<EuiDataGridSorting['onSort']>(
     (sortingColumns) => {
       setSortingColumns(sortingColumns);
@@ -157,7 +159,9 @@ export default () => {
     [setSortingColumns]
   );
 
-  const onChangeItemsPerPage = useCallback<EuiDataGridPaginationProps['onChangeItemsPerPage']>(
+  const onChangeItemsPerPage = useCallback<
+    EuiDataGridPaginationProps['onChangeItemsPerPage']
+  >(
     (pageSize) =>
       setPagination((pagination) => ({
         ...pagination,

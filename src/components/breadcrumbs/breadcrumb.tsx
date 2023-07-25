@@ -58,7 +58,8 @@ export type EuiBreadcrumbProps = Omit<
   };
 
 // Used internally only by the parent EuiBreadcrumbs
-type _EuiBreadcrumbProps = PropsWithChildren & Pick<EuiBreadcrumbProps, 'truncate'> & {
+type _EuiBreadcrumbProps = PropsWithChildren &
+  Pick<EuiBreadcrumbProps, 'truncate'> & {
     type: 'page' | 'application';
     isFirstBreadcrumb?: boolean;
     isLastBreadcrumb?: boolean;

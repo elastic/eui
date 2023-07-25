@@ -6,10 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  FunctionComponent,
-  PropsWithChildren,
-} from 'react';
+import React, { FunctionComponent, PropsWithChildren } from 'react';
 import { render } from '@testing-library/react';
 import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
