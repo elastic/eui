@@ -139,7 +139,10 @@ describe('props', () => {
 
     test('renders in the options dropdown', () => {
       const component = mount(<EuiComboBox options={options} />);
-      component.setState({ isListOpen: true });
+
+      act(() => {
+        component.setState({ isListOpen: true });
+      });
 
       const dropdown = component.find(
         'div[data-test-subj="comboBoxOptionsList"]'
