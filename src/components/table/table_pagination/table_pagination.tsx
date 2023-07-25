@@ -21,6 +21,7 @@ import { EuiPopover } from '../../popover';
 import { EuiI18n } from '../../i18n';
 
 import { usePropsWithComponentDefaults } from '../../provider/component_defaults';
+import { euiTablePaginationDefaults } from './table_pagination_defaults';
 
 export type PageChangeHandler = EuiPaginationProps['onPageClick'];
 export type ItemsPerPageChangeHandler = (pageSize: number) => void;
@@ -64,9 +65,9 @@ export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = (
 ) => {
   const {
     activePage,
-    itemsPerPage = 50,
-    itemsPerPageOptions = [10, 20, 50, 100],
-    showPerPageOptions = true,
+    itemsPerPage = euiTablePaginationDefaults.itemsPerPage,
+    itemsPerPageOptions = euiTablePaginationDefaults.itemsPerPageOptions,
+    showPerPageOptions = euiTablePaginationDefaults.showPerPageOptions,
     onChangeItemsPerPage,
     onChangePage,
     pageCount,
