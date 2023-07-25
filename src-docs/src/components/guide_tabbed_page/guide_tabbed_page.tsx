@@ -1,4 +1,9 @@
-import React, { FunctionComponent, ReactNode, useContext } from 'react';
+import React, {
+  FunctionComponent,
+  PropsWithChildren,
+  ReactNode,
+  useContext,
+} from 'react';
 import {
   Switch,
   Route,
@@ -17,19 +22,20 @@ import {
 import { LanguageSelector, ThemeContext } from '../with_theme';
 import { GuideSection } from '../guide_section/guide_section';
 
-export type GuideTabbedPageProps = CommonProps & {
-  description?: ReactNode;
-  guidelines?: ReactNode;
-  intro?: ReactNode;
-  isBeta?: boolean;
-  isNew?: boolean;
-  notice?: ReactNode;
-  pages?: any;
-  rightSideItems?: ReactNode[];
-  showThemeLanguageToggle?: boolean;
-  tabs?: any;
-  title: string;
-};
+export type GuideTabbedPageProps = PropsWithChildren &
+  CommonProps & {
+    description?: ReactNode;
+    guidelines?: ReactNode;
+    intro?: ReactNode;
+    isBeta?: boolean;
+    isNew?: boolean;
+    notice?: ReactNode;
+    pages?: any;
+    rightSideItems?: ReactNode[];
+    showThemeLanguageToggle?: boolean;
+    tabs?: any;
+    title: string;
+  };
 
 export const GuideTabbedPage: FunctionComponent<GuideTabbedPageProps> = ({
   description,
