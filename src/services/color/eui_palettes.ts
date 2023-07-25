@@ -184,7 +184,22 @@ export const euiPaletteForTemperature = function (steps: number): EuiPalette {
   return euiPalette([...cools, ...warms], steps, true);
 };
 
+/**
+ * @deprecated Use euiPaletteComplementary instead
+ */
 export const euiPaletteComplimentary = function (steps: number): EuiPalette {
+  if (steps === 1) {
+    return [euiPaletteColorBlind()[1]];
+  }
+
+  return euiPalette(
+    [euiPaletteColorBlind()[1], euiPaletteColorBlind()[7]],
+    steps,
+    true
+  );
+};
+
+export const euiPaletteComplementary = function (steps: number): EuiPalette {
   if (steps === 1) {
     return [euiPaletteColorBlind()[1]];
   }
