@@ -93,7 +93,6 @@ spec:
     spec:
       repository: elastic/eui
       pipeline_file: ".buildkite/pipelines/pipeline_pull_request_test.yml"
-      default_branch: main
       # Job runs as a step in pull request combined job
       provider_settings:
         build_branches: false
@@ -133,7 +132,6 @@ spec:
     spec:
       repository: elastic/eui
       pipeline_file: ".buildkite/pipelines/pipeline_pull_request_deploy_docs.yml"
-      default_branch: main
       # Job runs as a step in pull request combined job
       provider_settings:
         build_branches: false
@@ -174,7 +172,6 @@ spec:
     spec:
       repository: elastic/eui
       pipeline_file: ".buildkite/pipelines/pipeline_pull_request_test_and_deploy.yml"
-      default_branch: main
       env:
         ELASTIC_PR_COMMENTS_ENABLED: 'true'
       provider_settings:
