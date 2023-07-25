@@ -7,30 +7,32 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiForm } from './form';
 
 describe('EuiForm', () => {
   test('is rendered', () => {
-    const component = render(<EuiForm {...requiredProps} />);
+    const { container } = render(<EuiForm {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('renders a form element', () => {
-    const component = render(<EuiForm {...requiredProps} component="form" />);
+    const { container } = render(
+      <EuiForm {...requiredProps} component="form" />
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
   test('renders with error callout when isInvalid is "true"', () => {
-    const component = render(<EuiForm {...requiredProps} isInvalid />);
+    const { container } = render(<EuiForm {...requiredProps} isInvalid />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
   test('renders with error callout when isInvalid is "true" and has one error', () => {
-    const component = render(
+    const { container } = render(
       <EuiForm
         {...requiredProps}
         isInvalid
@@ -38,10 +40,10 @@ describe('EuiForm', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
   test('renders with error callout when isInvalid is "true" and has multiple errors', () => {
-    const component = render(
+    const { container } = render(
       <EuiForm
         {...requiredProps}
         isInvalid
@@ -52,13 +54,13 @@ describe('EuiForm', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
   test('renders without error callout when invalidCallout is "none"', () => {
-    const component = render(
+    const { container } = render(
       <EuiForm {...requiredProps} isInvalid invalidCallout="none" />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

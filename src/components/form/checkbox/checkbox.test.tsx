@@ -7,13 +7,13 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import {
   requiredProps,
   startThrowingReactWarnings,
   stopThrowingReactWarnings,
 } from '../../../test';
 import { shouldRenderCustomStyles } from '../../../test/internal';
+import { render } from '../../../test/rtl';
 
 import { EuiCheckbox, TYPES } from './checkbox';
 
@@ -43,32 +43,32 @@ describe('EuiCheckbox', () => {
   );
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiCheckbox id="id" onChange={() => {}} {...requiredProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     test('check is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiCheckbox {...checkboxRequiredProps} checked />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('label is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiCheckbox {...checkboxRequiredProps} label={<span>Label</span>} />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('labelProps is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiCheckbox
           {...checkboxRequiredProps}
           label="Label"
@@ -76,27 +76,27 @@ describe('EuiCheckbox', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
     describe('type', () => {
       TYPES.forEach((value) => {
         test(`${value} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiCheckbox {...checkboxRequiredProps} type={value} />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
 
     describe('disabled', () => {
       test('disabled is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiCheckbox {...checkboxRequiredProps} disabled />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });

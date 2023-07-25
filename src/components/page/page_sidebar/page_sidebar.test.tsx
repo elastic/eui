@@ -7,10 +7,11 @@
  */
 
 import React from 'react';
-import { render, mount } from 'enzyme';
-import { requiredProps } from '../../../test/required_props';
-import { shouldRenderCustomStyles } from '../../../test/internal';
+import { mount } from 'enzyme';
 import { PADDING_SIZES } from '../../../global_styling';
+import { shouldRenderCustomStyles } from '../../../test/internal';
+import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
 
 import { EuiPageSidebar } from './page_sidebar';
 
@@ -18,29 +19,29 @@ describe('EuiPageSidebar', () => {
   shouldRenderCustomStyles(<EuiPageSidebar />);
 
   test('is rendered', () => {
-    const component = render(<EuiPageSidebar {...requiredProps} />);
+    const { container } = render(<EuiPageSidebar {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('minWidth is rendered', () => {
-    const component = render(<EuiPageSidebar minWidth={400} />);
+    const { container } = render(<EuiPageSidebar minWidth={400} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('sticky is rendered', () => {
-    const component = render(<EuiPageSidebar sticky={{ offset: 100 }} />);
+    const { container } = render(<EuiPageSidebar sticky={{ offset: 100 }} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('paddingSize', () => {
     PADDING_SIZES.forEach((size) => {
       it(`${size} is rendered`, () => {
-        const component = render(<EuiPageSidebar paddingSize={size} />);
+        const { container } = render(<EuiPageSidebar paddingSize={size} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });

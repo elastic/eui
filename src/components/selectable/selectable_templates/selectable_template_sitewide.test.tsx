@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../../test/required_props';
 import { shouldRenderCustomStyles } from '../../../test/internal';
+import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
 
 import { EuiSelectableTemplateSitewide } from './selectable_template_sitewide';
 import { EuiSelectableTemplateSitewideOption } from './selectable_template_sitewide_option';
@@ -81,45 +81,45 @@ describe('EuiSelectableTemplateSitewide', () => {
   );
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiSelectableTemplateSitewide options={options} {...requiredProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     test('popoverProps is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelectableTemplateSitewide
           options={options}
           popoverProps={{ className: 'customPopoverClass' }}
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('popoverTitle is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelectableTemplateSitewide
           options={options}
           popoverTitle={<>Title</>}
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('popoverFooter is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiSelectableTemplateSitewide
           options={options}
           popoverFooter={<>Footer</>}
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     describe('popoverButton', () => {
@@ -128,18 +128,18 @@ describe('EuiSelectableTemplateSitewide', () => {
       afterAll(() => 1024); // reset to jsdom's default
 
       test('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiSelectableTemplateSitewide
             options={options}
             popoverButton={<button>Button</button>}
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('is rendered with popoverButtonBreakpoints m', () => {
-        const component = render(
+        const { container } = render(
           <EuiSelectableTemplateSitewide
             options={options}
             popoverButton={<button>Button</button>}
@@ -147,11 +147,11 @@ describe('EuiSelectableTemplateSitewide', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('is not rendered with popoverButtonBreakpoints xs', () => {
-        const component = render(
+        const { container } = render(
           <EuiSelectableTemplateSitewide
             options={options}
             popoverButton={<button>Button</button>}
@@ -159,7 +159,7 @@ describe('EuiSelectableTemplateSitewide', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });

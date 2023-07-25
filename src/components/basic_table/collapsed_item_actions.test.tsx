@@ -7,7 +7,8 @@
  */
 
 import React, { FocusEvent } from 'react';
-import { render, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
+import { render } from '../../test/rtl';
 import { CollapsedItemActions } from './collapsed_item_actions';
 import { Action } from './action_types';
 
@@ -33,9 +34,9 @@ describe('CollapsedItemActions', () => {
       onBlur: () => {},
     };
 
-    const component = render(<CollapsedItemActions {...props} />);
+    const { container } = render(<CollapsedItemActions {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('render with href and _target provided', () => {

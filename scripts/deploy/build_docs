@@ -10,8 +10,8 @@ docker pull $NODE_IMG
 docker run \
     --rm -i \
     --env HOME=/tmp \
-    --user=$(id -u):$(id -g) \
-    --volume $PWD:/app \
+    --"user=$(id -u)":"$(id -g)" \
+    --volume "$PWD":/app \
     --workdir /app \
     $NODE_IMG \
     bash -c 'yarn && npm run build && npm run build-docs'

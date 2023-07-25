@@ -7,10 +7,10 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../../test/required_props';
 import { PADDING_SIZES } from '../../../global_styling';
 import { shouldRenderCustomStyles } from '../../../test/internal';
+import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
 
 import { _EuiPageInner as EuiPageInner } from './page_inner';
 
@@ -18,28 +18,28 @@ describe('_EuiPageInner', () => {
   shouldRenderCustomStyles(<EuiPageInner />);
 
   test('is rendered', () => {
-    const component = render(<EuiPageInner {...requiredProps} />);
+    const { container } = render(<EuiPageInner {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('panelled is rendered', () => {
-    const component = render(<EuiPageInner panelled={true} />);
+    const { container } = render(<EuiPageInner panelled={true} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('border is rendered', () => {
-    const component = render(<EuiPageInner border={true} />);
+    const { container } = render(<EuiPageInner border={true} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('component', () => {
     it('renders HTML tag strings', () => {
-      const component = render(<EuiPageInner component="div" />);
+      const { container } = render(<EuiPageInner component="div" />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('renders custom React components', () => {
@@ -47,22 +47,22 @@ describe('_EuiPageInner', () => {
         <div>{test ? 'hello' : 'world'}</div>
       );
 
-      const component = render(
+      const { container } = render(
         <>
           <EuiPageInner component={TestComponent} test />
           <EuiPageInner component={TestComponent} />
         </>
       );
-      expect(component).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
     });
   });
 
   describe('paddingSize', () => {
     PADDING_SIZES.forEach((size) => {
       it(`${size} is rendered`, () => {
-        const component = render(<EuiPageInner paddingSize={size} />);
+        const { container } = render(<EuiPageInner paddingSize={size} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });

@@ -7,27 +7,27 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../../test';
+import { render } from '../../../test/rtl';
 
 import { EuiHeaderLink } from './header_link';
 
 describe('EuiHeaderLink', () => {
   test('is rendered', () => {
-    const component = render(<EuiHeaderLink {...requiredProps} />);
+    const { container } = render(<EuiHeaderLink {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('is rendered as active', () => {
-    const component = render(<EuiHeaderLink isActive />);
+    const { container } = render(<EuiHeaderLink isActive />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('can render as specific color', () => {
-    const component = render(<EuiHeaderLink color="danger" />);
+    const { container } = render(<EuiHeaderLink color="danger" />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

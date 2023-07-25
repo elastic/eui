@@ -45,10 +45,11 @@ export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
       color,
       onClick,
       onClickAriaLabel,
-      onClose, // eslint-disable-line no-unused-vars
-      option, // eslint-disable-line no-unused-vars
+      onClose,
+      option,
       ...rest
     } = this.props;
+
     const classes = classNames(
       'euiComboBoxPill',
       {
@@ -56,6 +57,7 @@ export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
       },
       className
     );
+
     const onClickProps =
       onClick && onClickAriaLabel
         ? {
@@ -63,6 +65,18 @@ export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
             onClickAriaLabel,
           }
         : {};
+
+    const content = (
+      <>
+        {option.prepend && (
+          <span className="euiComboBoxPill__prepend">{option.prepend}</span>
+        )}
+        {children}
+        {option.append && (
+          <span className="euiComboBoxPill__append">{option.append}</span>
+        )}
+      </>
+    );
 
     if (onClose) {
       return (
@@ -75,6 +89,7 @@ export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
             <EuiBadge
               className={classes}
               color={color}
+              data-test-subj="euiComboBoxPill"
               iconOnClick={this.onCloseButtonClick}
               iconOnClickAriaLabel={removeSelection}
               iconSide="right"
@@ -83,7 +98,7 @@ export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
               {...onClickProps}
               {...rest}
             >
-              {children}
+              {content}
             </EuiBadge>
           )}
         </EuiI18n>
@@ -92,8 +107,8 @@ export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
 
     if (asPlainText) {
       return (
-        <span className={classes} {...rest}>
-          {children}
+        <span className={classes} data-test-subj="euiComboBoxPill" {...rest}>
+          {content}
         </span>
       );
     }
@@ -102,11 +117,12 @@ export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
       <EuiBadge
         className={classes}
         color={color}
+        data-test-subj="euiComboBoxPill"
         title={children}
         {...rest}
         {...onClickProps}
       >
-        {children}
+        {content}
       </EuiBadge>
     );
   }

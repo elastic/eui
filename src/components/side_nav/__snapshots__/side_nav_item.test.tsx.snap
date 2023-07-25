@@ -14,6 +14,7 @@ exports[`EuiSideNavItem can be disabled 1`] = `
     >
       <span
         class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
+        title="Children"
       >
         Children
       </span>
@@ -34,6 +35,7 @@ exports[`EuiSideNavItem can be emphasized 1`] = `
     >
       <span
         class="euiSideNavItemButton__label euiSideNavItemButton__label--truncated"
+        title="Children"
       >
         Children
       </span>

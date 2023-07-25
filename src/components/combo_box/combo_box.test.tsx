@@ -7,7 +7,8 @@
  */
 
 import React, { ReactNode } from 'react';
-import { shallow, render, mount } from 'enzyme';
+import { shallow, mount } from 'enzyme';
+import { render } from '../../test/rtl';
 import {
   requiredProps,
   findTestSubject,
@@ -63,9 +64,9 @@ const options: TitanOption[] = [
 
 describe('EuiComboBox', () => {
   test('is rendered', () => {
-    const component = render(<EuiComboBox {...requiredProps} />);
+    const { container } = render(<EuiComboBox {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('supports thousands of options in an options group', () => {
@@ -114,6 +115,47 @@ describe('props', () => {
     );
 
     expect(component).toMatchSnapshot();
+  });
+
+  describe('option.prepend & option.append', () => {
+    const options = [
+      { label: '1', prepend: <span data-test-subj="prepend">Pre</span> },
+      { label: '2', append: <span data-test-subj="append">Post</span> },
+    ];
+
+    test('renders in pills', () => {
+      const { getByTestSubject, getAllByTestSubject } = render(
+        <EuiComboBox options={options} selectedOptions={options} />
+      );
+
+      expect(getByTestSubject('prepend')).toBeInTheDocument();
+      expect(getByTestSubject('append')).toBeInTheDocument();
+      expect(getAllByTestSubject('euiComboBoxPill')).toMatchSnapshot();
+    });
+
+    test('renders in the options dropdown', () => {
+      const component = mount(<EuiComboBox options={options} />);
+      component.setState({ isListOpen: true });
+
+      const dropdown = component.find(
+        'div[data-test-subj="comboBoxOptionsList"]'
+      );
+      expect(dropdown.find('.euiComboBoxOption__prepend')).toHaveLength(1);
+      expect(dropdown.find('.euiComboBoxOption__append')).toHaveLength(1);
+      expect(dropdown.render()).toMatchSnapshot();
+    });
+
+    test('renders in single selection', () => {
+      const { getByTestSubject } = render(
+        <EuiComboBox
+          options={options}
+          selectedOptions={[options[0]]}
+          singleSelection={{ asPlainText: true }}
+        />
+      );
+
+      expect(getByTestSubject('euiComboBoxPill')).toMatchSnapshot();
+    });
   });
 
   describe('isClearable=false disallows user from clearing input', () => {

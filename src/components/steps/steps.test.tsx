@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiContainedStepProps, EuiSteps } from './steps';
 
@@ -33,32 +33,32 @@ describe('EuiSteps', () => {
   shouldRenderCustomStyles(<EuiSteps {...requiredProps} steps={steps} />);
 
   test('renders steps', () => {
-    const component = render(<EuiSteps {...requiredProps} steps={steps} />);
+    const { container } = render(<EuiSteps {...requiredProps} steps={steps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('renders steps with firstStepNumber', () => {
-    const component = render(
+    const { container } = render(
       <EuiSteps {...requiredProps} steps={steps} firstStepNumber={10} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('renders steps with titleSize', () => {
-    const component = render(
+    const { container } = render(
       <EuiSteps {...requiredProps} steps={steps} titleSize="xs" />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('renders step title inside "headingElement" element', () => {
-    const component = render(
+    const { container } = render(
       <EuiSteps {...requiredProps} steps={steps} headingElement="h2" />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

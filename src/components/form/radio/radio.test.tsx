@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../../test';
 import { shouldRenderCustomStyles } from '../../../test/internal';
+import { render } from '../../../test/rtl';
 
 import { EuiRadio } from './radio';
 
@@ -20,48 +20,48 @@ describe('EuiRadio', () => {
   );
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiRadio id="id" onChange={() => {}} {...requiredProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     test('checked is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiRadio id="id" onChange={() => {}} checked />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('label is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiRadio id="id" onChange={() => {}} label={<span>Label</span>} />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('value is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiRadio id="id" onChange={() => {}} value={'bobbins'} />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('disabled is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiRadio id="id" onChange={() => {}} disabled />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('labelProps is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiRadio
           id="id"
           onChange={() => {}}
@@ -70,7 +70,7 @@ describe('EuiRadio', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });

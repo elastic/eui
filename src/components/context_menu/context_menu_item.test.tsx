@@ -7,56 +7,57 @@
  */
 
 import React from 'react';
-import { render, shallow, mount } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiContextMenuItem, SIZES } from './context_menu_item';
 
 describe('EuiContextMenuItem', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiContextMenuItem {...requiredProps}>Hello</EuiContextMenuItem>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('icon', () => {
       test('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiContextMenuItem icon={<span className="euiIcon fa-user" />} />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('disabled', () => {
       test('is rendered', () => {
-        const component = render(<EuiContextMenuItem disabled />);
+        const { container } = render(<EuiContextMenuItem disabled />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('size', () => {
       SIZES.forEach((size) => {
         it(`${size} is rendered`, () => {
-          const component = render(<EuiContextMenuItem size={size} />);
+          const { container } = render(<EuiContextMenuItem size={size} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
 
     describe('onClick', () => {
       test('renders a button', () => {
-        const component = render(
+        const { container } = render(
           <EuiContextMenuItem {...requiredProps} onClick={() => {}} />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test("isn't called upon instantiation", () => {
@@ -94,39 +95,39 @@ describe('EuiContextMenuItem', () => {
 
     describe('href', () => {
       test('renders a link', () => {
-        const component = render(
+        const { container } = render(
           <EuiContextMenuItem {...requiredProps} href="url" />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('rel', () => {
       test('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiContextMenuItem {...requiredProps} href="url" rel="help" />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('target', () => {
       test('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiContextMenuItem {...requiredProps} href="url" target="_blank" />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('hasPanel', () => {
       test('is rendered', () => {
-        const component = render(<EuiContextMenuItem hasPanel />);
+        const { container } = render(<EuiContextMenuItem hasPanel />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });

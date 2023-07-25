@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiDescriptionList } from './description_list';
@@ -23,11 +23,11 @@ describe('EuiDescriptionList', () => {
   );
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiDescriptionList {...requiredProps}>Content</EuiDescriptionList>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   const listItems = [
@@ -46,55 +46,55 @@ describe('EuiDescriptionList', () => {
   ];
   describe('props', () => {
     describe('listItems', () => {
-      const component = render(
+      const { container } = render(
         <EuiDescriptionList listItems={listItems}>
           listItems will render instead of this content
         </EuiDescriptionList>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
 
       describe('titleProps', () => {
         test('is rendered', () => {
-          const component = render(
+          const { container } = render(
             <EuiDescriptionList
               listItems={listItems}
               titleProps={requiredProps}
             />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
 
       describe('descriptionProps', () => {
         test('is rendered', () => {
-          const component = render(
+          const { container } = render(
             <EuiDescriptionList
               listItems={listItems}
               descriptionProps={requiredProps}
             />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
 
     describe('compressed', () => {
       test('is rendered', () => {
-        const component = render(<EuiDescriptionList compressed />);
+        const { container } = render(<EuiDescriptionList compressed />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('type', () => {
       TYPES.forEach((type) => {
         test(`${type} is rendered`, () => {
-          const component = render(<EuiDescriptionList type={type} />);
+          const { container } = render(<EuiDescriptionList type={type} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
@@ -102,9 +102,11 @@ describe('EuiDescriptionList', () => {
     describe('align', () => {
       ALIGNMENTS.forEach((alignment) => {
         test(`${alignment} is rendered`, () => {
-          const component = render(<EuiDescriptionList align={alignment} />);
+          const { container } = render(
+            <EuiDescriptionList align={alignment} />
+          );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
@@ -112,9 +114,11 @@ describe('EuiDescriptionList', () => {
     describe('gutter', () => {
       GUTTER_SIZES.forEach((gutter) => {
         test(`${gutter} is rendered`, () => {
-          const component = render(<EuiDescriptionList gutterSize={gutter} />);
+          const { container } = render(
+            <EuiDescriptionList gutterSize={gutter} />
+          );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });

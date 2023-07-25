@@ -7,15 +7,15 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../../test';
+import { render } from '../../../test/rtl';
 
 import { EuiTableSortMobileItem } from './table_sort_mobile_item';
 
 describe('EuiTableSortMobileItem', () => {
   test('is rendered', () => {
-    const component = render(<EuiTableSortMobileItem {...requiredProps} />);
+    const { container } = render(<EuiTableSortMobileItem {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

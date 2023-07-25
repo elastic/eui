@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiCollapsibleNavItem renders a top level accordion if items exist 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiAccordion euiCollapsibleNavAccordion euiCollapsibleNavItem testClass1 testClass2 emotion-euiCollapsibleNavAccordion-isTopItem-euiTestCss"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
+  >
+    <div
+      aria-controls="generated-id"
+      class="euiAccordion__button emotion-euiAccordion__button"
+      id="generated-id"
+    >
+      <span
+        class="euiAccordion__buttonContent"
+      >
+        <span
+          class="euiCollapsibleNavLink emotion-euiCollapsibleNavLink-isTopItem"
+        >
+          <span
+            class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
+          >
+            Item
+          </span>
+        </span>
+      </span>
+    </div>
+    <button
+      aria-controls="generated-id"
+      aria-expanded="false"
+      aria-labelledby="generated-id"
+      class="euiButtonIcon euiAccordion__iconButton euiAccordion__iconButton--right emotion-euiButtonIcon-xs-empty-text-euiAccordion__iconButton-arrowRight-euiCollapsibleNavAccordion__arrow"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="arrowRight"
+      />
+    </button>
+  </div>
+  <div
+    aria-labelledby="generated-id"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    id="generated-id"
+    role="region"
+    tabindex="-1"
+  >
+    <div>
+      <div
+        class="euiAccordion__children emotion-euiAccordion__children"
+      >
+        <div
+          class="euiCollapsibleNavAccordion__children emotion-euiCollapsibleNavAccordion__children-isTopItem"
+        >
+          <span
+            aria-label="aria-label"
+            class="euiCollapsibleNavLink euiCollapsibleNavItem euiCollapsibleNavSubItem emotion-euiCollapsibleNavLink-isSubItem"
+            data-test-subj="test subject string"
+          >
+            <span
+              class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
+            >
+              Sub-item
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiCollapsibleNavItem renders a top level link if items are missing or empty 1`] = `
+<a
+  aria-label="aria-label"
+  class="euiLink euiCollapsibleNavLink euiCollapsibleNavItem testClass1 testClass2 emotion-euiLink-primary-euiCollapsibleNavLink-isTopItem-isNotAccordion-isInteractive-euiTestCss"
+  data-test-subj="test subject string"
+  href="#"
+  rel="noreferrer"
+>
+  <span
+    class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
+  >
+    Item
+  </span>
+</a>
+`;

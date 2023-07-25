@@ -7,7 +7,8 @@
  */
 
 import React from 'react';
-import { mount, render } from 'enzyme';
+import { mount } from 'enzyme';
+import { render } from '../../test/rtl';
 
 import {
   findTestSubject,
@@ -38,67 +39,67 @@ describe('EuiNotificationEvent', () => {
   );
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiNotificationEvent {...props} {...requiredProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     test('multiple messages are rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiNotificationEvent
           {...props}
           messages={['message 1', 'message 2', 'message 3']}
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('isRead  is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiNotificationEvent {...props} isRead={true} onRead={() => {}} />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('severity  is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiNotificationEvent {...props} severity="severity" />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('badgeColor is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiNotificationEvent {...props} badgeColor="warning" />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('iconType is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiNotificationEvent {...props} iconType="logoCloud" />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('headingLevel is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiNotificationEvent {...props} headingLevel="h4" />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('iconAriaLabel is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiNotificationEvent
           {...props}
           iconType="logoCloud"
@@ -106,11 +107,11 @@ describe('EuiNotificationEvent', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('primaryAction is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiNotificationEvent
           {...props}
           primaryAction="primaryAction label"
@@ -118,11 +119,11 @@ describe('EuiNotificationEvent', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('primaryActionProps is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiNotificationEvent
           {...props}
           primaryAction="primaryAction"
@@ -131,7 +132,7 @@ describe('EuiNotificationEvent', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('contextMenuItems are rendered', () => {

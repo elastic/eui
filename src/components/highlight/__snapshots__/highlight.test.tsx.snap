@@ -58,6 +58,7 @@ exports[`EuiHighlight behavior matching hasScreenReaderHelpText can be false 1`]
 
 exports[`EuiHighlight behavior matching only applies to first match 1`] = `
 <span>
+  
   <mark
     class="euiMark emotion-euiMark-hasScreenReaderHelpText"
   >

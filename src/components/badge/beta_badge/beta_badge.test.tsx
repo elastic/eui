@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../../test';
 import { shouldRenderCustomStyles } from '../../../test/internal';
+import { render } from '../../../test/rtl';
 
 import { EuiBetaBadge, COLORS, SIZES, ALIGNMENTS } from './beta_badge';
 
@@ -20,18 +20,22 @@ describe('EuiBetaBadge', () => {
   );
 
   test('is rendered', () => {
-    const component = render(<EuiBetaBadge label="Beta" {...requiredProps} />);
+    const { container } = render(
+      <EuiBetaBadge label="Beta" {...requiredProps} />
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('color', () => {
       COLORS.forEach((color) => {
         test(`${color} is rendered`, () => {
-          const component = render(<EuiBetaBadge label="Beta" color={color} />);
+          const { container } = render(
+            <EuiBetaBadge label="Beta" color={color} />
+          );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
@@ -39,27 +43,31 @@ describe('EuiBetaBadge', () => {
     describe('size', () => {
       SIZES.forEach((size) => {
         test(`${size} is rendered`, () => {
-          const component = render(<EuiBetaBadge label="Beta" size={size} />);
+          const { container } = render(
+            <EuiBetaBadge label="Beta" size={size} />
+          );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
 
     test('iconType', () => {
-      const component = render(<EuiBetaBadge label="Beta" iconType="beta" />);
+      const { container } = render(
+        <EuiBetaBadge label="Beta" iconType="beta" />
+      );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('single letter', () => {
-      const component = render(<EuiBetaBadge label="B" />);
+      const { container } = render(<EuiBetaBadge label="B" />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('tooltip and anchorProps are rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiBetaBadge
           label="Beta"
           tooltipContent="Tooltip"
@@ -70,17 +78,17 @@ describe('EuiBetaBadge', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     describe('alignement', () => {
       ALIGNMENTS.forEach((alignment) => {
         test(`${alignment} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiBetaBadge label="Beta" alignment={alignment} />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });

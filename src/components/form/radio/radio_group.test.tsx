@@ -7,8 +7,9 @@
  */
 
 import React from 'react';
-import { render, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import { requiredProps } from '../../../test';
+import { render } from '../../../test/rtl';
 
 import { EuiRadioGroup } from './radio_group';
 
@@ -16,16 +17,16 @@ jest.mock('../radio', () => ({ EuiRadio: 'eui_radio' }));
 
 describe('EuiRadioGroup', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiRadioGroup {...requiredProps} options={[]} onChange={() => {}} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     test('options are rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiRadioGroup
           options={[
             { id: '1', label: 'Option #1' },
@@ -35,11 +36,11 @@ describe('EuiRadioGroup', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('name is propagated to radios', () => {
-      const component = render(
+      const { container } = render(
         <EuiRadioGroup
           name="radiogroupname"
           options={[
@@ -50,11 +51,11 @@ describe('EuiRadioGroup', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('idSelected is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiRadioGroup
           options={[
             { id: '1', label: 'Option #1' },
@@ -65,11 +66,11 @@ describe('EuiRadioGroup', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('value is propagated to radios', () => {
-      const component = render(
+      const { container } = render(
         <EuiRadioGroup
           name="radiogroupname"
           options={[
@@ -80,11 +81,11 @@ describe('EuiRadioGroup', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('legend is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiRadioGroup
           options={[
             { id: '1', label: 'Option #1' },
@@ -97,7 +98,7 @@ describe('EuiRadioGroup', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 

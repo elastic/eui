@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiBeacon, COLORS } from './beacon';
 
@@ -17,28 +17,30 @@ describe('EuiBeacon', () => {
   shouldRenderCustomStyles(<EuiBeacon />);
 
   test('is rendered', () => {
-    const component = render(<EuiBeacon {...requiredProps} />);
+    const { container } = render(<EuiBeacon {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('color', () => {
       COLORS.forEach((color) => {
         it(`${color} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiBeacon color={color} {...requiredProps} />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
     describe('size', () => {
       it('accepts size', () => {
-        const component = render(<EuiBeacon size={14} {...requiredProps} />);
+        const { container } = render(
+          <EuiBeacon size={14} {...requiredProps} />
+        );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });

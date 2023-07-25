@@ -7,13 +7,14 @@
  */
 
 import React from 'react';
-import { render, mount } from 'enzyme';
+import { mount } from 'enzyme';
+import { render } from '../../test/rtl';
 
 import { EuiNotificationEventReadButton } from './notification_event_read_button';
 
 describe('EuiNotificationEventReadButton', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiNotificationEventReadButton
         id="id"
         eventName="eventName"
@@ -22,11 +23,11 @@ describe('EuiNotificationEventReadButton', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('renders isRead to false', () => {
-    const component = render(
+    const { container } = render(
       <EuiNotificationEventReadButton
         id="id"
         eventName="eventName"
@@ -35,7 +36,7 @@ describe('EuiNotificationEventReadButton', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('onClick fires for buttons', () => {

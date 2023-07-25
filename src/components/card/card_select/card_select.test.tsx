@@ -7,50 +7,54 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../../test';
 import { shouldRenderCustomStyles } from '../../../test/internal';
+import { render } from '../../../test/rtl';
 
 import { EuiCardSelect } from './card_select';
 
 describe('EuiCardSelect', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiCardSelect onClick={() => {}} {...requiredProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   shouldRenderCustomStyles(<EuiCardSelect />);
 
   describe('props', () => {
     test('isSelected', () => {
-      const component = render(<EuiCardSelect onClick={() => {}} isSelected />);
+      const { container } = render(
+        <EuiCardSelect onClick={() => {}} isSelected />
+      );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('isDisabled', () => {
-      const component = render(<EuiCardSelect onClick={() => {}} isDisabled />);
+      const { container } = render(
+        <EuiCardSelect onClick={() => {}} isDisabled />
+      );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('can override color', () => {
-      const component = render(
+      const { container } = render(
         <EuiCardSelect onClick={() => {}} color="danger" />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('can override text', () => {
-      const component = render(
+      const { container } = render(
         <EuiCardSelect onClick={() => {}} children="Custom text" />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });

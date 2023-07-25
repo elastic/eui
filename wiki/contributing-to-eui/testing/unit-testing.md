@@ -23,22 +23,25 @@ fully-tested the code is, located at `reports/jest-coverage`.
 Create test files with the name pattern of `{component name}.test.tsx` in the same directory which
 contains `{component name}.tsx`.
 
-## Updating snapshots
+## Targeting files to test
 
-When you change a component in a way that affects the markup, you will need to update the snapshot in order for the tests to succeed. To do so, run `yarn test-unit -u`. This will update all snapshots in the repo. You can also add any string to the end of the command to run the tests only on directories that contain that string. For example, `yarn test-unit -u button` will only update the tests for directories that **contain** `button`.
+You can also add any string to the end of the command to run the tests only on directories that contain that string. For example, `yarn test-unit button` will only update the tests for directories that **contain** `button`.
 
 ## Test helpers
 
 The [`src/test`](../../../src/test) module exports some functions and constants to help you write better tests:
 
-* `findTestSubject` helps you find DOM nodes in mounted components.
 * `requiredProps` is a list of all props almost all components should support.
-* `takeMountedSnapshot` generates a snapshot of a mounted component.
-* `renderWithStyles` generates a snapshot including Emotion style output.
+* `shouldRenderCustomStyles` automatically asserts that consumer classNames, Emotion CSS, and custom styles are merged correctly with EUI's styles.
+* RTL:
+  * The exports within `test/rtl` (`render`, `screen`, and `within`) provide out-of-the-box `data-test-subj` querying. `render` provides automatic `EuiProvider` wrapping.
+* Enzyme:
+  * `findTestSubject` helps you find DOM nodes in mounted components.
+  * `takeMountedSnapshot` generates a snapshot of a mounted component.
 
 ### Test helper naming pattern
 
-If the test helper includes `enzyme` or other libraries included only in `devDependencies`, use the `*.test_helper.[ts, tsx]` naming pattern to exclude the component from production builds.
+If the test helper includes `enzyme` or other libraries included only in `devDependencies`, use the `*.test_helper.[ts, tsx]` naming pattern to exclude the component from production builds, or place the helper in a namespaced folder.
 
 ## Test design
 
@@ -46,8 +49,7 @@ If the test helper includes `enzyme` or other libraries included only in `devDep
 
 * DO use the `data-test-subj` attribute to mark parts of a component you want to `find` later.
 * DON'T depend upon class names or other implementation details for `find`ing nodes, if possible.
-* DO use snapshots as much as possible.
-* DON'T assert for the presence of nodes if you can use a snapshot instead.
+* DON'T use snapshots, except for an initial `it renders` test. Prefer using specific assertions instead.
 
 ### Anatomy of a test
 
@@ -59,58 +61,63 @@ A good test will document:
 * Special behavior, e.g. keyboard navigation, async behavior, DOM manipulation under the hood.
 
 ```jsx
+import { fireEvent } from '@testing-library/react';
+import { render } from '../../test/rtl';
+
 describe('YourComponent', () => {
-  // Snapshot will be generated at the end of the snap file
-  renderWithStyles(
-    <YourComponent {...requiredProps}>
-      Hello
-    </YourComponent>
-  ));
+  shouldRenderCustomStyles(<YourComponent />);
+
+  it('renders', () => {
+    const { container } = render(
+      <YourComponent {...requiredProps }/>
+    );
+
+    expect(container.firstChild).toMatchSnapshot();
+  });
 
   describe('props', () => {
-    describe('color', () => {
-      test('is rendered', () => {
-        const component = render(
-          <YourComponent color="blue" />
-        );
+    test('color', () => {
+      const { getByTestSybject } = render(
+        <YourComponent color="blue" />
+      );
 
-        expect(component).toMatchSnapshot();
-      });
+      expect(getByTestSubject('color')).toHaveStyleRule('color', 'blue');
     });
 
     describe('onClick', () => {
-      test(`isn't called upon instantiation`, () => {
-        const onClickHandler = sinon.stub();
+      it('is called when the button is clicked', () => {
+        const onClickHandler = jest.fn();
 
-        mount(
+        const { getByTestSubject } = render(
           <YourComponent onClick={onClickHandler} />
         );
 
-        expect(onClickHandler).not.toHaveBeenCalled();
-      });
-
-      test('is called when the button is clicked', () => {
-        const onClickHandler = sinon.stub();
-
-        const component = mount(
-          <YourComponent onClick={onClickHandler} />
-        );
-
-        // NOTE: This is the only way to find this button.
-        component.find('button').simulate('click');
+        fireEvent.click(getByTestSubject('button'));
 
         expect(onClickHandler).toHaveBeenCalledTimes(1);
+      });
+
+      it('is not called on keypress', () => {
+        const onClickHandler = jest.fn();
+
+        const { getByTestSubject } = render(
+          <YourComponent onClick={onClickHandler} />
+        );
+
+        fireEvent.keyDown(getByTestSubject('button'));
+
+        expect(onClickHandler).not.toHaveBeenCalled();
       });
     });
   });
 
   describe('behavior', () => {
-    it('button is automatically focused', () => {
-      const component = mount(
+    it('automatically focuses button on page load', () => {
+      const { getByTestSubject } = render(
         <YourComponent />
       );
 
-      expect(findTestSubject(component, 'button').getDOMNode()).toBe(document.activeElement);
+      expect(getByTestSubject('button')).toEqual(document.activeElement);
     });
   });
 });

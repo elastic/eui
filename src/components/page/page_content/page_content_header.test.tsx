@@ -7,15 +7,15 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
 
 import { EuiPageContentHeader_Deprecated as EuiPageContentHeader } from './page_content_header';
 
 describe('EuiPageContentHeader', () => {
   test('is rendered', () => {
-    const component = render(<EuiPageContentHeader {...requiredProps} />);
+    const { container } = render(<EuiPageContentHeader {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

@@ -7,17 +7,17 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { render } from '../../test/rtl';
 
 import { EuiTextAlign, ALIGNMENTS } from './text_align';
 
 describe('EuiTextAlign', () => {
   test('is rendered', () => {
-    const component = render(<EuiTextAlign {...requiredProps} />);
+    const { container } = render(<EuiTextAlign {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   shouldRenderCustomStyles(
@@ -30,22 +30,22 @@ describe('EuiTextAlign', () => {
     describe('direction', () => {
       ALIGNMENTS.forEach((direction) => {
         test(`${direction} is rendered`, () => {
-          const component = render(<EuiTextAlign textAlign={direction} />);
+          const { container } = render(<EuiTextAlign textAlign={direction} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
 
     describe('cloneElement', () => {
       test('cloneElement', () => {
-        const component = render(
+        const { container } = render(
           <EuiTextAlign cloneElement>
             <p>Content</p>
           </EuiTextAlign>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       shouldRenderCustomStyles(<EuiTextAlign cloneElement textAlign="right" />);

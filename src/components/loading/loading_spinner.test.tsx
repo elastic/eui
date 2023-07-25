@@ -7,30 +7,30 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiLoadingSpinner, SIZES } from './loading_spinner';
 
 describe('EuiLoadingSpinner', () => {
   test('is rendered', () => {
-    const component = render(<EuiLoadingSpinner {...requiredProps} />);
+    const { container } = render(<EuiLoadingSpinner {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('size', () => {
     SIZES.forEach((size) => {
       test(`${size} is rendered`, () => {
-        const component = render(<EuiLoadingSpinner size={size} />);
+        const { container } = render(<EuiLoadingSpinner size={size} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });
 
   test('custom colors', () => {
-    const component = render(
+    const { container } = render(
       <>
         <EuiLoadingSpinner color={{ border: 'white' }} />
         <EuiLoadingSpinner color={{ highlight: 'black' }} />
@@ -41,6 +41,6 @@ describe('EuiLoadingSpinner', () => {
       </>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 });

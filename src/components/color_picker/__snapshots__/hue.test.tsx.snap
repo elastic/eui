@@ -1,19 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiHue accepts a hex value 1`] = `
-Array [
+<div>
   <label
     class="emotion-euiScreenReaderOnly"
     for="undefined-hue"
   >
     Select the HSV color mode 'hue' value
-  </label>,
+  </label>
   <p
     aria-live="polite"
     class="emotion-euiScreenReaderOnly"
   >
     #00FFFF
-  </p>,
+  </p>
   <div
     class="euiHue testClass1 testClass2 emotion-euiTestCss"
   >
@@ -28,22 +28,22 @@ Array [
       type="range"
       value="180"
     />
-  </div>,
-]
+  </div>
+</div>
 `;
 
 exports[`EuiHue accepts a hue value 1`] = `
-Array [
+<div>
   <label
     class="emotion-euiScreenReaderOnly"
     for="undefined-hue"
   >
     Select the HSV color mode 'hue' value
-  </label>,
+  </label>
   <p
     aria-live="polite"
     class="emotion-euiScreenReaderOnly"
-  />,
+  />
   <div
     class="euiHue testClass1 testClass2 emotion-euiTestCss"
   >
@@ -58,22 +58,22 @@ Array [
       type="range"
       value="180"
     />
-  </div>,
-]
+  </div>
+</div>
 `;
 
 exports[`EuiHue is rendered 1`] = `
-Array [
+<div>
   <label
     class="emotion-euiScreenReaderOnly"
     for="undefined-hue"
   >
     Select the HSV color mode 'hue' value
-  </label>,
+  </label>
   <p
     aria-live="polite"
     class="emotion-euiScreenReaderOnly"
-  />,
+  />
   <div
     class="euiHue testClass1 testClass2 emotion-euiTestCss"
   >
@@ -88,6 +88,6 @@ Array [
       type="range"
       value="1"
     />
-  </div>,
-]
+  </div>
+</div>
 `;

@@ -7,9 +7,10 @@
  */
 
 import React, { ReactNode } from 'react';
-import { render, mount } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
+import { mount } from 'enzyme';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 import { EuiFocusTrap } from '../';
 
 import {
@@ -44,7 +45,7 @@ describe('EuiPopover', () => {
   );
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiPopover
         id={getId()}
         button={<button />}
@@ -53,23 +54,23 @@ describe('EuiPopover', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('children is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiPopover id={getId()} button={<button />} closePopover={() => {}}>
         Children
       </EuiPopover>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('display block', () => {
       test('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiPopover
             id={getId()}
             display="block"
@@ -78,13 +79,13 @@ describe('EuiPopover', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('anchorClassName', () => {
       test('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiPopover
             id={getId()}
             anchorClassName="test"
@@ -93,7 +94,7 @@ describe('EuiPopover', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
@@ -134,7 +135,7 @@ describe('EuiPopover', () => {
 
     describe('anchorPosition', () => {
       test('defaults to centerDown', () => {
-        const component = render(
+        const { container } = render(
           <EuiPopover
             id={getId()}
             button={<button />}
@@ -142,11 +143,11 @@ describe('EuiPopover', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('leftCenter is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiPopover
             id={getId()}
             button={<button />}
@@ -155,11 +156,11 @@ describe('EuiPopover', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('downRight is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiPopover
             id={getId()}
             button={<button />}
@@ -168,13 +169,13 @@ describe('EuiPopover', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('isOpen', () => {
       test('defaults to false', () => {
-        const component = render(
+        const { container } = render(
           <EuiPopover
             id={getId()}
             button={<button />}
@@ -182,7 +183,7 @@ describe('EuiPopover', () => {
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('renders true', () => {

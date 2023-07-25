@@ -7,84 +7,87 @@
  */
 
 import React from 'react';
-import { render, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { render } from '../../test/rtl';
 import { EuiLink, COLORS } from './link';
 
 describe('EuiLink', () => {
   COLORS.forEach((color) => {
     test(`${color} is rendered`, () => {
-      const component = render(<EuiLink color={color} />);
-      expect(component).toMatchSnapshot();
+      const { container } = render(<EuiLink color={color} />);
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
   shouldRenderCustomStyles(<EuiLink />);
 
   test('it supports both href and onClick', () => {
-    const component = render(<EuiLink href="/imalink" onClick={() => null} />);
-    expect(component).toMatchSnapshot();
+    const { container } = render(
+      <EuiLink href="/imalink" onClick={() => null} />
+    );
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('it passes the default props through', () => {
-    const component = render(<EuiLink {...requiredProps} />);
-    expect(component).toMatchSnapshot();
+    const { container } = render(<EuiLink {...requiredProps} />);
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('supports children', () => {
-    const component = render(
+    const { container } = render(
       <EuiLink href="#">
         <span>Hiya!!!</span>
       </EuiLink>
     );
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('it is an external link', () => {
-    const component = render(<EuiLink external href="/baz/bing" />);
-    expect(component).toMatchSnapshot();
+    const { container } = render(<EuiLink external href="/baz/bing" />);
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('supports href', () => {
-    const component = render(<EuiLink href="/baz/bing" />);
-    expect(component).toMatchSnapshot();
+    const { container } = render(<EuiLink href="/baz/bing" />);
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('supports target', () => {
-    const component = render(<EuiLink href="#" target="_blank" />);
-    expect(component).toMatchSnapshot();
+    const { container } = render(<EuiLink href="#" target="_blank" />);
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('allows for target and external to be controlled independently', () => {
-    const component = render(
+    const { container } = render(
       <EuiLink href="#" target="_blank" external={false} />
     );
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('supports rel', () => {
-    const component = render(<EuiLink href="hoi" rel="stylesheet" />);
-    expect(component).toMatchSnapshot();
+    const { container } = render(<EuiLink href="hoi" rel="stylesheet" />);
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('supports disabled', () => {
-    const component = render(
+    const { container } = render(
       <EuiLink disabled onClick={() => 'hello, world!'} />
     );
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('if href is not specified, it renders a button of type=button', () => {
-    const component = render(<EuiLink />);
-    expect(component).toMatchSnapshot();
+    const { container } = render(<EuiLink />);
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('button respects the type property', () => {
-    const component = render(
+    const { container } = render(
       <EuiLink type="submit" onClick={() => 'hello, world!'} />
     );
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('onClick fires for buttons', () => {

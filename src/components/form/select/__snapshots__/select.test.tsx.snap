@@ -133,7 +133,6 @@ exports[`EuiSelect props value option is rendered 1`] = `
       class="euiSelect euiFormControlLayout--1icons"
     >
       <option
-        selected=""
         value="1"
       >
         Option #1
