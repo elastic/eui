@@ -14,6 +14,20 @@ set +x
 # * GPROJECT - GCE project name, e.g. elastic-bekitzur
 # * GCE_ACCOUNT - credentials for the google service account (JSON blob)
 # * GIT_BRANCH - current Git branch or tag (e.g. "refs/heads/main", "v18.2.1")
+# * GIT_PULL_REQUEST_ID - current Git PR (Ex. 6999) from Buildkite env
+# * BUILDKITE_CI - Buildkite CI agent
+# * JENINKS_CI - Jenkins CI agent
+
+# Docker images
+GCE_IMAGE=google/cloud-sdk:slim
+
+# ==================================================
+# TODO: Remove echo tests
+# These TODO items will be removed when EUI PR #6967
+# and EUI PR #6965 are merged successfully.
+# ==================================================
+echo "The Jenkins PR number is: ${pull_request_id}."
+echo "The Buildkite PR number is ${GIT_PULL_REQUEST_ID}."
 
 if [[ -z "${GPROJECT}" ]]; then
     echo "GPROJECT is not set, e.g. 'GPROJECT=elastic-bekitzur'"
@@ -33,18 +47,40 @@ post_comment_to_gh()
   if [[ -z "${GITHUB_TOKEN}" ]]; then
     echo "Warning: GITHUB_TOKEN is not set; cannot publish PR docs preview URL to Github."
   else
-    printf '\nAdding comment to GitHub Pull Request: %i\n' "$pull_request_id"
+    # ==================================================
+    # TODO: Remove Jenkins block and Buildkite
+    # if; then / fi block
+    # ==================================================
+    if [[ ! -z "${pull_request_id}" ]]; then
+      printf '\nAdding comment to GitHub Pull Request: %i\n' "$pull_request_id"
+      comment="Preview documentation changes for this PR: https://eui.elastic.co/pr_$pull_request_id/"
 
-    comment="Preview documentation changes for this PR: https://eui.elastic.co/pr_$pull_request_id/"
+      set +x
+      curl \
+        --silent \
+        --location \
+        --header "Authorization: token ${GITHUB_TOKEN}" \
+        --request POST \
+        --data "$(jq --null-input --arg comment "$comment" '{ body: $comment }')" \
+        "https://api.github.com/repos/elastic/eui/issues/${pull_request_id}/comments"
+    fi
 
-    set +x
-    curl \
-      --silent \
-      --location \
-      --header "Authorization: token ${GITHUB_TOKEN}" \
-      --request POST \
-      --data "$(jq --null-input --arg comment "$comment" '{ body: $comment }')" \
-      "https://api.github.com/repos/elastic/eui/issues/${pull_request_id}/comments"
+    # ==================================================
+    # Buildkite block
+    # ==================================================
+    if [[ ! -z "${GIT_PULL_REQUEST_ID}" ]]; then
+      printf '\nAdding comment to GitHub Pull Request: %i\n' "$GIT_PULL_REQUEST_ID"
+      comment="Preview documentation changes for this PR: https://eui.elastic.co/pr_${GIT_PULL_REQUEST_ID}_buildkite/"
+
+      set +x
+      curl \
+        --silent \
+        --location \
+        --header "Authorization: token ${GITHUB_TOKEN}" \
+        --request POST \
+        --data "$(jq --null-input --arg comment "$comment" '{ body: $comment }')" \
+        "https://api.github.com/repos/elastic/eui/issues/${GIT_PULL_REQUEST_ID}/comments"
+    fi
   fi
 }
 
@@ -69,23 +105,32 @@ if [[ "$1" != "nodocker" ]]; then
   echo "Current release: $CURRENT_RELEASE"
 
   # Run this script from inside the docker container, using google/cloud-sdk image
-  echo "Deploying to bucket"
+  # ==================================================
+  # TODO: Remove --env pull_request_id
+  # ==================================================
+  echo "Deploying to bucket using ${GCE_IMAGE} Docker image"
   docker run \
-    --rm -i \
+    -i --rm \
     --env GCE_ACCOUNT \
     --env GIT_BRANCH \
     --env GPROJECT \
     --env pull_request_id \
+    --env GIT_PULL_REQUEST_ID \
+    --env JENKINS_CI \
+    --env BUILDKITE_CI \
     --env CURRENT_RELEASE="$CURRENT_RELEASE" \
     --env HOME=/tmp \
-    --volume $PWD:/app \
-    --user=$(id -u):$(id -g) \
+    --user="$(id -u):$(id -g)" \
+    --volume "$PWD":/app:ro \
     --workdir /app \
-    'google/cloud-sdk:slim' \
+    "$GCE_IMAGE" \
     /app/scripts/deploy/deploy_docs nodocker "$@"
   unset GCE_ACCOUNT
 
-  if [[ ! -z "${pull_request_id}" ]]; then
+  # ==================================================
+  # TODO - Remove pull_request_id logical block
+  # ==================================================
+  if [[ ! -z "${pull_request_id}" ]] || [[ ! -z "${GIT_PULL_REQUEST_ID}" ]]; then
     post_comment_to_gh
   fi
   unset GITHUB_TOKEN
@@ -98,7 +143,6 @@ else
   # All branches go into correspondingly named dirs.
   # remove remote "origin/", leaving just the branch name
   BRANCH="${GIT_BRANCH#*/}"
-  echo "Git branch: $GIT_BRANCH"
 
   # Copy files
   EUI_DOCS_PROJECT=eui-docs-live
@@ -106,20 +150,55 @@ else
 
   max_age="1800"
 
-  if [[ ! -z "${pull_request_id}" ]]; then
-    full_bucket_path="gs://$BUCKET/pr_$pull_request_id/"
-    publish_to_bucket
-  else
-    full_bucket_path="gs://$BUCKET/$BRANCH/"
-    max_age="604800"
-    publish_to_bucket
+  # ==================================================
+  # TODO: Remove Jenkins block
+  # ==================================================
+  if [[ ! -z "${JENKINS_CI}" ]]; then
+    echo "Jenkins CI agent".
 
-    # if this is the highest release number to date, also publish the docs to the
-    # root directory
-    if [[ "$CURRENT_RELEASE" == "$GIT_BRANCH" ]]; then
-      echo "This is the current release."
-      full_bucket_path="gs://$BUCKET/"
+    if [[ ! -z "${pull_request_id}" ]]; then
+      echo "This is the Jenkins PR release."
+      full_bucket_path="gs://$BUCKET/pr_$pull_request_id/"
       publish_to_bucket
+    else
+      echo "This is a Jenkins branch release."
+      full_bucket_path="gs://$BUCKET/$BRANCH/"
+      max_age="604800"
+      publish_to_bucket
+
+      # if this is the highest release number to date, also publish the docs to the
+      # root directory
+      if [[ "$CURRENT_RELEASE" == "$GIT_BRANCH" ]]; then
+        echo "This is the current Jenkins release."
+        full_bucket_path="gs://$BUCKET/"
+        publish_to_bucket
+      fi
+    fi
+  fi
+
+  # ==================================================
+  # Buildkite block
+  # ==================================================
+  if [[ ! -z "${BUILDKITE_CI}" ]]; then
+    echo "Buildkite CI agent."
+
+    if [[ ! -z "${GIT_PULL_REQUEST_ID}" ]]; then
+      echo "This is the Buildkite PR release."
+      full_bucket_path="gs://$BUCKET/pr_${GIT_PULL_REQUEST_ID}_buildkite/"
+      publish_to_bucket
+    else
+      echo "This is a Buildkite branch release."
+      full_bucket_path="gs://$BUCKET/${BRANCH}_buildkite/"
+      max_age="604800"
+      publish_to_bucket
+
+      # if this is the highest release number to date, also publish the docs to the
+      # root directory
+      if [[ "$CURRENT_RELEASE" == "$GIT_BRANCH" ]]; then
+        echo "This is the current Buildkite release."
+        full_bucket_path="gs://${BUCKET}_buildkite/"
+        publish_to_bucket
+      fi
     fi
   fi
 fi
