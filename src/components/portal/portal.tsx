@@ -11,7 +11,7 @@
  * into portals.
  */
 
-import React, { Component, ReactNode } from 'react';
+import React, { Component, ContextType, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 
 import { EuiNestedThemeContext } from '../../services';
@@ -43,6 +43,7 @@ export interface EuiPortalProps {
 
 export class EuiPortal extends Component<EuiPortalProps> {
   static contextType = EuiNestedThemeContext;
+  declare context: ContextType<typeof EuiNestedThemeContext>;
 
   portalNode: HTMLDivElement | null = null;
 

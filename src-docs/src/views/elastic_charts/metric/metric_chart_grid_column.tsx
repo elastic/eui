@@ -22,6 +22,7 @@ export default () => {
   const chartBaseTheme = isDarkTheme ? DARK_THEME : LIGHT_THEME;
   return (
     <EuiPanel paddingSize="none" style={{ overflow: 'hidden', width: 200 }}>
+      {/* @ts-ignore @elastic/charts typings are not yet compatible with React 18 */}
       <Chart size={[200, 400]}>
         <Settings baseTheme={chartBaseTheme} theme={euiChartTheme.theme} />
         <Metric
