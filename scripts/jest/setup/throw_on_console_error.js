@@ -39,5 +39,20 @@ console.error = (message, ...rest) => {
     return;
   }
 
+  // Ignore EuiIcon update not wrapped in act() warnings as they are triggered
+  // directly from the component componentDidUpdate() and loadIconComponent()
+  // TODO: Refactor EuiIcon to not cause this issue and think of a simpler
+  //  implementation based on the modern JS bundlers features instead of
+  //  the EuiIcon caching layer.
+  if (
+    typeof message === 'string' &&
+    message.startsWith(
+      'Warning: An update to %s inside a test was not wrapped in act(...).'
+    ) &&
+    rest[0] === 'EuiIconClass'
+  ) {
+    return;
+  }
+
   throw new Error(format(message, ...rest));
 };
