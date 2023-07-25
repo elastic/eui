@@ -27,6 +27,7 @@ import { EuiComboBoxTitle } from './combo_box_title';
 import { EuiI18n } from '../../i18n';
 import {
   EuiFilterSelectItem,
+  EuiFilterSelectItemClass,
   FilterChecked,
 } from '../../filter_group/filter_select_item';
 import { htmlIdGenerator } from '../../../services';
@@ -73,7 +74,10 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps &
     onOptionClick?: OptionHandler<T>;
     onOptionEnterKey?: OptionHandler<T>;
     onScroll?: ListProps['onScroll'];
-    optionRef: (index: number, node: RefInstance<EuiFilterSelectItem>) => void;
+    optionRef: (
+      index: number,
+      node: RefInstance<EuiFilterSelectItemClass>
+    ) => void;
     /**
      * Array of EuiComboBoxOptionOption objects. See #EuiComboBoxOptionOption
      */

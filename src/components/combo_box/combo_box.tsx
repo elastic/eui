@@ -44,7 +44,7 @@ import {
   EuiComboBoxOptionsListPosition,
   EuiComboBoxSingleSelectionShape,
 } from './types';
-import { EuiFilterSelectItem } from '../filter_group';
+import { EuiFilterSelectItemClass } from '../filter_group/filter_select_item';
 import AutosizeInput from 'react-input-autosize';
 import { CommonProps } from '../common';
 import { EuiFormControlLayoutProps } from '../form';
@@ -279,7 +279,7 @@ export class EuiComboBox<T> extends Component<
     this.toggleButtonRefInstance = ref;
   };
 
-  optionsRefInstances: Array<RefInstance<EuiFilterSelectItem>> = [];
+  optionsRefInstances: Array<RefInstance<EuiFilterSelectItemClass>> = [];
   optionRefCallback: EuiComboBoxOptionsListProps<T>['optionRef'] = (
     index,
     ref

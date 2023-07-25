@@ -7,6 +7,7 @@
  */
 
 import React, { ReactNode } from 'react';
+import { fireEvent } from '@testing-library/react';
 import { shallow, mount } from 'enzyme';
 import { render } from '../../test/rtl';
 import {
@@ -297,18 +298,22 @@ test('does not show multiple checkmarks with duplicate labels', () => {
       label: 'Tethys',
     },
   ];
-  const component = mount(
+  const { baseElement, getByTestSubject } = render(
     <EuiComboBox
       singleSelection={{ asPlainText: true }}
       options={options}
       selectedOptions={[options[1]]}
     />
   );
+  fireEvent.focus(getByTestSubject('comboBoxSearchInput'));
 
-  const searchInput = findTestSubject(component, 'comboBoxSearchInput');
-  searchInput.simulate('focus');
-
-  expect(component.find('EuiFilterSelectItem[checked="on"]').length).toBe(1);
+  const dropdownOptions = baseElement.querySelectorAll('.euiFilterSelectItem');
+  expect(
+    dropdownOptions[0]!.querySelector('[data-euiicon-type="check"]')
+  ).toBeFalsy();
+  expect(
+    dropdownOptions[1]!.querySelector('[data-euiicon-type="check"]')
+  ).toBeTruthy();
 });
 
 describe('behavior', () => {
