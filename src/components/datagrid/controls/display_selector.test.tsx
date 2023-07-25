@@ -310,10 +310,19 @@ describe('useDataGridDisplaySelector', () => {
           component
             .find('input[type="range"][data-test-subj="lineCountNumber"]')
             .prop('value');
-        const setLineCountNumber = (component: ReactWrapper, number: number) =>
-          component
-            .find('input[type="range"][data-test-subj="lineCountNumber"]')
-            .simulate('change', { target: { value: number } });
+        const setLineCountNumber = (
+          component: ReactWrapper,
+          number: number
+        ) => {
+          const input = component.find(
+            'input[type="range"][data-test-subj="lineCountNumber"]'
+          );
+
+          // enzyme simulate() doesn't handle event.currentTarget updates well
+          // https://github.com/enzymejs/enzyme/issues/218
+          (input.getDOMNode() as HTMLInputElement).value = number.toString();
+          input.simulate('change');
+        };
 
         it('conditionally displays a line count number input when the lineCount button is selected', () => {
           const component = mount(<MockComponent />);
@@ -357,7 +366,11 @@ describe('useDataGridDisplaySelector', () => {
           );
           openPopover(component);
 
-          setLineCountNumber(component, 3);
+          act(() => {
+            setLineCountNumber(component, 3);
+          });
+          component.update();
+
           expect(getLineCountNumber(component)).toEqual(3);
         });
 
