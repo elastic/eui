@@ -201,16 +201,6 @@ export const euiPaletteComplementary = function (steps: number): EuiPalette {
  * @deprecated Use euiPaletteComplementary instead
  */
 export const euiPaletteComplimentary = euiPaletteComplementary;
-  if (steps === 1) {
-    return [euiPaletteColorBlind()[1]];
-  }
-
-  return euiPalette(
-    [euiPaletteColorBlind()[1], euiPaletteColorBlind()[7]],
-    steps,
-    true
-  );
-};
 
 export const euiPaletteNegative = function (steps: number): EuiPalette {
   if (steps === 1) {
