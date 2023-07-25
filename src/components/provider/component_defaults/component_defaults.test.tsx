@@ -11,41 +11,138 @@ import { renderHook } from '@testing-library/react-hooks';
 
 import {
   EuiComponentDefaultsProvider,
-  useEuiComponentDefaults,
+  useComponentDefaults,
+  usePropsWithComponentDefaults,
 } from './component_defaults';
 
 describe('EuiComponentDefaultsProvider', () => {
-  it('sets up context that allows accessing the passed `componentDefaults` from anywhere', () => {
+  describe('useComponentDefaults', () => {
+    it('allows accessing provided `componentDefaults` from anywhere', () => {
+      const wrapper = ({ children }: PropsWithChildren<{}>) => (
+        <EuiComponentDefaultsProvider
+          componentDefaults={{
+            EuiPortal: {
+              insert: {
+                sibling: document.createElement('div'),
+                position: 'before',
+              },
+            },
+          }}
+        >
+          {children}
+        </EuiComponentDefaultsProvider>
+      );
+      const { result } = renderHook(useComponentDefaults, { wrapper });
+
+      expect(result.current).toMatchInlineSnapshot(`
+        Object {
+          "EuiPortal": Object {
+            "insert": Object {
+              "position": "before",
+              "sibling": <div />,
+            },
+          },
+        }
+      `);
+    });
+  });
+
+  describe('usePropsWithComponentDefaults', () => {
     const wrapper = ({ children }: PropsWithChildren<{}>) => (
       <EuiComponentDefaultsProvider
         componentDefaults={{
-          EuiPortal: {
-            insert: {
-              sibling: document.createElement('div'),
-              position: 'before',
-            },
+          EuiTablePagination: {
+            itemsPerPage: 20,
+            itemsPerPageOptions: [20, 40, 80, 0],
           },
         }}
       >
         {children}
       </EuiComponentDefaultsProvider>
     );
-    const { result } = renderHook(useEuiComponentDefaults, { wrapper });
 
-    expect(result.current).toMatchInlineSnapshot(`
-      Object {
-        "EuiPortal": Object {
-          "insert": Object {
-            "position": "before",
-            "sibling": <div />,
-          },
-        },
-      }
-    `);
+    it("returns a specific component's provided default props", () => {
+      const { result } = renderHook(
+        () => usePropsWithComponentDefaults('EuiTablePagination', {}),
+        { wrapper }
+      );
+
+      expect(result.current).toEqual({
+        itemsPerPage: 20,
+        itemsPerPageOptions: [20, 40, 80, 0],
+      });
+    });
+
+    it('correctly overrides defaults with actual props passed', () => {
+      const { result } = renderHook(
+        () =>
+          usePropsWithComponentDefaults('EuiTablePagination', {
+            itemsPerPageOptions: [5, 10, 20],
+          }),
+        { wrapper }
+      );
+
+      expect(result.current).toEqual({
+        itemsPerPage: 20,
+        itemsPerPageOptions: [5, 10, 20],
+      });
+    });
+
+    it('correctly handles props without a default defined', () => {
+      const { result } = renderHook(
+        () =>
+          usePropsWithComponentDefaults('EuiTablePagination', {
+            showPerPageOptions: false,
+          }),
+        { wrapper }
+      );
+
+      expect(result.current).toEqual({
+        itemsPerPage: 20,
+        itemsPerPageOptions: [20, 40, 80, 0],
+        showPerPageOptions: false,
+      });
+    });
+
+    it('correctly handles components with no defaults defined', () => {
+      const { result } = renderHook(
+        () =>
+          usePropsWithComponentDefaults('EuiFocusTrap', {
+            children: 'test',
+            crossFrame: true,
+          }),
+        { wrapper }
+      );
+
+      expect(result.current).toEqual({
+        children: 'test',
+        crossFrame: true,
+      });
+    });
+
+    it('correctly handles no component defaults defined at all', () => {
+      const wrapper = ({ children }: PropsWithChildren<{}>) => (
+        <EuiComponentDefaultsProvider>{children}</EuiComponentDefaultsProvider>
+      );
+      const { result } = renderHook(
+        () =>
+          usePropsWithComponentDefaults('EuiFocusTrap', {
+            children: 'test',
+            gapMode: 'margin',
+          }),
+        { wrapper }
+      );
+
+      expect(result.current).toEqual({
+        children: 'test',
+        gapMode: 'margin',
+      });
+    });
   });
 
   // NOTE: Components are in charge of their own testing to ensure that the props
-  // coming from `useEuiComponentDefaults()` were properly applied. This file
-  // is simply a very light wrapper that carries prop data.
-  // @see `src/components/portal/portal.spec.tsx` as an example
+  // coming from the `componentDefaults` configuration were properly applied.
+  // Examples:
+  // @see src/components/portal/portal.spec.tsx
+  // @see src/components/table/table_pagination/table_pagination.test.tsx
 });

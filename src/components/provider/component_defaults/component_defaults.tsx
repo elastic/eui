@@ -6,24 +6,36 @@
  * Side Public License, v 1.
  */
 
-import React, { createContext, useContext, FunctionComponent } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useMemo,
+  FunctionComponent,
+} from 'react';
 
-import { EuiPortalProps } from '../../portal';
-import { EuiFocusTrapProps } from '../../focus_trap';
+import type { EuiPortalProps } from '../../portal';
+import type { EuiFocusTrapProps } from '../../focus_trap';
+import type { EuiTablePaginationProps } from '../../table';
 
 export type EuiComponentDefaults = {
   /**
    * Provide a global configuration for EuiPortal's default insertion position.
    */
-  EuiPortal?: { insert: EuiPortalProps['insert'] };
+  EuiPortal?: Pick<EuiPortalProps, 'insert'>;
   /**
    * Provide a global configuration for EuiFocusTrap's `gapMode` and `crossFrame` props
    */
   EuiFocusTrap?: Pick<EuiFocusTrapProps, 'gapMode' | 'crossFrame'>;
   /**
-   * TODO
+   * Provide global settings for EuiTablePagination's props that affect page size
+   * / the rows per page selection.
+   *
+   * These defaults will be inherited all table and grid components that utilize EuiTablePagination.
    */
-  EuiPagination?: unknown;
+  EuiTablePagination?: Pick<
+    EuiTablePaginationProps,
+    'itemsPerPage' | 'itemsPerPageOptions' | 'showPerPageOptions'
+  >;
 };
 
 // Declaring as a static const for reference integrity/reducing rerenders
@@ -49,8 +61,29 @@ export const EuiComponentDefaultsProvider: FunctionComponent<{
 };
 
 /*
- * Hook
+ * Hooks
  */
-export const useEuiComponentDefaults = () => {
+export const useComponentDefaults = () => {
   return useContext(EuiComponentDefaultsContext);
+};
+
+// Merge individual component props with component defaults
+export const usePropsWithComponentDefaults = <
+  TComponentName extends keyof EuiComponentDefaults,
+  TComponentProps
+>(
+  componentName: TComponentName,
+  props: TComponentProps
+): TComponentProps => {
+  const context = useContext(EuiComponentDefaultsContext);
+
+  const componentDefaults = context[componentName] ?? emptyDefaults;
+
+  return useMemo(
+    () => ({
+      ...componentDefaults,
+      ...props,
+    }),
+    [componentDefaults, props]
+  );
 };
