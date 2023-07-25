@@ -66,7 +66,7 @@ export const EuiForm = forwardRef<HTMLElement, EuiFormProps>(
       [fullWidth]
     );
 
-    const handleFocus = useCallback((node) => {
+    const handleFocus = useCallback((node: HTMLDivElement) => {
       node?.focus();
     }, []);
 
