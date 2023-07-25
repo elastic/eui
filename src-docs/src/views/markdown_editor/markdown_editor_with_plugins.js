@@ -37,7 +37,7 @@ import {
 
 import {
   useEuiTheme,
-  euiPaletteComplimentary,
+  euiPaletteComplementary,
   euiPaletteCool,
   euiPaletteForStatus,
   euiPaletteForTemperature,
@@ -51,7 +51,7 @@ import { getDefaultEuiMarkdownUiPlugins } from '../../../../src/components/markd
 const paletteData = {
   euiPaletteForStatus,
   euiPaletteForTemperature,
-  euiPaletteComplimentary,
+  euiPaletteComplementary,
   euiPaletteNegative,
   euiPalettePositive,
   euiPaletteCool,
