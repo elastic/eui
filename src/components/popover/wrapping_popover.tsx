@@ -10,7 +10,8 @@ import React, { Component } from 'react';
 import { EuiPopover, Props as EuiPopoverProps } from './popover';
 import { EuiPortal } from '../portal';
 
-export interface EuiWrappingPopoverProps extends EuiPopoverProps {
+export interface EuiWrappingPopoverProps
+  extends Omit<EuiPopoverProps, 'button'> {
   button: HTMLElement;
 }
 
