@@ -10,7 +10,7 @@ function stripTypeScript(filename, ast) {
   return babelCore.transform(babelCore.transformFromAst(ast).code, {
     filename: filename,
     babelrc: false,
-    presets: ['@babel/typescript'],
+    presets: [['@babel/typescript', { allowDeclareFields: true }]],
   }).code;
 }
 
