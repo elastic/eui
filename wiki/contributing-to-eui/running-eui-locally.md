@@ -26,6 +26,15 @@ EUI only uses [yarn@v1 (classic)](https://classic.yarnpkg.com/en/docs/install), 
 yarn
 ```
 
+#### Puppeteer issues
+
+If you're on an Apple arm64 machine and receive an error on `yarn` about Puppeteer/the chromium binary not being available, you have one of two options:
+
+1. If you don't need to run Puppeteer tests locally:
+    - Paste `PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true` into your terminal as an env
+2. If you do need need to run Puppeteer locally:
+    - [Follow these steps](https://github.com/puppeteer/puppeteer/issues/6622#issuecomment-787912758) to install the Chromium binary globally and update your `~/.zshrc`.
+
 ## Running
 
 You can run the documentation locally at [http://localhost:8030/](http://localhost:8030/) with the following command:
