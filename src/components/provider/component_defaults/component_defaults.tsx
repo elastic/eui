@@ -38,15 +38,6 @@ export type EuiComponentDefaults = {
   >;
 };
 
-// This type must be manually kept in sync with EuiComponentDefaults, until we
-// decide to extend this architecture / extrapolate component defaults to *all*
-// props across *all* components
-type EuiComponentDefaultsSupportedComponents = {
-  EuiPortal: EuiPortalProps;
-  EuiFocusTrap: EuiFocusTrapProps;
-  EuiTablePagination: EuiTablePaginationProps;
-};
-
 // Declaring as a static const for reference integrity/reducing rerenders
 const emptyDefaults = {};
 
@@ -78,11 +69,12 @@ export const useComponentDefaults = () => {
 
 // Merge individual component props with component defaults
 export const usePropsWithComponentDefaults = <
-  TComponentName extends keyof EuiComponentDefaults
+  TComponentName extends keyof EuiComponentDefaults,
+  TComponentProps
 >(
   componentName: TComponentName,
-  props: EuiComponentDefaultsSupportedComponents[TComponentName]
-): EuiComponentDefaultsSupportedComponents[TComponentName] => {
+  props: TComponentProps
+): TComponentProps => {
   const context = useContext(EuiComponentDefaultsContext);
 
   const componentDefaults = context[componentName] ?? emptyDefaults;
