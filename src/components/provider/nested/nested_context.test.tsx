@@ -6,12 +6,11 @@
  * Side Public License, v 1.
  */
 
-import { renderHook } from '@testing-library/react-hooks';
-
 import {
   EuiProviderNestedCheck,
   useIsNestedEuiProvider,
 } from './nested_context';
+import { renderHook } from '../../../test/rtl/render_hook';
 
 describe('useIsNestedEuiProvider', () => {
   it('is false if an EuiProviderNestedCheck wrapper has not yet been instantiated', () => {
