@@ -1,3 +1,24 @@
+## [`85.1.0`](https://github.com/elastic/eui/tree/v85.1.0)
+
+- Updated `EuiComboBox`'s `options` to accept `option.append` and `option.prepend` props ([#6953](https://github.com/elastic/eui/pull/6953))
+- Updated deprecated `.substr()` usages to `.substring()` ([#6954](https://github.com/elastic/eui/pull/6954))
+- Updated `EuiInlineEdit`'s read mode button to include a title tooltip, increasing readability of truncated text ([#6966](https://github.com/elastic/eui/pull/6966))
+
+**Bug fixes**
+
+- Fixed `EuiFilterGroup`'s responsive styles ([#6983](https://github.com/elastic/eui/pull/6983))
+
+**Deprecations**
+
+- Deprecated `EuiFilterSelectItem`; Use `EuiSelectable` instead ([#6982](https://github.com/elastic/eui/pull/6982))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiFilterSelectItem` to Emotion ([#6982](https://github.com/elastic/eui/pull/6982))
+- Removed `.euiFilterSelect__items` CSS; Use `EuiSelectable` instead ([#6982](https://github.com/elastic/eui/pull/6982))
+- Removed `.euiFilterSelect__note` and `.euiFilterSelect__noteContent` CSS; Use `EuiSelectableMessage` instead ([#6982](https://github.com/elastic/eui/pull/6982))
+- Added `focus.transparency` and `focus.backgroundColor` theme tokens ([#6984](https://github.com/elastic/eui/pull/6984))
+
 ## [`85.0.0`](https://github.com/elastic/eui/tree/v85.0.0)
 
 - Updated `EuiThemeProvider` to set an Emotion theme context that returns the values of `useEuiTheme()` ([#6913](https://github.com/elastic/eui/pull/6913))
