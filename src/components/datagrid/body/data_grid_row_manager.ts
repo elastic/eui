@@ -18,7 +18,7 @@ export const useRowManager = ({
 }): EuiDataGridRowManager => {
   const rowIdToElements = useRef(new Map<number, HTMLDivElement>());
 
-  const getRow = useCallback(
+  const getRow = useCallback<EuiDataGridRowManager['getRow']>(
     ({ rowIndex, visibleRowIndex, top, height }) => {
       let rowElement = rowIdToElements.current.get(rowIndex);
 

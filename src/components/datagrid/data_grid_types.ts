@@ -18,6 +18,7 @@ import {
   Ref,
   Component,
   PropsWithChildren,
+  ComponentClass,
 } from 'react';
 import {
   VariableSizeGridProps,
@@ -582,8 +583,8 @@ export interface EuiDataGridCellProps {
   className?: string;
   popoverContext: DataGridCellPopoverContextShape;
   renderCellValue:
-    | JSXElementConstructor<EuiDataGridCellValueElementProps>
-    | ((props: EuiDataGridCellValueElementProps) => ReactNode);
+    | ((props: EuiDataGridCellValueElementProps) => ReactNode)
+    | ComponentClass<EuiDataGridCellValueElementProps>;
   renderCellPopover?:
     | JSXElementConstructor<EuiDataGridCellPopoverElementProps>
     | ((props: EuiDataGridCellPopoverElementProps) => ReactNode);
@@ -706,8 +707,7 @@ export interface EuiDataGridColumn {
 }
 
 export type EuiDataGridColumnCellAction =
-  | JSXElementConstructor<EuiDataGridColumnCellActionProps>
-  | ((props: EuiDataGridColumnCellActionProps) => ReactNode);
+  ComponentType<EuiDataGridColumnCellActionProps>;
 
 export interface EuiDataGridColumnActions {
   /**
@@ -936,18 +936,20 @@ export interface EuiDataGridPaginationProps {
   onChangePage: (pageIndex: number) => void;
 }
 
+export interface EuiDataGridColumnSortingConfig {
+  id: string;
+  direction: 'asc' | 'desc';
+}
+
 export interface EuiDataGridSorting {
   /**
    * A function that receives updated column sort details in response to user interactions in the toolbar controls
    */
-  onSort: (columns: EuiDataGridSorting['columns']) => void;
+  onSort: (columns: EuiDataGridColumnSortingConfig[]) => void;
   /**
    * An array of the column ids currently being sorted and their sort direction. The array order determines the sort order. `{ id: 'A'; direction: 'asc' }`
    */
-  columns: Array<{
-    id: string;
-    direction: 'asc' | 'desc';
-  }>;
+  columns: EuiDataGridColumnSortingConfig[];
 }
 
 export interface EuiDataGridInMemory {

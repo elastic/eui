@@ -314,7 +314,7 @@ export const useSortingUtils = ({
 export const usePopoverArrowNavigation = () => {
   const popoverPanelRef = useRef<HTMLElement | null>(null);
   const actionsRef = useRef<FocusableElement[] | undefined>(undefined);
-  const panelRef = useCallback((ref) => {
+  const panelRef = useCallback((ref: HTMLElement | null) => {
     popoverPanelRef.current = ref;
     actionsRef.current = ref ? tabbable(ref) : undefined;
   }, []);
