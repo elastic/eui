@@ -3,7 +3,7 @@ import {
   euiPaletteColorBlind,
   euiPaletteForStatus,
   euiPaletteForTemperature,
-  euiPaletteComplimentary,
+  euiPaletteComplementary,
   euiPaletteNegative,
   euiPalettePositive,
   euiPaletteCool,
@@ -49,7 +49,7 @@ const paletteWithStops = [
 const paletteData = {
   euiPaletteForStatus,
   euiPaletteForTemperature,
-  euiPaletteComplimentary,
+  euiPaletteComplementary,
   euiPaletteNegative,
   euiPalettePositive,
   euiPaletteCool,
