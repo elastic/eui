@@ -7,7 +7,7 @@
  */
 
 import React, { ReactNode } from 'react';
-import { EuiProvider } from '../../../src';
+import { EuiProvider, EuiProviderProps } from '../../../src';
 import type { mount } from '@cypress/react18';
 
 // Pick cypress mount function based on which React version is currently being
@@ -20,8 +20,16 @@ if (process.env.REACT_VERSION === '18') {
   cypressMount = require('@cypress/react').mount;
 }
 
-const mountCommand = (children: ReactNode): ReturnType<typeof mount> => {
-  return cypressMount(<EuiProvider>{children}</EuiProvider>);
+export interface MountOptions {
+  providerProps?: Partial<EuiProviderProps<any>>;
+}
+
+const mountCommand = (
+  children: ReactNode,
+  options: MountOptions = {}
+): ReturnType<typeof mount> => {
+  const { providerProps } = options;
+  return cypressMount(<EuiProvider {...providerProps}>{children}</EuiProvider>);
 };
 
 // Export only the type to not confuse code-completion tools
