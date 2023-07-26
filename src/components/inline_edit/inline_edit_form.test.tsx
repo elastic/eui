@@ -400,7 +400,7 @@ describe('EuiInlineEditForm', () => {
         });
         await act(async () => {
           fireEvent.click(getByTestSubject('euiInlineEditModeSaveButton'));
-          waitFor(() => setTimeout(() => {}, 100)); // Let the promise finish resolving
+          await waitFor(() => setTimeout(() => {}, 100)); // Let the promise finish resolving
         });
         expect(queryByTestSubject('euiInlineReadModeButton')).toBeFalsy();
         expect(getByTestSubject('euiInlineEditModeInput')).toBeTruthy();
@@ -412,7 +412,7 @@ describe('EuiInlineEditForm', () => {
         await act(async () => {
           fireEvent.click(getByTestSubject('euiInlineEditModeSaveButton'));
         });
-        waitFor(() => {
+        await waitFor(() => {
           expect(getByTestSubject('euiInlineReadModeButton')).toBeTruthy();
           expect(getByText('hey there')).toBeTruthy();
         });
