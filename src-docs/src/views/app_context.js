@@ -51,6 +51,7 @@ export const AppContext = ({ children }) => {
       }}
       theme={EUI_THEMES.find((t) => t.value === theme)?.provider}
       colorMode={theme.includes('light') ? 'light' : 'dark'}
+      modify={{ font: { family: 'Papyrus ' } }}
     >
       <Helmet>
         <link
