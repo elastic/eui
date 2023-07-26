@@ -1181,9 +1181,8 @@ describe('EuiDataGrid', () => {
         );
       });
 
-      const rowButtons: NodeListOf<HTMLButtonElement> = document.body.querySelectorAll(
-        '.euiContextMenuItem'
-      );
+      const rowButtons: NodeListOf<HTMLButtonElement> =
+        document.body.querySelectorAll('.euiContextMenuItem');
       expect(
         Array.prototype.map.call(
           rowButtons,

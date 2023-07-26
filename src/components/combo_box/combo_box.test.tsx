@@ -7,10 +7,9 @@
  */
 
 import React, { ReactNode } from 'react';
-import { fireEvent } from '@testing-library/react';
+import { act, fireEvent } from '@testing-library/react';
 import { shallow, mount } from 'enzyme';
 import { render } from '../../test/rtl';
-import { act } from '@testing-library/react';
 import {
   requiredProps,
   findTestSubject,
@@ -139,7 +138,10 @@ describe('props', () => {
 
     test('renders in the options dropdown', () => {
       const component = mount(<EuiComboBox options={options} />);
-      component.setState({ isListOpen: true });
+
+      act(() => {
+        component.setState({ isListOpen: true });
+      });
 
       const dropdown = component.find(
         'div[data-test-subj="comboBoxOptionsList"]'
