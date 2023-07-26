@@ -35,7 +35,7 @@ export const waitForEuiToolTipVisible = async () =>
       const tooltip = document.querySelector('.euiToolTipPopover');
       expect(tooltip).toBeVisible();
     },
-    { timeout: 1500 } // Account for long delay on tooltips
+    { timeout: 3000 } // Account for long delay on tooltips
   );
 
 export const waitForEuiToolTipHidden = async () =>
