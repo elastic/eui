@@ -185,6 +185,7 @@ describe('useImperativeGridRef', () => {
 
   describe('closeCellPopover', () => {
     it('allows the consumer to manually close any open popovers', () => {
+      cy.get('[data-gridcell-row-index="0"]').should('exist');
       ref.current!.setFocusedCell({ colIndex: 0, rowIndex: 0 });
       cy.realPress('Enter');
       cy.get('[data-test-subj="euiDataGridExpansionPopover"]').should(
@@ -213,6 +214,7 @@ describe('useImperativeGridRef', () => {
 
   describe('scrollToItem', () => {
     it('scrolls to a specific cell position, rendering the cell', () => {
+      cy.get('[data-gridcell-row-index="0"]').should('exist');
       cy.get('[data-gridcell-row-index="15"]').should('not.exist');
       cy.then(() => {
         ref.current!.scrollToItem?.({ rowIndex: 15, columnIndex: 5 });
