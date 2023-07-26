@@ -50,6 +50,6 @@ Below is a handy reference for comparing the selection components.
 
 ---
 
-Still have a question? Feel free to comment below, reach out to use via our Slack channel (#eui), or open an issue. We're always happy to help!
+Still have a question? Feel free to comment below, reach out to us via our Slack channel (#eui), or open an issue. We're always happy to help!
 
 
