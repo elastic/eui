@@ -4,5 +4,8 @@ steps:
   - agents:
       provider: "gcp"
     command: .buildkite/scripts/pipeline_test.sh
+    env:
+      BUILDKITE_PULL_REQUEST: "${BUILDKITE_PULL_REQUEST}"
+      BUILDKITE_PULL_REQUEST_BASE_BRANCH: "${BUILDKITE_PULL_REQUEST_BASE_BRANCH}"
     artifact_paths:
       - "cypress/screenshots/**/*.png"
