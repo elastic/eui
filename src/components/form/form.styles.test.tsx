@@ -7,7 +7,7 @@
  */
 
 import React, { FunctionComponent, PropsWithChildren } from 'react';
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '../../test/rtl';
 import { useEuiTheme } from '../../services';
 import { EuiProvider } from '../provider';
 

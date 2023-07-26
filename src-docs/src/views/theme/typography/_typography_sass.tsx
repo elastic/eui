@@ -166,7 +166,7 @@ export const FontWeightSass: FunctionComponent<ThemeRowType> = ({
 };
 
 interface FontWeightDetails {
-  id: typeof euiFontWeights[number];
+  id: (typeof euiFontWeights)[number];
   token: string;
   value: number;
 }
@@ -250,7 +250,7 @@ export const FontScaleSass = () => {
 };
 
 interface FontSizesDetails {
-  id: typeof euiFontSizes[number];
+  id: (typeof euiFontSizes)[number];
   token: string;
   mixin: string;
   value: string;

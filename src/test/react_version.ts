@@ -83,3 +83,9 @@ export const testByReactVersion = (name: string, func: () => void) => {
     testFunc(`[React ${version}] ${name}`, func);
   });
 };
+
+export const testOnReactVersion = (
+  versionOrVersions: ReactVersion | ReactVersion[]
+): typeof test => {
+  return isReactVersion(versionOrVersions) ? test : test.skip;
+};

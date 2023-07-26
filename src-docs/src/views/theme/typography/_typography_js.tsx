@@ -218,7 +218,7 @@ export const FontScaleJS = () => {
 };
 
 interface FontScaleDetails {
-  id: typeof EuiThemeFontScales[number];
+  id: (typeof EuiThemeFontScales)[number];
   value: string;
   size: string;
   lineHeight: string;

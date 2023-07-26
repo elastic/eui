@@ -1,8 +1,4 @@
-import React, {
-  useState,
-  FC,
-  PropsWithChildren,
-} from 'react';
+import React, { useState, FC, PropsWithChildren } from 'react';
 import {
   EuiThemeProvider,
   useEuiTheme,

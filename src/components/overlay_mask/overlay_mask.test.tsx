@@ -8,7 +8,7 @@
 
 import React from 'react';
 import { render } from '../../test/rtl';
-import { requiredProps } from '../../test';
+import { requiredProps, testOnReactVersion } from '../../test';
 import { EuiThemeProvider } from '../../services';
 
 import { EuiOverlayMask } from './overlay_mask';
@@ -83,11 +83,16 @@ describe('EuiOverlayMask', () => {
     });
   });
 
+  // React 18 is really unhappy when RTL wants to unmount
+  // it while the component is still updating.
   // Note - this needs to be the last test in the suite, otherwise subsequent overlay masks stop working
-  it('throws if a non-string property value is passed', () => {
-    // @ts-expect-error expected error
-    expect(() => render(<EuiOverlayMask aria-hidden={true} />)).toThrow(
-      'EuiOverlayMask property aria-hidden is not a string'
-    );
-  });
+  testOnReactVersion(['16', '17'])(
+    'throws if a non-string property value is passed',
+    () => {
+      // @ts-expect-error expected error
+      expect(() => render(<EuiOverlayMask aria-hidden={true} />)).toThrow(
+        'EuiOverlayMask property aria-hidden is not a string'
+      );
+    }
+  );
 });
