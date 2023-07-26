@@ -7,10 +7,9 @@
  */
 
 import React, { ReactNode } from 'react';
-import { fireEvent } from '@testing-library/react';
+import { act, fireEvent } from '@testing-library/react';
 import { shallow, mount } from 'enzyme';
 import { render } from '../../test/rtl';
-import { act } from '@testing-library/react';
 import {
   requiredProps,
   findTestSubject,
