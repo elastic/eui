@@ -76,7 +76,13 @@ type InMemoryTableProps<T> = Omit<
    * Configures #Search.
    */
   search?: Search;
+  /**
+   * Configures #Pagination
+   */
   pagination?: undefined;
+  /**
+   * Configures #EuiTableSortingType
+   */
   sorting?: Sorting;
   /**
    * Set `allowNeutralSort` to false to force column sorting. Defaults to true.
