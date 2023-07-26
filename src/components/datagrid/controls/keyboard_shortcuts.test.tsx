@@ -14,22 +14,23 @@ import {
   waitForEuiPopoverOpen,
 } from '../../../test/rtl';
 import { useDataGridKeyboardShortcuts } from './keyboard_shortcuts';
+import { fireEvent } from '@testing-library/react';
 
 describe('useDataGridKeyboardShortcuts', () => {
   it('returns a popover containing a list of keyboard shortcuts', async () => {
     const { result } = renderHook(() => useDataGridKeyboardShortcuts());
-    const { getByTestSubject, rerender } = render(
+    const { baseElement, getByTestSubject, rerender } = render(
       <div data-test-subj="hookRoot">{result.current.keyboardShortcuts}</div>
     );
 
-    renderHookAct(() =>
-      getByTestSubject('dataGridKeyboardShortcutsButton').click()
-    );
+    renderHookAct(() => {
+      fireEvent.click(getByTestSubject('dataGridKeyboardShortcutsButton'));
+    });
     rerender(
       <div data-test-subj="hookRoot">{result.current.keyboardShortcuts}</div>
     );
     await waitForEuiPopoverOpen();
 
-    expect(getByTestSubject('hookRoot')).toMatchSnapshot();
+    expect(baseElement).toMatchSnapshot();
   });
 });
