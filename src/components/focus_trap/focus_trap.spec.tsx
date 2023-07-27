@@ -10,7 +10,7 @@
 /// <reference types="cypress-real-events" />
 /// <reference types="../../../cypress/support" />
 
-import React, { useRef, useState } from 'react';
+import React, { ComponentType, useRef, useState } from 'react';
 import { EuiFocusTrap } from './focus_trap';
 import { EuiPortal } from '../portal';
 
@@ -161,78 +161,67 @@ describe('EuiFocusTrap', () => {
   });
 
   describe('outside click handling', () => {
-    const Trap = ({
-      onClickOutside,
-      shards,
-      closeOnMouseup,
-    }: {
-      onClickOutside?: any;
+    // For some reason using FunctionComponent with inline props type
+    // definition here causes cypress to crash
+    let Trap: ComponentType<{
       shards?: boolean;
       closeOnMouseup?: boolean;
-    }) => {
-      const buttonRef = useRef(null);
-      return (
-        <div>
-          <EuiFocusTrap
-            onClickOutside={onClickOutside}
-            shards={shards ? [buttonRef] : []}
-            closeOnMouseup={closeOnMouseup}
-          >
-            <div data-test-subj="container">
-              <input data-test-subj="input" />
-              <input data-test-subj="input2" />
-            </div>
-          </EuiFocusTrap>
-          <button ref={buttonRef} data-test-subj="outside">
-            outside the focus trap
-          </button>
-          <button data-test-subj="outside2">also outside the focus trap</button>
-        </div>
-      );
-    };
+    }>;
+
+    beforeEach(() => {
+      const onClickOutside = cy.stub().as('onClickOutside');
+
+      Trap = ({ shards, closeOnMouseup }) => {
+        const buttonRef = useRef(null);
+        return (
+          <div>
+            <EuiFocusTrap
+              onClickOutside={onClickOutside}
+              shards={shards ? [buttonRef] : []}
+              closeOnMouseup={closeOnMouseup}
+            >
+              <div data-test-subj="container">
+                <input data-test-subj="input" />
+                <input data-test-subj="input2" />
+              </div>
+            </EuiFocusTrap>
+            <button ref={buttonRef} data-test-subj="outside">
+              outside the focus trap
+            </button>
+            <button data-test-subj="outside2">
+              also outside the focus trap
+            </button>
+          </div>
+        );
+      };
+    });
 
     it('calls the callback on mousedown', () => {
-      const onClickOutside = cy.stub();
-      cy.mount(<Trap onClickOutside={onClickOutside} />);
+      cy.mount(<Trap />);
 
-      cy.get('[data-test-subj=outside]')
-        .realMouseDown()
-        .then(() => {
-          expect(onClickOutside).to.be.called;
-        });
+      cy.get('[data-test-subj=outside]').realMouseDown();
+      cy.get('@onClickOutside').should('be.called');
     });
 
     it('calls the callback on mouseup when using closeOnMouseup', () => {
-      const onClickOutside = cy.stub();
-      cy.mount(<Trap onClickOutside={onClickOutside} closeOnMouseup />);
+      cy.mount(<Trap closeOnMouseup />);
 
-      cy.get('[data-test-subj=outside]')
-        .realMouseDown()
-        .then(() => {
-          expect(onClickOutside).to.not.be.called;
-        });
-      cy.get('[data-test-subj=outside]')
-        .click() // real events not  working here
-        .then(() => {
-          expect(onClickOutside).to.be.called;
-        });
+      cy.get('[data-test-subj=outside]').realMouseDown();
+      cy.get('@onClickOutside').should('not.be.called');
+
+      cy.get('[data-test-subj=outside]').click(); // real events not  working here
+      cy.get('@onClickOutside').should('be.called');
     });
 
     it('does not call the callback if the element is a shard', () => {
-      const onClickOutside = cy.stub();
-      cy.mount(<Trap onClickOutside={onClickOutside} shards />);
+      cy.mount(<Trap shards />);
 
-      cy.get('[data-test-subj=outside]')
-        .realMouseDown()
-        .then(() => {
-          expect(onClickOutside).to.not.be.called;
-        });
+      cy.get('[data-test-subj=outside]').realMouseDown();
+      cy.get('@onClickOutside').should('not.be.called');
+
       // But still calls if the element is not a shard
-      cy.get('[data-test-subj=outside2]')
-        .realMouseDown()
-        .then(() => {
-          expect(onClickOutside).to.be.called;
-        });
+      cy.get('[data-test-subj=outside2]').realMouseDown();
+      cy.get('@onClickOutside').should('be.called');
     });
   });
 
