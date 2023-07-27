@@ -21,6 +21,20 @@ export const euiHeaderLinksStyles = ({ euiTheme }: UseEuiTheme) => {
       display: flex;
       align-items: center;
     `,
+    gutterSizes: {
+      xs: css`
+        gap: ${euiTheme.size.xs};
+      `,
+      s: css`
+        gap: ${euiTheme.size.s};
+      `,
+      m: css`
+        gap: ${euiTheme.size.m};
+      `,
+      l: css`
+        gap: ${euiTheme.size.l};
+      `,
+    },
     euiHeaderLinks__mobileList: css`
       .euiHeaderLink {
         display: block;

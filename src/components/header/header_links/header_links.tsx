@@ -17,7 +17,7 @@ import React, {
 import classNames from 'classnames';
 
 import { useEuiTheme } from '../../../services';
-import { CommonProps, keysOf } from '../../common';
+import { CommonProps } from '../../common';
 import { EuiIcon, IconType } from '../../icon';
 import { EuiPopover, EuiPopoverProps } from '../../popover';
 import { EuiI18n } from '../../i18n';
@@ -30,7 +30,9 @@ import { EuiHideFor, EuiShowFor } from '../../responsive';
 
 import { euiHeaderLinksStyles } from './header_links.styles';
 
-type EuiHeaderLinksGutterSize = 'xs' | 's' | 'm' | 'l';
+export const GUTTER_SIZES = ['xs', 's', 'm', 'l'] as const;
+type EuiHeaderLinksGutterSize = (typeof GUTTER_SIZES)[number];
+
 type EuiHeaderLinksPopoverButtonProps =
   Partial<EuiHeaderSectionItemButtonProps> & {
     iconType?: IconType;
@@ -56,16 +58,6 @@ export type EuiHeaderLinksProps = CommonProps &
      */
     popoverProps?: Omit<EuiPopoverProps, 'button' | 'closePopover'>;
   };
-
-const gutterSizeToClassNameMap: {
-  [gutterSize in EuiHeaderLinksGutterSize]: string;
-} = {
-  xs: '--gutterXS',
-  s: '--gutterS',
-  m: '--gutterM',
-  l: '--gutterL',
-};
-export const GUTTER_SIZES = keysOf(gutterSizeToClassNameMap);
 
 export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
   children,
@@ -135,10 +127,11 @@ export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
         >
           <EuiHideFor sizes={popoverBreakpoints}>
             <div
-              className={classNames('euiHeaderLinks__list', [
-                `euiHeaderLinks__list${gutterSizeToClassNameMap[gutterSize]}`,
-              ])}
-              css={styles.euiHeaderLinks__list}
+              className="euiHeaderLinks__list"
+              css={[
+                styles.euiHeaderLinks__list,
+                styles.gutterSizes[gutterSize],
+              ]}
             >
               {children}
             </div>
@@ -155,9 +148,7 @@ export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
               {...popoverProps}
             >
               <div
-                className={classNames('euiHeaderLinks__mobileList', [
-                  `euiHeaderLinks__mobileList${gutterSizeToClassNameMap[gutterSize]}`,
-                ])}
+                className="euiHeaderLinks__mobileList"
                 css={styles.euiHeaderLinks__mobileList}
               >
                 {children}
