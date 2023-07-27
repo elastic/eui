@@ -332,10 +332,11 @@ describe('EuiContextMenuPanel', () => {
           },
         ];
 
-        const FLAKY_WAIT = 100; // For some reason CI is flaking on these two tests in way that is hard to repro locally
+        const FLAKY_WAIT = 200; // For some reason CI is flaking on these two tests in way that is hard to repro locally
 
         it('does not lose focus while using left/right arrow navigation between panels', () => {
           cy.mount(<EuiContextMenu panels={panels} initialPanelId={0} />);
+          cy.wait(FLAKY_WAIT);
           cy.realPress('{downarrow}');
           cy.focused().should('have.attr', 'data-test-subj', 'itemA');
           cy.realPress('{rightarrow}');
