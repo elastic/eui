@@ -16,6 +16,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
+import { useEuiTheme } from '../../../services';
 import { CommonProps, keysOf } from '../../common';
 import { EuiIcon, IconType } from '../../icon';
 import { EuiPopover, EuiPopoverProps } from '../../popover';
@@ -26,6 +27,8 @@ import {
 } from '../header_section';
 import { EuiBreakpointSize } from '../../../services/breakpoint';
 import { EuiHideFor, EuiShowFor } from '../../responsive';
+
+import { euiHeaderLinksStyles } from './header_links.styles';
 
 type EuiHeaderLinksGutterSize = 'xs' | 's' | 'm' | 'l';
 type EuiHeaderLinksPopoverButtonProps =
@@ -73,6 +76,9 @@ export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
   popoverProps,
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
+  const styles = euiHeaderLinksStyles(euiTheme);
+
   const {
     onClick,
     iconType = 'apps',
@@ -100,7 +106,7 @@ export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
     return () => {
       window.removeEventListener('resize', closeMenu);
     };
-  });
+  }, [closeMenu]);
 
   const classes = classNames('euiHeaderLinks', className);
 
@@ -121,7 +127,12 @@ export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
   return (
     <EuiI18n token="euiHeaderLinks.appNavigation" default="App menu">
       {(appNavigation: string) => (
-        <nav className={classes} aria-label={appNavigation} {...rest}>
+        <nav
+          className={classes}
+          css={styles.euiHeaderLinks}
+          aria-label={appNavigation}
+          {...rest}
+        >
           <EuiHideFor sizes={popoverBreakpoints}>
             <div
               className={classNames('euiHeaderLinks__list', [
