@@ -14,6 +14,7 @@ import React, {
   ReactNode,
   Ref,
   RefCallback,
+  PropsWithChildren,
 } from 'react';
 import classNames from 'classnames';
 import { focusable } from 'tabbable';
@@ -67,7 +68,7 @@ export const popoverAnchorPosition = [
 export type PopoverAnchorPosition = (typeof popoverAnchorPosition)[number];
 type AnchorPosition = 'up' | 'right' | 'down' | 'left';
 
-export interface EuiPopoverProps extends CommonProps {
+export interface EuiPopoverProps extends PropsWithChildren, CommonProps {
   /**
    * Class name passed to the direct parent of the button
    */
