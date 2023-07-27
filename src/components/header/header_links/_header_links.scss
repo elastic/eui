@@ -1,10 +1,4 @@
 
-.euiHeaderLinks__list {
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-}
-
 @each $name, $gutterSize in $euiHeaderLinksGutterSizes {
   .euiHeaderLinks__list--#{$name} > * {
     // Apply margins to any children

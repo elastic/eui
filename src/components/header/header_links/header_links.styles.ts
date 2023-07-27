@@ -9,11 +9,30 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../../services';
+import { logicalCSS } from '../../../global_styling';
 
 export const euiHeaderLinksStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     euiHeaderLinks: css`
       display: flex;
     `,
-  }
+    euiHeaderLinks__list: css`
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+    `,
+    euiHeaderLinks__mobileList: css`
+      .euiHeaderLink {
+        display: block;
+        ${logicalCSS('width', '100%')}
+        padding: ${euiTheme.size.s};
+
+        /* EuiButtons normally center, which makes sense. In mobile though we want
+         * them to align left. This is a safe hack given the specificity. */
+        & > .euiButtonEmpty__content {
+          justify-content: flex-start;
+        }
+      }
+    `,
+  };
 };

@@ -138,6 +138,7 @@ export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
               className={classNames('euiHeaderLinks__list', [
                 `euiHeaderLinks__list${gutterSizeToClassNameMap[gutterSize]}`,
               ])}
+              css={styles.euiHeaderLinks__list}
             >
               {children}
             </div>
@@ -157,6 +158,7 @@ export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
                 className={classNames('euiHeaderLinks__mobileList', [
                   `euiHeaderLinks__mobileList${gutterSizeToClassNameMap[gutterSize]}`,
                 ])}
+                css={styles.euiHeaderLinks__mobileList}
               >
                 {children}
               </div>
