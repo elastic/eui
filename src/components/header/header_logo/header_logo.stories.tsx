@@ -9,7 +9,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { EuiHeader } from '../header';
+import { EuiHeader, EuiHeaderSectionItem } from '../';
 import { EuiHeaderLogo, EuiHeaderLogoProps } from './header_logo';
 
 const meta: Meta<EuiHeaderLogoProps> = {
@@ -22,12 +22,28 @@ type Story = StoryObj<EuiHeaderLogoProps>;
 
 export const Playground: Story = {
   render: ({ ...args }) => (
-    <EuiHeader>
-      <EuiHeaderLogo {...args} />
+    <EuiHeader position="fixed">
+      <EuiHeaderSectionItem>
+        <EuiHeaderLogo {...args} />
+      </EuiHeaderSectionItem>
     </EuiHeader>
   ),
   args: {
     iconType: 'logoElastic',
     iconTitle: 'Elastic',
+  },
+};
+
+export const WithText: Story = {
+  render: ({ ...args }) => (
+    <EuiHeader position="fixed">
+      <EuiHeaderSectionItem>
+        <EuiHeaderLogo {...args} />
+      </EuiHeaderSectionItem>
+    </EuiHeader>
+  ),
+  args: {
+    iconType: 'logoElastic',
+    children: 'Elastic',
   },
 };
