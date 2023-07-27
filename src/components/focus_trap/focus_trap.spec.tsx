@@ -198,13 +198,15 @@ describe('EuiFocusTrap', () => {
 
     it('calls the callback on mousedown', () => {
       cy.mount(<Trap />);
+      cy.wait(100); // wait for react-focus-on to start listening to events
 
-      cy.get('[data-test-subj=outside]').realMouseDown();
+      cy.get('[data-test-subj=outside]').should('be.visible').realMouseDown();
       cy.get('@onClickOutside').should('be.called');
     });
 
     it('calls the callback on mouseup when using closeOnMouseup', () => {
       cy.mount(<Trap closeOnMouseup />);
+      cy.wait(100); // wait for react-focus-on to start listening to events
 
       cy.get('[data-test-subj=outside]').realMouseDown();
       cy.get('@onClickOutside').should('not.be.called');
@@ -215,6 +217,7 @@ describe('EuiFocusTrap', () => {
 
     it('does not call the callback if the element is a shard', () => {
       cy.mount(<Trap shards />);
+      cy.wait(100); // wait for react-focus-on to start listening to events
 
       cy.get('[data-test-subj=outside]').realMouseDown();
       cy.get('@onClickOutside').should('not.be.called');
