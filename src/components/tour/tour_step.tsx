@@ -12,7 +12,6 @@ import React, {
   ReactElement,
   ReactNode,
   useEffect,
-  useRef,
   useState,
 } from 'react';
 import classNames from 'classnames';
@@ -164,9 +163,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
     );
   }
 
-  const [hasValidAnchor, setHasValidAnchor] = useState<boolean>(false);
-  const animationFrameId = useRef<number>();
-  const anchorNode = useRef<HTMLElement | null>(null);
+  const [anchorNode, setAnchorNode] = useState<HTMLElement | null>(null);
   const [popoverPosition, setPopoverPosition] = useState<EuiPopoverPosition>();
 
   const onPositionChange = (position: EuiPopoverPosition) => {
@@ -174,18 +171,17 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   };
 
   useEffect(() => {
+    let timeout: number;
     if (anchor) {
-      animationFrameId.current = window.requestAnimationFrame(() => {
-        anchorNode.current = findElementBySelectorOrRef(anchor);
-        setHasValidAnchor(anchorNode.current ? true : false);
+      timeout = window.setTimeout(() => {
+        setAnchorNode(findElementBySelectorOrRef(anchor));
       });
     }
 
     return () => {
-      animationFrameId.current &&
-        window.cancelAnimationFrame(animationFrameId.current);
+      timeout && window.clearTimeout(timeout);
     };
-  }, [anchor]);
+  }, [anchor, setAnchorNode]);
 
   const classes = classNames('euiTour', className);
   const euiTheme = useEuiTheme();
@@ -332,8 +328,8 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
     );
   }
 
-  return hasValidAnchor && anchorNode.current ? (
-    <EuiWrappingPopover button={anchorNode.current} {...popoverProps}>
+  return anchorNode ? (
+    <EuiWrappingPopover button={anchorNode} {...popoverProps}>
       {layout}
     </EuiWrappingPopover>
   ) : null;
