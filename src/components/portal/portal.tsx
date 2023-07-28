@@ -11,7 +11,7 @@
  * into portals.
  */
 
-import React, { Component, ContextType, ReactNode } from 'react';
+import { Component, ContextType, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 
 import { EuiNestedThemeContext } from '../../services';
@@ -41,63 +41,79 @@ export interface EuiPortalProps {
   portalRef?: (ref: HTMLDivElement | null) => void;
 }
 
-export class EuiPortal extends Component<EuiPortalProps> {
+interface EuiPortalState {
+  portalNode: HTMLDivElement | null;
+}
+
+export class EuiPortal extends Component<EuiPortalProps, EuiPortalState> {
   static contextType = EuiNestedThemeContext;
   declare context: ContextType<typeof EuiNestedThemeContext>;
 
-  portalNode: HTMLDivElement | null = null;
-
   constructor(props: EuiPortalProps) {
     super(props);
-    if (typeof window === 'undefined') return; // Prevent SSR errors
 
-    const { insert } = this.props;
-
-    this.portalNode = document.createElement('div');
-    this.portalNode.dataset.euiportal = 'true';
-
-    if (insert == null) {
-      // no insertion defined, append to body
-      document.body.appendChild(this.portalNode);
-    } else {
-      // inserting before or after an element
-      const { sibling, position } = insert;
-      sibling.insertAdjacentElement(insertPositions[position], this.portalNode);
-    }
+    this.state = {
+      portalNode: null,
+    };
   }
 
   componentDidMount() {
-    this.setThemeColor();
-    this.updatePortalRef(this.portalNode);
+    const { insert } = this.props;
+
+    const portalNode = document.createElement('div');
+    portalNode.dataset.euiportal = 'true';
+
+    if (insert == null) {
+      // no insertion defined, append to body
+      document.body.appendChild(portalNode);
+    } else {
+      // inserting before or after an element
+      const { sibling, position } = insert;
+      sibling.insertAdjacentElement(insertPositions[position], portalNode);
+    }
+
+    this.setThemeColor(portalNode);
+    this.updatePortalRef(portalNode);
+
+    // Update state with portalNode to intentionally trigger component rerender
+    // and call createPortal with correct root element in render()
+    this.setState({
+      portalNode,
+    });
   }
 
   componentWillUnmount() {
-    if (this.portalNode?.parentNode) {
-      this.portalNode.parentNode.removeChild(this.portalNode);
+    const { portalNode } = this.state;
+    if (portalNode?.parentNode) {
+      portalNode.parentNode.removeChild(portalNode);
     }
     this.updatePortalRef(null);
   }
 
   // Set the inherited color of the portal based on the wrapping EuiThemeProvider
-  setThemeColor() {
-    if (this.portalNode && this.context) {
+  private setThemeColor(portalNode: HTMLDivElement) {
+    if (this.context) {
       const { hasDifferentColorFromGlobalTheme, colorClassName } = this.context;
 
       if (hasDifferentColorFromGlobalTheme && this.props.insert == null) {
-        this.portalNode.classList.add(colorClassName);
+        portalNode.classList.add(colorClassName);
       }
     }
   }
 
-  updatePortalRef(ref: HTMLDivElement | null) {
+  private updatePortalRef(ref: HTMLDivElement | null) {
     if (this.props.portalRef) {
       this.props.portalRef(ref);
     }
   }
 
   render() {
-    return this.portalNode ? (
-      <>{createPortal(this.props.children, this.portalNode)}</>
-    ) : null;
+    const { portalNode } = this.state;
+
+    if (!portalNode) {
+      return null;
+    }
+
+    return createPortal(this.props.children, portalNode);
   }
 }

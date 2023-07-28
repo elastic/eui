@@ -22,13 +22,6 @@ export interface EuiWrappingPopoverProps
  */
 export class EuiWrappingPopover extends Component<EuiWrappingPopoverProps> {
   private portal: HTMLElement | null = null;
-  private anchor: HTMLElement | null = null;
-
-  componentDidMount() {
-    if (this.anchor) {
-      this.anchor.insertAdjacentElement('beforebegin', this.props.button);
-    }
-  }
 
   componentWillUnmount() {
     if (this.props.button.parentNode) {
@@ -43,7 +36,7 @@ export class EuiWrappingPopover extends Component<EuiWrappingPopoverProps> {
   };
 
   setAnchorRef = (node: HTMLElement | null) => {
-    this.anchor = node;
+    node?.insertAdjacentElement('beforebegin', this.props.button);
   };
 
   render() {

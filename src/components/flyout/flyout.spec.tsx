@@ -53,15 +53,11 @@ describe('EuiFlyout', () => {
 
     it('traps focus and cycles tabbable items', () => {
       cy.mount(<Flyout />);
-      cy.wait(100); // wait for focus lib to focus the right element
+      cy.get('[data-test-subj="flyoutSpec"]').should('be.focused');
       cy.repeatRealPress('Tab', 4);
-      cy.focused().should('have.attr', 'data-test-subj', 'itemC');
+      cy.get('[data-test-subj="itemC"]').should('be.focused');
       cy.repeatRealPress('Tab', 3);
-      cy.focused().should(
-        'have.attr',
-        'data-test-subj',
-        'euiFlyoutCloseButton'
-      );
+      cy.get('[data-test-subj="euiFlyoutCloseButton"]').should('be.focused');
     });
 
     it('does not focus trap or scrollLock for push flyouts', () => {
@@ -130,7 +126,10 @@ describe('EuiFlyout', () => {
 
     it('closes the flyout when the overlay mask is clicked', () => {
       cy.mount(<Flyout />);
-      cy.get('.euiOverlayMask').should('be.visible').realClick();
+      cy.get('[data-test-subj="flyoutSpec"]').should('be.visible');
+      cy.get('.euiOverlayMask')
+        .should('be.visible')
+        .realClick({ position: 'left' });
       cy.get('[data-test-subj="flyoutSpec"]').should('not.exist');
     });
 

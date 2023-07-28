@@ -79,6 +79,7 @@ describe('EuiContextMenuPanel', () => {
             ]}
           />
         );
+        cy.get('.euiContextMenuPanel').should('be.focused');
         cy.realPress('{downarrow}');
         cy.focused().should('have.attr', 'data-test-subj', 'itemA');
       });
@@ -100,6 +101,7 @@ describe('EuiContextMenuPanel', () => {
           );
         };
         cy.mount(<DynanicItemsTest />);
+        cy.get('.euiContextMenuPanel').should('be.focused');
         cy.realPress('{downarrow}');
         cy.focused().should('have.attr', 'data-test-subj', 'itemA');
         cy.realPress('{downarrow}');
@@ -144,6 +146,7 @@ describe('EuiContextMenuPanel', () => {
 
       it('focuses the back button panel title by default when no initialFocusedItemIndex is passed', () => {
         cy.mount(<EuiContextMenu panels={panels} initialPanelId="A" />);
+        cy.get('.euiContextMenuPanel').should('be.focused');
         cy.realPress('{downarrow}');
         cy.realPress('{downarrow}');
         cy.focused().should('have.attr', 'data-test-subj', 'panelA');
@@ -155,6 +158,7 @@ describe('EuiContextMenuPanel', () => {
 
       it('focuses the correct toggling item when using the left arrow key to navigate to the previous panel', () => {
         cy.mount(<EuiContextMenu panels={panels} initialPanelId="B" />);
+        cy.get('[data-test-subj="panelB"]').should('be.focused');
         cy.realPress('{leftarrow}');
         cy.focused().should('have.attr', 'data-test-subj', 'panelA');
       });
