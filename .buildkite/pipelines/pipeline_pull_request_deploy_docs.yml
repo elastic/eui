@@ -4,3 +4,4 @@ steps:
   - agents:
       provider: "gcp"
     command: .buildkite/scripts/pipeline_deploy_docs.sh
+    if: build.branch != "main"

@@ -4,5 +4,6 @@ steps:
   - agents:
       provider: "gcp"
     command: .buildkite/scripts/pipeline_test.sh
+    if: build.branch != "main"
     artifact_paths:
       - "cypress/screenshots/**/*.png"
