@@ -58,8 +58,6 @@ export class EuiPortal extends Component<EuiPortalProps, EuiPortalState> {
   }
 
   componentDidMount() {
-    if (typeof window === 'undefined') return; // Prevent SSR errors
-
     const { insert } = this.props;
 
     const portalNode = document.createElement('div');
