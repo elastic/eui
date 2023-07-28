@@ -23,13 +23,13 @@ export const euiHeaderLinksStyles = ({ euiTheme }: UseEuiTheme) => {
     `,
     gutterSizes: {
       xs: css`
-        gap: ${euiTheme.size.xs};
-      `,
-      s: css`
         gap: ${euiTheme.size.s};
       `,
-      m: css`
+      s: css`
         gap: ${euiTheme.size.m};
+      `,
+      m: css`
+        gap: ${euiTheme.size.base};
       `,
       l: css`
         gap: ${euiTheme.size.l};
