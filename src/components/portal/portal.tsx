@@ -75,6 +75,8 @@ export class EuiPortal extends Component<EuiPortalProps, EuiPortalState> {
     this.setThemeColor(portalNode);
     this.updatePortalRef(portalNode);
 
+    // Update state with portalNode to intentionally trigger component rerender
+    // and call createPortal with correct root element in render()
     this.setState({
       portalNode,
     });
