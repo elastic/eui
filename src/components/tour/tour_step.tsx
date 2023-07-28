@@ -181,7 +181,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
     return () => {
       timeout && window.clearTimeout(timeout);
     };
-  }, [anchor, setAnchorNode]);
+  }, [anchor]);
 
   const classes = classNames('euiTour', className);
   const euiTheme = useEuiTheme();
