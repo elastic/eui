@@ -94,6 +94,7 @@ spec:
       repository: elastic/eui
       pipeline_file: ".buildkite/pipelines/pipeline_pull_request_test.yml"
       default_branch: main
+      cancel_intermediate_builds: true
       # Job runs as a step in pull request combined job
       provider_settings:
         build_branches: false
@@ -134,6 +135,7 @@ spec:
       repository: elastic/eui
       pipeline_file: ".buildkite/pipelines/pipeline_pull_request_deploy_docs.yml"
       default_branch: main
+      cancel_intermediate_builds: true
       # Job runs as a step in pull request combined job
       provider_settings:
         build_branches: false
@@ -177,6 +179,7 @@ spec:
       default_branch: main
       env:
         ELASTIC_PR_COMMENTS_ENABLED: 'true'
+      cancel_intermediate_builds: true
       provider_settings:
         build_branches: false
         build_tags: false

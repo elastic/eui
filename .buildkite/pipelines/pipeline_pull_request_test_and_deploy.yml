@@ -4,10 +4,12 @@ steps:
   - trigger: "eui-pull-request-test"
     label: ":hammer: EUI pull request test"
     build:
+      branch: "${BUILDKITE_BRANCH}"
       commit: "${BUILDKITE_COMMIT}"
   - trigger: "eui-pull-request-deploy-docs"
     label: ":newspaper: EUI pull request deploy docs"
     build:
+      branch: "${BUILDKITE_BRANCH}"
       commit: "${BUILDKITE_COMMIT}"
       env:
         GIT_BRANCH: "${BUILDKITE_BRANCH}"
