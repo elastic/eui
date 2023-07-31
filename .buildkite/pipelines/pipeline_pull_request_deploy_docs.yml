@@ -4,4 +4,4 @@ steps:
   - agents:
       provider: "gcp"
     command: .buildkite/scripts/pipeline_deploy_docs.sh
-    if: build.branch != "main"
+    if: build.branch != "main" # We don't want to deploy docs on main, only on manual release
