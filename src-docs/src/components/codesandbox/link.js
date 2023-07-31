@@ -150,7 +150,7 @@ import '@elastic/charts/dist/theme_only_${colorMode}.css';`
               '@emotion/css',
               'moment',
               'react',
-              'react-dom/client',
+              'react-dom',
               'react-scripts',
               ...Object.keys(mergedDeps),
             ].reduce((out, pkg) => {
@@ -183,8 +183,7 @@ const root = createRoot(document.getElementById('root'));
 root.render(
   <EuiProvider cache={cache} ${providerProps}>
     <Demo />
-  </EuiProvider>,
-  document.getElementById('root')
+  </EuiProvider>
 );`,
       },
       /* 4 */
