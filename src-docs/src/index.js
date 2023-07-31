@@ -1,4 +1,4 @@
-import React, { createElement, StrictMode } from 'react';
+import React, { createElement, Fragment, StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
@@ -22,6 +22,10 @@ registerTheme('dark', [themeDark]);
 
 // Set up app
 
+// Whether the docs app should be wrapped in <StrictMode>
+const strictModeEnabled = false;
+const StrictModeWrapper = strictModeEnabled ? StrictMode : Fragment;
+
 const store = configureStore();
 
 const childRoutes = [].concat(Routes.getAppRoutes());
@@ -43,7 +47,7 @@ const routes = [
 const root = createRoot(document.getElementById('guide'));
 
 root.render(
-  <StrictMode>
+  <StrictModeWrapper>
     <Provider store={store}>
       <ThemeProvider>
         <AppContext>
@@ -168,5 +172,5 @@ root.render(
         </AppContext>
       </ThemeProvider>
     </Provider>
-  </StrictMode>
+  </StrictModeWrapper>
 );
