@@ -10,14 +10,14 @@ import React, { PropsWithChildren } from 'react';
 import { EmotionCache } from '@emotion/css';
 import { CacheProvider } from '@emotion/react';
 
-export interface EuiCacheProviderProps {
+export interface EuiCacheProviderProps extends PropsWithChildren {
   cache?: false | EmotionCache;
 }
 
 export const EuiCacheProvider = ({
   cache,
   children,
-}: PropsWithChildren<EuiCacheProviderProps>) => {
+}: EuiCacheProviderProps) => {
   return children && cache ? (
     <CacheProvider value={cache}>{children}</CacheProvider>
   ) : (

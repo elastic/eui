@@ -45,7 +45,6 @@ export default () => {
             items: [
               <EuiHeaderLogo iconType="logoElastic">Elastic</EuiHeaderLogo>,
             ],
-            borders: 'none',
           },
           {
             items: [
@@ -53,7 +52,6 @@ export default () => {
                 <EuiAvatar name="John Username" size="s" />
               </EuiHeaderSectionItemButton>,
             ],
-            borders: 'none',
           },
         ]}
       />
@@ -67,7 +65,6 @@ export default () => {
               </EuiHeaderSectionItemButton>,
             ],
             breadcrumbs: breadcrumbs,
-            borders: 'right',
           },
           {
             items: [
@@ -78,7 +75,6 @@ export default () => {
                 <EuiIcon type="cheer" size="m" />
               </EuiHeaderSectionItemButton>,
             ],
-            borders: 'none',
           },
         ]}
       />

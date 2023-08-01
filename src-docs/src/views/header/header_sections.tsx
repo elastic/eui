@@ -75,7 +75,6 @@ export default () => {
   const sections: EuiHeaderSections[] = [
     {
       items: [renderLogo, renderSpaces],
-      borders: 'right',
       breadcrumbs: breadcrumbs,
       breadcrumbProps: {
         'aria-label': 'Header sections breadcrumbs',

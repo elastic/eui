@@ -9,45 +9,26 @@
 import React from 'react';
 import { requiredProps } from '../../../test/required_props';
 import { render } from '../../../test/rtl';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiHeaderSectionItem } from './header_section_item';
 
 describe('EuiHeaderSectionItem', () => {
-  test('is rendered', () => {
+  shouldRenderCustomStyles(<EuiHeaderSectionItem>test</EuiHeaderSectionItem>);
+
+  it('renders nothing if no children are present', () => {
     const { container } = render(<EuiHeaderSectionItem {...requiredProps} />);
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container).toBeEmptyDOMElement();
   });
 
-  test('renders children', () => {
+  it('renders with children', () => {
     const { container } = render(
-      <EuiHeaderSectionItem>
+      <EuiHeaderSectionItem {...requiredProps}>
         <span>Call me Ishmael.</span>
       </EuiHeaderSectionItem>
     );
 
     expect(container.firstChild).toMatchSnapshot();
-  });
-
-  describe('border', () => {
-    test('defaults to left', () => {
-      const { container } = render(
-        <EuiHeaderSectionItem>
-          <span>Left is default</span>
-        </EuiHeaderSectionItem>
-      );
-
-      expect(container.firstChild).toMatchSnapshot();
-    });
-
-    test('renders right', () => {
-      const { container } = render(
-        <EuiHeaderSectionItem border="right">
-          <span>Right section</span>
-        </EuiHeaderSectionItem>
-      );
-
-      expect(container.firstChild).toMatchSnapshot();
-    });
   });
 });

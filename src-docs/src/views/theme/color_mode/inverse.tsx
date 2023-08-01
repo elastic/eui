@@ -1,4 +1,4 @@
-import React, { useState, FC } from 'react';
+import React, { useState, FC, PropsWithChildren } from 'react';
 import {
   EuiThemeProvider,
   useEuiTheme,
@@ -66,7 +66,7 @@ export default () => {
   );
 };
 
-const ThemedChildren: FC = ({ children, ...rest }) => {
+const ThemedChildren: FC<PropsWithChildren> = ({ children, ...rest }) => {
   const { colorMode: _colorMode } = useEuiTheme();
   const colorMode = _colorMode.toLowerCase();
   return (
@@ -101,7 +101,7 @@ const ThemedChildren: FC = ({ children, ...rest }) => {
   );
 };
 
-const Popover: FC = ({ children }) => {
+const Popover: FC<PropsWithChildren> = ({ children }) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   return (
     <EuiPopover
@@ -123,7 +123,7 @@ const Popover: FC = ({ children }) => {
   );
 };
 
-const Modal: FC = ({ children }) => {
+const Modal: FC<PropsWithChildren> = ({ children }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <>
@@ -151,7 +151,7 @@ const Modal: FC = ({ children }) => {
   );
 };
 
-const Flyout: FC = ({ children }) => {
+const Flyout: FC<PropsWithChildren> = ({ children }) => {
   const [isFlyoutOpen, setIsFlyoutOpen] = useState(false);
   return (
     <>

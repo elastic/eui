@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, HTMLAttributes, createContext } from 'react';
+import React, {
+  Component,
+  HTMLAttributes,
+  createContext,
+  ContextType,
+} from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { EuiI18n } from '../i18n';
@@ -110,8 +115,12 @@ export type EuiTreeViewProps = Omit<
 
 export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
   treeIdGenerator = htmlIdGenerator('euiTreeView');
+
   static contextType = EuiTreeViewContext;
+  declare context: ContextType<typeof EuiTreeViewContext>;
+
   isNested: boolean = !!this.context;
+
   state: EuiTreeViewState = {
     openItems: this.props.expandByDefault
       ? this.props.items

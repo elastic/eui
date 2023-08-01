@@ -16,7 +16,6 @@ export default () => {
   const sections: EuiHeaderSections[] = [
     {
       items: [<EuiHeaderLogo>Elastic</EuiHeaderLogo>],
-      borders: 'right',
     },
   ];
 
