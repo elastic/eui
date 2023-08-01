@@ -34,7 +34,6 @@ export type EuiInlineEditTitleProps = EuiInlineEditCommonProps & {
 };
 
 export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
-  children,
   className,
   size = 'm',
   heading,

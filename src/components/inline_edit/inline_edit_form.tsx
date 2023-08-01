@@ -37,7 +37,10 @@ import { useGeneratedHtmlId } from '../../services/accessibility';
 import { euiInlineEditReadModeStyles } from './inline_edit_form.styles';
 
 // Props shared between the internal form component as well as consumer-facing components
-export type EuiInlineEditCommonProps = HTMLAttributes<HTMLDivElement> &
+export type EuiInlineEditCommonProps = Omit<
+  HTMLAttributes<HTMLDivElement>,
+  'children'
+> &
   CommonProps & {
     defaultValue: string;
     placeholder?: string;
@@ -90,10 +93,7 @@ export type EuiInlineEditCommonProps = HTMLAttributes<HTMLDivElement> &
   };
 
 // Internal-only props, passed by the consumer-facing components
-export type EuiInlineEditFormProps = Omit<
-  EuiInlineEditCommonProps,
-  'children'
-> & {
+export type EuiInlineEditFormProps = EuiInlineEditCommonProps & {
   /**
    * Form sizes
    */
