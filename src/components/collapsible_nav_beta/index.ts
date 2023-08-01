@@ -11,6 +11,7 @@
  * development usage. It is not yet fully documented or supported.
  */
 
+export type { EuiCollapsibleNavBetaProps } from './collapsible_nav_beta';
 export { EuiCollapsibleNavBeta } from './collapsible_nav_beta';
 
 export type {

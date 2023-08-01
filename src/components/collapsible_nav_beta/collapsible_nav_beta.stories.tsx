@@ -12,29 +12,39 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EuiFlyoutBody, EuiFlyoutFooter } from '../flyout';
 
 import { EuiCollapsibleNavItem } from './collapsible_nav_item';
-import { EuiCollapsibleNavBeta } from './collapsible_nav_beta';
+import {
+  EuiCollapsibleNavBeta,
+  EuiCollapsibleNavBetaProps,
+} from './collapsible_nav_beta';
 
-// TODO: EuiCollapsibleNavBetaProps
-const meta: Meta<{}> = {
+const meta: Meta<EuiCollapsibleNavBetaProps> = {
   title: 'EuiCollapsibleNavBeta',
+  component: EuiCollapsibleNavBeta,
+  parameters: {
+    layout: 'fullscreen',
+  },
+  argTypes: {
+    side: {
+      control: 'radio',
+      options: ['left', 'right'],
+    },
+  },
+  args: {
+    side: 'left',
+  },
 };
 export default meta;
-type Story = StoryObj<{}>;
+type Story = StoryObj<EuiCollapsibleNavBetaProps>;
 
-// TODO: Make this a stateful component in upcoming EuiCollapsibleNavBeta work
-const OpenCollapsibleNav: FunctionComponent<PropsWithChildren> = ({
-  children,
-}) => {
-  return (
-    <EuiCollapsibleNavBeta isOpen={true} onClose={() => {}}>
-      {children}
-    </EuiCollapsibleNavBeta>
-  );
+const OpenCollapsibleNav: FunctionComponent<
+  PropsWithChildren & Partial<EuiCollapsibleNavBetaProps>
+> = (props) => {
+  return <EuiCollapsibleNavBeta {...props} />;
 };
 
 export const KibanaExample: Story = {
-  render: () => (
-    <OpenCollapsibleNav>
+  render: ({ ...args }) => (
+    <OpenCollapsibleNav {...args}>
       <EuiFlyoutBody>
         <EuiCollapsibleNavItem title="Home" icon="home" isSelected href="#" />
         <EuiCollapsibleNavItem
@@ -260,8 +270,8 @@ export const KibanaExample: Story = {
 
 // Security has a very custom nav
 export const SecurityExample: Story = {
-  render: () => (
-    <OpenCollapsibleNav>
+  render: ({ ...args }) => (
+    <OpenCollapsibleNav {...args}>
       <EuiFlyoutBody>
         <EuiCollapsibleNavItem
           title="Recent"
