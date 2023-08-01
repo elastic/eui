@@ -158,6 +158,10 @@ export const ListGroupExample = {
             tooltip text. By default, the tooltip will have the text same as the{' '}
             <EuiCode>label</EuiCode>.
           </p>
+          <p>
+            Use <EuiCode>toolTipProps</EuiCode> to customize tooltip placement,
+            title, and other behaviors.
+          </p>
         </>
       ),
       demo: <ListGroupExtra />,

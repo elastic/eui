@@ -19,7 +19,7 @@ import React, {
 import classNames from 'classnames';
 
 import { EuiIcon, IconType, EuiIconProps } from '../icon';
-import { EuiToolTip } from '../tool_tip';
+import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
 import { useInnerText } from '../inner_text';
 import { ExclusiveUnion, CommonProps } from '../common';
 import {
@@ -144,6 +144,11 @@ export type EuiListGroupItemProps = CommonProps &
      * By default the text will be same as the label text.
      */
     toolTipText?: string;
+
+    /**
+     * Props can be passed to nested`EuiToolTip`.
+     */
+    toolTipProps?: EuiToolTipProps;
   };
 
 export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
@@ -166,6 +171,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   wrapText,
   buttonRef,
   toolTipText,
+  toolTipProps,
   ...rest
 }) => {
   const isClickable = !!(href || onClick);
@@ -330,6 +336,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
           content={toolTipText ?? label}
           position="right"
           delay="long"
+          {...toolTipProps}
         >
           {itemContent}
         </EuiToolTip>
