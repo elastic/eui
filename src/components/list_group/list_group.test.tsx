@@ -33,9 +33,7 @@ const someListItems: EuiListGroupItemProps[] = [
       console.log('Visualize clicked', e);
     },
     toolTipProps: {
-      children: <button />,
       delay: 'regular',
-      id: '12345',
       position: 'top',
       title: 'Title of record',
     },

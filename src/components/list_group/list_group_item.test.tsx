@@ -9,7 +9,8 @@
 import React from 'react';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
-import { render } from '../../test/rtl';
+import { render, waitForEuiToolTipVisible } from '../../test/rtl';
+import { fireEvent } from '@testing-library/react';
 
 import { EuiListGroupItem, SIZES, COLORS } from './list_group_item';
 
@@ -31,6 +32,22 @@ describe('EuiListGroupItem', () => {
     {
       childProps: ['iconProps', 'extraAction'],
       skip: { parentTest: true },
+    }
+  );
+  shouldRenderCustomStyles(
+    <EuiListGroupItem
+      label="Label"
+      toolTipText="Tooltip"
+      showToolTip
+      data-test-subj="trigger"
+    />,
+    {
+      childProps: ['toolTipProps', 'toolTipProps.anchorProps'],
+      skip: { parentTest: true },
+      renderCallback: async ({ getByTestSubject }) => {
+        fireEvent.mouseOver(getByTestSubject('trigger'));
+        await waitForEuiToolTipVisible();
+      },
     }
   );
 

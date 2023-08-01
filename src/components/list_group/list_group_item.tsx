@@ -146,9 +146,9 @@ export type EuiListGroupItemProps = CommonProps &
     toolTipText?: string;
 
     /**
-     * Props can be passed to nested`EuiToolTip`.
+     * Props can be passed to nested `EuiToolTip`.
      */
-    toolTipProps?: EuiToolTipProps;
+    toolTipProps?: Partial<EuiToolTipProps>;
   };
 
 export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
@@ -326,17 +326,30 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
 
   if (showToolTip) {
     const tooltipStyles = euiListGroupItemTooltipStyles();
-    const cssTooltipStyles = [tooltipStyles.euiListGroupItem__tooltip];
+    const cssTooltipStyles = [
+      tooltipStyles.euiListGroupItem__tooltip,
+      toolTipProps?.anchorProps?.css,
+    ];
+
+    const anchorClasses = classNames(
+      'euiListGroupItem__tooltip',
+      toolTipProps?.anchorClassName
+    );
+
+    const anchorPropsAndCss = {
+      ...toolTipProps?.anchorProps,
+      css: cssTooltipStyles,
+    };
 
     itemContent = (
       <li className={classes} css={cssStyles}>
         <EuiToolTip
-          anchorClassName="euiListGroupItem__tooltip"
-          anchorProps={{ css: cssTooltipStyles }}
           content={toolTipText ?? label}
           position="right"
           delay="long"
           {...toolTipProps}
+          anchorClassName={anchorClasses}
+          anchorProps={anchorPropsAndCss}
         >
           {itemContent}
         </EuiToolTip>

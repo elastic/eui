@@ -159,8 +159,8 @@ export const ListGroupExample = {
             <EuiCode>label</EuiCode>.
           </p>
           <p>
-            Use <EuiCode>toolTipProps</EuiCode> to customize tooltip placement,
-            title, and other behaviors.
+            You can also use <EuiCode>toolTipProps</EuiCode> to customize
+            tooltip placement, title, and other behaviors.
           </p>
         </>
       ),

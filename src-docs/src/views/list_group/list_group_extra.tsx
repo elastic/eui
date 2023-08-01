@@ -1,18 +1,6 @@
 import React from 'react';
 
-import {
-  EuiListGroup,
-  EuiListGroupItem,
-  EuiToolTipProps,
-} from '../../../../src/components';
-
-const myToolTipProps: EuiToolTipProps = {
-  children: <span />,
-  delay: 'regular',
-  id: '12345',
-  position: 'top',
-  title: 'Title of record',
-};
+import { EuiListGroup, EuiListGroupItem } from '../../../../src/components';
 
 export default () => (
   <EuiListGroup showToolTips>
@@ -38,7 +26,11 @@ export default () => (
       onClick={() => {}}
       wrapText
       label="Fourth very long item with wrapping enabled, custom props, and will not force truncation."
-      toolTipProps={myToolTipProps}
+      toolTipProps={{
+        delay: 'regular',
+        position: 'top',
+        title: 'Title of record',
+      }}
     />
   </EuiListGroup>
 );
