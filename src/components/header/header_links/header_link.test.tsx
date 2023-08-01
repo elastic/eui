@@ -9,10 +9,13 @@
 import React from 'react';
 import { requiredProps } from '../../../test';
 import { render } from '../../../test/rtl';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiHeaderLink } from './header_link';
 
 describe('EuiHeaderLink', () => {
+  shouldRenderCustomStyles(<EuiHeaderLink />);
+
   test('is rendered', () => {
     const { container } = render(<EuiHeaderLink {...requiredProps} />);
 

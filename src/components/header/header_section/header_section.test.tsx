@@ -9,19 +9,16 @@
 import React from 'react';
 import { requiredProps } from '../../../test/required_props';
 import { render } from '../../../test/rtl';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiHeaderSection } from './header_section';
 
 describe('EuiHeaderSection', () => {
-  test('is rendered', () => {
-    const { container } = render(<EuiHeaderSection {...requiredProps} />);
+  shouldRenderCustomStyles(<EuiHeaderSection />);
 
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  test('renders optional params', () => {
+  it('renders', () => {
     const { container } = render(
-      <EuiHeaderSection style={{ color: 'blue' }}>
+      <EuiHeaderSection {...requiredProps}>
         <span>Some years ago never mind how long precisely...</span>
       </EuiHeaderSection>
     );
@@ -30,13 +27,7 @@ describe('EuiHeaderSection', () => {
   });
 
   describe('grow', () => {
-    test('defaults to false', () => {
-      const { container } = render(<EuiHeaderSection />);
-
-      expect(container.firstChild).toMatchSnapshot();
-    });
-
-    test('renders true', () => {
+    it('renders true', () => {
       const { container } = render(<EuiHeaderSection grow />);
 
       expect(container.firstChild).toMatchSnapshot();
@@ -44,13 +35,13 @@ describe('EuiHeaderSection', () => {
   });
 
   describe('side', () => {
-    test('defaults to left', () => {
-      const { container } = render(<EuiHeaderSection />);
+    it('renders left', () => {
+      const { container } = render(<EuiHeaderSection side="left" />);
 
       expect(container.firstChild).toMatchSnapshot();
     });
 
-    test('renders right', () => {
+    it('renders right', () => {
       const { container } = render(<EuiHeaderSection side="right" />);
 
       expect(container.firstChild).toMatchSnapshot();

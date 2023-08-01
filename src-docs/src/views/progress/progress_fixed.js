@@ -81,8 +81,8 @@ export default () => {
         <EuiHeader
           style={{ position: 'fixed', top: 0, left: 0, width: '100%' }}
         >
-          <EuiHeaderSection grow={false}>
-            <EuiHeaderSectionItem border="right">
+          <EuiHeaderSection>
+            <EuiHeaderSectionItem>
               <EuiHeaderLogo
                 iconType="logoKibana"
                 href="#"

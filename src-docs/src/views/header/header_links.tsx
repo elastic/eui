@@ -11,7 +11,7 @@ import {
 export default () => {
   return (
     <EuiHeader>
-      <EuiHeaderSectionItem border="right">
+      <EuiHeaderSectionItem>
         <EuiHeaderLogo>Elastic</EuiHeaderLogo>
       </EuiHeaderSectionItem>
 
