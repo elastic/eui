@@ -15,8 +15,6 @@ export const euiCollapsibleNavBetaStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiCollapsibleNavBeta: css`
-      ${logicalCSS('border-top', euiTheme.border.thin)}
-
       .euiFlyoutFooter {
         background-color: ${euiTheme.colors.emptyShade};
         ${logicalCSS('border-top', euiTheme.border.thin)}

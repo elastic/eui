@@ -11,6 +11,8 @@ import { render } from '../../test/rtl';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test';
 
+import { EuiHeader } from '../header';
+
 import { EuiCollapsibleNavBeta } from './collapsible_nav_beta';
 
 describe('EuiCollapsibleNavBeta', () => {
@@ -24,6 +26,20 @@ describe('EuiCollapsibleNavBeta', () => {
     );
     expect(getByTestSubject('nav')).toHaveStyle({ 'inline-size': '248px' });
     expect(baseElement).toMatchSnapshot();
+  });
+
+  it('automatically accounts for fixed EuiHeaders in its positioning', () => {
+    const { getByTestSubject } = render(
+      <EuiHeader position="fixed">
+        <EuiCollapsibleNavBeta data-test-subj="nav">
+          Nav content
+        </EuiCollapsibleNavBeta>
+      </EuiHeader>
+    );
+    expect(getByTestSubject('nav')).toHaveStyle({
+      'inset-block-start': '48px',
+      'block-size': 'calc(100% - 48px)',
+    });
   });
 
   // TODO: Visual snapshot for left vs right `side` prop, once we add visual snapshot testing

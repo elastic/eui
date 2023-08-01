@@ -9,6 +9,8 @@
 import React, { FunctionComponent, PropsWithChildren } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { EuiHeader, EuiHeaderSection } from '../header';
+import { EuiPageTemplate } from '../page_template';
 import { EuiFlyoutBody, EuiFlyoutFooter } from '../flyout';
 
 import { EuiCollapsibleNavItem } from './collapsible_nav_item';
@@ -39,7 +41,18 @@ type Story = StoryObj<EuiCollapsibleNavBetaProps>;
 const OpenCollapsibleNav: FunctionComponent<
   PropsWithChildren & Partial<EuiCollapsibleNavBetaProps>
 > = (props) => {
-  return <EuiCollapsibleNavBeta {...props} />;
+  return (
+    <>
+      <EuiHeader position="fixed">
+        <EuiHeaderSection side={props?.side}>
+          <EuiCollapsibleNavBeta {...props} />
+        </EuiHeaderSection>
+      </EuiHeader>
+      <EuiPageTemplate>
+        <EuiPageTemplate.Section>Hello world</EuiPageTemplate.Section>
+      </EuiPageTemplate>
+    </>
+  );
 };
 
 export const KibanaExample: Story = {
@@ -378,5 +391,22 @@ export const SecurityExample: Story = {
         />
       </EuiFlyoutFooter>
     </OpenCollapsibleNav>
+  ),
+};
+
+export const MultipleFixedHeaders: Story = {
+  render: ({ ...args }) => (
+    <>
+      <EuiHeader position="fixed">First header</EuiHeader>
+      <EuiHeader position="fixed">
+        <EuiHeaderSection>
+          <EuiCollapsibleNavBeta {...args}>
+            This story tests that EuiCollapsibleNav's fixed header detection &
+            offsetting works as expected
+          </EuiCollapsibleNavBeta>
+          Second header
+        </EuiHeaderSection>
+      </EuiHeader>
+    </>
   ),
 };

@@ -10,13 +10,18 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
   ReactNode,
+  useMemo,
+  useState,
+  useEffect,
 } from 'react';
 import classNames from 'classnames';
 
 import { useEuiTheme, useGeneratedHtmlId } from '../../services';
+import { mathWithUnits, logicalStyle } from '../../global_styling';
 
 import { CommonProps } from '../common';
 import { EuiFlyout, EuiFlyoutProps } from '../flyout';
+import { euiHeaderVariables } from '../header/header.styles';
 
 import { euiCollapsibleNavBetaStyles } from './collapsible_nav_beta.styles';
 
@@ -44,12 +49,43 @@ export const EuiCollapsibleNavBeta: FunctionComponent<
   focusTrapProps,
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
+  const headerHeight = euiHeaderVariables(euiTheme).height;
+
+  /**
+   * Header affordance
+   */
+  const [fixedHeadersCount, setFixedHeadersCount] = useState<number | false>(
+    false
+  );
+  useEffect(() => {
+    setFixedHeadersCount(
+      document.querySelectorAll('.euiHeader[data-fixed-header]').length
+    );
+  }, []);
+
+  const stylesWithHeaderOffset = useMemo(() => {
+    if (!fixedHeadersCount) return style;
+
+    const headersOffset = mathWithUnits(
+      headerHeight,
+      (x) => x * fixedHeadersCount
+    );
+    return {
+      ...style,
+      ...logicalStyle('top', headersOffset),
+      ...logicalStyle('height', `calc(100% - ${headersOffset})`),
+    };
+  }, [fixedHeadersCount, style, headerHeight]);
+
+  /**
+   * Prop setup
+   */
   const flyoutID = useGeneratedHtmlId({
     conditionalId: id,
     suffix: 'euiCollapsibleNav',
   });
 
-  const euiTheme = useEuiTheme();
   const classes = classNames(
     'euiCollapsibleNav',
     'euiCollapsibleNavBeta',
@@ -58,13 +94,14 @@ export const EuiCollapsibleNavBeta: FunctionComponent<
   const styles = euiCollapsibleNavBetaStyles(euiTheme);
   const cssStyles = [styles.euiCollapsibleNavBeta, styles[side]];
 
-  return (
+  // Wait for any fixed headers to be queried before rendering (prevents position jumping)
+  const flyout = fixedHeadersCount !== false && (
     <EuiFlyout
       {...rest} // EuiCollapsibleNav is significantly less permissive than EuiFlyout
       id={flyoutID}
       css={cssStyles}
       className={classes}
-      style={style}
+      style={stylesWithHeaderOffset}
       size={248} // TODO: Responsive behavior
       side={side}
       focusTrapProps={focusTrapProps}
@@ -75,8 +112,14 @@ export const EuiCollapsibleNavBeta: FunctionComponent<
       onClose={() => {}} // TODO: Collapsed state
       hideCloseButton={true}
     >
-      {/* TODO: collapsible button */}
       {children}
     </EuiFlyout>
+  );
+
+  return (
+    <>
+      {/* TODO: collapsible button */}
+      {flyout}
+    </>
   );
 };
