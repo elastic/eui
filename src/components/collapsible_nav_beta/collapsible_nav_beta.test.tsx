@@ -37,6 +37,17 @@ describe('EuiCollapsibleNavBeta', () => {
     expect(queryByTestSubject('nav')).not.toBeInTheDocument();
   });
 
+  it('toggles collapsed state', () => {
+    const { getByTestSubject, queryByTestSubject } = render(
+      <EuiCollapsibleNavBeta data-test-subj="nav">
+        Nav content
+      </EuiCollapsibleNavBeta>
+    );
+    expect(queryByTestSubject('nav')).toBeInTheDocument();
+    fireEvent.click(getByTestSubject('euiCollapsibleNavButton'));
+    expect(queryByTestSubject('nav')).not.toBeInTheDocument();
+  });
+
   it('automatically accounts for fixed EuiHeaders in its positioning', () => {
     const { getByTestSubject } = render(
       <EuiHeader position="fixed">

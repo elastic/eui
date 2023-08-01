@@ -10,6 +10,7 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
   ReactNode,
+  useRef,
   useMemo,
   useState,
   useEffect,
@@ -24,6 +25,7 @@ import { CommonProps } from '../common';
 import { EuiFlyout, EuiFlyoutProps } from '../flyout';
 import { euiHeaderVariables } from '../header/header.styles';
 
+import { EuiCollapsibleNavButton } from './collapsible_nav_button';
 import { euiCollapsibleNavBetaStyles } from './collapsible_nav_beta.styles';
 
 export type EuiCollapsibleNavBetaProps = CommonProps &
@@ -52,7 +54,7 @@ export const EuiCollapsibleNavBeta: FunctionComponent<
   style,
   initialIsCollapsed = false,
   side = 'left',
-  focusTrapProps,
+  focusTrapProps: _focusTrapProps,
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
@@ -102,6 +104,15 @@ export const EuiCollapsibleNavBeta: FunctionComponent<
     suffix: 'euiCollapsibleNav',
   });
 
+  const buttonRef = useRef<HTMLDivElement | null>(null);
+  const focusTrapProps: EuiFlyoutProps['focusTrapProps'] = useMemo(
+    () => ({
+      ..._focusTrapProps,
+      shards: [buttonRef, ...(_focusTrapProps?.shards || [])],
+    }),
+    [_focusTrapProps]
+  );
+
   const classes = classNames(
     'euiCollapsibleNav',
     'euiCollapsibleNavBeta',
@@ -133,8 +144,15 @@ export const EuiCollapsibleNavBeta: FunctionComponent<
   );
 
   return (
+    // TODO: Context for sharing state to all children
     <>
-      {/* TODO: collapsible button */}
+      <EuiCollapsibleNavButton
+        ref={buttonRef}
+        onClick={toggleCollapsed}
+        isCollapsed={isCollapsed}
+        side={side}
+        aria-controls={flyoutID}
+      />
       {!isCollapsed && flyout}
     </>
   );
