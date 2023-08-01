@@ -19,26 +19,28 @@ import { euiPageBodyStyles } from './page_body.styles';
 
 type ComponentTypes = keyof JSX.IntrinsicElements | ComponentType<any>;
 
-export type EuiPageBodyProps<T extends ComponentTypes = 'main'> = CommonProps &
-  ComponentProps<T> &
-  _EuiPageRestrictWidth & {
-    /**
-     * Sets the HTML element for `EuiPageBody`.
-     */
-    component?: T;
-    /**
-     * Uses an EuiPanel as the main component instead of a plain div
-     */
-    panelled?: boolean;
-    /**
-     * Extends any extra EuiPanel props if `panelled=true`
-     */
-    panelProps?: Omit<EuiPanelProps, 'paddingSize'>;
-    /**
-     * Adjusts the padding
-     */
-    paddingSize?: EuiPaddingSize;
-  };
+export type EuiPageBodyProps<T extends ComponentTypes = 'main'> =
+  PropsWithChildren &
+    CommonProps &
+    ComponentProps<T> &
+    _EuiPageRestrictWidth & {
+      /**
+       * Sets the HTML element for `EuiPageBody`.
+       */
+      component?: T;
+      /**
+       * Uses an EuiPanel as the main component instead of a plain div
+       */
+      panelled?: boolean;
+      /**
+       * Extends any extra EuiPanel props if `panelled=true`
+       */
+      panelProps?: Omit<EuiPanelProps, 'paddingSize'>;
+      /**
+       * Adjusts the padding
+       */
+      paddingSize?: EuiPaddingSize;
+    };
 
 export const EuiPageBody = <T extends ComponentTypes>({
   children,
@@ -51,7 +53,7 @@ export const EuiPageBody = <T extends ComponentTypes>({
   paddingSize = 'none',
   borderRadius = 'none',
   ...rest
-}: PropsWithChildren<EuiPageBodyProps<T>>) => {
+}: EuiPageBodyProps<T>) => {
   // Set max-width as a style prop
   const widthStyles = setStyleForRestrictedPageWidth(
     restrictWidth,

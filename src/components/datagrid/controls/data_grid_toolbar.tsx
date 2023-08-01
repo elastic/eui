@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { isValidElement, ReactNode } from 'react';
 import {
   EuiDataGridProps,
   EuiDataGridToolbarProps,
@@ -115,47 +115,61 @@ export function checkOrDefaultToolBarDisplayOptions<
   }
 }
 
-export function renderAdditionalControls(
+export const renderAdditionalControls = (
   toolbarVisibility: EuiDataGridProps['toolbarVisibility'],
   position: 'left.prepend' | 'left.append' | 'right'
-) {
+): ReactNode => {
   if (typeof toolbarVisibility === 'boolean') return null;
   const { additionalControls } = toolbarVisibility || {};
   if (!additionalControls) return null;
 
-  // Typescript is having obj issues, so we need to force cast to EuiDataGridToolBarAdditionalControlsOptions here
-  const additionalControlsObj: EuiDataGridToolBarAdditionalControlsOptions =
-    additionalControls?.constructor === Object ? additionalControls : {};
-  // Typescript workarounds continued
-  const leftPositionObj: EuiDataGridToolBarAdditionalControlsLeftOptions =
-    additionalControlsObj.left?.constructor === Object
-      ? additionalControlsObj.left
-      : {};
-
-  if (position === 'right') {
-    if (additionalControlsObj?.right) {
-      return additionalControlsObj.right;
-    }
-  } else if (position === 'left.prepend') {
-    if (leftPositionObj?.prepend) {
-      return leftPositionObj.prepend;
-    }
-  } else if (position === 'left.append') {
-    if (leftPositionObj?.append) {
-      return leftPositionObj.append;
-    }
-    if (React.isValidElement(additionalControlsObj?.left)) {
-      // If the consumer passed a single ReactNode to `additionalControls.left`, default to the left append position
-      return additionalControlsObj.left;
-    }
-    if (React.isValidElement(additionalControls)) {
-      // API backwards compatability: if the consumer passed a single ReactNode to `additionalControls`, default to the the left append position
-      return additionalControls;
-    }
+  // API backwards compatability: if the consumer passed a single ReactNode
+  // to `additionalControls`, default to the left append position.
+  if (isValidElement(additionalControls) && position === 'left.append') {
+    return additionalControls;
+  }
+  if (typeof additionalControls !== 'object') {
+    return null;
   }
 
-  return null;
-}
+  const handleLeftObjectConfig = (
+    leftConfig: EuiDataGridToolBarAdditionalControlsLeftOptions
+  ) => {
+    if (position === 'left.prepend') {
+      return leftConfig.prepend;
+    }
+    if (position === 'left.append') {
+      return leftConfig.append;
+    }
+  };
+
+  const handleObjectConfig = (
+    additionalControls: EuiDataGridToolBarAdditionalControlsOptions
+  ) => {
+    if (position === 'right') {
+      return additionalControls.right;
+    }
+    // API backwards compatability: If the consumer passed a single ReactNode
+    // to `additionalControls.left`, default to the left append position
+    if (isValidElement(additionalControls.left) && position === 'left.append') {
+      return additionalControls.left;
+    }
+    if (
+      additionalControls.left &&
+      typeof additionalControls.left === 'object'
+    ) {
+      return handleLeftObjectConfig(
+        additionalControls.left as EuiDataGridToolBarAdditionalControlsLeftOptions
+      );
+    }
+  };
+
+  const rendered = handleObjectConfig(
+    additionalControls as EuiDataGridToolBarAdditionalControlsOptions
+  );
+
+  return rendered || null;
+};
 
 /**
  * Utility helper for selectors/controls that allow nested options
@@ -167,7 +181,7 @@ export function getNestedObjectOptions<T>(
   objectKey: keyof T
 ): boolean {
   // If the config is a boolean, nested options follow that boolean
-  if (controlOption === false || controlOption === true) return controlOption;
+  if (typeof controlOption === 'boolean') return controlOption;
   // If config is not defined, default to enabled
   if (controlOption == null) return true;
   // Otherwise, type should be an object of boolean values - dive into it and return the value

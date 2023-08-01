@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, PropsWithChildren } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { EuiFlyoutBody, EuiFlyoutFooter } from '../flyout';
@@ -22,7 +22,9 @@ export default meta;
 type Story = StoryObj<{}>;
 
 // TODO: Make this a stateful component in upcoming EuiCollapsibleNavBeta work
-const OpenCollapsibleNav: FunctionComponent<{}> = ({ children }) => {
+const OpenCollapsibleNav: FunctionComponent<PropsWithChildren> = ({
+  children,
+}) => {
   return (
     <EuiCollapsibleNavBeta isOpen={true} onClose={() => {}}>
       {children}

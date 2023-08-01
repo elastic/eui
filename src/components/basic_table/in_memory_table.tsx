@@ -423,7 +423,10 @@ export class EuiInMemoryTable<T> extends Component<
     // EuiBasicTable returns the column's `field` instead of `name` on sort
     // and the column's `name` instead of `field` on pagination
     if (sortName) {
-      const sortColumn = findColumnByFieldOrName(this.props.columns, sortName);
+      const sortColumn = findColumnByFieldOrName(
+        this.props.columns,
+        sortName as ReactNode
+      );
       if (sortColumn) {
         // Ensure sortName uses `name`
         sortName = sortColumn.name as keyof T;
@@ -460,7 +463,7 @@ export class EuiInMemoryTable<T> extends Component<
     this.setState({
       pageIndex,
       pageSize,
-      sortName,
+      sortName: sortName as ReactNode,
       sortDirection,
     });
   };

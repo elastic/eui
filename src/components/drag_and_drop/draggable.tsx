@@ -14,7 +14,7 @@ import React, {
   cloneElement,
   useContext,
 } from 'react';
-import { Draggable, DraggableProps } from 'react-beautiful-dnd';
+import { Draggable, DraggableProps } from '@hello-pangea/dnd';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { EuiDroppableContext } from './droppable';
@@ -97,10 +97,10 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
           'euiDraggable__item--isDragging': snapshot.isDragging,
           'euiDraggable__item--isDropAnimating': snapshot.isDropAnimating,
         });
-        const DraggableElement =
+        const DraggableElement: ReactElement =
           typeof children === 'function'
-            ? children(provided, snapshot, rubric)
-            : (children as ReactElement); // as specified by `DraggableProps`
+            ? (children(provided, snapshot, rubric) as ReactElement)
+            : children;
         return (
           <Fragment>
             <div

@@ -28,7 +28,10 @@ export default () => {
   const focusId = useGeneratedHtmlId();
   useEffect(() => {
     if (isPopoverOpen) {
-      document.getElementById(focusId)!.focus({ preventScroll: true });
+      // Wait a tick for element to finish rendering
+      setTimeout(() => {
+        document.getElementById(focusId)!.focus({ preventScroll: true });
+      });
     }
   }, [isPopoverOpen, focusId]);
 

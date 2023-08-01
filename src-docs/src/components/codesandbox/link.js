@@ -166,8 +166,8 @@ import '@elastic/charts/dist/theme_only_${colorMode}.css';`
       },
       'index.js': {
         content: `import '${cssFile}';
-import ReactDOM from 'react-dom';
 import React from 'react';
+import { createRoot } from 'react-dom/client';
 import createCache from '@emotion/cache';
 import { EuiProvider } from '@elastic/eui';
 
@@ -179,11 +179,11 @@ const cache = createCache({
 });
 cache.compat = true;
 
-ReactDOM.render(
+const root = createRoot(document.getElementById('root'));
+root.render(
   <EuiProvider cache={cache} ${providerProps}>
     <Demo />
-  </EuiProvider>,
-  document.getElementById('root')
+  </EuiProvider>
 );`,
       },
       /* 4 */

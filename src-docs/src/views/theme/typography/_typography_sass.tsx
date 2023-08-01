@@ -165,12 +165,18 @@ export const FontWeightSass: FunctionComponent<ThemeRowType> = ({
   );
 };
 
+interface FontWeightDetails {
+  id: (typeof euiFontWeights)[number];
+  token: string;
+  value: number;
+}
+
 export const FontWeightValuesSass = () => {
   const values = useJsonVars();
 
   return (
     <>
-      <EuiBasicTable
+      <EuiBasicTable<FontWeightDetails>
         items={euiFontWeights.map(function (weight) {
           return {
             id: weight,
@@ -221,7 +227,7 @@ const euiFontSizes = [
   'euiFontSizeL',
   'euiFontSizeXL',
   'euiFontSizeXXL',
-];
+] as const;
 
 export const FontScaleSass = () => {
   return (
@@ -243,12 +249,20 @@ export const FontScaleSass = () => {
   );
 };
 
+interface FontSizesDetails {
+  id: (typeof euiFontSizes)[number];
+  token: string;
+  mixin: string;
+  value: string;
+  index: number;
+}
+
 export const FontScaleValuesSass = () => {
   const values = useJsonVars();
 
   return (
     <>
-      <EuiBasicTable
+      <EuiBasicTable<FontSizesDetails>
         items={euiFontSizes.map(function (size, index) {
           return {
             id: size,

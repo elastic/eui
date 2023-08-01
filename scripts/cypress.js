@@ -21,12 +21,18 @@ const argv = yargs(hideBin(process.argv))
     dev: { type: 'boolean' },
     theme: { type: 'string', default: 'light', choices: ['light', 'dark'] },
     a11y: { type: 'boolean' },
+    'react-version': {
+      type: 'number',
+      default: 18,
+      choices: [16, 17, 18],
+    },
   }).argv;
 
 const isDev = argv.hasOwnProperty('dev');
 const isA11y = argv.hasOwnProperty('a11y');
 const skipScss = argv.hasOwnProperty('skip-css');
 const theme = argv.theme;
+const reactVersion = argv['react-version'];
 
 const info = chalk.white;
 const log = chalk.grey;
@@ -54,11 +60,13 @@ const cypressCommandParts = [
   `THEME=${theme}`, // pass the theme
   'BABEL_MODULES=false', // let webpack receive ES Module code
   'NODE_ENV=cypress_test', // enable code coverage checks
+  `REACT_VERSION=${reactVersion}`, // set react version to test
   `cypress ${testParams}`,
   ...argv._, // pass any extra options given to this script
 ];
 const cypressCommand = cypressCommandParts.join(' ');
 
+console.log(info(`Running tests on React v${reactVersion}`));
 console.log(info(`${isDev ? 'Opening' : 'Running'} cypress`));
 console.log(log(cypressCommand));
 execSync(cypressCommand, {

@@ -11,7 +11,7 @@
 /// <reference types="../../../cypress/support" />
 
 import React, { useState } from 'react';
-import { DragDropContextProps } from 'react-beautiful-dnd';
+import { DragDropContextProps } from '@hello-pangea/dnd';
 import { EuiDragDropContext } from './drag_drop_context';
 import { euiDragDropReorder } from './services';
 import { EuiDraggable } from './draggable';
