@@ -51,10 +51,11 @@ export const EuiComponentDefaultsContext =
 /*
  * Component
  */
+export type EuiComponentDefaultsProviderProps = PropsWithChildren & {
+  componentDefaults?: EuiComponentDefaults;
+};
 export const EuiComponentDefaultsProvider: FunctionComponent<
-  PropsWithChildren & {
-    componentDefaults?: EuiComponentDefaults;
-  }
+  EuiComponentDefaultsProviderProps
 > = ({ componentDefaults = emptyDefaults, children }) => {
   return (
     <EuiComponentDefaultsContext.Provider value={componentDefaults}>
