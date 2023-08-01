@@ -6,8 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React, { PropsWithChildren } from 'react';
-import { renderHook } from '@testing-library/react-hooks';
+import React, { FunctionComponent, PropsWithChildren } from 'react';
+import { renderHook } from '../../../test/rtl';
 
 import {
   EuiComponentDefaultsProvider,
@@ -18,7 +18,7 @@ import {
 describe('EuiComponentDefaultsProvider', () => {
   describe('useComponentDefaults', () => {
     it('allows accessing provided `componentDefaults` from anywhere', () => {
-      const wrapper = ({ children }: PropsWithChildren<{}>) => (
+      const wrapper: FunctionComponent<PropsWithChildren> = ({ children }) => (
         <EuiComponentDefaultsProvider
           componentDefaults={{
             EuiPortal: {
