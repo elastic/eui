@@ -86,6 +86,7 @@ describe('EuiOverlayMask', () => {
 
   // React 18 is really unhappy when RTL wants to unmount
   // it while the component is still updating.
+  // TODO: https://github.com/elastic/eui/issues/6998
   // Note - this needs to be the last test in the suite, otherwise subsequent overlay masks stop working
   testOnReactVersion(['16', '17'])(
     'throws if a non-string property value is passed',
