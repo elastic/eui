@@ -49,12 +49,12 @@ export default () => {
         buttonColor="danger"
         initialFocus="[name=delete]"
         confirmButtonDisabled={value.toLowerCase() !== 'delete'}
-        isLoading={isLoading}
+        isLoading={value.toLowerCase() !== 'delete' ?? isLoading}
       >
         <EuiFormRow label="Type the word 'delete' to confirm">
           <EuiFieldText
             name="delete"
-            isLoading={isLoading}
+            isLoading={value.toLowerCase() !== 'delete' ?? isLoading}
             value={value}
             onChange={onChange}
           />
