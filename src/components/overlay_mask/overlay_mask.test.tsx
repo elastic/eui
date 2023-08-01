@@ -8,7 +8,8 @@
 
 import React from 'react';
 import { render } from '../../test/rtl';
-import { requiredProps, testOnReactVersion } from '../../test';
+import { requiredProps } from '../../test';
+import { testOnReactVersion } from '../../test/internal';
 import { EuiThemeProvider } from '../../services';
 
 import { EuiOverlayMask } from './overlay_mask';

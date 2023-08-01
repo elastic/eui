@@ -10,12 +10,11 @@ import React from 'react';
 import { mount, ReactWrapper } from 'enzyme';
 import { resetServerContext } from '@hello-pangea/dnd';
 
+import { findTestSubject, requiredProps } from '../../test';
 import {
-  findTestSubject,
-  requiredProps,
   invokeOnReactVersion,
   describeByReactVersion,
-} from '../../test';
+} from '../../test/internal';
 
 import { EuiDragDropContext, EuiDroppable } from './';
 import { EuiDroppableContext } from './droppable';

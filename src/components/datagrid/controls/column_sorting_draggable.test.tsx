@@ -14,7 +14,7 @@ import { EuiDragDropContext, EuiDroppable } from '../../drag_and_drop';
 import { schemaDetectors } from '../utils/data_grid_schema';
 
 import { EuiDataGridColumnSortingDraggable } from './column_sorting_draggable';
-import { testByReactVersion } from '../../../test';
+import { testByReactVersion } from '../../../test/internal';
 
 describe('EuiDataGridColumnSortingDraggable', () => {
   const onSort = jest.fn();

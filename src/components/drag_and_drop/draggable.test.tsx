@@ -8,7 +8,8 @@
 
 import React from 'react';
 import { render, screen } from '../../test/rtl';
-import { requiredProps, describeByReactVersion } from '../../test';
+import { requiredProps } from '../../test';
+import { describeByReactVersion } from '../../test/internal';
 import { EuiDragDropContext, EuiDraggable, EuiDroppable } from './';
 
 describeByReactVersion('EuiDraggable', () => {

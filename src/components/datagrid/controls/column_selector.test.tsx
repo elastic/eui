@@ -9,7 +9,8 @@
 import React from 'react';
 import { act } from '@testing-library/react';
 import { shallow, mount, ReactWrapper } from 'enzyme';
-import { findTestSubject, testByReactVersion } from '../../../test';
+import { findTestSubject } from '../../../test';
+import { testByReactVersion } from '../../../test/internal';
 
 import { EuiDataGridToolBarVisibilityOptions } from '../data_grid_types';
 
