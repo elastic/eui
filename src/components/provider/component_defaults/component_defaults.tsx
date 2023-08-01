@@ -11,6 +11,7 @@ import React, {
   useContext,
   useMemo,
   FunctionComponent,
+  PropsWithChildren,
 } from 'react';
 
 import type { EuiPortalProps } from '../../portal';
@@ -50,9 +51,11 @@ export const EuiComponentDefaultsContext =
 /*
  * Component
  */
-export const EuiComponentDefaultsProvider: FunctionComponent<{
-  componentDefaults?: EuiComponentDefaults;
-}> = ({ componentDefaults = emptyDefaults, children }) => {
+export const EuiComponentDefaultsProvider: FunctionComponent<
+  PropsWithChildren & {
+    componentDefaults?: EuiComponentDefaults;
+  }
+> = ({ componentDefaults = emptyDefaults, children }) => {
   return (
     <EuiComponentDefaultsContext.Provider value={componentDefaults}>
       {children}
