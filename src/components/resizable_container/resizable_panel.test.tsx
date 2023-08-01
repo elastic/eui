@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, PropsWithChildren } from 'react';
 import { render } from '@testing-library/react';
 import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
@@ -16,7 +16,7 @@ import { EuiResizablePanel } from './resizable_panel';
 
 describe('EuiResizablePanel', () => {
   const mockRegistry = { panels: {}, resizers: {} };
-  const wrapper: FunctionComponent = ({ children }) => (
+  const wrapper: FunctionComponent<PropsWithChildren> = ({ children }) => (
     <EuiResizableContainerContextProvider registry={mockRegistry}>
       {children}
     </EuiResizableContainerContextProvider>

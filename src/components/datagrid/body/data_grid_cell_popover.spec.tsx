@@ -61,9 +61,10 @@ describe('EuiDataGridCellPopover', () => {
       );
 
       cy.realPress('Escape');
-      cy.focused()
-        .should('have.attr', 'data-gridcell-column-index', '0')
-        .should('have.attr', 'data-gridcell-row-index', '0');
+
+      cy.get(
+        '[data-gridcell-column-index="0"][data-gridcell-row-index="0"]'
+      ).should('be.focused');
     });
 
     it('when the expand button is clicked and then F2 key is pressed', () => {

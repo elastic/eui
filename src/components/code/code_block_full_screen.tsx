@@ -12,6 +12,7 @@ import React, {
   useState,
   useCallback,
   useMemo,
+  PropsWithChildren,
 } from 'react';
 import { keys, useEuiTheme } from '../../services';
 import { useEuiI18n } from '../i18n';
@@ -87,9 +88,9 @@ export const useFullScreen = ({
 /**
  * Portalled full screen wrapper
  */
-export const EuiCodeBlockFullScreenWrapper: FunctionComponent = ({
-  children,
-}) => {
+export const EuiCodeBlockFullScreenWrapper: FunctionComponent<
+  PropsWithChildren
+> = ({ children }) => {
   const euiThemeContext = useEuiTheme();
 
   const styles = euiCodeBlockStyles(euiThemeContext);

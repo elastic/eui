@@ -46,7 +46,9 @@ export const useCellPopover = (): {
   >({});
 
   const closeCellPopover = useCallback(() => setPopoverIsOpen(false), []);
-  const openCellPopover = useCallback(
+  const openCellPopover = useCallback<
+    DataGridCellPopoverContextShape['openCellPopover']
+  >(
     ({ rowIndex, colIndex }) => {
       // Prevent popover DOM issues when re-opening the same popover
       if (

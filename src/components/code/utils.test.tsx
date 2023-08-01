@@ -8,7 +8,7 @@
 
 import React from 'react';
 import { shallow } from 'enzyme';
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '../../test/rtl';
 import { useEuiTheme } from '../../services';
 
 import {

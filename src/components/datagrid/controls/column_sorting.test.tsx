@@ -7,9 +7,10 @@
  */
 
 import React from 'react';
-import { act } from 'react-dom/test-utils';
+import { act } from '@testing-library/react';
 import { mount, ReactWrapper } from 'enzyme';
 import { findTestSubject } from '../../../test';
+import { testByReactVersion } from '../../../test/internal';
 
 import { schemaDetectors } from '../utils/data_grid_schema';
 
@@ -73,16 +74,19 @@ describe('useDataGridColumnSorting', () => {
       component.setProps({});
     };
 
-    it('renders a toolbar button/popover allowing users to set column sorting', () => {
-      const component = mount(<MockComponent />);
-      openPopover(component);
-      expect(component.render()).toMatchSnapshot();
-      expect(
-        component.find('[data-popover-panel]').first().render()
-      ).toMatchSnapshot();
-      closePopover(component);
-      expect(component.text()).toEqual('1 field sorted');
-    });
+    testByReactVersion(
+      'renders a toolbar button/popover allowing users to set column sorting',
+      () => {
+        const component = mount(<MockComponent />);
+        openPopover(component);
+        expect(component.render()).toMatchSnapshot();
+        expect(
+          component.find('[data-popover-panel]').first().render()
+        ).toMatchSnapshot();
+        closePopover(component);
+        expect(component.text()).toEqual('1 field sorted');
+      }
+    );
 
     it('returns null if sorting is not defined', () => {
       // @ts-ignore - normally this would be undefined vs. null, but we have = fallbacks up above for testing QOL

@@ -10,7 +10,8 @@ import React, { Component } from 'react';
 import { EuiPopover, Props as EuiPopoverProps } from './popover';
 import { EuiPortal } from '../portal';
 
-export interface EuiWrappingPopoverProps extends EuiPopoverProps {
+export interface EuiWrappingPopoverProps
+  extends Omit<EuiPopoverProps, 'button'> {
   button: HTMLElement;
 }
 
@@ -21,13 +22,6 @@ export interface EuiWrappingPopoverProps extends EuiPopoverProps {
  */
 export class EuiWrappingPopover extends Component<EuiWrappingPopoverProps> {
   private portal: HTMLElement | null = null;
-  private anchor: HTMLElement | null = null;
-
-  componentDidMount() {
-    if (this.anchor) {
-      this.anchor.insertAdjacentElement('beforebegin', this.props.button);
-    }
-  }
 
   componentWillUnmount() {
     if (this.props.button.parentNode) {
@@ -42,7 +36,7 @@ export class EuiWrappingPopover extends Component<EuiWrappingPopoverProps> {
   };
 
   setAnchorRef = (node: HTMLElement | null) => {
-    this.anchor = node;
+    node?.insertAdjacentElement('beforebegin', this.props.button);
   };
 
   render() {

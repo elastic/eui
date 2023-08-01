@@ -18,7 +18,7 @@ import { useUpdateEffect } from '../../../services';
 import { EuiI18n, useEuiI18n } from '../../i18n';
 import { EuiPopover, EuiPopoverFooter } from '../../popover';
 import { EuiButtonIcon, EuiButtonGroup, EuiButtonEmpty } from '../../button';
-import { EuiFormRow, EuiRange } from '../../form';
+import { EuiFormRow, EuiRange, EuiRangeProps } from '../../form';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiToolTip } from '../../tool_tip';
 
@@ -137,8 +137,10 @@ export const useDataGridDisplaySelector = (
     },
     [lineCount]
   );
-  const setLineCountHeight = useCallback((event) => {
-    const newLineCount = Number(event.target.value);
+  const setLineCountHeight = useCallback<
+    NonNullable<EuiRangeProps['onChange']>
+  >((event) => {
+    const newLineCount = Number(event.currentTarget.value);
     if (newLineCount < 1) return; // Don't let users set a 0 or negative line count
 
     setLineCount(newLineCount);

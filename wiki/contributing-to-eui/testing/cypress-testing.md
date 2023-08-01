@@ -18,6 +18,11 @@ By default tests are run using the light theme. Dark mode can be enabled by pass
 
 To ensure tests use up-to-date styles, the test runner compiles our SCSS to CSS before executing Cypress. This adds some processing time before the tests can run, and often the existing locally-built styles are still accurate. The CSS compilation step can be skipped by passing the `--skip-css` flag to `yarn test-cypress`, `yarn test-cypress-dev` and `yarn test-cypress-a11y`.
 
+### Testing specific version of React
+
+By default, EUI Cypress tests are run using the latest supported version of React.
+You can change that behavior and run e2e tests using a different React version by passing the `--react-version` option set to `16`, `17` or `18`. 
+
 ### Cypress arguments
 
 You can also pass [Cypress CLI arguments](https://docs.cypress.io/guides/guides/command-line). For example:

@@ -19,7 +19,8 @@ describe('useCurrentEuiBreakpoint', () => {
     const currentBreakpoint = useCurrentEuiBreakpoint();
     return (
       <>
-        Current breakpoint: <strong data-test-subj>{currentBreakpoint}</strong>
+        Current breakpoint:{' '}
+        <strong data-test-subj={currentBreakpoint}>{currentBreakpoint}</strong>
       </>
     );
   };
@@ -32,33 +33,33 @@ describe('useCurrentEuiBreakpoint', () => {
     });
 
     it('returns the current EUI breakpoint based on window width on page load', () => {
-      cy.get('[data-test-subj]').should('have.text', 'xl');
+      cy.get('[data-test-subj="xl"]').should('exist');
     });
 
     describe('updates the current EUI breakpoint on resize', () => {
       it('xs', () => {
         cy.viewport(300, 600);
-        cy.get('[data-test-subj]').should('have.text', 'xs');
+        cy.get('[data-test-subj="xs"]').should('exist');
       });
 
       it('s', () => {
         cy.viewport(575, 600);
-        cy.get('[data-test-subj]').should('have.text', 's');
+        cy.get('[data-test-subj="s"]').should('exist');
       });
 
       it('m', () => {
         cy.viewport(768, 600);
-        cy.get('[data-test-subj]').should('have.text', 'm');
+        cy.get('[data-test-subj="m"]').should('exist');
       });
 
       it('l', () => {
         cy.viewport(992, 600);
-        cy.get('[data-test-subj]').should('have.text', 'l');
+        cy.get('[data-test-subj="l"]').should('exist');
       });
 
       it('xl', () => {
         cy.viewport(1200, 600);
-        cy.get('[data-test-subj]').should('have.text', 'xl');
+        cy.get('[data-test-subj="xl"]').should('exist');
       });
     });
   });
@@ -83,37 +84,37 @@ describe('useCurrentEuiBreakpoint', () => {
     describe('returns the correct custom breakpoint based on window width', () => {
       it('custom xxs breakpoint', () => {
         cy.viewport(100, 600);
-        cy.get('[data-test-subj]').should('have.text', 'xxs');
+        cy.get('[data-test-subj="xxs"]').should('exist');
       });
 
       it('xs', () => {
         cy.viewport(300, 600);
-        cy.get('[data-test-subj]').should('have.text', 'xs');
+        cy.get('[data-test-subj="xs"]').should('exist');
       });
 
       it('s', () => {
         cy.viewport(500, 600);
-        cy.get('[data-test-subj]').should('have.text', 's');
+        cy.get('[data-test-subj="s"]').should('exist');
       });
 
       it('m', () => {
         cy.viewport(1001, 600);
-        cy.get('[data-test-subj]').should('have.text', 'm');
+        cy.get('[data-test-subj="m"]').should('exist');
       });
 
       it('l', () => {
         cy.viewport(1500, 600);
-        cy.get('[data-test-subj]').should('have.text', 'l');
+        cy.get('[data-test-subj="l"]').should('exist');
       });
 
       it('xl', () => {
         cy.viewport(2000, 600);
-        cy.get('[data-test-subj]').should('have.text', 'xl');
+        cy.get('[data-test-subj="xl"]').should('exist');
       });
 
       it('custom xxl breakpoint', () => {
         cy.viewport(2500, 600);
-        cy.get('[data-test-subj]').should('have.text', 'xxl');
+        cy.get('[data-test-subj="xxl"]').should('exist');
       });
     });
   });

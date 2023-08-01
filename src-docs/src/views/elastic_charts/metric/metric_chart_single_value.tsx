@@ -74,6 +74,7 @@ export default () => {
     <EuiFlexGroup direction={'column'}>
       <EuiFlexItem grow={0}>
         <EuiPanel paddingSize="none" style={{ overflow: 'hidden', width: 200 }}>
+          {/* @ts-ignore @elastic/charts typings are not yet compatible with React 18 */}
           <Chart size={[200, 200]}>
             <Settings baseTheme={chartBaseTheme} theme={euiChartTheme.theme} />
             <Metric
