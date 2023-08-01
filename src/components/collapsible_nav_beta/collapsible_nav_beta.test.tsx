@@ -28,6 +28,15 @@ describe('EuiCollapsibleNavBeta', () => {
     expect(baseElement).toMatchSnapshot();
   });
 
+  it('renders initialIsCollapsed', () => {
+    const { queryByTestSubject } = render(
+      <EuiCollapsibleNavBeta data-test-subj="nav" initialIsCollapsed={true}>
+        Nav content
+      </EuiCollapsibleNavBeta>
+    );
+    expect(queryByTestSubject('nav')).not.toBeInTheDocument();
+  });
+
   it('automatically accounts for fixed EuiHeaders in its positioning', () => {
     const { getByTestSubject } = render(
       <EuiHeader position="fixed">

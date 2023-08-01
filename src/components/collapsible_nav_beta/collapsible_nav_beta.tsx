@@ -13,6 +13,7 @@ import React, {
   useMemo,
   useState,
   useEffect,
+  useCallback,
 } from 'react';
 import classNames from 'classnames';
 
@@ -36,6 +37,10 @@ export type EuiCollapsibleNavBetaProps = CommonProps &
      * You may also want to use `EuiFlyoutBody` and `EuiFlyoutFooter` for organization.
      */
     children?: ReactNode;
+    /**
+     * Whether the navigation flyout should default to initially collapsed or expanded
+     */
+    initialIsCollapsed?: boolean;
   };
 
 export const EuiCollapsibleNavBeta: FunctionComponent<
@@ -45,12 +50,23 @@ export const EuiCollapsibleNavBeta: FunctionComponent<
   children,
   className,
   style,
+  initialIsCollapsed = false,
   side = 'left',
   focusTrapProps,
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
   const headerHeight = euiHeaderVariables(euiTheme).height;
+
+  /**
+   * Collapsed state
+   */
+  const [isCollapsed, setIsCollapsed] = useState(initialIsCollapsed);
+  const toggleCollapsed = useCallback(
+    () => setIsCollapsed((isCollapsed) => !isCollapsed),
+    []
+  );
+  const onClose = useCallback(() => setIsCollapsed(true), []);
 
   /**
    * Header affordance
@@ -109,7 +125,7 @@ export const EuiCollapsibleNavBeta: FunctionComponent<
       type="push" // TODO: Responsive behavior
       paddingSize="none"
       pushMinBreakpoint="s"
-      onClose={() => {}} // TODO: Collapsed state
+      onClose={onClose}
       hideCloseButton={true}
     >
       {children}
@@ -119,7 +135,7 @@ export const EuiCollapsibleNavBeta: FunctionComponent<
   return (
     <>
       {/* TODO: collapsible button */}
-      {flyout}
+      {!isCollapsed && flyout}
     </>
   );
 };
