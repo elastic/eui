@@ -182,7 +182,7 @@
     "cross-env": "^7.0.2",
     "css-loader": "^6.7.1",
     "cssnano": "^4.1.10",
-    "cypress": "^10.6.0",
+    "cypress": "^12.17.2",
     "cypress-axe": "^1.0.0",
     "cypress-plugin-tab": "^1.0.5",
     "cypress-real-events": "^1.7.0",
