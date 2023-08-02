@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { EuiComboBox } from '../../../../src/components';
+import { EuiComboBox, EuiSwitch } from '../../../../src/components';
 import { DisplayToggles } from '../form_controls/display_toggles';
 
 const optionsStatic = [
@@ -40,6 +40,7 @@ const optionsStatic = [
 ];
 export default () => {
   const [options, setOptions] = useState(optionsStatic);
+  const [canTruncate, setCanTruncate] = useState(false);
   const [selectedOptions, setSelected] = useState([options[2], options[4]]);
 
   const onChange = (selectedOptions) => {
@@ -72,7 +73,19 @@ export default () => {
 
   return (
     /* DisplayToggles wrapper for Docs only */
-    <DisplayToggles canDisabled={false} canReadOnly={false} canIsDisabled>
+    <DisplayToggles
+      canDisabled={false}
+      canReadOnly={false}
+      canIsDisabled
+      extras={[
+        <EuiSwitch
+          compressed
+          label={'middle truncation'}
+          checked={canTruncate}
+          onChange={(e) => setCanTruncate(e.target.checked)}
+        />,
+      ]}
+    >
       <EuiComboBox
         aria-label="Accessible screen reader label"
         placeholder="Select or create options"
@@ -83,6 +96,7 @@ export default () => {
         isClearable={true}
         data-test-subj="demoComboBox"
         autoFocus
+        truncation={canTruncate ? 'middle' : undefined}
       />
     </DisplayToggles>
   );
