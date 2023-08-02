@@ -26,5 +26,11 @@ export const euiCollapsibleNavBetaStyles = (euiThemeContext: UseEuiTheme) => {
     right: css`
       ${logicalCSS('border-left', euiTheme.border.thin)}
     `,
+    isSmallestScreen: css`
+      /* Override EuiFlyout's max-width */
+      &.euiFlyout {
+        ${logicalCSS('max-width', '100% !important')}
+      }
+    `,
   };
 };

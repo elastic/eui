@@ -16,7 +16,11 @@ describe('EuiCollapsibleNavButton', () => {
     describe('left side', () => {
       it('renders a menu left icon when expanded', () => {
         const { container } = render(
-          <EuiCollapsibleNavButton side="left" isCollapsed={false} />
+          <EuiCollapsibleNavButton
+            side="left"
+            isSmallScreen={false}
+            isCollapsed={false}
+          />
         );
 
         expect(container.firstChild).toMatchSnapshot();
@@ -27,7 +31,11 @@ describe('EuiCollapsibleNavButton', () => {
 
       it('renders a menu right icon when collapsed', () => {
         const { container } = render(
-          <EuiCollapsibleNavButton side="left" isCollapsed={true} />
+          <EuiCollapsibleNavButton
+            side="left"
+            isSmallScreen={false}
+            isCollapsed={true}
+          />
         );
 
         expect(container.firstChild).toMatchSnapshot();
@@ -40,7 +48,11 @@ describe('EuiCollapsibleNavButton', () => {
     describe('right side', () => {
       it('renders a menu right icon when expanded', () => {
         const { container } = render(
-          <EuiCollapsibleNavButton side="right" isCollapsed={false} />
+          <EuiCollapsibleNavButton
+            side="right"
+            isSmallScreen={false}
+            isCollapsed={false}
+          />
         );
 
         expect(container.firstChild).toMatchSnapshot();
@@ -51,7 +63,11 @@ describe('EuiCollapsibleNavButton', () => {
 
       it('renders a menu left icon when collapsed', () => {
         const { container } = render(
-          <EuiCollapsibleNavButton side="right" isCollapsed={true} />
+          <EuiCollapsibleNavButton
+            side="right"
+            isSmallScreen={false}
+            isCollapsed={true}
+          />
         );
 
         expect(container.firstChild).toMatchSnapshot();
@@ -59,6 +75,38 @@ describe('EuiCollapsibleNavButton', () => {
           container.querySelector('[data-euiicon-type="menuLeft"]')
         ).toBeInTheDocument();
       });
+    });
+  });
+
+  describe('mobile', () => {
+    it('renders an X icon when expanded', () => {
+      const { container } = render(
+        <EuiCollapsibleNavButton
+          side="left"
+          isSmallScreen={true}
+          isCollapsed={false}
+        />
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+      expect(
+        container.querySelector('[data-euiicon-type="cross"]')
+      ).toBeInTheDocument();
+    });
+
+    it('renders a hamburger icon when collapsed', () => {
+      const { container } = render(
+        <EuiCollapsibleNavButton
+          side="right"
+          isSmallScreen={true}
+          isCollapsed={true}
+        />
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+      expect(
+        container.querySelector('[data-euiicon-type="menu"]')
+      ).toBeInTheDocument();
     });
   });
 });

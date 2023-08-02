@@ -87,3 +87,47 @@ exports[`EuiCollapsibleNavButton desktop right side renders a menu right icon wh
   </button>
 </div>
 `;
+
+exports[`EuiCollapsibleNavButton mobile renders a hamburger icon when collapsed 1`] = `
+<div
+  class="euiCollapsibleNavButtonWrapper emotion-euiCollapsibleNavButtonWrapper-right"
+>
+  <button
+    aria-expanded="false"
+    aria-label="Toggle navigation open"
+    aria-pressed="false"
+    class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text"
+    data-test-subj="euiCollapsibleNavButton"
+    type="button"
+  >
+    <span
+      aria-hidden="true"
+      class="euiButtonIcon__icon"
+      color="inherit"
+      data-euiicon-type="menu"
+    />
+  </button>
+</div>
+`;
+
+exports[`EuiCollapsibleNavButton mobile renders an X icon when expanded 1`] = `
+<div
+  class="euiCollapsibleNavButtonWrapper emotion-euiCollapsibleNavButtonWrapper-left"
+>
+  <button
+    aria-expanded="true"
+    aria-label="Toggle navigation closed"
+    aria-pressed="true"
+    class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text"
+    data-test-subj="euiCollapsibleNavButton"
+    type="button"
+  >
+    <span
+      aria-hidden="true"
+      class="euiButtonIcon__icon"
+      color="inherit"
+      data-euiicon-type="cross"
+    />
+  </button>
+</div>
+`;

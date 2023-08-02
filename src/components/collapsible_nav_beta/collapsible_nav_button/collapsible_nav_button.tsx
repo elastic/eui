@@ -19,23 +19,27 @@ import { euiCollapsibleNavButtonWrapperStyles } from './collapsible_nav_button.s
 export type EuiCollapsibleNavButtonProps = CommonProps &
   Partial<EuiButtonIconPropsForButton> & {
     isCollapsed: boolean;
+    isSmallScreen: boolean;
     side: EuiCollapsibleNavBetaProps['side'];
   };
 
 export const EuiCollapsibleNavButton = forwardRef<
   HTMLDivElement,
   EuiCollapsibleNavButtonProps
->(({ isCollapsed, side, ...rest }, ref) => {
+>(({ isCollapsed, isSmallScreen, side, ...rest }, ref) => {
   const euiTheme = useEuiTheme();
   const styles = euiCollapsibleNavButtonWrapperStyles(euiTheme);
   const cssStyles = [styles.euiCollapsibleNavButtonWrapper, styles[side!]];
 
-  // TODO: Mobile menu/cross behavior
   let iconType: string;
-  if (side === 'left') {
-    iconType = isCollapsed ? 'menuRight' : 'menuLeft';
+  if (isSmallScreen) {
+    iconType = isCollapsed ? 'menu' : 'cross';
   } else {
-    iconType = isCollapsed ? 'menuLeft' : 'menuRight';
+    if (side === 'left') {
+      iconType = isCollapsed ? 'menuRight' : 'menuLeft';
+    } else {
+      iconType = isCollapsed ? 'menuLeft' : 'menuRight';
+    }
   }
 
   const toggleOpenLabel = useEuiI18n(
