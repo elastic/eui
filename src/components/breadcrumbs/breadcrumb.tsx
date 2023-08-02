@@ -145,7 +145,10 @@ export const EuiBreadcrumbContent: FunctionComponent<
     }
   }
 
-  const ariaCurrent = highlightLastBreadcrumb ? 'page' : undefined;
+  const isInteractiveBreadcrumb = href || onClick;
+  const linkColor = color || (highlightLastBreadcrumb ? 'text' : 'subdued');
+  const plainTextColor = highlightLastBreadcrumb ? 'default' : 'subdued'; // Does not inherit `color` prop
+  const ariaCurrent = highlightLastBreadcrumb ? ('page' as const) : undefined;
 
   const isPopoverBreadcrumb = !!popoverContent;
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -155,6 +158,14 @@ export const EuiBreadcrumbContent: FunctionComponent<
       {(ref, innerText) => {
         const title = innerText === '' ? undefined : innerText;
 
+        const sharedProps = {
+          ref,
+          title,
+          'aria-current': ariaCurrent,
+          className: classes,
+          css: cssStyles,
+        };
+
         if (isPopoverBreadcrumb) {
           return (
             <EuiPopover
@@ -163,14 +174,8 @@ export const EuiBreadcrumbContent: FunctionComponent<
               closePopover={() => setIsPopoverOpen(false)}
               button={
                 <EuiLink
-                  ref={ref}
-                  title={title}
-                  aria-current={ariaCurrent}
-                  className={classes}
-                  css={cssStyles}
-                  color={
-                    color || (highlightLastBreadcrumb ? 'text' : 'subdued')
-                  }
+                  {...sharedProps}
+                  color={linkColor}
                   // Avoid passing href and onClick - should only toggle the popover
                   onClick={() => setIsPopoverOpen((isOpen) => !isOpen)}
                   {...rest}
@@ -182,15 +187,11 @@ export const EuiBreadcrumbContent: FunctionComponent<
               {popoverContent}
             </EuiPopover>
           );
-        } else if (href || onClick) {
+        } else if (isInteractiveBreadcrumb) {
           return (
             <EuiLink
-              ref={ref}
-              title={title}
-              aria-current={ariaCurrent}
-              className={classes}
-              css={cssStyles}
-              color={color || (highlightLastBreadcrumb ? 'text' : 'subdued')}
+              {...sharedProps}
+              color={linkColor}
               onClick={onClick}
               href={href}
               rel={rel}
@@ -201,18 +202,8 @@ export const EuiBreadcrumbContent: FunctionComponent<
           );
         } else {
           return (
-            <EuiTextColor
-              color={highlightLastBreadcrumb ? 'default' : 'subdued'}
-              cloneElement
-            >
-              <span
-                ref={ref}
-                title={title}
-                aria-current={ariaCurrent}
-                className={classes}
-                css={cssStyles}
-                {...rest}
-              >
+            <EuiTextColor color={plainTextColor} cloneElement>
+              <span {...sharedProps} {...rest}>
                 {text}
               </span>
             </EuiTextColor>
