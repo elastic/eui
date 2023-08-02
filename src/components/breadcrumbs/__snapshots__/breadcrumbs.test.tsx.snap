@@ -50,7 +50,8 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
             title="See collapsed breadcrumbs"
             type="button"
           >
-            … 
+            …
+             
             <span
               data-euiicon-type="arrowDown"
             />
@@ -149,7 +150,8 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
             title="See collapsed breadcrumbs"
             type="button"
           >
-            … 
+            …
+             
             <span
               data-euiicon-type="arrowDown"
             />
@@ -330,7 +332,8 @@ exports[`EuiBreadcrumbs props max renders 1 item 1`] = `
             title="See collapsed breadcrumbs"
             type="button"
           >
-            … 
+            …
+             
             <span
               data-euiicon-type="arrowDown"
             />
@@ -510,7 +513,8 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
             title="See collapsed breadcrumbs"
             type="button"
           >
-            … 
+            …
+             
             <span
               data-euiicon-type="arrowDown"
             />
@@ -608,7 +612,8 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
             title="See collapsed breadcrumbs"
             type="button"
           >
-            … 
+            …
+             
             <span
               data-euiicon-type="arrowDown"
             />
@@ -681,7 +686,8 @@ exports[`EuiBreadcrumbs props responsive is rendered with custom breakpoints 1`]
             title="See collapsed breadcrumbs"
             type="button"
           >
-            … 
+            …
+             
             <span
               data-euiicon-type="arrowDown"
             />

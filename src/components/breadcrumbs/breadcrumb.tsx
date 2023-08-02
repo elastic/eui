@@ -219,8 +219,6 @@ export const EuiBreadcrumbCollapsed: FunctionComponent<_EuiBreadcrumbProps> = ({
   isFirstBreadcrumb,
   type,
 }) => {
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-
   const euiTheme = useEuiTheme();
   const styles = euiBreadcrumbStyles(euiTheme);
   const cssStyles = [styles.isCollapsed];
@@ -230,31 +228,17 @@ export const EuiBreadcrumbCollapsed: FunctionComponent<_EuiBreadcrumbProps> = ({
     'See collapsed breadcrumbs'
   );
 
-  const ellipsisButton = (
-    <EuiBreadcrumbContent
-      aria-label={ariaLabel}
-      title={ariaLabel}
-      onClick={() => setIsPopoverOpen(!isPopoverOpen)}
-      truncate={false}
-      text={
-        <>
-          &hellip; <EuiIcon type="arrowDown" size="s" />
-        </>
-      }
-      isFirstBreadcrumb={isFirstBreadcrumb}
-      type={type}
-    />
-  );
-
   return (
     <EuiBreadcrumb css={cssStyles} type={type}>
-      <EuiPopover
-        button={ellipsisButton}
-        isOpen={isPopoverOpen}
-        closePopover={() => setIsPopoverOpen(false)}
-      >
-        {children}
-      </EuiPopover>
+      <EuiBreadcrumbContent
+        popoverContent={children}
+        text="&hellip;"
+        aria-label={ariaLabel}
+        title={ariaLabel}
+        truncate={false}
+        isFirstBreadcrumb={isFirstBreadcrumb}
+        type={type}
+      />
     </EuiBreadcrumb>
   );
 };
