@@ -8,6 +8,7 @@
 
 import React from 'react';
 import { mount } from 'enzyme';
+import { act } from '@testing-library/react';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { render } from '../../test/rtl';
@@ -62,10 +63,13 @@ describe('EuiSelectable', () => {
       </EuiSelectable>
     );
 
-    component.setState({
-      activeOptionIndex: 0,
-      isFocused: true,
+    act(() => {
+      component.setState({
+        activeOptionIndex: 0,
+        isFocused: true,
+      });
     });
+
     expect(component.state()).toMatchSnapshot();
 
     const listBox = component.find('div.euiSelectableList__list').getDOMNode();

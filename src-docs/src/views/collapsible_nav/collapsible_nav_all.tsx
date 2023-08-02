@@ -300,7 +300,6 @@ const CollapsibleNavAll = () => {
         sections={[
           {
             items: leftSectionItems,
-            borders: 'right',
           },
           {
             items: [

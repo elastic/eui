@@ -28,7 +28,6 @@ export type EuiInlineEditTextProps = EuiInlineEditCommonProps & {
 };
 
 export const EuiInlineEditText: FunctionComponent<EuiInlineEditTextProps> = ({
-  children,
   className,
   size = 'm',
   defaultValue,

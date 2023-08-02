@@ -1,3 +1,16 @@
+## [`86.0.0`](https://github.com/elastic/eui/tree/v86.0.0)
+
+- Added React 18 support (StrictMode not yet supported). ([#7012](https://github.com/elastic/eui/pull/7012))
+
+**Deprecations**
+
+- Deprecated `euiPaletteComplimentary`; Use `euiPaletteComplementary` instead. ([#6992](https://github.com/elastic/eui/pull/6992))
+
+**Breaking changes**
+
+- Replaced the underlying drag-and-drop library from `react-beautiful-dnd` to its fork `@hello-pangea/dnd` ([#7012](https://github.com/elastic/eui/pull/7012)) ([#7012](https://github.com/elastic/eui/pull/7012))
+  - No code updates are needed if using only `<EuiDragDropContext>`, `<EuiDroppable>` and `<EuiDraggable>` with no direct imports from `react-beautiful-dnd`. In case you were importing things from `react-beautiful-dnd` and using them together with EUI components, you need to switch to `@hello-pangea/dnd` which has cross-compatible API.
+
 ## [`85.1.0`](https://github.com/elastic/eui/tree/v85.1.0)
 
 - Updated `EuiComboBox`'s `options` to accept `option.append` and `option.prepend` props ([#6953](https://github.com/elastic/eui/pull/6953))

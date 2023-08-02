@@ -45,6 +45,33 @@ function testIcon(props: PropsOf<typeof EuiIcon>) {
 }
 
 describe('EuiIcon', () => {
+  let consoleErrorOverride: jest.SpyInstance;
+  beforeAll(() => {
+    // Ignore EuiIcon update not wrapped in act() warnings as they are triggered
+    // directly from the component componentDidUpdate() and loadIconComponent()
+    // TODO: Refactor EuiIcon to not cause this issue and think of a simpler
+    //  implementation based on modern JS bundlers features instead of
+    //  the EuiIcon caching layer.
+    const originalConsoleError: typeof console.error = console.error;
+    consoleErrorOverride = jest
+      .spyOn(console, 'error')
+      .mockImplementation((message, ...args) => {
+        if (
+          message?.startsWith(
+            'Warning: An update to %s inside a test was not wrapped in act(...).'
+          )
+        ) {
+          return;
+        }
+
+        originalConsoleError(message, ...args);
+      });
+  });
+
+  afterAll(() => {
+    consoleErrorOverride.mockRestore();
+  });
+
   test('is rendered', testIcon({ type: 'search', ...requiredProps }));
 
   shouldRenderCustomStyles(<EuiIcon type="customImg" />);

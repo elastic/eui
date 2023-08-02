@@ -217,6 +217,14 @@ export const FontScaleJS = () => {
   );
 };
 
+interface FontScaleDetails {
+  id: (typeof EuiThemeFontScales)[number];
+  value: string;
+  size: string;
+  lineHeight: string;
+  index: number;
+}
+
 export const FontScaleValuesJS = () => {
   const euiThemeContext = useEuiTheme();
   const scaleKeys = EuiThemeFontScales;
@@ -261,7 +269,7 @@ export const FontScaleValuesJS = () => {
         </EuiDescribedFormGroup>
       </EuiPanel>
       <EuiSpacer />
-      <EuiBasicTable
+      <EuiBasicTable<FontScaleDetails>
         tableLayout="auto"
         items={scaleKeys.map((scale, index) => {
           return {

@@ -12,6 +12,15 @@ const { ProvidePlugin, DefinePlugin } = require('webpack');
 
 const THEME_IMPORT = `'../../dist/eui_theme_${process.env.THEME}.css'`;
 
+const alias = {};
+const reactVersion = process.env.REACT_VERSION || '18';
+
+// Setup module aliasing when we're testing an older React version
+if (['16', '17'].includes(reactVersion)) {
+  alias.react = `react-${reactVersion}`;
+  alias['react-dom'] = `react-dom-${reactVersion}`;
+}
+
 module.exports = {
   mode: 'development',
 
@@ -26,6 +35,7 @@ module.exports = {
       os: false,
       process: require.resolve('process/browser'),
     },
+    alias,
   },
 
   module: {
@@ -46,9 +56,9 @@ module.exports = {
             loader: 'style-loader',
             options: {
               insert: 'meta[name="css-styles"]',
-            }
+            },
           },
-          'css-loader'
+          'css-loader',
         ],
         exclude: /node_modules/,
       },
@@ -62,7 +72,8 @@ module.exports = {
     }),
 
     new DefinePlugin({
-      THEME_IMPORT, // allow cypress/suport/index.js to require the correct css file
+      THEME_IMPORT, // allow cypress/support/component.tsx to require the correct css file
+      'process.env.REACT_VERSION': JSON.stringify(reactVersion),
     }),
   ],
 };

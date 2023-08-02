@@ -7,84 +7,84 @@
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { render } from 'enzyme';
-import { resetServerContext } from 'react-beautiful-dnd';
-import { requiredProps } from '../../test/required_props';
+import { render, screen } from '../../test/rtl';
+import { requiredProps } from '../../test';
+import { describeByReactVersion } from '../../test/internal';
 import { EuiDragDropContext, EuiDraggable, EuiDroppable } from './';
 
-function takeSnapshot(element: HTMLElement) {
-  const snapshot = render(
-    <div dangerouslySetInnerHTML={{ __html: element.innerHTML }} />
-  );
-  expect(snapshot).toMatchSnapshot();
-}
-
-describe('EuiDraggable', () => {
-  let appDiv: HTMLElement;
-
-  beforeEach(() => {
-    resetServerContext(); // resets react-beautiful-dnd's internal instance counter which affects snapshots
-    appDiv = document.createElement('div');
-    document.body.appendChild(appDiv);
-  });
-
-  afterEach(() => {
-    ReactDOM.unmountComponentAtNode(appDiv);
-    document.body.removeChild(appDiv);
-  });
-
-  test('is rendered', () => {
+describeByReactVersion('EuiDraggable', () => {
+  it('renders', () => {
     const handler = jest.fn();
 
-    ReactDOM.render(
+    const { container } = render(
       <EuiDragDropContext onDragEnd={handler} {...requiredProps}>
         <EuiDroppable droppableId="testDroppable">
           <EuiDraggable draggableId="testDraggable" index={0}>
             {() => <div>Hello</div>}
           </EuiDraggable>
         </EuiDroppable>
-      </EuiDragDropContext>,
-      appDiv
+      </EuiDragDropContext>
     );
 
-    expect(takeSnapshot(appDiv)).toMatchSnapshot();
+    expect(screen.getByTestSubject('draggable')).toBeVisible();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('can be given ReactElement children', () => {
+  it('renders with render prop children', () => {
     const handler = jest.fn();
 
-    ReactDOM.render(
+    render(
+      <EuiDragDropContext onDragEnd={handler} {...requiredProps}>
+        <EuiDroppable droppableId="testDroppable">
+          <EuiDraggable draggableId="testDraggable" index={0}>
+            {() => <div>Hello</div>}
+          </EuiDraggable>
+        </EuiDroppable>
+      </EuiDragDropContext>
+    );
+
+    expect(screen.getByText('Hello')).toBeVisible();
+  });
+
+  it('renders with react element children', () => {
+    const handler = jest.fn();
+
+    render(
       <EuiDragDropContext onDragEnd={handler} {...requiredProps}>
         <EuiDroppable droppableId="testDroppable">
           <EuiDraggable draggableId="testDraggable" index={0}>
             <div>Hello</div>
           </EuiDraggable>
         </EuiDroppable>
-      </EuiDragDropContext>,
-      appDiv
+      </EuiDragDropContext>
     );
 
-    expect(takeSnapshot(appDiv)).toMatchSnapshot();
+    expect(screen.getByText('Hello')).toBeVisible();
   });
 
-  test('hasInteractiveChildren renders with role="group" and no tabIndex', () => {
+  it('should render with role="group" and no tabIndex when hasInteractiveChildren is true', () => {
     const handler = jest.fn();
-    ReactDOM.render(
-      <EuiDragDropContext onDragEnd={handler} {...requiredProps}>
-        <EuiDroppable droppableId="testDroppable">
-          <EuiDraggable
-            hasInteractiveChildren={true}
-            draggableId="testDraggable"
-            index={0}
-          >
-            <div>Hello</div>
-          </EuiDraggable>
-        </EuiDroppable>
-      </EuiDragDropContext>,
-      appDiv
-    );
 
-    expect(takeSnapshot(appDiv)).toMatchSnapshot();
+    const doRender = (hasInteractiveChildren: boolean) =>
+      render(
+        <EuiDragDropContext onDragEnd={handler} {...requiredProps}>
+          <EuiDroppable droppableId="testDroppable">
+            <EuiDraggable
+              hasInteractiveChildren={hasInteractiveChildren}
+              draggableId="testDraggable"
+              index={0}
+            >
+              <div>Hello</div>
+            </EuiDraggable>
+          </EuiDroppable>
+        </EuiDragDropContext>
+      );
+
+    doRender(false);
+    expect(screen.queryByRole('group')).toBeNull();
+
+    doRender(true);
+    expect(screen.getByRole('group')).toBeVisible();
+    expect(screen.getByRole('group')).not.toHaveAttribute('tabindex', 0);
   });
 });

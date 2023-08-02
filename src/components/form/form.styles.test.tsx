@@ -6,8 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
-import { renderHook } from '@testing-library/react-hooks';
+import React, { FunctionComponent, PropsWithChildren } from 'react';
+import { renderHook } from '../../test/rtl';
 import { useEuiTheme } from '../../services';
 import { EuiProvider } from '../provider';
 
@@ -17,9 +17,9 @@ import {
   euiCustomControl,
 } from './form.styles';
 
-const darkModeWrapper: React.FC = ({ children }) => (
-  <EuiProvider colorMode="DARK">{children}</EuiProvider>
-);
+const darkModeWrapper: FunctionComponent<PropsWithChildren> = ({
+  children,
+}) => <EuiProvider colorMode="DARK">{children}</EuiProvider>;
 
 describe('euiFormVariables', () => {
   it('outputs an object of reusable form vars', () => {

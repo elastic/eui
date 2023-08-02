@@ -50,7 +50,7 @@ describe('EuiCodeBlock copy UX', () => {
   const assertClipboardContentEquals = (expectedText: string) => {
     cy.window()
       .its('navigator.clipboard')
-      .invoke('readText')
+      .then((clip) => clip.readText())
       .then((clipboard) => {
         expect(clipboard).equals(expectedText);
       });

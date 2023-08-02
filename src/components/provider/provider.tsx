@@ -30,8 +30,9 @@ const isEmotionCacheObject = (
 ): obj is EmotionCache => obj.hasOwnProperty('key');
 
 export interface EuiProviderProps<T>
-  extends Pick<EuiThemeProviderProps<T>, 'colorMode' | 'modify'>,
-    EuiGlobalStylesProps {
+  extends PropsWithChildren,
+    EuiGlobalStylesProps,
+    Pick<EuiThemeProviderProps<T>, 'colorMode' | 'modify'> {
   /**
    * Provide a specific EuiTheme; Defaults to EuiThemeAmsterdam;
    * Pass `null` to remove all theming including global reset

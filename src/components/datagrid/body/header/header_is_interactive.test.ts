@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { act } from 'react-dom/test-utils';
+import { act } from '@testing-library/react';
 import { testCustomHook } from '../../../../test/internal';
 import { useHeaderIsInteractive } from './header_is_interactive';
 
