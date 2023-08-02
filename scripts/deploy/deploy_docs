@@ -193,7 +193,7 @@ else
       echo "This is the Buildkite PR release. It passed the double logic check."
       full_bucket_path="gs://$BUCKET/pr_${GIT_PULL_REQUEST_ID}_buildkite/"
       publish_to_bucket
-    
+
     # Our branched docs deploys are **only** ever triggered by tags
     # https://buildkite.com/docs/pipelines/environment-variables#BUILDKITE_TAG
     elif [[ ! -z "${BUILDKITE_TAG}" ]]; then
@@ -208,7 +208,7 @@ else
         full_bucket_path="gs://${BUCKET}_buildkite/"
         publish_to_bucket
       fi
-    
+
     # Let users know neither job ran
     else
       echo "Something went wrong. Please try your job again."
