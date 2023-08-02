@@ -47,7 +47,7 @@ export const Playground: Story = {
 
 export const EdgeCaseTesting: Story = {
   render: ({ ...args }) => (
-    <EuiCollapsibleNavBeta isOpen={true} onClose={() => {}}>
+    <EuiCollapsibleNavBeta>
       <div className="eui-yScroll">
         <EuiCollapsibleNavItem {...args} href="#" title="Link with no icon" />
         <EuiCollapsibleNavItem

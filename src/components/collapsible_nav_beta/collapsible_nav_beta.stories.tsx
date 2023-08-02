@@ -9,32 +9,56 @@
 import React, { FunctionComponent, PropsWithChildren } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { EuiHeader, EuiHeaderSection } from '../header';
+import { EuiPageTemplate } from '../page_template';
 import { EuiFlyoutBody, EuiFlyoutFooter } from '../flyout';
 
 import { EuiCollapsibleNavItem } from './collapsible_nav_item';
-import { EuiCollapsibleNavBeta } from './collapsible_nav_beta';
+import {
+  EuiCollapsibleNavBeta,
+  EuiCollapsibleNavBetaProps,
+} from './collapsible_nav_beta';
 
-// TODO: EuiCollapsibleNavBetaProps
-const meta: Meta<{}> = {
+const meta: Meta<EuiCollapsibleNavBetaProps> = {
   title: 'EuiCollapsibleNavBeta',
+  component: EuiCollapsibleNavBeta,
+  parameters: {
+    layout: 'fullscreen',
+  },
+  argTypes: {
+    side: {
+      control: 'radio',
+      options: ['left', 'right'],
+    },
+  },
+  args: {
+    side: 'left',
+    initialIsCollapsed: false,
+  },
 };
 export default meta;
-type Story = StoryObj<{}>;
+type Story = StoryObj<EuiCollapsibleNavBetaProps>;
 
-// TODO: Make this a stateful component in upcoming EuiCollapsibleNavBeta work
-const OpenCollapsibleNav: FunctionComponent<PropsWithChildren> = ({
-  children,
-}) => {
+const OpenCollapsibleNav: FunctionComponent<
+  PropsWithChildren & Partial<EuiCollapsibleNavBetaProps>
+> = (props) => {
   return (
-    <EuiCollapsibleNavBeta isOpen={true} onClose={() => {}}>
-      {children}
-    </EuiCollapsibleNavBeta>
+    <>
+      <EuiHeader position="fixed">
+        <EuiHeaderSection side={props?.side}>
+          <EuiCollapsibleNavBeta {...props} />
+        </EuiHeaderSection>
+      </EuiHeader>
+      <EuiPageTemplate>
+        <EuiPageTemplate.Section>Hello world</EuiPageTemplate.Section>
+      </EuiPageTemplate>
+    </>
   );
 };
 
 export const KibanaExample: Story = {
-  render: () => (
-    <OpenCollapsibleNav>
+  render: ({ ...args }) => (
+    <OpenCollapsibleNav {...args}>
       <EuiFlyoutBody>
         <EuiCollapsibleNavItem title="Home" icon="home" isSelected href="#" />
         <EuiCollapsibleNavItem
@@ -260,8 +284,8 @@ export const KibanaExample: Story = {
 
 // Security has a very custom nav
 export const SecurityExample: Story = {
-  render: () => (
-    <OpenCollapsibleNav>
+  render: ({ ...args }) => (
+    <OpenCollapsibleNav {...args}>
       <EuiFlyoutBody>
         <EuiCollapsibleNavItem
           title="Recent"
@@ -368,5 +392,22 @@ export const SecurityExample: Story = {
         />
       </EuiFlyoutFooter>
     </OpenCollapsibleNav>
+  ),
+};
+
+export const MultipleFixedHeaders: Story = {
+  render: ({ ...args }) => (
+    <>
+      <EuiHeader position="fixed">First header</EuiHeader>
+      <EuiHeader position="fixed">
+        <EuiHeaderSection>
+          <EuiCollapsibleNavBeta {...args}>
+            This story tests that EuiCollapsibleNav's fixed header detection &
+            offsetting works as expected
+          </EuiCollapsibleNavBeta>
+          Second header
+        </EuiHeaderSection>
+      </EuiHeader>
+    </>
   ),
 };
