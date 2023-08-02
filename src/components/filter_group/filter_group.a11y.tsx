@@ -257,7 +257,7 @@ describe('EuiFilterGroup multiselect example', () => {
         .find('span.euiSelectableListItem__text')
         .should(
           'have.text',
-          'Dmitri Shostakovich - Checked option. To exclude this option, press Enter.'
+          'Dmitri Shostakovich. Checked option. To exclude this option, press Enter.'
         );
       cy.realPress('ArrowDown');
       cy.repeatRealPress('Enter');
@@ -265,7 +265,7 @@ describe('EuiFilterGroup multiselect example', () => {
         .find('span.euiSelectableListItem__text')
         .should(
           'have.text',
-          'Felix Mendelssohn-Bartholdy - Excluded option. To uncheck this option, press Enter.'
+          'Felix Mendelssohn-Bartholdy. Excluded option. To uncheck this option, press Enter.'
         );
       cy.checkAxe();
     });
