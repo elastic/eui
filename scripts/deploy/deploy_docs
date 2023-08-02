@@ -27,7 +27,7 @@ GCE_IMAGE=google/cloud-sdk:slim
 # and EUI PR #6965 are merged successfully.
 # ==================================================
 echo "The Jenkins PR number is: ${pull_request_id}."
-echo "The Buildkite PR number is ${GIT_PULL_REQUEST_ID}."
+echo "The Buildkite PR number is: ${GIT_PULL_REQUEST_ID}."
 
 if [[ -z "${GPROJECT}" ]]; then
     echo "GPROJECT is not set, e.g. 'GPROJECT=elastic-bekitzur'"
@@ -130,7 +130,7 @@ if [[ "$1" != "nodocker" ]]; then
   # ==================================================
   # TODO - Remove pull_request_id logical block
   # ==================================================
-  if [[ ! -z "${pull_request_id}" ]] || [[ ! -z "${GIT_PULL_REQUEST_ID}" ]]; then
+  if [[ ! -z "${pull_request_id}" ]] || ([[ ! -z "${GIT_PULL_REQUEST_ID}" ]] && [[ "${GIT_PULL_REQUEST_ID}" != "false" ]]); then
     post_comment_to_gh
   fi
   unset GITHUB_TOKEN
@@ -163,7 +163,7 @@ else
     else
       echo "This is a Jenkins branch release."
       full_bucket_path="gs://$BUCKET/$BRANCH/"
-      max_age="604800"
+      max_age="1800" # Reducing to 15 minutes to reduce possibility of stale docs
       publish_to_bucket
 
       # if this is the highest release number to date, also publish the docs to the
@@ -182,20 +182,21 @@ else
   if [[ ! -z "${BUILDKITE_CI}" ]]; then
     echo "Buildkite CI agent."
 
-    if [[ ! -z "${GIT_PULL_REQUEST_ID}" ]]; then
-      echo "This is the Buildkite PR release."
+    # If GIT_PULL_REQUEST_ID length is not 0 and string is not "false"
+    if ([[ ! -z "${GIT_PULL_REQUEST_ID}" ]] && [[ "${GIT_PULL_REQUEST_ID}" != "false" ]]); then
+      echo "This is the Buildkite PR release. It passed the double logic test."
       full_bucket_path="gs://$BUCKET/pr_${GIT_PULL_REQUEST_ID}_buildkite/"
       publish_to_bucket
     else
-      echo "This is a Buildkite branch release."
+      echo "This is a Buildkite branch release. It passed the double logic test."
       full_bucket_path="gs://$BUCKET/${BRANCH}_buildkite/"
-      max_age="604800"
+      max_age="1800" # Reducing to 15 minutes to reduce possibility of stale docs
       publish_to_bucket
 
       # if this is the highest release number to date, also publish the docs to the
       # root directory
       if [[ "$CURRENT_RELEASE" == "$GIT_BRANCH" ]]; then
-        echo "This is the current Buildkite release."
+        echo "This is the current Buildkite release. It passed the double logic test."
         full_bucket_path="gs://${BUCKET}_buildkite/"
         publish_to_bucket
       fi
