@@ -4,6 +4,7 @@ exports[`EuiComboBox is rendered 1`] = `
 <div
   class="euiComboBox testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
+  truncation="end"
 >
   <div
     class="euiFormControlLayout"
@@ -64,6 +65,7 @@ exports[`props aria-label attribute is rendered 1`] = `
   className="euiComboBox"
   onBlur={[Function]}
   onKeyDown={[Function]}
+  truncation="end"
 >
   <EuiComboBoxInput
     aria-label="Test label"
@@ -99,6 +101,7 @@ exports[`props aria-labelledby attribute is rendered 1`] = `
   className="euiComboBox"
   onBlur={[Function]}
   onKeyDown={[Function]}
+  truncation="end"
 >
   <EuiComboBoxInput
     aria-labelledby="test-heading-id"
@@ -134,6 +137,7 @@ exports[`props autoFocus is rendered 1`] = `
   className="euiComboBox"
   onBlur={[Function]}
   onKeyDown={[Function]}
+  truncation="end"
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
@@ -177,6 +181,7 @@ exports[`props custom ID is rendered 1`] = `
   className="euiComboBox"
   onBlur={[Function]}
   onKeyDown={[Function]}
+  truncation="end"
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
@@ -220,6 +225,7 @@ exports[`props delimiter is rendered 1`] = `
   className="euiComboBox"
   onBlur={[Function]}
   onKeyDown={[Function]}
+  truncation="end"
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
@@ -263,6 +269,7 @@ exports[`props full width is rendered 1`] = `
   className="euiComboBox euiComboBox--fullWidth"
   onBlur={[Function]}
   onKeyDown={[Function]}
+  truncation="end"
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
@@ -303,6 +310,7 @@ exports[`props isClearable=false disallows user from clearing input when no opti
   className="euiComboBox"
   onBlur={[Function]}
   onKeyDown={[Function]}
+  truncation="end"
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
@@ -336,6 +344,7 @@ exports[`props isClearable=false disallows user from clearing input when options
   className="euiComboBox"
   onBlur={[Function]}
   onKeyDown={[Function]}
+  truncation="end"
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
@@ -378,6 +387,7 @@ exports[`props isDisabled is rendered 1`] = `
   className="euiComboBox euiComboBox-isDisabled"
   onBlur={[Function]}
   onKeyDown={[Function]}
+  truncation="end"
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
@@ -417,6 +427,7 @@ exports[`props options list is rendered 1`] = `
 <div
   class="euiComboBox euiComboBox-isOpen"
   data-test-subj="alsoGetsAppliedToOptionsList"
+  truncation="end"
 >
   <div
     class="euiFormControlLayout"
@@ -474,6 +485,7 @@ exports[`props options list is rendered 1`] = `
     data-popover-panel="true"
     data-test-subj="comboBoxOptionsList alsoGetsAppliedToOptionsList-optionsList"
     style="z-index: 100;"
+    truncation="end"
   >
     <div
       class="euiComboBoxOptionsList__rowWrap"
@@ -508,7 +520,7 @@ exports[`props options list is rendered 1`] = `
                   class="euiComboBoxOption__contentWrapper"
                 >
                   <span
-                    class="euiComboBoxOption__content"
+                    class="euiComboBoxOption__content euiComboBoxOption-truncationEnd"
                   >
                     Titan
                   </span>
@@ -535,7 +547,7 @@ exports[`props options list is rendered 1`] = `
                   class="euiComboBoxOption__contentWrapper"
                 >
                   <span
-                    class="euiComboBoxOption__content"
+                    class="euiComboBoxOption__content euiComboBoxOption-truncationEnd"
                   >
                     Enceladus
                   </span>
@@ -562,7 +574,7 @@ exports[`props options list is rendered 1`] = `
                   class="euiComboBoxOption__contentWrapper"
                 >
                   <span
-                    class="euiComboBoxOption__content"
+                    class="euiComboBoxOption__content euiComboBoxOption-truncationEnd"
                   >
                     Mimas
                   </span>
@@ -589,7 +601,7 @@ exports[`props options list is rendered 1`] = `
                   class="euiComboBoxOption__contentWrapper"
                 >
                   <span
-                    class="euiComboBoxOption__content"
+                    class="euiComboBoxOption__content euiComboBoxOption-truncationEnd"
                   >
                     Dione
                   </span>
@@ -616,7 +628,7 @@ exports[`props options list is rendered 1`] = `
                   class="euiComboBoxOption__contentWrapper"
                 >
                   <span
-                    class="euiComboBoxOption__content"
+                    class="euiComboBoxOption__content euiComboBoxOption-truncationEnd"
                   >
                     Iapetus
                   </span>
@@ -643,7 +655,7 @@ exports[`props options list is rendered 1`] = `
                   class="euiComboBoxOption__contentWrapper"
                 >
                   <span
-                    class="euiComboBoxOption__content"
+                    class="euiComboBoxOption__content euiComboBoxOption-truncationEnd"
                   >
                     Phoebe
                   </span>
@@ -670,7 +682,7 @@ exports[`props options list is rendered 1`] = `
                   class="euiComboBoxOption__contentWrapper"
                 >
                   <span
-                    class="euiComboBoxOption__content"
+                    class="euiComboBoxOption__content euiComboBoxOption-truncationEnd"
                   >
                     Rhea
                   </span>
@@ -697,7 +709,7 @@ exports[`props options list is rendered 1`] = `
                   class="euiComboBoxOption__contentWrapper"
                 >
                   <span
-                    class="euiComboBoxOption__content"
+                    class="euiComboBoxOption__content euiComboBoxOption-truncationEnd"
                   >
                     Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
                   </span>
@@ -724,7 +736,7 @@ exports[`props options list is rendered 1`] = `
                   class="euiComboBoxOption__contentWrapper"
                 >
                   <span
-                    class="euiComboBoxOption__content"
+                    class="euiComboBoxOption__content euiComboBoxOption-truncationEnd"
                   >
                     Tethys
                   </span>
@@ -744,6 +756,7 @@ exports[`props selectedOptions are rendered 1`] = `
   className="euiComboBox"
   onBlur={[Function]}
   onKeyDown={[Function]}
+  truncation="end"
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
@@ -787,6 +800,7 @@ exports[`props singleSelection is rendered 1`] = `
   className="euiComboBox"
   onBlur={[Function]}
   onKeyDown={[Function]}
+  truncation="end"
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
@@ -827,6 +841,7 @@ exports[`props singleSelection prepend and append is rendered 1`] = `
   className="euiComboBox euiComboBox--prepended euiComboBox--appended euiComboBox-isOpen"
   onBlur={[Function]}
   onKeyDown={[Function]}
+  truncation="end"
 >
   <EuiComboBoxInput
     append="String"
@@ -871,6 +886,7 @@ exports[`props singleSelection selects existing option when opened 1`] = `
   className="euiComboBox euiComboBox-isOpen"
   onBlur={[Function]}
   onKeyDown={[Function]}
+  truncation="end"
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}

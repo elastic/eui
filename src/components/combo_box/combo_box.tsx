@@ -43,6 +43,7 @@ import {
   EuiComboBoxOptionOption,
   EuiComboBoxOptionsListPosition,
   EuiComboBoxSingleSelectionShape,
+  EuiComboBoxTruncation,
 } from './types';
 import { EuiFilterSelectItem } from '../filter_group';
 import AutosizeInput from 'react-input-autosize';
@@ -156,6 +157,10 @@ export interface _EuiComboBoxProps<T>
    * supplied by `aria-label` or from [EuiFormRow](/#/forms/form-layouts).
    */
   'aria-labelledby'?: string;
+  /**
+   * Controls the truncation of the label text.
+   */
+  truncation: EuiComboBoxTruncation;
 }
 
 /**
@@ -189,6 +194,7 @@ interface EuiComboBoxState<T> {
   matchingOptions: Array<EuiComboBoxOptionOption<T>>;
   searchValue: string;
   width: number;
+  font: string;
 }
 
 const initialSearchValue = '';
@@ -208,6 +214,7 @@ export class EuiComboBox<T> extends Component<
     prepend: undefined,
     append: undefined,
     sortMatchesBy: 'none' as const,
+    truncation: 'end',
   };
 
   state: EuiComboBoxState<T> = {
@@ -228,6 +235,7 @@ export class EuiComboBox<T> extends Component<
     }),
     searchValue: initialSearchValue,
     width: 0,
+    font: '',
   };
 
   _isMounted = false;
@@ -242,6 +250,7 @@ export class EuiComboBox<T> extends Component<
       const comboBoxBounds = this.comboBoxRefInstance.getBoundingClientRect();
       this.setState({
         width: comboBoxBounds.width,
+        font: this.getFont(),
       });
     }
   };
@@ -820,6 +829,22 @@ export class EuiComboBox<T> extends Component<
     return stateUpdate;
   }
 
+  getFont = () => {
+    if (this.comboBoxRefInstance) {
+      const css = window.getComputedStyle(this.comboBoxRefInstance);
+      return [
+        'font-style',
+        'font-variant',
+        'font-weight',
+        'font-size',
+        'font-family',
+      ]
+        .map((prop) => css.getPropertyValue(prop))
+        .join(' ');
+    }
+    return '';
+  };
+
   updateMatchingOptionsIfDifferent = (
     newMatchingOptions: Array<EuiComboBoxOptionOption<T>>
   ) => {
@@ -1007,6 +1032,8 @@ export class EuiComboBox<T> extends Component<
                   getSelectedOptionForSearchValue
                 }
                 listboxAriaLabel={listboxAriaLabel}
+                font={this.state.font}
+                truncation={this.props.truncation}
               />
             )}
           </EuiI18n>
