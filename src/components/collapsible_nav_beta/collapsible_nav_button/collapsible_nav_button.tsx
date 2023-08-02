@@ -12,15 +12,15 @@ import { useEuiTheme } from '../../../services';
 import { CommonProps } from '../../common';
 import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../../button';
 import { useEuiI18n } from '../../i18n';
+import { _EuiFlyoutSide } from '../../flyout/flyout';
 
-import { EuiCollapsibleNavBetaProps } from '../';
 import { euiCollapsibleNavButtonWrapperStyles } from './collapsible_nav_button.styles';
 
 export type EuiCollapsibleNavButtonProps = CommonProps &
   Partial<EuiButtonIconPropsForButton> & {
     isCollapsed: boolean;
     isSmallScreen: boolean;
-    side: EuiCollapsibleNavBetaProps['side'];
+    side: _EuiFlyoutSide;
   };
 
 export const EuiCollapsibleNavButton = forwardRef<
@@ -29,7 +29,7 @@ export const EuiCollapsibleNavButton = forwardRef<
 >(({ isCollapsed, isSmallScreen, side, ...rest }, ref) => {
   const euiTheme = useEuiTheme();
   const styles = euiCollapsibleNavButtonWrapperStyles(euiTheme);
-  const cssStyles = [styles.euiCollapsibleNavButtonWrapper, styles[side!]];
+  const cssStyles = [styles.euiCollapsibleNavButtonWrapper, styles[side]];
 
   let iconType: string;
   if (isSmallScreen) {
