@@ -209,6 +209,7 @@
     "html-webpack-plugin": "^5.5.0",
     "inquirer": "^9.1.4",
     "jest": "^24.1.0",
+    "jest-canvas-mock": "^2.5.2",
     "jest-cli": "^24.1.0",
     "moment": "^2.27.0",
     "moment-timezone": "^0.5.31",
