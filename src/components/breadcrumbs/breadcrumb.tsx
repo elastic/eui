@@ -182,40 +182,42 @@ export const EuiBreadcrumbContent: FunctionComponent<
               {popoverContent}
             </EuiPopover>
           );
-        }
-
-        return !href && !onClick ? (
-          <EuiTextColor
-            color={highlightLastBreadcrumb ? 'default' : 'subdued'}
-            cloneElement
-          >
-            <span
+        } else if (href || onClick) {
+          return (
+            <EuiLink
               ref={ref}
               title={title}
               aria-current={ariaCurrent}
               className={classes}
               css={cssStyles}
+              color={color || (highlightLastBreadcrumb ? 'text' : 'subdued')}
+              onClick={onClick}
+              href={href}
+              rel={rel}
               {...rest}
             >
               {text}
-            </span>
-          </EuiTextColor>
-        ) : (
-          <EuiLink
-            ref={ref}
-            title={title}
-            aria-current={ariaCurrent}
-            className={classes}
-            css={cssStyles}
-            color={color || (highlightLastBreadcrumb ? 'text' : 'subdued')}
-            onClick={onClick}
-            href={href}
-            rel={rel}
-            {...rest}
-          >
-            {text}
-          </EuiLink>
-        );
+            </EuiLink>
+          );
+        } else {
+          return (
+            <EuiTextColor
+              color={highlightLastBreadcrumb ? 'default' : 'subdued'}
+              cloneElement
+            >
+              <span
+                ref={ref}
+                title={title}
+                aria-current={ariaCurrent}
+                className={classes}
+                css={cssStyles}
+                {...rest}
+              >
+                {text}
+              </span>
+            </EuiTextColor>
+          );
+        }
       }}
     </EuiInnerText>
   );
