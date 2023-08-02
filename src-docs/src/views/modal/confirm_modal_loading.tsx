@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
   EuiButton,
@@ -9,26 +9,26 @@ import {
 
 export default () => {
   const [isLoading, setIsLoading] = useState(false);
-
-  const searchTimeout = setTimeout(() => {
-    // Simulate a remotely-executed search.
-    setIsLoading(false);
-  }, 1200);
-
-  clearTimeout(searchTimeout);
-
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const showModal = () => {
-    setIsModalVisible(true);
-    setIsLoading(true);
-  };
+  const [value, setValue] = useState('');
+
+  useEffect(() => {
+    if (value === 'delete') {
+      setIsLoading(false);
+    }
+  }, [value]);
+
   const closeModal = () => {
     setIsModalVisible(false);
     setIsLoading(false);
-    clearTimeout(searchTimeout);
   };
 
-  const [value, setValue] = useState('');
+  const showModal = () => {
+    setValue('');
+    setIsLoading(true);
+    setIsModalVisible(true);
+  };
+
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
@@ -48,13 +48,13 @@ export default () => {
         cancelButtonText="Cancel"
         buttonColor="danger"
         initialFocus="[name=delete]"
-        confirmButtonDisabled={value.toLowerCase() !== 'delete'}
-        isLoading={value.toLowerCase() !== 'delete' ?? isLoading}
+        confirmButtonDisabled={isLoading}
+        isLoading={isLoading}
       >
         <EuiFormRow label="Type the word 'delete' to confirm">
           <EuiFieldText
             name="delete"
-            isLoading={value.toLowerCase() !== 'delete' ?? isLoading}
+            isLoading={isLoading}
             value={value}
             onChange={onChange}
           />
