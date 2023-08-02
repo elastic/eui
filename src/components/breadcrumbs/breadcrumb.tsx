@@ -152,6 +152,10 @@ export const EuiBreadcrumbContent: FunctionComponent<
 
   const isPopoverBreadcrumb = !!popoverContent;
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const popoverAriaLabel = useEuiI18n(
+    'euiBreadcrumb.popoverAriaLabel',
+    'Clicking this button will toggle a popover dialog.'
+  );
 
   return (
     <EuiInnerText>
@@ -180,7 +184,12 @@ export const EuiBreadcrumbContent: FunctionComponent<
                   onClick={() => setIsPopoverOpen((isOpen) => !isOpen)}
                   {...rest}
                 >
-                  {text} <EuiIcon type="arrowDown" size="s" />
+                  {text}{' '}
+                  <EuiIcon
+                    type="arrowDown"
+                    size="s"
+                    aria-label={` - ${popoverAriaLabel}`}
+                  />
                 </EuiLink>
               }
             >
@@ -232,8 +241,7 @@ export const EuiBreadcrumbCollapsed: FunctionComponent<_EuiBreadcrumbProps> = ({
     <EuiBreadcrumb css={cssStyles} type={type}>
       <EuiBreadcrumbContent
         popoverContent={children}
-        text="&hellip;"
-        aria-label={ariaLabel}
+        text={<span aria-label={ariaLabel}>&hellip;</span>}
         title={ariaLabel}
         truncate={false}
         isFirstBreadcrumb={isFirstBreadcrumb}
