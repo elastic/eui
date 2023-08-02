@@ -7,9 +7,10 @@
  */
 
 import React from 'react';
-import { render, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { render } from '../../test/rtl';
 
 import { STATUS } from './step_number';
 import { EuiStepHorizontal } from './step_horizontal';
@@ -21,58 +22,58 @@ describe('EuiStepHorizontal', () => {
   );
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiStepHorizontal {...requiredProps} onClick={() => {}} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     test('step', () => {
-      const component = render(
+      const { container } = render(
         <EuiStepHorizontal step={5} onClick={() => {}} />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('title', () => {
-      const component = render(
+      const { container } = render(
         <EuiStepHorizontal title={'First step'} onClick={() => {}} />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     describe('status', () => {
       STATUS.forEach((status) => {
         test(`${status} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiStepHorizontal status={status} onClick={() => {}} />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
 
       test('disabled overrides the passed status', () => {
-        const component = render(
+        const { container } = render(
           <EuiStepHorizontal status="current" disabled onClick={() => {}} />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('size', () => {
       SIZES.forEach((size) => {
         test(`${size} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiStepHorizontal size={size} onClick={() => {}} />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });

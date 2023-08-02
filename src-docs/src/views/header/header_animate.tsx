@@ -124,7 +124,6 @@ export default () => {
         sections={[
           {
             items: [<EuiHeaderLogo>Elastic</EuiHeaderLogo>],
-            borders: 'none',
           },
           {
             items: [
@@ -135,7 +134,6 @@ export default () => {
                 notificationsNumber={notificationsNumber}
               />,
             ],
-            borders: 'none',
           },
         ]}
       />

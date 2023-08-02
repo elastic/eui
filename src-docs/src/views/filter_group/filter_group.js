@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 
 import {
-  EuiPopover,
   EuiFilterGroup,
   EuiFilterButton,
+  EuiPopover,
+  EuiSelectableMessage,
   EuiIcon,
   EuiSpacer,
 } from '../../../../src/components';
@@ -85,13 +86,11 @@ export default () => {
         closePopover={closePopover}
         panelPaddingSize="none"
       >
-        <div className="euiFilterSelect__note">
-          <div className="euiFilterSelect__noteContent">
-            <EuiIcon type="minusInCircle" />
-            <EuiSpacer size="xs" />
-            <p>No filters found</p>
-          </div>
-        </div>
+        <EuiSelectableMessage>
+          <EuiIcon type="minusInCircle" />
+          <EuiSpacer size="xs" />
+          <p>No filters found</p>
+        </EuiSelectableMessage>
       </EuiPopover>
       <EuiFilterButton
         numFilters={12}

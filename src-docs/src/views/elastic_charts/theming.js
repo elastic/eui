@@ -23,7 +23,7 @@ import {
 
 import {
   euiPaletteColorBlind,
-  euiPaletteComplimentary,
+  euiPaletteComplementary,
   euiPaletteForStatus,
   euiPaletteForTemperature,
   euiPaletteCool,
@@ -38,7 +38,7 @@ const paletteData = {
   euiPaletteColorBlind,
   euiPaletteForStatus,
   euiPaletteForTemperature,
-  euiPaletteComplimentary,
+  euiPaletteComplementary,
   euiPaletteNegative,
   euiPalettePositive,
   euiPaletteCool,

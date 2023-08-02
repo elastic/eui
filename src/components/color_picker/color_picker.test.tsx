@@ -7,7 +7,9 @@
  */
 
 import React from 'react';
-import { render, mount } from 'enzyme';
+import { mount } from 'enzyme';
+import { render } from '../../test/rtl';
+import { act } from '@testing-library/react';
 
 import { EuiColorPicker } from './color_picker';
 import { VISUALIZATION_COLORS, keys } from '../../services';
@@ -20,14 +22,14 @@ jest.mock('../portal', () => ({
 const onChange = jest.fn();
 
 test('renders EuiColorPicker', () => {
-  const colorPicker = render(
+  const { container } = render(
     <EuiColorPicker onChange={onChange} color="#ffeedd" {...requiredProps} />
   );
-  expect(colorPicker).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
 
 test('renders compressed EuiColorPicker', () => {
-  const colorPicker = render(
+  const { container } = render(
     <EuiColorPicker
       onChange={onChange}
       color="#ffeedd"
@@ -35,11 +37,11 @@ test('renders compressed EuiColorPicker', () => {
       {...requiredProps}
     />
   );
-  expect(colorPicker).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
 
 test('renders readOnly EuiColorPicker', () => {
-  const colorPicker = render(
+  const { container } = render(
     <EuiColorPicker
       onChange={onChange}
       color="#ffeedd"
@@ -47,11 +49,11 @@ test('renders readOnly EuiColorPicker', () => {
       {...requiredProps}
     />
   );
-  expect(colorPicker).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
 
 test('renders fullWidth EuiColorPicker', () => {
-  const colorPicker = render(
+  const { container } = render(
     <EuiColorPicker
       onChange={onChange}
       color="#ffeedd"
@@ -59,11 +61,11 @@ test('renders fullWidth EuiColorPicker', () => {
       {...requiredProps}
     />
   );
-  expect(colorPicker).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
 
 test('renders disabled EuiColorPicker', () => {
-  const colorPicker = render(
+  const { container } = render(
     <EuiColorPicker
       onChange={onChange}
       color="#ffeedd"
@@ -71,11 +73,11 @@ test('renders disabled EuiColorPicker', () => {
       {...requiredProps}
     />
   );
-  expect(colorPicker).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
 
 test('renders inline EuiColorPicker', () => {
-  const colorPicker = render(
+  const { container } = render(
     <EuiColorPicker
       onChange={onChange}
       color="#ffeedd"
@@ -83,11 +85,11 @@ test('renders inline EuiColorPicker', () => {
       {...requiredProps}
     />
   );
-  expect(colorPicker).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
 
 test('renders a EuiColorPicker with a prepend and append', () => {
-  const component = render(
+  const { container } = render(
     <EuiColorPicker
       onChange={onChange}
       color="#ffeedd"
@@ -97,11 +99,11 @@ test('renders a EuiColorPicker with a prepend and append', () => {
     />
   );
 
-  expect(component).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
 
 test('renders a EuiColorPicker with an alpha range selector', () => {
-  const component = render(
+  const { container } = render(
     <EuiColorPicker
       onChange={onChange}
       color="#ffeedd"
@@ -110,39 +112,39 @@ test('renders a EuiColorPicker with an alpha range selector', () => {
     />
   );
 
-  expect(component).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
 
 test('renders EuiColorPicker with an empty swatch when color is null', () => {
-  const colorPicker = render(
+  const { container } = render(
     <EuiColorPicker onChange={onChange} color={null} {...requiredProps} />
   );
-  expect(colorPicker).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
 
 test('renders EuiColorPicker with an empty swatch when color is ""', () => {
-  const colorPicker = render(
+  const { container } = render(
     <EuiColorPicker onChange={onChange} color={''} {...requiredProps} />
   );
-  expect(colorPicker).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
 
 test('renders EuiColorPicker with a color swatch when color is defined', () => {
-  const colorPicker = render(
+  const { container } = render(
     <EuiColorPicker onChange={onChange} color={'#ffffff'} {...requiredProps} />
   );
-  expect(colorPicker).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
 
 test('renders EuiColorPicker with a custom placeholder', () => {
-  const colorPicker = render(
+  const { container } = render(
     <EuiColorPicker onChange={onChange} placeholder="Auto" {...requiredProps} />
   );
-  expect(colorPicker).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
 
 test('renders EuiColorPicker with a clearable input', () => {
-  const colorPicker = render(
+  const { container } = render(
     <EuiColorPicker
       onChange={onChange}
       color={'#ffeedd'}
@@ -150,7 +152,7 @@ test('renders EuiColorPicker with a clearable input', () => {
       {...requiredProps}
     />
   );
-  expect(colorPicker).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });
 
 test('popover color selector is not shown by default', () => {
@@ -190,15 +192,29 @@ test('popover color selector is hidden when the ESC key pressed', async () => {
     />
   );
 
-  findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate('click');
-  await sleep();
-  findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate('keydown', {
-    key: keys.ENTER,
+  await act(
+    async () =>
+      await findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate(
+        'click'
+      )
+  );
+
+  await act(() => sleep());
+
+  act(() => {
+    findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate('keydown', {
+      key: keys.ENTER,
+    });
   });
-  await sleep();
-  findTestSubject(colorPicker, 'euiColorPickerPopover').simulate('keydown', {
-    key: keys.ESCAPE,
+
+  await act(() => sleep());
+
+  act(() => {
+    findTestSubject(colorPicker, 'euiColorPickerPopover').simulate('keydown', {
+      key: keys.ESCAPE,
+    });
   });
+
   // Portal removal not working with Jest. The blur handler is called just before the portal would be removed.
   expect(onBlurHandler).toBeCalled();
 });

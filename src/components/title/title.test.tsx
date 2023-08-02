@@ -7,21 +7,21 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { render } from '../../test/rtl';
 
 import { EuiTitle } from './title';
 
 describe('EuiTitle', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiTitle {...requiredProps}>
         <h1>Title</h1>
       </EuiTitle>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   shouldRenderCustomStyles(
@@ -31,12 +31,12 @@ describe('EuiTitle', () => {
   );
 
   test('renders children element className', () => {
-    const component = render(
+    const { container } = render(
       <EuiTitle {...requiredProps}>
         <h1 className="test">Title</h1>
       </EuiTitle>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

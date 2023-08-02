@@ -184,7 +184,7 @@ export const euiPaletteForTemperature = function (steps: number): EuiPalette {
   return euiPalette([...cools, ...warms], steps, true);
 };
 
-export const euiPaletteComplimentary = function (steps: number): EuiPalette {
+export const euiPaletteComplementary = function (steps: number): EuiPalette {
   if (steps === 1) {
     return [euiPaletteColorBlind()[1]];
   }
@@ -195,6 +195,12 @@ export const euiPaletteComplimentary = function (steps: number): EuiPalette {
     true
   );
 };
+
+/**
+ * The old typo'd name for this palette remains exported until the end of its deprecation period
+ * @deprecated Use euiPaletteComplementary instead
+ */
+export const euiPaletteComplimentary = euiPaletteComplementary;
 
 export const euiPaletteNegative = function (steps: number): EuiPalette {
   if (steps === 1) {

@@ -72,7 +72,7 @@ const highlight = (
       <Fragment>
         {chunks.map((chunk) => {
           const { end, highlight, start } = chunk;
-          const value = searchSubject.substr(start, end - start);
+          const value = searchSubject.substring(start, end);
           if (highlight) {
             return (
               <EuiMark
@@ -103,19 +103,22 @@ const highlight = (
     return searchSubject;
   }
 
-  const preMatch: string = searchSubject.substr(0, indexOfMatch);
-  const match: string = searchSubject.substr(indexOfMatch, searchValue.length);
-  const postMatch: string = searchSubject.substr(
+  const preMatch: string = searchSubject.substring(0, indexOfMatch);
+  const match: string = searchSubject.substring(
+    indexOfMatch,
+    indexOfMatch + searchValue.length
+  );
+  const postMatch: string = searchSubject.substring(
     indexOfMatch + searchValue.length
   );
 
   return (
     <Fragment>
-      {preMatch}
+      {preMatch || undefined}
       <EuiMark hasScreenReaderHelpText={hasScreenReaderHelpText}>
         {match}
       </EuiMark>
-      {postMatch}
+      {postMatch || undefined}
     </Fragment>
   );
 };

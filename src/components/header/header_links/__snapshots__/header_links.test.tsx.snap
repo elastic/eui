@@ -3,10 +3,10 @@
 exports[`EuiHeaderLinks gutterSize l is rendered 1`] = `
 <nav
   aria-label="App menu"
-  class="euiHeaderLinks"
+  class="euiHeaderLinks emotion-euiHeaderLinks"
 >
   <div
-    class="euiHeaderLinks__list euiHeaderLinks__list--gutterL"
+    class="euiHeaderLinks__list emotion-euiHeaderLinks__list-l-EuiHeaderLinks"
   />
 </nav>
 `;
@@ -14,10 +14,10 @@ exports[`EuiHeaderLinks gutterSize l is rendered 1`] = `
 exports[`EuiHeaderLinks gutterSize m is rendered 1`] = `
 <nav
   aria-label="App menu"
-  class="euiHeaderLinks"
+  class="euiHeaderLinks emotion-euiHeaderLinks"
 >
   <div
-    class="euiHeaderLinks__list euiHeaderLinks__list--gutterM"
+    class="euiHeaderLinks__list emotion-euiHeaderLinks__list-m-EuiHeaderLinks"
   />
 </nav>
 `;
@@ -25,10 +25,10 @@ exports[`EuiHeaderLinks gutterSize m is rendered 1`] = `
 exports[`EuiHeaderLinks gutterSize s is rendered 1`] = `
 <nav
   aria-label="App menu"
-  class="euiHeaderLinks"
+  class="euiHeaderLinks emotion-euiHeaderLinks"
 >
   <div
-    class="euiHeaderLinks__list euiHeaderLinks__list--gutterS"
+    class="euiHeaderLinks__list emotion-euiHeaderLinks__list-s-EuiHeaderLinks"
   />
 </nav>
 `;
@@ -36,10 +36,10 @@ exports[`EuiHeaderLinks gutterSize s is rendered 1`] = `
 exports[`EuiHeaderLinks gutterSize xs is rendered 1`] = `
 <nav
   aria-label="App menu"
-  class="euiHeaderLinks"
+  class="euiHeaderLinks emotion-euiHeaderLinks"
 >
   <div
-    class="euiHeaderLinks__list euiHeaderLinks__list--gutterXS"
+    class="euiHeaderLinks__list emotion-euiHeaderLinks__list-xs-EuiHeaderLinks"
   />
 </nav>
 `;
@@ -47,11 +47,11 @@ exports[`EuiHeaderLinks gutterSize xs is rendered 1`] = `
 exports[`EuiHeaderLinks is rendered 1`] = `
 <nav
   aria-label="aria-label"
-  class="euiHeaderLinks testClass1 testClass2 emotion-euiTestCss"
+  class="euiHeaderLinks testClass1 testClass2 emotion-euiHeaderLinks-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
-    class="euiHeaderLinks__list euiHeaderLinks__list--gutterS"
+    class="euiHeaderLinks__list emotion-euiHeaderLinks__list-s-EuiHeaderLinks"
   />
 </nav>
 `;
@@ -59,10 +59,10 @@ exports[`EuiHeaderLinks is rendered 1`] = `
 exports[`EuiHeaderLinks popover props is never rendered with "none" 1`] = `
 <nav
   aria-label="App menu"
-  class="euiHeaderLinks"
+  class="euiHeaderLinks emotion-euiHeaderLinks"
 >
   <div
-    class="euiHeaderLinks__list euiHeaderLinks__list--gutterS"
+    class="euiHeaderLinks__list emotion-euiHeaderLinks__list-s-EuiHeaderLinks"
   />
 </nav>
 `;
@@ -70,7 +70,7 @@ exports[`EuiHeaderLinks popover props is never rendered with "none" 1`] = `
 exports[`EuiHeaderLinks popover props is rendered 1`] = `
 <nav
   aria-label="App menu"
-  class="euiHeaderLinks"
+  class="euiHeaderLinks emotion-euiHeaderLinks"
 >
   <div
     class="euiPopover emotion-euiPopover"
@@ -80,7 +80,7 @@ exports[`EuiHeaderLinks popover props is rendered 1`] = `
     >
       <button
         aria-label="Open menu"
-        class="euiButtonEmpty euiHeaderSectionItemButton customButtonClass emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text"
+        class="euiButtonEmpty euiHeaderSectionItemButton customButtonClass emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiHeaderSectionItemButton"
         type="button"
       >
         <span
@@ -90,7 +90,7 @@ exports[`EuiHeaderLinks popover props is rendered 1`] = `
             class="eui-textTruncate euiButtonEmpty__text"
           >
             <span
-              class="euiHeaderSectionItemButton__content"
+              class="euiHeaderSectionItemButton__content emotion-euiHeaderSectionItemButton__content"
             >
               <span
                 data-euiicon-type="bolt"

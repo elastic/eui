@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import {
   EuiFlexGrid,
@@ -22,22 +22,22 @@ describe('EuiFlexGrid', () => {
   shouldRenderCustomStyles(<EuiFlexGrid />);
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiFlexGrid columns={3} {...requiredProps}>
         <h2>My Child</h2>
       </EuiFlexGrid>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('gutterSize', () => {
       GUTTER_SIZES.forEach((value) => {
         test(`${value} is rendered`, () => {
-          const component = render(<EuiFlexGrid gutterSize={value} />);
+          const { container } = render(<EuiFlexGrid gutterSize={value} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
@@ -45,9 +45,9 @@ describe('EuiFlexGrid', () => {
     describe('columns', () => {
       ([1, 2, 3, 4] as const).forEach((value) => {
         test(`${value} is rendered`, () => {
-          const component = render(<EuiFlexGrid columns={value} />);
+          const { container } = render(<EuiFlexGrid columns={value} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
@@ -55,9 +55,9 @@ describe('EuiFlexGrid', () => {
     describe('direction', () => {
       DIRECTIONS.forEach((value) => {
         test(`${value} is rendered`, () => {
-          const component = render(<EuiFlexGrid direction={value} />);
+          const { container } = render(<EuiFlexGrid direction={value} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
@@ -65,18 +65,18 @@ describe('EuiFlexGrid', () => {
     describe('alignItems', () => {
       ALIGN_ITEMS.forEach((value) => {
         test(`${value} is rendered`, () => {
-          const component = render(<EuiFlexGrid alignItems={value} />);
+          const { container } = render(<EuiFlexGrid alignItems={value} />);
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
 
     describe('responsive', () => {
       test('is rendered', () => {
-        const component = render(<EuiFlexGrid responsive={false} />);
+        const { container } = render(<EuiFlexGrid responsive={false} />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });

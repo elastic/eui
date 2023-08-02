@@ -6,6 +6,6 @@
  * Side Public License, v 1.
  */
 
-export * from './render_with_styles';
 export * from './render_custom_styles';
 export * from './test_custom_hook';
+export * from './react_version';

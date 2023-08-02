@@ -7,45 +7,45 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { requiredProps } from '../../../test';
+import { render } from '../../../test/rtl';
 import {
   EuiFormControlLayoutCustomIcon,
   EuiFormControlLayoutCustomIconProps,
 } from './form_control_layout_custom_icon';
-import { requiredProps } from '../../../test';
 
 describe('EuiFormControlLayoutCustomIcon', () => {
   test('is rendered as button', () => {
     const props: EuiFormControlLayoutCustomIconProps = {
       onClick: () => null,
       type: 'error',
-      iconRef: 'icon',
+      iconRef: jest.fn(),
       color: 'danger',
     };
-    const component = render(
+    const { container } = render(
       <EuiFormControlLayoutCustomIcon {...props} {...requiredProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('is rendered as span', () => {
     const props: EuiFormControlLayoutCustomIconProps = {
       type: 'error',
-      iconRef: 'icon',
+      iconRef: jest.fn(),
     };
-    const component = render(
+    const { container } = render(
       <EuiFormControlLayoutCustomIcon {...props} {...requiredProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('size is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiFormControlLayoutCustomIcon type="warning" size="s" />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

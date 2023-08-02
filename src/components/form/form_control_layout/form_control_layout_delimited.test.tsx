@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { render } from '../../../test/rtl';
 import { requiredProps } from '../../../test/required_props';
 
 import { EuiFormControlLayoutDelimited } from './form_control_layout_delimited';
@@ -15,7 +15,7 @@ import { EuiIcon } from '../../icon';
 
 describe('EuiFormControlLayoutDelimited', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiFormControlLayoutDelimited
         startControl={<span>start</span>}
         endControl={<span>end</span>}
@@ -23,14 +23,14 @@ describe('EuiFormControlLayoutDelimited', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('delimiter', () => {
       describe('is rendered', () => {
         test('as a string', () => {
-          const component = render(
+          const { container } = render(
             <EuiFormControlLayoutDelimited
               startControl={<span>start</span>}
               endControl={<span>end</span>}
@@ -38,13 +38,13 @@ describe('EuiFormControlLayoutDelimited', () => {
             />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
 
         test('as a node', () => {
           const icon = <EuiIcon type="error" />;
 
-          const component = render(
+          const { container } = render(
             <EuiFormControlLayoutDelimited
               startControl={<span>start</span>}
               endControl={<span>end</span>}
@@ -52,7 +52,7 @@ describe('EuiFormControlLayoutDelimited', () => {
             />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });

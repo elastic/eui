@@ -8,7 +8,7 @@
 
 import React from 'react';
 import { css } from '@emotion/react';
-import { render } from 'enzyme';
+import { render } from '../../test/rtl';
 
 import { cloneElementWithCss } from './clone_element';
 
@@ -18,24 +18,24 @@ describe('cloneElementWithCss', () => {
   };
 
   it('correctly renders css on elements that do not already have a `css` property', () => {
-    const component = render(
+    const { container } = render(
       <CloningParent css={{ color: 'red' }}>
         <div>hello world</div>
       </CloningParent>
     );
 
-    expect(component).toMatchInlineSnapshot(`
+    expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        class="css-1h3ogp1-component"
+        class="css-hwfcu5"
       >
         hello world
       </div>
     `);
-    expect(component).toHaveStyleRule('color', 'red');
+    expect(container.firstChild).toHaveStyleRule('color', 'red');
   });
 
   it('combines css properties on cloned elements that already have a `css` property', () => {
-    const component = render(
+    const { container } = render(
       <CloningParent css={{ color: 'red' }}>
         <div
           css={[
@@ -49,15 +49,15 @@ describe('cloneElementWithCss', () => {
       </CloningParent>
     );
 
-    expect(component).toMatchInlineSnapshot(`
+    expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        class="css-88aly5-component-component-component"
+        class="css-1x864jj-CloningParent"
       >
         hello world
       </div>
     `);
-    expect(component).toHaveStyleRule('color', 'red');
-    expect(component).toHaveStyleRule('background-color', 'blue');
+    expect(container.firstChild).toHaveStyleRule('color', 'red');
+    expect(container.firstChild).toHaveStyleRule('background-color', 'blue');
   });
 
   it('handles components', () => {
@@ -67,38 +67,38 @@ describe('cloneElementWithCss', () => {
       </div>
     );
 
-    const component = render(
+    const { container } = render(
       <CloningParent css={{ color: 'red' }}>
         <TestComponent css={{ border: '1px solid black' }} />
       </CloningParent>
     );
 
-    expect(component).toMatchInlineSnapshot(`
+    expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        class="css-1fcrfq4-TestComponent-component-component"
+        class="css-pie7sa-TestComponent-CloningParent"
       >
         hello world
       </div>
     `);
-    expect(component).toHaveStyleRule('color', 'red');
-    expect(component).toHaveStyleRule('background-color', 'blue');
-    expect(component).toHaveStyleRule('border', '1px solid black');
+    expect(container.firstChild).toHaveStyleRule('color', 'red');
+    expect(container.firstChild).toHaveStyleRule('background-color', 'blue');
+    expect(container.firstChild).toHaveStyleRule('border', '1px solid black');
   });
 
   it('does nothing if no css property is set', () => {
-    const component = render(
+    const { container } = render(
       <CloningParent className="test">
         <div>hello world</div>
       </CloningParent>
     );
 
-    expect(component).toMatchInlineSnapshot(`
+    expect(container.firstChild).toMatchInlineSnapshot(`
       <div
         class="test"
       >
         hello world
       </div>
     `);
-    expect(component).not.toHaveStyleRule('color', 'red');
+    expect(container.firstChild).not.toHaveStyleRule('color', 'red');
   });
 });

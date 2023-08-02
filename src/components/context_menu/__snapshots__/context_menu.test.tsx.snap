@@ -3,6 +3,7 @@
 exports[`EuiContextMenu can pass-through horizontal rule props 1`] = `
 <div
   class="euiContextMenu"
+  style="height: 0px;"
 >
   <div
     class="euiContextMenuPanel euiContextMenu__panel"
@@ -37,6 +38,7 @@ exports[`EuiContextMenu is rendered 1`] = `
 exports[`EuiContextMenu panel item can be a separator line 1`] = `
 <div
   class="euiContextMenu"
+  style="height: 0px;"
 >
   <div
     class="euiContextMenuPanel euiContextMenu__panel"
@@ -91,6 +93,7 @@ exports[`EuiContextMenu panel item can be a separator line 1`] = `
 exports[`EuiContextMenu panel item can contain JSX 1`] = `
 <div
   class="euiContextMenu"
+  style="height: 0px;"
 >
   <div
     class="euiContextMenuPanel euiContextMenu__panel"
@@ -117,7 +120,7 @@ exports[`EuiContextMenu panel item can contain JSX 1`] = `
             class="euiContextMenuItem__text"
           >
             <span
-              style="color:tomato"
+              style="color: tomato;"
             >
               foo
             </span>
@@ -286,6 +289,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
 exports[`EuiContextMenu props panels and initialPanelId renders the referenced panel 1`] = `
 <div
   class="euiContextMenu"
+  style="height: 0px;"
 >
   <div
     class="euiContextMenuPanel euiContextMenu__panel"
@@ -322,6 +326,7 @@ exports[`EuiContextMenu props panels and initialPanelId renders the referenced p
 exports[`EuiContextMenu props size m is rendered 1`] = `
 <div
   class="euiContextMenu"
+  style="height: 0px;"
 >
   <div
     class="euiContextMenuPanel euiContextMenu__panel"
@@ -358,6 +363,7 @@ exports[`EuiContextMenu props size m is rendered 1`] = `
 exports[`EuiContextMenu props size s is rendered 1`] = `
 <div
   class="euiContextMenu euiContextMenu--small"
+  style="height: 0px;"
 >
   <div
     class="euiContextMenuPanel euiContextMenu__panel"

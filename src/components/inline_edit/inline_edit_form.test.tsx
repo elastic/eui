@@ -77,7 +77,7 @@ describe('EuiInlineEditForm', () => {
     });
 
     test('placeholder', () => {
-      const { container, getByText } = render(
+      const { container, getByText, getByTitle } = render(
         <EuiInlineEditForm
           {...commonInlineEditFormProps}
           defaultValue=""
@@ -87,6 +87,15 @@ describe('EuiInlineEditForm', () => {
 
       expect(container.firstChild).toMatchSnapshot();
       expect(getByText('This is a placeholder.')).toBeTruthy();
+      expect(getByTitle('This is a placeholder.')).toBeTruthy();
+    });
+
+    it('renders the read mode value in a title tooltip', () => {
+      const { getByTitle } = render(
+        <EuiInlineEditForm {...commonInlineEditFormProps} />
+      );
+
+      expect(getByTitle('Hello World!')).toBeTruthy();
     });
   });
 
@@ -369,13 +378,15 @@ describe('EuiInlineEditForm', () => {
       });
 
       it('handles async promises', async () => {
-        onSave.mockImplementation(
-          (value) =>
-            new Promise((resolve) => {
-              setTimeout(resolve, 100);
-              return !!value; // returns false if empty string, true if not
-            })
-        );
+        let promise: Promise<boolean> | null = null;
+        let promiseResolve: (value: boolean) => void;
+
+        onSave.mockImplementation(() => {
+          promise = new Promise((resolve) => {
+            promiseResolve = resolve;
+          });
+          return promise;
+        });
 
         const { getByTestSubject, queryByTestSubject, getByText } = render(
           <EuiInlineEditForm
@@ -385,28 +396,39 @@ describe('EuiInlineEditForm', () => {
           />
         );
 
-        // Should still be in edit mode after an empty string is submitted
+        // Should still be in edit mode when onSave promise returns false
         fireEvent.change(getByTestSubject('euiInlineEditModeInput'), {
           target: { value: '' },
         });
-        await act(async () => {
-          fireEvent.click(getByTestSubject('euiInlineEditModeSaveButton'));
-          waitFor(() => setTimeout(() => {}, 100)); // Let the promise finish resolving
-        });
-        expect(queryByTestSubject('euiInlineReadModeButton')).toBeFalsy();
-        expect(getByTestSubject('euiInlineEditModeInput')).toBeTruthy();
 
-        // Should successfully save into read mode
+        fireEvent.click(getByTestSubject('euiInlineEditModeSaveButton'));
+        expect(onSave).toBeCalledTimes(1);
+
+        await act(() => {
+          promiseResolve(false);
+          return expect(promise).resolves.toBe(false);
+        });
+
+        expect(
+          queryByTestSubject('euiInlineReadModeButton')
+        ).not.toBeInTheDocument();
+        expect(getByTestSubject('euiInlineEditModeInput')).toBeInTheDocument();
+
+        // Should successfully save into read mode when onSave promise returns true
         fireEvent.change(getByTestSubject('euiInlineEditModeInput'), {
           target: { value: 'hey there' },
         });
+
+        fireEvent.click(getByTestSubject('euiInlineEditModeSaveButton'));
+        expect(onSave).toHaveBeenCalledTimes(2);
+
         await act(async () => {
-          fireEvent.click(getByTestSubject('euiInlineEditModeSaveButton'));
+          promiseResolve(true);
+          return expect(promise).resolves.toBe(true);
         });
-        waitFor(() => {
-          expect(getByTestSubject('euiInlineReadModeButton')).toBeTruthy();
-          expect(getByText('hey there')).toBeTruthy();
-        });
+
+        expect(getByTestSubject('euiInlineReadModeButton')).toBeInTheDocument();
+        expect(getByText('hey there')).toBeTruthy();
       });
     });
 

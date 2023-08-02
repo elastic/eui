@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { ButtonHTMLAttributes } from 'react';
+import { ButtonHTMLAttributes, ReactNode } from 'react';
 import { CommonProps } from '../common';
 
 // note similarity to `Option` in `components/selectable/types.tsx`
@@ -19,6 +19,8 @@ export interface EuiComboBoxOptionOption<
   key?: string;
   options?: Array<EuiComboBoxOptionOption<T>>;
   value?: T;
+  prepend?: ReactNode;
+  append?: ReactNode;
 }
 
 export type UpdatePositionHandler = (

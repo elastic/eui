@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../../test/required_props';
 import { shouldRenderCustomStyles } from '../../../test/internal';
+import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
 
 import { EuiForm } from '../form';
 import { EuiRange } from './range';
@@ -31,7 +31,7 @@ describe('EuiRange', () => {
   });
 
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiRange
         name="name"
         id="id"
@@ -41,44 +41,44 @@ describe('EuiRange', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     test('disabled should render', () => {
-      const component = render(<EuiRange {...props} disabled />);
+      const { container } = render(<EuiRange {...props} disabled />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('fullWidth should render', () => {
-      const component = render(<EuiRange {...props} fullWidth />);
+      const { container } = render(<EuiRange {...props} fullWidth />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('compressed should render', () => {
-      const component = render(<EuiRange {...props} compressed />);
+      const { container } = render(<EuiRange {...props} compressed />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('labels should render', () => {
-      const component = render(<EuiRange {...props} showLabels />);
+      const { container } = render(<EuiRange {...props} showLabels />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('ticks should render', () => {
-      const component = render(
+      const { container } = render(
         <EuiRange {...props} showTicks tickInterval={20} />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('custom ticks should render', () => {
-      const component = render(
+      const { container } = render(
         <EuiRange
           {...props}
           showTicks
@@ -89,18 +89,18 @@ describe('EuiRange', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('range should render', () => {
-      const component = render(<EuiRange {...props} showRange />);
+      const { container } = render(<EuiRange {...props} showRange />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('value should render', () => {
       const { value, ...localProps } = props;
-      const component = render(
+      const { container } = render(
         <EuiRange
           value="200"
           showValue
@@ -110,11 +110,11 @@ describe('EuiRange', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('input should render', () => {
-      const component = render(
+      const { container } = render(
         <EuiRange
           name="name"
           id="id"
@@ -125,11 +125,11 @@ describe('EuiRange', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('slider should display in popover', () => {
-      const component = render(
+      const { container } = render(
         <EuiRange
           name="name"
           id="id"
@@ -140,11 +140,11 @@ describe('EuiRange', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('loading should display when showInput="inputWithPopover"', () => {
-      const component = render(
+      const { container } = render(
         <EuiRange
           name="name"
           id="id"
@@ -156,11 +156,11 @@ describe('EuiRange', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('levels should render', () => {
-      const component = render(
+      const { container } = render(
         <EuiRange
           levels={[
             {
@@ -180,37 +180,37 @@ describe('EuiRange', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
   test('allows value prop to accept a number', () => {
     const { value, ...localProps } = props;
-    const component = render(
+    const { container } = render(
       <EuiRange value={8} onChange={() => {}} showValue {...localProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('allows value prop to accept empty string', () => {
     const { value, ...localProps } = props;
-    const component = render(
+    const { container } = render(
       <EuiRange value={''} onChange={() => {}} {...localProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('inherits', () => {
     test('fullWidth from <EuiForm />', () => {
-      const component = render(
+      const { container } = render(
         <EuiForm fullWidth>
           <EuiRange value={20} min={0} max={100} />
         </EuiForm>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });

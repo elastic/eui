@@ -153,7 +153,7 @@ const webpackConfig = new Promise(async (resolve, reject) => {
         }),
 
         new CircularDependencyPlugin({
-          exclude: /node_modules/,
+          exclude: /node_modules|collapsible_nav_item/, // EuiCollapsibleNavItem is intentionally recursive to support any amount of nested accordion items
           failOnError: true,
         }),
 

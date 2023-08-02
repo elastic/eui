@@ -6,11 +6,10 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
-import { mount as cypressMount } from 'cypress/react';
-import { EuiProvider } from '../../../src';
+export type {
+  EuiCollapsibleNavItemProps,
+  EuiCollapsibleNavSubItemProps,
+  EuiCollapsibleNavSubItemGroupTitle,
+} from './collapsible_nav_item';
 
-Cypress.Commands.add('mount', (children, options = {}) => {
-  const { providerProps } = options;
-  return cypressMount(<EuiProvider {...providerProps}>{children}</EuiProvider>);
-});
+export { EuiCollapsibleNavItem } from './collapsible_nav_item';

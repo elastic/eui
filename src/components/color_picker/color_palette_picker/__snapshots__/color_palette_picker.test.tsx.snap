@@ -130,19 +130,19 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
                 class="euiColorPaletteDisplayFixed__bleedArea"
               >
                 <span
-                  style="background-color:#1fb0b2;width:20%"
+                  style="background-color: rgb(31, 176, 178); width: 20%;"
                 />
                 <span
-                  style="background-color:#ffdb6d;width:20%"
+                  style="background-color: rgb(255, 219, 109); width: 20%;"
                 />
                 <span
-                  style="background-color:#ee9191;width:20%"
+                  style="background-color: rgb(238, 145, 145); width: 20%;"
                 />
                 <span
-                  style="background-color:#ffffff;width:20%"
+                  style="background-color: rgb(255, 255, 255); width: 20%;"
                 />
                 <span
-                  style="background-color:#888094;width:20%"
+                  style="background-color: rgb(136, 128, 148); width: 20%;"
                 />
               </span>
             </span>
@@ -200,7 +200,6 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette 1`] 
             <span
               aria-hidden="true"
               class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall"
-              style="background:linear-gradient(to right, #1fb0b2 0%, #ffdb6d 25%, #ee9191 50%, #ffffff 75%, #888094 100%)"
             />
           </button>
           <div
@@ -256,7 +255,6 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette with
             <span
               aria-hidden="true"
               class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall"
-              style="background:linear-gradient(to right, #54B399 0%, #D36086 53%, #9170B8 74%, #F5A700 100%)"
             />
           </button>
           <div

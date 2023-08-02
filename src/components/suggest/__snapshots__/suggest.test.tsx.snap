@@ -48,7 +48,9 @@ exports[`EuiSuggest is rendered 1`] = `
           class="emotion-euiScreenReaderOnly"
           id="generated-id_instructions"
         >
-          State: unchanged. Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+          State: unchanged.
+           
+          Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
         </p>
       </div>
     </div>
@@ -109,7 +111,9 @@ exports[`EuiSuggest props append 1`] = `
           class="emotion-euiScreenReaderOnly"
           id="generated-id_instructions"
         >
-          State: unchanged. Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+          State: unchanged.
+           
+          Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
         </p>
       </div>
     </div>
@@ -165,7 +169,9 @@ exports[`EuiSuggest props isVirtualized 1`] = `
           class="emotion-euiScreenReaderOnly"
           id="generated-id_instructions"
         >
-          State: unchanged. Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+          State: unchanged.
+           
+          Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
         </p>
       </div>
     </div>
@@ -221,7 +227,9 @@ exports[`EuiSuggest props maxHeight 1`] = `
           class="emotion-euiScreenReaderOnly"
           id="generated-id_instructions"
         >
-          State: unchanged. Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+          State: unchanged.
+           
+          Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
         </p>
       </div>
     </div>
@@ -277,7 +285,9 @@ exports[`EuiSuggest props options common 1`] = `
           class="emotion-euiScreenReaderOnly"
           id="generated-id_instructions"
         >
-          State: unchanged. Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+          State: unchanged.
+           
+          Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
         </p>
       </div>
     </div>
@@ -333,7 +343,9 @@ exports[`EuiSuggest props options standard 1`] = `
           class="emotion-euiScreenReaderOnly"
           id="generated-id_instructions"
         >
-          State: unchanged. Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+          State: unchanged.
+           
+          Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
         </p>
       </div>
     </div>
@@ -411,7 +423,9 @@ exports[`EuiSuggest props remaining EuiFieldSearch props are spread to the searc
           class="emotion-euiScreenReaderOnly"
           id="generated-id_instructions"
         >
-          State: unchanged. Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+          State: unchanged.
+           
+          Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
         </p>
       </div>
     </div>
@@ -476,7 +490,9 @@ exports[`EuiSuggest props status status: loading is rendered 1`] = `
           class="emotion-euiScreenReaderOnly"
           id="generated-id_instructions"
         >
-          State: loading. Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+          State: loading.
+           
+          Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
         </p>
       </div>
     </div>
@@ -541,7 +557,9 @@ exports[`EuiSuggest props status status: saved is rendered 1`] = `
           class="emotion-euiScreenReaderOnly"
           id="generated-id_instructions"
         >
-          State: saved. Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+          State: saved.
+           
+          Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
         </p>
       </div>
     </div>
@@ -597,7 +615,9 @@ exports[`EuiSuggest props status status: unchanged is rendered 1`] = `
           class="emotion-euiScreenReaderOnly"
           id="generated-id_instructions"
         >
-          State: unchanged. Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+          State: unchanged.
+           
+          Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
         </p>
       </div>
     </div>
@@ -662,7 +682,9 @@ exports[`EuiSuggest props status status: unsaved is rendered 1`] = `
           class="emotion-euiScreenReaderOnly"
           id="generated-id_instructions"
         >
-          State: unsaved. Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+          State: unsaved.
+           
+          Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
         </p>
       </div>
     </div>
@@ -727,7 +749,9 @@ exports[`EuiSuggest props tooltipContent tooltipContent for status: loading is r
           class="emotion-euiScreenReaderOnly"
           id="generated-id_instructions"
         >
-          State: loading. Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+          State: loading.
+           
+          Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
         </p>
       </div>
     </div>
@@ -792,7 +816,9 @@ exports[`EuiSuggest props tooltipContent tooltipContent for status: saved is ren
           class="emotion-euiScreenReaderOnly"
           id="generated-id_instructions"
         >
-          State: saved. Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+          State: saved.
+           
+          Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
         </p>
       </div>
     </div>
@@ -848,7 +874,9 @@ exports[`EuiSuggest props tooltipContent tooltipContent for status: unchanged is
           class="emotion-euiScreenReaderOnly"
           id="generated-id_instructions"
         >
-          State: unchanged. Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+          State: unchanged.
+           
+          Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
         </p>
       </div>
     </div>
@@ -913,7 +941,9 @@ exports[`EuiSuggest props tooltipContent tooltipContent for status: unsaved is r
           class="emotion-euiScreenReaderOnly"
           id="generated-id_instructions"
         >
-          State: unsaved. Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+          State: unsaved.
+           
+          Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
         </p>
       </div>
     </div>

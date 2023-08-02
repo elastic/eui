@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -41,6 +41,27 @@ const colorsSnippet = `<EuiComboBox
     {
       label: 'Titan',
       color: "#ff0000",
+    },
+  ]}
+  selectedOptions={selectedOptions}
+  onChange={onChange}
+  onCreateOption={onCreateOption}
+  isClearable={true}
+/>`;
+
+import OptionPrependAppend from './option_prepend_append';
+const optionPrependAppendSource = require('!!raw-loader!./option_prepend_append');
+const optionsPrependAppendSnippet = `<EuiComboBox
+  aria-label="Accessible screen reader label"
+  placeholder="Select or create options"
+  options={[
+    {
+      label: 'Titan',
+      prepend: <EuiIcon type="bell" size="s" />,
+    },
+    {
+      label: 'Mimas',
+      append: '(5)',
     },
   ]}
   selectedOptions={selectedOptions}
@@ -224,7 +245,7 @@ const labelledbySnippet = `<EuiComboBox
 export const ComboBoxExample = {
   title: 'Combo box',
   intro: (
-    <Fragment>
+    <>
       <EuiText>
         <p>
           Use a <strong>EuiComboBox</strong> when the input has so many options
@@ -248,7 +269,7 @@ export const ComboBoxExample = {
           <EuiCode>aria-labelledby</EuiCode> prop.
         </EuiCallOut>
       </EuiText>
-    </Fragment>
+    </>
   ),
   sections: [
     {
@@ -364,33 +385,60 @@ export const ComboBoxExample = {
     },
     {
       title: 'Option rendering',
+      text: (
+        <p>
+          There are two object properties you can add to enhance the content of
+          your options, <EuiCode>option.prepend</EuiCode> and{' '}
+          <EuiCode>option.append</EuiCode>. These will add nodes before and
+          after the option label respectively, to both the dropdown option and
+          selected pill. They will not be included in the searchable content as
+          this only matches against the label property.
+        </p>
+      ),
+      props: { EuiComboBox, EuiComboBoxOptionOption },
+      snippet: optionsPrependAppendSnippet,
+      demo: <OptionPrependAppend />,
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: renderOptionSource,
+          code: optionPrependAppendSource,
         },
       ],
+    },
+    {
       text: (
-        <Fragment>
+        <>
+          <h3 id="renderOption">Custom dropdown content</h3>
           <p>
-            You can provide a <EuiCode>renderOption</EuiCode> prop which will
-            accept <EuiCode>option</EuiCode> and <EuiCode>searchValue</EuiCode>{' '}
-            arguments. Use the <EuiCode>value</EuiCode> prop of the{' '}
+            While it is best to stick to the <EuiCode>option.label</EuiCode>,{' '}
+            <EuiCode>option.append</EuiCode>, and{' '}
+            <EuiCode>option.prepend</EuiCode> props, you can pass a custom{' '}
+            <EuiCode>renderOption</EuiCode> function which will pass back the
+            single option <EuiCode>option</EuiCode> and the{' '}
+            <EuiCode>searchValue</EuiCode> to use for highlighting.
+          </p>
+          <p>
+            You can use the <EuiCode>value</EuiCode> prop of the{' '}
             <EuiCode>option</EuiCode> object to store metadata about the option
             for use in this callback.
           </p>
-
           <p>
             <strong>Note:</strong> virtualization (above) requires that each
             option have the same height. Ensure that you render the options so
             that wrapping text is truncated instead of causing the height of the
             option to change.
           </p>
-        </Fragment>
+        </>
       ),
       props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: renderOptionSnippet,
       demo: <RenderOption />,
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: renderOptionSource,
+        },
+      ],
     },
     {
       title: 'Groups',
@@ -419,7 +467,7 @@ export const ComboBoxExample = {
         },
       ],
       text: (
-        <Fragment>
+        <>
           <p>
             To only allow the user to select a single option, provide the{' '}
             <EuiCode>singleSelection</EuiCode> prop. You may want to render the
@@ -428,7 +476,7 @@ export const ComboBoxExample = {
               {'singleSelection={{ asPlainText: true }}'}
             </EuiCode>
           </p>
-        </Fragment>
+        </>
       ),
       props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: singleSelectionSnippet,
@@ -443,7 +491,7 @@ export const ComboBoxExample = {
         },
       ],
       text: (
-        <Fragment>
+        <>
           <p>
             <EuiCode>append</EuiCode> and <EuiCode>prepend</EuiCode> props only
             work if
@@ -452,7 +500,7 @@ export const ComboBoxExample = {
             height greater than that of <EuiCode>append</EuiCode> and{' '}
             <EuiCode>prepend</EuiCode>.
           </p>
-        </Fragment>
+        </>
       ),
       props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: singleSelectionPrependSnippet,
@@ -467,7 +515,7 @@ export const ComboBoxExample = {
         },
       ],
       text: (
-        <Fragment>
+        <>
           <p>
             You can allow the user to select a single option and also allow the
             creation of custom options. To do that, use the{' '}
@@ -480,7 +528,7 @@ export const ComboBoxExample = {
             available. You can also customize the custom option text by passing
             a text to <EuiCode>customOptionText</EuiCode> prop.
           </p>
-        </Fragment>
+        </>
       ),
       props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: singleSelectionCustomOptionsSnippet,

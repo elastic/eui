@@ -7,8 +7,10 @@
  */
 
 import React, { useEffect } from 'react';
-import { mount, render, ReactWrapper } from 'enzyme';
+import { mount, ReactWrapper } from 'enzyme';
+import { act } from '@testing-library/react';
 import { keys } from '../../../services';
+import { render } from '../../../test/rtl';
 import { RowHeightUtils } from '../utils/__mocks__/row_heights';
 import { mockFocusContext } from '../utils/__mocks__/focus_context';
 import { DataGridFocusContext } from '../utils/focus';
@@ -47,8 +49,8 @@ describe('EuiDataGridCell', () => {
   beforeEach(() => jest.clearAllMocks());
 
   it('renders', () => {
-    const component = render(<EuiDataGridCell {...requiredProps} />);
-    expect(component).toMatchSnapshot();
+    const { container } = render(<EuiDataGridCell {...requiredProps} />);
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it("renders the cell's `aria-rowindex` correctly when paginated on a different page", () => {
@@ -79,7 +81,9 @@ describe('EuiDataGridCell', () => {
         }}
       />
     );
-    component.setState({ enableInteractions: true });
+    act(() => {
+      component.setState({ enableInteractions: true });
+    });
 
     const getCellActions = () => component.find('EuiDataGridCellActions');
     expect(getCellActions()).toHaveLength(1);
@@ -174,19 +178,29 @@ describe('EuiDataGridCell', () => {
 
       describe('when state changes:', () => {
         it('cellProps', () => {
-          component.setState({ cellProps: {} });
+          act(() => {
+            component.setState({ cellProps: {} });
+          });
         });
         it('isEntered', () => {
-          component.setState({ isEntered: true });
+          act(() => {
+            component.setState({ isEntered: true });
+          });
         });
         it('isFocused', () => {
-          component.setState({ isFocused: true });
+          act(() => {
+            component.setState({ isFocused: true });
+          });
         });
         it('enableInteractions', () => {
-          component.setState({ enableInteractions: true });
+          act(() => {
+            component.setState({ enableInteractions: true });
+          });
         });
         it('disableCellTabIndex', () => {
-          component.setState({ disableCellTabIndex: true });
+          act(() => {
+            component.setState({ disableCellTabIndex: true });
+          });
         });
       });
     });
@@ -228,10 +242,10 @@ describe('EuiDataGridCell', () => {
       expect(mockPopoverContext.setPopoverContent).toHaveBeenCalled();
 
       // Examine popover content which should contain popoverContent, renderCellValue, and cellActions
-      const popoverContent = render(
+      const { container } = render(
         <>{mockPopoverContext.setPopoverContent.mock.calls[0][0]}</>
       );
-      expect(popoverContent).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
     });
 
     describe('rowHeightsOptions.scrollAnchorRow', () => {

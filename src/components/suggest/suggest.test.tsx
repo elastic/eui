@@ -7,8 +7,9 @@
  */
 
 import React from 'react';
-import { render, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiSelectable } from '../selectable';
 import { EuiSuggest, EuiSuggestionProps } from './suggest';
@@ -29,18 +30,18 @@ const sampleItems: EuiSuggestionProps[] = [
 
 describe('EuiSuggest', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiSuggest {...requiredProps} suggestions={sampleItems} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('status', () => {
       ALL_STATUSES.forEach((status) => {
         test(`status: ${status} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiSuggest
               {...requiredProps}
               suggestions={sampleItems}
@@ -48,13 +49,13 @@ describe('EuiSuggest', () => {
             />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
 
     test('append', () => {
-      const component = render(
+      const { container } = render(
         <EuiSuggest
           {...requiredProps}
           suggestions={sampleItems}
@@ -62,13 +63,13 @@ describe('EuiSuggest', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     describe('tooltipContent', () => {
       ALL_STATUSES.forEach((status) => {
         test(`tooltipContent for status: ${status} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiSuggest
               {...requiredProps}
               suggestions={sampleItems}
@@ -77,13 +78,13 @@ describe('EuiSuggest', () => {
             />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
 
     test('isVirtualized', () => {
-      const component = render(
+      const { container } = render(
         <EuiSuggest
           {...requiredProps}
           suggestions={sampleItems}
@@ -91,11 +92,11 @@ describe('EuiSuggest', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('maxHeight', () => {
-      const component = render(
+      const { container } = render(
         <EuiSuggest
           {...requiredProps}
           suggestions={sampleItems}
@@ -103,7 +104,7 @@ describe('EuiSuggest', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     describe('options', () => {
@@ -116,11 +117,11 @@ describe('EuiSuggest', () => {
             labelWidth: idx === 0 ? '70' : 80,
           })
         );
-        const component = render(
+        const { container } = render(
           <EuiSuggest {...requiredProps} suggestions={_sampleItems} />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test('common', () => {
@@ -131,11 +132,11 @@ describe('EuiSuggest', () => {
           className: 'sampleItem',
           id: 'sampleItem',
         }));
-        const component = render(
+        const { container } = render(
           <EuiSuggest {...requiredProps} suggestions={_sampleItems} />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
@@ -160,7 +161,7 @@ describe('EuiSuggest', () => {
     });
 
     test('remaining EuiFieldSearch props are spread to the search input', () => {
-      const component = render(
+      const { container } = render(
         <EuiSuggest
           {...requiredProps}
           suggestions={sampleItems}
@@ -175,7 +176,7 @@ describe('EuiSuggest', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });

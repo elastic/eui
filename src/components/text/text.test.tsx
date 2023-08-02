@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { render } from '../../test/rtl';
 import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
@@ -15,13 +15,13 @@ import { EuiText } from './text';
 
 describe('EuiText', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiText {...requiredProps}>
         <p>Content</p>
       </EuiText>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   shouldRenderCustomStyles(<EuiText size="s" color="#fff" />);
@@ -31,28 +31,28 @@ describe('EuiText', () => {
   describe('props', () => {
     describe('grow', () => {
       test('false', () => {
-        const component = render(
+        const { container } = render(
           <EuiText {...requiredProps} grow={false}>
             <p>Content</p>
           </EuiText>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     test('color & align', () => {
-      const component = render(
+      const { container } = render(
         <EuiText {...requiredProps} color="danger" textAlign="center">
           <p>Content</p>
         </EuiText>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('style', () => {
-      const component = render(
+      const { container } = render(
         <EuiText
           {...requiredProps}
           color="#fff"
@@ -62,7 +62,7 @@ describe('EuiText', () => {
         </EuiText>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });

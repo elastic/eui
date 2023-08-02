@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiSuggestItem } from './suggest_item';
 
@@ -19,11 +19,11 @@ const TYPE = {
 
 describe('EuiSuggestItem', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiSuggestItem {...requiredProps} label="Test label" type={TYPE} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });
 
@@ -36,7 +36,7 @@ describe('props', () => {
 
   describe('labelWidth is 30%', () => {
     test('is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiSuggestItem
           type={sampleItem.type}
           description={sampleItem.description}
@@ -44,13 +44,13 @@ describe('props', () => {
           labelWidth="30"
         />
       );
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
   describe('truncate', () => {
     test('is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiSuggestItem
           type={sampleItem.type}
           description={sampleItem.description}
@@ -58,11 +58,11 @@ describe('props', () => {
           truncate
         />
       );
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('renders false', () => {
-      const component = render(
+      const { container } = render(
         <EuiSuggestItem
           type={sampleItem.type}
           description={sampleItem.description}
@@ -70,16 +70,16 @@ describe('props', () => {
           truncate={false}
         />
       );
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
   describe('item with no description has expanded label', () => {
     test('is rendered', () => {
-      const component = render(
+      const { container } = render(
         <EuiSuggestItem label={sampleItem.label} type={sampleItem.type} />
       );
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 });

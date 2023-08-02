@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ReactNode, useState } from 'react';
+import React, {
+  FunctionComponent,
+  PropsWithChildren,
+  ReactNode,
+  useState,
+} from 'react';
 
 import { useEuiTheme } from '../../services';
 import { CommonProps } from '../common';
@@ -19,9 +24,10 @@ import { euiCodeBlockAnnotationsStyles } from './code_block_annotations.style';
 
 export type LineAnnotationMap = Record<number, ReactNode>;
 
-type EuiCodeBlockAnnotationProps = CommonProps & {
-  lineNumber: number;
-};
+type EuiCodeBlockAnnotationProps = PropsWithChildren &
+  CommonProps & {
+    lineNumber: number;
+  };
 
 export const EuiCodeBlockAnnotation: FunctionComponent<
   EuiCodeBlockAnnotationProps

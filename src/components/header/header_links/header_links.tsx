@@ -16,7 +16,8 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, keysOf } from '../../common';
+import { useEuiTheme } from '../../../services';
+import { CommonProps } from '../../common';
 import { EuiIcon, IconType } from '../../icon';
 import { EuiPopover, EuiPopoverProps } from '../../popover';
 import { EuiI18n } from '../../i18n';
@@ -27,7 +28,11 @@ import {
 import { EuiBreakpointSize } from '../../../services/breakpoint';
 import { EuiHideFor, EuiShowFor } from '../../responsive';
 
-type EuiHeaderLinksGutterSize = 'xs' | 's' | 'm' | 'l';
+import { euiHeaderLinksStyles } from './header_links.styles';
+
+export const GUTTER_SIZES = ['xs', 's', 'm', 'l'] as const;
+type EuiHeaderLinksGutterSize = (typeof GUTTER_SIZES)[number];
+
 type EuiHeaderLinksPopoverButtonProps =
   Partial<EuiHeaderSectionItemButtonProps> & {
     iconType?: IconType;
@@ -54,16 +59,6 @@ export type EuiHeaderLinksProps = CommonProps &
     popoverProps?: Omit<EuiPopoverProps, 'button' | 'closePopover'>;
   };
 
-const gutterSizeToClassNameMap: {
-  [gutterSize in EuiHeaderLinksGutterSize]: string;
-} = {
-  xs: '--gutterXS',
-  s: '--gutterS',
-  m: '--gutterM',
-  l: '--gutterL',
-};
-export const GUTTER_SIZES = keysOf(gutterSizeToClassNameMap);
-
 export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
   children,
   className,
@@ -73,6 +68,9 @@ export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
   popoverProps,
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
+  const styles = euiHeaderLinksStyles(euiTheme);
+
   const {
     onClick,
     iconType = 'apps',
@@ -100,7 +98,7 @@ export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
     return () => {
       window.removeEventListener('resize', closeMenu);
     };
-  });
+  }, [closeMenu]);
 
   const classes = classNames('euiHeaderLinks', className);
 
@@ -121,12 +119,19 @@ export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
   return (
     <EuiI18n token="euiHeaderLinks.appNavigation" default="App menu">
       {(appNavigation: string) => (
-        <nav className={classes} aria-label={appNavigation} {...rest}>
+        <nav
+          className={classes}
+          css={styles.euiHeaderLinks}
+          aria-label={appNavigation}
+          {...rest}
+        >
           <EuiHideFor sizes={popoverBreakpoints}>
             <div
-              className={classNames('euiHeaderLinks__list', [
-                `euiHeaderLinks__list${gutterSizeToClassNameMap[gutterSize]}`,
-              ])}
+              className="euiHeaderLinks__list"
+              css={[
+                styles.euiHeaderLinks__list,
+                styles.gutterSizes[gutterSize],
+              ]}
             >
               {children}
             </div>
@@ -143,9 +148,8 @@ export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
               {...popoverProps}
             >
               <div
-                className={classNames('euiHeaderLinks__mobileList', [
-                  `euiHeaderLinks__mobileList${gutterSizeToClassNameMap[gutterSize]}`,
-                ])}
+                className="euiHeaderLinks__mobileList"
+                css={styles.euiHeaderLinks__mobileList}
               >
                 {children}
               </div>

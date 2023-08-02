@@ -7,14 +7,14 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { render } from '../../../test/rtl';
 
 import { EuiScreenReaderOnly } from './screen_reader_only';
 
 describe('EuiScreenReaderOnly', () => {
   describe('adds an accessibility class to a child element', () => {
     test('when used with no props', () => {
-      const $paragraph = render(
+      const { container } = render(
         <EuiScreenReaderOnly>
           <p>
             This paragraph is not visibile to sighted users but will be read by
@@ -23,10 +23,10 @@ describe('EuiScreenReaderOnly', () => {
         </EuiScreenReaderOnly>
       );
 
-      expect($paragraph).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
     test('and combines other classNames (foo, bar) given as props on the child', () => {
-      const $paragraph = render(
+      const { container } = render(
         <EuiScreenReaderOnly>
           <p className="foo bar">
             This paragraph is not visibile to sighted users but will be read by
@@ -35,17 +35,17 @@ describe('EuiScreenReaderOnly', () => {
         </EuiScreenReaderOnly>
       );
 
-      expect($paragraph).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
   test('will show on focus', () => {
-    const component = render(
+    const { container } = render(
       <EuiScreenReaderOnly showOnFocus>
         <a href="#">Link</a>
       </EuiScreenReaderOnly>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

@@ -44,11 +44,13 @@ export type EuiSaturationProps = Omit<
     hex?: string;
   };
 
+const colorDefaultValue = [1, 0, 0];
+
 export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
   (
     {
       className,
-      color = [1, 0, 0],
+      color = colorDefaultValue,
       'data-test-subj': dataTestSubj = 'euiSaturation',
       hex,
       id,

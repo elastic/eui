@@ -18,6 +18,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
+        title="Animals"
       >
         Animals
       </a>
@@ -28,6 +29,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
     >
       <span
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+        title="Metazoans"
       >
         Metazoans
       </span>
@@ -62,6 +64,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
     >
       <button
         class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated"
+        title="Reptiles"
         type="button"
       >
         Reptiles
@@ -87,6 +90,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
       <span
         aria-current="page"
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
+        title="Edit"
       >
         Edit
       </span>
@@ -113,6 +117,7 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
+        title="Animals"
       >
         Animals
       </a>
@@ -123,6 +128,7 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
     >
       <span
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+        title="Metazoans"
       >
         Metazoans
       </span>
@@ -170,6 +176,7 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
     >
       <span
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+        title="Edit"
       >
         Edit
       </span>
@@ -183,6 +190,7 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
         class="euiLink euiBreadcrumb__content emotion-euiLink-text-euiBreadcrumb__content-page-isTruncatedLast"
         href="#"
         rel="noreferrer"
+        title="test"
       >
         test
       </a>
@@ -208,6 +216,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
+        title="Animals"
       >
         Animals
       </a>
@@ -218,6 +227,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
     >
       <span
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+        title="Metazoans"
       >
         Metazoans
       </span>
@@ -228,6 +238,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
     >
       <span
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+        title="Chordates"
       >
         Chordates
       </span>
@@ -238,6 +249,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
     >
       <span
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+        title="Nebulosa subspecies is also a real mouthful, especially for creatures without mouths"
       >
         Nebulosa subspecies is also a real mouthful, especially for creatures without mouths
       </span>
@@ -248,6 +260,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
     >
       <span
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+        title="Tetrapods"
       >
         Tetrapods
       </span>
@@ -258,6 +271,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
     >
       <button
         class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated"
+        title="Reptiles"
         type="button"
       >
         Reptiles
@@ -283,6 +297,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
       <span
         aria-current="page"
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
+        title="Edit"
       >
         Edit
       </span>
@@ -330,6 +345,7 @@ exports[`EuiBreadcrumbs props max renders 1 item 1`] = `
       <span
         aria-current="page"
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
+        title="Edit"
       >
         Edit
       </span>
@@ -355,6 +371,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
+        title="Animals"
       >
         Animals
       </a>
@@ -365,6 +382,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
     >
       <span
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+        title="Metazoans"
       >
         Metazoans
       </span>
@@ -375,6 +393,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
     >
       <span
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+        title="Chordates"
       >
         Chordates
       </span>
@@ -385,6 +404,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
     >
       <span
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+        title="Nebulosa subspecies is also a real mouthful, especially for creatures without mouths"
       >
         Nebulosa subspecies is also a real mouthful, especially for creatures without mouths
       </span>
@@ -395,6 +415,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
     >
       <span
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+        title="Tetrapods"
       >
         Tetrapods
       </span>
@@ -405,6 +426,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
     >
       <button
         class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated"
+        title="Reptiles"
         type="button"
       >
         Reptiles
@@ -430,6 +452,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
       <span
         aria-current="page"
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
+        title="Edit"
       >
         Edit
       </span>
@@ -455,6 +478,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
+        title="Animals"
       >
         Animals
       </a>
@@ -465,6 +489,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
     >
       <span
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+        title="Metazoans"
       >
         Metazoans
       </span>
@@ -499,6 +524,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
     >
       <button
         class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated"
+        title="Reptiles"
         type="button"
       >
         Reptiles
@@ -524,6 +550,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
       <span
         aria-current="page"
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
+        title="Edit"
       >
         Edit
       </span>
@@ -549,6 +576,7 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
+        title="Animals"
       >
         Animals
       </a>
@@ -559,6 +587,7 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
     >
       <span
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+        title="Metazoans"
       >
         Metazoans
       </span>
@@ -593,6 +622,7 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
     >
       <button
         class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page-isTruncated"
+        title="Reptiles"
         type="button"
       >
         Reptiles
@@ -618,6 +648,7 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
       <span
         aria-current="page"
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
+        title="Edit"
       >
         Edit
       </span>
@@ -665,6 +696,7 @@ exports[`EuiBreadcrumbs props responsive is rendered with custom breakpoints 1`]
       <span
         aria-current="page"
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
+        title="Edit"
       >
         Edit
       </span>
@@ -687,6 +719,7 @@ exports[`EuiBreadcrumbs truncation setting truncate on breadcrumbs parents casca
     >
       <span
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-euiTextColor-subdued"
+        title="A"
       >
         A
       </span>
@@ -698,6 +731,7 @@ exports[`EuiBreadcrumbs truncation setting truncate on breadcrumbs parents casca
       <span
         aria-current="page"
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-euiTextColor-default"
+        title="B"
       >
         B
       </span>

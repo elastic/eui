@@ -7,8 +7,9 @@
  */
 
 import React from 'react';
-import { render, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import { requiredProps } from '../../test';
+import { render } from '../../test/rtl';
 
 import { EuiContextMenuPanel, SIZES } from './context_menu_panel';
 
@@ -30,41 +31,41 @@ const items = [
 
 describe('EuiContextMenuPanel', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiContextMenuPanel {...requiredProps}>Hello</EuiContextMenuPanel>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('title', () => {
       test('is rendered', () => {
-        const component = render(<EuiContextMenuPanel title="Title" />);
+        const { container } = render(<EuiContextMenuPanel title="Title" />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('size', () => {
       SIZES.forEach((size) => {
         it(`${size} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiContextMenuPanel title="Title" size={size} />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });
 
     describe('onClose', () => {
       test('renders a button as a title', () => {
-        const component = render(
+        const { container } = render(
           <EuiContextMenuPanel title="Title" onClose={() => {}} />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       test("isn't called upon instantiation", () => {
@@ -103,27 +104,27 @@ describe('EuiContextMenuPanel', () => {
         describe('with transitionType', () => {
           describe('in', () => {
             test('is rendered', () => {
-              const component = render(
+              const { container } = render(
                 <EuiContextMenuPanel
                   transitionDirection="next"
                   transitionType="in"
                 />
               );
 
-              expect(component).toMatchSnapshot();
+              expect(container.firstChild).toMatchSnapshot();
             });
           });
 
           describe('out', () => {
             test('is rendered', () => {
-              const component = render(
+              const { container } = render(
                 <EuiContextMenuPanel
                   transitionDirection="next"
                   transitionType="out"
                 />
               );
 
-              expect(component).toMatchSnapshot();
+              expect(container.firstChild).toMatchSnapshot();
             });
           });
         });
@@ -133,27 +134,27 @@ describe('EuiContextMenuPanel', () => {
         describe('with transitionType', () => {
           describe('in', () => {
             test('is rendered', () => {
-              const component = render(
+              const { container } = render(
                 <EuiContextMenuPanel
                   transitionDirection="previous"
                   transitionType="in"
                 />
               );
 
-              expect(component).toMatchSnapshot();
+              expect(container.firstChild).toMatchSnapshot();
             });
           });
 
           describe('out', () => {
             test('is rendered', () => {
-              const component = render(
+              const { container } = render(
                 <EuiContextMenuPanel
                   transitionDirection="previous"
                   transitionType="out"
                 />
               );
 
-              expect(component).toMatchSnapshot();
+              expect(container.firstChild).toMatchSnapshot();
             });
           });
         });

@@ -271,7 +271,7 @@ exports[`EuiDatePickerRange props inline renders 1`] = `
                 <div
                   aria-label="Button. Open the month selector. January is currently selected."
                   class="react-datepicker__month-read-view"
-                  style="visibility:visible"
+                  style="visibility: visible;"
                   tabindex="0"
                 >
                   <span
@@ -290,7 +290,7 @@ exports[`EuiDatePickerRange props inline renders 1`] = `
                 <div
                   aria-label="Button. Open the year selector. 2000 is currently selected."
                   class="react-datepicker__year-read-view"
-                  style="visibility:visible"
+                  style="visibility: visible;"
                   tabindex="0"
                 >
                   <span
@@ -721,7 +721,7 @@ exports[`EuiDatePickerRange props inline renders 1`] = `
                 <div
                   aria-label="Button. Open the month selector. January is currently selected."
                   class="react-datepicker__month-read-view"
-                  style="visibility:visible"
+                  style="visibility: visible;"
                   tabindex="0"
                 >
                   <span
@@ -740,7 +740,7 @@ exports[`EuiDatePickerRange props inline renders 1`] = `
                 <div
                   aria-label="Button. Open the year selector. 2000 is currently selected."
                   class="react-datepicker__year-read-view"
-                  style="visibility:visible"
+                  style="visibility: visible;"
                   tabindex="0"
                 >
                   <span
@@ -1162,6 +1162,7 @@ exports[`EuiDatePickerRange props isInvalid 1`] = `
             class="react-datepicker__input-container"
           >
             <input
+              aria-invalid="true"
               aria-label="Press the down key to open a popover containing a calendar."
               class="euiDatePicker euiFieldText euiDatePickerRange__start euiFormControlLayoutDelimited__input"
               type="text"
@@ -1189,6 +1190,7 @@ exports[`EuiDatePickerRange props isInvalid 1`] = `
             class="react-datepicker__input-container"
           >
             <input
+              aria-invalid="true"
               aria-label="Press the down key to open a popover containing a calendar."
               class="euiDatePicker euiFieldText euiDatePickerRange__end euiFormControlLayoutDelimited__input"
               type="text"

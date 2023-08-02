@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiDroppable can be given ReactElement children 1`] = `
+exports[`[React 17] EuiDroppable can be given ReactElement children 1`] = `
 <div
   class="euiDroppable euiDroppable--noGrow"
-  data-rbd-droppable-context-id="0"
-  data-rbd-droppable-id="testDroppable"
+  data-rfd-droppable-context-id="0"
+  data-rfd-droppable-id="testDroppable"
   data-test-subj="droppable"
 >
   <div />
@@ -14,11 +14,11 @@ exports[`EuiDroppable can be given ReactElement children 1`] = `
 </div>
 `;
 
-exports[`EuiDroppable can be given multiple ReactElement children 1`] = `
+exports[`[React 17] EuiDroppable can be given multiple ReactElement children 1`] = `
 <div
   class="euiDroppable euiDroppable--noGrow"
-  data-rbd-droppable-context-id="0"
-  data-rbd-droppable-id="testDroppable"
+  data-rfd-droppable-context-id="0"
+  data-rfd-droppable-id="testDroppable"
   data-test-subj="droppable"
 >
   <div />
@@ -30,11 +30,55 @@ exports[`EuiDroppable can be given multiple ReactElement children 1`] = `
 </div>
 `;
 
-exports[`EuiDroppable is rendered 1`] = `
+exports[`[React 17] EuiDroppable is rendered 1`] = `
 <div
   class="euiDroppable euiDroppable--noGrow"
-  data-rbd-droppable-context-id="0"
-  data-rbd-droppable-id="testDroppable"
+  data-rfd-droppable-context-id="0"
+  data-rfd-droppable-id="testDroppable"
+  data-test-subj="droppable"
+>
+  <div />
+  <div
+    class="euiDroppable__placeholder"
+  />
+</div>
+`;
+
+exports[`[React 18] EuiDroppable can be given ReactElement children 1`] = `
+<div
+  class="euiDroppable euiDroppable--noGrow"
+  data-rfd-droppable-context-id=":r3:"
+  data-rfd-droppable-id="testDroppable"
+  data-test-subj="droppable"
+>
+  <div />
+  <div
+    class="euiDroppable__placeholder"
+  />
+</div>
+`;
+
+exports[`[React 18] EuiDroppable can be given multiple ReactElement children 1`] = `
+<div
+  class="euiDroppable euiDroppable--noGrow"
+  data-rfd-droppable-context-id=":r6:"
+  data-rfd-droppable-id="testDroppable"
+  data-test-subj="droppable"
+>
+  <div />
+  <div />
+  <div />
+  <div
+    class="euiDroppable__placeholder"
+  />
+</div>
+`;
+
+exports[`[React 18] EuiDroppable is rendered 1`] = `
+<div
+  class="euiDroppable euiDroppable--noGrow"
+  data-rfd-droppable-context-id=":r0:"
+  data-rfd-droppable-id="testDroppable"
   data-test-subj="droppable"
 >
   <div />

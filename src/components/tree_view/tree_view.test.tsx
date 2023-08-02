@@ -9,8 +9,9 @@
 import React from 'react';
 import { EuiIcon } from '../icon';
 import { EuiToken } from '../token';
-import { render, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiTreeView } from './tree_view';
 
@@ -74,9 +75,11 @@ const items = [
 
 describe('EuiTreeView', () => {
   test('is rendered', () => {
-    const component = render(<EuiTreeView items={items} {...requiredProps} />);
+    const { container } = render(
+      <EuiTreeView items={items} {...requiredProps} />
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('length of open items', () => {

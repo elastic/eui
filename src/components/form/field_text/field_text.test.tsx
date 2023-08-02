@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
 
 import { EuiForm } from '../form';
 import { EuiFieldText } from './field_text';
@@ -26,7 +26,7 @@ jest.mock('../validatable_control', () => ({
 
 describe('EuiFieldText', () => {
   test('is rendered', () => {
-    const component = render(
+    const { container } = render(
       <EuiFieldText
         name="elastic"
         id="1"
@@ -39,56 +39,51 @@ describe('EuiFieldText', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     test('isInvalid is rendered', () => {
-      const component = render(<EuiFieldText isInvalid />);
+      const { container } = render(<EuiFieldText isInvalid />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('fullWidth is rendered', () => {
-      const component = render(<EuiFieldText fullWidth />);
+      const { container } = render(<EuiFieldText fullWidth />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('readOnly is rendered', () => {
-      const component = render(<EuiFieldText readOnly />);
+      const { container } = render(<EuiFieldText readOnly />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('isLoading is rendered', () => {
-      const component = render(<EuiFieldText isLoading />);
+      const { container } = render(<EuiFieldText isLoading />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     test('controlOnly is rendered', () => {
-      const component = render(<EuiFieldText controlOnly />);
+      const { container } = render(<EuiFieldText controlOnly />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
   describe('inherits', () => {
     test('fullWidth from <EuiForm />', () => {
-      const component = render(
+      const { getByRole } = render(
         <EuiForm fullWidth>
           <EuiFieldText />
         </EuiForm>
       );
 
-      if (
-        !component.find('.euiFieldText').hasClass('euiFieldText--fullWidth')
-      ) {
-        throw new Error(
-          'expected EuiFieldText to inherit fullWidth from EuiForm'
-        );
-      }
+      const input = getByRole('textbox');
+      expect(input).toHaveClass('euiFieldText--fullWidth');
     });
   });
 });

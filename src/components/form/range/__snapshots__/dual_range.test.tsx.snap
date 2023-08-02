@@ -59,6 +59,7 @@ exports[`EuiDualRange props isDraggable renders draggable track when isDraggable
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        data-test-subj="euiRangeHighlightProgress"
         style="margin-inline-start: 1%; inline-size: 7.000000000000001%;"
       />
     </div>
@@ -208,6 +209,7 @@ exports[`EuiDualRange props maxInputProps allows overriding default props 1`] = 
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        data-test-subj="euiRangeHighlightProgress"
         style="margin-inline-start: 1%; inline-size: 7.000000000000001%;"
       />
     </div>
@@ -301,6 +303,7 @@ exports[`EuiDualRange props maxInputProps applies passed props to max input 1`] 
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        data-test-subj="euiRangeHighlightProgress"
         style="margin-inline-start: 1%; inline-size: 7.000000000000001%;"
       />
     </div>
@@ -395,6 +398,7 @@ exports[`EuiDualRange props minInputProps allows overriding default props 1`] = 
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        data-test-subj="euiRangeHighlightProgress"
         style="margin-inline-start: 1%; inline-size: 7.000000000000001%;"
       />
     </div>
@@ -489,6 +493,7 @@ exports[`EuiDualRange props minInputProps applies passed props to min input 1`] 
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        data-test-subj="euiRangeHighlightProgress"
         style="margin-inline-start: 1%; inline-size: 7.000000000000001%;"
       />
     </div>
@@ -566,6 +571,7 @@ exports[`EuiDualRange props showLabels renders labels when showLabels=true 1`] =
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        data-test-subj="euiRangeHighlightProgress"
         style="margin-inline-start: 1%; inline-size: 7.000000000000001%;"
       />
     </div>
@@ -665,6 +671,7 @@ exports[`EuiDualRange props showRange renders range when showRange=true 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        data-test-subj="euiRangeHighlightProgress"
         style="margin-inline-start: 1%; inline-size: 7.000000000000001%;"
       />
     </div>
@@ -759,6 +766,7 @@ exports[`EuiDualRange props value accepts numbers 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        data-test-subj="euiRangeHighlightProgress"
         style="margin-inline-start: 1%; inline-size: 7.000000000000001%;"
       />
     </div>
@@ -815,6 +823,7 @@ exports[`EuiDualRange renders 1`] = `
     >
       <div
         class="euiRangeHighlight__progress emotion-euiRangeHighlight__progress"
+        data-test-subj="euiRangeHighlightProgress"
         style="margin-inline-start: 1%; inline-size: 7.000000000000001%;"
       />
     </div>

@@ -1,9 +1,3 @@
-// Themeable colors
-$euiHeaderBackgroundColor: $euiColorEmptyShade !default;
-
-// Layout vars
 $euiHeaderHeight: $euiSizeXXL + $euiSizeS !default;
-$euiHeaderChildSize: $euiSizeXXL !default;
-
 // Use the following variable in other components to afford for the fixed header
 $euiHeaderHeightCompensation: $euiHeaderHeight !default;

@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiSuperSelectControl is rendered 1`] = `
-Array [
+<div>
   <input
     type="hidden"
     value=""
-  />,
+  />
   <div
     class="euiFormControlLayout"
   >
@@ -33,16 +33,16 @@ Array [
         </span>
       </div>
     </div>
-  </div>,
-]
+  </div>
+</div>
 `;
 
 exports[`EuiSuperSelectControl props compressed is rendered 1`] = `
-Array [
+<div>
   <input
     type="hidden"
     value=""
-  />,
+  />
   <div
     class="euiFormControlLayout euiFormControlLayout--compressed"
   >
@@ -68,16 +68,16 @@ Array [
         </span>
       </div>
     </div>
-  </div>,
-]
+  </div>
+</div>
 `;
 
 exports[`EuiSuperSelectControl props disabled options are rendered 1`] = `
-Array [
+<div>
   <input
     type="hidden"
     value=""
-  />,
+  />
   <div
     class="euiFormControlLayout"
   >
@@ -103,16 +103,16 @@ Array [
         </span>
       </div>
     </div>
-  </div>,
-]
+  </div>
+</div>
 `;
 
 exports[`EuiSuperSelectControl props empty value option is rendered 1`] = `
-Array [
+<div>
   <input
     type="hidden"
     value=""
-  />,
+  />
   <div
     class="euiFormControlLayout"
   >
@@ -138,16 +138,16 @@ Array [
         </span>
       </div>
     </div>
-  </div>,
-]
+  </div>
+</div>
 `;
 
 exports[`EuiSuperSelectControl props fullWidth is rendered 1`] = `
-Array [
+<div>
   <input
     type="hidden"
     value=""
-  />,
+  />
   <div
     class="euiFormControlLayout euiFormControlLayout--fullWidth"
   >
@@ -173,16 +173,16 @@ Array [
         </span>
       </div>
     </div>
-  </div>,
-]
+  </div>
+</div>
 `;
 
 exports[`EuiSuperSelectControl props isInvalid is rendered 1`] = `
-Array [
+<div>
   <input
     type="hidden"
     value=""
-  />,
+  />
   <div
     class="euiFormControlLayout"
   >
@@ -212,16 +212,16 @@ Array [
         </span>
       </div>
     </div>
-  </div>,
-]
+  </div>
+</div>
 `;
 
 exports[`EuiSuperSelectControl props isLoading is rendered 1`] = `
-Array [
+<div>
   <input
     type="hidden"
     value=""
-  />,
+  />
   <div
     class="euiFormControlLayout"
   >
@@ -252,16 +252,16 @@ Array [
         </span>
       </div>
     </div>
-  </div>,
-]
+  </div>
+</div>
 `;
 
 exports[`EuiSuperSelectControl props placeholder is rendered 1`] = `
-Array [
+<div>
   <input
     type="hidden"
     value=""
-  />,
+  />
   <div
     class="euiFormControlLayout"
   >
@@ -293,16 +293,16 @@ Array [
         </span>
       </div>
     </div>
-  </div>,
-]
+  </div>
+</div>
 `;
 
 exports[`EuiSuperSelectControl props value option is rendered 1`] = `
-Array [
+<div>
   <input
     type="hidden"
     value="1"
-  />,
+  />
   <div
     class="euiFormControlLayout"
   >
@@ -330,6 +330,6 @@ Array [
         </span>
       </div>
     </div>
-  </div>,
-]
+  </div>
+</div>
 `;

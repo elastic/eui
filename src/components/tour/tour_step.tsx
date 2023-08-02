@@ -12,7 +12,6 @@ import React, {
   ReactElement,
   ReactNode,
   useEffect,
-  useRef,
   useState,
 } from 'react';
 import classNames from 'classnames';
@@ -164,9 +163,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
     );
   }
 
-  const [hasValidAnchor, setHasValidAnchor] = useState<boolean>(false);
-  const animationFrameId = useRef<number>();
-  const anchorNode = useRef<HTMLElement | null>(null);
+  const [anchorNode, setAnchorNode] = useState<HTMLElement | null>(null);
   const [popoverPosition, setPopoverPosition] = useState<EuiPopoverPosition>();
 
   const onPositionChange = (position: EuiPopoverPosition) => {
@@ -174,16 +171,21 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   };
 
   useEffect(() => {
+    let timeout: number;
     if (anchor) {
-      animationFrameId.current = window.requestAnimationFrame(() => {
-        anchorNode.current = findElementBySelectorOrRef(anchor);
-        setHasValidAnchor(anchorNode.current ? true : false);
+      // Wait until next tick to find anchor node in case it's not already
+      // in DOM requestAnimationFrame isn't used here because we don't need to
+      // synchronize with repainting ticks and the updated value still
+      // needs to go through a react DOM rerender which may take more than
+      // 1 frame (16ms) of time.
+      // TODO: It would be ideal to have some kind of intersection observer here instead
+      timeout = window.setTimeout(() => {
+        setAnchorNode(findElementBySelectorOrRef(anchor));
       });
     }
 
     return () => {
-      animationFrameId.current &&
-        window.cancelAnimationFrame(animationFrameId.current);
+      timeout && window.clearTimeout(timeout);
     };
   }, [anchor]);
 
@@ -332,8 +334,8 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
     );
   }
 
-  return hasValidAnchor && anchorNode.current ? (
-    <EuiWrappingPopover button={anchorNode.current} {...popoverProps}>
+  return anchorNode ? (
+    <EuiWrappingPopover button={anchorNode} {...popoverProps}>
       {layout}
     </EuiWrappingPopover>
   ) : null;

@@ -10,8 +10,7 @@
       "trigger_comment_regex": "^(?:(?:buildkite\\W+)?(?:build|test)\\W+(?:this|it))",
       "always_trigger_comment_regex": "^(?:(?:buildkite\\W+)?(?:build|test)\\W+(?:this|it))",
       "set_commit_status": true,
-      "skip_ci_on_only_changed": ["^.github/", "^generator-eui/", "^wiki/"],
-      "target_branch": "feature/buildkite-migration"
+      "skip_ci_on_only_changed": ["^.github/", "^generator-eui/", "^wiki/"]
     }
   ]
 }

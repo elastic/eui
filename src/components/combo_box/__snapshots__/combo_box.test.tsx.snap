@@ -19,7 +19,7 @@ exports[`EuiComboBox is rendered 1`] = `
       >
         <div
           class="euiComboBox__input"
-          style="font-size:14px;display:inline-block"
+          style="font-size: 14px; display: inline-block;"
         >
           <input
             aria-autocomplete="list"
@@ -30,11 +30,11 @@ exports[`EuiComboBox is rendered 1`] = `
             data-test-subj="comboBoxSearchInput"
             id="generated-id__eui-combobox-id"
             role="combobox"
-            style="box-sizing:content-box;width:1px"
+            style="box-sizing: content-box; width: 2px;"
             value=""
           />
           <div
-            style="position:absolute;top:0;left:0;visibility:hidden;height:0;overflow:scroll;white-space:pre"
+            style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-size: 14px; font-family: 'Inter',BlinkMacSystemFont,Helvetica,Arial,sans-serif; font-weight: 400; letter-spacing: normal; text-transform: none;"
           />
         </div>
       </div>
@@ -423,6 +423,200 @@ exports[`props isDisabled is rendered 1`] = `
 </div>
 `;
 
+exports[`props option.prepend & option.append renders in pills 1`] = `
+Array [
+  <span
+    class="euiBadge euiComboBoxPill emotion-euiBadge-hollow"
+    data-test-subj="euiComboBoxPill"
+    title="1"
+  >
+    <span
+      class="euiBadge__content emotion-euiBadge__content"
+    >
+      <span
+        class="euiBadge__text emotion-euiBadge__text"
+      >
+        <span
+          class="euiComboBoxPill__prepend"
+        >
+          <span
+            data-test-subj="prepend"
+          >
+            Pre
+          </span>
+        </span>
+        1
+      </span>
+      <button
+        aria-label="Remove 1 from selection in this group"
+        class="euiBadge__iconButton emotion-euiBadge__iconButton-right"
+        title="Remove 1 from selection in this group"
+        type="button"
+      >
+        <span
+          class="euiBadge__icon emotion-euiBadge__icon-right"
+          color="inherit"
+          data-euiicon-type="cross"
+        />
+      </button>
+    </span>
+  </span>,
+  <span
+    class="euiBadge euiComboBoxPill emotion-euiBadge-hollow"
+    data-test-subj="euiComboBoxPill"
+    title="2"
+  >
+    <span
+      class="euiBadge__content emotion-euiBadge__content"
+    >
+      <span
+        class="euiBadge__text emotion-euiBadge__text"
+      >
+        2
+        <span
+          class="euiComboBoxPill__append"
+        >
+          <span
+            data-test-subj="append"
+          >
+            Post
+          </span>
+        </span>
+      </span>
+      <button
+        aria-label="Remove 2 from selection in this group"
+        class="euiBadge__iconButton emotion-euiBadge__iconButton-right"
+        title="Remove 2 from selection in this group"
+        type="button"
+      >
+        <span
+          class="euiBadge__icon emotion-euiBadge__icon-right"
+          color="inherit"
+          data-euiicon-type="cross"
+        />
+      </button>
+    </span>
+  </span>,
+]
+`;
+
+exports[`props option.prepend & option.append renders in single selection 1`] = `
+<span
+  class="euiComboBoxPill euiComboBoxPill--plainText"
+  data-test-subj="euiComboBoxPill"
+>
+  <span
+    class="euiComboBoxPill__prepend"
+  >
+    <span
+      data-test-subj="prepend"
+    >
+      Pre
+    </span>
+  </span>
+  1
+</span>
+`;
+
+exports[`props option.prepend & option.append renders in the options dropdown 1`] = `
+<div
+  class="euiPanel euiPanel--plain euiPopover__panel euiComboBoxOptionsList emotion-euiPanel-grow-m-plain-euiPopover__panel-isOpen-bottom-isOpen-bottom"
+  data-popover-open="true"
+  data-popover-panel="true"
+  data-test-subj="comboBoxOptionsList"
+  style="z-index: 100;"
+>
+  <div
+    class="euiComboBoxOptionsList__rowWrap"
+  >
+    <div
+      style="position: relative; height: 60px; width: 0px; overflow: auto; will-change: transform; direction: ltr;"
+    >
+      <div
+        aria-label="Choose from the following options"
+        id="generated-id_listbox"
+        role="listbox"
+        style="height: 58px; width: 100%;"
+        tabindex="0"
+      >
+        <button
+          aria-selected="false"
+          class="euiFilterSelectItem emotion-euiFilterSelectItem"
+          id="generated-id__option-0"
+          role="option"
+          style="position: absolute; left: 0px; top: 0px; height: 29px; width: 100%;"
+          title="1"
+          type="button"
+        >
+          <span
+            class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+          >
+            <span
+              class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
+            >
+              <span
+                class="euiComboBoxOption__contentWrapper"
+              >
+                <span
+                  class="euiComboBoxOption__prepend"
+                >
+                  <span
+                    data-test-subj="prepend"
+                  >
+                    Pre
+                  </span>
+                </span>
+                <span
+                  class="euiComboBoxOption__content"
+                >
+                  1
+                </span>
+              </span>
+            </span>
+          </span>
+        </button>
+        <button
+          aria-selected="false"
+          class="euiFilterSelectItem emotion-euiFilterSelectItem"
+          id="generated-id__option-1"
+          role="option"
+          style="position: absolute; left: 0px; top: 29px; height: 29px; width: 100%;"
+          title="2"
+          type="button"
+        >
+          <span
+            class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
+          >
+            <span
+              class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
+            >
+              <span
+                class="euiComboBoxOption__contentWrapper"
+              >
+                <span
+                  class="euiComboBoxOption__content"
+                >
+                  2
+                </span>
+                <span
+                  class="euiComboBoxOption__append"
+                >
+                  <span
+                    data-test-subj="append"
+                  >
+                    Post
+                  </span>
+                </span>
+              </span>
+            </span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`props options list is rendered 1`] = `
 <div
   class="euiComboBox euiComboBox-isOpen"
@@ -502,7 +696,7 @@ exports[`props options list is rendered 1`] = `
         >
           <button
             aria-selected="false"
-            class="euiFilterSelectItem"
+            class="euiFilterSelectItem emotion-euiFilterSelectItem"
             data-test-subj="titanOption"
             id="generated-id__option-0"
             role="option"
@@ -514,7 +708,7 @@ exports[`props options list is rendered 1`] = `
               class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
             >
               <span
-                class="euiFlexItem euiFilterSelectItem__content emotion-euiFlexItem-grow-1"
+                class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
               >
                 <span
                   class="euiComboBoxOption__contentWrapper"
@@ -530,7 +724,7 @@ exports[`props options list is rendered 1`] = `
           </button>
           <button
             aria-selected="false"
-            class="euiFilterSelectItem"
+            class="euiFilterSelectItem emotion-euiFilterSelectItem"
             id="generated-id__option-1"
             role="option"
             style="position: absolute; left: 0px; top: 29px; height: 29px; width: 100%;"
@@ -541,7 +735,7 @@ exports[`props options list is rendered 1`] = `
               class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
             >
               <span
-                class="euiFlexItem euiFilterSelectItem__content emotion-euiFlexItem-grow-1"
+                class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
               >
                 <span
                   class="euiComboBoxOption__contentWrapper"
@@ -557,7 +751,7 @@ exports[`props options list is rendered 1`] = `
           </button>
           <button
             aria-selected="false"
-            class="euiFilterSelectItem"
+            class="euiFilterSelectItem emotion-euiFilterSelectItem"
             id="generated-id__option-2"
             role="option"
             style="position: absolute; left: 0px; top: 58px; height: 29px; width: 100%;"
@@ -568,7 +762,7 @@ exports[`props options list is rendered 1`] = `
               class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
             >
               <span
-                class="euiFlexItem euiFilterSelectItem__content emotion-euiFlexItem-grow-1"
+                class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
               >
                 <span
                   class="euiComboBoxOption__contentWrapper"
@@ -584,7 +778,7 @@ exports[`props options list is rendered 1`] = `
           </button>
           <button
             aria-selected="false"
-            class="euiFilterSelectItem"
+            class="euiFilterSelectItem emotion-euiFilterSelectItem"
             id="generated-id__option-3"
             role="option"
             style="position: absolute; left: 0px; top: 87px; height: 29px; width: 100%;"
@@ -595,7 +789,7 @@ exports[`props options list is rendered 1`] = `
               class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
             >
               <span
-                class="euiFlexItem euiFilterSelectItem__content emotion-euiFlexItem-grow-1"
+                class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
               >
                 <span
                   class="euiComboBoxOption__contentWrapper"
@@ -611,7 +805,7 @@ exports[`props options list is rendered 1`] = `
           </button>
           <button
             aria-selected="false"
-            class="euiFilterSelectItem"
+            class="euiFilterSelectItem emotion-euiFilterSelectItem"
             id="generated-id__option-4"
             role="option"
             style="position: absolute; left: 0px; top: 116px; height: 29px; width: 100%;"
@@ -622,7 +816,7 @@ exports[`props options list is rendered 1`] = `
               class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
             >
               <span
-                class="euiFlexItem euiFilterSelectItem__content emotion-euiFlexItem-grow-1"
+                class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
               >
                 <span
                   class="euiComboBoxOption__contentWrapper"
@@ -638,7 +832,7 @@ exports[`props options list is rendered 1`] = `
           </button>
           <button
             aria-selected="false"
-            class="euiFilterSelectItem"
+            class="euiFilterSelectItem emotion-euiFilterSelectItem"
             id="generated-id__option-5"
             role="option"
             style="position: absolute; left: 0px; top: 145px; height: 29px; width: 100%;"
@@ -649,7 +843,7 @@ exports[`props options list is rendered 1`] = `
               class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
             >
               <span
-                class="euiFlexItem euiFilterSelectItem__content emotion-euiFlexItem-grow-1"
+                class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
               >
                 <span
                   class="euiComboBoxOption__contentWrapper"
@@ -665,7 +859,7 @@ exports[`props options list is rendered 1`] = `
           </button>
           <button
             aria-selected="false"
-            class="euiFilterSelectItem"
+            class="euiFilterSelectItem emotion-euiFilterSelectItem"
             id="generated-id__option-6"
             role="option"
             style="position: absolute; left: 0px; top: 174px; height: 29px; width: 100%;"
@@ -676,7 +870,7 @@ exports[`props options list is rendered 1`] = `
               class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
             >
               <span
-                class="euiFlexItem euiFilterSelectItem__content emotion-euiFlexItem-grow-1"
+                class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
               >
                 <span
                   class="euiComboBoxOption__contentWrapper"
@@ -692,7 +886,7 @@ exports[`props options list is rendered 1`] = `
           </button>
           <button
             aria-selected="false"
-            class="euiFilterSelectItem"
+            class="euiFilterSelectItem emotion-euiFilterSelectItem"
             id="generated-id__option-7"
             role="option"
             style="position: absolute; left: 0px; top: 203px; height: 29px; width: 100%;"
@@ -703,7 +897,7 @@ exports[`props options list is rendered 1`] = `
               class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
             >
               <span
-                class="euiFlexItem euiFilterSelectItem__content emotion-euiFlexItem-grow-1"
+                class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
               >
                 <span
                   class="euiComboBoxOption__contentWrapper"
@@ -719,7 +913,7 @@ exports[`props options list is rendered 1`] = `
           </button>
           <button
             aria-selected="false"
-            class="euiFilterSelectItem"
+            class="euiFilterSelectItem emotion-euiFilterSelectItem"
             id="generated-id__option-8"
             role="option"
             style="position: absolute; left: 0px; top: 232px; height: 29px; width: 100%;"
@@ -730,7 +924,7 @@ exports[`props options list is rendered 1`] = `
               class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-center-row"
             >
               <span
-                class="euiFlexItem euiFilterSelectItem__content emotion-euiFlexItem-grow-1"
+                class="euiFlexItem euiFilterSelectItem__content eui-textTruncate emotion-euiFlexItem-grow-1"
               >
                 <span
                   class="euiComboBoxOption__contentWrapper"

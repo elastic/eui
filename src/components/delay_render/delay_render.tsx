@@ -6,9 +6,9 @@
  * Side Public License, v 1.
  */
 
-import { Component } from 'react';
+import { Component, PropsWithChildren } from 'react';
 
-export interface EuiDelayRenderProps {
+export interface EuiDelayRenderProps extends PropsWithChildren {
   delay: number;
 }
 

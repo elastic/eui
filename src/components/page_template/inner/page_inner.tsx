@@ -19,7 +19,8 @@ import { euiPageInnerStyles } from './page_inner.styles';
 export type ComponentTypes = keyof JSX.IntrinsicElements | ComponentType;
 
 export type _EuiPageInnerProps<T extends ComponentTypes = 'main'> =
-  CommonProps &
+  PropsWithChildren &
+    CommonProps &
     ComponentProps<T> & {
       /**
        * Sets which HTML element to render.
@@ -52,7 +53,7 @@ export const _EuiPageInner = <T extends ComponentTypes>({
   paddingSize = 'none',
   responsive = ['xs', 's'],
   ...rest
-}: PropsWithChildren<_EuiPageInnerProps<T>>) => {
+}: _EuiPageInnerProps<T>) => {
   const themeContext = useEuiTheme();
   const isResponding = useIsWithinBreakpoints(responsive);
   const styles = euiPageInnerStyles(themeContext);

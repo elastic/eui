@@ -1,6 +1,9 @@
 # 🏠/.buildkite/pipelines/pipeline_pull_request_test.yml
 
 steps:
-  - label: ":hammer: EUI pull request test"
-    command: "echo 'This will run our EUI tests!'"
-
+  - agents:
+      provider: "gcp"
+    command: .buildkite/scripts/pipeline_test.sh
+    if: build.branch != "main" # We're skipping testing commits in main for now to maintain parity with previous Jenkins setup
+    artifact_paths:
+      - "cypress/screenshots/**/*.png"

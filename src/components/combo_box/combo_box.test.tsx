@@ -7,7 +7,9 @@
  */
 
 import React, { ReactNode } from 'react';
-import { shallow, render, mount } from 'enzyme';
+import { act, fireEvent } from '@testing-library/react';
+import { shallow, mount } from 'enzyme';
+import { render } from '../../test/rtl';
 import {
   requiredProps,
   findTestSubject,
@@ -63,9 +65,9 @@ const options: TitanOption[] = [
 
 describe('EuiComboBox', () => {
   test('is rendered', () => {
-    const component = render(<EuiComboBox {...requiredProps} />);
+    const { container } = render(<EuiComboBox {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('supports thousands of options in an options group', () => {
@@ -89,7 +91,9 @@ describe('props', () => {
       />
     );
 
-    component.setState({ isListOpen: true });
+    act(() => {
+      component.setState({ isListOpen: true });
+    });
     expect(takeMountedSnapshot(component)).toMatchSnapshot();
   });
 
@@ -114,6 +118,50 @@ describe('props', () => {
     );
 
     expect(component).toMatchSnapshot();
+  });
+
+  describe('option.prepend & option.append', () => {
+    const options = [
+      { label: '1', prepend: <span data-test-subj="prepend">Pre</span> },
+      { label: '2', append: <span data-test-subj="append">Post</span> },
+    ];
+
+    test('renders in pills', () => {
+      const { getByTestSubject, getAllByTestSubject } = render(
+        <EuiComboBox options={options} selectedOptions={options} />
+      );
+
+      expect(getByTestSubject('prepend')).toBeInTheDocument();
+      expect(getByTestSubject('append')).toBeInTheDocument();
+      expect(getAllByTestSubject('euiComboBoxPill')).toMatchSnapshot();
+    });
+
+    test('renders in the options dropdown', () => {
+      const component = mount(<EuiComboBox options={options} />);
+
+      act(() => {
+        component.setState({ isListOpen: true });
+      });
+
+      const dropdown = component.find(
+        'div[data-test-subj="comboBoxOptionsList"]'
+      );
+      expect(dropdown.find('.euiComboBoxOption__prepend')).toHaveLength(1);
+      expect(dropdown.find('.euiComboBoxOption__append')).toHaveLength(1);
+      expect(dropdown.render()).toMatchSnapshot();
+    });
+
+    test('renders in single selection', () => {
+      const { getByTestSubject } = render(
+        <EuiComboBox
+          options={options}
+          selectedOptions={[options[0]]}
+          singleSelection={{ asPlainText: true }}
+        />
+      );
+
+      expect(getByTestSubject('euiComboBoxPill')).toMatchSnapshot();
+    });
   });
 
   describe('isClearable=false disallows user from clearing input', () => {
@@ -255,18 +303,22 @@ test('does not show multiple checkmarks with duplicate labels', () => {
       label: 'Tethys',
     },
   ];
-  const component = mount(
+  const { baseElement, getByTestSubject } = render(
     <EuiComboBox
       singleSelection={{ asPlainText: true }}
       options={options}
       selectedOptions={[options[1]]}
     />
   );
+  fireEvent.focus(getByTestSubject('comboBoxSearchInput'));
 
-  const searchInput = findTestSubject(component, 'comboBoxSearchInput');
-  searchInput.simulate('focus');
-
-  expect(component.find('EuiFilterSelectItem[checked="on"]').length).toBe(1);
+  const dropdownOptions = baseElement.querySelectorAll('.euiFilterSelectItem');
+  expect(
+    dropdownOptions[0]!.querySelector('[data-euiicon-type="check"]')
+  ).toBeFalsy();
+  expect(
+    dropdownOptions[1]!.querySelector('[data-euiicon-type="check"]')
+  ).toBeTruthy();
 });
 
 describe('behavior', () => {
@@ -282,10 +334,16 @@ describe('behavior', () => {
         />
       );
 
-      component.setState({ searchValue: 'foo' });
-      const searchInput = findTestSubject(component, 'comboBoxSearchInput');
-      searchInput.simulate('focus');
-      searchInput.simulate('keyDown', { key: comboBoxKeys.ENTER });
+      act(() => {
+        component.setState({ searchValue: 'foo' });
+      });
+
+      act(() => {
+        const searchInput = findTestSubject(component, 'comboBoxSearchInput');
+        searchInput.simulate('focus');
+        searchInput.simulate('keyDown', { key: comboBoxKeys.ENTER });
+      });
+
       expect(onCreateOptionHandler).toHaveBeenCalledTimes(1);
       expect(onCreateOptionHandler).toHaveBeenNthCalledWith(1, 'foo', options);
     });
@@ -344,15 +402,20 @@ describe('behavior', () => {
         />
       );
 
-      component.setState({ searchValue: 'foo' });
       const searchInput = findTestSubject(component, 'comboBoxSearchInput');
-      searchInput.simulate('focus');
 
-      const searchInputNode = searchInput.getDOMNode();
-      // React doesn't support `focusout` so we have to manually trigger it
-      searchInputNode.dispatchEvent(
-        new FocusEvent('focusout', { bubbles: true })
-      );
+      act(() => {
+        component.setState({ searchValue: 'foo' });
+        searchInput.simulate('focus');
+      });
+
+      act(() => {
+        const searchInputNode = searchInput.getDOMNode();
+        // React doesn't support `focusout` so we have to manually trigger it
+        searchInputNode.dispatchEvent(
+          new FocusEvent('focusout', { bubbles: true })
+        );
+      });
 
       expect(onCreateOptionHandler).toHaveBeenCalledTimes(1);
       expect(onCreateOptionHandler).toHaveBeenNthCalledWith(1, 'foo', options);

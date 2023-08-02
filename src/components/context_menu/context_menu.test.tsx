@@ -7,11 +7,12 @@
  */
 
 import React from 'react';
-import { render, mount } from 'enzyme';
+import { mount } from 'enzyme';
+import { act } from '@testing-library/react';
 import { requiredProps, takeMountedSnapshot } from '../../test';
+import { render } from '../../test/rtl';
 
 import { EuiContextMenu, SIZES } from './context_menu';
-import { setTimeout } from 'timers';
 
 const panel3 = {
   id: 3,
@@ -64,27 +65,25 @@ const panel0 = {
 const panels = [panel0, panel1, panel2, panel3];
 
 export const tick = (ms = 0) =>
-  new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
+  act(() => new Promise((resolve) => setTimeout(resolve, ms)));
 
 describe('EuiContextMenu', () => {
   test('is rendered', () => {
-    const component = render(<EuiContextMenu {...requiredProps} />);
+    const { container } = render(<EuiContextMenu {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('panel item can contain JSX', () => {
-    const component = render(
+    const { container } = render(
       <EuiContextMenu panels={panels} initialPanelId={3} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('panel item can be a separator line', () => {
-    const component = render(
+    const { container } = render(
       <EuiContextMenu
         panels={[
           {
@@ -101,11 +100,11 @@ describe('EuiContextMenu', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('can pass-through horizontal rule props', () => {
-    const component = render(
+    const { container } = render(
       <EuiContextMenu
         panels={[
           {
@@ -125,17 +124,17 @@ describe('EuiContextMenu', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('panels and initialPanelId', () => {
       it('renders the referenced panel', () => {
-        const component = render(
+        const { container } = render(
           <EuiContextMenu panels={panels} initialPanelId={2} />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       it('allows you to click the title button to go back to the previous panel', async () => {
@@ -170,11 +169,11 @@ describe('EuiContextMenu', () => {
     describe('size', () => {
       SIZES.forEach((size) => {
         it(`${size} is rendered`, () => {
-          const component = render(
+          const { container } = render(
             <EuiContextMenu panels={panels} initialPanelId={2} size={size} />
           );
 
-          expect(component).toMatchSnapshot();
+          expect(container.firstChild).toMatchSnapshot();
         });
       });
     });

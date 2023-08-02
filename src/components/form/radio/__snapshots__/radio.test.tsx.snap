@@ -10,6 +10,7 @@ exports[`EuiRadio is rendered 1`] = `
     class="euiRadio__input"
     id="id"
     type="radio"
+    value=""
   />
   <div
     class="euiRadio__circle"
@@ -26,6 +27,7 @@ exports[`EuiRadio props checked is rendered 1`] = `
     class="euiRadio__input"
     id="id"
     type="radio"
+    value=""
   />
   <div
     class="euiRadio__circle"
@@ -42,6 +44,7 @@ exports[`EuiRadio props disabled is rendered 1`] = `
     disabled=""
     id="id"
     type="radio"
+    value=""
   />
   <div
     class="euiRadio__circle"
@@ -57,6 +60,7 @@ exports[`EuiRadio props label is rendered 1`] = `
     class="euiRadio__input"
     id="id"
     type="radio"
+    value=""
   />
   <div
     class="euiRadio__circle"
@@ -80,6 +84,7 @@ exports[`EuiRadio props labelProps is rendered 1`] = `
     class="euiRadio__input"
     id="id"
     type="radio"
+    value=""
   />
   <div
     class="euiRadio__circle"

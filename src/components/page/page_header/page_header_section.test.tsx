@@ -7,15 +7,15 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
 
 import { EuiPageHeaderSection } from './page_header_section';
 
 describe('EuiPageHeaderSection', () => {
   test('is rendered', () => {
-    const component = render(<EuiPageHeaderSection {...requiredProps} />);
+    const { container } = render(<EuiPageHeaderSection {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

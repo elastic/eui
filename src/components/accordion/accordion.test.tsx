@@ -7,9 +7,10 @@
  */
 
 import React from 'react';
-import { render, mount } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
+import { mount } from 'enzyme';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test/required_props';
+import { render } from '../../test/rtl';
 
 import { EuiAccordion } from './accordion';
 
@@ -22,140 +23,142 @@ describe('EuiAccordion', () => {
   });
 
   test('is rendered', () => {
-    const component = render(<EuiAccordion id={getId()} {...requiredProps} />);
+    const { container } = render(
+      <EuiAccordion id={getId()} {...requiredProps} />
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('element', () => {
       it('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiAccordion id={getId()} element="fieldset" />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('buttonContentClassName', () => {
       it('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiAccordion
             id={getId()}
             buttonContentClassName="button content class name"
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('buttonContent', () => {
       it('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiAccordion
             id={getId()}
             buttonContent={<div>Button content</div>}
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('buttonProps', () => {
       it('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiAccordion id={getId()} buttonProps={requiredProps} />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('buttonElement', () => {
       it('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiAccordion id={getId()} buttonElement="div" />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('extraAction', () => {
       it('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiAccordion
             id={getId()}
             extraAction={<button>Extra action</button>}
           />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('initialIsOpen', () => {
       it('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiAccordion id={getId()} initialIsOpen={true}>
             <p>You can see me.</p>
           </EuiAccordion>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('arrowDisplay', () => {
       it('right is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiAccordion id={getId()} arrowDisplay="right" />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       it('none is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiAccordion id={getId()} arrowDisplay="none" />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('arrowProps', () => {
       it('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiAccordion id={getId()} arrowProps={requiredProps} />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('forceState', () => {
       it('closed is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiAccordion id={getId()} forceState="closed">
             <p>You can not see me</p>
           </EuiAccordion>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       it('open is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiAccordion id={getId()} forceState="open">
             <p>You can see me</p>
           </EuiAccordion>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
 
       it('accepts and calls an optional callback on click', () => {
@@ -176,28 +179,28 @@ describe('EuiAccordion', () => {
 
     describe('isLoading', () => {
       it('is rendered', () => {
-        const component = render(<EuiAccordion id={getId()} isLoading />);
+        const { container } = render(<EuiAccordion id={getId()} isLoading />);
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 
     describe('isLoadingMessage', () => {
       it('is rendered', () => {
-        const component = render(
+        const { container } = render(
           <EuiAccordion id={getId()} isLoadingMessage="Please wait" isLoading />
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
   });
 
   describe('isDisabled', () => {
     it('is rendered', () => {
-      const component = render(<EuiAccordion id={getId()} isDisabled />);
+      const { container } = render(<EuiAccordion id={getId()} isDisabled />);
 
-      expect(component).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 

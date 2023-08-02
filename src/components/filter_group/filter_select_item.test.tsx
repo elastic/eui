@@ -7,15 +7,18 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { render } from '../../test/rtl';
 import { requiredProps } from '../../test';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiFilterSelectItem } from './filter_select_item';
 
 describe('EuiFilterSelectItem', () => {
-  test('is rendered', () => {
-    const component = render(<EuiFilterSelectItem {...requiredProps} />);
+  shouldRenderCustomStyles(<EuiFilterSelectItem />);
 
-    expect(component).toMatchSnapshot();
+  it('renders', () => {
+    const { container } = render(<EuiFilterSelectItem {...requiredProps} />);
+
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

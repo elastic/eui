@@ -7,13 +7,14 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import { mount, ReactWrapper, render } from 'enzyme';
+import { mount, ReactWrapper } from 'enzyme';
 import { EuiDataGrid } from './';
 import { EuiDataGridProps } from './data_grid_types';
 import { findTestSubject, requiredProps } from '../../test';
+import { render } from '../../test/rtl';
 import { EuiDataGridColumnResizer } from './body/header/data_grid_column_resizer';
 import { keys } from '../../services';
-import { act } from 'react-dom/test-utils';
+import { act } from '@testing-library/react';
 
 // Mock the cell popover (TODO: Move failing tests to Cypress and remove need for mock?)
 jest.mock('../popover', () => ({
@@ -91,12 +92,15 @@ function resizeColumn(
   const firstResizer = datagrid
     .find(`EuiDataGridColumnResizer[columnId="${columnId}"]`)
     .instance() as EuiDataGridColumnResizer;
-  firstResizer.onMouseDown({
-    pageX: originalWidth,
-    stopPropagation: () => {},
-    preventDefault: () => {},
-  } as React.MouseEvent<HTMLDivElement>);
-  firstResizer.onMouseMove({ pageX: columnWidth });
+
+  act(() => {
+    firstResizer.onMouseDown({
+      pageX: originalWidth,
+      stopPropagation: () => {},
+      preventDefault: () => {},
+    } as React.MouseEvent<HTMLDivElement>);
+  });
+  act(() => firstResizer.onMouseMove({ pageX: columnWidth }));
   act(() => firstResizer.onMouseUp());
 
   datagrid.update();
@@ -467,7 +471,7 @@ describe('EuiDataGrid', () => {
     });
 
     it('renders with common and div attributes', () => {
-      const component = render(
+      const { container } = render(
         <EuiDataGrid
           {...requiredProps}
           columns={[{ id: 'A' }, { id: 'B' }]}
@@ -482,11 +486,11 @@ describe('EuiDataGrid', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
     });
 
     it('renders custom column headers', () => {
-      const component = render(
+      const { container } = render(
         <EuiDataGrid
           {...requiredProps}
           columns={[
@@ -504,7 +508,7 @@ describe('EuiDataGrid', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
     });
 
     it('renders and applies custom props', () => {
@@ -648,7 +652,7 @@ describe('EuiDataGrid', () => {
     });
 
     it('renders additional toolbar controls', () => {
-      const component = render(
+      const { container } = render(
         <EuiDataGrid
           {...requiredProps}
           columns={[{ id: 'A' }, { id: 'B' }]}
@@ -664,11 +668,11 @@ describe('EuiDataGrid', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
     });
 
     it('renders control columns', () => {
-      const component = render(
+      const { container } = render(
         <EuiDataGrid
           {...requiredProps}
           columns={[{ id: 'A' }, { id: 'B' }]}
@@ -702,9 +706,9 @@ describe('EuiDataGrid', () => {
         />
       );
 
-      expect(component).toMatchSnapshot();
-      expect(component.find('.leadingControlCol')).toHaveLength(1);
-      expect(component.find('.trailingControlCol')).toHaveLength(1);
+      expect(container).toMatchSnapshot();
+      expect(container.querySelector('.leadingControlCol')).toBeDefined();
+      expect(container.querySelector('.trailingControlCol')).toBeDefined();
     });
 
     it('can hide the toolbar', () => {
@@ -1171,9 +1175,12 @@ describe('EuiDataGrid', () => {
         ['2'],
       ]);
 
-      findTestSubject(component, 'tablePaginationPopoverButton').simulate(
-        'click'
-      );
+      act(() => {
+        findTestSubject(component, 'tablePaginationPopoverButton').simulate(
+          'click'
+        );
+      });
+
       const rowButtons: NodeListOf<HTMLButtonElement> =
         document.body.querySelectorAll('.euiContextMenuItem');
       expect(
@@ -1182,7 +1189,10 @@ describe('EuiDataGrid', () => {
           (button: HTMLDivElement) => button.textContent || ''
         )
       ).toEqual(['3 rows', '6 rows', '10 rows']);
-      rowButtons[1].click();
+
+      act(() => {
+        rowButtons[1].click();
+      });
 
       expect(
         component.props().pagination.onChangeItemsPerPage
@@ -1240,18 +1250,22 @@ describe('EuiDataGrid', () => {
           />
         );
 
-        const originalCellWidths = extractColumnWidths(component);
-        expect(originalCellWidths).toEqual({
-          'Column 1': 100,
-          'Column 2': 100,
+        act(() => {
+          const originalCellWidths = extractColumnWidths(component);
+          expect(originalCellWidths).toEqual({
+            'Column 1': 100,
+            'Column 2': 100,
+          });
         });
 
         resizeColumn(component, 'Column 1', 150);
 
-        const updatedCellWidths = extractColumnWidths(component);
-        expect(updatedCellWidths).toEqual({
-          'Column 1': 150,
-          'Column 2': 100,
+        act(() => {
+          const updatedCellWidths = extractColumnWidths(component);
+          expect(updatedCellWidths).toEqual({
+            'Column 1': 150,
+            'Column 2': 100,
+          });
         });
       });
 
@@ -1466,7 +1480,7 @@ describe('EuiDataGrid', () => {
     });
 
     test('column display, displayAsText, and displayHeaderCellProps', () => {
-      const component = render(
+      const { container, getByTitle, getByTestSubject } = render(
         <EuiDataGrid
           aria-labelledby="#test"
           columnVisibility={{
@@ -1487,12 +1501,12 @@ describe('EuiDataGrid', () => {
           }
         />
       );
-      const colHeaderCell = component.find(
-        '.euiDataGridHeaderCell.displayHeaderCellProps'
-      );
-      expect(colHeaderCell).toHaveLength(1);
-      expect(colHeaderCell.find('[data-test-subj="display"]')).toHaveLength(1);
-      expect(colHeaderCell.find('[title="displayAsText"]')).toHaveLength(1);
+
+      expect(
+        container.querySelector('.euiDataGridHeaderCell.displayHeaderCellProps')
+      ).toBeDefined();
+      expect(getByTestSubject('display')).toBeInTheDocument();
+      expect(getByTitle('displayAsText')).toBeInTheDocument();
     });
   });
 
@@ -2173,9 +2187,11 @@ describe('EuiDataGrid', () => {
       expect(findTestSubject(component, 'alertAction').exists()).toBe(false);
       expect(findTestSubject(component, 'happyAction').exists()).toBe(false);
 
-      findTestSubject(component, 'dataGridRowCell').at(1).prop('onMouseEnter')!(
-        {} as React.MouseEvent
-      );
+      act(() => {
+        findTestSubject(component, 'dataGridRowCell')
+          .at(1)
+          .prop('onMouseEnter')!({} as React.MouseEvent);
+      });
 
       component.update();
 

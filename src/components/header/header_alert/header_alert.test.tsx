@@ -7,23 +7,28 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
+import { shouldRenderCustomStyles } from '../../../test/internal';
+
+import { EuiBadge } from '../../badge';
 
 import { EuiHeaderAlert } from './header_alert';
 
 describe('EuiHeaderAlert', () => {
-  test('is rendered', () => {
-    const component = render(
+  shouldRenderCustomStyles(<EuiHeaderAlert title="title" date="date" />);
+
+  it('renders title and date', () => {
+    const { container } = render(
       <EuiHeaderAlert {...requiredProps} title="title" date="date" />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('renders action', () => {
+  it('renders action', () => {
     const action = <button>Quietly take to the ship</button>;
-    const component = render(
+    const { container } = render(
       <EuiHeaderAlert
         {...requiredProps}
         title="title"
@@ -32,24 +37,34 @@ describe('EuiHeaderAlert', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('renders title as an element', () => {
-    const title = <h2>Circumambulate the city</h2>;
-    const component = render(
-      <EuiHeaderAlert {...requiredProps} date="date" title={title} />
+  it('renders text', () => {
+    const text = <p>Circumambulate the city</p>;
+    const { container } = render(
+      <EuiHeaderAlert
+        {...requiredProps}
+        title="title"
+        date="date"
+        text={text}
+      />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('renders date as an element', () => {
-    const date = <h2>October 18, 1851</h2>;
-    const component = render(
-      <EuiHeaderAlert {...requiredProps} title="shazm" date={date} />
+  it('renders badge', () => {
+    const badge = <EuiBadge>badge</EuiBadge>;
+    const { container } = render(
+      <EuiHeaderAlert
+        {...requiredProps}
+        title="title"
+        date="date"
+        badge={badge}
+      />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

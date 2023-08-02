@@ -7,7 +7,7 @@
  */
 
 import React, { useState } from 'react';
-import { act } from 'react-dom/test-utils';
+import { act } from '@testing-library/react';
 import { mount } from 'enzyme';
 
 import { render } from '../../test/rtl';
@@ -58,7 +58,7 @@ describe('SearchBar', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('render - provided query, filters', () => {
+  test('render - provided query, filters', async () => {
     const filters: SearchFilterConfig[] = [
       {
         type: 'is',
@@ -80,7 +80,10 @@ describe('SearchBar', () => {
       onChange: () => {},
     };
 
-    const { container } = render(<EuiSearchBar {...props} />);
+    const { container, findByTitle } = render(<EuiSearchBar {...props} />);
+
+    // Wait for FieldValueSelectionFilter to finish updating its state on init
+    await findByTitle('Tag');
 
     expect(container.firstChild).toMatchSnapshot();
   });

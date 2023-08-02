@@ -7,38 +7,40 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { render } from '../../../test/rtl';
 
 import { EuiPageContent_Deprecated as EuiPageContent } from './page_content';
 
 describe('EuiPageContent', () => {
   test('is rendered', () => {
-    const component = render(<EuiPageContent {...requiredProps} />);
+    const { container } = render(<EuiPageContent {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('verticalPosition is rendered', () => {
-    const component = render(<EuiPageContent verticalPosition="center" />);
+    const { container } = render(<EuiPageContent verticalPosition="center" />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('horizontalPosition is rendered', () => {
-    const component = render(<EuiPageContent horizontalPosition="center" />);
+    const { container } = render(
+      <EuiPageContent horizontalPosition="center" />
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('role can be removed', () => {
-    const component = render(<EuiPageContent role={null} />);
+    const { container } = render(<EuiPageContent role={null} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('accepts panel props', () => {
-    const component = render(
+    const { container } = render(
       <EuiPageContent
         borderRadius="none"
         hasShadow={false}
@@ -46,6 +48,6 @@ describe('EuiPageContent', () => {
       />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });
