@@ -109,11 +109,11 @@
   "euiColorVis9_behindText": "#ff7e62",
   "euiFontWeightLight": 300,
   "euiFontWeightRegular": 400,
-  "euiFontWeightMedium": 500,
-  "euiFontWeightSemiBold": 600,
-  "euiFontWeightBold": 700,
+  "euiFontWeightMedium": 450,
+  "euiFontWeightSemiBold": 500,
+  "euiFontWeightBold": 600,
   "euiCodeFontWeightRegular": 400,
-  "euiCodeFontWeightBold": 700,
+  "euiCodeFontWeightBold": 600,
   "euiFormMaxWidth": "400px",
   "euiFormControlHeight": "40px",
   "euiFormControlCompressedHeight": "32px",
@@ -231,32 +231,32 @@
     "xxxs": {
       "font-size": "12px",
       "line-height": "1.14286rem",
-      "font-weight": 700
+      "font-weight": 600
     },
     "xxs": {
       "font-size": "14px",
       "line-height": "1.71429rem",
-      "font-weight": 700
+      "font-weight": 600
     },
     "xs": {
       "font-size": "16px",
       "line-height": "1.71429rem",
-      "font-weight": 700
+      "font-weight": 600
     },
     "s": {
-      "font-size": "22px",
+      "font-size": "20px",
       "line-height": "2.28571rem",
-      "font-weight": 700
+      "font-weight": 600
     },
     "m": {
-      "font-size": "27px",
+      "font-size": "24px",
       "line-height": "2.28571rem",
-      "font-weight": 700
+      "font-weight": 600
     },
     "l": {
-      "font-size": "34px",
+      "font-size": "30px",
       "line-height": "2.85714rem",
-      "font-weight": 700
+      "font-weight": 600
     }
   },
   "euiZLevel0": 0,
