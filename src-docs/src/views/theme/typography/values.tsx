@@ -175,7 +175,7 @@ export default () => {
                 fullWidth
                 id={htmlIdGenerator()()}
                 min={300}
-                max={700}
+                max={600}
                 step={1}
                 value={fontWeight}
                 onChange={onFontWeightChange}

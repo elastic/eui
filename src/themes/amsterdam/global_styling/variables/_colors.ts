@@ -44,13 +44,14 @@ export const brand_text_colors: _EuiThemeBrandTextColors = {
 };
 
 export const shade_colors: _EuiThemeShadeColors = {
+  // Hue 220
   emptyShade: '#FFF',
   lightestShade: '#F1F4FA',
-  lightShade: '#D3DAE6',
-  mediumShade: '#98A2B3',
-  darkShade: '#69707D',
-  darkestShade: '#343741',
-  fullShade: '#000',
+  lightShade: '#D3D9E6',
+  mediumShade: '#98A1B3',
+  darkShade: '#6A707C',
+  darkestShade: '#2E3138',
+  fullShade: '#030303',
 };
 
 export const special_colors: _EuiThemeSpecialColors = {
@@ -61,7 +62,7 @@ export const special_colors: _EuiThemeSpecialColors = {
   highlight: computed(([warning]) => tint(warning, 0.9), ['colors.warning']),
   disabled: '#ABB4C4',
   disabledText: computed(makeDisabledContrastColor('colors.disabled')),
-  shadow: computed(({ colors }) => colors.ink),
+  shadow: computed(({ colors }) => colors.darkShade),
 };
 
 export const text_colors: _EuiThemeTextColors = {

@@ -222,9 +222,9 @@
   "euiFontSizeXS": "12px",
   "euiFontSizeS": "14px",
   "euiFontSizeM": "16px",
-  "euiFontSizeL": "22px",
-  "euiFontSizeXL": "27px",
-  "euiFontSizeXXL": "34px",
+  "euiFontSizeL": "20px",
+  "euiFontSizeXL": "24px",
+  "euiFontSizeXXL": "30px",
   "euiLineHeight": 1.5,
   "euiBodyLineHeight": 1.142857143,
   "euiTitles": {

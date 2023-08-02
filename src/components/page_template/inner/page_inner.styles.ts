@@ -29,8 +29,7 @@ export const euiPageInnerStyles = (euiThemeContext: UseEuiTheme) => {
     `,
 
     panelled: css`
-      background: ${euiBackgroundColor(euiThemeContext, 'plain')};
-      ${euiShadow(euiThemeContext, 'm')}
+      background: ${euiBackgroundColor(euiThemeContext, 'plain')}
     `,
 
     border: {

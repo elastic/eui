@@ -34,7 +34,7 @@ export const euiHeaderLogoStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     euiHeaderLogo__text: css`
-      ${euiTitle(euiThemeContext, 'xxs')}
+      ${euiTitle(euiThemeContext, 'xs')}
       ${logicalCSS('padding-left', euiTheme.size.base)}
 
       ${euiBreakpoint(euiThemeContext, ['xs'])} {

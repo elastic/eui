@@ -18,8 +18,8 @@ export const border: _EuiThemeBorder = {
     thick: '2px',
   },
   radius: {
-    medium: computed(sizeToPixel(0.375)),
-    small: computed(sizeToPixel(0.25)),
+    medium: computed(sizeToPixel(0.25)),
+    small: computed(sizeToPixel(0.125)),
   },
   thin: computed(
     ([width, color]) => `${width.thin} solid ${color}`,
