@@ -525,6 +525,7 @@ exports[`props option.prepend & option.append renders in the options dropdown 1`
   data-popover-panel="true"
   data-test-subj="comboBoxOptionsList"
   style="z-index: 100;"
+  truncation="end"
 >
   <div
     class="euiComboBoxOptionsList__rowWrap"
@@ -567,7 +568,7 @@ exports[`props option.prepend & option.append renders in the options dropdown 1`
                   </span>
                 </span>
                 <span
-                  class="euiComboBoxOption__content"
+                  class="euiComboBoxOption__content euiComboBoxOption-truncationEnd"
                 >
                   1
                 </span>
@@ -594,7 +595,7 @@ exports[`props option.prepend & option.append renders in the options dropdown 1`
                 class="euiComboBoxOption__contentWrapper"
               >
                 <span
-                  class="euiComboBoxOption__content"
+                  class="euiComboBoxOption__content euiComboBoxOption-truncationEnd"
                 >
                   2
                 </span>

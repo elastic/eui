@@ -38,6 +38,10 @@
     white-space: nowrap;
     flex: 1;
     text-align: left;
+
+    &.euiComboBoxOption-truncationEnd {
+      text-overflow: ellipsis;
+    }
   }
 
   &__emptyStateText {
@@ -54,12 +58,6 @@
     margin-left: $euiSizeXS;
   }
 
-.euiComboBoxOption__content {
-  overflow: hidden;
-  white-space: nowrap;
-  flex: 1;
-  text-align: left;
-
   &__prepend {
     margin-right: $euiSizeS;
   }
@@ -74,9 +72,5 @@
     .euiIcon {
       display: block;
     }
-  }
-
-  &.euiComboBoxOption-truncationEnd {
-    text-overflow: ellipsis;
   }
 }
