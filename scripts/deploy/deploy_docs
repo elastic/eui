@@ -208,7 +208,7 @@ else
 
     # Let users know neither job ran
     else
-      echo "Error: Buildkite tag is missing."
+      echo "This is neither a pull request nor a tag release. No docs were deployed."
     fi
   fi
 fi
