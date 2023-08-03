@@ -46,7 +46,7 @@ export const TYPES = ['push', 'overlay'] as const;
 type _EuiFlyoutType = (typeof TYPES)[number];
 
 export const SIDES = ['left', 'right'] as const;
-type _EuiFlyoutSide = (typeof SIDES)[number];
+export type _EuiFlyoutSide = (typeof SIDES)[number];
 
 export const SIZES = ['s', 'm', 'l'] as const;
 export type EuiFlyoutSize = (typeof SIZES)[number];
