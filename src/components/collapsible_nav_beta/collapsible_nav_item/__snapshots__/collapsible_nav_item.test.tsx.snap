@@ -60,7 +60,7 @@ exports[`EuiCollapsibleNavItem renders a top level accordion if items exist 1`] 
         >
           <span
             aria-label="aria-label"
-            class="euiCollapsibleNavLink euiCollapsibleNavItem euiCollapsibleNavSubItem emotion-euiCollapsibleNavLink-isSubItem"
+            class="euiCollapsibleNavLink euiCollapsibleNavSubItem testClass1 testClass2 emotion-euiCollapsibleNavLink-isSubItem-euiTestCss"
             data-test-subj="test subject string"
           >
             <span

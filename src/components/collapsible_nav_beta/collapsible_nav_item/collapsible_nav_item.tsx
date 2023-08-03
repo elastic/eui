@@ -114,17 +114,10 @@ const EuiCollapsibleNavItemDisplay: FunctionComponent<
   titleElement,
   icon,
   iconProps,
-  className,
   items,
   children, // Ensure children isn't spread
   ...props
 }) => {
-  const classes = classNames(
-    'euiCollapsibleNavItem',
-    { euiCollapsibleNavSubItem: isSubItem },
-    className
-  );
-
   const headerContent = (
     <EuiCollapsibleNavItemTitle
       title={title}
@@ -138,7 +131,6 @@ const EuiCollapsibleNavItemDisplay: FunctionComponent<
   if (isAccordion) {
     return (
       <EuiCollapsibleNavAccordion
-        className={classes}
         buttonContent={headerContent}
         items={items}
         {...props}
@@ -149,7 +141,6 @@ const EuiCollapsibleNavItemDisplay: FunctionComponent<
 
   return (
     <EuiCollapsibleNavLink
-      className={classes}
       {...(props as EuiLinkProps)} // EuiLink ExclusiveUnion type shenanigans
       isSubItem={isSubItem}
       isNotAccordion
@@ -197,6 +188,7 @@ export const EuiCollapsibleNavSubItem: FunctionComponent<
 > = ({ isGroupTitle, className, ...props }) => {
   const euiTheme = useEuiTheme();
   const styles = euiCollapsibleNavSubItemGroupTitleStyles(euiTheme);
+  const classes = classNames('euiCollapsibleNavSubItem', className);
 
   if (isGroupTitle) {
     const TitleElement = props.titleElement || 'div';
@@ -211,7 +203,9 @@ export const EuiCollapsibleNavSubItem: FunctionComponent<
     );
   }
 
-  return <EuiCollapsibleNavItemDisplay {...props} isSubItem />;
+  return (
+    <EuiCollapsibleNavItemDisplay className={classes} {...props} isSubItem />
+  );
 };
 
 /**
@@ -220,4 +214,14 @@ export const EuiCollapsibleNavSubItem: FunctionComponent<
 
 export const EuiCollapsibleNavItem: FunctionComponent<
   EuiCollapsibleNavItemProps
-> = (props) => <EuiCollapsibleNavItemDisplay {...props} isSubItem={false} />;
+> = ({ className, ...props }) => {
+  const classes = classNames('euiCollapsibleNavItem', className);
+
+  return (
+    <EuiCollapsibleNavItemDisplay
+      className={classes}
+      {...props}
+      isSubItem={false}
+    />
+  );
+};
