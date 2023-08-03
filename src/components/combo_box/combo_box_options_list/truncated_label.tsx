@@ -40,23 +40,19 @@ const createDivEl = (font: string) => {
 };
 
 const ensureDivEl = (font: string) => {
-  if (divEl) {
-    return;
+  if (!divEl) {
+    divEl = createDivEl(font);
   }
-  divEl = createDivEl(font);
   document.body.appendChild(divEl);
 };
 
 const cleanup = () => {
-  if (!divEl) {
-    return;
+  if (divEl && document.body.contains(divEl)) {
+    document.body.removeChild(divEl);
   }
-  document.body.removeChild(divEl);
-  divEl = null;
 };
 
-const getTextWidth = (text: string, font: string) => {
-  ensureDivEl(font);
+const getTextWidth = (text: string) => {
   if (!divEl) {
     return 0;
   }
@@ -75,7 +71,7 @@ const truncateLabel = (
 
   ensureDivEl(font);
 
-  while (getTextWidth(output, font) > width) {
+  while (getTextWidth(output) > width) {
     approximateLength = approximateLength - 1;
     const newOutput = labelFn(label, approximateLength);
     if (newOutput === output) {
@@ -124,10 +120,16 @@ export const TruncatedLabel = function ({
   truncation,
 }: TruncatedLabelProps) {
   // avoid measure if truncation is at the end, CSS will take care of it
-  const textWidth = useMemo(
-    () => (truncation === 'end' ? 0 : getTextWidth(label, font)),
-    [truncation, label, font]
-  );
+  const textWidth = useMemo(() => {
+    if (truncation === 'end') {
+      return 0;
+    }
+    ensureDivEl(font);
+    const size = getTextWidth(label);
+    cleanup();
+    return size;
+  }, [truncation, label, font]);
+
   const usableWidth = defaultComboboxWidth - COMBOBOX_PADDINGS;
 
   // Use CSS truncation when available
