@@ -25,6 +25,7 @@ import { CommonProps } from '../common';
 import { EuiFlyout, EuiFlyoutProps } from '../flyout';
 import { euiHeaderVariables } from '../header/header.styles';
 
+import { EuiCollapsibleNavContext } from './context';
 import { EuiCollapsibleNavButton } from './collapsible_nav_button';
 import { euiCollapsibleNavBetaStyles } from './collapsible_nav_beta.styles';
 
@@ -200,17 +201,15 @@ export const EuiCollapsibleNavBeta: FunctionComponent<
   );
 
   return (
-    // TODO: Context for sharing state to all children
-    <>
+    <EuiCollapsibleNavContext.Provider
+      value={{ isSmallScreen, isCollapsed, side }}
+    >
       <EuiCollapsibleNavButton
         ref={buttonRef}
         onClick={toggleCollapsed}
-        isCollapsed={isCollapsed}
-        isSmallScreen={isSmallScreen}
-        side={side}
         aria-controls={flyoutID}
       />
       {!isMobileCollapsed && flyout}
-    </>
+    </EuiCollapsibleNavContext.Provider>
   );
 };

@@ -9,6 +9,7 @@
 import React from 'react';
 import { render } from '../../../test/rtl';
 
+import { EuiCollapsibleNavContext } from '../context';
 import { EuiCollapsibleNavButton } from './collapsible_nav_button';
 
 describe('EuiCollapsibleNavButton', () => {
@@ -16,11 +17,11 @@ describe('EuiCollapsibleNavButton', () => {
     describe('left side', () => {
       it('renders a menu left icon when expanded', () => {
         const { container } = render(
-          <EuiCollapsibleNavButton
-            side="left"
-            isSmallScreen={false}
-            isCollapsed={false}
-          />
+          <EuiCollapsibleNavContext.Provider
+            value={{ side: 'left', isSmallScreen: false, isCollapsed: false }}
+          >
+            <EuiCollapsibleNavButton />
+          </EuiCollapsibleNavContext.Provider>
         );
 
         expect(container.firstChild).toMatchSnapshot();
@@ -31,11 +32,11 @@ describe('EuiCollapsibleNavButton', () => {
 
       it('renders a menu right icon when collapsed', () => {
         const { container } = render(
-          <EuiCollapsibleNavButton
-            side="left"
-            isSmallScreen={false}
-            isCollapsed={true}
-          />
+          <EuiCollapsibleNavContext.Provider
+            value={{ side: 'left', isSmallScreen: false, isCollapsed: true }}
+          >
+            <EuiCollapsibleNavButton />
+          </EuiCollapsibleNavContext.Provider>
         );
 
         expect(container.firstChild).toMatchSnapshot();
@@ -48,11 +49,11 @@ describe('EuiCollapsibleNavButton', () => {
     describe('right side', () => {
       it('renders a menu right icon when expanded', () => {
         const { container } = render(
-          <EuiCollapsibleNavButton
-            side="right"
-            isSmallScreen={false}
-            isCollapsed={false}
-          />
+          <EuiCollapsibleNavContext.Provider
+            value={{ side: 'right', isSmallScreen: false, isCollapsed: false }}
+          >
+            <EuiCollapsibleNavButton />
+          </EuiCollapsibleNavContext.Provider>
         );
 
         expect(container.firstChild).toMatchSnapshot();
@@ -63,11 +64,11 @@ describe('EuiCollapsibleNavButton', () => {
 
       it('renders a menu left icon when collapsed', () => {
         const { container } = render(
-          <EuiCollapsibleNavButton
-            side="right"
-            isSmallScreen={false}
-            isCollapsed={true}
-          />
+          <EuiCollapsibleNavContext.Provider
+            value={{ side: 'right', isSmallScreen: false, isCollapsed: true }}
+          >
+            <EuiCollapsibleNavButton />
+          </EuiCollapsibleNavContext.Provider>
         );
 
         expect(container.firstChild).toMatchSnapshot();
@@ -81,11 +82,11 @@ describe('EuiCollapsibleNavButton', () => {
   describe('mobile', () => {
     it('renders an X icon when expanded', () => {
       const { container } = render(
-        <EuiCollapsibleNavButton
-          side="left"
-          isSmallScreen={true}
-          isCollapsed={false}
-        />
+        <EuiCollapsibleNavContext.Provider
+          value={{ side: 'left', isSmallScreen: true, isCollapsed: false }}
+        >
+          <EuiCollapsibleNavButton />
+        </EuiCollapsibleNavContext.Provider>
       );
 
       expect(container.firstChild).toMatchSnapshot();
@@ -96,11 +97,11 @@ describe('EuiCollapsibleNavButton', () => {
 
     it('renders a hamburger icon when collapsed', () => {
       const { container } = render(
-        <EuiCollapsibleNavButton
-          side="right"
-          isSmallScreen={true}
-          isCollapsed={true}
-        />
+        <EuiCollapsibleNavContext.Provider
+          value={{ side: 'right', isSmallScreen: true, isCollapsed: true }}
+        >
+          <EuiCollapsibleNavButton />
+        </EuiCollapsibleNavContext.Provider>
       );
 
       expect(container.firstChild).toMatchSnapshot();

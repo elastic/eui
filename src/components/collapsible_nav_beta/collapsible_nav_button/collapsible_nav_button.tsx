@@ -6,27 +6,27 @@
  * Side Public License, v 1.
  */
 
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useContext } from 'react';
 
 import { useEuiTheme } from '../../../services';
 import { CommonProps } from '../../common';
 import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../../button';
 import { useEuiI18n } from '../../i18n';
-import { _EuiFlyoutSide } from '../../flyout/flyout';
 
+import { EuiCollapsibleNavContext } from '../context';
 import { euiCollapsibleNavButtonWrapperStyles } from './collapsible_nav_button.styles';
 
 export type EuiCollapsibleNavButtonProps = CommonProps &
-  Partial<EuiButtonIconPropsForButton> & {
-    isCollapsed: boolean;
-    isSmallScreen: boolean;
-    side: _EuiFlyoutSide;
-  };
+  Partial<EuiButtonIconPropsForButton>;
 
 export const EuiCollapsibleNavButton = forwardRef<
   HTMLDivElement,
   EuiCollapsibleNavButtonProps
->(({ isCollapsed, isSmallScreen, side, ...rest }, ref) => {
+>((rest, ref) => {
+  const { side, isSmallScreen, isCollapsed } = useContext(
+    EuiCollapsibleNavContext
+  );
+
   const euiTheme = useEuiTheme();
   const styles = euiCollapsibleNavButtonWrapperStyles(euiTheme);
   const cssStyles = [styles.euiCollapsibleNavButtonWrapper, styles[side]];
