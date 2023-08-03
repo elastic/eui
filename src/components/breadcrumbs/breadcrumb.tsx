@@ -56,7 +56,7 @@ export type EuiBreadcrumbProps = Omit<
      */
     'aria-current'?: AriaAttributes['aria-current'];
     /**
-     * Creates a breadcrumb that toggles a
+     * Creates a breadcrumb that toggles a popover dialog
      *
      * If passed, both `href` and `onClick` will be ignored - the breadcrumb's
      * click behavior should only trigger a popover.
