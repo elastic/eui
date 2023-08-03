@@ -88,7 +88,7 @@ publish_to_bucket()
 {
   echo "Copying $PWD/docs/* to $full_bucket_path"
   gsutil -m \
-    -h "Cache-Control:public, max-age=$max_age" \
+    -h "Cache-Control:public, max-age=$max_age, must-revalidate" \
     cp \
     -r \
     -a public-read \
@@ -198,14 +198,14 @@ else
     # https://buildkite.com/docs/pipelines/environment-variables#BUILDKITE_TAG
     elif [[ ! -z "${BUILDKITE_TAG}" ]]; then
       echo "This is a Buildkite branch release. It is tag ${BUILDKITE_TAG}."
-      full_bucket_path="gs://$BUCKET/${BRANCH}_buildkite/"
+      full_bucket_path="gs://$BUCKET/${BRANCH}/"
       max_age="1800" # Reducing to 15 minutes to limit stale docs
       publish_to_bucket
 
       # If this is the highest release number to date, publish to root directory
       if [[ "$CURRENT_RELEASE" == "$GIT_BRANCH" ]]; then
         echo "This is the current Buildkite release. It is release ${CURRENT_RELEASE}."
-        full_bucket_path="gs://${BUCKET}_buildkite/"
+        full_bucket_path="gs://${BUCKET}/"
         publish_to_bucket
       fi
 
