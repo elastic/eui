@@ -168,7 +168,7 @@ export default () => {
   );
 
   // Pagination
-  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
+  const [pagination, setPagination] = useState({ pageIndex: 0 });
   const onChangePage = useCallback<EuiDataGridPaginationProps['onChangePage']>(
     (pageIndex) => {
       setPagination((pagination) => ({ ...pagination, pageIndex }));
@@ -294,7 +294,6 @@ export default () => {
         inMemory={{ level: 'sorting' }}
         pagination={{
           ...pagination,
-          pageSizeOptions: [10, 25, 50],
           onChangePage: onChangePage,
           onChangeItemsPerPage: onChangePageSize,
         }}

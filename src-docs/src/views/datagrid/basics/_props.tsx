@@ -1,5 +1,8 @@
-import React from 'react';
-import { EuiDataGrid } from '../../../../../src/components';
+import React, { FunctionComponent } from 'react';
+import {
+  EuiDataGrid,
+  EuiDataGridPaginationProps as _EuiDataGridPaginationProps,
+} from '../../../../../src/components';
 
 import { DataGridPropsTable } from '../_props_table';
 import { gridSnippets } from '../_snippets';
@@ -41,3 +44,8 @@ export const DataGridTopProps = () => {
     />
   );
 };
+
+// Loading `EuiDataGridPaginationProps` via !prop-loader doesn't correctly inherit @defaults
+export const EuiDataGridPaginationProps: FunctionComponent<
+  _EuiDataGridPaginationProps
+> = () => <div />;

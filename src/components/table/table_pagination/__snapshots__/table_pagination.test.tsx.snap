@@ -28,7 +28,7 @@ exports[`EuiTablePagination renders 1`] = `
                 >
                   Rows per page
                   : 
-                  50
+                  10
                 </span>
                 <span
                   color="inherit"
@@ -245,7 +245,7 @@ exports[`EuiTablePagination renders 1`] = `
                   <span
                     class="euiContextMenu__icon"
                     color="inherit"
-                    data-euiicon-type="empty"
+                    data-euiicon-type="check"
                   />
                   <span
                     class="euiContextMenuItem__text"
@@ -256,7 +256,7 @@ exports[`EuiTablePagination renders 1`] = `
               </button>
               <button
                 class="euiContextMenuItem"
-                data-test-subj="tablePagination-20-rows"
+                data-test-subj="tablePagination-25-rows"
                 type="button"
               >
                 <span
@@ -270,7 +270,7 @@ exports[`EuiTablePagination renders 1`] = `
                   <span
                     class="euiContextMenuItem__text"
                   >
-                    20 rows
+                    25 rows
                   </span>
                 </span>
               </button>
@@ -285,32 +285,12 @@ exports[`EuiTablePagination renders 1`] = `
                   <span
                     class="euiContextMenu__icon"
                     color="inherit"
-                    data-euiicon-type="check"
-                  />
-                  <span
-                    class="euiContextMenuItem__text"
-                  >
-                    50 rows
-                  </span>
-                </span>
-              </button>
-              <button
-                class="euiContextMenuItem"
-                data-test-subj="tablePagination-100-rows"
-                type="button"
-              >
-                <span
-                  class="euiContextMenu__itemLayout"
-                >
-                  <span
-                    class="euiContextMenu__icon"
-                    color="inherit"
                     data-euiicon-type="empty"
                   />
                   <span
                     class="euiContextMenuItem__text"
                   >
-                    100 rows
+                    50 rows
                   </span>
                 </span>
               </button>

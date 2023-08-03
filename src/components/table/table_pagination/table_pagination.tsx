@@ -21,6 +21,7 @@ import { EuiPopover } from '../../popover';
 import { EuiI18n } from '../../i18n';
 
 import { usePropsWithComponentDefaults } from '../../provider/component_defaults';
+import { euiTablePaginationDefaults } from './table_pagination_defaults';
 
 export type PageChangeHandler = EuiPaginationProps['onPageClick'];
 export type ItemsPerPageChangeHandler = (pageSize: number) => void;
@@ -37,14 +38,14 @@ export interface EuiTablePaginationProps
    * Current selection for "Rows per page".
    * Pass `0` to display the selected "Show all" option and hide the pagination.
    *
-   * @default 50
+   * @default 10
    */
   itemsPerPage?: number;
   /**
    * Custom array of options for "Rows per page".
    * Pass `0` as one of the options to create a "Show all" option.
    *
-   * @default [10, 20, 50, 100]
+   * @default [10, 25, 50]
    */
   itemsPerPageOptions?: number[];
   /**
@@ -64,9 +65,9 @@ export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = (
 ) => {
   const {
     activePage,
-    itemsPerPage = 50,
-    itemsPerPageOptions = [10, 20, 50, 100],
-    showPerPageOptions = true,
+    itemsPerPage = euiTablePaginationDefaults.itemsPerPage,
+    itemsPerPageOptions = euiTablePaginationDefaults.itemsPerPageOptions,
+    showPerPageOptions = euiTablePaginationDefaults.showPerPageOptions,
     onChangeItemsPerPage,
     onChangePage,
     pageCount,
