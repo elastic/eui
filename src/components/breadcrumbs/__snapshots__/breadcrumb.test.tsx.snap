@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiBreadcrumbContent renders breadcrumbs with \`popoverContent\` with popovers 1`] = `
+<body>
+  <div>
+    <div
+      class="euiPopover euiPopover-isOpen emotion-euiPopover"
+      data-test-subj="popover"
+    >
+      <div
+        class="euiPopover__anchor css-16vtueo-render"
+      >
+        <button
+          class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page"
+          data-test-subj="popoverToggle"
+          title="Toggles a popover  - Clicking this button will toggle a popover dialog."
+          type="button"
+        >
+          Toggles a popover
+           
+          <span
+            data-euiicon-type="arrowDown"
+          >
+             - Clicking this button will toggle a popover dialog.
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    data-euiportal="true"
+  >
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+    <div
+      data-focus-lock-disabled="false"
+    >
+      <div
+        aria-describedby="generated-id"
+        aria-live="off"
+        aria-modal="true"
+        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-bottom"
+        data-autofocus="true"
+        data-popover-open="true"
+        data-popover-panel="true"
+        role="dialog"
+        style="top: 16px; left: -22px; z-index: 2000;"
+        tabindex="0"
+      >
+        <div
+          class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
+          data-popover-arrow="bottom"
+          style="left: 10px; top: 0px;"
+        />
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a dialog. Press Escape, or tap/click outside the dialog to close.
+        </p>
+        <div>
+          Hello popover world
+        </div>
+      </div>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+  </div>
+</body>
+`;
+
+exports[`EuiBreadcrumbContent renders interactive breadcrumbs with href or onClick 1`] = `
+<div>
+  <a
+    class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page"
+    href="#"
+    rel="noreferrer"
+    title="Link"
+  >
+    Link
+  </a>
+  <button
+    class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-page"
+    title="Button"
+    type="button"
+  >
+    Button
+  </button>
+</div>
+`;
+
+exports[`EuiBreadcrumbContent renders plain uninteractive breadcrumb text 1`] = `
+<div>
+  <span
+    class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-euiTextColor-subdued"
+    title="Text"
+  >
+    Text
+  </span>
+</div>
+`;
