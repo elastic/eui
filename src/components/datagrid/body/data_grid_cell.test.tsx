@@ -60,6 +60,7 @@ describe('EuiDataGridCell', () => {
         pagination={{
           pageIndex: 3,
           pageSize: 20,
+          pageSizeOptions: [20],
           onChangePage: () => {},
           onChangeItemsPerPage: () => {},
         }}

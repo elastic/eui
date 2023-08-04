@@ -20,6 +20,9 @@ import { EuiPagination, EuiPaginationProps } from '../../pagination';
 import { EuiPopover } from '../../popover';
 import { EuiI18n } from '../../i18n';
 
+import { usePropsWithComponentDefaults } from '../../provider/component_defaults';
+import { euiTablePaginationDefaults } from './table_pagination_defaults';
+
 export type PageChangeHandler = EuiPaginationProps['onPageClick'];
 export type ItemsPerPageChangeHandler = (pageSize: number) => void;
 
@@ -27,16 +30,22 @@ export interface EuiTablePaginationProps
   extends Omit<EuiPaginationProps, 'onPageClick'> {
   /**
    * Option to completely hide the "Rows per page" selector.
+   *
+   * @default true
    */
   showPerPageOptions?: boolean;
   /**
    * Current selection for "Rows per page".
    * Pass `0` to display the selected "Show all" option and hide the pagination.
+   *
+   * @default 10
    */
   itemsPerPage?: number;
   /**
    * Custom array of options for "Rows per page".
    * Pass `0` as one of the options to create a "Show all" option.
+   *
+   * @default [10, 25, 50]
    */
   itemsPerPageOptions?: number[];
   /**
@@ -51,16 +60,20 @@ export interface EuiTablePaginationProps
   'aria-label'?: string;
 }
 
-export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = ({
-  activePage,
-  itemsPerPage = 50,
-  itemsPerPageOptions = [10, 20, 50, 100],
-  showPerPageOptions = true,
-  onChangeItemsPerPage = () => {},
-  onChangePage,
-  pageCount,
-  ...rest
-}) => {
+export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = (
+  props
+) => {
+  const {
+    activePage,
+    itemsPerPage = euiTablePaginationDefaults.itemsPerPage,
+    itemsPerPageOptions = euiTablePaginationDefaults.itemsPerPageOptions,
+    showPerPageOptions = euiTablePaginationDefaults.showPerPageOptions,
+    onChangeItemsPerPage,
+    onChangePage,
+    pageCount,
+    ...rest
+  } = usePropsWithComponentDefaults('EuiTablePagination', props);
+
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   const togglePopover = useCallback(() => {
@@ -105,7 +118,7 @@ export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = ({
           icon={itemsPerPageOption === itemsPerPage ? 'check' : 'empty'}
           onClick={() => {
             closePopover();
-            onChangeItemsPerPage(itemsPerPageOption);
+            onChangeItemsPerPage?.(itemsPerPageOption);
           }}
           data-test-subj={`tablePagination-${itemsPerPageOption}-rows`}
         >
@@ -134,7 +147,10 @@ export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = ({
       panelPaddingSize="none"
       anchorPosition="upRight"
     >
-      <EuiContextMenuPanel items={items} />
+      <EuiContextMenuPanel
+        items={items}
+        data-test-subj="tablePaginationRowOptions"
+      />
     </EuiPopover>
   );
 

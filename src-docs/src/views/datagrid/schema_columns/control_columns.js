@@ -309,10 +309,7 @@ const trailingControlColumns = [
 ];
 
 export default function DataGrid() {
-  const [pagination, setPagination] = useState({
-    pageIndex: 0,
-    pageSize: 15,
-  });
+  const [pagination, setPagination] = useState({ pageIndex: 0 });
   const setPageIndex = useCallback(
     (pageIndex) =>
       setPagination((pagination) => ({ ...pagination, pageIndex })),
@@ -369,7 +366,6 @@ export default function DataGrid() {
           renderCellValue={renderCellValue}
           pagination={{
             ...pagination,
-            pageSizeOptions: [5, 15, 25],
             onChangeItemsPerPage: setPageSize,
             onChangePage: setPageIndex,
           }}
