@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme } from '../../services';
+import { UseEuiTheme, makeHighContrastColor } from '../../services';
 import {
   euiBreakpoint,
   logicalShorthandCSS,
@@ -135,7 +135,9 @@ export const euiStepHorizontalTitleStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     disabled: css`
-      color: ${euiTheme.colors.disabledText};
+      color: ${makeHighContrastColor(euiTheme.colors.disabledText)(
+        euiTheme.colors.body
+      )};
     `,
   };
 };
