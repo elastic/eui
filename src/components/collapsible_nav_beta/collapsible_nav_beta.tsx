@@ -175,6 +175,7 @@ export const EuiCollapsibleNavBeta: FunctionComponent<
   const cssStyles = [
     styles.euiCollapsibleNavBeta,
     styles[side],
+    isCollapsed && !isSmallScreen && styles.isDesktopCollapsed,
     isSmallestScreen && styles.isSmallestScreen,
   ];
 
