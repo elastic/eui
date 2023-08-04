@@ -7,10 +7,10 @@
  */
 
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
 import { render, waitForEuiToolTipVisible } from '../../test/rtl';
-import { fireEvent } from '@testing-library/react';
 
 import { EuiListGroupItem, SIZES, COLORS } from './list_group_item';
 
@@ -221,6 +221,27 @@ describe('EuiListGroupItem', () => {
         );
 
         expect(container.firstChild).toMatchSnapshot();
+      });
+    });
+
+    describe('toolTipProps', () => {
+      test('renders custom tooltip props', async () => {
+        const { getByTestSubject } = render(
+          <EuiListGroupItem
+            label="Label"
+            toolTipText="Tooltip"
+            showToolTip
+            data-test-subj="trigger"
+            toolTipProps={{
+              anchorProps: {
+                'data-test-subj': 'tooltip-anchor',
+              },
+            }}
+          />
+        );
+        fireEvent.mouseOver(getByTestSubject('trigger'));
+        await waitForEuiToolTipVisible();
+        expect(getByTestSubject('tooltip-anchor')).toBeInTheDocument();
       });
     });
   });

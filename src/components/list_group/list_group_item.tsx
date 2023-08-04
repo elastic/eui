@@ -146,7 +146,8 @@ export type EuiListGroupItemProps = CommonProps &
     toolTipText?: string;
 
     /**
-     * Props can be passed to nested `EuiToolTip`.
+     * Allows customizing the tooltip shown when `showToolTip` is true.
+     * Accepts any props that [EuiToolTip](/#/display/tooltip) accepts.
      */
     toolTipProps?: Partial<EuiToolTipProps>;
   };
