@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
   EuiButton,
@@ -15,10 +15,6 @@ export default () => {
   const showModal = () => {
     setIsModalVisible(true);
     setIsLoading(true);
-    setTimeout(() => {
-      // Simulate a remotely-executed search.
-      setIsLoading(false);
-    }, 1200);
   };
 
   const closeModal = () => {
@@ -26,6 +22,17 @@ export default () => {
     setIsLoading(false);
     setValue('');
   };
+
+  useEffect(() => {
+    const searchTimeout = setTimeout(() => {
+      // Simulate a remotely-executed search.
+      setIsLoading(false);
+    }, 1200);
+
+    return () => {
+      clearTimeout(searchTimeout);
+    };
+  }, [isModalVisible]);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
