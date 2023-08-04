@@ -24,12 +24,12 @@ describe('EuiCollapsibleNavButton', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  describe('desktop', () => {
+  describe('push flyout', () => {
     describe('left side', () => {
       it('renders a menu left icon when expanded', () => {
         const { container } = render(
           <EuiCollapsibleNavContext.Provider
-            value={{ side: 'left', isSmallScreen: false, isCollapsed: false }}
+            value={{ side: 'left', isPush: true, isCollapsed: false }}
           >
             <EuiCollapsibleNavButton />
           </EuiCollapsibleNavContext.Provider>
@@ -44,7 +44,7 @@ describe('EuiCollapsibleNavButton', () => {
       it('renders a menu right icon when collapsed', () => {
         const { container } = render(
           <EuiCollapsibleNavContext.Provider
-            value={{ side: 'left', isSmallScreen: false, isCollapsed: true }}
+            value={{ side: 'left', isPush: true, isCollapsed: true }}
           >
             <EuiCollapsibleNavButton />
           </EuiCollapsibleNavContext.Provider>
@@ -61,7 +61,7 @@ describe('EuiCollapsibleNavButton', () => {
       it('renders a menu right icon when expanded', () => {
         const { container } = render(
           <EuiCollapsibleNavContext.Provider
-            value={{ side: 'right', isSmallScreen: false, isCollapsed: false }}
+            value={{ side: 'right', isPush: true, isCollapsed: false }}
           >
             <EuiCollapsibleNavButton />
           </EuiCollapsibleNavContext.Provider>
@@ -76,7 +76,7 @@ describe('EuiCollapsibleNavButton', () => {
       it('renders a menu left icon when collapsed', () => {
         const { container } = render(
           <EuiCollapsibleNavContext.Provider
-            value={{ side: 'right', isSmallScreen: false, isCollapsed: true }}
+            value={{ side: 'right', isPush: true, isCollapsed: true }}
           >
             <EuiCollapsibleNavButton />
           </EuiCollapsibleNavContext.Provider>
@@ -90,11 +90,11 @@ describe('EuiCollapsibleNavButton', () => {
     });
   });
 
-  describe('mobile', () => {
+  describe('overlay flyout', () => {
     it('renders an X icon when expanded', () => {
       const { container } = render(
         <EuiCollapsibleNavContext.Provider
-          value={{ side: 'left', isSmallScreen: true, isCollapsed: false }}
+          value={{ side: 'left', isPush: false, isCollapsed: false }}
         >
           <EuiCollapsibleNavButton />
         </EuiCollapsibleNavContext.Provider>
@@ -109,7 +109,7 @@ describe('EuiCollapsibleNavButton', () => {
     it('renders a hamburger icon when collapsed', () => {
       const { container } = render(
         <EuiCollapsibleNavContext.Provider
-          value={{ side: 'right', isSmallScreen: true, isCollapsed: true }}
+          value={{ side: 'right', isPush: false, isCollapsed: true }}
         >
           <EuiCollapsibleNavButton />
         </EuiCollapsibleNavContext.Provider>

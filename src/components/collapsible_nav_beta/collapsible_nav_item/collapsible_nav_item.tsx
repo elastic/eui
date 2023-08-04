@@ -224,9 +224,9 @@ export const EuiCollapsibleNavItem: FunctionComponent<
 > = ({ className, ...props }) => {
   const classes = classNames('euiCollapsibleNavItem', className);
 
-  const { isCollapsed, isSmallScreen } = useContext(EuiCollapsibleNavContext);
+  const { isCollapsed, isPush } = useContext(EuiCollapsibleNavContext);
 
-  return isCollapsed && !isSmallScreen ? (
+  return isCollapsed && isPush ? (
     <EuiCollapsedNavItem className={classes} {...props} />
   ) : (
     <EuiCollapsibleNavItemDisplay

@@ -51,10 +51,10 @@ describe('EuiCollapsibleNavItem', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  it('renders a docked button icon if collapsed and not on mobile', () => {
+  it('renders a collapsed button icon when in a collapsed push flyout', () => {
     const { container, getByTestSubject } = render(
       <EuiCollapsibleNavContext.Provider
-        value={{ side: 'left', isSmallScreen: false, isCollapsed: true }}
+        value={{ side: 'left', isPush: true, isCollapsed: true }}
       >
         <EuiCollapsibleNavItem {...requiredProps} title="Item" />
       </EuiCollapsibleNavContext.Provider>

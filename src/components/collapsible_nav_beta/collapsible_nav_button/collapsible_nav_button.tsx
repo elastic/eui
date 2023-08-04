@@ -24,9 +24,7 @@ export const EuiCollapsibleNavButton = forwardRef<
   HTMLDivElement,
   EuiCollapsibleNavButtonProps
 >(({ className, css, ...rest }, ref) => {
-  const { side, isSmallScreen, isCollapsed } = useContext(
-    EuiCollapsibleNavContext
-  );
+  const { side, isPush, isCollapsed } = useContext(EuiCollapsibleNavContext);
 
   const euiTheme = useEuiTheme();
   const styles = euiCollapsibleNavButtonWrapperStyles(euiTheme);
@@ -36,14 +34,14 @@ export const EuiCollapsibleNavButton = forwardRef<
   const classes = classNames('euiCollapsibleNavButton', className);
 
   let iconType: string;
-  if (isSmallScreen) {
-    iconType = isCollapsed ? 'menu' : 'cross';
-  } else {
+  if (isPush) {
     if (side === 'left') {
       iconType = isCollapsed ? 'menuRight' : 'menuLeft';
     } else {
       iconType = isCollapsed ? 'menuLeft' : 'menuRight';
     }
+  } else {
+    iconType = isCollapsed ? 'menu' : 'cross';
   }
 
   const toggleOpenLabel = useEuiI18n(

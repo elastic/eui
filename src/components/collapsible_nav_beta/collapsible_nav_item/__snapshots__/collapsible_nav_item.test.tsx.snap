@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiCollapsibleNavItem renders a docked button icon if collapsed and not on mobile 1`] = `
+exports[`EuiCollapsibleNavItem renders a collapsed button icon when in a collapsed push flyout 1`] = `
 <span
   aria-label="aria-label"
   class="euiToolTipAnchor euiCollapsedNavItem euiCollapsibleNavItem testClass1 testClass2 emotion-euiToolTipAnchor-block-euiTestCss"

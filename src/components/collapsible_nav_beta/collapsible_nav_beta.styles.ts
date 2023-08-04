@@ -39,10 +39,10 @@ export const euiCollapsibleNavBetaStyles = (euiThemeContext: UseEuiTheme) => {
     right: css`
       ${logicalCSS('border-left', euiTheme.border.thin)}
     `,
-    isDesktop: css`
+    isPush: css`
       ${euiShadowFlat(euiThemeContext)}
     `,
-    isDesktopCollapsed: css`
+    isPushCollapsed: css`
       /* Hide the scrollbar for docked mode (while still keeping the nav scrollable) 
          Otherwise if scrollbars are visible, button icon visibility suffers */
       &,
@@ -54,7 +54,7 @@ export const euiCollapsibleNavBetaStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
     `,
-    isSmallestScreen: css`
+    isOverlayFullWidth: css`
       /* Override EuiFlyout's max-width */
       &.euiFlyout {
         ${logicalCSS('max-width', '100% !important')}
