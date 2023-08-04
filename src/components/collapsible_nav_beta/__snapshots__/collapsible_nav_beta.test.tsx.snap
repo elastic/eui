@@ -36,7 +36,7 @@ exports[`EuiCollapsibleNavBeta renders 1`] = `
     >
       <nav
         aria-label="aria-label"
-        class="euiFlyout euiCollapsibleNav euiCollapsibleNavBeta testClass1 testClass2 emotion-euiFlyout-none-noMaxWidth-push-left-left-euiCollapsibleNavBeta-left-euiTestCss"
+        class="euiFlyout euiCollapsibleNav euiCollapsibleNavBeta testClass1 testClass2 emotion-euiFlyout-none-noMaxWidth-push-left-left-euiCollapsibleNavBeta-left-isDesktop-euiTestCss"
         data-autofocus="true"
         data-test-subj="nav"
         id="generated-id_euiCollapsibleNav"
@@ -91,7 +91,7 @@ exports[`EuiCollapsibleNavBeta renders initialIsCollapsed 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <nav
-        class="euiFlyout euiCollapsibleNav euiCollapsibleNavBeta emotion-euiFlyout-none-noMaxWidth-push-left-left-euiCollapsibleNavBeta-left-isDesktopCollapsed"
+        class="euiFlyout euiCollapsibleNav euiCollapsibleNavBeta emotion-euiFlyout-none-noMaxWidth-push-left-left-euiCollapsibleNavBeta-left-isDesktop-isDesktopCollapsed"
         data-autofocus="true"
         data-test-subj="nav"
         id="generated-id_euiCollapsibleNav"

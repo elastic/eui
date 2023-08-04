@@ -9,6 +9,7 @@
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 import { logicalCSS, euiYScroll } from '../../global_styling';
+import { euiShadowFlat } from '../../themes';
 
 export const euiCollapsibleNavBetaStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -37,6 +38,9 @@ export const euiCollapsibleNavBetaStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     right: css`
       ${logicalCSS('border-left', euiTheme.border.thin)}
+    `,
+    isDesktop: css`
+      ${euiShadowFlat(euiThemeContext)}
     `,
     isDesktopCollapsed: css`
       /* Hide the scrollbar for docked mode (while still keeping the nav scrollable) 
