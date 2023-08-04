@@ -2305,10 +2305,10 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
   integrity sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==
 
-"@elastic/charts@^53.1.1":
-  version "53.1.1"
-  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-53.1.1.tgz#bb5bd97d8f845dc2e30cc5238e04c1efbe56a157"
-  integrity sha512-DYZCcD26hSS3AIKJ13YAhzqY3q1uFECxgYnPCv++NIlsVGGPR5L09qUYpilhGrpbI95IwlkPT2LtZBEUGFYzTw==
+"@elastic/charts@^59.1.0":
+  version "59.1.0"
+  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-59.1.0.tgz#d6b70501f8eec95cc981966713ce5a89028f8fcb"
+  integrity sha512-qQyDaGEbo/2p+K/hnlobfADmit055kLJbWEkf+rK+uezloNvyBuHETvsoUnrWYG+O5QznHU+wzjSpz7tj1GL3w==
   dependencies:
     "@popperjs/core" "^2.4.0"
     bezier-easing "^2.1.0"
