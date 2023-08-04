@@ -1,105 +1,63 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiDraggable can be given ReactElement children 1`] = `
-<div>
+exports[`[React 17] EuiDraggable renders 1`] = `
+<div
+  class="euiDroppable euiDroppable--noGrow"
+  data-rfd-droppable-context-id="0"
+  data-rfd-droppable-id="testDroppable"
+  data-test-subj="droppable"
+>
   <div
-    class="euiDroppable euiDroppable--noGrow"
-    data-rbd-droppable-context-id="0"
-    data-rbd-droppable-id="testDroppable"
-    data-test-subj="droppable"
+    aria-describedby="rfd-hidden-text-0-hidden-text-0"
+    class="euiDraggable"
+    data-rfd-drag-handle-context-id="0"
+    data-rfd-drag-handle-draggable-id="testDraggable"
+    data-rfd-draggable-context-id="0"
+    data-rfd-draggable-id="testDraggable"
+    data-test-subj="draggable"
+    draggable="false"
+    role="button"
+    tabindex="0"
   >
     <div
-      aria-describedby="rbd-hidden-text-0-hidden-text-0"
-      class="euiDraggable"
-      data-rbd-drag-handle-context-id="0"
-      data-rbd-drag-handle-draggable-id="testDraggable"
-      data-rbd-draggable-context-id="0"
-      data-rbd-draggable-id="testDraggable"
-      data-test-subj="draggable"
-      draggable="false"
-      role="button"
-      tabindex="0"
+      class="euiDraggable__item"
     >
-      <div
-        class="euiDraggable__item"
-      >
-        Hello
-      </div>
+      Hello
     </div>
-    <div
-      class="euiDroppable__placeholder"
-    />
   </div>
+  <div
+    class="euiDroppable__placeholder"
+  />
 </div>
 `;
 
-exports[`EuiDraggable can be given ReactElement children 2`] = `undefined`;
-
-exports[`EuiDraggable hasInteractiveChildren renders with role="group" and no tabIndex 1`] = `
-<div>
+exports[`[React 18] EuiDraggable renders 1`] = `
+<div
+  class="euiDroppable euiDroppable--noGrow"
+  data-rfd-droppable-context-id=":r0:"
+  data-rfd-droppable-id="testDroppable"
+  data-test-subj="droppable"
+>
   <div
-    class="euiDroppable euiDroppable--noGrow"
-    data-rbd-droppable-context-id="0"
-    data-rbd-droppable-id="testDroppable"
-    data-test-subj="droppable"
+    aria-describedby="rfd-hidden-text-:r0:-hidden-text-:r1:"
+    class="euiDraggable"
+    data-rfd-drag-handle-context-id=":r0:"
+    data-rfd-drag-handle-draggable-id="testDraggable"
+    data-rfd-draggable-context-id=":r0:"
+    data-rfd-draggable-id="testDraggable"
+    data-test-subj="draggable"
+    draggable="false"
+    role="button"
+    tabindex="0"
   >
     <div
-      aria-describedby="rbd-hidden-text-0-hidden-text-0"
-      class="euiDraggable"
-      data-rbd-drag-handle-context-id="0"
-      data-rbd-drag-handle-draggable-id="testDraggable"
-      data-rbd-draggable-context-id="0"
-      data-rbd-draggable-id="testDraggable"
-      data-test-subj="draggable"
-      draggable="false"
-      role="group"
+      class="euiDraggable__item"
     >
-      <div
-        class="euiDraggable__item"
-      >
-        Hello
-      </div>
+      Hello
     </div>
-    <div
-      class="euiDroppable__placeholder"
-    />
   </div>
-</div>
-`;
-
-exports[`EuiDraggable hasInteractiveChildren renders with role="group" and no tabIndex 2`] = `undefined`;
-
-exports[`EuiDraggable is rendered 1`] = `
-<div>
   <div
-    class="euiDroppable euiDroppable--noGrow"
-    data-rbd-droppable-context-id="0"
-    data-rbd-droppable-id="testDroppable"
-    data-test-subj="droppable"
-  >
-    <div
-      aria-describedby="rbd-hidden-text-0-hidden-text-0"
-      class="euiDraggable"
-      data-rbd-drag-handle-context-id="0"
-      data-rbd-drag-handle-draggable-id="testDraggable"
-      data-rbd-draggable-context-id="0"
-      data-rbd-draggable-id="testDraggable"
-      data-test-subj="draggable"
-      draggable="false"
-      role="button"
-      tabindex="0"
-    >
-      <div
-        class="euiDraggable__item"
-      >
-        Hello
-      </div>
-    </div>
-    <div
-      class="euiDroppable__placeholder"
-    />
-  </div>
+    class="euiDroppable__placeholder"
+  />
 </div>
 `;
-
-exports[`EuiDraggable is rendered 2`] = `undefined`;

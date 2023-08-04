@@ -296,7 +296,7 @@ export default class extends Component<{}, State> {
             size="m"
             style={{ verticalAlign: 'text-top' }}
           />{' '}
-          {title}
+          {title as ReactNode}
         </span>
       ),
     },
@@ -674,6 +674,7 @@ export default class extends Component<{}, State> {
             mobileOptions={{
               header: column.label,
               ...column.mobileOptions,
+              render: column.mobileOptions?.render?.(item),
             }}
           >
             {child}

@@ -6,17 +6,20 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useContext } from 'react';
+import React, { FunctionComponent, PropsWithChildren, useContext } from 'react';
 import { EuiCheckbox } from '../../../form/checkbox';
 import { EuiMarkdownContext } from '../../markdown_context';
 import { useGeneratedHtmlId } from '../../../../services/accessibility';
 import { EuiMarkdownAstNodePosition } from '../../markdown_types';
 import { CheckboxNodeDetails } from './types';
 
-export const CheckboxMarkdownRenderer: FunctionComponent<
+type CheckboxMarkdownRendererProps = PropsWithChildren &
   CheckboxNodeDetails & {
     position: EuiMarkdownAstNodePosition;
-  }
+  };
+
+export const CheckboxMarkdownRenderer: FunctionComponent<
+  CheckboxMarkdownRendererProps
 > = ({ position, lead, label, isChecked, children }) => {
   const { replaceNode } = useContext(EuiMarkdownContext);
   return (

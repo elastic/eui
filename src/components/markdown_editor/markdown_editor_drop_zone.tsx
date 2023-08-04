@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useEffect } from 'react';
+import React, { FunctionComponent, PropsWithChildren, useEffect } from 'react';
 import classNames from 'classnames';
 import { useDropzone } from 'react-dropzone';
 import { EuiMarkdownEditorFooter } from './markdown_editor_footer';
@@ -19,7 +19,7 @@ import {
 } from './markdown_types';
 import { useResizeObserver } from '../observer/resize_observer';
 
-interface EuiMarkdownEditorDropZoneProps {
+interface EuiMarkdownEditorDropZoneProps extends PropsWithChildren {
   uiPlugins: EuiMarkdownEditorUiPlugin[];
   errors: EuiMarkdownParseError[];
   dropHandlers: EuiMarkdownDropHandler[];

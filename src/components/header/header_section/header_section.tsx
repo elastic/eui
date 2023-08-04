@@ -11,38 +11,32 @@ import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
 
-type HeaderSectionSide = 'left' | 'right';
-
-const sideToClassNameMap: { [side in HeaderSectionSide]: string } = {
-  left: 'euiHeaderSection--left',
-  right: 'euiHeaderSection--right',
-};
+import { euiHeaderSectionStyles } from './header_section.styles';
 
 export type EuiHeaderSectionProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
-    side?: HeaderSectionSide;
+    side?: 'left' | 'right';
     grow?: boolean;
   };
 
 export const EuiHeaderSection: FunctionComponent<EuiHeaderSectionProps> = ({
-  side = 'left',
+  side,
   children,
   className,
   grow = false,
   ...rest
 }) => {
-  const classes = classNames(
-    'euiHeaderSection',
-    {
-      'euiHeaderSection--grow': grow,
-      'euiHeaderSection--dontGrow': !grow,
-    },
-    sideToClassNameMap[side],
-    className
-  );
+  const styles = euiHeaderSectionStyles();
+  const cssStyles = [
+    styles.euiHeaderSection,
+    grow && styles.grow,
+    side && styles[side],
+  ];
+
+  const classes = classNames('euiHeaderSection', className);
 
   return (
-    <div className={classes} {...rest}>
+    <div className={classes} css={cssStyles} {...rest}>
       {children}
     </div>
   );

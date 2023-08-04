@@ -8,7 +8,14 @@ import React, {
 } from 'react';
 import githubData from '../_row_auto_height_data.json';
 
-import { EuiDataGrid, EuiDataGridProps, formatDate } from '../../../../../src';
+import {
+  EuiDataGrid,
+  EuiDataGridColumnSortingConfig,
+  EuiDataGridPaginationProps,
+  EuiDataGridProps,
+  EuiDataGridSorting,
+  formatDate,
+} from '../../../../../src';
 
 interface DataShape {
   html_url: string;
@@ -96,15 +103,19 @@ export default () => {
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 50 });
 
   // Sorting
-  const [sortingColumns, setSortingColumns] = useState([]);
-  const onSort = useCallback(
+  const [sortingColumns, setSortingColumns] = useState<
+    EuiDataGridColumnSortingConfig[]
+  >([]);
+  const onSort = useCallback<EuiDataGridSorting['onSort']>(
     (sortingColumns) => {
       setSortingColumns(sortingColumns);
     },
     [setSortingColumns]
   );
 
-  const onChangeItemsPerPage = useCallback(
+  const onChangeItemsPerPage = useCallback<
+    EuiDataGridPaginationProps['onChangeItemsPerPage']
+  >(
     (pageSize) =>
       setPagination((pagination) => ({
         ...pagination,
@@ -114,7 +125,7 @@ export default () => {
     [setPagination]
   );
 
-  const onChangePage = useCallback(
+  const onChangePage = useCallback<EuiDataGridPaginationProps['onChangePage']>(
     (pageIndex) =>
       setPagination((pagination) => ({ ...pagination, pageIndex })),
     [setPagination]

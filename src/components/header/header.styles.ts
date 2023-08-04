@@ -23,12 +23,13 @@ export const euiHeaderVariables = (euiThemeContext: UseEuiTheme) => {
   return {
     height: euiTheme.size.xxxl,
     childHeight: euiTheme.size.xxl,
+    padding: euiTheme.size.s,
   };
 };
 
 export const euiHeaderStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
-  const { height } = euiHeaderVariables(euiThemeContext);
+  const { height, padding } = euiHeaderVariables(euiThemeContext);
 
   // Curated border color to fade into the shadow without looking too much like a border
   // It adds separation between the header and flyout
@@ -42,7 +43,7 @@ export const euiHeaderStyles = (euiThemeContext: UseEuiTheme) => {
       display: flex;
       justify-content: space-between;
       ${logicalCSS('height', height)}
-      ${logicalCSS('padding-horizontal', euiTheme.size.s)}
+      ${logicalCSS('padding-horizontal', padding)}
       ${euiShadowSmall(euiThemeContext)}
     `,
     // Position
@@ -110,16 +111,6 @@ const euiHeaderDarkStyles = (
 
     .euiHeaderLink-isActive {
       color: ${makeHighContrastColor(euiTheme.colors.primary)(backgroundColor)};
-    }
-
-    .euiHeaderSectionItem {
-      &::after {
-        background-color: ${
-          colorMode === 'DARK'
-            ? euiTheme.colors.lightestShade
-            : euiTheme.colors.darkShade
-        };
-      }
     }
 
     .euiHeaderLogo,

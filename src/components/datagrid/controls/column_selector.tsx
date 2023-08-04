@@ -26,7 +26,7 @@ import {
   EuiDroppable,
   euiDragDropReorder,
 } from '../../drag_and_drop';
-import { DropResult } from 'react-beautiful-dnd';
+import { DropResult } from '@hello-pangea/dnd';
 import { EuiIcon } from '../../icon';
 import { useDependentState } from '../../../services';
 

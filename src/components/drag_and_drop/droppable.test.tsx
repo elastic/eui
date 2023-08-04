@@ -8,10 +8,13 @@
 
 import React from 'react';
 import { mount, ReactWrapper } from 'enzyme';
-import { resetServerContext } from 'react-beautiful-dnd';
+import { resetServerContext } from '@hello-pangea/dnd';
 
-import { findTestSubject } from '../../test';
-import { requiredProps } from '../../test/required_props';
+import { findTestSubject, requiredProps } from '../../test';
+import {
+  invokeOnReactVersion,
+  describeByReactVersion,
+} from '../../test/internal';
 
 import { EuiDragDropContext, EuiDroppable } from './';
 import { EuiDroppableContext } from './droppable';
@@ -24,9 +27,10 @@ function snapshotDragDropContext(component: ReactWrapper) {
   return container.firstChild;
 }
 
-describe('EuiDroppable', () => {
+describeByReactVersion('EuiDroppable', () => {
   afterEach(() => {
-    resetServerContext();
+    // Resetting DND server context is only required in older versions of React
+    invokeOnReactVersion(['16', '17'], resetServerContext);
   });
 
   test('is rendered', () => {
