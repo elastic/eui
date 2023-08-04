@@ -15,6 +15,10 @@ export const euiCollapsibleNavBetaStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiCollapsibleNavBeta: css`
+      /* This extra padding is needed for EuiPopovers to have enough
+         space to render with the right anchorPosition */
+      ${logicalCSS('padding-bottom', euiTheme.size.xs)}
+
       .euiFlyoutFooter {
         background-color: ${euiTheme.colors.emptyShade};
         ${logicalCSS('border-top', euiTheme.border.thin)}
