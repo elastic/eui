@@ -25,7 +25,9 @@ import {
 } from './collapsed_nav_button.styles';
 
 export const EuiCollapsedNavButton: FunctionComponent<
-  EuiCollapsibleNavItemProps
+  EuiCollapsibleNavItemProps & {
+    hideToolTip?: boolean;
+  }
 > = ({
   href, // eslint-disable-line local/href-with-rel
   title,
@@ -33,6 +35,7 @@ export const EuiCollapsedNavButton: FunctionComponent<
   iconProps,
   isSelected,
   onClick,
+  hideToolTip,
   linkProps,
   // Extracted to avoid spreading to ...rest
   accordionProps,
@@ -58,6 +61,7 @@ export const EuiCollapsedNavButton: FunctionComponent<
   const tooltipCssStyles = [
     tooltipStyles.euiCollapsedNavItemTooltip,
     tooltipStyles[side],
+    hideToolTip && tooltipStyles.hidden,
   ];
 
   return (

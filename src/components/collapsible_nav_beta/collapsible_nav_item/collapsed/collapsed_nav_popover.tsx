@@ -66,6 +66,7 @@ export const EuiCollapsedNavPopover: FunctionComponent<
           iconProps={iconProps}
           isSelected={isSelected}
           onClick={togglePopover}
+          hideToolTip={isPopoverOpen}
           // Note: do not pass `linkProps` to buttons that toggle popovers
         />
       }

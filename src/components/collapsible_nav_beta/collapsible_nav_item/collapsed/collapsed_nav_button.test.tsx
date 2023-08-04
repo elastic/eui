@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, waitFor } from '@testing-library/react';
 import { render, waitForEuiToolTipVisible } from '../../../../test/rtl';
 import { shouldRenderCustomStyles } from '../../../../test/internal';
 import { requiredProps } from '../../../../test';
@@ -34,5 +34,19 @@ describe('EuiCollapsedNavButton', () => {
       <EuiCollapsedNavButton title="Nav item" href="#" isSelected={true} />
     );
     expect(container).toMatchSnapshot();
+  });
+
+  // This is primarily used by EuiCollapsedNavPopover to hide the tooltip
+  // when the popover is open (otherwise it overlays the popover)
+  it('allows hiding the tooltip', async () => {
+    const { getByTestSubject } = render(
+      <EuiCollapsedNavButton title="Nav item" href="#" hideToolTip={true} />
+    );
+    fireEvent.mouseOver(getByTestSubject('euiCollapsedNavButton'));
+
+    await waitFor(() => {
+      const tooltip = document.querySelector('.euiToolTipPopover');
+      expect(tooltip).toHaveStyleRule('display', 'none');
+    });
   });
 });

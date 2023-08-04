@@ -45,5 +45,10 @@ export const euiCollapsedNavItemTooltipStyles = ({ euiTheme }: UseEuiTheme) => {
     right: css`
       ${logicalCSS('margin-right', `-${euiTheme.size.m}`)}
     `,
+    // If the item has a popover and the popover is open, we don't want the
+    // tooltip to appear if so - the popover already renders the item title
+    hidden: css`
+      display: none;
+    `,
   };
 };
