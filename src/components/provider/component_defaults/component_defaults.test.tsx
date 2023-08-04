@@ -34,16 +34,14 @@ describe('EuiComponentDefaultsProvider', () => {
       );
       const { result } = renderHook(useComponentDefaults, { wrapper });
 
-      expect(result.current).toMatchInlineSnapshot(`
-        Object {
-          "EuiPortal": Object {
-            "insert": Object {
-              "position": "before",
-              "sibling": <div />,
-            },
+      expect(result.current).toEqual({
+        EuiPortal: {
+          insert: {
+            position: 'before',
+            sibling: expect.any(HTMLDivElement),
           },
-        }
-      `);
+        },
+      });
     });
   });
 
