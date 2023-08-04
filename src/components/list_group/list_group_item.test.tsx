@@ -233,9 +233,7 @@ describe('EuiListGroupItem', () => {
             showToolTip
             data-test-subj="trigger"
             toolTipProps={{
-              anchorProps: {
-                'data-test-subj': 'tooltip-anchor',
-              },
+              'data-test-subj': 'tooltip',
             }}
           />
         );
