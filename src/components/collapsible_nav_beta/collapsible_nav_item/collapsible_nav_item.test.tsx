@@ -11,6 +11,7 @@ import { render } from '../../../test/rtl';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 import { requiredProps } from '../../../test';
 
+import { EuiCollapsibleNavContext } from '../context';
 import { EuiCollapsibleNavItem } from './collapsible_nav_item';
 
 describe('EuiCollapsibleNavItem', () => {
@@ -47,6 +48,19 @@ describe('EuiCollapsibleNavItem', () => {
     );
 
     expect(container.firstChild).toHaveClass('euiLink');
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  it('renders a docked button icon if collapsed and not on mobile', () => {
+    const { container, getByTestSubject } = render(
+      <EuiCollapsibleNavContext.Provider
+        value={{ side: 'left', isSmallScreen: false, isCollapsed: true }}
+      >
+        <EuiCollapsibleNavItem {...requiredProps} title="Item" />
+      </EuiCollapsibleNavContext.Provider>
+    );
+
+    expect(getByTestSubject('euiCollapsedNavButton')).toBeInTheDocument();
     expect(container.firstChild).toMatchSnapshot();
   });
 

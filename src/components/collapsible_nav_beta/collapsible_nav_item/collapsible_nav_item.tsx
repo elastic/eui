@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
+import React, {
+  FunctionComponent,
+  ReactNode,
+  HTMLAttributes,
+  useContext,
+} from 'react';
 import classNames from 'classnames';
 
 import { useEuiTheme } from '../../../services';
@@ -17,6 +22,8 @@ import { EuiLinkProps } from '../../link';
 import { EuiAccordionProps } from '../../accordion';
 import { EuiTitle } from '../../title';
 
+import { EuiCollapsibleNavContext } from '../context';
+import { EuiCollapsedNavItem } from './collapsed';
 import { EuiCollapsibleNavAccordion } from './collapsible_nav_accordion';
 import { EuiCollapsibleNavLink } from './collapsible_nav_link';
 import {
@@ -217,7 +224,11 @@ export const EuiCollapsibleNavItem: FunctionComponent<
 > = ({ className, ...props }) => {
   const classes = classNames('euiCollapsibleNavItem', className);
 
-  return (
+  const { isCollapsed, isSmallScreen } = useContext(EuiCollapsibleNavContext);
+
+  return isCollapsed && !isSmallScreen ? (
+    <EuiCollapsedNavItem className={classes} {...props} />
+  ) : (
     <EuiCollapsibleNavItemDisplay
       className={classes}
       {...props}
