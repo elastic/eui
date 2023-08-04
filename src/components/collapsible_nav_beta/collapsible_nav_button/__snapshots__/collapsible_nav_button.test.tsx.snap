@@ -8,7 +8,7 @@ exports[`EuiCollapsibleNavButton desktop left side renders a menu left icon when
     aria-expanded="true"
     aria-label="Toggle navigation closed"
     aria-pressed="true"
-    class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text"
+    class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsibleNavButton"
     data-test-subj="euiCollapsibleNavButton"
     type="button"
   >
@@ -30,7 +30,7 @@ exports[`EuiCollapsibleNavButton desktop left side renders a menu right icon whe
     aria-expanded="false"
     aria-label="Toggle navigation open"
     aria-pressed="false"
-    class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text"
+    class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsibleNavButton"
     data-test-subj="euiCollapsibleNavButton"
     type="button"
   >
@@ -52,7 +52,7 @@ exports[`EuiCollapsibleNavButton desktop right side renders a menu left icon whe
     aria-expanded="false"
     aria-label="Toggle navigation open"
     aria-pressed="false"
-    class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text"
+    class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsibleNavButton"
     data-test-subj="euiCollapsibleNavButton"
     type="button"
   >
@@ -74,7 +74,7 @@ exports[`EuiCollapsibleNavButton desktop right side renders a menu right icon wh
     aria-expanded="true"
     aria-label="Toggle navigation closed"
     aria-pressed="true"
-    class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text"
+    class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsibleNavButton"
     data-test-subj="euiCollapsibleNavButton"
     type="button"
   >
@@ -96,7 +96,7 @@ exports[`EuiCollapsibleNavButton mobile renders a hamburger icon when collapsed 
     aria-expanded="false"
     aria-label="Toggle navigation open"
     aria-pressed="false"
-    class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text"
+    class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsibleNavButton"
     data-test-subj="euiCollapsibleNavButton"
     type="button"
   >
@@ -118,7 +118,7 @@ exports[`EuiCollapsibleNavButton mobile renders an X icon when expanded 1`] = `
     aria-expanded="true"
     aria-label="Toggle navigation closed"
     aria-pressed="true"
-    class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text"
+    class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsibleNavButton"
     data-test-subj="euiCollapsibleNavButton"
     type="button"
   >
@@ -127,6 +127,28 @@ exports[`EuiCollapsibleNavButton mobile renders an X icon when expanded 1`] = `
       class="euiButtonIcon__icon"
       color="inherit"
       data-euiicon-type="cross"
+    />
+  </button>
+</div>
+`;
+
+exports[`EuiCollapsibleNavButton renders 1`] = `
+<div
+  class="euiCollapsibleNavButtonWrapper emotion-euiCollapsibleNavButtonWrapper-left"
+>
+  <button
+    aria-expanded="true"
+    aria-label="aria-label"
+    aria-pressed="true"
+    class="euiButtonIcon euiCollapsibleNavButton testClass1 testClass2 emotion-euiButtonIcon-s-empty-text-euiCollapsibleNavButton-euiTestCss"
+    data-test-subj="test subject string"
+    type="button"
+  >
+    <span
+      aria-hidden="true"
+      class="euiButtonIcon__icon"
+      color="inherit"
+      data-euiicon-type="menuLeft"
     />
   </button>
 </div>

@@ -15,6 +15,7 @@ import { useEuiI18n } from '../../i18n';
 
 import { EuiCollapsibleNavContext } from '../context';
 import { euiCollapsibleNavButtonWrapperStyles } from './collapsible_nav_button.styles';
+import classNames from 'classnames';
 
 export type EuiCollapsibleNavButtonProps = CommonProps &
   Partial<EuiButtonIconPropsForButton>;
@@ -22,7 +23,7 @@ export type EuiCollapsibleNavButtonProps = CommonProps &
 export const EuiCollapsibleNavButton = forwardRef<
   HTMLDivElement,
   EuiCollapsibleNavButtonProps
->((rest, ref) => {
+>(({ className, css, ...rest }, ref) => {
   const { side, isSmallScreen, isCollapsed } = useContext(
     EuiCollapsibleNavContext
   );
@@ -30,6 +31,9 @@ export const EuiCollapsibleNavButton = forwardRef<
   const euiTheme = useEuiTheme();
   const styles = euiCollapsibleNavButtonWrapperStyles(euiTheme);
   const cssStyles = [styles.euiCollapsibleNavButtonWrapper, styles[side]];
+
+  const buttonStyles = [styles.euiCollapsibleNavButton, css];
+  const classes = classNames('euiCollapsibleNavButton', className);
 
   let iconType: string;
   if (isSmallScreen) {
@@ -56,7 +60,8 @@ export const EuiCollapsibleNavButton = forwardRef<
     <div className="euiCollapsibleNavButtonWrapper" css={cssStyles} ref={ref}>
       <EuiButtonIcon
         data-test-subj="euiCollapsibleNavButton"
-        className="euiCollapsibleNavButton"
+        className={classes}
+        css={buttonStyles}
         size="s"
         color="text"
         iconType={iconType}

@@ -20,6 +20,10 @@ export const euiCollapsedNavButtonStyles = (euiThemeContext: UseEuiTheme) => {
     euiCollapsedNavButton: css`
       display: flex;
       margin: ${sharedStyles.padding};
+
+      &.euiButtonIcon:hover {
+        transform: none;
+      }
     `,
     isSelected: css`
       &,

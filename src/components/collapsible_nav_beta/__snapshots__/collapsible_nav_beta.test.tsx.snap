@@ -14,7 +14,7 @@ exports[`EuiCollapsibleNavBeta renders 1`] = `
         aria-expanded="true"
         aria-label="Toggle navigation closed"
         aria-pressed="true"
-        class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text"
+        class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsibleNavButton"
         data-test-subj="euiCollapsibleNavButton"
         type="button"
       >
@@ -70,7 +70,7 @@ exports[`EuiCollapsibleNavBeta renders initialIsCollapsed 1`] = `
         aria-expanded="false"
         aria-label="Toggle navigation open"
         aria-pressed="false"
-        class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text"
+        class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsibleNavButton"
         data-test-subj="euiCollapsibleNavButton"
         type="button"
       >
@@ -125,7 +125,7 @@ exports[`EuiCollapsibleNavBeta responsive behavior collapses from a push flyout 
         aria-expanded="false"
         aria-label="Toggle navigation open"
         aria-pressed="false"
-        class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text"
+        class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsibleNavButton"
         data-test-subj="euiCollapsibleNavButton"
         type="button"
       >
@@ -155,7 +155,7 @@ exports[`EuiCollapsibleNavBeta responsive behavior makes the overlay flyout full
         aria-expanded="true"
         aria-label="Toggle navigation closed"
         aria-pressed="true"
-        class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text"
+        class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsibleNavButton"
         data-test-subj="euiCollapsibleNavButton"
         type="button"
       >

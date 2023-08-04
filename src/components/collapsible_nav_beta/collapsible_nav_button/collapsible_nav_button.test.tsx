@@ -8,11 +8,22 @@
 
 import React from 'react';
 import { render } from '../../../test/rtl';
+import { requiredProps } from '../../../test';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiCollapsibleNavContext } from '../context';
 import { EuiCollapsibleNavButton } from './collapsible_nav_button';
 
 describe('EuiCollapsibleNavButton', () => {
+  shouldRenderCustomStyles(<EuiCollapsibleNavButton {...requiredProps} />);
+
+  it('renders', () => {
+    const { container } = render(
+      <EuiCollapsibleNavButton {...requiredProps} />
+    );
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
   describe('desktop', () => {
     describe('left side', () => {
       it('renders a menu left icon when expanded', () => {
