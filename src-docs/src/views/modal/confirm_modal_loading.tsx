@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiButton,
@@ -12,21 +12,19 @@ export default () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [value, setValue] = useState('');
 
-  useEffect(() => {
-    if (value === 'delete') {
+  const showModal = () => {
+    setIsModalVisible(true);
+    setIsLoading(true);
+    setTimeout(() => {
+      // Simulate a remotely-executed search.
       setIsLoading(false);
-    }
-  }, [value]);
+    }, 1200);
+  };
 
   const closeModal = () => {
     setIsModalVisible(false);
     setIsLoading(false);
-  };
-
-  const showModal = () => {
     setValue('');
-    setIsLoading(true);
-    setIsModalVisible(true);
   };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,7 +46,7 @@ export default () => {
         cancelButtonText="Cancel"
         buttonColor="danger"
         initialFocus="[name=delete]"
-        confirmButtonDisabled={isLoading}
+        confirmButtonDisabled={value.toLowerCase() !== 'delete'}
         isLoading={isLoading}
       >
         <EuiFormRow label="Type the word 'delete' to confirm">
