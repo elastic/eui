@@ -239,7 +239,7 @@ describe('EuiListGroupItem', () => {
         );
         fireEvent.mouseOver(getByTestSubject('trigger'));
         await waitForEuiToolTipVisible();
-        expect(getByTestSubject('tooltip-anchor')).toBeInTheDocument();
+        expect(getByTestSubject('tooltip')).toBeInTheDocument();
       });
     });
   });
