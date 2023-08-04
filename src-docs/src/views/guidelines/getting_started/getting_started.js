@@ -7,6 +7,7 @@ import { AppSetup } from './_app_setup';
 import { Tokens } from './_tokens';
 import { Customizing } from './_customizing';
 import { ThemeNotice } from '../../../views/theme/_components/_theme_notice.tsx';
+import { euiProviderComponentDefaultsSnippet } from '../../provider/provider_component_defaults';
 
 export const GettingStarted = {
   title: 'Getting started',
@@ -264,6 +265,30 @@ import { findByTestSubject, render, screen } from '@elastic/eui/lib/test/rtl'; /
           <p>Renders as:</p>
           <EuiCodeBlock language="html" isCopyable fontSize="m">
             {'<button class="euiButton myCustomClass__button" />'}
+          </EuiCodeBlock>
+        </>
+      ),
+    },
+    {
+      title: 'Customizing component defaults',
+      wrapText: false,
+      text: (
+        <>
+          <EuiText grow={false}>
+            <p>
+              While all props can be individually customized via props, some
+              components can have their default props customized globally via{' '}
+              <strong>EuiProvider's</strong>{' '}
+              <EuiCode>componentDefaults</EuiCode> API.{' '}
+              <Link to="/utilities/provider#component-defaults">
+                Read more in EuiProvider's documentation
+              </Link>
+              .
+            </p>
+          </EuiText>
+          <EuiSpacer />
+          <EuiCodeBlock language="jsx" isCopyable fontSize="m">
+            {euiProviderComponentDefaultsSnippet}
           </EuiCodeBlock>
         </>
       ),

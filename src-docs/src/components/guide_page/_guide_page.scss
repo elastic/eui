@@ -42,12 +42,9 @@
   }
 
   .guideSideNav__itemBadge {
-    margin-inline: $euiSizeXS;
-  }
-
-  // Shift the margin on the badge when selected and the dropdown arrow no longer shows
-  .euiSideNavItemButton-isSelected .guideSideNav__itemBadge {
-    margin-right: 0;
+    margin-inline-start: $euiSizeXS;
+    // Decrease distance from right side to allow for longer titles and sub-items
+    margin-inline-end: -$euiSizeS;
   }
 }
 

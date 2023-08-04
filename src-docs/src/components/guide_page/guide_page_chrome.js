@@ -41,6 +41,24 @@ export class GuidePageChrome extends Component {
     });
   };
 
+  renderSideNavBadge = ({ isBeta, isNew }) => {
+    if (isBeta) {
+      return (
+        <EuiBadge color="warning" className="guideSideNav__itemBadge">
+          BETA
+        </EuiBadge>
+      );
+    }
+    if (isNew) {
+      return (
+        <EuiBadge color="accent" className="guideSideNav__itemBadge">
+          NEW
+        </EuiBadge>
+      );
+    }
+    return undefined;
+  };
+
   scrollNavSectionIntoView = () => {
     // wait a bit for react to blow away and re-create the DOM
     // then scroll the selected nav section into view
@@ -80,7 +98,7 @@ export class GuidePageChrome extends Component {
       return;
     }
 
-    return subSectionsWithTitles.map(({ title, sections }) => {
+    return subSectionsWithTitles.map(({ title, isBeta, isNew, sections }) => {
       const id = slugify(title);
 
       const subSectionHref = `${href}/${id}`;
@@ -115,6 +133,7 @@ export class GuidePageChrome extends Component {
           : '',
         items: subItems,
         forceOpen: !!searchTerm || isCurrentlyOpenSubSection,
+        icon: this.renderSideNavBadge({ isBeta, isNew }),
       };
     });
   };
@@ -146,16 +165,6 @@ export class GuidePageChrome extends Component {
 
         const href = `#/${path}`;
 
-        const badge = isBeta ? (
-          <EuiBadge color="warning" className="guideSideNav__itemBadge">
-            BETA
-          </EuiBadge>
-        ) : isNew ? (
-          <EuiBadge color="accent" className="guideSideNav__itemBadge">
-            NEW
-          </EuiBadge>
-        ) : undefined;
-
         let visibleName = name;
         if (searchTerm) {
           visibleName = (
@@ -176,7 +185,7 @@ export class GuidePageChrome extends Component {
           isSelected: item.path === this.props.currentRoute.path,
           forceOpen: !!(searchTerm && hasMatchingSubItem),
           className: 'guideSideNav__item',
-          icon: badge,
+          icon: this.renderSideNavBadge({ isBeta, isNew }),
         };
       });
 

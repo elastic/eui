@@ -23,7 +23,7 @@ interface Dependencies {
   focusContext: DataGridFocusContextShape;
   cellPopoverContext: DataGridCellPopoverContextShape;
   sortingContext: DataGridSortingContextShape;
-  pagination: EuiDataGridProps['pagination'];
+  pagination: Required<EuiDataGridProps['pagination']>;
   rowCount: number;
   visibleColCount: number;
 }
@@ -144,7 +144,7 @@ export const useCellLocationCheck = (rowCount: number, colCount: number) => {
  * paginating to that row.
  */
 export const useSortPageCheck = (
-  pagination: EuiDataGridProps['pagination'],
+  pagination: Required<EuiDataGridProps['pagination']>,
   sortedRowMap: DataGridSortingContextShape['sortedRowMap']
 ) => {
   const findVisibleRowIndex = useCallback(

@@ -7,7 +7,8 @@
  */
 
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { fireEvent } from '@testing-library/react';
+import { render } from '../../../test/rtl';
 
 import { DataGridFocusContext } from './focus';
 import { mockFocusContext } from './__mocks__/focus_context';
@@ -27,134 +28,77 @@ describe('EuiDataGridPaginationRenderer', () => {
   beforeEach(() => jest.clearAllMocks());
 
   it('renders', () => {
-    const component = shallow(<EuiDataGridPaginationRenderer {...props} />);
-    expect(component).toMatchInlineSnapshot(`
-      <div
-        className="euiDataGrid__pagination"
-      >
-        <EuiTablePagination
-          activePage={0}
-          aria-controls="data-grid-id"
-          aria-label="Pagination for preceding grid"
-          itemsPerPage={25}
-          itemsPerPageOptions={
-            Array [
-              25,
-            ]
-          }
-          onChangeItemsPerPage={[MockFunction]}
-          onChangePage={[Function]}
-          pageCount={4}
-          showPerPageOptions={true}
-        />
-      </div>
-    `);
+    const { container, getByText } = render(
+      <EuiDataGridPaginationRenderer {...props} />
+    );
+    expect(container.firstChild).toHaveClass('euiDataGrid__pagination');
+    fireEvent.click(getByText('Rows per page: 25'));
+    expect(getByText('25 rows')).toBeTruthy();
+    expect(getByText('Page 1 of 4')).toBeTruthy();
   });
 
   it('renders a detailed aria-label', () => {
-    const component = shallow(
+    const { getAllByLabelText } = render(
       <EuiDataGridPaginationRenderer {...props} aria-label="Test Grid" />
     );
-    expect(component).toMatchInlineSnapshot(`
-      <div
-        className="euiDataGrid__pagination"
-      >
-        <EuiTablePagination
-          activePage={0}
-          aria-controls="data-grid-id"
-          aria-label="Pagination for preceding grid: Test Grid"
-          itemsPerPage={25}
-          itemsPerPageOptions={
-            Array [
-              25,
-            ]
-          }
-          onChangeItemsPerPage={[MockFunction]}
-          onChangePage={[Function]}
-          pageCount={4}
-          showPerPageOptions={true}
-        />
-      </div>
-    `);
+    expect(
+      getAllByLabelText('Pagination for preceding grid: Test Grid')
+    ).toBeTruthy();
   });
 
   it('hides the page size selection if pageSizeOptions is empty', () => {
-    const component = shallow(
+    const { queryByTestSubject, queryByText } = render(
       <EuiDataGridPaginationRenderer {...props} pageSizeOptions={[]} />
     );
-    expect(component).toMatchInlineSnapshot(`
-      <div
-        className="euiDataGrid__pagination"
-      >
-        <EuiTablePagination
-          activePage={0}
-          aria-controls="data-grid-id"
-          aria-label="Pagination for preceding grid"
-          itemsPerPage={25}
-          itemsPerPageOptions={Array []}
-          onChangeItemsPerPage={[MockFunction]}
-          onChangePage={[Function]}
-          pageCount={4}
-          showPerPageOptions={false}
-        />
-      </div>
-    `);
+    expect(queryByTestSubject('tablePaginationPopoverButton')).toBeFalsy();
+    expect(queryByText('Rows per page:')).toBeFalsy();
   });
 
   it('handles the "show all" page size option', () => {
-    const component = shallow(
+    const { getByText } = render(
       <EuiDataGridPaginationRenderer
         {...props}
         pageSize={0}
         pageSizeOptions={[10, 25, 0]}
       />
     );
-    expect(component).toMatchInlineSnapshot(`
-      <div
-        className="euiDataGrid__pagination"
-      >
-        <EuiTablePagination
-          activePage={0}
-          aria-controls="data-grid-id"
-          aria-label="Pagination for preceding grid"
-          itemsPerPage={0}
-          itemsPerPageOptions={
-            Array [
-              10,
-              25,
-              0,
-            ]
-          }
-          onChangeItemsPerPage={[MockFunction]}
-          onChangePage={[Function]}
-          pageCount={1}
-          showPerPageOptions={true}
-        />
-      </div>
-    `);
+    expect(getByText('Showing all rows')).toBeTruthy();
   });
 
   it('does not render if there are fewer rows than the smallest page size option', () => {
-    const component = shallow(
+    const { container } = render(
       <EuiDataGridPaginationRenderer
         {...props}
         rowCount={1}
         pageSizeOptions={[10, 25]}
       />
     );
-    expect(component.isEmptyRender()).toBe(true);
+    expect(container).toBeEmptyDOMElement();
   });
 
   it('focuses the first data cell on page change', () => {
-    const component = mount(
+    const { getByTestSubject } = render(
       <DataGridFocusContext.Provider value={mockFocusContext}>
         <EuiDataGridPaginationRenderer {...props} />
       </DataGridFocusContext.Provider>
     );
-    const onChangePage: Function = component
-      .find('EuiTablePagination')
-      .prop('onChangePage');
-    onChangePage(3);
+    fireEvent.click(getByTestSubject('pagination-button-2'));
     expect(mockFocusContext.setFocusedCell).toHaveBeenCalledWith([0, 0]);
+  });
+
+  describe('EuiProvider component defaults', () => {
+    it('falls back to EuiTablePagination defaults if pageSize and pageSizeOptions are undefined', () => {
+      const { getByText } = render(
+        <EuiDataGridPaginationRenderer
+          {...props}
+          pageSize={undefined}
+          pageSizeOptions={undefined}
+        />
+      );
+      fireEvent.click(getByText('Rows per page: 10'));
+      expect(getByText('10 rows')).toBeTruthy();
+      expect(getByText('25 rows')).toBeTruthy();
+      expect(getByText('50 rows')).toBeTruthy();
+    });
   });
 });

@@ -15,12 +15,21 @@ export const euiCollapsibleNavBetaStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiCollapsibleNavBeta: css`
-      ${logicalCSS('border-top', euiTheme.border.thin)}
-      ${logicalCSS('border-right', euiTheme.border.thin)}
-
       .euiFlyoutFooter {
         background-color: ${euiTheme.colors.emptyShade};
         ${logicalCSS('border-top', euiTheme.border.thin)}
+      }
+    `,
+    left: css`
+      ${logicalCSS('border-right', euiTheme.border.thin)}
+    `,
+    right: css`
+      ${logicalCSS('border-left', euiTheme.border.thin)}
+    `,
+    isSmallestScreen: css`
+      /* Override EuiFlyout's max-width */
+      &.euiFlyout {
+        ${logicalCSS('max-width', '100% !important')}
       }
     `,
   };

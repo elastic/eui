@@ -11,41 +11,50 @@
  * into portals.
  */
 
-import { Component, ContextType, ReactNode } from 'react';
+import React, {
+  FunctionComponent,
+  Component,
+  ContextType,
+  ReactNode,
+} from 'react';
 import { createPortal } from 'react-dom';
 
 import { EuiNestedThemeContext } from '../../services';
-import { keysOf } from '../common';
+import { usePropsWithComponentDefaults } from '../provider/component_defaults';
 
-interface InsertPositionsMap {
-  after: InsertPosition;
-  before: InsertPosition;
-}
-
-export const insertPositions: InsertPositionsMap = {
+const INSERT_POSITIONS = ['after', 'before'] as const;
+type EuiPortalInsertPosition = (typeof INSERT_POSITIONS)[number];
+const insertPositions: Record<EuiPortalInsertPosition, InsertPosition> = {
   after: 'afterend',
   before: 'beforebegin',
 };
-
-type EuiPortalInsertPosition = keyof typeof insertPositions;
-
-export const INSERT_POSITIONS: EuiPortalInsertPosition[] =
-  keysOf(insertPositions);
 
 export interface EuiPortalProps {
   /**
    * ReactNode to render as this component's content
    */
   children: ReactNode;
-  insert?: { sibling: HTMLElement; position: 'before' | 'after' };
+  /**
+   * If not specified, `EuiPortal` will insert itself
+   * into the end of the `document.body` by default
+   */
+  insert?: { sibling: HTMLElement; position: EuiPortalInsertPosition };
+  /**
+   * Optional ref callback
+   */
   portalRef?: (ref: HTMLDivElement | null) => void;
 }
+
+export const EuiPortal: FunctionComponent<EuiPortalProps> = (props) => {
+  const propsWithDefaults = usePropsWithComponentDefaults('EuiPortal', props);
+  return <EuiPortalClass {...propsWithDefaults} />;
+};
 
 interface EuiPortalState {
   portalNode: HTMLDivElement | null;
 }
 
-export class EuiPortal extends Component<EuiPortalProps, EuiPortalState> {
+export class EuiPortalClass extends Component<EuiPortalProps, EuiPortalState> {
   static contextType = EuiNestedThemeContext;
   declare context: ContextType<typeof EuiNestedThemeContext>;
 

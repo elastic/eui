@@ -53,7 +53,7 @@ const SuperDatePicker = () => {
 
 beforeEach(() => {
   cy.mount(<SuperDatePicker />);
-  cy.get('div.euiSuperDatePicker__flexWrapper').should('exist');
+  cy.get('div.euiSuperDatePicker').should('exist');
 });
 
 describe('EuiSuperDatePicker', () => {

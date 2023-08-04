@@ -55,6 +55,21 @@ export default () => {
     );
   }
 
+  let disabledButton;
+  if (status !== 'disabled') {
+    disabledButton = (
+      <EuiButton color="accent" onClick={() => setStatus('disabled')}>
+        Disabled
+      </EuiButton>
+    );
+  } else {
+    disabledButton = (
+      <EuiButton color="accent" onClick={() => setStatus('incomplete')}>
+        Reset
+      </EuiButton>
+    );
+  }
+
   const firstSetOfSteps = [
     {
       title: 'Normal step',
@@ -75,6 +90,7 @@ export default () => {
             <EuiFlexItem grow={false}> {completeButton} </EuiFlexItem>
             <EuiFlexItem grow={false}> {warningButton} </EuiFlexItem>
             <EuiFlexItem grow={false}> {dangerButton} </EuiFlexItem>
+            <EuiFlexItem grow={false}> {disabledButton} </EuiFlexItem>
           </EuiFlexGroup>
         </>
       ),
