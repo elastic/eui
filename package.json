@@ -75,7 +75,7 @@
     "@types/resize-observer-browser": "^0.1.5",
     "@types/vfile-message": "^2.0.0",
     "chroma-js": "^2.1.0",
-    "classnames": "^2.2.6",
+    "classnames": "^2.3.2",
     "lodash": "^4.17.21",
     "mdast-util-to-hast": "^10.0.0",
     "numeral": "^2.0.6",
