@@ -83,7 +83,6 @@ const skeletonLivePropsSnippet = `<EuiSkeletonText
 
 export const SkeletonExample = {
   title: 'Skeleton',
-  isNew: true,
   intro: (
     <>
       <EuiText>
