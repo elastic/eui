@@ -15,7 +15,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, keysOf } from '../common';
+import { CommonProps } from '../common';
 import { findPopoverPosition, htmlIdGenerator } from '../../services';
 import { enqueueStateChange } from '../../services/react';
 import { EuiResizeObserver } from '../observer/resize_observer';
@@ -26,14 +26,8 @@ import { EuiToolTipAnchor } from './tool_tip_anchor';
 import { EuiToolTipArrow } from './tool_tip_arrow';
 import { toolTipManager } from './tool_tip_manager';
 
-const positionsToClassNameMap: { [key in ToolTipPositions]: string } = {
-  top: 'euiToolTip--top',
-  right: 'euiToolTip--right',
-  bottom: 'euiToolTip--bottom',
-  left: 'euiToolTip--left',
-};
-
-export const POSITIONS = keysOf(positionsToClassNameMap);
+export const POSITIONS = ['top', 'right', 'bottom', 'left'] as const;
+const DISPLAYS = ['inlineBlock', 'block'] as const;
 
 export type ToolTipDelay = 'regular' | 'long';
 
@@ -49,11 +43,6 @@ interface ToolTipStyles {
   opacity?: number;
   visibility?: 'hidden';
 }
-
-const displayToClassNameMap = {
-  inlineBlock: undefined,
-  block: 'euiToolTipAnchor--displayBlock',
-};
 
 const DEFAULT_TOOLTIP_STYLES: ToolTipStyles = {
   // position the tooltip content near the top-left
@@ -92,7 +81,7 @@ export interface EuiToolTipProps extends CommonProps {
   /**
    * Common display alternatives for the anchor wrapper
    */
-  display?: keyof typeof displayToClassNameMap;
+  display?: (typeof DISPLAYS)[number];
   /**
    * Delay before showing tooltip. Good for repeatable items.
    */
