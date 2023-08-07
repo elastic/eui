@@ -9,26 +9,29 @@ import {
 
 export default () => {
   const [isLoading, setIsLoading] = useState(false);
-
-  const searchTimeout = setTimeout(() => {
-    // Simulate a remotely-executed search.
-    setIsLoading(false);
-  }, 1200);
-
-  clearTimeout(searchTimeout);
-
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [value, setValue] = useState('');
+
+  let timeoutId: ReturnType<typeof setTimeout>;
+  const searchTimeout = () =>
+    setTimeout(() => {
+      // Simulate a remotely-executed search.
+      setIsLoading(false);
+    }, 1200);
+
   const showModal = () => {
     setIsModalVisible(true);
     setIsLoading(true);
+    timeoutId = searchTimeout();
   };
+
   const closeModal = () => {
     setIsModalVisible(false);
     setIsLoading(false);
-    clearTimeout(searchTimeout);
+    setValue('');
+    clearTimeout(timeoutId);
   };
 
-  const [value, setValue] = useState('');
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
