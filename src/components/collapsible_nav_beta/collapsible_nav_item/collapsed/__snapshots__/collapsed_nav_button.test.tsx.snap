@@ -11,7 +11,6 @@ exports[`EuiCollapsedNavButton renders a tooltip around the icon button 1`] = `
       data-test-subj="test subject string"
     >
       <button
-        aria-describedby="generated-id"
         aria-label="Nav item"
         class="euiButtonIcon euiCollapsedNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsedNavButton"
         data-test-subj="euiCollapsedNavButton"
