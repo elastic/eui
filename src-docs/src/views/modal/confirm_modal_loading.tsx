@@ -13,7 +13,11 @@ export default () => {
   const [value, setValue] = useState('');
 
   let timeoutId: ReturnType<typeof setTimeout>;
-  const searchTimeout = () => setTimeout(() => setIsLoading(false), 1200);
+  const searchTimeout = () =>
+    setTimeout(() => {
+      // Simulate a remotely-executed search.
+      setIsLoading(false);
+    }, 1200);
 
   const showModal = () => {
     setIsModalVisible(true);
