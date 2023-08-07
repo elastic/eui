@@ -18,7 +18,7 @@ If you need to customize how the options are rendered and selected, you can use 
 ### [`EuiSuperSelect`](https://elastic.github.io/eui/#/forms/super-select)
 `EuiSuperSelect` gives you more control over the display of the options in the dropdown. The `dropdownDisplay` prop gives you the ability to pass in custom React nodes for each option, allowing for multi-line option text or descriptions.
 
-In general, we recommend reaching for `EuiSuperSelect` only if custom option display is absolutely necessary [see EuiSelect’s paragraph on accessibility and UX](https://elastic.github.io/eui/#/forms/form-controls#select).
+In general, we recommend reaching for `EuiSuperSelect` only if custom option display is absolutely necessary, as `EuiSelect` is natively more accessible.
 
 ### [`EuiComboBox`](https://elastic.github.io/eui/#/forms/combo-box)
 `EuiComboBox` allows multiple items to be selected and shown in a horizontally-oriented pill list. It allows users to search through a list of dropdown options, and additionally supports custom user-generated input outside of the available options.
