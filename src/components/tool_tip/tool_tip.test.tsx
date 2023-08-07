@@ -167,6 +167,20 @@ describe('EuiToolTip', () => {
       ).toEqual('toolTipId');
     });
 
+    it('merges with custom consumer `aria-describedby`s', async () => {
+      const { getByTestSubject } = render(
+        <EuiToolTip content="Tooltip content" id="toolTipId">
+          <button data-test-subj="anchor" aria-describedby="customId" />
+        </EuiToolTip>
+      );
+      fireEvent.mouseOver(getByTestSubject('anchor'));
+      await waitForEuiToolTipVisible();
+
+      expect(
+        getByTestSubject('anchor').getAttribute('aria-describedby')
+      ).toEqual('toolTipId customId');
+    });
+
     it('allows disabling the default `aria-describedby` via `setAriaDescribedBy`', async () => {
       const { getByTestSubject } = render(
         <EuiToolTip

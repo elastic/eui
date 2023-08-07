@@ -78,7 +78,7 @@ export const EuiToolTipAnchor = forwardRef<
           },
           'aria-describedby':
             isVisible && setAriaDescribedBy
-              ? id
+              ? classNames(id, children.props['aria-describedby'])
               : children.props['aria-describedby'],
         })}
       </span>
