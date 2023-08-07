@@ -51,7 +51,11 @@ export const EuiCollapsibleNavLink: FunctionComponent<
   linkProps,
   ...rest
 }) => {
-  const classes = classNames('euiCollapsibleNavLink', className);
+  const classes = classNames(
+    'euiCollapsibleNavLink',
+    className,
+    isInteractive && linkProps?.className
+  );
   const euiTheme = useEuiTheme();
   const styles = euiCollapsibleNavLinkStyles(euiTheme);
   const cssStyles = [
@@ -63,15 +67,15 @@ export const EuiCollapsibleNavLink: FunctionComponent<
       !isSelected &&
       !isSubItem &&
       styles.isTopItem.isInteractive,
-    linkProps?.css,
+    isInteractive && linkProps?.css,
   ];
 
   return isInteractive ? (
     <EuiLink
       href={href}
       rel={rel}
-      className={classes}
       {...({ ...rest, ...linkProps } as any)} // EuiLink ExclusiveUnion shenanigans
+      className={classes}
       css={cssStyles}
     >
       {children}
