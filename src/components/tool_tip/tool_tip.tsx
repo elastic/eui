@@ -348,7 +348,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
           onFocus={this.onFocus}
           onMouseOver={this.showToolTip}
           onMouseOut={this.onMouseOut}
-          id={this.state.id}
+          id={id}
           className={anchorClasses}
           display={display!}
           isVisible={visible}
