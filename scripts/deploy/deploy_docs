@@ -99,9 +99,9 @@ publish_to_bucket()
 if [[ "$1" != "nodocker" ]]; then
   ./scripts/deploy/build_docs
 
-  # we look this up to inject into the next docker run so it can decide whether
-  # we need to overwrite the root /index.html file with a new one.
-  CURRENT_RELEASE=$(git describe --tags "$(git rev-list --tags --max-count=1)")
+  # Get the latest tag on main, which will determine whether we deploy to the root `eui.elastic.co` bucket
+  # NOTE: specifying the main branch means we don't override prod with backport or prerelease tags.
+  CURRENT_RELEASE=$(git describe --tags "$(git rev-list --branches=main --tags --max-count=1)")
   echo "Current release: $CURRENT_RELEASE"
 
   # Run this script from inside the docker container, using google/cloud-sdk image

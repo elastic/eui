@@ -6,40 +6,42 @@
  * Side Public License, v 1.
  */
 
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useContext } from 'react';
 
 import { useEuiTheme } from '../../../services';
 import { CommonProps } from '../../common';
 import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../../button';
 import { useEuiI18n } from '../../i18n';
-import { _EuiFlyoutSide } from '../../flyout/flyout';
 
+import { EuiCollapsibleNavContext } from '../context';
 import { euiCollapsibleNavButtonWrapperStyles } from './collapsible_nav_button.styles';
+import classNames from 'classnames';
 
 export type EuiCollapsibleNavButtonProps = CommonProps &
-  Partial<EuiButtonIconPropsForButton> & {
-    isCollapsed: boolean;
-    isSmallScreen: boolean;
-    side: _EuiFlyoutSide;
-  };
+  Partial<EuiButtonIconPropsForButton>;
 
 export const EuiCollapsibleNavButton = forwardRef<
   HTMLDivElement,
   EuiCollapsibleNavButtonProps
->(({ isCollapsed, isSmallScreen, side, ...rest }, ref) => {
+>(({ className, css, ...rest }, ref) => {
+  const { side, isPush, isCollapsed } = useContext(EuiCollapsibleNavContext);
+
   const euiTheme = useEuiTheme();
   const styles = euiCollapsibleNavButtonWrapperStyles(euiTheme);
   const cssStyles = [styles.euiCollapsibleNavButtonWrapper, styles[side]];
 
+  const buttonStyles = [styles.euiCollapsibleNavButton, css];
+  const classes = classNames('euiCollapsibleNavButton', className);
+
   let iconType: string;
-  if (isSmallScreen) {
-    iconType = isCollapsed ? 'menu' : 'cross';
-  } else {
+  if (isPush) {
     if (side === 'left') {
       iconType = isCollapsed ? 'menuRight' : 'menuLeft';
     } else {
       iconType = isCollapsed ? 'menuLeft' : 'menuRight';
     }
+  } else {
+    iconType = isCollapsed ? 'menu' : 'cross';
   }
 
   const toggleOpenLabel = useEuiI18n(
@@ -56,7 +58,8 @@ export const EuiCollapsibleNavButton = forwardRef<
     <div className="euiCollapsibleNavButtonWrapper" css={cssStyles} ref={ref}>
       <EuiButtonIcon
         data-test-subj="euiCollapsibleNavButton"
-        className="euiCollapsibleNavButton"
+        className={classes}
+        css={buttonStyles}
         size="s"
         color="text"
         iconType={iconType}

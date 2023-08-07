@@ -106,7 +106,7 @@ export const euiCollapsibleNavAccordionStyles = (
 
       & > .euiIcon {
         color: ${sharedStyles.rightIconColor};
-        transform: rotate(-90deg);
+        transform: rotate(90deg);
 
         ${euiCanAnimate} {
           transition: transform ${sharedStyles.animation},
@@ -116,7 +116,7 @@ export const euiCollapsibleNavAccordionStyles = (
 
       &.euiAccordion__iconButton-isOpen > .euiIcon {
         color: ${sharedStyles.color};
-        transform: rotate(90deg);
+        transform: rotate(-90deg);
       }
     `,
     // Children wrapper

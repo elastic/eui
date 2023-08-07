@@ -24,7 +24,7 @@ describe('EuiCollapsibleNavLink', () => {
       <EuiCollapsibleNavLink
         href="#"
         rel="noopener"
-        linkProps={{ target: '_blank' }}
+        linkProps={{ target: '_blank', ...requiredProps }}
         {...requiredProps}
       >
         Link
@@ -51,5 +51,18 @@ describe('EuiCollapsibleNavLink', () => {
       </EuiCollapsibleNavLink>
     );
     expect(container.firstChild).toMatchSnapshot();
+  });
+
+  it('does not spread `linkProps` to static spans', () => {
+    const { container } = render(
+      <EuiCollapsibleNavLink
+        isInteractive={false}
+        linkProps={{ className: 'test' }}
+      >
+        Link
+      </EuiCollapsibleNavLink>
+    );
+
+    expect(container.querySelector('.test')).not.toBeInTheDocument();
   });
 });
