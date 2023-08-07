@@ -12,21 +12,20 @@ export default () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [value, setValue] = useState('');
 
-  let timeOutId: ReturnType<typeof setTimeout>;
-  // Simulate a remotely-executed search.
+  let timeoutId: ReturnType<typeof setTimeout>;
   const searchTimeout = () => setTimeout(() => setIsLoading(false), 1200);
 
   const showModal = () => {
     setIsModalVisible(true);
     setIsLoading(true);
-    timeOutId = searchTimeout();
+    timeoutId = searchTimeout();
   };
 
   const closeModal = () => {
     setIsModalVisible(false);
     setIsLoading(false);
     setValue('');
-    clearTimeout(timeOutId);
+    clearTimeout(timeoutId);
   };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
