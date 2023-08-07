@@ -157,8 +157,7 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
     parent: `#${pageInnerId}`,
   });
 
-  const innerPanelled = () =>
-    panelled === false ? false : Boolean(sidebar.length > 0);
+  const innerPanelled = () => panelled ?? Boolean(sidebar.length > 0);
 
   const innerBordered = () =>
     contentBorder !== undefined ? contentBorder : Boolean(sidebar.length > 0);

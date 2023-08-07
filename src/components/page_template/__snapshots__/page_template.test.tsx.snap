@@ -18,7 +18,7 @@ exports[`EuiPageTemplate _EuiPageInnerProps renders as panelled 1`] = `
   style="min-block-size: max(460px, 100vh); padding-block-start: 0;"
 >
   <div
-    class="emotion-euiPageInner"
+    class="emotion-euiPageInner-panelled"
     id="EuiPageTemplateInner_generated-id"
   />
 </div>
