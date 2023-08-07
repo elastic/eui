@@ -3,13 +3,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
-import { EuiCallOut } from '../../../../src';
 
 import {
   EuiLink,
   EuiCode,
   EuiComboBox,
   EuiText,
+  EuiCallOut,
+  EuiSpacer,
 } from '../../../../src/components';
 
 import { EuiComboBoxOptionOption } from '!!prop-loader!../../../../src/components/combo_box/types';
@@ -269,6 +270,19 @@ export const ComboBoxExample = {
           <EuiCode>aria-labelledby</EuiCode> prop.
         </EuiCallOut>
       </EuiText>
+      <EuiSpacer />
+      <EuiCallOut
+        iconType="questionInCircle"
+        title="Learn more about EUI selection components"
+      >
+        <p>
+          Can't decide which selection component to use? Checkout{' '}
+          <EuiLink href="https://github.com/elastic/eui/discussions/7049">
+            the ultimate guide to EUI's selection components{' '}
+          </EuiLink>
+          for in depth explanations and comparisons.
+        </p>
+      </EuiCallOut>
     </>
   ),
   sections: [

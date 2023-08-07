@@ -9,6 +9,8 @@ import {
   EuiSelectableMessage,
   EuiText,
   EuiCallOut,
+  EuiLink,
+  EuiSpacer,
 } from '../../../../src';
 
 import {
@@ -50,28 +52,43 @@ const props = {
 export const SelectableExample = {
   title: 'Selectable',
   intro: (
-    <EuiText>
-      <p>
-        <strong>EuiSelectable</strong> aims to make the pattern of a selectable
-        list (with or without search) consistent across implementations. It is
-        the same concept used in{' '}
-        <Link to="/forms/combo-box">
-          <strong>EuiComboBox</strong>
-        </Link>{' '}
-        and{' '}
-        <Link to="/forms/filter-group">
-          <strong>EuiFilterGroup</strong>
-        </Link>
-        .{' '}
-        <strong>
-          This is not intended for{' '}
-          <Link to="/display/list-group">primary navigation</Link>
-        </strong>{' '}
-        but can be used to simplify the construction of popover navigational
-        menus; i.e. the spaces menu in the{' '}
-        <Link to="/layout/header">header</Link>.
-      </p>
-    </EuiText>
+    <>
+      <EuiText>
+        <p>
+          <strong>EuiSelectable</strong> aims to make the pattern of a
+          selectable list (with or without search) consistent across
+          implementations. It is the same concept used in{' '}
+          <Link to="/forms/combo-box">
+            <strong>EuiComboBox</strong>
+          </Link>{' '}
+          and{' '}
+          <Link to="/forms/filter-group">
+            <strong>EuiFilterGroup</strong>
+          </Link>
+          .{' '}
+          <strong>
+            This is not intended for{' '}
+            <Link to="/display/list-group">primary navigation</Link>
+          </strong>{' '}
+          but can be used to simplify the construction of popover navigational
+          menus; i.e. the spaces menu in the{' '}
+          <Link to="/layout/header">header</Link>.
+        </p>
+      </EuiText>
+      <EuiSpacer />
+      <EuiCallOut
+        iconType="questionInCircle"
+        title="Learn more about EUI selection components"
+      >
+        <p>
+          Can't decide which selection component to use? Checkout{' '}
+          <EuiLink href="https://github.com/elastic/eui/discussions/7049">
+            the ultimate guide to EUI's selection components{' '}
+          </EuiLink>
+          for in depth explanations and comparisons.
+        </p>
+      </EuiCallOut>
+    </>
   ),
   sections: [
     {

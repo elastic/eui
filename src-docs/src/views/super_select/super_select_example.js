@@ -2,7 +2,12 @@ import React from 'react';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiSuperSelect } from '../../../../src/components';
+import {
+  EuiCode,
+  EuiSuperSelect,
+  EuiLink,
+  EuiCallOut,
+} from '../../../../src/components';
 
 import SuperSelectBasic from './super_select_basic';
 const superSelectBasicSource = require('!!raw-loader!./super_select_basic');
@@ -87,6 +92,19 @@ export const SuperSelectExample = {
             &hellip; and the component will create a select styled button that
             triggers a popover of selectable items.
           </p>
+
+          <EuiCallOut
+            iconType="questionInCircle"
+            title="Learn more about EUI selection components"
+          >
+            <p>
+              Can't decide which selection component to use? Checkout{' '}
+              <EuiLink href="https://github.com/elastic/eui/discussions/7049">
+                the ultimate guide to EUI's selection components{' '}
+              </EuiLink>
+              for in depth explanations and comparisons.
+            </p>
+          </EuiCallOut>
         </>
       ),
       props: { EuiSuperSelect },
