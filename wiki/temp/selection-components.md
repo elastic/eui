@@ -21,7 +21,7 @@ If you need to customize how the options are rendered and selected, you can use 
 In general, we recommend reaching for `EuiSuperSelect` only if custom option display is absolutely necessary [see EuiSelect’s paragraph on accessibility and UX](https://elastic.github.io/eui/#/forms/form-controls#select).
 
 ### [`EuiComboBox`](https://elastic.github.io/eui/#/forms/combo-box)
-`EuiComboBox` allows multiple items to be selected and shown in a horizontally-oriented pill list. It allows users to search through the list of dropdown options, and additionally supports custom user-generated input outside of the available options.
+`EuiComboBox` allows multiple items to be selected and shown in a horizontally-oriented pill list. It allows users to search through a list of dropdown options, and additionally supports custom user-generated input outside of the available options.
 
 In general, for multi-select scenarios, we recommend using `EuiComboBox` over `EuiSelectable` only when custom user input is required, or when only selections should be immediately visible and unselected options should not.
  
