@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme } from '../../services';
+import { UseEuiTheme, makeHighContrastColor } from '../../services';
 import { mathWithUnits, logicalCSS } from '../../global_styling';
 
 export const euiStepVariables = (euiTheme: UseEuiTheme['euiTheme']) => {
@@ -132,7 +132,9 @@ export const euiStepTitleStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     euiStep__title: css``,
     isDisabled: css`
-      color: ${euiTheme.colors.disabledText};
+      color: ${makeHighContrastColor(euiTheme.colors.disabledText)(
+        euiTheme.colors.body
+      )};
     `,
     // Sizes
     m: css``,

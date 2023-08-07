@@ -46,7 +46,7 @@ for (let i = 1; i < 5; i++) {
 }
 
 export default () => {
-  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 5 });
+  const [pagination, setPagination] = useState({ pageIndex: 0 });
 
   const [visibleColumns, setVisibleColumns] = useState(
     columns.map(({ id }) => id)
@@ -79,7 +79,6 @@ export default () => {
       renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
       pagination={{
         ...pagination,
-        pageSizeOptions: [5, 10, 25],
         onChangeItemsPerPage: setPageSize,
         onChangePage: setPageIndex,
       }}

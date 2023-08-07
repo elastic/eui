@@ -300,7 +300,7 @@ export type CommonGridProps = CommonProps &
      */
     inMemory?: EuiDataGridInMemory;
     /**
-     * A #EuiDataGridPagination object. Omit to disable pagination completely.
+     * A #EuiDataGridPaginationProps object. Omit to disable pagination completely.
      */
     pagination?: EuiDataGridPaginationProps;
     /**
@@ -429,7 +429,7 @@ export interface EuiDataGridBodyProps {
   renderFooterCellValue?: EuiDataGridCellProps['renderCellValue'];
   renderCustomGridBody?: EuiDataGridProps['renderCustomGridBody'];
   interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
-  pagination?: EuiDataGridPaginationProps;
+  pagination?: Required<EuiDataGridPaginationProps>;
   headerIsInteractive: boolean;
   handleHeaderMutation: MutationCallback;
   setVisibleColumns: EuiDataGridHeaderRowProps['setVisibleColumns'];
@@ -594,7 +594,7 @@ export interface EuiDataGridCellProps {
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
   rowHeightUtils?: RowHeightUtilsType;
   rowManager?: EuiDataGridRowManager;
-  pagination?: EuiDataGridPaginationProps;
+  pagination?: Required<EuiDataGridPaginationProps>;
 }
 
 export interface EuiDataGridCellState {
@@ -918,12 +918,16 @@ export interface EuiDataGridPaginationProps {
   /**
    * How many rows should initially be shown per page.
    * Pass `0` to display the selected "Show all" option and hide the pagination.
+   *
+   * @default 10
    */
-  pageSize: number;
+  pageSize?: number;
   /**
    * An array of page sizes the user can select from.
    * Pass `0` as one of the options to create a "Show all" option.
-   * Leave this prop undefined or use an empty array to hide "Rows per page" select button.
+   * Pass an empty array to hide "Rows per page" select button.
+   *
+   * @default [10, 25, 50]
    */
   pageSizeOptions?: number[];
   /**

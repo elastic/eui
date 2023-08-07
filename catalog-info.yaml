@@ -104,7 +104,7 @@ spec:
         eui-team:
          access_level: MANAGE_BUILD_AND_READ
         everyone:
-          access_level: READ_ONLY
+          access_level: BUILD_AND_READ
 
 ############################ Pull request deploy docs #############################
 # Deploy docs to cloud on PR
@@ -145,7 +145,7 @@ spec:
         eui-team:
          access_level: MANAGE_BUILD_AND_READ
         everyone:
-          access_level: READ_ONLY
+          access_level: BUILD_AND_READ
 
 
 ############################ Pull request combined job #############################
@@ -188,7 +188,7 @@ spec:
         eui-team:
          access_level: MANAGE_BUILD_AND_READ
         everyone:
-          access_level: READ_ONLY
+          access_level: BUILD_AND_READ
 
 
 ############################ Release deploy docs #############################

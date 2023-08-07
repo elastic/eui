@@ -12,7 +12,7 @@ export const computeVisibleRows = ({
   pagination,
   rowCount,
 }: {
-  pagination: EuiDataGridProps['pagination'];
+  pagination: Required<EuiDataGridProps['pagination']>;
   rowCount: EuiDataGridProps['rowCount'];
 }): EuiDataGridVisibleRows => {
   const startRow =

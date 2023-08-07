@@ -1,0 +1,155 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiCollapsibleNavButton overlay flyout renders a hamburger icon when collapsed 1`] = `
+<div
+  class="euiCollapsibleNavButtonWrapper emotion-euiCollapsibleNavButtonWrapper-right"
+>
+  <button
+    aria-expanded="false"
+    aria-label="Toggle navigation open"
+    aria-pressed="false"
+    class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsibleNavButton"
+    data-test-subj="euiCollapsibleNavButton"
+    type="button"
+  >
+    <span
+      aria-hidden="true"
+      class="euiButtonIcon__icon"
+      color="inherit"
+      data-euiicon-type="menu"
+    />
+  </button>
+</div>
+`;
+
+exports[`EuiCollapsibleNavButton overlay flyout renders an X icon when expanded 1`] = `
+<div
+  class="euiCollapsibleNavButtonWrapper emotion-euiCollapsibleNavButtonWrapper-left"
+>
+  <button
+    aria-expanded="true"
+    aria-label="Toggle navigation closed"
+    aria-pressed="true"
+    class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsibleNavButton"
+    data-test-subj="euiCollapsibleNavButton"
+    type="button"
+  >
+    <span
+      aria-hidden="true"
+      class="euiButtonIcon__icon"
+      color="inherit"
+      data-euiicon-type="cross"
+    />
+  </button>
+</div>
+`;
+
+exports[`EuiCollapsibleNavButton push flyout left side renders a menu left icon when expanded 1`] = `
+<div
+  class="euiCollapsibleNavButtonWrapper emotion-euiCollapsibleNavButtonWrapper-left"
+>
+  <button
+    aria-expanded="true"
+    aria-label="Toggle navigation closed"
+    aria-pressed="true"
+    class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsibleNavButton"
+    data-test-subj="euiCollapsibleNavButton"
+    type="button"
+  >
+    <span
+      aria-hidden="true"
+      class="euiButtonIcon__icon"
+      color="inherit"
+      data-euiicon-type="menuLeft"
+    />
+  </button>
+</div>
+`;
+
+exports[`EuiCollapsibleNavButton push flyout left side renders a menu right icon when collapsed 1`] = `
+<div
+  class="euiCollapsibleNavButtonWrapper emotion-euiCollapsibleNavButtonWrapper-left"
+>
+  <button
+    aria-expanded="false"
+    aria-label="Toggle navigation open"
+    aria-pressed="false"
+    class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsibleNavButton"
+    data-test-subj="euiCollapsibleNavButton"
+    type="button"
+  >
+    <span
+      aria-hidden="true"
+      class="euiButtonIcon__icon"
+      color="inherit"
+      data-euiicon-type="menuRight"
+    />
+  </button>
+</div>
+`;
+
+exports[`EuiCollapsibleNavButton push flyout right side renders a menu left icon when collapsed 1`] = `
+<div
+  class="euiCollapsibleNavButtonWrapper emotion-euiCollapsibleNavButtonWrapper-right"
+>
+  <button
+    aria-expanded="false"
+    aria-label="Toggle navigation open"
+    aria-pressed="false"
+    class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsibleNavButton"
+    data-test-subj="euiCollapsibleNavButton"
+    type="button"
+  >
+    <span
+      aria-hidden="true"
+      class="euiButtonIcon__icon"
+      color="inherit"
+      data-euiicon-type="menuLeft"
+    />
+  </button>
+</div>
+`;
+
+exports[`EuiCollapsibleNavButton push flyout right side renders a menu right icon when expanded 1`] = `
+<div
+  class="euiCollapsibleNavButtonWrapper emotion-euiCollapsibleNavButtonWrapper-right"
+>
+  <button
+    aria-expanded="true"
+    aria-label="Toggle navigation closed"
+    aria-pressed="true"
+    class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsibleNavButton"
+    data-test-subj="euiCollapsibleNavButton"
+    type="button"
+  >
+    <span
+      aria-hidden="true"
+      class="euiButtonIcon__icon"
+      color="inherit"
+      data-euiicon-type="menuRight"
+    />
+  </button>
+</div>
+`;
+
+exports[`EuiCollapsibleNavButton renders 1`] = `
+<div
+  class="euiCollapsibleNavButtonWrapper emotion-euiCollapsibleNavButtonWrapper-left"
+>
+  <button
+    aria-expanded="true"
+    aria-label="aria-label"
+    aria-pressed="true"
+    class="euiButtonIcon euiCollapsibleNavButton testClass1 testClass2 emotion-euiButtonIcon-s-empty-text-euiCollapsibleNavButton-euiTestCss"
+    data-test-subj="test subject string"
+    type="button"
+  >
+    <span
+      aria-hidden="true"
+      class="euiButtonIcon__icon"
+      color="inherit"
+      data-euiicon-type="menuLeft"
+    />
+  </button>
+</div>
+`;

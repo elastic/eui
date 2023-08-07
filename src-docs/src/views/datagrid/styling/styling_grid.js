@@ -59,10 +59,7 @@ const DataGridStyle = ({
   header = 'underline',
   footer = 'overline',
 }) => {
-  const [pagination, setPagination] = useState({
-    pageIndex: 0,
-    pageSize: 5,
-  });
+  const [pagination, setPagination] = useState({ pageIndex: 0 });
   const [visibleColumns, setVisibleColumns] = useState(
     columns.map(({ id }) => id)
   );
@@ -111,7 +108,6 @@ const DataGridStyle = ({
       renderFooterCellValue={renderFooterCellValue}
       pagination={{
         ...pagination,
-        pageSizeOptions: [5, 10, 25],
         onChangeItemsPerPage: setPageSize,
         onChangePage: setPageIndex,
       }}

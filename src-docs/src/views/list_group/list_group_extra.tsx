@@ -25,7 +25,12 @@ export default () => (
     <EuiListGroupItem
       onClick={() => {}}
       wrapText
-      label="Fourth very, very long item with wrapping enabled that will not force truncation"
+      label="Fourth very long item with wrapping enabled, custom props, and will not force truncation."
+      toolTipProps={{
+        delay: 'regular',
+        position: 'top',
+        title: 'Title of record',
+      }}
     />
   </EuiListGroup>
 );
