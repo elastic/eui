@@ -116,6 +116,15 @@ export interface EuiToolTipProps extends CommonProps {
    * When nesting an `EuiTooltip` in a scrollable container, `repositionOnScroll` should be `true`
    */
   repositionOnScroll?: boolean;
+  /**
+   * By default, EuiToolTips will attach an `aria-describedby` to its children
+   * that points to the tooltip content.
+   *
+   * If you don't want this screen reader behavior, e.g., because you're setting
+   * your own aria attributes and the tooltip content is duplicative, you can
+   * disable this behavior by setting this prop to `false`.
+   */
+  setAriaDescribedBy?: boolean;
 
   /**
    * If supplied, called when mouse movement causes the tool tip to be
@@ -152,6 +161,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
     position: 'top',
     delay: 'regular',
     display: 'inlineBlock',
+    setAriaDescribedBy: true,
   };
 
   clearAnimationTimeout = () => {
@@ -319,6 +329,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
       delay,
       display,
       repositionOnScroll,
+      setAriaDescribedBy,
       ...rest
     } = this.props;
 
@@ -341,6 +352,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
           className={anchorClasses}
           display={display!}
           isVisible={visible}
+          setAriaDescribedBy={setAriaDescribedBy!}
         >
           {children}
         </EuiToolTipAnchor>

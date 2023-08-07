@@ -6,27 +6,23 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  cloneElement,
-  HTMLAttributes,
-  ReactElement,
-  forwardRef,
-} from 'react';
+import React, { cloneElement, HTMLAttributes, forwardRef } from 'react';
 import classNames from 'classnames';
 
+import type { EuiToolTipProps } from './tool_tip';
 import { euiToolTipAnchorStyles } from './tool_tip.styles';
 
-export interface EuiToolTipAnchorProps
-  extends Omit<
-    HTMLAttributes<HTMLSpanElement>,
-    'onBlur' | 'onFocus' | 'children'
-  > {
-  onBlur: () => void;
-  onFocus: () => void;
-  children: ReactElement;
-  isVisible: boolean;
-  display: 'block' | 'inlineBlock';
-}
+export type EuiToolTipAnchorProps = Omit<
+  HTMLAttributes<HTMLSpanElement>,
+  'onBlur' | 'onFocus' | 'children'
+> &
+  Required<
+    Pick<EuiToolTipProps, 'display' | 'setAriaDescribedBy' | 'children'>
+  > & {
+    onBlur: () => void;
+    onFocus: () => void;
+    isVisible: boolean;
+  };
 
 export const EuiToolTipAnchor = forwardRef<
   HTMLSpanElement,
@@ -43,6 +39,7 @@ export const EuiToolTipAnchor = forwardRef<
       children,
       display,
       isVisible,
+      setAriaDescribedBy,
       ...rest
     },
     ref
@@ -79,7 +76,10 @@ export const EuiToolTipAnchor = forwardRef<
             onBlur();
             children.props.onBlur && children.props.onBlur(e);
           },
-          ...(isVisible && { 'aria-describedby': id }),
+          'aria-describedby':
+            isVisible && setAriaDescribedBy
+              ? id
+              : children.props['aria-describedby'],
         })}
       </span>
     );
