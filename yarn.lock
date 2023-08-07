@@ -4453,10 +4453,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/chroma-js@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@types/chroma-js/-/chroma-js-2.0.0.tgz#b0fc98c8625d963f14e8138e0a7961103303ab22"
-  integrity sha512-iomunXsXjDxhm2y1OeJt8NwmgC7RyNkPAOddlYVGsbGoX8+1jYt84SG4/tf6RWcwzROLx1kPXPE95by1s+ebIg==
+"@types/chroma-js@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@types/chroma-js/-/chroma-js-2.4.0.tgz#476a16ae848c77478079d6749236fdb98837b92c"
+  integrity sha512-JklMxityrwjBTjGY2anH8JaTx3yjRU3/sEHSblLH1ba5lqcSh1LnImXJZO5peJfXyqKYWjHTGy4s5Wz++hARrw==
 
 "@types/classnames@^2.2.10":
   version "2.2.10"
@@ -7314,6 +7314,11 @@ chroma-js@^2.1.0:
   integrity sha512-uiRdh4ZZy+UTPSrAdp8hqEdVb1EllLtTHOt5TMaOjJUvi+O54/83Fc5K2ld1P+TJX+dw5B+8/sCgzI6eaur/lg==
   dependencies:
     cross-env "^6.0.3"
+
+chroma-js@^2.4.2:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/chroma-js/-/chroma-js-2.4.2.tgz#dffc214ed0c11fa8eefca2c36651d8e57cbfb2b0"
+  integrity sha512-U9eDw6+wt7V8z5NncY2jJfZa+hUH8XEj8FQHgFJTrUFnJfXYf4Ml4adI2vXZOjqRDpFWtYVWypDfZwnJ+HIR4A==
 
 chrome-trace-event@^1.0.2:
   version "1.0.2"
