@@ -256,7 +256,7 @@ export const ComboBoxExample = {
           href="https://github.com/elastic/eui/discussions/7049"
           target="_blank"
         >
-          EUI's in-depth guide on which selection component to use
+          EUI's in-depth guide to selection components
         </EuiLink>{' '}
         for more information.
       </p>
