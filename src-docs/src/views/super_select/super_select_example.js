@@ -66,9 +66,12 @@ export const SuperSelectExample = {
     >
       <p>
         See{' '}
-        <EuiLink href="https://github.com/elastic/eui/discussions/7049">
-          EUI's in-depth guide to which selection component to use{' '}
-        </EuiLink>
+        <EuiLink
+          href="https://github.com/elastic/eui/discussions/7049"
+          target="_blank"
+        >
+          EUI's in-depth guide on which selection component to use{' '}
+        </EuiLink>{' '}
         for more information.
       </p>
     </EuiCallOut>

@@ -51,34 +51,35 @@ const props = {
 export const SelectableExample = {
   title: 'Selectable',
   intro: (
-    <>
-      <EuiText>
-        <p>
-          <strong>EuiSelectable</strong> aims to make the pattern of a
-          selectable list (with or without search) consistent across
-          implementations. It is the same concept used in{' '}
-          <Link to="/forms/combo-box">
-            <strong>EuiComboBox</strong>
-          </Link>{' '}
-          and{' '}
-          <Link to="/forms/filter-group">
-            <strong>EuiFilterGroup</strong>
-          </Link>
-          .{' '}
-          <strong>
-            This is not intended for{' '}
-            <Link to="/display/list-group">primary navigation</Link>
-          </strong>{' '}
-          but can be used to simplify the construction of popover navigational
-          menus; i.e. the spaces menu in the{' '}
-          <Link to="/layout/header">header</Link>. See{' '}
-          <EuiLink href="https://github.com/elastic/eui/discussions/7049">
-            EUI's in-depth guide to which selection component to use{' '}
-          </EuiLink>
-          for more information.
-        </p>
-      </EuiText>
-    </>
+    <EuiText>
+      <p>
+        <strong>EuiSelectable</strong> aims to make the pattern of a selectable
+        list (with or without search) consistent across implementations. It is
+        the same concept used in{' '}
+        <Link to="/forms/combo-box">
+          <strong>EuiComboBox</strong>
+        </Link>{' '}
+        and{' '}
+        <Link to="/forms/filter-group">
+          <strong>EuiFilterGroup</strong>
+        </Link>
+        .{' '}
+        <strong>
+          This is not intended for{' '}
+          <Link to="/display/list-group">primary navigation</Link>
+        </strong>{' '}
+        but can be used to simplify the construction of popover navigational
+        menus; i.e. the spaces menu in the{' '}
+        <Link to="/layout/header">header</Link>. See{' '}
+        <EuiLink
+          href="https://github.com/elastic/eui/discussions/7049"
+          target="_blank"
+        >
+          EUI's in-depth guide on which selection component to use{' '}
+        </EuiLink>{' '}
+        for more information.
+      </p>
+    </EuiText>
   ),
   sections: [
     {
