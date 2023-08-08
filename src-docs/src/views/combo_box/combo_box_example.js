@@ -251,7 +251,7 @@ export const ComboBoxExample = {
         that the user needs to be able to search them, the user needs to be able
         to select multiple options, and/or the user should have the ability to
         specify a custom value in addition to selecting from a predetermined
-        list. See{' '}
+        list. If you're unsure of which selection component to use, see{' '}
         <EuiLink
           href="https://github.com/elastic/eui/discussions/7049"
           target="_blank"
