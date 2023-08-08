@@ -12,6 +12,18 @@ exports[`EuiPageTemplate _EuiPageInnerProps is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiPageTemplate _EuiPageInnerProps renders as panelled 1`] = `
+<div
+  class="euiPageTemplate emotion-euiPageOuter-row-grow"
+  style="min-block-size: max(460px, 100vh); padding-block-start: 0;"
+>
+  <div
+    class="emotion-euiPageInner-panelled"
+    id="EuiPageTemplateInner_generated-id"
+  />
+</div>
+`;
+
 exports[`EuiPageTemplate _EuiPageOuterProps is rendered 1`] = `
 <div
   class="euiPageTemplate emotion-euiPageOuter-column-grow"
