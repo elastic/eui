@@ -41,6 +41,18 @@ describe('EuiDatePickerRange', () => {
       expect(container.firstChild).toMatchSnapshot();
     });
 
+    test('compressed', () => {
+      const { container } = render(
+        <EuiDatePickerRange
+          startDateControl={<EuiDatePicker />}
+          endDateControl={<EuiDatePicker />}
+          compressed
+        />
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
     test('readOnly', () => {
       const { container } = render(
         <EuiDatePickerRange
