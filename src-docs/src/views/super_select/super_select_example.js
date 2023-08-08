@@ -62,7 +62,7 @@ export const SuperSelectExample = {
   intro: (
     <EuiCallOut
       iconType="questionInCircle"
-      title="Learn more about EUI selection components"
+      title="Not sure which selection component to use?"
     >
       <p>
         See{' '}
