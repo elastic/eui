@@ -10,7 +10,6 @@ import {
   EuiComboBox,
   EuiText,
   EuiCallOut,
-  EuiSpacer,
 } from '../../../../src/components';
 
 import { EuiComboBoxOptionOption } from '!!prop-loader!../../../../src/components/combo_box/types';
@@ -253,7 +252,11 @@ export const ComboBoxExample = {
           that the user needs to be able to search them, the user needs to be
           able to select multiple options, and/or the user should have the
           ability to specify a custom value in addition to selecting from a
-          predetermined list.
+          predetermined list. See{' '}
+          <EuiLink href="https://github.com/elastic/eui/discussions/7049">
+            EUI's in-depth guide to which selection component to use
+          </EuiLink>{' '}
+          for more information.
         </p>
         <EuiCallOut
           iconType="accessibility"
@@ -270,19 +273,6 @@ export const ComboBoxExample = {
           <EuiCode>aria-labelledby</EuiCode> prop.
         </EuiCallOut>
       </EuiText>
-      <EuiSpacer />
-      <EuiCallOut
-        iconType="questionInCircle"
-        title="Learn more about EUI selection components"
-      >
-        <p>
-          Can't decide which selection component to use? Checkout{' '}
-          <EuiLink href="https://github.com/elastic/eui/discussions/7049">
-            the ultimate guide to EUI's selection components{' '}
-          </EuiLink>
-          for in depth explanations and comparisons.
-        </p>
-      </EuiCallOut>
     </>
   ),
   sections: [

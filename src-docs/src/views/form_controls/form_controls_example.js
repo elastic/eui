@@ -331,20 +331,13 @@ export const FormControlsExample = {
               <strong>EuiComboBox</strong>
             </Link>
             , which has search and multi-select capabilities, but also has
-            restrictions on how items are rendered.
+            restrictions on how items are rendered. If you need more
+            customization for searching or rendering options, see{' '}
+            <EuiLink href="https://github.com/elastic/eui/discussions/7049">
+              EUI's guide to selection components
+            </EuiLink>
+            .
           </p>
-          <EuiCallOut
-            iconType="questionInCircle"
-            title="Learn more about EUI selection components"
-          >
-            <p>
-              Can't decide which selection component to use? Checkout{' '}
-              <EuiLink href="https://github.com/elastic/eui/discussions/7049">
-                the ultimate guide to EUI's selection components{' '}
-              </EuiLink>
-              for in depth explanations and comparisons.
-            </p>
-          </EuiCallOut>
         </>
       ),
       snippet: selectSnippet,

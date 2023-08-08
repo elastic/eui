@@ -10,7 +10,6 @@ import {
   EuiText,
   EuiCallOut,
   EuiLink,
-  EuiSpacer,
 } from '../../../../src';
 
 import {
@@ -72,22 +71,13 @@ export const SelectableExample = {
           </strong>{' '}
           but can be used to simplify the construction of popover navigational
           menus; i.e. the spaces menu in the{' '}
-          <Link to="/layout/header">header</Link>.
+          <Link to="/layout/header">header</Link>. See{' '}
+          <EuiLink href="https://github.com/elastic/eui/discussions/7049">
+            EUI's in-depth guide to which selection component to use{' '}
+          </EuiLink>
+          for more information.
         </p>
       </EuiText>
-      <EuiSpacer />
-      <EuiCallOut
-        iconType="questionInCircle"
-        title="Learn more about EUI selection components"
-      >
-        <p>
-          Can't decide which selection component to use? Checkout{' '}
-          <EuiLink href="https://github.com/elastic/eui/discussions/7049">
-            the ultimate guide to EUI's selection components{' '}
-          </EuiLink>
-          for in depth explanations and comparisons.
-        </p>
-      </EuiCallOut>
     </>
   ),
   sections: [
