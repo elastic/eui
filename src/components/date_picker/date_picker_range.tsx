@@ -35,7 +35,13 @@ import { EuiDatePickerProps } from './date_picker';
 export type EuiDatePickerRangeProps = CommonProps &
   Pick<
     EuiFormControlLayoutDelimitedProps,
-    'isLoading' | 'isInvalid' | 'readOnly' | 'fullWidth' | 'prepend' | 'append'
+    | 'isLoading'
+    | 'isInvalid'
+    | 'readOnly'
+    | 'fullWidth'
+    | 'compressed'
+    | 'prepend'
+    | 'append'
   > & {
     /**
      * Including any children will replace all innards with the provided children
@@ -100,6 +106,7 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
   inline,
   shadow = true,
   fullWidth: _fullWidth,
+  compressed: _compressed,
   isCustom,
   readOnly,
   isLoading,
@@ -111,8 +118,9 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
   prepend,
   ...rest
 }) => {
-  // `fullWidth` should not affect inline datepickers (matches non-range behavior)
+  // `fullWidth` and `compressed` should not affect inline datepickers (matches non-range behavior)
   const fullWidth = _fullWidth && !inline;
+  const compressed = _compressed && !inline;
 
   const classes = classNames('euiDatePickerRange', className);
 
@@ -206,6 +214,7 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
         startControl={startControl}
         endControl={endControl}
         fullWidth={fullWidth}
+        compressed={compressed}
         readOnly={readOnly}
         isDisabled={disabled}
         isInvalid={isInvalid}
