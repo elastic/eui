@@ -19,7 +19,7 @@ describe('EuiFlyoutBody', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('is rendered', () => {
+  test('scrollableTabIndex', () => {
     const { container } = render(<EuiFlyoutBody scrollableTabIndex={-1} />);
 
     expect(container.querySelector('.euiFlyoutBody__overflow')).toHaveAttribute(
