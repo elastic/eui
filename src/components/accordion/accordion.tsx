@@ -159,8 +159,7 @@ export class EuiAccordionClass extends Component<
   onToggle = () => {
     const { forceState } = this.props;
     if (forceState) {
-      this.props.onToggle &&
-        this.props.onToggle(forceState === 'open' ? false : true);
+      this.props.onToggle?.(forceState === 'open' ? false : true);
     } else {
       this.setState(
         (prevState) => ({
@@ -170,7 +169,7 @@ export class EuiAccordionClass extends Component<
           if (this.state.isOpen && this.childWrapper) {
             this.childWrapper.focus();
           }
-          this.props.onToggle && this.props.onToggle(this.state.isOpen);
+          this.props.onToggle?.(this.state.isOpen);
         }
       );
     }
