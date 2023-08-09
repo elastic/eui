@@ -51,10 +51,10 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // Column gap
     s: css`
-      column-gap: 16px;
+      column-gap: ${euiThemeContext.euiTheme.size.base};
     `,
     m: css`
-      column-gap: 32px;
+      column-gap: ${euiThemeContext.euiTheme.size.xxl};
     `,
   };
 };

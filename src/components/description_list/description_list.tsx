@@ -33,7 +33,7 @@ export const EuiDescriptionList: FunctionComponent<
   textStyle = 'normal',
   titleProps,
   type = 'row',
-  gutterSize = 'm',
+  gutterSize = 's',
   columnGap = 's',
   ...rest
 }) => {
