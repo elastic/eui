@@ -68,7 +68,7 @@ const DEFAULT_TOOLTIP_STYLES: ToolTipStyles = {
   visibility: 'hidden',
 };
 
-export interface EuiToolTipProps {
+export interface EuiToolTipProps extends CommonProps {
   /**
    * Passes onto the span wrapping the trigger.
    */

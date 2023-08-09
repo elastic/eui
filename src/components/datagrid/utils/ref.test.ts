@@ -72,8 +72,9 @@ describe('useSortPageCheck', () => {
 
   describe('if the grid is paginated', () => {
     const pagination = {
-      pageSize: 20,
       pageIndex: 0,
+      pageSize: 20,
+      pageSizeOptions: [20],
       onChangePage: jest.fn(),
       onChangeItemsPerPage: jest.fn(),
     };

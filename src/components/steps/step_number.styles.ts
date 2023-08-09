@@ -14,7 +14,7 @@ import {
   euiCanAnimate,
   euiAnimScale,
 } from '../../global_styling';
-import { UseEuiTheme } from '../../services';
+import { UseEuiTheme, makeHighContrastColor } from '../../services';
 import { euiStepVariables } from './step.styles';
 import { euiButtonFillColor } from '../../themes/amsterdam/global_styling/mixins';
 
@@ -67,9 +67,11 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
       border: ${euiTheme.border.thick};
     `,
     disabled: css`
-      color: ${euiButtonFillColor(euiThemeContext, 'disabled').color};
       background-color: ${euiButtonFillColor(euiThemeContext, 'disabled')
         .backgroundColor};
+      color: ${makeHighContrastColor(euiTheme.colors.disabledText)(
+        euiButtonFillColor(euiThemeContext, 'disabled').backgroundColor
+      )};
     `,
     loading: css`
       background: transparent;
@@ -104,7 +106,16 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
           ${euiTheme.animation.bounce};
       }
     `,
-    current: css``,
+    current: css`
+      border: 2px solid ${euiTheme.colors.body};
+      box-shadow: 0 0 0 2px ${euiTheme.colors.primary};
+
+      .euiStepNumber__number {
+        /* Transform the step number so it appears in the center of the step circle */
+        display: inline-block;
+        transform: translateY(-2px);
+      }
+    `,
   };
 };
 

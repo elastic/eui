@@ -27,7 +27,7 @@ GCE_IMAGE=google/cloud-sdk:slim
 # and EUI PR #6965 are merged successfully.
 # ==================================================
 echo "The Jenkins PR number is: ${pull_request_id}."
-echo "The Buildkite PR number is ${GIT_PULL_REQUEST_ID}."
+echo "The Buildkite PR number is: ${GIT_PULL_REQUEST_ID}."
 
 if [[ -z "${GPROJECT}" ]]; then
     echo "GPROJECT is not set, e.g. 'GPROJECT=elastic-bekitzur'"
@@ -88,7 +88,7 @@ publish_to_bucket()
 {
   echo "Copying $PWD/docs/* to $full_bucket_path"
   gsutil -m \
-    -h "Cache-Control:public, max-age=$max_age" \
+    -h "Cache-Control:public, max-age=$max_age, must-revalidate" \
     cp \
     -r \
     -a public-read \
@@ -99,9 +99,9 @@ publish_to_bucket()
 if [[ "$1" != "nodocker" ]]; then
   ./scripts/deploy/build_docs
 
-  # we look this up to inject into the next docker run so it can decide whether
-  # we need to overwrite the root /index.html file with a new one.
-  CURRENT_RELEASE=$(git describe --tags "$(git rev-list --tags --max-count=1)")
+  # Get the latest tag on main, which will determine whether we deploy to the root `eui.elastic.co` bucket
+  # NOTE: specifying the main branch means we don't override prod with backport or prerelease tags.
+  CURRENT_RELEASE=$(git describe --tags "$(git rev-list --branches=main --tags --max-count=1)")
   echo "Current release: $CURRENT_RELEASE"
 
   # Run this script from inside the docker container, using google/cloud-sdk image
@@ -129,8 +129,15 @@ if [[ "$1" != "nodocker" ]]; then
 
   # ==================================================
   # TODO - Remove pull_request_id logical block
+  # 
+  # Buildkite treats pull requests as either "false"
+  # or a number string like "1234". Jenkins prefers
+  # an empty string, which is the rationale for the
+  # extra Buildkite logic.
+  #
+  # https://buildkite.com/docs/pipelines/environment-variables#BUILDKITE_PULL_REQUEST
   # ==================================================
-  if [[ ! -z "${pull_request_id}" ]] || [[ ! -z "${GIT_PULL_REQUEST_ID}" ]]; then
+  if [[ ! -z "${pull_request_id}" ]] || { [[ ! -z "${GIT_PULL_REQUEST_ID}" ]] && [[ "${GIT_PULL_REQUEST_ID}" != "false" ]]; }; then
     post_comment_to_gh
   fi
   unset GITHUB_TOKEN
@@ -163,11 +170,10 @@ else
     else
       echo "This is a Jenkins branch release."
       full_bucket_path="gs://$BUCKET/$BRANCH/"
-      max_age="604800"
+      max_age="1800" # Reducing to 15 minutes to limit stale docs
       publish_to_bucket
 
-      # if this is the highest release number to date, also publish the docs to the
-      # root directory
+      # If this is the highest release number to date, publish to root directory
       if [[ "$CURRENT_RELEASE" == "$GIT_BRANCH" ]]; then
         echo "This is the current Jenkins release."
         full_bucket_path="gs://$BUCKET/"
@@ -182,23 +188,27 @@ else
   if [[ ! -z "${BUILDKITE_CI}" ]]; then
     echo "Buildkite CI agent."
 
-    if [[ ! -z "${GIT_PULL_REQUEST_ID}" ]]; then
-      echo "This is the Buildkite PR release."
+    # If GIT_PULL_REQUEST_ID length is not 0 and string is not "false"
+    if [[ ! -z "${GIT_PULL_REQUEST_ID}" ]] && [[ "${GIT_PULL_REQUEST_ID}" != "false" ]]; then
       full_bucket_path="gs://$BUCKET/pr_${GIT_PULL_REQUEST_ID}_buildkite/"
       publish_to_bucket
-    else
-      echo "This is a Buildkite branch release."
-      full_bucket_path="gs://$BUCKET/${BRANCH}_buildkite/"
-      max_age="604800"
+
+    # Our branched docs deploys are **only** ever triggered by tags
+    # https://buildkite.com/docs/pipelines/environment-variables#BUILDKITE_TAG
+    elif [[ ! -z "${BUILDKITE_TAG}" ]]; then
+      full_bucket_path="gs://$BUCKET/${BUILDKITE_TAG}/"
+      max_age="1800" # Reducing to 15 minutes to limit stale docs
       publish_to_bucket
 
-      # if this is the highest release number to date, also publish the docs to the
-      # root directory
-      if [[ "$CURRENT_RELEASE" == "$GIT_BRANCH" ]]; then
-        echo "This is the current Buildkite release."
-        full_bucket_path="gs://${BUCKET}_buildkite/"
+      # If this is the highest release number to date, publish to root directory
+      if [[ "$CURRENT_RELEASE" == "$BUILDKITE_TAG" ]]; then
+        full_bucket_path="gs://${BUCKET}/"
         publish_to_bucket
       fi
+
+    # Let users know neither job ran
+    else
+      echo "This is neither a pull request nor a tag release. No docs were deployed."
     fi
   fi
 fi

@@ -26,6 +26,11 @@ export const euiCollapsibleNavButtonWrapperStyles = (
       justify-content: center;
       ${logicalSizeCSS(height)}
     `,
+    euiCollapsibleNavButton: css`
+      &.euiButtonIcon:hover {
+        transform: none;
+      }
+    `,
     left: css`
       ${logicalCSS('border-right', euiTheme.border.thin)}
       ${logicalCSS('margin-left', `-${padding}`)}

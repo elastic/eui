@@ -111,7 +111,7 @@ export default () => {
   );
 
   // Pagination
-  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 25 });
+  const [pagination, setPagination] = useState({ pageIndex: 0 });
   const onChangePage = useCallback<EuiDataGridPaginationProps['onChangePage']>(
     (pageIndex) => {
       setPagination((pagination) => ({ ...pagination, pageIndex }));
@@ -224,7 +224,6 @@ export default () => {
         }
         pagination={{
           ...pagination,
-          pageSizeOptions: [25, 50],
           onChangePage: onChangePage,
           onChangeItemsPerPage: onChangePageSize,
         }}

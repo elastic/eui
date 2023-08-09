@@ -12,7 +12,7 @@ import {
 } from '../../../../../src/components';
 
 import DataGrid from './datagrid';
-import { DataGridTopProps } from './_props';
+import { DataGridTopProps, EuiDataGridPaginationProps } from './_props';
 const dataGridSource = require('!!raw-loader!./datagrid');
 
 import DataGridContainer from './container';
@@ -28,7 +28,6 @@ const dataGridVirtualizationConstrainedSource = require('!!raw-loader!./virtuali
 import {
   EuiDataGridColumn,
   EuiDataGridColumnCellAction,
-  EuiDataGridPaginationProps,
   EuiDataGridSorting,
   EuiDataGridInMemory,
   EuiDataGridStyle,

@@ -1,5 +1,25 @@
 [
   {
+    "version": "87.0.0",
+    "changes": [
+      {
+        "token": "euiBreadcrumb.popoverAriaLabel",
+        "changeType": "added",
+        "value": "Clicking this button will toggle a popover dialog."
+      },
+      {
+        "token": "euiCollapsibleNavButton.ariaLabelOpen",
+        "changeType": "added",
+        "value": "Toggle navigation open"
+      },
+      {
+        "token": "euiCollapsibleNavButton.ariaLabelClose",
+        "changeType": "added",
+        "value": "Toggle navigation closed"
+      }
+    ]
+  },
+  {
     "version": "81.1.0",
     "changes": [
       {

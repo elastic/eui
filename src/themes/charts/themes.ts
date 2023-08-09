@@ -30,12 +30,6 @@ function createTheme(colors: any): EuiChartThemeType {
         stroke: colors.darkShade,
         opacity: 1,
       },
-      details: {
-        fontSize: 10,
-        fontFamily: fontFamily,
-        fill: colors.text,
-        padding: 0,
-      },
     },
     theme: {
       background: {
