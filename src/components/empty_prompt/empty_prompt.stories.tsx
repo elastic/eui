@@ -21,9 +21,10 @@ import illustration from '../../../src-docs/src/images/empty-prompt/illustration
 const meta: Meta<EuiEmptyPromptProps> = {
   title: 'EuiEmptyPrompt',
   component: EuiEmptyPrompt,
-  parameters: {
-    controls: {
-      exclude: ['data-test-subj'],
+  argTypes: {
+    element: { control: 'text' },
+    body: {
+      control: 'text',
     },
   },
 };
@@ -31,19 +32,26 @@ const meta: Meta<EuiEmptyPromptProps> = {
 export default meta;
 type Story = StoryObj<EuiEmptyPromptProps>;
 
+const componentDefaults: EuiEmptyPromptProps = {
+  titleSize: 'm',
+  paddingSize: 'l',
+  color: 'plain',
+  layout: 'vertical',
+};
+
 export const Playground: Story = {
   args: {
     title: <h2>Start adding cases</h2>,
-    layout: 'horizontal',
     iconType: 'logoSecurity',
     hasBorder: false,
     hasShadow: false,
-    body: <p>Add a new case or change your filter settings.</p>,
-    actions: (
+    body: 'Add a new case or change your filter settings.', // Should be wrapped in a `<p>` in production usage, but using a string makes this easier to edit in Storybook controls
+    actions: [
       <EuiButton color="primary" fill>
-        Add a case
-      </EuiButton>
-    ),
+        Upgrade
+      </EuiButton>,
+      <EuiButtonEmpty color="primary">Start a trial</EuiButtonEmpty>,
+    ],
     footer: (
       <>
         <EuiTitle size="xxs">
@@ -54,30 +62,7 @@ export const Playground: Story = {
         </EuiLink>
       </>
     ),
-  },
-};
-
-export const MultipleActions: Story = {
-  render: ({ ...args }) => (
-    <EuiEmptyPrompt
-      title={<h2>Upgrade your license to use Machine Learning</h2>}
-      actions={[
-        <EuiButton color="primary" fill>
-          Upgrade
-        </EuiButton>,
-        <EuiButtonEmpty color="primary">Start a trial</EuiButtonEmpty>,
-      ]}
-      {...args}
-    />
-  ),
-  args: {
-    title: <h2>Upgrade your license to use Machine Learning</h2>,
-    actions: [
-      <EuiButton color="primary" fill>
-        Upgrade
-      </EuiButton>,
-      <EuiButtonEmpty color="primary">Start a trial</EuiButtonEmpty>,
-    ],
+    ...componentDefaults,
   },
 };
 
@@ -90,19 +75,8 @@ export const PageTemplate: Story = {
   args: {
     title: <h2>Create your first visualization</h2>,
     icon: <EuiImage size="fullWidth" src={illustration} alt="" />,
-    color: 'plain',
-    layout: 'horizontal',
-    body: (
-      <>
-        <p>
-          There are no visualizations to display. This tool allows you to create
-          a wide range of charts, graphs, maps, and other graphics.
-        </p>
-        <p>
-          The visualizations you create can be easily shared with your peers.
-        </p>
-      </>
-    ),
+    // Body should be wrapped in a `<p>` in production usage, but using a string makes this easier to edit in Storybook controls
+    body: 'There are no visualizations to display. This tool allows you to create a wide range of charts, graphs, maps, and other graphics. The visualizations you create can be easily shared with your peers.',
     actions: (
       <EuiButton color="primary" fill>
         Create visualization
@@ -118,5 +92,6 @@ export const PageTemplate: Story = {
         </EuiLink>
       </>
     ),
+    ...componentDefaults,
   },
 };

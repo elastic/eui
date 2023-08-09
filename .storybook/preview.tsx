@@ -33,6 +33,7 @@ import { EuiProvider } from '../src/components/provider';
 import { writingModeStyles } from './writing_mode.styles';
 
 // Import light theme for components still using Sass styling
+// TODO: Remove once all EUI components are converted to Emotion
 import '../dist/eui_theme_light.css';
 
 const preview: Preview = {
