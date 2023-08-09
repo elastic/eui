@@ -53,7 +53,7 @@ exports[`EuiCollapsibleNavAccordion renders as a sub item 1`] = `
           class="euiCollapsibleNavAccordion__children emotion-euiCollapsibleNavAccordion__children-isSubItem"
         >
           <span
-            class="euiCollapsibleNavLink euiCollapsibleNavItem euiCollapsibleNavSubItem emotion-euiCollapsibleNavLink-isSubItem"
+            class="euiCollapsibleNavLink euiCollapsibleNavSubItem emotion-euiCollapsibleNavLink-isSubItem"
           >
             <span
               class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
@@ -123,7 +123,7 @@ exports[`EuiCollapsibleNavAccordion renders as a top level item 1`] = `
           class="euiCollapsibleNavAccordion__children emotion-euiCollapsibleNavAccordion__children-isTopItem"
         >
           <span
-            class="euiCollapsibleNavLink euiCollapsibleNavItem euiCollapsibleNavSubItem emotion-euiCollapsibleNavLink-isSubItem"
+            class="euiCollapsibleNavLink euiCollapsibleNavSubItem emotion-euiCollapsibleNavLink-isSubItem"
           >
             <span
               class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"

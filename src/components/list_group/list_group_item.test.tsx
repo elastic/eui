@@ -7,9 +7,10 @@
  */
 
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
-import { render } from '../../test/rtl';
+import { render, waitForEuiToolTipVisible } from '../../test/rtl';
 
 import { EuiListGroupItem, SIZES, COLORS } from './list_group_item';
 
@@ -31,6 +32,22 @@ describe('EuiListGroupItem', () => {
     {
       childProps: ['iconProps', 'extraAction'],
       skip: { parentTest: true },
+    }
+  );
+  shouldRenderCustomStyles(
+    <EuiListGroupItem
+      label="Label"
+      toolTipText="Tooltip"
+      showToolTip
+      data-test-subj="trigger"
+    />,
+    {
+      childProps: ['toolTipProps', 'toolTipProps.anchorProps'],
+      skip: { parentTest: true },
+      renderCallback: async ({ getByTestSubject }) => {
+        fireEvent.mouseOver(getByTestSubject('trigger'));
+        await waitForEuiToolTipVisible();
+      },
     }
   );
 
@@ -204,6 +221,25 @@ describe('EuiListGroupItem', () => {
         );
 
         expect(container.firstChild).toMatchSnapshot();
+      });
+    });
+
+    describe('toolTipProps', () => {
+      test('renders custom tooltip props', async () => {
+        const { getByTestSubject } = render(
+          <EuiListGroupItem
+            label="Label"
+            toolTipText="Tooltip"
+            showToolTip
+            data-test-subj="trigger"
+            toolTipProps={{
+              'data-test-subj': 'tooltip',
+            }}
+          />
+        );
+        fireEvent.mouseOver(getByTestSubject('trigger'));
+        await waitForEuiToolTipVisible();
+        expect(getByTestSubject('tooltip')).toBeInTheDocument();
       });
     });
   });

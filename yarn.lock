@@ -2305,10 +2305,10 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
   integrity sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==
 
-"@elastic/charts@^53.1.1":
-  version "53.1.1"
-  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-53.1.1.tgz#bb5bd97d8f845dc2e30cc5238e04c1efbe56a157"
-  integrity sha512-DYZCcD26hSS3AIKJ13YAhzqY3q1uFECxgYnPCv++NIlsVGGPR5L09qUYpilhGrpbI95IwlkPT2LtZBEUGFYzTw==
+"@elastic/charts@^59.1.0":
+  version "59.1.0"
+  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-59.1.0.tgz#d6b70501f8eec95cc981966713ce5a89028f8fcb"
+  integrity sha512-qQyDaGEbo/2p+K/hnlobfADmit055kLJbWEkf+rK+uezloNvyBuHETvsoUnrWYG+O5QznHU+wzjSpz7tj1GL3w==
   dependencies:
     "@popperjs/core" "^2.4.0"
     bezier-easing "^2.1.0"
@@ -4453,10 +4453,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/chroma-js@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@types/chroma-js/-/chroma-js-2.0.0.tgz#b0fc98c8625d963f14e8138e0a7961103303ab22"
-  integrity sha512-iomunXsXjDxhm2y1OeJt8NwmgC7RyNkPAOddlYVGsbGoX8+1jYt84SG4/tf6RWcwzROLx1kPXPE95by1s+ebIg==
+"@types/chroma-js@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@types/chroma-js/-/chroma-js-2.4.0.tgz#476a16ae848c77478079d6749236fdb98837b92c"
+  integrity sha512-JklMxityrwjBTjGY2anH8JaTx3yjRU3/sEHSblLH1ba5lqcSh1LnImXJZO5peJfXyqKYWjHTGy4s5Wz++hARrw==
 
 "@types/classnames@^2.2.10":
   version "2.2.10"
@@ -7314,6 +7314,11 @@ chroma-js@^2.1.0:
   integrity sha512-uiRdh4ZZy+UTPSrAdp8hqEdVb1EllLtTHOt5TMaOjJUvi+O54/83Fc5K2ld1P+TJX+dw5B+8/sCgzI6eaur/lg==
   dependencies:
     cross-env "^6.0.3"
+
+chroma-js@^2.4.2:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/chroma-js/-/chroma-js-2.4.2.tgz#dffc214ed0c11fa8eefca2c36651d8e57cbfb2b0"
+  integrity sha512-U9eDw6+wt7V8z5NncY2jJfZa+hUH8XEj8FQHgFJTrUFnJfXYf4Ml4adI2vXZOjqRDpFWtYVWypDfZwnJ+HIR4A==
 
 chrome-trace-event@^1.0.2:
   version "1.0.2"
@@ -14682,6 +14687,20 @@ mdast-util-to-hast@^10.0.0:
   version "10.0.0"
   resolved "https://registry.yarnpkg.com/mdast-util-to-hast/-/mdast-util-to-hast-10.0.0.tgz#744dfe7907bac0263398a68af5aba16d104a9a08"
   integrity sha512-dRyAC5S4eDcIOdkz4jg0wXbUdlf+5YFu7KppJNHOsMaD7ql5bKIqVcvXYYkcrKjzUkfX8JsKFVMthsU8OWxQ+w==
+  dependencies:
+    "@types/mdast" "^3.0.0"
+    "@types/unist" "^2.0.0"
+    mdast-util-definitions "^4.0.0"
+    mdurl "^1.0.0"
+    unist-builder "^2.0.0"
+    unist-util-generated "^1.0.0"
+    unist-util-position "^3.0.0"
+    unist-util-visit "^2.0.0"
+
+mdast-util-to-hast@^10.2.0:
+  version "10.2.0"
+  resolved "https://registry.yarnpkg.com/mdast-util-to-hast/-/mdast-util-to-hast-10.2.0.tgz#61875526a017d8857b71abc9333942700b2d3604"
+  integrity sha512-JoPBfJ3gBnHZ18icCwHR50orC9kNH81tiR1gs01D8Q5YpV6adHNO9nKNuFBCJQ941/32PT1a63UF/DitmS3amQ==
   dependencies:
     "@types/mdast" "^3.0.0"
     "@types/unist" "^2.0.0"

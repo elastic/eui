@@ -2,7 +2,12 @@ import React from 'react';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiSuperSelect } from '../../../../src/components';
+import {
+  EuiCode,
+  EuiSuperSelect,
+  EuiLink,
+  EuiCallOut,
+} from '../../../../src/components';
 
 import SuperSelectBasic from './super_select_basic';
 const superSelectBasicSource = require('!!raw-loader!./super_select_basic');
@@ -54,6 +59,23 @@ const superSelectStatesSnippet = `<EuiSuperSelect
 
 export const SuperSelectExample = {
   title: 'Super select',
+  intro: (
+    <EuiCallOut
+      iconType="questionInCircle"
+      title="Not sure which selection component to use?"
+    >
+      <p>
+        See{' '}
+        <EuiLink
+          href="https://github.com/elastic/eui/discussions/7049"
+          target="_blank"
+        >
+          EUI's in-depth guide to selection components{' '}
+        </EuiLink>{' '}
+        for more information.
+      </p>
+    </EuiCallOut>
+  ),
   sections: [
     {
       source: [

@@ -130,7 +130,7 @@ const RenderFooterCellValue = ({ columnId, setCellProps }) => {
 
 export default () => {
   // Pagination
-  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
+  const [pagination, setPagination] = useState({ pageIndex: 0 });
   const onChangeItemsPerPage = useCallback(
     (pageSize) =>
       setPagination((pagination) => ({
@@ -177,7 +177,6 @@ export default () => {
           }
           pagination={{
             ...pagination,
-            pageSizeOptions: [10, 15, 20],
             onChangeItemsPerPage: onChangeItemsPerPage,
             onChangePage: onChangePage,
           }}

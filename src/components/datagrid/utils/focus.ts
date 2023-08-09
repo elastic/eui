@@ -181,7 +181,7 @@ export const createKeyDownHandler = ({
   visibleRowCount: number;
   visibleRowStartIndex: number;
   rowCount: EuiDataGridProps['rowCount'];
-  pagination: EuiDataGridProps['pagination'];
+  pagination: Required<EuiDataGridProps['pagination']>;
   hasFooter: boolean;
   headerIsInteractive: boolean;
   focusContext: DataGridFocusContextShape;

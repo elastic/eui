@@ -6,12 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, PropsWithChildren } from 'react';
+import React, { FunctionComponent, PropsWithChildren, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { EuiHeader, EuiHeaderSection } from '../header';
+import { EuiHeader, EuiHeaderSection, EuiHeaderSectionItem } from '../header';
 import { EuiPageTemplate } from '../page_template';
-import { EuiFlyoutBody, EuiFlyoutFooter } from '../flyout';
+import { EuiFlyout, EuiFlyoutBody, EuiFlyoutFooter } from '../flyout';
+import { EuiButton } from '../button';
 
 import { EuiCollapsibleNavItem } from './collapsible_nav_item';
 import {
@@ -34,6 +35,7 @@ const meta: Meta<EuiCollapsibleNavBetaProps> = {
   args: {
     side: 'left',
     initialIsCollapsed: false,
+    width: 248,
   },
 };
 export default meta;
@@ -410,4 +412,40 @@ export const MultipleFixedHeaders: Story = {
       </EuiHeader>
     </>
   ),
+};
+
+const MockConsumerFlyout: FunctionComponent = () => {
+  const [flyoutIsOpen, setFlyoutOpen] = useState(false);
+  return (
+    <>
+      <EuiButton size="s" onClick={() => setFlyoutOpen(!flyoutIsOpen)}>
+        Toggle a flyout
+      </EuiButton>
+      {flyoutIsOpen && (
+        <EuiFlyout onClose={() => setFlyoutOpen(false)}>
+          <EuiFlyoutBody>
+            Some other mock consumer flyout that <strong>should</strong> overlap
+            EuiCollapsibleNav
+          </EuiFlyoutBody>
+        </EuiFlyout>
+      )}
+    </>
+  );
+};
+
+export const FlyoutInFixedHeaders: Story = {
+  render: ({ ...args }) => {
+    return (
+      <EuiHeader position="fixed">
+        <EuiHeaderSection>
+          <EuiCollapsibleNavBeta {...args}>Nav content</EuiCollapsibleNavBeta>
+        </EuiHeaderSection>
+        <EuiHeaderSection>
+          <EuiHeaderSectionItem>
+            <MockConsumerFlyout />
+          </EuiHeaderSectionItem>
+        </EuiHeaderSection>
+      </EuiHeader>
+    );
+  },
 };

@@ -25,6 +25,7 @@ import { CommonProps } from '../common';
 import { EuiFlyout, EuiFlyoutProps } from '../flyout';
 import { euiHeaderVariables } from '../header/header.styles';
 
+import { EuiCollapsibleNavContext } from './context';
 import { EuiCollapsibleNavButton } from './collapsible_nav_button';
 import { euiCollapsibleNavBetaStyles } from './collapsible_nav_beta.styles';
 
@@ -87,16 +88,21 @@ export const EuiCollapsibleNavBeta: FunctionComponent<
   const onClose = useCallback(() => setIsCollapsed(true), []);
 
   /**
-   * Mobile behavior
+   * Responsive behavior
+   * By default on large enough screens, the nav is always a push flyout,
+   * but on smaller/mobile screens, the nav overlays the page instead
    */
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
-  const [isSmallestScreen, setIsSmallestScreen] = useState(false);
+  const [isOverlay, setIsOverlay] = useState(false);
+  const [isOverlayFullWidth, setIsOverlayFullWidth] = useState(false);
 
-  // Add a window resize listener that determines breakpoint behavior
+  const flyoutType = isOverlay ? 'overlay' : 'push';
+  const isPush = !isOverlay;
+
+  // Set up a window resize listener that determines breakpoint behavior
   useEffect(() => {
     const getBreakpoints = () => {
-      setIsSmallScreen(window.innerWidth < _width * 3);
-      setIsSmallestScreen(window.innerWidth < _width * 1.5);
+      setIsOverlay(window.innerWidth < _width * 3);
+      setIsOverlayFullWidth(window.innerWidth < _width * 1.5);
     };
     getBreakpoints();
 
@@ -105,22 +111,17 @@ export const EuiCollapsibleNavBeta: FunctionComponent<
     return () => window.removeEventListener('resize', onWindowResize);
   }, [_width]);
 
-  // If the screen was previously uncollapsed and shrinks down to
-  // a smaller mobile view, default that view to a collapsed state
+  // If the nav was previously uncollapsed and shrinks down to the
+  // overlay flyout, default to its hidden/collapsed state
   useEffect(() => {
-    if (isSmallScreen) setIsCollapsed(true);
-  }, [isSmallScreen]);
-
-  // On small screens, the flyout becomes an overlay rather than a push
-  const flyoutType = isSmallScreen ? 'overlay' : 'push';
-  const isMobileCollapsed = isSmallScreen && isCollapsed;
+    if (isOverlay) setIsCollapsed(true);
+  }, [isOverlay]);
 
   const width = useMemo(() => {
-    if (isSmallestScreen) return '100%';
-    if (isSmallScreen) return _width;
-    if (isCollapsed) return headerHeight;
+    if (isOverlayFullWidth) return '100%';
+    if (isPush && isCollapsed) return headerHeight;
     return _width;
-  }, [_width, isSmallScreen, isSmallestScreen, isCollapsed, headerHeight]);
+  }, [_width, isOverlayFullWidth, isPush, isCollapsed, headerHeight]);
 
   /**
    * Header affordance
@@ -174,7 +175,9 @@ export const EuiCollapsibleNavBeta: FunctionComponent<
   const cssStyles = [
     styles.euiCollapsibleNavBeta,
     styles[side],
-    isSmallestScreen && styles.isSmallestScreen,
+    isPush && styles.isPush,
+    isPush && isCollapsed && styles.isPushCollapsed,
+    isOverlayFullWidth && styles.isOverlayFullWidth,
   ];
 
   // Wait for any fixed headers to be queried before rendering (prevents position jumping)
@@ -199,18 +202,16 @@ export const EuiCollapsibleNavBeta: FunctionComponent<
     </EuiFlyout>
   );
 
+  const hideFlyout = isOverlay && isCollapsed;
+
   return (
-    // TODO: Context for sharing state to all children
-    <>
+    <EuiCollapsibleNavContext.Provider value={{ isPush, isCollapsed, side }}>
       <EuiCollapsibleNavButton
         ref={buttonRef}
         onClick={toggleCollapsed}
-        isCollapsed={isCollapsed}
-        isSmallScreen={isSmallScreen}
-        side={side}
         aria-controls={flyoutID}
       />
-      {!isMobileCollapsed && flyout}
-    </>
+      {!hideFlyout && flyout}
+    </EuiCollapsibleNavContext.Provider>
   );
 };
