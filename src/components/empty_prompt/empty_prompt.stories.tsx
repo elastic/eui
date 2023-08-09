@@ -21,12 +21,6 @@ import illustration from '../../../src-docs/src/images/empty-prompt/illustration
 const meta: Meta<EuiEmptyPromptProps> = {
   title: 'EuiEmptyPrompt',
   component: EuiEmptyPrompt,
-  argTypes: {
-    element: { control: 'text' },
-    body: {
-      control: 'text',
-    },
-  },
 };
 
 export default meta;
@@ -35,12 +29,13 @@ type Story = StoryObj<EuiEmptyPromptProps>;
 const componentDefaults: EuiEmptyPromptProps = {
   titleSize: 'm',
   paddingSize: 'l',
-  color: 'plain',
+  color: 'plain', // The component default is actually 'transparent', but for the purposes of easier testing in Storybook we'll set it to plain
   layout: 'vertical',
 };
 
 export const Playground: Story = {
   args: {
+    ...componentDefaults,
     title: <h2>Start adding cases</h2>,
     iconType: 'logoSecurity',
     hasBorder: false,
@@ -62,7 +57,6 @@ export const Playground: Story = {
         </EuiLink>
       </>
     ),
-    ...componentDefaults,
   },
 };
 
@@ -73,10 +67,21 @@ export const PageTemplate: Story = {
     </EuiPageTemplate>
   ),
   args: {
+    ...componentDefaults,
     title: <h2>Create your first visualization</h2>,
+    layout: 'horizontal',
     icon: <EuiImage size="fullWidth" src={illustration} alt="" />,
-    // Body should be wrapped in a `<p>` in production usage, but using a string makes this easier to edit in Storybook controls
-    body: 'There are no visualizations to display. This tool allows you to create a wide range of charts, graphs, maps, and other graphics. The visualizations you create can be easily shared with your peers.',
+    body: (
+      <>
+        <p>
+          There are no visualizations to display. This tool allows you to create
+          a wide range of charts, graphs, maps, and other graphics.
+        </p>
+        <p>
+          The visualizations you create can be easily shared with your peers.
+        </p>
+      </>
+    ),
     actions: (
       <EuiButton color="primary" fill>
         Create visualization
@@ -92,6 +97,5 @@ export const PageTemplate: Story = {
         </EuiLink>
       </>
     ),
-    ...componentDefaults,
   },
 };
