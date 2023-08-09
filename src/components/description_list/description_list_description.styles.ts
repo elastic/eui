@@ -23,8 +23,7 @@ export const euiDescriptionListDescriptionStyles = (
   const { euiTheme } = euiThemeContext;
 
   const columnDisplay = `
-    ${logicalCSS('width', '50%')}
-    ${logicalCSS('padding-left', euiTheme.size.s)}
+
   `;
 
   return {

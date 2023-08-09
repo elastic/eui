@@ -11,13 +11,17 @@ import { EuiDescriptionListProps } from './description_list_types';
 
 type EuiDescriptionListContextValues = Required<
   Pick<EuiDescriptionListProps, 'type' | 'textStyle' | 'align' | 'gutterSize'>
-> & { compressed?: EuiDescriptionListProps['compressed'] };
+> & {
+  compressed?: EuiDescriptionListProps['compressed'];
+  columnGap?: EuiDescriptionListProps['columnGap'];
+};
 
 export const contextDefaults: EuiDescriptionListContextValues = {
   type: 'row',
   textStyle: 'normal',
   align: 'left',
   gutterSize: 'm',
+  columnGap: 'm',
 };
 
 export const EuiDescriptionListContext =

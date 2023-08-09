@@ -7,15 +7,20 @@
  */
 
 import { css } from '@emotion/react';
-import { logicalTextAlignCSS, euiMinBreakpoint } from '../../global_styling';
+import {
+  logicalTextAlignCSS,
+  euiMaxBreakpoint,
+  euiMinBreakpoint,
+} from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
-  // Flex display for column and responsive column
+  // Grid display for column and responsive column
   const columnDisplay = `
-    display: flex;
+    display: grid;
+    grid-template-columns: fit-content(360px) 1fr;
+    row-gap: ${euiThemeContext.euiTheme.size.s}; 
     align-items: baseline;
-    flex-wrap: wrap;  
   `;
 
   return {
@@ -29,6 +34,9 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // Responsive columns behave as a row on breakpoints xs-s
     responsiveColumn: css`
+      ${euiMaxBreakpoint(euiThemeContext, 'm')} {
+        grid-template-columns: 1fr;
+      }
       ${euiMinBreakpoint(euiThemeContext, 'm')} {
         ${columnDisplay}
       }
@@ -40,6 +48,13 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     left: css`
       ${logicalTextAlignCSS('left')}
+    `,
+    // Column gap
+    s: css`
+      column-gap: 16px;
+    `,
+    m: css`
+      column-gap: 32px;
     `,
   };
 };

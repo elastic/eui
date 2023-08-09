@@ -43,6 +43,10 @@ export interface EuiDescriptionListProps {
    * Vertical spacing added between `EuiDescriptionList` elements
    */
   gutterSize?: EuiDescriptionListGutterSizes;
+  /**
+   * Horizontal spacing added between `EuiDescriptionList` elements
+   */
+  columnGap?: EuiDescriptionListGutterSizes;
 }
 
 export const TYPES = ['row', 'inline', 'column', 'responsiveColumn'] as const;

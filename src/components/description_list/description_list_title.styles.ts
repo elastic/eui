@@ -11,8 +11,6 @@ import {
   euiFontSize,
   euiTextBreakWord,
   logicalTextAlignCSS,
-  euiMaxBreakpoint,
-  euiMinBreakpoint,
   logicalCSS,
 } from '../../global_styling';
 import { tint, UseEuiTheme } from '../../services';
@@ -22,8 +20,7 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
 
   const columnDisplay = `
-  ${logicalCSS('width', '50%')}
-    ${logicalCSS('padding-right', euiTheme.size.s)}
+  
   `;
   return {
     euiDescriptionList__title: css`
@@ -35,15 +32,7 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
     column: css`
       ${columnDisplay}
     `,
-    responsiveColumn: css`
-      ${euiMaxBreakpoint(euiThemeContext, 'm')} {
-        ${logicalCSS('width', '100%')}
-        padding: 0;
-      }
-      ${euiMinBreakpoint(euiThemeContext, 'm')} {
-        ${columnDisplay}
-      }
-    `,
+    responsiveColumn: css``,
     inline: css`
       display: inline;
       border-radius: ${euiTheme.border.radius.small};
