@@ -3,13 +3,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
-import { EuiCallOut } from '../../../../src';
 
 import {
   EuiLink,
   EuiCode,
   EuiComboBox,
   EuiText,
+  EuiCallOut,
 } from '../../../../src/components';
 
 import { EuiComboBoxOptionOption } from '!!prop-loader!../../../../src/components/combo_box/types';
@@ -245,31 +245,36 @@ const labelledbySnippet = `<EuiComboBox
 export const ComboBoxExample = {
   title: 'Combo box',
   intro: (
-    <>
-      <EuiText>
-        <p>
-          Use a <strong>EuiComboBox</strong> when the input has so many options
-          that the user needs to be able to search them, the user needs to be
-          able to select multiple options, and/or the user should have the
-          ability to specify a custom value in addition to selecting from a
-          predetermined list.
-        </p>
-        <EuiCallOut
-          iconType="accessibility"
-          title={
-            <>
-              You must add an accessible label to each instance of{' '}
-              <strong>EuiComboBox</strong>
-            </>
-          }
+    <EuiText>
+      <p>
+        Use a <strong>EuiComboBox</strong> when the input has so many options
+        that the user needs to be able to search them, the user needs to be able
+        to select multiple options, and/or the user should have the ability to
+        specify a custom value in addition to selecting from a predetermined
+        list. If you're unsure of which selection component to use, see{' '}
+        <EuiLink
+          href="https://github.com/elastic/eui/discussions/7049"
+          target="_blank"
         >
-          Labels can be created by wrapping the combo box in an{' '}
-          <strong>EuiFormRow</strong> with a <EuiCode>label</EuiCode>, adding an{' '}
-          <EuiCode>aria-label</EuiCode> prop, or passing a text node ID to the{' '}
-          <EuiCode>aria-labelledby</EuiCode> prop.
-        </EuiCallOut>
-      </EuiText>
-    </>
+          EUI's in-depth guide to selection components
+        </EuiLink>{' '}
+        for more information.
+      </p>
+      <EuiCallOut
+        iconType="accessibility"
+        title={
+          <>
+            You must add an accessible label to each instance of{' '}
+            <strong>EuiComboBox</strong>
+          </>
+        }
+      >
+        Labels can be created by wrapping the combo box in an{' '}
+        <strong>EuiFormRow</strong> with a <EuiCode>label</EuiCode>, adding an{' '}
+        <EuiCode>aria-label</EuiCode> prop, or passing a text node ID to the{' '}
+        <EuiCode>aria-labelledby</EuiCode> prop.
+      </EuiCallOut>
+    </EuiText>
   ),
   sections: [
     {
