@@ -132,14 +132,16 @@ export class EuiAccordionClass extends Component<
       : this.props.initialIsOpen!,
   };
 
+  get isOpen() {
+    return this.props.forceState
+      ? this.props.forceState === 'open'
+      : this.state.isOpen;
+  }
+
   setChildContentHeight = () => {
-    const { forceState } = this.props;
     requestAnimationFrame(() => {
       const height =
-        this.childContent &&
-        (forceState ? forceState === 'open' : this.state.isOpen)
-          ? this.childContent.clientHeight
-          : 0;
+        this.childContent && this.isOpen ? this.childContent.clientHeight : 0;
       this.childWrapper &&
         this.childWrapper.setAttribute(
           'style',
@@ -213,8 +215,6 @@ export class EuiAccordionClass extends Component<
       ...rest
     } = this.props;
 
-    const isOpen = forceState ? forceState === 'open' : this.state.isOpen;
-
     // Force button element to be a legend if the element is a fieldset
     const ButtonElement = Element === 'fieldset' ? 'legend' : _ButtonElement;
     const buttonElementIsFocusable = ButtonElement === 'button';
@@ -228,7 +228,7 @@ export class EuiAccordionClass extends Component<
     const classes = classNames(
       'euiAccordion',
       {
-        'euiAccordion-isOpen': isOpen,
+        'euiAccordion-isOpen': this.isOpen,
       },
       className
     );
@@ -251,7 +251,7 @@ export class EuiAccordionClass extends Component<
     const iconButtonClasses = classNames(
       'euiAccordion__iconButton',
       {
-        'euiAccordion__iconButton-isOpen': isOpen,
+        'euiAccordion__iconButton-isOpen': this.isOpen,
         'euiAccordion__iconButton--right': _arrowDisplay === 'right',
       },
       arrowProps?.className
@@ -275,13 +275,13 @@ export class EuiAccordionClass extends Component<
     const childWrapperStyles = euiAccordionChildWrapperStyles(theme);
     const cssChildWrapperStyles = [
       childWrapperStyles.euiAccordion__childWrapper,
-      isOpen && childWrapperStyles.isOpen,
+      this.isOpen && childWrapperStyles.isOpen,
     ];
 
     const iconButtonStyles = euiAccordionIconButtonStyles(theme);
     const cssIconButtonStyles = [
       iconButtonStyles.euiAccordion__iconButton,
-      isOpen && iconButtonStyles.isOpen,
+      this.isOpen && iconButtonStyles.isOpen,
       _arrowDisplay === 'right' && iconButtonStyles.arrowRight,
       arrowProps?.css,
     ];
@@ -311,7 +311,7 @@ export class EuiAccordionClass extends Component<
           iconType="arrowRight"
           onClick={this.onToggle}
           aria-controls={id}
-          aria-expanded={isOpen}
+          aria-expanded={this.isOpen}
           aria-labelledby={buttonId}
           tabIndex={buttonElementIsFocusable ? -1 : 0}
           isDisabled={isDisabled}
@@ -363,7 +363,7 @@ export class EuiAccordionClass extends Component<
         css={cssButtonStyles}
         aria-controls={id}
         // `aria-expanded` is only a valid attribute on interactive controls - axe-core throws a violation otherwise
-        aria-expanded={ButtonElement === 'button' ? isOpen : undefined}
+        aria-expanded={ButtonElement === 'button' ? this.isOpen : undefined}
         onClick={isDisabled ? undefined : this.onToggle}
         type={ButtonElement === 'button' ? 'button' : undefined}
         disabled={ButtonElement === 'button' ? isDisabled : undefined}
