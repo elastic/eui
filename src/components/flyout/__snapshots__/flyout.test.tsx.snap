@@ -1059,7 +1059,6 @@ Array [
   >
     <div
       class="euiFlyout emotion-euiFlyout-l-m-noMaxWidth-push-right-right"
-      data-autofocus="true"
     >
       <button
         aria-label="Close this dialog"

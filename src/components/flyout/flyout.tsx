@@ -417,7 +417,7 @@ export const EuiFlyout = forwardRef(
           role={!isPushed ? 'dialog' : rest.role}
           tabIndex={!isPushed ? 0 : rest.tabIndex}
           aria-describedby={!isPushed ? descriptionId : undefined}
-          data-autofocus
+          data-autofocus={!isPushed || undefined}
         >
           {!isPushed && screenReaderDescription}
           {closeButton}
