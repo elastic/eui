@@ -23,6 +23,7 @@ import { mathWithUnits, logicalStyle } from '../../global_styling';
 
 import { CommonProps } from '../common';
 import { EuiFlyout, EuiFlyoutProps } from '../flyout';
+import { useEuiI18n } from '../i18n';
 import { euiHeaderVariables } from '../header/header.styles';
 
 import { EuiCollapsibleNavContext } from './context';
@@ -156,6 +157,10 @@ export const EuiCollapsibleNavBeta: FunctionComponent<
     conditionalId: id,
     suffix: 'euiCollapsibleNav',
   });
+  const dialogAriaLabel = useEuiI18n(
+    'euiCollapsibleNavBeta.ariaLabel',
+    'Site navigation'
+  );
 
   const buttonRef = useRef<HTMLDivElement | null>(null);
   const focusTrapProps: EuiFlyoutProps['focusTrapProps'] = useMemo(
@@ -183,6 +188,7 @@ export const EuiCollapsibleNavBeta: FunctionComponent<
   // Wait for any fixed headers to be queried before rendering (prevents position jumping)
   const flyout = fixedHeadersCount !== false && (
     <EuiFlyout
+      aria-label={isOverlay ? dialogAriaLabel : undefined} // Overlay flyouts are dialogs and need a label. Push flyouts are not dialogs.
       {...rest} // EuiCollapsibleNav is significantly less permissive than EuiFlyout
       id={flyoutID}
       css={cssStyles}
