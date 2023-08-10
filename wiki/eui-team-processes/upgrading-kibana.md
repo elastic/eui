@@ -30,6 +30,12 @@ If changes exist:
 3. Run `yarn test:jest packages/core/i18n/core-i18n-browser-internal/src/i18n_service.test.ts -u` to update mapping snapshots
 4. Run `node scripts/i18n_check --fix` to delete removed or updated token entries from the [various translation files](https://github.com/elastic/kibana/tree/main/x-pack/plugins/translations/translations)
 
+### Breaking changes and deprecations
+
+EUI should be handling all breaking changes noted in the changelogs of each upgrade. In general, unless it's unreasonable to do so time-wise (e.g. more than several days of work), EUI should also be handling any deprecations in the changelog as well. This typically involves removing or migrating uses of removed types or components.
+
+If it's too much effort for the EUI team alone to handle migrating/updating deprecated components, we should be creating a follow-up issue for each team using the deprecated components, and giving them a timeline for removal/migration. An example of this: https://github.com/elastic/kibana/issues/161872.
+
 ## Opening a draft PR to kick off CI
 
 At this point, we recommend opening a **draft** PR with your existing commits/changes against Kibana main. Unfortunately, Kibana's many tests are far too numerous to reasonably run them all locally - your machine will OOM if you even try. Kicking off a CI run is therefore the quickest way to find test failures at this point.
