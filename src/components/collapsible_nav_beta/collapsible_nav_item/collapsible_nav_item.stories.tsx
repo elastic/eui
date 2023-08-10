@@ -47,7 +47,9 @@ export const Playground: Story = {
 
 export const EdgeCaseTesting: Story = {
   render: ({ ...args }) => (
-    <EuiCollapsibleNavBeta>
+    // Since we're not using EuiFlyoutBody/Footer, the flex display isn't needed
+    // and causes item vertical margins to not collapse
+    <EuiCollapsibleNavBeta className="eui-displayBlock">
       <EuiCollapsibleNavItem {...args} href="#" title="Link with no icon" />
       <EuiCollapsibleNavItem
         {...args}
