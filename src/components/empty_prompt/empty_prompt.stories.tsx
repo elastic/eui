@@ -9,14 +9,14 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { EuiEmptyPrompt, EuiEmptyPromptProps } from './empty_prompt';
-
+import illustration from '../../../src-docs/src/images/empty-prompt/illustration.svg';
 import { EuiButton, EuiButtonEmpty } from '../button';
 import { EuiTitle } from '../title';
 import { EuiLink } from '../link';
 import { EuiImage } from '../image';
 import { EuiPageTemplate } from '../page_template';
-import illustration from '../../../src-docs/src/images/empty-prompt/illustration.svg';
+
+import { EuiEmptyPrompt, EuiEmptyPromptProps } from './empty_prompt';
 
 const meta: Meta<EuiEmptyPromptProps> = {
   title: 'EuiEmptyPrompt',
