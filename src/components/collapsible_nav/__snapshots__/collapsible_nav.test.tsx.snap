@@ -276,9 +276,7 @@ exports[`EuiCollapsibleNav props isDocked 1`] = `
       class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-push-left-left-euiCollapsibleNav-push"
       data-autofocus="true"
       id="id"
-      role="dialog"
       style="inline-size: 320px;"
-      tabindex="0"
     />
   </div>
   <div
@@ -359,9 +357,7 @@ exports[`EuiCollapsibleNav props showButtonIfDocked 1`] = `
       class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-push-left-left-euiCollapsibleNav-push"
       data-autofocus="true"
       id="id"
-      role="dialog"
       style="inline-size: 320px;"
-      tabindex="0"
     />
   </div>
   <div

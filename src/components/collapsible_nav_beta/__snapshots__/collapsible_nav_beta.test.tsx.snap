@@ -40,9 +40,7 @@ exports[`EuiCollapsibleNavBeta renders 1`] = `
         data-autofocus="true"
         data-test-subj="nav"
         id="generated-id_euiCollapsibleNav"
-        role="dialog"
         style="inline-size: 248px;"
-        tabindex="0"
       >
         Nav content
       </nav>
@@ -95,9 +93,7 @@ exports[`EuiCollapsibleNavBeta renders initialIsCollapsed 1`] = `
         data-autofocus="true"
         data-test-subj="nav"
         id="generated-id_euiCollapsibleNav"
-        role="dialog"
         style="inline-size: 48px;"
-        tabindex="0"
       >
         Nav content
       </nav>
