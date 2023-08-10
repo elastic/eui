@@ -46,7 +46,7 @@ export interface EuiDescriptionListProps {
   /**
    * Horizontal spacing added between `EuiDescriptionList` elements
    */
-  columnGap?: EuiDescriptionListGutterSizes;
+  columnGap?: EuiDescriptionListColumnGapSizes;
 }
 
 export const TYPES = ['row', 'inline', 'column', 'responsiveColumn'] as const;
@@ -60,3 +60,6 @@ export type EuiDescriptionListTextStyle = (typeof TEXT_STYLES)[number];
 
 export const GUTTER_SIZES = ['s', 'm'] as const;
 export type EuiDescriptionListGutterSizes = (typeof GUTTER_SIZES)[number];
+
+export const COLUMN_GAP_SIZES = ['s', 'm'] as const;
+export type EuiDescriptionListColumnGapSizes = (typeof GUTTER_SIZES)[number];

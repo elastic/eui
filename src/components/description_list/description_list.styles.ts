@@ -15,11 +15,12 @@ import {
 import { UseEuiTheme } from '../../services';
 
 export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
+  const TITLE_MAX_WIDTH = '380px';
+
   // Grid display for column and responsive column
   const columnDisplay = `
     display: grid;
-    grid-template-columns: fit-content(360px) 1fr;
-    row-gap: ${euiThemeContext.euiTheme.size.s}; 
+    grid-template-columns: fit-content(${TITLE_MAX_WIDTH}) 1fr;
     align-items: baseline;
   `;
 
@@ -41,20 +42,29 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
         ${columnDisplay}
       }
     `,
-
+    // Handles row-gap according to row gutter size
+    rowGap: {
+      s: css`
+        row-gap: ${euiThemeContext.euiTheme.size.s};
+      `,
+      m: css`
+        row-gap: ${euiThemeContext.euiTheme.size.m};
+      `,
+    },
+    columnGap: {
+      s: css`
+        column-gap: ${euiThemeContext.euiTheme.size.s};
+      `,
+      m: css`
+        column-gap: ${euiThemeContext.euiTheme.size.xl};
+      `,
+    },
     // Alignment
     center: css`
       ${logicalTextAlignCSS('center')}
     `,
     left: css`
       ${logicalTextAlignCSS('left')}
-    `,
-    // Column gap
-    s: css`
-      column-gap: ${euiThemeContext.euiTheme.size.base};
-    `,
-    m: css`
-      column-gap: ${euiThemeContext.euiTheme.size.xxl};
     `,
   };
 };

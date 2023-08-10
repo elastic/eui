@@ -43,8 +43,9 @@ export const EuiDescriptionList: FunctionComponent<
   const cssStyles = [
     styles.euiDescriptionList,
     styles[type],
+    styles.rowGap[gutterSize],
+    styles.columnGap[columnGap],
     styles[align],
-    styles[columnGap],
   ];
 
   const classes = classNames('euiDescriptionList', className);
