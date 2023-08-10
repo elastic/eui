@@ -409,15 +409,15 @@ export const EuiFlyout = forwardRef(
         {...focusTrapProps}
       >
         <Element
-          css={cssStyles}
-          {...(rest as ComponentPropsWithRef<T>)}
-          role="dialog"
           className={classes}
-          tabIndex={0}
-          data-autofocus
-          aria-describedby={!isPushed ? descriptionId : undefined}
+          css={cssStyles}
           style={newStyle}
           ref={setRef}
+          {...(rest as ComponentPropsWithRef<T>)}
+          role="dialog"
+          tabIndex={0}
+          aria-describedby={!isPushed ? descriptionId : undefined}
+          data-autofocus
         >
           {!isPushed && screenReaderDescription}
           {closeButton}
