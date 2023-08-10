@@ -183,6 +183,7 @@ export const EuiFlyout = forwardRef(
       pushMinBreakpoint = 'l',
       focusTrapProps: _focusTrapProps = {},
       includeFixedHeadersInFocusTrap = true,
+      'aria-describedby': _ariaDescribedBy,
       ...rest
     }: EuiFlyoutProps<T>,
     ref:
@@ -349,6 +350,7 @@ export const EuiFlyout = forwardRef(
      */
     const hasOverlayMask = ownFocus && !isPushed;
     const descriptionId = useGeneratedHtmlId();
+    const ariaDescribedBy = classnames(descriptionId, _ariaDescribedBy);
 
     const screenReaderDescription = (
       <EuiScreenReaderOnly>
@@ -416,7 +418,7 @@ export const EuiFlyout = forwardRef(
           {...(rest as ComponentPropsWithRef<T>)}
           role={!isPushed ? 'dialog' : rest.role}
           tabIndex={!isPushed ? 0 : rest.tabIndex}
-          aria-describedby={!isPushed ? descriptionId : undefined}
+          aria-describedby={!isPushed ? ariaDescribedBy : _ariaDescribedBy}
           data-autofocus={!isPushed || undefined}
         >
           {!isPushed && screenReaderDescription}
