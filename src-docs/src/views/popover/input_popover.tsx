@@ -43,6 +43,7 @@ export default () => {
           />
         }
         panelMinWidth={200}
+        anchorPosition="downRight"
       >
         The popover will adjust in size as the input does.
         <br />

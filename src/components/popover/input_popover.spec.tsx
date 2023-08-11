@@ -24,7 +24,10 @@ describe('EuiPopover', () => {
 
   it('renders a popover with equal width to the input', () => {
     cy.mount(<EuiInputPopover {...props}>Popover content</EuiInputPopover>);
-    cy.get('[data-popover-panel]').invoke('outerWidth').should('equal', 400);
+    cy.get('[data-popover-panel]')
+      .should('have.css', 'left', '0px')
+      .invoke('outerWidth')
+      .should('equal', 400);
   });
 
   it('respects `panelMinWidth`', () => {
@@ -34,5 +37,22 @@ describe('EuiPopover', () => {
       </EuiInputPopover>
     );
     cy.get('[data-popover-panel]').invoke('outerWidth').should('equal', 450);
+  });
+
+  it('respects `anchorPosition`', () => {
+    cy.mount(
+      <div className="eui-textRight">
+        <EuiInputPopover
+          {...props}
+          display="inline-block"
+          input={<EuiFieldText controlOnly={true} style={{ width: 150 }} />}
+          panelMinWidth={300}
+          anchorPosition="downRight"
+        >
+          Popover content
+        </EuiInputPopover>
+      </div>
+    );
+    cy.get('[data-popover-panel]').should('have.css', 'left', '200px');
   });
 });

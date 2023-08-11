@@ -30,7 +30,11 @@ import { css } from '@emotion/react';
 import { logicalCSS } from '../../global_styling';
 
 export interface _EuiInputPopoverProps
-  extends Omit<EuiPopoverProps, 'button' | 'buttonRef'> {
+  extends Omit<EuiPopoverProps, 'button' | 'buttonRef' | 'anchorPosition'> {
+  /**
+   * Alignment of the popover relative to the input
+   */
+  anchorPosition?: 'downLeft' | 'downRight' | 'downCenter';
   disableFocusTrap?: boolean;
   fullWidth?: boolean;
   input: EuiPopoverProps['button'];
