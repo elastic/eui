@@ -79,7 +79,7 @@
     "mdast-util-to-hast": "^10.2.0",
     "numeral": "^2.0.6",
     "prop-types": "^15.6.0",
-    "react-dropzone": "^11.5.3",
+    "react-dropzone": "^11.7.1",
     "react-element-to-jsx-string": "^14.3.4",
     "react-focus-on": "^3.9.1",
     "react-input-autosize": "^3.0.0",
