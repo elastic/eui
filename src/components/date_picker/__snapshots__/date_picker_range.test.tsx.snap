@@ -75,6 +75,79 @@ exports[`EuiDatePickerRange is rendered 1`] = `
 </span>
 `;
 
+exports[`EuiDatePickerRange props compressed 1`] = `
+<span
+  class="euiDatePickerRange emotion-euiDatePickerRange"
+>
+  <div
+    class="euiFormControlLayout euiFormControlLayout--compressed euiFormControlLayoutDelimited"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--static"
+      >
+        <span
+          class="euiFormControlLayoutCustomIcon"
+        >
+          <span
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="calendar"
+          />
+        </span>
+      </div>
+      <div
+        class="euiPopover emotion-euiPopover"
+      >
+        <div
+          class="euiPopover__anchor css-zih94u-render"
+        >
+          <div
+            class="react-datepicker__input-container"
+          >
+            <input
+              aria-label="Press the down key to open a popover containing a calendar."
+              class="euiDatePicker euiFieldText euiDatePickerRange__start euiFormControlLayoutDelimited__input"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="euiText euiFormControlLayoutDelimited__delimiter emotion-euiText-s-euiTextColor-subdued"
+      >
+        <span
+          data-euiicon-type="sortRight"
+        >
+          to
+        </span>
+      </div>
+      <div
+        class="euiPopover emotion-euiPopover"
+      >
+        <div
+          class="euiPopover__anchor css-zih94u-render"
+        >
+          <div
+            class="react-datepicker__input-container"
+          >
+            <input
+              aria-label="Press the down key to open a popover containing a calendar."
+              class="euiDatePicker euiFieldText euiDatePickerRange__end euiFormControlLayoutDelimited__input"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</span>
+`;
+
 exports[`EuiDatePickerRange props disabled 1`] = `
 <span
   class="euiDatePickerRange emotion-euiDatePickerRange"
