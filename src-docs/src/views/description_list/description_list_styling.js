@@ -61,6 +61,23 @@ export default () => {
     setGutterSelected(id);
   };
 
+  const columnGapToggleButtons = [
+    {
+      id: 's',
+      label: 'Small',
+    },
+    {
+      id: 'm',
+      label: 'Medium',
+    },
+  ];
+
+  const [columnGapSelected, setColumnGapSelected] = useState('m');
+
+  const columnGapOnChange = (id) => {
+    setColumnGapSelected(id);
+  };
+
   const [compressed, setCompressed] = useState(true);
 
   const compressedOnChange = () => {
@@ -96,6 +113,18 @@ export default () => {
 
         <EuiFlexItem>
           <EuiTitle size="xxs">
+            <h3>Column gap sizes</h3>
+          </EuiTitle>
+          <EuiButtonGroup
+            legend="Toggle for the EuiDescription columnGap prop"
+            options={columnGapToggleButtons}
+            idSelected={columnGapSelected}
+            onChange={(id) => columnGapOnChange(id)}
+          />
+        </EuiFlexItem>
+
+        <EuiFlexItem>
+          <EuiTitle size="xxs">
             <h3>Compressed</h3>
           </EuiTitle>
           <EuiSwitch
@@ -123,6 +152,7 @@ export default () => {
         align={alignSelected}
         compressed={compressed}
         gutterSize={gutterSelected}
+        columnGap={columnGapSelected}
       />
 
       <EuiSpacer size="l" />
