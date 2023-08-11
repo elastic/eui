@@ -10,7 +10,11 @@ import React, { HTMLAttributes, forwardRef, useMemo } from 'react';
 import { FixedSizeList, ListChildComponentProps } from 'react-window';
 import { RefractorNode } from 'refractor';
 import { logicalStyles } from '../../global_styling';
-import { EuiAutoSizer } from '../auto_sizer';
+import {
+  EuiAutoSizer,
+  EuiAutoSize,
+  EuiAutoSizeHorizontal,
+} from '../auto_sizer';
 import { nodeToHtml } from './utils';
 
 export const EuiCodeBlockVirtualized = ({
@@ -57,7 +61,7 @@ export const EuiCodeBlockVirtualized = ({
 
   return typeof overflowHeight === 'number' ? (
     <EuiAutoSizer disableHeight={true}>
-      {({ width }) => (
+      {({ width }: EuiAutoSizeHorizontal) => (
         <FixedSizeList
           height={overflowHeight}
           width={width}
@@ -69,7 +73,7 @@ export const EuiCodeBlockVirtualized = ({
     </EuiAutoSizer>
   ) : (
     <EuiAutoSizer>
-      {({ height, width }) => (
+      {({ height, width }: EuiAutoSize) => (
         <FixedSizeList height={height} width={width} {...virtualizationProps}>
           {ListRow}
         </FixedSizeList>

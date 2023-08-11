@@ -21,7 +21,11 @@ import {
   areEqual,
 } from 'react-window';
 import { CommonProps, ExclusiveUnion } from '../../common';
-import { EuiAutoSizer } from '../../auto_sizer';
+import {
+  EuiAutoSizer,
+  EuiAutoSize,
+  EuiAutoSizeHorizontal,
+} from '../../auto_sizer';
 import { EuiHighlight } from '../../highlight';
 import { EuiSelectableOption } from '../selectable_option';
 import { EuiSelectableOnChangeEvent } from '../selectable';
@@ -369,7 +373,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
 
     return heightIsFull ? (
       <EuiAutoSizer>
-        {({ width, height }) => (
+        {({ width, height }: EuiAutoSize) => (
           <FixedSizeList width={width} height={height} {...virtualizationProps}>
             {this.ListRow}
           </FixedSizeList>
@@ -377,7 +381,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
       </EuiAutoSizer>
     ) : (
       <EuiAutoSizer disableHeight={true}>
-        {({ width }) => (
+        {({ width }: EuiAutoSizeHorizontal) => (
           <FixedSizeList
             width={width}
             height={calculatedHeight}

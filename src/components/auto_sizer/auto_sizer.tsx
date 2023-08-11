@@ -7,8 +7,17 @@
  */
 
 import type { ComponentProps } from 'react';
-import AutoSizer from 'react-virtualized-auto-sizer';
+import type {
+  Size,
+  HorizontalSize,
+  VerticalSize,
+} from 'react-virtualized-auto-sizer';
 
 export type EuiAutoSizerProps = ComponentProps<typeof AutoSizer>;
+export type EuiAutoSize = Size;
+export type EuiAutoSizeHorizontal = HorizontalSize;
+export type EuiAutoSizeVertical = VerticalSize;
+
+import AutoSizer from 'react-virtualized-auto-sizer';
 
 export class EuiAutoSizer extends AutoSizer {}
