@@ -344,7 +344,7 @@ export const FlyoutExample = {
               >
                 dialog role
               </EuiLink>
-              , and do not contain any of the default screen reader guidance
+              , and do not include any of the default screen reader guidance
               that overlay flyouts contain out-of-the-box.
             </p>
             <p>
