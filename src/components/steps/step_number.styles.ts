@@ -106,7 +106,16 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
           ${euiTheme.animation.bounce};
       }
     `,
-    current: css``,
+    current: css`
+      border: 2px solid ${euiTheme.colors.body};
+      box-shadow: 0 0 0 2px ${euiTheme.colors.primary};
+
+      .euiStepNumber__number {
+        /* Transform the step number so it appears in the center of the step circle */
+        display: inline-block;
+        transform: translateY(-2px);
+      }
+    `,
   };
 };
 

@@ -32,17 +32,27 @@ describe('EuiPageTemplate', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('_EuiPageInnerProps is rendered', () => {
-    const { container } = render(
-      <EuiPageTemplate
-        component="div"
-        contentBorder={true}
-        panelled={false}
-        mainProps={{ id: 'customID', className: 'customClassName' }}
-      />
-    );
+  describe('_EuiPageInnerProps', () => {
+    it('is rendered', () => {
+      const { container } = render(
+        <EuiPageTemplate
+          component="div"
+          contentBorder={true}
+          panelled={false}
+          mainProps={{ id: 'customID', className: 'customClassName' }}
+        />
+      );
 
-    expect(container.firstChild).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
+    it('renders as panelled', () => {
+      const { container } = render(
+        <EuiPageTemplate component="div" panelled />
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+    });
   });
 
   describe('restrict width', () => {

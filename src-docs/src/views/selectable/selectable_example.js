@@ -9,6 +9,7 @@ import {
   EuiSelectableMessage,
   EuiText,
   EuiCallOut,
+  EuiLink,
 } from '../../../../src';
 
 import {
@@ -69,7 +70,14 @@ export const SelectableExample = {
         </strong>{' '}
         but can be used to simplify the construction of popover navigational
         menus; i.e. the spaces menu in the{' '}
-        <Link to="/layout/header">header</Link>.
+        <Link to="/layout/header">header</Link>. See{' '}
+        <EuiLink
+          href="https://github.com/elastic/eui/discussions/7049"
+          target="_blank"
+        >
+          EUI's in-depth guide on which selection component to use{' '}
+        </EuiLink>{' '}
+        for more information.
       </p>
     </EuiText>
   ),
