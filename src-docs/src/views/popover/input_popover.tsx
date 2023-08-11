@@ -1,43 +1,28 @@
 import React, { useState } from 'react';
 
-import { EuiInputPopover, EuiFieldText, EuiSpacer } from '../../../../src';
+import {
+  EuiInputPopover,
+  EuiFieldText,
+  EuiTextArea,
+  EuiSpacer,
+} from '../../../../src';
 
 export default () => {
-  const [inputWidth, setInputWidth] = useState(200);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const [isPopoverOpenTwo, setIsPopoverOpenTwo] = useState(false);
-  const toggleIsPopoverOpen = (shouldBeOpen = !isPopoverOpen) => {
-    setIsPopoverOpen(shouldBeOpen);
-  };
-  const toggleIsPopoverOpenTwo = (shouldBeOpen = !isPopoverOpenTwo) => {
-    setIsPopoverOpenTwo(shouldBeOpen);
-  };
-
-  const input = (
-    <EuiFieldText
-      onFocus={() => toggleIsPopoverOpen()}
-      aria-label="Popover attached to input element"
-    />
-  );
-
-  const inputTwo = (
-    <EuiFieldText
-      onFocus={() => {
-        setInputWidth(300);
-        toggleIsPopoverOpenTwo();
-      }}
-      aria-label="Popover attached to an adjustable sized input element"
-    />
-  );
+  const [isResizablePopoverOpen, setIsResizablePopoverOpen] = useState(false);
 
   return (
-    <React.Fragment>
+    <>
       <EuiInputPopover
-        input={input}
         isOpen={isPopoverOpen}
-        closePopover={() => {
-          toggleIsPopoverOpen(false);
-        }}
+        closePopover={() => setIsPopoverOpen(false)}
+        input={
+          <EuiFieldText
+            onFocus={() => setIsPopoverOpen(true)}
+            placeholder="Click me to toggle an input popover"
+            aria-label="Popover attached to input element"
+          />
+        }
       >
         Popover content
       </EuiInputPopover>
@@ -45,16 +30,21 @@ export default () => {
       <EuiSpacer />
 
       <EuiInputPopover
-        input={inputTwo}
-        isOpen={isPopoverOpenTwo}
-        style={{ width: inputWidth }}
-        closePopover={() => {
-          toggleIsPopoverOpenTwo(false);
-          setInputWidth(200);
-        }}
+        display="inline-block"
+        isOpen={isResizablePopoverOpen}
+        closePopover={() => setIsResizablePopoverOpen(false)}
+        input={
+          <EuiTextArea
+            onFocus={() => setIsResizablePopoverOpen(true)}
+            placeholder="Click me and drag the resize handle"
+            aria-label="Popover attached to a resizable textarea element"
+            rows={1}
+            resize="horizontal"
+          />
+        }
       >
-        Popover will adjust in size as the input does
+        The popover will adjust in size as the input does.
       </EuiInputPopover>
-    </React.Fragment>
+    </>
   );
 };
