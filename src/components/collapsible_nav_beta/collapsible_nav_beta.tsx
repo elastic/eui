@@ -60,6 +60,16 @@ export type EuiCollapsibleNavBetaProps = CommonProps &
      * take up the full width of the page.
      */
     width?: number;
+    /**
+     * Overlay flyouts are considered dialogs, and dialogs must have a label.
+     * By default, a label of `Site menu` will be applied.
+     *
+     * If your usage of this component is not actually for site-wide navigation,
+     * please set your own `aria-label` or `aria-labelledby`.
+     *
+     * @default 'Site menu'
+     */
+    'aria-label'?: string;
   };
 
 export const EuiCollapsibleNavBeta: FunctionComponent<
@@ -157,9 +167,9 @@ export const EuiCollapsibleNavBeta: FunctionComponent<
     conditionalId: id,
     suffix: 'euiCollapsibleNav',
   });
-  const dialogAriaLabel = useEuiI18n(
+  const defaultAriaLabel = useEuiI18n(
     'euiCollapsibleNavBeta.ariaLabel',
-    'Site navigation'
+    'Site menu'
   );
 
   const buttonRef = useRef<HTMLDivElement | null>(null);
@@ -188,7 +198,7 @@ export const EuiCollapsibleNavBeta: FunctionComponent<
   // Wait for any fixed headers to be queried before rendering (prevents position jumping)
   const flyout = fixedHeadersCount !== false && (
     <EuiFlyout
-      aria-label={isOverlay ? dialogAriaLabel : undefined} // Overlay flyouts are dialogs and need a label. Push flyouts are not dialogs.
+      aria-label={defaultAriaLabel}
       {...rest} // EuiCollapsibleNav is significantly less permissive than EuiFlyout
       id={flyoutID}
       css={cssStyles}
