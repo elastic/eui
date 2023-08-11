@@ -48,40 +48,17 @@ post_comment_to_gh()
   if [[ -z "${GITHUB_TOKEN}" ]]; then
     echo "Warning: GITHUB_TOKEN is not set; cannot publish PR docs preview URL to Github."
   else
-    # ==================================================
-    # TODO: Remove Jenkins block and Buildkite
-    # if; then / fi block
-    # ==================================================
-    if [[ ! -z "${pull_request_id}" ]]; then
-      printf '\nAdding comment to GitHub Pull Request: %i\n' "$pull_request_id"
-      comment="Preview documentation changes for this PR: https://eui.elastic.co/pr_$pull_request_id/"
+    printf '\nAdding comment to GitHub Pull Request: %i\n' "$GIT_PULL_REQUEST_ID"
+    comment="Preview documentation changes for this PR: https://eui.elastic.co/pr_${GIT_PULL_REQUEST_ID}/"
 
-      set +x
-      curl \
-        --silent \
-        --location \
-        --header "Authorization: token ${GITHUB_TOKEN}" \
-        --request POST \
-        --data "$(jq --null-input --arg comment "$comment" '{ body: $comment }')" \
-        "https://api.github.com/repos/elastic/eui/issues/${pull_request_id}/comments"
-    fi
-
-    # ==================================================
-    # Buildkite block
-    # ==================================================
-    if [[ ! -z "${GIT_PULL_REQUEST_ID}" ]]; then
-      printf '\nAdding comment to GitHub Pull Request: %i\n' "$GIT_PULL_REQUEST_ID"
-      comment="Preview documentation changes for this PR: https://eui.elastic.co/pr_${GIT_PULL_REQUEST_ID}_buildkite/"
-
-      set +x
-      curl \
-        --silent \
-        --location \
-        --header "Authorization: token ${GITHUB_TOKEN}" \
-        --request POST \
-        --data "$(jq --null-input --arg comment "$comment" '{ body: $comment }')" \
-        "https://api.github.com/repos/elastic/eui/issues/${GIT_PULL_REQUEST_ID}/comments"
-    fi
+    set +x
+    curl \
+      --silent \
+      --location \
+      --header "Authorization: token ${GITHUB_TOKEN}" \
+      --request POST \
+      --data "$(jq --null-input --arg comment "$comment" '{ body: $comment }')" \
+      "https://api.github.com/repos/elastic/eui/issues/${GIT_PULL_REQUEST_ID}/comments"
   fi
 }
 
