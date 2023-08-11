@@ -68,7 +68,6 @@
     "@types/lodash": "^4.14.194",
     "@types/numeral": "^0.0.28",
     "@types/react-input-autosize": "^2.2.1",
-    "@types/react-virtualized-auto-sizer": "^1.0.1",
     "@types/react-window": "^1.8.5",
     "@types/refractor": "^3.0.0",
     "@types/resize-observer-browser": "^0.1.5",
