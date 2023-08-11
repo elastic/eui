@@ -32,7 +32,7 @@ If changes exist:
 
 ### Breaking changes and deprecations
 
-EUI should be handling all breaking changes noted in the changelogs of each upgrade. In general, unless it's unreasonable to do so time-wise (e.g. more than several days of work), EUI should also be handling any deprecations in the changelog as well. This typically involves removing or migrating uses of removed types or components.
+EUI should be handling all breaking changes noted in the `changelog` of each upgrade. Unless it's unreasonable to do time-wise (e.g. more than several days of work), EUI should also be handling any deprecations in the `changelog`. This typically involves removing or migrating uses of removed types or components.
 
 If it's too much effort for the EUI team alone to handle migrating/updating deprecated components, we should be creating a follow-up issue for each team using the deprecated components, and giving them a timeline for removal/migration. An example of this: https://github.com/elastic/kibana/issues/161872.
 
