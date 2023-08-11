@@ -42,8 +42,11 @@ export default () => {
             resize="horizontal"
           />
         }
+        panelMinWidth={200}
       >
         The popover will adjust in size as the input does.
+        <br />
+        It has a minimum width of 200px.
       </EuiInputPopover>
     </>
   );
