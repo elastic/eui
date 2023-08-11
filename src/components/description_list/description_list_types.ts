@@ -63,4 +63,5 @@ export const GUTTER_SIZES = ['s', 'm'] as const;
 export type EuiDescriptionListGutterSizes = (typeof GUTTER_SIZES)[number];
 
 export const COLUMN_GAP_SIZES = ['s', 'm'] as const;
-export type EuiDescriptionListColumnGapSizes = (typeof GUTTER_SIZES)[number];
+export type EuiDescriptionListColumnGapSizes =
+  (typeof COLUMN_GAP_SIZES)[number];

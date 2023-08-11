@@ -2,11 +2,11 @@
 
 exports[` 1`] = `
 <dl
-  class="euiDescriptionList emotion-euiDescriptionList-row-left"
+  class="euiDescriptionList emotion-euiDescriptionList-row-s-s-left"
   data-type="row"
 >
   <dt
-    class="euiDescriptionList__title emotion-euiDescriptionList__title-row-m-normal"
+    class="euiDescriptionList__title emotion-euiDescriptionList__title-row-s-normal"
   >
     Title 1
   </dt>
@@ -16,7 +16,7 @@ exports[` 1`] = `
     Description 1
   </dd>
   <dt
-    class="euiDescriptionList__title emotion-euiDescriptionList__title-row-m-normal"
+    class="euiDescriptionList__title emotion-euiDescriptionList__title-row-s-normal"
   >
     <em>
       Title 2
@@ -30,7 +30,7 @@ exports[` 1`] = `
     </code>
   </dd>
   <dt
-    class="euiDescriptionList__title emotion-euiDescriptionList__title-row-m-normal"
+    class="euiDescriptionList__title emotion-euiDescriptionList__title-row-s-normal"
   >
     Title 3
   </dt>
@@ -45,7 +45,7 @@ exports[` 1`] = `
 exports[`EuiDescriptionList is rendered 1`] = `
 <dl
   aria-label="aria-label"
-  class="euiDescriptionList testClass1 testClass2 emotion-euiDescriptionList-row-left-euiTestCss"
+  class="euiDescriptionList testClass1 testClass2 emotion-euiDescriptionList-row-s-s-left-euiTestCss"
   data-test-subj="test subject string"
   data-type="row"
 >
@@ -55,46 +55,60 @@ exports[`EuiDescriptionList is rendered 1`] = `
 
 exports[`EuiDescriptionList props align center is rendered 1`] = `
 <dl
-  class="euiDescriptionList emotion-euiDescriptionList-row-center"
+  class="euiDescriptionList emotion-euiDescriptionList-row-s-s-center"
   data-type="row"
 />
 `;
 
 exports[`EuiDescriptionList props align left is rendered 1`] = `
 <dl
-  class="euiDescriptionList emotion-euiDescriptionList-row-left"
+  class="euiDescriptionList emotion-euiDescriptionList-row-s-s-left"
+  data-type="row"
+/>
+`;
+
+exports[`EuiDescriptionList props column gap m is rendered 1`] = `
+<dl
+  class="euiDescriptionList emotion-euiDescriptionList-row-s-m-left"
+  data-type="row"
+/>
+`;
+
+exports[`EuiDescriptionList props column gap s is rendered 1`] = `
+<dl
+  class="euiDescriptionList emotion-euiDescriptionList-row-s-s-left"
   data-type="row"
 />
 `;
 
 exports[`EuiDescriptionList props compressed is rendered 1`] = `
 <dl
-  class="euiDescriptionList emotion-euiDescriptionList-row-left"
+  class="euiDescriptionList emotion-euiDescriptionList-row-s-s-left"
   data-type="row"
 />
 `;
 
 exports[`EuiDescriptionList props gutter m is rendered 1`] = `
 <dl
-  class="euiDescriptionList emotion-euiDescriptionList-row-left"
+  class="euiDescriptionList emotion-euiDescriptionList-row-m-s-left"
   data-type="row"
 />
 `;
 
 exports[`EuiDescriptionList props gutter s is rendered 1`] = `
 <dl
-  class="euiDescriptionList emotion-euiDescriptionList-row-left"
+  class="euiDescriptionList emotion-euiDescriptionList-row-s-s-left"
   data-type="row"
 />
 `;
 
 exports[`EuiDescriptionList props listItems descriptionProps is rendered 1`] = `
 <dl
-  class="euiDescriptionList emotion-euiDescriptionList-row-left"
+  class="euiDescriptionList emotion-euiDescriptionList-row-s-s-left"
   data-type="row"
 >
   <dt
-    class="euiDescriptionList__title emotion-euiDescriptionList__title-row-m-normal"
+    class="euiDescriptionList__title emotion-euiDescriptionList__title-row-s-normal"
   >
     Title 1
   </dt>
@@ -106,7 +120,7 @@ exports[`EuiDescriptionList props listItems descriptionProps is rendered 1`] = `
     Description 1
   </dd>
   <dt
-    class="euiDescriptionList__title emotion-euiDescriptionList__title-row-m-normal"
+    class="euiDescriptionList__title emotion-euiDescriptionList__title-row-s-normal"
   >
     <em>
       Title 2
@@ -122,7 +136,7 @@ exports[`EuiDescriptionList props listItems descriptionProps is rendered 1`] = `
     </code>
   </dd>
   <dt
-    class="euiDescriptionList__title emotion-euiDescriptionList__title-row-m-normal"
+    class="euiDescriptionList__title emotion-euiDescriptionList__title-row-s-normal"
   >
     Title 3
   </dt>
@@ -138,12 +152,12 @@ exports[`EuiDescriptionList props listItems descriptionProps is rendered 1`] = `
 
 exports[`EuiDescriptionList props listItems titleProps is rendered 1`] = `
 <dl
-  class="euiDescriptionList emotion-euiDescriptionList-row-left"
+  class="euiDescriptionList emotion-euiDescriptionList-row-s-s-left"
   data-type="row"
 >
   <dt
     aria-label="aria-label"
-    class="euiDescriptionList__title testClass1 testClass2 emotion-euiDescriptionList__title-row-m-normal-euiTestCss"
+    class="euiDescriptionList__title testClass1 testClass2 emotion-euiDescriptionList__title-row-s-normal-euiTestCss"
     data-test-subj="test subject string"
   >
     Title 1
@@ -155,7 +169,7 @@ exports[`EuiDescriptionList props listItems titleProps is rendered 1`] = `
   </dd>
   <dt
     aria-label="aria-label"
-    class="euiDescriptionList__title testClass1 testClass2 emotion-euiDescriptionList__title-row-m-normal-euiTestCss"
+    class="euiDescriptionList__title testClass1 testClass2 emotion-euiDescriptionList__title-row-s-normal-euiTestCss"
     data-test-subj="test subject string"
   >
     <em>
@@ -171,7 +185,7 @@ exports[`EuiDescriptionList props listItems titleProps is rendered 1`] = `
   </dd>
   <dt
     aria-label="aria-label"
-    class="euiDescriptionList__title testClass1 testClass2 emotion-euiDescriptionList__title-row-m-normal-euiTestCss"
+    class="euiDescriptionList__title testClass1 testClass2 emotion-euiDescriptionList__title-row-s-normal-euiTestCss"
     data-test-subj="test subject string"
   >
     Title 3
@@ -186,28 +200,28 @@ exports[`EuiDescriptionList props listItems titleProps is rendered 1`] = `
 
 exports[`EuiDescriptionList props type column is rendered 1`] = `
 <dl
-  class="euiDescriptionList emotion-euiDescriptionList-column-left"
+  class="euiDescriptionList emotion-euiDescriptionList-column-s-s-left"
   data-type="column"
 />
 `;
 
 exports[`EuiDescriptionList props type inline is rendered 1`] = `
 <dl
-  class="euiDescriptionList emotion-euiDescriptionList-inline-left"
+  class="euiDescriptionList emotion-euiDescriptionList-inline-s-s-left"
   data-type="inline"
 />
 `;
 
 exports[`EuiDescriptionList props type responsiveColumn is rendered 1`] = `
 <dl
-  class="euiDescriptionList emotion-euiDescriptionList-responsiveColumn-left"
+  class="euiDescriptionList emotion-euiDescriptionList-responsiveColumn-s-s-left"
   data-type="responsiveColumn"
 />
 `;
 
 exports[`EuiDescriptionList props type row is rendered 1`] = `
 <dl
-  class="euiDescriptionList emotion-euiDescriptionList-row-left"
+  class="euiDescriptionList emotion-euiDescriptionList-row-s-s-left"
   data-type="row"
 />
 `;

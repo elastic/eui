@@ -12,7 +12,12 @@ import { render } from '../../test/rtl';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiDescriptionList } from './description_list';
-import { TYPES, ALIGNMENTS, GUTTER_SIZES } from './description_list_types';
+import {
+  TYPES,
+  ALIGNMENTS,
+  GUTTER_SIZES,
+  COLUMN_GAP_SIZES,
+} from './description_list_types';
 
 describe('EuiDescriptionList', () => {
   shouldRenderCustomStyles(
@@ -116,6 +121,18 @@ describe('EuiDescriptionList', () => {
         test(`${gutter} is rendered`, () => {
           const { container } = render(
             <EuiDescriptionList gutterSize={gutter} />
+          );
+
+          expect(container.firstChild).toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('column gap', () => {
+      COLUMN_GAP_SIZES.forEach((column_gap) => {
+        test(`${column_gap} is rendered`, () => {
+          const { container } = render(
+            <EuiDescriptionList columnGap={column_gap} />
           );
 
           expect(container.firstChild).toMatchSnapshot();
