@@ -44,7 +44,8 @@ export interface EuiDescriptionListProps {
    */
   gutterSize?: EuiDescriptionListGutterSizes;
   /**
-   * Horizontal spacing added between `EuiDescriptionList` elements
+   * Only applies to `column`/`responsiveColumn` description lists.
+   * Allows customizing the horizontal gap between columns.
    */
   columnGap?: EuiDescriptionListColumnGapSizes;
 }
