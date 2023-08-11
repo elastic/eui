@@ -180,24 +180,6 @@ describe('EuiToolTip', () => {
         getByTestSubject('anchor').getAttribute('aria-describedby')
       ).toEqual('toolTipId customId');
     });
-
-    it('allows disabling the default `aria-describedby` via `setAriaDescribedBy`', async () => {
-      const { getByTestSubject } = render(
-        <EuiToolTip
-          content="Tooltip content"
-          id="toolTipId"
-          setAriaDescribedBy={false}
-        >
-          <button data-test-subj="anchor" />
-        </EuiToolTip>
-      );
-      fireEvent.mouseOver(getByTestSubject('anchor'));
-      await waitForEuiToolTipVisible();
-
-      expect(
-        getByTestSubject('anchor').getAttribute('aria-describedby')
-      ).toBeFalsy();
-    });
   });
 
   describe('ref methods', () => {

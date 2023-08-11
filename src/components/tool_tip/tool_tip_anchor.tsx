@@ -16,9 +16,7 @@ export type EuiToolTipAnchorProps = Omit<
   HTMLAttributes<HTMLSpanElement>,
   'onBlur' | 'onFocus' | 'children'
 > &
-  Required<
-    Pick<EuiToolTipProps, 'display' | 'setAriaDescribedBy' | 'children'>
-  > & {
+  Required<Pick<EuiToolTipProps, 'display' | 'children'>> & {
     onBlur: () => void;
     onFocus: () => void;
     isVisible: boolean;
@@ -39,7 +37,6 @@ export const EuiToolTipAnchor = forwardRef<
       children,
       display,
       isVisible,
-      setAriaDescribedBy,
       ...rest
     },
     ref
@@ -76,10 +73,9 @@ export const EuiToolTipAnchor = forwardRef<
             onBlur();
             children.props.onBlur && children.props.onBlur(e);
           },
-          'aria-describedby':
-            isVisible && setAriaDescribedBy
-              ? classNames(id, children.props['aria-describedby'])
-              : children.props['aria-describedby'],
+          'aria-describedby': isVisible
+            ? classNames(id, children.props['aria-describedby'])
+            : children.props['aria-describedby'],
         })}
       </span>
     );

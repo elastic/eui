@@ -67,7 +67,6 @@ export const EuiCollapsedNavButton: FunctionComponent<
   return (
     <EuiToolTip
       content={title}
-      setAriaDescribedBy={false} // `title` content already set in `aria-label` below
       css={tooltipCssStyles}
       position={side}
       display="block"
