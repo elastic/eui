@@ -5019,11 +5019,6 @@
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-1.0.1.tgz#0a851d3bd96498fa25c33ab7278ed3bd65f06c3e"
   integrity sha512-l42BggppR6zLmpfU6fq9HEa2oGPEI8yrSPL3GITjfRInppYFahObbIQOQK3UGxEnyQpltZLaPe75046NOZQikw==
 
-"@types/tabbable@^3.1.2":
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/@types/tabbable/-/tabbable-3.1.2.tgz#5046f043fef50961d7727920b0076b37737e31ad"
-  integrity sha512-Yp+M5IjNZxYjsflBbSalyjUAIqiJyEISg++gLAstGrZlp9lzVi5KAsZvJqThT2qeoqGYnFqdZXorPEYtaVBAkg==
-
 "@types/testing-library__jest-dom@^5.14.3", "@types/testing-library__jest-dom@^5.9.1":
   version "5.14.5"
   resolved "https://registry.yarnpkg.com/@types/testing-library__jest-dom/-/testing-library__jest-dom-5.14.5.tgz#d113709c90b3c75fdb127ec338dad7d5f86c974f"
