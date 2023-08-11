@@ -1,7 +1,7 @@
 name: "Community contribution"
 on:
   pull_request:
-    types: [ 'opened', 'reopened' ]
+    types: [ 'opened', 'reopened', 'edited' ] # Remove the 'edited' after you're ready to merge this
 
 jobs:
   # Add a comment to manually start Buildkite for community contributions
@@ -10,17 +10,18 @@ jobs:
       EUI_REPO: ${{ github.event.pull_request.base.repo.url }}
       HEAD_REPO: ${{ github.event.pull_request.head.repo.url }}
       PULL_REQUEST_NUMBER: ${{ github.event.pull_request.number }}
+      SUBMITTER_ASSOCIATION: ${{ github.event.pull_request.author_association }}
     runs-on: ubuntu-latest
     steps:
-      - name: "Print repo URLs"
+      - name: "Test for community contribution"
+        if: ${{ env.EUI_REPO != env.HEAD_REPO }} && ${{ env.SUBMITTER_ASSOCIATION != 'MEMBER' }}
         run: |
-          echo "EUI: ${{ env.EUI_REPO }}"
-          echo "Head: ${{ env.HEAD_REPO }}"
-      - name: "Add community comment"
-        # Assume forked repo PR if these URLs are not the same
-        if: ${{ env.EUI_REPO != env.HEAD_REPO }}
-        uses: thollander/actions-comment-pull-request@v2
-        with:
-          message: |
-            Since this is a community submitted pull request, a Buildkite build has not been kicked off automatically. Would an Elastic organization member please verify the contents of this patch and then kick off a build manually?
-          pr_number: ${{ env.PULL_REQUEST_NUMBER }}
+          echo "This is a community submission."
+      - name: "Test for forked member contribution"
+        if: ${{ env.EUI_REPO != env.HEAD_REPO }} && ${{ env.SUBMITTER_ASSOCIATION == 'MEMBER' }}
+        run: |
+          echo "This is a forked member submission."
+      - name: "Test for member contribution"
+        if: ${{ env.EUI_REPO == env.HEAD_REPO }} && ${{ env.SUBMITTER_ASSOCIATION == 'MEMBER' }}
+        run: |
+          echo "This is a member submission."
