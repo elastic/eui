@@ -60,7 +60,7 @@ export type _SharedEuiCollapsibleNavItemProps = HTMLAttributes<HTMLElement> &
 
 export type EuiCollapsibleNavItemProps = {
   /**
-   * Required Text to render as the nav item title
+   * Required text to render as the nav item title
    */
   title: string;
   /**
