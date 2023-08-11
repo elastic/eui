@@ -12,7 +12,7 @@
 
 import React from 'react';
 
-import { EuiFieldText } from '../../components';
+import { EuiFieldText, EuiTextArea } from '../../components';
 import { EuiInputPopover } from './input_popover';
 
 describe('EuiPopover', () => {
@@ -54,5 +54,25 @@ describe('EuiPopover', () => {
       </div>
     );
     cy.get('[data-popover-panel]').should('have.css', 'left', '200px');
+  });
+
+  it('correctly repositions the popover on input resize', () => {
+    cy.mount(
+      <div className="eui-textCenter">
+        <EuiInputPopover
+          {...props}
+          display="inline-block"
+          input={<EuiTextArea rows={1} resize="horizontal" />}
+        >
+          Popover content
+        </EuiInputPopover>
+      </div>
+    );
+    cy.get('[data-popover-panel]').should('have.css', 'left', '155.5px');
+    cy.wait(100); // Wait a tick, otherwise Cypress returns a false positive
+
+    // Cypress doesn't seem to have a way to mimic manual dragging/resizing, so we'll do it programmatically
+    cy.get('textarea').then(($el) => ($el[0].style.width = '500px'));
+    cy.get('[data-popover-panel]').should('have.css', 'left', '50px');
   });
 });

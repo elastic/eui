@@ -12,6 +12,7 @@ import React, {
   useState,
   useEffect,
   useCallback,
+  useRef,
 } from 'react';
 import classnames from 'classnames';
 import { tabbable, FocusableElement } from 'tabbable';
@@ -69,6 +70,7 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
   const [inputEl, setInputEl] = useState<HTMLElement | null>(null);
   const [inputElWidth, setInputElWidth] = useState<number>();
   const [panelEl, setPanelEl] = useState<HTMLElement | null>(null);
+  const popoverClassRef = useRef<EuiPopover | null>(null);
 
   const inputRef = useCombinedRefs([setInputEl, _inputRef]);
   const panelRef = useCombinedRefs([setPanelEl, _panelRef]);
@@ -91,6 +93,7 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
       const width = inputEl.getBoundingClientRect().width;
       setInputElWidth(width);
       setPanelWidth(width);
+      popoverClassRef.current?.positionPopoverFluid();
     }
   }, [inputEl, setPanelWidth]);
   useEffect(() => {
@@ -134,6 +137,7 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
       buttonRef={inputRef}
       panelRef={panelRef}
       className={classes}
+      ref={popoverClassRef}
       {...props}
     >
       <EuiFocusTrap
