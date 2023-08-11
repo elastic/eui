@@ -37,12 +37,9 @@ exports[`EuiCollapsibleNavBeta renders 1`] = `
       <nav
         aria-label="aria-label"
         class="euiFlyout euiCollapsibleNav euiCollapsibleNavBeta testClass1 testClass2 emotion-euiFlyout-none-noMaxWidth-push-left-left-euiCollapsibleNavBeta-left-isPush-euiTestCss"
-        data-autofocus="true"
         data-test-subj="nav"
         id="generated-id_euiCollapsibleNav"
-        role="dialog"
         style="inline-size: 248px;"
-        tabindex="0"
       >
         Nav content
       </nav>
@@ -91,13 +88,11 @@ exports[`EuiCollapsibleNavBeta renders initialIsCollapsed 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <nav
+        aria-label="Site menu"
         class="euiFlyout euiCollapsibleNav euiCollapsibleNavBeta emotion-euiFlyout-none-noMaxWidth-push-left-left-euiCollapsibleNavBeta-left-isPush-isPushCollapsed"
-        data-autofocus="true"
         data-test-subj="nav"
         id="generated-id_euiCollapsibleNav"
-        role="dialog"
         style="inline-size: 48px;"
-        tabindex="0"
       >
         Nav content
       </nav>
@@ -183,6 +178,7 @@ exports[`EuiCollapsibleNavBeta responsive behavior makes the overlay flyout full
     >
       <nav
         aria-describedby="generated-id"
+        aria-label="Site menu"
         class="euiFlyout euiCollapsibleNav euiCollapsibleNavBeta emotion-euiFlyout-none-noMaxWidth-overlay-left-euiCollapsibleNavBeta-left-isOverlayFullWidth"
         data-autofocus="true"
         id="generated-id_euiCollapsibleNav"
