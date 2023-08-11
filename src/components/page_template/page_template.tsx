@@ -79,12 +79,12 @@ export type EuiPageTemplateProps = _EuiPageOuterProps &
     component?: ComponentTypes;
   };
 
-function calculateOffset(base: number): number {
+const calculateOffset = (base: number): number => {
   if (typeof document === 'undefined') return 0; // SSR catch
 
   const euiHeaderFixedCounter = Number(document.body.dataset.fixedHeaders ?? 0);
   return base * 3 * euiHeaderFixedCounter;
-}
+};
 
 /**
  * Consumed via `EuiPageTemplate`,
