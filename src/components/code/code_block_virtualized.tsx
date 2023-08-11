@@ -47,18 +47,30 @@ export const EuiCodeBlockVirtualized = ({
     [codeProps]
   );
 
-  return (
-    <EuiAutoSizer disableHeight={typeof overflowHeight === 'number'}>
-      {({ height, width }) => (
+  const virtualizationProps = {
+    itemData: data,
+    itemSize: rowHeight,
+    itemCount: data.length,
+    outerElementType: VirtualizedOuterElement,
+    innerElementType: VirtualizedInnerElement,
+  };
+
+  return typeof overflowHeight === 'number' ? (
+    <EuiAutoSizer disableHeight={true}>
+      {({ width }) => (
         <FixedSizeList
-          height={height ?? overflowHeight}
+          height={overflowHeight}
           width={width}
-          itemData={data}
-          itemSize={rowHeight}
-          itemCount={data.length}
-          outerElementType={VirtualizedOuterElement}
-          innerElementType={VirtualizedInnerElement}
+          {...virtualizationProps}
         >
+          {ListRow}
+        </FixedSizeList>
+      )}
+    </EuiAutoSizer>
+  ) : (
+    <EuiAutoSizer>
+      {({ height, width }) => (
+        <FixedSizeList height={height} width={width} {...virtualizationProps}>
           {ListRow}
         </FixedSizeList>
       )}
