@@ -329,6 +329,67 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
     );
   }, areEqual);
 
+  renderVirtualizedList = (
+    heightIsFull: boolean,
+    optionArray: EuiSelectableOption[]
+  ) => {
+    if (!this.props.isVirtualized) return null;
+
+    const { windowProps, height: forcedHeight, rowHeight } = this.props;
+
+    const virtualizationProps = {
+      className: 'euiSelectableList__list',
+      ref: this.setListRef,
+      outerRef: this.removeScrollableTabStop,
+      innerRef: this.setListBoxRef,
+      innerElementType: 'ul',
+      itemCount: optionArray.length,
+      itemData: optionArray,
+      itemSize: rowHeight,
+      'data-skip-axe': 'scrollable-region-focusable',
+      ...windowProps,
+    };
+
+    // Calculated height is only used if height is not full
+    let calculatedHeight = !heightIsFull ? forcedHeight || 0 : 0;
+
+    // If calculatedHeight is still falsy, then calculate it
+    if (!heightIsFull && !calculatedHeight) {
+      const maxVisibleOptions = 7;
+      const numVisibleOptions = optionArray.length;
+      const numVisibleMoreThanMax = optionArray.length > maxVisibleOptions;
+
+      if (numVisibleMoreThanMax) {
+        // Show only half of the last one to indicate there's more to scroll to
+        calculatedHeight = (maxVisibleOptions - 0.5) * rowHeight;
+      } else {
+        calculatedHeight = numVisibleOptions * rowHeight;
+      }
+    }
+
+    return heightIsFull ? (
+      <EuiAutoSizer>
+        {({ width, height }) => (
+          <FixedSizeList width={width} height={height} {...virtualizationProps}>
+            {this.ListRow}
+          </FixedSizeList>
+        )}
+      </EuiAutoSizer>
+    ) : (
+      <EuiAutoSizer disableHeight={true}>
+        {({ width }) => (
+          <FixedSizeList
+            width={width}
+            height={calculatedHeight}
+            {...virtualizationProps}
+          >
+            {this.ListRow}
+          </FixedSizeList>
+        )}
+      </EuiAutoSizer>
+    );
+  };
+
   render() {
     const {
       className,
@@ -361,29 +422,9 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
     } = this.props;
 
     const optionArray = visibleOptions || options;
-
     this.calculateAriaSetAttrs(optionArray);
 
     const heightIsFull = forcedHeight === 'full';
-
-    let calculatedHeight = (heightIsFull ? false : forcedHeight) as
-      | false
-      | number
-      | undefined;
-
-    // If calculatedHeight is still undefined, then calculate it
-    if (calculatedHeight === undefined) {
-      const maxVisibleOptions = 7;
-      const numVisibleOptions = optionArray.length;
-      const numVisibleMoreThanMax = optionArray.length > maxVisibleOptions;
-
-      if (numVisibleMoreThanMax) {
-        // Show only half of the last one to indicate there's more to scroll to
-        calculatedHeight = (maxVisibleOptions - 0.5) * rowHeight!;
-      } else {
-        calculatedHeight = numVisibleOptions * rowHeight!;
-      }
-    }
 
     const classes = classNames(
       'euiSelectableList',
@@ -397,26 +438,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
     return (
       <div className={classes} {...rest}>
         {isVirtualized ? (
-          <EuiAutoSizer disableHeight={!heightIsFull}>
-            {({ width, height }) => (
-              <FixedSizeList
-                ref={this.setListRef}
-                outerRef={this.removeScrollableTabStop}
-                className="euiSelectableList__list"
-                data-skip-axe="scrollable-region-focusable"
-                width={width}
-                height={calculatedHeight || height}
-                itemCount={optionArray.length}
-                itemData={optionArray}
-                itemSize={rowHeight!}
-                innerElementType="ul"
-                innerRef={this.setListBoxRef}
-                {...windowProps}
-              >
-                {this.ListRow}
-              </FixedSizeList>
-            )}
-          </EuiAutoSizer>
+          this.renderVirtualizedList(heightIsFull, optionArray)
         ) : (
           <div
             className="euiSelectableList__list"
