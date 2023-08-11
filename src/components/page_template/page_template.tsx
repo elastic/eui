@@ -80,6 +80,8 @@ export type EuiPageTemplateProps = _EuiPageOuterProps &
   };
 
 function calculateOffset(base: number): number {
+  if (typeof document === 'undefined') return 0; // SSR catch
+
   const euiHeaderFixedCounter = Number(document.body.dataset.fixedHeaders ?? 0);
   return base * 3 * euiHeaderFixedCounter;
 }
