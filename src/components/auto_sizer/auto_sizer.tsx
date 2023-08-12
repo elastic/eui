@@ -6,8 +6,18 @@
  * Side Public License, v 1.
  */
 
-import AutoSizer, { AutoSizerProps } from 'react-virtualized-auto-sizer';
+import type { ComponentProps } from 'react';
+import type {
+  Size,
+  HorizontalSize,
+  VerticalSize,
+} from 'react-virtualized-auto-sizer';
 
-export interface EuiAutoSizerProps extends AutoSizerProps {}
+export type EuiAutoSizerProps = ComponentProps<typeof AutoSizer>;
+export type EuiAutoSize = Size;
+export type EuiAutoSizeHorizontal = HorizontalSize;
+export type EuiAutoSizeVertical = VerticalSize;
+
+import AutoSizer from 'react-virtualized-auto-sizer';
 
 export class EuiAutoSizer extends AutoSizer {}

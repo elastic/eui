@@ -78,6 +78,7 @@ export const EuiCollapsedNavButton: FunctionComponent<
         color="text"
         href={href}
         onClick={onClick}
+        aria-label={title}
         {...(linkProps as EuiButtonIconPropsForAnchor)} // Exclusive union shenanigans
         className={buttonClassName}
         css={buttonCssStyles}
