@@ -2,14 +2,19 @@ import React, { useState } from 'react';
 
 import {
   EuiInputPopover,
+  EuiInputPopoverProps,
   EuiFieldText,
   EuiTextArea,
+  EuiButtonGroup,
+  EuiFormRow,
   EuiSpacer,
 } from '../../../../src';
 
 export default () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [isResizablePopoverOpen, setIsResizablePopoverOpen] = useState(false);
+  const [anchorPosition, setAnchorPosition] =
+    useState<EuiInputPopoverProps['anchorPosition']>('downLeft');
 
   return (
     <>
@@ -19,7 +24,7 @@ export default () => {
         input={
           <EuiFieldText
             onFocus={() => setIsPopoverOpen(true)}
-            placeholder="Click me to toggle an input popover"
+            placeholder="Focus me to toggle an input popover"
             aria-label="Popover attached to input element"
           />
         }
@@ -35,19 +40,40 @@ export default () => {
         closePopover={() => setIsResizablePopoverOpen(false)}
         input={
           <EuiTextArea
-            onFocus={() => setIsResizablePopoverOpen(true)}
-            placeholder="Click me and drag the resize handle"
-            aria-label="Popover attached to a resizable textarea element"
-            rows={1}
+            onKeyDown={(e) => {
+              if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                setIsResizablePopoverOpen(true);
+              }
+            }}
+            placeholder="Focus me, press the down arrow key, then drag the resize handle"
+            aria-label="Press the down arrow key to toggle the popover attached to this textarea element."
+            rows={2}
             resize="horizontal"
           />
         }
-        panelMinWidth={200}
-        anchorPosition="downRight"
+        panelMinWidth={300}
+        anchorPosition={anchorPosition}
       >
-        The popover will adjust in size as the input does.
-        <br />
-        It has a minimum width of 200px.
+        This popover has a minimum width of 300px, and will adjust in size as
+        the textarea does.
+        <EuiSpacer size="s" />
+        <EuiFormRow label="Anchor position" display="columnCompressed">
+          <EuiButtonGroup
+            buttonSize="compressed"
+            legend="Anchor position"
+            name="anchorPosition"
+            idSelected={anchorPosition!}
+            onChange={(id) =>
+              setAnchorPosition(id as EuiInputPopoverProps['anchorPosition'])
+            }
+            options={[
+              { id: 'downLeft', label: 'Left' },
+              { id: 'downCenter', label: 'Center' },
+              { id: 'downRight', label: 'Right' },
+            ]}
+          />
+        </EuiFormRow>
       </EuiInputPopover>
     </>
   );
