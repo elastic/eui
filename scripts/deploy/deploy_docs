@@ -57,7 +57,7 @@ post_comment_to_gh()
       --location \
       --header "Authorization: token ${GITHUB_TOKEN}" \
       --request POST \
-      --data "$(jq --null-input --arg comment "${comment}" '{ body: ${comment} }')" \
+      --data "$(jq --null-input --arg comment "$comment" '{ body: $comment }')" \
       "https://api.github.com/repos/elastic/eui/issues/${GIT_PULL_REQUEST_ID}/comments"
   fi
 }
