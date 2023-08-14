@@ -116,7 +116,7 @@ describe('EuiDescriptionList', () => {
       });
     });
 
-    describe('gutter size', () => {
+    describe('gutter', () => {
       GUTTER_SIZES.forEach((gutter) => {
         test(`${gutter} is rendered`, () => {
           const { container } = render(
