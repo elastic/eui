@@ -1,22 +1,6 @@
 // Mimics the "grab" icon with CSS psuedo-elements.
 // The "grab" icon transforms into a 2px straight line on :hover and :focus.
 .euiResizableButton {
-  &::before,
-  &::after {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    background-color: $euiColorDarkestShade;
-    transition:
-      width $euiResizableButtonTransitionSpeed ease,
-      height $euiResizableButtonTransitionSpeed ease,
-      transform $euiResizableButtonTransitionSpeed ease,
-      background-color $euiResizableButtonTransitionSpeed ease
-    ;
-  }
-
   &.euiResizableButton--horizontal {
     cursor: col-resize;
     width: $euiResizableButtonSize;
@@ -56,32 +40,6 @@
 
     &::after {
       transform: translate(-50%, 1px);
-    }
-  }
-
-  // Lighten the "grab" icon on :hover
-  &:hover {
-    &::before,
-    &::after {
-      background-color: $euiColorMediumShade;
-      transition-delay: $euiResizableButtonTransitionSpeed; // Delay transition on hover so animation is not accidentally triggered on mouse over
-    }
-  }
-
-  // Add a transparent background to the container and emphasis the "grab" icon with primary color on :focus
-  &:focus {
-    background-color: transparentize($euiColorPrimary, .9);
-
-    &::before,
-    &::after {
-      background-color: $euiColorPrimary;
-      // Overrides default transition so that "grab" icon background-color doesn't animate
-      transition:
-        width $euiResizableButtonTransitionSpeed ease,
-        height $euiResizableButtonTransitionSpeed ease,
-        transform $euiResizableButtonTransitionSpeed ease
-      ;
-      transition-delay: $euiResizableButtonTransitionSpeed / 2;
     }
   }
 
