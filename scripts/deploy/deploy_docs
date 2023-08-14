@@ -183,7 +183,7 @@ else
 
       # If this is the highest release number to date, publish to root directory
       if [[ "$CURRENT_RELEASE" == "$GIT_TAG" ]]; then
-        echo "Root release $GIT_TAG."
+        echo "$GIT_TAG is the latest release. Deploying to root eui.elastic.co"
         full_bucket_path="gs://$BUCKET/"
         publish_to_bucket
       fi
