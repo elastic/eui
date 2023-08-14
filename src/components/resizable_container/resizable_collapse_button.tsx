@@ -11,6 +11,7 @@ import classNames from 'classnames';
 
 import { useEuiTheme } from '../../services';
 import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../button';
+import { euiScreenReaderOnlyStyles } from '../accessibility/screen_reader_only/screen_reader_only.styles';
 
 import { ToggleOptions } from './resizable_panel';
 import { EuiResizableContainerProps } from './resizable_container';
@@ -54,13 +55,16 @@ export const EuiResizableCollapseButton: FunctionComponent<
 }) => {
   const isHorizontal = direction === 'horizontal';
 
+  const showOnFocus = !isCollapsed && !isVisible;
+  const screenReaderOnlyStyles =
+    euiScreenReaderOnlyStyles(showOnFocus).euiScreenReaderOnly;
+
   const classes = classNames(
     'euiResizableToggleButton',
     `euiResizableToggleButton--${direction}`,
     `euiResizableToggleButton--${externalPosition}`,
     `euiResizableToggleButton--${internalPosition}`,
     {
-      'euiResizableToggleButton-isVisible': isVisible,
       'euiResizableToggleButton-isCollapsed': isCollapsed,
     },
     className
@@ -70,6 +74,7 @@ export const EuiResizableCollapseButton: FunctionComponent<
   const cssStyles = [
     styles.euiResizableCollapseButton,
     isCollapsed ? styles.collapsed : styles.collapsible,
+    showOnFocus && screenReaderOnlyStyles,
   ];
 
   // Default to simiple grab icon in case there is no externalPosition specified

@@ -233,7 +233,7 @@ exports[`EuiResizableContainer can have toggleable panels 1`] = `
   >
     <button
       aria-label="Press to toggle this panel"
-      class="euiButtonIcon euiResizableToggleButton euiResizableToggleButton--horizontal euiResizableToggleButton--before euiResizableToggleButton--middle emotion-euiButtonIcon-xs-base-text-euiResizableCollapseButton-collapsible"
+      class="euiButtonIcon euiResizableToggleButton euiResizableToggleButton--horizontal euiResizableToggleButton--before euiResizableToggleButton--middle emotion-euiButtonIcon-xs-base-text-euiResizableCollapseButton-collapsible-euiScreenReaderOnly"
       type="button"
     >
       <span
@@ -325,7 +325,7 @@ exports[`EuiResizableContainer toggleable panels can be configurable 1`] = `
   >
     <button
       aria-label="Press to toggle this panel"
-      class="euiButtonIcon euiResizableToggleButton euiResizableToggleButton--horizontal euiResizableToggleButton--before euiResizableToggleButton--top emotion-euiButtonIcon-xs-base-text-euiResizableCollapseButton-collapsible"
+      class="euiButtonIcon euiResizableToggleButton euiResizableToggleButton--horizontal euiResizableToggleButton--before euiResizableToggleButton--top emotion-euiButtonIcon-xs-base-text-euiResizableCollapseButton-collapsible-euiScreenReaderOnly"
       data-test-subj="panel-toggle"
       type="button"
     >

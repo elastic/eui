@@ -9,9 +9,6 @@
  */
 
 .euiResizableToggleButton {
-  &:not(:focus):not(:active):not(.euiResizableToggleButton-isVisible):not(.euiResizableToggleButton-isCollapsed) {
-    @include euiScreenReaderOnly;
-  }
 }
 
 .euiResizableToggleButton--horizontal {
