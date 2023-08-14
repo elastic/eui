@@ -9,7 +9,7 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme, transparentize } from '../../services';
-import { logicalCSS, mathWithUnits } from '../../global_styling';
+import { logicalCSS, mathWithUnits, euiCanAnimate } from '../../global_styling';
 
 export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -38,8 +38,11 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('top', '50%')}
         ${logicalCSS('left', '50%')}
         background-color: ${euiTheme.colors.darkestShade};
-        transition: width ${transition}, height ${transition},
-          transform ${transition}, background-color ${transition};
+
+        ${euiCanAnimate} {
+          transition: width ${transition}, height ${transition},
+            transform ${transition}, background-color ${transition};
+        }
       }
 
       /* Lighten the "grab" icon on :hover */
@@ -47,8 +50,11 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
         &::before,
         &::after {
           background-color: ${euiTheme.colors.mediumShade};
+
           /* Delay transition on hover so animation is not accidentally triggered on mouse over */
-          transition-delay: ${transitionSpeed};
+          ${euiCanAnimate} {
+            transition-delay: ${transitionSpeed};
+          }
         }
       }
 
@@ -62,9 +68,11 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
           background-color: ${euiTheme.colors.primary};
 
           /* Overrides default transition so that "grab" icon background-color doesn't animate */
-          transition: width ${transition}, height ${transition},
-            transform ${transition};
-          transition-delay: ${mathWithUnits(transitionSpeed, (x) => x / 2)};
+          ${euiCanAnimate} {
+            transition: width ${transition}, height ${transition},
+              transform ${transition};
+            transition-delay: ${mathWithUnits(transitionSpeed, (x) => x / 2)};
+          }
         }
       }
     `,
