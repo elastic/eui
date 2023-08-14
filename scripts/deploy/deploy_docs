@@ -15,7 +15,7 @@ set +x
 # * GCE_ACCOUNT - credentials for the google service account (JSON blob)
 # * GIT_BRANCH - current Git branch or tag (e.g. "refs/heads/main", "v18.2.1")
 # * GIT_PULL_REQUEST_ID - current Git PR (Ex. 6999) from Buildkite env
-# * GIT_TAG - current Git tag (Ex. v87.0.0) from Buildkite eng
+# * GIT_TAG - current Git tag (Ex. v87.0.0) from Buildkite env
 # * BUILDKITE_CI - Buildkite CI agent
 # * JENINKS_CI - Jenkins CI agent
 
@@ -164,7 +164,7 @@ else
   # ==================================================
   # Buildkite block
   # ==================================================
-  if [[ ! -z "$BUILDKITE_CI" ]]; then
+  if [[ ! -z "${BUILDKITE_CI}" ]]; then
     echo "Buildkite CI agent."
 
     # If GIT_PULL_REQUEST_ID length is not 0 and string is not "false"
