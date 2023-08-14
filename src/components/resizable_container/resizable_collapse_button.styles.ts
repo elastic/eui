@@ -10,6 +10,7 @@ import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../services';
 import { euiCanAnimate } from '../../global_styling';
+import { euiShadowXSmall, euiSlightShadowHover } from '../../themes/amsterdam';
 
 export const euiResizableCollapseButtonStyles = (
   euiThemeContext: UseEuiTheme
@@ -20,7 +21,6 @@ export const euiResizableCollapseButtonStyles = (
     euiResizableCollapseButton: css`
       z-index: 2; /* 1 higher than EuiResizableButton */
       position: absolute;
-      background: ${euiTheme.colors.emptyShade};
 
       /* Remove animation inherited from EuiButtonIcon */
       &:focus {
@@ -31,6 +31,17 @@ export const euiResizableCollapseButtonStyles = (
       ${euiCanAnimate} {
         transition-property: background, box-shadow;
       }
+    `,
+    collapsible: css`
+      background: ${euiTheme.colors.emptyShade};
+      ${euiShadowXSmall(euiThemeContext)}
+
+      &:focus {
+        ${euiSlightShadowHover(euiThemeContext)}
+      }
+    `,
+    collapsed: css`
+      border-radius: 0;
     `,
   };
 };

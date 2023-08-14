@@ -9,18 +9,6 @@
  */
 
 .euiResizableToggleButton {
-  @include euiSlightShadow;
-
-  &:focus {
-    @include euiSlightShadowHover;
-  }
-
-  &-isCollapsed {
-    box-shadow: none;
-    background: transparent;
-    border-radius: 0;
-  }
-
   &:not(:focus):not(:active):not(.euiResizableToggleButton-isVisible):not(.euiResizableToggleButton-isCollapsed) {
     @include euiScreenReaderOnly;
   }
