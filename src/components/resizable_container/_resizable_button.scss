@@ -1,79 +1,7 @@
-// Mimics the "grab" icon with CSS psuedo-elements.
-// The "grab" icon transforms into a 2px straight line on :hover and :focus.
 .euiResizableButton {
   &.euiResizableButton--horizontal {
-    cursor: col-resize;
-    width: $euiResizableButtonSize;
-    margin-left: -($euiResizableButtonSize / 2);
-    margin-right: -($euiResizableButtonSize / 2);
-
-    &::before,
-    &::after {
-      width: 1px;
-      height: $euiSizeM;
-    }
-
-    &::before {
-      transform: translate(-2px, -50%);
-    }
-
-    &::after {
-      transform: translate(1px, -50%);
-    }
   }
 
   &.euiResizableButton--vertical {
-    cursor: row-resize;
-    height: $euiResizableButtonSize;
-    margin-top: -($euiResizableButtonSize / 2);
-    margin-bottom: -($euiResizableButtonSize / 2);
-
-    &::before,
-    &::after {
-      width: $euiSizeM;
-      height: 1px;
-    }
-
-    &::before {
-      transform: translate(-50%, -2px);
-    }
-
-    &::after {
-      transform: translate(-50%, 1px);
-    }
-  }
-
-  // Morph the "grab" icon into a fluid 2px straight line on :hover and :focus
-  &:hover,
-  &:focus {
-    &.euiResizableButton--horizontal {
-      &::before,
-      &::after {
-        height: 100%;
-      }
-
-      &::before {
-        transform: translate(-1px, -50%);
-      }
-
-      &::after {
-        transform: translate(0, -50%);
-      }
-    }
-
-    &.euiResizableButton--vertical {
-      &::before,
-      &::after {
-        width: 100%;
-      }
-
-      &::before {
-        transform: translate(-50%, -1px);
-      }
-
-      &::after {
-        transform: translate(-50%, 0);
-      }
-    }
   }
 }

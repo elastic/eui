@@ -20,7 +20,7 @@ exports[`EuiResizableContainer can adjust panel props 1`] = `
   </div>
   <button
     aria-label="Press left or right to adjust panels size"
-    class="euiResizableButton euiResizableButton--horizontal emotion-euiResizableButton"
+    class="euiResizableButton emotion-euiResizableButton-horizontal"
     data-test-subj="euiResizableButton"
     id="resizable-button_generated-id"
     type="button"
@@ -60,7 +60,7 @@ exports[`EuiResizableContainer can be controlled externally 1`] = `
   </div>
   <button
     aria-label="Press left or right to adjust panels size"
-    class="euiResizableButton euiResizableButton--horizontal emotion-euiResizableButton"
+    class="euiResizableButton emotion-euiResizableButton-horizontal"
     data-test-subj="euiResizableButton"
     id="resizable-button_generated-id"
     type="button"
@@ -100,7 +100,7 @@ exports[`EuiResizableContainer can be vertical 1`] = `
   </div>
   <button
     aria-label="Press up or down to adjust panels size"
-    class="euiResizableButton euiResizableButton--vertical emotion-euiResizableButton"
+    class="euiResizableButton emotion-euiResizableButton-vertical"
     data-test-subj="euiResizableButton"
     id="resizable-button_generated-id"
     type="button"
@@ -140,7 +140,7 @@ exports[`EuiResizableContainer can have more than two panels 1`] = `
   </div>
   <button
     aria-label="Press left or right to adjust panels size"
-    class="euiResizableButton euiResizableButton--horizontal emotion-euiResizableButton"
+    class="euiResizableButton emotion-euiResizableButton-horizontal"
     data-test-subj="euiResizableButton"
     id="resizable-button_generated-id"
     type="button"
@@ -159,7 +159,7 @@ exports[`EuiResizableContainer can have more than two panels 1`] = `
   </div>
   <button
     aria-label="Press left or right to adjust panels size"
-    class="euiResizableButton euiResizableButton--horizontal emotion-euiResizableButton"
+    class="euiResizableButton emotion-euiResizableButton-horizontal"
     data-test-subj="euiResizableButton"
     id="resizable-button_generated-id"
     type="button"
@@ -199,7 +199,7 @@ exports[`EuiResizableContainer can have scrollable panels 1`] = `
   </div>
   <button
     aria-label="Press left or right to adjust panels size"
-    class="euiResizableButton euiResizableButton--horizontal emotion-euiResizableButton"
+    class="euiResizableButton emotion-euiResizableButton-horizontal"
     data-test-subj="euiResizableButton"
     id="resizable-button_generated-id"
     type="button"
@@ -251,7 +251,7 @@ exports[`EuiResizableContainer can have toggleable panels 1`] = `
   </div>
   <button
     aria-label="Press left or right to adjust panels size"
-    class="euiResizableButton euiResizableButton--horizontal emotion-euiResizableButton"
+    class="euiResizableButton emotion-euiResizableButton-horizontal"
     data-test-subj="euiResizableButton"
     id="resizable-button_generated-id"
     type="button"
@@ -291,7 +291,7 @@ exports[`EuiResizableContainer is rendered 1`] = `
   </div>
   <button
     aria-label="Press left or right to adjust panels size"
-    class="euiResizableButton euiResizableButton--horizontal emotion-euiResizableButton"
+    class="euiResizableButton emotion-euiResizableButton-horizontal"
     data-test-subj="euiResizableButton"
     id="resizable-button_generated-id"
     type="button"
@@ -344,7 +344,7 @@ exports[`EuiResizableContainer toggleable panels can be configurable 1`] = `
   </div>
   <button
     aria-label="Press left or right to adjust panels size"
-    class="euiResizableButton euiResizableButton--horizontal emotion-euiResizableButton"
+    class="euiResizableButton emotion-euiResizableButton-horizontal"
     data-test-subj="euiResizableButton"
     id="resizable-button_generated-id"
     type="button"

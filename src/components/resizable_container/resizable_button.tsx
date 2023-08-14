@@ -72,18 +72,13 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
     [resizers, resizerId, disabled]
   );
 
-  const classes = classNames(
-    'euiResizableButton',
-    {
-      'euiResizableButton--vertical': !isHorizontal,
-      'euiResizableButton--horizontal': isHorizontal,
-      'euiResizableButton--disabled': isDisabled,
-    },
-    className
-  );
+  const classes = classNames('euiResizableButton', className);
   const euiTheme = useEuiTheme();
   const styles = euiResizableButtonStyles(euiTheme);
-  const cssStyles = [styles.euiResizableButton];
+  const cssStyles = [
+    styles.euiResizableButton,
+    isHorizontal ? styles.horizontal : styles.vertical,
+  ];
 
   const previousRef = useRef<HTMLElement>();
   const onRef = useCallback(

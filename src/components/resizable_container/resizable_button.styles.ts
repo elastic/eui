@@ -14,10 +14,17 @@ import { logicalCSS, mathWithUnits } from '../../global_styling';
 export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
+  const buttonSize = euiTheme.size.base;
+  const grabHandleWidth = euiTheme.size.m;
+  const grabHandleHeight = euiTheme.border.width.thin;
+  const grabHandleFocusHeight = mathWithUnits(grabHandleHeight, (x) => x * 2); // This is the thick border width by default, but we should re-use the thin width in case consumers customize both tokens
+
   const transitionSpeed = euiTheme.animation.fast;
   const transition = `${transitionSpeed} ease`;
 
   return {
+    // Mimics the "grab" icon with CSS psuedo-elements.
+    // 1. The "grab" icon transforms into a thicker straight line on :hover and :focus
     euiResizableButton: css`
       position: relative;
       flex-shrink: 0;
@@ -58,6 +65,78 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
           transition: width ${transition}, height ${transition},
             transform ${transition};
           transition-delay: ${mathWithUnits(transitionSpeed, (x) => x / 2)};
+        }
+      }
+    `,
+    horizontal: css`
+      cursor: col-resize;
+      ${logicalCSS('width', buttonSize)}
+      margin-inline: ${mathWithUnits(buttonSize, (x) => x / -2)};
+
+      &::before,
+      &::after {
+        ${logicalCSS('width', grabHandleHeight)}
+        ${logicalCSS('height', grabHandleWidth)}
+      }
+
+      &::before {
+        transform: translate(-${grabHandleFocusHeight}, -50%);
+      }
+
+      &::after {
+        transform: translate(${grabHandleHeight}, -50%);
+      }
+
+      /* 1 */
+      &:hover,
+      &:focus {
+        &::before,
+        &::after {
+          ${logicalCSS('height', '100%')}
+        }
+
+        &::before {
+          transform: translate(-${grabHandleHeight}, -50%);
+        }
+
+        &::after {
+          transform: translate(0, -50%);
+        }
+      }
+    `,
+    vertical: css`
+      cursor: row-resize;
+      ${logicalCSS('height', buttonSize)}
+      margin-block: ${mathWithUnits(buttonSize, (x) => x / -2)};
+
+      &::before,
+      &::after {
+        ${logicalCSS('height', grabHandleHeight)}
+        ${logicalCSS('width', grabHandleWidth)}
+      }
+
+      &::before {
+        transform: translate(-50%, -${grabHandleFocusHeight});
+      }
+
+      &::after {
+        transform: translate(-50%, ${grabHandleHeight});
+      }
+
+      /* 1 */
+      &:hover,
+      &:focus {
+        &::before,
+        &::after {
+          ${logicalCSS('width', '100%')}
+        }
+
+        &::before {
+          transform: translate(-50%, -${grabHandleHeight});
+        }
+
+        &::after {
+          transform: translate(-50%, 0);
         }
       }
     `,
