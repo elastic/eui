@@ -37,16 +37,17 @@ describe('EuiResizableButton', () => {
     expect(container).toMatchSnapshot();
   });
 
-  describe('disabled', () => {
-    it('renders as disabled if the disabled prop is passed', () => {
+  describe('disabled/hidden', () => {
+    it('renders as disabled and hidden if the disabled prop is passed', () => {
       const { container } = render(<EuiResizableButton disabled />, {
         wrapper,
       });
 
       expect(container.firstChild).toBeDisabled();
+      expect(container.firstChild).not.toBeVisible();
     });
 
-    it('renders as disabled if the resizerId is disabled in context', () => {
+    it('renders as disabled and hidden if the resizerId is disabled in context', () => {
       const { container } = render(
         <EuiResizableContainerContextProvider
           registry={
@@ -63,6 +64,7 @@ describe('EuiResizableButton', () => {
       );
 
       expect(container.firstChild).toBeDisabled();
+      expect(container.firstChild).not.toBeVisible();
     });
   });
 

@@ -60,7 +60,7 @@
   }
 
   // Lighten the "grab" icon on :hover
-  &:hover:not(:disabled) {
+  &:hover {
     &::before,
     &::after {
       background-color: $euiColorMediumShade;
@@ -69,7 +69,7 @@
   }
 
   // Add a transparent background to the container and emphasis the "grab" icon with primary color on :focus
-  &:focus:not(:disabled) {
+  &:focus {
     background-color: transparentize($euiColorPrimary, .9);
 
     &::before,
@@ -86,8 +86,8 @@
   }
 
   // Morph the "grab" icon into a fluid 2px straight line on :hover and :focus
-  &:hover:not(:disabled),
-  &:focus:not(:disabled) {
+  &:hover,
+  &:focus {
     &.euiResizableButton--horizontal {
       &::before,
       &::after {
@@ -117,9 +117,5 @@
         transform: translate(-50%, 0);
       }
     }
-  }
-
-  &:disabled {
-    display: none !important; // stylelint-disable-line declaration-no-important
   }
 }

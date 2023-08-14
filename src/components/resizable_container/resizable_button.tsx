@@ -133,6 +133,7 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
           onFocus={() => onFocus?.(resizerId)}
           onBlur={onBlur}
           disabled={isDisabled}
+          hidden={isDisabled}
           {...rest}
         />
       )}
