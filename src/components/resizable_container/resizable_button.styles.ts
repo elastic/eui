@@ -17,7 +17,6 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const buttonSize = euiTheme.size.base;
   const grabHandleWidth = euiTheme.size.m;
   const grabHandleHeight = euiTheme.border.width.thin;
-  const grabHandleFocusHeight = mathWithUnits(grabHandleHeight, (x) => x * 2); // This is the thick border width by default, but we should re-use the thin width in case consumers customize both tokens
 
   const transitionSpeed = euiTheme.animation.fast;
   const transition = `${transitionSpeed} ease`;
@@ -26,22 +25,36 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
     // Mimics the "grab" icon with CSS psuedo-elements.
     // 1. The "grab" icon transforms into a thicker straight line on :hover and :focus
     euiResizableButton: css`
-      position: relative;
-      flex-shrink: 0;
       z-index: 1;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: ${mathWithUnits(grabHandleHeight, (x) => x * 2)};
+
+      /* 1 */
+      &:hover,
+      &:focus {
+        gap: 0;
+        justify-content: center;
+      }
+
+      ${euiCanAnimate} {
+        transition: gap ${transition}, justify-content ${transition};
+      }
 
       &::before,
       &::after {
         content: '';
         display: block;
-        position: absolute;
-        ${logicalCSS('top', '50%')}
-        ${logicalCSS('left', '50%')}
         background-color: ${euiTheme.colors.darkestShade};
+
+        /* CSS hack to smooth out/anti-alias the 1px wide handles at various zoom levels */
+        transform: translateZ(0);
 
         ${euiCanAnimate} {
           transition: width ${transition}, height ${transition},
-            transform ${transition}, background-color ${transition};
+            background-color ${transition};
         }
       }
 
@@ -69,8 +82,7 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
 
           /* Overrides default transition so that "grab" icon background-color doesn't animate */
           ${euiCanAnimate} {
-            transition: width ${transition}, height ${transition},
-              transform ${transition};
+            transition: width ${transition}, height ${transition};
             transition-delay: ${mathWithUnits(transitionSpeed, (x) => x / 2)};
           }
         }
@@ -87,14 +99,6 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('height', grabHandleWidth)}
       }
 
-      &::before {
-        transform: translate(-${grabHandleFocusHeight}, -50%);
-      }
-
-      &::after {
-        transform: translate(${grabHandleHeight}, -50%);
-      }
-
       /* 1 */
       &:hover,
       &:focus {
@@ -102,17 +106,10 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
         &::after {
           ${logicalCSS('height', '100%')}
         }
-
-        &::before {
-          transform: translate(-${grabHandleHeight}, -50%);
-        }
-
-        &::after {
-          transform: translate(0, -50%);
-        }
       }
     `,
     vertical: css`
+      flex-direction: column;
       cursor: row-resize;
       ${logicalCSS('height', buttonSize)}
       margin-block: ${mathWithUnits(buttonSize, (x) => x / -2)};
@@ -123,28 +120,12 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('width', grabHandleWidth)}
       }
 
-      &::before {
-        transform: translate(-50%, -${grabHandleFocusHeight});
-      }
-
-      &::after {
-        transform: translate(-50%, ${grabHandleHeight});
-      }
-
       /* 1 */
       &:hover,
       &:focus {
         &::before,
         &::after {
           ${logicalCSS('width', '100%')}
-        }
-
-        &::before {
-          transform: translate(-50%, -${grabHandleHeight});
-        }
-
-        &::after {
-          transform: translate(-50%, 0);
         }
       }
     `,
