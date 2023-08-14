@@ -9,7 +9,6 @@
 import React, {
   FunctionComponent,
   ButtonHTMLAttributes,
-  MouseEvent,
   useCallback,
   useMemo,
   useRef,
@@ -69,7 +68,7 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
     registry: { resizers } = { resizers: {} } as EuiResizableContainerRegistry,
   } = useEuiResizableContainerContext();
   const isDisabled = useMemo(
-    () => disabled || (resizers[resizerId] && resizers[resizerId].isDisabled),
+    () => disabled || resizers[resizerId]?.isDisabled,
     [resizers, resizerId, disabled]
   );
 
@@ -108,13 +107,6 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
     [registration, resizerId, disabled]
   );
 
-  const setFocus = (e: MouseEvent<HTMLButtonElement>) =>
-    e.currentTarget.focus();
-
-  const handleFocus = () => {
-    onFocus && onFocus(resizerId);
-  };
-
   return (
     <EuiI18n
       tokens={[
@@ -137,8 +129,8 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
           css={cssStyles}
           data-test-subj="euiResizableButton"
           type="button"
-          onClick={setFocus}
-          onFocus={handleFocus}
+          onClick={(e) => e.currentTarget.focus()}
+          onFocus={() => onFocus?.(resizerId)}
           onBlur={onBlur}
           disabled={isDisabled}
           {...rest}

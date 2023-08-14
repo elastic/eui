@@ -7,7 +7,7 @@
  */
 
 import React, { FunctionComponent, PropsWithChildren } from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
@@ -35,5 +35,55 @@ describe('EuiResizableButton', () => {
     });
 
     expect(container).toMatchSnapshot();
+  });
+
+  describe('disabled', () => {
+    it('renders as disabled if the disabled prop is passed', () => {
+      const { container } = render(<EuiResizableButton disabled />, {
+        wrapper,
+      });
+
+      expect(container.firstChild).toBeDisabled();
+    });
+
+    it('renders as disabled if the resizerId is disabled in context', () => {
+      const { container } = render(
+        <EuiResizableContainerContextProvider
+          registry={
+            {
+              panels: {},
+              resizers: {
+                'resizable-button_generated-id': { isDisabled: true },
+              },
+            } as unknown as EuiResizableContainerRegistry // Skipping correct obj types for the sake of the test
+          }
+        >
+          <EuiResizableButton />
+        </EuiResizableContainerContextProvider>
+      );
+
+      expect(container.firstChild).toBeDisabled();
+    });
+  });
+
+  describe('focus', () => {
+    it('focuses the button on click', () => {
+      const { container } = render(<EuiResizableButton />, {
+        wrapper,
+      });
+      fireEvent.click(container.firstChild!);
+
+      expect(container.firstChild).toBe(document.activeElement);
+    });
+
+    it('calls the onFocus prop', () => {
+      const onFocus = jest.fn();
+      const { container } = render(<EuiResizableButton onFocus={onFocus} />, {
+        wrapper,
+      });
+      fireEvent.focus(container.firstChild!);
+
+      expect(onFocus).toHaveBeenCalledWith('resizable-button_generated-id');
+    });
   });
 });
