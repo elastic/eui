@@ -84,7 +84,7 @@ exports[`useDataGridKeyboardShortcuts returns a popover containing a list of key
           >
             <dl
               aria-labelledby="generated-id"
-              class="euiDescriptionList emotion-euiDescriptionList-column-center"
+              class="euiDescriptionList emotion-euiDescriptionList-column-s-s-center"
               data-type="column"
             >
               <dt
