@@ -22,6 +22,7 @@ import { useEuiTheme, useGeneratedHtmlId } from '../../services';
 
 import { useEuiResizableContainerContext } from './context';
 import {
+  EuiResizableContainerRegistry,
   EuiResizableButtonController,
   EuiResizableButtonMouseEvent,
   EuiResizableButtonKeyEvent,
@@ -64,8 +65,9 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
     prefix: 'resizable-button',
     conditionalId: id,
   });
-  const { registry: { resizers } = { resizers: {} } } =
-    useEuiResizableContainerContext();
+  const {
+    registry: { resizers } = { resizers: {} } as EuiResizableContainerRegistry,
+  } = useEuiResizableContainerContext();
   const isDisabled = useMemo(
     () => disabled || (resizers[resizerId] && resizers[resizerId].isDisabled),
     [resizers, resizerId, disabled]
