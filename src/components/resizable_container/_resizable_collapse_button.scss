@@ -10,13 +10,6 @@
 
 .euiResizableToggleButton {
   @include euiSlightShadow;
-  position: absolute;
-  z-index: 2;
-  // Remove animations from EuiButtonIcon because of the custom transforms
-  animation: none !important; // stylelint-disable-line declaration-no-important
-  // Remove transition from EuiButtonIcon because of the custom transforms
-  transition-property: background, box-shadow;
-  background: $euiColorEmptyShade;
 
   &:focus {
     @include euiSlightShadowHover;

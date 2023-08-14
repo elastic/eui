@@ -9,9 +9,12 @@
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
+import { useEuiTheme } from '../../services';
 import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../button';
+
 import { ToggleOptions } from './resizable_panel';
 import { EuiResizableContainerProps } from './resizable_container';
+import { euiResizableCollapseButtonStyles } from './resizable_collapse_button.styles';
 
 export type EuiResizableCollapseButtonProps = Omit<
   EuiButtonIconPropsForButton,
@@ -62,6 +65,9 @@ export const EuiResizableCollapseButton: FunctionComponent<
     },
     className
   );
+  const euiTheme = useEuiTheme();
+  const styles = euiResizableCollapseButtonStyles(euiTheme);
+  const cssStyles = [styles.euiResizableCollapseButton];
 
   // Default to simiple grab icon in case there is no externalPosition specified
   let COLLAPSED_ICON = isHorizontal ? 'grab' : 'grabHorizontal';
@@ -82,8 +88,9 @@ export const EuiResizableCollapseButton: FunctionComponent<
     <EuiButtonIcon
       display={isCollapsed ? 'empty' : 'base'}
       color="text"
-      {...rest}
       className={classes}
+      css={cssStyles}
+      {...rest}
       iconType={isCollapsed ? COLLAPSED_ICON : NOT_COLLAPSED_ICON}
     />
   );
