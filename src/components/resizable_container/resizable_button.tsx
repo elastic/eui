@@ -18,13 +18,15 @@ import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 import { EuiI18n } from '../i18n';
-import { useGeneratedHtmlId } from '../../services';
+import { useEuiTheme, useGeneratedHtmlId } from '../../services';
+
 import { useEuiResizableContainerContext } from './context';
 import {
   EuiResizableButtonController,
   EuiResizableButtonMouseEvent,
   EuiResizableButtonKeyEvent,
 } from './types';
+import { euiResizableButtonStyles } from './resizable_button.styles';
 
 interface EuiResizableButtonControls {
   onKeyDown: (eve: EuiResizableButtonKeyEvent) => void;
@@ -68,6 +70,7 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
     () => disabled || (resizers[resizerId] && resizers[resizerId].isDisabled),
     [resizers, resizerId, disabled]
   );
+
   const classes = classNames(
     'euiResizableButton',
     {
@@ -77,6 +80,9 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
     },
     className
   );
+  const euiTheme = useEuiTheme();
+  const styles = euiResizableButtonStyles(euiTheme);
+  const cssStyles = [styles.euiResizableButton];
 
   const previousRef = useRef<HTMLElement>();
   const onRef = useCallback(
@@ -126,6 +132,7 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
             isHorizontal ? horizontalResizerAriaLabel : verticalResizerAriaLabel
           }
           className={classes}
+          css={cssStyles}
           data-test-subj="euiResizableButton"
           type="button"
           onClick={setFocus}

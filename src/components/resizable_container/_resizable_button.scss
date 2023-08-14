@@ -1,10 +1,6 @@
 // Mimics the "grab" icon with CSS psuedo-elements.
 // The "grab" icon transforms into a 2px straight line on :hover and :focus.
 .euiResizableButton {
-  position: relative;
-  flex-shrink: 0;
-  z-index: 1;
-
   &::before,
   &::after {
     content: '';
