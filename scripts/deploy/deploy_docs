@@ -176,7 +176,7 @@ else
     # Our branched docs deploys are **only** ever triggered by tags
     # https://buildkite.com/docs/pipelines/environment-variables#BUILDKITE_TAG
     elif [[ ! -z "$GIT_TAG" ]]; then
-      echo "Tag release $GIT_TAG."
+      echo "Deploying eui.elastic.co/$GIT_TAG"
       full_bucket_path="gs://$BUCKET/$GIT_TAG/"
       max_age="1800" # Reducing to 15 minutes to limit stale docs
       publish_to_bucket
