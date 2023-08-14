@@ -169,7 +169,7 @@ else
 
     # If GIT_PULL_REQUEST_ID length is not 0 and string is not "false"
     if [[ ! -z "${GIT_PULL_REQUEST_ID}" ]] && [[ "${GIT_PULL_REQUEST_ID}" != "false" ]]; then
-      echo "Pull request release ${GIT_PULL_REQUEST_ID}."
+      echo "Staging pull request $GIT_PULL_REQUEST_ID"
       full_bucket_path="gs://$BUCKET/pr_${GIT_PULL_REQUEST_ID}/"
       publish_to_bucket
 
