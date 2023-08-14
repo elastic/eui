@@ -16,6 +16,11 @@ import { EuiFieldText, EuiTextArea } from '../../components';
 import { EuiInputPopover } from './input_popover';
 
 describe('EuiPopover', () => {
+  // The viewport width matters for position assertions, so ensure it's explicitly defined
+  beforeEach(() => {
+    cy.viewport(500, 300);
+  });
+
   const props = {
     input: <EuiFieldText />,
     closePopover: () => {},
@@ -62,13 +67,15 @@ describe('EuiPopover', () => {
         <EuiInputPopover
           {...props}
           display="inline-block"
-          input={<EuiTextArea rows={1} resize="horizontal" />}
+          input={
+            <EuiTextArea rows={1} resize="horizontal" style={{ width: 150 }} />
+          }
         >
           Popover content
         </EuiInputPopover>
       </div>
     );
-    cy.get('[data-popover-panel]').should('have.css', 'left', '155.5px');
+    cy.get('[data-popover-panel]').should('have.css', 'left', '175px');
     cy.wait(100); // Wait a tick, otherwise Cypress returns a false positive
 
     // Cypress doesn't seem to have a way to mimic manual dragging/resizing, so we'll do it programmatically
