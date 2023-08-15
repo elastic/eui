@@ -381,6 +381,7 @@ export class EuiDualRangeClass extends Component<
     this.setState({
       rangeWidth: width,
     });
+    this.props.inputPopoverProps?.onPanelResize?.(width);
   };
 
   getNearestStep = (value: number) => {
@@ -451,6 +452,7 @@ export class EuiDualRangeClass extends Component<
       prepend,
       minInputProps,
       maxInputProps,
+      inputPopoverProps,
       isDraggable,
       theme,
       ...rest
@@ -786,7 +788,11 @@ export class EuiDualRangeClass extends Component<
 
     const thePopover = showInputOnly ? (
       <EuiInputPopover
-        className="euiRange__popover"
+        {...inputPopoverProps}
+        className={classNames(
+          'euiDualRange__popover',
+          inputPopoverProps?.className
+        )}
         input={
           <EuiFormControlLayoutDelimited
             startControl={minInput!}
