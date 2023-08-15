@@ -28,49 +28,43 @@ import {
 } from './types';
 import { euiResizableButtonStyles } from './resizable_button.styles';
 
-interface EuiResizableButtonControls {
-  onKeyDown: (eve: EuiResizableButtonKeyEvent) => void;
-  onKeyUp: (eve: EuiResizableButtonKeyEvent) => void;
-  onMouseDown: (eve: EuiResizableButtonMouseEvent) => void;
-  onTouchStart: (eve: EuiResizableButtonMouseEvent) => void;
-  onFocus: (id: string) => void;
-  onBlur: () => void;
-  registration: {
-    register: (resizer: EuiResizableButtonController) => void;
-    deregister: (resizerId: EuiResizableButtonController['id']) => void;
+export type EuiResizableButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
+  CommonProps & {
+    /**
+     * Defaults to displaying a resize handle button for vertical (y-axis) resizing.
+     * Set to `true` to display a handle for horizontal (x-axis) resizing.
+     */
+    isHorizontal?: boolean;
+    /**
+     * When disabled, the button will be completely hidden
+     */
+    disabled?: boolean;
   };
-  isHorizontal: boolean;
-}
 
-export interface EuiResizableButtonProps
-  extends Omit<
-      ButtonHTMLAttributes<HTMLButtonElement>,
-      keyof EuiResizableButtonControls
-    >,
-    CommonProps,
-    Partial<EuiResizableButtonControls> {}
-
+/**
+ * A generic resizable button/drag handle, usable outside of the EuiResizableContainer context
+ */
 export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
   isHorizontal,
   className,
-  id,
-  registration,
-  disabled,
-  onFocus,
-  onBlur,
+  // id,
+  // registration,
+  // disabled,
+  // onFocus,
+  // onBlur,
   ...rest
 }) => {
-  const resizerId = useGeneratedHtmlId({
-    prefix: 'resizable-button',
-    conditionalId: id,
-  });
-  const {
-    registry: { resizers } = { resizers: {} } as EuiResizableContainerRegistry,
-  } = useEuiResizableContainerContext();
-  const isDisabled = useMemo(
-    () => disabled || resizers[resizerId]?.isDisabled,
-    [resizers, resizerId, disabled]
-  );
+  // const resizerId = useGeneratedHtmlId({
+  //   prefix: 'resizable-button',
+  //   conditionalId: id,
+  // });
+  // const {
+  //   registry: { resizers } = { resizers: {} } as EuiResizableContainerRegistry,
+  // } = useEuiResizableContainerContext();
+  // const isDisabled = useMemo(
+  //   () => disabled || resizers[resizerId]?.isDisabled,
+  //   [resizers, resizerId, disabled]
+  // );
 
   const classes = classNames('euiResizableButton', className);
   const euiTheme = useEuiTheme();
@@ -80,27 +74,27 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
     isHorizontal ? styles.horizontal : styles.vertical,
   ];
 
-  const previousRef = useRef<HTMLElement>();
-  const onRef = useCallback(
-    (ref: HTMLElement | null) => {
-      if (!registration) return;
-      if (ref) {
-        previousRef.current = ref;
-        registration.register({
-          id: resizerId,
-          ref,
-          isFocused: false,
-          isDisabled: disabled || false,
-        });
-      } else {
-        if (previousRef.current != null) {
-          registration.deregister(resizerId);
-          previousRef.current = undefined;
-        }
-      }
-    },
-    [registration, resizerId, disabled]
-  );
+  // const previousRef = useRef<HTMLElement>();
+  // const onRef = useCallback(
+  //   (ref: HTMLElement | null) => {
+  //     if (!registration) return;
+  //     if (ref) {
+  //       previousRef.current = ref;
+  //       registration.register({
+  //         id: resizerId,
+  //         ref,
+  //         isFocused: false,
+  //         isDisabled: disabled || false,
+  //       });
+  //     } else {
+  //       if (previousRef.current != null) {
+  //         registration.deregister(resizerId);
+  //         previousRef.current = undefined;
+  //       }
+  //     }
+  //   },
+  //   [registration, resizerId, disabled]
+  // );
 
   return (
     <EuiI18n
@@ -115,8 +109,8 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
     >
       {([horizontalResizerAriaLabel, verticalResizerAriaLabel]: string[]) => (
         <button
-          id={resizerId}
-          ref={onRef}
+          // id={resizerId}
+          // ref={onRef}
           aria-label={
             isHorizontal ? horizontalResizerAriaLabel : verticalResizerAriaLabel
           }
@@ -124,10 +118,10 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
           css={cssStyles}
           data-test-subj="euiResizableButton"
           type="button"
-          onClick={(e) => e.currentTarget.focus()}
-          onFocus={() => onFocus?.(resizerId)}
-          onBlur={onBlur}
-          disabled={isDisabled}
+          // onClick={(e) => e.currentTarget.focus()}
+          // onFocus={() => onFocus?.(resizerId)}
+          // onBlur={onBlur}
+          // disabled={isDisabled}
           {...rest}
         />
       )}
@@ -135,10 +129,38 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
   );
 };
 
-export function euiResizableButtonWithControls(
-  controls: EuiResizableButtonControls
-) {
-  return (props: CommonProps) => (
-    <EuiResizableButton {...controls} {...props} />
+/**
+ * Button specific to controlled EuiResizableContainer usage
+ */
+export type EuiResizableButtonControls = Omit<
+  EuiResizableButtonProps,
+  'onFocus'
+> & {
+  registration: {
+    register: (resizer: EuiResizableButtonController) => void;
+    deregister: (resizerId: EuiResizableButtonController['id']) => void;
+  };
+  onKeyDown: (e: EuiResizableButtonKeyEvent) => void;
+  onKeyUp: (e: EuiResizableButtonKeyEvent) => void;
+  onMouseDown: (e: EuiResizableButtonMouseEvent) => void;
+  onTouchStart: (e: EuiResizableButtonMouseEvent) => void;
+  onBlur: () => void;
+  onFocus: (id: string) => void;
+};
+
+export const EuiResizableButtonControlled: FunctionComponent<
+  Partial<EuiResizableButtonControls>
+> = ({ ...rest }) => {
+  // TODO: Move resizer & registration logic to this component
+
+  return (
+    <EuiResizableButton
+      // TODO - move commented out props here
+      {...rest}
+    />
   );
-}
+};
+
+export const euiResizableButtonWithControls =
+  (controls: EuiResizableButtonControls) => (props: CommonProps) =>
+    <EuiResizableButtonControlled {...controls} {...props} />;
