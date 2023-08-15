@@ -94,6 +94,7 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     horizontal: css`
       cursor: col-resize;
+      ${logicalCSS('height', '100%')}
       ${logicalCSS('width', buttonSize)}
       margin-inline: ${mathWithUnits(buttonSize, (x) => x / -2)};
 
@@ -115,6 +116,7 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
     vertical: css`
       flex-direction: column;
       cursor: row-resize;
+      ${logicalCSS('width', '100%')}
       ${logicalCSS('height', buttonSize)}
       margin-block: ${mathWithUnits(buttonSize, (x) => x / -2)};
 
