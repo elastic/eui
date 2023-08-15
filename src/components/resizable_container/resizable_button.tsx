@@ -47,25 +47,8 @@ export type EuiResizableButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
 export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
   isHorizontal,
   className,
-  // id,
-  // registration,
-  // disabled,
-  // onFocus,
-  // onBlur,
   ...rest
 }) => {
-  // const resizerId = useGeneratedHtmlId({
-  //   prefix: 'resizable-button',
-  //   conditionalId: id,
-  // });
-  // const {
-  //   registry: { resizers } = { resizers: {} } as EuiResizableContainerRegistry,
-  // } = useEuiResizableContainerContext();
-  // const isDisabled = useMemo(
-  //   () => disabled || resizers[resizerId]?.isDisabled,
-  //   [resizers, resizerId, disabled]
-  // );
-
   const classes = classNames('euiResizableButton', className);
   const euiTheme = useEuiTheme();
   const styles = euiResizableButtonStyles(euiTheme);
@@ -73,28 +56,6 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
     styles.euiResizableButton,
     isHorizontal ? styles.horizontal : styles.vertical,
   ];
-
-  // const previousRef = useRef<HTMLElement>();
-  // const onRef = useCallback(
-  //   (ref: HTMLElement | null) => {
-  //     if (!registration) return;
-  //     if (ref) {
-  //       previousRef.current = ref;
-  //       registration.register({
-  //         id: resizerId,
-  //         ref,
-  //         isFocused: false,
-  //         isDisabled: disabled || false,
-  //       });
-  //     } else {
-  //       if (previousRef.current != null) {
-  //         registration.deregister(resizerId);
-  //         previousRef.current = undefined;
-  //       }
-  //     }
-  //   },
-  //   [registration, resizerId, disabled]
-  // );
 
   return (
     <EuiI18n
@@ -109,8 +70,6 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
     >
       {([horizontalResizerAriaLabel, verticalResizerAriaLabel]: string[]) => (
         <button
-          // id={resizerId}
-          // ref={onRef}
           aria-label={
             isHorizontal ? horizontalResizerAriaLabel : verticalResizerAriaLabel
           }
@@ -118,10 +77,6 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
           css={cssStyles}
           data-test-subj="euiResizableButton"
           type="button"
-          // onClick={(e) => e.currentTarget.focus()}
-          // onFocus={() => onFocus?.(resizerId)}
-          // onBlur={onBlur}
-          // disabled={isDisabled}
           {...rest}
         />
       )}
@@ -150,12 +105,49 @@ export type EuiResizableButtonControls = Omit<
 
 export const EuiResizableButtonControlled: FunctionComponent<
   Partial<EuiResizableButtonControls>
-> = ({ ...rest }) => {
-  // TODO: Move resizer & registration logic to this component
+> = ({ registration, id, disabled, onFocus, ...rest }) => {
+  const resizerId = useGeneratedHtmlId({
+    prefix: 'resizable-button',
+    conditionalId: id,
+  });
+  const {
+    registry: { resizers } = { resizers: {} } as EuiResizableContainerRegistry,
+  } = useEuiResizableContainerContext();
+
+  const isDisabled = useMemo(
+    () => disabled || resizers[resizerId]?.isDisabled,
+    [resizers, resizerId, disabled]
+  );
+
+  const previousRef = useRef<HTMLElement>();
+  const onRef = useCallback(
+    (ref: HTMLElement | null) => {
+      if (!registration) return;
+      if (ref) {
+        previousRef.current = ref;
+        registration.register({
+          id: resizerId,
+          ref,
+          isFocused: false,
+          isDisabled: disabled || false,
+        });
+      } else {
+        if (previousRef.current != null) {
+          registration.deregister(resizerId);
+          previousRef.current = undefined;
+        }
+      }
+    },
+    [registration, resizerId, disabled]
+  );
 
   return (
     <EuiResizableButton
-      // TODO - move commented out props here
+      id={resizerId}
+      // ref={onRef} TODO - forwardRef
+      disabled={isDisabled}
+      onClick={(e) => e.currentTarget.focus()}
+      onFocus={() => onFocus?.(resizerId)}
       {...rest}
     />
   );
