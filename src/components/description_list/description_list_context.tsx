@@ -13,7 +13,6 @@ type EuiDescriptionListContextValues = Required<
   Pick<EuiDescriptionListProps, 'type' | 'textStyle' | 'align' | 'gutterSize'>
 > & {
   compressed?: EuiDescriptionListProps['compressed'];
-  columnGap?: EuiDescriptionListProps['columnGap'];
 };
 
 export const contextDefaults: EuiDescriptionListContextValues = {
@@ -21,7 +20,6 @@ export const contextDefaults: EuiDescriptionListContextValues = {
   textStyle: 'normal',
   align: 'left',
   gutterSize: 'm',
-  columnGap: 'm',
 };
 
 export const EuiDescriptionListContext =
