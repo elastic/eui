@@ -46,7 +46,6 @@ export const EuiDescriptionList: FunctionComponent<
     styles.euiDescriptionList,
     styles[type],
     styles[align],
-    isColumnDisplay && styles.rowGap[gutterSize],
     isColumnDisplay && styles.columnGap[columnGap],
   ];
 

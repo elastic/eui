@@ -200,7 +200,7 @@ exports[`EuiDescriptionList props listItems titleProps is rendered 1`] = `
 
 exports[`EuiDescriptionList props type column is rendered 1`] = `
 <dl
-  class="euiDescriptionList emotion-euiDescriptionList-column-left-s-s"
+  class="euiDescriptionList emotion-euiDescriptionList-column-left-s"
   data-type="column"
 />
 `;
@@ -214,7 +214,7 @@ exports[`EuiDescriptionList props type inline is rendered 1`] = `
 
 exports[`EuiDescriptionList props type responsiveColumn is rendered 1`] = `
 <dl
-  class="euiDescriptionList emotion-euiDescriptionList-responsiveColumn-left-s-s"
+  class="euiDescriptionList emotion-euiDescriptionList-responsiveColumn-left-s"
   data-type="responsiveColumn"
 />
 `;

@@ -35,15 +35,6 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
         ${columnDisplay}
       }
     `,
-    // Handles row-gap according to row gutter size
-    rowGap: {
-      s: css`
-        row-gap: ${euiThemeContext.euiTheme.size.s};
-      `,
-      m: css`
-        row-gap: ${euiThemeContext.euiTheme.size.m};
-      `,
-    },
     columnGap: {
       s: css`
         column-gap: ${euiThemeContext.euiTheme.size.s};
