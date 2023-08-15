@@ -256,7 +256,8 @@ export const DescriptionListExample = {
           <h4>Horizontal spacing</h4>
           <p>
             Adjust the spacing between the title and description with the{' '}
-            <EuiCode>columnGap</EuiCode> prop. This will not affect inline or row types.
+            <EuiCode>columnGap</EuiCode> prop. This will not affect inline or
+            row types.
           </p>
         </>
       ),
