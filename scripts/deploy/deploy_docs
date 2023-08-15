@@ -17,18 +17,9 @@ set +x
 # * GIT_PULL_REQUEST_ID - current Git PR (Ex. 6999) from Buildkite env
 # * GIT_TAG - current Git tag (Ex. v87.0.0) from Buildkite env
 # * BUILDKITE_CI - Buildkite CI agent
-# * JENINKS_CI - Jenkins CI agent
 
 # Docker images
 GCE_IMAGE=google/cloud-sdk:slim
-
-# ==================================================
-# TODO: Remove echo tests
-# These TODO items will be removed when EUI PR #6967
-# and EUI PR #6965 are merged successfully.
-# ==================================================
-echo "The Jenkins PR number is: ${pull_request_id}."
-echo "The Buildkite PR number is: ${GIT_PULL_REQUEST_ID}."
 
 if [[ -z "${GPROJECT}" ]]; then
     echo "GPROJECT is not set, e.g. 'GPROJECT=elastic-bekitzur'"
@@ -83,19 +74,14 @@ if [[ "$1" != "nodocker" ]]; then
   echo "Current release: ${CURRENT_RELEASE}"
 
   # Run this script from inside the docker container, using google/cloud-sdk image
-  # ==================================================
-  # TODO: Remove --env pull_request_id
-  # ==================================================
   echo "Deploying to bucket using ${GCE_IMAGE} Docker image"
   docker run \
     -i --rm \
     --env GCE_ACCOUNT \
     --env GIT_BRANCH \
     --env GPROJECT \
-    --env pull_request_id \
     --env GIT_PULL_REQUEST_ID \
     --env GIT_TAG \
-    --env JENKINS_CI \
     --env BUILDKITE_CI \
     --env CURRENT_RELEASE="${CURRENT_RELEASE}" \
     --env HOME=/tmp \
@@ -107,8 +93,6 @@ if [[ "$1" != "nodocker" ]]; then
   unset GCE_ACCOUNT
 
   # ==================================================
-  # TODO - Remove pull_request_id logical block
-  # 
   # Buildkite treats pull requests as either "false"
   # or a number string like "1234". Jenkins prefers
   # an empty string, which is the rationale for the
@@ -116,7 +100,7 @@ if [[ "$1" != "nodocker" ]]; then
   #
   # https://buildkite.com/docs/pipelines/environment-variables#BUILDKITE_PULL_REQUEST
   # ==================================================
-  if [[ ! -z "${pull_request_id}" ]] || { [[ ! -z "${GIT_PULL_REQUEST_ID}" ]] && [[ "${GIT_PULL_REQUEST_ID}" != "false" ]]; }; then
+  if { [[ ! -z "${GIT_PULL_REQUEST_ID}" ]] && [[ "${GIT_PULL_REQUEST_ID}" != "false" ]]; }; then
     post_comment_to_gh
   fi
   unset GITHUB_TOKEN
@@ -126,44 +110,12 @@ else
   gcloud auth activate-service-account --key-file <(echo "${GCE_ACCOUNT}")
   unset GCE_ACCOUNT
 
-  # All branches go into correspondingly named dirs.
-  # remove remote "origin/", leaving just the branch name
-  BRANCH="${GIT_BRANCH#*/}"
-
   # Copy files
   EUI_DOCS_PROJECT=eui-docs-live
   BUCKET=${GPROJECT}-${EUI_DOCS_PROJECT}
 
   max_age="1800"
 
-  # ==================================================
-  # TODO: Remove Jenkins block
-  # ==================================================
-  if [[ ! -z "${JENKINS_CI}" ]]; then
-    echo "Jenkins CI agent".
-
-    if [[ ! -z "${pull_request_id}" ]]; then
-      echo "This is the Jenkins PR release."
-      full_bucket_path="gs://${BUCKET}/pr_${pull_request_id}/"
-      publish_to_bucket
-    else
-      echo "This is a Jenkins branch release."
-      full_bucket_path="gs://${BUCKET}/${BRANCH}/"
-      max_age="1800" # Reducing to 15 minutes to limit stale docs
-      publish_to_bucket
-
-      # If this is the highest release number to date, publish to root directory
-      if [[ "${CURRENT_RELEASE}" == "${GIT_BRANCH}" ]]; then
-        echo "This is the current Jenkins release."
-        full_bucket_path="gs://${BUCKET}/"
-        publish_to_bucket
-      fi
-    fi
-  fi
-
-  # ==================================================
-  # Buildkite block
-  # ==================================================
   if [[ ! -z "${BUILDKITE_CI}" ]]; then
     echo "Buildkite CI agent."
 
