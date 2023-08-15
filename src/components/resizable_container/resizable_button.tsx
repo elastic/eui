@@ -12,6 +12,7 @@ import React, {
   useCallback,
   useMemo,
   useRef,
+  forwardRef,
 } from 'react';
 import classNames from 'classnames';
 
@@ -44,12 +45,12 @@ export type EuiResizableButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
 /**
  * A generic resizable button/drag handle, usable outside of the EuiResizableContainer context
  */
-export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
-  isHorizontal,
-  className,
-  ...rest
-}) => {
+export const EuiResizableButton = forwardRef<
+  HTMLButtonElement,
+  EuiResizableButtonProps
+>(({ isHorizontal, className, ...rest }, ref) => {
   const classes = classNames('euiResizableButton', className);
+
   const euiTheme = useEuiTheme();
   const styles = euiResizableButtonStyles(euiTheme);
   const cssStyles = [
@@ -70,6 +71,7 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
     >
       {([horizontalResizerAriaLabel, verticalResizerAriaLabel]: string[]) => (
         <button
+          ref={ref}
           aria-label={
             isHorizontal ? horizontalResizerAriaLabel : verticalResizerAriaLabel
           }
@@ -82,7 +84,8 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
       )}
     </EuiI18n>
   );
-};
+});
+EuiResizableButton.displayName = 'EuiResizableButton';
 
 /**
  * Button specific to controlled EuiResizableContainer usage
@@ -144,7 +147,7 @@ export const EuiResizableButtonControlled: FunctionComponent<
   return (
     <EuiResizableButton
       id={resizerId}
-      // ref={onRef} TODO - forwardRef
+      ref={onRef}
       disabled={isDisabled}
       onClick={(e) => e.currentTarget.focus()}
       onFocus={() => onFocus?.(resizerId)}
