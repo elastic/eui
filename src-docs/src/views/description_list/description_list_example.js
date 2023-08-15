@@ -251,7 +251,7 @@ export const DescriptionListExample = {
           <p>
             Modify the <EuiCode>gutterSize</EuiCode> prop to control the
             vertical spacing between <EuiCode>EuiDescriptionList</EuiCode>{' '}
-            elements.
+            elements. This will not affect inline list types.
           </p>
           <h4>Horizontal spacing</h4>
           <p>
