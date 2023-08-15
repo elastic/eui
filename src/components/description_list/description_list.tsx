@@ -40,12 +40,14 @@ export const EuiDescriptionList: FunctionComponent<
   const euiTheme = useEuiTheme();
   const styles = euiDescriptionListStyles(euiTheme);
 
+  const isColumnDisplay = type === 'column' || type === 'responsiveColumn';
+
   const cssStyles = [
     styles.euiDescriptionList,
     styles[type],
-    styles.rowGap[gutterSize],
-    styles.columnGap[columnGap],
     styles[align],
+    isColumnDisplay && styles.rowGap[gutterSize],
+    isColumnDisplay && styles.columnGap[columnGap],
   ];
 
   const classes = classNames('euiDescriptionList', className);
