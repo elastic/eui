@@ -127,6 +127,7 @@ export class EuiRangeClass extends Component<
       step,
       showLabels,
       showInput,
+      inputPopoverProps,
       showTicks,
       tickInterval,
       ticks,
@@ -291,7 +292,11 @@ export class EuiRangeClass extends Component<
 
     const thePopover = showInputOnly ? (
       <EuiInputPopover
-        className="euiRange__popover"
+        {...inputPopoverProps}
+        className={classNames(
+          'euiRange__popover',
+          inputPopoverProps?.className
+        )}
         input={theInput!} // `showInputOnly` confirms existence
         fullWidth={fullWidth}
         isOpen={this.state.isPopoverOpen}

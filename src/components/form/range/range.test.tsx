@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 import { requiredProps } from '../../../test/required_props';
 import { render } from '../../../test/rtl';
@@ -29,6 +30,20 @@ describe('EuiRange', () => {
     targetSelector: '.euiRangeSlider',
     skip: { className: true, css: true },
   });
+  shouldRenderCustomStyles(
+    <EuiRange
+      {...props}
+      showInput="inputWithPopover"
+      data-test-subj="triggerPopover"
+    />,
+    {
+      skip: { parentTest: true },
+      childProps: ['inputPopoverProps'],
+      renderCallback: ({ getByTestSubject }) => {
+        fireEvent.focus(getByTestSubject('triggerPopover'));
+      },
+    }
+  );
 
   test('is rendered', () => {
     const { container } = render(
@@ -129,18 +144,21 @@ describe('EuiRange', () => {
     });
 
     test('slider should display in popover', () => {
-      const { container } = render(
+      const { container, baseElement, getByTestSubject } = render(
         <EuiRange
           name="name"
           id="id"
           onChange={() => {}}
           showInput="inputWithPopover"
+          inputPopoverProps={{ panelProps: { 'data-test-subj': 'test' } }}
           {...props}
           {...requiredProps}
         />
       );
+      fireEvent.focus(container.querySelector('input')!);
 
-      expect(container.firstChild).toMatchSnapshot();
+      expect(baseElement).toMatchSnapshot();
+      expect(getByTestSubject('test')).toBeInTheDocument();
     });
 
     test('loading should display when showInput="inputWithPopover"', () => {
