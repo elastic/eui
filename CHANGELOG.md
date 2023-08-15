@@ -1,3 +1,23 @@
+## [`87.1.0`](https://github.com/elastic/eui/tree/v87.1.0)
+
+- Updated the underlying library powering `EuiAutoSizer`. This primarily affects typing around the `disableHeight` and `disableWidth` props ([#6798](https://github.com/elastic/eui/pull/6798))
+- Added new `EuiAutoSize`, `EuiAutoSizeHorizontal`, and `EuiAutoSizeVertical` types to support `EuiAutoSizer`'s now-stricter typing ([#6798](https://github.com/elastic/eui/pull/6798))
+- Updated `EuiDatePickerRange` to support `compressed` display ([#7058](https://github.com/elastic/eui/pull/7058))
+- Updated `EuiFlyoutBody` with a new `scrollableTabIndex` prop ([#7061](https://github.com/elastic/eui/pull/7061))
+- Added a new `panelMinWidth` prop to `EuiInputPopover` ([#7071](https://github.com/elastic/eui/pull/7071))
+- Added a new `inputPopoverProps` prop for `EuiRange`s and `EuiDualRange`s with `showInput="inputWithPopover"` set ([#7082](https://github.com/elastic/eui/pull/7082))
+
+**Bug fixes**
+
+- Fixed `EuiToolTip` overriding instead of merging its `aria-describedby` tooltip ID with any existing `aria-describedby`s ([#7055](https://github.com/elastic/eui/pull/7055))
+- Fixed `EuiSuperDatePicker`'s `compressed` display ([#7058](https://github.com/elastic/eui/pull/7058))
+- Fixed `EuiAccordion` to remove tabbable children from sequential keyboard navigation when the accordion is closed ([#7064](https://github.com/elastic/eui/pull/7064))
+- Fixed `EuiFlyout`s to accept custom `aria-describedby` IDs ([#7065](https://github.com/elastic/eui/pull/7065))
+
+**Accessibility**
+
+- Removed the default `dialog` role and `tabIndex` from push `EuiFlyout`s. Push flyouts, compared to overlay flyouts, require manual accessibility management. ([#7065](https://github.com/elastic/eui/pull/7065))
+
 ## [`87.0.0`](https://github.com/elastic/eui/tree/v87.0.0)
 
 - Added beta `componentDefaults` prop to `EuiProvider`, which will allow configuring certain default props globally. This list of components and defaults is still under consideration. ([#6923](https://github.com/elastic/eui/pull/6923))
