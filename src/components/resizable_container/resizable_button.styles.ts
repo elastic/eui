@@ -32,6 +32,10 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
       justify-content: center;
       gap: ${mathWithUnits(grabHandleHeight, (x) => x * 2)};
 
+      &:disabled {
+        display: none;
+      }
+
       /* 1 */
       &:hover,
       &:focus {
