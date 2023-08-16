@@ -24,11 +24,11 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     // Mimics the "grab" icon with CSS psuedo-elements.
     // 1. The "grab" icon transforms into a thicker straight line on :hover and :focus
+    // 2. Start/end aligned handles should have a slight margin offset that disappears on hover/focus
     euiResizableButton: css`
       z-index: 1;
       flex-shrink: 0;
       display: flex;
-      align-items: center;
       justify-content: center;
       gap: ${mathWithUnits(grabHandleHeight, (x) => x * 2)};
 
@@ -58,7 +58,7 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
 
         ${euiCanAnimate} {
           transition: width ${transition}, height ${transition},
-            background-color ${transition};
+            margin ${transition}, background-color ${transition};
         }
       }
 
@@ -102,6 +102,7 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
       &::after {
         ${logicalCSS('width', grabHandleHeight)}
         ${logicalCSS('height', grabHandleWidth)}
+        margin-block: ${euiTheme.size.base}; /* 2 */
       }
 
       /* 1 */
@@ -110,6 +111,7 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
         &::before,
         &::after {
           ${logicalCSS('height', '100%')}
+          margin-block: 0; /* 2 */
         }
       }
     `,
@@ -124,6 +126,7 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
       &::after {
         ${logicalCSS('height', grabHandleHeight)}
         ${logicalCSS('width', grabHandleWidth)}
+        margin-inline: ${euiTheme.size.base}; /* 2 */
       }
 
       /* 1 */
@@ -132,8 +135,20 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
         &::before,
         &::after {
           ${logicalCSS('width', '100%')}
+          margin-inline: 0; /* 2 */
         }
       }
     `,
+    alignHandle: {
+      center: css`
+        align-items: center;
+      `,
+      start: css`
+        align-items: flex-start;
+      `,
+      end: css`
+        align-items: flex-end;
+      `,
+    },
   };
 };
