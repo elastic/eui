@@ -74,9 +74,10 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
 
-      /* Add a transparent background to the container and
-         emphasize the "grab" icon with primary color on :focus */
-      &:focus {
+      /* Add a transparent background to the container and emphasize the "grab" icon
+         with primary color on :focus (NOTE - :active is needed for Safari) */
+      &:focus,
+      &:active {
         background-color: ${transparentize(euiTheme.colors.primary, 0.1)};
 
         &::before,
@@ -106,7 +107,8 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
 
       /* 1 */
       &:hover,
-      &:focus {
+      &:focus,
+      &:active {
         &::before,
         &::after {
           ${logicalCSS('height', '100%')}
@@ -131,7 +133,8 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
 
       /* 1 */
       &:hover,
-      &:focus {
+      &:focus,
+      &:active {
         &::before,
         &::after {
           ${logicalCSS('width', '100%')}
