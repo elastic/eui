@@ -9,12 +9,16 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiSkeletonText } from '../../skeleton';
 import { EuiPageSection, EuiPageSectionProps } from '../page_section';
 
 const meta: Meta<EuiPageSectionProps> = {
   title: 'EuiPageSection',
   component: EuiPageSection,
+  argTypes: {
+    bottomBorder: { control: 'select', options: [true, false, 'extended'] },
+  },
 };
 
 export default meta;
@@ -32,16 +36,17 @@ const componentDefaults: EuiPageSectionProps = {
 export const Playground: Story = {
   args: componentDefaults,
   render: ({ ...args }) => (
-    <>
-      {/* <EuiPageSection {...args}>Secondary content</EuiPageSection> */}
-      <EuiPageSection {...args}>
-        <EuiSkeletonText
-          lines={10}
-          size="m"
-          isLoading={true}
-          contentAriaLabel="Page sidebar mock text"
-        ></EuiSkeletonText>
-      </EuiPageSection>
-    </>
+    <EuiFlexGroup css={{ height: '100vh' }}>
+      <EuiFlexItem>
+        <EuiPageSection {...args}>
+          <EuiSkeletonText
+            lines={10}
+            size="m"
+            isLoading={true}
+            contentAriaLabel="Page sidebar mock text"
+          ></EuiSkeletonText>
+        </EuiPageSection>
+      </EuiFlexItem>
+    </EuiFlexGroup>
   ),
 };
