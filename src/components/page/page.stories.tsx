@@ -88,7 +88,9 @@ export const RestrictWidth: Story = {
           ></EuiSkeletonText>
         </EuiPageSidebar>
         <EuiPageBody paddingSize="none" panelled={true}>
-          <EuiPageSection>
+          <EuiPageSection
+            contentProps={{ css: { inlineSize: '100vw', maxWidth: '100%' } }}
+          >
             <EuiSkeletonText
               lines={10}
               size="m"
