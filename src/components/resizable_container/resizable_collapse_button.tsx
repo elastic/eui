@@ -46,7 +46,7 @@ export const EuiResizableCollapseButton: FunctionComponent<
   EuiResizableCollapseButtonProps
 > = ({
   className,
-  externalPosition,
+  externalPosition = 'before',
   internalPosition = 'middle',
   direction = 'horizontal',
   isVisible,
@@ -79,7 +79,7 @@ export const EuiResizableCollapseButton: FunctionComponent<
   ];
   const collapsibleStyles = [
     styles.collapsible.collapsible,
-    styles.collapsible[direction][externalPosition!],
+    styles.collapsible[direction][externalPosition],
     styles.collapsible[direction][internalPosition],
   ];
   const cssStyles = [
@@ -88,9 +88,8 @@ export const EuiResizableCollapseButton: FunctionComponent<
     ...(isCollapsed ? collapsedStyles : collapsibleStyles),
   ];
 
-  // Default to simiple grab icon in case there is no externalPosition specified
-  let COLLAPSED_ICON = isHorizontal ? 'grab' : 'grabHorizontal';
-  let NOT_COLLAPSED_ICON = isHorizontal ? 'grab' : 'grabHorizontal';
+  let COLLAPSED_ICON = '';
+  let NOT_COLLAPSED_ICON = '';
 
   switch (externalPosition) {
     case 'before':
