@@ -25,6 +25,7 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
     // Mimics the "grab" icon with CSS psuedo-elements.
     // 1. The "grab" icon transforms into a thicker straight line on :hover and :focus
     // 2. Start/end aligned handles should have a slight margin offset that disappears on hover/focus
+    // 3. CSS hack to smooth out/anti-alias the 1px wide handles at various zoom levels
     euiResizableButton: css`
       z-index: 1;
       flex-shrink: 0;
@@ -52,9 +53,7 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
         content: '';
         display: block;
         background-color: ${euiTheme.colors.darkestShade};
-
-        /* CSS hack to smooth out/anti-alias the 1px wide handles at various zoom levels */
-        transform: translateZ(0);
+        transform: translateZ(0); /* 3 */
 
         ${euiCanAnimate} {
           transition: width ${transition}, height ${transition},
@@ -112,6 +111,7 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
         &::after {
           ${logicalCSS('height', '100%')}
           margin-block: 0; /* 2 */
+          transform: none; /* 3 */
         }
       }
     `,
@@ -136,6 +136,7 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
         &::after {
           ${logicalCSS('width', '100%')}
           margin-inline: 0; /* 2 */
+          transform: none; /* 3 */
         }
       }
     `,
