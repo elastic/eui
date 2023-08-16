@@ -9,7 +9,7 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../services';
-import { euiCanAnimate, logicalCSS, mathWithUnits } from '../../global_styling';
+import { logicalCSS, mathWithUnits } from '../../global_styling';
 import { euiShadowXSmall, euiSlightShadowHover } from '../../themes/amsterdam';
 
 export const euiResizableCollapseButtonStyles = (
@@ -29,11 +29,6 @@ export const euiResizableCollapseButtonStyles = (
       /* Remove animation inherited from EuiButtonIcon */
       &:focus {
         animation: none;
-      }
-
-      /* Remove transitions from EuiButtonIcon because of the custom transforms */
-      ${euiCanAnimate} {
-        transition-property: background, box-shadow;
       }
     `,
     collapsible: {
