@@ -9,13 +9,8 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { EuiTitle } from '../../title';
 import { EuiButton } from '../../button';
-import {
-  EuiPageHeader,
-  EuiPageHeaderSection,
-  EuiPageHeaderProps,
-} from '../page_header';
+import { EuiPageHeader, EuiPageHeaderProps } from '../page_header';
 
 const meta: Meta<EuiPageHeaderProps> = {
   title: 'EuiPageHeader',
@@ -76,21 +71,4 @@ export const Playground: Story = {
       },
     ],
   },
-};
-
-export const PageHeaderSection: Story = {
-  args: {
-    ...componentDefaults,
-    bottomBorder: true,
-  },
-  render: ({ ...args }) => (
-    <EuiPageHeader {...args}>
-      <EuiPageHeaderSection>
-        <EuiTitle size="l">
-          <h1>Page title</h1>
-        </EuiTitle>
-      </EuiPageHeaderSection>
-      <EuiPageHeaderSection>Page abilities</EuiPageHeaderSection>
-    </EuiPageHeader>
-  ),
 };
