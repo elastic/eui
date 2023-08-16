@@ -54,9 +54,11 @@ export default () => {
 
     switch (e.key) {
       case keys.ARROW_RIGHT:
+        e.preventDefault(); // Safari+VO will screen reader navigate off the button otherwise
         setPanelWidth((panelWidth) => panelWidth + KEYBOARD_OFFSET);
         break;
       case keys.ARROW_LEFT:
+        e.preventDefault(); // Safari+VO will screen reader navigate off the button otherwise
         setPanelWidth((panelWidth) =>
           Math.max(panelWidth - KEYBOARD_OFFSET, MIN_PANEL_WIDTH)
         );
