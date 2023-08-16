@@ -66,6 +66,14 @@ export const euiResizableCollapseButtonStyles = (
           ${logicalCSS('bottom', 0)}
           ${logicalCSS('margin-bottom', buttonOffset)}
         `,
+        // `left/right` aren't valid positions for the horizontal direction,
+        // so we're using getters to fall back to the `middle` CSS
+        get left() {
+          return this.middle;
+        },
+        get right() {
+          return this.middle;
+        },
       },
       vertical: {
         after: css`
@@ -88,6 +96,14 @@ export const euiResizableCollapseButtonStyles = (
           ${logicalCSS('right', 0)}
           ${logicalCSS('margin-right', buttonOffset)}
         `,
+        // `top/bottom` aren't valid positions for the horizontal direction,
+        // so we're using getters to fall back to the `middle` CSS
+        get top() {
+          return this.middle;
+        },
+        get bottom() {
+          return this.middle;
+        },
       },
     },
     collapsed: {
