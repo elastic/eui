@@ -71,8 +71,8 @@ export const EuiResizableButton = forwardRef<
         'euiResizableButton.verticalResizerAriaLabel',
       ]}
       defaults={[
-        'Press left or right to adjust panels size',
-        'Press up or down to adjust panels size',
+        'Press the left or right arrow keys to adjust panels size',
+        'Press the up or down arrow keys to adjust panels size',
       ]}
     >
       {([horizontalResizerAriaLabel, verticalResizerAriaLabel]: string[]) => (
