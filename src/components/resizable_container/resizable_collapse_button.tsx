@@ -77,8 +77,35 @@ export const EuiResizableCollapseButton: FunctionComponent<
   ];
   if (isCollapsed) {
     cssStyles.push(styles.collapsed.collapsed);
+    cssStyles.push(styles.collapsed[direction]);
+    cssStyles.push(styles.collapsed[`${direction}Positions`][internalPosition]);
   } else {
     cssStyles.push(styles.collapsible.collapsible);
+    cssStyles.push(styles.collapsible[direction][externalPosition!]);
+
+    if (direction === 'horizontal') {
+      switch (internalPosition) {
+        case 'top':
+        case 'bottom':
+          cssStyles.push(styles.collapsible.horizontal[internalPosition]);
+          break;
+        default:
+          // left/right aren't valid positions for horizontal - fall back to middle
+          cssStyles.push(styles.collapsible.horizontal.middle);
+          break;
+      }
+    } else if (direction === 'vertical' && internalPosition) {
+      switch (internalPosition) {
+        case 'left':
+        case 'right':
+          cssStyles.push(styles.collapsible.vertical[internalPosition]);
+          break;
+        default:
+          // top/bottom aren't valid positions for vertical - fall back to middle
+          cssStyles.push(styles.collapsible.vertical.middle);
+          break;
+      }
+    }
   }
 
   // Default to simiple grab icon in case there is no externalPosition specified
