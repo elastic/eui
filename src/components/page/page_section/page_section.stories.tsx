@@ -9,10 +9,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import contentSvg from '../../../../src-docs/src/images/content.svg';
-
-import { EuiImage } from '../../image';
-import { EuiPageHeader } from '../page_header';
+import { EuiSkeletonText } from '../../skeleton';
 import { EuiPageSection, EuiPageSectionProps } from '../page_section';
 
 const meta: Meta<EuiPageSectionProps> = {
@@ -33,20 +30,17 @@ const componentDefaults: EuiPageSectionProps = {
 };
 
 export const Playground: Story = {
-  args: {
-    ...componentDefaults,
-  },
+  args: componentDefaults,
   render: ({ ...args }) => (
     <>
-      <EuiPageHeader
-        paddingSize="l"
-        bottomBorder="extended"
-        pageTitle="Page title"
-        description="This is the page description"
-      />
-      <EuiPageSection {...args}>Secondary content</EuiPageSection>
+      {/* <EuiPageSection {...args}>Secondary content</EuiPageSection> */}
       <EuiPageSection {...args}>
-        <EuiImage alt="Fake paragraph" url={contentSvg} size={'fullWidth'} />
+        <EuiSkeletonText
+          lines={10}
+          size="m"
+          isLoading={true}
+          contentAriaLabel="Page sidebar mock text"
+        ></EuiSkeletonText>
       </EuiPageSection>
     </>
   ),

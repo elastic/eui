@@ -9,7 +9,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { EuiTitle } from '../..//title';
+import { EuiTitle } from '../../title';
 import { EuiButton } from '../../button';
 import {
   EuiPageHeader,

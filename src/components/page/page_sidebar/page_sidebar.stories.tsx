@@ -9,13 +9,10 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import contentSvg from '../../../../src-docs/src/images/content.svg';
-import sideBarSvg from '../../../../src-docs/src/images/side_nav.svg';
-
-import { EuiImage } from '../../image';
-import { EuiPage } from '../page';
+import { EuiSkeletonText } from '../../skeleton';
 import { EuiPageBody } from '../page_body';
 import { EuiPageSection } from '../page_section';
+import { EuiPage } from '../page';
 
 import { EuiPageSidebar, EuiPageSidebarProps } from './page_sidebar';
 
@@ -28,24 +25,51 @@ export default meta;
 type Story = StoryObj<EuiPageSidebarProps>;
 
 const componentDefaults: EuiPageSidebarProps = {
-  paddingSize: 'm', // The component default is actually 'none', but for the purposes of easier testing in Storybook we'll set it to plain
+  paddingSize: 'm', // The component default is actually 'none', but for nicer visuals in Storybook we'll set it to 'm'
   sticky: false,
   minWidth: 248,
   responsive: ['xs', 's'],
 };
 
 export const Playground: Story = {
-  args: {
-    ...componentDefaults,
-  },
+  args: componentDefaults,
   render: ({ ...args }) => (
     <EuiPage>
       <EuiPageSidebar {...args}>
-        {<EuiImage alt="Fake paragraph" url={sideBarSvg} size={'fullWidth'} />}
+        <EuiSkeletonText
+          lines={10}
+          size="m"
+          isLoading={true}
+          contentAriaLabel="Page sidebar mock text"
+        ></EuiSkeletonText>
       </EuiPageSidebar>
-      <EuiPageBody panelled={true}>
+    </EuiPage>
+  ),
+};
+
+export const StickyOffset: Story = {
+  args: {
+    ...componentDefaults,
+    sticky: { offset: 50 },
+  },
+  render: ({ ...args }) => (
+    <EuiPage css={{ minHeight: '150vh' }}>
+      <EuiPageSidebar css={{ backgroundColor: '#fff' }} {...args}>
+        <EuiSkeletonText
+          lines={10}
+          size="m"
+          isLoading={true}
+          contentAriaLabel="Page sidebar mock text"
+        ></EuiSkeletonText>
+      </EuiPageSidebar>
+      <EuiPageBody>
         <EuiPageSection>
-          <EuiImage alt="Fake paragraph" url={contentSvg} size={'fullWidth'} />
+          <EuiSkeletonText
+            lines={10}
+            size="m"
+            isLoading={true}
+            contentAriaLabel="Page body mock text"
+          ></EuiSkeletonText>
         </EuiPageSection>
       </EuiPageBody>
     </EuiPage>

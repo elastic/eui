@@ -9,10 +9,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import contentSvg from '../../../src-docs/src/images/content.svg';
-import sideNavSvg from '../../../src-docs/src/images/side_nav.svg';
-
-import { EuiImage } from '../image';
+import { EuiSkeletonText } from '../skeleton';
 import { EuiPageSidebar } from './page_sidebar';
 import { EuiPageBody } from './page_body';
 import { EuiPageSection } from './page_section';
@@ -34,23 +31,56 @@ const componentDefaults: EuiPageProps = {
 };
 
 export const Playground: Story = {
+  args: componentDefaults,
+  render: ({ ...args }) => (
+    <div css={{ display: 'flex', minHeight: '100vh', backgroundColor: '#fff' }}>
+      <EuiPage {...args}>
+        <EuiPageSidebar paddingSize="l">
+          <EuiSkeletonText
+            lines={10}
+            size="m"
+            isLoading={true}
+            contentAriaLabel="Page sidebar mock text"
+          ></EuiSkeletonText>
+        </EuiPageSidebar>
+        <EuiPageBody paddingSize="none" panelled={true}>
+          <EuiPageSection>
+            <EuiSkeletonText
+              lines={10}
+              size="m"
+              isLoading={true}
+              contentAriaLabel="Page body mock text"
+            ></EuiSkeletonText>
+          </EuiPageSection>
+        </EuiPageBody>
+      </EuiPage>
+    </div>
+  ),
+};
+
+export const RestrictWidth: Story = {
   args: {
     ...componentDefaults,
+    restrictWidth: '80vw',
   },
   render: ({ ...args }) => (
     <EuiPage {...args}>
       <EuiPageSidebar paddingSize="l">
-        <EuiImage alt="Fake paragraph" url={sideNavSvg} />
+        <EuiSkeletonText
+          lines={10}
+          size="m"
+          isLoading={true}
+          contentAriaLabel="Page sidebar mock text"
+        ></EuiSkeletonText>
       </EuiPageSidebar>
       <EuiPageBody paddingSize="none" panelled={true}>
         <EuiPageSection>
-          {
-            <EuiImage
-              alt="Fake paragraph"
-              url={contentSvg}
-              size={'fullWidth'}
-            />
-          }
+          <EuiSkeletonText
+            lines={10}
+            size="m"
+            isLoading={true}
+            contentAriaLabel="Page body mock text"
+          ></EuiSkeletonText>
         </EuiPageSection>
       </EuiPageBody>
     </EuiPage>

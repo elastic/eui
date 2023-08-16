@@ -9,10 +9,9 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import contentSvg from '../../../../src-docs/src/images/content.svg';
-import { EuiImage } from '../../image';
+import { EuiSkeletonText } from '../../skeleton';
 import { EuiPage } from '../page';
-import { EuiPageSection } from '..//page_section';
+import { EuiPageSection } from '../page_section';
 
 import { EuiPageBody, EuiPageBodyProps } from './page_body';
 
@@ -28,24 +27,21 @@ const componentDefaults: EuiPageBodyProps = {
   panelled: true,
   restrictWidth: false,
   paddingSize: 'none',
-  component: 'main', // This is not a component default, but for the purposes of easier testing in the DOM in Storybook we'll set it to section
+  component: 'main', // This is not a component default, but for the purposes of easier testing in the DOM in Storybook we'll set it to main
 };
 
 export const Playground: Story = {
-  args: {
-    ...componentDefaults,
-  },
+  args: componentDefaults,
   render: ({ ...args }) => (
     <EuiPage>
       <EuiPageBody {...args}>
         <EuiPageSection>
-          {
-            <EuiImage
-              alt="Fake paragraph"
-              url={contentSvg}
-              size={'fullWidth'}
-            />
-          }
+          <EuiSkeletonText
+            lines={10}
+            size="m"
+            isLoading={true}
+            contentAriaLabel="Page body mock text"
+          ></EuiSkeletonText>
         </EuiPageSection>
       </EuiPageBody>
     </EuiPage>
