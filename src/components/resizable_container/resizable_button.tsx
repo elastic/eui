@@ -9,7 +9,6 @@
 import React, {
   FunctionComponent,
   ButtonHTMLAttributes,
-  MouseEvent,
   useCallback,
   useMemo,
   useRef,
@@ -18,13 +17,16 @@ import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 import { EuiI18n } from '../i18n';
-import { useGeneratedHtmlId } from '../../services';
+import { useEuiTheme, useGeneratedHtmlId } from '../../services';
+
 import { useEuiResizableContainerContext } from './context';
 import {
+  EuiResizableContainerRegistry,
   EuiResizableButtonController,
   EuiResizableButtonMouseEvent,
   EuiResizableButtonKeyEvent,
 } from './types';
+import { euiResizableButtonStyles } from './resizable_button.styles';
 
 interface EuiResizableButtonControls {
   onKeyDown: (eve: EuiResizableButtonKeyEvent) => void;
@@ -62,21 +64,21 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
     prefix: 'resizable-button',
     conditionalId: id,
   });
-  const { registry: { resizers } = { resizers: {} } } =
-    useEuiResizableContainerContext();
+  const {
+    registry: { resizers } = { resizers: {} } as EuiResizableContainerRegistry,
+  } = useEuiResizableContainerContext();
   const isDisabled = useMemo(
-    () => disabled || (resizers[resizerId] && resizers[resizerId].isDisabled),
+    () => disabled || resizers[resizerId]?.isDisabled,
     [resizers, resizerId, disabled]
   );
-  const classes = classNames(
-    'euiResizableButton',
-    {
-      'euiResizableButton--vertical': !isHorizontal,
-      'euiResizableButton--horizontal': isHorizontal,
-      'euiResizableButton--disabled': isDisabled,
-    },
-    className
-  );
+
+  const classes = classNames('euiResizableButton', className);
+  const euiTheme = useEuiTheme();
+  const styles = euiResizableButtonStyles(euiTheme);
+  const cssStyles = [
+    styles.euiResizableButton,
+    isHorizontal ? styles.horizontal : styles.vertical,
+  ];
 
   const previousRef = useRef<HTMLElement>();
   const onRef = useCallback(
@@ -100,13 +102,6 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
     [registration, resizerId, disabled]
   );
 
-  const setFocus = (e: MouseEvent<HTMLButtonElement>) =>
-    e.currentTarget.focus();
-
-  const handleFocus = () => {
-    onFocus && onFocus(resizerId);
-  };
-
   return (
     <EuiI18n
       tokens={[
@@ -126,10 +121,11 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
             isHorizontal ? horizontalResizerAriaLabel : verticalResizerAriaLabel
           }
           className={classes}
+          css={cssStyles}
           data-test-subj="euiResizableButton"
           type="button"
-          onClick={setFocus}
-          onFocus={handleFocus}
+          onClick={(e) => e.currentTarget.focus()}
+          onFocus={() => onFocus?.(resizerId)}
           onBlur={onBlur}
           disabled={isDisabled}
           {...rest}

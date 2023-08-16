@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiResizableButton renders 1`] = `
+<div>
+  <button
+    aria-label="aria-label"
+    class="euiResizableButton testClass1 testClass2 emotion-euiResizableButton-vertical-euiTestCss"
+    data-test-subj="test subject string"
+    id="resizable-button_generated-id"
+    type="button"
+  />
+</div>
+`;

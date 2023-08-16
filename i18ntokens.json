@@ -5,14 +5,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 349,
+        "line": 408,
         "column": 16,
-        "index": 10174
+        "index": 12163
       },
       "end": {
-        "line": 349,
+        "line": 408,
         "column": 76,
-        "index": 10234
+        "index": 12223
       }
     },
     "filepath": "src/components/accordion/accordion.tsx"
@@ -430,6 +430,24 @@
       }
     },
     "filepath": "src/components/code/code_block_full_screen.tsx"
+  },
+  {
+    "token": "euiCollapsibleNavBeta.ariaLabel",
+    "defString": "Site menu",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 170,
+        "column": 27,
+        "index": 5493
+      },
+      "end": {
+        "line": 173,
+        "column": 3,
+        "index": 5563
+      }
+    },
+    "filepath": "src/components/collapsible_nav_beta/collapsible_nav_beta.tsx"
   },
   {
     "token": "euiCollapsibleNavButton.ariaLabelOpen",
@@ -4667,14 +4685,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 294,
+        "line": 295,
         "column": 8,
-        "index": 9459
+        "index": 9503
       },
       "end": {
-        "line": 294,
+        "line": 295,
         "column": 78,
-        "index": 9529
+        "index": 9573
       }
     },
     "filepath": "src/components/flyout/flyout.tsx"
@@ -4685,14 +4703,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 357,
+        "line": 359,
         "column": 12,
-        "index": 11739
+        "index": 11856
       },
       "end": {
-        "line": 360,
+        "line": 362,
         "column": 14,
-        "index": 11948
+        "index": 12065
       }
     },
     "filepath": "src/components/flyout/flyout.tsx"
@@ -4703,14 +4721,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 362,
+        "line": 364,
         "column": 12,
-        "index": 11977
+        "index": 12094
       },
       "end": {
-        "line": 365,
+        "line": 367,
         "column": 14,
-        "index": 12149
+        "index": 12266
       }
     },
     "filepath": "src/components/flyout/flyout.tsx"
@@ -4721,14 +4739,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 368,
+        "line": 370,
         "column": 12,
-        "index": 12220
+        "index": 12337
       },
       "end": {
-        "line": 371,
+        "line": 373,
         "column": 14,
-        "index": 12407
+        "index": 12524
       }
     },
     "filepath": "src/components/flyout/flyout.tsx"
@@ -4901,14 +4919,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 614,
+        "line": 616,
         "column": 6,
-        "index": 18263
+        "index": 18346
       },
       "end": {
-        "line": 617,
+        "line": 619,
         "column": 8,
-        "index": 18498
+        "index": 18581
       }
     },
     "filepath": "src/components/form/range/dual_range.tsx"
@@ -4919,14 +4937,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 182,
+        "line": 183,
         "column": 6,
-        "index": 4833
+        "index": 4858
       },
       "end": {
-        "line": 185,
+        "line": 186,
         "column": 8,
-        "index": 5010
+        "index": 5035
       }
     },
     "filepath": "src/components/form/range/range.tsx"
@@ -4939,12 +4957,12 @@
       "start": {
         "line": 344,
         "column": 12,
-        "index": 9030
+        "index": 9079
       },
       "end": {
         "line": 348,
         "column": 14,
-        "index": 9276
+        "index": 9325
       }
     },
     "filepath": "src/components/form/super_select/super_select.tsx"
@@ -4957,12 +4975,12 @@
       "start": {
         "line": 351,
         "column": 8,
-        "index": 9331
+        "index": 9380
       },
       "end": {
         "line": 351,
         "column": 75,
-        "index": 9398
+        "index": 9447
       }
     },
     "filepath": "src/components/form/super_select/super_select.tsx"
@@ -6017,14 +6035,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 676,
+        "line": 671,
         "column": 16,
-        "index": 19791
+        "index": 19639
       },
       "end": {
-        "line": 679,
+        "line": 674,
         "column": 18,
-        "index": 19985
+        "index": 19833
       }
     },
     "filepath": "src/components/popover/popover.tsx"
