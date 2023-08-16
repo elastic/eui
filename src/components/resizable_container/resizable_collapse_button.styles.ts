@@ -32,16 +32,26 @@ export const euiResizableCollapseButtonStyles = (
         transition-property: background, box-shadow;
       }
     `,
-    collapsible: css`
-      background: ${euiTheme.colors.emptyShade};
-      ${euiShadowXSmall(euiThemeContext)}
+    collapsible: {
+      collapsible: css`
+        background: ${euiTheme.colors.emptyShade};
+        ${euiShadowXSmall(euiThemeContext)}
 
-      &:focus {
-        ${euiSlightShadowHover(euiThemeContext)}
-      }
-    `,
-    collapsed: css`
-      border-radius: 0;
-    `,
+        &:focus {
+          ${euiSlightShadowHover(euiThemeContext)}
+        }
+      `,
+      horizontal: {}, // TODO
+      vertical: {}, // TODO
+    },
+    collapsed: {
+      // When collapsed, the button itself is the full collapsed area
+      // and we use flex to align the icon within
+      collapsed: css`
+        border-radius: 0;
+        ${logicalCSS('top', 0)}
+      `,
+      // TODO: horizontal, top, etc
+    },
   };
 };
