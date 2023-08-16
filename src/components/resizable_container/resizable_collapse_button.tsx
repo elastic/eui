@@ -59,16 +59,6 @@ export const EuiResizableCollapseButton: FunctionComponent<
   const screenReaderOnlyStyles =
     euiScreenReaderOnlyStyles(showOnFocus).euiScreenReaderOnly;
 
-  const classes = classNames(
-    'euiResizableToggleButton',
-    `euiResizableToggleButton--${direction}`,
-    `euiResizableToggleButton--${externalPosition}`,
-    `euiResizableToggleButton--${internalPosition}`,
-    {
-      'euiResizableToggleButton-isCollapsed': isCollapsed,
-    },
-    className
-  );
   const euiTheme = useEuiTheme();
   const styles = euiResizableCollapseButtonStyles(euiTheme);
 
@@ -101,6 +91,8 @@ export const EuiResizableCollapseButton: FunctionComponent<
       NOT_COLLAPSED_ICON = isHorizontal ? 'menuLeft' : 'menuUp';
       break;
   }
+
+  const classes = classNames('euiResizableCollapseButton', className);
 
   return (
     <EuiButtonIcon
