@@ -92,15 +92,9 @@ if [[ "$1" != "nodocker" ]]; then
     /app/scripts/deploy/deploy_docs nodocker "$@"
   unset GCE_ACCOUNT
 
-  # ==================================================
-  # Buildkite treats pull requests as either "false"
-  # or a number string like "1234". Jenkins prefers
-  # an empty string, which is the rationale for the
-  # extra Buildkite logic.
-  #
+  # If the branch is not a pull request, Buildkite passes "false"
   # https://buildkite.com/docs/pipelines/environment-variables#BUILDKITE_PULL_REQUEST
-  # ==================================================
-  if { [[ ! -z "${GIT_PULL_REQUEST_ID}" ]] && [[ "${GIT_PULL_REQUEST_ID}" != "false" ]]; }; then
+  if [[ ! -z "${GIT_PULL_REQUEST_ID}" ]] && [[ "${GIT_PULL_REQUEST_ID}" != "false" ]]; then
     post_comment_to_gh
   fi
   unset GITHUB_TOKEN
@@ -117,8 +111,6 @@ else
   max_age="1800"
 
   if [[ ! -z "${BUILDKITE_CI}" ]]; then
-    echo "Buildkite CI agent."
-
     # If GIT_PULL_REQUEST_ID length is not 0 and string is not "false"
     if [[ ! -z "${GIT_PULL_REQUEST_ID}" ]] && [[ "${GIT_PULL_REQUEST_ID}" != "false" ]]; then
       echo "Staging pull request ${GIT_PULL_REQUEST_ID}"
