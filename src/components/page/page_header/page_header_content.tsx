@@ -154,7 +154,7 @@ export const EuiPageHeaderContent: FunctionComponent<
   description,
   breadcrumbs,
   breadcrumbProps,
-  alignItems,
+  alignItems = !!pageTitle || !!tabs ? 'top' : 'center',
   responsive = true,
   rightSideItems,
   rightSideGroupProps,
@@ -211,7 +211,7 @@ export const EuiPageHeaderContent: FunctionComponent<
 
   const childrenOnlyStyles = [
     contentStyles.flex,
-    contentStyles[alignItems || 'center'],
+    contentStyles[alignItems],
     responsive === true && isResponsiveBreakpoint && contentStyles.responsive,
     responsive === 'reverse' &&
       isResponsiveBreakpoint &&
