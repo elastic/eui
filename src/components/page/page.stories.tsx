@@ -9,8 +9,8 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { EuiFlexGroup } from '../flex';
 import { EuiSkeletonText } from '../skeleton';
-import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiPageSidebar } from './page_sidebar';
 import { EuiPageBody } from './page_body';
 import { EuiPageSection } from './page_section';
@@ -34,29 +34,33 @@ const componentDefaults: EuiPageProps = {
 export const Playground: Story = {
   args: componentDefaults,
   render: ({ ...args }) => (
-    <EuiFlexGroup css={{ minHeight: '100vh', backgroundColor: '#fff' }}>
-      <EuiFlexItem>
-        <EuiPage {...args}>
-          <EuiPageSidebar paddingSize="l">
+    <EuiFlexGroup
+      direction="column"
+      css={{
+        minHeight: '100vh',
+        backgroundColor: '#fff',
+      }}
+    >
+      <EuiPage {...args}>
+        <EuiPageSidebar paddingSize="l">
+          <EuiSkeletonText
+            lines={10}
+            size="m"
+            isLoading={true}
+            contentAriaLabel="Page sidebar mock text"
+          ></EuiSkeletonText>
+        </EuiPageSidebar>
+        <EuiPageBody paddingSize="none" panelled={true}>
+          <EuiPageSection>
             <EuiSkeletonText
               lines={10}
               size="m"
               isLoading={true}
-              contentAriaLabel="Page sidebar mock text"
+              contentAriaLabel="Page body mock text"
             ></EuiSkeletonText>
-          </EuiPageSidebar>
-          <EuiPageBody paddingSize="none" panelled={true}>
-            <EuiPageSection>
-              <EuiSkeletonText
-                lines={10}
-                size="m"
-                isLoading={true}
-                contentAriaLabel="Page body mock text"
-              ></EuiSkeletonText>
-            </EuiPageSection>
-          </EuiPageBody>
-        </EuiPage>
-      </EuiFlexItem>
+          </EuiPageSection>
+        </EuiPageBody>
+      </EuiPage>
     </EuiFlexGroup>
   ),
 };
@@ -67,29 +71,33 @@ export const RestrictWidth: Story = {
     restrictWidth: '80vw',
   },
   render: ({ ...args }) => (
-    <EuiFlexGroup css={{ minHeight: '100vh', backgroundColor: '#fff' }}>
-      <EuiFlexItem>
-        <EuiPage {...args}>
-          <EuiPageSidebar paddingSize="l">
+    <EuiFlexGroup
+      direction="column"
+      css={{
+        minHeight: '100vh',
+        backgroundColor: '#fff',
+      }}
+    >
+      <EuiPage {...args}>
+        <EuiPageSidebar paddingSize="l">
+          <EuiSkeletonText
+            lines={10}
+            size="m"
+            isLoading={true}
+            contentAriaLabel="Page sidebar mock text"
+          ></EuiSkeletonText>
+        </EuiPageSidebar>
+        <EuiPageBody paddingSize="none" panelled={true}>
+          <EuiPageSection>
             <EuiSkeletonText
               lines={10}
               size="m"
               isLoading={true}
-              contentAriaLabel="Page sidebar mock text"
+              contentAriaLabel="Page body mock text"
             ></EuiSkeletonText>
-          </EuiPageSidebar>
-          <EuiPageBody paddingSize="none" panelled={true}>
-            <EuiPageSection>
-              <EuiSkeletonText
-                lines={10}
-                size="m"
-                isLoading={true}
-                contentAriaLabel="Page body mock text"
-              ></EuiSkeletonText>
-            </EuiPageSection>
-          </EuiPageBody>
-        </EuiPage>
-      </EuiFlexItem>
+          </EuiPageSection>
+        </EuiPageBody>
+      </EuiPage>
     </EuiFlexGroup>
   ),
 };

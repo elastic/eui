@@ -9,7 +9,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { EuiFlexGroup, EuiFlexItem } from '../../flex';
+import { EuiFlexGroup } from '../../flex';
 import { EuiSkeletonText } from '../../skeleton';
 import { EuiPageSection, EuiPageSectionProps } from '../page_section';
 
@@ -36,17 +36,19 @@ const componentDefaults: EuiPageSectionProps = {
 export const Playground: Story = {
   args: componentDefaults,
   render: ({ ...args }) => (
-    <EuiFlexGroup css={{ height: '100vh' }}>
-      <EuiFlexItem>
-        <EuiPageSection {...args}>
-          <EuiSkeletonText
-            lines={10}
-            size="m"
-            isLoading={true}
-            contentAriaLabel="Page sidebar mock text"
-          ></EuiSkeletonText>
-        </EuiPageSection>
-      </EuiFlexItem>
+    <EuiFlexGroup direction="column" css={{ height: '100vh' }}>
+      <EuiPageSection
+        css={{ height: '50vh' }}
+        contentProps={{ css: { inlineSize: '100%' } }}
+        {...args}
+      >
+        <EuiSkeletonText
+          lines={3}
+          size="m"
+          isLoading={true}
+          contentAriaLabel="Page sidebar mock text"
+        ></EuiSkeletonText>
+      </EuiPageSection>
     </EuiFlexGroup>
   ),
 };
