@@ -71,19 +71,22 @@ export const EuiResizableCollapseButton: FunctionComponent<
   );
   const euiTheme = useEuiTheme();
   const styles = euiResizableCollapseButtonStyles(euiTheme);
+
+  const collapsedStyles = [
+    styles.collapsed.collapsed,
+    styles.collapsed[direction],
+    styles.collapsed[`${direction}Positions`][internalPosition],
+  ];
+  const collapsibleStyles = [
+    styles.collapsible.collapsible,
+    styles.collapsible[direction][externalPosition!],
+    styles.collapsible[direction][internalPosition],
+  ];
   const cssStyles = [
     styles.euiResizableCollapseButton,
     showOnFocus && screenReaderOnlyStyles,
+    ...(isCollapsed ? collapsedStyles : collapsibleStyles),
   ];
-  if (isCollapsed) {
-    cssStyles.push(styles.collapsed.collapsed);
-    cssStyles.push(styles.collapsed[direction]);
-    cssStyles.push(styles.collapsed[`${direction}Positions`][internalPosition]);
-  } else {
-    cssStyles.push(styles.collapsible.collapsible);
-    cssStyles.push(styles.collapsible[direction][externalPosition!]);
-    cssStyles.push(styles.collapsible[direction][internalPosition]);
-  }
 
   // Default to simiple grab icon in case there is no externalPosition specified
   let COLLAPSED_ICON = isHorizontal ? 'grab' : 'grabHorizontal';
