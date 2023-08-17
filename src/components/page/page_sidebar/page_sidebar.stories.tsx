@@ -63,6 +63,12 @@ export const StickyOffset: Story = {
     ...componentDefaults,
     sticky: { offset: 50 },
   },
+  argTypes: {
+    // This story demos the sticky functionality; removing other props to prevent confusion
+    minWidth: { table: { disable: true } },
+    paddingSize: { table: { disable: true } },
+    responsive: { table: { disable: true } },
+  },
   render: ({ ...args }) => (
     <EuiPage
       css={{
