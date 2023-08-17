@@ -6,8 +6,8 @@
  * Side Public License, v 1.
  */
 
+import React, { useMemo } from 'react';
 import { v1 as uuidv1 } from 'uuid';
-import { useMemo } from 'react';
 
 /**
  * This function returns a function to generate ids.
@@ -44,7 +44,7 @@ export type UseGeneratedHtmlIdOptions = {
    */
   conditionalId?: string;
 };
-export const useGeneratedHtmlId = ({
+export const useDeprecatedGeneratedHtmlId = ({
   prefix,
   suffix,
   conditionalId,
@@ -53,3 +53,20 @@ export const useGeneratedHtmlId = ({
     return conditionalId || htmlIdGenerator(prefix)(suffix);
   }, [conditionalId, prefix, suffix]);
 };
+
+const useNewGeneratedHtmlId = ({
+  prefix = '',
+  suffix = '',
+  conditionalId,
+}: UseGeneratedHtmlIdOptions = {}) => {
+  // Using the default export and dot notation here is intentional
+  // to prevent React <18 import errors.
+  const id = React.useId();
+
+  return useMemo<string>(() => {
+    return conditionalId || `${prefix}${id}${suffix}`;
+  }, [id, conditionalId, prefix, suffix]);
+};
+
+export const useGeneratedHtmlId =
+  'useId' in React ? useNewGeneratedHtmlId : useDeprecatedGeneratedHtmlId;
