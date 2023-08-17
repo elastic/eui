@@ -111,7 +111,6 @@ box-shadow:
 
 /**
  * slightShadowHover
- * TODO: I think this is only used by panels/cards in the Amsterdam theme, move there
  */
 export const euiSlightShadowHover = (
   { euiTheme, colorMode }: UseEuiTheme,
