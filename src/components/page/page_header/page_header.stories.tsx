@@ -18,7 +18,7 @@ const meta: Meta<EuiPageHeaderProps> = {
   argTypes: {
     alignItems: {
       control: 'select',
-      options: ['center', 'bottom', 'top', 'stretch'],
+      options: ['center', 'bottom', 'top', 'stretch', undefined],
     },
     pageTitleProps: { control: 'object' },
     breadcrumbProps: { control: 'object' },

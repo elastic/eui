@@ -42,6 +42,11 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
   paddingSize = 'none',
   bottomBorder,
 
+  // Page header content shared props:
+  alignItems,
+  responsive = true,
+  children,
+
   // Page header content only props:
   pageTitle,
   pageTitleProps,
@@ -54,11 +59,6 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
   description,
   rightSideItems,
   rightSideGroupProps,
-
-  // Page header content shared props:
-  alignItems = pageTitle || tabs ? 'top' : 'center',
-  responsive = true,
-  children,
   ...rest
 }) => {
   const useTheme = useEuiTheme();

@@ -244,7 +244,7 @@ exports[`EuiPageTemplate_Deprecated template centeredBody is rendered with pageH
         class="euiPageHeaderContent emotion-euiPageHeaderContent-border-l"
       >
         <div
-          class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-center-row"
+          class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
         >
           <div
             class="euiFlexItem emotion-euiFlexItem-grow-1"
@@ -520,7 +520,7 @@ exports[`EuiPageTemplate_Deprecated template centeredContent is rendered with pa
         style="max-width: 1200px;"
       >
         <div
-          class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-center-row"
+          class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
         >
           <div
             class="euiFlexItem emotion-euiFlexItem-grow-1"
@@ -777,7 +777,7 @@ exports[`EuiPageTemplate_Deprecated template default is rendered with pageHeader
         style="max-width: 1200px;"
       >
         <div
-          class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-center-row"
+          class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
         >
           <div
             class="euiFlexItem emotion-euiFlexItem-grow-1"
@@ -1026,7 +1026,7 @@ exports[`EuiPageTemplate_Deprecated template empty is rendered with pageHeader 1
         class="euiPageHeaderContent emotion-euiPageHeaderContent-border-l"
       >
         <div
-          class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-center-row"
+          class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
         >
           <div
             class="euiFlexItem emotion-euiFlexItem-grow-1"
