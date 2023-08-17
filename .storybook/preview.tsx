@@ -86,6 +86,7 @@ const preview: Preview = {
     actions: { argTypesRegex: '^on[A-Z].*' },
     backgrounds: { disable: true }, // Use colorMode instead
     controls: {
+      expanded: true,
       sort: 'requiredFirst',
       matchers: {
         color: /(background|color)$/i,
