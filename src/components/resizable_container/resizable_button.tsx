@@ -40,7 +40,7 @@ export type EuiResizableButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
      * Specify the alignment of the resize handle indicator. Defaults to `center`,
      * but consider using `start` for extremely tall content that scrolls off-screen
      */
-    alignHandle?: 'center' | 'start' | 'end';
+    alignIndicator?: 'center' | 'start' | 'end';
     /**
      * When disabled, the button will be completely hidden
      */
@@ -53,7 +53,7 @@ export type EuiResizableButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
 export const EuiResizableButton = forwardRef<
   HTMLButtonElement,
   EuiResizableButtonProps
->(({ isHorizontal, alignHandle = 'center', className, ...rest }, ref) => {
+>(({ isHorizontal, alignIndicator = 'center', className, ...rest }, ref) => {
   const classes = classNames('euiResizableButton', className);
 
   const euiTheme = useEuiTheme();
@@ -61,7 +61,7 @@ export const EuiResizableButton = forwardRef<
   const cssStyles = [
     styles.euiResizableButton,
     isHorizontal ? styles.horizontal : styles.vertical,
-    styles.alignHandle[alignHandle],
+    styles.alignIndicator[alignIndicator],
   ];
 
   return (

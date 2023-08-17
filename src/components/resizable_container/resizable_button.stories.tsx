@@ -32,7 +32,7 @@ export const Playground: Story = {
   ),
   args: {
     isHorizontal: true,
-    alignHandle: 'center',
+    alignIndicator: 'center',
     disabled: false,
   },
 };

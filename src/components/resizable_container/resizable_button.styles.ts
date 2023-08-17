@@ -143,7 +143,7 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
     `,
-    alignHandle: {
+    alignIndicator: {
       center: css`
         align-items: center;
       `,
