@@ -33,13 +33,16 @@ const componentDefaults: EuiPageProps = {
 
 export const Playground: Story = {
   args: componentDefaults,
+  argTypes: {
+    restrictWidth: { control: 'boolean' },
+  },
   render: ({ ...args }) => (
     <EuiFlexGroup
       direction="column"
-      css={{
-        minHeight: '100vh',
-        backgroundColor: '#fff',
-      }}
+      css={({ euiTheme }) => ({
+        backgroundColor: euiTheme.colors.emptyShade,
+        minBlockSize: '100vh',
+      })}
     >
       <EuiPage {...args}>
         <EuiPageSidebar paddingSize="l">
@@ -48,16 +51,18 @@ export const Playground: Story = {
             size="m"
             isLoading={true}
             contentAriaLabel="Page sidebar mock text"
-          ></EuiSkeletonText>
+          />
         </EuiPageSidebar>
         <EuiPageBody paddingSize="none" panelled={true}>
-          <EuiPageSection>
+          <EuiPageSection
+            contentProps={{ css: { inlineSize: '100vw', maxWidth: '100%' } }}
+          >
             <EuiSkeletonText
               lines={10}
               size="m"
               isLoading={true}
               contentAriaLabel="Page body mock text"
-            ></EuiSkeletonText>
+            />
           </EuiPageSection>
         </EuiPageBody>
       </EuiPage>
@@ -70,13 +75,19 @@ export const RestrictWidth: Story = {
     ...componentDefaults,
     restrictWidth: '80vw',
   },
+  argTypes: {
+    // This story displays the restrictWidth functionality; removing other props to prevent confusion
+    grow: { table: { disable: true } },
+    direction: { table: { disable: true } },
+    paddingSize: { table: { disable: true } },
+  },
   render: ({ ...args }) => (
     <EuiFlexGroup
       direction="column"
-      css={{
-        minHeight: '100vh',
-        backgroundColor: '#fff',
-      }}
+      css={({ euiTheme }) => ({
+        backgroundColor: euiTheme.colors.emptyShade,
+        minBlockSize: '100vh',
+      })}
     >
       <EuiPage {...args}>
         <EuiPageSidebar paddingSize="l">
@@ -85,7 +96,7 @@ export const RestrictWidth: Story = {
             size="m"
             isLoading={true}
             contentAriaLabel="Page sidebar mock text"
-          ></EuiSkeletonText>
+          />
         </EuiPageSidebar>
         <EuiPageBody paddingSize="none" panelled={true}>
           <EuiPageSection
@@ -96,7 +107,7 @@ export const RestrictWidth: Story = {
               size="m"
               isLoading={true}
               contentAriaLabel="Page body mock text"
-            ></EuiSkeletonText>
+            />
           </EuiPageSection>
         </EuiPageBody>
       </EuiPage>

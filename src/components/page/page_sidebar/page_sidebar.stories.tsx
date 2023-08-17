@@ -19,6 +19,9 @@ import { EuiPageSidebar, EuiPageSidebarProps } from './page_sidebar';
 const meta: Meta<EuiPageSidebarProps> = {
   title: 'EuiPageSidebar',
   component: EuiPageSidebar,
+  parameters: {
+    layout: 'fullscreen',
+  },
 };
 
 export default meta;
@@ -33,16 +36,25 @@ const componentDefaults: EuiPageSidebarProps = {
 
 export const Playground: Story = {
   args: componentDefaults,
+  argTypes: {
+    sticky: { control: 'boolean' },
+  },
   render: ({ ...args }) => (
-    <EuiPage>
+    <EuiPage
+      css={({ euiTheme }) => ({
+        backgroundColor: euiTheme.colors.emptyShade,
+        minBlockSize: '150vh',
+      })}
+    >
       <EuiPageSidebar {...args}>
         <EuiSkeletonText
           lines={10}
           size="m"
           isLoading={true}
           contentAriaLabel="Page sidebar mock text"
-        ></EuiSkeletonText>
+        />
       </EuiPageSidebar>
+      <EuiPageBody></EuiPageBody>
     </EuiPage>
   ),
 };
@@ -53,25 +65,28 @@ export const StickyOffset: Story = {
     sticky: { offset: 50 },
   },
   render: ({ ...args }) => (
-    <EuiPage css={{ minHeight: '150vh' }}>
-      <EuiPageSidebar css={{ backgroundColor: '#fff' }} {...args}>
+    <EuiPage css={{ minBlockSize: '150vh' }}>
+      <EuiPageSidebar
+        css={({ euiTheme }) => ({
+          backgroundColor: euiTheme.colors.emptyShade,
+        })}
+        {...args}
+      >
         <EuiSkeletonText
           lines={10}
           size="m"
           isLoading={true}
           contentAriaLabel="Page sidebar mock text"
-        ></EuiSkeletonText>
+        />
       </EuiPageSidebar>
-      <EuiPageBody>
-        <EuiPageSection>
-          <EuiSkeletonText
-            lines={10}
-            size="m"
-            isLoading={true}
-            contentAriaLabel="Page body mock text"
-          ></EuiSkeletonText>
-        </EuiPageSection>
-      </EuiPageBody>
+      <EuiPageSection color="plain">
+        <EuiSkeletonText
+          lines={10}
+          size="m"
+          isLoading={true}
+          contentAriaLabel="Page body mock text"
+        />
+      </EuiPageSection>
     </EuiPage>
   ),
 };

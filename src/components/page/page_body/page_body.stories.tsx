@@ -41,7 +41,7 @@ export const Playground: Story = {
             size="m"
             isLoading={true}
             contentAriaLabel="Page body mock text"
-          ></EuiSkeletonText>
+          />
         </EuiPageSection>
       </EuiPageBody>
     </EuiPage>

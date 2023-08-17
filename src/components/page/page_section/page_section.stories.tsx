@@ -36,18 +36,15 @@ const componentDefaults: EuiPageSectionProps = {
 export const Playground: Story = {
   args: componentDefaults,
   render: ({ ...args }) => (
-    <EuiFlexGroup direction="column" css={{ height: '100vh' }}>
-      <EuiPageSection
-        css={{ height: '50vh' }}
-        contentProps={{ css: { inlineSize: '100%' } }}
-        {...args}
-      >
+    <EuiFlexGroup direction="column" css={{ blockSize: '100vh' }}>
+      <EuiPageSection css={{ blockSize: '50vh' }} {...args}>
         <EuiSkeletonText
           lines={3}
           size="m"
           isLoading={true}
           contentAriaLabel="Page sidebar mock text"
-        ></EuiSkeletonText>
+          css={{ inlineSize: '50vw', maxWidth: '100%', display: 'block' }}
+        />
       </EuiPageSection>
     </EuiFlexGroup>
   ),
