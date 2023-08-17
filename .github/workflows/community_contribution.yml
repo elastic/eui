@@ -14,10 +14,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Test for community contribution"
-        if: ${{ env.EUI_REPO != env.HEAD_REPO }} && ${{ env.SUBMITTER_ASSOCIATION != 'MEMBER' }}
+        if: |
+          ${{ env.EUI_REPO != env.HEAD_REPO }} &&
+          ${{ env.SUBMITTER_ASSOCIATION != 'MEMBER' && env.SUBMITTER_ASSOCIATION != 'CONTRIBUTOR' }}
         run: |
           echo "This is a community submission."
       - name: "Test for forked member contribution"
-        if: ${{ env.EUI_REPO != env.HEAD_REPO }} && ${{ env.SUBMITTER_ASSOCIATION == 'MEMBER' }}
+        if: |
+          ${{ env.EUI_REPO != env.HEAD_REPO }} &&
+          ${{ env.SUBMITTER_ASSOCIATION == 'MEMBER' && env.SUBMITTER_ASSOCIATION == 'CONTRIBUTOR' }}
         run: |
           echo "This is a forked member submission."
