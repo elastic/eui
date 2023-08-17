@@ -47,8 +47,8 @@
     "yo-doc": "yo ./generator-eui/app/documentation.js",
     "yo-changelog": "yo ./generator-eui/changelog/index.js",
     "release": "node ./scripts/release.js",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "storybook": "yarn compile-scss && storybook dev -p 6006",
+    "build-storybook": "yarn compile-scss && storybook build"
   },
   "repository": {
     "type": "git",
