@@ -14,9 +14,29 @@ import { shouldRenderCustomStyles } from '../../test/internal';
 import { EuiResizableContainerContextProvider } from './context';
 import { EuiResizableContainerRegistry } from './types';
 
-import { EuiResizableButton } from './resizable_button';
+import {
+  EuiResizableButton,
+  EuiResizableButtonControlled,
+} from './resizable_button';
 
 describe('EuiResizableButton', () => {
+  shouldRenderCustomStyles(<EuiResizableButton />);
+
+  it('renders', () => {
+    const { container } = render(<EuiResizableButton {...requiredProps} />);
+
+    expect(container).toMatchSnapshot();
+  });
+
+  it('renders as hidden if disabled', () => {
+    const { container } = render(<EuiResizableButton disabled />);
+
+    expect(container.firstChild).toBeDisabled();
+    expect(container.firstChild).not.toBeVisible();
+  });
+});
+
+describe('EuiResizableButtonControlled', () => {
   // Context setup
   const mockRegistry = { panels: {}, resizers: {} };
   const wrapper: FunctionComponent<
@@ -27,65 +47,44 @@ describe('EuiResizableButton', () => {
     </EuiResizableContainerContextProvider>
   );
 
-  shouldRenderCustomStyles(<EuiResizableButton />, { wrapper });
+  it('renders as disabled if the resizerId is disabled in context', () => {
+    const { container } = render(
+      <EuiResizableContainerContextProvider
+        registry={
+          {
+            panels: {},
+            resizers: {
+              'resizable-button_generated-id': { isDisabled: true },
+            },
+          } as unknown as EuiResizableContainerRegistry // Skipping correct obj types for the sake of the test
+        }
+      >
+        <EuiResizableButtonControlled />
+      </EuiResizableContainerContextProvider>
+    );
 
-  it('renders', () => {
-    const { container } = render(<EuiResizableButton {...requiredProps} />, {
+    expect(container.firstChild).toBeDisabled();
+  });
+
+  it('focuses the button on click', () => {
+    const { container } = render(<EuiResizableButtonControlled />, {
       wrapper,
     });
+    fireEvent.click(container.firstChild!);
 
-    expect(container).toMatchSnapshot();
+    expect(container.firstChild).toBe(document.activeElement);
   });
 
-  describe('disabled/hidden', () => {
-    it('renders as disabled and hidden if the disabled prop is passed', () => {
-      const { container } = render(<EuiResizableButton disabled />, {
+  it('calls the onFocus prop with the button ID', () => {
+    const onFocus = jest.fn();
+    const { container } = render(
+      <EuiResizableButtonControlled onFocus={onFocus} />,
+      {
         wrapper,
-      });
+      }
+    );
+    fireEvent.focus(container.firstChild!);
 
-      expect(container.firstChild).toBeDisabled();
-      expect(container.firstChild).not.toBeVisible();
-    });
-
-    it('renders as disabled and hidden if the resizerId is disabled in context', () => {
-      const { container } = render(
-        <EuiResizableContainerContextProvider
-          registry={
-            {
-              panels: {},
-              resizers: {
-                'resizable-button_generated-id': { isDisabled: true },
-              },
-            } as unknown as EuiResizableContainerRegistry // Skipping correct obj types for the sake of the test
-          }
-        >
-          <EuiResizableButton />
-        </EuiResizableContainerContextProvider>
-      );
-
-      expect(container.firstChild).toBeDisabled();
-      expect(container.firstChild).not.toBeVisible();
-    });
-  });
-
-  describe('focus', () => {
-    it('focuses the button on click', () => {
-      const { container } = render(<EuiResizableButton />, {
-        wrapper,
-      });
-      fireEvent.click(container.firstChild!);
-
-      expect(container.firstChild).toBe(document.activeElement);
-    });
-
-    it('calls the onFocus prop', () => {
-      const onFocus = jest.fn();
-      const { container } = render(<EuiResizableButton onFocus={onFocus} />, {
-        wrapper,
-      });
-      fireEvent.focus(container.firstChild!);
-
-      expect(onFocus).toHaveBeenCalledWith('resizable-button_generated-id');
-    });
+    expect(onFocus).toHaveBeenCalledWith('resizable-button_generated-id');
   });
 });

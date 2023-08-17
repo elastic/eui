@@ -24,11 +24,12 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     // Mimics the "grab" icon with CSS psuedo-elements.
     // 1. The "grab" icon transforms into a thicker straight line on :hover and :focus
+    // 2. Start/end aligned handles should have a slight margin offset that disappears on hover/focus
+    // 3. CSS hack to smooth out/anti-alias the 1px wide handles at various zoom levels
     euiResizableButton: css`
       z-index: 1;
       flex-shrink: 0;
       display: flex;
-      align-items: center;
       justify-content: center;
       gap: ${mathWithUnits(grabHandleHeight, (x) => x * 2)};
 
@@ -52,13 +53,11 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
         content: '';
         display: block;
         background-color: ${euiTheme.colors.darkestShade};
-
-        /* CSS hack to smooth out/anti-alias the 1px wide handles at various zoom levels */
-        transform: translateZ(0);
+        transform: translateZ(0); /* 3 */
 
         ${euiCanAnimate} {
           transition: width ${transition}, height ${transition},
-            background-color ${transition};
+            margin ${transition}, background-color ${transition};
         }
       }
 
@@ -75,9 +74,10 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
 
-      /* Add a transparent background to the container and
-         emphasize the "grab" icon with primary color on :focus */
-      &:focus {
+      /* Add a transparent background to the container and emphasize the "grab" icon
+         with primary color on :focus (NOTE - :active is needed for Safari) */
+      &:focus,
+      &:active {
         background-color: ${transparentize(euiTheme.colors.primary, 0.1)};
 
         &::before,
@@ -94,6 +94,7 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     horizontal: css`
       cursor: col-resize;
+      ${logicalCSS('height', '100%')}
       ${logicalCSS('width', buttonSize)}
       margin-inline: ${mathWithUnits(buttonSize, (x) => x / -2)};
 
@@ -101,20 +102,25 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
       &::after {
         ${logicalCSS('width', grabHandleHeight)}
         ${logicalCSS('height', grabHandleWidth)}
+        margin-block: ${euiTheme.size.base}; /* 2 */
       }
 
       /* 1 */
       &:hover,
-      &:focus {
+      &:focus,
+      &:active {
         &::before,
         &::after {
           ${logicalCSS('height', '100%')}
+          margin-block: 0; /* 2 */
+          transform: none; /* 3 */
         }
       }
     `,
     vertical: css`
       flex-direction: column;
       cursor: row-resize;
+      ${logicalCSS('width', '100%')}
       ${logicalCSS('height', buttonSize)}
       margin-block: ${mathWithUnits(buttonSize, (x) => x / -2)};
 
@@ -122,16 +128,31 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
       &::after {
         ${logicalCSS('height', grabHandleHeight)}
         ${logicalCSS('width', grabHandleWidth)}
+        margin-inline: ${euiTheme.size.base}; /* 2 */
       }
 
       /* 1 */
       &:hover,
-      &:focus {
+      &:focus,
+      &:active {
         &::before,
         &::after {
           ${logicalCSS('width', '100%')}
+          margin-inline: 0; /* 2 */
+          transform: none; /* 3 */
         }
       }
     `,
+    alignIndicator: {
+      center: css`
+        align-items: center;
+      `,
+      start: css`
+        align-items: flex-start;
+      `,
+      end: css`
+        align-items: flex-end;
+      `,
+    },
   };
 };
