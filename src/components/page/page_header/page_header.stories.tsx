@@ -33,6 +33,7 @@ const componentDefaults: EuiPageHeaderProps = {
   paddingSize: 'none',
   responsive: true,
   restrictWidth: false,
+  alignItems: undefined,
 };
 
 export const Playground: Story = {
@@ -42,7 +43,6 @@ export const Playground: Story = {
     iconType: 'logoKibana',
     description: 'Example of a description.',
     bottomBorder: 'extended',
-    alignItems: 'top',
     rightSideItems: [
       <EuiButton fill>Add something</EuiButton>,
       <EuiButton>Do something</EuiButton>,

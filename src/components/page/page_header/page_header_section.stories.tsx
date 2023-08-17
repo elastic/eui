@@ -32,7 +32,7 @@ export const Playground: Story = {
           <h1>Page title</h1>
         </EuiTitle>
       </EuiPageHeaderSection>
-      <EuiPageHeaderSection>Page abilities</EuiPageHeaderSection>
+      <EuiPageHeaderSection {...args}>Page abilities</EuiPageHeaderSection>
     </EuiPageHeader>
   ),
 };

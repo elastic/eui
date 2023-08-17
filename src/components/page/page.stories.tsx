@@ -40,32 +40,12 @@ export const Playground: Story = {
     <EuiFlexGroup
       direction="column"
       css={({ euiTheme }) => ({
+        // Used for testing the grow prop
         backgroundColor: euiTheme.colors.emptyShade,
         minBlockSize: '100vh',
       })}
     >
-      <EuiPage {...args}>
-        <EuiPageSidebar paddingSize="l">
-          <EuiSkeletonText
-            lines={10}
-            size="m"
-            isLoading={true}
-            contentAriaLabel="Page sidebar mock text"
-          />
-        </EuiPageSidebar>
-        <EuiPageBody paddingSize="none" panelled={true}>
-          <EuiPageSection
-            contentProps={{ css: { inlineSize: '100vw', maxWidth: '100%' } }}
-          >
-            <EuiSkeletonText
-              lines={10}
-              size="m"
-              isLoading={true}
-              contentAriaLabel="Page body mock text"
-            />
-          </EuiPageSection>
-        </EuiPageBody>
-      </EuiPage>
+      <EuiPage {...args}>{_pageContent}</EuiPage>
     </EuiFlexGroup>
   ),
 };
@@ -81,36 +61,33 @@ export const RestrictWidth: Story = {
     direction: { table: { disable: true } },
     paddingSize: { table: { disable: true } },
   },
-  render: ({ ...args }) => (
-    <EuiFlexGroup
-      direction="column"
-      css={({ euiTheme }) => ({
-        backgroundColor: euiTheme.colors.emptyShade,
-        minBlockSize: '100vh',
-      })}
-    >
-      <EuiPage {...args}>
-        <EuiPageSidebar paddingSize="l">
-          <EuiSkeletonText
-            lines={10}
-            size="m"
-            isLoading={true}
-            contentAriaLabel="Page sidebar mock text"
-          />
-        </EuiPageSidebar>
-        <EuiPageBody paddingSize="none" panelled={true}>
-          <EuiPageSection
-            contentProps={{ css: { inlineSize: '100vw', maxWidth: '100%' } }}
-          >
-            <EuiSkeletonText
-              lines={10}
-              size="m"
-              isLoading={true}
-              contentAriaLabel="Page body mock text"
-            />
-          </EuiPageSection>
-        </EuiPageBody>
-      </EuiPage>
-    </EuiFlexGroup>
-  ),
+  render: ({ ...args }) => <EuiPage {...args}>{_pageContent}</EuiPage>,
 };
+
+// Shared page children
+const _pageContent = (
+  <>
+    <EuiPageSidebar paddingSize="l">
+      <EuiSkeletonText
+        lines={10}
+        size="m"
+        isLoading={true}
+        contentAriaLabel="Page sidebar mock text"
+      />
+    </EuiPageSidebar>
+    <EuiPageBody paddingSize="none" panelled={true}>
+      <EuiPageSection
+        contentProps={{
+          css: { inlineSize: '100vw', maxInlineSize: '100%' },
+        }}
+      >
+        <EuiSkeletonText
+          lines={10}
+          size="m"
+          isLoading={true}
+          contentAriaLabel="Page body mock text"
+        />
+      </EuiPageSection>
+    </EuiPageBody>
+  </>
+);

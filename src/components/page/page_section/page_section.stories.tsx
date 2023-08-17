@@ -36,6 +36,7 @@ const componentDefaults: EuiPageSectionProps = {
 export const Playground: Story = {
   args: componentDefaults,
   render: ({ ...args }) => (
+    // Block size demos the grow prop
     <EuiFlexGroup direction="column" css={{ blockSize: '100vh' }}>
       <EuiPageSection css={{ blockSize: '50vh' }} {...args}>
         <EuiSkeletonText
@@ -43,7 +44,7 @@ export const Playground: Story = {
           size="m"
           isLoading={true}
           contentAriaLabel="Page sidebar mock text"
-          css={{ inlineSize: '50vw', maxWidth: '100%', display: 'block' }}
+          css={{ inlineSize: '50vw', maxWidth: '100%', display: 'block' }} // This demos the alignment prop
         />
       </EuiPageSection>
     </EuiFlexGroup>

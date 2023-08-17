@@ -10,7 +10,6 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { EuiSkeletonText } from '../../skeleton';
-import { EuiPageBody } from '../page_body';
 import { EuiPageSection } from '../page_section';
 import { EuiPage } from '../page';
 
@@ -43,7 +42,7 @@ export const Playground: Story = {
     <EuiPage
       css={({ euiTheme }) => ({
         backgroundColor: euiTheme.colors.emptyShade,
-        minBlockSize: '150vh',
+        minBlockSize: '150vh', // Used to test the sticky prop
       })}
     >
       <EuiPageSidebar {...args}>
@@ -54,7 +53,7 @@ export const Playground: Story = {
           contentAriaLabel="Page sidebar mock text"
         />
       </EuiPageSidebar>
-      <EuiPageBody></EuiPageBody>
+      <EuiPageSection />
     </EuiPage>
   ),
 };
@@ -65,10 +64,14 @@ export const StickyOffset: Story = {
     sticky: { offset: 50 },
   },
   render: ({ ...args }) => (
-    <EuiPage css={{ minBlockSize: '150vh' }}>
+    <EuiPage
+      css={{
+        minBlockSize: '150vh', // Used to test the sticky prop
+      }}
+    >
       <EuiPageSidebar
         css={({ euiTheme }) => ({
-          backgroundColor: euiTheme.colors.emptyShade,
+          backgroundColor: euiTheme.colors.emptyShade, // Setting white backgrounds helps see the offset
         })}
         {...args}
       >

@@ -11,7 +11,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { EuiSkeletonText } from '../../skeleton';
 import { EuiPage } from '../page';
-import { EuiPageSection } from '../page_section';
 
 import { EuiPageBody, EuiPageBodyProps } from './page_body';
 
@@ -26,7 +25,7 @@ type Story = StoryObj<EuiPageBodyProps>;
 const componentDefaults: EuiPageBodyProps = {
   panelled: true,
   restrictWidth: false,
-  paddingSize: 'none',
+  paddingSize: 'm', // The component default is actually 'none', but for nicer visuals in Storybook we'll set it to 'm'
   component: 'main', // This is not a component default, but for the purposes of easier testing in the DOM in Storybook we'll set it to main
 };
 
@@ -35,14 +34,12 @@ export const Playground: Story = {
   render: ({ ...args }) => (
     <EuiPage>
       <EuiPageBody {...args}>
-        <EuiPageSection>
-          <EuiSkeletonText
-            lines={10}
-            size="m"
-            isLoading={true}
-            contentAriaLabel="Page body mock text"
-          />
-        </EuiPageSection>
+        <EuiSkeletonText
+          lines={10}
+          size="m"
+          isLoading={true}
+          contentAriaLabel="Page body mock text"
+        />
       </EuiPageBody>
     </EuiPage>
   ),
