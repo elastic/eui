@@ -35,9 +35,6 @@ export type EuiResizableCollapseButtonProps = Omit<
    * Same direction derived from EuiResizableContainer
    */
   direction?: EuiResizableContainerProps['direction'];
-  /**
-   *
-   */
   isVisible?: boolean;
   isCollapsed?: boolean;
 };
