@@ -1,7 +1,7 @@
 name: "Community contribution"
 on:
   pull_request:
-    types: [ 'opened', 'reopened', 'edited' ] # Remove the 'edited' after you're ready to merge this
+    types: [ 'opened', 'edited' ] # Remove the 'edited' after you're ready to merge this
 
 jobs:
   # Add a comment to manually start Buildkite for community contributions
@@ -21,7 +21,3 @@ jobs:
         if: ${{ env.EUI_REPO != env.HEAD_REPO }} && ${{ env.SUBMITTER_ASSOCIATION == 'MEMBER' }}
         run: |
           echo "This is a forked member submission."
-      - name: "Test for member contribution"
-        if: ${{ env.EUI_REPO == env.HEAD_REPO }} && ${{ env.SUBMITTER_ASSOCIATION == 'MEMBER' }}
-        run: |
-          echo "This is a member submission."
