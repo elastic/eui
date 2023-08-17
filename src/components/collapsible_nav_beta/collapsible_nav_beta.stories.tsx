@@ -61,7 +61,7 @@ const OpenCollapsibleNav: FunctionComponent<
 export const KibanaExample: Story = {
   render: ({ ...args }) => (
     <OpenCollapsibleNav {...args}>
-      <EuiFlyoutBody>
+      <EuiFlyoutBody scrollableTabIndex={-1}>
         <EuiCollapsibleNavItem title="Home" icon="home" isSelected href="#" />
         <EuiCollapsibleNavItem
           title="Recent"
@@ -288,7 +288,7 @@ export const KibanaExample: Story = {
 export const SecurityExample: Story = {
   render: ({ ...args }) => (
     <OpenCollapsibleNav {...args}>
-      <EuiFlyoutBody>
+      <EuiFlyoutBody scrollableTabIndex={-1}>
         <EuiCollapsibleNavItem
           title="Recent"
           icon="clock"

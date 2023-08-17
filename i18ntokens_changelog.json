@@ -1,5 +1,15 @@
 [
   {
+    "version": "87.1.0",
+    "changes": [
+      {
+        "token": "euiCollapsibleNavBeta.ariaLabel",
+        "changeType": "added",
+        "value": "Site menu"
+      }
+    ]
+  },
+  {
     "version": "87.0.0",
     "changes": [
       {

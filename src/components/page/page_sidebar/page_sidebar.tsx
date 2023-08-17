@@ -10,7 +10,7 @@ import React, {
   CSSProperties,
   FunctionComponent,
   HTMLAttributes,
-  useEffect,
+  useLayoutEffect,
   useState,
 } from 'react';
 import { CommonProps } from '../../common';
@@ -80,7 +80,7 @@ export const EuiPageSidebar: FunctionComponent<EuiPageSidebarProps> = ({
     ...logicalStyle('min-width', isResponding ? '100%' : minWidth),
   });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let updatedStyles = {
       ...style,
       ...logicalStyle('min-width', isResponding ? '100%' : minWidth),

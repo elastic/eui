@@ -6,12 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  FunctionComponent,
-  ReactNode,
-  HTMLAttributes,
-  useContext,
-} from 'react';
+import React, { FunctionComponent, HTMLAttributes, useContext } from 'react';
 import classNames from 'classnames';
 
 import { useEuiTheme } from '../../../services';
@@ -65,11 +60,11 @@ export type _SharedEuiCollapsibleNavItemProps = HTMLAttributes<HTMLElement> &
 
 export type EuiCollapsibleNavItemProps = {
   /**
-   * ReactNode to render as this component's title
+   * Required text to render as the nav item title
    */
-  title: ReactNode;
+  title: string;
   /**
-   * Allows customizing title's element.
+   * Allows customizing the title element.
    * Consider using a heading element for better accessibility.
    * Defaults to an unsemantic `span` or `div`, depending on context.
    */

@@ -71,6 +71,25 @@ describe('EuiFlyout', () => {
     ).toBeFalsy();
   });
 
+  it('allows setting custom aria-describedby attributes', () => {
+    const { getByTestSubject } = render(
+      <>
+        <EuiFlyout
+          onClose={() => {}}
+          aria-describedby="custom-test-id"
+          data-test-subj="flyout"
+        />
+        <div id="custom-test-id" hidden>
+          This flyout does X, Y, and Z
+        </div>
+      </>
+    );
+    expect(getByTestSubject('flyout')).toHaveAttribute(
+      'aria-describedby',
+      'generated-id custom-test-id'
+    );
+  });
+
   describe('props', () => {
     test('hideCloseButton', () => {
       const component = mount(<EuiFlyout onClose={() => {}} hideCloseButton />);
