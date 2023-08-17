@@ -32,23 +32,24 @@ import { euiResizableButtonStyles } from './resizable_button.styles';
 export type EuiResizableButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
   CommonProps & {
     /**
-     * Defaults to displaying a resize handle button for vertical (y-axis) resizing.
-     * Set to `true` to display a handle for horizontal (x-axis) resizing.
+     * Defaults to displaying a resizer for vertical (y-axis) resizing.
+     * Set to `true` to display a resizer for horizontal (x-axis) resizing.
      */
     isHorizontal?: boolean;
     /**
-     * Specify the alignment of the resize handle indicator. Defaults to `center`,
+     * Specify the alignment of the initial resize indicator. Defaults to `center`,
      * but consider using `start` for extremely tall content that scrolls off-screen
      */
     alignIndicator?: 'center' | 'start' | 'end';
     /**
-     * When disabled, the button will be completely hidden
+     * When disabled, the resizer button will be completely hidden
      */
     disabled?: boolean;
   };
 
 /**
- * A generic resizable button/drag handle, usable outside of the EuiResizableContainer context
+ * A generic button for indicating/facilitating resizable content,
+ * usable outside of the EuiResizableContainer context
  */
 export const EuiResizableButton = forwardRef<
   HTMLButtonElement,
@@ -94,7 +95,7 @@ export const EuiResizableButton = forwardRef<
 EuiResizableButton.displayName = 'EuiResizableButton';
 
 /**
- * Button specific to controlled EuiResizableContainer usage
+ * Resizer button specific to controlled EuiResizableContainer usage
  */
 export type EuiResizableButtonControls = Omit<
   EuiResizableButtonProps,
