@@ -22,7 +22,7 @@ import { CommonProps } from '../common';
 import { EuiInnerText } from '../inner_text';
 import { EuiTextColor } from '../text';
 import { EuiLink, EuiLinkColor } from '../link';
-import { EuiPopover } from '../popover';
+import { EuiPopover, EuiPopoverProps } from '../popover';
 import { EuiIcon } from '../icon';
 import { useEuiI18n } from '../i18n';
 
@@ -48,13 +48,25 @@ export type EuiBreadcrumbProps = Omit<
      */
     truncate?: boolean;
     /**
-     * Accepts any EuiLink `color` when rendered as one (has `href` or `onClick`)
+     * Accepts any EuiLink `color` when rendered as one (has `href`, `onClick`, or `popoverContent`)
      */
     color?: EuiLinkColor;
     /**
      * Override the existing `aria-current` which defaults to `page` for the last breadcrumb
      */
     'aria-current'?: AriaAttributes['aria-current'];
+    /**
+     * Creates a breadcrumb that toggles a popover dialog
+     *
+     * If passed, both `href` and `onClick` will be ignored - the breadcrumb's
+     * click behavior should only trigger a popover.
+     */
+    popoverContent?: ReactNode;
+    /**
+     * Allows customizing the popover if necessary. Accepts any props that
+     * [EuiPopover](/#/layout/popover) accepts, except for props that control state.
+     */
+    popoverProps?: Omit<EuiPopoverProps, 'button' | 'closePopover' | 'isOpen'>;
   };
 
 // Used internally only by the parent EuiBreadcrumbs
@@ -102,6 +114,8 @@ export const EuiBreadcrumbContent: FunctionComponent<
   href,
   rel, // required by our local href-with-rel eslint rule
   onClick,
+  popoverContent,
+  popoverProps,
   className,
   color,
   isFirstBreadcrumb,
@@ -131,45 +145,79 @@ export const EuiBreadcrumbContent: FunctionComponent<
     }
   }
 
-  const ariaCurrent = highlightLastBreadcrumb ? 'page' : undefined;
+  const isInteractiveBreadcrumb = href || onClick;
+  const linkColor = color || (highlightLastBreadcrumb ? 'text' : 'subdued');
+  const plainTextColor = highlightLastBreadcrumb ? 'default' : 'subdued'; // Does not inherit `color` prop
+  const ariaCurrent = highlightLastBreadcrumb ? ('page' as const) : undefined;
+
+  const isPopoverBreadcrumb = !!popoverContent;
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const popoverAriaLabel = useEuiI18n(
+    'euiBreadcrumb.popoverAriaLabel',
+    'Clicking this button will toggle a popover dialog.'
+  );
 
   return (
     <EuiInnerText>
       {(ref, innerText) => {
         const title = innerText === '' ? undefined : innerText;
 
-        return !href && !onClick ? (
-          <EuiTextColor
-            color={highlightLastBreadcrumb ? 'default' : 'subdued'}
-            cloneElement
-          >
-            <span
-              ref={ref}
-              title={title}
-              aria-current={ariaCurrent}
-              className={classes}
-              css={cssStyles}
+        const sharedProps = {
+          ref,
+          title,
+          'aria-current': ariaCurrent,
+          className: classes,
+          css: cssStyles,
+        };
+
+        if (isPopoverBreadcrumb) {
+          return (
+            <EuiPopover
+              {...popoverProps}
+              isOpen={isPopoverOpen}
+              closePopover={() => setIsPopoverOpen(false)}
+              button={
+                <EuiLink
+                  {...sharedProps}
+                  color={linkColor}
+                  // Avoid passing href and onClick - should only toggle the popover
+                  onClick={() => setIsPopoverOpen((isOpen) => !isOpen)}
+                  {...rest}
+                >
+                  {text}{' '}
+                  <EuiIcon
+                    type="arrowDown"
+                    size="s"
+                    aria-label={` - ${popoverAriaLabel}`}
+                  />
+                </EuiLink>
+              }
+            >
+              {popoverContent}
+            </EuiPopover>
+          );
+        } else if (isInteractiveBreadcrumb) {
+          return (
+            <EuiLink
+              {...sharedProps}
+              color={linkColor}
+              onClick={onClick}
+              href={href}
+              rel={rel}
               {...rest}
             >
               {text}
-            </span>
-          </EuiTextColor>
-        ) : (
-          <EuiLink
-            ref={ref}
-            title={title}
-            aria-current={ariaCurrent}
-            className={classes}
-            css={cssStyles}
-            color={color || (highlightLastBreadcrumb ? 'text' : 'subdued')}
-            onClick={onClick}
-            href={href}
-            rel={rel}
-            {...rest}
-          >
-            {text}
-          </EuiLink>
-        );
+            </EuiLink>
+          );
+        } else {
+          return (
+            <EuiTextColor color={plainTextColor} cloneElement>
+              <span {...sharedProps} {...rest}>
+                {text}
+              </span>
+            </EuiTextColor>
+          );
+        }
       }}
     </EuiInnerText>
   );
@@ -180,8 +228,6 @@ export const EuiBreadcrumbCollapsed: FunctionComponent<_EuiBreadcrumbProps> = ({
   isFirstBreadcrumb,
   type,
 }) => {
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-
   const euiTheme = useEuiTheme();
   const styles = euiBreadcrumbStyles(euiTheme);
   const cssStyles = [styles.isCollapsed];
@@ -191,31 +237,16 @@ export const EuiBreadcrumbCollapsed: FunctionComponent<_EuiBreadcrumbProps> = ({
     'See collapsed breadcrumbs'
   );
 
-  const ellipsisButton = (
-    <EuiBreadcrumbContent
-      aria-label={ariaLabel}
-      title={ariaLabel}
-      onClick={() => setIsPopoverOpen(!isPopoverOpen)}
-      truncate={false}
-      text={
-        <>
-          &hellip; <EuiIcon type="arrowDown" size="s" />
-        </>
-      }
-      isFirstBreadcrumb={isFirstBreadcrumb}
-      type={type}
-    />
-  );
-
   return (
     <EuiBreadcrumb css={cssStyles} type={type}>
-      <EuiPopover
-        button={ellipsisButton}
-        isOpen={isPopoverOpen}
-        closePopover={() => setIsPopoverOpen(false)}
-      >
-        {children}
-      </EuiPopover>
+      <EuiBreadcrumbContent
+        popoverContent={children}
+        text={<span aria-label={ariaLabel}>&hellip;</span>}
+        title={ariaLabel}
+        truncate={false}
+        isFirstBreadcrumb={isFirstBreadcrumb}
+        type={type}
+      />
     </EuiBreadcrumb>
   );
 };

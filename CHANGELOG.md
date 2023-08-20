@@ -1,3 +1,58 @@
+## [`87.1.0`](https://github.com/elastic/eui/tree/v87.1.0)
+
+- Updated the underlying library powering `EuiAutoSizer`. This primarily affects typing around the `disableHeight` and `disableWidth` props ([#6798](https://github.com/elastic/eui/pull/6798))
+- Added new `EuiAutoSize`, `EuiAutoSizeHorizontal`, and `EuiAutoSizeVertical` types to support `EuiAutoSizer`'s now-stricter typing ([#6798](https://github.com/elastic/eui/pull/6798))
+- Updated `EuiDatePickerRange` to support `compressed` display ([#7058](https://github.com/elastic/eui/pull/7058))
+- Updated `EuiFlyoutBody` with a new `scrollableTabIndex` prop ([#7061](https://github.com/elastic/eui/pull/7061))
+- Added a new `panelMinWidth` prop to `EuiInputPopover` ([#7071](https://github.com/elastic/eui/pull/7071))
+- Added a new `inputPopoverProps` prop for `EuiRange`s and `EuiDualRange`s with `showInput="inputWithPopover"` set ([#7082](https://github.com/elastic/eui/pull/7082))
+
+**Bug fixes**
+
+- Fixed `EuiToolTip` overriding instead of merging its `aria-describedby` tooltip ID with any existing `aria-describedby`s ([#7055](https://github.com/elastic/eui/pull/7055))
+- Fixed `EuiSuperDatePicker`'s `compressed` display ([#7058](https://github.com/elastic/eui/pull/7058))
+- Fixed `EuiAccordion` to remove tabbable children from sequential keyboard navigation when the accordion is closed ([#7064](https://github.com/elastic/eui/pull/7064))
+- Fixed `EuiFlyout`s to accept custom `aria-describedby` IDs ([#7065](https://github.com/elastic/eui/pull/7065))
+
+**Accessibility**
+
+- Removed the default `dialog` role and `tabIndex` from push `EuiFlyout`s. Push flyouts, compared to overlay flyouts, require manual accessibility management. ([#7065](https://github.com/elastic/eui/pull/7065))
+
+## [`87.0.0`](https://github.com/elastic/eui/tree/v87.0.0)
+
+- Added beta `componentDefaults` prop to `EuiProvider`, which will allow configuring certain default props globally. This list of components and defaults is still under consideration. ([#6923](https://github.com/elastic/eui/pull/6923))
+- `EuiPortal`'s `insert` prop can now be configured globally via `EuiProvider.componentDefaults` ([#6941](https://github.com/elastic/eui/pull/6941))
+- `EuiFocusTrap`'s `crossFrame` and `gapMode` props can now be configured globally via `EuiProvider.componentDefaults` ([#6942](https://github.com/elastic/eui/pull/6942))
+- `EuiTablePagination`'s `itemsPerPage`, `itemsPerPageOptions`, and `showPerPageOptions` props can now be configured globally via `EuiProvider.componentDefaults` ([#6951](https://github.com/elastic/eui/pull/6951))
+- `EuiBasicTable`, `EuiInMemoryTable`, and `EuiDataGrid` now allow `pagination.pageSize` to be undefined. If undefined, `pageSize` defaults to `EuiTablePagination`'s `itemsPerPage` component default. ([#6993](https://github.com/elastic/eui/pull/6993))
+- `EuiBasicTable`, `EuiInMemoryTable`, and `EuiDataGrid`'s `pagination.pageSizeOptions` will now fall back to `EuiTablePagination`'s `itemsPerPageOptions` component default. ([#6993](https://github.com/elastic/eui/pull/6993))
+- Updated `EuiHeaderLinks`'s `gutterSize` spacings ([#7005](https://github.com/elastic/eui/pull/7005))
+- Updated `EuiHeaderAlert`'s stacking styles ([#7005](https://github.com/elastic/eui/pull/7005))
+- Added `toolTipProps` to `EuiListGroupItem` that allows customizing item tooltips. ([#7018](https://github.com/elastic/eui/pull/7018))
+- Updated `EuiBreadcrumbs` to support breadcrumbs that toggle popovers via `popoverContent` and `popoverProps` ([#7031](https://github.com/elastic/eui/pull/7031))
+- Improved the contrast ratio of disabled titles within `EuiSteps` and `EuiStepsHorizontal` to meet WCAG AA guidelines. ([#7032](https://github.com/elastic/eui/pull/7032))
+- Updated `EuiSteps` and `EuiStepsHorizontal` to highlight and provide a more clear visual indication of the current step ([#7048](https://github.com/elastic/eui/pull/7048))
+
+**Bug fixes**
+
+- Single uses of `<EuiHeaderSectionItem side="right" />` now align right as expected without needing a previous `side="left"` sibling. ([#7005](https://github.com/elastic/eui/pull/7005))
+- `EuiPageTemplate` now correctly displays `panelled={true}` ([#7044](https://github.com/elastic/eui/pull/7044))
+
+**Breaking changes**
+
+- `EuiTablePagination`'s default `itemsPerPage` is now `10` (was previously `50`). This can be configured through `EuiProvider.componentDefaults`. ([#6993](https://github.com/elastic/eui/pull/6993))
+- `EuiTablePagination`'s default `itemsPerPageOptions` is now `[10, 25, 50]` (was previously `[10, 20, 50, 100]`). This can be configured through `EuiProvider.componentDefaults`. ([#6993](https://github.com/elastic/eui/pull/6993))
+- Removed `border` prop from `EuiHeaderSectionItem` (unused since Amsterdam theme) ([#7005](https://github.com/elastic/eui/pull/7005))
+- Removed `borders` object configuration from `EuiHeader.sections` ([#7005](https://github.com/elastic/eui/pull/7005))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiHeaderAlert` to Emotion; Removed unused `.euiHeaderAlert__dismiss` CSS ([#7005](https://github.com/elastic/eui/pull/7005))
+- Converted `EuiHeaderSection`, `EuiHeaderSectionItem`, and `EuiHeaderSectionItemButton` to Emotion ([#7005](https://github.com/elastic/eui/pull/7005))
+- Converted `EuiHeaderLinks` and `EuiHeaderLink` to Emotion; Removed `$euiHeaderLinksGutterSizes` Sass variables ([#7005](https://github.com/elastic/eui/pull/7005))
+- Removed `$euiHeaderBackgroundColor` Sass variable; use `$euiColorEmptyShade` instead ([#7005](https://github.com/elastic/eui/pull/7005))
+- Removed `$euiHeaderChildSize` Sass variable; use `$euiSizeXXL` instead ([#7005](https://github.com/elastic/eui/pull/7005))
+
 ## [`86.0.0`](https://github.com/elastic/eui/tree/v86.0.0)
 
 - Added React 18 support (StrictMode not yet supported). ([#7012](https://github.com/elastic/eui/pull/7012))

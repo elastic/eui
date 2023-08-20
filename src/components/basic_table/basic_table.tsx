@@ -6,7 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, Fragment, HTMLAttributes, ReactNode } from 'react';
+import React, {
+  Component,
+  Fragment,
+  HTMLAttributes,
+  ReactNode,
+  ContextType,
+} from 'react';
 import classNames from 'classnames';
 import moment from 'moment';
 import {
@@ -27,6 +33,8 @@ import { get } from '../../services/objects';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiCheckbox } from '../form';
 
+import { EuiComponentDefaultsContext } from '../provider/component_defaults';
+import { euiTablePaginationDefaults } from '../table/table_pagination';
 import {
   EuiTable,
   EuiTableProps,
@@ -312,6 +320,9 @@ export class EuiBasicTable<T = any> extends Component<
   EuiBasicTableProps<T>,
   State<T>
 > {
+  static contextType = EuiComponentDefaultsContext;
+  declare context: ContextType<typeof EuiComponentDefaultsContext>;
+
   static defaultProps = {
     responsive: true,
     tableLayout: 'fixed',
@@ -366,6 +377,14 @@ export class EuiBasicTable<T = any> extends Component<
     this.getInitialSelection();
   }
 
+  get pageSize() {
+    return (
+      this.props.pagination?.pageSize ??
+      this.context.EuiTablePagination?.itemsPerPage ??
+      euiTablePaginationDefaults.itemsPerPage
+    );
+  }
+
   getInitialSelection() {
     if (
       this.props.selection &&
@@ -387,7 +406,7 @@ export class EuiBasicTable<T = any> extends Component<
     if (hasPagination(props)) {
       criteria.page = {
         index: props.pagination.pageIndex,
-        size: props.pagination.pageSize,
+        size: this.pageSize,
       };
     }
     if (props.sorting) {
@@ -610,8 +629,8 @@ export class EuiBasicTable<T = any> extends Component<
     const itemCount = items.length;
     const totalItemCount = pagination ? pagination.totalItemCount : itemCount;
     const page = pagination ? pagination.pageIndex + 1 : 1;
-    const pageCount = pagination?.pageSize
-      ? Math.ceil(pagination.totalItemCount / pagination.pageSize)
+    const pageCount = pagination
+      ? Math.ceil(pagination.totalItemCount / this.pageSize)
       : 1;
 
     let captionElement;
@@ -896,9 +915,8 @@ export class EuiBasicTable<T = any> extends Component<
       content = items.map((item: T, index: number) => {
         // if there's pagination the item's index must be adjusted to the where it is in the whole dataset
         const tableItemIndex =
-          hasPagination(this.props) && this.props.pagination.pageSize > 0
-            ? this.props.pagination.pageIndex * this.props.pagination.pageSize +
-              index
+          hasPagination(this.props) && this.pageSize > 0
+            ? this.props.pagination.pageIndex * this.pageSize + index
             : index;
         return this.renderItemRow(item, tableItemIndex);
       });

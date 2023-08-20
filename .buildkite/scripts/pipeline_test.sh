@@ -10,7 +10,7 @@ docker run \
   --user="$(id -u):$(id -g)" \
   --volume="$(pwd):/app" \
   --workdir=/app \
-  docker.elastic.co/eui/ci:5.2 \
+  docker.elastic.co/eui/ci:5.3 \
   bash -c "/opt/yarn*/bin/yarn \
   && yarn cypress install \
   && NODE_OPTIONS=\"--max-old-space-size=2048\" npm run test-ci"

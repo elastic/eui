@@ -1,0 +1,206 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiCollapsibleNavBeta renders 1`] = `
+<body
+  class="euiBody--hasFlyout"
+  style="padding-left: 0px;"
+>
+  <div>
+    <div
+      class="euiCollapsibleNavButtonWrapper emotion-euiCollapsibleNavButtonWrapper-left"
+    >
+      <button
+        aria-controls="generated-id_euiCollapsibleNav"
+        aria-expanded="true"
+        aria-label="Toggle navigation closed"
+        aria-pressed="true"
+        class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsibleNavButton"
+        data-test-subj="euiCollapsibleNavButton"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          color="inherit"
+          data-euiicon-type="menuLeft"
+        />
+      </button>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="-1"
+    />
+    <div
+      data-focus-lock-disabled="disabled"
+    >
+      <nav
+        aria-label="aria-label"
+        class="euiFlyout euiCollapsibleNav euiCollapsibleNavBeta testClass1 testClass2 emotion-euiFlyout-none-noMaxWidth-push-left-left-euiCollapsibleNavBeta-left-isPush-euiTestCss"
+        data-test-subj="nav"
+        id="generated-id_euiCollapsibleNav"
+        style="inline-size: 248px;"
+      >
+        Nav content
+      </nav>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="-1"
+    />
+  </div>
+</body>
+`;
+
+exports[`EuiCollapsibleNavBeta renders initialIsCollapsed 1`] = `
+<body
+  class="euiBody--hasFlyout"
+  style="padding-left: 0px;"
+>
+  <div>
+    <div
+      class="euiCollapsibleNavButtonWrapper emotion-euiCollapsibleNavButtonWrapper-left"
+    >
+      <button
+        aria-controls="generated-id_euiCollapsibleNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation open"
+        aria-pressed="false"
+        class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsibleNavButton"
+        data-test-subj="euiCollapsibleNavButton"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          color="inherit"
+          data-euiicon-type="menuRight"
+        />
+      </button>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="-1"
+    />
+    <div
+      data-focus-lock-disabled="disabled"
+    >
+      <nav
+        aria-label="Site menu"
+        class="euiFlyout euiCollapsibleNav euiCollapsibleNavBeta emotion-euiFlyout-none-noMaxWidth-push-left-left-euiCollapsibleNavBeta-left-isPush-isPushCollapsed"
+        data-test-subj="nav"
+        id="generated-id_euiCollapsibleNav"
+        style="inline-size: 48px;"
+      >
+        Nav content
+      </nav>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="-1"
+    />
+  </div>
+</body>
+`;
+
+exports[`EuiCollapsibleNavBeta responsive behavior collapses from a push flyout to an overlay flyout once the screen is smaller than 3x the flyout width 1`] = `
+<body
+  class=""
+  style="padding-left: 0px;"
+>
+  <div>
+    <div
+      class="euiCollapsibleNavButtonWrapper emotion-euiCollapsibleNavButtonWrapper-left"
+    >
+      <button
+        aria-controls="generated-id_euiCollapsibleNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation open"
+        aria-pressed="false"
+        class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsibleNavButton"
+        data-test-subj="euiCollapsibleNavButton"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          color="inherit"
+          data-euiicon-type="menu"
+        />
+      </button>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`EuiCollapsibleNavBeta responsive behavior makes the overlay flyout full width once the screen is smaller than 1.5x the flyout width 1`] = `
+<body
+  class="euiBody--hasFlyout"
+  style="padding-left: 0px;"
+>
+  <div>
+    <div
+      class="euiCollapsibleNavButtonWrapper emotion-euiCollapsibleNavButtonWrapper-left"
+    >
+      <button
+        aria-controls="generated-id_euiCollapsibleNav"
+        aria-expanded="true"
+        aria-label="Toggle navigation closed"
+        aria-pressed="true"
+        class="euiButtonIcon euiCollapsibleNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsibleNavButton"
+        data-test-subj="euiCollapsibleNavButton"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          color="inherit"
+          data-euiicon-type="cross"
+        />
+      </button>
+    </div>
+  </div>
+  <div
+    class="euiOverlayMask emotion-euiOverlayMask-belowHeader"
+    data-euiportal="true"
+    data-relative-to-header="below"
+  >
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+    <div
+      data-focus-lock-disabled="false"
+    >
+      <nav
+        aria-describedby="generated-id"
+        aria-label="Site menu"
+        class="euiFlyout euiCollapsibleNav euiCollapsibleNavBeta emotion-euiFlyout-none-noMaxWidth-overlay-left-euiCollapsibleNavBeta-left-isOverlayFullWidth"
+        data-autofocus="true"
+        id="generated-id_euiCollapsibleNav"
+        role="dialog"
+        style="inline-size: 100%;"
+        tabindex="0"
+      >
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
+           
+        </p>
+        Nav content
+      </nav>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+  </div>
+</body>
+`;

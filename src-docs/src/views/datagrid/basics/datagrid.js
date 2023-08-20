@@ -372,7 +372,7 @@ const trailingControlColumns = [
 
 export default () => {
   // Pagination
-  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
+  const [pagination, setPagination] = useState({ pageIndex: 0 });
   const onChangeItemsPerPage = useCallback(
     (pageSize) =>
       setPagination((pagination) => ({
@@ -419,7 +419,6 @@ export default () => {
         sorting={{ columns: sortingColumns, onSort }}
         pagination={{
           ...pagination,
-          pageSizeOptions: [10, 50, 100],
           onChangeItemsPerPage: onChangeItemsPerPage,
           onChangePage: onChangePage,
         }}

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
+import React, { FunctionComponent, HTMLAttributes, useContext } from 'react';
 import classNames from 'classnames';
 
 import { useEuiTheme } from '../../../services';
@@ -17,6 +17,8 @@ import { EuiLinkProps } from '../../link';
 import { EuiAccordionProps } from '../../accordion';
 import { EuiTitle } from '../../title';
 
+import { EuiCollapsibleNavContext } from '../context';
+import { EuiCollapsedNavItem } from './collapsed';
 import { EuiCollapsibleNavAccordion } from './collapsible_nav_accordion';
 import { EuiCollapsibleNavLink } from './collapsible_nav_link';
 import {
@@ -58,11 +60,11 @@ export type _SharedEuiCollapsibleNavItemProps = HTMLAttributes<HTMLElement> &
 
 export type EuiCollapsibleNavItemProps = {
   /**
-   * ReactNode to render as this component's title
+   * Required text to render as the nav item title
    */
-  title: ReactNode;
+  title: string;
   /**
-   * Allows customizing title's element.
+   * Allows customizing the title element.
    * Consider using a heading element for better accessibility.
    * Defaults to an unsemantic `span` or `div`, depending on context.
    */
@@ -114,17 +116,10 @@ const EuiCollapsibleNavItemDisplay: FunctionComponent<
   titleElement,
   icon,
   iconProps,
-  className,
   items,
   children, // Ensure children isn't spread
   ...props
 }) => {
-  const classes = classNames(
-    'euiCollapsibleNavItem',
-    { euiCollapsibleNavSubItem: isSubItem },
-    className
-  );
-
   const headerContent = (
     <EuiCollapsibleNavItemTitle
       title={title}
@@ -138,7 +133,6 @@ const EuiCollapsibleNavItemDisplay: FunctionComponent<
   if (isAccordion) {
     return (
       <EuiCollapsibleNavAccordion
-        className={classes}
         buttonContent={headerContent}
         items={items}
         {...props}
@@ -149,7 +143,6 @@ const EuiCollapsibleNavItemDisplay: FunctionComponent<
 
   return (
     <EuiCollapsibleNavLink
-      className={classes}
       {...(props as EuiLinkProps)} // EuiLink ExclusiveUnion type shenanigans
       isSubItem={isSubItem}
       isNotAccordion
@@ -197,6 +190,7 @@ export const EuiCollapsibleNavSubItem: FunctionComponent<
 > = ({ isGroupTitle, className, ...props }) => {
   const euiTheme = useEuiTheme();
   const styles = euiCollapsibleNavSubItemGroupTitleStyles(euiTheme);
+  const classes = classNames('euiCollapsibleNavSubItem', className);
 
   if (isGroupTitle) {
     const TitleElement = props.titleElement || 'div';
@@ -211,7 +205,9 @@ export const EuiCollapsibleNavSubItem: FunctionComponent<
     );
   }
 
-  return <EuiCollapsibleNavItemDisplay {...props} isSubItem />;
+  return (
+    <EuiCollapsibleNavItemDisplay className={classes} {...props} isSubItem />
+  );
 };
 
 /**
@@ -220,4 +216,18 @@ export const EuiCollapsibleNavSubItem: FunctionComponent<
 
 export const EuiCollapsibleNavItem: FunctionComponent<
   EuiCollapsibleNavItemProps
-> = (props) => <EuiCollapsibleNavItemDisplay {...props} isSubItem={false} />;
+> = ({ className, ...props }) => {
+  const classes = classNames('euiCollapsibleNavItem', className);
+
+  const { isCollapsed, isPush } = useContext(EuiCollapsibleNavContext);
+
+  return isCollapsed && isPush ? (
+    <EuiCollapsedNavItem className={classes} {...props} />
+  ) : (
+    <EuiCollapsibleNavItemDisplay
+      className={classes}
+      {...props}
+      isSubItem={false}
+    />
+  );
+};

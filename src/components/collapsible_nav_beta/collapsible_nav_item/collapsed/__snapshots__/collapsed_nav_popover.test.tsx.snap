@@ -1,0 +1,123 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiCollapsedNavPopover renders the title and sub-items within the popover 1`] = `
+<body>
+  <div>
+    <div
+      class="euiPopover euiPopover-isOpen testClass1 testClass2 emotion-euiPopover-euiTestCss"
+      data-test-subj="test subject string"
+    >
+      <div
+        class="euiPopover__anchor css-zih94u-render"
+      >
+        <span
+          class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+        >
+          <button
+            aria-label="Item"
+            class="euiButtonIcon euiCollapsedNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsedNavButton"
+            data-test-subj="euiCollapsedNavButton"
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+              class="euiButtonIcon__icon"
+              color="inherit"
+              data-euiicon-type="boxesHorizontal"
+            />
+          </button>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div
+    data-euiportal="true"
+  >
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+    <div
+      data-focus-lock-disabled="false"
+    >
+      <div
+        aria-describedby="generated-id"
+        aria-label="aria-label"
+        aria-live="off"
+        aria-modal="true"
+        class="euiPanel euiPanel--plain euiPopover__panel  emotion-euiPanel-grow-m-plain-euiPopover__panel-isOpen-right-euiCollapsedNavPopover__panel"
+        data-autofocus="true"
+        data-popover-open="true"
+        data-popover-panel="true"
+        role="dialog"
+        style="top: -22px; left: 16px; z-index: 2000;"
+        tabindex="0"
+      >
+        <div
+          class="euiPopover__arrow emotion-euiPopoverArrow-right"
+          data-popover-arrow="right"
+          style="left: 0px; top: 10px;"
+        />
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a dialog. Press Escape, or tap/click outside the dialog to close.
+        </p>
+        <div>
+          <div
+            class="euiPopoverTitle emotion-euiPopoverTitle-none"
+          >
+            <a
+              class="euiLink emotion-euiLink-text-euiCollapsedNavPopover__title-link"
+              data-test-subj="popoverTitle"
+              href="#"
+              rel="noreferrer"
+            >
+              <span
+                class="eui-textTruncate"
+              >
+                Item
+              </span>
+            </a>
+          </div>
+          <div
+            class="emotion-euiCollapsedNavPopover__items"
+          >
+            <a
+              class="euiLink euiCollapsibleNavLink euiCollapsibleNavSubItem emotion-euiLink-primary-euiCollapsibleNavLink-isSubItem"
+              data-test-subj="A"
+              href="#"
+              rel="noreferrer"
+            >
+              <span
+                class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
+              >
+                Sub-item A
+              </span>
+            </a>
+            <a
+              class="euiLink euiCollapsibleNavLink euiCollapsibleNavSubItem emotion-euiLink-primary-euiCollapsibleNavLink-isSubItem"
+              data-test-subj="B"
+              href="#"
+              rel="noreferrer"
+            >
+              <span
+                class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
+              >
+                Sub-item B
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+  </div>
+</body>
+`;

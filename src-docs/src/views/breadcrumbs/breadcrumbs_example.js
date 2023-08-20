@@ -3,7 +3,12 @@ import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiBreadcrumbs, EuiCode, EuiText } from '../../../../src/components';
+import {
+  EuiBreadcrumbs,
+  EuiCode,
+  EuiText,
+  EuiCallOut,
+} from '../../../../src/components';
 import { BreadcrumbProps, BreadcrumbResponsiveMaxCount } from './props';
 
 import { breadcrumbsConfig } from './playground';
@@ -22,11 +27,13 @@ import TruncateSingle from './truncate_single';
 const truncateSingleSource = require('!!raw-loader!./truncate_single');
 
 import Max from './max';
-import { EuiCallOut } from '../../../../src/components/call_out';
 const maxSource = require('!!raw-loader!./max');
 
 import Color from './color';
 const colorSource = require('!!raw-loader!./color');
+
+import PopoverContent from './popover_content';
+const popoverContentSource = require('!!raw-loader!./popover_content');
 
 const props = {
   EuiBreadcrumbs,
@@ -243,6 +250,75 @@ export const BreadcrumbsExample = {
 />`,
       ],
       demo: <ResponsiveCustom />,
+    },
+    {
+      title: 'Popover content',
+      text: (
+        <>
+          <p>
+            If you want a breadcrumb that toggles a popover, e.g. for an account
+            switcher, you can use the <EuiCode>popoverContent</EuiCode> prop for
+            this purpose. <strong>EuiBreadcrumbs</strong> will automatically
+            handle rendering a popover indicator and popover accessibility best
+            practies for you. We recommend using components such as{' '}
+            <Link to="/navigation/context-menu">
+              <strong>EuiContextMenu</strong>
+            </Link>{' '}
+            or{' '}
+            <Link to="/display/list-group">
+              <strong>EuiListGroup</strong>
+            </Link>{' '}
+            for displaying popover options, or potentially{' '}
+            <Link to="/forms/selectable">
+              <strong>EuiSelectable</strong>
+            </Link>{' '}
+            if you have many items that require filtering.
+          </p>
+          <p>
+            You may also pass <EuiCode>popoverProps</EuiCode> with almost any
+            prop that{' '}
+            <Link to="/layout/popover">
+              <strong>EuiPopover</strong>
+            </Link>{' '}
+            accepts, such as customizing <EuiCode>panelPaddingSize</EuiCode> or{' '}
+            <EuiCode>anchorPosition</EuiCode>. However, props that affect
+            popover state such as <EuiCode>closePopover</EuiCode>,{' '}
+            <EuiCode>isOpen</EuiCode>, and <EuiCode>button</EuiCode> are not
+            accepted as they are controlled automatically by{' '}
+            <strong>EuiBreadcrumbs</strong>.
+          </p>
+          <EuiCallOut
+            color="warning"
+            iconType="accessibility"
+            title={
+              <>
+                Please note that creating a breadcrumb with a popover will
+                nullify any passed <EuiCode>href</EuiCode> or{' '}
+                <EuiCode>onClick</EuiCode> behavior, as the <em>only</em>{' '}
+                interaction the breadcrumb should have at that point is the
+                popover toggle.
+              </>
+            }
+          ></EuiCallOut>
+        </>
+      ),
+      props,
+      demo: <PopoverContent />,
+      snippet: `<EuiBreadcrumbs
+  breadcrumbs={[
+    {
+      text: 'My account',
+      popoverContent: <AccountSwitcher />,
+      popoverProps: { panelPaddingSize: 's' },
+    }
+  ]}
+/>`,
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: popoverContentSource,
+        },
+      ],
     },
     {
       title: 'Color for emphasis',

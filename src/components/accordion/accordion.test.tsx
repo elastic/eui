@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import { mount } from 'enzyme';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
@@ -280,6 +281,40 @@ describe('EuiAccordion', () => {
       component.find('button').at(0).simulate('click');
 
       expect(childWrapper).toBe(document.activeElement);
+    });
+
+    it('sets tabbable children to `tabIndex={-1}` when accordions are closed', () => {
+      const { container } = render(
+        <EuiAccordion id={getId()}>
+          <button>tabbable item one</button>
+          <input type="text" placeholder="tabbable item two" />
+          <a href="#">tabbable item three</a>
+          <div tabIndex={0}>tabbable item four</div>
+        </EuiAccordion>
+      );
+      const children = container.querySelector('.euiAccordion__children')!;
+
+      expect(children.querySelectorAll('[tabindex="-1"]')).toHaveLength(4);
+      expect(children).toMatchSnapshot();
+    });
+
+    it('restores tabbable children on accordion open', () => {
+      const { container, getByTestSubject } = render(
+        <EuiAccordion
+          id={getId()}
+          buttonProps={{ 'data-test-subj': 'trigger' }}
+        >
+          <button>tabbable item one</button>
+          <input type="text" placeholder="tabbable item two" />
+          <a href="#">tabbable item three</a>
+          <div tabIndex={0}>tabbable item four</div>
+        </EuiAccordion>
+      );
+      fireEvent.click(getByTestSubject('trigger'));
+      const children = container.querySelector('.euiAccordion__children')!;
+
+      expect(children.querySelectorAll('[tabindex="-1"]')).toHaveLength(0);
+      expect(children).toMatchSnapshot();
     });
   });
 });

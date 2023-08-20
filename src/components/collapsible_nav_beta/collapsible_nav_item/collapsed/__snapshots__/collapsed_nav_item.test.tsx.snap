@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiCollapsedNavItem renders a popover if items exist 1`] = `
+<div
+  class="euiPopover euiCollapsedNavItem testClass1 testClass2 emotion-euiPopover-euiTestCss"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiPopover__anchor css-zih94u-render"
+  >
+    <span
+      class="euiToolTipAnchor emotion-euiToolTipAnchor-block"
+    >
+      <button
+        aria-label="Item"
+        class="euiButtonIcon euiCollapsedNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsedNavButton"
+        data-test-subj="euiCollapsedNavButton"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          color="inherit"
+          data-euiicon-type="boxesHorizontal"
+        />
+      </button>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`EuiCollapsedNavItem renders an icon button/link if items are missing or empty 1`] = `
+<span
+  aria-label="aria-label"
+  class="euiToolTipAnchor euiCollapsedNavItem testClass1 testClass2 emotion-euiToolTipAnchor-block-euiTestCss"
+  data-test-subj="test subject string"
+>
+  <a
+    aria-label="Item"
+    class="euiButtonIcon euiCollapsedNavButton emotion-euiButtonIcon-s-empty-text-euiCollapsedNavButton"
+    data-test-subj="euiCollapsedNavButton"
+    href="#"
+    rel="noreferrer"
+  >
+    <span
+      aria-hidden="true"
+      class="euiButtonIcon__icon"
+      color="inherit"
+      data-euiicon-type="link"
+    />
+  </a>
+</span>
+`;

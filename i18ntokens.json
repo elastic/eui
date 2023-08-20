@@ -5,14 +5,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 349,
+        "line": 408,
         "column": 16,
-        "index": 10174
+        "index": 12163
       },
       "end": {
-        "line": 349,
+        "line": 408,
         "column": 76,
-        "index": 10234
+        "index": 12223
       }
     },
     "filepath": "src/components/accordion/accordion.tsx"
@@ -23,14 +23,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 319,
+        "line": 330,
         "column": 6,
-        "index": 8069
+        "index": 8364
       },
       "end": {
-        "line": 319,
+        "line": 330,
         "column": 79,
-        "index": 8142
+        "index": 8437
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -41,14 +41,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 621,
+        "line": 640,
         "column": 10,
-        "index": 15877
+        "index": 16330
       },
       "end": {
-        "line": 625,
+        "line": 644,
         "column": 12,
-        "index": 16080
+        "index": 16533
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -59,14 +59,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 634,
+        "line": 653,
         "column": 12,
-        "index": 16277
+        "index": 16730
       },
       "end": {
-        "line": 638,
+        "line": 657,
         "column": 14,
-        "index": 16556
+        "index": 17009
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -77,14 +77,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 642,
+        "line": 661,
         "column": 12,
-        "index": 16628
+        "index": 17081
       },
       "end": {
-        "line": 646,
+        "line": 665,
         "column": 14,
-        "index": 16868
+        "index": 17321
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -95,14 +95,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 651,
+        "line": 670,
         "column": 10,
-        "index": 16944
+        "index": 17397
       },
       "end": {
-        "line": 655,
+        "line": 674,
         "column": 12,
-        "index": 17128
+        "index": 17581
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -113,14 +113,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 697,
+        "line": 716,
         "column": 6,
-        "index": 18126
+        "index": 18579
       },
       "end": {
-        "line": 697,
+        "line": 716,
         "column": 77,
-        "index": 18197
+        "index": 18650
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -131,14 +131,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1094,
+        "line": 1112,
         "column": 8,
-        "index": 30032
+        "index": 30437
       },
       "end": {
-        "line": 1094,
+        "line": 1112,
         "column": 79,
-        "index": 30103
+        "index": 30508
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -149,14 +149,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1315,
+        "line": 1333,
         "column": 8,
-        "index": 36531
+        "index": 36936
       },
       "end": {
-        "line": 1319,
+        "line": 1337,
         "column": 9,
-        "index": 36690
+        "index": 37095
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -252,19 +252,37 @@
     "filepath": "src/components/bottom_bar/bottom_bar.tsx"
   },
   {
+    "token": "euiBreadcrumb.popoverAriaLabel",
+    "defString": "Clicking this button will toggle a popover dialog.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 155,
+        "column": 27,
+        "index": 4628
+      },
+      "end": {
+        "line": 158,
+        "column": 3,
+        "index": 4738
+      }
+    },
+    "filepath": "src/components/breadcrumbs/breadcrumb.tsx"
+  },
+  {
     "token": "euiBreadcrumb.collapsedBadge.ariaLabel",
     "defString": "See collapsed breadcrumbs",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 189,
+        "line": 235,
         "column": 20,
-        "index": 5037
+        "index": 6773
       },
       "end": {
-        "line": 192,
+        "line": 238,
         "column": 3,
-        "index": 5130
+        "index": 6866
       }
     },
     "filepath": "src/components/breadcrumbs/breadcrumb.tsx"
@@ -412,6 +430,60 @@
       }
     },
     "filepath": "src/components/code/code_block_full_screen.tsx"
+  },
+  {
+    "token": "euiCollapsibleNavBeta.ariaLabel",
+    "defString": "Site menu",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 170,
+        "column": 27,
+        "index": 5493
+      },
+      "end": {
+        "line": 173,
+        "column": 3,
+        "index": 5563
+      }
+    },
+    "filepath": "src/components/collapsible_nav_beta/collapsible_nav_beta.tsx"
+  },
+  {
+    "token": "euiCollapsibleNavButton.ariaLabelOpen",
+    "defString": "Toggle navigation open",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 47,
+        "column": 26,
+        "index": 1716
+      },
+      "end": {
+        "line": 50,
+        "column": 3,
+        "index": 1805
+      }
+    },
+    "filepath": "src/components/collapsible_nav_beta/collapsible_nav_button/collapsible_nav_button.tsx"
+  },
+  {
+    "token": "euiCollapsibleNavButton.ariaLabelClose",
+    "defString": "Toggle navigation closed",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 51,
+        "column": 28,
+        "index": 1835
+      },
+      "end": {
+        "line": 54,
+        "column": 3,
+        "index": 1927
+      }
+    },
+    "filepath": "src/components/collapsible_nav_beta/collapsible_nav_button/collapsible_nav_button.tsx"
   },
   {
     "token": "euiColorPickerSwatch.ariaLabel",
@@ -2309,14 +2381,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 338,
+        "line": 350,
         "column": 22,
-        "index": 9337
+        "index": 9796
       },
       "end": {
-        "line": 342,
+        "line": 354,
         "column": 5,
-        "index": 9509
+        "index": 9968
       }
     },
     "filepath": "src/components/datagrid/data_grid.tsx"
@@ -2327,14 +2399,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 343,
+        "line": 355,
         "column": 27,
-        "index": 9538
+        "index": 9997
       },
       "end": {
-        "line": 347,
+        "line": 359,
         "column": 5,
-        "index": 9679
+        "index": 10138
       }
     },
     "filepath": "src/components/datagrid/data_grid.tsx"
@@ -2345,14 +2417,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 474,
+        "line": 486,
         "column": 18,
-        "index": 15239
+        "index": 15698
       },
       "end": {
-        "line": 477,
+        "line": 489,
         "column": 20,
-        "index": 15392
+        "index": 15851
       }
     },
     "filepath": "src/components/datagrid/data_grid.tsx"
@@ -2363,14 +2435,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 28,
+        "line": 36,
         "column": 34,
-        "index": 1025
+        "index": 1275
       },
       "end": {
-        "line": 32,
+        "line": 40,
         "column": 3,
-        "index": 1170
+        "index": 1420
       }
     },
     "filepath": "src/components/datagrid/utils/data_grid_pagination.tsx"
@@ -2381,14 +2453,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 33,
+        "line": 41,
         "column": 26,
-        "index": 1198
+        "index": 1448
       },
       "end": {
-        "line": 36,
+        "line": 44,
         "column": 3,
-        "index": 1294
+        "index": 1544
       }
     },
     "filepath": "src/components/datagrid/utils/data_grid_pagination.tsx"
@@ -4613,14 +4685,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 294,
+        "line": 295,
         "column": 8,
-        "index": 9452
+        "index": 9503
       },
       "end": {
-        "line": 294,
+        "line": 295,
         "column": 78,
-        "index": 9522
+        "index": 9573
       }
     },
     "filepath": "src/components/flyout/flyout.tsx"
@@ -4631,14 +4703,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 357,
+        "line": 359,
         "column": 12,
-        "index": 11732
+        "index": 11856
       },
       "end": {
-        "line": 360,
+        "line": 362,
         "column": 14,
-        "index": 11941
+        "index": 12065
       }
     },
     "filepath": "src/components/flyout/flyout.tsx"
@@ -4649,14 +4721,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 362,
+        "line": 364,
         "column": 12,
-        "index": 11970
+        "index": 12094
       },
       "end": {
-        "line": 365,
+        "line": 367,
         "column": 14,
-        "index": 12142
+        "index": 12266
       }
     },
     "filepath": "src/components/flyout/flyout.tsx"
@@ -4667,14 +4739,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 368,
+        "line": 370,
         "column": 12,
-        "index": 12213
+        "index": 12337
       },
       "end": {
-        "line": 371,
+        "line": 373,
         "column": 14,
-        "index": 12400
+        "index": 12524
       }
     },
     "filepath": "src/components/flyout/flyout.tsx"
@@ -4847,14 +4919,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 614,
+        "line": 616,
         "column": 6,
-        "index": 18263
+        "index": 18346
       },
       "end": {
-        "line": 617,
+        "line": 619,
         "column": 8,
-        "index": 18498
+        "index": 18581
       }
     },
     "filepath": "src/components/form/range/dual_range.tsx"
@@ -4865,14 +4937,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 182,
+        "line": 183,
         "column": 6,
-        "index": 4833
+        "index": 4858
       },
       "end": {
-        "line": 185,
+        "line": 186,
         "column": 8,
-        "index": 5010
+        "index": 5035
       }
     },
     "filepath": "src/components/form/range/range.tsx"
@@ -4885,12 +4957,12 @@
       "start": {
         "line": 344,
         "column": 12,
-        "index": 9030
+        "index": 9079
       },
       "end": {
         "line": 348,
         "column": 14,
-        "index": 9276
+        "index": 9325
       }
     },
     "filepath": "src/components/form/super_select/super_select.tsx"
@@ -4903,12 +4975,12 @@
       "start": {
         "line": 351,
         "column": 8,
-        "index": 9331
+        "index": 9380
       },
       "end": {
         "line": 351,
         "column": 75,
-        "index": 9398
+        "index": 9447
       }
     },
     "filepath": "src/components/form/super_select/super_select.tsx"
@@ -4919,14 +4991,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 108,
+        "line": 106,
         "column": 4,
-        "index": 3033
+        "index": 3070
       },
       "end": {
-        "line": 108,
+        "line": 106,
         "column": 75,
-        "index": 3104
+        "index": 3141
       }
     },
     "filepath": "src/components/header/header_links/header_links.tsx"
@@ -4937,14 +5009,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 122,
+        "line": 120,
         "column": 4,
-        "index": 3435
+        "index": 3472
       },
       "end": {
-        "line": 122,
+        "line": 120,
         "column": 69,
-        "index": 3500
+        "index": 3537
       }
     },
     "filepath": "src/components/header/header_links/header_links.tsx"
@@ -5963,14 +6035,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 676,
+        "line": 671,
         "column": 16,
-        "index": 19791
+        "index": 19639
       },
       "end": {
-        "line": 679,
+        "line": 674,
         "column": 18,
-        "index": 19985
+        "index": 19833
       }
     },
     "filepath": "src/components/popover/popover.tsx"
@@ -6899,14 +6971,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 84,
+        "line": 97,
         "column": 8,
-        "index": 2487
+        "index": 2918
       },
       "end": {
-        "line": 87,
+        "line": 100,
         "column": 10,
-        "index": 2588
+        "index": 3019
       }
     },
     "filepath": "src/components/table/table_pagination/table_pagination.tsx"
@@ -6917,14 +6989,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 90,
+        "line": 103,
         "column": 10,
-        "index": 2622
+        "index": 3053
       },
       "end": {
-        "line": 93,
+        "line": 106,
         "column": 12,
-        "index": 2730
+        "index": 3161
       }
     },
     "filepath": "src/components/table/table_pagination/table_pagination.tsx"
@@ -6935,14 +7007,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 113,
+        "line": 126,
         "column": 12,
-        "index": 3290
+        "index": 3723
       },
       "end": {
-        "line": 116,
+        "line": 129,
         "column": 14,
-        "index": 3421
+        "index": 3854
       }
     },
     "filepath": "src/components/table/table_pagination/table_pagination.tsx"
@@ -6953,14 +7025,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 118,
+        "line": 131,
         "column": 12,
-        "index": 3450
+        "index": 3883
       },
       "end": {
-        "line": 122,
+        "line": 135,
         "column": 14,
-        "index": 3634
+        "index": 4067
       }
     },
     "filepath": "src/components/table/table_pagination/table_pagination.tsx"

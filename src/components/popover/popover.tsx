@@ -78,9 +78,8 @@ export interface EuiPopoverProps extends PropsWithChildren, CommonProps {
    */
   anchorPosition?: PopoverAnchorPosition;
   /**
-   * Style and position alteration for arrow-less, left-aligned
-   * attachment. Intended for use with inputs as anchors, e.g.
-   * EuiInputPopover
+   * Style and position alteration for arrow-less attachment.
+   * Intended for use with inputs as anchors, e.g. EuiInputPopover
    */
   attachToAnchor?: boolean;
   /**
@@ -501,7 +500,6 @@ export class EuiPopover extends Component<Props, State> {
       left,
       position: foundPosition,
       arrow,
-      anchorBoundingBox,
     } = findPopoverPosition({
       container: this.props.container,
       position,
@@ -533,10 +531,7 @@ export class EuiPopover extends Component<Props, State> {
     const popoverStyles = {
       ...this.props.panelStyle,
       top,
-      left:
-        this.props.attachToAnchor && anchorBoundingBox
-          ? anchorBoundingBox.left
-          : left,
+      left,
       zIndex,
     };
 

@@ -6,36 +6,62 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, PropsWithChildren } from 'react';
+import React, { FunctionComponent, PropsWithChildren, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { EuiFlyoutBody, EuiFlyoutFooter } from '../flyout';
+import { EuiHeader, EuiHeaderSection, EuiHeaderSectionItem } from '../header';
+import { EuiPageTemplate } from '../page_template';
+import { EuiFlyout, EuiFlyoutBody, EuiFlyoutFooter } from '../flyout';
+import { EuiButton } from '../button';
 
 import { EuiCollapsibleNavItem } from './collapsible_nav_item';
-import { EuiCollapsibleNavBeta } from './collapsible_nav_beta';
+import {
+  EuiCollapsibleNavBeta,
+  EuiCollapsibleNavBetaProps,
+} from './collapsible_nav_beta';
 
-// TODO: EuiCollapsibleNavBetaProps
-const meta: Meta<{}> = {
+const meta: Meta<EuiCollapsibleNavBetaProps> = {
   title: 'EuiCollapsibleNavBeta',
+  component: EuiCollapsibleNavBeta,
+  parameters: {
+    layout: 'fullscreen',
+  },
+  argTypes: {
+    side: {
+      control: 'radio',
+      options: ['left', 'right'],
+    },
+  },
+  args: {
+    side: 'left',
+    initialIsCollapsed: false,
+    width: 248,
+  },
 };
 export default meta;
-type Story = StoryObj<{}>;
+type Story = StoryObj<EuiCollapsibleNavBetaProps>;
 
-// TODO: Make this a stateful component in upcoming EuiCollapsibleNavBeta work
-const OpenCollapsibleNav: FunctionComponent<PropsWithChildren> = ({
-  children,
-}) => {
+const OpenCollapsibleNav: FunctionComponent<
+  PropsWithChildren & Partial<EuiCollapsibleNavBetaProps>
+> = (props) => {
   return (
-    <EuiCollapsibleNavBeta isOpen={true} onClose={() => {}}>
-      {children}
-    </EuiCollapsibleNavBeta>
+    <>
+      <EuiHeader position="fixed">
+        <EuiHeaderSection side={props?.side}>
+          <EuiCollapsibleNavBeta {...props} />
+        </EuiHeaderSection>
+      </EuiHeader>
+      <EuiPageTemplate>
+        <EuiPageTemplate.Section>Hello world</EuiPageTemplate.Section>
+      </EuiPageTemplate>
+    </>
   );
 };
 
 export const KibanaExample: Story = {
-  render: () => (
-    <OpenCollapsibleNav>
-      <EuiFlyoutBody>
+  render: ({ ...args }) => (
+    <OpenCollapsibleNav {...args}>
+      <EuiFlyoutBody scrollableTabIndex={-1}>
         <EuiCollapsibleNavItem title="Home" icon="home" isSelected href="#" />
         <EuiCollapsibleNavItem
           title="Recent"
@@ -260,9 +286,9 @@ export const KibanaExample: Story = {
 
 // Security has a very custom nav
 export const SecurityExample: Story = {
-  render: () => (
-    <OpenCollapsibleNav>
-      <EuiFlyoutBody>
+  render: ({ ...args }) => (
+    <OpenCollapsibleNav {...args}>
+      <EuiFlyoutBody scrollableTabIndex={-1}>
         <EuiCollapsibleNavItem
           title="Recent"
           icon="clock"
@@ -369,4 +395,57 @@ export const SecurityExample: Story = {
       </EuiFlyoutFooter>
     </OpenCollapsibleNav>
   ),
+};
+
+export const MultipleFixedHeaders: Story = {
+  render: ({ ...args }) => (
+    <>
+      <EuiHeader position="fixed">First header</EuiHeader>
+      <EuiHeader position="fixed">
+        <EuiHeaderSection>
+          <EuiCollapsibleNavBeta {...args}>
+            This story tests that EuiCollapsibleNav's fixed header detection &
+            offsetting works as expected
+          </EuiCollapsibleNavBeta>
+          Second header
+        </EuiHeaderSection>
+      </EuiHeader>
+    </>
+  ),
+};
+
+const MockConsumerFlyout: FunctionComponent = () => {
+  const [flyoutIsOpen, setFlyoutOpen] = useState(false);
+  return (
+    <>
+      <EuiButton size="s" onClick={() => setFlyoutOpen(!flyoutIsOpen)}>
+        Toggle a flyout
+      </EuiButton>
+      {flyoutIsOpen && (
+        <EuiFlyout onClose={() => setFlyoutOpen(false)}>
+          <EuiFlyoutBody>
+            Some other mock consumer flyout that <strong>should</strong> overlap
+            EuiCollapsibleNav
+          </EuiFlyoutBody>
+        </EuiFlyout>
+      )}
+    </>
+  );
+};
+
+export const FlyoutInFixedHeaders: Story = {
+  render: ({ ...args }) => {
+    return (
+      <EuiHeader position="fixed">
+        <EuiHeaderSection>
+          <EuiCollapsibleNavBeta {...args}>Nav content</EuiCollapsibleNavBeta>
+        </EuiHeaderSection>
+        <EuiHeaderSection>
+          <EuiHeaderSectionItem>
+            <MockConsumerFlyout />
+          </EuiHeaderSectionItem>
+        </EuiHeaderSection>
+      </EuiHeader>
+    );
+  },
 };

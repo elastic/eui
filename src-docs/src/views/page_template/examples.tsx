@@ -45,7 +45,7 @@ export const pageTemplateExamplesSections = [
           slug="full-page"
           fullscreen
           toggle={{
-            panelled: true,
+            panelledGroup: true,
             restrictedWidth: true,
           }}
           show={{
@@ -67,7 +67,7 @@ export const pageTemplateExamplesSections = [
           fullscreen
           template={Sidebar}
           toggle={{
-            panelled: true,
+            panelledSwitch: true,
             sidebar: true,
             sidebarSticky: true,
             border: true,
@@ -116,7 +116,7 @@ export const pageTemplateExamplesSections = [
           template={Empty}
           toggle={{
             pageHeader: true,
-            panelled: true,
+            panelledSwitch: true,
             sidebar: true,
           }}
           show={{
@@ -236,7 +236,7 @@ export const PageTemplateExample = () => (
           <PageDemo
             slug="full-page"
             toggle={{
-              panelled: true,
+              panelledGroup: true,
               restrictedWidth: true,
             }}
             show={{
@@ -300,7 +300,7 @@ export const PageTemplateExample = () => (
           <PageDemo
             slug="sidebar"
             toggle={{
-              panelled: true,
+              panelledSwitch: true,
               sidebar: true,
               border: true,
             }}
@@ -410,7 +410,7 @@ export const PageTemplateExample = () => (
             source={EmptySource}
             toggle={{
               pageHeader: true,
-              panelled: true,
+              panelledSwitch: true,
               sidebar: true,
             }}
             show={{

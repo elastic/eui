@@ -18,7 +18,7 @@ import {
   EuiSuperSelectControlProps,
   EuiSuperSelectOption,
 } from './super_select_control';
-import { EuiInputPopover, EuiPopoverProps } from '../../popover';
+import { EuiInputPopover, EuiInputPopoverProps } from '../../popover';
 import {
   EuiContextMenuItem,
   EuiContextMenuItemLayoutAlignment,
@@ -80,7 +80,7 @@ export type EuiSuperSelectProps<T extends string> = CommonProps &
     isOpen?: boolean;
 
     /**
-     * Optional props to pass to the underlying [EuiPopover](/#/layout/popover).
+     * Optional props to pass to the underlying [EuiInputPopover](/#/layout/popover#popover-attached-to-input-element).
      * Allows fine-grained control of the popover dropdown menu, including
      * `repositionOnScroll` for EuiSuperSelects used within scrollable containers,
      * and customizing popover panel styling.
@@ -88,7 +88,7 @@ export type EuiSuperSelectProps<T extends string> = CommonProps &
      * Does not accept a nested `popoverProps.isOpen` property - use the top level
      * `isOpen` API instead.
      */
-    popoverProps?: Partial<CommonProps & Omit<EuiPopoverProps, 'isOpen'>>;
+    popoverProps?: Partial<CommonProps & Omit<EuiInputPopoverProps, 'isOpen'>>;
   };
 
 export class EuiSuperSelect<T extends string> extends Component<

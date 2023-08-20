@@ -218,6 +218,59 @@ exports[`EuiAccordion behavior opens when div is clicked if element is a div 1`]
 </div>
 `;
 
+exports[`EuiAccordion behavior restores tabbable children on accordion open 1`] = `
+<div
+  class="euiAccordion__children emotion-euiAccordion__children"
+>
+  <button>
+    tabbable item one
+  </button>
+  <input
+    placeholder="tabbable item two"
+    type="text"
+  />
+  <a
+    href="#"
+  >
+    tabbable item three
+  </a>
+  <div
+    tabindex="0"
+  >
+    tabbable item four
+  </div>
+</div>
+`;
+
+exports[`EuiAccordion behavior sets tabbable children to \`tabIndex={-1}\` when accordions are closed 1`] = `
+<div
+  class="euiAccordion__children emotion-euiAccordion__children"
+>
+  <button
+    tabindex="-1"
+  >
+    tabbable item one
+  </button>
+  <input
+    placeholder="tabbable item two"
+    tabindex="-1"
+    type="text"
+  />
+  <a
+    href="#"
+    tabindex="-1"
+  >
+    tabbable item three
+  </a>
+  <div
+    data-original-tabindex="0"
+    tabindex="-1"
+  >
+    tabbable item four
+  </div>
+</div>
+`;
+
 exports[`EuiAccordion is rendered 1`] = `
 <div
   aria-label="aria-label"
