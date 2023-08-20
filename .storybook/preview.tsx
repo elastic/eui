@@ -100,7 +100,6 @@ const preview: Preview = {
   argTypes: {
     css: { table: { disable: true } },
     className: { table: { disable: true } },
-    'aria-label': { table: { disable: true } },
     'data-test-subj': { table: { disable: true } },
   },
 };
