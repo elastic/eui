@@ -29,7 +29,7 @@ const componentDefaults = {
 export const Playground: Story = {
   render: (props) => (
     <div css={{ inlineSize: props.width }}>
-      <EuiTextTruncate {...props}>{(text) => text}</EuiTextTruncate>
+      <EuiTextTruncate {...props} />
     </div>
   ),
   args: {
@@ -51,7 +51,7 @@ export const ResizeObserver: Story = {
       <br />
       {/* // Width here is just for testing resize behavior and isn't meant to be RTL compliant */}
       <div css={{ width: 200, overflow: 'auto', resize: 'horizontal' }}>
-        <EuiTextTruncate {...props}>{(text) => text}</EuiTextTruncate>
+        <EuiTextTruncate {...props} />
       </div>
     </>
   ),

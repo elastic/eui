@@ -31,12 +31,6 @@ export type EuiTextTruncateProps = Omit<
 > &
   CommonProps & {
     /**
-     * EuiTextTruncate passes back the truncated text as a render prop
-     * (instead of rendering the truncated string directly). This API allows
-     * you to use the text more flexibly, e.g. adding custom markup/highlighting
-     */
-    children: (truncatedString: string) => ReactNode;
-    /**
      * The full text string to truncate
      */
     text: string;
@@ -86,6 +80,13 @@ export type EuiTextTruncateProps = Omit<
      * registers a size change. This callback will **not** fire if `width` is passed.
      */
     onResize?: (width: number) => void;
+    /**
+     * By default, EuiTextTruncate will render the truncated string directly.
+     * You can optionally pass a render prop function to the component, which
+     * allows for more flexible text rendering, e.g. adding custom markup
+     * or highlighting
+     */
+    children?: (truncatedString: string) => ReactNode;
   };
 
 export const EuiTextTruncate: FunctionComponent<EuiTextTruncateProps> = ({
@@ -294,7 +295,7 @@ const EuiTextTruncateWithWidth: FunctionComponent<
       aria-label={text}
       {...rest}
     >
-      {truncatedText && children(truncatedText)}
+      {children ? children(truncatedText) : truncatedText}
     </div>
   );
 };
