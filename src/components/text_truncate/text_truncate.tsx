@@ -7,6 +7,7 @@
  */
 
 import React, {
+  HTMLAttributes,
   FunctionComponent,
   ReactNode,
   Ref,
@@ -16,17 +17,22 @@ import React, {
 
 import { useCombinedRefs } from '../../services';
 import { EuiResizeObserver } from '../observer/resize_observer';
+import type { CommonProps } from '../common';
 
 import { euiTextTruncateStyles } from './text_truncate.styles';
 
-export type EuiTextTruncateProps = {
-  children: (truncatedString: string) => ReactNode;
-  text: string;
-  truncation: 'end' | 'start' | 'startEnd' | 'middle'; // TODO: [start: x, end: y?]; - needs to support combobox search highlight
-  truncationOffset?: number; // only applies to end and start
-  separator?: string;
-  width?: number; // Will allow turning off the automatic resize observer for performance, e.g. in EuiComboBox
-};
+export type EuiTextTruncateProps = Omit<
+  HTMLAttributes<HTMLDivElement>,
+  'children'
+> &
+  CommonProps & {
+    children: (truncatedString: string) => ReactNode;
+    text: string;
+    truncation: 'end' | 'start' | 'startEnd' | 'middle'; // TODO: [start: x, end: y?]; - needs to support combobox search highlight
+    truncationOffset?: number; // only applies to end and start
+    separator?: string;
+    width?: number; // Will allow turning off the automatic resize observer for performance, e.g. in EuiComboBox
+  };
 
 export const EuiTextTruncate: FunctionComponent<EuiTextTruncateProps> = ({
   width,
@@ -59,6 +65,7 @@ const EuiTextTruncateToWidth: FunctionComponent<
   separator = '…',
   width,
   containerRef,
+  ...rest
 }) => {
   // Note: This needs to be a state and not a ref to trigger a rerender on mount
   const [containerEl, setContainerEl] = useState<HTMLDivElement | null>(null);
@@ -174,6 +181,7 @@ const EuiTextTruncateToWidth: FunctionComponent<
       ref={refs}
       title={text}
       aria-label={text}
+      {...rest}
     >
       {truncatedText && children(truncatedText)}
     </div>
