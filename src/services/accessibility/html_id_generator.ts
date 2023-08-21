@@ -44,7 +44,7 @@ export type UseGeneratedHtmlIdOptions = {
    */
   conditionalId?: string;
 };
-export const useDeprecatedGeneratedHtmlId = ({
+const useDeprecatedGeneratedHtmlId = ({
   prefix,
   suffix,
   conditionalId,
