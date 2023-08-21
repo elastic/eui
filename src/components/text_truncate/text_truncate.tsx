@@ -13,17 +13,21 @@ import React, {
   Ref,
   useState,
   useMemo,
+  useCallback,
 } from 'react';
 
 import { useCombinedRefs } from '../../services';
-import { EuiResizeObserver } from '../observer/resize_observer';
+import {
+  EuiResizeObserver,
+  EuiResizeObserverProps,
+} from '../observer/resize_observer';
 import type { CommonProps } from '../common';
 
 import { euiTextTruncateStyles } from './text_truncate.styles';
 
 export type EuiTextTruncateProps = Omit<
   HTMLAttributes<HTMLDivElement>,
-  'children'
+  'children' | 'onResize'
 > &
   CommonProps & {
     /**
@@ -62,6 +66,11 @@ export type EuiTextTruncateProps = Omit<
      * container width, which will skip initializing a resize observer.
      */
     width?: number;
+    /**
+     * Optional callback that fires when the default resizer observer both mounts and
+     * registers a size change. This callback will **not** fire if `width` is passed.
+     */
+    onResize?: (width: number) => void;
   };
 
 export const EuiTextTruncate: FunctionComponent<EuiTextTruncateProps> = ({
@@ -76,7 +85,7 @@ export const EuiTextTruncate: FunctionComponent<EuiTextTruncateProps> = ({
 };
 
 const EuiTextTruncateWithWidth: FunctionComponent<
-  EuiTextTruncateProps & {
+  Omit<EuiTextTruncateProps, 'onResize'> & {
     width: number;
     containerRef?: Ref<HTMLDivElement>;
   }
@@ -188,7 +197,7 @@ const EuiTextTruncateWithWidth: FunctionComponent<
           } else {
             secondHalf = secondHalf.substring(1);
           }
-          span.textContent = `${firstHalf}${separator}${secondHalf}`;
+          span.textContent = `${firstHalf}${ellipsis}${secondHalf}`;
           trimfirstHalf = !trimfirstHalf;
         }
         break;
@@ -215,11 +224,18 @@ const EuiTextTruncateWithWidth: FunctionComponent<
 
 const EuiTextTruncateWithResizeObserver: FunctionComponent<
   Omit<EuiTextTruncateProps, 'width'>
-> = ({ ...props }) => {
+> = ({ onResize: _onResize, ...props }) => {
   const [width, setWidth] = useState(0);
+  const onResize: EuiResizeObserverProps['onResize'] = useCallback(
+    ({ width }) => {
+      setWidth(width);
+      _onResize?.(width);
+    },
+    [_onResize]
+  );
 
   return (
-    <EuiResizeObserver onResize={({ width }) => setWidth(width)}>
+    <EuiResizeObserver onResize={onResize}>
       {(ref) => (
         <EuiTextTruncateWithWidth width={width} containerRef={ref} {...props} />
       )}
