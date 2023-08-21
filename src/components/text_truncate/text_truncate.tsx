@@ -43,9 +43,9 @@ export type EuiTextTruncateProps = Omit<
     /**
      * The truncation type desired. Determines where the ellipses are placed.
      */
-    truncation: 'end' | 'start' | 'startEnd' | 'middle'; // TODO: [start: x, end: y?]; - needs to support combobox search highlight
+    truncation: 'end' | 'start' | 'startEnd' | 'middle';
     /**
-     * This prop **only** affects the `start` and `end` truncation types.
+     * This prop **only** applies to the `start` and `end` truncation types.
      * It allows preserving a certain number of characters of either the
      * starting or ending text.
      *
@@ -53,6 +53,21 @@ export type EuiTextTruncateProps = Omit<
      * the truncation will simply default to `middle` instead.
      */
     truncationOffset?: number;
+    /**
+     * This prop **only** applies to the `startEnd` truncation type.
+     * By default, the `startEnd` truncation will center to the middle
+     * of the text string - this prop allows customizing that anchor position.
+     *
+     * The primary use case for this prop for is search highlighting - if a
+     * user searches for a specific word in the text, pass the middle index of that
+     * found word to ensure it is always visible.
+     *
+     * This behavior will intelligently detect when anchors are close to the start
+     * or end of the text, and omit leading or trailing ellipses when necessary.
+     * If the passed anchor position is greater than the total text length,
+     * the truncation will simply default to `start` instead.
+     */
+    startEndAnchor?: number;
     /**
      * Defaults to the horizontal ellipsis character.
      * Can be optionally configured to use other punctuation,
@@ -95,6 +110,7 @@ const EuiTextTruncateWithWidth: FunctionComponent<
   text,
   truncation: _truncation = 'end',
   truncationOffset: _truncationOffset = 0,
+  startEndAnchor,
   ellipsis = '…',
   containerRef,
   ...rest
@@ -109,11 +125,16 @@ const EuiTextTruncateWithWidth: FunctionComponent<
 
   const truncation = useMemo(() => {
     if (truncationOffsetIsTooLarge) {
-      return 'middle' as const;
-    } else {
-      return _truncation;
+      return 'middle';
+    } else if (_truncation === 'startEnd' && startEndAnchor != null) {
+      if (startEndAnchor <= 0) {
+        return 'end';
+      } else if (startEndAnchor >= text.length) {
+        return 'start';
+      }
     }
-  }, [_truncation, truncationOffsetIsTooLarge]);
+    return _truncation;
+  }, [_truncation, truncationOffsetIsTooLarge, startEndAnchor, text.length]);
 
   const truncationOffset = useMemo(() => {
     if (truncationUsesOffset && !truncationOffsetIsTooLarge) {
@@ -131,7 +152,10 @@ const EuiTextTruncateWithWidth: FunctionComponent<
     containerEl.appendChild(span);
 
     // Check to make sure the container width can even fit the ellipsis, let alone text
-    span.textContent = ellipsis;
+    span.textContent =
+      truncation === 'startEnd' // startEnd needs a little more space
+        ? `${ellipsis} ${ellipsis}`
+        : ellipsis;
     if (span.offsetWidth >= width * 0.9) {
       console.error(
         'The truncation ellipsis is larger than the available width. No text can be rendered.'
@@ -176,12 +200,57 @@ const EuiTextTruncateWithWidth: FunctionComponent<
         break;
 
       case 'startEnd':
-        while (span.offsetWidth > width) {
-          const trimmedMiddle = span.textContent.substring(
-            substringOffset,
-            span.textContent.length - substringOffset
-          );
-          span.textContent = `${ellipsis}${trimmedMiddle}${ellipsis}`;
+        if (startEndAnchor == null) {
+          while (span.offsetWidth > width) {
+            const trimmedMiddle = span.textContent.substring(
+              substringOffset,
+              span.textContent.length - substringOffset
+            );
+            span.textContent = `${ellipsis}${trimmedMiddle}${ellipsis}`;
+          }
+        } else {
+          // If using a non-centered startEnd anchor position, we need to *build*
+          // the string from scratch instead of *removing* from the full text string,
+          // to make sure we don't go past the beginning or end of the text
+          let builtText = '';
+          span.textContent = builtText;
+
+          // Ellipses are conditional - if the anchor is towards the beginning or end,
+          // it's possible they shouldn't render
+          let startingEllipsis = ellipsis;
+          let endingEllipsis = ellipsis;
+
+          // Split the text into two at the anchor position
+          let firstPart = text.substring(0, startEndAnchor);
+          let secondPart = text.substring(startEndAnchor);
+
+          while (span.offsetWidth <= width) {
+            // Because this logic builds text outwards vs. removes inwards, the final text
+            // width ends up a little larger than the container if we don't add this catch
+            const previousText = span.textContent;
+            span.textContent = `${startingEllipsis}${builtText}${endingEllipsis}`;
+            if (span.offsetWidth > width) {
+              span.textContent = previousText;
+              break;
+            }
+
+            if (firstPart.length > 0) {
+              // Split off and prepend the last character of the first part
+              const lastChar = firstPart.length - 1;
+              builtText = `${firstPart.substring(lastChar)}${builtText}`;
+              firstPart = firstPart.substring(0, lastChar);
+            } else {
+              startingEllipsis = '';
+            }
+
+            if (secondPart.length > 0) {
+              // Split off and append first character of the second part
+              builtText = `${builtText}${secondPart.substring(0, 1)}`;
+              secondPart = secondPart.substring(1);
+            } else {
+              endingEllipsis = '';
+            }
+          }
         }
         break;
 
@@ -207,7 +276,15 @@ const EuiTextTruncateWithWidth: FunctionComponent<
     containerEl.removeChild(span);
 
     return truncatedText;
-  }, [width, text, truncation, truncationOffset, ellipsis, containerEl]);
+  }, [
+    width,
+    text,
+    truncation,
+    truncationOffset,
+    startEndAnchor,
+    ellipsis,
+    containerEl,
+  ]);
 
   return (
     <div
