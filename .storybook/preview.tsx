@@ -33,7 +33,8 @@ import { EuiProvider } from '../src/components/provider';
 import { writingModeStyles } from './writing_mode.styles';
 
 // Import light theme for components still using Sass styling
-// TODO: Remove once all EUI components are converted to Emotion
+// TODO: Remove this import and the `yarn compile-scss &&` command
+// once all EUI components are converted to Emotion
 import '../dist/eui_theme_light.css';
 
 const preview: Preview = {
@@ -85,12 +86,21 @@ const preview: Preview = {
     actions: { argTypesRegex: '^on[A-Z].*' },
     backgrounds: { disable: true }, // Use colorMode instead
     controls: {
+      expanded: true,
       sort: 'requiredFirst',
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/,
       },
     },
+  },
+  // Due to CommonProps, these props appear on almost every Story, but generally
+  // aren't super useful to test - let's disable them by default and (if needed)
+  // individual stories can re-enable them
+  argTypes: {
+    css: { table: { disable: true } },
+    className: { table: { disable: true } },
+    'data-test-subj': { table: { disable: true } },
   },
 };
 
