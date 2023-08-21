@@ -75,7 +75,7 @@ export const EuiDescriptionList: FunctionComponent<
 
   return (
     <EuiDescriptionListContext.Provider
-      value={{ type, compressed, textStyle, align, gutterSize, columnGap }}
+      value={{ type, compressed, textStyle, align, gutterSize }}
     >
       <dl className={classes} css={cssStyles} {...rest} data-type={type}>
         {childrenOrListItems}
