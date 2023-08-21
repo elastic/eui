@@ -29,6 +29,6 @@ export const Playground: Story = {
     text: 'Lorem ipsum dolor sit amet, test test test test test test',
     truncation: 'middle',
     truncationOffset: 0,
-    separator: '...',
+    ellipsis: '...',
   },
 };
