@@ -46,6 +46,7 @@ export const EuiDescriptionList: FunctionComponent<
     styles.euiDescriptionList,
     styles[type],
     styles[align],
+    isColumnDisplay && styles.rowGap[gutterSize],
     isColumnDisplay && styles.columnGap[columnGap],
   ];
 
@@ -74,7 +75,7 @@ export const EuiDescriptionList: FunctionComponent<
 
   return (
     <EuiDescriptionListContext.Provider
-      value={{ type, compressed, textStyle, align, gutterSize }}
+      value={{ type, compressed, textStyle, align, gutterSize, columnGap }}
     >
       <dl className={classes} css={cssStyles} {...rest} data-type={type}>
         {childrenOrListItems}

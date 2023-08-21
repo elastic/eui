@@ -19,8 +19,10 @@ import { euiTitle } from '../title/title.styles';
 export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
 
+  const TEXT_MAX_WIDTH = '55ch';
+
   const columnDisplay = `
-  
+    max-inline-size = ${TEXT_MAX_WIDTH};
   `;
   return {
     euiDescriptionList__title: css`
@@ -32,7 +34,9 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
     column: css`
       ${columnDisplay}
     `,
-    responsiveColumn: css``,
+    responsiveColumn: css`
+      ${columnDisplay}
+    `,
     inline: css`
       display: inline;
       border-radius: ${euiTheme.border.radius.small};

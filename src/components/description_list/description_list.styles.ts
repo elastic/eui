@@ -11,12 +11,10 @@ import { logicalTextAlignCSS, euiMinBreakpoint } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
-  const TITLE_MAX_WIDTH = '380px';
-
   // Grid display for column and responsive column
   const columnDisplay = `
     display: grid;
-    grid-template-columns: fit-content(${TITLE_MAX_WIDTH}) 1fr;
+    grid-template-columns: minmax(auto, max-content) minmax(auto, max-content);
     align-items: baseline;
   `;
 
@@ -41,6 +39,14 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
       `,
       m: css`
         column-gap: ${euiThemeContext.euiTheme.size.xl};
+      `,
+    },
+    rowGap: {
+      s: css`
+        row-gap: ${euiThemeContext.euiTheme.size.s};
+      `,
+      m: css`
+        row-gap: ${euiThemeContext.euiTheme.size.m};
       `,
     },
     // Alignment

@@ -20,10 +20,10 @@ import { euiTitle } from '../title/title.styles';
 export const euiDescriptionListDescriptionStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
-  const { euiTheme } = euiThemeContext;
+  const TEXT_MAX_WIDTH = '55ch';
 
   const columnDisplay = `
-
+    max-inline-size = ${TEXT_MAX_WIDTH};
   `;
 
   return {
@@ -73,18 +73,6 @@ export const euiDescriptionListDescriptionStyles = (
     // Column types should align description text to the left when EuiDecriptionList is centered
     left: css`
       ${logicalTextAlignCSS('left')}
-    `,
-
-    // Gutter
-    s: css`
-      &:not(:first-of-type) {
-        ${logicalCSS('margin-top', euiTheme.size.s)}
-      }
-    `,
-    m: css`
-      &:not(:first-of-type) {
-        ${logicalCSS('margin-top', euiTheme.size.base)}
-      }
     `,
   };
 };
