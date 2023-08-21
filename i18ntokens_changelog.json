@@ -1,5 +1,20 @@
 [
   {
+    "version": "87.2.0",
+    "changes": [
+      {
+        "token": "euiResizableButton.horizontalResizerAriaLabel",
+        "changeType": "modified",
+        "value": "Press the left or right arrow keys to adjust panels size"
+      },
+      {
+        "token": "euiResizableButton.verticalResizerAriaLabel",
+        "changeType": "modified",
+        "value": "Press the up or down arrow keys to adjust panels size"
+      }
+    ]
+  },
+  {
     "version": "87.1.0",
     "changes": [
       {
