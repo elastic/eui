@@ -26,44 +26,67 @@ export type EuiTextTruncateProps = Omit<
   'children'
 > &
   CommonProps & {
+    /**
+     * EuiTextTruncate passes back the truncated text as a render prop
+     * (instead of rendering the truncated string directly). This API allows
+     * you to use the text more flexibly, e.g. adding custom markup/highlighting
+     */
     children: (truncatedString: string) => ReactNode;
+    /**
+     * The full text string to truncate
+     */
     text: string;
+    /**
+     * The truncation type desired. Determines where the ellipses are placed.
+     */
     truncation: 'end' | 'start' | 'startEnd' | 'middle'; // TODO: [start: x, end: y?]; - needs to support combobox search highlight
-    truncationOffset?: number; // only applies to end and start
-    separator?: string;
-    width?: number; // Will allow turning off the automatic resize observer for performance, e.g. in EuiComboBox
+    /**
+     * This prop **only** affects the `start` and `end` truncation types.
+     * It allows preserving a certain number of characters of either the
+     * starting or ending text.
+     *
+     * If the passed offset is greater than half of the total text length,
+     * the truncation will simply default to `middle` instead.
+     */
+    truncationOffset?: number;
+    /**
+     * Defaults to the horizontal ellipsis character.
+     * Can be optionally configured to use other punctuation,
+     * e.g. spaces, brackets, hyphens, asterisks, etc.
+     */
+    ellipsis?: string;
+    /**
+     * By default, EuiTextTruncate will render a resize observer to detect the
+     * available width it has. For performance reasons (e.g. multiple truncated
+     * text items within the same container), you may opt to pass in your own
+     * container width, which will skip initializing a resize observer.
+     */
+    width?: number;
   };
 
 export const EuiTextTruncate: FunctionComponent<EuiTextTruncateProps> = ({
   width,
   ...props
 }) => {
-  const [containerWidth, setContainerWidth] = useState(0);
-
-  return width ? (
-    <EuiTextTruncateToWidth width={width} {...props} />
+  return width != null ? (
+    <EuiTextTruncateWithWidth width={width} {...props} />
   ) : (
-    <EuiResizeObserver onResize={({ width }) => setContainerWidth(width)}>
-      {(containerResizeRef) => (
-        <EuiTextTruncateToWidth
-          width={containerWidth}
-          containerRef={containerResizeRef}
-          {...props}
-        />
-      )}
-    </EuiResizeObserver>
+    <EuiTextTruncateWithResizeObserver {...props} />
   );
 };
 
-const EuiTextTruncateToWidth: FunctionComponent<
-  EuiTextTruncateProps & { width: number; containerRef?: Ref<HTMLDivElement> }
+const EuiTextTruncateWithWidth: FunctionComponent<
+  EuiTextTruncateProps & {
+    width: number;
+    containerRef?: Ref<HTMLDivElement>;
+  }
 > = ({
+  width,
   children,
   text,
   truncation: _truncation = 'end',
   truncationOffset: _truncationOffset = 0,
-  separator = '…',
-  width,
+  ellipsis = '…',
   containerRef,
   ...rest
 }) => {
@@ -98,12 +121,14 @@ const EuiTextTruncateToWidth: FunctionComponent<
     const span = document.createElement('span');
     containerEl.appendChild(span);
 
-    // Quick check to make sure consumers didn't pass in an insane separator
-    span.textContent = separator;
+    // Check to make sure the container width can even fit the ellipsis, let alone text
+    span.textContent = ellipsis;
     if (span.offsetWidth >= width * 0.9) {
-      throw new Error(
-        'The separator passed is larger than the available width and cannot be used.'
+      console.error(
+        'The truncation ellipsis is larger than the available width. No text can be rendered.'
       );
+      containerEl.removeChild(span);
+      return '';
     }
 
     span.textContent = text;
@@ -114,30 +139,30 @@ const EuiTextTruncateToWidth: FunctionComponent<
       return text;
     }
 
-    const substringOffset = truncationOffset + separator.length + 1;
+    const substringOffset = truncationOffset + ellipsis.length + 1;
 
     switch (truncation) {
       case 'end':
         const endPosition = text.length - truncationOffset;
         const endOffset = span.textContent.substring(endPosition);
         const endRemaining = span.textContent.substring(0, endPosition);
-        span.textContent = `${endRemaining}${separator}${endOffset}`;
+        span.textContent = `${endRemaining}${ellipsis}${endOffset}`;
 
         while (span.offsetWidth > width) {
           const offset = span.textContent.length - substringOffset;
           const trimmedText = span.textContent.substring(0, offset);
-          span.textContent = `${trimmedText}${separator}${endOffset}`;
+          span.textContent = `${trimmedText}${ellipsis}${endOffset}`;
         }
         break;
 
       case 'start':
         const startOffset = span.textContent.substring(0, truncationOffset);
         const startRemaining = span.textContent.substring(truncationOffset);
-        span.textContent = `${startOffset}${separator}${startRemaining}`;
+        span.textContent = `${startOffset}${ellipsis}${startRemaining}`;
 
         while (span.offsetWidth > width) {
           const trimmedText = span.textContent.substring(substringOffset);
-          span.textContent = `${startOffset}${separator}${trimmedText}`;
+          span.textContent = `${startOffset}${ellipsis}${trimmedText}`;
         }
         break;
 
@@ -147,7 +172,7 @@ const EuiTextTruncateToWidth: FunctionComponent<
             substringOffset,
             span.textContent.length - substringOffset
           );
-          span.textContent = `${separator}${trimmedMiddle}${separator}`;
+          span.textContent = `${ellipsis}${trimmedMiddle}${ellipsis}`;
         }
         break;
 
@@ -173,7 +198,7 @@ const EuiTextTruncateToWidth: FunctionComponent<
     containerEl.removeChild(span);
 
     return truncatedText;
-  }, [width, text, truncation, truncationOffset, separator, containerEl]);
+  }, [width, text, truncation, truncationOffset, ellipsis, containerEl]);
 
   return (
     <div
@@ -185,5 +210,19 @@ const EuiTextTruncateToWidth: FunctionComponent<
     >
       {truncatedText && children(truncatedText)}
     </div>
+  );
+};
+
+const EuiTextTruncateWithResizeObserver: FunctionComponent<
+  Omit<EuiTextTruncateProps, 'width'>
+> = ({ ...props }) => {
+  const [width, setWidth] = useState(0);
+
+  return (
+    <EuiResizeObserver onResize={({ width }) => setWidth(width)}>
+      {(ref) => (
+        <EuiTextTruncateWithWidth width={width} containerRef={ref} {...props} />
+      )}
+    </EuiResizeObserver>
   );
 };
