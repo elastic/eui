@@ -1,7 +1,7 @@
 name: "Community contribution"
 on:
   pull_request_target:
-    types: [opened, synchronize, reopened, ready_for_review, labeled, unlabeled] # Remove all except opened before merging
+    types: [opened]
 
 jobs:
   community-pr-message:
