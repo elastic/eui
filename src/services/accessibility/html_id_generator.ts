@@ -44,6 +44,8 @@ export type UseGeneratedHtmlIdOptions = {
    */
   conditionalId?: string;
 };
+
+// We can remove this deprecated hook once EUI no longer needs to support React 16-17
 const useDeprecatedGeneratedHtmlId = ({
   prefix,
   suffix,
