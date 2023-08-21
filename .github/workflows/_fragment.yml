@@ -1,5 +1,0 @@
-uses: thollander/actions-comment-pull-request@v2
-with:
-  message: |
-    Since this is a community submitted pull request, a Buildkite build has not been kicked off automatically. Would an Elastic organization member please verify the contents of this patch and then kick off a build manually?
-  pr_number: ${{ env.PULL_REQUEST_NUMBER }}
