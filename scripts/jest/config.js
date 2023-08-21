@@ -35,7 +35,7 @@ const config = {
   setupFiles: [
     '<rootDir>/scripts/jest/setup/enzyme.js',
     '<rootDir>/scripts/jest/setup/throw_on_console_error.js',
-    '<rootDir>/scripts/jest/setup/mocks.js'
+    '<rootDir>/scripts/jest/setup/mocks.js',
   ],
   setupFilesAfterEnv: [
     '<rootDir>/scripts/jest/setup/polyfills.js',
