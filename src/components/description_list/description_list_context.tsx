@@ -19,7 +19,7 @@ export const contextDefaults: EuiDescriptionListContextValues = {
   type: 'row',
   textStyle: 'normal',
   align: 'left',
-  gutterSize: 'm',
+  gutterSize: 's',
 };
 
 export const EuiDescriptionListContext =
