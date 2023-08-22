@@ -13,7 +13,7 @@ import {
   logicalTextAlignCSS,
   logicalCSS,
 } from '../../global_styling';
-import { tint, UseEuiTheme } from '../../services';
+import { UseEuiTheme } from '../../services';
 import { euiTitle } from '../title/title.styles';
 
 export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
