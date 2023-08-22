@@ -6,5 +6,8 @@
  * Side Public License, v 1.
  */
 
-export type { EuiTextTruncateProps } from './text_truncate';
+export type {
+  EuiTextTruncateProps,
+  EuiTextTruncationTypes,
+} from './text_truncate';
 export { EuiTextTruncate } from './text_truncate';

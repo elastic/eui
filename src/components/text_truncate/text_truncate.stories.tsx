@@ -23,7 +23,7 @@ type Story = StoryObj<EuiTextTruncateProps>;
 
 const componentDefaults = {
   text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-  truncation: 'middle',
+  truncation: 'end',
 } as const;
 
 export const Playground: Story = {
