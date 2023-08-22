@@ -69,15 +69,15 @@ exports[`EuiDescriptionList props align left is rendered 1`] = `
 
 exports[`EuiDescriptionList props column gap m is rendered 1`] = `
 <dl
-  class="euiDescriptionList emotion-euiDescriptionList-row-left"
-  data-type="row"
+  class="euiDescriptionList emotion-euiDescriptionList-column-left-s-m"
+  data-type="column"
 />
 `;
 
 exports[`EuiDescriptionList props column gap s is rendered 1`] = `
 <dl
-  class="euiDescriptionList emotion-euiDescriptionList-row-left"
-  data-type="row"
+  class="euiDescriptionList emotion-euiDescriptionList-column-left-s-s"
+  data-type="column"
 />
 `;
 
@@ -90,15 +90,15 @@ exports[`EuiDescriptionList props compressed is rendered 1`] = `
 
 exports[`EuiDescriptionList props gutter m is rendered 1`] = `
 <dl
-  class="euiDescriptionList emotion-euiDescriptionList-row-left"
-  data-type="row"
+  class="euiDescriptionList emotion-euiDescriptionList-column-left-m-s"
+  data-type="column"
 />
 `;
 
 exports[`EuiDescriptionList props gutter s is rendered 1`] = `
 <dl
-  class="euiDescriptionList emotion-euiDescriptionList-row-left"
-  data-type="row"
+  class="euiDescriptionList emotion-euiDescriptionList-column-left-s-s"
+  data-type="column"
 />
 `;
 
