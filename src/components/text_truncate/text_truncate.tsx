@@ -25,6 +25,9 @@ import type { CommonProps } from '../common';
 
 import { euiTextTruncateStyles } from './text_truncate.styles';
 
+const TRUNCATION_TYPES = ['end', 'start', 'startEnd', 'middle'] as const;
+export type EuiTextTruncationTypes = (typeof TRUNCATION_TYPES)[number];
+
 export type EuiTextTruncateProps = Omit<
   HTMLAttributes<HTMLDivElement>,
   'children' | 'onResize'
@@ -37,7 +40,7 @@ export type EuiTextTruncateProps = Omit<
     /**
      * The truncation type desired. Determines where the ellipses are placed.
      */
-    truncation: 'end' | 'start' | 'startEnd' | 'middle';
+    truncation?: EuiTextTruncationTypes;
     /**
      * This prop **only** applies to the `start` and `end` truncation types.
      * It allows preserving a certain number of characters of either the
