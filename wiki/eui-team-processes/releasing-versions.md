@@ -40,7 +40,7 @@ npm whoami # Should return an error about not being logged in
 
 ### Deploying to eui.elastic.co
 
-In addition to the GitHub pages deployment, Buildkite automatically deploys our docs to the EUI Bekitzur environment (which will eventually be the canonical home of the EUI docs). The Buildkte job is started when a new version of EUI is pushed to GitHub.
+In addition to the GitHub pages deployment, Buildkite automatically deploys our docs to the EUI Bekitzur environment (which will eventually be the canonical home of the EUI docs). The Buildkite job is started when a new tag is pushed to the `main` branch.
 
 To view the progress of your job or check for errors:
 
