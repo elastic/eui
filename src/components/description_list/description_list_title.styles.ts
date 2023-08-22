@@ -42,10 +42,12 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
       border-radius: ${euiTheme.border.radius.small};
       font-weight: ${euiTheme.font.weight.medium};
       background-color: ${colorMode === 'DARK'
-        ? tint(euiTheme.colors.lightestShade, 0.5)
+        ? euiTheme.colors.fullShade
         : euiTheme.colors.lightestShade};
       ${logicalCSS('margin-vertical', '0')}
       ${logicalCSS('margin-horizontal', euiTheme.size.xs)}
+
+      ${colorMode === 'DARK' && `color: ${euiTheme.colors.text};`}
 
       /* Make sure the first <dt> doesn't get a margin */
       &:first-of-type {
