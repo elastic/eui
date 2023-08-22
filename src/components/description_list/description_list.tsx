@@ -9,17 +9,14 @@
 import React, { HTMLAttributes, FunctionComponent, useMemo } from 'react';
 import classNames from 'classnames';
 
-import { EuiDescriptionListTitle } from './description_list_title';
-
-import { EuiDescriptionListDescription } from './description_list_description';
+import { useEuiTheme, useIsWithinBreakpoints } from '../../services';
 import { CommonProps } from '../common';
 
-import { useEuiTheme, useIsWithinBreakpoints } from '../../services';
-import { euiDescriptionListStyles } from './description_list.styles';
-
 import { EuiDescriptionListProps } from './description_list_types';
-
 import { EuiDescriptionListContext } from './description_list_context';
+import { EuiDescriptionListTitle } from './description_list_title';
+import { EuiDescriptionListDescription } from './description_list_description';
+import { euiDescriptionListStyles } from './description_list.styles';
 
 export const EuiDescriptionList: FunctionComponent<
   CommonProps & HTMLAttributes<HTMLDListElement> & EuiDescriptionListProps

@@ -8,10 +8,12 @@
 
 import React, { HTMLAttributes, FunctionComponent, useContext } from 'react';
 import classNames from 'classnames';
+
 import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
-import { euiDescriptionListDescriptionStyles } from './description_list_description.styles';
+
 import { EuiDescriptionListContext } from './description_list_context';
+import { euiDescriptionListDescriptionStyles } from './description_list_description.styles';
 
 // Export required for correct inference by HOCs
 export interface EuiDescriptionListDescriptionProps
@@ -39,12 +41,10 @@ export const EuiDescriptionListDescription: FunctionComponent<
         ? [styles.inlineStyles.compressed]
         : [styles.inlineStyles.normal];
       break;
-
     case 'column':
       if (align === 'center') {
         conditionalStyles.push(styles.left);
       }
-
       break;
   }
 

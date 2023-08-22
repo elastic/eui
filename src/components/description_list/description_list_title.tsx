@@ -8,10 +8,12 @@
 
 import React, { HTMLAttributes, FunctionComponent, useContext } from 'react';
 import classNames from 'classnames';
+
 import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
-import { euiDescriptionListTitleStyles } from './description_list_title.styles';
+
 import { EuiDescriptionListContext } from './description_list_context';
+import { euiDescriptionListTitleStyles } from './description_list_title.styles';
 
 // Export required for correct inference by HOCs
 export interface EuiDescriptionListTitleProps
