@@ -6,10 +6,18 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { shallow } from 'enzyme';
+import * as uuid from 'uuid';
+import { render } from '../../test/rtl';
 
 import { htmlIdGenerator, useGeneratedHtmlId } from './html_id_generator';
+import { testOnReactVersion } from '../../test/internal';
+
+const originalUuid = jest.requireActual('uuid');
+jest.mock('uuid');
+const mockedUuid = uuid as jest.Mocked<typeof originalUuid>;
+mockedUuid.v1.mockImplementation(originalUuid.v1);
 
 jest.mock('./html_id_generator', () => {
   return jest.requireActual('./html_id_generator');
@@ -92,5 +100,39 @@ describe('useGeneratedHtmlId', () => {
 
     component.setProps({ id: undefined });
     expect(component.find('div').prop('id')).toBeTruthy(); // Should fall back to a generated ID
+  });
+
+  describe('version-specific tests', () => {
+    let MockComponent: FunctionComponent;
+
+    beforeEach(() => {
+      MockComponent = () => (
+        <div
+          data-test-subj="el"
+          id={useGeneratedHtmlId({
+            prefix: 'prefix',
+            suffix: 'suffix',
+          })}
+        />
+      );
+    });
+
+    testOnReactVersion('18')('[React 18] generates correct IDs', () => {
+      const { getByTestSubject } = render(<MockComponent />);
+      expect(getByTestSubject('el')).toHaveAttribute('id', 'prefix:r0:suffix');
+    });
+
+    testOnReactVersion(['16', '17'])(
+      '[React 16-17] generates correct IDs',
+      () => {
+        mockedUuid.v1.mockImplementationOnce(() => 'random-id');
+
+        const { getByTestSubject } = render(<MockComponent />);
+        expect(getByTestSubject('el')).toHaveAttribute(
+          'id',
+          'prefix_random-id_suffix'
+        );
+      }
+    );
   });
 });

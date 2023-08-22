@@ -1,3 +1,14 @@
+## [`87.2.0`](https://github.com/elastic/eui/tree/v87.2.0)
+
+- `EuiResizableButton` is now available as a generic top-level export ([#7087](https://github.com/elastic/eui/pull/7087))
+- Added new `alignIndicator` prop to `EuiResizableButton`. Defaults to `center`, and can now additionally be configured to `start` and `end` ([#7087](https://github.com/elastic/eui/pull/7087))
+- Updated `useGeneratedHtmlId` hook to use `React.useId` as the source of unique identifiers when available ([#7095](https://github.com/elastic/eui/pull/7095))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiResizableButton` to Emotion; Removed `$euiResizableButtonTransitionSpeed` and `$euiResizableButtonSize` ([#7081](https://github.com/elastic/eui/pull/7081))
+- Converted `EuiResizableCollapseButton` to Emotion ([#7091](https://github.com/elastic/eui/pull/7091))
+
 ## [`87.1.0`](https://github.com/elastic/eui/tree/v87.1.0)
 
 - Updated the underlying library powering `EuiAutoSizer`. This primarily affects typing around the `disableHeight` and `disableWidth` props ([#6798](https://github.com/elastic/eui/pull/6798))

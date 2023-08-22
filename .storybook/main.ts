@@ -19,6 +19,19 @@ const config: StorybookConfig = {
     name: '@storybook/react-webpack5',
     options: {},
   },
+  webpackFinal: async (config) => {
+    // Fix for `css` prop - Emotion doesn't work otherwise
+    config.module!.rules!.push({
+      test: /\.tsx?$/,
+      use: [
+        {
+          loader: require.resolve('babel-loader'),
+          options: { plugins: ['@emotion/babel-plugin'] },
+        },
+      ],
+    });
+    return config;
+  },
   docs: {
     autodocs: 'tag',
   },

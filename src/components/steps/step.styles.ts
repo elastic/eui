@@ -73,7 +73,7 @@ export const euiStepContentStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const euiStep = euiStepVariables(euiTheme);
 
-  const styles = {
+  return {
     euiStep__content: css`
       ${logicalCSS('margin-top', euiTheme.size.s)}
       ${logicalCSS('padding-top', euiTheme.size.base)}
@@ -99,7 +99,10 @@ export const euiStepContentStyles = (euiThemeContext: UseEuiTheme) => {
         mathWithUnits(euiStep.numberSize, (x) => x / 2)
       )}
     `,
-    s: css``, // s is the same as m, so we'll programmatically duplicate it below
+    // `s` is the same as `m` - use a getter to duplicate its content
+    get s() {
+      return this.m;
+    },
     xs: css`
       /* Align the content's contents with the title */
       ${logicalCSS(
@@ -116,9 +119,6 @@ export const euiStepContentStyles = (euiThemeContext: UseEuiTheme) => {
       )}
     `,
   };
-  styles.s = styles.m;
-
-  return styles;
 };
 
 export const euiStepTitleStyles = (euiThemeContext: UseEuiTheme) => {

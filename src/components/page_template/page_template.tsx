@@ -160,7 +160,8 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   const getBottomBarProps = () => ({
     restrictWidth,
     paddingSize,
-    parent: `#${pageInnerId}`,
+    // pageInnerId may contain colons that are parsed as pseudo-elements if not escaped
+    parent: `#${CSS.escape(pageInnerId)}`,
   });
 
   const innerPanelled = () => panelled ?? Boolean(sidebar.length > 0);
