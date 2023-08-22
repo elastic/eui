@@ -11,6 +11,13 @@ import { requiredProps } from '../../test/required_props';
 import { render } from '../../test/rtl';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
+jest.mock('../../services', () => ({
+  ...jest.requireActual('../../services'),
+  useIsWithinBreakpoints: jest.fn(),
+}));
+import * as services from '../../services';
+const mockUseIsWithinBreakpoints = services.useIsWithinBreakpoints as jest.Mock;
+
 import { EuiDescriptionList } from './description_list';
 import {
   TYPES,
@@ -95,10 +102,32 @@ describe('EuiDescriptionList', () => {
     });
 
     describe('type', () => {
-      TYPES.forEach((type) => {
+      TYPES.filter((type) => type !== 'responsiveColumn').forEach((type) => {
         test(`${type} is rendered`, () => {
           const { container } = render(<EuiDescriptionList type={type} />);
 
+          expect(container.firstChild).toMatchSnapshot();
+        });
+      });
+
+      describe('responsiveColumn', () => {
+        it('renders a row when the current window is within the responsive breakpoints', () => {
+          mockUseIsWithinBreakpoints.mockReturnValue(true);
+          const { container } = render(
+            <EuiDescriptionList type="responsiveColumn" />
+          );
+
+          expect(container.firstElementChild!.className).toContain('row');
+          expect(container.firstChild).toMatchSnapshot();
+        });
+
+        it('renders a column when the current window is above the responsive breakpoints', () => {
+          mockUseIsWithinBreakpoints.mockReturnValue(false);
+          const { container } = render(
+            <EuiDescriptionList type="responsiveColumn" />
+          );
+
+          expect(container.firstElementChild!.className).toContain('column');
           expect(container.firstChild).toMatchSnapshot();
         });
       });

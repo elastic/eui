@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { HTMLAttributes, FunctionComponent } from 'react';
+import React, { HTMLAttributes, FunctionComponent, useMemo } from 'react';
 import classNames from 'classnames';
 
 import { EuiDescriptionListTitle } from './description_list_title';
@@ -14,7 +14,7 @@ import { EuiDescriptionListTitle } from './description_list_title';
 import { EuiDescriptionListDescription } from './description_list_description';
 import { CommonProps } from '../common';
 
-import { useEuiTheme } from '../../services';
+import { useEuiTheme, useIsWithinBreakpoints } from '../../services';
 import { euiDescriptionListStyles } from './description_list.styles';
 
 import { EuiDescriptionListProps } from './description_list_types';
@@ -32,22 +32,29 @@ export const EuiDescriptionList: FunctionComponent<
   listItems,
   textStyle = 'normal',
   titleProps,
-  type = 'row',
+  type: _type = 'row',
   gutterSize = 's',
   columnGap = 's',
   ...rest
 }) => {
+  const showResponsiveColumns = useIsWithinBreakpoints(['xs', 's']);
+  const type = useMemo(() => {
+    if (_type === 'responsiveColumn') {
+      return showResponsiveColumns ? 'row' : 'column';
+    } else {
+      return _type;
+    }
+  }, [_type, showResponsiveColumns]);
+
   const euiTheme = useEuiTheme();
   const styles = euiDescriptionListStyles(euiTheme);
-
-  const isColumnDisplay = type === 'column' || type === 'responsiveColumn';
 
   const cssStyles = [
     styles.euiDescriptionList,
     styles[type],
     styles[align],
-    isColumnDisplay && styles.rowGap[gutterSize],
-    isColumnDisplay && styles.columnGap[columnGap],
+    type === 'column' && styles.rowGap[gutterSize],
+    type === 'column' && styles.columnGap[columnGap],
   ];
 
   const classes = classNames('euiDescriptionList', className);
@@ -77,7 +84,7 @@ export const EuiDescriptionList: FunctionComponent<
     <EuiDescriptionListContext.Provider
       value={{ type, compressed, textStyle, align, gutterSize }}
     >
-      <dl className={classes} css={cssStyles} {...rest} data-type={type}>
+      <dl className={classes} css={cssStyles} {...rest} data-type={_type}>
         {childrenOrListItems}
       </dl>
     </EuiDescriptionListContext.Provider>
