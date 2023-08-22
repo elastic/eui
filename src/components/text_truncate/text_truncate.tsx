@@ -52,19 +52,19 @@ export type EuiTextTruncateProps = Omit<
     truncationOffset?: number;
     /**
      * This prop **only** applies to the `startEnd` truncation type.
-     * By default, the `startEnd` truncation will center to the middle
-     * of the text string - this prop allows customizing that anchor position.
+     * It allows customizing the anchor position of the displayed text,
+     * which otherwise defaults to the middle of the text string.
      *
-     * The primary use case for this prop for is search highlighting - if a
-     * user searches for a specific word in the text, pass the middle index of that
+     * The primary use case for this prop for is search highlighting - e.g., if
+     * a user searches for a specific word in the text, pass the index of that
      * found word to ensure it is always visible.
      *
-     * This behavior will intelligently detect when anchors are close to the start
+     * This behavior will intelligently detect when positions are close to the start
      * or end of the text, and omit leading or trailing ellipses when necessary.
-     * If the passed anchor position is greater than the total text length,
+     * If the passed position is greater than the total text length,
      * the truncation will simply default to `start` instead.
      */
-    startEndAnchor?: number;
+    truncationPosition?: number;
     /**
      * Defaults to the horizontal ellipsis character.
      * Can be optionally configured to use other punctuation,
@@ -114,7 +114,7 @@ const EuiTextTruncateWithWidth: FunctionComponent<
   text,
   truncation: _truncation = 'end',
   truncationOffset: _truncationOffset = 0,
-  startEndAnchor,
+  truncationPosition,
   ellipsis = '…',
   containerRef,
   ...rest
@@ -123,30 +123,27 @@ const EuiTextTruncateWithWidth: FunctionComponent<
   const [containerEl, setContainerEl] = useState<HTMLDivElement | null>(null);
   const refs = useCombinedRefs([setContainerEl, containerRef]);
 
-  const truncationUsesOffset = _truncation === 'end' || _truncation === 'start';
-  const truncationOffsetIsTooLarge =
-    truncationUsesOffset && _truncationOffset >= Math.floor(text.length / 2);
+  // Handle exceptions where we need to override the passed props
+  const { truncation, truncationOffset } = useMemo(() => {
+    let truncation = _truncation;
+    let truncationOffset = 0;
 
-  const truncation = useMemo(() => {
-    if (truncationOffsetIsTooLarge) {
-      return 'middle';
-    } else if (_truncation === 'startEnd' && startEndAnchor != null) {
-      if (startEndAnchor <= 0) {
-        return 'end';
-      } else if (startEndAnchor >= text.length) {
-        return 'start';
+    if (_truncation === 'end' || _truncation === 'start') {
+      const offsetIsTooLarge = _truncationOffset >= Math.floor(text.length / 2);
+      if (offsetIsTooLarge) {
+        truncation = 'middle';
+      } else {
+        truncationOffset = _truncationOffset; // The only time we respect truncationOffset
+      }
+    } else if (_truncation === 'startEnd' && truncationPosition != null) {
+      if (truncationPosition <= 0) {
+        truncation = 'end';
+      } else if (truncationPosition >= text.length) {
+        truncation = 'start';
       }
     }
-    return _truncation;
-  }, [_truncation, truncationOffsetIsTooLarge, startEndAnchor, text.length]);
-
-  const truncationOffset = useMemo(() => {
-    if (truncationUsesOffset && !truncationOffsetIsTooLarge) {
-      return _truncationOffset;
-    } else {
-      return 0;
-    }
-  }, [_truncationOffset, truncationOffsetIsTooLarge, truncationUsesOffset]);
+    return { truncation, truncationOffset };
+  }, [_truncation, _truncationOffset, truncationPosition, text.length]);
 
   const truncatedText = useMemo(() => {
     if (!containerEl || !width) return '';
@@ -204,7 +201,7 @@ const EuiTextTruncateWithWidth: FunctionComponent<
         break;
 
       case 'startEnd':
-        if (startEndAnchor == null) {
+        if (truncationPosition == null) {
           while (span.offsetWidth > width) {
             const trimmedMiddle = span.textContent.substring(
               substringOffset,
@@ -225,8 +222,8 @@ const EuiTextTruncateWithWidth: FunctionComponent<
           let endingEllipsis = ellipsis;
 
           // Split the text into two at the anchor position
-          let firstPart = text.substring(0, startEndAnchor);
-          let secondPart = text.substring(startEndAnchor);
+          let firstPart = text.substring(0, truncationPosition);
+          let secondPart = text.substring(truncationPosition);
 
           while (span.offsetWidth <= width) {
             // Because this logic builds text outwards vs. removes inwards, the final text
@@ -285,7 +282,7 @@ const EuiTextTruncateWithWidth: FunctionComponent<
     text,
     truncation,
     truncationOffset,
-    startEndAnchor,
+    truncationPosition,
     ellipsis,
     containerEl,
   ]);
