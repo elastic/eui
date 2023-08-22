@@ -18,6 +18,7 @@ export default () => {
           compressed
           value={truncationOffset}
           onChange={(e) => setTruncationOffset(Number(e.target.value))}
+          max={30}
         />
       </EuiFormRow>
       <EuiSpacer />

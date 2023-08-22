@@ -133,7 +133,7 @@ const EuiTextTruncateWithWidth: FunctionComponent<
       if (offsetIsTooLarge) {
         truncation = 'middle';
       } else {
-        truncationOffset = _truncationOffset; // The only time we respect truncationOffset
+        truncationOffset = _truncationOffset > 0 ? _truncationOffset : 0; // Negative offsets cause infinite loops
       }
     } else if (_truncation === 'startEnd' && truncationPosition != null) {
       if (truncationPosition <= 0) {
@@ -180,6 +180,17 @@ const EuiTextTruncateWithWidth: FunctionComponent<
         const endPosition = text.length - truncationOffset;
         const endOffset = span.textContent.substring(endPosition);
         const endRemaining = span.textContent.substring(0, endPosition);
+
+        // Make sure that the offset alone isn't larger than the actual available width
+        span.textContent = `${ellipsis}${endOffset}`;
+        if (span.offsetWidth > width) {
+          // There isn't a super great way to handle this visually.
+          // The best we can do is simply render the broken truncation
+          console.error(
+            `The passed truncationOffset of ${truncationOffset} is too large for available width.`
+          );
+          break;
+        }
         span.textContent = `${endRemaining}${ellipsis}${endOffset}`;
 
         while (span.offsetWidth > width) {
@@ -192,6 +203,17 @@ const EuiTextTruncateWithWidth: FunctionComponent<
       case 'start':
         const startOffset = span.textContent.substring(0, truncationOffset);
         const startRemaining = span.textContent.substring(truncationOffset);
+
+        // Make sure that the offset alone isn't larger than the actual available width
+        span.textContent = `${startOffset}${ellipsis}`;
+        if (span.offsetWidth > width) {
+          // There isn't a super great way to handle this visually.
+          // The best we can do is simply render the broken truncation
+          console.error(
+            `The passed truncationOffset of ${truncationOffset} is too large for available width.`
+          );
+          break;
+        }
         span.textContent = `${startOffset}${ellipsis}${startRemaining}`;
 
         while (span.offsetWidth > width) {
