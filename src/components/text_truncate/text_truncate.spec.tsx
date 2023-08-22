@@ -21,9 +21,24 @@ describe('EuiTextTruncate', () => {
     width: 200,
   };
 
-  it('returns the text in full if no truncation is needed', () => {
+  const getTruncatedText = (selector = '#text') =>
+    cy.get(`${selector} [data-test-subj="truncatedText"]`);
+
+  it('does not render truncated text if no truncation is needed', () => {
     cy.mount(<EuiTextTruncate {...props} text="Hello world" />);
-    cy.get('#text').should('have.text', 'Hello world');
+    cy.get('#text').should('not.have.attr', 'title');
+    cy.get('#text [data-test-subj="fullText"]').should(
+      'have.text',
+      'Hello world'
+    );
+    getTruncatedText().should('not.exist');
+  });
+
+  it('renders truncated text and a title when truncation is needed', () => {
+    cy.mount(<EuiTextTruncate {...props} />);
+    cy.get('#text').should('have.attr', 'title', props.text);
+    cy.get('#text [data-test-subj="fullText"]').should('have.text', props.text);
+    getTruncatedText().should('exist');
   });
 
   describe('truncation', () => {
@@ -35,7 +50,7 @@ describe('EuiTextTruncate', () => {
     describe('middle', () => {
       it('truncations and inserts ellispes in the middle of the text', () => {
         cy.mount(<EuiTextTruncate {...props} truncation="middle" />);
-        cy.get('#text').should('have.text', expectedMiddleOutput);
+        getTruncatedText().should('have.text', expectedMiddleOutput);
       });
 
       it('ignores `truncationOffset` and `truncationPosition`', () => {
@@ -47,14 +62,14 @@ describe('EuiTextTruncate', () => {
             truncationPosition={20}
           />
         );
-        cy.get('#text').should('have.text', expectedMiddleOutput);
+        getTruncatedText().should('have.text', expectedMiddleOutput);
       });
     });
 
     describe('start', () => {
       it('truncates and inserts ellispis at the start of the text', () => {
         cy.mount(<EuiTextTruncate {...props} truncation="start" />);
-        cy.get('#text').should('have.text', expectedStartOutput);
+        getTruncatedText().should('have.text', expectedStartOutput);
       });
 
       describe('truncationOffset', () => {
@@ -66,7 +81,10 @@ describe('EuiTextTruncate', () => {
               truncationOffset={5}
             />
           );
-          cy.get('#text').should('have.text', 'Lorem…ectetur adipiscing elit');
+          getTruncatedText().should(
+            'have.text',
+            'Lorem…ectetur adipiscing elit'
+          );
         });
 
         it('falls back to middle truncation if truncationOffset is too large for the text', () => {
@@ -77,7 +95,7 @@ describe('EuiTextTruncate', () => {
               truncationOffset={100}
             />
           );
-          cy.get('#text').should('have.text', expectedMiddleOutput);
+          getTruncatedText().should('have.text', expectedMiddleOutput);
         });
 
         it('logs an error if the truncationOffset is too large for the container', () => {
@@ -103,7 +121,7 @@ describe('EuiTextTruncate', () => {
     describe('end', () => {
       it('truncates and inserts ellispis at the end of the text', () => {
         cy.mount(<EuiTextTruncate {...props} truncation="end" />);
-        cy.get('#text').should('have.text', expectedEndOutput);
+        getTruncatedText().should('have.text', expectedEndOutput);
       });
 
       describe('truncationOffset', () => {
@@ -115,7 +133,10 @@ describe('EuiTextTruncate', () => {
               truncationOffset={10}
             />
           );
-          cy.get('#text').should('have.text', 'Lorem ipsum dolor …scing elit');
+          getTruncatedText().should(
+            'have.text',
+            'Lorem ipsum dolor …scing elit'
+          );
         });
 
         it('falls back to middle truncation if truncationOffset is too large for the text', () => {
@@ -126,7 +147,7 @@ describe('EuiTextTruncate', () => {
               truncationOffset={30}
             />
           );
-          cy.get('#text').should('have.text', expectedMiddleOutput);
+          getTruncatedText().should('have.text', expectedMiddleOutput);
         });
 
         it('logs an error if the truncationOffset is too large for the container', () => {
@@ -152,7 +173,7 @@ describe('EuiTextTruncate', () => {
     describe('startEnd', () => {
       it('truncates and inserts ellipses at both the start and end of the text', () => {
         cy.mount(<EuiTextTruncate {...props} truncation="startEnd" />);
-        cy.get('#text').should('have.text', expectedStartEndOutput);
+        getTruncatedText().should('have.text', expectedStartEndOutput);
       });
 
       it('ignores `truncationOffset`', () => {
@@ -163,7 +184,7 @@ describe('EuiTextTruncate', () => {
             truncationOffset={10}
           />
         );
-        cy.get('#text').should('have.text', expectedStartEndOutput);
+        getTruncatedText().should('have.text', expectedStartEndOutput);
       });
 
       describe('truncationPosition', () => {
@@ -184,8 +205,14 @@ describe('EuiTextTruncate', () => {
               />
             </>
           );
-          cy.get('#text1').should('have.text', '…rem ipsum dolor sit amet, …');
-          cy.get('#text2').should('have.text', '…amet, consectetur adipisci…');
+          getTruncatedText('#text1').should(
+            'have.text',
+            '…rem ipsum dolor sit amet, …'
+          );
+          getTruncatedText('#text2').should(
+            'have.text',
+            '…amet, consectetur adipisci…'
+          );
         });
 
         it('does not display the leading ellipsis if the anchor is close enough to the start', () => {
@@ -196,7 +223,7 @@ describe('EuiTextTruncate', () => {
               truncationPosition={5}
             />
           );
-          cy.get('#text').should('have.text', expectedEndOutput);
+          getTruncatedText().should('have.text', expectedEndOutput);
         });
 
         it('does not display the leading ellipsis if the anchor position is <= 0', () => {
@@ -216,8 +243,8 @@ describe('EuiTextTruncate', () => {
               />
             </>
           );
-          cy.get('#text1').should('have.text', expectedEndOutput);
-          cy.get('#text2').should('have.text', expectedEndOutput);
+          getTruncatedText('#text1').should('have.text', expectedEndOutput);
+          getTruncatedText('#text2').should('have.text', expectedEndOutput);
         });
 
         it('does not display the trailing ellipsis if the anchor is close enough to the end', () => {
@@ -228,7 +255,7 @@ describe('EuiTextTruncate', () => {
               truncationPosition={42}
             />
           );
-          cy.get('#text').should('have.text', expectedStartOutput);
+          getTruncatedText().should('have.text', expectedStartOutput);
         });
 
         it('does not display the trailing ellipsis if the anchor position is >= the text length', () => {
@@ -248,8 +275,8 @@ describe('EuiTextTruncate', () => {
               />
             </>
           );
-          cy.get('#text1').should('have.text', expectedStartOutput);
-          cy.get('#text2').should('have.text', expectedStartOutput);
+          getTruncatedText('#text1').should('have.text', expectedStartOutput);
+          getTruncatedText('#text2').should('have.text', expectedStartOutput);
         });
       });
     });
@@ -273,8 +300,14 @@ describe('EuiTextTruncate', () => {
           />
         </>
       );
-      cy.get('#text1').should('have.text', 'Lorem ipsum [...]dipiscing elit');
-      cy.get('#text2').should('have.text', '--lor sit amet, consectetur a--');
+      getTruncatedText('#text1').should(
+        'have.text',
+        'Lorem ipsum [...]dipiscing elit'
+      );
+      getTruncatedText('#text2').should(
+        'have.text',
+        '--lor sit amet, consectetur a--'
+      );
     });
 
     it("does not render if the container isn't wide enough for the ellipsis", () => {
@@ -296,8 +329,8 @@ describe('EuiTextTruncate', () => {
           />
         </>
       );
-      cy.get('#text1').should('have.text', '');
-      cy.get('#text2').should('have.text', '');
+      getTruncatedText('#text1').should('have.text', '');
+      getTruncatedText('#text2').should('have.text', '');
 
       cy.get('@spyConsoleError')
         .should(
