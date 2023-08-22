@@ -16,14 +16,11 @@ import {
 import { UseEuiTheme } from '../../services';
 import { euiTitle } from '../title/title.styles';
 
+const COLUMN_MAX_WIDTH = '55ch';
+
 export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
 
-  const TEXT_MAX_WIDTH = '55ch';
-
-  const columnDisplay = `
-    max-inline-size = ${TEXT_MAX_WIDTH};
-  `;
   return {
     euiDescriptionList__title: css`
       ${euiTextBreakWord()}
@@ -32,10 +29,10 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
     // Types
     row: css``,
     column: css`
-      ${columnDisplay}
+      max-inline-size: ${COLUMN_MAX_WIDTH};
     `,
     responsiveColumn: css`
-      ${columnDisplay}
+      max-inline-size: ${COLUMN_MAX_WIDTH};
     `,
     inline: css`
       display: inline;

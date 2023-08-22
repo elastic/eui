@@ -17,22 +17,18 @@ import {
 import { UseEuiTheme } from '../../services';
 import { euiTitle } from '../title/title.styles';
 
+const COLUMN_MAX_WIDTH = '55ch'; // Is this intentional? I was under the impression we were only setting a max-width on titles
+
 export const euiDescriptionListDescriptionStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
-  const TEXT_MAX_WIDTH = '55ch';
-
-  const columnDisplay = `
-    max-inline-size = ${TEXT_MAX_WIDTH};
-  `;
-
   return {
     euiDescriptionList__description: css``,
 
     // Types
     row: css``,
     column: css`
-      ${columnDisplay}
+      max-inline-size: ${COLUMN_MAX_WIDTH};
     `,
     responsiveColumn: css`
       ${euiMaxBreakpoint(euiThemeContext, 'm')} {
@@ -40,7 +36,7 @@ export const euiDescriptionListDescriptionStyles = (
         padding: 0;
       }
       ${euiMinBreakpoint(euiThemeContext, 'm')} {
-        ${columnDisplay}
+        max-inline-size: ${COLUMN_MAX_WIDTH};
       }
     `,
     inline: css`
