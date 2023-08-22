@@ -30,12 +30,6 @@ exports[`EuiDescriptionListDescription EuiDescriptionListDescription prop variat
 />
 `;
 
-exports[`EuiDescriptionListDescription EuiDescriptionListDescription prop variations type responsiveColumn is rendered 1`] = `
-<dd
-  class="euiDescriptionList__description emotion-euiDescriptionList__description-responsiveColumn-normal"
-/>
-`;
-
 exports[`EuiDescriptionListDescription EuiDescriptionListDescription prop variations type row is rendered 1`] = `
 <dd
   class="euiDescriptionList__description emotion-euiDescriptionList__description-row-normal"

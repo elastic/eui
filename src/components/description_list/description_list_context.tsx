@@ -7,10 +7,15 @@
  */
 
 import { createContext } from 'react';
-import { EuiDescriptionListProps } from './description_list_types';
+import {
+  EuiDescriptionListProps,
+  EuiDescriptionListChildTypes,
+} from './description_list_types';
 
 type EuiDescriptionListContextValues = Required<
-  Pick<EuiDescriptionListProps, 'type' | 'textStyle' | 'align' | 'gutterSize'>
+  Pick<EuiDescriptionListProps, 'textStyle' | 'align' | 'gutterSize'> & {
+    type: EuiDescriptionListChildTypes;
+  }
 > & {
   compressed?: EuiDescriptionListProps['compressed'];
 };

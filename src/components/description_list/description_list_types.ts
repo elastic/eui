@@ -50,7 +50,10 @@ export interface EuiDescriptionListProps {
   columnGap?: EuiDescriptionListColumnGapSizes;
 }
 
-export const TYPES = ['row', 'inline', 'column', 'responsiveColumn'] as const;
+export const CHILD_TYPES = ['row', 'inline', 'column'] as const;
+export type EuiDescriptionListChildTypes = (typeof CHILD_TYPES)[number];
+
+export const TYPES = [...CHILD_TYPES, 'responsiveColumn'] as const;
 export type EuiDescriptionListType = (typeof TYPES)[number];
 
 export const ALIGNMENTS = ['center', 'left'] as const;
