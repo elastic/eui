@@ -8,6 +8,7 @@
 
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { css } from '@emotion/react';
 
 import { EuiHighlight, EuiMark } from '../../components';
 
@@ -54,8 +55,14 @@ export const ResizeObserver: Story = {
       </i>
       <br />
       <br />
-      {/* // Width here is just for testing resize behavior and isn't meant to be RTL compliant */}
-      <div css={{ width: 200, overflow: 'auto', resize: 'horizontal' }}>
+      <div
+        css={css`
+          overflow: auto;
+          resize: horizontal;
+          resize: inline; /* not yet supported by all browsers, hence the fallback */
+          inline-size: 200px;
+        `}
+      >
         <EuiTextTruncate {...props} />
       </div>
     </>
