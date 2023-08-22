@@ -7,7 +7,6 @@
  */
 
 import React, {
-  FunctionComponent,
   ReactChild,
   useCallback,
   useEffect,
@@ -22,6 +21,7 @@ import { Timer } from '../../services/time';
 import { EuiGlobalToastListItem } from './global_toast_list_item';
 import { EuiToast, EuiToastProps } from './toast';
 import { euiGlobalToastListStyles } from './global_toast_list.styles';
+import { EuiButton } from '../button';
 
 type ToastSide = 'right' | 'left';
 
@@ -40,7 +40,8 @@ export interface Toast extends EuiToastProps {
   toastLifeTimeMs?: number;
 }
 
-export interface EuiGlobalToastListProps extends CommonProps {
+export interface EuiGlobalToastListProps<S extends boolean>
+  extends CommonProps {
   toasts?: Toast[];
   dismissToast: (toast: Toast) => void;
   toastLifeTimeMs: number;
@@ -48,16 +49,23 @@ export interface EuiGlobalToastListProps extends CommonProps {
    * Determines which side of the browser window the toasts should appear
    */
   side?: ToastSide;
+  /**
+   * Determines if toast list behaviour is enhanced to support clear all functionality
+   */
+  allowClearAll?: S;
+  dismissAllToastsCallback?: [S] extends [true] ? () => void : never;
 }
 
-export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
+export function EuiGlobalToastList<S extends boolean>({
   className,
   toasts = [],
   dismissToast: dismissToastProp,
+  dismissAllToastsCallback,
   toastLifeTimeMs,
+  allowClearAll,
   side = 'right',
   ...rest
-}) => {
+}: EuiGlobalToastListProps<S>) {
   const [toastIdToDismissedMap, setToastIdToDismissedMap] = useState<{
     [toastId: string]: boolean;
   }>({});
@@ -283,6 +291,28 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
     );
   });
 
+  if (allowClearAll && toasts.length > 1) {
+    const dismissAllToastImmediately = () => {
+      toasts.forEach((toast) => dismissToastProp(toast));
+      dismissAllToastsCallback?.();
+    };
+
+    renderedToasts.push(
+      <EuiGlobalToastListItem
+        data-test-subj="clear-all-toast"
+        key="clear-all-toasts"
+        isDismissed={false}
+      >
+        <EuiButton
+          onClick={dismissAllToastImmediately}
+          aria-label={'clear all toast notifications'}
+        >
+          {'Clear all'}
+        </EuiButton>
+      </EuiGlobalToastListItem>
+    );
+  }
+
   const classes = classNames('euiGlobalToastList', className);
 
   return (
@@ -297,4 +327,4 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
       {renderedToasts}
     </div>
   );
-};
+}
