@@ -184,6 +184,10 @@ spec:
         build_branches: false
         build_tags: false
         build_pull_requests: true
+        filter_enabled: true
+        # Start Buildkite jobs using the API only
+        filter_condition: |
+          (build.creator.name == 'elasticmachine' && build.pull_request.id != null)
       teams:
         eui-team:
          access_level: MANAGE_BUILD_AND_READ
