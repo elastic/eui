@@ -33,14 +33,11 @@
   }
 
   &__content {
+    text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
     flex: 1;
     text-align: left;
-
-    &.euiComboBoxOption-truncationEnd {
-      text-overflow: ellipsis;
-    }
   }
 
   &__emptyStateText {

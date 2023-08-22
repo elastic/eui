@@ -35,5 +35,3 @@ export type EuiComboBoxOptionsListPosition = 'top' | 'bottom';
 export interface EuiComboBoxSingleSelectionShape {
   asPlainText?: boolean;
 }
-
-export type EuiComboBoxTruncation = 'end' | 'middle';

@@ -20,6 +20,7 @@ import {
 } from 'react-window';
 
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
+import { EuiHighlight } from '../../highlight';
 import { EuiText } from '../../text';
 import { EuiLoadingSpinner } from '../../loading';
 import { EuiComboBoxTitle } from './combo_box_title';
@@ -34,7 +35,6 @@ import {
   EuiComboBoxOptionOption,
   EuiComboBoxOptionsListPosition,
   EuiComboBoxSingleSelectionShape,
-  EuiComboBoxTruncation,
   OptionHandler,
   RefInstance,
   UpdatePositionHandler,
@@ -42,7 +42,6 @@ import {
 import { CommonProps } from '../../common';
 import { EuiBadge } from '../../badge';
 import { EuiPopoverPanel } from '../../popover/popover_panel';
-import { TruncatedLabel } from './truncated_label';
 
 const OPTION_CONTENT_CLASSNAME = 'euiComboBoxOption__content';
 
@@ -99,8 +98,6 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps &
     singleSelection?: boolean | EuiComboBoxSingleSelectionShape;
     delimiter?: string;
     zIndex?: number;
-    font: string;
-    truncation: EuiComboBoxTruncation;
   };
 
 const hitEnterBadge = (
@@ -279,15 +276,13 @@ export class EuiComboBoxOptionsList<T> extends Component<
               )}
             </span>
           ) : (
-            <TruncatedLabel
-              truncation={this.props.truncation}
-              label={label}
+            <EuiHighlight
               search={searchValue}
               strict={this.props.isCaseSensitive}
               className={OPTION_CONTENT_CLASSNAME}
-              font={this.props.font}
-              defaultComboboxWidth={this.props.width}
-            />
+            >
+              {label}
+            </EuiHighlight>
           )}
           {append && (
             <span className="euiComboBoxOption__append">{append}</span>
@@ -331,7 +326,6 @@ export class EuiComboBoxOptionsList<T> extends Component<
       zIndex,
       style,
       listboxAriaLabel,
-      font,
       ...rest
     } = this.props;
 
