@@ -53,7 +53,6 @@ export const useDataGridKeyboardShortcuts = (): {
             type="column"
             align="center"
             compressed
-            gutterSize="s"
             listItems={[
               {
                 title: (
