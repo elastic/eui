@@ -309,15 +309,31 @@ const EuiTextTruncateWithWidth: FunctionComponent<
     containerEl,
   ]);
 
+  const isTruncating = truncatedText !== text;
+
   return (
     <div
       css={euiTextTruncateStyles.euiTextTruncate}
       ref={refs}
-      title={text}
-      aria-label={text}
+      title={isTruncating ? text : undefined}
       {...rest}
     >
-      {children ? children(truncatedText) : truncatedText}
+      {isTruncating ? (
+        <>
+          <span
+            css={euiTextTruncateStyles.truncatedText}
+            aria-hidden
+            data-test-subj="truncatedText"
+          >
+            {children ? children(truncatedText) : truncatedText}
+          </span>
+          <span css={euiTextTruncateStyles.fullText} data-test-subj="fullText">
+            {text}
+          </span>
+        </>
+      ) : (
+        <span data-test-subj="fullText">{text}</span>
+      )}
     </div>
   );
 };

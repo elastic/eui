@@ -10,7 +10,26 @@ import { css } from '@emotion/react';
 
 export const euiTextTruncateStyles = {
   euiTextTruncate: css`
+    position: relative;
     overflow: hidden;
     white-space: nowrap;
+  `,
+  truncatedText: css`
+    user-select: none;
+    pointer-events: none;
+  `,
+  fullText: css`
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    color: rgba(0, 0, 0, 0);
+
+    /* Safari-only CSS hack
+       Adding text-overflow: ellipsis makes VoiceOver's screen reader outline obey the container width,
+       but Chrome+FF don't need it, and it interferes with their text selection highlights
+     */
+    @supports (-webkit-hyphens: none) {
+      text-overflow: ellipsis;
+    }
   `,
 };
