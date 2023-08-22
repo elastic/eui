@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiTextTruncate renders 1`] = `
+<div
+  aria-label="aria-label"
+  class="testClass1 testClass2 emotion-euiTextTruncate-euiTestCss"
+  data-test-subj="test subject string"
+  title="Hello world"
+>
+  Hello world
+</div>
+`;
