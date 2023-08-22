@@ -31,9 +31,6 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
     column: css`
       max-inline-size: ${COLUMN_MAX_WIDTH};
     `,
-    responsiveColumn: css`
-      max-inline-size: ${COLUMN_MAX_WIDTH};
-    `,
     inline: css`
       display: inline;
       border-radius: ${euiTheme.border.radius.small};

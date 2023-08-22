@@ -7,13 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import {
-  euiFontSize,
-  euiMaxBreakpoint,
-  euiMinBreakpoint,
-  logicalTextAlignCSS,
-  logicalCSS,
-} from '../../global_styling';
+import { euiFontSize, logicalTextAlignCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiTitle } from '../title/title.styles';
 
@@ -29,15 +23,6 @@ export const euiDescriptionListDescriptionStyles = (
     row: css``,
     column: css`
       max-inline-size: ${COLUMN_MAX_WIDTH};
-    `,
-    responsiveColumn: css`
-      ${euiMaxBreakpoint(euiThemeContext, 'm')} {
-        ${logicalCSS('width', '100%')}
-        padding: 0;
-      }
-      ${euiMinBreakpoint(euiThemeContext, 'm')} {
-        max-inline-size: ${COLUMN_MAX_WIDTH};
-      }
     `,
     inline: css`
       display: inline;
