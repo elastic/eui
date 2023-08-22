@@ -16,6 +16,10 @@ import { EuiTextTruncate, EuiTextTruncateProps } from './text_truncate';
 const meta: Meta<EuiTextTruncateProps> = {
   title: 'EuiTextTruncate',
   component: EuiTextTruncate,
+  argTypes: {
+    truncationOffset: { if: { arg: 'truncation', neq: 'startEnd' } }, // Should also not show on `middle`, but Storybook doesn't currently support multiple if conditions :(
+    truncationPosition: { if: { arg: 'truncation', eq: 'startEnd' } },
+  },
 };
 
 export default meta;
@@ -24,6 +28,7 @@ type Story = StoryObj<EuiTextTruncateProps>;
 const componentDefaults = {
   text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
   truncation: 'end',
+  ellipsis: '…',
 } as const;
 
 export const Playground: Story = {
@@ -35,7 +40,7 @@ export const Playground: Story = {
   args: {
     ...componentDefaults,
     truncationOffset: 0,
-    ellipsis: '...',
+    truncationPosition: 0,
     width: 200,
   },
 };
@@ -89,7 +94,7 @@ export const StartEndAnchorForSearch: Story = {
           <EuiTextTruncate
             {...props}
             truncation="startEnd"
-            startEndAnchor={highlightCenterPosition}
+            truncationPosition={highlightCenterPosition}
           >
             {(text) => (
               <>
@@ -109,12 +114,12 @@ export const StartEndAnchorForSearch: Story = {
     ...componentDefaults,
     width: 200,
     truncation: 'startEnd',
-    startEndAnchor: 30,
+    truncationPosition: 30,
   },
   argTypes: {
     // Disable uncontrollable props
     truncation: { table: { disable: true } },
-    startEndAnchor: { table: { disable: true } },
+    truncationPosition: { table: { disable: true } },
     // Disable props that aren't useful for this this demo
     truncationOffset: { table: { disable: true } },
     children: { table: { disable: true } },
