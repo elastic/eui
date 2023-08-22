@@ -30,8 +30,8 @@ export const EuiDescriptionList: FunctionComponent<
   textStyle = 'normal',
   titleProps,
   type: _type = 'row',
-  gutterSize = 's',
-  columnGap = 's',
+  rowGutterSize = 's',
+  columnGutterSize = 's',
   ...rest
 }) => {
   const showResponsiveColumns = useIsWithinBreakpoints(['xs', 's']);
@@ -50,8 +50,8 @@ export const EuiDescriptionList: FunctionComponent<
     styles.euiDescriptionList,
     styles[type],
     styles[align],
-    type === 'column' && styles.rowGap[gutterSize],
-    type === 'column' && styles.columnGap[columnGap],
+    type === 'column' && styles.rowGap[rowGutterSize],
+    type === 'column' && styles.columnGap[columnGutterSize],
   ];
 
   const classes = classNames('euiDescriptionList', className);
@@ -79,7 +79,7 @@ export const EuiDescriptionList: FunctionComponent<
 
   return (
     <EuiDescriptionListContext.Provider
-      value={{ type, compressed, textStyle, align, gutterSize }}
+      value={{ type, compressed, textStyle, align, rowGutterSize }}
     >
       <dl className={classes} css={cssStyles} {...rest} data-type={_type}>
         {childrenOrListItems}

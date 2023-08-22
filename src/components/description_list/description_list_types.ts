@@ -40,14 +40,15 @@ export interface EuiDescriptionListProps {
    */
   descriptionProps?: HTMLAttributes<HTMLElement> & CommonProps;
   /**
-   * Vertical spacing added between `EuiDescriptionList` elements
+   * Allows customizing the vertical spacing between rows.
    */
-  gutterSize?: EuiDescriptionListGutterSizes;
+  rowGutterSize?: EuiDescriptionListGutterSizes;
   /**
-   * Only applies to `column`/`responsiveColumn` description lists.
-   * Allows customizing the horizontal gap between columns.
+   * Allows customizing the horizontal spacing between columns.
+   *
+   * Only applies to `column` and `responsiveColumn` types.
    */
-  columnGap?: EuiDescriptionListColumnGapSizes;
+  columnGutterSize?: EuiDescriptionListColumnGapSizes;
 }
 
 export const CHILD_TYPES = ['row', 'inline', 'column'] as const;
@@ -62,9 +63,9 @@ export type EuiDescriptionListAlignment = (typeof ALIGNMENTS)[number];
 export const TEXT_STYLES = ['normal', 'reverse'] as const;
 export type EuiDescriptionListTextStyle = (typeof TEXT_STYLES)[number];
 
-export const GUTTER_SIZES = ['s', 'm'] as const;
-export type EuiDescriptionListGutterSizes = (typeof GUTTER_SIZES)[number];
+export const ROW_GUTTER_SIZES = ['s', 'm'] as const;
+export type EuiDescriptionListGutterSizes = (typeof ROW_GUTTER_SIZES)[number];
 
-export const COLUMN_GAP_SIZES = ['s', 'm'] as const;
+export const COLUMN_GUTTER_SIZES = ['s', 'm'] as const;
 export type EuiDescriptionListColumnGapSizes =
-  (typeof COLUMN_GAP_SIZES)[number];
+  (typeof COLUMN_GUTTER_SIZES)[number];

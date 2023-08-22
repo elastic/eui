@@ -13,7 +13,7 @@ import {
 } from './description_list_types';
 
 type EuiDescriptionListContextValues = Required<
-  Pick<EuiDescriptionListProps, 'textStyle' | 'align' | 'gutterSize'> & {
+  Pick<EuiDescriptionListProps, 'textStyle' | 'align' | 'rowGutterSize'> & {
     type: EuiDescriptionListChildTypes;
   }
 > & {
@@ -24,7 +24,7 @@ export const contextDefaults: EuiDescriptionListContextValues = {
   type: 'row',
   textStyle: 'normal',
   align: 'left',
-  gutterSize: 's',
+  rowGutterSize: 's',
 };
 
 export const EuiDescriptionListContext =

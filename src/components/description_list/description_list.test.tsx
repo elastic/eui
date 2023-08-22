@@ -22,8 +22,8 @@ import { EuiDescriptionList } from './description_list';
 import {
   TYPES,
   ALIGNMENTS,
-  GUTTER_SIZES,
-  COLUMN_GAP_SIZES,
+  ROW_GUTTER_SIZES,
+  COLUMN_GUTTER_SIZES,
 } from './description_list_types';
 
 describe('EuiDescriptionList', () => {
@@ -146,10 +146,10 @@ describe('EuiDescriptionList', () => {
     });
 
     describe('gutter', () => {
-      GUTTER_SIZES.forEach((gutter) => {
+      ROW_GUTTER_SIZES.forEach((gutter) => {
         test(`${gutter} is rendered`, () => {
           const { container } = render(
-            <EuiDescriptionList type="column" gutterSize={gutter} />
+            <EuiDescriptionList type="column" rowGutterSize={gutter} />
           );
 
           expect(container.firstChild).toMatchSnapshot();
@@ -158,10 +158,13 @@ describe('EuiDescriptionList', () => {
     });
 
     describe('column gap', () => {
-      COLUMN_GAP_SIZES.forEach((columnGap) => {
-        test(`${columnGap} is rendered`, () => {
+      COLUMN_GUTTER_SIZES.forEach((columnGutterSize) => {
+        test(`${columnGutterSize} is rendered`, () => {
           const { container } = render(
-            <EuiDescriptionList type="column" columnGap={columnGap} />
+            <EuiDescriptionList
+              type="column"
+              columnGutterSize={columnGutterSize}
+            />
           );
 
           expect(container.firstChild).toMatchSnapshot();

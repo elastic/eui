@@ -23,7 +23,7 @@ export interface EuiDescriptionListTitleProps
 export const EuiDescriptionListTitle: FunctionComponent<
   EuiDescriptionListTitleProps
 > = ({ children, className, ...rest }) => {
-  const { type, textStyle, compressed, align, gutterSize } = useContext(
+  const { type, textStyle, compressed, align, rowGutterSize } = useContext(
     EuiDescriptionListContext
   );
 
@@ -40,10 +40,10 @@ export const EuiDescriptionListTitle: FunctionComponent<
       conditionalStyles = compressed
         ? [styles.inlineStyles.compressed]
         : [styles.inlineStyles.normal];
-      conditionalStyles.push(styles[gutterSize]);
+      conditionalStyles.push(styles[rowGutterSize]);
       break;
     case 'row':
-      conditionalStyles.push(styles[gutterSize]);
+      conditionalStyles.push(styles[rowGutterSize]);
       break;
     case 'column':
       if (align === 'center') {
