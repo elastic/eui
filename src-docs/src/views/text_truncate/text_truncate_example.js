@@ -38,22 +38,14 @@ export const TextTruncateExample = {
       text: (
         <>
           <p>
-            <strong>EuiTextTruncate</strong> attempts to provide customizable
-            and size-aware truncation logic (until the happy day that browsers
-            add more{' '}
-            <EuiLink
-              href="https://github.com/w3c/csswg-drafts/issues/3937"
-              target="_blank"
-            >
-              customizable truncation out-of-the-box via CSS
-            </EuiLink>
-            ).
+            <strong>EuiTextTruncate</strong> provides customizable and
+            size-aware single line text truncation.
           </p>
           <p>
             The four truncation styles supported are <EuiCode>start</EuiCode>,{' '}
             <EuiCode>end</EuiCode>, <EuiCode>startEnd</EuiCode>, and{' '}
-            <EuiCode>middle</EuiCode>. The below demo can also be dynamically
-            resized to see how different truncation styles respond.
+            <EuiCode>middle</EuiCode>. Resize the below demo to see how
+            different truncation styles respond to dynamic width changes.
           </p>
         </>
       ),
@@ -72,7 +64,14 @@ export const TextTruncateExample = {
               <strong>EuiTextTruncate</strong> attempts to mimic the behavior of{' '}
               <EuiCode>text-overflow: ellipsis</EuiCode> as closely as possible,
               although there may be edge cases and cross-browser issues, as this
-              is essentially a browser implementation we are trying to polyfill.
+              is essentially a{' '}
+              <EuiLink
+                href="https://github.com/w3c/csswg-drafts/issues/3937"
+                target="_blank"
+              >
+                browser implementation
+              </EuiLink>{' '}
+              we are trying to polyfill.
             </p>
             <ul>
               <li>
@@ -103,7 +102,7 @@ export const TextTruncateExample = {
       ],
       text: (
         <p>
-          By default, <strong>EuiTextTruncate</strong> uses with the unicode
+          By default, <strong>EuiTextTruncate</strong> uses the unicode
           character for horizontal ellipis. It can be customized via the{' '}
           <EuiCode>ellipsis</EuiCode> prop as necessary (e.g. for specific
           languages, extra punctuation, etc).
@@ -157,10 +156,9 @@ export const TextTruncateExample = {
             prop allows.
           </p>
           <p>
-            This behavior will intelligently detect when positions are close to
-            the start or end of the text, and omit leading or trailing ellipses
-            when necessary. If the passed position is greater than the total
-            text length, the truncation will simply default to `start` instead.
+            This behavior will intelligently detect when positions are near
+            enough to the start or end of the text to omit leading or trailing
+            ellipses when necessary.
           </p>
           <p>
             Increase or decrease the number control below to see the prop in
@@ -194,17 +192,15 @@ export const TextTruncateExample = {
             rendering.
           </p>
           <p>
-            The primary type of use case in mind for this functionality would be
-            using{' '}
+            The below example demonstrates a primary use case for the render
+            prop and the <EuiCode>truncationPosition</EuiCode> prop. If a user
+            is searching for a specific word in truncated text, you can use{' '}
             <Link to="/#/utilities/highlight-and-mark">
               <strong>EuiHighlight</strong> or <strong>EuiMark</strong>
             </Link>{' '}
-            to highlight certain portions of the text. This example also
-            demonstrates the primary use case for the{' '}
-            <EuiCode>truncationPosition</EuiCode> prop. If a user is searching
-            for a specific word in truncated text, you should pass the index of
-            that found word to ensure it is always visible, for the best user
-            experience.
+            to highlight the search term, and passing the index of the found
+            word to <EuiCode>truncationPosition</EuiCode> ensures the search
+            term is always visible to the user.
           </p>
           <EuiCallOut
             color="warning"
