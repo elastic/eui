@@ -185,7 +185,8 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
   const styles = euiKeyPadMenuItemStyles(euiTheme);
   const cssStyles = [
     styles.euiKeyPadMenuItem,
-    isDisabled ? styles.disabled : styles.enabled,
+    !isDisabled ? styles.enabled : styles.disabled.disabled,
+    isSelected && (!isDisabled ? styles.selected : styles.disabled.selected),
   ];
 
   const classes = classNames(

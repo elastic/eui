@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme } from '../../services';
+import { UseEuiTheme, transparentize } from '../../services';
 import { logicalSizeCSS, euiCanAnimate } from '../../global_styling';
 import { euiShadow } from '../../themes/amsterdam/global_styling/mixins';
 
@@ -51,17 +51,36 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
         box-shadow: none;
       }
     `,
-    disabled: css`
-      cursor: not-allowed;
-      color: ${euiTheme.colors.disabledText};
+    selected: css`
+      color: ${euiTheme.colors.title};
+      background-color: ${euiTheme.focus.backgroundColor};
 
-      .euiKeyPadMenuItem__icon {
-        filter: grayscale(100%);
-
-        svg * {
-          fill: ${euiTheme.colors.disabledText};
-        }
+      &,
+      &:hover,
+      &:focus,
+      &:focus-within {
+        color: ${euiTheme.colors.primaryText};
       }
     `,
+    disabled: {
+      disabled: css`
+        cursor: not-allowed;
+        color: ${euiTheme.colors.disabledText};
+
+        .euiKeyPadMenuItem__icon {
+          filter: grayscale(100%);
+
+          svg * {
+            fill: ${euiTheme.colors.disabledText};
+          }
+        }
+      `,
+      selected: css`
+        background-color: ${transparentize(
+          euiTheme.colors.disabled,
+          euiTheme.focus.transparency
+        )};
+      `,
+    },
   };
 };

@@ -1,26 +1,4 @@
 .euiKeyPadMenuItem {
-  // Selected state (when not disabled)
-  &.euiKeyPadMenuItem-isSelected:not(.euiKeyPadMenuItem-isDisabled) {
-    color: $euiTitleColor;
-
-    &,
-    &:hover,
-    &:focus,
-    &:focus-within {
-      @include euiFocusBackground;
-      // Calculate the right text contrast ratio based on focus transparency
-      $backgroundColorSimulated: mix($euiColorEmptyShade, $euiColorPrimary, $euiFocusTransparencyPercent);
-      color: makeHighContrastColor($euiColorPrimaryText, $backgroundColorSimulated);
-    }
-  }
-
-  &.euiKeyPadMenuItem-isSelected.euiKeyPadMenuItem-isDisabled {
-    @include euiFocusBackground($euiColorDisabled);
-    // Calculate the right text contrast ratio based on focus transparency
-    $backgroundColorSimulated: mix($euiColorEmptyShade, $euiColorDisabled, $euiFocusTransparencyPercent);
-    color: makeDisabledContrastColor($euiColorDisabledText, $backgroundColorSimulated);
-  }
-
   // Hide the input if not selected, or being interacted with
   &:not(:hover):not(:focus):not(:focus-within):not(.euiKeyPadMenuItem-isSelected),
   // Also specifically if disabled but not selected
@@ -67,12 +45,3 @@
   text-align: center;
 }
 
-.euiKeyPadMenuItem--checkable.euiKeyPadMenuItem-isSelected:not(.euiKeyPadMenuItem-isDisabled) {
-  &,
-  &:hover,
-  &:focus,
-  &:focus-within {
-    @include euiFocusBackground;
-    color: $euiColorPrimaryText;
-  }
-}
