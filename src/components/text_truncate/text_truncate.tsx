@@ -23,7 +23,7 @@ import {
 } from '../observer/resize_observer';
 import type { CommonProps } from '../common';
 
-import { TruncationUtils } from './utils';
+import { TruncationUtilsForDOM } from './utils';
 import { euiTextTruncateStyles } from './text_truncate.styles';
 
 const TRUNCATION_TYPES = ['end', 'start', 'startEnd', 'middle'] as const;
@@ -147,7 +147,7 @@ const EuiTextTruncateWithWidth: FunctionComponent<
     let truncatedText = '';
     if (!containerEl || !width) return truncatedText;
 
-    const utils = new TruncationUtils({
+    const utils = new TruncationUtilsForDOM({
       fullText: text,
       ellipsis,
       container: containerEl,
