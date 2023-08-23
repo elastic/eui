@@ -192,16 +192,7 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
     isSelected && (!isDisabled ? styles.selected : styles.disabled.selected),
   ];
 
-  const classes = classNames(
-    'euiKeyPadMenuItem',
-    {
-      'euiKeyPadMenuItem--hasBetaBadge': betaBadgeLabel,
-      'euiKeyPadMenuItem--checkable': checkable,
-      'euiKeyPadMenuItem-isDisabled': isDisabled,
-      'euiKeyPadMenuItem-isSelected': isSelected,
-    },
-    className
-  );
+  const classes = classNames('euiKeyPadMenuItem', className);
 
   let Element: keyof JSX.IntrinsicElements =
     href && !isDisabled ? 'a' : 'button';
