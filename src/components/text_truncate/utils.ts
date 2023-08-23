@@ -74,6 +74,17 @@ export class TruncationUtils {
     }
   };
 
+  checkTruncationOffsetWidth = (text: string) => {
+    this.setTextToCheck(text);
+
+    if (this.textWidth > this.availableWidth) {
+      console.error(
+        `The passed truncationOffset is too large for the available width. Truncating the offset instead.`
+      );
+      return false;
+    }
+  };
+
   /**
    * Truncation enums
    */
@@ -87,7 +98,12 @@ export class TruncationUtils {
       [leadingText, truncatedText] = splitText(this.fullText).at(
         truncationOffset
       );
-      // TODO: offset width check
+
+      const widthCheck = `${leadingText}${this.ellipsis}`;
+      if (this.checkTruncationOffsetWidth(widthCheck) === false) {
+        truncatedText = leadingText;
+        leadingText = '';
+      }
     }
 
     leadingText += this.ellipsis;
@@ -109,7 +125,12 @@ export class TruncationUtils {
     if (truncationOffset) {
       const index = this.fullText.length - truncationOffset;
       [truncatedText, trailingText] = splitText(this.fullText).at(index);
-      // TODO: offset width check
+
+      const widthCheck = `${this.ellipsis}${trailingText}`;
+      if (this.checkTruncationOffsetWidth(widthCheck) === false) {
+        truncatedText = trailingText;
+        trailingText = '';
+      }
     }
 
     trailingText = this.ellipsis + trailingText;

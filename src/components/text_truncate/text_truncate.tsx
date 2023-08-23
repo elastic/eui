@@ -47,8 +47,8 @@ export type EuiTextTruncateProps = Omit<
      * It allows preserving a certain number of characters of either the
      * starting or ending text.
      *
-     * If the passed offset is greater than half of the total text length,
-     * the truncation will simply default to `middle` instead.
+     * If the passed offset is greater than the total text length,
+     * the offset will be ignored.
      */
     truncationOffset?: number;
     /**
@@ -130,11 +130,8 @@ const EuiTextTruncateWithWidth: FunctionComponent<
     let truncationOffset = 0;
 
     if (_truncation === 'end' || _truncation === 'start') {
-      const offsetIsTooLarge = _truncationOffset >= Math.floor(text.length / 2);
-      if (offsetIsTooLarge) {
-        truncation = 'middle';
-      } else {
-        truncationOffset = _truncationOffset > 0 ? _truncationOffset : 0; // Negative offsets cause infinite loops
+      if (0 < _truncationOffset && _truncationOffset < text.length) {
+        truncationOffset = _truncationOffset;
       }
     } else if (_truncation === 'startEnd' && truncationPosition != null) {
       if (truncationPosition <= 0) {

@@ -108,7 +108,7 @@ describe('EuiTextTruncate', () => {
           );
         });
 
-        it('falls back to middle truncation if truncationOffset is too large for the text', () => {
+        it('ignores truncationOffset if larger than the text length', () => {
           mount(
             <EuiTextTruncate
               {...props}
@@ -116,7 +116,7 @@ describe('EuiTextTruncate', () => {
               truncationOffset={100}
             />
           );
-          getTruncatedText().should('have.text', expectedMiddleOutput);
+          getTruncatedText().should('have.text', expectedStartOutput);
         });
 
         it('logs an error if the truncationOffset is too large for the container', () => {
@@ -133,7 +133,7 @@ describe('EuiTextTruncate', () => {
           );
           cy.get('@spyConsoleError').should(
             'be.calledWith',
-            'The passed truncationOffset of 5 is too large for available width.'
+            'The passed truncationOffset is too large for the available width. Truncating the offset instead.'
           );
         });
       });
@@ -160,15 +160,15 @@ describe('EuiTextTruncate', () => {
           );
         });
 
-        it('falls back to middle truncation if truncationOffset is too large for the text', () => {
+        it('ignores truncationOffset if larger than the text length', () => {
           mount(
             <EuiTextTruncate
               {...props}
               truncation="end"
-              truncationOffset={30}
+              truncationOffset={100}
             />
           );
-          getTruncatedText().should('have.text', expectedMiddleOutput);
+          getTruncatedText().should('have.text', expectedEndOutput);
         });
 
         it('logs an error if the truncationOffset is too large for the container', () => {
@@ -185,7 +185,7 @@ describe('EuiTextTruncate', () => {
           );
           cy.get('@spyConsoleError').should(
             'be.calledWith',
-            'The passed truncationOffset of 10 is too large for available width.'
+            'The passed truncationOffset is too large for the available width. Truncating the offset instead.'
           );
         });
       });
