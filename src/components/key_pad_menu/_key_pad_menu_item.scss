@@ -1,38 +1,4 @@
 .euiKeyPadMenuItem {
-  // Focus and Hover states (when not disabled)
-  &:not(.euiKeyPadMenuItem-isDisabled) {
-    &:hover,
-    &:focus,
-    &:focus-within {
-      @include euiHoverState;
-      @include euiBottomShadowSmall;
-
-      @include euiCanAnimate {
-        .euiKeyPadMenuItem__icon {
-          transform: translateY(0);
-        }
-      }
-    }
-
-    &:focus {
-      @include euiFocusState;
-      box-shadow: none;
-    }
-  }
-
-  // Disabled state
-  &.euiKeyPadMenuItem-isDisabled {
-    @include euiDisabledState;
-
-    .euiKeyPadMenuItem__icon {
-      filter: grayscale(100%);
-
-      svg * { // stylelint-disable-line max-nesting-depth
-        fill: $euiButtonColorDisabledText;
-      }
-    }
-  }
-
   // Selected state (when not disabled)
   &.euiKeyPadMenuItem-isSelected:not(.euiKeyPadMenuItem-isDisabled) {
     color: $euiTitleColor;

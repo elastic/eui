@@ -10,6 +10,8 @@ import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../services';
 import { logicalSizeCSS, euiCanAnimate } from '../../global_styling';
+import { euiShadow } from '../../themes/amsterdam/global_styling/mixins';
+
 import { euiKeyPadMenuVariables } from './key_pad_menu.styles';
 
 export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
@@ -27,6 +29,38 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiCanAnimate} {
         transition: background-color ${euiTheme.animation.fast} ease-in,
           box-shadow ${euiTheme.animation.fast} ease-in;
+      }
+    `,
+    enabled: css`
+      &:hover,
+      &:focus,
+      &:focus-within {
+        cursor: pointer;
+        text-decoration: underline;
+        ${euiShadow(euiThemeContext, 's')}
+
+        ${euiCanAnimate} {
+          .euiKeyPadMenuItem__icon {
+            transform: translateY(0);
+          }
+        }
+      }
+
+      &:focus {
+        background-color: ${euiTheme.focus.backgroundColor};
+        box-shadow: none;
+      }
+    `,
+    disabled: css`
+      cursor: not-allowed;
+      color: ${euiTheme.colors.disabledText};
+
+      .euiKeyPadMenuItem__icon {
+        filter: grayscale(100%);
+
+        svg * {
+          fill: ${euiTheme.colors.disabledText};
+        }
       }
     `,
   };
