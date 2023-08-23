@@ -40,8 +40,8 @@ const TestSetup: FunctionComponent<{
     const utils = getUtils();
     setRendered(
       <div style={{ font }}>
-        <div id="start">{utils.truncateStart(0)}</div>
-        <div id="end">{utils.truncateEnd(0)}</div>
+        <div id="start">{utils.truncateStart()}</div>
+        <div id="end">{utils.truncateEnd()}</div>
         <div id="middle">{utils.truncateMiddle()}</div>
         <div id="startEnd">{utils.truncateStartEndAtMiddle()}</div>
         <div id="startEndAt">{utils.truncateStartEndAtPosition(15)}</div>

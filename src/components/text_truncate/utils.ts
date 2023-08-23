@@ -106,7 +106,7 @@ class _TruncationUtils {
    * Truncation types logic. This is where the magic happens
    */
 
-  truncateStart = (truncationOffset: number) => {
+  truncateStart = (truncationOffset?: number) => {
     let truncatedText = this.fullText;
     let leadingText = '';
     const combinedText = () => `${leadingText}${truncatedText}`;

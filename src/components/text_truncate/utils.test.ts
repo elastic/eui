@@ -124,7 +124,7 @@ describe('TruncationUtilsForDOM', () => {
 
     describe('start', () => {
       it('inserts ellipsis at the start of the text', () => {
-        expect(utils.truncateStart(0)).toEqual('... ipsum dolor sit amet');
+        expect(utils.truncateStart()).toEqual('... ipsum dolor sit amet');
       });
 
       describe('truncationOffset', () => {
@@ -143,7 +143,7 @@ describe('TruncationUtilsForDOM', () => {
 
     describe('end', () => {
       it('inserts ellipsis at the end of the text', () => {
-        expect(utils.truncateEnd(0)).toEqual('Lorem ipsum dolor sit...');
+        expect(utils.truncateEnd()).toEqual('Lorem ipsum dolor sit...');
       });
 
       describe('truncationOffset', () => {
