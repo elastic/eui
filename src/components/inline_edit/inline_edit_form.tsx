@@ -18,7 +18,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps } from '../common';
+import { CommonProps, ExclusiveUnion } from '../common';
 import {
   EuiFormRow,
   EuiFormRowProps,
@@ -42,7 +42,6 @@ export type EuiInlineEditCommonProps = Omit<
   'children'
 > &
   CommonProps & {
-    defaultValue: string;
     placeholder?: string;
     /**
      * Callback that fires when a user clicks the save button.
@@ -90,7 +89,22 @@ export type EuiInlineEditCommonProps = Omit<
      * Locks inline edit in read mode and displays the text value
      */
     isReadOnly?: boolean;
-  };
+  } & ExclusiveUnion<
+    {
+      /**
+       * Initial inline edit text value
+       */
+      defaultValue: string;
+    },
+    {
+      /**
+       * To use inline edit as a controlled component, continuously pass the value via this prop
+       */
+      value: string;
+      // TODO: Update to an HTML Change Event
+      onChange: (event: any) => void;
+    }
+  >;
 
 // Internal-only props, passed by the consumer-facing components
 export type EuiInlineEditFormProps = EuiInlineEditCommonProps & {
