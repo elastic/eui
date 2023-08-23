@@ -81,6 +81,19 @@ describe('TruncationUtils', () => {
         expect(utils.checkSufficientEllipsisWidth('start')).toBeUndefined();
       });
     });
+
+    describe('checkTruncationOffsetWidth', () => {
+      it('returns false and errors if the container is not wide enough for the offset text', () => {
+        setSpanWidth(201);
+        expect(utils.checkTruncationOffsetWidth('hello')).toEqual(false);
+        expect(consoleErrorSpy).toHaveBeenCalledWith(
+          'The passed truncationOffset is too large for the available width. Truncating the offset instead.'
+        );
+
+        setSpanWidth(200);
+        expect(utils.checkTruncationOffsetWidth('world')).toBeUndefined();
+      });
+    });
   });
 
   describe('truncation types', () => {
@@ -115,6 +128,12 @@ describe('TruncationUtils', () => {
           mockTextWidth.mockImplementationOnce(() => 30); // Mocks the `checkTruncationOffsetWidth` check
           expect(utils.truncateStart(3)).toEqual('Lor...sum dolor sit amet');
         });
+
+        it('truncates the offset if the truncationOffset is too large', () => {
+          mockTextWidth.mockImplementationOnce(() => 201);
+          expect(utils.truncateStart(20)).toEqual('... ipsum dolor si');
+          expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
+        });
       });
     });
 
@@ -127,6 +146,12 @@ describe('TruncationUtils', () => {
         it('preserves the specified number of characters at the end of the text', () => {
           mockTextWidth.mockImplementationOnce(() => 30); // Mocks the `checkTruncationOffsetWidth` check
           expect(utils.truncateEnd(3)).toEqual('Lorem ipsum dolor ...met');
+        });
+
+        it('truncates the offset if the truncationOffset is too large', () => {
+          mockTextWidth.mockImplementationOnce(() => 201);
+          expect(utils.truncateEnd(18)).toEqual('sum dolor sit...');
+          expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
         });
       });
     });
