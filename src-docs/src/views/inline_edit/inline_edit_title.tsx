@@ -42,6 +42,8 @@ export default () => {
     setToggleTitleButtonSize(optionId);
   };
 
+  const [inlineEditValue, setInlineEditValue] = useState('hello world');
+
   return (
     <>
       <EuiButtonGroup
@@ -58,6 +60,21 @@ export default () => {
         size={toggleTitleButtonSize}
         inputAriaLabel="Edit title inline"
         defaultValue="Hello World (but as a title)!"
+      />
+
+      <EuiSpacer />
+
+      <EuiInlineEditTitle
+        heading="h3"
+        size={toggleTitleButtonSize}
+        inputAriaLabel="Edit title inline"
+        value={inlineEditValue}
+        onChange={(e) => {
+          setInlineEditValue(e.target.value);
+        }}
+        onCancel={(previousValue) => {
+          setInlineEditValue(previousValue);
+        }}
       />
     </>
   );
