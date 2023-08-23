@@ -34,7 +34,10 @@ import { EuiRadio, EuiCheckbox } from '../form';
 import { validateHref } from '../../services/security/href_validator';
 import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
 
-import { euiKeyPadMenuItemStyles } from './key_pad_menu_item.styles';
+import {
+  euiKeyPadMenuItemStyles,
+  euiKeyPadMenuItemChildStyles,
+} from './key_pad_menu_item.styles';
 
 export type EuiKeyPadMenuItemCheckableType = 'single' | 'multi';
 
@@ -282,6 +285,8 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
     relObj['aria-pressed'] = isSelected;
   }
 
+  const childStyles = euiKeyPadMenuItemChildStyles(euiTheme);
+
   const button = (
     <Element
       className={classes}
@@ -291,10 +296,23 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
       // Unable to get past `LegacyRef` conflicts
       ref={buttonRef as Ref<any>}
     >
-      <span className="euiKeyPadMenuItem__inner">
+      <span
+        className="euiKeyPadMenuItem__inner"
+        css={childStyles.euiKeyPadMenuItem__inner}
+      >
         {checkable ? renderCheckableElement() : renderBetaBadge()}
-        <span className="euiKeyPadMenuItem__icon">{children}</span>
-        <span className="euiKeyPadMenuItem__label">{label}</span>
+        <span
+          className="euiKeyPadMenuItem__icon"
+          css={childStyles.euiKeyPadMenuItem__icon}
+        >
+          {children}
+        </span>
+        <span
+          className="euiKeyPadMenuItem__label"
+          css={childStyles.euiKeyPadMenuItem__label}
+        >
+          {label}
+        </span>
       </span>
     </Element>
   );

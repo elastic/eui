@@ -9,7 +9,12 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme, transparentize } from '../../services';
-import { logicalSizeCSS, euiCanAnimate } from '../../global_styling';
+import {
+  logicalCSS,
+  logicalSizeCSS,
+  euiCanAnimate,
+  euiFontSize,
+} from '../../global_styling';
 import { euiShadow } from '../../themes/amsterdam/global_styling/mixins';
 
 import { euiKeyPadMenuVariables } from './key_pad_menu.styles';
@@ -82,5 +87,34 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
         )};
       `,
     },
+  };
+};
+
+export const euiKeyPadMenuItemChildStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+
+  return {
+    euiKeyPadMenuItem__inner: css`
+      ${logicalSizeCSS('100%')}
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    `,
+    euiKeyPadMenuItem__icon: css`
+      ${logicalCSS('margin-bottom', euiTheme.size.m)}
+      transform: translateY(2px);
+
+      ${euiCanAnimate} {
+        transition: transform ${euiTheme.animation.normal}
+          ${euiTheme.animation.bounce};
+      }
+    `,
+    euiKeyPadMenuItem__label: css`
+      ${euiFontSize(euiThemeContext, 'xs')}
+      font-weight: ${euiTheme.font.weight.semiBold};
+      text-align: center;
+    `,
   };
 };
