@@ -16,6 +16,7 @@ import {
   euiFontSize,
 } from '../../global_styling';
 import { euiShadow } from '../../themes/amsterdam/global_styling/mixins';
+import { euiScreenReaderOnly } from '../accessibility';
 
 import { euiKeyPadMenuVariables } from './key_pad_menu.styles';
 
@@ -137,6 +138,14 @@ export const euiKeyPadMenuItemChildStyles = (euiThemeContext: UseEuiTheme) => {
       && {
         position: absolute;
       }
+    `,
+    showCheckableInputOnInteraction: css`
+      .euiKeyPadMenuItem:not(:hover, :focus, :focus-within) & {
+        ${euiScreenReaderOnly()}
+      }
+    `,
+    hideCheckableInput: css`
+      ${euiScreenReaderOnly()}
     `,
   };
 };

@@ -214,10 +214,16 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
   const renderCheckableElement = () => {
     if (!checkable) return;
 
+    const cssStyles = [
+      childStyles.euiKeyPadMenuItem__checkableInput,
+      !isSelected && isDisabled && childStyles.hideCheckableInput,
+      !isSelected && !isDisabled && childStyles.showCheckableInputOnInteraction,
+    ];
+
     const sharedProps = {
       id: itemId,
       className: 'euiKeyPadMenuItem__checkableInput',
-      css: childStyles.euiKeyPadMenuItem__checkableInput,
+      css: cssStyles,
       checked: isSelected,
       disabled: isDisabled,
       name,
