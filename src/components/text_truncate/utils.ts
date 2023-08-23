@@ -6,45 +6,62 @@
  * Side Public License, v 1.
  */
 
-type Params = {
+interface SharedParams {
   fullText: string;
   ellipsis: string;
   availableWidth: number;
+}
+interface DOMParams extends SharedParams {
   container: HTMLElement;
-};
+}
+interface CanvasParams extends SharedParams {
+  font?: CanvasTextDrawingStyles['font'];
+}
 
-export class TruncationUtils {
-  fullText: Params['fullText'];
-  ellipsis: Params['ellipsis'];
-  availableWidth: Params['availableWidth'];
-  container: Params['container'];
-  span: HTMLSpanElement;
+/**
+ * This internal shared/base class contains the actual logic for truncating text
+ * (as well as a few handy utilities for checking whether truncation is possible
+ * or even necessary).
+ *
+ * How the underlying mechanism works: the full text is rendered, and then
+ * characters are removed one by one until the width of the text fits within
+ * the specified available width.
+ *
+ * Side note: The exception to this is the `truncateStartEndAtPosition` method,
+ * which works by building up from an empty string / by adding characters
+ * instead of removing them.
+ */
+class _TruncationUtils {
+  fullText: SharedParams['fullText'];
+  ellipsis: SharedParams['ellipsis'];
+  availableWidth: SharedParams['availableWidth'];
 
-  constructor({ fullText, ellipsis, availableWidth, container }: Params) {
+  constructor({ fullText, ellipsis, availableWidth }: SharedParams) {
     this.fullText = fullText;
     this.ellipsis = ellipsis;
     this.availableWidth = availableWidth;
-    this.container = container;
-
-    // Create a temporary DOM element for manipulating text and determining text width
-    this.span = document.createElement('span');
-    this.container.appendChild(this.span);
   }
 
   /**
-   * Span utils
+   * Internal measurement utils which will be overridden depending on the
+   * rendering approach used (e.g. DOM vs Canvas).
+   *
+   * The thrown errors are there to ensure the base instance utils do not
+   * get called standalone in the future, if more extended classes are added
+   * someday (e.g. new shadow DOM tech, or Flash makes a surprise comeback).
+   *
+   * The istanbul code coverage ignores are there because this base class
+   * is not exported and in theory the code should never be reachable.
    */
 
-  get textWidth() {
-    return this.span.offsetWidth;
+  /* istanbul ignore next */
+  get textWidth(): number {
+    throw new Error('This function must be superseded by a DOM or Canvas util');
   }
 
-  setTextToCheck = (text: string) => {
-    this.span.textContent = text;
-  };
-
-  cleanup = () => {
-    this.container.removeChild(this.span);
+  /* istanbul ignore next */
+  setTextToCheck = (_: string): void => {
+    throw new Error('This function must be superseded by a DOM or Canvas util');
   };
 
   /**
@@ -86,7 +103,7 @@ export class TruncationUtils {
   };
 
   /**
-   * Truncation enums
+   * Truncation types logic. This is where the magic happens
    */
 
   truncateStart = (truncationOffset: number) => {
@@ -182,9 +199,9 @@ export class TruncationUtils {
       this.setTextToCheck(combinedText());
     }
 
-    // Because this logic builds text outwards vs. removes inwards, the final text
-    // width ends up a little larger than the container, and we need to remove
-    // the last added character(s)
+    // Because this logic builds text outwards vs. removing inwards, the final
+    // text width ends up a little larger than the container, and we need to
+    // remove the last added character(s)
     if (!startingEllipsis) {
       truncatedText = removeLastCharacter(truncatedText);
     } else if (!endingEllipsis) {
@@ -234,8 +251,71 @@ export class TruncationUtils {
 }
 
 /**
- * DRY character utils
+ * Creates a temporary vanilla JS DOM element for manipulating text and
+ * determining text width.
+ *
+ * Requires passing in a container element to which the temporary element
+ * will be appended. Any CSS/font styles that need to be accounted for should
+ * be automatically inherited from the container.
+ *
+ * NOTE: The consumer is responsible for calling the `cleanup()` method manually
+ * to remove the temporary DOM node once their usage of this utility is complete.
  */
+export class TruncationUtilsForDOM extends _TruncationUtils {
+  container: DOMParams['container'];
+  span: HTMLSpanElement;
+
+  constructor({ container, ...rest }: DOMParams) {
+    super(rest);
+    this.container = container;
+
+    this.span = document.createElement('span');
+    this.container.appendChild(this.span);
+  }
+
+  get textWidth() {
+    return this.span.offsetWidth;
+  }
+
+  setTextToCheck = (text: string) => {
+    this.span.textContent = text;
+  };
+
+  cleanup = () => {
+    this.container.removeChild(this.span);
+  };
+}
+
+/**
+ * Creates a temporary Canvas element for manipulating text & determining text width.
+ * This method is compatible with charts or other canvas-rendered frameworks,
+ * and requires no cleanup method. It will typically require passing font
+ * information to accurately measure text width.
+ */
+export class TruncationUtilsForCanvas extends _TruncationUtils {
+  context: CanvasRenderingContext2D;
+  currentText = '';
+
+  constructor({ font, ...rest }: CanvasParams) {
+    super(rest);
+
+    this.context = document.createElement('canvas').getContext('2d')!;
+    if (font) this.context.font = font;
+  }
+
+  get textWidth() {
+    return this.context.measureText(this.currentText).width;
+  }
+
+  setTextToCheck = (text: string) => {
+    this.currentText = text;
+  };
+}
+
+/**
+ * DRY character/substring utils
+ */
+
 const removeLastCharacter = (text: string) =>
   text.substring(0, text.length - 1);
 

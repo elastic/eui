@@ -6,13 +6,17 @@
  * Side Public License, v 1.
  */
 
-import { TruncationUtils } from './utils';
+import { TruncationUtilsForDOM, TruncationUtilsForCanvas } from './utils';
 
-describe('TruncationUtils', () => {
+const sharedParams = {
+  fullText: 'Lorem ipsum dolor sit amet',
+  ellipsis: '...',
+  availableWidth: 200,
+};
+
+describe('TruncationUtilsForDOM', () => {
   const params = {
-    fullText: 'Lorem ipsum dolor sit amet',
-    ellipsis: '...',
-    availableWidth: 200,
+    ...sharedParams,
     container: document.createElement('div'),
   };
 
@@ -29,8 +33,8 @@ describe('TruncationUtils', () => {
   beforeEach(() => consoleErrorSpy.mockClear());
   afterAll(() => consoleErrorSpy.mockRestore());
 
-  describe('span utils', () => {
-    const utils = new TruncationUtils(params);
+  describe('DOM utils', () => {
+    const utils = new TruncationUtilsForDOM(params);
 
     describe('textWidth', () => {
       it('returns the offsetWidth of the internal span element', () => {
@@ -56,7 +60,7 @@ describe('TruncationUtils', () => {
   });
 
   describe('early return checks', () => {
-    const utils = new TruncationUtils(params);
+    const utils = new TruncationUtilsForDOM(params);
     afterAll(() => utils.cleanup());
 
     describe('checkIfTruncationIsNeeded', () => {
@@ -108,10 +112,10 @@ describe('TruncationUtils', () => {
     let mockTextWidth: jest.SpyInstance;
     beforeAll(() => {
       mockTextWidth = jest
-        .spyOn(TruncationUtils.prototype, 'textWidth', 'get')
+        .spyOn(TruncationUtilsForDOM.prototype, 'textWidth', 'get')
         .mockImplementation(() => mockSpanWidth--);
     });
-    const utils = new TruncationUtils(params);
+    const utils = new TruncationUtilsForDOM(params);
 
     afterAll(() => {
       utils.cleanup();
@@ -196,6 +200,40 @@ describe('TruncationUtils', () => {
     describe('middle', () => {
       it('inserts ellipsis in the middle of the text', () => {
         expect(utils.truncateMiddle()).toEqual('Lorem ipsu...or sit amet');
+      });
+    });
+  });
+});
+
+describe('TruncationUtilsForCanvas', () => {
+  // Jest absolutely does not have canvas so I honestly have no idea why I'm even doing this
+  // Except that like a Pavlovian dog conditioned for treats, so I am conditioned
+  // for that sweet sweet green 100% code coverage
+  Object.defineProperty(HTMLCanvasElement.prototype, 'getContext', {
+    value: () => ({ measureText: () => ({ width: 200 }), font: '' }),
+  });
+
+  it('allows customizing the font', () => {
+    const utils = new TruncationUtilsForCanvas({
+      ...sharedParams,
+      font: 'Inter',
+    });
+    expect(utils.context.font).toEqual('Inter');
+  });
+
+  describe('canvas utils', () => {
+    const utils = new TruncationUtilsForCanvas(sharedParams);
+
+    describe('textWidth', () => {
+      it('returns the measured text width from the canvas', () => {
+        expect(utils.textWidth).toEqual(200);
+      });
+    });
+
+    describe('setTextToCheck', () => {
+      it('sets the internal currentText variable', () => {
+        utils.setTextToCheck('hello world');
+        expect(utils.currentText).toEqual('hello world');
       });
     });
   });
