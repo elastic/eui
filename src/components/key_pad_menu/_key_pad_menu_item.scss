@@ -61,11 +61,6 @@
     }
   }
 
-  // Selected (even if disabled)
-  &.euiKeyPadMenuItem-isSelected {
-    border-color: $euiBorderColor;
-  }
-
   &.euiKeyPadMenuItem-isSelected.euiKeyPadMenuItem-isDisabled {
     @include euiFocusBackground($euiColorDisabled);
     // Calculate the right text contrast ratio based on focus transparency
@@ -126,6 +121,5 @@
   &:focus-within {
     @include euiFocusBackground;
     color: $euiColorPrimaryText;
-    border-color: $euiColorPrimaryText;
   }
 }
