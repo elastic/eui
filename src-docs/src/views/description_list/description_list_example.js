@@ -249,15 +249,15 @@ export const DescriptionListExample = {
           </p>
           <h4>Vertical spacing</h4>
           <p>
-            Modify the <EuiCode>gutterSize</EuiCode> prop to control the
+            Modify the <EuiCode>rowGutterSize</EuiCode> prop to control the
             vertical spacing between <EuiCode>EuiDescriptionList</EuiCode>{' '}
             elements. This will not affect inline list types.
           </p>
           <h4>Horizontal spacing</h4>
           <p>
             Adjust the spacing between the title and description with the{' '}
-            <EuiCode>columnGap</EuiCode> prop. This will not affect inline or
-            row types.
+            <EuiCode>columnGutterSize</EuiCode> prop. This will not affect
+            inline or row types.
           </p>
         </>
       ),

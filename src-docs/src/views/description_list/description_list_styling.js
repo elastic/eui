@@ -40,11 +40,7 @@ export default () => {
 
   const [alignSelected, setAlignSelected] = useState('center');
 
-  const alignOnChange = (id) => {
-    setAlignSelected(id);
-  };
-
-  const gutterToggleButtons = [
+  const rowGutterSizeOptions = [
     {
       id: 's',
       label: 'Small',
@@ -55,13 +51,9 @@ export default () => {
     },
   ];
 
-  const [gutterSelected, setGutterSelected] = useState('m');
+  const [rowGutterSize, setRowGutterSize] = useState('m');
 
-  const gutterOnChange = (id) => {
-    setGutterSelected(id);
-  };
-
-  const columnGapToggleButtons = [
+  const columnGutterSizeOptions = [
     {
       id: 's',
       label: 'Small',
@@ -72,11 +64,7 @@ export default () => {
     },
   ];
 
-  const [columnGapSelected, setColumnGapSelected] = useState('m');
-
-  const columnGapOnChange = (id) => {
-    setColumnGapSelected(id);
-  };
+  const [columnGutterSize, setColumnGutterSize] = useState('m');
 
   const [compressed, setCompressed] = useState(true);
 
@@ -95,7 +83,7 @@ export default () => {
             legend="Toggle for the EuiDescription align prop"
             options={alignToggleButtons}
             idSelected={alignSelected}
-            onChange={(id) => alignOnChange(id)}
+            onChange={(id) => setAlignSelected(id)}
           />
         </EuiFlexItem>
 
@@ -104,10 +92,10 @@ export default () => {
             <h3>Row gutter sizes</h3>
           </EuiTitle>
           <EuiButtonGroup
-            legend="Toggle for the EuiDescription gutterSize prop"
-            options={gutterToggleButtons}
-            idSelected={gutterSelected}
-            onChange={(id) => gutterOnChange(id)}
+            legend="Toggle for the EuiDescription rowGutterSize prop"
+            options={rowGutterSizeOptions}
+            idSelected={rowGutterSize}
+            onChange={(id) => setRowGutterSize(id)}
           />
         </EuiFlexItem>
 
@@ -116,10 +104,10 @@ export default () => {
             <h3>Column gap sizes</h3>
           </EuiTitle>
           <EuiButtonGroup
-            legend="Toggle for the EuiDescription columnGap prop"
-            options={columnGapToggleButtons}
-            idSelected={columnGapSelected}
-            onChange={(id) => columnGapOnChange(id)}
+            legend="Toggle for the EuiDescription columnGutterSize prop"
+            options={columnGutterSizeOptions}
+            idSelected={columnGutterSize}
+            onChange={(id) => setColumnGutterSize(id)}
           />
         </EuiFlexItem>
 
@@ -141,7 +129,7 @@ export default () => {
         listItems={favoriteVideoGames}
         align={alignSelected}
         compressed={compressed}
-        gutterSize={gutterSelected}
+        rowGutterSize={rowGutterSize}
       />
 
       <EuiSpacer size="l" />
@@ -151,8 +139,8 @@ export default () => {
         type="column"
         align={alignSelected}
         compressed={compressed}
-        gutterSize={gutterSelected}
-        columnGap={columnGapSelected}
+        rowGutterSize={rowGutterSize}
+        columnGutterSize={columnGutterSize}
       />
 
       <EuiSpacer size="l" />
