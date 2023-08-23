@@ -12,6 +12,7 @@ import React, {
   ReactNode,
   Ref,
   LabelHTMLAttributes,
+  useMemo,
 } from 'react';
 import classNames from 'classnames';
 
@@ -200,9 +201,12 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
   type ElementType = ReactElementType<typeof Element>;
 
   const itemId = useGeneratedHtmlId({ conditionalId: id });
-  const childStyles = euiKeyPadMenuItemChildStyles(euiTheme);
+  const childStyles = useMemo(
+    () => euiKeyPadMenuItemChildStyles(euiTheme),
+    [euiTheme]
+  );
 
-  const renderCheckableElement = () => {
+  const checkableElement = useMemo(() => {
     if (!checkable) return;
 
     const cssStyles = [
@@ -220,9 +224,8 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
       name,
     };
 
-    let checkableElement;
     if (checkable === 'single') {
-      checkableElement = (
+      return (
         <EuiRadio
           {...sharedProps}
           value={value as string}
@@ -230,15 +233,22 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
         />
       );
     } else {
-      checkableElement = (
+      return (
         <EuiCheckbox {...sharedProps} onChange={() => onChange!(itemId)} />
       );
     }
+  }, [
+    checkable,
+    isDisabled,
+    isSelected,
+    onChange,
+    value,
+    name,
+    itemId,
+    childStyles,
+  ]);
 
-    return checkableElement;
-  };
-
-  const renderBetaBadge = () => {
+  const betaBadge = useMemo(() => {
     if (!betaBadgeLabel) return;
 
     return (
@@ -254,7 +264,7 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
         iconType={betaBadgeIconType}
       />
     );
-  };
+  }, [betaBadgeLabel, betaBadgeIconType, childStyles]);
 
   const relObj: {
     disabled?: boolean;
@@ -293,7 +303,7 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
         className="euiKeyPadMenuItem__inner"
         css={childStyles.euiKeyPadMenuItem__inner}
       >
-        {checkable ? renderCheckableElement() : renderBetaBadge()}
+        {checkable ? checkableElement : betaBadge}
         <span
           className="euiKeyPadMenuItem__icon"
           css={childStyles.euiKeyPadMenuItem__icon}
