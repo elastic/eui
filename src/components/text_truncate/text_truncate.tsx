@@ -23,6 +23,7 @@ import {
 } from '../observer/resize_observer';
 import type { CommonProps } from '../common';
 
+import { TruncationUtils } from './utils';
 import { euiTextTruncateStyles } from './text_truncate.styles';
 
 const TRUNCATION_TYPES = ['end', 'start', 'startEnd', 'middle'] as const;
@@ -146,158 +147,43 @@ const EuiTextTruncateWithWidth: FunctionComponent<
   }, [_truncation, _truncationOffset, truncationPosition, text.length]);
 
   const truncatedText = useMemo(() => {
-    if (!containerEl || !width) return '';
+    let truncatedText = '';
+    if (!containerEl || !width) return truncatedText;
 
-    // Create a temporary DOM element for manipulating text and determining text width
-    const span = document.createElement('span');
-    containerEl.appendChild(span);
+    const utils = new TruncationUtils({
+      fullText: text,
+      ellipsis,
+      container: containerEl,
+      availableWidth: width,
+    });
 
-    // Check to make sure the container width can even fit the ellipsis, let alone text
-    span.textContent =
-      truncation === 'startEnd' // startEnd needs a little more space
-        ? `${ellipsis} ${ellipsis}`
-        : ellipsis;
-    if (span.offsetWidth >= width * 0.9) {
-      console.error(
-        'The truncation ellipsis is larger than the available width. No text can be rendered.'
-      );
-      containerEl.removeChild(span);
-      return '';
-    }
-
-    span.textContent = text;
-
-    // Check if we need to truncate at all
-    if (width > span.offsetWidth) {
-      containerEl.removeChild(span);
-      return text;
-    }
-
-    const substringOffset = truncationOffset + ellipsis.length + 1;
-
-    switch (truncation) {
-      case 'end':
-        const endPosition = text.length - truncationOffset;
-        const endOffset = span.textContent.substring(endPosition);
-        const endRemaining = span.textContent.substring(0, endPosition);
-
-        // Make sure that the offset alone isn't larger than the actual available width
-        span.textContent = `${ellipsis}${endOffset}`;
-        if (span.offsetWidth > width) {
-          // There isn't a super great way to handle this visually.
-          // The best we can do is simply render the broken truncation
-          console.error(
-            `The passed truncationOffset of ${truncationOffset} is too large for available width.`
-          );
+    if (utils.checkIfTruncationIsNeeded() === false) {
+      truncatedText = text;
+    } else if (utils.checkSufficientEllipsisWidth(truncation) === false) {
+      truncatedText = '';
+    } else {
+      switch (truncation) {
+        case 'end':
+          truncatedText = utils.truncateEnd(truncationOffset);
           break;
-        }
-        span.textContent = `${endRemaining}${ellipsis}${endOffset}`;
-
-        while (span.offsetWidth > width) {
-          const offset = span.textContent.length - substringOffset;
-          const trimmedText = span.textContent.substring(0, offset);
-          span.textContent = `${trimmedText}${ellipsis}${endOffset}`;
-        }
-        break;
-
-      case 'start':
-        const startOffset = span.textContent.substring(0, truncationOffset);
-        const startRemaining = span.textContent.substring(truncationOffset);
-
-        // Make sure that the offset alone isn't larger than the actual available width
-        span.textContent = `${startOffset}${ellipsis}`;
-        if (span.offsetWidth > width) {
-          // There isn't a super great way to handle this visually.
-          // The best we can do is simply render the broken truncation
-          console.error(
-            `The passed truncationOffset of ${truncationOffset} is too large for available width.`
-          );
+        case 'start':
+          truncatedText = utils.truncateStart(truncationOffset);
           break;
-        }
-        span.textContent = `${startOffset}${ellipsis}${startRemaining}`;
-
-        while (span.offsetWidth > width) {
-          const trimmedText = span.textContent.substring(substringOffset);
-          span.textContent = `${startOffset}${ellipsis}${trimmedText}`;
-        }
-        break;
-
-      case 'startEnd':
-        if (truncationPosition == null) {
-          while (span.offsetWidth > width) {
-            const trimmedMiddle = span.textContent.substring(
-              substringOffset,
-              span.textContent.length - substringOffset
-            );
-            span.textContent = `${ellipsis}${trimmedMiddle}${ellipsis}`;
-          }
-        } else {
-          // If using a non-centered startEnd anchor position, we need to *build*
-          // the string from scratch instead of *removing* from the full text string,
-          // to make sure we don't go past the beginning or end of the text
-          let builtText = '';
-          span.textContent = builtText;
-
-          // Ellipses are conditional - if the anchor is towards the beginning or end,
-          // it's possible they shouldn't render
-          let startingEllipsis = ellipsis;
-          let endingEllipsis = ellipsis;
-
-          // Split the text into two at the anchor position
-          let firstPart = text.substring(0, truncationPosition);
-          let secondPart = text.substring(truncationPosition);
-
-          while (span.offsetWidth <= width) {
-            // Because this logic builds text outwards vs. removes inwards, the final text
-            // width ends up a little larger than the container if we don't add this catch
-            const previousText = span.textContent;
-            span.textContent = `${startingEllipsis}${builtText}${endingEllipsis}`;
-            if (span.offsetWidth > width) {
-              span.textContent = previousText;
-              break;
-            }
-
-            if (firstPart.length > 0) {
-              // Split off and prepend the last character of the first part
-              const lastChar = firstPart.length - 1;
-              builtText = `${firstPart.substring(lastChar)}${builtText}`;
-              firstPart = firstPart.substring(0, lastChar);
-            } else {
-              startingEllipsis = '';
-            }
-
-            if (secondPart.length > 0) {
-              // Split off and append first character of the second part
-              builtText = `${builtText}${secondPart.substring(0, 1)}`;
-              secondPart = secondPart.substring(1);
-            } else {
-              endingEllipsis = '';
-            }
-          }
-        }
-        break;
-
-      case 'middle':
-        const middlePosition = Math.floor(text.length / 2);
-        let firstHalf = text.substring(0, middlePosition);
-        let secondHalf = text.substring(middlePosition);
-        let trimfirstHalf = true;
-
-        while (span.offsetWidth > width) {
-          if (trimfirstHalf) {
-            firstHalf = firstHalf.substring(0, firstHalf.length - 1);
+        case 'startEnd':
+          if (truncationPosition == null) {
+            truncatedText = utils.truncateStartEndAtMiddle();
           } else {
-            secondHalf = secondHalf.substring(1);
+            truncatedText =
+              utils.truncateStartEndAtPosition(truncationPosition);
           }
-          span.textContent = `${firstHalf}${ellipsis}${secondHalf}`;
-          trimfirstHalf = !trimfirstHalf;
-        }
-        break;
+          break;
+        case 'middle':
+          truncatedText = utils.truncateMiddle();
+          break;
+      }
     }
 
-    const truncatedText = span.textContent;
-    containerEl.removeChild(span);
-
+    utils.cleanup();
     return truncatedText;
   }, [
     width,

@@ -11,3 +11,5 @@ export type {
   EuiTextTruncationTypes,
 } from './text_truncate';
 export { EuiTextTruncate } from './text_truncate';
+
+export { TruncationUtils } from './utils';
