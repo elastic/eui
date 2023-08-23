@@ -93,6 +93,13 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
 export const euiKeyPadMenuItemChildStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
+  const topRightChildren = `
+    z-index: 3;
+    position: absolute;
+    ${logicalCSS('top', euiTheme.size.xs)}
+    ${logicalCSS('right', euiTheme.size.xs)}
+  `;
+
   return {
     euiKeyPadMenuItem__inner: css`
       ${logicalSizeCSS('100%')}
@@ -115,6 +122,21 @@ export const euiKeyPadMenuItemChildStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiFontSize(euiThemeContext, 'xs')}
       font-weight: ${euiTheme.font.weight.semiBold};
       text-align: center;
+    `,
+
+    euiKeyPadMenuItem__betaBadge: css`
+      ${topRightChildren}
+    `,
+
+    euiKeyPadMenuItem__checkableInput: css`
+      ${topRightChildren}
+      transform: scale(.75);
+      transform-origin: top right;
+
+      /* TODO: Remove this once EuiCheckbox and EuiRadio have been converted to Emotion */
+      && {
+        position: absolute;
+      }
     `,
   };
 };

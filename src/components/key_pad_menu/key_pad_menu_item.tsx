@@ -209,35 +209,32 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
   type ElementType = ReactElementType<typeof Element>;
 
   const itemId = useGeneratedHtmlId({ conditionalId: id });
+  const childStyles = euiKeyPadMenuItemChildStyles(euiTheme);
 
   const renderCheckableElement = () => {
     if (!checkable) return;
 
-    const inputClasses = classNames('euiKeyPadMenuItem__checkableInput');
+    const sharedProps = {
+      id: itemId,
+      className: 'euiKeyPadMenuItem__checkableInput',
+      css: childStyles.euiKeyPadMenuItem__checkableInput,
+      checked: isSelected,
+      disabled: isDisabled,
+      name,
+    };
 
     let checkableElement;
     if (checkable === 'single') {
       checkableElement = (
         <EuiRadio
-          id={itemId}
-          className={inputClasses}
-          checked={isSelected}
-          disabled={isDisabled}
-          name={name}
+          {...sharedProps}
           value={value as string}
           onChange={() => onChange!(itemId, value)}
         />
       );
     } else {
       checkableElement = (
-        <EuiCheckbox
-          id={itemId}
-          className={inputClasses}
-          checked={isSelected}
-          disabled={isDisabled}
-          name={name}
-          onChange={() => onChange!(itemId)}
-        />
+        <EuiCheckbox {...sharedProps} onChange={() => onChange!(itemId)} />
       );
     }
 
@@ -255,6 +252,7 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
         size="s"
         color="subdued"
         className="euiKeyPadMenuItem__betaBadge"
+        css={childStyles.euiKeyPadMenuItem__betaBadge}
         label={betaBadgeLabel.charAt(0)}
         iconType={betaBadgeIconType}
       />
@@ -284,8 +282,6 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
     relObj.type = 'button';
     relObj['aria-pressed'] = isSelected;
   }
-
-  const childStyles = euiKeyPadMenuItemChildStyles(euiTheme);
 
   const button = (
     <Element

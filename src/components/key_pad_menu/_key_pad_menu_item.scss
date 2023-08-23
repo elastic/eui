@@ -9,18 +9,3 @@
   }
 }
 
-.euiKeyPadMenuItem__inner {
-
-  .euiKeyPadMenuItem__checkableInput {
-    transform: scale(.75);
-    transform-origin: top right;
-  }
-
-  .euiKeyPadMenuItem__checkableInput,
-  .euiKeyPadMenuItem__betaBadge {
-    position: absolute;
-    top: $euiSizeXS;
-    right: $euiSizeXS;
-    z-index: 3;
-  }
-}
