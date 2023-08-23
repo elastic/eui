@@ -40,8 +40,6 @@ export const Playground: Story = {
   ),
   args: {
     ...componentDefaults,
-    truncationOffset: 0,
-    truncationPosition: 0,
     width: 200,
   },
 };
