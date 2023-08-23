@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { TruncationUtilsForDOM, TruncationUtilsForCanvas } from './utils';
+import { TruncationUtilsWithDOM, TruncationUtilsWithCanvas } from './utils';
 
 const sharedParams = {
   fullText: 'Lorem ipsum dolor sit amet',
@@ -14,7 +14,7 @@ const sharedParams = {
   availableWidth: 200,
 };
 
-describe('TruncationUtilsForDOM', () => {
+describe('TruncationUtilsWithDOM', () => {
   const params = {
     ...sharedParams,
     container: document.createElement('div'),
@@ -34,7 +34,7 @@ describe('TruncationUtilsForDOM', () => {
   afterAll(() => consoleErrorSpy.mockRestore());
 
   describe('DOM utils', () => {
-    const utils = new TruncationUtilsForDOM(params);
+    const utils = new TruncationUtilsWithDOM(params);
 
     describe('textWidth', () => {
       it('returns the offsetWidth of the internal span element', () => {
@@ -60,7 +60,7 @@ describe('TruncationUtilsForDOM', () => {
   });
 
   describe('early return checks', () => {
-    const utils = new TruncationUtilsForDOM(params);
+    const utils = new TruncationUtilsWithDOM(params);
     afterAll(() => utils.cleanup());
 
     describe('checkIfTruncationIsNeeded', () => {
@@ -112,10 +112,10 @@ describe('TruncationUtilsForDOM', () => {
     let mockTextWidth: jest.SpyInstance;
     beforeAll(() => {
       mockTextWidth = jest
-        .spyOn(TruncationUtilsForDOM.prototype, 'textWidth', 'get')
+        .spyOn(TruncationUtilsWithDOM.prototype, 'textWidth', 'get')
         .mockImplementation(() => mockSpanWidth--);
     });
-    const utils = new TruncationUtilsForDOM(params);
+    const utils = new TruncationUtilsWithDOM(params);
 
     afterAll(() => {
       utils.cleanup();
@@ -205,7 +205,7 @@ describe('TruncationUtilsForDOM', () => {
   });
 });
 
-describe('TruncationUtilsForCanvas', () => {
+describe('TruncationUtilsWithCanvas', () => {
   // Jest absolutely does not have canvas so I honestly have no idea why I'm even doing this
   // Except that like a Pavlovian dog conditioned for treats, so I am conditioned
   // for that sweet sweet green 100% code coverage
@@ -214,7 +214,7 @@ describe('TruncationUtilsForCanvas', () => {
   });
 
   it('allows customizing the font', () => {
-    const utils = new TruncationUtilsForCanvas({
+    const utils = new TruncationUtilsWithCanvas({
       ...sharedParams,
       font: 'Inter',
     });
@@ -222,7 +222,7 @@ describe('TruncationUtilsForCanvas', () => {
   });
 
   describe('canvas utils', () => {
-    const utils = new TruncationUtilsForCanvas(sharedParams);
+    const utils = new TruncationUtilsWithCanvas(sharedParams);
 
     describe('textWidth', () => {
       it('returns the measured text width from the canvas', () => {

@@ -12,4 +12,4 @@ export type {
 } from './text_truncate';
 export { EuiTextTruncate } from './text_truncate';
 
-export { TruncationUtilsForDOM, TruncationUtilsForCanvas } from './utils';
+export { TruncationUtilsWithDOM, TruncationUtilsWithCanvas } from './utils';

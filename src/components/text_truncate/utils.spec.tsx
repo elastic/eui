@@ -17,7 +17,7 @@ import React, {
   useEffect,
 } from 'react';
 
-import { TruncationUtilsForDOM, TruncationUtilsForCanvas } from './utils';
+import { TruncationUtilsWithDOM, TruncationUtilsWithCanvas } from './utils';
 
 const sharedProps = {
   fullText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
@@ -32,7 +32,7 @@ const font = '14px Verdana'; // We need to use a OS-safe font that CI machines a
  * arrive at the same truncated strings
  */
 const TestSetup: FunctionComponent<{
-  getUtils: () => TruncationUtilsForDOM | TruncationUtilsForCanvas;
+  getUtils: () => TruncationUtilsWithDOM | TruncationUtilsWithCanvas;
 }> = ({ getUtils }) => {
   const [rendered, setRendered] = useState<ReactNode>(null);
 
@@ -62,7 +62,7 @@ const assertExpectedOutput = () => {
   cy.get('#startEndAt').should('have.text', '...m ipsum dolor sit amet...');
 };
 
-describe('TruncationUtilsForDOM', () => {
+describe('TruncationUtilsWithDOM', () => {
   const container = document.createElement('div');
   container.style.font = font;
   const props = { ...sharedProps, container };
@@ -72,7 +72,7 @@ describe('TruncationUtilsForDOM', () => {
       <TestSetup
         getUtils={() => {
           document.body.appendChild(container);
-          const utils = new TruncationUtilsForDOM(props);
+          const utils = new TruncationUtilsWithDOM(props);
           return utils;
         }}
       />
@@ -81,12 +81,12 @@ describe('TruncationUtilsForDOM', () => {
   });
 });
 
-describe('TruncationUtilsForCanvas', () => {
+describe('TruncationUtilsWithCanvas', () => {
   const props = { ...sharedProps, font };
 
   it('truncates text as expected', () => {
     cy.mount(
-      <TestSetup getUtils={() => new TruncationUtilsForCanvas(props)} />
+      <TestSetup getUtils={() => new TruncationUtilsWithCanvas(props)} />
     );
     assertExpectedOutput();
   });

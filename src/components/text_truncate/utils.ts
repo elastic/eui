@@ -261,7 +261,7 @@ class _TruncationUtils {
  * NOTE: The consumer is responsible for calling the `cleanup()` method manually
  * to remove the temporary DOM node once their usage of this utility is complete.
  */
-export class TruncationUtilsForDOM extends _TruncationUtils {
+export class TruncationUtilsWithDOM extends _TruncationUtils {
   container: DOMParams['container'];
   span: HTMLSpanElement;
 
@@ -292,7 +292,7 @@ export class TruncationUtilsForDOM extends _TruncationUtils {
  * and requires no cleanup method. It will typically require passing font
  * information to accurately measure text width.
  */
-export class TruncationUtilsForCanvas extends _TruncationUtils {
+export class TruncationUtilsWithCanvas extends _TruncationUtils {
   context: CanvasRenderingContext2D;
   currentText = '';
 
