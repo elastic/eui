@@ -38,14 +38,19 @@ npm logout
 npm whoami # Should return an error about not being logged in
 ```
 
-### Deploying to eui.elastic.co
+#### eui.elastic.co
 
-In addition to the GitHub pages deployment, we need to manually deploy to the EUI Bekitzur environment (which will eventually be the canonical home of the EUI docs).
+In addition to the GitHub pages deployment, Buildkite automatically deploys our docs to the EUI Bekitzur environment (which will eventually be the canonical home of the EUI docs). The Buildkite job is started when a new tag is pushed to the `main` branch.
 
-* Go to [the Jenkins job page](https://kibana-ci.elastic.co/job/elastic+eui+deploy-docs/build)
-* Log in (uses Elastic SSO)
-* Change the `branch_specifier` parameter to the new version tag name (e.g., `v48.0.0`)
-* Click "Build"
+To view the progress of your job or check for errors:
+
+* Log in to Buildkite using Elastic SSO
+* Filter jobs by `eui-team`
+* Click on `eui-release-deploy-docs`
+* Click on the build row that matches your release ( e.g. `v87.2.0` )
+* From the build detail view:
+  * Click the `Rebuild` button if your job needs to be restarted **or**
+  * Click the `.buildkite/scripts/pipeline_deploy_docs.sh` row to view logs and environment details
 
 ### Tag the release in GitHub
 

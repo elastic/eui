@@ -262,6 +262,30 @@ Although possible in some contexts, it is not recommended to "shortcut" logic us
 `${font.body.letterSpacing ? `letter-spacing: ${font.body.letterSpacing}` : ''`}`
 ```
 
+## Duplicate styles
+
+When writing styles for prop enums (e.g. sizing enums: `s`, `m`, `l`, etc.), some props may have duplicated styles between two values. If the duplicated styles are just a line or two, repeating the CSS is not particularly problematic.
+
+However, if the repeated CSS starts to get lengthy or unintuitive, consider using a [JS getter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) to return duplicate styles, for example:
+
+```ts
+export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => ({
+  // Sizes
+  s: css`
+    /* lengthy or complex styles */
+  `,
+  get m() {
+    // Same as `s`
+    return this.s;
+  },
+  l: css`
+    /* different styles */
+  `,
+});
+```
+
+For a production example of this scenario, see [EuiStep's styles](https://github.com/elastic/eui/blob/ea535de773703ec225804228aa3aa68d18d84dc5/src/components/steps/step.styles.ts#L86-L105).
+
 ## Child selectors
 
 Most components also contain child elements that have their own styles. If you have just a few child elements, consider having them in the same function.
