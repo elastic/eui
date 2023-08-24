@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { css } from '@emotion/react';
 
 import { GuideSectionTypes } from '../../components';
 
@@ -24,6 +25,9 @@ const truncationPositionSource = require('!!raw-loader!./truncation_position');
 
 import RenderProp from './render_prop';
 const renderPropSource = require('!!raw-loader!./render_prop');
+
+import Performance from './performance';
+const performanceSource = require('!!raw-loader!./performance');
 
 export const TextTruncateExample = {
   title: 'Text truncation',
@@ -214,6 +218,80 @@ export const TextTruncateExample = {
       snippet: `<EuiTextTruncate text="Hello world">
   {(text) => <EuiMark>{text}</EuiMark>}
 </EuiTextTruncate>`,
+    },
+    {
+      title: 'Performance',
+      text: (
+        <>
+          <p>
+            <strong>EuiTextTruncate</strong> uses an extra DOM element under the
+            hood to manipulate text and calculate whether the text width fits
+            within the available width. Additionally, by default, the component
+            will include its own resize observer in order to react to width
+            changes.
+          </p>
+          <p>
+            These functionalities can cause performance issues if the component
+            is rendered many times per page, and we would strongly recommend
+            using caution when doing so. Several escape hatches are available
+            for performance improvements:
+          </p>
+          <ol
+            css={({ euiTheme }) =>
+              css`
+                li:not(:last-child) {
+                  margin-block-end: ${euiTheme.size.m};
+                }
+              `
+            }
+          >
+            <li>
+              Pass a <EuiCode>width</EuiCode> prop to skip initializing a resize
+              observer for each component instance. For text within a container
+              of the same width, we would strongly recommend applying a single
+              resize observer to the parent container and passing down that
+              width to all child <strong>EuiTextTruncate</strong>s.
+            </li>
+            <li>
+              Use the <EuiCode>measurementRenderAPI="canvas"</EuiCode> prop to
+              utilize the Canvas API for text measurement. While this can be
+              significantly more performant at higher iterations, please do note
+              that there are minute pixel to subpixel differences in this
+              rendering method.
+            </li>
+            <li>
+              Strongly consider using{' '}
+              <EuiLink
+                href="https://github.com/bvaughn/react-window"
+                target="_blank"
+              >
+                virtualization
+              </EuiLink>{' '}
+              to reduce the number of rendered elements visible at any given
+              time, or{' '}
+              <EuiLink href="https://lodash.com/docs/#throttle" target="_blank">
+                throttling
+              </EuiLink>{' '}
+              any resize observers or width-based logic.
+            </li>
+            <li>
+              If necessary, consider pulling out the underlying{' '}
+              <EuiCode>TruncationUtilsForDOM</EuiCode> and{' '}
+              <EuiCode>TruncationUtilsForCanvas</EuiCode> truncation utils and
+              re-using the same canvas context or DOM node, as opposed to
+              repeatedly creating new ones.
+            </li>
+          </ol>
+        </>
+      ),
+      demo: <Performance />,
+      source: [{ type: GuideSectionTypes.TSX, code: performanceSource }],
+      props: { EuiTextTruncate },
+      snippet: `<EuiTextTruncate
+  text="Hello world"
+  width={width}
+  measurementRenderAPI="canvas"
+/>`,
     },
   ],
 };
