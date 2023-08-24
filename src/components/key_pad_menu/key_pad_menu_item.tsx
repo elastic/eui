@@ -12,8 +12,15 @@ import React, {
   ReactNode,
   Ref,
   LabelHTMLAttributes,
+  useMemo,
 } from 'react';
 import classNames from 'classnames';
+
+import {
+  useEuiTheme,
+  getSecureRelForTarget,
+  useGeneratedHtmlId,
+} from '../../services';
 
 import {
   CommonProps,
@@ -23,13 +30,15 @@ import {
 } from '../common';
 
 import { EuiBetaBadge } from '../badge/beta_badge';
-
-import { getSecureRelForTarget, useGeneratedHtmlId } from '../../services';
-
 import { IconType } from '../icon';
 import { EuiRadio, EuiCheckbox } from '../form';
 import { validateHref } from '../../services/security/href_validator';
 import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
+
+import {
+  euiKeyPadMenuItemStyles,
+  euiKeyPadMenuItemChildStyles,
+} from './key_pad_menu_item.styles';
 
 export type EuiKeyPadMenuItemCheckableType = 'single' | 'multi';
 
@@ -176,16 +185,15 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
   const isHrefValid = !href || validateHref(href);
   const isDisabled = disabled || _isDisabled || !isHrefValid;
 
-  const classes = classNames(
-    'euiKeyPadMenuItem',
-    {
-      'euiKeyPadMenuItem--hasBetaBadge': betaBadgeLabel,
-      'euiKeyPadMenuItem--checkable': checkable,
-      'euiKeyPadMenuItem-isDisabled': isDisabled,
-      'euiKeyPadMenuItem-isSelected': isSelected,
-    },
-    className
-  );
+  const euiTheme = useEuiTheme();
+  const styles = euiKeyPadMenuItemStyles(euiTheme);
+  const cssStyles = [
+    styles.euiKeyPadMenuItem,
+    !isDisabled ? styles.enabled : styles.disabled.disabled,
+    isSelected && (!isDisabled ? styles.selected : styles.disabled.selected),
+  ];
+
+  const classes = classNames('euiKeyPadMenuItem', className);
 
   let Element: keyof JSX.IntrinsicElements =
     href && !isDisabled ? 'a' : 'button';
@@ -193,42 +201,54 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
   type ElementType = ReactElementType<typeof Element>;
 
   const itemId = useGeneratedHtmlId({ conditionalId: id });
+  const childStyles = useMemo(
+    () => euiKeyPadMenuItemChildStyles(euiTheme),
+    [euiTheme]
+  );
 
-  const renderCheckableElement = () => {
+  const checkableElement = useMemo(() => {
     if (!checkable) return;
 
-    const inputClasses = classNames('euiKeyPadMenuItem__checkableInput');
+    const cssStyles = [
+      childStyles.euiKeyPadMenuItem__checkableInput,
+      !isSelected && isDisabled && childStyles.hideCheckableInput,
+      !isSelected && !isDisabled && childStyles.showCheckableInputOnInteraction,
+    ];
 
-    let checkableElement;
+    const sharedProps = {
+      id: itemId,
+      className: 'euiKeyPadMenuItem__checkableInput',
+      css: cssStyles,
+      checked: isSelected,
+      disabled: isDisabled,
+      name,
+    };
+
     if (checkable === 'single') {
-      checkableElement = (
+      return (
         <EuiRadio
-          id={itemId}
-          className={inputClasses}
-          checked={isSelected}
-          disabled={isDisabled}
-          name={name}
+          {...sharedProps}
           value={value as string}
           onChange={() => onChange!(itemId, value)}
         />
       );
     } else {
-      checkableElement = (
-        <EuiCheckbox
-          id={itemId}
-          className={inputClasses}
-          checked={isSelected}
-          disabled={isDisabled}
-          name={name}
-          onChange={() => onChange!(itemId)}
-        />
+      return (
+        <EuiCheckbox {...sharedProps} onChange={() => onChange!(itemId)} />
       );
     }
+  }, [
+    checkable,
+    isDisabled,
+    isSelected,
+    onChange,
+    value,
+    name,
+    itemId,
+    childStyles,
+  ]);
 
-    return checkableElement;
-  };
-
-  const renderBetaBadge = () => {
+  const betaBadge = useMemo(() => {
     if (!betaBadgeLabel) return;
 
     return (
@@ -239,11 +259,12 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
         size="s"
         color="subdued"
         className="euiKeyPadMenuItem__betaBadge"
+        css={childStyles.euiKeyPadMenuItem__betaBadge}
         label={betaBadgeLabel.charAt(0)}
         iconType={betaBadgeIconType}
       />
     );
-  };
+  }, [betaBadgeLabel, betaBadgeIconType, childStyles]);
 
   const relObj: {
     disabled?: boolean;
@@ -272,15 +293,29 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
   const button = (
     <Element
       className={classes}
+      css={cssStyles}
       {...(relObj as ElementType)}
       {...(rest as ElementType)}
       // Unable to get past `LegacyRef` conflicts
       ref={buttonRef as Ref<any>}
     >
-      <span className="euiKeyPadMenuItem__inner">
-        {checkable ? renderCheckableElement() : renderBetaBadge()}
-        <span className="euiKeyPadMenuItem__icon">{children}</span>
-        <span className="euiKeyPadMenuItem__label">{label}</span>
+      <span
+        className="euiKeyPadMenuItem__inner"
+        css={childStyles.euiKeyPadMenuItem__inner}
+      >
+        {checkable ? checkableElement : betaBadge}
+        <span
+          className="euiKeyPadMenuItem__icon"
+          css={childStyles.euiKeyPadMenuItem__icon}
+        >
+          {children}
+        </span>
+        <span
+          className="euiKeyPadMenuItem__label"
+          css={childStyles.euiKeyPadMenuItem__label}
+        >
+          {label}
+        </span>
       </span>
     </Element>
   );
