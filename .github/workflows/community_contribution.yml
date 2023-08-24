@@ -1,7 +1,7 @@
 name: "Community contribution"
 on:
   pull_request_target:
-    types: [opened]
+    types: [opened, synchronize, reopened, ready_for_review, labeled, unlabeled]
 
 jobs:
   community-pr-message:
