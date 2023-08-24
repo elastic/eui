@@ -83,8 +83,7 @@ describe('TruncationUtilsWithDOM', () => {
       <TestSetup
         getUtils={() => {
           document.body.appendChild(container);
-          const utils = new TruncationUtilsWithDOM(props);
-          return utils;
+          return new TruncationUtilsWithDOM(props);
         }}
       />
     );
@@ -93,12 +92,32 @@ describe('TruncationUtilsWithDOM', () => {
 });
 
 describe('TruncationUtilsWithCanvas', () => {
-  const props = { ...sharedProps, font };
+  describe('container', () => {
+    const container = document.createElement('div');
+    container.style.font = font;
+    const props = { ...sharedProps, container };
 
-  it('truncates text as expected', () => {
-    cy.mount(
-      <TestSetup getUtils={() => new TruncationUtilsWithCanvas(props)} />
-    );
-    assertExpectedOutput();
+    it('truncates text as expected', () => {
+      cy.mount(
+        <TestSetup
+          getUtils={() => {
+            document.body.appendChild(container);
+            return new TruncationUtilsWithCanvas(props);
+          }}
+        />
+      );
+      assertExpectedOutput();
+    });
+  });
+
+  describe('font', () => {
+    const props = { ...sharedProps, font };
+
+    it('truncates text as expected', () => {
+      cy.mount(
+        <TestSetup getUtils={() => new TruncationUtilsWithCanvas(props)} />
+      );
+      assertExpectedOutput();
+    });
   });
 });

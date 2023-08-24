@@ -213,16 +213,29 @@ describe('TruncationUtilsWithCanvas', () => {
     value: () => ({ measureText: () => ({ width: 200 }), font: '' }),
   });
 
-  it('allows customizing the font', () => {
-    const utils = new TruncationUtilsWithCanvas({
-      ...sharedParams,
-      font: 'Inter',
+  describe('font calculations', () => {
+    it('computes the set font if passed a container element', () => {
+      const container = document.createElement('div');
+      container.style.font = '14px Inter';
+
+      const utils = new TruncationUtilsWithCanvas({
+        ...sharedParams,
+        container,
+      });
+      expect(utils.context.font).toEqual('14px Inter');
     });
-    expect(utils.context.font).toEqual('Inter');
+
+    it('accepts a static font string', () => {
+      const utils = new TruncationUtilsWithCanvas({
+        ...sharedParams,
+        font: '14px Inter',
+      });
+      expect(utils.context.font).toEqual('14px Inter');
+    });
   });
 
   describe('canvas utils', () => {
-    const utils = new TruncationUtilsWithCanvas(sharedParams);
+    const utils = new TruncationUtilsWithCanvas({ ...sharedParams, font: '' });
 
     describe('textWidth', () => {
       it('returns the measured text width from the canvas', () => {

@@ -6,6 +6,8 @@
  * Side Public License, v 1.
  */
 
+import type { ExclusiveUnion } from '../common';
+
 interface SharedParams {
   fullText: string;
   ellipsis: string;
@@ -14,9 +16,11 @@ interface SharedParams {
 interface DOMParams extends SharedParams {
   container: HTMLElement;
 }
-interface CanvasParams extends SharedParams {
-  font?: CanvasTextDrawingStyles['font'];
-}
+type CanvasParams = SharedParams &
+  ExclusiveUnion<
+    { container: HTMLElement },
+    { font: CanvasTextDrawingStyles['font'] }
+  >;
 
 /**
  * This internal shared/base class contains the actual logic for truncating text
@@ -289,21 +293,49 @@ export class TruncationUtilsWithDOM extends _TruncationUtils {
 }
 
 /**
- * Creates a temporary Canvas element for manipulating text & determining text width.
- * This method is compatible with charts or other canvas-rendered frameworks,
- * and requires no cleanup method. It will typically require passing font
- * information to accurately measure text width.
+ * Creates a temporary Canvas element for manipulating text & determining
+ * text width. This method is compatible with charts or other canvas-rendered
+ * frameworks, and requires no cleanup method.
+ *
+ * To accurately measure text, canvas rendering requires either a container to
+ * compute/derive font styles from, or a static font string (useful for usage
+ * outside the DOM). Particular care should be applied when fallback fonts are
+ * used, as more fallback fonts can lead to less precision.
+ *
+ * Please note that while canvas is more performant than DOM measurement, there
+ * are subpixel to single digit pixel differences between DOM and canvas
+ * measurement due to the different rendering engines used.
  */
 export class TruncationUtilsWithCanvas extends _TruncationUtils {
   context: CanvasRenderingContext2D;
   currentText = '';
 
-  constructor({ font, ...rest }: CanvasParams) {
+  constructor({ font, container, ...rest }: CanvasParams) {
     super(rest);
 
     this.context = document.createElement('canvas').getContext('2d')!;
-    if (font) this.context.font = font;
+
+    // Set the canvas font to ensure text width calculations are correct
+    if (font) {
+      this.context.font = font;
+    } else if (container) {
+      this.context.font = this.computeFontFromElement(container);
+    }
   }
+
+  computeFontFromElement = (element: HTMLElement) => {
+    const computedStyles = window.getComputedStyle(element);
+    return [
+      'font-style',
+      'font-variant',
+      'font-weight',
+      'font-size',
+      'font-family',
+    ]
+      .map((prop) => computedStyles.getPropertyValue(prop))
+      .join(' ')
+      .trim();
+  };
 
   get textWidth() {
     return this.context.measureText(this.currentText).width;
