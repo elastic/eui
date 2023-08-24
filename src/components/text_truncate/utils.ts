@@ -270,6 +270,8 @@ export class TruncationUtilsWithDOM extends _TruncationUtils {
     this.container = container;
 
     this.span = document.createElement('span');
+    this.span.style.position = 'absolute'; // Prevent page reflow/repaint for performance
+    this.span.style.whiteSpace = 'nowrap'; // EuiTextTruncate already sets this on the parent, but we'll set it here as well for consumers who use this util standalone
     this.container.appendChild(this.span);
   }
 
