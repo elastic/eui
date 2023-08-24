@@ -24,13 +24,24 @@ const sharedProps = {
   availableWidth: 200,
   ellipsis: '...',
 };
-const font = '14px Verdana'; // We need to use a OS-safe font that CI machines are likely to have
 
-/**
- * Test utility for outputting the returned strings from each truncation utility
- * in React. Given the same shared props and fonts, both render methods should
- * arrive at the same truncated strings
- */
+// CI doesn't have access to the Inter font, so we need to manually include it
+// for font calculations to work correctly
+const font = '14px Inter';
+before(() => {
+  const linkElem = document.createElement('link');
+  linkElem.setAttribute('rel', 'stylesheet');
+  linkElem.setAttribute(
+    'href',
+    'https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap'
+  );
+  document.head.appendChild(linkElem);
+  cy.wait(1000); // Wait a tick to give the font time to load/swap in
+});
+
+// Test utility for outputting the returned strings from each truncation utility
+// in React. Given the same shared props and fonts, both render methods should
+// arrive at the same truncated strings
 const TestSetup: FunctionComponent<{
   getUtils: () => TruncationUtilsWithDOM | TruncationUtilsWithCanvas;
 }> = ({ getUtils }) => {
@@ -55,11 +66,11 @@ const TestSetup: FunctionComponent<{
 };
 
 const assertExpectedOutput = () => {
-  cy.get('#start').should('have.text', '...consectetur adipiscing elit');
-  cy.get('#end').should('have.text', 'Lorem ipsum dolor sit am...');
-  cy.get('#middle').should('have.text', 'Lorem ipsum ...dipiscing elit');
-  cy.get('#startEnd').should('have.text', '...r sit amet, consectetur...');
-  cy.get('#startEndAt').should('have.text', '...m ipsum dolor sit amet...');
+  cy.get('#start').should('have.text', '...t, consectetur adipiscing elit');
+  cy.get('#end').should('have.text', 'Lorem ipsum dolor sit amet, ...');
+  cy.get('#middle').should('have.text', 'Lorem ipsum d...adipiscing elit');
+  cy.get('#startEnd').should('have.text', '...lor sit amet, consectetur a...');
+  cy.get('#startEndAt').should('have.text', '...rem ipsum dolor sit amet, ...');
 };
 
 describe('TruncationUtilsWithDOM', () => {

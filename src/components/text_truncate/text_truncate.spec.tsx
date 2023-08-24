@@ -10,7 +10,7 @@
 /// <reference types="cypress-real-events" />
 /// <reference types="../../../cypress/support" />
 
-import React, { ReactNode } from 'react';
+import React from 'react';
 
 import { EuiTextTruncate } from './text_truncate';
 
@@ -23,30 +23,22 @@ describe('EuiTextTruncate', () => {
 
   // CI doesn't have access to the Inter font, so we need to manually include it
   // for font calculations to work correctly
-  const createFontStylesheet = () => {
+  before(() => {
     const linkElem = document.createElement('link');
     linkElem.setAttribute('rel', 'stylesheet');
     linkElem.setAttribute(
       'href',
-      'https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Roboto+Mono:ital,wght@0,400..700;1,400..700&display=swap'
+      'https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap'
     );
-    linkElem.id = 'font-loaded';
     document.head.appendChild(linkElem);
-    cy.wait(1000); // Wait a tick to give the time to load/swap in
-  };
-
-  const mount = (children: ReactNode) => {
-    if (!document.getElementById('font-loaded')) {
-      createFontStylesheet();
-    }
-    cy.mount(children);
-  };
+    cy.wait(1000); // Wait a tick to give the font time to load/swap in
+  });
 
   const getTruncatedText = (selector = '#text') =>
     cy.get(`${selector} [data-test-subj="truncatedText"]`);
 
   it('does not render truncated text if no truncation is needed', () => {
-    mount(<EuiTextTruncate {...props} text="Hello world" />);
+    cy.mount(<EuiTextTruncate {...props} text="Hello world" />);
     cy.get('#text').should('not.have.attr', 'title');
     cy.get('#text [data-test-subj="fullText"]').should(
       'have.text',
@@ -56,7 +48,7 @@ describe('EuiTextTruncate', () => {
   });
 
   it('renders truncated text and a title when truncation is needed', () => {
-    mount(<EuiTextTruncate {...props} />);
+    cy.mount(<EuiTextTruncate {...props} />);
     cy.get('#text').should('have.attr', 'title', props.text);
     cy.get('#text [data-test-subj="fullText"]').should('have.text', props.text);
     getTruncatedText().should('exist');
@@ -70,12 +62,12 @@ describe('EuiTextTruncate', () => {
 
     describe('middle', () => {
       it('truncations and inserts ellispes in the middle of the text', () => {
-        mount(<EuiTextTruncate {...props} truncation="middle" />);
+        cy.mount(<EuiTextTruncate {...props} truncation="middle" />);
         getTruncatedText().should('have.text', expectedMiddleOutput);
       });
 
       it('ignores `truncationOffset` and `truncationPosition`', () => {
-        mount(
+        cy.mount(
           <EuiTextTruncate
             {...props}
             truncation="middle"
@@ -89,13 +81,13 @@ describe('EuiTextTruncate', () => {
 
     describe('start', () => {
       it('truncates and inserts ellispis at the start of the text', () => {
-        mount(<EuiTextTruncate {...props} truncation="start" />);
+        cy.mount(<EuiTextTruncate {...props} truncation="start" />);
         getTruncatedText().should('have.text', expectedStartOutput);
       });
 
       describe('truncationOffset', () => {
         it('preserves starting characters with `truncationOffset`', () => {
-          mount(
+          cy.mount(
             <EuiTextTruncate
               {...props}
               truncation="start"
@@ -109,7 +101,7 @@ describe('EuiTextTruncate', () => {
         });
 
         it('ignores truncationOffset if larger than the text length', () => {
-          mount(
+          cy.mount(
             <EuiTextTruncate
               {...props}
               truncation="start"
@@ -123,7 +115,7 @@ describe('EuiTextTruncate', () => {
           cy.window().then((win) => {
             cy.wrap(cy.spy(win.console, 'error')).as('spyConsoleError');
           });
-          mount(
+          cy.mount(
             <EuiTextTruncate
               {...props}
               truncation="start"
@@ -141,13 +133,13 @@ describe('EuiTextTruncate', () => {
 
     describe('end', () => {
       it('truncates and inserts ellispis at the end of the text', () => {
-        mount(<EuiTextTruncate {...props} truncation="end" />);
+        cy.mount(<EuiTextTruncate {...props} truncation="end" />);
         getTruncatedText().should('have.text', expectedEndOutput);
       });
 
       describe('truncationOffset', () => {
         it('preserves ending characters with `truncationOffset`', () => {
-          mount(
+          cy.mount(
             <EuiTextTruncate
               {...props}
               truncation="end"
@@ -161,7 +153,7 @@ describe('EuiTextTruncate', () => {
         });
 
         it('ignores truncationOffset if larger than the text length', () => {
-          mount(
+          cy.mount(
             <EuiTextTruncate
               {...props}
               truncation="end"
@@ -175,7 +167,7 @@ describe('EuiTextTruncate', () => {
           cy.window().then((win) => {
             cy.wrap(cy.spy(win.console, 'error')).as('spyConsoleError');
           });
-          mount(
+          cy.mount(
             <EuiTextTruncate
               {...props}
               truncation="end"
@@ -193,12 +185,12 @@ describe('EuiTextTruncate', () => {
 
     describe('startEnd', () => {
       it('truncates and inserts ellipses at both the start and end of the text', () => {
-        mount(<EuiTextTruncate {...props} truncation="startEnd" />);
+        cy.mount(<EuiTextTruncate {...props} truncation="startEnd" />);
         getTruncatedText().should('have.text', expectedStartEndOutput);
       });
 
       it('ignores `truncationOffset`', () => {
-        mount(
+        cy.mount(
           <EuiTextTruncate
             {...props}
             truncation="startEnd"
@@ -210,7 +202,7 @@ describe('EuiTextTruncate', () => {
 
       describe('truncationPosition', () => {
         it('allows customizing the anchor at which the truncation is positioned from', () => {
-          mount(
+          cy.mount(
             <>
               <EuiTextTruncate
                 {...props}
@@ -237,7 +229,7 @@ describe('EuiTextTruncate', () => {
         });
 
         it('does not display the leading ellipsis if the anchor is close enough to the start', () => {
-          mount(
+          cy.mount(
             <EuiTextTruncate
               {...props}
               truncation="startEnd"
@@ -248,7 +240,7 @@ describe('EuiTextTruncate', () => {
         });
 
         it('does not display the leading ellipsis if the anchor position is <= 0', () => {
-          mount(
+          cy.mount(
             <>
               <EuiTextTruncate
                 {...props}
@@ -269,7 +261,7 @@ describe('EuiTextTruncate', () => {
         });
 
         it('does not display the trailing ellipsis if the anchor is close enough to the end', () => {
-          mount(
+          cy.mount(
             <EuiTextTruncate
               {...props}
               truncation="startEnd"
@@ -280,7 +272,7 @@ describe('EuiTextTruncate', () => {
         });
 
         it('does not display the trailing ellipsis if the anchor position is >= the text length', () => {
-          mount(
+          cy.mount(
             <>
               <EuiTextTruncate
                 {...props}
@@ -305,7 +297,7 @@ describe('EuiTextTruncate', () => {
 
   describe('ellipsis', () => {
     it('allows customizing the symbols used to represent an ellipsis', () => {
-      mount(
+      cy.mount(
         <>
           <EuiTextTruncate
             {...props}
@@ -335,7 +327,7 @@ describe('EuiTextTruncate', () => {
       cy.window().then((win) => {
         cy.wrap(cy.spy(win.console, 'error')).as('spyConsoleError');
       });
-      mount(
+      cy.mount(
         <>
           <EuiTextTruncate
             {...props}
@@ -364,7 +356,7 @@ describe('EuiTextTruncate', () => {
 
   describe('children', () => {
     it('allows customizing the rendered text via a render prop', () => {
-      mount(
+      cy.mount(
         <EuiTextTruncate {...props}>
           {(text) => <span data-test-subj="test">{text}</span>}
         </EuiTextTruncate>
