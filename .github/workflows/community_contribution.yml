@@ -10,8 +10,6 @@ jobs:
       HEAD_REPO: ${{ github.event.pull_request.head.repo.url }}
       SUBMITTER_ASSOCIATION: ${{ github.event.pull_request.author_association }}
     runs-on: ubuntu-latest
-    permissions:
-      issues: write # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#permissions
     steps:
       - uses: actions/github-script@v6
         name: "Check community access and add comment"
