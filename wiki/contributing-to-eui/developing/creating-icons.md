@@ -8,7 +8,7 @@ If you read through these guidelines or begin designing your icon and realize yo
 
 _**Note on 3rd-party / custom SVGs**_
 - The `EuiIcon` component accepts external references to custom SVG files, so you can maintain the icon in your consuming application.
-- This practice should also be sued for any **3rd-party logos**. For a number of reasons, the EUI team as moved away from maintaining a set of 3rd party logos. Please use the custom SVG option going forward.
+- This practice should also be used for any **3rd-party logos**. For a number of reasons, the EUI team as moved away from maintaining a set of 3rd party logos. Please use the custom SVG option going forward.
 
 ## Design the icon
 
