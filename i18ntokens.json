@@ -6067,36 +6067,36 @@
   },
   {
     "token": "euiResizableButton.horizontalResizerAriaLabel",
-    "defString": "Press left or right to adjust panels size",
+    "defString": "Press the left or right arrow keys to adjust panels size",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 111,
+        "line": 69,
         "column": 4,
-        "index": 3069
+        "index": 2211
       },
       "end": {
-        "line": 120,
+        "line": 78,
         "column": 5,
-        "index": 3350
+        "index": 2522
       }
     },
     "filepath": "src/components/resizable_container/resizable_button.tsx"
   },
   {
     "token": "euiResizableButton.verticalResizerAriaLabel",
-    "defString": "Press up or down to adjust panels size",
+    "defString": "Press the up or down arrow keys to adjust panels size",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 111,
+        "line": 69,
         "column": 4,
-        "index": 3069
+        "index": 2211
       },
       "end": {
-        "line": 120,
+        "line": 78,
         "column": 5,
-        "index": 3350
+        "index": 2522
       }
     },
     "filepath": "src/components/resizable_container/resizable_button.tsx"
