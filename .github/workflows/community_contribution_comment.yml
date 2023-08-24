@@ -11,11 +11,8 @@ jobs:
       SUBMITTER_ASSOCIATION: ${{ github.event.pull_request.author_association }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/github-script@v6
-        name: "Check community access and add comment"
+      - name: "Check membership"
         if: |
           ${{ env.EUI_REPO != env.HEAD_REPO }} &&
           ${{ env.SUBMITTER_ASSOCIATION != 'MEMBER' }}
-        with:
-          script: |
-            echo "Not a MEMBER. Another association."
+        run: echo "Not a MEMBER. Another association."
