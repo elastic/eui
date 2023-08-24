@@ -364,4 +364,15 @@ describe('EuiTextTruncate', () => {
       cy.get('[data-test-subj="test"]').should('exist');
     });
   });
+
+  describe('resize observer behavior', () => {
+    it('renders a resize observer if `width` is not passed', () => {
+      cy.viewport(200, 50);
+      cy.mount(<EuiTextTruncate {...props} width={undefined} />);
+      getTruncatedText().should('have.text', 'Lorem ipsum dolor sit amet, …');
+
+      cy.viewport(100, 50);
+      getTruncatedText().should('have.text', 'Lorem ipsum …');
+    });
+  });
 });
