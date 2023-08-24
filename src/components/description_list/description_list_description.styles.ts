@@ -11,8 +11,6 @@ import { euiFontSize, logicalTextAlignCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiTitle } from '../title/title.styles';
 
-const COLUMN_MAX_WIDTH = '55ch'; // Is this intentional? I was under the impression we were only setting a max-width on titles
-
 export const euiDescriptionListDescriptionStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
@@ -21,9 +19,7 @@ export const euiDescriptionListDescriptionStyles = (
 
     // Types
     row: css``,
-    column: css`
-      max-inline-size: ${COLUMN_MAX_WIDTH};
-    `,
+    column: css``,
     inline: css`
       display: inline;
     `,

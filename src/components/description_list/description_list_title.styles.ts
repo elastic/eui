@@ -16,8 +16,6 @@ import {
 import { UseEuiTheme } from '../../services';
 import { euiTitle } from '../title/title.styles';
 
-const COLUMN_MAX_WIDTH = '55ch';
-
 export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
 
@@ -28,9 +26,7 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
 
     // Types
     row: css``,
-    column: css`
-      max-inline-size: ${COLUMN_MAX_WIDTH};
-    `,
+    column: css``,
     inline: css`
       display: inline;
       border-radius: ${euiTheme.border.radius.small};
