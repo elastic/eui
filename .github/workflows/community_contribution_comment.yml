@@ -1,0 +1,21 @@
+name: "Community contribution"
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review, labeled, unlabeled]
+
+jobs:
+  community-pr-message:
+    env:
+      EUI_REPO: ${{ github.event.pull_request.base.repo.url }}
+      HEAD_REPO: ${{ github.event.pull_request.head.repo.url }}
+      SUBMITTER_ASSOCIATION: ${{ github.event.pull_request.author_association }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v6
+        name: "Check community access and add comment"
+        if: |
+          ${{ env.EUI_REPO != env.HEAD_REPO }} &&
+          ${{ env.SUBMITTER_ASSOCIATION != 'MEMBER' }}
+        with:
+          script: |
+            echo "Not a MEMBER. Another association."
