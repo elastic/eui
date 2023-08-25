@@ -79,6 +79,13 @@ export type EuiPageTemplateProps = _EuiPageOuterProps &
     component?: ComponentTypes;
   };
 
+const calculateOffset = (base: number): number => {
+  if (typeof document === 'undefined') return 0; // SSR catch
+
+  const euiHeaderFixedCounter = Number(document.body.dataset.fixedHeaders ?? 0);
+  return base * 3 * euiHeaderFixedCounter;
+};
+
 /**
  * Consumed via `EuiPageTemplate`,
  * it controls and propogates most of the shared props per direct child
@@ -104,7 +111,9 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
 }) => {
   const { euiTheme } = useEuiTheme();
 
-  const [offset, setOffset] = useState(_offset);
+  const [offset, setOffset] = useState(
+    () => _offset ?? calculateOffset(euiTheme.base)
+  );
   const templateContext = useContext(TemplateContext);
 
   // Used as a target to insert the bottom bar component
@@ -115,10 +124,7 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
 
   useEffect(() => {
     if (_offset === undefined) {
-      const euiHeaderFixedCounter = Number(
-        document.body.dataset.fixedHeaders ?? 0
-      );
-      setOffset(euiTheme.base * 3 * euiHeaderFixedCounter);
+      setOffset(calculateOffset(euiTheme.base));
     }
   }, [_offset, euiTheme.base]);
 
@@ -154,7 +160,8 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   const getBottomBarProps = () => ({
     restrictWidth,
     paddingSize,
-    parent: `#${pageInnerId}`,
+    // pageInnerId may contain colons that are parsed as pseudo-elements if not escaped
+    parent: `#${CSS.escape(pageInnerId)}`,
   });
 
   const innerPanelled = () => panelled ?? Boolean(sidebar.length > 0);

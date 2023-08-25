@@ -6,7 +6,9 @@ If you are willing and able to design the icon yourself, this document describes
 
 If you read through these guidelines or begin designing your icon and realize you're in too deep, then create an issue in this repo and request assistance. An EUI team member will reply and discuss options.
 
-_**Note**: The `EuiIcon` component accepts external references to icon files, so you have the option to maintain the icon in your consuming application._
+_**Note on 3rd-party / custom SVGs**_
+- The `EuiIcon` component accepts external references to custom SVG files, so you can maintain the icon in your consuming application.
+- This practice should also be used for any **3rd-party logos**. For a number of reasons, the EUI team as moved away from maintaining a set of 3rd party logos. Please use the custom SVG option going forward.
 
 ## Design the icon
 

@@ -32,6 +32,20 @@ describe('EuiDualRange', () => {
     targetSelector: '.euiRangeSlider',
     skip: { className: true, css: true },
   });
+  shouldRenderCustomStyles(
+    <EuiDualRange
+      {...props}
+      showInput="inputWithPopover"
+      minInputProps={{ 'data-test-subj': 'triggerPopover' }}
+    />,
+    {
+      skip: { parentTest: true },
+      childProps: ['minInputProps', 'maxInputProps', 'inputPopoverProps'],
+      renderCallback: ({ getByTestSubject }) => {
+        fireEvent.focus(getByTestSubject('triggerPopover'));
+      },
+    }
+  );
 
   it('renders', () => {
     const { container } = render(
@@ -184,6 +198,7 @@ describe('EuiDualRange', () => {
             id="id"
             showInput="inputWithPopover"
             minInputProps={{ 'aria-label': 'Min value' }}
+            inputPopoverProps={{ panelProps: { 'data-test-subj': 'test' } }}
           />
         );
 
@@ -195,6 +210,7 @@ describe('EuiDualRange', () => {
 
         expect(screen.getByRole('dialog')).toBeDefined();
         expect(screen.getAllByRole('slider')).toHaveLength(2);
+        expect(screen.getByTestSubject('test')).toBeInTheDocument();
       });
     });
 
