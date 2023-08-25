@@ -153,6 +153,9 @@ export type Control = ExclusiveUnion<
   SpacerControl
 >;
 
+/**
+ * @deprecated
+ */
 export type EuiControlBarProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
     /**
@@ -214,6 +217,13 @@ interface EuiControlBarState {
   selectedTab: string;
 }
 
+/**
+ * @deprecated - EuiControlBar is scheduled for deprecation due to low internal usage and high
+ * overlap with other existing EUI components. We recommend using EuiBottomBar instead,
+ * or copying this component into your own application for usage if necessary.
+ *
+ * The component will be permanently removed in December 2023.
+ */
 export class EuiControlBar extends Component<
   EuiControlBarProps,
   EuiControlBarState
