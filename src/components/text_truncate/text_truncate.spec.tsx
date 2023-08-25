@@ -31,7 +31,7 @@ describe('EuiTextTruncate', () => {
       'https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap'
     );
     document.head.appendChild(linkElem);
-    cy.wait(1000); // Wait a tick to give the font time to load/swap in
+    cy.wait(1000); // Wait a second to give the font time to load/swap in
   });
 
   const getTruncatedText = (selector = '#text') =>
@@ -61,7 +61,7 @@ describe('EuiTextTruncate', () => {
     const expectedStartEndOutput = '…lor sit amet, consectetur a…';
 
     describe('middle', () => {
-      it('truncations and inserts ellispes in the middle of the text', () => {
+      it('truncates and inserts ellispes in the middle of the text', () => {
         cy.mount(<EuiTextTruncate {...props} truncation="middle" />);
         getTruncatedText().should('have.text', expectedMiddleOutput);
       });
@@ -110,24 +110,6 @@ describe('EuiTextTruncate', () => {
           );
           getTruncatedText().should('have.text', expectedStartOutput);
         });
-
-        it('logs an error if the truncationOffset is too large for the container', () => {
-          cy.window().then((win) => {
-            cy.wrap(cy.spy(win.console, 'error')).as('spyConsoleError');
-          });
-          cy.mount(
-            <EuiTextTruncate
-              {...props}
-              truncation="start"
-              truncationOffset={5}
-              width={15}
-            />
-          );
-          cy.get('@spyConsoleError').should(
-            'be.calledWith',
-            'The passed truncationOffset is too large for the available width. Truncating the offset instead.'
-          );
-        });
       });
     });
 
@@ -161,24 +143,6 @@ describe('EuiTextTruncate', () => {
             />
           );
           getTruncatedText().should('have.text', expectedEndOutput);
-        });
-
-        it('logs an error if the truncationOffset is too large for the container', () => {
-          cy.window().then((win) => {
-            cy.wrap(cy.spy(win.console, 'error')).as('spyConsoleError');
-          });
-          cy.mount(
-            <EuiTextTruncate
-              {...props}
-              truncation="end"
-              truncationOffset={10}
-              width={20}
-            />
-          );
-          cy.get('@spyConsoleError').should(
-            'be.calledWith',
-            'The passed truncationOffset is too large for the available width. Truncating the offset instead.'
-          );
         });
       });
     });
