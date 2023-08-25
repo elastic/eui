@@ -1,38 +1,49 @@
 name: "Community contribution"
 on:
   pull_request_target:
-    types: [opened, edited]
+    types: [opened, reopened]
 
 jobs:
   community-pr-message:
     env:
-      EUI_REPO: ${{ github.event.pull_request.base.repo.url }}
-      HEAD_REPO: ${{ github.event.pull_request.head.repo.url }}
-      SUBMITTER_ASSOCIATION: ${{ github.event.pull_request.author_association }}
+      USER_LOGIN: ${{ github.event.pull_request.user.login }}
+      RESPONSE_CODE: "" # https://github.com/github/vscode-github-actions/issues/47
     runs-on: ubuntu-latest
+    # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#permissions
     permissions:
-      issues: write # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#permissions
+      issues: write
+      pull-requests: read
     steps:
-      - uses: actions/github-script@v6
-        name: "Check community access and add comment"
-        if: |
-          ${{ env.EUI_REPO != env.HEAD_REPO }} &&
-          ${{ env.SUBMITTER_ASSOCIATION != 'MEMBER' && env.SUBMITTER_ASSOCIATION != 'CONTRIBUTOR' }}
-          # ==================================================
-          # TODO: Find a token that returns a list of org members
-          # and add it as a secret to the EUI repo. Then use
-          # that secret to check if the pull request submitter
-          # is a member of the Elastic org. If they are NOT a 
-          # member of the org, proceed to post up the comment.
-          # ==================================================
-        with:
-            script: |
-              const pr = context.payload.pull_request
-              const comment = "Since this is a community submitted pull request, a Buildkite build has not been started automatically. Would an Elastic organization member please verify the contents of this pull request and then kick off a build manually?"
+      - name: "Check for org membership"
+        # https://docs.github.com/en/rest/orgs/members?apiVersion=2022-11-28#check-organization-membership-for-a-user
+        # https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#example-of-writing-an-environment-variable-to-github_env
+        # TODO: Add a token for checking org membership
+        run: |
+          DATA=$(
+            curl -L -i -w "%{http_code}" \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.EUI_COMMUNITY_PR }}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/orgs/elastic/members/"$USER_LOGIN"
+          )
 
-              github.rest.issues.createComment({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: comment,
-              });
+          RESPONSE_CODE=$(echo "$DATA" | awk '/([0-9]{3})$/{print}')
+          echo "$RESPONSE_CODE" >> "$GITHUB_ENV"
+      - name: "Add comment to community pull requests"
+        uses: actions/github-script@v6
+        if: ${{ env.RESPONSE_CODE != '204' }}
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: "👋 Since this is a community submitted pull request, a Buildkite build has not been started automatically. Would an Elastic organization member please verify the contents of this pull request and kick off a build manually?",
+            });
+
+            github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ['community contribution']
+            });
