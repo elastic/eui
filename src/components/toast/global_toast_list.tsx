@@ -7,6 +7,7 @@
  */
 
 import React, {
+  FunctionComponent,
   ReactChild,
   useCallback,
   useEffect,
@@ -22,6 +23,7 @@ import { EuiGlobalToastListItem } from './global_toast_list_item';
 import { EuiToast, EuiToastProps } from './toast';
 import { euiGlobalToastListStyles } from './global_toast_list.styles';
 import { EuiButton } from '../button';
+import { EuiI18n } from '../i18n';
 
 type ToastSide = 'right' | 'left';
 
@@ -40,8 +42,7 @@ export interface Toast extends EuiToastProps {
   toastLifeTimeMs?: number;
 }
 
-export interface EuiGlobalToastListProps<S extends boolean>
-  extends CommonProps {
+export interface EuiGlobalToastListProps extends CommonProps {
   toasts?: Toast[];
   dismissToast: (toast: Toast) => void;
   toastLifeTimeMs: number;
@@ -50,22 +51,27 @@ export interface EuiGlobalToastListProps<S extends boolean>
    */
   side?: ToastSide;
   /**
-   * Determines if toast list behaviour is enhanced to support clear all functionality
+   * Displays a "Clear all" button at the bottom of the toast list
+   * that allows users to dismiss all toasts in a single click.
    */
-  allowClearAll?: S;
-  dismissAllToastsCallback?: [S] extends [true] ? () => void : never;
+  showClearAllButton?: boolean;
+  /**
+   * Optional callback that fires when a user clicks the "Clear all" button.
+   * Ignored if `showClearAll` is not `true`.
+   */
+  onClearAllToasts?: () => void;
 }
 
-export function EuiGlobalToastList<S extends boolean>({
+export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
   className,
   toasts = [],
   dismissToast: dismissToastProp,
-  dismissAllToastsCallback,
   toastLifeTimeMs,
-  allowClearAll,
+  showClearAllButton,
+  onClearAllToasts,
   side = 'right',
   ...rest
-}: EuiGlobalToastListProps<S>) {
+}) => {
   const [toastIdToDismissedMap, setToastIdToDismissedMap] = useState<{
     [toastId: string]: boolean;
   }>({});
@@ -291,25 +297,38 @@ export function EuiGlobalToastList<S extends boolean>({
     );
   });
 
-  if (allowClearAll && toasts.length > 1) {
+  if (showClearAllButton && toasts.length > 1) {
     const dismissAllToastImmediately = () => {
       toasts.forEach((toast) => dismissToastProp(toast));
-      dismissAllToastsCallback?.();
+      onClearAllToasts?.();
     };
 
     renderedToasts.push(
-      <EuiGlobalToastListItem
-        data-test-subj="clear-all-toast"
-        key="clear-all-toasts"
-        isDismissed={false}
+      <EuiI18n
+        key="euiClearAllToasts"
+        tokens={[
+          'euiGlobalToastList.clearAllToastsButtonAriaLabel',
+          'euiGlobalToastList.clearAllToastsButtonDisplayText',
+        ]}
+        defaults={['clear all toast notifications', 'Clear all']}
       >
-        <EuiButton
-          onClick={dismissAllToastImmediately}
-          aria-label={'clear all toast notifications'}
-        >
-          {'Clear all'}
-        </EuiButton>
-      </EuiGlobalToastListItem>
+        {([
+          clearAllToastsButtonAriaLabel,
+          clearAllToastsButtonDisplayText,
+        ]: string[]) => (
+          <EuiGlobalToastListItem
+            data-test-subj="euiClearAllToastsButton"
+            isDismissed={false}
+          >
+            <EuiButton
+              onClick={dismissAllToastImmediately}
+              aria-label={clearAllToastsButtonAriaLabel}
+            >
+              {clearAllToastsButtonDisplayText}
+            </EuiButton>
+          </EuiGlobalToastListItem>
+        )}
+      </EuiI18n>
     );
   }
 
@@ -327,4 +346,4 @@ export function EuiGlobalToastList<S extends boolean>({
       {renderedToasts}
     </div>
   );
-}
+};

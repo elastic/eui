@@ -121,7 +121,7 @@ export default () => {
         toasts={toasts}
         dismissToast={removeToast}
         toastLifeTimeMs={6000}
-        allowClearAll
+        showClearAllButton
       />
     </div>
   );
