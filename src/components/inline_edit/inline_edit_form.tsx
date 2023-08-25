@@ -12,10 +12,10 @@ import React, {
   useState,
   useRef,
   useEffect,
+  useMemo,
   HTMLAttributes,
   MouseEvent,
   KeyboardEvent,
-  ChangeEvent,
 } from 'react';
 import classNames from 'classnames';
 
@@ -43,7 +43,6 @@ export type EuiInlineEditCommonProps = Omit<
   'children'
 > &
   CommonProps & {
-    defaultValue: string;
     placeholder?: string;
     /**
      * Callback that fires when a user clicks the save button.
@@ -103,7 +102,7 @@ export type EuiInlineEditCommonProps = Omit<
        * To use inline edit as a controlled component, continuously pass the value via this prop
        */
       value: string;
-      onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+      onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
       onCancel: (perviousValue: string) => void;
     }
   >;
@@ -188,7 +187,17 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
 
   const [isEditing, setIsEditing] = useState(false || startWithEditOpen);
   const [editModeValue, setEditModeValue] = useState(defaultValue);
-  const [readModeValue, setReadModeValue] = useState(defaultValue);
+  const [readModeValue, setReadModeValue] = useState(
+    controlledValue || defaultValue
+  );
+
+  const value = useMemo(() => {
+    if (controlledValue) {
+      return controlledValue;
+    } else {
+      return isEditing ? editModeValue : readModeValue || placeholder;
+    }
+  }, [controlledValue, editModeValue, readModeValue, isEditing, placeholder]);
 
   const readModeStyles = euiInlineEditReadModeStyles(euiTheme);
   const readModeCssStyles = [
@@ -205,6 +214,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
 
   const cancelInlineEdit = () => {
     setEditModeValue(readModeValue);
+    onCancel && onCancel(readModeValue as string);
     setIsEditing(false);
     requestAnimationFrame(() => readModeFocusRef.current?.focus());
   };
@@ -212,13 +222,13 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   const saveInlineEditValue = async () => {
     // If an onSave callback is present, and returns false, stay in edit mode
     if (onSave) {
-      const onSaveReturn = onSave(editModeValue);
+      const onSaveReturn = onSave(value as string);
       const awaitedReturn =
         onSaveReturn instanceof Promise ? await onSaveReturn : onSaveReturn;
       if (awaitedReturn === false) return;
     }
 
-    setReadModeValue(editModeValue);
+    setReadModeValue(value);
     setIsEditing(false);
     requestAnimationFrame(() => readModeFocusRef.current?.focus());
   };
@@ -253,7 +263,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
         >
           <EuiFieldText
             fullWidth
-            value={editModeValue}
+            value={value}
             aria-label={inputAriaLabel}
             compressed={sizes.compressed}
             isInvalid={isInvalid}
@@ -264,6 +274,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
             inputRef={setEditModeRefs}
             onChange={(e) => {
               setEditModeValue(e.target.value);
+              onChange && onChange?.(e);
               editModeProps?.inputProps?.onChange?.(e);
             }}
             onKeyDown={(e) => {
@@ -352,7 +363,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
         data-test-subj="euiInlineReadModeButton"
         disabled={isReadOnly}
         css={readModeCssStyles}
-        title={readModeValue || placeholder}
+        title={value}
         {...readModeProps}
         buttonRef={setReadModeRefs}
         aria-describedby={classNames(
@@ -364,7 +375,7 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
           readModeProps?.onClick?.(e);
         }}
       >
-        {children(readModeValue || placeholder)}
+        {children(value)}
       </EuiButtonEmpty>
       <span id={readModeDescribedById} hidden>
         {!isReadOnly && (
