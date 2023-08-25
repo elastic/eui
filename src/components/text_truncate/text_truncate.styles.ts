@@ -14,10 +14,23 @@ export const euiTextTruncateStyles = {
     overflow: hidden;
     white-space: nowrap;
   `,
+  /**
+   * The below CSS is a hack to get double clicking and selecting the *full* text
+   * instead of the truncated text (useful for copying/pasting, and mimics how
+   * `text-overflow: ellipsis` works).
+   *
+   * Real talk: I'm lowkey amazed it works and it wouldn't surprise me if we ran into
+   * cross-browser issues with this at some point. Hopefully CSS natively implements
+   * custom text truncation some day (https://github.com/w3c/csswg-drafts/issues/3937)
+   * and there'll be no need for the entire component at that point 🙏
+   */
+  // Makes the truncated text unselectable/un-clickable
   truncatedText: css`
     user-select: none;
     pointer-events: none;
   `,
+  // Positions the full text on top of the truncated text (so that clicking targets it)
+  // and gives it a color opacity of 0 so that it's not actually visible
   fullText: css`
     position: absolute;
     inset: 0;
