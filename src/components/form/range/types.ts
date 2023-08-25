@@ -8,9 +8,10 @@
 
 import type { ReactNode, CSSProperties, InputHTMLAttributes } from 'react';
 import type { CommonProps } from '../../common';
+import type { EuiInputPopoverProps } from '../../popover/input_popover';
 import type { EuiFormControlLayoutProps } from '../form_control_layout';
 import type { EuiRangeLevelColor } from './range_levels_colors';
-import { EuiRangeInputProps } from './range_input';
+import type { EuiRangeInputProps } from './range_input';
 
 /**
  * Internal type atoms split up both for easier categorization
@@ -111,13 +112,28 @@ export interface _SharedRangeInputProps {
    */
   fullWidth?: boolean;
   /**
+   * Only impacts inputs rendered by the `showInput` prop
+   */
+  isInvalid?: boolean;
+  /**
    * Only impacts inputs rendered when the `showInput` prop is set to `"inputWithPopover"`
    */
   isLoading?: boolean;
   /**
-   * Only impacts inputs rendered by the `showInput` prop
+   * Only impacts input popovers rendered when the `showInput` prop is set to `"inputWithPopover"`
+   *
+   * Allows customizing the underlying [EuiInputPopover](/#/layout/popover#popover-attached-to-input-element),
+   * except for props controlled by the range component
    */
-  isInvalid?: boolean;
+  inputPopoverProps?: Omit<
+    EuiInputPopoverProps,
+    | 'input'
+    | 'isOpen'
+    | 'closePopover'
+    | 'disableFocusTrap'
+    | 'popoverScreenReaderText'
+    | 'fullWidth'
+  >;
 }
 
 export type _SharedRangeInputSide = {

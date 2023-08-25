@@ -1,43 +1,33 @@
 import React, { useState } from 'react';
 
-import { EuiInputPopover, EuiFieldText, EuiSpacer } from '../../../../src';
+import {
+  EuiInputPopover,
+  EuiInputPopoverProps,
+  EuiFieldText,
+  EuiTextArea,
+  EuiButtonGroup,
+  EuiFormRow,
+  EuiSpacer,
+} from '../../../../src';
 
 export default () => {
-  const [inputWidth, setInputWidth] = useState(200);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const [isPopoverOpenTwo, setIsPopoverOpenTwo] = useState(false);
-  const toggleIsPopoverOpen = (shouldBeOpen = !isPopoverOpen) => {
-    setIsPopoverOpen(shouldBeOpen);
-  };
-  const toggleIsPopoverOpenTwo = (shouldBeOpen = !isPopoverOpenTwo) => {
-    setIsPopoverOpenTwo(shouldBeOpen);
-  };
-
-  const input = (
-    <EuiFieldText
-      onFocus={() => toggleIsPopoverOpen()}
-      aria-label="Popover attached to input element"
-    />
-  );
-
-  const inputTwo = (
-    <EuiFieldText
-      onFocus={() => {
-        setInputWidth(300);
-        toggleIsPopoverOpenTwo();
-      }}
-      aria-label="Popover attached to an adjustable sized input element"
-    />
-  );
+  const [isResizablePopoverOpen, setIsResizablePopoverOpen] = useState(false);
+  const [anchorPosition, setAnchorPosition] =
+    useState<EuiInputPopoverProps['anchorPosition']>('downLeft');
 
   return (
-    <React.Fragment>
+    <>
       <EuiInputPopover
-        input={input}
         isOpen={isPopoverOpen}
-        closePopover={() => {
-          toggleIsPopoverOpen(false);
-        }}
+        closePopover={() => setIsPopoverOpen(false)}
+        input={
+          <EuiFieldText
+            onFocus={() => setIsPopoverOpen(true)}
+            placeholder="Focus me to toggle an input popover"
+            aria-label="Popover attached to input element"
+          />
+        }
       >
         Popover content
       </EuiInputPopover>
@@ -45,16 +35,46 @@ export default () => {
       <EuiSpacer />
 
       <EuiInputPopover
-        input={inputTwo}
-        isOpen={isPopoverOpenTwo}
-        style={{ width: inputWidth }}
-        closePopover={() => {
-          toggleIsPopoverOpenTwo(false);
-          setInputWidth(200);
-        }}
+        display="inline-block"
+        isOpen={isResizablePopoverOpen}
+        closePopover={() => setIsResizablePopoverOpen(false)}
+        input={
+          <EuiTextArea
+            onKeyDown={(e) => {
+              if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                setIsResizablePopoverOpen(true);
+              }
+            }}
+            placeholder="Focus me, press the down arrow key, then drag the resize handle"
+            aria-label="Press the down arrow key to toggle the popover attached to this textarea element."
+            rows={2}
+            resize="horizontal"
+          />
+        }
+        panelMinWidth={300}
+        anchorPosition={anchorPosition}
       >
-        Popover will adjust in size as the input does
+        This popover has a minimum width of 300px, and will adjust in size as
+        the textarea does.
+        <EuiSpacer size="s" />
+        <EuiFormRow label="Anchor position" display="columnCompressed">
+          <EuiButtonGroup
+            buttonSize="compressed"
+            legend="Anchor position"
+            name="anchorPosition"
+            idSelected={anchorPosition!}
+            onChange={(id) =>
+              setAnchorPosition(id as EuiInputPopoverProps['anchorPosition'])
+            }
+            options={[
+              { id: 'downLeft', label: 'Left' },
+              { id: 'downCenter', label: 'Center' },
+              { id: 'downRight', label: 'Right' },
+            ]}
+          />
+        </EuiFormRow>
       </EuiInputPopover>
-    </React.Fragment>
+    </>
   );
 };
