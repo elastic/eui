@@ -58,8 +58,6 @@ export default () => {
 
         <EuiModalBody>
           <EuiFormRow label="Color picker">{colorPicker}</EuiFormRow>
-          <EuiSpacer />
-          <EuiFormRow label="Color stops">{stops}</EuiFormRow>
         </EuiModalBody>
       </EuiModal>
     );
