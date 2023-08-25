@@ -2,14 +2,15 @@
 
 exports[`EuiInlineEditTitle isReadOnly 1`] = `
 <div
+  aria-label="aria-label"
   class="euiInlineEdit euiInlineEditTitle testClass1 testClass2 emotion-euiInlineEditTitle-m-m-euiTestCss"
+  data-test-subj="test subject string"
 >
   <button
     aria-describedby="inlineEdit_generated-id"
     aria-level="1"
-    class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-disabled-flush-both-isDisabled-euiInlineEditReadMode-isReadOnly"
+    class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-flush-both-euiInlineEditReadMode"
     data-test-subj="euiInlineReadModeButton"
-    disabled=""
     role="heading"
     title="Hello World!"
     type="button"
@@ -27,18 +28,26 @@ exports[`EuiInlineEditTitle isReadOnly 1`] = `
           Hello World!
         </h1>
       </span>
+      <span
+        color="inherit"
+        data-euiicon-type="pencil"
+      />
     </span>
   </button>
   <span
     hidden=""
     id="inlineEdit_generated-id"
-  />
+  >
+    Click to edit this text inline.
+  </span>
 </div>
 `;
 
 exports[`EuiInlineEditTitle renders 1`] = `
 <div
+  aria-label="aria-label"
   class="euiInlineEdit euiInlineEditTitle testClass1 testClass2 emotion-euiInlineEditTitle-m-m-euiTestCss"
+  data-test-subj="test subject string"
 >
   <button
     aria-describedby="inlineEdit_generated-id"
@@ -76,7 +85,9 @@ exports[`EuiInlineEditTitle renders 1`] = `
 
 exports[`EuiInlineEditTitle title sizes renders size l 1`] = `
 <div
+  aria-label="aria-label"
   class="euiInlineEdit euiInlineEditTitle testClass1 testClass2 emotion-euiInlineEditTitle-l-l-euiTestCss"
+  data-test-subj="test subject string"
 >
   <button
     aria-describedby="inlineEdit_generated-id"
@@ -114,7 +125,9 @@ exports[`EuiInlineEditTitle title sizes renders size l 1`] = `
 
 exports[`EuiInlineEditTitle title sizes renders size m 1`] = `
 <div
+  aria-label="aria-label"
   class="euiInlineEdit euiInlineEditTitle testClass1 testClass2 emotion-euiInlineEditTitle-m-m-euiTestCss"
+  data-test-subj="test subject string"
 >
   <button
     aria-describedby="inlineEdit_generated-id"
@@ -152,7 +165,9 @@ exports[`EuiInlineEditTitle title sizes renders size m 1`] = `
 
 exports[`EuiInlineEditTitle title sizes renders size s 1`] = `
 <div
+  aria-label="aria-label"
   class="euiInlineEdit euiInlineEditTitle testClass1 testClass2 emotion-euiInlineEditTitle-s-s-euiTestCss"
+  data-test-subj="test subject string"
 >
   <button
     aria-describedby="inlineEdit_generated-id"
@@ -190,7 +205,9 @@ exports[`EuiInlineEditTitle title sizes renders size s 1`] = `
 
 exports[`EuiInlineEditTitle title sizes renders size xs 1`] = `
 <div
+  aria-label="aria-label"
   class="euiInlineEdit euiInlineEditTitle testClass1 testClass2 emotion-euiInlineEditTitle-xs-xs-euiTestCss"
+  data-test-subj="test subject string"
 >
   <button
     aria-describedby="inlineEdit_generated-id"
@@ -228,7 +245,9 @@ exports[`EuiInlineEditTitle title sizes renders size xs 1`] = `
 
 exports[`EuiInlineEditTitle title sizes renders size xxs 1`] = `
 <div
+  aria-label="aria-label"
   class="euiInlineEdit euiInlineEditTitle testClass1 testClass2 emotion-euiInlineEditTitle-xxs-xxs-euiTestCss"
+  data-test-subj="test subject string"
 >
   <button
     aria-describedby="inlineEdit_generated-id"
@@ -266,7 +285,9 @@ exports[`EuiInlineEditTitle title sizes renders size xxs 1`] = `
 
 exports[`EuiInlineEditTitle title sizes renders size xxxs 1`] = `
 <div
+  aria-label="aria-label"
   class="euiInlineEdit euiInlineEditTitle testClass1 testClass2 emotion-euiInlineEditTitle-xxxs-xxxs-euiTestCss"
+  data-test-subj="test subject string"
 >
   <button
     aria-describedby="inlineEdit_generated-id"

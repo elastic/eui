@@ -2,13 +2,14 @@
 
 exports[`EuiInlineEditText isReadOnly 1`] = `
 <div
+  aria-label="aria-label"
   class="euiInlineEdit euiInlineEditText testClass1 testClass2 emotion-euiInlineEditText-m-m-euiTestCss"
+  data-test-subj="test subject string"
 >
   <button
     aria-describedby="inlineEdit_generated-id"
-    class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-disabled-flush-both-isDisabled-euiInlineEditReadMode-isReadOnly"
+    class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-flush-both-euiInlineEditReadMode"
     data-test-subj="euiInlineReadModeButton"
-    disabled=""
     role="paragraph"
     title="Hello World!"
     type="button"
@@ -25,18 +26,26 @@ exports[`EuiInlineEditText isReadOnly 1`] = `
           Hello World!
         </div>
       </span>
+      <span
+        color="inherit"
+        data-euiicon-type="pencil"
+      />
     </span>
   </button>
   <span
     hidden=""
     id="inlineEdit_generated-id"
-  />
+  >
+    Click to edit this text inline.
+  </span>
 </div>
 `;
 
 exports[`EuiInlineEditText renders 1`] = `
 <div
+  aria-label="aria-label"
   class="euiInlineEdit euiInlineEditText testClass1 testClass2 emotion-euiInlineEditText-m-m-euiTestCss"
+  data-test-subj="test subject string"
 >
   <button
     aria-describedby="inlineEdit_generated-id"
@@ -74,7 +83,9 @@ exports[`EuiInlineEditText renders 1`] = `
 
 exports[`EuiInlineEditText text sizes renders m 1`] = `
 <div
+  aria-label="aria-label"
   class="euiInlineEdit euiInlineEditText testClass1 testClass2 emotion-euiInlineEditText-m-m-euiTestCss"
+  data-test-subj="test subject string"
 >
   <button
     aria-describedby="inlineEdit_generated-id"
@@ -112,7 +123,9 @@ exports[`EuiInlineEditText text sizes renders m 1`] = `
 
 exports[`EuiInlineEditText text sizes renders s 1`] = `
 <div
+  aria-label="aria-label"
   class="euiInlineEdit euiInlineEditText testClass1 testClass2 emotion-euiInlineEditText-s-s-euiTestCss"
+  data-test-subj="test subject string"
 >
   <button
     aria-describedby="inlineEdit_generated-id"
@@ -150,7 +163,9 @@ exports[`EuiInlineEditText text sizes renders s 1`] = `
 
 exports[`EuiInlineEditText text sizes renders xs 1`] = `
 <div
+  aria-label="aria-label"
   class="euiInlineEdit euiInlineEditText testClass1 testClass2 emotion-euiInlineEditText-xs-xs-euiTestCss"
+  data-test-subj="test subject string"
 >
   <button
     aria-describedby="inlineEdit_generated-id"
