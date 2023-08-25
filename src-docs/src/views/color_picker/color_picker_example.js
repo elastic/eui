@@ -8,8 +8,9 @@ import {
   EuiColorPicker,
   EuiColorPaletteDisplay,
   EuiColorPalettePicker,
-  EuiColorStops,
   EuiText,
+  EuiCallOut,
+  EuiLink,
 } from '../../../../src/components';
 import {
   EuiColorPalettePickerPaletteTextProps,
@@ -431,61 +432,29 @@ export const ColorPickerExample = {
     },
     {
       title: 'Color stops',
+      isDeprecated: true,
       text: (
-        <React.Fragment>
-          <EuiText>
-            <p>
-              Use <strong>EuiColorStops</strong> to define color stops for data
-              driven styling. Stops are numbers within the provided range. The
-              color segment spans from the given stop number (inclusive) to the
-              next stop number (exclusive).
-            </p>
-          </EuiText>
-        </React.Fragment>
+        <EuiCallOut
+          color="danger"
+          iconType="warning"
+          title="EuiColorStops has been scheduled for deprecation"
+        >
+          <p>
+            <strong>EuiColorStops</strong> is being deprecated due to low usage
+            and high maintenance requirements.
+          </p>
+          <p>
+            If necessary, we recommend{' '}
+            <EuiLink
+              href="https://github.com/elastic/eui/tree/main/src/components/color_picker/color_stops"
+              target="_blank"
+            >
+              copying the component to your application
+            </EuiLink>
+            . The component will be permanently removed in October 2023.
+          </p>
+        </EuiCallOut>
       ),
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: colorStopsSource,
-        },
-      ],
-      props: {
-        EuiColorStops,
-        ColorStop,
-      },
-      snippet: [
-        colorStopsSnippetStandard,
-        colorStopsSnippetAdd,
-        colorStopsSnippetFixed,
-        colorStopsSnippetStepped,
-      ],
-      demo: <ColorStops />,
-    },
-    {
-      title: 'Free-range color stops',
-      text: (
-        <React.Fragment>
-          <EuiText>
-            <p>
-              Typical use of <strong>EuiColorStops</strong> (as above) will have
-              defined <EuiCode>min</EuiCode> and <EuiCode>max</EuiCode> range
-              values. It is also possible to leave the range open-ended for
-              cases where the target data set is unknown or maleable. In this
-              case, a user&apos;s added values will define{' '}
-              <EuiCode>min</EuiCode> and <EuiCode>max</EuiCode> and users will
-              have more freedom over resetting the values on the fly.
-            </p>
-          </EuiText>
-        </React.Fragment>
-      ),
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: colorStopsRangeSource,
-        },
-      ],
-      snippet: colorPickerRangeSnippet,
-      demo: <ColorStopsRange />,
     },
     {
       title: 'Format selection',

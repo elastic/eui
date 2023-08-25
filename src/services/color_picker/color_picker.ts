@@ -17,6 +17,9 @@ const generateRandomColor = () =>
   // https://www.paulirish.com/2009/random-hex-color-code-snippets/
   `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 
+/**
+ * @deprecated
+ */
 export const useColorStopsState = (
   useRandomColor: boolean = false,
   initialColorStops: colorStopsType[] = [
