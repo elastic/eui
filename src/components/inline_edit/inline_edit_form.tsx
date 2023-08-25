@@ -15,10 +15,11 @@ import React, {
   HTMLAttributes,
   MouseEvent,
   KeyboardEvent,
+  ChangeEvent,
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps } from '../common';
+import { CommonProps, ExclusiveUnion } from '../common';
 import {
   EuiFormRow,
   EuiFormRowProps,
@@ -90,7 +91,22 @@ export type EuiInlineEditCommonProps = Omit<
      * Locks inline edit in read mode and displays the text value
      */
     isReadOnly?: boolean;
-  };
+  } & ExclusiveUnion<
+    {
+      /**
+       * Initial inline edit text value
+       */
+      defaultValue: string;
+    },
+    {
+      /**
+       * To use inline edit as a controlled component, continuously pass the value via this prop
+       */
+      value: string;
+      onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+      onCancel: (perviousValue: string) => void;
+    }
+  >;
 
 // Internal-only props, passed by the consumer-facing components
 export type EuiInlineEditFormProps = EuiInlineEditCommonProps & {
@@ -125,6 +141,9 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
   children,
   sizes,
   defaultValue,
+  value: controlledValue,
+  onChange,
+  onCancel,
   placeholder,
   inputAriaLabel,
   startWithEditOpen,
