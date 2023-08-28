@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState } from 'react';
 import { css } from '@emotion/react';
-import { useEuiTheme } from '../../../../../src/services';
+import { useEuiTheme, EuiThemeProvider } from '../../../../../src/services';
 import {
   EuiBasicTable,
   EuiButtonGroup,
@@ -9,6 +9,7 @@ import {
   EuiDescribedFormGroup,
   EuiPanel,
   EuiSpacer,
+  EuiText,
 } from '../../../../../src/components';
 
 import {
@@ -103,6 +104,26 @@ export const FontJS = () => {
         }
         snippet={'font-feature-settings: ${euiTheme.font.featureSettings};'}
         snippetLanguage="emotion"
+      />
+
+      <ThemeExample
+        title={<code>euiTheme.font.fontSizeUnit</code>}
+        description={getDescription(baseProps.fontSizeUnit)}
+        example={
+          <EuiThemeProvider modify={{ font: { fontSizeUnit: 'px' } }}>
+            <EuiText>
+              My font size and line height is set using <EuiCode>px</EuiCode>{' '}
+              and not <EuiCode>rem</EuiCode>
+            </EuiText>
+          </EuiThemeProvider>
+        }
+        snippet={`<EuiProvider modify={{ font: { fontSizeUnit: 'px' } }}>
+  <EuiText>
+    <p>Hello world</p>
+  </EuiText>
+</EuiProvider>
+`}
+        snippetLanguage="jsx"
       />
     </>
   );
