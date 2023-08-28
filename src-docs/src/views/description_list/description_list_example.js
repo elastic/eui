@@ -239,13 +239,27 @@ export const DescriptionListExample = {
         },
       ],
       text: (
-        <p>
-          Using the <EuiCode>align</EuiCode> and <EuiCode>compressed</EuiCode>{' '}
-          props you can further tailor the look of a description list. This
-          works with column and inline types. You can also adjust the{' '}
-          <EuiCode>gutterSize</EuiCode> prop to increase and decrease vertical
-          spacing between <EuiCode>EuiDescriptionList</EuiCode> elements.
-        </p>
+        <>
+          <h4>Alignment & Compression</h4>
+          <p>
+            Utilize the <EuiCode>align</EuiCode> and
+            <EuiCode>compressed</EuiCode> props to refine the presentation of
+            your description list. These are compatible with both column and
+            inline types.
+          </p>
+          <h4>Vertical spacing</h4>
+          <p>
+            Modify the <EuiCode>rowGutterSize</EuiCode> prop to control the
+            vertical spacing between <EuiCode>EuiDescriptionList</EuiCode>{' '}
+            elements. This will not affect inline list types.
+          </p>
+          <h4>Horizontal spacing</h4>
+          <p>
+            Adjust the spacing between the title and description with the{' '}
+            <EuiCode>columnGutterSize</EuiCode> prop. This will not affect
+            inline or row types.
+          </p>
+        </>
       ),
       snippet: descriptionListStylingSnippet,
       demo: <DescriptionListStyling />,

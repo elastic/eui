@@ -6,20 +6,17 @@
  * Side Public License, v 1.
  */
 
-import React, { HTMLAttributes, FunctionComponent } from 'react';
+import React, { HTMLAttributes, FunctionComponent, useMemo } from 'react';
 import classNames from 'classnames';
 
-import { EuiDescriptionListTitle } from './description_list_title';
-
-import { EuiDescriptionListDescription } from './description_list_description';
+import { useEuiTheme, useIsWithinBreakpoints } from '../../services';
 import { CommonProps } from '../common';
 
-import { useEuiTheme } from '../../services';
-import { euiDescriptionListStyles } from './description_list.styles';
-
 import { EuiDescriptionListProps } from './description_list_types';
-
 import { EuiDescriptionListContext } from './description_list_context';
+import { EuiDescriptionListTitle } from './description_list_title';
+import { EuiDescriptionListDescription } from './description_list_description';
+import { euiDescriptionListStyles } from './description_list.styles';
 
 export const EuiDescriptionList: FunctionComponent<
   CommonProps & HTMLAttributes<HTMLDListElement> & EuiDescriptionListProps
@@ -32,14 +29,30 @@ export const EuiDescriptionList: FunctionComponent<
   listItems,
   textStyle = 'normal',
   titleProps,
-  type = 'row',
-  gutterSize = 'm',
+  type: _type = 'row',
+  rowGutterSize = 's',
+  columnGutterSize = 's',
   ...rest
 }) => {
+  const showResponsiveColumns = useIsWithinBreakpoints(['xs', 's']);
+  const type = useMemo(() => {
+    if (_type === 'responsiveColumn') {
+      return showResponsiveColumns ? 'row' : 'column';
+    } else {
+      return _type;
+    }
+  }, [_type, showResponsiveColumns]);
+
   const euiTheme = useEuiTheme();
   const styles = euiDescriptionListStyles(euiTheme);
 
-  const cssStyles = [styles.euiDescriptionList, styles[type], styles[align]];
+  const cssStyles = [
+    styles.euiDescriptionList,
+    styles[type],
+    styles[align],
+    type === 'column' && styles.rowGap[rowGutterSize],
+    type === 'column' && styles.columnGap[columnGutterSize],
+  ];
 
   const classes = classNames('euiDescriptionList', className);
 
@@ -66,9 +79,9 @@ export const EuiDescriptionList: FunctionComponent<
 
   return (
     <EuiDescriptionListContext.Provider
-      value={{ type, compressed, textStyle, align, gutterSize }}
+      value={{ type, compressed, textStyle, align, rowGutterSize }}
     >
-      <dl className={classes} css={cssStyles} {...rest} data-type={type}>
+      <dl className={classes} css={cssStyles} {...rest} data-type={_type}>
         {childrenOrListItems}
       </dl>
     </EuiDescriptionListContext.Provider>

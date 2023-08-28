@@ -84,83 +84,83 @@ exports[`useDataGridKeyboardShortcuts returns a popover containing a list of key
           >
             <dl
               aria-labelledby="generated-id"
-              class="euiDescriptionList emotion-euiDescriptionList-column-center"
+              class="euiDescriptionList emotion-euiDescriptionList-column-center-s-s"
               data-type="column"
             >
               <dt
-                class="euiDescriptionList__title emotion-euiDescriptionList__title-column-s-compressed-right"
+                class="euiDescriptionList__title emotion-euiDescriptionList__title-column-compressed-right"
               >
                 <kbd>
                   Up arrow
                 </kbd>
               </dt>
               <dd
-                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left-s"
+                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left"
               >
                 Move one cell up
               </dd>
               <dt
-                class="euiDescriptionList__title emotion-euiDescriptionList__title-column-s-compressed-right"
+                class="euiDescriptionList__title emotion-euiDescriptionList__title-column-compressed-right"
               >
                 <kbd>
                   Down arrow
                 </kbd>
               </dt>
               <dd
-                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left-s"
+                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left"
               >
                 Move one cell down
               </dd>
               <dt
-                class="euiDescriptionList__title emotion-euiDescriptionList__title-column-s-compressed-right"
+                class="euiDescriptionList__title emotion-euiDescriptionList__title-column-compressed-right"
               >
                 <kbd>
                   Right arrow
                 </kbd>
               </dt>
               <dd
-                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left-s"
+                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left"
               >
                 Move one cell right
               </dd>
               <dt
-                class="euiDescriptionList__title emotion-euiDescriptionList__title-column-s-compressed-right"
+                class="euiDescriptionList__title emotion-euiDescriptionList__title-column-compressed-right"
               >
                 <kbd>
                   Left arrow
                 </kbd>
               </dt>
               <dd
-                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left-s"
+                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left"
               >
                 Move one cell left
               </dd>
               <dt
-                class="euiDescriptionList__title emotion-euiDescriptionList__title-column-s-compressed-right"
+                class="euiDescriptionList__title emotion-euiDescriptionList__title-column-compressed-right"
               >
                 <kbd>
                   Home
                 </kbd>
               </dt>
               <dd
-                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left-s"
+                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left"
               >
                 Move to the first cell of the current row
               </dd>
               <dt
-                class="euiDescriptionList__title emotion-euiDescriptionList__title-column-s-compressed-right"
+                class="euiDescriptionList__title emotion-euiDescriptionList__title-column-compressed-right"
               >
                 <kbd>
                   End
                 </kbd>
               </dt>
               <dd
-                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left-s"
+                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left"
               >
                 Move to the last cell of the current row
               </dd>
               <dt
-                class="euiDescriptionList__title emotion-euiDescriptionList__title-column-s-compressed-right"
+                class="euiDescriptionList__title emotion-euiDescriptionList__title-column-compressed-right"
               >
                 <kbd>
                   Ctrl
@@ -171,12 +171,12 @@ exports[`useDataGridKeyboardShortcuts returns a popover containing a list of key
                 </kbd>
               </dt>
               <dd
-                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left-s"
+                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left"
               >
                 Move to the first cell of the current page
               </dd>
               <dt
-                class="euiDescriptionList__title emotion-euiDescriptionList__title-column-s-compressed-right"
+                class="euiDescriptionList__title emotion-euiDescriptionList__title-column-compressed-right"
               >
                 <kbd>
                   Ctrl
@@ -187,55 +187,55 @@ exports[`useDataGridKeyboardShortcuts returns a popover containing a list of key
                 </kbd>
               </dt>
               <dd
-                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left-s"
+                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left"
               >
                 Move to the last cell of the current page
               </dd>
               <dt
-                class="euiDescriptionList__title emotion-euiDescriptionList__title-column-s-compressed-right"
+                class="euiDescriptionList__title emotion-euiDescriptionList__title-column-compressed-right"
               >
                 <kbd>
                   Page Up
                 </kbd>
               </dt>
               <dd
-                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left-s"
+                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left"
               >
                 Go to the last row of the previous page
               </dd>
               <dt
-                class="euiDescriptionList__title emotion-euiDescriptionList__title-column-s-compressed-right"
+                class="euiDescriptionList__title emotion-euiDescriptionList__title-column-compressed-right"
               >
                 <kbd>
                   Page Down
                 </kbd>
               </dt>
               <dd
-                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left-s"
+                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left"
               >
                 Go to the first row of the next page
               </dd>
               <dt
-                class="euiDescriptionList__title emotion-euiDescriptionList__title-column-s-compressed-right"
+                class="euiDescriptionList__title emotion-euiDescriptionList__title-column-compressed-right"
               >
                 <kbd>
                   Enter
                 </kbd>
               </dt>
               <dd
-                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left-s"
+                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left"
               >
                 Open cell details and actions
               </dd>
               <dt
-                class="euiDescriptionList__title emotion-euiDescriptionList__title-column-s-compressed-right"
+                class="euiDescriptionList__title emotion-euiDescriptionList__title-column-compressed-right"
               >
                 <kbd>
                   Escape
                 </kbd>
               </dt>
               <dd
-                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left-s"
+                class="euiDescriptionList__description emotion-euiDescriptionList__description-column-normal-left"
               >
                 Close cell details and actions
               </dd>

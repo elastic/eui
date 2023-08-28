@@ -8,10 +8,12 @@
 
 import React, { HTMLAttributes, FunctionComponent, useContext } from 'react';
 import classNames from 'classnames';
+
 import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
-import { euiDescriptionListTitleStyles } from './description_list_title.styles';
+
 import { EuiDescriptionListContext } from './description_list_context';
+import { euiDescriptionListTitleStyles } from './description_list_title.styles';
 
 // Export required for correct inference by HOCs
 export interface EuiDescriptionListTitleProps
@@ -21,7 +23,7 @@ export interface EuiDescriptionListTitleProps
 export const EuiDescriptionListTitle: FunctionComponent<
   EuiDescriptionListTitleProps
 > = ({ children, className, ...rest }) => {
-  const { type, textStyle, compressed, align, gutterSize } = useContext(
+  const { type, textStyle, compressed, align, rowGutterSize } = useContext(
     EuiDescriptionListContext
   );
 
@@ -38,9 +40,11 @@ export const EuiDescriptionListTitle: FunctionComponent<
       conditionalStyles = compressed
         ? [styles.inlineStyles.compressed]
         : [styles.inlineStyles.normal];
+      conditionalStyles.push(styles[rowGutterSize]);
       break;
-
-    case 'responsiveColumn':
+    case 'row':
+      conditionalStyles.push(styles[rowGutterSize]);
+      break;
     case 'column':
       if (align === 'center') {
         conditionalStyles.push(styles.right);
@@ -51,7 +55,6 @@ export const EuiDescriptionListTitle: FunctionComponent<
   const cssStyles = [
     styles.euiDescriptionList__title,
     styles[type],
-    styles[gutterSize],
     ...conditionalStyles,
   ];
 
