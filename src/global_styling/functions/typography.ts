@@ -38,7 +38,7 @@ export interface _FontScaleOptions {
 export function euiFontSizeFromScale(
   scale: _EuiThemeFontScale,
   { base, font }: UseEuiTheme['euiTheme'],
-  { measurement = 'rem', customScale }: _FontScaleOptions = {}
+  { measurement = font.fontSizeUnit, customScale }: _FontScaleOptions = {}
 ) {
   if (measurement === 'em') {
     return `${font.scale[scale]}em`;
@@ -68,7 +68,7 @@ export function euiFontSizeFromScale(
 export function euiLineHeightFromBaseline(
   scale: _EuiThemeFontScale,
   { base, font }: UseEuiTheme['euiTheme'],
-  { measurement = 'rem', customScale }: _FontScaleOptions = {}
+  { measurement = font.fontSizeUnit, customScale }: _FontScaleOptions = {}
 ) {
   const { baseline, lineHeightMultiplier } = font;
   let numerator = base * font.scale[scale];
