@@ -11,10 +11,7 @@ import { renderHook } from '@testing-library/react';
 
 import { EuiProvider } from '../../components';
 import { useEuiTheme } from '../../services';
-import {
-  EuiThemeFontScales,
-  EuiThemeFontSizeMeasurements,
-} from '../variables/typography';
+import { EuiThemeFontScales, EuiThemeFontUnits } from '../variables/typography';
 
 import { euiFontSizeFromScale, euiLineHeightFromBaseline } from './typography';
 
@@ -38,18 +35,16 @@ describe('euiFontSizeFromScale', () => {
     });
   });
 
-  describe('measurement', () => {
-    EuiThemeFontSizeMeasurements.forEach((unit) => {
+  describe('unit', () => {
+    EuiThemeFontUnits.forEach((unit) => {
       test(unit, () => {
-        const output = euiFontSizeFromScale('m', euiTheme, {
-          measurement: unit,
-        });
+        const output = euiFontSizeFromScale('m', euiTheme, { unit });
         expect(output.endsWith(unit)).toBe(true);
         expect(output).toMatchSnapshot();
       });
     });
 
-    it('falls back to the `defaultUnits` theme token if measurement is not passed', () => {
+    it('falls back to the `defaultUnits` theme token if a unit is not passed', () => {
       const wrapper: FunctionComponent<PropsWithChildren> = ({ children }) => (
         <EuiProvider modify={{ font: { defaultUnits: 'px' } }}>
           {children}
@@ -81,12 +76,10 @@ describe('euiLineHeightFromBaseline', () => {
     });
   });
 
-  describe('measurement', () => {
-    EuiThemeFontSizeMeasurements.forEach((unit) => {
+  describe('unit', () => {
+    EuiThemeFontUnits.forEach((unit) => {
       test(unit, () => {
-        const output = euiLineHeightFromBaseline('m', euiTheme, {
-          measurement: unit,
-        });
+        const output = euiLineHeightFromBaseline('m', euiTheme, { unit });
 
         if (unit !== 'em') {
           expect(output.endsWith(unit)).toBe(true);
@@ -98,7 +91,7 @@ describe('euiLineHeightFromBaseline', () => {
       });
     });
 
-    it('falls back to the `defaultUnits` theme token if measurement is not passed', () => {
+    it('falls back to the `defaultUnits` theme token if a unit is not passed', () => {
       const wrapper: FunctionComponent<PropsWithChildren> = ({ children }) => (
         <EuiProvider modify={{ font: { defaultUnits: 'px' } }}>
           {children}

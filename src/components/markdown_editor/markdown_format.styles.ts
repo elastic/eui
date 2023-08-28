@@ -24,8 +24,8 @@ const euiScaleMarkdownFormatText = (
   options: _FontScaleOptions
 ) => {
   const { fontSize, lineHeight } = euiFontSize(euiTheme, 'm', options);
-  const { measurement } = options;
-  const lineHeightSize = measurement === 'em' ? `${lineHeight}em` : lineHeight;
+  const { unit } = options;
+  const lineHeightSize = unit === 'em' ? `${lineHeight}em` : lineHeight;
 
   // Custom scales
   const tablePaddingVertical = mathWithUnits(fontSize, (x) => x / 4);
@@ -82,7 +82,7 @@ export const euiMarkdownFormatStyles = (euiTheme: UseEuiTheme) => ({
   `,
   relative: css`
     ${euiScaleMarkdownFormatText(euiTheme, {
-      measurement: 'em',
+      unit: 'em',
     })}
   `,
 });

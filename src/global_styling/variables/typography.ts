@@ -12,10 +12,9 @@ import { CSSProperties } from 'react';
  * Font units of measure
  */
 
-export const EuiThemeFontSizeMeasurements = ['rem', 'px', 'em'] as const;
+export const EuiThemeFontUnits = ['rem', 'px', 'em'] as const;
 
-export type _EuiThemeFontSizeMeasurement =
-  (typeof EuiThemeFontSizeMeasurements)[number];
+export type _EuiThemeFontUnit = (typeof EuiThemeFontUnits)[number];
 
 /*
  * Font scale
@@ -68,7 +67,7 @@ export type _EuiThemeFontBase = {
    *
    * @default 'rem'
    */
-  defaultUnits: _EuiThemeFontSizeMeasurement;
+  defaultUnits: _EuiThemeFontUnit;
   /**
    * A computed number that is 1/4 of `base`
    */

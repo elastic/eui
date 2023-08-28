@@ -1,11 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`euiFontSizeFromScale measurement em 1`] = `"1em"`;
-
-exports[`euiFontSizeFromScale measurement px 1`] = `"16px"`;
-
-exports[`euiFontSizeFromScale measurement rem 1`] = `"1.1429rem"`;
-
 exports[`euiFontSizeFromScale scale l 1`] = `"1.5714rem"`;
 
 exports[`euiFontSizeFromScale scale m 1`] = `"1.1429rem"`;
@@ -22,11 +16,11 @@ exports[`euiFontSizeFromScale scale xxs 1`] = `"0.7857rem"`;
 
 exports[`euiFontSizeFromScale scale xxxs 1`] = `"0.6429rem"`;
 
-exports[`euiLineHeightFromBaseline measurement em 1`] = `"1.5000"`;
+exports[`euiFontSizeFromScale unit em 1`] = `"1em"`;
 
-exports[`euiLineHeightFromBaseline measurement px 1`] = `"24px"`;
+exports[`euiFontSizeFromScale unit px 1`] = `"16px"`;
 
-exports[`euiLineHeightFromBaseline measurement rem 1`] = `"1.7143rem"`;
+exports[`euiFontSizeFromScale unit rem 1`] = `"1.1429rem"`;
 
 exports[`euiLineHeightFromBaseline scale l 1`] = `"1.7143rem"`;
 
@@ -43,3 +37,9 @@ exports[`euiLineHeightFromBaseline scale xxl 1`] = `"2.8571rem"`;
 exports[`euiLineHeightFromBaseline scale xxs 1`] = `"1.1429rem"`;
 
 exports[`euiLineHeightFromBaseline scale xxxs 1`] = `"0.8571rem"`;
+
+exports[`euiLineHeightFromBaseline unit em 1`] = `"1.5000"`;
+
+exports[`euiLineHeightFromBaseline unit px 1`] = `"24px"`;
+
+exports[`euiLineHeightFromBaseline unit rem 1`] = `"1.7143rem"`;
