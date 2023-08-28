@@ -60,6 +60,15 @@ export type _EuiThemeFontBase = {
    */
   featureSettings?: string;
   /**
+   * Sets the default font size unit used by UI components like EuiText or EuiTitle.
+   *
+   * NOTE: This may overridden by some internal usages, e.g.
+   * EuiText's `relative` size which must use `em`.
+   *
+   * @default 'rem'
+   */
+  fontSizeUnit: _EuiThemeFontSizeMeasurement;
+  /**
    * A computed number that is 1/4 of `base`
    */
   baseline: number;
