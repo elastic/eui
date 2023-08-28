@@ -6,10 +6,10 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useContext, useEffect } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { EuiNestedThemeContext } from './context';
+import { useEuiThemeCSSVariables } from './hooks';
 import { EuiThemeProvider, EuiThemeProviderProps } from './provider';
 
 const meta: Meta<EuiThemeProviderProps<{}>> = {
@@ -79,9 +79,8 @@ const MockComponent: FunctionComponent<{
   color: string;
   children: any;
 }> = ({ global, color, children }) => {
-  const { setGlobalCSSVariables, setNearestThemeCSSVariables } = useContext(
-    EuiNestedThemeContext
-  );
+  const { setGlobalCSSVariables, setNearestThemeCSSVariables } =
+    useEuiThemeCSSVariables();
 
   useEffect(() => {
     if (global) {
