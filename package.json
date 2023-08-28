@@ -80,7 +80,7 @@
     "react-virtualized-auto-sizer": "^1.0.20",
     "react-window": "^1.8.9",
     "refractor": "^3.5.0",
-    "rehype-raw": "^5.0.0",
+    "rehype-raw": "^5.1.0",
     "rehype-react": "^6.2.1",
     "rehype-stringify": "^8.0.0",
     "remark-breaks": "^2.0.2",
