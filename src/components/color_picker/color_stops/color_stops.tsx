@@ -46,6 +46,9 @@ import {
   euiColorStopsAddContainerStyles,
 } from './color_stops.styles';
 
+/**
+ * @deprecated
+ */
 export interface EuiColorStopsProps extends CommonProps {
   addColor?: ColorStop['color'];
   /**
@@ -152,6 +155,12 @@ function getRangeMax(colorStops: ColorStop[], max?: number) {
   return DEFAULT_MAX;
 }
 
+/**
+ * @deprecated - EuiColorStops is scheduled for deprecation due to low internal usage and high
+ * maintenance requirements. If necessary, we recommend copying this component into your own application.
+ *
+ * The component will be permanently removed in October 2023.
+ */
 export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
   addColor = DEFAULT_VISUALIZATION_COLOR,
   max,
