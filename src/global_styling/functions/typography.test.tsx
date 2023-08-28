@@ -49,9 +49,9 @@ describe('euiFontSizeFromScale', () => {
       });
     });
 
-    it('falls back to the `fontSizeUnit` theme token if measurement is not passed', () => {
+    it('falls back to the `defaultUnits` theme token if measurement is not passed', () => {
       const wrapper: FunctionComponent<PropsWithChildren> = ({ children }) => (
-        <EuiProvider modify={{ font: { fontSizeUnit: 'px' } }}>
+        <EuiProvider modify={{ font: { defaultUnits: 'px' } }}>
           {children}
         </EuiProvider>
       );
@@ -98,9 +98,9 @@ describe('euiLineHeightFromBaseline', () => {
       });
     });
 
-    it('falls back to the `fontSizeUnit` theme token if measurement is not passed', () => {
+    it('falls back to the `defaultUnits` theme token if measurement is not passed', () => {
       const wrapper: FunctionComponent<PropsWithChildren> = ({ children }) => (
-        <EuiProvider modify={{ font: { fontSizeUnit: 'px' } }}>
+        <EuiProvider modify={{ font: { defaultUnits: 'px' } }}>
           {children}
         </EuiProvider>
       );

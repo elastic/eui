@@ -107,17 +107,17 @@ export const FontJS = () => {
       />
 
       <ThemeExample
-        title={<code>euiTheme.font.fontSizeUnit</code>}
-        description={getDescription(baseProps.fontSizeUnit)}
+        title={<code>euiTheme.font.defaultUnits</code>}
+        description={getDescription(baseProps.defaultUnits)}
         example={
-          <EuiThemeProvider modify={{ font: { fontSizeUnit: 'px' } }}>
+          <EuiThemeProvider modify={{ font: { defaultUnits: 'px' } }}>
             <EuiText>
               My font size and line height is set using <EuiCode>px</EuiCode>{' '}
               and not <EuiCode>rem</EuiCode>
             </EuiText>
           </EuiThemeProvider>
         }
-        snippet={`<EuiProvider modify={{ font: { fontSizeUnit: 'px' } }}>
+        snippet={`<EuiProvider modify={{ font: { defaultUnits: 'px' } }}>
   <EuiText>
     <p>Hello world</p>
   </EuiText>
