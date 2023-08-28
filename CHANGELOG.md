@@ -1,3 +1,27 @@
+## [`88.0.0`](https://github.com/elastic/eui/tree/v88.0.0)
+
+- Updated `EuiDescriptionList` with a new `columnGutterSize` prop ([#7062](https://github.com/elastic/eui/pull/7062))
+
+**Deprecations**
+
+- Deprecated `EuiSuggest`. We recommend using `EuiSelectable` or `EuiComboBox` instead ([#7122](https://github.com/elastic/eui/pull/7122))
+- Deprecated `EuiControlBar`. We recommend using `EuiBottomBar` instead ([#7122](https://github.com/elastic/eui/pull/7122))
+- Deprecated `EuiColorStops`. We recommend copying the component to your application if necessary ([#7122](https://github.com/elastic/eui/pull/7122))
+- Deprecated `EuiNotificationEvent`. We recommend copying the component to your application if necessary ([#7122](https://github.com/elastic/eui/pull/7122))
+
+**Breaking changes**
+
+- Renamed `EuiDescriptionList`'s `gutterSize` prop to `rowGutterSize` ([#7062](https://github.com/elastic/eui/pull/7062))
+- `EuiDescriptionList`'s `rowGutterSize` prop now defaults to a size of `s` (was previously `m`) ([#7062](https://github.com/elastic/eui/pull/7062))
+
+**Accessibility**
+
+- Fixed the dark mode colors of inline `EuiDescriptionListTitle`s to meet WCAG color contrast requirements ([#7062](https://github.com/elastic/eui/pull/7062))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiKeyPadMenuItem` to Emotion; Removed `$euiKeyPadMenuSize` and `$euiKeyPadMenuMarginSize` ([#7118](https://github.com/elastic/eui/pull/7118))
+
 ## [`87.2.0`](https://github.com/elastic/eui/tree/v87.2.0)
 
 - `EuiResizableButton` is now available as a generic top-level export ([#7087](https://github.com/elastic/eui/pull/7087))
