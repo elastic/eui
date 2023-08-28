@@ -12,14 +12,17 @@ import React, {
   useRef,
   useMemo,
   useState,
+  useCallback,
   PropsWithChildren,
   HTMLAttributes,
 } from 'react';
 import classNames from 'classnames';
 import { css } from '@emotion/css';
+import { Global, type CSSObject } from '@emotion/react';
 import isEqual from 'lodash/isEqual';
 
 import type { CommonProps } from '../../components/common';
+import { cloneElementWithCss } from '../emotion';
 
 import {
   EuiSystemContext,
@@ -63,7 +66,12 @@ export const EuiThemeProvider = <T extends {} = {}>({
   children,
   wrapperProps,
 }: EuiThemeProviderProps<T>) => {
-  const { isGlobalTheme, bodyColor } = useContext(EuiNestedThemeContext);
+  const {
+    isGlobalTheme,
+    bodyColor,
+    globalCSSVariables,
+    setGlobalCSSVariables,
+  } = useContext(EuiNestedThemeContext);
   const parentSystem = useContext(EuiSystemContext);
   const parentModifications = useContext(EuiModificationsContext);
   const parentColorMode = useContext(EuiColorModeContext);
@@ -137,6 +145,13 @@ export const EuiThemeProvider = <T extends {} = {}>({
     }
   }, [colorMode, system, modifications]);
 
+  const [themeCSSVariables, _setThemeCSSVariables] = useState<CSSObject>();
+  const setThemeCSSVariables = useCallback(
+    (variables: CSSObject) =>
+      _setThemeCSSVariables((previous) => ({ ...previous, ...variables })),
+    []
+  );
+
   const nestedThemeContext = useMemo(() => {
     return {
       isGlobalTheme: false, // The theme that determines the global body styles
@@ -148,8 +163,25 @@ export const EuiThemeProvider = <T extends {} = {}>({
         label: euiColorMode-${_colorMode};
         color: ${theme.colors.text};
       `,
+      setGlobalCSSVariables: isGlobalTheme
+        ? setThemeCSSVariables
+        : setGlobalCSSVariables,
+      globalCSSVariables: isGlobalTheme
+        ? themeCSSVariables
+        : globalCSSVariables,
+      setNearestThemeCSSVariables: setThemeCSSVariables,
+      themeCSSVariables: themeCSSVariables,
     };
-  }, [theme, isGlobalTheme, bodyColor, _colorMode]);
+  }, [
+    theme,
+    isGlobalTheme,
+    bodyColor,
+    _colorMode,
+    setGlobalCSSVariables,
+    globalCSSVariables,
+    setThemeCSSVariables,
+    themeCSSVariables,
+  ]);
 
   const renderedChildren = useMemo(() => {
     if (isGlobalTheme) {
@@ -161,9 +193,14 @@ export const EuiThemeProvider = <T extends {} = {}>({
       ...rest,
       className: classNames(className, nestedThemeContext.colorClassName),
     };
+    // Condition avoids rendering an empty Emotion selector if no
+    // theme-specific CSS variables have been set by child components
+    if (themeCSSVariables) {
+      props.css = { label: 'euiCSSVariables', ...themeCSSVariables };
+    }
 
     if (cloneElement) {
-      return React.cloneElement(children, {
+      return cloneElementWithCss(children, {
         ...props,
         className: classNames(children.props.className, props.className),
       });
@@ -177,21 +214,32 @@ export const EuiThemeProvider = <T extends {} = {}>({
         </span>
       );
     }
-  }, [isGlobalTheme, nestedThemeContext, wrapperProps, children]);
+  }, [
+    isGlobalTheme,
+    themeCSSVariables,
+    nestedThemeContext,
+    wrapperProps,
+    children,
+  ]);
 
   return (
-    <EuiColorModeContext.Provider value={colorMode}>
-      <EuiSystemContext.Provider value={system}>
-        <EuiModificationsContext.Provider value={modifications}>
-          <EuiThemeContext.Provider value={theme}>
-            <EuiNestedThemeContext.Provider value={nestedThemeContext}>
-              <EuiEmotionThemeProvider>
-                {renderedChildren}
-              </EuiEmotionThemeProvider>
-            </EuiNestedThemeContext.Provider>
-          </EuiThemeContext.Provider>
-        </EuiModificationsContext.Provider>
-      </EuiSystemContext.Provider>
-    </EuiColorModeContext.Provider>
+    <>
+      {isGlobalTheme && themeCSSVariables && (
+        <Global styles={{ ':root': themeCSSVariables }} />
+      )}
+      <EuiColorModeContext.Provider value={colorMode}>
+        <EuiSystemContext.Provider value={system}>
+          <EuiModificationsContext.Provider value={modifications}>
+            <EuiThemeContext.Provider value={theme}>
+              <EuiNestedThemeContext.Provider value={nestedThemeContext}>
+                <EuiEmotionThemeProvider>
+                  {renderedChildren}
+                </EuiEmotionThemeProvider>
+              </EuiNestedThemeContext.Provider>
+            </EuiThemeContext.Provider>
+          </EuiModificationsContext.Provider>
+        </EuiSystemContext.Provider>
+      </EuiColorModeContext.Provider>
+    </>
   );
 };
