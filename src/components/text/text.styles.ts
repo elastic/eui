@@ -345,19 +345,16 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
     // Sizes
     m: css`
       ${euiScaleText(euiThemeContext, {
-        measurement: 'rem',
         customScale: 'm',
       })}
     `,
     s: css`
       ${euiScaleText(euiThemeContext, {
-        measurement: 'rem',
         customScale: 's',
       })}
     `,
     xs: css`
       ${euiScaleText(euiThemeContext, {
-        measurement: 'rem',
         customScale: 'xs',
       })}
     `,

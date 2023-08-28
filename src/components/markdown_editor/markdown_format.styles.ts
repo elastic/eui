@@ -67,19 +67,16 @@ export const euiMarkdownFormatStyles = (euiTheme: UseEuiTheme) => ({
   // Text sizes
   m: css`
     ${euiScaleMarkdownFormatText(euiTheme, {
-      measurement: 'rem',
       customScale: 'm',
     })}
   `,
   s: css`
     ${euiScaleMarkdownFormatText(euiTheme, {
-      measurement: 'rem',
       customScale: 's',
     })}
   `,
   xs: css`
     ${euiScaleMarkdownFormatText(euiTheme, {
-      measurement: 'rem',
       customScale: 'xs',
     })}
   `,
