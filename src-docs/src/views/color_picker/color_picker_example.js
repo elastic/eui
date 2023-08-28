@@ -8,16 +8,16 @@ import {
   EuiColorPicker,
   EuiColorPaletteDisplay,
   EuiColorPalettePicker,
-  EuiColorStops,
   EuiText,
+  EuiCallOut,
+  EuiLink,
 } from '../../../../src/components';
 import {
   EuiColorPalettePickerPaletteTextProps,
   EuiColorPalettePickerPaletteFixedProps,
   EuiColorPalettePickerPaletteGradientProps,
+  PaletteColorStop,
 } from '!!prop-loader!../../../../src/components/color_picker/color_palette_picker/color_palette_picker';
-
-import { ColorStop } from '!!prop-loader!../../../../src/components/color_picker/color_stops/color_stop_thumb';
 
 import { colorPickerConfig } from './playground';
 
@@ -73,55 +73,6 @@ const colorPalettePickerSnippet = `<EuiColorPalettePicker
 />
 `;
 
-import ColorStops from './color_stops';
-const colorStopsSource = require('!!raw-loader!./color_stops');
-const colorStopsSnippetStandard = `<EuiColorStops
-  label="Standard"
-  onChange={handleChange}
-  colorStops={colorStops}
-  min={0}
-  max={100}
-/>`;
-
-const colorStopsSnippetAdd = `<EuiColorStops
-  label="Custom add color"
-  onChange={handleChange}
-  colorStops={colorStops}
-  min={0}
-  max={100}
-  addColor={colorToAddToNewStops}
-/>`;
-
-const colorStopsSnippetFixed = `<EuiColorStops
-  label="Fixed color segments"
-  onChange={handleChange}
-  colorStops={colorStops}
-  min={0}
-  max={100}
-  stopType="fixed"
-/>
-`;
-
-const colorStopsSnippetStepped = `<EuiColorStops
-  label="Stepped color segments"
-  onChange={handleChange}
-  colorStops={colorStops}
-  min={0}
-  max={100}
-  stopType="stepped"
-  stepNumber={stepNumber}
-/>
-`;
-
-import ColorStopsRange from './color_stops_range';
-const colorStopsRangeSource = require('!!raw-loader!./color_stops_range');
-const colorPickerRangeSnippet = `<EuiColorStops
-  label="Free-range color stops"
-  onChange={handleChange}
-  colorStops={colorStops}
-/>
-`;
-
 import Alpha from './alpha';
 const alphaSource = require('!!raw-loader!./alpha');
 const alphaSnippet = `<EuiColorPicker
@@ -156,21 +107,6 @@ const customSwatchesSnippet = `<EuiColorPicker
     '#CCC',
   ]}
 />`;
-
-const stopCustomSwatchesSnippet = `<EuiColorStops
-  label="Swatches"
-  onChange={handleChange}
-  colorStops={colorStops}
-  min={0}
-  max={100}
-  swatches={[
-    '#333',
-    '#666',
-    '#999',
-    '#CCC',
-  ]}
-/>
-`;
 
 import CustomButton from './custom_button';
 const customButtonSource = require('!!raw-loader!./custom_button');
@@ -231,26 +167,6 @@ const modesPickerSnippet = `// Gradient map only
   mode="picker"
 />
 `;
-const stopModesSwatchSnippet = `// Swatches only
-<EuiColorStops
-  label="Swatch"
-  onChange={handleChange}
-  colorStops={colorStops}
-  min={0}
-  max={100}
-  mode="swatch"
-/>
-`;
-const stopModesPickerSnippet = `// Gradient map only
-<EuiColorStops
-  label="Picker"
-  onChange={handleChange}
-  colorStops={colorStops}
-  min={0}
-  max={100}
-  mode="picker"
-/>
-`;
 
 import Inline from './inline';
 const inlineSource = require('!!raw-loader!./inline');
@@ -285,43 +201,25 @@ const kitchenSinkSnippet = `<EuiColorPicker
   ]}
 />
 `;
-const stopKitchenSinkSnippet = `<EuiColorStops
-  label="All the things"
-  onChange={handleChange}
-  colorStops={colorStops}
-  min={0}
-  max={100}
-  mode="default"
-  addStop={#FFF}
-  swatches={[
-    '#333',
-    '#666',
-    '#999',
-    '#CCC',
-    '#FFF',
-  ]}
-/>
-`;
 
 export const ColorPickerExample = {
   title: 'Color selection',
   intro: (
-    <React.Fragment>
+    <>
       <EuiText>
         <p>
-          Three components exist to aid color selection:{' '}
-          <strong>EuiColorPicker</strong>,{' '}
-          <strong>EuiColorPalettePicker</strong> and{' '}
-          <strong>EuiColorStops</strong>.
+          Two components exist to aid color selection:{' '}
+          <strong>EuiColorPicker</strong> and{' '}
+          <strong>EuiColorPalettePicker</strong>.
         </p>
       </EuiText>
-    </React.Fragment>
+    </>
   ),
   sections: [
     {
       title: 'Color picker',
       text: (
-        <React.Fragment>
+        <>
           <EuiText>
             <p>
               Color input component allowing for multiple methods of entry and
@@ -337,7 +235,7 @@ export const ColorPickerExample = {
               choices. The swatches must also be entered in hex or RGBa format.
             </p>
           </EuiText>
-        </React.Fragment>
+        </>
       ),
       source: [
         {
@@ -353,7 +251,7 @@ export const ColorPickerExample = {
     {
       title: 'Color palette picker',
       text: (
-        <React.Fragment>
+        <>
           <EuiText>
             <p>
               Use <strong>EuiColorPalettePicker</strong> to select palettes to
@@ -370,7 +268,7 @@ export const ColorPickerExample = {
               palettes for continuous data.
             </p>
           </EuiText>
-        </React.Fragment>
+        </>
       ),
       source: [
         {
@@ -383,7 +281,7 @@ export const ColorPickerExample = {
         EuiColorPalettePickerPaletteTextProps,
         EuiColorPalettePickerPaletteFixedProps,
         EuiColorPalettePickerPaletteGradientProps,
-        ColorStop,
+        PaletteColorStop,
       },
       snippet: colorPalettePickerSnippet,
       demo: <ColorPalettePicker />,
@@ -391,7 +289,7 @@ export const ColorPickerExample = {
     {
       title: 'Color palette display',
       text: (
-        <React.Fragment>
+        <>
           <EuiText>
             <p>
               Use <strong>EuiColorPaletteDisplay</strong> to show the palette in
@@ -414,7 +312,7 @@ export const ColorPickerExample = {
               .
             </p>
           </EuiText>
-        </React.Fragment>
+        </>
       ),
       source: [
         {
@@ -424,68 +322,36 @@ export const ColorPickerExample = {
       ],
       props: {
         EuiColorPaletteDisplay,
-        ColorStop,
+        PaletteColorStop,
       },
       snippet: colorPaletteDisplaySnippet,
       demo: <ColorPaletteDisplay />,
     },
     {
       title: 'Color stops',
+      isDeprecated: true,
       text: (
-        <React.Fragment>
-          <EuiText>
-            <p>
-              Use <strong>EuiColorStops</strong> to define color stops for data
-              driven styling. Stops are numbers within the provided range. The
-              color segment spans from the given stop number (inclusive) to the
-              next stop number (exclusive).
-            </p>
-          </EuiText>
-        </React.Fragment>
+        <EuiCallOut
+          color="danger"
+          iconType="warning"
+          title="EuiColorStops has been scheduled for deprecation"
+        >
+          <p>
+            <strong>EuiColorStops</strong> is being deprecated due to low usage
+            and high maintenance requirements.
+          </p>
+          <p>
+            If necessary, we recommend{' '}
+            <EuiLink
+              href="https://github.com/elastic/eui/tree/main/src/components/color_picker/color_stops"
+              target="_blank"
+            >
+              copying the component to your application
+            </EuiLink>
+            . The component will be permanently removed in October 2023.
+          </p>
+        </EuiCallOut>
       ),
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: colorStopsSource,
-        },
-      ],
-      props: {
-        EuiColorStops,
-        ColorStop,
-      },
-      snippet: [
-        colorStopsSnippetStandard,
-        colorStopsSnippetAdd,
-        colorStopsSnippetFixed,
-        colorStopsSnippetStepped,
-      ],
-      demo: <ColorStops />,
-    },
-    {
-      title: 'Free-range color stops',
-      text: (
-        <React.Fragment>
-          <EuiText>
-            <p>
-              Typical use of <strong>EuiColorStops</strong> (as above) will have
-              defined <EuiCode>min</EuiCode> and <EuiCode>max</EuiCode> range
-              values. It is also possible to leave the range open-ended for
-              cases where the target data set is unknown or maleable. In this
-              case, a user&apos;s added values will define{' '}
-              <EuiCode>min</EuiCode> and <EuiCode>max</EuiCode> and users will
-              have more freedom over resetting the values on the fly.
-            </p>
-          </EuiText>
-        </React.Fragment>
-      ),
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: colorStopsRangeSource,
-        },
-      ],
-      snippet: colorPickerRangeSnippet,
-      demo: <ColorStopsRange />,
     },
     {
       title: 'Format selection',
@@ -546,7 +412,7 @@ export const ColorPickerExample = {
           the <EuiCode>swatches</EuiCode> prop.
         </p>
       ),
-      snippet: [customSwatchesSnippet, stopCustomSwatchesSnippet],
+      snippet: customSwatchesSnippet,
       demo: <CustomSwatches />,
     },
     {
@@ -566,12 +432,7 @@ export const ColorPickerExample = {
           without swatches.
         </p>
       ),
-      snippet: [
-        modesSwatchSnippet,
-        modesPickerSnippet,
-        stopModesSwatchSnippet,
-        stopModesPickerSnippet,
-      ],
+      snippet: [modesSwatchSnippet, modesPickerSnippet],
       demo: <Modes />,
     },
     {
@@ -668,7 +529,7 @@ export const ColorPickerExample = {
           code: kitchenSinkSource,
         },
       ],
-      snippet: [kitchenSinkSnippet, stopKitchenSinkSnippet],
+      snippet: kitchenSinkSnippet,
       demo: <KitchenSink />,
     },
   ],
