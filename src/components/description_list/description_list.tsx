@@ -30,8 +30,8 @@ export const EuiDescriptionList: FunctionComponent<
   textStyle = 'normal',
   titleProps,
   type: _type = 'row',
-  rowGutterSize = 's',
-  columnGutterSize = 's',
+  rowGutterSize = 'm',
+  columnGutterSize = 'm',
   ...rest
 }) => {
   const showResponsiveColumns = useIsWithinBreakpoints(['xs', 's']);
