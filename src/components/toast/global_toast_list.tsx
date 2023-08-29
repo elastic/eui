@@ -157,7 +157,11 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
   };
 
   const onScroll = () => {
-    if (listElement.current) {
+    // Given that this method also gets invoked by the synthetic scroll that happens when a new toast gets added,
+    // we want to evaluate if the scroll bottom has been reached only when the user is interacting with the toast,
+    // this way we always retain the scroll position the user has set despite adding in new toasts.
+    // User interaction is determined through the handler registered for mouseEnter and mouseLeave events.
+    if (listElement.current && isUserInteracting.current) {
       isScrolledToBottom.current =
         listElement.current.scrollHeight - listElement.current.scrollTop ===
         listElement.current.clientHeight;
