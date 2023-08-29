@@ -80,6 +80,10 @@ export const euiGlobalToastListStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
     `,
+    euiGlobalToastListDismissButton: css`
+      position: sticky;
+      ${logicalCSS('bottom', '0%')}
+    `,
   };
 };
 

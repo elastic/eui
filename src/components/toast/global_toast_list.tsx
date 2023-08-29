@@ -297,7 +297,7 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
     );
   });
 
-  if (showClearAllButton && toasts.length > 1) {
+  if (showClearAllButton && toasts.length > 3) {
     const dismissAllToastImmediately = () => {
       toasts.forEach((toast) => dismissToastProp(toast));
       onClearAllToasts?.();
@@ -321,7 +321,10 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
             isDismissed={false}
           >
             <EuiButton
+              fill
+              color="text"
               onClick={dismissAllToastImmediately}
+              css={[styles.euiGlobalToastListDismissButton]}
               aria-label={clearAllToastsButtonAriaLabel}
             >
               {clearAllToastsButtonDisplayText}
