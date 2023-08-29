@@ -123,9 +123,9 @@ export const DragAndDropExample = {
             functional separation (see later examples).
           </p>
           <p>
-            <strong>EuiDragDropContext</strong> handles all events but makes
-            no assumptions about the result of a drop event. As such, the
-            following event handlers are available:
+            <strong>EuiDragDropContext</strong> handles all events but makes no
+            assumptions about the result of a drop event. As such, the following
+            event handlers are available:
           </p>
           <ul>
             <li>
@@ -163,7 +163,11 @@ export const DragAndDropExample = {
             iconType="asterisk"
             title="Extra prop for EuiPopover usage"
           >
-            <p>When using <strong>EuiDraggable</strong> within an <EuiCode>EuiPopover</EuiCode>, be sure to include the prop <EuiCode>hasDragDrop</EuiCode> so it displays correctly.</p>
+            <p>
+              When using <strong>EuiDraggable</strong> within an{' '}
+              <EuiCode>EuiPopover</EuiCode> , be sure to include the prop{' '}
+              <EuiCode>hasDragDrop</EuiCode> so it displays correctly.
+            </p>
           </EuiCallOut>
         </React.Fragment>
       ),
