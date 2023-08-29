@@ -6,11 +6,17 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes, useEffect } from 'react';
+import React, {
+  FunctionComponent,
+  HTMLAttributes,
+  useEffect,
+  useState,
+  useMemo,
+} from 'react';
 import classNames from 'classnames';
 
 import { useEuiTheme, useEuiThemeCSSVariables } from '../../services';
-import { mathWithUnits } from '../../global_styling';
+import { mathWithUnits, logicalStyles } from '../../global_styling';
 import { CommonProps } from '../common';
 import { EuiBreadcrumb, EuiBreadcrumbsProps } from '../breadcrumbs';
 
@@ -140,13 +146,20 @@ export let euiHeaderFixedCounter = 0;
 // Exported for unit testing only
 export const EuiFixedHeader: FunctionComponent<EuiHeaderProps> = ({
   children,
+  style,
   ...rest
 }) => {
   const { setGlobalCSSVariables } = useEuiThemeCSSVariables();
   const euiTheme = useEuiTheme();
   const headerHeight = euiHeaderVariables(euiTheme).height;
+  const [topPosition, setTopPosition] = useState<string | undefined>();
 
   useEffect(() => {
+    // Get the top position from the offset of previous header(s)
+    setTopPosition(
+      mathWithUnits(headerHeight, (x) => x * euiHeaderFixedCounter)
+    );
+
     // Increment fixed header counter for each fixed header
     euiHeaderFixedCounter++;
     setGlobalCSSVariables({
@@ -171,9 +184,15 @@ export const EuiFixedHeader: FunctionComponent<EuiHeaderProps> = ({
     };
   }, [headerHeight, setGlobalCSSVariables]);
 
+  const inlineStyles = useMemo(
+    () => logicalStyles({ top: topPosition, ...style }),
+    [topPosition, style]
+  );
+
   return (
     <div
       data-fixed-header={true} // Used by EuiFlyouts as a query selector
+      style={inlineStyles}
       {...rest}
     >
       {children}

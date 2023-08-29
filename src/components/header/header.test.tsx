@@ -146,4 +146,24 @@ describe('EuiFixedHeader', () => {
       expect(document.body.className).not.toContain('euiBody--headerIsFixed');
     });
   });
+
+  it('sets the inline position styles of headers', () => {
+    const { getByTestSubject } = render(
+      <>
+        <EuiFixedHeader data-test-subj="first" />
+        <EuiFixedHeader data-test-subj="second" />
+        <EuiFixedHeader data-test-subj="last" />
+      </>
+    );
+    expect(getByTestSubject('first')).toHaveStyle('inset-block-start: 0px');
+    expect(getByTestSubject('second')).toHaveStyle('inset-block-start: 48px');
+    expect(getByTestSubject('last')).toHaveStyle('inset-block-start: 96px');
+  });
+
+  it('allows consumers to override inline styles as needed', () => {
+    const { container } = render(
+      <EuiFixedHeader style={{ insetBlockStart: '20px' }} />
+    );
+    expect(container.firstElementChild).toHaveStyle('inset-block-start: 20px');
+  });
 });
