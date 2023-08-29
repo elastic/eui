@@ -9,7 +9,8 @@
 import React, { FunctionComponent, HTMLAttributes, useEffect } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme } from '../../services';
+import { useEuiTheme, useEuiThemeCSSVariables } from '../../services';
+import { mathWithUnits } from '../../global_styling';
 import { CommonProps } from '../common';
 import { EuiBreadcrumb, EuiBreadcrumbsProps } from '../breadcrumbs';
 
@@ -19,7 +20,7 @@ import {
   EuiHeaderSectionItemProps,
   EuiHeaderSection,
 } from './header_section';
-import { euiHeaderStyles } from './header.styles';
+import { euiHeaderStyles, euiHeaderVariables } from './header.styles';
 
 type EuiHeaderSectionItemType = EuiHeaderSectionItemProps['children'];
 
@@ -133,27 +134,42 @@ export const EuiHeader: FunctionComponent<EuiHeaderProps> = ({
  */
 
 // Start a counter to manage the total number of fixed headers that need the body class
-let euiHeaderFixedCounter = 0;
+// Exported for unit testing only
+export let euiHeaderFixedCounter = 0;
 
-const EuiFixedHeader: FunctionComponent<EuiHeaderProps> = ({
+// Exported for unit testing only
+export const EuiFixedHeader: FunctionComponent<EuiHeaderProps> = ({
   children,
   ...rest
 }) => {
+  const { setGlobalCSSVariables } = useEuiThemeCSSVariables();
+  const euiTheme = useEuiTheme();
+  const headerHeight = euiHeaderVariables(euiTheme).height;
+
   useEffect(() => {
     // Increment fixed header counter for each fixed header
     euiHeaderFixedCounter++;
-    document.body.classList.add('euiBody--headerIsFixed');
-    document.body.dataset.fixedHeaders = String(euiHeaderFixedCounter);
+    setGlobalCSSVariables({
+      '--euiFixedHeadersOffset': mathWithUnits(
+        headerHeight,
+        (x) => x * euiHeaderFixedCounter
+      ),
+    });
+    document.body.classList.add('euiBody--headerIsFixed'); // TODO: Consider deleting this legacy className
 
     return () => {
-      // Both decrement the fixed counter AND then check if there are none
-      if (--euiHeaderFixedCounter === 0) {
-        // If there are none, THEN remove class
-        document.body.classList.remove('euiBody--headerIsFixed');
-        delete document.body.dataset.fixedHeaders;
+      euiHeaderFixedCounter--;
+      setGlobalCSSVariables({
+        '--euiFixedHeadersOffset': mathWithUnits(
+          headerHeight,
+          (x) => x * euiHeaderFixedCounter
+        ),
+      });
+      if (euiHeaderFixedCounter === 0) {
+        document.body.classList.remove('euiBody--headerIsFixed'); // TODO: Consider deleting this legacy className
       }
     };
-  }, []);
+  }, [headerHeight, setGlobalCSSVariables]);
 
   return (
     <div

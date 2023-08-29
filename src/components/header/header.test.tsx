@@ -11,7 +11,7 @@ import { render } from '../../test/rtl';
 import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
-import { EuiHeader } from './header';
+import { euiHeaderFixedCounter, EuiFixedHeader, EuiHeader } from './header';
 
 describe('EuiHeader', () => {
   shouldRenderCustomStyles(<EuiHeader />);
@@ -122,6 +122,28 @@ describe('EuiHeader', () => {
         'cannot accept both `children` and `sections`'
       );
       expect(container.firstChild).toMatchSnapshot();
+    });
+  });
+});
+
+describe('EuiFixedHeader', () => {
+  describe('on mount/unmount', () => {
+    it('updates the fixed headers count and body className', () => {
+      const { unmount } = render(
+        <>
+          <EuiFixedHeader />
+          <EuiFixedHeader />
+          <EuiFixedHeader />
+        </>
+      );
+      expect(euiHeaderFixedCounter).toEqual(3);
+      // TODO: we're not yet on a jsdom version that supports inspecting :root
+      expect(document.body.className).toContain('euiBody--headerIsFixed');
+
+      unmount();
+      expect(euiHeaderFixedCounter).toEqual(0);
+      // TODO: we're not yet on a jsdom version that supports inspecting :root
+      expect(document.body.className).not.toContain('euiBody--headerIsFixed');
     });
   });
 });
