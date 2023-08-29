@@ -34,6 +34,7 @@ export const fontBase: _EuiThemeFontBase = {
 
   // Careful using ligatures. Code editors like ACE will often error because of width calculations
   featureSettings: "'calt' 1, 'kern' 1, 'liga' 1",
+  defaultUnits: 'rem',
 
   baseline: computed(([base]) => base / 4, ['base']),
   lineHeightMultiplier: 1.5,
