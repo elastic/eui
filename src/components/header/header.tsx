@@ -66,9 +66,6 @@ export type EuiHeaderProps = CommonProps &
     theme?: 'default' | 'dark';
   };
 
-// Start a counter to manage the total number of fixed headers that need the body class
-let euiHeaderFixedCounter = 0;
-
 export const EuiHeader: FunctionComponent<EuiHeaderProps> = ({
   children,
   className,
@@ -82,24 +79,6 @@ export const EuiHeader: FunctionComponent<EuiHeaderProps> = ({
   const euiTheme = useEuiTheme();
   const styles = euiHeaderStyles(euiTheme);
   const cssStyles = [styles.euiHeader, styles[position], styles[theme]];
-
-  useEffect(() => {
-    if (position === 'fixed') {
-      // Increment fixed header counter for each fixed header
-      euiHeaderFixedCounter++;
-      document.body.classList.add('euiBody--headerIsFixed');
-      document.body.dataset.fixedHeaders = String(euiHeaderFixedCounter);
-
-      return () => {
-        // Both decrement the fixed counter AND then check if there are none
-        if (--euiHeaderFixedCounter === 0) {
-          // If there are none, THEN remove class
-          document.body.classList.remove('euiBody--headerIsFixed');
-          delete document.body.dataset.fixedHeaders;
-        }
-      };
-    }
-  }, [position]);
 
   let contents;
   if (sections) {
@@ -137,14 +116,51 @@ export const EuiHeader: FunctionComponent<EuiHeaderProps> = ({
     contents = children;
   }
 
+  return position === 'fixed' ? (
+    <EuiFixedHeader css={cssStyles} className={classes} {...rest}>
+      {contents}
+    </EuiFixedHeader>
+  ) : (
+    <div css={cssStyles} className={classes} {...rest}>
+      {contents}
+    </div>
+  );
+};
+
+/**
+ * Fixed headers - logic around dynamically calculating the total
+ * page offset and setting the `top` position of subsequent headers
+ */
+
+// Start a counter to manage the total number of fixed headers that need the body class
+let euiHeaderFixedCounter = 0;
+
+const EuiFixedHeader: FunctionComponent<EuiHeaderProps> = ({
+  children,
+  ...rest
+}) => {
+  useEffect(() => {
+    // Increment fixed header counter for each fixed header
+    euiHeaderFixedCounter++;
+    document.body.classList.add('euiBody--headerIsFixed');
+    document.body.dataset.fixedHeaders = String(euiHeaderFixedCounter);
+
+    return () => {
+      // Both decrement the fixed counter AND then check if there are none
+      if (--euiHeaderFixedCounter === 0) {
+        // If there are none, THEN remove class
+        document.body.classList.remove('euiBody--headerIsFixed');
+        delete document.body.dataset.fixedHeaders;
+      }
+    };
+  }, []);
+
   return (
     <div
-      css={cssStyles}
-      className={classes}
-      data-fixed-header={position === 'fixed' || undefined} // Used by EuiFlyouts as a query selector
+      data-fixed-header={true} // Used by EuiFlyouts as a query selector
       {...rest}
     >
-      {contents}
+      {children}
     </div>
   );
 };
