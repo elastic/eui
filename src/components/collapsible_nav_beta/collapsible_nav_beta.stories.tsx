@@ -449,3 +449,31 @@ export const FlyoutInFixedHeaders: Story = {
     );
   },
 };
+
+export const CollapsedStateInLocalStorage: Story = {
+  render: () => {
+    const key = 'EuiCollapsibleNav__isCollapsed';
+    const initialIsCollapsed = window.localStorage.getItem(key) === 'true';
+    const onCollapseToggle = (isCollapsed: boolean) =>
+      window.localStorage.setItem(key, String(isCollapsed));
+
+    return (
+      <>
+        <EuiHeader position="fixed">
+          <EuiHeaderSection>
+            <EuiCollapsibleNavBeta
+              initialIsCollapsed={initialIsCollapsed}
+              onCollapseToggle={onCollapseToggle}
+            />
+          </EuiHeaderSection>
+        </EuiHeader>
+        <EuiPageTemplate>
+          <EuiPageTemplate.Section>
+            Toggle the collapsed state and refresh the page. The collapsed state
+            should have been saved/remembered
+          </EuiPageTemplate.Section>
+        </EuiPageTemplate>
+      </>
+    );
+  },
+};
