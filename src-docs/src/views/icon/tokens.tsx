@@ -74,7 +74,7 @@ export default () => (
       {'<EuiToken iconType="tokenAnnotation" />'}
     </EuiCodeBlock>
     <EuiSpacer />
-    <EuiFlexGrid direction="column" columns={3}>
+    <EuiFlexGrid direction="row" columns={3}>
       {tokens.map((token) => (
         <EuiFlexItem key={token}>
           <EuiCopy
