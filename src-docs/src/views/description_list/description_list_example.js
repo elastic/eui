@@ -4,6 +4,7 @@ import { GuideSectionTypes } from '../../components';
 
 import {
   EuiCode,
+  EuiLink,
   EuiDescriptionList,
   EuiDescriptionListTitle,
   EuiDescriptionListDescription,
@@ -57,6 +58,13 @@ const descriptionListResponsiveColumnSource = require('!!raw-loader!./descriptio
 const descriptionListResponsiveColumnSnippet = `<EuiDescriptionList
   type="responsiveColumn"
   listItems={favoriteVideoGames}
+/>`;
+
+import DescriptionListColumnWidths from './column_widths';
+const descriptionListColumnWidthsSource = require('!!raw-loader!./column_widths');
+const descriptionListColumnWidthsSnippet = `<EuiDescriptionList
+  type="column"
+  columnWidths={[1, 3]}
 />`;
 
 import DescriptionListStyling from './description_list_styling';
@@ -210,6 +218,44 @@ export const DescriptionListExample = {
       ),
       snippet: descriptionListResponsiveColumnSnippet,
       demo: <DescriptionListResponsiveColumn />,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: descriptionListColumnWidthsSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            The optional <EuiCode>columnWidths</EuiCode> prop allows customizing
+            specific column widths (e.g.{' '}
+            <EuiCode>{"['100px', '200px']"}</EuiCode>). The first array value
+            applies to the title column, and the second applies to the
+            description column.
+          </p>
+          <p>
+            Passing numbers instead of CSS width strings will use a ratio of
+            widths. For example, <EuiCode>[1, 3]</EuiCode> will render a
+            description column 3x the width of the title column. In other words,
+            descriptions will have a width of 75% and titles will have a width
+            of 25%.
+          </p>
+          <p>
+            For advanced usage, column width strings also accept{' '}
+            <EuiLink
+              href="https://css-tricks.com/snippets/css/complete-guide-grid/#aa-special-units-functions"
+              target="_blank"
+            >
+              CSS grid special units, sizing, keywords, and sizing functions
+            </EuiLink>
+            .
+          </p>
+        </>
+      ),
+      snippet: descriptionListColumnWidthsSnippet,
+      demo: <DescriptionListColumnWidths />,
     },
     {
       title: 'Inline',
