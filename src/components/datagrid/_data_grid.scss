@@ -56,11 +56,13 @@
 
   .euiHeader[data-fixed-header] {
     // !important needed to override header inline styles
-    z-index: $euiZHeaderBelowDataGrid !important; // stylelint-disable-line declaration-no-important 
+    z-index: $euiZHeaderBelowDataGrid !important; // stylelint-disable-line declaration-no-important
   }
+
   .euiOverlayMask[data-relative-to-header='below'] {
     top: 0;
   }
+
   .euiFlyout {
     top: 0;
     height: 100%;
