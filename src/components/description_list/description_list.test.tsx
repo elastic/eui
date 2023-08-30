@@ -56,6 +56,7 @@ describe('EuiDescriptionList', () => {
       description: 'Description 3',
     },
   ];
+
   describe('props', () => {
     describe('listItems', () => {
       const { container } = render(
@@ -145,7 +146,7 @@ describe('EuiDescriptionList', () => {
       });
     });
 
-    describe('gutter', () => {
+    describe('rowGutterSize', () => {
       ROW_GUTTER_SIZES.forEach((gutter) => {
         test(`${gutter} is rendered`, () => {
           const { container } = render(
@@ -157,7 +158,7 @@ describe('EuiDescriptionList', () => {
       });
     });
 
-    describe('column gap', () => {
+    describe('columnGutterSize', () => {
       COLUMN_GUTTER_SIZES.forEach((columnGutterSize) => {
         test(`${columnGutterSize} is rendered`, () => {
           const { container } = render(
