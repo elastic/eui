@@ -36,6 +36,8 @@ export const SIDES = keysOf(sideToClassNameMap);
 
 export const TOAST_FADE_OUT_MS = 250;
 
+export const CLEAR_ALL_TOASTS_THRESHOLD = 3;
+
 export interface Toast extends EuiToastProps {
   id: string;
   text?: ReactChild;
@@ -301,7 +303,7 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
     );
   });
 
-  if (showClearAllButton && toasts.length > 3) {
+  if (showClearAllButton && toasts.length > CLEAR_ALL_TOASTS_THRESHOLD) {
     const dismissAllToastImmediately = () => {
       toasts.forEach((toast) => dismissToastProp(toast));
       onClearAllToasts?.();
@@ -320,16 +322,14 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
           clearAllToastsButtonAriaLabel,
           clearAllToastsButtonDisplayText,
         ]: string[]) => (
-          <EuiGlobalToastListItem
-            data-test-subj="euiClearAllToastsButton"
-            isDismissed={false}
-          >
+          <EuiGlobalToastListItem isDismissed={false}>
             <EuiButton
               fill
               color="text"
               onClick={dismissAllToastImmediately}
               css={[styles.euiGlobalToastListDismissButton]}
               aria-label={clearAllToastsButtonAriaLabel}
+              data-test-subj="euiClearAllToastsButton"
             >
               {clearAllToastsButtonDisplayText}
             </EuiButton>

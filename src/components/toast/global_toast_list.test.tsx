@@ -16,6 +16,7 @@ import {
   EuiGlobalToastList,
   Toast,
   TOAST_FADE_OUT_MS,
+  CLEAR_ALL_TOASTS_THRESHOLD,
 } from './global_toast_list';
 
 jest.useFakeTimers();
@@ -184,6 +185,75 @@ describe('EuiGlobalToastList', () => {
           jest.advanceTimersByTime(nowItsTime - notYetTime);
         });
         expect(dismissToastSpy).toBeCalled();
+      });
+    });
+
+    describe('dismissAllToasts Button', () => {
+      test("is not visible when toasts don't exceed the clear all threshold with the showClearAllButton prop passed", () => {
+        const dismissToastSpy = jest.fn();
+        const dismissAllToastsSpy = jest.fn();
+        const TOAST_LIFE_TIME_MS = 10;
+        const TOAST_LIFE_TIME_MS_OVERRIDE = 100;
+
+        const TOAST_COUNT = CLEAR_ALL_TOASTS_THRESHOLD - 1;
+
+        const component = mount(
+          <EuiGlobalToastList
+            toasts={Array.from(new Array(TOAST_COUNT)).map((_, idx) => ({
+              id: String(idx),
+              'data-test-subj': String(idx),
+              toastLifeTimeMs: TOAST_LIFE_TIME_MS_OVERRIDE,
+            }))}
+            toastLifeTimeMs={TOAST_LIFE_TIME_MS}
+            dismissToast={dismissToastSpy}
+            onClearAllToasts={dismissAllToastsSpy}
+            showClearAllButton
+          />
+        );
+
+        const dismissAllToastsButton = findTestSubject(
+          component,
+          'euiClearAllToastsButton'
+        );
+
+        expect(dismissAllToastsButton.exists()).toEqual(false);
+      });
+
+      test('is visible when toasts exceed the clear all threshold with the showClearAllButton prop passed', () => {
+        const dismissToastSpy = jest.fn();
+        const dismissAllToastsSpy = jest.fn();
+        const TOAST_LIFE_TIME_MS = 10;
+        const TOAST_LIFE_TIME_MS_OVERRIDE = 100;
+
+        const TOAST_COUNT = CLEAR_ALL_TOASTS_THRESHOLD + 1;
+
+        const component = mount(
+          <EuiGlobalToastList
+            toasts={Array.from(new Array(TOAST_COUNT)).map((_, idx) => ({
+              id: String(idx),
+              'data-test-subj': String(idx),
+              toastLifeTimeMs: TOAST_LIFE_TIME_MS_OVERRIDE,
+            }))}
+            toastLifeTimeMs={TOAST_LIFE_TIME_MS}
+            dismissToast={dismissToastSpy}
+            onClearAllToasts={dismissAllToastsSpy}
+            showClearAllButton
+          />
+        );
+
+        const dismissAllToastsButton = findTestSubject(
+          component,
+          'euiClearAllToastsButton'
+        );
+
+        dismissAllToastsButton.simulate('click');
+
+        act(() => {
+          jest.advanceTimersByTime(1);
+        });
+
+        expect(dismissToastSpy).toHaveBeenCalledTimes(TOAST_COUNT);
+        expect(dismissAllToastsSpy).toHaveBeenCalled();
       });
     });
   });
