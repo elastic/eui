@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import {
@@ -20,6 +20,7 @@ import {
   EuiFlyout,
   EuiPageTemplate,
 } from '../../components';
+import { EuiThemeProvider } from '../../services';
 
 import { EuiHeader, EuiHeaderProps } from './header';
 
@@ -84,7 +85,7 @@ export const Sections: Story = {
   },
 };
 
-export const MultipleFixedHeaders: Story = {
+export const MultipleFixedHeadersFIFO: Story = {
   parameters: {
     layout: 'fullscreen',
   },
@@ -154,4 +155,73 @@ export const MultipleFixedHeaders: Story = {
       </EuiPageTemplate>
     );
   },
+};
+
+export const MultipleFixedHeadersAnyOrder: Story = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  render: () => (
+    <>
+      <EuiPageTemplate>
+        <EuiPageTemplate.Section>
+          The page template and flyout should automatically adjust dynamically
+          to the number of fixed headers on the page.
+          <br />
+          <br />
+          The fixed headers should be able to be re-ordered in any order, and
+          their positioning and z-index should update correctly.
+          <br />
+          <br />
+          <ToggleableFixedHeader>Header 1</ToggleableFixedHeader>
+          <EuiThemeProvider modify={{ size: { xxxl: '60px' } }}>
+            <ToggleableFixedHeader>
+              Header 2 - custom header height
+            </ToggleableFixedHeader>
+          </EuiThemeProvider>
+          <ToggleableFixedHeader>Header 3</ToggleableFixedHeader>
+          <EuiThemeProvider colorMode="inverse">
+            <ToggleableFixedHeader>
+              Header 4 - inverse color mode
+            </ToggleableFixedHeader>
+          </EuiThemeProvider>
+        </EuiPageTemplate.Section>
+      </EuiPageTemplate>
+    </>
+  ),
+};
+const ToggleableFixedHeader: FunctionComponent<EuiHeaderProps> = ({
+  children,
+}) => {
+  const [isFixed, setIsFixed] = useState(true);
+  const [isFlyoutOpen, setIsFlyoutOpen] = useState(false);
+
+  const sections = [
+    {
+      items: [
+        <EuiButton size="s" onClick={() => setIsFixed(!isFixed)}>
+          Toggle position fixed
+        </EuiButton>,
+      ],
+    },
+    {
+      items: [children],
+    },
+    {
+      items: [
+        <EuiButton size="s" onClick={() => setIsFlyoutOpen(!isFlyoutOpen)}>
+          Toggle flyout
+        </EuiButton>,
+        isFlyoutOpen && (
+          <EuiFlyout onClose={() => setIsFlyoutOpen(false)}>
+            The flyout position and mask should automatically adjust dynamically
+            to the number of fixed headers on the page.
+          </EuiFlyout>
+        ),
+      ],
+    },
+  ];
+  return (
+    <EuiHeader position={isFixed ? 'fixed' : undefined} sections={sections} />
+  );
 };

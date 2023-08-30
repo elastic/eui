@@ -11,8 +11,7 @@ import React, {
   HTMLAttributes,
   useEffect,
   useState,
-  useMemo,
-  useCallback,
+  useRef,
 } from 'react';
 import classNames from 'classnames';
 
@@ -140,9 +139,35 @@ export const EuiHeader: FunctionComponent<EuiHeaderProps> = ({
  * page offset and setting the `top` position of subsequent headers
  */
 
-// Start a counter to manage the total number of fixed headers
+// Utility for tracking fixed headers and their heights so we can calculate the height offset
 // Exported for unit testing only
-export let euiFixedHeadersCount = 0;
+export const fixedHeaderHeights = {
+  map: new Map<HTMLElement, string>(), // string is a CSS height value, e.g. '48px'
+  get headerElements() {
+    return [...this.map.keys()];
+  },
+  get heightsArray() {
+    return [...this.map.values()];
+  },
+  get totalHeight() {
+    return this.sumHeightsWithUnits(this.heightsArray);
+  },
+  getIndexOf(headerEl: HTMLElement) {
+    // Note: this takes advantage of the fact that Map key order is order of insertion
+    return this.headerElements.indexOf(headerEl);
+  },
+  getTopPositionAt(headerIndex: number) {
+    return this.sumHeightsWithUnits(this.heightsArray.slice(0, headerIndex));
+  },
+  sumHeightsWithUnits: (array: string[]) => {
+    if (!array.length) return '0';
+
+    // Slicing the array because mathWithUnits always needs a valid unit
+    return array.slice(1).reduce((aString, bString) => {
+      return mathWithUnits([aString, bString], (aNum, bNum) => aNum + bNum);
+    }, array[0]);
+  },
+};
 
 // Exported for unit testing only
 export const EuiFixedHeader: FunctionComponent<EuiHeaderProps> = ({
@@ -150,44 +175,58 @@ export const EuiFixedHeader: FunctionComponent<EuiHeaderProps> = ({
   style,
   ...rest
 }) => {
-  const { setGlobalCSSVariables } = useEuiThemeCSSVariables();
+  const headerRef = useRef<HTMLDivElement | null>(null);
+
+  const { setGlobalCSSVariables, globalCSSVariables } =
+    useEuiThemeCSSVariables();
   const euiTheme = useEuiTheme();
   const headerHeight = euiHeaderVariables(euiTheme).height;
-  const getHeaderOffset = useCallback(
-    () => mathWithUnits(headerHeight, (x) => x * euiFixedHeadersCount),
-    [headerHeight]
-  );
-  const [topPosition, setTopPosition] = useState<string | undefined>();
+  const baseHeaderZIndex = Number(euiTheme.euiTheme.levels.header);
 
   useEffect(() => {
-    // Get the top position from the offset of previous header(s)
-    setTopPosition(getHeaderOffset());
+    const headerEl = headerRef.current!;
 
-    // Increment fixed header counter for each fixed header
-    euiFixedHeadersCount++;
+    fixedHeaderHeights.map.set(headerEl, headerHeight);
     setGlobalCSSVariables({
-      '--euiFixedHeadersOffset': getHeaderOffset(),
+      '--euiFixedHeadersOffset': fixedHeaderHeights.totalHeight,
     });
     document.body.classList.add('euiBody--headerIsFixed'); // TODO: Consider deleting this legacy className
 
     return () => {
-      euiFixedHeadersCount--;
+      fixedHeaderHeights.map.delete(headerEl);
       setGlobalCSSVariables({
-        '--euiFixedHeadersOffset': getHeaderOffset(),
+        '--euiFixedHeadersOffset': fixedHeaderHeights.totalHeight,
       });
-      if (euiFixedHeadersCount === 0) {
+      if (fixedHeaderHeights.map.size === 0) {
         document.body.classList.remove('euiBody--headerIsFixed'); // TODO: Consider deleting this legacy className
       }
     };
-  }, [getHeaderOffset, setGlobalCSSVariables]);
+  }, [headerHeight, setGlobalCSSVariables]);
 
-  const inlineStyles = useMemo(
-    () => logicalStyles({ top: topPosition, ...style }),
-    [topPosition, style]
-  );
+  // Top position and z-index are calculated dynamically based on the order
+  // fixed headers are rendered (or inserted/removed) in the DOM
+  const [inlineStyles, setInlineStyles] = useState(style);
+
+  // We're essentially only using this variable to trigger a re-position
+  // on all other headers anywhere on the page
+  const onGlobalVarChange = globalCSSVariables?.['--euiFixedHeadersOffset'];
+
+  // This useEffect is called separately from the previous one so that if a header
+  // (that's not the last) is removed, the following headers update their top
+  // positions and z-indexes correctly
+  useEffect(() => {
+    const headerEl = headerRef.current!;
+    const headerIndex = fixedHeaderHeights.getIndexOf(headerEl);
+    const topPosition = fixedHeaderHeights.getTopPositionAt(headerIndex);
+    const zIndex = baseHeaderZIndex + headerIndex;
+
+    const styles = logicalStyles({ top: topPosition, zIndex, ...style });
+    setInlineStyles(styles);
+  }, [onGlobalVarChange, style, baseHeaderZIndex]);
 
   return (
     <div
+      ref={headerRef}
       data-fixed-header={true} // Used by EuiFlyouts as a query selector
       style={inlineStyles}
       {...rest}

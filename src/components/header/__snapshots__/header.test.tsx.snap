@@ -28,7 +28,7 @@ exports[`EuiHeader renders in fixed position 1`] = `
 <div
   class="euiHeader emotion-euiHeader-fixed-default"
   data-fixed-header="true"
-  style="inset-block-start: 0px;"
+  style="inset-block-start: 0; z-index: 1000;"
 >
   <span>
     Hello!

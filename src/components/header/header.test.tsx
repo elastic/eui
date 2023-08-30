@@ -11,7 +11,9 @@ import { render } from '../../test/rtl';
 import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
-import { euiFixedHeadersCount, EuiFixedHeader, EuiHeader } from './header';
+import { EuiThemeProvider } from '../../services';
+
+import { fixedHeaderHeights, EuiFixedHeader, EuiHeader } from './header';
 
 describe('EuiHeader', () => {
   shouldRenderCustomStyles(<EuiHeader />);
@@ -127,8 +129,74 @@ describe('EuiHeader', () => {
 });
 
 describe('EuiFixedHeader', () => {
+  describe('fixedHeaderHeights utils', () => {
+    const mockHeader1 = document.createElement('header');
+    const mockHeader2 = document.createElement('header');
+    const mockHeader3 = document.createElement('header');
+
+    beforeAll(() => {
+      fixedHeaderHeights.map.set(mockHeader1, '30px');
+      fixedHeaderHeights.map.set(mockHeader2, '40px');
+      fixedHeaderHeights.map.set(mockHeader3, '50px');
+    });
+    afterAll(() => {
+      fixedHeaderHeights.map.clear();
+    });
+
+    test('headerElements returns an array of all header elements in the map', () => {
+      expect(fixedHeaderHeights.headerElements).toEqual([
+        mockHeader1,
+        mockHeader2,
+        mockHeader3,
+      ]);
+    });
+
+    test('heightsArray returns an array of all header heights in the map', () => {
+      expect(fixedHeaderHeights.heightsArray).toEqual(['30px', '40px', '50px']);
+    });
+
+    test('totalHeight returns single string total of all header heights in the map', () => {
+      expect(fixedHeaderHeights.totalHeight).toEqual('120px');
+    });
+
+    test('getIndexOf() returns the index (insertion order) of the specified header', () => {
+      expect(fixedHeaderHeights.getIndexOf(mockHeader1)).toEqual(0);
+      expect(fixedHeaderHeights.getIndexOf(mockHeader2)).toEqual(1);
+      expect(fixedHeaderHeights.getIndexOf(mockHeader3)).toEqual(2);
+    });
+
+    test('getTopPositionAt() returns the height offset of all headers before that index', () => {
+      expect(fixedHeaderHeights.getTopPositionAt(0)).toEqual('0');
+      expect(fixedHeaderHeights.getTopPositionAt(1)).toEqual('30px');
+      expect(fixedHeaderHeights.getTopPositionAt(2)).toEqual('70px');
+    });
+
+    describe('sumHeightsWithUnits', () => {
+      it('calls the `mathWithUnits` utility to add together all values while preserving units', () => {
+        expect(
+          fixedHeaderHeights.sumHeightsWithUnits([
+            '60px',
+            '70px',
+            '80px',
+            '90px',
+          ])
+        ).toEqual('300px');
+      });
+
+      it('correctly handles single length arrays', () => {
+        expect(fixedHeaderHeights.sumHeightsWithUnits(['20px'])).toEqual(
+          '20px'
+        );
+      });
+
+      it('returns 0 for empty arrays', () => {
+        expect(fixedHeaderHeights.sumHeightsWithUnits([])).toEqual('0');
+      });
+    });
+  });
+
   describe('on mount/unmount', () => {
-    it('updates the fixed headers count and body className', () => {
+    it('updates the fixed headers map, global CSS variables, and body className', () => {
       const { unmount } = render(
         <>
           <EuiFixedHeader />
@@ -136,28 +204,43 @@ describe('EuiFixedHeader', () => {
           <EuiFixedHeader />
         </>
       );
-      expect(euiFixedHeadersCount).toEqual(3);
+      expect(fixedHeaderHeights.totalHeight).toEqual('144px');
       // TODO: we're not yet on a jsdom version that supports inspecting :root
       expect(document.body.className).toContain('euiBody--headerIsFixed');
 
       unmount();
-      expect(euiFixedHeadersCount).toEqual(0);
+      expect(fixedHeaderHeights.totalHeight).toEqual('0');
       // TODO: we're not yet on a jsdom version that supports inspecting :root
       expect(document.body.className).not.toContain('euiBody--headerIsFixed');
     });
   });
 
-  it('sets the inline position styles of headers', () => {
-    const { getByTestSubject } = render(
-      <>
-        <EuiFixedHeader data-test-subj="first" />
-        <EuiFixedHeader data-test-subj="second" />
-        <EuiFixedHeader data-test-subj="last" />
-      </>
-    );
-    expect(getByTestSubject('first')).toHaveStyle('inset-block-start: 0px');
-    expect(getByTestSubject('second')).toHaveStyle('inset-block-start: 48px');
-    expect(getByTestSubject('last')).toHaveStyle('inset-block-start: 96px');
+  describe('when other fixed header(s) update', () => {
+    it('updates the inline position/z-index styles of all headers', () => {
+      const { rerender, getByTestSubject } = render(
+        <>
+          <EuiFixedHeader key={1} data-test-subj="first" />
+          <EuiHeader position="fixed" key={2} />
+          <EuiFixedHeader key={3} data-test-subj="last" />
+        </>
+      );
+      expect(fixedHeaderHeights.totalHeight).toEqual('144px');
+      expect(getByTestSubject('first')).toHaveStyle('inset-block-start: 0');
+      expect(getByTestSubject('first')).toHaveStyle('z-index: 1000');
+      expect(getByTestSubject('last')).toHaveStyle('inset-block-start: 96px');
+      expect(getByTestSubject('last')).toHaveStyle('z-index: 1002');
+
+      rerender(
+        <>
+          <EuiFixedHeader key={1} data-test-subj="first" />
+          <EuiHeader position="static" key={2} />
+          <EuiFixedHeader key={3} data-test-subj="last" />
+        </>
+      );
+      expect(fixedHeaderHeights.totalHeight).toEqual('96px');
+      expect(getByTestSubject('last')).toHaveStyle('inset-block-start: 48px');
+      expect(getByTestSubject('last')).toHaveStyle('z-index: 1001');
+    });
   });
 
   it('allows consumers to override inline styles as needed', () => {
@@ -165,5 +248,26 @@ describe('EuiFixedHeader', () => {
       <EuiFixedHeader style={{ insetBlockStart: '20px' }} />
     );
     expect(container.firstElementChild).toHaveStyle('inset-block-start: 20px');
+  });
+
+  it('correctly accounts for custom header heights via modified theme sizing', () => {
+    const { rerender } = render(
+      <EuiThemeProvider modify={{ base: 10 }}>
+        <EuiFixedHeader />
+      </EuiThemeProvider>
+    );
+    expect(fixedHeaderHeights.totalHeight).toEqual('30px');
+
+    rerender(
+      <>
+        <EuiThemeProvider modify={{ base: 10 }}>
+          <EuiFixedHeader />
+        </EuiThemeProvider>
+        <EuiThemeProvider modify={{ size: { xxxl: '100px' } }}>
+          <EuiFixedHeader />
+        </EuiThemeProvider>
+      </>
+    );
+    expect(fixedHeaderHeights.totalHeight).toEqual('130px');
   });
 });
