@@ -846,6 +846,10 @@ export interface EuiDataGridToolBarVisibilityDisplaySelectorOptions {
    * When `false`, removes the ability to change row height display through the UI
    */
   allowRowHeight?: boolean;
+  /**
+   * If passed an object it will append the additional option to the bottom of the display settings
+   */
+  additionalDisplaySettings?: ReactNode;
 }
 
 export interface EuiDataGridToolBarVisibilityOptions {

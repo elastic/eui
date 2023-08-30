@@ -108,6 +108,11 @@ export const useDataGridDisplaySelector = (
     'allowRowHeight'
   );
 
+  const additionalDisplaySettings =
+    typeof showDisplaySelector === 'boolean'
+      ? null
+      : showDisplaySelector?.additionalDisplaySettings ?? null;
+
   // Track styles specified by the user at run time
   const [userGridStyles, setUserGridStyles] = useState({});
   const [userRowHeightsOptions, setUserRowHeightsOptions] = useState({});
@@ -354,6 +359,8 @@ export const useDataGridDisplaySelector = (
             )}
           </EuiI18n>
         )}
+        {additionalDisplaySettings}
+
         {showResetButton && (
           <EuiPopoverFooter>
             <EuiFlexGroup justifyContent="flexEnd" responsive={false}>

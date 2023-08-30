@@ -23,6 +23,7 @@ import {
   EuiFlyoutBody,
   EuiFlyoutFooter,
   EuiFlyoutHeader,
+  EuiFormRow,
   EuiLink,
   EuiModal,
   EuiModalBody,
@@ -30,6 +31,7 @@ import {
   EuiModalHeader,
   EuiModalHeaderTitle,
   EuiPopover,
+  EuiRange,
   EuiScreenReaderOnly,
   EuiText,
   EuiTitle,
@@ -406,12 +408,31 @@ export default () => {
     console.log(eventData);
   });
 
+  const customDisplaySetting = (
+    <EuiFormRow label="Random Sample Size" display="columnCompressed">
+      <EuiRange
+        compressed
+        fullWidth
+        showInput
+        min={1}
+        max={100}
+        step={1}
+        value={10}
+        data-test-subj="randomSampleSize"
+      />
+    </EuiFormRow>
+  );
   return (
     <DataContext.Provider value={raw_data}>
       <EuiDataGrid
         aria-label="Data grid demo"
         columns={columns}
         columnVisibility={{ visibleColumns, setVisibleColumns }}
+        toolbarVisibility={{
+          showDisplaySelector: {
+            additionalDisplaySettings: customDisplaySetting,
+          },
+        }}
         trailingControlColumns={trailingControlColumns}
         rowCount={raw_data.length}
         renderCellValue={RenderCellValue}
