@@ -12,6 +12,7 @@ import React, {
   useEffect,
   useState,
   useMemo,
+  useCallback,
 } from 'react';
 import classNames from 'classnames';
 
@@ -139,9 +140,9 @@ export const EuiHeader: FunctionComponent<EuiHeaderProps> = ({
  * page offset and setting the `top` position of subsequent headers
  */
 
-// Start a counter to manage the total number of fixed headers that need the body class
+// Start a counter to manage the total number of fixed headers
 // Exported for unit testing only
-export let euiHeaderFixedCounter = 0;
+export let euiFixedHeadersCount = 0;
 
 // Exported for unit testing only
 export const EuiFixedHeader: FunctionComponent<EuiHeaderProps> = ({
@@ -152,37 +153,33 @@ export const EuiFixedHeader: FunctionComponent<EuiHeaderProps> = ({
   const { setGlobalCSSVariables } = useEuiThemeCSSVariables();
   const euiTheme = useEuiTheme();
   const headerHeight = euiHeaderVariables(euiTheme).height;
+  const getHeaderOffset = useCallback(
+    () => mathWithUnits(headerHeight, (x) => x * euiFixedHeadersCount),
+    [headerHeight]
+  );
   const [topPosition, setTopPosition] = useState<string | undefined>();
 
   useEffect(() => {
     // Get the top position from the offset of previous header(s)
-    setTopPosition(
-      mathWithUnits(headerHeight, (x) => x * euiHeaderFixedCounter)
-    );
+    setTopPosition(getHeaderOffset());
 
     // Increment fixed header counter for each fixed header
-    euiHeaderFixedCounter++;
+    euiFixedHeadersCount++;
     setGlobalCSSVariables({
-      '--euiFixedHeadersOffset': mathWithUnits(
-        headerHeight,
-        (x) => x * euiHeaderFixedCounter
-      ),
+      '--euiFixedHeadersOffset': getHeaderOffset(),
     });
     document.body.classList.add('euiBody--headerIsFixed'); // TODO: Consider deleting this legacy className
 
     return () => {
-      euiHeaderFixedCounter--;
+      euiFixedHeadersCount--;
       setGlobalCSSVariables({
-        '--euiFixedHeadersOffset': mathWithUnits(
-          headerHeight,
-          (x) => x * euiHeaderFixedCounter
-        ),
+        '--euiFixedHeadersOffset': getHeaderOffset(),
       });
-      if (euiHeaderFixedCounter === 0) {
+      if (euiFixedHeadersCount === 0) {
         document.body.classList.remove('euiBody--headerIsFixed'); // TODO: Consider deleting this legacy className
       }
     };
-  }, [headerHeight, setGlobalCSSVariables]);
+  }, [getHeaderOffset, setGlobalCSSVariables]);
 
   const inlineStyles = useMemo(
     () => logicalStyles({ top: topPosition, ...style }),

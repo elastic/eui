@@ -11,7 +11,7 @@ import { render } from '../../test/rtl';
 import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
-import { euiHeaderFixedCounter, EuiFixedHeader, EuiHeader } from './header';
+import { euiFixedHeadersCount, EuiFixedHeader, EuiHeader } from './header';
 
 describe('EuiHeader', () => {
   shouldRenderCustomStyles(<EuiHeader />);
@@ -136,12 +136,12 @@ describe('EuiFixedHeader', () => {
           <EuiFixedHeader />
         </>
       );
-      expect(euiHeaderFixedCounter).toEqual(3);
+      expect(euiFixedHeadersCount).toEqual(3);
       // TODO: we're not yet on a jsdom version that supports inspecting :root
       expect(document.body.className).toContain('euiBody--headerIsFixed');
 
       unmount();
-      expect(euiHeaderFixedCounter).toEqual(0);
+      expect(euiFixedHeadersCount).toEqual(0);
       // TODO: we're not yet on a jsdom version that supports inspecting :root
       expect(document.body.className).not.toContain('euiBody--headerIsFixed');
     });
