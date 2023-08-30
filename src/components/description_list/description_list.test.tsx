@@ -170,6 +170,55 @@ describe('EuiDescriptionList', () => {
           expect(container.firstChild).toMatchSnapshot();
         });
       });
+
+      describe('columnWidths', () => {
+        it('renders the passed values as an inline css grid style', () => {
+          const { container } = render(
+            <EuiDescriptionList
+              type="column"
+              columnWidths={['100px', 'minmax(200px, auto)']}
+            />
+          );
+          expect(container.firstChild).toHaveStyle(
+            'grid-template-columns: 100px minmax(200px, auto)'
+          );
+        });
+
+        it('converts numbers into fr grid units', () => {
+          const { container } = render(
+            <EuiDescriptionList type="column" columnWidths={[1, 2]} />
+          );
+          expect(container.firstChild).toHaveStyle(
+            'grid-template-columns: 1fr 2fr'
+          );
+        });
+
+        it('respects custom styles', () => {
+          const { container } = render(
+            <EuiDescriptionList
+              type="column"
+              columnWidths={[3, 4]}
+              style={{ color: 'red' }}
+            />
+          );
+          expect(container.firstChild).toHaveStyle('color: red');
+        });
+
+        it('correctly removes inline styles when responsive columns collapse to rows', () => {
+          const { container, rerender } = render(
+            <EuiDescriptionList type="responsiveColumn" columnWidths={[3, 4]} />
+          );
+          expect(container.firstChild).toHaveStyle(
+            'grid-template-columns: 3fr 4fr'
+          );
+
+          mockUseIsWithinBreakpoints.mockReturnValue(true);
+          rerender(
+            <EuiDescriptionList type="responsiveColumn" columnWidths={[3, 4]} />
+          );
+          expect(container.firstChild).toHaveAttribute('style', '');
+        });
+      });
     });
   });
 });
