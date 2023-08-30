@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import { GuideSectionTypes } from '../../components';
 
@@ -189,13 +189,11 @@ export const DescriptionListExample = {
         },
       ],
       text: (
-        <Fragment>
-          <p>
-            Using the prop <EuiCode>type</EuiCode> set to{' '}
-            <EuiCode>column</EuiCode> description lists can be presented in an
-            inline, column format.
-          </p>
-        </Fragment>
+        <p>
+          Using the prop <EuiCode>type</EuiCode> set to{' '}
+          <EuiCode>column</EuiCode> description lists can be presented in an
+          inline, column format.
+        </p>
       ),
       snippet: descriptionListColumnSnippet,
       demo: <DescriptionListColumn />,
@@ -208,13 +206,11 @@ export const DescriptionListExample = {
         },
       ],
       text: (
-        <Fragment>
-          <p>
-            To return to the typical row format on smaller screens set{' '}
-            <EuiCode>type</EuiCode> to <EuiCode>responsiveColumn</EuiCode>. The
-            following list will only show the column format on larger screens.
-          </p>
-        </Fragment>
+        <p>
+          To return to the typical row format on smaller screens set{' '}
+          <EuiCode>type</EuiCode> to <EuiCode>responsiveColumn</EuiCode>. The
+          following list will only show the column format on larger screens.
+        </p>
       ),
       snippet: descriptionListResponsiveColumnSnippet,
       demo: <DescriptionListResponsiveColumn />,
