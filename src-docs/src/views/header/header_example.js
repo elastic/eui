@@ -298,10 +298,10 @@ export const HeaderExample = {
         <>
           <p>
             Most consumers need a header that does not scroll away with the page
-            contents. You can apply this display by applying the property{' '}
+            contents. You can set this display by applying the property{' '}
             <EuiCode language="ts">{'position="fixed"'}</EuiCode>. Multiple
-            fixed headers will automatically stack underneath one another
-            without manual positioning required.
+            fixed headers will automatically stack underneath one another. 
+            No manual positioning is required.
           </p>
           <p>
             If you're using{' '}
