@@ -520,13 +520,13 @@ When creating mixins & utilities for reuse within Emotion CSS, consider the foll
 
 ## JS vs. CSS component variables
 
-In general, most component-specific style variables (e.g.) can remain as JS-only (e.g., [euiStepVariables](https://github.com/elastic/eui/blob/068f0000532e6433383093d3488d7b1c4979c022/src/components/steps/step.styles.ts#L13-L19), [euiFormVariables](https://github.com/elastic/eui/blob/d39c0e988409f90f62af57174590044664b2bfce/src/components/form/form.styles.ts#L19)). These JS variable examples are generally only used internally by EUI, and are not public top-level exports.
+In general, most component-specific style variables can remain JS-only (e.g., [euiStepVariables](https://github.com/elastic/eui/blob/068f0000532e6433383093d3488d7b1c4979c022/src/components/steps/step.styles.ts#L13-L19), [euiFormVariables](https://github.com/elastic/eui/blob/d39c0e988409f90f62af57174590044664b2bfce/src/components/form/form.styles.ts#L19)). These JS variable examples are generally used internally by EUI, and are not public top-level exports.
 
 There are some scenarios, however, where certain component style variables are important enough to be made globally available via a [CSS variable](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties).
 
-An example of this is **EuiHeader**: fixed header height(s) and the page offset they cause need to be accounted for by multiple other EUI components (e.g. **EuiFlyout**, **EuiPageTemplate**), and potentially by custom consumer layouts as well. Using a global CSS variable allows **EuiHeader** to dynamically track and calculate the number of fixed headers and their total height in a single place, which other components can then reuse without extra JS logic needed ([#7144](https://github.com/elastic/eui/pull/7144)).
+An example of this is **EuiHeader**: Fixed header height(s) and the page offset they cause need to be accounted for by multiple other EUI components (e.g. **EuiFlyout**, **EuiPageTemplate**), and potentially by custom consumer layouts. Using a global CSS variable allows **EuiHeader** to dynamically track the number of fixed headers and calculate total height in a single place. Other components can reuse that CSS variable without extra JS logic needed ([#7144](https://github.com/elastic/eui/pull/7144)).
 
-EUI components can set CSS variables in two places: globally, or at the nearest EuiThemeProvider wrapper level:
+EUI components can set CSS variables in two places: globally, or at the nearest **EuiThemeProvider** wrapper level:
 
 ```tsx
 import React, { useEffect } from 'react';
@@ -552,7 +552,7 @@ const EuiComponent = ({ ...props }) => {
 }
 ```
 
-While a global CSS variable makes sense for **EuiHeader**, for most components, nearest theme variables would likely make more sense. For example, **EuiForm** which should respect any custom theme modifications and pass its modified form variables down to any children, but not to any siblings or parent forms that do not have any modifications.
+While a global CSS variable makes sense for **EuiHeader**, for most components, nearest theme variables would likely make more sense. For example, **EuiForm** should respect any custom theme modifications and pass its modified form variables to any children, but not siblings or parent forms that do not have modifications.
 
 ```tsx
 // Normal form
