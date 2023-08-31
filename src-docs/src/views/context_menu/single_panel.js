@@ -24,8 +24,16 @@ export default () => {
     setPopover(false);
   };
 
-  const getIconType = (size) => {
-    return size === rowSize ? 'check' : 'empty';
+  const getCurrentItem = (size, attr) => {
+    if (attr === 'icon') {
+      return size === rowSize ? 'check' : 'empty';
+    }
+
+    if (attr === 'aria-current') {
+      return size === rowSize ? 'true' : undefined;
+    }
+
+    return undefined;
   };
 
   const button = (
@@ -42,41 +50,45 @@ export default () => {
   const items = [
     <EuiContextMenuItem
       key="10 rows"
-      icon={getIconType(10)}
+      icon={getCurrentItem(10, 'icon')}
       onClick={() => {
         closePopover();
         setRowSize(10);
       }}
+      aria-current={getCurrentItem(10, 'aria-current')}
     >
       10 rows
     </EuiContextMenuItem>,
     <EuiContextMenuItem
       key="20 rows"
-      icon={getIconType(20)}
+      icon={getCurrentItem(20, 'icon')}
       onClick={() => {
         closePopover();
         setRowSize(20);
       }}
+      aria-current={getCurrentItem(20, 'aria-current')}
     >
       20 rows
     </EuiContextMenuItem>,
     <EuiContextMenuItem
       key="50 rows"
-      icon={getIconType(50)}
+      icon={getCurrentItem(50, 'icon')}
       onClick={() => {
         closePopover();
         setRowSize(50);
       }}
+      aria-current={getCurrentItem(50, 'aria-current')}
     >
       50 rows
     </EuiContextMenuItem>,
     <EuiContextMenuItem
       key="100 rows"
-      icon={getIconType(100)}
+      icon={getCurrentItem(100, 'icon')}
       onClick={() => {
         closePopover();
         setRowSize(100);
       }}
+      aria-current={getCurrentItem(100, 'aria-current')}
     >
       100 rows
     </EuiContextMenuItem>,
