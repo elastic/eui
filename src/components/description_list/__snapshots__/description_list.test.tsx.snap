@@ -67,14 +67,14 @@ exports[`EuiDescriptionList props align left is rendered 1`] = `
 />
 `;
 
-exports[`EuiDescriptionList props column gap m is rendered 1`] = `
+exports[`EuiDescriptionList props columnGutterSize m is rendered 1`] = `
 <dl
   class="euiDescriptionList emotion-euiDescriptionList-column-left-s-m"
   data-type="column"
 />
 `;
 
-exports[`EuiDescriptionList props column gap s is rendered 1`] = `
+exports[`EuiDescriptionList props columnGutterSize s is rendered 1`] = `
 <dl
   class="euiDescriptionList emotion-euiDescriptionList-column-left-s-s"
   data-type="column"
@@ -85,20 +85,6 @@ exports[`EuiDescriptionList props compressed is rendered 1`] = `
 <dl
   class="euiDescriptionList emotion-euiDescriptionList-row-left"
   data-type="row"
-/>
-`;
-
-exports[`EuiDescriptionList props gutter m is rendered 1`] = `
-<dl
-  class="euiDescriptionList emotion-euiDescriptionList-column-left-m-s"
-  data-type="column"
-/>
-`;
-
-exports[`EuiDescriptionList props gutter s is rendered 1`] = `
-<dl
-  class="euiDescriptionList emotion-euiDescriptionList-column-left-s-s"
-  data-type="column"
 />
 `;
 
@@ -196,6 +182,20 @@ exports[`EuiDescriptionList props listItems titleProps is rendered 1`] = `
     Description 3
   </dd>
 </dl>
+`;
+
+exports[`EuiDescriptionList props rowGutterSize m is rendered 1`] = `
+<dl
+  class="euiDescriptionList emotion-euiDescriptionList-column-left-m-s"
+  data-type="column"
+/>
+`;
+
+exports[`EuiDescriptionList props rowGutterSize s is rendered 1`] = `
+<dl
+  class="euiDescriptionList emotion-euiDescriptionList-column-left-s-s"
+  data-type="column"
+/>
 `;
 
 exports[`EuiDescriptionList props type column is rendered 1`] = `

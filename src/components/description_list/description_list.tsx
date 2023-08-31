@@ -24,6 +24,7 @@ export const EuiDescriptionList: FunctionComponent<
   align = 'left',
   children,
   className,
+  style,
   compressed = false,
   descriptionProps,
   listItems,
@@ -32,6 +33,7 @@ export const EuiDescriptionList: FunctionComponent<
   type: _type = 'row',
   rowGutterSize = 's',
   columnGutterSize = 's',
+  columnWidths,
   ...rest
 }) => {
   const showResponsiveColumns = useIsWithinBreakpoints(['xs', 's']);
@@ -53,6 +55,22 @@ export const EuiDescriptionList: FunctionComponent<
     type === 'column' && styles.rowGap[rowGutterSize],
     type === 'column' && styles.columnGap[columnGutterSize],
   ];
+
+  const inlineStyles = useMemo(() => {
+    if (type === 'column' && columnWidths) {
+      // Leave string values as is - e.g. if a consumer passes in a specific '200px' or 'minmax()'
+      const convertNumbersToFr = (value: number | string) =>
+        typeof value === 'number' ? `${value}fr` : value;
+
+      const titleWidth = convertNumbersToFr(columnWidths[0]);
+      const descriptionWidth = convertNumbersToFr(columnWidths[1]);
+      return {
+        gridTemplateColumns: `${titleWidth} ${descriptionWidth}`,
+        ...style,
+      };
+    }
+    return style;
+  }, [style, type, columnWidths]);
 
   const classes = classNames('euiDescriptionList', className);
 
@@ -81,7 +99,13 @@ export const EuiDescriptionList: FunctionComponent<
     <EuiDescriptionListContext.Provider
       value={{ type, compressed, textStyle, align, rowGutterSize }}
     >
-      <dl className={classes} css={cssStyles} {...rest} data-type={_type}>
+      <dl
+        className={classes}
+        css={cssStyles}
+        style={inlineStyles}
+        {...rest}
+        data-type={_type}
+      >
         {childrenOrListItems}
       </dl>
     </EuiDescriptionListContext.Provider>
