@@ -316,7 +316,7 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
           'euiGlobalToastList.clearAllToastsButtonAriaLabel',
           'euiGlobalToastList.clearAllToastsButtonDisplayText',
         ]}
-        defaults={['clear all toast notifications', 'Clear all']}
+        defaults={['Clear all toast notifications', 'Clear all']}
       >
         {([
           clearAllToastsButtonAriaLabel,
