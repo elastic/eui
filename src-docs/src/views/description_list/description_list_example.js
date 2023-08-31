@@ -235,8 +235,8 @@ export const DescriptionListExample = {
             Passing numbers instead of CSS width strings will use a ratio of
             widths. For example, <EuiCode>[1, 3]</EuiCode> will render a
             description column 3x the width of the title column. In other words,
-            descriptions will have a width of 75% and titles will have a width
-            of 25%.
+            titles will have a width of 25% descriptions will have a width of
+            75%.
           </p>
           <p>
             For advanced usage, column width strings also accept{' '}
