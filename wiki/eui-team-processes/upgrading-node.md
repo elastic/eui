@@ -1,4 +1,4 @@
-# Upgrading Node in the EUI codebase
+# Upgrading Node in the EUI codebase!
 
 ## Why and when to upgrade Node
 
