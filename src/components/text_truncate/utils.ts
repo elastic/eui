@@ -35,10 +35,10 @@ type CanvasParams = SharedParams &
  * which works by building up from an empty string / by adding characters
  * instead of removing them.
  */
-class _TruncationUtils {
-  fullText: SharedParams['fullText'];
-  ellipsis: SharedParams['ellipsis'];
-  availableWidth: SharedParams['availableWidth'];
+abstract class _TruncationUtils {
+  protected fullText: SharedParams['fullText'];
+  protected ellipsis: SharedParams['ellipsis'];
+  protected availableWidth: SharedParams['availableWidth'];
 
   constructor({ fullText, ellipsis, availableWidth }: SharedParams) {
     this.fullText = fullText;
@@ -49,24 +49,10 @@ class _TruncationUtils {
   /**
    * Internal measurement utils which will be overridden depending on the
    * rendering approach used (e.g. DOM vs Canvas).
-   *
-   * The thrown errors are there to ensure the base instance utils do not
-   * get called standalone in the future, if more extended classes are added
-   * someday (e.g. new shadow DOM tech, or Flash makes a surprise comeback).
-   *
-   * The istanbul code coverage ignores are there because this base class
-   * is not exported and in theory the code should never be reachable.
    */
 
-  /* istanbul ignore next */
-  get textWidth(): number {
-    throw new Error('This function must be superseded by a DOM or Canvas util');
-  }
-
-  /* istanbul ignore next */
-  setTextToCheck = (_: string): void => {
-    throw new Error('This function must be superseded by a DOM or Canvas util');
-  };
+  abstract textWidth: number;
+  abstract setTextToCheck: (text: string) => void;
 
   /**
    * Early return checks
