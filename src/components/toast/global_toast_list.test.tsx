@@ -16,7 +16,7 @@ import {
   EuiGlobalToastList,
   Toast,
   TOAST_FADE_OUT_MS,
-  CLEAR_ALL_TOASTS_THRESHOLD,
+  CLEAR_ALL_TOASTS_THRESHOLD_DEFAULT,
 } from './global_toast_list';
 
 jest.useFakeTimers();
@@ -189,13 +189,13 @@ describe('EuiGlobalToastList', () => {
     });
 
     describe('dismissAllToasts Button', () => {
-      test("is not visible when toasts don't exceed the clear all threshold with the showClearAllButton prop passed", () => {
+      test('is not visible when the showClearAllButtonAt prop is set to 0', () => {
         const dismissToastSpy = jest.fn();
         const dismissAllToastsSpy = jest.fn();
         const TOAST_LIFE_TIME_MS = 10;
         const TOAST_LIFE_TIME_MS_OVERRIDE = 100;
 
-        const TOAST_COUNT = CLEAR_ALL_TOASTS_THRESHOLD - 1;
+        const TOAST_COUNT = CLEAR_ALL_TOASTS_THRESHOLD_DEFAULT;
 
         const component = mount(
           <EuiGlobalToastList
@@ -207,7 +207,7 @@ describe('EuiGlobalToastList', () => {
             toastLifeTimeMs={TOAST_LIFE_TIME_MS}
             dismissToast={dismissToastSpy}
             onClearAllToasts={dismissAllToastsSpy}
-            showClearAllButton
+            showClearAllButtonAt={0}
           />
         );
 
@@ -219,13 +219,13 @@ describe('EuiGlobalToastList', () => {
         expect(dismissAllToastsButton.exists()).toEqual(false);
       });
 
-      test('is visible when toasts exceed the clear all threshold with the showClearAllButton prop passed', () => {
+      test('is displayed when the number of toasts to be displayed equals the internal default threshold value', () => {
         const dismissToastSpy = jest.fn();
         const dismissAllToastsSpy = jest.fn();
         const TOAST_LIFE_TIME_MS = 10;
         const TOAST_LIFE_TIME_MS_OVERRIDE = 100;
 
-        const TOAST_COUNT = CLEAR_ALL_TOASTS_THRESHOLD + 1;
+        const TOAST_COUNT = CLEAR_ALL_TOASTS_THRESHOLD_DEFAULT;
 
         const component = mount(
           <EuiGlobalToastList
@@ -237,7 +237,6 @@ describe('EuiGlobalToastList', () => {
             toastLifeTimeMs={TOAST_LIFE_TIME_MS}
             dismissToast={dismissToastSpy}
             onClearAllToasts={dismissAllToastsSpy}
-            showClearAllButton
           />
         );
 
@@ -246,11 +245,44 @@ describe('EuiGlobalToastList', () => {
           'euiClearAllToastsButton'
         );
 
+        expect(dismissAllToastsButton.exists()).toEqual(true);
+
         dismissAllToastsButton.simulate('click');
 
-        act(() => {
-          jest.advanceTimersByTime(1);
-        });
+        expect(dismissToastSpy).toHaveBeenCalledTimes(TOAST_COUNT);
+        expect(dismissAllToastsSpy).toHaveBeenCalled();
+      });
+
+      test('is visible when the number of toasts to be displayed exceeds the threshold value set with the showClearAllButtonAt prop', () => {
+        const dismissToastSpy = jest.fn();
+        const dismissAllToastsSpy = jest.fn();
+        const TOAST_LIFE_TIME_MS = 10;
+        const TOAST_LIFE_TIME_MS_OVERRIDE = 100;
+
+        const TOAST_COUNT = 5;
+
+        const component = mount(
+          <EuiGlobalToastList
+            toasts={Array.from(new Array(TOAST_COUNT)).map((_, idx) => ({
+              id: String(idx),
+              'data-test-subj': String(idx),
+              toastLifeTimeMs: TOAST_LIFE_TIME_MS_OVERRIDE,
+            }))}
+            toastLifeTimeMs={TOAST_LIFE_TIME_MS}
+            dismissToast={dismissToastSpy}
+            onClearAllToasts={dismissAllToastsSpy}
+            showClearAllButtonAt={TOAST_COUNT - 1}
+          />
+        );
+
+        const dismissAllToastsButton = findTestSubject(
+          component,
+          'euiClearAllToastsButton'
+        );
+
+        expect(dismissAllToastsButton.exists()).toEqual(true);
+
+        dismissAllToastsButton.simulate('click');
 
         expect(dismissToastSpy).toHaveBeenCalledTimes(TOAST_COUNT);
         expect(dismissAllToastsSpy).toHaveBeenCalled();

@@ -36,7 +36,7 @@ export const SIDES = keysOf(sideToClassNameMap);
 
 export const TOAST_FADE_OUT_MS = 250;
 
-export const CLEAR_ALL_TOASTS_THRESHOLD = 3;
+export const CLEAR_ALL_TOASTS_THRESHOLD_DEFAULT = 3;
 
 export interface Toast extends EuiToastProps {
   id: string;
@@ -53,10 +53,12 @@ export interface EuiGlobalToastListProps extends CommonProps {
    */
   side?: ToastSide;
   /**
-   * Displays a "Clear all" button at the bottom of the toast list
+   * At this threshold, a "Clear all" button will display at the bottom of the toast list
    * that allows users to dismiss all toasts in a single click.
+   *
+   * Defaults to `3`. Set to `0` to disable the button entirely.
    */
-  showClearAllButton?: boolean;
+  showClearAllButtonAt?: number;
   /**
    * Optional callback that fires when a user clicks the "Clear all" button.
    * Ignored if `showClearAll` is not `true`.
@@ -69,9 +71,9 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
   toasts = [],
   dismissToast: dismissToastProp,
   toastLifeTimeMs,
-  showClearAllButton,
   onClearAllToasts,
   side = 'right',
+  showClearAllButtonAt = CLEAR_ALL_TOASTS_THRESHOLD_DEFAULT,
   ...rest
 }) => {
   const [toastIdToDismissedMap, setToastIdToDismissedMap] = useState<{
@@ -303,7 +305,7 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
     );
   });
 
-  if (showClearAllButton && toasts.length > CLEAR_ALL_TOASTS_THRESHOLD) {
+  if (showClearAllButtonAt && toasts.length >= showClearAllButtonAt) {
     const dismissAllToastImmediately = () => {
       toasts.forEach((toast) => dismissToastProp(toast));
       onClearAllToasts?.();
