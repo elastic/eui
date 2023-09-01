@@ -281,6 +281,15 @@ export type CommonGridProps = CommonProps &
      */
     renderCustomGridBody?: (args: EuiDataGridCustomBodyProps) => ReactNode;
     /**
+     * An optional function called to completely customize and control the rendering of
+     * EuiDataGrid's toolbar.  This can be used to add custom buttons, reorder existing ones.
+     *
+     * Behind the scenes, this function is treated as a React component,
+     * allowing hooks, context, and other React concepts to be used.
+     * It receives #EuiDataGridCustomBodyProps as its only argument.
+     */
+    renderCustomToolbar?: (args: EuiDataGridCustomToolbarProps) => ReactNode;
+    /**
      * Defines the initial style of the grid. Accepts a partial #EuiDataGridStyle object.
      * Settings provided may be overwritten or merged with user defined preferences if `toolbarVisibility.showDisplaySelector.allowDensity = true` (which is the default).
      */
@@ -482,6 +491,12 @@ export interface EuiDataGridCustomBodyProps {
    */
   setCustomGridBodyProps: (props: EuiDataGridSetCustomGridBodyProps) => void;
 }
+
+export interface EuiDataGridCustomToolbarProps extends EuiDataGridToolbarProps {
+  rowHeightsControls: ReactNode;
+  densityControls: ReactNode;
+}
+
 export type EuiDataGridSetCustomGridBodyProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     ref?: MutableRefObject<HTMLDivElement> | Ref<HTMLDivElement>;
