@@ -49,6 +49,20 @@ export interface EuiDescriptionListProps {
    * Only applies to `column` and `responsiveColumn` types.
    */
   columnGutterSize?: EuiDescriptionListColumnGapSizes;
+  /**
+   * Allows customizing specific column widths (e.g. `['100px', '200px']`). The first
+   * array value applies to the title column, and the second applies to the description column.
+   *
+   * Passing numbers instead of CSS width strings will use a ratio of widths.
+   * For example, [1, 3] will render a description column 3x the width of the title column.
+   * In other words, descriptions will have a width of `75%` and titles will have a width of `25%`.
+   *
+   * Only applies to `column` and `responsiveColumn` types.
+   *
+   * _Advanced usage note:_ column width strings also accept [CSS grid special units,
+   * sizing, keywords, and sizing functions](https://css-tricks.com/snippets/css/complete-guide-grid/#aa-special-units-functions).
+   */
+  columnWidths?: [number | string, number | string];
 }
 
 export const CHILD_TYPES = ['row', 'inline', 'column'] as const;

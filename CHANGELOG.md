@@ -1,3 +1,16 @@
+## [`88.1.0`](https://github.com/elastic/eui/tree/v88.1.0)
+
+- Added `font.defaultUnits` theme token. EUI component font sizes default to `rem` units - this token allows consumers to configure this to `px` or `em` ([#7133](https://github.com/elastic/eui/pull/7133))
+- Updated `EuiDescriptionList` with new `columnWidths` prop ([#7146](https://github.com/elastic/eui/pull/7146))
+
+**Bug fixes**
+
+- Fixed `EuiDataGrid`'s keyboard shortcuts popover display ([#7146](https://github.com/elastic/eui/pull/7146))
+
+**CSS-in-JS conversions**
+
+- Renamed `useEuiFontSize()`'s `measurement` option to `unit` for clarity ([#7133](https://github.com/elastic/eui/pull/7133))
+
 ## [`88.0.0`](https://github.com/elastic/eui/tree/v88.0.0)
 
 - Updated `EuiDescriptionList` with a new `columnGutterSize` prop ([#7062](https://github.com/elastic/eui/pull/7062))

@@ -437,14 +437,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 170,
+        "line": 180,
         "column": 27,
-        "index": 5493
+        "index": 5788
       },
       "end": {
-        "line": 173,
+        "line": 183,
         "column": 3,
-        "index": 5563
+        "index": 5858
       }
     },
     "filepath": "src/components/collapsible_nav_beta/collapsible_nav_beta.tsx"
@@ -1913,14 +1913,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 60,
+        "line": 61,
         "column": 20,
-        "index": 2080
+        "index": 2114
       },
       "end": {
-        "line": 63,
+        "line": 64,
         "column": 22,
-        "index": 2216
+        "index": 2250
       }
     },
     "filepath": "src/components/datagrid/controls/keyboard_shortcuts.tsx"
@@ -1931,14 +1931,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 67,
+        "line": 68,
         "column": 18,
-        "index": 2310
+        "index": 2344
       },
       "end": {
-        "line": 70,
+        "line": 71,
         "column": 20,
-        "index": 2454
+        "index": 2488
       }
     },
     "filepath": "src/components/datagrid/controls/keyboard_shortcuts.tsx"
@@ -1949,14 +1949,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 76,
+        "line": 77,
         "column": 20,
-        "index": 2576
+        "index": 2610
       },
       "end": {
-        "line": 79,
+        "line": 80,
         "column": 22,
-        "index": 2716
+        "index": 2750
       }
     },
     "filepath": "src/components/datagrid/controls/keyboard_shortcuts.tsx"
@@ -1967,14 +1967,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 83,
+        "line": 84,
         "column": 18,
-        "index": 2810
+        "index": 2844
       },
       "end": {
-        "line": 86,
+        "line": 87,
         "column": 20,
-        "index": 2958
+        "index": 2992
       }
     },
     "filepath": "src/components/datagrid/controls/keyboard_shortcuts.tsx"
@@ -1985,14 +1985,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 92,
+        "line": 93,
         "column": 20,
-        "index": 3080
+        "index": 3114
       },
       "end": {
-        "line": 95,
+        "line": 96,
         "column": 22,
-        "index": 3222
+        "index": 3256
       }
     },
     "filepath": "src/components/datagrid/controls/keyboard_shortcuts.tsx"
@@ -2003,14 +2003,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 99,
+        "line": 100,
         "column": 18,
-        "index": 3316
+        "index": 3350
       },
       "end": {
-        "line": 102,
+        "line": 103,
         "column": 20,
-        "index": 3466
+        "index": 3500
       }
     },
     "filepath": "src/components/datagrid/controls/keyboard_shortcuts.tsx"
@@ -2021,14 +2021,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 108,
+        "line": 109,
         "column": 20,
-        "index": 3588
+        "index": 3622
       },
       "end": {
-        "line": 111,
+        "line": 112,
         "column": 22,
-        "index": 3728
+        "index": 3762
       }
     },
     "filepath": "src/components/datagrid/controls/keyboard_shortcuts.tsx"
@@ -2039,14 +2039,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 115,
+        "line": 116,
         "column": 18,
-        "index": 3822
+        "index": 3856
       },
       "end": {
-        "line": 118,
+        "line": 119,
         "column": 20,
-        "index": 3970
+        "index": 4004
       }
     },
     "filepath": "src/components/datagrid/controls/keyboard_shortcuts.tsx"
@@ -2057,14 +2057,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 124,
+        "line": 125,
         "column": 20,
-        "index": 4092
+        "index": 4126
       },
       "end": {
-        "line": 127,
+        "line": 128,
         "column": 22,
-        "index": 4221
+        "index": 4255
       }
     },
     "filepath": "src/components/datagrid/controls/keyboard_shortcuts.tsx"
@@ -2075,14 +2075,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 131,
+        "line": 132,
         "column": 18,
-        "index": 4315
+        "index": 4349
       },
       "end": {
-        "line": 134,
+        "line": 135,
         "column": 20,
-        "index": 4481
+        "index": 4515
       }
     },
     "filepath": "src/components/datagrid/controls/keyboard_shortcuts.tsx"
@@ -2093,14 +2093,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 140,
+        "line": 141,
         "column": 20,
-        "index": 4603
+        "index": 4637
       },
       "end": {
-        "line": 143,
+        "line": 144,
         "column": 22,
-        "index": 4730
+        "index": 4764
       }
     },
     "filepath": "src/components/datagrid/controls/keyboard_shortcuts.tsx"
@@ -2111,14 +2111,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 147,
+        "line": 148,
         "column": 18,
-        "index": 4824
+        "index": 4858
       },
       "end": {
-        "line": 150,
+        "line": 151,
         "column": 20,
-        "index": 4988
+        "index": 5022
       }
     },
     "filepath": "src/components/datagrid/controls/keyboard_shortcuts.tsx"
@@ -2129,14 +2129,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 157,
+        "line": 158,
         "column": 22,
-        "index": 5135
+        "index": 5169
       },
       "end": {
-        "line": 160,
+        "line": 161,
         "column": 24,
-        "index": 5265
+        "index": 5299
       }
     },
     "filepath": "src/components/datagrid/controls/keyboard_shortcuts.tsx"
@@ -2147,14 +2147,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 163,
+        "line": 164,
         "column": 22,
-        "index": 5346
+        "index": 5380
       },
       "end": {
-        "line": 166,
+        "line": 167,
         "column": 24,
-        "index": 5481
+        "index": 5515
       }
     },
     "filepath": "src/components/datagrid/controls/keyboard_shortcuts.tsx"
@@ -2165,14 +2165,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 171,
+        "line": 172,
         "column": 18,
-        "index": 5599
+        "index": 5633
       },
       "end": {
-        "line": 174,
+        "line": 175,
         "column": 20,
-        "index": 5770
+        "index": 5804
       }
     },
     "filepath": "src/components/datagrid/controls/keyboard_shortcuts.tsx"
@@ -2183,14 +2183,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 181,
+        "line": 182,
         "column": 22,
-        "index": 5917
+        "index": 5951
       },
       "end": {
-        "line": 184,
+        "line": 185,
         "column": 24,
-        "index": 6047
+        "index": 6081
       }
     },
     "filepath": "src/components/datagrid/controls/keyboard_shortcuts.tsx"
@@ -2201,14 +2201,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 187,
+        "line": 188,
         "column": 22,
-        "index": 6128
+        "index": 6162
       },
       "end": {
-        "line": 190,
+        "line": 191,
         "column": 24,
-        "index": 6261
+        "index": 6295
       }
     },
     "filepath": "src/components/datagrid/controls/keyboard_shortcuts.tsx"
@@ -2219,14 +2219,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 195,
+        "line": 196,
         "column": 18,
-        "index": 6379
+        "index": 6413
       },
       "end": {
-        "line": 198,
+        "line": 199,
         "column": 20,
-        "index": 6548
+        "index": 6582
       }
     },
     "filepath": "src/components/datagrid/controls/keyboard_shortcuts.tsx"
@@ -2237,14 +2237,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 204,
+        "line": 205,
         "column": 20,
-        "index": 6670
+        "index": 6704
       },
       "end": {
-        "line": 207,
+        "line": 208,
         "column": 22,
-        "index": 6804
+        "index": 6838
       }
     },
     "filepath": "src/components/datagrid/controls/keyboard_shortcuts.tsx"
@@ -2255,14 +2255,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 211,
+        "line": 212,
         "column": 18,
-        "index": 6898
+        "index": 6932
       },
       "end": {
-        "line": 214,
+        "line": 215,
         "column": 20,
-        "index": 7064
+        "index": 7098
       }
     },
     "filepath": "src/components/datagrid/controls/keyboard_shortcuts.tsx"
@@ -2273,14 +2273,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 220,
+        "line": 221,
         "column": 20,
-        "index": 7186
+        "index": 7220
       },
       "end": {
-        "line": 223,
+        "line": 224,
         "column": 22,
-        "index": 7324
+        "index": 7358
       }
     },
     "filepath": "src/components/datagrid/controls/keyboard_shortcuts.tsx"
@@ -2291,14 +2291,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 227,
+        "line": 228,
         "column": 18,
-        "index": 7418
+        "index": 7452
       },
       "end": {
-        "line": 230,
+        "line": 231,
         "column": 20,
-        "index": 7583
+        "index": 7617
       }
     },
     "filepath": "src/components/datagrid/controls/keyboard_shortcuts.tsx"
@@ -2309,14 +2309,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 236,
+        "line": 237,
         "column": 20,
-        "index": 7705
+        "index": 7739
       },
       "end": {
-        "line": 239,
+        "line": 240,
         "column": 22,
-        "index": 7836
+        "index": 7870
       }
     },
     "filepath": "src/components/datagrid/controls/keyboard_shortcuts.tsx"
@@ -2327,14 +2327,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 243,
+        "line": 244,
         "column": 18,
-        "index": 7930
+        "index": 7964
       },
       "end": {
-        "line": 246,
+        "line": 247,
         "column": 20,
-        "index": 8085
+        "index": 8119
       }
     },
     "filepath": "src/components/datagrid/controls/keyboard_shortcuts.tsx"
@@ -2345,14 +2345,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 252,
+        "line": 253,
         "column": 20,
-        "index": 8207
+        "index": 8241
       },
       "end": {
-        "line": 255,
+        "line": 256,
         "column": 22,
-        "index": 8340
+        "index": 8374
       }
     },
     "filepath": "src/components/datagrid/controls/keyboard_shortcuts.tsx"
@@ -2363,14 +2363,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 259,
+        "line": 260,
         "column": 18,
-        "index": 8434
+        "index": 8468
       },
       "end": {
-        "line": 262,
+        "line": 263,
         "column": 20,
-        "index": 8591
+        "index": 8625
       }
     },
     "filepath": "src/components/datagrid/controls/keyboard_shortcuts.tsx"
