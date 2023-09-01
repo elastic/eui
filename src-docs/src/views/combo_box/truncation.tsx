@@ -17,11 +17,6 @@ const options: EuiComboBoxOptionOption[] = [
   {
     label:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, lorem ispum',
-    // Option `truncationProps` will override EuiComboBox `truncationProps`
-    truncationProps: {
-      truncation: 'start',
-      truncationOffset: 5,
-    },
   },
   {
     label:
@@ -40,8 +35,12 @@ const options: EuiComboBoxOptionOption[] = [
     label: 'Vestibulum lobortis ipsum sit amet tellus scelerisque vestibulum',
   },
   {
-    label:
-      'Sed commodo sapien ut purus mattis, at condimentum mauris porttitor',
+    label: 'This combobox option has an individual `truncationProps` override',
+    // Option `truncationProps` will override EuiComboBox `truncationProps`
+    truncationProps: {
+      truncation: 'start',
+      truncationOffset: 5,
+    },
   },
 ];
 
