@@ -404,8 +404,8 @@ export const MultipleFixedHeaders: Story = {
       <EuiHeader position="fixed">
         <EuiHeaderSection>
           <EuiCollapsibleNavBeta {...args}>
-            This story tests that EuiCollapsibleNav's fixed header detection &
-            offsetting works as expected
+            This story tests that EuiCollapsibleNav automatically adjusts its
+            position & height for multiple fixed headers
           </EuiCollapsibleNavBeta>
           Second header
         </EuiHeaderSection>

@@ -126,14 +126,14 @@ const euiOverflowShadowStyles = (
  *    Others like Safari, won't show anything at all.
  */
 interface _EuiYScroll {
-  height?: CSSProperties['height'];
+  height?: CSSProperties['height'] | false;
 }
 export const euiYScroll = (
   euiTheme: UseEuiTheme,
   { height }: _EuiYScroll = {}
 ) => `
   ${euiScrollBarStyles(euiTheme)}
-  ${logicalCSS('height', height || '100%')}
+  ${height !== false ? logicalCSS('height', height || '100%') : ''}
   ${logicalCSSWithFallback('overflow-y', 'auto')}
   ${logicalCSSWithFallback('overflow-x', 'hidden')}
   &:focus {
