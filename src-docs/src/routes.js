@@ -227,6 +227,8 @@ import { TabsExample } from './views/tabs/tabs_example';
 
 import { TextDiffExample } from './views/text_diff/text_diff_example';
 
+import { TextTruncateExample } from './views/text_truncate/text_truncate_example';
+
 import { TextExample } from './views/text/text_example';
 
 import { TimelineExample } from './views/timeline/timeline_example';
@@ -670,6 +672,7 @@ const navigation = [
       ResizeObserverExample,
       ScrollExample,
       TextDiffExample,
+      TextTruncateExample,
       WindowEventExample,
     ].map((example) => createExample(example)),
   },
