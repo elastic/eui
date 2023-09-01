@@ -298,8 +298,16 @@ const createExample = (example, customTitle) => {
     );
   }
 
-  const { title, sections, isBeta, isNew, playground, guidelines, ...rest } =
-    example;
+  const {
+    title,
+    sections,
+    isBeta,
+    isNew,
+    isDeprecated,
+    playground,
+    guidelines,
+    ...rest
+  } = example;
   const filteredSections = sections.filter((section) => section !== undefined);
 
   filteredSections.forEach((section) => {
@@ -329,6 +337,7 @@ const createExample = (example, customTitle) => {
         title={title}
         isBeta={isBeta}
         isNew={isNew}
+        isDeprecated={isDeprecated}
         playground={playgroundComponent}
         guidelines={guidelines}
         {...rest}
@@ -344,11 +353,19 @@ const createExample = (example, customTitle) => {
     sections: filteredSections,
     isBeta,
     isNew,
+    isDeprecated,
     hasGuidelines: typeof guidelines !== 'undefined',
   };
 };
 
-const createTabbedPage = ({ title, pages, isBeta, isNew, ...rest }) => {
+const createTabbedPage = ({
+  title,
+  pages,
+  isBeta,
+  isNew,
+  isDeprecated,
+  ...rest
+}) => {
   const component = () => (
     <GuideTabbedPage title={title} pages={pages} {...rest} />
   );
@@ -367,6 +384,7 @@ const createTabbedPage = ({ title, pages, isBeta, isNew, ...rest }) => {
     sections: pagesSections,
     isBeta,
     isNew,
+    isDeprecated,
   };
 };
 

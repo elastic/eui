@@ -12,10 +12,9 @@ import { CSSProperties } from 'react';
  * Font units of measure
  */
 
-export const EuiThemeFontSizeMeasurements = ['rem', 'px', 'em'] as const;
+export const EuiThemeFontUnits = ['rem', 'px', 'em'] as const;
 
-export type _EuiThemeFontSizeMeasurement =
-  (typeof EuiThemeFontSizeMeasurements)[number];
+export type _EuiThemeFontUnit = (typeof EuiThemeFontUnits)[number];
 
 /*
  * Font scale
@@ -59,6 +58,16 @@ export type _EuiThemeFontBase = {
    * https://developer.mozilla.org/en-US/docs/Web/CSS/font-feature-settings
    */
   featureSettings?: string;
+  /**
+   * Sets the default units used for font size & line height set by UI components
+   * like EuiText or EuiTitle. Defaults to `rem`.
+   *
+   * NOTE: This may overridden by some internal usages, e.g.
+   * EuiText's `relative` size which must use `em`.
+   *
+   * @default 'rem'
+   */
+  defaultUnits: _EuiThemeFontUnit;
   /**
    * A computed number that is 1/4 of `base`
    */

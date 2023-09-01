@@ -1,3 +1,51 @@
+## [`88.1.0`](https://github.com/elastic/eui/tree/v88.1.0)
+
+- Added `font.defaultUnits` theme token. EUI component font sizes default to `rem` units - this token allows consumers to configure this to `px` or `em` ([#7133](https://github.com/elastic/eui/pull/7133))
+- Updated `EuiDescriptionList` with new `columnWidths` prop ([#7146](https://github.com/elastic/eui/pull/7146))
+
+**Bug fixes**
+
+- Fixed `EuiDataGrid`'s keyboard shortcuts popover display ([#7146](https://github.com/elastic/eui/pull/7146))
+
+**CSS-in-JS conversions**
+
+- Renamed `useEuiFontSize()`'s `measurement` option to `unit` for clarity ([#7133](https://github.com/elastic/eui/pull/7133))
+
+## [`88.0.0`](https://github.com/elastic/eui/tree/v88.0.0)
+
+- Updated `EuiDescriptionList` with a new `columnGutterSize` prop ([#7062](https://github.com/elastic/eui/pull/7062))
+
+**Deprecations**
+
+- Deprecated `EuiSuggest`. We recommend using `EuiSelectable` or `EuiComboBox` instead ([#7122](https://github.com/elastic/eui/pull/7122))
+- Deprecated `EuiControlBar`. We recommend using `EuiBottomBar` instead ([#7122](https://github.com/elastic/eui/pull/7122))
+- Deprecated `EuiColorStops`. We recommend copying the component to your application if necessary ([#7122](https://github.com/elastic/eui/pull/7122))
+- Deprecated `EuiNotificationEvent`. We recommend copying the component to your application if necessary ([#7122](https://github.com/elastic/eui/pull/7122))
+
+**Breaking changes**
+
+- Renamed `EuiDescriptionList`'s `gutterSize` prop to `rowGutterSize` ([#7062](https://github.com/elastic/eui/pull/7062))
+- `EuiDescriptionList`'s `rowGutterSize` prop now defaults to a size of `s` (was previously `m`) ([#7062](https://github.com/elastic/eui/pull/7062))
+
+**Accessibility**
+
+- Fixed the dark mode colors of inline `EuiDescriptionListTitle`s to meet WCAG color contrast requirements ([#7062](https://github.com/elastic/eui/pull/7062))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiKeyPadMenuItem` to Emotion; Removed `$euiKeyPadMenuSize` and `$euiKeyPadMenuMarginSize` ([#7118](https://github.com/elastic/eui/pull/7118))
+
+## [`87.2.0`](https://github.com/elastic/eui/tree/v87.2.0)
+
+- `EuiResizableButton` is now available as a generic top-level export ([#7087](https://github.com/elastic/eui/pull/7087))
+- Added new `alignIndicator` prop to `EuiResizableButton`. Defaults to `center`, and can now additionally be configured to `start` and `end` ([#7087](https://github.com/elastic/eui/pull/7087))
+- Updated `useGeneratedHtmlId` hook to use `React.useId` as the source of unique identifiers when available ([#7095](https://github.com/elastic/eui/pull/7095))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiResizableButton` to Emotion; Removed `$euiResizableButtonTransitionSpeed` and `$euiResizableButtonSize` ([#7081](https://github.com/elastic/eui/pull/7081))
+- Converted `EuiResizableCollapseButton` to Emotion ([#7091](https://github.com/elastic/eui/pull/7091))
+
 ## [`87.1.0`](https://github.com/elastic/eui/tree/v87.1.0)
 
 - Updated the underlying library powering `EuiAutoSizer`. This primarily affects typing around the `disableHeight` and `disableWidth` props ([#6798](https://github.com/elastic/eui/pull/6798))

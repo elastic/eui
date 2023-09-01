@@ -12,5 +12,6 @@ export type {
   EuiColorPalettePickerPaletteFixedProps,
   EuiColorPalettePickerPaletteGradientProps,
   EuiColorPalettePickerPaletteProps,
+  PaletteColorStop,
 } from './color_palette_picker';
 export { EuiColorPalettePicker } from './color_palette_picker';

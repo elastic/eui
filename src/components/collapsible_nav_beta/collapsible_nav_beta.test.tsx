@@ -50,6 +50,22 @@ describe('EuiCollapsibleNavBeta', () => {
     expect(getByTestSubject('nav')).toHaveStyle({ 'inline-size': '48px' });
   });
 
+  it('calls `onCollapseToggle` with the new collapsed state', () => {
+    const onCollapseToggle = jest.fn();
+    const { getByTestSubject } = render(
+      <EuiCollapsibleNavBeta
+        initialIsCollapsed={true}
+        onCollapseToggle={onCollapseToggle}
+      >
+        Nav content
+      </EuiCollapsibleNavBeta>
+    );
+    fireEvent.click(getByTestSubject('euiCollapsibleNavButton'));
+    expect(onCollapseToggle).toHaveBeenLastCalledWith(false);
+    fireEvent.click(getByTestSubject('euiCollapsibleNavButton'));
+    expect(onCollapseToggle).toHaveBeenLastCalledWith(true);
+  });
+
   it('automatically accounts for fixed EuiHeaders in its positioning', () => {
     const { getByTestSubject } = render(
       <EuiHeader position="fixed">

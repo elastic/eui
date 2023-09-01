@@ -46,6 +46,11 @@ export type EuiCollapsibleNavBetaProps = CommonProps &
      */
     initialIsCollapsed?: boolean;
     /**
+     * Optional callback that fires when the user toggles the nav between
+     * collapsed and uncollapsed states
+     */
+    onCollapseToggle?: (isCollapsed: boolean) => void;
+    /**
      * Defaults to 248px wide. The navigation width determines behavior at
      * various responsive breakpoints.
      *
@@ -80,6 +85,7 @@ export const EuiCollapsibleNavBeta: FunctionComponent<
   className,
   style,
   initialIsCollapsed = false,
+  onCollapseToggle,
   width: _width = 248,
   side = 'left',
   focusTrapProps: _focusTrapProps,
@@ -93,8 +99,12 @@ export const EuiCollapsibleNavBeta: FunctionComponent<
    */
   const [isCollapsed, setIsCollapsed] = useState(initialIsCollapsed);
   const toggleCollapsed = useCallback(
-    () => setIsCollapsed((isCollapsed) => !isCollapsed),
-    []
+    () =>
+      setIsCollapsed((isCollapsed) => {
+        onCollapseToggle?.(!isCollapsed);
+        return !isCollapsed;
+      }),
+    [onCollapseToggle]
   );
   const onClose = useCallback(() => setIsCollapsed(true), []);
 

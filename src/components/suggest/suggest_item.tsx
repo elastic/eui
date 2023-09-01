@@ -58,6 +58,9 @@ type PropsForButton = Omit<
   onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
+/**
+ * @deprecated
+ */
 export type EuiSuggestItemProps = CommonProps &
   _EuiSuggestItemPropsBase &
   ExclusiveUnion<PropsForSpan, PropsForButton>;
@@ -111,6 +114,13 @@ const colorToClassNameMap: ColorToClassMap = {
 
 export const COLORS = keysOf(colorToClassNameMap);
 
+/**
+ * @deprecated - EuiSuggest is scheduled for deprecation due to low internal usage and high
+ * overlap with other existing EUI components. We recommend using EuiSelectable instead,
+ * or copying this component into your own application for usage if necessary.
+ *
+ * The component will be permanently removed in October 2023.
+ */
 export const EuiSuggestItem: FunctionComponent<EuiSuggestItemProps> = ({
   className,
   label,

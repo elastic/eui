@@ -46,8 +46,8 @@ const euiScaleText = (
 ) => {
   const { fontSize, lineHeight } = euiFontSize(euiThemeContext, 'm', options);
   const { euiTheme } = euiThemeContext;
-  const { measurement, customScale: _customScale } = options;
-  const lineHeightSize = measurement === 'em' ? `${lineHeight}em` : lineHeight;
+  const { unit, customScale: _customScale } = options;
+  const lineHeightSize = unit === 'em' ? `${lineHeight}em` : lineHeight;
 
   const headings = {
     h1: euiTitle(euiThemeContext, 'l', options),
@@ -345,25 +345,22 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
     // Sizes
     m: css`
       ${euiScaleText(euiThemeContext, {
-        measurement: 'rem',
         customScale: 'm',
       })}
     `,
     s: css`
       ${euiScaleText(euiThemeContext, {
-        measurement: 'rem',
         customScale: 's',
       })}
     `,
     xs: css`
       ${euiScaleText(euiThemeContext, {
-        measurement: 'rem',
         customScale: 'xs',
       })}
     `,
     relative: css`
       ${euiScaleText(euiThemeContext, {
-        measurement: 'em',
+        unit: 'em',
       })}
     `,
   };
