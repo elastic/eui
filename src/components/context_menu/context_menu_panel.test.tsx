@@ -47,6 +47,26 @@ describe('EuiContextMenuPanel', () => {
       });
     });
 
+    describe('accessibility', () => {
+      test('aria-current is set on the selected item', () => {
+        const extraItems = [
+          ...items,
+          <EuiContextMenuItem
+            key="D"
+            data-test-subj="itemD"
+            aria-current="true"
+          >
+            Option D
+          </EuiContextMenuItem>,
+        ];
+        const { container } = render(
+          <EuiContextMenuPanel items={extraItems} />
+        );
+
+        expect(container.firstChild).toMatchSnapshot();
+      });
+    });
+
     describe('size', () => {
       SIZES.forEach((size) => {
         it(`${size} is rendered`, () => {

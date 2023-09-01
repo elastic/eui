@@ -13,6 +13,77 @@ exports[`EuiContextMenuPanel is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiContextMenuPanel props accessibility aria-current is set on the selected item 1`] = `
+<div
+  class="euiContextMenuPanel"
+  tabindex="-1"
+>
+  <div>
+    <button
+      class="euiContextMenuItem"
+      data-test-subj="itemA"
+      type="button"
+    >
+      <span
+        class="euiContextMenu__itemLayout"
+      >
+        <span
+          class="euiContextMenuItem__text"
+        >
+          Option A
+        </span>
+      </span>
+    </button>
+    <button
+      class="euiContextMenuItem"
+      data-test-subj="itemB"
+      type="button"
+    >
+      <span
+        class="euiContextMenu__itemLayout"
+      >
+        <span
+          class="euiContextMenuItem__text"
+        >
+          Option B
+        </span>
+      </span>
+    </button>
+    <button
+      class="euiContextMenuItem"
+      data-test-subj="itemC"
+      type="button"
+    >
+      <span
+        class="euiContextMenu__itemLayout"
+      >
+        <span
+          class="euiContextMenuItem__text"
+        >
+          Option C
+        </span>
+      </span>
+    </button>
+    <button
+      aria-current="true"
+      class="euiContextMenuItem"
+      data-test-subj="itemD"
+      type="button"
+    >
+      <span
+        class="euiContextMenu__itemLayout"
+      >
+        <span
+          class="euiContextMenuItem__text"
+        >
+          Option D
+        </span>
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
 exports[`EuiContextMenuPanel props onClose renders a button as a title 1`] = `
 <div
   class="euiContextMenuPanel"
