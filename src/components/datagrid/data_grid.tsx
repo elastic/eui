@@ -129,6 +129,7 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
       rowHeightsOptions: _rowHeightsOptions,
       virtualizationOptions,
       renderCustomGridBody,
+      renderCustomToolbar,
       ...rest
     } = props;
 
@@ -203,15 +204,20 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
       );
     }, [columns]);
 
-    const [displaySelector, gridStyles, rowHeightsOptions] =
-      useDataGridDisplaySelector(
-        checkOrDefaultToolBarDisplayOptions(
-          toolbarVisibility,
-          'showDisplaySelector'
-        ),
-        gridStyleWithDefaults,
-        _rowHeightsOptions
-      );
+    const [
+      displaySelector,
+      gridStyles,
+      rowHeightsOptions,
+      rowHeightsControls,
+      densityControls,
+    ] = useDataGridDisplaySelector(
+      checkOrDefaultToolBarDisplayOptions(
+        toolbarVisibility,
+        'showDisplaySelector'
+      ),
+      gridStyleWithDefaults,
+      _rowHeightsOptions
+    );
 
     /**
      * Column order & visibility
@@ -389,19 +395,36 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
                 ref={setResizeRef}
                 {...rest}
               >
-                {showToolbar && (
-                  <EuiDataGridToolbar
-                    gridWidth={gridWidth}
-                    minSizeForControls={minSizeForControls}
-                    toolbarVisibility={toolbarVisibility}
-                    isFullScreen={isFullScreen}
-                    fullScreenSelector={fullScreenSelector}
-                    keyboardShortcuts={keyboardShortcuts}
-                    displaySelector={displaySelector}
-                    columnSelector={columnSelector}
-                    columnSorting={columnSorting}
-                  />
-                )}
+                <>
+                  {showToolbar &&
+                    renderCustomToolbar &&
+                    renderCustomToolbar({
+                      gridWidth,
+                      minSizeForControls,
+                      toolbarVisibility,
+                      isFullScreen,
+                      fullScreenSelector,
+                      keyboardShortcuts,
+                      displaySelector,
+                      columnSelector,
+                      columnSorting,
+                      rowHeightsControls,
+                      densityControls,
+                    })}
+                  {showToolbar && !renderCustomToolbar && (
+                    <EuiDataGridToolbar
+                      gridWidth={gridWidth}
+                      minSizeForControls={minSizeForControls}
+                      toolbarVisibility={toolbarVisibility}
+                      isFullScreen={isFullScreen}
+                      fullScreenSelector={fullScreenSelector}
+                      keyboardShortcuts={keyboardShortcuts}
+                      displaySelector={displaySelector}
+                      columnSelector={columnSelector}
+                      columnSorting={columnSorting}
+                    />
+                  )}
+                </>
                 {inMemory ? (
                   <EuiDataGridInMemoryRenderer
                     inMemory={inMemory}
