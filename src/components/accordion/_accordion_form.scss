@@ -7,19 +7,11 @@
   }
 }
 
-.euiAccordionForm__title {
-  display: inline-block;
-}
-
 .euiAccordionForm__button {
   padding: $euiSize $euiSize $euiSize 0;
 
   &:hover {
     text-decoration: none;
-
-    .euiAccordionForm__title {
-      text-decoration: underline;
-    }
   }
 }
 
