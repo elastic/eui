@@ -10,18 +10,19 @@ import React, { Component, HTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 import { tabbable, FocusableElement } from 'tabbable';
 
-import { CommonProps } from '../common';
-
-import { EuiLoadingSpinner } from '../loading';
-import { EuiResizeObserver } from '../observer/resize_observer';
-import { EuiText } from '../text';
-import { EuiI18n } from '../i18n';
+import { logicalCSS } from '../../global_styling';
 import {
   htmlIdGenerator,
   withEuiTheme,
   WithEuiThemeProps,
 } from '../../services';
+import { CommonProps } from '../common';
+import { EuiLoadingSpinner } from '../loading';
+import { EuiResizeObserver } from '../observer/resize_observer';
+import { EuiText } from '../text';
+import { EuiI18n } from '../i18n';
 import type { EuiButtonIconProps } from '../button';
+
 import { EuiAccordionTrigger } from './accordion_trigger';
 import {
   euiAccordionStyles,
@@ -29,7 +30,6 @@ import {
   euiAccordionChildWrapperStyles,
   euiAccordionSpinnerStyles,
 } from './accordion.styles';
-import { logicalCSS } from '../../global_styling';
 
 export const PADDING_SIZES = ['none', 'xs', 's', 'm', 'l', 'xl'] as const;
 export type EuiAccordionPaddingSize = (typeof PADDING_SIZES)[number];
@@ -261,33 +261,31 @@ export class EuiAccordionClass extends Component<
   render() {
     const {
       children,
-      buttonContent,
       className,
       id,
       element: Element = 'div',
+      buttonElement,
+      buttonProps,
       buttonClassName,
       buttonContentClassName,
+      buttonContent,
+      arrowDisplay,
+      arrowProps,
       extraAction,
       paddingSize,
       borders,
       initialIsOpen,
-      arrowDisplay,
       forceState,
       isLoading,
       isLoadingMessage,
       isDisabled,
-      buttonProps,
-      buttonElement,
-      arrowProps,
       theme,
       ...rest
     } = this.props;
 
     const classes = classNames(
       'euiAccordion',
-      {
-        'euiAccordion-isOpen': this.isOpen,
-      },
+      { 'euiAccordion-isOpen': this.isOpen },
       className
     );
 
