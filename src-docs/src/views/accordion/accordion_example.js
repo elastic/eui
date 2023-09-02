@@ -422,11 +422,6 @@ export const AccordionExample = {
               <EuiCode>buttonClassName</EuiCode>, adds extra padding to the
               button for better spacing
             </li>
-            <li>
-              <EuiCode>.euiAccordionForm__extraAction</EuiCode>: Applied to the
-              button passed to <EuiCode>extraAction</EuiCode>, will visually
-              hide it until hover or focus
-            </li>
           </ul>
           <p>
             We also recommend creating a fieldset/legend combination for better
@@ -446,12 +441,6 @@ export const AccordionExample = {
   element="fieldset"
   buttonClassName="euiAccordionForm__button"
   buttonContent={buttonContent}
-  extraAction={<EuiButtonIcon
-    iconType="cross"
-    color="danger"
-    className="euiAccordionForm__extraAction"
-    aria-label="Delete"
-  />}
   paddingSize="l">
   <!-- Content to show when expanded -->
 </EuiAccordion>`,

@@ -1,4 +1,5 @@
 import React from 'react';
+import { css } from '@emotion/react';
 
 import {
   EuiAccordion,
@@ -17,6 +18,7 @@ import {
   EuiButtonIcon,
 } from '../../../../src/components';
 import { useGeneratedHtmlId } from '../../../../src/services';
+import { euiCanAnimate } from '../../../../src/global_styling';
 
 const repeatableForm = (
   <EuiForm component="form">
@@ -69,12 +71,26 @@ const buttonContent = (
   </div>
 );
 
+// Custom CSS to make the extra action only appear on hover or focus
+// Useful if there's multiple accordions in a row to reduce visual overwhelm
 const extraAction = (
   <EuiButtonIcon
+    aria-label="Delete"
     iconType="cross"
     color="danger"
-    className="euiAccordionForm__extraAction"
-    aria-label="Delete"
+    css={({ euiTheme }) => css`
+      opacity: 0;
+
+      &:focus,
+      .euiAccordion:hover & {
+        opacity: 1;
+      }
+
+      ${euiCanAnimate} {
+        transition: opacity ${euiTheme.animation.normal}
+          ${euiTheme.animation.resistance};
+      }
+    `}
   />
 );
 

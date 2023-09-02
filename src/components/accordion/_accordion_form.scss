@@ -1,12 +1,3 @@
-.euiAccordionForm__extraAction {
-  opacity: 0;
-  transition: opacity $euiAnimSpeedNormal $euiAnimSlightResistance;
-
-  &:focus {
-    opacity: 1;
-  }
-}
-
 .euiAccordionForm__button {
   padding: $euiSize $euiSize $euiSize 0;
 
@@ -21,12 +12,5 @@
 
   & + .euiAccordionForm {
     border-top: none;
-  }
-
-  &:hover {
-    .euiAccordionForm__extraAction {
-      opacity: 1;
-      visibility: visible;
-    }
   }
 }
