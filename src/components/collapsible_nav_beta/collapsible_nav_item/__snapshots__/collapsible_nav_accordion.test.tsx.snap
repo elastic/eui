@@ -45,23 +45,21 @@ exports[`EuiCollapsibleNavAccordion renders as a sub item 1`] = `
     role="region"
     tabindex="-1"
   >
-    <div>
+    <div
+      class="euiAccordion__children emotion-euiAccordion__children"
+    >
       <div
-        class="euiAccordion__children emotion-euiAccordion__children"
+        class="euiCollapsibleNavAccordion__children emotion-euiCollapsibleNavAccordion__children-isSubItem"
       >
-        <div
-          class="euiCollapsibleNavAccordion__children emotion-euiCollapsibleNavAccordion__children-isSubItem"
+        <span
+          class="euiCollapsibleNavLink euiCollapsibleNavSubItem emotion-euiCollapsibleNavLink-isSubItem"
         >
           <span
-            class="euiCollapsibleNavLink euiCollapsibleNavSubItem emotion-euiCollapsibleNavLink-isSubItem"
+            class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
           >
-            <span
-              class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
-            >
-              sub item
-            </span>
+            sub item
           </span>
-        </div>
+        </span>
       </div>
     </div>
   </div>
@@ -115,23 +113,21 @@ exports[`EuiCollapsibleNavAccordion renders as a top level item 1`] = `
     role="region"
     tabindex="-1"
   >
-    <div>
+    <div
+      class="euiAccordion__children emotion-euiAccordion__children"
+    >
       <div
-        class="euiAccordion__children emotion-euiAccordion__children"
+        class="euiCollapsibleNavAccordion__children emotion-euiCollapsibleNavAccordion__children-isTopItem"
       >
-        <div
-          class="euiCollapsibleNavAccordion__children emotion-euiCollapsibleNavAccordion__children-isTopItem"
+        <span
+          class="euiCollapsibleNavLink euiCollapsibleNavSubItem emotion-euiCollapsibleNavLink-isSubItem"
         >
           <span
-            class="euiCollapsibleNavLink euiCollapsibleNavSubItem emotion-euiCollapsibleNavLink-isSubItem"
+            class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
           >
-            <span
-              class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
-            >
-              sub item
-            </span>
+            sub item
           </span>
-        </div>
+        </span>
       </div>
     </div>
   </div>
