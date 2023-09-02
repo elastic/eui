@@ -5,7 +5,7 @@ exports[`EuiCollapsibleNavAccordion renders as a sub item 1`] = `
   class="euiAccordion euiCollapsibleNavAccordion emotion-euiAccordion-euiCollapsibleNavAccordion-isSubItem"
 >
   <div
-    class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
+    class="euiAccordion__triggerWrapper emotion-EuiAccordionTrigger"
   >
     <div
       aria-controls="generated-id"
@@ -26,7 +26,7 @@ exports[`EuiCollapsibleNavAccordion renders as a sub item 1`] = `
       aria-controls="generated-id"
       aria-expanded="false"
       aria-labelledby="generated-id"
-      class="euiButtonIcon euiAccordion__iconButton euiAccordion__iconButton--right emotion-euiButtonIcon-xs-empty-text-euiAccordion__iconButton-arrowRight-euiCollapsibleNavAccordion__arrow"
+      class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-right-euiCollapsibleNavAccordion__arrow"
       tabindex="0"
       type="button"
     >
@@ -75,7 +75,7 @@ exports[`EuiCollapsibleNavAccordion renders as a top level item 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
+    class="euiAccordion__triggerWrapper emotion-EuiAccordionTrigger"
   >
     <div
       aria-controls="generated-id"
@@ -96,7 +96,7 @@ exports[`EuiCollapsibleNavAccordion renders as a top level item 1`] = `
       aria-controls="generated-id"
       aria-expanded="false"
       aria-labelledby="generated-id"
-      class="euiButtonIcon euiAccordion__iconButton euiAccordion__iconButton--right emotion-euiButtonIcon-xs-empty-text-euiAccordion__iconButton-arrowRight-euiCollapsibleNavAccordion__arrow"
+      class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-right-euiCollapsibleNavAccordion__arrow"
       tabindex="0"
       type="button"
     >

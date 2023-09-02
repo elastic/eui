@@ -21,16 +21,13 @@ import {
   withEuiTheme,
   WithEuiThemeProps,
 } from '../../services';
-import { EuiButtonIcon, EuiButtonIconProps } from '../button';
+import type { EuiButtonIconProps } from '../button';
+import { EuiAccordionTrigger } from './accordion_trigger';
 import {
   euiAccordionStyles,
-  euiAccordionButtonStyles,
   euiAccordionChildrenStyles,
   euiAccordionChildWrapperStyles,
-  euiAccordionIconButtonStyles,
-  euiAccordionOptionalActionStyles,
   euiAccordionSpinnerStyles,
-  euiAccordionTriggerWrapperStyles,
 } from './accordion.styles';
 import { logicalCSS } from '../../global_styling';
 
@@ -279,28 +276,12 @@ export class EuiAccordionClass extends Component<
       isLoading,
       isLoadingMessage,
       isDisabled,
-      buttonProps: _buttonProps,
-      buttonElement: _ButtonElement = 'button',
+      buttonProps,
+      buttonElement,
       arrowProps,
       theme,
       ...rest
     } = this.props;
-    const {
-      paddingSize: buttonPaddingSize,
-      className: buttonPropsClassName,
-      css: buttonPropsCss,
-      ...buttonProps
-    } = _buttonProps || {};
-
-    // Force button element to be a legend if the element is a fieldset
-    const ButtonElement = Element === 'fieldset' ? 'legend' : _ButtonElement;
-    const buttonElementIsFocusable = ButtonElement === 'button';
-
-    // Force visibility of arrow button if button element is not focusable
-    const _arrowDisplay =
-      arrowDisplay === 'none' && !buttonElementIsFocusable
-        ? 'left'
-        : arrowDisplay;
 
     const classes = classNames(
       'euiAccordion',
@@ -321,41 +302,6 @@ export class EuiAccordionClass extends Component<
       'euiAccordion__children-isLoading': isLoading,
     });
 
-    const buttonClasses = classNames(
-      'euiAccordion__button',
-      buttonClassName,
-      buttonPropsClassName
-    );
-
-    const buttonContentClasses = classNames(
-      'euiAccordion__buttonContent',
-      buttonContentClassName
-    );
-
-    const iconButtonClasses = classNames(
-      'euiAccordion__iconButton',
-      {
-        'euiAccordion__iconButton-isOpen': this.isOpen,
-        'euiAccordion__iconButton--right': _arrowDisplay === 'right',
-      },
-      arrowProps?.className
-    );
-
-    // Emotion styles
-    const buttonStyles = euiAccordionButtonStyles(theme);
-    const cssButtonStyles = [
-      buttonStyles.euiAccordion__button,
-      isDisabled && buttonStyles.disabled,
-      ...(buttonPaddingSize
-        ? [
-            buttonStyles[buttonPaddingSize],
-            arrowDisplay === 'left' && buttonStyles.arrowLeft,
-            arrowDisplay === 'right' && buttonStyles.arrowRight,
-          ]
-        : []),
-      buttonPropsCss,
-    ];
-
     const childrenStyles = euiAccordionChildrenStyles(theme);
     const cssChildrenStyles = [
       childrenStyles.euiAccordion__children,
@@ -369,59 +315,8 @@ export class EuiAccordionClass extends Component<
       this.isOpen && childWrapperStyles.isOpen,
     ];
 
-    const iconButtonStyles = euiAccordionIconButtonStyles(theme);
-    const cssIconButtonStyles = [
-      iconButtonStyles.euiAccordion__iconButton,
-      this.isOpen && iconButtonStyles.isOpen,
-      _arrowDisplay === 'right' && iconButtonStyles.arrowRight,
-      arrowProps?.css,
-    ];
-
-    const optionalActionStyles = euiAccordionOptionalActionStyles();
-    const cssOptionalActionStyles = [
-      optionalActionStyles.euiAccordion__optionalAction,
-    ];
-
     const spinnerStyles = euiAccordionSpinnerStyles(theme);
     const cssSpinnerStyles = [spinnerStyles.euiAccordion__spinner];
-
-    const triggerWrapperStyles = euiAccordionTriggerWrapperStyles();
-    const cssTriggerWrapperStyles = [
-      triggerWrapperStyles.euiAccordion__triggerWrapper,
-    ];
-
-    let iconButton;
-    const buttonId = buttonProps.id ?? this.generatedId;
-    if (_arrowDisplay !== 'none') {
-      iconButton = (
-        <EuiButtonIcon
-          color="text"
-          {...arrowProps}
-          className={iconButtonClasses}
-          css={cssIconButtonStyles}
-          iconType="arrowRight"
-          onClick={this.onToggle}
-          aria-controls={id}
-          aria-expanded={this.isOpen}
-          aria-labelledby={buttonId}
-          tabIndex={buttonElementIsFocusable ? -1 : 0}
-          isDisabled={isDisabled}
-        />
-      );
-    }
-
-    let optionalAction = null;
-
-    if (isLoading || extraAction) {
-      optionalAction = (
-        <div
-          className="euiAccordion__optionalAction"
-          css={cssOptionalActionStyles}
-        >
-          {isLoading ? <EuiLoadingSpinner /> : extraAction}
-        </div>
-      );
-    }
 
     let childrenContent: any;
     if (isLoading && isLoadingMessage) {
@@ -446,34 +341,26 @@ export class EuiAccordionClass extends Component<
       childrenContent = children;
     }
 
-    const button = (
-      <ButtonElement
-        {...buttonProps}
-        id={buttonId}
-        className={buttonClasses}
-        css={cssButtonStyles}
-        aria-controls={id}
-        // `aria-expanded` is only a valid attribute on interactive controls - axe-core throws a violation otherwise
-        aria-expanded={ButtonElement === 'button' ? this.isOpen : undefined}
-        onClick={isDisabled ? undefined : this.onToggle}
-        type={ButtonElement === 'button' ? 'button' : undefined}
-        disabled={ButtonElement === 'button' ? isDisabled : undefined}
-      >
-        <span className={buttonContentClasses}>{buttonContent}</span>
-      </ButtonElement>
-    );
+    const buttonId = buttonProps?.id ?? this.generatedId;
 
     return (
       <Element className={classes} css={cssStyles} {...rest}>
-        <div
-          className="euiAccordion__triggerWrapper"
-          css={cssTriggerWrapperStyles}
-        >
-          {_arrowDisplay === 'left' && iconButton}
-          {button}
-          {optionalAction}
-          {_arrowDisplay === 'right' && iconButton}
-        </div>
+        <EuiAccordionTrigger
+          ariaControlsId={id}
+          buttonId={buttonId}
+          // Force button element to be a legend if the element is a fieldset
+          buttonElement={Element === 'fieldset' ? 'legend' : buttonElement}
+          buttonClassName={buttonClassName}
+          buttonContent={buttonContent}
+          buttonContentClassName={buttonContentClassName}
+          buttonProps={buttonProps}
+          arrowProps={arrowProps}
+          arrowDisplay={arrowDisplay}
+          isDisabled={isDisabled}
+          isOpen={this.isOpen}
+          onToggle={this.onToggle}
+          extraAction={isLoading ? <EuiLoadingSpinner /> : extraAction}
+        />
 
         <div
           className="euiAccordion__childWrapper"
