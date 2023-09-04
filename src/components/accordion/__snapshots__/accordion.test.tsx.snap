@@ -38,6 +38,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="25"
+    inert=""
     role="region"
     style="block-size: 0;"
     tabindex="-1"
@@ -93,6 +94,7 @@ exports[`EuiAccordion behavior does not open when isDisabled 1`] = `
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="23"
+    inert=""
     role="region"
     style="block-size: 0;"
     tabindex="-1"
@@ -214,59 +216,6 @@ exports[`EuiAccordion behavior opens when div is clicked if element is a div 1`]
 </div>
 `;
 
-exports[`EuiAccordion behavior restores tabbable children on accordion open 1`] = `
-<div
-  class="euiAccordion__children emotion-euiAccordion__children"
->
-  <button>
-    tabbable item one
-  </button>
-  <input
-    placeholder="tabbable item two"
-    type="text"
-  />
-  <a
-    href="#"
-  >
-    tabbable item three
-  </a>
-  <div
-    tabindex="0"
-  >
-    tabbable item four
-  </div>
-</div>
-`;
-
-exports[`EuiAccordion behavior sets tabbable children to \`tabIndex={-1}\` when accordions are closed 1`] = `
-<div
-  class="euiAccordion__children emotion-euiAccordion__children"
->
-  <button
-    tabindex="-1"
-  >
-    tabbable item one
-  </button>
-  <input
-    placeholder="tabbable item two"
-    tabindex="-1"
-    type="text"
-  />
-  <a
-    href="#"
-    tabindex="-1"
-  >
-    tabbable item three
-  </a>
-  <div
-    data-original-tabindex="0"
-    tabindex="-1"
-  >
-    tabbable item four
-  </div>
-</div>
-`;
-
 exports[`EuiAccordion is rendered 1`] = `
 <div
   aria-label="aria-label"
@@ -307,6 +256,7 @@ exports[`EuiAccordion is rendered 1`] = `
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="0"
+    inert=""
     role="region"
     style="block-size: 0;"
     tabindex="-1"
@@ -358,6 +308,7 @@ exports[`EuiAccordion isDisabled is rendered 1`] = `
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="21"
+    inert=""
     role="region"
     style="block-size: 0;"
     tabindex="-1"
@@ -392,6 +343,7 @@ exports[`EuiAccordion props arrowDisplay none is rendered 1`] = `
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="14"
+    inert=""
     role="region"
     style="block-size: 0;"
     tabindex="-1"
@@ -441,6 +393,7 @@ exports[`EuiAccordion props arrowDisplay right is rendered 1`] = `
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="13"
+    inert=""
     role="region"
     style="block-size: 0;"
     tabindex="-1"
@@ -492,6 +445,7 @@ exports[`EuiAccordion props arrowProps is rendered 1`] = `
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="15"
+    inert=""
     role="region"
     style="block-size: 0;"
     tabindex="-1"
@@ -545,6 +499,7 @@ exports[`EuiAccordion props buttonContent is rendered 1`] = `
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="3"
+    inert=""
     role="region"
     style="block-size: 0;"
     tabindex="-1"
@@ -594,6 +549,7 @@ exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="2"
+    inert=""
     role="region"
     style="block-size: 0;"
     tabindex="-1"
@@ -641,6 +597,7 @@ exports[`EuiAccordion props buttonElement is rendered 1`] = `
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="10"
+    inert=""
     role="region"
     style="block-size: 0;"
     tabindex="-1"
@@ -692,6 +649,7 @@ exports[`EuiAccordion props buttonProps is rendered 1`] = `
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="4"
+    inert=""
     role="region"
     style="block-size: 0;"
     tabindex="-1"
@@ -742,6 +700,7 @@ exports[`EuiAccordion props buttonProps paddingSize l 1`] = `
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="7"
+    inert=""
     role="region"
     style="block-size: 0;"
     tabindex="-1"
@@ -792,6 +751,7 @@ exports[`EuiAccordion props buttonProps paddingSize m 1`] = `
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="6"
+    inert=""
     role="region"
     style="block-size: 0;"
     tabindex="-1"
@@ -842,6 +802,7 @@ exports[`EuiAccordion props buttonProps paddingSize s 1`] = `
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="5"
+    inert=""
     role="region"
     style="block-size: 0;"
     tabindex="-1"
@@ -889,6 +850,7 @@ exports[`EuiAccordion props element is rendered 1`] = `
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="1"
+    inert=""
     role="region"
     style="block-size: 0;"
     tabindex="-1"
@@ -945,6 +907,7 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="11"
+    inert=""
     role="region"
     style="block-size: 0;"
     tabindex="-1"
@@ -994,6 +957,7 @@ exports[`EuiAccordion props forceState closed is rendered 1`] = `
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="16"
+    inert=""
     role="region"
     style="block-size: 0;"
     tabindex="-1"
@@ -1162,6 +1126,7 @@ exports[`EuiAccordion props isLoading is rendered 1`] = `
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="19"
+    inert=""
     role="region"
     style="block-size: 0;"
     tabindex="-1"
@@ -1220,6 +1185,7 @@ exports[`EuiAccordion props isLoadingMessage is rendered 1`] = `
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="20"
+    inert=""
     role="region"
     style="block-size: 0;"
     tabindex="-1"

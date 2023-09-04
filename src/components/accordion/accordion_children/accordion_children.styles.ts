@@ -42,7 +42,6 @@ export const euiAccordionChildWrapperStyles = ({ euiTheme }: UseEuiTheme) => ({
     transition: ${logicals.height} ${euiTheme.animation.normal}
         ${euiTheme.animation.resistance},
       opacity ${euiTheme.animation.normal} ${euiTheme.animation.resistance};
-    visibility: hidden;
 
     &:focus {
       outline: none; /* Hide focus ring because of tabindex=-1 on Safari */
@@ -51,6 +50,5 @@ export const euiAccordionChildWrapperStyles = ({ euiTheme }: UseEuiTheme) => ({
   isOpen: css`
     ${logicalCSS('height', 'auto')}
     opacity: 1;
-    visibility: visible;
   `,
 });

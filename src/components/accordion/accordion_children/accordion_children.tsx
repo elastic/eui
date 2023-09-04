@@ -16,7 +16,6 @@ import React, {
   useState,
 } from 'react';
 import classNames from 'classnames';
-import { tabbable, FocusableElement } from 'tabbable';
 
 import { useEuiTheme } from '../../../services';
 import { EuiResizeObserver } from '../../observer/resize_observer';
@@ -92,48 +91,6 @@ export const EuiAccordionChildren: FunctionComponent<
     if (isOpen) wrapperRef.current?.focus();
   }, [isOpen]);
 
-  /**
-   * Ensure accordion children are correctly removed from tabindex order
-   * when accordions are closed, and correctly restored on open
-   */
-  const tabbableChildren = useRef<FocusableElement[] | null>(null);
-
-  useEffect(() => {
-    // When accordions are closed, tabbable children should not be present in the tab order
-    if (!isOpen) {
-      // Re-check for children on every close - content can change dynamically
-      tabbableChildren.current = tabbable(wrapperRef.current!);
-
-      tabbableChildren.current.forEach((element) => {
-        // If the element has an existing `tabIndex` set, make sure we can restore it
-        const originalTabIndex = element.getAttribute('tabIndex');
-        if (originalTabIndex) {
-          element.setAttribute('data-original-tabindex', originalTabIndex);
-        }
-
-        element.setAttribute('tabIndex', '-1');
-      });
-    } else {
-      // On open, restore tabbable children
-      // If no tabbable children were set, we don't need to re-enable anything
-      if (!tabbableChildren.current) return;
-
-      tabbableChildren.current.forEach((element) => {
-        const originalTabIndex = element.getAttribute('data-original-tabindex');
-        if (originalTabIndex) {
-          // If the element originally had an existing `tabIndex` set, restore it
-          element.setAttribute('tabIndex', originalTabIndex);
-          element.removeAttribute('data-original-tabindex');
-        } else {
-          // If not, remove the tabIndex property
-          element.removeAttribute('tabIndex');
-        }
-      });
-      // Cleanup - unset the list of children
-      tabbableChildren.current = null;
-    }
-  }, [isOpen]);
-
   return (
     <div
       {...rest}
@@ -141,8 +98,10 @@ export const EuiAccordionChildren: FunctionComponent<
       css={wrapperCssStyles}
       style={heightInlineStyle}
       ref={wrapperRef}
-      tabIndex={-1}
       role="region"
+      tabIndex={-1}
+      // @ts-expect-error - inert property not yet available in React TS defs. TODO: Remove this once https://github.com/DefinitelyTyped/DefinitelyTyped/pull/60822 is merged
+      inert={!isOpen ? '' : undefined} // Can't pass a boolean currently, Jest throws errors
     >
       <EuiResizeObserver onResize={onResize}>
         {(resizeRef) => (
