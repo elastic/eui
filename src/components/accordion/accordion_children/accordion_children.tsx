@@ -65,7 +65,7 @@ export const EuiAccordionChildren: FunctionComponent<
   const wrapperStyles = euiAccordionChildWrapperStyles(euiTheme);
   const wrapperCssStyles = [
     wrapperStyles.euiAccordion__childWrapper,
-    isOpen && wrapperStyles.isOpen,
+    isOpen ? wrapperStyles.isOpen : wrapperStyles.isClosed,
   ];
 
   const wrapperRef = useRef<HTMLDivElement | null>(null);

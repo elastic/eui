@@ -40,7 +40,7 @@ exports[`EuiCollapsibleNavAccordion renders as a sub item 1`] = `
   </div>
   <div
     aria-labelledby="generated-id"
-    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
     id="generated-id"
     inert=""
     role="region"
@@ -110,7 +110,7 @@ exports[`EuiCollapsibleNavAccordion renders as a top level item 1`] = `
   </div>
   <div
     aria-labelledby="generated-id"
-    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
     id="generated-id"
     inert=""
     role="region"

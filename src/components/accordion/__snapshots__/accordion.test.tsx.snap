@@ -36,7 +36,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
   </div>
   <div
     aria-labelledby="generated-id"
-    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
     id="25"
     inert=""
     role="region"
@@ -92,7 +92,7 @@ exports[`EuiAccordion behavior does not open when isDisabled 1`] = `
   </div>
   <div
     aria-labelledby="generated-id"
-    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
     id="23"
     inert=""
     role="region"
@@ -254,7 +254,7 @@ exports[`EuiAccordion is rendered 1`] = `
   </div>
   <div
     aria-labelledby="generated-id"
-    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
     id="0"
     inert=""
     role="region"
@@ -306,7 +306,7 @@ exports[`EuiAccordion isDisabled is rendered 1`] = `
   </div>
   <div
     aria-labelledby="generated-id"
-    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
     id="21"
     inert=""
     role="region"
@@ -341,7 +341,7 @@ exports[`EuiAccordion props arrowDisplay none is rendered 1`] = `
   </div>
   <div
     aria-labelledby="generated-id"
-    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
     id="14"
     inert=""
     role="region"
@@ -391,7 +391,7 @@ exports[`EuiAccordion props arrowDisplay right is rendered 1`] = `
   </div>
   <div
     aria-labelledby="generated-id"
-    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
     id="13"
     inert=""
     role="region"
@@ -443,7 +443,7 @@ exports[`EuiAccordion props arrowProps is rendered 1`] = `
   </div>
   <div
     aria-labelledby="generated-id"
-    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
     id="15"
     inert=""
     role="region"
@@ -497,7 +497,7 @@ exports[`EuiAccordion props buttonContent is rendered 1`] = `
   </div>
   <div
     aria-labelledby="generated-id"
-    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
     id="3"
     inert=""
     role="region"
@@ -547,7 +547,7 @@ exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
   </div>
   <div
     aria-labelledby="generated-id"
-    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
     id="2"
     inert=""
     role="region"
@@ -595,7 +595,7 @@ exports[`EuiAccordion props buttonElement is rendered 1`] = `
   </div>
   <div
     aria-labelledby="generated-id"
-    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
     id="10"
     inert=""
     role="region"
@@ -647,7 +647,7 @@ exports[`EuiAccordion props buttonProps is rendered 1`] = `
   </div>
   <div
     aria-labelledby="generated-id"
-    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
     id="4"
     inert=""
     role="region"
@@ -698,7 +698,7 @@ exports[`EuiAccordion props buttonProps paddingSize l 1`] = `
   </div>
   <div
     aria-labelledby="generated-id"
-    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
     id="7"
     inert=""
     role="region"
@@ -749,7 +749,7 @@ exports[`EuiAccordion props buttonProps paddingSize m 1`] = `
   </div>
   <div
     aria-labelledby="generated-id"
-    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
     id="6"
     inert=""
     role="region"
@@ -800,7 +800,7 @@ exports[`EuiAccordion props buttonProps paddingSize s 1`] = `
   </div>
   <div
     aria-labelledby="generated-id"
-    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
     id="5"
     inert=""
     role="region"
@@ -848,7 +848,7 @@ exports[`EuiAccordion props element is rendered 1`] = `
   </div>
   <div
     aria-labelledby="generated-id"
-    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
     id="1"
     inert=""
     role="region"
@@ -905,7 +905,7 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
   </div>
   <div
     aria-labelledby="generated-id"
-    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
     id="11"
     inert=""
     role="region"
@@ -955,7 +955,7 @@ exports[`EuiAccordion props forceState closed is rendered 1`] = `
   </div>
   <div
     aria-labelledby="generated-id"
-    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
     id="16"
     inert=""
     role="region"
@@ -1124,7 +1124,7 @@ exports[`EuiAccordion props isLoading is rendered 1`] = `
   </div>
   <div
     aria-labelledby="generated-id"
-    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
     id="19"
     inert=""
     role="region"
@@ -1183,7 +1183,7 @@ exports[`EuiAccordion props isLoadingMessage is rendered 1`] = `
   </div>
   <div
     aria-labelledby="generated-id"
-    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isClosed"
     id="20"
     inert=""
     role="region"

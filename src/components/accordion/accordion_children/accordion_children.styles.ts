@@ -9,7 +9,12 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../../services';
-import { logicals, logicalCSS } from '../../../global_styling';
+import {
+  logicals,
+  logicalCSS,
+  euiCanAnimate,
+  euiFocusRing,
+} from '../../../global_styling';
 
 export const euiAccordionChildrenStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiAccordion__children: css``,
@@ -34,21 +39,33 @@ export const euiAccordionChildrenStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
 });
 
-export const euiAccordionChildWrapperStyles = ({ euiTheme }: UseEuiTheme) => ({
-  euiAccordion__childWrapper: css`
-    ${logicalCSS('height', 0)}
-    opacity: 0;
-    overflow: hidden;
-    transition: ${logicals.height} ${euiTheme.animation.normal}
-        ${euiTheme.animation.resistance},
-      opacity ${euiTheme.animation.normal} ${euiTheme.animation.resistance};
+export const euiAccordionChildWrapperStyles = (
+  euiThemeContext: UseEuiTheme
+) => {
+  const { euiTheme } = euiThemeContext;
+  return {
+    euiAccordion__childWrapper: css`
+      overflow: hidden;
 
-    &:focus {
-      outline: none; /* Hide focus ring because of tabindex=-1 on Safari */
-    }
-  `,
-  isOpen: css`
-    ${logicalCSS('height', 'auto')}
-    opacity: 1;
-  `,
-});
+      ${euiCanAnimate} {
+        transition: ${logicals.height} ${euiTheme.animation.normal}
+            ${euiTheme.animation.resistance},
+          opacity ${euiTheme.animation.normal} ${euiTheme.animation.resistance};
+      }
+
+      /* NOTE: Safari is slightly flaky about showing the focus-visible outline
+         on click when it should only show on keyboard enter. However, the minor
+         visual impact of this is not worth the accessibility loss to keyboard
+         users on Chrome & FF */
+      ${euiFocusRing(euiThemeContext)}
+    `,
+    isClosed: css`
+      ${logicalCSS('height', 0)}
+      opacity: 0;
+    `,
+    isOpen: css`
+      ${logicalCSS('height', 'auto')}
+      opacity: 1;
+    `,
+  };
+};
