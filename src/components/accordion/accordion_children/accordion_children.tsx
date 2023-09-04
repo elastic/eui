@@ -11,13 +11,12 @@ import React, {
   HTMLAttributes,
   useRef,
   useCallback,
-  useEffect,
   useMemo,
   useState,
 } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme } from '../../../services';
+import { useEuiTheme, useUpdateEffect } from '../../../services';
 import { EuiResizeObserver } from '../../observer/resize_observer';
 
 import { EuiAccordionProps } from '../accordion';
@@ -85,9 +84,10 @@ export const EuiAccordionChildren: FunctionComponent<
   );
 
   /**
-   * Focus the children wrapper on open
+   * Focus the children wrapper when the accordion is opened,
+   * but not if the accordion is initially open on mount
    */
-  useEffect(() => {
+  useUpdateEffect(() => {
     if (isOpen) wrapperRef.current?.focus();
   }, [isOpen]);
 
