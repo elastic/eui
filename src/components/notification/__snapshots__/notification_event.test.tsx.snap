@@ -506,7 +506,7 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
         </p>
       </div>
       <div
-        class="euiAccordion euiNotificationEventMessages__accordion"
+        class="euiAccordion euiNotificationEventMessages__accordion emotion-euiAccordion"
       >
         <div
           class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
