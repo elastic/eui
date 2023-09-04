@@ -12,6 +12,8 @@ import React, {
   useRef,
   useCallback,
   useEffect,
+  useMemo,
+  useState,
 } from 'react';
 import classNames from 'classnames';
 import { tabbable, FocusableElement } from 'tabbable';
@@ -58,8 +60,6 @@ export const EuiAccordionChildren: FunctionComponent<
     paddingSize && paddingSize !== 'none' && styles[paddingSize],
   ];
 
-  const contentRef = useRef<HTMLDivElement | null>(null);
-
   /**
    * Wrapper
    */
@@ -75,18 +75,15 @@ export const EuiAccordionChildren: FunctionComponent<
    * Update the accordion wrapper height whenever the accordion opens, and also
    * whenever the child content updates (which will change the height)
    */
-  const setAccordionHeight = useCallback(() => {
-    requestAnimationFrame(() => {
-      if (!contentRef.current || !wrapperRef.current) return;
-
-      const height = isOpen ? contentRef.current!.clientHeight : 0;
-      wrapperRef.current.style.blockSize = `${height}px`;
-    });
-  }, [isOpen]);
-
-  useEffect(() => {
-    setAccordionHeight();
-  }, [setAccordionHeight, children]);
+  const [contentHeight, setContentHeight] = useState(0);
+  const onResize = useCallback(
+    ({ height }: { height: number }) => setContentHeight(Math.round(height)),
+    []
+  );
+  const heightInlineStyle = useMemo(
+    () => ({ blockSize: isOpen ? contentHeight : 0 }),
+    [isOpen, contentHeight]
+  );
 
   /**
    * Focus the children wrapper on open
@@ -105,7 +102,7 @@ export const EuiAccordionChildren: FunctionComponent<
     // When accordions are closed, tabbable children should not be present in the tab order
     if (!isOpen) {
       // Re-check for children on every close - content can change dynamically
-      tabbableChildren.current = tabbable(contentRef.current!);
+      tabbableChildren.current = tabbable(wrapperRef.current!);
 
       tabbableChildren.current.forEach((element) => {
         // If the element has an existing `tabIndex` set, make sure we can restore it
@@ -142,20 +139,14 @@ export const EuiAccordionChildren: FunctionComponent<
       {...rest}
       className="euiAccordion__childWrapper"
       css={wrapperCssStyles}
+      style={heightInlineStyle}
       ref={wrapperRef}
       tabIndex={-1}
       role="region"
     >
-      <EuiResizeObserver onResize={setAccordionHeight}>
+      <EuiResizeObserver onResize={onResize}>
         {(resizeRef) => (
-          <div
-            ref={(node) => {
-              resizeRef(node);
-              contentRef.current = node;
-            }}
-            className={classes}
-            css={cssStyles}
-          >
+          <div ref={resizeRef} className={classes} css={cssStyles}>
             {isLoading && isLoadingMessage ? (
               <EuiAccordionChildrenLoading
                 isLoadingMessage={isLoadingMessage}

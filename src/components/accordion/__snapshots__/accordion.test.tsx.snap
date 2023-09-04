@@ -39,6 +39,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="25"
     role="region"
+    style="block-size: 0;"
     tabindex="-1"
   >
     <div
@@ -93,6 +94,7 @@ exports[`EuiAccordion behavior does not open when isDisabled 1`] = `
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="23"
     role="region"
+    style="block-size: 0;"
     tabindex="-1"
   >
     <div
@@ -145,6 +147,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isOpen"
     id="22"
     role="region"
+    style="block-size: 0;"
     tabindex="-1"
   >
     <div
@@ -197,6 +200,7 @@ exports[`EuiAccordion behavior opens when div is clicked if element is a div 1`]
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isOpen"
     id="24"
     role="region"
+    style="block-size: 0;"
     tabindex="-1"
   >
     <div
@@ -304,6 +308,7 @@ exports[`EuiAccordion is rendered 1`] = `
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="0"
     role="region"
+    style="block-size: 0;"
     tabindex="-1"
   >
     <div
@@ -354,6 +359,7 @@ exports[`EuiAccordion isDisabled is rendered 1`] = `
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="21"
     role="region"
+    style="block-size: 0;"
     tabindex="-1"
   >
     <div
@@ -387,6 +393,7 @@ exports[`EuiAccordion props arrowDisplay none is rendered 1`] = `
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="14"
     role="region"
+    style="block-size: 0;"
     tabindex="-1"
   >
     <div
@@ -435,6 +442,7 @@ exports[`EuiAccordion props arrowDisplay right is rendered 1`] = `
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="13"
     role="region"
+    style="block-size: 0;"
     tabindex="-1"
   >
     <div
@@ -485,6 +493,7 @@ exports[`EuiAccordion props arrowProps is rendered 1`] = `
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="15"
     role="region"
+    style="block-size: 0;"
     tabindex="-1"
   >
     <div
@@ -537,6 +546,7 @@ exports[`EuiAccordion props buttonContent is rendered 1`] = `
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="3"
     role="region"
+    style="block-size: 0;"
     tabindex="-1"
   >
     <div
@@ -585,6 +595,7 @@ exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="2"
     role="region"
+    style="block-size: 0;"
     tabindex="-1"
   >
     <div
@@ -631,6 +642,7 @@ exports[`EuiAccordion props buttonElement is rendered 1`] = `
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="10"
     role="region"
+    style="block-size: 0;"
     tabindex="-1"
   >
     <div
@@ -681,6 +693,7 @@ exports[`EuiAccordion props buttonProps is rendered 1`] = `
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="4"
     role="region"
+    style="block-size: 0;"
     tabindex="-1"
   >
     <div
@@ -730,6 +743,7 @@ exports[`EuiAccordion props buttonProps paddingSize l 1`] = `
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="7"
     role="region"
+    style="block-size: 0;"
     tabindex="-1"
   >
     <div
@@ -779,6 +793,7 @@ exports[`EuiAccordion props buttonProps paddingSize m 1`] = `
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="6"
     role="region"
+    style="block-size: 0;"
     tabindex="-1"
   >
     <div
@@ -828,6 +843,7 @@ exports[`EuiAccordion props buttonProps paddingSize s 1`] = `
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="5"
     role="region"
+    style="block-size: 0;"
     tabindex="-1"
   >
     <div
@@ -874,6 +890,7 @@ exports[`EuiAccordion props element is rendered 1`] = `
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="1"
     role="region"
+    style="block-size: 0;"
     tabindex="-1"
   >
     <div
@@ -929,6 +946,7 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="11"
     role="region"
+    style="block-size: 0;"
     tabindex="-1"
   >
     <div
@@ -977,6 +995,7 @@ exports[`EuiAccordion props forceState closed is rendered 1`] = `
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="16"
     role="region"
+    style="block-size: 0;"
     tabindex="-1"
   >
     <div
@@ -1029,6 +1048,7 @@ exports[`EuiAccordion props forceState open is rendered 1`] = `
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isOpen"
     id="17"
     role="region"
+    style="block-size: 0;"
     tabindex="-1"
   >
     <div
@@ -1081,6 +1101,7 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isOpen"
     id="12"
     role="region"
+    style="block-size: 0;"
     tabindex="-1"
   >
     <div
@@ -1142,6 +1163,7 @@ exports[`EuiAccordion props isLoading is rendered 1`] = `
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="19"
     role="region"
+    style="block-size: 0;"
     tabindex="-1"
   >
     <div
@@ -1199,6 +1221,7 @@ exports[`EuiAccordion props isLoadingMessage is rendered 1`] = `
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="20"
     role="region"
+    style="block-size: 0;"
     tabindex="-1"
   >
     <div

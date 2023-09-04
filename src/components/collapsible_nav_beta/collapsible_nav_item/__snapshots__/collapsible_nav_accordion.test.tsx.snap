@@ -43,6 +43,7 @@ exports[`EuiCollapsibleNavAccordion renders as a sub item 1`] = `
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="generated-id"
     role="region"
+    style="block-size: 0;"
     tabindex="-1"
   >
     <div
@@ -111,6 +112,7 @@ exports[`EuiCollapsibleNavAccordion renders as a top level item 1`] = `
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
     id="generated-id"
     role="region"
+    style="block-size: 0;"
     tabindex="-1"
   >
     <div
