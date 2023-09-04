@@ -70,6 +70,12 @@ const buttonContent = (
     </EuiText>
   </div>
 );
+// Custom trigger button CSS
+const buttonCss = css`
+  &:hover {
+    text-decoration: none;
+  }
+`;
 
 // Custom CSS to make the extra action only appear on hover or focus
 // Useful if there's multiple accordions in a row to reduce visual overwhelm
@@ -110,7 +116,7 @@ export default () => {
         id={formAccordionId__1}
         element="fieldset"
         className="euiAccordionForm"
-        buttonClassName="euiAccordionForm__button"
+        buttonProps={{ paddingSize: 'm', css: buttonCss }}
         buttonContent={buttonContent}
         extraAction={extraAction}
         paddingSize="l"
@@ -122,7 +128,7 @@ export default () => {
         id={formAccordionId__2}
         element="fieldset"
         className="euiAccordionForm"
-        buttonClassName="euiAccordionForm__button"
+        buttonProps={{ paddingSize: 'm', css: buttonCss }}
         buttonContent={buttonContent}
         extraAction={extraAction}
         paddingSize="l"

@@ -49,9 +49,13 @@ export type EuiAccordionProps = CommonProps &
      */
     buttonClassName?: string;
     /**
-     * Apply more props to the triggering button
+     * Apply more props to the triggering button.
+     *
+     * Includes optional `paddingSize` prop which allows sizes of `s`, `m`, or `l`.
+     * Note: Padding will not be present on the side closest to the accordion arrow.
      */
-    buttonProps?: CommonProps & HTMLAttributes<HTMLElement>;
+    buttonProps?: CommonProps &
+      HTMLAttributes<HTMLElement> & { paddingSize?: 's' | 'm' | 'l' };
     /**
      * Class that will apply to the trigger content for the accordion.
      */
@@ -268,12 +272,18 @@ export class EuiAccordionClass extends Component<
       isLoading,
       isLoadingMessage,
       isDisabled,
-      buttonProps,
+      buttonProps: _buttonProps,
       buttonElement: _ButtonElement = 'button',
       arrowProps,
       theme,
       ...rest
     } = this.props;
+    const {
+      paddingSize: buttonPaddingSize,
+      className: buttonPropsClassName,
+      css: buttonPropsCss,
+      ...buttonProps
+    } = _buttonProps || {};
 
     // Force button element to be a legend if the element is a fieldset
     const ButtonElement = Element === 'fieldset' ? 'legend' : _ButtonElement;
@@ -300,7 +310,7 @@ export class EuiAccordionClass extends Component<
     const buttonClasses = classNames(
       'euiAccordion__button',
       buttonClassName,
-      buttonProps?.className
+      buttonPropsClassName
     );
 
     const buttonContentClasses = classNames(
@@ -322,7 +332,14 @@ export class EuiAccordionClass extends Component<
     const cssButtonStyles = [
       buttonStyles.euiAccordion__button,
       isDisabled && buttonStyles.disabled,
-      buttonProps?.css,
+      ...(buttonPaddingSize
+        ? [
+            buttonStyles[buttonPaddingSize],
+            arrowDisplay === 'left' && buttonStyles.arrowLeft,
+            arrowDisplay === 'right' && buttonStyles.arrowRight,
+          ]
+        : []),
+      buttonPropsCss,
     ];
 
     const childrenStyles = euiAccordionChildrenStyles(theme);
@@ -360,7 +377,7 @@ export class EuiAccordionClass extends Component<
     ];
 
     let iconButton;
-    const buttonId = buttonProps?.id ?? this.generatedId;
+    const buttonId = buttonProps.id ?? this.generatedId;
     if (_arrowDisplay !== 'none') {
       iconButton = (
         <EuiButtonIcon

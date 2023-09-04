@@ -716,6 +716,159 @@ exports[`EuiAccordion props buttonProps is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiAccordion props buttonProps paddingSize l 1`] = `
+<div
+  class="euiAccordion"
+>
+  <div
+    class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
+  >
+    <button
+      aria-controls="7"
+      aria-expanded="false"
+      aria-labelledby="generated-id"
+      class="euiButtonIcon euiAccordion__iconButton emotion-euiButtonIcon-xs-empty-text-euiAccordion__iconButton"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="arrowRight"
+      />
+    </button>
+    <button
+      aria-controls="7"
+      aria-expanded="false"
+      class="euiAccordion__button emotion-euiAccordion__button-l-arrowLeft"
+      data-test-subj="button"
+      id="generated-id"
+      type="button"
+    >
+      <span
+        class="euiAccordion__buttonContent"
+      />
+    </button>
+  </div>
+  <div
+    aria-labelledby="generated-id"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    id="7"
+    role="region"
+    tabindex="-1"
+  >
+    <div>
+      <div
+        class="euiAccordion__children emotion-euiAccordion__children"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiAccordion props buttonProps paddingSize m 1`] = `
+<div
+  class="euiAccordion"
+>
+  <div
+    class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
+  >
+    <button
+      aria-controls="6"
+      aria-expanded="false"
+      aria-labelledby="generated-id"
+      class="euiButtonIcon euiAccordion__iconButton emotion-euiButtonIcon-xs-empty-text-euiAccordion__iconButton"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="arrowRight"
+      />
+    </button>
+    <button
+      aria-controls="6"
+      aria-expanded="false"
+      class="euiAccordion__button emotion-euiAccordion__button-m-arrowLeft"
+      data-test-subj="button"
+      id="generated-id"
+      type="button"
+    >
+      <span
+        class="euiAccordion__buttonContent"
+      />
+    </button>
+  </div>
+  <div
+    aria-labelledby="generated-id"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    id="6"
+    role="region"
+    tabindex="-1"
+  >
+    <div>
+      <div
+        class="euiAccordion__children emotion-euiAccordion__children"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiAccordion props buttonProps paddingSize s 1`] = `
+<div
+  class="euiAccordion"
+>
+  <div
+    class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
+  >
+    <button
+      aria-controls="5"
+      aria-expanded="false"
+      aria-labelledby="generated-id"
+      class="euiButtonIcon euiAccordion__iconButton emotion-euiButtonIcon-xs-empty-text-euiAccordion__iconButton"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="arrowRight"
+      />
+    </button>
+    <button
+      aria-controls="5"
+      aria-expanded="false"
+      class="euiAccordion__button emotion-euiAccordion__button-s-arrowLeft"
+      data-test-subj="button"
+      id="generated-id"
+      type="button"
+    >
+      <span
+        class="euiAccordion__buttonContent"
+      />
+    </button>
+  </div>
+  <div
+    aria-labelledby="generated-id"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    id="5"
+    role="region"
+    tabindex="-1"
+  >
+    <div>
+      <div
+        class="euiAccordion__children emotion-euiAccordion__children"
+      />
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiAccordion props element is rendered 1`] = `
 <fieldset
   class="euiAccordion"
