@@ -32,7 +32,7 @@ export const euiCollapsibleNavGroupStyles = ({
 
       .euiCollapsibleNavGroup__title,
       .euiCollapsibleNavGroup__heading,
-      .euiAccordion__iconButton {
+      .euiAccordion__arrow {
         color: ${euiTheme.colors.ghost};
       }
     `,
