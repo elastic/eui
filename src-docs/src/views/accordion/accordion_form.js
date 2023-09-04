@@ -115,7 +115,7 @@ export default () => {
       <EuiAccordion
         id={formAccordionId__1}
         element="fieldset"
-        className="euiAccordionForm"
+        borders="horizontal"
         buttonProps={{ paddingSize: 'm', css: buttonCss }}
         buttonContent={buttonContent}
         extraAction={extraAction}
@@ -127,7 +127,7 @@ export default () => {
       <EuiAccordion
         id={formAccordionId__2}
         element="fieldset"
-        className="euiAccordionForm"
+        borders="horizontal"
         buttonProps={{ paddingSize: 'm', css: buttonCss }}
         buttonContent={buttonContent}
         extraAction={extraAction}

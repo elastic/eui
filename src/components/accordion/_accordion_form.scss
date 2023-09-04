@@ -1,8 +1,0 @@
-.euiAccordionForm {
-  border-top: $euiBorderThin;
-  border-bottom: $euiBorderThin;
-
-  & + .euiAccordionForm {
-    border-top: none;
-  }
-}

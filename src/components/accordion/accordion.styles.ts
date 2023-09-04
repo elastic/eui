@@ -15,6 +15,27 @@ import {
   logicalTextAlignCSS,
 } from '../../global_styling';
 
+export const euiAccordionStyles = ({ euiTheme }: UseEuiTheme) => {
+  return {
+    euiAccordion: css``,
+    // Borders
+    borders: {
+      // Prevent border repeats
+      borders: css`
+        & + [class*='euiAccordion-borders'] {
+          ${logicalCSS('border-top', 'none')}
+        }
+      `,
+      horizontal: css`
+        border-block: ${euiTheme.border.thin};
+      `,
+      all: css`
+        border: ${euiTheme.border.thin};
+      `,
+    },
+  };
+};
+
 export const euiAccordionButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   return {

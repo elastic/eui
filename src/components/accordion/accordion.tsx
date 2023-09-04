@@ -23,6 +23,7 @@ import {
 } from '../../services';
 import { EuiButtonIcon, EuiButtonIconProps } from '../button';
 import {
+  euiAccordionStyles,
   euiAccordionButtonStyles,
   euiAccordionChildrenStyles,
   euiAccordionChildWrapperStyles,
@@ -96,6 +97,10 @@ export type EuiAccordionProps = CommonProps &
      */
     arrowDisplay?: 'left' | 'right' | 'none';
     /**
+     * Optional border styling. Defaults to 'none'.
+     */
+    borders?: 'horizontal' | 'all' | 'none';
+    /**
      * Control the opening of accordion via prop
      */
     forceState?: 'closed' | 'open';
@@ -123,6 +128,7 @@ export class EuiAccordionClass extends Component<
 > {
   static defaultProps = {
     initialIsOpen: false,
+    borders: 'none' as const,
     paddingSize: 'none' as const,
     arrowDisplay: 'left' as const,
     isLoading: false,
@@ -266,6 +272,7 @@ export class EuiAccordionClass extends Component<
       buttonContentClassName,
       extraAction,
       paddingSize,
+      borders,
       initialIsOpen,
       arrowDisplay,
       forceState,
@@ -302,6 +309,13 @@ export class EuiAccordionClass extends Component<
       },
       className
     );
+
+    const styles = euiAccordionStyles(theme);
+    const cssStyles = [
+      styles.euiAccordion,
+      borders !== 'none' && styles.borders.borders,
+      borders !== 'none' && styles.borders[borders!],
+    ];
 
     const childrenClasses = classNames('euiAccordion__children', {
       'euiAccordion__children-isLoading': isLoading,
@@ -450,7 +464,7 @@ export class EuiAccordionClass extends Component<
     );
 
     return (
-      <Element className={classes} {...rest}>
+      <Element className={classes} css={cssStyles} {...rest}>
         <div
           className="euiAccordion__triggerWrapper"
           css={cssTriggerWrapperStyles}
