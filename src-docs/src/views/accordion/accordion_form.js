@@ -111,7 +111,7 @@ export default () => {
   });
 
   return (
-    <div>
+    <>
       <EuiAccordion
         id={formAccordionId__1}
         element="fieldset"
@@ -135,6 +135,6 @@ export default () => {
       >
         {repeatableForm}
       </EuiAccordion>
-    </div>
+    </>
   );
 };
