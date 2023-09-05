@@ -28,11 +28,37 @@ exports[`EuiForm renders with error callout when isInvalid is "true" 1`] = `
     role="alert"
     tabindex="-1"
   >
+    <button
+      aria-label="Close callout"
+      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-danger-euiCallOut__closeIcon"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="cross"
+      />
+    </button>
     <p
       class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader-danger"
     >
       Please address the highlighted errors.
     </p>
+    <button
+      class="euiButton emotion-euiButtonDisplay-m-defaultMinWidth-base-danger"
+      type="button"
+    >
+      <span
+        class="emotion-euiButtonDisplayContent"
+      >
+        <span
+          class="eui-textTruncate"
+        >
+          Dismiss
+        </span>
+      </span>
+    </button>
   </div>
 </div>
 `;
@@ -49,6 +75,18 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has mul
     role="alert"
     tabindex="-1"
   >
+    <button
+      aria-label="Close callout"
+      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-danger-euiCallOut__closeIcon"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="cross"
+      />
+    </button>
     <p
       class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader-danger"
     >
@@ -73,6 +111,20 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has mul
           </span>
         </li>
       </ul>
+      <button
+        class="euiButton emotion-euiButtonDisplay-m-defaultMinWidth-base-danger"
+        type="button"
+      >
+        <span
+          class="emotion-euiButtonDisplayContent"
+        >
+          <span
+            class="eui-textTruncate"
+          >
+            Dismiss
+          </span>
+        </span>
+      </button>
     </div>
   </div>
 </div>
@@ -90,6 +142,18 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has one
     role="alert"
     tabindex="-1"
   >
+    <button
+      aria-label="Close callout"
+      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-danger-euiCallOut__closeIcon"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="cross"
+      />
+    </button>
     <p
       class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader-danger"
     >
@@ -107,6 +171,20 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has one
           </span>
         </li>
       </ul>
+      <button
+        class="euiButton emotion-euiButtonDisplay-m-defaultMinWidth-base-danger"
+        type="button"
+      >
+        <span
+          class="emotion-euiButtonDisplayContent"
+        >
+          <span
+            class="eui-textTruncate"
+          >
+            Dismiss
+          </span>
+        </span>
+      </button>
     </div>
   </div>
 </div>
