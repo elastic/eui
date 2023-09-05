@@ -2,7 +2,7 @@
 
 exports[`EuiCollapsibleNavAccordion renders as a sub item 1`] = `
 <div
-  class="euiAccordion euiCollapsibleNavAccordion emotion-euiCollapsibleNavAccordion-isSubItem"
+  class="euiAccordion euiCollapsibleNavAccordion emotion-euiAccordion-euiCollapsibleNavAccordion-isSubItem"
 >
   <div
     class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
@@ -71,7 +71,7 @@ exports[`EuiCollapsibleNavAccordion renders as a sub item 1`] = `
 exports[`EuiCollapsibleNavAccordion renders as a top level item 1`] = `
 <div
   aria-label="aria-label"
-  class="euiAccordion euiCollapsibleNavAccordion testClass1 testClass2 emotion-euiCollapsibleNavAccordion-isTopItem-euiTestCss"
+  class="euiAccordion euiCollapsibleNavAccordion testClass1 testClass2 emotion-euiAccordion-euiCollapsibleNavAccordion-isTopItem-euiTestCss"
   data-test-subj="test subject string"
 >
   <div

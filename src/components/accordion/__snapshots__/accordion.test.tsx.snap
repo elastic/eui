@@ -2,13 +2,13 @@
 
 exports[`EuiAccordion behavior closes when clicked twice 1`] = `
 <div
-  class="euiAccordion"
+  class="euiAccordion emotion-euiAccordion"
 >
   <div
     class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
   >
     <button
-      aria-controls="20"
+      aria-controls="25"
       aria-expanded="false"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__iconButton emotion-euiButtonIcon-xs-empty-text-euiAccordion__iconButton"
@@ -23,7 +23,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
       />
     </button>
     <button
-      aria-controls="20"
+      aria-controls="25"
       aria-expanded="false"
       class="euiAccordion__button emotion-euiAccordion__button"
       id="generated-id"
@@ -37,7 +37,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
   <div
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
-    id="20"
+    id="25"
     role="region"
     tabindex="-1"
   >
@@ -56,13 +56,13 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
 
 exports[`EuiAccordion behavior does not open when isDisabled 1`] = `
 <div
-  class="euiAccordion"
+  class="euiAccordion emotion-euiAccordion"
 >
   <div
     class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
   >
     <button
-      aria-controls="18"
+      aria-controls="23"
       aria-expanded="false"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__iconButton emotion-euiButtonIcon-xs-empty-disabled-isDisabled-euiAccordion__iconButton"
@@ -78,7 +78,7 @@ exports[`EuiAccordion behavior does not open when isDisabled 1`] = `
       />
     </button>
     <button
-      aria-controls="18"
+      aria-controls="23"
       aria-expanded="false"
       class="euiAccordion__button emotion-euiAccordion__button-disabled"
       disabled=""
@@ -93,7 +93,7 @@ exports[`EuiAccordion behavior does not open when isDisabled 1`] = `
   <div
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
-    id="18"
+    id="23"
     role="region"
     tabindex="-1"
   >
@@ -112,13 +112,13 @@ exports[`EuiAccordion behavior does not open when isDisabled 1`] = `
 
 exports[`EuiAccordion behavior opens when clicked once 1`] = `
 <div
-  class="euiAccordion euiAccordion-isOpen"
+  class="euiAccordion euiAccordion-isOpen emotion-euiAccordion"
 >
   <div
     class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
   >
     <button
-      aria-controls="17"
+      aria-controls="22"
       aria-expanded="true"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__iconButton euiAccordion__iconButton-isOpen emotion-euiButtonIcon-xs-empty-text-euiAccordion__iconButton-isOpen"
@@ -133,7 +133,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
       />
     </button>
     <button
-      aria-controls="17"
+      aria-controls="22"
       aria-expanded="true"
       class="euiAccordion__button emotion-euiAccordion__button"
       id="generated-id"
@@ -147,7 +147,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
   <div
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isOpen"
-    id="17"
+    id="22"
     role="region"
     tabindex="-1"
   >
@@ -166,13 +166,13 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
 
 exports[`EuiAccordion behavior opens when div is clicked if element is a div 1`] = `
 <div
-  class="euiAccordion euiAccordion-isOpen"
+  class="euiAccordion euiAccordion-isOpen emotion-euiAccordion"
 >
   <div
     class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
   >
     <button
-      aria-controls="19"
+      aria-controls="24"
       aria-expanded="true"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__iconButton euiAccordion__iconButton-isOpen emotion-euiButtonIcon-xs-empty-text-euiAccordion__iconButton-isOpen"
@@ -187,7 +187,7 @@ exports[`EuiAccordion behavior opens when div is clicked if element is a div 1`]
       />
     </button>
     <button
-      aria-controls="19"
+      aria-controls="24"
       aria-expanded="true"
       class="euiAccordion__button emotion-euiAccordion__button"
       id="generated-id"
@@ -201,7 +201,7 @@ exports[`EuiAccordion behavior opens when div is clicked if element is a div 1`]
   <div
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isOpen"
-    id="19"
+    id="24"
     role="region"
     tabindex="-1"
   >
@@ -274,7 +274,7 @@ exports[`EuiAccordion behavior sets tabbable children to \`tabIndex={-1}\` when 
 exports[`EuiAccordion is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiAccordion testClass1 testClass2 emotion-euiTestCss"
+  class="euiAccordion testClass1 testClass2 emotion-euiAccordion-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -325,13 +325,13 @@ exports[`EuiAccordion is rendered 1`] = `
 
 exports[`EuiAccordion isDisabled is rendered 1`] = `
 <div
-  class="euiAccordion"
+  class="euiAccordion emotion-euiAccordion"
 >
   <div
     class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
   >
     <button
-      aria-controls="16"
+      aria-controls="21"
       aria-expanded="false"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__iconButton emotion-euiButtonIcon-xs-empty-disabled-isDisabled-euiAccordion__iconButton"
@@ -347,7 +347,7 @@ exports[`EuiAccordion isDisabled is rendered 1`] = `
       />
     </button>
     <button
-      aria-controls="16"
+      aria-controls="21"
       aria-expanded="false"
       class="euiAccordion__button emotion-euiAccordion__button-disabled"
       disabled=""
@@ -362,7 +362,7 @@ exports[`EuiAccordion isDisabled is rendered 1`] = `
   <div
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
-    id="16"
+    id="21"
     role="region"
     tabindex="-1"
   >
@@ -377,13 +377,13 @@ exports[`EuiAccordion isDisabled is rendered 1`] = `
 
 exports[`EuiAccordion props arrowDisplay none is rendered 1`] = `
 <div
-  class="euiAccordion"
+  class="euiAccordion emotion-euiAccordion"
 >
   <div
     class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
   >
     <button
-      aria-controls="9"
+      aria-controls="14"
       aria-expanded="false"
       class="euiAccordion__button emotion-euiAccordion__button"
       id="generated-id"
@@ -397,7 +397,7 @@ exports[`EuiAccordion props arrowDisplay none is rendered 1`] = `
   <div
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
-    id="9"
+    id="14"
     role="region"
     tabindex="-1"
   >
@@ -412,13 +412,13 @@ exports[`EuiAccordion props arrowDisplay none is rendered 1`] = `
 
 exports[`EuiAccordion props arrowDisplay right is rendered 1`] = `
 <div
-  class="euiAccordion"
+  class="euiAccordion emotion-euiAccordion"
 >
   <div
     class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
   >
     <button
-      aria-controls="8"
+      aria-controls="13"
       aria-expanded="false"
       class="euiAccordion__button emotion-euiAccordion__button"
       id="generated-id"
@@ -429,7 +429,7 @@ exports[`EuiAccordion props arrowDisplay right is rendered 1`] = `
       />
     </button>
     <button
-      aria-controls="8"
+      aria-controls="13"
       aria-expanded="false"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__iconButton euiAccordion__iconButton--right emotion-euiButtonIcon-xs-empty-text-euiAccordion__iconButton-arrowRight"
@@ -447,7 +447,7 @@ exports[`EuiAccordion props arrowDisplay right is rendered 1`] = `
   <div
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
-    id="8"
+    id="13"
     role="region"
     tabindex="-1"
   >
@@ -462,13 +462,13 @@ exports[`EuiAccordion props arrowDisplay right is rendered 1`] = `
 
 exports[`EuiAccordion props arrowProps is rendered 1`] = `
 <div
-  class="euiAccordion"
+  class="euiAccordion emotion-euiAccordion"
 >
   <div
     class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
   >
     <button
-      aria-controls="10"
+      aria-controls="15"
       aria-expanded="false"
       aria-label="aria-label"
       aria-labelledby="generated-id"
@@ -485,7 +485,7 @@ exports[`EuiAccordion props arrowProps is rendered 1`] = `
       />
     </button>
     <button
-      aria-controls="10"
+      aria-controls="15"
       aria-expanded="false"
       class="euiAccordion__button emotion-euiAccordion__button"
       id="generated-id"
@@ -499,7 +499,7 @@ exports[`EuiAccordion props arrowProps is rendered 1`] = `
   <div
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
-    id="10"
+    id="15"
     role="region"
     tabindex="-1"
   >
@@ -514,7 +514,7 @@ exports[`EuiAccordion props arrowProps is rendered 1`] = `
 
 exports[`EuiAccordion props buttonContent is rendered 1`] = `
 <div
-  class="euiAccordion"
+  class="euiAccordion emotion-euiAccordion"
 >
   <div
     class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
@@ -568,7 +568,7 @@ exports[`EuiAccordion props buttonContent is rendered 1`] = `
 
 exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
 <div
-  class="euiAccordion"
+  class="euiAccordion emotion-euiAccordion"
 >
   <div
     class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
@@ -618,13 +618,13 @@ exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
 
 exports[`EuiAccordion props buttonElement is rendered 1`] = `
 <div
-  class="euiAccordion"
+  class="euiAccordion emotion-euiAccordion"
 >
   <div
     class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
   >
     <button
-      aria-controls="5"
+      aria-controls="10"
       aria-expanded="false"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__iconButton emotion-euiButtonIcon-xs-empty-text-euiAccordion__iconButton"
@@ -639,7 +639,7 @@ exports[`EuiAccordion props buttonElement is rendered 1`] = `
       />
     </button>
     <div
-      aria-controls="5"
+      aria-controls="10"
       class="euiAccordion__button emotion-euiAccordion__button"
       id="generated-id"
     >
@@ -651,7 +651,7 @@ exports[`EuiAccordion props buttonElement is rendered 1`] = `
   <div
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
-    id="5"
+    id="10"
     role="region"
     tabindex="-1"
   >
@@ -666,7 +666,7 @@ exports[`EuiAccordion props buttonElement is rendered 1`] = `
 
 exports[`EuiAccordion props buttonProps is rendered 1`] = `
 <div
-  class="euiAccordion"
+  class="euiAccordion emotion-euiAccordion"
 >
   <div
     class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
@@ -716,9 +716,162 @@ exports[`EuiAccordion props buttonProps is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiAccordion props buttonProps paddingSize l 1`] = `
+<div
+  class="euiAccordion emotion-euiAccordion"
+>
+  <div
+    class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
+  >
+    <button
+      aria-controls="7"
+      aria-expanded="false"
+      aria-labelledby="generated-id"
+      class="euiButtonIcon euiAccordion__iconButton emotion-euiButtonIcon-xs-empty-text-euiAccordion__iconButton"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="arrowRight"
+      />
+    </button>
+    <button
+      aria-controls="7"
+      aria-expanded="false"
+      class="euiAccordion__button emotion-euiAccordion__button-l-arrowLeft"
+      data-test-subj="button"
+      id="generated-id"
+      type="button"
+    >
+      <span
+        class="euiAccordion__buttonContent"
+      />
+    </button>
+  </div>
+  <div
+    aria-labelledby="generated-id"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    id="7"
+    role="region"
+    tabindex="-1"
+  >
+    <div>
+      <div
+        class="euiAccordion__children emotion-euiAccordion__children"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiAccordion props buttonProps paddingSize m 1`] = `
+<div
+  class="euiAccordion emotion-euiAccordion"
+>
+  <div
+    class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
+  >
+    <button
+      aria-controls="6"
+      aria-expanded="false"
+      aria-labelledby="generated-id"
+      class="euiButtonIcon euiAccordion__iconButton emotion-euiButtonIcon-xs-empty-text-euiAccordion__iconButton"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="arrowRight"
+      />
+    </button>
+    <button
+      aria-controls="6"
+      aria-expanded="false"
+      class="euiAccordion__button emotion-euiAccordion__button-m-arrowLeft"
+      data-test-subj="button"
+      id="generated-id"
+      type="button"
+    >
+      <span
+        class="euiAccordion__buttonContent"
+      />
+    </button>
+  </div>
+  <div
+    aria-labelledby="generated-id"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    id="6"
+    role="region"
+    tabindex="-1"
+  >
+    <div>
+      <div
+        class="euiAccordion__children emotion-euiAccordion__children"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiAccordion props buttonProps paddingSize s 1`] = `
+<div
+  class="euiAccordion emotion-euiAccordion"
+>
+  <div
+    class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
+  >
+    <button
+      aria-controls="5"
+      aria-expanded="false"
+      aria-labelledby="generated-id"
+      class="euiButtonIcon euiAccordion__iconButton emotion-euiButtonIcon-xs-empty-text-euiAccordion__iconButton"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="arrowRight"
+      />
+    </button>
+    <button
+      aria-controls="5"
+      aria-expanded="false"
+      class="euiAccordion__button emotion-euiAccordion__button-s-arrowLeft"
+      data-test-subj="button"
+      id="generated-id"
+      type="button"
+    >
+      <span
+        class="euiAccordion__buttonContent"
+      />
+    </button>
+  </div>
+  <div
+    aria-labelledby="generated-id"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
+    id="5"
+    role="region"
+    tabindex="-1"
+  >
+    <div>
+      <div
+        class="euiAccordion__children emotion-euiAccordion__children"
+      />
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiAccordion props element is rendered 1`] = `
 <fieldset
-  class="euiAccordion"
+  class="euiAccordion emotion-euiAccordion"
 >
   <div
     class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
@@ -766,13 +919,13 @@ exports[`EuiAccordion props element is rendered 1`] = `
 
 exports[`EuiAccordion props extraAction is rendered 1`] = `
 <div
-  class="euiAccordion"
+  class="euiAccordion emotion-euiAccordion"
 >
   <div
     class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
   >
     <button
-      aria-controls="6"
+      aria-controls="11"
       aria-expanded="false"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__iconButton emotion-euiButtonIcon-xs-empty-text-euiAccordion__iconButton"
@@ -787,7 +940,7 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
       />
     </button>
     <button
-      aria-controls="6"
+      aria-controls="11"
       aria-expanded="false"
       class="euiAccordion__button emotion-euiAccordion__button"
       id="generated-id"
@@ -808,7 +961,7 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
   <div
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
-    id="6"
+    id="11"
     role="region"
     tabindex="-1"
   >
@@ -823,13 +976,13 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
 
 exports[`EuiAccordion props forceState closed is rendered 1`] = `
 <div
-  class="euiAccordion"
+  class="euiAccordion emotion-euiAccordion"
 >
   <div
     class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
   >
     <button
-      aria-controls="11"
+      aria-controls="16"
       aria-expanded="false"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__iconButton emotion-euiButtonIcon-xs-empty-text-euiAccordion__iconButton"
@@ -844,7 +997,7 @@ exports[`EuiAccordion props forceState closed is rendered 1`] = `
       />
     </button>
     <button
-      aria-controls="11"
+      aria-controls="16"
       aria-expanded="false"
       class="euiAccordion__button emotion-euiAccordion__button"
       id="generated-id"
@@ -858,7 +1011,7 @@ exports[`EuiAccordion props forceState closed is rendered 1`] = `
   <div
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
-    id="11"
+    id="16"
     role="region"
     tabindex="-1"
   >
@@ -877,7 +1030,61 @@ exports[`EuiAccordion props forceState closed is rendered 1`] = `
 
 exports[`EuiAccordion props forceState open is rendered 1`] = `
 <div
-  class="euiAccordion euiAccordion-isOpen"
+  class="euiAccordion euiAccordion-isOpen emotion-euiAccordion"
+>
+  <div
+    class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
+  >
+    <button
+      aria-controls="17"
+      aria-expanded="true"
+      aria-labelledby="generated-id"
+      class="euiButtonIcon euiAccordion__iconButton euiAccordion__iconButton-isOpen emotion-euiButtonIcon-xs-empty-text-euiAccordion__iconButton-isOpen"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="arrowRight"
+      />
+    </button>
+    <button
+      aria-controls="17"
+      aria-expanded="true"
+      class="euiAccordion__button emotion-euiAccordion__button"
+      id="generated-id"
+      type="button"
+    >
+      <span
+        class="euiAccordion__buttonContent"
+      />
+    </button>
+  </div>
+  <div
+    aria-labelledby="generated-id"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isOpen"
+    id="17"
+    role="region"
+    tabindex="-1"
+  >
+    <div>
+      <div
+        class="euiAccordion__children emotion-euiAccordion__children"
+      >
+        <p>
+          You can see me
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
+<div
+  class="euiAccordion euiAccordion-isOpen emotion-euiAccordion"
 >
   <div
     class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
@@ -921,60 +1128,6 @@ exports[`EuiAccordion props forceState open is rendered 1`] = `
         class="euiAccordion__children emotion-euiAccordion__children"
       >
         <p>
-          You can see me
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
-<div
-  class="euiAccordion euiAccordion-isOpen"
->
-  <div
-    class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
-  >
-    <button
-      aria-controls="7"
-      aria-expanded="true"
-      aria-labelledby="generated-id"
-      class="euiButtonIcon euiAccordion__iconButton euiAccordion__iconButton-isOpen emotion-euiButtonIcon-xs-empty-text-euiAccordion__iconButton-isOpen"
-      tabindex="-1"
-      type="button"
-    >
-      <span
-        aria-hidden="true"
-        class="euiButtonIcon__icon"
-        color="inherit"
-        data-euiicon-type="arrowRight"
-      />
-    </button>
-    <button
-      aria-controls="7"
-      aria-expanded="true"
-      class="euiAccordion__button emotion-euiAccordion__button"
-      id="generated-id"
-      type="button"
-    >
-      <span
-        class="euiAccordion__buttonContent"
-      />
-    </button>
-  </div>
-  <div
-    aria-labelledby="generated-id"
-    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isOpen"
-    id="7"
-    role="region"
-    tabindex="-1"
-  >
-    <div>
-      <div
-        class="euiAccordion__children emotion-euiAccordion__children"
-      >
-        <p>
           You can see me.
         </p>
       </div>
@@ -985,13 +1138,13 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
 
 exports[`EuiAccordion props isLoading is rendered 1`] = `
 <div
-  class="euiAccordion"
+  class="euiAccordion emotion-euiAccordion"
 >
   <div
     class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
   >
     <button
-      aria-controls="14"
+      aria-controls="19"
       aria-expanded="false"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__iconButton emotion-euiButtonIcon-xs-empty-text-euiAccordion__iconButton"
@@ -1006,7 +1159,7 @@ exports[`EuiAccordion props isLoading is rendered 1`] = `
       />
     </button>
     <button
-      aria-controls="14"
+      aria-controls="19"
       aria-expanded="false"
       class="euiAccordion__button emotion-euiAccordion__button"
       id="generated-id"
@@ -1029,7 +1182,7 @@ exports[`EuiAccordion props isLoading is rendered 1`] = `
   <div
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
-    id="14"
+    id="19"
     role="region"
     tabindex="-1"
   >
@@ -1044,13 +1197,13 @@ exports[`EuiAccordion props isLoading is rendered 1`] = `
 
 exports[`EuiAccordion props isLoadingMessage is rendered 1`] = `
 <div
-  class="euiAccordion"
+  class="euiAccordion emotion-euiAccordion"
 >
   <div
     class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
   >
     <button
-      aria-controls="15"
+      aria-controls="20"
       aria-expanded="false"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__iconButton emotion-euiButtonIcon-xs-empty-text-euiAccordion__iconButton"
@@ -1065,7 +1218,7 @@ exports[`EuiAccordion props isLoadingMessage is rendered 1`] = `
       />
     </button>
     <button
-      aria-controls="15"
+      aria-controls="20"
       aria-expanded="false"
       class="euiAccordion__button emotion-euiAccordion__button"
       id="generated-id"
@@ -1088,7 +1241,7 @@ exports[`EuiAccordion props isLoadingMessage is rendered 1`] = `
   <div
     aria-labelledby="generated-id"
     class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper"
-    id="15"
+    id="20"
     role="region"
     tabindex="-1"
   >
