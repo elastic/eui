@@ -30,10 +30,6 @@ export const euiCallOutStyles = ({ euiTheme }: UseEuiTheme) => {
       :not(:only-child) {
         ${logicalCSS('margin-top', euiTheme.size.s)}
       }
-
-      .euiButtonEmpty:last-child {
-        ${logicalCSS('margin-left', euiTheme.size.s)}
-      }
     `,
     euiCallOut__title_endSpace: css`
       padding-inline-end: ${euiTheme.size.l};
