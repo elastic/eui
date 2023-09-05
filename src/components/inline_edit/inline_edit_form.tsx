@@ -102,7 +102,13 @@ export type EuiInlineEditCommonProps = Omit<
        * To use inline edit as a controlled component, continuously pass the value via this prop
        */
       value: string;
+      /**
+       * Callback required to receive and update `value` based on user input
+       */
       onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+      /**
+       * Callback required to reset `value` to the previous read mode text value.
+       */
       onCancel: (perviousValue: string) => void;
     }
   >;
@@ -188,6 +194,8 @@ export const EuiInlineEditForm: FunctionComponent<EuiInlineEditFormProps> = ({
 
   const [isEditing, setIsEditing] = useState(false || startWithEditOpen);
   const [editModeValue, setEditModeValue] = useState(defaultValue);
+
+  // readModeValue accepts controlledValue here to provide a reliable backup for the onCancel callback
   const [readModeValue, setReadModeValue] = useState(
     controlledValue || defaultValue
   );
