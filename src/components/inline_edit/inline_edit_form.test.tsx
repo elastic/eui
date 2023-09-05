@@ -524,4 +524,77 @@ describe('EuiInlineEditForm', () => {
       });
     });
   });
+
+  describe('inline edit as a controlled component', () => {
+    const onSave = jest.fn();
+    const onChange = jest.fn();
+    const onCancel = jest.fn();
+
+    beforeEach(() => {
+      onSave.mockReset();
+      onChange.mockReset();
+      onCancel.mockReset();
+    });
+
+    const controlledInlineEditFormProps: EuiInlineEditFormProps = {
+      ...requiredProps,
+      value: 'Hello World!',
+      onChange: onChange,
+      onCancel: onCancel,
+      inputAriaLabel: 'Edit inline',
+      sizes: MEDIUM_SIZE_FORM,
+      children: (readModeValue) => readModeValue,
+    };
+
+    it('renders in read mode', () => {
+      const { container } = render(
+        <EuiInlineEditForm {...controlledInlineEditFormProps} />
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
+    it('renders in edit mode', () => {
+      const { container } = render(
+        <EuiInlineEditForm
+          {...controlledInlineEditFormProps}
+          startWithEditOpen={true}
+        />
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
+    it('calls controlled onChange when edit mode value changes', () => {
+      const { getByTestSubject } = render(
+        <EuiInlineEditForm
+          {...controlledInlineEditFormProps}
+          startWithEditOpen={true}
+          editModeProps={{
+            inputProps: {
+              'data-test-subj': 'controlledInput',
+            },
+          }}
+        />
+      );
+
+      const mockChangeEvent = { target: { value: 'changed' } };
+      fireEvent.change(getByTestSubject('controlledInput'), mockChangeEvent);
+      expect(onChange).toHaveBeenCalled();
+    });
+
+    it('calls controlled onCancel when changes are cancelled', () => {
+      const { getByTestSubject } = render(
+        <EuiInlineEditForm
+          {...controlledInlineEditFormProps}
+          startWithEditOpen={true}
+          onSave={onSave}
+        />
+      );
+
+      fireEvent.click(getByTestSubject('euiInlineEditModeCancelButton'));
+      expect(onCancel).toHaveBeenCalled();
+      expect(onSave).not.toHaveBeenCalled();
+    });
+  });
 });
