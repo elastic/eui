@@ -25,7 +25,7 @@ exports[`EuiCollapsibleNavItem renders a collapsed button icon when in a collaps
 exports[`EuiCollapsibleNavItem renders a top level accordion if items exist 1`] = `
 <div
   aria-label="aria-label"
-  class="euiAccordion euiCollapsibleNavAccordion euiCollapsibleNavItem testClass1 testClass2 emotion-euiCollapsibleNavAccordion-isTopItem-euiTestCss"
+  class="euiAccordion euiCollapsibleNavAccordion euiCollapsibleNavItem testClass1 testClass2 emotion-euiAccordion-euiCollapsibleNavAccordion-isTopItem-euiTestCss"
   data-test-subj="test subject string"
 >
   <div

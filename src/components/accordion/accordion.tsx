@@ -23,6 +23,7 @@ import {
 } from '../../services';
 import { EuiButtonIcon, EuiButtonIconProps } from '../button';
 import {
+  euiAccordionStyles,
   euiAccordionButtonStyles,
   euiAccordionChildrenStyles,
   euiAccordionChildWrapperStyles,
@@ -49,9 +50,13 @@ export type EuiAccordionProps = CommonProps &
      */
     buttonClassName?: string;
     /**
-     * Apply more props to the triggering button
+     * Apply more props to the triggering button.
+     *
+     * Includes optional `paddingSize` prop which allows sizes of `s`, `m`, or `l`.
+     * Note: Padding will not be present on the side closest to the accordion arrow.
      */
-    buttonProps?: CommonProps & HTMLAttributes<HTMLElement>;
+    buttonProps?: CommonProps &
+      HTMLAttributes<HTMLElement> & { paddingSize?: 's' | 'm' | 'l' };
     /**
      * Class that will apply to the trigger content for the accordion.
      */
@@ -92,6 +97,10 @@ export type EuiAccordionProps = CommonProps &
      */
     arrowDisplay?: 'left' | 'right' | 'none';
     /**
+     * Optional border styling. Defaults to 'none'.
+     */
+    borders?: 'horizontal' | 'all' | 'none';
+    /**
      * Control the opening of accordion via prop
      */
     forceState?: 'closed' | 'open';
@@ -119,6 +128,7 @@ export class EuiAccordionClass extends Component<
 > {
   static defaultProps = {
     initialIsOpen: false,
+    borders: 'none' as const,
     paddingSize: 'none' as const,
     arrowDisplay: 'left' as const,
     isLoading: false,
@@ -262,18 +272,25 @@ export class EuiAccordionClass extends Component<
       buttonContentClassName,
       extraAction,
       paddingSize,
+      borders,
       initialIsOpen,
       arrowDisplay,
       forceState,
       isLoading,
       isLoadingMessage,
       isDisabled,
-      buttonProps,
+      buttonProps: _buttonProps,
       buttonElement: _ButtonElement = 'button',
       arrowProps,
       theme,
       ...rest
     } = this.props;
+    const {
+      paddingSize: buttonPaddingSize,
+      className: buttonPropsClassName,
+      css: buttonPropsCss,
+      ...buttonProps
+    } = _buttonProps || {};
 
     // Force button element to be a legend if the element is a fieldset
     const ButtonElement = Element === 'fieldset' ? 'legend' : _ButtonElement;
@@ -293,6 +310,13 @@ export class EuiAccordionClass extends Component<
       className
     );
 
+    const styles = euiAccordionStyles(theme);
+    const cssStyles = [
+      styles.euiAccordion,
+      borders !== 'none' && styles.borders.borders,
+      borders !== 'none' && styles.borders[borders!],
+    ];
+
     const childrenClasses = classNames('euiAccordion__children', {
       'euiAccordion__children-isLoading': isLoading,
     });
@@ -300,7 +324,7 @@ export class EuiAccordionClass extends Component<
     const buttonClasses = classNames(
       'euiAccordion__button',
       buttonClassName,
-      buttonProps?.className
+      buttonPropsClassName
     );
 
     const buttonContentClasses = classNames(
@@ -322,7 +346,14 @@ export class EuiAccordionClass extends Component<
     const cssButtonStyles = [
       buttonStyles.euiAccordion__button,
       isDisabled && buttonStyles.disabled,
-      buttonProps?.css,
+      ...(buttonPaddingSize
+        ? [
+            buttonStyles[buttonPaddingSize],
+            arrowDisplay === 'left' && buttonStyles.arrowLeft,
+            arrowDisplay === 'right' && buttonStyles.arrowRight,
+          ]
+        : []),
+      buttonPropsCss,
     ];
 
     const childrenStyles = euiAccordionChildrenStyles(theme);
@@ -360,7 +391,7 @@ export class EuiAccordionClass extends Component<
     ];
 
     let iconButton;
-    const buttonId = buttonProps?.id ?? this.generatedId;
+    const buttonId = buttonProps.id ?? this.generatedId;
     if (_arrowDisplay !== 'none') {
       iconButton = (
         <EuiButtonIcon
@@ -433,7 +464,7 @@ export class EuiAccordionClass extends Component<
     );
 
     return (
-      <Element className={classes} {...rest}>
+      <Element className={classes} css={cssStyles} {...rest}>
         <div
           className="euiAccordion__triggerWrapper"
           css={cssTriggerWrapperStyles}

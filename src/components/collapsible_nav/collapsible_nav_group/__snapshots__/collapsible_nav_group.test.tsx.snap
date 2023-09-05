@@ -199,7 +199,7 @@ exports[`EuiCollapsibleNavGroup throws a warning if iconType is passed without a
 exports[`EuiCollapsibleNavGroup when isCollapsible is true accepts accordion props 1`] = `
 <div
   aria-label="aria-label"
-  class="euiAccordion euiCollapsibleNavGroup testClass1 testClass2 emotion-euiCollapsibleNavGroup-isCollapsible-none-euiTestCss"
+  class="euiAccordion euiCollapsibleNavGroup testClass1 testClass2 emotion-euiAccordion-euiCollapsibleNavGroup-isCollapsible-none-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
@@ -267,7 +267,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true accepts accordion pro
 
 exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accordion 1`] = `
 <div
-  class="euiAccordion euiCollapsibleNavGroup emotion-euiCollapsibleNavGroup-isCollapsible-none"
+  class="euiAccordion euiCollapsibleNavGroup emotion-euiAccordion-euiCollapsibleNavGroup-isCollapsible-none"
 >
   <div
     class="euiAccordion__triggerWrapper emotion-euiAccordion__triggerWrapper"
