@@ -15,9 +15,6 @@ export const euiCallOutStyles = ({ euiTheme }: UseEuiTheme) => {
     euiCallOut: css`
       position: relative;
     `,
-    euiCallOut__dismissButton: css`
-      ${logicalCSS('margin-left', euiTheme.size.s)}
-    `,
     euiCallOut__closeIcon: css`
       position: absolute;
       ${logicalCSS('top', euiTheme.size.s)}
@@ -33,6 +30,19 @@ export const euiCallOutStyles = ({ euiTheme }: UseEuiTheme) => {
       :not(:only-child) {
         ${logicalCSS('margin-top', euiTheme.size.s)}
       }
+
+      .euiButtonEmpty:last-child {
+        ${logicalCSS('margin-left', euiTheme.size.s)}
+      }
+    `,
+    euiCallOut__dismissButton_isLast: css`
+      ${logicalCSS('margin-left', euiTheme.size.s)}
+    `,
+    euiCallOut__title_verticalSpace: css`
+      margin-block-end: ${parseInt(euiTheme.size.xxl) / 2}px !important;
+    `,
+    euiCallOut__title_endSpace: css`
+      padding-inline-end: ${euiTheme.size.l};
     `,
   };
 };
@@ -43,7 +53,7 @@ export const euiCallOutHeadingStyles = ({ euiTheme }: UseEuiTheme) => {
       font-weight: ${euiTheme.font.weight.medium};
       ${logicalCSS(
         'margin-bottom',
-        '0 !important'
+        '0'
         // In case it's nested inside EuiText
       )}
     `,
