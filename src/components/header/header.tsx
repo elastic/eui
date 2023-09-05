@@ -6,10 +6,18 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes, useEffect } from 'react';
+import React, {
+  FunctionComponent,
+  HTMLAttributes,
+  useEffect,
+  useState,
+  useMemo,
+  useCallback,
+} from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme } from '../../services';
+import { useEuiTheme, useEuiThemeCSSVariables } from '../../services';
+import { mathWithUnits, logicalStyles } from '../../global_styling';
 import { CommonProps } from '../common';
 import { EuiBreadcrumb, EuiBreadcrumbsProps } from '../breadcrumbs';
 
@@ -19,7 +27,7 @@ import {
   EuiHeaderSectionItemProps,
   EuiHeaderSection,
 } from './header_section';
-import { euiHeaderStyles } from './header.styles';
+import { euiHeaderStyles, euiHeaderVariables } from './header.styles';
 
 type EuiHeaderSectionItemType = EuiHeaderSectionItemProps['children'];
 
@@ -66,9 +74,6 @@ export type EuiHeaderProps = CommonProps &
     theme?: 'default' | 'dark';
   };
 
-// Start a counter to manage the total number of fixed headers that need the body class
-let euiHeaderFixedCounter = 0;
-
 export const EuiHeader: FunctionComponent<EuiHeaderProps> = ({
   children,
   className,
@@ -82,24 +87,6 @@ export const EuiHeader: FunctionComponent<EuiHeaderProps> = ({
   const euiTheme = useEuiTheme();
   const styles = euiHeaderStyles(euiTheme);
   const cssStyles = [styles.euiHeader, styles[position], styles[theme]];
-
-  useEffect(() => {
-    if (position === 'fixed') {
-      // Increment fixed header counter for each fixed header
-      euiHeaderFixedCounter++;
-      document.body.classList.add('euiBody--headerIsFixed');
-      document.body.dataset.fixedHeaders = String(euiHeaderFixedCounter);
-
-      return () => {
-        // Both decrement the fixed counter AND then check if there are none
-        if (--euiHeaderFixedCounter === 0) {
-          // If there are none, THEN remove class
-          document.body.classList.remove('euiBody--headerIsFixed');
-          delete document.body.dataset.fixedHeaders;
-        }
-      };
-    }
-  }, [position]);
 
   let contents;
   if (sections) {
@@ -137,14 +124,75 @@ export const EuiHeader: FunctionComponent<EuiHeaderProps> = ({
     contents = children;
   }
 
+  return position === 'fixed' ? (
+    <EuiFixedHeader css={cssStyles} className={classes} {...rest}>
+      {contents}
+    </EuiFixedHeader>
+  ) : (
+    <div css={cssStyles} className={classes} {...rest}>
+      {contents}
+    </div>
+  );
+};
+
+/**
+ * Fixed headers - logic around dynamically calculating the total
+ * page offset and setting the `top` position of subsequent headers
+ */
+
+// Start a counter to manage the total number of fixed headers
+// Exported for unit testing only
+export let euiFixedHeadersCount = 0;
+
+// Exported for unit testing only
+export const EuiFixedHeader: FunctionComponent<EuiHeaderProps> = ({
+  children,
+  style,
+  ...rest
+}) => {
+  const { setGlobalCSSVariables } = useEuiThemeCSSVariables();
+  const euiTheme = useEuiTheme();
+  const headerHeight = euiHeaderVariables(euiTheme).height;
+  const getHeaderOffset = useCallback(
+    () => mathWithUnits(headerHeight, (x) => x * euiFixedHeadersCount),
+    [headerHeight]
+  );
+  const [topPosition, setTopPosition] = useState<string | undefined>();
+
+  useEffect(() => {
+    // Get the top position from the offset of previous header(s)
+    setTopPosition(getHeaderOffset());
+
+    // Increment fixed header counter for each fixed header
+    euiFixedHeadersCount++;
+    setGlobalCSSVariables({
+      '--euiFixedHeadersOffset': getHeaderOffset(),
+    });
+    document.body.classList.add('euiBody--headerIsFixed'); // TODO: Consider deleting this legacy className
+
+    return () => {
+      euiFixedHeadersCount--;
+      setGlobalCSSVariables({
+        '--euiFixedHeadersOffset': getHeaderOffset(),
+      });
+      if (euiFixedHeadersCount === 0) {
+        document.body.classList.remove('euiBody--headerIsFixed'); // TODO: Consider deleting this legacy className
+      }
+    };
+  }, [getHeaderOffset, setGlobalCSSVariables]);
+
+  const inlineStyles = useMemo(
+    () => logicalStyles({ top: topPosition, ...style }),
+    [topPosition, style]
+  );
+
   return (
     <div
-      css={cssStyles}
-      className={classes}
-      data-fixed-header={position === 'fixed' || undefined} // Used by EuiFlyouts as a query selector
+      data-fixed-header={true} // Used by EuiFlyouts as a query selector
+      style={inlineStyles}
       {...rest}
     >
-      {contents}
+      {children}
     </div>
   );
 };

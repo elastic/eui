@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiThemeProvider CSS variables allows child components to set non-global theme CSS variables 1`] = `
+<span
+  class="euiThemeProvider emotion-euiCSSVariables-euiColorMode--colorClassName"
+/>
+`;
+
 exports[`EuiThemeProvider nested EuiThemeProviders allows avoiding the extra span wrapper with \`wrapperProps.cloneElement\` 1`] = `
 <div>
   Top-level provider

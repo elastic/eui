@@ -87,19 +87,15 @@ export const EuiPageSidebar: FunctionComponent<EuiPageSidebarProps> = ({
     };
 
     if (sticky) {
-      const euiHeaderFixedCounter = Number(
-        document.body.dataset.fixedHeaders ?? 0
-      );
-
       const offset =
         typeof sticky === 'object'
-          ? sticky?.offset
-          : themeContext.euiTheme.base * 3 * euiHeaderFixedCounter;
+          ? `${sticky?.offset}px`
+          : 'var(--euiFixedHeadersOffset, 0)';
 
       updatedStyles = {
         ...updatedStyles,
         ...logicalStyle('top', offset),
-        ...logicalStyle('max-height', `calc(100vh - ${offset}px)`),
+        ...logicalStyle('max-height', `calc(100vh - ${offset})`),
       };
     }
 

@@ -69,7 +69,7 @@ export class GuidePageChrome extends Component {
   scrollNavSectionIntoView = () => {
     // wait a bit for react to blow away and re-create the DOM
     // then scroll the selected nav section into view
-    requestAnimationFrame(() => {
+    setTimeout(() => {
       const sideNav = document.querySelector('.guideSideNav__content');
       const isMobile = sideNav?.querySelector('.euiSideNav__mobileToggle');
 

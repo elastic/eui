@@ -13,6 +13,7 @@ import {
   EuiModificationsContext,
   EuiColorModeContext,
   defaultComputedTheme,
+  EuiNestedThemeContext,
 } from './context';
 import { emitEuiProviderWarning } from './warning';
 import {
@@ -94,4 +95,24 @@ export const RenderWithEuiTheme = <T extends {} = {}>({
 }) => {
   const theme = useEuiTheme<T>();
   return children(theme);
+};
+
+/**
+ * Minor syntactical sugar hook for theme CSS variables.
+ * Primarily meant for internal EUI usage.
+ */
+export const useEuiThemeCSSVariables = () => {
+  const {
+    setGlobalCSSVariables,
+    globalCSSVariables,
+    setNearestThemeCSSVariables,
+    themeCSSVariables,
+  } = useContext(EuiNestedThemeContext);
+
+  return {
+    setGlobalCSSVariables,
+    globalCSSVariables,
+    setNearestThemeCSSVariables,
+    themeCSSVariables,
+  };
 };
