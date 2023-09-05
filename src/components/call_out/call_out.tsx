@@ -13,6 +13,7 @@ import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { IconType, EuiIcon } from '../icon';
 
+import { EuiButton, EuiButtonEmpty, EuiButtonIcon } from '../button';
 import { EuiText } from '../text';
 import { useEuiTheme } from '../../services';
 import { EuiPanel } from '../panel';
@@ -35,6 +36,8 @@ export type EuiCallOutProps = CommonProps &
     color?: Color;
     size?: Size;
     heading?: Heading;
+    onClose?: () => void; //function to handle dismiss action
+    isDismissible?: boolean;
   };
 
 export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
@@ -47,6 +50,8 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
       children,
       className,
       heading = 'p',
+      onClose,
+      isDismissible = true,
       ...rest
     },
     ref
@@ -54,6 +59,8 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
     const theme = useEuiTheme();
     const styles = euiCallOutStyles(theme);
     const cssStyles = [styles.euiCallOut];
+    const cssCloseIconStyle = [styles.euiCallOut__closeIcon];
+    const cssDismissButtonStyle = [styles.euiCallOut__dismissButton];
     const cssIconStyle = [styles.euiCallOut__icon];
     const cssDescriptionStyle = [styles.euiCallOut__description];
 
@@ -71,6 +78,22 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
       className
     );
 
+    const closeIcon = isDismissible ? (
+      <EuiButtonIcon
+        iconType="cross"
+        onClick={onClose}
+        aria-label="Close callout"
+        css={cssCloseIconStyle}
+        color={color}
+      />
+    ) : null;
+
+    const dismissButton = isDismissible ? (
+      <EuiButton color={color} onClick={onClose}>
+        Dismiss
+      </EuiButton>
+    ) : null;
+
     let headerIcon;
 
     if (iconType) {
@@ -84,9 +107,16 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
         />
       );
     }
-
+    let hasButtonInChildren = false;
+    let isChildren = false;
     let optionalChildren;
     if (children) {
+      // Check if children contains any EuiButton components
+      isDismissible &&
+        (hasButtonInChildren = React.Children.toArray(children).some(
+          (child) => React.isValidElement(child) && child.type === EuiButton
+        ));
+      isChildren = true;
       optionalChildren = (
         <EuiText
           css={cssDescriptionStyle}
@@ -94,6 +124,17 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
           color="default"
         >
           {children}
+          {hasButtonInChildren ? (
+            <EuiButtonEmpty
+              color={color}
+              onClick={onClose}
+              css={cssDismissButtonStyle}
+            >
+              Dismiss
+            </EuiButtonEmpty>
+          ) : (
+            dismissButton
+          )}
         </EuiText>
       );
     }
@@ -122,9 +163,11 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
         grow={false}
         {...rest}
       >
+        {closeIcon}
         {header}
 
         {optionalChildren}
+        {!isChildren && dismissButton}
       </EuiPanel>
     );
   }

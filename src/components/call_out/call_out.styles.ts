@@ -12,7 +12,18 @@ import { UseEuiTheme } from '../../services';
 
 export const euiCallOutStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
-    euiCallOut: css``,
+    euiCallOut: css`
+      position: relative;
+    `,
+    euiCallOut__dismissButton: css`
+      ${logicalCSS('margin-left', euiTheme.size.s)}
+    `,
+    euiCallOut__closeIcon: css`
+      position: absolute;
+      ${logicalCSS('top', euiTheme.size.s)}
+      ${logicalCSS('right', euiTheme.size.s)}
+      cursor: pointer;
+    `,
     euiCallOut__icon: css`
       position: relative;
       ${logicalCSS('top', '-1px')}
