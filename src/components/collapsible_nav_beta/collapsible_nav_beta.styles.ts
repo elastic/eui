@@ -20,20 +20,18 @@ export const euiCollapsibleNavBetaStyles = (euiThemeContext: UseEuiTheme) => {
   // page load by setting the CSS var fallback to the height of a single header
   const defaultHeaderHeight = euiHeaderVariables(euiThemeContext).height;
   const fixedHeaderOffset = `var(--euiFixedHeadersOffset, ${defaultHeaderHeight})`;
+  const height = `calc(100% - ${fixedHeaderOffset})`;
 
   return {
     euiCollapsibleNavBeta: css`
       /* Fixed header affordance */
       ${logicalCSS('top', fixedHeaderOffset)}
-      ${logicalCSS('height', `calc(100% - ${fixedHeaderOffset})`)}
+      /* Set the height & allow the nav to scroll, in case consumers don't use EuiFlyoutBody/EuiFyoutFooter */
+      ${euiYScroll(euiThemeContext, { height })}
 
       /* This extra padding is needed for EuiPopovers to have enough
          space to render with the right anchorPosition */
       ${logicalCSS('padding-bottom', euiTheme.size.xs)}
-
-      /* Allow the nav to scroll, in case consumers don't use EuiFlyoutBody/EuiFyoutFooter
-         Height is already set by header affordance above */
-      ${euiYScroll(euiThemeContext, { height: false })}
 
       /* In case things get really dire responsively, ensure the footer doesn't overtake the body */
       .euiFlyoutBody {
