@@ -18,18 +18,14 @@ import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { IconType, EuiIcon } from '../icon';
 
-import { EuiButton, EuiButtonEmpty, EuiButtonIcon } from '../button';
+import { EuiButtonIcon } from '../button';
 import { EuiText } from '../text';
 import { useEuiTheme } from '../../services';
 import { EuiPanel } from '../panel';
 import { EuiTitle } from '../title';
 import { EuiI18n } from '../i18n';
 
-import {
-  euiCallOutStyles,
-  euiCallOutHeadingStyles,
-  euiCalloutOutTitleStyles,
-} from './call_out.styles';
+import { euiCallOutStyles, euiCallOutHeadingStyles } from './call_out.styles';
 
 export const COLORS = ['primary', 'success', 'warning', 'danger'] as const;
 export type Color = (typeof COLORS)[number];
@@ -54,41 +50,12 @@ export type EuiCallOutProps = CommonProps &
     isDismissible?: boolean;
   };
 
-type DismissButtonProps = {
-  hasButtonInChildren: boolean;
-  onClose?: (
-    event?:
-      | React.KeyboardEvent<HTMLDivElement>
-      | React.MouseEvent<HTMLButtonElement>
-  ) => void;
-  color: Color;
-};
-
 type CallOutHeaderProps = {
   title?: ReactNode;
   headerIcon?: ReactNode;
   heading: Heading;
   size: 's' | 'm';
   cssHeaderStyles: any;
-};
-
-const DismissButton: FunctionComponent<DismissButtonProps> = ({
-  hasButtonInChildren,
-  onClose,
-  color,
-}) => {
-  if (hasButtonInChildren) {
-    return (
-      <EuiButtonEmpty color={color} onClick={onClose}>
-        Dismiss
-      </EuiButtonEmpty>
-    );
-  }
-  return (
-    <EuiButton color={color} onClick={onClose}>
-      Dismiss
-    </EuiButton>
-  );
 };
 
 const CallOutHeader: FunctionComponent<CallOutHeaderProps> = ({
@@ -150,17 +117,6 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
       className
     );
 
-    // Get the styles for the title
-    const cssTitleStyles = euiCalloutOutTitleStyles({
-      isDismissible: isDismissible,
-      hasChildren: !!children,
-      theme: theme,
-    });
-
-    const hasButtonInChildren = React.Children.toArray(children).some(
-      (child) => React.isValidElement(child) && child.type === EuiButton
-    );
-
     const closeIcon = isDismissible ? (
       <EuiI18n token="euiCallOut.closeCallOut" default="Close callout">
         {(closeCallOut: string) => (
@@ -192,13 +148,6 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
         color="default"
       >
         {children}
-        {isDismissible && (
-          <DismissButton
-            hasButtonInChildren={hasButtonInChildren}
-            onClose={onClose}
-            color={color}
-          />
-        )}
       </EuiText>
     );
 
@@ -219,20 +168,9 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
           headerIcon={headerIcon}
           heading={heading}
           size={size}
-          cssHeaderStyles={[
-            cssHeaderStyles,
-            isDismissible && cssTitleEndStyle,
-            cssTitleStyles,
-          ]}
+          cssHeaderStyles={[cssHeaderStyles, isDismissible && cssTitleEndStyle]}
         />
         {optionalChildren}
-        {!children && isDismissible && (
-          <DismissButton
-            hasButtonInChildren={false}
-            onClose={onClose}
-            color={color}
-          />
-        )}
       </EuiPanel>
     );
   }
