@@ -6,12 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  forwardRef,
-  FunctionComponent,
-  HTMLAttributes,
-  ReactNode,
-} from 'react';
+import React, { forwardRef, HTMLAttributes, ReactNode } from 'react';
 
 import classNames from 'classnames';
 
@@ -49,34 +44,6 @@ export type EuiCallOutProps = CommonProps &
     ) => void;
     isDismissible?: boolean;
   };
-
-type CallOutHeaderProps = {
-  title?: ReactNode;
-  headerIcon?: ReactNode;
-  heading: Heading;
-  size: 's' | 'm';
-  cssHeaderStyles: any;
-};
-
-const CallOutHeader: FunctionComponent<CallOutHeaderProps> = ({
-  title,
-  headerIcon,
-  heading,
-  size,
-  cssHeaderStyles,
-}) => {
-  if (!title) return null;
-
-  const H: Heading = heading;
-  return (
-    <EuiTitle size={size === 's' ? 'xxs' : 'xs'} css={cssHeaderStyles}>
-      <H className="euiCallOutHeader__title">
-        {headerIcon}
-        {title}
-      </H>
-    </EuiTitle>
-  );
-};
 
 export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
   (
@@ -140,6 +107,18 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
         color="inherit"
       />
     );
+    const H: Heading = heading;
+    const header = title ? (
+      <EuiTitle
+        size={size === 's' ? 'xxs' : 'xs'}
+        css={[cssHeaderStyles, isDismissible && cssTitleEndStyle]}
+      >
+        <H className="euiCallOutHeader__title">
+          {headerIcon}
+          {title}
+        </H>
+      </EuiTitle>
+    ) : null;
 
     const optionalChildren = children && (
       <EuiText
@@ -163,13 +142,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
         {...rest}
       >
         {closeIcon}
-        <CallOutHeader
-          title={title}
-          headerIcon={headerIcon}
-          heading={heading}
-          size={size}
-          cssHeaderStyles={[cssHeaderStyles, isDismissible && cssTitleEndStyle]}
-        />
+        {header}
         {optionalChildren}
       </EuiPanel>
     );
