@@ -25,7 +25,11 @@ import { EuiPanel } from '../panel';
 import { EuiTitle } from '../title';
 import { EuiI18n } from '../i18n';
 
-import { euiCallOutStyles, euiCallOutHeadingStyles } from './call_out.styles';
+import {
+  euiCallOutStyles,
+  euiCallOutHeadingStyles,
+  euiCalloutOutTitleStyles,
+} from './call_out.styles';
 
 export const COLORS = ['primary', 'success', 'warning', 'danger'] as const;
 export type Color = (typeof COLORS)[number];
@@ -46,7 +50,7 @@ export type EuiCallOutProps = CommonProps &
       event?:
         | React.KeyboardEvent<HTMLDivElement>
         | React.MouseEvent<HTMLButtonElement>
-    ) => void; //function to handle dismiss action
+    ) => void;
     isDismissible?: boolean;
   };
 
@@ -56,7 +60,7 @@ type DismissButtonProps = {
     event?:
       | React.KeyboardEvent<HTMLDivElement>
       | React.MouseEvent<HTMLButtonElement>
-  ) => void; //function to handle dismiss action
+  ) => void;
   color: Color;
 };
 
@@ -127,7 +131,6 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
     const styles = euiCallOutStyles(theme);
     const cssStyles = [styles.euiCallOut];
     const cssCloseIconStyle = [styles.euiCallOut__closeIcon];
-    const cssTitleVerticalSpaceStyle = [styles.euiCallOut__title_verticalSpace];
     const cssTitleEndStyle = [styles.euiCallOut__title_endSpace];
 
     const cssIconStyle = [styles.euiCallOut__icon];
@@ -146,6 +149,13 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
       },
       className
     );
+
+    // Get the styles for the title
+    const cssTitleStyles = euiCalloutOutTitleStyles({
+      isDismissible: isDismissible,
+      hasChildren: !!children,
+      theme: theme,
+    });
 
     const hasButtonInChildren = React.Children.toArray(children).some(
       (child) => React.isValidElement(child) && child.type === EuiButton
@@ -192,10 +202,6 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
       </EuiText>
     );
 
-    // Determine if we need spacing after the title
-    const isTitleVerticalSpaceNeeded =
-      isDismissible && !children && !hasButtonInChildren;
-
     return (
       <EuiPanel
         borderRadius="none"
@@ -215,8 +221,8 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
           size={size}
           cssHeaderStyles={[
             cssHeaderStyles,
-            isTitleVerticalSpaceNeeded && cssTitleVerticalSpaceStyle,
             isDismissible && cssTitleEndStyle,
+            cssTitleStyles,
           ]}
         />
         {optionalChildren}

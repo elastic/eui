@@ -38,9 +38,6 @@ export const euiCallOutStyles = ({ euiTheme }: UseEuiTheme) => {
     euiCallOut__dismissButton_isLast: css`
       ${logicalCSS('margin-left', euiTheme.size.s)}
     `,
-    euiCallOut__title_verticalSpace: css`
-      margin-block-end: ${parseInt(euiTheme.size.xxl) / 2}px !important;
-    `,
     euiCallOut__title_endSpace: css`
       padding-inline-end: ${euiTheme.size.l};
     `,
@@ -51,11 +48,6 @@ export const euiCallOutHeadingStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     euiCallOutHeader: css`
       font-weight: ${euiTheme.font.weight.medium};
-      ${logicalCSS(
-        'margin-bottom',
-        '0'
-        // In case it's nested inside EuiText
-      )}
     `,
 
     primary: css`
@@ -71,4 +63,28 @@ export const euiCallOutHeadingStyles = ({ euiTheme }: UseEuiTheme) => {
       color: ${euiTheme.colors.dangerText};
     `,
   };
+};
+
+type EuiCalloutOutTitleStylesProps = {
+  isDismissible: boolean;
+  hasChildren: boolean;
+  isTitleReactNode?: boolean;
+  theme: any;
+};
+
+export const euiCalloutOutTitleStyles = ({
+  isDismissible,
+  hasChildren,
+  theme,
+}: EuiCalloutOutTitleStylesProps) => {
+  const { euiTheme } = theme;
+  if (isDismissible && !hasChildren) {
+    return css`
+      margin-block-end: ${parseInt(euiTheme.size.xxl) / 2}px !important;
+    `;
+  } else {
+    return css`
+      margin-block-end: 0 !important;
+    `;
+  }
 };
