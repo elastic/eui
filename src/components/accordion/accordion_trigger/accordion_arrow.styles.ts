@@ -12,17 +12,15 @@ import { UseEuiTheme } from '../../../services';
 import { logicalCSS } from '../../../global_styling';
 
 export const euiAccordionArrowStyles = ({ euiTheme }: UseEuiTheme) => ({
+  // !important overrides EuiButtonIcon's default transforms
   euiAccordion__arrow: css`
+    /* stylelint-disable declaration-no-important */
     flex-shrink: 0;
     ${logicalCSS('margin-right', euiTheme.size.xs)}
-    transform: rotate(
-      0deg
-    ) !important; /* stylelint-disable-line declaration-no-important */
+    transform: rotate(0deg) !important;
   `,
   isOpen: css`
-    transform: rotate(
-      90deg
-    ) !important; /* stylelint-disable-line declaration-no-important */
+    transform: rotate(90deg) !important;
   `,
   right: css`
     ${logicalCSS('margin-left', euiTheme.size.xs)}
