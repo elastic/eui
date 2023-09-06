@@ -160,6 +160,22 @@ describe('EuiListGroupItem', () => {
         expect(container.firstChild).toMatchSnapshot();
       });
 
+      test('is rendered with showToolTip', () => {
+        const { container } = render(
+          <EuiListGroupItem
+            label="Label"
+            showToolTip
+            extraAction={{
+              iconType: 'empty',
+              alwaysShow: true,
+              'aria-label': 'label',
+            }}
+          />
+        );
+
+        expect(container.firstChild).toMatchSnapshot();
+      });
+
       test('can be disabled', () => {
         const { container } = render(
           <EuiListGroupItem

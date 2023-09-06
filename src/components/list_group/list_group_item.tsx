@@ -354,6 +354,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
         >
           {itemContent}
         </EuiToolTip>
+        {extraActionNode}
       </li>
     );
   } else {

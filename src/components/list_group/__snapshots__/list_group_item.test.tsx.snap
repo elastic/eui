@@ -129,6 +129,38 @@ exports[`EuiListGroupItem props extraAction is rendered 1`] = `
 </li>
 `;
 
+exports[`EuiListGroupItem props extraAction is rendered with showToolTip 1`] = `
+<li
+  class="euiListGroupItem emotion-euiListGroupItem-m"
+>
+  <span
+    class="euiToolTipAnchor euiListGroupItem__tooltip emotion-euiToolTipAnchor-inlineBlock-euiListGroupItem__tooltip"
+  >
+    <span
+      class="euiListGroupItem__text emotion-euiListGroupItem__inner-m-text"
+    >
+      <span
+        class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+      >
+        Label
+      </span>
+    </span>
+  </span>
+  <button
+    aria-label="label"
+    class="euiButtonIcon euiListGroupItemExtraAction emotion-euiButtonIcon-xs-empty-text-euiListGroupItemExtraAction-alwaysShow"
+    type="button"
+  >
+    <span
+      aria-hidden="true"
+      class="euiButtonIcon__icon"
+      color="inherit"
+      data-euiicon-type="empty"
+    />
+  </button>
+</li>
+`;
+
 exports[`EuiListGroupItem props href and onClick is rendered 1`] = `
 <li
   class="euiListGroupItem emotion-euiListGroupItem-text-m"
