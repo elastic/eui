@@ -17532,10 +17532,10 @@ postcss@^8.4.24:
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
 
-pre-commit@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/pre-commit/-/pre-commit-1.2.2.tgz#dbcee0ee9de7235e57f79c56d7ce94641a69eec6"
-  integrity sha1-287g7p3nI15X95xW186UZBpp7sY=
+pre-push@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/pre-push/-/pre-push-0.1.4.tgz#48e7a29e15d3d7a83b62d5a02e10ba5dc40ab3aa"
+  integrity sha512-bIdVuDQR3r5AWV7bM6OMHD3mCXA53Ql0LXmW5UfcSmJZq+J+TytqZ5YJcTmMLcojJysN65vcFIeCqRn6YidA+Q==
   dependencies:
     cross-spawn "^5.0.1"
     spawn-sync "^1.0.15"
